@@ -12,7 +12,7 @@ the QuantLib administrator <a href=
 "mailto:ferdinando.ametrano@riskmap.it">Ferdinando&nbsp;Ametrano</a>.</p>
 
 <script type="text/javascript" language="javascript"
- src="http://ss.webring.yahoo.com/navbar?f=j&y=ametrano&u=98033809110220824">
+src="http://ss.webring.yahoo.com/navbar?f=j&amp;y=ametrano&amp;u=98033809110220824">
 </script>
 
 </div>

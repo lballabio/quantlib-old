@@ -17,7 +17,7 @@
 <meta http-equiv="Window-target" content="_top">
 <meta http-equiv="Content-Language" content="en">
 <link rel="stylesheet" href=
-"http://www.quantlib.org/styles/main.css" type="text/css">
+"styles/main.css" type="text/css">
 <link rev="made" href="mailto:ferdinando@ametrano.net">
 
 <script type="text/javascript">
