@@ -43,6 +43,7 @@ using QuantLib::RandomNumbers::KnuthUniformRsg;
 using QuantLib::RandomNumbers::MersenneTwisterUniformRsg;
 using QuantLib::RandomNumbers::UniformRandomSequenceGenerator;
 using QuantLib::RandomNumbers::HaltonRsg;
+using QuantLib::RandomNumbers::SobolRsg;
 using QuantLib::RandomNumbers::UniformLowDiscrepancySequenceGenerator;
 
 using QuantLib::RandomNumbers::ICGaussianRsg;
@@ -149,6 +150,13 @@ class GaussianRandomGenerator {
 class HaltonRsg {
   public:
     HaltonRsg(long dimensionality);
+    const Sample<Array>& nextSequence() const;
+    Size dimension() const;
+};
+
+class SobolRsg {
+  public:
+    SobolRsg(long dimensionality, long seed=0);
     const Sample<Array>& nextSequence() const;
     Size dimension() const;
 };
