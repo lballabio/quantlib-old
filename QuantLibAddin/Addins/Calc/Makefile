@@ -29,25 +29,26 @@ TYPES = com.sun.star.sheet.XAddIn \
 		com.sun.star.sheet.addin.XQL
 TYPESLIST = $(foreach t,$(TYPES),-T$(t))
 
-ALL : $(COMPONENT_NAME).flag2
+ALL : $(COMPONENT_NAME).flag3
 
 $(COMPONENT_NAME).urd : $(COMPONENT_NAME).idl
 	idlc -I$(IDL_DIR) $(COMPONENT_NAME).idl
 
-$(COMPONENT_NAME).rdb : $(COMPONENT_NAME).urd
+$(COMPONENT_NAME).flag1 : $(COMPONENT_NAME).urd
 	regmerge $(COMPONENT_NAME).rdb /UCR $(COMPONENT_NAME).urd
+	echo flagged > $@
 
-$(COMPONENT_NAME).flag1 : $(COMPONENT_NAME).rdb
+$(COMPONENT_NAME).flag2 : $(COMPONENT_NAME).flag1
 	cppumaker -BUCR $(TYPESLIST) $(DKREGISTRYNAME) $(COMPONENT_NAME).rdb
 	echo flagged > $@
 
-%.o : %.cpp $(COMPONENT_NAME).flag1
+%.o : %.cpp $(COMPONENT_NAME).flag2
 	$(CC) $(CC_FLAGS) $(CC_INCLUDES) $(CC_DEFINES) -o $@ $<
 
 $(COMPONENT_NAME).so : $(OBJFILES)
 	$(LINK) $(LIBRARY_LINK_FLAGS) $(LINK_LIBS) -o $(COMPONENT_NAME).so $(OBJFILES) $(LIBRARY_LIBS)
 
-$(COMPONENT_NAME).flag2 : $(COMPONENT_NAME).rdb $(COMPONENT_NAME).so
+$(COMPONENT_NAME).flag3 : $(COMPONENT_NAME).rdb $(COMPONENT_NAME).so
 	regcomp -register -r $(COMPONENT_NAME).rdb -c $(COMPONENT_NAME).so
 	echo flagged > $@
 
@@ -57,7 +58,6 @@ clean :
 	-$(DELRECURSIVE) com
 	-$(DEL)  $(COMPONENT_NAME).urd
 	-$(DEL)  $(COMPONENT_NAME).rdb
-	-$(DEL)  $(COMPONENT_NAME).flag1
-	-$(DEL)  $(COMPONENT_NAME).flag2
+	-$(DEL)  $(COMPONENT_NAME).flag*
 	-$(DEL)  *.o
 	-$(DEL)  $(COMPONENT_NAME).so
