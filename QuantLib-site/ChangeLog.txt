@@ -1,3 +1,7 @@
+2002-04-16 21:56  nando
+
+	* ChangeLog.txt (1.19): updated
+
 2002-04-10 13:36  nando
 
 	* FAQ.html (1.37), cvs.html (1.37), download.html (1.29),
