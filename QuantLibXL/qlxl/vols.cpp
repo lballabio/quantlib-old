@@ -32,15 +32,17 @@ extern "C"
 
 
     LPXLOPER EXCEL_EXPORT xlBlackVol(XlfOper xlrefDate,
-                                     XlfOper xlblackVolSurface,
                                      XlfOper xldate1,
                                      XlfOper xldate2,
                                      XlfOper xlstrike,
+                                     XlfOper xlblackVolSurface,
+                                     XlfOper interpolationType,
                                      XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
         Date refDate = QlXlfOper(xlrefDate).AsDate();
         RelinkableHandle<BlackVolTermStructure> volSurface =
-            QlXlfOper(xlblackVolSurface).AsBlackVolTermStructure(refDate);
+            QlXlfOper(xlblackVolSurface).AsBlackVolTermStructure(refDate,
+            interpolationType.AsInt());
         Date date1 = QlXlfOper(xldate1).AsDate();
         Date date2 = QlXlfOper(xldate2).AsDate();
         double strike = xlstrike.AsDouble();
@@ -51,34 +53,37 @@ extern "C"
         EXCEL_END;
     }
 
-    LPXLOPER EXCEL_EXPORT xlLocalVol(XlfOper xlvalueDate,
+    LPXLOPER EXCEL_EXPORT xlLocalVol(XlfOper xlrefDate,
                                      XlfOper xlunderlying,
+                                     XlfOper xlevalDate,
+                                     XlfOper xlassetLevel,
                                      XlfOper xldividendYield,
                                      XlfOper xlriskFree,
                                      XlfOper xlblackVolSurface,
-                                     XlfOper xlassetLevel,
-                                     XlfOper xlrefDate,
+                                     XlfOper xlinterpolationType,
                                      XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
 
-        Date valueDate    = QlXlfOper(xlvalueDate).AsDate();
+        Date refDate    = QlXlfOper(xlrefDate).AsDate();
         double underlying = xlunderlying.AsDouble();
 
         RelinkableHandle<TermStructure> dividendTS =
-            QlXlfOper(xldividendYield).AsTermStructure(valueDate);
+            QlXlfOper(xldividendYield).AsTermStructure(refDate);
         RelinkableHandle<TermStructure> riskFreeTS =
-            QlXlfOper(xlriskFree).AsTermStructure(valueDate);
+            QlXlfOper(xlriskFree).AsTermStructure(refDate);
         RelinkableHandle<BlackVolTermStructure> blackVolSurface =
-            QlXlfOper(xlblackVolSurface).AsBlackVolTermStructure(valueDate);
+            QlXlfOper(xlblackVolSurface).AsBlackVolTermStructure(refDate,
+            xlinterpolationType.AsInt());
 
         double assetLevel = xlassetLevel.AsDouble();
-        Date refDate      = QlXlfOper(xlrefDate).AsDate();
+        Date evalDate      = QlXlfOper(xlevalDate).AsDate();
 
         VolTermStructures::LocalVolSurface locVol(blackVolSurface,
             riskFreeTS, dividendTS, underlying);
 
-        double result = locVol.localVol(refDate, assetLevel,
-            xlallowExtrapolation.AsBool());
+        bool allowExtrapolation = xlallowExtrapolation.AsBool();
+        double result = locVol.localVol(evalDate, assetLevel,
+            allowExtrapolation);
         return XlfOper(result);
         EXCEL_END;
     }

@@ -37,9 +37,10 @@ extern "C"
                         XlfOper xlstrike,
                         XlfOper xldividendYield,
                         XlfOper xlriskFree,
-                        XlfOper xlvalueDate,
+                        XlfOper xlrefDate,
                         XlfOper xlmaturityDate,
-                        XlfOper xlvolatility)
+                        XlfOper xlvolatility,
+                        XlfOper xlinterpolationType)
     {
         EXCEL_BEGIN;
 
@@ -50,18 +51,19 @@ extern "C"
             dynamic_cast<VanillaOptionArguments*>(
                 engine->arguments());
 
-        Date valueDate = QlXlfOper(xlvalueDate).AsDate();
+        Date refDate = QlXlfOper(xlrefDate).AsDate();
 
         arguments->type = QlXlfOper(xltype).AsOptionType();
         arguments->underlying = xlunderlying.AsDouble();
         arguments->strike = xlstrike.AsDouble();
-        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(valueDate);
-        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(valueDate);
+        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(refDate);
+        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
         arguments->exerciseType = Exercise::European;
         Date maturityDate = QlXlfOper(xlmaturityDate).AsDate();
         arguments->maturity = arguments->riskFreeTS->dayCounter().yearFraction(
-            valueDate, maturityDate);
-        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(valueDate);
+            refDate, maturityDate);
+        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+            xlinterpolationType.AsInt());
 
         arguments->validate();
         engine->calculate();
@@ -91,9 +93,10 @@ extern "C"
                         XlfOper xlstrike,
                         XlfOper xldividendYield,
                         XlfOper xlriskFree,
-                        XlfOper xlvalueDate,
+                        XlfOper xlrefDate,
                         XlfOper xlmaturityDate,
                         XlfOper xlvolatility,
+                        XlfOper xlinterpolationType,
                         XlfOper xlforeignRiskFreeRate,
                         XlfOper xlexchangeVolatility,
                         XlfOper xlcorrelation)
@@ -113,23 +116,25 @@ extern "C"
             <QuantoOptionArguments<VanillaOptionArguments>*>(
             quantoEngine->arguments());
 
-        Date valueDate = QlXlfOper(xlvalueDate).AsDate();
+        Date refDate = QlXlfOper(xlrefDate).AsDate();
 
         arguments->type = QlXlfOper(xltype).AsOptionType();
         arguments->underlying = xlunderlying.AsDouble();
         arguments->strike = xlstrike.AsDouble();
-        arguments->dividendTS = QlXlfOper(xldividendYield).AsTermStructure(valueDate);
-        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(valueDate);
+        arguments->dividendTS = QlXlfOper(xldividendYield).AsTermStructure(refDate);
+        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
         arguments->stoppingTimes = std::vector<Time>();
         arguments->exerciseType = Exercise::European;
         Date maturityDate = QlXlfOper(xlmaturityDate).AsDate();
         arguments->maturity = arguments->riskFreeTS->dayCounter().yearFraction(
-            valueDate, maturityDate);
-        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(valueDate);
+            refDate, maturityDate);
+        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+            xlinterpolationType.AsInt());
         arguments->foreignRiskFreeTS =
-            QlXlfOper(xlforeignRiskFreeRate).AsTermStructure(valueDate);
+            QlXlfOper(xlforeignRiskFreeRate).AsTermStructure(refDate);
         arguments->exchRateVolTS =
-            QlXlfOper(xlexchangeVolatility).AsBlackVolTermStructure(valueDate);
+            QlXlfOper(xlexchangeVolatility).AsBlackVolTermStructure(refDate,
+            xlinterpolationType.AsInt());
         arguments->correlation = xlcorrelation.AsDouble();
 
         arguments->validate();
@@ -164,10 +169,11 @@ extern "C"
                         XlfOper xlmoneyness,
                         XlfOper xldividendYield,
                         XlfOper xlriskFree,
-                        XlfOper xlvalueDate,
+                        XlfOper xlrefDate,
                         XlfOper xlresetDate,
                         XlfOper xlmaturityDate,
-                        XlfOper xlvolatility)
+                        XlfOper xlvolatility,
+                        XlfOper xlinterpolationType)
     {
         EXCEL_BEGIN;
 
@@ -183,7 +189,7 @@ extern "C"
             <ForwardOptionArguments<VanillaOptionArguments>*>(
             forwardEngine->arguments());
 
-        Date valueDate = QlXlfOper(xlvalueDate).AsDate();
+        Date refDate = QlXlfOper(xlrefDate).AsDate();
 
         arguments->type = QlXlfOper(xltype).AsOptionType();
         arguments->underlying = xlunderlying.AsDouble();
@@ -191,15 +197,16 @@ extern "C"
         // ForwardOptionParameter should not include strike
         arguments->strike = arguments->underlying;
         arguments->moneyness = xlmoneyness.AsDouble();
-        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(valueDate);
-        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(valueDate);
+        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(refDate);
+        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
         arguments->resetDate = QlXlfOper(xlresetDate).AsDate();
         arguments->stoppingTimes = std::vector<Time>();
         arguments->exerciseType = Exercise::European;
         Date maturityDate = QlXlfOper(xlmaturityDate).AsDate();
         arguments->maturity = arguments->riskFreeTS->dayCounter().yearFraction(
-            valueDate, maturityDate);
-        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(valueDate);
+            refDate, maturityDate);
+        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+            xlinterpolationType.AsInt());
 
         arguments->validate();
         forwardEngine->calculate();
@@ -228,10 +235,11 @@ extern "C"
                         XlfOper xlmoneyness,
                         XlfOper xldividendYield,
                         XlfOper xlriskFree,
-                        XlfOper xlvalueDate,
+                        XlfOper xlrefDate,
                         XlfOper xlresetDate,
                         XlfOper xlmaturityDate,
-                        XlfOper xlvolatility)
+                        XlfOper xlvolatility,
+                        XlfOper xlinterpolationType)
     {
         EXCEL_BEGIN;
 
@@ -250,7 +258,7 @@ extern "C"
             <ForwardOptionArguments<VanillaOptionArguments>*>(
             forwardPerformanceEngine->arguments());
 
-        Date valueDate = QlXlfOper(xlvalueDate).AsDate();
+        Date refDate = QlXlfOper(xlrefDate).AsDate();
 
         arguments->type = QlXlfOper(xltype).AsOptionType();
         // underlying is needed to interpolate on the vol surface
@@ -259,15 +267,16 @@ extern "C"
         // ForwardPerformanceOptionParameter should not include strike
         arguments->strike = arguments->underlying;
         arguments->moneyness = xlmoneyness.AsDouble();
-        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(valueDate);
-        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(valueDate);
+        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(refDate);
+        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
         arguments->resetDate = QlXlfOper(xlresetDate).AsDate();
         arguments->stoppingTimes = std::vector<Time>();
         arguments->exerciseType = Exercise::European;
         Date maturityDate = QlXlfOper(xlmaturityDate).AsDate();
         arguments->maturity = arguments->riskFreeTS->dayCounter().yearFraction(
-            valueDate, maturityDate);
-        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(valueDate);
+            refDate, maturityDate);
+        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+            xlinterpolationType.AsInt());
 
         arguments->validate();
         forwardPerformanceEngine->calculate();

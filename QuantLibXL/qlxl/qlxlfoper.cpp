@@ -37,7 +37,7 @@ using namespace QuantLib::Math;
 QlXlfOper::QlXlfOper(const XlfOper& xlfOper)
 : xlfOper_(xlfOper) {}
 
-QuantLib::DayCounter QlXlfOper::AsDayCounter() const {
+DayCounter QlXlfOper::AsDayCounter() const {
 
     std::string inputString(xlfOper_.AsString());
     std::string s = StringFormatter::toLowercase(inputString);
@@ -71,11 +71,11 @@ QuantLib::DayCounter QlXlfOper::AsDayCounter() const {
 
 }
 
-QuantLib::Date QlXlfOper::AsDate() const {
+Date QlXlfOper::AsDate() const {
     return Date(xlfOper_.AsInt());
 }
 
-std::vector<QuantLib::Date> QlXlfOper::AsDateVector() const {
+std::vector<Date> QlXlfOper::AsDateVector() const {
     std::vector<double> doubleDates = xlfOper_.AsDoubleVector();
     std::vector<Date> dates(doubleDates.size());
     Size i;
@@ -85,7 +85,7 @@ std::vector<QuantLib::Date> QlXlfOper::AsDateVector() const {
     return dates;
 }
 
-QuantLib::Math::Matrix QlXlfOper::AsMatrix() const {
+Math::Matrix QlXlfOper::AsMatrix() const {
 
     XlfRef matrix_range = xlfOper_.AsRef();
     Size rowNo = matrix_range.GetNbRows();
@@ -101,7 +101,7 @@ QuantLib::Math::Matrix QlXlfOper::AsMatrix() const {
 }
 
 
-QuantLib::Option::Type QlXlfOper::AsOptionType() const {
+Option::Type QlXlfOper::AsOptionType() const {
 
     std::string inputString(xlfOper_.AsString());
     std::string s = StringFormatter::toLowercase(inputString);
@@ -118,8 +118,8 @@ QuantLib::Option::Type QlXlfOper::AsOptionType() const {
     return type;
 }
 
-RelinkableHandle<QuantLib::BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
-    const Date& referenceDate) const {
+RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
+    const Date& referenceDate, int interpolationType) const {
 
 
     XlfRef range = xlfOper_.AsRef();
@@ -128,14 +128,9 @@ RelinkableHandle<QuantLib::BlackVolTermStructure> QlXlfOper::AsBlackVolTermStruc
     if (rowNo==1 && colNo==1) {
         // constant vol
         double vol = range(0,0).AsDouble();
-        Handle<QuantLib::BlackVolTermStructure> result(new
+        return Handle<BlackVolTermStructure>(new
             VolTermStructures::BlackConstantVol(referenceDate,
             vol));
-//        VolTermStructures::LocalConstantVol result2(result);
-        return result;
-//        return Handle<QuantLib::BlackVolTermStructure>(new
-//            VolTermStructures::BlackConstantVol(referenceDate,
-//            vol));
     } else if (rowNo==2 && colNo>=1) {
         // time dependent vol
         std::vector<Date> dates(colNo);
@@ -144,15 +139,25 @@ RelinkableHandle<QuantLib::BlackVolTermStructure> QlXlfOper::AsBlackVolTermStruc
             dates[j] = QlXlfOper(range(0, j)).AsDate();
             vols[j] = range(1, j).AsDouble();
         }
-        Handle<QuantLib::BlackVolTermStructure> result(new
-            VolTermStructures::BlackVarianceCurve<LinearInterpolation<
-            std::vector<double>::const_iterator,
-			std::vector<double>::const_iterator> >(
-            referenceDate, dates, vols));
-//        VolTermStructures::LocalVarianceCurve<LinearInterpolation<
-//            std::vector<double>::const_iterator,
-//			std::vector<double>::const_iterator> > result2(result);
-        return result;
+        switch (interpolationType) {
+            case 1:
+                return Handle<BlackVolTermStructure>(new
+                    VolTermStructures::BlackVarianceCurve<LinearInterpolation<
+                    std::vector<double>::const_iterator,
+			        std::vector<double>::const_iterator> >(
+                    referenceDate, dates, vols));
+                break;
+            case 2:
+                return Handle<BlackVolTermStructure>(new
+                    VolTermStructures::BlackVarianceCurve<CubicSpline<
+                    std::vector<double>::const_iterator,
+			        std::vector<double>::const_iterator> >(
+                    referenceDate, dates, vols));
+                break;
+            default:
+                throw IllegalArgumentError(
+                    "interpolate: invalid interpolation type");
+        }
     } else if (rowNo>2 && colNo>=1) {
         // time/strike dependent vol
         std::vector<Date> dates(colNo-1);
@@ -170,19 +175,34 @@ RelinkableHandle<QuantLib::BlackVolTermStructure> QlXlfOper::AsBlackVolTermStruc
                 vols[i-1][j-1] = range(i, j).AsDouble();
             }
         }
-        return Handle<QuantLib::BlackVolTermStructure>(new
-            VolTermStructures::BlackVarianceSurface<
-            BilinearInterpolation<
-            std::vector<double>::const_iterator,
-			std::vector<double>::const_iterator,
-            Matrix> >(referenceDate, dates, strikes, vols));
+        switch (interpolationType) {
+            case 1:
+                return Handle<QuantLib::BlackVolTermStructure>(new
+                    VolTermStructures::BlackVarianceSurface<
+                    BilinearInterpolation<
+                    std::vector<double>::const_iterator,
+			        std::vector<double>::const_iterator,
+                    Matrix> >(referenceDate, dates, strikes, vols));
+                break;
+            case 2:
+                return Handle<QuantLib::BlackVolTermStructure>(new
+                    VolTermStructures::BlackVarianceSurface<
+                    BicubicSplineInterpolation<
+                    std::vector<double>::const_iterator,
+			        std::vector<double>::const_iterator,
+                    Matrix> >(referenceDate, dates, strikes, vols));
+                break;
+            default:
+                throw IllegalArgumentError(
+                    "interpolate: invalid interpolation type");
+        }
     } else
         throw Error("Not a vol surface range");
 
 }
 
 
-RelinkableHandle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
+RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
     const Date& referenceDate) const {
 
     // Should we add today to the interface of AsTermStructure ?
@@ -194,7 +214,7 @@ RelinkableHandle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
     if (rowNo==1 && colNo==1) {
         // constant rate continuos compounding act/365
         double forwardRate = range(0,0).AsDouble();
-        return Handle<QuantLib::TermStructure>(new
+        return Handle<TermStructure>(new
             TermStructures::FlatForward(today,
                                         referenceDate,
                                         forwardRate,
@@ -211,7 +231,7 @@ RelinkableHandle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
         }
         Date today=dates[0];
 
-        return Handle<QuantLib::TermStructure>(new
+        return Handle<TermStructure>(new
             TermStructures::DiscountCurve(today,
                                           dates,
                                           discounts,
@@ -226,7 +246,7 @@ RelinkableHandle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
         }
         Date today=dates[0];
 
-        return Handle<QuantLib::TermStructure>(new
+        return Handle<TermStructure>(new
             TermStructures::PiecewiseFlatForward(today,
                                                  dates,
                                                  forwards,

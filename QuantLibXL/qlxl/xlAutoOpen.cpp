@@ -59,8 +59,7 @@ extern "C" {
             XlfArgDesc d02("date2", "second date");
             XlfArgDesc rpd01("date3", "reference period first date");
             XlfArgDesc rpd02("date4", "reference period last date");
-            XlfArgDesc refDate("referenceDate", "reference date");
-            XlfArgDesc valueDate("valueDate", "is the value (settlement) date");
+            XlfArgDesc refDate("referenceDate", "reference (settlement) date (t=0)");
             XlfArgDesc evalDate("evalDate", "evaluation date");
             XlfArgDesc expiryDate("expiryDate", "expiry date");
             XlfArgDesc resetDate("resetDate", "strike-setting date");
@@ -75,15 +74,13 @@ extern "C" {
             XlfArgDesc x_value("x_value", "x value to be interpolated");
             XlfArgDesc y_value("y_value", "y value to be interpolated");
             XlfArgDesc interpolationType("interpolation_type",
-                "interpolation type");
-            XlfArgDesc interpolation2DType("interpolation2D_type",
-                "2D interpolation type");
+                "interpolation type (1:linear; 2:spline; 3:log-linear)");
             XlfArgDesc allowExtrapolation("allow_extrapolation",
                 "allow extrapolation boolean");
 
             XlfArgDesc optionType("type", "is the option type");
-            XlfArgDesc underlying("underlying", "is the value of the underlying");
-            XlfArgDesc assetLevel("assetLevel", "is the level of the asset");
+            XlfArgDesc underlying("underlying", "is the current value of the underlying");
+            XlfArgDesc assetLevel("assetLevel", "is the reference level of the asset");
             XlfArgDesc moneyness("moneyness", "is the moneyness measured as percentage of the ATM level");
             XlfArgDesc strike("strike", "is the strike");
             XlfArgDesc strikes("strikes", "strikes");
@@ -161,58 +158,58 @@ extern "C" {
             // Registers Black-Scholes
             XlfFuncDesc europeanOption("xlEuropeanOption","qlEuropeanOption",
                 "Black Scholes formula for european option","QuantLibXL Finance");
-            europeanOption.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+valueDate+expiryDate+volatility);
+            europeanOption.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+refDate+expiryDate+volatility+interpolationType);
             europeanOption.Register();
 
             XlfFuncDesc europeanOption_fd("xlEuropeanOption_FD","qlEuropeanOption_FD",
                 "european option computed with finite differences","QuantLibXL Finance");
-            europeanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+valueDate+expiryDate+volatility+timeSteps+gridPoints);
+            europeanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+refDate+expiryDate+volatility+timeSteps+gridPoints);
             europeanOption_fd.Register();
 
             XlfFuncDesc europeanOption_mc("xlEuropeanOption_MC","qlEuropeanOption_MC",
                 "european option computed with Monte Carlo simulation","QuantLibXL Finance");
-            europeanOption_mc.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+valueDate+expiryDate+volatility+anthiteticVariance+samples);
+            europeanOption_mc.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+refDate+expiryDate+volatility+anthiteticVariance+samples);
             europeanOption_mc.Register();
 
             XlfFuncDesc cliquetOption("xlCliquetOption","qlCliquetOption",
                 "european cliquet option","QuantLibXL Finance");
-            cliquetOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+valueDate+expiryDate+volatility);
+            cliquetOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+expiryDate+volatility);
             cliquetOption.Register();
 
             XlfFuncDesc cliquetOption_mc("xlCliquetOption_MC","qlCliquetOption_MC",
                 "european cliquet option computed with Monte Carlo simulation","QuantLibXL Finance");
-            cliquetOption_mc.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+valueDate+expiryDate+volatility+anthiteticVariance+samples);
+            cliquetOption_mc.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+expiryDate+volatility+anthiteticVariance+samples);
             cliquetOption_mc.Register();
 
             XlfFuncDesc performanceOption("xlPerformanceOption","qlPerformanceOption",
                 "european performance option","QuantLibXL Finance");
-            performanceOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+valueDate+expiryDate+volatility);
+            performanceOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+expiryDate+volatility);
             performanceOption.Register();
 
             XlfFuncDesc performanceOption_mc("xlPerformanceOption_MC","qlPerformanceOption_MC",
                 "european performance option computed with Monte Carlo simulation","QuantLibXL Finance");
-            performanceOption_mc.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+valueDate+expiryDate+volatility+anthiteticVariance+samples);
+            performanceOption_mc.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+expiryDate+volatility+anthiteticVariance+samples);
             performanceOption_mc.Register();
 
             XlfFuncDesc americanOption_fd("xlAmericanOption_FD","qlAmericanOption_FD",
                 "american option computed with finite differences","QuantLibXL Finance");
-            americanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+valueDate+expiryDate+volatility+timeSteps+gridPoints);
+            americanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+refDate+expiryDate+volatility+timeSteps+gridPoints);
             americanOption_fd.Register();
 
             // new engine framework
             XlfFuncDesc quantoEuropeanOption("xlQuantoEuropeanOption","qlQuantoEuropeanOption",
                 "Quanto european option","QuantLibXL Finance");
-            quantoEuropeanOption.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+valueDate+expiryDate+volatility+foreignRiskFreeRate+exchangeVolatility+correlation);
+            quantoEuropeanOption.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+refDate+expiryDate+volatility+interpolationType+foreignRiskFreeRate+exchangeVolatility+correlation);
             quantoEuropeanOption.Register();
 
             XlfFuncDesc forwardEuropeanOption("xlForwardEuropeanOption","qlForwardEuropeanOption",
                 "Forward european option","QuantLibXL Finance");
-            forwardEuropeanOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+valueDate+resetDate+expiryDate+volatility);
+            forwardEuropeanOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+resetDate+expiryDate+volatility+interpolationType);
             forwardEuropeanOption.Register();
 
             XlfFuncDesc performanceEuropeanOption("xlPerformanceEuropeanOption","qlPerformanceEuropeanOption",
                 "Performance european option","QuantLibXL Finance");
-            performanceEuropeanOption.SetArguments(optionType+underlying+moneyness+dividendYield+valueDate+riskFreeRate+resetDate+expiryDate+volatility);
+            performanceEuropeanOption.SetArguments(optionType+underlying+moneyness+dividendYield+refDate+riskFreeRate+resetDate+expiryDate+volatility+interpolationType);
             performanceEuropeanOption.Register();
 
 
@@ -231,7 +228,7 @@ extern "C" {
 
             XlfFuncDesc interpolate2DDesc("xlinterpolate2D","qlInterpolate2D",
                 "2 dimensional interpolation","QuantLibXL Math");
-            interpolate2DDesc.SetArguments(x_array+y_array+z_matrix+x_value+y_value+interpolation2DType+allowExtrapolation);
+            interpolate2DDesc.SetArguments(x_array+y_array+z_matrix+x_value+y_value+interpolationType+allowExtrapolation);
             interpolate2DDesc.Register();
 
 
@@ -270,7 +267,7 @@ extern "C" {
                 "Return the interpolated Black forward volatility for "
                 "a forward period at a fixed strike "
                 "given a Black volatility surface as input","QuantLibXL Finance");
-            blackVol.SetArguments(valueDate+blackVolSurface+d01+d02+strike+allowExtrapolation);
+            blackVol.SetArguments(refDate+d01+d02+strike+blackVolSurface+interpolationType+allowExtrapolation);
             blackVol.Register();
 
             XlfFuncDesc localVol("xlLocalVol","qlLocalVol",
@@ -279,7 +276,7 @@ extern "C" {
                 "given the asset current value, the dividend curve, "
                 "the yield curve, and "
                 "the Black volatility surface as input","QuantLibXL Finance");
-            localVol.SetArguments(valueDate+underlying+dividendYield+riskFreeRate+blackVolSurface+assetLevel+valueDate+allowExtrapolation);
+            localVol.SetArguments(refDate+underlying+evalDate+assetLevel+dividendYield+riskFreeRate+blackVolSurface+interpolationType+allowExtrapolation);
             localVol.Register();
 
             // yield functions

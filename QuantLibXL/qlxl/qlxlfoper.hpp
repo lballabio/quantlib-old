@@ -36,7 +36,7 @@ public:
     QuantLib::Math::Matrix AsMatrix() const;
     QuantLib::Option::Type AsOptionType() const;
     QuantLib::RelinkableHandle<QuantLib::BlackVolTermStructure> AsBlackVolTermStructure(
-        const QuantLib::Date& referenceDate) const;
+        const QuantLib::Date& referenceDate, int interpolationType) const;
     QuantLib::RelinkableHandle<QuantLib::TermStructure> AsTermStructure(
         const QuantLib::Date& referenceDate) const;
 private:
