@@ -1,0 +1,48 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C++ Express 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Example", "Example\Example_vc8.vcproj", "{1024DB4F-C585-4FDA-8DE0-C166F480DDDD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{788CF997-F789-4C0A-9C9A-2B30E5881B87} = {788CF997-F789-4C0A-9C9A-2B30E5881B87}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ObjectHandler", "ObjectHandler_vc8.vcproj", "{788CF997-F789-4C0A-9C9A-2B30E5881B87}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug MTDLL|Win32 = Debug MTDLL|Win32
+		Debug SingleThread|Win32 = Debug SingleThread|Win32
+		Debug|Win32 = Debug|Win32
+		Release MTDLL|Win32 = Release MTDLL|Win32
+		Release SingleThread|Win32 = Release SingleThread|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1024DB4F-C585-4FDA-8DE0-C166F480DDDD}.Debug MTDLL|Win32.ActiveCfg = Debug|Win32
+		{1024DB4F-C585-4FDA-8DE0-C166F480DDDD}.Debug MTDLL|Win32.Build.0 = Debug|Win32
+		{1024DB4F-C585-4FDA-8DE0-C166F480DDDD}.Debug SingleThread|Win32.ActiveCfg = Debug|Win32
+		{1024DB4F-C585-4FDA-8DE0-C166F480DDDD}.Debug SingleThread|Win32.Build.0 = Debug|Win32
+		{1024DB4F-C585-4FDA-8DE0-C166F480DDDD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1024DB4F-C585-4FDA-8DE0-C166F480DDDD}.Debug|Win32.Build.0 = Debug|Win32
+		{1024DB4F-C585-4FDA-8DE0-C166F480DDDD}.Release MTDLL|Win32.ActiveCfg = Release|Win32
+		{1024DB4F-C585-4FDA-8DE0-C166F480DDDD}.Release MTDLL|Win32.Build.0 = Release|Win32
+		{1024DB4F-C585-4FDA-8DE0-C166F480DDDD}.Release SingleThread|Win32.ActiveCfg = Release|Win32
+		{1024DB4F-C585-4FDA-8DE0-C166F480DDDD}.Release SingleThread|Win32.Build.0 = Release|Win32
+		{1024DB4F-C585-4FDA-8DE0-C166F480DDDD}.Release|Win32.ActiveCfg = Release|Win32
+		{1024DB4F-C585-4FDA-8DE0-C166F480DDDD}.Release|Win32.Build.0 = Release|Win32
+		{788CF997-F789-4C0A-9C9A-2B30E5881B87}.Debug MTDLL|Win32.ActiveCfg = Debug MTDLL|Win32
+		{788CF997-F789-4C0A-9C9A-2B30E5881B87}.Debug MTDLL|Win32.Build.0 = Debug MTDLL|Win32
+		{788CF997-F789-4C0A-9C9A-2B30E5881B87}.Debug SingleThread|Win32.ActiveCfg = Debug SingleThread|Win32
+		{788CF997-F789-4C0A-9C9A-2B30E5881B87}.Debug SingleThread|Win32.Build.0 = Debug SingleThread|Win32
+		{788CF997-F789-4C0A-9C9A-2B30E5881B87}.Debug|Win32.ActiveCfg = Debug|Win32
+		{788CF997-F789-4C0A-9C9A-2B30E5881B87}.Debug|Win32.Build.0 = Debug|Win32
+		{788CF997-F789-4C0A-9C9A-2B30E5881B87}.Release MTDLL|Win32.ActiveCfg = Release MTDLL|Win32
+		{788CF997-F789-4C0A-9C9A-2B30E5881B87}.Release MTDLL|Win32.Build.0 = Release MTDLL|Win32
+		{788CF997-F789-4C0A-9C9A-2B30E5881B87}.Release SingleThread|Win32.ActiveCfg = Release SingleThread|Win32
+		{788CF997-F789-4C0A-9C9A-2B30E5881B87}.Release SingleThread|Win32.Build.0 = Release SingleThread|Win32
+		{788CF997-F789-4C0A-9C9A-2B30E5881B87}.Release|Win32.ActiveCfg = Release|Win32
+		{788CF997-F789-4C0A-9C9A-2B30E5881B87}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
