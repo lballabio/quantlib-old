@@ -1,0 +1,5 @@
+
+Borland compilation
+gcc autoconfiscation
+include cts approach
+handle 1904 date system
