@@ -23,14 +23,12 @@
 #include <ObjectHandler/property.hpp>
 #include <vector>
 #include <string>
-// the line below cannot be commented out. Why?
-using namespace std;
 
 namespace ObjHandler {
 
     typedef boost::shared_ptr<boost::any> any_ptr;
     typedef Property<std::string, any_ptr> ObjectProperty;
-    typedef vector<ObjectProperty> Properties;
+    typedef std::vector<ObjectProperty> Properties;
 
     class Object {
     public:

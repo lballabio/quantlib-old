@@ -35,7 +35,7 @@
 namespace ObjHandler {
 
     typedef boost::shared_ptr<Object> obj_ptr;
-    typedef map<std::string, obj_ptr> ObjectList;
+    typedef std::map<std::string, obj_ptr> ObjectList;
 
     class ObjectHandler {
     public:
