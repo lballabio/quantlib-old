@@ -91,11 +91,11 @@ namespace std {
 
 // the base class for models
 %{
-using QuantLib::Model;
+using QuantLib::ShortRateModel;
 %}
 
-%ignore Model;
-class Model {
+%ignore ShortRateModel;
+class ShortRateModel {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGRUBY)
     %rename("calibrate!") calibrate;
     #endif
@@ -103,23 +103,23 @@ class Model {
     Array params() const;
     void calibrate(
         const std::vector<Handle<CalibrationHelper> >& instruments,
-        Method& method);
+        OptimizationMethod& method);
 };
 
-%template(Model) Handle<Model>;
-IsObservable(Handle<Model>);
+%template(ShortRateModel) Handle<ShortRateModel>;
+IsObservable(Handle<ShortRateModel>);
 
 // actual models
 
 %{
 using QuantLib::HullWhite;
 using QuantLib::BlackKarasinski;
-typedef Handle<Model> HullWhiteHandle;
-typedef Handle<Model> BlackKarasinskiHandle;
+typedef Handle<ShortRateModel> HullWhiteHandle;
+typedef Handle<ShortRateModel> BlackKarasinskiHandle;
 %}
 
 %rename(HullWhite) HullWhiteHandle;
-class HullWhiteHandle : public Handle<Model> {
+class HullWhiteHandle : public Handle<ShortRateModel> {
   public:
     %extend {
         HullWhiteHandle(
@@ -132,7 +132,7 @@ class HullWhiteHandle : public Handle<Model> {
 };
 
 %rename(BlackKarasinski) BlackKarasinskiHandle;
-class BlackKarasinskiHandle : public Handle<Model> {
+class BlackKarasinskiHandle : public Handle<ShortRateModel> {
   public:
     %extend {
         BlackKarasinskiHandle(
@@ -159,7 +159,7 @@ typedef Handle<PricingEngine> TreeCapFloorHandle;
 class JamshidianSwaptionHandle : public Handle<PricingEngine> {
   public:
     %extend {
-        JamshidianSwaptionHandle(const Handle<Model>& model) {
+        JamshidianSwaptionHandle(const Handle<ShortRateModel>& model) {
             return new JamshidianSwaptionHandle(
                 new JamshidianSwaption(model));
         }
@@ -170,7 +170,7 @@ class JamshidianSwaptionHandle : public Handle<PricingEngine> {
 class TreeSwaptionHandle : public Handle<PricingEngine> {
   public:
     %extend {
-        TreeSwaptionHandle(const Handle<Model>& model,
+        TreeSwaptionHandle(const Handle<ShortRateModel>& model,
                            Size timeSteps) {
             return new TreeSwaptionHandle(
                 new TreeSwaption(model,timeSteps));
@@ -182,7 +182,7 @@ class TreeSwaptionHandle : public Handle<PricingEngine> {
 class TreeCapFloorHandle : public Handle<PricingEngine> {
   public:
     %extend {
-        TreeCapFloorHandle(const Handle<Model>& model,
+        TreeCapFloorHandle(const Handle<ShortRateModel>& model,
                            Size timeSteps) {
             return new TreeCapFloorHandle(
                 new TreeCapFloor(model,timeSteps));

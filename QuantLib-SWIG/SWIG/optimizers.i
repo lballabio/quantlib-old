@@ -151,13 +151,13 @@ class PositiveConstraint : public Constraint {
 };
 
 %{
-using QuantLib::Method;
+using QuantLib::OptimizationMethod;
 using QuantLib::ConjugateGradient;
 using QuantLib::Simplex;
 using QuantLib::SteepestDescent;
 %}
 
-class Method {
+class OptimizationMethod {
     #if defined(SWIGRUBY)
     %rename("initialValue=") setInitialValue;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -165,22 +165,22 @@ class Method {
     #endif
   private:
     // prevent direct instantiation
-    Method();
+    OptimizationMethod();
   public:
     void setInitialValue(const Array&);
 };
 
-class ConjugateGradient : public Method {
+class ConjugateGradient : public OptimizationMethod {
   public:
     ConjugateGradient();
 };
 
-class Simplex : public Method {
+class Simplex : public OptimizationMethod {
   public:
     Simplex(double lambda, double tol);
 };
 
-class SteepestDescent : public Method {
+class SteepestDescent : public OptimizationMethod {
   public:
     SteepestDescent();
 };
@@ -195,7 +195,7 @@ using QuantLib::Problem;
 %}
 #if defined(SWIGPYTHON)
 %extend Optimizer {
-    Array solve(PyObject* function, Constraint& c, Method& m) {
+    Array solve(PyObject* function, Constraint& c, OptimizationMethod& m) {
         PyCostFunction f(function);
         Problem p(f,c,m);
         p.minimize();
@@ -204,7 +204,7 @@ using QuantLib::Problem;
 }
 #elif defined(SWIGRUBY)
 %extend Optimizer {
-    Array solve(Constraint& c, Method& m) {
+    Array solve(Constraint& c, OptimizationMethod& m) {
         RubyCostFunction f;
         Problem p(f,c,m);
         p.minimize();
@@ -213,7 +213,7 @@ using QuantLib::Problem;
 }
 #elif defined(SWIGMZSCHEME)
 %extend Optimizer {
-    Array solve(Scheme_Object* function, Constraint& c, Method& m) {
+    Array solve(Scheme_Object* function, Constraint& c, OptimizationMethod& m) {
         MzCostFunction f(function);
         Problem p(f,c,m);
         p.minimize();
@@ -222,7 +222,7 @@ using QuantLib::Problem;
 }
 #elif defined(SWIGGUILE)
 %extend Optimizer {
-    Array solve(SCM function, Constraint& c, Method& m) {
+    Array solve(SCM function, Constraint& c, OptimizationMethod& m) {
         GuileCostFunction f(function);
         Problem p(f,c,m);
         p.minimize();
