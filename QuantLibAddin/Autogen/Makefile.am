@@ -1,6 +1,8 @@
 
 # this should prevent running from a distributed tarball
-EXTRA_DIST = .time-stamp
+EXTRA_DIST = .time-stamp \
+             Makefile.msdev \
+             Autogen.dsp
 
 # autogen.py probably needs to be re-executed if any of these change
 AUTOGEN_INPUT := utilities.xml options.xml
