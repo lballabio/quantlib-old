@@ -23,6 +23,7 @@
 %{
 using QuantLib::Math::NormalDistribution;
 using QuantLib::Math::CumulativeNormalDistribution;
+using QuantLib::Math::MoroInverseCumulativeNormal;
 using QuantLib::Math::InverseCumulativeNormal;
 %}
 
@@ -58,6 +59,17 @@ class InverseCumulativeNormal {
     #endif
   public:
     InverseCumulativeNormal(double average = 0.0, double sigma = 1.0);
+    double operator()(double x);
+};
+
+class MoroInverseCumulativeNormal {
+    #if defined(SWIGRUBY)
+    %rename(__call__) operator();
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename(call)     operator();
+    #endif
+  public:
+    MoroInverseCumulativeNormal(double average = 0.0, double sigma = 1.0);
     double operator()(double x);
 };
 
