@@ -39,9 +39,9 @@ extern "C"
                                      XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
         Date refDate = QlXlfOper(xlrefDate).AsDate();
-        QuantLib::Handle<QuantLib::VolTermStructure>
+        QuantLib::Handle<QuantLib::BlackVolTermStructure>
             volSurface =
-            QlXlfOper(xlblackVolSurface).AsVolTermStructure(refDate);
+            QlXlfOper(xlblackVolSurface).AsBlackVolTermStructure(refDate);
         Date date1 = QlXlfOper(xldate1).AsDate();
         Date date2 = QlXlfOper(xldate2).AsDate();
         double strike = xlstrike.AsDouble();

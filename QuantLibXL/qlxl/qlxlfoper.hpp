@@ -35,7 +35,7 @@ public:
     std::vector<QuantLib::Date> AsDateVector() const;
     QuantLib::Math::Matrix AsMatrix() const;
     QuantLib::Option::Type AsOptionType() const;
-    QuantLib::Handle<QuantLib::VolTermStructure> AsVolTermStructure(
+    QuantLib::Handle<QuantLib::BlackVolTermStructure> AsBlackVolTermStructure(
         const QuantLib::Date& referenceDate = QuantLib::Date::minDate()) const;
     QuantLib::Handle<QuantLib::TermStructure> AsTermStructure(
         const QuantLib::Date& referenceDate = QuantLib::Date::minDate()) const;

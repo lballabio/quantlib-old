@@ -117,7 +117,7 @@ QuantLib::Option::Type QlXlfOper::AsOptionType() const {
     return type;
 }
 
-Handle<QuantLib::VolTermStructure> QlXlfOper::AsVolTermStructure(
+Handle<QuantLib::BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
     const Date& referenceDate) const {
 
 
@@ -127,8 +127,8 @@ Handle<QuantLib::VolTermStructure> QlXlfOper::AsVolTermStructure(
     if (rowNo==1 && colNo==1) {
         // constant vol
         double vol = range(0,0).AsDouble();
-        return Handle<QuantLib::VolTermStructure>(new
-            VolTermStructures::ConstantVol(referenceDate,
+        return Handle<QuantLib::BlackVolTermStructure>(new
+            VolTermStructures::BlackConstantVol(referenceDate,
             vol));
     } else if (rowNo==2 && colNo>=1) {
         // time dependent vol
@@ -138,7 +138,7 @@ Handle<QuantLib::VolTermStructure> QlXlfOper::AsVolTermStructure(
             dates[j] = QlXlfOper(range(0, j)).AsDate();
             vols[j] = range(1, j).AsDouble();
         }
-        return Handle<QuantLib::VolTermStructure>(new
+        return Handle<QuantLib::BlackVolTermStructure>(new
             VolTermStructures::BlackVarianceCurve<LinearInterpolation<
             std::vector<double>::const_iterator,
 			std::vector<double>::const_iterator> >(
@@ -160,7 +160,7 @@ Handle<QuantLib::VolTermStructure> QlXlfOper::AsVolTermStructure(
                 vols[i-1][j-1] = range(i, j).AsDouble();
             }
         }
-        return Handle<QuantLib::VolTermStructure>(new
+        return Handle<QuantLib::BlackVolTermStructure>(new
             VolTermStructures::BlackVarianceSurface<
             BilinearInterpolation<
             std::vector<double>::const_iterator,
