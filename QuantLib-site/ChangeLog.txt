@@ -1,3 +1,11 @@
+2002-03-05 17:03  lballabio
+
+	* quep.html (1.23): Implemented QuEP 8 and 10
+
+2002-03-05 16:08  nando
+
+	* ChangeLog.txt (1.11): updated
+
 2002-02-28 18:15  nando
 
 	* cvs.html (1.29), license.html (1.38): added info on cvs behind a
