@@ -42,8 +42,9 @@ extern "C"
         std::vector<double> y_value = xly_array.AsDoubleVector();
         QL_REQUIRE(x_value.size()==y_value.size(),
             "interpolate: array mismatch");
-        
-        double result = Functions::interpolate(x_value, y_value, xlx.AsDouble(),
+
+        double result = Functions::interpolate(x_value, y_value,
+            xlx.AsDouble(),
             xlinterpolationType.AsInt(), xlallowExtrapolation.AsBool());
         return XlfOper(result);
         EXCEL_END;
@@ -99,7 +100,8 @@ extern "C"
                                     XlfOper xlmean,
                                     XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = Functions::normInv(xlprobability.AsDouble(), xlmean.AsDouble(),
+        double result = Functions::normInv(xlprobability.AsDouble(),
+            xlmean.AsDouble(),
             xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
@@ -135,8 +137,8 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlexpectedShortfall(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = RiskMeasures().expectedShortfall(xlpercentile.AsDouble(),
-            xlmean.AsDouble(), xlstd_dev.AsDouble());
+        double result = RiskMeasures().expectedShortfall(
+            xlpercentile.AsDouble(), xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
     }
