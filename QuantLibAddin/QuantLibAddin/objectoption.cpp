@@ -24,7 +24,7 @@ ObjectOption::ObjectOption(boost::shared_ptr<ObjectStochastic> objectStochastic,
 		const Date &exerciseDate,
 		const Date &settlementDate) {
 	Option::Type type;
-	string typeUpper= toUpper(typeString);
+	string typeUpper = toUpper(typeString);
 	if ((typeUpper.compare("P") == 0) || (typeUpper.compare("PUT") == 0))
 		type = Option::Put;
 	else if ((typeUpper.compare("C") == 0) || (typeUpper.compare("CALL") == 0))
@@ -44,12 +44,12 @@ ObjectOption::ObjectOption(boost::shared_ptr<ObjectStochastic> objectStochastic,
 		new VanillaOption(stochasticProcess, payoff, 
 			amExercise, pricingEngine));
 	vanillaOption_ = temp;
-    fieldNames_.push_back(FIELD_NPV);
-    fieldNames_.push_back(FIELD_ENGINE);
-	any_ptr npv(new boost::any(vanillaOption_->NPV()));
-	any_ptr engine(new boost::any(string(BINOMIAL_JARROW_RUDD)));
-    valueList_[FIELD_NPV] = npv;
-    valueList_[FIELD_ENGINE] = engine;
+	any_ptr any_npv(new boost::any(vanillaOption_->NPV()));
+	any_ptr any_engine(new boost::any(string(BINOMIAL_JARROW_RUDD)));
+	ObjectProperty prop_npv(FIELD_NPV, any_npv);
+	ObjectProperty prop_engine(FIELD_ENGINE, any_engine);
+	properties_.push_back(prop_npv);
+	properties_.push_back(prop_engine);
 }
 
 ObjectOption::~ObjectOption() {
@@ -73,6 +73,10 @@ void ObjectOption::setEngine(
         vanillaOption_->setPricingEngine(pricingEngine);
 	} else
 		QL_FAIL("setOptionEngine: unrecognized engine name: " + engineName);
-	*valueList_[FIELD_NPV] = vanillaOption_->NPV();
-	*valueList_[FIELD_ENGINE] = engineUpper;
+	*properties_[IDX_NPV]() = vanillaOption_->NPV();
+	*properties_[IDX_ENGINE]() = engineUpper;
+}
+
+boost::shared_ptr<void> ObjectOption::getReference() const {
+	return boost::static_pointer_cast<void>(vanillaOption_);
 }

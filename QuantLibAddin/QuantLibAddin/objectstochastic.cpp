@@ -33,7 +33,8 @@ ObjectStochastic::ObjectStochastic(
     	boost::shared_ptr<YieldTermStructure>(
     	new FlatForward(settlementDate, dividendYield, rateDayCounter)));
     Handle<BlackVolTermStructure> flatVolTS(
-    	boost::shared_ptr<BlackVolTermStructure>( new BlackConstantVol(settlementDate, volatility)));
+    	boost::shared_ptr<BlackVolTermStructure>( 
+		new BlackConstantVol(settlementDate, volatility, rateDayCounter)));
     boost::shared_ptr<BlackScholesProcess> temp(new
         BlackScholesProcess(
             underlyingH,
@@ -43,6 +44,9 @@ ObjectStochastic::ObjectStochastic(
 	stochasticProcess_ = temp;
 }
 
-ObjectStochastic::~ObjectStochastic()
-{
+ObjectStochastic::~ObjectStochastic() {
+}
+
+boost::shared_ptr<void> ObjectStochastic::getReference() const {
+	return boost::static_pointer_cast<void>(stochasticProcess_);
 }

@@ -24,6 +24,8 @@
 // FIXME
 #define FIELD_NPV 						"NPV"
 #define FIELD_ENGINE 					"ENGINE"
+#define IDX_NPV 						0
+#define IDX_ENGINE 						1
 #define BINOMIAL_JARROW_RUDD			"BINOMIAL JARROW-RUDD"
 #define BINOMIAL_COX_ROSS_RUBINSTEIN	"BINOMIAL COX-ROSS-RUBINSTEIN"
 #define ADDITIVE_EQUIPROBABILITIES		"ADDITIVE EQUIPROBABILITIES"
@@ -39,9 +41,7 @@ public:
 	~ObjectOption();
 	void setEngine(const std::string &engineName,
 		const Size &timeSteps);
-	virtual const boost::shared_ptr<void> getReference() {
-		return boost::static_pointer_cast<void>(vanillaOption_);
-	}
+	virtual boost::shared_ptr<void> getReference() const;
 private:
 	boost::shared_ptr<VanillaOption> vanillaOption_;
 };
