@@ -236,8 +236,10 @@ BinomialVanillaEngine::Type binomialEngineTypeFromString(std::string s) {
         return BinomialVanillaEngine::CoxRossRubinstein;
     else if (s == "jr" || s == "jarrowrudd")
         return BinomialVanillaEngine::JarrowRudd;
-    else if (s == "lr" || s == "leisenreimer")
-        return BinomialVanillaEngine::LeisenReimer;
+    else if (s == "eqp")
+        return BinomialVanillaEngine::EQP;
+    else if (s == "trigeorgis")
+        return BinomialVanillaEngine::Trigeorgis;
     else
         throw Error("unknown binomial engine type: "+s);
 }
@@ -248,8 +250,10 @@ std::string binomialEngineTypeToString(BinomialVanillaEngine::Type t) {
         return "CoxRossRubinstein";
       case BinomialVanillaEngine::JarrowRudd:
         return "JarrowRudd";
-      case BinomialVanillaEngine::LeisenReimer:
-        return "LeisenReimer";
+      case BinomialVanillaEngine::EQP:
+        return "EQP";
+      case BinomialVanillaEngine::Trigeorgis:
+        return "Trigeorgis";
       default:
         throw Error("unknown binomial engine type");
     }
@@ -264,9 +268,9 @@ class BinomialVanillaEngineHandle : public Handle<PricingEngine> {
   public:
     %extend {
         BinomialVanillaEngineHandle(BinomialEngineType type,
-                                     Size steps) {
-            return new BinomialVanillaEngineHandle
-                (new BinomialVanillaEngine(type,steps));
+                                    Size steps) {
+            return new BinomialVanillaEngineHandle(
+                new BinomialVanillaEngine(type,steps));
         }
     }
 };
