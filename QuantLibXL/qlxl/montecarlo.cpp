@@ -184,7 +184,7 @@ extern "C"
         EXCEL_END;
     }
 
-/*
+
     LPXLOPER EXCEL_EXPORT xlBrownianBridge(XlfOper xlunderlying,
                                           XlfOper xldividendYield,
                                           XlfOper xlriskFree,
@@ -194,8 +194,7 @@ extern "C"
                                           XlfOper xlinterpolationType,
                                           XlfOper xlsamples,
                                           XlfOper xlgeneratorType,
-                                          XlfOper xlseed)
-    {
+                                          XlfOper xlseed) {
         EXCEL_BEGIN;
 
         double underlying = xlunderlying.AsDouble();
@@ -215,50 +214,45 @@ extern "C"
             QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
                                               xlinterpolationType.AsInt());
 
-        Handle<BlackScholesProcess> bs(new
+        Handle<DiffusionProcess> bs(new
             BlackScholesProcess(riskFreeTS, dividendTS, blackVolTS,
                                                         underlying));
 
         int generatorType = xlgeneratorType.AsInt();
         unsigned long mcSeed = xlseed.AsInt();
-        switch (generatorType) {
-            case 1:
-                UniformRandomSequenceGenerator rsg(timeSteps, mcSeed);
-                GaussianRandomSequenceGenerator grsg(rsg);
-                BrownianBridge<GaussianRandomSequenceGenerator>
-                    PseudoRandomBrownianBridge(bs, timeGrid, grsg);
-                BrownianBridge<GaussianRandomSequenceGenerator>::sample_type myPath;
-                Matrix result(timeSteps, samples);
-                for (Size j = 0; j < samples; j++) {
-                    myPath = PseudoRandomBrownianBridge.next().value;
-                    result[0][j] = underlying * QL_EXP(myPath[0]);
-                    for (Size i = 1; i < timeSteps; i++) {
-                        result[i][j] = result[i-1][j] * QL_EXP(myPath[i]);
-                    }
+        Matrix result(timeSteps, samples);
+        std::vector<double> myPath;
+        Size j, i;
+        if (generatorType==1) {
+            UniformRandomSequenceGenerator rsg(timeSteps, mcSeed);
+            GaussianRandomSequenceGenerator grsg(rsg);
+            BrownianBridge<GaussianRandomSequenceGenerator>
+                PseudoRandomBrownianBridge(bs, timeGrid, grsg);
+            for (j=0; j<samples; j++) {
+                myPath = PseudoRandomBrownianBridge.next().value;
+                for (i=0; i<timeSteps; i++) {
+                    result[i][j] = myPath[i];
                 }
-                return XlfOper(timeSteps, samples, result.begin());
-                break;
-            case 2:
-                UniformLowDiscrepancySequenceGenerator ldsg(timeSteps);
-                GaussianLowDiscrepancySequenceGenerator gldsg(ldsg);
-                BrownianBridge<GaussianLowDiscrepancySequenceGenerator>
-                    QuasiRandomBrownianBridge(bs, timeGrid, gldsg);
-                BrownianBridge<GaussianLowDiscrepancySequenceGenerator>::sample_type myPath;
-                for (Size j = 0; j < samples; j++) {
-                    myPath = QuasiRandomBrownianBridge.next().value;
-                    result[0][j] = underlying * QL_EXP(myPath[0]);
-                    for (Size i = 1; i < timeSteps; i++) {
-                        result[i][j] = result[i-1][j] * QL_EXP(myPath[i]);
-                    }
-                return XlfOper(timeSteps, samples, result.begin());
-                break;
-            default:
-                throw Error("Unknown generator");
             }
+            return XlfOper(timeSteps, samples, result.begin());
+        } else {
+            UniformLowDiscrepancySequenceGenerator ldsg(timeSteps);
+            GaussianLowDiscrepancySequenceGenerator gldsg(ldsg);
+            BrownianBridge<GaussianLowDiscrepancySequenceGenerator>
+                QuasiRandomBrownianBridge(bs, timeGrid, gldsg);
+            for (j=0; j<samples; j++) {
+                myPath = QuasiRandomBrownianBridge.next().value;
+                for (i=0; i<timeSteps; i++) {
+                    result[i][j] = myPath[i];
+                }
+            }
+            return XlfOper(timeSteps, samples, result.begin());
+        }
+
 
         EXCEL_END;
     }
-*/
+
     LPXLOPER EXCEL_EXPORT xlCovFromCorr(XlfOper xlmatrix,
                                         XlfOper xlvolatilities) {
         EXCEL_BEGIN;

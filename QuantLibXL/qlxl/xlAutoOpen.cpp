@@ -521,6 +521,13 @@ extern "C" {
             pathGenerator.SetArguments(underlying+dividendYield+riskFreeRate+refDate+times+blackVolSurface+interpolationType+paths+generatorType+seed);
             pathGenerator.Register();
 
+            XlfFuncDesc brownianBridge("xlBrownianBridge",
+                "qlBrownianBridge",
+                "Brownian Bridge",
+                "QuantLibXL Monte Carlo");
+            brownianBridge.SetArguments(underlying+dividendYield+riskFreeRate+refDate+times+blackVolSurface+interpolationType+paths+generatorType+seed);
+            brownianBridge.Register();
+
             // Registers CovFromCorr
             XlfFuncDesc CovFromCorr("xlCovFromCorr",
                 "qlCovFromCorr",
