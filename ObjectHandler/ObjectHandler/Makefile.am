@@ -1,6 +1,7 @@
 AM_CPPFLAGS = -I${top_srcdir}
 
 include_HEADERS = \
+    config.hpp \
     exception.hpp \
     objecthandler.hpp \
     object.hpp \
