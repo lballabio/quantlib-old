@@ -20,8 +20,8 @@ require 'test/unit/ui/console/testrunner'
 
 require 'dates'
 require 'instruments'
+require 'integral'
 require 'marketelements'
-require 'segmentintegral'
 require 'solvers1d'
 require 'termstructures'
 

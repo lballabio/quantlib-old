@@ -20,7 +20,7 @@ import unittest
 from date import DateTest
 from instruments import InstrumentTest
 from marketelements import MarketElementTest
-from segmentintegral import SegmentIntegralTest
+from integrals import IntegralTest
 from solvers1d import Solver1DTest
 from termstructures import TermStructureTest
 
@@ -33,7 +33,7 @@ def test():
     suite.addTest(DateTest())
     suite.addTest(unittest.makeSuite(InstrumentTest,'test'))
     suite.addTest(unittest.makeSuite(MarketElementTest,'test'))
-    suite.addTest(SegmentIntegralTest())
+    suite.addTest(unittest.makeSuite(IntegralTest,'test'))
     suite.addTest(Solver1DTest())
     suite.addTest(unittest.makeSuite(TermStructureTest,'test'))
     

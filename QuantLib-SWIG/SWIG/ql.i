@@ -96,6 +96,7 @@
 %include history.i
 %include indexes.i
 %include instruments.i
+%include integrals.i
 %include interpolation.i
 %include linearalgebra.i
 %include marketelements.i
@@ -108,7 +109,6 @@
 %include piecewiseflatforward.i
 %include randomnumbers.i
 %include scheduler.i
-%include segmentintegral.i
 %include shortratemodels.i
 %include statistics.i
 %include swap.i

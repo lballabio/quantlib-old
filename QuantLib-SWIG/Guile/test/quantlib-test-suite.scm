@@ -27,8 +27,8 @@
       (chdir test-dir)))
 
 (load "instruments.scm")
+(load "integral.scm")
 (load "marketelements.scm")
-(load "segmentintegral.scm")
 (load "solvers1d.scm")
 (load "termstructures.scm")
 

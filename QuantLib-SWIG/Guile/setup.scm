@@ -58,6 +58,7 @@
         "history.i"
         "indexes.i"
         "instruments.i"
+        "integrals.i"
         "interpolation.i"
         "linearalgebra.i"
         "marketelements.i"
@@ -69,7 +70,6 @@
         "options.i"
         "piecewiseflatforward.i"
         "randomnumbers.i"
-        "segmentintegral.i"
         "shortratemodels.i"
         "statistics.i"
         "swap.i"
@@ -85,8 +85,8 @@
 (define test-files
   (list "common.scm"
         "instruments.scm"
+        "integrals.scm"
         "marketelements.scm"
-        "segmentintegral.scm"
         "solvers1d.scm"
         "termstructures.scm"
         ; support files

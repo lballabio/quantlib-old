@@ -24,11 +24,12 @@
 
 %{
 using QuantLib::Math::SegmentIntegral;
+using QuantLib::Math::TrapezoidIntegral;
+using QuantLib::Math::SimpsonIntegral;
+using QuantLib::Math::KronrodIntegral;
 %}
 
-class SegmentIntegral {
-  public:
-    SegmentIntegral(Size intervals);
+%define INTEGRATION_METHODS
     %extend {
         #if defined(SWIGPYTHON)
         double __call__(PyObject* pyFunction, double a, double b) {
@@ -52,6 +53,33 @@ class SegmentIntegral {
         }
         #endif
     }
+%enddef
+
+class SegmentIntegral {
+  public:
+    SegmentIntegral(Size intervals);
+    INTEGRATION_METHODS;
+};
+
+
+class TrapezoidIntegral {
+  public:
+    TrapezoidIntegral(double accuracy);
+    INTEGRATION_METHODS;
+};
+
+
+class SimpsonIntegral {
+  public:
+    SimpsonIntegral(double accuracy);
+    INTEGRATION_METHODS;
+};
+
+
+class KronrodIntegral {
+  public:
+    KronrodIntegral(double accuracy);
+    INTEGRATION_METHODS;
 };
 
 
