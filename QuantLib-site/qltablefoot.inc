@@ -5,7 +5,7 @@
 
 <p>Feedback and questions concerning this site and project
 can be directed to</br>
-the <a href="http://lists.sourceforge.net/mailman/listinfo/quantlib-users">QuantLib-users</a>
+the <a href="http://lists.sourceforge.net/lists/listinfo/quantlib-users">QuantLib-users</a>
  mailing list<br>
  or<br>
 the QuantLib administrator <a href=
