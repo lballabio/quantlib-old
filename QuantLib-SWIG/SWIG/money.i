@@ -66,7 +66,9 @@ class Money {
     }
     #endif
 
-    enum ConversionType { None, BaseCurrency, Automated };
+    enum ConversionType { NoConversion,
+                          BaseCurrencyConversion,
+                          AutomatedConversion };
     %extend {
         static void setConversionType(ConversionType type) {
             Money::conversionType = type;

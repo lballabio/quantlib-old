@@ -92,6 +92,7 @@ Interfaces =  [ 'quantlib.i',
                 'indexes.i',
                 'instruments.i',
                 'integrals.i',
+                'interestrate.i',
                 'interpolation.i',
                 'linearalgebra.i',
                 'marketelements.i',
@@ -190,7 +191,7 @@ Build = Command.new {
       when 'linux','linux-gnu','darwin'
         $CFLAGS   += " " + (ENV['CFLAGS'] || "")
         $CPPFLAGS += " " + IO.popen("quantlib-config --cflags").gets.strip
-        $CPPFLAGS += " -Wno-uninitialized -Wno-unused-function"
+        $CPPFLAGS += " -Wno-uninitialized -Wno-unused"
         $CPPFLAGS += " " + (ENV['CXXFLAGS'] || "")
         $libs     += " " + IO.popen("quantlib-config --libs").gets.strip
         old_cc = cfg['CC']

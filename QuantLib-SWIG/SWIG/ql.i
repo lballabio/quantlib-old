@@ -67,6 +67,7 @@
 %include indexes.i
 %include instruments.i
 %include integrals.i
+%include interestrate.i
 %include interpolation.i
 %include linearalgebra.i
 %include marketelements.i

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2004 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,10 +19,11 @@
 #define quantlib_term_structures_i
 
 %include common.i
+%include types.i
+%include interestrate.i
 %include date.i
 %include calendars.i
 %include daycounters.i
-%include types.i
 %include currencies.i
 %include observer.i
 %include marketelements.i
@@ -52,14 +53,41 @@ class YieldTermStructure : public Extrapolator {
 	Time maxTime() const;
 	DiscountFactor discount(const Date&, bool extrapolate = false);
 	DiscountFactor discount(Time, bool extrapolate = false);
-	Rate zeroYield(const Date&, bool extrapolate = false);
-	Rate zeroYield(Time, bool extrapolate = false);
-	Rate forward(const Date&, const Date&, bool extrapolate = false);
-	Rate forward(Time, Time, bool extrapolate = false);
+    Rate zeroRate(const Date& d,
+                  const DayCounter&, Compounding, Frequency f = Annual,
+                  bool extrapolate = false) const;
+    Rate zeroRate(Time t,
+                  Compounding, Frequency f = Annual,
+                  bool extrapolate = false) const;
+    InterestRate zeroInterestRate(const Date& d,
+                                  const DayCounter&,
+                                  Compounding, Frequency f = Annual,
+                                  bool extrapolate = false) const;
+    InterestRate zeroInterestRate(Time t,
+                                  Compounding, Frequency f = Annual,
+                                  bool extrapolate = false) const;
 	Rate instantaneousForward(const Date&, bool extrapolate = false);
 	Rate instantaneousForward(Time, bool extrapolate = false);
+	Rate forward(const Date&, const Date&, bool extrapolate = false);
+	Rate forward(Time, Time, bool extrapolate = false);
 	Rate compoundForward(const Date&, Integer, bool extrapolate = false);
 	Rate compoundForward(Time, Integer, bool extrapolate = false);
+    Rate forwardRate(const Date& d1, const Date& d2,
+                     const DayCounter&, Compounding, Frequency f = Annual,
+                     bool extrapolate = false) const;
+    Rate forwardRate(Time t1, Time t2,
+                     Compounding, Frequency f = Annual,
+                     bool extrapolate = false) const;
+    InterestRate forwardInterestRate(const Date& d1, const Date& d2,
+                                     const DayCounter&,
+                                     Compounding comp, Frequency f = Annual,
+                                     bool extrapolate = false) const;
+    InterestRate forwardInterestRate(Time t1, Time t2,
+                                     Compounding comp, Frequency f = Annual,
+                                     bool extrapolate = false) const;
+
+	Rate zeroYield(const Date&, bool extrapolate = false);
+	Rate zeroYield(Time, bool extrapolate = false);
 	Rate zeroCoupon(const Date&, Integer, bool extrapolate = false);
 	Rate zeroCoupon(Time, Integer, bool extrapolate = false);
 };

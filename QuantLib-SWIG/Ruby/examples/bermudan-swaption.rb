@@ -128,8 +128,7 @@ swapHelpers = swapRates.map { |n,unit,rate|
 
 termStructure = YieldTermStructureHandle.new
 termStructure.linkTo!(PiecewiseFlatForward.new(settlementDate,
-                                               depositHelpers+swapHelpers,
-                                               Thirty360.new))
+                                               depositHelpers+swapHelpers))
 
 
 # define the ATM/OTM/ITM swaps

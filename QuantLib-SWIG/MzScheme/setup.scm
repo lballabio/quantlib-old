@@ -69,6 +69,7 @@
         "indexes.i"
         "instruments.i"
         "integrals.i"
+        "interestrate.i"
         "interpolation.i"
         "linearalgebra.i"
         "marketelements.i"
@@ -111,6 +112,7 @@
   (list "american-option.scm"
         "bermudan-swaption.scm"
         "european-option.scm"
+        "swap.scm"
         ; support
         "tabulate.scm"))
 

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2004 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -245,6 +245,8 @@ class Date {
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
     Date operator+(BigInteger days) const;
     Date operator-(BigInteger days) const;
+    Date operator+(const Period&) const;
+    Date operator-(const Period&) const;
     #endif
     %extend {
         Date(const std::string& str, const std::string& fmt) {
@@ -294,8 +296,32 @@ class Date {
             return self->plusDays(1);
         }
         #endif
+        #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        Date advance(Integer n, TimeUnit units) {
+            return *self + n*units;
+        }
+        #endif
     }
 };
+
+#if defined(SWIGPYTHON)
+%pythoncode %{
+Date._old___add__ = Date.__add__
+Date._old___sub__ = Date.__sub__
+def Date_new___add__(self,x):
+    if type(x) is tuple and len(x) == 2:
+        return self._old___add__(Period(x[0],x[1]))
+    else:
+        return self._old___add__(x)
+def Date_new___sub__(self,x):
+    if type(x) is tuple and len(x) == 2:
+        return self._old___sub__(Period(x[0],x[1]))
+    else:
+        return self._old___sub__(x)
+Date.__add__ = Date_new___add__
+Date.__sub__ = Date_new___sub__
+%}
+#endif
 
 namespace std {
     %template(DateVector) vector<Date>;

@@ -79,64 +79,71 @@ class SwaptionVolatilityMatrixPtr
 // cap/floor volatilities
 
 %{
-using QuantLib::CapFlatVolatilityStructure;
+using QuantLib::CapVolatilityStructure;
 %}
 
-%ignore CapFlatVolatilityStructure;
-class CapFlatVolatilityStructure {
+%ignore CapVolatilityStructure;
+class CapVolatilityStructure {
   public:
 	Volatility volatility(const Date& end, Rate strike);
 	Volatility volatility(Time end, Rate strike);
 };
 
-%template(CapFlatVolatilityStructure)
-    boost::shared_ptr<CapFlatVolatilityStructure>;
-IsObservable(boost::shared_ptr<CapFlatVolatilityStructure>);
+%template(CapVolatilityStructure) boost::shared_ptr<CapVolatilityStructure>;
+IsObservable(boost::shared_ptr<CapVolatilityStructure>);
 
-%template(CapFlatVolatilityStructureHandle)
-    Handle<CapFlatVolatilityStructure>;
-IsObservable(Handle<CapFlatVolatilityStructure>);
+%template(CapVolatilityStructureHandle) Handle<CapVolatilityStructure>;
+IsObservable(Handle<CapVolatilityStructure>);
+
+#if defined(SWIGPYTHON)
+%pythoncode %{
+    CapFlatVolatilityStructure = CapVolatilityStructure
+    CapFlatVolatilityStructureHandle = CapVolatilityStructureHandle
+%}
+#endif
 
 %{
-using QuantLib::CapFlatVolatilityVector;
-typedef boost::shared_ptr<CapFlatVolatilityStructure>
-    CapFlatVolatilityVectorPtr;
+using QuantLib::CapVolatilityVector;
+typedef boost::shared_ptr<CapVolatilityStructure> CapVolatilityVectorPtr;
 %}
 
-%rename(CapFlatVolatilityVector) CapFlatVolatilityVectorPtr;
-class CapFlatVolatilityVectorPtr
-: public boost::shared_ptr<CapFlatVolatilityStructure> {
+%rename(CapVolatilityVector) CapVolatilityVectorPtr;
+class CapVolatilityVectorPtr
+: public boost::shared_ptr<CapVolatilityStructure> {
   public:
     %extend {
-        CapFlatVolatilityVectorPtr(const Date& today,
-                                   const Calendar& calendar,
-                                   Integer settlementDays,
-                                   const std::vector<Period>& lengths,
-                                   const std::vector<Volatility>& vols,
-                                   const DayCounter& dayCounter) {
-            return new CapFlatVolatilityVectorPtr(
-                new CapFlatVolatilityVector(today,calendar,settlementDays,
-                                            lengths,vols,dayCounter));
+        CapVolatilityVectorPtr(const Date& today,
+                               const Calendar& calendar,
+                               Integer settlementDays,
+                               const std::vector<Period>& lengths,
+                               const std::vector<Volatility>& vols,
+                               const DayCounter& dayCounter) {
+            return new CapVolatilityVectorPtr(
+                new CapVolatilityVector(today,calendar,settlementDays,
+                                        lengths,vols,dayCounter));
         }
-        CapFlatVolatilityVectorPtr(const Date& referenceDate,
-                                   const std::vector<Period>& lengths,
-                                   const std::vector<Volatility>& vols,
-                                   const DayCounter& dayCounter) {
-            return new CapFlatVolatilityVectorPtr(
-                new CapFlatVolatilityVector(referenceDate,
-                                            lengths,vols,dayCounter));
+        CapVolatilityVectorPtr(const Date& referenceDate,
+                               const std::vector<Period>& lengths,
+                               const std::vector<Volatility>& vols) {
+            return new CapVolatilityVectorPtr(
+                new CapVolatilityVector(referenceDate,lengths,vols));
         }
-        CapFlatVolatilityVectorPtr(Integer settlementDays,
-                                   const Calendar& calendar,
-                                   const std::vector<Period>& lengths,
-                                   const std::vector<Volatility>& vols,
-                                   const DayCounter& dayCounter) {
-            return new CapFlatVolatilityVectorPtr(
-                new CapFlatVolatilityVector(settlementDays,calendar,
-                                            lengths,vols,dayCounter));
+        CapVolatilityVectorPtr(Integer settlementDays,
+                               const Calendar& calendar,
+                               const std::vector<Period>& lengths,
+                               const std::vector<Volatility>& vols) {
+            return new CapVolatilityVectorPtr(
+                new CapVolatilityVector(settlementDays,calendar,
+                                        lengths,vols));
         }
     }
 };
+
+#if defined(SWIGPYTHON)
+%pythoncode %{
+    CapFlatVolatilityVector = CapVolatilityVector
+%}
+#endif
 
 
 #endif

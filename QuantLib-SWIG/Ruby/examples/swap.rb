@@ -97,12 +97,10 @@ forecastTermStructure = YieldTermStructureHandle.new
 # term-structure construction
 
 helpers = depositHelpers[0..1] + futuresHelpers + swapHelpers[1..-1]
-depoFuturesSwapCurve = PiecewiseFlatForward.new(settlementDate,
-                                                helpers, Actual360.new)
+depoFuturesSwapCurve = PiecewiseFlatForward.new(settlementDate, helpers)
 
 helpers = depositHelpers[0..2] + fraHelpers + swapHelpers
-depoFraSwapCurve = PiecewiseFlatForward.new(settlementDate,
-                                            helpers, Actual360.new)
+depoFraSwapCurve = PiecewiseFlatForward.new(settlementDate, helpers)
 
 # swaps to be priced
 

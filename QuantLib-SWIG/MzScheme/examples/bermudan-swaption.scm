@@ -95,8 +95,8 @@
                     (let* ((maturity (car swaption))
                            (length (cadr swaption))
                            (vol (caddr swaption))
-                           (NPV (CalibrationHelper-modelValue helper))
-                           (implied (CalibrationHelper-impliedVolatility
+                           (NPV (CalibrationHelper-model-value helper))
+                           (implied (CalibrationHelper-implied-volatility
                                      helper NPV 1.0e-4 1000 0.05 0.50))
                            (error (- implied vol)))
                       (display (tabulate fmt sep
@@ -160,8 +160,7 @@
 (YieldTermStructureHandle-link-to! term-structure
                                    (new-PiecewiseFlatForward
                                     settlement-date
-                                    (append deposit-helpers swap-helpers)
-                                    (new-Thirty360)))
+                                    (append deposit-helpers swap-helpers)))
 
 
 ; define the ATM/OTM/ITM swaps

@@ -106,7 +106,7 @@
 (with-pricing-engine (option (new-MCEuropeanEngine "pseudorandom" 1 #f
                                                    #f #f #f 0.02 #f 42))
   (report "MC (crude)"
-          (Instrument-NPV option) (VanillaOption-errorEstimate option)))
+          (Instrument-NPV option) (Instrument-error-estimate option)))
 
 (with-pricing-engine (option (new-MCEuropeanEngine "lowdiscrepancy" 1 #f
                                                    #f #f 32768))

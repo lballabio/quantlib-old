@@ -114,8 +114,7 @@ swapHelpers = [ SwapRateHelper(QuoteHandle(SimpleQuote(rate)),
 
 termStructure = YieldTermStructureHandle()
 termStructure.linkTo(PiecewiseFlatForward(settlementDate,
-                                          depositHelpers+swapHelpers,
-                                          Thirty360()))
+                                          depositHelpers+swapHelpers))
 
 
 # define the ATM/OTM/ITM swaps

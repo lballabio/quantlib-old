@@ -49,6 +49,7 @@ swig_files = ['quantlib.i',
               'indexes.i',
               'instruments.i',
               'integrals.i',
+              'interestrate.i',
               'interpolation.i',
               'linearalgebra.i',
               'marketelements.i',
@@ -300,7 +301,8 @@ else:
                           if arg.startswith('-l') ]
     extra_compile_args = [ arg for arg in ql_compile_args
                                if not arg.startswith('-D')
-                               if not arg.startswith('-I') ]
+                               if not arg.startswith('-I') ] \
+                       + [ '-Wno-unused' ]
     if os.environ.has_key('CXXFLAGS'):
         extra_compile_args.extend(string.split(os.environ['CXXFLAGS']))
     extra_link_args = [ arg for arg in ql_link_args

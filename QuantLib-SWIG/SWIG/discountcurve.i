@@ -41,11 +41,8 @@ class DiscountCurvePtr : public boost::shared_ptr<YieldTermStructure> {
                 new DiscountCurve(todaysDate, dates, discounts, dayCounter));
         }
         DiscountCurvePtr(const std::vector<Date>& dates,
-                         const std::vector<DiscountFactor>& discounts,
-                         const DayCounter& dayCounter =
-                             QuantLib::Actual365()) {
-            return new DiscountCurvePtr(
-                             new DiscountCurve(dates, discounts, dayCounter));
+                         const std::vector<DiscountFactor>& discounts) {
+            return new DiscountCurvePtr(new DiscountCurve(dates, discounts));
         }
         const std::vector<Date>& dates() {
             return boost::dynamic_pointer_cast<DiscountCurve>(*self)->dates();
@@ -72,12 +69,9 @@ class ExtendedDiscountCurvePtr : public DiscountCurvePtr {
         ExtendedDiscountCurvePtr(const std::vector<Date>& dates,
                                  const std::vector<DiscountFactor>& discounts,
                                  const Calendar& calendar,
-                                 BusinessDayConvention roll,
-                                 const DayCounter& dayCounter =
-                                     QuantLib::Actual365()) {
+                                 BusinessDayConvention roll) {
             return new ExtendedDiscountCurvePtr(
-                new ExtendedDiscountCurve(dates, discounts,
-                                          calendar, roll, dayCounter));
+                new ExtendedDiscountCurve(dates, discounts, calendar, roll));
         }
     }
 };
