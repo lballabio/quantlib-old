@@ -51,7 +51,7 @@
         "currencies.i"
         "date.i"
         "daycounters.i"
-        "diffusionprocess.i"
+        "stochasticprocess.i"
         "discountcurve.i"
         "distributions.i"
         "exercise.i"

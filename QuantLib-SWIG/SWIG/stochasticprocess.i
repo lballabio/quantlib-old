@@ -15,30 +15,34 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef quantlib_diffusion_process_i
-#define quantlib_diffusion_process_i
+#ifndef quantlib_stochastic_process_i
+#define quantlib_stochastic_process_i
 
 %include marketelements.i
 %include termstructures.i
 %include volatilities.i
 
 %{
-using QuantLib::DiffusionProcess;
+using QuantLib::StochasticProcess;
 %}
 
-%ignore DiffusionProcess;
-class DiffusionProcess {};
+%ignore StochasticProcess;
+class StochasticProcess {};
 
-%template(DiffusionProcess) boost::shared_ptr<DiffusionProcess>;
+%template(StochasticProcess) boost::shared_ptr<StochasticProcess>;
+// alias
+%pythoncode %{
+DiffusionProcess = StochasticProcess
+%}
 
 %{
 using QuantLib::BlackScholesProcess;
-typedef boost::shared_ptr<DiffusionProcess> BlackScholesProcessPtr;
+typedef boost::shared_ptr<StochasticProcess> BlackScholesProcessPtr;
 %}
 
 %rename(BlackScholesProcess) BlackScholesProcessPtr;
 class BlackScholesProcessPtr 
-    : public boost::shared_ptr<DiffusionProcess> {
+    : public boost::shared_ptr<StochasticProcess> {
   public:
     %extend {
       BlackScholesProcessPtr(
@@ -56,11 +60,11 @@ class BlackScholesProcessPtr
 
 %{
 using QuantLib::Merton76Process;
-typedef boost::shared_ptr<DiffusionProcess> Merton76ProcessPtr;
+typedef boost::shared_ptr<StochasticProcess> Merton76ProcessPtr;
 %}
 
 %rename(Merton76Process) Merton76ProcessPtr;
-class Merton76ProcessPtr : public boost::shared_ptr<DiffusionProcess> {
+class Merton76ProcessPtr : public boost::shared_ptr<StochasticProcess> {
   public:
     %extend {
       Merton76ProcessPtr(
@@ -83,8 +87,8 @@ class Merton76ProcessPtr : public boost::shared_ptr<DiffusionProcess> {
 
 // allow use of diffusion process vectors
 namespace std {
-    %template(DiffusionProcessVector) 
-        vector<boost::shared_ptr<DiffusionProcess> >;
+    %template(StochasticProcessVector) 
+        vector<boost::shared_ptr<StochasticProcess> >;
 }
 
 

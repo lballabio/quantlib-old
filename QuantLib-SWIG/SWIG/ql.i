@@ -57,7 +57,6 @@
 %include currencies.i
 %include date.i
 %include daycounters.i
-%include diffusionprocess.i
 %include discountcurve.i
 %include distributions.i
 %include exercise.i
@@ -81,6 +80,7 @@
 %include scheduler.i
 %include shortratemodels.i
 %include statistics.i
+%include stochasticprocess.i
 %include swap.i
 %include swaption.i
 %include termstructures.i

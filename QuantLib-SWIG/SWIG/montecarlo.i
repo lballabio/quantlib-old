@@ -18,7 +18,7 @@
 #ifndef quantlib_montecarlo_tools_i
 #define quantlib_montecarlo_tools_i
 
-%include diffusionprocess.i
+%include stochasticprocess.i
 %include linearalgebra.i
 %include randomnumbers.i
 %include types.i
@@ -107,7 +107,7 @@ typedef QuantLib::SingleAsset<PseudoRandom>::path_generator_type
 %template(SamplePath) Sample<Path>;
 class GaussianPathGenerator {
   public:
-    GaussianPathGenerator(const boost::shared_ptr<DiffusionProcess>&,
+    GaussianPathGenerator(const boost::shared_ptr<StochasticProcess>&,
                           Time length, Size steps, 
                           const GaussianRandomSequenceGenerator&,
                           bool brownianBridge = false);
@@ -219,7 +219,7 @@ class GaussianMultiPathGenerator {
   public:
     %extend {
       GaussianMultiPathGenerator(
-                     const std::vector<boost::shared_ptr<DiffusionProcess> >& 
+                     const std::vector<boost::shared_ptr<StochasticProcess> >& 
                                                                diffusionProcs,
                      const Matrix& correlation,
                      const std::vector<double>& times,

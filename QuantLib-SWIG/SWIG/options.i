@@ -20,7 +20,7 @@
 
 %include common.i
 %include exercise.i
-%include diffusionprocess.i
+%include stochasticprocess.i
 %include instruments.i
 %include stl.i
 
@@ -94,7 +94,7 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
         VanillaOptionPtr(
-                const boost::shared_ptr<DiffusionProcess>& process,
+                const boost::shared_ptr<StochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
                 const boost::shared_ptr<Exercise>& exercise,
                 const boost::shared_ptr<PricingEngine>& engine
@@ -157,7 +157,7 @@ class EuropeanOptionPtr : public VanillaOptionPtr {
   public:
     %extend {
         EuropeanOptionPtr(
-                const boost::shared_ptr<DiffusionProcess>& process,
+                const boost::shared_ptr<StochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
                 const boost::shared_ptr<Exercise>& exercise,
                 const boost::shared_ptr<PricingEngine>& engine
