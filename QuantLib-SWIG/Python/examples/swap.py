@@ -138,8 +138,8 @@ forward = SimpleSwap(payFixed, calendar.advance(settlementDate,1,'year'),
 
 # price on the bootstrapped curves
 
-def report(swap):
-    print 'spot 5-years swap'
+def report(swap, name):
+    print name
     print '    NPV:         %.2f' % swap.NPV()
     print '    fair spread: %.2f %%' % (swap.fairSpread()*100)
     print '    fair rate:   %.2f %%' % (swap.fairRate()*100)
@@ -149,15 +149,15 @@ print 'using depo-futures-swap curve\n'
 discountTermStructure.linkTo(depoFuturesSwapCurve)
 forecastTermStructure.linkTo(depoFuturesSwapCurve)
 
-report(spot)
-report(forward)
+report(spot,'spot 5-years swap')
+report(forward,'1-year forward 5-years swap')
 
 print 'using depo-FRA-swap curve\n'
 discountTermStructure.linkTo(depoFraSwapCurve)
 forecastTermStructure.linkTo(depoFraSwapCurve)
 
-report(spot)
-report(forward)
+report(spot,'spot 5-years swap')
+report(forward,'1-year forward 5-years swap')
 
 # modify the 5-years swap rate and reprice
 
@@ -168,12 +168,13 @@ print 'using depo-futures-swap curve\n'
 discountTermStructure.linkTo(depoFuturesSwapCurve)
 forecastTermStructure.linkTo(depoFuturesSwapCurve)
 
-report(spot)
-report(forward)
+report(spot,'spot 5-years swap')
+report(forward,'1-year forward 5-years swap')
 
 print 'using depo-FRA-swap curve\n'
 discountTermStructure.linkTo(depoFraSwapCurve)
 forecastTermStructure.linkTo(depoFraSwapCurve)
 
-report(spot)
-report(forward)
+report(spot,'spot 5-years swap')
+report(forward,'1-year forward 5-years swap')
+
