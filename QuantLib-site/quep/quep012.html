@@ -2,24 +2,10 @@
 <head>
 <title>QuEP 12: QuantLibAddin</title>
 <link rel="stylesheet" href="../styles/quantlib.css" type="text/css">
-<!-- override quantlib.css to make code black and comments green -->
-<style type="text/css">
-pre {
-    margin-left: 5%;
-    color: black;
-    font-family: monospace;
-}
-FONT.comment {
-    color: green;
-}
-</style>
 </head>
 <body>
-<div class="center">
 <h1>QuEP 12: QuantLibAddin</h1>
-<font size=-2><a href="#tag_5">updated 5-Jan-2005</a></font><br><br>
-Eric Ehlers
-</div>
+<div class="center">Eric Ehlers</div>
 <h2>Abstract</h2>
 <p>There is a requirement to supplement QuantLib's existing C++ API with a high-level API, <b>QuantLibAddin</b>, which implements a procedural interface that can be deployed on any platform capable of linking C++ libraries.  QuantLibAddin is less flexible than the native API but allows QuantLib functionality to be loaded directly to end-user environments such as spreadsheets.</p>
 <a name="tag_contents"><h2>Contents</h2>
@@ -44,15 +30,14 @@ Eric Ehlers
 </dl></dd>
 <dt>3. <a href="#tag_3">Support for C</a></dt>
 <dt>4. <a href="#tag_4">Autogeneration</a></dt>
-<dt>5. <a href="#tag_5">Revision History</a></dt>
-<dt>6. <a href="#tag_6">Feedback</a></dt>
+<dt>5. <a href="#tag_5">Feedback</a></dt>
 </dl></div>
 <a name="tag_1"></a><h2>1. <a href="#tag_contents">Design</a></h2>
 <div class="center"><img src="quep012/quep012a.png"></div>
-<p>QuantLibAddin uses the Object Handler to allow the user to build up a repository of QuantLib objects.  Each QuantLib class to be available in QuantLibAddin is wrapped in a class descended from Object.  All calls to QuantLibAddin - constructors and member functions of the Objects - are wrapped in a function layer.</p>
+<p>QuantLibAddin uses ObjectHandler to allow the user to build up a repository of QuantLib objects.  Each QuantLib class to be available in QuantLibAddin is wrapped in a class descended from Object.  All calls to QuantLibAddin - constructors and member functions of the Objects - are wrapped in a function layer.</p>
 <p>The core QuantLibAddin library can be loaded directly into standalone C++ programs.  For other platforms, QuantLibAddin is wrapped in an additional layer providing platform-specific functionality.  QuantLibAddin has the same interface on all platforms.</p>
 <a name="tag_1_1"></a><h3>1.1 <a href="#tag_contents">Classes</a></h3>
-<p>The class for each QuantLib object to be stored in the Object Handler is wrapped in a class derived from <tt>Object</tt>.  The constructor of the derived Object class calls the constructor of the corresponding QuantLib class, and the resulting QuantLib object is stored as a member variable of the derived Object.  The Propery vector in the base Object class is populated appropriately.</p>
+<p>The class for each QuantLib object to be stored in ObjectHandler is wrapped in a class derived from <tt>Object</tt>.  The constructor of the derived Object class calls the constructor of the corresponding QuantLib class, and the resulting QuantLib object is stored as a member variable of the derived Object.  The Propery vector in the base Object class is populated appropriately.</p>
 <a name="tag_1_2"></a><h3>1.2 <a href="#tag_contents">Functions</a></h3>
 <p>QuantLibAddin exports a standard set of functions. Typically each function corresponds to a constructor or member variable of an Object class. The function returns the Property vector of the object which has been created / amended.  An object returned from one function may be passed as a parameter to another.</p>
 <a name="tag_1_3"></a><h3>1.3 <a href="#tag_contents">Addins</a></h3>
@@ -65,7 +50,7 @@ Eric Ehlers
 </ul>
 <p>The above is wrapped in try/catch.  All Addins use standard calls to log exceptions to the QuantLibAddin log file, and may perform addition platform-specific error handling e.g. throwing a new exception for the host application.</p>
 <a name="tag_1_4"></a><h3>1.4 <a href="#tag_contents">Clients</a></h3>
-<p>The client application loads QuantLibAddin, instantiating a single global instance of the Object Handler.  QuantLibAddin functions allow objects to be constructed, interrogated, modified, and passed as input parameters to constructors / member functions of other objects.  Objects can be deleted explicitly, otherwise the Object Handler destroys all objects in its repository when it is destroyed.</p>
+<p>The client application loads QuantLibAddin, instantiating a single global instance of ObjectHandler.  QuantLibAddin functions allow objects to be constructed, interrogated, modified, and passed as input parameters to constructors / member functions of other objects.  Objects can be deleted explicitly, otherwise ObjectHandler destroys all objects in its repository when it is destroyed.</p>
 <a name="tag_2"></a><h2>2. <a href="#tag_contents">Implementation</a></h2>
 <p>The example below illustrates an implementation of QuantLibAddin and clients, including three QuantLibAddin functions which</p>
 <ul>
@@ -216,7 +201,7 @@ Properties QL_OPTION(
       const std::string &amp;handleOption,
       const std::string &amp;handleStochastic,
       inputs ...) {
-   <font class="comment">// retrieve stochastic object from Object Handler & use it to construct option object</font>
+   <font class="comment">// retrieve stochastic object from ObjectHandler & use it to construct option object</font>
    boost::shared_ptr&lt;ObjectStochastic&gt; objectStochastic =
       boost::dynamic_pointer_cast&lt;ObjectStochastic&gt;
       (ObjectHandler::instance().retrieveObject(handleStochastic));
@@ -337,9 +322,9 @@ int main() {
 <ul>
 <p>A description of each section of the spreadsheet:</p>
 <li><b>Construct an object from native datatypes:</b> Cell formula QL_BLACKSCHOLES is called to construct a BlackScholes object from numeric values.  The Addin automatically sets the <tt>Handle</tt> of the object equal to  the address of the calling cell.</li>
-<li><b>Construct an object from native datatypes &amp; other objects:</b> The Black Scholes object created above is passed as an input to QL_OPTION which creates an option.  Note that only a reference to the cell containing the Black Scholes object - C9 - is passed to QL_OPTION.  The Addin autmatically accesses cell C9, retrieves the <tt>Handle</tt> of the Black Scholes object ("QL#[QLObjectHandler.xls]Example!$C$9"), retrieves the Black Scholes object from the Object Handler, and passes the object as an argument to the ObjectOption constructor.  QL_OPTION returns an array of three values - the option <tt>Handle</tt>, the PV, and the Engine name - which are displayed in a cell array.</li>
+<li><b>Construct an object from native datatypes &amp; other objects:</b> The Black Scholes object created above is passed as an input to QL_OPTION which creates an option.  Note that only a reference to the cell containing the Black Scholes object - C9 - is passed to QL_OPTION.  The Addin autmatically accesses cell C9, retrieves the <tt>Handle</tt> of the Black Scholes object ("QL#[QLObjectHandler.xls]Example!$C$9"), retrieves the Black Scholes object from ObjectHandler, and passes the object as an argument to the ObjectOption constructor.  QL_OPTION returns an array of three values - the option <tt>Handle</tt>, the PV, and the Engine name - which are displayed in a cell array.</li>
 <li><b>interrogate an existing object with no prior knowledge of its structure:</b> QL_QUERY is called on the <tt>Handle</tt> returned from QL_OPTION to get the Object's Property vector.</li>
-<li><b>Invoke a method of an existing object:</b> The <tt>Handle</tt> of the option is passed to QL_OPTION_SETENGINE which changes the option's pricing engine, reprices the option, and returns the changed state.  Note that QL_OPTION_SETENGINE acts on the option stored above in cell C18 - the option object is amended <i>in situ</i> in the Object Handler.</li>
+<li><b>Invoke a method of an existing object:</b> The <tt>Handle</tt> of the option is passed to QL_OPTION_SETENGINE which changes the option's pricing engine, reprices the option, and returns the changed state.  Note that QL_OPTION_SETENGINE acts on the option stored above in cell C18 - the option object is amended <i>in situ</i> in ObjectHandler.</li>
 </ul>
 <p>The interfaces for other spreadsheet Addins are the same and spreadsheets can be shared verbatim between the various products.</p>
 <a name="tag_3"></a><h2>3. <a href="#tag_contents">Support for C</a></h2>
@@ -431,26 +416,7 @@ int QL_OPTION_C(
 &lt;/function&gt;
 </pre>
 <p>The autogeneration script loads the metadata from the XML files and passes this to each platform-specific module which automatically generates the business functionality for that Addin, which is then recompiled.  Auto generated source is booked in to CVS so that people who download QuantLibAddin source from CVS can recompile without necessarily regenerating the source.</p>
-<a name="tag_5"></a><h2>5. <a href="#tag_contents">Revision History</a></h2>
-<table border="1">
-<tr>
-<td><b>Date</b></td>
-<td><b>Description</b></td>
-</tr>
-<tr>
-<td>5-Jan-2005</td>
-<td>
-minor clarifications
-</td>
-</tr>
-<tr>
-<td>1-Nov-2004</td>
-<td>
-separated from QuEP11.
-</td>
-</tr>
-</table>
-<a name="tag_6"></a><h2>6. <a href="#tag_contents">Feedback</a></h2>
+<a name="tag_5"></a><h2>5. <a href="#tag_contents">Feedback</a></h2>
 <p>Feedback on this proposal should be posted to the <a href="
 mailto:quantlib-users@lists.sourceforge.net">QuantLib users</a>
 mailing list.</p>
