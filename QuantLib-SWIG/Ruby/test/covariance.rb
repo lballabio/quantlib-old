@@ -40,7 +40,7 @@ class CovarianceTest < Test::Unit::TestCase
       }
     }
 
-    calcCov = QuantLib::covariance(vol,corr)
+    calcCov = QuantLib::getCcovariance(vol,corr)
 
     0.upto(n-1) do |i|
       0.upto(n-1) do |j|

@@ -35,7 +35,7 @@ class CovarianceTest(unittest.TestCase):
             for j in range(i):
                 expCov[i][j] = expCov[j][i] = corr[i][j]*vol[i]*vol[j]
 
-        calcCov = covariance(vol,corr)
+        calcCov = getCovariance(vol,corr)
 
         for i in range(n):
             for j in range(n):

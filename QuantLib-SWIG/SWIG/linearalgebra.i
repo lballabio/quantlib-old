@@ -757,7 +757,7 @@ class Array {
     Size size() const;
     %extend {
         std::string __str__() {
-            return ArrayFormatter::toString(*self);
+            return ArrayFormatter::toString(self->begin(),self->end());
         }
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         Array __add__(const Array& a) {

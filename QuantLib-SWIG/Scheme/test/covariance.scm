@@ -29,7 +29,7 @@
                   #(0.5 0.8 1.0)))
          (n (vector-length vol)))
     (deleting-let ((expected-cov (new-Matrix n n) delete-Matrix)
-                   (calculated-cov (covariance vol corr) delete-Matrix))
+                   (calculated-cov (get-covariance vol corr) delete-Matrix))
       ; calculate expected covariance
       (for-each-combination ((i (range 0 n)))
         (let ((vol_i (vector-ref vol i)))

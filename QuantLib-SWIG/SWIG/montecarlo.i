@@ -24,12 +24,16 @@
 %include randomnumbers.i
 %include types.i
 
-%{
-using QuantLib::MonteCarlo::getCovariance;
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("get-covariance") getCovariance;
+#endif
+%inline %{
+Matrix getCovariance(const Array& volatilities, const Matrix& correlations) {
+    return QuantLib::MonteCarlo::getCovariance(volatilities.begin(),
+                                               volatilities.end(),
+                                               correlations);
+}
 %}
-%rename(covariance) getCovariance;
-Matrix getCovariance(const Array& volatilities, const Matrix& correlations);
-
 
 %{
 using QuantLib::MonteCarlo::Path;

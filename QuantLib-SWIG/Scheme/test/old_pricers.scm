@@ -779,7 +779,7 @@
                 #(0.30 0.20 1.00 0.60)
                 #(0.10 0.40 0.60 1.00)))
          (volatilities #(0.30 0.35 0.25 0.20))
-         (cov (covariance volatilities cor))
+         (cov (get-covariance volatilities cor))
          (dividendYields #(0.01 0.05 0.04 0.03))
          (riskFreeRate 0.05)
          (resTime 1.0)
@@ -789,8 +789,8 @@
                                #(1.00 1.00 1.00 1.00)
                                #(1.00 1.00 1.00 1.00)))
          (sameAssetVols #(0.30 0.30 0.30 0.30))
-         (sameAssetCovariance (covariance sameAssetVols
-                                          perfectCorrelation))
+         (sameAssetCovariance (get-covariance sameAssetVols
+                                              perfectCorrelation))
          (sameAssetDividend #(0.03 0.03 0.03 0.03))
          (seed 86421)
          (fixedSamples 1000)
