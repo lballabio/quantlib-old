@@ -185,6 +185,10 @@ LIB32=link.exe -lib
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=.\QuantLibAddin\interface.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\QuantLibAddin\objectoption.cpp
 # End Source File
 # Begin Source File
@@ -206,6 +210,10 @@ SOURCE=.\QuantLibAddin\utilities.cpp
 # Begin Source File
 
 SOURCE=.\QuantLibAddin\autolink.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\interface.h
 # End Source File
 # Begin Source File
 

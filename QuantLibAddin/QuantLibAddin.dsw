@@ -33,6 +33,21 @@ Package=<4>
 
 ###############################################################################
 
+Project: "ClientC"=".\Clients\C\ClientC.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name QuantLibAddin
+    End Project Dependency
+}}}
+
+###############################################################################
+
 Project: "ClientCPP"=".\Clients\C++\ClientCPP.dsp" - Package Owner=<4>
 
 Package=<5>
