@@ -226,10 +226,6 @@ SOURCE=.\QuantLibAddin\autolink.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\qladdin.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\QuantLibAddin\qladdin.hpp
 # End Source File
 # Begin Source File
