@@ -69,6 +69,8 @@
 
 <li><a class="navlink" href="http://www.elsevier.com/locate/econophys">Econophysics (exits)</a></li>
 
+<li><a class="navlink" href="http://ffts.sourceforge.net/">Finicky Financial Trading System (exits)</a></li>
+
 <li><a class="navlink" href="marketconventions.html">Market Conventions</a></li>
 
 <li><a class="navlink" href="http://www.wilmott.com/">Wilmott&nbsp;(exits)</a></li>
