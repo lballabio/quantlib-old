@@ -1,3 +1,5 @@
+2003-11-21 Release 0.3.4
+
 2003-09-03 Release 0.3.3
 
 2003-02-04 First release, version number 0.3.1
