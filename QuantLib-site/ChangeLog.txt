@@ -1,6 +1,10 @@
+2002-12-31 19:12  nando
+
+	* license.html (1.46): updated copyright years
+
 2002-12-16 11:33  nando
 
-	* ChangeLog.txt (1.21): updated
+	* ChangeLog.txt (1.21), ChangeLog.txt (1.22): updated
 
 2002-12-11 17:52  nando
 
