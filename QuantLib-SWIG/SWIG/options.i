@@ -19,87 +19,12 @@
 #define quantlib_options_i
 
 %include common.i
+%include exercise.i
 %include instruments.i
 %include marketelements.i
 %include termstructures.i
 %include volatilities.i
 %include stl.i
-
-// exercise conditions
-%{
-using QuantLib::Exercise;
-typedef Exercise::Type ExerciseType;
-using QuantLib::EuropeanExercise;
-using QuantLib::AmericanExercise;
-using QuantLib::BermudanExercise;
-
-Exercise::Type exerciseTypeFromString(std::string s) {
-    s = StringFormatter::toLowercase(s);
-    if (s == "e" || s == "european")
-        return Exercise::European;
-    else if (s == "a" || s == "american")
-        return Exercise::American;
-    else if (s == "b" || s == "bermudan")
-        return Exercise::Bermudan;
-    else
-        throw Error("unknown exercise type: "+s);
-}
-
-std::string exerciseTypeToString(Exercise::Type t) {
-    switch (t) {
-      case Exercise::European:
-        return "European";
-      case Exercise::American:
-        return "American";
-      case Exercise::Bermudan:
-        return "Bermudan";
-      default:
-        throw Error("unknown exercise type");
-    }
-}
-%}
-
-MapToString(ExerciseType,exerciseTypeFromString,exerciseTypeToString);
-
-class Exercise {
-  public:
-    ExerciseType type() const;
-    std::vector<Date> dates() const;
-  private:
-    Exercise();
-};
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-// no virtual destructor in base class - prevent mismatch
-%inline %{
-    Exercise* new_EuropeanExercise(const Date& date) {
-        return new Exercise(EuropeanExercise(date));
-    }
-    Exercise* new_AmericanExercise(const Date& earliestDate, 
-                                   const Date& latestDate) {
-        std::vector<Date> v(2);
-        v[0] = earliestDate; v[1] = latestDate;
-        return new Exercise(AmericanExercise(earliestDate,latestDate));
-    }
-    Exercise* new_BermudanExercise(const std::vector<Date>& dates) {
-        return new Exercise(BermudanExercise(dates));
-    }
-%}
-#else
-// use inheritance
-class EuropeanExercise : public Exercise {
-  public:
-    EuropeanExercise(const Date& date);
-};
-class AmericanExercise : public Exercise {
-  public:
-    AmericanExercise(const Date& earliestDate, 
-                     const Date& latestDate);
-};
-class BermudanExercise : public Exercise {
-  public:
-    BermudanExercise(const std::vector<Date>& dates);
-};
-#endif
 
 // option types
 %{
@@ -134,7 +59,8 @@ std::string optionTypeToString(Option::Type t) {
 
 MapToString(OptionType,optionTypeFromString,optionTypeToString);
 
-// payoffs
+
+// payoff
 
 %{
 using QuantLib::Payoff;
@@ -150,82 +76,6 @@ class Payoff {
 };
 
 %template(Payoff) Handle<Payoff>;
-
-
-%{
-using QuantLib::PlainVanillaPayoff;
-using QuantLib::PercentageStrikePayoff;
-using QuantLib::CashOrNothingPayoff;
-using QuantLib::AssetOrNothingPayoff;
-using QuantLib::SuperSharePayoff;
-typedef Handle<Payoff> PlainVanillaPayoffHandle;
-typedef Handle<Payoff> PercentageStrikePayoffHandle;
-typedef Handle<Payoff> CashOrNothingPayoffHandle;
-typedef Handle<Payoff> AssetOrNothingPayoffHandle;
-typedef Handle<Payoff> SuperSharePayoffHandle;
-%}
-
-%rename(PlainVanillaPayoff) PlainVanillaPayoffHandle;
-class PlainVanillaPayoffHandle : public Handle<Payoff> {
-  public:
-    %extend {
-        PlainVanillaPayoffHandle(OptionType type,
-                                 double strike) {
-            return new PlainVanillaPayoffHandle(
-                                        new PlainVanillaPayoff(type, strike));
-        }
-    }
-};
-
-%rename(PercentageStrikePayoff) PercentageStrikePayoffHandle;
-class PercentageStrikePayoffHandle : public Handle<Payoff> {
-  public:
-    %extend {
-        PercentageStrikePayoffHandle(OptionType type,
-                                     double moneyness) {
-            return new PercentageStrikePayoffHandle(
-                                 new PercentageStrikePayoff(type, moneyness));
-        }
-    }
-};
-
-%rename(CashOrNothingPayoff) CashOrNothingPayoffHandle;
-class CashOrNothingPayoffHandle : public Handle<Payoff> {
-  public:
-    %extend {
-        CashOrNothingPayoffHandle(OptionType type,
-                                  double strike,
-                                  double payoff) {
-            return new CashOrNothingPayoffHandle(
-                               new CashOrNothingPayoff(type, strike, payoff));
-        }
-    }
-};
-
-%rename(AssetOrNothingPayoff) AssetOrNothingPayoffHandle;
-class AssetOrNothingPayoffHandle : public Handle<Payoff> {
-  public:
-    %extend {
-        AssetOrNothingPayoffHandle(OptionType type,
-                                   double strike) {
-            return new AssetOrNothingPayoffHandle(
-                                      new AssetOrNothingPayoff(type, strike));
-        }
-    }
-};
-
-%rename(SuperSharePayoff) SuperSharePayoffHandle;
-class SuperSharePayoffHandle : public Handle<Payoff> {
-  public:
-    %extend {
-        SuperSharePayoffHandle(OptionType type,
-                               double strike,
-                               double increment) {
-            return new SuperSharePayoffHandle(
-                               new SuperSharePayoff(type, strike, increment));
-        }
-    }
-};
 
 
 // plain options and engines
@@ -249,7 +99,7 @@ class VanillaOptionHandle : public Handle<Instrument> {
                 const RelinkableHandle<Quote>& underlying, 
                 const RelinkableHandle<TermStructure>& dividendYield,
                 const RelinkableHandle<TermStructure>& riskFreeRate,
-                const Exercise& exerciseDate,
+                const Handle<Exercise>& exercise,
                 const RelinkableHandle<BlackVolTermStructure>& volatility,
                 const Handle<PricingEngine>& engine,
                 const std::string& isinCode = "unknown", 
@@ -263,7 +113,7 @@ class VanillaOptionHandle : public Handle<Instrument> {
             %#endif
             return new VanillaOptionHandle(
                 new VanillaOption(stPayoff,underlying,dividendYield,
-                                  riskFreeRate,exerciseDate,volatility,
+                                  riskFreeRate,exercise,volatility,
                                   engine,isinCode,desc));
         }
         double errorEstimate() {

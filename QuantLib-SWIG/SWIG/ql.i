@@ -59,6 +59,7 @@
 %include daycounters.i
 %include discountcurve.i
 %include distributions.i
+%include exercise.i
 %include functions.i
 %include history.i
 %include indexes.i
@@ -73,6 +74,7 @@
 %include operators.i
 %include optimizers.i
 %include options.i
+%include payoffs.i
 %include piecewiseflatforward.i
 %include randomnumbers.i
 %include scheduler.i
