@@ -4,6 +4,9 @@
  Copyright notice pending
 */
 
+#ifndef property_h
+#define property_h
+
 namespace ObjHandler {
 
     template <class Name, class Type> class Property {
@@ -33,3 +36,4 @@ namespace ObjHandler {
 
 }
 
+#endif

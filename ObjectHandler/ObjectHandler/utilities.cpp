@@ -23,40 +23,40 @@
 
 namespace ObjHandler {
 
-    string toUpper(const string& s) {
-    string upper(s);
-    for(size_t i=0; i<s.length(); i++)
-        upper[i] = toupper(upper[i]);
-    return upper;
+    std::string toUpper(const std::string& s) {
+        std::string upper(s);
+        for(size_t i=0; i<s.length(); i++)
+            upper[i] = toupper(upper[i]);
+        return upper;
     }
 
-    string AnyToString(const any_ptr &a) {
-	    ostringstream s;
+    std::string AnyToString(const any_ptr &a) {
+	    std::ostringstream s;
 	    if (a->type() == typeid(int))
 		    s << boost::any_cast<int>(*a);
 	    else if (a->type() == typeid(double))
 		    s << boost::any_cast<double>(*a);
-	    else if (a->type() == typeid(string))
-		    s << boost::any_cast<string>(*a);
+	    else if (a->type() == typeid(std::string))
+		    s << boost::any_cast<std::string>(*a);
 	    else
 		    throw Exception("AnyToString: unrecognized type");
 	    return s.str();
     }
 
     // FIXME
-    string logFileName;	// "" = logging disabled
+    std::string logFileName;	// "" = logging disabled
 
-    int setLogFile(const string &newLogFileName) {
-	    ofstream logFile;
+    int setLogFile(const std::string &newLogFileName) {
+	    std::ofstream logFile;
 	    if (!newLogFileName.length()) {
 		    logFileName = "";
 		    return 0;
 	    }
-	    if (!logFileName.compare(string(newLogFileName)))
+	    if (!logFileName.compare(std::string(newLogFileName)))
 		    return 1;	// continue logging to same file
-	    logFile.open(newLogFileName.c_str(), ios::app);
+	    logFile.open(newLogFileName.c_str(), std::ios::app);
 	    if (logFile.is_open()) {
-		    logFile << "logging enabled" << endl;
+		    logFile << "logging enabled" << std::endl;
 		    logFile.close();
 		    logFileName = newLogFileName;
 		    return 1;
@@ -66,12 +66,12 @@ namespace ObjHandler {
 	    }
     }
 
-    void logMessage(const string &msg) {
-	    ofstream log1;
+    void logMessage(const std::string &msg) {
+	    std::ofstream log1;
 	    if (logFileName.length()) {
-		    log1.open(logFileName.c_str(), ios::app);
+		    log1.open(logFileName.c_str(), std::ios::app);
 		    if (log1.is_open()) {
-			    log1 << msg << endl;
+			    log1 << msg << std::endl;
 			    log1.close();
 		    } else // error - disable logging
 			    logFileName = "";
