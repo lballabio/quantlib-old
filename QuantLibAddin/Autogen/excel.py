@@ -98,23 +98,9 @@ def generateFuncDefs(functionGroups):
             generateFuncDef(fileFunc, function)
         fileFunc.close()
 
-def generateExports(functionGroups):
-    fileName = common.XL_ROOT + common.EXPORTFILE
-    utils.logMessage('    generating file ' + fileName + '...')
-    fileExps = file(fileName, 'w')
-    utils.printTimeStamp(fileExps, ';')
-    fileExps.write(common.EXPORTHEADER)
-    for groupName in functionGroups.keys():
-        fileExps.write(';    %s\n\n' % groupName)
-        functionGroup = functionGroups[groupName]
-        for function in functionGroup[common.FUNCLIST]:
-            fileExps.write('    %s\n' % function[common.CODENAME])
-        fileExps.write('\n')
-
 def generate(functionDefs):
     utils.logMessage('  begin generating Excel ...')
     generateFuncHeaders(functionDefs)
     generateFuncDefs(functionDefs[common.FUNCGROUPS])
-    generateExports(functionDefs[common.FUNCGROUPS])
     utils.logMessage('  done generating Excel.')
 

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,6 +21,8 @@
 #include <windows.h>
 #include <string>
 #include <Addins/Excel/xlcall.h>
+
+#define DLLEXPORT extern "C" __declspec(dllexport)
 
 void setXLOPERString(XLOPER &xStr,
                      const char *s);

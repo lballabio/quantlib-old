@@ -1,4 +1,4 @@
-LPXLOPER %s(
+DLLEXPORT LPXLOPER %s(
 %s) {
     try {
 %s        Properties properties = %s(

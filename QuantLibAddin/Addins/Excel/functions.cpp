@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,7 +22,7 @@
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
-LPXLOPER qlQuery(char *handleObject) {
+DLLEXPORT LPXLOPER qlQuery(char *handleObject) {
     try {
         Properties properties = QL_QUERY(std::string(handleObject));
         static XLOPER xRet;
@@ -46,7 +46,7 @@ LPXLOPER qlQuery(char *handleObject) {
     }
 }
 
-LPXLOPER qlLogfile(char *logFileName) {
+DLLEXPORT LPXLOPER qlLogfile(char *logFileName) {
     static XLOPER xRet;
     std::string ret = QL_LOGFILE(std::string(logFileName));
     setXLOPERString(xRet, ret.c_str());

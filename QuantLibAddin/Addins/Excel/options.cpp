@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Mon Jan 10 18:55:01 2005
+// this file generated automatically by autogen.py on Tue Jan 11 17:13:48 2005
 // editing this file manually is not recommended
 
 #include <QuantLibAddin/qladdin.hpp>
@@ -24,7 +24,7 @@
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
-LPXLOPER qlBlackScholes(
+DLLEXPORT LPXLOPER qlBlackScholes(
         double *dividendYield,
         double *riskFreeRate,
         double *volatility,
@@ -50,7 +50,7 @@ LPXLOPER qlBlackScholes(
     }
 }
 
-LPXLOPER qlOption(
+DLLEXPORT LPXLOPER qlOption(
         char *handleStochastic,
         char *typeOption,
         double *strike,
@@ -76,7 +76,7 @@ LPXLOPER qlOption(
     }
 }
 
-LPXLOPER qlOptionSetEngine(
+DLLEXPORT LPXLOPER qlOptionSetEngine(
         char *handle,
         char *engineName,
         long *timeSteps) {

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,7 +20,7 @@
 #include <Addins/Excel/framewrk.hpp>
 #include <Addins/Excel/funcdef.hpp>
 
-int xlAutoOpen() {
+extern "C" __declspec(dllexport) int xlAutoOpen() {
     static XLOPER xDll;
     Excel(xlGetName, &xDll, 0);
     for (int i=0; i<NUM_FUNCS; i++)
@@ -45,7 +45,7 @@ int xlAutoOpen() {
     return 1;
 }
 
-void xlAutoFree(LPXLOPER px) {
+extern "C" __declspec(dllexport) void xlAutoFree(LPXLOPER px) {
     if (px->xltype == xltypeMulti && px->val.array.lparray)
         delete [] px->val.array.lparray;
 }

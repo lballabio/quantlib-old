@@ -108,10 +108,6 @@ SOURCE=.\qladdin.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qladdin.def
-# End Source File
-# Begin Source File
-
 SOURCE=.\utilities.cpp
 # End Source File
 # End Group

@@ -53,8 +53,6 @@ CALC_IDL_FUNC = 'stub.Calc.idlfunc'
 
 XL_ROOT = ADDIN_ROOT + 'Excel/'
 XL_FUNCDEF = 'funcdef.hpp'
-EXPORTFILE = 'qladdin.def'
-EXPORTHEADER = 'LIBRARY QUANTLIBADDIN\n\nEXPORTS\n    xlAutoOpen\n    xlAutoFree\n\n'
 XL_BODY_BUF = ''
 XL_INCLUDES = 'stub.Excel.includes'
 XL_BODY = 'stub.Excel.body'
