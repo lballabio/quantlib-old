@@ -507,6 +507,9 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\ObjectHandler\property.cpp">
+			</File>
+			<File
 				RelativePath="ObjectHandler\utilities.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
@@ -578,6 +581,9 @@
 			</File>
 			<File
 				RelativePath="ObjectHandler\objecthandlerversion.hpp">
+			</File>
+			<File
+				RelativePath=".\ObjectHandler\property.hpp">
 			</File>
 			<File
 				RelativePath="ObjectHandler\utilities.hpp">
