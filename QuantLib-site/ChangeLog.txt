@@ -1,0 +1,608 @@
+2001-11-29 17:41  nando
+
+	* ChangeLog.txt, nextrelease.html
+	(Before-R000201-branch-merge1.[1,1]), FAQ.html (1.25), cvs.html
+	(1.23), download.html (1.17), extensions.html (1.10), index.html
+	(1.31), license.html (1.19), lists.html (1.22), mailinglists.html
+	(1.11), marketconventions.html (1.14), qltablehead.inc (1.17),
+	quep.html (1.11), snapshot.html (1.4), style.html (1.19):
+	R000201-branch-merge1 merged into trunk
+
+2001-11-29 12:33  nando
+
+	* ChangeLog.txt, download.html, nextrelease.html
+	(R000201-branch.[2,2,1]) (utags: R000201-branch-merge1): 0.2.1
+	release final touch
+
+2001-11-29 12:33  nando
+
+	* nextrelease.html (1.1): file nextrelease.html was initially added
+	on branch R000201-branch.
+
+2001-11-24 00:04  nando
+
+	* FAQ.html (tags: R000201-branch-merge1), cvs.html (tags:
+	R000201-branch-merge1), download.html, extensions.html (tags:
+	R000201-branch-merge1), index.html (tags: R000201-branch-merge1),
+	license.html (tags: R000201-branch-merge1), lists.html (tags:
+	R000201-branch-merge1), mailinglists.html (tags:
+	R000201-branch-merge1), marketconventions.html (tags:
+	R000201-branch-merge1), qltablehead.inc (tags:
+	R000201-branch-merge1), quep.html (tags: R000201-branch-merge1),
+	snapshot.html (tags: R000201-branch-merge1), style.html (tags:
+	R000201-branch-merge1)
+	(R000201-branch.[1,1,1,1,1,1,1,1,1,1,1,1,1]): release 0.2.1 final
+	touches
+
+2001-11-23 23:20  nando
+
+	* ChangeLog.txt (R000201-branch.1): final touches
+
+2001-11-23 23:20  nando
+
+	* ChangeLog.txt (1.1): file ChangeLog.txt was initially added on
+	branch R000201-branch.
+
+2001-11-20 09:28  nando
+
+	* minando.txt (1.6): removed temp file
+
+2001-11-19 15:46  marmar
+
+	* minando.txt (1.5): no message
+
+2001-11-15 17:16  marmar
+
+	* minando.txt (1.3), minando.txt (1.4): no message
+
+2001-11-15 17:06  marmar
+
+	* minando.txt (1.2): This file belongs to me and nando
+
+2001-11-15 16:46  marmar
+
+	* minando.txt (1.1): This file belongs to me and nando
+
+2001-11-13 11:34  nando
+
+	* FAQ.html (1.24), cvs.html (1.22), download.html (1.16),
+	extensions.html (1.9), index.html (1.30), license.html (1.18),
+	lists.html (1.21), mailinglists.html (1.10), marketconventions.html
+	(1.13), qltablehead.inc (1.16), quep.html (1.10), snapshot.html
+	(1.3), style.html (1.18) (utags: Before-R000201-branch-merge1,
+	Root-Of-R000201): 1) CVS info updated 2) SourceForge turned into
+	SourceForge.net
+
+2001-11-12 16:00  nando
+
+	* FAQ.html (1.23): added a Cygwin suggestion
+
+2001-11-09 16:54  nando
+
+	* quep.html (1.9), quep/quep001.html (1.4, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201), quep/quep002.html
+	(1.7, R000201-branch-merge1, Before-R000201-branch-merge1,
+	Root-Of-R000201), quep/quep004.html (1.2, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201): Tidied
+
+2001-11-09 16:54  lballabio
+
+	* webquepupdate.bat (1.4, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201): [no log message]
+
+2001-11-09 16:47  lballabio
+
+	* quep.html (1.8), quep/quep001.html (1.3), quep/quep002.html
+	(1.6), quep/quep004.html (1.1): QuEP 4 added
+
+2001-11-09 15:08  nando
+
+	* quep/quep002.html (1.5): BackwardEuler and ForwardEuler renamed
+	ImplicitEuler and ExplicitEuler
+
+2001-11-09 11:36  nando
+
+	* quep.html (1.7), webquepupdate.bat (1.3),
+	quep/quep3/optimization.html (1.1, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201): added Nicolas
+	proposal
+
+2001-11-09 11:15  nando
+
+	* quep.html (1.6), quep/quep3/CurveFitting.zip (1.1,
+	R000201-branch-merge1, Before-R000201-branch-merge1,
+	Root-Of-R000201), quep/quep3/html.zip (1.1, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201): added Nicolas
+	proposal
+
+2001-11-06 10:48  nando
+
+	* tobeincludedindoxygen.txt (1.3): no message
+
+2001-11-06 09:08  nando
+
+	* tobeincludedindoxygen.txt (1.2), cvs.html (1.21): no message
+
+2001-11-05 09:05  nando
+
+	* cvs.html (1.20): -z9 changed into -z3
+
+2001-10-26 10:29  nando
+
+	* FAQ.html (1.22): added CVS references
+
+2001-10-26 09:58  nando
+
+	* FAQ.html (1.21): typo fixed
+
+2001-10-26 09:34  nando
+
+	* quep/quep002.html (1.4): no message
+
+2001-10-26 08:42  lballabio
+
+	* quep/: quep002.html (1.3), quep002b.png (1.2,
+	R000201-branch-merge1, Before-R000201-branch-merge1,
+	Root-Of-R000201): BC time dependence added
+
+2001-10-25 10:40  nando
+
+	* webquepupdate.bat (1.2): bug fixed
+
+2001-10-25 10:34  nando
+
+	* quep.html (1.5): updating for quep
+
+2001-10-25 10:33  lballabio
+
+	* quep.html (1.4): Added some text
+
+2001-10-25 10:31  nando
+
+	* quep.html (1.3): added link
+
+2001-10-25 10:25  nando
+
+	* styles/quantlib.css (1.7, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201): updating for quep
+
+2001-10-25 10:17  nando
+
+	* FAQ.html (1.20), cvs.html (1.19), download.html (1.15),
+	extensions.html (1.8), index.html (1.29), license.html (1.17),
+	lists.html (1.20), mailinglists.html (1.9), marketconventions.html
+	(1.12), qltablehead.inc (1.15), quep.html (1.2), snapshot.html
+	(1.2), style.html (1.17), webimagesupdate.bat (1.1,
+	R000201-branch-merge1, Before-R000201-branch-merge1,
+	Root-Of-R000201), webquepupdate.bat (1.1), webrootupdate.bat (1.1,
+	R000201-branch-merge1, Before-R000201-branch-merge1,
+	Root-Of-R000201), webstylesupdate.bat (1.1, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201), webupdate.bat
+	(1.4), webupdate2.bat (1.2), quep/quep001.html (1.2),
+	quep/quep002.html (1.2): updating for quep
+
+2001-10-25 10:06  nando
+
+	* quep/: quep001.html (1.1), quep001a.png (1.1,
+	R000201-branch-merge1, Before-R000201-branch-merge1,
+	Root-Of-R000201), quep001b.png (1.1, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201), quep002.html (1.1),
+	quep002a.png (1.1, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201), quep002b.png (1.1):
+	quep 1 and 2
+
+2001-10-25 10:05  nando
+
+	* quep.html (1.1): Quantib Enhancement Proposal -- what else?
+
+2001-10-22 14:12  nando
+
+	* snapshot.html (1.1): added nightly build page
+
+2001-10-22 12:46  nando
+
+	* FAQ.html (1.19), cvs.html (1.18), download.html (1.14),
+	extensions.html (1.7), index.html (1.28), license.html (1.16),
+	lists.html (1.19), mailinglists.html (1.8), marketconventions.html
+	(1.11), qltablehead.inc (1.14), style.html (1.16): added nightly
+	build page
+
+2001-10-10 16:00  nando
+
+	* FAQ.html (1.18), cvs.html (1.17), download.html (1.13),
+	extensions.html (1.6), index.html (1.27), license.html (1.15),
+	lists.html (1.18), mailinglists.html (1.7), marketconventions.html
+	(1.10), qltablehead.inc (1.13), style.html (1.15): added FFTS link
+
+2001-10-08 16:10  nando
+
+	* lists.html (1.17): comp-finance added
+
+2001-10-03 08:44  nando
+
+	* index.html (1.26): capital L
+
+2001-09-25 14:11  nando
+
+	* FAQ.html (1.17), cvs.html (1.16), download.html (1.12),
+	extensions.html (1.5), index.html (1.25), license.html (1.14),
+	lists.html (1.16), mailinglists.html (1.6), marketconventions.html
+	(1.9), qltablehead.inc (1.12), style.html (1.14): typo fixed
+
+2001-09-25 13:48  nando
+
+	* lists.html (1.15): added link to Econophysics
+
+2001-09-23 21:25  nando
+
+	* style.html (1.13): typos fixed
+
+2001-09-21 10:15  nando
+
+	* FAQ.html (1.16), cvs.html (1.15), download.html (1.11),
+	extensions.html (1.4), index.html (1.24), license.html (1.13),
+	lists.html (1.14), mailinglists.html (1.5), marketconventions.html
+	(1.8), qltablehead.inc (1.11), style.html (1.12): added
+	econophysiscs link
+
+2001-09-20 14:44  nando
+
+	* download.html (1.10), index.html (1.23): added a link disclaimer
+	on the Debian packages
+
+2001-09-20 10:27  nando
+
+	* download.html (1.9, R020): file size added
+
+2001-09-17 17:32  nando
+
+	* download.html (1.8): updated for 0.2.0 release
+
+2001-09-17 15:22  nando
+
+	* styles/quantlib.css (1.6, R020): no message
+
+2001-09-17 15:21  nando
+
+	* styles/quantlib.css (1.5): buf fixed
+
+2001-09-17 14:42  nando
+
+	* download.html (1.7), webclean.py (1.5, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201, R020): no message
+
+2001-09-17 13:57  nando
+
+	* download.html (1.6): removed dead link
+
+2001-09-17 11:22  nando
+
+	* download.html (1.5): removed dead link
+
+2001-09-17 11:06  nando
+
+	* webpublish.bat (1.3, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201), webupdate2.bat
+	(1.1) (utags: R020): new batches
+
+2001-09-17 10:54  nando
+
+	* webclean.py (1.4): switched to tar and bzip2 instead of zip
+
+2001-09-17 10:48  nando
+
+	* webclean.py (1.3): removed useless T flag
+
+2001-09-17 10:31  nando
+
+	* styles/quantlib.css (1.4): new style for code
+
+2001-09-17 10:31  nando
+
+	* index.html (1.22, R020): broken link fixed
+
+2001-09-17 09:37  nando
+
+	* FAQ.html (1.15, R020), cvs.html (1.14, R020), download.html
+	(1.4), extensions.html (1.3, R020), index.html (1.21), license.html
+	(1.12, R020), lists.html (1.13, R020), mailinglists.html (1.4,
+	R020), marketconventions.html (1.7, R020), qltablehead.inc (1.10,
+	R020), style.html (1.11, R020), webupdate.bat (1.3, R020): added
+	link to examples
+
+2001-09-14 14:57  nando
+
+	* FAQ.html (1.14), TODO.txt (1.11, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201, R020), cvs.html
+	(1.13), download.html (1.3), extensions.html (1.2), index.html
+	(1.20), license.html (1.11), lists.html (1.12), mailinglists.html
+	(1.3), marketconventions.html (1.6), qltablehead.inc (1.9),
+	style.html (1.10): getting ready for R020
+
+2001-09-14 14:43  nando
+
+	* index.html (1.19): restying the home page
+
+2001-09-13 15:06  nando
+
+	* cvs.html (1.12): no message
+
+2001-09-13 14:36  nando
+
+	* FAQ.html (1.13): [no log message]
+
+2001-09-13 14:34  nando
+
+	* FAQ.html (1.12), cvs.html (1.11), download.html (1.2),
+	extensions.html (1.1), group.html (1.16), index.html (1.18),
+	license.html (1.10), lists.html (1.11), mailinglists.html (1.2),
+	marketconventions.html (1.5), qltablehead.inc (1.8), status.html
+	(1.16), style.html (1.9): in synch with DoxyGen documentation
+
+2001-09-12 13:01  nando
+
+	* FAQ.html (1.11), cvs.html (1.10), docs.html (1.8), download.html
+	(1.1), group.html (1.15), index.html (1.17), license.html (1.9),
+	lists.html (1.10), mailinglists.html (1.1), marketconventions.html
+	(1.4), qlmeta.inc (1.5, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201, R020),
+	qltablefoot.inc (1.5, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201, R020),
+	qltablehead.inc (1.7), readme.txt (1.3, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201, R020), status.html
+	(1.15), style.html (1.8), styles/quantlib.css (1.3), webchecker.py
+	(1.1, R000201-branch-merge1, Before-R000201-branch-merge1,
+	Root-Of-R000201, R020): site refresh
+
+2001-09-12 10:02  nando
+
+	* styles/quantlib.css (1.2): it includes doxygen part too
+
+2001-09-12 10:01  nando
+
+	* styles/main.css (1.2): substitued by quantlib.css
+
+2001-09-11 10:48  nando
+
+	* styles/quantlib.css (1.1): main.css renamed to quantlib.css
+	
+	quantlib.css will be used for QuantLib html documentation produced
+	by DoxyGen
+
+2001-09-05 11:40  nando
+
+	* FAQ.html (1.10), index.html (1.16), status.html (1.14): updating
+	for incoming 0.2 release
+
+2001-09-04 10:30  nando
+
+	* TODO.txt (1.10), index.html (1.15), status.html (1.13): improved
+	documentation
+
+2001-09-03 18:08  nando
+
+	* group.html (1.14): added Sad
+
+2001-09-03 14:30  nando
+
+	* TODO.txt (1.9), cvs.html (1.9), index.html (1.14), status.html
+	(1.12): updated
+
+2001-08-31 09:37  nando
+
+	* FAQ.html (1.9), index.html (1.13), webclean.py (1.2),
+	webpublish.bat (1.2), webupdate.bat (1.2): added a FAQ entry, some
+	more keywords and improved publishing tools
+
+2001-08-27 19:18  nando
+
+	* marketconventions.html (1.3): market convention and standard page
+	added
+
+2001-08-27 19:13  nando
+
+	* marketconventions.html (1.2): market convention and standard page
+	added
+
+2001-08-27 19:06  nando
+
+	* FAQ.html (1.8), cvs.html (1.8), docs.html (1.7), group.html
+	(1.13), index.html (1.12), license.html (1.8), lists.html (1.9),
+	marketconventions.html (1.1), qltablehead.inc (1.6), status.html
+	(1.11), style.html (1.7): market convention and standard page added
+
+2001-08-23 10:14  nando
+
+	* status.html (1.10): added 2 platforms
+
+2001-08-21 14:47  nando
+
+	* FAQ.html (1.7), cvs.html (1.7), docs.html (1.6), group.html
+	(1.12), index.html (1.11), license.html (1.7), lists.html (1.8),
+	qltablehead.inc (1.5), status.html (1.9), style.html (1.6): added
+	Valid HTML 4.01!
+
+2001-08-21 12:17  nando
+
+	* FAQ.html (1.6), cvs.html (1.6), docs.html (1.5), group.html
+	(1.11), index.html (1.10), license.html (1.6), lists.html (1.7),
+	qltablehead.inc (1.4), status.html (1.8), style.html (1.5):
+	'feature request' link added
+
+2001-08-21 11:46  nando
+
+	* FAQ.html (1.5), cvs.html (1.5), docs.html (1.4), group.html
+	(1.10), index.html (1.9), license.html (1.5), lists.html (1.6),
+	qlmeta.inc (1.4), qltablefoot.inc (1.4), qltablehead.inc (1.3),
+	status.html (1.7), style.html (1.4), webclean.py (1.1),
+	webpublish.bat (1.1), webpublish.py (1.4), webupdate.bat (1.1): a
+	few batch/script added/modified
+
+2001-08-20 09:11  nando
+
+	* TODO.txt (1.8), index.html (1.8), license.html (1.4): "GPL
+	compatible" added listed a few open source application
+
+2001-07-26 17:24  nando
+
+	* lists.html (1.5, QuantLibDotOrgAnnouncement): updated these pages
+	will debut as quantlib.org
+
+2001-07-26 17:15  nando
+
+	* TODO.txt (1.7, QuantLibDotOrgAnnouncement): updated
+
+2001-07-26 16:27  nando
+
+	* FAQ.html (1.4, QuantLibDotOrgAnnouncement), cvs.html (1.4,
+	QuantLibDotOrgAnnouncement), docs.html (1.3,
+	QuantLibDotOrgAnnouncement), group.html (1.9,
+	QuantLibDotOrgAnnouncement), index.html (1.7,
+	QuantLibDotOrgAnnouncement), license.html (1.3,
+	QuantLibDotOrgAnnouncement), lists.html (1.4), qltablefoot.inc
+	(1.3, QuantLibDotOrgAnnouncement), status.html (1.6,
+	QuantLibDotOrgAnnouncement), style.html (1.3,
+	QuantLibDotOrgAnnouncement): updated these pages will debut as
+	quantlib.org
+
+2001-07-26 15:41  nando
+
+	* FAQ.html (1.3), index.html (1.6), lists.html (1.3): updated these
+	pages will debut as quantlib.org
+
+2001-07-26 15:03  nando
+
+	* readme.txt (1.2), webpublish.py (1.3) (utags:
+	QuantLibDotOrgAnnouncement): updated these pages will bebut as
+	quantlib.org
+
+2001-07-26 14:42  nando
+
+	* status.html (1.5), webpublish.py (1.2): updated these pages will
+	bebut as quantlib.org
+
+2001-07-26 14:37  nando
+
+	* TODO.txt (1.6), status.html (1.4): updated these pages will bebut
+	as quantlib.org
+
+2001-07-26 11:09  nando
+
+	* TODO.txt (1.5): updated
+
+2001-07-26 10:57  nando
+
+	* goals.html (1.3): removed (merged into status.html)
+
+2001-07-26 10:56  nando
+
+	* tobeincludedindoxygen.txt (1.1, R020,
+	QuantLibDotOrgAnnouncement): to be included in QuantLib DoxyGen
+	documentation
+
+2001-07-26 10:55  nando
+
+	* webpublish.py (1.1): tool for generating QuantLib web pages
+	Probably not general enough ....
+
+2001-07-25 15:55  nando
+
+	* FAQ.html (1.2), TODO.txt (1.4), cvs.html (1.3), docs.html (1.2),
+	goals.html (1.2), group.html (1.8), index.html (1.5), license.html
+	(1.2), lists.html (1.2), qltablehead.inc (1.2,
+	QuantLibDotOrgAnnouncement), status.html (1.3), style.html (1.2):
+	updating ...
+
+2001-07-25 14:42  nando
+
+	* index.html (1.4), qlmeta.inc (1.3, QuantLibDotOrgAnnouncement),
+	qltablefoot.inc (1.2): fixed style reference and invalid HTML
+
+2001-07-23 08:30  nando
+
+	* index.html (1.3), qlmeta.inc (1.2): added window.top to avoid
+	site framing
+
+2001-07-19 15:10  nando
+
+	* TODO.txt (1.3): mailing lists
+
+2001-07-19 12:46  nando
+
+	* group.html (1.7): Aleppo's data
+
+2001-07-19 12:36  nando
+
+	* group.html (1.6): Peter Schmitteckert data
+
+2001-07-19 12:33  lballabio
+
+	* group.html (1.5): Changed my mind on the email
+
+2001-07-19 11:01  nando
+
+	* TODO.txt (1.2): updated
+
+2001-07-19 10:43  nando
+
+	* TODO.txt (1.1): to do list
+
+2001-07-19 10:15  nando
+
+	* group.html (1.4): updated
+
+2001-07-19 09:22  nando
+
+	* readme.txt (1.1): quick reminder
+
+2001-07-19 08:19  lballabio
+
+	* cvs.html (1.2), group.html (1.3), index.html (1.2), status.html
+	(1.2), images/QL-largish.jpg (1.1, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201, R020,
+	QuantLibDotOrgAnnouncement), images/QL-notitle.png (1.2),
+	images/QL-small-notitle.png (1.2), images/QL-small.png (1.2),
+	images/QL.png (1.2): Glitches
+
+2001-07-19 08:03  nando
+
+	* group.html (1.2): no message
+
+2001-07-18 17:15  nando
+
+	* contacts.txt (1.1), cvs.html (1.1), docs.html (1.1), FAQ.html
+	(1.1), LICENSE.TXT (1.1), goals.html (1.1), group.html (1.1),
+	index.html (1.1), license.html (1.1), lists.html (1.1), qlmeta.inc
+	(1.1), qltablefoot.inc (1.1), qltablehead.inc (1.1), status.html
+	(1.1), style.html (1.1), images/QL-notitle.jpg (1.1),
+	images/QL-notitle.png (1.1), images/QL-small-notitle.jpg (1.1),
+	images/QL-small-notitle.png (1.1), images/QL-small.jpg (1.1),
+	images/QL-small.png (1.1), images/QL.jpg (1.1), images/QL.png
+	(1.1), styles/main.css (1.1): Initial revision
+
+2001-07-18 17:15  nando
+
+	* contacts.txt (1.1.1.1, R000201-branch-merge1,
+	Before-R000201-branch-merge1, Root-Of-R000201, R020,
+	QuantLibDotOrgAnnouncement), cvs.html (1.1.1.1), docs.html
+	(1.1.1.1), FAQ.html (1.1.1.1), LICENSE.TXT (1.1.1.1,
+	R000201-branch-merge1, Before-R000201-branch-merge1,
+	Root-Of-R000201, R020, QuantLibDotOrgAnnouncement), goals.html
+	(1.1.1.1), group.html (1.1.1.1), index.html (1.1.1.1), license.html
+	(1.1.1.1), lists.html (1.1.1.1), qlmeta.inc (1.1.1.1),
+	qltablefoot.inc (1.1.1.1), qltablehead.inc (1.1.1.1), status.html
+	(1.1.1.1), style.html (1.1.1.1), images/QL-notitle.jpg (1.1.1.1,
+	R000201-branch-merge1, Before-R000201-branch-merge1,
+	Root-Of-R000201, R020, QuantLibDotOrgAnnouncement),
+	images/QL-notitle.png (1.1.1.1), images/QL-small-notitle.jpg
+	(1.1.1.1, R000201-branch-merge1, Before-R000201-branch-merge1,
+	Root-Of-R000201, R020, QuantLibDotOrgAnnouncement),
+	images/QL-small-notitle.png (1.1.1.1), images/QL-small.jpg
+	(1.1.1.1, R000201-branch-merge1, Before-R000201-branch-merge1,
+	Root-Of-R000201, R020, QuantLibDotOrgAnnouncement),
+	images/QL-small.png (1.1.1.1), images/QL.jpg (1.1.1.1,
+	R000201-branch-merge1, Before-R000201-branch-merge1,
+	Root-Of-R000201, R020, QuantLibDotOrgAnnouncement), images/QL.png
+	(1.1.1.1), styles/main.css (1.1.1.1, QuantLibDotOrgAnnouncement)
+	(utags: arelease): initial import
+

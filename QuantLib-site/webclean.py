@@ -38,7 +38,7 @@ def webclean():
   sourcedir = os.curdir
   targetdir = os.curdir
   sitename="QL"
-  donotpublish = ['common', 'template', 'tidy']
+  donotpublish = ['common', 'template', 'tidy', 'quep\quep03']
 
   print 'sourcedir', sourcedir
 
