@@ -125,11 +125,30 @@ class DiscreteGeometricASO {
 
 
 
+%{
+using QuantLib::DividendEuropeanOption;
+%}
+
+class DividendEuropeanOption {
+  public:
+	DividendEuropeanOption(OptionType type, double underlying, double strike,
+                           Spread dividendYield, Rate riskFreeRate, 
+                           Time residualTime, double volatility,
+                           const std::vector<double>& dividends,
+                           const std::vector<double>& times);
+	double value() const;
+	double delta() const;
+	double gamma() const;
+	double theta() const;
+	double vega() const;
+	double rho() const;
+};
+
+
 // Finite-difference pricers
 
 %{
 using QuantLib::FdEuropean;
-using QuantLib::FdDividendEuropeanOption;
 %}
 
 class FdEuropean {
@@ -151,21 +170,6 @@ class FdEuropean {
 	double dividendRho() const;
 	double impliedVolatility(double targetValue, double accuracy = 1e-4,
                              Size maxEvaluations = 100) const;
-};
-
-class FdDividendEuropeanOption {
-  public:
-	FdDividendEuropeanOption(OptionType type, double underlying, double strike,
-                             Spread dividendYield, Rate riskFreeRate, 
-                             Time residualTime, double volatility,
-                             const std::vector<double>& dividends,
-                             const std::vector<double>& times);
-	double value() const;
-	double delta() const;
-	double gamma() const;
-	double theta() const;
-	double vega() const;
-	double rho() const;
 };
 
 
