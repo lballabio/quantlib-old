@@ -113,6 +113,7 @@
 %include termstructures.i
 %include types.i
 %include vectors.i
+%include volatilities.i
 
 // to be deprecated
 %include old_pricers.i

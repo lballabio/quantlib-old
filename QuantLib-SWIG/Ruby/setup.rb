@@ -96,6 +96,7 @@ Interfaces =  [ 'quantlib.i',
                 'termstructures.i',
                 'types.i',
                 'vectors.i',
+                'volatilities.i',
                 # to be removed
                 'old_pricers.i',
                 'old_volatility.i']
