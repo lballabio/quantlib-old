@@ -71,7 +71,7 @@ alt="OSI Certification Mark"></a></div>
 <hr>
 <div class="center"><strong>Hosted by</strong><br>
 <a href="http://sourceforge.net"><img src=
-"http://sourceforge.net/sflogo.php?group_id=12740" width="88"
+"http://sflogo.sourceforge.net/sflogo.php?group_id=12740" width="88"
 height="31" border="0" alt="SourceForge.net Logo"></a></div>
 
 <br>
