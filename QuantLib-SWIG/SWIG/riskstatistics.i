@@ -31,10 +31,10 @@ using QuantLib::Math::RiskMeasures;
 class RiskMeasures {
   public:
     RiskMeasures();
-    double potentialUpside(double percentile, double mean, double std) const;
-    double valueAtRisk(double percentile, double mean, double std) const;
-    double shortfall(double target, double mean, double std) const;
-    double averageShortfall(double target, double mean, double std) const;
+    double gaussianPotentialUpside(double percentile, double mean, double std) const;
+    double gaussianValueAtRisk(double percentile, double mean, double std) const;
+    double gaussianShortfall(double target, double mean, double std) const;
+    double gaussianAverageShortfall(double target, double mean, double std) const;
 };
 
 class RiskStatistics {

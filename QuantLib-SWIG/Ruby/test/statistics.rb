@@ -38,14 +38,14 @@ end
 
 class StatisticsTest < Test::Unit::TestCase
     def name
-      "Testing statistics"
+      "Testing gaussianstatistics"
     end
     def testCalculation
         tolerance = 1.0e-9
         data      = [3.0, 4.0, 5.0, 2.0, 3.0, 4.0, 5.0, 6.0, 4.0, 7.0]
         weights   = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 
-        s = QuantLib::Statistics.new
+        s = QuantLib::GaussianStatistics.new
         s.add(data, weights)
 
         unless s.samples == data.length

@@ -31,7 +31,7 @@ def gaussian(x, average, sigma):
 
 class RiskStatisticsTest(unittest.TestCase):
     def runTest(self):
-        "Testing risk statistics"
+        "Testing statistics risk measures"
         s = QuantLib.RiskStatistics()
         testCases = [(average,sigma) for average in [-100.0, 0.0, 100.0]
                                      for sigma in [0.1, 1.0, 10]]

@@ -22,13 +22,13 @@ import unittest
 
 class StatisticsTest(unittest.TestCase):
     def runTest(self):
-        "Testing statistics"
+        "Testing gaussianstatistics"
         tol = 1e-9
 
         data =    [3.0, 4.0, 5.0, 2.0, 3.0, 4.0, 5.0, 6.0, 4.0, 7.0]
         weights = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 
-        s = QuantLib.Statistics()
+        s = QuantLib.GaussianStatistics()
         s.add(data, weights)
 
         samples = s.samples()
