@@ -29,7 +29,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<StochasticProcess> &stochasticProcess,
             const std::vector < long > &resetDatesLong,
             const std::string &optionTypeID,
-            const float &strike,
+            const double &strike,
             const long &exerciseDate,
             const std::string &engineID,
             const long &timeSteps);

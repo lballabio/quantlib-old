@@ -35,12 +35,12 @@ namespace QuantLibAddin {
     }
 
     StochasticProcess::StochasticProcess(
-            const float &underlying,
+            const double &underlying,
             const std::string &dayCounterID,
             const long &settlementDateLong,
-            const float &riskFreeRate,
-            const float &dividendYield,
-            const float &volatility) {
+            const double &riskFreeRate,
+            const double &dividendYield,
+            const double &volatility) {
         QuantLib::Date settlementDate(settlementDateLong);
         QuantLib::DayCounter dayCounter = IDtoDayCounter(dayCounterID);
         QuantLib::Handle<QuantLib::Quote> underlyingH( 

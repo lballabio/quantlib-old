@@ -31,7 +31,7 @@ namespace QuantLibAddin {
             const long &resetDate,
             const std::string &optionTypeID,
             const std::string &payoffID,
-            const float &strike,
+            const double &strike,
             const std::string &exerciseID,
             const long &exerciseDate,
             const long &settlementDate,

@@ -34,8 +34,8 @@ namespace QuantLibAddin {
     boost::shared_ptr<QuantLib::StrikedTypePayoff> IDtoPayoff(
             const std::string &optionTypeID,
             const std::string &payoffID,
-            const QuantLib::Real &input1,
-            const QuantLib::Real &input2) {
+            const double &input1,
+            const double &input2) {
         QuantLib::Option::Type type = IDtoOptionType(optionTypeID);
         std::string idUpper = QuantLib::StringFormatter::toUppercase(payoffID);
         if (idUpper.compare("AON") == 0)
@@ -62,22 +62,23 @@ namespace QuantLibAddin {
 
     boost::shared_ptr<QuantLib::Exercise> IDtoExercise(
             const std::string &exerciseID,
-            const QuantLib::Date &exerciseDate,
-            const QuantLib::Date &settlementDate) {
+            const long &exerciseDate,
+            const long &settlementDate) {
         std::string idUpper = QuantLib::StringFormatter::toUppercase(exerciseID);
         if (idUpper.compare("AM") == 0)
             return boost::shared_ptr<QuantLib::Exercise> (
-                new QuantLib::AmericanExercise(settlementDate, exerciseDate));
+                new QuantLib::AmericanExercise(QuantLib::Date(settlementDate), 
+                QuantLib::Date(exerciseDate)));
         else if (idUpper.compare("EU") == 0)
             return boost::shared_ptr<QuantLib::Exercise> (
-                new QuantLib::EuropeanExercise(exerciseDate));
+                new QuantLib::EuropeanExercise(QuantLib::Date(exerciseDate)));
         else
             QL_FAIL("IDtoExercise: unrecognized exerciseTypeID: " + exerciseID);
     }
 
     boost::shared_ptr<QuantLib::PricingEngine> IDtoEngine(
             const std::string &engineID,
-            const QuantLib::Size &timeSteps) {
+            const long &timeSteps) {
         std::string idUpper = QuantLib::StringFormatter::toUppercase(engineID);
         if (idUpper.compare("AB") == 0)
             return boost::shared_ptr<QuantLib::PricingEngine> (

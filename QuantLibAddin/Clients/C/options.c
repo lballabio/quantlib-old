@@ -105,7 +105,7 @@ int main() {
             strike,                         // strike price
             "EU",                           // exercise type
             exerciseDate,                   // exercise date
-            settlementDate,                 // settlement date
+            0,                              // settlement date ignored when exercise = European
             "ACGAPA",                       // engine type
             timeSteps,                      // time steps
             &voac) != SUCCESS) {
@@ -132,7 +132,7 @@ int main() {
             strike,                         // strike price
             "EU",                           // exercise type (european)
             exerciseDate,                   // exercise date
-            settlementDate,                 // settlement date
+            0,                              // settlement date ignored when exercise = European
             "ADGAPA",                       // engine type (AnalyticDiscreteGeometricAveragePriceAsianEngine)
             timeSteps,                      // time steps
             &voad) != SUCCESS) {
@@ -153,7 +153,7 @@ int main() {
             strike,                         // strike price
             "EU",                           // exercise type
             exerciseDate,                   // exercise date
-            settlementDate,                 // settlement date
+            0,                              // settlement date ignored when exercise = European
             "AB",                           // engine type
             timeSteps,                      // time steps
             &voba) != SUCCESS) {
@@ -182,7 +182,7 @@ int main() {
             40.0,                           // strike price
             "EU",                           // exercise type
             exerciseDate,                   // exercise date
-            settlementDate,                 // settlement date
+            0,                              // settlement date ignored when exercise = European
             "SE",                           // engine type
             timeSteps,                      // time steps
             &vobs) != SUCCESS) {
@@ -221,7 +221,7 @@ int main() {
             10.0,                           // strike price
             "EU",                           // exercise type
             exerciseDate,                   // exercise date
-            settlementDate,                 // settlement date
+            0,                              // settlement date ignored when exercise = European
             "ADE",                          // engine type
             timeSteps,                      // time steps
             &vod) != SUCCESS) {
@@ -241,7 +241,7 @@ int main() {
             strike,                         // strike price
             "EU",                           // exercise type
             exerciseDate,                   // exercise date
-            settlementDate,                 // settlement date
+            0,                              // settlement date ignored when exercise = European
             "FE",                           // engine type
             timeSteps,                      // time steps
             &vof) != SUCCESS) {

@@ -37,17 +37,17 @@ namespace QuantLibAddin {
     boost::shared_ptr<QuantLib::StrikedTypePayoff> IDtoPayoff(
         const std::string &optionTypeID,
         const std::string &payoffID,
-        const QuantLib::Real &input1,
-        const QuantLib::Real &input2 = 0.);
+        const double &input1,
+        const double &input2 = 0.);
 
     boost::shared_ptr<QuantLib::Exercise> IDtoExercise(
         const std::string &exerciseID,
-        const QuantLib::Date &exerciseDate,
-        const QuantLib::Date &settlementDate);
+        const long &exerciseDate,
+        const long &settlementDate);
 
     boost::shared_ptr<QuantLib::PricingEngine> IDtoEngine(
         const std::string &engineID,
-        const QuantLib::Size &timeSteps);
+        const long &timeSteps);
 
     QuantLib::Matrix vectorVectorToMatrix(
         const std::vector < std::vector < double > > &vv);

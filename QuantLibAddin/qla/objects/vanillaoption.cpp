@@ -24,7 +24,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<StochasticProcess> &stochasticProcess,
             const std::string &optionTypeID,
             const std::string &payoffID,
-            const float &strike,
+            const double &strike,
             const std::string &exerciseID,
             const long &exerciseDate,
             const long &settlementDate,
@@ -33,8 +33,7 @@ namespace QuantLibAddin {
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             IDtoPayoff(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::Exercise> exercise = 
-            IDtoExercise(exerciseID, QuantLib::Date(exerciseDate),
-                QuantLib::Date(settlementDate));
+            IDtoExercise(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             IDtoEngine(engineID, timeSteps);
         const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL = 

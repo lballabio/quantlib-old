@@ -113,7 +113,7 @@ int main() {
             strike,                         // strike price
             "EU",                           // exercise type (american)
             exerciseDate.serialNumber(),    // exercise date
-            settlementDate.serialNumber(),  // settlement date
+            0,                              // settlement date ignored when exercise = European
             "ADGAPA",                       // engine type (AnalyticDiscreteGeometricAveragePriceAsianEngine)
             timeSteps);                     // time steps
 
