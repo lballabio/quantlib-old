@@ -18,6 +18,7 @@
 #ifndef quantlib_discount_curve_i
 #define quantlib_discount_curve_i
 
+%include date.i
 %include termstructures.i
 
 %{
@@ -32,10 +33,20 @@ class DiscountCurveHandle : public Handle<TermStructure> {
         DiscountCurveHandle(const Date& todaysDate, 
                             const std::vector<Date>& dates,
                             const std::vector<double>& discounts,
+			    Calendar calendar,
+			    RollingConvention roll,
                             const DayCounter& dayCounter = Actual365()) {
 	        return new DiscountCurveHandle(
-                new DiscountCurve(todaysDate, dates, discounts, dayCounter));
+		   new DiscountCurve(todaysDate,
+				     dates,
+				     discounts,
+				     calendar,
+				     roll,
+				     dayCounter));
         }
+        const std::vector<Date>& dates() {
+	   return Handle<DiscountCurve>(*self)->dates();
+	}
     }
 };
 
