@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Mon Jan 31 11:40:03 2005
+// this file generated automatically by autogen.py
 // editing this file manually is not recommended
 
 #ifndef options_h
@@ -62,7 +62,7 @@ int QL_OPTION_ASIAN_D(
         const char* handle,
         const char* handleStochastic,
         const char* typeAverage,
-        const float runningAccumulator,
+        const double runningAccumulator,
         const long pastFixings,
         const long fixingDatesSize,
         const long* fixingDates,

@@ -94,7 +94,7 @@ def generateFuncRegisters(functionDefs):
 def generateFuncDef(fileFunc, function, bufBody):
     'generate source code for body of given function'
     paramList1 = utils.generateParamList(function[common.PARAMS],
-        2, True, '', 'char', dereference = '*')
+        2, True, '', 'char', dereference = '*', convertVec = '%s')
     paramList2 = utils.generateParamList(function[common.PARAMS],
         3, reformatString = 'std::string(%s)', dereference = '*')
     if function[common.CTOR]:

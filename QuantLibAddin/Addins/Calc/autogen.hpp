@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Thu Jan 20 00:11:04 2005
+// this file generated automatically by autogen.py
 // editing this file manually is not recommended
 
 #include <Addins/Calc/functions.hpp>

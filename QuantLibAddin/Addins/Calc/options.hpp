@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Mon Jan 31 11:40:03 2005
+// this file generated automatically by autogen.py
 // editing this file manually is not recommended
 
     virtual SEQSEQ(ANY) SAL_CALL qlStochasticProcess(
@@ -56,7 +56,7 @@
         const STRING & handle,
         const STRING & handleStochastic,
         const STRING & typeAverage,
-        float runningAccumulator,
+        double runningAccumulator,
         sal_Int32 pastFixings,
         const SEQ(sal_Int32 )& fixingDates,
         const STRING & typeOption,

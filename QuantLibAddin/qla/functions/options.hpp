@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Mon Jan 31 11:40:03 2005
+// this file generated automatically by autogen.py
 // editing this file manually is not recommended
 
 #ifndef qla_options_hpp
@@ -63,7 +63,7 @@ namespace QuantLibAddin {
             const std::string &handleObject,
             const std::string &handleStochastic,
             const std::string &typeAverage,
-            const float &runningAccumulator,
+            const double &runningAccumulator,
             const long &pastFixings,
             const std::vector<long >&fixingDates,
             const std::string &typeOption,

@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Sat Jan 29 13:00:36 2005
+// this file generated automatically by autogen.py
 // editing this file manually is not recommended
 
 #include <qla/qladdin.hpp>
@@ -115,6 +115,47 @@ DLLEXPORT LPXLOPER qlOptionAsianC(
         return &xRet;
     } catch (const exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_ASIAN_C: ") + e.what());
+        return 0;
+    }
+}
+
+DLLEXPORT LPXLOPER qlOptionAsianD(
+        char *handleChar,
+        char *handleStochastic,
+        char *typeAverage,
+        double *runningAccumulator,
+        long *pastFixings,
+        long *fixingDates,
+        char *typeOption,
+        char *typePayoff,
+        double *strike,
+        char *typeExercise,
+        long *exerciseDate,
+        long *settlementDate,
+        char *typeEngine,
+        long *timeSteps) {
+    try {
+        std::string handle = std::string(handleChar) + getCaller();
+        Properties properties = QL_OPTION_ASIAN_D(
+            handle,
+            std::string(handleStochastic),
+            std::string(typeAverage),
+            *runningAccumulator,
+            *pastFixings,
+            *fixingDates,
+            std::string(typeOption),
+            std::string(typePayoff),
+            *strike,
+            std::string(typeExercise),
+            *exerciseDate,
+            *settlementDate,
+            std::string(typeEngine),
+            *timeSteps);
+        static XLOPER xRet;
+        setValues(&xRet, properties, handle);
+        return &xRet;
+    } catch (const exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_ASIAN_D: ") + e.what());
         return 0;
     }
 }

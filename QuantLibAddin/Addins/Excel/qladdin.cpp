@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Sat Jan 29 13:00:36 2005
+// this file generated automatically by autogen.py
 // editing this file manually is not recommended
 
 #include <windows.h>
@@ -111,6 +111,32 @@ extern "C" __declspec(dllexport) int xlAutoOpen() {
         TempStr(" handle of new object"),
         TempStr(" handle of the Stochastic Process object"),
         TempStr(" average type"),
+        TempStr(" option type"),
+        TempStr(" payoff type"),
+        TempStr(" strike"),
+        TempStr(" exercise type"),
+        TempStr(" exercise date"),
+        TempStr(" settlement date"),
+        TempStr(" engine type"),
+        TempStr(" time steps"));
+
+    Excel(xlfRegister, 0, 25, &xDll,
+        TempStr(" qlOptionAsianD"),
+        TempStr(" RCCCENNCCECNNCN#"),
+        TempStr(" QL_OPTION_ASIAN_D"),
+        TempStr(" handle,handleStochastic,typeAverage,runningAccumulator,pastFixings,fixingDates,typeOption,typePayoff,strike,typeExercise,exerciseDate,settlementDate,typeEngine,timeSteps"),
+        TempStr(" 1"),
+        TempStr(" QuantLib"),
+        TempStr(" "),
+        TempStr(" "),
+        TempStr(" construct and return a handle to a DiscreteAveragingAsianOption object"),
+        TempStr(" qlOptionAsianD"),
+        TempStr(" handle of new object"),
+        TempStr(" handle of the Stochastic Process object"),
+        TempStr(" average type"),
+        TempStr(" running accumulator"),
+        TempStr(" past fixings"),
+        TempStr(" fixing dates"),
         TempStr(" option type"),
         TempStr(" payoff type"),
         TempStr(" strike"),

@@ -27,9 +27,6 @@ XMLSUFFIX = r'(.*).xml\Z'
 
 # General
 
-CR_FILENAME = 'copyright.txt'
 CR_BUFFER = ''
-HEADER = '%s this file generated automatically by %s on %s\n\
-%s editing this file manually is not recommended\n\n'
 ADDIN_ROOT = '../Addins/'
 

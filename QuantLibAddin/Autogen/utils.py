@@ -5,6 +5,12 @@ import time
 import sys
 import os
 
+# constants
+
+CR_FILENAME = 'copyright.txt'
+HEADER = '%s this file generated automatically by %s\n\
+%s editing this file manually is not recommended\n\n'
+
 def generateParamList(
         paramList,              # list of dicts describing parameters
         indent = 0,             # #/tabstops to indent 
@@ -18,7 +24,7 @@ def generateParamList(
         skipFirst = False,      # skip first parm in list (for object handles)
         xlateNames = False,     # translate parm name using its CLASS attribute
         arrayCount = False,     # C code requires array size separate from array
-        appendVec = False,       # append string 'Vector' to vector variable names
+        appendVec = False,      # append string 'Vector' to vector variable names
         convertVec = ''):       # string to convert datatype to appropriate vector
     'reformat params into a list of parameters using given format options'
     ret = ''
@@ -58,8 +64,8 @@ def generateParamList(
     return ret
 
 def printTimeStamp(fileBuf, commentChar):
-    fileBuf.write(common.HEADER
-        % (commentChar, os.path.basename(sys.argv[0]), time.asctime(), commentChar))
+    fileBuf.write(HEADER
+        % (commentChar, os.path.basename(sys.argv[0]), commentChar))
     
 def printHeader(fileBuf):
     fileBuf.write(common.CR_BUFFER)
@@ -72,7 +78,7 @@ def loadBuffer(fileName):
     return buffer
 
 def init():
-    common.CR_BUFFER = loadBuffer(common.CR_FILENAME)
+    common.CR_BUFFER = loadBuffer(CR_FILENAME)
 
 def logMessage(msg):
     print time.asctime() + ' ' + msg

@@ -216,7 +216,7 @@
 	</param>
 	<param>
 		<name>runningAccumulator</name>
-		<type>float</type>
+		<type>double</type>
 		<tensorrank>scalar</tensorrank>
 		<desc>running accumulator</desc>
 	</param>
