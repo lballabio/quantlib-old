@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -15,10 +16,11 @@
 */
 
 #include <QuantLibAddin/qladdin.hpp>
+#include <QuantLibAddin/objects/objectoption.hpp>		// ObjectOption
+#include <ql/quantlib.hpp>								// VanillaOption
 #include <iostream>
 
 using namespace std;
-using namespace QuantLib;
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
@@ -69,8 +71,8 @@ int main() {
 		boost::shared_ptr<ObjectOption> objectOption = 
 			boost::dynamic_pointer_cast<ObjectOption> 
 			(ObjectHandler::instance().retrieveObject("my_option"));
-	    boost::shared_ptr<VanillaOption> const vanillaOption =
-			boost::static_pointer_cast<VanillaOption>
+		boost::shared_ptr<QuantLib::VanillaOption> const vanillaOption =
+			boost::static_pointer_cast<QuantLib::VanillaOption>
 			(objectOption->getReference());
 		cout << "underlying option NPV() = " 
 			<< vanillaOption->NPV() << endl;
