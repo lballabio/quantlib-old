@@ -150,235 +150,40 @@ height="31" width="88"></a></p>
 </td>
 <td class="main"><!--/includeHTML-->
 <h1 class="center">Download Page</h1>
-<p>The latest QuantLib release is the 0.3.5 version (March 2004,
-CVS tag R000305f0-branch). It includes the following packages:</p>
+<p>The latest QuantLib release is the 0.3.6 version (April 2004.) 
+It includes the following packages:</p>
 <ol>
-<li><a href="#qlcpp">QuantLib</a></li>
-<li><a href="#qldocs">QuantLib documentation</a></li>
-<li><a href="#qlguile">QuantLib-Guile</a></li>
-<li><a href="#qlmzscheme">QuantLib-MzScheme</a></li>
-<li><a href="#qlpython">QuantLib-Python</a></li>
-<li><a href="#qlruby">QuantLib-Ruby</a></li>
-<li><a href="#qlxl">QuantLibXL</a> (Excel add-in)</li>
-<!--
-<li><a href="#qlexcel">QuantLib Excel</a></li>
---></ol>
-<p><b>Debian users</b> can find version 0.3.5 of the different
-QuantLib packages in the "unstable" (a.k.a. "Sid") distribution;
-see the <a href=
-"http://packages.debian.org/cgi-bin/search_packages.pl?keywords=quantlib&amp;searchon=names&amp;subword=1&amp;version=unstable&amp;release=all">
-Debian site</a> for a list of available packages. The previous
-release, 0.3.4, is still in the "testing" (a.k.a. "Sarge")
-distribution, but should be replaced by 0.3.5 in a few days.</p>
-<p>For <b>Mac OS X users</b>, Fink packages are available in the
-"10.3/unstable" tree; for a list of available QuantLib-related
-files see the <a href=
-"http://fink.sourceforge.net/pdb/search.php?s=quantlib">Package
-Database</a>. To enable the "unstable" tree, please read the
-<a href=
-"http://fink.sourceforge.net/faq/usage-fink.php#unstable">Fink
-faq</a>. Be sure to run "fink selfupdate" to obtain the latest
-package definitions, and then run "fink install quantlib" to
-install the main library.</p>
-<p>Previous QuantLib releases are available <a href=
-"http://sourceforge.net/project/showfiles.php?group_id=12740">here</a>.</p>
-<hr>
-<ol>
-<li class="addtopspace"><a name="qlcpp" id=
-"qlcpp"></a><strong>QuantLib</strong><br>
-<ul>
-<li><em>Win32</em><br>
-<ul>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-0.3.5-installer.exe">
-QuantLib-0.3.5-installer.exe</a> (3636 kb): this is the main Win32
-distribution file. It includes source code, tests, examples, and
-WinHelp documentation.</li>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-0.3.5.zip">QuantLib-0.3.5.zip</a>
-(1900 kb): zipped source code.</li>
-</ul>
-</li>
-<li><em>Unix</em><br>
-<ul>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-0.3.5.tar.gz">
-QuantLib-0.3.5.tar.gz</a> (1273 kb): gzipped source code.</li>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-0.3.5-0.src.rpm">
-QuantLib-0.3.5-0.src.rpm</a> (1268 kb): source RPM.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="addtopspace"><strong><a name="qldocs" id=
-"qldocs"></a>QuantLib Documentation</strong><br>
-<ul>
-<li><em>Win32</em><br>
-<ul>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-docs-0.3.5.chm">
-QuantLib-docs-0.3.5.chm</a> (3184 kb): WinHelp documentation.</li>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-docs-0.3.5.pdf.zip">
-QuantLib-docs-0.3.5.pdf.zip</a> (3430 kb): zipped pdf
-documentation.</li>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-docs-0.3.5.ps.zip">
-QuantLib-docs-0.3.5.ps.zip</a> (1133 kb): zipped ps
-documentation.</li>
-</ul>
-</li>
-<li><em>Unix</em><br>
-<ul>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-docs-0.3.5.html.tar.gz">
-QuantLib-docs-0.3.5.html.tar.gz</a> (2866 kb): gzipped html
-documentation.</li>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-docs-0.3.5.pdf.gz">
-QuantLib-docs-0.3.5.pdf.gz</a> (3391 kb): gzipped pdf
-documentation.</li>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-docs-0.3.5.ps.gz">
-QuantLib-docs-0.3.5.ps.gz</a> (1090 kb): gzipped ps
-documentation.</li>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-docs-0.3.5.man.tar.gz">
-QuantLib-docs-0.3.5.man.tar.gz</a> (172 kb): gzipped man pages
-documentation.</li>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-docs-0.3.5-0.i386.rpm">
-QuantLib-docs-0.3.5-0.i386.rpm</a> (7886 kb): RPM
-documentation.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="addtopspace"><a name="qlguile" id=
-"qlguile"></a><strong>QuantLib-Guile</strong><br>
-The QuantLib-Guile module misses an extended documentation. However
-it includes a test suite that shows the module usage.
-<ul>
-<li><em>Win32</em><br>
-<ul>
-<li>Unix only.</li>
-</ul>
-</li>
-<li><em>Unix</em><br>
-<ul>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-Guile-0.3.5.tar.gz">
-QuantLib-Guile-0.3.5.tar.gz</a> (169 kb): gzipped source code.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="addtopspace"><a name="qlmzscheme" id=
-"qlmzscheme"></a><strong>QuantLib-MzScheme</strong><br>
-The QuantLib-MzScheme module misses an extended documentation.
-However it includes a test suite that shows the module usage.
-<ul>
-<li><em>Win32</em><br>
-<ul>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-MzScheme-0.3.5.zip">
-QuantLib-MzScheme-0.3.5.zip</a> (214 kb): zipped source code.</li>
-</ul>
-</li>
-<li><em>Unix</em><br>
-<ul>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-MzScheme-0.3.5.tar.gz">
-QuantLib-MzScheme-0.3.5.tar.gz</a> (169 kb): gzipped source
-code.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="addtopspace"><a name="qlpython" id=
-"qlpython"></a><strong>QuantLib-Python</strong><br>
-The QuantLib-Python module misses an extended documentation.
-However it includes a PyUnit test suite that shows the module
-usage.
-<ul>
-<li><em>Win32</em><br>
-<ul>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-Python-0.3.5.zip">
-QuantLib-Python-0.3.5.zip</a> (248 kb): zipped source code.</li>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-Python-0.3.5.win32-py2.3.exe">
-QuantLib-Python-0.3.5.win32-py2.3.exe</a> (1045 kb): binaries
-distribution.</li>
-</ul>
-</li>
-<li><em>Unix</em><br>
-<ul>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-Python-0.3.5.tar.gz">
-QuantLib-Python-0.3.5.tar.gz</a> (199 kb): gzipped source
-code.</li>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-Python-0.3.5-0.src.rpm">
-QuantLib-Python-0.3.5-0.src.rpm</a> (201 kb): RPM source code.</li>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-Python-0.3.5-0.i386.rpm">
-QuantLib-Python-0.3.5-0.i386.rpm</a> (1832 kb): RPM i386
-binaries.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="addtopspace"><a name="qlruby" id=
-"qlruby"></a><strong>QuantLib-Ruby</strong><br>
-The QuantLib-Ruby module misses an extended documentation. However
-it includes a test suite that shows the module usage.
-<ul>
-<li><em>Win32</em><br>
-<ul>
-<li>Unix only.</li>
-</ul>
-</li>
-<li><em>Unix</em><br>
-<ul>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-Ruby-0.3.5.tar.gz">
-QuantLib-Ruby-0.3.5.tar.gz</a> (166 kb): gzipped source code.</li>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-Ruby-0.3.5-0.src.rpm">
-QuantLib-Ruby-0.3.5-0.src.rpm</a> (169 kb): RPM source code.</li>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLib-Ruby-0.3.5-0.i386.rpm">
-QuantLib-Ruby-0.3.5-0.i386.rpm</a> (1542 kb): RPM i386
-binaries.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="addtopspace"><a name="qlxl" id=
-"qlxl"></a><strong>QuantLibXL</strong> (Excel add-in)<br>
-The QuantLibXL add-in is UNDOCUMENTED, UNTESTED, and UNSUPPORTED.
-However it includes few Excel spreadsheets as example of the add-in
-usage. Enjoy it as it is :-)
-<ul>
-<li><em>Win32</em><br>
-<ul>
-<li><a href=
-"http://prdownloads.sourceforge.net/quantlib/QuantLibXL-0.3.5.exe">QuantLibXL-0.3.5.exe</a>
-(683 kb): it includes the add-in binaries, source code, and
-spreadsheet examples.</li>
-</ul>
-</li>
-<li><em>Unix</em><br>
-<ul>
-<li>Win32 only (get in touch if you want to help with
-Gnumeric).</li>
-</ul>
-</li>
-</ul>
-</li>
+<li>QuantLib</li>
+<li>QuantLib documentation</li>
+<li>QuantLib-Guile (bindings for Guile)</li>
+<li>QuantLib-MzScheme (bindings for PLT Scheme)</li>
+<li>QuantLib-Python (bindings for Python)</li>
+<li>QuantLib-Ruby (bindngs for Ruby)</li>
+<li>QuantLibXL (Excel add-in)</li>
 </ol>
+
+<p><b>Debian users</b> can find version 0.3.6 of the different
+QuantLib packages in the "unstable" (a.k.a. "Sid") distribution; see the <a
+href="http://packages.debian.org/cgi-bin/search_packages.pl?keywords=quantlib&amp;searchon=names&amp;subword=1&amp;version=unstable&amp;release=all">Debian
+site</a> for a list of available packages.  The previous release,
+0.3.5, is still in the "testing" (a.k.a.  "Sarge") distribution, but
+should be replaced by 0.3.6 in a few days.</p>
+
+<p>For <b>Mac OS X users</b>, Fink packages are available in the
+"10.3/unstable" tree; for a list of available QuantLib-related files
+see the <a
+href="http://fink.sourceforge.net/pdb/search.php?s=quantlib">Package
+Database</a>.  To enable the "unstable" tree, please read the <a
+href="http://fink.sourceforge.net/faq/usage-fink.php#unstable">Fink
+faq</a>.  Be sure to run "fink selfupdate" to obtain the latest
+package definitions, and then run "fink install quantlib" to install
+the main library.</p>
+
+<p>Packages for <b>other platforms</b> are available from the
+SourceForge <a
+href="http://sourceforge.net/project/showfiles.php?group_id=12740">download
+page</a> in a number of different formats.</p>
+
 <!--includeHTML file="qltablefoot.inc"-->
 <div class="endmatter">
 <hr>
