@@ -19,7 +19,7 @@
 #define qladdin_autolink_h
 
 #include <boost/config.hpp>
-#include <QuantLibAddin/version.hpp>
+#include <QuantLibAddin/qladdindefines.hpp>
 
 // select toolset:
 #if (_MSC_VER < 1200)

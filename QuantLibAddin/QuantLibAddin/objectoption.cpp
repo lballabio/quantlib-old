@@ -17,17 +17,6 @@
 
 #include <QuantLibAddin/objectoption.hpp>
 
-/* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
-   for example) also #define _MSC_VER
-
-*/
-#include <boost/config.hpp>
-#ifdef BOOST_MSVC
-#  define BOOST_LIB_DIAGNOSTIC
-#  include <QuantLibAddin/autolink.hpp>
-#  undef BOOST_LIB_DIAGNOSTIC
-#endif
-
 ObjectOption::ObjectOption(boost::shared_ptr<ObjectStochastic> objectStochastic,
 		const string &typeString,
 		const Real &strike,

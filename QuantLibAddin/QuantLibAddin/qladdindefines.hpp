@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qladdin_version_h
-#define qladdin_version_h
+#ifndef qladdin_defines_h
+#define qladdin_defines_h
 
 //! version string
 #ifdef _DEBUG
@@ -29,5 +29,14 @@
 #define QLADDIN_HEX_VERSION 0x000308f0
 //! version string for output lib name
 #define QLADDIN_LIB_VERSION "0_3_8"
+
+/* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
+   for example) also #define _MSC_VER
+
+*/
+#include <boost/config.hpp>
+#ifdef BOOST_MSVC
+#  include <QuantLibAddin/autolink.hpp>
+#endif
 
 #endif

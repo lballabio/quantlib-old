@@ -87,8 +87,8 @@ LIB32=link.exe -lib
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "QuantLibAddin___Win32_Release_MTDLL"
-# PROP Intermediate_Dir "QuantLibAddin___Win32_Release_MTDLL"
+# PROP Output_Dir "build\ReleaseMTDLL"
+# PROP Intermediate_Dir "build\ReleaseMTDLL"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GR /GX /O2 /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
 # ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "./" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
@@ -110,8 +110,8 @@ LIB32=link.exe -lib
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "QuantLibAddin___Win32_Release_SingleThread"
-# PROP Intermediate_Dir "QuantLibAddin___Win32_Release_SingleThread"
+# PROP Output_Dir "build\ReleaseSingleThread"
+# PROP Intermediate_Dir "build\ReleaseSingleThread"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GR /GX /O2 /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
 # ADD CPP /nologo /W3 /GR /GX /O2 /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "./" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
@@ -133,8 +133,8 @@ LIB32=link.exe -lib
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "QuantLibAddin___Win32_Debug_MTDLL"
-# PROP Intermediate_Dir "QuantLibAddin___Win32_Debug_MTDLL"
+# PROP Output_Dir "build\DebugMTDLL"
+# PROP Intermediate_Dir "build\DebugMTDLL"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /ML /W3 /Gm /GR /GX /ZI /Od /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
 # ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "./" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
@@ -156,8 +156,8 @@ LIB32=link.exe -lib
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "QuantLibAddin___Win32_Debug_SingleThread"
-# PROP Intermediate_Dir "QuantLibAddin___Win32_Debug_SingleThread"
+# PROP Output_Dir "build\DebugSingleThread"
+# PROP Intermediate_Dir "build\DebugSingleThread"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /ML /W3 /Gm /GR /GX /ZI /Od /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
 # ADD CPP /nologo /W3 /Gm /GR /GX /ZI /Od /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "./" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
@@ -209,7 +209,7 @@ SOURCE=.\QuantLibAddin\objectstochastic.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\version.hpp
+SOURCE=.\QuantLibAddin\qladdindefines.hpp
 # End Source File
 # End Group
 # End Target
