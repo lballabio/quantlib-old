@@ -30,31 +30,6 @@
 // Analytic pricers
 
 %{
-using QuantLib::EuropeanOption;
-%}
-
-class EuropeanOption {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("dividend-rho")       dividendRho;
-    %rename("implied-volatility") impliedVolatility;
-    #endif
-  public:
-	EuropeanOption(OptionType type, double underlying, double strike,
-                   Spread dividendYield, Rate riskFreeRate, Time residualTime,
-                   double volatility);
-	double value() const;
-	double delta() const;
-	double gamma() const;
-	double theta() const;
-	double vega() const;
-	double rho() const;
-	double dividendRho() const;
-	double impliedVolatility(double targetValue, double accuracy = 1e-4,
-                             Size maxEvaluations = 100) const ;
-};
-
-
-%{
 using QuantLib::Barrier;
 typedef Barrier::Type BarrierType;
 
@@ -179,10 +154,6 @@ class FdEuropean {
 };
 
 class FdDividendEuropeanOption {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("dividend-rho")       dividendRho;
-    %rename("implied-volatility") impliedVolatility;
-    #endif
   public:
 	FdDividendEuropeanOption(OptionType type, double underlying, double strike,
                              Spread dividendYield, Rate riskFreeRate, 
@@ -195,9 +166,6 @@ class FdDividendEuropeanOption {
 	double theta() const;
 	double vega() const;
 	double rho() const;
-	double dividendRho() const;
-	double impliedVolatility(double targetValue, double accuracy = 1e-4,
-                             Size maxEvaluations = 100) const;
 };
 
 
