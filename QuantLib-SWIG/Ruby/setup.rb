@@ -54,7 +54,7 @@ end
 
 
 # Current QuantLib version
-Version = "0.3.2a2-cvs"
+Version = "0.3.3a1-cvs"
 
 # Files
 Info     =    [ 'Authors.txt', 'ChangeLog.txt', 'Contributors.txt',
@@ -89,7 +89,6 @@ Interfaces =  [ 'quantlib.i',
                 'options.i',
                 'piecewiseflatforward.i',
                 'randomnumbers.i',
-                'riskstatistics.i',
                 'scheduler.i',
                 'segmentintegral.i',
                 'shortratemodels.i',
@@ -120,7 +119,7 @@ Tests =       [ 'QuantLibTestSuite.rb',
                 'segmentintegral.rb',
                 'simpleswap.rb',
                 'solvers1d.rb',
-                'gaussianstatistics.rb',
+                'statistics.rb',
                 'swaption.rb',
                 'termstructures.rb',
                 # to be removed

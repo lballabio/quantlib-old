@@ -27,7 +27,7 @@
 
 
 ; current QuantLib version
-(define version "0.3.2a2-cvs")
+(define version "0.3.3a1-cvs")
 
 ; files
 (define info-files
@@ -66,7 +66,6 @@
         "options.i"
         "piecewiseflatforward.i"
         "randomnumbers.i"
-        "riskstatistics.i"
         "segmentintegral.i"
         "shortratemodels.i"
         "statistics.i"
