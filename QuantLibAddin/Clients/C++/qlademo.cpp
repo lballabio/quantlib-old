@@ -53,14 +53,14 @@ int main() {
         ArgumentStack bcArgs;
         bcArgs.push(settlementDate.serialNumber()); // settlement date as long
         bcArgs.push(volatility);            // volatility
-        bcArgs.push(string("ACT360"));      // daycount convention
+        bcArgs.push(string("Actual360"));   // daycount convention
         Properties bcProperties =
             OH_MAKE_OBJECT(QuantLibAddin::BlackConstantVol, "my_blackconstantvol", bcArgs);
 
         ArgumentStack bsArgs;
         bsArgs.push(string("my_blackconstantvol")); // black constant vol handle
         bsArgs.push(underlying);            // underlying
-        bsArgs.push(string("ACT360"));      // daycount convention
+        bsArgs.push(string("Actual360"));   // daycount convention
         bsArgs.push(settlementDate.serialNumber()); // settlement date as long
         bsArgs.push(riskFreeRate);          // risk free rate
         bsArgs.push(dividendYield);         // dividend yield
@@ -69,10 +69,10 @@ int main() {
 
         ArgumentStack opArgs;
         opArgs.push(string("my_stochastic")); // stochastic process handle
-        opArgs.push(string("PUT"));         // option type
-        opArgs.push(string("VAN"));         // payoff type (plain vanilla)
+        opArgs.push(string("Put"));         // option type
+        opArgs.push(string("Vanilla"));     // payoff type
         opArgs.push(strike);                // strike price
-        opArgs.push(string("AM"));          // exercise type (american)
+        opArgs.push(string("American"));    // exercise type
         opArgs.push(exerciseDate.serialNumber()); // exercise date
         opArgs.push(settlementDate.serialNumber()); // settlement date
         opArgs.push(string("JR"));          // engine type (jarrow rudd)

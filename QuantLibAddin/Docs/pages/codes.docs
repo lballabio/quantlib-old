@@ -1,0 +1,181 @@
+
+/*
+ Copyright (C) 2005 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page codes Codes
+
+    \section overview Overview
+    QuantLibAddin uses alphanumeric codes to represent classes of
+    minor or transient QuantLib objects which must be constructed
+    as part of larger operations.  For example the constructor for
+    an option accepts string \c PUT to indicate an option type of class
+    \c QuantLib::Option::Put.  This document defines all codes recognized 
+    by QuantLibAddin. Code values are case insensitive.
+
+    \ref averagetype\n
+    \ref barriertype\n
+    \ref baskettype\n
+    \ref businessdayconvention\n
+    \ref calendar\n
+    \ref capfloorcode\n
+    \ref daycounter\n
+    \ref exercise\n
+    \ref frequency\n
+    \ref optiontype\n
+    \ref pricingengine\n
+    \ref strikedtypepayoff\n
+    \ref timeunit\n
+
+    \section averagetype QuantLib::Average::Type
+    <table>
+    <tr><td>Code</td><td>Class</td></tr>
+    <tr><td>ARITHMETIC</td><td>QuantLib::Average::Arithmetic</td></tr>
+    <tr><td>GEOMETRIC</td><td>QuantLib::Average::Geometric</td></tr>
+    </table>
+
+    \section barriertype QuantLib::Barrier::Type
+    <table>
+    <tr><td>Code</td><td>Class</td></tr>
+    <tr><td>DOWNIN</td><td>QuantLib::Barrier::DownIn</td></tr>
+    <tr><td>DOWNOUT</td><td>QuantLib::Barrier::DownOut</td></tr>
+    <tr><td>UPIN</td><td>QuantLib::Barrier::UpIn</td></tr>
+    <tr><td>UPOUT</td><td>QuantLib::Barrier::UpOut</td></tr>
+    </table>
+
+    \section baskettype QuantLib::BasketOption::BasketType
+    <table>
+    <tr><td>Code</td><td>Class</td></tr>
+    <tr><td>MAX</td><td>QuantLib::BasketOption::Max</td></tr>
+    <tr><td>MIN</td><td>QuantLib::BasketOption::Min</td></tr>
+    </table>
+
+    \section businessdayconvention QuantLib::BusinessDayConvention
+    <table>
+    <tr><td>Code</td><td>Class</td></tr>
+    <tr><td>FOLLOWING</td><td>QuantLib::Following</td></tr>
+    <tr><td>MODIFIEDFOLLOWING</td><td>QuantLib::ModifiedFollowing</td></tr>
+    <tr><td>MODIFIEDPRECEDING</td><td>QuantLib::ModifiedPreceding</td></tr>
+    <tr><td>PRECEDING</td><td>QuantLib::Preceding</td></tr>
+    <tr><td>UNADJUSTED</td><td>QuantLib::Unadjusted</td></tr>
+    </table>
+
+    \section calendar QuantLib::Calendar
+    <table>
+    <tr><td>Code</td><td>Class</td></tr>
+    <tr><td>GERMANY</td><td>QuantLib::Germany</td></tr>
+    <tr><td>ITALY</td><td>QuantLib::Italy</td></tr>
+    <tr><td>TARGET</td><td>QuantLib::Target</td></tr>
+    <tr><td>TOKYO</td><td>QuantLib::Tokyo</td></tr>
+    <tr><td>UNITEDKINGDOM</td><td>QuantLib::UnitedKingdom</td></tr>
+    <tr><td>UNITEDSTATES</td><td>QuantLib::UnitedStates</td></tr>
+    </table>
+
+    \section capfloorcode QuantLib::CapFloor
+    <table>
+    <tr><td>Code</td><td>Class</td></tr>
+    <tr><td>CAP</td><td>QuantLib::Cap</td></tr>
+    <tr><td>FLOOR</td><td>QuantLib::Floor</td></tr>
+    </table>
+
+    \section daycounter QuantLib::DayCounter
+    <table>
+    <tr><td>Code</td><td>Class</td></tr>
+    <tr><td>ACTUAL360</td><td>QuantLib::Actual360</td></tr>
+    <tr><td>ACTUAL365FIXED</td><td>QuantLib::Actual365Fixed</td></tr>
+    <tr><td>ACTUALACTUAL</td><td>QuantLib::ActualActual</td></tr>
+    <tr><td>THIRTY360</td><td>QuantLib::Thirty360</td></tr>
+    </table>
+
+    \section exercise QuantLib::Exercise
+    <table>
+    <tr><td>Code</td><td>Class</td></tr>
+    <tr><td>AMERICAN</td><td>QuantLib::AmericanExercise</td></tr>
+    <tr><td>EUROPEAN</td><td>QuantLib::EuropeanExercise</td></tr>
+    </table>
+
+    \section frequency QuantLib::Frequency
+    <table>
+    <tr><td>Code</td><td>Class</td></tr>
+    <tr><td>ANNUAL</td><td>QuantLib::Annual</td></tr>
+    <tr><td>BIMONTHLY</td><td>QuantLib::Bimonthly</td></tr>
+    <tr><td>EVERY4MONTH</td><td>QuantLib::EveryFourthMonth</td></tr>
+    <tr><td>MONTHLY</td><td>QuantLib::Monthly</td></tr>
+    <tr><td>NOFREQUENCY</td><td>QuantLib::NoFrequency</td></tr>
+    <tr><td>ONCE</td><td>QuantLib::Once</td></tr>
+    <tr><td>QUARTERLY</td><td>QuantLib::Quarterly</td></tr>
+    <tr><td>SEMIANNUAL</td><td>QuantLib::SemiAnnual</td></tr>
+    </table>
+
+    \section optiontype QuantLib::Option::Type
+    <table>
+    <tr><td>Code</td><td>Class</td></tr>
+    <tr><td>CALL</td><td>QuantLib::Option::Call</td></tr>
+    <tr><td>PUT</td><td>QuantLib::Option::Put</td></tr>
+    </table>
+
+    \section pricingengine QuantLib::PricingEngine
+    <table>
+    <tr><td>Code</td><td>Class</td></tr>
+    <tr><td>AB</td><td>QuantLib::AnalyticBarrierEngine</td></tr>
+    <tr><td>ACGAPA</td><td>QuantLib::AnalyticContinuousGeometricAveragePriceAsianEngine</td></tr>
+    <tr><td>AC</td><td>QuantLib::AnalyticCliquetEngine</td></tr>
+    <tr><td>ADA</td><td>QuantLib::AnalyticDigitalAmericanEngine</td></tr>
+    <tr><td>ADE</td><td>QuantLib::AnalyticDividendEuropeanEngine</td></tr>
+    <tr><td>ADGAPA</td><td>QuantLib::AnalyticDiscreteGeometricAveragePriceAsianEngine</td></tr>
+    <tr><td>AEQPB</td><td>QuantLib::AdditiveEQPBinomialTree</td></tr>
+    <tr><td>AE</td><td>QuantLib::AnalyticEuropeanEngine</td></tr>
+    <tr><td>AP</td><td>QuantLib::AnalyticPerformanceEngine</td></tr>
+    <tr><td>BAWA</td><td>QuantLib::BaroneAdesiWhaleyApproximationEngine</td></tr>
+    <tr><td>BSA</td><td>QuantLib::BjerksundStenslandApproximationEngine</td></tr>
+    <tr><td>CRR</td><td>QuantLib::CoxRossRubinstein</td></tr>
+    <tr><td>FE</td><td>QuantLib::ForwardEngine</td></tr>
+    <tr><td>FPE</td><td>QuantLib::ForwardPerformanceEngine</td></tr>
+    <tr><td>JR</td><td>QuantLib::JarrowRudd</td></tr>
+    <tr><td>LR</td><td>QuantLib::LeisenReimer</td></tr>
+    <tr><td>PE</td><td>QuantLib::PricingEngine</td></tr>
+    <tr><td>SE</td><td>QuantLib::StulzEngine</td></tr>
+    <tr><td>TIAN</td><td>QuantLib::Tian</td></tr>
+    <tr><td>TRI</td><td>QuantLib::Trigeorgis</td></tr>
+    </table>
+
+    \section strikedtypepayoff QuantLib::StrikedTypePayoff
+    <table>
+    <tr><td>Code</td><td>Class</td></tr>
+    <tr><td>ASSETORNOTHING</td><td>QuantLib::AssetOrNothingPayoff</td></tr>
+    <tr><td>CASHORNOTHING</td><td>QuantLib::CashOrNothingPayoff</td></tr>
+    <tr><td>GAP</td><td>QuantLib::GapPayoff</td></tr>
+    <tr><td>PERCENTAGESTRIKE</td><td>QuantLib::PercentageStrikePayoff</td></tr>
+    <tr><td>SUPERSHARE</td><td>QuantLib::SuperSharePayoff</td></tr>
+    <tr><td>VANILLA</td><td>QuantLib::PlainVanillaPayoff</td></tr>
+    </table>
+
+    \section timeunit QuantLib::TimeUnit
+    <table>
+    <tr><td>Code</td><td>Class</td></tr>
+    <tr><td>DAYS</td><td>QuantLib::Days</td></tr>
+    <tr><td>MONTHS</td><td>QuantLib::Months</td></tr>
+    <tr><td>WEEKS</td><td>QuantLib::Weeks</td></tr>
+    <tr><td>YEARS</td><td>QuantLib::Years</td></tr>
+    </table>
+
+*/
+

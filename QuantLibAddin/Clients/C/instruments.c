@@ -36,9 +36,9 @@ int main() {
     long settlementDays         = 3;        // settlement days
     double coupons[] = { 0.04 };            // coupons
     double yield                = 0.06;     // yield
-    char *frequencyID          = "A";       // frequency (annual)
-    char *dayCounterID         = "THIRTY360";// day count (30/360)
-    char *calendarID           = "DE";      // calendar (Germany)
+    char *frequencyID          = "Annual";  // frequency
+    char *dayCounterID         = "Thirty360";// day count
+    char *calendarID           = "Germany"; // calendar
 
     QL_LOGFILE("quantlib.log");
     QL_CONSOLE(1);

@@ -40,9 +40,9 @@ int main() {
         long settlementDays         = 3;        // settlement days
         vector < double > coupons(1, 0.04);     // coupons
         double yield                = 0.06;     // yield
-        string frequencyID          = "A";      // frequency (annual)
-        string dayCounterID         = "THIRTY360"; // day count (30/360)
-        string calendarID           = "DE";     // calendar (Germany)
+        string frequencyID          = "Annual"; // frequency
+        string dayCounterID         = "Thirty360"; // day count
+        string calendarID           = "Germany";// calendar
 
         ArgumentStack a1;
         a1.push(issueDate.serialNumber());      // issue date as long
@@ -79,7 +79,7 @@ int main() {
         ArgumentStack zeroCurveArgs;
         zeroCurveArgs.push(datesAsLong);
         zeroCurveArgs.push(yieldsAsDouble);
-        zeroCurveArgs.push(string("ACTACT"));
+        zeroCurveArgs.push(string("ActualActual"));
 
         OH_MAKE_OBJECT(QuantLibAddin::ZeroCurve, "myZeroCurve", zeroCurveArgs);
         OH_LOG_OBJECT("myZeroCurve");
@@ -89,9 +89,9 @@ int main() {
         long issueDateAsLong = issueDate.serialNumber();
         long maturityDateAsLong = maturityDate.serialNumber();
         // Integer settlementDays = 3;
-        std::string dayCounterId = "ACTACT";
-        std::string calendarId = "DE";
-        std::string conventionId = "F";
+        std::string dayCounterId = "ActualActual";
+        std::string calendarId = "Germany";
+        std::string conventionId = "Following";
         double redemption = 100.0;
         std::string zeroCurveHandle = "myZeroCurve";
 

@@ -25,9 +25,9 @@ namespace QuantLibAddin {
 
     QuantLib::Average::Type IDtoAverageType(const std::string &averageID) {
         std::string idUpper = QuantLib::StringFormatter::toUppercase(averageID);
-        if (idUpper.compare("A") ==0)
+        if (idUpper.compare("ARITHMETIC") ==0)
             return QuantLib::Average::Arithmetic;
-        else if (idUpper.compare("G") == 0)
+        else if (idUpper.compare("GEOMETRIC") == 0)
             return QuantLib::Average::Geometric;
         else
             QL_FAIL("IDtoAverageType: unrecognized averageID: " + averageID);

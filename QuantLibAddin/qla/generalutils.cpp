@@ -27,11 +27,11 @@ namespace QuantLibAddin {
 
     QuantLib::DayCounter IDtoDayCounter(const std::string &dayCounterID) {
         std::string idUpper = QuantLib::StringFormatter::toUppercase(dayCounterID);
-        if (idUpper.compare("ACT365FIX") ==0)
+        if (idUpper.compare("ACTUAL365FIXED") ==0)
             return QuantLib::Actual365Fixed();
-        else if (idUpper.compare("ACT360") == 0)
+        else if (idUpper.compare("ACTUAL360") == 0)
             return QuantLib::Actual360();
-        else if (idUpper.compare("ACTACT") == 0)
+        else if (idUpper.compare("ACTUALACTUAL") == 0)
             return QuantLib::ActualActual();
         else if (idUpper.compare("THIRTY360") == 0)
             return QuantLib::Thirty360();
@@ -41,17 +41,17 @@ namespace QuantLibAddin {
 
     QuantLib::Calendar IDtoCalendar(const std::string &calendarID) {
         std::string idUpper = QuantLib::StringFormatter::toUppercase(calendarID);
-        if (idUpper.compare("DE") ==0)
+        if (idUpper.compare("GERMANY") ==0)
             return QuantLib::Germany();
-        else if (idUpper.compare("IT") == 0)
+        else if (idUpper.compare("ITALY") == 0)
             return QuantLib::Italy();
         else if (idUpper.compare("TARGET") == 0)
             return QuantLib::TARGET();
         else if (idUpper.compare("TOKYO") == 0)
             return QuantLib::Tokyo();
-        else if (idUpper.compare("UK") == 0)
+        else if (idUpper.compare("UNITEDKINGDOM") == 0)
             return QuantLib::UnitedKingdom();
-        else if (idUpper.compare("US") == 0)
+        else if (idUpper.compare("UNITEDSTATES") == 0)
             return QuantLib::UnitedStates();
         else
             QL_FAIL("IDtoCalendar: unrecognized calendarID: " + calendarID);
@@ -73,17 +73,17 @@ namespace QuantLibAddin {
 
     QuantLib::BusinessDayConvention IDtoConvention(const std::string &conventionID) {
         std::string idUpper = QuantLib::StringFormatter::toUppercase(conventionID);
-        if (idUpper.compare("F") ==0)
+        if (idUpper.compare("FOLLOWING") ==0)
             return QuantLib::Following;
-        else if (idUpper.compare("MF") == 0)
+        else if (idUpper.compare("MODIFIEDFOLLOWING") == 0)
             return QuantLib::ModifiedFollowing;
-        else if (idUpper.compare("MP") == 0)
+        else if (idUpper.compare("MODIFIEDPRECEDING") == 0)
             return QuantLib::ModifiedPreceding;
-        else if (idUpper.compare("MER") == 0)
+        else if (idUpper.compare("MONTHENDREFERENCE") == 0)
             return QuantLib::MonthEndReference;
-        else if (idUpper.compare("P") == 0)
+        else if (idUpper.compare("PRECEDING") == 0)
             return QuantLib::Preceding;
-        else if (idUpper.compare("U") == 0)
+        else if (idUpper.compare("UNADJUSTED") == 0)
             return QuantLib::Unadjusted;
         else
             QL_FAIL("IDtoConvention: unrecognized conventionID: " + conventionID);
@@ -91,21 +91,21 @@ namespace QuantLibAddin {
 
     QuantLib::Frequency IDtoFrequency(const std::string &frequencyID) {
         std::string idUpper = QuantLib::StringFormatter::toUppercase(frequencyID);
-        if (idUpper.compare("NULL") ==0)
+        if (idUpper.compare("NOFREQUENCY") ==0)
             return QuantLib::NoFrequency;
         else if (idUpper.compare("ONCE") == 0)
             return QuantLib::Once;
-        else if (idUpper.compare("A") == 0)
+        else if (idUpper.compare("ANNUAL") == 0)
             return QuantLib::Annual;
-        else if (idUpper.compare("S") == 0)
+        else if (idUpper.compare("SEMIANNUAL") == 0)
             return QuantLib::Semiannual;
-        else if (idUpper.compare("EVERY4M") == 0)
+        else if (idUpper.compare("EVERY4MONTH") == 0)
             return QuantLib::EveryFourthMonth;
-        else if (idUpper.compare("Q") == 0)
+        else if (idUpper.compare("QUARTERLY") == 0)
             return QuantLib::Quarterly;
-        else if (idUpper.compare("B") == 0)
+        else if (idUpper.compare("BIMONTHLY") == 0)
             return QuantLib::Bimonthly;
-        else if (idUpper.compare("M") == 0)
+        else if (idUpper.compare("MONTHLY") == 0)
             return QuantLib::Monthly;
         else
             QL_FAIL("IDtoFrequency: unrecognized frequencyID: " + frequencyID);

@@ -49,11 +49,11 @@ int main()
             ArgumentStack stack;
             stack.push(dQuotes[i]);
             stack.push(dMaturities[i]);
-            stack.push(string("MONTHS"));
+            stack.push(string("Months"));
             stack.push(2l);
-            stack.push(string("TARGET"));
-            stack.push(string("MF"));
-            stack.push(string("ACT360"));
+            stack.push(string("Target"));
+            stack.push(string("ModifiedFollowing"));
+            stack.push(string("Actual360"));
             std::string handle = "handleDeposit"
                                + IntegerFormatter::toString(dMaturities[i]);
             Properties prop = OH_MAKE_OBJECT(QuantLibAddin::DepositRateHelper, handle, stack);            
@@ -65,14 +65,14 @@ int main()
             ArgumentStack stack;
             stack.push(sQuotes[i2]);
             stack.push(sMaturities[i2]);
-            stack.push(string("YEARS"));
+            stack.push(string("Years"));
             stack.push(2l);
-            stack.push(string("TARGET"));
-            stack.push(string("A"));                    // fixed frequency
-            stack.push(string("U"));                    // fixed convention
-            stack.push(string("THIRTY360"));            // fixed day counter
-            stack.push(string("S"));                    // floating frequency
-            stack.push(string("MF"));                   // floating convention
+            stack.push(string("Target"));
+            stack.push(string("Annual"));               // fixed frequency
+            stack.push(string("Unadjusted"));           // fixed convention
+            stack.push(string("Thirty360"));            // fixed day counter
+            stack.push(string("Semiannual"));           // floating frequency
+            stack.push(string("ModifiedFollowing"));    // floating convention
             std::string handle = "handleSwap"
                                  + IntegerFormatter::toString(sMaturities[i2]);
             (void) OH_MAKE_OBJECT(QuantLibAddin::SwapRateHelper, handle, stack);            
@@ -86,7 +86,7 @@ int main()
         tsArgs.push(evaluationDate.serialNumber());
         tsArgs.push(settlementDate.serialNumber());
         tsArgs.push(rateHelpers);
-        tsArgs.push(string("ACT360"));
+        tsArgs.push(string("Actual360"));
         (void) OH_MAKE_OBJECT(QuantLibAddin::PiecewiseFlatForward, "my_termStructure", tsArgs);
         
         ArgumentStack hwArgs;
@@ -104,9 +104,9 @@ int main()
         ArgumentStack capArgs;
         capArgs.push(startDate.serialNumber());
         capArgs.push(5l);
-        capArgs.push(string("YEARS"));
-        capArgs.push(string("MF"));
-        capArgs.push(string("S"));
+        capArgs.push(string("Years"));
+        capArgs.push(string("ModifiedFollowing"));
+        capArgs.push(string("Semiannual"));
         capArgs.push(2l);
         capArgs.push(string("my_termStructure"));
         capArgs.push(100000.0);

@@ -44,7 +44,7 @@ int main() {
             "my_blackconstantvol", 
             settlementDate, 
             volatility, 
-            "ACT360",
+            "Actual360",
             &vbc) != SUCCESS) {
         QL_LOG_MESSAGE("Error on call to QL_BLACK_CONSTANT_VOL");
         goto fail;
@@ -54,7 +54,7 @@ int main() {
             "my_stochastic", 
             "my_blackconstantvol", 
             underlying, 
-            "ACT360",
+            "Actual360",
             settlementDate, 
             riskFreeRate, 
             dividendYield, 
@@ -66,10 +66,10 @@ int main() {
     if (QL_VANILLA_OPTION(
             "my_option",                    // option handle
             "my_stochastic",                // stochastic process handle
-            "PUT",                          // option type
-            "VAN",                          // payoff type (plain vanilla)
-			strike,                         // strike price
-            "AM",                           // exercise type (american)
+            "Put",                          // option type
+            "Vanilla",                      // payoff type
+            strike,                         // strike price
+            "American",                     // exercise type
             exerciseDate,                   // exercise date
             settlementDate,                 // settlement date
             "JR",                           // engine type (jarrow rudd)

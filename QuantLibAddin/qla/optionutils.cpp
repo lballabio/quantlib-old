@@ -41,22 +41,22 @@ namespace QuantLibAddin {
             const double &input2) {
         QuantLib::Option::Type type = IDtoOptionType(optionTypeID);
         std::string idUpper = QuantLib::StringFormatter::toUppercase(payoffID);
-        if (idUpper.compare("AON") == 0)
+        if (idUpper.compare("ASSETORNOTHING") == 0)
             return boost::shared_ptr<QuantLib::StrikedTypePayoff> (
                 new QuantLib::AssetOrNothingPayoff(type, input1));
-        else if (idUpper.compare("CON") == 0)
+        else if (idUpper.compare("CASHORNOTHING") == 0)
             return boost::shared_ptr<QuantLib::StrikedTypePayoff> (
                 new QuantLib::CashOrNothingPayoff(type, input1, input2));
         else if (idUpper.compare("GAP") == 0)
             return boost::shared_ptr<QuantLib::StrikedTypePayoff> (
                 new QuantLib::GapPayoff(type, input1, input2));
-        else if (idUpper.compare("PSP") == 0)
+        else if (idUpper.compare("PERCENTAGESTRIKE") == 0)
             return boost::shared_ptr<QuantLib::StrikedTypePayoff> (
                 new QuantLib::PercentageStrikePayoff(type, input1));
-        else if (idUpper.compare("VAN") == 0)
+        else if (idUpper.compare("VANILLA") == 0)
             return boost::shared_ptr<QuantLib::StrikedTypePayoff> (
                 new QuantLib::PlainVanillaPayoff(type, input1));
-        else if (idUpper.compare("SSP") == 0)
+        else if (idUpper.compare("SUPERSHARE") == 0)
             return boost::shared_ptr<QuantLib::StrikedTypePayoff> (
                 new QuantLib::SuperSharePayoff(type, input1, input2));
         else
@@ -68,11 +68,11 @@ namespace QuantLibAddin {
             const long &exerciseDate,
             const long &settlementDate) {
         std::string idUpper = QuantLib::StringFormatter::toUppercase(exerciseID);
-        if (idUpper.compare("AM") == 0)
+        if (idUpper.compare("AMERICAN") == 0)
             return boost::shared_ptr<QuantLib::Exercise> (
                 new QuantLib::AmericanExercise(QuantLib::Date(settlementDate), 
                 QuantLib::Date(exerciseDate)));
-        else if (idUpper.compare("EU") == 0)
+        else if (idUpper.compare("EUROPEAN") == 0)
             return boost::shared_ptr<QuantLib::Exercise> (
                 new QuantLib::EuropeanExercise(QuantLib::Date(exerciseDate)));
         else

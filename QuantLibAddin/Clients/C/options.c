@@ -66,7 +66,7 @@ int main() {
             "blackconstantvol", 
             settlementDate, 
             volatility, 
-            "ACT360",
+            "Actual360",
             &vbc) != SUCCESS) {
         QL_LOG_MESSAGE("Error on call to QL_BLACK_CONSTANT_VOL");
         goto fail;
@@ -76,7 +76,7 @@ int main() {
             "stoch1", 
             "blackconstantvol", 
             underlying, 
-            "ACT360",
+            "Actual360",
             settlementDate, 
             riskFreeRate, 
             dividendYield, 
@@ -90,10 +90,10 @@ int main() {
     if (QL_VANILLA_OPTION(
             "opt_van",                      // option handle
             "stoch1",                       // stochastic process handle
-            "PUT",                          // option type
-            "VAN",                          // payoff type (plain vanilla)
-			strike,                         // strike price
-            "AM",                           // exercise type (american)
+            "Put",                          // option type
+            "Vanilla",                      // payoff type
+            strike,                         // strike price
+            "American",                     // exercise type
             exerciseDate,                   // exercise date
             settlementDate,                 // settlement date
             "JR",                           // engine type (jarrow rudd)
@@ -108,14 +108,14 @@ int main() {
     if (QL_CA_ASIAN_OPTION(
             "opt_asian_cont",               // option handle
             "stoch1",                       // stochastic process handle
-            "G",                            // average type ("A"verage/"G"eometric)
-            "PUT",                          // option type
-            "VAN",                          // payoff type
+            "Geometric",                    // average type
+            "Put",                          // option type
+            "Vanilla",                      // payoff type
             strike,                         // strike price
-            "EU",                           // exercise type
+            "European",                     // exercise type
             exerciseDate,                   // exercise date
             0,                              // settlement date ignored when exercise = European
-            "ACGAPA",                       // engine type
+            "ACGAPA",                       // engine type (AnalyticContinuousGeometricAveragePriceAsianEngine)
             timeSteps,                      // time steps
             &voac) != SUCCESS) {
         QL_LOG_MESSAGE("Error on call to QL_CA_ASIAN_OPTION");
@@ -131,15 +131,15 @@ int main() {
     if (QL_DA_ASIAN_OPTION(
             "opt_asian_disc",               // option handle
             "stoch1",                       // stochastic process handle
-            "G",                            // average type ("A"verage/"G"eometric)
+            "Geometric",                    // average type
             1.0,                            // running accumulator
             0,                              // past fixings
             fixingDatesCount,               // #/fixingDates
             fixingDates,                    // fixingDates
-            "PUT",                          // option type
-            "VAN",                          // payoff type (plain vanilla)
+            "Put",                          // option type
+            "Vanilla",                      // payoff type
             strike,                         // strike price
-            "EU",                           // exercise type (european)
+            "European",                     // exercise type
             exerciseDate,                   // exercise date
             0,                              // settlement date ignored when exercise = European
             "ADGAPA",                       // engine type (AnalyticDiscreteGeometricAveragePriceAsianEngine)
@@ -154,16 +154,16 @@ int main() {
     if (QL_BARRIER_OPTION(
             "opt_barrier",                  // option handle
             "stoch1",                       // stochastic process handle
-            "DOWNIN",                       // barrier type
+            "DownIn",                       // barrier type
             35.0,                           // barrier
             3.0,                            // rebate
-            "PUT",                          // option type
-            "VAN",                          // payoff type
+            "Put",                          // option type
+            "Vanilla",                      // payoff type
             strike,                         // strike price
-            "EU",                           // exercise type
+            "European",                     // exercise type
             exerciseDate,                   // exercise date
             0,                              // settlement date ignored when exercise = European
-            "AB",                           // engine type
+            "AB",                           // engine type (AnalyticBarrierEngine)
             timeSteps,                      // time steps
             &voba) != SUCCESS) {
         QL_LOG_MESSAGE("Error on call to QL_BARRIER_OPTION");
@@ -183,16 +183,16 @@ int main() {
             "opt_basket",                   // option handle
             2,                              // #/stochastic processes
             stochHandles,                   // array of stoch process handles
-            "MIN",                          // basket type
+            "Min",                          // basket type
             2,                              // #/rows in correlations matrix
             2,                              // #/cols in correlations matrix
             correlations,                   // correlations matrix
-            "CALL",                         // option type
+            "Call",                         // option type
             40.0,                           // strike price
-            "EU",                           // exercise type
+            "European",                     // exercise type
             exerciseDate,                   // exercise date
             0,                              // settlement date ignored when exercise = European
-            "SE",                           // engine type
+            "SE",                           // engine type (StulzEngine)
             timeSteps,                      // time steps
             &vobs) != SUCCESS) {
         QL_LOG_MESSAGE("Error on call to QL_BASKET_OPTION");
@@ -206,10 +206,10 @@ int main() {
             "stoch1",                       // stochastic process handle
             1,                              // #/reset dates
             resetDates,                     // reset dates
-            "PUT",                          // option type
+            "Put",                          // option type
             strike,                         // strike price
             exerciseDate,                   // exercise date
-            "AC",                           // engine type
+            "AC",                           // engine type (AnalyticCliquetEngine)
             timeSteps,                      // time steps
             &voc) != SUCCESS) {
         QL_LOG_MESSAGE("Error on call to QL_CLIQUET_OPTION");
@@ -225,13 +225,13 @@ int main() {
             dividendDates,                  // dividend dates
             2,                              // #/dividends
             dividends,                      // dividends
-            "CALL",                         // option type
-            "VAN",                          // payoff type
+            "Call",                         // option type
+            "Vanilla",                      // payoff type
             10.0,                           // strike price
-            "EU",                           // exercise type
+            "European",                     // exercise type
             exerciseDate,                   // exercise date
             0,                              // settlement date ignored when exercise = European
-            "ADE",                          // engine type
+            "ADE",                          // engine type (AnalyticDividendEuropeanEngine)
             timeSteps,                      // time steps
             &vod) != SUCCESS) {
         QL_LOG_MESSAGE("Error on call to QL_DIVIDEND_VANILLA_OPTION");
@@ -245,13 +245,13 @@ int main() {
             "stoch1",                       // stochastic process handle
             12.,                            // moneyness
             resetDate,                      // reset date
-            "PUT",                          // option type
-            "VAN",                          // payoff type
+            "Put",                          // option type
+            "Vanilla",                      // payoff type
             strike,                         // strike price
-            "EU",                           // exercise type
+            "European",                     // exercise type
             exerciseDate,                   // exercise date
             0,                              // settlement date ignored when exercise = European
-            "FE",                           // engine type
+            "FE",                           // engine type (ForwardEngine)
             timeSteps,                      // time steps
             &vof) != SUCCESS) {
         QL_LOG_MESSAGE("Error on call to QL_FORWARD_VANILLA_OPTION");
