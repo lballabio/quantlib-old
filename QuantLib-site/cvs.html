@@ -151,7 +151,7 @@ height="31" border="0" alt="SourceForge Logo"></a></div>
 
 <br>
  <a href="http://sourceforge.net/docman/?group_id=1">About
-SourceForge, Open Source, CVS, etc.</a> 
+SourceForge, Open Source, CVS, etc.</a>
 
 <hr>
 <div class="center">
@@ -203,7 +203,7 @@ password for anonymous, simply press the Enter key.</p>
 <pre>
 export CVSROOT=:pserver:anonymous@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
 cvs login
-cvs -z9 co -P modulename
+cvs -z3 co -P modulename
 </pre>
 
 <p>Win32:</p>
@@ -211,7 +211,7 @@ cvs -z9 co -P modulename
 <pre>
 SET CVSROOT=:pserver:anonymous@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
 cvs login
-cvs -z9 co -P modulename
+cvs -z3 co -P modulename
 </pre>
 
 <p>Updates from within the module's directory do not need the
@@ -230,7 +230,7 @@ values. Enter your site password when prompted.</p>
 <pre>
 export CVSROOT=developername@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
 export CVS_RSH=ssh
-cvs -z9 co -P modulename
+cvs -z3 co -P modulename
 </pre>
 
 <p>Win32:</p>
@@ -238,7 +238,7 @@ cvs -z9 co -P modulename
 <pre>
 SET CVSROOT=developername@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
 SET CVS_RSH=ssh
-cvs -z9 co -P modulename
+cvs -z3 co -P modulename
 </pre>
 
 <p>Updates from within the module's directory do not need the
