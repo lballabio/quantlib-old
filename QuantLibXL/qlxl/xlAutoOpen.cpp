@@ -48,12 +48,24 @@ extern "C" {
             XlfArgDesc x_dist_value("x",
                 "is the value for which you want the distribution");
             XlfArgDesc cumulative("cumulative",
-                "is a logical value that determines the form of the function. "
-                "If cumulative is TRUE, NORMDIST returns the cumulative "
-                "distribution function; if FALSE, it returns the probability "
-                "mass function");
+                "is a logical value that determines the form of the function: "
+                "if TRUE the cumulative "
+                "distribution function is returned, else the probability "
+                "mass function is returned.");
             XlfArgDesc probability("probability", "is a probability "
                 "corresponding to the normal distribution");
+            XlfArgDesc number_s("number_s",
+                "is the number of successes in trials");
+            XlfArgDesc trials("trials",
+                "is the number of independent trials");
+            XlfArgDesc trials_odd("(odd) trials",
+                "is the number of independent trials. It must be an odd number.");
+            XlfArgDesc probability_s("probability_s",
+                "is the probability of success on each trial.");
+            XlfArgDesc number("number",
+                "is the number of items");
+            XlfArgDesc number_chosen("number_chosen",
+                "is the number of items in each combination.");
 
 
             XlfArgDesc d01("date1", "first date");
@@ -519,7 +531,33 @@ extern "C" {
 
 
 
-            // Registers Normal distribution
+            // Registers distributions
+
+            XlfFuncDesc CombinDesc("xlCombin","qlCombin",
+                "Returns the number of combinations for a given number of items.",
+                "QuantLibXL Math");
+            CombinDesc.SetArguments(number+number_chosen);
+            CombinDesc.Register();
+
+            XlfFuncDesc BinomDistDesc("xlBinomDist","qlBinomDist",
+                "Returns the Binomial distribution.",
+                "QuantLibXL Math");
+            BinomDistDesc.SetArguments(number_s+trials+probability_s+cumulative);
+            BinomDistDesc.Register();
+
+            XlfFuncDesc PeizerPrattDesc("xlPeizerPratt","qlPeizerPratt",
+                "Returns the probability p such that: "
+                "1 - CumulativeBinomialDistribution((trials-1)/2, trials, p) "
+                "= CumulativeNormalDistribution(x)",
+                "QuantLibXL Math");
+            PeizerPrattDesc.SetArguments(trials_odd+x_dist_value);
+            PeizerPrattDesc.Register();
+
+            XlfFuncDesc PoissonDesc("xlPoisson","qlPoisson",
+                "Returns the Poisson distribution.",
+                "QuantLibXL Math");
+            PoissonDesc.SetArguments(x_dist_value+mean+cumulative);
+            PoissonDesc.Register();
 
             XlfFuncDesc normInvDesc("xlnormInv","qlNormInv",
                 "Return the inverse of the normal cumulative distribution "

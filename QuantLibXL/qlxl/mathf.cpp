@@ -25,7 +25,8 @@
 #include <ql/Math/statistics.hpp>
 #include <ql/Math/riskstatistics.hpp>
 #include <ql/Math/symmetricschurdecomposition.hpp>
-#include <ql/Math/cholesky.hpp>
+#include <ql/Math/poissondistribution.hpp>
+#include <ql/Math/binomialdistribution.hpp>
 
 
 extern "C"
@@ -118,6 +119,59 @@ extern "C"
     }
 
 
+
+    LPXLOPER EXCEL_EXPORT xlPoisson(XlfOper xlx,
+                                    XlfOper xlmean,
+                                    XlfOper xlcumulative) {
+        EXCEL_BEGIN;
+        bool cumulative = xlcumulative.AsBool();
+        double result;
+        if (cumulative) {
+            result=CumulativePoissonDistribution(
+                xlmean.AsDouble())(xlx.AsDouble());
+        } else {
+            result=PoissonDistribution(xlmean.AsDouble())(xlx.AsDouble());
+        }
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlCombin(XlfOper number,
+                                   XlfOper number_chosen) {
+        EXCEL_BEGIN;
+        double result=binomialCoefficient(number.AsDouble(),
+                number_chosen.AsDouble());
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlBinomDist(XlfOper xlnumber_s,
+                                      XlfOper xltrials,
+                                      XlfOper xlprobability_s,
+                                      XlfOper xlcumulative) {
+        EXCEL_BEGIN;
+        bool cumulative = xlcumulative.AsBool();
+        double result;
+        if (cumulative) {
+            result=CumulativeBinomialDistribution(xlprobability_s.AsDouble(),
+                xltrials.AsDouble())(xlnumber_s.AsDouble());
+        } else {
+            result=BinomialDistribution(xlprobability_s.AsDouble(),
+                xltrials.AsDouble())(xlnumber_s.AsDouble());
+        }
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+
+    LPXLOPER EXCEL_EXPORT xlPeizerPratt(XlfOper xltrials,
+                                        XlfOper xlpercentile) {
+        EXCEL_BEGIN;
+        double result = PeizerPrattMethod2Inversion(xlpercentile.AsDouble(),
+            xltrials.AsInt());
+        return XlfOper(result);
+        EXCEL_END;
+    }
 
     LPXLOPER EXCEL_EXPORT xlpotentialUpside(XlfOper xlpercentile,
         XlfOper xldata_array) {
@@ -292,10 +346,13 @@ extern "C"
         EXCEL_END;
     }
 
-    LPXLOPER EXCEL_EXPORT xlCholesky(XlfOper xlmatrix) {
+    LPXLOPER EXCEL_EXPORT xlCholesky(XlfOper xlmatrix,
+                                     XlfOper xlcholeskyFlexible) {
         EXCEL_BEGIN;
         Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
-        Matrix result = Cholesky(data_matrix).decomposition();
+        bool flexible = xlcholeskyFlexible.AsBool();
+        Matrix result = CholeskyDecomposition(data_matrix,
+            flexible);
         return XlfOper(result.rows(), result.columns(), result.begin());
         EXCEL_END;
     }
@@ -304,8 +361,8 @@ extern "C"
                                        XlfOper xlsalvagingAlgorithm) {
         EXCEL_BEGIN;
         Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
-        SalvagingAlgorithm sa =
-            SalvagingAlgorithm(xlsalvagingAlgorithm.AsInt());
+        SalvagingAlgorithm::Type sa = 
+            SalvagingAlgorithm::Type(xlsalvagingAlgorithm.AsInt());
         Matrix result = pseudoSqrt(data_matrix, sa);
         return XlfOper(result.rows(), result.columns(), result.begin());
         EXCEL_END;
@@ -320,8 +377,8 @@ extern "C"
         int maxRank = xlmaxRank.AsInt();
         double componentsRetainedPercentage =
             xlcomponentsRetainedPercentage.AsDouble();
-        SalvagingAlgorithm sa =
-            SalvagingAlgorithm(xlsalvagingAlgorithm.AsInt());
+        SalvagingAlgorithm::Type sa = 
+            SalvagingAlgorithm::Type(xlsalvagingAlgorithm.AsInt());
         Matrix result = rankReducedSqrt(data_matrix, maxRank, 
             componentsRetainedPercentage, sa);
         return XlfOper(result.rows(), result.columns(), result.begin());
