@@ -1,5 +1,7 @@
 
 include *.in *.py *.txt *.TXT *.spec
-recursive-include QuantLib *.i *.py *.TXT *.cpp
+recursive-include QuantLib *.py *.TXT *.cpp
+recursive-include SWIG *.i
 recursive-include examples *.py
+recursive-include test *.py
 

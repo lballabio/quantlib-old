@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 """
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2004 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -101,7 +101,7 @@ class test(Command):
         self.build_base = 'build'
         # these are decided only after 'build_base' has its final value
         # (unless overridden by the user or client)
-        self.test_dir = 'QuantLib/test'
+        self.test_dir = 'test'
         self.test_prefix = 'QuantLibTestSuite'
         self.test_suffixes = None
 
@@ -195,7 +195,7 @@ class install_swigfiles(install_data):
                 'SWIG')
         else:
             swig_install_dir = self.distribution.get_name()
-        swig_dir = os.path.join(".","QuantLib","SWIG")
+        swig_dir = os.path.join(".","SWIG")
         if not os.path.exists(swig_dir):
             swig_dir = os.path.join("..","SWIG")
         self.data_files = [
@@ -212,7 +212,7 @@ class my_install(install):
 class my_sdist(sdist):
     description = "build source distribution including SWIG interfaces"
     def run(self):
-        swig_dir = os.path.join(".","QuantLib","SWIG")
+        swig_dir = os.path.join(".","SWIG")
         cleanup = 0
         if not os.path.exists(swig_dir):
             os.makedirs(swig_dir)
@@ -234,7 +234,7 @@ class my_wrap(Command):
     def finalize_options(self): pass
     def run(self):
         print 'Generating Python bindings for QuantLib...'
-        swig_dir = os.path.join(".","QuantLib","SWIG")
+        swig_dir = os.path.join(".","SWIG")
         if not os.path.exists(swig_dir):
             swig_dir = os.path.join("..","SWIG")
         os.system('swig -python -c++ ' +
