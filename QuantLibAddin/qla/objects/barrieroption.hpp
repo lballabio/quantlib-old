@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,18 +15,21 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_vanillaoption_hpp
-#define qla_vanillaoption_hpp
+#ifndef qla_barrieroption_hpp
+#define qla_barrieroption_hpp
 
-#include <QuantLibAddin/objects/stochasticprocess.hpp>
-#include <ql/Instruments/vanillaoption.hpp>
+#include <qla/objects/stochasticprocess.hpp>
+#include <ql/Instruments/barrieroption.hpp>
 
 namespace QuantLibAddin {
 
-    class VanillaOption : public ObjHandler::Object {
+    class BarrierOption : public ObjHandler::Object {
     public:
-        VanillaOption(
+        BarrierOption(
             const boost::shared_ptr<StochasticProcess> &stochasticProcess,
+            const std::string &typeBarrier,
+            const float &barrier,
+            const float &rebate,
             const std::string &typeOption,
             const std::string &typePayoff,
             const float &strike,
@@ -35,15 +38,11 @@ namespace QuantLibAddin {
             const long &settlementDate,
             const std::string &typeEngine,
             const long &timeSteps);
-    //    ~VanillaOption();
-        void setEngine(
-            const std::string &engineName,
-            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(vanillaOption_);
+            return boost::static_pointer_cast<void>(barrierOption_);
         }
     private:
-        boost::shared_ptr<QuantLib::VanillaOption> vanillaOption_;
+        boost::shared_ptr<QuantLib::BarrierOption> barrierOption_;
     };
 
 }

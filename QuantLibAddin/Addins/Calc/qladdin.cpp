@@ -22,7 +22,7 @@
 
 #include <string.h>
 #include <Addins/Calc/qladdin.hpp>
-#include <QuantLibAddin/qladdin.hpp>
+#include <qla/qladdin.hpp>
 #include <cppuhelper/factory.hxx>
 #include <cppuhelper/implementationentry.hxx>
 #include <osl/interlck.h>

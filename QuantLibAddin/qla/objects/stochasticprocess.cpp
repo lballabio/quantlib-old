@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <QuantLibAddin/objects/stochasticprocess.hpp>
+#include <qla/objects/stochasticprocess.hpp>
 
 #include <ql/DayCounters/all.hpp>
 #include <ql/quote.hpp>

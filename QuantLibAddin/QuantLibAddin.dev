@@ -30,7 +30,7 @@ CompilerSet=0
 CompilerSettings=0000000000000000000000
 
 [Unit1]
-FileName=QuantLibAddin\objects\objectoption.cpp
+FileName=qla\objects\objectoption.cpp
 Folder=objects
 Compile=1
 CompileCpp=1
@@ -40,7 +40,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=QuantLibAddin\objects\objectoption.hpp
+FileName=qla\objects\objectoption.hpp
 Folder=objects
 Compile=1
 CompileCpp=1
@@ -50,7 +50,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=QuantLibAddin\objects\objectstochastic.cpp
+FileName=qla\objects\objectstochastic.cpp
 Folder=objects
 Compile=1
 CompileCpp=1
@@ -60,7 +60,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=QuantLibAddin\objects\objectstochastic.hpp
+FileName=qla\objects\objectstochastic.hpp
 Folder=objects
 Compile=1
 CompileCpp=1
@@ -70,7 +70,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=QuantLibAddin\functions\options.cpp
+FileName=qla\functions\options.cpp
 Folder=functions
 Compile=1
 CompileCpp=1
@@ -80,7 +80,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=QuantLibAddin\functions\options.hpp
+FileName=qla\functions\options.hpp
 Folder=functions
 Compile=1
 CompileCpp=1
@@ -90,7 +90,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit7]
-FileName=QuantLibAddin\functions\utilities.cpp
+FileName=qla\functions\utilities.cpp
 Folder=functions
 Compile=1
 CompileCpp=1
@@ -100,7 +100,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit8]
-FileName=QuantLibAddin\functions\utilities.hpp
+FileName=qla\functions\utilities.hpp
 Folder=functions
 Compile=1
 CompileCpp=1
@@ -110,7 +110,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
-FileName=QuantLibAddin\autolink.hpp
+FileName=qla\autolink.hpp
 Folder=
 Compile=1
 CompileCpp=1
@@ -120,7 +120,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit10]
-FileName=QuantLibAddin\qladdin.hpp
+FileName=qla\qladdin.hpp
 Folder=
 Compile=1
 CompileCpp=1
@@ -130,7 +130,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit11]
-FileName=QuantLibAddin\qladdindefines.hpp
+FileName=qla\qladdindefines.hpp
 Folder=
 Compile=1
 CompileCpp=1

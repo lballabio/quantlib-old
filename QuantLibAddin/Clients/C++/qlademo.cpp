@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <QuantLibAddin/qladdin.hpp>
-#include <QuantLibAddin/objects/vanillaoption.hpp>
+#include <qla/qladdin.hpp>
+#include <qla/objects/vanillaoption.hpp>
 #include <ql/quantlib.hpp>
 #include <iostream>
 

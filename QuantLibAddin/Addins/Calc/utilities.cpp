@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <QuantLibAddin/qladdin.hpp>
+#include <qla/qladdin.hpp>
 #include <Addins/Calc/qladdin.hpp>
 #include <Addins/Calc/utilities.hpp>
 

@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qladdin_defines_h
-#define qladdin_defines_h
+#ifndef qladdindefines_h
+#define qladdindefines_h
 
 //! version string
 #ifdef _DEBUG
@@ -35,7 +35,7 @@
 */
 #include <boost/config.hpp>
 #ifdef BOOST_MSVC
-#  include <QuantLibAddin/autolink.hpp>
+#  include <qla/autolink.hpp>
 #endif
 
 #endif

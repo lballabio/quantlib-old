@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <QuantLibAddin/functions/utilities.hpp>
+#include <qla/functions/utilities.hpp>
 
 using namespace ObjHandler;
 

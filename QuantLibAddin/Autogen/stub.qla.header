@@ -1,5 +1,5 @@
-#include <QuantLibAddin/functions/%s.hpp>
-#include <QuantLibAddin/objects/%s.hpp>
+#include <qla/functions/%s.hpp>
+#include <qla/objects/%s.hpp>
 
 namespace QuantLibAddin {
 

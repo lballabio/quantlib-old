@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <QuantLibAddin/objects/barrieroption.hpp>
-#include <QuantLibAddin/objects/optionutils.hpp>
+#include <qla/objects/barrieroption.hpp>
+#include <qla/objects/optionutils.hpp>
 
 namespace QuantLibAddin {
 

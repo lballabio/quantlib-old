@@ -503,7 +503,7 @@
 			Name="objects"
 			>
 			<File
-				RelativePath="QuantLibAddin\objects\objectoption.cpp"
+				RelativePath="qla\objects\objectoption.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
@@ -571,11 +571,11 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="QuantLibAddin\objects\objectoption.hpp"
+				RelativePath="qla\objects\objectoption.hpp"
 				>
 			</File>
 			<File
-				RelativePath="QuantLibAddin\objects\objectstochastic.cpp"
+				RelativePath="qla\objects\objectstochastic.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
@@ -643,7 +643,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="QuantLibAddin\objects\objectstochastic.hpp"
+				RelativePath="qla\objects\objectstochastic.hpp"
 				>
 			</File>
 		</Filter>
@@ -651,7 +651,7 @@
 			Name="functions"
 			>
 			<File
-				RelativePath="QuantLibAddin\functions\options.cpp"
+				RelativePath="qla\functions\options.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
@@ -719,11 +719,11 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="QuantLibAddin\functions\options.hpp"
+				RelativePath="qla\functions\options.hpp"
 				>
 			</File>
 			<File
-				RelativePath="QuantLibAddin\functions\utilities.cpp"
+				RelativePath="qla\functions\utilities.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
@@ -791,20 +791,20 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="QuantLibAddin\functions\utilities.hpp"
+				RelativePath="qla\functions\utilities.hpp"
 				>
 			</File>
 		</Filter>
 		<File
-			RelativePath="QuantLibAddin\autolink.hpp"
+			RelativePath="qla\autolink.hpp"
 			>
 		</File>
 		<File
-			RelativePath="QuantLibAddin\qladdin.hpp"
+			RelativePath="qla\qladdin.hpp"
 			>
 		</File>
 		<File
-			RelativePath="QuantLibAddin\qladdindefines.hpp"
+			RelativePath="qla\qladdindefines.hpp"
 			>
 		</File>
 	</Files>

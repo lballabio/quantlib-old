@@ -16,7 +16,7 @@
 */
 
 #include <oh/objhandler.hpp>
-#include <QuantLibAddin/objects/optionutils.hpp>
+#include <qla/objects/optionutils.hpp>
 #include <ql/PricingEngines/all.hpp>
 
 namespace QuantLibAddin {

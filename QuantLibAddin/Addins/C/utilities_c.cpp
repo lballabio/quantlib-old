@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <QuantLibAddin/qladdin.hpp>
+#include <qla/qladdin.hpp>
 extern "C" {
 #include <Addins/C/utilities.h>
 }

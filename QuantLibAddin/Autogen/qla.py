@@ -5,7 +5,7 @@ import utils
 
 # constants
 
-ROOT = '../QuantLibAddin/functions/'
+ROOT = '../qla/functions/'
 INCLUDES = 'stub.qla.includes'
 HEADER = 'stub.qla.header'
 CTOR = 'stub.qla.constructor'

@@ -15,10 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Wed Jan 26 13:34:31 2005
+// this file generated automatically by autogen.py on Fri Jan 28 22:36:30 2005
 // editing this file manually is not recommended
 
-#include <QuantLibAddin/qladdin.hpp>
+#include <qla/qladdin.hpp>
 extern "C" {
 #include <Addins/C/varies.h>
 #include <Addins/C/defines.h>

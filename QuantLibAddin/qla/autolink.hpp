@@ -15,11 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qladdin_autolink_h
-#define qladdin_autolink_h
-
-//#include <boost/config.hpp>
-//#include <QuantLibAddin/qladdindefines.hpp>
+#ifndef qla_autolink_hpp
+#define qla_autolink_hpp
 
 // select toolset:
 #if (_MSC_VER < 1200)

@@ -9,7 +9,7 @@ CC_INCLUDES=-I. -I../.. -I/usr/include -I$(OFFICE_SDK_PATH)/include \
 CC_DEFINES=-DUNX -DGCC -DLINUX -DCPPU_ENV=gcc3
 LINK=g++
 LIBRARY_LINK_FLAGS=-shared
-LINK_LIBS=-L$(OFFICE_PROGRAM_PATH) -L/usr/local/lib -L../../QuantLibAddin
+LINK_LIBS=-L$(OFFICE_PROGRAM_PATH) -L/usr/local/lib -L../../qla
 LIBRARY_LIBS := -lcppuhelpergcc3 -lcppu -lsal \
 				-lQuantLibAddin -lQuantLib -lboost_regex
 CXXFILES := $(wildcard *.cpp)

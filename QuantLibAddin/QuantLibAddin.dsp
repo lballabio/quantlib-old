@@ -185,43 +185,43 @@ LIB32=link.exe -lib
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objects\asianoption.cpp
+SOURCE=.\qla\objects\asianoption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objects\asianoption.hpp
+SOURCE=.\qla\objects\asianoption.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objects\barrieroption.cpp
+SOURCE=.\qla\objects\barrieroption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objects\barrieroption.hpp
+SOURCE=.\qla\objects\barrieroption.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objects\optionutils.cpp
+SOURCE=.\qla\objects\optionutils.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objects\optionutils.hpp
+SOURCE=.\qla\objects\optionutils.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objects\stochasticprocess.cpp
+SOURCE=.\qla\objects\stochasticprocess.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objects\stochasticprocess.hpp
+SOURCE=.\qla\objects\stochasticprocess.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objects\vanillaoption.cpp
+SOURCE=.\qla\objects\vanillaoption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objects\vanillaoption.hpp
+SOURCE=.\qla\objects\vanillaoption.hpp
 # End Source File
 # End Group
 # Begin Group "functions"
@@ -229,32 +229,32 @@ SOURCE=.\QuantLibAddin\objects\vanillaoption.hpp
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\functions\options.cpp
+SOURCE=.\qla\functions\options.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\functions\options.hpp
+SOURCE=.\qla\functions\options.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\functions\utilities.cpp
+SOURCE=.\qla\functions\utilities.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\functions\utilities.hpp
+SOURCE=.\qla\functions\utilities.hpp
 # End Source File
 # End Group
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\autolink.hpp
+SOURCE=.\qla\autolink.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\qladdin.hpp
+SOURCE=.\qla\qladdin.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\qladdindefines.hpp
+SOURCE=.\qla\qladdindefines.hpp
 # End Source File
 # End Target
 # End Project

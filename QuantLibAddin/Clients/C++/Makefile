@@ -3,8 +3,8 @@ target = QLADemo
 sources := $(wildcard *.cpp)
 objects := $(patsubst %.cpp,%.o,$(sources))
 includes = -I../.. -I../../../ObjectHandler
-libdirs = 	-L../../QuantLibAddin
-libs = -lQuantLibAddin -lQuantLib -lboost_regex
+libdirs = 	-L../../qla
+libs = -lQuantLibAddin -lQuantLib -lObjectHandler
 
 all : $(target)
 

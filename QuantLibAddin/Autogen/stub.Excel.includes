@@ -1,4 +1,4 @@
-#include <QuantLibAddin/qladdin.hpp>
+#include <qla/qladdin.hpp>
 #include <Addins/Excel/utilities.hpp>
 
 using namespace ObjHandler;

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,12 +15,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_obj_options_hpp
-#define qla_obj_options_hpp
+#ifndef qladdin_hpp
+#define qladdin_hpp
 
-#include <QuantLibAddin/objects/vanillaoption.hpp>
-#include <QuantLibAddin/objects/asianoption.hpp>
-#include <QuantLibAddin/objects/barrieroption.hpp>
+#include <oh/objhandler.hpp>
+#include <qla/qladdindefines.hpp>
+#include <qla/functions/options.hpp>
+#include <qla/functions/utilities.hpp>
 
 #endif
 
