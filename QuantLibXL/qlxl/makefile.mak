@@ -10,6 +10,7 @@
 # Debug version
 !ifdef DEBUG
     _D = _d
+    _D2 = d
 !endif
 
 # Directories
@@ -41,7 +42,7 @@ CC_OPTS = $(CC_OPTS) -v -DXLW_DEBUG -DQL_DEBUG
 # Primary target:
 $(OUTPUT_DIR)\qlxl$(_D).xll:: qlxl.cpp
     if exist $(OUTPUT_DIR)\qlxl$(_D).xll del $(OUTPUT_DIR)\qlxl$(_D).xll
-    bcc32 $(CC_OPTS) -L$(XLW_LIB_DIR) -L$(QL_LIB_DIR) -L$(BCC_LIBS) -tWD -oqlxl$(_D).obj -e"$(OUTPUT_DIR)\qlxl$(_D).xll" qlxl.cpp QuantLib$(_D).lib xlw$(_D).lib
+    bcc32 $(CC_OPTS) -L$(XLW_LIB_DIR) -L$(QL_LIB_DIR) -L$(BCC_LIBS) -tWD -oqlxl$(_D).obj -e"$(OUTPUT_DIR)\qlxl$(_D).xll" qlxl.cpp QuantLib$(_D).lib xlw$(_D2).lib
 
 # Clean up
 clean::
