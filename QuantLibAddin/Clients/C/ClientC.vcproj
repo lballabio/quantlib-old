@@ -12,8 +12,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\build\Debug"
-			IntermediateDirectory=".\build\Debug"
+			OutputDirectory=".\build\vc71\Debug"
+			IntermediateDirectory=".\build\vc71\Debug"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -28,10 +28,10 @@
 				DisableLanguageExtensions="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\Debug/ClientC.pch"
-				AssemblerListingLocation=".\build\Debug/"
-				ObjectFile=".\build\Debug/"
-				ProgramDataBaseFileName=".\build\Debug/"
+				PrecompiledHeaderFile=".\build\vc71\Debug/ClientC.pch"
+				AssemblerListingLocation=".\build\vc71\Debug/"
+				ObjectFile=".\build\vc71\Debug/"
+				ProgramDataBaseFileName=".\build\vc71\Debug/"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
@@ -46,12 +46,12 @@
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\build\Debug/QLADemo.pdb"
+				ProgramDatabaseFile=".\build\vc71\Debug/QLADemo.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\Debug/ClientC.tlb"
+				TypeLibraryName=".\build\vc71\Debug/ClientC.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -76,8 +76,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\build\Release"
-			IntermediateDirectory=".\build\Release"
+			OutputDirectory=".\build\vc71\Release"
+			IntermediateDirectory=".\build\vc71\Release"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -96,10 +96,10 @@
 				DisableLanguageExtensions="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\Release/ClientC.pch"
-				AssemblerListingLocation=".\build\Release/"
-				ObjectFile=".\build\Release/"
-				ProgramDataBaseFileName=".\build\Release/"
+				PrecompiledHeaderFile=".\build\vc71\Release/ClientC.pch"
+				AssemblerListingLocation=".\build\vc71\Release/"
+				ObjectFile=".\build\vc71\Release/"
+				ProgramDataBaseFileName=".\build\vc71\Release/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -111,12 +111,12 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib"
-				ProgramDatabaseFile=".\build\Release/QLADemo.pdb"
+				ProgramDatabaseFile=".\build\vc71\Release/QLADemo.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\Release/ClientC.tlb"
+				TypeLibraryName=".\build\vc71\Release/ClientC.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
