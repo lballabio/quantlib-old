@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include "utilities.hpp"
-#include "exception.hpp"
+#include <ObjectHandler/utilities.hpp>
+#include <ObjectHandler/exception.hpp>
 #include <sstream>
 #include <fstream>
 

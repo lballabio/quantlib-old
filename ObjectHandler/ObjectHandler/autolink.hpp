@@ -18,7 +18,7 @@
 #ifndef objecthandler_autolink_h
 #define objecthandler_autolink_h
 
-#include <boost/config.hpp>
+#include <ObjectHandler/objecthandlerversion.hpp>
 
 // select toolset:
 #if (_MSC_VER < 1200)

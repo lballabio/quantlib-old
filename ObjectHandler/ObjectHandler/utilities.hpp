@@ -18,7 +18,7 @@
 #ifndef utilities_h
 #define utilities_h
 
-#include "object.hpp"
+#include <ObjectHandler/object.hpp>
 
 string toUpper(const string &s);
 string AnyToString(const any_ptr &a);

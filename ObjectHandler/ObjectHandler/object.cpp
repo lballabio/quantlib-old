@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include "object.hpp"
-#include "utilities.hpp"
+#include <ObjectHandler/object.hpp>
+#include <ObjectHandler/utilities.hpp>
 
 Object::Object()
 {

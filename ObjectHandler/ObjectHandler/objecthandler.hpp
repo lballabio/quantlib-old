@@ -20,17 +20,7 @@
 
 #include <ObjectHandler/objecthandlerversion.hpp>
 
-/* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
-   for example) also #define _MSC_VER
-
-*/
-#ifdef BOOST_MSVC
-#  define BOOST_LIB_DIAGNOSTIC
-#  include <boost/config/auto_link.hpp>
-#  undef BOOST_LIB_DIAGNOSTIC
-#endif
-
-#include "utilities.hpp"
+#include <ObjectHandler/utilities.hpp>
 
 typedef boost::shared_ptr<Object> obj_ptr;
 typedef map<string, obj_ptr> ObjectList;

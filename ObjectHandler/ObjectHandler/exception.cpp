@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include "exception.hpp"
+#include <ObjectHandler/exception.hpp>
 
 Exception::Exception(const std::string& message)
 	: message_(message) {
