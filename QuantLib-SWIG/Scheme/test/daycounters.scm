@@ -65,7 +65,7 @@
                           isda-expected 1.0e-10
                                         
                           (Date->string d1) " to "
-                          (Date->string d2) ", ISDA" eol)
+                          (Date->string d2) ", ISDA" cr)
           (check-expected (DayCounter-year-fraction isma d1 d2 
                                                     start-ref end-ref)
                           isma-expected 1.0e-10
@@ -73,9 +73,9 @@
                           (Date->string d1) " to "
                           (Date->string d2) ", ISMA, ref. "
                           (Date->string start-ref) " to "
-                          (Date->string end-ref) eol)
+                          (Date->string end-ref) cr)
           (check-expected (DayCounter-year-fraction afb d1 d2)
                           afb-expected 1.0e-10
                                         
                           (Date->string d1) " to "
-                          (Date->string d2) ", AFB" eol))))))
+                          (Date->string d2) ", AFB" cr))))))

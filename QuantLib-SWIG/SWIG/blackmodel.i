@@ -17,14 +17,24 @@
 
 // $Id$
 
-#ifndef quantlib_vectors_i
-#define quantlib_vectors_i
+#ifndef quantlib_black_model_i
+#define quantlib_black_model_i
 
-%include stl.i
+%include common.i
+%include marketelements.i
+%include termstructures.i
 
-namespace std {
-    %template(IntVector) vector<int>;
-    %template(DoubleVector) vector<double>;
+%{
+using QuantLib::BlackModel;
+%}
+
+%template(BlackModel) Handle<BlackModel>;
+%extend Handle<BlackModel> {
+    Handle<BlackModel>(const RelinkableHandle<MarketElement>& volatility,
+                       const RelinkableHandle<TermStructure>& termStructure) {
+        return new Handle<BlackModel>(
+            new BlackModel(volatility,termStructure));
+    }
 }
 
 

@@ -28,6 +28,7 @@
   (if (directory-exists? test-dir)
       (current-directory test-dir)))
 
+(load "capfloor.scm")
 (load "covariance.scm")
 (load "date.scm")
 (load "daycounters.scm")
@@ -42,9 +43,20 @@
 (load "simpleswap.scm")
 (load "solvers1d.scm")
 (load "statistics.scm")
+(load "swaption.scm")
 (load "termstructures.scm")
+; to be removed
+(load "old_pricers.scm")
 
 (let ((suite (make-suite)))
+  (suite-add-test suite CapFloor-strike-dependency-test
+                  "Testing cap/floor dependency on strike")
+  (suite-add-test suite CapFloor-consistency-test
+                  "Testing consistency between cap, floor and collar")
+  (suite-add-test suite CapFloor-parity-test
+                  "Testing put/call parity for cap and floor")
+  (suite-add-test suite CapFloor-cached-value-test
+                  "Testing cap/floor value against cached values")
   (suite-add-test suite Covariance-test
                   "Testing covariance calculation")
   (suite-add-test suite Date-test
@@ -91,6 +103,14 @@
                   "Testing 1D solvers")
   (suite-add-test suite Statistics-test
                   "Testing statistics")
+  (suite-add-test suite Swaption-strike-dependency-test
+                  "Testing swaption dependency on strike")
+  (suite-add-test suite Swaption-spread-dependency-test
+                  "Testing swaption dependency on spread")
+  (suite-add-test suite Swaption-spread-treatment-test
+                  "Testing swaption treatment of spread")
+  (suite-add-test suite Swaption-cached-value-test
+                  "Testing swaption value against cached value")
   (suite-add-test suite Implied-term-structure-consistency-test
                   "Testing consistency of implied term structure")
   (suite-add-test suite Implied-term-structure-observability-test
@@ -103,5 +123,19 @@
                   "Testing consistency of zero-spreaded term structure")
   (suite-add-test suite Zero-spreaded-term-structure-observability-test
                   "Testing observability of zero-spreaded term structure")
+  ; to be removed
+  (suite-add-test suite OldBarrierPricer-test
+                  "Testing old-style barrier option pricer")
+  (suite-add-test suite OldBinaryPricer-test
+                  "Testing old-style binary option pricer")
+  (suite-add-test suite OldCliquetPricer-test
+                  "Testing old-style cliquet option pricer")
+  (suite-add-test suite OldDividendEuropeanPricer-test
+                  "Testing old-style European option pricer with dividends")
+  (suite-add-test suite OldFdEuropeanPricer-test
+                  "Testing old-style finite-difference European option pricer")
+  (suite-add-test suite OldAmericanPricers-test
+                  "Testing old-style American-type pricers")
+
   (suite-run suite))
 

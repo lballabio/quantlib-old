@@ -30,53 +30,64 @@ docs = ['LICENSE.TXT',
         'History.txt',
         'README.txt']
 
-swig_files = ['../SWIG/quantlib.i',
-              '../SWIG/ql.i',
-              '../SWIG/common.i',
-              '../SWIG/calendars.i',
-              '../SWIG/currencies.i',
-              '../SWIG/date.i',
-              '../SWIG/daycounters.i',
-              '../SWIG/distributions.i',
-              '../SWIG/functions.i',
-              '../SWIG/history.i',
-              '../SWIG/indexes.i',
-              '../SWIG/instruments.i',
-              '../SWIG/interpolation.i',
-              '../SWIG/linearalgebra.i',
-              '../SWIG/marketelements.i',
-              '../SWIG/montecarlo.i',
-              '../SWIG/null.i',
-              '../SWIG/observer.i',
-              '../SWIG/operators.i',
-              '../SWIG/options.i',
-              '../SWIG/piecewiseflatforward.i',
-              '../SWIG/randomnumbers.i',
-              '../SWIG/riskstatistics.i',
-              '../SWIG/segmentintegral.i',
-              '../SWIG/solvers1d.i',
-              '../SWIG/statistics.i',
-              '../SWIG/swap.i',
-              '../SWIG/termstructures.i',
-              '../SWIG/types.i',
-              '../SWIG/vectors.i']
+swig_files = ['quantlib.i',
+              'ql.i',
+              'common.i',
+              'blackmodel.i',
+              'calendars.i',
+              'capfloor.i',
+              'currencies.i',
+              'date.i',
+              'daycounters.i',
+              'distributions.i',
+              'functions.i',
+              'history.i',
+              'indexes.i',
+              'instruments.i',
+              'interpolation.i',
+              'linearalgebra.i',
+              'marketelements.i',
+              'montecarlo.i',
+              'null.i',
+              'observer.i',
+              'operators.i',
+              'options.i',
+              'piecewiseflatforward.i',
+              'randomnumbers.i',
+              'riskstatistics.i',
+              'scheduler.i',
+              'segmentintegral.i',
+              'solvers1d.i',
+              'statistics.i',
+              'swap.i',
+              'swaption.i',
+              'termstructures.i',
+              'types.i',
+              'vectors.i',
+              # to be removed
+              'old_pricers.i',
+              'old_volatility.i']
 
-test_files = ['QuantLib/test/QuantLibTestSuite.py',
-              'QuantLib/test/covariance.py',
-              'QuantLib/test/date.py',
-              'QuantLib/test/daycounters.py',
-              'QuantLib/test/distributions.py',
-              'QuantLib/test/europeanoption.py',
-              'QuantLib/test/instruments.py',
-              'QuantLib/test/marketelements.py',
-              'QuantLib/test/operators.py',
-              'QuantLib/test/piecewiseflatforward.py',
-              'QuantLib/test/riskstatistics.py',
-              'QuantLib/test/segmentintegral.py',
-              'QuantLib/test/simpleswap.py',
-              'QuantLib/test/solvers1d.py',
-              'QuantLib/test/statistics.py',
-              'QuantLib/test/termstructures.py']
+test_files = ['QuantLibTestSuite.py',
+              'capfloor.py',
+              'covariance.py',
+              'date.py',
+              'daycounters.py',
+              'distributions.py',
+              'europeanoption.py',
+              'instruments.py',
+              'marketelements.py',
+              'operators.py',
+              'piecewiseflatforward.py',
+              'riskstatistics.py',
+              'segmentintegral.py',
+              'simpleswap.py',
+              'swaption.py',
+              'solvers1d.py',
+              'statistics.py',
+              'termstructures.py',
+              # to be removed
+              'old_pricers.py']
 
 class test(Command):
     # Original version of this class posted
@@ -185,31 +196,35 @@ def get_paths(distro):
 class install_swigfiles(install_data):
     description = "installs SWIG files"
     def finalize_options(self):
-        global swig_files, predir
+        global predir
         install_data.finalize_options(self)
         predir, _ = get_paths(self.distribution)
         if sys.platform == 'win32':
             moduledir = string.split(self.distribution.get_name(), '-')[0]
         else:
             moduledir = self.distribution.get_name()
+        swig_dir = os.path.join(".","QuantLib","SWIG")
+        if not os.path.exists(swig_dir):
+            swig_dir = os.path.join("..","SWIG")
         self.data_files = [
-            [os.path.join(predir,
-                          moduledir,
-                          'SWIG'), swig_files],]
+            [os.path.join(predir, moduledir, 'SWIG'),
+             [os.path.join(swig_dir,f) for f in swig_files]]]
 
 class install_testfiles(install_data):
     description = "installs test programs"
     def finalize_options(self):
-        global test_files, predir
+        global predir
         install_data.finalize_options(self)
         predir, docdir = get_paths(self.distribution)
+        test_dir = os.path.join(".","QuantLib","test")
         self.data_files = [
-            [os.path.join(predir, docdir, 'tests'), test_files],]
+            [os.path.join(predir, docdir, 'tests'),
+             [os.path.join(test_dir,f) for f in test_files]]]
 
 class install_docs(install_data):
     description = "installs docs"
     def finalize_options(self):
-        global docs, predir
+        global predir
         install_data.finalize_options(self)
         predir, docdir = get_paths(self.distribution)
         self.data_files = [[os.path.join(predir, docdir), docs],]
@@ -227,25 +242,29 @@ class my_sdist(sdist):
     description = "builds source distribution including SWIG interfaces"
     def run(self):
         swig_dir = os.path.join(".","QuantLib","SWIG")
-        os.makedirs(swig_dir)
-        for f in swig_files:
-            copy_file(f,swig_dir)
+        cleanup = 0
+        if not os.path.exists(swig_dir):
+            os.makedirs(swig_dir)
+            for f in swig_files:
+                copy_file(os.path.join("..","SWIG",f),swig_dir)
+            cleanup = 1
         # now do what you do
         sdist.run(self)
         # clean up
-        for f in os.listdir(swig_dir):
-            os.remove(os.path.join(swig_dir,f))
-        os.rmdir(swig_dir)
-        
+        if cleanup:
+            for f in os.listdir(swig_dir):
+                os.remove(os.path.join(swig_dir,f))
+            os.rmdir(swig_dir)
+
 class my_wrap(Command):
     user_options = []
     def initialize_options(self): pass
     def finalize_options(self): pass
     def run(self):
         print 'Generating Python bindings for QuantLib...'
-        swig_dir = os.path.join("./QuantLib/SWIG")
+        swig_dir = os.path.join(".","QuantLib","SWIG")
         if not os.path.exists(swig_dir):
-            swig_dir = "../SWIG"
+            swig_dir = os.path.join("..","SWIG")
             os.system('swig -python -c++ ' +
                       '-I%s ' % swig_dir +
                       '-o QuantLib/quantlib_wrap.cpp quantlib.i')
@@ -299,7 +318,6 @@ else:
     # changes the compiler from gcc to g++
     save_init_posix = sysconfig._init_posix
     def my_init_posix():
-        print 'my_init_posix: changing gcc to g++'
         save_init_posix()
         g = sysconfig._config_vars
         if os.environ.has_key('CC'):

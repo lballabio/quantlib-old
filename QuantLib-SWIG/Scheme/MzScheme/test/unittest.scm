@@ -24,10 +24,12 @@
   (syntax-rules ()
     ((assert check msg1 msg2 ...)
      (if (not check)
-         (error (string-append msg1 msg2 ...))))))
+         (error (string-append 
+                 (format "~a" msg1)
+                 (format "~a" msg2) ...))))))
           
 ; handy in formatting error messages
-(define eol (format "~n"))
+(define cr (format "~n"))
 
 ; a few specialized assertions
 (define-syntax assert-zero
@@ -42,9 +44,9 @@
   (syntax-rules ()
     ((check-expected calculated expected tolerance msg1 msg2 ...)
      (assert-equal calculated expected tolerance
-                   msg1 msg2 ... eol
-                   "    calculated: " calculated eol
-                   "    expected:   " expected eol))))
+                   msg1 msg2 ... cr
+                   "    calculated: " calculated cr
+                   "    expected:   " expected cr))))
 
 ; the test suite implementation
 (define (make-suite)

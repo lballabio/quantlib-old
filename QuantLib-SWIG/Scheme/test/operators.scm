@@ -26,8 +26,8 @@
   (define (check-difference f1 f2 h tolerance f1-name f2-name)
     (let ((e (norm (difference f1 f2) h)))
       (assert-zero e tolerance
-                   "norm of " f1-name " minus " f2-name ": " e eol
-                   "tolerance exceeded" eol)))
+                   "norm of " f1-name " minus " f2-name ": " e cr
+                   "tolerance exceeded" cr)))
   (define (difference f1 f2)
     (define (diff-iter l a i acc)
       (if (null? l)

@@ -81,7 +81,9 @@
 
 
 %include common.i
+%include blackmodel.i
 %include calendars.i
+%include capfloor.i
 %include cashflows.i
 %include currencies.i
 %include date.i
@@ -102,11 +104,16 @@
 %include piecewiseflatforward.i
 %include randomnumbers.i
 %include riskstatistics.i
+%include scheduler.i
 %include segmentintegral.i
 %include solvers1d.i
 %include statistics.i
 %include swap.i
+%include swaption.i
 %include termstructures.i
 %include types.i
 %include vectors.i
 
+// to be deprecated
+%include old_pricers.i
+%include old_volatility.i

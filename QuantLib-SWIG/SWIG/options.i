@@ -26,8 +26,82 @@
 %include termstructures.i
 %include stl.i
 
-// typemap option types to corresponding strings
+// exercise conditions
+%{
+using QuantLib::Exercise;
+typedef Exercise::Type ExerciseType;
+using QuantLib::EuropeanExercise;
+using QuantLib::AmericanExercise;
+using QuantLib::BermudanExercise;
 
+Exercise::Type exerciseTypeFromString(std::string s) {
+    s = StringFormatter::toLowercase(s);
+    if (s == "e" || s == "european")
+        return Exercise::European;
+    else if (s == "a" || s == "american")
+        return Exercise::American;
+    else if (s == "b" || s == "bermudan")
+        return Exercise::Bermudan;
+    else
+        throw Error("unknown exercise type: "+s);
+}
+
+std::string exerciseTypeToString(Exercise::Type t) {
+    switch (t) {
+      case Exercise::European:
+        return "European";
+      case Exercise::American:
+        return "American";
+      case Exercise::Bermudan:
+        return "Bermudan";
+      default:
+        throw Error("unknown exercise type");
+    }
+}
+%}
+
+MapToString(ExerciseType,exerciseTypeFromString,exerciseTypeToString);
+
+class Exercise {
+  public:
+    Exercise(ExerciseType, const std::vector<Date>&);
+    ExerciseType type() const;
+    std::vector<Date> dates() const;
+};
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+// no virtual destructor in base class - prevent mismatch
+%inline %{
+    Exercise* new_EuropeanExercise(const Date& date) {
+        return new Exercise(Exercise::European, std::vector<Date>(1,date));
+    }
+    Exercise* new_AmericanExercise(const Date& earliestDate, 
+                                   const Date& latestDate) {
+        std::vector<Date> v(2);
+        v[0] = earliestDate; v[1] = latestDate;
+        return new Exercise(Exercise::American,v);
+    }
+    Exercise* new_BermudanExercise(const std::vector<Date>& dates) {
+        return new Exercise(Exercise::Bermudan,dates);
+    }
+%}
+#else
+// use inheritance
+class EuropeanExercise : public Exercise {
+  public:
+    EuropeanExercise(const Date& date);
+};
+class AmericanExercise : public Exercise {
+  public:
+    AmericanExercise(const Date& earliestDate, 
+                     const Date& latestDate);
+};
+class BermudanExercise : public Exercise {
+  public:
+    BermudanExercise(const std::vector<Date>& dates);
+};
+#endif
+
+// option types
 %{
 using QuantLib::Option;
 typedef Option::Type OptionType;

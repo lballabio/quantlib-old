@@ -74,3 +74,16 @@
             ,@body))
         (combinations ,@sets)))))
 
+; repeat n times a series of instructions
+
+(define (do-repeat n thunk)
+  (if (> n 0)
+      (begin
+        (thunk)
+        (do-repeat (- n 1) thunk))))
+
+(define-macro repeat
+  (lambda (times . body)
+    `(do-repeat ,(car times)
+                (lambda () ,@body))))
+

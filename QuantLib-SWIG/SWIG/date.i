@@ -155,6 +155,10 @@ class Period {
 };
 ReturnByValue(Period);
 
+namespace std {
+    %template(PeriodVector) vector<Period>;
+}
+
 #if defined(SWIGGUILE)
 %inline %{
     Period Period_from_string(const std::string& s) {
@@ -257,6 +261,10 @@ class Date {
 };
 PassByValue(Date);
 ReturnByValue(Date);
+
+namespace std {
+    %template(DateVector) vector<Date>;
+}
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename("Date=?")  Date_equal;

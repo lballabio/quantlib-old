@@ -27,7 +27,7 @@
           (apply string-append (map (lambda (token) (format #f "~A" token)) 
                                     (list ,@msg)))))))
 ; handy in formatting error messages
-(define eol "\n")
+(define cr "\n")
 
 ; a few specialized assertions
 (define-macro assert-zero
@@ -39,9 +39,9 @@
 (define-macro check-expected
   (lambda (calculated expected tolerance . msg)
     `(assert-equal ,calculated ,expected ,tolerance
-                   ,@msg eol
-                   "    calculated: " ,calculated eol
-                   "    expected:   " ,expected eol)))
+                   ,@msg cr
+                   "    calculated: " ,calculated cr
+                   "    expected:   " ,expected cr)))
 
 ; the test-suite implementation
 (define (make-suite)

@@ -76,24 +76,29 @@ class Path {
             for (Size i=0; i<self->size(); i++)
                 rb_yield(rb_float_new((*self)[i]));
         }
-        #elif defined(SWIGMZSCHEME)
-        void for_each(Scheme_Object* proc) {
-            for (Size i=0; i<self->size(); ++i) {
-                Scheme_Object* entry = scheme_make_double((*self)[i]);
-                scheme_apply(proc,1,&entry);
-            }
-        }
-        #elif defined(SWIGGUILE)
-        void for_each(SCM proc) {
-            for (Size i=0; i<self->size(); ++i) {
-                SCM entry = gh_double2scm((*self)[i]);
-                gh_call1(proc,entry);
-            }
-        }
         #endif
     }
 };
 ReturnByValue(Path);
+#if defined(SWIGMZSCHEME)
+%inline %{
+void Path_for_each(Scheme_Object* proc, Path* p) {
+    for (Size i=0; i<p->size(); ++i) {
+        Scheme_Object* x = scheme_make_double((*p)[i]);
+        scheme_apply(proc,1,&x);
+    }
+}
+%}
+#elif defined(SWIGGUILE)
+%inline %{
+void Path_for_each(SCM proc, Path* p) {
+    for (Size i=0; i<p->size(); ++i) {
+        SCM x = gh_double2scm((*p)[i]);
+        gh_call1(proc,x);
+    }
+}
+%}
+#endif
 
 
 %{
@@ -163,46 +168,52 @@ class MultiPath {
                 rb_yield(v);
             }
         }
-        #elif defined(SWIGMZSCHEME)
-        void for_each_path(Scheme_Object* proc) {
-            for (Size i=0; i<self->assetNumber(); i++) {
-                Scheme_Object* p = SWIG_MakePtr(&((*self)[i]), 
-                                                SWIGTYPE_p_Path);
-                scheme_apply(proc,1,&p);
-            }
-        }
-        void for_each_step(Scheme_Object* proc) {
-            for (Size j=0; j<self->pathSize(); j++) {
-                Scheme_Object* v = scheme_make_vector(self->assetNumber(),
-                                                      scheme_undefined);
-                Scheme_Object** els = SCHEME_VEC_ELS(v);
-                for (Size i=0; i<self->assetNumber(); i++)
-                    els[i] = scheme_make_double((*self)[i][j]);
-                scheme_apply(proc,1,&v);
-            }
-        }
-        #elif defined(SWIGGUILE)
-        void for_each_path(SCM proc) {
-            for (Size i=0; i<self->assetNumber(); ++i) {
-                SCM p = SWIG_Guile_MakePtr(&((*self)[i]), SWIGTYPE_p_Path);
-                gh_call1(proc,p);
-            }
-        }
-        void for_each_step(SCM proc) {
-            for (Size j=0; j<self->pathSize(); ++j) {
-                SCM v = gh_make_vector(gh_long2scm(self->assetNumber()),
-                                       SCM_UNSPECIFIED);
-                for (Size i=0; i<self->assetNumber(); i++) {
-                    gh_vector_set_x(v,gh_long2scm(i),
-                                    gh_double2scm((*self)[i][j]));
-                }
-                gh_call1(proc,v);
-            }
-        }
         #endif
     }
 };
 ReturnByValue(MultiPath);
+
+#if defined(SWIGMZSCHEME)
+%inline %{
+void MultiPath_for_each_path(Scheme_Object* proc, MultiPath* p) {
+    for (Size i=0; i<p->assetNumber(); i++) {
+        Scheme_Object* x = SWIG_MakePtr(&((*p)[i]), 
+                                        SWIGTYPE_p_Path);
+        scheme_apply(proc,1,&x);
+    }
+}
+void MultiPath_for_each_step(Scheme_Object* proc, MultiPath* p) {
+    for (Size j=0; j<p->pathSize(); j++) {
+        Scheme_Object* v = scheme_make_vector(p->assetNumber(),
+                                              scheme_undefined);
+        Scheme_Object** els = SCHEME_VEC_ELS(v);
+        for (Size i=0; i<p->assetNumber(); i++)
+            els[i] = scheme_make_double((*p)[i][j]);
+        scheme_apply(proc,1,&v);
+    }
+}
+%}
+#elif defined(SWIGGUILE)
+%inline %{
+void MultiPath_for_each_path(SCM proc, MultiPath* p) {
+    for (Size i=0; i<p->assetNumber(); ++i) {
+        SCM x = SWIG_Guile_MakePtr(&((*p)[i]), SWIGTYPE_p_Path);
+        gh_call1(proc,x);
+    }
+}
+void MultiPath_for_each_step(SCM proc, MultiPath* p) {
+    for (Size j=0; j<p->pathSize(); ++j) {
+        SCM v = gh_make_vector(gh_long2scm(p->assetNumber()),
+                               SCM_UNSPECIFIED);
+        for (Size i=0; i<p->assetNumber(); i++) {
+            gh_vector_set_x(v,gh_long2scm(i),
+                            gh_double2scm((*p)[i][j]));
+        }
+        gh_call1(proc,v);
+    }
+}
+%}
+#endif
 
 %{
 using QuantLib::MonteCarlo::GaussianMultiPathGenerator;

@@ -65,7 +65,9 @@ Scripts  =    [ 'setup.rb' ]
 Interfaces =  [ 'quantlib.i',
                 'ql.i',
                 'common.i',
+                'blackmodel.i',
                 'calendars.i',
+                'capfloor.i',
                 'currencies.i',
                 'date.i',
                 'daycounters.i',
@@ -85,15 +87,22 @@ Interfaces =  [ 'quantlib.i',
                 'piecewiseflatforward.i',
                 'randomnumbers.i',
                 'riskstatistics.i',
+                'scheduler.i',
                 'segmentintegral.i',
                 'solvers1d.i',
                 'statistics.i',
                 'swap.i',
+                'swaption.i',
                 'termstructures.i',
                 'types.i',
-                'vectors.i']
+                'vectors.i',
+                # to be removed
+                'old_pricers.i',
+                'old_volatility.i']
 
-Tests =       [ 'covariance.rb',
+Tests =       [ 'QuantLibTestSuite.rb',
+                'capfloor.rb',
+                'covariance.rb',
                 'dates.rb',
                 'daycounters.rb',
                 'distributions.rb',
@@ -107,8 +116,10 @@ Tests =       [ 'covariance.rb',
                 'simpleswap.rb',
                 'solvers1d.rb',
                 'statistics.rb',
+                'swaption.rb',
                 'termstructures.rb',
-                'QuantLibTestSuite.rb' ]
+                # to be removed
+                'old_pricers.rb']
 
 # commands
 class Command

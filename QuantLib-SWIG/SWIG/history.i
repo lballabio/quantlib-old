@@ -243,82 +243,90 @@ class History {
                 rb_yield(entry);
             }
         }
-        #elif defined(SWIGMZSCHEME)
-        void for_each(Scheme_Object* proc) {
-            History::const_iterator i=self->begin(), end=self->end();
-            for ( ; i!=end; ++i) {
-                double v = i->value();
-                Scheme_Object* entry;
-                if (v == Null<double>()) {
-                    entry = scheme_false;
-                } else {
-                    Date* d = new Date(i->date());
-                    Scheme_Object* car = SWIG_MakePtr(d, SWIGTYPE_p_Date);
-                    Scheme_Object* cdr = scheme_make_double(v);
-                    entry = scheme_make_pair(car,cdr);
-                }
-                scheme_apply(proc,1,&entry);
-            }
-        }
-        void for_each_valid(Scheme_Object* proc) {
-            History::const_valid_iterator i=self->vbegin(), end=self->vend();
-            for ( ; i!=end; ++i) {
-                double v = i->value();
-                Date* d = new Date(i->date());
-                Scheme_Object* car = SWIG_MakePtr(d, SWIGTYPE_p_Date);
-                Scheme_Object* cdr = scheme_make_double(v);
-                Scheme_Object* cons = scheme_make_pair(car,cdr);
-                scheme_apply(proc,1,&cons);
-            }
-        }
-        #elif defined(SWIGGUILE)
-        void for_each(SCM proc) {
-            History::const_iterator i=self->begin(), end=self->end();
-            for ( ; i!=end; ++i) {
-                double v = i->value();
-                SCM entry;
-                if (v == Null<double>()) {
-                    entry = SCM_BOOL_F;
-                } else {
-                    Date* d = new Date(i->date());
-                    SCM car = SWIG_Guile_MakePtr(d, SWIGTYPE_p_Date);
-                    SCM cdr = gh_double2scm(v);
-                    entry = gh_cons(car,cdr);
-                }
-                gh_call1(proc,entry);
-            }
-        }
-        void for_each_valid(SCM proc) {
-            History::const_valid_iterator i=self->vbegin(), end=self->vend();
-            for ( ; i!=end; ++i) {
-                double v = i->value();
-                Date* d = new Date(i->date());
-                SCM car = SWIG_Guile_MakePtr(d, SWIGTYPE_p_Date);
-                SCM cdr = gh_double2scm(v);
-                SCM cons = gh_cons(car,cdr);
-                gh_call1(proc,cons);
-            }
-        }
-        %scheme%{
-            (define (History-map h f)
-              (let ((results '()))
-                (History-for-each h (lambda (e)
-                                      (if e
-                                          (set! results (cons (f e) results))
-                                          (set! results (cons #f results)))))
-                (reverse results)))
-            (define (History-map-valid h f)
-              (let ((results '()))
-                (History-for-each-valid h (lambda (e)
-                                            (set! results 
-                                                  (cons (f e) results))))
-                (reverse results)))
-            (export History-map
-                    History-map-valid)
-        %}
         #endif
     }
 };
+
+#if defined(SWIGMZSCHEME)
+%inline %{
+void History_for_each(Scheme_Object* proc, History* h) {
+    History::const_iterator i=h->begin(), end=h->end();
+    for ( ; i!=end; ++i) {
+        double v = i->value();
+        Scheme_Object* entry;
+        if (v == Null<double>()) {
+            entry = scheme_false;
+        } else {
+            Date* d = new Date(i->date());
+            Scheme_Object* car = SWIG_MakePtr(d, SWIGTYPE_p_Date);
+            Scheme_Object* cdr = scheme_make_double(v);
+            entry = scheme_make_pair(car,cdr);
+        }
+        scheme_apply(proc,1,&entry);
+    }
+}
+void History_for_each_valid(Scheme_Object* proc, History* h) {
+    History::const_valid_iterator i=h->vbegin(), end=h->vend();
+    for ( ; i!=end; ++i) {
+        double v = i->value();
+        Date* d = new Date(i->date());
+        Scheme_Object* car = SWIG_MakePtr(d, SWIGTYPE_p_Date);
+        Scheme_Object* cdr = scheme_make_double(v);
+        Scheme_Object* cons = scheme_make_pair(car,cdr);
+        scheme_apply(proc,1,&cons);
+    }
+}
+%}
+#elif defined(SWIGGUILE)
+%inline %{
+void History_for_each(SCM proc, History* h) {
+    History::const_iterator i=h->begin(), end=h->end();
+    for ( ; i!=end; ++i) {
+        double v = i->value();
+        SCM entry;
+        if (v == Null<double>()) {
+            entry = SCM_BOOL_F;
+        } else {
+            Date* d = new Date(i->date());
+            SCM car = SWIG_Guile_MakePtr(d, SWIGTYPE_p_Date);
+            SCM cdr = gh_double2scm(v);
+            entry = gh_cons(car,cdr);
+        }
+        gh_call1(proc,entry);
+    }
+}
+void History_for_each_valid(SCM proc, History* h) {
+    History::const_valid_iterator i=h->vbegin(), end=h->vend();
+    for ( ; i!=end; ++i) {
+        double v = i->value();
+        Date* d = new Date(i->date());
+        SCM car = SWIG_Guile_MakePtr(d, SWIGTYPE_p_Date);
+        SCM cdr = gh_double2scm(v);
+        SCM cons = gh_cons(car,cdr);
+        gh_call1(proc,cons);
+    }
+}
+%}
+%scheme%{
+    (define (History-map f h)
+      (let ((results '()))
+        (History-for-each (lambda (e)
+                            (if e
+                                (set! results (cons (f e) results))
+                                (set! results (cons #f results))))
+                          h)
+        (reverse results)))
+    (define (History-map-valid f h)
+      (let ((results '()))
+        (History-for-each-valid (lambda (e)
+                                  (set! results 
+                                        (cons (f e) results)))
+                                h)
+        (reverse results)))
+    (export History-map
+            History-map-valid)
+%}
+#endif
 
 #if defined(SWIGPYTHON)
 %pythoncode %{

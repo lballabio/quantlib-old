@@ -45,8 +45,8 @@
        (let ((derived-result (MarketElement-value derived-me))
              (function-result (f (MarketElement-value me))))
          (assert-equal derived-result function-result 1.0e-10
-                       "derived market element yields " derived-result eol
-                       "function result is " function-result eol))))
+                       "derived market element yields " derived-result cr
+                       "function result is " function-result cr))))
    (list (lambda (x) (+ x 10))
          (lambda (x) (* x 10))
          (lambda (x) (- x 10)))))
@@ -67,8 +67,8 @@
                                    (MarketElement-value me2))))
            (assert-equal composite-result function-result 1.0e-10
                          "composite market element yields " 
-                         composite-result eol
-                         "function result is " function-result eol))))
+                         composite-result cr
+                         "function result is " function-result cr))))
      (list (lambda (x y) (+ x y))
            (lambda (x y) (* x y))
            (lambda (x y) (- x y))))))

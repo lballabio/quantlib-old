@@ -53,7 +53,9 @@
   (list "quantlib.i"
         "ql.i"
         "common.i"
+        "blackmodel.i"
         "calendars.i"
+        "capfloor.i"
         "currencies.i"
         "date.i"
         "daycounters.i"
@@ -73,15 +75,21 @@
         "piecewiseflatforward.i"
         "randomnumbers.i"
         "riskstatistics.i"
+        "scheduler.i"
         "segmentintegral.i"
         "solvers1d.i"
         "statistics.i"
         "swap.i"
+        "swaption.i"
         "termstructures.i"
         "types.i"
-        "vectors.i"))
+        "vectors.i"
+        ; to be removed
+        "old_pricers.i"
+        "old_volatility.i"))
 (define test-files
-  (list "common.scm"
+  (list "capfloor.scm"
+        "common.scm"
         "covariance.scm"
         "date.scm"
         "daycounters.scm"
@@ -96,7 +104,10 @@
         "simpleswap.scm"
         "solvers1d.scm"
         "statistics.scm"
-        "termstructures.scm"))
+        "swaption.scm"
+        "termstructures.scm"
+        ; to be removed
+        "old_pricers.scm"))
 (define test-support-files
   (list "unittest.scm"
         "utilities.scm"

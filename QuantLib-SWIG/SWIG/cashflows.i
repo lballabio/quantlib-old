@@ -128,7 +128,7 @@ std::vector<Handle<CashFlow> > FloatingRateCouponVector(
     int frequency, const Calendar& calendar,
     RollingConvention convention,
     const XiborHandle& index, int indexFixingDays, 
-    const std::vector<double>& spreads, 
+    const std::vector<double>& spreads = std::vector<double>(), 
     const Date& stubDate = Date());
 
 

@@ -23,89 +23,88 @@
 (load "common.scm")
 
 (define (Risk-statistics-test)
+  (define (test-case stats average sigma)
+    (define pi (acos -1.0))
+    (define (gaussian x)
+      (let ((dx (- x average)))
+        (/ (exp (/ (- (* dx dx)) (* 2.0 sigma sigma)))
+           (* sigma (sqrt (* 2.0 pi))))))
+    (let* ((N 25000)
+           (sigmas 15)
+           (target average)
+           (normal (new-NormalDistribution average sigma))
+           (data-min (- average (* sigmas sigma)))
+           (data-max (+ average (* sigmas sigma)))
+           (h (grid-step data-min data-max N))
+           (data (grid data-min data-max N))
+           (weights (map gaussian data)))
+      (RiskStatistics-add stats data weights)
+      (check-expected (RiskStatistics-samples stats) N 0
+                      "number of samples")
+      (check-expected (RiskStatistics-weight-sum stats) (apply + weights) 0.0 
+                      "sum of weights")
+      (check-expected (RiskStatistics-min stats) (apply min data) 0.0
+                      "minimum value")
+      (check-expected (RiskStatistics-max stats) (apply max data) 1.0e-13
+                      "maximum value")
+      (check-expected (RiskStatistics-mean stats) average
+                      (if (= average 0.0)
+                          1.0e-13
+                          (* (abs average) 1.0e-13))
+                      "mean value")
+      (check-expected (RiskStatistics-variance stats) (* sigma sigma)
+                      (* sigma sigma 1.0e-4)
+                      "variance")
+      (check-expected (RiskStatistics-standard-deviation stats) sigma
+                      (* sigma 1.0e-4)
+                      "standard deviation")
+      (check-expected (RiskStatistics-skewness stats) 0.0 1.0e-4
+                      "skewness")
+      (check-expected (RiskStatistics-kurtosis stats) 0.0 1.0e-1
+                      "kurtosis")
+
+      (deleting-let ((cum (new-CumulativeNormalDistribution average sigma)
+                          delete-CumulativeNormalDistribution))
+        (let ((two-std-dev (CumulativeNormalDistribution-call
+                            cum
+                            (+ average (* 2 sigma)))))
+          (let ((right-potential-upside (max 0.0 (+ average (* 2 sigma)))))
+            (check-expected (RiskStatistics-potential-upside stats two-std-dev)
+                            right-potential-upside
+                            (if (= 0.0 right-potential-upside)
+                                1.0e-3
+                                (* right-potential-upside 1.0e-3))
+                            "potential upside"))
+          (let ((right-VAR (- (min 0.0 (- average (* 2 sigma))))))
+            (check-expected (RiskStatistics-value-at-risk stats two-std-dev)
+                            right-VAR
+                            (if (= 0.0 right-VAR)
+                                1.0e-3
+                                (* 1.0e-3 right-VAR))
+                            "value at risk"))
+          (let ((right-ex-shortfall
+                 (- (min 
+                     (- average
+                        (/ (* sigma sigma (gaussian (- average (* 2 sigma))))
+                           (- 1 two-std-dev)))
+                     0.0))))
+            (check-expected (RiskStatistics-expected-shortfall stats 
+                                                               two-std-dev)
+                            right-ex-shortfall
+                            (if (= 0.0 right-ex-shortfall)
+                                1.0e-4
+                                (* 1.0e-4 right-ex-shortfall))
+                            "expected shortfall"))
+          (check-expected (RiskStatistics-shortfall stats target) 0.5 0.5e-8
+                          "shortfall")
+          (let ((right-avg-shortfall (/ sigma (sqrt (* 2 pi)))))
+            (check-expected (RiskStatistics-average-shortfall stats target)
+                            right-avg-shortfall
+                            (* 1.0e-4 right-avg-shortfall)
+                            "average shortfall"))
+        
+          (RiskStatistics-reset! stats)))))
   (deleting-let ((s (new-RiskStatistics) delete-RiskStatistics))
     (for-each-combination ((average '(-100.0 0.0 100.0))
                            (sigma '(0.1 1.0 10.0)))
-      (risk-statistics-test-case s average sigma))))
-
-(define (risk-statistics-test-case stats average sigma)
-  (define pi (acos -1.0))
-  (define (gaussian x)
-    (let ((dx (- x average)))
-      (/ (exp (/ (- (* dx dx)) (* 2.0 sigma sigma)))
-         (* sigma (sqrt (* 2.0 pi))))))
-  (let* ((N 25000)
-         (sigmas 15)
-         (target average)
-         (normal (new-NormalDistribution average sigma))
-         (data-min (- average (* sigmas sigma)))
-         (data-max (+ average (* sigmas sigma)))
-         (h (grid-step data-min data-max N))
-         (data (grid data-min data-max N))
-         (weights (map gaussian data)))
-    (RiskStatistics-add stats data weights)
-    (check-expected (RiskStatistics-samples stats) N 0
-                    "number of samples")
-    (check-expected (RiskStatistics-weight-sum stats) (apply + weights) 0.0 
-                    "sum of weights")
-    (check-expected (RiskStatistics-min stats) (apply min data) 0.0
-                    "minimum value")
-    (check-expected (RiskStatistics-max stats) (apply max data) 1.0e-13
-                    "maximum value")
-    (check-expected (RiskStatistics-mean stats) average
-                    (if (= average 0.0)
-                        1.0e-13
-                        (* (abs average) 1.0e-13))
-                    "mean value")
-    (check-expected (RiskStatistics-variance stats) (* sigma sigma)
-                    (* sigma sigma 1.0e-4)
-                    "variance")
-    (check-expected (RiskStatistics-standard-deviation stats) sigma
-                    (* sigma 1.0e-4)
-                    "standard deviation")
-    (check-expected (RiskStatistics-skewness stats) 0.0 1.0e-4
-                    "skewness")
-    (check-expected (RiskStatistics-kurtosis stats) 0.0 1.0e-1
-                    "kurtosis")
-
-    (deleting-let ((cum (new-CumulativeNormalDistribution average sigma)
-                        delete-CumulativeNormalDistribution))
-      (let ((two-std-dev (CumulativeNormalDistribution-call
-                          cum
-                          (+ average (* 2 sigma)))))
-        (let ((right-potential-upside (max 0.0 (+ average (* 2 sigma)))))
-          (check-expected (RiskStatistics-potential-upside stats two-std-dev)
-                          right-potential-upside
-                          (if (= 0.0 right-potential-upside)
-                              1.0e-3
-                              (* right-potential-upside 1.0e-3))
-                          "potential upside"))
-        (let ((right-VAR (- (min 0.0 (- average (* 2 sigma))))))
-          (check-expected (RiskStatistics-value-at-risk stats two-std-dev)
-                          right-VAR
-                          (if (= 0.0 right-VAR)
-                              1.0e-3
-                              (* 1.0e-3 right-VAR))
-                          "value at risk"))
-        (let ((right-ex-shortfall
-               (- (min 
-                   (- average
-                      (/ (* sigma sigma (gaussian (- average (* 2 sigma))))
-                         (- 1 two-std-dev)))
-                   0.0))))
-          (check-expected (RiskStatistics-expected-shortfall stats two-std-dev)
-                          right-ex-shortfall
-                          (if (= 0.0 right-ex-shortfall)
-                              1.0e-4
-                              (* 1.0e-4 right-ex-shortfall))
-                          "expected shortfall"))
-        (check-expected (RiskStatistics-shortfall stats target) 0.5 0.5e-8
-                        "shortfall")
-        (let ((right-avg-shortfall (/ sigma (sqrt (* 2 pi)))))
-          (check-expected (RiskStatistics-average-shortfall stats target)
-                          right-avg-shortfall
-                          (* 1.0e-4 right-avg-shortfall)
-                          "average shortfall"))
-        
-        (RiskStatistics-reset! stats)))))
-
+      (test-case s average sigma))))

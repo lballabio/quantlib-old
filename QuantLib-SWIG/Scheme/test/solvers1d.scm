@@ -21,6 +21,32 @@
 ; $Id$
 
 (define (Solver-1D-test)
+  (define (test-solver make delete)
+    (deleting-let ((solver (make) delete))
+      (for-each (lambda (accuracy)
+                  (let ((root (Solver1D-solve solver 
+                                              (lambda (x) (- (* x x) 1))
+                                              accuracy
+                                              1.5
+                                              0.1)))
+                    (assert-equal root 1.0 accuracy
+                                  "solve():" cr
+                                  "  expected:        1.0" cr
+                                  "  calculated root: " root cr
+                                  "  accuracy:        " accuracy cr))
+                  (let ((root (Solver1D-bracketed-solve solver 
+                                                        (lambda (x) 
+                                                          (- (* x x) 1))
+                                                        accuracy
+                                                        1.5
+                                                        0.0
+                                                        2.0)))
+                    (assert-equal root 1.0 accuracy
+                                  "bracketed-solve():" cr
+                                  "  expected:        1.0" cr
+                                  "  calculated root: " root cr
+                                  "  accuracy:        " accuracy cr)))
+                '(1.0e-4 1.0e-6 1.0e-8))))
   (for-each (lambda (l) (apply test-solver l))
             (list (list new-Brent         delete-Brent)
                   (list new-Bisection     delete-Bisection)
@@ -28,29 +54,3 @@
                   (list new-Ridder        delete-Ridder)
                   (list new-Secant        delete-Secant))))
 
-(define (test-solver make delete)
-  (deleting-let ((solver (make) delete))
-    (for-each (lambda (accuracy)
-                (let ((root (Solver1D-solve solver 
-                                            (lambda (x) (- (* x x) 1))
-                                            accuracy
-                                            1.5
-                                            0.1)))
-                  (assert-equal root 1.0 accuracy
-                                "solve():" eol
-                                "  expected:        1.0" eol
-                                "  calculated root: " root eol
-                                "  accuracy:        " accuracy eol))
-                (let ((root (Solver1D-bracketed-solve solver 
-                                                      (lambda (x) 
-                                                        (- (* x x) 1))
-                                                      accuracy
-                                                      1.5
-                                                      0.0
-                                                      2.0)))
-                  (assert-equal root 1.0 accuracy
-                                "bracketed-solve():" eol
-                                "  expected:        1.0" eol
-                                "  calculated root: " root eol
-                                "  accuracy:        " accuracy eol)))
-              '(1.0e-4 1.0e-6 1.0e-8))))

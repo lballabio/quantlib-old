@@ -55,6 +55,14 @@ module QuantLibc
   class Path
     include Enumerable
   end
+
+  class History
+    include Enumerable
+  end
+
+  class Scheduler
+    include Enumerable
+  end
   
   # interface enhancements
   class Observer

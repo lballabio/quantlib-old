@@ -70,3 +70,17 @@
         (let-at-once ((var1 var2 ...) test-case)
           body1 body2 ...))
       (combinations set1 set2 ...)))))
+
+; repeat n times a series of instructions
+
+(define (do-repeat n thunk)
+  (if (> n 0)
+      (begin
+        (thunk)
+        (do-repeat (- n 1) thunk))))
+
+(define-syntax repeat
+  (syntax-rules ()
+    ((repeat (n) body1 body2 ...)
+     (do-repeat n (lambda () body1 body2 ...)))))
+

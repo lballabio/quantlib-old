@@ -20,6 +20,7 @@ require 'runit/testcase'
 require 'runit/testsuite'
 require 'runit/cui/testrunner'
 
+require 'capfloor'
 require 'covariance'
 require 'dates'
 require 'daycounters'
@@ -34,9 +35,13 @@ require 'segmentintegral'
 require 'simpleswap'
 require 'solvers1d'
 require 'statistics'
+require 'swaption'
 require 'termstructures'
+# to be removed
+require 'old_pricers'
 
 suite = RUNIT::TestSuite.new
+suite.add_test(CapFloorTest.suite)
 suite.add_test(CovarianceTest.suite)
 suite.add_test(DateTest.suite)
 suite.add_test(DayCounterTest.suite)
@@ -52,7 +57,9 @@ suite.add_test(SegmentIntegralTest.suite)
 suite.add_test(SimpleSwapTest.suite)
 suite.add_test(Solver1DTest.suite)
 suite.add_test(StatisticsTest.suite)
+suite.add_test(SwaptionTest.suite)
 suite.add_test(TermStructureTest.suite)
+suite.add_test(OldPricerTest.suite)
 
 module RUNIT
   module CUI
@@ -73,5 +80,4 @@ result = RUNIT::CUI::TestRunner.run(suite)
 unless result.succeed?
   exit(1)
 end
-
 
