@@ -219,6 +219,9 @@ class Date {
             return DateFormatter::toString(*self);
         }
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        int operator-(const Date& other) {
+            return *self - other;
+        }
         int __cmp__(const Date& other) {
             if (*self < other)
                 return -1;
