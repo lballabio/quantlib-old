@@ -82,15 +82,11 @@ class SafeInterpolation2D {
 };
 %}
 
-%define make_safe_interpolation2d(T)
+%define make_safe_interpolation2d(T,Alias)
 %{
-typedef SafeInterpolation2D<
-            QuantLib::T<Array::const_iterator,
-                        Array::const_iterator,
-                        Matrix> >
-    Safe##T;
+typedef SafeInterpolation2D<QuantLib::T> Safe##T;
 %}
-%rename(Safe##T) T;
+%rename(Alias) Safe##T;
 class Safe##T {
     #if defined(SWIGRUBY)
     %rename(__call__) operator();
@@ -103,8 +99,8 @@ class Safe##T {
 };
 %enddef
 
-make_safe_interpolation2d(BilinearInterpolation);
-make_safe_interpolation2d(BicubicSplineInterpolation);
+make_safe_interpolation2d(BilinearInterpolation,BilinearInterpolation);
+make_safe_interpolation2d(BicubicSpline,BicubicSpline);
 
 
 #endif
