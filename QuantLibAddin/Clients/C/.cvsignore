@@ -1,6 +1,10 @@
 build
+lib
 bin
+xll
 *.plg
+*.dep
+*.mak
 *_private.*
 *.layout
 Makefile.win
