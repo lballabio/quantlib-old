@@ -1,0 +1,2 @@
+#!/bin/sh
+find $1 | grep '\.[hc]pp$' | xargs cat | wc -l
