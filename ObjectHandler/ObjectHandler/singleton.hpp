@@ -54,6 +54,9 @@ namespace ObjHandler {
         static T& instance();
       protected:
         Singleton() {}
+        /*! derived class might provide an initialization body.
+            It will be called after creation
+        */
         void initialize() {}
       private:
         #ifdef OBJHANDLER_PATCH_MSVC6
