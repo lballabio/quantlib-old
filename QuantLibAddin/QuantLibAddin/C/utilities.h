@@ -30,3 +30,4 @@ void QL_LOGMESSAGE_C(
 //	const string &handle);
 
 #endif
+

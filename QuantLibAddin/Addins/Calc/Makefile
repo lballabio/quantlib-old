@@ -1,7 +1,8 @@
 COMPONENT_NAME=QuantLibAddin
 IDL_DIR=$(OFFICE_SDK_PATH)/idl
 DKREGISTRYNAME=$(OFFICE_PROGRAM_PATH)/types.rdb
-CC=g++
+#CC=g++
+CC=/usr/local/gcc/3.3.3/bin/g++
 CC_FLAGS=-c -fPIC
 CC_INCLUDES=-I. -I../.. -I/usr/include -I$(OFFICE_SDK_PATH)/include \
 	-I../../../ObjectHandler

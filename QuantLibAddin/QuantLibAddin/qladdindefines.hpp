@@ -20,9 +20,9 @@
 
 //! version string
 #ifdef _DEBUG
-    #define QLADDIN_VERSION "0.3.8-debug"
+    #define QLADDIN_VERSION "0.3.9-debug"
 #else
-    #define QLADDIN_VERSION "0.3.8"
+    #define QLADDIN_VERSION "0.3.9"
 #endif
 
 //! version hexadecimal number

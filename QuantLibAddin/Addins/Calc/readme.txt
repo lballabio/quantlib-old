@@ -5,6 +5,6 @@ for instructions on building and installing on linux please visit
 
 the procedure on windows is similar
 except that the program and SDK directories are
-		C:\Program Files\OpenOffice.org1.1.3\program
-		C:\path\to\OpenOffice.org1.1_SDK\windows\bin
+		OFFICE_PROGRAM_PATH=C:\Program Files\OpenOffice.org1.1.3\program
+		OFFICE_SDK_PATH=C:\path\to\OpenOffice.org1.1_SDK\windows\bin
 

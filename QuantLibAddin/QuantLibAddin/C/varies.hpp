@@ -14,3 +14,4 @@ void propertiesToVaries(const ObjHandler::Properties &properties,
 		VariesList *variesList);
 
 #endif
+

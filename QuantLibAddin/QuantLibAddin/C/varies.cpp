@@ -69,3 +69,4 @@ void freeVariesList(VariesList *vl) {
 	}
 	delete [] vl->varies;
 }
+

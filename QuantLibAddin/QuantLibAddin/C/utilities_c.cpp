@@ -30,3 +30,4 @@ const char *QL_LOGFILE_C(const char *logFileName) {
 void QL_LOGMESSAGE_C(const char *msg) {
 	QL_LOGMESSAGE(msg);
 }
+
