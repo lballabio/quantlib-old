@@ -30,14 +30,22 @@
 
 ; bind a set of parameters to each test case
 
-(define-syntax for-each-case
-  (syntax-rules ()
-    ((for-each-case ((var1 var2 ...) cases) body1 body2 ...)
+(define-syntax for
+  (syntax-rules (in)
+    ((for (var1 var2 ...) in cases 
+          body1 body2 ...)
      (for-each
       (lambda (test-case)
         (let-at-once ((var1 var2 ...) test-case)
           body1 body2 ...))
-      cases))))
+      cases))
+    ((for ((var1 in set1) (var2 in set2) ...)
+          body1 body2 ...)
+     (for-each
+      (lambda (test-case)
+        (let-at-once ((var1 var2 ...) test-case)
+          body1 body2 ...))
+      (combinations set1 set2 ...)))))
 
 ; get a number of test cases by building all possible
 ; combinations of sets of parameters
@@ -58,16 +66,6 @@
       initial
       (op (car sequence)
           (foldr op initial (cdr sequence)))))
-
-; bind a set of parameters to all possible combinations
-(define-syntax for-each-combination
-  (syntax-rules ()
-    ((for-each-combination ((var1 set1) (var2 set2) ...) body1 body2 ...)
-     (for-each
-      (lambda (test-case)
-        (let-at-once ((var1 var2 ...) test-case)
-          body1 body2 ...))
-      (combinations set1 set2 ...)))))
 
 ; repeat n times a series of instructions
 
