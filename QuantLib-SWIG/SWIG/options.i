@@ -154,7 +154,15 @@ class Payoff {
 
 %{
 using QuantLib::PlainVanillaPayoff;
+using QuantLib::PercentageStrikePayoff;
+using QuantLib::CashOrNothingPayoff;
+using QuantLib::AssetOrNothingPayoff;
+using QuantLib::SuperSharePayoff;
 typedef Handle<Payoff> PlainVanillaPayoffHandle;
+typedef Handle<Payoff> PercentageStrikePayoffHandle;
+typedef Handle<Payoff> CashOrNothingPayoffHandle;
+typedef Handle<Payoff> AssetOrNothingPayoffHandle;
+typedef Handle<Payoff> SuperSharePayoffHandle;
 %}
 
 %rename(PlainVanillaPayoff) PlainVanillaPayoffHandle;
@@ -166,21 +174,55 @@ class PlainVanillaPayoffHandle : public Handle<Payoff> {
             return new PlainVanillaPayoffHandle(
                                         new PlainVanillaPayoff(type, strike));
         }
-        OptionType type() {
-            %#if defined(HAVE_BOOST)
-            return boost::dynamic_pointer_cast<PlainVanillaPayoff>(*self)
-                ->optionType();
-            %#else
-            return Handle<PlainVanillaPayoff>(*self)->optionType();
-            %#endif
+    }
+};
+
+%rename(PercentageStrikePayoff) PercentageStrikePayoffHandle;
+class PercentageStrikePayoffHandle : public Handle<Payoff> {
+  public:
+    %extend {
+        PercentageStrikePayoffHandle(OptionType type,
+                                     double moneyness) {
+            return new PercentageStrikePayoffHandle(
+                                 new PercentageStrikePayoff(type, moneyness));
         }
-        double strike() {
-            %#if defined(HAVE_BOOST)
-            return boost::dynamic_pointer_cast<PlainVanillaPayoff>(*self)
-                ->strike();
-            %#else
-            return Handle<PlainVanillaPayoff>(*self)->strike();
-            %#endif
+    }
+};
+
+%rename(CashOrNothingPayoff) CashOrNothingPayoffHandle;
+class CashOrNothingPayoffHandle : public Handle<Payoff> {
+  public:
+    %extend {
+        CashOrNothingPayoffHandle(OptionType type,
+                                  double strike,
+                                  double payoff) {
+            return new CashOrNothingPayoffHandle(
+                               new CashOrNothingPayoff(type, strike, payoff));
+        }
+    }
+};
+
+%rename(AssetOrNothingPayoff) AssetOrNothingPayoffHandle;
+class AssetOrNothingPayoffHandle : public Handle<Payoff> {
+  public:
+    %extend {
+        AssetOrNothingPayoffHandle(OptionType type,
+                                   double strike) {
+            return new AssetOrNothingPayoffHandle(
+                                      new AssetOrNothingPayoff(type, strike));
+        }
+    }
+};
+
+%rename(SuperSharePayoff) SuperSharePayoffHandle;
+class SuperSharePayoffHandle : public Handle<Payoff> {
+  public:
+    %extend {
+        SuperSharePayoffHandle(OptionType type,
+                               double strike,
+                               double increment) {
+            return new SuperSharePayoffHandle(
+                               new SuperSharePayoff(type, strike, increment));
         }
     }
 };
@@ -203,9 +245,8 @@ class VanillaOptionHandle : public Handle<Instrument> {
   public:
     %extend {
         VanillaOptionHandle(
-                OptionType type,
+                const Handle<Payoff>& payoff,
                 const RelinkableHandle<Quote>& underlying, 
-                double strike,
                 const RelinkableHandle<TermStructure>& dividendYield,
                 const RelinkableHandle<TermStructure>& riskFreeRate,
                 const Exercise& exerciseDate,
@@ -213,8 +254,15 @@ class VanillaOptionHandle : public Handle<Instrument> {
                 const Handle<PricingEngine>& engine,
                 const std::string& isinCode = "unknown", 
                 const std::string& desc = "option") {
+            %#if defined(HAVE_BOOST)
+            Handle<QL::StrikedTypePayoff> stPayoff =
+                 boost::dynamic_pointer_cast<QL::StrikedTypePayoff>(payoff);
+            QL_REQUIRE(stPayoff, "Wrong payoff given");
+            %#else
+            Handle<QL::StrikedTypePayoff> stPayoff = payoff;
+            %#endif
             return new VanillaOptionHandle(
-                new VanillaOption(type,underlying,strike,dividendYield,
+                new VanillaOption(stPayoff,underlying,dividendYield,
                                   riskFreeRate,exerciseDate,volatility,
                                   engine,isinCode,desc));
         }
