@@ -28,10 +28,9 @@ extern "C"
 {
 
     using namespace QuantLib;
-    using QuantLib::MonteCarlo::Path;
-    using QuantLib::MonteCarlo::PathGenerator_old;
-    using QuantLib::RandomNumbers::InvCumulativeKnuthGaussianRng;
-    using QuantLib::Math::Matrix;
+    using namespace QuantLib::Math;
+    using namespace QuantLib::MonteCarlo;
+    using namespace QuantLib::RandomNumbers;
 
     LPXLOPER EXCEL_EXPORT xlPathGenerator(XlfOper xlunderlying,
                                           XlfOper xldrift,
@@ -45,52 +44,61 @@ extern "C"
         Size samples = xlsamples.AsInt();
 
         std::vector<Time> times = xltimes.AsDoubleVector();
-        Size n = times.size();
+        TimeGrid timeGrid(times.begin(), times.end());
+        Size timeSteps = times.size();
 
         std::vector<double> volatility = xlvolatility.AsDoubleVector();
         std::vector<double> inputDrift = xldrift.AsDoubleVector();
-        QL_REQUIRE(volatility.size()<= n,
+        QL_REQUIRE(volatility.size()<= timeSteps,
             "volatility and time arrays mismatched");
-        QL_REQUIRE(inputDrift.size()<= n,
+        QL_REQUIRE(inputDrift.size()<= timeSteps,
             "drift and time arrays mismatched");
 
         Size i;
-        std::vector<double> variance(n);
+        std::vector<double> variance(timeSteps);
         for (i=0; i< volatility.size(); i++) {
             variance[i] = volatility[i]*volatility[i];
         }
-        for (i=volatility.size(); i<n ; i++) {
+        for (i=volatility.size(); i<timeSteps ; i++) {
             variance[i] = variance[volatility.size()-1];
         }
 
-        std::vector<double> drift(n);
+        std::vector<double> drift(timeSteps);
         for (i=0; i< inputDrift.size(); i++) {
             drift[i] = inputDrift[i] - 0.5*variance[i];
         }
-        for (i=inputDrift.size(); i<n ; i++) {
+        for (i=inputDrift.size(); i<timeSteps ; i++) {
             drift[i] = inputDrift[inputDrift.size()-1] - 0.5*variance[i];
         }
         
 
-        PathGenerator_old<InvCumulativeKnuthGaussianRng> myPathGenerator =
-            PathGenerator_old<InvCumulativeKnuthGaussianRng>(
-            drift, variance, times);
+        unsigned long mcSeed = 0;
+//        UniformRandomSequenceGenerator rsg(timeSteps, mcSeed);
+//        GaussianRandomSequenceGenerator grsg(rsg);
+
+//        UniformLowDiscrepancySequenceGenerator ldsg(timeSteps);
+//        GaussianLowDiscrepancySequenceGenerator gldsg(ldsg);
+
+//        DiffusionProcess bs();
+//        PathGenerator<GaussianRandomSequenceGenerator>
+//            myPathGenerator(bs, times, grsg);
+
+         PathGenerator_old<GaussianRandomGenerator> myPathGenerator(
+             drift, variance, timeGrid, mcSeed);
 
         Size j;
-        Path myPath(n);
-        Matrix result(n, samples);
+        Path myPath(timeGrid);
+        Matrix result(timeSteps, samples);
         for (j = 0; j < samples; j++) {
             myPath = myPathGenerator.next().value;
 
-            result[0][j] = underlying * QL_EXP(myPath.drift()[0] +
-                                               myPath.diffusion()[0]);
-            for (i = 1; i < n; i++) {
-                result[i][j] = result[i-1][j] * QL_EXP(myPath.drift()[i] +
-                                              myPath.diffusion()[i]);
+            result[0][j] = underlying * QL_EXP(myPath[0]);
+            for (i = 1; i < timeSteps; i++) {
+                result[i][j] = result[i-1][j] * QL_EXP(myPath[i]);
             }
         }
 
-        return XlfOper(n, samples, result.begin());
+        return XlfOper(timeSteps, samples, result.begin());
 
         EXCEL_END;
     }
