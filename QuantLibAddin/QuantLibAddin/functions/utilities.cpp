@@ -15,13 +15,38 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qladdin_h
-#define qladdin_h
+#include <QuantLibAddin/functions/utilities.hpp>
 
-#include <QuantLibAddin/C/defines.h>
-#include <QuantLibAddin/C/varies.h>
-#include <QuantLibAddin/C/utilities.h>
-#include <QuantLibAddin/C/options.h>
+using namespace ObjHandler;
 
-#endif
+namespace QuantLibAddin {
+
+	std::string QL_LOGFILE(
+			const std::string &logFileName) {
+		if (setLogFile(logFileName))
+			return logFileName;
+		else
+			return "logging disabled";
+	}
+
+	void QL_LOGMESSAGE(
+			const std::string &msg) {
+		logMessage(msg);
+	}
+
+	std::string QL_ANY2STRING(
+			const any_ptr &a) {
+		return AnyToString(a);
+	}
+
+	Properties QL_QUERY(
+			const std::string &handle) {
+		boost::shared_ptr<Object> object =
+				ObjectHandler::instance().retrieveObject(handle);
+		if (!object)
+				throw Exception("error retrieving object " + handle);
+		return object->getProperties();
+	}
+
+}
 
