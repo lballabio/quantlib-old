@@ -21,17 +21,6 @@
 ; $Id$
 
 
-; check two values for equality
-(define (check tag calculated expected tolerance)
-  (if (> (abs (- calculated expected)) tolerance)
-      (let ((tag (if (procedure? tag) (tag) tag)))
-        (let ((error-msg
-               (string-append
-                (format "~a:~n" tag)
-                (format "    calculated: ~a~n" calculated)
-                (format "    expected:   ~a~n" expected))))
-          (error error-msg)))))
-
 ; common utility functions
 (define (flatmap proc seq)
   (foldr append '() (map proc seq)))
@@ -64,7 +53,7 @@
     (integral f^2 h)))
 
 
-; assign names to the elements of a list
+; bind a set of names to the elements of a list
 (define-macro let-at-once
   (lambda (binding . body)
     (let ((vars (car binding))
@@ -72,6 +61,18 @@
       `(call-with-values
          (lambda () (apply values ,vals))
          (lambda ,vars ,@body)))))
+
+; bind a set of parameters to each test case
+(define-macro for-each-case
+  (lambda (bindings . body)
+    (let ((vars (car bindings))
+          (cases (cadr bindings))
+          (test-case (gensym)))
+      `(for-each
+        (lambda (,test-case)
+          (let-at-once (,vars ,test-case)
+            ,@body))
+        ,cases))))
 
 ; get a number of test cases by building all possible
 ; combinations of sets of parameters
@@ -92,8 +93,7 @@
           (combo (gensym)))
       `(for-each 
         (lambda (,combo)
-          (call-with-values 
-           (lambda () (apply values ,combo))
-           (lambda ,vars ,@body)))
+          (let-at-once (,vars ,combo)
+            ,@body))
         (combinations ,@sets)))))
 

@@ -47,9 +47,9 @@
                   "Testing act/act day counters")
   (suite-add-test suite Distribution-test
                   "Testing distributions")
-  (suite-add-test suite European-option-test-1
+  (suite-add-test suite European-option-Greek-test
                   "Testing European option greeks")
-  (suite-add-test suite European-option-test-2
+  (suite-add-test suite European-option-implied-vol-test
                   "Testing European option implied volatility")
   (suite-add-test suite Instrument-test
                   "Testing observability of stocks")
@@ -67,17 +67,17 @@
                   "Testing 1D solvers")
   (suite-add-test suite Statistics-test
                   "Testing statistics")
-  (suite-add-test suite Term-structure-test-1
+  (suite-add-test suite Implied-term-structure-consistency-test
                   "Testing consistency of implied term structure")
-  (suite-add-test suite Term-structure-test-2
+  (suite-add-test suite Implied-term-structure-observability-test
                   "Testing observability of implied term structure")
-  (suite-add-test suite Term-structure-test-3
+  (suite-add-test suite Forward-spreaded-term-structure-consistency-test
                   "Testing consistency of forward-spreaded term structure")
-  (suite-add-test suite Term-structure-test-4
+  (suite-add-test suite Forward-spreaded-term-structure-observability-test
                   "Testing observability of forward-spreaded term structure")
-  (suite-add-test suite Term-structure-test-5
+  (suite-add-test suite Zero-spreaded-term-structure-consistency-test
                   "Testing consistency of zero-spreaded term structure")
-  (suite-add-test suite Term-structure-test-6
+  (suite-add-test suite Zero-spreaded-term-structure-observability-test
                   "Testing observability of zero-spreaded term structure")
   (suite-run suite))
 

@@ -22,7 +22,7 @@
 
 (load "common.scm")
 
-(define (European-option-test-1)     ; check Greeks
+(define (European-option-Greek-test)     ; check Greeks
   (define (derivative f obj datum)
     (let* ((x (MarketElement-value datum))
            (dx (/ x 10000))
@@ -113,14 +113,18 @@
                                  (/ 2 365)))
 
                   (for-each (lambda (greek)
-                              (check greek 
-                                     (cdr (assoc greek calculated))
-                                     (cdr (assoc greek expected))
-                                     (* (cdr (assoc greek tolerance)) u)))
+                              (check-expected
+                               (cdr (assoc greek calculated))
+                               (cdr (assoc greek expected))
+                               (* (cdr (assoc greek tolerance)) u)
+                               "Option parameters: "
+                               type ", " u ", " strike ", " q ", " r ", " 
+                               ex-date ", " v eol
+                               greek ":"))
                             '("delta" "gamma" "theta" "rho"
                               "dividend-rho" "vega")))))))))))
 
-(define (European-option-test-2)     ; implied volatility
+(define (European-option-implied-vol-test)     ; implied volatility
   (deleting-let* ((underlying (new-SimpleMarketElement 0.0)
                               delete-MarketElement)
                   (volatility (new-SimpleMarketElement 0.0)
@@ -167,10 +171,12 @@
                             ; the difference might not matter
                             (SimpleMarketElement-value-set! volatility 
                                                             implied-vol)
-                            (check "recalculated NPV"
-                                   (Instrument-NPV option)
-                                   value
-                                   1.0e-4)))))))))))))
+                            (check-expected (Instrument-NPV option)
+                                            value 1.0e-4
+                                            "Option parameters: "
+                                            type ", " u ", " strike ", " q ", "
+                                            r ", " ex-date ", " v eol
+                                            "recalculated NPV:")))))))))))))
 
 
 (define (eu-test-make-option type underlying strike div-curve 

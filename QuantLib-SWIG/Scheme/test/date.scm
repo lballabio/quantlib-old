@@ -60,102 +60,81 @@
 
 
 (define (Date-test-serial-numbers date original new)
-  (if (not (= original new))
-	  (let ((error-msg
-			 (string-append
-			  (format "inconsistent serial number:~n")
-			  (format "    original:  ~a~n" original)
-			  (format "    date:      ~a~n" (Date->string date))
-			  (format "    serial no: ~a~n" new))))
-		(error error-msg))))
+  (assert (= original new)
+          "inconsistent serial number:" eol
+          "    original:  " original eol
+          "    date:      " (Date->string date) eol
+          "    serial no: " new eol))
 
 (define (Date-test-new-date date serial-number d m y)
   (deleting-let ((clone (new-Date d m y) delete-Date))
 	(let ((serial (Date-serial-number clone)))
-	  (if (not (= serial-number serial))
-		  (let ((error-msg
-				 (string-append
-				  (format "inconsistent serial number:~n")
-				  (format "    date:      ~a~n" (Date->string date))
-				  (format "    serial no: ~a~n" serial-number)
-				  (format "    clone:     ~a~n" (Date->string clone))
-				  (format "    serial no: ~a~n" serial))))
-			(error error-msg))))))
+      (assert (= serial-number serial)
+              "inconsistent serial number:" eol
+              "    date:      " (Date->string date) eol
+              "    serial no: " serial-number eol
+              "    clone:     " (Date->string clone) eol
+              "    serial no: " serial eol))))
 
 (define (Date-test-day-of-years date dy dyold yold)
-  (if (not (or (= dy (+ 1 dyold))
-			   (and (not (Date-is-leap? yold))
-					(= dyold 365)
-					(= dy 1))
-			   (and (Date-is-leap? yold)
-					(= dyold 366)
-					(= dy 1))))
-	  (let ((error-msg
-			 (string-append
-			  (format "wrong day of year:~n")
-			  (format "    date:        ~a~n" (Date->string date))
-			  (format "    day of year: ~a~n" dy)
-			  (format "    previous:    ~a~n" dyold))))
-		(error error-msg))))
+  (assert (or (= dy (+ 1 dyold))
+              (and (not (Date-is-leap? yold))
+                   (= dyold 365)
+                   (= dy 1))
+              (and (Date-is-leap? yold)
+                   (= dyold 366)
+                   (= dy 1)))
+          "wrong day of year:" eol 
+          "    date:        " (Date->string date) eol
+          "    day of year: " dy eol
+          "    previous:    " dyold eol))
 
 (define (Date-test-day-month-year date d m y dold mold yold)
-  (if (not (or (and (= d (+ dold 1))
-					(= m mold)
-					(= y yold))
-			   (and (= d 1)
-					(= m (+ mold 1))
-					(= y yold))
-			   (and (= d 1)
-					(= m 1)
-					(= y (+ yold 1)))))
-	  (let ((error-msg
-			 (string-append
-			  (format "wrong day, month, year increment:~n")
-			  (format "    date: ~a~n" (Date->string date))
-			  (format "    day, month, year: ~a/~a/~a~n" d m y)
-			  (format "    previous:         ~a/~a/~a~n" dold mold yold))))
-		(error error-msg))))
+  (assert (or (and (= d (+ dold 1))
+                   (= m mold)
+                   (= y yold))
+              (and (= d 1)
+                   (= m (+ mold 1))
+                   (= y yold))
+              (and (= d 1)
+                   (= m 1)
+                   (= y (+ yold 1))))
+          "wrong day, month, year increment:" eol
+          "    date: " (Date->string date) eol
+          "    day, month, year: " d "/" m "/" y eol
+          "    previous:         " dold "/" mold "/" yold eol))
 
 (define (Date-test-month date m)
-  (if (not (and (>= m 1) (<= m 12)))
-	  (let ((error-msg
-			 (string-append
-			  (format "invalid month:~n")
-			  (format "    date:  ~a~n" (Date->string date))
-			  (format "    month: ~a~n" m))))
-		(error error-msg))))
+  (assert (and (>= m 1) (<= m 12))
+          "invalid month:" eol
+          "    date:  " (Date->string date) eol
+          "    month: " m eol))
 
 (define (Date-test-day-of-month date d m y)
-  (if (not (and (>= d 1)
-				(or (and (<= d 31) (= m 1))
-					(and (<= d 28) (= m 2))
-					(and (= d 29)  (= m 2) (Date-is-leap? y))
-					(and (<= d 31) (= m 3))
-					(and (<= d 30) (= m 4))
-					(and (<= d 31) (= m 5))
-					(and (<= d 30) (= m 6))
-					(and (<= d 31) (= m 7))
-					(and (<= d 31) (= m 8))
-					(and (<= d 30) (= m 9))
-					(and (<= d 31) (= m 10))
-					(and (<= d 30) (= m 11))
-					(and (<= d 31) (= m 12)))))
-	  (let ((error-msg
-			 (string-append
-			  (format "invalid day of month:~n")
-			  (format "    date:  ~a~n" (Date->string date))
-			  (format "    day  : ~a~n" d)
-			  (format "    month: ~a~n" m))))
-		(error error-msg))))
+  (assert (and (>= d 1)
+               (or (and (<= d 31) (= m 1))
+                   (and (<= d 28) (= m 2))
+                   (and (= d 29)  (= m 2) (Date-is-leap? y))
+                   (and (<= d 31) (= m 3))
+                   (and (<= d 30) (= m 4))
+                   (and (<= d 31) (= m 5))
+                   (and (<= d 30) (= m 6))
+                   (and (<= d 31) (= m 7))
+                   (and (<= d 31) (= m 8))
+                   (and (<= d 30) (= m 9))
+                   (and (<= d 31) (= m 10))
+                   (and (<= d 30) (= m 11))
+                   (and (<= d 31) (= m 12))))
+          "invalid day of month:" eol
+          "    date:  " (Date->string date) eol
+          "    day  : " d eol
+          "    month: " m eol))
 
 (define (Date-test-weekday date wd wdold)
-  (if (not (or (= wd (+ wdold 1))
-			   (and (= wd 1) (= wdold 7))))
-	  (let ((error-msg
-			 (string-append
-			  (format "invalid weekday:~n")
-			  (format "    date:     ~a~n" (Date->string date))
-			  (format "    weekday : ~a~n" wd)
-			  (format "    previous: ~a~n" wdold))))
-		(error error-msg))))
+  (assert (or (= wd (+ wdold 1))
+              (and (= wd 1) (= wdold 7)))
+          "invalid weekday:" eol
+          "    date:     " (Date->string date) eol
+          "    weekday : " wd eol
+          "    previous: " wdold eol))
 

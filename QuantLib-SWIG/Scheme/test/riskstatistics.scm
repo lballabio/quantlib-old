@@ -44,44 +44,29 @@
          (data (grid data-min data-max N))
          (weights (map gaussian data)))
     (RiskStatistics-add-weighted-sequence stats data weights)
-    (check "number of samples"
-           (RiskStatistics-samples stats)
-           N
-           0)
-    (check "sum of weights"
-           (RiskStatistics-weight-sum stats)
-           (apply + weights)
-           0.0)
-    (check "minimum value"
-           (RiskStatistics-min stats)
-           (apply min data)
-           0.0)
-    (check "maximum value"
-           (RiskStatistics-max stats)
-           (apply max data)
-           1.0e-13)
-    (check "mean value"
-           (RiskStatistics-mean stats)
-           average
-           (if (= average 0.0)
-               1.0e-13
-               (* (abs average) 1.0e-13)))
-    (check "variance"
-           (RiskStatistics-variance stats)
-           (* sigma sigma)
-           (* sigma sigma 1.0e-4))
-    (check "standard deviation"
-           (RiskStatistics-standard-deviation stats)
-           sigma
-           (* sigma 1.0e-4))
-    (check "skewness"
-           (RiskStatistics-skewness stats)
-           0.0
-           1.0e-4)
-    (check "kurtosis"
-           (RiskStatistics-kurtosis stats)
-           0.0
-           1.0e-1)
+    (check-expected (RiskStatistics-samples stats) N 0
+                    "number of samples")
+    (check-expected (RiskStatistics-weight-sum stats) (apply + weights) 0.0 
+                    "sum of weights")
+    (check-expected (RiskStatistics-min stats) (apply min data) 0.0
+                    "minimum value")
+    (check-expected (RiskStatistics-max stats) (apply max data) 1.0e-13
+                    "maximum value")
+    (check-expected (RiskStatistics-mean stats) average
+                    (if (= average 0.0)
+                        1.0e-13
+                        (* (abs average) 1.0e-13))
+                    "mean value")
+    (check-expected (RiskStatistics-variance stats) (* sigma sigma)
+                    (* sigma sigma 1.0e-4)
+                    "variance")
+    (check-expected (RiskStatistics-standard-deviation stats) sigma
+                    (* sigma 1.0e-4)
+                    "standard deviation")
+    (check-expected (RiskStatistics-skewness stats) 0.0 1.0e-4
+                    "skewness")
+    (check-expected (RiskStatistics-kurtosis stats) 0.0 1.0e-1
+                    "kurtosis")
 
     (deleting-let ((cum (new-CumulativeNormalDistribution average sigma)
                         delete-CumulativeNormalDistribution))
@@ -89,40 +74,38 @@
                           cum
                           (+ average (* 2 sigma)))))
         (let ((right-potential-upside (max 0.0 (+ average (* 2 sigma)))))
-          (check "potential upside"
-                 (RiskStatistics-potential-upside stats two-std-dev)
-                 right-potential-upside
-                 (if (= 0.0 right-potential-upside)
-                     1.0e-3
-                     (* right-potential-upside 1.0e-3))))
+          (check-expected (RiskStatistics-potential-upside stats two-std-dev)
+                          right-potential-upside
+                          (if (= 0.0 right-potential-upside)
+                              1.0e-3
+                              (* right-potential-upside 1.0e-3))
+                          "potential upside"))
         (let ((right-VAR (- (min 0.0 (- average (* 2 sigma))))))
-          (check "value at risk"
-                 (RiskStatistics-value-at-risk stats two-std-dev)
-                 right-VAR
-                 (if (= 0.0 right-VAR)
-                     1.0e-3
-                     (* 1.0e-3 right-VAR))))
+          (check-expected (RiskStatistics-value-at-risk stats two-std-dev)
+                          right-VAR
+                          (if (= 0.0 right-VAR)
+                              1.0e-3
+                              (* 1.0e-3 right-VAR))
+                          "value at risk"))
         (let ((right-ex-shortfall
                (- (min 
                    (- average
                       (/ (* sigma sigma (gaussian (- average (* 2 sigma))))
                          (- 1 two-std-dev)))
                    0.0))))
-          (check "expected shortfall"
-                 (RiskStatistics-expected-shortfall stats two-std-dev)
-                 right-ex-shortfall
-                 (if (= 0.0 right-ex-shortfall)
-                     1.0e-4
-                     (* 1.0e-4 right-ex-shortfall))))
-        (check "shortfall"
-               (RiskStatistics-shortfall stats target)
-               0.5
-               0.5e-8)
+          (check-expected (RiskStatistics-expected-shortfall stats two-std-dev)
+                          right-ex-shortfall
+                          (if (= 0.0 right-ex-shortfall)
+                              1.0e-4
+                              (* 1.0e-4 right-ex-shortfall))
+                          "expected shortfall"))
+        (check-expected (RiskStatistics-shortfall stats target) 0.5 0.5e-8
+                        "shortfall")
         (let ((right-avg-shortfall (/ sigma (sqrt (* 2 pi)))))
-          (check "average shortfall"
-                 (RiskStatistics-average-shortfall stats target)
-                 right-avg-shortfall
-                 (* 1.0e-4 right-avg-shortfall)))
+          (check-expected (RiskStatistics-average-shortfall stats target)
+                          right-avg-shortfall
+                          (* 1.0e-4 right-avg-shortfall)
+                          "average shortfall"))
         
         (RiskStatistics-reset! stats)))))
 

@@ -54,37 +54,28 @@
                    (isma (new-DayCounter "act/act") delete-DayCounter)
                    (afb (new-DayCounter "act/act(e)") delete-DayCounter))
       ; check all cases
-      (for-each
-       (lambda (case)
-         (let-at-once ((d1-args d2-args start-ref-args end-ref-args 
-                                isda-expected isma-expected afb-expected) 
-                       case)
-                      (deleting-let ((d1 (apply new-Date d1-args) delete-Date)
-                                     (d2 (apply new-Date d2-args) delete-Date)
-                                     (start-ref (apply new-Date start-ref-args)
-                                                delete-Date)
-                                     (end-ref (apply new-Date end-ref-args)
-                                              delete-Date))
-                        (check (lambda () 
-                                 (format "~a to ~a, ISDA" 
-                                         (Date->string d1) (Date->string d2)))
-                               (DayCounter-year-fraction isda d1 d2)
-                               isda-expected
-                               1.0e-10)
-                        (check (lambda () 
-                                 (format "~a to ~a, ISMA, ref. ~a to ~a"
-                                         (Date->string d1) (Date->string d2)
-                                         (Date->string start-ref) 
-                                         (Date->string end-ref)))
-                               (DayCounter-year-fraction isma d1 d2 
-                                                         start-ref end-ref)
-                               isma-expected
-                               1.0e-10)
-                        (check (lambda () 
-                                 (format "~a to ~a, AFB" 
-                                         (Date->string d1) (Date->string d2)))
-                               (DayCounter-year-fraction afb d1 d2)
-                               afb-expected
-                               1.0e-10))))
-       cases))))
-     
+      (for-each-case ((d1-args d2-args start-ref-args end-ref-args 
+                               isda-expected isma-expected afb-expected)
+                      cases)
+        (deleting-let ((d1 (apply new-Date d1-args) delete-Date)
+                       (d2 (apply new-Date d2-args) delete-Date)
+                       (start-ref (apply new-Date start-ref-args) delete-Date)
+                       (end-ref (apply new-Date end-ref-args) delete-Date))
+          (check-expected (DayCounter-year-fraction isda d1 d2)
+                          isda-expected 1.0e-10
+                                        
+                          (Date->string d1) " to "
+                          (Date->string d2) ", ISDA" eol)
+          (check-expected (DayCounter-year-fraction isma d1 d2 
+                                                    start-ref end-ref)
+                          isma-expected 1.0e-10
+
+                          (Date->string d1) " to "
+                          (Date->string d2) ", ISMA, ref. "
+                          (Date->string start-ref) " to "
+                          (Date->string end-ref) eol)
+          (check-expected (DayCounter-year-fraction afb d1 d2)
+                          afb-expected 1.0e-10
+                                        
+                          (Date->string d1) " to "
+                          (Date->string d2) ", AFB" eol))))))

@@ -28,48 +28,32 @@
           (data    '(  3   4   5   2   3   4   5   6   4   7))
           (weights '(1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0)))
       (Statistics-add-weighted-sequence stats data weights)
-      (check "number of samples"
-             (Statistics-samples stats)
-             (length data)
-             0)
-      (check "sum of weights"
-             (Statistics-weight-sum stats)
-             (apply + weights)
-             0.0)
-      (check "minimum value"
-             (Statistics-min stats)
-             (apply min data)
-             0.0)
-      (check "maximum value"
-             (Statistics-max stats)
-             (apply max data)
-             0.0)
-      (check "mean value"
-             (Statistics-mean stats)
-             (/ (apply + (map * data weights)) (length data))
-             tolerance)
-      (check "variance"
-             (Statistics-variance stats)
-             2.23333333333
-             tolerance)
-      (check "standard deviation"
-             (Statistics-standard-deviation stats)
-             1.4944341181
-             tolerance)
-      (check "skewness"
-             (Statistics-skewness stats)
-             0.359543071407
-             tolerance)
-      (check "kurtosis"
-             (Statistics-kurtosis stats)
-             -0.151799637209
-             tolerance)
+      (check-expected (Statistics-samples stats) (length data) 0
+                      "number of samples")
+      (check-expected (Statistics-weight-sum stats) (apply + weights) 0.0
+                      "sum of weights")
+      (check-expected (Statistics-min stats) (apply min data) 0.0
+                      "minimum value")
+      (check-expected (Statistics-max stats) (apply max data) 0.0
+                      "maximum value")
+      (check-expected (Statistics-mean stats)
+                      (/ (apply + (map * data weights)) (length data))
+                      tolerance
+                      "mean value")
+      (check-expected (Statistics-variance stats) 2.23333333333 tolerance
+                      "variance")
+      (check-expected (Statistics-standard-deviation stats) 1.4944341181 
+                      tolerance
+                      "standard deviation")
+      (check-expected (Statistics-skewness stats) 0.359543071407 tolerance
+                      "skewness")
+      (check-expected (Statistics-kurtosis stats) -0.151799637209 tolerance
+                      "kurtosis")
       (Statistics-reset! stats)
 
       (Statistics-add-weighted-sequence stats
                                         (map (lambda (x) (- x 3)) data)
                                         weights)
-      (check "downside deviation"
-             (Statistics-downside-deviation stats)
-             0.333333333
-             tolerance))))
+      (check-expected (Statistics-downside-deviation stats) 0.333333333 
+                      tolerance
+                      "downside deviation"))))

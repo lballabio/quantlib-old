@@ -36,14 +36,11 @@
                                             accuracy
                                             1.5
                                             0.1)))
-                  (if (< accuracy (abs (- root 1.0)))
-                      (let ((error-msg
-                             (string-append
-                              (format "solve():~n")
-                              (format "  expected:        1.0~n")
-                              (format "  calculated root: ~a~n" root)
-                              (format "  accuracy:        ~a~n" accuracy))))
-                        (error error-msg))))
+                  (assert-equal root 1.0 accuracy
+                                "solve():" eol
+                                "  expected:        1.0" eol
+                                "  calculated root: " root eol
+                                "  accuracy:        " accuracy eol))
                 (let ((root (Solver1D-bracketed-solve solver 
                                                       (lambda (x) 
                                                         (- (* x x) 1))
@@ -51,12 +48,9 @@
                                                       1.5
                                                       0.0
                                                       2.0)))
-                  (if (< accuracy (abs (- root 1.0)))
-                      (let ((error-msg
-                             (string-append
-                              (format "bracketed-solve():~n")
-                              (format "  expected:        1.0~n")
-                              (format "  calculated root: ~a~n" root)
-                              (format "  accuracy:        ~a~n" accuracy))))
-                        (error error-msg)))))
-                '(1.0e-4 1.0e-6 1.0e-8))))
+                  (assert-equal root 1.0 accuracy
+                                "bracketed-solve():" eol
+                                "  expected:        1.0" eol
+                                "  calculated root: " root eol
+                                "  accuracy:        " accuracy eol)))
+              '(1.0e-4 1.0e-6 1.0e-8))))

@@ -38,5 +38,5 @@
       (for-each (lambda (test-case)
                   (let-at-once ((tag f a b expected) test-case)
                      (let ((calculated (SegmentIntegral-calculate I f a b)))
-                       (check tag calculated expected tolerance))))
+                       (check-expected calculated expected tolerance tag))))
                 cases))))

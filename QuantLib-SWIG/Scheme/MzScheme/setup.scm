@@ -90,8 +90,9 @@
         "segmentintegral.scm"
         "solvers1d.scm"
         "statistics.scm"
-        "termstructures.scm"
-        "unittest.scm"
+        "termstructures.scm"))
+(define test-support-files
+  (list "unittest.scm"
         "quantlib-test-suite.scm"))
 
 (define (rec-delete-directory dir)
@@ -196,9 +197,13 @@
       (install-files scripts "." ".")
       (let ((i-dir "./SWIG"))
         (if (not (directory-exists? i-dir))
-            (set! i-dir "../SWIG"))
+            (set! i-dir "../../SWIG"))
         (install-files SWIG-interfaces i-dir "SWIG"))
-      (install-files test-files "test" "test")
+      (install-files test-support-files "test" "test")
+      (let ((t-dir "../test"))
+        (if (not (directory-exists? t-dir))
+            (set! t-dir "./test"))
+        (install-files test-files t-dir "test"))
       (let ((os (system-type)))
         (cond ((equal? os 'unix)
                (system (string-append

@@ -20,6 +20,30 @@
 ;
 ; $Id$
 
+(define-macro assert
+  (lambda (check . msg)
+    `(if (not ,check)
+         (error
+          (apply string-append (map (lambda (token) (format "~a" token)) 
+                                    (list ,@msg)))))))
+; handy in formatting error messages
+(define eol (format "~n"))
+
+; a few specialized assertions
+(define-macro assert-zero
+  (lambda (x tolerance . msg)
+    `(assert (<= (abs ,x) ,tolerance) ,@msg)))
+(define-macro assert-equal
+  (lambda (lhs rhs tolerance . msg)
+    `(assert-zero (- ,lhs ,rhs) ,tolerance ,@msg)))
+(define-macro check-expected
+  (lambda (calculated expected tolerance . msg)
+    `(assert-equal ,calculated ,expected ,tolerance
+                   ,@msg eol
+                   "    calculated: " ,calculated eol
+                   "    expected:   " ,expected eol)))
+
+; the test suite implementation
 (define (make-suite)
   (let ((test-list '()))
 	(lambda (command . args)

@@ -44,14 +44,9 @@
                                  delete-MarketElement))
        (let ((derived-result (MarketElement-value derived-me))
              (function-result (f (MarketElement-value me))))
-         (if (> (abs (- derived-result function-result)) 1.0e-10)
-             (let ((error-msg
-                    (string-append
-                     (format "derived market element yields ~a~n"
-                             derived-result)
-                     (format "function result is ~a~n"
-                             function-result))))
-               (error error-msg))))))
+         (assert-equal derived-result function-result 1.0e-10
+                       "derived market element yields " derived-result eol
+                       "function result is " function-result eol))))
    (list (lambda (x) (+ x 10))
          (lambda (x) (* x 10))
          (lambda (x) (- x 10)))))
@@ -70,14 +65,10 @@
          (let ((composite-result (MarketElement-value composite-me))
                (function-result (f (MarketElement-value me1)
                                    (MarketElement-value me2))))
-           (if (> (abs (- composite-result function-result)) 1.0e-10)
-               (let ((error-msg
-                      (string-append
-                       (format "composite market element yields ~a~n"
-                               composite-result)
-                       (format "function result is ~a~n"
-                               function-result))))
-                 (error error-msg))))))
+           (assert-equal composite-result function-result 1.0e-10
+                         "composite market element yields " 
+                         composite-result eol
+                         "function result is " function-result eol))))
      (list (lambda (x y) (+ x y))
            (lambda (x y) (* x y))
            (lambda (x y) (- x y))))))

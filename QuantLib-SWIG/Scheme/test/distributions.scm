@@ -25,13 +25,9 @@
 (define (Distribution-test)
   (define (check-difference f1 f2 h tolerance f1-name f2-name)
     (let ((e (norm (difference f1 f2) h)))
-      (if (> e tolerance)
-          (let ((error-msg
-                 (string-append
-                  (format "norm of ~a minus ~a: ~a:~n"
-                          f1-name f2-name e)
-                  (format "tolerance exceeded~n"))))
-            (error error-msg)))))
+      (assert-zero e tolerance
+                   "norm of " f1-name " minus " f2-name ": " e eol
+                   "tolerance exceeded" eol)))
   (define (difference f1 f2)
     (map - f1 f2))
 
