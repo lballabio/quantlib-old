@@ -1,3 +1,7 @@
+2002-04-08 07:45  nando
+
+	* ChangeLog.txt (1.2): updated
+
 2002-03-28 17:07  nando
 
 	* QuantLibXL.dsp (1.5), QuantLibXL.mak (1.5), qlxl/qlxl.hpp (1.3):
