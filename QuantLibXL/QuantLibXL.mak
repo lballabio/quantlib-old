@@ -38,12 +38,12 @@ ALL : ".\xll\Win32\VisualStudio\QuantLibXL.xll"
 
 !ELSE 
 
-ALL : "QuantLib - Win32 Release" ".\xll\Win32\VisualStudio\QuantLibXL.xll"
+ALL : "xlw - Win32 Release" "QuantLib - Win32 Release" ".\xll\Win32\VisualStudio\QuantLibXL.xll"
 
 !ENDIF 
 
 !IF "$(RECURSE)" == "1" 
-CLEAN :"QuantLib - Win32 ReleaseCLEAN" 
+CLEAN :"QuantLib - Win32 ReleaseCLEAN" "xlw - Win32 ReleaseCLEAN" 
 !ELSE 
 CLEAN :
 !ENDIF 
@@ -118,7 +118,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\vols.obj" \
 	"$(INTDIR)\xlAutoOpen.obj" \
-	"..\QuantLib\lib\Win32\VisualStudio\QuantLib.lib"
+	"..\QuantLib\lib\Win32\VisualStudio\QuantLib.lib" \
+	"..\XLW\lib\Win32\VisualStudio\xlw.lib"
 
 ".\xll\Win32\VisualStudio\QuantLibXL.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -136,12 +137,12 @@ ALL : ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
 
 !ELSE 
 
-ALL : "QuantLib - Win32 Debug" ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
+ALL : "xlw - Win32 Debug" "QuantLib - Win32 Debug" ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
 
 !ENDIF 
 
 !IF "$(RECURSE)" == "1" 
-CLEAN :"QuantLib - Win32 DebugCLEAN" 
+CLEAN :"QuantLib - Win32 DebugCLEAN" "xlw - Win32 DebugCLEAN" 
 !ELSE 
 CLEAN :
 !ENDIF 
@@ -219,7 +220,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\vols.obj" \
 	"$(INTDIR)\xlAutoOpen.obj" \
-	"..\QuantLib\lib\Win32\VisualStudio\QuantLib_d.lib"
+	"..\QuantLib\lib\Win32\VisualStudio\QuantLib_d.lib" \
+	"..\XLW\lib\Win32\VisualStudio\xlwd.lib"
 
 ".\xll\Win32\VisualStudio\QuantLibXL_d.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -237,12 +239,12 @@ ALL : ".\xll\Win32\VisualStudio\QuantLibXL.xll"
 
 !ELSE 
 
-ALL : "QuantLib - Win32 OnTheEdgeRelease" ".\xll\Win32\VisualStudio\QuantLibXL.xll"
+ALL : "xlw - Win32 OnTheEdgeRelease" "QuantLib - Win32 OnTheEdgeRelease" ".\xll\Win32\VisualStudio\QuantLibXL.xll"
 
 !ENDIF 
 
 !IF "$(RECURSE)" == "1" 
-CLEAN :"QuantLib - Win32 OnTheEdgeReleaseCLEAN" 
+CLEAN :"QuantLib - Win32 OnTheEdgeReleaseCLEAN" "xlw - Win32 OnTheEdgeReleaseCLEAN" 
 !ELSE 
 CLEAN :
 !ENDIF 
@@ -317,7 +319,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\vols.obj" \
 	"$(INTDIR)\xlAutoOpen.obj" \
-	"..\QuantLib\lib\Win32\VisualStudio\QuantLib.lib"
+	"..\QuantLib\lib\Win32\VisualStudio\QuantLib.lib" \
+	"..\XLW\lib\Win32\VisualStudio\xlw.lib"
 
 ".\xll\Win32\VisualStudio\QuantLibXL.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -335,12 +338,12 @@ ALL : ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
 
 !ELSE 
 
-ALL : "QuantLib - Win32 OnTheEdgeDebug" ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
+ALL : "xlw - Win32 OnTheEdgeDebug" "QuantLib - Win32 OnTheEdgeDebug" ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
 
 !ENDIF 
 
 !IF "$(RECURSE)" == "1" 
-CLEAN :"QuantLib - Win32 OnTheEdgeDebugCLEAN" 
+CLEAN :"QuantLib - Win32 OnTheEdgeDebugCLEAN" "xlw - Win32 OnTheEdgeDebugCLEAN" 
 !ELSE 
 CLEAN :
 !ENDIF 
@@ -418,7 +421,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\vols.obj" \
 	"$(INTDIR)\xlAutoOpen.obj" \
-	"..\QuantLib\lib\Win32\VisualStudio\QuantLib_d.lib"
+	"..\QuantLib\lib\Win32\VisualStudio\QuantLib_d.lib" \
+	"..\XLW\lib\Win32\VisualStudio\xlwd.lib"
 
 ".\xll\Win32\VisualStudio\QuantLibXL_d.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -544,6 +548,56 @@ SOURCE=.\qlxl\xlAutoOpen.cpp
 "QuantLib - Win32 OnTheEdgeDebugCLEAN" : 
    cd "\Projects\QuantLib"
    $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 OnTheEdgeDebug" RECURSE=1 CLEAN 
+   cd "..\QuantLibXL"
+
+!ENDIF 
+
+!IF  "$(CFG)" == "QuantLibXL - Win32 Release"
+
+"xlw - Win32 Release" : 
+   cd "\Projects\XLW"
+   $(MAKE) /$(MAKEFLAGS) /F .\xlw.mak CFG="xlw - Win32 Release" 
+   cd "..\QuantLibXL"
+
+"xlw - Win32 ReleaseCLEAN" : 
+   cd "\Projects\XLW"
+   $(MAKE) /$(MAKEFLAGS) /F .\xlw.mak CFG="xlw - Win32 Release" RECURSE=1 CLEAN 
+   cd "..\QuantLibXL"
+
+!ELSEIF  "$(CFG)" == "QuantLibXL - Win32 Debug"
+
+"xlw - Win32 Debug" : 
+   cd "\Projects\XLW"
+   $(MAKE) /$(MAKEFLAGS) /F .\xlw.mak CFG="xlw - Win32 Debug" 
+   cd "..\QuantLibXL"
+
+"xlw - Win32 DebugCLEAN" : 
+   cd "\Projects\XLW"
+   $(MAKE) /$(MAKEFLAGS) /F .\xlw.mak CFG="xlw - Win32 Debug" RECURSE=1 CLEAN 
+   cd "..\QuantLibXL"
+
+!ELSEIF  "$(CFG)" == "QuantLibXL - Win32 OnTheEdgeRelease"
+
+"xlw - Win32 OnTheEdgeRelease" : 
+   cd "\Projects\XLW"
+   $(MAKE) /$(MAKEFLAGS) /F .\xlw.mak CFG="xlw - Win32 OnTheEdgeRelease" 
+   cd "..\QuantLibXL"
+
+"xlw - Win32 OnTheEdgeReleaseCLEAN" : 
+   cd "\Projects\XLW"
+   $(MAKE) /$(MAKEFLAGS) /F .\xlw.mak CFG="xlw - Win32 OnTheEdgeRelease" RECURSE=1 CLEAN 
+   cd "..\QuantLibXL"
+
+!ELSEIF  "$(CFG)" == "QuantLibXL - Win32 OnTheEdgeDebug"
+
+"xlw - Win32 OnTheEdgeDebug" : 
+   cd "\Projects\XLW"
+   $(MAKE) /$(MAKEFLAGS) /F .\xlw.mak CFG="xlw - Win32 OnTheEdgeDebug" 
+   cd "..\QuantLibXL"
+
+"xlw - Win32 OnTheEdgeDebugCLEAN" : 
+   cd "\Projects\XLW"
+   $(MAKE) /$(MAKEFLAGS) /F .\xlw.mak CFG="xlw - Win32 OnTheEdgeDebug" RECURSE=1 CLEAN 
    cd "..\QuantLibXL"
 
 !ENDIF 
