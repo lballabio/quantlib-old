@@ -24,6 +24,7 @@
 %include instruments.i
 %include marketelements.i
 %include termstructures.i
+%include volatilities.i
 %include stl.i
 
 // exercise conditions
@@ -64,24 +65,25 @@ MapToString(ExerciseType,exerciseTypeFromString,exerciseTypeToString);
 
 class Exercise {
   public:
-    Exercise(ExerciseType, const std::vector<Date>&);
     ExerciseType type() const;
     std::vector<Date> dates() const;
+  private:
+    Exercise();
 };
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 // no virtual destructor in base class - prevent mismatch
 %inline %{
     Exercise* new_EuropeanExercise(const Date& date) {
-        return new Exercise(Exercise::European, std::vector<Date>(1,date));
+        return new Exercise(EuropeanExercise(date));
     }
     Exercise* new_AmericanExercise(const Date& earliestDate, 
                                    const Date& latestDate) {
         std::vector<Date> v(2);
         v[0] = earliestDate; v[1] = latestDate;
-        return new Exercise(Exercise::American,v);
+        return new Exercise(AmericanExercise(earliestDate,latestDate));
     }
     Exercise* new_BermudanExercise(const std::vector<Date>& dates) {
-        return new Exercise(Exercise::Bermudan,dates);
+        return new Exercise(BermudanExercise(dates));
     }
 %}
 #else
@@ -166,8 +168,8 @@ class VanillaOptionHandle : public Handle<Instrument> {
                 double strike,
                 const RelinkableHandle<TermStructure>& dividendYield,
                 const RelinkableHandle<TermStructure>& riskFreeRate,
-                const Date& exerciseDate,
-                const RelinkableHandle<MarketElement>& volatility,
+                const Exercise& exerciseDate,
+                const RelinkableHandle<BlackVolTermStructure>& volatility,
                 const Handle<PricingEngine>& engine,
                 const std::string& isinCode = "unknown", 
                 const std::string& desc = "option") {

@@ -42,7 +42,7 @@ class EuropeanOptionTest < Test::Unit::TestCase
     end
   end
   def makeOption(type,underlying,strike,divCurve,rfCurve,
-                 exDate,volatility,engineType='analytic')
+                 exDate,volCurve,engineType='analytic')
     case engineType
       when 'analytic'
         engine = EuropeanAnalyticEngine.new
@@ -52,15 +52,22 @@ class EuropeanOptionTest < Test::Unit::TestCase
         engine = EuropeanBinomialEngine.new('crr',800)
     end
     VanillaOption.new(type,MarketElementHandle.new(underlying),strike,
-                      divCurve,rfCurve, exDate,
-                      MarketElementHandle.new(volatility),engine)
+                      divCurve,rfCurve, EuropeanExercise.new(exDate),
+                      volCurve,engine)
   end
   def makeFlatCurve(forward)
     today = Date.todaysDate
     settlement = Calendar.new("TARGET").advance(today,2,'days')
     TermStructureHandle.new(
         FlatForward.new(today, settlement, MarketElementHandle.new(forward),
-                        DayCounter.new('act/360')))
+                        DayCounter.new('act/365')))
+  end
+  def makeFlatVolatility(volatility)
+    today = Date.todaysDate
+    settlement = Calendar.new("TARGET").advance(today,2,'days')
+    BlackVolTermStructureHandle.new(
+        BlackConstantVol.new(settlement, MarketElementHandle.new(volatility),
+                             DayCounter.new('act/365')))
   end
   def testGreeks
     calendar = Calendar.new('TARGET')
@@ -92,6 +99,7 @@ class EuropeanOptionTest < Test::Unit::TestCase
 
     underlying = SimpleMarketElement.new(0.0)
     volatility = SimpleMarketElement.new(0.0)
+    volCurve = makeFlatVolatility(volatility)
     qRate = SimpleMarketElement.new(0.0)
     divCurve = makeFlatCurve(qRate)
     rRate = SimpleMarketElement.new(0.0)
@@ -100,7 +108,7 @@ class EuropeanOptionTest < Test::Unit::TestCase
     test_options.each do |type,strike,exDate|
 
       opt = makeOption(type,underlying,strike,
-                       divCurve,rfCurve,exDate,volatility)
+                       divCurve,rfCurve,exDate,volCurve)
 
       # time-shifted exercise dates
       exDateP = calendar.advance(exDate,1,'day')
@@ -108,10 +116,10 @@ class EuropeanOptionTest < Test::Unit::TestCase
       dT = exDateP.serialNumber-exDateM.serialNumber
       opt_p = makeOption(type, underlying , strike,
                          divCurve,  rfCurve,
-                         exDateP ,  volatility)
+                         exDateP ,  volCurve)
       opt_m = makeOption(type, underlying , strike,
                          divCurve,  rfCurve,
-                         exDateM ,  volatility)
+                         exDateM ,  volCurve)
             
       test_data.each do |u,q,r,v|
         
@@ -204,6 +212,7 @@ class EuropeanOptionTest < Test::Unit::TestCase
 
     underlying = SimpleMarketElement.new(0.0)
     volatility = SimpleMarketElement.new(0.0)
+    volCurve = makeFlatVolatility(volatility)
     qRate = SimpleMarketElement.new(0.0)
     divCurve = makeFlatCurve(qRate)
     rRate = SimpleMarketElement.new(0.0)
@@ -212,7 +221,7 @@ class EuropeanOptionTest < Test::Unit::TestCase
     test_options.each do |type,strike,exDate|
 
       opt = makeOption(type,underlying,strike,
-                       divCurve,rfCurve,exDate,volatility)
+                       divCurve,rfCurve,exDate,volCurve)
       
       test_data.each do |u,q,r,v|
         
@@ -280,6 +289,7 @@ class EuropeanOptionTest < Test::Unit::TestCase
 
     underlying = SimpleMarketElement.new(0.0)
     volatility = SimpleMarketElement.new(0.0)
+    volCurve = makeFlatVolatility(volatility)
     qRate = SimpleMarketElement.new(0.0)
     divCurve = makeFlatCurve(qRate)
     rRate = SimpleMarketElement.new(0.0)
@@ -288,11 +298,11 @@ class EuropeanOptionTest < Test::Unit::TestCase
     test_options.each do |type,strike,exDate|
 
       opt1 = makeOption(type,underlying,strike,
-                        divCurve,rfCurve,exDate,volatility)
+                        divCurve,rfCurve,exDate,volCurve)
       opt2 = makeOption(type,underlying,strike,
-                        divCurve,rfCurve,exDate,volatility,'jr')
+                        divCurve,rfCurve,exDate,volCurve,'jr')
       opt3 = makeOption(type,underlying,strike,
-                        divCurve,rfCurve,exDate,volatility,'crr')
+                        divCurve,rfCurve,exDate,volCurve,'crr')
 
       test_data.each do |u,q,r,v|
         

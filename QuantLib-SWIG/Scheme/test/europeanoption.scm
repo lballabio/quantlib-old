@@ -42,14 +42,13 @@
                                rf-curve ex-days volatility . engine-type)
     (deleting-let* ((today (Date-todays-date) delete-Date)
                     (ex-date (Date-plus-days today ex-days) delete-Date)
+                    (exercise (new-EuropeanExercise ex-date) delete-Exercise)
                     (uh (new-MarketElementHandle underlying)
-                        delete-MarketElementHandle)
-                    (vh (new-MarketElementHandle volatility)
                         delete-MarketElementHandle)
                     (engine (make-engine engine-type) 
                             delete-PricingEngine))
       (new-VanillaOption type uh strike div-curve
-                         rf-curve ex-date vh engine)))
+                         rf-curve exercise volatility engine)))
   (define (make-engine engine-type)
     (if (null? engine-type) 
         (new-EuropeanAnalyticEngine)
@@ -65,18 +64,32 @@
                     (calendar (new-Calendar "TARGET") delete-Calendar)
                     (settlement (Calendar-advance calendar today 2 "days")
                                 delete-Date)
-                    (day-counter (new-DayCounter "act/360")
+                    (day-counter (new-DayCounter "act/365")
                                  delete-DayCounter)
                     (fh (new-MarketElementHandle forward)
                         delete-MarketElementHandle)
                     (curve (new-FlatForward today settlement fh day-counter)
                            delete-TermStructure))
       (new-TermStructureHandle curve)))
+  (define (make-flat-volatility volatility)
+    (deleting-let* ((today (Date-todays-date) delete-Date)
+                    (calendar (new-Calendar "TARGET") delete-Calendar)
+                    (settlement (Calendar-advance calendar today 2 "days")
+                                delete-Date)
+                    (day-counter (new-DayCounter "act/365")
+                                 delete-DayCounter)
+                    (vh (new-MarketElementHandle volatility)
+                        delete-MarketElementHandle)
+                    (curve (new-BlackConstantVol settlement vh day-counter)
+                           delete-BlackVolTermStructure))
+      (new-BlackVolTermStructureHandle curve)))
   ; setup
   (deleting-let* ((underlying (new-SimpleMarketElement 0.0)
                               delete-MarketElement)
                   (volatility (new-SimpleMarketElement 0.0)
                               delete-MarketElement)
+                  (vol-curve (make-flat-volatility volatility)
+                             delete-BlackVolTermStructureHandle)
                   (q-rate (new-SimpleMarketElement 0.0)
                           delete-MarketElement)
                   (div-curve (make-flat-curve q-rate)
@@ -96,21 +109,21 @@
                                 ("vega" . 1.0e-4))))
                (for-each-combination ((type '("Call" "Put" "Straddle"))
                                       (strike '(50 99.5 100 100.5 150))
-                                      (ex-days '(365)))
+                                      (ex-days '(730)))
                  (deleting-let* ((option (make-option type underlying strike 
                                                       div-curve rf-curve 
-                                                      ex-days volatility)
+                                                      ex-days vol-curve)
                                          delete-Instrument)
                                   ; time-shifted exercise dates
                                  (option+ (make-option type underlying strike 
                                                        div-curve rf-curve 
                                                        (+ ex-days 1)
-                                                       volatility)
+                                                       vol-curve)
                                           delete-Instrument)
                                  (option- (make-option type underlying strike 
                                                        div-curve rf-curve 
                                                        (- ex-days 1)
-                                                       volatility)
+                                                       vol-curve)
                                           delete-Instrument))
                    (for-each-combination ((u '(100))
                                           (q '(0.04 0.05 0.06))
@@ -179,7 +192,7 @@
                                     (ex-days '(36 180 360 1080)))
                (deleting-let* ((option (make-option type underlying strike 
                                                     div-curve rf-curve 
-                                                    ex-days volatility)
+                                                    ex-days vol-curve)
                                        delete-Instrument))
                  (for-each-combination ((u '(80 95 99.9 100 100.1 105 120))
                                         (q '(0.01 0.05 0.10))
@@ -223,16 +236,16 @@
                                     (ex-days '(365)))
                (deleting-let* ((option-1 (make-option type underlying strike 
                                                       div-curve rf-curve 
-                                                      ex-days volatility)
+                                                      ex-days vol-curve)
                                          delete-Instrument)
                                (option-2 (make-option type underlying strike 
                                                       div-curve rf-curve 
-                                                      ex-days volatility 
+                                                      ex-days vol-curve 
                                                       "jr")
                                          delete-Instrument)
                                (option-3 (make-option type underlying strike 
                                                       div-curve rf-curve 
-                                                      ex-days volatility 
+                                                      ex-days vol-curve 
                                                       "crr")
                                          delete-Instrument))
                  (for-each-combination ((u '(100))

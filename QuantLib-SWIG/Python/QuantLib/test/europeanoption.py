@@ -27,7 +27,7 @@ def relErr(x1, x2, reference):
         return 10e+10
 
 def EuropeanOption(type,underlying,strike,divCurve,rfCurve,
-                   exDate,volatility,engineType='analytic'):
+                   exDate,volCurve,engineType='analytic'):
     if engineType == 'analytic':
         engine = EuropeanAnalyticEngine()
     elif engineType == 'jr':
@@ -35,15 +35,22 @@ def EuropeanOption(type,underlying,strike,divCurve,rfCurve,
     elif engineType == 'crr':
         engine = EuropeanBinomialEngine('crr',800)
     return VanillaOption(type,MarketElementHandle(underlying),strike,
-                         divCurve,rfCurve, exDate,
-                         MarketElementHandle(volatility),engine)
+                         divCurve,rfCurve,EuropeanExercise(exDate),
+                         volCurve,engine)
 
 def flatCurve(forward):
     today = Date_todaysDate()
     settlement = Calendar("TARGET").advance(today,2,'days')
     return TermStructureHandle(
         FlatForward(today, settlement, MarketElementHandle(forward),
-                    DayCounter('act/360')))
+                    DayCounter('act/365')))
+
+def flatVolatility(volatility):
+    today = Date_todaysDate()
+    settlement = Calendar("TARGET").advance(today,2,'days')
+    return BlackVolTermStructureHandle(
+        BlackConstantVol(settlement, MarketElementHandle(volatility),
+                         DayCounter('act/365')))
 
 class EuropeanOptionTest(unittest.TestCase):
     def testGreeks(self):
@@ -62,8 +69,8 @@ class EuropeanOptionTest(unittest.TestCase):
                         for type in ['Call','Put','Straddle']
                         for strike in [50, 99.5, 100, 100.5, 150]
                         for exDate in [Calendar("TARGET").roll(
-                                       Date_todaysDate().plusYears(1))]]
-                      
+                                       Date_todaysDate().plusYears(2))]]
+        
         test_data = [(under,qRate,rRate,vol)
                      for under in [100]
                      for qRate in [0.04, 0.05, 0.06]
@@ -72,6 +79,7 @@ class EuropeanOptionTest(unittest.TestCase):
 
         underlying = SimpleMarketElement(0.0)
         volatility = SimpleMarketElement(0.0)
+        volCurve = flatVolatility(volatility)
         qRate = SimpleMarketElement(0.0)
         divCurve = flatCurve(qRate)
         rRate = SimpleMarketElement(0.0)
@@ -79,7 +87,7 @@ class EuropeanOptionTest(unittest.TestCase):
         
         for (type,strike,exDate) in test_options:
             opt = EuropeanOption(type,underlying,strike,
-                                 divCurve,rfCurve,exDate,volatility)
+                                 divCurve,rfCurve,exDate,volCurve)
 
             # time-shifted exercise dates
             exDateP = Calendar("TARGET").advance(exDate,1,'day')
@@ -87,10 +95,10 @@ class EuropeanOptionTest(unittest.TestCase):
             dT = exDateP.serialNumber()-exDateM.serialNumber()
             opt_p = EuropeanOption(type, underlying , strike,
                                    divCurve,  rfCurve,
-                                   exDateP ,  volatility)
+                                   exDateP ,  volCurve)
             opt_m = EuropeanOption(type, underlying , strike,
                                    divCurve,  rfCurve,
-                                   exDateM ,  volatility)
+                                   exDateM ,  volCurve)
             
             for (u,q,r,v) in test_data:
             
@@ -184,6 +192,7 @@ Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s %(v)f
 
         underlying = SimpleMarketElement(0.0)
         volatility = SimpleMarketElement(0.0)
+        volCurve = flatVolatility(volatility)
         qRate = SimpleMarketElement(0.0)
         divCurve = flatCurve(qRate)
         rRate = SimpleMarketElement(0.0)
@@ -191,7 +200,7 @@ Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s %(v)f
         
         for (type,strike,exDate) in test_options:
             opt = EuropeanOption(type,underlying,strike,
-                                 divCurve,rfCurve,exDate,volatility)
+                                 divCurve,rfCurve,exDate,volCurve)
 
             for (u,q,r,v) in test_data:
             
@@ -248,6 +257,7 @@ Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s
 
         underlying = SimpleMarketElement(0.0)
         volatility = SimpleMarketElement(0.0)
+        volCurve = flatVolatility(volatility)
         qRate = SimpleMarketElement(0.0)
         divCurve = flatCurve(qRate)
         rRate = SimpleMarketElement(0.0)
@@ -255,11 +265,11 @@ Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s
         
         for (type,strike,exDate) in test_options:
             opt1 = EuropeanOption(type,underlying,strike,
-                                  divCurve,rfCurve,exDate,volatility)
+                                  divCurve,rfCurve,exDate,volCurve)
             opt2 = EuropeanOption(type,underlying,strike,
-                                  divCurve,rfCurve,exDate,volatility,'jr')
+                                  divCurve,rfCurve,exDate,volCurve,'jr')
             opt3 = EuropeanOption(type,underlying,strike,
-                                  divCurve,rfCurve,exDate,volatility,'crr')
+                                  divCurve,rfCurve,exDate,volCurve,'crr')
 
             for (u,q,r,v) in test_data:
             
