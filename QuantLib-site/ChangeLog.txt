@@ -1,3 +1,15 @@
+2002-03-23 20:57  nando
+
+	* FAQ.html (1.36), cvs.html (1.36), download.html (1.28),
+	extensions.html (1.21), index.html (1.41), license.html (1.43),
+	lists.html (1.30), mailinglists.html (1.21), marketconventions.html
+	(1.22), nextrelease.html (1.14), quep.html (1.27), snapshot.html
+	(1.16), style.html (1.27): references updated
+
+2002-03-23 20:55  nando
+
+	* ChangeLog.txt (1.14): updated
+
 2002-03-23 18:31  nando
 
 	* FAQ.html (1.35), cvs.html (1.35), extensions.html (1.20):

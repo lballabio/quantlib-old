@@ -1,0 +1,85 @@
+2002-03-28 17:07  nando
+
+	* QuantLibXL.dsp (1.5), QuantLibXL.mak (1.5), qlxl/qlxl.hpp (1.3):
+	added check on the QuantLib and xlw versions used
+
+2002-03-28 12:28  nando
+
+	* QuantLibXL.dsp (1.4), QuantLibXL.mak (1.4): removed useless
+	QUANTLIBEXCEL_EXPORTS
+
+2002-03-28 12:23  nando
+
+	* QuantLibXL.dsp (1.3), QuantLibXL.mak (1.3), Docs/makefile.mak
+	(1.1): reversed logic from XLW_NOIMPORTEXPORT to XLW_IMPORTEXPORT
+
+2002-03-22 11:22  nando
+
+	* QuantLibXL.nsi (1.5), qlxl/qlxl.hpp (1.2): -cvs fixed
+
+2002-03-21 17:48  nando
+
+	* QuantLibXL.nsi (1.4): qlxl.xll renamed QuantLibXL.xll
+
+2002-03-21 17:41  nando
+
+	* qlxl/: qlxl.cpp (1.2), xlAutoOpen.cpp (1.2): qlxl.xll renamed
+	QuantLibXL.xll
+
+2002-03-21 17:36  nando
+
+	* QuantLibXL.mak (1.2): qlxl.xll renamed QuantLibXL.xll
+
+2002-03-21 17:26  nando
+
+	* QuantLibXL.dsp (1.2), QuantLibXL.nsi (1.3), qlxl/makefile.mak
+	(1.3): qlxl.xll renamed QuantLibXL.xll
+
+2002-03-21 17:04  nando
+
+	* qlxl/makefile.mak (1.2): improved parametrization of debug
+	trailing identifier in Borland makefiles
+
+2002-03-21 16:37  nando
+
+	* QuantLibXL.nsi (1.2), Workbooks/quantlib.xls (1.1): initial
+	commit
+
+2002-03-21 16:33  nando
+
+	* Docs/images/QL-largish.bmp (1.1): initial commit
+
+2002-03-21 16:29  nando
+
+	* QuantLibXL.mak (1.1): initial commit
+
+2002-03-21 16:24  nando
+
+	* Authors.txt (1.1), ChangeLog.txt (1.1), Contributors.txt (1.1),
+	History.txt (1.1), LICENSE.TXT (1.1), News.txt (1.1),
+	QuantLibXL.dsp (1.1), QuantLibXL.dsw (1.1), QuantLibXL.nsi (1.1),
+	README.txt (1.1), TODO.txt (1.1), makefile.mak (1.1),
+	qlxl/datef.cpp (1.1), qlxl/datef.hpp (1.1), qlxl/makefile.mak
+	(1.1), qlxl/mathf.cpp (1.1), qlxl/mathf.hpp (1.1), qlxl/pricers.cpp
+	(1.1), qlxl/pricers.hpp (1.1), qlxl/qlxl.cpp (1.1), qlxl/qlxl.hpp
+	(1.1), qlxl/utilities.cpp (1.1), qlxl/utilities.hpp (1.1),
+	qlxl/xlAutoOpen.cpp (1.1), xll/dummy.txt (1.1), xll/Win32/dummy.txt
+	(1.1), xll/Win32/Borland/dummy.txt (1.1),
+	xll/Win32/VisualStudio/dummy.txt (1.1): Initial revision
+
+2002-03-21 16:24  nando
+
+	* Authors.txt (1.1.1.1), ChangeLog.txt (1.1.1.1), Contributors.txt
+	(1.1.1.1), History.txt (1.1.1.1), LICENSE.TXT (1.1.1.1), News.txt
+	(1.1.1.1), QuantLibXL.dsp (1.1.1.1), QuantLibXL.dsw (1.1.1.1),
+	QuantLibXL.nsi (1.1.1.1), README.txt (1.1.1.1), TODO.txt (1.1.1.1),
+	makefile.mak (1.1.1.1), qlxl/datef.cpp (1.1.1.1), qlxl/datef.hpp
+	(1.1.1.1), qlxl/makefile.mak (1.1.1.1), qlxl/mathf.cpp (1.1.1.1),
+	qlxl/mathf.hpp (1.1.1.1), qlxl/pricers.cpp (1.1.1.1),
+	qlxl/pricers.hpp (1.1.1.1), qlxl/qlxl.cpp (1.1.1.1), qlxl/qlxl.hpp
+	(1.1.1.1), qlxl/utilities.cpp (1.1.1.1), qlxl/utilities.hpp
+	(1.1.1.1), qlxl/xlAutoOpen.cpp (1.1.1.1), xll/dummy.txt (1.1.1.1),
+	xll/Win32/dummy.txt (1.1.1.1), xll/Win32/Borland/dummy.txt
+	(1.1.1.1), xll/Win32/VisualStudio/dummy.txt (1.1.1.1): initial
+	import
+
