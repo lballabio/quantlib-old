@@ -21,6 +21,7 @@
 #include <ql/quote.hpp>
 #include <ql/TermStructures/flatforward.hpp>
 #include <ql/Volatilities/blackconstantvol.hpp>
+#include <ql/basicdataformatters.hpp>
 
 namespace QuantLibAddin {
 

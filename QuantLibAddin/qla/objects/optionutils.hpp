@@ -21,6 +21,7 @@
 #include <ql/option.hpp>
 #include <ql/Instruments/payoffs.hpp>
 #include <ql/Math/matrix.hpp>
+#include <ql/basicdataformatters.hpp>
 
 // indexes to the Property vector
 // FIXME - need a cleaner way to achieve this
