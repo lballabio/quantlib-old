@@ -6,3 +6,9 @@ AddinCalc.plg
 *.urd
 *.rdb
 *.flag*
+.deps
+.libs
+Makefile.am
+Makefile.in
+*.lo
+libQuantLibAddinCalc.la

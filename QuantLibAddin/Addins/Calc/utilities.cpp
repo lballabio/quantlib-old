@@ -65,3 +65,4 @@ std::string OUStringToString(const STRING& s1) {
     else
         throw Exception("OUStringToString: unable to convert string");
 }
+

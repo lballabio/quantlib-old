@@ -8,3 +8,9 @@ xll
 *_private.*
 *.layout
 Makefile.win
+.deps
+.libs
+Makefile.am
+Makefile.in
+*.lo
+libQuantLibAddinC.la

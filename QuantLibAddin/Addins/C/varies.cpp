@@ -57,7 +57,7 @@ const char *variesToString(const Varies *v) {
     if (v->type == INT)
         sprintf(c, "%d", v->data.AsInt);
     else if (v->type == LONG)
-        sprintf(c, "%d", v->data.AsLong);
+        sprintf(c, "%ld", v->data.AsLong);
     else if (v->type == DOUBLE)
         sprintf(c, "%f", v->data.AsDouble);
     else if (v->type == CHARP)

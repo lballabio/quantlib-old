@@ -18,6 +18,9 @@
 #ifndef qladdin_hpp
 #define qladdin_hpp
 
+#if defined(HAVE_CONFIG_H)    // Dynamically created by configure
+    #include <qla/config.hpp>
+#endif
 #include <oh/objhandler.hpp>
 #include <qla/qladdindefines.hpp>
 #include <qla/functions/options.hpp>

@@ -1,11 +1,14 @@
-build
 bin
+build
 ClientCPP.dep
 ClientCPP.mak
 ClientCPP.ncb
 ClientCPP.opt
 ClientCPP.plg
 ClientCPP_private.*
+.deps
+.libs
+Makefile.in
 Makefile.win
 QLADemo
 quantlib.log

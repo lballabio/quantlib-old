@@ -10,3 +10,6 @@ xll
 Makefile.win
 QLADemo
 quantlib.log
+.deps
+.libs
+Makefile.in

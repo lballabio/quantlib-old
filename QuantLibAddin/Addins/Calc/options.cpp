@@ -162,4 +162,3 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionSetEngine(
         THROW_RTE;
     }
 }
-

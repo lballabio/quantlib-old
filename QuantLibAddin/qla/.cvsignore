@@ -1,0 +1,5 @@
+config.hpp*
+libQuantLibAddin.la
+.libs
+Makefile.in
+stamp-h1
