@@ -22,15 +22,13 @@
 <table summary="humour" width="100%" border="0" cellpadding="0"
 cellspacing="0">
 <tr>
-<td width="20%">&nbsp;</td>
-<td>There are two ways of constructing a software design. One way
-is to make it so simple that there are obviously no deficiencies.
-And the other way is to make it so complicated that there are no
-obvious deficiencies.</td>
+<td width="30%">&nbsp;</td>
+<td align="left"><em>Zawinski's Law:</em></td>
 </tr>
 <tr>
-<td width="20%">&nbsp;</td>
-<td align="right"><em>C. A. R. Hoare</em></td>
+<td width="30%">&nbsp;</td>
+<td>Every program attempts to expand until it can read mail. Those
+programs which cannot so expand are replaced by ones which can.</td>
 </tr>
 </table>
 <p>While simple feature requests can be submitted using the
@@ -88,13 +86,13 @@ in option implementations</a></td>
 <td>6</td>
 <td><a href="quep/quep006/quep006.html">A proposal for a Currency
 module</a></td>
-<td>Draft / Open for discussion</td>
+<td>Partially implemented</td>
 </tr>
 <tr>
 <td>7</td>
 <td><a href="quep/quep007.html">Using the Visitor pattern to avoid
 interface bloat</a></td>
-<td>Implemented in CVS</td>
+<td>Implemented</td>
 </tr>
 <tr>
 <td>8</td>
@@ -112,6 +110,16 @@ Observer class</a></td>
 <td><a href="quep/quep010.html">Separation of concerns in
 RelinkableHandle</a></td>
 <td>Implemented</td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="quep/quep011.html">Object Handler</a></td>
+<td>In progress</td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="quep/quep012.html">QuantLibAddin</a></td>
+<td>In progress</td>
 </tr>
 </table>
 <!--#include virtual="qlfooter.inc"-->

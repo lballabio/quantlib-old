@@ -1,0 +1,520 @@
+<html><head><title>QuEP 12: QuantLibAddin</title>
+
+<link rel="stylesheet" href="eric.css" type="text/css">
+<style type="text/css">
+pre {
+    margin-left: 5%;
+    color: black;
+    font-family: monospace;
+}
+FONT.comment {
+    color: green;
+}
+</style></head>
+<body><div></div><div></div><!-- override quantlib.css to make comments green -->
+
+
+<div class="center">
+<h1>QuEP 12: QuantLibAddin</h1>
+<font size="-2"><a href="#tag_4">updated 2-Nov-2004</a></font><br><br>
+Eric Ehlers
+</div>
+<h2>Abstract</h2>
+<p>There is a requirement to supplement QuantLib's existing C++ API with a high-level API, <b>QuantLibAddin</b>,
+which implements a procedural interface that can be deployed on any
+platform capable of linking C++ libraries. QuantLibAddin is less
+flexible than the native API but allows QuantLib functionality to be
+loaded directly to end-user environments such as spreadsheets.</p>
+<a name="tag_contents"></a><h2><a name="tag_contents">Contents</a></h2>
+<div class="TOC"><dl>
+<dt><a name="tag_contents">1. </a><a href="#tag_1">Design</a></dt>
+<dd><dl>
+<dt>1.1 <a href="#tag_1_1">Objects</a></dt>
+<dt>1.2 <a href="#tag_1_2">Interface</a></dt>
+<dt>1.3 <a href="#tag_1_3">Metadata</a></dt>
+<dt>1.4 <a href="#tag_1_4">Addin</a></dt>
+<dd><dl>
+<dt>1.4.1 <a href="#tag_1_4_1">Structure</a></dt>
+<dt>1.4.2 <a href="#tag_1_4_2">Functions</a></dt>
+<dt>1.4.3 <a href="#tag_1_4_3">Library</a></dt>
+</dl></dd>
+<dt>1.5 <a href="#tag_1_5">Client</a></dt>
+</dl></dd>
+<dt>2. <a href="#tag_2">Implementation</a></dt>
+<dd><dl>
+<dt>2.1 <a href="#tag_2_1">Objects</a></dt>
+<dt>2.2 <a href="#tag_2_2">Interface</a></dt>
+<dt>2.3 <a href="#tag_2_3">Metadata</a></dt>
+<dt>2.4 <a href="#tag_2_4">Addin</a></dt>
+<dd><dl>
+<dt>2.4.1 <a href="#tag_2_4_1">Structure</a></dt>
+<dt>2.4.2 <a href="#tag_2_4_2">Functions</a></dt>
+<dt>2.4.3 <a href="#tag_2_4_3">Library</a></dt>
+</dl></dd>
+<dt>2.5 <a href="#tag_2_5">Client</a></dt>
+<dd><dl>
+<dt>2.5.1 <a href="#tag_2_5_1">C++</a></dt>
+<dt>2.5.2 <a href="#tag_2_5_2">Excel</a></dt>
+</dl></dd>
+</dl></dd>
+<dt>3. <a href="#tag_3">Notes</a></dt>
+<dt>4. <a href="#tag_4">Revision History</a></dt>
+<dt>5. <a href="#tag_5">Feedback</a></dt>
+</dl></div>
+<a name="tag_1"></a><h2>1. <a href="#tag_contents">Design</a></h2>
+<p>A QuantLibAddin binary is provided for each target platform.
+QuantLibAddin has the same interface on all platforms. Functions allow
+QuantLib objects to be instantiated and interrogated. An object
+returned from one function may be passed as a parameter to another.</p>
+<p>The QuantLibAddin interface is defined in a library which is linked
+to the binaries on each target platform, where additional
+platform-specific functionality may be implemented.</p>
+<p>The library of functions is suplemented with metadata describing
+each function, this allows the source code for Addins to be
+automatically generated and compiled. QuantLibAddin make invokes a
+script which parses the metadata and automatically generates source
+code for the Addins. QuantLibAddin make proceeds to compile the
+automatically generated source code.</p>
+<div class="center"><img src="quep012a.png" alt="design"></div>
+<p>QuantLibAddin consists of the following components:</p>
+<a name="tag_1_1"></a><h3>1.1 <a href="#tag_contents">Objects</a></h3>
+<p>The class for each QuantLib object to be stored in the Object
+Handler (and to be available to QuantLibAddin) is wrapped in a class
+derived from <tt>Object</tt>.</p>
+<a name="tag_1_2"></a><h3>1.2 <a href="#tag_contents">Interface</a></h3>
+<p>QuantLibAddin functions are compiled into a library. Typically each
+function constructs a QuantLib object, or invokes a member function of
+a previously constructed object.</p>
+<p>To support addins implemented in C, the functions in the main
+interface library are wrapped in a supplementary library compiled with
+C linkage. This library performs additional conversion of
+inputs/outputs, e.g.:</p>
+<ul>
+<li>boost::any to some corresponding C construct</li>
+<li>std::string to char *</li>
+</ul>
+<p>As C does not support try/catch, the C versions of the functions
+return a boolean to indicate success/failure, and the actual return
+value - the C struct representing boost::any - is a ** function
+parameter.</p>
+<a name="tag_1_3"></a><h3>1.3 <a href="#tag_contents">Metadata</a></h3>
+<p>Metadata defines all function descriptions which might be necessary for Addins on various platforms, e.g:</p>
+<ul>
+<li>description of each input and output</li>
+<li>function help</li>
+</ul>
+<p>In order to support addins on all platforms, it may be necessary for
+the same piece of information to be implemented multiple times in the
+metadata, for example long and short versions of the function help.</p>
+<p>To support automatic generation of source code, the metadata also
+provides some configuration information - the function's prototype, and
+the name of the header file in which the function is declared.</p>
+<a name="tag_1_4"></a><h3>1.4 <a href="#tag_contents">Addin</a></h3>
+<p>The source code for each Addin comprises the following components:</p>
+<a name="tag_1_4_1"></a><h3>1.4.1 <a href="#tag_contents">Structure</a></h3>
+<p>This refers to the Addin's entry point, registration with any host
+application, and similar functions. Some of this code is static and
+handwritten, other code depends on the business logic and is generated
+automatically, for example the registration of functions.</p>
+<a name="tag_1_4_2"></a><h3>1.4.2 <a href="#tag_contents">Functions</a></h3>
+<p>This is the platform-specific wrapper for each function in the core QuantLibAddin interface library.  Each function wrapper</p>
+<ul>
+<li>retrieves inputs in native format from host application</li>
+<li>converts inputs to QuantLib format</li>
+<li>invokes the QuantLibAddin interface function and captures its return value</li>
+<li>converts the return value to native format and returns it to the host application</li>
+</ul>
+<p>The above is wrapped in try/catch. All Addins use standard calls to
+log exceptions to the QuantLibAddin log file, and may perform addition
+platform-specific error handling e.g. throwing a new exception for the
+host application.</p>
+<a name="tag_1_4_3"></a><h3>1.4.3 <a href="#tag_contents">Library</a></h3>
+<p>Each Addin provides a platform specific implementation for a
+standard library of functions required by QuantLibAddin. This code is
+relatively static and is written manually.</p>
+<p>For example, most interface functions instantiate an object and
+return a Property vector describing the object. On each platform the
+Property vector must be converted to an array of native datatypes. So
+the autogenerated source code passes the Property vector to library
+function "formatReturn" which is implemented appropriately for each
+platform.</p>
+<a name="tag_1_5"></a><h3>1.5 <a href="#tag_contents">Client</a></h3>
+<p>The client application loads QuantLibAddin and instantiates a single
+global instance of the Object Handler. QuantLibAddin functions allow
+objects to be constructed, interrogated, modified, and passed as input
+parameters to constructors / member functions of other objects. Objects
+can be deleted explicitly, otherwise the Object Handler destroys all
+objects in its repository when it is destroyed.</p>
+<a name="tag_2"></a><h2>2. <a href="#tag_contents">Implementation</a></h2>
+<p>The example below shows a possible implementation of QuantLibAddin
+and clients. Pseudocode is provided, comprising three QuantLibAddin
+functions which</p>
+<ul>
+<li>construct a BlackScholesProcess from native datatypes</li>
+<li>construct a VanillaOption from the BlackScholesProcess and native datatypes</li>
+<li>change the Pricing Engine of the VanillaOption.</li>
+</ul>
+<p>The example is unrealistic but demonstrates how objects may be
+created, passed as inputs to constructors of other objects, and
+manipulated.</p>
+<a name="tag_2_1"></a><h3>2.1 <a href="#tag_contents">Objects</a></h3>
+<h4>objectoption.hpp</h4>
+<pre>#include "objecthandler.hpp"
+
+class ObjectStochastic : public Object {
+public:
+   ObjectStochastic(
+       const Spread &amp;dividendYield,
+       const Rate &amp;riskFreeRate,
+       const Volatility &amp;volatility,
+       const Real &amp;underlying,
+       const Date &amp;todaysDate,
+       const Date &amp;settlementDate);
+   <font class="comment">// destructor, copy constructor, assignment operator</font>
+    virtual boost::shared_ptr&lt;void&gt; getReference() const {
+        return boost::static_pointer_cast&lt;void&gt;(stochasticProcess_);
+    }
+private:
+   boost::shared_ptr&lt;BlackScholesProcess&gt; stochasticProcess_;
+};
+
+class ObjectOption : public Object {
+public:
+   ObjectOption(
+      boost::shared_ptr&lt;ObjectStochastic&gt;,
+      const string &amp;typestr,
+      const Real &amp;strike,
+      const Size &amp;timeSteps,
+      const Date &amp;exerciseDate,
+      const Date &amp;settlementDate);
+   <font class="comment">// destructor, copy constructor, assignment operator</font>
+   void setEngine(
+      const string &amp;engineName,
+      const Size &amp;timeSteps);
+    virtual boost::shared_ptr<void> getReference() const {
+        return boost::static_pointer_cast<void>(vanillaOption_);
+    }
+private:
+   boost::shared_ptr&lt;VanillaOption&gt; vanillaOption_;
+};
+</void></void></pre>
+<h4>objectoption.cpp</h4>
+<pre>#include "objectoption.hpp"
+
+ObjectStochastic::ObjectStochastic(inputs ...) {
+   <font class="comment">// use the inputs to construct term structures etc ..</font>
+   ...
+
+   <font class="comment">// construct the BlackSholesProcess &amp; point blackScholesProcess_ at it</font>
+   ...
+}
+
+ObjectOption::ObjectOption(
+      boost::shared_ptr&lt;ObjectStochastic&gt; objectStochastic,
+      inputs ...) {
+   <font class="comment">// acquire a reference to the BlackScholesProcess object</font>
+   const boost::shared_ptr&lt;BlackScholesProcess&gt; stochasticProcess =
+      boost::static_pointer_cast&lt;BlackScholesProcess&gt;
+      (objectStochastic-&gt;getReference());
+
+   <font class="comment">// use the inputs to construct exercise / payoff / pricing engine.</font>
+   ...
+
+   <font class="comment">// construct the option &amp; point vanillaOption_ at it</font>
+   ...
+
+   <font class="comment">// populate the Property vector in the base class</font>
+   any_ptr anyNpv(new boost::any(vanillaOption_-&gt;NPV()));
+   any_ptr anyEngine(new boost::any(string(BINOMIAL_JARROW_RUDD)));
+   ObjectProperty propNpv(PROPERTY_NPV, anyNpv);
+   ObjectProperty propEngine(PROPERTY_ENGINE, anyEngine);
+   properties_.push_back(propNpv);
+   properties_.push_back(propEngine);
+}
+
+void ObjectOption::setEngine(
+      const string &amp;engineName,
+      const Size &amp;timeSteps) {
+   <font class="comment">// call corresponding QuantLib function</font>
+   if (engineName.compare(BINOMIAL_JARROW_RUDD) == 0)    {
+      boost::shared_ptr&lt;PricingEngine&gt; pricingEngine(
+         new BinomialVanillaEngine&lt;JarrowRudd&gt;(timeSteps));
+      vanillaOption_-&gt;setPricingEngine(pricingEngine);
+   } else if (engineName.compare(XXX) == 0)     {
+     ...
+   }
+   <font class="comment">// update Property vector</font>
+   *properties_[IDX_NPV]() = vanillaOption_-&gt;NPV();
+   *properties_[IDX_ENGINE]() = engineUpper;
+}
+</pre>
+<a name="tag_2_2"></a><h3>2.2 <a href="#tag_contents">Interface</a></h3>
+<p>Below is the pseudocode for QL_OPTION which wraps the option
+constructor. Not shown are functions QL_BLACKSCHOLES and QL_SETENGINE
+wrap the BlackScholesProcess constructor and option setEngine methods
+respectively.</p>
+<h4>qladdin.hpp</h4>
+<pre>Properties QL_OPTION(
+   const Handle &amp;handleOption,
+   const Handle &amp;handleStochastic,
+   const Real &amp;strike,
+   const Size &amp;timeSteps,
+   const Date &amp;exerciseDate,
+   const Date &amp;settlementDate);
+</pre>
+<h4>qladdin.cpp</h4>
+<pre>#include "qladdin.hpp"
+
+Properties QL_OPTION(
+      const Handle &amp;handleOption,
+      const Handle &amp;handleStochastic,
+      inputs ...) {
+   <font class="comment">// retrieve stochastic object from Object Handler &amp; use it to construct option object</font>
+   boost::shared_ptr&lt;ObjectStochastic&gt; objectStochastic =
+      boost::dynamic_pointer_cast&lt;ObjectStochastic&gt;
+      (objectHandler.retrieveObject(handleStochastic));
+   obj_ptr objectOption(
+      new ObjectOption(objectStochastic, type, strike, timeSteps,
+      exerciseDate, settlementDate));
+   objectHandler.storeObject(handleOption, objectOption);
+   return objectOption-&gt;getProperties();
+}
+</pre>
+<p>The C linkage for the QL_OPTION function:</p>
+<h4>qladdin.h</h4>
+<pre>extern "C" {
+
+c_any;	<font class="comment">// TBD - C equivalent of boost::any</font>
+
+bool QL_OPTION_C(
+   const char *handleOption,
+   const char *handleStochastic,
+   const double &amp;strike,
+   const long &amp;timeSteps,
+   const long &amp;exerciseDate,
+   const long &amp;settlementDate,
+   c_any **ret);  <font class="comment">// "real" return value</font>
+}  <font class="comment">// extern "C"</font>
+</pre>
+<h4>qladdin_c.cpp</h4>
+<pre>#include "qladdin.h"
+#include "qladdin.hpp"
+
+bool QL_OPTION_C(...) {
+   try {
+      <font class="comment">// convert c_any to boost::any</font>
+      ...
+      <font class="comment">// convert char * to std::string</font>
+      ...
+      <font class="comment">// call the interface function</font>
+      Properties properties = QL_OPTION();
+      <font class="comment">// convert Property vector to array of c_any</font>
+      *ret = propertiesToCAny(properties);
+      return SUCCESS;
+   } catch (const exception &amp;e) {
+      *ret = 0;
+      return FAILURE;
+   }
+}
+</pre>
+<a name="tag_2_3"></a><h3>2.3 <a href="#tag_contents">Metadata</a></h3>
+<pre>&lt;function&gt;
+   &lt;name&gt;QL_OPTION&lt;/name&gt;
+   &lt;input&gt;
+      &lt;type&gt;int&lt;/type&gt;
+      &lt;name&gt;input 1&lt;/name&gt;
+      &lt;comment&gt;comment for input 1&lt;/comment&gt;
+   &lt;/input&gt;
+   &lt;input&gt;
+      &lt;type&gt;string&lt;/type&gt;
+      &lt;name&gt;input 2&lt;/name&gt;
+      &lt;comment&gt;comment for input 2&lt;/comment&gt;
+   &lt;/input&gt;
+   &lt;help&gt;
+      &lt;line1&gt;this is the first line of help for function QL_OPTION&lt;/line1&gt;
+      &lt;line2&gt;this is the second line of help for function QL_OPTION&lt;/line2&gt;
+   &lt;/help&gt;
+&lt;/function&gt;
+</pre>
+<a name="tag_2_4"></a><h3>2.4 <a href="#tag_contents">Addin</a></h3>
+<a name="tag_2_4_1"></a><h3>2.4.1 <a href="#tag_contents">Structure</a></h3>
+<p>The code implementing the Addin's basic structure contains some code
+specific to the functions metadata and this is generated automatically,
+for example in Excel the function map:</p>
+<pre>static LPSTR func[NUM_FUNCS][NUM_ATTS] = {
+    ...
+    {" QL_OPTION",          " RCCENNN#"," QL_OPTION",           " ", " 1", " QuantLib"},
+    ...
+};
+</pre>
+<p>and function registration:</p>
+<pre>Excel(xlfRegister,0,8,xDLL,
+	TempStr("QL_OPTION"),
+	TempStr("RCCENNN#"),
+	TempStr("QuantLib Option Constructor"),
+	TempStr("Pricing functions"),
+	...);
+</pre>
+<a name="tag_2_4_2"></a><h3>2.4.2 <a href="#tag_contents">Functions</a></h3>
+<p>The Addin's platform specific wrapper for each interface function:</p>
+<h4>options.cpp</h4>
+<pre>#include "library.hpp"	<font class="comment">// formatReturn()</font>
+
+LPXLOPER QL_OPTION(
+        char *handleStochastic_char,
+        char *type,
+        double *strike,
+        long int *timeSteps,
+        long int *exerciseDateNum,
+        long int *settlementDateNum) {
+   try {
+      <font class="comment">// convert Excel inputs to QL inputs</font>
+      string handleStochastic(handleStochastic_char);
+      <font class="comment">// call the QL function</font>
+      Properties properties = QL_OPTION(...);
+      <font class="comment">// reformat the Property vector into an XLOPER array</font>
+      XLOPER xRet = formatReturn(properties);
+      return &amp;xRet;
+   } catch(const exception &amp;e) {
+      <font class="comment">// error - do QuantLibAddin standard error handling ...</font>
+      QL_LOG_ERROR(...);
+      <font class="comment">// ... now indicate an error to the host environment:</font>
+      return 0;	<font class="comment">// display #NA in calling cell</font>
+   }
+}
+</pre>
+<a name="tag_2_4_3"></a><h3>2.4.3 <a href="#tag_contents">Library</a></h3>
+<h4>library.hpp</h4>
+<pre>XLOPER formatReturn(const Properties &amp;properties);
+</pre>
+<h4>library.cpp</h4>
+<pre>XLOPER formatReturn(const Properties &amp;properties) {
+   <font class="comment">// convert Property vector to XLOPER array and return</font>
+	...
+}
+</pre>
+<a name="tag_2_5"></a><h3>2.5 <a href="#tag_contents">Client</a></h3>
+<a name="tag_2_5_1"></a><h3>2.5.1 <a href="#tag_contents">C++</a></h3>
+<p>Example of a standalone C++ client application.</p>
+<h4>application.cpp</h4>
+<pre>int main() {
+   cout &lt;&lt; "hi" &lt;&lt; endl;
+
+   Spread dividendYield = 0.00;
+   Rate riskFreeRate = 0.06;
+   Volatility volatility = 0.20;
+   Real underlying = 36;
+   Date todaysDate(15, May, 1998);
+   Date settlementDate(17, May,1998);
+
+   QL_BLACKSCHOLES("my_blackscholes", dividendYield, riskFreeRate, volatility,
+	underlying, todaysDate, settlementDate);
+
+   Real strike = 40;
+   Size timeSteps = 801;
+   Date exerciseDate(17, May, 1999);
+
+   QL_OPTION("my_option", "my_blackscholes", "PUT", strike, timeSteps, exerciseDate, settlementDate);
+
+   cout &lt;&lt; "High-level interrogation: after QL_OPTION" &lt;&lt; endl;
+   <font class="comment">// get object from handler and retrieve its properties -
+   // (properties also returned by QL_OPTION)</font>
+   obj_ptr object = objectHandler.retrieveObject("my_option");
+   Properties properties = object-&gt;getProperties();
+   Properties::const_iterator i;
+   for (i = properties.begin();
+      i != properties.end(); i++) {
+      ObjectProperty property = *i;
+      any_ptr any = property();
+      cout &lt;&lt; "property = " &lt;&lt; property.name() &lt;&lt; "\tvalue = " &lt;&lt;
+         AnyToString(any) &lt;&lt; endl;
+   }
+
+   QL_OPTION_SETENGINE("my_option", "Additive Equiprobabilities", 801);
+
+   cout &lt;&lt; "High-level interrogation: after QL_OPTION_SETENGINE" &lt;&lt; endl;
+   for (i = properties.begin();
+      i != properties.end(); i++) {
+      ObjectProperty property = *i;
+      any_ptr any = property();
+      cout &lt;&lt; "property = " &lt;&lt; property.name() &lt;&lt; "\tvalue = " &lt;&lt;
+         AnyToString(any) &lt;&lt; endl;
+   }
+
+   cout &lt;&lt; "Low-level interrogation: NPV of underlying option object" &lt;&lt; endl;
+   boost::shared_ptr&lt;ObjectOption&gt; objectOption =
+      boost::dynamic_pointer_cast&lt;ObjectOption&gt;
+      (objectHandler.retrieveObject("my_option"));
+   boost::shared_ptr&lt;VanillaOption&gt; const vanillaOption =
+      boost::static_pointer_cast&lt;VanillaOption&gt;
+      (objectOption-&amp;t;getReference());
+   cout &lt;&lt; "underlying option NPV() = " &lt;&lt; vanillaOption-&gt;NPV() &lt;&lt; endl;
+
+   cout &lt;&lt; "bye" &lt;&lt; endl;
+   return 1;
+}
+</pre>
+<p>Output of the above program:</p>
+<div class="center"><img src="quep012e.png"></div>
+<a name="tag_2_5_2"></a><h3>2.5.2 <a href="#tag_contents">Excel</a></h3>
+<div class="center"><img src="quep012c.png"></div>
+<p>Same again with cell formulas instead of values:</p>
+<div class="center"><img src="quep012d.png"></div>
+<ul>
+<p>A description of each section of the spreadsheet:</p>
+<li><b>Construct an object from native datatypes:</b> Cell formula
+QL_BLACKSCHOLES is called to construct a BlackScholes object from
+numeric values. (The input dates - today's date &amp; settlement date -
+are hard-coded pending implementation of date conversion routines). The
+Addin automatically sets the <tt>Handle</tt> of the object equal to  the address of the calling cell.</li>
+<li><b>Construct an object from native datatypes &amp; other objects:</b>
+The Black Scholes object created above is passed as an input to
+QL_OPTION which creates an option. Note that only a reference to the
+cell containing the Black Scholes object - C9 - is passed to QL_OPTION.
+The Addin autmatically accesses cell C9, retrieves the <tt>Handle</tt>
+of the Black Scholes object ("QL#[QLObjectHandler.xls]Example!$C$9"),
+retrieves the Black Scholes object from the Object Handler, and passes
+the object as an argument to the ObjectOption constructor. QL_OPTION
+returns an array of three values - the option <tt>Handle</tt>, the PV, and the Engine name - which are displayed in a cell array.</li>
+<li><b>interrogate an existing object with no prior knowledge of its structure:</b> QL_QUERY is called on the <tt>Handle</tt> returned from QL_OPTION to get the Object's Property vector.</li>
+<li><b>Invoke a method of an existing object:</b> The <tt>Handle</tt>
+of the option is passed to QL_OPTION_SETENGINE which changes the
+option's pricing engine, reprices the option, and returns the changed
+state. Note that QL_OPTION_SETENGINE acts on the option stored above in
+cell C18 - the option object is amended <i>in situ</i> in the Object Handler.</li>
+</ul>
+<p>The interfaces for other spreadsheet Addins are the same and spreadsheets can be shared verbatim between the various products.</p>
+<a name="tag_3"></a><h2>3. <a href="#tag_contents">Notes</a></h2>
+<ul>
+<li><b>Metadata</b> must be maintained manually, and stored in a format
+legible to the script which generates source code. One alternative is
+flat files in XML format. Easier input is provided by a web front end
+to a database, though this presents problems for hosting, security etc.</li>
+<li><b>Auto generated source</b> should be booked in to CVS so that
+people who download QuantLibAddin source from CVS can recompile without
+necessarily regenerating the source (which only changes when the
+business functionality does).</li>
+</ul>
+<a name="tag_4"></a><h2>4. <a href="#tag_contents">Revision History</a></h2>
+<table border="1">
+<tbody><tr>
+<td><b>Date</b></td>
+<td><b>Description</b></td>
+</tr>
+<tr>
+<td>2-Nov-2004</td>
+<td>
+minor clarifications
+</td>
+</tr>
+<tr>
+<td>1-Nov-2004</td>
+<td>
+separated from QuEP11.
+</td>
+</tr>
+</tbody></table>
+<a name="tag_5"></a><h2>5. <a href="#tag_contents">Feedback</a></h2>
+<p>Feedback on this proposal should be posted to the <a href="mailto:quantlib-users@lists.sourceforge.net">QuantLib users</a>
+mailing list.</p>
+</body></html>
