@@ -35,7 +35,6 @@ class CapFloorTest < Test::Unit::TestCase
     end
   end
   def setup
-    @today = Date.todaysDate
     @termStructure = TermStructureHandle.new
     @nominals = [100.0]
     @rollingConvention = 'modifiedFollowing'
@@ -44,6 +43,7 @@ class CapFloorTest < Test::Unit::TestCase
                        @termStructure)
     @calendar = @index.calendar
     @settlementDays = 2
+    @today = @calendar.roll(Date.todaysDate)
     @settlement = @calendar.advance(@today,
                                     @settlementDays,"days",
                                     'following')

@@ -35,8 +35,9 @@
                        (10 5.47)
                        (20 5.89)
                        (30 5.96))))
-      (deleting-let* ((today (Date-todays-date) delete-Date)
+      (deleting-let* ((real-today (Date-todays-date) delete-Date)
                       (calendar (new-Calendar "TARGET") delete-Calendar)
+                      (today (Calendar-roll calendar real-today) delete-Date)
                       (settlement (Calendar-advance calendar today
                                                     settlement-days "days")
                                   delete-Date)

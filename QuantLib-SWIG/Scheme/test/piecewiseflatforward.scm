@@ -28,7 +28,8 @@
     (deleting-let* ((euribor-handle (new-TermStructureHandle)
                                     delete-TermStructureHandle)
                     (calendar (new-Calendar "TARGET") delete-Calendar)
-                    (today (Date-todays-date) delete-Date)
+                    (real-today (Date-todays-date) delete-Date)
+                    (today (Calendar-roll calendar real-today) delete-Date)
                     (settlement (Calendar-advance calendar today 
                                                   settlement-days "days"
                                                   "following")

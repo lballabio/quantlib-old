@@ -25,7 +25,7 @@ class PiecewiseFlatForwardTest(unittest.TestCase):
         "Testing piecewise flat forward curve"
         euriborHandle = TermStructureHandle()
         calendar = Calendar('TARGET')
-        today = Date_todaysDate()
+        today = calendar.roll(Date_todaysDate())
         settlementDays = 2
         settlement = calendar.advance(today,
                                       settlementDays,"days",

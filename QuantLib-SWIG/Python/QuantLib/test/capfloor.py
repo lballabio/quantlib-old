@@ -21,7 +21,6 @@ import unittest
 
 class CapFloorTest(unittest.TestCase):
     def setUp(self):
-        self.today = Date_todaysDate()
         self.termStructure = TermStructureHandle()
         self.nominals = [100.0]
         self.rollingConvention = 'modifiedFollowing'
@@ -30,6 +29,7 @@ class CapFloorTest(unittest.TestCase):
                            self.termStructure)
         self.calendar = self.index.calendar()
         self.settlementDays = 2
+        self.today = self.calendar.roll(Date_todaysDate())
         self.settlement = self.calendar.advance(self.today,
                                                 self.settlementDays,"days",
                                                'following')

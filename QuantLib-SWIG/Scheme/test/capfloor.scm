@@ -23,13 +23,14 @@
         (frequency 2)
         (settlement-days 2)
         (fixing-days 2))
-    (deleting-let* ((today (Date-todays-date) delete-Date)
+    (deleting-let* ((real-today (Date-todays-date) delete-Date)
                     (term-structure (new-TermStructureHandle)
                                     delete-TermStructureHandle)
                     (index (new-Xibor "Euribor" (/ 12 frequency) "months"
                                       term-structure)
                            delete-Index)
                     (calendar (Xibor-calendar index) delete-Calendar)
+                    (today (Calendar-roll calendar real-today) delete-Date)
                     (settlement (Calendar-advance calendar today
                                                   settlement-days "days"
                                                   "following")

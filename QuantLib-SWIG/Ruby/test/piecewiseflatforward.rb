@@ -28,7 +28,7 @@ class PiecewiseFlatForwardTest < Test::Unit::TestCase
   def testRates
     euriborHandle = TermStructureHandle.new
     calendar = Calendar.new('TARGET')
-    today = Date.todaysDate()
+    today = calendar.roll(Date.todaysDate)
     settlementDays = 2
     settlement = calendar.advance(today,
                                   settlementDays,"days",

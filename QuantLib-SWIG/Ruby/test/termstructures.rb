@@ -39,9 +39,9 @@ class TermStructureTest < Test::Unit::TestCase
     end
   end
   def setup
-    today = Date::todaysDate()
     @calendar = Calendar.new('TARGET')
     @settlementDays = 2
+    today = @calendar.roll(Date::todaysDate)
     settlement = @calendar.advance(today,@settlementDays,'days')
     depositData = [
       [1,  'month', 4.581],

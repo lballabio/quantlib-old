@@ -27,8 +27,8 @@ def raiseFlag():
 
 class TermStructureTest(unittest.TestCase):
     def setUp(self):
-        today = Date_todaysDate()
         self.calendar = Calendar('TARGET')
+        today = self.calendar.roll(Date_todaysDate())
         self.settlementDays = 2
         settlement = self.calendar.advance(today,self.settlementDays,'days')
         deposits = [
