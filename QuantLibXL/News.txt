@@ -1,6 +1,9 @@
 
+June 2004  In sync with the QuantLib 0.3.6 release, built with a
+           2004-xx-xx snapshot of XLW (xlw.sf.net) CVS.
+
 2004-03-31 In sync with the QuantLib 0.3.5 release, built with a
-           2003-03-17 snapshot of XLW (xlw.sf.net) CVS.
+           2004-03-17 snapshot of XLW (xlw.sf.net) CVS.
            Cubic interpolation improved with monotone non-restrictive Hyman
            filter and more rich boundary conditions. Interpolation now offers
            primitive, first derivative, and second derivative calculation. Added
