@@ -10,7 +10,7 @@ ADDIN      = 'qladdin.cpp'
 BODY_BUF   = ''
 INCLUDES   = 'stub.Excel.includes'
 BODY       = 'stub.Excel.body'
-REGLINE    = '        TempStr(" %s"),\n'
+REGLINE    = '        TempStr(" %s")%s'
 REGHEAD    = 'stub.Excel.regheader'
 REGFOOT    = 'stub.Excel.regfooter'
 MAXPARAM   = 30                      # max #/params to an Excel function
@@ -45,11 +45,20 @@ def generateParamString(function):
         paramStr += generateParamChar(param)
     return paramStr
 
+def formatLine(text, comment, lastParameter = False):
+    'format a line of text for the function register code'
+    if lastParameter:
+        suffix = ');'
+    else:
+        suffix = ','
+    str1 = REGLINE % (text, suffix)
+    return '%-40s // %s\n' % (str1, comment)
+
 def generateFuncRegister(fileHeader, function):
     'generate call to xlfRegister for given function'
     params = function[common.PARAMS]
     numParams = len(params)
-    numParamsTotal = numParams + 11    # 11 extra params to register the function
+    numParamsTotal = numParams + 10    # 10 extra params to register the function
     if function[common.CTOR]:
         numParamsTotal += 1            # extra parameter for object handle
     # FIXME validation below to be moved into parse.py
@@ -68,28 +77,32 @@ def generateFuncRegister(fileHeader, function):
     if len(paramList) >= MAXLEN:
         raise ValueError, MAXLENERR % (MAXLEN, paramList)
     fileHeader.write('    Excel(xlfRegister, 0, %d, &xDll,\n' % numParamsTotal)
-    fileHeader.write(REGLINE % function[common.CODENAME])
-    fileHeader.write(REGLINE % paramStr)
-    fileHeader.write(REGLINE % function[common.NAME])
-    fileHeader.write(REGLINE % paramList)
-    fileHeader.write(REGLINE % '1')
-    fileHeader.write(REGLINE % 'QuantLib')
-    fileHeader.write(REGLINE % '')
-    fileHeader.write(REGLINE % '')
-    fileHeader.write(REGLINE % function[common.DESC])
-    if params == '':
-        fileHeader.write('        TempStr(" %s"));\n\n' % function[common.CODENAME])
-    else:
-        fileHeader.write(REGLINE % function[common.CODENAME])
-        if function[common.CTOR]:
-            fileHeader.write('        TempStr(" handle of new object"),\n')
+    fileHeader.write(formatLine(function[common.CODENAME], 'function code name'))
+    fileHeader.write(formatLine(paramStr, 'parameter codes'))
+    fileHeader.write(formatLine(function[common.NAME], 'function display name'))
+    fileHeader.write(formatLine(paramList, 'comma-delimited list of parameters'))    
+    fileHeader.write(formatLine('1', 'function type (0 = hidden function, 1 = worksheet function, 2 = command macro)'))
+    fileHeader.write(formatLine('QuantLib', 'function category'))
+    fileHeader.write(formatLine('', 'shortcut text (command macros only)'))
+    fileHeader.write(formatLine('', 'path to help file'))
+    if params:
+        fileHeader.write(formatLine(function[common.DESC], 'function description'))
         i = 0
+        if function[common.CTOR]:
+            fileHeader.write(formatLine('handle of new object', 'description param 0'))
+            i = i + 1
+        j = 1
         for param in params:
-            fileHeader.write('        TempStr(" ' + param[common.DESC] + '")')
-            i += 1
-            if i < numParams:
-                fileHeader.write(',\n')
-        fileHeader.write(');\n\n')
+            if j < numParams:
+                lastParameter = False
+            else:
+                lastParameter = True
+            fileHeader.write(formatLine(param[common.DESC], 'description param %d' % i, lastParameter))
+            i = i + 1
+            j = j + 1
+    else:
+        fileHeader.write(formatLine(function[common.DESC], 'function description', True))
+    fileHeader.write('\n')
 
 def generateFuncRegisters(functionDefs):
     'generate source code to register functions'
@@ -99,10 +112,9 @@ def generateFuncRegisters(functionDefs):
     bufHead = utils.loadBuffer(REGHEAD)
     bufFoot = utils.loadBuffer(REGFOOT)
     fileHeader.write(bufHead)
-    functionGroups = functionDefs[common.FUNCGROUPS]
-    for groupName in functionGroups.keys():
-        fileHeader.write('    // %s\n\n' % groupName)
-        for function in functionGroups[groupName][common.FUNCLIST]:
+    for group in functionDefs[common.FUNCGROUPS].itervalues():
+        fileHeader.write('    // %s\n\n' % group[common.DISPLAYNAME])
+        for function in group[common.FUNCLIST]:
             generateFuncRegister(fileHeader, function)
     fileHeader.write(bufFoot)
     fileHeader.close()
