@@ -92,8 +92,9 @@ bool extractArray(PyObject* source, Array* target) {
 #endif
 
 #if defined(SWIGMZSCHEME)
-%rename(length) size;
-%rename(str) __str__;
+%rename(length)    size;
+%rename(">string") __str__;
+%rename("set!")    set;
 #endif
 
 class Array {
@@ -241,7 +242,8 @@ class LexicographicalViewColumn {
 #endif
 
 #if defined(SWIGMZSCHEME)
-%rename(str) __str__;
+%rename(">string") __str__;
+%rename("set!")    set;
 #endif
 
 class LexicographicalView {

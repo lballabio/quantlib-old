@@ -36,7 +36,7 @@ using QuantLib::DayCounters::ActualActual;
 #if defined(SWIGMZSCHEME)
 %rename(day_count)     dayCount;
 %rename(year_fraction) yearFraction;
-%rename(str)           __str__;
+%rename(">string")     __str__;
 %rename(equal)         __eq__;
 #endif
 

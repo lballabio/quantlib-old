@@ -79,10 +79,10 @@ using QuantLib::Calendars::Sydney;
 %}
 
 #if defined(SWIGMZSCHEME)
-%rename(is_business_day) isBusinessDay;
-%rename(is_holiday)      isHoliday;
-%rename(equal)           __eq__;
-%rename(str)             __str__;
+%rename("is_business_day?") isBusinessDay;
+%rename("is_holiday?")      isHoliday;
+%rename(equal)              __eq__;
+%rename(">string")          __str__;
 #endif
 
 #if defined(SWIGRUBY)

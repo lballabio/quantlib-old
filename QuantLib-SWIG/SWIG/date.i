@@ -123,7 +123,7 @@ using QuantLib::Period;
 %}
 
 #if defined(SWIGMZSCHEME)
-%rename(str) __str__;
+%rename(">string")  __str__;
 #endif
 
 class Period {
@@ -171,17 +171,20 @@ Date NullDate = Date();
 %rename(day_of_year)    dayOfYear;
 %rename(weekday_number) weekdayNumber;
 %rename(serial_number)  serialNumber;
-%rename(plus_days)   plusDays;
-%rename(plus_weeks)  plusWeeks;
-%rename(plus_months) plusMonths;
-%rename(plus_years)  plusYears;
-%rename(is_leap) isLeap;
-%rename(min_date) minDate;
-%rename(max_date) maxDate;
-%rename(str) __str__;
-// also, allow return by value
+%rename(plus_days)      plusDays;
+%rename(plus_weeks)     plusWeeks;
+%rename(plus_months)    plusMonths;
+%rename(plus_years)     plusYears;
+%rename("is_leap?")     isLeap;
+%rename(min_date)       minDate;
+%rename(max_date)       maxDate;
+%rename(">string")      __str__;
+// also, allow pass andreturn by value
+%typemap(in) Date {
+    $1 = *((Date*) SWIG_MustGetPtr($input,$1_descriptor,$argnum));
+}
 %typemap(out) Date {
-    $result = SWIG_MakePtr (new Date($1), SWIGTYPE_p_Date);
+    $result = SWIG_MakePtr (new Date($1), $&1_descriptor);
 }
 #endif
 

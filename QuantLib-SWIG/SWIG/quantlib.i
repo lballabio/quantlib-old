@@ -23,25 +23,21 @@
 %module QuantLibc
 #endif
 
-#if defined(SWIGPYTHON)
+%include exception.i
 
 %exception {
     try {
         $action
     } catch (IndexError& e) {
-        PyErr_SetString(PyExc_IndexError,e.what());
-        return NULL;
-    } catch (Error& e) {
-        PyErr_SetString(PyExc_Exception,e.what());
-        return NULL;
+        SWIG_exception(SWIG_IndexError,const_cast<char*>(e.what()));
     } catch (std::exception& e) {
-        PyErr_SetString(PyExc_Exception,e.what());
-        return NULL;
+        SWIG_exception(SWIG_RuntimeError,const_cast<char*>(e.what()));
     } catch (...) {
-        PyErr_SetString(PyExc_Exception,"unknown error");
-        return NULL;
+        SWIG_exception(SWIG_UnknownError,"unknown error");
     }
 }
+
+#if defined(SWIGPYTHON)
 
 %{
 #include <ql/quantlib.hpp>
@@ -54,40 +50,17 @@ const int __hexversion__;
 const char* __version__;
 %mutable;
 
-#elif defined(SWIGRUBY)
-
-%exception {
-    try {
-        $action
-    } catch (IndexError& e) {
-        rb_raise(rb_eIndexError,e.what());
-    } catch (Error& e) {
-        rb_raise(rb_eStandardError,e.what());
-    } catch (std::exception& e) {
-        rb_raise(rb_eStandardError,e.what());
-    } catch (...) {
-        rb_raise(rb_eStandardError,"unknown error");
-    }
-}
-
-#elif defined(SWIGMZSCHEME)
-
-%exception {
-    try {
-        $action
-    } catch (std::exception& e) {
-        scheme_signal_error("%s",e.what());
-    } catch (...) {
-        scheme_signal_error("unknown error");
-    }
-}
-
 #endif
+
 
 %include ql.i
 
-stl_vector(Date);
-/* testing
+namespace std {
+    %template(IntVector)    vector<int>;
+    %template(DoubleVector) vector<double>;
+    %template(DateVector  ) vector<Date>;
+}
+
 %inline%{
     std::vector<int> foo_int(std::vector<int> v) { return v; }
     const std::vector<int>& bar_int(const std::vector<int>& v) { return v; }
@@ -101,4 +74,4 @@ stl_vector(Date);
     const std::vector<Date>& bar_date(const std::vector<Date>& v) { return v; }
     std::vector<Date>* baz_date(std::vector<Date>* v) { return v; }
 %}
-*/
+

@@ -98,10 +98,10 @@
 
 (define (Date-test-day-of-years date dy dyold yold)
   (if (not (or (= dy (+ 1 dyold))
-			   (and (not (Date-is-leap yold))
+			   (and (not (Date-is-leap? yold))
 					(= dyold 365)
 					(= dy 1))
-			   (and (Date-is-leap yold)
+			   (and (Date-is-leap? yold)
 					(= dyold 366)
 					(= dy 1))))
 	  (let ((error-msg
@@ -143,7 +143,7 @@
   (if (not (and (>= d 1)
 				(or (and (<= d 31) (= m 1))
 					(and (<= d 28) (= m 2))
-					(and (= d 29)  (= m 2) (Date-is-leap y))
+					(and (= d 29)  (= m 2) (Date-is-leap? y))
 					(and (<= d 31) (= m 3))
 					(and (<= d 30) (= m 4))
 					(and (<= d 31) (= m 5))
