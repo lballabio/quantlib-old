@@ -54,31 +54,32 @@ class EuropeanOption {
 
 %{
 using QuantLib::Pricers::BarrierOption;
-typedef BarrierOption::BarrierType BarrierType;
+using QuantLib::Barrier;
+typedef Barrier::Type BarrierType;
 
 BarrierType barrierTypeFromString(std::string s) {
     s = StringFormatter::toLowercase(s);
     if (s == "downin")
-        return BarrierOption::DownIn;
+        return Barrier::DownIn;
     else if (s == "downout")
-        return BarrierOption::DownOut;
+        return Barrier::DownOut;
     else if (s == "upin")
-        return BarrierOption::UpIn;
+        return Barrier::UpIn;
     else if (s == "upout")
-        return BarrierOption::UpOut;
+        return Barrier::UpOut;
     else
         throw Error("unknown barrier type: "+s);
 }
 
 std::string barrierTypeToString(BarrierType t) {
     switch (t) {
-      case BarrierOption::DownIn:
+      case Barrier::DownIn:
         return "DownIn";
-      case BarrierOption::DownOut:
+      case Barrier::DownOut:
         return "DownOut";
-      case BarrierOption::UpIn:
+      case Barrier::UpIn:
         return "UpIn";
-      case BarrierOption::UpOut:
+      case Barrier::UpOut:
         return "UpOut";
       default:
         throw Error("unknown barrier type");
