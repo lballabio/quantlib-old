@@ -44,7 +44,7 @@ class TermStructureTest < Test::Unit::TestCase
     ]
     deposits = depositData.map { |n,units,rate|
       DepositRateHelper.new(
-        MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
+        QuoteHandle.new(SimpleQuote.new(rate/100)),
         n, units, @settlementDays, @calendar, 'mf', DayCounter.new('act/360'))
     }    
     swapData = [
@@ -56,7 +56,7 @@ class TermStructureTest < Test::Unit::TestCase
     ]
     swaps = swapData.map { |years,rate|
       SwapRateHelper.new(
-        MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
+        QuoteHandle.new(SimpleQuote.new(rate/100)),
         years, "years", @settlementDays, 
         @calendar, 1, 'unadjusted', DayCounter.new('30/360'),
         2, 'mf')
@@ -80,8 +80,8 @@ class TermStructureTest < Test::Unit::TestCase
   end
   def testFSpreadedObs
     flag = false
-    me = SimpleMarketElement.new(0.01)
-    mh = MarketElementHandle.new(me)
+    me = SimpleQuote.new(0.01)
+    mh = QuoteHandle.new(me)
     h = TermStructureHandle.new
     spreaded = ForwardSpreadedTermStructure.new(h,mh)
     obs = Observer.new { flag = true }
@@ -98,8 +98,8 @@ class TermStructureTest < Test::Unit::TestCase
   end
   def testZSpreadedObs
     flag = false
-    me = SimpleMarketElement.new(0.01)
-    mh = MarketElementHandle.new(me)
+    me = SimpleQuote.new(0.01)
+    mh = QuoteHandle.new(me)
     h = TermStructureHandle.new
     spreaded = ZeroSpreadedTermStructure.new(h,mh)
     obs = Observer.new { flag = true }

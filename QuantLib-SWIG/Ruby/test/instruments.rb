@@ -24,8 +24,8 @@ class InstrumentTest < Test::Unit::TestCase
   end
   def testStock
     flag = false
-    me1 = QuantLib::SimpleMarketElement.new(0.0)
-    h = QuantLib::MarketElementHandle.new(me1)
+    me1 = QuantLib::SimpleQuote.new(0.0)
+    h = QuantLib::QuoteHandle.new(me1)
     s = QuantLib::Stock.new(h)
     obs = QuantLib::Observer.new { flag = true }
     obs.registerWith(s)
@@ -36,7 +36,7 @@ class InstrumentTest < Test::Unit::TestCase
     end
 
     flag = false
-    me2 = QuantLib::SimpleMarketElement.new(0.0)
+    me2 = QuantLib::SimpleQuote.new(0.0)
     h.linkTo!(me2)
     unless flag
         flunk("Observer was not notified of instrument change")

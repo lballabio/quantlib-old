@@ -1,0 +1,6 @@
+
+Currently known bugs in QuantLib-Python:
+
+- class Observer:
+    Scripts have been reported to hang when using this class.
+

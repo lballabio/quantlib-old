@@ -24,7 +24,7 @@ class MarketElementTest < Test::Unit::TestCase
   end
   def testObservability
     flag = false
-    me = QuantLib::SimpleMarketElement.new(0.0)
+    me = QuantLib::SimpleQuote.new(0.0)
     obs = QuantLib::Observer.new { flag = true }
     obs.registerWith(me)
     me.value = 3.14
@@ -40,8 +40,8 @@ class MarketElementHandleTest < Test::Unit::TestCase
   end
   def testObservability
     flag = false
-    me1 = QuantLib::SimpleMarketElement.new(0.0)
-    h = QuantLib::MarketElementHandle.new(me1)
+    me1 = QuantLib::SimpleQuote.new(0.0)
+    h = QuantLib::QuoteHandle.new(me1)
     obs = QuantLib::Observer.new { flag = true }
     obs.registerWith(h)
     me1.value = 3.14
@@ -49,7 +49,7 @@ class MarketElementHandleTest < Test::Unit::TestCase
         flunk("Observer was not notified of market element change")
     end
     flag = false
-    me2 = QuantLib::SimpleMarketElement.new(0.0)
+    me2 = QuantLib::SimpleQuote.new(0.0)
     h.linkTo!(me2)
     unless flag
         flunk("Observer was not notified of market element change")
