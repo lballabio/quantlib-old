@@ -11,6 +11,9 @@ Package=<5>
 
 Package=<4>
 {{{
+    Begin Project Dependency
+    Project_Dep_Name ObjectHandler
+    End Project Dependency
 }}}
 
 ###############################################################################
@@ -23,9 +26,6 @@ Package=<5>
 
 Package=<4>
 {{{
-    Begin Project Dependency
-    Project_Dep_Name Example
-    End Project Dependency
 }}}
 
 ###############################################################################
