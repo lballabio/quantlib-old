@@ -47,7 +47,7 @@ SectionIn 1 2 3
     File "TODO.txt"
 
     SetOutPath $INSTDIR\xll\Win32\VisualStudio
-    File "xll\QuantLibXL-vc71-mt-s-${VER_NUMBER2}.xll"
+    File "xll\QuantLibXL-vc*-mt-s-${VER_NUMBER2}.xll"
 #    SetOutPath $INSTDIR\xll\Win32\Borland
 #    File "xll\QuantLibXL-bcb-mt-s-${VER_NUMBER2}.xll"
 
