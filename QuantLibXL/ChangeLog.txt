@@ -1,3 +1,619 @@
+2004-03-21 19:32  nando
+
+	* qlxl/datef.cpp (1.6), qlxl/engines.cpp (1.26), qlxl/mathf.cpp
+	  (1.31), qlxl/montecarlo.cpp (1.15), qlxl/pricers.cpp (1.14),
+	  qlxl/qlxl.hpp (1.25), qlxl/qlxlfoper.cpp (1.19),
+	  qlxl/qlxlfoper.hpp (1.10), qlxl/termstructures.cpp (1.7),
+	  qlxl/utilities.cpp (1.6), qlxl/vols.cpp (1.12),
+	  qlxl/xlAutoOpen.cpp (1.34), History.txt (1.6), LICENSE.TXT (1.4),
+	  News.txt (1.6), README.txt (1.4): getting ready for 0.3.5
+
+2004-03-21 17:36  nando
+
+	* QuantLibXL.nsi (1.18): getting ready for 0.3.5
+
+2004-03-21 13:50  nando
+
+	* Workbooks/: Binomial.xls (1.3), BlackScholes.xls (1.8),
+	  Cholesky.xls (1.1), CorrelationMatrix.xls (1.6), Covariance.xls
+	  (1.3), FiniteDifferences.xls (1.4), Paths.xls (1.4), Poisson.xls
+	  (1.2), QLPaths.xls (1.4), RankReduction.xls (1.2), blackvol.xls
+	  (1.9), cliquet.xls (1.7), cliquetMC.xls (1.4), cliquet_old.xls
+	  (1.4), europeangreeks.xls (1.7), forward.xls (1.6), interp.xls
+	  (1.8), interpolationderivative.xls (1.3), interpolationtest.xls
+	  (1.4), jumps.xls (1.1), localvolatility.xls (1.7), normdist.xls
+	  (1.6), performance.xls (1.8), performance_old.xls (1.4),
+	  primeNumbers.xls (1.4), quantlib.xls (1.10), riskmeasures.xls
+	  (1.6): getting ready for 0.3.5
+
+2004-03-21 13:45  nando
+
+	* qlxl/: mathf.cpp (1.30), xlAutoOpen.cpp (1.33): bug fix
+
+2004-03-20 21:59  nando
+
+	* Workbooks/: Binomial.xls (1.2), BlackScholes.xls (1.7),
+	  CorrelationMatrix.xls (1.5), Covariance.xls (1.2),
+	  FiniteDifferences.xls (1.3), Paths.xls (1.3), blackvol.xls (1.8),
+	  cliquet.xls (1.6), europeangreeks.xls (1.6), interp.xls (1.7),
+	  interpolationderivative.xls (1.2), localvolatility.xls (1.6),
+	  normdist.xls (1.5), primeNumbers.xls (1.3), quantlib.xls (1.9),
+	  riskmeasures.xls (1.5), tsconstforward.xls (1.5), tsdiscount.xls
+	  (1.5), tspwcf.xls (1.5): getting ready for 0.3.5
+
+2004-03-20 21:55  nando
+
+	* qlxl/qlxl.hpp (1.24), QuantLibXL.nsi (1.17): getting ready for
+	  0.3.5
+
+2004-03-14 02:10  nando
+
+	* Workbooks/interpolationtest.xls (1.3), qlxl/mathf.cpp (1.29):
+	  fixing first (1983) version of Hyman filter with the
+	  non-restrictive one (1989).  Test added
+
+2004-03-13 22:08  nando
+
+	* Workbooks/BlackScholes.xls (1.6): added put-call simmetry
+
+2004-03-10 14:25  nando
+
+	* qlxl/mathf.cpp (1.28): synch with C++
+
+2004-03-09 09:27  nando
+
+	* qlxl/: mathf.cpp (1.27), qlxlfoper.cpp (1.18): synch with C++
+
+2004-03-05 16:37  nando
+
+	* qlxl/mathf.cpp (1.26): Spline boundary condition enumeration
+	  introduced
+
+2004-03-01 15:28  nando
+
+	* Workbooks/interpolationderivative.xls (1.1), qlxl/mathf.cpp
+	  (1.25), qlxl/xlAutoOpen.cpp (1.32): enabling primitive
+	  calculation
+
+2004-02-27 17:18  nando
+
+	* Workbooks/interpolationtest.xls (1.2): improved
+
+2004-02-26 16:07  nando
+
+	* qlxl/mathf.cpp (1.24), qlxl/xlAutoOpen.cpp (1.31),
+	  Workbooks/interpolationtest.xls (1.1): imrpoved spline algorithms
+	  now include: clamped, second derivative, and not-a-knot end
+	  condition.  Not-a-knot right end condition is to be fixed
+
+2004-01-09 16:35  nando
+
+	* qlxl/montecarlo.cpp (1.14): comment added
+
+2004-01-08 18:39  nando
+
+	* Workbooks/BlackScholes.xls (1.5), qlxl/engines.cpp (1.25):
+	  removing non-existing file
+
+2004-01-08 18:26  nando
+
+	* qlxl/: montecarlo.cpp (1.13), xlAutoOpen.cpp (1.30): working on
+	  brownian bridge
+
+2004-01-06 09:34  nando
+
+	* qlxl/: engines.cpp (1.24), montecarlo.cpp (1.12): synch with C++
+
+2003-12-18 13:35  nando
+
+	* qlxl/: engines.cpp (1.22), engines.cpp (1.23): (conceptual) file
+	  re-ordering
+
+2003-12-15 10:23  nando
+
+	* Workbooks/: Binomial.xls (1.1), Poisson.xls (1.1): added Poisson,
+	  Combin, BinomDist, PeizerPratt, etc
+
+2003-12-15 10:16  nando
+
+	* qlxl/: mathf.cpp (1.23), xlAutoOpen.cpp (1.29): added Poisson,
+	  Combin, BinomDist, PeizerPratt, etc
+
+2003-12-10 19:10  nando
+
+	* Workbooks/Covariance.xls (1.1): covariance
+
+2003-12-10 18:33  nando
+
+	* Workbooks/CorrelationMatrix.xls (1.4),
+	  Workbooks/RankReduction.xls (1.1), qlxl/mathf.cpp (1.22),
+	  qlxl/montecarlo.cpp (1.11), qlxl/qlxl.hpp (1.23),
+	  qlxl/xlAutoOpen.cpp (1.28): added rankReducedSqrt improved
+	  pseudoSqrt
+
+2003-11-21 17:42  nando
+
+	* makefile.mak (1.3), qlxl/makefile.mak (1.7), qlxl/mathf.cpp
+	  (1.21): GaussianStatistics<StatsHolder> finally works
+
+2003-11-20 17:58  nando
+
+	* qlxl/mathf.cpp (1.20): missing include file
+
+2003-11-19 16:15  nando
+
+	* qlxl/: pricers.cpp (1.13), qlxlfoper.cpp (1.17): deprecated inner
+	  namespace are not used anymore
+
+2003-11-19 15:23  nando
+
+	* QuantLibXL.mak (1.21), qlxl/datef.cpp (1.5), qlxl/engines.cpp
+	  (1.21), qlxl/mathf.cpp (1.19), qlxl/montecarlo.cpp (1.10),
+	  qlxl/pricers.cpp (1.12), qlxl/qlxl.hpp (1.22), qlxl/qlxlfoper.cpp
+	  (1.16), qlxl/qlxlfoper.hpp (1.9), qlxl/termstructures.cpp (1.6),
+	  qlxl/utilities.cpp (1.5), qlxl/vols.cpp (1.11),
+	  qlxl/xlAutoOpen.cpp (1.27): sync'ed to QuantLib CVS trunk
+
+2003-11-19 14:46  nando
+
+	* qlxl/: engines.cpp (1.20), makefile.mak (1.6), mathf.cpp (1.18),
+	  montecarlo.cpp (1.9), pricers.cpp (1.11), qlxl.cpp (1.5),
+	  qlxl.hpp (1.21), qlxlfoper.cpp (1.15), vols.cpp (1.10): sync'ed
+	  to QuantLib CVS trunk
+
+2003-11-18 19:00  nando
+
+	* Docs/: quantlibxl.doxy (1.1), images/QL-small.jpg (1.1),
+	  images/QL.bmp (1.1), images/QL.jpg (1.1), images/QL.pdf (1.1),
+	  images/sfnetlogo.png (1.1): toward 0.3.4
+
+2003-11-18 18:38  nando
+
+	* Docs/makefile.mak (1.2), qlxl/makefile.mak (1.5): toward 0.3.4
+
+2003-11-18 11:27  nando
+
+	* History.txt (1.5), News.txt (1.5), QuantLibXL.nsi (1.16),
+	  TODO.txt (1.5), Workbooks/QLPaths.xls (1.3),
+	  Workbooks/RandomNumbers.xls (1.2), qlxl/xlAutoOpen.cpp (1.26):
+	  toward 0.3.4
+
+2003-11-17 19:08  nando
+
+	* qlxl/mathf.cpp (1.17), qlxl/montecarlo.cpp (1.8),
+	  qlxl/qlxlfoper.cpp (1.14), qlxl/termstructures.cpp (1.5),
+	  qlxl/xlAutoOpen.cpp (1.25), Workbooks/RandomNumbers.xls (1.1):
+	  added random numbers and risk measures
+
+2003-11-17 19:01  nando
+
+	* News.txt (1.4), TODO.txt (1.4): added random numbers and risk
+	  measures
+
+2003-11-14 19:05  nando
+
+	* Workbooks/BlackScholes.xls (1.4), Workbooks/CorrelationMatrix.xls
+	  (1.3), Workbooks/blackvol.xls (1.7), qlxl/qlxlfoper.cpp (1.13):
+	  toward 0.3.4
+
+2003-11-13 15:33  nando
+
+	* History.txt (1.4), QuantLibXL.nsi (1.15), Workbooks/cliquet.xls
+	  (1.5), Workbooks/cliquetMC.xls (1.3), Workbooks/cliquet_old.xls
+	  (1.3), Workbooks/forward.xls (1.5), Workbooks/performance.xls
+	  (1.7), Workbooks/performance_old.xls (1.3), Workbooks/quanto.xls
+	  (1.10), qlxl/qlxlfoper.cpp (1.12): toward 0.3.4
+
+2003-11-13 14:32  nando
+
+	* QuantLibXL.dsp (1.14), QuantLibXL.mak (1.20), qlxl/engines.cpp
+	  (1.19), qlxl/qlxl.hpp (1.20), qlxl/qlxlfoper.cpp (1.11): toward
+	  0.3.4
+
+2003-11-03 14:00  nando
+
+	* Authors.txt (1.2), README.txt (1.3), qlxl/datef.cpp (1.4),
+	  qlxl/engines.cpp (1.18), qlxl/mathf.cpp (1.16),
+	  qlxl/montecarlo.cpp (1.7), qlxl/pricers.cpp (1.10), qlxl/qlxl.cpp
+	  (1.4), qlxl/qlxl.hpp (1.19), qlxl/qlxlfoper.cpp (1.10),
+	  qlxl/qlxlfoper.hpp (1.8), qlxl/termstructures.cpp (1.4),
+	  qlxl/utilities.cpp (1.4), qlxl/vols.cpp (1.9),
+	  qlxl/xlAutoOpen.cpp (1.24): ferdinando@ametrano.net replaced by
+	  quantlib-dev@lists.sf.net
+
+2003-09-02 12:43  nando
+
+	* QuantLibXL.nsi (1.14), qlxl/qlxl.hpp (1.18): update version
+	  number
+
+2003-09-02 12:35  nando
+
+	* Contributors.txt (1.2), History.txt (1.3), LICENSE.TXT (1.3),
+	  News.txt (1.3), QuantLibXL.nsi (1.13), README.txt (1.2), TODO.txt
+	  (1.3), Workbooks/BlackScholes.xls (1.3),
+	  Workbooks/CorrelationMatrix.xls (1.2),
+	  Workbooks/FiniteDifferences.xls (1.2), Workbooks/Paths.xls (1.2),
+	  Workbooks/QLPaths.xls (1.2), Workbooks/blackvol.xls (1.6),
+	  Workbooks/cliquet.xls (1.4), Workbooks/cliquetMC.xls (1.2),
+	  Workbooks/cliquet_old.xls (1.2), Workbooks/europeangreeks.xls
+	  (1.5), Workbooks/forward.xls (1.4), Workbooks/interp.xls (1.6),
+	  Workbooks/localvolatility.xls (1.5), Workbooks/normdist.xls
+	  (1.4), Workbooks/performance.xls (1.6),
+	  Workbooks/performance_old.xls (1.2), Workbooks/primeNumbers.xls
+	  (1.2), Workbooks/quantlib.xls (1.8), Workbooks/quanto.xls (1.9),
+	  Workbooks/riskmeasures.xls (1.4), Workbooks/tsconstforward.xls
+	  (1.4), Workbooks/tsdiscount.xls (1.4), Workbooks/tspwcf.xls
+	  (1.4), qlxl/engines.cpp (1.17), qlxl/qlxl.hpp (1.17):
+	  R000303f0-branch-merge1 merged into trunk
+
+2003-09-02 10:07  nando
+
+	* QuantLibXL.nsi (1.10.2.2): getting ready for 0.3.3
+
+2003-09-02 09:48  nando
+
+	* History.txt (1.1.1.1.6.4), News.txt (1.1.1.1.6.4), README.txt
+	  (1.1.1.1.6.2), TODO.txt (1.2.2.2), Workbooks/interp.xls
+	  (1.5.2.1), Workbooks/quantlib.xls (1.7.2.1): getting ready for
+	  0.3.3
+
+2003-09-02 09:17  nando
+
+	* Contributors.txt (1.1.1.1.6.1), History.txt (1.1.1.1.6.3),
+	  LICENSE.TXT (1.2.2.1), News.txt (1.1.1.1.6.3), README.txt
+	  (1.1.1.1.6.1), TODO.txt (1.2.2.1), Workbooks/BlackScholes.xls
+	  (1.2.2.1), Workbooks/CorrelationMatrix.xls (1.1.2.1),
+	  Workbooks/FiniteDifferences.xls (1.1.2.1), Workbooks/Paths.xls
+	  (1.1.2.1), Workbooks/QLPaths.xls (1.1.2.1),
+	  Workbooks/blackvol.xls (1.5.2.1), Workbooks/europeangreeks.xls
+	  (1.4.2.1), Workbooks/localvolatility.xls (1.4.2.1),
+	  Workbooks/normdist.xls (1.3.2.1), Workbooks/primeNumbers.xls
+	  (1.1.2.1), Workbooks/riskmeasures.xls (1.3.2.1),
+	  Workbooks/tsconstforward.xls (1.3.2.1), Workbooks/tsdiscount.xls
+	  (1.3.2.1), Workbooks/tspwcf.xls (1.3.2.1), qlxl/engines.cpp
+	  (1.15.2.2): getting ready for 0.3.3
+
+2003-09-02 08:25  nando
+
+	* History.txt (1.1.1.1.6.2), News.txt (1.1.1.1.6.2),
+	  qlxl/engines.cpp (1.15.2.1): catching up with 0.3.3
+
+2003-09-01 18:01  nando
+
+	* History.txt (1.1.1.1.6.1), News.txt (1.1.1.1.6.1), QuantLibXL.nsi
+	  (1.10.2.1): getting ready for 0.3.3
+
+2003-09-01 17:50  nando
+
+	* History.txt (1.2), News.txt (1.2), QuantLibXL.nsi (1.12): getting
+	  ready for 0.3.3
+
+2003-08-25 16:23  nando
+
+	* qlxl/: engines.cpp (1.16), qlxl.hpp (1.16): catching up with
+	  0.3.3
+
+2003-07-25 11:05  lballabio
+
+	* QuantLibXL.nsi (1.11), qlxl/qlxl.hpp (1.15): Bumped version
+	  number after branching
+
+2003-07-25 10:51  lballabio
+
+	* QuantLibXL.nsi (1.10), qlxl/qlxl.hpp (1.14): Bumped version
+	  number
+
+2003-04-22 12:59  nando
+
+	* qlxl/qlxl.hpp (1.13): xlw new release
+
+2003-04-22 12:59  nando
+
+	* qlxl/mathf.cpp (1.15): temporary (?) patch for xlw >1.2.2
+
+2003-04-15 15:38  nando
+
+	* qlxl/: mathf.cpp (1.13), mathf.cpp (1.14): Statistics renamed
+	  GaussianStatistics and replaced by the former HStatistics
+
+2003-04-04 17:15  nando
+
+	* QuantLibXL.dsp (1.13), QuantLibXL.mak (1.19): VC++ moved from
+	  (Debug) Multithread DLL to (Debug) Multithread
+
+2003-03-27 11:40  nando
+
+	* Workbooks/: cliquetMC.xls (1.1), CorrelationMatrix.xls (1.1),
+	  CovarianceMatrix.xls (1.4): added cliquet and Mersenne Twister
+	  functions
+
+2003-03-27 10:29  nando
+
+	* qlxl/: engines.cpp (1.15), mathf.cpp (1.12), pricers.cpp (1.9),
+	  xlAutoOpen.cpp (1.23): added cliquet and Mersenne Twister
+	  functions
+
+2003-03-24 18:21  nando
+
+	* Workbooks/BlackScholes.xls (1.2): bug fixed
+
+2003-03-24 16:36  nando
+
+	* Workbooks/: BlackScholes.xls (1.1), CovarianceMatrix.xls (1.3),
+	  FiniteDifferences.xls (1.1), Paths.xls (1.1), QLPaths.xls (1.1),
+	  blackvol.xls (1.5), cliquet.xls (1.3), cliquet_old.xls (1.1),
+	  europeangreeks.xls (1.4), forward.xls (1.3), interp.xls (1.5),
+	  localvolatility.xls (1.4), normdist.xls (1.3), performance.xls
+	  (1.5), performance_old.xls (1.1), primeNumbers.xls (1.1),
+	  quantlib.xls (1.7), quanto.xls (1.8), riskmeasures.xls (1.3),
+	  tsconstforward.xls (1.3), tsdiscount.xls (1.3), tspwcf.xls (1.3):
+	  updated
+
+2003-03-24 14:13  nando
+
+	* Workbooks/CovarianceMatrix.xls (1.2), qlxl/mathf.cpp (1.11),
+	  qlxl/xlAutoOpen.cpp (1.22): matrix pseudo square algorithm using
+	  salvaging algorithm(s) and various Matrix functions
+
+2003-03-24 10:15  nando
+
+	* Workbooks/CovarianceMatrix.xls (1.1), qlxl/mathf.cpp (1.10),
+	  qlxl/xlAutoOpen.cpp (1.21): eigenvectors and eigenvalues exported
+
+2003-03-24 09:45  nando
+
+	* qlxl/montecarlo.cpp (1.6): working with PathGenerator_old
+
+2003-03-20 09:33  nando
+
+	* qlxl/mathf.cpp (1.9): code formatting
+
+2003-03-19 17:40  nando
+
+	* QuantLibXL.dsp (1.12), QuantLibXL.mak (1.18), qlxl/montecarlo.cpp
+	  (1.5), qlxl/xlAutoOpen.cpp (1.20): old PathPricer(s),
+	  PathGenerators, etc are available with a trailing _old
+
+2003-03-19 08:17  nando
+
+	* qlxl/: engines.cpp (1.13), engines.cpp (1.14): catching up with
+	  renaming of AnalyticalVanillaEngine to AnalyticalEuropeanEngine
+
+2003-03-18 09:21  nando
+
+	* qlxl/: mathf.cpp (1.8), xlAutoOpen.cpp (1.19): added primeNumbers
+	  function
+
+2003-03-13 17:16  nando
+
+	* Workbooks/interp.xls (1.4), Workbooks/localvolatility.xls (1.3),
+	  qlxl/engines.cpp (1.12), qlxl/qlxlfoper.cpp (1.9),
+	  qlxl/qlxlfoper.hpp (1.7), qlxl/vols.cpp (1.8),
+	  qlxl/xlAutoOpen.cpp (1.18): introducing local volatility and
+	  handling vol interpolation
+
+2003-03-10 18:28  nando
+
+	* Workbooks/interp.xls (1.3), Workbooks/localvolatility.xls (1.2),
+	  qlxl/engines.cpp (1.11): added BicubicSplineInterpolation
+
+2003-03-09 22:51  nando
+
+	* Workbooks/localvolatility.xls (1.1), qlxl/engines.cpp (1.10),
+	  qlxl/vols.cpp (1.7), qlxl/xlAutoOpen.cpp (1.17): added local vol
+
+2003-03-04 10:41  nando
+
+	* TODO.txt (1.2): updated
+
+2003-03-04 10:40  nando
+
+	* Workbooks/: blackvol.xls (1.4), europeangreeks.xls (1.3),
+	  forward.xls (1.2), interp.xls (1.2), normdist.xls (1.2),
+	  performance.xls (1.4), quantlib.xls (1.6), quanto.xls (1.7),
+	  riskmeasures.xls (1.2), tsconstforward.xls (1.2), tsdiscount.xls
+	  (1.2), tspwcf.xls (1.2): updated versions
+
+2003-03-04 10:40  nando
+
+	* qlxl/: engines.cpp (1.9), pricers.cpp (1.8): european option now
+	  use new engine, which also allows for null vol and/or
+	  timeToMaturity==0.0
+
+2003-03-03 18:58  nando
+
+	* QuantLibXL.mak (1.17), Workbooks/forward.xls (1.1),
+	  Workbooks/performance.xls (1.3), Workbooks/quanto.xls (1.6),
+	  qlxl/engines.cpp (1.8), qlxl/xlAutoOpen.cpp (1.16): greeks fixed
+	  for quanto/forward/performance
+
+2003-03-02 19:13  nando
+
+	* .cvsignore (1.3): updated
+
+2003-02-20 17:33  nando
+
+	* QuantLibXL.mak (1.16): updated
+
+2003-02-14 17:12  nando
+
+	* qlxl/engines.cpp (1.7): first attempt at a Monte Carlo pricing
+	  engine
+
+2003-02-12 17:57  nando
+
+	* QuantLibXL.mak (1.15), Workbooks/cliquet.xls (1.2),
+	  Workbooks/europeangreeks.xls (1.2), Workbooks/performance.xls
+	  (1.2), Workbooks/quanto.xls (1.5), qlxl/engines.cpp (1.6),
+	  qlxl/pricers.cpp (1.7), qlxl/qlxl.hpp (1.12), qlxl/qlxlfoper.cpp
+	  (1.8), qlxl/qlxlfoper.hpp (1.6), qlxl/xlAutoOpen.cpp (1.15):
+	  catching up to the new engine framework
+
+2003-02-10 09:27  nando
+
+	* .cvsignore (1.2), xll/Win32/VisualStudio/.cvsignore (1.1): added
+	  .cvsignore files
+
+2003-02-07 18:48  nando
+
+	* qlxl/: qlxl.hpp (1.11), qlxlfoper.cpp (1.7), termstructures.cpp
+	  (1.3), vols.cpp (1.6): nothing relevant
+
+2003-02-07 09:33  nando
+
+	* .cvsignore (1.1): no message
+
+2003-02-07 09:31  nando
+
+	* LICENSE.TXT (1.2), qlxl/datef.cpp (1.3), qlxl/engines.cpp (1.5),
+	  qlxl/mathf.cpp (1.7), qlxl/montecarlo.cpp (1.4), qlxl/pricers.cpp
+	  (1.6), qlxl/qlxl.cpp (1.3), qlxl/qlxl.hpp (1.10),
+	  qlxl/qlxlfoper.cpp (1.6), qlxl/qlxlfoper.hpp (1.5),
+	  qlxl/termstructures.cpp (1.2), qlxl/utilities.cpp (1.3),
+	  qlxl/vols.cpp (1.5), qlxl/xlAutoOpen.cpp (1.14): in synch with
+	  the current QuantLib C++ library
+
+2002-12-24 10:08  marmar
+
+	* qlxl/qlxlfoper.cpp (1.5): Can anybody check this part?
+
+2002-08-06 15:20  nando
+
+	* qlxl/qlxlfoper.cpp (1.4): removed todaysDate() almost everywhere.
+	  To be removed in rate helpers
+
+2002-07-23 10:20  nando
+
+	* qlxl/: qlxlfoper.cpp (1.3), qlxlfoper.hpp (1.4), vols.cpp (1.4):
+	  existing vol term structures renamed as Black vol term
+	  structures.  Local vol term structures introduced
+
+2002-07-23 09:08  nando
+
+	* qlxl/engines.cpp (1.4): parameters renamed arguments (hey, the
+	  base class is Arguments, isn't it?)
+
+2002-06-25 16:55  nando
+
+	* QuantLibXL.dsp (1.11), QuantLibXL.mak (1.14),
+	  Workbooks/blackvol.xls (1.3), Workbooks/europeangreeks.xls (1.1),
+	  Workbooks/interp.xls (1.1), Workbooks/quanto.xls (1.4),
+	  Workbooks/tsconstforward.xls (1.1), Workbooks/tsdiscount.xls
+	  (1.1), Workbooks/tspwcf.xls (1.1), qlxl/qlxlfoper.cpp (1.2),
+	  qlxl/qlxlfoper.hpp (1.3), qlxl/termstructures.cpp (1.1),
+	  qlxl/vols.cpp (1.3), qlxl/xlAutoOpen.cpp (1.13): added
+	  AsVolTermStructure and AsTermStructure methods to QlXlfOper added
+	  term structure functions (zero, forward, discount) changes
+	  signature of vol functions
+
+2002-06-19 09:41  nando
+
+	* QuantLibXL.dsp (1.10), QuantLibXL.mak (1.13),
+	  Workbooks/blackvol.xls (1.2), Workbooks/quanto.xls (1.3),
+	  qlxl/datef.cpp (1.2), qlxl/datef.hpp (1.2), qlxl/engines.cpp
+	  (1.3), qlxl/mathf.cpp (1.6), qlxl/mathf.hpp (1.4),
+	  qlxl/montecarlo.cpp (1.3), qlxl/montecarlo.hpp (1.2),
+	  qlxl/pricers.cpp (1.5), qlxl/pricers.hpp (1.2), qlxl/qlxl.hpp
+	  (1.9), qlxl/qlxlfoper.cpp (1.1), qlxl/qlxlfoper.hpp (1.2),
+	  qlxl/utilities.cpp (1.2), qlxl/utilities.hpp (1.2), qlxl/vols.cpp
+	  (1.2), qlxl/vols.hpp (1.2): introduced QlXlfOper as a
+	  specialization of XlfOper for QuantLib objects cleaned up code to
+	  make use of QlXlfOper
+
+2002-06-18 17:35  nando
+
+	* QuantLibXL.mak (1.12), Workbooks/quanto.xls (1.2),
+	  qlxl/engines.cpp (1.2), qlxl/xlAutoOpen.cpp (1.12): quanto greeks
+	  are now OK added forward option and performance option using the
+	  engine framework
+
+2002-06-17 09:38  nando
+
+	* QuantLibXL.dsp (1.9), QuantLibXL.mak (1.11),
+	  Workbooks/blackvol.xls (1.1), Workbooks/quanto.xls (1.1),
+	  qlxl/engines.cpp (1.1), qlxl/qlxlfoper.hpp (1.1),
+	  qlxl/xlAutoOpen.cpp (1.11): added missing file added quanto and
+	  blackvol functions and spreadsheets
+
+2002-06-15 01:36  nando
+
+	* QuantLibXL.dsp (1.8), QuantLibXL.mak (1.10), qlxl/vols.cpp (1.1),
+	  qlxl/vols.hpp (1.1), qlxl/xlAutoOpen.cpp (1.10): added blackvol
+	  function
+
+2002-06-01 20:02  nando
+
+	* QuantLibXL.mak (1.9): updated
+
+2002-06-01 17:38  nando
+
+	* QuantLibXL.nsi (1.9), Workbooks/cliquet.xls (1.1),
+	  Workbooks/performance.xls (1.1): Borland removed spreadsheets
+	  added
+
+2002-05-19 20:23  nando
+
+	* QuantLibXL.dsp (1.7), QuantLibXL.mak (1.8),
+	  Workbooks/quantlib.xls (1.5), qlxl/montecarlo.cpp (1.2),
+	  qlxl/pricers.cpp (1.4), qlxl/qlxl.hpp (1.8), qlxl/xlAutoOpen.cpp
+	  (1.9): exported performance and cliquet options
+
+2002-05-13 16:52  nando
+
+	* qlxl/: mathf.cpp (1.5), xlAutoOpen.cpp (1.8): added Monte Carlo
+	  functions using XlfOper.AsDoubleVector
+
+2002-05-13 16:51  nando
+
+	* QuantLibXL.dsp (1.6), QuantLibXL.mak (1.7), qlxl/montecarlo.cpp
+	  (1.1), qlxl/montecarlo.hpp (1.1): added Monte Carlo functions
+
+2002-05-12 01:31  nando
+
+	* QuantLibXL.nsi (1.8), Workbooks/quantlib.xls (1.4),
+	  qlxl/makefile.mak (1.4), qlxl/pricers.cpp (1.3), qlxl/qlxl.hpp
+	  (1.7), qlxl/xlAutoOpen.cpp (1.7): added FD and MC european
+	  options added FDamerican option
+
+2002-04-27 21:01  nando
+
+	* Workbooks/quantlib.xls (1.3), qlxl/pricers.cpp (1.2): greeks
+	  exported
+
+2002-04-27 19:16  nando
+
+	* QuantLibXL.mak (1.6), Workbooks/normdist.xls (1.1),
+	  Workbooks/quantlib.xls (1.2), Workbooks/riskmeasures.xls (1.1),
+	  qlxl/xlAutoOpen.cpp (1.6): added Risk Functions
+
+2002-04-26 15:24  nando
+
+	* qlxl/: mathf.cpp (1.4), xlAutoOpen.cpp (1.5): exporting risk
+	  measures
+
+2002-04-26 14:55  nando
+
+	* qlxl/: mathf.cpp (1.3), mathf.hpp (1.3), xlAutoOpen.cpp (1.4):
+	  exporting risk measures
+
+2002-04-21 21:21  nando
+
+	* QuantLibXL.nsi (1.6.2.2), qlxl/qlxl.hpp (1.5.2.2): version number
+	  up
+
+2002-04-21 20:38  nando
+
+	* QuantLibXL.nsi (1.6.2.1), qlxl/qlxl.hpp (1.5.2.1): version number
+	  up
+
+2002-04-21 20:29  nando
+
+	* QuantLibXL.nsi (1.7), qlxl/qlxl.hpp (1.6): version number up
+
+2002-04-21 19:31  nando
+
+	* ChangeLog.txt (1.7): updated
+
 2002-04-18 07:30  nando
 
 	* makefile.mak (1.2): fixed "make inst"
@@ -9,7 +625,7 @@
 2002-04-16 20:46  nando
 
 	* qlxl/: mathf.cpp (1.2), mathf.hpp (1.2), qlxl.hpp (1.5),
-	xlAutoOpen.cpp (1.3): normal distribution exported to excel
+	  xlAutoOpen.cpp (1.3): normal distribution exported to excel
 
 2002-04-10 09:53  nando
 
@@ -34,17 +650,17 @@
 2002-03-28 17:07  nando
 
 	* QuantLibXL.dsp (1.5), QuantLibXL.mak (1.5), qlxl/qlxl.hpp (1.3):
-	added check on the QuantLib and xlw versions used
+	  added check on the QuantLib and xlw versions used
 
 2002-03-28 12:28  nando
 
 	* QuantLibXL.dsp (1.4), QuantLibXL.mak (1.4): removed useless
-	QUANTLIBEXCEL_EXPORTS
+	  QUANTLIBEXCEL_EXPORTS
 
 2002-03-28 12:23  nando
 
 	* QuantLibXL.dsp (1.3), QuantLibXL.mak (1.3), Docs/makefile.mak
-	(1.1): reversed logic from XLW_NOIMPORTEXPORT to XLW_IMPORTEXPORT
+	  (1.1): reversed logic from XLW_NOIMPORTEXPORT to XLW_IMPORTEXPORT
 
 2002-03-22 11:22  nando
 
@@ -57,7 +673,7 @@
 2002-03-21 17:41  nando
 
 	* qlxl/: qlxl.cpp (1.2), xlAutoOpen.cpp (1.2): qlxl.xll renamed
-	QuantLibXL.xll
+	  QuantLibXL.xll
 
 2002-03-21 17:36  nando
 
@@ -66,17 +682,17 @@
 2002-03-21 17:26  nando
 
 	* QuantLibXL.dsp (1.2), QuantLibXL.nsi (1.3), qlxl/makefile.mak
-	(1.3): qlxl.xll renamed QuantLibXL.xll
+	  (1.3): qlxl.xll renamed QuantLibXL.xll
 
 2002-03-21 17:04  nando
 
 	* qlxl/makefile.mak (1.2): improved parametrization of debug
-	trailing identifier in Borland makefiles
+	  trailing identifier in Borland makefiles
 
 2002-03-21 16:37  nando
 
 	* QuantLibXL.nsi (1.2), Workbooks/quantlib.xls (1.1): initial
-	commit
+	  commit
 
 2002-03-21 16:33  nando
 
@@ -89,30 +705,32 @@
 2002-03-21 16:24  nando
 
 	* Authors.txt (1.1), ChangeLog.txt (1.1), Contributors.txt (1.1),
-	History.txt (1.1), LICENSE.TXT (1.1), News.txt (1.1),
-	QuantLibXL.dsp (1.1), QuantLibXL.dsw (1.1), QuantLibXL.nsi (1.1),
-	README.txt (1.1), TODO.txt (1.1), makefile.mak (1.1),
-	qlxl/datef.cpp (1.1), qlxl/datef.hpp (1.1), qlxl/makefile.mak
-	(1.1), qlxl/mathf.cpp (1.1), qlxl/mathf.hpp (1.1), qlxl/pricers.cpp
-	(1.1), qlxl/pricers.hpp (1.1), qlxl/qlxl.cpp (1.1), qlxl/qlxl.hpp
-	(1.1), qlxl/utilities.cpp (1.1), qlxl/utilities.hpp (1.1),
-	qlxl/xlAutoOpen.cpp (1.1), xll/dummy.txt (1.1), xll/Win32/dummy.txt
-	(1.1), xll/Win32/Borland/dummy.txt (1.1),
-	xll/Win32/VisualStudio/dummy.txt (1.1): Initial revision
+	  History.txt (1.1), LICENSE.TXT (1.1), News.txt (1.1),
+	  QuantLibXL.dsp (1.1), QuantLibXL.dsw (1.1), QuantLibXL.nsi (1.1),
+	  README.txt (1.1), TODO.txt (1.1), makefile.mak (1.1),
+	  qlxl/datef.cpp (1.1), qlxl/datef.hpp (1.1), qlxl/makefile.mak
+	  (1.1), qlxl/mathf.cpp (1.1), qlxl/mathf.hpp (1.1),
+	  qlxl/pricers.cpp (1.1), qlxl/pricers.hpp (1.1), qlxl/qlxl.cpp
+	  (1.1), qlxl/qlxl.hpp (1.1), qlxl/utilities.cpp (1.1),
+	  qlxl/utilities.hpp (1.1), qlxl/xlAutoOpen.cpp (1.1),
+	  xll/dummy.txt (1.1), xll/Win32/dummy.txt (1.1),
+	  xll/Win32/Borland/dummy.txt (1.1),
+	  xll/Win32/VisualStudio/dummy.txt (1.1): Initial revision
 
 2002-03-21 16:24  nando
 
 	* Authors.txt (1.1.1.1), ChangeLog.txt (1.1.1.1), Contributors.txt
-	(1.1.1.1), History.txt (1.1.1.1), LICENSE.TXT (1.1.1.1), News.txt
-	(1.1.1.1), QuantLibXL.dsp (1.1.1.1), QuantLibXL.dsw (1.1.1.1),
-	QuantLibXL.nsi (1.1.1.1), README.txt (1.1.1.1), TODO.txt (1.1.1.1),
-	makefile.mak (1.1.1.1), qlxl/datef.cpp (1.1.1.1), qlxl/datef.hpp
-	(1.1.1.1), qlxl/makefile.mak (1.1.1.1), qlxl/mathf.cpp (1.1.1.1),
-	qlxl/mathf.hpp (1.1.1.1), qlxl/pricers.cpp (1.1.1.1),
-	qlxl/pricers.hpp (1.1.1.1), qlxl/qlxl.cpp (1.1.1.1), qlxl/qlxl.hpp
-	(1.1.1.1), qlxl/utilities.cpp (1.1.1.1), qlxl/utilities.hpp
-	(1.1.1.1), qlxl/xlAutoOpen.cpp (1.1.1.1), xll/dummy.txt (1.1.1.1),
-	xll/Win32/dummy.txt (1.1.1.1), xll/Win32/Borland/dummy.txt
-	(1.1.1.1), xll/Win32/VisualStudio/dummy.txt (1.1.1.1): initial
-	import
+	  (1.1.1.1), History.txt (1.1.1.1), LICENSE.TXT (1.1.1.1), News.txt
+	  (1.1.1.1), QuantLibXL.dsp (1.1.1.1), QuantLibXL.dsw (1.1.1.1),
+	  QuantLibXL.nsi (1.1.1.1), README.txt (1.1.1.1), TODO.txt
+	  (1.1.1.1), makefile.mak (1.1.1.1), qlxl/datef.cpp (1.1.1.1),
+	  qlxl/datef.hpp (1.1.1.1), qlxl/makefile.mak (1.1.1.1),
+	  qlxl/mathf.cpp (1.1.1.1), qlxl/mathf.hpp (1.1.1.1),
+	  qlxl/pricers.cpp (1.1.1.1), qlxl/pricers.hpp (1.1.1.1),
+	  qlxl/qlxl.cpp (1.1.1.1), qlxl/qlxl.hpp (1.1.1.1),
+	  qlxl/utilities.cpp (1.1.1.1), qlxl/utilities.hpp (1.1.1.1),
+	  qlxl/xlAutoOpen.cpp (1.1.1.1), xll/dummy.txt (1.1.1.1),
+	  xll/Win32/dummy.txt (1.1.1.1), xll/Win32/Borland/dummy.txt
+	  (1.1.1.1), xll/Win32/VisualStudio/dummy.txt (1.1.1.1): initial
+	  import
 
