@@ -35,6 +35,9 @@ extern "C"
     {
         EXCEL_BEGIN;
 
+        WIZARD_NO_CALC;
+
+
         Size dimension = xldimension.AsInt();
         Size samples = xlsamples.AsInt();
 
@@ -76,6 +79,9 @@ extern "C"
         XlfOper xlseed) {
 
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
 
         Size dimension = xldimension.AsInt();
         Size samples = xlsamples.AsInt();
@@ -126,6 +132,8 @@ extern "C"
                                           XlfOper xlseed)
     {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
 
         double underlying = xlunderlying.AsDouble();
         Date refDate = QlXlfOper(xlrefDate).AsDate();
@@ -205,6 +213,8 @@ extern "C"
                                           XlfOper xlseed) {
         EXCEL_BEGIN;
 
+        WIZARD_NO_CALC;
+
         double underlying = xlunderlying.AsDouble();
         Date refDate = QlXlfOper(xlrefDate).AsDate();
         Size samples = xlsamples.AsInt();
@@ -267,6 +277,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlCovFromCorr(XlfOper xlmatrix,
                                         XlfOper xlvolatilities) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
         std::vector<double> vols = xlvolatilities.AsDoubleVector();
         Matrix result = getCovariance(vols.begin(), vols.end(), data_matrix);

@@ -37,6 +37,9 @@ extern "C"
                                      XlfOper interpolationType,
                                      XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         Date refDate = QlXlfOper(xlrefDate).AsDate();
         RelinkableHandle<BlackVolTermStructure> volSurface =
             QlXlfOper(xlblackVolSurface).AsBlackVolTermStructure(refDate,
@@ -61,6 +64,8 @@ extern "C"
                                      XlfOper xlinterpolationType,
                                      XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
 
         Date refDate    = QlXlfOper(xlrefDate).AsDate();
         double underlying = xlunderlying.AsDouble();

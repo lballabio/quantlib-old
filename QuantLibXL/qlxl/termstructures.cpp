@@ -32,6 +32,9 @@ extern "C"
                                      XlfOper xldate,
                                      XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         Date refDate = QlXlfOper(xlrefDate).AsDate();
         RelinkableHandle<TermStructure>
             termStructure =
@@ -49,6 +52,9 @@ extern "C"
                                  XlfOper xldate,
                                  XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         Date refDate = QlXlfOper(xlrefDate).AsDate();
         RelinkableHandle<TermStructure>
             termStructure =
@@ -67,6 +73,9 @@ extern "C"
                                     XlfOper xldate2,
                                     XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         Date refDate = QlXlfOper(xlrefDate).AsDate();
         RelinkableHandle<TermStructure>
             termStructure =

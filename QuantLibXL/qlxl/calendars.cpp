@@ -35,6 +35,8 @@ extern "C"
     {
         EXCEL_BEGIN;
 
+    	WIZARD_NO_CALC;
+
         Calendar cal = QlXlfOper(xlCalendar).AsCalendar();
 		Date d1 = QlXlfOper(xlDate1).AsDate();
 		Date d2 = QlXlfOper(xlDate2).AsDate();

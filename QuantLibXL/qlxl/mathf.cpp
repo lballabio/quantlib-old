@@ -48,6 +48,8 @@ extern "C"
                                         XlfOper xlderivativeOrder) {
         EXCEL_BEGIN;
 
+        WIZARD_NO_CALC;
+
         std::vector<double> x_value = xlx_array.AsDoubleVector();
         std::vector<double> y_value = xly_array.AsDoubleVector();
         QL_REQUIRE(x_value.size()==y_value.size(),
@@ -90,6 +92,9 @@ extern "C"
                                           XlfOper xlinterpolation2DType,
                                           XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         std::vector<double> x_value = xlx_array.AsDoubleVector();
         std::vector<double> y_value = xly_array.AsDoubleVector();
         Matrix data_matrix = QlXlfOper(xlz_matrix).AsMatrix();
@@ -114,6 +119,9 @@ extern "C"
                                      XlfOper xlstd_dev,
                                      XlfOper xlcumulative) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         double result = normDist(xlx.AsDouble(), xlmean.AsDouble(),
             xlstd_dev.AsDouble(), xlcumulative.AsBool());
         return XlfOper(result);
@@ -122,6 +130,9 @@ extern "C"
 
     LPXLOPER EXCEL_EXPORT xlnormSDist(XlfOper xlx) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         double result = normDist(xlx.AsDouble(), 0.0,
             1.0, true);
         return XlfOper(result);
@@ -132,6 +143,9 @@ extern "C"
                                     XlfOper xlmean,
                                     XlfOper xlstd_dev) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         double result = normInv(xlprobability.AsDouble(),
             xlmean.AsDouble(),
             xlstd_dev.AsDouble());
@@ -141,6 +155,9 @@ extern "C"
 
     LPXLOPER EXCEL_EXPORT xlnormSInv(XlfOper xlprobability) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         double result = normInv(xlprobability.AsDouble(), 0.0, 1.0);
         return XlfOper(result);
         EXCEL_END;
@@ -152,6 +169,9 @@ extern "C"
                                     XlfOper xlmean,
                                     XlfOper xlcumulative) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         bool cumulative = xlcumulative.AsBool();
         double result;
         if (cumulative) {
@@ -167,6 +187,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlCombin(XlfOper number,
                                    XlfOper number_chosen) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         double result=binomialCoefficient(number.AsInt(),
                 number_chosen.AsInt());
         return XlfOper(result);
@@ -178,6 +201,9 @@ extern "C"
                                       XlfOper xlprobability_s,
                                       XlfOper xlcumulative) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         bool cumulative = xlcumulative.AsBool();
         double result;
         if (cumulative) {
@@ -195,6 +221,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlPeizerPratt(XlfOper xltrials,
                                         XlfOper xlpercentile) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         double result = PeizerPrattMethod2Inversion(xlpercentile.AsDouble(),
             xltrials.AsInt());
         return XlfOper(result);
@@ -204,6 +233,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlpotentialUpside(XlfOper xlpercentile,
         XlfOper xldata_array) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         std::vector<double> data_value = xldata_array.AsDoubleVector();
         GenericRiskStatistics<Statistics> s;
         s.addSequence(data_value.begin(), data_value.end());
@@ -215,6 +247,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlgaussianPotentialUpside(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble());
         GaussianStatistics<StatsHolder> s(h);
         double result = s.gaussianPotentialUpside(xlpercentile.AsDouble());
@@ -225,6 +260,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlvalueAtRisk(XlfOper xlpercentile,
         XlfOper xldata_array) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         std::vector<double> data_value = xldata_array.AsDoubleVector();
         GenericRiskStatistics<Statistics> s;
         s.addSequence(data_value.begin(), data_value.end());
@@ -236,6 +274,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlgaussianValueAtRisk(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble());
         GaussianStatistics<StatsHolder> s(h);
         double result = s.gaussianValueAtRisk(xlpercentile.AsDouble());
@@ -246,6 +287,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlexpectedShortfall(
         XlfOper xlpercentile, XlfOper xldata_array) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         std::vector<double> data_value = xldata_array.AsDoubleVector();
         GenericRiskStatistics<Statistics> s;
         s.addSequence(data_value.begin(), data_value.end());
@@ -257,6 +301,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlgaussianExpectedShortfall(
         XlfOper xlpercentile, XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble());
         GaussianStatistics<StatsHolder> s(h);
         double result = s.gaussianExpectedShortfall(xlpercentile.AsDouble());
@@ -267,6 +314,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlshortfall(
         XlfOper xltarget, XlfOper xldata_array) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         std::vector<double> data_value = xldata_array.AsDoubleVector();
         GenericRiskStatistics<Statistics> s;
         s.addSequence(data_value.begin(), data_value.end());
@@ -278,6 +328,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlgaussianShortfall(
         XlfOper xltarget, XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble());
         GaussianStatistics<StatsHolder> s(h);
         double result = s.gaussianShortfall(xltarget.AsDouble());
@@ -288,6 +341,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlaverageShortfall(
         XlfOper xltarget, XlfOper xldata_array) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         std::vector<double> data_value = xldata_array.AsDoubleVector();
         GenericRiskStatistics<Statistics> s;
         s.addSequence(data_value.begin(), data_value.end());
@@ -299,6 +355,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlgaussianAverageShortfall(
         XlfOper xltarget, XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble());
         GaussianStatistics<StatsHolder> s(h);
         double result = s.gaussianAverageShortfall(xltarget.AsDouble());
@@ -309,6 +368,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlregret(
         XlfOper xltarget, XlfOper xldata_array) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         std::vector<double> data_value = xldata_array.AsDoubleVector();
         GenericRiskStatistics<Statistics> s;
         s.addSequence(data_value.begin(), data_value.end());
@@ -320,6 +382,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlgaussianRegret(
         XlfOper xltarget, XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble());
         GaussianStatistics<StatsHolder> s(h);
         double result = s.gaussianRegret(xltarget.AsDouble());
@@ -330,6 +395,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xldownsideDeviation(
         XlfOper xldata_array) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         std::vector<double> data_value = xldata_array.AsDoubleVector();
         GenericRiskStatistics<Statistics> s;
         s.addSequence(data_value.begin(), data_value.end());
@@ -341,6 +409,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlgaussianDownsideDeviation(
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble());
         GaussianStatistics<StatsHolder> s(h);
         double result = s.gaussianDownsideDeviation();
@@ -354,12 +425,18 @@ extern "C"
 
     LPXLOPER EXCEL_EXPORT xlprimeNumbers(XlfOper xlabsoluteIndex) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         return XlfOper(short(primeNumbers(xlabsoluteIndex.AsInt())));
         EXCEL_END;
     }
 
     LPXLOPER EXCEL_EXPORT xleigenVectors(XlfOper xlmatrix) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
         Matrix result = SymmetricSchurDecomposition(data_matrix).eigenvectors();
         return XlfOper(result.rows(), result.columns(), result.begin());
@@ -368,6 +445,9 @@ extern "C"
 
     LPXLOPER EXCEL_EXPORT xleigenValues(XlfOper xlmatrix) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
         Array result = SymmetricSchurDecomposition(data_matrix).eigenvalues();
         return XlfOper(result.size(), 1, result.begin());
@@ -378,9 +458,7 @@ extern "C"
                                      XlfOper xlcholeskyFlexible) {
         EXCEL_BEGIN;
 
-	    // Checks if called from the function wizard
-        if (XlfExcel::Instance().IsCalledByFuncWiz())
-            return XlfOper(true);
+        WIZARD_NO_CALC;
 
         Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
         bool flexible = (xlcholeskyFlexible.IsMissing() ?
@@ -394,6 +472,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlpseudoSQRT(XlfOper xlmatrix,
                                        XlfOper xlsalvagingAlgorithm) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
         SalvagingAlgorithm::Type sa =
             SalvagingAlgorithm::Type(xlsalvagingAlgorithm.AsInt());
@@ -407,6 +488,9 @@ extern "C"
                                             XlfOper xlcomponentsRetainedPercentage,
                                             XlfOper xlsalvagingAlgorithm) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
         int maxRank = xlmaxRank.AsInt();
         double componentsRetainedPercentage =
@@ -423,6 +507,9 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlmatrixProduct(XlfOper xlmatrix,
                                           XlfOper xlmatrix2) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         Matrix data_matrix  = QlXlfOper(xlmatrix ).AsMatrix();
         Matrix data_matrix2 = QlXlfOper(xlmatrix2).AsMatrix();
         Matrix result = data_matrix * data_matrix2;
@@ -432,6 +519,9 @@ extern "C"
 
     LPXLOPER EXCEL_EXPORT xlmatrixTranspose(XlfOper xlmatrix) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         Matrix data_matrix  = QlXlfOper(xlmatrix ).AsMatrix();
         Matrix result = transpose(data_matrix);
         return XlfOper(result.rows(), result.columns(), result.begin());
@@ -441,6 +531,9 @@ extern "C"
 
     LPXLOPER EXCEL_EXPORT xlrandomize(XlfOper xlseed) {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         randomize(xlseed.AsInt());
         return XlfOper(std::string("done with " + 
             IntegerFormatter::toString(xlseed.AsInt())).c_str());
@@ -449,6 +542,9 @@ extern "C"
 
     LPXLOPER EXCEL_EXPORT xlrand() {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
         return XlfOper(QuantLib::rand());
         EXCEL_END;
     }

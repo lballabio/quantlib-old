@@ -46,6 +46,9 @@
     #error using an old version of xlw, please update
 #endif
 
+// If called from the function wizard returns immediately
+#define WIZARD_NO_CALC if (XlfExcel::Instance().IsCalledByFuncWiz()) \
+            return XlfOper("Wizard no-calc");
 
 #define QLEXCEL_END \
 } catch (QuantLib::Error& e) { \

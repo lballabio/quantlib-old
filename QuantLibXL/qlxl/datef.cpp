@@ -34,6 +34,8 @@ extern "C"
     {
         EXCEL_BEGIN;
 
+        WIZARD_NO_CALC;
+
 		Date d1 = QlXlfOper(xlDate1).AsDate();
 		Date d2 = QlXlfOper(xlDate2).AsDate();
         DayCounter dc = QlXlfOper(xlDayCountType).AsDayCounter();
@@ -51,6 +53,8 @@ extern "C"
                         XlfOper xlDate4)
     {
         EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
 
 		Date d1 = QlXlfOper(xlDate1).AsDate();
 		Date d2 = QlXlfOper(xlDate2).AsDate();
