@@ -15,6 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#include <ObjectHandler/objhandlerdefines.hpp>
 #include <ObjectHandler/utilities.hpp>
 #include <ObjectHandler/exception.hpp>
 #include <sstream>
@@ -25,7 +26,7 @@ namespace ObjHandler {
     std::string toUpper(const std::string& s) {
         std::string upper(s);
         for(size_t i=0; i<s.length(); i++)
-            upper[i] = toupper(upper[i]);
+            upper[i] = std::toupper(upper[i]);
         return upper;
     }
 
