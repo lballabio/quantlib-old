@@ -94,7 +94,7 @@ class TimeBasket {
                     VALUE entry = rb_ary_new2(2);
                     VALUE k = SWIG_NewPointerObj((void *) d,
                                                  $descriptor(Date *),1);
-                    VALUE x = CONVERT_TO(i->second);
+                    VALUE x = rb_float_new(i->second);
                     rb_ary_store(entry,0,k);
                     rb_ary_store(entry,1,x);
                     rb_yield(entry);
