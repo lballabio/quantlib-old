@@ -83,27 +83,12 @@
         "old_pricers.i"
         "old_volatility.i"))
 (define test-files
-  (list "calendars.scm"
-        "capfloor.scm"
-        "common.scm"
-        "covariance.scm"
-        "date.scm"
-        "daycounters.scm"
-        "distributions.scm"
-        "europeanoption.scm"
+  (list "common.scm"
         "instruments.scm"
         "marketelements.scm"
-        "operators.scm"
-        "piecewiseflatforward.scm"
-        "riskstatistics.scm"
         "segmentintegral.scm"
-        "simpleswap.scm"
         "solvers1d.scm"
-        "statistics.scm"
-        "swaption.scm"
         "termstructures.scm"
-        ; to be removed
-        "old_pricers.scm"
         ; support files
         "unittest.scm"
         "utilities.scm"
