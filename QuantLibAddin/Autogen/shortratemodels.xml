@@ -73,7 +73,7 @@
 <returnval>
     <type>any</type>
     <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing Option</desc>
+    <desc>vector of properties describing short-rate model</desc>
 </returnval>
 </function>
 

@@ -172,7 +172,7 @@
 <returnval>
     <type>any</type>
     <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing rate-helper object</desc>
+    <desc>vector of properties describing piecewise flat forward term structure</desc>
 </returnval>
 </function>
 
