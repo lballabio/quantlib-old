@@ -90,6 +90,7 @@ end
 
 
 todaysDate = Date.new(15,2,2002)
+Settings.instance.evaluationDate = todaysDate
 calendar = TARGET.new
 settlementDate = Date.new(19,2,2002);
 
@@ -125,8 +126,8 @@ swapHelpers = swapRates.map { |n,unit,rate|
                      floatingLegAdjustment)
 }
 
-termStructure = TermStructureHandle.new
-termStructure.linkTo!(PiecewiseFlatForward.new(todaysDate, settlementDate,
+termStructure = YieldTermStructureHandle.new
+termStructure.linkTo!(PiecewiseFlatForward.new(settlementDate,
                                                depositHelpers+swapHelpers,
                                                Thirty360.new))
 

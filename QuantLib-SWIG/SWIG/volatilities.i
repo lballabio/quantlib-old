@@ -49,6 +49,7 @@ class BlackVolTermStructure : public Extrapolator {
   public:
     Date referenceDate() const;
     DayCounter dayCounter() const;
+    Calendar calendar() const;
     Date maxDate() const;
     Time maxTime() const;
     Real minStrike() const;
@@ -92,6 +93,7 @@ class LocalVolTermStructure : public Extrapolator {
   public:
     Date referenceDate() const;
     DayCounter dayCounter() const;
+    Calendar calendar() const;
     Date maxDate() const;
     Time maxTime() const;
     Real minStrike() const;
@@ -133,6 +135,22 @@ class BlackConstantVolPtr : public boost::shared_ptr<BlackVolTermStructure> {
                 const DayCounter& dayCounter = QuantLib::Actual365()) {
             return new BlackConstantVolPtr(
                 new BlackConstantVol(referenceDate, volatility, dayCounter));
+        }
+        BlackConstantVolPtr(
+                Integer settlementDays, const Calendar& calendar,
+                Volatility volatility,
+                const DayCounter& dayCounter = QuantLib::Actual365()) {
+            return new BlackConstantVolPtr(
+                new BlackConstantVol(settlementDays, calendar,
+                                     volatility, dayCounter));
+        }
+        BlackConstantVolPtr(
+                Integer settlementDays, const Calendar& calendar,
+                const Handle<Quote>& volatility,
+                const DayCounter& dayCounter = QuantLib::Actual365()) {
+            return new BlackConstantVolPtr(
+                new BlackConstantVol(settlementDays, calendar,
+                                     volatility, dayCounter));
         }
     }
 };
@@ -213,6 +231,22 @@ class LocalConstantVolPtr : public boost::shared_ptr<LocalVolTermStructure> {
                 const DayCounter& dayCounter = QuantLib::Actual365()) {
             return new LocalConstantVolPtr(
                 new LocalConstantVol(referenceDate, volatility, dayCounter));
+        }
+        LocalConstantVolPtr(
+                Integer settlementDays, const Calendar& calendar,
+                Volatility volatility,
+                const DayCounter& dayCounter = QuantLib::Actual365()) {
+            return new LocalConstantVolPtr(
+                new LocalConstantVol(settlementDays, calendar,
+                                     volatility, dayCounter));
+        }
+        LocalConstantVolPtr(
+                Integer settlementDays, const Calendar& calendar,
+                const Handle<Quote>& volatility,
+                const DayCounter& dayCounter = QuantLib::Actual365()) {
+            return new LocalConstantVolPtr(
+                new LocalConstantVol(settlementDays, calendar,
+                                     volatility, dayCounter));
         }
     }
 };

@@ -45,6 +45,9 @@ module QuantLibc
     end
   end
 
+  TermStructure = YieldTermStructure
+  TermStructureHandle = YieldTermStructureHandle
+
 end
 
 QuantLib = QuantLibc

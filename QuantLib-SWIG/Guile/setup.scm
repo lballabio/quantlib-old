@@ -74,6 +74,7 @@
         "randomnumbers.i"
         "rounding.i"
         "scheduler.i"
+        "settings.i"
         "shortratemodels.i"
         "statistics.i"
         "swap.i"

@@ -39,7 +39,7 @@ class CapPtr : public boost::shared_ptr<Instrument> {
     %extend {
         CapPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
                const std::vector<Rate>& capRates,
-               const Handle<TermStructure>& h,
+               const Handle<YieldTermStructure>& h,
                const boost::shared_ptr<PricingEngine>& engine) {
             return new CapPtr(new Cap(leg,capRates,h,engine));
         }
@@ -52,7 +52,7 @@ class FloorPtr : public boost::shared_ptr<Instrument> {
     %extend {
         FloorPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
                  const std::vector<Rate>& floorRates,
-                 const Handle<TermStructure>& h,
+                 const Handle<YieldTermStructure>& h,
                  const boost::shared_ptr<PricingEngine>& engine) {
             return new FloorPtr(new Floor(leg,floorRates,h,engine));
         }
@@ -66,7 +66,7 @@ class CollarPtr : public boost::shared_ptr<Instrument> {
         CollarPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
                   const std::vector<Rate>& capRates,
                   const std::vector<Rate>& floorRates,
-                  const Handle<TermStructure>& h,
+                  const Handle<YieldTermStructure>& h,
                   const boost::shared_ptr<PricingEngine>& engine) {
             return new CollarPtr(new Collar(leg,capRates,floorRates,h,engine));
         }

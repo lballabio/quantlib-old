@@ -175,11 +175,11 @@ namespace std {
 
 %{
 using QuantLib::PiecewiseFlatForward;
-typedef boost::shared_ptr<TermStructure> PiecewiseFlatForwardPtr;
+typedef boost::shared_ptr<YieldTermStructure> PiecewiseFlatForwardPtr;
 %}
 
 %rename(PiecewiseFlatForward) PiecewiseFlatForwardPtr;
-class PiecewiseFlatForwardPtr : public boost::shared_ptr<TermStructure> {
+class PiecewiseFlatForwardPtr : public boost::shared_ptr<YieldTermStructure> {
   public:
     %extend {
         PiecewiseFlatForwardPtr(
@@ -201,6 +201,33 @@ class PiecewiseFlatForwardPtr : public boost::shared_ptr<TermStructure> {
                 new PiecewiseFlatForward(todaysDate,
                                          dates, forwards, dayCounter));
         }
+
+        PiecewiseFlatForwardPtr(
+                const Date& referenceDate,
+                const std::vector<boost::shared_ptr<RateHelper> >& instruments,
+                const DayCounter& dayCounter,
+                Real accuracy = 1.0e-12) {
+	        return new PiecewiseFlatForwardPtr(
+	            new PiecewiseFlatForward(referenceDate,
+                                         instruments, dayCounter, accuracy));
+        }
+        PiecewiseFlatForwardPtr(
+                Integer settlementDays, const Calendar& calendar,
+                const std::vector<boost::shared_ptr<RateHelper> >& instruments,
+                const DayCounter& dayCounter,
+                Real accuracy = 1.0e-12) {
+	        return new PiecewiseFlatForwardPtr(
+	            new PiecewiseFlatForward(settlementDays, calendar,
+                                         instruments, dayCounter, accuracy));
+        }
+        PiecewiseFlatForwardPtr(
+                const std::vector<Date>& dates,
+                const std::vector<Rate>& forwards,
+                const DayCounter& dayCounter) {
+	        return new PiecewiseFlatForwardPtr(
+                new PiecewiseFlatForward(dates, forwards, dayCounter));
+        }
+
         const std::vector<Date>& dates() {
             return boost::dynamic_pointer_cast<PiecewiseFlatForward>(*self)
                  ->dates();

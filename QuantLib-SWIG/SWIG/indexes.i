@@ -145,7 +145,7 @@ class Name##Ptr : public XiborPtr {
   public:
     %extend {
       Name##Ptr(Integer n, TimeUnit units,
-                const Handle<TermStructure>& h,
+                const Handle<YieldTermStructure>& h,
                 const DayCounter& dayCount = QuantLib::defaultDayCount()) {
           return new Name##Ptr(new Name(n,units,h,dayCount));
       }

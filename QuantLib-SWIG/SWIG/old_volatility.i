@@ -62,13 +62,13 @@ class SwaptionVolatilityMatrixPtr
 : public boost::shared_ptr<SwaptionVolatilityStructure> {
   public:
     %extend {
-        SwaptionVolatilityMatrixPtr(const Date& today,
+        SwaptionVolatilityMatrixPtr(const Date& referenceDate,
                                     const std::vector<Date>& dates,
                                     const std::vector<Period>& lengths,
                                     const Matrix& vols,
                                     const DayCounter& dayCounter) {
             return new SwaptionVolatilityMatrixPtr(
-                new SwaptionVolatilityMatrix(today,dates,lengths,
+                new SwaptionVolatilityMatrix(referenceDate,dates,lengths,
                                              vols,dayCounter));
         }
     }
@@ -116,6 +116,23 @@ class CapFlatVolatilityVectorPtr
                                    const DayCounter& dayCounter) {
             return new CapFlatVolatilityVectorPtr(
                 new CapFlatVolatilityVector(today,calendar,settlementDays,
+                                            lengths,vols,dayCounter));
+        }
+        CapFlatVolatilityVectorPtr(const Date& referenceDate,
+                                   const std::vector<Period>& lengths,
+                                   const std::vector<Volatility>& vols,
+                                   const DayCounter& dayCounter) {
+            return new CapFlatVolatilityVectorPtr(
+                new CapFlatVolatilityVector(referenceDate,
+                                            lengths,vols,dayCounter));
+        }
+        CapFlatVolatilityVectorPtr(Integer settlementDays,
+                                   const Calendar& calendar,
+                                   const std::vector<Period>& lengths,
+                                   const std::vector<Volatility>& vols,
+                                   const DayCounter& dayCounter) {
+            return new CapFlatVolatilityVectorPtr(
+                new CapFlatVolatilityVector(settlementDays,calendar,
                                             lengths,vols,dayCounter));
         }
     }

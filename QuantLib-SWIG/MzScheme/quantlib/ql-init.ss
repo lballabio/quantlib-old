@@ -43,3 +43,6 @@
   (let ((results '()))
     (Schedule-for-each s (lambda (d) (set! results (cons (f d) results))))
     (reverse results)))
+
+(define TermStructure YieldTermStructure)
+(define TermStructureHandle YieldTermStructureHandle)

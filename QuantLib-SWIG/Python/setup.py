@@ -63,6 +63,7 @@ swig_files = ['quantlib.i',
               'randomnumbers.i',
               'rounding.i',
               'scheduler.i',
+              'settings.i',
               'shortratemodels.i',
               'statistics.i',
               'swap.i',
@@ -238,7 +239,7 @@ class my_wrap(Command):
         swig_dir = os.path.join(".","SWIG")
         if not os.path.exists(swig_dir):
             swig_dir = os.path.join("..","SWIG")
-        os.system('swig -python -c++ ' +
+        os.system('swig -python -c++ -modern ' +
                   '-I%s ' % swig_dir +
                   '-outdir QuantLib -o QuantLib/quantlib_wrap.cpp ' +
                   'quantlib.i')

@@ -262,8 +262,8 @@ class McDiscreteArithmeticAPO {
     #endif
   public:
 	McDiscreteArithmeticAPO(OptionType type, Real underlying, Real strike,
-                            const Handle<TermStructure>& dividendYield,
-                            const Handle<TermStructure>& riskFreeRate,
+                            const Handle<YieldTermStructure>& dividendYield,
+                            const Handle<YieldTermStructure>& riskFreeRate,
                             const Handle<BlackVolTermStructure>& volatility,
                             const std::vector<Time>& timeDelays,
                             bool controlVariate, BigInteger seed = 0);
@@ -280,8 +280,8 @@ class McDiscreteArithmeticASO {
     #endif
   public:
 	McDiscreteArithmeticASO(OptionType type, Real underlying,
-                            const Handle<TermStructure>& dividendYield,
-                            const Handle<TermStructure>& riskFreeRate,
+                            const Handle<YieldTermStructure>& dividendYield,
+                            const Handle<YieldTermStructure>& riskFreeRate,
                             const Handle<BlackVolTermStructure>& volatility,
                             const std::vector<Time>& timeDelays,
                             bool controlVariate, BigInteger seed = 0);
@@ -298,8 +298,8 @@ class McMaxBasket {
     #endif
   public:
     McMaxBasket(const std::vector<Real>& underlying,
-                const std::vector<Handle<TermStructure> >& dividendYields,
-                const Handle<TermStructure>& riskFreeRate,
+                const std::vector<Handle<YieldTermStructure> >& dividendYields,
+                const Handle<YieldTermStructure>& riskFreeRate,
                 const std::vector<Handle<BlackVolTermStructure> >&
                                                              volatilities,
                 const Matrix& correlation,
@@ -318,8 +318,8 @@ class McHimalaya {
     #endif
   public:
     McHimalaya(const std::vector<Real>& underlying,
-               const std::vector<Handle<TermStructure> >& dividendYields,
-               const Handle<TermStructure>& riskFreeRate,
+               const std::vector<Handle<YieldTermStructure> >& dividendYields,
+               const Handle<YieldTermStructure>& riskFreeRate,
                const std::vector<Handle<BlackVolTermStructure> >& volatilities,
                const Matrix& correlation,
 			   Real strike,
@@ -337,8 +337,8 @@ class McEverest {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McEverest(const std::vector<Handle<TermStructure> >& dividendYield,
-              const Handle<TermStructure>& riskFreeRate,
+    McEverest(const std::vector<Handle<YieldTermStructure> >& dividendYield,
+              const Handle<YieldTermStructure>& riskFreeRate,
               const std::vector<Handle<BlackVolTermStructure> >& volatilities,
               const Matrix& correlation,
               Time residualTime,
@@ -358,8 +358,8 @@ class McPagoda {
     McPagoda(const std::vector<Real>& portfolio,
              Real fraction,
              Real roof,
-             const std::vector<Handle<TermStructure> >& dividendYields,
-             const Handle<TermStructure>& riskFreeRate,
+             const std::vector<Handle<YieldTermStructure> >& dividendYields,
+             const Handle<YieldTermStructure>& riskFreeRate,
              const std::vector<Handle<BlackVolTermStructure> >& volatilities,
              const Matrix& correlation,
 		     const std::vector<Time>& timeDelays,

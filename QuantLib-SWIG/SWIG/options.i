@@ -131,10 +131,10 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)
                  ->strikeSensitivity();
         }
-        Volatility impliedVolatility(Real targetValue, 
+        Volatility impliedVolatility(Real targetValue,
                                      Real accuracy = 1.0e-4,
                                      Size maxEvaluations = 100,
-                                     Volatility minVol = 1.0e-4, 
+                                     Volatility minVol = 1.0e-4,
                                      Volatility maxVol = 4.0) {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)
                  ->impliedVolatility(targetValue,accuracy,maxEvaluations,
@@ -264,6 +264,7 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
     %extend {
         MCEuropeanEnginePtr(const std::string& traits,
                             Size timeSteps,
+                            bool brownianBridge = false,
                             bool antitheticVariate = false,
                             bool controlVariate = false,
                             intOrNull requiredSamples = Null<Integer>(),
@@ -274,6 +275,7 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
             if (s == "pseudorandom" || s == "pr")
                 return new MCEuropeanEnginePtr(
                          new MCEuropeanEngine<PseudoRandom>(timeSteps,
+                                                            brownianBridge,
                                                             antitheticVariate,
                                                             controlVariate,
                                                             requiredSamples,
@@ -283,6 +285,7 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
             else if (s == "lowdiscrepancy" || s == "ld")
                 return new MCEuropeanEnginePtr(
                        new MCEuropeanEngine<LowDiscrepancy>(timeSteps,
+                                                            brownianBridge,
                                                             antitheticVariate,
                                                             controlVariate,
                                                             requiredSamples,
@@ -300,12 +303,12 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
 
 %{
 using QuantLib::BaroneAdesiWhaleyApproximationEngine;
-typedef boost::shared_ptr<PricingEngine> 
+typedef boost::shared_ptr<PricingEngine>
     BaroneAdesiWhaleyApproximationEnginePtr;
 %}
 
 %rename(BaroneAdesiWhaleyEngine) BaroneAdesiWhaleyApproximationEnginePtr;
-class BaroneAdesiWhaleyApproximationEnginePtr 
+class BaroneAdesiWhaleyApproximationEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
@@ -319,12 +322,12 @@ class BaroneAdesiWhaleyApproximationEnginePtr
 
 %{
 using QuantLib::BjerksundStenslandApproximationEngine;
-typedef boost::shared_ptr<PricingEngine> 
+typedef boost::shared_ptr<PricingEngine>
     BjerksundStenslandApproximationEnginePtr;
 %}
 
 %rename(BjerksundStenslandEngine) BjerksundStenslandApproximationEnginePtr;
-class BjerksundStenslandApproximationEnginePtr 
+class BjerksundStenslandApproximationEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {

@@ -82,6 +82,7 @@
 %include randomnumbers.i
 %include rounding.i
 %include scheduler.i
+%include settings.i
 %include shortratemodels.i
 %include statistics.i
 %include stochasticprocess.i

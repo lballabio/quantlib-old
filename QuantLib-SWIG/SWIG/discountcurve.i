@@ -24,12 +24,12 @@
 %{
 using QuantLib::DiscountCurve;
 using QuantLib::ExtendedDiscountCurve;
-typedef boost::shared_ptr<TermStructure> DiscountCurvePtr;
-typedef boost::shared_ptr<TermStructure> ExtendedDiscountCurvePtr;
+typedef boost::shared_ptr<YieldTermStructure> DiscountCurvePtr;
+typedef boost::shared_ptr<YieldTermStructure> ExtendedDiscountCurvePtr;
 %}
 
 %rename(DiscountCurve) DiscountCurvePtr;
-class DiscountCurvePtr : public boost::shared_ptr<TermStructure> {
+class DiscountCurvePtr : public boost::shared_ptr<YieldTermStructure> {
   public:
     %extend {
         DiscountCurvePtr(const Date& todaysDate,
@@ -39,6 +39,13 @@ class DiscountCurvePtr : public boost::shared_ptr<TermStructure> {
                              QuantLib::Actual365()) {
             return new DiscountCurvePtr(
                 new DiscountCurve(todaysDate, dates, discounts, dayCounter));
+        }
+        DiscountCurvePtr(const std::vector<Date>& dates,
+                         const std::vector<DiscountFactor>& discounts,
+                         const DayCounter& dayCounter =
+                             QuantLib::Actual365()) {
+            return new DiscountCurvePtr(
+                             new DiscountCurve(dates, discounts, dayCounter));
         }
         const std::vector<Date>& dates() {
             return boost::dynamic_pointer_cast<DiscountCurve>(*self)->dates();
@@ -60,6 +67,16 @@ class ExtendedDiscountCurvePtr : public DiscountCurvePtr {
                                      QuantLib::Actual365()) {
             return new ExtendedDiscountCurvePtr(
                 new ExtendedDiscountCurve(todaysDate, dates, discounts,
+                                          calendar, roll, dayCounter));
+        }
+        ExtendedDiscountCurvePtr(const std::vector<Date>& dates,
+                                 const std::vector<DiscountFactor>& discounts,
+                                 const Calendar& calendar,
+                                 BusinessDayConvention roll,
+                                 const DayCounter& dayCounter =
+                                     QuantLib::Actual365()) {
+            return new ExtendedDiscountCurvePtr(
+                new ExtendedDiscountCurve(dates, discounts,
                                           calendar, roll, dayCounter));
         }
     }

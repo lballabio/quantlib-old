@@ -21,6 +21,10 @@
 
 %include distributions.i
 
+#if defined(SWIGRUBY)
+#pragma SWIG nowarn=314
+#endif
+
 %{
 using QuantLib::Sample;
 
@@ -43,13 +47,13 @@ typedef QuantLib::PseudoRandom::ursg_type UniformRandomSequenceGenerator;
 using QuantLib::HaltonRsg;
 using QuantLib::SobolRsg;
 
-typedef QuantLib::LowDiscrepancy::ursg_type 
+typedef QuantLib::LowDiscrepancy::ursg_type
     UniformLowDiscrepancySequenceGenerator;
 
 using QuantLib::ICGaussianRsg;
 
 typedef QuantLib::PseudoRandom::rsg_type GaussianRandomSequenceGenerator;
-typedef QuantLib::LowDiscrepancy::rsg_type 
+typedef QuantLib::LowDiscrepancy::rsg_type
     GaussianLowDiscrepancySequenceGenerator;
 %}
 

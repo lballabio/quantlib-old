@@ -18,6 +18,7 @@ from QuantLib import *
 # global data
 calendar = TARGET()
 todaysDate = Date(6,11,2001);
+Settings.instance().evaluationDate = todaysDate
 settlementDate = Date(8,11,2001);
 
 # market quotes
@@ -96,17 +97,17 @@ swapHelpers = [ SwapRateHelper(QuoteHandle(swaps[(n,unit)]),
 
 # term structure handles
 
-discountTermStructure = TermStructureHandle()
-forecastTermStructure = TermStructureHandle()
+discountTermStructure = YieldTermStructureHandle()
+forecastTermStructure = YieldTermStructureHandle()
 
 # term-structure construction
 
 helpers = depositHelpers[:2] + futuresHelpers + swapHelpers[1:]
-depoFuturesSwapCurve = PiecewiseFlatForward(todaysDate, settlementDate,
+depoFuturesSwapCurve = PiecewiseFlatForward(settlementDate,
                                             helpers, Actual360())
 
 helpers = depositHelpers[:3] + fraHelpers + swapHelpers
-depoFraSwapCurve = PiecewiseFlatForward(todaysDate, settlementDate,
+depoFraSwapCurve = PiecewiseFlatForward(settlementDate,
                                         helpers, Actual360())
 
 # swaps to be priced

@@ -20,6 +20,7 @@
 
 %include common.i
 %include date.i
+%include calendars.i
 %include daycounters.i
 %include types.i
 %include currencies.i
@@ -28,11 +29,11 @@
 %include interpolation.i
 
 %{
-using QuantLib::TermStructure;
+using QuantLib::YieldTermStructure;
 %}
 
-%ignore TermStructure;
-class TermStructure : public Extrapolator {
+%ignore YieldTermStructure;
+class YieldTermStructure : public Extrapolator {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("day-counter")     dayCounter;
     %rename("todays-date")     todaysDate;
@@ -44,6 +45,7 @@ class TermStructure : public Extrapolator {
     #endif
   public:
     DayCounter dayCounter() const;
+    Calendar calendar() const;
 	Date todaysDate() const;
 	Date referenceDate() const;
 	Date maxDate() const;
@@ -62,31 +64,47 @@ class TermStructure : public Extrapolator {
 	Rate zeroCoupon(Time, Integer, bool extrapolate = false);
 };
 
-%template(TermStructure) boost::shared_ptr<TermStructure>;
-IsObservable(boost::shared_ptr<TermStructure>);
+%template(YieldTermStructure) boost::shared_ptr<YieldTermStructure>;
+IsObservable(boost::shared_ptr<YieldTermStructure>);
 
+%template(YieldTermStructureHandle) Handle<YieldTermStructure>;
+IsObservable(Handle<YieldTermStructure>);
 
-%template(TermStructureHandle) Handle<TermStructure>;
-IsObservable(Handle<TermStructure>);
+#if defined(SWIGPYTHON)
+%pythoncode %{
+    TermStructure = YieldTermStructure
+    TermStructureHandle = YieldTermStructureHandle
+%}
+#elif defined(SWIGGUILE)
+%scheme %{
+    (define TermStructure YieldTermStructure)
+    (define TermStructureHandle YieldTermStructureHandle)
+%}
+#endif
 
 
 // implied term structure
 
 %{
 using QuantLib::ImpliedTermStructure;
-typedef boost::shared_ptr<TermStructure> ImpliedTermStructurePtr;
+typedef boost::shared_ptr<YieldTermStructure> ImpliedTermStructurePtr;
 %}
 
 %rename(ImpliedTermStructure) ImpliedTermStructurePtr;
-class ImpliedTermStructurePtr: public boost::shared_ptr<TermStructure> {
+class ImpliedTermStructurePtr: public boost::shared_ptr<YieldTermStructure> {
   public:
     %extend {
-        ImpliedTermStructurePtr(
-                const Handle<TermStructure>& curveHandle,
-                const Date& todaysDate, const Date& referenceDate) {
+        ImpliedTermStructurePtr(const Handle<YieldTermStructure>& curveHandle,
+                                const Date& todaysDate,
+                                const Date& referenceDate) {
             return new ImpliedTermStructurePtr(
                 new ImpliedTermStructure(curveHandle, todaysDate,
                                          referenceDate));
+        }
+        ImpliedTermStructurePtr(const Handle<YieldTermStructure>& curveHandle,
+                                const Date& referenceDate) {
+            return new ImpliedTermStructurePtr(
+                new ImpliedTermStructure(curveHandle, referenceDate));
         }
     }
 };
@@ -97,16 +115,18 @@ class ImpliedTermStructurePtr: public boost::shared_ptr<TermStructure> {
 %{
 using QuantLib::ZeroSpreadedTermStructure;
 using QuantLib::ForwardSpreadedTermStructure;
-typedef boost::shared_ptr<TermStructure> ZeroSpreadedTermStructurePtr;
-typedef boost::shared_ptr<TermStructure> ForwardSpreadedTermStructurePtr;
+typedef boost::shared_ptr<YieldTermStructure> ZeroSpreadedTermStructurePtr;
+typedef boost::shared_ptr<YieldTermStructure> ForwardSpreadedTermStructurePtr;
 %}
 
 %rename(ZeroSpreadedTermStructure) ZeroSpreadedTermStructurePtr;
-class ZeroSpreadedTermStructurePtr : public boost::shared_ptr<TermStructure> {
+class ZeroSpreadedTermStructurePtr
+    : public boost::shared_ptr<YieldTermStructure> {
   public:
     %extend {
-        ZeroSpreadedTermStructurePtr(const Handle<TermStructure>& curveHandle,
-                                     const Handle<Quote>& spreadHandle) {
+        ZeroSpreadedTermStructurePtr(
+                                const Handle<YieldTermStructure>& curveHandle,
+                                const Handle<Quote>& spreadHandle) {
 	        return new ZeroSpreadedTermStructurePtr(
 	            new ZeroSpreadedTermStructure(curveHandle,spreadHandle));
         }
@@ -115,12 +135,12 @@ class ZeroSpreadedTermStructurePtr : public boost::shared_ptr<TermStructure> {
 
 %rename(ForwardSpreadedTermStructure) ForwardSpreadedTermStructurePtr;
 class ForwardSpreadedTermStructurePtr
-    : public boost::shared_ptr<TermStructure> {
+    : public boost::shared_ptr<YieldTermStructure> {
   public:
     %extend {
         ForwardSpreadedTermStructurePtr(
-                                     const Handle<TermStructure>& curveHandle,
-                                     const Handle<Quote>& spreadHandle) {
+                                const Handle<YieldTermStructure>& curveHandle,
+                                const Handle<Quote>& spreadHandle) {
 	        return new ForwardSpreadedTermStructurePtr(
 	            new ForwardSpreadedTermStructure(curveHandle,spreadHandle));
         }
@@ -132,11 +152,11 @@ class ForwardSpreadedTermStructurePtr
 
 %{
 using QuantLib::FlatForward;
-typedef boost::shared_ptr<TermStructure> FlatForwardPtr;
+typedef boost::shared_ptr<YieldTermStructure> FlatForwardPtr;
 %}
 
 %rename(FlatForward) FlatForwardPtr;
-class FlatForwardPtr : public boost::shared_ptr<TermStructure> {
+class FlatForwardPtr : public boost::shared_ptr<YieldTermStructure> {
   public:
     %extend {
         FlatForwardPtr(const Date& todaysDate,
@@ -152,6 +172,32 @@ class FlatForwardPtr : public boost::shared_ptr<TermStructure> {
                        const DayCounter& dayCounter) {
             return new FlatForwardPtr(
                 new FlatForward(todaysDate,referenceDate,forward,dayCounter));
+        }
+
+        FlatForwardPtr(const Date& referenceDate,
+                       const Handle<Quote>& forward,
+                       const DayCounter& dayCounter) {
+            return new FlatForwardPtr(
+                           new FlatForward(referenceDate,forward,dayCounter));
+        }
+        FlatForwardPtr(const Date& referenceDate,
+                       Rate forward,
+                       const DayCounter& dayCounter) {
+            return new FlatForwardPtr(
+                           new FlatForward(referenceDate,forward,dayCounter));
+        }
+
+        FlatForwardPtr(Integer settlementDays, const Calendar& calendar,
+                       const Handle<Quote>& forward,
+                       const DayCounter& dayCounter) {
+            return new FlatForwardPtr(
+                 new FlatForward(settlementDays,calendar,forward,dayCounter));
+        }
+        FlatForwardPtr(Integer settlementDays, const Calendar& calendar,
+                       Rate forward,
+                       const DayCounter& dayCounter) {
+            return new FlatForwardPtr(
+                 new FlatForward(settlementDays,calendar,forward,dayCounter));
         }
     }
 };

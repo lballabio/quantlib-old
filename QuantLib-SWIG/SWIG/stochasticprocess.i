@@ -42,8 +42,8 @@ class BlackScholesProcessPtr
   public:
     %extend {
       BlackScholesProcessPtr(const Handle<Quote>& s0,
-                             const Handle<TermStructure>& dividendTS,
-                             const Handle<TermStructure>& riskFreeTS,
+                             const Handle<YieldTermStructure>& dividendTS,
+                             const Handle<YieldTermStructure>& riskFreeTS,
                              const Handle<BlackVolTermStructure>& volTS) {
           return new BlackScholesProcessPtr(
                               new BlackScholesProcess(s0, dividendTS,
@@ -63,8 +63,8 @@ class Merton76ProcessPtr : public boost::shared_ptr<StochasticProcess> {
   public:
     %extend {
       Merton76ProcessPtr(const Handle<Quote>& stateVariable,
-                         const Handle<TermStructure>& dividendTS,
-                         const Handle<TermStructure>& riskFreeTS,
+                         const Handle<YieldTermStructure>& dividendTS,
+                         const Handle<YieldTermStructure>& riskFreeTS,
                          const Handle<BlackVolTermStructure>& volTS,
                          const Handle<Quote>& jumpIntensity,
                          const Handle<Quote>& meanLogJump,

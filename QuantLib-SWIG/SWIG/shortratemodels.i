@@ -65,7 +65,7 @@ class SwaptionHelperPtr : public boost::shared_ptr<CalibrationHelper> {
         SwaptionHelperPtr(const Period& maturity, const Period& length,
                           const Handle<Quote>& volatility,
                           const XiborPtr& index,
-                          const Handle<TermStructure>& termStructure) {
+                          const Handle<YieldTermStructure>& termStructure) {
             boost::shared_ptr<Xibor> libor =
                 boost::dynamic_pointer_cast<Xibor>(index);
             return new SwaptionHelperPtr(
@@ -89,7 +89,7 @@ class CapHelperPtr : public boost::shared_ptr<CalibrationHelper> {
         CapHelperPtr(const Period& length,
                      const Handle<Quote>& volatility,
                      const XiborPtr& index,
-                     const Handle<TermStructure>& termStructure) {
+                     const Handle<YieldTermStructure>& termStructure) {
             boost::shared_ptr<Xibor> libor =
                 boost::dynamic_pointer_cast<Xibor>(index);
             return new CapHelperPtr(
@@ -146,7 +146,7 @@ typedef boost::shared_ptr<ShortRateModel> BlackKarasinskiPtr;
 class HullWhitePtr : public boost::shared_ptr<ShortRateModel> {
   public:
     %extend {
-        HullWhitePtr(const Handle<TermStructure>& termStructure,
+        HullWhitePtr(const Handle<YieldTermStructure>& termStructure,
                      Real a = 0.1, Real sigma = 0.01) {
 	        return new HullWhitePtr(
 	            new HullWhite(termStructure, a, sigma));
@@ -158,7 +158,7 @@ class HullWhitePtr : public boost::shared_ptr<ShortRateModel> {
 class BlackKarasinskiPtr : public boost::shared_ptr<ShortRateModel> {
   public:
     %extend {
-        BlackKarasinskiPtr(const Handle<TermStructure>& termStructure,
+        BlackKarasinskiPtr(const Handle<YieldTermStructure>& termStructure,
                            Real a = 0.1, Real sigma = 0.1) {
 	        return new BlackKarasinskiPtr(
 	            new BlackKarasinski(termStructure, a, sigma));

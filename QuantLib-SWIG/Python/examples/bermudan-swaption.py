@@ -80,6 +80,7 @@ def calibrate(model, helpers, l, name):
     print dblrule
 
 todaysDate = Date(15,2,2002)
+Settings.instance().evaluationDate = todaysDate
 calendar = TARGET()
 settlementDate = Date(19,2,2002);
 
@@ -111,8 +112,8 @@ swapHelpers = [ SwapRateHelper(QuoteHandle(SimpleQuote(rate)),
                                       (10, 'years', 0.051825),
                                       (20, 'years', 0.0545125)] ]
 
-termStructure = TermStructureHandle()
-termStructure.linkTo(PiecewiseFlatForward(todaysDate, settlementDate,
+termStructure = YieldTermStructureHandle()
+termStructure.linkTo(PiecewiseFlatForward(settlementDate,
                                           depositHelpers+swapHelpers,
                                           Thirty360()))
 

@@ -20,9 +20,9 @@ include QuantLib
 
 # global data
 todaysDate = Date.new(15,5,1998)
+Settings.instance.evaluationDate = todaysDate
 settlementDate = Date.new(17,5,1998)
-riskFreeRate = FlatForward.new(todaysDate,settlementDate,
-                               0.05, Actual365.new)
+riskFreeRate = FlatForward.new(settlementDate, 0.05, Actual365.new)
 
 # option parameters
 exercise = EuropeanExercise.new(Date.new(17,5,1999))
@@ -31,8 +31,7 @@ payoff = PlainVanillaPayoff.new('call', 8.0)
 # market data
 underlying = SimpleQuote.new(7.0)
 volatility = BlackConstantVol.new(todaysDate, 0.10)
-dividendYield = FlatForward.new(todaysDate,settlementDate,
-                                0.05, Actual365.new)
+dividendYield = FlatForward.new(settlementDate, 0.05, Actual365.new)
 
 # report
 Format = '%17s |%17s |%17s |%17s'
@@ -57,8 +56,8 @@ end
 # good to go
 
 process = BlackScholesProcess.new(QuoteHandle.new(underlying),
-                                  TermStructureHandle.new(dividendYield),
-                                  TermStructureHandle.new(riskFreeRate),
+                                  YieldTermStructureHandle.new(dividendYield),
+                                  YieldTermStructureHandle.new(riskFreeRate),
                                   BlackVolTermStructureHandle.new(volatility))
 
 option = VanillaOption.new(process, payoff, exercise)
@@ -98,11 +97,11 @@ report('binomial (LR)',option.NPV)
 # not yet implemented
 
 # method: Monte Carlo
-option.pricingEngine = MCEuropeanEngine.new('pseudorandom', 1, false, false,
-                                            nil, 0.02, nil, 42)
+option.pricingEngine = MCEuropeanEngine.new('pseudorandom', 1, false,
+                                            false, false, nil, 0.02, nil, 42)
 report('MC (crude)', option.NPV, option.errorEstimate)
 
 option.pricingEngine = MCEuropeanEngine.new('lowdiscrepancy', 
-                                            1, false, false, 32768)
+                                            1, false, false, false, 32768)
 report('MC (Sobol)', option.NPV)
 

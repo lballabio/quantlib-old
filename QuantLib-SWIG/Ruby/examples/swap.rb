@@ -19,6 +19,7 @@ include QuantLib
 # global data
 calendar = TARGET.new
 todaysDate = Date.new(6,11,2001);
+Settings.instance.evaluationDate = todaysDate
 settlementDate = Date.new(8,11,2001);
 
 # market quotes
@@ -90,18 +91,17 @@ swapHelpers = swaps.map {|(n,unit),v|
 
 # term structure handles
 
-discountTermStructure = TermStructureHandle.new
-forecastTermStructure = TermStructureHandle.new
+discountTermStructure = YieldTermStructureHandle.new
+forecastTermStructure = YieldTermStructureHandle.new
 
 # term-structure construction
 
 helpers = depositHelpers[0..1] + futuresHelpers + swapHelpers[1..-1]
-depoFuturesSwapCurve = PiecewiseFlatForward.new(todaysDate, settlementDate,
-                                                helpers, 
-                                                Actual360.new)
+depoFuturesSwapCurve = PiecewiseFlatForward.new(settlementDate,
+                                                helpers, Actual360.new)
 
 helpers = depositHelpers[0..2] + fraHelpers + swapHelpers
-depoFraSwapCurve = PiecewiseFlatForward.new(todaysDate, settlementDate,
+depoFraSwapCurve = PiecewiseFlatForward.new(settlementDate,
                                             helpers, Actual360.new)
 
 # swaps to be priced
