@@ -59,7 +59,8 @@ extern "C" {
             XlfArgDesc d02("date2", "second date");
             XlfArgDesc rpd01("date3", "reference period first date");
             XlfArgDesc rpd02("date4", "reference period last date");
-            XlfArgDesc refDate("refDate", "reference date");
+            XlfArgDesc refDate("referenceDate", "reference date");
+            XlfArgDesc valueDate("valueDate", "is the value (settlement) date");
             XlfArgDesc evalDate("evalDate", "evaluation date");
             XlfArgDesc dates("dates", "dates");
 
@@ -101,6 +102,8 @@ extern "C" {
             XlfArgDesc times("times", "is the vector of times measured in years");
             XlfArgDesc paths("paths", "is the number of simulated paths");
 
+            XlfArgDesc termStructure("termStructure", "is the yield term structure. "
+                "It can be a single number, a date/discount grid, or a date/forward grid");
 
 
             // Registers Risk Measures
@@ -263,11 +266,31 @@ extern "C" {
             // vol functions
             XlfFuncDesc blackVol("xlBlackVol","qlBlackVol",
                 "Return the interpolated Black forward volatility for "
-                "a fixed strike and maturity "
+                "a forward period at a fixed strike "
                 "given a Black volatility surface as input","QuantLibXL Finance");
-            blackVol.SetArguments(refDate+dayCount+dates+strikes+blackVolSurface+d01+d02+strike+interpolation2DType+allowExtrapolation);
+            blackVol.SetArguments(refDate+blackVolSurface+d01+d02+strike+allowExtrapolation);
             blackVol.Register();
 
+            // yield functions
+            XlfFuncDesc discount("xlDiscount","qlDiscount",
+                "Return the discount calculated at the evaluation date "
+                "on the yield term structure given as input","QuantLibXL Finance");
+            discount.SetArguments(refDate+termStructure+evalDate+allowExtrapolation);
+            discount.Register();
+
+            XlfFuncDesc zero("xlZero","qlZero",
+                "Return the zero yield (continuos compounding act/365) "
+                "calculated at the evaluation date "
+                "on the yield term structure given as input","QuantLibXL Finance");
+            zero.SetArguments(refDate+termStructure+evalDate+allowExtrapolation);
+            zero.Register();
+
+            XlfFuncDesc forward("xlForward","qlForward",
+                "Return the forward yield (continuos compounding act/365) "
+                "calculated between 2 dates "
+                "on the yield term structure given as input","QuantLibXL Finance");
+            forward.SetArguments(refDate+termStructure+d01+d02+allowExtrapolation);
+            forward.Register();
 
             // Registers qlversion
             XlfFuncDesc QLversion("xlQLversion","qlQLVersion",

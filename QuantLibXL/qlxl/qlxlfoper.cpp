@@ -29,6 +29,8 @@ using namespace QuantLib;
 using QuantLib::DayCounter;
 using QuantLib::Date;
 using QuantLib::Math::Matrix;
+using QuantLib::Math::LinearInterpolation;
+using QuantLib::Math::BilinearInterpolation;
 
 
 QlXlfOper::QlXlfOper(const XlfOper& xlfOper)
@@ -115,3 +117,100 @@ QuantLib::Option::Type QlXlfOper::AsOptionType() const {
     return type;
 }
 
+Handle<QuantLib::VolTermStructure> QlXlfOper::AsVolTermStructure(
+    const Date& referenceDate) const {
+
+
+    XlfRef range = xlfOper_.AsRef();
+    Size rowNo = range.GetNbRows();
+    Size colNo = range.GetNbCols();
+    if (rowNo==1 && colNo==1) {
+        // constant vol
+        double vol = range(0,0).AsDouble();
+        return Handle<QuantLib::VolTermStructure>(new
+            VolTermStructures::ConstantVol(referenceDate,
+            vol));
+    } else if (rowNo==2 && colNo>=1) {
+        // time dependent vol
+        std::vector<Date> dates(colNo);
+        std::vector<double> vols(colNo);
+        for (Size j = 0; j<colNo; j++) {
+            dates[j] = QlXlfOper(range(0, j)).AsDate();
+            vols[j] = range(1, j).AsDouble();
+        }
+        return Handle<QuantLib::VolTermStructure>(new
+            VolTermStructures::BlackVarianceCurve<LinearInterpolation<
+            std::vector<double>::const_iterator,
+			std::vector<double>::const_iterator> >(
+            referenceDate, dates, vols));
+    } else if (rowNo>2 && colNo>=1) {
+        // time/strike dependent vol
+        std::vector<Date> dates(colNo-1);
+        std::vector<double> strikes(rowNo-1);
+        Matrix vols(rowNo-1, colNo-1);
+        Size i, j;
+        for (j = 1; j<colNo; j++) {
+            dates[j-1] = QlXlfOper(range(0, j)).AsDate();
+        }
+        for (i = 1; i<rowNo; i++) {
+            strikes[i-1] = range(i, 0).AsDouble();
+        }
+        for (j = 1; j<colNo; j++) {
+            for (i = 1; i<rowNo; i++) {
+                vols[i-1][j-1] = range(i, j).AsDouble();
+            }
+        }
+        return Handle<QuantLib::VolTermStructure>(new
+            VolTermStructures::BlackVarianceSurface<
+            BilinearInterpolation<
+            std::vector<double>::const_iterator,
+			std::vector<double>::const_iterator,
+            Matrix> >(referenceDate, dates, strikes, vols));
+    } else
+        throw Error("Not a vol surface range");
+
+}
+
+
+Handle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
+    const Date& referenceDate) const {
+
+
+    XlfRef range = xlfOper_.AsRef();
+    Size rowNo = range.GetNbRows();
+    Size colNo = range.GetNbCols();
+    if (rowNo==1 && colNo==1) {
+        // constant rate continuos compounding act/365
+        double forwardRate = range(0,0).AsDouble();
+        return Handle<QuantLib::TermStructure>(new
+            TermStructures::FlatForward(
+            referenceDate, referenceDate, forwardRate,
+            DayCounters::Actual365()));
+    } else if (rowNo>1 && colNo==2 && range(0,1).AsDouble()==1.0) {
+        // discount grid
+        std::vector<Date> dates(rowNo);
+        std::vector<DiscountFactor> discounts(rowNo);
+        for (Size j = 0; j<rowNo; j++) {
+            dates[j] = QlXlfOper(range(j, 0)).AsDate();
+            discounts[j] = range(j, 1).AsDouble();
+        }
+        return Handle<QuantLib::TermStructure>(new
+            TermStructures::DiscountCurve(
+            referenceDate, dates, discounts,
+            DayCounters::Actual365()));
+    } else if (rowNo>2 && colNo>=1) {
+        // piecewise forward (annual continuos compounding act/365) grid
+        std::vector<Date> dates(rowNo);
+        std::vector<Rate> forwards(rowNo);
+        for (Size j = 0; j<rowNo; j++) {
+            dates[j] = QlXlfOper(range(j, 0)).AsDate();
+            forwards[j] = range(j, 1).AsDouble();
+        }
+        return Handle<QuantLib::TermStructure>(new
+            TermStructures::PiecewiseFlatForward(
+            referenceDate, dates, forwards,
+            DayCounters::Actual365()));
+    } else
+        throw Error("Not a yield term structure range");
+
+}

@@ -30,36 +30,23 @@ extern "C"
 
     using namespace QuantLib;
 
+
     LPXLOPER EXCEL_EXPORT xlBlackVol(XlfOper xlrefDate,
-                                     XlfOper xlDayCountType,
-                                     XlfOper xldates,
-                                     XlfOper xlstrikes,
                                      XlfOper xlblackVolSurface,
                                      XlfOper xldate1,
                                      XlfOper xldate2,
                                      XlfOper xlstrike,
-                                     XlfOper xlinterpolation2DType,
                                      XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
         Date refDate = QlXlfOper(xlrefDate).AsDate();
-        DayCounter dc = QlXlfOper(xlDayCountType).AsDayCounter();
-        std::vector<Date> dates = QlXlfOper(xldates).AsDateVector();
-        std::vector<double> strikes = xlstrikes.AsDoubleVector();
-        Math::Matrix data_matrix = QlXlfOper(xlblackVolSurface).AsMatrix();
-
-        QL_REQUIRE(data_matrix.columns()==dates.size(),
-            "the matrix range must be NxM");
-        QL_REQUIRE(data_matrix.rows()==strikes.size(),
-            "the matrix range must be NxM");
-
+        QuantLib::Handle<QuantLib::VolTermStructure>
+            volSurface =
+            QlXlfOper(xlblackVolSurface).AsVolTermStructure(refDate);
         Date date1 = QlXlfOper(xldate1).AsDate();
         Date date2 = QlXlfOper(xldate2).AsDate();
         double strike = xlstrike.AsDouble();
 
-        double result = Functions::blackVol(refDate, dc,
-            dates, strikes, data_matrix,
-            date1, date2, strike,
-            xlinterpolation2DType.AsInt(),
+        double result = volSurface->blackForwardVol(date1, date2, strike,
             xlallowExtrapolation.AsBool());
         return XlfOper(result);
         EXCEL_END;
