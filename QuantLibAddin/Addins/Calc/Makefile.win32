@@ -8,7 +8,7 @@ INTDIR=build\Debug
 CC="$(MSVC_DIR)\BIN\CL"
 CC_FLAGS=/nologo /MTd /W3 /Gm /GR /GX /Zi /Od /GZ
 CC_INCLUDES=-I. -I..\.. -I"$(QL_DIR)" -I"$(OBJECT_HANDLER_DIR)" \
-	-I"$(MSVC_DIR)\include" -I"$(OFFICE_SDK_PATH)\include" -IC:\boost_1_31_0
+	-I"$(OFFICE_SDK_PATH)\include" -IC:\boost_1_31_0
 CC_DEFINES=/DWIN32 /D_DEBUG /D_WINDOWS /D_MBCS /D_USRDLL /DNOMINMAX
 CC_FLAGS2=/Fp"$(COMPONENT_NAME).pch" /YX  /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c
 CPP_PROJ=$(CC_FLAGS) $(CC_INCLUDES) $(CC_DEFINES) $(CC_FLAGS2)
@@ -19,9 +19,8 @@ OBJECTS="$(INTDIR)\functions.obj" \
 LINK="$(MSVC_DIR)\BIN\LINK" /nologo
 LFLAGS=libcmtd.lib libcpmtd.lib kernel32.lib wsock32.lib oldnames.lib user32.lib \
 	netapi32.lib advapi32.lib gdi32.lib comdlg32.lib comctl32.lib \
-	icppu.lib icppuhelper.lib ireg.lib irmcxt.lib isal.lib isalhelper.lib istore.lib \
-	stlport_vc7.lib \
-	/nologo /dll /incremental:no /pdb:$(COMPONENT_NAME).pdb /debug /machine:I386 \
+	icppu.lib icppuhelper.lib isal.lib \
+	/nologo /dll /pdb:$(COMPONENT_NAME).pdb /debug /machine:I386 \
 	/def:.\$(COMPONENT_NAME).def /out:"$(INTDIR)\$(COMPONENT_NAME).dll" \
 	/pdbtype:sept /libpath:. /libpath:..\..\lib /libpath:"$(OFFICE_SDK_PATH)\windows\lib" \
 	/libpath:"$(QL_DIR)\lib" /libpath:"$(OBJECT_HANDLER_DIR)\lib" 
@@ -39,14 +38,17 @@ TYPES = -Tcom.sun.star.sheet.XAddIn \
 		-Tcom.sun.star.registry.XRegistryKey \
 		-Tcom.sun.star.sheet.addin.XQL
 
-ALL : $(COMPONENT_NAME).flag3
+ALL : $(COMPONENT_NAME).flag4
 
 $(COMPONENT_NAME).urd : $(COMPONENT_NAME).idl
 # this copy gets around problems with spaces in pathnames
 	copy $(COMPONENT_NAME).idl $(TEMP) 
 	idlc -I$(IDL_DIR) "$(TEMP)\$(COMPONENT_NAME).idl"
 
-$(COMPONENT_NAME).flag1 : $(COMPONENT_NAME).urd
+"$(INTDIR)" :
+	MKDIR "$(INTDIR)"
+
+$(COMPONENT_NAME).flag1 : "$(INTDIR)" $(COMPONENT_NAME).urd
 	regmerge "$(INTDIR)\$(COMPONENT_NAME).rdb" /UCR $(COMPONENT_NAME).urd
 	echo flagged > $@
 
@@ -54,22 +56,23 @@ $(COMPONENT_NAME).flag2 : $(COMPONENT_NAME).flag1
 	cppumaker -BUCR $(TYPES) $(DKREGISTRYNAME) "$(INTDIR)\$(COMPONENT_NAME).rdb"
 	echo flagged > $@
 
+$(OBJECTS) : $(COMPONENT_NAME).flag2
+
 .cpp{$(INTDIR)}.obj:
-   $(CC) $(CPP_PROJ) $< 
+   $(CC) $(CPP_PROJ) $<
 
-$(COMPONENT_NAME).dll : $(COMPONENT_NAME).flag1 $(OBJECTS)
-#$(COMPONENT_NAME).dll : $(OBJECTS)
+$(COMPONENT_NAME).flag3 : $(COMPONENT_NAME).flag1 $(OBJECTS)
 	$(LINK) $(LFLAGS) $(OBJECTS)
+	echo flagged > $@
 
-$(COMPONENT_NAME).flag3 : $(COMPONENT_NAME).flag1 $(COMPONENT_NAME).dll
+$(COMPONENT_NAME).flag4 : $(COMPONENT_NAME).flag3
 	regcomp -register -r "$(INTDIR)\$(COMPONENT_NAME).rdb" -c $(COMPONENT_NAME).dll
 	echo flagged > $@
 
 CLEAN :
-	del /Q com
-	del $(COMPONENT_NAME).urd 
-	del "$(INTDIR)\$(COMPONENT_NAME).rdb" 
-	del $(COMPONENT_NAME).flag*
-	del /Q "$(INTDIR)\*"
-	del $(COMPONENT_NAME).lib 
-	del $(COMPONENT_NAME).dll
+	-@ if EXIST com						rmdir /q /s com
+	-@ if EXIST "$(INTDIR)\*"			del /f /q "$(INTDIR)\*"
+	-@ if EXIST $(COMPONENT_NAME).urd	del /f /q $(COMPONENT_NAME).urd
+	-@ if EXIST $(COMPONENT_NAME).flag*	del /f /q $(COMPONENT_NAME).flag*
+	-@ if EXIST $(COMPONENT_NAME).lib	del /f /q $(COMPONENT_NAME).lib
+	-@ if EXIST $(COMPONENT_NAME).dll	del /f /q $(COMPONENT_NAME).dll
