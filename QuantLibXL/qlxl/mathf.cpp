@@ -25,6 +25,7 @@
 #include <ql/Math/statistics.hpp>
 #include <ql/Math/riskstatistics.hpp>
 #include <ql/Math/symmetricschurdecomposition.hpp>
+#include <ql/Math/cholesky.hpp>
 
 
 extern "C"
@@ -291,15 +292,42 @@ extern "C"
         EXCEL_END;
     }
 
+    LPXLOPER EXCEL_EXPORT xlCholesky(XlfOper xlmatrix) {
+        EXCEL_BEGIN;
+        Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
+        Matrix result = Cholesky(data_matrix).decomposition();
+        return XlfOper(result.rows(), result.columns(), result.begin());
+        EXCEL_END;
+    }
+
     LPXLOPER EXCEL_EXPORT xlpseudoSQRT(XlfOper xlmatrix,
                                        XlfOper xlsalvagingAlgorithm) {
         EXCEL_BEGIN;
         Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
-        SalvagingAlgorithm sa = SalvagingAlgorithm(xlsalvagingAlgorithm.AsInt());
+        SalvagingAlgorithm sa =
+            SalvagingAlgorithm(xlsalvagingAlgorithm.AsInt());
         Matrix result = pseudoSqrt(data_matrix, sa);
         return XlfOper(result.rows(), result.columns(), result.begin());
         EXCEL_END;
     }
+
+    LPXLOPER EXCEL_EXPORT xlrankReducedSQRT(XlfOper xlmatrix,
+                                            XlfOper xlmaxRank,
+                                            XlfOper xlcomponentsRetainedPercentage,
+                                            XlfOper xlsalvagingAlgorithm) {
+        EXCEL_BEGIN;
+        Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
+        int maxRank = xlmaxRank.AsInt();
+        double componentsRetainedPercentage =
+            xlcomponentsRetainedPercentage.AsDouble();
+        SalvagingAlgorithm sa =
+            SalvagingAlgorithm(xlsalvagingAlgorithm.AsInt());
+        Matrix result = rankReducedSqrt(data_matrix, maxRank, 
+            componentsRetainedPercentage, sa);
+        return XlfOper(result.rows(), result.columns(), result.begin());
+        EXCEL_END;
+    }
+
 
     LPXLOPER EXCEL_EXPORT xlmatrixProduct(XlfOper xlmatrix,
                                           XlfOper xlmatrix2) {

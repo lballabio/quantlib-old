@@ -22,6 +22,7 @@
 
 #include <qlxl/qlxlfoper.hpp>
 #include <ql/MonteCarlo/mctypedefs.hpp>
+#include <ql/MonteCarlo/getcovariance.hpp>
 
 extern "C"
 {
@@ -180,6 +181,16 @@ extern "C"
 
         return XlfOper(timeSteps, samples, result.begin());
 
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlCovFromCorr(XlfOper xlmatrix,
+                                        XlfOper xlvolatilities) {
+        EXCEL_BEGIN;
+        Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
+        std::vector<double> vols = xlvolatilities.AsDoubleVector();
+        Matrix result = getCovariance(vols.begin(), vols.end(), data_matrix);
+        return XlfOper(result.rows(), result.columns(), result.begin());
         EXCEL_END;
     }
 

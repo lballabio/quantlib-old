@@ -26,6 +26,7 @@
 
 #include <xlw/xlw.h>
 #include <ql/qldefines.hpp>
+#include <ql/errors.hpp>
 
 
 //! version hexadecimal number
@@ -46,5 +47,15 @@
 #if XLW_HEX_VERSION < 0x010203a0
     #error using an old version of xlw, please update
 #endif
+
+
+#define QLEXCEL_END \
+} catch (QuantLib::Error& e) { \
+	return XlfOper(e.what()); \
+} catch (XlfException&) { \
+	return 0; \
+} catch (...) { \
+	return XlfOper::Error(xlerrValue); \
+}
 
 #endif

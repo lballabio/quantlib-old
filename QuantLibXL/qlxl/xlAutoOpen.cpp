@@ -84,8 +84,13 @@ extern "C" {
             XlfArgDesc absoluteIndex("absoluteIndex", "zero based index");
 
             XlfArgDesc matrix("matrix", "input matrix");
+            XlfArgDesc componentsRetainedPercentage("components percentage",
+                "retained from the spectral "
+                "(a.k.a Principal Component) analysis");
+            XlfArgDesc maxRank("max rank",
+                "required for the output matrix");
             XlfArgDesc salvagingAlgorithm("salvagingAlgorithm", "salvaging "
-                "algorithm to be used for the pseudo square root calculation "
+                "algorithm to be used "
                 "when the input matrix in not positive semi definite");
 
             XlfArgDesc optionType("type", "is the option type");
@@ -107,6 +112,8 @@ extern "C" {
                 "Black (market) volatility surface");
             XlfArgDesc volatility("volatility",
                 "is the underlying's volatility");
+            XlfArgDesc volatilities("volatilities",
+                "vector");
 
             XlfArgDesc accruedCoupon("accrued coupon",
                 "is coupon accrued so far");
@@ -431,6 +438,21 @@ extern "C" {
             pseudoSQRTDesc.SetArguments(matrix+salvagingAlgorithm);
             pseudoSQRTDesc.Register();
 
+            XlfFuncDesc rankReducedSQRTDesc("xlrankReducedSQRT","qlrankReducedSQRT",
+                "return the pseudo square root of the rank reduced input "
+                "matrix, such that rank(InputMatrix)<=maxRank. If maxRank "
+                "allows, then the required percentage of eigenvalues is "
+                "retained.",
+                "QuantLibXL Math");
+            rankReducedSQRTDesc.SetArguments(matrix+maxRank+componentsRetainedPercentage+salvagingAlgorithm);
+            rankReducedSQRTDesc.Register();
+
+            XlfFuncDesc choleskyDesc("xlCholesky","qlCholesky",
+                "return the Cholesky decomposition of the input matrix",
+                "QuantLibXL Math");
+            choleskyDesc.SetArguments(matrix);
+            choleskyDesc.Register();
+
             XlfFuncDesc matrixProductDesc("xlmatrixProduct","qlmatrixProduct",
                 "return the product of the input matrices","QuantLibXL Math");
             matrixProductDesc.SetArguments(matrix+matrix);
@@ -480,10 +502,21 @@ extern "C" {
             gaussianRandomNumberGenerator.Register();
 
             // Registers PathGenerator
-            XlfFuncDesc pathGenerator("xlPathGenerator","qlPathGenerator",
-                "Geometric Brownian motion path","QuantLibXL Finance");
+            XlfFuncDesc pathGenerator("xlPathGenerator",
+                "qlPathGenerator",
+                "Geometric Brownian motion path",
+                "QuantLibXL Monte Carlo");
             pathGenerator.SetArguments(underlying+dividendYield+riskFreeRate+refDate+times+blackVolSurface+interpolationType+paths+generatorType+seed);
             pathGenerator.Register();
+
+            // Registers CovFromCorr
+            XlfFuncDesc CovFromCorr("xlCovFromCorr",
+                "qlCovFromCorr",
+                "Covariance matrix from correlations and vols",
+                "QuantLibXL Finance");
+            CovFromCorr.SetArguments(matrix+volatilities);
+            CovFromCorr.Register();
+
 
 
             // Registers Normal distribution
