@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file utilities.hpp
+/*! \file
     \brief diagnostic and information functions for QuantLibAddin
 */
 
@@ -25,11 +25,35 @@
 #include <oh/objhandler.hpp>
 #include <oh/utilities.hpp>
 
+/*! 
+    #define for ObjectHandler factory function
+    to construct an object of class \a X.
+*/
 #define QL_OBJECT_MAKE(X) ObjHandler::Factory<QuantLibAddin::X>::makeObject
+/*! 
+    #define for ObjectHandler function retrieveObject().
+    Retrieves Object with handle \a X.
+*/
 #define QL_OBJECT_GET(X) ObjHandler::ObjectHandler::instance().retrieveObject(X)
+/*! 
+    #define for ObjectHandler function deleteObject().
+    Deletes Object with handle \a X.
+*/
 #define QL_OBJECT_DELETE(X) ObjHandler::ObjectHandler::instance().deleteObject(X)
+/*! 
+    #define for ObjectHandler function deleteAllObjects().
+    Deletes all Objects in the ObjectHandler repository.
+*/
 #define QL_OBJECT_DELETE_ALL() ObjHandler::ObjectHandler::instance().deleteAllObjects()
+/*! 
+    #define for ObjectHandler function logObject().
+    Logs description of Object with handle \a X.
+*/
 #define QL_LOG_OBJECT(X) ObjHandler::logObject(X)
+/*! 
+    #define for ObjectHandler function logAllObjects().
+    Logs descriptions of all Objects in ObjectHandler repository.
+*/
 #define QL_LOG_ALL_OBJECTS() ObjHandler::logAllObjects()
 
 namespace QuantLibAddin {

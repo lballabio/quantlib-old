@@ -89,7 +89,7 @@ UNO_SERVICES=?$UNO_USER_PACKAGES_CACHE/services.rdb
 <p>NB: GCC's default configuration includes support for numerous platforms (such as Ada) which 1) are not required for QuantLibAddin and 2) may not build correctly, depending on your environment.  You can run configure with the --enable-languages option to restrict the build to only those platforms you require, e.g.</p>
 <pre>
 ./configure \
-    --prefix=<installation directory> \
+    --prefix=\<installation directory\> \
     --enable-languages=c++
 </pre>
 

@@ -90,7 +90,6 @@ line</a>.</p>
 \section sec_2_1 2.1 Classes
 <h4>objectoption.hpp</h4>
 \code
-\code
 #include "objecthandler.hpp"
 
 class ObjectStochastic : public Object {
