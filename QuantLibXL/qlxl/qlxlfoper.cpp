@@ -26,14 +26,6 @@
 #include <qlxl/qlxlfoper.hpp>
 
 using namespace QuantLib;
-using namespace QuantLib::Math;
-using namespace QuantLib::VolTermStructures;
-//using QuantLib::DayCounter;
-//using QuantLib::Date;
-//using QuantLib::Math::Matrix;
-//using QuantLib::Math::LinearInterpolation;
-//using QuantLib::Math::BilinearInterpolation;
-
 
 QlXlfOper::QlXlfOper(const XlfOper& xlfOper)
 : xlfOper_(xlfOper) {}

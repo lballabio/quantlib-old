@@ -25,12 +25,11 @@ CORE_OBJS = \
     mathf.obj$(_D) \
     montecarlo.obj$(_D) \
     pricers.obj$(_D) \
-    qlxl.obj$(_D) \
     qlxlfoper.obj$(_D) \
     termstructures.obj$(_D) \
     utilities.obj$(_D) \
-    vols.obj$(_D) \
-    xlAutoOpen.obj$(_D)
+    vols.obj$(_D)
+    xlAutoOpen.obj$(_D) \
 
 # Tools to be used
 CC        = bcc32

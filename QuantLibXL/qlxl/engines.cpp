@@ -30,8 +30,6 @@ extern "C"
 {
 
     using namespace QuantLib;
-    using namespace QuantLib::PricingEngines;
-    using namespace QuantLib::Instruments;
 
     LPXLOPER EXCEL_EXPORT xlEuropeanOption(
                         XlfOper xltype,
@@ -90,6 +88,73 @@ extern "C"
 
 
 
+    LPXLOPER EXCEL_EXPORT xlEuropeanOption_MC(
+                        XlfOper xltype,
+                        XlfOper xlunderlying,
+                        XlfOper xlstrike,
+                        XlfOper xldividendYield,
+                        XlfOper xlriskFree,
+                        XlfOper xlrefDate,
+                        XlfOper xlmaturityDate,
+                        XlfOper xlvolatility,
+                        XlfOper xlantitheticVariance,
+                        XlfOper xlsamples)
+    {
+        EXCEL_BEGIN;
+
+        // some of them hard coded for the time being
+        Size maxTimeStepPerYear = Null<Size>();
+        maxTimeStepPerYear = 1;
+        bool antitheticVariate = xlantitheticVariance.AsBool();
+        bool controlVariate = false;
+        Size nSamples= Null<Size>();
+        nSamples= xlsamples.AsInt();
+        double tolerance = Null<double>();
+        Size maxSamples = Null<Size>();
+        long mcSeed = 0;
+
+        Handle<PricingEngine> engine(new
+            MCEuropeanEngine<PseudoRandom>(maxTimeStepPerYear,
+                                           antitheticVariate, controlVariate, 
+                                           nSamples, tolerance, 
+                                           maxSamples, mcSeed));
+
+        VanillaOption::arguments* arguments =
+            dynamic_cast<VanillaOption::arguments*>(
+                engine->arguments());
+
+        Date refDate = QlXlfOper(xlrefDate).AsDate();
+
+        arguments->payoff = Handle<Payoff>(
+            new PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
+                                   xlstrike.AsDouble()));
+        arguments->underlying = xlunderlying.AsDouble();
+        arguments->dividendTS = QlXlfOper(xldividendYield).AsTermStructure(refDate);
+        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
+        arguments->exerciseType = Exercise::European;
+        Date maturityDate = QlXlfOper(xlmaturityDate).AsDate();
+        arguments->maturity = arguments->riskFreeTS->dayCounter().yearFraction(
+            refDate, maturityDate);
+        // hard coded for the time being
+        int interpolationType = 2;
+        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+            interpolationType);
+
+        arguments->validate();
+        engine->calculate();
+
+        const VanillaOption::results* vResults =
+            dynamic_cast<const VanillaOption::results*>(
+                engine->results());
+        double results[2];
+        results[0] = vResults->value;
+        results[1] = vResults->errorEstimate;
+
+        return XlfOper(2, 1, results);
+        EXCEL_END;
+    }
+
+    
     LPXLOPER EXCEL_EXPORT xlQuantoEuropeanOption(
                         XlfOper xltype,
                         XlfOper xlunderlying,

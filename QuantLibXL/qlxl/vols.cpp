@@ -78,7 +78,7 @@ extern "C"
         double assetLevel = xlassetLevel.AsDouble();
         Date evalDate      = QlXlfOper(xlevalDate).AsDate();
 
-        VolTermStructures::LocalVolSurface locVol(blackVolSurface,
+        LocalVolSurface locVol(blackVolSurface,
             riskFreeTS, dividendTS, underlying);
 
         bool allowExtrapolation = xlallowExtrapolation.AsBool();

@@ -28,9 +28,6 @@ extern "C"
 {
 
     using namespace QuantLib;
-    using namespace QuantLib::Math;
-    using namespace QuantLib::MonteCarlo;
-    using namespace QuantLib::RandomNumbers;
 
     LPXLOPER EXCEL_EXPORT xlRandomNumberGenerator(XlfOper xldimension,
                                                   XlfOper xlsamples,

@@ -28,7 +28,6 @@ extern "C"
 {
 
     using namespace QuantLib;
-    using namespace QuantLib::Pricers;
 
         
     LPXLOPER EXCEL_EXPORT xlEuropeanOption_FD(
@@ -75,43 +74,6 @@ extern "C"
         EXCEL_END;
     }
 
-    LPXLOPER EXCEL_EXPORT xlEuropeanOption_MC(
-                        XlfOper xltype,
-                        XlfOper xlunderlying,
-                        XlfOper xlstrike,
-                        XlfOper xldividendYield,
-                        XlfOper xlriskFreeRate,
-                        XlfOper xlvalueDate,
-                        XlfOper xlmaturityDate,
-                        XlfOper xlvolatility,
-                        XlfOper xlantitheticVariance,
-                        XlfOper xlsamples)
-    {
-        EXCEL_BEGIN;
-
-        Option::Type type = QlXlfOper(xltype).AsOptionType();
-        double underlying       = xlunderlying.AsDouble();
-        double strike           = xlstrike.AsDouble();
-        double dividendYield    = xldividendYield.AsDouble();
-        double riskFreeRate     = xlriskFreeRate.AsDouble();
-        Date valueDate       = QlXlfOper(xlvalueDate).AsDate();
-        Date maturityDate    = QlXlfOper(xlmaturityDate).AsDate();
-        double maturity      = DayCounters::Actual365().yearFraction(valueDate, maturityDate);
-        double volatility       = xlvolatility.AsDouble();
-        bool antitheticVariance = xlantitheticVariance.AsBool();
-        Size samples            = xlsamples.AsDouble();
-
-        McEuropean eur(type, underlying, strike, dividendYield,
-           riskFreeRate, maturity, volatility, antitheticVariance);
-        double results[2];
-        results[0] = eur.valueWithSamples(samples);
-        results[1] = eur.errorEstimate();
-
-        return XlfOper(2,1,results);
-        EXCEL_END;
-    }
-
-
 
     LPXLOPER EXCEL_EXPORT xlCliquetOption(
                         XlfOper xltype,
@@ -133,7 +95,7 @@ extern "C"
         std::vector<Time> times         = xltimes.AsDoubleVector();
 
 
-        CliquetOption cliquet(type, underlying, moneyness, dividendYield,
+        CliquetOptionPricer cliquet(type, underlying, moneyness, dividendYield,
            riskFreeRate, times, volatility);
         double results[7];
         results[0] = cliquet.value();
@@ -242,7 +204,6 @@ extern "C"
 
         return XlfOper(2,1,results);
 
-        return XlfOper(0.0);
         EXCEL_END;
     }
 

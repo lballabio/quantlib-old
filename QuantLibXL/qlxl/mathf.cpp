@@ -29,7 +29,6 @@ extern "C"
 
 
     using namespace QuantLib;
-    using namespace QuantLib::Math;
 
     LPXLOPER EXCEL_EXPORT xlinterpolate(XlfOper xlx_array,
                                         XlfOper xly_array,
@@ -131,11 +130,10 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlgaussianPotentialUpside(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = RiskMeasures().gaussianPotentialUpside(
-            xlpercentile.AsDouble(),
-            xlmean.AsDouble(),
-            xlstd_dev.AsDouble());
-        return XlfOper(result);
+//        GaussianStatistics<FakeStat> s(xlmean.AsDouble(), xlstd_dev.AsDouble());
+//        double result = s.gaussianPotentialUpside(xlpercentile.AsDouble());
+//        return XlfOper(result);
+        return XlfOper(0.0);
         EXCEL_END;
     }
 
@@ -154,11 +152,10 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlgaussianValueAtRisk(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = RiskMeasures().gaussianValueAtRisk(
-            xlpercentile.AsDouble(),
-            xlmean.AsDouble(),
-            xlstd_dev.AsDouble());
-        return XlfOper(result);
+//        GaussianStatistics<FakeStat> s(xlmean.AsDouble(), xlstd_dev.AsDouble());
+//        double result = s.gaussianValueAtRisk(xlpercentile.AsDouble());
+//        return XlfOper(result);
+        return XlfOper(0.0);
         EXCEL_END;
     }
 
@@ -177,11 +174,10 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlgaussianExpectedShortfall(
         XlfOper xlpercentile, XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = RiskMeasures().gaussianExpectedShortfall(
-            xlpercentile.AsDouble(),
-            xlmean.AsDouble(),
-            xlstd_dev.AsDouble());
-        return XlfOper(result);
+//        GaussianStatistics<FakeStat> s(xlmean.AsDouble(), xlstd_dev.AsDouble());
+//        double result = s.gaussianExpectedShortfall(xlpercentile.AsDouble());
+//        return XlfOper(result);
+        return XlfOper(0.0);
         EXCEL_END;
     }
 
@@ -200,11 +196,10 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlgaussianShortfall(
         XlfOper xltarget, XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = RiskMeasures().gaussianShortfall(
-            xltarget.AsDouble(),
-            xlmean.AsDouble(),
-            xlstd_dev.AsDouble());
-        return XlfOper(result);
+//        GaussianStatistics<FakeStat> s(xlmean.AsDouble(), xlstd_dev.AsDouble());
+//        double result = s.gaussianShortfall(xltarget.AsDouble());
+//        return XlfOper(result);
+        return XlfOper(0.0);
         EXCEL_END;
     }
 
@@ -223,11 +218,10 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlgaussianAverageShortfall(
         XlfOper xltarget, XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = RiskMeasures().gaussianAverageShortfall(
-            xltarget.AsDouble(),
-            xlmean.AsDouble(),
-            xlstd_dev.AsDouble());
-        return XlfOper(result);
+//        GaussianStatistics<FakeStat> s(xlmean.AsDouble(), xlstd_dev.AsDouble());
+//        double result = s.gaussianAverageShortfall(xltarget.AsDouble());
+//        return XlfOper(result);
+        return XlfOper(0.0);
         EXCEL_END;
     }
 
