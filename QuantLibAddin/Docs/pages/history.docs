@@ -41,8 +41,8 @@
     FUNCTIONALITY
 
     - bonds & zero curves (Walter Penschke)
-    - caps & floors (Aurelien Chanudet)
-    - options
+    - caps & floors, term structures (Aurelien Chanudet)
+    - options, volatilities, processes
     - diagnostic and utility functions
 
 */

@@ -22,22 +22,22 @@
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
-STRING SAL_CALL QLAddin::qlVer() THROWDEF_RTE_IAE {
+STRING SAL_CALL QLAddin::qlVersion() THROWDEF_RTE_IAE {
     try {
-        std::string ret =  QL_VER();
+        std::string ret =  QL_VERSION();
         return STRFROMANSI(ret.c_str());
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_VER: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_VERSION: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
-STRING SAL_CALL QLAddin::qlOhVer() THROWDEF_RTE_IAE {
+STRING SAL_CALL QLAddin::qlOhVersion() THROWDEF_RTE_IAE {
     try {
-        std::string ret =  QL_OH_VER();
+        std::string ret =  QL_OH_VERSION();
         return STRFROMANSI(ret.c_str());
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_OH_VER: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_OH_VERSION: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -56,7 +56,7 @@ SEQSEQ(ANY) SAL_CALL QLAddin::qlFieldNames(
         }
         return rows;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_FIELD_NAMES: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -184,23 +184,23 @@ sal_Bool SAL_CALL QLAddin::qlLogAllObjects() THROWDEF_RTE_IAE {
     }
 }
 
-sal_Bool SAL_CALL QLAddin::qlObjectDelete(
+sal_Bool SAL_CALL QLAddin::qlDeleteObject(
         const STRING & handleObject) THROWDEF_RTE_IAE {
     try {
         OH_DELETE_OBJECT(OUStringToString(handleObject));
         return sal_False;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_OBJECT_DELETE: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_DELETE_OBJECT: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
-sal_Bool SAL_CALL QLAddin::qlObjectDeleteAll() THROWDEF_RTE_IAE {
+sal_Bool SAL_CALL QLAddin::qlDeleteAllObjects() THROWDEF_RTE_IAE {
     try {
         OH_DELETE_ALL_OBJECTS();
         return sal_False;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_OBJECT_DELETE_ALL: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_DELETE_ALL_OBJECTS: ") + e.what(), 2);
         THROW_RTE;
     }
 }

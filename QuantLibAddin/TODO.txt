@@ -1,6 +1,5 @@
 
 Autogeneration
-- document how it works
 - accept make labels as command line input to control behavior e.g. 'make calc' >> 'autogen.py calc'
 
 Calc
@@ -9,6 +8,6 @@ Calc
 
 Excel
 - autoconf?
-- add version number to XLL name
+- add version number to XLL name?
 
 

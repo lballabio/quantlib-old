@@ -37,8 +37,8 @@ int main() {
     QL_CONSOLE(1);                  // log messages to stdout
     QL_LOG_MESSAGE("begin example program");
 
-    QL_LOG_MESSAGE(QL_VER());
-    QL_LOG_MESSAGE(QL_OH_VER());
+    QL_LOG_MESSAGE(QL_VERSION());
+    QL_LOG_MESSAGE(QL_OH_VERSION());
 
     if (QL_BLACK_CONSTANT_VOL(
             "my_blackconstantvol", 

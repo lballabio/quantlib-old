@@ -176,4 +176,37 @@
 </returnval>
 </function>
 
+<function>
+<name>QL_ZERO_CURVE</name>
+<codename>qlZeroCurve</codename>
+<desc>construct and return a handle to a ZeroCurve object</desc>
+<constructor>true</constructor>
+<qlfunction>ZeroCurve</qlfunction>
+<parameters>
+    <param>
+        <name>curveDates</name>
+        <type>long</type>
+        <tensorrank>vector</tensorrank>
+        <desc>dates of the zero curve</desc>
+    </param>
+    <param>
+        <name>curveYields</name>
+        <type>double</type>
+        <tensorrank>vector</tensorrank>
+        <desc>yields of the zero curve</desc>
+    </param>
+    <param>
+        <name>dayCounterID</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>day counter ID</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
+    <desc>vector of properties describing Instrument</desc>
+</returnval>
+</function>
+
 </functionlist>

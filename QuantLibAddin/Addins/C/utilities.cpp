@@ -25,13 +25,13 @@ extern "C" {
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
-const char *QL_VER() {
-    static std::string ret = QuantLibAddin::QL_VER();
+const char *QL_VERSION() {
+    static std::string ret = QuantLibAddin::QL_VERSION();
     return ret.c_str();
 }
 
-const char *QL_OH_VER() {
-    static std::string ret = QuantLibAddin::QL_OH_VER();
+const char *QL_OH_VERSION() {
+    static std::string ret = QuantLibAddin::QL_OH_VERSION();
     return ret.c_str();
 }
 

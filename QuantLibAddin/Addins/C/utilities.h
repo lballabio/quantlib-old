@@ -18,9 +18,9 @@
 #ifndef qla_utilities_h
 #define qla_utilities_h
 
-const char *QL_VER();
+const char *QL_VERSION();
 
-const char *QL_OH_VER();
+const char *QL_OH_VERSION();
 
 const char *QL_LOGFILE(
     const char *logFileName);

@@ -18,21 +18,24 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qla/config.hpp>
 #endif
-#include <qla/utilities.hpp>
 #include <ql/qldefines.hpp>
+#include <string>
+// capture value of QL_VERSION before utilities.hpp #undefs it
+const std::string QL_VERSION_KEEP = QL_VERSION;
+#include <qla/utilities.hpp>
 #include <sstream>
 
 using namespace ObjHandler;
 
 namespace QuantLibAddin {
 
-    std::string QL_VER() {
+    std::string QL_VERSION() {
         std::ostringstream s;
-        s << "QuantLib version " << QL_VERSION;
+        s << "QuantLib version " << QL_VERSION_KEEP;
         return s.str();
     }
 
-    std::string QL_OH_VER() {
+    std::string QL_OH_VERSION() {
         std::ostringstream s;
         s << "ObjectHandler version " << OBJHANDLER_VERSION;
         return s.str();

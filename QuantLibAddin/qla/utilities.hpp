@@ -24,6 +24,10 @@
 
 #include <oh/objhandler.hpp>
 
+// we want a QuantLibAddin function called QL_VERSION
+// but QuantLib has already #defined that symbol
+#undef QL_VERSION
+
 namespace QuantLibAddin {
 
 /*! \group utilities
@@ -32,11 +36,11 @@ namespace QuantLibAddin {
 
     /*! return the version of QuantLib
     */
-    std::string QL_VER();
+    std::string QL_VERSION();
 
     /*! return the version of ObjectHandler
     */
-    std::string QL_OH_VER();
+    std::string QL_OH_VERSION();
 
     /*! return the vector of Properties
         describing an Object in the ObjectHandler

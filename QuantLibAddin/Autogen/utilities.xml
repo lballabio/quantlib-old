@@ -6,8 +6,8 @@
 <displayname>Utilities</displayname>
 
 <function>
-<name>QL_VER</name>
-<codename>qlVer</codename>
+<name>QL_VERSION</name>
+<codename>qlVersion</codename>
 <desc>returns the version number of QuantLib</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
@@ -19,8 +19,8 @@
 </function>
 
 <function>
-<name>QL_OH_VER</name>
-<codename>qlOhVer</codename>
+<name>QL_OH_VERSION</name>
+<codename>qlOhVersion</codename>
 <desc>returns the version number of ObjectHandler</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
@@ -32,7 +32,7 @@
 </function>
 
 <function>
-<name>QL_FIELDNAMES</name>
+<name>QL_FIELD_NAMES</name>
 <codename>qlFieldNames</codename>
 <desc>retrieve the field names of a given object</desc>
 <constructor>false</constructor>
@@ -107,7 +107,7 @@
 </function>
 
 <function>
-<name>QL_LOGMESSAGE</name>
+<name>QL_LOG_MESSAGE</name>
 <codename>qlLogMessage</codename>
 <desc>log a message</desc>
 <constructor>false</constructor>
@@ -189,8 +189,8 @@
 </function>
 
 <function>
-<name>QL_OBJECT_DELETE</name>
-<codename>qlObjectDelete</codename>
+<name>QL_DELETE_OBJECT</name>
+<codename>qlDeleteObject</codename>
 <desc>delete object from repository</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
@@ -210,8 +210,8 @@
 </function>
 
 <function>
-<name>QL_OBJECT_DELETE_ALL</name>
-<codename>qlObjectDeleteAll</codename>
+<name>QL_DELETE_ALL_OBJECTS</name>
+<codename>qlDeleteAllObjects</codename>
 <desc>delete all objects from repository</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>

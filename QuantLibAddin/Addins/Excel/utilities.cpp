@@ -22,30 +22,30 @@
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
-DLLEXPORT char* qlVer() {
+DLLEXPORT char* qlVersion() {
     try {
         static char ret[XL_MAX_STR_LEN];
-        std::string ver = QL_VER();
+        std::string ver = QL_VERSION();
         int len = __min(XL_MAX_STR_LEN - 1, ver.length());
         strncpy(ret, ver.c_str(), len);
         ret[len] = 0;
         return ret;
     } catch (const exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_VER: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_VERSION: ") + e.what(), 2);
         return 0;
     }
 }
 
-DLLEXPORT char* qlOhVer() {
+DLLEXPORT char* qlOhVersion() {
     try {
         static char ret[XL_MAX_STR_LEN];
-        std::string ver = QL_OH_VER();
+        std::string ver = QL_OH_VERSION();
         int len = __min(XL_MAX_STR_LEN - 1, ver.length());
         strncpy(ret, ver.c_str(), len);
         ret[len] = 0;
         return ret;
     } catch (const exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_OH_VER: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_OH_VERSION: ") + e.what(), 2);
         return 0;
     }
 }
@@ -69,7 +69,7 @@ DLLEXPORT LPXLOPER qlFieldNames(char *handleObject) {
         }
         return &xRet;
     } catch (const exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_FIELD_NAMES: ") + e.what(), 2);
         if (xRet.val.array.lparray)
             delete [] xRet.val.array.lparray;
         return 0;
@@ -157,24 +157,24 @@ DLLEXPORT short int* qlLogAllObjects() {
     }
 }
 
-DLLEXPORT short int* qlObjectDelete(char *handleObject) {
+DLLEXPORT short int* qlDeleteObject(char *handleObject) {
     try {
         static short int ret = FALSE;
         OH_DELETE_OBJECT(handleObject);
         return &ret;
     } catch (const exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_OBJECT_DELETE: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_DELETE_OBJECT: ") + e.what(), 2);
         return 0;
     }
 }
 
-DLLEXPORT short int* qlObjectDeleteAll() {
+DLLEXPORT short int* qlDeleteAllObjects() {
     try {
         static short int ret = FALSE;
         OH_DELETE_ALL_OBJECTS();
         return &ret;
     } catch (const exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_OBJECT_DELETE_ALL: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_DELETE_ALL_OBJECTS: ") + e.what(), 2);
         return 0;
     }
 }

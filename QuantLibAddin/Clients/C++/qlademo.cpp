@@ -38,8 +38,8 @@ int main() {
     }
 
     try {
-        OH_LOG_MESSAGE(QL_VER());
-        OH_LOG_MESSAGE(QL_OH_VER());
+        OH_LOG_MESSAGE(QL_VERSION());
+        OH_LOG_MESSAGE(QL_OH_VERSION());
 
         double dividendYield = 0.00;
         double riskFreeRate = 0.06;
