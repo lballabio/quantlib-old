@@ -1,42 +1,26 @@
 
-# to be used with NSIS 1.93 and up
-#
-# usage:
-#       makensis /DLIGHT QuantLibXL.nsi
-# OR
-#       makensis QuantLibXL.nsi
+# to be used with NSIS 2.0 and up
 
+SetCompressor lzma
 
-# $Id$
-
-
-!define VER_NUMBER "0.3.4"
+!define VER_NUMBER "0.3.5"
 
 # HEADER CONFIGURATION COMMANDS
-!ifdef LIGHT
-    Name "QuantLibXL Light"
-    Caption "QuantLibXL Light - Setup"
-    #do not change the name below
-    OutFile "..\QuantLibXL-${VER_NUMBER}-light-inst.exe"
-    ComponentText "This will install QuantLibXL ${VER_NUMBER} Light on your computer.$\n A more complete version including documentation, examples, source code, etc. can be downloaded from http://quantlib.org"
-!else
-    Name "QuantLibXL"
-    Caption "QuantLibXL - Setup"
-    #do not change the name below
-    OutFile "..\QuantLibXL-${VER_NUMBER}-full-inst.exe"
+Name "QuantLibXL"
+Caption "QuantLibXL - Setup"
+#do not change the name below
+OutFile "..\QuantLibXL-${VER_NUMBER}.exe"
 
-    InstType "Full (w/ Source Code)"
-    InstType Typical
-    InstType Minimal
+InstType "Full (w/ Source Code)"
+InstType Typical
+InstType Minimal
 
-    ComponentText "This will install QuantLibXL ${VER_NUMBER} on your computer"
-!endif
+ComponentText "This will install QuantLibXL ${VER_NUMBER} on your computer"
 
 SilentInstall normal
 CRCCheck on
 LicenseText "You must agree with the following license before installing:"
 LicenseData License.txt
-DirShow show
 DirText "Please select a location to install QuantLibXL (or use the default):"
 InstallDir "$PROGRAMFILES\QuantLibXL"
 InstallDirRegKey HKEY_LOCAL_MACHINE "SOFTWARE\QuantLibXL" "Install_Dir"
@@ -95,17 +79,6 @@ SectionEnd
 
 
 
-!ifndef LIGHT
-
-#it doesn't work
-#Function .onInstSuccess
-#  MessageBox MB_YESNO|MB_ICONQUESTION \
-#             "Setup has completed. View Readme.txt now?" \
-#             IDNO NoReadme
-#    ExecShell open '$INSTDIR\Readme.txt'
-#  NoReadme:
-#FunctionEnd
-
 Section "Source Code"
 SectionIn 1
   SetOutPath $INSTDIR
@@ -131,20 +104,31 @@ SectionIn 1 2
     SetOutPath $INSTDIR\Workbooks
 #    File /r "test\*.txt"
 #    File /r "Workbooks\*.xls"
-     File /r "Workbooks\BlackScholes.xls"
+
      File /r "Workbooks\blackvol.xls"
-     File /r "Workbooks\CorrelationMatrix.xls"
-     File /r "Workbooks\europeangreeks.xls"
-     File /r "Workbooks\FiniteDifferences.xls"
      File /r "Workbooks\interp.xls"
      File /r "Workbooks\localvolatility.xls"
+     File /r "Workbooks\Cholesky.xls"
+
+     File /r "Workbooks\Binomial.xls"
+     File /r "Workbooks\BlackScholes.xls"
+     File /r "Workbooks\CorrelationMatrix.xls"
+     File /r "Workbooks\Covariance.xls"
+     File /r "Workbooks\europeangreeks.xls"
+     File /r "Workbooks\FiniteDifferences.xls"
+     File /r "Workbooks\FiniteDifferences.xls"
+     File /r "Workbooks\interpolationderivative.xls"
+     File /r "Workbooks\interpolationtest.xls"
+     File /r "Workbooks\jumps.xls"
      File /r "Workbooks\normdist.xls"
      File /r "Workbooks\Paths.xls"
+     File /r "Workbooks\Poisson.xls"
      File /r "Workbooks\primeNumbers.xls"
      File /r "Workbooks\QLPaths.xls"
      File /r "Workbooks\quantlib.xls"
-     File /r "Workbooks\riskmeasures.xls"
      File /r "Workbooks\RandomNumbers.xls"
+     File /r "Workbooks\RankReduction.xls"
+     File /r "Workbooks\riskmeasures.xls"
      File /r "Workbooks\tsconstforward.xls"
      File /r "Workbooks\tsdiscount.xls"
      File /r "Workbooks\tspwcf.xls"
@@ -159,16 +143,10 @@ SectionEnd
 
 
 
-SectionDivider
-
 Section "Start Menu Group"
 SectionIn 1 2 3
   SetOutPath "$SMPROGRAMS\QuantLibXL"
 
-#it doesn't work
-#  CreateShortCut "$SMPROGRAMS\QuantLibXL\QuantLib Home Page.lnk" \
-#                 "http://quantlib.org/index.html"
-#this works
   WriteINIStr "$SMPROGRAMS\QuantLibXL\QuantLib Home Page.url" \
               "InternetShortcut" "URL" "http://quantlib.org/"
 
@@ -176,21 +154,16 @@ SectionIn 1 2 3
                  "$INSTDIR"
 SectionEnd
 
-!endif
-
 
 Function .onInit
 
   SetOutPath $TEMP
   File /oname=spltmp.bmp "Docs\images\QL-largish.bmp"
-  #the following line depends on NSIS being installed under C:\programs
-  #sorry, but no better solution available yet
-  IfFileExists "C:\programs\NSIS\splash.exe" 0 NoSplashExecutable
-      File /oname=spltmp.exe "C:\programs\NSIS\splash.exe"
-      ExecWait '"$TEMP\spltmp.exe" 4000 $HWNDPARENT $TEMP\spltmp'
-      Delete $TEMP\spltmp.exe
-      Delete $TEMP\spltmp.bmp
-  NoSplashExecutable:
+  splash::show 2000 $TEMP\spltmp
+  Pop $0 ; $0 has '1' if the user closed the splash screen early,
+         ;        '0' if everything closed normal,
+         ;        '-1' if some error occured.
+  Delete $TEMP\spltmp.bmp
 FunctionEnd
 
 UninstallText "This will uninstall QuantLibXL. Hit next to continue."
