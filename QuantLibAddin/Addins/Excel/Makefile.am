@@ -6,12 +6,12 @@ EXTRA_DIST = \
     AddinExcel.vcproj \
     framewrk.cpp \
     framewrk.hpp \
-    functions.cpp \
     options.cpp \
     qladdin.cpp \
     utilities.cpp \
-    utilities.hpp \
-    xlcall.h
+    xlcall.h \
+    xlutils.cpp \
+    xlutils.hpp
 
 dist-hook:
 	mkdir $(distdir)/lib

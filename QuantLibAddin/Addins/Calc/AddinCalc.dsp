@@ -86,12 +86,11 @@ CFG=AddinCalc - Win32 Debug
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=.\funcdef.cpp
+SOURCE=.\calcutils.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\functions.cpp
-# PROP Intermediate_Dir "."
+SOURCE=.\funcdef.cpp
 # End Source File
 # Begin Source File
 
@@ -111,7 +110,6 @@ SOURCE=.\QuantLibAddin.def
 # Begin Source File
 
 SOURCE=.\utilities.cpp
-# PROP Intermediate_Dir "."
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -123,7 +121,7 @@ SOURCE=.\autogen.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\functions.hpp
+SOURCE=.\calcutils.hpp
 # End Source File
 # Begin Source File
 
@@ -142,7 +140,6 @@ SOURCE=.\qldefs.hpp
 # Begin Source File
 
 SOURCE=.\utilities.hpp
-# PROP Intermediate_Dir "."
 # End Source File
 # End Group
 # Begin Group "Make"

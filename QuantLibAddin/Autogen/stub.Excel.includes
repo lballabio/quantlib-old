@@ -1,5 +1,5 @@
 #include <qla/qladdin.hpp>
-#include <Addins/Excel/utilities.hpp>
+#include <Addins/Excel/xlutils.hpp>
 
 using namespace ObjHandler;
 using namespace QuantLibAddin;

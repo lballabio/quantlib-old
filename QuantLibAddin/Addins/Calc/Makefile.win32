@@ -26,14 +26,14 @@ CC_FLAGS2=/Fp"$(INT_DIR)\$(COMPONENT_NAME).pch" /YX  /Fo"$(INT_DIR)\\" /Fd"$(INT
 CPP_PROJ=$(CC_FLAGS) $(CC_INCLUDES) $(CC_DEFINES) $(CC_FLAGS2)
 OBJECTS="$(INT_DIR)\qladdin.obj" \
 	"$(INT_DIR)\funcdef.obj" \
+	"$(INT_DIR)\calcutils.obj" \
 	"$(INT_DIR)\utilities.obj" \
-	"$(INT_DIR)\functions.obj" \
 	"$(INT_DIR)\options.obj"	
 LINK="$(MSVC_DIR)\BIN\LINK" /nologo
 LFLAGS=libcmtd.lib libcpmtd.lib kernel32.lib wsock32.lib \
 	oldnames.lib netapi32.lib advapi32.lib gdi32.lib comdlg32.lib \
-	comctl32.lib user32.lib \
-	winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib \
+	comctl32.lib user32.lib winspool.lib shell32.lib ole32.lib \
+	oleaut32.lib uuid.lib odbc32.lib odbccp32.lib \
 	icppu.lib icppuhelper.lib isal.lib \
 	log4cxxs.lib Ws2_32.lib \
 	/nologo /dll /pdb:$(INT_DIR)\$(COMPONENT_NAME).pdb /debug /machine:I386 \

@@ -46,12 +46,11 @@ EXTRA_DIST = \
 
 noinst_HEADERS = \
     autogen.hpp \
+    calcutils.hpp \
     options.hpp \
-    functions.hpp \
     qladdin.hpp \
     qldefs.hpp \
     utilities.hpp
-
 
 if BUILD_CALC
 lib_LTLIBRARIES = libQuantLibAddinCalc.la
@@ -60,8 +59,8 @@ EXTRA_LTLIBRARIES = libQuantLibAddinCalc.la
 endif
 
 libQuantLibAddinCalc_la_SOURCES = \
+    calcutils.cpp \
     funcdef.cpp \
-    functions.cpp \
     options.cpp \
     qladdin.cpp \
     utilities.cpp

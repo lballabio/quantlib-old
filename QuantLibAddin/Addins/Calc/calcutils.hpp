@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_calc_utils_hpp
-#define qla_calc_utils_hpp
+#ifndef qla_calc_calcutils_hpp
+#define qla_calc_calcutils_hpp
 
 ANY anyToANY(const ObjHandler::any_ptr &a); // convert boost::any to Calc Any
 SEQSEQ( ANY ) getArray(ObjHandler::Properties properties,

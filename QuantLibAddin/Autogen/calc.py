@@ -46,7 +46,7 @@ def generateAutoHeader(functionGroups):
     fileHeader.write('#define qla_calc_auto_hpp\n\n')
     for groupName in functionGroups.keys():
         fileHeader.write('#include <Addins/Calc/%s.hpp>\n' % groupName)
-    fileHeader.write('#endif\n\n')
+    fileHeader.write('\n#endif\n\n')
     fileHeader.close()
 
 def generateHeader(fileHeader, function, suffix):

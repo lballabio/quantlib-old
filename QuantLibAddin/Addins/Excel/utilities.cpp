@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,131 +16,61 @@
 */
 
 #include <qla/qladdin.hpp>
-#include <Addins/Excel/utilities.hpp>
-#include <Addins/Excel/framewrk.hpp>
-#include <exception>
+#include <Addins/Excel/xlutils.hpp>
+#include <sstream>
 
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
-void anyToXLOPER(const any_ptr &any, XLOPER &xOp) {
-    if (any->type() == typeid(int)) {
-        xOp.xltype = xltypeInt;
-        xOp.val.w = boost::any_cast<int>(*any);
-    } else if (any->type() == typeid(double)) {
-        xOp.xltype = xltypeNum;
-        xOp.val.num = boost::any_cast<double>(*any);
-    } else if (any->type() == typeid(std::string)) {
-        std::string s = boost::any_cast<std::string>(*any);
-        setXLOPERString(xOp, s.c_str());
-    } else
-        xOp.xltype = xltypeErr;
+DLLEXPORT LPXLOPER qlVer() {
+    static XLOPER xRet;
+    std::string ret = QL_VER();
+    setXLOPERString(xRet, ret.c_str());
+    return &xRet;
 }
 
-void setValues(LPXLOPER xArray, Properties properties, const std::string &handle) {
-    xArray->xltype = xltypeMulti;
-    xArray->xltype |= xlbitDLLFree;
-    xArray->val.array.rows = 1;
-    xArray->val.array.columns = properties.size() + 1;
-    xArray->val.array.lparray = new XLOPER[properties.size() + 1]; 
-    if (!xArray->val.array.lparray)
-        throw("setValues: error on call to new");
-    setXLOPERString(xArray->val.array.lparray[0], handle.c_str());
-    for (unsigned int i = 0; i < properties.size(); i++) {
-        ObjectProperty property = properties[i];
-        any_ptr a = property();
-        anyToXLOPER(a, xArray->val.array.lparray[i + 1]);
-    }
+DLLEXPORT LPXLOPER qlOhVer() {
+    static XLOPER xRet;
+    std::string ret = QL_OH_VER();
+    setXLOPERString(xRet, ret.c_str());
+    return &xRet;
 }
 
-std::string XLOPERtoString(LPXLOPER xOp) {
-    XLOPER xStr;
-    if (xlretSuccess != Excel4(xlCoerce, &xStr, 2, xOp, TempInt(xltypeStr))) 
-        throw exception("XLOPERtoString: error on call to xlCoerce");
-    std::string s;
-    s.assign(xStr.val.str + 1, xStr.val.str[0]);
-    Excel(xlFree, 0, 1, &xStr);
-    return s;
-}
-
-std::string getCaller() {
-    XLOPER xCaller, xRef;
-    if (xlretSuccess != Excel(xlfCaller, &xCaller, 0))
-        throw exception("getCaller: error on call to xlfCaller");
-    if (xlretSuccess != Excel(xlfGetCell, &xRef, 2, TempInt(1), &xCaller))
-        throw exception("getCaller: error on call to xlfGetCell");
-    return "#" + XLOPERtoString(&xRef);
-}
-
-void setXLOPERString(XLOPER &xStr, const char *s) {
-    xStr.xltype = xltypeStr;
-    int len = __min(255, strlen(s));    // XLOPER string max length is 255
-    xStr.val.str = new char[ len + 1 ]; // caller needs to delete
-    if (!xStr.val.str) 
-        throw exception("error calling new in function setXLOPERString");
-    strncpy(xStr.val.str + 1, s, len);
-    xStr.val.str[0] = len;
-}
-
-std::vector <long> longArrayToVector(LPXLOPER xVec) {
-    std::vector <long> ret;
-    XLOPER xVal;
-    if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
-        throw exception("longXLOPERToVector: error on call to xlCoerce");
-    int size = xVal.val.array.rows * xVal.val.array.columns;
-    for (int i=0; i<size; i++) {
-        XLOPER xOp = xVal.val.array.lparray[i];
-        if (xOp.xltype == xltypeNum)
-            ret.push_back(xOp.val.num);
-    }
-    Excel(xlFree, 0, 1, &xVal);
-    return ret;
-}
-
-std::vector <double> doubleArrayToVector(LPXLOPER xVec) {
-    std::vector <double> ret;
-    XLOPER xVal;
-    if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
-        throw exception("doubleXLOPERToVector: error on call to xlCoerce");
-    int size = xVal.val.array.rows * xVal.val.array.columns;
-    for (int i=0; i<size; i++) {
-        XLOPER xOp = xVal.val.array.lparray[i];
-        if (xOp.xltype == xltypeNum)
-            ret.push_back(xOp.val.num);
-    }
-    Excel(xlFree, 0, 1, &xVal);
-    return ret;
-}
-
-std::vector <std::string> stringArrayToVector(LPXLOPER xVec) {
-    std::vector <std::string> ret;
-    XLOPER xVal;
-    if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
-        throw exception("stringXLOPERToVector: error on call to xlCoerce");
-    int size = xVal.val.array.rows * xVal.val.array.columns;
-    for (int i=0; i<size; i++) {
-        XLOPER xOp = xVal.val.array.lparray[i];
-        if (xOp.xltype == xltypeStr)
-            ret.push_back(XLOPERtoString(&xOp));
-    }
-    Excel(xlFree, 0, 1, &xVal);
-    return ret;
-}
-
-std::vector <std::vector <double> >doubleArrayToMatrix(LPXLOPER xVec) {
-    std::vector <std::vector <double> > ret;
-    XLOPER xVal;
-    if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
-        throw exception("doubleXLOPERToVector: error on call to xlCoerce");
-    for (int i=0; i<xVal.val.array.rows; i++) {
-        std::vector <double> row;
-        for (int j=0; j<xVal.val.array.columns; j++) {
-            XLOPER xOp = xVal.val.array.lparray[i];
-            if (xOp.xltype == xltypeNum)
-                row.push_back(xOp.val.num);
+DLLEXPORT LPXLOPER qlQuery(char *handleObject) {
+    try {
+        Properties properties = QL_QUERY(std::string(handleObject));
+        static XLOPER xRet;
+        xRet.xltype = xltypeMulti;
+        xRet.xltype |= xlbitDLLFree;
+        xRet.val.array.rows = properties.size();
+        xRet.val.array.columns = 2;
+        xRet.val.array.lparray = new XLOPER[2 * properties.size()];
+        if (!xRet.val.array.lparray)
+            throw Exception("error on call to new");
+        for (unsigned int i = 0; i < properties.size(); i++) {
+            ObjectProperty property = properties[i];
+            any_ptr a = property();
+            setXLOPERString(xRet.val.array.lparray[i * 2], property.name().c_str());
+            anyToXLOPER(a, xRet.val.array.lparray[i * 2 + 1]);
         }
-        ret.push_back(row);
+        return &xRet;
+    } catch (const exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what());
+        return 0;
     }
-    Excel(xlFree, 0, 1, &xVal);
-    return ret;
+}
+
+DLLEXPORT LPXLOPER qlLogfile(char *logFileName) {
+    static XLOPER xRet;
+    std::string ret = QL_LOGFILE(std::string(logFileName));
+    setXLOPERString(xRet, ret.c_str());
+    return &xRet;
+}
+
+DLLEXPORT LPXLOPER qlLogLevel(long *logLevel) {
+    static XLOPER xRet;
+    QL_LOGLEVEL(*logLevel);
+    xRet.xltype = xltypeInt;
+    xRet.val.w = *logLevel;
+    return &xRet;
 }

@@ -96,10 +96,6 @@ SOURCE=.\framewrk.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\functions.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\options.cpp
 # End Source File
 # Begin Source File
@@ -109,6 +105,10 @@ SOURCE=.\qladdin.cpp
 # Begin Source File
 
 SOURCE=.\utilities.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\xlutils.cpp
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -120,11 +120,11 @@ SOURCE=.\framewrk.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\utilities.hpp
+SOURCE=.\XLCALL.H
 # End Source File
 # Begin Source File
 
-SOURCE=.\XLCALL.H
+SOURCE=.\xlutils.hpp
 # End Source File
 # End Group
 # End Target

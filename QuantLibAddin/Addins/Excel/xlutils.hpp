@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef xl_utilities_hpp
-#define xl_utilities_hpp
+#ifndef xl_xlutils_hpp
+#define xl_xlutils_hpp
 
 #include <windows.h>
 #include <string>

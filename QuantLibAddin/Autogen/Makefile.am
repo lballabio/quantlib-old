@@ -3,7 +3,7 @@
 EXTRA_DIST = .time-stamp
 
 # autogen.py probably needs to be re-executed if any of these change
-AUTOGEN_INPUT := functions.xml options.xml
+AUTOGEN_INPUT := utilities.xml options.xml
 AUTOGEN_PYS := autogen.py c.py calc.py common.py excel.py \
                parse.py qla.py utils.py
 AUTOGEN_STUBS := stub.C.body stub.C.includes \

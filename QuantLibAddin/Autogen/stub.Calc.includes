@@ -1,6 +1,6 @@
 #include <qla/qladdin.hpp>
 #include <Addins/Calc/qladdin.hpp>
-#include <Addins/Calc/utilities.hpp>
+#include <Addins/Calc/calcutils.hpp>
 
 using namespace ObjHandler;
 using namespace QuantLibAddin;
