@@ -1,0 +1,5 @@
+
+Quixote was primarily written by Andrew Kuchling, Neil Schemenauer, and
+Greg Ward: {amk,nas,gward}@mems-exchange.org.  Support for Quixote
+is available on the quixote-users@mems-exchange.org mailing list.
+
