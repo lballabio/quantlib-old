@@ -22,6 +22,7 @@
 #define qlxl_qlxlfoper_h
 
 #include <qlxl/qlxl.hpp>
+#include <ql/Math/matrix.hpp>
 #include <ql/date.hpp>
 #include <ql/daycounter.hpp>
 #include <ql/termstructure.hpp>
