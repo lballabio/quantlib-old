@@ -1,0 +1,149 @@
+[Project]
+FileName=ObjectHandler.dev
+Name=ObjectHandler
+Ver=1
+IsCpp=1
+Type=2
+Compiler=-D__GNUWIN32__ -W -fexceptions -DWIN32 -DNDEBUG -D_MBCS -D_LIB_@@_
+CppCompiler=-D__GNUWIN32__ -W -fexceptions -DWIN32 -DNDEBUG -D_MBCS -D_LIB_@@_
+Includes=.
+Linker=
+Libs=
+UnitCount=10
+Folders="Header Files","Source Files"
+ObjFiles=
+PrivateResource=ObjectHandler_private.rc
+ResourceIncludes=
+MakeIncludes=
+Icon=
+ExeOutput=lib
+ObjectOutput=build\MinGW
+OverrideOutput=1
+OverrideOutputName=ObjectHandler-mgw-0_0_1.a
+HostApplication=
+CommandLine=
+UseCustomMakefile=0
+CustomMakefile=
+IncludeVersionInfo=1
+SupportXPThemes=0
+CompilerSet=0
+CompilerSettings=0000000000000000000000
+
+[Unit1]
+FileName=ObjectHandler\exception.cpp
+Folder="Source Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit2]
+FileName=ObjectHandler\object.cpp
+Folder="Source Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit3]
+FileName=ObjectHandler\objecthandler.cpp
+Folder="Source Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit4]
+FileName=ObjectHandler\utilities.cpp
+Folder="Source Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit5]
+FileName=ObjectHandler\autolink.hpp
+Folder="Header Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit6]
+FileName=ObjectHandler\exception.hpp
+Folder="Header Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit7]
+FileName=ObjectHandler\object.hpp
+Folder="Header Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit8]
+FileName=ObjectHandler\objecthandler.hpp
+Folder="Header Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit9]
+FileName=ObjectHandler\objecthandlerversion.hpp
+Folder="Header Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit10]
+FileName=ObjectHandler\utilities.hpp
+Folder="Header Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[VersionInfo]
+Major=0
+Minor=0
+Release=1
+Build=1
+LanguageID=1033
+CharsetID=1252
+CompanyName=
+FileVersion=0.1
+FileDescription=Developed using the Dev-C++ IDE
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=ObjectHandler.a
+ProductName=ObjectHandler
+ProductVersion=0.1
+AutoIncBuildNr=0
+

@@ -1,8 +1,11 @@
 build
 lib
+Makefile.win
 ObjectHandler.dep
+ObjectHandler.layout
 ObjectHandler.mak
 ObjectHandler.ncb
 ObjectHandler.opt
 ObjectHandler.plg
 ObjectHandler.suo
+ObjectHandler_private.*

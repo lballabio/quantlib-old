@@ -18,9 +18,18 @@
 #ifndef objecthandler_h
 #define objecthandler_h
 
-
 #include <ObjectHandler/objecthandlerversion.hpp>
-#include "autolink.hpp"
+
+/* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
+   for example) also #define _MSC_VER
+
+*/
+#ifdef BOOST_MSVC
+#  define BOOST_LIB_DIAGNOSTIC
+#  include <boost/config/auto_link.hpp>
+#  undef BOOST_LIB_DIAGNOSTIC
+#endif
+
 #include "utilities.hpp"
 
 typedef boost::shared_ptr<Object> obj_ptr;
