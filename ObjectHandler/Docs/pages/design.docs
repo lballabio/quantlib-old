@@ -1,0 +1,335 @@
+
+/*
+ Copyright (C) 2005 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page design ObjectHandler Design
+\section sec_00 Abstract
+\par
+QuantLib integration into spreadsheets and other end user tools requires a new standalone <strong>ObjectHandler</strong> component, a repository allowing objects to be stored, shared, updated, interrogated, and destroyed.
+\section sec_01 Contents
+<dl>
+<dt>\ref sec_1</dt>
+<dd><dl>
+<dt>\ref sec_1_1</dt>
+<dd><dl>
+<dt>\ref sec_1_1_1</dt>
+<dt>\ref sec_1_1_2</dt>
+<dt>\ref sec_1_1_3</dt>
+<dt>\ref sec_1_1_4</dt>
+</dl></dd>
+<dt>\ref sec_1_2</dt>
+<dd><dl>
+<dt>\ref sec_1_2_1</dt>
+<dt>\ref sec_1_2_2</dt>
+<dt>\ref sec_1_2_3</dt>
+</dl></dd>
+</dl></dd>
+<dt>\ref sec_2</dt>
+<dd><dl>
+<dt>\ref sec_2_1</dt>
+<dd><dl>
+<dt>\ref sec_2_1_1</dt>
+<dt>\ref sec_2_1_2</dt>
+</dl></dd>
+<dt>\ref sec_2_2</dt>
+<dd><dl>
+<dt>\ref sec_2_2_1</dt>
+<dt>\ref sec_2_2_2</dt>
+<dt>\ref sec_2_2_3</dt>
+</dl></dd>
+</dl></dd>
+<dt>\ref sec_3</dt>
+<dt>\ref sec_4</dt>
+</dl>
+<!-- </div> -->
+\section sec_1 1. Design
+<div class="center"><img src="quep011a.png"></div>
+\section sec_1_1 1.1 ObjectHandler
+\par
+ObjectHandler maintains a repository of objects, each identified by a unique <tt>Handle</tt> provided by the client. ObjectHandler facilitates:
+<ul>
+<li><b>persistence</b>: Objects can be maintained and modified throughout the life of the client application.</li>
+<li><b>sharing</b>: Each client application instantiates a single global instance of ObjectHandler.  Objects created in one area of the application can be accessed in another - for example, in a spreadsheet, one sheet can refer to objects instantiated on another.</li>
+</ul>
+\section sec_1_1_1 1.1.1 Object
+\par
+Abstract base class <tt>Object</tt> implements the interface required by ObjectHander for managing <tt>Object</tt>s - constructor, copy constructor, assignment operator, destructor.
+\par
+Client objects retained in the ObjectHandler repository are represented by classes derived from <tt>Object</tt>.  Typically the constructor of the derived <tt>Object</tt> class invokes the constructor of the corresponding client class, and the resulting client object is retained in a member variable of the derived <tt>Object</tt> class.  The derived <tt>Object</tt> class may also wrap member functions of the client class.
+\par
+The <tt>Object</tt> class supports two interfaces for the client application to interrogate the stored object:
+<ul>
+<li><b>high-level</b> access implemented by member functions which allow the client to query the object at run-time with no prior knowledge of its implementation.</li>
+<li><b>low-level</b> access implemented by a member function which returns a const reference to the underlying client object stored within the derived <tt>Object</tt>.</li>
+</ul>
+\section sec_1_1_2 1.1.2 ObjectHandler
+\par
+A single global instance of class <tt>ObjectHandler</tt> implements the interface required by the client to store and retrieve objects in the repository. Global scope is achieved by deriving <tt>ObjectHandler</tt> from <tt>Singleton</tt>.
+\section sec_1_1_3 1.1.3 boost::any
+\par
+ObjectHandler uses Boost class <tt>boost::any</tt> to represent a scalar, vector, or matrix of native datatypes, <tt>Object</tt>s, or other <tt>boost::any</tt>s.  Class <tt>boost::any</tt> serves as a proxy for similar constructs in target client environments (uno::Any in Calc, XLOPER in Excel, etc.)
+\section sec_1_1_4 1.1.4 Property
+\par
+Object properties are implemented as a vector of template class <tt>Property</tt> (Daniel Duffy, <em>Financial Instrument Pricing Using C++</em>) which stores attributes as key/value pairs.  Use of the <tt>Property</tt> vector allows derived <tt>Object</tt>s to maintain their attributes dynamically, while the client interrogates objects through the standard interface in the base class.
+\section sec_1_2 1.2 Client
+\par
+A Client application using ObjectHandler implements the components described below.
+\section sec_1_2_1 1.2.1 Object
+\par
+Classes of Client objects to be stored in ObjectHandler are wrapped in classes derived from <tt>Object</tt>. The derived <tt>Object</tt> class overrides the base <tt>Object</tt> class's member functions as appropriate for the corresponding Client class:
+<ul>
+<li><b>constructor</b> constructs the corresponding Client object, which is retained as a member variable of the <tt>Object</tt>.</li>
+<li><b>copy constructor, assignment operator, destructor</b> are customized for the particulars of the derived class.</li>
+<li><b>member functions</b> call corresponding member functions of the underlying Client object.  The state of the Client object stored in the derived <tt>Object</tt> may change accordingly.</li>
+<li><b>high- and low-level interrogation</b> methods are supported appropriately for the derived class.</li>
+</ul>
+\section sec_1_2_2 1.2.2 Interface
+\par
+It may be convenient to contain all calls to ObjectHandler in an interface layer, particularly where the Client application is a procedural environment such as a spreadsheet. Typically each function in the interface (e.g. each formula in a spreadsheet) invokes a constructor or member function of an <tt>Object</tt> class.
+\par
+The first parameter of each interface function is the <tt>Handle</tt> that ObjectHandler will use to identify the object which is to be constructed / amended.  Wherever a function requires as an input a reference to an <tt>Object</tt>, the interface accepts a <tt>Handle</tt> which is used to retrieve from ObjectHandler a reference to the corresponding <tt>Object</tt>.
+\par
+Class <tt>Object</tt> supports interfaces for high- and low-level interrogation.  For expediency, the return value of each interface function is the Property vector of the corresponding <tt>Object</tt>.  Rather than interrogate a newly constructed <tt>Object</tt>, the client application can simply grab the Property vector from the return value of the interface function.  For example, in a spreadsheet, a formula array invokes an interface function which instantiates an <tt>Object</tt> in ObjectHandler, and the return value of the interface function - attributes of the <tt>Object</tt> - are displayed across a range of cells in the spreadsheet.
+\section sec_1_2_3 1.2.3 Application
+\par
+The Client application interacts with ObjectHandler via the interface layer.
+\section sec_2 2 Implementation
+\par
+Pseudocode is provided for ObjectHandler and for an example Client application. A complete copy of the latest code can be checked out from the <a href="http://quantlib.org/cvs.shtml">QuantLib CVS</a> (module ObjectHandler), or browsed <a href="http://cvs.sourceforge.net/viewcvs.py/quantlib/ObjectHandler/">on line</a>.
+\section sec_2_1 2.1 ObjectHandler
+\section sec_2_1_1 2.1.1 Object
+\par object.hpp
+\code
+typedef boost::shared_ptr<boost::any> any_ptr;
+typedef Property<string, any_ptr> ObjectProperty;
+typedef vector<ObjectProperty> Properties;
+
+class Object {
+public:
+   // constructor, destructor, copy constructor, assignment operator
+   // high-level interrogation
+   Properties getProperties();
+   // low-level interrogation
+   virtual boost::shared_ptr<void> getReference() const = 0;
+   // future enhancements
+   //Coerce();
+   //Load();
+   //Unload();
+   //Serialize();
+   //Deserialize();
+   //Compress();
+   //Uncompress();
+protected:
+   Properties properties_;
+};
+\endcode
+\par object.cpp
+\code
+#include "object.hpp"
+
+Properties Object::getProperties() {
+   return properties_;
+}
+\endcode
+\section sec_2_1_2 2.1.2 ObjectHandler
+\par objecthandler.hpp
+\code
+#include "object.hpp"
+
+typedef boost::shared_ptr<Object> obj_ptr;
+typedef map<string, obj_ptr> ObjectList;
+
+class ObjectHandler {
+public:
+   // constructor, destructor
+   void storeObject(const Handle &handle, const obj_ptr &object);
+   obj_ptr retrieveObject(const Handle &handle);
+private:
+   ObjectList objectList_;   // repository of objects
+};
+\endcode
+\par objecthandler.cpp
+\code
+#include "objecthandler.hpp"
+
+void ObjectHandler::storeObject(const Handle &handle, const obj_ptr &object) {
+   objectList_[handle] = object;
+}
+
+obj_ptr ObjectHandler::retrieveObject(const Handle &handle) {
+   return objectList_[handle];
+}
+\endcode
+\section sec_2_2 2.2 Client
+\par
+The native client object which is to be stored in ObjectHandler:
+\par widget.hpp
+\code
+class Widget {
+public:
+   Widget(const string &s, const int &i) : s_(s), i_(i) {};
+   void update(const string &s, const int &i) {
+      s_ = s;
+      i_ = i;
+   }
+   string s() { return s_; };
+   int i() { return i_; };
+private:
+   string s_;
+   int i_;
+};
+\endcode
+\section sec_2_2_1 2.2.1 Object
+\par
+Implementation of the <tt>Object</tt> corresponding to the Widget class:
+\par objectwidget.hpp
+\code
+class ObjectWidget : public Object {
+public:
+   ObjectWidget(const string &s, const int &i);
+   virtual boost::shared_ptr<void> getReference() const;
+   void update(const string &s, const int &i);
+private:
+   boost::shared_ptr<Widget> widget_;
+};
+\endcode
+\par objectwidget.cpp
+\code
+ObjectWidget::ObjectWidget(const string &s, const int &i) {
+   // construct widget object
+   widget_ = boost::shared_ptr<Widget>(new Widget(s, i));
+   // populate base class Property vector
+   any_ptr anyString(new boost::any(widget_->s()));
+   any_ptr anyInt(new boost::any(widget_->i()));
+   ObjectProperty propString(PROPERTY_STR, anyString);
+   ObjectProperty propInt(PROPERTY_INT, anyInt);
+   properties_.push_back(propString);
+   properties_.push_back(propInt);
+}
+
+// wrapper for underlying member function
+void ObjectWidget::update(const string &s, const int &i) {
+   widget_->update(s, i);
+   // update Property vector
+   *properties_[IDX_STR]() = s;
+   *properties_[IDX_INT]() = i;
+}
+
+boost::shared_ptr<void> ObjectWidget::getReference() const {
+   return boost::static_pointer_cast<void>(widget_);
+}
+\endcode
+\section sec_2_2_2 2.2.2 Interface
+\par
+Wrapper for client calls to ObjectHandler:
+\par interface.hpp
+\code
+Properties WIDGET_MAKE(
+   const Handle &handle,
+   const string &s,
+   const int &i);
+
+Properties WIDGET_UPDATE(
+   const Handle &handle,
+   const string &s,
+   const int &i);
+\endcode
+\par interface.cpp
+\code
+Properties WIDGET_MAKE(
+      const string &handle,
+      const string &s,
+      const int &i) {
+   obj_ptr object(new ObjectWidget(s, i));
+   objectHandler.storeObject(handle, object);
+   return object->getProperties();
+}
+
+Properties WIDGET_UPDATE(
+   const string &handle,
+   const string &s,
+   const int &i) {
+   boost::shared_ptr<ObjectWidget> object =
+      boost::dynamic_pointer_cast<ObjectWidget>
+      (objectHandler.retrieveObject(handle));
+   if (!object)
+      throw Exception("WIDGET_UPDATE: unable to retrieve object " + handle);
+   object->update(s, i);
+   return object->getProperties();
+}
+\endcode
+\section sec_2_2_3 2.2.3 Application
+\par example.cpp
+\code
+int main() {
+    try {
+        cout << "hi" << endl;
+
+        // construct some objects and store them in the object handler
+        WIDGET_MAKE("widget1", "abc", 123);
+        WIDGET_MAKE("widget2", "def", 456);
+
+        // high level interrogation
+        cout << endl << "high level interrogation - after constructor" << endl;
+        // get object from handler and retrieve its properties -
+        // (properties also returned by WIDGET_MAKE)
+        obj_ptr object = objectHandler.retrieveObject("widget1");
+        Properties properties = object->getProperties();
+        Properties::const_iterator i;
+        for (i = properties.begin();
+            i != properties.end(); i++) {
+            ObjectProperty property = *i;
+            any_ptr any = property();
+            cout << "property = " << property.name() << "\tvalue = " <<
+                AnyToString(any) << endl;
+        }
+
+        // update an object
+        WIDGET_UPDATE("widget2", "ghi", 789);
+
+        // low-level interrogation
+        cout << endl << "low-level interrogation - after WIDGET_UPDATE" << endl;
+        boost::shared_ptr<ObjectWidget> const objectWidget =
+            boost::dynamic_pointer_cast<ObjectWidget>
+            (objectHandler.retrieveObject("widget2"));
+        boost::shared_ptr<Widget> widget =
+            boost::static_pointer_cast<Widget>
+            (objectWidget->getReference());
+        cout << "value of property s() of underlying widget = "
+            << widget->s() << endl;
+
+        cout << endl << "bye" << endl;
+    } catch (const exception &e) {
+        cout << "Error: " << e.what() << endl;
+        return 1;
+    }
+}
+\endcode
+<div class="center"><img src="quep011b.png"></div>
+\section sec_3 3 Notes
+<ul>
+<li><b>ObjectHandler process</b> could be separate from the end user application.  Presently the client links (statically or dynamically) to ObjectHandler such that each client implements a standalone copy of ObjectHandler.  In practice there will be situations where it is preferable to implement ObjectHandler as a single process shared by multiple client applications.</li>
+</ul>
+\section sec_4 4 Feedback
+\par
+Feedback on this proposal should be posted to the <a href="mailto:quantlib-users@lists.sourceforge.net">QuantLib users</a> mailing list.
+*/
