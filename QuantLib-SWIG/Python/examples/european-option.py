@@ -54,11 +54,10 @@ def report(method, x, dx = None):
 
 # good to go
 
-process = BlackScholesStochasticProcess(
-                                    QuoteHandle(underlying),
-                                    TermStructureHandle(dividendYield),
-                                    TermStructureHandle(riskFreeRate),
-                                    BlackVolTermStructureHandle(volatility))
+process = BlackScholesProcess(QuoteHandle(underlying),
+                              TermStructureHandle(dividendYield),
+                              TermStructureHandle(riskFreeRate),
+                              BlackVolTermStructureHandle(volatility))
 
 option = VanillaOption(process, payoff, exercise)
 

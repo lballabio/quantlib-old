@@ -81,7 +81,6 @@
 %include scheduler.i
 %include shortratemodels.i
 %include statistics.i
-%include stochasticprocess.i
 %include swap.i
 %include swaption.i
 %include termstructures.i

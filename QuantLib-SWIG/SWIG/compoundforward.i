@@ -15,8 +15,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// $Id$
-
 #ifndef quantlib_compoundforward_i
 #define quantlib_compoundforward_i
 

@@ -18,6 +18,7 @@
 #ifndef quantlib_diffusion_process_i
 #define quantlib_diffusion_process_i
 
+%include marketelements.i
 %include termstructures.i
 %include volatilities.i
 
@@ -41,15 +42,40 @@ class BlackScholesProcessPtr
   public:
     %extend {
       BlackScholesProcessPtr(
-                       const RelinkableHandle<TermStructure>& riskFreeTS,
+                       const RelinkableHandle<Quote>& s0,
                        const RelinkableHandle<TermStructure>& dividendTS,
-                       const RelinkableHandle<BlackVolTermStructure>& volTS,
-                       double s0) {
+                       const RelinkableHandle<TermStructure>& riskFreeTS,
+                       const RelinkableHandle<BlackVolTermStructure>& volTS) {
           return new BlackScholesProcessPtr(
-                              new BlackScholesProcess(riskFreeTS,
-                                                      dividendTS,
-                                                      volTS,
-                                                      s0));
+                              new BlackScholesProcess(s0, dividendTS,
+                                                      riskFreeTS, volTS));
+      }
+    }
+};
+
+
+%{
+using QuantLib::Merton76Process;
+typedef boost::shared_ptr<DiffusionProcess> Merton76ProcessPtr;
+%}
+
+%rename(Merton76Process) Merton76ProcessPtr;
+class Merton76ProcessPtr : public boost::shared_ptr<DiffusionProcess> {
+  public:
+    %extend {
+      Merton76ProcessPtr(
+                       const RelinkableHandle<Quote>& stateVariable,
+                       const RelinkableHandle<TermStructure>& dividendTS,
+                       const RelinkableHandle<TermStructure>& riskFreeTS,
+                       const RelinkableHandle<BlackVolTermStructure>& volTS,
+                       const RelinkableHandle<Quote>& jumpIntensity, 
+                       const RelinkableHandle<Quote>& meanLogJump,
+                       const RelinkableHandle<Quote>& jumpVolatility) {
+            return new Merton76ProcessPtr(
+                              new Merton76Process(stateVariable, dividendTS,
+                                                  riskFreeTS, volTS,
+                                                  jumpIntensity, meanLogJump,
+                                                  jumpVolatility));
       }
     }
 };

@@ -84,7 +84,6 @@
         "scheduler.i"
         "shortratemodels.i"
         "statistics.i"
-        "stochasticprocess.i"
         "swap.i"
         "swaption.i"
         "termstructures.i"

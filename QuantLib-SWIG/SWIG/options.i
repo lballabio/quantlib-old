@@ -20,7 +20,7 @@
 
 %include common.i
 %include exercise.i
-%include stochasticprocess.i
+%include diffusionprocess.i
 %include instruments.i
 %include stl.i
 
@@ -94,7 +94,7 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
         VanillaOptionPtr(
-                const boost::shared_ptr<StochasticProcess>& process,
+                const boost::shared_ptr<DiffusionProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
                 const boost::shared_ptr<Exercise>& exercise,
                 const boost::shared_ptr<PricingEngine>& engine
@@ -102,9 +102,8 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
-            boost::shared_ptr<BlackScholesStochasticProcess> bsProcess =
-                boost::dynamic_pointer_cast<BlackScholesStochasticProcess>(
-                                                                     process);
+            boost::shared_ptr<BlackScholesProcess> bsProcess =
+                boost::dynamic_pointer_cast<BlackScholesProcess>(process);
             QL_REQUIRE(bsProcess, "wrong stochastic process given");
             return new VanillaOptionPtr(
                 new VanillaOption(bsProcess,stPayoff,exercise,engine));
@@ -158,7 +157,7 @@ class EuropeanOptionPtr : public VanillaOptionPtr {
   public:
     %extend {
         EuropeanOptionPtr(
-                const boost::shared_ptr<StochasticProcess>& process,
+                const boost::shared_ptr<DiffusionProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
                 const boost::shared_ptr<Exercise>& exercise,
                 const boost::shared_ptr<PricingEngine>& engine
@@ -166,9 +165,8 @@ class EuropeanOptionPtr : public VanillaOptionPtr {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
-            boost::shared_ptr<BlackScholesStochasticProcess> bsProcess =
-                boost::dynamic_pointer_cast<BlackScholesStochasticProcess>(
-                                                                     process);
+            boost::shared_ptr<BlackScholesProcess> bsProcess =
+                boost::dynamic_pointer_cast<BlackScholesProcess>(process);
             QL_REQUIRE(bsProcess, "wrong stochastic process given");
             return new EuropeanOptionPtr(
                 new EuropeanOption(bsProcess,stPayoff,exercise,engine));
