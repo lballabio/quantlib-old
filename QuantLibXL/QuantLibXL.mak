@@ -57,7 +57,7 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MT /W3 /Gi /GR /GX /O2 /Ob2 /I ".\\" /I "$(XLW_DIR)" /I "$(QL_DIR)" /I "$(QL_FUN_DIR)" /D "NDEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MT /W3 /Gi /GR /GX /O2 /Ob2 /I ".\\" /I "$(XLW_DIR)" /I "$(QL_DIR)" /I "$(QL_DIR)\functions" /D "NDEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "XLW_AUTOLINK" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /win32 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibXL.bsc" 
@@ -66,6 +66,7 @@ BSC32_SBRS= \
 LINK32=link.exe
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\QuantLibXL-vc6-mt-s-0_3_7.pdb" /machine:I386 /out:"xll\QuantLibXL-vc6-mt-s-0_3_7.xll" /implib:"$(OUTDIR)\QuantLibXL-vc6-mt-s-0_3_7.lib" /libpath:"$(XLW_DIR)\lib" /libpath:"$(QL_DIR)\lib" 
 LINK32_OBJS= \
+	"$(INTDIR)\calendars.obj" \
 	"$(INTDIR)\datef.obj" \
 	"$(INTDIR)\engines.obj" \
 	"$(INTDIR)\mathf.obj" \
@@ -75,8 +76,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\termstructures.obj" \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\vols.obj" \
-	"$(INTDIR)\xlAutoOpen.obj" \
-	"$(INTDIR)\calendars.obj"
+	"$(INTDIR)\xlAutoOpen.obj"
 
 ".\xll\QuantLibXL-vc6-mt-s-0_3_7.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -114,7 +114,7 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MTd /W3 /Gm /Gi /GR /GX /ZI /Od /I ".\\" /I "$(XLW_DIR)" /I "$(QL_DIR)" /I "$(QL_FUN_DIR)" /D "_DEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
+CPP_PROJ=/nologo /MTd /W3 /Gm /Gi /GR /GX /ZI /Od /I ".\\" /I "$(XLW_DIR)" /I "$(QL_DIR)" /I "$(QL_DIR)\functions" /D "_DEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "XLW_AUTOLINK" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
 MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /win32 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibXL.bsc" 
@@ -123,6 +123,7 @@ BSC32_SBRS= \
 LINK32=link.exe
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\QuantLibXL-vc6-mt-sgd-0_3_7.pdb" /debug /machine:I386 /out:"xll\QuantLibXL-vc6-mt-sgd-0_3_7.xll" /implib:"$(OUTDIR)\QuantLibXL-vc6-mt-sgd-0_3_7.lib" /pdbtype:sept /libpath:"$(XLW_DIR)\lib" /libpath:"$(QL_DIR)\lib" 
 LINK32_OBJS= \
+	"$(INTDIR)\calendars.obj" \
 	"$(INTDIR)\datef.obj" \
 	"$(INTDIR)\engines.obj" \
 	"$(INTDIR)\mathf.obj" \
@@ -132,8 +133,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\termstructures.obj" \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\vols.obj" \
-	"$(INTDIR)\xlAutoOpen.obj" \
-	"$(INTDIR)\calendars.obj"
+	"$(INTDIR)\xlAutoOpen.obj"
 
 ".\xll\QuantLibXL-vc6-mt-sgd-0_3_7.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
