@@ -1,3 +1,52 @@
+2002-02-28 18:15  nando
+
+	* cvs.html (1.29), license.html (1.38): added info on cvs behind a
+	firewall
+
+2002-02-26 12:49  nando
+
+	* FAQ.html (1.30), cvs.html (1.28), download.html (1.22),
+	extensions.html (1.15), index.html (1.36), license.html (1.37),
+	lists.html (1.26), mailinglists.html (1.15), marketconventions.html
+	(1.18), nextrelease.html (1.9), qltablefoot.inc (1.6), quep.html
+	(1.22), snapshot.html (1.11), style.html (1.23), quep/quep008.html
+	(1.2), quep/quep010.html (1.2): 1) C++ WebRing removed 2) All pages
+	have been Tidy-fied
+
+2002-02-18 14:10  nando
+
+	* books.txt (1.3): updated
+
+2002-02-15 16:32  lballabio
+
+	* quep.html (1.21), quep/quep010.html (1.1): QuEP 10 added
+
+2002-02-12 19:46  nando
+
+	* books.txt (1.2), license.html (1.36): copyright revisited
+
+2002-02-12 10:03  nando
+
+	* books.txt (1.1): book lists (to be added to FAQ and/or site)
+
+2002-01-16 14:55  nando
+
+	* webdocupdate.bat (1.2), webimagesupdate.bat (1.2), webpublish.bat
+	(1.4), webrootupdate.bat (1.3), webstylesupdate.bat (1.2): new
+	license and copyright notice
+
+2002-01-16 14:45  nando
+
+	* FAQ.html (1.29), cvs.html (1.27), download.html (1.21),
+	extensions.html (1.14), index.html (1.35), license.html (1.35),
+	lists.html (1.25), mailinglists.html (1.14), marketconventions.html
+	(1.17), nextrelease.html (1.8), quep.html (1.20), snapshot.html
+	(1.10), style.html (1.22): new license and copyright notice
+
+2002-01-16 09:54  nando
+
+	* ChangeLog.txt (1.10): updated
+
 2002-01-15 11:25  nando
 
 	* FAQ.html (1.28), cvs.html (1.26), download.html (1.20),
