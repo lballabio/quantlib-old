@@ -3,3 +3,5 @@ html
 html-online
 latex
 doxywarnings.txt
+Makefile
+Makefile.in

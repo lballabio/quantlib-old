@@ -18,7 +18,9 @@
 #ifndef objhandler_hpp
 #define objhandler_hpp
 
-#include <ObjectHandler/config.hpp>
+#if defined(HAVE_CONFIG_H)    // Dynamically created by configure
+    #include <ObjectHandler/config.hpp>
+#endif
 #include <ObjectHandler/objhandlerdefines.hpp>
 #include <ObjectHandler/objecthandler.hpp>
 #include <ObjectHandler/exception.hpp>

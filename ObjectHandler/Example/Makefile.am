@@ -6,8 +6,11 @@ EXTRA_DIST = \
     Example.dev \
     Example.dsp \
     Example.vcproj \
-    Example_8.vcproj \
-    makefile.mak
+    Example_vc8.vcproj \
+    makefile.mak \
+    interface.hpp \
+    objectwidget.hpp \
+    widget.hpp
 
 Example_SOURCES = \
     example.cpp  \

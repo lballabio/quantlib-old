@@ -1,6 +1,6 @@
 
-#SUBDIRS = ObjectHandler Example Docs
-SUBDIRS = ObjectHandler Example
+SUBDIRS = ObjectHandler Example Docs
+#SUBDIRS = ObjectHandler Example
 
 EXTRA_DIST = \
 	Announce.txt \
@@ -14,8 +14,8 @@ EXTRA_DIST = \
 	ObjectHandler.nsi \
 	ObjectHandler.sln \
 	ObjectHandler.vcproj \
-	ObjectHandler_8.sln \
-	ObjectHandler_8.vcproj \
+	ObjectHandler_vc8.sln \
+	ObjectHandler_vc8.vcproj \
 	README.txt \
 	TODO.txt \
 	autogen.sh \

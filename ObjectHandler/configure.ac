@@ -69,8 +69,8 @@ AC_PATH_PROG([DVIPS], [dvips])
 AC_CONFIG_FILES([
     Makefile
     ObjectHandler/Makefile
-    Example/Makefile])
-#    Docs/Makefile])
+    Example/Makefile
+    Docs/Makefile])
 #AC_CONFIG_FILES([quantlib-config],[chmod +x quantlib-config])
 #AC_CONFIG_FILES([QuantLib.spec])
 AC_OUTPUT

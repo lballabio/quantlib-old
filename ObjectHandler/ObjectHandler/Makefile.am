@@ -10,6 +10,9 @@ include_HEADERS = \
     singleton.hpp \
     utilities.hpp
 
+EXTRA_DIST = \
+    autolink.hpp
+
 lib_LTLIBRARIES = libObjectHandler.la
 LDFLAGS = -release $(PACKAGE_VERSION)
 

@@ -20,3 +20,4 @@ Makefile.in
 config
 libtool
 stamp-h1
+ObjectHandler-*.tar.gz
