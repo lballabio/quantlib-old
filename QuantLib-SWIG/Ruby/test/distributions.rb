@@ -70,10 +70,11 @@ class DistributionTest < Test::Unit::TestCase
     cum =    QuantLib::CumulativeNormalDistribution.new(average, sigma)
     invCum = QuantLib::InverseCumulativeNormal.new(average, sigma)
 
-    xMin = average - 4*sigma
-    xMax = average + 4*sigma
+    numberOfStandardDeviation = 6
+    xMin = average - numberOfStandardDeviation*sigma
+    xMax = average + numberOfStandardDeviation*sigma
 
-    n = 10001
+    n = 100001
     h = (xMax-xMin)/(n-1)
 
     x = Array.new(n)        # creates a list of N elements

@@ -40,9 +40,9 @@
                    (inverse-dist (new-InverseCumulativeNormal
                                   average sigma)
                                  delete-InverseCumulativeNormal))
-      (let* ((N 10001)
-             (xmin (- average (* 4.0 sigma)))
-             (xmax (+ average (* 4.0 sigma)))
+      (let* ((N 100001)
+             (xmin (- average (* 6.0 sigma)))
+             (xmax (+ average (* 6.0 sigma)))
              (h (grid-step xmin xmax N))
              (x (grid xmin xmax N)))
 

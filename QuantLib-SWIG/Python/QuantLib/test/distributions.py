@@ -52,10 +52,11 @@ class DistributionTest(unittest.TestCase):
         cum = QuantLib.CumulativeNormalDistribution(average, sigma)
         invCum = QuantLib.InverseCumulativeNormal(average, sigma)
 
-        xMin = average - 4*sigma
-        xMax = average + 4*sigma
+        numberOfStandardDeviation = 6
+        xMin = average - numberOfStandardDeviation*sigma
+        xMax = average + numberOfStandardDeviation*sigma
         # odd in include average
-        N = 10001
+        N = 100001
         h = (xMax-xMin)/(N-1)
 
         x = [ xMin+h*i for i in range(N) ]
