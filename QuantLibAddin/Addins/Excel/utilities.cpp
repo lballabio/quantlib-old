@@ -19,27 +19,29 @@
 #include <Addins/Excel/xlutils.hpp>
 #include <sstream>
 
+#define XL_MAX_STR 255
+
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
-DLLEXPORT LPXLOPER qlVer() {
+DLLEXPORT char* qlVer() {
     try {
-        static XLOPER xRet;
-        std::string ret = QL_VER();
-        stringToXLOPER(xRet, ret.c_str());
-        return &xRet;
+        static char ret[XL_MAX_STR];
+        std::string ver = QL_VER();
+        strncpy(ret, ver.c_str(), XL_MAX_STR);
+        return ret;
     } catch (const exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_VER: ") + e.what(), 2);
         return 0;
     }
 }
 
-DLLEXPORT LPXLOPER qlOhVer() {
+DLLEXPORT char* qlOhVer() {
     try {
-        static XLOPER xRet;
-        std::string ret = QL_OH_VER();
-        stringToXLOPER(xRet, ret.c_str());
-        return &xRet;
+        static char ret[XL_MAX_STR];
+        std::string ver = QL_OH_VER();
+        strncpy(ret, ver.c_str(), XL_MAX_STR);
+        return ret;
     } catch (const exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_OH_VER: ") + e.what(), 2);
         return 0;
@@ -92,88 +94,79 @@ DLLEXPORT LPXLOPER qlValue(char *handleObject, char *fieldName) {
     }
 }
 
-DLLEXPORT LPXLOPER qlLogfile(char *logFileName, long *logLevel) {
+DLLEXPORT char* qlLogfile(char *logFileName, long *logLevel) {
     try {
-        static XLOPER xRet;
+        static char ret[XL_MAX_STR];
         int lvl = *logLevel ? *logLevel : 4;
-        std::string ret = QL_LOGFILE(std::string(logFileName), lvl);
-        stringToXLOPER(xRet, ret.c_str());
-        return &xRet;
+        std::string log = QL_LOGFILE(std::string(logFileName), lvl);
+        strncpy(ret, log.c_str(), XL_MAX_STR);
+        return ret;
     } catch (...) {
         return 0;
     }
 }
 
-DLLEXPORT LPXLOPER qlLogMessage(char *logMessage, long *logLevel) {
+DLLEXPORT char* qlLogMessage(char *logMessage, long *logLevel) {
     try {
-        static XLOPER xRet;
+        static char ret[XL_MAX_STR];
         int lvl = *logLevel ? *logLevel : 4;
-        std::string ret = QL_LOGMESSAGE(std::string(logMessage), lvl);
-        stringToXLOPER(xRet, ret.c_str());
-        return &xRet;
+        std::string msg = QL_LOGMESSAGE(std::string(logMessage), lvl);
+        strncpy(ret, msg.c_str(), XL_MAX_STR);
+        return ret;
     } catch (...) {
         return 0;
     }
 }
 
-DLLEXPORT LPXLOPER qlLogLevel(long *logLevel) {
+DLLEXPORT long* qlLogLevel(long *logLevel) {
     try {
-        static XLOPER xRet;
+        static long ret;
         QL_LOGLEVEL(*logLevel);
-        xRet.xltype = xltypeInt;
-        xRet.val.w = *logLevel;
-        return &xRet;
+        ret = *logLevel;
+        return &ret;
     } catch (...) {
         return 0;
     }
 }
 
-DLLEXPORT LPXLOPER qlLogObject(char *handleObject) {
+DLLEXPORT long* qlLogObject(char *handleObject) {
     try {
-        static XLOPER xRet;
+        static long ret = 0;
         QL_LOG_OBJECT(handleObject);
-        xRet.xltype = xltypeInt;
-        xRet.val.w = 0;
-        return &xRet;
+        return &ret;
     } catch (const exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_LOG_OBJECT: ") + e.what(), 2);
         return 0;
     }
 }
 
-DLLEXPORT LPXLOPER qlLogAllObjects() {
+DLLEXPORT long* qlLogAllObjects() {
     try {
-        static XLOPER xRet;
+        static long ret = 0;
         QL_LOG_ALL_OBJECTS();
-        xRet.xltype = xltypeInt;
-        xRet.val.w = 0;
-        return &xRet;
+        return &ret;
     } catch (const exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_LOG_ALL_OBJECTS: ") + e.what(), 2);
         return 0;
     }
 }
 
-DLLEXPORT LPXLOPER qlObjectDelete(char *handleObject) {
+DLLEXPORT long* qlObjectDelete(char *handleObject) {
     try {
-        static XLOPER xRet;
+        static long ret = 0;
         QL_OBJECT_DELETE(handleObject);
-        xRet.xltype = xltypeInt;
-        xRet.val.w = 0;
-        return &xRet;
+        return &ret;
     } catch (const exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_OBJECT_DELETE: ") + e.what(), 2);
         return 0;
     }
 }
 
-DLLEXPORT LPXLOPER qlObjectDeleteAll() {
+DLLEXPORT long* qlObjectDeleteAll() {
     try {
-        static XLOPER xRet;
+        static long ret = 0;
         QL_OBJECT_DELETE_ALL();
-        xRet.xltype = xltypeInt;
-        xRet.val.w = 0;
-        return &xRet;
+        return &ret;
     } catch (const exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_OBJECT_DELETE_ALL: ") + e.what(), 2);
         return 0;

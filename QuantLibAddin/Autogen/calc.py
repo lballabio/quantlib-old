@@ -5,20 +5,25 @@ import utils
 
 # constants
 
-ROOT = common.ADDIN_ROOT + 'Calc/'
-MAPFILE = 'funcdef.cpp'
-MAPLINE='    funcMap[ STRFROMANSI( "%s" ) ]\n\
+ROOT            = common.ADDIN_ROOT + 'Calc/'
+MAPFILE         = 'funcdef.cpp'
+MAPLINE         ='    funcMap[ STRFROMANSI( "%s" ) ]\n\
         =  STRFROMANSI( "%s" );\n'
-AUTOHDR = 'autogen.hpp'
-IDL = 'QuantLibAddin.idl'
-MAP = 'stub.Calc.map'
-INCLUDES = 'stub.Calc.includes'
-BODY = 'stub.Calc.body'
-IDL_HEAD = 'stub.Calc.idlhead'
-IDL_FOOT = 'stub.Calc.idlfoot'
-IDL_FUNC = 'stub.Calc.idlfunc'
-CALC_LONG = 'sal_Int32'
-STR_FMT = 'OUStringToString(%s)'
+AUTOHDR         = 'autogen.hpp'
+IDL             = 'QuantLibAddin.idl'
+MAP             = 'stub.Calc.map'
+INCLUDES        = 'stub.Calc.includes'
+BODY            = 'stub.Calc.body'
+IDL_HEAD        = 'stub.Calc.idlhead'
+IDL_FOOT        = 'stub.Calc.idlfoot'
+IDL_FUNC        = 'stub.Calc.idlfunc'
+CALC_BOOL       = 'sal_Bool'
+CALC_BOOL_IDL   = 'boolean'
+CALC_LONG       = 'sal_Int32'
+CALC_MATRIX     = 'SEQSEQ(ANY)'
+CALC_MATRIX_IDL = 'sequence < sequence < any > >'
+CALC_STRING     = 'STRING'
+STR_FMT         = 'OUStringToString(%s)'
 
 def generateFuncMap(functionGroups):
     'generate array that lists all functions in the addin'
@@ -57,23 +62,28 @@ def generateHeader(fileHeader, function, suffix):
     paramList = utils.generateParamList(function[common.PARAMS], 2, True,
         '', 'const STRING &', CALC_LONG,
         convertVec = 'const SEQSEQ(%s)& ',
-        convertMat = 'const SEQSEQ(%s)& ', convertMatStr = 'STRING')
+        convertMat = 'const SEQSEQ(%s)& ', convertMatStr = CALC_STRING)
     if paramList != '':
         fileHeader.write('\n')
         fileHeader.write(paramList)
     fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)
 
-def getReturnTypeCalc(function):
+def getReturnTypeCalc(retVal):
     'derive return type for function'
-    returnType = function[common.RETVAL][common.TYPE]
-    if returnType == common.PROPVEC:
-        return 'SEQSEQ(ANY)'
-    elif returnType == common.STRING:
-        return 'STRING'
-    elif returnType == common.LONG:
+    if retVal[common.TENSOR] == common.VECTOR or \
+       retVal[common.TENSOR] == common.MATRIX or \
+       retVal[common.TYPE]   == common.ANY:
+        return CALC_MATRIX
+    elif retVal[common.TYPE] == common.BOOL:
+        return CALC_BOOL
+    elif retVal[common.TYPE] == common.STRING:
+        return CALC_STRING
+    elif retVal[common.TYPE] == common.LONG:
         return CALC_LONG
+    elif retVal[common.TYPE] == common.DOUBLE:
+        return common.DOUBLE
     else:
-        raise ValueError, 'unexpected return type: ' + returnType
+        raise ValueError, 'unexpected return type: ' + retVal[common.TYPE]
 
 def generateHeaders(functionGroups):
     'generate source for function prototypes'
@@ -85,7 +95,7 @@ def generateHeaders(functionGroups):
         fileHeader.write('#ifndef qla_calc_%s_hpp\n' % groupName)
         fileHeader.write('#define qla_calc_%s_hpp\n\n' % groupName)
         for function in functionGroup[common.FUNCLIST]:
-            returnTypeCalc = getReturnTypeCalc(function)
+            returnTypeCalc = getReturnTypeCalc(function[common.RETVAL])
             fileHeader.write('    virtual %s SAL_CALL %s('
                 % (returnTypeCalc, function[common.CODENAME]))
             generateHeader(fileHeader, function, ';')
@@ -157,15 +167,20 @@ def generateFuncSources(functionGroups):
         fileFunc.close()
         utils.updateIfChanged(fileName)
 
-def getReturnTypeCalcIDL(function):
-    'derive the return type of a function'
-    returnType = function[common.RETVAL][common.TYPE]
-    if returnType == common.PROPVEC:
-        return 'sequence < sequence < any > >'
-    elif returnType == common.STRING:
+def getReturnTypeCalcIDL(retVal):
+    'derive return type for function'
+    if retVal[common.TENSOR] == common.VECTOR or \
+       retVal[common.TENSOR] == common.MATRIX or \
+       retVal[common.TYPE]   == common.ANY:
+        return CALC_MATRIX_IDL
+    elif retVal[common.TYPE] == common.BOOL:
+        return CALC_BOOL_IDL
+    elif retVal[common.TYPE] == common.STRING:
         return common.STRING
-    elif returnType == common.LONG:
+    elif retVal[common.TYPE] == common.LONG:
         return common.LONG
+    elif retVal[common.TYPE] == common.DOUBLE:
+        return common.DOUBLE
     else:
         raise ValueError, 'unexpected return type: ' + returnType
 
@@ -185,7 +200,7 @@ def generateIDLSource(functionGroups):
                 handle = 24 * ' ' + '[in] string handle,\n'
             else:
                 handle = ''
-            returnTypeIDL = getReturnTypeCalcIDL(function)
+            returnTypeIDL = getReturnTypeCalcIDL(function[common.RETVAL])
             paramList = utils.generateParamList(function[common.PARAMS],
                  6, True, '[in] ', 
                 convertVec = 'sequence < sequence < %s > > ',

@@ -6,6 +6,7 @@ import re
 import os
 
 def getText(parentNode):
+    'convert a node to a string'
     t = ''
     if parentNode != None:
         for node in parentNode.childNodes:
@@ -14,6 +15,7 @@ def getText(parentNode):
     return t
 
 def getBoolean(parentNode):
+    'convert a node to a boolean value'
     t = getText(parentNode).upper()
     if t == 'TRUE':
         return True
@@ -23,20 +25,22 @@ def getBoolean(parentNode):
         raise ValueError, 'invalid boolean: ' + t
 
 def getParameter(paramNode):
+    'derive the definition for the given parameter'
     param = {}
-    nameNode = paramNode.getElementsByTagName(common.NAME)[0]
-    typeNode = paramNode.getElementsByTagName(common.TYPE)[0]
+    nameNode   = paramNode.getElementsByTagName(common.NAME)[0]
+    typeNode   = paramNode.getElementsByTagName(common.TYPE)[0]
     tensorNode = paramNode.getElementsByTagName(common.TENSOR)[0]
-    classNode = typeNode.getAttributeNode(common.CLASS)
-    descNode = paramNode.getElementsByTagName(common.DESC)[0]
-    param[common.NAME] = getText(nameNode)
-    param[common.TYPE] = getText(typeNode)
+    classNode  = typeNode.getAttributeNode(common.CLASS)
+    descNode   = paramNode.getElementsByTagName(common.DESC)[0]
+    param[common.NAME]   = getText(nameNode)
+    param[common.TYPE]   = getText(typeNode)
     param[common.TENSOR] = getText(tensorNode)
-    param[common.DESC] = getText(descNode)
-    param[common.CLASS] = getText(classNode)
+    param[common.DESC]   = getText(descNode)
+    param[common.CLASS]  = getText(classNode)
     return param
 
 def getParameters(paramsNode):
+    'derive the definition for a list of parameters'
     paramList = []
     paramNodes = paramsNode.getElementsByTagName(common.PARAM)
     for paramNode in paramNodes:
@@ -45,35 +49,40 @@ def getParameters(paramsNode):
     return paramList
 
 def getReturnVal(retvalNode):
-    returnVal = {}
-    typeNode = retvalNode.getElementsByTagName(common.TYPE)[0]
-    descNode = retvalNode.getElementsByTagName(common.DESC)[0]
-    returnVal[common.TYPE] = getText(typeNode)
-    returnVal[common.DESC] = getText(descNode)
+    'derive the definition for the given return value'
+    returnVal  = {}
+    typeNode   = retvalNode.getElementsByTagName(common.TYPE)[0]
+    tensorNode = retvalNode.getElementsByTagName(common.TENSOR)[0]
+    descNode   = retvalNode.getElementsByTagName(common.DESC)[0]
+    returnVal[common.TYPE]   = getText(typeNode)
+    returnVal[common.TENSOR] = getText(tensorNode)
+    returnVal[common.DESC]   = getText(descNode)
     return returnVal
 
 def getFunction(functionNode):
+    'derive the definition for the given function'
     function = {}
-    nameNode = functionNode.getElementsByTagName(common.NAME)[0]
+    nameNode     = functionNode.getElementsByTagName(common.NAME)[0]
     codeNameNode = functionNode.getElementsByTagName(common.CODENAME)[0]
-    descNode = functionNode.getElementsByTagName(common.DESC)[0]
-    qlfNode = functionNode.getElementsByTagName(common.QLFUNC)[0]
-    handleNode = functionNode.getElementsByTagName(common.CTOR)[0]
-    paramsNode = functionNode.getElementsByTagName(common.PARAMS)
+    descNode     = functionNode.getElementsByTagName(common.DESC)[0]
+    qlfNode      = functionNode.getElementsByTagName(common.QLFUNC)[0]
+    handleNode   = functionNode.getElementsByTagName(common.CTOR)[0]
+    paramsNode   = functionNode.getElementsByTagName(common.PARAMS)
     if paramsNode:
         function[common.PARAMS] = getParameters(paramsNode[0])
     else:
         function[common.PARAMS] = ''
     retvalNode = functionNode.getElementsByTagName(common.RETVAL)[0]
-    function[common.NAME] = getText(nameNode)
+    function[common.NAME]     = getText(nameNode)
     function[common.CODENAME] = getText(codeNameNode)
-    function[common.DESC] = getText(descNode)
-    function[common.QLFUNC] = getText(qlfNode)
-    function[common.CTOR] = getBoolean(handleNode)
-    function[common.RETVAL] = getReturnVal(retvalNode)
+    function[common.DESC]     = getText(descNode)
+    function[common.QLFUNC]   = getText(qlfNode)
+    function[common.CTOR]     = getBoolean(handleNode)
+    function[common.RETVAL]   = getReturnVal(retvalNode)
     return function
 
 def getFunctionGroup(doc):
+    'derive the definition for a group of functions'
     functionGroup = {}
     functionList = []
     functionNodes = doc.getElementsByTagName(common.FUNC)
@@ -81,13 +90,14 @@ def getFunctionGroup(doc):
         function = getFunction(functionNode)
         functionList.append(function)
     hdronlyNode = doc.getElementsByTagName(common.HDRONLY)[0]
-    descNode = doc.getElementsByTagName(common.DESC)[0]
+    descNode    = doc.getElementsByTagName(common.DESC)[0]
     functionGroup[common.FUNCLIST] = functionList
-    functionGroup[common.HDRONLY] = getBoolean(hdronlyNode)
-    functionGroup[common.DESC] = getText(descNode)
+    functionGroup[common.HDRONLY]  = getBoolean(hdronlyNode)
+    functionGroup[common.DESC]     = getText(descNode)
     return functionGroup
 
 def getFunctionDefs():
+    'parse function metadata into the functionDefs dict'
     functionDefs = {}
     functionGroups = {}
     fileNames = os.listdir('.')

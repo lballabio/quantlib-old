@@ -73,7 +73,8 @@
     </param>
 </parameters>
 <returnval>
-    <type>propertyvector</type>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
     <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
@@ -165,7 +166,8 @@
     </param>
 </parameters>
 <returnval>
-    <type>propertyvector</type>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
     <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
@@ -251,7 +253,8 @@
     </param>
 </parameters>
 <returnval>
-    <type>propertyvector</type>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
     <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
@@ -325,7 +328,8 @@
     </param>
 </parameters>
 <returnval>
-    <type>propertyvector</type>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
     <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
@@ -381,7 +385,8 @@
     </param>
 </parameters>
 <returnval>
-    <type>propertyvector</type>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
     <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
@@ -461,7 +466,8 @@
     </param>
 </parameters>
 <returnval>
-    <type>propertyvector</type>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
     <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
@@ -541,7 +547,8 @@
     </param>
 </parameters>
 <returnval>
-    <type>propertyvector</type>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
     <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
@@ -573,7 +580,8 @@
     </param>
 </parameters>
 <returnval>
-    <type>propertyvector</type>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
     <desc>vector of properties reflecting revised Option</desc>
 </returnval>
 </function>
@@ -623,7 +631,8 @@
     </param>
 </parameters>
 <returnval>
-    <type>propertyvector</type>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
     <desc>vector of properties describing Stochastic Process object</desc>
 </returnval>
 </function>
@@ -691,7 +700,8 @@
     </param>
 </parameters>
 <returnval>
-    <type>propertyvector</type>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
     <desc>vector of properties describing Option</desc>
 </returnval>
 </function>

@@ -12,6 +12,7 @@
 <constructor>false</constructor>
 <returnval>
     <type>string</type>
+    <tensorrank>scalar</tensorrank>
     <desc>QuantLib version number</desc>
 </returnval>
 </function>
@@ -24,6 +25,7 @@
 <constructor>false</constructor>
 <returnval>
     <type>string</type>
+    <tensorrank>scalar</tensorrank>
     <desc>ObjectHandler version number</desc>
 </returnval>
 </function>
@@ -43,7 +45,8 @@
     </param>
 </parameters>
 <returnval>
-    <type>propertyvector</type>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
     <desc>list of fieldnames for queried object</desc>
 </returnval>
 </function>
@@ -69,7 +72,8 @@
     </param>
 </parameters>
 <returnval>
-    <type>propertyvector</type>
+    <type>any</type>
+    <tensorrank>scalar</tensorrank>
     <desc>value of named field</desc>
 </returnval>
 </function>
@@ -96,6 +100,7 @@
 </parameters>
 <returnval>
     <type>string</type>
+    <tensorrank>scalar</tensorrank>
     <desc>name of logfile</desc>
 </returnval>
 </function>
@@ -122,6 +127,7 @@
 </parameters>
 <returnval>
     <type>string</type>
+    <tensorrank>scalar</tensorrank>
     <desc>message logged</desc>
 </returnval>
 </function>
@@ -142,6 +148,7 @@
 </parameters>
 <returnval>
     <type>long</type>
+    <tensorrank>scalar</tensorrank>
     <desc>returns new logging threshold</desc>
 </returnval>
 </function>
@@ -161,7 +168,8 @@
     </param>
 </parameters>
 <returnval>
-    <type>long</type>
+    <type>bool</type>
+    <tensorrank>scalar</tensorrank>
     <desc>success/failure</desc>
 </returnval>
 </function>
@@ -173,7 +181,8 @@
 <desc>write all object descriptions to log file</desc>
 <constructor>false</constructor>
 <returnval>
-    <type>long</type>
+    <type>bool</type>
+    <tensorrank>scalar</tensorrank>
     <desc>success/failure</desc>
 </returnval>
 </function>
@@ -193,7 +202,8 @@
     </param>
 </parameters>
 <returnval>
-    <type>long</type>
+    <type>bool</type>
+    <tensorrank>scalar</tensorrank>
     <desc>success/failure</desc>
 </returnval>
 </function>
@@ -205,7 +215,8 @@
 <desc>delete all objects from repository</desc>
 <constructor>false</constructor>
 <returnval>
-    <type>long</type>
+    <type>bool</type>
+    <tensorrank>scalar</tensorrank>
     <desc>success/failure</desc>
 </returnval>
 </function>

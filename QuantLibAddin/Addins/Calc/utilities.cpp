@@ -164,42 +164,42 @@ sal_Int32 SAL_CALL QLAddin::qlLogLevel(
     }
 }
 
-sal_Int32 SAL_CALL QLAddin::qlLogObject(
+sal_Bool SAL_CALL QLAddin::qlLogObject(
         const STRING & handleObject) THROWDEF_RTE_IAE {
     try {
         QL_LOG_OBJECT(OUStringToString(handleObject));
-        return 0;
+        return sal_False;
     } catch (const std::exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_LOG_OBJECT: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
-sal_Int32 SAL_CALL QLAddin::qlLogAllObjects() THROWDEF_RTE_IAE {
+sal_Bool SAL_CALL QLAddin::qlLogAllObjects() THROWDEF_RTE_IAE {
     try {
         QL_LOG_ALL_OBJECTS();
-        return 0;
+        return sal_False;
     } catch (const std::exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_LOG_ALL_OBJECTS: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
-sal_Int32 SAL_CALL QLAddin::qlObjectDelete(
+sal_Bool SAL_CALL QLAddin::qlObjectDelete(
         const STRING & handleObject) THROWDEF_RTE_IAE {
     try {
         QL_OBJECT_DELETE(OUStringToString(handleObject));
-        return 0;
+        return sal_False;
     } catch (const std::exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_OBJECT_DELETE: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
-sal_Int32 SAL_CALL QLAddin::qlObjectDeleteAll() THROWDEF_RTE_IAE {
+sal_Bool SAL_CALL QLAddin::qlObjectDeleteAll() THROWDEF_RTE_IAE {
     try {
         QL_OBJECT_DELETE_ALL();
-        return 0;
+        return sal_False;
     } catch (const std::exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_OBJECT_DELETE_ALL: ") + e.what(), 2);
         THROW_RTE;

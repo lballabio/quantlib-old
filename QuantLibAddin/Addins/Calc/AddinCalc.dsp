@@ -94,6 +94,10 @@ SOURCE=.\funcdef.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\instruments.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\options.cpp
 # PROP Intermediate_Dir "."
 # End Source File

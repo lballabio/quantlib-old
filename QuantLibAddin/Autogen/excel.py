@@ -5,37 +5,43 @@ import utils
 
 # constants
 
-ROOT = common.ADDIN_ROOT + 'Excel/'
-ADDIN = 'qladdin.cpp'
-BODY_BUF = ''
-INCLUDES = 'stub.Excel.includes'
-BODY     = 'stub.Excel.body'
-REGLINE = '        TempStr(" %s"),\n'
-REGHEAD  = 'stub.Excel.regheader'
-REGFOOT  = 'stub.Excel.regfooter'
-MAXPARAM  = 30                      # max #/params to an Excel function
-MAXLEN    = 255                     # max length of excel string
+ROOT       = common.ADDIN_ROOT + 'Excel/'
+ADDIN      = 'qladdin.cpp'
+BODY_BUF   = ''
+INCLUDES   = 'stub.Excel.includes'
+BODY       = 'stub.Excel.body'
+REGLINE    = '        TempStr(" %s"),\n'
+REGHEAD    = 'stub.Excel.regheader'
+REGFOOT    = 'stub.Excel.regfooter'
+MAXPARAM   = 30                      # max #/params to an Excel function
+MAXLEN     = 255                     # max length of excel string
 MAXPARMERR = 'number of function parameters exceeds max of %d'
 MAXLENERR  = 'list of parameter names exceeds max Excel length of %d:\n%s'
 
+def generateParamChar(param):
+    'derive the Excel char code corresponding to parameter datatype'
+    if param[common.TENSOR] == common.VECTOR or \
+       param[common.TENSOR] == common.MATRIX or \
+       param[common.TYPE]   == common.ANY:
+        return 'R'
+    else:
+        if param[common.TYPE]   == common.STRING:
+            return 'C'
+        elif param[common.TYPE] == common.DOUBLE:
+            return 'E'
+        elif param[common.TYPE] == common.LONG or \
+             param[common.TYPE] == common.BOOL:
+            return 'N'
+        else:
+            raise ValueError, 'unknown datatype: ' + type
+
 def generateParamString(function):
     'generate string to register function parameters'
-    paramStr = 'R'
+    paramStr = generateParamChar(function[common.RETVAL])
     if function[common.CTOR]:
         paramStr += 'C'
     for param in function[common.PARAMS]:
-        if param[common.TENSOR] == common.VECTOR or \
-                param[common.TENSOR] == common.MATRIX:
-            paramStr += 'R'
-        else:
-            if param[common.TYPE] == common.STRING:
-                paramStr += 'C'
-            elif param[common.TYPE] == common.DOUBLE:
-                paramStr += 'E'
-            elif param[common.TYPE] == common.LONG:
-                paramStr += 'N'
-            else:
-                raise ValueError, 'unknown datatype: ' + type
+        paramStr += generateParamChar(param)
     return paramStr
 
 def generateFuncRegister(fileHeader, function):
