@@ -18,6 +18,7 @@
 #define interface_h
 
 #include <ObjectHandler/propertyvector.hpp>
+#include <ObjectHandler/exception.hpp>
 using ObjHandler::Properties;
 using std::string;
 

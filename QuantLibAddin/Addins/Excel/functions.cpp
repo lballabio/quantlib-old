@@ -30,9 +30,8 @@ LPXLOPER qlQuery(char *handleObject) {
 		xRet.val.array.columns = 2;
 		// FIXME - memory allocated below gets leaked - need to set xlbitXLFree ?
 		xRet.val.array.lparray = new XLOPER[2 * properties.size()];
-		// FIXME error handling temporarily un-#included from here
-//		if (!xRet.val.array.lparray)
-//			QL_FAIL("error on call to new");
+		if (!xRet.val.array.lparray)
+			throw Exception("error on call to new");
 		for (unsigned int i = 0; i < properties.size(); i++) {
 			ObjectProperty property = properties[i];
 			any_ptr a = property();

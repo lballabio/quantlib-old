@@ -81,6 +81,9 @@ CFG=AddinCalc - Win32 Debug
 
 !ENDIF 
 
+# Begin Group "Source Files"
+
+# PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
 SOURCE=.\functions.cpp
@@ -95,6 +98,14 @@ SOURCE=.\qladdin.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\utilities.cpp
+# End Source File
+# End Group
+# Begin Group "Header Files"
+
+# PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
 SOURCE=.\qladdin.hpp
 # End Source File
 # Begin Source File
@@ -103,19 +114,16 @@ SOURCE=.\qldefs.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\utilities.hpp
+# End Source File
+# End Group
+# Begin Source File
+
 SOURCE=.\QuantLibAddin.idl
 # End Source File
 # Begin Source File
 
 SOURCE=.\readme.txt
-# End Source File
-# Begin Source File
-
-SOURCE=.\utilities.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\utilities.hpp
 # End Source File
 # End Target
 # End Project

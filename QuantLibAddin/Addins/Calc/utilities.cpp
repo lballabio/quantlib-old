@@ -34,9 +34,7 @@ ANY anyToANY(const any_ptr &a) {
 		STRING s2 = STRFROMASCII( s1.c_str() );
 		return CSS::uno::makeAny(s2);
 	} else
-		// FIXME error handling temporarily un-#included from here
-		;
-//		QL_FAIL("anyToANY: unable to interpret value");
+		throw Exception("anyToANY: unable to interpret value");
 }
 
 ANY stringToANY(const std::string &s) {
@@ -63,7 +61,5 @@ std::string OUStringToString(const STRING& s1) {
 	RTL_TEXTENCODING_ASCII_US, OUSTRING_TO_OSTRING_CVTFLAGS))
 		return s2.getStr();
 	else
-		// FIXME error handling temporarily un-#included from here
-		;
-//		QL_FAIL("OUStringToString: unable to convert string");
+		throw Exception("OUStringToString: unable to convert string");
 }

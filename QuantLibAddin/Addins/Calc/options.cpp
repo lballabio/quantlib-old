@@ -76,8 +76,7 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionSetEngine(
 		else if (engineID == 3)
 			engineName = ADDITIVE_EQUIPROBABILITIES;
 		else
-			; // FIXME error handling temporarily un-#included from here
-//			throw Exception("invalid engine ID");
+			throw Exception("invalid engine ID");
 		Properties properties = QL_OPTION_SETENGINE(OUStringToString(handle),
 			engineName, timeSteps);
 		return getArray(properties, handle);
