@@ -36,10 +36,21 @@ RSC=rc.exe
 OUTDIR=.\build\Release
 INTDIR=.\build\Release
 
+!IF "$(RECURSE)" == "0" 
+
 ALL : ".\xll\Win32\VisualStudio\QuantLibXL.xll"
 
+!ELSE 
 
+ALL : "QuantLib - Win32 Release" ".\xll\Win32\VisualStudio\QuantLibXL.xll"
+
+!ENDIF 
+
+!IF "$(RECURSE)" == "1" 
+CLEAN :"QuantLib - Win32 ReleaseCLEAN" 
+!ELSE 
 CLEAN :
+!ENDIF 
 	-@erase "$(INTDIR)\datef.obj"
 	-@erase "$(INTDIR)\engines.obj"
 	-@erase "$(INTDIR)\mathf.obj"
@@ -58,14 +69,14 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MD /W3 /GR /GX /O2 /I ".\\" /I "$(XLW_DIR)" /I "$(QL_DIR)" /D "NDEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MT /W3 /GR /GX /O2 /I ".\\" /I "$(XLW_DIR)" /I "$(QL_DIR)" /I "$(PPMT_DIR)" /D "NDEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /win32 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibXL.bsc" 
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\QuantLibXL.pdb" /machine:I386 /out:"xll\Win32\VisualStudio\QuantLibXL.xll" /implib:"$(OUTDIR)\QuantLibXL.lib" /libpath:"$(XLW_DIR)\lib\Win32\VisualStudio" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\QuantLibXL.pdb" /machine:I386 /out:"xll\Win32\VisualStudio\QuantLibXL.xll" /implib:"$(OUTDIR)\QuantLibXL.lib" /libpath:"$(XLW_DIR)\lib\Win32\VisualStudio" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" /libpath:"$(PPMT_DIR)\lib\Win32\VisualStudio\\" 
 LINK32_OBJS= \
 	"$(INTDIR)\datef.obj" \
 	"$(INTDIR)\engines.obj" \
@@ -76,7 +87,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\termstructures.obj" \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\vols.obj" \
-	"$(INTDIR)\xlAutoOpen.obj"
+	"$(INTDIR)\xlAutoOpen.obj" \
+	"..\QuantLib\lib\Win32\VisualStudio\QuantLib.lib"
 
 ".\xll\Win32\VisualStudio\QuantLibXL.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -88,10 +100,21 @@ LINK32_OBJS= \
 OUTDIR=.\build\Debug
 INTDIR=.\build\Debug
 
+!IF "$(RECURSE)" == "0" 
+
 ALL : ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
 
+!ELSE 
 
+ALL : "QuantLib - Win32 Debug" ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
+
+!ENDIF 
+
+!IF "$(RECURSE)" == "1" 
+CLEAN :"QuantLib - Win32 DebugCLEAN" 
+!ELSE 
 CLEAN :
+!ENDIF 
 	-@erase "$(INTDIR)\datef.obj"
 	-@erase "$(INTDIR)\engines.obj"
 	-@erase "$(INTDIR)\mathf.obj"
@@ -113,14 +136,14 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I ".\\" /I "$(XLW_DIR)" /I "$(QL_DIR)" /D "_DEBUG" /D "XLW_DEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
+CPP_PROJ=/nologo /MTd /W3 /Gm /GR /GX /ZI /Od /I ".\\" /I "$(XLW_DIR)" /I "$(QL_DIR)" /I "$(PPMT_DIR)" /D "_DEBUG" /D "XLW_DEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
 MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /win32 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibXL.bsc" 
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\QuantLibXL_d.pdb" /debug /machine:I386 /out:"xll\Win32\VisualStudio\QuantLibXL_d.xll" /implib:"$(OUTDIR)\QuantLibXL_d.lib" /pdbtype:sept /libpath:"$(XLW_DIR)\lib\Win32\VisualStudio" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\QuantLibXL_d.pdb" /debug /machine:I386 /out:"xll\Win32\VisualStudio\QuantLibXL_d.xll" /implib:"$(OUTDIR)\QuantLibXL_d.lib" /pdbtype:sept /libpath:"$(XLW_DIR)\lib\Win32\VisualStudio" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" /libpath:"$(PPMT_DIR)\lib\Win32\VisualStudio\\" 
 LINK32_OBJS= \
 	"$(INTDIR)\datef.obj" \
 	"$(INTDIR)\engines.obj" \
@@ -131,7 +154,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\termstructures.obj" \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\vols.obj" \
-	"$(INTDIR)\xlAutoOpen.obj"
+	"$(INTDIR)\xlAutoOpen.obj" \
+	"..\QuantLib\lib\Win32\VisualStudio\QuantLib_d.lib"
 
 ".\xll\Win32\VisualStudio\QuantLibXL_d.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -143,10 +167,21 @@ LINK32_OBJS= \
 OUTDIR=.\build\OnTheEdgeRelease
 INTDIR=.\build\OnTheEdgeRelease
 
+!IF "$(RECURSE)" == "0" 
+
 ALL : ".\xll\Win32\VisualStudio\QuantLibXL.xll"
 
+!ELSE 
 
+ALL : "QuantLib - Win32 OnTheEdgeRelease" ".\xll\Win32\VisualStudio\QuantLibXL.xll"
+
+!ENDIF 
+
+!IF "$(RECURSE)" == "1" 
+CLEAN :"QuantLib - Win32 OnTheEdgeReleaseCLEAN" 
+!ELSE 
 CLEAN :
+!ENDIF 
 	-@erase "$(INTDIR)\datef.obj"
 	-@erase "$(INTDIR)\engines.obj"
 	-@erase "$(INTDIR)\mathf.obj"
@@ -165,7 +200,7 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MD /W3 /GR /GX /O2 /I ".\\" /I "..\XLW" /I "..\QuantLib" /D "NDEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MT /W3 /GR /GX /O2 /I ".\\" /I "..\XLW" /I "..\QuantLib" /I "..\PrimitivePolynomialsModuloTwo" /D "NDEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /win32 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibXL.bsc" 
@@ -183,7 +218,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\termstructures.obj" \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\vols.obj" \
-	"$(INTDIR)\xlAutoOpen.obj"
+	"$(INTDIR)\xlAutoOpen.obj" \
+	"..\QuantLib\lib\Win32\VisualStudio\QuantLib.lib"
 
 ".\xll\Win32\VisualStudio\QuantLibXL.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -195,10 +231,21 @@ LINK32_OBJS= \
 OUTDIR=.\build\OnTheEdgeDebug
 INTDIR=.\build\OnTheEdgeDebug
 
+!IF "$(RECURSE)" == "0" 
+
 ALL : ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
 
+!ELSE 
 
+ALL : "QuantLib - Win32 OnTheEdgeDebug" ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
+
+!ENDIF 
+
+!IF "$(RECURSE)" == "1" 
+CLEAN :"QuantLib - Win32 OnTheEdgeDebugCLEAN" 
+!ELSE 
 CLEAN :
+!ENDIF 
 	-@erase "$(INTDIR)\datef.obj"
 	-@erase "$(INTDIR)\engines.obj"
 	-@erase "$(INTDIR)\mathf.obj"
@@ -220,7 +267,7 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I ".\\" /I "..\XLW" /I "..\QuantLib" /D "_DEBUG" /D "XLW_DEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
+CPP_PROJ=/nologo /MTd /W3 /Gm /GR /GX /ZI /Od /I ".\\" /I "..\XLW" /I "..\QuantLib" /I "..\PrimitivePolynomialsModuloTwo" /D "_DEBUG" /D "XLW_DEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
 MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /win32 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibXL.bsc" 
@@ -238,7 +285,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\termstructures.obj" \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\vols.obj" \
-	"$(INTDIR)\xlAutoOpen.obj"
+	"$(INTDIR)\xlAutoOpen.obj" \
+	"..\QuantLib\lib\Win32\VisualStudio\QuantLib_d.lib"
 
 ".\xll\Win32\VisualStudio\QuantLibXL_d.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -347,6 +395,56 @@ SOURCE=.\qlxl\xlAutoOpen.cpp
 "$(INTDIR)\xlAutoOpen.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
+
+!IF  "$(CFG)" == "QuantLibXL - Win32 Release"
+
+"QuantLib - Win32 Release" : 
+   cd "\Projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 Release" 
+   cd "..\QuantLibXL"
+
+"QuantLib - Win32 ReleaseCLEAN" : 
+   cd "\Projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 Release" RECURSE=1 CLEAN 
+   cd "..\QuantLibXL"
+
+!ELSEIF  "$(CFG)" == "QuantLibXL - Win32 Debug"
+
+"QuantLib - Win32 Debug" : 
+   cd "\Projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 Debug" 
+   cd "..\QuantLibXL"
+
+"QuantLib - Win32 DebugCLEAN" : 
+   cd "\Projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 Debug" RECURSE=1 CLEAN 
+   cd "..\QuantLibXL"
+
+!ELSEIF  "$(CFG)" == "QuantLibXL - Win32 OnTheEdgeRelease"
+
+"QuantLib - Win32 OnTheEdgeRelease" : 
+   cd "\Projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 OnTheEdgeRelease" 
+   cd "..\QuantLibXL"
+
+"QuantLib - Win32 OnTheEdgeReleaseCLEAN" : 
+   cd "\Projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 OnTheEdgeRelease" RECURSE=1 CLEAN 
+   cd "..\QuantLibXL"
+
+!ELSEIF  "$(CFG)" == "QuantLibXL - Win32 OnTheEdgeDebug"
+
+"QuantLib - Win32 OnTheEdgeDebug" : 
+   cd "\Projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 OnTheEdgeDebug" 
+   cd "..\QuantLibXL"
+
+"QuantLib - Win32 OnTheEdgeDebugCLEAN" : 
+   cd "\Projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 OnTheEdgeDebug" RECURSE=1 CLEAN 
+   cd "..\QuantLibXL"
+
+!ENDIF 
 
 
 !ENDIF 

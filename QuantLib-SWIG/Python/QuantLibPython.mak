@@ -54,7 +54,7 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MD /W3 /Gi /GR /GX /Od /I "$(QL_DIR)" /D "WIN32" /D "NDEBUG" /D "NOMINMAX" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MT /W3 /Gi /GR /GX /Od /I "$(QL_DIR)" /I "$(PPMT_DIR)" /D "WIN32" /D "NDEBUG" /D "NOMINMAX" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /win32 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibPython.bsc" 
@@ -67,7 +67,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\_QuantLib.pdb" /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd" /implib:"$(OUTDIR)\_QuantLib.lib" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\_QuantLib.pdb" /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd" /implib:"$(OUTDIR)\_QuantLib.lib" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" /libpath:"$(PPMT_DIR)\lib\Win32\VisualStudio\\" 
 LINK32_OBJS= \
 	"$(INTDIR)\quantlib_wrap.obj"
 
@@ -116,7 +116,7 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MDd /W3 /Gm /Gi /GR /GX /ZI /Od /I "$(QL_DIR)" /D "WIN32" /D "NOMINMAX" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
+CPP_PROJ=/nologo /MTd /W3 /Gm /Gi /GR /GX /ZI /Od /I "$(QL_DIR)" /I "$(PPMT_DIR)" /D "WIN32" /D "NOMINMAX" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
 MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /win32 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibPython.bsc" 
@@ -129,7 +129,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\_QuantLib_d.pdb" /debug /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd" /implib:"$(OUTDIR)\_QuantLib_d.lib" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\_QuantLib_d.pdb" /debug /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd" /implib:"$(OUTDIR)\_QuantLib_d.lib" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" /libpath:"$(PPMT_DIR)\lib\Win32\VisualStudio\\" 
 LINK32_OBJS= \
 	"$(INTDIR)\quantlib_wrap.obj"
 
@@ -175,7 +175,7 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MD /W3 /Gi /GR /GX /Od /I "..\..\QuantLib" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "NOMINMAX" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MT /W3 /Gi /GR /GX /Od /I "..\..\QuantLib" /I "..\..\PrimitivePolynomialsModuloTwo" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "NOMINMAX" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /win32 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibPython.bsc" 
@@ -237,7 +237,7 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MDd /W3 /Gm /Gi /GR /GX /ZI /Od /I "..\..\QuantLib" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /D "NOMINMAX" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
+CPP_PROJ=/nologo /MTd /W3 /Gm /Gi /GR /GX /ZI /Od /I "..\..\QuantLib" /I "..\..\PrimitivePolynomialsModuloTwo" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /D "NOMINMAX" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
 MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /win32 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibPython.bsc" 
@@ -320,7 +320,7 @@ SOURCE=".\QuantLib\quantlib_wrap.cpp"
 
 !IF  "$(CFG)" == "QuantLibPython - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /Gi /GR /GX /Od /I "$(QL_DIR)" /D "WIN32" /D "NDEBUG" /D "NOMINMAX" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /Gi /GR /GX /Od /I "$(QL_DIR)" /I "$(PPMT_DIR)" /D "WIN32" /D "NDEBUG" /D "NOMINMAX" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\quantlib_wrap.obj"	"$(INTDIR)\quantlib_wrap.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -330,7 +330,7 @@ CPP_SWITCHES=/nologo /MD /W3 /Gi /GR /GX /Od /I "$(QL_DIR)" /D "WIN32" /D "NDEBU
 
 !ELSEIF  "$(CFG)" == "QuantLibPython - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /Gi /GR /GX /ZI /Od /I "$(QL_DIR)" /D "WIN32" /D "NOMINMAX" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
+CPP_SWITCHES=/nologo /MTd /W3 /Gm /Gi /GR /GX /ZI /Od /I "$(QL_DIR)" /I "$(PPMT_DIR)" /D "WIN32" /D "NOMINMAX" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
 
 "$(INTDIR)\quantlib_wrap.obj"	"$(INTDIR)\quantlib_wrap.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -340,7 +340,7 @@ CPP_SWITCHES=/nologo /MDd /W3 /Gm /Gi /GR /GX /ZI /Od /I "$(QL_DIR)" /D "WIN32" 
 
 !ELSEIF  "$(CFG)" == "QuantLibPython - Win32 OnTheEdgeRelease"
 
-CPP_SWITCHES=/nologo /MD /W3 /Gi /GR /GX /Od /I "..\..\QuantLib" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "NOMINMAX" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /Gi /GR /GX /Od /I "..\..\QuantLib" /I "..\..\PrimitivePolynomialsModuloTwo" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "NOMINMAX" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\quantlib_wrap.obj"	"$(INTDIR)\quantlib_wrap.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -350,7 +350,7 @@ CPP_SWITCHES=/nologo /MD /W3 /Gi /GR /GX /Od /I "..\..\QuantLib" /D "WIN32" /D "
 
 !ELSEIF  "$(CFG)" == "QuantLibPython - Win32 OnTheEdgeDebug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /Gi /GR /GX /ZI /Od /I "..\..\QuantLib" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /D "NOMINMAX" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
+CPP_SWITCHES=/nologo /MTd /W3 /Gm /Gi /GR /GX /ZI /Od /I "..\..\QuantLib" /I "..\..\PrimitivePolynomialsModuloTwo" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /D "NOMINMAX" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibPython.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
 
 "$(INTDIR)\quantlib_wrap.obj"	"$(INTDIR)\quantlib_wrap.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -394,7 +394,8 @@ USERDEP__QUANT="..\SWIG\blackmodel.i"	"..\SWIG\calendars.i"	"..\SWIG\capfloor.i"
 ".\QuantLib\quantlib_wrap.cpp" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)" $(USERDEP__QUANT)
 	<<tempfile.bat 
 	@echo off 
-	python setup.py wrap
+	which swig 
+	python setup.py wrap 
 << 
 	
 
