@@ -68,6 +68,8 @@
 
 (define option (new-VanillaOption process payoff exercise))
 
+(report "reference value" ref-value)
+
 ; method: analytic
 
 (with-pricing-engine (option (new-BaroneAdesiWhaleyEngine))
@@ -75,6 +77,13 @@
 
 (with-pricing-engine (option (new-BjerksundStenslandEngine))
   (report "Bjerksund-Stensland" (Instrument-NPV option)))
+
+; method: finite differences
+(define timeSteps 801)
+(define gridPoints 800)
+
+(with-pricing-engine (option (new-FDAmericanEngine timeSteps gridPoints))
+  (report "finite differences" (Instrument-NPV option)))
 
 ; method: binomial
 (define timeSteps 801)

@@ -62,6 +62,8 @@ process = BlackScholesProcess.new(QuoteHandle.new(underlying),
 
 option = VanillaOption.new(process, payoff, exercise)
 
+report('reference value',RefValue)
+
 # method: analytic
 
 option.pricingEngine = BaroneAdesiWhaleyEngine.new
@@ -69,6 +71,13 @@ report('Barone-Adesi-Whaley',option.NPV)
 
 option.pricingEngine = BjerksundStenslandEngine.new
 report('Bjerksund-Stensland',option.NPV)
+
+# method: finite differences
+timeSteps = 801
+gridPoints = 800
+
+option.pricingEngine = FDAmericanEngine.new(timeSteps,gridPoints)
+report('finite differences',option.NPV)
 
 # method: binomial
 timeSteps = 801

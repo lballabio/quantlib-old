@@ -236,6 +236,24 @@ class IntegralEnginePtr : public boost::shared_ptr<PricingEngine> {
 
 
 %{
+using QuantLib::FDEuropeanEngine;
+typedef boost::shared_ptr<PricingEngine> FDEuropeanEnginePtr;
+%}
+
+%rename(FDEuropeanEngine) FDEuropeanEnginePtr;
+class FDEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        FDEuropeanEnginePtr(Size timeSteps = 100, Size gridPoints = 100,
+                            bool timeDependent = false) {
+            return new FDEuropeanEnginePtr(
+                    new FDEuropeanEngine(timeSteps,gridPoints,timeDependent));
+        }
+    }
+};
+
+
+%{
 using QuantLib::BinomialVanillaEngine;
 using QuantLib::CoxRossRubinstein;
 using QuantLib::JarrowRudd;
@@ -328,6 +346,38 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
 
 
 // American engines
+
+%{
+using QuantLib::FDAmericanEngine;
+ using QuantLib::FDShoutEngine;
+typedef boost::shared_ptr<PricingEngine> FDAmericanEnginePtr;
+typedef boost::shared_ptr<PricingEngine> FDShoutEnginePtr;
+%}
+
+%rename(FDAmericanEngine) FDAmericanEnginePtr;
+class FDAmericanEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        FDAmericanEnginePtr(Size timeSteps = 100, Size gridPoints = 100,
+                            bool timeDependent = false) {
+            return new FDAmericanEnginePtr(
+                    new FDAmericanEngine(timeSteps,gridPoints,timeDependent));
+        }
+    }
+};
+
+%rename(FDShoutEngine) FDShoutEnginePtr;
+class FDShoutEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        FDShoutEnginePtr(Size timeSteps = 100, Size gridPoints = 100,
+                         bool timeDependent = false) {
+            return new FDShoutEnginePtr(
+                       new FDShoutEngine(timeSteps,gridPoints,timeDependent));
+        }
+    }
+};
+
 
 %{
 using QuantLib::BaroneAdesiWhaleyApproximationEngine;

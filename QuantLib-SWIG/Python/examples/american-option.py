@@ -60,6 +60,7 @@ process = BlackScholesProcess(QuoteHandle(underlying),
 option = VanillaOption(process, payoff, exercise)
 
 refValue = 4.48667344
+report('reference value',refValue)
 
 # method: analytic
 
@@ -68,6 +69,13 @@ report('Barone-Adesi-Whaley',option.NPV())
 
 option.setPricingEngine(BjerksundStenslandEngine())
 report('Bjerksund-Stensland',option.NPV())
+
+# method: finite differences
+timeSteps = 801
+gridPoints = 800
+
+option.setPricingEngine(FDAmericanEngine(timeSteps,gridPoints))
+report('finite differences',option.NPV())
 
 # method: binomial
 timeSteps = 801

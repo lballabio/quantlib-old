@@ -75,6 +75,13 @@
     (set! ref-value value)
     (report "analytic" value "n/a")))
 
+; method: finite differences
+(define timeSteps 801)
+(define gridPoints 800)
+
+(with-pricing-engine (option (new-FDEuropeanEngine timeSteps gridPoints))
+  (report "finite diff." (Instrument-NPV option) "n/a"))
+
 ; method: integral
 
 (with-pricing-engine (option (new-IntegralEngine))

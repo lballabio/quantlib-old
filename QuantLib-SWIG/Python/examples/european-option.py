@@ -70,6 +70,13 @@ report('analytic',value)
 option.setPricingEngine(IntegralEngine())
 report('integral',option.NPV())
 
+# method: finite differences
+timeSteps = 801
+gridPoints = 800
+
+option.setPricingEngine(FDEuropeanEngine(timeSteps,gridPoints))
+report('finite diff.',option.NPV())
+
 # method: binomial
 timeSteps = 801
 
