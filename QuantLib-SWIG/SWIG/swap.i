@@ -54,7 +54,7 @@ class SwapHandle : public Handle<Instrument> {
         double secondLegBPS() {
             return Handle<Swap>(*self)->secondLegBPS();
         }
-        TimeBasketHandle sensitivity() {
+        TimeBasket sensitivity() {
             return Handle<Swap>(*self)->sensitivity();
         }
     }

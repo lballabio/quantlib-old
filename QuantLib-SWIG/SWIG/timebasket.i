@@ -22,86 +22,87 @@
 
 %include common.i
 %include types.i
+%include date.i
 
 %{
 using QuantLib::CashFlows::TimeBasket;
-typedef Handle<TimeBasket> TimeBasketHandle;
-typedef TimeBasket::Entry TimeBasketEntry; 
 %}
 
-class TimeBasketEntry {
+class TimeBasket {
+    #if defined (SWIGPYTHON) || defined(SWIGRUBY)
+    %rename(__len__) size;
+    #endif
   public:
-    Date date() const;
-    double value() const;
-};
-   
-// typemap it out to native pair in the scripting language
-#if defined(SWIGPYTHON)
-%typemap(out) TimeBasketEntry {
-    $result = PyTuple_New(2);
-    Date* d = new Date($1.date());
-    PyTuple_SetItem($result,0,
-                    SWIG_NewPointerObj(d, SWIGTYPE_p_Date, 1));
-    if ($1.value() == Null<double>()) {
-        Py_INCREF(Py_None);
-        PyTuple_SetItem($result,1,Py_None);
-    } else {
-        PyTuple_SetItem($result,1,
-                        PyFloat_FromDouble($1.value()));
-    }
-}
-#elif defined(SWIGRUBY)
-%typemap(out) TimeBasketEntry {
-    $result = rb_ary_new2(2);
-    Date* d = new Date($1.date());
-    rb_ary_store($result,0,
-                 SWIG_NewPointerObj(d, SWIGTYPE_p_Date, 1));
-    if ($1.value() == Null<double>())
-        rb_ary_store($result,1,Qnil);
-    else 
-        rb_ary_store($result,1,rb_float_new($1.value()));
-}
-#elif defined(SWIGMZSCHEME)
-%typemap(out) TimeBasketEntry {
-    if ($1.value() == Null<double>()) {
-        $result = scheme_false;
-    } else {
-        Date* d = new Date($1.date());
-        Scheme_Object* car = SWIG_MakePtr(d, SWIGTYPE_p_Date);
-        Scheme_Object* cdr = scheme_make_double($1.value());
-        $result = scheme_make_pair(car,cdr);
-    }
-}
-#elif defined(SWIGGUILE)
-%typemap(out) TimeBasketEntry {
-    if ($1.value() == Null<double>()) {
-        $result = SCM_BOOL_F;
-    } else {
-        Date* d = new Date($1.date());
-        SCM car = SWIG_Guile_MakePtr(d, SWIGTYPE_p_Date);
-        SCM cdr = gh_double2scm($1.value());
-        $result = gh_cons(car,cdr);
-    }
-}
-#endif
-
-%rename(TimeBasket) TimeBasketHandle;
-class TimeBasketHandle {
-  public:
+    TimeBasket();
+    TimeBasket(const std::vector<Date>&, const std::vector<double>&);
+    Size size();
+    TimeBasket rebin(const std::vector<Date>&) const;
     %extend {
-       TimeBasketHandle(const TimeBasketHandle& original,
-			const std::vector<Date>& buckets) {
-	  return new TimeBasketHandle(new TimeBasket(original, buckets));
-       }
-       Size __len__() {
-	  return (*self)->size();
-       }
-#if defined (SWIGPYTHON) || defined(SWIGRUBY)
-       TimeBasketEntry __getitem__(int i) {
-	  return (**self)[i];
-       }
-#endif
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        double __getitem__(const Date& d) {
+            return (*self)[d];
+        }
+        void __setitem__(const Date& d, double value) {
+            (*self)[d] = value;
+        }
+        #endif
+        #if defined(SWIGPYTHON)
+        PyObject* items() {
+            PyObject* itemList = PyList_New(self->size());
+            TimeBasket::iterator i;
+            unsigned int j;
+            for (i=self->begin(), j=0; i!=self->end(); ++i, ++j) {
+                Date* d = new Date(i->first);
+                PyObject* item = PyTuple_New(2);
+                PyTuple_SetItem(item,0,
+                                SWIG_NewPointerObj((void *) d,
+                                                   $descriptor(Date *),1));
+                PyTuple_SetItem(item,1,PyFloat_FromDouble(i->second));
+                PyList_SetItem(itemList,j,item);
+            }
+            return itemList;
+        }
+        // Python 2.2 methods
+        bool __contains__(const Date& d) {
+            return self->hasDate(d);
+        }
+        PyObject* __iter__() {
+            %#if PY_VERSION_HEX >= 0x02020000
+            PyObject* keyList = PyList_New(self->size());
+            TimeBasket::iterator i;
+            unsigned int j;
+            for (i=self->begin(), j=0; i!=self->end(); ++i, ++j) {
+                Date* d = new Date(i->first);
+                PyList_SetItem(keyList,j,
+                               SWIG_NewPointerObj((void *) d,
+                                                  $descriptor(Date *),1));
+            }
+            PyObject* iter = PyObject_GetIter(keyList);
+            Py_DECREF(keyList);
+            return iter;
+            %#else
+            throw std::runtime_error("Python 2.2 or later is needed"
+                                     " for iterator support");
+            %#endif
+            }
+        #endif
+        #if defined(SWIGRUBY)
+        void each() {
+            TimeBasket::iterator i;
+            for (i=self->begin(); i!=self->end(); ++i) {
+                    Date* d = new Date(i->first);
+                    VALUE entry = rb_ary_new2(2);
+                    VALUE k = SWIG_NewPointerObj((void *) d,
+                                                 $descriptor(Date *),1);
+                    VALUE x = CONVERT_TO(i->second);
+                    rb_ary_store(entry,0,k);
+                    rb_ary_store(entry,1,x);
+                    rb_yield(entry);
+            }
+        }
+        #endif
     }
 };
+
 
 #endif
