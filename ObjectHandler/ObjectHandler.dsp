@@ -252,5 +252,41 @@ SOURCE=.\oh\singleton.hpp
 SOURCE=.\oh\utilities.hpp
 # End Source File
 # End Group
+# Begin Source File
+
+SOURCE=.\Announce.txt
+# End Source File
+# Begin Source File
+
+SOURCE=.\Authors.txt
+# End Source File
+# Begin Source File
+
+SOURCE=.\autogen.sh
+# End Source File
+# Begin Source File
+
+SOURCE=.\configure.ac
+# End Source File
+# Begin Source File
+
+SOURCE=.\Contributors.txt
+# End Source File
+# Begin Source File
+
+SOURCE=.\LICENSE.TXT
+# End Source File
+# Begin Source File
+
+SOURCE=.\NEWS.txt
+# End Source File
+# Begin Source File
+
+SOURCE=.\README.txt
+# End Source File
+# Begin Source File
+
+SOURCE=.\TODO.txt
+# End Source File
 # End Target
 # End Project
