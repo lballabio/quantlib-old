@@ -28,15 +28,7 @@ the finite-difference model as much as the differential operator
 and the time scheme.</p>
 
 <h2>Current implementation</h2>
-
-<p>The present implementation of FiniteDiffrenceMethod contains an
-Evolver, which in turn contains an Operator. BC:s are set to the
-operator before the latter is passed to the model which in turn
-passes it to the evolver. Setting a BC immediately modifies an
-operator; also, BC:s are stored in the operator and applied to the
-input and/or output array when the applyTo() or solveFor() methods
-are invoked.</p>
-
+<p>The present implementation of FiniteDifferenceMethod contains an Evolver, which in turn contains an Operator. BC:s are set to the operator before the latter is passed to the model which in turn passes it to the evolver. Setting a BC immediately modifies an operator; also, BC:s are stored in the operator and applied to the input and/or output array when the applyTo() or solveFor() methods are invoked.</p>
 <div class="c1"><img src="quep002a.png" width="683" height="319"
 alt="UML diagram"></div>
 
@@ -63,29 +55,26 @@ reason, care must be taken that the implementation of the operator
 algebra propagates the BC:s from D to (dt*D) to (I+(dt*D)).</p>
 
 <h2>Proposed implementation</h2>
-
-<p>A polymorphic BoundaryCondition class is defined which
-encapsulates the BC logic. Its interface is defined so that it
-should be able to manage different kind of required modifications,
-namely, ones that should be applied before and/or after the
-application of the operator or its inverse. Such methods act
-simultaneously on the operator and the right-hand side of the
-equation.</p>
+<p>A polymorphic BoundaryCondition class is defined which encapsulates the BC 
+logic. Its interface is defined so that it should be able to manage different 
+kind of required modifications, namely, ones that should be applied before 
+and/or after the application of the operator or its inverse. Such methods act 
+simultaneously on the operator and the right-hand side of the equation. Also, 
+a setTime() interface is provided which allows to manage time-dependent BC:s. 
+</p>
 
 <div class="c1"><img src="quep002b.png" width="674" height="446"
 alt="UML diagram"></div>
 
-<p>The BC:s are passed to the model together with the operator and
-are stored into the evolver. It is the responsibility of the
-evolver to call the appropriate BC methods inside its step()
-method.</p>
+<p>The BC:s are passed to the model together with the operator and are stored 
+into the evolver. It is the responsibility of the evolver to call the 
+appropriate BC methods inside its step() method.</p>
 
-<p>Finally, the TridiagonalOperator would not be concerned with
-BC:s. Its applyTo() and solveFor() methods would only implement the
-corresponding linear algebra calculations.</p>
+<p>Finally, the TridiagonalOperator would not be concerned with BC:s. Its 
+applyTo() and solveFor() methods would only implement the corresponding 
+linear algebra calculations.</p>
 
-<p>The framework would be implemented as in the following
-pseudo-code:</p>
+<p>The framework would be implemented as in the following pseudo-code:</p>
 
 <pre>
 class FiniteDifferenceMethod {
@@ -102,9 +91,10 @@ class ForwardEuler {
     ForwardEuler(const Operator&amp; L, ??? boundaryConditions)
     : L_(L), boundaryConditions_(boundaryConditions) { ... }
     void step(Array&amp; a, Time t) {
-        ... // set time if needed
+        ... // call L.setTime(t) if needed
         // actual operator is O = I-dt*L
         for every boundary condition
+            bc.setTime(t);
             bc.applyBeforeApplying(O);
         a = O.applyTo(a);
         for every boundary condition
@@ -117,9 +107,10 @@ class BackwardEuler {
     BackwardEuler(const Operator&amp; L, ??? boundaryConditions)
     : L_(L), boundaryConditions_(boundaryConditions) { ... }
     void step(Array&amp; a, Time t) {
-        ... // set time if needed
+        ... // call L.setTime(t-dt) if needed
         // actual operator is O = I+dt*L
         for every boundary condition
+            bc.setTime(t-dt);
             bc.applyBeforeSolving(O,a);
         a = O.solveFor(a);
         for every boundary condition
@@ -132,14 +123,17 @@ class CrankNicolson {
     CrankNicolson(const Operator&amp; L, ??? boundaryConditions)
     : L_(L), boundaryConditions_(boundaryConditions) { ... }
     void step(Array&amp; a, Time t) {
-        ... // set time if needed
+        ... // call L.setTime(t) if needed
         // actual operators are O1 = I-(dt/2)*L and O2 = I+(dt/2)*L
         for every boundary condition
+            bc.setTime(t);
             bc.applyBeforeApplying(O1);
         a = O1.applyTo(a);
         for every boundary condition
             bc.applyAfterApplying(a);
+
         for every boundary condition
+            bc.setTime(t-dt);
             bc.applyBeforeSolving(O2,a);
         a = O2.solveFor(a);
         for every boundary condition
@@ -147,10 +141,6 @@ class CrankNicolson {
     }
 };
 </pre>
-
-<br>
-<br>
- 
 
 <p>The missing piece in the above code concerns the way to pass the
 BC:s to a model. This must take into account that we do not know in
@@ -188,6 +178,10 @@ class CompositeBC : public BoundaryCondition {
     void add(const Handle&lt;BoundaryCondition&gt;&amp; c) {
         bc_.push_back(c);
     }
+    void setTime(Time t) {
+        for (every BC in the list)
+            i->setTime(t);
+    }
     void applyBeforeApplying(Operator&amp; O) {
         for (every BC in the list)
             i-&gt;applyBeforeApplying(O);
@@ -213,9 +207,8 @@ class FiniteDifferenceMethod {
  
 
 <h2>Acknowledgements</h2>
-
-Many thanks to Nicolas Di C&eacute;sar&eacute; for the fruitful
-discussion. 
+Many thanks to Nicolas Di C&eacute;sar&eacute; for the fruitful 
+discussion---which is in fact still ongoing and still fruitful.
 
 <h2>Feedback</h2>
 
