@@ -74,7 +74,7 @@ def generateFuncDef(fileFunc, function):
         3, False, '', '', '', 'std::string(%s)', '\n', '*')
     if function[common.HANDLE]:
         handle1 = 8 * ' ' + 'std::string handle = getCaller();\n'
-        handle2 = 12 * ' ' + 'std::string(handle),\n'
+        handle2 = 12 * ' ' + 'handle,\n'
     else:
         handle1 = ''
         handle2 = ''

@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Tue Jan 11 17:13:48 2005
+// this file generated automatically by autogen.py on Mon Jan 17 15:24:56 2005
 // editing this file manually is not recommended
 
 #include <QuantLibAddin/qladdin.hpp>
@@ -34,7 +34,7 @@ DLLEXPORT LPXLOPER qlBlackScholes(
     try {
         std::string handle = getCaller();
         Properties properties = QL_BLACKSCHOLES(
-            std::string(handle),
+            handle,
             *dividendYield,
             *riskFreeRate,
             *volatility,
@@ -60,7 +60,7 @@ DLLEXPORT LPXLOPER qlOption(
     try {
         std::string handle = getCaller();
         Properties properties = QL_OPTION(
-            std::string(handle),
+            handle,
             std::string(handleStochastic),
             std::string(typeOption),
             *strike,
