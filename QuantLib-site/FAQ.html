@@ -295,15 +295,15 @@ page</a> can be found at <a href=
 http://quantlib.org?<br>
  A:</strong> First you have to be in the SourceForge.net group
 "<tt>QuantLib</tt>" (true for all developers). Then you can upload
-files using SCP:</p>
+files using scp:</p>
 
-<blockquote><tt>SCP mylocalfile.html
-sf_username@shell.sourceforge.net:/home/groups/quantlib/htdocs/</tt></blockquote>
+<blockquote><tt>scp mylocalfile.html
+sf_username@shell.sourceforge.net:/home/groups/q/qu/quantlib/htdocs/</tt></blockquote>
 
 If you want to edit or remove files, you can use SSH: 
 
 <blockquote><tt>ssh -l sf_username shell.sourceforge.net</tt><br>
- <tt>cd /home/groups/quantlib/htdocs</tt><br>
+ <tt>cd /home/groups/q/qu/quantlib/htdocs</tt><br>
  <tt>rm garbage.html</tt><br>
  <tt>vi changeme.html</tt></blockquote>
 
@@ -339,37 +339,8 @@ and take a look at the <a href=
 <h3><a name="c1" id="c1"></a>2.1.:</h3>
 
 <p><strong>How do I check out a CVS version of QuantLib?<br>
- A:</strong> If you are not a SourceForge.net-recognized QuantLib
-developer you can still check out an anonymous CVS version
-(read-only) of QuantLib:</p>
-
-<blockquote><tt>export
-CVSROOT=:pserver:anonymous@cvs.quantlib.org:/cvsroot/quantlib</tt><br>
-
- <tt>cvs login</tt><br>
- <tt>cvs -z3 co -P QuantLib</tt></blockquote>
-
-If you are indeed a developer you can check out a read/write
-version with ssh: 
-
-<blockquote><tt>export CVS_RSH=ssh</tt><br>
- <tt>export
-CVSROOT=sf_username@cvs.quantlib.org:/cvsroot/quantlib</tt><br>
- <tt>cvs -z3 co -P QuantLib</tt></blockquote>
-
-<p>QuantLib's CVS repository includes the following modules:</p>
-
-<ul>
-<li>QuantLib (the C++ library)</li>
-
-<li>QuantLib-Python (the Python extension)</li>
-
-<li>QuantLib-Ruby (the Ruby extension)</li>
-
-<li>QuantLib-site (the HTML sources of these pages)</li>
-</ul>
-
-Please note that the module's name has capital Q and capital L. 
+ A:</strong> Detailed instructions are available at <a href=
+"http://quantlib.org/cvs.html">http://quantlib.org/cvs.html</a>.</p>
 
 <h3><a name="c2" id="c2"></a>2.2.:</h3>
 
@@ -395,7 +366,7 @@ are a developer you have to be in the SourceForge.net group
 "<tt>QuantLib</tt>". You can check this with the following
 commands: 
 
-<blockquote><tt>ssh -l sf_username shell.sourceforge.net</tt><br>
+<blockquote><tt>ssh -l sf_username quantlib.org</tt><br>
  <tt>groups</tt></blockquote>
 
 If you have just recently (&lt; 6 hours) been added to the QuantLib
@@ -832,8 +803,8 @@ describes the fix in a few lines.</li>
 
 <li>For patches that add or change functionality: please also add
 as much <strong>documentation</strong> as you can and possibly a
-<strong>testcase</strong> in C++ or Python (see the Python/Tests
-subdirectory).</li>
+<strong>testcase</strong> in C++ or Python (see the
+QuantLib-Python/QuantLib/test subdirectory).</li>
 </ul>
 
 <!--includeHTML file="qltablefoot.inc"-->
