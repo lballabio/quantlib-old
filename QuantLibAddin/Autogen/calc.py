@@ -17,6 +17,7 @@ BODY = 'stub.Calc.body'
 IDL_HEAD = 'stub.Calc.idlhead'
 IDL_FOOT = 'stub.Calc.idlfoot'
 IDL_FUNC = 'stub.Calc.idlfunc'
+CALC_LONG = 'sal_Int32'
 
 def generateFuncMap(functionGroups):
     'generate array that lists all functions in the addin'
@@ -53,9 +54,9 @@ def generateHeader(fileHeader, function, suffix):
     if function[common.CTOR]:
         fileHeader.write('        const STRING & handle,\n')
     paramList = utils.generateParamList(function[common.PARAMS], 2, True,
-        '', 'const STRING &', 'sal_Int32', 
+        '', 'const STRING &', CALC_LONG,
         convertVec = 'const SEQSEQ(%s)& ',
-        convertMat = 'const SEQSEQ(%s)& ', convertMatStr = "STRING")
+        convertMat = 'const SEQSEQ(%s)& ', convertMatStr = 'STRING')
     if paramList != '':
         fileHeader.write('\n')
         fileHeader.write(paramList)
@@ -66,8 +67,10 @@ def getReturnTypeCalc(function):
     returnType = function[common.RETVAL][common.TYPE]
     if returnType == common.PROPVEC:
         return 'SEQSEQ(ANY)'
-    elif returnType == 'string':
+    elif returnType == common.STRING:
         return 'STRING'
+    elif returnType == common.LONG:
+        return CALC_LONG
     else:
         raise ValueError, 'unexpected return type: ' + returnType
 
@@ -110,7 +113,7 @@ def generateFuncSource(fileFunc, function, bufBody):
         function[common.NAME]))
 
 def generateFuncSources(functionGroups):
-    'generate source or function implementations'
+    'generate source for function implementations'
     bufInclude = utils.loadBuffer(INCLUDES)
     bufBody = utils.loadBuffer(BODY)
     for groupName in functionGroups.keys():
@@ -131,8 +134,10 @@ def getReturnTypeCalcIDL(function):
     returnType = function[common.RETVAL][common.TYPE]
     if returnType == common.PROPVEC:
         return 'sequence < sequence < any > >'
-    elif returnType == 'string':
-        return 'string'
+    elif returnType == common.STRING:
+        return common.STRING
+    elif returnType == common.LONG:
+        return common.LONG
     else:
         raise ValueError, 'unexpected return type: ' + returnType
 
@@ -158,8 +163,12 @@ def generateIDLSource(functionGroups):
                  6, True, '[in] ', 
                 convertVec = 'sequence < sequence < %s > > ',
                 convertMat = 'sequence < sequence < %s > > ')
-            fileIDL.write(bufIDLFunc %
-                (returnTypeIDL, function[common.CODENAME], handle, paramList))
+            if paramList == '':
+                carriageReturn = ''
+            else:
+                carriageReturn = '\n'
+            fileIDL.write(bufIDLFunc % (returnTypeIDL, 
+                function[common.CODENAME], carriageReturn, handle, paramList))
     bufIDLFoot = utils.loadBuffer(IDL_FOOT)
     fileIDL.write(bufIDLFoot)
     fileIDL.close()

@@ -38,19 +38,6 @@ namespace QuantLibAddin {
         return s.str();
     }
 
-    std::string QL_LOGFILE(
-            const std::string &logFileName) {
-        if (setLogFile(logFileName))
-            return logFileName;
-        else
-            return "logging disabled";
-    }
-
-    void QL_LOGMESSAGE(
-            const std::string &msg) {
-        logMessage(msg);
-    }
-
     const Properties& QL_QUERY(
             const std::string &handle) {
         boost::shared_ptr<Object> object =
@@ -58,6 +45,21 @@ namespace QuantLibAddin {
         if (!object)
                 throw Exception("error retrieving object " + handle);
         return object->getProperties();
+    }
+
+    std::string QL_LOGFILE(const std::string &logFileName,
+            const int &logLevel) {
+        setLogFile(logFileName, logLevel);
+        return logFileName;
+    }
+
+    void QL_LOGLEVEL(const int &logLevel) {
+        setLogLevel(logLevel);
+    }
+
+    void QL_LOGMESSAGE(const std::string &message,
+            const int &level) {
+        logMessage(message, level);
     }
 
 }

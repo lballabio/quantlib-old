@@ -129,11 +129,11 @@ int main() {
         return 0;
     } catch (const exception &e) {
         cout << "Error: " << e.what() << endl;
-        QL_LOGMESSAGE(e.what());
+        QL_LOGMESSAGE(e.what(), 2);
         return 1;
     } catch (...) {
         cout << "unknown error" << endl;
-        QL_LOGMESSAGE("unknown error");
+        QL_LOGMESSAGE("unknown error", 2);
         return 1;
     }
 }

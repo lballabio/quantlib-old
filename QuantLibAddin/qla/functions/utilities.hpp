@@ -38,22 +38,6 @@ namespace QuantLibAddin {
     */
     std::string QL_OH_VER();
 
-    /*! enable/disable logging
-    */
-    std::string QL_LOGFILE(
-        /*! name of the logfile
-            (pass null string to disable logging)
-        */
-        const std::string &logFileName);
-
-    /*! write a message to the logfile
-    */
-    void QL_LOGMESSAGE(
-        /*! string to be written to logfile
-            (will be automatically suffixed with a carriage return)
-        */
-        const std::string &msg);
-
     /*! return the vector of Properties
         describing an Object in the ObjectHandler
     */
@@ -61,6 +45,43 @@ namespace QuantLibAddin {
         /*! handle of object to be interrogated
         */
         const std::string &handle);
+
+    //! \name logging framework
+    //@{
+    //! Specify file to which messages should be logged.
+    /*! Redirect logging to named file.  Logging to any
+        previously specified logfile is discontinued.
+        If the specified file doesn't already exist it is created.
+        If the specified file does already exist, new messages are
+        appended to it.  If the specified file cannot be opened, 
+        an error is thrown.
+        This function accepts an additional optional argument
+        logLevel which is passed as an argument to setLogLevel 
+        (see below). logLevel defaults to 4 (info).
+    */
+    std::string QL_LOGFILE(const std::string &logFileName,
+            const int &logLevel = 4);
+    //! Specify threshold for logging messages.
+    /*! Accepts one parameter int with the following values:
+        0 - logging disabled
+        1 - fatal
+        2 - error
+        3 - warn
+        4 - info
+        5 - debug.
+        The logging level is cumulative e.g. a level of 3 means that
+        messages of levels warn, error and fatal are logged.
+        If the specified level is not in the range 0-5
+        an error is thrown.
+    */
+    void QL_LOGLEVEL(const int &logLevel);
+    //! Log a message.
+    /*! The optional level parameter specifies the logging level
+        for the message, if omitted this defaults to 4 (info).
+    */
+    void QL_LOGMESSAGE(const std::string &message,
+            const int &level = 4);
+    //@}
 
 }
 

@@ -68,4 +68,24 @@
 </returnval>
 </function>
 
+<function>
+<name>QL_LOGLEVEL</name>
+<codename>qlLogLevel</codename>
+<qlfunction></qlfunction>
+<desc>set threshold for log messages</desc>
+<constructor>false</constructor>
+<parameters>
+	<param>
+		<name>logLevel</name>
+		<type>long</type>
+		<tensorrank>scalar</tensorrank>
+		<desc>threshold for log messages</desc>
+	</param>
+</parameters>
+<returnval>
+	<type>long</type>
+	<desc>returns new logging threshold</desc>
+</returnval>
+</function>
+
 </functionlist>

@@ -28,7 +28,6 @@ int main() {
     long timeSteps = 801;
     long exerciseDate = 36297;       // (17, May, 1999);
     long settlementDate = 35932;     // (17, May, 1998);
-    long todaysDate = 35930;         // (15, May, 1998);
     VariesList vbs;                  // attributes of black scholes object
     VariesList vo;                   // attributes of vanilla option object
     int i;                           // iterator

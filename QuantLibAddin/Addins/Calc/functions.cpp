@@ -73,3 +73,14 @@ STRING SAL_CALL QLAddin::qlLogfile(
     }
 }
 
+sal_Int32 SAL_CALL QLAddin::qlLogLevel(
+            sal_Int32 logLevel) THROWDEF_RTE_IAE {
+    try {
+        QL_LOGLEVEL(logLevel);
+        return logLevel;
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_LOGLEVEL: ") + e.what());
+        THROW_RTE;
+    }
+}
+

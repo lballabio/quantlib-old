@@ -7,7 +7,7 @@ DLLEXPORT LPXLOPER %s(
         setValues(&xRet, properties, handle);
         return &xRet;
     } catch (const exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: %s: ") + e.what());
+        QL_LOGMESSAGE(std::string("ERROR: %s: ") + e.what(), 2);
         return 0;
     }
 }
