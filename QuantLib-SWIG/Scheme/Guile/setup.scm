@@ -68,6 +68,7 @@
         "randomnumbers.i"
         "riskstatistics.i"
         "segmentintegral.i"
+        "shortratemodels.i"
         "statistics.i"
         "swap.i"
         "swaption.i"

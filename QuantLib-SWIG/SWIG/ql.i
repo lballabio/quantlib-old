@@ -108,6 +108,7 @@
 %include randomnumbers.i
 %include scheduler.i
 %include segmentintegral.i
+%include shortratemodels.i
 %include statistics.i
 %include swap.i
 %include swaption.i
