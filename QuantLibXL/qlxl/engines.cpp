@@ -57,7 +57,10 @@ extern "C"
         arguments->strike = xlstrike.AsDouble();
         arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(valueDate);
         arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(valueDate);
-        arguments->exercise = EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate());
+        arguments->exerciseType = Exercise::European;
+        Date maturityDate = QlXlfOper(xlmaturityDate).AsDate();
+        arguments->maturity = arguments->riskFreeTS->dayCounter().yearFraction(
+            valueDate, maturityDate);
         arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(valueDate);
 
         arguments->validate();
