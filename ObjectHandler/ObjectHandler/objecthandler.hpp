@@ -29,6 +29,7 @@
 
 #include <ObjectHandler/utilities.hpp>
 
+#include <map>
 typedef boost::shared_ptr<Object> obj_ptr;
 typedef map<string, obj_ptr> ObjectList;
 
