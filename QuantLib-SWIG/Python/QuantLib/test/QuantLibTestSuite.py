@@ -24,6 +24,7 @@ import unittest
 from date import DateTest
 from daycounters import DayCounterTest
 from distributions import DistributionTest
+from europeanoption import EuropeanOptionTest
 from instruments import InstrumentTest
 from marketelements import MarketElementTest
 from operators import OperatorTest
@@ -42,6 +43,7 @@ def test():
     suite.addTest(DateTest())
     suite.addTest(DayCounterTest())
     suite.addTest(DistributionTest())
+    suite.addTest(unittest.makeSuite(EuropeanOptionTest,'test'))
     suite.addTest(unittest.makeSuite(InstrumentTest,'test'))
     suite.addTest(unittest.makeSuite(MarketElementTest,'test'))
     suite.addTest(OperatorTest())

@@ -257,8 +257,8 @@ class Date {
     
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     // difference - comparison
-    int days_from(const Date& other) {
-        return (*self)-other;
+    int days_between(const Date& other) {
+        return other-(*self);
     }
     bool equal(const Date& other) {
         return (*self == other);

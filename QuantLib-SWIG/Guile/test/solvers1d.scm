@@ -31,7 +31,7 @@
                   (list new-Secant        delete-Secant))))
 
 (define (test-solver make delete)
-  (let ((solver (make)))
+  (deleting-let ((solver (make) delete))
     (for-each (lambda (accuracy)
                 (let ((root (Solver1D-solve solver 
                                             (lambda (x) (- (* x x) 1))
@@ -41,10 +41,10 @@
                   (if (< accuracy (abs (- root 1.0)))
                       (let ((error-msg
                              (string-append
-                              (format #f "solve():~n")
-                              (format #f "  expected:        1.0~n")
-                              (format #f "  calculated root: ~a~n" root)
-                              (format #f "  accuracy:        ~a~n" accuracy))))
+                              (format "solve():~n")
+                              (format "  expected:        1.0~n")
+                              (format "  calculated root: ~a~n" root)
+                              (format "  accuracy:        ~a~n" accuracy))))
                         (error error-msg))))
                 (let ((root (Solver1D-bracketed-solve solver 
                                                       (lambda (x) 
@@ -56,10 +56,9 @@
                   (if (< accuracy (abs (- root 1.0)))
                       (let ((error-msg
                              (string-append
-                              (format #f "bracketed-solve():~n")
-                              (format #f "  expected:        1.0~n")
-                              (format #f "  calculated root: ~a~n" root)
-                              (format #f "  accuracy:        ~a~n" accuracy))))
+                              (format "bracketed-solve():~n")
+                              (format "  expected:        1.0~n")
+                              (format "  calculated root: ~a~n" root)
+                              (format "  accuracy:        ~a~n" accuracy))))
                         (error error-msg)))))
-                '(1.0e-4 1.0e-6 1.0e-8))
-    (delete solver)))
+                '(1.0e-4 1.0e-6 1.0e-8))))

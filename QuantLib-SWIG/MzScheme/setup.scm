@@ -29,7 +29,8 @@
     (format "    build            build QuantLib-MzScheme~n")
     (format "    install          install QuantLib-MzScheme~n")
     (format "    sdist            create source distribution~n")
-    (format "    bdist            create binary distribution~n")))
+    ;(format "    bdist            create binary distribution~n")
+    ))
   (exit))
 
 
@@ -55,28 +56,53 @@
         "daycounters.i"
         "distributions.i"
         "functions.i"
-        "instruments.i"
         "history.i"
+        "indexes.i"
+        "instruments.i"
+        "interpolation.i"
         "marketelements.i"
+        "matrix.i"
         "null.i"
         "observer.i"
+        "operators.i"
+        "options.i"
         "quantlib.i"
         "ql.i"
         "qlarray.i"
         "randomnumbers.i"
         "riskstatistics.i"
+        "segmentintegral.i"
         "solvers1d.i"
+        "statistics.i"
+        "termstructures.i"
         "types.i"
         "vectors.i"))
 (define test-files
-  (list "dates.scm"
+  (list "common.scm"
+        "date.scm"
         "daycounters.scm"
         "distributions.scm"
+        "europeanoption.scm"
         "instruments.scm"
         "marketelements.scm"
+        "operators.scm"
         "riskstatistics.scm"
+        "segmentintegral.scm"
         "solvers1d.scm"
+        "statistics.scm"
+        "termstructures.scm"
+        "unittest.scm"
         "quantlib-test-suite.scm"))
+
+(define (rec-delete-directory dir)
+  (define (delete-item item)
+    (if (file-exists? item)
+        (delete-file item)
+        (rec-delete-directory item)))
+  (current-directory dir)
+  (for-each delete-item (directory-list "."))
+  (current-directory "..")
+  (delete-directory dir))
 
 ; commands
 
@@ -136,45 +162,60 @@
               (let ((installation-path (build-path collect-path "quantlib")))
                 (if (not (directory-exists? installation-path))
                     (make-directory installation-path))
-                (for-each
-                 (lambda (source-file)
-                   (let ((destination-file 
-                          (build-path installation-path source-file)))
+                (for-each 
+                 (lambda (f)
+                   (let* ((destination-file
+                           (build-path installation-path f)))
                      (if (file-exists? destination-file)
                          (delete-file destination-file))
-                     (copy-file (build-path "quantlib" source-file) 
+                     (copy-file (build-path "quantlib" f) 
                                 destination-file)))
                  (list "quantlib.ss" 
                        (append-extension-suffix "QuantLibc"))))))
-; 	Info.each { |file| File.install "./#{file}",docDir+"/#{file}",nil,true }
-; 	Interfaces.each { |file| File.install "../SWIG/"+file,swigDir+"/#{file}",nil,true }
-; 	Tests.each { |file| File.install "./test/"+file,testDir+"/#{file}",nil,true }
-; }
 
-
-; SDist = Command.new {
-; 	Wrap.execute
-; 	puts "Packing source distribution..."
-; 	distDir = "QuantLib-Ruby-#{Version}"
-; 	raise "Directory #{distDir} already exist" if File.exists? distDir
-; 	swigDir = distDir+"/SWIG"
-; 	testDir = distDir+"/test"
-; 	[distDir,swigDir,testDir].each { |path| File.makedirs path }
-; 	Info.each       { |file| File.syscopy file, distDir }
-; 	Sources.each    { |file| File.syscopy file, distDir }
-; 	Scripts.each    { |file| File.syscopy file, distDir }
-; 	Interfaces.each { |file| File.syscopy '../SWIG/'+file, swigDir }
-; 	Tests.each      { |file| File.syscopy 'test/'+file, testDir }
-; 	cfg = Config::MAKEFILE_CONFIG
-; 	case cfg['host_os']
-; 	  when 'mswin32'
-;     	system "zip -q -r #{distDir}.zip #{distDir}/"
-; 	  when 'linux'
-;     	system "tar cfz #{distDir}.tar.gz #{distDir}/"
-;       else
-;         puts "Unknown host: " + cfg['host_os']
-;     end
-; }
+(define (sdist)
+  (wrap)
+  (display "Packing source distribution...") (newline)
+  (let ((distribution-dir (string-append "QuantLib-MzScheme-" version)))
+    (if (directory-exists? distribution-dir)
+        (rec-delete-directory distribution-dir))
+    (let ((swig-dir (build-path distribution-dir "SWIG"))
+          (test-dir (build-path distribution-dir "test"))
+          (module-dir (build-path distribution-dir "quantlib")))
+      (define (install-files files source-dir target-dir)
+        (for-each 
+         (lambda (f)
+           (let ((source-file (build-path source-dir f))
+                 (destination-file (build-path distribution-dir target-dir f)))
+             (copy-file source-file destination-file)))
+         files))
+      (for-each make-directory
+                (list distribution-dir swig-dir test-dir module-dir))
+      (install-files info-files "." ".")
+      (install-files source-files "." ".")
+      (install-files scripts "." ".")
+      (let ((i-dir "./SWIG"))
+        (if (not (directory-exists? i-dir))
+            (set! i-dir "../SWIG"))
+        (install-files SWIG-interfaces i-dir "SWIG"))
+      (install-files test-files "test" "test")
+      (let ((os (system-type)))
+        (cond ((equal? os 'unix)
+               (system (string-append
+                        "tar cfz "
+                        distribution-dir ".tar.gz "
+                        distribution-dir)))
+              ((equal? os 'windows)
+               (system (string-append
+                        "zip -q -r "
+                        distribution-dir ".zip "
+                        distribution-dir)))
+              (else
+               (error (string-append
+                       "unsupported host: "
+                       (symbol->string os))))))
+      (rec-delete-directory distribution-dir))))
+               
 
 ; BDist = Command.new {
 ; 	Wrap.execute
@@ -200,7 +241,8 @@
   (list (cons "wrap"    wrap)
         (cons "build"   build)
         (cons "test"    test)
-        (cons "install" install)))
+        (cons "install" install)
+        (cons "sdist"   sdist)))
 
 ; parse command line
 (if (not (= (vector-length argv) 1))

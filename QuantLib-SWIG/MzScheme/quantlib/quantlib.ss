@@ -3,6 +3,30 @@
 (load-extension (build-path (collection-path "quantlib") 
                             (append-extension-suffix "QuantLibc")))
 
+; macros for making it easier to free memory
+; careful: they could prevent tail-recursion!
+(define-macro deleting-let
+  (lambda (bindings . body)
+    (let ((thunk (gensym))
+          (result (gensym)))
+      `(let ,(map (lambda (b) (list (car b) (cadr b))) bindings)
+         (define ,thunk (lambda () ,@body))
+         (let ((,result (,thunk)))
+           ,@(map (lambda (b) (list (caddr b) (car b))) bindings)
+           ,result)))))
+
+(define-macro deleting-let*
+  (lambda (bindings . body)
+    (let ((thunk (gensym))
+          (result (gensym)))
+      `(let* ,(map (lambda (b) (list (car b) (cadr b))) bindings)
+         (define ,thunk (lambda () ,@body))
+         (let ((,result (,thunk)))
+           ,@(map (lambda (b) (list (caddr b) (car b))) bindings)
+           ,result)))))
+
+(define (do-not-delete x) #f)
+
 ; more scheme-like names which couldn't be set from SWIG
 
 (define calendar=? calendar-equal)
@@ -80,3 +104,15 @@
     (if (not (null? args))
         (TermStructureHandle-link-to! h (car args)))
     h))
+
+(define FlatForward-old-init new-FlatForward)
+(define (new-FlatForward currency dayCounter today settlement forward)
+  (if (number? forward)
+      (letrec ((m (new-SimpleMarketElement forward))
+               (h (new-MarketElementHandle m))
+               (ff (FlatForward-old-init currency dayCounter 
+                                         today settlement h)))
+        (delete-MarketElementHandle h)
+        (delete-MarketElement m)
+        ff)
+      (FlatForward-old-init currency dayCounter today settlement forward)))

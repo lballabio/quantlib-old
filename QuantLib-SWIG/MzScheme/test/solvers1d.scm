@@ -31,7 +31,7 @@
                   (list new-Secant        delete-Secant))))
 
 (define (test-solver make delete)
-  (let ((solver (make)))
+  (deleting-let ((solver (make) delete))
     (for-each (lambda (accuracy)
                 (let ((root (Solver1D-solve solver 
                                             (lambda (x) (- (* x x) 1))
@@ -61,5 +61,4 @@
                               (format "  calculated root: ~a~n" root)
                               (format "  accuracy:        ~a~n" accuracy))))
                         (error error-msg)))))
-                '(1.0e-4 1.0e-6 1.0e-8))
-    (delete solver)))
+                '(1.0e-4 1.0e-6 1.0e-8))))

@@ -42,7 +42,7 @@ class StatisticsTest < RUNIT::TestCase
     end
     def test
         tolerance = 1.0e-9
-        data      = [  3,   4,   5,   2,   3,   4,   5,   6,   4,   7]
+        data      = [3.0, 4.0, 5.0, 2.0, 3.0, 4.0, 5.0, 6.0, 4.0, 7.0]
         weights   = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 
         s = QuantLib::Statistics.new

@@ -79,13 +79,15 @@ class OperatorTest < RUNIT::TestCase
     # check that first order derivative operator = gaussian
     e = y.diff(yTemp).norm(h)
     unless e <= 1.0e-6
-      assert_fail("\nnorm of FD 1st deriv. of cum minus analytic gaussian: #{e}\n")
+      assert_fail("\nnorm of FD 1st deriv. of cum " + \
+                  "minus analytic gaussian: #{e}\n")
     end
 
     # check that second order derivative operator = normal.derivative
     e = yDerivative.diff(ydTemp).norm(h)
     unless e <= 1.0e-4
-      assert_fail("\nnorm of FD 2nd deriv. of cum minus analytic gaussian derivative: #{e}\n")
+      assert_fail("\nnorm of FD 2nd deriv. of cum " + \
+                  "minus analytic gaussian derivative: #{e}\n")
     end
 
   end

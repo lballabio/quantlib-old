@@ -29,9 +29,9 @@
       (if (> e tolerance)
           (let ((error-msg
                  (string-append
-                  (format #f "norm of ~A minus ~A: ~A:\n"
+                  (format "norm of ~a minus ~a: ~a:~n"
                           f1-name f2-name e)
-                  (format "tolerance exceeded\n"))))
+                  (format "tolerance exceeded~n"))))
             (error error-msg)))))
   (define (difference f1 f2)
     (define (diff-iter l a i acc)
@@ -45,39 +45,36 @@
          (sigma 1.0)
          (normal-dist    (new-NormalDistribution average sigma))
          (cumul-dist     (new-CumulativeNormalDistribution average sigma)))
-    (let* ((N 10001)
-           (xmin (- average (* 4.0 sigma)))
-           (xmax (+ average (* 4.0 sigma)))
-           (h (grid-step xmin xmax N))
-           (x (grid xmin xmax N)))
+      (let* ((N 10001)
+             (xmin (- average (* 4.0 sigma)))
+             (xmax (+ average (* 4.0 sigma)))
+             (h (grid-step xmin xmax N))
+             (x (grid xmin xmax N)))
 
-      (define (normal x)
-        (NormalDistribution-call normal-dist x))
-      (define (normal-derivative x)
-        (NormalDistribution-derivative normal-dist x))
-      (define (cumulative x)
-        (CumulativeNormalDistribution-call cumul-dist x))
+        (define (normal x)
+          (NormalDistribution-call normal-dist x))
+        (define (normal-derivative x)
+          (NormalDistribution-derivative normal-dist x))
+        (define (cumulative x)
+          (CumulativeNormalDistribution-call cumul-dist x))
         
-      (let ((y (map normal x))
-            (y-int (map cumulative x))
-            (y-der (map normal-derivative x)))
-        
-        (let ((D0 (new-D0 N h))
-              (D+D- (new-D+D- N h)))
-          (let ((y-temp (TridiagonalOperator-applyTo
-                         D0 (list->vector y-int)))
-                (yd-temp (TridiagonalOperator-applyTo 
-                          D+D- (list->vector y-int))))
-            
-            (check-difference y y-temp h 1.0e-6
-                              "FD 1st derivative of cum(x)"
-                              "analytic Gaussian")
-            (check-difference y-der yd-temp h 1.0e-4
-                              "FD 2nd derivative of cum(x)"
-                              "identity")
-            (delete-Array y-temp)
-            (delete-Array yd-temp))
-          (delete-TridiagonalOperator D0)
-          (delete-TridiagonalOperator D+D-))))))
+        (let ((y (map normal x))
+              (y-int (map cumulative x))
+              (y-der (map normal-derivative x)))
+          
+          (deleting-let ((D0 (new-D0 N h) delete-TridiagonalOperator)
+                         (D+D- (new-D+D- N h) delete-TridiagonalOperator))
+            (deleting-let ((y-temp (TridiagonalOperator-applyTo
+                                    D0 (list->vector y-int))
+                                   delete-Array)
+                           (yd-temp (TridiagonalOperator-applyTo 
+                                     D+D- (list->vector y-int))
+                                    delete-Array))
 
-(Operator-test)
+              (check-difference y y-temp h 1.0e-6
+                                "FD 1st derivative of cum(x)"
+                                "analytic Gaussian")
+              (check-difference y-der yd-temp h 1.0e-4
+                                "FD 2nd derivative of cum(x)"
+                                "identity")))))))
+

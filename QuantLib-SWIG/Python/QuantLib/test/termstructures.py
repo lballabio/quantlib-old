@@ -134,6 +134,7 @@ unable to reproduce zero yield from spreaded curve
 
 
 if __name__ == '__main__':
+    import QuantLib
     print 'testing QuantLib', QuantLib.__version__
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TermStructureTest,'test'))

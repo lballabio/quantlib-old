@@ -24,6 +24,7 @@
 (load "date.scm")
 (load "daycounters.scm")
 (load "distributions.scm")
+(load "europeanoption.scm")
 (load "instruments.scm")
 (load "marketelements.scm")
 (load "operators.scm")
@@ -36,10 +37,14 @@
 (let ((suite (make-suite)))
   (suite-add-test suite Date-test
                   "Testing dates")
-  (suite-add-test suite DayCounter-test
+  (suite-add-test suite Day-counter-test
                   "Testing act/act day counters")
   (suite-add-test suite Distribution-test
                   "Testing distributions")
+  (suite-add-test suite European-option-test-1
+                  "Testing European option greeks")
+  (suite-add-test suite European-option-test-2
+                  "Testing European option implied volatility")
   (suite-add-test suite Instrument-test
                   "Testing observability of stocks")
   (suite-add-test suite Market-element-test
@@ -53,7 +58,7 @@
   (suite-add-test suite Segment-integral-test
                   "Testing segment integral")
   (suite-add-test suite Solver-1D-test
-                  "Testing 1-D solvers")
+                  "Testing 1D solvers")
   (suite-add-test suite Statistics-test
                   "Testing statistics")
   (suite-add-test suite Term-structure-test-1

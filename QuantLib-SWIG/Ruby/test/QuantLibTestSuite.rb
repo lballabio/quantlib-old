@@ -23,6 +23,7 @@ require 'runit/cui/testrunner'
 require 'dates'
 require 'daycounters'
 require 'distributions'
+require 'europeanoption'
 require 'instruments'
 require 'marketelements'
 require 'operators'
@@ -36,6 +37,7 @@ suite = RUNIT::TestSuite.new
 suite.add_test(DateTest.suite)
 suite.add_test(DayCounterTest.suite)
 suite.add_test(DistributionTest.suite)
+suite.add_test(EuropeanOptionTest.suite)
 suite.add_test(InstrumentTest.suite)
 suite.add_test(MarketElementTest.suite)
 suite.add_test(MarketElementHandleTest.suite)

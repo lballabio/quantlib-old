@@ -34,7 +34,7 @@ class DateTest < RUNIT::TestCase
     yold   = QuantLib.DateFromSerialNumber(minDate-1).year
     wdnold = QuantLib.DateFromSerialNumber(minDate-1).weekdayNumber
     
-    minDate.upto(maxDate) { |i|
+    minDate.upto(maxDate) do |i|
       t = QuantLib.DateFromSerialNumber(i)
       # check serial number consistency
       unless t.serialNumber == i
@@ -182,9 +182,9 @@ class DateTest < RUNIT::TestCase
         serial number: #{s.serialNumber}
 
                     MESSAGE
-)
+                    )
       end
-    }
+    end
   end
 end
 

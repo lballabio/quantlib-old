@@ -77,6 +77,7 @@ class Solver1DTest(unittest.TestCase):
             
 
 if __name__ == '__main__':
+    import QuantLib
     print 'testing QuantLib', QuantLib.__version__
     suite = unittest.TestSuite()
     suite.addTest(Solver1DTest())

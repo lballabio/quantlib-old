@@ -36,19 +36,24 @@
   (define (difference f1 f2)
     (map - f1 f2))
 
-  (letrec ((average 0.0)
-           (sigma 1.0)
-           (normal-dist    (new-normaldistribution average sigma))
-           (cumul-dist     (new-cumulativenormaldistribution average sigma))
-           (inverse-dist   (new-invcumulativenormaldistribution
-                            average sigma))
-           (inverse-dist-2 (new-invcumulativenormaldistribution2
-                            average sigma)))
-      (letrec ((N 10001)
-               (xmin (- average (* 4.0 sigma)))
-               (xmax (+ average (* 4.0 sigma)))
-               (h (grid-step xmin xmax N))
-               (x (grid xmin xmax N)))
+  (deleting-let* ((average 0.0 do-not-delete)
+                  (sigma 1.0 do-not-delete)
+                  (normal-dist (new-NormalDistribution average sigma)
+                               delete-NormalDistribution)
+                  (cumul-dist (new-CumulativeNormalDistribution 
+                               average sigma)
+                               delete-CumulativeNormalDistribution)
+                  (inverse-dist (new-InvCumulativeNormalDistribution
+                                 average sigma)
+                                delete-InvCumulativeNormalDistribution)
+                  (inverse-dist-2 (new-InvCumulativeNormalDistribution2
+                                   average sigma)
+                                  delete-InvCumulativeNormalDistribution2))
+    (let* ((N 10001)
+           (xmin (- average (* 4.0 sigma)))
+           (xmax (+ average (* 4.0 sigma)))
+           (h (grid-step xmin xmax N))
+           (x (grid xmin xmax N)))
 
         (define pi (acos -1.0))
         (define (gaussian x)
@@ -72,14 +77,14 @@
         (define (inverse-cumulative-2 x)
           (invcumulativenormaldistribution2-call inverse-dist-2 x))
 
-        (letrec ((y (map gaussian x))
-                 (y-int (map cumulative x))
-                 (y-temp (map normal x))
-                 (y2-temp (map cumulative-derivative x))
-                 (x-temp (map inverse-cumulative y-int))
-                 (x-temp-2 (map inverse-cumulative-2 y-int))
-                 (yd (map normal-derivative x))
-                 (yd-temp (map gaussian-derivative x)))
+        (let* ((y (map gaussian x))
+               (y-int (map cumulative x))
+               (y-temp (map normal x))
+               (y2-temp (map cumulative-derivative x))
+               (x-temp (map inverse-cumulative y-int))
+               (x-temp-2 (map inverse-cumulative-2 y-int))
+               (yd (map normal-derivative x))
+               (yd-temp (map gaussian-derivative x)))
           
           (check-difference y y-temp h 1.0e-16
                             "C++ normal distribution"

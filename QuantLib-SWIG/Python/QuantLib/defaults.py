@@ -30,6 +30,10 @@ if sys.hexversion >= 0x020200a0:
     Date.maxDate = staticmethod(Date_maxDate)
     Date.todaysDate = staticmethod(Date_todaysDate)
     TridiagonalOperator.identity = staticmethod(TridiagonalOperator_identity)
+    XiborManager.setHistory = staticmethod(XiborManager_setHistory)
+    XiborManager.getHistory = staticmethod(XiborManager_getHistory)
+    XiborManager.hasHistory = staticmethod(XiborManager_hasHistory)
+
 
 #interface enhancements
 History._old___init__ = History.__init__
@@ -64,3 +68,14 @@ def TermStructureHandle_new_linkTo(self,h):
 TermStructureHandle.__init__ = TermStructureHandle_new___init__
 TermStructureHandle.linkTo = TermStructureHandle_new_linkTo
 
+FlatForward._old___init__ = FlatForward.__init__
+def FlatForward_new___init__(self,currency,dayCounter,todaysDate,
+                             settlementDate,forward):
+    if type(forward) == type(0) or type(forward) == type(0.0):
+        h = MarketElementHandle(SimpleMarketElement(forward))
+        self._old___init__(currency,dayCounter,todaysDate,
+                           settlementDate,h)
+    else:
+        self._old___init__(currency,dayCounter,todaysDate,
+                           settlementDate,forward)
+FlatForward.__init__ = FlatForward_new___init__

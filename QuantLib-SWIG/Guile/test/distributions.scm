@@ -20,8 +20,6 @@
 ;
 ; $Id$
 
-(define version "$Revision$")
-
 (use-modules (QuantLib))
 (load "common.scm")
 
@@ -31,25 +29,32 @@
       (if (> e tolerance)
           (let ((error-msg
                  (string-append
-                  (format #f "norm of ~A minus ~A: ~A:\n"
+                  (format "norm of ~a minus ~a: ~a:~n"
                           f1-name f2-name e)
-                  (format #f "tolerance exceeded\n"))))
+                  (format "tolerance exceeded~n"))))
             (error error-msg)))))
   (define (difference f1 f2)
     (map - f1 f2))
 
-  (let ((average 0.0)
-        (sigma 1.0)
-        (N 10001))
-    (let ((normal-dist    (new-NormalDistribution average sigma))
-          (cumul-dist     (new-CumulativeNormalDistribution average sigma))
-          (inverse-dist   (new-InvCumulativeNormalDistribution average sigma))
-          (inverse-dist-2 (new-InvCumulativeNormalDistribution2 average sigma))
-          (xmin (- average (* 4.0 sigma)))
-          (xmax (+ average (* 4.0 sigma))))
-      (let ((h (grid-step xmin xmax N))
-            (x (grid xmin xmax N)))
-      
+  (deleting-let* ((average 0.0 do-not-delete)
+                  (sigma 1.0 do-not-delete)
+                  (normal-dist (new-NormalDistribution average sigma)
+                               delete-NormalDistribution)
+                  (cumul-dist (new-CumulativeNormalDistribution 
+                               average sigma)
+                               delete-CumulativeNormalDistribution)
+                  (inverse-dist (new-InvCumulativeNormalDistribution
+                                 average sigma)
+                                delete-InvCumulativeNormalDistribution)
+                  (inverse-dist-2 (new-InvCumulativeNormalDistribution2
+                                   average sigma)
+                                  delete-InvCumulativeNormalDistribution2))
+    (let* ((N 10001)
+           (xmin (- average (* 4.0 sigma)))
+           (xmax (+ average (* 4.0 sigma)))
+           (h (grid-step xmin xmax N))
+           (x (grid xmin xmax N)))
+
         (define pi (acos -1.0))
         (define (gaussian x)
           (let ((dx (- x average)))
@@ -71,28 +76,31 @@
           (InvCumulativeNormalDistribution-call inverse-dist x))
         (define (inverse-cumulative-2 x)
           (InvCumulativeNormalDistribution2-call inverse-dist-2 x))
-        
-        (let ((y (map gaussian x))
-              (y-int (map cumulative x))
-              (y-temp (map normal x))
-              (y2-temp (map cumulative-derivative x))
-              (yd (map normal-derivative x))
-              (yd-temp (map gaussian-derivative x)))
-          (let ((x-temp (map inverse-cumulative y-int))
-                (x-temp-2 (map inverse-cumulative-2 y-int)))
-            (check-difference y y-temp h 1.0e-16
-                              "C++ normal distribution"
-                              "analytic Gaussian")
-            (check-difference x x-temp h 1.0e-3
-                              "C++ invCum(cum(.))"
-                              "identity")
-            (check-difference x x-temp-2 h 1.0e-3
-                              "C++ invCum(cum(.))"
-                              "identity")
-            (check-difference y y2-temp h 1.0e-16
-                              "C++ Cumulative.derivative"
-                              "analytic Gaussian")
-            (check-difference yd yd-temp h 1.0e-16
-                              "C++ NormalDist.derivative"
-                              "analytic Gaussian derivative")))))))
+
+        (let* ((y (map gaussian x))
+               (y-int (map cumulative x))
+               (y-temp (map normal x))
+               (y2-temp (map cumulative-derivative x))
+               (x-temp (map inverse-cumulative y-int))
+               (x-temp-2 (map inverse-cumulative-2 y-int))
+               (yd (map normal-derivative x))
+               (yd-temp (map gaussian-derivative x)))
+          
+          (check-difference y y-temp h 1.0e-16
+                            "C++ normal distribution"
+                            "analytic Gaussian")
+          (check-difference x x-temp h 1.0e-3
+                            "C++ invCum(cum(.))"
+                            "identity")
+          (check-difference x x-temp-2 h 1.0e-3
+                            "C++ invCum2(cum(.))"
+                            "identity")
+          (check-difference y y2-temp h 1.0e-16
+                            "C++ Cumulative.derivative"
+                            "analytic Gaussian")
+          (check-difference yd yd-temp h 1.0e-16
+                            "C++ NormalDist.derivative"
+                            "analytic Gaussian derivative")))))
+
+
 

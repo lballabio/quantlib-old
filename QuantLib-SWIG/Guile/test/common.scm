@@ -20,14 +20,25 @@
 ;
 ; $Id$
 
+; check two values for equality
 (define (check tag calculated expected tolerance)
   (if (> (abs (- calculated expected)) tolerance)
-      (let ((error-msg
-             (string-append
-              (format #f "~A:\n" tag)
-              (format #f "    calculated: ~A\n" calculated)
-              (format #f "    expected:   ~A\n" expected))))
-        (error error-msg))))
+      (let ((tag (if (procedure? tag) (tag) tag)))
+        (let ((error-msg
+               (string-append
+                (format #f "~A:\n" tag)
+                (format #f "    calculated: ~A\n" calculated)
+                (format #f "    expected:   ~A\n" expected))))
+          (error error-msg)))))
+
+; common utility functions
+(define (flatmap proc seq)
+  (foldr append '() (map proc seq)))
+(define (foldr op initial sequence)
+  (if (null? sequence)
+      initial
+      (op (car sequence)
+          (foldr op initial (cdr sequence)))))
 
 ; make a grid
 (define (grid-step xmin xmax N)
@@ -50,3 +61,38 @@
       (sqrt (* h (- (sum f) (* 0.5 first) (* 0.5 last))))))
   (let ((f^2 (map (lambda (x) (* x x)) f)))
     (integral f^2 h)))
+
+
+; assign names to the elements of a list
+(define-macro let-at-once
+  (lambda (binding . body)
+    (let ((vars (car binding))
+          (vals (cadr binding)))
+      `(call-with-values
+         (lambda () (apply values ,vals))
+         (lambda ,vars ,@body)))))
+
+; get a number of test cases by building all possible
+; combinations of sets of parameters
+(define (combinations l . ls)
+  (define (add-one x ls)
+    (map (lambda (l) (cons x l)) ls))
+  (define (add-all l ls)
+    (flatmap (lambda (x) (add-one x ls)) l))
+  (if (null? ls)
+      (map list l)
+      (add-all l (apply combinations ls))))
+
+; bind a set of parameters to all possible combinations
+(define-macro for-each-combination
+  (lambda (bind-sets . body)
+    (let ((vars (map car bind-sets))
+          (sets (map cadr bind-sets))
+          (combo (gensym)))
+      `(for-each 
+        (lambda (,combo)
+          (call-with-values 
+           (lambda () (apply values ,combo))
+           (lambda ,vars ,@body)))
+        (combinations ,@sets)))))
+

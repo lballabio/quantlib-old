@@ -63,7 +63,7 @@ class DayCounterTest < RUNIT::TestCase
     isma = QuantLib::DayCounter.new('act/act')
     afb  = QuantLib::DayCounter.new('act/act(e)')
 
-    cases.each { |d1,d2,refStart,refEnd,(isdaValue,ismaValue,afbValue)|
+    cases.each do |d1,d2,refStart,refEnd,(isdaValue,ismaValue,afbValue)|
 
       value = isda.yearFraction(d1,d2)
       unless (value-isdaValue).abs <= 1.0e-10
@@ -108,7 +108,7 @@ class DayCounterTest < RUNIT::TestCase
                     MESSAGE
                     )
       end
-    }
+    end
   end
 end
 

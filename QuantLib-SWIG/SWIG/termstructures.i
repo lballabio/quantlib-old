@@ -234,12 +234,27 @@ class FlatForwardHandle : public Handle<TermStructure> {};
 %extend FlatForwardHandle {
     FlatForwardHandle(Currency currency, const DayCounter& dayCounter,
                       const Date& todaysDate, const Date& settlementDate, 
-                      Rate forward) {
+                      const RelinkableHandle<MarketElement>& forward) {
 	    return new FlatForwardHandle(
 	        new FlatForward(currency,dayCounter,todaysDate,
                             settlementDate,forward));
     }
 }
+#if defined(SWIGGUILE)
+%scheme %{
+    (define FlatForward-old-init new-FlatForward)
+    (define (new-FlatForward currency dayCounter today settlement forward)
+      (if (number? forward)
+          (let* ((m (new-SimpleMarketElement forward))
+                 (h (new-MarketElementHandle m))
+                 (ff (FlatForward-old-init currency dayCounter 
+                                           today settlement h)))
+            (delete-MarketElementHandle h)
+            (delete-MarketElement m)
+            ff)
+          (FlatForward-old-init currency dayCounter today settlement forward)))
+%}
+#endif
 
 
 #endif

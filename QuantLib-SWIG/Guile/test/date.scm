@@ -20,54 +20,43 @@
 ;
 ; $Id$
 
-(define version "$Revision$")
-
 (use-modules (QuantLib))
 
 (define (Date-test)
-  (let ((min-date (Date-min-date))
-		(max-date (Date-max-date)))
+  (deleting-let ((min-date (Date-min-date) delete-Date)
+                 (max-date (Date-max-date) delete-Date))
 	(let ((begin (+ (Date-serial-number min-date) 1))
-		  (end   (+ (Date-serial-number max-date) 1)))
-	  (let ((dyold (Date-day-of-year min-date))
-			(dold  (Date-day-of-month min-date))
-			(mold  (Date-month min-date))
-			(yold  (Date-year min-date))
-			(wdold (Date-weekday-number min-date)))
-		(Date-test-single-date begin end dyold dold mold yold wdold)
-		(delete-Date min-date)
-		(delete-Date max-date)))))
+		  (end   (+ (Date-serial-number max-date) 1))
+          (dyold (Date-day-of-year min-date))
+          (dold  (Date-day-of-month min-date))
+          (mold  (Date-month min-date))
+          (yold  (Date-year min-date))
+          (wdold (Date-weekday-number min-date)))
+      (Date-test-single-date begin end dyold dold mold yold wdold))))
 
 (define (Date-test-single-date serial-number end dyold dold mold yold wdold)
   (if (< serial-number end)
 	  (let ((date (Date-from-serial-number serial-number)))
-		(let ((serial (Date-serial-number date))
-			  (dy (Date-day-of-year date))
+        (let ((serial (Date-serial-number date))
+              (dy (Date-day-of-year date))
 			  (d  (Date-day-of-month date))
 			  (m  (Date-month date))
 			  (y  (Date-year date))
 			  (wd (Date-weekday-number date)))
-
 		  ; check day, month, year, serial number consistency
 		  (Date-test-serial-numbers date serial-number serial)
 		  (Date-test-new-date date serial-number d m y)
-
 		  ; check whether we are skipping any date
 		  (Date-test-day-of-years date dy dyold yold)
 		  (Date-test-day-month-year date d m y dold mold yold)
-
 		  ; check month number
 		  (Date-test-month date m)
-
 		  ; check day of month number
 		  (Date-test-day-of-month date d m y)
-
 		  ; check weekday
 		  (Date-test-weekday date wd wdold)
-
-		  ; this date tested ok - it is no longer needed
-		  (delete-Date date)
-
+          ; manual deletion here to preserve tail-recursion
+          (delete-Date date)
 		  ; on to next date with the latest results as the old ones
 		  (Date-test-single-date (+ serial-number 1) end dy d m y wd)))))
 
@@ -76,24 +65,23 @@
   (if (not (= original new))
 	  (let ((error-msg
 			 (string-append
-			  (format #f "inconsistent serial number:\n")
-			  (format #f "    original:  ~A\n" original)
-			  (format #f "    date:      ~A\n" (Date->string date))
-			  (format #f "    serial no: ~A\n" new))))
+			  (format "inconsistent serial number:~n")
+			  (format "    original:  ~a~n" original)
+			  (format "    date:      ~a~n" (Date->string date))
+			  (format "    serial no: ~a~n" new))))
 		(error error-msg))))
 
 (define (Date-test-new-date date serial-number d m y)
-  (let ((clone (new-Date d m y)))
+  (deleting-let ((clone (new-Date d m y) delete-Date))
 	(let ((serial (Date-serial-number clone)))
-	  (delete-Date clone)
 	  (if (not (= serial-number serial))
 		  (let ((error-msg
 				 (string-append
-				  (format #f "inconsistent serial number:\n")
-				  (format #f "    date:      ~A\n" (Date->string date))
-				  (format #f "    serial no: ~A\n" serial-number)
-				  (format #f "    clone:     ~A\n" (Date->string clone))
-				  (format #f "    serial no: ~A\n" serial))))
+				  (format "inconsistent serial number:~n")
+				  (format "    date:      ~a~n" (Date->string date))
+				  (format "    serial no: ~a~n" serial-number)
+				  (format "    clone:     ~a~n" (Date->string clone))
+				  (format "    serial no: ~a~n" serial))))
 			(error error-msg))))))
 
 (define (Date-test-day-of-years date dy dyold yold)
@@ -106,10 +94,10 @@
 					(= dy 1))))
 	  (let ((error-msg
 			 (string-append
-			  (format #f "wrong day of year:\n")
-			  (format #f "    date:        ~A\n" (Date->string date))
-			  (format #f "    day of year: ~A\n" dy)
-			  (format #f "    previous:    ~A\n" dyold))))
+			  (format "wrong day of year:~n")
+			  (format "    date:        ~a~n" (Date->string date))
+			  (format "    day of year: ~a~n" dy)
+			  (format "    previous:    ~a~n" dyold))))
 		(error error-msg))))
 
 (define (Date-test-day-month-year date d m y dold mold yold)
@@ -124,19 +112,19 @@
 					(= y (+ yold 1)))))
 	  (let ((error-msg
 			 (string-append
-			  (format #f "wrong day, month, year increment:\n")
-			  (format #f "    date: ~A\n" (Date->string date))
-			  (format #f "    day, month, year: ~A/~A/~A\n" d m y)
-			  (format #f "    previous:         ~A/~A/~A\n" dold mold yold))))
+			  (format "wrong day, month, year increment:~n")
+			  (format "    date: ~a~n" (Date->string date))
+			  (format "    day, month, year: ~a/~a/~a~n" d m y)
+			  (format "    previous:         ~a/~a/~a~n" dold mold yold))))
 		(error error-msg))))
 
 (define (Date-test-month date m)
   (if (not (and (>= m 1) (<= m 12)))
 	  (let ((error-msg
 			 (string-append
-			  (format #f "invalid month:\n")
-			  (format #f "    date:  ~A\n" (Date->string date))
-			  (format #f "    month: ~A\n" m))))
+			  (format "invalid month:~n")
+			  (format "    date:  ~a~n" (Date->string date))
+			  (format "    month: ~a~n" m))))
 		(error error-msg))))
 
 (define (Date-test-day-of-month date d m y)
@@ -156,10 +144,10 @@
 					(and (<= d 31) (= m 12)))))
 	  (let ((error-msg
 			 (string-append
-			  (format #f "invalid day of month:\n")
-			  (format #f "    date:  ~A\n" (Date->string date))
-			  (format #f "    day  : ~A\n" d)
-			  (format #f "    month: ~A\n" m))))
+			  (format "invalid day of month:~n")
+			  (format "    date:  ~a~n" (Date->string date))
+			  (format "    day  : ~a~n" d)
+			  (format "    month: ~a~n" m))))
 		(error error-msg))))
 
 (define (Date-test-weekday date wd wdold)
@@ -167,9 +155,9 @@
 			   (and (= wd 1) (= wdold 7))))
 	  (let ((error-msg
 			 (string-append
-			  (format #f "invalid weekday:\n")
-			  (format #f "    date:     ~A\n" (Date->string date))
-			  (format #f "    weekday : ~A\n" wd)
-			  (format #f "    previous: ~A\n" wdold))))
+			  (format "invalid weekday:~n")
+			  (format "    date:     ~a~n" (Date->string date))
+			  (format "    weekday : ~a~n" wd)
+			  (format "    previous: ~a~n" wdold))))
 		(error error-msg))))
 

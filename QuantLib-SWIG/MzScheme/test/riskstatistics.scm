@@ -24,13 +24,10 @@
 (load "common.scm")
 
 (define (Risk-statistics-test)
-  (let ((s (new-RiskStatistics)))
-    (for-each (lambda (average)
-                (for-each (lambda (sigma)
-                            (risk-statistics-test-case s average sigma))
-                          '(0.1 1.0 10.0)))
-              '(-100.0 0.0 100.0))
-    (delete-RiskStatistics s)))
+  (deleting-let ((s (new-RiskStatistics) delete-RiskStatistics))
+    (for-each-combination ((average '(-100.0 0.0 100.0))
+                           (sigma '(0.1 1.0 10.0)))
+      (risk-statistics-test-case s average sigma))))
 
 (define (risk-statistics-test-case stats average sigma)
   (define pi (acos -1.0))
@@ -38,15 +35,15 @@
     (let ((dx (- x average)))
       (/ (exp (/ (- (* dx dx)) (* 2.0 sigma sigma)))
          (* sigma (sqrt (* 2.0 pi))))))
-  (letrec ((N 25000)
-           (sigmas 15)
-           (target average)
-           (normal (new-NormalDistribution average sigma))
-           (data-min (- average (* sigmas sigma)))
-           (data-max (+ average (* sigmas sigma)))
-           (h (grid-step data-min data-max N))
-           (data (grid data-min data-max N))
-           (weights (map gaussian data)))
+  (let* ((N 25000)
+         (sigmas 15)
+         (target average)
+         (normal (new-NormalDistribution average sigma))
+         (data-min (- average (* sigmas sigma)))
+         (data-max (+ average (* sigmas sigma)))
+         (h (grid-step data-min data-max N))
+         (data (grid data-min data-max N))
+         (weights (map gaussian data)))
     (RiskStatistics-add-weighted-sequence stats data weights)
     (check "number of samples"
            (RiskStatistics-samples stats)
@@ -87,46 +84,46 @@
            0.0
            1.0e-1)
 
-    (letrec ((cum (new-CumulativeNormalDistribution average sigma))
-             (two-std-dev (CumulativeNormalDistribution-call
-                           cum
-                           (+ average (* 2 sigma)))))
-      (let ((right-potential-upside (max 0.0 (+ average (* 2 sigma)))))
-        (check "potential upside"
-               (RiskStatistics-potential-upside stats two-std-dev)
-               right-potential-upside
-               (if (= 0.0 right-potential-upside)
-                   1.0e-3
-                   (* right-potential-upside 1.0e-3))))
-      (let ((right-VAR (- (min 0.0 (- average (* 2 sigma))))))
-        (check "value at risk"
-               (RiskStatistics-value-at-risk stats two-std-dev)
-               right-VAR
-               (if (= 0.0 right-VAR)
-                   1.0e-3
-                   (* 1.0e-3 right-VAR))))
-      (let ((right-ex-shortfall
-             (- (min 
-                 (- average
-                    (/ (* sigma sigma (gaussian (- average (* 2 sigma))))
-                       (- 1 two-std-dev)))
-                 0.0))))
-        (check "expected shortfall"
-               (RiskStatistics-expected-shortfall stats two-std-dev)
-               right-ex-shortfall
-               (if (= 0.0 right-ex-shortfall)
-                   1.0e-4
-                   (* 1.0e-4 right-ex-shortfall))))
-      (check "shortfall"
-             (RiskStatistics-shortfall stats target)
-             0.5
-             0.5e-8)
-      (let ((right-avg-shortfall (/ sigma (sqrt (* 2 pi)))))
-        (check "average shortfall"
-               (RiskStatistics-average-shortfall stats target)
-               right-avg-shortfall
-               (* 1.0e-4 right-avg-shortfall)))
-      
-      (RiskStatistics-reset! stats)
-      (delete-CumulativeNormalDistribution cum))))
+    (deleting-let ((cum (new-CumulativeNormalDistribution average sigma)
+                        delete-CumulativeNormalDistribution))
+      (let ((two-std-dev (CumulativeNormalDistribution-call
+                          cum
+                          (+ average (* 2 sigma)))))
+        (let ((right-potential-upside (max 0.0 (+ average (* 2 sigma)))))
+          (check "potential upside"
+                 (RiskStatistics-potential-upside stats two-std-dev)
+                 right-potential-upside
+                 (if (= 0.0 right-potential-upside)
+                     1.0e-3
+                     (* right-potential-upside 1.0e-3))))
+        (let ((right-VAR (- (min 0.0 (- average (* 2 sigma))))))
+          (check "value at risk"
+                 (RiskStatistics-value-at-risk stats two-std-dev)
+                 right-VAR
+                 (if (= 0.0 right-VAR)
+                     1.0e-3
+                     (* 1.0e-3 right-VAR))))
+        (let ((right-ex-shortfall
+               (- (min 
+                   (- average
+                      (/ (* sigma sigma (gaussian (- average (* 2 sigma))))
+                         (- 1 two-std-dev)))
+                   0.0))))
+          (check "expected shortfall"
+                 (RiskStatistics-expected-shortfall stats two-std-dev)
+                 right-ex-shortfall
+                 (if (= 0.0 right-ex-shortfall)
+                     1.0e-4
+                     (* 1.0e-4 right-ex-shortfall))))
+        (check "shortfall"
+               (RiskStatistics-shortfall stats target)
+               0.5
+               0.5e-8)
+        (let ((right-avg-shortfall (/ sigma (sqrt (* 2 pi)))))
+          (check "average shortfall"
+                 (RiskStatistics-average-shortfall stats target)
+                 right-avg-shortfall
+                 (* 1.0e-4 right-avg-shortfall)))
+        
+        (RiskStatistics-reset! stats)))))
 

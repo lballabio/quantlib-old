@@ -93,7 +93,8 @@ class DistributionTest < RUNIT::TestCase
     # check norm=gaussian
     e = yTemp.diff(y).norm(h)
     unless e <= 1.0e-16
-      assert_fail("\nnorm of C++ NormalDistribution minus analytic gaussian: #{e}\n")
+      assert_fail("\nnorm of C++ NormalDistribution " + \
+                  "minus analytic gaussian: #{e}\n")
     end
 
     # check invCum(cum) = Identity
@@ -111,13 +112,15 @@ class DistributionTest < RUNIT::TestCase
     # check cum.derivative=normal
     e = y2Temp.diff(y).norm(h)
     unless e <= 1.0e-16
-      assert_fail("\nnorm of C++ Cumulative.derivative minus analytic gaussian: #{e}\n")
+      assert_fail("\nnorm of C++ Cumulative.derivative " + \
+                  "minus analytic gaussian: #{e}\n")
     end
 
     # check normal.derivative=gaussianDerivative
     e = ydTemp.diff(yd).norm(h)
     unless e <= 1.0e-16
-      assert_fail("\nnorm of C++ NormalDist.derivative minus analytic gaussian derivative: #{e}\n")
+      assert_fail("\nnorm of C++ NormalDist.derivative " + \
+                  "minus analytic gaussian derivative: #{e}\n")
     end
 
   end

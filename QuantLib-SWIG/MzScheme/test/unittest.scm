@@ -30,32 +30,32 @@
 								(list (cons (car args) (cadr args))))))
 	   ; run the test suite
 	   ((eqv? command 'run)
-		(letrec ((error-list '())
-				 (elapsed-time #f)
-				 (add-error
-				  (lambda (test-msg error-msg)
-					(set! error-list
-						  (append error-list
-								  (list (cons test-msg error-msg))))))
-				 (run-single-test
-				  (lambda (test)
-					(letrec ((test-proc (car test))
-							 (test-msg (cdr test))
-							 (handle-string
-							  (lambda (str)
-								(display "failed. ") (newline) (flush-output)
-								(add-error test-msg str)))
-							 (handle-exn
-							  (lambda (e)
-								(display "failed. ") (newline) (flush-output)
-								(add-error test-msg (exn-message e)))))
-					  (with-handlers ((string? handle-string)
-									  (exn? handle-exn))
-							(display test-msg) (display "... ") (flush-output)
-							(test-proc)
-							(display "ok. ") (newline) (flush-output)))))
-				 (run-all-tests
-				  (lambda () (for-each run-single-test test-list))))
+		(let* ((error-list '())
+               (elapsed-time #f)
+               (add-error
+                (lambda (test-msg error-msg)
+                  (set! error-list
+                        (append error-list
+                                (list (cons test-msg error-msg))))))
+               (run-single-test
+                (lambda (test)
+                  (let* ((test-proc (car test))
+                         (test-msg (cdr test))
+                         (handle-string
+                          (lambda (str)
+                            (display "failed. ") (newline) (flush-output)
+                            (add-error test-msg str)))
+                         (handle-exn
+                          (lambda (e)
+                            (display "failed. ") (newline) (flush-output)
+                            (add-error test-msg (exn-message e)))))
+                    (with-handlers ((string? handle-string)
+                                    (exn? handle-exn))
+                      (display test-msg) (display "... ") (flush-output)
+                      (test-proc)
+                      (display "ok. ") (newline) (flush-output)))))
+               (run-all-tests
+                (lambda () (for-each run-single-test test-list))))
 		  (let-values (((a b c d)
 						(time-apply run-all-tests '())))
 					  (set! elapsed-time c))

@@ -29,9 +29,9 @@ class Solver1DTest < RUNIT::TestCase
      QuantLib::Bisection, 
      QuantLib::FalsePosition, 
      QuantLib::Ridder,
-     QuantLib::Secant].each { |factory|
+     QuantLib::Secant].each do |factory|
       solver = factory.new
-      [1.0e-4, 1.0e-6, 1.0e-8].each { |accuracy|
+      [1.0e-4, 1.0e-6, 1.0e-8].each do |accuracy|
         root = solver.solve(accuracy,1.5,0.1) { |x| x*x-1.0 }
         unless (root-1.0).abs <= accuracy
           assert_fail(<<-MESSAGE
@@ -59,8 +59,8 @@ class Solver1DTest < RUNIT::TestCase
                       MESSAGE
                       )
         end
-      }
-    }
+      end
+    end
   end
 end
 

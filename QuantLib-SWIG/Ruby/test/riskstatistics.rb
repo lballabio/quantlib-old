@@ -33,8 +33,8 @@ class RiskStatisticsTest < RUNIT::TestCase
   end
   def test
     s = QuantLib::RiskStatistics.new
-    [-100.0, 0.0, 100.0].each { |average|
-    [0.1, 1.0, 10].each       { |sigma|
+    [-100.0, 0.0, 100.0].each do |average|
+    [0.1, 1.0, 10].each       do |sigma|
         
         n = 25000
         numberOfSigma = 15
@@ -243,8 +243,8 @@ class RiskStatisticsTest < RUNIT::TestCase
         end
 
         s.reset!
-      }
-    }
+      end
+    end
   end
 end
 

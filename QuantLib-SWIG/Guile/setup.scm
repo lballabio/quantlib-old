@@ -23,8 +23,8 @@
   (format #t "    wrap             generate wrappers from SWIG interfaces\n")
   (format #t "    build            build QuantLib-MzScheme\n")
   (format #t "    install          install QuantLib-MzScheme\n")
-  (format #t "    sdist            create source distribution\n")
-  (format #t "    bdist            create binary distribution\n")
+  ;(format #t "    sdist            create source distribution\n")
+  ;(format #t "    bdist            create binary distribution\n")
   (exit))
 
 
@@ -49,27 +49,41 @@
         "daycounters.i"
         "distributions.i"
         "functions.i"
-        "instruments.i"
         "history.i"
+        "indexes.i"
+        "instruments.i"
+        "interpolation.i"
         "marketelements.i"
+        "matrix.i"
         "null.i"
         "observer.i"
+        "operators.i"
+        "options.i"
         "quantlib.i"
         "ql.i"
         "qlarray.i"
         "randomnumbers.i"
         "riskstatistics.i"
+        "segmentintegral.i"
         "solvers1d.i"
+        "statistics.i"
+        "termstructures.i"
         "types.i"
         "vectors.i"))
 (define test-files
-  (list "dates.scm"
+  (list "date.scm"
         "daycounters.scm"
         "distributions.scm"
+        "europeanoption.scm"
         "instruments.scm"
         "marketelements.scm"
+        "operators.scm"
         "riskstatistics.scm"
+        "segmentintegral.scm"
         "solvers1d.scm"
+        "statistics.scm"
+        "termstructures.scm"
+        "unittest.scm"
         "quantlib-test-suite.scm"))
 
 ; commands
@@ -125,10 +139,6 @@
                                                "/"
                                                file))))
               '("QuantLib.scm" "QuantLibc.so"))))
-; 	Info.each { |file| File.install "./#{file}",docDir+"/#{file}",nil,true }
-; 	Interfaces.each { |file| File.install "../SWIG/"+file,swigDir+"/#{file}",nil,true }
-; 	Tests.each { |file| File.install "./test/"+file,testDir+"/#{file}",nil,true }
-; }
 
 
 ; SDist = Command.new {

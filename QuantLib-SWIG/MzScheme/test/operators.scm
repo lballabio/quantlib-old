@@ -41,15 +41,15 @@
                      (cons (- (car l) (Array-ref a i)) acc))))
     (reverse (diff-iter f1 f2 0 '())))
 
-  (letrec ((average 0.0)
-           (sigma 1.0)
-           (normal-dist    (new-normaldistribution average sigma))
-           (cumul-dist     (new-cumulativenormaldistribution average sigma)))
-      (letrec ((N 10001)
-               (xmin (- average (* 4.0 sigma)))
-               (xmax (+ average (* 4.0 sigma)))
-               (h (grid-step xmin xmax N))
-               (x (grid xmin xmax N)))
+  (let* ((average 0.0)
+         (sigma 1.0)
+         (normal-dist    (new-normaldistribution average sigma))
+         (cumul-dist     (new-cumulativenormaldistribution average sigma)))
+      (let* ((N 10001)
+             (xmin (- average (* 4.0 sigma)))
+             (xmax (+ average (* 4.0 sigma)))
+             (h (grid-step xmin xmax N))
+             (x (grid xmin xmax N)))
 
         (define (normal x)
           (normaldistribution-call normal-dist x))
@@ -62,21 +62,19 @@
               (y-int (map cumulative x))
               (y-der (map normal-derivative x)))
           
-          (let ((D0 (new-D0 N h))
-                (D+D- (new-D+D- N h)))
-            (let ((y-temp (TridiagonalOperator-applyTo
-                           D0 (list->vector y-int)))
-                  (yd-temp (TridiagonalOperator-applyTo 
-                            D+D- (list->vector y-int))))
+          (deleting-let ((D0 (new-D0 N h) delete-TridiagonalOperator)
+                         (D+D- (new-D+D- N h) delete-TridiagonalOperator))
+            (deleting-let ((y-temp (TridiagonalOperator-applyTo
+                                    D0 (list->vector y-int))
+                                   delete-Array)
+                           (yd-temp (TridiagonalOperator-applyTo 
+                                     D+D- (list->vector y-int))
+                                    delete-Array))
 
               (check-difference y y-temp h 1.0e-6
                                 "FD 1st derivative of cum(x)"
                                 "analytic Gaussian")
               (check-difference y-der yd-temp h 1.0e-4
                                 "FD 2nd derivative of cum(x)"
-                                "identity")
-              (delete-Array y-temp)
-              (delete-Array yd-temp))
-            (delete-TridiagonalOperator D0)
-            (delete-TridiagonalOperator D+D-))))))
+                                "identity")))))))
 

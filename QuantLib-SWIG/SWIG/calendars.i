@@ -117,6 +117,8 @@ using QuantLib::Calendars::Sydney;
 %}
 #endif
 class Calendar {
+  private:
+    Calendar();
   public:
     // constructor redefined below as string-based factory
     bool isBusinessDay(const Date& d);
@@ -128,7 +130,7 @@ class Calendar {
     Date advance(const Date& d, const Period& period,
                  RollingConvention convention = QuantLib::Following);
 };
-
+ReturnByValue(Calendar);
 
 %extend Calendar {
     Calendar(const std::string& name) {
