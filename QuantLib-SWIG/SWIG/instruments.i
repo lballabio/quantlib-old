@@ -72,6 +72,15 @@ IsObservable(Handle<Instrument>);
 }
 
 
+// pricing engine
+
+%{
+using QuantLib::PricingEngine;
+%}
+
+%template(PricingEngine) Handle<PricingEngine>;
+
+
 // actual instruments
 
 %{

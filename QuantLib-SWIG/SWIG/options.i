@@ -134,14 +134,56 @@ std::string optionTypeToString(Option::Type t) {
 
 MapToString(OptionType,optionTypeFromString,optionTypeToString);
 
-
-// option pricing engines
+// payoffs
 
 %{
-using QuantLib::PricingEngine;
+using QuantLib::Payoff;
 %}
 
-%template(PricingEngine) Handle<PricingEngine>;
+%ignore Payoff;
+class Payoff {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename(call) operator();
+    #endif
+  public:
+    double operator()(double price) const;
+};
+
+%template(Payoff) Handle<Payoff>;
+
+
+%{
+using QuantLib::PlainVanillaPayoff;
+typedef Handle<Payoff> PlainVanillaPayoffHandle;
+%}
+
+%rename(PlainVanillaPayoff) PlainVanillaPayoffHandle;
+class PlainVanillaPayoffHandle : public Handle<Payoff> {
+  public:
+    %extend {
+        PlainVanillaPayoffHandle(OptionType type,
+                                 double strike) {
+            return new PlainVanillaPayoffHandle(
+                                        new PlainVanillaPayoff(type, strike));
+        }
+        OptionType type() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<PlainVanillaPayoff>(*self)
+                ->optionType();
+            %#else
+            return Handle<PlainVanillaPayoff>(*self)->optionType();
+            %#endif
+        }
+        double strike() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<PlainVanillaPayoff>(*self)
+                ->strike();
+            %#else
+            return Handle<PlainVanillaPayoff>(*self)->strike();
+            %#endif
+        }
+    }
+};
 
 
 // plain options and engines
