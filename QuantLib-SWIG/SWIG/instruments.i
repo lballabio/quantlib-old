@@ -41,15 +41,17 @@ using QuantLib::Instrument;
 %ignore Instrument;
 class Instrument {
     #if defined(SWIGRUBY)
-    %rename("isExpired?")   isExpired;
-    %rename("recalculate!") recalculate;
-    %rename("freeze!")      freeze;
-    %rename("unfreeze!")    unfreeze;
+    %rename("isExpired?")     isExpired;
+    %rename("pricingEngine=") setPricingEngine;
+    %rename("recalculate!")   recalculate;
+    %rename("freeze!")        freeze;
+    %rename("unfreeze!")      unfreeze;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("expired?")     isExpired;
-    %rename("recalculate!") recalculate;
-    %rename("freeze!")      freeze;
-    %rename("unfreeze!")    unfreeze;
+    %rename("expired?")            isExpired;
+    %rename("pricing-engine-set!") setPricingEngine;
+    %rename("recalculate!")        recalculate;
+    %rename("freeze!")             freeze;
+    %rename("unfreeze!")           unfreeze;
     #endif
   public:
     double NPV() const;

@@ -30,10 +30,12 @@ using QuantLib::StochasticProcess;
 class StochasticProcess {};
 
 %template(StochasticProcess) boost::shared_ptr<StochasticProcess>;
+#if defined(SWIGPYTHON)
 // alias
 %pythoncode %{
 DiffusionProcess = StochasticProcess
 %}
+#endif
 
 %{
 using QuantLib::BlackScholesProcess;
