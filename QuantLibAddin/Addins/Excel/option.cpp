@@ -14,13 +14,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include "QuantLibAddin/interface.hpp"
+#include "QuantLibAddin/qladdin.hpp"
 #include "utilities.hpp"
 #include <string>
 #include <sstream>
-using std::ostringstream;
-using std::string;
+
 using namespace ObjHandler;
+using namespace QuantLibAddin;
 
 LPXLOPER qlBlackscholes(
 		double *dividendYield,

@@ -14,15 +14,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <windows.h>
-#include "xlcall.h"
-#include <string>
+#ifndef qladdin_h
+#define qladdin_h
 
-void setXLOPERString(XLOPER &xStr,
-                     const char *s);
-void anyToXLOPER(const ObjHandler::any_ptr &any,
-                 XLOPER &xOp);
-std::string getCaller();
-void setValues(LPXLOPER xArray,
-			   ObjHandler::Properties properties,
-               const std::string &handle);
+#include <QuantLibAddin/C/defines.h>
+#include <QuantLibAddin/C/varies.h>
+#include <QuantLibAddin/C/utilities.h>
+#include <QuantLibAddin/C/options.h>
+
+#endif
+

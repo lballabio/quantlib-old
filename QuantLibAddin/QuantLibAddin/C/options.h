@@ -14,38 +14,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef interface_h
-#define interface_h
-
-#define SUCCESS 0
-#define FAIL 1
-
-// utilities - to be moved to separate file
-
-// from http://www.kuro5hin.org/story/2002/5/1/142321/9513
-
-typedef enum { INT, LONG, DOUBLE, CHARP } Type;
-
-typedef struct {
-	union {
-		int AsInt;
-		long AsLong;
-		double AsDouble;
-//		char* AsCharP;
-		char AsCharP[100];	// FIXME to be allocated on stack
-	};
-	Type type;
-	char Label[100];		// FIXME to be allocated on stack
-} Varies;
-
-typedef struct {
-	int count;
-	Varies *varies;
-} VariesList;
-
-const char *variesToString(const Varies *v);
-
-// options
+#ifndef options_h
+#define options_h
 
 int QL_BLACKSCHOLES_C(
 	const char *handleStochastic, 
@@ -67,24 +37,10 @@ int QL_OPTION_C(
 	const long settlementDate,
 	VariesList *result);
 
-//Properties QL_OPTION_SETENGINE(
-//	const string &handleOption, 
-//	const string &engineName,
-//	const long &timeSteps);
-
-// utilities
-
-const char *QL_LOGFILE_C(
-	const char *logFileName);
-
-void QL_LOGMESSAGE_C(
-	const char *msg);
-
-//string QL_ANY2STRING(
-//	const ObjHandler::any_ptr &a);
-
-//Properties QL_QUERY(
-//	const string &handle);
+int QL_OPTION_SETENGINE_C(
+	const char *handleOption, 
+	const char *engineName,
+	const long timeSteps,
+	VariesList *result);
 
 #endif
-

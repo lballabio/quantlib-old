@@ -14,11 +14,12 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <QuantLibAddin/interface.hpp>
+#include <QuantLibAddin/qladdin.hpp>
 #include <Addins/Calc/qladdin.hpp>
 #include <Addins/Calc/utilities.hpp>
 
 using namespace ObjHandler;
+using namespace QuantLibAddin;
 
 // FIXME these in QuantLibAddin header file that we can't see from here
 #define BINOMIAL_JARROW_RUDD            "BINOMIAL JARROW-RUDD"

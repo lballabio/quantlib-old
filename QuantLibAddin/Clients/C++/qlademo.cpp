@@ -19,11 +19,12 @@
 #pragma warning(disable: 4503)
 #endif
 
-#include <QuantLibAddin/interface.hpp>
+#include <QuantLibAddin/qladdin.hpp>
 #include <iostream>
 
 using namespace std;
 using namespace ObjHandler;
+using namespace QuantLibAddin;
 
 int main() {
 	try {
@@ -70,7 +71,7 @@ int main() {
 
 /*
 	low-level interrogation no longer supported in standard #includes -
-	will still be possible with additional #includes/links
+	will still be possible with additional #includes
 
 		cout << endl << "Low-level interrogation: NPV of underlying option object" << endl;
 		boost::shared_ptr<ObjectOption> objectOption = 

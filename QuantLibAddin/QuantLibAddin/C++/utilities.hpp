@@ -1,4 +1,3 @@
-
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -15,28 +14,25 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef objectstochastic_h
-#define objectstochastic_h
+#ifndef utilities_hpp
+#define utilities_hpp
 
 #include <ObjectHandler/objecthandler.hpp>
-#include <ql/quantlib.hpp>
 
-using namespace QuantLib;
-using namespace ObjHandler;
+namespace QuantLibAddin {
 
-class ObjectStochastic : public Object {
-public:
-	ObjectStochastic(
-        const Spread &dividendYield,
-		const Rate &riskFreeRate,
-		const Volatility &volatility,
-		const Real &underlying,
-		const Date &todaysDate,
-		const Date &settlementDate);
-	~ObjectStochastic();
-	virtual boost::shared_ptr<void> getReference() const;
-private:
-    boost::shared_ptr<BlackScholesProcess> stochasticProcess_;
-};
+	std::string QL_LOGFILE(
+		const std::string &logFileName);
+
+	void QL_LOGMESSAGE(
+		const std::string &msg);
+
+	std::string QL_ANY2STRING(
+		const ObjHandler::any_ptr &a);
+
+	ObjHandler::Properties QL_QUERY(
+		const std::string &handle);
+
+}
 
 #endif

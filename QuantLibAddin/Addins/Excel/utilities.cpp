@@ -14,13 +14,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include "QuantLibAddin/interface.hpp"
+#include "QuantLibAddin/qladdin.hpp"
 #include "utilities.hpp"
 #include "framewrk.hpp"
 #include <exception>
 
-using std::string;
 using namespace ObjHandler;
+using namespace QuantLibAddin;
 
 void anyToXLOPER(const any_ptr &any, XLOPER &xOp) {
 	if (any->type() == typeid(int)) {

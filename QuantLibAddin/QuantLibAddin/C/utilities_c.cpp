@@ -14,36 +14,19 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include "interface.hpp"
-#include <ObjectHandler/utilities.hpp>
-#include <ObjectHandler/exception.hpp>
-#include <ObjectHandler/objecthandler.hpp>
+#include <ObjectHandler/propertyvector.hpp>
+extern "C" {
+#include <QuantLibAddin/C/utilities.h>
+}
+#include <QuantLibAddin/qladdin.hpp>
 
-using namespace ObjHandler;
+using namespace QuantLibAddin;
 
-string QL_LOGFILE(
-		const string &logFileName) {
-	if (setLogFile(logFileName))
-		return logFileName;
-	else
-		return "logging disabled";
+const char *QL_LOGFILE_C(const char *logFileName) {
+	std::string ret = QL_LOGFILE(logFileName);
+	return ret.c_str();
 }
 
-void QL_LOGMESSAGE(
-		const string &msg) {
-	logMessage(msg);
-}
-
-string QL_ANY2STRING(
-		const any_ptr &a) {
-	return AnyToString(a);
-}
-
-Properties QL_QUERY(
-		const string &handle) {
-	boost::shared_ptr<Object> object =
-            ObjectHandler::instance().retrieveObject(handle);
-	if (!object)
-            throw Exception("error retrieving object " + handle);
-	return object->getProperties();
+void QL_LOGMESSAGE_C(const char *msg) {
+	QL_LOGMESSAGE(msg);
 }

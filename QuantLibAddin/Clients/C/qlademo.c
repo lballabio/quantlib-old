@@ -14,7 +14,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <QuantLibAddin/interface.h>
+#include <QuantLibAddin/qladdin.h>
 #include <stdio.h>
 
 int main() {
@@ -27,8 +27,8 @@ int main() {
 	long exerciseDate = 36297; 		// (17, May, 1999);
 	long settlementDate = 35932; 	// (17, May, 1998);
 	long todaysDate = 35930; 		// (15, May, 1998);
-	VariesList vbs;						// attributes of black scholes object
-	VariesList vo;						// attributes of option object
+	VariesList vbs;					// attributes of black scholes object
+	VariesList vo;					// attributes of option object
 	int i;
 
 	printf("hi\n");
@@ -48,12 +48,26 @@ int main() {
 		goto fail;
 	}
 
+	printf("\nhigh-level interrogation - after QL_OPTION_C\n");
 	for (i=0; i<vo.count; i++)
 		printf("field = %s, value = %s\n", vo.varies[i].Label, variesToString(&vo.varies[i]));
 
+	if (QL_OPTION_SETENGINE_C("my_option", "Additive Equiprobabilities", 
+		801, &vo) != SUCCESS) {
+		printf("Error on call to QL_OPTION_SETENGINE_C\n");
+		goto fail;
+	}
+
+	printf("\nhigh-level interrogation - after QL_OPTION_SETENGINE_C\n");
+	for (i=0; i<vo.count; i++)
+		printf("field = %s, value = %s\n", vo.varies[i].Label, variesToString(&vo.varies[i]));
+
+	freeVariesList(&vbs);
+	freeVariesList(&vo);
+
 	QL_LOGMESSAGE_C("end example program");
 
-	printf("bye\n");
+	printf("\nbye\n");
 
 	return 0;
 

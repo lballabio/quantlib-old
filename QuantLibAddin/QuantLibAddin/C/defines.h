@@ -14,15 +14,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <windows.h>
-#include "xlcall.h"
-#include <string>
+#ifndef defines_h
+#define defines_h
 
-void setXLOPERString(XLOPER &xStr,
-                     const char *s);
-void anyToXLOPER(const ObjHandler::any_ptr &any,
-                 XLOPER &xOp);
-std::string getCaller();
-void setValues(LPXLOPER xArray,
-			   ObjHandler::Properties properties,
-               const std::string &handle);
+#define SUCCESS 0
+#define FAIL 1
+
+#endif
+

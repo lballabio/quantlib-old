@@ -14,11 +14,12 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <QuantLibAddin/interface.hpp>
+#include <QuantLibAddin/qladdin.hpp>
 #include <Addins/Calc/qladdin.hpp>
 #include <Addins/Calc/utilities.hpp>
 
 using namespace ObjHandler;
+using namespace QuantLibAddin;
 
 SEQSEQ(ANY) SAL_CALL QLAddin::qlQuery(
 			const STRING& handleObject) THROWDEF_RTE_IAE {

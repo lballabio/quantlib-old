@@ -14,11 +14,12 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#include <QuantLibAddin/qladdin.hpp>
 #include <Addins/Calc/qladdin.hpp>
-#include <QuantLibAddin/interface.hpp>
 #include <Addins/Calc/utilities.hpp>
 
 using namespace ObjHandler;
+using namespace QuantLibAddin;
 
 // convert boost::any to Calc Any
 ANY anyToANY(const any_ptr &a) {

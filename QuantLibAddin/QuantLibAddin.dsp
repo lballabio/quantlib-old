@@ -45,7 +45,7 @@ RSC=rc.exe
 # PROP Intermediate_Dir "build\Release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
-# ADD CPP /nologo /MT /W3 /GR /GX /O2 /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "./" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD CPP /nologo /MT /W3 /GR /GX /O2 /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "./" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /FR /YX /FD /c
 # ADD BASE RSC /l 0x809 /d "NDEBUG"
 # ADD RSC /l 0x809 /d "NDEBUG"
 BSC32=bscmake.exe
@@ -180,57 +180,97 @@ LIB32=link.exe -lib
 # Name "QuantLibAddin - Win32 Release SingleThread"
 # Name "QuantLibAddin - Win32 Debug MTDLL"
 # Name "QuantLibAddin - Win32 Debug SingleThread"
-# Begin Group "Source Files"
+# Begin Group "C"
 
-# PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
+# PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\interface.cpp
+SOURCE=.\QuantLibAddin\C\defines.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objectoption.cpp
+SOURCE=.\QuantLibAddin\C\options.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objectstochastic.cpp
+SOURCE=.\QuantLibAddin\C\options_c.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\options.cpp
+SOURCE=.\QuantLibAddin\C\utilities.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\utilities.cpp
+SOURCE=.\QuantLibAddin\C\utilities_c.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\C\varies.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\C\varies.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\C\varies.hpp
 # End Source File
 # End Group
-# Begin Group "Header Files"
+# Begin Group "C++"
 
-# PROP Default_Filter "h;hpp;hxx;hm;inl"
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=".\QuantLibAddin\C++\options.cpp"
+# End Source File
+# Begin Source File
+
+SOURCE=".\QuantLibAddin\C++\options.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE=".\QuantLibAddin\C++\utilities.cpp"
+# End Source File
+# Begin Source File
+
+SOURCE=".\QuantLibAddin\C++\utilities.hpp"
+# End Source File
+# End Group
+# Begin Group "objects"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\objects\objectoption.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\objects\objectoption.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\objects\objectstochastic.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\objects\objectstochastic.hpp
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE=.\QuantLibAddin\autolink.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\interface.h
+SOURCE=.\QuantLibAddin\qladdin.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\interface.hpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\QuantLibAddin\objectoption.hpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\QuantLibAddin\objectstochastic.hpp
+SOURCE=.\QuantLibAddin\qladdin.hpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\QuantLibAddin\qladdindefines.hpp
 # End Source File
-# End Group
 # End Target
 # End Project

@@ -14,15 +14,19 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <windows.h>
-#include "xlcall.h"
-#include <string>
+#ifndef utilities_c_h
+#define utilities_c_h
 
-void setXLOPERString(XLOPER &xStr,
-                     const char *s);
-void anyToXLOPER(const ObjHandler::any_ptr &any,
-                 XLOPER &xOp);
-std::string getCaller();
-void setValues(LPXLOPER xArray,
-			   ObjHandler::Properties properties,
-               const std::string &handle);
+const char *QL_LOGFILE_C(
+	const char *logFileName);
+
+void QL_LOGMESSAGE_C(
+	const char *msg);
+
+//string QL_ANY2STRING(
+//	const ObjHandler::any_ptr &a);
+
+//Properties QL_QUERY(
+//	const string &handle);
+
+#endif
