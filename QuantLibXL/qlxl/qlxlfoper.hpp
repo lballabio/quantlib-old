@@ -36,9 +36,9 @@ public:
     QuantLib::Math::Matrix AsMatrix() const;
     QuantLib::Option::Type AsOptionType() const;
     QuantLib::RelinkableHandle<QuantLib::BlackVolTermStructure> AsBlackVolTermStructure(
-        const QuantLib::Date& referenceDate = QuantLib::Date::minDate()) const;
+        const QuantLib::Date& referenceDate) const;
     QuantLib::RelinkableHandle<QuantLib::TermStructure> AsTermStructure(
-        const QuantLib::Date& referenceDate = QuantLib::Date::minDate()) const;
+        const QuantLib::Date& referenceDate) const;
 private:
     XlfOper xlfOper_;
 };

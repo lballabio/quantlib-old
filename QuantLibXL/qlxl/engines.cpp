@@ -29,19 +29,7 @@ extern "C"
 {
 
     using namespace QuantLib;
-    using QuantLib::PricingEngines::EuropeanAnalyticalEngine;
-
-    using QuantLib::PricingEngines::VanillaOptionArguments;
-    using QuantLib::PricingEngines::VanillaOptionResults;
-
-    using QuantLib::PricingEngines::QuantoOptionArguments;
-    using QuantLib::PricingEngines::QuantoOptionResults;
-    using QuantLib::PricingEngines::QuantoVanillaAnalyticEngine;
-
-    using QuantLib::PricingEngines::ForwardOptionArguments;
-    using QuantLib::PricingEngines::ForwardVanillaAnalyticEngine;
-
-    using QuantLib::PricingEngines::ForwardPerformanceVanillaAnalyticEngine;
+    using namespace QuantLib::PricingEngines;
 
     LPXLOPER EXCEL_EXPORT xlQuantoEuropeanOption(
                         XlfOper xltype,
@@ -49,6 +37,7 @@ extern "C"
                         XlfOper xlstrike,
                         XlfOper xldividendYield,
                         XlfOper xlriskFree,
+                        XlfOper xlvalueDate,
                         XlfOper xlmaturityDate,
                         XlfOper xlvolatility,
                         XlfOper xlforeignRiskFreeRate,
@@ -59,25 +48,30 @@ extern "C"
 
         Handle<EuropeanAnalyticalEngine> baseEngine(new
             EuropeanAnalyticalEngine);
-        Handle<QuantoVanillaAnalyticEngine> quantoEngine(new
-            QuantoVanillaAnalyticEngine(baseEngine));
+
+        Handle<QuantoEngine<VanillaOptionArguments,
+                            VanillaOptionResults> >
+            quantoEngine(new QuantoEngine<VanillaOptionArguments,
+                                          VanillaOptionResults>(baseEngine));
 
         PricingEngines::QuantoOptionArguments<VanillaOptionArguments>* arguments =
             dynamic_cast
             <QuantoOptionArguments<VanillaOptionArguments>*>(
             quantoEngine->arguments());
 
+        Date valueDate = QlXlfOper(xlvalueDate).AsDate();
+
         arguments->type = QlXlfOper(xltype).AsOptionType();
         arguments->underlying = xlunderlying.AsDouble();
         arguments->strike = xlstrike.AsDouble();
-        arguments->dividendTS = QlXlfOper(xldividendYield).AsTermStructure();
-        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure();
+        arguments->dividendTS = QlXlfOper(xldividendYield).AsTermStructure(valueDate);
+        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(valueDate);
         arguments->exercise = EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate());
-        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure();
+        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(valueDate);
         arguments->foreignRiskFreeTS =
-            QlXlfOper(xlforeignRiskFreeRate).AsTermStructure();
+            QlXlfOper(xlforeignRiskFreeRate).AsTermStructure(valueDate);
         arguments->exchRateVolTS =
-            QlXlfOper(xlexchangeVolatility).AsBlackVolTermStructure();
+            QlXlfOper(xlexchangeVolatility).AsBlackVolTermStructure(valueDate);
         arguments->correlation = xlcorrelation.AsDouble();
 
         arguments->validate();
@@ -112,6 +106,7 @@ extern "C"
                         XlfOper xlmoneyness,
                         XlfOper xldividendYield,
                         XlfOper xlriskFree,
+                        XlfOper xlvalueDate,
                         XlfOper xlresetDate,
                         XlfOper xlmaturityDate,
                         XlfOper xlvolatility)
@@ -120,25 +115,29 @@ extern "C"
 
         Handle<EuropeanAnalyticalEngine> baseEngine(new
             EuropeanAnalyticalEngine);
-        Handle<ForwardVanillaAnalyticEngine> forwardEngine(new
-            ForwardVanillaAnalyticEngine(baseEngine));
+        Handle<ForwardEngine<VanillaOptionArguments,
+                             VanillaOptionResults> >
+            forwardEngine(new ForwardEngine<VanillaOptionArguments,
+                                            VanillaOptionResults>(baseEngine));
 
         PricingEngines::ForwardOptionArguments<VanillaOptionArguments>*
             arguments = dynamic_cast
             <ForwardOptionArguments<VanillaOptionArguments>*>(
             forwardEngine->arguments());
 
+        Date valueDate = QlXlfOper(xlvalueDate).AsDate();
+
         arguments->type = QlXlfOper(xltype).AsOptionType();
         arguments->underlying = xlunderlying.AsDouble();
         // dummy strike
-        // ForwardOptionParameter shoul not include strike
+        // ForwardOptionParameter should not include strike
         arguments->strike = arguments->underlying;
         arguments->moneyness = xlmoneyness.AsDouble();
-        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure();
-        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure();
+        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(valueDate);
+        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(valueDate);
         arguments->resetDate = QlXlfOper(xlresetDate).AsDate();
         arguments->exercise = EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate());
-        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure();
+        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(valueDate);
 
         arguments->validate();
         forwardEngine->calculate();
@@ -167,6 +166,7 @@ extern "C"
                         XlfOper xlmoneyness,
                         XlfOper xldividendYield,
                         XlfOper xlriskFree,
+                        XlfOper xlvalueDate,
                         XlfOper xlresetDate,
                         XlfOper xlmaturityDate,
                         XlfOper xlvolatility)
@@ -175,13 +175,20 @@ extern "C"
 
         Handle<EuropeanAnalyticalEngine> baseEngine(new
             EuropeanAnalyticalEngine);
-        Handle<ForwardPerformanceVanillaAnalyticEngine> performanceEngine(new
-            ForwardPerformanceVanillaAnalyticEngine(baseEngine));
+
+        Handle<ForwardPerformanceEngine<VanillaOptionArguments,
+                                        VanillaOptionResults> >
+            forwardPerformanceEngine(
+                new ForwardPerformanceEngine<VanillaOptionArguments,
+                                             VanillaOptionResults>(
+                    baseEngine));
 
         PricingEngines::ForwardOptionArguments<VanillaOptionArguments>*
             arguments = dynamic_cast
             <ForwardOptionArguments<VanillaOptionArguments>*>(
-            performanceEngine->arguments());
+            forwardPerformanceEngine->arguments());
+
+        Date valueDate = QlXlfOper(xlvalueDate).AsDate();
 
         arguments->type = QlXlfOper(xltype).AsOptionType();
         // dummy underlying
@@ -191,18 +198,18 @@ extern "C"
         // ForwardPerformanceOptionParameter should not include strike
         arguments->strike = arguments->underlying;
         arguments->moneyness = xlmoneyness.AsDouble();
-        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure();
-        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure();
+        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(valueDate);
+        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(valueDate);
         arguments->resetDate = QlXlfOper(xlresetDate).AsDate();
         arguments->exercise = EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate());
-        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure();
+        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(valueDate);
 
         arguments->validate();
-        performanceEngine->calculate();
+        forwardPerformanceEngine->calculate();
 
         const VanillaOptionResults* vResults =
             dynamic_cast<const VanillaOptionResults*>(
-                performanceEngine->results());
+                forwardPerformanceEngine->results());
         double results[7];
         results[0] = vResults->value;
         results[1] = vResults->delta;

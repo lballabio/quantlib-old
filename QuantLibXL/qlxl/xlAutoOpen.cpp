@@ -62,6 +62,8 @@ extern "C" {
             XlfArgDesc refDate("referenceDate", "reference date");
             XlfArgDesc valueDate("valueDate", "is the value (settlement) date");
             XlfArgDesc evalDate("evalDate", "evaluation date");
+            XlfArgDesc expiryDate("expiryDate", "expiry date");
+            XlfArgDesc resetDate("resetDate", "strike-setting date");
             XlfArgDesc dates("dates", "dates");
 
 
@@ -87,8 +89,6 @@ extern "C" {
             XlfArgDesc dividendYield("dividend yield", "is the dividend yield");
             XlfArgDesc riskFreeRate("risk-free rate", "is the risk free rate");
             XlfArgDesc foreignRiskFreeRate("foreign risk-free rate", "is the risk free rate in the foreign currency");
-            XlfArgDesc maturity("maturity", "is the option's maturity measured in years");
-            XlfArgDesc resetTime("reset time", "is the strike reset time in years");
             XlfArgDesc blackVolSurface("blackVolSurface", "Black (market) volatility surface");
             XlfArgDesc volatility("volatility", "is the underlying's volatility");
             XlfArgDesc exchangeVolatility("exchangeVolatility", "is the volatility of the FX rate");
@@ -160,57 +160,57 @@ extern "C" {
             // Registers Black-Scholes
             XlfFuncDesc europeanOption("xlEuropeanOption","qlEuropeanOption",
                 "Black Scholes formula for european option","QuantLibXL Finance");
-            europeanOption.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility);
+            europeanOption.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+valueDate+expiryDate+volatility);
             europeanOption.Register();
 
             XlfFuncDesc europeanOption_fd("xlEuropeanOption_FD","qlEuropeanOption_FD",
                 "european option computed with finite differences","QuantLibXL Finance");
-            europeanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility+timeSteps+gridPoints);
+            europeanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+valueDate+expiryDate+volatility+timeSteps+gridPoints);
             europeanOption_fd.Register();
 
             XlfFuncDesc europeanOption_mc("xlEuropeanOption_MC","qlEuropeanOption_MC",
                 "european option computed with Monte Carlo simulation","QuantLibXL Finance");
-            europeanOption_mc.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility+anthiteticVariance+samples);
+            europeanOption_mc.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+valueDate+expiryDate+volatility+anthiteticVariance+samples);
             europeanOption_mc.Register();
 
             XlfFuncDesc cliquetOption("xlCliquetOption","qlCliquetOption",
                 "european cliquet option","QuantLibXL Finance");
-            cliquetOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+maturity+volatility);
+            cliquetOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+valueDate+expiryDate+volatility);
             cliquetOption.Register();
 
             XlfFuncDesc cliquetOption_mc("xlCliquetOption_MC","qlCliquetOption_MC",
                 "european cliquet option computed with Monte Carlo simulation","QuantLibXL Finance");
-            cliquetOption_mc.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+maturity+volatility+anthiteticVariance+samples);
+            cliquetOption_mc.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+valueDate+expiryDate+volatility+anthiteticVariance+samples);
             cliquetOption_mc.Register();
 
             XlfFuncDesc performanceOption("xlPerformanceOption","qlPerformanceOption",
                 "european performance option","QuantLibXL Finance");
-            performanceOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+maturity+volatility);
+            performanceOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+valueDate+expiryDate+volatility);
             performanceOption.Register();
 
             XlfFuncDesc performanceOption_mc("xlPerformanceOption_MC","qlPerformanceOption_MC",
                 "european performance option computed with Monte Carlo simulation","QuantLibXL Finance");
-            performanceOption_mc.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+maturity+volatility+anthiteticVariance+samples);
+            performanceOption_mc.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+valueDate+expiryDate+volatility+anthiteticVariance+samples);
             performanceOption_mc.Register();
 
             XlfFuncDesc americanOption_fd("xlAmericanOption_FD","qlAmericanOption_FD",
                 "american option computed with finite differences","QuantLibXL Finance");
-            americanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility+timeSteps+gridPoints);
+            americanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+valueDate+expiryDate+volatility+timeSteps+gridPoints);
             americanOption_fd.Register();
 
             XlfFuncDesc quantoEuropeanOption("xlQuantoEuropeanOption","qlQuantoEuropeanOption",
                 "Quanto european option","QuantLibXL Finance");
-            quantoEuropeanOption.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility+foreignRiskFreeRate+exchangeVolatility+correlation);
+            quantoEuropeanOption.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+valueDate+expiryDate+volatility+foreignRiskFreeRate+exchangeVolatility+correlation);
             quantoEuropeanOption.Register();
 
             XlfFuncDesc forwardEuropeanOption("xlForwardEuropeanOption","qlForwardEuropeanOption",
                 "Forward european option","QuantLibXL Finance");
-            forwardEuropeanOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+resetTime+maturity+volatility);
+            forwardEuropeanOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+valueDate+resetDate+expiryDate+volatility);
             forwardEuropeanOption.Register();
 
             XlfFuncDesc performanceEuropeanOption("xlPerformanceEuropeanOption","qlPerformanceEuropeanOption",
                 "Performance european option","QuantLibXL Finance");
-            performanceEuropeanOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+resetTime+maturity+volatility);
+            performanceEuropeanOption.SetArguments(optionType+underlying+moneyness+dividendYield+valueDate+riskFreeRate+resetDate+expiryDate+volatility);
             performanceEuropeanOption.Register();
 
 

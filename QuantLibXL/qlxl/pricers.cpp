@@ -28,14 +28,7 @@ extern "C"
 {
 
     using namespace QuantLib;
-    using QuantLib::Pricers::EuropeanOption;
-    using QuantLib::Pricers::FdEuropean;
-    using QuantLib::Pricers::McEuropean;
-    using QuantLib::Pricers::CliquetOption;
-    using QuantLib::Pricers::McCliquetOption;
-    using QuantLib::Pricers::PerformanceOption;
-    using QuantLib::Pricers::McPerformanceOption;
-    using QuantLib::Pricers::FdAmericanOption;
+    using namespace QuantLib::Pricers;
 
         
     LPXLOPER EXCEL_EXPORT xlEuropeanOption(
@@ -44,7 +37,8 @@ extern "C"
                         XlfOper xlstrike,
                         XlfOper xldividendYield,
                         XlfOper xlriskFreeRate,
-                        XlfOper xlmaturity,
+                        XlfOper xlvalueDate,
+                        XlfOper xlmaturityDate,
                         XlfOper xlvolatility)
     {
         EXCEL_BEGIN;
@@ -54,7 +48,9 @@ extern "C"
         double strike        = xlstrike.AsDouble();
         double dividendYield = xldividendYield.AsDouble();
         double riskFreeRate  = xlriskFreeRate.AsDouble();
-        double maturity      = xlmaturity.AsDouble();
+        Date valueDate       = QlXlfOper(xlvalueDate).AsDate();
+        Date maturityDate    = QlXlfOper(xlmaturityDate).AsDate();
+        double maturity      = DayCounters::Actual365().yearFraction(valueDate, maturityDate);
         double volatility    = xlvolatility.AsDouble();
 
         EuropeanOption eur(type, underlying, strike, dividendYield,
@@ -81,7 +77,8 @@ extern "C"
                         XlfOper xlstrike,
                         XlfOper xldividendYield,
                         XlfOper xlriskFreeRate,
-                        XlfOper xlmaturity,
+                        XlfOper xlvalueDate,
+                        XlfOper xlmaturityDate,
                         XlfOper xlvolatility,
                         XlfOper xltimeSteps,
                         XlfOper xlgridPoints)
@@ -93,7 +90,9 @@ extern "C"
         double strike        = xlstrike.AsDouble();
         double dividendYield = xldividendYield.AsDouble();
         double riskFreeRate  = xlriskFreeRate.AsDouble();
-        double maturity      = xlmaturity.AsDouble();
+        Date valueDate       = QlXlfOper(xlvalueDate).AsDate();
+        Date maturityDate    = QlXlfOper(xlmaturityDate).AsDate();
+        double maturity      = DayCounters::Actual365().yearFraction(valueDate, maturityDate);
         double volatility    = xlvolatility.AsDouble();
         Size timeSteps       = xltimeSteps.AsDouble();
         Size gridPoints      = xlgridPoints.AsDouble();
@@ -122,7 +121,8 @@ extern "C"
                         XlfOper xlstrike,
                         XlfOper xldividendYield,
                         XlfOper xlriskFreeRate,
-                        XlfOper xlmaturity,
+                        XlfOper xlvalueDate,
+                        XlfOper xlmaturityDate,
                         XlfOper xlvolatility,
                         XlfOper xlantitheticVariance,
                         XlfOper xlsamples)
@@ -134,7 +134,9 @@ extern "C"
         double strike           = xlstrike.AsDouble();
         double dividendYield    = xldividendYield.AsDouble();
         double riskFreeRate     = xlriskFreeRate.AsDouble();
-        double maturity         = xlmaturity.AsDouble();
+        Date valueDate       = QlXlfOper(xlvalueDate).AsDate();
+        Date maturityDate    = QlXlfOper(xlmaturityDate).AsDate();
+        double maturity      = DayCounters::Actual365().yearFraction(valueDate, maturityDate);
         double volatility       = xlvolatility.AsDouble();
         bool antitheticVariance = xlantitheticVariance.AsBool();
         Size samples            = xlsamples.AsDouble();
@@ -302,7 +304,8 @@ extern "C"
                         XlfOper xlstrike,
                         XlfOper xldividendYield,
                         XlfOper xlriskFreeRate,
-                        XlfOper xlmaturity,
+                        XlfOper xlvalueDate,
+                        XlfOper xlmaturityDate,
                         XlfOper xlvolatility,
                         XlfOper xltimeSteps,
                         XlfOper xlgridPoints)
@@ -314,7 +317,9 @@ extern "C"
         double strike        = xlstrike.AsDouble();
         double dividendYield = xldividendYield.AsDouble();
         double riskFreeRate  = xlriskFreeRate.AsDouble();
-        double maturity      = xlmaturity.AsDouble();
+        Date valueDate       = QlXlfOper(xlvalueDate).AsDate();
+        Date maturityDate    = QlXlfOper(xlmaturityDate).AsDate();
+        double maturity      = DayCounters::Actual365().yearFraction(valueDate, maturityDate);
         double volatility    = xlvolatility.AsDouble();
         Size timeSteps       = xltimeSteps.AsDouble();
         Size gridPoints      = xlgridPoints.AsDouble();

@@ -26,11 +26,12 @@
 #include <qlxl/qlxlfoper.hpp>
 
 using namespace QuantLib;
-using QuantLib::DayCounter;
-using QuantLib::Date;
-using QuantLib::Math::Matrix;
-using QuantLib::Math::LinearInterpolation;
-using QuantLib::Math::BilinearInterpolation;
+using namespace QuantLib::Math;
+//using QuantLib::DayCounter;
+//using QuantLib::Date;
+//using QuantLib::Math::Matrix;
+//using QuantLib::Math::LinearInterpolation;
+//using QuantLib::Math::BilinearInterpolation;
 
 
 QlXlfOper::QlXlfOper(const XlfOper& xlfOper)
