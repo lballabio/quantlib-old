@@ -17,6 +17,7 @@
 
 #include <Addins/C/qladdin.h>
 #include <stdio.h>
+#include <malloc.h>
 
 int main() {
     double dividendYield = 0.00;
@@ -31,7 +32,9 @@ int main() {
     VariesList vbs;                  // attributes of black scholes object
     VariesList vo;                   // attributes of vanilla option object
     VariesList va;                   // attributes of asian option object
-    int i;
+    int i;                           // iterator
+    long fixingDatesCount;           // #/fixing dates
+    long *fixingDates;               // array of fixing dates
 
     printf("hi\n");
 
@@ -87,8 +90,8 @@ int main() {
             variesToString(&vo.varies[i]));
 
         // example that takes a vector as input
-    long fixingDatesCount = exerciseDate - todaysDate + 1;
-    long *fixingDates = (long *) malloc(sizeof(long) * fixingDatesCount);
+    fixingDatesCount = exerciseDate - todaysDate + 1;
+    fixingDates = (long *) malloc(sizeof(long) * fixingDatesCount);
     for (i = 0; i < fixingDatesCount; i++)
         fixingDates[i] = todaysDate + i;
     if (QL_OPTION_ASIAN_D(

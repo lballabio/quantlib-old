@@ -64,10 +64,10 @@ int main() {
             timeSteps);                     // time steps
     
         cout << endl << "High-level interrogation: after QL_OPTION_VANILLA" << endl;
-        Properties::const_iterator i;
-        for (i = opProperties.begin();
-            i != opProperties.end(); i++) {
-            ObjectProperty property = *i;
+        Properties::const_iterator it;
+        for (it = opProperties.begin();
+            it != opProperties.end(); it++) {
+            ObjectProperty property = *it;
             cout << "property = " << property.name() 
                 << "\tvalue = " << property() << endl;
         } 
@@ -78,9 +78,9 @@ int main() {
             801);
 
         cout << endl << "High-level interrogation: after QL_OPTION_SETENGINE" << endl;
-        for (i = opProperties.begin();
-            i != opProperties.end(); i++) {
-            ObjectProperty property = *i;
+        for (it = opProperties.begin();
+            it != opProperties.end(); it++) {
+            ObjectProperty property = *it;
             cout << "property = " << property.name() 
                 << "\tvalue = " << property() << endl;
         } 
@@ -115,9 +115,9 @@ int main() {
             timeSteps);                     // time steps
 
         cout << endl << "High-level interrogation: after QL_OPTION_ASIAN_D" << endl;
-        for (i = asProperties.begin();
-            i != asProperties.end(); i++) {
-            ObjectProperty property = *i;
+        for (it = asProperties.begin();
+            it != asProperties.end(); it++) {
+            ObjectProperty property = *it;
             cout << "property = " << property.name() 
                 << "\tvalue = " << property() << endl;
         } 

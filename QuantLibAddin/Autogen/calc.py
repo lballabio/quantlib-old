@@ -89,8 +89,8 @@ def generateConversions(paramList):
         if param[common.TENSOR] == common.VECTOR: 
             ret += 8 * ' ' + 'std::vector <' + param[common.TYPE] + \
                 '> ' + param[common.NAME] + \
-                'Vector = \n' + 12 * ' ' + \
-                'sequenceToVector(' + param[common.NAME] + ');\n'
+                'Vector = \n' + 12 * ' ' + param[common.TYPE] + \
+                'SequenceToVector(' + param[common.NAME] + ');\n'
     return ret
 
 def generateFuncSource(fileFunc, function, bufBody):

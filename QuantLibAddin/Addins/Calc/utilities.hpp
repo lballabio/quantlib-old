@@ -23,7 +23,6 @@ SEQSEQ( ANY ) getArray(ObjHandler::Properties properties,
                        STRING handle);
 std::string OUStringToString(const STRING& s1);
 ANY stringToANY(const std::string &s);
-template <typename T>
-std::vector < T > sequenceToVector(const SEQ(T)& s);
+std::vector < long > longSequenceToVector(const SEQ(long)& s);
 
 #endif

@@ -128,7 +128,7 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionAsianD(
         sal_Int32 timeSteps) THROWDEF_RTE_IAE {
     try {
         std::vector <long> fixingDatesVector = 
-            sequenceToVector(fixingDates);
+            longSequenceToVector(fixingDates);
         Properties properties = QL_OPTION_ASIAN_D(
             OUStringToString(handle),
             OUStringToString(handleStochastic),
