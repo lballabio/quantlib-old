@@ -34,10 +34,10 @@ class CompoundForwardPtr : public boost::shared_ptr<TermStructure> {
         CompoundForwardPtr(const Date& todaysDate,
                            const Date& settlementDate,
                            const std::vector<Date>& dates,
-                           const std::vector<double>& rates,
+                           const std::vector<Rate>& rates,
                            Calendar calendar,
                            RollingConvention roll,
-                           int compounding,
+                           Integer compounding,
                            const DayCounter& dayCounter = Actual365()) {
 	        return new CompoundForwardPtr(
                 new CompoundForward(todaysDate, settlementDate,

@@ -42,7 +42,7 @@ class Schedule {
   public:
     Schedule(const Calendar& calendar, 
              const Date& startDate, const Date& endDate,
-             int frequency, RollingConvention rollingConvention, 
+             Frequency frequency, RollingConvention rollingConvention, 
              bool isAdjusted, const Date& stubDate = Date(),
              bool startFromEnd = false, bool longFinal = false);
     Schedule(const std::vector<Date>&,
@@ -54,8 +54,8 @@ class Schedule {
     bool isRegular(Size i) const;
     %extend {
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-        Date __getitem__(int i) {
-            int size_ = static_cast<int>(self->size());
+        Date __getitem__(Integer i) {
+            Integer size_ = static_cast<Integer>(self->size());
             if (i>=0 && i<size_) {
                 return self->date(i);
             } else if (i<0 && -i<=size_) {

@@ -56,10 +56,10 @@ class TermStructure : public Extrapolator {
 	Rate forward(Time, Time, bool extrapolate = false);
 	Rate instantaneousForward(const Date&, bool extrapolate = false);
 	Rate instantaneousForward(Time, bool extrapolate = false);
-	Rate compoundForward(const Date&, int, bool extrapolate = false);
-	Rate compoundForward(Time, int, bool extrapolate = false);
-	Rate zeroCoupon(const Date&, int, bool extrapolate = false);
-	Rate zeroCoupon(Time, int, bool extrapolate = false);
+	Rate compoundForward(const Date&, Integer, bool extrapolate = false);
+	Rate compoundForward(Time, Integer, bool extrapolate = false);
+	Rate zeroCoupon(const Date&, Integer, bool extrapolate = false);
+	Rate zeroCoupon(Time, Integer, bool extrapolate = false);
 };
 
 %template(TermStructure) boost::shared_ptr<TermStructure>;
@@ -149,7 +149,7 @@ class FlatForwardPtr : public boost::shared_ptr<TermStructure> {
         }
         FlatForwardPtr(const Date& todaysDate, 
                        const Date& referenceDate, 
-                       double forward,
+                       Rate forward,
                        const DayCounter& dayCounter) {
             return new FlatForwardPtr(
                 new FlatForward(todaysDate,referenceDate,forward,dayCounter));

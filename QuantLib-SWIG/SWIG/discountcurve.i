@@ -34,7 +34,7 @@ class DiscountCurvePtr : public boost::shared_ptr<TermStructure> {
     %extend {
         DiscountCurvePtr(const Date& todaysDate, 
                          const std::vector<Date>& dates,
-                         const std::vector<double>& discounts,
+                         const std::vector<DiscountFactor>& discounts,
                          const DayCounter& dayCounter = Actual365()) {
             return new DiscountCurvePtr(
                 new DiscountCurve(todaysDate, dates, discounts, dayCounter));
@@ -52,7 +52,7 @@ class ExtendedDiscountCurvePtr : public DiscountCurvePtr {
     %extend {
         ExtendedDiscountCurvePtr(const Date& todaysDate, 
                                  const std::vector<Date>& dates,
-                                 const std::vector<double>& discounts,
+                                 const std::vector<DiscountFactor>& discounts,
                                  const Calendar& calendar,
                                  RollingConvention roll,
                                  const DayCounter& dayCounter=Actual365()) {

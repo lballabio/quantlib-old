@@ -54,7 +54,7 @@ class Instrument {
     %rename("unfreeze!")           unfreeze;
     #endif
   public:
-    double NPV() const;
+    Real NPV() const;
     bool isExpired() const;
     void setPricingEngine(const boost::shared_ptr<PricingEngine>&);
     void recalculate();

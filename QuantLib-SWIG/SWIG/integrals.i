@@ -32,22 +32,22 @@ using QuantLib::KronrodIntegral;
 %define INTEGRATION_METHODS
     %extend {
         #if defined(SWIGPYTHON)
-        double __call__(PyObject* pyFunction, double a, double b) {
+        Real __call__(PyObject* pyFunction, Real a, Real b) {
             UnaryFunction f(pyFunction);
             return (*self)(f, a, b);
         }
         #elif defined(SWIGRUBY)
-        double __call__(double a, double b) {
+        Real __call__(Real a, Real b) {
             UnaryFunction f;
             return (*self)(f, a, b);
         }
         #elif defined(SWIGMZSCHEME)
-        double calculate(Scheme_Object* mzFunction, double a, double b) {
+        Real calculate(Scheme_Object* mzFunction, Real a, Real b) {
             UnaryFunction f(mzFunction);
             return (*self)(f, a, b);
         }
         #elif defined(SWIGGUILE)
-        double calculate(SCM ghFunction, double a, double b) {
+        Real calculate(SCM ghFunction, Real a, Real b) {
             UnaryFunction f(ghFunction);
             return (*self)(f, a, b);
         }
@@ -64,21 +64,21 @@ class SegmentIntegral {
 
 class TrapezoidIntegral {
   public:
-    TrapezoidIntegral(double accuracy);
+    TrapezoidIntegral(Real accuracy);
     INTEGRATION_METHODS;
 };
 
 
 class SimpsonIntegral {
   public:
-    SimpsonIntegral(double accuracy);
+    SimpsonIntegral(Real accuracy);
     INTEGRATION_METHODS;
 };
 
 
 class KronrodIntegral {
   public:
-    KronrodIntegral(double accuracy);
+    KronrodIntegral(Real accuracy);
     INTEGRATION_METHODS;
 };
 

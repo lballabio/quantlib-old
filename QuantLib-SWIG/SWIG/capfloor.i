@@ -22,6 +22,7 @@
 %include termstructures.i
 %include cashflows.i
 %include blackmodel.i
+%include types.i
 
 %{
 using QuantLib::Cap;
@@ -37,7 +38,7 @@ class CapPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
         CapPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
-               const std::vector<double>& capRates,
+               const std::vector<Rate>& capRates,
                const RelinkableHandle<TermStructure>& h,
                const boost::shared_ptr<PricingEngine>& engine) {
             return new CapPtr(new Cap(leg,capRates,h,engine));
@@ -50,7 +51,7 @@ class FloorPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
         FloorPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
-                 const std::vector<double>& floorRates,
+                 const std::vector<Rate>& floorRates,
                  const RelinkableHandle<TermStructure>& h,
                  const boost::shared_ptr<PricingEngine>& engine) {
             return new FloorPtr(new Floor(leg,floorRates,h,engine));
@@ -63,8 +64,8 @@ class CollarPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
         CollarPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
-                  const std::vector<double>& capRates,
-                  const std::vector<double>& floorRates,
+                  const std::vector<Rate>& capRates,
+                  const std::vector<Rate>& floorRates,
                   const RelinkableHandle<TermStructure>& h,
                   const boost::shared_ptr<PricingEngine>& engine) {
             return new CollarPtr(new Collar(leg,capRates,floorRates,h,engine));

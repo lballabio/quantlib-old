@@ -60,35 +60,35 @@ class Sample {
   public:
     %extend {
         T value() { return self->value; }
-        double weight() { return self->weight; }
+        Real weight() { return self->weight; }
     }
 };
 
-%template(SampleNumber) Sample<double>;
+%template(SampleNumber) Sample<Real>;
 %template(SampleArray) Sample<Array>;
 
 /************* Uniform number generators *************/
 
 class LecuyerUniformRng {
   public:
-    LecuyerUniformRng(long seed=0);
-    Sample<double> next() const;
+    LecuyerUniformRng(BigInteger seed=0);
+    Sample<Real> next() const;
 };
 
 class KnuthUniformRng {
-    KnuthUniformRng(long seed=0);
-    Sample<double> next() const;
+    KnuthUniformRng(BigInteger seed=0);
+    Sample<Real> next() const;
 };
 
 class MersenneTwisterUniformRng {
-    MersenneTwisterUniformRng(long seed=0);
-    Sample<double> next() const;
+    MersenneTwisterUniformRng(BigInteger seed=0);
+    Sample<Real> next() const;
 };
 
 class UniformRandomGenerator {
   public:
-    UniformRandomGenerator(long seed=0);
-    Sample<double> next() const;
+    UniformRandomGenerator(BigInteger seed=0);
+    Sample<Real> next() const;
 };
 
 
@@ -97,7 +97,7 @@ class UniformRandomGenerator {
 template<class RNG> class CLGaussianRng {
   public:
     CLGaussianRng(const RNG& rng);
-    Sample<double> next() const;
+    Sample<Real> next() const;
 };
 
 %template(CentralLimitLecuyerGaussianRng) CLGaussianRng<LecuyerUniformRng>;
@@ -108,7 +108,7 @@ template<class RNG> class CLGaussianRng {
 template<class RNG> class BoxMullerGaussianRng {
   public:
     BoxMullerGaussianRng(const RNG& rng);
-    Sample<double> next() const;
+    Sample<Real> next() const;
 };
 
 %template(BoxMullerLecuyerGaussianRng) BoxMullerGaussianRng<LecuyerUniformRng>;
@@ -119,7 +119,7 @@ template<class RNG> class BoxMullerGaussianRng {
 template<class RNG, class F> class ICGaussianRng {
   public:
     ICGaussianRng(const RNG& rng);
-    Sample<double> next() const;
+    Sample<Real> next() const;
 };
 
 %template(MoroInvCumulativeLecuyerGaussianRng)
@@ -139,7 +139,7 @@ template<class RNG, class F> class ICGaussianRng {
 class GaussianRandomGenerator {
   public:
     GaussianRandomGenerator(const UniformRandomGenerator& rng);
-    Sample<double> next() const;
+    Sample<Real> next() const;
 };
 
 /************* Uniform sequence generators *************/
@@ -147,21 +147,21 @@ class GaussianRandomGenerator {
 
 class HaltonRsg {
   public:
-    HaltonRsg(long dimensionality);
+    HaltonRsg(Size dimensionality);
     const Sample<Array>& nextSequence() const;
     Size dimension() const;
 };
 
 class SobolRsg {
   public:
-    SobolRsg(long dimensionality, long seed=0);
+    SobolRsg(Size dimensionality, BigInteger seed=0);
     const Sample<Array>& nextSequence() const;
     Size dimension() const;
 };
 
 template<class RNG> class RandomSequenceGenerator {
   public:
-    RandomSequenceGenerator(long dimensionality,
+    RandomSequenceGenerator(Size dimensionality,
                             const RNG& rng);
     const Sample<Array>& nextSequence() const;
     Size dimension() const;
@@ -176,7 +176,7 @@ template<class RNG> class RandomSequenceGenerator {
 
 class UniformRandomSequenceGenerator {
   public:
-    UniformRandomSequenceGenerator(long dimensionality,
+    UniformRandomSequenceGenerator(Size dimensionality,
                                    const UniformRandomGenerator& rng);
     const Sample<Array>& nextSequence() const;
     Size dimension() const;
@@ -184,7 +184,7 @@ class UniformRandomSequenceGenerator {
 
 class UniformLowDiscrepancySequenceGenerator {
   public:
-    UniformLowDiscrepancySequenceGenerator(long dimensionality);
+    UniformLowDiscrepancySequenceGenerator(Size dimensionality);
     const Sample<Array>& nextSequence() const;
     Size dimension() const;
 };

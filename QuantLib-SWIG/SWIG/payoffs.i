@@ -40,7 +40,7 @@ class PlainVanillaPayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
         PlainVanillaPayoffPtr(OptionType type,
-                              double strike) {
+                              Real strike) {
             return new PlainVanillaPayoffPtr(
                                         new PlainVanillaPayoff(type, strike));
         }
@@ -52,7 +52,7 @@ class PercentageStrikePayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
         PercentageStrikePayoffPtr(OptionType type,
-                                  double moneyness) {
+                                  Real moneyness) {
             return new PercentageStrikePayoffPtr(
                                  new PercentageStrikePayoff(type, moneyness));
         }
@@ -64,8 +64,8 @@ class CashOrNothingPayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
         CashOrNothingPayoffPtr(OptionType type,
-                               double strike,
-                               double payoff) {
+                               Real strike,
+                               Real payoff) {
             return new CashOrNothingPayoffPtr(
                                new CashOrNothingPayoff(type, strike, payoff));
         }
@@ -77,7 +77,7 @@ class AssetOrNothingPayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
         AssetOrNothingPayoffPtr(OptionType type,
-                                double strike) {
+                                Real strike) {
             return new AssetOrNothingPayoffPtr(
                                       new AssetOrNothingPayoff(type, strike));
         }
@@ -89,8 +89,8 @@ class SuperSharePayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
         SuperSharePayoffPtr(OptionType type,
-                            double strike,
-                            double increment) {
+                            Real strike,
+                            Real increment) {
             return new SuperSharePayoffPtr(
                                new SuperSharePayoff(type, strike, increment));
         }

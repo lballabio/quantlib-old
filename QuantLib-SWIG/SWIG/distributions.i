@@ -26,49 +26,41 @@ using QuantLib::InverseCumulativeNormal;
 %}
 
 class NormalDistribution {
-    #if defined(SWIGRUBY)
-    %rename(__call__) operator();
-    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename(call)     operator();
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename(call) operator();
     #endif
   public:
-    NormalDistribution(double average = 0.0, double sigma = 1.0);
-    double operator()(double x);
-    double derivative(double x);
+    NormalDistribution(Real average = 0.0, Real sigma = 1.0);
+    Real operator()(Real x);
+    Real derivative(Real x);
 };
 
 class CumulativeNormalDistribution {
-    #if defined(SWIGRUBY)
-    %rename(__call__) operator();
-    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename(call)     operator();
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename(call) operator();
     #endif
   public:
-    CumulativeNormalDistribution(double average = 0.0, double sigma = 1.0);
-    double operator()(double x);
-    double derivative(double x);
+    CumulativeNormalDistribution(Real average = 0.0, Real sigma = 1.0);
+    Real operator()(Real x);
+    Real derivative(Real x);
 };
 
 class InverseCumulativeNormal {
-    #if defined(SWIGRUBY)
-    %rename(__call__) operator();
-    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename(call)     operator();
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename(call) operator();
     #endif
   public:
-    InverseCumulativeNormal(double average = 0.0, double sigma = 1.0);
-    double operator()(double x);
+    InverseCumulativeNormal(Real average = 0.0, Real sigma = 1.0);
+    Real operator()(Real x);
 };
 
 class MoroInverseCumulativeNormal {
-    #if defined(SWIGRUBY)
-    %rename(__call__) operator();
-    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename(call)     operator();
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename(call) operator();
     #endif
   public:
-    MoroInverseCumulativeNormal(double average = 0.0, double sigma = 1.0);
-    double operator()(double x);
+    MoroInverseCumulativeNormal(Real average = 0.0, Real sigma = 1.0);
+    Real operator()(Real x);
 };
 
 

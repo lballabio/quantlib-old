@@ -128,11 +128,13 @@ class Calendar {
     #if defined(SWIGRUBY)
     %rename("isBusinessDay?")   isBusinessDay;
     %rename("isHoliday?")       isHoliday;
+    %rename("isEndOfMonth?")    isEndOfMonth;
     %rename("addHoliday!")      addHoliday;
     %rename("removeHoliday!")   removeHoliday;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("is-business-day?") isBusinessDay;
     %rename("is-holiday?")      isHoliday;
+    %rename("is-end-of-month?") isEndOfMonth;
     %rename("add-holiday")      addHoliday;
     %rename("remove-holiday")   removeHoliday;
     %rename(">string")          __str__;
@@ -143,12 +145,13 @@ class Calendar {
     // constructor redefined below as string-based factory
     bool isBusinessDay(const Date&);
     bool isHoliday(const Date&);
+    bool isEndOfMonth(const Date&);
     void addHoliday(const Date&);
     void removeHoliday(const Date&);
     Date roll(const Date& d, 
               RollingConvention convention = QuantLib::Following,
-	      const Date& origin = Date());
-    Date advance(const Date& d, int n, TimeUnit unit,
+              const Date& origin = Date());
+    Date advance(const Date& d, Integer n, TimeUnit unit,
                  RollingConvention convention = QuantLib::Following);
     Date advance(const Date& d, const Period& period,
                  RollingConvention convention = QuantLib::Following);

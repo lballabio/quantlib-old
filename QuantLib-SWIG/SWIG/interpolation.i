@@ -51,7 +51,7 @@ class SafeInterpolation {
   public:
     SafeInterpolation(const Array& x, const Array& y)
     : x_(x), y_(y), f_(x_.begin(),x_.end(),y_.begin()) {}
-    double operator()(double x, bool allowExtrapolation=false) { 
+    Real operator()(Real x, bool allowExtrapolation=false) { 
         return f_(x, allowExtrapolation); 
     }
     Array x_, y_;
@@ -70,7 +70,7 @@ class Safe##T {
     #endif
   public:
     Safe##T(const Array& x, const Array& y);
-    double operator()(double x, bool allowExtrapolation=false);
+    Real operator()(Real x, bool allowExtrapolation=false);
 };
 %enddef
 
@@ -81,10 +81,10 @@ make_safe_interpolation(LogLinearInterpolation,LogLinearInterpolation);
 
 %define extend_spline(T)
 %extend Safe##T {
-    double derivative(double x, bool extrapolate = false) {
+    Real derivative(Real x, bool extrapolate = false) {
         return self->f_.derivative(x,extrapolate);
     }
-    double secondDerivative(double x, bool extrapolate = false) {
+    Real secondDerivative(Real x, bool extrapolate = false) {
         return self->f_.secondDerivative(x,extrapolate);
     }
 }
@@ -100,7 +100,7 @@ class SafeInterpolation2D {
   public:
     SafeInterpolation2D(const Array& x, const Array& y, const Matrix& m)
     : x_(x), y_(y), m_(m), f_(x_.begin(),x_.end(),y_.begin(),y_.end(),m_) {}
-    double operator()(double x, double y, bool allowExtrapolation=false) {
+    Real operator()(Real x, Real y, bool allowExtrapolation=false) {
         return f_(x,y, allowExtrapolation);
     }
   protected:
@@ -121,7 +121,7 @@ class Safe##T {
     #endif
   public:
     Safe##T(const Array& x, const Array& y, const Matrix& m);
-    double operator()(double x, double y, bool allowExtrapolation=false);
+    Real operator()(Real x, Real y, bool allowExtrapolation=false);
 };
 %enddef
 

@@ -38,9 +38,9 @@ using QuantLib::SwaptionVolatilityStructure;
 %ignore SwaptionVolatilityStructure;
 class SwaptionVolatilityStructure {
   public:
-	double volatility(const Date& exercise, const Period& length, 
-                      Rate strike);
-	double volatility(Time exercise, double length, Rate strike);
+	Volatility volatility(const Date& exercise, const Period& length, 
+                          Rate strike);
+	Volatility volatility(Time exercise, Time length, Rate strike);
 };
 
 %template(SwaptionVolatilityStructure) 
@@ -85,8 +85,8 @@ using QuantLib::CapFlatVolatilityStructure;
 %ignore CapFlatVolatilityStructure;
 class CapFlatVolatilityStructure {
   public:
-	double volatility(const Date& end, Rate strike);
-	double volatility(Time end, Rate strike);
+	Volatility volatility(const Date& end, Rate strike);
+	Volatility volatility(Time end, Rate strike);
 };
 
 %template(CapFlatVolatilityStructure) 
@@ -110,9 +110,9 @@ class CapFlatVolatilityVectorPtr
     %extend {
         CapFlatVolatilityVectorPtr(const Date& today, 
                                    const Calendar& calendar,
-                                   int settlementDays, 
+                                   Integer settlementDays, 
                                    const std::vector<Period>& lengths,
-                                   const std::vector<double>& vols, 
+                                   const std::vector<Volatility>& vols, 
                                    const DayCounter& dayCounter) {
             return new CapFlatVolatilityVectorPtr(
                 new CapFlatVolatilityVector(today,calendar,settlementDays,

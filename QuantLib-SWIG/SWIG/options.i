@@ -71,7 +71,7 @@ class Payoff {
     %rename(call) operator();
     #endif
   public:
-    double operator()(double price) const;
+    Real operator()(Real price) const;
 };
 
 %template(Payoff) boost::shared_ptr<Payoff>;
@@ -108,36 +108,38 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
             return new VanillaOptionPtr(
                 new VanillaOption(bsProcess,stPayoff,exercise,engine));
         }
-        double errorEstimate() {
+        Real errorEstimate() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)
                  ->errorEstimate();
         }
-        double delta() {
+        Real delta() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)->delta();
         }
-        double gamma() {
+        Real gamma() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)->gamma();
         }
-        double theta() {
+        Real theta() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)->theta();
         }
-        double vega() {
+        Real vega() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)->vega();
         }
-        double rho() {
+        Real rho() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)->rho();
         }
-        double dividendRho() {
+        Real dividendRho() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)
                  ->dividendRho();
         }
-        double strikeSensitivity() {
+        Real strikeSensitivity() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)
                  ->strikeSensitivity();
         }
-        double impliedVolatility(double targetValue, double accuracy = 1.0e-4,
-                                 Size maxEvaluations = 100,
-                                 double minVol = 1.0e-4, double maxVol = 4.0) {
+        Volatility impliedVolatility(Real targetValue, 
+                                     Real accuracy = 1.0e-4,
+                                     Size maxEvaluations = 100,
+                                     Volatility minVol = 1.0e-4, 
+                                     Volatility maxVol = 4.0) {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)
                  ->impliedVolatility(targetValue,accuracy,maxEvaluations,
                                      minVol,maxVol);
@@ -268,10 +270,10 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
                             Size timeSteps,
                             bool antitheticVariate = false,
                             bool controlVariate = false,
-                            intOrNull requiredSamples = Null<int>(),
-                            doubleOrNull requiredTolerance = Null<double>(),
-                            intOrNull maxSamples = Null<int>(),
-                            long seed = 0) {
+                            intOrNull requiredSamples = Null<Integer>(),
+                            doubleOrNull requiredTolerance = Null<Real>(),
+                            intOrNull maxSamples = Null<Integer>(),
+                            BigInteger seed = 0) {
             std::string s = StringFormatter::toLowercase(traits);
             if (s == "pseudorandom" || s == "pr")
                 return new MCEuropeanEnginePtr(

@@ -40,7 +40,7 @@ class HistoryEntry {
     Date* d = new Date($1.date());
     PyTuple_SetItem($result,0,
                     SWIG_NewPointerObj(d, $descriptor(Date *), 1));
-    if ($1.value() == Null<double>()) {
+    if ($1.value() == Null<Real>()) {
         Py_INCREF(Py_None);
         PyTuple_SetItem($result,1,Py_None);
     } else {
@@ -54,14 +54,14 @@ class HistoryEntry {
     Date* d = new Date($1.date());
     rb_ary_store($result,0,
                  SWIG_NewPointerObj(d, $descriptor(Date *), 1));
-    if ($1.value() == Null<double>())
+    if ($1.value() == Null<Real>())
         rb_ary_store($result,1,Qnil);
     else 
         rb_ary_store($result,1,rb_float_new($1.value()));
 }
 #elif defined(SWIGMZSCHEME)
 %typemap(out) HistoryEntry {
-    if ($1.value() == Null<double>()) {
+    if ($1.value() == Null<Real>()) {
         $result = scheme_false;
     } else {
         Date* d = new Date($1.date());
@@ -73,7 +73,7 @@ class HistoryEntry {
 }
 #elif defined(SWIGGUILE)
 %typemap(out) HistoryEntry {
-    if ($1.value() == Null<double>()) {
+    if ($1.value() == Null<Real>()) {
         $result = SCM_BOOL_F;
     } else {
         Date* d = new Date($1.date());
@@ -190,7 +190,7 @@ class History {
     #endif
   public:
     History(const std::vector<Date>& dates, 
-            const std::vector<double>& values);
+            const std::vector<Real>& values);
     Date firstDate() const;
     Date lastDate() const;
     %extend {
@@ -223,10 +223,10 @@ class History {
             History::const_iterator i=self->begin(), end=self->end();
             for ( ; i!=end; ++i) {
                 Date* d = new Date(i->date());
-                double v = i->value();
+                Real v = i->value();
                 VALUE entry = rb_ary_new2(2);
                 VALUE date = SWIG_NewPointerObj(d, $descriptor(Date *), 1);
-                VALUE value = (v == Null<double>() ? Qnil : rb_float_new(v));
+                VALUE value = (v == Null<Real>() ? Qnil : rb_float_new(v));
                 rb_ary_store(entry,0,date);
                 rb_ary_store(entry,1,value);
                 rb_yield(entry);
@@ -236,7 +236,7 @@ class History {
             History::const_valid_iterator i=self->vbegin(), end=self->vend();
             for ( ; i!=end; ++i) {
                 Date* d = new Date(i->date());
-                double v = i->value();
+                Real v = i->value();
                 VALUE entry = rb_ary_new2(2);
                 VALUE date = SWIG_NewPointerObj(d, $descriptor(Date *), 1);
                 VALUE value = rb_float_new(v);
@@ -249,9 +249,9 @@ class History {
         void for_each(Scheme_Object* proc) {
             History::const_iterator i=self->begin(), end=self->end();
             for ( ; i!=end; ++i) {
-                double v = i->value();
+                Real v = i->value();
                 Scheme_Object* entry;
-                if (v == Null<double>()) {
+                if (v == Null<Real>()) {
                     entry = scheme_false;
                 } else {
                     Date* d = new Date(i->date());
@@ -266,7 +266,7 @@ class History {
         void for_each_valid(Scheme_Object* proc) {
             History::const_valid_iterator i=self->vbegin(), end=self->vend();
             for ( ; i!=end; ++i) {
-                double v = i->value();
+                Real v = i->value();
                 Date* d = new Date(i->date());
                 Scheme_Object* car = 
                     SWIG_NewPointerObj(d, $descriptor(Date *), 1);
@@ -279,9 +279,9 @@ class History {
         void for_each(SCM proc) {
             History::const_iterator i=self->begin(), end=self->end();
             for ( ; i!=end; ++i) {
-                double v = i->value();
+                Real v = i->value();
                 SCM entry;
-                if (v == Null<double>()) {
+                if (v == Null<Real>()) {
                     entry = SCM_BOOL_F;
                 } else {
                     Date* d = new Date(i->date());
@@ -295,7 +295,7 @@ class History {
         void for_each_valid(SCM proc) {
             History::const_valid_iterator i=self->vbegin(), end=self->vend();
             for ( ; i!=end; ++i) {
-                double v = i->value();
+                Real v = i->value();
                 Date* d = new Date(i->date());
                 SCM car = SWIG_Guile_MakePtr(d, $descriptor(Date *));
                 SCM cdr = gh_double2scm(v);

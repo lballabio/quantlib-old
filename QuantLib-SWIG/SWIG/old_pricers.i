@@ -76,18 +76,18 @@ class CliquetOptionPricer {
     %rename("dividend-rho") dividendRho;
     #endif
   public:
-	CliquetOptionPricer(OptionType type, double underlying, double moneyness,
-                        const std::vector<double>& dividendYield,
-                        const std::vector<double>& riskFreeRate,
-                        const std::vector<double>& times,
-                        const std::vector<double>& volatility);
-	double value() const;
-	double delta() const;
-	double gamma() const;
-	double theta() const;
-	double vega() const;
-	double rho() const;
-	double dividendRho() const;
+	CliquetOptionPricer(OptionType type, Real underlying, Real moneyness,
+                        const std::vector<Spread>& dividendYield,
+                        const std::vector<Rate>& riskFreeRate,
+                        const std::vector<Time>& times,
+                        const std::vector<Volatility>& volatility);
+	Real value() const;
+	Real delta() const;
+	Real gamma() const;
+	Real theta() const;
+	Real vega() const;
+	Real rho() const;
+	Real dividendRho() const;
 };
 
 
@@ -99,28 +99,28 @@ using QuantLib::DiscreteGeometricASO;
 
 class ContinuousGeometricAPO {
   public:
-	ContinuousGeometricAPO(OptionType type, double underlying, double strike,
+	ContinuousGeometricAPO(OptionType type, Real underlying, Real strike,
                            Spread dividendYield, Rate riskFreeRate, 
-                           double residualTime, double volatility);
-	double value() const;
+                           Time residualTime, Volatility volatility);
+	Real value() const;
 };
 
 class DiscreteGeometricAPO {
   public:
-	DiscreteGeometricAPO(OptionType type, double underlying, double strike,
+	DiscreteGeometricAPO(OptionType type, Real underlying, Real strike,
                          Spread dividendYield, Rate riskFreeRate,
-                         const std::vector<double>& timeDelays,
-                         double volatility);
-	double value() const;
+                         const std::vector<Time>& timeDelays,
+                         Volatility volatility);
+	Real value() const;
 };
 
 class DiscreteGeometricASO {
   public:
-	DiscreteGeometricASO(OptionType type, double underlying, 
+	DiscreteGeometricASO(OptionType type, Real underlying, 
                          Spread dividendYield, Rate riskFreeRate,
-                         const std::vector<double>& timeDelays,
-                         double volatility);
-	double value() const;
+                         const std::vector<Time>& timeDelays,
+                         Volatility volatility);
+	Real value() const;
 };
 
 
@@ -131,17 +131,17 @@ using QuantLib::DividendEuropeanOption;
 
 class DividendEuropeanOption {
   public:
-	DividendEuropeanOption(OptionType type, double underlying, double strike,
+	DividendEuropeanOption(OptionType type, Real underlying, Real strike,
                            Spread dividendYield, Rate riskFreeRate, 
-                           Time residualTime, double volatility,
-                           const std::vector<double>& dividends,
-                           const std::vector<double>& times);
-	double value() const;
-	double delta() const;
-	double gamma() const;
-	double theta() const;
-	double vega() const;
-	double rho() const;
+                           Time residualTime, Volatility volatility,
+                           const std::vector<Spread>& dividends,
+                           const std::vector<Time>& times);
+	Real value() const;
+	Real delta() const;
+	Real gamma() const;
+	Real theta() const;
+	Real vega() const;
+	Real rho() const;
 };
 
 
@@ -157,19 +157,19 @@ class FdEuropean {
     %rename("implied-volatility") impliedVolatility;
     #endif
   public:
-	FdEuropean(OptionType type, double underlying,
-               double strike, Spread dividendYield, Rate riskFreeRate,
-               Time residualTime, double volatility, 
+	FdEuropean(OptionType type, Real underlying,
+               Real strike, Spread dividendYield, Rate riskFreeRate,
+               Time residualTime, Volatility volatility, 
                Size timeSteps = 200, Size gridPoints = 800);
-	double value() const;
-	double delta() const;
-	double gamma() const;
-	double theta() const;
-	double vega() const;
-	double rho() const;
-	double dividendRho() const;
-	double impliedVolatility(double targetValue, double accuracy = 1e-4,
-                             Size maxEvaluations = 100) const;
+	Real value() const;
+	Real delta() const;
+	Real gamma() const;
+	Real theta() const;
+	Real vega() const;
+	Real rho() const;
+	Real dividendRho() const;
+	Volatility impliedVolatility(Real targetValue, Real accuracy = 1e-4,
+                                 Size maxEvaluations = 100) const;
 };
 
 
@@ -184,19 +184,19 @@ class FdAmericanOption {
     %rename("implied-volatility") impliedVolatility;
     #endif
   public:
-	FdAmericanOption(OptionType type, double underlying, double strike,
+	FdAmericanOption(OptionType type, Real underlying, Real strike,
                      Spread dividendYield, Rate riskFreeRate, 
-                     Time residualTime, double volatility, 
+                     Time residualTime, Volatility volatility, 
                      Size timeSteps = 100, Size gridPoints = 100);
-	double value() const;
-	double delta() const;
-	double gamma() const;
-	double theta() const;
-	double vega() const;
-	double rho() const;
-	double dividendRho() const;
-	double impliedVolatility(double targetValue, double accuracy = 1e-4,
-                             Size maxEvaluations = 100) const;
+	Real value() const;
+	Real delta() const;
+	Real gamma() const;
+	Real theta() const;
+	Real vega() const;
+	Real rho() const;
+	Real dividendRho() const;
+	Volatility impliedVolatility(Real targetValue, Real accuracy = 1e-4,
+                                 Size maxEvaluations = 100) const;
 };
 
 class FdDividendAmericanOption {
@@ -205,21 +205,21 @@ class FdDividendAmericanOption {
     %rename("implied-volatility") impliedVolatility;
     #endif
   public:
-	FdDividendAmericanOption(OptionType type, double underlying, double strike,
+	FdDividendAmericanOption(OptionType type, Real underlying, Real strike,
                              Spread dividendYield, Rate riskFreeRate, 
-                             Time residualTime, double volatility,
-                             const std::vector<double>& dividends,
-                             const std::vector<double>& times,
+                             Time residualTime, Volatility volatility,
+                             const std::vector<Spread>& dividends,
+                             const std::vector<Time>& times,
                              Size timeSteps = 100, Size gridPoints = 100);
-	double value() const;
-	double delta() const;
-	double gamma() const;
-	double theta() const;
-	double vega() const;
-	double rho() const;
-	double dividendRho() const;
-	double impliedVolatility(double targetValue, double accuracy = 1e-4,
-                             Size maxEvaluations = 100) const;
+	Real value() const;
+	Real delta() const;
+	Real gamma() const;
+	Real theta() const;
+	Real vega() const;
+	Real rho() const;
+	Real dividendRho() const;
+	Volatility impliedVolatility(Real targetValue, Real accuracy = 1e-4,
+                                 Size maxEvaluations = 100) const;
 };
 
 
@@ -234,19 +234,19 @@ class FdShoutOption {
     %rename("implied-volatility") impliedVolatility;
     #endif
   public:
-	FdShoutOption(OptionType type, double underlying, double strike,
+	FdShoutOption(OptionType type, Real underlying, Real strike,
                   Spread dividendYield, Rate riskFreeRate, 
-                  Time residualTime, double volatility, 
+                  Time residualTime, Volatility volatility, 
                   Size timeSteps = 100, Size gridPoints = 100);
-	double value() const;
-	double delta() const;
-	double gamma() const;
-	double theta() const;
-	double vega() const;
-	double rho() const;
-	double dividendRho() const;
-	double impliedVolatility(double targetValue, double accuracy = 1e-4,
-                             Size maxEvaluations = 100) const;
+	Real value() const;
+	Real delta() const;
+	Real gamma() const;
+	Real theta() const;
+	Real vega() const;
+	Real rho() const;
+	Real dividendRho() const;
+	Volatility impliedVolatility(Real targetValue, Real accuracy = 1e-4,
+                                 Size maxEvaluations = 100) const;
 };
 
 class FdDividendShoutOption{
@@ -255,21 +255,21 @@ class FdDividendShoutOption{
     %rename("implied-volatility") impliedVolatility;
     #endif
   public:
-	FdDividendShoutOption(OptionType type, double underlying, double strike,
+	FdDividendShoutOption(OptionType type, Real underlying, Real strike,
                           Spread dividendYield, Rate riskFreeRate, 
-                          Time residualTime, double volatility,
-                          const std::vector<double>& dividends,
-                          const std::vector<double>& times,
+                          Time residualTime, Volatility volatility,
+                          const std::vector<Spread>& dividends,
+                          const std::vector<Time>& times,
                           Size timeSteps = 100, Size gridPoints = 100);
-	double value() const;
-	double delta() const;
-	double gamma() const;
-	double theta() const;
-	double vega() const;
-	double rho() const;
-	double dividendRho() const;
-	double impliedVolatility(double targetValue, double accuracy = 1e-4,
-                             Size maxEvaluations = 100) const;
+	Real value() const;
+	Real delta() const;
+	Real gamma() const;
+	Real theta() const;
+	Real vega() const;
+	Real rho() const;
+	Real dividendRho() const;
+	Volatility impliedVolatility(Real targetValue, Real accuracy = 1e-4,
+                                 Size maxEvaluations = 100) const;
 };
 
 
@@ -279,20 +279,20 @@ using QuantLib::FdBermudanOption;
 
 class FdBermudanOption {
   public:
-	FdBermudanOption(OptionType type, double underlying, double strike,
+	FdBermudanOption(OptionType type, Real underlying, Real strike,
                      Spread dividendYield, Rate riskFreeRate, 
-                     Time residualTime, double volatility, 
-                     const std::vector<double>& exTimes,
+                     Time residualTime, Volatility volatility, 
+                     const std::vector<Time>& exTimes,
                      Size timeSteps = 100, Size gridPoints = 100);
-	double value() const;
-	double delta() const;
-	double gamma() const;
-	double theta() const;
-	double vega() const;
-	double rho() const;
-	double dividendRho() const;
-	double impliedVolatility(double targetValue, double accuracy = 1e-4,
-                             Size maxEvaluations = 100) const;
+	Real value() const;
+	Real delta() const;
+	Real gamma() const;
+	Real theta() const;
+	Real vega() const;
+	Real rho() const;
+	Real dividendRho() const;
+	Volatility impliedVolatility(Real targetValue, Real accuracy = 1e-4,
+                                 Size maxEvaluations = 100) const;
 };
 
 
@@ -318,16 +318,16 @@ class McDiscreteArithmeticAPO {
     #endif
   public:
 	McDiscreteArithmeticAPO(
-                    OptionType type, double underlying, double strike,
+                    OptionType type, Real underlying, Real strike,
                     const RelinkableHandle<TermStructure>& dividendYield,
                     const RelinkableHandle<TermStructure>& riskFreeRate,
                     const RelinkableHandle<BlackVolTermStructure>& volatility,
-                    const std::vector<double>& timeDelays,
-                    bool controlVariate, long seed = 0);
-    double value(double tolerance,
-                 Size maxSample = QL_MAX_INT) const;
-    double valueWithSamples(Size samples) const;
-    double errorEstimate() const;
+                    const std::vector<Time>& timeDelays,
+                    bool controlVariate, BigInteger seed = 0);
+    Real value(Real tolerance,
+               Size maxSample = QL_MAX_INT) const;
+    Real valueWithSamples(Size samples) const;
+    Real errorEstimate() const;
 };
 
 class McDiscreteArithmeticASO {
@@ -337,16 +337,16 @@ class McDiscreteArithmeticASO {
     #endif
   public:
 	McDiscreteArithmeticASO(
-                    OptionType type, double underlying,
+                    OptionType type, Real underlying,
                     const RelinkableHandle<TermStructure>& dividendYield,
                     const RelinkableHandle<TermStructure>& riskFreeRate,
                     const RelinkableHandle<BlackVolTermStructure>& volatility,
-                    const std::vector<double>& timeDelays,
-                    bool controlVariate, long seed = 0);
-    double value(double tolerance,
-                 Size maxSample = QL_MAX_INT) const;
-    double valueWithSamples(Size samples) const;
-    double errorEstimate() const;
+                    const std::vector<Time>& timeDelays,
+                    bool controlVariate, BigInteger seed = 0);
+    Real value(Real tolerance,
+               Size maxSample = QL_MAX_INT) const;
+    Real valueWithSamples(Size samples) const;
+    Real errorEstimate() const;
 };
 
 class McBasket {
@@ -356,20 +356,20 @@ class McBasket {
     #endif
   public:
     McBasket(OptionType type, 
-             const std::vector<double>& underlying, 
-             double strike, 
+             const std::vector<Real>& underlying, 
+             Real strike, 
              const std::vector<RelinkableHandle<TermStructure> >& 
                                                              dividendYields,
              const RelinkableHandle<TermStructure>& riskFreeRate,
              const std::vector<RelinkableHandle<BlackVolTermStructure> >& 
                                                              volatilities,
              const Matrix& correlation,
-             double residualTime, 
-             long seed = 0);
-    double value(double tolerance,
-                 Size maxSample = QL_MAX_INT) const;
-    double valueWithSamples(Size samples) const;
-    double errorEstimate() const;
+             Time residualTime, 
+             BigInteger seed = 0);
+    Real value(Real tolerance,
+               Size maxSample = QL_MAX_INT) const;
+    Real valueWithSamples(Size samples) const;
+    Real errorEstimate() const;
 };
 
 class McMaxBasket {
@@ -378,19 +378,19 @@ class McMaxBasket {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McMaxBasket(const std::vector<double>& underlying, 
+    McMaxBasket(const std::vector<Real>& underlying, 
                 const std::vector<RelinkableHandle<TermStructure> >& 
                                                              dividendYields,
                 const RelinkableHandle<TermStructure>& riskFreeRate,
                 const std::vector<RelinkableHandle<BlackVolTermStructure> >& 
                                                              volatilities,
                 const Matrix& correlation,
-                double residualTime, 
-                long seed = 0);
-    double value(double tolerance,
-                 Size maxSample = QL_MAX_INT) const;
-    double valueWithSamples(Size samples) const;
-    double errorEstimate() const;
+                Time residualTime, 
+                BigInteger seed = 0);
+    Real value(Real tolerance,
+               Size maxSample = QL_MAX_INT) const;
+    Real valueWithSamples(Size samples) const;
+    Real errorEstimate() const;
 };
 
 class McHimalaya {
@@ -399,20 +399,20 @@ class McHimalaya {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McHimalaya(const std::vector<double>& underlying, 
+    McHimalaya(const std::vector<Real>& underlying, 
                const std::vector<RelinkableHandle<TermStructure> >& 
                                                              dividendYields,
                const RelinkableHandle<TermStructure>& riskFreeRate,
                const std::vector<RelinkableHandle<BlackVolTermStructure> >& 
                                                              volatilities,
                const Matrix& correlation,
-			   double strike, 
+			   Real strike, 
                const std::vector<Time>& timeDelays,
-		       long seed = 0);
-    double value(double tolerance,
-                 Size maxSample = QL_MAX_INT) const;
-    double valueWithSamples(Size samples) const;
-    double errorEstimate() const;
+		       BigInteger seed = 0);
+    Real value(Real tolerance,
+               Size maxSample = QL_MAX_INT) const;
+    Real valueWithSamples(Size samples) const;
+    Real errorEstimate() const;
 };
 
 class McEverest {
@@ -428,11 +428,11 @@ class McEverest {
                                                              volatilities,
               const Matrix& correlation,
               Time residualTime,
-			  long seed = 0);
-    double value(double tolerance,
-                 Size maxSample = QL_MAX_INT) const;
-    double valueWithSamples(Size samples) const;
-    double errorEstimate() const;
+			  BigInteger seed = 0);
+    Real value(Real tolerance,
+               Size maxSample = QL_MAX_INT) const;
+    Real valueWithSamples(Size samples) const;
+    Real errorEstimate() const;
 };
 
 class McPagoda {
@@ -441,9 +441,9 @@ class McPagoda {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McPagoda(const std::vector<double>& portfolio, 
-             double fraction, 
-             double roof,
+    McPagoda(const std::vector<Real>& portfolio, 
+             Real fraction, 
+             Real roof,
              const std::vector<RelinkableHandle<TermStructure> >& 
                                                              dividendYields,
              const RelinkableHandle<TermStructure>& riskFreeRate,
@@ -451,11 +451,11 @@ class McPagoda {
                                                              volatilities,
              const Matrix& correlation,
 		     const std::vector<Time>& timeDelays,
-		     long seed = 0);
-    double value(double tolerance,
-                 Size maxSample = QL_MAX_INT) const;
-    double valueWithSamples(Size samples) const;
-    double errorEstimate() const;
+		     BigInteger seed = 0);
+    Real value(Real tolerance,
+               Size maxSample = QL_MAX_INT) const;
+    Real valueWithSamples(Size samples) const;
+    Real errorEstimate() const;
 };
 
 

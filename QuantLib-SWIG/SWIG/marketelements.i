@@ -29,7 +29,7 @@ using QuantLib::Quote;
 %ignore Quote;
 class Quote {
   public:
-    double value() const;
+    Real value() const;
 };
 
 %template(Quote) boost::shared_ptr<Quote>;
@@ -53,10 +53,10 @@ class SimpleQuotePtr : public boost::shared_ptr<Quote> {
     #endif
   public:
     %extend {
-        SimpleQuotePtr(double value) {
+        SimpleQuotePtr(Real value) {
             return new SimpleQuotePtr(new SimpleQuote(value));
         }
-        void setValue(double value) {
+        void setValue(Real value) {
             boost::dynamic_pointer_cast<SimpleQuote>(*self)->setValue(value);
         }
     }

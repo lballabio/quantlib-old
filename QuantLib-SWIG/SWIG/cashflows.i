@@ -34,7 +34,7 @@ using QuantLib::CashFlow;
 %ignore CashFlow;
 class CashFlow {
   public:
-    double amount() const;
+    Real amount() const;
     Date date() const;
 };
 
@@ -57,7 +57,7 @@ typedef boost::shared_ptr<CashFlow> ParCouponPtr;
 class SimpleCashFlowPtr : public boost::shared_ptr<CashFlow> {
   public:
     %extend {
-        SimpleCashFlowPtr(double amount, const Date& date) {
+        SimpleCashFlowPtr(Real amount, const Date& date) {
             return new SimpleCashFlowPtr(new SimpleCashFlow(amount,date));
         }
     }
@@ -67,7 +67,7 @@ class SimpleCashFlowPtr : public boost::shared_ptr<CashFlow> {
 class FixedRateCouponPtr : public boost::shared_ptr<CashFlow> {
   public:
     %extend {
-        FixedRateCouponPtr(double nominal, const Date& paymentDate, 
+        FixedRateCouponPtr(Real nominal, const Date& paymentDate, 
                            Rate rate, const DayCounter& dayCounter, 
                            const Date& startDate, const Date& endDate,
                            const Date& refPeriodStart = Date(), 
@@ -84,10 +84,10 @@ class FixedRateCouponPtr : public boost::shared_ptr<CashFlow> {
 class ParCouponPtr : public boost::shared_ptr<CashFlow> {
   public:
     %extend {
-        ParCouponPtr(double nominal, const Date& paymentDate, 
+        ParCouponPtr(Real nominal, const Date& paymentDate, 
                      const XiborPtr& index, 
                      const Date& startDate, const Date& endDate, 
-                     int fixingDays, Spread spread = 0.0, 
+                     Integer fixingDays, Spread spread = 0.0, 
                      const Date& refPeriodStart = Date(), 
                      const Date& refPeriodEnd = Date()) {
             boost::shared_ptr<Xibor> libor = 
@@ -105,14 +105,11 @@ class ParCouponPtr : public boost::shared_ptr<CashFlow> {
             return boost::dynamic_pointer_cast<ParCoupon>(*self)
                  ->accrualEndDate();
         }
-        double fixing() {
+        Rate fixing() {
             return boost::dynamic_pointer_cast<ParCoupon>(*self)->fixing();
         }
-        double nominal() {
+        Real nominal() {
             return boost::dynamic_pointer_cast<ParCoupon>(*self)->nominal();
-        }
-        double amount() {
-            return boost::dynamic_pointer_cast<ParCoupon>(*self)->amount();
         }
     }
 };
@@ -129,7 +126,7 @@ using QuantLib::FixedRateCouponVector;
 
 std::vector<boost::shared_ptr<CashFlow> > 
 FixedRateCouponVector(const Schedule& schedule, 
-                      const std::vector<double>& nominals,
+                      const std::vector<Real>& nominals,
                       const std::vector<Rate>& couponRates,
                       const DayCounter& dayCount, 
                       const DayCounter& firstPeriodDayCount
@@ -138,8 +135,8 @@ FixedRateCouponVector(const Schedule& schedule,
 %inline %{
 std::vector<boost::shared_ptr<CashFlow> > 
 FloatingRateCouponVector(const Schedule& schedule,
-                         const std::vector<double>& nominals,
-                         const XiborPtr& index, int fixingDays,
+                         const std::vector<Real>& nominals,
+                         const XiborPtr& index, Integer fixingDays,
                          const std::vector<Spread>& spreads = 
                              std::vector<Spread>()) {
     boost::shared_ptr<Xibor> libor = 

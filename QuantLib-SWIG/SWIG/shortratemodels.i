@@ -49,12 +49,12 @@ class CalibrationHelper {
     #endif
   public:
     void setPricingEngine(const boost::shared_ptr<PricingEngine>& engine);
-    double marketValue() const;
-    double modelValue() const;
-    double impliedVolatility(double targetValue,
-                             double accuracy, Size maxEvaluations,
-                             double minVol, double maxVol) const;
-    double blackPrice(double volatility) const;
+    Real marketValue() const;
+    Real modelValue() const;
+    Volatility impliedVolatility(Real targetValue,
+                                 Real accuracy, Size maxEvaluations,
+                                 Volatility minVol, Volatility maxVol) const;
+    Real blackPrice(Volatility volatility) const;
 };
 %template(CalibrationHelper) boost::shared_ptr<CalibrationHelper>;
 
@@ -150,7 +150,7 @@ class HullWhitePtr : public boost::shared_ptr<ShortRateModel> {
     %extend {
         HullWhitePtr(
                 const RelinkableHandle<TermStructure>& termStructure, 
-                double a = 0.1, double sigma = 0.01) {
+                Real a = 0.1, Real sigma = 0.01) {
 	        return new HullWhitePtr(
 	            new HullWhite(termStructure, a, sigma));
         }
@@ -163,7 +163,7 @@ class BlackKarasinskiPtr : public boost::shared_ptr<ShortRateModel> {
     %extend {
         BlackKarasinskiPtr(
                 const RelinkableHandle<TermStructure>& termStructure, 
-                double a = 0.1, double sigma = 0.1) {
+                Real a = 0.1, Real sigma = 0.1) {
 	        return new BlackKarasinskiPtr(
 	            new BlackKarasinski(termStructure, a, sigma));
         }

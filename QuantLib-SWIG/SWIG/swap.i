@@ -46,10 +46,10 @@ class SwapPtr : public boost::shared_ptr<Instrument> {
         Date maturity() {
             return boost::dynamic_pointer_cast<Swap>(*self)->maturity();
         }
-        double firstLegBPS() {
+        Real firstLegBPS() {
             return boost::dynamic_pointer_cast<Swap>(*self)->firstLegBPS();
         }
-        double secondLegBPS() {
+        Real secondLegBPS() {
             return boost::dynamic_pointer_cast<Swap>(*self)->secondLegBPS();
         }
         TimeBasket sensitivity() {
@@ -57,35 +57,6 @@ class SwapPtr : public boost::shared_ptr<Instrument> {
         }
     }
 };
-
-#if defined(SWIGRUBY)
-// too many parameters for a native function.
-// we'll have to group some
-%inline %{
-class FixedSwapLeg {
-  public:
-    FixedSwapLeg(int fixedFrequency, Rate fixedRate,
-                 bool fixedIsAdjusted, const DayCounter& fixedDayCount)
-    : fixedFrequency(fixedFrequency), fixedRate(fixedRate),
-      fixedIsAdjusted(fixedIsAdjusted), fixedDayCount(fixedDayCount) {}
-    int fixedFrequency;
-    Rate fixedRate;
-    bool fixedIsAdjusted;
-    DayCounter fixedDayCount;
-};
-class FloatingSwapLeg {
-  public:
-    FloatingSwapLeg(int floatingFrequency, XiborPtr index, 
-                    int indexFixingDays, Spread spread)
-    : floatingFrequency(floatingFrequency), index(index),
-      indexFixingDays(indexFixingDays), spread(spread) {}
-    int floatingFrequency;
-    XiborPtr index;
-    int indexFixingDays;
-    Spread spread;
-};
-%}
-#endif
 
 
 %rename(SimpleSwap) SimpleSwapPtr;
@@ -99,12 +70,12 @@ class SimpleSwapPtr : public SwapPtr {
   public:
     %extend {
         SimpleSwapPtr(bool payFixedRate, const Date& startDate, 
-                      int n, TimeUnit unit, const Calendar& calendar, 
-                      RollingConvention rollingConvention, double nominal, 
-                      int fixedFrequency, Rate fixedRate,
+                      Integer n, TimeUnit unit, const Calendar& calendar, 
+                      RollingConvention rollingConvention, Real nominal, 
+                      Frequency fixedFrequency, Rate fixedRate,
                       bool fixedIsAdjusted, const DayCounter& fixedDayCount,
-                      int floatingFrequency, const XiborPtr& index, 
-                      int indexFixingDays, Spread spread, 
+                      Frequency floatingFrequency, const XiborPtr& index, 
+                      Integer indexFixingDays, Spread spread, 
                       const RelinkableHandle<TermStructure>& termStructure) {
             boost::shared_ptr<Xibor> libor = 
                 boost::dynamic_pointer_cast<Xibor>(index);
@@ -115,12 +86,12 @@ class SimpleSwapPtr : public SwapPtr {
                                floatingFrequency, libor, indexFixingDays, 
                                spread, termStructure));
         }
-        SimpleSwapPtr(bool payFixedRate, double nominal, 
+        SimpleSwapPtr(bool payFixedRate, Real nominal, 
                       const Schedule& fixedSchedule, Rate fixedRate,
                       const DayCounter& fixedDayCount,
                       const Schedule& floatSchedule,
                       const XiborPtr& index,
-                      int indexFixingDays, Spread spread,
+                      Integer indexFixingDays, Spread spread,
                       const RelinkableHandle<TermStructure>& termStructure) {
             boost::shared_ptr<Xibor> libor = 
                 boost::dynamic_pointer_cast<Xibor>(index);
@@ -136,11 +107,11 @@ class SimpleSwapPtr : public SwapPtr {
             return boost::dynamic_pointer_cast<SimpleSwap>(*self)
                  ->fairSpread();
         }
-        double fixedLegBPS() {
+        Real fixedLegBPS() {
             return boost::dynamic_pointer_cast<SimpleSwap>(*self)
                  ->fixedLegBPS();
         }
-        double floatingLegBPS() {
+        Real floatingLegBPS() {
             return boost::dynamic_pointer_cast<SimpleSwap>(*self)
                  ->floatingLegBPS();
         }

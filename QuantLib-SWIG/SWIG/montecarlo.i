@@ -55,8 +55,8 @@ class Path {
     const Array& diffusion() const;
     %extend {
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-        double __getitem__(int i) {
-            int size_ = int(self->size());
+        Real __getitem__(Integer i) {
+            Integer size_ = Integer(self->size());
             if (i>=0 && i<size_) {
                 return (*self)[i];
             } else if (i<0 && -i<=size_) {
@@ -67,9 +67,8 @@ class Path {
             QL_DUMMY_RETURN(0.0)
         }
         #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-        double ref(int i) {
-            int size_ = int(self->size());
-            if (i>=0 && i<size_) {
+        Real ref(Size i) {
+            if (i<self->size()) {
                 return (*self)[i];
             } else {
                 throw std::out_of_range("path index out of range");
@@ -133,8 +132,8 @@ class MultiPath {
     Size assetNumber() const;
     %extend {
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-        const Path& __getitem__(int i) {
-            int assets_ = int(self->assetNumber());
+        const Path& __getitem__(Integer i) {
+            Integer assets_ = Integer(self->assetNumber());
             if (i>=0 && i<assets_) {
                 return (*self)[i];
             } else if (i<0 && -i<=assets_) {
@@ -145,10 +144,8 @@ class MultiPath {
             QL_DUMMY_RETURN((*self)[0])
         }
         #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-        double ref(int i, int j) {
-            int assets_ = int(self->assetNumber());
-            int size_ = int(self->pathSize());
-            if (i>=0 && i<assets_ && j>=0 && j<size_) {
+        Real ref(Size i, Size j) {
+            if (i<self->assetNumber() && j<self->pathSize()) {
                 return (*self)[i][j];
             } else {
                 throw std::out_of_range("multi-path index out of range");
@@ -222,7 +219,7 @@ class GaussianMultiPathGenerator {
                      const std::vector<boost::shared_ptr<StochasticProcess> >& 
                                                                diffusionProcs,
                      const Matrix& correlation,
-                     const std::vector<double>& times,
+                     const std::vector<Time>& times,
                      const GaussianRandomSequenceGenerator& generator,
                      bool brownianBridge = false) {
           return new GaussianMultiPathGenerator(diffusionProcs,

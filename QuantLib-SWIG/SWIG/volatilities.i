@@ -51,24 +51,24 @@ class BlackVolTermStructure : public Extrapolator {
     DayCounter dayCounter() const;
     Date maxDate() const;
     Time maxTime() const;
-    double minStrike() const;
-    double maxStrike() const;
-    double blackVol(const Date&, double strike, 
-                    bool extrapolate = false) const;
-    double blackVol(Time, double strike, 
-                    bool extrapolate = false) const;
-    double blackVariance(const Date&, double strike, 
-                         bool extrapolate = false) const;
-    double blackVariance(Time, double strike, 
-                         bool extrapolate = false) const;
-    double blackForwardVol(const Date&, const Date&, 
-                           double strike, bool extrapolate = false) const;
-    double blackForwardVol(Time, Time, double strike, 
-                           bool extrapolate = false) const;
-    double blackForwardVariance(const Date&, const Date&, 
-                                double strike, bool extrapolate = false) const;
-    double blackForwardVariance(Time, Time, double strike, 
-                                bool extrapolate = false) const;
+    Real minStrike() const;
+    Real maxStrike() const;
+    Volatility blackVol(const Date&, Real strike, 
+                        bool extrapolate = false) const;
+    Volatility blackVol(Time, Real strike, 
+                        bool extrapolate = false) const;
+    Real blackVariance(const Date&, Real strike, 
+                       bool extrapolate = false) const;
+    Real blackVariance(Time, Real strike, 
+                       bool extrapolate = false) const;
+    Volatility blackForwardVol(const Date&, const Date&, 
+                               Real strike, bool extrapolate = false) const;
+    Volatility blackForwardVol(Time, Time, Real strike, 
+                               bool extrapolate = false) const;
+    Real blackForwardVariance(const Date&, const Date&, 
+                              Real strike, bool extrapolate = false) const;
+    Real blackForwardVariance(Time, Time, Real strike, 
+                              bool extrapolate = false) const;
 };
 
 %template(BlackVolTermStructure) boost::shared_ptr<BlackVolTermStructure>;
@@ -94,12 +94,12 @@ class LocalVolTermStructure : public Extrapolator {
     DayCounter dayCounter() const;
     Date maxDate() const;
     Time maxTime() const;
-    double minStrike() const;
-    double maxStrike() const;
-    double localVol(const Date&, double u,
-                    bool extrapolate = false) const;
-    double localVol(Time, double u,
-                    bool extrapolate = false) const;
+    Real minStrike() const;
+    Real maxStrike() const;
+    Volatility localVol(const Date&, Real u,
+                        bool extrapolate = false) const;
+    Volatility localVol(Time, Real u,
+                        bool extrapolate = false) const;
 };
 
 %template(LocalVolTermStructure) boost::shared_ptr<LocalVolTermStructure>;
@@ -122,7 +122,7 @@ class BlackConstantVolPtr : public boost::shared_ptr<BlackVolTermStructure> {
   public:
     %extend {
         BlackConstantVolPtr(
-                const Date& referenceDate, double volatility,
+                const Date& referenceDate, Volatility volatility,
                 const DayCounter& dayCounter = Actual365()) {
             return new BlackConstantVolPtr(
                 new BlackConstantVol(referenceDate, volatility, dayCounter));
@@ -175,7 +175,7 @@ class BlackVarianceSurfacePtr
         BlackVarianceSurfacePtr(
                 const Date& referenceDate, 
                 const std::vector<Date>& dates,
-                const std::vector<double>& strikes,
+                const std::vector<Real>& strikes,
                 const Matrix& blackVols,
                 VolExtrapolationType lower = 
                     BlackVarianceSurface::InterpolatorDefaultExtrapolation,
@@ -202,7 +202,7 @@ class LocalConstantVolPtr : public boost::shared_ptr<LocalVolTermStructure> {
   public:
     %extend {
         LocalConstantVolPtr(
-                const Date& referenceDate, double volatility,
+                const Date& referenceDate, Volatility volatility,
                 const DayCounter& dayCounter = Actual365()) {
             return new LocalConstantVolPtr(
                 new LocalConstantVol(referenceDate, volatility, dayCounter));

@@ -27,8 +27,8 @@ using QuantLib::Day;
 using QuantLib::Year;
 %}
 
-typedef int Day;
-typedef int Year;
+typedef Integer Day;
+typedef Integer Year;
 
 
 // typemap weekdays to corresponding strings
@@ -115,6 +115,14 @@ std::string stringFromTimeunit(TimeUnit u) {
 MapToString(TimeUnit,timeunitFromString,stringFromTimeunit);
 
 
+// typemap frequencies to corresponding numbers
+
+%{
+using QuantLib::Frequency;
+%}
+
+MapToInteger(Frequency);
+
 // time period
 
 %{
@@ -127,13 +135,13 @@ class Period {
     %rename(">string")        __str__;
     #endif
   public:
-    Period(int n, TimeUnit units);
-    int length() const;
+    Period(Integer n, TimeUnit units);
+    Integer length() const;
     TimeUnit units() const;
     %extend {
-	Period(const std::string& str) {
-	    return new Period(PeriodParser::parse(str));
-	}
+        Period(const std::string& str) {
+            return new Period(PeriodParser::parse(str));
+        }
         std::string __str__() {
             std::string s = IntegerFormatter::toString(self->length());
             switch (self->units()) {
@@ -166,13 +174,13 @@ class Period {
             }
             QL_DUMMY_RETURN(std::string());
         }
-	int __cmp__(const Period& other) {
-	   if (*self < other)
-	      return -1;
-	   if (*self == other)
-	      return 0;
-	   return 1;
-	}
+        int __cmp__(const Period& other) {
+            if (*self < other)
+                return -1;
+            if (*self == other)
+                return 0;
+            return 1;
+        }
     }
 };
 
@@ -210,7 +218,7 @@ class Date {
   public:
     Date();
     Date(Day d, Month m, Year y);
-    Date(long serialNumber);
+    Date(BigInteger serialNumber);
     // access functions
     Weekday weekday() const;
     Day dayOfMonth() const;
@@ -219,13 +227,13 @@ class Date {
     Day lastDayOfMonth() const;
     Month month() const;
     Year year() const;
-    long serialNumber() const;
+    BigInteger serialNumber() const;
     // increment/decrement dates
-    Date plusDays(int days) const;
-    Date plusWeeks(int weeks) const;
-    Date plusMonths(int months) const;
-    Date plusYears(int years) const;
-    Date plus(int units, TimeUnit) const;
+    Date plusDays(Integer days) const;
+    Date plusWeeks(Integer weeks) const;
+    Date plusMonths(Integer months) const;
+    Date plusYears(Integer years) const;
+    Date plus(Integer units, TimeUnit) const;
     Date plus(const Period&) const;
     // leap years
     static bool isLeap(Year y);
@@ -235,14 +243,14 @@ class Date {
     // today's date
     static Date todaysDate();
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-    Date operator+(int days) const;
-    Date operator-(int days) const;
+    Date operator+(BigInteger days) const;
+    Date operator-(BigInteger days) const;
     #endif
     %extend {
         Date(const std::string& str, const std::string& fmt) {
             return new Date(DateParser::parse(str,fmt));
         }
-        int weekdayNumber() {
+        Integer weekdayNumber() {
             return int(self->weekday());
         }
         std::string __str__() {
@@ -261,7 +269,7 @@ class Date {
             return DateFormatter::toString(*self,DateFormatter::ISO);
         }
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-        long operator-(const Date& other) {
+        BigInteger operator-(const Date& other) {
             return *self - other;
         }
         int __cmp__(const Date& other) {
@@ -301,7 +309,7 @@ namespace std {
 %rename("Date>=?") Date_greater_equal;
 %inline %{
     // difference - comparison
-    long Date_days_between(const Date& d1, const Date& d2) {
+    BigInteger Date_days_between(const Date& d1, const Date& d2) {
         return d2-d1;
     }
     bool Date_equal(const Date& d1, const Date& d2) {

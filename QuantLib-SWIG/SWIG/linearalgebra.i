@@ -35,17 +35,17 @@ using QuantLib::ArrayFormatter;
 %{
 bool extractArray(PyObject* source, Array* target) {
     if (PyTuple_Check(source) || PyList_Check(source)) {
-        int size = (PyTuple_Check(source) ?
-                    PyTuple_Size(source) :
-                    PyList_Size(source));
+        Size size = (PyTuple_Check(source) ?
+                     PyTuple_Size(source) :
+                     PyList_Size(source));
         *target = Array(size);
-        for (int i=0; i<size; i++) {
+        for (Size i=0; i<size; i++) {
             PyObject* o = PySequence_GetItem(source,i);
             if (PyFloat_Check(o)) {
                 (*target)[i] = PyFloat_AsDouble(o);
                 Py_DECREF(o);
             } else if (PyInt_Check(o)) {
-                (*target)[i] = double(PyInt_AsLong(o));
+                (*target)[i] = Real(PyInt_AsLong(o));
                 Py_DECREF(o);
             } else {
                 Py_DECREF(o);
@@ -76,7 +76,7 @@ bool extractArray(PyObject* source, Array* target) {
 %typecheck(QL_TYPECHECK_ARRAY) Array {
     /* native sequence? */
     if (PyTuple_Check($input) || PyList_Check($input)) {
-        unsigned int size = PySequence_Size($input);
+        Size size = PySequence_Size($input);
         if (size == 0) {
             $1 = 1;
         } else {
@@ -100,7 +100,7 @@ bool extractArray(PyObject* source, Array* target) {
 %typecheck(QL_TYPECHECK_ARRAY) const Array & {
     /* native sequence? */
     if (PyTuple_Check($input) || PyList_Check($input)) {
-        unsigned int size = PySequence_Size($input);
+        Size size = PySequence_Size($input);
         if (size == 0) {
             $1 = 1;
         } else {
@@ -165,7 +165,7 @@ bool extractArray(PyObject* source, Array* target) {
                         $1[i][j] = PyFloat_AsDouble(d);
                         Py_DECREF(d);
                     } else if (PyInt_Check(d)) {
-                        $1[i][j] = double(PyInt_AsLong(d));
+                        $1[i][j] = Real(PyInt_AsLong(d));
                         Py_DECREF(d);
                     } else {
                         PyErr_SetString(PyExc_TypeError,"doubles expected");
@@ -228,7 +228,7 @@ bool extractArray(PyObject* source, Array* target) {
                         temp[i][j] = PyFloat_AsDouble(d);
                         Py_DECREF(d);
                     } else if (PyInt_Check(d)) {
-                        temp[i][j] = double(PyInt_AsLong(d));
+                        temp[i][j] = Real(PyInt_AsLong(d));
                         Py_DECREF(d);
                     } else {
                         PyErr_SetString(PyExc_TypeError,"doubles expected");
@@ -280,14 +280,14 @@ bool extractArray(PyObject* source, Array* target) {
 #elif defined(SWIGRUBY)
 %typemap(in) Array (Array* v) {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
-        unsigned int size = RARRAY($input)->len;
+        Size size = RARRAY($input)->len;
         $1 = Array(size);
-        for (unsigned int i=0; i<size; i++) {
+        for (Size i=0; i<size; i++) {
             VALUE o = RARRAY($input)->ptr[i];
             if (TYPE(o) == T_FLOAT)
                 (($1_type &)$1)[i] = NUM2DBL(o);
             else if (FIXNUM_P(o))
-                (($1_type &)$1)[i] = double(FIX2INT(o));
+                (($1_type &)$1)[i] = Real(FIX2INT(o));
             else
                 rb_raise(rb_eTypeError,
                          "wrong argument type"
@@ -301,15 +301,15 @@ bool extractArray(PyObject* source, Array* target) {
 %typemap(in) const Array& (Array temp),
              const Array* (Array temp) {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
-        unsigned int size = RARRAY($input)->len;
+        Size size = RARRAY($input)->len;
         temp = Array(size);
         $1 = &temp;
-        for (unsigned int i=0; i<size; i++) {
+        for (Size i=0; i<size; i++) {
             VALUE o = RARRAY($input)->ptr[i];
             if (TYPE(o) == T_FLOAT)
                 temp[i] = NUM2DBL(o);
             else if (FIXNUM_P(o))
-                temp[i] = double(FIX2INT(o));
+                temp[i] = Real(FIX2INT(o));
             else
                 rb_raise(rb_eTypeError,
                          "wrong argument type"
@@ -463,10 +463,10 @@ bool extractArray(PyObject* source, Array* target) {
 #elif defined(SWIGMZSCHEME)
 %typemap(in) Array {
     if (SCHEME_VECTORP($input)) {
-        unsigned int size = SCHEME_VEC_SIZE($input);
+        Size size = SCHEME_VEC_SIZE($input);
         $1 = Array(size);
         Scheme_Object** items = SCHEME_VEC_ELS($input);
-        for (unsigned int i=0; i<size; i++) {
+        for (Size i=0; i<size; i++) {
             Scheme_Object* o = items[i];
             if (SCHEME_REALP(o))
                 (($1_type &)$1)[i] = scheme_real_to_double(o);
@@ -482,11 +482,11 @@ bool extractArray(PyObject* source, Array* target) {
 %typemap(in) const Array& (Array temp),
              const Array* (Array temp) {
     if (SCHEME_VECTORP($input)) {
-        unsigned int size = SCHEME_VEC_SIZE($input);
+        Size size = SCHEME_VEC_SIZE($input);
         temp = Array(size);
         $1 = &temp;
         Scheme_Object** items = SCHEME_VEC_ELS($input);
-        for (unsigned int i=0; i<size; i++) {
+        for (Size i=0; i<size; i++) {
             Scheme_Object* o = items[i];
             if (SCHEME_REALP(o))
                 temp[i] = scheme_real_to_double(o);
@@ -626,7 +626,7 @@ bool extractArray(PyObject* source, Array* target) {
 #elif defined(SWIGGUILE)
 %typemap(in) Array {
     if (gh_vector_p($input)) {
-        unsigned long size = gh_vector_length($input);
+        Size size = gh_vector_length($input);
         $1 = Array(size);
         double* data = gh_scm2doubles($input,NULL);
         std::copy(data,data+size,$1.begin());
@@ -639,7 +639,7 @@ bool extractArray(PyObject* source, Array* target) {
 %typemap(in) const Array& (Array temp),
              const Array* (Array temp) {
     if (gh_vector_p($input)) {
-        unsigned long size = gh_vector_length($input);
+        Size size = gh_vector_length($input);
         temp = Array(size);
         $1 = &temp;
         double* data = gh_scm2doubles($input,NULL);
@@ -773,7 +773,7 @@ class Array {
     #endif
   public:
     Array();
-    Array(Size n, double fill = 0.0);
+    Array(Size n, Real fill = 0.0);
     Array(const Array&);
     Size size() const;
     %extend {
@@ -787,25 +787,25 @@ class Array {
         Array __sub__(const Array& a) {
             return Array(*self-a);
         }
-        Array __mul__(double a) {
+        Array __mul__(Real a) {
             return Array(*self*a);
         }
-        double __mul__(const Array& a) {
+        Real __mul__(const Array& a) {
             return QuantLib::DotProduct(*self,a);
         }
         Array __mul__(const Matrix& a) {
             return *self*a;
         }
-        Array __div__(double a) {
+        Array __div__(Real a) {
             return Array(*self/a);
         }
         #endif
         #if defined(SWIGPYTHON)
-        Array __rmul__(double a) {
+        Array __rmul__(Real a) {
             return Array(*self*a);
         }
-        Array __getslice__(int i, int j) {
-            int size_ = static_cast<int>(self->size());
+        Array __getslice__(Integer i, Integer j) {
+            Integer size_ = static_cast<Integer>(self->size());
             if (i<0)
                 i = size_+i;
             if (j<0)
@@ -816,15 +816,15 @@ class Array {
             std::copy(self->begin()+i,self->begin()+j,tmp.begin());
             return tmp;
         }
-        void __setslice__(int i, int j, const Array& rhs) {
-            int size_ = static_cast<int>(self->size());
+        void __setslice__(Integer i, Integer j, const Array& rhs) {
+            Integer size_ = static_cast<Integer>(self->size());
             if (i<0)
                 i = size_+i;
             if (j<0)
                 j = size_+j;
             i = QL_MAX(0,i);
             j = QL_MIN(size_,j);
-            QL_ENSURE(static_cast<int>(rhs.size()) == j-i,
+            QL_ENSURE(static_cast<Integer>(rhs.size()) == j-i,
                       "arrays are not resizable");
             std::copy(rhs.begin(),rhs.end(),self->begin()+i);
         }
@@ -834,13 +834,13 @@ class Array {
         #endif
         #if defined(SWIGRUBY)
         void each() {
-            for (unsigned int i=0; i<self->size(); i++)
+            for (Size i=0; i<self->size(); i++)
                 rb_yield(rb_float_new((*self)[i]));
         }
         #endif
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-        double __getitem__(int i) {
-            int size_ = static_cast<int>(self->size());
+        Real __getitem__(Integer i) {
+            Integer size_ = static_cast<Integer>(self->size());
             if (i>=0 && i<size_) {
                 return (*self)[i];
             } else if (i<0 && -i<=size_) {
@@ -850,8 +850,8 @@ class Array {
             }
             QL_DUMMY_RETURN(0.0)
         }
-        void __setitem__(int i, double x) {
-            int size_ = static_cast<int>(self->size());
+        void __setitem__(Integer i, Real x) {
+            Integer size_ = static_cast<Integer>(self->size());
             if (i>=0 && i<size_) {
                 (*self)[i] = x;
             } else if (i<0 && -i<=size_) {
@@ -862,14 +862,14 @@ class Array {
         }
         #endif
         #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-        double ref(Size i) {
+        Real ref(Size i) {
             if (i<self->size())
                 return (*self)[i];
             else
                 throw std::out_of_range("array index out of range");
             QL_DUMMY_RETURN(0.0)
         }
-        void set(Size i, double x) {
+        void set(Size i, Real x) {
             if (i<self->size())
                 (*self)[i] = x;
             else
@@ -891,13 +891,13 @@ class Array {
     Array Array_sub(const Array& a, const Array& b) {
         return a-b;
     }
-    Array Array_div(const Array& a, double x) {
+    Array Array_div(const Array& a, Real x) {
         return a/x;
     }
-    Array Array_mul(const Array& a, double x) {
+    Array Array_mul(const Array& a, Real x) {
         return a*x;
     }
-    double Array_mul(const Array& a, const Array& b) {
+    Real Array_mul(const Array& a, const Array& b) {
         return QuantLib::DotProduct(a,b);;
     }
     Array Array_mul(const Array& a, const Matrix& m) {
@@ -922,10 +922,10 @@ class LexicographicalViewColumn {
     LexicographicalViewColumn();
   public:
     %extend {
-        double __getitem__(int i) {
+        Real __getitem__(Size i) {
             return (*self)[i];
         }
-        void __setitem__(int i, double x) {
+        void __setitem__(Size i, Real x) {
             (*self)[i] = x;
         }
     }
@@ -946,12 +946,12 @@ class LexicographicalView {
         }
         std::string __str__() {
             std::string s;
-            for (int j=0; j<static_cast<int>(self->ySize()); j++) {
+            for (Size j=0; j<self->ySize(); j++) {
                 s += "\n";
-                for (int i=0; i<static_cast<int>(self->xSize()); i++) {
+                for (Size i=0; i<self->xSize(); i++) {
                     if (i != 0)
                         s += ",";
-                    s += DoubleFormatter::toString((*self)[i][j]);
+                    s += DecimalFormatter::toString((*self)[i][j]);
                 }
             }
             s += "\n";
@@ -962,10 +962,10 @@ class LexicographicalView {
             return (*self)[i];
         }
         #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-        double ref(Size i, Size j) {
+        Real ref(Size i, Size j) {
             return (*self)[i][j];
         }
-        void set(Size i, Size j, double x) {
+        void set(Size i, Size j, Real x) {
             (*self)[i][j] = x;
         }
         #endif
@@ -988,10 +988,10 @@ class MatrixRow {
     MatrixRow();
   public:
     %extend {
-        double __getitem__(int i) {
+        Real __getitem__(Size i) {
             return (*self)[i];
         }
-        void __setitem__(int i, double x) {
+        void __setitem__(Size i, Real x) {
             (*self)[i] = x;
         }
     }
@@ -1005,7 +1005,7 @@ class Matrix {
     #endif
   public:
     Matrix();
-    Matrix(Size rows, Size columns, double fill = 0.0);
+    Matrix(Size rows, Size columns, Real fill = 0.0);
     Matrix(const Matrix&);
     Size rows() const;
     Size columns() const;
@@ -1014,10 +1014,10 @@ class Matrix {
             std::string s;
             for (Size j=0; j<self->rows(); j++) {
                 s += "\n";
-                s += QuantLib::DoubleFormatter::toString((*self)[j][0]);
+                s += QuantLib::DecimalFormatter::toString((*self)[j][0]);
                 for (Size i=1; i<self->columns(); i++) {
                     s += ",";
-                    s += QuantLib::DoubleFormatter::toString((*self)[j][i]);
+                    s += QuantLib::DecimalFormatter::toString((*self)[j][i]);
                 }
             }
             s += "\n";
@@ -1030,7 +1030,7 @@ class Matrix {
         Matrix __sub__(const Matrix& m) {
             return *self-m;
         }
-        Matrix __mul__(double x) {
+        Matrix __mul__(Real x) {
             return *self*x;
         }
         Array __mul__(const Array& x) {
@@ -1039,7 +1039,7 @@ class Matrix {
         Matrix __mul__(const Matrix& x) {
             return *self*x;
         }
-        Matrix __div__(double x) {
+        Matrix __div__(Real x) {
             return *self/x;
         }
         #endif
@@ -1048,15 +1048,15 @@ class Matrix {
             return (*self)[i];
         }
         #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-        double ref(Size i, Size j) {
+        Real ref(Size i, Size j) {
             return (*self)[i][j];
         }
-        void setitem(Size i, Size j, double x) {
+        void setitem(Size i, Size j, Real x) {
             (*self)[i][j] = x;
         }
         #endif
         #if defined(SWIGPYTHON)
-        Matrix __rmul__(double x) {
+        Matrix __rmul__(Real x) {
             return x*(*self);
         }
         Array __rmul__(const Array& x) {
@@ -1081,10 +1081,10 @@ class Matrix {
     Matrix Matrix_sub(const Matrix& m, const Matrix& n) {
         return m-n;
     }
-    Matrix Matrix_div(const Matrix& m, double x) {
+    Matrix Matrix_div(const Matrix& m, Real x) {
         return m/x;
     }
-    Matrix Matrix_mul(const Matrix& m, double x) {
+    Matrix Matrix_mul(const Matrix& m, Real x) {
         return m*x;
     }
     Array Matrix_mul(const Matrix& m, const Array& a) {

@@ -48,7 +48,7 @@ class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
     %extend {
         DepositRateHelperPtr(
                 const RelinkableHandle<Quote>& rate,
-                int n, TimeUnit units, int settlementDays,
+                Integer n, TimeUnit units, Integer settlementDays,
                 const Calendar& calendar, RollingConvention convention, 
                 const DayCounter& dayCounter) {
             return new DepositRateHelperPtr(
@@ -56,7 +56,7 @@ class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
                                       calendar, convention,dayCounter));
         }
         DepositRateHelperPtr(
-                double rate, int n, TimeUnit units, int settlementDays,
+                Rate rate, Integer n, TimeUnit units, Integer settlementDays,
                 const Calendar& calendar, RollingConvention convention, 
                 const DayCounter& dayCounter) {
             return new DepositRateHelperPtr(
@@ -72,7 +72,8 @@ class FraRateHelperPtr : public boost::shared_ptr<RateHelper> {
     %extend {
         FraRateHelperPtr(
                 const RelinkableHandle<Quote>& rate,
-                int monthsToStart, int monthsToEnd, int settlementDays,
+                Integer monthsToStart, Integer monthsToEnd, 
+                Integer settlementDays,
                 const Calendar& calendar, RollingConvention convention,
                 const DayCounter& dayCounter) {
             return new FraRateHelperPtr(
@@ -81,8 +82,9 @@ class FraRateHelperPtr : public boost::shared_ptr<RateHelper> {
                                   dayCounter));
         }
         FraRateHelperPtr(
-                double rate,
-                int monthsToStart, int monthsToEnd, int settlementDays,
+                Rate rate,
+                Integer monthsToStart, Integer monthsToEnd, 
+                Integer settlementDays,
                 const Calendar& calendar, RollingConvention convention,
                 const DayCounter& dayCounter) {
             return new FraRateHelperPtr(
@@ -99,7 +101,7 @@ class FuturesRateHelperPtr : public boost::shared_ptr<RateHelper> {
     %extend {
         FuturesRateHelperPtr(
                 const RelinkableHandle<Quote>& price,
-                const Date& immDate, int nMonths,
+                const Date& immDate, Integer nMonths,
                 const Calendar& calendar, RollingConvention convention,
                 const DayCounter& dayCounter) {
             return new FuturesRateHelperPtr(
@@ -107,7 +109,7 @@ class FuturesRateHelperPtr : public boost::shared_ptr<RateHelper> {
                                       calendar,convention,dayCounter));
         }
         FuturesRateHelperPtr(
-                double price, const Date& immDate, int nMonths,
+                Real price, const Date& immDate, Integer nMonths,
                 const Calendar& calendar, RollingConvention convention,
                 const DayCounter& dayCounter) {
             return new FuturesRateHelperPtr(
@@ -132,10 +134,10 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
     %extend {
         SwapRateHelperPtr(
                 const RelinkableHandle<Quote>& rate,
-                int n, TimeUnit units, int settlementDays,
+                Integer n, TimeUnit units, Integer settlementDays,
                 const Calendar& calendar, RollingConvention rollingConvention,
-                int fixedFrequency, bool fixedIsAdjusted,
-                const DayCounter& fixedDayCount, int floatingFrequency) {
+                Frequency fixedFrequency, bool fixedIsAdjusted,
+                const DayCounter& fixedDayCount, Frequency floatingFrequency) {
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, n, units, settlementDays,
                                    calendar, rollingConvention, 
@@ -143,10 +145,10 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                                    fixedDayCount, floatingFrequency));
         }
         SwapRateHelperPtr(
-                double rate, int n, TimeUnit units, int settlementDays,
+                Rate rate, Integer n, TimeUnit units, Integer settlementDays,
                 const Calendar& calendar, RollingConvention rollingConvention,
-                int fixedFrequency, bool fixedIsAdjusted,
-                const DayCounter& fixedDayCount, int floatingFrequency) {
+                Frequency fixedFrequency, bool fixedIsAdjusted,
+                const DayCounter& fixedDayCount, Frequency floatingFrequency) {
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, n, units, settlementDays,
                                    calendar, rollingConvention, 
@@ -179,7 +181,7 @@ class PiecewiseFlatForwardPtr : public boost::shared_ptr<TermStructure> {
                 const Date& referenceDate, 
                 const std::vector<boost::shared_ptr<RateHelper> >& instruments,
                 const DayCounter& dayCounter, 
-                double accuracy = 1.0e-12) {
+                Real accuracy = 1.0e-12) {
 	        return new PiecewiseFlatForwardPtr(
 	            new PiecewiseFlatForward(todaysDate, referenceDate, 
                                          instruments, dayCounter, accuracy));
@@ -187,7 +189,7 @@ class PiecewiseFlatForwardPtr : public boost::shared_ptr<TermStructure> {
         PiecewiseFlatForwardPtr(
                 const Date& todaysDate,
                 const std::vector<Date>& dates,
-                const std::vector<double>& forwards,
+                const std::vector<Rate>& forwards,
                 const DayCounter& dayCounter) {
 	        return new PiecewiseFlatForwardPtr(
                 new PiecewiseFlatForward(todaysDate,
@@ -197,7 +199,7 @@ class PiecewiseFlatForwardPtr : public boost::shared_ptr<TermStructure> {
             return boost::dynamic_pointer_cast<PiecewiseFlatForward>(*self)
                  ->dates();
         }
-        const std::vector<double>& times() {
+        const std::vector<Time>& times() {
             return boost::dynamic_pointer_cast<PiecewiseFlatForward>(*self)
                  ->times();
         }

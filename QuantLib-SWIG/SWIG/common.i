@@ -26,7 +26,7 @@
 using QuantLib::Error;
 using QuantLib::RelinkableHandle;
 using QuantLib::IntegerFormatter;
-using QuantLib::DoubleFormatter;
+using QuantLib::DecimalFormatter;
 using QuantLib::StringFormatter;
 %}
 

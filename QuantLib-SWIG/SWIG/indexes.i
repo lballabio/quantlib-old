@@ -99,7 +99,7 @@ class XiborPtr : public boost::shared_ptr<Index> {
     #endif
   public:
     %extend {
-        XiborPtr(const std::string& name, int n, TimeUnit units,
+        XiborPtr(const std::string& name, Integer n, TimeUnit units,
                  const RelinkableHandle<TermStructure>& h) {
             std::string s = StringFormatter::toLowercase(name);
             if (s == "euribor")

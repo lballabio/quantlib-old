@@ -32,15 +32,15 @@ class TimeBasket {
     #endif
   public:
     TimeBasket();
-    TimeBasket(const std::vector<Date>&, const std::vector<double>&);
+    TimeBasket(const std::vector<Date>&, const std::vector<Real>&);
     Size size();
     TimeBasket rebin(const std::vector<Date>&) const;
     %extend {
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-        double __getitem__(const Date& d) {
+        Real __getitem__(const Date& d) {
             return (*self)[d];
         }
-        void __setitem__(const Date& d, double value) {
+        void __setitem__(const Date& d, Real value) {
             (*self)[d] = value;
         }
         #endif
@@ -48,7 +48,7 @@ class TimeBasket {
         PyObject* items() {
             PyObject* itemList = PyList_New(self->size());
             TimeBasket::iterator i;
-            unsigned int j;
+            Size j;
             for (i=self->begin(), j=0; i!=self->end(); ++i, ++j) {
                 Date* d = new Date(i->first);
                 PyObject* item = PyTuple_New(2);
@@ -68,7 +68,7 @@ class TimeBasket {
             %#if PY_VERSION_HEX >= 0x02020000
             PyObject* keyList = PyList_New(self->size());
             TimeBasket::iterator i;
-            unsigned int j;
+            Size j;
             for (i=self->begin(), j=0; i!=self->end(); ++i, ++j) {
                 Date* d = new Date(i->first);
                 PyList_SetItem(keyList,j,

@@ -47,19 +47,19 @@ class UnaryFunction {
     ~UnaryFunction() {
         Py_XDECREF(function_);
     }
-	double operator()(double x) const {
+	Real operator()(Real x) const {
 		PyObject* pyResult = PyObject_CallFunction(function_,"d",x);
 		QL_ENSURE(pyResult != NULL, "failed to call Python function");
-		double result = PyFloat_AsDouble(pyResult);
+		Real result = PyFloat_AsDouble(pyResult);
 		Py_XDECREF(pyResult);
 		return result;
 	}
-	double derivative(double x) const {
+	Real derivative(Real x) const {
 		PyObject* pyResult =
             PyObject_CallMethod(function_,"derivative","d",x);
 		QL_ENSURE(pyResult != NULL,
                   "failed to call derivative() on Python object");
-		double result = PyFloat_AsDouble(pyResult);
+		Real result = PyFloat_AsDouble(pyResult);
 		Py_XDECREF(pyResult);
 		return result;
 	}
@@ -87,10 +87,10 @@ class BinaryFunction {
     ~BinaryFunction() {
         Py_XDECREF(function_);
     }
-	double operator()(double x, double y) const {
+	Real operator()(Real x, Real y) const {
 		PyObject* pyResult = PyObject_CallFunction(function_,"dd",x,y);
 		QL_ENSURE(pyResult != NULL, "failed to call Python function");
-		double result = PyFloat_AsDouble(pyResult);
+		Real result = PyFloat_AsDouble(pyResult);
 		Py_XDECREF(pyResult);
 		return result;
 	}
@@ -118,14 +118,14 @@ class PyCostFunction : public CostFunction {
     ~PyCostFunction() {
         Py_XDECREF(function_);
     }
-	double value(const Array& x) const {
+	Real value(const Array& x) const {
         PyObject* tuple = PyTuple_New(x.size());
         for (Size i=0; i<x.size(); i++)
             PyTuple_SetItem(tuple,i,PyFloat_FromDouble(x[i]));
 		PyObject* pyResult = PyObject_CallObject(function_,tuple);
         Py_XDECREF(tuple);
 		QL_ENSURE(pyResult != NULL, "failed to call Python function");
-		double result = PyFloat_AsDouble(pyResult);
+		Real result = PyFloat_AsDouble(pyResult);
 		Py_XDECREF(pyResult);
 		return result;
 	}
@@ -139,14 +139,14 @@ class PyCostFunction : public CostFunction {
 %{
 class UnaryFunction {
   public:
-    double operator()(double x) const {
+    Real operator()(Real x) const {
         return NUM2DBL(rb_yield(rb_float_new(x)));
     }
 };
 
 class RubyCostFunction : public CostFunction {
   public:
-    double value(const Array& x) const {
+    Real value(const Array& x) const {
         VALUE a = rb_ary_new2(x.size());
         for (Size i=0; i<x.size(); i++)
             rb_ary_store(a,i,rb_float_new(x[i]));
@@ -178,12 +178,12 @@ class UnaryFunction {
     ~UnaryFunction() {
         scheme_gc_ptr_ok(function_);
     }
-	double operator()(double x) const {
+	Real operator()(Real x) const {
 		Scheme_Object* arg = scheme_make_double(x);
         Scheme_Object* mzResult = scheme_apply(function_,1,&arg);
         QL_ENSURE(SCHEME_REALP(mzResult),
                   "the function did not return a double");
-		double result = scheme_real_to_double(mzResult);
+		Real result = scheme_real_to_double(mzResult);
 		return result;
 	}
   private:
@@ -210,7 +210,7 @@ class BinaryFunction {
     ~BinaryFunction() {
         scheme_gc_ptr_ok(function_);
     }
-	double operator()(double x, double y) const {
+	Real operator()(Real x, Real y) const {
 		Scheme_Object* arg1 = scheme_make_double(x);
         Scheme_Object* arg2 = scheme_make_double(y);
         Scheme_Object* arg  = scheme_make_pair(arg1,
@@ -219,7 +219,7 @@ class BinaryFunction {
         Scheme_Object* mzResult = scheme_apply_to_list(function_,arg);
         QL_ENSURE(SCHEME_REALP(mzResult),
                   "the function did not return a double");
-		double result = scheme_real_to_double(mzResult);
+		Real result = scheme_real_to_double(mzResult);
 		return result;
 	}
   private:
@@ -247,7 +247,7 @@ class MzCostFunction : public CostFunction {
     ~MzCostFunction() {
         scheme_gc_ptr_ok(function_);
     }
-	double value(const Array& x) const {
+	Real value(const Array& x) const {
         Scheme_Object** args = new Scheme_Object*[x.size()];
         for (Size i=0; i<x.size(); i++)
             args[i] = scheme_make_double(x[i]);
@@ -255,7 +255,7 @@ class MzCostFunction : public CostFunction {
         delete[] args;
         QL_ENSURE(SCHEME_REALP(mzResult),
                   "the function did not return a double");
-		double result = scheme_real_to_double(mzResult);
+		Real result = scheme_real_to_double(mzResult);
 		return result;
 	}
   private:
@@ -275,10 +275,10 @@ class UnaryFunction {
     ~UnaryFunction() {
         scm_unprotect_object(function_);
     }
-	double operator()(double x) const {
+	Real operator()(Real x) const {
 		SCM arg = gh_double2scm(x);
         SCM guileResult = gh_call1(function_,arg);
-		double result = gh_scm2double(guileResult);
+		Real result = gh_scm2double(guileResult);
 		return result;
 	}
   private:
@@ -299,12 +299,12 @@ class GuileCostFunction : public CostFunction {
     ~GuileCostFunction() {
         scm_unprotect_object(function_);
     }
-	double value(const Array& x) const {
+	Real value(const Array& x) const {
         SCM v = gh_make_vector(gh_long2scm(x.size()),SCM_UNSPECIFIED);
         for (Size i=0; i<x.size(); i++)
             gh_vector_set_x(v,gh_long2scm(i),gh_double2scm(x[i]));
         SCM guileResult = gh_apply(function_,gh_vector_to_list(v));
-		double result = gh_scm2double(guileResult);
+		Real result = gh_scm2double(guileResult);
 		return result;
 	}
   private:

@@ -42,7 +42,7 @@ class DayCounter {
   private:
     DayCounter();
   public:
-    int dayCount(const Date& d1, const Date& d2);
+    BigInteger dayCount(const Date& d1, const Date& d2);
     Time yearFraction(const Date& d1, const Date& d2,
                       const Date& startRef = Date(), 
                       const Date& endRef = Date());

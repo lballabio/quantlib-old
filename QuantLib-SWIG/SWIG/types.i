@@ -21,17 +21,28 @@
 %include common.i
 
 %{
+using QuantLib::Integer;
+using QuantLib::BigInteger;
+using QuantLib::Real;
+using QuantLib::Decimal;
 using QuantLib::Time;
 using QuantLib::Rate;
 using QuantLib::Spread;
 using QuantLib::DiscountFactor;
+using QuantLib::Volatility;
 using QuantLib::Size;
 %}
 
-typedef double Time;
-typedef double Rate;
-typedef double Spread;
-typedef double DiscountFactor;
+typedef int Integer;
+typedef long BigInteger;
+typedef double Real;
+
+typedef Real Decimal;
+typedef Real Time;
+typedef Real Rate;
+typedef Real Spread;
+typedef Real DiscountFactor;
+typedef Real Volatility;
 
 MapToInteger(Size);
 

@@ -54,50 +54,50 @@ class SolverName {
     %rename("upper-bound-set!")     setUpperBound;
     #endif
   public:
-    void setMaxEvaluations(int evaluations);
-    void setLowerBound(double lowerBound);
-    void setUpperBound(double upperBound);
+    void setMaxEvaluations(Size evaluations);
+    void setLowerBound(Real lowerBound);
+    void setUpperBound(Real upperBound);
     %extend {
         #if defined(SWIGPYTHON)
-        double solve(PyObject* function, double xAccuracy, 
-                     double guess, double step) {
+        Real solve(PyObject* function, Real xAccuracy, 
+                   Real guess, Real step) {
             UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, step);
         }
-        double solve(PyObject* function, double xAccuracy,
-                     double guess, double xMin, double xMax) {
+        Real solve(PyObject* function, Real xAccuracy,
+                   Real guess, Real xMin, Real xMax) {
             UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, xMin, xMax);
         }
         #elif defined(SWIGRUBY)
-        double solve(double xAccuracy, double guess, double step) {
+        Real solve(Real xAccuracy, Real guess, Real step) {
             UnaryFunction f;
             return self->solve(f, xAccuracy, guess, step);
         }
-        double solve(double xAccuracy, double guess,
-                     double xMin, double xMax) {
+        Real solve(Real xAccuracy, Real guess,
+                   Real xMin, Real xMax) {
             UnaryFunction f;
             return self->solve(f, xAccuracy, guess, xMin, xMax);
         }
         #elif defined(SWIGMZSCHEME)
-        double solve(Scheme_Object* function, double xAccuracy, 
-                     double guess, double step) {
+        Real solve(Scheme_Object* function, Real xAccuracy, 
+                   Real guess, Real step) {
             UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, step);
         }
-        double solve(Scheme_Object* function, double xAccuracy,
-                     double guess, double xMin, double xMax) {
+        Real solve(Scheme_Object* function, Real xAccuracy,
+                   Real guess, Real xMin, Real xMax) {
             UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, xMin, xMax);
         }
         #elif defined(SWIGGUILE)
-        double solve(SCM function, double xAccuracy, 
-                     double guess, double step) {
+        Real solve(SCM function, Real xAccuracy, 
+                   Real guess, Real step) {
             UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, step);
         }
-        double solve(SCM function, double xAccuracy,
-                     double guess, double xMin, double xMax) {
+        Real solve(SCM function, Real xAccuracy,
+                   Real guess, Real xMin, Real xMax) {
             UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, xMin, xMax);
         }
@@ -137,7 +137,7 @@ class Constraint {
 
 class BoundaryConstraint : public Constraint {
   public:
-    BoundaryConstraint(double lower, double upper);
+    BoundaryConstraint(Real lower, Real upper);
 };
 
 class NoConstraint : public Constraint {
@@ -164,14 +164,14 @@ class EndCriteria {
     #endif
   public:
     EndCriteria();
-    EndCriteria(int maxIteration, double epsilon);
+    EndCriteria(Size maxIteration, Real epsilon);
     void setPositiveOptimization();
-    bool operator()(int iteration,
-                    double fold,
-                    double normgold,
-                    double fnew,
-                    double normgnew,
-                    double);
+    bool operator()(Size iteration,
+                    Real fold,
+                    Real normgold,
+                    Real fnew,
+                    Real normgnew,
+                    Real);
 };
 
 
@@ -205,7 +205,7 @@ class ConjugateGradient : public OptimizationMethod {
 
 class Simplex : public OptimizationMethod {
   public:
-    Simplex(double lambda, double tol);
+    Simplex(Real lambda, Real tol);
 };
 
 class SteepestDescent : public OptimizationMethod {

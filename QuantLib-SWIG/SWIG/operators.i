@@ -69,7 +69,7 @@ typedef boost::shared_ptr<BoundaryCondition> DirichletBCPtr;
 class NeumannBCPtr: public boost::shared_ptr<BoundaryCondition> {
   public:
     %extend {
-        NeumannBCPtr(double value, BoundaryConditionSide side) {
+        NeumannBCPtr(Real value, BoundaryConditionSide side) {
             return new NeumannBCPtr(new NeumannBC(value, side));
         }
     }
@@ -79,7 +79,7 @@ class NeumannBCPtr: public boost::shared_ptr<BoundaryCondition> {
 class DirichletBCPtr: public boost::shared_ptr<BoundaryCondition> {
   public:
     %extend {
-        DirichletBCPtr(double value, BoundaryConditionSide side) {
+        DirichletBCPtr(Real value, BoundaryConditionSide side) {
             return new DirichletBCPtr(new DirichletBC(value, side));
         }
     }
@@ -114,10 +114,10 @@ class TridiagonalOperator {
     // inspectors
     Size size() const;
     // modifiers
-    void setFirstRow(double, double);
-    void setMidRow(Size, double, double, double);
-    void setMidRows(double, double, double);
-    void setLastRow(double, double);
+    void setFirstRow(Real, Real);
+    void setMidRow(Size, Real, Real, Real);
+    void setMidRows(Real, Real, Real);
+    void setLastRow(Real, Real);
     // identity
     static TridiagonalOperator identity(Size size);
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
@@ -128,10 +128,10 @@ class TridiagonalOperator {
         TridiagonalOperator __sub__(const TridiagonalOperator& O) {
             return *self-O;
         }
-        TridiagonalOperator __mul__(double a) {
+        TridiagonalOperator __mul__(Real a) {
             return *self*a;
         }
-        TridiagonalOperator __div__(double a) {
+        TridiagonalOperator __div__(Real a) {
             return *self/a;
         }
         #if defined(SWIGPYTHON)
@@ -141,13 +141,13 @@ class TridiagonalOperator {
         TridiagonalOperator __isub__(const TridiagonalOperator& O) {
             return *self-O;
         }
-        TridiagonalOperator __imul__(double a) {
+        TridiagonalOperator __imul__(Real a) {
             return *self*a;
         }
-        TridiagonalOperator __rmul__(double a) {
+        TridiagonalOperator __rmul__(Real a) {
             return *self*a;
         }
-        TridiagonalOperator __idiv__(double a) {
+        TridiagonalOperator __idiv__(Real a) {
             return *self/a;
         }
         #endif
@@ -170,11 +170,11 @@ class TridiagonalOperator {
         return p-q;
     }
     TridiagonalOperator TridiagonalOperator_mul(const TridiagonalOperator& p,
-                                                double x) {
+                                                Real x) {
         return p*x;
     }
     TridiagonalOperator TridiagonalOperator_div(const TridiagonalOperator& p,
-                                                double x) {
+                                                Real x) {
         return p/x;
     }
 %}
@@ -197,35 +197,35 @@ using QuantLib::DPlusDMinus;
 %rename("new-D0")   makeDZero;
 %rename("new-D+D-") makeDPlusDMinus;
 %inline %{
-    TridiagonalOperator makeDPlus(Size gridPoints, double h) {
+    TridiagonalOperator makeDPlus(Size gridPoints, Real h) {
         return DPlus(gridPoints,h);
     }
-    TridiagonalOperator makeDMinus(Size gridPoints, double h) {
+    TridiagonalOperator makeDMinus(Size gridPoints, Real h) {
         return DMinus(gridPoints,h);
     }
-    TridiagonalOperator makeDZero(Size gridPoints, double h) {
+    TridiagonalOperator makeDZero(Size gridPoints, Real h) {
         return DZero(gridPoints,h);
     }
-    TridiagonalOperator makeDPlusDMinus(Size gridPoints, double h) {
+    TridiagonalOperator makeDPlusDMinus(Size gridPoints, Real h) {
         return DPlusDMinus(gridPoints,h);
     }
 %}
 #else
 class DPlus : public TridiagonalOperator {
   public:
-    DPlus(Size gridPoints, double h);
+    DPlus(Size gridPoints, Real h);
 };
 class DMinus : public TridiagonalOperator {
   public:
-    DMinus(Size gridPoints, double h);
+    DMinus(Size gridPoints, Real h);
 };
 class DZero : public TridiagonalOperator {
   public:
-    DZero(Size gridPoints, double h);
+    DZero(Size gridPoints, Real h);
 };
 class DPlusDMinus : public TridiagonalOperator {
   public:
-    DPlusDMinus(Size gridPoints, double h);
+    DPlusDMinus(Size gridPoints, Real h);
 };
 #endif
 
@@ -236,9 +236,9 @@ using QuantLib::firstDerivativeAtCenter;
 using QuantLib::secondDerivativeAtCenter;
 %}
 
-double valueAtCenter(const Array& a);
-double firstDerivativeAtCenter(const Array& a, const Array& g);
-double secondDerivativeAtCenter(const Array& a, const Array& g);
+Real valueAtCenter(const Array& a);
+Real firstDerivativeAtCenter(const Array& a, const Array& g);
+Real secondDerivativeAtCenter(const Array& a, const Array& g);
 
 %{
 using QuantLib::SymmetricEigenvalues;

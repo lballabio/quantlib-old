@@ -50,8 +50,8 @@ class TimeGrid : public std::vector<Time> {
     Size size() const;
     %extend {
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-        Time __getitem__(int i) {
-            int size_ = static_cast<int>(self->size());
+        Time __getitem__(Integer i) {
+            Integer size_ = static_cast<Integer>(self->size());
             if (i>=0 && i<size_) {
                 return (*self)[i];
             } else if (i<0 && -i<=size_) {
@@ -61,8 +61,8 @@ class TimeGrid : public std::vector<Time> {
             }
             QL_DUMMY_RETURN(0.0)
         }
-        Time dt(int i) const {
-            int size_ = static_cast<int>(self->size());
+        Time dt(Integer i) const {
+            Integer size_ = static_cast<Integer>(self->size());
             if (i>=0 && i<size_) {
                 return self->dt(i);
             } else if (i<0 && -i<=size_) {

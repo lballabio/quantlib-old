@@ -40,24 +40,24 @@ class Statistics {
     #endif
   public:
     Size samples() const;
-    double weightSum() const;
-    double mean() const;
-    double variance() const;
-    double standardDeviation() const;
-    double errorEstimate() const;
-    double skewness() const;
-    double kurtosis() const;
-    double min() const;
-    double max() const;
+    Real weightSum() const;
+    Real mean() const;
+    Real variance() const;
+    Real standardDeviation() const;
+    Real errorEstimate() const;
+    Real skewness() const;
+    Real kurtosis() const;
+    Real min() const;
+    Real max() const;
     // Modifiers
     void reset();
-    void add(double value, double weight = 1.0);
+    void add(Real value, Real weight = 1.0);
     %extend {
-        void add(const std::vector<double>& values) {
+        void add(const std::vector<Real>& values) {
             self->addSequence(values.begin(), values.end());
         }
-        void add(const std::vector<double>& values, 
-                 const std::vector<double>& weights) {
+        void add(const std::vector<Real>& values, 
+                 const std::vector<Real>& weights) {
             self->addSequence(values.begin(), values.end(), weights.begin());
         }
     }
@@ -75,16 +75,16 @@ class RiskStatistics : public Statistics {
     %rename("average-shortfall")     averageShortfall;
     #endif
   public:
-    double semiVariance() const;
-    double semiDeviation() const;
-    double downsideVariance() const;
-    double downsideDeviation() const;
-    double regret(double target) const;
-    double potentialUpside(double percentile) const;
-    double valueAtRisk(double percentile) const;
-    double expectedShortfall(double percentile) const;
-    double shortfall(double target) const;
-    double averageShortfall(double target) const;
+    Real semiVariance() const;
+    Real semiDeviation() const;
+    Real downsideVariance() const;
+    Real downsideDeviation() const;
+    Real regret(Real target) const;
+    Real potentialUpside(Real percentile) const;
+    Real valueAtRisk(Real percentile) const;
+    Real expectedShortfall(Real percentile) const;
+    Real shortfall(Real target) const;
+    Real averageShortfall(Real target) const;
 };
 
 template <class S>
@@ -101,21 +101,21 @@ class SequenceStatistics {
     SequenceStatistics(Size dimension);
     Size size() const;
     Size samples() const;
-    double weightSum() const;
-    std::vector<double> mean() const;
-    std::vector<double> variance() const;
-    std::vector<double> standardDeviation() const;
-    std::vector<double> errorEstimate() const;
-    std::vector<double> skewness() const;
-    std::vector<double> kurtosis() const;
-    std::vector<double> min() const;
-    std::vector<double> max() const;
+    Real weightSum() const;
+    std::vector<Real> mean() const;
+    std::vector<Real> variance() const;
+    std::vector<Real> standardDeviation() const;
+    std::vector<Real> errorEstimate() const;
+    std::vector<Real> skewness() const;
+    std::vector<Real> kurtosis() const;
+    std::vector<Real> min() const;
+    std::vector<Real> max() const;
     Matrix covariance() const;
     Matrix correlation() const;
     // Modifiers
     void reset();
-    void add(const std::vector<double>& value, double weight = 1.0);
-    void add(const Array& value, double weight = 1.0);
+    void add(const std::vector<Real>& value, Real weight = 1.0);
+    void add(const Array& value, Real weight = 1.0);
 };
 
 %template(MultipleStatistics) SequenceStatistics<Statistics>;
