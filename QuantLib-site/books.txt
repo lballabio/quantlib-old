@@ -49,6 +49,10 @@ Bruno Dupire (Editor)
 Paperback - 340 pages (November 1999)
 Risk Books; ISBN: 189933291X
 
+Monte Carlo Methods in Finance
+Peter Jackel
+cercare dettagli su amazon
+
 *** VALUE AT RISK
 
 VAR
@@ -188,6 +192,9 @@ UML Distilled
 Martin Fowler, Kendall Scott
 Paperback - 224 pages 2nd Ed (30 September, 1999)
 Addison Wesley; ISBN: 020165783X
+
+E. Gamma, R. Helm, R. Johnson, J. Vlissides
+Design Patterns
 
 Learning Python
 Mark Lutz, David Ascher
