@@ -20,7 +20,7 @@
 #endif
 
 #include <qla/zerocurve.hpp>
-#include <qla/optionutils.hpp>
+#include <qla/generalutils.hpp>
 #include <qla/instrumentutils.hpp>
 
 namespace QuantLibAddin {

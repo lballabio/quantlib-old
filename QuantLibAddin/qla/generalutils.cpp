@@ -46,5 +46,13 @@ namespace QuantLibAddin {
         return ret;
     }
 
+    std::vector<QuantLib::Date> longVectorToDateVector(
+            const std::vector < long > &v) {
+        std::vector<QuantLib::Date> ret;
+        std::vector<long>::const_iterator i;
+        for (i=v.begin(); i!=v.end(); i++)
+            ret.push_back(QuantLib::Date(*i));
+        return ret;
+    }
 }
 

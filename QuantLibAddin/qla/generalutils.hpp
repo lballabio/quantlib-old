@@ -31,6 +31,9 @@ namespace QuantLibAddin {
     std::vector<QuantLib::Rate> doubleVectorToRateVector(
         const std::vector < double > &v);
 
+    std::vector<QuantLib::Date> longVectorToDateVector(
+        const std::vector < long > &v);
+
 }
 
 #endif
