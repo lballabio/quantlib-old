@@ -25,60 +25,60 @@ using namespace std;
 int main() {
     try {
         // specify log file
-        QL_LOGFILE("example.log");
+        OH_LOGFILE("example.log");
         // also direct log messages to stdout
-        QL_CONSOLE(1);
-        QL_LOGMESSAGE("begin example program");
+        OH_CONSOLE(1);
+        OH_LOGMESSAGE("begin example program");
 
         // construct some objects and store them in the object handler
-        Properties f1Properties = QL_MAKE_OBJECT(ObjectFoo)(
+        Properties f1Properties = OH_MAKE_OBJECT(ObjectFoo)(
             "foo1", "abc", 123);
-        Properties f2Properties = QL_MAKE_OBJECT(ObjectFoo)(
+        Properties f2Properties = OH_MAKE_OBJECT(ObjectFoo)(
             "foo2", "def", 456);
 
         // high level interrogation
-        QL_LOGMESSAGE("high level interrogation - after constructor");
+        OH_LOGMESSAGE("high level interrogation - after constructor");
         Properties::const_iterator i;
         for (i = f2Properties.begin(); i != f2Properties.end(); i++) {
             ObjectProperty property = *i;
             ostringstream s;
             s << "property = " << property.name() << "\tvalue = " <<
                 property();
-            QL_LOGMESSAGE(s.str());
+            OH_LOGMESSAGE(s.str());
         }
 
         // update an object
         FOO_UPDATE("foo2", "ghi", 789);
 
         // high level interrogation
-        QL_LOGMESSAGE("high level interrogation - after update");
+        OH_LOGMESSAGE("high level interrogation - after update");
         for (i = f2Properties.begin();
             i != f2Properties.end(); i++) {
             ObjectProperty property = *i;
             ostringstream s;
             s << "property = " << property.name() << "\tvalue = " <<
                 property();
-            QL_LOGMESSAGE(s.str());
+            OH_LOGMESSAGE(s.str());
         }
 
         // low-level interrogation
-        QL_LOGMESSAGE("low-level interrogation - after FOO_UPDATE");
+        OH_LOGMESSAGE("low-level interrogation - after FOO_UPDATE");
         boost::shared_ptr<ObjectFoo> const objectFoo =
             boost::dynamic_pointer_cast<ObjectFoo>
             (ObjectHandler::instance().retrieveObject("foo2"));
         boost::shared_ptr<Foo> foo =
             boost::static_pointer_cast<Foo>
             (objectFoo->getReference());
-        QL_LOGMESSAGE("value of property s() of underlying foo = "
+        OH_LOGMESSAGE("value of property s() of underlying foo = "
             + foo->s());
 
-        QL_LOGMESSAGE("end example program");
+        OH_LOGMESSAGE("end example program");
 
         return 0;
     } catch (const exception &e) {
         ostringstream s;
         s << "Error: " << e.what();
-        QL_LOGMESSAGE(s.str(), 1);
+        OH_LOGMESSAGE(s.str(), 1);
         return 1;
     }
 }

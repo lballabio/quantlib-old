@@ -34,19 +34,19 @@ const Properties& FOO_UPDATE(
     return object->getProperties();
 }
 
-void QL_LOGFILE(const std::string &logFileName) {
+void OH_LOGFILE(const std::string &logFileName) {
     Logger::instance().setLogFile(logFileName);
 }
 
-void QL_LOGLEVEL(const int &logLevel) {
+void OH_LOGLEVEL(const int &logLevel) {
     Logger::instance().setLogLevel(logLevel);
 }
 
-void QL_CONSOLE(const int &console) {
+void OH_CONSOLE(const int &console) {
     Logger::instance().setConsole(console);
 }
 
-void QL_LOGMESSAGE(
+void OH_LOGMESSAGE(
         const std::string &message,
         const int &level) {
     Logger::instance().logMessage(message, level);
