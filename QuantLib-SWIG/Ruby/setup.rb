@@ -170,7 +170,7 @@ Build = Command.new {
       when 'linux','linux-gnu'
         $CFLAGS   += " " + (ENV['CFLAGS'] || "")
         $CPPFLAGS += " " + IO.popen("quantlib-config --cflags").gets.strip
-        $CPPFLAGS += " -Wno-uninitialized"
+        $CPPFLAGS += " -Wno-uninitialized -Wno-unused-function"
         $CPPFLAGS += " " + (ENV['CXXFLAGS'] || "")
         $libs     += " " + IO.popen("quantlib-config --libs").gets.strip
         old_cc = cfg['CC']
