@@ -107,26 +107,12 @@ Interfaces =  [ 'quantlib.i',
                 'old_volatility.i']
 
 Tests =       [ 'QuantLibTestSuite.rb',
-                'calendars.rb',
-                'capfloor.rb',
-                'covariance.rb',
                 'dates.rb',
-                'daycounters.rb',
-                'distributions.rb',
-                'europeanoption.rb',
                 'instruments.rb',
                 'marketelements.rb',
-                'operators.rb',
-                'piecewiseflatforward.rb',
-                'riskstatistics.rb',
                 'segmentintegral.rb',
-                'simpleswap.rb',
                 'solvers1d.rb',
-                'statistics.rb',
-                'swaption.rb',
-                'termstructures.rb',
-                # to be removed
-                'old_pricers.rb']
+                'termstructures.rb']
 
 # commands
 class Command

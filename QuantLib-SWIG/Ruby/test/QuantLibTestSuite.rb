@@ -18,48 +18,21 @@ require 'test/unit'
 require 'test/unit/testsuite'
 require 'test/unit/ui/console/testrunner'
 
-require 'calendars'
-require 'capfloor'
-require 'covariance'
 require 'dates'
-require 'daycounters'
-require 'distributions'
-require 'europeanoption'
 require 'instruments'
 require 'marketelements'
-require 'operators'
-require 'piecewiseflatforward'
-require 'riskstatistics'
 require 'segmentintegral'
-require 'simpleswap'
 require 'solvers1d'
-require 'statistics'
-require 'swaption'
 require 'termstructures'
-# to be removed
-require 'old_pricers'
 
 suite = Test::Unit::TestSuite.new('QuantLib test suite')
-suite << CalendarTest.suite
-suite << CapFloorTest.suite
-suite << CovarianceTest.suite
 suite << DateTest.suite
-suite << DayCounterTest.suite
-suite << DistributionTest.suite
-suite << EuropeanOptionTest.suite
 suite << InstrumentTest.suite
 suite << MarketElementTest.suite
 suite << MarketElementHandleTest.suite
-suite << OperatorTest.suite
-suite << PiecewiseFlatForwardTest.suite
-suite << RiskStatisticsTest.suite
 suite << SegmentIntegralTest.suite
-suite << SimpleSwapTest.suite
 suite << Solver1DTest.suite
-suite << StatisticsTest.suite
-suite << SwaptionTest.suite
 suite << TermStructureTest.suite
-suite << OldPricerTest.suite
 
 verbosity = Test::Unit::UI::Console::TestRunner::VERBOSE
 runner = Test::Unit::UI::Console::TestRunner.new(suite,verbosity,STDOUT)

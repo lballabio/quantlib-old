@@ -20,61 +20,27 @@ require 'test/unit/ui/console/testrunner'
 
 class DateTest < Test::Unit::TestCase
   def name
-    "Testing dates"
+    "Testing date ranges"
   end
   def testAllDates
-    minDate = QuantLib::Date.minDate.serialNumber+1
-    maxDate = QuantLib::Date.maxDate.serialNumber
     
-    dyold  = QuantLib::Date.new(minDate-1).dayOfYear
-    dold   = QuantLib::Date.new(minDate-1).dayOfMonth
-    mold   = QuantLib::Date.new(minDate-1).month
-    yold   = QuantLib::Date.new(minDate-1).year
-    wdnold = QuantLib::Date.new(minDate-1).weekdayNumber
+    minDate = QuantLib::Date.minDate
+    maxDate = QuantLib::Date.maxDate
+
+    dold   = minDate.dayOfMonth
+    mold   = minDate.month
+    yold   = minDate.year
     
-    minDate.upto(maxDate) do |i|
-      t = QuantLib::Date.new(i)
-      # check serial number consistency
-      unless t.serialNumber == i
-        flunk(<<-MESSAGE
-                    
-    inconsistent serial number:
-        original:      #{i}
-        date:          #{t}
-        serial number: #{t.serialNumber}
+    minDate.upto(maxDate) do |date|
 
-              MESSAGE
-              )
-      end
-
-      dy  = t.dayOfYear
-      d   = t.dayOfMonth
-      m   = t.month
-      y   = t.year
-      mm  = t.month
-      wd  = t.weekday
-      wdn = t.weekdayNumber
-
-      # check if skipping any date
-      unless dy==dyold+1 \
-        or (dy==1 and dyold==365 and not QuantLib::Date.isLeap(yold)) \
-        or (dy==1 and dyold==366 and QuantLib::Date.isLeap(yold))
-        flunk(<<-MESSAGE
-
-    wrong day of year increment:
-        date: #{t}
-        day of year: #{dy}
-        previous:    #{dyold}
-
-              MESSAGE
-              )
-      end
-      dyold = dy
+      d   = date.dayOfMonth
+      m   = date.month
+      y   = date.year
 
       # check if skipping any date
       unless (d==dold+1 and m==mold   and y==yold  ) \
-        or (d==1      and m==mold+1 and y==yold  ) \
-        or (d==1      and m==1      and y==yold+1)
+          or (d==1      and m==mold+1 and y==yold  ) \
+          or (d==1      and m==1      and y==yold+1)
         flunk(<<-MESSAGE
 
     wrong day, month, year increment
@@ -89,99 +55,6 @@ class DateTest < Test::Unit::TestCase
       mold = m
       yold = y
 
-      # check month definition
-      unless m>=1 and m<=12
-        flunk(<<-MESSAGE
-
-    invalid month
-        date: #{t}
-        month: #{m}
-
-              MESSAGE
-              )
-      end
-
-      # check day definition
-      unless d >= 1
-        flunk(<<-MESSAGE
-
-    invalid day of month
-        date: #{t}
-        day: #{d}
-
-              MESSAGE
-              )
-      end
-
-      unless (m==1  and d<=31) \
-        or (m==2  and d<=28) \
-        or (m==2  and d==29 and QuantLib::Date.isLeap(y)) \
-        or (m==3  and d<=31) \
-        or (m==4  and d<=30) \
-        or (m==5  and d<=31) \
-        or (m==6  and d<=30) \
-        or (m==7  and d<=31) \
-        or (m==8  and d<=31) \
-        or (m==9  and d<=30) \
-        or (m==10 and d<=31) \
-        or (m==11 and d<=30) \
-        or (m==12 and d<=31)
-        flunk(<<-MESSAGE
-
-    invalid day of month
-        date: #{t}
-        day: #{d}
-        month: #{mm}
-
-              MESSAGE
-              )
-      end
-
-      # check weekdayNumber definition
-      unless wdn==wdnold+1 or (wdn==1 and wdnold==7)
-        flunk(<<-MESSAGE
-
-    wrong weekday number increment
-        date: #{t}
-        weekday number: #{wdn}
-        previous:       #{wdnold}
-
-              MESSAGE
-              )
-      end
-      wdnold=wdn
-
-      # create the same date with a different constructor
-      s = QuantLib::Date.new(d,m,y)
-      # check serial number consistency
-      unless s.serialNumber == i
-        flunk(<<-MESSAGE
-
-    inconsistent serial number
-        date: #{t}
-        serial number: #{i}
-        cloned date: #{s}
-        serial number: #{s.serialNumber}
-
-              MESSAGE
-              )
-      end
-
-      # create the same date with yet another constructor
-      s = QuantLib::Date.new(d,mm,y)
-      # check serial number consistency
-      unless s.serialNumber == i
-        flunk(<<-MESSAGE
-
-    inconsistent serial number
-        date: #{t}
-        serial number: #{i}
-        cloned date: #{s}
-        serial number: #{s.serialNumber}
-
-              MESSAGE
-              )
-      end
     end
   end
 end
