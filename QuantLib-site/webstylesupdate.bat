@@ -8,6 +8,6 @@ set USERNAME=%1
 :DONE
 
 
-scp -p -C -r styles/*.css %USERNAME%@shell.sourceforge.net:/home/groups/q/qu/quantlib/htdocs/styles
+scp -C -r styles/*.css %USERNAME%@shell.sourceforge.net:/home/groups/q/qu/quantlib/htdocs/styles
 
 pause
