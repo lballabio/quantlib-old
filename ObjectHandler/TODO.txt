@@ -1,11 +1,7 @@
 
-- settle on version number (0.0.1 or 0.3.9 ?)
+- include QuEP 11 in the doxygen documentation
 
-- doxygen documentation
-
-- Unix autoconfiscation ?
-
-- consider a complete logging framework:
+- consider a complete logging framework (for 0.0.2):
     http://logging.apache.org/log4cxx/
     http://sourceforge.net/projects/log4cpp/
     http://sourceforge.net/projects/log4cplus/
