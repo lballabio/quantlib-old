@@ -32,42 +32,21 @@
 
 <li><a class="navlink" href="docs.shtml">Documentation</a></li>
 
+<li><a class="navlink" href=
+"http://www.gnacademy.org/twiki/bin/view/Quantlib">QuantLib Wiki</a></li>
+
 <li><a class="navlink" href="license.shtml">License</a></li>
 
 <li><a class="navlink" href="reference/group.html">QuantLib Group</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/project/stats/index.php?report=months&amp;group_id=12740">Project
-Statistics</a></li>
+"http://sourceforge.net/tracker/?func=add&amp;group_id=12740&amp;atid=112740">Submit a bug</a></li>
+
 </ul>
 
 <hr>
-<h3 class="navbartitle">QuantLib Development</h3>
-
-<ul>
-<li><a class="navlink" href=
-"http://sourceforge.net/projects/quantlib">Project&nbsp;page</a></li>
-
-<li><a class="navlink" href="quep.shtml">Enhancement Proposals</a></li>
-
-<li><a class="navlink" href="cvs.shtml">CVS</a></li>
-
-<li><a class="navlink" href=
-"http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bugs</a></li>
-
-<li><a class="navlink" href=
-"http://sourceforge.net/tracker/?group_id=12740&amp;atid=312740">Patches
-</a></li>
-
-<li><a class="navlink" href=
-"http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">Feature&nbsp;Requests</a></li>
-
-<li><a class="navlink" href="developerFAQ.shtml">Developer&nbsp;FAQ</a></li>
-
-<li><a class="navlink" href="newdeveloper.shtml">Developer&nbsp;Intro</a></li>
-
-<li><a class="navlink" href="style.shtml">Programming Style Guidelines</a></li>
-</ul>
+<h3 class="navbartitle"><a class="navlink" href=
+"newdeveloper.shtml">QuantLib Developer Pages</a></h3>
 
 <hr>
 <h3 class="navbartitle">Quantitative Finance Resources</h3>
@@ -108,7 +87,7 @@ height="33" border="0" alt="StatPro Logo"></a></div>
 <hr>
 <div class="center">
   <p>
-    <a href="http://validator.w3.org/check/referer"><img border="0"
+    <a href="http://validator.w3.org/check?uri=referer"><img border="0"
         src="http://www.w3.org/Icons/valid-html401"
         alt="Valid HTML 4.01!" height="31" width="88"></a>
   </p>

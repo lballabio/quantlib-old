@@ -12,7 +12,7 @@
 <title>QuantLib - Developer intro</title>
 </head>
 <body>
-<!--#include virtual="qlheader.inc"-->
+<!--#include virtual="qldevheader.inc"-->
 <h1 class="center">Developer introduction</h1>
 <p>Developers willing to contribute to the QuantLib project may
 contact either project administrators (Nando &lt;nando at

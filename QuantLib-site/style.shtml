@@ -13,7 +13,7 @@
 <title>QuantLib Programming Style Guidelines</title>
 </head>
 <body>
-<!--#include virtual="qlheader.inc"-->
+<!--#include virtual="qldevheader.inc"-->
 <h1 class="center">QuantLib Programming Style Guidelines</h1>
 <h6 class="right">modified from <em>C++ Programming Style
 Guidelines</em> by <em>Geotechnical Software Services</em></h6>

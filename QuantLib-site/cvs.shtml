@@ -12,7 +12,7 @@
 <title>QuantLib CVS Repository</title>
 </head>
 <body>
-<!--#include virtual="qlheader.inc"-->
+<!--#include virtual="qldevheader.inc"-->
 <h1 class="center">QuantLib CVS Repository</h1>
 <p>If you're new to CVS please read our <a href=
 "developerFAQ.shtml#cvs">FAQ</a> and <a href=

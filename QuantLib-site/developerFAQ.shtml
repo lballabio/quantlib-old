@@ -13,7 +13,7 @@
 <title>QuantLib - Developer FAQ</title>
 </head>
 <body>
-<!--#include virtual="qlheader.inc"-->
+<!--#include virtual="qldevheader.inc"-->
 <h1 class="center">Frequently Asked Questions</h1>
 <h2 class="center">Developer Version</h2>
 <h6 class="right">based on <a href=
