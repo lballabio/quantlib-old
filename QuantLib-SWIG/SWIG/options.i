@@ -96,7 +96,8 @@ class VanillaOptionHandle : public Handle<Instrument> {
                 const Handle<StochasticProcess>& process,
                 const Handle<Payoff>& payoff,
                 const Handle<Exercise>& exercise,
-                const Handle<PricingEngine>& engine) {
+                const Handle<PricingEngine>& engine
+                   = Handle<PricingEngine>()) {
             %#if defined(HAVE_BOOST)
             Handle<QL::StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<QL::StrikedTypePayoff>(payoff);
@@ -207,12 +208,29 @@ class AnalyticEuropeanEngineHandle : public Handle<PricingEngine> {
 
 
 %{
+using QuantLib::IntegralEngine;
+typedef Handle<PricingEngine> IntegralEngineHandle;
+%}
+
+%rename(IntegralEngine) IntegralEngineHandle;
+class IntegralEngineHandle : public Handle<PricingEngine> {
+  public:
+    %extend {
+        IntegralEngineHandle() {
+            return new IntegralEngineHandle(new IntegralEngine);
+        }
+    }
+};
+
+
+%{
 using QuantLib::BinomialVanillaEngine;
 using QuantLib::CoxRossRubinstein;
 using QuantLib::JarrowRudd;
 using QuantLib::AdditiveEQPBinomialTree;
 using QuantLib::Trigeorgis;
 using QuantLib::Tian;
+using QuantLib::LeisenReimer;
 typedef Handle<PricingEngine> BinomialVanillaEngineHandle;
 %}
 
@@ -238,8 +256,57 @@ class BinomialVanillaEngineHandle : public Handle<PricingEngine> {
             else if (s == "tian")
                 return new BinomialVanillaEngineHandle(
                     new BinomialVanillaEngine<Tian>(steps));
+            else if (s == "lr" || s == "leisenreimer")
+                return new BinomialVanillaEngineHandle(
+                    new BinomialVanillaEngine<LeisenReimer>(steps));
             else
                 throw Error("unknown binomial engine type: "+s);
+        }
+    }
+};
+
+
+%{
+using QuantLib::MCEuropeanEngine;
+using QuantLib::PseudoRandom;
+using QuantLib::LowDiscrepancy;
+typedef Handle<PricingEngine> MCEuropeanEngineHandle;
+%}
+
+%rename(MCEuropeanEngine) MCEuropeanEngineHandle;
+class MCEuropeanEngineHandle : public Handle<PricingEngine> {
+    %feature("kwargs") MCEuropeanEngineHandle;
+  public:
+    %extend {
+        MCEuropeanEngineHandle(const std::string& traits,
+                               Size timeSteps,
+                               bool antitheticVariate = false,
+                               bool controlVariate = false,
+                               intOrNull requiredSamples = Null<int>(),
+                               doubleOrNull requiredTolerance = Null<double>(),
+                               intOrNull maxSamples = Null<int>(),
+                               long seed = 0) {
+            std::string s = StringFormatter::toLowercase(traits);
+            if (s == "pseudorandom" || s == "pr")
+                return new MCEuropeanEngineHandle(
+                         new MCEuropeanEngine<PseudoRandom>(timeSteps,
+                                                            antitheticVariate,
+                                                            controlVariate,
+                                                            requiredSamples,
+                                                            requiredTolerance,
+                                                            maxSamples,
+                                                            seed));
+            else if (s == "lowdiscrepancy" || s == "ld")
+                return new MCEuropeanEngineHandle(
+                       new MCEuropeanEngine<LowDiscrepancy>(timeSteps,
+                                                            antitheticVariate,
+                                                            controlVariate,
+                                                            requiredSamples,
+                                                            requiredTolerance,
+                                                            maxSamples,
+                                                            seed));
+            else
+                throw Error("unknown Monte Carlo engine type: "+s);
         }
     }
 };

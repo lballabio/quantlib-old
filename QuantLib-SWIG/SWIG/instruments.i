@@ -24,6 +24,16 @@
 %include observer.i
 %include stl.i
 
+// pricing engine
+
+%{
+using QuantLib::PricingEngine;
+%}
+
+%template(PricingEngine) Handle<PricingEngine>;
+
+// instrument 
+
 %{
 using QuantLib::Instrument;
 %}
@@ -44,6 +54,7 @@ class Instrument {
   public:
     double NPV() const;
     bool isExpired() const;
+    void setPricingEngine(const Handle<PricingEngine>&);
     void recalculate();
     void freeze();
     void unfreeze();
@@ -51,15 +62,6 @@ class Instrument {
 
 %template(Instrument) Handle<Instrument>;
 IsObservable(Handle<Instrument>);
-
-// pricing engine
-
-%{
-using QuantLib::PricingEngine;
-%}
-
-%template(PricingEngine) Handle<PricingEngine>;
-
 
 // actual instruments
 
