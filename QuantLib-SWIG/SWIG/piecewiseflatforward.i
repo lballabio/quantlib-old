@@ -200,13 +200,6 @@ class PiecewiseFlatForwardPtr : public boost::shared_ptr<YieldTermStructure> {
 	            new PiecewiseFlatForward(settlementDays, calendar,
                                          instruments, dayCounter, accuracy));
         }
-        PiecewiseFlatForwardPtr(
-                const std::vector<Date>& dates,
-                const std::vector<Rate>& forwards,
-                const DayCounter& dayCounter) {
-	        return new PiecewiseFlatForwardPtr(
-                new PiecewiseFlatForward(dates, forwards, dayCounter));
-        }
 
         const std::vector<Date>& dates() {
             return boost::dynamic_pointer_cast<PiecewiseFlatForward>(*self)

@@ -55,16 +55,18 @@ class BondPtr : public boost::shared_ptr<Instrument> {
         Real cleanPrice() {
             return boost::dynamic_pointer_cast<Bond>(*self)->cleanPrice();
         }
-        Real cleanPrice(Rate yield, const Date& settlement = Date()) {
+        Real cleanPrice(Rate yield, Compounding compounding,
+                        const Date& settlement = Date()) {
             return boost::dynamic_pointer_cast<Bond>(*self)
-                ->cleanPrice(yield,settlement);
+                ->cleanPrice(yield,compounding,settlement);
         }
         Real dirtyPrice() {
             return boost::dynamic_pointer_cast<Bond>(*self)->dirtyPrice();
         }
-        Real dirtyPrice(Rate yield, const Date& settlement = Date()) {
+        Real dirtyPrice(Rate yield, Compounding compounding,
+                        const Date& settlement = Date()) {
             return boost::dynamic_pointer_cast<Bond>(*self)
-                ->dirtyPrice(yield,settlement);
+                ->dirtyPrice(yield,compounding,settlement);
         }
         Real yield(Compounding compounding,
                    Real accuracy = 1.0e-8,
