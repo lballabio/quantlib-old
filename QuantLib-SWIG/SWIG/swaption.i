@@ -50,7 +50,7 @@ class SwaptionHandle : public Handle<Instrument> {
 // pricing engines
 
 %{
-using QuantLib::Pricers::BlackSwaption;
+using QuantLib::BlackSwaption;
 typedef Handle<PricingEngine> BlackSwaptionEngineHandle;
 %}
 

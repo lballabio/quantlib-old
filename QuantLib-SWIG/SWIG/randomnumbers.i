@@ -22,7 +22,7 @@
 %include distributions.i
 
 %{
-using QuantLib::MonteCarlo::Sample;
+using QuantLib::Sample;
 
 using QuantLib::RandomNumbers::LecuyerUniformRng;
 using QuantLib::RandomNumbers::KnuthUniformRng;

@@ -213,7 +213,7 @@ class VanillaOptionHandle : public Handle<Instrument> {
 // European engines
 
 %{
-using QuantLib::PricingEngines::AnalyticEuropeanEngine;
+using QuantLib::AnalyticEuropeanEngine;
 typedef Handle<PricingEngine> AnalyticEuropeanEngineHandle;
 %}
 
@@ -230,55 +230,39 @@ class AnalyticEuropeanEngineHandle : public Handle<PricingEngine> {
 
 
 %{
-using QuantLib::PricingEngines::BinomialVanillaEngine;
-typedef BinomialVanillaEngine::Type BinomialEngineType;
+using QuantLib::BinomialVanillaEngine;
+using QuantLib::CoxRossRubinstein;
+using QuantLib::JarrowRudd;
+using QuantLib::AdditiveEQPBinomialTree;
+using QuantLib::Trigeorgis;
+using QuantLib::Tian;
 typedef Handle<PricingEngine> BinomialVanillaEngineHandle;
-
-BinomialVanillaEngine::Type binomialEngineTypeFromString(std::string s) {
-    s = StringFormatter::toLowercase(s);
-    if (s == "crr" || s == "coxrossrubinstein")
-        return BinomialVanillaEngine::CoxRossRubinstein;
-    else if (s == "jr" || s == "jarrowrudd")
-        return BinomialVanillaEngine::JarrowRudd;
-    else if (s == "eqp")
-        return BinomialVanillaEngine::EQP;
-    else if (s == "trigeorgis")
-        return BinomialVanillaEngine::Trigeorgis;
-    else if (s == "tian")
-        return BinomialVanillaEngine::Tian;
-    else
-        throw Error("unknown binomial engine type: "+s);
-}
-
-std::string binomialEngineTypeToString(BinomialVanillaEngine::Type t) {
-    switch (t) {
-      case BinomialVanillaEngine::CoxRossRubinstein:
-        return "CoxRossRubinstein";
-      case BinomialVanillaEngine::JarrowRudd:
-        return "JarrowRudd";
-      case BinomialVanillaEngine::EQP:
-        return "EQP";
-      case BinomialVanillaEngine::Trigeorgis:
-        return "Trigeorgis";
-      case BinomialVanillaEngine::Tian:
-        return "Tian";
-      default:
-        throw Error("unknown binomial engine type");
-    }
-}
 %}
-
-MapToString(BinomialEngineType,binomialEngineTypeFromString,
-            binomialEngineTypeToString);
 
 %rename(BinomialEuropeanEngine) BinomialVanillaEngineHandle;
 class BinomialVanillaEngineHandle : public Handle<PricingEngine> {
   public:
     %extend {
-        BinomialVanillaEngineHandle(BinomialEngineType type,
+        BinomialVanillaEngineHandle(const std::string& type,
                                     Size steps) {
-            return new BinomialVanillaEngineHandle(
-                new BinomialVanillaEngine(type,steps));
+            std::string s = StringFormatter::toLowercase(type);
+            if (s == "crr" || s == "coxrossrubinstein")
+                return new BinomialVanillaEngineHandle(
+                    new BinomialVanillaEngine<CoxRossRubinstein>(steps));
+            else if (s == "jr" || s == "jarrowrudd")
+                return new BinomialVanillaEngineHandle(
+                    new BinomialVanillaEngine<JarrowRudd>(steps));
+            else if (s == "eqp")
+                return new BinomialVanillaEngineHandle(
+                    new BinomialVanillaEngine<AdditiveEQPBinomialTree>(steps));
+            else if (s == "trigeorgis")
+                return new BinomialVanillaEngineHandle(
+                    new BinomialVanillaEngine<Trigeorgis>(steps));
+            else if (s == "tian")
+                return new BinomialVanillaEngineHandle(
+                    new BinomialVanillaEngine<Tian>(steps));
+            else
+                throw Error("unknown binomial engine type: "+s);
         }
     }
 };

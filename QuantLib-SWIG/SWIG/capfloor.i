@@ -76,7 +76,7 @@ class CollarHandle : public Handle<Instrument> {
 };
 
 %{
-using QuantLib::Pricers::BlackCapFloor;
+using QuantLib::BlackCapFloor;
 typedef Handle<PricingEngine> BlackCapFloorEngineHandle;
 %}
 

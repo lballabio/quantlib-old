@@ -147,9 +147,9 @@ class BlackKarasinskiHandle : public Handle<Model> {
 
 // pricing engines for calibration helpers
 %{
-using QuantLib::Pricers::JamshidianSwaption;
-using QuantLib::Pricers::TreeSwaption;
-using QuantLib::Pricers::TreeCapFloor;
+using QuantLib::JamshidianSwaption;
+using QuantLib::TreeSwaption;
+using QuantLib::TreeCapFloor;
 typedef Handle<PricingEngine> JamshidianSwaptionHandle;
 typedef Handle<PricingEngine> TreeSwaptionHandle;
 typedef Handle<PricingEngine> TreeCapFloorHandle;

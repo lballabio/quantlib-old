@@ -28,7 +28,7 @@
 // Analytic pricers
 
 %{
-using QuantLib::Pricers::EuropeanOption;
+using QuantLib::EuropeanOption;
 %}
 
 class EuropeanOption {
@@ -90,19 +90,20 @@ MapToString(BarrierType,barrierTypeFromString,barrierTypeToString);
 
 
 %{
-using QuantLib::Pricers::CliquetOption;
+using QuantLib::CliquetOptionPricer;
 %}
 
-class CliquetOption {
+%rename(CliquetOption) CliquetOptionPricer;
+class CliquetOptionPricer {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("dividend-rho") dividendRho;
     #endif
   public:
-	CliquetOption(OptionType type, double underlying, double moneyness,
-                  const std::vector<double>& dividendYield,
-                  const std::vector<double>& riskFreeRate,
-                  const std::vector<double>& times,
-                  const std::vector<double>& volatility);
+	CliquetOptionPricer(OptionType type, double underlying, double moneyness,
+                        const std::vector<double>& dividendYield,
+                        const std::vector<double>& riskFreeRate,
+                        const std::vector<double>& times,
+                        const std::vector<double>& volatility);
 	double value() const;
 	double delta() const;
 	double gamma() const;
@@ -114,9 +115,9 @@ class CliquetOption {
 
 
 %{
-using QuantLib::Pricers::ContinuousGeometricAPO;
-using QuantLib::Pricers::DiscreteGeometricAPO;
-using QuantLib::Pricers::DiscreteGeometricASO;
+using QuantLib::ContinuousGeometricAPO;
+using QuantLib::DiscreteGeometricAPO;
+using QuantLib::DiscreteGeometricASO;
 %}
 
 class ContinuousGeometricAPO {
@@ -150,8 +151,8 @@ class DiscreteGeometricASO {
 // Finite-difference pricers
 
 %{
-using QuantLib::Pricers::FdEuropean;
-using QuantLib::Pricers::FdDividendEuropeanOption;
+using QuantLib::FdEuropean;
+using QuantLib::FdDividendEuropeanOption;
 %}
 
 class FdEuropean {
@@ -199,8 +200,8 @@ class FdDividendEuropeanOption {
 
 
 %{
-using QuantLib::Pricers::FdAmericanOption;
-using QuantLib::Pricers::FdDividendAmericanOption;
+using QuantLib::FdAmericanOption;
+using QuantLib::FdDividendAmericanOption;
 %}
 
 class FdAmericanOption {
@@ -249,8 +250,8 @@ class FdDividendAmericanOption {
 
 
 %{
-using QuantLib::Pricers::FdShoutOption;
-using QuantLib::Pricers::FdDividendShoutOption;
+using QuantLib::FdShoutOption;
+using QuantLib::FdDividendShoutOption;
 %}
 
 class FdShoutOption {
@@ -299,7 +300,7 @@ class FdDividendShoutOption{
 
 
 %{
-using QuantLib::Pricers::FdBermudanOption;
+using QuantLib::FdBermudanOption;
 %}
 
 class FdBermudanOption {
@@ -325,15 +326,15 @@ class FdBermudanOption {
 
 %{
 // single asset
-using QuantLib::Pricers::McDiscreteArithmeticAPO;
-using QuantLib::Pricers::McDiscreteArithmeticASO;
+using QuantLib::McDiscreteArithmeticAPO;
+using QuantLib::McDiscreteArithmeticASO;
 
 // multi asset
-using QuantLib::Pricers::McBasket;
-using QuantLib::Pricers::McMaxBasket;
-using QuantLib::Pricers::McEverest;
-using QuantLib::Pricers::McHimalaya;
-using QuantLib::Pricers::McPagoda;
+using QuantLib::McBasket;
+using QuantLib::McMaxBasket;
+using QuantLib::McEverest;
+using QuantLib::McHimalaya;
+using QuantLib::McPagoda;
 %}
 
 class McDiscreteArithmeticAPO {

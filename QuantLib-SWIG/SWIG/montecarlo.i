@@ -27,14 +27,14 @@
 #endif
 %inline %{
 Matrix getCovariance(const Array& volatilities, const Matrix& correlations) {
-    return QuantLib::MonteCarlo::getCovariance(volatilities.begin(),
-                                               volatilities.end(),
-                                               correlations);
+    return QuantLib::getCovariance(volatilities.begin(),
+                                   volatilities.end(),
+                                   correlations);
 }
 %}
 
 %{
-using QuantLib::MonteCarlo::Path;
+using QuantLib::Path;
 %}
 
 #if defined(SWIGRUBY)
@@ -100,7 +100,7 @@ class Path {
 };
 
 %{
-using QuantLib::MonteCarlo::GaussianPathGenerator_old;
+using QuantLib::GaussianPathGenerator_old;
 %}
 %template(SamplePath) Sample<Path>;
 %rename(GaussianPathGenerator) GaussianPathGenerator_old;
@@ -113,7 +113,7 @@ class GaussianPathGenerator_old {
 
 
 %{
-using QuantLib::MonteCarlo::MultiPath;
+using QuantLib::MultiPath;
 %}
 
 class MultiPath {
@@ -208,7 +208,7 @@ class MultiPath {
 };
 
 %{
-using QuantLib::MonteCarlo::GaussianMultiPathGenerator;
+using QuantLib::GaussianMultiPathGenerator;
 %}
 %template(SampleMultiPath) Sample<MultiPath>;
 class GaussianMultiPathGenerator {

@@ -21,8 +21,8 @@
 %include common.i
 
 %{
-using QuantLib::Patterns::Observer;
-using QuantLib::Patterns::Observable;
+using QuantLib::Observer;
+using QuantLib::Observable;
 %}
 
 %template(Observable) Handle<Observable>;
