@@ -3,6 +3,7 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="ObjectHandler"
+	ProjectGUID="{620B4E2E-1ABE-428F-9B08-8D4061EBDCB5}"
 	SccProjectName=""
 	SccLocalPath="">
 	<Platforms>
