@@ -120,14 +120,14 @@ experience and interests. Before doing this, please read:
 "http://cvs.sourceforge.net/viewcvs.py/quantlib/QuantLib/dev_tools/newdeveloperintro.txt?view=markup">introduction
 for new developers</a></li>
 <li>the project <a href=
-"http://www.quantlib.org/reference/overview.html">overview</a>, with its to-do
+"http://quantlib.org/reference/overview.html">overview</a>, with its to-do
 suggestions</li>
 <li>the <a href=
-"http://www.quantlib.org/reference/faq.html">FAQ</a></li>
+"http://quantlib.org/reference/faq.html">FAQ</a></li>
 <li>The <a href=
-"http://www.quantlib.org/style.shtml">Programming Style Guidelines</a></li>
+"http://quantlib.org/style.shtml">Programming Style Guidelines</a></li>
 <li>the detailed low-level <a href=
-"http://www.quantlib.org/reference/todo.html">to-do list</a>
+"http://quantlib.org/reference/todo.html">to-do list</a>
 </li>
 </ul>
 <h3><a name="g6" id="g6"></a>1.6.:</h3>
