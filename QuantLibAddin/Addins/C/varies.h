@@ -20,13 +20,15 @@
 
 typedef enum { INT, LONG, DOUBLE, CHARP } Type;
 
+typedef union {
+    int AsInt;
+    long AsLong;
+    double AsDouble;
+    char* AsCharP;
+} DataUnion;
+
 typedef struct {
-    union {
-        int AsInt;
-        long AsLong;
-        double AsDouble;
-        char* AsCharP;
-    };
+    DataUnion data;
     Type type;
     char* Label;
 } Varies;
