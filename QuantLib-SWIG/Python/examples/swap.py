@@ -124,7 +124,7 @@ fixedRate = 0.04
 floatingLegFrequency = 2
 spread = 0.0
 fixingDays = 2
-index = Xibor('Euribor', 6, 'months', forecastTermStructure)
+index = Euribor(6, 'months', forecastTermStructure)
 floatingLegAdjustment = 'modifiedfollowing'
 
 fixedSchedule = Schedule(calendar, settlementDate, maturity,

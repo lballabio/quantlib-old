@@ -97,14 +97,6 @@ class Index {
 // Xibor indexes
 %{
 using QuantLib::Xibor;
-using QuantLib::Euribor;
-using QuantLib::AUDLibor;
-using QuantLib::GBPLibor;
-using QuantLib::USDLibor;
-using QuantLib::JPYLibor;
-using QuantLib::CADLibor;
-using QuantLib::CHFLibor;
-using QuantLib::ZARLibor;
 typedef boost::shared_ptr<Index> XiborPtr;
 %}
 
@@ -117,31 +109,10 @@ class XiborPtr : public boost::shared_ptr<Index> {
     %rename("business-day-convention") businessDayConvention;
     %rename("day-counter")             dayCounter;
     #endif
+  protected:
+    XiborPtr();
   public:
     %extend {
-        XiborPtr(const std::string& name, Integer n, TimeUnit units,
-                 const RelinkableHandle<TermStructure>& h) {
-            std::string s = StringFormatter::toLowercase(name);
-            if (s == "euribor")
-                return new XiborPtr(new Euribor(n,units,h));
-            else if (s == "audlibor")
-                return new XiborPtr(new AUDLibor(n,units,h));
-            else if (s == "gbplibor")
-                return new XiborPtr(new GBPLibor(n,units,h));
-            else if (s == "usdlibor")
-                return new XiborPtr(new USDLibor(n,units,h));
-            else if (s == "jpylibor")
-                return new XiborPtr(new JPYLibor(n,units,h));
-            else if (s == "cadlibor")
-                return new XiborPtr(new CADLibor(n,units,h));
-            else if (s == "chflibor")
-                return new XiborPtr(new CHFLibor(n,units,h));
-            else if (s == "zarlibor")
-                return new XiborPtr(new ZARLibor(n,units,h));
-            else
-                QL_FAIL("unknown index: " + name);
-            QL_DUMMY_RETURN(new XiborPtr);
-        }
         Period tenor() {
             return boost::dynamic_pointer_cast<Xibor>(*self)->tenor();
         }
@@ -163,6 +134,33 @@ class XiborPtr : public boost::shared_ptr<Index> {
         }
     }
 };
+
+%define export_xibor_instance(Name,defaultDayCount)
+%{
+using QuantLib::Name;
+typedef boost::shared_ptr<Index> Name##Ptr;
+%}
+%rename(Name) Name##Ptr;
+class Name##Ptr : public XiborPtr {
+  public:
+    %extend {
+      Name##Ptr(Integer n, TimeUnit units,
+                const RelinkableHandle<TermStructure>& h,
+                const DayCounter& dayCount = QuantLib::defaultDayCount()) {
+          return new Name##Ptr(new Name(n,units,h,dayCount));
+      }
+    }
+};
+%enddef
+
+export_xibor_instance(AUDLibor, Actual365);
+export_xibor_instance(CADLibor, Actual365);
+export_xibor_instance(CHFLibor, Actual360);
+export_xibor_instance(Euribor, Actual360);
+export_xibor_instance(GBPLibor, Actual365);
+export_xibor_instance(JPYLibor, Actual360);
+export_xibor_instance(USDLibor, Actual360);
+export_xibor_instance(ZARLibor, Actual365);
 
 
 #endif

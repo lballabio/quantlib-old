@@ -122,7 +122,7 @@ termStructure.linkTo(PiecewiseFlatForward(todaysDate, settlementDate,
 payFixed = 1
 fixingDays = 2
 swapStart = settlementDate.plusYears(1)
-index = Xibor('Euribor', 6, 'months', termStructure)
+index = Euribor(6, 'months', termStructure)
 swapLength = 5
 swapEnd = swapStart.plusYears(swapLength)
 
