@@ -91,6 +91,7 @@
 %include currencies.i
 %include date.i
 %include daycounters.i
+%include discountcurve.i
 %include distributions.i
 %include functions.i
 %include history.i

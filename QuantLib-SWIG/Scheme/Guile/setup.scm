@@ -51,6 +51,7 @@
         "currencies.i"
         "date.i"
         "daycounters.i"
+        "discountcurve.i"
         "distributions.i"
         "functions.i"
         "history.i"
