@@ -72,7 +72,7 @@ extern "C" {
             XlfArgDesc d02("date2", "second date");
             XlfArgDesc rpd01("date3", "reference period first date");
             XlfArgDesc rpd02("date4", "reference period last date");
-            XlfArgDesc refDate("referenceDate", 
+            XlfArgDesc refDate("referenceDate",
                 "reference (settlement) date (t=0)");
             XlfArgDesc evalDate("evalDate", "evaluation date");
             XlfArgDesc expiryDate("expiryDate", "expiry date");
@@ -89,10 +89,20 @@ extern "C" {
             XlfArgDesc z_matrix("z_matrix", "z data matrix");
             XlfArgDesc x_value("x_value", "x value to be interpolated");
             XlfArgDesc y_value("y_value", "y value to be interpolated");
+            XlfArgDesc leftEndCondition("left end condition",
+                "(spline-only) 0=not-a-knot; 1=first derivative value; 2=second derivative value");
+            XlfArgDesc leftEndValue("left end value",
+                "(spline-only) derivative value (ignored for not-a-knot end condition)");
+            XlfArgDesc rightEndCondition("right end condition",
+                "(spline-only) 0=not-a-knot; 1=first derivative value; 2=second derivative value");
+            XlfArgDesc rightEndValue("right end value",
+                "(spline-only) derivative value (ignored for not-a-knot end condition)");
             XlfArgDesc interpolationType("interpolation_type",
                 "interpolation type (1:linear; 2:spline; 3:log-linear)");
             XlfArgDesc allowExtrapolation("allow_extrapolation",
                 "allow extrapolation boolean");
+            XlfArgDesc monotonicityConstraint("monotonicity_constraint",
+                "enforce monotonicity constraint");
             XlfArgDesc absoluteIndex("absoluteIndex", "zero based index");
 
             XlfArgDesc matrix("matrix", "input matrix");
@@ -168,11 +178,11 @@ extern "C" {
                 "2 for quasi-random (Jäckel-Sobol)");
 
 
-            
-            
-            
-            
-            
+
+
+
+
+
             // Registers Risk Measures
             XlfFuncDesc valueAtRiskDesc(
                 "xlvalueAtRisk",
@@ -309,14 +319,14 @@ extern "C" {
 
 
 
-            
-            
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
+
+
             // Registers accrual_days
             XlfFuncDesc accrualDaysDesc("xlaccrualDays",
                 "qlAccrual_days",
@@ -416,7 +426,7 @@ extern "C" {
             // Registers interpolation
             XlfFuncDesc interpolateDesc("xlinterpolate","qlInterpolate",
                 "1 dimensional interpolation","QuantLibXL Math");
-            interpolateDesc.SetArguments(x_array+y_array+x_value+interpolationType+allowExtrapolation);
+            interpolateDesc.SetArguments(x_array+y_array+x_value+interpolationType+allowExtrapolation+leftEndCondition+leftEndValue+rightEndCondition+rightEndValue+monotonicityConstraint);
             interpolateDesc.Register();
 
             XlfFuncDesc interpolate2DDesc("xlinterpolate2D","qlInterpolate2D",
@@ -496,7 +506,7 @@ extern "C" {
                 "QuantLibXL Random Numbers");
             randomize.SetArguments(seed);
             randomize.Register();
-            
+
             XlfFuncDesc randomNumberGenerator(
                 "xlRandomNumberGenerator",
                 "qlRandomNumberGenerator",

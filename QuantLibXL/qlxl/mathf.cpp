@@ -39,7 +39,12 @@ extern "C"
                                         XlfOper xly_array,
                                         XlfOper xlx,
                                         XlfOper xlinterpolationType,
-                                        XlfOper xlallowExtrapolation) {
+                                        XlfOper xlallowExtrapolation,
+                                        XlfOper xlleftConditionType,
+                                        XlfOper xlleftConditionValue,
+                                        XlfOper xlrightConditionType,
+                                        XlfOper xlrightConditionValue,
+                                        XlfOper xlmonotonicityConstraint) {
         EXCEL_BEGIN;
 
         std::vector<double> x_value = xlx_array.AsDoubleVector();
@@ -47,9 +52,52 @@ extern "C"
         QL_REQUIRE(x_value.size()==y_value.size(),
             "interpolate: array mismatch");
 
-        double result = interpolate(x_value, y_value,
-            xlx.AsDouble(),
-            xlinterpolationType.AsInt(), xlallowExtrapolation.AsBool());
+        double x = xlx.AsDouble();
+
+        bool allowExtrapolation = xlallowExtrapolation.AsBool();
+
+        double y1a = Null<double>(),
+               y2a = Null<double>();
+        int leftConditionType = xlleftConditionType.AsInt();
+        switch (leftConditionType) {
+        case 0:
+            break;
+        case 1:
+            y1a=xlleftConditionValue.AsDouble();
+            break;
+        case 2:
+            y2a=xlleftConditionValue.AsDouble();
+            break;
+        default:
+            throw Error("unknown case");
+        }
+
+        double y1b = Null<double>(),
+               y2b = Null<double>();
+        int rightConditionType = xlrightConditionType.AsInt();
+        switch (rightConditionType) {
+        case 0:
+            break;
+        case 1:
+            y1b=xlrightConditionValue.AsDouble();
+            break;
+        case 2:
+            y2b=xlrightConditionValue.AsDouble();
+            break;
+        default:
+            throw Error("unknown case");
+        }
+
+        bool monotonicityConstraint = xlmonotonicityConstraint.AsBool();
+
+        int interpolationType = xlinterpolationType.AsInt();
+
+        double result = interpolate(x_value, y_value, x,
+            interpolationType,
+            allowExtrapolation,
+            y1a, y2a,
+            y1b, y2b,
+            monotonicityConstraint);
         return XlfOper(result);
         EXCEL_END;
     }
