@@ -1,5 +1,14 @@
 
-anonymuos ftp site
+add references to ISDA and OMG documets
+
+FAQ entry about books
+mailing lists page
+FAQ entry about swig
+FAQ entry about doxygen
+FAQ entry about GPL compatibility
+expand general resource section
+
+anonymous ftp site
 quantlib-job mailing list
 quantlib-papers mailing list
 quantlib.org mx server
