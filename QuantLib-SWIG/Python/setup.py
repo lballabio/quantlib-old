@@ -268,7 +268,7 @@ if sys.platform == 'win32':
         library_dirs = [os.path.join(QL_INSTALL_DIR,
                                      'lib', 'win32', 'VisualStudio')]
         libraries = None
-        extra_compile_args = ['/GR', '/FD', '/MT']
+        extra_compile_args = ['/GR', '/FD']
         define_macros = [('__WIN32__', None), ('WIN32', None),
                          ('NDEBUG', None), ('_WINDOWS', None),
                          ('NOMINMAX', None)]
@@ -276,8 +276,9 @@ if sys.platform == 'win32':
                            '/machine:I386']
 
     if '--debug' in sys.argv:
-        define_macros.append(('QL_DEBUG', None))
+        extra_compile_args.append('/MTd')
     else:
+        extra_compile_args.append('/MT')
         extra_compile_args.append('/Od')
 
 else:
