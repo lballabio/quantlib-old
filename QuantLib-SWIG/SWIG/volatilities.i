@@ -104,7 +104,7 @@ IsObservable(RelinkableHandle<LocalVolTermStructure>);
 
 // constant Black vol term structure
 %{
-using QuantLib::VolTermStructures::BlackConstantVol;
+using QuantLib::BlackConstantVol;
 typedef Handle<BlackVolTermStructure> BlackConstantVolHandle;
 %}
 
@@ -130,7 +130,7 @@ class BlackConstantVolHandle : public Handle<BlackVolTermStructure> {
 
 // Black smiled surface
 %{
-using QuantLib::VolTermStructures::BlackVarianceSurface;
+using QuantLib::BlackVarianceSurface;
 typedef BlackVarianceSurface::Extrapolation VolExtrapolationType;
 typedef Handle<BlackVolTermStructure> BlackVarianceSurfaceHandle;
 
@@ -183,7 +183,7 @@ class BlackVarianceSurfaceHandle : public Handle<BlackVolTermStructure> {
 
 // constant local vol term structure
 %{
-using QuantLib::VolTermStructures::LocalConstantVol;
+using QuantLib::LocalConstantVol;
 typedef Handle<LocalVolTermStructure> LocalConstantVolHandle;
 %}
 

@@ -123,10 +123,10 @@ DeclareSolver(NewtonSafe);
 // Optimizers
 
 %{
-using QuantLib::Optimization::Constraint;
-using QuantLib::Optimization::BoundaryConstraint;
-using QuantLib::Optimization::NoConstraint;
-using QuantLib::Optimization::PositiveConstraint;
+using QuantLib::Constraint;
+using QuantLib::BoundaryConstraint;
+using QuantLib::NoConstraint;
+using QuantLib::PositiveConstraint;
 %}
         
 class Constraint {
@@ -151,10 +151,10 @@ class PositiveConstraint : public Constraint {
 };
 
 %{
-using QuantLib::Optimization::Method;
-using QuantLib::Optimization::ConjugateGradient;
-using QuantLib::Optimization::Simplex;
-using QuantLib::Optimization::SteepestDescent;
+using QuantLib::Method;
+using QuantLib::ConjugateGradient;
+using QuantLib::Simplex;
+using QuantLib::SteepestDescent;
 %}
 
 class Method {
@@ -187,7 +187,7 @@ class SteepestDescent : public Method {
 
 
 %{
-using QuantLib::Optimization::Problem;
+using QuantLib::Problem;
 %}
 
 %inline %{

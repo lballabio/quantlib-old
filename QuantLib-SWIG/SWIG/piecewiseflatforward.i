@@ -28,11 +28,11 @@
 %include vectors.i
 
 %{
-using QuantLib::TermStructures::RateHelper;
-using QuantLib::TermStructures::DepositRateHelper;
-using QuantLib::TermStructures::FraRateHelper;
-using QuantLib::TermStructures::FuturesRateHelper;
-using QuantLib::TermStructures::SwapRateHelper;
+using QuantLib::RateHelper;
+using QuantLib::DepositRateHelper;
+using QuantLib::FraRateHelper;
+using QuantLib::FuturesRateHelper;
+using QuantLib::SwapRateHelper;
 typedef Handle<RateHelper> DepositRateHelperHandle;
 typedef Handle<RateHelper> FraRateHelperHandle;
 typedef Handle<RateHelper> FuturesRateHelperHandle;
@@ -166,7 +166,7 @@ namespace std {
 // the curve itself
 
 %{
-using QuantLib::TermStructures::PiecewiseFlatForward;
+using QuantLib::PiecewiseFlatForward;
 typedef Handle<TermStructure> PiecewiseFlatForwardHandle;
 %}
 

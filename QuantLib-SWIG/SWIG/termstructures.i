@@ -72,7 +72,7 @@ IsObservable(RelinkableHandle<TermStructure>);
 // implied term structure
 
 %{
-using QuantLib::TermStructures::ImpliedTermStructure;
+using QuantLib::ImpliedTermStructure;
 typedef Handle<TermStructure> ImpliedTermStructureHandle;
 %}
 
@@ -95,8 +95,8 @@ class ImpliedTermStructureHandle: public Handle<TermStructure> {
 // spreaded term structures
 
 %{
-using QuantLib::TermStructures::ZeroSpreadedTermStructure;
-using QuantLib::TermStructures::ForwardSpreadedTermStructure;
+using QuantLib::ZeroSpreadedTermStructure;
+using QuantLib::ForwardSpreadedTermStructure;
 typedef Handle<TermStructure> ZeroSpreadedTermStructureHandle;
 typedef Handle<TermStructure> ForwardSpreadedTermStructureHandle;
 %}
@@ -131,7 +131,7 @@ class ForwardSpreadedTermStructureHandle : public Handle<TermStructure> {
 // flat forward curve
 
 %{
-using QuantLib::TermStructures::FlatForward;
+using QuantLib::FlatForward;
 typedef Handle<TermStructure> FlatForwardHandle;
 %}
 

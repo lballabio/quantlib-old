@@ -25,9 +25,9 @@
 %include marketelements.i
 
 %{
-using QuantLib::TermStructures::CompoundForward;
+using QuantLib::CompoundForward;
 typedef Handle<TermStructure> CompoundForwardHandle;
-//using QuantLib::TermStructures::CompoundSpreadedTermStructure;
+//using QuantLib::CompoundSpreadedTermStructure;
 //typedef Handle<TermStructure> CompoundSpreadedTermStructureHandle;
 %}
 

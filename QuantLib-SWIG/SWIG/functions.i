@@ -22,7 +22,7 @@
 %include types.i
 
 %{
-using QuantLib::Optimization::CostFunction;
+using QuantLib::CostFunction;
 %}
 
 #if defined(SWIGPYTHON)

@@ -22,8 +22,8 @@
 %include termstructures.i
 
 %{
-using QuantLib::TermStructures::DiscountCurve;
-using QuantLib::TermStructures::ExtendedDiscountCurve;
+using QuantLib::DiscountCurve;
+using QuantLib::ExtendedDiscountCurve;
 typedef Handle<TermStructure> DiscountCurveHandle;
 typedef Handle<TermStructure> ExtendedDiscountCurveHandle;
 %}

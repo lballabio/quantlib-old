@@ -51,7 +51,7 @@ IsObservable(Handle<SwaptionVolatilityStructure>);
 IsObservable(RelinkableHandle<SwaptionVolatilityStructure>);
 
 %{
-using QuantLib::Volatilities::SwaptionVolatilityMatrix;
+using QuantLib::SwaptionVolatilityMatrix;
 typedef Handle<SwaptionVolatilityStructure> SwaptionVolatilityMatrixHandle;
 %}
 
@@ -95,7 +95,7 @@ IsObservable(Handle<CapFlatVolatilityStructure>);
 IsObservable(RelinkableHandle<CapFlatVolatilityStructure>);
 
 %{
-using QuantLib::Volatilities::CapFlatVolatilityVector;
+using QuantLib::CapFlatVolatilityVector;
 typedef Handle<CapFlatVolatilityStructure> CapFlatVolatilityVectorHandle;
 %}
 
