@@ -3,6 +3,7 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="AddinC"
+	ProjectGUID="{ACEB8064-0C6C-48FF-9B31-1F152EFA7805}"
 	SccProjectName=""
 	SccLocalPath="">
 	<Platforms>

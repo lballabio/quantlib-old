@@ -3,6 +3,7 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="AddinExcel"
+	ProjectGUID="{82F9F5A7-1F57-4AE4-9511-052845D55D6C}"
 	SccProjectName=""
 	SccLocalPath="">
 	<Platforms>
