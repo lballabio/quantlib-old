@@ -99,7 +99,7 @@ DLLEXPORT LPXLOPER qlLogfile(char *logFileName, long *logLevel) {
         std::string ret = QL_LOGFILE(std::string(logFileName), lvl);
         stringToXLOPER(xRet, ret.c_str());
         return &xRet;
-    } catch (const exception &e) {
+    } catch (...) {
         return 0;
     }
 }
@@ -111,7 +111,7 @@ DLLEXPORT LPXLOPER qlLogMessage(char *logMessage, long *logLevel) {
         std::string ret = QL_LOGMESSAGE(std::string(logMessage), lvl);
         stringToXLOPER(xRet, ret.c_str());
         return &xRet;
-    } catch (const exception &e) {
+    } catch (...) {
         return 0;
     }
 }
@@ -123,7 +123,7 @@ DLLEXPORT LPXLOPER qlLogLevel(long *logLevel) {
         xRet.xltype = xltypeInt;
         xRet.val.w = *logLevel;
         return &xRet;
-    } catch (const exception &e) {
+    } catch (...) {
         return 0;
     }
 }
