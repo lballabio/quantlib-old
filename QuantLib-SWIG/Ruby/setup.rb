@@ -24,10 +24,11 @@ def usage
     puts <<EOU
 Usage: ruby setup.rb command [options]
     Commands:
-    build                                   build QuantLib-Ruby
-    install [--prefix=/path/to/install/dir] install QuantLib-Ruby
-    sdist                                   create source distribution
-    bdist                                   create binary distribution
+    wrap                      generate wrappers from SWIG interfaces
+    build                     build QuantLib-Ruby
+    install [--prefix=path]   install QuantLib-Ruby in path
+    sdist                     create source distribution
+    bdist                     create binary distribution
 EOU
     exit
 end
@@ -35,7 +36,7 @@ end
 # parse command line
 cmd = ARGV.shift or usage()
 cmd.downcase!
-usage() unless ['build','test','install','sdist','bdist'].member? cmd
+usage() unless ['wrap','build','test','install','sdist','bdist'].member? cmd
 Prefix = nil
 if cmd != "install"
 	usage() if ARGV.shift
@@ -117,7 +118,7 @@ Wrap = Command.new {
 		needsWrapping = true
 	end
 	if needsWrapping
-		puts "Generating Ruby bindings for QuantLib..."
+        puts "Generating Ruby bindings for QuantLib..."
         system "swig -ruby -c++ -I#{swigDir} -o ./quantlib_wrap.cpp quantlib.i"
 	end
 }
@@ -234,6 +235,7 @@ Install = Command.new {
 
 
 availableCommands = {
+    "wrap"    => Wrap,
 	"build"   => Build,
 	"test"    => Test,
   	"install" => Install,

@@ -221,6 +221,19 @@ class my_sdist(sdist):
             os.remove(os.path.join(swig_dir,f))
         os.rmdir(swig_dir)
         
+class my_wrap(Command):
+    user_options = []
+    def initialize_options(self): pass
+    def finalize_options(self): pass
+    def run(self):
+        print 'Generating Python bindings for QuantLib...'
+        swig_dir = os.path.join("./QuantLib/SWIG")
+        if not os.path.exists(swig_dir):
+            swig_dir = "../SWIG"
+            os.system('swig -python -c++ -shadow -keyword ' +
+                      '-I%s ' % swig_dir +
+                      '-o QuantLib/quantlib_wrap.cpp quantlib.i')
+
 
 if sys.platform == 'win32':
     try:
@@ -299,5 +312,6 @@ setup(name             = "QuantLib-Python",
                           'install_testfiles': install_testfiles,
                           'install_docs': install_docs,
                           'install': my_install,
-                          'sdist': my_sdist},
+                          'sdist': my_sdist,
+                          'wrap': my_wrap},
       version          = "0.3.1a0-cvs")
