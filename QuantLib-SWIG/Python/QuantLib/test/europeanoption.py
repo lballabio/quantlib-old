@@ -31,7 +31,8 @@ def EuropeanOption(type,underlying,strike,divCurve,rfCurve,
     if engineType == 'analytic':
         engine = AnalyticEuropeanEngine()
     elif engineType == 'jr' or engineType == 'crr' or \
-         engineType == 'eqp' or engineType == 'trigeorgis':
+         engineType == 'eqp' or engineType == 'trigeorgis' \
+         or engineType == 'tian':
         engine = BinomialEuropeanEngine(engineType,800)
     return VanillaOption(type,MarketElementHandle(underlying),strike,
                          divCurve,rfCurve,EuropeanExercise(exDate),
@@ -254,7 +255,7 @@ Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s
                      for rRate in [0.01, 0.05, 0.15]
                      for vol in [0.11, 0.5, 1.2]]
 
-        engines = ['jr', 'crr', 'eqp', 'trigeorgis']
+        engines = ['jr', 'crr', 'eqp', 'trigeorgis', 'tian']
 
         underlying = SimpleMarketElement(0.0)
         volatility = SimpleMarketElement(0.0)

@@ -240,6 +240,8 @@ BinomialVanillaEngine::Type binomialEngineTypeFromString(std::string s) {
         return BinomialVanillaEngine::EQP;
     else if (s == "trigeorgis")
         return BinomialVanillaEngine::Trigeorgis;
+    else if (s == "tian")
+        return BinomialVanillaEngine::Tian;
     else
         throw Error("unknown binomial engine type: "+s);
 }
@@ -254,6 +256,8 @@ std::string binomialEngineTypeToString(BinomialVanillaEngine::Type t) {
         return "EQP";
       case BinomialVanillaEngine::Trigeorgis:
         return "Trigeorgis";
+      case BinomialVanillaEngine::Tian:
+        return "Tian";
       default:
         throw Error("unknown binomial engine type");
     }

@@ -44,7 +44,7 @@ class EuropeanOptionTest < Test::Unit::TestCase
     case engineType
       when 'analytic'
         engine = AnalyticEuropeanEngine.new
-      when 'jr', 'crr', 'eqp', 'trigeorgis'
+      when 'jr', 'crr', 'eqp', 'trigeorgis', 'tian'
         engine = BinomialEuropeanEngine.new(engineType,800)
     end
     VanillaOption.new(type,MarketElementHandle.new(underlying),strike,
@@ -283,7 +283,7 @@ class EuropeanOptionTest < Test::Unit::TestCase
         test_data.push [under,qRate,rRate,vol]
     }}}}
 
-    engines = ['jr', 'crr', 'eqp', 'trigeorgis']
+    engines = ['jr', 'crr', 'eqp', 'trigeorgis', 'tian']
 
     underlying = SimpleMarketElement.new(0.0)
     volatility = SimpleMarketElement.new(0.0)

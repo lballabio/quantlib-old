@@ -55,7 +55,7 @@
         (let ((engine-type (car engine-type)))
           (cond ((string=? engine-type "analytic") 
                  (new-AnalyticEuropeanEngine))
-                ((member engine-type '("jr""crr" "eqp" "trigeorgis"))
+                ((member engine-type '("jr""crr" "eqp" "trigeorgis" "tian"))
                  (new-BinomialEuropeanEngine engine-type 800))))))
   (define (make-flat-curve forward)
     (deleting-let* ((today (Date-todays-date) delete-Date)
@@ -232,7 +232,7 @@
              (for-each-combination ((type '("Call" "Put" "Straddle"))
                                     (strike '(50 100 150))
                                     (ex-days '(365)))
-               (let ((engines '("jr""crr" "eqp" "trigeorgis")))
+               (let ((engines '("jr""crr" "eqp" "trigeorgis" "tian")))
                  (deleting-let* ((ref-option (make-option type 
                                                           underlying strike 
                                                           div-curve rf-curve 

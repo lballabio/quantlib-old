@@ -147,7 +147,7 @@ VolExtrapolationType volExTypeFromString(std::string s) {
     if (s == "const" || s == "constant")
         return DefBlackVarianceSurface::ConstantExtrapolation;
     else if (s == "" || s == "default")
-        return DefBlackVarianceSurface::DefaultExtrapolation;
+        return DefBlackVarianceSurface::InterpolatorDefaultExtrapolation;
     else
         throw Error("unknown extrapolation type: "+s);
 }
@@ -156,7 +156,7 @@ std::string volExTypeToString(VolExtrapolationType t) {
     switch (t) {
       case DefBlackVarianceSurface::ConstantExtrapolation:
         return "constant";
-      case DefBlackVarianceSurface::DefaultExtrapolation:
+      case DefBlackVarianceSurface::InterpolatorDefaultExtrapolation:
         return "default";
       default:
         throw Error("unknown extrapolation type");
@@ -176,9 +176,9 @@ class BlackVarianceSurfaceHandle : public Handle<BlackVolTermStructure> {
                 const std::vector<double>& strikes,
                 const Matrix& blackVols,
                 VolExtrapolationType lower = 
-                    DefBlackVarianceSurface::DefaultExtrapolation,
+                    DefBlackVarianceSurface::InterpolatorDefaultExtrapolation,
                 VolExtrapolationType upper = 
-                    DefBlackVarianceSurface::DefaultExtrapolation,
+                    DefBlackVarianceSurface::InterpolatorDefaultExtrapolation,
                 const DayCounter& dayCounter = Actual365()) {
             return new BlackVarianceSurfaceHandle(
                 new DefBlackVarianceSurface(referenceDate,dates,strikes,
