@@ -128,7 +128,7 @@ using QuantLib::BoundaryConstraint;
 using QuantLib::NoConstraint;
 using QuantLib::PositiveConstraint;
 %}
-        
+
 class Constraint {
     // prevent direct instantiation
   private:
@@ -150,6 +150,31 @@ class PositiveConstraint : public Constraint {
     PositiveConstraint();
 };
 
+
+%{
+using QuantLib::EndCriteria;
+%}
+
+class EndCriteria {
+    #if defined(SWIGRUBY)
+    %rename("setPositiveOptimization!") setPositiveOptimization;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename(call) operator();
+    %rename("positive-optimization-set!") setPositiveOptimization;
+    #endif
+  public:
+    EndCriteria();
+    EndCriteria(int maxIteration, double epsilon);
+    void setPositiveOptimization();
+    bool operator()(int iteration,
+                    double fold,
+                    double normgold,
+                    double fnew,
+                    double normgnew,
+                    double);
+};
+
+
 %{
 using QuantLib::OptimizationMethod;
 using QuantLib::ConjugateGradient;
@@ -160,14 +185,17 @@ using QuantLib::SteepestDescent;
 class OptimizationMethod {
     #if defined(SWIGRUBY)
     %rename("initialValue=") setInitialValue;
+    %rename("endCriteria==") setEndCriteria;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("initial-value-set!") setInitialValue;
+    %rename("end-criteria-set!") setEndCriteria;
     #endif
   private:
     // prevent direct instantiation
     OptimizationMethod();
   public:
     void setInitialValue(const Array&);
+    void setEndCriteria(const EndCriteria&);
 };
 
 class ConjugateGradient : public OptimizationMethod {

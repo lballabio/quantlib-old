@@ -1,0 +1,95 @@
+
+/*
+ Copyright (C) 2004 StatPro Italia srl
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+#ifndef quantlib_grid_i
+#define quantlib_grid_i
+
+%include common.i
+%include types.i
+%include stl.i
+
+%{
+using QuantLib::TimeGrid;
+%}
+
+class TimeGrid : public std::vector<Time> {
+    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+    %rename(__len__)   size;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("length")  size;
+    #endif
+  public:
+    // empty time-grid
+    TimeGrid() {}
+    // regularly spaced time-grid
+    TimeGrid(Time end, Size steps);
+    %extend {
+        // time-grid with mandatory time points
+        TimeGrid(const std::vector<Time>& times) {
+            return new TimeGrid(times.begin(), times.end());
+        }
+        // time-grid with mandatory time points and steps
+        TimeGrid(const std::vector<Time>& times, Size steps) {
+            return new TimeGrid(times.begin(), times.end(), steps);
+        }
+    }
+    Size size() const;
+    %extend {
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        Time __getitem__(int i) {
+            int size_ = static_cast<int>(self->size());
+            if (i>=0 && i<size_) {
+                return (*self)[i];
+            } else if (i<0 && -i<=size_) {
+                return (*self)[size_+i];
+            } else {
+                throw std::out_of_range("time-grid index out of range");
+            }
+            QL_DUMMY_RETURN(0.0)
+        }
+        Time dt(int i) const {
+            int size_ = static_cast<int>(self->size());
+            if (i>=0 && i<size_) {
+                return self->dt(i);
+            } else if (i<0 && -i<=size_) {
+                return self->dt(size_+i);
+            } else {
+                throw std::out_of_range("time-grid index out of range");
+            }
+            QL_DUMMY_RETURN(0.0)
+        }
+        #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        Time ref(Size i) {
+            if (i<self->size())
+                return (*self)[i];
+            else
+                throw std::out_of_range("time-grid index out of range");
+            QL_DUMMY_RETURN(0.0)
+        }
+        Time dt(Size i) {
+            if (i<self->size())
+                return self->dt(i);
+            else
+                throw std::out_of_range("time-grid index out of range");
+            QL_DUMMY_RETURN(0.0)
+        }
+        #endif
+    }
+};
+
+
+#endif

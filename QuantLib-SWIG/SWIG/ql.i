@@ -61,6 +61,7 @@
 %include distributions.i
 %include exercise.i
 %include functions.i
+%include grid.i
 %include history.i
 %include indexes.i
 %include instruments.i

@@ -226,6 +226,7 @@ class Date {
     Date plusMonths(int months) const;
     Date plusYears(int years) const;
     Date plus(int units, TimeUnit) const;
+    Date plus(const Period&) const;
     // leap years
     static bool isLeap(Year y);
     // earliest and latest allowed date
@@ -238,24 +239,24 @@ class Date {
     Date operator-(int days) const;
     #endif
     %extend {
-	Date(const std::string& str, const std::string& fmt) {
-	    return new Date(DateParser::parse(str,fmt));
-	}
+        Date(const std::string& str, const std::string& fmt) {
+            return new Date(DateParser::parse(str,fmt));
+        }
         int weekdayNumber() {
             return int(self->weekday());
         }
         std::string __str__() {
             return DateFormatter::toString(*self);
         }
-	std::string __repr__() {
-	   return "Date(" +
-	      IntegerFormatter::toString(self->dayOfMonth()) +
-	      "," +
-	      IntegerFormatter::toString(int(self->month())) +
-	      "," +
-	      IntegerFormatter::toString(self->year()) +
-	      ")";
-	}
+        std::string __repr__() {
+            return "Date(" +
+                IntegerFormatter::toString(self->dayOfMonth()) +
+                "," +
+                IntegerFormatter::toString(int(self->month())) +
+                "," +
+                IntegerFormatter::toString(self->year()) +
+                ")";
+        }
         std::string ISO() {
             return DateFormatter::toString(*self,DateFormatter::ISO);
         }
@@ -275,6 +276,9 @@ class Date {
         #if defined(SWIGPYTHON)
         bool __nonzero__() {
             return (*self != Date());
+        }
+        int __hash__() {
+            return self->serialNumber();
         }
         #endif
         #if defined(SWIGRUBY)

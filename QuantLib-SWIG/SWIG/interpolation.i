@@ -116,9 +116,7 @@ typedef SafeInterpolation2D<QuantLib::T> Safe##T;
 %}
 %rename(Alias) Safe##T;
 class Safe##T {
-    #if defined(SWIGRUBY)
-    %rename(__call__) operator();
-    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename(call)     operator();
     #endif
   public:

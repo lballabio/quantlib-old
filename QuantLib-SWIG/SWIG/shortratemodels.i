@@ -22,6 +22,7 @@
 %include calendars.i
 %include daycounters.i
 %include cashflows.i
+%include grid.i
 %include marketelements.i
 %include termstructures.i
 %include optimizers.i
@@ -48,6 +49,12 @@ class CalibrationHelper {
     #endif
   public:
     void setPricingEngine(const boost::shared_ptr<PricingEngine>& engine);
+    double marketValue() const;
+    double modelValue() const;
+    double impliedVolatility(double targetValue,
+                             double accuracy, Size maxEvaluations,
+                             double minVol, double maxVol) const;
+    double blackPrice(double volatility) const;
 };
 %template(CalibrationHelper) boost::shared_ptr<CalibrationHelper>;
 
@@ -66,6 +73,13 @@ class SwaptionHelperPtr : public boost::shared_ptr<CalibrationHelper> {
                 new SwaptionHelper(maturity,length,volatility,
                                    libor,termStructure));
         }
+        std::vector<Time> times() {
+            std::list<Time> l;
+            (*self)->addTimesTo(l);
+            std::vector<Time> v;
+            std::copy(l.begin(),l.end(),std::back_inserter(v));
+            return v;
+        }
     }
 };
 
@@ -82,6 +96,13 @@ class CapHelperPtr : public boost::shared_ptr<CalibrationHelper> {
                 boost::dynamic_pointer_cast<Xibor>(index);
             return new CapHelperPtr(
                 new CapHelper(length,volatility,libor,termStructure));
+        }
+        std::vector<Time> times() {
+            std::list<Time> l;
+            (*self)->addTimesTo(l);
+            std::vector<Time> v;
+            std::copy(l.begin(),l.end(),std::back_inserter(v));
+            return v;
         }
     }
 };
@@ -183,6 +204,11 @@ class TreeSwaptionPtr : public boost::shared_ptr<PricingEngine> {
             return new TreeSwaptionPtr(
                 new TreeSwaption(model,timeSteps));
         }
+        TreeSwaptionPtr(const boost::shared_ptr<ShortRateModel>& model,
+                        const TimeGrid& grid) {
+            return new TreeSwaptionPtr(
+                new TreeSwaption(model,grid));
+        }
     }
 };
 
@@ -194,6 +220,11 @@ class TreeCapFloorPtr : public boost::shared_ptr<PricingEngine> {
                         Size timeSteps) {
             return new TreeCapFloorPtr(
                 new TreeCapFloor(model,timeSteps));
+        }
+        TreeCapFloorPtr(const boost::shared_ptr<ShortRateModel>& model,
+                        const TimeGrid& grid) {
+            return new TreeCapFloorPtr(
+                new TreeCapFloor(model,grid));
         }
     }
 };
