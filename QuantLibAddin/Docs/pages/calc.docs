@@ -125,7 +125,6 @@ CPP=/usr/local/gcc/3.2.2/bin/cpp
 <li><b>Additional detail</b> is available at the following link on the OOo website: 
 <a href="http://udk.openoffice.org/common/man/draft/gccincompatibility.html">Coping with GCC Incompatibilities</a></li>
 <li><b>In theory</b> it should be possible to compile a Calc Addin with any version of gcc which is ABI-compatible with gcc 3.2.2, but in practice any nontrivial Addin compiled with anything other than gcc 3.2.2 seems to crash OOo.</li>
-<li><b>boost 1.31</b> - I seem to remember a problem using gcc 3.2.2 with boost > 1.31 so I think you need boost <= 1.31, I'll clarify this.</li>
 </ul>
 
 */
