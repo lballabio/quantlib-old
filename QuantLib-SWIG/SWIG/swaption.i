@@ -34,7 +34,6 @@ class SwaptionHandle : public Handle<Instrument> {
   public:
     %extend {
         SwaptionHandle(const Handle<Instrument>& simpleSwap,
-                       const Handle<Payoff>& payoff,
                        const Handle<Exercise>& exercise,
                        const RelinkableHandle<TermStructure>& termStructure,
                        const Handle<PricingEngine>& engine) {
@@ -46,7 +45,7 @@ class SwaptionHandle : public Handle<Instrument> {
             %#endif
             QL_REQUIRE(!IsNull(swap),
                        "Swaption: simple swap required");
-            return new SwaptionHandle(new Swaption(swap,payoff,exercise,
+            return new SwaptionHandle(new Swaption(swap,exercise,
                                                    termStructure,engine));
         }
     }
