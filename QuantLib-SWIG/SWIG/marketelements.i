@@ -24,6 +24,7 @@
 
 %{
 using QuantLib::Quote;
+using QuantLib::MarketElement;
 %}
 
 %ignore Quote;
@@ -31,6 +32,8 @@ class Quote {
   public:
     double value() const;
 };
+
+typedef Quote MarketElement;
 
 %template(Quote) Handle<Quote>;
 IsObservable(Handle<Quote>);
