@@ -3,24 +3,39 @@
 import common
 import utils
 
+# constants
+
+ROOT = common.ADDIN_ROOT + 'Calc/'
+MAPFILE = 'funcdef.cpp'
+MAPLINE='    funcMap[ STRFROMANSI( "%s" ) ]\n\
+        =  STRFROMANSI( "%s" );\n'
+AUTOHDR = 'autogen.hpp'
+IDL = 'QuantLibAddin.idl'
+MAP = 'stub.Calc.map'
+INCLUDES = 'stub.Calc.includes'
+BODY = 'stub.Calc.body'
+IDL_HEAD = 'stub.Calc.idlhead'
+IDL_FOOT = 'stub.Calc.idlfoot'
+IDL_FUNC = 'stub.Calc.idlfunc'
+
 def generateFuncMap(functionGroups):
-    fileName = common.CALC_ROOT + common.CALC_MAPFILE
+    fileName = ROOT + MAPFILE
     utils.logMessage('    generating file ' + fileName + '...')
     fileMap = file(fileName, 'w')
     utils.printHeader(fileMap)
-    bufCalcMap = utils.loadBuffer(common.CALC_MAP)
+    bufCalcMap = utils.loadBuffer(MAP)
     fileMap.write(bufCalcMap)
     for groupName in functionGroups.keys():
         fileMap.write('\n    //%s\n\n' % groupName)
         functionGroup = functionGroups[groupName]
         for function in functionGroup[common.FUNCLIST]:
-            fileMap.write(common.CALC_MAPLINE
+            fileMap.write(MAPLINE
                 % (function[common.CODENAME], function[common.NAME]))
     fileMap.write('\n}\n')
     fileMap.close()
 
 def generateAutoHeader(functionGroups):
-    fileName = common.CALC_ROOT + common.CALC_AUTOHDR
+    fileName = ROOT + AUTOHDR
     utils.logMessage('    generating file ' + fileName + '...')
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
@@ -48,7 +63,7 @@ def getReturnTypeCalc(function):
 def generateHeaders(functionGroups):
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
-        fileName = common.CALC_ROOT + groupName + '.hpp'
+        fileName = ROOT + groupName + '.hpp'
         utils.logMessage('    generating file ' + fileName + '...')
         fileHeader = file(fileName, 'w')
         utils.printHeader(fileHeader)
@@ -60,7 +75,7 @@ def generateHeaders(functionGroups):
             fileHeader.write('\n')
     fileHeader.close()
 
-def generateFuncSource(fileFunc, function):
+def generateFuncSource(fileFunc, function, bufBody):
     fileFunc.write('SEQSEQ( ANY ) SAL_CALL QLAddin::%s(\n' 
         % function[common.CODENAME])
     generateHeader(fileFunc, function, ' {')
@@ -69,25 +84,27 @@ def generateFuncSource(fileFunc, function):
     else:
         handle = ''
     paramList = utils.generateParamList(function[common.PARAMS],
-        3, False, '', '', '', 'OUStringToString(%s)')
-    fileFunc.write(common.CALC_BODY_BUF % (
+        3, False, reformatString = 'OUStringToString(%s)')
+    fileFunc.write(bufBody % (
         function[common.NAME],
         handle,
         paramList,
         function[common.NAME]))
 
 def generateFuncSources(functionGroups):
-    bufCalcInclude = utils.loadBuffer(common.CALC_INCLUDES)
-    common.CALC_BODY_BUF = utils.loadBuffer(common.CALC_BODY)
+    bufInclude = utils.loadBuffer(INCLUDES)
+    bufBody = utils.loadBuffer(BODY)
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
         if functionGroup[common.HDRONLY]:
             continue
-        fileFunc = file(common.CALC_ROOT + groupName + '.cpp', 'w')
+        fileName = ROOT + groupName + '.cpp'
+        utils.logMessage('    generating file ' + fileName + '...')
+        fileFunc = file(fileName, 'w')
         utils.printHeader(fileFunc)
-        fileFunc.write(bufCalcInclude)
+        fileFunc.write(bufInclude)
         for function in functionGroup[common.FUNCLIST]:
-            generateFuncSource(fileFunc, function)
+            generateFuncSource(fileFunc, function, bufBody)
         fileFunc.close()
 
 def getReturnTypeCalcIDL(function):
@@ -100,13 +117,13 @@ def getReturnTypeCalcIDL(function):
         raise ValueError, 'unexpected return type: ' + returnType
 
 def generateIDLSource(functionGroups):
-    fileName = common.CALC_ROOT + common.CALC_IDL
+    fileName = ROOT + IDL
     utils.logMessage('    generating file ' + fileName + '...')
     fileIDL = file(fileName, 'w')
     utils.printTimeStamp(fileIDL, '//')
-    bufIDLHead = utils.loadBuffer(common.CALC_IDL_HEAD)
+    bufIDLHead = utils.loadBuffer(IDL_HEAD)
     fileIDL.write(bufIDLHead)
-    bufIDLFunc = utils.loadBuffer(common.CALC_IDL_FUNC)
+    bufIDLFunc = utils.loadBuffer(IDL_FUNC)
     for groupName in functionGroups.keys():
         fileIDL.write('                // %s\n\n' % groupName)
         functionGroup = functionGroups[groupName]
@@ -120,7 +137,7 @@ def generateIDLSource(functionGroups):
                  6, True, '[in] ')
             fileIDL.write(bufIDLFunc %
                 (returnTypeIDL, function[common.CODENAME], handle, paramList))
-    bufIDLFoot = utils.loadBuffer(common.CALC_IDL_FOOT)
+    bufIDLFoot = utils.loadBuffer(IDL_FOOT)
     fileIDL.write(bufIDLFoot)
     fileIDL.close()
 

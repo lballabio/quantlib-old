@@ -6,17 +6,17 @@ import sys
 import os
 
 def generateParamList(
-        paramList,
-        indent = 0,
-        datatypes = False,
-        prefix = '',
-        convertString = '',
-        convertLong = '',
-        reformatString = '',
-        suffix = '\n',
-        dereference = '',
-        skipFirst = False,
-        xlateNames = False):
+        paramList,              # list of dicts describing parameters
+        indent = 0,             # #/tabstops to indent 
+        datatypes = False,      # include datatypes in output
+        prefix = '',            # text to prefix to each parameter
+        convertString = '',     # string conversion e.g. 'char *' to 'string'
+        convertLong = '',       # conversion of parms with datatype 'long'
+        reformatString = '',    # string reformatting e.g. 'std::string(%s)'
+        suffix = '\n',          # text to append to each parameter
+        dereference = '',       # dereference character e.g. * or &
+        skipFirst = False,      # skip first parm in list (for object handles)
+        xlateNames = False):    # translate parm name using its CLASS attribute
     'reformat params into a list of parameters using given format options'
     ret = ''
     i = 0

@@ -3,6 +3,15 @@
 import common
 import utils
 
+# constants
+
+ROOT = '../QuantLibAddin/functions/'
+INCLUDES = 'stub.qla.includes'
+HEADER = 'stub.qla.header'
+CTOR = 'stub.qla.constructor'
+FUNC = 'stub.qla.function'
+CONV = 'stub.qla.conversion'
+
 def generateFuncHeader(fileHeader, function, suffix):
     'generate function prototype'
     fileHeader.write('    const ObjHandler::Properties& %s(\n'
@@ -15,11 +24,11 @@ def generateFuncHeader(fileHeader, function, suffix):
 
 def generateFuncHeaders(groupName, functionGroup):
     'generate function prototypes'
-    fileName = common.QLA_ROOT + groupName + '.hpp'
+    fileName = ROOT + groupName + '.hpp'
     utils.logMessage('    generating file ' + fileName + '...')
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
-    bufInclude = utils.loadBuffer(common.QLA_INCLUDES)
+    bufInclude = utils.loadBuffer(INCLUDES)
     fileHeader.write(bufInclude % (groupName, groupName))
     for function in functionGroup[common.FUNCLIST]:
         generateFuncHeader(fileHeader, function, ';\n')
@@ -65,14 +74,14 @@ def generateCtorDef(function, body, conv, fileFunc):
 
 def generateFuncDefs(groupName, functionGroup):
     'generate source code for function bodies'
-    fileName = common.QLA_ROOT + groupName + '.cpp'
+    fileName = ROOT + groupName + '.cpp'
     utils.logMessage('    generating file ' + fileName + '...')
     fileFunc = file(fileName, 'w')
     utils.printHeader(fileFunc)
-    bufHeader = utils.loadBuffer(common.QLA_HEADER)
-    bufCtor = utils.loadBuffer(common.QLA_CTOR)
-    bufFunc = utils.loadBuffer(common.QLA_FUNC)
-    bufConv = utils.loadBuffer(common.QLA_CONV)
+    bufHeader = utils.loadBuffer(HEADER)
+    bufCtor = utils.loadBuffer(CTOR)
+    bufFunc = utils.loadBuffer(FUNC)
+    bufConv = utils.loadBuffer(CONV)
     fileFunc.write(bufHeader % (groupName, groupName))
     for function in functionGroup[common.FUNCLIST]:
         generateFuncHeader(fileFunc, function, ' {')
