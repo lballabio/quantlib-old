@@ -23,7 +23,7 @@
   (format #t "    wrap             generate wrappers from SWIG interfaces\n")
   (format #t "    build            build QuantLib-MzScheme\n")
   (format #t "    install          install QuantLib-MzScheme\n")
-  ;(format #t "    sdist            create source distribution\n")
+  (format #t "    sdist            create source distribution\n")
   ;(format #t "    bdist            create binary distribution\n")
   (exit))
 
@@ -105,6 +105,30 @@
   (list "unittest.scm"
         "utilities.scm"
         "quantlib-test-suite.scm"))
+
+(define (ls path)
+  (define (read-one s acc)
+    (let ((x (readdir s)))
+      (cond ((eof-object? x) 
+             acc)
+            ((or (string=? x ".") (string=? x ".."))
+             (read-one s acc))
+            (else 
+             (read-one s (cons x acc))))))
+  (let ((s (opendir path)))
+    (let ((l (read-one s '())))
+      (closedir s)
+      l)))
+
+(define (rec-delete-directory dir)
+  (define (delete-item item)
+    (if (file-is-directory? item)
+        (rec-delete-directory item)
+        (delete-file item)))
+  (chdir dir)
+  (for-each delete-item (ls "."))
+  (chdir "..")
+  (rmdir dir))
 
 ; commands
 
@@ -189,30 +213,42 @@
                                                file))))
               '("QuantLib.scm" "QuantLibc.so"))))
 
-
-; SDist = Command.new {
-; 	Wrap.execute
-; 	puts "Packing source distribution..."
-; 	distDir = "QuantLib-Ruby-#{Version}"
-; 	raise "Directory #{distDir} already exist" if File.exists? distDir
-; 	swigDir = distDir+"/SWIG"
-; 	testDir = distDir+"/test"
-; 	[distDir,swigDir,testDir].each { |path| File.makedirs path }
-; 	Info.each       { |file| File.syscopy file, distDir }
-; 	Sources.each    { |file| File.syscopy file, distDir }
-; 	Scripts.each    { |file| File.syscopy file, distDir }
-; 	Interfaces.each { |file| File.syscopy '../SWIG/'+file, swigDir }
-; 	Tests.each      { |file| File.syscopy 'test/'+file, testDir }
-; 	cfg = Config::MAKEFILE_CONFIG
-; 	case cfg['host_os']
-; 	  when 'mswin32'
-;     	system "zip -q -r #{distDir}.zip #{distDir}/"
-; 	  when 'linux'
-;     	system "tar cfz #{distDir}.tar.gz #{distDir}/"
-;       else
-;         puts "Unknown host: " + cfg['host_os']
-;     end
-; }
+(define (sdist)
+  (wrap)
+  (display "Packing source distribution...") (newline)
+  (let ((distribution-dir (string-append "QuantLib-Guile-" version)))
+    (if (file-exists? distribution-dir)
+        (if (file-is-directory? distribution-dir)
+            (rec-delete-directory distribution-dir)
+            (delete-file distribution-dir)))
+    (let ((swig-dir (string-append distribution-dir "/SWIG"))
+          (test-dir (string-append distribution-dir "/test")))
+      (define (install-files files source-dir target-dir)
+        (for-each 
+         (lambda (f)
+           (let ((source-file (string-append source-dir "/" f))
+                 (destination-file (string-append distribution-dir "/" 
+                                                  target-dir "/" f)))
+             (copy-file source-file destination-file)))
+         files))
+      (mkdir distribution-dir)
+      (for-each mkdir (list swig-dir test-dir))
+      (install-files info-files "." ".")
+      (install-files source-files "." ".")
+      (install-files scripts "." ".")
+      (let ((i-dir "SWIG"))
+        (if (not (file-exists? i-dir))
+            (set! i-dir "../../SWIG"))
+        (install-files SWIG-interfaces i-dir "SWIG"))
+      (install-files test-support-files "test" "test")
+      (let ((t-dir "../test"))
+        (if (not (file-exists? t-dir))
+            (set! t-dir "test"))
+        (install-files test-files t-dir "test"))
+      (system (string-append "tar cfz " 
+                             distribution-dir ".tar.gz "
+                             distribution-dir))
+      (rec-delete-directory distribution-dir))))
 
 ; BDist = Command.new {
 ; 	Wrap.execute
@@ -238,7 +274,8 @@
   (list (cons "wrap"    wrap)
         (cons "build"   build)
         (cons "test"    test)
-        (cons "install" install)))
+        (cons "install" install)
+        (cons "sdist"   sdist)))
 
 ; parse command line
 (let ((argv (command-line)))

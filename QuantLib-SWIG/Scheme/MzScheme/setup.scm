@@ -137,7 +137,9 @@
         (stdin (current-input-port))
         (stdout (current-output-port))
         (stderr (current-output-port)))
-    (apply subprocess stdout stdin stderr full-path args)))
+    (call-with-values (lambda () (apply subprocess 
+                                        stdout stdin stderr full-path args))
+      (lambda (proc _1 _2 _3) (subprocess-wait proc)))))
 
 (define (rec-delete-directory dir)
   (define (delete-item item)
@@ -266,21 +268,19 @@
         (install-files test-files t-dir "test"))
       (let ((os (system-type)))
         (cond ((equal? os 'unix)
-               (system (string-append
-                        "tar cfz "
-                        distribution-dir ".tar.gz "
-                        distribution-dir)))
+               (execute "tar" "cfz" 
+                        (string-append distribution-dir ".tar.gz")
+                        distribution-dir))
               ((equal? os 'windows)
-               (system (string-append
-                        "zip -q -r "
-                        distribution-dir ".zip "
-                        distribution-dir)))
+               (execute "zip" "-q" "-r"
+                        (string-append distribution-dir ".zip")
+                        distribution-dir))
               (else
                (error (string-append
                        "unsupported host: "
                        (symbol->string os))))))
       (rec-delete-directory distribution-dir))))
-               
+
 
 ; BDist = Command.new {
 ; 	Wrap.execute

@@ -249,8 +249,10 @@ Install = Command.new {
 	File.install "./QuantLibc.so", archDir+"/QuantLibc.so", 0555, true
 	File.install "./QuantLib.rb", libDir+"/QuantLib.rb", 0555, true
 	Info.each { |file| File.install "./#{file}",docDir+"/#{file}",nil,true }
+    thisSwigDir = "./SWIG"
+    thisSwigDir = "../SWIG" if not File.exists? thisSwigDir
 	Interfaces.each { |file| 
-        File.install "../SWIG/"+file,swigDir+"/#{file}",nil,true 
+        File.install thisSwigDir+"/#{file}",swigDir+"/#{file}",nil,true 
     }
 	Tests.each { |file| 
         File.install "./test/"+file,testDir+"/#{file}",nil,true 
