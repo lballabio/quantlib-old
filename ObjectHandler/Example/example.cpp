@@ -20,8 +20,6 @@
 
 using namespace std;
 
-extern ObjectHandler objectHandler;
-
 int main() {
 	try {
 		cout << "hi" << endl;
@@ -38,7 +36,7 @@ int main() {
 		cout << endl << "high level interrogation - after constructor" << endl;
 		// get object from handler and retrieve its properties -
 		// (properties also returned by WIDGET_MAKE)
-		obj_ptr object = objectHandler.retrieveObject("widget1");
+		obj_ptr object = ObjectHandler::instance().retrieveObject("widget1");
 		Properties properties = object->getProperties();
 		Properties::const_iterator i;
 		for (i = properties.begin();
@@ -56,7 +54,7 @@ int main() {
 		cout << endl << "low-level interrogation - after WIDGET_UPDATE" << endl;
 		boost::shared_ptr<ObjectWidget> const objectWidget =
 			boost::dynamic_pointer_cast<ObjectWidget>
-			(objectHandler.retrieveObject("widget2"));
+			(ObjectHandler::instance().retrieveObject("widget2"));
 		boost::shared_ptr<Widget> widget =
 			boost::static_pointer_cast<Widget>
 			(objectWidget->getReference());

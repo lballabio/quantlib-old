@@ -25,6 +25,7 @@
 #  error "unsupported Microsoft compiler"
 #elif (_MSC_VER == 1200)
 #  define OBJHANDLER_LIB_TOOLSET "vc6"
+#  define OBJHANDLER_PATCH_MSVC6
 #elif (_MSC_VER == 1300)
 #  define OBJHANDLER_LIB_TOOLSET "vc7"
 #elif (_MSC_VER == 1310)

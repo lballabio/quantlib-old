@@ -30,8 +30,6 @@
 #include <iostream>
 #include <sstream>
 
-ObjHandler::ObjectHandler objectHandler; // FIXME
-
 namespace ObjHandler {
 
     void ObjectHandler::storeObject(const std::string &handle,

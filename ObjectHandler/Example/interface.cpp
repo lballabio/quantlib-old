@@ -17,14 +17,12 @@
 #include <interface.hpp>
 #include <ObjectHandler/exception.hpp>
 
-extern ObjectHandler objectHandler;
-
 Properties WIDGET_MAKE(
 		const std::string &handle,
 		const std::string &s,
 		const int &i) {
 	obj_ptr object(new ObjectWidget(s, i));
-	objectHandler.storeObject(handle, object);
+	ObjectHandler::instance().storeObject(handle, object);
 	return object->getProperties();
 }
                                                                                                  
@@ -34,7 +32,7 @@ Properties WIDGET_UPDATE(
 		const int &i) {
 	boost::shared_ptr<ObjectWidget> object =
 		boost::dynamic_pointer_cast<ObjectWidget>
-		(objectHandler.retrieveObject(handle));
+		(ObjectHandler::instance().retrieveObject(handle));
 	if (!object)
 		throw Exception("WIDGET_UPDATE: unable to retrieve object " + handle);
 	object->update(s, i);

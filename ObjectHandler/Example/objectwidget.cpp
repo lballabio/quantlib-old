@@ -17,9 +17,7 @@
 #include <objectwidget.hpp>
 
 ObjectWidget::ObjectWidget(const std::string &s, const int &i) {
-   // construct widget object and point member variable at it
-   boost::shared_ptr<Widget> temp(new Widget(s, i));
-   widget_ = temp;
+   widget_ = boost::shared_ptr<Widget>(new Widget(s, i));
    // populate base class Property vector
    any_ptr anyString(new boost::any(widget_->s()));
    any_ptr anyInt(new boost::any(widget_->i()));

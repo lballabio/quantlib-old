@@ -28,6 +28,7 @@
 #endif
 
 #include <ObjectHandler/utilities.hpp>
+#include <ObjectHandler/singleton.hpp>
 
 #include <map>
 
@@ -37,14 +38,15 @@ namespace ObjHandler {
     typedef boost::shared_ptr<Object> obj_ptr;
     typedef std::map<std::string, obj_ptr> ObjectList;
 
-    class ObjectHandler {
+    class ObjectHandler : public Singleton<ObjectHandler> {
+		friend class Singleton<ObjectHandler>;
     public:
         void storeObject(const std::string &handle,
                         const obj_ptr &object);
 	    obj_ptr retrieveObject(const std::string &handle);
-        ObjectHandler() {}
-        ~ObjectHandler() {}
     private:
+        ObjectHandler() {}
+//        ~ObjectHandler() {}
 	    ObjectList objectList_;
     };
 
