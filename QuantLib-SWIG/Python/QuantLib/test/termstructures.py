@@ -56,7 +56,7 @@ unable to reproduce discount from implied curve
         "Testing observability of implied term structure"
         global flag
         flag = None
-        h = TermStructureHandle(self.termStructure)
+        h = TermStructureHandle()
         new_today = self.termStructure.todaysDate().plusYears(3)
         new_settlement = Calendar('TARGET').advance(new_today,2,'days')
         implied = ImpliedTermStructure(h,new_today,new_settlement)
@@ -87,7 +87,7 @@ unable to reproduce forward from spreaded curve
         flag = None
         me = SimpleMarketElement(0.01)
         mh = MarketElementHandle(me)
-        h = TermStructureHandle(self.termStructure)
+        h = TermStructureHandle()
         spreaded = ForwardSpreadedTermStructure(h,mh)
         obs = Observer(raiseFlag)
         obs.registerWith(spreaded.asObservable())
@@ -120,7 +120,7 @@ unable to reproduce zero yield from spreaded curve
         flag = None
         me = SimpleMarketElement(0.01)
         mh = MarketElementHandle(me)
-        h = TermStructureHandle(self.termStructure)
+        h = TermStructureHandle()
         spreaded = ZeroSpreadedTermStructure(h,mh)
         obs = Observer(raiseFlag)
         obs.registerWith(spreaded.asObservable())

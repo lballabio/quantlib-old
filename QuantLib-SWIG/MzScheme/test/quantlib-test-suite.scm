@@ -20,7 +20,13 @@
 ;
 ; $Id$
 
+(require-library "quantlib.ss" "quantlib")
 (load "unittest.scm")
+
+(let ((test-dir (build-path ".." ".." "Scheme" "test")))
+  (if (directory-exists? test-dir)
+      (current-directory test-dir)))
+
 (load "date.scm")
 (load "daycounters.scm")
 (load "distributions.scm")
@@ -47,13 +53,13 @@
                   "Testing European option implied volatility")
   (suite-add-test suite Instrument-test
                   "Testing observability of stocks")
-  (suite-add-test suite Market-element-test-1
+  (suite-add-test suite Market-element-observability-test
                   "Testing observability of market elements")
-  (suite-add-test suite Market-element-test-2
+  (suite-add-test suite Derived-market-element-test
                   "Testing derived market elements")
-  (suite-add-test suite Market-element-test-3
+  (suite-add-test suite Composite-market-element-test
                   "Testing composite market elements")
-  (suite-add-test suite Market-element-handle-test
+  (suite-add-test suite Market-element-handle-observability-test
                   "Testing observability of market element handles")
   (suite-add-test suite Operator-test
                   "Testing differential operators")

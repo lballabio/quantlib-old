@@ -23,7 +23,7 @@
 (use-modules (QuantLib))
 (load "unittest.scm")
 
-(let ((test-dir "../../Scheme/test"))
+(let ((test-dir "../../test"))
   (if (file-exists? test-dir)
       (chdir test-dir)))
 

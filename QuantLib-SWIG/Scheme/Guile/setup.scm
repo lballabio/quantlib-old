@@ -92,7 +92,7 @@
   (display "Generating Guile bindings for QuantLib...") (newline)
   (let ((swig-dir "./SWIG"))
     (if (not (file-exists? swig-dir))
-        (set! swig-dir "../SWIG"))
+        (set! swig-dir "../../SWIG"))
     (system (string-append "swig -guile -c++ -Linkage simple "
                            "-scmstub QuantLib.scm "
                            (format #f "-I~A " swig-dir)
@@ -112,11 +112,12 @@
 
 (define (test)
   (format #t "Testing QuantLib-Guile ~A\n" version)
-  (set! %load-path (cons (getcwd) %load-path))
-  (chdir "./test")
-  (load "quantlib-test-suite.scm")
-  (chdir "..")
-  (set! %load-path (cdr %load-path)))
+  (let ((this-dir (getcwd)))
+    (set! %load-path (cons this-dir %load-path))
+    (chdir "./test")
+    (load "quantlib-test-suite.scm")
+    (chdir this-dir)
+    (set! %load-path (cdr %load-path))))
 
 (define (install)
   (define (find-install-path path)

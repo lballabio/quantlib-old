@@ -54,7 +54,7 @@ unable to reproduce discount from implied curve
   end
   def testImpliedObs
     flag = false
-    h = TermStructureHandle.new(@termStructure)
+    h = TermStructureHandle.new
     new_today = @termStructure.todaysDate.plusYears(3)
     new_settlement = Calendar.new('TARGET').advance(new_today,2,'days')
     implied = ImpliedTermStructure.new(h,new_today,new_settlement)
@@ -89,7 +89,7 @@ unable to reproduce forward from spreaded curve
     flag = false
     me = SimpleMarketElement.new(0.01)
     mh = MarketElementHandle.new(me)
-    h = TermStructureHandle.new(@termStructure)
+    h = TermStructureHandle.new
     spreaded = ForwardSpreadedTermStructure.new(h,mh)
     obs = Observer.new { flag = true }
     obs.registerWith(spreaded.toObservable)
@@ -127,7 +127,7 @@ unable to reproduce zero yield from spreaded curve
     flag = false
     me = SimpleMarketElement.new(0.01)
     mh = MarketElementHandle.new(me)
-    h = TermStructureHandle.new(@termStructure)
+    h = TermStructureHandle.new
     spreaded = ZeroSpreadedTermStructure.new(h,mh)
     obs = Observer.new { flag = true }
     obs.registerWith(spreaded.toObservable)
