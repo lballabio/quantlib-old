@@ -1,6 +1,8 @@
 
 - extend Doxygen support to include Latex and man
 
+- copyright notice for property.hpp
+
 - consider a complete logging framework (for 0.0.2):
     http://logging.apache.org/log4cxx/
     http://sourceforge.net/projects/log4cpp/
