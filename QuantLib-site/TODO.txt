@@ -1,10 +1,11 @@
 
 update status page and insert that into DoxyGen documentation
-insert into DoxyGen docs.txt in QuantLib-site
+update coding standards
+insert QuantLib-site\tobeincludedindoxygen.txt into DoxyGen documentation
 
 add references to ISDA and OMG documents
 
-mailing lists page
+mailing lists custom page
 expand general resource section
 
 FAQ entry about books
