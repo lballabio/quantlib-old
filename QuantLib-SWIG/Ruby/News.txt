@@ -1,6 +1,17 @@
+2003-XX-XX Release 0.X.Y
+
+Changes since Release 0.3.1:
+    - in sync with QuantLib 0.X.Y
 
 
-2002-XX-XX Release 0.3.0
+2003-02-04 Release 0.3.1
+
+Changes since Release 0.3.0:
+    - in sync with QuantLib 0.3.1
+    - bug fixing
+
+
+2002-05-06 Release 0.3.0
 
 Changes since Release 0.2.1:
     - in sync with QuantLib 0.3.0

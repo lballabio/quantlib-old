@@ -1,3 +1,4 @@
+2003-XX-XX Release 0.X.Y
 
-200X-XX-XX First decent release, version number XX.YY.ZZ
-           in sync with the QuantLib XX.YY.ZZ release
+2003-02-04 First release, version number 0.3.1
+           in sync with the QuantLib 0.3.1 release
