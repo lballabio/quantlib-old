@@ -1,3 +1,13 @@
+2002-04-18 11:37  lballabio
+
+	* calendars.i (1.6), date.i (1.6), daycounters.i (1.6), history.i
+	(1.1), null.i (1.3), observer.i (1.3), ql.i (1.7), randomnumbers.i
+	(1.5): History.i migrated
+
+2002-04-16 22:00  nando
+
+	* ChangeLog.txt (1.4): updated
+
 2002-04-16 13:30  lballabio
 
 	* calendars.i (1.5), common.i (1.6), date.i (1.5), daycounters.i

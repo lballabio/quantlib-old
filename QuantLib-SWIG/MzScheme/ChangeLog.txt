@@ -1,3 +1,11 @@
+2002-04-18 11:37  lballabio
+
+	* quantlib/quantlib.ss (1.5): History.i migrated
+
+2002-04-16 21:59  nando
+
+	* ChangeLog.txt (1.5): updated
+
 2002-04-16 13:30  lballabio
 
 	* quantlib/quantlib.ss (1.4): Got a language for free
