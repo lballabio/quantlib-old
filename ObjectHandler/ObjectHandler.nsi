@@ -48,6 +48,7 @@ SectionIn 1 2
     File "*.txt"
     File "*.TXT"
     File "*.mak"
+    File "*.am"
     File "*.dsp"
     File "*.vcproj"
     File "*.nsi"
@@ -56,6 +57,7 @@ SectionIn 1 2
     File /r "ObjectHandler\*.hpp"
     File /r "ObjectHandler\*.cpp"
     File /r "ObjectHandler\*.mak"
+    File /r "ObjectHandler\*.am"
 
     SetOutPath $INSTDIR\Example
     File /r "Example\*.hpp"
@@ -63,6 +65,7 @@ SectionIn 1 2
     File /r "Example\*.dsp"
     File /r "Example\*.dev"
     File /r "Example\*.mak"
+    File /r "Example\*.am"
     File /r "Example\*.vcproj"
 
     SetOutPath $INSTDIR\Docs
