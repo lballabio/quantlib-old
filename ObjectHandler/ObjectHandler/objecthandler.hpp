@@ -19,6 +19,7 @@
 #define objecthandler_h
 
 #include <ObjectHandler/objecthandlerversion.hpp>
+#include <ObjectHandler/autolink.hpp>
 
 #include <ObjectHandler/utilities.hpp>
 
