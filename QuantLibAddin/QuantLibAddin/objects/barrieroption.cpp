@@ -21,7 +21,8 @@
 namespace QuantLibAddin {
 
     QuantLib::Barrier::Type IDtoBarrierType(const std::string &typeBarrier) {
-        std::string idUpper = ObjHandler::toUpper(typeBarrier);
+        std::string idUpper = typeBarrier;
+        boost::to_upper(idUpper);
         if (idUpper.compare("DOWNIN") ==0)
             return QuantLib::Barrier::DownIn;
         else if (idUpper.compare("UPIN") == 0)
@@ -35,7 +36,7 @@ namespace QuantLibAddin {
     }
 
     BarrierOption::BarrierOption(
-            boost::shared_ptr<StochasticProcess> stochasticProcess,
+            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
             const std::string &typeBarrier,
             const float &barrier,
             const float &rebate,
@@ -77,3 +78,4 @@ namespace QuantLibAddin {
     }
 
 }
+

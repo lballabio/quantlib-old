@@ -26,7 +26,7 @@ namespace QuantLibAddin {
     class VanillaOption : public ObjHandler::Object {
     public:
         VanillaOption(
-            boost::shared_ptr<StochasticProcess>,
+            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
             const std::string &typeOption,
             const std::string &typePayoff,
             const float &strike,
@@ -49,3 +49,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

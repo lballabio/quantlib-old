@@ -21,7 +21,8 @@
 namespace QuantLibAddin {
 
     QuantLib::Average::Type IDtoAverageType(const std::string &typeAverage) {
-        std::string idUpper = ObjHandler::toUpper(typeAverage);
+        std::string idUpper = typeAverage;
+        boost::to_upper(idUpper);
         if (idUpper.compare("A") ==0)
             return QuantLib::Average::Arithmetic;
         else if (idUpper.compare("G") == 0)
@@ -31,7 +32,7 @@ namespace QuantLibAddin {
     }
 
     ContinuousAveragingAsianOption::ContinuousAveragingAsianOption(
-            boost::shared_ptr<StochasticProcess> stochasticProcess,
+            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
             const std::string &typeAverage,
             const std::string &typeOption,
             const std::string &typePayoff,
@@ -54,15 +55,17 @@ namespace QuantLibAddin {
             boost::static_pointer_cast<QuantLib::BlackScholesProcess>
             (stochasticProcess->getReference());
         continuousAveragingAsianOption_ = 
-            boost::shared_ptr<QuantLib::ContinuousAveragingAsianOption>(new
-            QuantLib::ContinuousAveragingAsianOption(
-                averageType,
-                stochasticProcessQL, 
-                payoff, 
-                exercise, 
-                pricingEngine));
-        ObjHandler::any_ptr any_npv(new boost::any(continuousAveragingAsianOption_->NPV()));
-        ObjHandler::any_ptr any_engine(new boost::any(std::string(typeEngine)));
+            boost::shared_ptr<QuantLib::ContinuousAveragingAsianOption>(
+                new QuantLib::ContinuousAveragingAsianOption(
+                    averageType,
+                    stochasticProcessQL, 
+                    payoff, 
+                    exercise, 
+                    pricingEngine));
+        ObjHandler::any_ptr any_npv(
+            new boost::any(continuousAveragingAsianOption_->NPV()));
+        ObjHandler::any_ptr any_engine(
+            new boost::any(std::string(typeEngine)));
         ObjHandler::ObjectProperty prop_npv(FIELD_NPV, any_npv);
         ObjHandler::ObjectProperty prop_engine(FIELD_ENGINE, any_engine);
         properties_.push_back(prop_npv);
@@ -70,3 +73,4 @@ namespace QuantLibAddin {
     }
 
 }
+

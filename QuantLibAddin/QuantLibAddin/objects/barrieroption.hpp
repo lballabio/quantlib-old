@@ -26,7 +26,7 @@ namespace QuantLibAddin {
     class BarrierOption : public ObjHandler::Object {
     public:
         BarrierOption(
-            boost::shared_ptr<StochasticProcess>,
+            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
             const std::string &typeBarrier,
             const float &barrier,
             const float &rebate,
@@ -48,3 +48,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

@@ -22,7 +22,6 @@
 
 namespace ObjHandler {
 
-    std::string toUpper(const std::string &s);
     std::ostream& operator<<(std::ostream& out, const any_ptr& a);
     int setLogFile(const std::string &newLogFileName);
     void logMessage(const std::string &msg);

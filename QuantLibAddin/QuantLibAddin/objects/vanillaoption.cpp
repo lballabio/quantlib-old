@@ -20,7 +20,8 @@
 
 namespace QuantLibAddin {
 
-    VanillaOption::VanillaOption(boost::shared_ptr<StochasticProcess> stochasticProcess,
+    VanillaOption::VanillaOption(
+            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
             const std::string &typeOption,
             const std::string &typePayoff,
             const float &strike,
@@ -64,3 +65,4 @@ namespace QuantLibAddin {
     }
 
 }
+

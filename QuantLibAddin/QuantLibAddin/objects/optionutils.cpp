@@ -22,7 +22,8 @@
 namespace QuantLibAddin {
 
     QuantLib::Option::Type IDtoOptionType(const std::string &typeOption) {
-        std::string idUpper = ObjHandler::toUpper(typeOption);
+        std::string idUpper = typeOption;
+        boost::to_upper(idUpper);
         if (idUpper.compare("PUT") ==0)
             return QuantLib::Option::Put;
         else if (idUpper.compare("CALL") == 0)
@@ -30,14 +31,15 @@ namespace QuantLibAddin {
         else
             QL_FAIL("IDtoOptionType: unrecognized typeID: " + typeOption);
     }
-    
+
     boost::shared_ptr<QuantLib::StrikedTypePayoff> IDtoPayoff(
             const std::string &typeOption,
             const std::string &typePayoff,
             const QuantLib::Real &input1,
             const QuantLib::Real &input2) {
         QuantLib::Option::Type type = IDtoOptionType(typeOption);
-        std::string idUpper = ObjHandler::toUpper(typePayoff);
+        std::string idUpper = typePayoff;
+        boost::to_upper(idUpper);
         if (idUpper.compare("AON") == 0)
             return boost::shared_ptr<QuantLib::StrikedTypePayoff> (
                 new QuantLib::AssetOrNothingPayoff(type, input1));
@@ -64,7 +66,8 @@ namespace QuantLibAddin {
             const std::string &typeExercise,
             const QuantLib::Date &exerciseDate,
             const QuantLib::Date &settlementDate) {
-        std::string idUpper = ObjHandler::toUpper(typeExercise);
+        std::string idUpper = typeExercise;
+        boost::to_upper(idUpper);
         if (idUpper.compare("AM") == 0)
             return boost::shared_ptr<QuantLib::Exercise> (
                 new QuantLib::AmericanExercise(settlementDate, exerciseDate));
@@ -78,7 +81,8 @@ namespace QuantLibAddin {
     boost::shared_ptr<QuantLib::PricingEngine> IDtoEngine(
             const std::string &typeEngine,
             const QuantLib::Size &timeSteps) {
-        std::string idUpper = ObjHandler::toUpper(typeEngine);
+        std::string idUpper = typeEngine;
+        boost::to_upper(idUpper);
         if (idUpper.compare("AB") == 0)
             return boost::shared_ptr<QuantLib::PricingEngine> (
                 new QuantLib::AnalyticBarrierEngine);
@@ -140,3 +144,4 @@ namespace QuantLibAddin {
     }
 
 }
+

@@ -20,6 +20,7 @@
 
 #include <ql/option.hpp>
 #include <ql/Instruments/payoffs.hpp>
+#include <boost/algorithm/string.hpp>
 
 // indexes to the Property vector
 // FIXME - need a cleaner way to achieve this
@@ -51,3 +52,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

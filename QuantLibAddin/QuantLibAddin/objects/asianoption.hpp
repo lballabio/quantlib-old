@@ -26,7 +26,7 @@ namespace QuantLibAddin {
     class ContinuousAveragingAsianOption : public ObjHandler::Object {
     public:
         ContinuousAveragingAsianOption(
-            boost::shared_ptr<StochasticProcess>,
+            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
             const std::string &typeAverage,
             const std::string &typeOption,
             const std::string &typePayoff,
@@ -47,7 +47,7 @@ namespace QuantLibAddin {
     class DiscreteAveragingAsianOption : public ObjHandler::Object {
     public:
         DiscreteAveragingAsianOption(
-            boost::shared_ptr<StochasticProcess>,
+            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
             const std::string &typeAverage,
             const float runningAccumulator,
             const long pastFixings,
@@ -70,3 +70,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+
