@@ -160,7 +160,8 @@
 (YieldTermStructureHandle-link-to! term-structure
                                    (new-PiecewiseFlatForward
                                     settlement-date
-                                    (append deposit-helpers swap-helpers)))
+                                    (append deposit-helpers swap-helpers)
+                                    (new-Actual360)))
 
 
 ; define the ATM/OTM/ITM swaps

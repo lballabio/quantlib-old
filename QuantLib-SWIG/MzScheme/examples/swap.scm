@@ -145,14 +145,16 @@
                                  (append
                                   (first 2 deposit-helpers)
                                   futures-helpers
-                                  (trim-front 1 swap-helpers))))
+                                  (trim-front 1 swap-helpers))
+                                 (new-Actual360)))
 
 (define depo-fra-swap-curve (new-PiecewiseFlatForward
                              settlement-date
                              (append
                               (first 3 deposit-helpers)
                               fra-helpers
-                              swap-helpers)))
+                              swap-helpers)
+                             (new-Actual360)))
 
 ; swaps to be priced
 

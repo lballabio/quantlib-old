@@ -124,17 +124,20 @@ class CapVolatilityVectorPtr
         }
         CapVolatilityVectorPtr(const Date& referenceDate,
                                const std::vector<Period>& lengths,
-                               const std::vector<Volatility>& vols) {
+                               const std::vector<Volatility>& vols,
+                               const DayCounter& dayCounter) {
             return new CapVolatilityVectorPtr(
-                new CapVolatilityVector(referenceDate,lengths,vols));
+                new CapVolatilityVector(referenceDate,lengths,
+                                        vols,dayCounter));
         }
         CapVolatilityVectorPtr(Integer settlementDays,
                                const Calendar& calendar,
                                const std::vector<Period>& lengths,
-                               const std::vector<Volatility>& vols) {
+                               const std::vector<Volatility>& vols,
+                               const DayCounter& dayCounter) {
             return new CapVolatilityVectorPtr(
                 new CapVolatilityVector(settlementDays,calendar,
-                                        lengths,vols));
+                                        lengths,vols,dayCounter));
         }
     }
 };

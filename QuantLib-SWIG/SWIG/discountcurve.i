@@ -35,14 +35,15 @@ class DiscountCurvePtr : public boost::shared_ptr<YieldTermStructure> {
         DiscountCurvePtr(const Date& todaysDate,
                          const std::vector<Date>& dates,
                          const std::vector<DiscountFactor>& discounts,
-                         const DayCounter& dayCounter =
-                             QuantLib::Actual365()) {
+                         const DayCounter& dayCounter) {
             return new DiscountCurvePtr(
                 new DiscountCurve(todaysDate, dates, discounts, dayCounter));
         }
         DiscountCurvePtr(const std::vector<Date>& dates,
-                         const std::vector<DiscountFactor>& discounts) {
-            return new DiscountCurvePtr(new DiscountCurve(dates, discounts));
+                         const std::vector<DiscountFactor>& discounts,
+                         const DayCounter& dayCounter) {
+            return new DiscountCurvePtr(
+                             new DiscountCurve(dates, discounts, dayCounter));
         }
         const std::vector<Date>& dates() {
             return boost::dynamic_pointer_cast<DiscountCurve>(*self)->dates();
@@ -60,8 +61,7 @@ class ExtendedDiscountCurvePtr : public DiscountCurvePtr {
                                  const std::vector<DiscountFactor>& discounts,
                                  const Calendar& calendar,
                                  BusinessDayConvention roll,
-                                 const DayCounter& dayCounter =
-                                     QuantLib::Actual365()) {
+                                 const DayCounter& dayCounter) {
             return new ExtendedDiscountCurvePtr(
                 new ExtendedDiscountCurve(todaysDate, dates, discounts,
                                           calendar, roll, dayCounter));
@@ -69,9 +69,11 @@ class ExtendedDiscountCurvePtr : public DiscountCurvePtr {
         ExtendedDiscountCurvePtr(const std::vector<Date>& dates,
                                  const std::vector<DiscountFactor>& discounts,
                                  const Calendar& calendar,
-                                 BusinessDayConvention roll) {
+                                 BusinessDayConvention roll,
+                                 const DayCounter& dayCounter) {
             return new ExtendedDiscountCurvePtr(
-                new ExtendedDiscountCurve(dates, discounts, calendar, roll));
+                new ExtendedDiscountCurve(dates, discounts,
+                                          calendar, roll, dayCounter));
         }
     }
 };
