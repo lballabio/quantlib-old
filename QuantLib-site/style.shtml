@@ -279,7 +279,7 @@ be verbs and written in mixed case starting with lower case.</td>
 <tr>
 <td class="rationale">Common practice in the C++ development
 community. This is identical to variable names, but functions in
-C++ are already distingushable from variables by their specific
+C++ are already distinguishable from variables by their specific
 form.</td>
 </tr>
 </table>
@@ -341,10 +341,10 @@ openDVDPlayer();</tt></td>
 <tr>
 <td class="rationale">Using all uppercase for the base name will
 give conflicts with the naming conventions given above. A variable
-of this type whould have to be named dVD, hTML etc. which obviously
+of this type would have to be named dVD, hTML etc. which obviously
 is not very readable. Another problem is illustrated in the
 examples above; When the name is connected to another, the
-readbility is seriously reduced; the word following the
+readability is seriously reduced; the word following the
 abbreviation does not stand out as it should.</td>
 </tr>
 </table>
@@ -456,14 +456,14 @@ Name&nbsp; loginName;<br></tt></p>
 -->
 <table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">13. All names should be written in english.</td>
+<td class="recom">13. All names should be written in English.</td>
 </tr>
 <tr>
 <td><tt>fileName;&nbsp;&nbsp;&nbsp; // NOT:&nbsp;&nbsp;
 filNavn</tt></td>
 </tr>
 <tr>
-<td class="rationale">English is the prefered language for
+<td class="rationale">English is the preferred language for
 international development.</td>
 </tr>
 </table>
@@ -590,8 +590,8 @@ where an object or a concept is established.</td>
 <td><tt>printer.initializeFontSet();</tt></td>
 </tr>
 <tr>
-<td class="rationale">The american <em>initialize</em> should be
-preferred over the english <em>initialise</em>. Abbreviation
+<td class="rationale">The American <em>initialize</em> should be
+preferred over the English <em>initialise</em>. Abbreviation
 <em>init</em> should be avoided.</td>
 </tr>
 </table>
@@ -1480,7 +1480,7 @@ entire loop in order to understand the scope of the loop.
 <p>In addition, <tt>do-while</tt> loops are not needed. Any
 <tt>do-while</tt> loop can easily be rewritten into a
 <tt>while</tt> loop or a <tt>for</tt> loop. Reducing the number of
-constructs used enhance readbility.</p>
+constructs used enhance readability.</p>
 </td>
 </tr>
 </table>
@@ -1679,7 +1679,7 @@ explicitly listed.</td>
 }<br></tt></td>
 </tr>
 <tr>
-<td class="rationale">If not exlicitly listed, C++ implies
+<td class="rationale">If not explicitly listed, C++ implies
 <tt>int</tt> return value for functions. A programmer must never
 rely on this feature, since this might be confusing for programmers
 not aware of this artifact.</td>
@@ -2019,7 +2019,7 @@ catch (Exception exception) {<br>
 <td class="rationale">This follows partly from the general block
 rule above. The discussion about closing brackets for
 <tt>if-else</tt> statements apply to the <tt>try-catch</tt>
-statments.</td>
+statements.</td>
 </tr>
 </table>
 <!--
@@ -2089,7 +2089,7 @@ character.<br>
 - C++ reserved words should be followed by a white space.<br>
 - Commas should be followed by a white space.<br>
 - Colons should be surrounded by white space.<br>
-- Semicolons in for statments should be followed by a space
+- Semicolons in for statements should be followed by a space
 character.</td>
 </tr>
 <tr>
@@ -2202,7 +2202,7 @@ readability. Argument lists should have stacked arguments.</td>
 </tr>
 <tr>
 <td><tt>if&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (a ==
-lowValue)&nbsp;&nbsp;&nbsp; compueSomething();<br>
+lowValue)&nbsp;&nbsp;&nbsp; computeSomething();<br>
 else if (a == mediumValue) computeSomethingElse();<br>
 else if (a == highValue)&nbsp;&nbsp; computeSomethingElseYet();<br>
 <br>
@@ -2274,13 +2274,13 @@ choices and an explicit logical structure.</td>
 <table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">89. All comments should be written in
-english.</td>
+English.</td>
 </tr>
 <tr>
 <td></td>
 </tr>
 <tr>
-<td class="rationale">In an international environment english is
+<td class="rationale">In an international environment English is
 the preferred language.</td>
 </tr>
 </table>
@@ -2321,13 +2321,13 @@ logical structure of the program.</td>
 -->
 <table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">91. Add DoxyGen documentation comments.</td>
+<td class="recom">91. Add Doxygen documentation comments.</td>
 </tr>
 <tr>
 <td></td>
 </tr>
 <tr>
-<td class="rationale">DoxyGen (<a href=
+<td class="rationale">Doxygen (<a href=
 "http://www.stack.nl/~dimitri/doxygen/">http://www.stack.nl/~dimitri/doxygen/</a>)
 is a tool for extracting comments and produce high quality
 hypertext documentation from it.</td>

@@ -12,13 +12,13 @@
 <ul class="navlinklist">
 <li><a class="navlink" href="http://quantlib.org">Home&nbsp;page</a></li>
 
-<li><a class="navlink" href="html/overview.html">Project Overview</a></li>
+<li><a class="navlink" href="reference/overview.html">Project Overview</a></li>
 
 <li><a class="navlink" href="extensions.shtml">Extensions</a></li>
 
-<li><a class="navlink" href="html/examples.html">Examples</a></li>
+<li><a class="navlink" href="reference/examples.html">Examples</a></li>
 
-<li><a class="navlink" href="html/history.html">History</a></li>
+<li><a class="navlink" href="reference/history.html">History</a></li>
 
 <li><a class="navlink" href="download.shtml">Download</a></li>
 
@@ -27,11 +27,11 @@
 <li><a class="navlink" href=
 "http://sourceforge.net/news/?group_id=12740">News</a></li>
 
-<li><a class="navlink" href="html/index.html">Documentation</a></li>
+<li><a class="navlink" href="docs.shtml">Documentation</a></li>
 
 <li><a class="navlink" href="license.shtml">License</a></li>
 
-<li><a class="navlink" href="html/group.html">QuantLib Group</a></li>
+<li><a class="navlink" href="reference/group.html">QuantLib Group</a></li>
 
 <li><a class="navlink" href=
 "http://sourceforge.net/project/stats/index.php?report=months&amp;group_id=12740">Project
@@ -70,8 +70,6 @@ Statistics</a></li>
 <ul>
 <li><a class="navlink" href="books.shtml">Books</a></li>
 
-<li><a class="navlink" href="lists.shtml">Lists of interest</a></li>
-
 <li><a class="navlink" href="http://www.elsevier.com/locate/econophys">Econophysics</a></li>
 
 <li><a class="navlink" href="marketconventions.shtml">Market Conventions</a></li>
@@ -84,7 +82,8 @@ Statistics</a></li>
 <hr>
 <div class="center">
 <a href="http://opensource.org/docs/definition.html"><img src=
-"images/osi-certified-90x75.png" alt="OSI Certification Mark"></a></div>
+"images/osi-certified-90x75.png" border="0"
+alt="OSI Certification Mark"></a></div>
 <hr>
 <div class="center"><strong>Hosted by</strong><br>
 <a href="http://sourceforge.net"><img src=
@@ -93,22 +92,13 @@ height="31" border="0" alt="SourceForge.net Logo"></a></div>
 
 <br>
  <a href="http://sourceforge.net/docman/?group_id=1">About
-SourceForge.net, Open Source, CVS, etc.</a>
+SourceForge.net, Open Source, etc.</a>
 
 <hr>
-<h3 class="navbartitle">QuantLib uses:</h3>
-<div class="center"><a href="http://www.boost.org"><img src=
-"images/c++boost.gif" border="0" alt="Boost Logo"></a></div>
-<div class="center"><a href="http://www.doxygen.org/"><img src=
-"images/doxygen.png" border="0" alt="doxygen Logo"></a></div>
-<div class="center"><a href="http://nsis.sourceforge.net"><img
-src="images/left.gif" border="0" alt="NSIS Logo"></a></div>
-<div class="center"><a href="http://www.swig.org"><img
-src="images/swig17.png" border="0" alt="SWIG Logo"></a></div>
-<br>
-<br>
-<div class="center"><a href=
-"http://xlw.sourceforge.net/"><strong>XLW</strong></a></div>
+<div class="center"><strong>Supported by</strong><br>
+<a href="http://www.statpro.com"><img src=
+"images/statpro.jpg" width="98"
+height="33" border="0" alt="StatPro Logo"></a></div>
 
 <hr>
 <div class="center">
@@ -123,5 +113,3 @@ src="images/swig17.png" border="0" alt="SWIG Logo"></a></div>
 </td>
 
 <td class="main">
-
-

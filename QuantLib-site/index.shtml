@@ -89,10 +89,11 @@ and risk management practices.</li>
 BSD license suitable for use in both free software and proprietary
 applications, imposing no constraints at all on the use of the
 library.</p>
-<p>A few companies have commited significant resources to the
+<p>A few companies have committed significant resources to the
 development of this library, notably <a href=
-"http://www.riskmap.net">RiskMap</a>, a leading risk-management
-consulting firm in Italy.</p>
+"http://www.statpro.com">StatPro Italia</a>, a leading
+risk-management consulting firm in Italy, where the QuantLib
+project was born.</p>
 <p>Help deciding the development road-map and start contributing to
 the library: the <a href="html/overview.html">project-overview</a>
 page gives a summary of the work in progress. <a href=

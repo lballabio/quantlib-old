@@ -1,0 +1,43 @@
+<!--
+ $Id$
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Linux/x86 (vers 1st March 2004), see www.w3.org">
+<meta name="author" content="StatPro Italia srl">
+<meta name="copyright" content="StatPro Italia srl (c) 2004">
+<meta name="doc-class" content="Draft">
+<title>QuantLib Documentation</title>
+<meta name="description" content="QuantLib Documentation">
+<!--#include virtual="qlmeta.inc"-->
+</head>
+<body>
+<!--#include virtual="qlheader.inc"-->
+<h1 class="center">QuantLib Documentation</h1>
+<h2 class="center">Papers</h2>
+<ul>
+<li><strong>Why Use QuantLib?</strong> [<a href=
+"http://www.maths.ox.ac.uk/~firth/research/quantlib.pdf">PDF</a>]<br>
+
+Firth, N.P. (2004)</li>
+</ul>
+<h2 class="center">Manuals</h2>
+<ul>
+<li><strong>QuantLib reference manual</strong> [<a href=
+"reference/index.html">HTML</a>]</li>
+</ul>
+<h2 class="center">Talks</h2>
+<ul>
+<li><strong>QuantLib: Option Pricing and Clusters</strong>
+[<a href="http://www.maths.ox.ac.uk/~firth/research/QuantLib.ppt">PowerPoint</a>,
+<a href=
+"http://www.maths.ox.ac.uk/~firth/research/quantlibhtml/QuantLib.html">
+HTML</a>]<br>
+Firth, N.P. Cluster World 5-8 April 2004. San Jose, California,
+USA.<br></li>
+</ul>
+<!--#include virtual="qlfooter.inc"-->
+</body>
+</html>

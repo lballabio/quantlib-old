@@ -68,7 +68,7 @@ Windows?</a></li>
 <ol>
 <li><a href="#b1">Where can I submit/view bugs for
 QuantLib?</a></li>
-<li><a href="#b2">How do I use the sourceforge bug
+<li><a href="#b2">How do I use the SourceForge bug
 manager?</a></li>
 </ol>
 <h2><a href="#appendix">A. Appendix</a></h2>
@@ -351,7 +351,7 @@ tracking facility. Go to <a href=
 "http://sourceforge.net/bugs/?group_id=12740">http://sourceforge.net/bugs/?group_id=12740</a>
 for all bug management needs.</p>
 <h3><a name="b2" id="b2"></a>6.2.:</h3>
-<p><strong>Q: How do I use the sourceforge bug manager?<br>
+<p><strong>Q: How do I use the SourceForge bug manager?<br>
 A:</strong> By default, you will see the list of all Open bugs. You
 can change which bugs you're viewing by selecting the
 assigned_to/status/area/type select boxes.</p>

@@ -17,8 +17,8 @@
 <body>
 <!--#include virtual="qlheader.inc"-->
 <h1 class="center">Download Page</h1>
-<p>The latest QuantLib release is the 0.3.6 version (April 2004.)
-It includes the following packages:</p>
+<p>The latest QuantLib release is the 0.3.7 version (July 2004.) It
+includes the following packages:</p>
 <ol>
 <li>QuantLib</li>
 <li>QuantLib documentation</li>
@@ -28,13 +28,13 @@ It includes the following packages:</p>
 <li>QuantLib-Ruby (bindings for Ruby)</li>
 <li>QuantLibXL (Excel add-in)</li>
 </ol>
-<p><b>Debian users</b> can find version 0.3.6 of the different
+<p><b>Debian users</b> can find version 0.3.7 of the different
 QuantLib packages in the "unstable" (a.k.a. "Sid") distribution;
 see the <a href=
 "http://packages.debian.org/cgi-bin/search_packages.pl?keywords=quantlib&amp;searchon=names&amp;subword=1&amp;version=unstable&amp;release=all">
 Debian site</a> for a list of available packages. The previous
-release, 0.3.5, is still in the "testing" (a.k.a. "Sarge")
-distribution, but should be replaced by 0.3.6 in a few days.</p>
+release, 0.3.6, is still in the "testing" (a.k.a. "Sarge")
+distribution, but should be replaced by 0.3.7 in a few days.</p>
 <p>For <b>Mac OS X users</b>, Fink packages are available in the
 "10.3/unstable" tree; for a list of available QuantLib-related
 files see the <a href=
