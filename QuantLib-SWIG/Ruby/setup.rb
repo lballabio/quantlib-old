@@ -117,7 +117,7 @@ Wrap = Command.new {
 		needsWrapping = true
 	end
 	if needsWrapping
-		puts "Generating wrappers for QuantLib-Ruby..."
+		puts "Generating Ruby bindings for QuantLib..."
         system "swig -ruby -c++ -I#{swigDir} -o ./quantlib_wrap.cpp quantlib.i"
 	end
 }

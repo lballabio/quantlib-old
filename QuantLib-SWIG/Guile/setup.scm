@@ -15,21 +15,16 @@
 
 ; $Id$
 
-(require-library "compile.ss" "dynext")
-(require-library "link.ss" "dynext")
-(require-library "file.ss" "dynext")
 
 ; usage
 (define (usage)
-  (display
-   (string-append
-    (format "Usage: mzscheme -r setup scm command~n")
-    (format "  Commands:~n")
-    (format "    wrap             generate wrappers from SWIG interfaces~n")
-    (format "    build            build QuantLib-MzScheme~n")
-    (format "    install          install QuantLib-MzScheme~n")
-    (format "    sdist            create source distribution~n")
-    (format "    bdist            create binary distribution~n")))
+  (format #t "Usage: mzscheme -r setup scm command\n")
+  (format #t "  Commands:\n")
+  (format #t "    wrap             generate wrappers from SWIG interfaces\n")
+  (format #t "    build            build QuantLib-MzScheme\n")
+  (format #t "    install          install QuantLib-MzScheme\n")
+  (format #t "    sdist            create source distribution\n")
+  (format #t "    bdist            create binary distribution\n")
   (exit))
 
 
@@ -41,10 +36,9 @@
   (list "Authors.txt" "ChangeLog.txt" "Contributors.txt"
         "LICENSE.TXT" "History.txt"))
 (define source-files
-  (list (build-path "quantlib" "quantlib.ss")
-        "quantlib_wrap.cpp"))
+  (list "QuantLib.scm" "quantlib_wrap.cpp"))
 (define binary-files
-  (list (build-path "quantlib" (append-extension-suffix "QuantLibc"))))
+  (list "QuantLibc.so"))
 (define scripts
   (list "setup.scm"))
 (define SWIG-interfaces
@@ -81,71 +75,56 @@
 ; commands
 
 (define (wrap)
-  (display "Generating MzScheme bindings for QuantLib...") (newline)
+  (display "Generating Guile bindings for QuantLib...") (newline)
   (let ((swig-dir "./SWIG"))
-    (if (not (directory-exists? swig-dir))
+    (if (not (file-exists? swig-dir))
         (set! swig-dir "../SWIG"))
-    (system (string-append 
-             "swig -mzscheme -c++ "
-             (format "-I~a " swig-dir)
-             "-o quantlib_wrap.cpp quantlib.i"))))
+    (system (string-append "swig -guile -c++ -Linkage simple "
+                           "-scmstub QuantLib.scm "
+                           (format #f "-I~A " swig-dir)
+                           "-o quantlib_wrap.cpp "
+                           "quantlib.i"))))
 
 (define (build)
-  (display "Building QuantLib-MzScheme...") (newline)
-  (let ((platform (system-type))
-        (include-dirs '()))
-    (cond ((eqv? platform 'unix)
-           (current-extension-compiler "/usr/bin/g++")
-           (current-extension-linker "/usr/bin/g++")
-           (current-extension-linker-flags
-            (append
-             (current-extension-linker-flags)
-             (list "-L/usr/local/lib" "-lstdc++" "-lgcc" "-lQuantLib"))))
-          ((eqv? platform 'windows)
-           (set! include-dirs (cons (getenv "QL_DIR") include-dirs))
-           (current-extension-compiler-flags
-            (append
-             (current-extension-compiler-flags)
-             (list "-DNOMINMAX" "/MD" "/GR" "/GX")))
-           (putenv "LIB"
-                   (string-append
-                    (build-path (getenv "QL_DIR") "lib" "Win32" "VisualStudio")
-                    ";"
-                    (getenv "LIB"))))
-          (else
-           (error "Unsupported platform")))
-    (let ((object (append-object-suffix "quantlib_wrap"))
-          (extension (build-path "quantlib" 
-                                 (append-extension-suffix "QuantLibc"))))
-      (compile-extension #f "quantlib_wrap.cpp" object include-dirs)
-      (link-extension #f (list object) extension))))
+  (display "Building QuantLib-Guile...") (newline)
+  (system (string-append "g++ -DHAVE_CONFIG_H -c -fpic "
+                         "-I/usr/include -I/usr/local/include "
+                         "quantlib_wrap.cpp"))
+  (system (string-append "g++ -shared "
+                         "quantlib_wrap.o "
+                         "-L/usr/local/lib "
+                         "-lQuantLib "
+                         "-o QuantLibc.so")))
 
 (define (test)
-  (display (format "Testing QuantLib-MzScheme ~a~n" version))
-  (current-library-collection-paths
-   (cons (current-directory) (current-library-collection-paths)))
-  (current-directory "./test")
+  (format #t "Testing QuantLib-Guile ~A\n" version)
+  (set! %load-path (cons (getcwd) %load-path))
+  (chdir "./test")
   (load "quantlib-test-suite.scm")
-  (current-directory "..")
-  (current-library-collection-paths
-   (cdr (current-library-collection-paths))))
+  (chdir "..")
+  (set! %load-path (cdr %load-path)))
 
 (define (install)
-  (display "Installing QuantLib-MzScheme...") (newline)
-  (let-values (((collect-path _1 _2) (split-path (collection-path "mzlib"))))
-              (let ((installation-path (build-path collect-path "quantlib")))
-                (if (not (directory-exists? installation-path))
-                    (make-directory installation-path))
-                (for-each
-                 (lambda (source-file)
-                   (let ((destination-file 
-                          (build-path installation-path source-file)))
-                     (if (file-exists? destination-file)
-                         (delete-file destination-file))
-                     (copy-file (build-path "quantlib" source-file) 
-                                destination-file)))
-                 (list "quantlib.ss" 
-                       (append-extension-suffix "QuantLibc"))))))
+  (define (find-install-path path)
+    (if (null? path) 
+        #f
+        (let ((dir (car path))
+              (cwd (getcwd)))
+          (if (and (file-exists? dir) 
+                   (file-is-directory? dir)
+                   (not (string=? dir "."))
+                   (not (string=? dir cwd)))
+              dir
+              (find-install-path (cdr path))))))
+  (display "Installing QuantLib-Guile...") (newline)
+  (let ((install-path (find-install-path %load-path)))
+    (for-each (lambda (file)
+                (system (format #f "install -m 0555 ~A ~A"
+                                file
+                                (string-append install-path
+                                               "/"
+                                               file))))
+              '("QuantLib.scm" "QuantLibc.so"))))
 ; 	Info.each { |file| File.install "./#{file}",docDir+"/#{file}",nil,true }
 ; 	Interfaces.each { |file| File.install "../SWIG/"+file,swigDir+"/#{file}",nil,true }
 ; 	Tests.each { |file| File.install "./test/"+file,testDir+"/#{file}",nil,true }
@@ -203,11 +182,11 @@
         (cons "install" install)))
 
 ; parse command line
-(if (not (= (vector-length argv) 1))
-    (usage))
-
-(let ((command (assoc (vector-ref argv 0) available-commands)))
-  (if command
-      ((cdr command))
-      (usage)))
+(let ((argv (command-line)))
+  (if (not (= (length argv) 2))
+      (usage))
+  (let ((command (assoc (cadr argv) available-commands)))
+    (if command
+        ((cdr command))
+        (usage))))
 

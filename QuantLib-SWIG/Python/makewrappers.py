@@ -26,5 +26,5 @@ def main():
               '-o QuantLib/quantlib_wrap.cpp quantlib.i')
 
 if __name__ == '__main__':
-    print 'Generating wrappers for QuantLib ...'
+    print 'Generating Python bindings for QuantLib...'
     main()
