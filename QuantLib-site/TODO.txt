@@ -1,19 +1,12 @@
 
 $Id$
 
-verify site is browsable also from quantlib.sf.net
-
-
 revise mailing list welcome messages
-create quantlib-job mailing list
 create quantlib-papers mailing list
-create quantlib-finance mailing list
 
 update coding standards (including file&classes DoxyGen requirements)
 
-add FAQ entry about books
 add FAQ entry about swig
 add FAQ entry about doxygen
 add FAQ entry about GPL compatibility
 
-quantlib.org mx server
