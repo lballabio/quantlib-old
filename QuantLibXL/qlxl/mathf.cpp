@@ -117,54 +117,184 @@ extern "C"
 
 
     LPXLOPER EXCEL_EXPORT xlpotentialUpside(XlfOper xlpercentile,
+        XlfOper xldata_array) {
+        EXCEL_BEGIN;
+        std::vector<double> data_value = xldata_array.AsDoubleVector();
+//        GenericRiskStatistics<GaussianStatistics<Statistics> > s;
+        GenericRiskStatistics<Statistics> s;
+        s.addSequence(data_value.begin(), data_value.end());
+        double result = s.potentialUpside(xlpercentile.AsDouble());
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlgaussianPotentialUpside(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result =
-            RiskMeasures().gaussianPotentialUpside(xlpercentile.AsDouble(),
-            xlmean.AsDouble(), xlstd_dev.AsDouble());
+        double result = RiskMeasures().gaussianPotentialUpside(
+            xlpercentile.AsDouble(),
+            xlmean.AsDouble(),
+            xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
     }
 
     LPXLOPER EXCEL_EXPORT xlvalueAtRisk(XlfOper xlpercentile,
-        XlfOper xlmean, XlfOper xlstd_dev) {
+        XlfOper xldata_array) {
         EXCEL_BEGIN;
-        double result =
-            RiskMeasures().gaussianValueAtRisk(xlpercentile.AsDouble(),
-            xlmean.AsDouble(), xlstd_dev.AsDouble());
+        std::vector<double> data_value = xldata_array.AsDoubleVector();
+//        GenericRiskStatistics<GaussianStatistics<Statistics> > s;
+        GenericRiskStatistics<Statistics> s;
+        s.addSequence(data_value.begin(), data_value.end());
+        double result = s.valueAtRisk(xlpercentile.AsDouble());
         return XlfOper(result);
         EXCEL_END;
     }
 
-    LPXLOPER EXCEL_EXPORT xlexpectedShortfall(XlfOper xlpercentile,
+    LPXLOPER EXCEL_EXPORT xlgaussianValueAtRisk(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result =
-            RiskMeasures().gaussianExpectedShortfall(
-            xlpercentile.AsDouble(), xlmean.AsDouble(), xlstd_dev.AsDouble());
+        double result = RiskMeasures().gaussianValueAtRisk(
+            xlpercentile.AsDouble(),
+            xlmean.AsDouble(),
+            xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
     }
 
-    LPXLOPER EXCEL_EXPORT xlshortfall(XlfOper xltarget,
-        XlfOper xlmean, XlfOper xlstd_dev) {
+    LPXLOPER EXCEL_EXPORT xlexpectedShortfall(
+        XlfOper xlpercentile, XlfOper xldata_array) {
         EXCEL_BEGIN;
-        double result =
-            RiskMeasures().gaussianShortfall(xltarget.AsDouble(),
-            xlmean.AsDouble(), xlstd_dev.AsDouble());
+        std::vector<double> data_value = xldata_array.AsDoubleVector();
+//        GenericRiskStatistics<GaussianStatistics<Statistics> > s;
+        GenericRiskStatistics<Statistics> s;
+        s.addSequence(data_value.begin(), data_value.end());
+        double result = s.expectedShortfall(xlpercentile.AsDouble());
         return XlfOper(result);
         EXCEL_END;
     }
 
-    LPXLOPER EXCEL_EXPORT xlaverageShortfall(XlfOper xltarget,
-        XlfOper xlmean, XlfOper xlstd_dev) {
+    LPXLOPER EXCEL_EXPORT xlgaussianExpectedShortfall(
+        XlfOper xlpercentile, XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result =
-            RiskMeasures().gaussianAverageShortfall(xltarget.AsDouble(),
-            xlmean.AsDouble(), xlstd_dev.AsDouble());
+        double result = RiskMeasures().gaussianExpectedShortfall(
+            xlpercentile.AsDouble(),
+            xlmean.AsDouble(),
+            xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
     }
+
+    LPXLOPER EXCEL_EXPORT xlshortfall(
+        XlfOper xltarget, XlfOper xldata_array) {
+        EXCEL_BEGIN;
+        std::vector<double> data_value = xldata_array.AsDoubleVector();
+//        GenericRiskStatistics<GaussianStatistics<Statistics> > s;
+        GenericRiskStatistics<Statistics> s;
+        s.addSequence(data_value.begin(), data_value.end());
+        double result = s.shortfall(xltarget.AsDouble());
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlgaussianShortfall(
+        XlfOper xltarget, XlfOper xlmean, XlfOper xlstd_dev) {
+        EXCEL_BEGIN;
+        double result = RiskMeasures().gaussianShortfall(
+            xltarget.AsDouble(),
+            xlmean.AsDouble(),
+            xlstd_dev.AsDouble());
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlaverageShortfall(
+        XlfOper xltarget, XlfOper xldata_array) {
+        EXCEL_BEGIN;
+        std::vector<double> data_value = xldata_array.AsDoubleVector();
+//        GenericRiskStatistics<GaussianStatistics<Statistics> > s;
+        GenericRiskStatistics<Statistics> s;
+        s.addSequence(data_value.begin(), data_value.end());
+        double result = s.averageShortfall(xltarget.AsDouble());
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlgaussianAverageShortfall(
+        XlfOper xltarget, XlfOper xlmean, XlfOper xlstd_dev) {
+        EXCEL_BEGIN;
+        double result = RiskMeasures().gaussianAverageShortfall(
+            xltarget.AsDouble(),
+            xlmean.AsDouble(),
+            xlstd_dev.AsDouble());
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlregret(
+        XlfOper xltarget, XlfOper xldata_array) {
+        EXCEL_BEGIN;
+        std::vector<double> data_value = xldata_array.AsDoubleVector();
+//        GenericRiskStatistics<GaussianStatistics<Statistics> > s;
+        GenericRiskStatistics<Statistics> s;
+        s.addSequence(data_value.begin(), data_value.end());
+        double result = s.regret(xltarget.AsDouble());
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlgaussianRegret(
+        XlfOper xltarget, XlfOper xlmean, XlfOper xlstd_dev) {
+        EXCEL_BEGIN;
+        double m = xlmean.AsDouble();
+        double std = xlstd_dev.AsDouble();
+        double target = xltarget.AsDouble();
+        double variance = std*std;
+        Math::CumulativeNormalDistribution gIntegral(m, std);
+        Math::NormalDistribution g(m, std);
+        double firstTerm = variance + m*m - 2.0*target*m + target*target;
+        double alfa = gIntegral(target);
+        double secondTerm = m - target;
+        double beta = variance*g(target);
+        double result = alfa*firstTerm - beta*secondTerm;
+        result = result/alfa;
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xldownsideDeviation(
+        XlfOper xldata_array) {
+        EXCEL_BEGIN;
+        std::vector<double> data_value = xldata_array.AsDoubleVector();
+//        GenericRiskStatistics<GaussianStatistics<Statistics> > s;
+        GenericRiskStatistics<Statistics> s;
+        s.addSequence(data_value.begin(), data_value.end());
+        double result = s.downsideDeviation();
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlgaussianDownsideDeviation(
+        XlfOper xlmean, XlfOper xlstd_dev) {
+        EXCEL_BEGIN;
+        double m = xlmean.AsDouble();
+        double std = xlstd_dev.AsDouble();
+        double variance = std*std;
+        Math::CumulativeNormalDistribution gIntegral(m, std);
+        Math::NormalDistribution g(m, std);
+        double firstTerm = variance + m*m;
+        double alfa = gIntegral(0.0);
+        double secondTerm = m;
+        double beta = variance*g(0.0);
+        double result = alfa*firstTerm - beta*secondTerm;
+        result = QL_SQRT(result/alfa);
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+
+
+
 
     LPXLOPER EXCEL_EXPORT xlprimeNumbers(XlfOper xlabsoluteIndex) {
         EXCEL_BEGIN;
@@ -216,10 +346,12 @@ extern "C"
         EXCEL_END;
     }
 
+
     LPXLOPER EXCEL_EXPORT xlrandomize(XlfOper xlseed) {
         EXCEL_BEGIN;
         Functions::randomize(xlseed.AsInt());
-        return XlfOper(std::string("done").c_str());
+        return XlfOper(std::string("done with " + 
+            IntegerFormatter::toString(xlseed.AsInt())).c_str());
         EXCEL_END;
     }
 

@@ -36,7 +36,7 @@ extern "C"
                                      XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
         Date refDate = QlXlfOper(xlrefDate).AsDate();
-        QuantLib::RelinkableHandle<QuantLib::TermStructure>
+        RelinkableHandle<TermStructure>
             termStructure =
             QlXlfOper(xltermStructure).AsTermStructure(refDate);
         Date date = QlXlfOper(xldate).AsDate();
@@ -53,7 +53,7 @@ extern "C"
                                  XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
         Date refDate = QlXlfOper(xlrefDate).AsDate();
-        QuantLib::RelinkableHandle<QuantLib::TermStructure>
+        RelinkableHandle<TermStructure>
             termStructure =
             QlXlfOper(xltermStructure).AsTermStructure(refDate);
         Date date = QlXlfOper(xldate).AsDate();
@@ -71,7 +71,7 @@ extern "C"
                                     XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
         Date refDate = QlXlfOper(xlrefDate).AsDate();
-        QuantLib::RelinkableHandle<QuantLib::TermStructure>
+        RelinkableHandle<TermStructure>
             termStructure =
             QlXlfOper(xltermStructure).AsTermStructure(refDate);
         Date date1 = QlXlfOper(xldate1).AsDate();

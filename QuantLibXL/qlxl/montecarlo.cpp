@@ -32,68 +32,152 @@ extern "C"
     using namespace QuantLib::MonteCarlo;
     using namespace QuantLib::RandomNumbers;
 
+    LPXLOPER EXCEL_EXPORT xlRandomNumberGenerator(XlfOper xldimension,
+                                                  XlfOper xlsamples,
+                                                  XlfOper xlgeneratorType,
+                                                  XlfOper xlseed)
+    {
+        EXCEL_BEGIN;
+
+        Size dimension = xldimension.AsInt();
+        Size samples = xlsamples.AsInt();
+
+        int generatorType = xlgeneratorType.AsInt();
+        unsigned long mcSeed = xlseed.AsInt();
+        UniformRandomSequenceGenerator rsg(dimension, mcSeed);
+        UniformLowDiscrepancySequenceGenerator ldsg(dimension);
+
+        Matrix result(dimension, samples);
+        Array sample;
+        for (Size j=0; j<samples; j++) {
+            switch (generatorType) {
+            case 1:
+                sample = rsg.nextSequence().value;
+                break;
+            case 2:
+                sample = ldsg.nextSequence().value;
+                break;
+            default:
+                throw Error("Unknown generator");
+            }
+
+            for (Size i=0; i<dimension; i++) {
+                result[i][j] = sample[i];
+            }
+        }
+
+        return XlfOper(dimension, samples, result.begin());
+
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlGaussianRandomNumberGenerator(
+        XlfOper xldimension,
+        XlfOper xlsamples,
+        XlfOper xlgeneratorType,
+        XlfOper xlseed) {
+
+        EXCEL_BEGIN;
+
+        Size dimension = xldimension.AsInt();
+        Size samples = xlsamples.AsInt();
+
+        int generatorType = xlgeneratorType.AsInt();
+        unsigned long mcSeed = xlseed.AsInt();
+        UniformRandomSequenceGenerator rsg(dimension, mcSeed);
+        GaussianRandomSequenceGenerator grsg(rsg);
+        UniformLowDiscrepancySequenceGenerator ldsg(dimension);
+        GaussianLowDiscrepancySequenceGenerator gldsg(ldsg);
+
+        Matrix result(dimension, samples);
+        Array sample;
+        for (Size j=0; j<samples; j++) {
+            switch (generatorType) {
+            case 1:
+                sample = grsg.nextSequence().value;
+                break;
+            case 2:
+                sample = gldsg.nextSequence().value;
+                break;
+            default:
+                throw Error("Unknown generator");
+            }
+
+            for (Size i=0; i<dimension; i++) {
+                result[i][j] = sample[i];
+            }
+        }
+
+        return XlfOper(dimension, samples, result.begin());
+
+        EXCEL_END;
+    }
+    
+    
     LPXLOPER EXCEL_EXPORT xlPathGenerator(XlfOper xlunderlying,
-                                          XlfOper xldrift,
-                                          XlfOper xlvolatility,
+                                          XlfOper xldividendYield,
+                                          XlfOper xlriskFree,
+                                          XlfOper xlrefDate,
                                           XlfOper xltimes,
-                                          XlfOper xlsamples)
+                                          XlfOper xlvolatility,
+                                          XlfOper xlinterpolationType,
+                                          XlfOper xlsamples,
+                                          XlfOper xlgeneratorType,
+                                          XlfOper xlseed)
     {
         EXCEL_BEGIN;
 
         double underlying = xlunderlying.AsDouble();
+        Date refDate = QlXlfOper(xlrefDate).AsDate();
         Size samples = xlsamples.AsInt();
 
         std::vector<Time> times = xltimes.AsDoubleVector();
         TimeGrid timeGrid(times.begin(), times.end());
         Size timeSteps = times.size();
 
-        std::vector<double> volatility = xlvolatility.AsDoubleVector();
-        std::vector<double> inputDrift = xldrift.AsDoubleVector();
-        QL_REQUIRE(volatility.size()<= timeSteps,
-            "volatility and time arrays mismatched");
-        QL_REQUIRE(inputDrift.size()<= timeSteps,
-            "drift and time arrays mismatched");
 
-        Size i;
-        std::vector<double> variance(timeSteps);
-        for (i=0; i< volatility.size(); i++) {
-            variance[i] = volatility[i]*volatility[i];
-        }
-        for (i=volatility.size(); i<timeSteps ; i++) {
-            variance[i] = variance[volatility.size()-1];
-        }
+        RelinkableHandle<TermStructure> riskFreeTS =
+            QlXlfOper(xlriskFree).AsTermStructure(refDate);
+        RelinkableHandle<TermStructure> dividendTS =
+            QlXlfOper(xldividendYield).AsTermStructure(refDate);
+        RelinkableHandle<BlackVolTermStructure> blackVolTS =
+            QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+                                              xlinterpolationType.AsInt());
 
-        std::vector<double> drift(timeSteps);
-        for (i=0; i< inputDrift.size(); i++) {
-            drift[i] = inputDrift[i] - 0.5*variance[i];
-        }
-        for (i=inputDrift.size(); i<timeSteps ; i++) {
-            drift[i] = inputDrift[inputDrift.size()-1] - 0.5*variance[i];
-        }
-        
+        Handle<BlackScholesProcess> bs(new
+            BlackScholesProcess(riskFreeTS, dividendTS, blackVolTS,
+                                                        underlying));
 
-        unsigned long mcSeed = 0;
-//        UniformRandomSequenceGenerator rsg(timeSteps, mcSeed);
-//        GaussianRandomSequenceGenerator grsg(rsg);
+        int generatorType = xlgeneratorType.AsInt();
+        unsigned long mcSeed = xlseed.AsInt();
+        UniformRandomSequenceGenerator rsg(timeSteps, mcSeed);
+        GaussianRandomSequenceGenerator grsg(rsg);
+        UniformLowDiscrepancySequenceGenerator ldsg(timeSteps);
+        GaussianLowDiscrepancySequenceGenerator gldsg(ldsg);
 
-//        UniformLowDiscrepancySequenceGenerator ldsg(timeSteps);
-//        GaussianLowDiscrepancySequenceGenerator gldsg(ldsg);
+        PathGenerator<GaussianRandomSequenceGenerator>
+            PseudoRandomPathGenerator(bs, timeGrid, grsg);
 
-//        DiffusionProcess bs();
-//        PathGenerator<GaussianRandomSequenceGenerator>
-//            myPathGenerator(bs, times, grsg);
-
-         PathGenerator_old<GaussianRandomGenerator> myPathGenerator(
-             drift, variance, timeGrid, mcSeed);
+        PathGenerator<GaussianLowDiscrepancySequenceGenerator>
+            QuasiRandomPathGenerator(bs, timeGrid, gldsg);
 
         Size j;
         Path myPath(timeGrid);
         Matrix result(timeSteps, samples);
         for (j = 0; j < samples; j++) {
-            myPath = myPathGenerator.next().value;
+            switch (generatorType) {
+            case 1:
+                myPath = PseudoRandomPathGenerator.next().value;
+                break;
+            case 2:
+                myPath = QuasiRandomPathGenerator.next().value;
+                break;
+            default:
+                throw Error("Unknown generator");
+            }
 
             result[0][j] = underlying * QL_EXP(myPath[0]);
-            for (i = 1; i < timeSteps; i++) {
+            for (Size i = 1; i < timeSteps; i++) {
                 result[i][j] = result[i-1][j] * QL_EXP(myPath[i]);
             }
         }

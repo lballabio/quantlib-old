@@ -132,8 +132,34 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
         return Handle<BlackVolTermStructure>(new
             BlackConstantVol(referenceDate,
             vol));
+    } else if (rowNo>=1 && colNo==2) {
+        // vertical time dependent vol
+        std::vector<Date> dates(rowNo);
+        std::vector<double> vols(rowNo);
+        for (Size j = 0; j<rowNo; j++) {
+            dates[j] = QlXlfOper(range(j, 0)).AsDate();
+            vols[j] = range(j, 1).AsDouble();
+        }
+        Handle<BlackVarianceCurve> ts(new
+            BlackVarianceCurve(referenceDate,dates,vols));
+        switch (interpolationType) {
+            case 1:
+                return ts;
+                break;
+            case 2:
+                #if defined(QL_PATCH_MICROSOFT)
+                ts->setInterpolation(CubicSpline());
+                #else
+                ts->setInterpolation<CubicSpline>();
+                #endif
+                return ts;
+                break;
+            default:
+                throw IllegalArgumentError(
+                    "interpolate: invalid interpolation type");
+        }
     } else if (rowNo==2 && colNo>=1) {
-        // time dependent vol
+        // horizontal time dependent vol
         std::vector<Date> dates(colNo);
         std::vector<double> vols(colNo);
         for (Size j = 0; j<colNo; j++) {
@@ -158,8 +184,10 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 throw IllegalArgumentError(
                     "interpolate: invalid interpolation type");
         }
-    } else if (rowNo>2 && colNo>=1) {
-        // time/strike dependent vol
+    } else if (rowNo>3 && colNo>2) {
+        // time/strike (horizontal/vertical) dependent vol
+        // at least 3 strikes for the smile,
+        // no less than 2 dates for a time structure
         std::vector<Date> dates(colNo-1);
         std::vector<double> strikes(rowNo-1);
         Matrix vols(rowNo-1, colNo-1);
@@ -217,7 +245,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
                                         forwardRate,
                                         DayCounters::Actual365()));
     } else if (rowNo>1 && colNo==2 && range(0,1).AsDouble()==1.0) {
-        // discount grid
+        // vertical discount grid
 
 
         std::vector<Date> dates(rowNo);
@@ -233,13 +261,45 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
                                           dates,
                                           discounts,
                                           DayCounters::Actual365()));
-    } else if (rowNo>2 && colNo>=1) {
-        // piecewise forward (annual continuos compounding act/365) grid
+    } else if (rowNo==2 && colNo>1 && range(1,0).AsDouble()==1.0) {
+        // horizontal discount grid
+
+
+        std::vector<Date> dates(colNo);
+        std::vector<DiscountFactor> discounts(colNo);
+        for (Size j = 0; j<colNo; j++) {
+            dates[j] = QlXlfOper(range(0, j)).AsDate();
+            discounts[j] = range(1, j).AsDouble();
+        }
+        Date today=dates[0];
+
+        return Handle<TermStructure>(new
+            TermStructures::DiscountCurve(today,
+                                          dates,
+                                          discounts,
+                                          DayCounters::Actual365()));
+    } else if (rowNo>1 && colNo==2) {
+        // vertical piecewise forward (annual continuos compounding act/365) grid
         std::vector<Date> dates(rowNo);
         std::vector<Rate> forwards(rowNo);
         for (Size j = 0; j<rowNo; j++) {
             dates[j] = QlXlfOper(range(j, 0)).AsDate();
             forwards[j] = range(j, 1).AsDouble();
+        }
+        Date today=dates[0];
+
+        return Handle<TermStructure>(new
+            TermStructures::PiecewiseFlatForward(today,
+                                                 dates,
+                                                 forwards,
+                                                 DayCounters::Actual365()));
+    } else if (rowNo==2 && colNo>1) {
+        // horizontal piecewise forward (annual continuos compounding act/365) grid
+        std::vector<Date> dates(colNo);
+        std::vector<Rate> forwards(colNo);
+        for (Size j = 0; j<colNo; j++) {
+            dates[j] = QlXlfOper(range(0, j)).AsDate();
+            forwards[j] = range(1, j).AsDouble();
         }
         Date today=dates[0];
 

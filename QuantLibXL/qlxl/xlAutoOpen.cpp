@@ -39,27 +39,31 @@ extern "C" {
 
 
             // description of input variables
-            XlfArgDesc percentile("percentile", "is the distribution percentile");
-            XlfArgDesc mean("mean", "is the arithmetic mean of the distribution");
-            XlfArgDesc std_dev("standard deviation", "is the standard deviation of "
-                "the distribution");
-            XlfArgDesc targetReturn("target return",
-                "is the target return at which you want to perform the analysis");
+            XlfArgDesc percentile("percentile",
+                "is the distribution percentile");
+            XlfArgDesc mean("mean",
+                "is the arithmetic mean of the distribution");
+            XlfArgDesc std_dev("standard deviation", "is the standard "
+                "deviation of the distribution");
+            XlfArgDesc targetReturn("target return", "is the target return "
+                "at which you want to perform the analysis");
             XlfArgDesc x_dist_value("x",
                 "is the value for which you want the distribution");
-            XlfArgDesc cumulative("cumulative", "is a logical value that determines "
-                "the form of the function. If cumulative is TRUE, NORMDIST returns "
-                "the cumulative distribution function; if FALSE, it returns "
-                "the probability mass function");
-            XlfArgDesc probability("probability", "is a probability corresponding"
-                " to the normal distribution");
+            XlfArgDesc cumulative("cumulative",
+                "is a logical value that determines the form of the function. "
+                "If cumulative is TRUE, NORMDIST returns the cumulative "
+                "distribution function; if FALSE, it returns the probability "
+                "mass function");
+            XlfArgDesc probability("probability", "is a probability "
+                "corresponding to the normal distribution");
 
 
             XlfArgDesc d01("date1", "first date");
             XlfArgDesc d02("date2", "second date");
             XlfArgDesc rpd01("date3", "reference period first date");
             XlfArgDesc rpd02("date4", "reference period last date");
-            XlfArgDesc refDate("referenceDate", "reference (settlement) date (t=0)");
+            XlfArgDesc refDate("referenceDate", 
+                "reference (settlement) date (t=0)");
             XlfArgDesc evalDate("evalDate", "evaluation date");
             XlfArgDesc expiryDate("expiryDate", "expiry date");
             XlfArgDesc resetDate("resetDate", "strike-setting date");
@@ -69,6 +73,7 @@ extern "C" {
 
             XlfArgDesc dayCount("dayCount", "day count convention");
 
+            XlfArgDesc data_array("data_array", "data array");
             XlfArgDesc x_array("x_array", "x data array");
             XlfArgDesc y_array("y_array", "y data array");
             XlfArgDesc z_matrix("z_matrix", "z data matrix");
@@ -86,156 +91,294 @@ extern "C" {
                 "when the input matrix in not positive semi definite");
 
             XlfArgDesc optionType("type", "is the option type");
-            XlfArgDesc underlying("underlying", "is the current value of the underlying");
-            XlfArgDesc assetLevel("assetLevel", "is the reference level of the asset");
-            XlfArgDesc moneyness("moneyness", "is the moneyness measured as percentage of the ATM level");
+            XlfArgDesc underlying("underlying",
+                "is the current value of the underlying");
+            XlfArgDesc assetLevel("assetLevel",
+                "is the reference level of the asset");
+            XlfArgDesc moneyness("moneyness",
+                "is the moneyness measured as percentage of the ATM level");
             XlfArgDesc strike("strike", "is the strike");
             XlfArgDesc strikes("strikes", "strikes");
-            XlfArgDesc dividendYield("dividend yield", "is the dividend yield");
-            XlfArgDesc riskFreeRate("risk-free rate", "is the risk free rate");
-            XlfArgDesc foreignRiskFreeRate("foreign risk-free rate", "is the risk free rate in the foreign currency");
-            XlfArgDesc blackVolSurface("blackVolSurface", "Black (market) volatility surface");
-            XlfArgDesc volatility("volatility", "is the underlying's volatility");
+            XlfArgDesc dividendYield("dividend yield",
+                "is the dividend yield");
+            XlfArgDesc riskFreeRate("risk-free rate",
+                "is the risk free rate");
+            XlfArgDesc foreignRiskFreeRate("foreign risk-free rate",
+                "is the risk free rate in the foreign currency");
+            XlfArgDesc blackVolSurface("blackVolSurface",
+                "Black (market) volatility surface");
+            XlfArgDesc volatility("volatility",
+                "is the underlying's volatility");
 
-            XlfArgDesc accruedCoupon("accrued coupon", "is coupon accrued so far");
-            XlfArgDesc lastFixing("last fixing", "is the underlying's last fixing");
+            XlfArgDesc accruedCoupon("accrued coupon",
+                "is coupon accrued so far");
+            XlfArgDesc lastFixing("last fixing",
+                "is the underlying's last fixing");
             XlfArgDesc localCap("local cap", "is a local cap");
             XlfArgDesc localFloor("local floor", "is a local floor");
             XlfArgDesc globalCap("global cap", "is a global cap");
             XlfArgDesc globalFloor("global floor", "is a global floor");
-            XlfArgDesc redemptionOnly("redemption only", "if true all the payoffs are paid at redemption "
-                "instead of being paid immediatly");
+            XlfArgDesc redemptionOnly("redemption only", "if true all the "
+                "payoffs are paid at redemption instead of being paid "
+                "immediatly");
 
-            XlfArgDesc exchangeVolatility("exchangeVolatility", "is the volatility of the FX rate");
+            XlfArgDesc exchangeVolatility("exchangeVolatility",
+                "is the volatility of the FX rate");
             XlfArgDesc correlation("correlation", "is the correlation");
             XlfArgDesc timeSteps("time steps", "is the number of time steps");
-            XlfArgDesc gridPoints("grid points", "is the number of grid points");
-            XlfArgDesc samples("samples", "is the number of simulated samples");
-            XlfArgDesc anthiteticVariance("anthitetic variance", "is the anthitetic variance boolean");
+            XlfArgDesc gridPoints("grid points",
+                "is the number of grid points");
+            XlfArgDesc samples("samples",
+                "is the number of samples");
+            XlfArgDesc anthiteticVariance("anthitetic variance",
+                "is the anthitetic variance boolean");
 
             XlfArgDesc drift("drift rate", "is the drift rate of the asset");
-            XlfArgDesc times("times", "is the vector of times measured in years");
+            XlfArgDesc times("times",
+                "is the vector of times measured in years");
             XlfArgDesc paths("paths", "is the number of simulated paths");
 
-            XlfArgDesc termStructure("termStructure", "is the yield term structure. "
-                "It can be a single number, a date/discount grid, or a date/forward grid");
+            XlfArgDesc termStructure("termStructure",
+                "is the yield term structure. It can be a single number, "
+                "a date/discount grid, or a date/forward grid");
 
+            XlfArgDesc seed("seed",
+                "is the seed used to randomize the pseudo-random sequence");
+            XlfArgDesc dimension("dimension",
+                "is the dimensionality of the Monte Carlo simulation");
+            XlfArgDesc generatorType("random number generator type",
+                "1 for pseudo-random (Mersenne Twister), "
+                "2 for quasi-random (Jäckel-Sobol)");
 
             // Registers Risk Measures
-            XlfFuncDesc valueAtRiskDesc("xlvalueAtRisk","qlValueAtRisk",
+            XlfFuncDesc valueAtRiskDesc(
+                "xlvalueAtRisk",
+                "qlValueAtRisk",
                 "Return the value at risk with a percentile confidence "
-                "for a normal distribution specified "
-                "by mean and standard deviation","QuantLibXL Math");
-            valueAtRiskDesc.SetArguments(percentile+mean+std_dev);
+                "for an empirical distribution",
+                "QuantLibXL Math");
+            valueAtRiskDesc.SetArguments(percentile+data_array);
             valueAtRiskDesc.Register();
 
-            XlfFuncDesc potentialUpsideDesc("xlpotentialUpside","qlPotentialUpside",
+            XlfFuncDesc gaussianValueAtRiskDesc(
+                "xlgaussianValueAtRisk",
+                "qlGaussianValueAtRisk",
+                "Return the value at risk with a percentile confidence for a "
+                "normal distribution specified by mean and standard deviation",
+                "QuantLibXL Math");
+            gaussianValueAtRiskDesc.SetArguments(percentile+mean+std_dev);
+            gaussianValueAtRiskDesc.Register();
+
+            XlfFuncDesc potentialUpsideDesc(
+                "xlpotentialUpside",
+                "qlPotentialUpside",
                 "Return the potential upside with a percentile confidence "
-                "for a normal distribution specified "
-                "by mean and standard deviation","QuantLibXL Math");
-            potentialUpsideDesc.SetArguments(percentile+mean+std_dev);
+                "for an empirical distribution",
+                "QuantLibXL Math");
+            potentialUpsideDesc.SetArguments(percentile+data_array);
             potentialUpsideDesc.Register();
 
-            XlfFuncDesc expectedShortfallDesc("xlexpectedShortfall","qlExpectedShortfall",
-                "Return the expected shortfall with a percentile confidence "
+            XlfFuncDesc gaussianPotentialUpsideDesc(
+                "xlgaussianPotentialUpside",
+                "qlGaussianPotentialUpside",
+                "Return the potential upside with a percentile confidence "
                 "for a normal distribution specified "
-                "by mean and standard deviation","QuantLibXL Math");
-            expectedShortfallDesc.SetArguments(percentile+mean+std_dev);
+                "by mean and standard deviation",
+                "QuantLibXL Math");
+            gaussianPotentialUpsideDesc.SetArguments(percentile+mean+std_dev);
+            gaussianPotentialUpsideDesc.Register();
+
+            XlfFuncDesc expectedShortfallDesc(
+                "xlexpectedShortfall",
+                "qlExpectedShortfall",
+                "Return the expected shortfall with a percentile confidence "
+                "for an empirical distribution",
+                "QuantLibXL Math");
+            expectedShortfallDesc.SetArguments(percentile+data_array);
             expectedShortfallDesc.Register();
 
-
-            XlfFuncDesc shortfallDesc("xlshortfall","qlShortfall",
-                "Return the shortfall at the chosen target "
+            XlfFuncDesc gaussianExpectedShortfallDesc(
+                "xlgaussianExpectedShortfall",
+                "qlGaussianExpectedShortfall",
+                "Return the expected shortfall with a percentile confidence "
                 "for a normal distribution specified "
-                "by mean and standard deviation","QuantLibXL Math");
-            shortfallDesc.SetArguments(targetReturn+mean+std_dev);
+                "by mean and standard deviation",
+                "QuantLibXL Math");
+            gaussianExpectedShortfallDesc.SetArguments(percentile+mean+std_dev);
+            gaussianExpectedShortfallDesc.Register();
+
+            XlfFuncDesc shortfallDesc(
+                "xlshortfall",
+                "qlShortfall",
+                "Return the shortfall at the chosen target for "
+                "for an empirical distribution",
+                "QuantLibXL Math");
+            shortfallDesc.SetArguments(targetReturn+data_array);
             shortfallDesc.Register();
 
-            XlfFuncDesc averageShortfallDesc("xlaverageShortfall","qlAverageShortfall",
+            XlfFuncDesc gaussianShortfallDesc(
+                "xlgaussianShortfall",
+                "qlGaussianShortfall",
+                "Return the shortfall at the chosen target for "
+                "a normal distribution specified "
+                "by mean and standard deviation",
+                "QuantLibXL Math");
+            gaussianShortfallDesc.SetArguments(targetReturn+mean+std_dev);
+            gaussianShortfallDesc.Register();
+
+            XlfFuncDesc averageShortfallDesc(
+                "xlaverageShortfall",
+                "qlAverageShortfall",
+                "Return the average shortfall at the chosen target "
+                "for an empirical distribution",
+                "QuantLibXL Math");
+            averageShortfallDesc.SetArguments(targetReturn+data_array);
+            averageShortfallDesc.Register();
+
+            XlfFuncDesc gaussianAverageShortfallDesc(
+                "xlgaussianAverageShortfall",
+                "qlGaussianAverageShortfall",
                 "Return the average shortfall at the chosen target "
                 "for a normal distribution specified "
-                "by mean and standard deviation","QuantLibXL Math");
-            averageShortfallDesc.SetArguments(targetReturn+mean+std_dev);
-            averageShortfallDesc.Register();
+                "by mean and standard deviation",
+                "QuantLibXL Math");
+            gaussianAverageShortfallDesc.SetArguments(targetReturn+mean+std_dev);
+            gaussianAverageShortfallDesc.Register();
+
+
+            XlfFuncDesc regretDesc(
+                "xlregret",
+                "qlRegret",
+                "Return the regret at the chosen target "
+                "for an empirical distribution",
+                "QuantLibXL Math");
+            regretDesc.SetArguments(targetReturn+data_array);
+            regretDesc.Register();
+
+            XlfFuncDesc gaussianRegretDesc(
+                "xlgaussianRegret",
+                "qlGaussianRegret",
+                "Return the regret at the chosen target "
+                "for a normal distribution specified "
+                "by mean and standard deviation",
+                "QuantLibXL Math");
+            gaussianRegretDesc.SetArguments(targetReturn+mean+std_dev);
+            gaussianRegretDesc.Register();
+
+            XlfFuncDesc downsideDeviationDesc(
+                "xldownsideDeviation",
+                "qlDownsideDeviation",
+                "Return the downside deviation at the chosen target "
+                "for an empirical distribution",
+                "QuantLibXL Math");
+            downsideDeviationDesc.SetArguments(data_array);
+            downsideDeviationDesc.Register();
+
+            XlfFuncDesc gaussianDownsideDeviationDesc(
+                "xlgaussianDownsideDeviation",
+                "qlGaussianDownsideDeviation",
+                "Return the downside deviation at the chosen target "
+                "for a normal distribution specified "
+                "by mean and standard deviation",
+                "QuantLibXL Math");
+            gaussianDownsideDeviationDesc.SetArguments(mean+std_dev);
+            gaussianDownsideDeviationDesc.Register();
 
 
             // Registers accrual_days
-            XlfFuncDesc accrualDaysDesc("xlaccrualDays","qlAccrual_days",
-                "Accrual days","QuantLibXL Date Functions");
+            XlfFuncDesc accrualDaysDesc("xlaccrualDays",
+                "qlAccrual_days",
+                "Accrual days",
+                "QuantLibXL Date Functions");
             accrualDaysDesc.SetArguments(d01+d02+dayCount);
             accrualDaysDesc.Register();
 
-            XlfFuncDesc accrualFactorDesc("xlaccrualFactor","qlAccrual_factor",
-                "Accrual factor","QuantLibXL Date Functions");
+            XlfFuncDesc accrualFactorDesc("xlaccrualFactor",
+                "qlAccrual_factor",
+                "Accrual factor",
+                "QuantLibXL Date Functions");
             accrualFactorDesc.SetArguments(d01+d02+dayCount+rpd01+rpd02);
             accrualFactorDesc.Register();
 
 
 
             // Registers Black-Scholes
-            XlfFuncDesc europeanOption("xlEuropeanOption","qlEuropeanOption",
-                "Black Scholes formula for european option","QuantLibXL Finance");
+            XlfFuncDesc europeanOption("xlEuropeanOption",
+                "qlEuropeanOption",
+                "Black Scholes formula for european option",
+                "QuantLibXL Finance");
             europeanOption.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+refDate+expiryDate+volatility+interpolationType);
             europeanOption.Register();
 
-            XlfFuncDesc europeanOption_fd("xlEuropeanOption_FD","qlEuropeanOption_FD",
-                "european option computed with finite differences","QuantLibXL Finance");
+            XlfFuncDesc europeanOption_fd("xlEuropeanOption_FD",
+                "qlEuropeanOption_FD",
+                "european option computed with finite differences",
+                "QuantLibXL Finance");
             europeanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+refDate+expiryDate+volatility+timeSteps+gridPoints);
             europeanOption_fd.Register();
 
-            XlfFuncDesc europeanOption_mc("xlEuropeanOption_MC","qlEuropeanOption_MC",
-                "european option computed with Monte Carlo simulation","QuantLibXL Finance");
+            XlfFuncDesc europeanOption_mc("xlEuropeanOption_MC",
+                "qlEuropeanOption_MC",
+                "european option computed with Monte Carlo simulation",
+                "QuantLibXL Finance");
             europeanOption_mc.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+refDate+expiryDate+volatility+anthiteticVariance+samples);
             europeanOption_mc.Register();
 
-            XlfFuncDesc cliquetOption("xlCliquetOption","qlCliquetOption",
+            XlfFuncDesc cliquetOption("xlCliquetOption",
+                "qlCliquetOption",
                 "european cliquet option","QuantLibXL Finance");
             cliquetOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+expiryDate+volatility);
             cliquetOption.Register();
 
 
-            XlfFuncDesc cliquetOption_mc("xlCliquetOption_MC","qlCliquetOption_MC",
-                "european cliquet option computed with Monte Carlo simulation","QuantLibXL Finance");
+            XlfFuncDesc cliquetOption_mc("xlCliquetOption_MC",
+                "qlCliquetOption_MC",
+                "european cliquet option computed with Monte Carlo simulation",
+                "QuantLibXL Finance");
             cliquetOption_mc.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+fixingDates+blackVolSurface+interpolationType+accruedCoupon+lastFixing+localCap+localFloor+globalCap+globalFloor+redemptionOnly+anthiteticVariance+samples);
             cliquetOption_mc.Register();
 
-            XlfFuncDesc performanceOption("xlPerformanceOption","qlPerformanceOption",
-                "european performance option","QuantLibXL Finance");
+            XlfFuncDesc performanceOption("xlPerformanceOption",
+                "qlPerformanceOption",
+                "european performance option",
+                "QuantLibXL Finance");
             performanceOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+expiryDate+volatility);
             performanceOption.Register();
 
-            XlfFuncDesc performanceOption_mc("xlPerformanceOption_MC","qlPerformanceOption_MC",
-                "european performance option computed with Monte Carlo simulation","QuantLibXL Finance");
+            XlfFuncDesc performanceOption_mc("xlPerformanceOption_MC",
+                "qlPerformanceOption_MC",
+                "european performance option computed with "
+                "Monte Carlo simulation",
+                "QuantLibXL Finance");
             performanceOption_mc.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+expiryDate+volatility+anthiteticVariance+samples);
             performanceOption_mc.Register();
 
-            XlfFuncDesc americanOption_fd("xlAmericanOption_FD","qlAmericanOption_FD",
-                "american option computed with finite differences","QuantLibXL Finance");
+            XlfFuncDesc americanOption_fd("xlAmericanOption_FD",
+                "qlAmericanOption_FD",
+                "american option computed with finite differences",
+                "QuantLibXL Finance");
             americanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+refDate+expiryDate+volatility+timeSteps+gridPoints);
             americanOption_fd.Register();
 
             // new engine framework
-            XlfFuncDesc quantoEuropeanOption("xlQuantoEuropeanOption","qlQuantoEuropeanOption",
+            XlfFuncDesc quantoEuropeanOption("xlQuantoEuropeanOption",
+                "qlQuantoEuropeanOption",
                 "Quanto european option","QuantLibXL Finance");
             quantoEuropeanOption.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+refDate+expiryDate+volatility+interpolationType+foreignRiskFreeRate+exchangeVolatility+correlation);
             quantoEuropeanOption.Register();
 
-            XlfFuncDesc forwardEuropeanOption("xlForwardEuropeanOption","qlForwardEuropeanOption",
+            XlfFuncDesc forwardEuropeanOption("xlForwardEuropeanOption",
+                "qlForwardEuropeanOption",
                 "Forward european option","QuantLibXL Finance");
             forwardEuropeanOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+resetDate+expiryDate+volatility+interpolationType);
             forwardEuropeanOption.Register();
 
-            XlfFuncDesc performanceEuropeanOption("xlPerformanceEuropeanOption","qlPerformanceEuropeanOption",
+            XlfFuncDesc performanceEuropeanOption(
+                "xlPerformanceEuropeanOption",
+                "qlPerformanceEuropeanOption",
                 "Performance european option","QuantLibXL Finance");
             performanceEuropeanOption.SetArguments(optionType+underlying+moneyness+dividendYield+refDate+riskFreeRate+resetDate+expiryDate+volatility+interpolationType);
             performanceEuropeanOption.Register();
-
-
-            // Registers PathGenerator_old
-            XlfFuncDesc pathGenerator("xlPathGenerator","qlPathGenerator",
-                "Geometric Brownian motion path","QuantLibXL Finance");
-            pathGenerator.SetArguments(underlying+drift+volatility+times+paths);
-            pathGenerator.Register();
 
 
             // Registers interpolation
@@ -250,22 +393,28 @@ extern "C" {
             interpolate2DDesc.Register();
 
             XlfFuncDesc primeNumbersDesc("xlprimeNumbers","qlprimeNumbers",
-                "return the (absoluteIndex+1)-th prime number","QuantLibXL Math");
+                "return the (absoluteIndex+1)-th prime number",
+                "QuantLibXL Math");
             primeNumbersDesc.SetArguments(absoluteIndex);
             primeNumbersDesc.Register();
 
             XlfFuncDesc eigenVectorsDesc("xleigenVectors","qlEigenVectors",
-                "return the eigenvectors of the input matrix, one for each column of the result matrix","QuantLibXL Math");
+                "return the eigenvectors of the input matrix, one for each "
+                "column of the result matrix",
+                "QuantLibXL Math");
             eigenVectorsDesc.SetArguments(matrix);
             eigenVectorsDesc.Register();
 
             XlfFuncDesc eigenValuesDesc("xleigenValues","qlEigenValues",
-                "return the eigenvalues of the input matrix","QuantLibXL Math");
+                "return the eigenvalues of the input matrix",
+                "QuantLibXL Math");
             eigenValuesDesc.SetArguments(matrix);
             eigenValuesDesc.Register();
 
             XlfFuncDesc pseudoSQRTDesc("xlpseudoSQRT","qlpseudoSQRT",
-                "return the pseudo square root of the input matrix, such that InputMatrix = ResultMatrix * transpose(ResultMatrix)","QuantLibXL Math");
+                "return the pseudo square root of the input matrix, such "
+                "that InputMatrix = ResultMatrix * transpose(ResultMatrix)",
+                "QuantLibXL Math");
             pseudoSQRTDesc.SetArguments(matrix+salvagingAlgorithm);
             pseudoSQRTDesc.Register();
 
@@ -274,24 +423,67 @@ extern "C" {
             matrixProductDesc.SetArguments(matrix+matrix);
             matrixProductDesc.Register();
 
-            XlfFuncDesc matrixTransposeDesc("xlmatrixTranspose","qlmatrixTranspose",
+            XlfFuncDesc matrixTransposeDesc("xlmatrixTranspose",
+                "qlmatrixTranspose",
                 "return the transoped of the input matrix","QuantLibXL Math");
             matrixTransposeDesc.SetArguments(matrix);
             matrixTransposeDesc.Register();
 
+
+
+            // Registers Random Number functions
+
+            XlfFuncDesc rand("xlrand","qlRand",
+                "Drop-in replacement for Excel's rand() function. "
+                "It uses a Mersenne Twister random number generator, which can be "
+                "re-initialize at any time using qlRandomize(seed).",
+                "QuantLibXL Random Numbers", XlfFuncDesc::Volatile);
+            rand.Register();
+
+            XlfFuncDesc randomize("xlrandomize","qlRandomize",
+                "Re-initialize the Mersenne Twister uniform random number "
+                "generator invoked by qlRand().",
+                "QuantLibXL Random Numbers");
+            randomize.SetArguments(seed);
+            randomize.Register();
+            
+            XlfFuncDesc randomNumberGenerator(
+                "xlRandomNumberGenerator",
+                "qlRandomNumberGenerator",
+                "Generates uniform variates in the n-dimensional unit hypercube [0,1]^n",
+                "QuantLibXL Random Numbers");
+            randomNumberGenerator.SetArguments(dimension+samples+generatorType+seed);
+            randomNumberGenerator.Register();
+
+            XlfFuncDesc gaussianRandomNumberGenerator(
+                "xlGaussianRandomNumberGenerator",
+                "qlGaussianRandomNumberGenerator",
+                "Generates gaussian variates in the n-dimensional space",
+                "QuantLibXL Random Numbers");
+            gaussianRandomNumberGenerator.SetArguments(dimension+samples+generatorType+seed);
+            gaussianRandomNumberGenerator.Register();
+
+            // Registers PathGenerator
+            XlfFuncDesc pathGenerator("xlPathGenerator","qlPathGenerator",
+                "Geometric Brownian motion path","QuantLibXL Finance");
+            pathGenerator.SetArguments(underlying+dividendYield+riskFreeRate+refDate+times+blackVolSurface+interpolationType+paths+generatorType+seed);
+            pathGenerator.Register();
+
+
             // Registers Normal distribution
 
-
             XlfFuncDesc normInvDesc("xlnormInv","qlNormInv",
-                "Return the inverse of the normal cumulative distribution for the specified "
-                "mean and standard deviation","QuantLibXL Math");
+                "Return the inverse of the normal cumulative distribution "
+                "for the specified mean and standard deviation",
+                "QuantLibXL Math");
             normInvDesc.SetArguments(probability+mean+std_dev);
             normInvDesc.Register();
 
             XlfFuncDesc normSInvDesc("xlnormSInv","qlNormSInv",
-                "Return the inverse of the standard normal cumulative distribution "
-                "(has a mean of zero "
-                "and a standard deviation of one","QuantLibXL Math");
+                "Return the inverse of the standard normal cumulative "
+                "distribution (has a mean of zero and a standard deviation "
+                "of one",
+                "QuantLibXL Math");
             normSInvDesc.SetArguments(probability);
             normSInvDesc.Register();
 
@@ -303,8 +495,9 @@ extern "C" {
             normDistDesc.Register();
 
             XlfFuncDesc normSDistDesc("xlnormSDist","qlNormSDist",
-                "Return the standard normal cumulative distribution (has a mean of zero "
-                "and a standard deviation of one","QuantLibXL Math");
+                "Return the standard normal cumulative distribution "
+                "(has a mean of zero and a standard deviation of one)",
+                "QuantLibXL Math");
             normSDistDesc.SetArguments(x_dist_value);
             normSDistDesc.Register();
 
@@ -313,7 +506,8 @@ extern "C" {
             XlfFuncDesc blackVol("xlBlackVol","qlBlackVol",
                 "Return the interpolated Black forward volatility for "
                 "a forward period at a fixed strike "
-                "given a Black volatility surface as input","QuantLibXL Finance");
+                "given a Black volatility surface as input",
+                "QuantLibXL Finance");
             blackVol.SetArguments(refDate+d01+d02+strike+blackVolSurface+interpolationType+allowExtrapolation);
             blackVol.Register();
 
@@ -329,21 +523,24 @@ extern "C" {
             // yield functions
             XlfFuncDesc discount("xlDiscount","qlDiscount",
                 "Return the discount calculated at the evaluation date "
-                "on the yield term structure given as input","QuantLibXL Finance");
+                "on the yield term structure given as input",
+                "QuantLibXL Finance");
             discount.SetArguments(refDate+termStructure+evalDate+allowExtrapolation);
             discount.Register();
 
             XlfFuncDesc zero("xlZero","qlZero",
                 "Return the zero yield (continuos compounding act/365) "
                 "calculated at the evaluation date "
-                "on the yield term structure given as input","QuantLibXL Finance");
+                "on the yield term structure given as input",
+                "QuantLibXL Finance");
             zero.SetArguments(refDate+termStructure+evalDate+allowExtrapolation);
             zero.Register();
 
             XlfFuncDesc forward("xlForward","qlForward",
                 "Return the forward yield (continuos compounding act/365) "
                 "calculated between 2 dates "
-                "on the yield term structure given as input","QuantLibXL Finance");
+                "on the yield term structure given as input",
+                "QuantLibXL Finance");
             forward.SetArguments(refDate+termStructure+d01+d02+allowExtrapolation);
             forward.Register();
 
