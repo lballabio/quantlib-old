@@ -1111,28 +1111,10 @@ Matrix matrixSqrt(const Matrix& m);
 class SVD {
   public:
     SVD(const Matrix&);
-    %extend {
-        Matrix getU() {
-            Matrix U;
-            self->getU(U);
-            return U;
-        }
-        Matrix getV() {
-            Matrix V;
-            self->getV(V);
-            return V;
-        }
-        Matrix getS() {
-            Matrix S;
-            self->getS(S);
-            return S;
-        }
-        Array getSingularValues() {
-            Array s;
-            self->getSingularValues(s);
-            return s;
-        }
-    }
+    const Matrix& U() const;
+    const Matrix& V() const;
+    Matrix S() const;
+    const Array& singularValues() const;
 };
 
 
