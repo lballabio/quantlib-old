@@ -1,3 +1,7 @@
+2001-12-12 10:09  nando
+
+	* ChangeLog.txt (1.5): updated
+
 2001-12-12 09:51  nando
 
 	* templates/quepNNN.html (1.2): TIDYfied
@@ -40,14 +44,12 @@
 
 2001-12-05 15:13  nando
 
-	* ChangeLog.txt (1.4, Root-Of-R000300a2, Root-Of-R000300a1): before
-	branching out 0.3.1a1
+	* ChangeLog.txt (1.4): before branching out 0.3.1a1
 
 2001-12-05 10:31  nando
 
-	* cvs.html (1.24), readme.txt (1.4) (utags: Root-Of-R000300a1,
-	Root-Of-R000300a2): quantlib.sourceforge.net changed into
-	quantlib.org
+	* cvs.html (1.24), readme.txt (1.4): quantlib.sourceforge.net
+	changed into quantlib.org
 
 2001-12-05 09:55  nando
 
@@ -55,23 +57,19 @@
 
 2001-12-04 16:34  nando
 
-	* extensions.html (1.11, Root-Of-R000300a2, Root-Of-R000300a1):
-	R000201-branch-merge2 merged into trunk
+	* extensions.html (1.11): R000201-branch-merge2 merged into trunk
 
 2001-12-03 17:32  nando
 
-	* download.html (1.18, Root-Of-R000300a2, Root-Of-R000300a1,
-	Before-R000201-branch-merge2): 0.2.1 release final touch
+	* download.html (1.18): 0.2.1 release final touch
 
 2001-12-03 16:59  nando
 
-	* nextrelease.html (1.5, Root-Of-R000300a2, Root-Of-R000300a1,
-	Before-R000201-branch-merge2): 0.2.1 release final touch
+	* nextrelease.html (1.5): 0.2.1 release final touch
 
 2001-12-03 13:39  nando
 
-	* extensions.html (tags: R000201-branch-merge2) (R000201-branch.2):
-	typo fixed
+	* extensions.html (1.9.2.2): typo fixed
 
 2001-11-29 20:32  nando
 
@@ -83,41 +81,22 @@
 
 2001-11-29 18:37  nando
 
-	* ChangeLog.txt (1.2, Before-R000201-branch-merge2),
-	nextrelease.html (1.2), webclean.py (1.6, Root-Of-R000300a2,
-	Root-Of-R000300a1, Before-R000201-branch-merge2):
+	* ChangeLog.txt (1.2), nextrelease.html (1.2), webclean.py (1.6):
 	R000201-branch-merge1 merged into trunk
 
 2001-11-29 17:41  nando
 
-	* ChangeLog.txt, nextrelease.html
-	(Before-R000201-branch-merge1.[1,1]), FAQ.html (1.25,
-	Root-Of-R000300a2, Root-Of-R000300a1,
-	Before-R000201-branch-merge2), cvs.html (1.23,
-	Before-R000201-branch-merge2), download.html (1.17),
-	extensions.html (1.10, Before-R000201-branch-merge2), index.html
-	(1.31, Root-Of-R000300a2, Root-Of-R000300a1,
-	Before-R000201-branch-merge2), license.html (1.19,
-	Root-Of-R000300a2, Root-Of-R000300a1,
-	Before-R000201-branch-merge2), lists.html (1.22, Root-Of-R000300a2,
-	Root-Of-R000300a1, Before-R000201-branch-merge2), mailinglists.html
-	(1.11, Root-Of-R000300a2, Root-Of-R000300a1,
-	Before-R000201-branch-merge2), marketconventions.html (1.14,
-	Root-Of-R000300a2, Root-Of-R000300a1,
-	Before-R000201-branch-merge2), qltablehead.inc (1.17,
-	Root-Of-R000300a2, Root-Of-R000300a1,
-	Before-R000201-branch-merge2), quep.html (1.11, Root-Of-R000300a2,
-	Root-Of-R000300a1, Before-R000201-branch-merge2), snapshot.html
-	(1.4, Root-Of-R000300a2, Root-Of-R000300a1,
-	Before-R000201-branch-merge2), style.html (1.19, Root-Of-R000300a2,
-	Root-Of-R000300a1, Before-R000201-branch-merge2):
-	R000201-branch-merge1 merged into trunk
+	* ChangeLog.txt (1.1.4.1), FAQ.html (1.25), cvs.html (1.23),
+	download.html (1.17), extensions.html (1.10), index.html (1.31),
+	license.html (1.19), lists.html (1.22), mailinglists.html (1.11),
+	marketconventions.html (1.14), nextrelease.html (1.1.4.1),
+	qltablehead.inc (1.17), quep.html (1.11), snapshot.html (1.4),
+	style.html (1.19): R000201-branch-merge1 merged into trunk
 
 2001-11-29 12:33  nando
 
-	* ChangeLog.txt, download.html, nextrelease.html
-	(R000201-branch.[2,2,1]) (utags: R000201-branch-merge1,
-	R000201-branch-merge2): 0.2.1 release final touch
+	* ChangeLog.txt (1.1.2.2), download.html (1.16.2.2),
+	nextrelease.html (1.1.2.1): 0.2.1 release final touch
 
 2001-11-29 12:33  nando
 
@@ -126,25 +105,16 @@
 
 2001-11-24 00:04  nando
 
-	* FAQ.html (tags: R000201-branch-merge2, R000201-branch-merge1),
-	cvs.html (tags: R000201-branch-merge2, R000201-branch-merge1),
-	download.html, extensions.html (tags: R000201-branch-merge1),
-	index.html (tags: R000201-branch-merge2, R000201-branch-merge1),
-	license.html (tags: R000201-branch-merge2, R000201-branch-merge1),
-	lists.html (tags: R000201-branch-merge2, R000201-branch-merge1),
-	mailinglists.html (tags: R000201-branch-merge2,
-	R000201-branch-merge1), marketconventions.html (tags:
-	R000201-branch-merge2, R000201-branch-merge1), qltablehead.inc
-	(tags: R000201-branch-merge2, R000201-branch-merge1), quep.html
-	(tags: R000201-branch-merge2, R000201-branch-merge1), snapshot.html
-	(tags: R000201-branch-merge2, R000201-branch-merge1), style.html
-	(tags: R000201-branch-merge2, R000201-branch-merge1)
-	(R000201-branch.[1,1,1,1,1,1,1,1,1,1,1,1,1]): release 0.2.1 final
-	touches
+	* FAQ.html (1.24.2.1), cvs.html (1.22.2.1), download.html
+	(1.16.2.1), extensions.html (1.9.2.1), index.html (1.30.2.1),
+	license.html (1.18.2.1), lists.html (1.21.2.1), mailinglists.html
+	(1.10.2.1), marketconventions.html (1.13.2.1), qltablehead.inc
+	(1.16.2.1), quep.html (1.10.2.1), snapshot.html (1.3.2.1),
+	style.html (1.18.2.1): release 0.2.1 final touches
 
 2001-11-23 23:20  nando
 
-	* ChangeLog.txt (R000201-branch.1): final touches
+	* ChangeLog.txt (1.1.2.1): final touches
 
 2001-11-23 23:20  nando
 
@@ -177,9 +147,8 @@
 	extensions.html (1.9), index.html (1.30), license.html (1.18),
 	lists.html (1.21), mailinglists.html (1.10), marketconventions.html
 	(1.13), qltablehead.inc (1.16), quep.html (1.10), snapshot.html
-	(1.3), style.html (1.18) (utags: Before-R000201-branch-merge1,
-	Root-Of-R000201): 1) CVS info updated 2) SourceForge turned into
-	SourceForge.net
+	(1.3), style.html (1.18): 1) CVS info updated 2) SourceForge turned
+	into SourceForge.net
 
 2001-11-12 16:00  nando
 
@@ -187,23 +156,12 @@
 
 2001-11-09 16:54  nando
 
-	* quep.html (1.9), quep/quep001.html (1.4, Root-Of-R000300a2,
-	Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201), quep/quep002.html
-	(1.7, Root-Of-R000300a2, Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201), quep/quep004.html
-	(1.2, Root-Of-R000300a2, Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201): Tidied
+	* quep.html (1.9), quep/quep001.html (1.4), quep/quep002.html
+	(1.7), quep/quep004.html (1.2): Tidied
 
 2001-11-09 16:54  lballabio
 
-	* webquepupdate.bat (1.4, Root-Of-R000300a2, Root-Of-R000300a1,
-	R000201-branch-merge2, Before-R000201-branch-merge2,
-	R000201-branch-merge1, Before-R000201-branch-merge1,
-	Root-Of-R000201): [no log message]
+	* webquepupdate.bat (1.4): [no log message]
 
 2001-11-09 16:47  lballabio
 
@@ -218,22 +176,12 @@
 2001-11-09 11:36  nando
 
 	* quep.html (1.7), webquepupdate.bat (1.3),
-	quep/quep3/optimization.html (1.1, Root-Of-R000300a2,
-	Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201): added Nicolas
-	proposal
+	quep/quep3/optimization.html (1.1): added Nicolas proposal
 
 2001-11-09 11:15  nando
 
-	* quep.html (1.6), quep/quep3/CurveFitting.zip (1.1,
-	Root-Of-R000300a2, Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201), quep/quep3/html.zip
-	(1.1, Root-Of-R000300a2, Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201): added Nicolas
-	proposal
+	* quep.html (1.6), quep/quep3/CurveFitting.zip (1.1),
+	quep/quep3/html.zip (1.1): added Nicolas proposal
 
 2001-11-06 10:48  nando
 
@@ -261,10 +209,7 @@
 
 2001-10-26 08:42  lballabio
 
-	* quep/: quep002.html (1.3), quep002b.png (1.2, Root-Of-R000300a2,
-	Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201): BC time dependence
+	* quep/: quep002.html (1.3), quep002b.png (1.2): BC time dependence
 	added
 
 2001-10-25 10:40  nando
@@ -285,10 +230,7 @@
 
 2001-10-25 10:25  nando
 
-	* styles/quantlib.css (1.7, Root-Of-R000300a2, Root-Of-R000300a1,
-	R000201-branch-merge2, Before-R000201-branch-merge2,
-	R000201-branch-merge1, Before-R000201-branch-merge1,
-	Root-Of-R000201): updating for quep
+	* styles/quantlib.css (1.7): updating for quep
 
 2001-10-25 10:17  nando
 
@@ -296,33 +238,17 @@
 	extensions.html (1.8), index.html (1.29), license.html (1.17),
 	lists.html (1.20), mailinglists.html (1.9), marketconventions.html
 	(1.12), qltablehead.inc (1.15), quep.html (1.2), snapshot.html
-	(1.2), style.html (1.17), webimagesupdate.bat (1.1,
-	Root-Of-R000300a2, Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201), webquepupdate.bat
-	(1.1), webrootupdate.bat (1.1, Root-Of-R000300a2,
-	Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201), webstylesupdate.bat
-	(1.1, Root-Of-R000300a2, Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201), webupdate.bat
-	(1.4), webupdate2.bat (1.2), quep/quep001.html (1.2),
-	quep/quep002.html (1.2): updating for quep
+	(1.2), style.html (1.17), webimagesupdate.bat (1.1),
+	webquepupdate.bat (1.1), webrootupdate.bat (1.1),
+	webstylesupdate.bat (1.1), webupdate.bat (1.4), webupdate2.bat
+	(1.2), quep/quep001.html (1.2), quep/quep002.html (1.2): updating
+	for quep
 
 2001-10-25 10:06  nando
 
-	* quep/: quep001.html (1.1), quep001a.png (1.1, Root-Of-R000300a2,
-	Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201), quep001b.png (1.1,
-	Root-Of-R000300a2, Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201), quep002.html (1.1),
-	quep002a.png (1.1, Root-Of-R000300a2, Root-Of-R000300a1,
-	R000201-branch-merge2, Before-R000201-branch-merge2,
-	R000201-branch-merge1, Before-R000201-branch-merge1,
-	Root-Of-R000201), quep002b.png (1.1): quep 1 and 2
+	* quep/: quep001.html (1.1), quep001a.png (1.1), quep001b.png
+	(1.1), quep002.html (1.1), quep002a.png (1.1), quep002b.png (1.1):
+	quep 1 and 2
 
 2001-10-25 10:05  nando
 
@@ -385,7 +311,7 @@
 
 2001-09-20 10:27  nando
 
-	* download.html (1.9, R020): file size added
+	* download.html (1.9): file size added
 
 2001-09-17 17:32  nando
 
@@ -393,7 +319,7 @@
 
 2001-09-17 15:22  nando
 
-	* styles/quantlib.css (1.6, R020): no message
+	* styles/quantlib.css (1.6): no message
 
 2001-09-17 15:21  nando
 
@@ -401,9 +327,7 @@
 
 2001-09-17 14:42  nando
 
-	* download.html (1.7), webclean.py (1.5, R000201-branch-merge2,
-	R000201-branch-merge1, Before-R000201-branch-merge1,
-	Root-Of-R000201, R020): no message
+	* download.html (1.7), webclean.py (1.5): no message
 
 2001-09-17 13:57  nando
 
@@ -415,10 +339,7 @@
 
 2001-09-17 11:06  nando
 
-	* webpublish.bat (1.3, Root-Of-R000300a2, Root-Of-R000300a1,
-	R000201-branch-merge2, Before-R000201-branch-merge2,
-	R000201-branch-merge1, Before-R000201-branch-merge1,
-	Root-Of-R000201), webupdate2.bat (1.1) (utags: R020): new batches
+	* webpublish.bat (1.3), webupdate2.bat (1.1): new batches
 
 2001-09-17 10:54  nando
 
@@ -434,27 +355,23 @@
 
 2001-09-17 10:31  nando
 
-	* index.html (1.22, R020): broken link fixed
+	* index.html (1.22): broken link fixed
 
 2001-09-17 09:37  nando
 
-	* FAQ.html (1.15, R020), cvs.html (1.14, R020), download.html
-	(1.4), extensions.html (1.3, R020), index.html (1.21), license.html
-	(1.12, R020), lists.html (1.13, R020), mailinglists.html (1.4,
-	R020), marketconventions.html (1.7, R020), qltablehead.inc (1.10,
-	R020), style.html (1.11, R020), webupdate.bat (1.3, R020): added
-	link to examples
+	* FAQ.html (1.15), cvs.html (1.14), download.html (1.4),
+	extensions.html (1.3), index.html (1.21), license.html (1.12),
+	lists.html (1.13), mailinglists.html (1.4), marketconventions.html
+	(1.7), qltablehead.inc (1.10), style.html (1.11), webupdate.bat
+	(1.3): added link to examples
 
 2001-09-14 14:57  nando
 
-	* FAQ.html (1.14), TODO.txt (1.11, Root-Of-R000300a2,
-	Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201, R020), cvs.html
-	(1.13), download.html (1.3), extensions.html (1.2), index.html
-	(1.20), license.html (1.11), lists.html (1.12), mailinglists.html
-	(1.3), marketconventions.html (1.6), qltablehead.inc (1.9),
-	style.html (1.10): getting ready for R020
+	* FAQ.html (1.14), TODO.txt (1.11), cvs.html (1.13), download.html
+	(1.3), extensions.html (1.2), index.html (1.20), license.html
+	(1.11), lists.html (1.12), mailinglists.html (1.3),
+	marketconventions.html (1.6), qltablehead.inc (1.9), style.html
+	(1.10): getting ready for R020
 
 2001-09-14 14:43  nando
 
@@ -481,20 +398,9 @@
 	* FAQ.html (1.11), cvs.html (1.10), docs.html (1.8), download.html
 	(1.1), group.html (1.15), index.html (1.17), license.html (1.9),
 	lists.html (1.10), mailinglists.html (1.1), marketconventions.html
-	(1.4), qlmeta.inc (1.5, Root-Of-R000300a2, Root-Of-R000300a1,
-	R000201-branch-merge2, Before-R000201-branch-merge2,
-	R000201-branch-merge1, Before-R000201-branch-merge1,
-	Root-Of-R000201, R020), qltablefoot.inc (1.5, Root-Of-R000300a2,
-	Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201, R020),
-	qltablehead.inc (1.7), readme.txt (1.3, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201, R020), status.html
-	(1.15), style.html (1.8), styles/quantlib.css (1.3), webchecker.py
-	(1.1, Root-Of-R000300a2, Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201, R020): site refresh
+	(1.4), qlmeta.inc (1.5), qltablefoot.inc (1.5), qltablehead.inc
+	(1.7), readme.txt (1.3), status.html (1.15), style.html (1.8),
+	styles/quantlib.css (1.3), webchecker.py (1.1): site refresh
 
 2001-09-12 10:02  nando
 
@@ -587,25 +493,18 @@
 
 2001-07-26 17:24  nando
 
-	* lists.html (1.5, QuantLibDotOrgAnnouncement): updated these pages
-	will debut as quantlib.org
+	* lists.html (1.5): updated these pages will debut as quantlib.org
 
 2001-07-26 17:15  nando
 
-	* TODO.txt (1.7, QuantLibDotOrgAnnouncement): updated
+	* TODO.txt (1.7): updated
 
 2001-07-26 16:27  nando
 
-	* FAQ.html (1.4, QuantLibDotOrgAnnouncement), cvs.html (1.4,
-	QuantLibDotOrgAnnouncement), docs.html (1.3,
-	QuantLibDotOrgAnnouncement), group.html (1.9,
-	QuantLibDotOrgAnnouncement), index.html (1.7,
-	QuantLibDotOrgAnnouncement), license.html (1.3,
-	QuantLibDotOrgAnnouncement), lists.html (1.4), qltablefoot.inc
-	(1.3, QuantLibDotOrgAnnouncement), status.html (1.6,
-	QuantLibDotOrgAnnouncement), style.html (1.3,
-	QuantLibDotOrgAnnouncement): updated these pages will debut as
-	quantlib.org
+	* FAQ.html (1.4), cvs.html (1.4), docs.html (1.3), group.html
+	(1.9), index.html (1.7), license.html (1.3), lists.html (1.4),
+	qltablefoot.inc (1.3), status.html (1.6), style.html (1.3): updated
+	these pages will debut as quantlib.org
 
 2001-07-26 15:41  nando
 
@@ -614,9 +513,8 @@
 
 2001-07-26 15:03  nando
 
-	* readme.txt (1.2), webpublish.py (1.3) (utags:
-	QuantLibDotOrgAnnouncement): updated these pages will bebut as
-	quantlib.org
+	* readme.txt (1.2), webpublish.py (1.3): updated these pages will
+	bebut as quantlib.org
 
 2001-07-26 14:42  nando
 
@@ -638,9 +536,8 @@
 
 2001-07-26 10:56  nando
 
-	* tobeincludedindoxygen.txt (1.1, R020,
-	QuantLibDotOrgAnnouncement): to be included in QuantLib DoxyGen
-	documentation
+	* tobeincludedindoxygen.txt (1.1): to be included in QuantLib
+	DoxyGen documentation
 
 2001-07-26 10:55  nando
 
@@ -651,14 +548,13 @@
 
 	* FAQ.html (1.2), TODO.txt (1.4), cvs.html (1.3), docs.html (1.2),
 	goals.html (1.2), group.html (1.8), index.html (1.5), license.html
-	(1.2), lists.html (1.2), qltablehead.inc (1.2,
-	QuantLibDotOrgAnnouncement), status.html (1.3), style.html (1.2):
-	updating ...
+	(1.2), lists.html (1.2), qltablehead.inc (1.2), status.html (1.3),
+	style.html (1.2): updating ...
 
 2001-07-25 14:42  nando
 
-	* index.html (1.4), qlmeta.inc (1.3, QuantLibDotOrgAnnouncement),
-	qltablefoot.inc (1.2): fixed style reference and invalid HTML
+	* index.html (1.4), qlmeta.inc (1.3), qltablefoot.inc (1.2): fixed
+	style reference and invalid HTML
 
 2001-07-23 08:30  nando
 
@@ -700,11 +596,7 @@
 2001-07-19 08:19  lballabio
 
 	* cvs.html (1.2), group.html (1.3), index.html (1.2), status.html
-	(1.2), images/QL-largish.jpg (1.1, Root-Of-R000300a2,
-	Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201, R020,
-	QuantLibDotOrgAnnouncement), images/QL-notitle.png (1.2),
+	(1.2), images/QL-largish.jpg (1.1), images/QL-notitle.png (1.2),
 	images/QL-small-notitle.png (1.2), images/QL-small.png (1.2),
 	images/QL.png (1.2): Glitches
 
@@ -726,37 +618,15 @@
 
 2001-07-18 17:15  nando
 
-	* contacts.txt (1.1.1.1, Root-Of-R000300a2, Root-Of-R000300a1,
-	R000201-branch-merge2, Before-R000201-branch-merge2,
-	R000201-branch-merge1, Before-R000201-branch-merge1,
-	Root-Of-R000201, R020, QuantLibDotOrgAnnouncement), cvs.html
-	(1.1.1.1), docs.html (1.1.1.1), FAQ.html (1.1.1.1), LICENSE.TXT
-	(1.1.1.1, Root-Of-R000300a2, Root-Of-R000300a1,
-	R000201-branch-merge2, Before-R000201-branch-merge2,
-	R000201-branch-merge1, Before-R000201-branch-merge1,
-	Root-Of-R000201, R020, QuantLibDotOrgAnnouncement), goals.html
-	(1.1.1.1), group.html (1.1.1.1), index.html (1.1.1.1), license.html
-	(1.1.1.1), lists.html (1.1.1.1), qlmeta.inc (1.1.1.1),
-	qltablefoot.inc (1.1.1.1), qltablehead.inc (1.1.1.1), status.html
-	(1.1.1.1), style.html (1.1.1.1), images/QL-notitle.jpg (1.1.1.1,
-	Root-Of-R000300a2, Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201, R020,
-	QuantLibDotOrgAnnouncement), images/QL-notitle.png (1.1.1.1),
-	images/QL-small-notitle.jpg (1.1.1.1, Root-Of-R000300a2,
-	Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201, R020,
-	QuantLibDotOrgAnnouncement), images/QL-small-notitle.png (1.1.1.1),
-	images/QL-small.jpg (1.1.1.1, Root-Of-R000300a2, Root-Of-R000300a1,
-	R000201-branch-merge2, Before-R000201-branch-merge2,
-	R000201-branch-merge1, Before-R000201-branch-merge1,
-	Root-Of-R000201, R020, QuantLibDotOrgAnnouncement),
-	images/QL-small.png (1.1.1.1), images/QL.jpg (1.1.1.1,
-	Root-Of-R000300a2, Root-Of-R000300a1, R000201-branch-merge2,
-	Before-R000201-branch-merge2, R000201-branch-merge1,
-	Before-R000201-branch-merge1, Root-Of-R000201, R020,
-	QuantLibDotOrgAnnouncement), images/QL.png (1.1.1.1),
-	styles/main.css (1.1.1.1, QuantLibDotOrgAnnouncement) (utags:
-	arelease): initial import
+	* contacts.txt (1.1.1.1), cvs.html (1.1.1.1), docs.html (1.1.1.1),
+	FAQ.html (1.1.1.1), LICENSE.TXT (1.1.1.1), goals.html (1.1.1.1),
+	group.html (1.1.1.1), index.html (1.1.1.1), license.html (1.1.1.1),
+	lists.html (1.1.1.1), qlmeta.inc (1.1.1.1), qltablefoot.inc
+	(1.1.1.1), qltablehead.inc (1.1.1.1), status.html (1.1.1.1),
+	style.html (1.1.1.1), images/QL-notitle.jpg (1.1.1.1),
+	images/QL-notitle.png (1.1.1.1), images/QL-small-notitle.jpg
+	(1.1.1.1), images/QL-small-notitle.png (1.1.1.1),
+	images/QL-small.jpg (1.1.1.1), images/QL-small.png (1.1.1.1),
+	images/QL.jpg (1.1.1.1), images/QL.png (1.1.1.1), styles/main.css
+	(1.1.1.1): initial import
 
