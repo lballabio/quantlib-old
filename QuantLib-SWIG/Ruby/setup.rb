@@ -37,7 +37,6 @@ end
 cmd = ARGV.shift or usage()
 cmd.downcase!
 usage() unless ['wrap','build','test','install','sdist','bdist'].member? cmd
-Prefix = nil
 if cmd != "install"
 	usage() if ARGV.shift
 else
@@ -48,6 +47,8 @@ else
 		else
 			usage()
 		end
+    else
+        Prefix = nil
 	end
 end
 
@@ -230,34 +231,19 @@ Install = Command.new {
 	Build.execute
 	puts "Installing QuantLib-Ruby..."
 	if Prefix.nil?
-		archDir = Config::CONFIG["sitearchdir"]
-		libDir  = Config::CONFIG["sitelibdir"]
-		dataDir = Config::CONFIG["datadir"]
+		archDir    = Config::CONFIG["sitearchdir"]
+		libDir     = Config::CONFIG["sitelibdir"]
 	else
 		# strip old prefix and add the new one
 		oldPrefix = Config::CONFIG["prefix"]
-		archDir = Prefix + \
-                  Config::CONFIG["archdir"].gsub("^#{oldPrefix}","")
-		libDir  = Prefix + \
-                  Config::CONFIG["rubylibdir"].gsub("^#{oldPrefix}","")
-		dataDir = Prefix + \
-                  Config::CONFIG["datadir"].gsub("^#{oldPrefix}","")
+		archDir    = Prefix + \
+                     Config::CONFIG["archdir"].gsub("^#{oldPrefix}","")
+		libDir     = Prefix + \
+                     Config::CONFIG["rubylibdir"].gsub("^#{oldPrefix}","")
 	end
-	swigDir   = dataDir + "/QuantLib-Ruby/SWIG"
-	docDir    = dataDir + "/doc/QuantLib-Ruby"
-	testDir   = docDir + "/test"
-	[archDir,libDir,swigDir,testDir].each { |path| File.makedirs path }
+	[archDir,libDir].each { |path| File.makedirs path }
 	File.install "./QuantLibc.so", archDir+"/QuantLibc.so", 0555, true
 	File.install "./QuantLib.rb", libDir+"/QuantLib.rb", 0555, true
-	Info.each { |file| File.install "./#{file}",docDir+"/#{file}",nil,true }
-    thisSwigDir = "./SWIG"
-    thisSwigDir = "../SWIG" if not File.exists? thisSwigDir
-	Interfaces.each { |file| 
-        File.install thisSwigDir+"/#{file}",swigDir+"/#{file}",nil,true 
-    }
-	Tests.each { |file| 
-        File.install "./test/"+file,testDir+"/#{file}",nil,true 
-    }
 }
 
 

@@ -188,21 +188,17 @@ def get_paths(distro):
             predir = 'Lib\site-packages'
         else:
             predir = ''
-        docdir = os.path.join(
-            string.split(distro.get_name(), '-')[0], 'doc')
     else:
-        predir = 'share'
-        docdir = os.path.join('doc', distro.get_name())
-    return predir, docdir
+        predir = 'include'
+    return predir
 
-# this is to have separate installation folders for SWIG files,
-# docs and tests.
+# this is to have a separate installation folder for SWIG files
 class install_swigfiles(install_data):
     description = "installs SWIG files"
     def finalize_options(self):
         global predir
         install_data.finalize_options(self)
-        predir, _ = get_paths(self.distribution)
+        predir = get_paths(self.distribution)
         if sys.platform == 'win32':
             moduledir = string.split(self.distribution.get_name(), '-')[0]
         else:
@@ -211,35 +207,14 @@ class install_swigfiles(install_data):
         if not os.path.exists(swig_dir):
             swig_dir = os.path.join("..","SWIG")
         self.data_files = [
-            [os.path.join(predir, moduledir, 'SWIG'),
+            [os.path.join(predir, moduledir),
              [os.path.join(swig_dir,f) for f in swig_files]]]
-
-class install_testfiles(install_data):
-    description = "installs test programs"
-    def finalize_options(self):
-        global predir
-        install_data.finalize_options(self)
-        predir, docdir = get_paths(self.distribution)
-        test_dir = os.path.join(".","QuantLib","test")
-        self.data_files = [
-            [os.path.join(predir, docdir, 'tests'),
-             [os.path.join(test_dir,f) for f in test_files]]]
-
-class install_docs(install_data):
-    description = "installs docs"
-    def finalize_options(self):
-        global predir
-        install_data.finalize_options(self)
-        predir, docdir = get_paths(self.distribution)
-        self.data_files = [[os.path.join(predir, docdir), docs],]
 
 class my_install(install):
     description = "installs everything"
     def run(self):
         install.run(self)
         self.run_command('install_swigfiles')
-        self.run_command('install_testfiles')
-        self.run_command('install_docs')
 
 # This gathers the SWIG interface files before running sdist
 class my_sdist(sdist):
@@ -352,8 +327,6 @@ setup(name             = "QuantLib-Python",
       data_files       = datafiles,
       cmdclass         = {'test': test,
                           'install_swigfiles': install_swigfiles,
-                          'install_testfiles': install_testfiles,
-                          'install_docs': install_docs,
                           'install': my_install,
                           'sdist': my_sdist,
                           'wrap': my_wrap},
