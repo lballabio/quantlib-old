@@ -811,8 +811,8 @@ class Array {
                 i = size_+i;
             if (j<0)
                 j = size_+j;
-            i = QL_MAX(0,i);
-            j = QL_MIN(size_,j);
+            i = std::max(0,i);
+            j = std::min(size_,j);
             Array tmp(j-i);
             std::copy(self->begin()+i,self->begin()+j,tmp.begin());
             return tmp;
@@ -823,8 +823,8 @@ class Array {
                 i = size_+i;
             if (j<0)
                 j = size_+j;
-            i = QL_MAX(0,i);
-            j = QL_MIN(size_,j);
+            i = std::max(0,i);
+            j = std::min(size_,j);
             QL_ENSURE(static_cast<Integer>(rhs.size()) == j-i,
                       "arrays are not resizable");
             std::copy(rhs.begin(),rhs.end(),self->begin()+i);
