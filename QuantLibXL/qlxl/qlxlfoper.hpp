@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2002 Ferdinando Ametrano
+ Copyright (C) 2002, 2003 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -35,9 +35,9 @@ public:
     std::vector<QuantLib::Date> AsDateVector() const;
     QuantLib::Math::Matrix AsMatrix() const;
     QuantLib::Option::Type AsOptionType() const;
-    QuantLib::Handle<QuantLib::BlackVolTermStructure> AsBlackVolTermStructure(
+    QuantLib::RelinkableHandle<QuantLib::BlackVolTermStructure> AsBlackVolTermStructure(
         const QuantLib::Date& referenceDate = QuantLib::Date::minDate()) const;
-    QuantLib::Handle<QuantLib::TermStructure> AsTermStructure(
+    QuantLib::RelinkableHandle<QuantLib::TermStructure> AsTermStructure(
         const QuantLib::Date& referenceDate = QuantLib::Date::minDate()) const;
 private:
     XlfOper xlfOper_;

@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2002 Ferdinando Ametrano
+ Copyright (C) 2002, 2003 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -48,8 +48,8 @@ extern "C"
                         XlfOper xlunderlying,
                         XlfOper xlstrike,
                         XlfOper xldividendYield,
-                        XlfOper xlriskFreeRate,
-                        XlfOper xlmaturity,
+                        XlfOper xlriskFree,
+                        XlfOper xlmaturityDate,
                         XlfOper xlvolatility,
                         XlfOper xlforeignRiskFreeRate,
                         XlfOper xlexchangeVolatility,
@@ -70,14 +70,14 @@ extern "C"
         arguments->type = QlXlfOper(xltype).AsOptionType();
         arguments->underlying = xlunderlying.AsDouble();
         arguments->strike = xlstrike.AsDouble();
-        arguments->dividendYield = xldividendYield .AsDouble();
-        arguments->riskFreeRate= xlriskFreeRate.AsDouble();
-        arguments->residualTime = xlmaturity.AsDouble();
-        arguments->volatility = xlvolatility.AsDouble();
-        arguments->foreignRiskFreeRate =
-            xlforeignRiskFreeRate.AsDouble();
-        arguments->exchangeRateVolatility =
-            xlexchangeVolatility.AsDouble();
+        arguments->dividendTS = QlXlfOper(xldividendYield).AsTermStructure();
+        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure();
+        arguments->exercise = EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate());
+        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure();
+        arguments->foreignRiskFreeTS =
+            QlXlfOper(xlforeignRiskFreeRate).AsTermStructure();
+        arguments->exchRateVolTS =
+            QlXlfOper(xlexchangeVolatility).AsBlackVolTermStructure();
         arguments->correlation = xlcorrelation.AsDouble();
 
         arguments->validate();
@@ -111,9 +111,9 @@ extern "C"
                         XlfOper xlunderlying,
                         XlfOper xlmoneyness,
                         XlfOper xldividendYield,
-                        XlfOper xlriskFreeRate,
-                        XlfOper xlresetTime,
-                        XlfOper xlmaturity,
+                        XlfOper xlriskFree,
+                        XlfOper xlresetDate,
+                        XlfOper xlmaturityDate,
                         XlfOper xlvolatility)
     {
         EXCEL_BEGIN;
@@ -134,11 +134,11 @@ extern "C"
         // ForwardOptionParameter shoul not include strike
         arguments->strike = arguments->underlying;
         arguments->moneyness = xlmoneyness.AsDouble();
-        arguments->dividendYield = xldividendYield .AsDouble();
-        arguments->riskFreeRate= xlriskFreeRate.AsDouble();
-        arguments->resetTime = xlresetTime.AsDouble();
-        arguments->residualTime = xlmaturity.AsDouble();
-        arguments->volatility = xlvolatility.AsDouble();
+        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure();
+        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure();
+        arguments->resetDate = QlXlfOper(xlresetDate).AsDate();
+        arguments->exercise = EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate());
+        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure();
 
         arguments->validate();
         forwardEngine->calculate();
@@ -166,9 +166,9 @@ extern "C"
                         XlfOper xlunderlying,
                         XlfOper xlmoneyness,
                         XlfOper xldividendYield,
-                        XlfOper xlriskFreeRate,
-                        XlfOper xlresetTime,
-                        XlfOper xlmaturity,
+                        XlfOper xlriskFree,
+                        XlfOper xlresetDate,
+                        XlfOper xlmaturityDate,
                         XlfOper xlvolatility)
     {
         EXCEL_BEGIN;
@@ -191,11 +191,11 @@ extern "C"
         // ForwardPerformanceOptionParameter should not include strike
         arguments->strike = arguments->underlying;
         arguments->moneyness = xlmoneyness.AsDouble();
-        arguments->dividendYield = xldividendYield .AsDouble();
-        arguments->riskFreeRate= xlriskFreeRate.AsDouble();
-        arguments->resetTime = xlresetTime.AsDouble();
-        arguments->residualTime = xlmaturity.AsDouble();
-        arguments->volatility = xlvolatility.AsDouble();
+        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure();
+        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure();
+        arguments->resetDate = QlXlfOper(xlresetDate).AsDate();
+        arguments->exercise = EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate());
+        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure();
 
         arguments->validate();
         performanceEngine->calculate();

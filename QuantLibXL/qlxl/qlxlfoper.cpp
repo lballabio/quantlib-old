@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2002 Ferdinando Ametrano
+ Copyright (C) 2002, 2003 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -117,7 +117,7 @@ QuantLib::Option::Type QlXlfOper::AsOptionType() const {
     return type;
 }
 
-Handle<QuantLib::BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
+RelinkableHandle<QuantLib::BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
     const Date& referenceDate) const {
 
 
@@ -127,9 +127,14 @@ Handle<QuantLib::BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
     if (rowNo==1 && colNo==1) {
         // constant vol
         double vol = range(0,0).AsDouble();
-        return Handle<QuantLib::BlackVolTermStructure>(new
+        Handle<QuantLib::BlackVolTermStructure> result(new
             VolTermStructures::BlackConstantVol(referenceDate,
             vol));
+//        VolTermStructures::LocalConstantVol result2(result);
+        return result;
+//        return Handle<QuantLib::BlackVolTermStructure>(new
+//            VolTermStructures::BlackConstantVol(referenceDate,
+//            vol));
     } else if (rowNo==2 && colNo>=1) {
         // time dependent vol
         std::vector<Date> dates(colNo);
@@ -138,11 +143,15 @@ Handle<QuantLib::BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
             dates[j] = QlXlfOper(range(0, j)).AsDate();
             vols[j] = range(1, j).AsDouble();
         }
-        return Handle<QuantLib::BlackVolTermStructure>(new
+        Handle<QuantLib::BlackVolTermStructure> result(new
             VolTermStructures::BlackVarianceCurve<LinearInterpolation<
             std::vector<double>::const_iterator,
 			std::vector<double>::const_iterator> >(
             referenceDate, dates, vols));
+//        VolTermStructures::LocalVarianceCurve<LinearInterpolation<
+//            std::vector<double>::const_iterator,
+//			std::vector<double>::const_iterator> > result2(result);
+        return result;
     } else if (rowNo>2 && colNo>=1) {
         // time/strike dependent vol
         std::vector<Date> dates(colNo-1);
@@ -173,7 +182,7 @@ Handle<QuantLib::BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
 
 
 // -- begin -- Can anybody check this part?
-Handle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
+RelinkableHandle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
     const Date& referenceDate) const {
 
     // Should we add today to the interface of AsTermStructure ?
