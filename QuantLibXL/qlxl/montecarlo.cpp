@@ -21,6 +21,8 @@
 #include <qlxl/qlxlfoper.hpp>
 #include <ql/MonteCarlo/montecarlomodel.hpp>
 #include <ql/MonteCarlo/getcovariance.hpp>
+#include <ql/RandomNumbers/haltonrsg.hpp>
+#include <ql/RandomNumbers/faurersg.hpp>
 #include <boost/shared_ptr.hpp>
 
 extern "C"
@@ -44,11 +46,16 @@ extern "C"
         int generatorType = xlgeneratorType.AsInt();
         unsigned long mcSeed = xlseed.AsInt();
 
-        PseudoRandom::ursg_type rsg(dimension, mcSeed);
-        LowDiscrepancy::ursg_type ldsg(dimension, mcSeed);
+        // PseudoRandom::ursg_type rsg(dimension, mcSeed);
+        GenericPseudoRandom<MersenneTwisterUniformRng,
+            InverseCumulativeNormal>::ursg_type rsg(dimension, mcSeed);
+        // LowDiscrepancy::ursg_type ldsg(dimension, mcSeed);
+        GenericLowDiscrepancy<SobolRsg>::ursg_type  so1ldsg(dimension, mcSeed);
+        GenericLowDiscrepancy<HaltonRsg>::ursg_type halldsg(dimension, mcSeed);
+        GenericLowDiscrepancy<FaureRsg>::ursg_type  fauldsg(dimension);
+        GenericLowDiscrepancy<SobolRsg>::ursg_type  so2ldsg(dimension, mcSeed, true);
 
-
-        Matrix result(dimension, samples);
+        Matrix result(samples, dimension);
         Array sample;
         for (Size j=0; j<samples; j++) {
             switch (generatorType) {
@@ -56,18 +63,27 @@ extern "C"
                 sample = rsg.nextSequence().value;
                 break;
             case 2:
-                sample = ldsg.nextSequence().value;
+                sample = so1ldsg.nextSequence().value;
+                break;
+            case 3:
+                sample = halldsg.nextSequence().value;
+                break;
+            case 4:
+                sample = fauldsg.nextSequence().value;
+                break;
+            case 5:
+                sample = so2ldsg.nextSequence().value;
                 break;
             default:
                 QL_FAIL("Unknown generator");
             }
 
             for (Size i=0; i<dimension; i++) {
-                result[i][j] = sample[i];
+                result[j][i] = sample[i];
             }
         }
 
-        return XlfOper(dimension, samples, result.begin());
+        return XlfOper(samples, dimension, result.begin());
 
         EXCEL_END;
     }
@@ -89,13 +105,28 @@ extern "C"
         int generatorType = xlgeneratorType.AsInt();
         unsigned long mcSeed = xlseed.AsInt();
 
-        PseudoRandom::ursg_type rsg(dimension, mcSeed);
-        LowDiscrepancy::ursg_type ldsg(dimension);
+        // PseudoRandom::ursg_type rsg(dimension, mcSeed);
+        // PseudoRandom::rsg_type grsg(rsg);
+        GenericPseudoRandom<MersenneTwisterUniformRng,
+            InverseCumulativeNormal>::ursg_type rsg(dimension, mcSeed);
+        GenericPseudoRandom<MersenneTwisterUniformRng,
+            InverseCumulativeNormal>::rsg_type grsg(rsg);
+        // LowDiscrepancy::ursg_type ldsg(dimension, mcSeed);
+        // LowDiscrepancy::rsg_type gldsg(ldsg);
+        GenericLowDiscrepancy<SobolRsg>::ursg_type so1ldsg(dimension, mcSeed);
+        GenericLowDiscrepancy<SobolRsg>::rsg_type gso1ldsg(so1ldsg);
 
-        PseudoRandom::rsg_type grsg(rsg);
-        LowDiscrepancy::rsg_type gldsg(ldsg);
+        GenericLowDiscrepancy<HaltonRsg>::ursg_type halldsg(dimension, mcSeed);
+        GenericLowDiscrepancy<HaltonRsg>::rsg_type ghalldsg(halldsg);
 
-        Matrix result(dimension, samples);
+        GenericLowDiscrepancy<FaureRsg>::ursg_type  fauldsg(dimension);
+        GenericLowDiscrepancy<FaureRsg>::rsg_type gfauldsg(fauldsg);
+
+        GenericLowDiscrepancy<SobolRsg>::ursg_type so2ldsg(dimension, mcSeed, true);
+        GenericLowDiscrepancy<SobolRsg>::rsg_type gso2ldsg(so2ldsg);
+
+
+        Matrix result(samples, dimension);
         Array sample;
         for (Size j=0; j<samples; j++) {
             switch (generatorType) {
@@ -103,18 +134,27 @@ extern "C"
                 sample = grsg.nextSequence().value;
                 break;
             case 2:
-                sample = gldsg.nextSequence().value;
+                sample = gso1ldsg.nextSequence().value;
+                break;
+            case 3:
+                sample = ghalldsg.nextSequence().value;
+                break;
+            case 4:
+                sample = gfauldsg.nextSequence().value;
+                break;
+            case 5:
+                sample = gso2ldsg.nextSequence().value;
                 break;
             default:
                 QL_FAIL("Unknown generator");
             }
 
             for (Size i=0; i<dimension; i++) {
-                result[i][j] = sample[i];
+                result[j][i] = sample[i];
             }
         }
 
-        return XlfOper(dimension, samples, result.begin());
+        return XlfOper(samples, dimension, result.begin());
 
         EXCEL_END;
     }

@@ -181,8 +181,8 @@ extern "C" {
             XlfArgDesc dimension("dimension",
                 "is the dimensionality of the Monte Carlo simulation");
             XlfArgDesc generatorType("random number generator type",
-                "1 for pseudo-random (Mersenne Twister), "
-                "2 for quasi-random (Jäckel-Sobol)");
+                "1 Mersenne Twister, 2 Jäckel-Sobol, 3 Halton, 4 Faure, "
+                "5 unit-Sobol");
 
 
 
@@ -689,7 +689,7 @@ extern "C" {
             XlfFuncDesc XLWversion(
                 "xlXLWversion",
                 "qlXLWVersion",
-                "QuantLib version string",
+                "XLW version string",
                 "QuantLibXL Utilities",
                 XlfFuncDesc::Volatile);
             XLWversion.Register();
@@ -698,7 +698,7 @@ extern "C" {
             XlfFuncDesc XLWhexversion(
                 "xlXLWhexversion",
                 "qlXLWHexVersion",
-                "QuantLib version number",
+                "XLW version number",
                 "QuantLibXL Utilities",
                 XlfFuncDesc::Volatile);
             XLWhexversion.Register();
@@ -707,7 +707,7 @@ extern "C" {
             XlfFuncDesc QLXLversion(
                 "xlQLXLversion",
                 "qlQLXLVersion",
-                "QuantLib version string",
+                "QuantLibXL version string",
                 "QuantLibXL Utilities",
                 XlfFuncDesc::Volatile);
             QLXLversion.Register();
@@ -716,7 +716,7 @@ extern "C" {
             XlfFuncDesc QLXLhexversion(
                 "xlQLXLhexversion",
                 "qlQLXLHexVersion",
-                "QuantLib version number",
+                "QuantLibXL version number",
                 "QuantLibXL Utilities",
                 XlfFuncDesc::Volatile);
             QLXLhexversion.Register();
