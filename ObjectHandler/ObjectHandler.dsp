@@ -160,7 +160,7 @@ LIB32=link.exe -lib
 # PROP Intermediate_Dir "build\vc6\ReleaseMTDLL"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
-# ADD CPP /nologo /MLd /W3 /GR /GX /O2 /I "." /I "$(LOG4CXX_DIR)/include" /D "NDEBUG" /D "WIN32" /D "_MBCS" /D "_LIB" /D "LOG4CXX_STATIC" /YX /FD /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "." /I "$(LOG4CXX_DIR)/include" /D "NDEBUG" /D "WIN32" /D "_MBCS" /D "_LIB" /D "LOG4CXX_STATIC" /YX /FD /c
 # ADD BASE RSC /l 0x809 /d "NDEBUG"
 # ADD RSC /l 0x809 /d "NDEBUG"
 BSC32=bscmake.exe
