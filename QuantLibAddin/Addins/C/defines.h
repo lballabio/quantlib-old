@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qlac_defines_h
-#define qlac_defines_h
+#ifndef qla_defines_h
+#define qla_defines_h
 
 #define SUCCESS 0
 #define FAIL 1

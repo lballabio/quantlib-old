@@ -15,6 +15,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#ifndef qla_calc_hpp
+#define qla_calc_hpp
+
 #include <com/sun/star/sheet/addin/XQL.hpp>
 #include <com/sun/star/sheet/XAddIn.hpp>
 #include <com/sun/star/lang/XServiceInfo.hpp>
@@ -82,3 +85,5 @@ public:
 #include <Addins/Calc/autogen.hpp>
 
 };
+
+#endif

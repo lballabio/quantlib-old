@@ -41,9 +41,11 @@ def generateAutoHeader(functionGroups):
     utils.logMessage('    generating file ' + fileName + '...')
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
+    fileHeader.write('#ifndef qla_calc_auto_hpp\n')
+    fileHeader.write('#define qla_calc_auto_hpp\n\n')
     for groupName in functionGroups.keys():
         fileHeader.write('#include <Addins/Calc/%s.hpp>\n' % groupName)
-    fileHeader.write('\n')
+    fileHeader.write('#endif\n\n')
     fileHeader.close()
 
 def generateHeader(fileHeader, function, suffix):
@@ -75,13 +77,16 @@ def generateHeaders(functionGroups):
         utils.logMessage('    generating file ' + fileName + '...')
         fileHeader = file(fileName, 'w')
         utils.printHeader(fileHeader)
+        fileHeader.write('#ifndef qla_calc_%s_hpp\n' % groupName)
+        fileHeader.write('#define qla_calc_%s_hpp\n\n' % groupName)
         for function in functionGroup[common.FUNCLIST]:
             returnTypeCalc = getReturnTypeCalc(function)
             fileHeader.write('    virtual %s SAL_CALL %s(\n'
                 % (returnTypeCalc, function[common.CODENAME]))
             generateHeader(fileHeader, function, ';')
             fileHeader.write('\n')
-    fileHeader.close()
+        fileHeader.write('#endif\n\n')
+        fileHeader.close()
 
 def generateFuncSource(fileFunc, function, bufBody):
     'generate source for given function'

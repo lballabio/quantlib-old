@@ -36,10 +36,12 @@
 //! version string for output lib name
 #define OBJHANDLER_LIB_VERSION "0_1_1"
 
-/* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
-   for example) also #define _MSC_VER
+#if defined(HAVE_CONFIG_H)     // Dynamically created by configure
+    #include <oh/config.hpp>
+/* Use BOOST_MSVC instead of _MSC_VER since some other vendors 
+   (Metrowerks, for example) also #define _MSC_VER
 */
-#ifdef BOOST_MSVC
+#elif defined BOOST_MSVC       // Microsoft Visual C++
 #  include <oh/autolink.hpp>
 #endif
 

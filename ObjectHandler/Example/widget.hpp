@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef widget_h
-#define widget_h
+#ifndef widget_hpp
+#define widget_hpp
 
 #include <string>
 

@@ -15,6 +15,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#ifndef qla_calc_defs_hpp
+#define qla_calc_defs_hpp
+
 #define CSS                    ::com::sun::star
 #define SEQ(c)                CSS::uno::Sequence< c >
 #define SEQSEQ(c)           CSS::uno::Sequence< CSS::uno::Sequence< c > >
@@ -26,3 +29,5 @@
 #define THROW_RTE            throw CSS::uno::RuntimeException()
 #define REF(c)                CSS::uno::Reference< c >
 #define ANY                    CSS::uno::Any
+
+#endif

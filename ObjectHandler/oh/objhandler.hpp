@@ -18,9 +18,6 @@
 #ifndef objhandler_hpp
 #define objhandler_hpp
 
-#if defined(HAVE_CONFIG_H)    // Dynamically created by configure
-    #include <oh/config.hpp>
-#endif
 #include <oh/objhandlerdefines.hpp>
 #include <oh/objecthandler.hpp>
 #include <oh/exception.hpp>

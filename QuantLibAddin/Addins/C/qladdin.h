@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qladdinc_h
-#define qladdinc_h
+#ifndef qladdin_h
+#define qladdin_h
 
 #include <Addins/C/defines.h>
 #include <Addins/C/varies.h>

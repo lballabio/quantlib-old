@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef interface_h
-#define interface_h
+#ifndef interface_hpp
+#define interface_hpp
 
 #include <objectwidget.hpp>
 

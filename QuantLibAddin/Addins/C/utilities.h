@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qlac_utilities_h
-#define qlac_utilities_h
+#ifndef qla_utilities_h
+#define qla_utilities_h
 
 const char *QL_LOGFILE(
     const char *logFileName);

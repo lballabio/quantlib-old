@@ -18,6 +18,22 @@
 #ifndef qladdindefines_h
 #define qladdindefines_h
 
+#include <boost/config.hpp>
+#include <boost/version.hpp>
+#if BOOST_VERSION < 103100
+    #error using an old version of Boost, please update.
+#endif
+
+#include <oh/objhandler.hpp>
+#if OBJHANDLER_HEX_VERSION < 0x000101f0
+    #error using an old version of ObjectHandler, please update.
+#endif
+
+#include <ql/quantlib.hpp>
+#if QL_HEX_VERSION < 0x000309f0
+    #error using an old version of QuantLib, please update.
+#endif
+
 //! version string
 #ifdef _DEBUG
     #define QLADDIN_VERSION "0.3.9-debug"
@@ -30,11 +46,12 @@
 //! version string for output lib name
 #define QLADDIN_LIB_VERSION "0_3_9"
 
-/* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
-   for example) also #define _MSC_VER
+#if defined(HAVE_CONFIG_H)     // Dynamically created by configure
+    #include <qla/config.hpp>
+/* Use BOOST_MSVC instead of _MSC_VER since some other vendors 
+   (Metrowerks, for example) also #define _MSC_VER
 */
-#include <boost/config.hpp>
-#ifdef BOOST_MSVC
+#elif defined BOOST_MSVC       // Microsoft Visual C++
 #  include <qla/autolink.hpp>
 #endif
 

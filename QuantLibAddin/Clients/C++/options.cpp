@@ -18,7 +18,6 @@
 // test program for options
 
 #include <qla/qladdin.hpp>
-#include <ql/quantlib.hpp>
 #include <iostream>
 
 using namespace std;

@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qlac_varies_hpp
-#define qlac_varies_hpp
+#ifndef qla_varies_hpp
+#define qla_varies_hpp
 
     void propertiesToVaries(const ObjHandler::Properties &properties, 
             VariesList *variesList);

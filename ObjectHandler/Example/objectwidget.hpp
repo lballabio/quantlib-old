@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef objectwidget_h
-#define objectwidget_h
+#ifndef objectwidget_hpp
+#define objectwidget_hpp
 
 #include <oh/objhandler.hpp>
 #include <widget.hpp>
