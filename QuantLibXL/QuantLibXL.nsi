@@ -65,7 +65,7 @@ SectionIn 1 2 3
     File /r "qlxl\*.hpp"
 
     SetOutPath $INSTDIR\xll\Win32\VisualStudio
-    File "xll\Win32\VisualStudio\qlxl.xll"
+    File "xll\Win32\VisualStudio\QuantLibXL.xll"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
