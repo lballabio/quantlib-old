@@ -23,7 +23,7 @@
 #define qlxl_h
 
 #include <xlw/xlw.h>
-#include <ql/qldefines.hpp>
+#include <ql/Functions/qlfunctions.hpp>
 #include <ql/errors.hpp>
 
 
@@ -32,13 +32,13 @@
 
 //! version string
 #ifdef QL_DEBUG
-    #define QLXL_VERSION "0.3.6-debug"
+    #define QLXL_VERSION "0.3.7-debug"
 #else
-    #define QLXL_VERSION "0.3.6"
+    #define QLXL_VERSION "0.3.7"
 #endif
 
 
-#if QL_HEX_VERSION < 0x000306a0
+#if QL_HEX_VERSION < 0x000307a0
     #error using an old version of QuantLib, please update
 #endif
 
