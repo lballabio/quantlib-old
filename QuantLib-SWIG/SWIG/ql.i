@@ -86,6 +86,7 @@
 %include calendars.i
 %include capfloor.i
 %include cashflows.i
+%include compoundforward.i
 %include currencies.i
 %include date.i
 %include daycounters.i
