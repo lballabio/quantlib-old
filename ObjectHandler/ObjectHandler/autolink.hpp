@@ -18,8 +18,6 @@
 #ifndef objecthandler_autolink_hpp
 #define objecthandler_autolink_hpp
 
-//#include <ObjectHandler/objecthandlerversion.hpp>
-
 // select toolset:
 #if (_MSC_VER < 1200)
 #  error "unsupported Microsoft compiler"

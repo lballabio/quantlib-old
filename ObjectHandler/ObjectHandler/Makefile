@@ -1,4 +1,4 @@
-target = ObjectHandler.a
+target = libObjectHandler.a
 
 sources := $(wildcard *.cpp)
 objects := $(patsubst %.cpp,%.o,$(sources))

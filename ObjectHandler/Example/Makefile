@@ -3,8 +3,8 @@ target = Example
 sources := $(wildcard *.cpp)
 objects := $(patsubst %.cpp,%.o,$(sources))
 includes = -I. -I..
-objects2 = 	../ObjectHandler/ObjectHandler.a
-sharedlibs = -lboost_regex
+libdirs = -L../ObjectHandler
+libs = -lObjectHandler -lboost_regex
 
 all : $(target)
 
@@ -15,4 +15,4 @@ $(objects) : %.o : %.cpp
 	g++ $(includes) -g -c -o $@ $<
 
 $(target) : $(objects) $(objects2)
-	g++ -g -O2 -o $@ $^ $(sharedlibs)
+	g++ -g -O2 -o $@ $^ $(libdirs) $(libs)
