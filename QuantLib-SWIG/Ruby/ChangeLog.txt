@@ -1,3 +1,15 @@
+2003-11-03 13:58  nando
+
+	* QuantLib.rb (1.20), setup.rb (1.52), test/QuantLibTestSuite.rb
+	(1.24), test/dates.rb (1.12), test/instruments.rb (1.9),
+	test/integrals.rb (1.2), test/marketelements.rb (1.8),
+	test/solvers1d.rb (1.9), test/termstructures.rb (1.16):
+	ferdinando@ametrano.net replaced by quantlib-dev@lists.sf.net
+
+2003-11-03 12:17  nando
+
+	* ChangeLog.txt (1.18): updated
+
 2003-11-01 13:20  lballabio
 
 	* setup.rb (1.51): [no log message]

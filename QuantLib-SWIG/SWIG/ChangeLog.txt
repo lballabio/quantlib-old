@@ -1,3 +1,25 @@
+2003-11-03 13:58  nando
+
+	* blackmodel.i (1.4), calendars.i (1.28), capfloor.i (1.5),
+	cashflows.i (1.14), common.i (1.22), compoundforward.i (1.3),
+	currencies.i (1.7), date.i (1.28), daycounters.i (1.21),
+	discountcurve.i (1.6), distributions.i (1.10), functions.i (1.8),
+	history.i (1.15), indexes.i (1.7), instruments.i (1.11),
+	integrals.i (1.2), interpolation.i (1.11), linearalgebra.i (1.15),
+	marketelements.i (1.12), montecarlo.i (1.13), null.i (1.9),
+	observer.i (1.14), old_pricers.i (1.8), old_volatility.i (1.5),
+	operators.i (1.11), optimizers.i (1.5), options.i (1.16),
+	piecewiseflatforward.i (1.13), ql.i (1.34), quantlib.i (1.7),
+	randomnumbers.i (1.19), scheduler.i (1.8), shortratemodels.i (1.2),
+	statistics.i (1.17), swap.i (1.12), swaption.i (1.4),
+	termstructures.i (1.14), timebasket.i (1.4), types.i (1.5),
+	vectors.i (1.6), volatilities.i (1.8): ferdinando@ametrano.net
+	replaced by quantlib-dev@lists.sf.net
+
+2003-11-03 12:18  nando
+
+	* ChangeLog.txt (1.15): updated
+
 2003-11-03 12:04  nando
 
 	* ChangeLog.txt (1.14): updated
