@@ -58,6 +58,15 @@ class DayCounter {
     }
 };
 
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("DayCounter=?") DayCounter_equal;
+%inline %{
+    bool DayCounter_equal(const DayCounter& d1, const DayCounter& d2) {
+        return d1 == d2;
+    }
+%}
+#endif
+
 namespace QuantLib {
 
     class Actual360 : public DayCounter {
@@ -84,15 +93,6 @@ namespace QuantLib {
     };
 
 }
-
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("DayCounter=?") DayCounter_equal;
-%inline %{
-    bool DayCounter_equal(const DayCounter& d1, const DayCounter& d2) {
-        return d1 == d2;
-    }
-%}
-#endif
 
 
 #endif

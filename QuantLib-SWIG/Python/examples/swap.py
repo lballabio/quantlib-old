@@ -16,7 +16,7 @@
 from QuantLib import *
 
 # global data
-calendar = Calendar('TARGET')
+calendar = TARGET()
 todaysDate = Date(6,11,2001);
 settlementDate = Date(8,11,2001);
 

@@ -17,7 +17,7 @@ require 'QuantLib'
 include QuantLib
 
 # global data
-calendar = Calendar.new('TARGET')
+calendar = TARGET.new
 todaysDate = Date.new(6,11,2001);
 settlementDate = Date.new(8,11,2001);
 

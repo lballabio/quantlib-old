@@ -90,7 +90,7 @@ end
 
 
 todaysDate = Date.new(15,2,2002)
-calendar = Calendar.new('TARGET')
+calendar = TARGET.new
 settlementDate = Date.new(19,2,2002);
 
 settlementDays = 2

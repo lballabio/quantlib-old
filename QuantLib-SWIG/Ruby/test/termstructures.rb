@@ -31,7 +31,7 @@ class TermStructureTest < Test::Unit::TestCase
     end
   end
   def setup
-    @calendar = Calendar.new('TARGET')
+    @calendar = TARGET.new
     @settlementDays = 2
     today = @calendar.adjust(Date::todaysDate)
     settlement = @calendar.advance(today,@settlementDays,'days')

@@ -80,7 +80,7 @@ def calibrate(model, helpers, l, name):
     print dblrule
 
 todaysDate = Date(15,2,2002)
-calendar = Calendar('TARGET')
+calendar = TARGET()
 settlementDate = Date(19,2,2002);
 
 settlementDays = 2

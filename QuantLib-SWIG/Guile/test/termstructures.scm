@@ -36,7 +36,7 @@
                        (20 5.89)
                        (30 5.96))))
       (let* ((real-today (Date-todays-date))
-             (calendar (new-Calendar "TARGET"))
+             (calendar (new-TARGET))
              (today (Calendar-adjust calendar real-today))
              (settlement (Calendar-advance calendar today
                                            settlement-days "days"))
@@ -69,7 +69,7 @@
     (cond ((equal? tag 'implied-obs)
            ; check implied term structure observability
            (let ((flag #f))
-             (let* ((calendar (new-Calendar "TARGET"))
+             (let* ((calendar (new-TARGET))
                     (today (TermStructureHandle-todays-date
                             term-structure))
                     (settlement (TermStructureHandle-reference-date

@@ -24,7 +24,7 @@ def raiseFlag():
 
 class TermStructureTest(unittest.TestCase):
     def setUp(self):
-        self.calendar = Calendar('TARGET')
+        self.calendar = TARGET()
         today = self.calendar.adjust(Date_todaysDate())
         self.settlementDays = 2
         settlement = self.calendar.advance(today,self.settlementDays,'days')

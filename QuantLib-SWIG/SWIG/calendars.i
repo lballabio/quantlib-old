@@ -24,31 +24,6 @@
 
 %{
 using QuantLib::Calendar;
-using QuantLib::Beijing;
-using QuantLib::Budapest;
-using QuantLib::Copenhagen;
-using QuantLib::Germany;
-using QuantLib::Helsinki;
-using QuantLib::HongKong;
-using QuantLib::Johannesburg;
-using QuantLib::JointCalendar;
-using QuantLib::Italy;
-using QuantLib::NullCalendar;
-using QuantLib::Oslo;
-using QuantLib::Riyadh;
-using QuantLib::Seoul;
-using QuantLib::Singapore;
-using QuantLib::Stockholm;
-using QuantLib::Sydney;
-using QuantLib::TARGET;
-using QuantLib::Taiwan;
-using QuantLib::Tokyo;
-using QuantLib::Toronto;
-using QuantLib::UnitedKingdom;
-using QuantLib::UnitedStates;
-using QuantLib::Warsaw;
-using QuantLib::Wellington;
-using QuantLib::Zurich;
 %}
 
 // typemap rolling conventions to corresponding strings
@@ -69,7 +44,7 @@ BusinessDayConvention bdconvFromString(std::string s) {
         return QuantLib::ModifiedPreceding;
     else if (s == "mer" ||s == "mendref" || s == "monthendreference")
         return QuantLib::MonthEndReference;
-    else 
+    else
         QL_FAIL("unknown business day convention");
 }
 
@@ -106,7 +81,7 @@ JointCalendarRule joinRuleFromString(std::string s) {
         return QuantLib::JoinHolidays;
     else if (s == "b" ||s == "businessdays" || s == "joinbusinessdays")
         return QuantLib::JoinBusinessDays;
-    else 
+    else
         QL_FAIL("unknown joint calendar rule");
 }
 
@@ -152,7 +127,7 @@ class Calendar {
     bool isEndOfMonth(const Date&);
     void addHoliday(const Date&);
     void removeHoliday(const Date&);
-    Date adjust(const Date& d, 
+    Date adjust(const Date& d,
                 BusinessDayConvention convention = QuantLib::Following,
                 const Date& origin = Date());
     Date advance(const Date& d, Integer n, TimeUnit unit,
@@ -160,77 +135,6 @@ class Calendar {
     Date advance(const Date& d, const Period& period,
                  BusinessDayConvention convention = QuantLib::Following);
     %extend {
-        Calendar(const std::string& name) {
-            std::string s = StringFormatter::toLowercase(name);
-            if (s == "target" || s == "euro" || s == "eur")
-                return new Calendar(TARGET());
-            else if (s == "unitedstates" || s == "us")
-                return new Calendar(UnitedStates(UnitedStates::Settlement));
-            else if (s == "usexchange" || s == "nyexchange" || s == "nyse")
-                return new Calendar(UnitedStates(UnitedStates::Exchange));
-            else if (s == "usbonds" || s == "usbond")
-                return new Calendar(
-                                UnitedStates(UnitedStates::GovernmentBond));
-            else if (s == "unitedkingdom" || s == "uk")
-                return new Calendar(UnitedKingdom(UnitedKingdom::Settlement));
-            else if (s == "ukexchange" || s == "londonexchange")
-                return new Calendar(UnitedKingdom(UnitedKingdom::Exchange));
-            else if (s == "ukmetals" || s == "londonmetals")
-                return new Calendar(UnitedKingdom(UnitedKingdom::Metals));
-            else if (s == "beijing")
-                return new Calendar(Beijing());
-            else if (s == "budapest")
-                return new Calendar(Budapest());
-            else if (s == "copenhagen")
-                return new Calendar(Copenhagen());
-            else if (s == "germany")
-                return new Calendar(Germany(Germany::Settlement));
-            else if (s == "germanyexchange")
-                return new Calendar(Germany(Germany::FrankfurtStockExchange));
-            else if (s == "germanyxetra" || s == "xetra")
-                return new Calendar(Germany(Germany::Xetra));
-            else if (s == "germanyeurex" || s == "eurex")
-                return new Calendar(Germany(Germany::Eurex));
-            else if (s == "helsinki")
-                return new Calendar(Helsinki());
-            else if (s == "hongkong")
-                return new Calendar(HongKong());
-            else if (s == "italy")
-                return new Calendar(Italy(Italy::Settlement));
-            else if (s == "italyexchange" || s == "milanexchange")
-                return new Calendar(Italy(Italy::Exchange));
-            else if (s == "johannesburg" || s == "jhb")
-                return new Calendar(Johannesburg());
-            else if (s == "oslo")
-                return new Calendar(Oslo());
-            else if (s == "riyadh")
-                return new Calendar(Riyadh());
-            else if (s == "seoul")
-                return new Calendar(Seoul());
-            else if (s == "singapore")
-                return new Calendar(Singapore());
-            else if (s == "stockholm")
-                return new Calendar(Stockholm());
-            else if (s == "sydney")
-                return new Calendar(Sydney());
-            else if (s == "taiwan")
-                return new Calendar(Taiwan());
-            else if (s == "tokyo")
-                return new Calendar(Tokyo());
-            else if (s == "toronto")
-                return new Calendar(Toronto());
-            else if (s == "warsaw")
-                return new Calendar(Warsaw());
-            else if (s == "wellington")
-                return new Calendar(Wellington());
-            else if (s == "zurich" || s == "zur")
-                return new Calendar(Zurich());
-            else if (s == "null")
-                return new Calendar(NullCalendar());
-            else
-                QL_FAIL("Unknown calendar: " + name);
-            QL_DUMMY_RETURN((Calendar*)(0));
-        }
         std::string __str__() {
             return self->name()+" calendar";
         }
@@ -256,17 +160,144 @@ class Calendar {
 %}
 #endif
 
+namespace QuantLib {
 
-class JointCalendar : public Calendar {
-  public:
-    JointCalendar(const Calendar&, const Calendar&,
-                  JointCalendarRule rule = QuantLib::JoinHolidays);
-    JointCalendar(const Calendar&, const Calendar&, const Calendar&,
-                  JointCalendarRule rule = QuantLib::JoinHolidays);
-    JointCalendar(const Calendar&, const Calendar&, 
-                  const Calendar&, const Calendar&,
-                  JointCalendarRule rule = QuantLib::JoinHolidays);
-};
+    class Beijing : public Calendar {
+      public:
+        Beijing();
+    };
+
+    class Budapest : public Calendar {
+      public:
+        Budapest();
+    };
+
+    class Copenhagen : public Calendar {
+      public:
+        Copenhagen();
+    };
+
+    class Germany : public Calendar {
+      public:
+        enum Market { Settlement, FrankfurtStockExchange, Xetra, Eurex };
+        Germany(Market m = FrankfurtStockExchange);
+    };
+
+    class Helsinki : public Calendar {
+      public:
+        Helsinki();
+    };
+
+    class HongKong : public Calendar {
+      public:
+        HongKong();
+    };
+
+    class Italy : public Calendar {
+      public:
+        enum Market { Settlement, Exchange };
+        Italy(Market m = Settlement);
+    };
+
+    class Johannesburg : public Calendar {
+      public:
+        Johannesburg();
+    };
+
+    class NullCalendar : public Calendar {
+      public:
+        NullCalendar();
+    };
+
+    class Oslo : public Calendar {
+      public:
+        Oslo();
+    };
+
+    class Riyadh : public Calendar {
+      public:
+        Riyadh();
+    };
+
+    class Seoul : public Calendar {
+      public:
+        Seoul();
+    };
+
+    class Singapore : public Calendar {
+      public:
+        Singapore();
+    };
+
+    class Stockholm : public Calendar {
+      public:
+        Stockholm();
+    };
+
+    class Sydney : public Calendar {
+      public:
+        Sydney();
+    };
+
+    class TARGET : public Calendar {
+      public:
+        TARGET();
+    };
+
+    class Taiwan : public Calendar {
+      public:
+        Taiwan();
+    };
+
+    class Tokyo : public Calendar {
+      public:
+        Tokyo();
+    };
+
+    class Toronto : public Calendar {
+      public:
+        Toronto();
+    };
+
+    class UnitedKingdom : public Calendar {
+      public:
+        enum Market { Settlement, Exchange, Metals };
+        UnitedKingdom(Market m = Settlement);
+    };
+
+    class UnitedStates : public Calendar {
+      public:
+        enum Market { Settlement, Exchange, GovernmentBond };
+        UnitedStates(Market m = Settlement);
+    };
+
+    class Warsaw : public Calendar {
+      public:
+        Warsaw();
+    };
+
+    class Wellington : public Calendar {
+      public:
+        Wellington();
+    };
+
+    class Zurich : public Calendar {
+      public:
+        Zurich();
+    };
+
+    class JointCalendar : public Calendar {
+      public:
+        JointCalendar(const Calendar&, const Calendar&,
+                      JointCalendarRule rule = QuantLib::JoinHolidays);
+        JointCalendar(const Calendar&, const Calendar&, const Calendar&,
+                      JointCalendarRule rule = QuantLib::JoinHolidays);
+        JointCalendar(const Calendar&, const Calendar&,
+                      const Calendar&, const Calendar&,
+                      JointCalendarRule rule = QuantLib::JoinHolidays);
+    };
+
+}
 
 
 #endif
