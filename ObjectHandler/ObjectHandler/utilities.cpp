@@ -20,7 +20,6 @@
 #include <sstream>
 #include <fstream>
 
-using namespace std;
 
 namespace ObjHandler {
 

@@ -26,8 +26,9 @@
 using namespace std;
 
 namespace ObjHandler {
+
     typedef boost::shared_ptr<boost::any> any_ptr;
-    typedef Property<string, any_ptr> ObjectProperty;
+    typedef Property<std::string, any_ptr> ObjectProperty;
     typedef vector<ObjectProperty> Properties;
 
     class Object {
