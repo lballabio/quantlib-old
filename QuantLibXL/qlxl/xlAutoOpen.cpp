@@ -171,8 +171,7 @@ extern "C"
 
 
         // Registers Risk Measures
-        XlfArgDesc percentile("percentile",
-            "is the confidence level");
+        XlfArgDesc percentile("percentile", "is the confidence level");
         XlfArgDesc targetReturn("target return",
             "is the target return at which you want to perform the analysis");
 

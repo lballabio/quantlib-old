@@ -182,7 +182,7 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlpotentialUpside(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = Functions::potentialUpside(xlpercentile.AsDouble(),
+        double result = Math::RiskMeasures().potentialUpside(xlpercentile.AsDouble(),
             xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
@@ -191,7 +191,7 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlvalueAtRisk(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = Functions::valueAtRisk(xlpercentile.AsDouble(),
+        double result = Math::RiskMeasures().valueAtRisk(xlpercentile.AsDouble(),
             xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
@@ -200,7 +200,7 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlexpectedShortfall(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = Functions::expectedShortfall(xlpercentile.AsDouble(),
+        double result = Math::RiskMeasures().expectedShortfall(xlpercentile.AsDouble(),
             xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
@@ -209,7 +209,7 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlshortfall(XlfOper xltarget,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = Functions::shortfall(xltarget.AsDouble(),
+        double result = Math::RiskMeasures().shortfall(xltarget.AsDouble(),
             xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
@@ -218,7 +218,7 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlaverageShortfall(XlfOper xltarget,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = Functions::averageShortfall(xltarget.AsDouble(),
+        double result = Math::RiskMeasures().averageShortfall(xltarget.AsDouble(),
             xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
