@@ -129,7 +129,7 @@ might escape me now. They all come with recent GNU/Linux
 distributions.</p>
 <p>To begin the build process from a CVS checkout, start with:</p>
 <pre>
-sh ./bootstrap
+sh ./autogen.sh
 </pre>
 <p>which will prepare the package for compilation. You can then use
 <em>./configure</em> and <em>make</em> in the usual way.</p>
