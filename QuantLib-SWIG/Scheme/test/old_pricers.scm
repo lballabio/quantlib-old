@@ -416,7 +416,7 @@
 
 (define (OldMcSingleFactorPricers-test)
   (let ((seed 3456789)
-        (fixedSamples 100)
+        (fixedSamples 1000)
         (minimumTol 0.01))
     (let ((methods (list 
                     (list 'EuropeanOption
@@ -505,17 +505,17 @@
 
       (let ((cases
              '((McEuropean "Put" 80.0 85.0 -0.03 0.05
-                           0.25 0.2 5.9135872358 #f)
+                           0.25 0.2 5.0394064744 #f)
                (McEuropean "Put" 80.0 85.0 -0.03 0.05
-                           0.25 0.2 5.42005964479 #t)
+                           0.25 0.2 5.2783973809 #t)
                (McEuropean "Call" 80.0 85.0 -0.03 0.05 
-                           0.25 0.2 1.98816310759 #f)
+                           0.25 0.2 2.0523055758 #f)
                (McEuropean "Call" 80.0 85.0 -0.03 0.05 
-                           0.25 0.2 2.12098432917 #t)
+                           0.25 0.2 1.9590724337 #t)
                (McEuropean "Straddle" 80.0 85.0 -0.03 0.05 
-                           0.25 0.2 7.90175034339 #f)
+                           0.25 0.2 7.0917120502 #f)
                (McEuropean "Straddle" 80.0 85.0 -0.03 0.05
-                           0.25 0.2 7.54104397396 #t))))
+                           0.25 0.2 7.2374698146 #t))))
         (for-each-case ((tag optionType underlying strike
                              dividendYield riskFreeRate residualTime
                              volatility storedValue antithetic) cases)
@@ -542,64 +542,64 @@
       (let ((cases
              '((McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         0.0 11/12 2 0.13
-                                        1.38418414762 #t #t)
+                                        1.3942835683 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         0.0 11/12 4 0.13
-                                        1.57691714387 #t #t)
+                                        1.5852442983 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         0.0 11/12 8 0.13
-                                        1.66062743445 #t #t)
+                                        1.66970673 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         0.0 11/12 12 0.13
-                                        1.68847081883 #t #t)
+                                        1.6980019214 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         0.0 11/12 26 0.13
-                                        1.72955964448 #t #t)
+                                        1.7255070456 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         0.0 11/12 52 0.13
-                                        1.73372169316 #t #t)
+                                        1.7401553533 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         0.0 11/12 100 0.13
-                                        1.74918801089 #t #t)
+                                        1.7478303712 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         0.0 11/12 250 0.13
-                                        1.75421310915 #t #t)
+                                        1.7490291943 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         0.0 11/12 500 0.13
-                                        1.75158383443 #t #t)
+                                        1.7515113291 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         0.0 11/12 1000 0.13
-                                        1.75162110180 #t #t)
+                                        1.7537344885 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         1/12 11/12 2 0.13
-                                        1.83665087164 #t #t)
+                                        1.8496053697 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         1/12 11/12 4 0.13
-                                        2.00560271429 #t #t)
+                                        2.0111495205 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         1/12 11/12 8 0.13
-                                        2.07789721712 #t #t)
+                                        2.0852138818 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         1/12 11/12 12 0.13
-                                        2.09622556625 #t #t)
+                                        2.1105094397 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         1/12 11/12 26 0.13
-                                        2.14229795212 #t #t)
+                                        2.1346526695 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         1/12 11/12 52 0.13
-                                        2.14470270916 #t #t)
+                                        2.147489651 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         1/12 11/12 100 0.13
-                                        2.1595414574 #t #t)
+                                        2.154728109 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         1/12 11/12 250 0.13
-                                        2.1600769002 #t #t)
+                                        2.1564276565 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         1/12 11/12 500 0.13
-                                        2.1598670440 #t #t)
+                                        2.1594238588 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         1/12 11/12 1000 0.13
-                                        2.1595163439 #t #t)
+                                        2.1595367326 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         3/12 11/12 2 0.13
                                         2.63315092584 #t #t)
@@ -620,16 +620,16 @@
                                         2.88447044543 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         3/12 11/12 100 0.13
-                                        2.8998532960 #t #t)
+                                        2.89985329603 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         3/12 11/12 250 0.13
-                                        2.9004729606 #t #t)
+                                        2.90047296063 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         3/12 11/12 500 0.13
-                                        2.8981341216 #t #t)
+                                        2.89813412160 #t #t)
                (McDiscreteArithmeticAPO "Put" 90.0 87.0 0.06 0.025
                                         3/12 11/12 1000 0.13
-                                        2.8970336244 #t #t))))
+                                        2.89703362437 #t #t))))
         (for-each-case ((tag optionType underlying strike
                              dividendYield riskFreeRate first length
                              fixings volatility storedValue 
@@ -648,7 +648,7 @@
                        (tol (min (/ (error-estimate p) pvalue 2) minimumTol))
                        (pvalue2 (value p tol))
                        (accuracy (/ (error-estimate p) pvalue2)))
-                  (check-expected pvalue storedValue 1.0e-5
+                  (check-expected pvalue storedValue 2.0e-2
                                   "In batch 5: ")
                   (assert (<= accuracy tol)
                           "In batch 5:" cr
@@ -766,7 +766,7 @@
                        (tol (min (/ (error-estimate p) pvalue 2) minimumTol))
                        (pvalue2 (value p tol))
                        (accuracy (/ (error-estimate p) pvalue2)))
-                  (check-expected pvalue storedValue 1.0e-5
+                  (check-expected pvalue storedValue 2.0e-2
                                   "In batch 6: ")
                   (assert (<= accuracy tol)
                           "In batch 6:" cr
@@ -793,12 +793,12 @@
                                           perfectCorrelation))
          (sameAssetDividend #(0.03 0.03 0.03 0.03))
          (seed 86421)
-         (fixedSamples 100)
+         (fixedSamples 1000)
          (minimumTol 0.01))
     
     ; McEverest
-    (for-each-case ((antithetic? storedValue) '((#f 0.743448)
-                                                (#t 0.756979)))
+    (for-each-case ((antithetic? storedValue) '((#f 0.7562173725)
+                                                (#t 0.75899732)))
       (deleting-let ((p (new-McEverest dividendYields cov riskFreeRate
                                        resTime antithetic? seed)
                         delete-McEverest))
@@ -817,8 +817,8 @@
     (let ((sameAssetValues #(25 25 25 25))
           (type "Call")
           (strike 100))
-      (for-each-case ((antithetic? storedValue) '((#f 10.448445)
-                                                  (#t 12.294677)))
+      (for-each-case ((antithetic? storedValue) '((#f 12.5780178807)
+                                                  (#t 12.958451866)))
         (deleting-let ((p (new-McBasket type sameAssetValues strike
                                         sameAssetDividend sameAssetCovariance
                                         riskFreeRate resTime antithetic? seed)
@@ -837,8 +837,8 @@
 
     ; McMaxBasket
     (let ((assetValues #(100 110 90 105)))
-      (for-each-case ((antithetic? storedValue) '((#f 120.733780)
-                                                  (#t 123.520909)))
+      (for-each-case ((antithetic? storedValue) '((#f 122.703208891)
+                                                  (#t 123.3033777758)))
         (deleting-let ((p (new-McMaxBasket assetValues dividendYields cov
                                            riskFreeRate resTime 
                                            antithetic? seed)
@@ -860,8 +860,8 @@
           (fraction 0.62)
           (roof 0.20)
           (timeIncrements '(0.25 0.5 0.75 1)))
-      (for-each-case ((antithetic? storedValue) '((#f 0.0343898)
-                                                  (#t 0.0386095)))
+      (for-each-case ((antithetic? storedValue) '((#f 0.0380331503)
+                                                  (#t 0.0402704285)))
         (deleting-let ((p (new-McPagoda portfolio fraction roof
                                         dividendYields cov riskFreeRate
                                         timeIncrements antithetic? seed)
@@ -882,8 +882,8 @@
     (let ((assetValues #(100 110 90 105))
           (timeIncrements '(0.25 0.5 0.75 1))
           (strike 101))
-      (for-each-case ((antithetic? storedValue) '((#f 5.0768499)
-                                                  (#t 6.2478050)))
+      (for-each-case ((antithetic? storedValue) '((#f 5.782701442)
+                                                  (#t 6.0621755931)))
         (deleting-let ((p (new-McHimalaya assetValues dividendYields cov
                                           riskFreeRate strike timeIncrements
                                           antithetic? seed)

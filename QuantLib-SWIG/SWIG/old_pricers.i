@@ -438,11 +438,11 @@ class McBasket {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McBasket(OptionType type, const std::vector<double>& underlying,
-             double strike,
-   		     const Array& dividendYield, const Matrix& covariance,
-		     Rate riskFreeRate, double residualTime,
-		     bool antitheticVariance, long seed = 0);
+    McBasket(OptionType type, const std::vector<double>& underlying, 
+             double strike, const Array& dividendYield, 
+             const Matrix& covariance, Rate riskFreeRate, 
+             double residualTime, bool antitheticVariance, 
+             long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;
     double valueWithSamples(Size samples) const;

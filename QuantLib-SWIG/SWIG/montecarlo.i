@@ -101,10 +101,11 @@ class Path {
 using QuantLib::MonteCarlo::GaussianPathGenerator_old;
 %}
 %template(SamplePath) Sample<Path>;
+%rename(GaussianPathGenerator) GaussianPathGenerator_old;
 class GaussianPathGenerator_old {
   public:
     GaussianPathGenerator_old(double drift, double variance,
-                          Time length, Size steps, long seed = 0);
+                              Time length, Size steps, long seed = 0);
 	Sample<Path> next() const;
 };
 
@@ -210,10 +211,19 @@ using QuantLib::MonteCarlo::GaussianMultiPathGenerator;
 %template(SampleMultiPath) Sample<MultiPath>;
 class GaussianMultiPathGenerator {
   public:
-    GaussianMultiPathGenerator(const Array& drifts,
-							   const Matrix& covariance,
-							   const std::vector<double>& timeDelays,
-							   long seed=0);
+    %extend {
+      GaussianMultiPathGenerator(const Array& drifts,
+                                 const Matrix& covariance,
+                                 const std::vector<double>& timeDelays,
+                                 long seed=0) {
+          return new GaussianMultiPathGenerator(drifts,
+                                                covariance,
+                                                QL::TimeGrid(
+                                                    timeDelays.begin(),
+                                                    timeDelays.end()),
+                                                seed);
+      }
+    }
 	Sample<MultiPath> next() const;
 };
 
