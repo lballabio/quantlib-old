@@ -40,6 +40,7 @@ using QuantLib::Calendars::Budapest;
 using QuantLib::Calendars::Oslo;
 using QuantLib::Calendars::Stockholm;
 using QuantLib::Calendars::Warsaw;
+using QuantLib::Calendars::NullCalendar;
 using QuantLib::Calendars::JointCalendar;
 %}
 
@@ -173,6 +174,8 @@ class Calendar {
                 return new Calendar(Stockholm());
             else if (s == "warsaw")
                 return new Calendar(Warsaw());
+            else if (s == "null")
+                return new Calendar(NullCalendar());
             else
                 throw Error("Unknown calendar: " + name);
             QL_DUMMY_RETURN((Calendar*)(0));

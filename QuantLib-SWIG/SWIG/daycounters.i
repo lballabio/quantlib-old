@@ -30,6 +30,7 @@ using QuantLib::DayCounters::Actual360;
 using QuantLib::DayCounters::Actual365;
 using QuantLib::DayCounters::Thirty360;
 using QuantLib::DayCounters::ActualActual;
+using QuantLib::DayCounters::SimpleDayCounter;
 %}
 
 class DayCounter {
@@ -67,6 +68,8 @@ class DayCounter {
             else if (s == "actacth" || s == "act/act(h)" 
                      || s == "act/act (ISDA)")
                 return new DayCounter(ActualActual(ActualActual::Historical));
+            else if (s == "simple")
+                return new DayCounter(SimpleDayCounter());
             else
                 throw Error("Unknown day counter: " + s);
             QL_DUMMY_RETURN((DayCounter*)(0));
