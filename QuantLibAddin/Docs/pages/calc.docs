@@ -15,11 +15,31 @@ mailing list.</p>
 
 <h2>Environment Variables</h2>
 
-<p>Once everything is installed correctly the following environment variables should be set:</p>
-<ul>
-<li><b>OFFICE_PROGRAM_PATH</b> - the location of the OOo program directory</li>
-<li><b>OFFICE_SDK_PATH</b> - the location of the OOo SDK</li>
-</ul>
+<p>After installing the above, please ensure that the following environment variables are set:</p>
+
+<pre>
+<b>variable:</b> OFFICE_PROGRAM_PATH
+<b>description:</b> location of OOo program directory
+<b>value on Linux:</b> /usr/lib/ooo-1.1/program
+<b>value on Windows:</b> C:\\Program Files\\OpenOffice.org1.1.3\\program
+
+<b>variable:</b> OFFICE_SDK_PATH
+<b>description:</b> location of OOo SDK
+<b>value on Linux:</b> /path/to/OpenOffice.org1.1_SDK
+<b>value on Windows:</b> C:\\path\\to\\OpenOffice.org1.1_SDK
+
+<b>variable:</b> PATH
+<b>description:</b> Must include location of OOo SDK bin directory
+<b>value on Linux:</b> /path/to/OpenOffice.org1.1_SDK/linux/bin
+<b>value on Windows:</b> C:\\path\\to\\OpenOffice.org1.1_SDK\\windows\\bin
+</pre>
+
+<p>On Linux, you might want to add the appropriate commands to the initialization file for your login shell, e.g:</p>
+<pre>
+export OFFICE_PROGRAM_PATH="/usr/lib/ooo-1.1/program"
+export OFFICE_SDK_PATH="/path/to/OpenOffice.org1.1_SDK"
+PATH=$PATH:$OFFICE_SDK_PATH/linux/bin
+</pre>
 
 <h2>Build</h2>
 
@@ -28,7 +48,7 @@ mailing list.</p>
 <li><b>idlc</b> - Run OOo utility <b>idlc</b> to compile the idl (interface definition language) file QuantLibAddin.idl into urd (UNO reflection data) file QuantLibAddin.urd.  The urd file comprises binary descriptions of the types in the Addin.</li>
 <li><b>regmerge</b> - Run OOo utility <b>regmerge</b> to merge the urd file into rdb (registry database) file QuantLibAddin.rdb.  The rdb is used by OOo at runtime to infer the functionality available in the Addin.</li>
 <li><b>cppumaker</b> - Run OOo utility <b>cppumaker</b> to generate the source code corresponding to the definitions in the rdb.</li>
-<li><b>compile</b> - Compile the Addin, including the source generated above, plus the function implementation source code supplied for the Addin.  The Addin is compiled into a shared library, i.e. <b>QuantLib.dll</b> (Windows) or <b>libQuantLibAddinCalc-0.3.9.so</b> (Linux).</li>
+<li><b>compile</b> - Compile the Addin, including the source generated above, plus the function implementation source code supplied for the Addin.  The Addin is compiled into a shared library, i.e. <b>QuantLibAddin.dll</b> (Windows) or <b>libQuantLibAddinCalc-0.3.9.so</b> (Linux).</li>
 <li><b>install</b> - Copy the Addin's shared library and registry database to the OOo program directory.</li>
 </ul>
 
@@ -83,8 +103,15 @@ CXX=/usr/local/gcc/3.2.2/bin/g++ \
 CPP=/usr/local/gcc/3.2.2/bin/cpp
 </pre>
 <p>And each application must be recompiled and installed.</p>
-<p>After recompiling and installing everything, but before launching OOo, please remember to run <tt>ldconfig</tt> (as root, no arguments) to refresh the linker cache so that OOo can find the new libraries.</p>
+
+<h2>Shared Libraries</h2>
+<p>At startup OOo loads the QuantLibAddin library, which in turn has a runtime dependency on the shared libraries for QuantLib and ObjectHandler.</p>
+<p>The QuantLibAddin Calc binary is always installed to the OOo program directory /usr/lib/ooo-1.1/program.  QuantLib and ObjectHandler are by default installed to /usr/local/lib, though you may choose to override this when configuring these applications.</p>
+<p>You need to configure your system to tell your program loader the location of all relevant shared libraries.  One way to accomplish this is to add the relevant paths to the file /etc/ld.so.conf, which tells the loader where to search for shared libraries.  After editing this file please remember to run <tt>ldconfig</tt> (as root, no arguments) to refresh the linker cache.</p>
+<p>For additional information on managing shared libraries, please consult the <a href="http://www.dwheeler.com/program-library/Program-Library-HOWTO/index.html">Program Library HOWTO</a>.</p>
+
 <h2>Notes</h2>
+
 <p>Additional detail relating to OOo Addins on Linux:</p>
 <ul>
 <li><b>OOo 1.1</b> is always compiled with gcc 3.2.2.  OOo ships with its own versions of certain C/C++ runtime libraries, these are installed to the OOo program directory and OOo loads these in preference to those installed on your system.  If your Calc Addin loads an incompatible runtime environment then OOo is likely to crash or malfunction.</li>
