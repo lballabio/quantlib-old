@@ -23,6 +23,7 @@
 namespace ObjHandler {
 
     std::ostream& operator<<(std::ostream& out, const any_ptr& a);
+    std::ostream& operator<<(std::ostream& out, const Properties &p);
 
 }
 

@@ -43,28 +43,19 @@ int main() {
 
         // high level interrogation
         OH_LOGMESSAGE("high level interrogation - after constructor");
-        Properties::const_iterator i;
-        for (i = f2Properties.begin(); i != f2Properties.end(); i++) {
-            ObjectProperty property = *i;
-            ostringstream s;
-            s << "property = " << property.name() << "\tvalue = " <<
-                property();
-            OH_LOGMESSAGE(s.str());
-        }
+
+        ostringstream s;
+        s << f2Properties;
+        OH_LOGMESSAGE(s.str());
 
         // update an object
         FOO_UPDATE("foo2", "ghi", 789);
 
         // high level interrogation
         OH_LOGMESSAGE("high level interrogation - after update");
-        for (i = f2Properties.begin();
-            i != f2Properties.end(); i++) {
-            ObjectProperty property = *i;
-            ostringstream s;
-            s << "property = " << property.name() << "\tvalue = " <<
-                property();
-            OH_LOGMESSAGE(s.str());
-        }
+        s.str("");
+        s << f2Properties;
+        OH_LOGMESSAGE(s.str());
 
         // low-level interrogation
         OH_LOGMESSAGE("low-level interrogation - after FOO_UPDATE");

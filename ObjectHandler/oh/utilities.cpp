@@ -23,6 +23,8 @@
 #include <oh/exception.hpp>
 #include <oh/logger.hpp>
 
+#include <iomanip>
+
 namespace ObjHandler {
 
     std::ostream& operator<<(std::ostream& out, const any_ptr& a) {
@@ -34,10 +36,36 @@ namespace ObjHandler {
             return out << boost::any_cast<double>(*a);
         else if (a->type() == typeid(std::string))
             return out << boost::any_cast<std::string>(*a);
-        else
+        else if (a->type() == typeid(std::vector<long>)) {
+            out << std::endl;
+            std::vector<long> v= boost::any_cast< std::vector<long> >(*a);
+            for (std::vector<long>::const_iterator i = v.begin();
+            i != v.end(); i++) {
+                out << *i << std::endl;
+            }
+            return out;       
+        } else if (a->type() == typeid(std::vector<double>)) {
+            out << std::endl;
+            std::vector<double> v= boost::any_cast< std::vector<double> >(*a);
+            for (std::vector<double>::const_iterator i = v.begin();
+            i != v.end(); i++) {
+                out << *i << std::endl;
+            }
+            return out;       
+        } else
             throw Exception("any_ptr << operator: unrecognized type");
-//            return out << "unrecognized type";
     }
 
+    std::ostream& operator<<(std::ostream& out, const Properties &p) {
+        out << std::endl;
+        Properties::const_iterator it;
+        for (it = p.begin(); it != p.end(); it++) {
+            ObjectProperty property = *it;
+            out << std::left << "property = " << std::setw(10) << property.name() <<
+                " value = " << property() << std::endl;
+        } 
+        return out;
+    }
+    
 }
 
