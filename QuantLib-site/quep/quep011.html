@@ -89,7 +89,7 @@ Eric Ehlers
 <li><b>copy constructor, assignment operator, destructor</b> are customized for the particulars of the derived class.</li>
 <li><b>member functions</b> call corresponding member functions of the underlying Client object.  The state of the Client object stored in the derived <tt>Object</tt> may change accordingly.</li>
 <li><b>high- and low-level interrogation</b> methods are supported appropriately for the derived class.</li>
-</ul> 
+</ul>
 <a name="tag_1_2_2"></a><h4>1.2.2 <a href="#tag_contents"><tt>Interface</tt></a></h4>
 <p>It may be convenient to contain all calls to the Object Handler in an interface layer, particularly where the Client application is a procedural environment such as a spreadsheet. Typically each function in the interface (e.g. each formula in a spreadsheet) invokes a constructor or member function of an <tt>Object</tt> class.</p>
 <p>The first parameter of each interface function is the <tt>Handle</tt> that the Object Handler will use to identify the object which is to be constructed / amended.  Wherever a function requires as an input a reference to an <tt>Object</tt>, the interface accepts a <tt>Handle</tt> which is used to retrieve from the Object Handler a reference to the corresponding <tt>Object</tt>.</p>
@@ -97,7 +97,13 @@ Eric Ehlers
 <a name="tag_1_2_3"></a><h4>1.2.3 <a href="#tag_contents"><tt>Application</tt></a></h4>
 <p>The Client application interacts with the Object Handler via the interface layer.</p>
 <a name="tag_2"></a><h2>2. <a href="#tag_contents">Implementation</a></h2>
-<p>Pseudocode is provided for the Object Handler and for an example Client application. A complete copy of the latest code can be downloaded from <a href="http://cvs.sourceforge.net/viewcvs.py/quantlib/ObjectHandler/">CVS</a>.</p>
+
+<p>Pseudocode is provided for the Object Handler and for an example Client
+application. A complete copy of the latest code can be checked out from the
+<a href="http://quantlib.org/cvs.shtml">QuantLib CVS</a> (module ObjectHandler),
+or browsed <a href="http://cvs.sourceforge.net/viewcvs.py/quantlib/ObjectHandler/">on
+line</a>.</p>
+
 <a name="tag_2_1"></a><h3>2.1 <a href="#tag_contents">Object Handler</a></h3>
 <a name="tag_2_1_1"></a><h4>2.1.1 <a href="#tag_contents"><tt>Object</tt></a></h4>
 <h4>object.hpp</h4>
@@ -140,7 +146,7 @@ Properties Object::getProperties() {
 
 typedef boost::shared_ptr&lt;Object&gt; obj_ptr;
 typedef map&lt;string, obj_ptr&gt; ObjectList;
-                                                                                                                             
+
 class ObjectHandler {
 public:
    <font class="comment">// constructor, destructor</font>
@@ -154,10 +160,10 @@ private:
 <pre>
 #include "objecthandler.hpp"
 
-void ObjectHandler::storeObject(const Handle &amp;handle, const obj_ptr &amp;object) {    
+void ObjectHandler::storeObject(const Handle &amp;handle, const obj_ptr &amp;object) {
    objectList_[handle] = object;
 }
-                                                                                                                             
+
 obj_ptr ObjectHandler::retrieveObject(const Handle &amp;handle) {
    return objectList_[handle];
 }
@@ -204,15 +210,15 @@ ObjectWidget::ObjectWidget(const string &amp;s, const int &amp;i) {
    ObjectProperty propString(PROPERTY_STR, anyString);
    ObjectProperty propInt(PROPERTY_INT, anyInt);
    properties_.push_back(propString);
-   properties_.push_back(propInt);    
+   properties_.push_back(propInt);
 }
-                                                                                
+
 <font class="comment">// wrapper for underlying member function</font>
 void ObjectWidget::update(const string &amp;s, const int &amp;i) {
    widget_-&gt;update(s, i);
    <font class="comment">// update Property vector</font>
    *properties_[IDX_STR]() = s;
-   *properties_[IDX_INT]() = i;    
+   *properties_[IDX_INT]() = i;
 }
 
 boost::shared_ptr&lt;void&gt; ObjectWidget::getReference() const {
@@ -227,7 +233,7 @@ Properties WIDGET_MAKE(
    const Handle &amp;handle,
    const string &amp;s,
    const int &amp;i);
-                                                                                
+
 Properties WIDGET_UPDATE(
    const Handle &amp;handle,
    const string &amp;s,
@@ -243,7 +249,7 @@ Properties WIDGET_MAKE(
    objectHandler.storeObject(handle, object);
    return object-&gt;getProperties();
 }
-                                                                                                 
+
 Properties WIDGET_UPDATE(
    const string &amp;handle,
    const string &amp;s,
@@ -263,11 +269,11 @@ Properties WIDGET_UPDATE(
 int main() {
     try {
         cout &lt;&lt; "hi" &lt;&lt; endl;
-                                                                                                 
+
         <font class="comment">// construct some objects and store them in the object handler</font>
         WIDGET_MAKE("widget1", "abc", 123);
         WIDGET_MAKE("widget2", "def", 456);
-                                                                                                 
+
         <font class="comment">// high level interrogation</font>
         cout &lt;&lt; endl &lt;&lt; "high level interrogation - after constructor" &lt;&lt; endl;
         <font class="comment">// get object from handler and retrieve its properties -
@@ -282,10 +288,10 @@ int main() {
             cout &lt;&lt; "property = " &lt;&lt; property.name() &lt;&lt; "\tvalue = " &lt;&lt;
                 AnyToString(any) &lt;&lt; endl;
         }
-                                                                                                 
+
         <font class="comment">// update an object</font>
         WIDGET_UPDATE("widget2", "ghi", 789);
-        
+
         <font class="comment">// low-level interrogation</font>
         cout &lt;&lt; endl &lt;&lt; "low-level interrogation - after WIDGET_UPDATE" &lt;&lt; endl;
         boost::shared_ptr&lt;ObjectWidget&gt; const objectWidget =
@@ -296,13 +302,13 @@ int main() {
             (objectWidget-&gt;getReference());
         cout &lt;&lt; "value of property s() of underlying widget = "
             &lt;&lt; widget-&gt;s() &lt;&lt; endl;
-                                                                                                 
+
         cout &lt;&lt; endl &lt;&lt; "bye" &lt;&lt; endl;
     } catch (const exception &amp;e) {
         cout &lt;&lt; "Error: " &lt;&lt; e.what() &lt;&lt; endl;
         return 1;
     }
-}        
+}
 </pre>
 <div class="center"><img src="quep011b.png"></div>
 <a name="tag_3"></a><h2>3. <a href="#tag_contents">Notes</a></h2>
