@@ -44,7 +44,7 @@ def generateFuncDef(function, body, fileFunc):
     paramName = firstParam[common.NAME]
     paramClass = firstParam[common.CLASS]
     paramList = utils.generateParamList(function[common.PARAMS], 
-        suffix = ' ', skipFirst = True, convertVec = 'std::vector< %s >',
+        skipFirst = True, convertVec = 'std::vector< %s >',
         convertMat = 'std::vector < std::vector < %s > >')
     fileFunc.write(body %
         (paramClass, paramClass, paramName, 

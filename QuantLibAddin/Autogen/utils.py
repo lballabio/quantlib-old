@@ -8,7 +8,7 @@ import os
 # constants
 
 CR_FILENAME = 'copyright.txt'
-HEADER = '%s this file generated automatically by %s\n\
+HEADER = '%s this file generated automatically by %s on %s\n\
 %s editing this file manually is not recommended\n\n'
 
 def generateParamList(
@@ -19,16 +19,14 @@ def generateParamList(
         convertString = '',     # string conversion e.g. 'char *' to 'string'
         convertLong = '',       # conversion of parms with datatype 'long'
         reformatString = '',    # string reformatting e.g. 'std::string(%s)'
-        suffix = '\n',          # text to append to each parameter
         dereference = '',       # dereference character e.g. * or &
         skipFirst = False,      # skip first parm in list (for object handles)
         xlateNames = False,     # translate parm name using its CLASS attribute
         arrayCount = False,     # C code requires array size separate from array
         appendTensor = False,   # append tensor rank (vector/matrix) to variable names
         convertVec = '',        # string to convert datatype to appropriate vector
-        replaceVec = '',        # replace vector datatype with given string
         convertMat = '',        # string to convert datatype to appropriate matrix
-        replaceMat = '',        # replace matrix datatype with given string 
+        replaceTensor = '',     # replace vector/matrix datatype with given string 
         convertString2 = ''):   # replace matrix datatype with given string 
     'reformat params into a list of parameters using given format options'
     ret = ''
@@ -60,24 +58,24 @@ def generateParamList(
             if param[common.TENSOR] == common.VECTOR:
                 if arrayCount == True:
                     ret += indent * 4 * ' ' + prefix + 'long ' + \
-                        paramName + 'Size,' + suffix
+                        paramName + 'Size,' + '\n'
                     type += '* '
                 elif convertVec != '':
                     type = convertVec % type
                 else:
-                    type = replaceVec + ' '
+                    type = replaceTensor + ' '
                     deref = ''
             elif param[common.TENSOR] == common.MATRIX:
                 if arrayCount == True:
                     ret += indent * 4 * ' ' + prefix + 'long ' + \
-                        paramName + 'Rows,' + suffix + \
+                        paramName + 'Rows,' + '\n' + \
                         indent * 4 * ' ' + prefix + 'long ' + \
-                        paramName + 'Cols,' + suffix
+                        paramName + 'Cols,' + '\n'
                     type += '** '
                 elif convertMat != '':
                     type = convertMat % type
                 else:
-                    type = replaceMat + ' '
+                    type = replaceTensor + ' '
                     deref = ''
         if reformatString and param[common.TYPE] == common.STRING \
                 and param[common.TENSOR] == common.SCALAR:
@@ -88,12 +86,12 @@ def generateParamList(
             full = type + deref + paramName
         ret += '%s%s%s' % (indent * 4 * ' ', prefix, full)
         if i < len(paramList):
-            ret += ',' + suffix
+            ret += ',\n'
     return ret
 
 def printTimeStamp(fileBuf, commentChar):
-    fileBuf.write(HEADER
-        % (commentChar, os.path.basename(sys.argv[0]), commentChar))
+    fileBuf.write(HEADER % (commentChar, 
+        os.path.basename(sys.argv[0]), time.asctime(), commentChar))
     
 def printHeader(fileBuf):
     fileBuf.write(common.CR_BUFFER)

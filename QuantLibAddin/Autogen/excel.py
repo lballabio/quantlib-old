@@ -50,7 +50,9 @@ def generateFuncRegister(fileHeader, function):
     if numParamsTotal > MAXPARAM:
         raise ValueError, MAXPARMERR % MAXPARAM
     paramStr = generateParamString(function)
-    paramList = utils.generateParamList(params, suffix = '')
+    paramList = ''
+    for param in params:
+        paramList += param[common.NAME] + ','
     if function[common.CTOR]:
         paramList = "handle," + paramList
     if len(paramList) >= MAXLEN:
@@ -112,9 +114,8 @@ def generateConversions(paramList):
 
 def generateFuncDef(fileFunc, function, bufBody):
     'generate source code for body of given function'
-    paramList1 = utils.generateParamList(function[common.PARAMS],
-        2, True, '', 'char', dereference = '*', replaceVec = 'LPXLOPER',
-        replaceMat = 'LPXLOPER')
+    paramList1 = utils.generateParamList(function[common.PARAMS], 2,
+        True, '', 'char', dereference = '*', replaceTensor = 'LPXLOPER')
     paramList2 = utils.generateParamList(function[common.PARAMS],
         3, reformatString = 'std::string(%s)', dereference = '*', appendTensor = True)
     if function[common.CTOR]:

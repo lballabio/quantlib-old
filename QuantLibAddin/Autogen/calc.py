@@ -108,7 +108,7 @@ def generateFuncSource(fileFunc, function, bufBody):
         handle = '\n' + 12 * ' ' + 'OUStringToString(handle),'
     else:
         handle = ''
-    paramList = utils.generateParamList(function[common.PARAMS], 3, False, 
+    paramList = utils.generateParamList(function[common.PARAMS], 3,
         reformatString = 'OUStringToString(%s)', appendTensor = True)
     conversions = generateConversions(function[common.PARAMS])
     fileFunc.write(bufBody % (
