@@ -1,17 +1,14 @@
 <?xml version="1.0"?>
 <!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
 <functionlist>
+<headeronly>false</headeronly>
 
 <function>
-<name>QL_BLACKSHOLES</name>
+<name>QL_BLACKSCHOLES</name>
 <codename>qlBlackscholes</codename>
 <description>construct and return a handle to a Black Scholes object</description>
+<handle>true</handle>
 <parameters>
-	<param>
-		<name>handleBlackScholes</name>
-		<type>handle</type>
-		<desc>handle of the Black Scholes object</desc>
-	</param>
 	<param>
 		<name>dividendYield</name>
 		<type>double</type>
@@ -43,22 +40,14 @@
 		<desc>settlement date</desc>
 	</param>
 </parameters>
-<returnvalue>
-	<type>property vector</type>
-	<desc>list of properties describing the Black Scholes object</desc>
-</returnvalue>
 </function>
 
 <function>
 <name>QL_OPTION</name>
 <codename>qlOption</codename>
 <description>construct and return a handle to an Option object</description>
+<handle>true</handle>
 <parameters>
-	<param>
-		<name>handleOption</name>
-		<type>handle</type>
-		<desc>handle of the Option object</desc>
-	</param>
 	<param>
 		<name>handleStochastic</name>
 		<type>string</type>
@@ -90,19 +79,16 @@
 		<desc>settlement date</desc>
 	</param>
 </parameters>
-<returnvalue>
-	<type>property vector</type>
-	<desc>list of properties describing the Option object</desc>
-</returnvalue>
 </function>
 
 <function>
 <name>QL_OPTION_SETENGINE</name>
 <codename>qlOptionSetEngine</codename>
 <description>change the pricing engine of an existing Option object</description>
+<handle>false</handle>
 <parameters>
 	<param>
-		<name>handleOption</name>
+		<name>handle</name>
 		<type>string</type>
 		<desc>handle of the Option object</desc>
 	</param>
@@ -117,10 +103,6 @@
 		<desc>time steps</desc>
 	</param>
 </parameters>
-<returnvalue>
-	<type>property vector</type>
-	<desc>list of properties describing the Option object</desc>
-</returnvalue>
 </function>
 
 </functionlist>

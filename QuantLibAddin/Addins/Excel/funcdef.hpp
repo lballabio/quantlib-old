@@ -15,15 +15,23 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+// this file generated automatically by autogen.py on Sat Dec 11 14:06:01 2004
+// editing this file manually is not recommended
+
 #define NUM_FUNCS 5
 #define NUM_ATTS 6
 
 static LPSTR func[NUM_FUNCS][NUM_ATTS] = {
-	// utils
-	{" qlQuery",			" RC",		" QL_QUERY",			" ", " 1", " QuantLib"},
-	{" qlLogfile",			" RC",		" QL_LOGFILE",			" ", " 1", " QuantLib"},
+	// functions
+	{ " qlQuery",           " RC",       " QL_QUERY", 
+		" handleObject", " 1", " QuantLib"},
+	{ " qlLogfile",         " RC",       " QL_LOGFILE", 
+		" logFileName", " 1", " QuantLib"},
 	// options
-	{" qlBlackscholes",		" REEEENN#"," QL_BLACKSCHOLES",		" ", " 1", " QuantLib"},
-	{" qlOption",			" RCCENNN#"," QL_OPTION",			" ", " 1", " QuantLib"},
-	{" qlOptionSetEngine",	" RCCN",	" QL_OPTION_SETENGINE",	" ", " 1", " QuantLib"},
+	{ " qlBlackscholes",    " REEEENN#", " QL_BLACKSCHOLES", 
+		" dividendYield,riskFreeRate,volatility,underlying,todaysDate,settlementDate", " 1", " QuantLib"},
+	{ " qlOption",          " RCCENNN#", " QL_OPTION", 
+		" handleStochastic,type,strike,timeSteps,exerciseDate,settlementDate", " 1", " QuantLib"},
+	{ " qlOptionSetEngine", " RCCN",     " QL_OPTION_SETENGINE", 
+		" handle,engineName,timeSteps", " 1", " QuantLib"},
 };

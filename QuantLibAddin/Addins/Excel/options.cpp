@@ -15,11 +15,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+// this file generated automatically by autogen.py on Sat Dec 11 14:06:01 2004
+// editing this file manually is not recommended
+
 #include <QuantLibAddin/qladdin.hpp>
 #include <Addins/Excel/utilities.hpp>
-#include <string>
-#include <sstream>
-
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
@@ -33,8 +33,12 @@ LPXLOPER qlBlackscholes(
 	try {
 		std::string handle = getCaller();
 		Properties properties = QL_BLACKSCHOLES(handle,
-			*dividendYield, *riskFreeRate, *volatility, *underlying,
-			*todaysDate, *settlementDate);
+			*dividendYield,
+			*riskFreeRate,
+			*volatility,
+			*underlying,
+			*todaysDate,
+			*settlementDate);
 		static XLOPER xRet;
 		setValues(&xRet, properties, handle);
 		return &xRet;
@@ -54,12 +58,16 @@ LPXLOPER qlOption(
 	try {
 		std::string handle = getCaller();
 		Properties properties = QL_OPTION(handle,
-			std::string(handleStochastic), std::string(type),
-			*strike, *timeSteps, *exerciseDate, *settlementDate);
+			std::string(handleStochastic),
+			std::string(type),
+			*strike,
+			*timeSteps,
+			*exerciseDate,
+			*settlementDate);
 		static XLOPER xRet;
 		setValues(&xRet, properties, handle);
 		return &xRet;
-	} catch(const exception &e) {
+	} catch (const exception &e) {
 		QL_LOGMESSAGE(std::string("ERROR: QL_OPTION: ") + e.what());
 		return 0;
 	}
@@ -70,14 +78,16 @@ LPXLOPER qlOptionSetEngine(
 		char *engineName,
 		long *timeSteps) {
 	try {
-
-		Properties properties = QL_OPTION_SETENGINE(std::string(handle),
-			std::string(engineName), *timeSteps);
+		Properties properties = QL_OPTION_SETENGINE(
+			std::string(handle),
+			std::string(engineName),
+			*timeSteps);
 		static XLOPER xRet;
 		setValues(&xRet, properties, handle);
 		return &xRet;
-	} catch(const exception &e) {
+	} catch (const exception &e) {
 		QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_SETENGINE: ") + e.what());
 		return 0;
 	}
 }
+

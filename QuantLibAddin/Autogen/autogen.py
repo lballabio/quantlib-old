@@ -4,9 +4,9 @@ import common
 import utils
 import parse
 import excel
-import pprint
+#import pprint
 
 utils.init()
-functionLists = parse.getFunctionLists()
-pprint.pprint(functionLists)
-excel.generate(functionLists)
+functionDefs = parse.getFunctionDefs()
+#pprint.pprint(functionDefs)
+excel.generate(functionDefs)

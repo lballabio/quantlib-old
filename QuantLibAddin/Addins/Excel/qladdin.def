@@ -1,9 +1,13 @@
+; this file generated automatically by autogen.py on Sat Dec 11 14:06:01 2004
+; editing this file manually is not recommended
+
 LIBRARY QUANTLIBADDIN
 
 EXPORTS
 	xlAutoOpen
+	xlAutoFree
 
-;	utils
+;	functions
 
 	qlQuery
 	qlLogfile
@@ -13,3 +17,4 @@ EXPORTS
 	qlBlackscholes
 	qlOption
 	qlOptionSetEngine
+

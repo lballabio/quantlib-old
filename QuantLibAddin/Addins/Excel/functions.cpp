@@ -27,9 +27,9 @@ LPXLOPER qlQuery(char *handleObject) {
 		Properties properties = QL_QUERY(std::string(handleObject));
 		static XLOPER xRet;
 		xRet.xltype = xltypeMulti;
+		xRet.xltype |= xlbitDLLFree;
 		xRet.val.array.rows = properties.size();
 		xRet.val.array.columns = 2;
-		// FIXME - memory allocated below gets leaked - need to set xlbitXLFree ?
 		xRet.val.array.lparray = new XLOPER[2 * properties.size()];
 		if (!xRet.val.array.lparray)
 			throw Exception("error on call to new");

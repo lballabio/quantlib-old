@@ -34,3 +34,8 @@ int xlAutoOpen() {
 	Excel(xlFree, 0, 1, &xDll);
 	return 1;
 }
+
+void xlAutoFree(LPXLOPER px) {
+	if (px->xltype == xltypeMulti && px->val.array.lparray)
+		delete [] px->val.array.lparray;
+}

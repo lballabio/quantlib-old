@@ -39,9 +39,9 @@ void anyToXLOPER(const any_ptr &any, XLOPER &xOp) {
 
 void setValues(LPXLOPER xArray, Properties properties, const std::string &handle) {
 	xArray->xltype = xltypeMulti;
+	xArray->xltype |= xlbitDLLFree;
 	xArray->val.array.rows = 1;
 	xArray->val.array.columns = properties.size() + 1;
-	// FIXME - memory allocated below gets leaked - need to set xlbitXLFree ?
 	xArray->val.array.lparray = new XLOPER[properties.size() + 1]; 
 	if (!xArray->val.array.lparray)
 		throw("setValues: error on call to new");

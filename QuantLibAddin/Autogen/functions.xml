@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
 <!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
 <functionlist>
+<headeronly>true</headeronly>
 
 <function>
 <name>QL_QUERY</name>
 <codename>qlQuery</codename>
 <description>retrieve the properties of a given object</description>
+<handle>false</handle>
 <parameters>
 	<param>
 		<name>handleObject</name>
@@ -13,16 +15,13 @@
 		<desc>handle of object to be queried</desc>
 	</param>
 </parameters>
-<returnvalue>
-	<type>property vector</type>
-	<desc>list of properties describing the object</desc>
-</returnvalue>
 </function>
 
 <function>
 <name>QL_LOGFILE</name>
 <codename>qlLogfile</codename>
 <description>begin logging to named file</description>
+<handle>false</handle>
 <parameters>
 	<param>
 		<name>logFileName</name>
@@ -30,26 +29,6 @@
 		<desc>path and name of log file</desc>
 	</param>
 </parameters>
-<returnvalue>
-	<type>string</type>
-	<desc>path and name of log file</desc>
-</returnvalue>
-</function>
-
-<function>
-<name>QL_LOGMESSAGE</name>
-<codename>qlLogmessage</codename>
-<description>write message to logfile</description>
-<parameters>
-	<param>
-		<name>msg</name>
-		<type>string</type>
-		<desc>string to be logged</desc>
-	</param>
-</parameters>
-<returnvalue>
-	<type>void</type>
-</returnvalue>
 </function>
 
 </functionlist>
