@@ -1,0 +1,189 @@
+<html>
+  <head>
+    <title>QuEP 10: Separation of concerns in RelinkableHandle</title>
+    <link rel="stylesheet" href="../styles/quantlib.css" 
+      type="text/css">
+  </head>
+  <body>
+    <h1>QuEP 10: Separation of concerns in RelinkableHandle</h1>
+    
+    <div class="center">Luigi Ballabio</div>
+    
+    <h2>Abstract</h2>
+    
+    <p>The <tt>RelinkableHandle</tt> class reimplements a number of 
+      functionalities which are already present in the <tt>Handle</tt>
+      and <tt>Observable</tt> classes.</p>
+    
+    <p>A reimplementation of the former is presented which takes
+      advantage of code reuse while achieving separation of concerns.</p>
+    
+    <h2>Current implementation</h2>
+    
+    <p>The purpose of the <tt>RelinkableHandle</tt> class is to provide
+      a shared point of access to a <tt>Handle</tt>. Should the latter be 
+      replaced, all the clients of the <tt>RelinkableHandle</tt> would be
+      aware of the change and would start accessing the new <tt>Handle</tt>.
+      Its current implementation can be sketched as follows:</p>
+    
+    <pre>
+template &lt;class Type&gt;
+class RelinkableHandle {
+  public:
+    // constructor, copy constructor, assignment operator, destructor
+    ...
+    // relinking functionality
+    void linkTo(const Handle&lt;Type&gt;&amp; h);
+    // handle functionality
+    Type* operator-&gt;() const;
+    bool isNull() const;
+    // observable functionality - note that it does not inherit from Observable
+    void registerObserver(Observer*);
+    void unregisterObserver(Observer*);
+  private:
+    Handle&lt;Type&gt;** ptr_;
+    int* n_;
+    class InnerObserver : public Observable,
+                          public Observer {
+      public:
+        // Observer interface
+        void update() { notifyObservers(); }
+    };
+    InnerObserver* observer_;
+};
+    </pre>
+
+    <p>A number of issues are present in this design, namely:</p>
+    <ul>
+      <li>The point of access to the <tt>Handle</tt> should be shared 
+        among the copies of <tt>RelinkableHandle</tt>; hence the 
+        <tt>Handle**</tt> data member;</li>
+      <li>Reference counting is implemented in order to keep the 
+        <tt>Handle</tt> alive as long as the last <tt>RelinkableHandle</tt> 
+        copy is; hence the <tt>int*</tt> data member;</li>
+      <li>Observability must be shared as well, i.e., an <tt>Observer</tt>
+        which registered with a <tt>RelinkableHandle</tt> should be notified
+        of relinking occurring in any copy of the latter; this is the reason
+        why the <tt>RelinkableHandle</tt> class does not inherit from 
+        <tt>Observable</tt>---which would only provide per-instance 
+        observability. Instead, <tt>RelinkableHandle</tt> shares a copy of
+        an inner <tt>Observable</tt> class; hence the <tt>InnerObserver*</tt>
+        data member.</li>
+    </ul>
+    <p>Also, all these issues force <tt>RelinkableHandle</tt> to implement the 
+    appropriate copy semantics and to perform the appropriate clean-up
+    upon destruction.</p>
+
+    <h3>Disadvantages:</h3>
+    
+    <ul>
+      <li>The reference-counted sharing implementation is already implemented
+        in <tt>Handle</tt> itself and is unnecessarily duplicated here. Should 
+        the <tt>Handle</tt> implementation change, <tt>RelinkableHandle</tt>
+        should be modified accordingly. Moreover, should <tt>Handle</tt> be 
+        replaced in the future by another shared pointer implementation such 
+        as <tt>boost::shared_ptr</tt> or any other class in a future C++ 
+        standard, its implementation could not be easily replicated into 
+        <tt>RelinkableHandle</tt>. As a matter of fact, it should not.</li>
+      <li>The implementation of <a href="quep008.html">QuEP 8</a> would
+        clash with the fact that <tt>RelinkableHandle</tt> is not an
+        <tt>Observable</tt> and as such cannot be stored by the registered
+        <tt>Observer</tt>s. At most, its inner observer class could be wrapped
+        in a <tt>Handle</tt> and passed to the <tt>Observer</tt>; however,
+        we should either make <tt>Observer</tt> aware of the existence of 
+        <tt>RelinkableHandle</tt> and provide it with an overloaded 
+        <tt>registerWith</tt> method---which would introduce unnecessary
+        coupling between the two classes---or provide <tt>RelinkableHandle</tt>
+        with an automatic conversion to its inner observer handle---which 
+        does not make a lot of sense. Moreover, there would exist the 
+        possibility that a stored <tt>Handle</tt> to the inner observer
+        could outlive its <tt>RelinkableHandle</tt>. The possibility was
+        too scary for me to analyze its consequences.</li>
+    </ul>
+    
+    <h2>Proposed implementation</h2>
+    
+    <p>The <tt>Handle</tt> implementation of reference-counted shared-body
+      semantics can be reused by adding another layer of indirection between
+      <tt>RelinkableHandle</tt> and its underlying shared instance. Namely,
+      a class would be introduced which encapsulates the concept of shared
+      and relinkable access to a <tt>Handle</tt> as follows:</p>
+
+    <pre>
+template &lt;class T&gt;
+class Link : public Observable, public Observer {
+  public:
+    Link(const Handle&lt;T&gt;&amp; h = Handle&lt;T&gt;())
+    : link_(h) {
+        if (!link_.isNull())
+            registerWith(link_);
+    }
+    // the default copy semantics and destructor are fine
+    // as soon as Observer's copy semantics is fixed as in QuEP 8
+    void linkTo(const Handle&lt;T&gt;&amp; h) {
+        unregisterWith(link_);
+        link_ = h;
+        if (!link_.isNull())
+            registerWith(link_);
+        notifyObservers();
+    }
+    const Handle&lt;T&gt;&amp; currentLink() const { return link_; }
+    void update() { notifyObservers(); }
+  private:
+    Handle&lt;T&gt; link_;
+};
+    </pre>
+    
+    <p>This would allow <tt>RelinkableHandle</tt> to be defined as:</p>
+    
+    <pre>
+template &lt;class T&gt;
+class RelinkableHandle : public Handle&lt;Link&lt;T&gt; &gt; { ... };
+    </pre>
+
+    <p>Inheriting from <tt>Handle&lt;Link&gt;</tt> already solves our
+      problems. Namely, <tt>RelinkableHandle</tt> now inherits the
+      correct copy semantics and clean-up. Also, it can be automatically
+      and meaningfully converted to a <tt>Handle&lt;Observer&gt;</tt> and
+      transparently stored into <tt>Observer</tt> without modifying the
+      latter. Finally, it can be made to work with another shared
+      pointer implementation simply by replacing <tt>Handle</tt> with
+      the latter in <tt>Link</tt> and in the inheritance declaration.</p>
+
+    <p>The reason why we actually inherit from <tt>Handle&lt;Link&gt;</tt>
+      instead of using a simple <tt>typedef</tt> is that inheritance allows
+      us to made the new <tt>RelinkableHandle</tt> backward-compatible and
+      define a few syntactic shortcuts. The new class simply acts as an
+      adapter to its base class and can be sketched as follows:</p>
+
+    <pre>
+template &lt;class T&gt;
+class RelinkableHandle : public Handle&lt;Link&lt;T&gt; &gt; {
+  public:
+    RelinkableHandle(const Handle&lt;T&gt;&amp; h = Handle&lt;T&gt;())
+    : Handle&lt;Link&lt;T&gt; &gt;(new Link(h)) {}
+    // relinking functionality forwarded to Link
+    void linkTo(const Handle&lt;Type&gt;&amp; h) { (**this).linkTo(h); }
+    // operator-&gt; is forwarded to the Handle&lt;T&gt; rather than to Link
+    Handle&lt;T&gt;&amp; operator-&gt;() const { return (**this).currentLink(); }
+    // isNull checks the Handle&lt;T&gt; rather than itself
+    bool isNull() const { return (**this).currentLink().isNull(); }
+};    
+    </pre>
+
+    <h2>Conclusion</h2>
+    
+    <p>An implementation of <tt>RelinkableHandle</tt> was proposed which
+      leverages functionalities already implemented in the QuantLib library.
+      The resulting design is simpler and more easily adaptable to future 
+      changes.</p>
+      
+    
+    <h2>Feedback</h2>
+    
+    <p>Feedback on the above proposal should be posted to the <a href=
+        "mailto:quantlib-users@lists.sourceforge.net">QuantLib users</a>
+      mailing list.</p>
+  </body>
+</html>
+
