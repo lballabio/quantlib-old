@@ -43,7 +43,7 @@ CFG=AddinCalc - Win32 Debug
 # PROP Intermediate_Dir "Release"
 # PROP Cmd_Line "WINDOWS SUPPORT PENDING"
 # PROP Rebuild_Opt "/a"
-# PROP Target_File "Addin.lib"
+# PROP Target_File "QuantLibAddin.lib"
 # PROP Bsc_Name ""
 # PROP Target_Dir ""
 
@@ -64,7 +64,7 @@ CFG=AddinCalc - Win32 Debug
 # PROP Intermediate_Dir "Debug"
 # PROP Cmd_Line "WINDOWS SUPPORT PENDING"
 # PROP Rebuild_Opt "/a"
-# PROP Target_File "Addin.lib"
+# PROP Target_File "QuantLibAddin.lib"
 # PROP Bsc_Name ""
 # PROP Target_Dir ""
 

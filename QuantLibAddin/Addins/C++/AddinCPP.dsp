@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\AddinCPP-vc6-mt-s-0_3_8.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-s-0_3_8.lib"
 
 !ELSEIF  "$(CFG)" == "AddinCPP - Win32 Debug"
 
@@ -68,7 +68,7 @@ LIB32=link.exe -lib
 # PROP Intermediate_Dir "build\Debug"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
-# ADD CPP /nologo /W3 /Gm /GR /GX /ZI /Od /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD CPP /nologo /MTd /W3 /Gm /GR /GX /ZI /Od /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
 # ADD BASE RSC /l 0x809 /d "_DEBUG"
 # ADD RSC /l 0x809 /d "_DEBUG"
 BSC32=bscmake.exe
@@ -76,7 +76,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\AddinCPP-vc6-sgd-0_3_8.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-sgd-0_3_8.lib"
 
 !ELSEIF  "$(CFG)" == "AddinCPP - Win32 Release MTDLL"
 
@@ -99,7 +99,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"lib\AddinCPP.lib"
-# ADD LIB32 /nologo /out:"lib\AddinCPP-vc6-mt-0_3_8.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-0_3_8.lib"
 
 !ELSEIF  "$(CFG)" == "AddinCPP - Win32 Debug MTDLL"
 
@@ -122,7 +122,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"lib\AddinCPP_d.lib"
-# ADD LIB32 /nologo /out:"lib\AddinCPP-vc6-mt-gd-0_3_8.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-gd-0_3_8.lib"
 
 !ELSEIF  "$(CFG)" == "AddinCPP - Win32 Release SingleThread"
 
@@ -133,8 +133,8 @@ LIB32=link.exe -lib
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "build\ReleaseSingleThread"
-# PROP Intermediate_Dir "build\ReleaseSingleThread"
+# PROP Output_Dir "build\ReleaseST"
+# PROP Intermediate_Dir "build\ReleaseST"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GR /GX /O2 /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
 # ADD CPP /nologo /W3 /GR /GX /O2 /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
@@ -145,7 +145,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"lib\AddinCPP.lib"
-# ADD LIB32 /nologo /out:"lib\AddinCPP-vc6-s-0_3_8.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-s-0_3_8.lib"
 
 !ELSEIF  "$(CFG)" == "AddinCPP - Win32 Debug SingleThread"
 
@@ -156,8 +156,8 @@ LIB32=link.exe -lib
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "build\DebugSingleThread"
-# PROP Intermediate_Dir "build\DebugSingleThread"
+# PROP Output_Dir "build\DebugST"
+# PROP Intermediate_Dir "build\DebugST"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GR /GX /ZI /Od /I "C:\Program Files\QuantLib" /I "C:\boost_1_31_0" /I "../.." /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
 # ADD CPP /nologo /W3 /Gm /GR /GX /ZI /Od /I "C:\Program Files\QuantLib" /I "C:\boost_1_31_0" /I "../.." /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
@@ -168,7 +168,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"lib\AddinCPP_d.lib"
-# ADD LIB32 /nologo /out:"lib\AddinCPP-vc6-sgd-0_3_8.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-sgd-0_3_8.lib"
 
 !ENDIF 
 
