@@ -33,7 +33,7 @@
 <li><a class="navlink" href="docs.shtml">Documentation</a></li>
 
 <li><a class="navlink" href=
-"http://www.gnacademy.org/twiki/bin/view/Quantlib">QuantLib Wiki</a></li>
+"http://wiki.quantlib.org">QuantLib Wiki</a></li>
 
 <li><a class="navlink" href="license.shtml">License</a></li>
 

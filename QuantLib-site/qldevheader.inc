@@ -22,7 +22,7 @@
 <li><a class="navlink" href="cvs.shtml">CVS</a></li>
 
 <li><a class="navlink" href=
-"http://www.gnacademy.org/twiki/bin/view/Quantlib">QuantLib Wiki</a></li>
+"http://wiki.quantlib.org">QuantLib Wiki</a></li>
 
 <li><a class="navlink" href=
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bugs</a></li>
