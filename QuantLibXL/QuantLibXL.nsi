@@ -46,9 +46,9 @@ SectionIn 1 2 3
     File "README.txt"
     File "TODO.txt"
 
-    SetOutPath $INSTDIR\xll\Win32\VisualStudio
+    SetOutPath $INSTDIR\xll
     File "xll\QuantLibXL-vc*-mt-s-${VER_NUMBER2}.xll"
-#    SetOutPath $INSTDIR\xll\Win32\Borland
+#    SetOutPath $INSTDIR\xll
 #    File "xll\QuantLibXL-bcb-mt-s-${VER_NUMBER2}.xll"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
@@ -109,6 +109,7 @@ SectionIn 1 2
      File /r "Workbooks\Binomial.xls"
      File /r "Workbooks\BlackScholes.xls"
      File /r "Workbooks\blackvol.xls"
+     File /r "Workbooks\calendars.xls"
      File /r "Workbooks\Cholesky.xls"
      File /r "Workbooks\CorrelationMatrix.xls"
      File /r "Workbooks\Covariance.xls"
