@@ -228,6 +228,19 @@ directory without the CVSROOT exporting/setting. For example:</p>
 cvs update
 </pre>
 
+<p>If you are behind a firewall ask your sysadmin to open the
+cvspserver port (2401) for outgoing connection from your machine to
+cvs.quantlib.org<br>
+If he refuses to allow an outgoing connection from one well defined
+machine (yours) to one well defined remote server on one specific
+port he is taking security to a pointless level that merely impedes
+the users' work flow, impairs the functionality of the network, and
+doesn't provide any extra security unless your sysadmin believes
+his network to be infested with backdoor trojans that might try to
+phone home on the port used by the CVS protocol, in which case he
+should be busy disinfecting the workstations rather than trying to
+stop them opening outgoing connections.</p>
+
 <br>
 <h3>Developer CVS Access via SSH</h3>
 
@@ -261,6 +274,11 @@ cvs update
 cvs commit -m "comments for this commit"
 cvs add myfile.c
 </pre>
+
+<p>If you are behind a firewall you need to open the shh port (22)
+for outgoing connection from your machine to quantlib.org,
+shell.sf.net, and upload.sf.net (the latter just in case you plan
+to help the QuantLib release process).</p>
 
 <p><strong>Note for C++ Unix users</strong>: if you use CVS, you
 will need some GNU tools that usually only developers use, and
