@@ -55,10 +55,8 @@
         (let ((engine-type (car engine-type)))
           (cond ((string=? engine-type "analytic") 
                  (new-AnalyticEuropeanEngine))
-                ((string=? engine-type "jr") 
-                 (new-BinomialEuropeanEngine "jr" 800))
-                ((string=? engine-type "crr") 
-                 (new-BinomialEuropeanEngine "crr" 800))))))
+                ((member engine-type '("jr""crr" "eqp" "trigeorgis"))
+                 (new-BinomialEuropeanEngine engine-type 800))))))
   (define (make-flat-curve forward)
     (deleting-let* ((today (Date-todays-date) delete-Date)
                     (calendar (new-Calendar "TARGET") delete-Calendar)
@@ -234,46 +232,54 @@
              (for-each-combination ((type '("Call" "Put" "Straddle"))
                                     (strike '(50 100 150))
                                     (ex-days '(365)))
-               (deleting-let* ((option-1 (make-option type underlying strike 
-                                                      div-curve rf-curve 
-                                                      ex-days vol-curve)
-                                         delete-Instrument)
-                               (option-2 (make-option type underlying strike 
-                                                      div-curve rf-curve 
-                                                      ex-days vol-curve 
-                                                      "jr")
-                                         delete-Instrument)
-                               (option-3 (make-option type underlying strike 
-                                                      div-curve rf-curve 
-                                                      ex-days vol-curve 
-                                                      "crr")
-                                         delete-Instrument))
-                 (for-each-combination ((u '(100))
-                                        (q '(0.0 0.05))
-                                        (r '(0.01 0.05 0.15))
-                                        (v '(0.11 0.5 1.2)))
+               (let ((engines '("jr""crr" "eqp" "trigeorgis")))
+                 (deleting-let* ((ref-option (make-option type 
+                                                          underlying strike 
+                                                          div-curve rf-curve 
+                                                          ex-days vol-curve)
+                                             delete-Instrument)
+                                 (options '()
+                                          (lambda (l)
+                                            (for-each (lambda (x)
+                                                        (delete-Instrument 
+                                                         (cdr x)))
+                                                      l))))
+                   (for-each (lambda (e)
+                               (set! options (cons
+                                              (cons e
+                                                    (make-option type 
+                                                                 underlying 
+                                                                 strike 
+                                                                 div-curve 
+                                                                 rf-curve 
+                                                                 ex-days 
+                                                                 vol-curve 
+                                                                 e))
+                                              options)))
+                             engines)
+                   (for-each-combination ((u '(100))
+                                          (q '(0.0 0.05))
+                                          (r '(0.01 0.05 0.15))
+                                          (v '(0.11 0.5 1.2)))
 
                    (SimpleMarketElement-value-set! underlying u)
                    (SimpleMarketElement-value-set! volatility v)
                    (SimpleMarketElement-value-set! q-rate q)
                    (SimpleMarketElement-value-set! r-rate r)
 
-                   (let ((value-1 (Instrument-NPV option-1))
-                         (value-2 (Instrument-NPV option-2))
-                         (value-3 (Instrument-NPV option-3)))
-                     (assert-equal value-1 value-2 (* u tolerance)
-                                   "Option parameters: "
-                                   type ", " u ", " strike ", " q ", "
-                                   r ", " ex-days ", " v cr
-                                   "    analytic value: " value-1 cr
-                                   "    binomial (JR):  " value-2 cr)
-                     (assert-equal value-1 value-3 (* u tolerance)
-                                   "Option parameters: "
-                                   type ", " u ", " strike ", " q ", "
-                                   r ", " ex-days ", " v cr
-                                   "    analytic value: " value-1 cr
-                                   "    binomial (CRR): " value-3 cr
-                                   ))))))))))
+                   (let ((ref-value (Instrument-NPV ref-option)))
+                     (for-each
+                      (lambda (entry)
+                        (assert-equal ref-value (Instrument-NPV (cdr entry))
+                                      (* u tolerance)
+                                      "Option parameters: "
+                                      type ", " u ", " strike ", " q ", "
+                                      r ", " ex-days ", " v cr
+                                      "    analytic value: " 
+                                      ref-value cr
+                                      "    binomial (" (car entry) "):  " 
+                                      (Instrument-NPV (cdr entry)) cr))
+                      options)))))))))))
 
 (define (European-option-Greek-test)
   (European-option-test 'greek))

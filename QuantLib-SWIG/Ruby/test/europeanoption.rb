@@ -44,10 +44,8 @@ class EuropeanOptionTest < Test::Unit::TestCase
     case engineType
       when 'analytic'
         engine = AnalyticEuropeanEngine.new
-      when 'jr'
-        engine = BinomialEuropeanEngine.new('jr',800)
-      when 'crr'
-        engine = BinomialEuropeanEngine.new('crr',800)
+      when 'jr', 'crr', 'eqp', 'trigeorgis'
+        engine = BinomialEuropeanEngine.new(engineType,800)
     end
     VanillaOption.new(type,MarketElementHandle.new(underlying),strike,
                       divCurve,rfCurve, EuropeanExercise.new(exDate),
@@ -285,6 +283,8 @@ class EuropeanOptionTest < Test::Unit::TestCase
         test_data.push [under,qRate,rRate,vol]
     }}}}
 
+    engines = ['jr', 'crr', 'eqp', 'trigeorgis']
+
     underlying = SimpleMarketElement.new(0.0)
     volatility = SimpleMarketElement.new(0.0)
     volCurve = makeFlatVolatility(volatility)
@@ -295,12 +295,13 @@ class EuropeanOptionTest < Test::Unit::TestCase
         
     test_options.each do |type,strike,exDate|
 
-      opt1 = makeOption(type,underlying,strike,
-                        divCurve,rfCurve,exDate,volCurve)
-      opt2 = makeOption(type,underlying,strike,
-                        divCurve,rfCurve,exDate,volCurve,'jr')
-      opt3 = makeOption(type,underlying,strike,
-                        divCurve,rfCurve,exDate,volCurve,'crr')
+      refOption = makeOption(type,underlying,strike,
+                             divCurve,rfCurve,exDate,volCurve)
+      options = {}
+      engines.each { |e|
+        options[e] = makeOption(type,underlying,strike,
+                                divCurve,rfCurve,exDate,volCurve,e)
+      }
 
       test_data.each do |u,q,r,v|
         
@@ -309,25 +310,17 @@ class EuropeanOptionTest < Test::Unit::TestCase
         qRate.value = q
         rRate.value = r
 
-        unless (opt1.NPV-opt2.NPV).abs/u <= tolerance
-          flunk(<<-MESSAGE
+        options.each do |e,option|
+          unless (refOption.NPV-option.NPV).abs/u <= tolerance
+            flunk(<<-MESSAGE
                       
     Option details: #{type} #{u} #{strike} #{q} #{r} #{exDate} #{v}
-        analytic value: #{opt1.NPV}
-        binomial (JR):  #{opt2.NPV}
+        analytic value: #{refOption.NPV}
+        binomial (#{e}):  #{option.NPV}
 
-                MESSAGE
-                )
-        end
-        unless (opt1.NPV-opt3.NPV).abs/u <= tolerance
-          flunk(<<-MESSAGE
-                      
-    Option details: #{type} #{u} #{strike} #{q} #{r} #{exDate} #{v}
-        analytic value: #{opt1.NPV}
-        binomial (CRR): #{opt3.NPV}
-
-                MESSAGE
-                )
+                  MESSAGE
+                  )
+          end
         end
       end
     end

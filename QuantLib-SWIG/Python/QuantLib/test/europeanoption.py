@@ -30,10 +30,9 @@ def EuropeanOption(type,underlying,strike,divCurve,rfCurve,
                    exDate,volCurve,engineType='analytic'):
     if engineType == 'analytic':
         engine = AnalyticEuropeanEngine()
-    elif engineType == 'jr':
-        engine = BinomialEuropeanEngine('jr',800)
-    elif engineType == 'crr':
-        engine = BinomialEuropeanEngine('crr',800)
+    elif engineType == 'jr' or engineType == 'crr' or \
+         engineType == 'eqp' or engineType == 'trigeorgis':
+        engine = BinomialEuropeanEngine(engineType,800)
     return VanillaOption(type,MarketElementHandle(underlying),strike,
                          divCurve,rfCurve,EuropeanExercise(exDate),
                          volCurve,engine)
@@ -255,6 +254,8 @@ Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s
                      for rRate in [0.01, 0.05, 0.15]
                      for vol in [0.11, 0.5, 1.2]]
 
+        engines = ['jr', 'crr', 'eqp', 'trigeorgis']
+
         underlying = SimpleMarketElement(0.0)
         volatility = SimpleMarketElement(0.0)
         volCurve = flatVolatility(volatility)
@@ -264,12 +265,13 @@ Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s
         rfCurve = flatCurve(rRate)
         
         for (type,strike,exDate) in test_options:
-            opt1 = EuropeanOption(type,underlying,strike,
-                                  divCurve,rfCurve,exDate,volCurve)
-            opt2 = EuropeanOption(type,underlying,strike,
-                                  divCurve,rfCurve,exDate,volCurve,'jr')
-            opt3 = EuropeanOption(type,underlying,strike,
-                                  divCurve,rfCurve,exDate,volCurve,'crr')
+            refOption = EuropeanOption(type,underlying,strike,
+                                       divCurve,rfCurve,exDate,volCurve)
+            options = {}
+            for e in engines:
+                options[e] = EuropeanOption(type,underlying,strike,
+                                            divCurve,rfCurve,exDate,
+                                            volCurve,e)
 
             for (u,q,r,v) in test_data:
             
@@ -278,22 +280,14 @@ Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s
                 qRate.setValue(q)
                 rRate.setValue(r)
         
-                value = opt1.NPV()
-                value_jr = opt2.NPV()
-                value_crr = opt3.NPV()
-
-                if not relErr(value,value_jr,u) <= tolerance:
-                    self.fail("""
+                refValue = refOption.NPV()
+                for e in engines:
+                    value = options[e].NPV()
+                    if not relErr(refValue,value,u) <= tolerance:
+                        self.fail("""
 Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s %(v)f
     analytic:      %(value)9.5f
-    binomial (JR): %(value_jr)9.5f
-                              """ % locals())
-                    
-                if not relErr(value,value_crr,u) <= tolerance:
-                    self.fail("""
-Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s %(v)f
-    analytic:       %(value)9.5f
-    binomial (CRR): %(value_crr)9.5f
+    binomial (%(e)s): %(value_jr)9.5f
                               """ % locals())
 
 
