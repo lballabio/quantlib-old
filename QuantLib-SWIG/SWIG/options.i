@@ -20,10 +20,8 @@
 
 %include common.i
 %include exercise.i
+%include stochasticprocess.i
 %include instruments.i
-%include marketelements.i
-%include termstructures.i
-%include volatilities.i
 %include stl.i
 
 // option types
@@ -95,26 +93,24 @@ class VanillaOptionHandle : public Handle<Instrument> {
   public:
     %extend {
         VanillaOptionHandle(
+                const Handle<StochasticProcess>& process,
                 const Handle<Payoff>& payoff,
-                const RelinkableHandle<Quote>& underlying, 
-                const RelinkableHandle<TermStructure>& dividendYield,
-                const RelinkableHandle<TermStructure>& riskFreeRate,
                 const Handle<Exercise>& exercise,
-                const RelinkableHandle<BlackVolTermStructure>& volatility,
-                const Handle<PricingEngine>& engine,
-                const std::string& isinCode = "unknown", 
-                const std::string& desc = "option") {
+                const Handle<PricingEngine>& engine) {
             %#if defined(HAVE_BOOST)
             Handle<QL::StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<QL::StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "Wrong payoff given");
+            Handle<BlackScholesStochasticProcess> bsProcess =
+                boost::dynamic_pointer_cast<BlackScholesStochasticProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Wrong stochastic process given");
             %#else
             Handle<QL::StrikedTypePayoff> stPayoff = payoff;
+            Handle<BlackScholesStochasticProcess> bsProcess = process;
             %#endif
             return new VanillaOptionHandle(
-                new VanillaOption(stPayoff,underlying,dividendYield,
-                                  riskFreeRate,exercise,volatility,
-                                  engine,isinCode,desc));
+                new VanillaOption(bsProcess,stPayoff,exercise,engine));
         }
         double errorEstimate() {
             %#if defined(HAVE_BOOST)
