@@ -18,9 +18,13 @@
 #ifndef qla_obj_options_hpp
 #define qla_obj_options_hpp
 
-#include <qla/objects/vanillaoption.hpp>
 #include <qla/objects/asianoption.hpp>
 #include <qla/objects/barrieroption.hpp>
+#include <qla/objects/basketoption.hpp>
+#include <qla/objects/cliquetoption.hpp>
+#include <qla/objects/dividendvanillaoption.hpp>
+#include <qla/objects/forwardvanillaoption.hpp>
+#include <qla/objects/vanillaoption.hpp>
 
 #endif
 

@@ -20,6 +20,7 @@
 
 #include <ql/option.hpp>
 #include <ql/Instruments/payoffs.hpp>
+#include <ql/Math/matrix.hpp>
 
 // indexes to the Property vector
 // FIXME - need a cleaner way to achieve this
@@ -31,22 +32,28 @@
 namespace QuantLibAddin {
 
     QuantLib::Option::Type IDtoOptionType(
-        const std::string &typeOption);
+        const std::string &optionTypeID);
 
     boost::shared_ptr<QuantLib::StrikedTypePayoff> IDtoPayoff(
-        const std::string &typeOption,
-        const std::string &typePayoff,
+        const std::string &optionTypeID,
+        const std::string &payoffID,
         const QuantLib::Real &input1,
         const QuantLib::Real &input2 = 0.);
 
     boost::shared_ptr<QuantLib::Exercise> IDtoExercise(
-        const std::string &typeExercise,
+        const std::string &exerciseID,
         const QuantLib::Date &exerciseDate,
         const QuantLib::Date &settlementDate);
 
     boost::shared_ptr<QuantLib::PricingEngine> IDtoEngine(
-        const std::string &typeEngine,
+        const std::string &engineID,
         const QuantLib::Size &timeSteps);
+
+    QuantLib::Matrix vectorVectorToMatrix(
+        const std::vector < const std::vector < double > > &vv);
+
+    std::vector<QuantLib::Date> longVectorToDateVector(
+        const std::vector < long > &v);
 
 }
 

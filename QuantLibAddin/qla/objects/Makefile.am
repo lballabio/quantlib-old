@@ -7,6 +7,10 @@ includedir = $(prefix)/include/qla/objects
 include_HEADERS = \
     asianoption.hpp \
     barrieroption.hpp \
+    basketoption.hpp \
+    cliquetoption.hpp \
+    dividendvanillaoption.hpp \
+    forwardvanillaoption.hpp \
     options.hpp \
     optionutils.hpp \
     stochasticprocess.hpp \
@@ -15,6 +19,10 @@ include_HEADERS = \
 libObjects_la_SOURCES = \
     asianoption.cpp \
     barrieroption.cpp \
+    basketoption.cpp \
+    cliquetoption.cpp \
+    dividendvanillaoption.cpp \
+    forwardvanillaoption.cpp \
     optionutils.cpp \
     stochasticprocess.cpp \
     vanillaoption.cpp

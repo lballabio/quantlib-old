@@ -15,30 +15,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <qla/objects/barrieroption.hpp>
+#include <qla/objects/cliquetoption.hpp>
 #include <qla/objects/optionutils.hpp>
 
 namespace QuantLibAddin {
 
-    QuantLib::Barrier::Type IDtoBarrierType(const std::string &typeBarrier) {
-        std::string idUpper = QuantLib::StringFormatter::toUppercase(typeBarrier);
-        if (idUpper.compare("DOWNIN") ==0)
-            return QuantLib::Barrier::DownIn;
-        else if (idUpper.compare("UPIN") == 0)
-            return QuantLib::Barrier::UpIn;
-        else if (idUpper.compare("DOWNOUT") == 0)
-            return QuantLib::Barrier::DownOut;
-        else if (idUpper.compare("UPOUT") == 0)
-            return QuantLib::Barrier::UpOut;
-        else
-            QL_FAIL("IDtoBarrierType: unrecognized typeID: " + typeBarrier);
-    }
-
-    BarrierOption::BarrierOption(
+    CliquetOption::CliquetOption(
             const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::string &typeBarrier,
-            const float &barrier,
-            const float &rebate,
+            const std::vector < long > &resetDatesLong,
             const std::string &optionTypeID,
             const std::string &payoffID,
             const float &strike,
@@ -47,33 +31,47 @@ namespace QuantLibAddin {
             const long &settlementDate,
             const std::string &engineID,
             const long &timeSteps) {
-        QuantLib::Barrier::Type barrierType = 
-            IDtoBarrierType(typeBarrier);
-        boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
-            IDtoPayoff(optionTypeID, payoffID, strike);
-        boost::shared_ptr<QuantLib::Exercise> exercise = 
-            IDtoExercise(exerciseID, QuantLib::Date(exerciseDate),
-                QuantLib::Date(settlementDate));
+        boost::shared_ptr<QuantLib::PercentageStrikePayoff> payoff =
+            boost::dynamic_pointer_cast<QuantLib::PercentageStrikePayoff>
+            (IDtoPayoff(optionTypeID, payoffID, strike));
+        if (!payoff)
+            QL_FAIL("CliquetOption: unrecognized payoffID: " + payoffID);
+        boost::shared_ptr<QuantLib::EuropeanExercise> exercise = 
+            boost::dynamic_pointer_cast<QuantLib::EuropeanExercise>
+            (IDtoExercise(exerciseID, QuantLib::Date(exerciseDate),
+                QuantLib::Date(settlementDate)));
+        if (!exercise)
+            QL_FAIL("CliquetOption: unrecognized exerciseID: " + exerciseID);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             IDtoEngine(engineID, timeSteps);
         const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL = 
             boost::static_pointer_cast<QuantLib::BlackScholesProcess>
             (stochasticProcess->getReference());
-        barrierOption_ = boost::shared_ptr<QuantLib::BarrierOption>(
-            new QuantLib::BarrierOption(
-                barrierType,
-                barrier,
-                rebate,
+        std::vector<QuantLib::Date> resetDates =
+            longVectorToDateVector(resetDatesLong);
+        cliquetOption_ = boost::shared_ptr<QuantLib::CliquetOption>(
+            new QuantLib::CliquetOption(
                 stochasticProcessQL, 
                 payoff, 
                 exercise, 
+                resetDates,
                 pricingEngine));
-        ObjHandler::any_ptr any_npv(new boost::any(barrierOption_->NPV()));
+        ObjHandler::any_ptr any_npv(new boost::any(cliquetOption_->NPV()));
         ObjHandler::any_ptr any_engine(new boost::any(std::string(engineID)));
         ObjHandler::ObjectProperty prop_npv(FIELD_NPV, any_npv);
         ObjHandler::ObjectProperty prop_engine(FIELD_ENGINE, any_engine);
         properties_.push_back(prop_npv);
         properties_.push_back(prop_engine);
+    }
+
+    void CliquetOption::setEngine(
+            const std::string &engineID,
+            const long &timeSteps) {
+        boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
+            IDtoEngine(engineID, timeSteps);
+        cliquetOption_->setPricingEngine(pricingEngine);
+        *properties_[IDX_NPV]() = cliquetOption_->NPV();
+        *properties_[IDX_ENGINE]() = engineID;
     }
 
 }

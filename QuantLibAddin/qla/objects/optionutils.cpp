@@ -21,23 +21,23 @@
 
 namespace QuantLibAddin {
 
-    QuantLib::Option::Type IDtoOptionType(const std::string &typeOption) {
-        std::string idUpper = QuantLib::StringFormatter::toUppercase(typeOption);
+    QuantLib::Option::Type IDtoOptionType(const std::string &optionTypeID) {
+        std::string idUpper = QuantLib::StringFormatter::toUppercase(optionTypeID);
         if (idUpper.compare("PUT") ==0)
             return QuantLib::Option::Put;
         else if (idUpper.compare("CALL") == 0)
             return QuantLib::Option::Call;
         else
-            QL_FAIL("IDtoOptionType: unrecognized typeID: " + typeOption);
+            QL_FAIL("IDtoOptionType: unrecognized optionTypeID: " + optionTypeID);
     }
 
     boost::shared_ptr<QuantLib::StrikedTypePayoff> IDtoPayoff(
-            const std::string &typeOption,
-            const std::string &typePayoff,
+            const std::string &optionTypeID,
+            const std::string &payoffID,
             const QuantLib::Real &input1,
             const QuantLib::Real &input2) {
-        QuantLib::Option::Type type = IDtoOptionType(typeOption);
-        std::string idUpper = QuantLib::StringFormatter::toUppercase(typePayoff);
+        QuantLib::Option::Type type = IDtoOptionType(optionTypeID);
+        std::string idUpper = QuantLib::StringFormatter::toUppercase(payoffID);
         if (idUpper.compare("AON") == 0)
             return boost::shared_ptr<QuantLib::StrikedTypePayoff> (
                 new QuantLib::AssetOrNothingPayoff(type, input1));
@@ -57,14 +57,14 @@ namespace QuantLibAddin {
             return boost::shared_ptr<QuantLib::StrikedTypePayoff> (
                 new QuantLib::SuperSharePayoff(type, input1, input2));
         else
-            QL_FAIL("IDtoPayoff: unrecognized typePayoff: " + typePayoff);
+            QL_FAIL("IDtoPayoff: unrecognized payoffID: " + payoffID);
     }
 
     boost::shared_ptr<QuantLib::Exercise> IDtoExercise(
-            const std::string &typeExercise,
+            const std::string &exerciseID,
             const QuantLib::Date &exerciseDate,
             const QuantLib::Date &settlementDate) {
-        std::string idUpper = QuantLib::StringFormatter::toUppercase(typeExercise);
+        std::string idUpper = QuantLib::StringFormatter::toUppercase(exerciseID);
         if (idUpper.compare("AM") == 0)
             return boost::shared_ptr<QuantLib::Exercise> (
                 new QuantLib::AmericanExercise(settlementDate, exerciseDate));
@@ -72,13 +72,13 @@ namespace QuantLibAddin {
             return boost::shared_ptr<QuantLib::Exercise> (
                 new QuantLib::EuropeanExercise(exerciseDate));
         else
-            QL_FAIL("IDtoExercise: unrecognized typeExercise: " + typeExercise);
+            QL_FAIL("IDtoExercise: unrecognized exerciseTypeID: " + exerciseID);
     }
 
     boost::shared_ptr<QuantLib::PricingEngine> IDtoEngine(
-            const std::string &typeEngine,
+            const std::string &engineID,
             const QuantLib::Size &timeSteps) {
-        std::string idUpper = QuantLib::StringFormatter::toUppercase(typeEngine);
+        std::string idUpper = QuantLib::StringFormatter::toUppercase(engineID);
         if (idUpper.compare("AB") == 0)
             return boost::shared_ptr<QuantLib::PricingEngine> (
                 new QuantLib::AnalyticBarrierEngine);
@@ -135,8 +135,51 @@ namespace QuantLibAddin {
         else if (idUpper.compare("SE") == 0)
             return boost::shared_ptr<QuantLib::PricingEngine> (
                 new QuantLib::StulzEngine);
-        else
-            QL_FAIL("IDtoEngine: unrecognized typeEngine: " + typeEngine);
+        else if (idUpper.compare("FE") == 0) {
+            boost::shared_ptr<QuantLib::VanillaOption::engine> 
+                underlyingEngine(new QuantLib::AnalyticEuropeanEngine);    
+            return boost::shared_ptr<QuantLib::PricingEngine> (
+                new QuantLib::ForwardEngine<QuantLib::VanillaOption::arguments,
+                    QuantLib::VanillaOption::results>(underlyingEngine));
+        } else if (idUpper.compare("FPE") == 0) {
+            boost::shared_ptr<QuantLib::VanillaOption::engine> 
+                underlyingEngine(new QuantLib::AnalyticEuropeanEngine);    
+            return boost::shared_ptr<QuantLib::PricingEngine> (
+                new QuantLib::ForwardPerformanceEngine
+                    <QuantLib::VanillaOption::arguments,
+                    QuantLib::VanillaOption::results>(underlyingEngine));
+        } else
+            QL_FAIL("IDtoEngine: unrecognized engineID: " + engineID);
+    }
+
+    QuantLib::Matrix vectorVectorToMatrix(
+        const std::vector < const std::vector < double > > &vv) {
+        if (vv.size() == 0) {
+            QuantLib::Matrix m(0, 0);
+            return m;
+        } else {
+            const std::vector < double > v = vv[0];
+            if (v.size() == 0) {
+                QuantLib::Matrix m(0, 0);
+                return m;
+            }
+            QuantLib::Matrix m(vv.size(), v.size());
+            for (unsigned int i = 0; i < vv.size(); i++) {
+                const std::vector < double > v = vv[i];
+                for (unsigned int j = 0; j < v.size(); j++)
+                    m[i][j] = v[j];
+            }
+            return m;
+        }
+    }
+
+    std::vector<QuantLib::Date> longVectorToDateVector(
+            const std::vector < long > &v) {
+        std::vector<QuantLib::Date> ret;
+        std::vector<long>::const_iterator i;
+        for (i=v.begin(); i!=v.end(); i++)
+            ret.push_back(QuantLib::Date(*i));
+        return ret;
     }
 
 }

@@ -15,21 +15,21 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_barrieroption_hpp
-#define qla_barrieroption_hpp
+#ifndef qla_basketoption_hpp
+#define qla_basketoption_hpp
 
 #include <qla/objects/stochasticprocess.hpp>
-#include <ql/Instruments/barrieroption.hpp>
+#include <ql/Instruments/basketoption.hpp>
 
 namespace QuantLibAddin {
 
-    class BarrierOption : public ObjHandler::Object {
+    class BasketOption : public ObjHandler::Object {
     public:
-        BarrierOption(
-            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::string &typeBarrier,
-            const float &barrier,
-            const float &rebate,
+        BasketOption(
+            const std::vector <
+                boost::shared_ptr<StochasticProcess> > &stochasticProcs,
+            const std::string &basketID,
+            const std::vector < const std::vector < double > > &correlationVV,
             const std::string &optionTypeID,
             const std::string &payoffID,
             const float &strike,
@@ -42,7 +42,7 @@ namespace QuantLibAddin {
             return boost::static_pointer_cast<void>(barrierOption_);
         }
     private:
-        boost::shared_ptr<QuantLib::BarrierOption> barrierOption_;
+        boost::shared_ptr<QuantLib::BasketOption> barrierOption_;
     };
 
 }

@@ -29,7 +29,7 @@ namespace QuantLibAddin {
         StochasticProcess(
             const float &underlying,
             const std::string &dayCounterID,
-            const long &settlementDate,
+            const long &settlementDateLong,
             const float &riskFreeRate,
             const float &dividendYield,
             const float &volatility);

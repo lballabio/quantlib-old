@@ -201,6 +201,42 @@ SOURCE=.\qla\objects\barrieroption.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\objects\basketoption.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\objects\basketoption.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\objects\cliquetoption.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\objects\cliquetoption.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\objects\dividendvanillaoption.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\objects\dividendvanillaoption.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\objects\forwardvanillaoption.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\objects\forwardvanillaoption.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\objects\options.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\objects\optionutils.cpp
 # End Source File
 # Begin Source File

@@ -15,21 +15,20 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_barrieroption_hpp
-#define qla_barrieroption_hpp
+#ifndef qla_forwardvanillaoption_hpp
+#define qla_forwardvanillaoption_hpp
 
 #include <qla/objects/stochasticprocess.hpp>
-#include <ql/Instruments/barrieroption.hpp>
+#include <ql/Instruments/forwardvanillaoption.hpp>
 
 namespace QuantLibAddin {
 
-    class BarrierOption : public ObjHandler::Object {
+    class ForwardVanillaOption : public ObjHandler::Object {
     public:
-        BarrierOption(
+        ForwardVanillaOption(
             const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::string &typeBarrier,
-            const float &barrier,
-            const float &rebate,
+            const double &moneyness,
+            const long &resetDate,
             const std::string &optionTypeID,
             const std::string &payoffID,
             const float &strike,
@@ -38,11 +37,15 @@ namespace QuantLibAddin {
             const long &settlementDate,
             const std::string &engineID,
             const long &timeSteps);
+    //    ~ForwardVanillaOption();
+        void setEngine(
+            const std::string &engineName,
+            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(barrierOption_);
+            return boost::static_pointer_cast<void>(forwardVanillaOption_);
         }
     private:
-        boost::shared_ptr<QuantLib::BarrierOption> barrierOption_;
+        boost::shared_ptr<QuantLib::ForwardVanillaOption> forwardVanillaOption_;
     };
 
 }

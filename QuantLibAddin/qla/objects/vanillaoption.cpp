@@ -22,21 +22,21 @@ namespace QuantLibAddin {
 
     VanillaOption::VanillaOption(
             const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::string &typeOption,
-            const std::string &typePayoff,
+            const std::string &optionTypeID,
+            const std::string &payoffID,
             const float &strike,
-            const std::string &typeExercise,
+            const std::string &exerciseID,
             const long &exerciseDate,
             const long &settlementDate,
-            const std::string &typeEngine,
+            const std::string &engineID,
             const long &timeSteps) {
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
-            IDtoPayoff(typeOption, typePayoff, strike);
+            IDtoPayoff(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::Exercise> exercise = 
-            IDtoExercise(typeExercise, QuantLib::Date(exerciseDate),
+            IDtoExercise(exerciseID, QuantLib::Date(exerciseDate),
                 QuantLib::Date(settlementDate));
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
-            IDtoEngine(typeEngine, timeSteps);
+            IDtoEngine(engineID, timeSteps);
         const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL = 
             boost::static_pointer_cast<QuantLib::BlackScholesProcess>
             (stochasticProcess->getReference());
@@ -47,7 +47,7 @@ namespace QuantLibAddin {
                 exercise, 
                 pricingEngine));
         ObjHandler::any_ptr any_npv(new boost::any(vanillaOption_->NPV()));
-        ObjHandler::any_ptr any_engine(new boost::any(std::string(typeEngine)));
+        ObjHandler::any_ptr any_engine(new boost::any(std::string(engineID)));
         ObjHandler::ObjectProperty prop_npv(FIELD_NPV, any_npv);
         ObjHandler::ObjectProperty prop_engine(FIELD_ENGINE, any_engine);
         properties_.push_back(prop_npv);
@@ -55,13 +55,13 @@ namespace QuantLibAddin {
     }
 
     void VanillaOption::setEngine(
-            const std::string &typeEngine,
+            const std::string &engineID,
             const long &timeSteps) {
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
-            IDtoEngine(typeEngine, timeSteps);
+            IDtoEngine(engineID, timeSteps);
         vanillaOption_->setPricingEngine(pricingEngine);
         *properties_[IDX_NPV]() = vanillaOption_->NPV();
-        *properties_[IDX_ENGINE]() = typeEngine;
+        *properties_[IDX_ENGINE]() = engineID;
     }
 
 }

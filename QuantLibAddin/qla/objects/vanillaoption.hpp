@@ -27,13 +27,13 @@ namespace QuantLibAddin {
     public:
         VanillaOption(
             const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::string &typeOption,
-            const std::string &typePayoff,
+            const std::string &optionTypeID,
+            const std::string &payoffID,
             const float &strike,
-            const std::string &typeExercise,
+            const std::string &exerciseID,
             const long &exerciseDate,
             const long &settlementDate,
-            const std::string &typeEngine,
+            const std::string &engineID,
             const long &timeSteps);
     //    ~VanillaOption();
         void setEngine(

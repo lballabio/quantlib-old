@@ -15,21 +15,19 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_barrieroption_hpp
-#define qla_barrieroption_hpp
+#ifndef qla_cliquetoption_hpp
+#define qla_cliquetoption_hpp
 
 #include <qla/objects/stochasticprocess.hpp>
-#include <ql/Instruments/barrieroption.hpp>
+#include <ql/Instruments/cliquetoption.hpp>
 
 namespace QuantLibAddin {
 
-    class BarrierOption : public ObjHandler::Object {
+    class CliquetOption : public ObjHandler::Object {
     public:
-        BarrierOption(
+        CliquetOption::CliquetOption(
             const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::string &typeBarrier,
-            const float &barrier,
-            const float &rebate,
+            const std::vector < long > &resetDatesLong,
             const std::string &optionTypeID,
             const std::string &payoffID,
             const float &strike,
@@ -38,11 +36,15 @@ namespace QuantLibAddin {
             const long &settlementDate,
             const std::string &engineID,
             const long &timeSteps);
+    //    ~CliquetOption();
+        void setEngine(
+            const std::string &engineName,
+            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(barrierOption_);
+            return boost::static_pointer_cast<void>(cliquetOption_);
         }
     private:
-        boost::shared_ptr<QuantLib::BarrierOption> barrierOption_;
+        boost::shared_ptr<QuantLib::CliquetOption> cliquetOption_;
     };
 
 }
