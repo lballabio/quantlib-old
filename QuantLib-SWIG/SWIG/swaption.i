@@ -25,7 +25,7 @@
 %include blackmodel.i
 
 %{
-using QuantLib::Instruments::Swaption;
+using QuantLib::Swaption;
 typedef Handle<Instrument> SwaptionHandle;
 %}
 

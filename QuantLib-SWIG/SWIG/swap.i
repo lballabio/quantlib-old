@@ -24,8 +24,8 @@
 %include timebasket.i
 
 %{
-using QuantLib::Instruments::Swap;
-using QuantLib::Instruments::SimpleSwap;
+using QuantLib::Swap;
+using QuantLib::SimpleSwap;
 typedef Handle<Instrument> SwapHandle;
 typedef Handle<Instrument> SimpleSwapHandle;
 %}

@@ -75,7 +75,7 @@ IsObservable(Handle<Instrument>);
 // actual instruments
 
 %{
-using QuantLib::Instruments::Stock;
+using QuantLib::Stock;
 typedef Handle<Instrument> StockHandle;
 %}
 

@@ -24,9 +24,9 @@
 %include blackmodel.i
 
 %{
-using QuantLib::Instruments::Cap;
-using QuantLib::Instruments::Floor;
-using QuantLib::Instruments::Collar;
+using QuantLib::Cap;
+using QuantLib::Floor;
+using QuantLib::Collar;
 typedef Handle<Instrument> CapHandle;
 typedef Handle<Instrument> FloorHandle;
 typedef Handle<Instrument> CollarHandle;

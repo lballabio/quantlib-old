@@ -147,7 +147,7 @@ using QuantLib::PricingEngine;
 // plain options and engines
 
 %{
-using QuantLib::Instruments::VanillaOption;
+using QuantLib::VanillaOption;
 typedef Handle<Instrument> VanillaOptionHandle;
 %}
 
