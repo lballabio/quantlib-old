@@ -12,8 +12,6 @@ ObjectOption::ObjectOption(boost::shared_ptr<ObjectStochastic> objectStochastic,
 		type = Option::Put;
 	else if ((typeUpper.compare("C") == 0) || (typeUpper.compare("CALL") == 0))
 		type = Option::Call;
-	else if ((typeUpper.compare("S") == 0) || (typeUpper.compare("STRADDLE") == 0))
-		type = Option::Straddle;
 	else
 		QL_FAIL("ObjectOption constructor: unrecognized option type: " + typeString);
     boost::shared_ptr<Exercise> amExercise( 

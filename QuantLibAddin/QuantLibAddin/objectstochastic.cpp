@@ -7,15 +7,15 @@ ObjectStochastic::ObjectStochastic(
 		const Real &underlying,
 		const Date &todaysDate,
 		const Date &settlementDate) {
-    DayCounter rateDayCounter = Actual365();
-	RelinkableHandle<Quote> underlyingH( boost::shared_ptr<Quote>(new SimpleQuote(underlying)));
-    RelinkableHandle<TermStructure> flatTermStructure(
-    	boost::shared_ptr<TermStructure>(
-    	new FlatForward(todaysDate, settlementDate, riskFreeRate, rateDayCounter)));
-	RelinkableHandle<TermStructure> flatDividendTS(
-    	boost::shared_ptr<TermStructure>(
-    	new FlatForward(todaysDate, settlementDate, dividendYield, rateDayCounter)));
-    RelinkableHandle<BlackVolTermStructure> flatVolTS(
+    DayCounter rateDayCounter = Actual365Fixed();
+	Handle<Quote> underlyingH( boost::shared_ptr<Quote>(new SimpleQuote(underlying)));
+    Handle<YieldTermStructure> flatTermStructure(
+    	boost::shared_ptr<YieldTermStructure>(
+    	new FlatForward(settlementDate, riskFreeRate, rateDayCounter)));
+	Handle<YieldTermStructure> flatDividendTS(
+    	boost::shared_ptr<YieldTermStructure>(
+    	new FlatForward(settlementDate, dividendYield, rateDayCounter)));
+    Handle<BlackVolTermStructure> flatVolTS(
     	boost::shared_ptr<BlackVolTermStructure>( new BlackConstantVol(settlementDate, volatility)));
     boost::shared_ptr<BlackScholesProcess> temp(new
         BlackScholesProcess(
