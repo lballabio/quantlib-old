@@ -14,14 +14,14 @@
 
 # HEADER CONFIGURATION COMMANDS
 !ifdef LIGHT
-    Name "QuantLib XL Light"
-    Caption "QuantLib XL Light - Setup"
+    Name "QuantLibXL Light"
+    Caption "QuantLibXL Light - Setup"
     #do not change the name below
     OutFile "..\QuantLibXL-${VER_NUMBER}-light-inst.exe"
-    ComponentText "This will install QuantLib XL ${VER_NUMBER} Light on your computer.$\n A more complete version including documentation, examples, source code, etc. can be downloaded from http://quantlib.org"
+    ComponentText "This will install QuantLibXL ${VER_NUMBER} Light on your computer.$\n A more complete version including documentation, examples, source code, etc. can be downloaded from http://quantlib.org"
 !else
-    Name "QuantLib XL"
-    Caption "QuantLib XL - Setup"
+    Name "QuantLibXL"
+    Caption "QuantLibXL - Setup"
     #do not change the name below
     OutFile "..\QuantLibXL-${VER_NUMBER}-full-inst.exe"
 
@@ -29,7 +29,7 @@
     InstType Typical
     InstType Minimal
 
-    ComponentText "This will install QuantLib XL ${VER_NUMBER} on your computer"
+    ComponentText "This will install QuantLibXL ${VER_NUMBER} on your computer"
 !endif
 
 SilentInstall normal
@@ -37,9 +37,9 @@ CRCCheck on
 LicenseText "You must agree with the following license before installing:"
 LicenseData License.txt
 DirShow show
-DirText "Please select a location to install QuantLib XL (or use the default):"
-InstallDir "$PROGRAMFILES\QuantLib XL"
-InstallDirRegKey HKEY_LOCAL_MACHINE "SOFTWARE\QuantLib XL" "Install_Dir"
+DirText "Please select a location to install QuantLibXL (or use the default):"
+InstallDir "$PROGRAMFILES\QuantLibXL"
+InstallDirRegKey HKEY_LOCAL_MACHINE "SOFTWARE\QuantLibXL" "Install_Dir"
 AutoCloseWindow false
 ShowInstDetails hide
 SetDateSave on
@@ -48,10 +48,10 @@ SetDateSave on
 
 
 
-Section "-QuantLib XL"
+Section "-QuantLibXL"
 SectionIn 1 2 3
 # this directory must be created first, or the CreateShortCut will not work
-    CreateDirectory "$SMPROGRAMS\QuantLib XL"
+    CreateDirectory "$SMPROGRAMS\QuantLibXL"
     SetOutPath $INSTDIR
     File "Authors.txt"
     File "Contributors.txt"
@@ -68,25 +68,25 @@ SectionIn 1 2 3
     File "xll\Win32\VisualStudio\qlxl.xll"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLib XL" \
-                "DisplayName" "QuantLib XL (remove only)"
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
+                "DisplayName" "QuantLibXL (remove only)"
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLib XL" \
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
                 "UninstallString" '"QuantLibXLUninstall.exe"'
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "SOFTWARE\QuantLib XL" \
+                "SOFTWARE\QuantLibXL" \
                 "Install_Dir" "$INSTDIR"
     WriteRegStr HKEY_CURRENT_USER \
                 "Environment" \
                 "QLXL_DIR" "$INSTDIR"
-    CreateShortCut "$SMPROGRAMS\QuantLib XL\Uninstall QuantLib XL.lnk" \
+    CreateShortCut "$SMPROGRAMS\QuantLibXL\Uninstall QuantLibXL.lnk" \
                    "$INSTDIR\QuantLibXLUninstall.exe" \
                    "" "$INSTDIR\QuantLibXLUninstall.exe" 0
-    CreateShortCut "$SMPROGRAMS\QuantLib XL\README.txt.lnk" \
+    CreateShortCut "$SMPROGRAMS\QuantLibXL\README.txt.lnk" \
                    "$INSTDIR\README.txt"
-    CreateShortCut "$SMPROGRAMS\QuantLib XL\LICENSE.txt.lnk" \
+    CreateShortCut "$SMPROGRAMS\QuantLibXL\LICENSE.txt.lnk" \
                    "$INSTDIR\LICENSE.txt"
-    CreateShortCut "$SMPROGRAMS\QuantLib XL\What's new.lnk" \
+    CreateShortCut "$SMPROGRAMS\QuantLibXL\What's new.lnk" \
                    "$INSTDIR\News.txt"
 
     WriteUninstaller "QuantLibXLUninstall.exe"
@@ -119,7 +119,7 @@ SectionIn 1
   File /r "qlxl\*.cpp"
   File /r "qlxl\makefile.mak"
 
-  CreateShortCut "$SMPROGRAMS\QuantLib XL\QuantLib XL project workspace.lnk" \
+  CreateShortCut "$SMPROGRAMS\QuantLibXL\QuantLibXL project workspace.lnk" \
                  "$INSTDIR\QuantLibXL.dsw"
 
 SectionEnd
@@ -128,9 +128,9 @@ Section "Workbooks"
 SectionIn 1 2
     SetOutPath $INSTDIR\Workbooks
 #    File /r "test\*.txt"
-    File /r "test\quantlib.xls"
+    File /r "Workbooks\quantlib.xls"
 
-    CreateShortCut "$SMPROGRAMS\QuantLib XL\Test workbook.lnk" \
+    CreateShortCut "$SMPROGRAMS\QuantLibXL\Test workbook.lnk" \
                    "$INSTDIR\Workbooks\quantlib.xls"
 
 SectionEnd
@@ -142,16 +142,16 @@ SectionDivider
 
 Section "Start Menu Group"
 SectionIn 1 2 3
-  SetOutPath "$SMPROGRAMS\QuantLib XL"
+  SetOutPath "$SMPROGRAMS\QuantLibXL"
 
 #it doesn't work
-#  CreateShortCut "$SMPROGRAMS\QuantLib XL\QuantLib Home Page.lnk" \
+#  CreateShortCut "$SMPROGRAMS\QuantLibXL\QuantLib Home Page.lnk" \
 #                 "http://quantlib.org/index.html"
 #this works
-  WriteINIStr "$SMPROGRAMS\QuantLib XL\QuantLib Home Page.url" \
+  WriteINIStr "$SMPROGRAMS\QuantLibXL\QuantLib Home Page.url" \
               "InternetShortcut" "URL" "http://quantlib.org/"
 
-  CreateShortCut "$SMPROGRAMS\QuantLib XL\QuantLib XL Directory.lnk" \
+  CreateShortCut "$SMPROGRAMS\QuantLibXL\QuantLibXL Directory.lnk" \
                  "$INSTDIR"
 SectionEnd
 
@@ -172,17 +172,17 @@ Function .onInit
   NoSplashExecutable:
 FunctionEnd
 
-UninstallText "This will uninstall QuantLib XL. Hit next to continue."
+UninstallText "This will uninstall QuantLibXL. Hit next to continue."
 
 
 Section "Uninstall"
     DeleteRegKey HKEY_LOCAL_MACHINE \
-        "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLib XL"
-    DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\QuantLib XL"
+        "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL"
+    DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\QuantLibXL"
     DeleteRegValue HKEY_CURRENT_USER  "Environment" "QLXL_DIR"
-    Delete "$SMPROGRAMS\QuantLib XL\*.*"
-    RMDir "$SMPROGRAMS\QuantLib XL"
-    RMDir /r "$INSTDIR\Spreadsheets"
+    Delete "$SMPROGRAMS\QuantLibXL\*.*"
+    RMDir "$SMPROGRAMS\QuantLibXL"
+    RMDir /r "$INSTDIR\Workbooks"
     RMDir /r "$INSTDIR\qlxl"
     RMDir /r "$INSTDIR\xll"
     RMDir /r "$INSTDIR"
