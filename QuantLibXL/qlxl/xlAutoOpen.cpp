@@ -214,7 +214,7 @@ extern "C" {
             performanceEuropeanOption.Register();
 
 
-            // Registers PathGenerator
+            // Registers PathGenerator_old
             XlfFuncDesc pathGenerator("xlPathGenerator","qlPathGenerator",
                 "Geometric Brownian motion path","QuantLibXL Finance");
             pathGenerator.SetArguments(underlying+drift+volatility+times+paths);

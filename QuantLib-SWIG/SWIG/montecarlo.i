@@ -98,12 +98,12 @@ class Path {
 };
 
 %{
-using QuantLib::MonteCarlo::GaussianPathGenerator;
+using QuantLib::MonteCarlo::GaussianPathGenerator_old;
 %}
 %template(SamplePath) Sample<Path>;
-class GaussianPathGenerator {
+class GaussianPathGenerator_old {
   public:
-    GaussianPathGenerator(double drift, double variance,
+    GaussianPathGenerator_old(double drift, double variance,
                           Time length, Size steps, long seed = 0);
 	Sample<Path> next() const;
 };

@@ -29,7 +29,7 @@ extern "C"
 
     using namespace QuantLib;
     using QuantLib::MonteCarlo::Path;
-    using QuantLib::MonteCarlo::PathGenerator;
+    using QuantLib::MonteCarlo::PathGenerator_old;
     using QuantLib::RandomNumbers::InvCumulativeKnuthGaussianRng;
     using QuantLib::Math::Matrix;
 
@@ -72,8 +72,8 @@ extern "C"
         }
         
 
-        PathGenerator<InvCumulativeKnuthGaussianRng> myPathGenerator =
-            PathGenerator<InvCumulativeKnuthGaussianRng>(
+        PathGenerator_old<InvCumulativeKnuthGaussianRng> myPathGenerator =
+            PathGenerator_old<InvCumulativeKnuthGaussianRng>(
             drift, variance, times);
 
         Size j;
