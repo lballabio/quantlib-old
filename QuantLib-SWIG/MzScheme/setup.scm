@@ -188,7 +188,7 @@
              (list "-DNOMINMAX" "/MT" "/GR" "/GX" "/Zm150")))
            (putenv "LIB"
                    (string-append
-                    (build-path (getenv "QL_DIR") "lib"")
+                    (build-path (getenv "QL_DIR") "lib")
                     ";"
                     (getenv "LIB"))))
           (else
