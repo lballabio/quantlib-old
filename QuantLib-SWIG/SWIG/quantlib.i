@@ -17,7 +17,7 @@
 
 // $Id$
 
-#if defined(SWIGPYTHON) || defined(SWIGMZSCHEME)
+#if defined(SWIGPYTHON) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %module QuantLib
 #elif defined(SWIGRUBY)
 %module QuantLibc
@@ -52,26 +52,21 @@ const char* __version__;
 
 #endif
 
+#if defined(SWIGGUILE)
+// code for loading shared library
+%scheme%{
+    (define (load-quantlibc-in path)
+      (if (null? path)
+          (error "QuantLibc.so not found")
+          (let ((so-name (string-append (car path) "/QuantLibc.so")))
+            (if (file-exists? so-name)
+                (dynamic-call "SWIG_init" (dynamic-link so-name))
+                (load-quantlibc-in (cdr path))))))
+    (load-quantlibc-in %load-path)
+%}
+#endif
+
+
 
 %include ql.i
-
-namespace std {
-    %template(IntVector)    vector<int>;
-    %template(DoubleVector) vector<double>;
-    %template(DateVector  ) vector<Date>;
-}
-
-%inline%{
-    std::vector<int> foo_int(std::vector<int> v) { return v; }
-    const std::vector<int>& bar_int(const std::vector<int>& v) { return v; }
-    std::vector<int>* baz_int(std::vector<int>* v) { return v; }
-
-    std::vector<double> foo_double(std::vector<double> v) { return v; }
-    const std::vector<double>& bar_double(const std::vector<double>& v) { return v; }
-    std::vector<double>* baz_double(std::vector<double>* v) { return v; }
-
-    std::vector<Date> foo_date(std::vector<Date> v) { return v; }
-    const std::vector<Date>& bar_date(const std::vector<Date>& v) { return v; }
-    std::vector<Date>* baz_date(std::vector<Date>* v) { return v; }
-%}
 

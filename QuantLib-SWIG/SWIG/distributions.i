@@ -31,7 +31,7 @@ using QuantLib::Math::InvCumulativeNormalDistribution2;
 %rename(__call__) operator();
 #endif
 
-#if defined(SWIGMZSCHEME)
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename(call) operator();
 #endif
 

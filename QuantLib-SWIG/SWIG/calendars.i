@@ -78,11 +78,16 @@ using QuantLib::Calendars::Toronto;
 using QuantLib::Calendars::Sydney;
 %}
 
-#if defined(SWIGMZSCHEME)
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename("is_business_day?") isBusinessDay;
 %rename("is_holiday?")      isHoliday;
 %rename(equal)              __eq__;
 %rename(">string")          __str__;
+#endif
+#if defined(SWIGGUILE)
+%scheme%{ 
+    (define Calendar=? Calendar-equal) 
+%}
 #endif
 
 #if defined(SWIGRUBY)

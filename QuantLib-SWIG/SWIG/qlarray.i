@@ -91,7 +91,7 @@ bool extractArray(PyObject* source, Array* target) {
 %rename(__len__) size;
 #endif
 
-#if defined(SWIGMZSCHEME)
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename(length)    size;
 %rename(">string") __str__;
 %rename("set!")    set;
@@ -99,7 +99,7 @@ bool extractArray(PyObject* source, Array* target) {
 
 class Array {
   public:
-    #if defined(SWIGMZSCHEME)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     Array(Size n, double fill = 0);
     #endif
     Size size() const;
@@ -195,7 +195,7 @@ class Array {
     }
     #endif
 
-    #if defined(SWIGMZSCHEME)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     double ref(Size i) {
         if (i<self->size())
             return (*self)[i];
@@ -241,7 +241,7 @@ class LexicographicalViewColumn {
 };
 #endif
 
-#if defined(SWIGMZSCHEME)
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename(">string") __str__;
 %rename("set!")    set;
 #endif
@@ -276,7 +276,7 @@ class LexicographicalView {
     }
     #endif
     
-    #if defined(SWIGMZSCHEME)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     double ref(Size i, Size j) {
         return (*self)[i][j];
     }

@@ -21,6 +21,7 @@
 #define quantlib_common_i
 
 %include stl.i
+%include exception.i
 
 %{
 // generally useful classes
@@ -46,6 +47,9 @@ using QuantLib::StringFormatter;
 %typemap(in) Scheme_Object* { $1 = $input; };
 #endif
 
+#if defined(SWIGGUILE)
+%typemap(in) SCM { $1 = $input; };
+#endif
 
 
 // typemap a C++ type to integers in the scripting language
@@ -54,12 +58,10 @@ using QuantLib::StringFormatter;
 #if defined(SWIGPYTHON)
 
 %typemap(in) Type {
-    if (PyInt_Check($input)) {
+    if (PyInt_Check($input))
         $1 = Type(PyInt_AsLong($input));
-    } else {
-        PyErr_SetString(PyExc_TypeError,"int expected");
-        return NULL;
-    }
+    else
+        SWIG_exception(SWIG_TypeError,"int expected");
 };
 
 %typemap(out) Type {
@@ -69,11 +71,10 @@ using QuantLib::StringFormatter;
 #elif defined(SWIGRUBY)
 
 %typemap(in) Type {
-    if (FIXNUM_P($input)) {
+    if (FIXNUM_P($input))
         $1 = Type(FIX2INT($input));
-    } else {
-        rb_raise(rb_eTypeError, "not an integer");
-    }
+    else
+        SWIG_exception(SWIG_TypeError,"not an integer");
 };
 
 %typemap(out) Type {
@@ -83,15 +84,24 @@ using QuantLib::StringFormatter;
 #elif defined(SWIGMZSCHEME)
 
 %typemap(in) Type {
-    if (SCHEME_INTP($input)) {
+    if (SCHEME_INTP($input))
         $1 = Type(SCHEME_INT_VAL($input));
-    } else {
-        scheme_wrong_type(FUNC_NAME, "Type", $argnum, argc, argv);
-    }
+    else
+        SWIG_exception(SWIG_TypeError,"int expected");
 };
 
 %typemap(out) Type {
-    $result = scheme_make_integer_value($1);
+    $result = scheme_make_integer_value(int($1));
+};
+
+#elif defined(SWIGGUILE)
+
+%typemap(in) Type {
+    $1 = Type(gh_scm2int($input));
+};
+
+%typemap(out) Type {
+    $result = gh_int2scm(int($1));
 };
 
 #endif
@@ -109,12 +119,10 @@ using QuantLib::StringFormatter;
         try {
             $1 = TypeFromString(s);
         } catch (Error&) {
-            PyErr_SetString(PyExc_TypeError,"Type" " expected");
-            return NULL;
+            SWIG_exception(SWIG_TypeError,"Type" " expected");
         }
     } else {
-        PyErr_SetString(PyExc_TypeError,"Type" " expected");
-        return NULL;
+        SWIG_exception(SWIG_TypeError,"Type" " expected");
     }
 };
 
@@ -130,10 +138,10 @@ using QuantLib::StringFormatter;
         try {
             $1 = TypeFromString(s);
         } catch (Error&) {
-            rb_raise(rb_eTypeError,"not a " "Type");
+            SWIG_exception(SWIG_TypeError, "not a " "Type");
         }
     } else {
-        rb_raise(rb_eTypeError,"not a " "Type");
+        SWIG_exception(SWIG_TypeError, "not a " "Type");
     }
 };
 
@@ -149,15 +157,36 @@ using QuantLib::StringFormatter;
         try {
             $1 = TypeFromString(s);
         } catch (Error&) {
-            scheme_wrong_type(FUNC_NAME, "Type", $argnum, argc, argv);
+            SWIG_exception(SWIG_TypeError, "Type" " expected");
         }
     } else {
-        scheme_wrong_type(FUNC_NAME, "Type", $argnum, argc, argv);
+        SWIG_exception(SWIG_TypeError, "Type" " expected");
     }
 };
 
 %typemap(out) Type {
     $result = scheme_make_string(TypeToString($1).c_str());
+};
+
+#elif defined(SWIGGUILE)
+
+%typemap(in) Type (char* temp) {
+    if (gh_string_p($input)) {
+        temp = gh_scm2newstr($input, NULL);
+        std::string s(temp);
+        if (temp) scm_must_free(temp);
+        try {
+            $1 = TypeFromString(s);
+        } catch (Error&) {
+            SWIG_exception(SWIG_TypeError, "Type" " expected");
+        }
+    } else {
+        SWIG_exception(SWIG_TypeError, "Type" " expected");
+    }
+};
+
+%typemap(out) Type {
+    $result = gh_str02scm(TypeToString($1).c_str());
 };
 
 #endif

@@ -33,11 +33,16 @@ using QuantLib::DayCounters::Thirty360;
 using QuantLib::DayCounters::ActualActual;
 %}
 
-#if defined(SWIGMZSCHEME)
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename(day_count)     dayCount;
 %rename(year_fraction) yearFraction;
 %rename(">string")     __str__;
 %rename(equal)         __eq__;
+#endif
+#if defined(SWIGGUILE)
+%scheme%{ 
+    (define DayCounter=? DayCounter-equal) 
+%}
 #endif
 
 class DayCounter {

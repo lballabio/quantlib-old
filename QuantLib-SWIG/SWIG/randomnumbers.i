@@ -47,8 +47,16 @@ class SampleNumber {
 #if defined(SWIGMZSCHEME)
 // more convenient than redefining methods everywhere
 %typemap(out) SampleNumber {
-    $result = SWIG_MakePtr(new SampleNumber($1),SWIGTYPE_p_SampleNumber);
+    $result = SWIG_MakePtr(new SampleNumber($1),$&1_descriptor);
 }
+#elif defined(SWIGGUILE)
+%typemap(out) SampleNumber {
+    $result = SWIG_Guile_MakePtr(new SampleNumber($1),$&1_descriptor);
+}
+%scheme%{
+    (define SampleNumber-value  SampleNumber-value-get)
+    (define SampleNumber-weight SampleNumber-weight-get)
+%}
 #endif
 
 

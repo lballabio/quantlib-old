@@ -122,7 +122,7 @@ MapToString(TimeUnit,timeunitFromString,stringFromTimeunit);
 using QuantLib::Period;
 %}
 
-#if defined(SWIGMZSCHEME)
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename(">string")  __str__;
 #endif
 
@@ -166,7 +166,7 @@ Date NullDate = Date();
 %rename(__sub__) operator-;
 #endif
 
-#if defined(SWIGMZSCHEME)
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename(day_of_month)   dayOfMonth;
 %rename(day_of_year)    dayOfYear;
 %rename(weekday_number) weekdayNumber;
@@ -179,12 +179,22 @@ Date NullDate = Date();
 %rename(min_date)       minDate;
 %rename(max_date)       maxDate;
 %rename(">string")      __str__;
-// also, allow pass andreturn by value
+#endif
+// also, allow pass and return by value
+#if defined(SWIGMZSCHEME)
 %typemap(in) Date {
     $1 = *((Date*) SWIG_MustGetPtr($input,$1_descriptor,$argnum));
 }
 %typemap(out) Date {
-    $result = SWIG_MakePtr (new Date($1), $&1_descriptor);
+    $result = SWIG_MakePtr(new Date($1), $&1_descriptor);
+}
+#elif defined(SWIGGUILE)
+%typemap(in) Date {
+    $1 = *((Date*) SWIG_Guile_MustGetPtr($input,$1_descriptor,
+                                         $argnum,FUNC_NAME));
+}
+%typemap(out) Date {
+    $result = SWIG_Guile_MakePtr(new Date($1), $&1_descriptor);
 }
 #endif
 
@@ -248,7 +258,7 @@ class Date {
     }
     #endif
     
-    #if defined(SWIGMZSCHEME)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     // difference - comparison
     int days_from(const Date& other) {
         return (*self)-other;
@@ -270,9 +280,19 @@ class Date {
     }
     #endif
 }
+#if defined(SWIGGUILE)
+%scheme%{
+    (define Date=?  Date-equal)
+    (define Date<?  Date-less)
+    (define Date>?  Date-greater)
+    (define Date<=? Date-less-equal)
+    (define Date>=? Date-greater-equal)
+%}
+#endif
 
-#if defined(SWIGMZSCHEME)
-%rename(date_from_serial_number) DateFromSerialNumber;
+
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename(Date_from_serial_number) DateFromSerialNumber;
 #endif
 %inline %{
     Date DateFromSerialNumber(int serialNumber) {
