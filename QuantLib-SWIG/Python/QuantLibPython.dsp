@@ -333,7 +333,7 @@ InputPath=..\SWIG\quantlib.i
 
 !ELSEIF  "$(CFG)" == "QuantLibPython - Win32 OnTheEdgeRelease"
 
-USERDEP__QUANT="..\SWIG\blackmodel.i"	"..\SWIG\calendars.i"	"..\SWIG\capfloor.i"	"..\SWIG\cashflows.i"	"..\SWIG\common.i"	"..\SWIG\currencies.i"	"..\SWIG\date.i"	"..\SWIG\daycounters.i"	"..\SWIG\distributions.i"	"..\SWIG\functions.i"	"..\SWIG\history.i"	"..\SWIG\indexes.i"	"..\SWIG\instruments.i"	"..\SWIG\interpolation.i"	"..\SWIG\linearalgebra.i"	"..\SWIG\marketelements.i"	"..\SWIG\montecarlo.i"	"..\SWIG\null.i"	"..\SWIG\observer.i"	"..\SWIG\old_pricers.i"	"..\SWIG\old_volatility.i"	"..\SWIG\operators.i"	"..\SWIG\optimizers.i"	"..\SWIG\options.i"	"..\SWIG\piecewiseflatforward.i"	"..\SWIG\ql.i"	"..\SWIG\randomnumbers.i"	"..\SWIG\riskstatistics.i"	"..\SWIG\scheduler.i"	"..\SWIG\segmentintegral.i"	"..\SWIG\statistics.i"	"..\SWIG\swap.i"	"..\SWIG\swaption.i"	"..\SWIG\termstructures.i"	"..\SWIG\types.i"	"..\SWIG\vectors.i"	"..\SWIG\volatilities.i"	
+USERDEP__QUANT="..\SWIG\blackmodel.i"	"..\SWIG\calendars.i"	"..\SWIG\capfloor.i"	"..\SWIG\cashflows.i"	"..\SWIG\common.i"	"..\SWIG\currencies.i"	"..\SWIG\date.i"	"..\SWIG\daycounters.i"	"..\SWIG\distributions.i"	"..\SWIG\functions.i"	"..\SWIG\history.i"	"..\SWIG\indexes.i"	"..\SWIG\instruments.i"	"..\SWIG\interpolation.i"	"..\SWIG\linearalgebra.i"	"..\SWIG\marketelements.i"	"..\SWIG\montecarlo.i"	"..\SWIG\null.i"	"..\SWIG\observer.i"	"..\SWIG\old_pricers.i"	"..\SWIG\old_volatility.i"	"..\SWIG\operators.i"	"..\SWIG\optimizers.i"	"..\SWIG\options.i"	"..\SWIG\piecewiseflatforward.i"	"..\SWIG\ql.i"	"..\SWIG\randomnumbers.i"	"..\SWIG\scheduler.i"	"..\SWIG\segmentintegral.i"	"..\SWIG\statistics.i"	"..\SWIG\swap.i"	"..\SWIG\swaption.i"	"..\SWIG\termstructures.i"	"..\SWIG\types.i"	"..\SWIG\vectors.i"	"..\SWIG\volatilities.i"	
 # Begin Custom Build
 InputPath=..\SWIG\quantlib.i
 
@@ -361,10 +361,6 @@ InputPath=..\SWIG\quantlib.i
 # Begin Source File
 
 SOURCE=..\SWIG\randomnumbers.i
-# End Source File
-# Begin Source File
-
-SOURCE=..\SWIG\riskstatistics.i
 # End Source File
 # Begin Source File
 
