@@ -20,15 +20,15 @@
 
 //! version string
 #ifdef _DEBUG
-    #define QLADDIN_VERSION "0.3.8-debug"
+    #define QLADDIN_VERSION "0.3.9-debug"
 #else
-    #define QLADDIN_VERSION "0.3.8"
+    #define QLADDIN_VERSION "0.3.9"
 #endif
 
 //! version hexadecimal number
 #define QLADDIN_HEX_VERSION 0x000308f0
 //! version string for output lib name
-#define QLADDIN_LIB_VERSION "0_3_8"
+#define QLADDIN_LIB_VERSION "0_3_9"
 
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
    for example) also #define _MSC_VER
