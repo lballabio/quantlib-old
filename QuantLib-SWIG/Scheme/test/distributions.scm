@@ -31,13 +31,13 @@
   (define (difference f1 f2)
     (map - f1 f2))
 
-  (let ((average 0.0)
-        (sigma 1.0))
+  (let ((average 1.0)
+        (sigma 2.0))
     (deleting-let ((normal-dist (new-NormalDistribution average sigma)
                                 delete-NormalDistribution)
                    (cumul-dist (new-CumulativeNormalDistribution average sigma)
                                delete-CumulativeNormalDistribution)
-                   (inverse-dist (new-InverseCumulativeNormal 
+                   (inverse-dist (new-InverseCumulativeNormal
                                   average sigma)
                                  delete-InverseCumulativeNormal))
       (let* ((N 10001)
@@ -45,7 +45,7 @@
              (xmax (+ average (* 4.0 sigma)))
              (h (grid-step xmin xmax N))
              (x (grid xmin xmax N)))
-        
+
         (define pi (acos -1.0))
         (define (gaussian x)
           (let ((dx (- x average)))
@@ -73,7 +73,7 @@
                (x-temp (map inverse-cumulative y-int))
                (yd (map normal-derivative x))
                (yd-temp (map gaussian-derivative x)))
-          
+
           (check-difference y y-temp h 1.0e-16
                             "C++ normal distribution"
                             "analytic Gaussian")

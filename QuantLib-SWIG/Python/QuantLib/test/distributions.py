@@ -46,8 +46,8 @@ def norm(f,h):
 class DistributionTest(unittest.TestCase):
     def runTest(self):
         "Testing distributions"
-        average = 0.0
-        sigma = 1.0
+        average = 1.0
+        sigma = 2.0
         normal = QuantLib.NormalDistribution(average, sigma)
         cum = QuantLib.CumulativeNormalDistribution(average, sigma)
         invCum = QuantLib.InverseCumulativeNormal(average, sigma)

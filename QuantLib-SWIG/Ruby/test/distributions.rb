@@ -63,8 +63,8 @@ class DistributionTest < Test::Unit::TestCase
     "Testing distributions"
   end
   def testConsistence
-    average = 0.0
-    sigma = 1.0
+    average = 1.0
+    sigma = 2.0
 
     normal = QuantLib::NormalDistribution.new(average, sigma)
     cum =    QuantLib::CumulativeNormalDistribution.new(average, sigma)
