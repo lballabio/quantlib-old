@@ -6,7 +6,8 @@
 <tr>
 <td class="navbar">
 <div class="center"><img class="addtopspace"
-    src="images/QL-small.jpg" alt="QuantLib Logo"></div>
+    src="images/QL-small.jpg" alt="QuantLib Logo"><br>
+		<a href="http://quantlib.org">http://quantlib.org</a></div>
 
 <ul class="navlinklist">
 <li><a class="navlink" href="index.html">Home&nbsp;page</a></li>
