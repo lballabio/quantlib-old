@@ -90,6 +90,7 @@
         "statistics.scm"
         "termstructures.scm"
         "unittest.scm"
+        "utilities.scm"
         "quantlib-test-suite.scm"))
 
 ; commands

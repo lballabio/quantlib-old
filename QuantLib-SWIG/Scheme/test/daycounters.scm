@@ -23,7 +23,6 @@
 (load "common.scm")
 
 (define (Day-counter-test)
-  "Testing act/act day counters"
   (let ((cases
    ; each case lists startDate, endDate, refStartDate, refEndDate, and
                     ; the results for ISDA, ISMA and AFB, respectively

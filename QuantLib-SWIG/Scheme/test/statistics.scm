@@ -23,7 +23,6 @@
 (load "common.scm")
 
 (define (Statistics-test)
-  "Testing statistics"
   (deleting-let ((stats (new-Statistics) delete-Statistics))
     (let ((tolerance 1.0e-9)
           (data    '(  3   4   5   2   3   4   5   6   4   7))

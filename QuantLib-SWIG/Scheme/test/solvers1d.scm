@@ -21,7 +21,6 @@
 ; $Id$
 
 (define (Solver-1D-test)
-  "Testing 1D solvers"
   (for-each (lambda (l) (apply test-solver l))
             (list (list new-Brent         delete-Brent)
                   (list new-Bisection     delete-Bisection)

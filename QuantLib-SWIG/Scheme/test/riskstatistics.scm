@@ -23,7 +23,6 @@
 (load "common.scm")
 
 (define (Risk-statistics-test)
-  "Testing risk statistics"
   (deleting-let ((s (new-RiskStatistics) delete-RiskStatistics))
     (for-each-combination ((average '(-100.0 0.0 100.0))
                            (sigma '(0.1 1.0 10.0)))

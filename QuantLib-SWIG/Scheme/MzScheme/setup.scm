@@ -15,9 +15,9 @@
 
 ; $Id$
 
-(require-library "compile.ss" "dynext")
-(require-library "link.ss" "dynext")
-(require-library "file.ss" "dynext")
+(require (lib "compile.ss" "dynext"))
+(require (lib "link.ss" "dynext"))
+(require (lib "file.ss" "dynext"))
 
 ; usage
 (define (usage)
@@ -43,6 +43,7 @@
         "LICENSE.TXT" "History.txt" "README.txt"))
 (define source-files
   (list (build-path "quantlib" "quantlib.ss")
+        (build-path "quantlib" "ql-init.ss")
         "quantlib_wrap.cpp"))
 (define binary-files
   (list (build-path "quantlib" (append-extension-suffix "QuantLibc"))))
@@ -98,7 +99,28 @@
         "termstructures.scm"))
 (define test-support-files
   (list "unittest.scm"
+        "utilities.scm"
         "quantlib-test-suite.scm"))
+
+; utilities
+(define (string-split s c)
+  (let ((n (string-length s))
+        (spcs '()))
+    (do ((i 0 (+ i 1)))
+        ((= i n))
+      (if (char=? (string-ref s i) c)
+          (set! spcs (cons i spcs))))
+    (let ((begins (cons 0 (map (lambda (i) (+ i 1)) 
+                               (reverse spcs))))
+          (ends (reverse (cons n spcs))))
+      (map (lambda (b e) (substring s b e)) begins ends))))
+
+(define (execute prog . args)
+  (let ((full-path (find-executable-path prog #f))
+        (stdin (current-input-port))
+        (stdout (current-output-port))
+        (stderr (current-output-port)))
+    (apply subprocess stdout stdin stderr full-path args)))
 
 (define (rec-delete-directory dir)
   (define (delete-item item)
@@ -117,23 +139,12 @@
   (let ((swig-dir "./SWIG"))
     (if (not (directory-exists? swig-dir))
         (set! swig-dir "../../SWIG"))
-    (system (string-append 
-             "swig -mzscheme -c++ "
-             (format "-I~a " swig-dir)
-             "-o quantlib_wrap.cpp quantlib.i"))))
+    (execute "swig" "-mzscheme" "-c++"
+             (string-append "-I" swig-dir)
+             "-o" "quantlib_wrap.cpp" 
+             "quantlib.i")))
 
 (define (build)
-  (define (string-split s)
-    (let ((n (string-length s))
-          (spcs '()))
-      (do ((i 0 (+ i 1)))
-          ((= i n))
-        (if (char=? (string-ref s i) #\space)
-            (set! spcs (cons i spcs))))
-      (let ((begins (cons 0 (map (lambda (i) (+ i 1)) 
-                                 (reverse spcs))))
-            (ends (reverse (cons n spcs))))
-        (map (lambda (b e) (substring s b e)) begins ends))))
   (display "Building QuantLib-MzScheme...") (newline)
   (let ((platform (system-type))
         (include-dirs '()))
@@ -142,19 +153,19 @@
                  (c-flags (getenv "CFLAGS"))
                  (c++-flags (getenv "CXXFLAGS")))
              (if (not c++-compiler)
-                 (set! c++-compiler "/usr/bin/g++"))
+                 (set! c++-compiler (find-executable-path "g++" #f)))
              (current-extension-compiler c++-compiler)
              (current-extension-linker c++-compiler)
              (if c-flags
                  (current-extension-compiler-flags
                   (append
                    (current-extension-compiler-flags)
-                   (string-split c-flags))))
+                   (string-split c-flags #\space))))
              (if c++-flags
                  (current-extension-compiler-flags
                   (append
                    (current-extension-compiler-flags)
-                   (string-split c++-flags))))
+                   (string-split c++-flags #\space))))
            (current-extension-linker-flags
             (append
              (current-extension-linker-flags)
@@ -203,6 +214,7 @@
                      (copy-file (build-path "quantlib" f) 
                                 destination-file)))
                  (list "quantlib.ss" 
+                       "ql-init.ss"
                        (append-extension-suffix "QuantLibc"))))))
 
 (define (sdist)

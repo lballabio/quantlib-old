@@ -20,9 +20,10 @@
 ;
 ; $Id$
 
-(require-library "quantlib.ss" "quantlib")
+(require (lib "quantlib.ss" "quantlib"))
 (load "unittest.scm")
-
+(load "utilities.scm")
+
 (let ((test-dir (build-path ".." ".." "test")))
   (if (directory-exists? test-dir)
       (current-directory test-dir)))

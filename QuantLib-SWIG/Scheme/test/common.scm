@@ -26,13 +26,6 @@
   (if (= i j)
       '()
       (cons i (range (+ i 1) j))))
-(define (flatmap proc seq)
-  (foldr append '() (map proc seq)))
-(define (foldr op initial sequence)
-  (if (null? sequence)
-      initial
-      (op (car sequence)
-          (foldr op initial (cdr sequence)))))
 (define (sorted? l less-than?)
   (if (null? l)
       #t
@@ -68,48 +61,4 @@
   (let ((f^2 (map (lambda (x) (* x x)) f)))
     (integral f^2 h)))
 
-
-; bind a set of names to the elements of a list
-(define-macro let-at-once
-  (lambda (binding . body)
-    (let ((vars (car binding))
-          (vals (cadr binding)))
-      `(call-with-values
-         (lambda () (apply values ,vals))
-         (lambda ,vars ,@body)))))
-
-; bind a set of parameters to each test case
-(define-macro for-each-case
-  (lambda (bindings . body)
-    (let ((vars (car bindings))
-          (cases (cadr bindings))
-          (test-case (gensym)))
-      `(for-each
-        (lambda (,test-case)
-          (let-at-once (,vars ,test-case)
-            ,@body))
-        ,cases))))
-
-; get a number of test cases by building all possible
-; combinations of sets of parameters
-(define (combinations l . ls)
-  (define (add-one x ls)
-    (map (lambda (l) (cons x l)) ls))
-  (define (add-all l ls)
-    (flatmap (lambda (x) (add-one x ls)) l))
-  (if (null? ls)
-      (map list l)
-      (add-all l (apply combinations ls))))
-
-; bind a set of parameters to all possible combinations
-(define-macro for-each-combination
-  (lambda (bind-sets . body)
-    (let ((vars (map car bind-sets))
-          (sets (map cadr bind-sets))
-          (combo (gensym)))
-      `(for-each 
-        (lambda (,combo)
-          (let-at-once (,vars ,combo)
-            ,@body))
-        (combinations ,@sets)))))
 

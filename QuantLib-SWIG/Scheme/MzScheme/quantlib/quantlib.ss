@@ -1,156 +1,26 @@
+; Copyright (C) 2000, 2001, 2002 RiskMap srl
+;
+; This file is part of QuantLib, a free-software/open-source library
+; for financial quantitative analysts and developers - http://quantlib.org/
+;
+; QuantLib is free software developed by the QuantLib Group; you can
+; redistribute it and/or modify it under the terms of the QuantLib License;
+; either version 1.0, or (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; QuantLib License for more details.
+;
+; You should have received a copy of the QuantLib License along with this
+; program; if not, please email ferdinando@ametrano.net
+;
+; The QuantLib License is also available at http://quantlib.org/license.html
+; The members of the QuantLib Group are listed in the QuantLib License
+;
+; $Id$
 
-(require-library "file.ss" "dynext")
-(load-extension (build-path (collection-path "quantlib") 
-                            (append-extension-suffix "QuantLibc")))
+(module quantlib
+        mzscheme
+        (load (build-path (collection-path "quantlib") "ql-init.ss")))
 
-; macros for making it easier to free memory
-; careful: they could prevent tail-recursion!
-(define-macro deleting-let
-  (lambda (bindings . body)
-    (let ((thunk (gensym))
-          (result (gensym)))
-      `(let ,(map (lambda (b) (list (car b) (cadr b))) bindings)
-         (define ,thunk (lambda () ,@body))
-         (let ((,result (,thunk)))
-           ,@(map (lambda (b) (list (caddr b) (car b))) bindings)
-           ,result)))))
-
-(define-macro deleting-let*
-  (lambda (bindings . body)
-    (let ((thunk (gensym))
-          (result (gensym)))
-      `(let* ,(map (lambda (b) (list (car b) (cadr b))) bindings)
-         (define ,thunk (lambda () ,@body))
-         (let ((,result (,thunk)))
-           ,@(map (lambda (b) (list (caddr b) (car b))) bindings)
-           ,result)))))
-
-; more scheme-like names which couldn't be set from SWIG
-
-(define Calendar=? Calendar-equal)
-
-(define Date=?  Date-equal)
-(define Date<?  Date-less)
-(define Date>?  Date-greater)
-(define Date<=? Date-less-equal)
-(define Date>=? Date-greater-equal)
-
-(define DayCounter=? DayCounter-equal)
-
-(define Array+ Array-add)
-(define Array- Array-sub)
-(define (Array* a x)
-  (if (number? x)
-      (Array-mul-d a x)
-      (Array-mul-a a x)))
-(define Array/ Array-div)
-
-(define Matrix+ Matrix-add)
-(define Matrix- Matrix-sub)
-(define (Matrix* m x)
-  (if (number? x)
-      (Matrix-mul-d m x)
-      (Matrix-mul-m m x)))
-(define Matrix/ Matrix-div)
-
-(define TridiagonalOperator+ TridiagonalOperator-add)
-(define TridiagonalOperator- TridiagonalOperator-sub)
-(define TridiagonalOperator* TridiagonalOperator-mul)
-(define TridiagonalOperator/ TridiagonalOperator-div)
-
-; added functionality
-(define (Calendar-advance . args)
-  (if (integer? (caddr args))
-      (apply Calendar-advance-units args)
-      (apply Calendar-advance-period args)))
-
-
-(define History-old-init new-History)
-(define (new-History dates values)
-  (let ((null (null-double)))
-    (History-old-init dates
-                      (map (lambda (x) (or x null)) values))))
-(define (History-map h f)
-  (let ((results '()))
-    (History-for-each h (lambda (e)
-                          (if e
-                              (set! results (cons (f e) results))
-                              (set! results (cons #f results)))))
-    (reverse results)))
-(define (History-map-valid h f)
-  (let ((results '()))
-    (History-for-each-valid h (lambda (e)
-                                (set! results (cons (f e) results))))
-    (reverse results)))
-
-(define (RiskStatistics-add stats value . weight)
-  (let ((method (cond ((number? value) RiskStatistics-add-single)
-                      ((null? weight) RiskStatistics-add-sequence)
-                      (else RiskStatistics-add-weighted-sequence))))
-    (apply method stats value weight)))
-
-(define (Statistics-add stats value . weight)
-  (let ((method (cond ((number? value) Statistics-add-single)
-                      ((null? weight) Statistics-add-sequence)
-                      (else Statistics-add-weighted-sequence))))
-    (apply method stats value weight)))
-
-(define (TermStructure-discount self x . extrapolate)
-  (let ((method #f))
-    (if (number? x)
-        (set! method TermStructure-discount-vs-time)
-        (set! method TermStructure-discount-vs-date))
-    (apply method self x extrapolate)))
-(define (TermStructure-zero-yield self x . extrapolate)
-  (let ((method #f))
-    (if (number? x)
-        (set! method TermStructure-zeroYield-vs-time)
-        (set! method TermStructure-zeroYield-vs-date))
-    (apply method self x extrapolate)))
-(define (TermStructure-forward self x1 x2 . extrapolate)
-  (let ((method #f))
-    (if (number? x1)
-        (set! method TermStructure-forward-vs-time)
-        (set! method TermStructure-forward-vs-date))
-    (apply method self x1 x2 extrapolate)))
-(define (TermStructure-instantaneous-forward self x . extrapolate)
-  (let ((method #f))
-    (if (number? x)
-        (set! method TermStructure-instantaneousForward-vs-time)
-        (set! method TermStructure-instantaneousForward-vs-date))
-    (apply method self x extrapolate)))
-
-(define (TermStructureHandle-discount self x . extrapolate)
-  (let ((method #f))
-    (if (number? x)
-        (set! method TermStructureHandle-discount-vs-time)
-        (set! method TermStructureHandle-discount-vs-date))
-    (apply method self x extrapolate)))
-(define (TermStructureHandle-zero-yield self x . extrapolate)
-  (let ((method #f))
-    (if (number? x)
-        (set! method TermStructureHandle-zeroYield-vs-time)
-        (set! method TermStructureHandle-zeroYield-vs-date))
-    (apply method self x extrapolate)))
-(define (TermStructureHandle-forward self x1 x2 . extrapolate)
-  (let ((method #f))
-    (if (number? x1)
-        (set! method TermStructureHandle-forward-vs-time)
-        (set! method TermStructureHandle-forward-vs-date))
-    (apply method self x1 x2 extrapolate)))
-(define (TermStructureHandle-instantaneous-forward self x . extrapolate)
-  (let ((method #f))
-    (if (number? x)
-        (set! method TermStructureHandle-instantaneousForward-vs-time)
-        (set! method TermStructureHandle-instantaneousForward-vs-date))
-    (apply method self x extrapolate)))
-
-(define FlatForward-old-init new-FlatForward)
-(define (new-FlatForward settlement forward dayCounter)
-  (if (number? forward)
-      (deleting-let* ((m (new-SimpleMarketElement forward) 
-                         delete-MarketElement)
-                      (h (new-MarketElementHandle m) 
-                         delete-MarketElementHandle))
-        (FlatForward-old-init settlement h dayCounter))
-      (FlatForward-old-init settlement forward dayCounter)))

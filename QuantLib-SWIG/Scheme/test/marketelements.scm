@@ -21,7 +21,6 @@
 ; $Id$
 
 (define (Market-element-observability-test)
-  "Testing observability of market elements"
   (let ((flag #f))
     (deleting-let ((me (new-SimpleMarketElement 0.0)
                        delete-MarketElement)
@@ -75,7 +74,6 @@
            (lambda (x y) (- x y))))))
 
 (define (Market-element-handle-observability-test)
-  "Testing observability of market element handles"
   (let ((flag #f))
     (deleting-let* ((me1 (new-SimpleMarketElement 0.0)
                          delete-MarketElement)

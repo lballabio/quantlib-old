@@ -20,28 +20,31 @@
 ;
 ; $Id$
 
-(define-macro assert
-  (lambda (check . msg)
-    `(if (not ,check)
-         (error
-          (apply string-append (map (lambda (token) (format "~a" token)) 
-                                    (list ,@msg)))))))
+(define-syntax assert
+  (syntax-rules ()
+    ((assert check msg1 msg2 ...)
+     (if (not check)
+         (error (string-append msg1 msg2 ...))))))
+          
 ; handy in formatting error messages
 (define eol (format "~n"))
 
 ; a few specialized assertions
-(define-macro assert-zero
-  (lambda (x tolerance . msg)
-    `(assert (<= (abs ,x) ,tolerance) ,@msg)))
-(define-macro assert-equal
-  (lambda (lhs rhs tolerance . msg)
-    `(assert-zero (- ,lhs ,rhs) ,tolerance ,@msg)))
-(define-macro check-expected
-  (lambda (calculated expected tolerance . msg)
-    `(assert-equal ,calculated ,expected ,tolerance
-                   ,@msg eol
-                   "    calculated: " ,calculated eol
-                   "    expected:   " ,expected eol)))
+(define-syntax assert-zero
+  (syntax-rules ()
+    ((assert-zero x tolerance msg1 msg2 ...)
+     (assert (<= (abs x) tolerance) msg1 msg2 ...))))
+(define-syntax assert-equal
+  (syntax-rules ()
+    ((assert-equal lhs rhs tolerance msg1 msg2 ...)
+     (assert-zero (- lhs rhs) tolerance msg1 msg2 ...))))
+(define-syntax check-expected
+  (syntax-rules ()
+    ((check-expected calculated expected tolerance msg1 msg2 ...)
+     (assert-equal calculated expected tolerance
+                   msg1 msg2 ... eol
+                   "    calculated: " calculated eol
+                   "    expected:   " expected eol))))
 
 ; the test suite implementation
 (define (make-suite)
@@ -87,7 +90,9 @@
 		  (display (/ elapsed-time 1.0e+3)) (display " s.") (newline)
 		  (cond ((null? error-list) (display "All tests passed.") (newline))
 				(else
-				 (display (length error-list)) (display " failure(s).") (newline)
+				 (display (length error-list))
+                 (display " failure(s).")
+                 (newline)
 				 (for-each
 				  (lambda (err)
 					(let ((test-msg (car err))

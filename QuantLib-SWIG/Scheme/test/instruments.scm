@@ -21,7 +21,6 @@
 ; $Id$
 
 (define (Instrument-test)
-  "Testing observability of stocks"
   (let ((flag #f))
     (deleting-let* ((me (new-SimpleMarketElement 0.0)
                         delete-MarketElement)

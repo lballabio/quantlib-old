@@ -23,7 +23,6 @@
 (load "common.scm")
 
 (define (Segment-integral-test)
-  "Testing segment integral"
   (define pi (acos -1.0))
   (define (gauss x)
     (/ (exp (- (* x x 0.5))) (sqrt (* 2.0 pi))))

@@ -49,7 +49,8 @@
 #ifdef SWIGGUILE
 %scheme %{
 ; macros for making it easier to free memory
-; careful: they could prevent tail-recursion!
+; careful: they prevent tail-recursion!
+
 (define-macro deleting-let
   (lambda (bindings . body)
     (let ((thunk (gensym))
