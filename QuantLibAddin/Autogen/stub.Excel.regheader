@@ -2,7 +2,9 @@
 #include <Addins/Excel/xlcall.h>
 #include <Addins/Excel/framewrk.hpp>
 
-extern "C" __declspec(dllexport) int xlAutoOpen() {
+#define DLLEXPORT extern "C" __declspec(dllexport)
+
+DLLEXPORT int xlAutoOpen() {
     static XLOPER xDll;
     Excel(xlGetName, &xDll, 0);
 

@@ -10,7 +10,8 @@ AUTOGEN_STUBS := stub.C.body stub.C.includes \
                  stub.Calc.body stub.Calc.idlfoot stub.Calc.idlfunc \
                  stub.Calc.idlhead stub.Calc.includes stub.Calc.map \
                  stub.Excel.body stub.Excel.includes \
-                 stub.Excel.regfooter stub.Excel.regheader
+                 stub.Excel.regfooter stub.Excel.regheader \
+                 stub.copyright
 
 all-local: .time-stamp
 

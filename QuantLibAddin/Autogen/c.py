@@ -21,8 +21,7 @@ def generateFuncHeader(fileHeader, function, suffix):
 
 def generateFuncHeaders(groupName, functionGroup):
     'generate source for function prototypes'
-    fileName = ROOT + groupName + '.h'
-    utils.logMessage('    generating file ' + fileName + '...')
+    fileName = ROOT + groupName + '.h' + common.TEMPFILE
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
     fileHeader.write('#ifndef qla_%s_h\n' % groupName)
@@ -31,11 +30,11 @@ def generateFuncHeaders(groupName, functionGroup):
         generateFuncHeader(fileHeader, function, ';\n')
     fileHeader.write('#endif\n\n')
     fileHeader.close()
+    utils.updateIfChanged(fileName)
 
 def generateFuncDefs(groupName, functionGroup):
     'generate source for function implementations'
-    fileName = ROOT + groupName + '.cpp'
-    utils.logMessage('    generating file ' + fileName + '...')
+    fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
     fileFunc = file(fileName, 'w')
     utils.printHeader(fileFunc)
     bufInclude = utils.loadBuffer(INCLUDES)
@@ -56,6 +55,7 @@ def generateFuncDefs(groupName, functionGroup):
             fileFunc.write(bufBody % (fName, handle,
                 paramList, function[common.NAME]))
     fileFunc.close()
+    utils.updateIfChanged(fileName)
 
 def generate(functionDefs):
     'generate source code for C addin'

@@ -88,8 +88,7 @@ def generateFuncRegister(fileHeader, function):
 
 def generateFuncRegisters(functionDefs):
     'generate source code to register functions'
-    fileName = ROOT + ADDIN
-    utils.logMessage('    generating file ' + fileName + '...')
+    fileName = ROOT + ADDIN + common.TEMPFILE
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
     bufHead = utils.loadBuffer(REGHEAD)
@@ -102,6 +101,7 @@ def generateFuncRegisters(functionDefs):
             generateFuncRegister(fileHeader, function)
     fileHeader.write(bufFoot)
     fileHeader.close()
+    utils.updateIfChanged(fileName)
 
 def generateFuncDef(fileFunc, function, bufBody):
     'generate source code for body of given function'
@@ -133,14 +133,14 @@ def generateFuncDefs(functionGroups):
         functionGroup = functionGroups[groupName]
         if functionGroup[common.HDRONLY]:
             continue
-        fileName = ROOT + groupName + '.cpp'
-        utils.logMessage('    generating file ' + fileName + '...')
+        fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
         fileFunc = file(fileName, 'w')
         utils.printHeader(fileFunc)
         fileFunc.write(bufIncludes)
         for function in functionGroup[common.FUNCLIST]:
             generateFuncDef(fileFunc, function, bufBody)
         fileFunc.close()
+        utils.updateIfChanged(fileName)
 
 def generate(functionDefs):
     'generate source code for Excel addin'

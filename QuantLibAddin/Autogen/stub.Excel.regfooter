@@ -2,7 +2,7 @@
     return 1;
 }
 
-extern "C" __declspec(dllexport) void xlAutoFree(LPXLOPER px) {
+DLLEXPORT void xlAutoFree(LPXLOPER px) {
     if (px->xltype == xltypeMulti && px->val.array.lparray) {
         unsigned short size = px->val.array.rows * px->val.array.columns;
         for (unsigned short i = 0; i < size; i++)
@@ -12,3 +12,4 @@ extern "C" __declspec(dllexport) void xlAutoFree(LPXLOPER px) {
         delete [] px->val.array.lparray;
     }
 }
+

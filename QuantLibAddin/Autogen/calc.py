@@ -21,8 +21,7 @@ CALC_LONG = 'sal_Int32'
 
 def generateFuncMap(functionGroups):
     'generate array that lists all functions in the addin'
-    fileName = ROOT + MAPFILE
-    utils.logMessage('    generating file ' + fileName + '...')
+    fileName = ROOT + MAPFILE + common.TEMPFILE
     fileMap = file(fileName, 'w')
     utils.printHeader(fileMap)
     bufCalcMap = utils.loadBuffer(MAP)
@@ -35,11 +34,11 @@ def generateFuncMap(functionGroups):
                 % (function[common.CODENAME], function[common.NAME]))
     fileMap.write('\n}\n\n')
     fileMap.close()
+    utils.updateIfChanged(fileName)
 
 def generateAutoHeader(functionGroups):
     'generate header file that lists all other headers'
-    fileName = ROOT + AUTOHDR
-    utils.logMessage('    generating file ' + fileName + '...')
+    fileName = ROOT + AUTOHDR + common.TEMPFILE
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
     fileHeader.write('#ifndef qla_calc_auto_hpp\n')
@@ -48,6 +47,7 @@ def generateAutoHeader(functionGroups):
         fileHeader.write('#include <Addins/Calc/%s.hpp>\n' % groupName)
     fileHeader.write('\n#endif\n\n')
     fileHeader.close()
+    utils.updateIfChanged(fileName)
 
 def generateHeader(fileHeader, function, suffix):
     'generate implementation for given function'
@@ -78,8 +78,7 @@ def generateHeaders(functionGroups):
     'generate source for function prototypes'
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
-        fileName = ROOT + groupName + '.hpp'
-        utils.logMessage('    generating file ' + fileName + '...')
+        fileName = ROOT + groupName + '.hpp' + common.TEMPFILE
         fileHeader = file(fileName, 'w')
         utils.printHeader(fileHeader)
         fileHeader.write('#ifndef qla_calc_%s_hpp\n' % groupName)
@@ -92,6 +91,7 @@ def generateHeaders(functionGroups):
             fileHeader.write('\n')
         fileHeader.write('#endif\n\n')
         fileHeader.close()
+        utils.updateIfChanged(fileName)
 
 def generateFuncSource(fileFunc, function, bufBody):
     'generate source for given function'
@@ -123,14 +123,14 @@ def generateFuncSources(functionGroups):
         functionGroup = functionGroups[groupName]
         if functionGroup[common.HDRONLY]:
             continue
-        fileName = ROOT + groupName + '.cpp'
-        utils.logMessage('    generating file ' + fileName + '...')
+        fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
         fileFunc = file(fileName, 'w')
         utils.printHeader(fileFunc)
         fileFunc.write(bufInclude)
         for function in functionGroup[common.FUNCLIST]:
             generateFuncSource(fileFunc, function, bufBody)
         fileFunc.close()
+        utils.updateIfChanged(fileName)
 
 def getReturnTypeCalcIDL(function):
     'derive the return type of a function'
@@ -146,8 +146,7 @@ def getReturnTypeCalcIDL(function):
 
 def generateIDLSource(functionGroups):
     'generate the IDL file for the addin'
-    fileName = ROOT + IDL
-    utils.logMessage('    generating file ' + fileName + '...')
+    fileName = ROOT + IDL + common.TEMPFILE
     fileIDL = file(fileName, 'w')
     utils.printTimeStamp(fileIDL, '//')
     bufIDLHead = utils.loadBuffer(IDL_HEAD)
@@ -175,6 +174,7 @@ def generateIDLSource(functionGroups):
     bufIDLFoot = utils.loadBuffer(IDL_FOOT)
     fileIDL.write(bufIDLFoot)
     fileIDL.close()
+    utils.updateIfChanged(fileName)
 
 def generate(functionDefs):
     'generate source code for Calc addin'
