@@ -55,10 +55,12 @@
 %include distributions.i
 %include functions.i
 %include history.i
+%include marketelements.i
 %include null.i
 %include observer.i
 %include qlarray.i
 %include randomnumbers.i
+%include riskstatistics.i
 %include solvers1d.i
 %include types.i
 

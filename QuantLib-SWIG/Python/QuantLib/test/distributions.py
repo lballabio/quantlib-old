@@ -16,6 +16,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+from __future__ import nested_scopes
+
 __version__ = "$Revision$"
 # $Id$
 
@@ -25,14 +27,14 @@ from math import exp, sqrt, pi
 
 # define a Gaussian
 def gaussian(x, average, sigma):
-    normFact = sigma * sqrt( 2 * pi )
+    normFact = sigma * sqrt(2*pi)
     dx = x-average
-    return exp( -dx*dx/(2.0*sigma*sigma) ) / normFact
+    return exp(-dx*dx/(2.0*sigma*sigma))/normFact
 
 def gaussianDerivative(x, average, sigma):
-    normFact = sigma * sigma * sigma * sqrt( 2 * pi )
+    normFact = sigma*sigma*sigma*sqrt(2*pi)
     dx = x-average
-    return - dx * exp( -dx*dx/(2.0*sigma*sigma) ) / normFact
+    return -dx*exp(-dx*dx/(2.0*sigma*sigma))/normFact
 
 # define the norm of a discretized function
 def norm(f,h):
@@ -51,6 +53,7 @@ class DistributionTest(unittest.TestCase):
         normal = QuantLib.NormalDistribution(average, sigma)
         cum = QuantLib.CumulativeNormalDistribution(average, sigma)
         invCum = QuantLib.InvCumulativeNormalDistribution(average, sigma)
+        invCum2 = QuantLib.InvCumulativeNormalDistribution2(average, sigma)
 
         xMin = average - 4*sigma
         xMax = average + 4*sigma
@@ -65,9 +68,9 @@ class DistributionTest(unittest.TestCase):
         yTemp = map(normal, x)
         y2Temp = map(cum.derivative, x)
         xTemp = map(invCum, yIntegrated)
+        xTemp2 = map(invCum2, yIntegrated)
         yd = map(normal.derivative, x)
-        ydTemp = map(lambda x,average=average,sigma=sigma:
-            gaussianDerivative(x,average,sigma), x)
+        ydTemp = map(lambda x: gaussianDerivative(x,average,sigma), x)
 
         #check norm=gaussian
         e = norm(map(lambda x,y:x-y,yTemp,y),h)
@@ -82,6 +85,14 @@ tolerance exceeded
         if not (e <= 1.0e-3):
             self.fail("""
 norm of C++ invCum(cum(.)) minus identity: %(e)5.2e
+tolerance exceeded
+                      """ % locals())
+
+        #check invCum2(cum) = Identity
+        e = norm(map(lambda x,y:x-y,xTemp2,x),h)
+        if not (e <= 1.0e-3):
+            self.fail("""
+norm of C++ invCum2(cum(.)) minus identity: %(e)5.2e
 tolerance exceeded
                       """ % locals())
 
@@ -105,7 +116,6 @@ tolerance exceeded
 
 if __name__ == '__main__':
     print 'testing QuantLib', QuantLib.__version__
-    import sys
     suite = unittest.TestSuite()
     suite.addTest(DistributionTest())
     unittest.TextTestRunner(verbosity=2).run(suite)

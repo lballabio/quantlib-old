@@ -28,9 +28,10 @@
   (let ((average 0.0)
         (sigma 1.0)
         (N 10001))
-    (let ((normal-dist  (new-NormalDistribution average sigma))
-          (cumul-dist   (new-CumulativeNormalDistribution average sigma))
-          (inverse-dist (new-InvCumulativeNormalDistribution average sigma))
+    (let ((normal-dist    (new-NormalDistribution average sigma))
+          (cumul-dist     (new-CumulativeNormalDistribution average sigma))
+          (inverse-dist   (new-InvCumulativeNormalDistribution average sigma))
+          (inverse-dist-2 (new-InvCumulativeNormalDistribution2 average sigma))
           (xmin (- average (* 4.0 sigma)))
           (xmax (+ average (* 4.0 sigma))))
       (let ((h (grid-step xmin xmax N))
@@ -55,6 +56,8 @@
           (CumulativeNormalDistribution-derivative cumul-dist x))
         (define (inverse-cumulative x)
           (InvCumulativeNormalDistribution-call inverse-dist x))
+        (define (inverse-cumulative-2 x)
+          (InvCumulativeNormalDistribution2-call inverse-dist-2 x))
         
         (let ((y (map gaussian x))
               (y-int (map cumulative x))
@@ -62,11 +65,15 @@
               (y2-temp (map cumulative-derivative x))
               (yd (map normal-derivative x))
               (yd-temp (map gaussian-derivative x)))
-          (let ((x-temp (map inverse-cumulative y-int)))
+          (let ((x-temp (map inverse-cumulative y-int))
+                (x-temp-2 (map inverse-cumulative-2 y-int)))
             (check-difference y y-temp h 1.0e-16
                               "C++ normal distribution"
                               "analytic Gaussian")
             (check-difference x x-temp h 1.0e-3
+                              "C++ invCum(cum(.))"
+                              "identity")
+            (check-difference x x-temp-2 h 1.0e-3
                               "C++ invCum(cum(.))"
                               "identity")
             (check-difference y y2-temp h 1.0e-16

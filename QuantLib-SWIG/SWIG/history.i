@@ -23,12 +23,7 @@
 %include date.i
 %include null.i
 %include types.i
-%include stl.i
-
-namespace std {
-    %template(DoubleVector) vector<double>;
-    %template(DateVector) vector<Date>;
-}
+%include vectors.i
 
 %{
 using QuantLib::History;

@@ -20,16 +20,17 @@
 ;
 ; $Id$
 
-(define version "$Revision$")
-
 (require-library "quantlib.ss" "quantlib")
 
 (define (Distribution-test)
   (letrec ((average 0.0)
            (sigma 1.0)
-           (normal-dist  (new-normaldistribution average sigma))
-           (cumul-dist   (new-cumulativenormaldistribution average sigma))
-           (inverse-dist (new-invcumulativenormaldistribution average sigma)))
+           (normal-dist    (new-normaldistribution average sigma))
+           (cumul-dist     (new-cumulativenormaldistribution average sigma))
+           (inverse-dist   (new-invcumulativenormaldistribution
+                            average sigma))
+           (inverse-dist-2 (new-invcumulativenormaldistribution2
+                            average sigma)))
       (letrec ((N 10001)
                (xmin (- average (* 4.0 sigma)))
                (xmax (+ average (* 4.0 sigma)))
@@ -55,12 +56,15 @@
           (cumulativenormaldistribution-derivative cumul-dist x))
         (define (inverse-cumulative x)
           (invcumulativenormaldistribution-call inverse-dist x))
+        (define (inverse-cumulative-2 x)
+          (invcumulativenormaldistribution2-call inverse-dist-2 x))
 
         (letrec ((y (map gaussian x))
                  (y-int (map cumulative x))
                  (y-temp (map normal x))
                  (y2-temp (map cumulative-derivative x))
                  (x-temp (map inverse-cumulative y-int))
+                 (x-temp-2 (map inverse-cumulative-2 y-int))
                  (yd (map normal-derivative x))
                  (yd-temp (map gaussian-derivative x)))
           
@@ -69,6 +73,9 @@
                             "analytic Gaussian")
           (check-difference x x-temp h 1.0e-3
                             "C++ invCum(cum(.))"
+                            "identity")
+          (check-difference x x-temp-2 h 1.0e-3
+                            "C++ invCum2(cum(.))"
                             "identity")
           (check-difference y y2-temp h 1.0e-16
                             "C++ Cumulative.derivative"

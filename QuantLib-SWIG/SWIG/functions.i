@@ -29,15 +29,15 @@ using QuantLib::ObjectiveFunction;
 #if defined(SWIGPYTHON)
 
 %{
-class PyUnaryFunction {
+class UnaryFunction {
   public:
-	PyUnaryFunction(PyObject* function) : function_(function) {
+	UnaryFunction(PyObject* function) : function_(function) {
 	    Py_XINCREF(function_);
     }
-    PyUnaryFunction(const PyUnaryFunction& f) : function_(f.function_) {
+    UnaryFunction(const UnaryFunction& f) : function_(f.function_) {
 	    Py_XINCREF(function_);
     }
-    PyUnaryFunction& operator=(const PyUnaryFunction& f) {
+    UnaryFunction& operator=(const UnaryFunction& f) {
         if ((this != &f) && (function_ != f.function_)) {
             Py_XDECREF(function_);
             function_ = f.function_;
@@ -45,7 +45,7 @@ class PyUnaryFunction {
         }
         return *this;
     }
-    ~PyUnaryFunction() {
+    ~UnaryFunction() {
         Py_XDECREF(function_);
     }
 	double operator()(double x) const {
@@ -59,16 +59,16 @@ class PyUnaryFunction {
 	PyObject* function_;
 };
 
-class PyBinaryFunction {
+class BinaryFunction {
   public:
-	PyBinaryFunction(PyObject* function) : function_(function) {
+	BinaryFunction(PyObject* function) : function_(function) {
 	    Py_XINCREF(function_);
     }
-    PyBinaryFunction(const PyBinaryFunction& f)
+    BinaryFunction(const BinaryFunction& f)
     : function_(f.function_) {
 	    Py_XINCREF(function_);
     }
-    PyBinaryFunction& operator=(const PyBinaryFunction& f) {
+    BinaryFunction& operator=(const BinaryFunction& f) {
         if ((this != &f) && (function_ != f.function_)) {
             Py_XDECREF(function_);
             function_ = f.function_;
@@ -76,7 +76,7 @@ class PyBinaryFunction {
         }
         return *this;
     }
-    ~PyBinaryFunction() {
+    ~BinaryFunction() {
         Py_XDECREF(function_);
     }
 	double operator()(double x, double y) const {
@@ -145,17 +145,17 @@ class RubyObjectiveFunction : public ObjectiveFunction {
 #elif defined(SWIGMZSCHEME)
 
 %{
-class MzUnaryFunction {
+class UnaryFunction {
   public:
-	MzUnaryFunction(Scheme_Object* function) : function_(function) {
+	UnaryFunction(Scheme_Object* function) : function_(function) {
         if (!SCHEME_PROCP(function))
             throw Error("procedure expected");
 	    scheme_dont_gc_ptr(function_);
     }
-    MzUnaryFunction(const MzUnaryFunction& f) : function_(f.function_) {
+    UnaryFunction(const UnaryFunction& f) : function_(f.function_) {
 	    scheme_dont_gc_ptr(function_);
     }
-    MzUnaryFunction& operator=(const MzUnaryFunction& f) {
+    UnaryFunction& operator=(const UnaryFunction& f) {
         if ((this != &f) && (function_ != f.function_)) {
             scheme_gc_ptr_ok(function_);
             function_ = f.function_;
@@ -163,7 +163,7 @@ class MzUnaryFunction {
         }
         return *this;
     }
-    ~MzUnaryFunction() {
+    ~UnaryFunction() {
         scheme_gc_ptr_ok(function_);
     }
 	double operator()(double x) const {
@@ -178,17 +178,17 @@ class MzUnaryFunction {
 	Scheme_Object* function_;
 };
 
-class MzBinaryFunction {
+class BinaryFunction {
   public:
-	MzBinaryFunction(Scheme_Object* function) : function_(function) {
+	BinaryFunction(Scheme_Object* function) : function_(function) {
         if (!SCHEME_PROCP(function))
             throw Error("procedure expected");
 	    scheme_dont_gc_ptr(function_);
     }
-    MzBinaryFunction(const MzBinaryFunction& f) : function_(f.function_) {
+    BinaryFunction(const BinaryFunction& f) : function_(f.function_) {
 	    scheme_dont_gc_ptr(function_);
     }
-    MzBinaryFunction& operator=(const MzBinaryFunction& f) {
+    BinaryFunction& operator=(const BinaryFunction& f) {
         if ((this != &f) && (function_ != f.function_)) {
             scheme_gc_ptr_ok(function_);
             function_ = f.function_;
@@ -196,7 +196,7 @@ class MzBinaryFunction {
         }
         return *this;
     }
-    ~MzBinaryFunction() {
+    ~BinaryFunction() {
         scheme_gc_ptr_ok(function_);
     }
 	double operator()(double x, double y) const {

@@ -44,7 +44,9 @@
 							  (lambda (key . args)
 								(display "failed. ") (newline) 
                                 (flush-all-ports)
-								(add-error test-msg (caaddr args))))
+								(add-error test-msg
+                                           (apply format 
+                                                  (cons #f (cdr args))))))
                              (run-test
                               (lambda ()
                                 (display test-msg) (display "... ") 

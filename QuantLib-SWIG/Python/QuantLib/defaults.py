@@ -23,6 +23,12 @@ import new
 import code
 import types
 
+if sys.hexversion >= 0x020200a0:
+    Date.isLeap  = staticmethod(Date_isLeap)
+    Date.minDate = staticmethod(Date_minDate)
+    Date.maxDate = staticmethod(Date_maxDate)
+    Date.todaysDate = staticmethod(Date_todaysDate)
+
 History._old___init__ = History.__init__
 def History_new___init__(self,dates,values):
     values = values[:]
@@ -30,3 +36,17 @@ def History_new___init__(self,dates,values):
         values[i] = values[i] or nullDouble()
     self._old___init__(dates,values)
 History.__init__ = History_new___init__
+
+MarketElementHandle._old___init__ = MarketElementHandle.__init__
+MarketElementHandle._old_linkTo = MarketElementHandle.linkTo
+def MarketElementHandle_new___init__(self,h=None):
+    if h:
+        self._old___init__(h)
+    else:
+        self._old___init__()
+    self.currentLink = h
+def MarketElementHandle_new_linkTo(self,h):
+    self._old_linkTo(h)
+    self.currentLink = h
+MarketElementHandle.__init__ = MarketElementHandle_new___init__
+MarketElementHandle.linkTo = MarketElementHandle_new_linkTo

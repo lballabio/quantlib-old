@@ -20,6 +20,7 @@
 #ifndef quantlib_date_i
 #define quantlib_date_i
 
+%include common.i
 %include types.i
 %include stl.i
 
@@ -123,7 +124,8 @@ using QuantLib::Period;
 %}
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(">string")  __str__;
+%rename(">string")        __str__;
+%rename("string->Period") PeriodFromString;
 #endif
 
 class Period {
@@ -152,6 +154,15 @@ class Period {
     }
 }
 
+ReturnByValue(Period);
+%inline %{
+    Period PeriodFromString(const std::string& s) {
+        return Period(s);
+    }
+%}
+
+
+
 
 // and finally, the Date class
 
@@ -178,25 +189,12 @@ Date NullDate = Date();
 %rename("is-leap?")       isLeap;
 %rename("min-date")       minDate;
 %rename("max-date")       maxDate;
+%rename("todays-date")    todaysDate;
 %rename(">string")        __str__;
 #endif
 // also, allow pass and return by value
-#if defined(SWIGMZSCHEME)
-%typemap(in) Date {
-    $1 = *((Date*) SWIG_MustGetPtr($input,$1_descriptor,$argnum));
-}
-%typemap(out) Date {
-    $result = SWIG_MakePtr(new Date($1), $&1_descriptor);
-}
-#elif defined(SWIGGUILE)
-%typemap(in) Date {
-    $1 = *((Date*) SWIG_Guile_MustGetPtr($input,$1_descriptor,
-                                         $argnum,FUNC_NAME));
-}
-%typemap(out) Date {
-    $result = SWIG_Guile_MakePtr(new Date($1), $&1_descriptor);
-}
-#endif
+PassByValue(Date);
+ReturnByValue(Date);
 
 class Date {
   public:
@@ -219,6 +217,8 @@ class Date {
     // earliest and latest allowed date
     static Date minDate();
     static Date maxDate();
+    // today's date
+    static Date todaysDate();
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
     Date operator+(int days) const;
     Date operator-(int days) const;

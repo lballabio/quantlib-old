@@ -24,12 +24,26 @@
 (load "date.scm")
 (load "daycounters.scm")
 (load "distributions.scm")
+(load "marketelements.scm")
+(load "riskstatistics.scm")
 (load "solvers1d.scm")
 
 (let ((suite (make-suite)))
-  (suite-add-test suite Date-test         "Testing dates")
-  (suite-add-test suite Day-counter-test  "Testing act/act day counters")
-  (suite-add-test suite Distribution-test "Testing distributions")
-  (suite-add-test suite Solver-1D-test    "Testing 1D solvers")
+  (suite-add-test suite Date-test
+                  "Testing dates")
+  (suite-add-test suite Day-counter-test
+                  "Testing act/act day counters")
+  (suite-add-test suite Distribution-test
+                  "Testing distributions")
+  (suite-add-test suite Market-element-test-1
+                  "Testing observability of market elements")
+  (suite-add-test suite Market-element-test-2
+                  "Testing derived market elements")
+  (suite-add-test suite Market-element-test-3
+                  "Testing composite market elements")
+  (suite-add-test suite Risk-statistics-test
+                  "Testing risk statistics")
+  (suite-add-test suite Solver-1D-test
+                  "Testing 1D solvers")
   (suite-run suite))
 

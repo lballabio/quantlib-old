@@ -84,7 +84,6 @@ class PyObserver {
 	PyObserver(PyObject* callback);
     void registerWith(const ObservableHandle&);
     void unregisterWith(const ObservableHandle&);
-    void update();
 };
 
 #elif defined(SWIGRUBY)
@@ -121,7 +120,6 @@ class RubyObserver {
 	RubyObserver(VALUE callback);
     void registerWith(const ObservableHandle&);
     void unregisterWith(const ObservableHandle&);
-    void update();
 };
 
 #elif defined(SWIGMZSCHEME)
@@ -173,10 +171,44 @@ class MzObserver {
 	MzObserver(Scheme_Object* callback);
     void registerWith(const ObservableHandle&);
     void unregisterWith(const ObservableHandle&);
-    void update();
 };
-#endif
 
+#elif defined(SWIGGUILE)
+
+%{
+// C++ wrapper for Guile observer
+class GuileObserver : public Observer {
+  public:
+	GuileObserver(SCM callback)
+    : callback_(callback) {
+        scm_protect_object(callback_);
+    }
+    ~GuileObserver() {
+        scm_unprotect_object(callback_);
+    }
+    void update() {
+        gh_call0(callback_);
+    }
+  private:
+	SCM callback_;
+    // inhibit copies
+    GuileObserver(const GuileObserver&) {}
+    GuileObserver& operator=(const GuileObserver&) { return *this; }
+};
+%}
+
+// Guile wrapper
+%rename(Observer) GuileObserver;
+%rename("register-with")   registerWith;
+%rename("unregister-with") unregisterWith;
+class GuileObserver {
+  public:
+	GuileObserver(SCM callback);
+    void registerWith(const ObservableHandle&);
+    void unregisterWith(const ObservableHandle&);
+};
+
+#endif
 
 
 #endif

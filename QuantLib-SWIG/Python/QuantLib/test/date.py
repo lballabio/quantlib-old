@@ -156,8 +156,6 @@ inconsistent serial number
 
 if __name__ == '__main__':
     print 'testing QuantLib', QuantLib.__version__, 
-    print QuantLib.QuantLibc.__file__, QuantLib.__file__
-    import sys
     suite = unittest.TestSuite()
     suite.addTest(DateTest())
     unittest.TextTestRunner(verbosity=2).run(suite)

@@ -20,8 +20,6 @@
 ;
 ; $Id$
 
-(define version "$Revision$")
-
 (require-library "quantlib.ss" "quantlib")
 
 (define (Date-test)

@@ -21,20 +21,20 @@ require 'runit/testcase'
 require 'runit/cui/testrunner'
 
 class Solver1DTest < RUNIT::TestCase
-    def name
-      "Testing 1-D solvers..."
-    end
-    def test
-      [QuantLib::Brent,
-       QuantLib::Bisection, 
-       QuantLib::FalsePosition, 
-       QuantLib::Ridder,
-       QuantLib::Secant].each { |factory|
-        solver = factory.new
-        [1.0e-4, 1.0e-6, 1.0e-8].each { |accuracy|
-          root = solver.solve(accuracy,1.5,0.1) { |x| x*x-1.0 }
-          unless (root-1.0).abs <= accuracy
-            assert_fail(<<-MESSAGE
+  def name
+    "Testing 1-D solvers..."
+  end
+  def test
+    [QuantLib::Brent,
+     QuantLib::Bisection, 
+     QuantLib::FalsePosition, 
+     QuantLib::Ridder,
+     QuantLib::Secant].each { |factory|
+      solver = factory.new
+      [1.0e-4, 1.0e-6, 1.0e-8].each { |accuracy|
+        root = solver.solve(accuracy,1.5,0.1) { |x| x*x-1.0 }
+        unless (root-1.0).abs <= accuracy
+          assert_fail(<<-MESSAGE
 
 #{factory}
     solve():
@@ -42,13 +42,13 @@ class Solver1DTest < RUNIT::TestCase
     calculated root:  #{root}
     accuracy:         #{accuracy}
 
-                        MESSAGE
-                        )
-          end
+                      MESSAGE
+                      )
+        end
 
-          root = solver.bracketedSolve(accuracy,1.5,0.0,1.0) { |x| x*x-1.0 }
-          unless (root-1.0).abs <= accuracy
-            assert_fail(<<-MESSAGE
+        root = solver.bracketedSolve(accuracy,1.5,0.0,1.0) { |x| x*x-1.0 }
+        unless (root-1.0).abs <= accuracy
+          assert_fail(<<-MESSAGE
 
 #{factory}
     bracketedSolve():
@@ -56,15 +56,15 @@ class Solver1DTest < RUNIT::TestCase
     calculated root:  #{root}
     accuracy:         #{accuracy}
 
-                        MESSAGE
-                        )
-          end
-        }
+                      MESSAGE
+                      )
+        end
       }
-    end
+    }
+  end
 end
 
 if $0 == __FILE__
-    RUNIT::CUI::TestRunner.run(Solver1DTest.suite)
+  RUNIT::CUI::TestRunner.run(Solver1DTest.suite)
 end
 

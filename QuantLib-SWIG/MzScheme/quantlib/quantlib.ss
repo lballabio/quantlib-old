@@ -19,6 +19,12 @@
 (define samplenumber-weight samplenumber-weight-get)
 
 ; added functionality
+(define Calendar-advance-units Calendar-advance)
+(define (Calendar-advance . args)
+  (if (integer? (caddr args))
+      (apply Calendar-advance-units args)
+      (apply Calendar-advance-period args)))
+
 (define (History-map h f)
   (let ((results '()))
     (History-for-each h (lambda (e)

@@ -97,6 +97,25 @@ using QuantLib::Calendars::Sydney;
 #endif
 
 // export Calendar
+%rename(advance_period) advance(const Date&,const Period&,RollingConvention);
+#if defined(SWIGPYTHON)
+%feature("shadow") Calendar::advance(const Date&,int,TimeUnit,
+                                     RollingConvention) %{
+    def advance(*args):
+        if type(args[2]) == type(0):
+            return apply(QuantLibc.Calendar_advance,args)
+        else:
+            return apply(QuantLibc.Calendar_advance_period,args)
+%}
+#elif defined(SWIGGUILE)
+%scheme %{
+    (define Calendar-advance-units Calendar-advance)
+    (define (Calendar-advance . args)
+      (if (integer? (caddr args))
+          (apply Calendar-advance-units args)
+          (apply Calendar-advance-period args)))
+%}
+#endif
 class Calendar {
   public:
     // constructor redefined below as string-based factory
@@ -106,7 +125,10 @@ class Calendar {
               RollingConvention convention = QuantLib::Following);
     Date advance(const Date& d, int n, TimeUnit unit,
                  RollingConvention convention = QuantLib::Following);
+    Date advance(const Date& d, const Period& period,
+                 RollingConvention convention = QuantLib::Following);
 };
+
 
 %addmethods Calendar {
     Calendar(const std::string& name) {

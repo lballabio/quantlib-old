@@ -16,28 +16,28 @@
 
 # $Id$
 
+require 'QuantLib'
 require 'runit/testcase'
-require 'runit/testsuite'
 require 'runit/cui/testrunner'
 
-require 'dates'
-require 'daycounters'
-require 'distributions'
-require 'marketelements'
-require 'riskstatistics'
-require 'solvers1d'
-
-suite = RUNIT::TestSuite.new
-suite.add_test(DateTest.suite)
-suite.add_test(DayCounterTest.suite)
-suite.add_test(DistributionTest.suite)
-suite.add_test(MarketElementTest.suite)
-suite.add_test(RiskStatisticsTest.suite)
-suite.add_test(Solver1DTest.suite)
-
-result = RUNIT::CUI::TestRunner.run(suite)
-unless result.succeed?
-  exit(1)
+class MarketElementTest < RUNIT::TestCase
+  def name
+    "Testing observability of market elements..."
+  end
+  def test
+    flag = false
+    me = QuantLib::SimpleMarketElement.new(0.0)
+    obs = QuantLib::Observer.new { flag = true }
+    obs.registerWith(me)
+    me.value = 3.14
+    unless flag
+        assert_fail("Observer was not notified of market element change")
+    end
+  end
 end
 
+
+if $0 == __FILE__
+  RUNIT::CUI::TestRunner.run(MarketElementTest.suite)
+end
 

@@ -36,6 +36,12 @@ def test():
     from distributions import DistributionTest
     suite.addTest(DistributionTest())
 
+    from marketelements import MarketElementTest
+    suite.addTest(unittest.makeSuite(MarketElementTest,'test'))
+    
+    from riskstatistics import RiskStatisticsTest
+    suite.addTest(RiskStatisticsTest())
+
     from solvers1d import Solver1DTest
     suite.addTest(Solver1DTest())
 

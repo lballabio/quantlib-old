@@ -50,6 +50,17 @@ module QuantLibc
   
   
   # interface enhancements
+  class Calendar
+    alias advance_units advance
+    def advance(*args)
+      if args[1].kind_of? Integer
+        advance_units(*args)
+      else
+        advance_period(*args)
+      end
+    end
+  end
+
   class Observer
     alias cpp_initialize initialize
     def initialize(*args,&block)
