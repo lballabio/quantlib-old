@@ -22,7 +22,8 @@
 
 <li><a class="navlink" href="download.shtml">Download</a></li>
 
-<li><a class="navlink" href="mailinglists.shtml">Mailing lists</a></li>
+<li><a class="navlink" href="mailinglists.shtml">Mailing Lists and
+     Forums</a></li>
 
 <li><a class="navlink" href=
 "http://sourceforge.net/news/?group_id=12740">News</a></li>

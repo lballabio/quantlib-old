@@ -16,12 +16,13 @@
 </head>
 <body>
 <!--#include virtual="qlheader.inc"-->
-<h1 class="center">Mailing Lists</h1>
-Choose a list to browse, search, and post messages.
+<h1 class="center">Mailing Lists and Forums</h1>
 <ul>
+<li>Choose a list to browse, search, and post messages.
+<ol>
 <li><strong>quantlib-users</strong>:<br>
 QuantLib users general discussion list. This list is for everything
-related to the QuantLib usage and development. Topics about
+related to the QuantLib usage. Topics about
 quantitative finance in general are also accepted.<br>
 (go to <a href=
 "http://sourceforge.net/mailarchive/forum.php?forum=quantlib-users">
@@ -66,6 +67,10 @@ list.<br>
 (not archived yet, <a href=
 "http://lists.sourceforge.net/mailman/listinfo/quantlib-cvs">Subscribe/Unsubscribe/Preferences</a>)</li>
 </ul>
+</li>
+<li>Check out the threads available in the <a href=
+"http://sourceforge.net/forum/?group_id=12740">Forums</a>, or start a new
+thread</li>
 <!--#include virtual="qlfooter.inc"-->
 </body>
 </html>
