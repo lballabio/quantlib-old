@@ -35,7 +35,7 @@ module com {
 
 				sequence < sequence < any > > qlOptionSetEngine(
                         [in] string handle,
-                        [in] long engineID,
+                        [in] string engineName,
                         [in] long timeSteps)
 					raises( com::sun::star::lang::IllegalArgumentException );
 

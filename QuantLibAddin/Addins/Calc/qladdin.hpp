@@ -101,7 +101,7 @@ public:
 
 	virtual SEQSEQ(ANY) SAL_CALL qlOptionSetEngine( 
 		const STRING& handle,
-		sal_Int32 engineID,
+		const STRING& engineName,
 		sal_Int32 timeSteps) THROWDEF_RTE_IAE;
 
 	// utilities

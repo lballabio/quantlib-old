@@ -67,20 +67,11 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOption(
 
 SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionSetEngine( 
 			const STRING& handle,
-			sal_Int32 engineID,
+			const STRING& engineName,
 			sal_Int32 timeSteps) THROWDEF_RTE_IAE {
 	try {
-		std::string engineName;
-		if (engineID == 1)
-			engineName = BINOMIAL_JARROW_RUDD;
-		else if (engineID == 2)
-			engineName = BINOMIAL_COX_ROSS_RUBINSTEIN;
-		else if (engineID == 3)
-			engineName = ADDITIVE_EQUIPROBABILITIES;
-		else
-			throw Exception("invalid engine ID");
 		Properties properties = QL_OPTION_SETENGINE(OUStringToString(handle),
-			engineName, timeSteps);
+			OUStringToString(engineName), timeSteps);
 		return getArray(properties, handle);
 	} catch (const std::exception &e) {
 		QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_SETENGINE: ") + e.what());
