@@ -134,6 +134,13 @@ class PyObjectiveFunction : public ObjectiveFunction {
 #elif defined(SWIGRUBY)
 
 %{
+class UnaryFunction {
+  public:
+    double operator()(double x) const {
+        return NUM2DBL(rb_yield(rb_float_new(x)));
+    }
+};
+
 class RubyObjectiveFunction : public ObjectiveFunction {
   public:
     double operator()(double x) const {
@@ -253,6 +260,31 @@ class MzObjectiveFunction : public ObjectiveFunction {
 #elif defined(SWIGGUILE)
 
 %{
+class UnaryFunction {
+  public:
+	UnaryFunction(SCM function) : function_(function) {
+        if (!gh_procedure_p(function))
+            throw Error("procedure expected");
+	    scm_protect_object(function_);
+    }
+    ~UnaryFunction() {
+        scm_unprotect_object(function_);
+    }
+	double operator()(double x) const {
+		SCM arg = gh_double2scm(x);
+        SCM guileResult = gh_call1(function_,arg);
+		double result = gh_scm2double(guileResult);
+		return result;
+	}
+  private:
+	SCM function_;
+    // inhibit copy
+    UnaryFunction(const UnaryFunction& f) {}
+    UnaryFunction& operator=(const UnaryFunction& f) {
+        return *this;
+    }
+};
+
 class GuileObjectiveFunction : public ObjectiveFunction {
   public:
 	GuileObjectiveFunction(SCM function) : function_(function) {

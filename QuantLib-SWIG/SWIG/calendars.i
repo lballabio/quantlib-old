@@ -130,7 +130,7 @@ class Calendar {
 };
 
 
-%addmethods Calendar {
+%extend Calendar {
     Calendar(const std::string& name) {
         std::string s = StringFormatter::toLowercase(name);
         if (s == "target" || s == "euro" || s == "eur")

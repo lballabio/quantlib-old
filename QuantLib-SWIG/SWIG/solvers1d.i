@@ -57,7 +57,7 @@ class Solver1D {
     void setUpperBound(double upperBound);
 };
 
-%addmethods Solver1D {
+%extend Solver1D {
     #if defined(SWIGPYTHON)
     double solve(PyObject* function, double xAccuracy, double guess,
                  double step) {

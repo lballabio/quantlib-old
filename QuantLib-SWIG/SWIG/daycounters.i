@@ -56,7 +56,7 @@ class DayCounter {
 };
 
 // replicate the DayCounter interface
-%addmethods DayCounter {
+%extend DayCounter {
     DayCounter(std::string s) {
         s = StringFormatter::toLowercase(s);
         if (s == "act365" || s == "act/365")

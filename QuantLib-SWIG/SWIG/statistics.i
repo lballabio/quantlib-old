@@ -17,68 +17,52 @@
 
 // $Id$
 
-#ifndef quantlib_risk_statistics_i
-#define quantlib_risk_statistics_i
+#ifndef quantlib_statistics_i
+#define quantlib_statistics_i
 
 %include types.i
+%include qlarray.i
+%include matrix.i
 %include vectors.i
+%include stl.i
 
 %{
-using QuantLib::RiskStatistics;
-using QuantLib::Math::RiskMeasures;
+using QuantLib::Math::Statistics;
 %}
 
 #if defined(SWIGRUBY)
 %rename("reset!")                reset;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("weight-sum")            weightSum;
+%rename("standard-deviation")    standardDeviation;
+%rename("downside-variance")     downsideVariance;
+%rename("downside-deviation")    downsideDeviation;
+%rename("error-estimate")        errorEstimate;
 %rename("add-sequence")          addSequence;
 %rename("add-weighted-sequence") addWeightedSequence;
-%rename("standard-deviation")    standardDeviation;
-%rename("error-estimate")        errorEstimate;
-%rename("potential-upside")      potentialUpside;
-%rename("value-at-risk")         valueAtRisk;
-%rename("average-shortfall")     averageShortfall;
-%rename("expected-shortfall")    expectedShortfall;
-%rename("weight-sum")            weightSum;
 %rename("reset!")                reset;
 #endif
 
-
-class RiskMeasures {
+class Statistics {
   public:
-    RiskMeasures();
-    double potentialUpside(double percentile, double mean, double std) const;
-    double valueAtRisk(double percentile, double mean, double std) const;
-    double shortfall(double target, double mean, double std) const;
-    double averageShortfall(double target, double mean, double std) const;
-};
-
-
-class RiskStatistics {
-  public:
-    RiskStatistics();
-    // Accessors
     Size samples() const;
     double weightSum() const;
     double mean() const;
     double variance() const;
     double standardDeviation() const;
+    double downsideVariance() const;
+    double downsideDeviation() const;
     double errorEstimate() const;
     double skewness() const;
     double kurtosis() const;
     double min() const;
     double max() const;
-    double potentialUpside(double percentile) const;
-    double valueAtRisk(double percentile) const;
-    double expectedShortfall(double percentile) const;
-    double shortfall(double target) const;
-    double averageShortfall(double target) const;
     // Modifiers
     void add(double value, double weight = 1.0);
     void reset();
 };
 
-%extend RiskStatistics {
+%extend Statistics {
     void addSequence(const std::vector<double>& values) {
         self->addSequence(values.begin(), values.end());
     }
@@ -87,6 +71,23 @@ class RiskStatistics {
         self->addSequence(values.begin(), values.end(), weights.begin());
     }
 }
+
+
+%{
+using QuantLib::Math::MultivariateAccumulator;
+%}
+
+class MultivariateAccumulator {
+  public:
+    Size size() const;
+    Size samples() const;
+    double weightSum() const;
+    Array mean() const;
+    Matrix covariance() const;
+	Matrix correlation() const;
+    void add(const Array& a, double weight = 1.0);
+    void reset();
+};
 
 
 #endif

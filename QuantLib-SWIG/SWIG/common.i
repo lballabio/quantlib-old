@@ -42,7 +42,7 @@ class Handle {
     #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     bool isNull();
     #elif defined(SWIGPYTHON)
-    %addmethods {
+    %extend {
         bool __nonzero__() {
             return !(self->isNull());
         }
@@ -62,7 +62,7 @@ class RelinkableHandle {
     #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     bool isNull();
     #elif defined(SWIGPYTHON)
-    %addmethods {
+    %extend {
         bool __nonzero__() {
             return !(self->isNull());
         }

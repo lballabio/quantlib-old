@@ -4,9 +4,10 @@ by means of SWIG (Simple Wrapper Interface Generator) available from
 <http://www.swig.org/>. Features used in the QuantLib-Python
 interface files require version 1.3.12 or later of SWIG.
 
-The wrappers are generated on all supported platforms by running the
-makewrappers.py script. The script assumes that the SWIG executable
-is named "swig" and can be found into the system path.
+The wrappers are generated on all supported platforms by issuing the command
+    python setup.py wrap
+The above assumes that the SWIG executable is named "swig" and can be found 
+in the system path.
 
 The build, test and installation processes are done by means of the Distutils
 package, included in the Python standard library since the Python 1.6 release.

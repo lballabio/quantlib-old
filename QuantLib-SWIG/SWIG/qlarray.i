@@ -96,6 +96,7 @@ bool extractArray(PyObject* source, Array* target) {
 %rename(">string") __str__;
 %rename("set!")    set;
 #endif
+ReturnByValue(Array);
 
 class Array {
   public:
@@ -105,7 +106,7 @@ class Array {
     Size size() const;
 };
 
-%addmethods Array {
+%extend Array {
     std::string __str__() {
         return ArrayFormatter::toString(*self);
     }
@@ -231,7 +232,7 @@ class LexicographicalViewColumn {
     LexicographicalViewColumn();
 };
 
-%addmethods LexicographicalViewColumn {
+%extend LexicographicalViewColumn {
     double __getitem__(int i) {
         return (*self)[i];
     }
@@ -252,7 +253,7 @@ class LexicographicalView {
     Size ySize() const;
 };
 
-%addmethods LexicographicalView {
+%extend LexicographicalView {
     LexicographicalView(Array& a, Size xSize) {
         return new LexicographicalView(a.begin(),a.end(),xSize);
     }

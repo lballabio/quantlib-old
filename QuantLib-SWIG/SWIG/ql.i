@@ -56,12 +56,16 @@
 %include functions.i
 %include history.i
 %include instruments.i
+%include interpolation.i
 %include marketelements.i
+%include matrix.i
 %include null.i
 %include observer.i
 %include qlarray.i
 %include randomnumbers.i
 %include riskstatistics.i
+%include segmentintegral.i
 %include solvers1d.i
+%include statistics.i
 %include types.i
 

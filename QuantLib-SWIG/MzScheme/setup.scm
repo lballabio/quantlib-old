@@ -39,7 +39,7 @@
 ; files
 (define info-files
   (list "Authors.txt" "ChangeLog.txt" "Contributors.txt"
-        "LICENSE.TXT" "History.txt"))
+        "LICENSE.TXT" "History.txt" "README.txt"))
 (define source-files
   (list (build-path "quantlib" "quantlib.ss")
         "quantlib_wrap.cpp"))

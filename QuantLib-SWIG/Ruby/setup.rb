@@ -105,26 +105,11 @@ end
 Wrap = Command.new {
     swigDir = "./SWIG"
     swigDir = "../SWIG" if not File.exists? swigDir
-	# check dependencies
-	if File.exists? "quantlib_wrap.cpp"
-		genTime = File.mtime("quantlib_wrap.cpp")
-		needsWrapping = false
-		Interfaces.each { |file|
-            if File.mtime("#{swigDir}/#{file}") > genTime
-				needsWrapping = true
-			end
-		}
-	else
-		needsWrapping = true
-	end
-	if needsWrapping
-        puts "Generating Ruby bindings for QuantLib..."
-        system "swig -ruby -c++ -I#{swigDir} -o ./quantlib_wrap.cpp quantlib.i"
-	end
+    puts "Generating Ruby bindings for QuantLib..."
+    system "swig -ruby -c++ -I#{swigDir} -o ./quantlib_wrap.cpp quantlib.i"
 }
 
 SDist = Command.new {
-	Wrap.execute
 	puts "Packing source distribution..."
 	distDir = "QuantLib-Ruby-#{Version}"
 	raise "Directory #{distDir} already exist" if File.exists? distDir
@@ -148,7 +133,6 @@ SDist = Command.new {
 }
 
 Build = Command.new {
-	Wrap.execute
 	puts "Building extension..."
 	cfg = Config::MAKEFILE_CONFIG
 	case cfg['host_os']
@@ -161,7 +145,10 @@ Build = Command.new {
 	    $CPPFLAGS += " /I#{QL_DIR}"
 	    $LIBPATH  += ["#{QL_DIR}\\lib\\Win32\\VisualStudio"]
 	  when 'linux'
+        $CFLAGS   += ENV['CFLAGS'] || ""
     	$CFLAGS   += " -DHAVE_CONFIG_H"
+        $CPPFLAGS += ENV['CXXFLAGS'] || ""
+        $CPPFLAGS += ENV['CPPFLAGS'] || ""
     	$CPPFLAGS += " -I/usr/local/include"
     	$libs     += " -lQuantLib"
     	cfg['LDSHARED'] = cfg['LDSHARED'].sub('gcc','g++')
@@ -179,7 +166,6 @@ Build = Command.new {
 }
 
 Test = Command.new {
-	Wrap.execute
 	Build.execute
 	puts "Testing QuantLib-Ruby..."
 	$LOAD_PATH.unshift Dir.pwd
@@ -190,7 +176,6 @@ Test = Command.new {
 }
 
 BDist = Command.new {
-	Wrap.execute
 	Build.execute
 	puts "Packing binary distribution..."
 	distDir = "QuantLib-Ruby-#{Version}"
@@ -208,7 +193,6 @@ BDist = Command.new {
 }
 
 Install = Command.new {
-	Wrap.execute
 	Build.execute
 	puts "Installing QuantLib-Ruby..."
 	if Prefix.nil?
@@ -218,9 +202,12 @@ Install = Command.new {
 	else
 		# strip old prefix and add the new one
 		oldPrefix = Config::CONFIG["prefix"]
-		archDir = Prefix + Config::CONFIG["archdir"].gsub("^#{oldPrefix}","")
-		libDir  = Prefix + Config::CONFIG["rubylibdir"].gsub("^#{oldPrefix}","")
-		dataDir = Prefix + Config::CONFIG["datadir"].gsub("^#{oldPrefix}","")
+		archDir = Prefix + \
+                  Config::CONFIG["archdir"].gsub("^#{oldPrefix}","")
+		libDir  = Prefix + \
+                  Config::CONFIG["rubylibdir"].gsub("^#{oldPrefix}","")
+		dataDir = Prefix + \
+                  Config::CONFIG["datadir"].gsub("^#{oldPrefix}","")
 	end
 	swigDir   = dataDir + "/QuantLib-Ruby/SWIG"
 	docDir    = dataDir + "/doc/QuantLib-Ruby"
@@ -229,8 +216,12 @@ Install = Command.new {
 	File.install "./QuantLibc.so", archDir+"/QuantLibc.so", 0555, true
 	File.install "./QuantLib.rb", libDir+"/QuantLib.rb", 0555, true
 	Info.each { |file| File.install "./#{file}",docDir+"/#{file}",nil,true }
-	Interfaces.each { |file| File.install "../SWIG/"+file,swigDir+"/#{file}",nil,true }
-	Tests.each { |file| File.install "./test/"+file,testDir+"/#{file}",nil,true }
+	Interfaces.each { |file| 
+        File.install "../SWIG/"+file,swigDir+"/#{file}",nil,true 
+    }
+	Tests.each { |file| 
+        File.install "./test/"+file,testDir+"/#{file}",nil,true 
+    }
 }
 
 

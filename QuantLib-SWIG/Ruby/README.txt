@@ -4,9 +4,10 @@ by means of SWIG (Simple Wrapper Interface Generator) available from
 <http://swig.sourceforge.net/>. Features used in the QuantLib-Ruby
 interface files require version 1.3.12 or later of SWIG.
 
-The build script assumes that the SWIG executable is named "swig" and can 
-be found into the system path. SWIG should not be necessary for building
-from a released source tarball.
+The wrappers are generated on all supported platforms by issuing the command
+    ruby setup.py wrap
+The above assumes that the SWIG executable is named "swig" and can be found 
+in the system path.
 
 The building and installation process consists of the following commands:
     ruby setup.rb build
@@ -15,7 +16,7 @@ The building and installation process consists of the following commands:
 
 The install step above might require superuser privileges.
 An alternate install location can be specified with the command:
-    ruby setup.rb install --prefix=/home/ballabl
+    ruby setup.rb install --prefix=/home/johndoe
 
 The test suite is implemented on top of the RubyUnit framework, available from 
 <http://homepage1.nifty.com/markey/ruby/rubyunit/index_e.html>.

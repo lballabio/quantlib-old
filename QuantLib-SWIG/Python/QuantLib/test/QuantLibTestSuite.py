@@ -45,8 +45,14 @@ def test():
     from riskstatistics import RiskStatisticsTest
     suite.addTest(RiskStatisticsTest())
 
+    from segmentintegral import SegmentIntegralTest
+    suite.addTest(SegmentIntegralTest())
+
     from solvers1d import Solver1DTest
     suite.addTest(Solver1DTest())
+
+    from statistics import StatisticsTest
+    suite.addTest(StatisticsTest())
 
     result = unittest.TextTestRunner(verbosity=2).run(suite)
 

@@ -136,7 +136,7 @@ class HistoryIterator {
   private:
     HistoryIterator();
   public:
-    %addmethods {
+    %extend {
         HistoryEntry next() {
             if (self->i == self->end) {
                 throw Error();
@@ -153,7 +153,7 @@ class HistoryValidIterator {
   private:
     HistoryValidIterator();
   public:
-    %addmethods {
+    %extend {
         HistoryEntry next() {
             if (self->i == self->end) {
                 throw Error();
@@ -185,7 +185,7 @@ class History {
     Date lastDate() const;
 };
 
-%addmethods History {
+%extend History {
     Size __len__() {
         return self->size();
     }

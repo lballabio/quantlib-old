@@ -34,10 +34,16 @@ using QuantLib::Patterns::Observable;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename(">Observable") asObservable;
 #endif
-%addmethods Type {
+%extend Type {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    Handle<Observable>* asObservable() {
+        return new Handle<Observable>(*self);
+    }
+    #else
     Handle<Observable> asObservable() {
         return Handle<Observable>(*self);
     }
+    #endif
 }
 %enddef
 

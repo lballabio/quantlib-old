@@ -27,7 +27,9 @@
 (load "instruments.scm")
 (load "marketelements.scm")
 (load "riskstatistics.scm")
+(load "segmentintegral.scm")
 (load "solvers1d.scm")
+(load "statistics.scm")
 
 (let ((suite (make-suite)))
   (suite-add-test suite Date-test
@@ -44,7 +46,11 @@
                   "Testing observability of market element handles")
   (suite-add-test suite Risk-statistics-test
                   "Testing risk statistics")
+  (suite-add-test suite Segment-integral-test
+                  "Testing segment integral")
   (suite-add-test suite Solver-1D-test
                   "Testing 1-D solvers")
+  (suite-add-test suite Statistics-test
+                  "Testing statistics")
   (suite-run suite))
 

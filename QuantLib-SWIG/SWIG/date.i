@@ -135,7 +135,7 @@ class Period {
     TimeUnit units() const;
 };
 
-%addmethods Period {
+%extend Period {
     std::string __str__() {
         std::string s = IntegerFormatter::toString(self->length());
         switch (self->units()) {
@@ -225,7 +225,7 @@ class Date {
     #endif
 };
 
-%addmethods Date {
+%extend Date {
     int weekdayNumber() {
         return int(self->weekday());
     }
