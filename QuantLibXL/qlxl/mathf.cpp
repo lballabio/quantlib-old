@@ -156,9 +156,9 @@ extern "C"
         double result;
         if (cumulative) {
             result=CumulativePoissonDistribution(
-                xlmean.AsDouble())(xlx.AsDouble());
+                xlmean.AsDouble())(xlx.AsInt());
         } else {
-            result=PoissonDistribution(xlmean.AsDouble())(xlx.AsDouble());
+            result=PoissonDistribution(xlmean.AsDouble())(xlx.AsInt());
         }
         return XlfOper(result);
         EXCEL_END;
@@ -167,8 +167,8 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlCombin(XlfOper number,
                                    XlfOper number_chosen) {
         EXCEL_BEGIN;
-        double result=binomialCoefficient(number.AsDouble(),
-                number_chosen.AsDouble());
+        double result=binomialCoefficient(number.AsInt(),
+                number_chosen.AsInt());
         return XlfOper(result);
         EXCEL_END;
     }
@@ -182,10 +182,10 @@ extern "C"
         double result;
         if (cumulative) {
             result=CumulativeBinomialDistribution(xlprobability_s.AsDouble(),
-                xltrials.AsDouble())(xlnumber_s.AsDouble());
+                xltrials.AsInt())(xlnumber_s.AsInt());
         } else {
             result=BinomialDistribution(xlprobability_s.AsDouble(),
-                xltrials.AsDouble())(xlnumber_s.AsDouble());
+                xltrials.AsInt())(xlnumber_s.AsInt());
         }
         return XlfOper(result);
         EXCEL_END;

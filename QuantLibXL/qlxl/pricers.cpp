@@ -56,8 +56,8 @@ extern "C"
         Date maturityDate    = QlXlfOper(xlmaturityDate).AsDate();
         double maturity      = Actual365().yearFraction(valueDate, maturityDate);
         double volatility    = xlvolatility.AsDouble();
-        Size timeSteps       = xltimeSteps.AsDouble();
-        Size gridPoints      = xlgridPoints.AsDouble();
+        Size timeSteps       = xltimeSteps.AsInt();
+        Size gridPoints      = xlgridPoints.AsInt();
 
 
 
@@ -267,7 +267,7 @@ extern "C"
         Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying       = xlunderlying.AsDouble();
         double moneyness           = xlmoneyness.AsDouble();
-        Size samples            = xlsamples.AsDouble();
+        Size samples            = xlsamples.AsInt();
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
@@ -323,8 +323,8 @@ extern "C"
         Date maturityDate    = QlXlfOper(xlmaturityDate).AsDate();
         double maturity      = Actual365().yearFraction(valueDate, maturityDate);
         double volatility    = xlvolatility.AsDouble();
-        Size timeSteps       = xltimeSteps.AsDouble();
-        Size gridPoints      = xlgridPoints.AsDouble();
+        Size timeSteps       = xltimeSteps.AsInt();
+        Size gridPoints      = xlgridPoints.AsInt();
 
 
 
