@@ -27,8 +27,6 @@
 %{
 using QuantLib::CompoundForward;
 typedef Handle<TermStructure> CompoundForwardHandle;
-//using QuantLib::CompoundSpreadedTermStructure;
-//typedef Handle<TermStructure> CompoundSpreadedTermStructureHandle;
 %}
 
 %rename(CompoundForward) CompoundForwardHandle;
@@ -36,51 +34,28 @@ class CompoundForwardHandle : public Handle<TermStructure> {
   public:
     %extend {
         CompoundForwardHandle(const Date& todaysDate,
-			      const Date& settlementDate,
-			      const std::vector<Date>& dates,
-			      const std::vector<double>& rates,
-			      Calendar calendar,
-			      RollingConvention roll,
-			      int compounding,
-			      const DayCounter& dayCounter = Actual365()) {
+                              const Date& settlementDate,
+                              const std::vector<Date>& dates,
+                              const std::vector<double>& rates,
+                              Calendar calendar,
+                              RollingConvention roll,
+                              int compounding,
+                              const DayCounter& dayCounter = Actual365()) {
 	        return new CompoundForwardHandle(
-		   new CompoundForward(todaysDate,
-				       settlementDate,
-				       dates, rates,
-				       calendar, roll,
-				       compounding, dayCounter));
+                new CompoundForward(todaysDate, settlementDate,
+                                    dates, rates, calendar, roll,
+                                    compounding, dayCounter));
         }
         const std::vector<Date>& dates() {
-	   return Handle<CompoundForward>(*self)->dates();
-	}
-    }
-};
-
-/*
-%rename(CompoundSpreadedTermStructure) CompoundSpreadedTermStructureHandle;
-class CompoundSpreadedTermStructureHandle : public Handle<TermStructure> {
-  public:
-    %extend {
-        CompoundSpreadedTermStructureHandle(
-                const RelinkableHandle<TermStructure>& curveHandle,
-		const Date& todaysDate, const Date& settlementDate,
-		const std::vector<Date>& dates,
-		const std::vector<double>& spreads,
-		const Calendar & calendar,
-		const RollingConvention roll,
-		const int compounding,
-		const DayCounter & dayCounter = Actual365()) {
-	        return new CompoundSpreadedTermStructureHandle(
-	            new CompoundSpreadedTermStructure(
-		       curveHandle,
-		       todaysDate, settlementDate,
-		       dates, spreads,
-		       calendar, roll,
-		       compounding, dayCounter));
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<CompoundForward>(*self)
+                 ->dates();
+            %#else
+            return Handle<CompoundForward>(*self)->dates();
+            %#endif
         }
     }
 };
-*/
 
 
 #endif

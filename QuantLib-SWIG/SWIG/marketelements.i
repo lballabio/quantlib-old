@@ -61,7 +61,12 @@ class SimpleMarketElementHandle : public Handle<MarketElement> {
                 new SimpleMarketElement(value));
         }
         void setValue(double value) {
+            %#if defined(HAVE_BOOST)
+            boost::dynamic_pointer_cast<SimpleMarketElement>(*self)
+                 ->setValue(value);
+            %#else
             Handle<SimpleMarketElement>(*self)->setValue(value);
+            %#endif
         }
     }
 };

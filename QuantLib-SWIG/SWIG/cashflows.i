@@ -91,26 +91,53 @@ class ParCouponHandle : public Handle<CashFlow> {
                         int fixingDays, Spread spread = 0.0, 
                         const Date& refPeriodStart = Date(), 
                         const Date& refPeriodEnd = Date()) {
+            %#if defined(HAVE_BOOST)
+            Handle<Xibor> libor = boost::dynamic_pointer_cast<Xibor>(index);
+            %#else
+            Handle<Xibor> libor = index;
+            %#endif
             return new ParCouponHandle(
-                new ParCoupon(nominal, paymentDate, index,
+                new ParCoupon(nominal, paymentDate, libor,
                               startDate, endDate, fixingDays, spread,
                               refPeriodStart, refPeriodEnd));
         }
-	Date accrualStartDate() {
-	   return Handle<ParCoupon>(*self)->accrualStartDate();
-	}
-	Date accrualEndDate() {
-	   return Handle<ParCoupon>(*self)->accrualEndDate();
-	}
-	double fixing() {
-	   return Handle<ParCoupon>(*self)->fixing();
-	}
-	double nominal() {
-	   return Handle<ParCoupon>(*self)->nominal();
-	}
-	double amount() {
-	   return Handle<ParCoupon>(*self)->amount();
-	}
+        Date accrualStartDate() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<ParCoupon>(*self)
+                 ->accrualStartDate();
+            %#else
+            return Handle<ParCoupon>(*self)->accrualStartDate();
+            %#endif
+        }
+        Date accrualEndDate() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<ParCoupon>(*self)
+                 ->accrualEndDate();
+            %#else
+            return Handle<ParCoupon>(*self)->accrualEndDate();
+            %#endif
+        }
+        double fixing() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<ParCoupon>(*self)->fixing();
+            %#else
+            return Handle<ParCoupon>(*self)->fixing();
+            %#endif
+        }
+        double nominal() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<ParCoupon>(*self)->nominal();
+            %#else
+            return Handle<ParCoupon>(*self)->nominal();
+            %#endif
+        }
+        double amount() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<ParCoupon>(*self)->amount();
+            %#else
+            return Handle<ParCoupon>(*self)->amount();
+            %#endif
+        }
     }
 };
 
@@ -122,7 +149,6 @@ namespace std {
 
 %{
 using QuantLib::FixedRateCouponVector;
-using QuantLib::FloatingRateCouponVector;
 %}
 
 std::vector<Handle<CashFlow> > 
@@ -133,12 +159,22 @@ FixedRateCouponVector(const Schedule& schedule,
                       const DayCounter& firstPeriodDayCount
                         = DayCounter());
 
+%inline %{
 std::vector<Handle<CashFlow> > 
 FloatingRateCouponVector(const Schedule& schedule,
                          const std::vector<double>& nominals,
                          const XiborHandle& index, int fixingDays,
                          const std::vector<Spread>& spreads = 
-                             std::vector<Spread>());
+                             std::vector<Spread>()) {
+    #if defined(HAVE_BOOST)
+    Handle<Xibor> libor = boost::dynamic_pointer_cast<Xibor>(index);
+    #else
+    Handle<Xibor> libor = index;
+    #endif
+    return QuantLib::FloatingRateCouponVector(schedule,nominals,libor,
+                                              fixingDays,spreads);
+}
+%}
 
 
 #endif

@@ -59,7 +59,7 @@ class Instrument {
 IsObservable(Handle<Instrument>);
 %extend Handle<Instrument> {
 	std::string __str__() {
-	    if (self->isNull())
+	    if (IsNull(*self))
 	        return "Null instrument";
     	std::string isin = (*self)->isinCode();
     	if (isin == "")

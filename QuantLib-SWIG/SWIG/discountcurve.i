@@ -32,16 +32,20 @@ typedef Handle<TermStructure> ExtendedDiscountCurveHandle;
 class DiscountCurveHandle : public Handle<TermStructure> {
   public:
     %extend {
-      DiscountCurveHandle(const Date& todaysDate, 
-                          const std::vector<Date>& dates,
-                          const std::vector<double>& discounts,
-                          const DayCounter& dayCounter = Actual365()) {
-          return new DiscountCurveHandle(
-              new DiscountCurve(todaysDate, dates, discounts, dayCounter));
-      }
-      const std::vector<Date>& dates() {
-          return Handle<DiscountCurve>(*self)->dates();
-      }
+        DiscountCurveHandle(const Date& todaysDate, 
+                            const std::vector<Date>& dates,
+                            const std::vector<double>& discounts,
+                            const DayCounter& dayCounter = Actual365()) {
+            return new DiscountCurveHandle(
+                new DiscountCurve(todaysDate, dates, discounts, dayCounter));
+        }
+        const std::vector<Date>& dates() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<DiscountCurve>(*self)->dates();
+            %#else
+            return Handle<DiscountCurve>(*self)->dates();
+            %#endif
+        }
     }
 };
 
@@ -50,16 +54,16 @@ class DiscountCurveHandle : public Handle<TermStructure> {
 class ExtendedDiscountCurveHandle : public DiscountCurveHandle {
   public:
     %extend {
-      ExtendedDiscountCurveHandle(const Date& todaysDate, 
-                                  const std::vector<Date>& dates,
-                                  const std::vector<double>& discounts,
-                                  const Calendar& calendar,
-                                  RollingConvention roll,
-                                  const DayCounter& dayCounter = Actual365()) {
-          return new ExtendedDiscountCurveHandle(
-              new ExtendedDiscountCurve(todaysDate, dates, discounts, 
-                                        calendar, roll, dayCounter));
-      }
+        ExtendedDiscountCurveHandle(const Date& todaysDate, 
+                                    const std::vector<Date>& dates,
+                                    const std::vector<double>& discounts,
+                                    const Calendar& calendar,
+                                    RollingConvention roll,
+                                    const DayCounter& dayCounter=Actual365()) {
+            return new ExtendedDiscountCurveHandle(
+                new ExtendedDiscountCurve(todaysDate, dates, discounts, 
+                                          calendar, roll, dayCounter));
+        }
     }
 };
 

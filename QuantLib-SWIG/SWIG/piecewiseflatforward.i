@@ -104,7 +104,7 @@ class FuturesRateHelperHandle : public Handle<RateHelper> {
                 const DayCounter& dayCounter) {
             return new FuturesRateHelperHandle(
                 new FuturesRateHelper(price,immDate,nMonths,
-                    calendar,convention,dayCounter));
+                                      calendar,convention,dayCounter));
         }
         FuturesRateHelperHandle(
                 double price, const Date& immDate, int nMonths,
@@ -112,17 +112,17 @@ class FuturesRateHelperHandle : public Handle<RateHelper> {
                 const DayCounter& dayCounter) {
             return new FuturesRateHelperHandle(
                 new FuturesRateHelper(price,immDate,nMonths,
-                    calendar,convention,dayCounter));
+                                      calendar,convention,dayCounter));
         }
-	FuturesRateHelperHandle(
-	        const RelinkableHandle<MarketElement>& price,
-		const Date& immDate, const Date& matDate,
-		const Calendar& calendar, RollingConvention convention,
-		const DayCounter& dayCounter) {
+        FuturesRateHelperHandle(
+	            const RelinkableHandle<MarketElement>& price,
+                const Date& immDate, const Date& matDate,
+                const Calendar& calendar, RollingConvention convention,
+                const DayCounter& dayCounter) {
             return new FuturesRateHelperHandle(
                 new FuturesRateHelper(price,immDate,matDate,
-		    calendar,convention,dayCounter));
-	}
+                                      calendar,convention,dayCounter));
+        }
     }
 };
 
@@ -184,20 +184,30 @@ class PiecewiseFlatForwardHandle : public Handle<TermStructure> {
 	            new PiecewiseFlatForward(todaysDate, referenceDate, 
                                          instruments, dayCounter, accuracy));
         }
-	PiecewiseFlatForwardHandle(
-	        const Date& todaysDate,
-		const std::vector<Date>& dates,
-		const std::vector<double>& forwards,
-		const DayCounter& dayCounter) {
+        PiecewiseFlatForwardHandle(
+                const Date& todaysDate,
+                const std::vector<Date>& dates,
+                const std::vector<double>& forwards,
+                const DayCounter& dayCounter) {
 	        return new PiecewiseFlatForwardHandle(
-		   new PiecewiseFlatForward(todaysDate,
-		       dates, forwards, dayCounter));
-	}
+                new PiecewiseFlatForward(todaysDate,
+                                         dates, forwards, dayCounter));
+        }
         const std::vector<Date>& dates() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<PiecewiseFlatForward>(*self)
+                 ->dates();
+            %#else
             return Handle<PiecewiseFlatForward>(*self)->dates();
+            %#endif
         }
         const std::vector<double>& times() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<PiecewiseFlatForward>(*self)
+                 ->times();
+            %#else
             return Handle<PiecewiseFlatForward>(*self)->times();
+            %#endif
         }
     }
 };

@@ -24,11 +24,13 @@
 %{
 // generally useful classes
 using QuantLib::Error;
-using QuantLib::Handle;
 using QuantLib::RelinkableHandle;
 using QuantLib::IntegerFormatter;
 using QuantLib::DoubleFormatter;
 using QuantLib::StringFormatter;
+#if !defined(HAVE_BOOST)
+using QuantLib::Handle;
+#endif
 %}
 
 template <class T>
@@ -41,11 +43,15 @@ class Handle {
     #if defined(SWIGPYTHON)
     %extend {
         bool __nonzero__() {
-            return !(self->isNull());
+            return !(IsNull(*self));
         }
     }
     #else
-    bool isNull();
+    %extend {
+        bool isNull() {
+            return IsNull(*self);
+        }
+    }
     #endif
 };
 

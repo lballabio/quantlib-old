@@ -177,34 +177,75 @@ class VanillaOptionHandle : public Handle<Instrument> {
                                   engine,isinCode,desc));
         }
         double errorEstimate() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<VanillaOption>(*self)
+                 ->errorEstimate();
+            %#else
             return Handle<VanillaOption>(*self)->errorEstimate();
+            %#endif
         }
         double delta() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<VanillaOption>(*self)->delta();
+            %#else
             return Handle<VanillaOption>(*self)->delta();
+            %#endif
         }
         double gamma() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<VanillaOption>(*self)->gamma();
+            %#else
             return Handle<VanillaOption>(*self)->gamma();
+            %#endif
         }
         double theta() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<VanillaOption>(*self)->theta();
+            %#else
             return Handle<VanillaOption>(*self)->theta();
+            %#endif
         }
         double vega() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<VanillaOption>(*self)->vega();
+            %#else
             return Handle<VanillaOption>(*self)->vega();
+            %#endif
         }
         double rho() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<VanillaOption>(*self)->rho();
+            %#else
             return Handle<VanillaOption>(*self)->rho();
+            %#endif
         }
         double dividendRho() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<VanillaOption>(*self)
+                 ->dividendRho();
+            %#else
             return Handle<VanillaOption>(*self)->dividendRho();
+            %#endif
         }
         double strikeSensitivity() {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<VanillaOption>(*self)
+                 ->strikeSensitivity();
+            %#else
             return Handle<VanillaOption>(*self)->strikeSensitivity();
+            %#endif
         }
         double impliedVolatility(double targetValue, double accuracy = 1.0e-4,
                                  Size maxEvaluations = 100,
                                  double minVol = 1.0e-4, double maxVol = 4.0) {
+            %#if defined(HAVE_BOOST)
+            return boost::dynamic_pointer_cast<VanillaOption>(*self)
+                 ->impliedVolatility(targetValue,accuracy,maxEvaluations,
+                                     minVol,maxVol);
+            %#else
             return Handle<VanillaOption>(*self)->impliedVolatility(
                 targetValue,accuracy,maxEvaluations,minVol,maxVol);
+            %#endif
         }
     }
 };
