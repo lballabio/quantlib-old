@@ -43,6 +43,15 @@ AC_LANG([C++])
 AC_PATH_PROG([DOXYGEN], [doxygen])
 AC_PATH_PROG([SED], [sed])
 
+# possibly disable features
+AC_ARG_ENABLE([calc],
+              AC_HELP_STRING([--enable-calc],
+                             [If enabled (the default) the Calc addin is
+                              built by make.]),
+              [qla_build_calc=$enableval],
+              [qla_build_calc=yes])
+AM_CONDITIONAL(BUILD_CALC, test "$qla_build_calc" != "no")
+
 # done, output the configured files
 AC_CONFIG_FILES([
     Makefile

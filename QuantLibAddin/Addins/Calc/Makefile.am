@@ -31,7 +31,9 @@ $(COMPONENT_NAME).flag2 : $(COMPONENT_NAME).flag1
 	cppumaker -BUCR $(TYPESLIST) $(DKREGISTRYNAME) $(COMPONENT_NAME).rdb
 	echo flagged > $@
 
+if BUILD_CALC
 BUILT_SOURCES = $(COMPONENT_NAME).flag2
+endif
 
 EXTRA_DIST = \
     AddinCalc.dsp \
@@ -50,7 +52,12 @@ noinst_HEADERS = \
     qldefs.hpp \
     utilities.hpp
 
+
+if BUILD_CALC
 lib_LTLIBRARIES = libQuantLibAddinCalc.la
+else
+EXTRA_LTLIBRARIES = libQuantLibAddinCalc.la
+endif
 
 libQuantLibAddinCalc_la_SOURCES = \
     funcdef.cpp \
@@ -68,6 +75,8 @@ libQuantLibAddinCalc_la_LDFLAGS = \
     -lQuantLib -lObjectHandler \
     -release $(PACKAGE_VERSION)
 
+if BUILD_CALC
+
 noinst_DATA = $(COMPONENT_NAME).flag3
 $(COMPONENT_NAME).flag3 : libQuantLibAddinCalc.la
 	cp -f $(COMPONENT_NAME).rdb .libs
@@ -78,6 +87,8 @@ $(COMPONENT_NAME).flag3 : libQuantLibAddinCalc.la
 install-exec-hook:
 	cp -f .libs/$(COMPONENT_NAME).rdb $(OFFICE_PROGRAM_PATH)
 	cp -f .libs/libQuantLibAddinCalc.so $(OFFICE_PROGRAM_PATH)
+
+endif
 
 CLEANFILES = \
 	$(COMPONENT_NAME).urd \
