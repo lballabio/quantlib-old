@@ -195,7 +195,7 @@
            (current-extension-compiler-flags
             (append
              (current-extension-compiler-flags)
-             (list "-DNOMINMAX" "/MD" "/GR" "/GX")))
+             (list "-DNOMINMAX" "/MT" "/GR" "/GX")))
            (putenv "LIB"
                    (string-append
                     (build-path (getenv "QL_DIR") "lib" "Win32" "VisualStudio")
