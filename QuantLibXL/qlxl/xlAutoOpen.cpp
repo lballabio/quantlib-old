@@ -37,19 +37,76 @@ extern "C" {
                 QLXL_VERSION " library...");
 
 
-            // Registers Risk Measures
-            XlfArgDesc percentile("percentile", "is the confidence level");
+            // description of input variables
+            XlfArgDesc percentile("percentile", "is the distribution percentile");
             XlfArgDesc mean("mean", "is the arithmetic mean of the distribution");
             XlfArgDesc std_dev("standard deviation", "is the standard deviation of "
                 "the distribution");
+            XlfArgDesc targetReturn("target return",
+                "is the target return at which you want to perform the analysis");
+            XlfArgDesc x_dist_value("x",
+                "is the value for which you want the distribution");
+            XlfArgDesc cumulative("cumulative", "is a logical value that determines "
+                "the form of the function. If cumulative is TRUE, NORMDIST returns "
+                "the cumulative distribution function; if FALSE, it returns "
+                "the probability mass function");
+            XlfArgDesc probability("probability", "is a probability corresponding"
+                " to the normal distribution");
 
+
+            XlfArgDesc d01("date1", "first date");
+            XlfArgDesc d02("date2", "second date");
+            XlfArgDesc rpd01("date3", "reference period first date");
+            XlfArgDesc rpd02("date4", "reference period last date");
+            XlfArgDesc refDate("refDate", "reference date");
+            XlfArgDesc evalDate("evalDate", "evaluation date");
+            XlfArgDesc dates("dates", "dates");
+
+
+            XlfArgDesc dayCount("dayCount", "day count convention");
+
+            XlfArgDesc x_array("x_array", "x data array");
+            XlfArgDesc y_array("y_array", "y data array");
+            XlfArgDesc z_matrix("z_matrix", "z data matrix");
+            XlfArgDesc x_value("x_value", "x value to be interpolated");
+            XlfArgDesc y_value("y_value", "y value to be interpolated");
+            XlfArgDesc interpolationType("interpolation_type",
+                "interpolation type");
+            XlfArgDesc interpolation2DType("interpolation2D_type",
+                "2D interpolation type");
+            XlfArgDesc allowExtrapolation("allow_extrapolation",
+                "allow extrapolation boolean");
+
+            XlfArgDesc optionType("type", "is the option type");
+            XlfArgDesc underlying("underlying", "is the value of the underlying");
+            XlfArgDesc moneyness("moneyness", "is the moneyness measured as percentage of the ATM");
+            XlfArgDesc strike("strike", "is the strike");
+            XlfArgDesc strikes("strikes", "strikes");
+            XlfArgDesc dividendYield("dividend yield", "is the dividend yield");
+            XlfArgDesc riskFreeRate("risk-free rate", "is the risk free rate");
+            XlfArgDesc maturity("maturity", "is the option's maturity measured in years");
+            XlfArgDesc resetTime("reset time", "is the strike reset time in years");
+            XlfArgDesc blackVolSurface("blackVolSurface", "Black (market) volatility surface");
+            XlfArgDesc volatility("volatility", "is the underlying's volatility");
+            XlfArgDesc timeSteps("time steps", "is the number of time steps");
+            XlfArgDesc gridPoints("grid points", "is the number of grid points");
+            XlfArgDesc samples("samples", "is the number of simulated samples");
+            XlfArgDesc anthiteticVariance("anthitetic variance", "is the anthitetic variance boolean");
+
+            XlfArgDesc drift("drift rate", "is the drift rate of the asset");
+            XlfArgDesc times("times", "is the vector of times measured in years");
+            XlfArgDesc paths("paths", "is the number of simulated paths");
+
+
+
+            // Registers Risk Measures
             XlfFuncDesc valueAtRiskDesc("xlvalueAtRisk","qlValueAtRisk",
                 "Return the value at risk with a percentile confidence "
                 "for a normal distribution specified "
                 "by mean and standard deviation","QuantLibXL Math");
             valueAtRiskDesc.SetArguments(percentile+mean+std_dev);
             valueAtRiskDesc.Register();
-        
+
             XlfFuncDesc potentialUpsideDesc("xlpotentialUpside","qlPotentialUpside",
                 "Return the potential upside with a percentile confidence "
                 "for a normal distribution specified "
@@ -64,9 +121,6 @@ extern "C" {
             expectedShortfallDesc.SetArguments(percentile+mean+std_dev);
             expectedShortfallDesc.Register();
 
-  
-            XlfArgDesc targetReturn("target return",
-                "is the target return at which you want to perform the analysis");
 
             XlfFuncDesc shortfallDesc("xlshortfall","qlShortfall",
                 "Return the shortfall at the chosen target "
@@ -74,60 +128,27 @@ extern "C" {
                 "by mean and standard deviation","QuantLibXL Math");
             shortfallDesc.SetArguments(targetReturn+mean+std_dev);
             shortfallDesc.Register();
-        
+
             XlfFuncDesc averageShortfallDesc("xlaverageShortfall","qlAverageShortfall",
                 "Return the average shortfall at the chosen target "
                 "for a normal distribution specified "
                 "by mean and standard deviation","QuantLibXL Math");
             averageShortfallDesc.SetArguments(targetReturn+mean+std_dev);
             averageShortfallDesc.Register();
-        
-            
-            // description of input variables
-            XlfArgDesc           d01(        "date1", "first date");
-            XlfArgDesc           d02(        "date2", "second date");
-            XlfArgDesc           d03(        "date3", "reference period first date");
-            XlfArgDesc           d04(        "date4", "reference period last date");
 
-            XlfArgDesc          accr(     "dayCount", "accrual convention");
-
-            XlfArgDesc x_array("x_array", "x data array");
-            XlfArgDesc y_array("y_array", "y data array");
-            XlfArgDesc z_matrix("z_matrix", "z data matrix");
-            XlfArgDesc x_value("x_value", "x value to be interpolated");
-            XlfArgDesc y_value("y_value", "y value to be interpolated");
-            XlfArgDesc interpolationType("interpolation_type",
-                "interpolation type");
-            XlfArgDesc interpolation2DType("interpolation2D_type",
-                "2D interpolation type");
-            XlfArgDesc allowExtrapolation("allow_extrapolation",
-                "allow extrapolation boolean");
 
             // Registers accrual_days
             XlfFuncDesc accrualDaysDesc("xlaccrualDays","qlAccrual_days",
                 "Accrual days","QuantLibXL Date Functions");
-            accrualDaysDesc.SetArguments(d01+d02+accr);
+            accrualDaysDesc.SetArguments(d01+d02+dayCount);
             accrualDaysDesc.Register();
 
             XlfFuncDesc accrualFactorDesc("xlaccrualFactor","qlAccrual_factor",
                 "Accrual factor","QuantLibXL Date Functions");
-            accrualFactorDesc.SetArguments(d01+d02+accr+d03+d04);
+            accrualFactorDesc.SetArguments(d01+d02+dayCount+rpd01+rpd02);
             accrualFactorDesc.Register();
 
 
-            XlfArgDesc    optionType(          "type", "is the option type");
-            XlfArgDesc    underlying(    "underlying", "is the value of the underlying");
-            XlfArgDesc      moneyness(      "moneyness", "is the moneyness measured as percentage of the ATM");
-            XlfArgDesc        strike(        "strike", "is the strike");
-            XlfArgDesc dividendYield("dividend yield", "is the dividend yield");
-            XlfArgDesc  riskFreeRate("risk-free rate", "is the risk free rate");
-            XlfArgDesc      maturity(      "maturity", "is the option's maturity measured in years");
-            XlfArgDesc      resetTime(      "reset time", "is the strike reset time in years");
-            XlfArgDesc    volatility(    "volatility", "is the underlying's volatility");
-            XlfArgDesc     timeSteps(    "time steps", "is the number of time steps");
-            XlfArgDesc    gridPoints(   "grid points", "is the number of grid points");
-            XlfArgDesc       samples(       "samples", "is the number of simulated samples");
-            XlfArgDesc anthiteticVariance("anthitetic variance", "is the anthitetic variance boolean");
 
             // Registers Black-Scholes
             XlfFuncDesc europeanOption("xlEuropeanOption","qlEuropeanOption",
@@ -170,9 +191,6 @@ extern "C" {
             americanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility+timeSteps+gridPoints);
             americanOption_fd.Register();
 
-            XlfArgDesc drift("drift rate", "is the drift rate of the asset");
-            XlfArgDesc times("times", "is the vector of times measured in years");
-            XlfArgDesc paths("paths", "is the number of simulated paths");
 
             // Registers PathGenerator
             XlfFuncDesc pathGenerator("xlPathGenerator","qlPathGenerator",
@@ -194,15 +212,7 @@ extern "C" {
 
 
             // Registers Normal distribution
-            XlfArgDesc x_dist_value("x",
-                "is the value for which you want the distribution");
-            XlfArgDesc cumulative("cumulative", "is a logical value that determines "
-                "the form of the function. If cumulative is TRUE, NORMDIST returns "
-                "the cumulative distribution function; if FALSE, it returns "
-                "the probability mass function");
-            XlfArgDesc probability("probability", "is a probability corresponding"
-                " to the normal distribution");
-        
+
 
             XlfFuncDesc normInvDesc("xlnormInv","qlNormInv",
                 "Return the inverse of the normal cumulative distribution for the specified "
@@ -230,6 +240,14 @@ extern "C" {
             normSDistDesc.SetArguments(x_dist_value);
             normSDistDesc.Register();
 
+
+            // vol functions
+            XlfFuncDesc blackVol("xlBlackVol","qlBlackVol",
+                "Return the interpolated Black forward volatility for "
+                "a fixed strike and maturity "
+                "given a Black volatility surface as input","QuantLibXL Finance");
+            blackVol.SetArguments(refDate+dayCount+dates+strikes+blackVolSurface+d01+d02+strike+interpolation2DType+allowExtrapolation);
+            blackVol.Register();
 
 
             // Registers qlversion
@@ -262,8 +280,8 @@ extern "C" {
                 "QuantLib version number","QuantLibXL Utilities");
             QLXLhexversion.Register();
 
-    
-        
+
+
             // Clears the status bar.
             XlfExcel::Instance().SendMessage();
             return 1;

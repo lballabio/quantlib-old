@@ -170,6 +170,10 @@ SOURCE=.\qlxl\utilities.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qlxl\vols.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qlxl\xlAutoOpen.cpp
 # End Source File
 # End Group
@@ -203,6 +207,10 @@ SOURCE=.\qlxl\qlxlfoper.hpp
 # Begin Source File
 
 SOURCE=.\qlxl\utilities.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qlxl\vols.hpp
 # End Source File
 # End Group
 # Begin Group "Resource Files"
