@@ -1,3 +1,19 @@
+/*
+ Copyright (C) 2004 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
 #ifdef WIN32
 #pragma warning(disable: 4786)
 #pragma warning(disable: 4503)
@@ -8,8 +24,6 @@
 using namespace std;
 using namespace ObjHandler;
 using namespace QuantLib;
-
-extern ObjectHandler objectHandler;
 
 int main() {
 	try {
@@ -36,7 +50,7 @@ int main() {
 		cout << endl << "High-level interrogation: after QL_OPTION" << endl;
 		// get object from handler and retrieve its properties -
 		// (properties also returned by QL_OPTION)
-		obj_ptr object = objectHandler.retrieveObject("my_option");
+		obj_ptr object = ObjectHandler::instance().retrieveObject("my_option");
         Properties properties = object->getProperties();
 		Properties::const_iterator i;
         for (i = properties.begin();
@@ -61,7 +75,7 @@ int main() {
 		cout << endl << "Low-level interrogation: NPV of underlying option object" << endl;
 		boost::shared_ptr<ObjectOption> objectOption = 
 			boost::dynamic_pointer_cast<ObjectOption> 
-			(objectHandler.retrieveObject("my_option"));
+			(ObjectHandler::instance().retrieveObject("my_option"));
 	    boost::shared_ptr<VanillaOption> const vanillaOption =
 			boost::static_pointer_cast<VanillaOption>
 			(objectOption->getReference());

@@ -1,14 +1,14 @@
-COMPONENT_NAME = QuantLibAddin
-IDL_DIR=/erik/OpenOffice.org1.1_SDK/idl
-DKREGISTRYNAME=/usr/lib/ooo-1.1/program/types.rdb
+COMPONENT_NAME=QuantLibAddin
+IDL_DIR=$(OFFICE_SDK_PATH)/idl
+DKREGISTRYNAME=$(OFFICE_PROGRAM_PATH)/types.rdb
 CC=g++
 CC_FLAGS=-c -fPIC
-CC_INCLUDES=-I. -I../.. -I/usr/include -I/erik/OpenOffice.org1.1_SDK/include \
+CC_INCLUDES=-I. -I../.. -I/usr/include -I$(OFFICE_SDK_PATH)/include \
 	-I../../../ObjectHandler
 CC_DEFINES=-DHAVE_CONFIG_H -DUNX -DGCC -DLINUX -DCPPU_ENV=gcc3
 LINK=g++
 LIBRARY_LINK_FLAGS=-shared
-LINK_LIBS=-L../linux/lib -L/usr/lib/ooo-1.1/program -L/usr/local/lib
+LINK_LIBS=-L$(OFFICE_PROGRAM_PATH) -L/usr/local/lib
 LIBRARY_LIBS := -lcppuhelpergcc3 -lcppu -lsal -lstlport_gcc -lvcl645li -lvos3gcc3 \
 	-lQuantLib -lboost_regex \
 	../../../ObjectHandler/ObjectHandler/ObjectHandler.a \
@@ -60,5 +60,5 @@ clean :
 	-$(DEL)  $(COMPONENT_NAME).rdb
 	-$(DEL)  $(COMPONENT_NAME).flag1
 	-$(DEL)  $(COMPONENT_NAME).flag2
-	-$(DEL)  $(COMPONENT_NAME).o
+	-$(DEL)  *.o
 	-$(DEL)  $(COMPONENT_NAME).so

@@ -38,13 +38,12 @@ ObjectStochastic::ObjectStochastic(
     Handle<BlackVolTermStructure> flatVolTS(
     	boost::shared_ptr<BlackVolTermStructure>(new
         BlackConstantVol(settlementDate, volatility, dayCounter)));
-    boost::shared_ptr<BlackScholesProcess> temp(new
+	stochasticProcess_ = boost::shared_ptr<BlackScholesProcess> (new
         BlackScholesProcess(
             underlyingH,
             flatDividendTS,
             flatTermStructure,
             flatVolTS));
-	stochasticProcess_ = temp;
 }
 
 ObjectStochastic::~ObjectStochastic() {

@@ -42,10 +42,9 @@ ObjectOption::ObjectOption(boost::shared_ptr<ObjectStochastic> objectStochastic,
 	const boost::shared_ptr<BlackScholesProcess> stochasticProcess = 
 		boost::static_pointer_cast<BlackScholesProcess>
 		(objectStochastic->getReference());
-    boost::shared_ptr<VanillaOption> temp( 
-		new VanillaOption(stochasticProcess, payoff, 
+	vanillaOption_ = boost::shared_ptr<VanillaOption>(new
+		VanillaOption(stochasticProcess, payoff, 
 			amExercise, pricingEngine));
-	vanillaOption_ = temp;
     any_ptr any_npv(new boost::any(vanillaOption_->NPV()));
 	any_ptr any_engine(new boost::any(std::string(BINOMIAL_JARROW_RUDD)));
 	ObjectProperty prop_npv(FIELD_NPV, any_npv);
