@@ -25,6 +25,7 @@ $Id$
 		europee, asiatiche, barriere
 * MONTE CARLO
 		monodimensionale/multidimensionale
+* MONTE CARLO
 		variance reduction techniques
 				antitetica
 				control variate
@@ -42,6 +43,7 @@ $Id$
 * FINITE DIFFERENCE
 		veloce rispetto agli alberi
 		modelli a bassa dimensionalita'
+* FINITE DIFFERENCE
 		esplicito, implicito, misto, control variate
 * ASSET ALLOCATION
 		ottimizzatori, 
