@@ -24,6 +24,7 @@
 // $Id$
 
 #include <qlxl/qlxl.hpp>
+#include <qlxl/qlxlfoper.hpp>
 
 extern "C" {
     using namespace QuantLib;
@@ -84,10 +85,13 @@ extern "C" {
             XlfArgDesc strikes("strikes", "strikes");
             XlfArgDesc dividendYield("dividend yield", "is the dividend yield");
             XlfArgDesc riskFreeRate("risk-free rate", "is the risk free rate");
+            XlfArgDesc foreignRiskFreeRate("foreign risk-free rate", "is the risk free rate in the foreign currency");
             XlfArgDesc maturity("maturity", "is the option's maturity measured in years");
             XlfArgDesc resetTime("reset time", "is the strike reset time in years");
             XlfArgDesc blackVolSurface("blackVolSurface", "Black (market) volatility surface");
             XlfArgDesc volatility("volatility", "is the underlying's volatility");
+            XlfArgDesc exchangeVolatility("exchangeVolatility", "is the volatility of the FX rate");
+            XlfArgDesc correlation("correlation", "is the correlation");
             XlfArgDesc timeSteps("time steps", "is the number of time steps");
             XlfArgDesc gridPoints("grid points", "is the number of grid points");
             XlfArgDesc samples("samples", "is the number of simulated samples");
@@ -190,6 +194,11 @@ extern "C" {
                 "american option computed with finite differences","QuantLibXL Finance");
             americanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility+timeSteps+gridPoints);
             americanOption_fd.Register();
+
+            XlfFuncDesc quantoEuropeanOption("xlQuantoEuropeanOption","qlQuantoEuropeanOption",
+                "Quanto european option","QuantLibXL Finance");
+            quantoEuropeanOption.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility+foreignRiskFreeRate+exchangeVolatility+correlation);
+            quantoEuropeanOption.Register();
 
 
             // Registers PathGenerator

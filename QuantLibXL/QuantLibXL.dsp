@@ -154,6 +154,10 @@ SOURCE=.\qlxl\datef.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qlxl\engines.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qlxl\mathf.cpp
 # End Source File
 # Begin Source File
