@@ -31,6 +31,5 @@ XMLSUFFIX = r'(.*).xml\Z'
 # General
 
 ADDIN_ROOT = '../Addins/'
-CR_BUFFER = ''
 TEMPFILE = '.new'
 

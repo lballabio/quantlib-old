@@ -9,6 +9,7 @@ import filecmp
 # constants
 
 CR_FILENAME = 'stub.copyright'
+CR_BUFFER = ''
 HEADER = '%s this file generated automatically by %s\n\
 %s editing this file manually is not recommended\n\n'
 UPDATE_MSG = '        file %s - %s'
@@ -158,6 +159,7 @@ def updateIfChanged(fileNew):
             os.unlink(fileNew)
             logMessage(UPDATE_MSG % (fileOrig, 'unchanged'))
         else:
+            os.unlink(fileOrig)
             os.rename(fileNew, fileOrig)
             logMessage(UPDATE_MSG % (fileOrig, 'updated'))
     else:
