@@ -1,0 +1,52 @@
+The following is a complement to http://quantlib.org/html/overview.html
+
+The medium term plan would be to implement in a C++ framework all the material available in the following books:
+- Option Pricing, by P. Wilmott (PDE and Finite Difference)
+- Monte Carlo Methods in Finance, by Peter Jackel (MC simulation)
+- Implementing Derivative Models, by Les Clewlow, Chris Strickland
+- The Complete Guide to Option Pricing Formulas, by Espen Gaarder Haug
+- Advanced modelling in finance using Excel and VBA, by M.Jackson, M. Staunton
+
+Referring to the above best-seller would ease the need of documentation.
+
+What is already available in QuantLib:
+
+- Holiday Calendars: Budapest, Frankfurt, Helsinki, Johannesburg, London, Milan, New York, Oslo, Stockholm, Sydney, Target, Tokyo, Toronto, Warsaw, Wellington, Zurich. Also Joint Calender (which combines two or more calendars) and Null Calendar (no-holiday, in order to recover textbook example data)
+
+- Day Counters: Actual/360, Actual/365, Actual/Actual (ISMA, ISDA, AFB), 30/360 (US, European, Italian). Also SimpleDayCounter which returns whole-month distances as a simple fraction of the year in order to recover textbook example data)
+
+- Cashflows: different type of cashflows: fixed rate, floating rate, in arrear floating rate, with many different nuances (short/long coupon, XXX dates, etc.)
+
+- Finite Differences: One-dimensional finite differences framework. Implicit, Explicit and Mixed Schemes, including Crank-Nicolson. Helper for finite difference implementation of generic differencial equation (Black Scholes is of course provided out of the box). Early exercise conditions (plain and Successive Over Relaxation methods). Powerful "Finite Difference Model" framework
+
+- Functions: assorted C-style functions wrapping more general object-oriented C++ features of the QuantLib library.
+
+- Indexes: Euribor-style Indexes for various currencies. Handle the accounting of fixing effect for CashFlows, Instruments, etc. It has powerful pervasive effect (e.g.: automatic handling of fixing effect in the bootstrapping of Swap-based curves)
+
+- Instruments: model independent wrapping of financial instruments, which can then be valueated using different Pricing Engines. Only few instruments have been implemented so far of what is potentially already available in the QuantLib library: Stock, many different options (Barrier, Binary, Cliquet, Forward, Quanto, and Vanilla), Cap/Floor, Swap, and Swaption.
+
+- Lattices: binomial tree models (Jarrow-Rudd, Cox-Ross-Rubinstein, Additive Equiprobability, Trigeorgis, Tian) for generic stochastic project and their specialized Black-Scholes version. Trinomial Hull-White tree model for single factor interest rate models. Tentative 2-dimensional trees. Discretized asset that can be rolled back of such trees. The Finite Differences framework will be merged in the Lattice framework in the future.
+
+- Math: 1D and 2D interpolation (linear, log-linear, spline), statistic classes (mean, variance, semivariance, skew, kurtosis, min, max, valueAtRisk, potential Upside, shortfall, average shortfall, expected shortfall, regret), sequence statistic classes (all statistic features plus covariance, correlation and discrepancy measure), normal distribution, cumulative normal distribution, inverse cumulative normal distribution (Acklam, Moro, etc.), Chi-Squared distribution (central and non-central), error function, Gamma distribution, integration algorithms (segment, trapezoid, Gauss-Kronrod, etc.), prime numbers calculation, Matrix/Array classes for matrix/vector algebra, singular value decomposition, eigenvalue/eigenvector, symmetric Schurde matrix decomposition
+
+- Monte Carlo: single factor and multi-factor Path generation for generic diffusion process, including tentative Brownian Bridge path generation. General Monte Carlo Model for single factor and multi-factor simulation. Asian (arithmetic, geometric, average price, average strike), Barrier, Binary, Cliquet, European, Everest, Himalaya, Basket, and Pagoda options.
+
+- Optimization: Armijo linesearch, Multi-dimensionnal Conjugate Gradient, least square, Multi-dimensionnal Simplex, Multi-dimensional steepest-descent
+
+- Patterns: Bridge, Lazy Object, Obser/observable, Visitor, Curiously Recurring, etc.
+
+- Pricers: to be superseded by the new Pricing Engine framework. Cap/Floor, Swaption, Jamshidian Swaption. Barrier, Binary, Cliquet, Asians, European, American, Bermudan, Shout, Basket Everest, Himalaya, Pagoda. Discrete and continous dividends. Analytical, Finite difference, Tree and Monte Carlo pricing.
+
+- Pricing Engines: will replace all the available pricers. As of now Analytical, Tree, and Monte Carlo engines of many producty are available. Tentative compund engines: Forward and Quanto.
+
+- Random Numbers: Knuth, L'Ecuyer, Mersenne Twister. Low discrepancy sequences: Halton, Unit Sobol, Jäckel-implementation of Sobol. The Jäckel-implementation of Sobol is state of the art among all the the (commercially) available implementations. Uniform-Gaussian conversion.
+
+- Short Rate models: Hull-White and Black-Karasinsky one factor models. Tentative Cox-Ingersoll-Ross, Extended Cox-Ingersoll-Ross, and Vasicek single factor models. Tentative two factors G2 model.
+
+- Solvers 1D: bisection, Brent, False Position, Newton, Ridder, Secant.
+
+- (Yield) Term Structure: generic discount, flat forward, piecewise flat forward, zero yield, zero spreaded, (...), and implied term structures. Deposit, FRA, futures, swap yield curve bootstrapping.
+
+- Utilities: iterators for powerful sequence handling.
+
+- Volatilities: constant, time dependant, time/strike dependant Black volatility. Generic local volatility calculation. Cap and Swaption volatility term structure.
