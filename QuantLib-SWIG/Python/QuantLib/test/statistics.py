@@ -22,7 +22,7 @@ import unittest
 
 class StatisticsTest(unittest.TestCase):
     def runTest(self):
-        "Testing statisticss"
+        "Testing statistics"
         tol = 1e-9
 
         data =    [3.0, 4.0, 5.0, 2.0, 3.0, 4.0, 5.0, 6.0, 4.0, 7.0]

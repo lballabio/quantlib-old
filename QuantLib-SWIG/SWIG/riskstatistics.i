@@ -17,8 +17,8 @@
 
 // $Id$
 
-#ifndef quantlib_risk_statisticss_i
-#define quantlib_risk_statisticss_i
+#ifndef quantlib_risk_statistics_i
+#define quantlib_risk_statistics_i
 
 %include types.i
 %include vectors.i
