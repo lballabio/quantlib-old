@@ -616,10 +616,9 @@ $ make install
 </pre>
 </li>
 
-<li>Include "C:\cygwin\usr\local\bin" and the path where you have
-the cygwin1.dll file ("C:\cygwin\bin") in your system variable
-$PATH. On Win9x, this can be done in a batch file or autoexec.bat;
-e.g., 
+<li>Include "C:\cygwin\usr\local\bin" and "C:\cygwin\bin" in your
+system variable $PATH. On Win9x, this can be done in a batch file
+or autoexec.bat; e.g., 
 
 <pre>
     set PATH=$PATH;C:\cygwin\usr\local\bin;C:\cygwin\bin
@@ -627,7 +626,10 @@ e.g.,
 
 Run the batch file, or reboot if you're using autoexec.bat. On NT
 or 2000, go to Control Panel | System | Environment and set them at
-either user or machine level.</li>
+either user or machine level. It's strongly suggested to have the
+Cygwin paths added at the end of your $PATH variable so that the
+cygwin tools (e.g. make) will not conflict with similar tools
+already installed on your machine.</li>
 </ol>
 
 <p>Now you're ready to use Swig.</p>
