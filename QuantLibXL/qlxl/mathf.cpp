@@ -23,6 +23,7 @@
 #include <qlxl/qlxlfoper.hpp>
 #include <ql/functions/mathf.hpp>
 #include <ql/Math/statistics.hpp>
+#include <ql/Math/riskstatistics.hpp>
 #include <ql/Math/symmetricschurdecomposition.hpp>
 
 
