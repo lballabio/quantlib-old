@@ -90,18 +90,6 @@ extern "C" {
 
             XlfArgDesc          accr(     "dayCount", "accrual convention");
 
-            XlfArgDesc    optionType(          "type", "is the option type");
-            XlfArgDesc    underlying(    "underlying", "is the value of the underlying");
-            XlfArgDesc        strike(        "strike", "is the strike");
-            XlfArgDesc dividendYield("dividend yield", "is the dividend yield");
-            XlfArgDesc  riskFreeRate("risk-free rate", "is the risk free rate");
-            XlfArgDesc      maturity(      "maturity", "is the option's maturity");
-            XlfArgDesc    volatility(    "volatility", "is the underlying's volatility");
-            XlfArgDesc     timeSteps(    "time steps", "is the number of time steps");
-            XlfArgDesc    gridPoints(   "grid points", "is the number of grid points");
-            XlfArgDesc       samples(       "samples", "is the number of simulated samples");
-            XlfArgDesc anthiteticVariance("anthitetic variance", "is the anthitetic variance boolean");
-
             XlfArgDesc x_array("x_array", "x data array");
             XlfArgDesc y_array("y_array", "y data array");
             XlfArgDesc z_matrix("z_matrix", "z data matrix");
@@ -125,6 +113,19 @@ extern "C" {
             accrualFactorDesc.SetArguments(d01+d02+accr+d03+d04);
             accrualFactorDesc.Register();
 
+
+            XlfArgDesc    optionType(          "type", "is the option type");
+            XlfArgDesc    underlying(    "underlying", "is the value of the underlying");
+            XlfArgDesc        strike(        "strike", "is the strike");
+            XlfArgDesc dividendYield("dividend yield", "is the dividend yield");
+            XlfArgDesc  riskFreeRate("risk-free rate", "is the risk free rate");
+            XlfArgDesc      maturity(      "maturity", "is the option's maturity measured in years");
+            XlfArgDesc    volatility(    "volatility", "is the underlying's volatility");
+            XlfArgDesc     timeSteps(    "time steps", "is the number of time steps");
+            XlfArgDesc    gridPoints(   "grid points", "is the number of grid points");
+            XlfArgDesc       samples(       "samples", "is the number of simulated samples");
+            XlfArgDesc anthiteticVariance("anthitetic variance", "is the anthitetic variance boolean");
+
             // Registers Black-Scholes
             XlfFuncDesc europeanOption("xlEuropeanOption","qlEuropeanOption",
                 "Black Scholes formula for european option","QuantLibXL Finance");
@@ -145,6 +146,17 @@ extern "C" {
                 "american option computed with finite differences","QuantLibXL Finance");
             americanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility+timeSteps+gridPoints);
             americanOption_fd.Register();
+
+            XlfArgDesc drift("drift rate", "is the drift rate of the asset");
+            XlfArgDesc times("times", "is the vector of times measured in years");
+            XlfArgDesc paths("paths", "is the number of simulated paths");
+
+            // Registers PathGenerator
+            XlfFuncDesc pathGenerator("xlPathGenerator","qlPathGenerator",
+                "Geometric Brownian motion path","QuantLibXL Finance");
+            pathGenerator.SetArguments(underlying+drift+volatility+times+paths);
+            pathGenerator.Register();
+
 
             // Registers interpolation
             XlfFuncDesc interpolateDesc("xlinterpolate","qlInterpolate",

@@ -38,43 +38,10 @@ extern "C"
                                         XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
 
-        size_t n, i;
-        std::vector<double> x_value;
-        XlfRef x_range = xlx_array.AsRef();
-        if (x_range.GetNbCols()==1) {
-            n = x_range.GetNbRows();
-            x_value = std::vector<double>(n);
-            for (i = 0; i < n; ++i) {
-                x_value[i] = x_range(i,0).AsDouble();
-            }
-        } else if (x_range.GetNbRows()==1) {
-            n = x_range.GetNbCols();
-            x_value = std::vector<double>(n);
-            for (i = 0; i < n; ++i) {
-                x_value[i] = x_range(0,i).AsDouble();
-            }
-        } else
-            throw Error("x-range must be an array");
-
-        
-        std::vector<double> y_value(n);
-        XlfRef y_range = xly_array.AsRef();
-        if (y_range.GetNbCols()==1) {
-            QL_REQUIRE(y_range.GetNbRows()==n,
-                "y-range does not match x-range");
-            for (i = 0; i < n; ++i) {
-                y_value[i] = y_range(i,0).AsDouble();
-            }
-        } else if (y_range.GetNbRows()==1) {
-            QL_REQUIRE(y_range.GetNbCols()==n,
-                "y-range does not match x-range");
-            for (i = 0; i < n; ++i) {
-                y_value[i] = y_range(0,i).AsDouble();
-            }
-        } else
-            throw Error("y-range must be an array");
-
-        
+        std::vector<double> x_value = xlx_array.AsDoubleVector();
+        std::vector<double> y_value = xly_array.AsDoubleVector();
+        QL_REQUIRE(x_value.size()==y_value.size(),
+            "interpolate: array mismatch");
         
         double result = Functions::interpolate(x_value, y_value, xlx.AsDouble(),
             xlinterpolationType.AsInt(), xlallowExtrapolation.AsBool());
@@ -90,16 +57,12 @@ extern "C"
                                           XlfOper xlinterpolation2DType,
                                           XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
-        XlfRef x_range = xlx_array.AsRef();
-        QL_REQUIRE(x_range.GetNbRows()==1,
-            "x-range must be one raw");
-        
-        XlfRef y_range = xly_array.AsRef();
-        QL_REQUIRE(y_range.GetNbCols()==1,
-            "y-range must be one column");
+        std::vector<double> x_value = xlx_array.AsDoubleVector();
+        std::vector<double> y_value = xly_array.AsDoubleVector();
+
 
         // Initialization of the counter variables.
-        size_t i, j, rowNo = y_range.GetNbRows(), colNo = x_range.GetNbCols();
+        size_t i, j, rowNo = y_value.size(), colNo = x_value.size();
 
         XlfRef matrix_range = xlz_matrix.AsRef();
         QL_REQUIRE(matrix_range.GetNbCols()==colNo,
@@ -115,19 +78,11 @@ extern "C"
         // average for nothing since one of the cell might be uncalculated.
 
         // Allocate the vectors where to copy the values.
-        std::vector<double> x_value(colNo);
-        std::vector<double> y_value(rowNo);
         Math::Matrix data_matrix(rowNo, colNo);
         for (i = 0; i < rowNo; ++i) {
             for (j = 0; j < colNo; ++j) {
                 data_matrix[i][j] = matrix_range(i,j).AsDouble();
             }
-        }
-        for (j = 0; j < colNo; ++j) {
-            x_value[j] = x_range(0, j).AsDouble();
-        }
-        for (i = 0; i < rowNo; ++i) {
-            y_value[i] = y_range(i, 0).AsDouble();
         }
         
         double result = Functions::interpolate2D(x_value, y_value, data_matrix,
