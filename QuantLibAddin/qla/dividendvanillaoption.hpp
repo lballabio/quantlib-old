@@ -18,7 +18,7 @@
 #ifndef qla_dividendvanillaoption_hpp
 #define qla_dividendvanillaoption_hpp
 
-#include <qla/stochasticprocess.hpp>
+#include <qla/processes.hpp>
 #include <ql/Instruments/dividendvanillaoption.hpp>
 
 namespace QuantLibAddin {

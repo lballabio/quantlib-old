@@ -225,11 +225,11 @@ SOURCE=.\qla\optionutils.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\shortratemodels.cpp
+SOURCE=.\qla\processes.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\stochasticprocess.cpp
+SOURCE=.\qla\shortratemodels.cpp
 # End Source File
 # Begin Source File
 
@@ -313,6 +313,10 @@ SOURCE=.\qla\optionutils.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\processes.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\qladdin.hpp
 # End Source File
 # Begin Source File
@@ -322,10 +326,6 @@ SOURCE=.\qla\qladdindefines.hpp
 # Begin Source File
 
 SOURCE=.\qla\shortratemodels.hpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\qla\stochasticprocess.hpp
 # End Source File
 # Begin Source File
 

@@ -18,7 +18,7 @@
 #ifndef qla_forwardvanillaoption_hpp
 #define qla_forwardvanillaoption_hpp
 
-#include <qla/stochasticprocess.hpp>
+#include <qla/processes.hpp>
 #include <ql/Instruments/forwardvanillaoption.hpp>
 
 namespace QuantLibAddin {

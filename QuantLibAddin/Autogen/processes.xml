@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
+<functionlist>
+<headeronly>false</headeronly>
+<desc>functions to construct QuantLib process objects</desc>
+<displayname>Processes</displayname>
+
+<function>
+<name>QL_BLACK_SCHOLES_PROCESS</name>
+<codename>qlBlackScholesProcess</codename>
+<desc>construct and return a handle to a Black Scholes Process object</desc>
+<constructor>true</constructor>
+<qlfunction>BlackScholesProcess</qlfunction>
+<parameters>
+    <param>
+        <name>handleBlackVol</name>
+        <type class="BlackVolTermStructure">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle to a Black Vol Term Structure object</desc>
+    </param>
+    <param>
+        <name>underlying</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>underlying</desc>
+    </param>
+    <param>
+        <name>dayCounter</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>day counter</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+    <param>
+        <name>riskFreeRate</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>risk free rate</desc>
+    </param>
+    <param>
+        <name>dividendYield</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dividend yield</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
+    <desc>vector of properties describing Black Scholes Process object</desc>
+</returnval>
+</function>
+
+</functionlist>

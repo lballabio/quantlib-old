@@ -18,3 +18,4 @@ termstructures.cpp
 capfloor.cpp
 shortratemodels.cpp
 volatilities.cpp
+processes.cpp

@@ -6,17 +6,17 @@
 <displayname>Options</displayname>
 
 <function>
-<name>QL_OPTION_ASIAN_C</name>
-<codename>qlOptionAsianC</codename>
-<desc>construct and return a handle to a ContinuousAveragingAsianOption object</desc>
+<name>QL_CA_ASIAN_OPTION</name>
+<codename>qlCAAsianOption</codename>
+<desc>construct and return a handle to a Continuous Averaging Asian Option object</desc>
 <constructor>true</constructor>
 <qlfunction>ContinuousAveragingAsianOption</qlfunction>
 <parameters>
     <param>
-        <name>handleStochastic</name>
-        <type class="StochasticProcess">string</type>
+        <name>handleBlackScholes</name>
+        <type class="BlackScholesProcess">string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Stochastic Process object</desc>
+        <desc>handle of a Black Scholes Process object</desc>
     </param>
     <param>
         <name>average</name>
@@ -81,17 +81,17 @@
 </function>
 
 <function>
-<name>QL_OPTION_ASIAN_D</name>
-<codename>qlOptionAsianD</codename>
-<desc>construct and return a handle to a DiscreteAveragingAsianOption object</desc>
+<name>QL_DA_ASIAN_OPTION</name>
+<codename>qlDAAsianOption</codename>
+<desc>construct and return a handle to a Discrete Averaging Asian Option object</desc>
 <constructor>true</constructor>
 <qlfunction>DiscreteAveragingAsianOption</qlfunction>
 <parameters>
     <param>
-        <name>handleStochastic</name>
-        <type class="StochasticProcess">string</type>
+        <name>handleBlackScholes</name>
+        <type class="BlackScholesProcess">string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Stochastic Process object</desc>
+        <desc>handle of a Black Scholes Process object</desc>
     </param>
     <param>
         <name>average</name>
@@ -174,17 +174,17 @@
 </function>
 
 <function>
-<name>QL_OPTION_BARRIER</name>
-<codename>qlOptionBarrier</codename>
+<name>QL_BARRIER_OPTION</name>
+<codename>qlBarrierOption</codename>
 <desc>construct and return a handle to a Barrier Option object</desc>
 <constructor>true</constructor>
 <qlfunction>BarrierOption</qlfunction>
 <parameters>
     <param>
-        <name>handleStochastic</name>
-        <type class="StochasticProcess">string</type>
+        <name>handleBlackScholes</name>
+        <type class="BlackScholesProcess">string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Stochastic Process object</desc>
+        <desc>handle of a Black Scholes Process object</desc>
     </param>
     <param>
         <name>typeBarrier</name>
@@ -261,17 +261,17 @@
 </function>
 
 <function>
-<name>QL_OPTION_BASKET</name>
-<codename>qlOptionBasket</codename>
+<name>QL_BASKET_OPTION</name>
+<codename>qlBasketOption</codename>
 <desc>construct and return a handle to a Basket Option object</desc>
 <constructor>true</constructor>
 <qlfunction>BasketOption</qlfunction>
 <parameters>
     <param>
-        <name>handleStochastic</name>
-        <type class="StochasticProcess">string</type>
+        <name>handleBlackScholes</name>
+        <type class="BlackScholesProcess">string</type>
         <tensorrank>vector</tensorrank>
-        <desc>vector of Stochastic Process object handles</desc>
+        <desc>vector of Black Scholes Process object handles</desc>
     </param>
     <param>
         <name>basket</name>
@@ -336,17 +336,17 @@
 </function>
 
 <function>
-<name>QL_OPTION_CLIQUET</name>
-<codename>qlOptionCliquet</codename>
+<name>QL_CLIQUET_OPTION</name>
+<codename>qlCliquetOption</codename>
 <desc>construct and return a handle to a Cliquet Option object</desc>
 <constructor>true</constructor>
 <qlfunction>CliquetOption</qlfunction>
 <parameters>
     <param>
-        <name>handleStochastic</name>
-        <type class="StochasticProcess">string</type>
+        <name>handleBlackScholes</name>
+        <type class="BlackScholesProcess">string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Stochastic Process object</desc>
+        <desc>handle of a Black Scholes Process object</desc>
     </param>
     <param>
         <name>resetDates</name>
@@ -393,17 +393,17 @@
 </function>
 
 <function>
-<name>QL_OPTION_DIVIDENDVANILLA</name>
-<codename>qlOptionDividendVanilla</codename>
+<name>QL_DIVIDEND_VANILLA_OPTION</name>
+<codename>qlDividendVanillaOption</codename>
 <desc>construct and return a handle to a Dividend Vanilla Option object</desc>
 <constructor>true</constructor>
 <qlfunction>DividendVanillaOption</qlfunction>
 <parameters>
     <param>
-        <name>handleStochastic</name>
-        <type class="StochasticProcess">string</type>
+        <name>handleBlackScholes</name>
+        <type class="BlackScholesProcess">string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Stochastic Process object</desc>
+        <desc>handle of a Black Scholes Process object</desc>
     </param>
     <param>
         <name>dividendDates</name>
@@ -474,17 +474,17 @@
 </function>
 
 <function>
-<name>QL_OPTION_FORWARDVANILLA</name>
-<codename>qlOptionForwardVanilla</codename>
+<name>QL_FORWARD_VANILLA_OPTION</name>
+<codename>qlForwardVanillaOption</codename>
 <desc>construct and return a handle to a Forward Vanilla Option object</desc>
 <constructor>true</constructor>
 <qlfunction>ForwardVanillaOption</qlfunction>
 <parameters>
     <param>
-        <name>handleStochastic</name>
-        <type class="StochasticProcess">string</type>
+        <name>handleBlackScholes</name>
+        <type class="BlackScholesProcess">string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Stochastic Process object</desc>
+        <desc>handle of a Black Scholes Process object</desc>
     </param>
     <param>
         <name>moneyness</name>
@@ -588,68 +588,17 @@
 </function>
 
 <function>
-<name>QL_STOCHASTIC_PROCESS</name>
-<codename>qlStochasticProcess</codename>
-<desc>construct and return a handle to a Stochastic Process object</desc>
-<constructor>true</constructor>
-<qlfunction>StochasticProcess</qlfunction>
-<parameters>
-    <param>
-        <name>handleBlackVol</name>
-        <type class="BlackVolTermStructure">string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle to a Black Vol Term Structure object</desc>
-    </param>
-    <param>
-        <name>underlying</name>
-        <type>double</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>underlying</desc>
-    </param>
-    <param>
-        <name>dayCounter</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>day counter</desc>
-    </param>
-    <param>
-        <name>settlementDate</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>settlement date</desc>
-    </param>
-    <param>
-        <name>riskFreeRate</name>
-        <type>double</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>risk free rate</desc>
-    </param>
-    <param>
-        <name>dividendYield</name>
-        <type>double</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dividend yield</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>any</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing Stochastic Process object</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_OPTION_VANILLA</name>
-<codename>qlOptionVanilla</codename>
+<name>QL_VANILLA_OPTION</name>
+<codename>qlVanillaOption</codename>
 <desc>construct and return a handle to a Vanilla Option object</desc>
 <constructor>true</constructor>
 <qlfunction>VanillaOption</qlfunction>
 <parameters>
     <param>
-        <name>handleStochastic</name>
-        <type class="StochasticProcess">string</type>
+        <name>handleBlackScholes</name>
+        <type class="BlackScholesProcess">string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Stochastic Process object</desc>
+        <desc>handle of a Black Scholes Process object</desc>
     </param>
     <param>
         <name>optionType</name>

@@ -107,6 +107,10 @@ SOURCE=.\options.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\processes.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qladdin.cpp
 # PROP Intermediate_Dir "."
 # End Source File
@@ -154,6 +158,10 @@ SOURCE=.\instruments.hpp
 # Begin Source File
 
 SOURCE=.\options.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\processes.hpp
 # End Source File
 # Begin Source File
 

@@ -36,13 +36,16 @@ namespace QuantLibAddin {
             = ObjHandler::Args< std::vector < double > >::popArg(args);
         std::vector < long > dividendDates 
             = ObjHandler::Args< std::vector < long > >::popArg(args);
-        std::string handleStochastic    = ObjHandler::Args<std::string>::popArg(args);
+        std::string handleBlackScholes  = ObjHandler::Args<std::string>::popArg(args);
 
-        boost::shared_ptr<StochasticProcess> stochasticProcess =
-            boost::dynamic_pointer_cast<StochasticProcess>
-            (QL_OBJECT_GET(handleStochastic));
-        if (!stochasticProcess)
-            QL_FAIL("DividendVanillaOption: error retrieving object " + handleStochastic);
+        boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
+            boost::dynamic_pointer_cast<BlackScholesProcess>
+            (QL_OBJECT_GET(handleBlackScholes));
+        if (!blackScholesProcess)
+            QL_FAIL("DividendVanillaOption: error retrieving object " + handleBlackScholes);
+        const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
+            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
+            (blackScholesProcess->getReference());
 
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             IDtoPayoff(optionTypeID, payoffID, strike);
@@ -50,14 +53,11 @@ namespace QuantLibAddin {
             IDtoExercise(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             IDtoEngine(engineID, timeSteps);
-        const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL = 
-            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
-            (stochasticProcess->getReference());
         const std::vector<QuantLib::Date> dividendDatesQL = 
             longVectorToDateVector(dividendDates);
         dividendVanillaOption_ = boost::shared_ptr<QuantLib::DividendVanillaOption>(
             new QuantLib::DividendVanillaOption(
-                stochasticProcessQL, 
+                blackScholesProcessQL, 
                 payoff, 
                 exercise, 
                 dividendDatesQL,

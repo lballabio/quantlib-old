@@ -44,7 +44,7 @@ namespace QuantLibAddin {
         std::vector < std::vector < double > > correlations 
             = ObjHandler::Args< std::vector < std::vector < double > > >::popArg(args);
         std::string basketID        = ObjHandler::Args<std::string>::popArg(args);
-        std::vector < std::string > handleStochasticVector 
+        std::vector < std::string > handleBlackScholesVector 
             = ObjHandler::Args< std::vector < std::string > >::popArg(args);
 
         QuantLib::BasketOption::BasketType basketType = 
@@ -58,26 +58,30 @@ namespace QuantLibAddin {
             IDtoExercise(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             IDtoEngine(engineID, timeSteps);
+
         std::vector < boost::shared_ptr<QuantLib::StochasticProcess> >
-            stochasticProcsQL;
+            stochasticProcessesQL;
         std::vector < std::string >::const_iterator i;
-        for (i = handleStochasticVector.begin(); i != handleStochasticVector.end(); i++) {
-            std::string handleStochastic = *i;
-            boost::shared_ptr<StochasticProcess> stochasticProcess =
-                boost::dynamic_pointer_cast<StochasticProcess>
-                (QL_OBJECT_GET(handleStochastic));
-            if (!stochasticProcess)
-                QL_FAIL("BasketOption: error retrieving object " + handleStochastic);
-            const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL =
+        for (i = handleBlackScholesVector.begin(); i != handleBlackScholesVector.end(); i++) {
+            std::string handleBlackScholes = *i;
+            boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
+                boost::dynamic_pointer_cast<BlackScholesProcess>
+                (QL_OBJECT_GET(handleBlackScholes));
+            if (!blackScholesProcess)
+                QL_FAIL("BasketOption: error retrieving object " + handleBlackScholes);
+            boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL =
                 boost::static_pointer_cast<QuantLib::BlackScholesProcess>
-                (stochasticProcess->getReference());
-            stochasticProcsQL.push_back(stochasticProcessQL);
+                (blackScholesProcess->getReference());
+            boost::shared_ptr<QuantLib::StochasticProcess> stochasticProcessQL =
+                boost::dynamic_pointer_cast<QuantLib::StochasticProcess>
+                (blackScholesProcessQL);
+            stochasticProcessesQL.push_back(stochasticProcessQL);
         }
 
         basketOption_ = boost::shared_ptr<QuantLib::BasketOption>(
             new QuantLib::BasketOption(
                 basketType,
-                stochasticProcsQL, 
+                stochasticProcessesQL, 
                 payoff, 
                 exercise, 
                 correlation,

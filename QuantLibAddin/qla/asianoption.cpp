@@ -43,13 +43,16 @@ namespace QuantLibAddin {
         std::string payoffID            = ObjHandler::Args<std::string>::popArg(args);
         std::string optionTypeID        = ObjHandler::Args<std::string>::popArg(args);
         std::string averageID           = ObjHandler::Args<std::string>::popArg(args);
-        std::string handleStochastic    = ObjHandler::Args<std::string>::popArg(args);
+        std::string handleBlackScholes  = ObjHandler::Args<std::string>::popArg(args);
 
-        boost::shared_ptr<StochasticProcess> stochasticProcess =
-            boost::dynamic_pointer_cast<StochasticProcess>
-            (QL_OBJECT_GET(handleStochastic));
-        if (!stochasticProcess)
-            QL_FAIL("ContinuousAveragingAsianOption: error retrieving object " + handleStochastic);
+        boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
+            boost::dynamic_pointer_cast<BlackScholesProcess>
+            (QL_OBJECT_GET(handleBlackScholes));
+        if (!blackScholesProcess)
+            QL_FAIL("ContinuousAveragingAsianOption: error retrieving object " + handleBlackScholes);
+        const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
+            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
+            (blackScholesProcess->getReference());
 
         QuantLib::Average::Type averageType =
             IDtoAverageType(averageID);
@@ -59,14 +62,11 @@ namespace QuantLibAddin {
             IDtoExercise(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             IDtoEngine(engineID, timeSteps);
-        const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL = 
-            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
-            (stochasticProcess->getReference());
         continuousAveragingAsianOption_ = 
             boost::shared_ptr<QuantLib::ContinuousAveragingAsianOption>(
                 new QuantLib::ContinuousAveragingAsianOption(
                     averageType,
-                    stochasticProcessQL, 
+                    blackScholesProcessQL, 
                     payoff, 
                     exercise, 
                     pricingEngine));
@@ -81,26 +81,29 @@ namespace QuantLibAddin {
     }
 
     DiscreteAveragingAsianOption::DiscreteAveragingAsianOption(ObjHandler::ArgStack &args) {
-        long timeSteps = ObjHandler::Args<long>::popArg(args);
-        std::string engineID = ObjHandler::Args<std::string>::popArg(args);
-        long settlementDate = ObjHandler::Args<long>::popArg(args);
-        long exerciseDate = ObjHandler::Args<long>::popArg(args);
-        std::string exerciseID = ObjHandler::Args<std::string>::popArg(args);
-        double strike = ObjHandler::Args<double>::popArg(args);
-        std::string payoffID = ObjHandler::Args<std::string>::popArg(args);
-        std::string optionTypeID = ObjHandler::Args<std::string>::popArg(args);
+        long timeSteps                  = ObjHandler::Args<long>::popArg(args);
+        std::string engineID            = ObjHandler::Args<std::string>::popArg(args);
+        long settlementDate             = ObjHandler::Args<long>::popArg(args);
+        long exerciseDate               = ObjHandler::Args<long>::popArg(args);
+        std::string exerciseID          = ObjHandler::Args<std::string>::popArg(args);
+        double strike                   = ObjHandler::Args<double>::popArg(args);
+        std::string payoffID            = ObjHandler::Args<std::string>::popArg(args);
+        std::string optionTypeID        = ObjHandler::Args<std::string>::popArg(args);
         std::vector < long > fixingDates 
             = ObjHandler::Args< std::vector < long > >::popArg(args);
         long pastFixings = ObjHandler::Args<long>::popArg(args);
-        double runningAccumulator = ObjHandler::Args<double>::popArg(args);
-        std::string averageID = ObjHandler::Args<std::string>::popArg(args);
-        std::string handleStochastic = ObjHandler::Args<std::string>::popArg(args);
+        double runningAccumulator       = ObjHandler::Args<double>::popArg(args);
+        std::string averageID           = ObjHandler::Args<std::string>::popArg(args);
+        std::string handleBlackScholes  = ObjHandler::Args<std::string>::popArg(args);
 
-        boost::shared_ptr<StochasticProcess> stochasticProcess =
-            boost::dynamic_pointer_cast<StochasticProcess>
-            (QL_OBJECT_GET(handleStochastic));
-        if (!stochasticProcess)
-            QL_FAIL("DiscreteAveragingAsianOption: error retrieving object " + handleStochastic);
+        boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
+            boost::dynamic_pointer_cast<BlackScholesProcess>
+            (QL_OBJECT_GET(handleBlackScholes));
+        if (!blackScholesProcess)
+            QL_FAIL("DiscreteAveragingAsianOption: error retrieving object " + handleBlackScholes);
+        const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
+            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
+            (blackScholesProcess->getReference());
 
         QuantLib::Average::Type averageType =
             IDtoAverageType(averageID);
@@ -110,9 +113,6 @@ namespace QuantLibAddin {
             IDtoExercise(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             IDtoEngine(engineID, timeSteps);
-        const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL = 
-            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
-            (stochasticProcess->getReference());
         std::vector<QuantLib::Date> fixingDatesQL;
         std::vector<long>::const_iterator i;
         for (i = fixingDates.begin(); i != fixingDates.end(); i++)
@@ -124,7 +124,7 @@ namespace QuantLibAddin {
                     runningAccumulator,
                     pastFixings,
                     fixingDatesQL,
-                    stochasticProcessQL, 
+                    blackScholesProcessQL, 
                     payoff, 
                     exercise, 
                     pricingEngine));

@@ -9,10 +9,12 @@ EXTRA_DIST = \
     framewrk.hpp \
     instruments.cpp \
     options.cpp \
+    processes.cpp \
     qladdin.cpp \
     shortratemodels.cpp \
     termstructures.cpp \
     utilities.cpp \
+    volatilities.cpp \
     xlcall.h \
     xlutils.cpp \
     xlutils.hpp

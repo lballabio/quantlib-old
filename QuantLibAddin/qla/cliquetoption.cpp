@@ -31,13 +31,16 @@ namespace QuantLibAddin {
         std::string optionTypeID        = ObjHandler::Args<std::string>::popArg(args);
         std::vector < long > resetDates 
             = ObjHandler::Args< std::vector < long > >::popArg(args);
-        std::string handleStochastic    = ObjHandler::Args<std::string>::popArg(args);
+        std::string handleBlackScholes  = ObjHandler::Args<std::string>::popArg(args);
 
-        boost::shared_ptr<StochasticProcess> stochasticProcess =
-            boost::dynamic_pointer_cast<StochasticProcess>
-            (QL_OBJECT_GET(handleStochastic));
-        if (!stochasticProcess)
-            QL_FAIL("CliquetOption: error retrieving object " + handleStochastic);
+        boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
+            boost::dynamic_pointer_cast<BlackScholesProcess>
+            (QL_OBJECT_GET(handleBlackScholes));
+        if (!blackScholesProcess)
+            QL_FAIL("CliquetOption: error retrieving object " + handleBlackScholes);
+        const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
+            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
+            (blackScholesProcess->getReference());
 
         QuantLib::Option::Type type = IDtoOptionType(optionTypeID);
         boost::shared_ptr<QuantLib::PercentageStrikePayoff> payoff(
@@ -46,14 +49,11 @@ namespace QuantLibAddin {
             new QuantLib::EuropeanExercise(QuantLib::Date(exerciseDate)));
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             IDtoEngine(engineID, timeSteps);
-        const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL = 
-            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
-            (stochasticProcess->getReference());
         std::vector<QuantLib::Date> resetDatesQL =
             longVectorToDateVector(resetDates);
         cliquetOption_ = boost::shared_ptr<QuantLib::CliquetOption>(
             new QuantLib::CliquetOption(
-                stochasticProcessQL, 
+                blackScholesProcessQL, 
                 payoff, 
                 exercise, 
                 resetDatesQL,

@@ -44,7 +44,7 @@ int main() {
     QL_CONSOLE(1);
     QL_LOGMESSAGE("begin options test");
 
-    if (QL_BOND_FIXED_COUPON(
+    if (QL_FIXED_COUPON_BOND(
             "bond1", 
             issueDate, 
             datedDate,
@@ -57,11 +57,11 @@ int main() {
             dayCounterID, 
             calendarID, 
             &vfcb) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_BOND_FIXED_COUPON");
+        QL_LOGMESSAGE("Error on call to QL_FIXED_COUPON_BOND");
         goto fail;
     }
 
-    printVariesList("QL_BOND_FIXED_COUPON", vfcb);
+    printVariesList("QL_FIXED_COUPON_BOND", vfcb);
 
     freeVariesList(&vfcb);
 

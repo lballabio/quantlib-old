@@ -55,7 +55,7 @@ int main() {
         a1.push(settlementDate.serialNumber()); // settlement date as long
         a1.push(riskFreeRate);              // risk free rate
         a1.push(dividendYield);             // dividend yield
-        QL_OBJECT_MAKE(StochasticProcess)("stochasticProcess", a1);
+        QL_OBJECT_MAKE(BlackScholesProcess)("stochasticProcess", a1);
         QL_LOG_OBJECT("stochasticProcess");
 
         ArgStack a2;

@@ -97,6 +97,10 @@ SOURCE=.\options.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\processes.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\shortratemodels.cpp
 # End Source File
 # Begin Source File
@@ -134,6 +138,10 @@ SOURCE=.\instruments.h
 # Begin Source File
 
 SOURCE=.\options.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\processes.h
 # End Source File
 # Begin Source File
 

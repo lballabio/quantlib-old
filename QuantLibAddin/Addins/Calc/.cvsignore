@@ -27,3 +27,5 @@ capfloor.hpp
 shortratemodels.cpp
 volatilities.cpp
 volatilities.hpp
+processes.cpp
+processes.hpp

@@ -56,7 +56,7 @@ int main() {
         bsArgs.push(riskFreeRate);          // risk free rate
         bsArgs.push(dividendYield);         // dividend yield
         Properties bsProperties =
-            QL_OBJECT_MAKE(StochasticProcess)("my_stochastic", bsArgs);
+            QL_OBJECT_MAKE(BlackScholesProcess)("my_stochastic", bsArgs);
 
         ArgStack opArgs;
         opArgs.push(string("my_stochastic")); // stochastic process handle

@@ -50,11 +50,13 @@ noinst_HEADERS = \
     capfloor.hpp \
     instruments.hpp \
     options.hpp \
+    processes.hpp \
     qladdin.hpp \
     qldefs.hpp \
-    utilities.hpp \
     shortratemodels.hpp \
-    termstructures.hpp
+    termstructures.hpp \
+    utilities.hpp \
+    volatilities.hpp
 
 if BUILD_CALC
 lib_LTLIBRARIES = libQuantLibAddinCalc.la
@@ -68,10 +70,12 @@ libQuantLibAddinCalc_la_SOURCES = \
     funcdef.cpp \
     instruments.cpp \
     options.cpp \
+    processes.cpp \
     qladdin.cpp \
-    utilities.cpp \
     shortratemodels.cpp \
-    termstructures.cpp
+    termstructures.cpp \
+    utilities.cpp \
+    volatilities.cpp
 
 libQuantLibAddinCalc_la_LIBADD = ../../qla/libQuantLibAddin.la
 

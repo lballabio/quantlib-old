@@ -5,8 +5,8 @@ EXTRA_DIST = .time-stamp \
              Autogen.dsp
 
 # autogen.py probably needs to be re-executed if any of these change
-AUTOGEN_INPUT := utilities.xml options.xml instruments.xml capfloor.xml \
-                 shortratemodels.xml termstructures.xml
+AUTOGEN_INPUT := capfloor.xml instruments.xml options.xml processes.xml shortratemodels.xml \
+                 termstructures.xml utilities.xml volatilities.xml
 AUTOGEN_PYS := autogen.py c.py calc.py common.py excel.py \
                parse.py utils.py doxygen.py
 AUTOGEN_STUBS := stub.C.body stub.C.includes \

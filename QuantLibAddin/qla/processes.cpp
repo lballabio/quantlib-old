@@ -18,7 +18,7 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qla/config.hpp>
 #endif
-#include <qla/stochasticprocess.hpp>
+#include <qla/processes.hpp>
 #include <qla/volatilities.hpp>
 #include <qla/generalutils.hpp>
 #include <ql/quote.hpp>
@@ -27,7 +27,7 @@
 
 namespace QuantLibAddin {
 
-    StochasticProcess::StochasticProcess(ObjHandler::ArgStack &args) {
+    BlackScholesProcess::BlackScholesProcess(ObjHandler::ArgStack &args) {
         double dividendYield        = ObjHandler::Args<double>::popArg(args);
         double riskFreeRate         = ObjHandler::Args<double>::popArg(args);
         long settlementDateLong     = ObjHandler::Args<long>::popArg(args);
@@ -51,14 +51,14 @@ namespace QuantLibAddin {
             boost::dynamic_pointer_cast<BlackVolTermStructure>
             (QL_OBJECT_GET(handleBlackVol));
         if (!blackVolTermStructure)
-            QL_FAIL("StochasticProcess: error retrieving object " + handleBlackVol);
+            QL_FAIL("BlackScholesProcess: error retrieving object " + handleBlackVol);
         boost::shared_ptr<QuantLib::BlackVolTermStructure> blackVolTermStructureP = 
             boost::static_pointer_cast<QuantLib::BlackVolTermStructure>
             (blackVolTermStructure->getReference());
         QuantLib::Handle<QuantLib::BlackVolTermStructure> 
             blackVolTermStructureH(blackVolTermStructureP);
 
-        stochasticProcess_ = boost::shared_ptr<QuantLib::BlackScholesProcess> (
+        blackScholesProcess_ = boost::shared_ptr<QuantLib::BlackScholesProcess> (
             new QuantLib::BlackScholesProcess(
                 underlyingH,
                 flatDividendTS,

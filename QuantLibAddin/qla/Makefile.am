@@ -21,13 +21,14 @@ include_HEADERS = \
     instruments.hpp \
     options.hpp \
     optionutils.hpp \
-    qladdindefines.hpp \
+    processes.hpp \
     qladdin.hpp \
+    qladdindefines.hpp \
     shortratemodels.hpp \
-    stochasticprocess.hpp \
     termstructures.hpp \
     utilities.hpp \
     vanillaoption.hpp \
+    volatilities.hpp \
     zerocouponbond.hpp \
     zerocurve.hpp
 
@@ -44,11 +45,12 @@ libQuantLibAddin_la_SOURCES = \
     forwardvanillaoption.cpp \
     generalutils.cpp \
     optionutils.cpp \
+    processes.cpp \
     shortratemodels.cpp \
-    stochasticprocess.cpp \
     termstructures.cpp \
     utilities.cpp \
     vanillaoption.cpp \
+    volatilities.cpp \
     zerocouponbond.cpp \
     zerocurve.cpp
 

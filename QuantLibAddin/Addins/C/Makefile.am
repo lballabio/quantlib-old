@@ -18,19 +18,23 @@ noinst_HEADERS = \
     defines.h \
     instruments.h \
     options.h \
+    processes.h \
     shortratemodels.h \
     termstructures.h \
     qladdin.h \
     utilities.h \
     varies.h \
-    varies.hpp
+    varies.hpp \
+    volatilities.h
 
 libQuantLibAddinC_la_SOURCES = \
     capfloor.cpp \
     instruments.cpp \
     options.cpp \
+    processes.cpp \
     shortratemodels.cpp \
     termstructures.cpp \
     utilities.cpp \
-    varies.cpp
+    varies.cpp \
+    volatilities.cpp
 

@@ -18,7 +18,7 @@
 #ifndef qla_barrieroption_hpp
 #define qla_barrieroption_hpp
 
-#include <qla/stochasticprocess.hpp>
+#include <qla/processes.hpp>
 #include <ql/Instruments/barrieroption.hpp>
 
 namespace QuantLibAddin {

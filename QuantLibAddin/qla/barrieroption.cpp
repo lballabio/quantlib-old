@@ -49,13 +49,16 @@ namespace QuantLibAddin {
         double rebate                   = ObjHandler::Args<double>::popArg(args);
         double barrier                  = ObjHandler::Args<double>::popArg(args);
         std::string typeBarrier         = ObjHandler::Args<std::string>::popArg(args);
-        std::string handleStochastic    = ObjHandler::Args<std::string>::popArg(args);
+        std::string handleBlackScholes  = ObjHandler::Args<std::string>::popArg(args);
 
-        boost::shared_ptr<StochasticProcess> stochasticProcess =
-            boost::dynamic_pointer_cast<StochasticProcess>
-            (QL_OBJECT_GET(handleStochastic));
-        if (!stochasticProcess)
-            QL_FAIL("BarrierOption: error retrieving object " + handleStochastic);
+        boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
+            boost::dynamic_pointer_cast<BlackScholesProcess>
+            (QL_OBJECT_GET(handleBlackScholes));
+        if (!blackScholesProcess)
+            QL_FAIL("BarrierOption: error retrieving object " + handleBlackScholes);
+        const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
+            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
+            (blackScholesProcess->getReference());
 
         QuantLib::Barrier::Type barrierType = 
             IDtoBarrierType(typeBarrier);
@@ -65,15 +68,12 @@ namespace QuantLibAddin {
             IDtoExercise(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             IDtoEngine(engineID, timeSteps);
-        const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL = 
-            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
-            (stochasticProcess->getReference());
         barrierOption_ = boost::shared_ptr<QuantLib::BarrierOption>(
             new QuantLib::BarrierOption(
                 barrierType,
                 barrier,
                 rebate,
-                stochasticProcessQL, 
+                blackScholesProcessQL, 
                 payoff, 
                 exercise, 
                 pricingEngine));

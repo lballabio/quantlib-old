@@ -15,24 +15,23 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_stochasticprocess_hpp
-#define qla_stochasticprocess_hpp
+#ifndef qla_processes_hpp
+#define qla_processes_hpp
 
 #include <oh/objhandler.hpp>
 #include <ql/Processes/blackscholesprocess.hpp>
 
 namespace QuantLibAddin {
 
-    class StochasticProcess : public ObjHandler::Object {
+    class BlackScholesProcess : public ObjHandler::Object {
     public:
 
-        StochasticProcess(ObjHandler::ArgStack &args);
-//        ~StochasticProcess();
+        BlackScholesProcess(ObjHandler::ArgStack &args);
         virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(stochasticProcess_);
+            return boost::static_pointer_cast<void>(blackScholesProcess_);
         }
     private:
-        boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcess_;
+        boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcess_;
     };
 
 }

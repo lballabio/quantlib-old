@@ -72,7 +72,7 @@ int main() {
         goto fail;
     }
 
-    if (QL_STOCHASTIC_PROCESS(
+    if (QL_BLACK_SCHOLES_PROCESS(
             "stoch1", 
             "blackconstantvol", 
             underlying, 
@@ -81,13 +81,13 @@ int main() {
             riskFreeRate, 
             dividendYield, 
             &vbs) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_STOCHASTIC_PROCESS");
+        QL_LOGMESSAGE("Error on call to QL_BLACK_SCHOLES_PROCESS");
         goto fail;
     }
 
-    printVariesList("QL_STOCHASTIC_PROCESS", vbs);
+    printVariesList("QL_BLACK_SCHOLES_PROCESS", vbs);
 
-    if (QL_OPTION_VANILLA(
+    if (QL_VANILLA_OPTION(
             "opt_van",                      // option handle
             "stoch1",                       // stochastic process handle
             "PUT",                          // option type
@@ -99,13 +99,13 @@ int main() {
             "JR",                           // engine type (jarrow rudd)
             timeSteps,                      // time steps
             &vo) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_OPTION_VANILLA");
+        QL_LOGMESSAGE("Error on call to QL_VANILLA_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_OPTION_VANILLA", vo);
+    printVariesList("QL_VANILLA_OPTION", vo);
 
-    if (QL_OPTION_ASIAN_C(
+    if (QL_CA_ASIAN_OPTION(
             "opt_asian_cont",               // option handle
             "stoch1",                       // stochastic process handle
             "G",                            // average type ("A"verage/"G"eometric)
@@ -118,17 +118,17 @@ int main() {
             "ACGAPA",                       // engine type
             timeSteps,                      // time steps
             &voac) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_OPTION_VANILLA");
+        QL_LOGMESSAGE("Error on call to QL_CA_ASIAN_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_OPTION_ASIAN_C", voac);
+    printVariesList("QL_CA_ASIAN_OPTION", voac);
 
     fixingDatesCount = exerciseDate - todaysDate + 1;
     fixingDates = (long *) malloc(sizeof(long) * fixingDatesCount);
     for (i = 0; i < fixingDatesCount; i++)
         fixingDates[i] = todaysDate + i;
-    if (QL_OPTION_ASIAN_D(
+    if (QL_DA_ASIAN_OPTION(
             "opt_asian_disc",               // option handle
             "stoch1",                       // stochastic process handle
             "G",                            // average type ("A"verage/"G"eometric)
@@ -145,13 +145,13 @@ int main() {
             "ADGAPA",                       // engine type (AnalyticDiscreteGeometricAveragePriceAsianEngine)
             timeSteps,                      // time steps
             &voad) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_OPTION_ASIAN_D");
+        QL_LOGMESSAGE("Error on call to QL_DA_ASIAN_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_OPTION_ASIAN_D", voad);
+    printVariesList("QL_DA_ASIAN_OPTION", voad);
 
-    if (QL_OPTION_BARRIER(
+    if (QL_BARRIER_OPTION(
             "opt_barrier",                  // option handle
             "stoch1",                       // stochastic process handle
             "DOWNIN",                       // barrier type
@@ -166,11 +166,11 @@ int main() {
             "AB",                           // engine type
             timeSteps,                      // time steps
             &voba) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_OPTION_BARRIER");
+        QL_LOGMESSAGE("Error on call to QL_BARRIER_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_OPTION_BARRIER", voba);
+    printVariesList("QL_BARRIER_OPTION", voba);
 
     correlations = (double**)malloc(sizeof(double*)*2);
     correlations[0] = (double*)malloc(sizeof(double)*2);
@@ -179,7 +179,7 @@ int main() {
     correlations[0][1] = 0.9;
     correlations[1][0] = 0.9;
     correlations[1][1] = 1.0;
-    if (QL_OPTION_BASKET(
+    if (QL_BASKET_OPTION(
             "opt_basket",                   // option handle
             2,                              // #/stochastic processes
             stochHandles,                   // array of stoch process handles
@@ -195,13 +195,13 @@ int main() {
             "SE",                           // engine type
             timeSteps,                      // time steps
             &vobs) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_OPTION_BASKET");
+        QL_LOGMESSAGE("Error on call to QL_BASKET_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_OPTION_BASKET", vobs);
+    printVariesList("QL_BASKET_OPTION", vobs);
 
-    if (QL_OPTION_CLIQUET(
+    if (QL_CLIQUET_OPTION(
             "opt_cliquet",                  // option handle
             "stoch1",                       // stochastic process handle
             1,                              // #/reset dates
@@ -212,13 +212,13 @@ int main() {
             "AC",                           // engine type
             timeSteps,                      // time steps
             &voc) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_OPTION_CLIQUET");
+        QL_LOGMESSAGE("Error on call to QL_CLIQUET_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_OPTION_CLIQUET", voc);
+    printVariesList("QL_CLIQUET_OPTION", voc);
 
-    if (QL_OPTION_DIVIDENDVANILLA(
+    if (QL_DIVIDEND_VANILLA_OPTION(
             "opt_divvan",                   // option handle
             "stoch1",                       // stochastic process handle
             2,                              // #/dividend dates
@@ -234,13 +234,13 @@ int main() {
             "ADE",                          // engine type
             timeSteps,                      // time steps
             &vod) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_OPTION_DIVIDENDVANILLA");
+        QL_LOGMESSAGE("Error on call to QL_DIVIDEND_VANILLA_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_OPTION_DIVIDENDVANILLA", vod);
+    printVariesList("QL_DIVIDEND_VANILLA_OPTION", vod);
 
-    if (QL_OPTION_FORWARDVANILLA(
+    if (QL_FORWARD_VANILLA_OPTION(
             "opt_fwdvan",                   // option handle
             "stoch1",                       // stochastic process handle
             12.,                            // moneyness
@@ -254,11 +254,11 @@ int main() {
             "FE",                           // engine type
             timeSteps,                      // time steps
             &vof) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_OPTION_FORWARDVANILLA");
+        QL_LOGMESSAGE("Error on call to QL_FORWARD_VANILLA_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_OPTION_FORWARDVANILLA", vof);
+    printVariesList("QL_FORWARD_VANILLA_OPTION", vof);
 
     free(fixingDates);
     for (i=0;i<2;i++)

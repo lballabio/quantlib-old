@@ -18,7 +18,7 @@
 #ifndef qla_asianoption_hpp
 #define qla_asianoption_hpp
 
-#include <qla/stochasticprocess.hpp>
+#include <qla/processes.hpp>
 #include <ql/Instruments/asianoption.hpp>
 
 namespace QuantLibAddin {

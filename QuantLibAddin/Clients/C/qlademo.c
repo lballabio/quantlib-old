@@ -50,7 +50,7 @@ int main() {
         goto fail;
     }
 
-    if (QL_STOCHASTIC_PROCESS(
+    if (QL_BLACK_SCHOLES_PROCESS(
             "my_stochastic", 
             "my_blackconstantvol", 
             underlying, 
@@ -59,11 +59,11 @@ int main() {
             riskFreeRate, 
             dividendYield, 
             &vbs) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_STOCHASTIC_PROCESS");
+        QL_LOGMESSAGE("Error on call to QL_BLACK_SCHOLES_PROCESS");
         goto fail;
     }
 
-    if (QL_OPTION_VANILLA(
+    if (QL_VANILLA_OPTION(
             "my_option",                    // option handle
             "my_stochastic",                // stochastic process handle
             "PUT",                          // option type
@@ -75,11 +75,11 @@ int main() {
             "JR",                           // engine type (jarrow rudd)
             timeSteps,                      // time steps
             &vo) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_OPTION_VANILLA");
+        QL_LOGMESSAGE("Error on call to QL_VANILLA_OPTION");
         goto fail;
     }
 
-    QL_LOGMESSAGE("high-level interrogation - after QL_OPTION_VANILLA");
+    QL_LOGMESSAGE("high-level interrogation - after QL_VANILLA_OPTION");
     for (i=0; i<vo.count; i++)
         QL_LOGMESSAGE("field = %s, value = %s", vo.varies[i].Label, 
             variesToString(&vo.varies[i]));

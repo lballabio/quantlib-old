@@ -18,7 +18,7 @@
 #ifndef qla_cliquetoption_hpp
 #define qla_cliquetoption_hpp
 
-#include <qla/stochasticprocess.hpp>
+#include <qla/processes.hpp>
 #include <ql/Instruments/cliquetoption.hpp>
 
 namespace QuantLibAddin {

@@ -18,7 +18,7 @@
 #ifndef qla_basketoption_hpp
 #define qla_basketoption_hpp
 
-#include <qla/stochasticprocess.hpp>
+#include <qla/processes.hpp>
 #include <ql/Instruments/basketoption.hpp>
 
 namespace QuantLibAddin {

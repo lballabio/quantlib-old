@@ -6,9 +6,9 @@
 <displayname>Instruments</displayname>
 
 <function>
-<name>QL_BOND_FIXED_COUPON</name>
-<codename>qlBondFixedCoupon</codename>
-<desc>construct and return a handle to a FixedCouponBond object</desc>
+<name>QL_FIXED_COUPON_BOND</name>
+<codename>qlFixedCouponBond</codename>
+<desc>construct and return a handle to a Fixed Coupon Bond object</desc>
 <constructor>true</constructor>
 <qlfunction>FixedCouponBond</qlfunction>
 <parameters>
