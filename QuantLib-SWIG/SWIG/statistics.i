@@ -99,6 +99,7 @@ class SequenceStatistics {
     #endif
   public:
     SequenceStatistics(Size dimension);
+    Size size() const;
     Size samples() const;
     double weightSum() const;
     std::vector<double> mean() const;
@@ -109,6 +110,8 @@ class SequenceStatistics {
     std::vector<double> kurtosis() const;
     std::vector<double> min() const;
     std::vector<double> max() const;
+    Matrix covariance() const;
+    Matrix correlation() const;
     // Modifiers
     void reset();
     void add(const std::vector<double>& value, double weight = 1.0);
@@ -116,22 +119,6 @@ class SequenceStatistics {
 };
 
 %template(MultipleStatistics) SequenceStatistics<Statistics>;
-
-%{
-using QuantLib::MultivariateAccumulator;
-%}
-
-class MultivariateAccumulator {
-  public:
-    Size size() const;
-    Size samples() const;
-    double weightSum() const;
-    Array mean() const;
-    Matrix covariance() const;
-    Matrix correlation() const;
-    void add(const Array& a, double weight = 1.0);
-    void reset();
-};
 
 
 #endif
