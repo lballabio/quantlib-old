@@ -23,57 +23,34 @@ module com {
 
                 // options
 
-                sequence < sequence < any > > qlStochasticProcess(
-                        [in] string handle,
-                        [in] double underlying,
-                        [in] string dayCounterID,
-                        [in] long settlementDate,
-                        [in] double riskFreeRate,
-                        [in] double dividendYield,
-                        [in] double volatility)
-                    raises( com::sun::star::lang::IllegalArgumentException );
-
-                sequence < sequence < any > > qlOptionVanilla(
-                        [in] string handle,
-                        [in] string handleStochastic,
-                        [in] string typeOption,
-                        [in] string typePayoff,
-                        [in] double strike,
-                        [in] string typeExercise,
-                        [in] long exerciseDate,
-                        [in] long settlementDate,
-                        [in] string typeEngine,
-                        [in] long timeSteps)
-                    raises( com::sun::star::lang::IllegalArgumentException );
-
                 sequence < sequence < any > > qlOptionAsianC(
                         [in] string handle,
                         [in] string handleStochastic,
-                        [in] string typeAverage,
-                        [in] string typeOption,
-                        [in] string typePayoff,
+                        [in] string average,
+                        [in] string optionType,
+                        [in] string payoff,
                         [in] double strike,
-                        [in] string typeExercise,
+                        [in] string exercise,
                         [in] long exerciseDate,
                         [in] long settlementDate,
-                        [in] string typeEngine,
+                        [in] string engine,
                         [in] long timeSteps)
                     raises( com::sun::star::lang::IllegalArgumentException );
 
                 sequence < sequence < any > > qlOptionAsianD(
                         [in] string handle,
                         [in] string handleStochastic,
-                        [in] string typeAverage,
+                        [in] string average,
                         [in] double runningAccumulator,
                         [in] long pastFixings,
                         [in] sequence < sequence < long  > > fixingDates,
-                        [in] string typeOption,
-                        [in] string typePayoff,
+                        [in] string optionType,
+                        [in] string payoff,
                         [in] double strike,
-                        [in] string typeExercise,
+                        [in] string exercise,
                         [in] long exerciseDate,
                         [in] long settlementDate,
-                        [in] string typeEngine,
+                        [in] string engine,
                         [in] long timeSteps)
                     raises( com::sun::star::lang::IllegalArgumentException );
 
@@ -83,19 +60,97 @@ module com {
                         [in] string typeBarrier,
                         [in] double barrier,
                         [in] double rebate,
-                        [in] string typeOption,
-                        [in] string typePayoff,
+                        [in] string optionType,
+                        [in] string payoff,
                         [in] double strike,
-                        [in] string typeExercise,
+                        [in] string exercise,
                         [in] long exerciseDate,
                         [in] long settlementDate,
-                        [in] string typeEngine,
+                        [in] string engine,
+                        [in] long timeSteps)
+                    raises( com::sun::star::lang::IllegalArgumentException );
+
+                sequence < sequence < any > > qlOptionBasket(
+                        [in] string handle,
+                        [in] sequence < sequence < string  > > handleStochastic,
+                        [in] string basket,
+                        [in] sequence < sequence < double  > > correlations,
+                        [in] string optionType,
+                        [in] double strike,
+                        [in] string exercise,
+                        [in] long exerciseDate,
+                        [in] long settlementDate,
+                        [in] string engine,
+                        [in] long timeSteps)
+                    raises( com::sun::star::lang::IllegalArgumentException );
+
+                sequence < sequence < any > > qlOptionCliquet(
+                        [in] string handle,
+                        [in] string handleStochastic,
+                        [in] sequence < sequence < long  > > resetDates,
+                        [in] string optionType,
+                        [in] double strike,
+                        [in] long exerciseDate,
+                        [in] string engine,
+                        [in] long timeSteps)
+                    raises( com::sun::star::lang::IllegalArgumentException );
+
+                sequence < sequence < any > > qlOptionDividendVanilla(
+                        [in] string handle,
+                        [in] string handleStochastic,
+                        [in] sequence < sequence < long  > > dividendDates,
+                        [in] sequence < sequence < double  > > dividends,
+                        [in] string optionType,
+                        [in] string payoff,
+                        [in] double strike,
+                        [in] string exercise,
+                        [in] long exerciseDate,
+                        [in] long settlementDate,
+                        [in] string engine,
+                        [in] long timeSteps)
+                    raises( com::sun::star::lang::IllegalArgumentException );
+
+                sequence < sequence < any > > qlOptionForwardVanilla(
+                        [in] string handle,
+                        [in] string handleStochastic,
+                        [in] double moneyness,
+                        [in] long resetDate,
+                        [in] string optionType,
+                        [in] string payoff,
+                        [in] double strike,
+                        [in] string exercise,
+                        [in] long exerciseDate,
+                        [in] long settlementDate,
+                        [in] string engine,
                         [in] long timeSteps)
                     raises( com::sun::star::lang::IllegalArgumentException );
 
                 sequence < sequence < any > > qlOptionSetEngine(
                         [in] string handle,
                         [in] string engineName,
+                        [in] long timeSteps)
+                    raises( com::sun::star::lang::IllegalArgumentException );
+
+                sequence < sequence < any > > qlStochasticProcess(
+                        [in] string handle,
+                        [in] double underlying,
+                        [in] string dayCounter,
+                        [in] long settlementDate,
+                        [in] double riskFreeRate,
+                        [in] double dividendYield,
+                        [in] double volatility)
+                    raises( com::sun::star::lang::IllegalArgumentException );
+
+                sequence < sequence < any > > qlOptionVanilla(
+                        [in] string handle,
+                        [in] string handleStochastic,
+                        [in] string optionType,
+                        [in] string payoff,
+                        [in] double strike,
+                        [in] string exercise,
+                        [in] long exerciseDate,
+                        [in] long settlementDate,
+                        [in] string engine,
                         [in] long timeSteps)
                     raises( com::sun::star::lang::IllegalArgumentException );
 

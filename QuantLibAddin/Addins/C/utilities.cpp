@@ -20,12 +20,12 @@ extern "C" {
 #include <Addins/C/utilities.h>
 }
 
-const char *QL_LOGFILE(const char *logFileName) {
-    std::string ret = QuantLibAddin::QL_LOGFILE(logFileName);
-    return ret.c_str();
-}
+    const char *QL_LOGFILE(const char *logFileName) {
+        std::string ret = QuantLibAddin::QL_LOGFILE(logFileName);
+        return ret.c_str();
+    }
 
-void QL_LOGMESSAGE(const char *msg) {
-    QuantLibAddin::QL_LOGMESSAGE(msg);
-}
+    void QL_LOGMESSAGE(const char *msg) {
+        QuantLibAddin::QL_LOGMESSAGE(msg);
+    }
 

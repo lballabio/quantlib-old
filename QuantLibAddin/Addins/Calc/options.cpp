@@ -25,84 +25,32 @@
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
-SEQSEQ( ANY ) SAL_CALL QLAddin::qlStochasticProcess(
-        const STRING & handle,
-        double underlying,
-        const STRING & dayCounterID,
-        sal_Int32 settlementDate,
-        double riskFreeRate,
-        double dividendYield,
-        double volatility) THROWDEF_RTE_IAE {
-    try {
-        Properties properties = QL_STOCHASTIC_PROCESS(
-            OUStringToString(handle),
-            underlying,
-            OUStringToString(dayCounterID),
-            settlementDate,
-            riskFreeRate,
-            dividendYield,
-            volatility);
-        return getArray(properties, handle);
-    } catch (const std::exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_STOCHASTIC_PROCESS: ") + e.what());
-        THROW_RTE;
-    }
-}
-
-SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionVanilla(
-        const STRING & handle,
-        const STRING & handleStochastic,
-        const STRING & typeOption,
-        const STRING & typePayoff,
-        double strike,
-        const STRING & typeExercise,
-        sal_Int32 exerciseDate,
-        sal_Int32 settlementDate,
-        const STRING & typeEngine,
-        sal_Int32 timeSteps) THROWDEF_RTE_IAE {
-    try {
-        Properties properties = QL_OPTION_VANILLA(
-            OUStringToString(handle),
-            OUStringToString(handleStochastic),
-            OUStringToString(typeOption),
-            OUStringToString(typePayoff),
-            strike,
-            OUStringToString(typeExercise),
-            exerciseDate,
-            settlementDate,
-            OUStringToString(typeEngine),
-            timeSteps);
-        return getArray(properties, handle);
-    } catch (const std::exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_VANILLA: ") + e.what());
-        THROW_RTE;
-    }
-}
+using std::string;
 
 SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionAsianC(
         const STRING & handle,
         const STRING & handleStochastic,
-        const STRING & typeAverage,
-        const STRING & typeOption,
-        const STRING & typePayoff,
+        const STRING & average,
+        const STRING & optionType,
+        const STRING & payoff,
         double strike,
-        const STRING & typeExercise,
+        const STRING & exercise,
         sal_Int32 exerciseDate,
         sal_Int32 settlementDate,
-        const STRING & typeEngine,
+        const STRING & engine,
         sal_Int32 timeSteps) THROWDEF_RTE_IAE {
     try {
         Properties properties = QL_OPTION_ASIAN_C(
             OUStringToString(handle),
             OUStringToString(handleStochastic),
-            OUStringToString(typeAverage),
-            OUStringToString(typeOption),
-            OUStringToString(typePayoff),
+            OUStringToString(average),
+            OUStringToString(optionType),
+            OUStringToString(payoff),
             strike,
-            OUStringToString(typeExercise),
+            OUStringToString(exercise),
             exerciseDate,
             settlementDate,
-            OUStringToString(typeEngine),
+            OUStringToString(engine),
             timeSteps);
         return getArray(properties, handle);
     } catch (const std::exception &e) {
@@ -114,35 +62,35 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionAsianC(
 SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionAsianD(
         const STRING & handle,
         const STRING & handleStochastic,
-        const STRING & typeAverage,
+        const STRING & average,
         double runningAccumulator,
         sal_Int32 pastFixings,
         const SEQSEQ(sal_Int32 )& fixingDates,
-        const STRING & typeOption,
-        const STRING & typePayoff,
+        const STRING & optionType,
+        const STRING & payoff,
         double strike,
-        const STRING & typeExercise,
+        const STRING & exercise,
         sal_Int32 exerciseDate,
         sal_Int32 settlementDate,
-        const STRING & typeEngine,
+        const STRING & engine,
         sal_Int32 timeSteps) THROWDEF_RTE_IAE {
     try {
-        std::vector <long> fixingDatesVector = 
-            longSequenceToVector(fixingDates);
+        std::vector <long> fixingDatesVector;
+        sequenceToVector(fixingDates, fixingDatesVector);
         Properties properties = QL_OPTION_ASIAN_D(
             OUStringToString(handle),
             OUStringToString(handleStochastic),
-            OUStringToString(typeAverage),
+            OUStringToString(average),
             runningAccumulator,
             pastFixings,
             fixingDatesVector,
-            OUStringToString(typeOption),
-            OUStringToString(typePayoff),
+            OUStringToString(optionType),
+            OUStringToString(payoff),
             strike,
-            OUStringToString(typeExercise),
+            OUStringToString(exercise),
             exerciseDate,
             settlementDate,
-            OUStringToString(typeEngine),
+            OUStringToString(engine),
             timeSteps);
         return getArray(properties, handle);
     } catch (const std::exception &e) {
@@ -157,13 +105,13 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionBarrier(
         const STRING & typeBarrier,
         double barrier,
         double rebate,
-        const STRING & typeOption,
-        const STRING & typePayoff,
+        const STRING & optionType,
+        const STRING & payoff,
         double strike,
-        const STRING & typeExercise,
+        const STRING & exercise,
         sal_Int32 exerciseDate,
         sal_Int32 settlementDate,
-        const STRING & typeEngine,
+        const STRING & engine,
         sal_Int32 timeSteps) THROWDEF_RTE_IAE {
     try {
         Properties properties = QL_OPTION_BARRIER(
@@ -172,17 +120,153 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionBarrier(
             OUStringToString(typeBarrier),
             barrier,
             rebate,
-            OUStringToString(typeOption),
-            OUStringToString(typePayoff),
+            OUStringToString(optionType),
+            OUStringToString(payoff),
             strike,
-            OUStringToString(typeExercise),
+            OUStringToString(exercise),
             exerciseDate,
             settlementDate,
-            OUStringToString(typeEngine),
+            OUStringToString(engine),
             timeSteps);
         return getArray(properties, handle);
     } catch (const std::exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_BARRIER: ") + e.what());
+        THROW_RTE;
+    }
+}
+
+SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionBasket(
+        const STRING & handle,
+        const SEQSEQ(STRING )& handleStochastic,
+        const STRING & basket,
+        const SEQSEQ(double )& correlations,
+        const STRING & optionType,
+        double strike,
+        const STRING & exercise,
+        sal_Int32 exerciseDate,
+        sal_Int32 settlementDate,
+        const STRING & engine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE {
+    try {
+        std::vector <string> handleStochasticVector;
+        sequenceToVector(handleStochastic, handleStochasticVector);
+        std::vector < std::vector < double> >correlationsMatrix;
+        sequenceToMatrix(correlations, correlationsMatrix);
+        Properties properties = QL_OPTION_BASKET(
+            OUStringToString(handle),
+            handleStochasticVector,
+            OUStringToString(basket),
+            correlationsMatrix,
+            OUStringToString(optionType),
+            strike,
+            OUStringToString(exercise),
+            exerciseDate,
+            settlementDate,
+            OUStringToString(engine),
+            timeSteps);
+        return getArray(properties, handle);
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_BASKET: ") + e.what());
+        THROW_RTE;
+    }
+}
+
+SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionCliquet(
+        const STRING & handle,
+        const STRING & handleStochastic,
+        const SEQSEQ(sal_Int32 )& resetDates,
+        const STRING & optionType,
+        double strike,
+        sal_Int32 exerciseDate,
+        const STRING & engine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE {
+    try {
+        std::vector <long> resetDatesVector;
+        sequenceToVector(resetDates, resetDatesVector);
+        Properties properties = QL_OPTION_CLIQUET(
+            OUStringToString(handle),
+            OUStringToString(handleStochastic),
+            resetDatesVector,
+            OUStringToString(optionType),
+            strike,
+            exerciseDate,
+            OUStringToString(engine),
+            timeSteps);
+        return getArray(properties, handle);
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_CLIQUET: ") + e.what());
+        THROW_RTE;
+    }
+}
+
+SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionDividendVanilla(
+        const STRING & handle,
+        const STRING & handleStochastic,
+        const SEQSEQ(sal_Int32 )& dividendDates,
+        const SEQSEQ(double )& dividends,
+        const STRING & optionType,
+        const STRING & payoff,
+        double strike,
+        const STRING & exercise,
+        sal_Int32 exerciseDate,
+        sal_Int32 settlementDate,
+        const STRING & engine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE {
+    try {
+        std::vector <long> dividendDatesVector;
+        sequenceToVector(dividendDates, dividendDatesVector);
+        std::vector <double> dividendsVector;
+        sequenceToVector(dividends, dividendsVector);
+        Properties properties = QL_OPTION_DIVIDENDVANILLA(
+            OUStringToString(handle),
+            OUStringToString(handleStochastic),
+            dividendDatesVector,
+            dividendsVector,
+            OUStringToString(optionType),
+            OUStringToString(payoff),
+            strike,
+            OUStringToString(exercise),
+            exerciseDate,
+            settlementDate,
+            OUStringToString(engine),
+            timeSteps);
+        return getArray(properties, handle);
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_DIVIDENDVANILLA: ") + e.what());
+        THROW_RTE;
+    }
+}
+
+SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionForwardVanilla(
+        const STRING & handle,
+        const STRING & handleStochastic,
+        double moneyness,
+        sal_Int32 resetDate,
+        const STRING & optionType,
+        const STRING & payoff,
+        double strike,
+        const STRING & exercise,
+        sal_Int32 exerciseDate,
+        sal_Int32 settlementDate,
+        const STRING & engine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE {
+    try {
+        Properties properties = QL_OPTION_FORWARDVANILLA(
+            OUStringToString(handle),
+            OUStringToString(handleStochastic),
+            moneyness,
+            resetDate,
+            OUStringToString(optionType),
+            OUStringToString(payoff),
+            strike,
+            OUStringToString(exercise),
+            exerciseDate,
+            settlementDate,
+            OUStringToString(engine),
+            timeSteps);
+        return getArray(properties, handle);
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_FORWARDVANILLA: ") + e.what());
         THROW_RTE;
     }
 }
@@ -199,6 +283,60 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionSetEngine(
         return getArray(properties, handle);
     } catch (const std::exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_SETENGINE: ") + e.what());
+        THROW_RTE;
+    }
+}
+
+SEQSEQ( ANY ) SAL_CALL QLAddin::qlStochasticProcess(
+        const STRING & handle,
+        double underlying,
+        const STRING & dayCounter,
+        sal_Int32 settlementDate,
+        double riskFreeRate,
+        double dividendYield,
+        double volatility) THROWDEF_RTE_IAE {
+    try {
+        Properties properties = QL_STOCHASTIC_PROCESS(
+            OUStringToString(handle),
+            underlying,
+            OUStringToString(dayCounter),
+            settlementDate,
+            riskFreeRate,
+            dividendYield,
+            volatility);
+        return getArray(properties, handle);
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_STOCHASTIC_PROCESS: ") + e.what());
+        THROW_RTE;
+    }
+}
+
+SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionVanilla(
+        const STRING & handle,
+        const STRING & handleStochastic,
+        const STRING & optionType,
+        const STRING & payoff,
+        double strike,
+        const STRING & exercise,
+        sal_Int32 exerciseDate,
+        sal_Int32 settlementDate,
+        const STRING & engine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE {
+    try {
+        Properties properties = QL_OPTION_VANILLA(
+            OUStringToString(handle),
+            OUStringToString(handleStochastic),
+            OUStringToString(optionType),
+            OUStringToString(payoff),
+            strike,
+            OUStringToString(exercise),
+            exerciseDate,
+            settlementDate,
+            OUStringToString(engine),
+            timeSteps);
+        return getArray(properties, handle);
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_VANILLA: ") + e.what());
         THROW_RTE;
     }
 }

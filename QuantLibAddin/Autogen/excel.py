@@ -23,7 +23,8 @@ def generateParamString(function):
     if function[common.CTOR]:
         paramStr += 'C'
     for param in function[common.PARAMS]:
-        if param[common.TENSOR] == common.VECTOR:
+        if param[common.TENSOR] == common.VECTOR or \
+                param[common.TENSOR] == common.MATRIX:
             paramStr += 'R'
         else:
             if param[common.TYPE] == common.STRING:
@@ -94,7 +95,7 @@ def generateFuncRegisters(functionDefs):
     fileHeader.close()
 
 def generateConversions(paramList):
-    'generate code to convert XLOPERs to vectors'
+    'generate code to convert XLOPERs to vectors/matrices'
     ret = ''
     for param in paramList:
         if param[common.TENSOR] == common.VECTOR: 
@@ -102,6 +103,11 @@ def generateConversions(paramList):
                 '> ' + param[common.NAME] + \
                 'Vector = \n' + 12 * ' ' + param[common.TYPE] + \
                 'XLOPERToVector(' + param[common.NAME] + ');\n'
+        elif param[common.TENSOR] == common.MATRIX: 
+            ret += 8 * ' ' + 'std::vector < std::vector <' + \
+                param[common.TYPE] + '> >' + param[common.NAME] + \
+                'Matrix = \n' + 12 * ' ' + param[common.TYPE] + \
+                'XLOPERToMatrix(' + param[common.NAME] + ');\n'
     return ret
 
 def generateFuncDef(fileFunc, function, bufBody):
@@ -109,7 +115,7 @@ def generateFuncDef(fileFunc, function, bufBody):
     paramList1 = utils.generateParamList(function[common.PARAMS],
         2, True, '', 'char', dereference = '*', replaceVec = 'LPXLOPER')
     paramList2 = utils.generateParamList(function[common.PARAMS],
-        3, reformatString = 'std::string(%s)', dereference = '*', appendVec = True)
+        3, reformatString = 'std::string(%s)', dereference = '*', appendTensor = True)
     if function[common.CTOR]:
         handle1 = 8 * ' ' + 'char *handleChar,\n'
         handle2 = 8 * ' ' + 'std::string handle = std::string(handleChar) + getCaller();\n'

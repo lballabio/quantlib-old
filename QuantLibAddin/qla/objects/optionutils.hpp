@@ -50,7 +50,7 @@ namespace QuantLibAddin {
         const QuantLib::Size &timeSteps);
 
     QuantLib::Matrix vectorVectorToMatrix(
-        const std::vector < const std::vector < double > > &vv);
+        const std::vector < std::vector < double > > &vv);
 
     std::vector<QuantLib::Date> longVectorToDateVector(
         const std::vector < long > &v);

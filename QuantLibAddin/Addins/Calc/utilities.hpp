@@ -23,6 +23,35 @@ SEQSEQ( ANY ) getArray(ObjHandler::Properties properties,
                        STRING handle);
 std::string OUStringToString(const STRING& s1);
 ANY stringToANY(const std::string &s);
-std::vector < long > longSequenceToVector(const SEQSEQ(long)& s);
+
+//std::vector < long > longSequenceToVector(const SEQSEQ(long)& s);
+
+template < typename T >
+void sequenceToVector(
+        const SEQSEQ( T )& s,
+        std::vector < T > &ret) {
+    for (int i=0; i<s.getLength(); i++) {
+        SEQ( T ) s2 = s[i];
+        for (int j=0; j<s2.getLength(); j++)
+            ret.push_back(s2[j]);
+    }
+}
+
+void sequenceToVector(
+        const SEQSEQ(STRING) &s,
+        std::vector < std::string > &ret);
+
+template < typename T >
+void sequenceToMatrix(
+        const SEQSEQ( T ) &s,
+        std::vector < std::vector < T > > &ret) {
+    for (int i=0; i<s.getLength(); i++) {
+        std::vector < T > row;
+        SEQ( T ) s2 = s[i];
+        for (int j=0; j<s2.getLength(); j++)
+            row.push_back(s2[j]);
+        ret.push_back(row);
+    }
+}
 
 #endif

@@ -1,4 +1,5 @@
 #include <qla/functions/%s.hpp>
+#include <qla/functions/conversions.hpp>
 #include <qla/objects/%s.hpp>
 
 namespace QuantLibAddin {

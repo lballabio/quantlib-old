@@ -11,5 +11,6 @@ ClientCPP_private.*
 Makefile
 Makefile.in
 Makefile.win
+Options
 QLADemo
 quantlib.log

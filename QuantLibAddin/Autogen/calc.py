@@ -52,7 +52,8 @@ def generateHeader(fileHeader, function, suffix):
         fileHeader.write('        const STRING & handle,\n')
     paramList = utils.generateParamList(function[common.PARAMS], 2, True,
         '', 'const STRING &', 'sal_Int32', 
-        convertVec = 'const SEQSEQ(%s)& ')
+        convertVec = 'const SEQSEQ(%s)& ',
+        convertMat = 'const SEQSEQ(%s)& ', convertString2 = "STRING")
     fileHeader.write(paramList)
     fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)
 
@@ -83,14 +84,19 @@ def generateHeaders(functionGroups):
     fileHeader.close()
 
 def generateConversions(paramList):
-    'generate code to convert arrays to vectors'
+    'generate code to convert arrays to vectors/matrices'
     ret = ''
     for param in paramList:
         if param[common.TENSOR] == common.VECTOR: 
             ret += 8 * ' ' + 'std::vector <' + param[common.TYPE] + \
-                '> ' + param[common.NAME] + \
-                'Vector = \n' + 12 * ' ' + param[common.TYPE] + \
-                'SequenceToVector(' + param[common.NAME] + ');\n'
+                '> ' + param[common.NAME] + 'Vector;\n' + \
+                8 * ' ' + 'sequenceToVector(' + param[common.NAME] + \
+                ', ' + param[common.NAME] + 'Vector);\n'
+        elif param[common.TENSOR] == common.MATRIX: 
+            ret += 8 * ' ' + 'std::vector < std::vector < ' + \
+                param[common.TYPE] + '> >' + param[common.NAME] + \
+                'Matrix;\n' + 8 * ' ' + 'sequenceToMatrix(' + \
+                param[common.NAME] + ', ' + param[common.NAME] + 'Matrix);\n'
     return ret
 
 def generateFuncSource(fileFunc, function, bufBody):
@@ -103,7 +109,7 @@ def generateFuncSource(fileFunc, function, bufBody):
     else:
         handle = ''
     paramList = utils.generateParamList(function[common.PARAMS], 3, False, 
-        reformatString = 'OUStringToString(%s)', appendVec = True)
+        reformatString = 'OUStringToString(%s)', appendTensor = True)
     conversions = generateConversions(function[common.PARAMS])
     fileFunc.write(bufBody % (
         conversions,
@@ -159,7 +165,8 @@ def generateIDLSource(functionGroups):
             returnTypeIDL = getReturnTypeCalcIDL(function)
             paramList = utils.generateParamList(function[common.PARAMS],
                  6, True, '[in] ', 
-                convertVec = 'sequence < sequence < %s > > ')
+                convertVec = 'sequence < sequence < %s > > ',
+                convertMat = 'sequence < sequence < %s > > ')
             fileIDL.write(bufIDLFunc %
                 (returnTypeIDL, function[common.CODENAME], handle, paramList))
     bufIDLFoot = utils.loadBuffer(IDL_FOOT)

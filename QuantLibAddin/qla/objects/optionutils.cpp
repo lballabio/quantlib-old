@@ -153,7 +153,7 @@ namespace QuantLibAddin {
     }
 
     QuantLib::Matrix vectorVectorToMatrix(
-        const std::vector < const std::vector < double > > &vv) {
+        const std::vector < std::vector < double > > &vv) {
         if (vv.size() == 0) {
             QuantLib::Matrix m(0, 0);
             return m;

@@ -11,6 +11,7 @@ EXTRA_DIST = \
     ClientCPP.vcproj
 
 QLADemo_SOURCES = qlademo.cpp
+Options_SOURCES = options.cpp
 
-noinst_PROGRAMS = QLADemo
+noinst_PROGRAMS = QLADemo Options
 

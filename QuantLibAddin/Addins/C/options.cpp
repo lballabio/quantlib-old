@@ -26,93 +26,33 @@ extern "C" {
 }
 #include <Addins/C/varies.hpp>
 
-int QL_STOCHASTIC_PROCESS(
-        const char* handle,
-        const double underlying,
-        const char* dayCounterID,
-        const long settlementDate,
-        const double riskFreeRate,
-        const double dividendYield,
-        const double volatility,
-        VariesList *result) {
-    try {
-        ObjHandler::Properties properties = QuantLibAddin::QL_STOCHASTIC_PROCESS(
-            handle,
-            underlying,
-            dayCounterID,
-            settlementDate,
-            riskFreeRate,
-            dividendYield,
-            volatility);
-        propertiesToVaries(properties, result);
-        return SUCCESS;
-    } catch (const std::exception &e) {
-        QuantLibAddin::QL_LOGMESSAGE("QL_STOCHASTIC_PROCESS Error: "
-            + std::string(e.what()));
-        result = 0;
-        return FAIL;
-    }
-}
-
-int QL_OPTION_VANILLA(
-        const char* handle,
-        const char* handleStochastic,
-        const char* typeOption,
-        const char* typePayoff,
-        const double strike,
-        const char* typeExercise,
-        const long exerciseDate,
-        const long settlementDate,
-        const char* typeEngine,
-        const long timeSteps,
-        VariesList *result) {
-    try {
-        ObjHandler::Properties properties = QuantLibAddin::QL_OPTION_VANILLA(
-            handle,
-            handleStochastic,
-            typeOption,
-            typePayoff,
-            strike,
-            typeExercise,
-            exerciseDate,
-            settlementDate,
-            typeEngine,
-            timeSteps);
-        propertiesToVaries(properties, result);
-        return SUCCESS;
-    } catch (const std::exception &e) {
-        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_VANILLA Error: "
-            + std::string(e.what()));
-        result = 0;
-        return FAIL;
-    }
-}
+using std::string;
 
 int QL_OPTION_ASIAN_C(
         const char* handle,
         const char* handleStochastic,
-        const char* typeAverage,
-        const char* typeOption,
-        const char* typePayoff,
+        const char* average,
+        const char* optionType,
+        const char* payoff,
         const double strike,
-        const char* typeExercise,
+        const char* exercise,
         const long exerciseDate,
         const long settlementDate,
-        const char* typeEngine,
+        const char* engine,
         const long timeSteps,
         VariesList *result) {
     try {
         ObjHandler::Properties properties = QuantLibAddin::QL_OPTION_ASIAN_C(
             handle,
             handleStochastic,
-            typeAverage,
-            typeOption,
-            typePayoff,
+            average,
+            optionType,
+            payoff,
             strike,
-            typeExercise,
+            exercise,
             exerciseDate,
             settlementDate,
-            typeEngine,
+            engine,
             timeSteps);
         propertiesToVaries(properties, result);
         return SUCCESS;
@@ -127,37 +67,37 @@ int QL_OPTION_ASIAN_C(
 int QL_OPTION_ASIAN_D(
         const char* handle,
         const char* handleStochastic,
-        const char* typeAverage,
+        const char* average,
         const double runningAccumulator,
         const long pastFixings,
         const long fixingDatesSize,
-        const long* fixingDates,
-        const char* typeOption,
-        const char* typePayoff,
+        const long * fixingDates,
+        const char* optionType,
+        const char* payoff,
         const double strike,
-        const char* typeExercise,
+        const char* exercise,
         const long exerciseDate,
         const long settlementDate,
-        const char* typeEngine,
+        const char* engine,
         const long timeSteps,
         VariesList *result) {
     try {
-        std::vector <long> fixingDatesVector = 
-            longArrayToVector(fixingDatesSize, fixingDates);
+        std::vector <long> fixingDatesVector;
+        arrayToVector(fixingDatesSize, fixingDates, fixingDatesVector);
         ObjHandler::Properties properties = QuantLibAddin::QL_OPTION_ASIAN_D(
             handle,
             handleStochastic,
-            typeAverage,
+            average,
             runningAccumulator,
             pastFixings,
             fixingDatesVector,
-            typeOption,
-            typePayoff,
+            optionType,
+            payoff,
             strike,
-            typeExercise,
+            exercise,
             exerciseDate,
             settlementDate,
-            typeEngine,
+            engine,
             timeSteps);
         propertiesToVaries(properties, result);
         return SUCCESS;
@@ -175,13 +115,13 @@ int QL_OPTION_BARRIER(
         const char* typeBarrier,
         const double barrier,
         const double rebate,
-        const char* typeOption,
-        const char* typePayoff,
+        const char* optionType,
+        const char* payoff,
         const double strike,
-        const char* typeExercise,
+        const char* exercise,
         const long exerciseDate,
         const long settlementDate,
-        const char* typeEngine,
+        const char* engine,
         const long timeSteps,
         VariesList *result) {
     try {
@@ -191,18 +131,176 @@ int QL_OPTION_BARRIER(
             typeBarrier,
             barrier,
             rebate,
-            typeOption,
-            typePayoff,
+            optionType,
+            payoff,
             strike,
-            typeExercise,
+            exercise,
             exerciseDate,
             settlementDate,
-            typeEngine,
+            engine,
             timeSteps);
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
         QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_BARRIER Error: "
+            + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+
+int QL_OPTION_BASKET(
+        const char* handle,
+        const long handleStochasticSize,
+        const char* * handleStochastic,
+        const char* basket,
+        const long correlationsRows,
+        const long correlationsCols,
+        const double ** correlations,
+        const char* optionType,
+        const double strike,
+        const char* exercise,
+        const long exerciseDate,
+        const long settlementDate,
+        const char* engine,
+        const long timeSteps,
+        VariesList *result) {
+    try {
+        std::vector <string> handleStochasticVector;
+        arrayToVector(handleStochasticSize, handleStochastic, handleStochasticVector);
+        std::vector < std::vector <double> >correlationsMatrix;
+        arrayToMatrix(correlationsRows, correlationsCols, correlations, correlationsMatrix);
+        ObjHandler::Properties properties = QuantLibAddin::QL_OPTION_BASKET(
+            handle,
+            handleStochasticVector,
+            basket,
+            correlationsMatrix,
+            optionType,
+            strike,
+            exercise,
+            exerciseDate,
+            settlementDate,
+            engine,
+            timeSteps);
+        propertiesToVaries(properties, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_BASKET Error: "
+            + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+
+int QL_OPTION_CLIQUET(
+        const char* handle,
+        const char* handleStochastic,
+        const long resetDatesSize,
+        const long * resetDates,
+        const char* optionType,
+        const double strike,
+        const long exerciseDate,
+        const char* engine,
+        const long timeSteps,
+        VariesList *result) {
+    try {
+        std::vector <long> resetDatesVector;
+        arrayToVector(resetDatesSize, resetDates, resetDatesVector);
+        ObjHandler::Properties properties = QuantLibAddin::QL_OPTION_CLIQUET(
+            handle,
+            handleStochastic,
+            resetDatesVector,
+            optionType,
+            strike,
+            exerciseDate,
+            engine,
+            timeSteps);
+        propertiesToVaries(properties, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_CLIQUET Error: "
+            + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+
+int QL_OPTION_DIVIDENDVANILLA(
+        const char* handle,
+        const char* handleStochastic,
+        const long dividendDatesSize,
+        const long * dividendDates,
+        const long dividendsSize,
+        const double * dividends,
+        const char* optionType,
+        const char* payoff,
+        const double strike,
+        const char* exercise,
+        const long exerciseDate,
+        const long settlementDate,
+        const char* engine,
+        const long timeSteps,
+        VariesList *result) {
+    try {
+        std::vector <long> dividendDatesVector;
+        arrayToVector(dividendDatesSize, dividendDates, dividendDatesVector);
+        std::vector <double> dividendsVector;
+        arrayToVector(dividendsSize, dividends, dividendsVector);
+        ObjHandler::Properties properties = QuantLibAddin::QL_OPTION_DIVIDENDVANILLA(
+            handle,
+            handleStochastic,
+            dividendDatesVector,
+            dividendsVector,
+            optionType,
+            payoff,
+            strike,
+            exercise,
+            exerciseDate,
+            settlementDate,
+            engine,
+            timeSteps);
+        propertiesToVaries(properties, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_DIVIDENDVANILLA Error: "
+            + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+
+int QL_OPTION_FORWARDVANILLA(
+        const char* handle,
+        const char* handleStochastic,
+        const double moneyness,
+        const long resetDate,
+        const char* optionType,
+        const char* payoff,
+        const double strike,
+        const char* exercise,
+        const long exerciseDate,
+        const long settlementDate,
+        const char* engine,
+        const long timeSteps,
+        VariesList *result) {
+    try {
+        ObjHandler::Properties properties = QuantLibAddin::QL_OPTION_FORWARDVANILLA(
+            handle,
+            handleStochastic,
+            moneyness,
+            resetDate,
+            optionType,
+            payoff,
+            strike,
+            exercise,
+            exerciseDate,
+            settlementDate,
+            engine,
+            timeSteps);
+        propertiesToVaries(properties, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_FORWARDVANILLA Error: "
             + std::string(e.what()));
         result = 0;
         return FAIL;
@@ -223,6 +321,68 @@ int QL_OPTION_SETENGINE(
         return SUCCESS;
     } catch (const std::exception &e) {
         QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_SETENGINE Error: "
+            + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+
+int QL_STOCHASTIC_PROCESS(
+        const char* handle,
+        const double underlying,
+        const char* dayCounter,
+        const long settlementDate,
+        const double riskFreeRate,
+        const double dividendYield,
+        const double volatility,
+        VariesList *result) {
+    try {
+        ObjHandler::Properties properties = QuantLibAddin::QL_STOCHASTIC_PROCESS(
+            handle,
+            underlying,
+            dayCounter,
+            settlementDate,
+            riskFreeRate,
+            dividendYield,
+            volatility);
+        propertiesToVaries(properties, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        QuantLibAddin::QL_LOGMESSAGE("QL_STOCHASTIC_PROCESS Error: "
+            + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+
+int QL_OPTION_VANILLA(
+        const char* handle,
+        const char* handleStochastic,
+        const char* optionType,
+        const char* payoff,
+        const double strike,
+        const char* exercise,
+        const long exerciseDate,
+        const long settlementDate,
+        const char* engine,
+        const long timeSteps,
+        VariesList *result) {
+    try {
+        ObjHandler::Properties properties = QuantLibAddin::QL_OPTION_VANILLA(
+            handle,
+            handleStochastic,
+            optionType,
+            payoff,
+            strike,
+            exercise,
+            exerciseDate,
+            settlementDate,
+            engine,
+            timeSteps);
+        propertiesToVaries(properties, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_VANILLA Error: "
             + std::string(e.what()));
         result = 0;
         return FAIL;

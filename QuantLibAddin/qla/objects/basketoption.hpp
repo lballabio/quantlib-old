@@ -29,9 +29,9 @@ namespace QuantLibAddin {
             const std::vector <
                 boost::shared_ptr<StochasticProcess> > &stochasticProcs,
             const std::string &basketID,
-            const std::vector < const std::vector < double > > &correlationVV,
+            const std::vector < std::vector < double > > &correlationVV,
             const std::string &optionTypeID,
-            const float &strike,
+            const double &strike,
             const std::string &exerciseID,
             const long &exerciseDate,
             const long &settlementDate,

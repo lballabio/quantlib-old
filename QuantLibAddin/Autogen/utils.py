@@ -24,9 +24,12 @@ def generateParamList(
         skipFirst = False,      # skip first parm in list (for object handles)
         xlateNames = False,     # translate parm name using its CLASS attribute
         arrayCount = False,     # C code requires array size separate from array
-        appendVec = False,      # append string 'Vector' to vector variable names
+        appendTensor = False,   # append tensor rank (vector/matrix) to variable names
         convertVec = '',        # string to convert datatype to appropriate vector
-        replaceVec = ''):       # replace vector datatype with given string
+        replaceVec = '',        # replace vector datatype with given string
+        convertMat = '',        # string to convert datatype to appropriate matrix
+        replaceMat = '',        # replace matrix datatype with given string 
+        convertString2 = ''):   # replace matrix datatype with given string 
     'reformat params into a list of parameters using given format options'
     ret = ''
     i = 0
@@ -38,12 +41,18 @@ def generateParamList(
         deref = dereference
         if datatypes == False:
             type = ''
-            if param[common.TENSOR] == common.VECTOR and appendVec == True:
+            if param[common.TENSOR] == common.VECTOR and appendTensor == True:
                 paramName += 'Vector'
+                deref = ''
+            if param[common.TENSOR] == common.MATRIX and appendTensor == True:
+                paramName += 'Matrix'
                 deref = ''
         else:
             if convertString and param[common.TYPE] == common.STRING:
-                type = convertString + ' '
+                if param[common.TENSOR] == common.SCALAR:
+                    type = convertString + ' '
+                else:
+                    type = convertString2 + ' '
             elif convertLong and param[common.TYPE] == common.LONG:
                 type = convertLong + ' '
             else:
@@ -52,13 +61,26 @@ def generateParamList(
                 if arrayCount == True:
                     ret += indent * 4 * ' ' + prefix + 'long ' + \
                         paramName + 'Size,' + suffix
-                    type = param[common.TYPE] + '* '
+                    type += '* '
                 elif convertVec != '':
                     type = convertVec % type
                 else:
                     type = replaceVec + ' '
                     deref = ''
-        if reformatString and param[common.TYPE] == common.STRING:
+            elif param[common.TENSOR] == common.MATRIX:
+                if arrayCount == True:
+                    ret += indent * 4 * ' ' + prefix + 'long ' + \
+                        paramName + 'Rows,' + suffix + \
+                        indent * 4 * ' ' + prefix + 'long ' + \
+                        paramName + 'Cols,' + suffix
+                    type += '** '
+                elif convertMat != '':
+                    type = convertMat % type
+                else:
+                    type = replaceMat + ' '
+                    deref = ''
+        if reformatString and param[common.TYPE] == common.STRING \
+                and param[common.TENSOR] == common.SCALAR:
             full = reformatString % paramName
         elif xlateNames == True and param[common.CLASS] != '':
             full = common.HANDLE + param[common.CLASS]

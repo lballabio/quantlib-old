@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef varies_h
-#define varies_h
+#ifndef qla_varies_h
+#define qla_varies_h
 
 typedef enum { INT, LONG, DOUBLE, CHARP } Type;
 
@@ -42,3 +42,4 @@ const char *variesToString(const Varies *v);
 void freeVariesList(VariesList *vl);
 
 #endif
+

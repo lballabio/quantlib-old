@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef utilities_h
-#define utilities_h
+#ifndef qlac_utilities_h
+#define qlac_utilities_h
 
 const char *QL_LOGFILE(
     const char *logFileName);
@@ -25,3 +25,4 @@ void QL_LOGMESSAGE(
     const char *msg);
 
 #endif
+

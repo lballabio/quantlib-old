@@ -18,61 +18,38 @@
 // this file generated automatically by autogen.py
 // editing this file manually is not recommended
 
-#ifndef options_h
-#define options_h
-
-int QL_STOCHASTIC_PROCESS(
-        const char* handle,
-        const double underlying,
-        const char* dayCounterID,
-        const long settlementDate,
-        const double riskFreeRate,
-        const double dividendYield,
-        const double volatility,
-        VariesList *result);
-
-int QL_OPTION_VANILLA(
-        const char* handle,
-        const char* handleStochastic,
-        const char* typeOption,
-        const char* typePayoff,
-        const double strike,
-        const char* typeExercise,
-        const long exerciseDate,
-        const long settlementDate,
-        const char* typeEngine,
-        const long timeSteps,
-        VariesList *result);
+#ifndef qlac_options_h
+#define qlac_options_h
 
 int QL_OPTION_ASIAN_C(
         const char* handle,
         const char* handleStochastic,
-        const char* typeAverage,
-        const char* typeOption,
-        const char* typePayoff,
+        const char* average,
+        const char* optionType,
+        const char* payoff,
         const double strike,
-        const char* typeExercise,
+        const char* exercise,
         const long exerciseDate,
         const long settlementDate,
-        const char* typeEngine,
+        const char* engine,
         const long timeSteps,
         VariesList *result);
 
 int QL_OPTION_ASIAN_D(
         const char* handle,
         const char* handleStochastic,
-        const char* typeAverage,
+        const char* average,
         const double runningAccumulator,
         const long pastFixings,
         const long fixingDatesSize,
-        const long* fixingDates,
-        const char* typeOption,
-        const char* typePayoff,
+        const long * fixingDates,
+        const char* optionType,
+        const char* payoff,
         const double strike,
-        const char* typeExercise,
+        const char* exercise,
         const long exerciseDate,
         const long settlementDate,
-        const char* typeEngine,
+        const char* engine,
         const long timeSteps,
         VariesList *result);
 
@@ -82,19 +59,103 @@ int QL_OPTION_BARRIER(
         const char* typeBarrier,
         const double barrier,
         const double rebate,
-        const char* typeOption,
-        const char* typePayoff,
+        const char* optionType,
+        const char* payoff,
         const double strike,
-        const char* typeExercise,
+        const char* exercise,
         const long exerciseDate,
         const long settlementDate,
-        const char* typeEngine,
+        const char* engine,
+        const long timeSteps,
+        VariesList *result);
+
+int QL_OPTION_BASKET(
+        const char* handle,
+        const long handleStochasticSize,
+        const char* * handleStochastic,
+        const char* basket,
+        const long correlationsRows,
+        const long correlationsCols,
+        const double ** correlations,
+        const char* optionType,
+        const double strike,
+        const char* exercise,
+        const long exerciseDate,
+        const long settlementDate,
+        const char* engine,
+        const long timeSteps,
+        VariesList *result);
+
+int QL_OPTION_CLIQUET(
+        const char* handle,
+        const char* handleStochastic,
+        const long resetDatesSize,
+        const long * resetDates,
+        const char* optionType,
+        const double strike,
+        const long exerciseDate,
+        const char* engine,
+        const long timeSteps,
+        VariesList *result);
+
+int QL_OPTION_DIVIDENDVANILLA(
+        const char* handle,
+        const char* handleStochastic,
+        const long dividendDatesSize,
+        const long * dividendDates,
+        const long dividendsSize,
+        const double * dividends,
+        const char* optionType,
+        const char* payoff,
+        const double strike,
+        const char* exercise,
+        const long exerciseDate,
+        const long settlementDate,
+        const char* engine,
+        const long timeSteps,
+        VariesList *result);
+
+int QL_OPTION_FORWARDVANILLA(
+        const char* handle,
+        const char* handleStochastic,
+        const double moneyness,
+        const long resetDate,
+        const char* optionType,
+        const char* payoff,
+        const double strike,
+        const char* exercise,
+        const long exerciseDate,
+        const long settlementDate,
+        const char* engine,
         const long timeSteps,
         VariesList *result);
 
 int QL_OPTION_SETENGINE(
         const char* handle,
         const char* engineName,
+        const long timeSteps,
+        VariesList *result);
+
+int QL_STOCHASTIC_PROCESS(
+        const char* handle,
+        const double underlying,
+        const char* dayCounter,
+        const long settlementDate,
+        const double riskFreeRate,
+        const double dividendYield,
+        const double volatility,
+        VariesList *result);
+
+int QL_OPTION_VANILLA(
+        const char* handle,
+        const char* handleStochastic,
+        const char* optionType,
+        const char* payoff,
+        const double strike,
+        const char* exercise,
+        const long exerciseDate,
+        const long settlementDate,
+        const char* engine,
         const long timeSteps,
         VariesList *result);
 

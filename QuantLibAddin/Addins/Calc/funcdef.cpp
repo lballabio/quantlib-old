@@ -36,18 +36,26 @@ QLAddin::QLAddin() throw () : m_refcount( 0 ) {
 
     //options
 
-    funcMap[ STRFROMANSI( "qlStochasticProcess" ) ]
-        =  STRFROMANSI( "QL_STOCHASTIC_PROCESS" );
-    funcMap[ STRFROMANSI( "qlOptionVanilla" ) ]
-        =  STRFROMANSI( "QL_OPTION_VANILLA" );
     funcMap[ STRFROMANSI( "qlOptionAsianC" ) ]
         =  STRFROMANSI( "QL_OPTION_ASIAN_C" );
     funcMap[ STRFROMANSI( "qlOptionAsianD" ) ]
         =  STRFROMANSI( "QL_OPTION_ASIAN_D" );
     funcMap[ STRFROMANSI( "qlOptionBarrier" ) ]
         =  STRFROMANSI( "QL_OPTION_BARRIER" );
+    funcMap[ STRFROMANSI( "qlOptionBasket" ) ]
+        =  STRFROMANSI( "QL_OPTION_BASKET" );
+    funcMap[ STRFROMANSI( "qlOptionCliquet" ) ]
+        =  STRFROMANSI( "QL_OPTION_CLIQUET" );
+    funcMap[ STRFROMANSI( "qlOptionDividendVanilla" ) ]
+        =  STRFROMANSI( "QL_OPTION_DIVIDENDVANILLA" );
+    funcMap[ STRFROMANSI( "qlOptionForwardVanilla" ) ]
+        =  STRFROMANSI( "QL_OPTION_FORWARDVANILLA" );
     funcMap[ STRFROMANSI( "qlOptionSetEngine" ) ]
         =  STRFROMANSI( "QL_OPTION_SETENGINE" );
+    funcMap[ STRFROMANSI( "qlStochasticProcess" ) ]
+        =  STRFROMANSI( "QL_STOCHASTIC_PROCESS" );
+    funcMap[ STRFROMANSI( "qlOptionVanilla" ) ]
+        =  STRFROMANSI( "QL_OPTION_VANILLA" );
 
 }
 

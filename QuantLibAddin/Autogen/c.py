@@ -15,7 +15,8 @@ def generateFuncHeader(fileHeader, function, suffix):
     if function[common.CTOR]:
         fileHeader.write('        const char* handle,\n')
     fileHeader.write(utils.generateParamList(function[common.PARAMS],
-        2, True, 'const ', 'char*', arrayCount = True))
+        2, True, 'const ', 'char*', arrayCount = True,
+        convertString2 = 'char*'))
     fileHeader.write(',\n        VariesList *result)%s\n' % suffix)
 
 def generateFuncHeaders(groupName, functionGroup):
@@ -24,23 +25,31 @@ def generateFuncHeaders(groupName, functionGroup):
     utils.logMessage('    generating file ' + fileName + '...')
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
-    fileHeader.write('#ifndef %s_h\n' % groupName)
-    fileHeader.write('#define %s_h\n\n' % groupName)
+    fileHeader.write('#ifndef qlac_%s_h\n' % groupName)
+    fileHeader.write('#define qlac_%s_h\n\n' % groupName)
     for function in functionGroup[common.FUNCLIST]:
         generateFuncHeader(fileHeader, function, ';\n')
     fileHeader.write('#endif\n')
     fileHeader.close()
 
 def generateConversions(paramList):
-    'generate code to convert arrays to vectors'
+    'generate code to convert arrays to vectors/matrices'
     ret = ''
     for param in paramList:
         if param[common.TENSOR] == common.VECTOR: 
+            nm = param[common.NAME] + 'Vector'
             ret += 8 * ' ' + 'std::vector <' + param[common.TYPE] + \
-                '> ' + param[common.NAME] + \
-                'Vector = \n' + 12 * ' ' + param[common.TYPE] + \
-                'ArrayToVector(' + param[common.NAME] + \
-                'Size, ' + param[common.NAME] + ');\n'
+                '> ' + nm + ';\n' + 8 * ' ' + \
+                'arrayToVector(' + param[common.NAME] + \
+                'Size, ' + param[common.NAME] + ', ' + nm + ');\n'
+        elif param[common.TENSOR] == common.MATRIX: 
+            nm = param[common.NAME] + 'Matrix'
+            ret += 8 * ' ' + 'std::vector < std::vector <' + \
+                param[common.TYPE] + '> >' + param[common.NAME] + \
+                'Matrix;\n' + 8 * ' ' + \
+                'arrayToMatrix(' + param[common.NAME] + 'Rows, ' + \
+                param[common.NAME] + 'Cols, ' + param[common.NAME] + \
+                ', ' + nm + ');\n'
     return ret
 
 def generateFuncDefs(groupName, functionGroup):
@@ -55,7 +64,7 @@ def generateFuncDefs(groupName, functionGroup):
     for function in functionGroup[common.FUNCLIST]:
         generateFuncHeader(fileFunc, function, ' {')
         paramList = utils.generateParamList(function[common.PARAMS], 3,
-            appendVec = True)
+            appendTensor = True)
         if function[common.CTOR]:
             handle = 12 * ' ' + 'handle,\n'
         else:

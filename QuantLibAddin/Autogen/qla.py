@@ -20,7 +20,9 @@ def generateFuncHeader(fileHeader, function, suffix):
         fileHeader.write('            const std::string &handleObject,\n')
     fileHeader.write(utils.generateParamList(function[common.PARAMS],
         3, True, 'const ', 'std::string', dereference = '&',
-        convertVec = 'std::vector<%s>'))
+        convertVec = 'std::vector< %s >', 
+        convertMat = 'std::vector < std::vector < %s > >',
+        convertString2 = 'std::string'))
     fileHeader.write(')%s\n' % suffix)
 
 def generateFuncHeaders(groupName, functionGroup):
@@ -42,7 +44,8 @@ def generateFuncDef(function, body, fileFunc):
     paramName = firstParam[common.NAME]
     paramClass = firstParam[common.CLASS]
     paramList = utils.generateParamList(function[common.PARAMS], 
-        suffix = ' ', skipFirst = True, convertVec = 'std::vector<%s>')
+        suffix = ' ', skipFirst = True, convertVec = 'std::vector< %s >',
+        convertMat = 'std::vector < std::vector < %s > >')
     fileFunc.write(body %
         (paramClass, paramClass, paramName, 
          function[common.NAME], paramName,
@@ -55,14 +58,25 @@ def generateConversions(function, conv):
         if param[common.CLASS] == '':
             continue
         varName = common.HANDLE + param[common.CLASS]
-        conversions += conv % (
-            param[common.CLASS],
-            varName,
-            param[common.CLASS],
-            param[common.NAME],
-            varName,
-            function[common.NAME],
-            param[common.NAME])
+        if param[common.TENSOR] == common.SCALAR:
+            conversions += conv % (
+                param[common.CLASS],
+                varName,
+                param[common.CLASS],
+                param[common.NAME],
+                varName,
+                function[common.NAME],
+                param[common.NAME])
+        elif param[common.TENSOR] == common.VECTOR:
+            conversions += '\n' + \
+                8 * ' ' + 'std::vector < boost::shared_ptr< ' + \
+                param[common.CLASS] + ' > >\n' + \
+                12 * ' ' + varName + ';\n' + \
+                12 * ' ' + 'handleVectorToObjectVector(\n' + \
+                16 * ' ' + param[common.NAME] + ',\n' + \
+                16 * ' ' + varName + ');\n'
+        else:
+            raise ValueError, 'unexpected tensor rank: ' + param[common.TENSOR]
     return conversions
 
 def generateCtorDef(function, body, conv, fileFunc):

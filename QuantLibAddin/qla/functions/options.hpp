@@ -25,54 +25,33 @@
 
 namespace QuantLibAddin {
 
-    const ObjHandler::Properties& QL_STOCHASTIC_PROCESS(
-            const std::string &handleObject,
-            const double &underlying,
-            const std::string &dayCounterID,
-            const long &settlementDate,
-            const double &riskFreeRate,
-            const double &dividendYield,
-            const double &volatility);
-
-    const ObjHandler::Properties& QL_OPTION_VANILLA(
-            const std::string &handleObject,
-            const std::string &handleStochastic,
-            const std::string &typeOption,
-            const std::string &typePayoff,
-            const double &strike,
-            const std::string &typeExercise,
-            const long &exerciseDate,
-            const long &settlementDate,
-            const std::string &typeEngine,
-            const long &timeSteps);
-
     const ObjHandler::Properties& QL_OPTION_ASIAN_C(
             const std::string &handleObject,
             const std::string &handleStochastic,
-            const std::string &typeAverage,
-            const std::string &typeOption,
-            const std::string &typePayoff,
+            const std::string &average,
+            const std::string &optionType,
+            const std::string &payoff,
             const double &strike,
-            const std::string &typeExercise,
+            const std::string &exercise,
             const long &exerciseDate,
             const long &settlementDate,
-            const std::string &typeEngine,
+            const std::string &engine,
             const long &timeSteps);
 
     const ObjHandler::Properties& QL_OPTION_ASIAN_D(
             const std::string &handleObject,
             const std::string &handleStochastic,
-            const std::string &typeAverage,
+            const std::string &average,
             const double &runningAccumulator,
             const long &pastFixings,
-            const std::vector<long >&fixingDates,
-            const std::string &typeOption,
-            const std::string &typePayoff,
+            const std::vector< long  >&fixingDates,
+            const std::string &optionType,
+            const std::string &payoff,
             const double &strike,
-            const std::string &typeExercise,
+            const std::string &exercise,
             const long &exerciseDate,
             const long &settlementDate,
-            const std::string &typeEngine,
+            const std::string &engine,
             const long &timeSteps);
 
     const ObjHandler::Properties& QL_OPTION_BARRIER(
@@ -81,18 +60,90 @@ namespace QuantLibAddin {
             const std::string &typeBarrier,
             const double &barrier,
             const double &rebate,
-            const std::string &typeOption,
-            const std::string &typePayoff,
+            const std::string &optionType,
+            const std::string &payoff,
             const double &strike,
-            const std::string &typeExercise,
+            const std::string &exercise,
             const long &exerciseDate,
             const long &settlementDate,
-            const std::string &typeEngine,
+            const std::string &engine,
+            const long &timeSteps);
+
+    const ObjHandler::Properties& QL_OPTION_BASKET(
+            const std::string &handleObject,
+            const std::vector< std::string  >&handleStochastic,
+            const std::string &basket,
+            const std::vector < std::vector < double  > >&correlations,
+            const std::string &optionType,
+            const double &strike,
+            const std::string &exercise,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engine,
+            const long &timeSteps);
+
+    const ObjHandler::Properties& QL_OPTION_CLIQUET(
+            const std::string &handleObject,
+            const std::string &handleStochastic,
+            const std::vector< long  >&resetDates,
+            const std::string &optionType,
+            const double &strike,
+            const long &exerciseDate,
+            const std::string &engine,
+            const long &timeSteps);
+
+    const ObjHandler::Properties& QL_OPTION_DIVIDENDVANILLA(
+            const std::string &handleObject,
+            const std::string &handleStochastic,
+            const std::vector< long  >&dividendDates,
+            const std::vector< double  >&dividends,
+            const std::string &optionType,
+            const std::string &payoff,
+            const double &strike,
+            const std::string &exercise,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engine,
+            const long &timeSteps);
+
+    const ObjHandler::Properties& QL_OPTION_FORWARDVANILLA(
+            const std::string &handleObject,
+            const std::string &handleStochastic,
+            const double &moneyness,
+            const long &resetDate,
+            const std::string &optionType,
+            const std::string &payoff,
+            const double &strike,
+            const std::string &exercise,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engine,
             const long &timeSteps);
 
     const ObjHandler::Properties& QL_OPTION_SETENGINE(
             const std::string &handle,
             const std::string &engineName,
+            const long &timeSteps);
+
+    const ObjHandler::Properties& QL_STOCHASTIC_PROCESS(
+            const std::string &handleObject,
+            const double &underlying,
+            const std::string &dayCounter,
+            const long &settlementDate,
+            const double &riskFreeRate,
+            const double &dividendYield,
+            const double &volatility);
+
+    const ObjHandler::Properties& QL_OPTION_VANILLA(
+            const std::string &handleObject,
+            const std::string &handleStochastic,
+            const std::string &optionType,
+            const std::string &payoff,
+            const double &strike,
+            const std::string &exercise,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engine,
             const long &timeSteps);
 
 }

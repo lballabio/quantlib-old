@@ -18,54 +18,33 @@
 // this file generated automatically by autogen.py
 // editing this file manually is not recommended
 
-    virtual SEQSEQ(ANY) SAL_CALL qlStochasticProcess(
-        const STRING & handle,
-        double underlying,
-        const STRING & dayCounterID,
-        sal_Int32 settlementDate,
-        double riskFreeRate,
-        double dividendYield,
-        double volatility) THROWDEF_RTE_IAE;
-
-    virtual SEQSEQ(ANY) SAL_CALL qlOptionVanilla(
-        const STRING & handle,
-        const STRING & handleStochastic,
-        const STRING & typeOption,
-        const STRING & typePayoff,
-        double strike,
-        const STRING & typeExercise,
-        sal_Int32 exerciseDate,
-        sal_Int32 settlementDate,
-        const STRING & typeEngine,
-        sal_Int32 timeSteps) THROWDEF_RTE_IAE;
-
     virtual SEQSEQ(ANY) SAL_CALL qlOptionAsianC(
         const STRING & handle,
         const STRING & handleStochastic,
-        const STRING & typeAverage,
-        const STRING & typeOption,
-        const STRING & typePayoff,
+        const STRING & average,
+        const STRING & optionType,
+        const STRING & payoff,
         double strike,
-        const STRING & typeExercise,
+        const STRING & exercise,
         sal_Int32 exerciseDate,
         sal_Int32 settlementDate,
-        const STRING & typeEngine,
+        const STRING & engine,
         sal_Int32 timeSteps) THROWDEF_RTE_IAE;
 
     virtual SEQSEQ(ANY) SAL_CALL qlOptionAsianD(
         const STRING & handle,
         const STRING & handleStochastic,
-        const STRING & typeAverage,
+        const STRING & average,
         double runningAccumulator,
         sal_Int32 pastFixings,
         const SEQSEQ(sal_Int32 )& fixingDates,
-        const STRING & typeOption,
-        const STRING & typePayoff,
+        const STRING & optionType,
+        const STRING & payoff,
         double strike,
-        const STRING & typeExercise,
+        const STRING & exercise,
         sal_Int32 exerciseDate,
         sal_Int32 settlementDate,
-        const STRING & typeEngine,
+        const STRING & engine,
         sal_Int32 timeSteps) THROWDEF_RTE_IAE;
 
     virtual SEQSEQ(ANY) SAL_CALL qlOptionBarrier(
@@ -74,17 +53,89 @@
         const STRING & typeBarrier,
         double barrier,
         double rebate,
-        const STRING & typeOption,
-        const STRING & typePayoff,
+        const STRING & optionType,
+        const STRING & payoff,
         double strike,
-        const STRING & typeExercise,
+        const STRING & exercise,
         sal_Int32 exerciseDate,
         sal_Int32 settlementDate,
-        const STRING & typeEngine,
+        const STRING & engine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE;
+
+    virtual SEQSEQ(ANY) SAL_CALL qlOptionBasket(
+        const STRING & handle,
+        const SEQSEQ(STRING )& handleStochastic,
+        const STRING & basket,
+        const SEQSEQ(double )& correlations,
+        const STRING & optionType,
+        double strike,
+        const STRING & exercise,
+        sal_Int32 exerciseDate,
+        sal_Int32 settlementDate,
+        const STRING & engine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE;
+
+    virtual SEQSEQ(ANY) SAL_CALL qlOptionCliquet(
+        const STRING & handle,
+        const STRING & handleStochastic,
+        const SEQSEQ(sal_Int32 )& resetDates,
+        const STRING & optionType,
+        double strike,
+        sal_Int32 exerciseDate,
+        const STRING & engine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE;
+
+    virtual SEQSEQ(ANY) SAL_CALL qlOptionDividendVanilla(
+        const STRING & handle,
+        const STRING & handleStochastic,
+        const SEQSEQ(sal_Int32 )& dividendDates,
+        const SEQSEQ(double )& dividends,
+        const STRING & optionType,
+        const STRING & payoff,
+        double strike,
+        const STRING & exercise,
+        sal_Int32 exerciseDate,
+        sal_Int32 settlementDate,
+        const STRING & engine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE;
+
+    virtual SEQSEQ(ANY) SAL_CALL qlOptionForwardVanilla(
+        const STRING & handle,
+        const STRING & handleStochastic,
+        double moneyness,
+        sal_Int32 resetDate,
+        const STRING & optionType,
+        const STRING & payoff,
+        double strike,
+        const STRING & exercise,
+        sal_Int32 exerciseDate,
+        sal_Int32 settlementDate,
+        const STRING & engine,
         sal_Int32 timeSteps) THROWDEF_RTE_IAE;
 
     virtual SEQSEQ(ANY) SAL_CALL qlOptionSetEngine(
         const STRING & handle,
         const STRING & engineName,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE;
+
+    virtual SEQSEQ(ANY) SAL_CALL qlStochasticProcess(
+        const STRING & handle,
+        double underlying,
+        const STRING & dayCounter,
+        sal_Int32 settlementDate,
+        double riskFreeRate,
+        double dividendYield,
+        double volatility) THROWDEF_RTE_IAE;
+
+    virtual SEQSEQ(ANY) SAL_CALL qlOptionVanilla(
+        const STRING & handle,
+        const STRING & handleStochastic,
+        const STRING & optionType,
+        const STRING & payoff,
+        double strike,
+        const STRING & exercise,
+        sal_Int32 exerciseDate,
+        sal_Int32 settlementDate,
+        const STRING & engine,
         sal_Int32 timeSteps) THROWDEF_RTE_IAE;
 
