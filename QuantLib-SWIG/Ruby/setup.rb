@@ -22,12 +22,12 @@ def usage
     puts <<EOU
 Usage: ruby setup.rb command [options]
     Commands:
-    wrap                      generate wrappers from SWIG interfaces
-    build                     build QuantLib-Ruby
-    install [--prefix=path]   install QuantLib-Ruby in path
-    sdist                     create source distribution
-    bdist                     create binary distribution
-    clean                     clean up
+    wrap                                 generate wrappers from SWIG interfaces
+    build                                build QuantLib-Ruby
+    install [--prefix=path] [--debian]   install QuantLib-Ruby in path
+    sdist                                create source distribution
+    bdist                                create binary distribution
+    clean                                clean up
 EOU
     exit
 end
@@ -41,14 +41,15 @@ if cmd != "install"
     usage() if ARGV.shift
 else
     opt = ARGV.shift
-    if opt
+    while opt
         if opt[0...9] == "--prefix="
             Prefix = opt[9..-1]
+        elsif opt[0...8] == "--debian"
+            Debian = true
         else
             usage()
         end
-    else
-        Prefix = nil
+      opt = ARGV.shift
     end
 end
 
@@ -241,16 +242,21 @@ BDist = Command.new {
 Install = Command.new {
     Build.execute
     puts "Installing QuantLib-Ruby..."
-    if Prefix.nil?
-        archDir    = Config::CONFIG["sitearchdir"]
-        libDir     = Config::CONFIG["sitelibdir"]
-    else
+    if defined? Prefix
         # strip old prefix and add the new one
         oldPrefix = Config::CONFIG["prefix"]
-        archDir    = Prefix + \
-                     Config::CONFIG["archdir"].gsub(/^#{oldPrefix}/,"")
-        libDir     = Prefix + \
-                     Config::CONFIG["rubylibdir"].gsub(/^#{oldPrefix}/,"")
+        if defined? Debian
+          archDir = Config::CONFIG["archdir"]
+          libDir = Config::CONFIG["rubylibdir"]
+        else
+          archDir = Config::CONFIG["sitearchdir"]
+          libDir = Config::CONFIG["sitelibdir"]
+        end
+        archDir    = Prefix + archDir.gsub(/^#{oldPrefix}/,"")
+        libDir     = Prefix + libDir.gsub(/^#{oldPrefix}/,"")
+    else
+        archDir    = Config::CONFIG["sitearchdir"]
+        libDir     = Config::CONFIG["sitelibdir"]
     end
     [archDir,libDir].each { |path| File.makedirs path }
     File.install "./"+Binary, archDir+"/"+Binary, 0555, true 
