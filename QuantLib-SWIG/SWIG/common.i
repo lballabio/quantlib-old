@@ -31,6 +31,7 @@ using QuantLib::StringFormatter;
 #if !defined(HAVE_BOOST)
 using QuantLib::Handle;
 #endif
+ using QuantLib::IsNull;
 %}
 
 template <class T>
