@@ -81,6 +81,7 @@
         "payoffs.i"
         "piecewiseflatforward.i"
         "randomnumbers.i"
+        "rounding.i"
         "scheduler.i"
         "shortratemodels.i"
         "statistics.i"
@@ -274,21 +275,21 @@
 
 
 ; BDist = Command.new {
-; 	Wrap.execute
-; 	Build.execute
-; 	puts "Packing binary distribution..."
-; 	distDir = "QuantLib-Ruby-#{Version}"
-; 	raise "Directory #{distDir} already exist" if File.exists? distDir
-; 	swigDir = distDir+"/SWIG"
-; 	testDir = distDir+"/test"
-; 	[distDir,swigDir,testDir].each { |path| File.makedirs path }
-; 	Info.each       { |file| File.syscopy file, distDir }
-; 	Sources.each    { |file| File.syscopy file, distDir }
-; 	Binaries.each   { |file| File.syscopy file, distDir }
-; 	Scripts.each    { |file| File.syscopy file, distDir }
-; 	Interfaces.each { |file| File.syscopy '../SWIG/'+file, swigDir }
-; 	Tests.each      { |file| File.syscopy 'test/'+file, testDir }
-; 	system "tar cfz #{distDir}.#{Config::CONFIG['arch']}.tar.gz #{distDir}/"
+;	Wrap.execute
+;	Build.execute
+;	puts "Packing binary distribution..."
+;	distDir = "QuantLib-Ruby-#{Version}"
+;	raise "Directory #{distDir} already exist" if File.exists? distDir
+;	swigDir = distDir+"/SWIG"
+;	testDir = distDir+"/test"
+;	[distDir,swigDir,testDir].each { |path| File.makedirs path }
+;	Info.each       { |file| File.syscopy file, distDir }
+;	Sources.each    { |file| File.syscopy file, distDir }
+;	Binaries.each   { |file| File.syscopy file, distDir }
+;	Scripts.each    { |file| File.syscopy file, distDir }
+;	Interfaces.each { |file| File.syscopy '../SWIG/'+file, swigDir }
+;	Tests.each      { |file| File.syscopy 'test/'+file, testDir }
+;	system "tar cfz #{distDir}.#{Config::CONFIG['arch']}.tar.gz #{distDir}/"
 ; }
 
 

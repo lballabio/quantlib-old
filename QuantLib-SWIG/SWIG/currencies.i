@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2004 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,6 +19,88 @@
 #define quantlib_currencies_i
 
 %include common.i
+%include types.i
+%include rounding.i
+
+// currency objects
+
+%{
+using QuantLib::Currency;
+using QuantLib::AUDCurrency;
+using QuantLib::CADCurrency;
+using QuantLib::CHFCurrency;
+using QuantLib::DEMCurrency;
+using QuantLib::EURCurrency;
+using QuantLib::GBPCurrency;
+using QuantLib::ITLCurrency;
+using QuantLib::JPYCurrency;
+using QuantLib::USDCurrency;
+using QuantLib::ZARCurrency;
+%}
+
+class Currency {
+    #if defined(SWIGPYTHON)
+    %rename(__nonzero__) isValid;
+    #elif defined(SWIGRUBY)
+    %rename("isValid?") isValid;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("numeric-code")           numericCode;
+    %rename("fraction-symbol")        fractionSymbol;
+    %rename("fractions-per-unit")     fractionsPerUnit;
+    %rename("is-valid?")              isValid;
+    %rename("triangulation-currency") triangulationCurrency;
+    %rename(">string")                __str__;
+    #endif
+  public:
+    const std::string& name() const;
+    const std::string& code() const;
+    Integer numericCode() const;
+    const std::string& symbol() const;
+    const std::string& fractionSymbol() const;
+    Integer fractionsPerUnit() const;
+    const Rounding& rounding() const;
+    bool isValid() const;
+    const Currency& triangulationCurrency() const;
+    %extend {
+        std::string __str__() {
+            return self->name();
+        }
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        bool __eq__(const Currency& other) {
+            return (*self) == other;
+        }
+        #if defined(SWIGPYTHON)
+        bool __ne__(const Currency& other) {
+            return (*self) != other;
+        }
+        #endif
+        #endif
+    }
+};
+
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("Currency=?") Currency_equal;
+%inline %{
+    bool Currency_equal(const Currency& c1, const Currency& c2) {
+        return c1 == c2;
+    }
+%}
+#endif
+
+
+class AUDCurrency : public Currency {};
+class CADCurrency : public Currency {};
+class CHFCurrency : public Currency {};
+class DEMCurrency : public Currency {};
+class EURCurrency : public Currency {};
+class GBPCurrency : public Currency {};
+class ITLCurrency : public Currency {};
+class JPYCurrency : public Currency {};
+class USDCurrency : public Currency {};
+class ZARCurrency : public Currency {};
+
+
+// currency tags
 
 %{
 using QuantLib::CurrencyTag;

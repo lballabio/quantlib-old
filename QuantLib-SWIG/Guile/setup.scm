@@ -72,6 +72,7 @@
         "payoffs.i"
         "piecewiseflatforward.i"
         "randomnumbers.i"
+        "rounding.i"
         "scheduler.i"
         "shortratemodels.i"
         "statistics.i"

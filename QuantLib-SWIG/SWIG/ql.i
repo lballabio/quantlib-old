@@ -78,6 +78,7 @@
 %include payoffs.i
 %include piecewiseflatforward.i
 %include randomnumbers.i
+%include rounding.i
 %include scheduler.i
 %include shortratemodels.i
 %include statistics.i

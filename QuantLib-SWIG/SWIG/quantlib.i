@@ -36,9 +36,8 @@
 }
 
 #if defined(SWIGPYTHON)
-
 %{
-#include <ql/quantlib.hpp>
+#include <ql/qldefines.hpp>
 const int    __hexversion__ = QL_HEX_VERSION;
 const char* __version__    = QL_VERSION;
 %}
@@ -47,7 +46,23 @@ const int __hexversion__;
 %immutable;
 const char* __version__;
 %mutable;
+#endif
 
+#if defined(SWIGRUBY)
+%{
+#ifdef accept
+#undef accept
+#endif
+#ifdef close
+#undef close
+#endif
+#ifdef times
+#undef times
+#endif
+#ifdef Sleep
+#undef Sleep
+#endif
+%}
 #endif
 
 #if defined(SWIGGUILE)
@@ -63,8 +78,6 @@ const char* __version__;
     (load-quantlibc-in %load-path)
 %}
 #endif
-
-
 
 %include ql.i
 
