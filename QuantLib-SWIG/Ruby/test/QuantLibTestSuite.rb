@@ -20,6 +20,7 @@ require 'test/unit'
 require 'test/unit/testsuite'
 require 'test/unit/ui/console/testrunner'
 
+require 'calendars'
 require 'capfloor'
 require 'covariance'
 require 'dates'
@@ -41,6 +42,7 @@ require 'termstructures'
 require 'old_pricers'
 
 suite = Test::Unit::TestSuite.new('QuantLib test suite')
+suite << CalendarTest.suite
 suite << CapFloorTest.suite
 suite << CovarianceTest.suite
 suite << DateTest.suite

@@ -72,6 +72,7 @@ swig_files = ['quantlib.i',
               'old_volatility.i']
 
 test_files = ['QuantLibTestSuite.py',
+              'calendars.py',
               'capfloor.py',
               'covariance.py',
               'date.py',

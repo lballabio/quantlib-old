@@ -20,6 +20,7 @@ __version__ = "$Revision$"
 import sys
 import unittest
 
+from calendars import CalendarTest
 from capfloor import CapFloorTest
 from covariance import CovarianceTest
 from date import DateTest
@@ -46,6 +47,7 @@ def test():
 
     suite = unittest.TestSuite()
 
+    suite.addTest(CalendarTest())
     suite.addTest(unittest.makeSuite(CapFloorTest,'test'))
     suite.addTest(CovarianceTest())
     suite.addTest(DateTest())

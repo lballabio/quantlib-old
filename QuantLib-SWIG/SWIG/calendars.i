@@ -23,8 +23,28 @@
 %include date.i
 %include stl.i
 
-// typemap rolling conventions to corresponding strings
+%{
+using QuantLib::Calendar;
+using QuantLib::Calendars::TARGET;
+using QuantLib::Calendars::NewYork;
+using QuantLib::Calendars::London;
+using QuantLib::Calendars::Milan;
+using QuantLib::Calendars::Frankfurt;
+using QuantLib::Calendars::Zurich;
+using QuantLib::Calendars::Helsinki;
+using QuantLib::Calendars::Johannesburg;
+using QuantLib::Calendars::Wellington;
+using QuantLib::Calendars::Tokyo;
+using QuantLib::Calendars::Toronto;
+using QuantLib::Calendars::Sydney;
+using QuantLib::Calendars::Budapest;
+using QuantLib::Calendars::Oslo;
+using QuantLib::Calendars::Stockholm;
+using QuantLib::Calendars::Warsaw;
+using QuantLib::Calendars::JointCalendar;
+%}
 
+// typemap rolling conventions to corresponding strings
 %{
 using QuantLib::RollingConvention;
 
@@ -60,26 +80,34 @@ std::string rollconvToString(RollingConvention rc) {
 
 MapToString(RollingConvention,rollconvFromString,rollconvToString);
 
-
+// typemap joint calendar rules to corresponding strings
 %{
-using QuantLib::Calendar;
-using QuantLib::Calendars::TARGET;
-using QuantLib::Calendars::NewYork;
-using QuantLib::Calendars::London;
-using QuantLib::Calendars::Milan;
-using QuantLib::Calendars::Frankfurt;
-using QuantLib::Calendars::Zurich;
-using QuantLib::Calendars::Helsinki;
-using QuantLib::Calendars::Johannesburg;
-using QuantLib::Calendars::Wellington;
-using QuantLib::Calendars::Tokyo;
-using QuantLib::Calendars::Toronto;
-using QuantLib::Calendars::Sydney;
-using QuantLib::Calendars::Budapest;
-using QuantLib::Calendars::Oslo;
-using QuantLib::Calendars::Stockholm;
-using QuantLib::Calendars::Warsaw;
+using QuantLib::Calendars::JointCalendarRule;
+using QuantLib::Calendars::JoinBusinessDays;
+
+JointCalendarRule joinRuleFromString(std::string s) {
+    s = StringFormatter::toLowercase(s);
+    if (s == "h" || s == "holidays" || s == "joinholidays")
+        return QuantLib::Calendars::JoinHolidays;
+    else if (s == "b" ||s == "businessdays" || s == "joinbusinessdays")
+        return QuantLib::Calendars::JoinBusinessDays;
+    else 
+        throw Error("unknown joint calendar rule");
+}
+
+std::string joinRuleToString(JointCalendarRule jr) {
+    switch (jr) {
+      case QuantLib::Calendars::JoinHolidays:
+        return "JoinHolidays";
+      case QuantLib::Calendars::JoinBusinessDays:
+        return "JoinBusinessDays";
+      default:
+        throw Error("unknown joint calendar rule");
+    }
+}
 %}
+
+MapToString(JointCalendarRule,joinRuleFromString,joinRuleToString);
 
 
 #if defined(SWIGRUBY)
@@ -170,6 +198,18 @@ ReturnByValue(Calendar);
     }
 %}
 #endif
+
+
+class JointCalendar : public Calendar {
+  public:
+    JointCalendar(const Calendar&, const Calendar&,
+                  JointCalendarRule rule = QuantLib::Calendars::JoinHolidays);
+    JointCalendar(const Calendar&, const Calendar&, const Calendar&,
+                  JointCalendarRule rule = QuantLib::Calendars::JoinHolidays);
+    JointCalendar(const Calendar&, const Calendar&, 
+                  const Calendar&, const Calendar&,
+                  JointCalendarRule rule = QuantLib::Calendars::JoinHolidays);
+};
 
 
 #endif

@@ -103,6 +103,7 @@ Interfaces =  [ 'quantlib.i',
                 'old_volatility.i']
 
 Tests =       [ 'QuantLibTestSuite.rb',
+                'calendars.rb',
                 'capfloor.rb',
                 'covariance.rb',
                 'dates.rb',

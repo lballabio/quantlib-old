@@ -81,7 +81,8 @@
         "old_pricers.i"
         "old_volatility.i"))
 (define test-files
-  (list "capfloor.scm"
+  (list "calendars.scm"
+        "capfloor.scm"
         "common.scm"
         "covariance.scm"
         "date.scm"

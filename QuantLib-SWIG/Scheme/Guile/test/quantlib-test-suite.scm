@@ -28,6 +28,7 @@
   (if (file-exists? test-dir)
       (chdir test-dir)))
 
+(load "calendars.scm")
 (load "capfloor.scm")
 (load "covariance.scm")
 (load "date.scm")
@@ -49,6 +50,8 @@
 (load "old_pricers.scm")
 
 (let ((suite (make-suite)))
+  (suite-add-test suite Calendar-test
+                  "Testing joint calendars")
   (suite-add-test suite CapFloor-strike-dependency-test
                   "Testing cap/floor dependency on strike")
   (suite-add-test suite CapFloor-consistency-test
