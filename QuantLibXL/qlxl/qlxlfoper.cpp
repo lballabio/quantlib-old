@@ -172,9 +172,12 @@ Handle<QuantLib::BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
 }
 
 
+// -- begin -- Can anybody check this part?
 Handle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
     const Date& referenceDate) const {
 
+    // Should we add today to the interface of AsTermStructure ?
+    Date today=referenceDate;
 
     XlfRef range = xlfOper_.AsRef();
     Size rowNo = range.GetNbRows();
@@ -183,11 +186,15 @@ Handle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
         // constant rate continuos compounding act/365
         double forwardRate = range(0,0).AsDouble();
         return Handle<QuantLib::TermStructure>(new
-            TermStructures::FlatForward(
-            referenceDate, forwardRate,
-            DayCounters::Actual365()));
+            TermStructures::FlatForward(today,
+                                        referenceDate, 
+                                        forwardRate,
+                                        DayCounters::Actual365()));
     } else if (rowNo>1 && colNo==2 && range(0,1).AsDouble()==1.0) {
         // discount grid
+
+        Date today=QlXlfOper(range(0, 0)).AsDate();
+
         std::vector<Date> dates(rowNo);
         std::vector<DiscountFactor> discounts(rowNo);
         for (Size j = 0; j<rowNo; j++) {
@@ -195,9 +202,10 @@ Handle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
             discounts[j] = range(j, 1).AsDouble();
         }
         return Handle<QuantLib::TermStructure>(new
-            TermStructures::DiscountCurve(
-            dates, discounts,
-            DayCounters::Actual365()));
+            TermStructures::DiscountCurve(today,
+                                          dates, 
+                                          discounts,
+                                          DayCounters::Actual365()));
     } else if (rowNo>2 && colNo>=1) {
         // piecewise forward (annual continuos compounding act/365) grid
         std::vector<Date> dates(rowNo);
@@ -207,10 +215,12 @@ Handle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
             forwards[j] = range(j, 1).AsDouble();
         }
         return Handle<QuantLib::TermStructure>(new
-            TermStructures::PiecewiseFlatForward(
-            dates, forwards,
-            DayCounters::Actual365()));
+            TermStructures::PiecewiseFlatForward(today,
+                                                 dates, 
+                                                 forwards,
+                                                 DayCounters::Actual365()));
     } else
         throw Error("Not a yield term structure range");
 
 }
+// -- end -- Can anybody check this part?
