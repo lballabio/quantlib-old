@@ -40,25 +40,27 @@ def generateFuncDec(fileHeader, function):
 	i = 0
 	for param in function[common.PARAMS]:
 		paramDesc = '" ' + param[common.DESC] + '",'
-		fileHeader.write('\t\t%-30s// param %d\n' % (paramDesc, i))
+		fileHeader.write('        %-30s// param %d\n' % (paramDesc, i))
 		i+=1
-	fileHeader.write('\t\t// unused params:\n\t\t')
+	fileHeader.write('        // unused params:\n        ')
 	while i < common.XLMAXPARAM:
 		fileHeader.write('" "')
 		if i < common.XLMAXPARAM - 1:
 			fileHeader.write(', ')
 		i+=1
-	fileHeader.write('\n\t},\n\n')
+	fileHeader.write('\n    },\n\n')
 
 def generateFuncHeaders(functionDefs):
-	fileHeader = file(common.XL_ROOT + common.XL_FUNC, 'w')
+	fileName = common.XL_ROOT + common.XL_FUNC
+	utils.logMessage('    generating file ' + fileName + '...')
+	fileHeader = file(fileName, 'w')
 	utils.printHeader(fileHeader)
 	fileHeader.write('#define NUM_FUNCS %d\n' % functionDefs[common.NUMFUNC])
 	fileHeader.write('#define NUM_ATTS %d\n\n' % (common.XLMAXPARAM + 9))
 	fileHeader.write('static LPSTR func[NUM_FUNCS][NUM_ATTS] = {\n')
 	functionGroups = functionDefs[common.FUNCGROUPS]
 	for groupName in functionGroups.keys():
-		fileHeader.write('\t// %s\n' % groupName)
+		fileHeader.write('    // %s\n' % groupName)
 		for function in functionGroups[groupName][common.FUNCLIST]:
 			generateFuncDec(fileHeader, function)
 	fileHeader.write('};\n')
@@ -68,10 +70,10 @@ def generateFuncDef(fileFunc, function):
 	paramList1 = utils.generateParamList(function[common.PARAMS], \
 		2, True, '', 'char', '', '', '\n', '*')
 	paramList2 = utils.generateParamList(function[common.PARAMS], \
-		2, False, '', '', '', 'std::string(%s)', '\n', '*')
+		3, False, '', '', '', 'std::string(%s)', '\n', '*')
 	if function[common.HANDLE]:
-		handle1 = '\t\tstd::string handle = getCaller();\n'
-		handle2 = '\t\tstd::string(handle),\n'
+		handle1 = 8 * ' ' + 'std::string handle = getCaller();\n'
+		handle2 = 12 * ' ' + 'std::string(handle),\n'
 	else:
 		handle1 = ''
 		handle2 = ''
@@ -84,7 +86,9 @@ def generateFuncDefs(functionGroups):
 		functionGroup = functionGroups[groupName]
 		if functionGroup[common.HDRONLY]:
 			continue
-		fileFunc = file(common.XL_ROOT + groupName + '.cpp', 'w')
+		fileName = common.XL_ROOT + groupName + '.cpp'
+		utils.logMessage('    generating file ' + fileName + '...')
+		fileFunc = file(fileName, 'w')
 		utils.printHeader(fileFunc)
 		fileFunc.write(common.XL_INCLUDE)
 		for function in functionGroup[common.FUNCLIST]:
@@ -92,18 +96,22 @@ def generateFuncDefs(functionGroups):
 		fileFunc.close()
 
 def generateExports(functionGroups):
-	fileExps = file(common.XL_ROOT + common.EXPORTFILE, 'w')
+	fileName = common.XL_ROOT + common.EXPORTFILE
+	utils.logMessage('    generating file ' + fileName + '...')
+	fileExps = file(fileName, 'w')
 	utils.printTimeStamp(fileExps, ';')
 	fileExps.write(common.EXPORTHEADER)
 	for groupName in functionGroups.keys():
-		fileExps.write(';\t%s\n\n' % groupName)
+		fileExps.write(';    %s\n\n' % groupName)
 		functionGroup = functionGroups[groupName]
 		for function in functionGroup[common.FUNCLIST]:
-			fileExps.write('\t%s\n' % function[common.CODENAME])
+			fileExps.write('    %s\n' % function[common.CODENAME])
 		fileExps.write('\n')
 
 def generate(functionDefs):
+	utils.logMessage('  begin generating Excel ...')
 	generateFuncHeaders(functionDefs)
 	generateFuncDefs(functionDefs[common.FUNCGROUPS])
 	generateExports(functionDefs[common.FUNCGROUPS])
+	utils.logMessage('  done generating Excel.')
 

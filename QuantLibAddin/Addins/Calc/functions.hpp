@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,12 +15,12 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Sun Dec 12 14:39:53 2004
+// this file generated automatically by autogen.py on Mon Jan 10 18:55:01 2005
 // editing this file manually is not recommended
 
-	virtual SEQSEQ(ANY) SAL_CALL qlQuery(
-		const STRING & handleObject) THROWDEF_RTE_IAE;
+    virtual SEQSEQ(ANY) SAL_CALL qlQuery(
+        const STRING & handleObject) THROWDEF_RTE_IAE;
 
-	virtual STRING SAL_CALL qlLogfile(
-		const STRING & logFileName) THROWDEF_RTE_IAE;
+    virtual STRING SAL_CALL qlLogfile(
+        const STRING & logFileName) THROWDEF_RTE_IAE;
 

@@ -4,11 +4,13 @@ import common
 import utils
 
 def generateFuncMap(functionGroups):
-	fileMap = file(common.CALC_ROOT + common.CALC_MAPFILE, 'w')
+	fileName = common.CALC_ROOT + common.CALC_MAPFILE
+	utils.logMessage('    generating file ' + fileName + '...')
+	fileMap = file(fileName, 'w')
 	utils.printHeader(fileMap)
 	fileMap.write(common.CALC_MAPHEADER)
 	for groupName in functionGroups.keys():
-		fileMap.write('\n\t//%s\n\n' % groupName)
+		fileMap.write('\n    //%s\n\n' % groupName)
 		functionGroup = functionGroups[groupName]
 		for function in functionGroup[common.FUNCLIST]:
 			fileMap.write(common.CALC_MAPLINE \
@@ -17,7 +19,9 @@ def generateFuncMap(functionGroups):
 	fileMap.close()
 
 def generateAutoHeader(functionGroups):
-	fileHeader = file(common.CALC_ROOT + common.CALC_AUTOHDR, 'w')
+	fileName = common.CALC_ROOT + common.CALC_AUTOHDR
+	utils.logMessage('    generating file ' + fileName + '...')
+	fileHeader = file(fileName, 'w')
 	utils.printHeader(fileHeader)
 	for groupName in functionGroups.keys():
 		fileHeader.write('#include <Addins/Calc/%s.hpp>\n' % groupName)
@@ -26,7 +30,7 @@ def generateAutoHeader(functionGroups):
 
 def generateHeader(fileHeader, function, suffix):
 	if function[common.HANDLE]:
-		fileHeader.write('\t\tconst STRING & handle,\n')
+		fileHeader.write('        const STRING & handle,\n')
 	fileHeader.write(utils.generateParamList(function[common.PARAMS], \
 		2, True, '', 'const STRING &', 'sal_Int32'))
 	fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)
@@ -43,11 +47,13 @@ def getReturnTypeCalc(function):
 def generateHeaders(functionGroups):
 	for groupName in functionGroups.keys():
 		functionGroup = functionGroups[groupName]
-		fileHeader = file(common.CALC_ROOT + groupName + '.hpp', 'w')
+		fileName = common.CALC_ROOT + groupName + '.hpp'
+		utils.logMessage('    generating file ' + fileName + '...')
+		fileHeader = file(fileName, 'w')
 		utils.printHeader(fileHeader)
 		for function in functionGroup[common.FUNCLIST]:
 			returnTypeCalc = getReturnTypeCalc(function)
-			fileHeader.write('\tvirtual %s SAL_CALL %s(\n' \
+			fileHeader.write('    virtual %s SAL_CALL %s(\n' \
 				% (returnTypeCalc, function[common.CODENAME]))
 			generateHeader(fileHeader, function, ';')
 			fileHeader.write('\n')
@@ -57,7 +63,7 @@ def generateFuncSource(fileFunc, function):
 	fileFunc.write('SEQSEQ( ANY ) SAL_CALL QLAddin::%s(\n' % function[common.CODENAME])
 	generateHeader(fileFunc, function, ' {')
 	if function[common.HANDLE]:
-		handle = '\n\t\t\tOUStringToString(handle),'
+		handle = '\n' + 12 * ' ' + 'OUStringToString(handle),'
 	else:
 		handle = ''
 	paramList = utils.generateParamList(function[common.PARAMS], \
@@ -90,15 +96,17 @@ def getReturnTypeCalcIDL(function):
 		raise ValueError, 'unexpected return type: ' + returnType
 
 def generateIDLSource(functionGroups):
-	fileIDL = file(common.CALC_ROOT + common.CALC_IDL, 'w')
+	fileName = common.CALC_ROOT + common.CALC_IDL
+	utils.logMessage('    generating file ' + fileName + '...')
+	fileIDL = file(fileName, 'w')
 	utils.printTimeStamp(fileIDL, '//')
 	fileIDL.write(common.CALC_IDL_HEAD)
 	for groupName in functionGroups.keys():
-		fileIDL.write('\t\t\t\t// %s\n\n' % groupName)
+		fileIDL.write('                // %s\n\n' % groupName)
 		functionGroup = functionGroups[groupName]
 		for function in functionGroup[common.FUNCLIST]:
 			if function[common.HANDLE]:
-				handle = '\t\t\t\t\t\t[in] string handle,\n'
+				handle = 24 * ' ' + '[in] string handle,\n'
 			else:
 				handle = ''
 			returnTypeIDL = getReturnTypeCalcIDL(function)
@@ -110,9 +118,11 @@ def generateIDLSource(functionGroups):
 	fileIDL.close()
 
 def generate(functionDefs):
+	utils.logMessage('  begin generating Calc ...')
 	functionGroups = functionDefs[common.FUNCGROUPS]
 	generateFuncMap(functionGroups)
 	generateAutoHeader(functionGroups)
 	generateHeaders(functionGroups)
 	generateFuncSources(functionGroups)
 	generateIDLSource(functionGroups)
+	utils.logMessage('  done generating Calc.')

@@ -30,7 +30,7 @@ def generateParamList( \
 			full = reformatString % param['name']
 		else:
 			full = type + dereference + param['name']
-		paramList += '%s%s%s' % (indent * '\t', prefix, full)
+		paramList += '%s%s%s' % (indent * 4 * ' ', prefix, full)
 		i += 1
 		if i < len(params):
 			paramList += ',' + suffix
@@ -51,3 +51,6 @@ def loadCopyright():
 
 def init():
 	loadCopyright()
+
+def logMessage(msg):
+	print time.asctime() + ' ' + msg

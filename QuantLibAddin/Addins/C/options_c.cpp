@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Sun Dec 12 14:39:53 2004
+// this file generated automatically by autogen.py on Mon Jan 10 18:55:01 2005
 // editing this file manually is not recommended
 
 #include <QuantLibAddin/qladdin.hpp>
@@ -30,75 +30,75 @@ using namespace ObjHandler;
 using namespace QuantLibAddin;
 
 int QL_BLACKSCHOLES_C(
-		const char *handle,
-		const double dividendYield,
-		const double riskFreeRate,
-		const double volatility,
-		const double underlying,
-		const long todaysDate,
-		const long settlementDate,
-		VariesList *result) {
-	try {
-		Properties properties = QL_BLACKSCHOLES(
-			handle,
-			dividendYield,
-			riskFreeRate,
-			volatility,
-			underlying,
-			todaysDate,
-			settlementDate);
-		propertiesToVaries(properties, result);
-		return SUCCESS;
-	} catch (const std::exception &e) {
-		QL_LOGMESSAGE("QL_BLACKSCHOLES_C Error: " + std::string(e.what()));
-		result = 0;
-		return FAIL;
-	}
+        const char *handle,
+        const double dividendYield,
+        const double riskFreeRate,
+        const double volatility,
+        const double underlying,
+        const long todaysDate,
+        const long settlementDate,
+        VariesList *result) {
+    try {
+        Properties properties = QL_BLACKSCHOLES(
+            handle,
+            dividendYield,
+            riskFreeRate,
+            volatility,
+            underlying,
+            todaysDate,
+            settlementDate);
+        propertiesToVaries(properties, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE("QL_BLACKSCHOLES_C Error: " + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
 }
 
 int QL_OPTION_C(
-		const char *handle,
-		const char* handleStochastic,
-		const char* typeOption,
-		const double strike,
-		const long timeSteps,
-		const long exerciseDate,
-		const long settlementDate,
-		VariesList *result) {
-	try {
-		Properties properties = QL_OPTION(
-			handle,
-			handleStochastic,
-			typeOption,
-			strike,
-			timeSteps,
-			exerciseDate,
-			settlementDate);
-		propertiesToVaries(properties, result);
-		return SUCCESS;
-	} catch (const std::exception &e) {
-		QL_LOGMESSAGE("QL_OPTION_C Error: " + std::string(e.what()));
-		result = 0;
-		return FAIL;
-	}
+        const char *handle,
+        const char* handleStochastic,
+        const char* typeOption,
+        const double strike,
+        const long timeSteps,
+        const long exerciseDate,
+        const long settlementDate,
+        VariesList *result) {
+    try {
+        Properties properties = QL_OPTION(
+            handle,
+            handleStochastic,
+            typeOption,
+            strike,
+            timeSteps,
+            exerciseDate,
+            settlementDate);
+        propertiesToVaries(properties, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE("QL_OPTION_C Error: " + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
 }
 
 int QL_OPTION_SETENGINE_C(
-		const char* handle,
-		const char* engineName,
-		const long timeSteps,
-		VariesList *result) {
-	try {
-		Properties properties = QL_OPTION_SETENGINE(
-			handle,
-			engineName,
-			timeSteps);
-		propertiesToVaries(properties, result);
-		return SUCCESS;
-	} catch (const std::exception &e) {
-		QL_LOGMESSAGE("QL_OPTION_SETENGINE_C Error: " + std::string(e.what()));
-		result = 0;
-		return FAIL;
-	}
+        const char* handle,
+        const char* engineName,
+        const long timeSteps,
+        VariesList *result) {
+    try {
+        Properties properties = QL_OPTION_SETENGINE(
+            handle,
+            engineName,
+            timeSteps);
+        propertiesToVaries(properties, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE("QL_OPTION_SETENGINE_C Error: " + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
 }
 
