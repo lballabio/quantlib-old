@@ -352,27 +352,4 @@ class BjerksundStenslandApproximationEngineHandle
 };
 
 
-%{
-using QuantLib::AmericanMCVanillaEngine;
-typedef Handle<PricingEngine> AmericanMCVanillaEngineHandle;
-%}
-
-%rename(AmericanMCVanillaEngine) AmericanMCVanillaEngineHandle;
-class AmericanMCVanillaEngineHandle : public Handle<PricingEngine> {
-  public:
-    %extend {
-        AmericanMCVanillaEngineHandle(Size requiredSamples,
-                                      Size timeSteps,
-                                      long seed = 0) {
-            return new AmericanMCVanillaEngineHandle(
-                         new AmericanMCVanillaEngine(requiredSamples,
-                                                     timeSteps,
-                                                     seed));
-        }
-    }
-};
-
-
-
-
 #endif

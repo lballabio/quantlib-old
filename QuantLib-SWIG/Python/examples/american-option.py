@@ -93,12 +93,3 @@ report('binomial (Tian)',option.NPV())
 
 option.setPricingEngine(BinomialEuropeanEngine('lr',timeSteps))
 report('binomial (LR)',option.NPV())
-
-# method: Longstaff-Schwartz
-
-seed = 12345
-samples = 5000
-timeSteps = 100
-option.setPricingEngine(AmericanMCVanillaEngine(samples,timeSteps,seed))
-report('LSMC (monomial)',option.NPV())
-

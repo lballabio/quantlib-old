@@ -18,7 +18,7 @@
 %{
 #include <ql/quantlib.hpp>
 
-#if QL_HEX_VERSION < 0x000305a1
+#if QL_HEX_VERSION < 0x000305f0
     #error using an old version of QuantLib, please update
 #endif
 
