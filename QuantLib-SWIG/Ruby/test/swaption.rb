@@ -206,7 +206,7 @@ class SwaptionTest < Test::Unit::TestCase
                                   @settlementDays,'days')
     swap = makeSwap(startDate,10,0.06,0.0,true)
     swaption = makeSwaption(swap,exerciseDate,0.20)
-    cachedNPV = 3.645305728310
+    cachedNPV = 3.639365179345
     unless (swaption.NPV-cachedNPV).abs <= 1.0e-11
       flunk(<<-MESSAGE
 
