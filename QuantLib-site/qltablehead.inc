@@ -51,8 +51,6 @@ Statistics (exits)</a></li>
 
 <li><a class="navlink" href="cvs.html">CVS</a></li>
 
-<li><a class="navlink" href="snapshot.html">Latest Build</a></li>
-
 <li><a class="navlink" href=
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bugs
 (exits)</a></li>
