@@ -26,15 +26,15 @@
 
 //! version string
 #ifdef _DEBUG
-    #define OBJHANDLER_VERSION "0.1.0-debug"
+    #define OBJHANDLER_VERSION "0.1.1-debug"
 #else
-    #define OBJHANDLER_VERSION "0.1.0"
+    #define OBJHANDLER_VERSION "0.1.1"
 #endif
 
 //! version hexadecimal number
-#define OBJHANDLER_HEX_VERSION 0x000001f0
+#define OBJHANDLER_HEX_VERSION 0x000101f0
 //! version string for output lib name
-#define OBJHANDLER_LIB_VERSION "0_1_0"
+#define OBJHANDLER_LIB_VERSION "0_1_1"
 
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
    for example) also #define _MSC_VER

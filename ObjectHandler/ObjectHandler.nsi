@@ -3,7 +3,7 @@
 
 SetCompressor lzma
 
-!define VER_NUMBER "0.1.0"
+!define VER_NUMBER "0.1.1"
 
 # HEADER CONFIGURATION COMMANDS
 Name "ObjectHandler"
