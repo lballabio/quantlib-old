@@ -16,3 +16,7 @@ The building and installation process consists of the following commands:
 
 The install step above might require superuser privileges.
 
+The test suite is implemented on top of the Greg framework, available
+from <http://www.gnu.org/software/greg>. Version 1.4 of above of Greg
+is required for running the suite.
+

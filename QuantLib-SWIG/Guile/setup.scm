@@ -83,16 +83,16 @@
         "old_pricers.i"
         "old_volatility.i"))
 (define test-files
-  (list "common.scm"
+  (list "quantlib-test-suite"
         "instruments.scm"
         "integrals.scm"
         "marketelements.scm"
         "solvers1d.scm"
         "termstructures.scm"
         ; support files
+        "common.scm"
         "unittest.scm"
-        "utilities.scm"
-        "quantlib-test-suite.scm"))
+        "utilities.scm"))
 
 (define (ls path)
   (define (read-one s acc)
@@ -171,12 +171,13 @@
       (system command))))
 
 (define (test)
+  (load "test/quantlib-test-suite.scm")
   (format #t "Testing QuantLib-Guile ~A\n" version)
   (let ((this-dir (getcwd)))
     (set! %load-path (cons this-dir %load-path))
-    (chdir "./test")
-    (load "quantlib-test-suite.scm")
-    (chdir this-dir)
+    (set! greg-debug #t)
+    (set! greg-tools '("test"))
+    (greg-test-run)
     (set! %load-path (cdr %load-path))))
 
 (define (install)

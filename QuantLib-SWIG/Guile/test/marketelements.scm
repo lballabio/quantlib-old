@@ -18,37 +18,43 @@
 ; The QuantLib License is also available at http://quantlib.org/license.html
 ; The members of the QuantLib Group are listed in the QuantLib License
 
-(define (Market-element-observability-test)
-  (let ((flag #f))
-    (deleting-let ((me (new-SimpleMarketElement 0.0)
-                       delete-MarketElement)
+(load "unittest.scm")
+(use-modules (QuantLib))
+
+(greg-assert/display
+ "Testing observability of market elements"
+ (let ((flag #f))
+   (deleting-let ((me (new-SimpleMarketElement 0.0)
+                      delete-MarketElement)
+                  (obs (new-Observer (lambda () (set! flag #t)))
+                       delete-Observer))
+     (deleting-let ((temp (MarketElement->Observable me)
+                          delete-Observable))
+       (Observer-register-with obs temp))
+     (SimpleMarketElement-value-set! me 3.14)
+     (check flag
+            "Observer was not notified of market element change"))))
+
+(greg-assert/display
+ "Testing observability of market element handles"
+ (let ((flag #f))
+   (deleting-let* ((me1 (new-SimpleMarketElement 0.0)
+                        delete-MarketElement)
+                   (me2 (new-SimpleMarketElement 0.0)
+                        delete-MarketElement)
+                   (h (new-MarketElementHandle me1)
+                      delete-MarketElementHandle)
                    (obs (new-Observer (lambda () (set! flag #t)))
                         delete-Observer))
-      (deleting-let ((temp (MarketElement->Observable me)
-                           delete-Observable))
-        (Observer-register-with obs temp))
-      (SimpleMarketElement-value-set! me 3.14)
-      (if (not flag)
-          (error "Observer was not notified of market element change")))))
-
-(define (Market-element-handle-observability-test)
-  (let ((flag #f))
-    (deleting-let* ((me1 (new-SimpleMarketElement 0.0)
-                         delete-MarketElement)
-                    (me2 (new-SimpleMarketElement 0.0)
-                         delete-MarketElement)
-                    (h (new-MarketElementHandle me1)
-                       delete-MarketElementHandle)
-                    (obs (new-Observer (lambda () (set! flag #t)))
-                         delete-Observer))
-      (deleting-let ((temp (MarketElementHandle->Observable h)
-                           delete-Observable))
-        (Observer-register-with obs temp))
-      (SimpleMarketElement-value-set! me1 3.14)
-      (if (not flag)
-          (error "Observer was not notified of market element change"))
-      (set! flag #f)
-      (MarketElementHandle-link-to! h me2)
-      (if (not flag)
-          (error "Observer was not notified of market element change")))))
+     (deleting-let ((temp (MarketElementHandle->Observable h)
+                          delete-Observable))
+       (Observer-register-with obs temp))
+     (and
+      (begin (SimpleMarketElement-value-set! me1 3.14)
+             (check flag
+                    "Observer was not notified of market element change"))
+      (begin (set! flag #f)
+             (MarketElementHandle-link-to! h me2)
+             (check flag
+                    "Observer was not notified of market element change"))))))
 

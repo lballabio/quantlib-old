@@ -1,2 +1,4 @@
 QuantLib.scm
 quantlib_wrap.cpp
+*.log
+*.dbg

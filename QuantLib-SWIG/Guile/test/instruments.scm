@@ -18,31 +18,36 @@
 ; The QuantLib License is also available at http://quantlib.org/license.html
 ; The members of the QuantLib Group are listed in the QuantLib License
 
-(define (Instrument-test)
-  (let ((flag #f))
-    (deleting-let* ((me1 (new-SimpleMarketElement 0.0)
+(load "unittest.scm")
+(use-modules (QuantLib))
+
+(greg-assert/display
+ "Testing observability of stocks"
+ (let ((flag #f))
+   (deleting-let* ((me1 (new-SimpleMarketElement 0.0)
                         delete-MarketElement)
-                    (me2 (new-SimpleMarketElement 0.0)
+                   (me2 (new-SimpleMarketElement 0.0)
                         delete-MarketElement)
-                    (h (new-MarketElementHandle me1)
-                       delete-MarketElementHandle)
-                    (s (new-Stock h) delete-Instrument)
-                    (obs (new-Observer (lambda () (set! flag #t)))
-                         delete-Observer))
-      (deleting-let ((temp (Instrument->Observable s) delete-Observable))
-        (Observer-register-with obs temp))
-      (SimpleMarketElement-value-set! me1 3.14)
-      (if (not flag)
-          (error "Observer was not notified of instrument change"))
-      (set! flag #f)
-      (MarketElementHandle-link-to! h me2)
-      (if (not flag)
-          (error "Observer was not notified of instrument change"))
-      (set! flag #f)
-      (Instrument-freeze! s)
-      (SimpleMarketElement-value-set! me2 2.71)
-      (if flag
-          (error "Observer was notified of frozen instrument change"))
-      (Instrument-unfreeze! s)
-      (if (not flag)
-          (error "Observer was not notified of instrument change")))))
+                   (h (new-MarketElementHandle me1)
+                      delete-MarketElementHandle)
+                   (s (new-Stock h) delete-Instrument)
+                   (obs (new-Observer (lambda () (set! flag #t)))
+                        delete-Observer))
+     (deleting-let ((temp (Instrument->Observable s) delete-Observable))
+       (Observer-register-with obs temp))
+     (and 
+      (begin (SimpleMarketElement-value-set! me1 3.14)
+             (check flag
+                    "Observer was not notified of instrument change"))
+      (begin (set! flag #f)
+             (MarketElementHandle-link-to! h me2)
+             (check flag
+                    "Observer was not notified of instrument change"))
+      (begin (set! flag #f)
+             (Instrument-freeze! s)
+             (SimpleMarketElement-value-set! me2 2.71)
+             (check (not flag)
+                    "Observer was notified of frozen instrument change"))
+      (begin (Instrument-unfreeze! s)
+             (check flag
+                    "Observer was not notified of instrument change"))))))

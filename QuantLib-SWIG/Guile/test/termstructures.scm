@@ -19,6 +19,8 @@
 ; The members of the QuantLib Group are listed in the QuantLib License
 
 (load "common.scm")
+(load "unittest.scm")
+(use-modules (QuantLib))
 
 (define (TermStructure-test tag)
   (define (make-test-structure-handle)
@@ -110,9 +112,8 @@
                                                   delete-TermStructure))
                  (TermStructureHandle-link-to! term-structure 
                                                new-term-structure))
-               (if (not flag)
-                   (error 
-                    "Observer was not notified of term structure change")))))
+               (check flag
+                      "Observer was not notified of term structure change"))))
           ((equal? tag 'fw-spreaded-obs)
            ; check forward-spreaded term structure observability
            (let ((flag #f)
@@ -145,13 +146,14 @@
                                                   delete-TermStructure))
                  (TermStructureHandle-link-to! term-structure 
                                                new-term-structure))
-               (if (not flag)
-                   (error 
-                    "Observer was not notified of term structure change"))
-               (set! flag #f)
-               (SimpleMarketElement-value-set! me 0.005)
-               (if (not flag)
-                   (error "Observer was not notified of spread change")))))
+               (and
+                (check flag
+                       "Observer was not notified of term structure change")
+                (begin
+                  (set! flag #f)
+                  (SimpleMarketElement-value-set! me 0.005)
+                  (check flag
+                         "Observer was not notified of spread change"))))))
           ((equal? tag 'z-spreaded-obs)
            ; check zero-spreaded term structure observability
            (let ((flag #f)
@@ -184,17 +186,24 @@
                                                   delete-TermStructure))
                  (TermStructureHandle-link-to! term-structure 
                                                new-term-structure))
-               (if (not flag)
-                   (error 
-                    "Observer was not notified of term structure change"))
-               (set! flag #f)
-               (SimpleMarketElement-value-set! me 0.005)
-               (if (not flag)
-                   (error "Observer was not notified of spread change"))))))))
+               (and
+                (check flag
+                       "Observer was not notified of term structure change")
+                (begin
+                  (set! flag #f)
+                  (SimpleMarketElement-value-set! me 0.005)
+                  (check flag
+                         "Observer was not notified of spread change")))))))))
 
-(define (Implied-term-structure-observability-test)
-  (TermStructure-test 'implied-obs))
-(define (Forward-spreaded-term-structure-observability-test)
-  (TermStructure-test 'fw-spreaded-obs))
-(define (Zero-spreaded-term-structure-observability-test)
-  (TermStructure-test 'z-spreaded-obs))
+(greg-assert/display
+ "Testing observability of implied term structure"
+ (TermStructure-test 'implied-obs))
+
+(greg-assert/display
+ "Testing observability of forward-spreaded term structure"
+ (TermStructure-test 'fw-spreaded-obs))
+
+(greg-assert/display
+ "Testing observability of zero-spreaded term structure"
+ (TermStructure-test 'z-spreaded-obs))
+
