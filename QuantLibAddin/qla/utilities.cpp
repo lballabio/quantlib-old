@@ -22,6 +22,7 @@
 #include <ql/qldefines.hpp>
 #include <oh/logger.hpp>
 #include <sstream>
+#include <qla/vanillaoption.hpp> // to be moved
 
 using namespace ObjHandler;
 
@@ -67,6 +68,23 @@ namespace QuantLibAddin {
             const int &level) {
         Logger::instance().logMessage(message, level);
         return message;
+    }
+
+// fixme this function may be deleted
+    const ObjHandler::Properties& QL_OPTION_SETENGINE(
+            const std::string &handle,
+            const std::string &engineName,
+            const long &timeSteps) {
+
+        boost::shared_ptr<VanillaOption> objectPointer =
+            boost::dynamic_pointer_cast<VanillaOption>
+            (ObjHandler::ObjectHandler::instance().retrieveObject(handle));
+        if (!objectPointer)
+            QL_FAIL("QL_OPTION_SETENGINE: error retrieving object " + handle);
+
+        objectPointer->setEngine(engineName, timeSteps);
+        return objectPointer->getProperties();
+
     }
 
 }

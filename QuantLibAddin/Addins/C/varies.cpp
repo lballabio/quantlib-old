@@ -80,11 +80,3 @@ using namespace ObjHandler;
         delete [] vl->varies;
     }
 
-    void arrayToVector(
-            const long& arraySize, 
-            const char** array,
-            std::vector < std::string > &ret) {
-        for (int i = 0; i < arraySize; i++)
-            ret.push_back(std::string(array[i]));
-    }
-

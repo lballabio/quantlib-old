@@ -180,106 +180,89 @@ LIB32=link.exe -lib
 # Name "QuantLibAddin - Win32 Release SingleThread"
 # Name "QuantLibAddin - Win32 Debug MTDLL"
 # Name "QuantLibAddin - Win32 Debug SingleThread"
-# Begin Group "objects"
 
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\qla\objects\asianoption.cpp
+SOURCE=.\qla\asianoption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\asianoption.hpp
+SOURCE=.\qla\asianoption.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\barrieroption.cpp
+SOURCE=.\qla\barrieroption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\barrieroption.hpp
+SOURCE=.\qla\barrieroption.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\basketoption.cpp
+SOURCE=.\qla\basketoption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\basketoption.hpp
+SOURCE=.\qla\basketoption.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\cliquetoption.cpp
+SOURCE=.\qla\cliquetoption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\cliquetoption.hpp
+SOURCE=.\qla\cliquetoption.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\dividendvanillaoption.cpp
+SOURCE=.\qla\dividendvanillaoption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\dividendvanillaoption.hpp
+SOURCE=.\qla\dividendvanillaoption.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\forwardvanillaoption.cpp
+SOURCE=.\qla\forwardvanillaoption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\forwardvanillaoption.hpp
+SOURCE=.\qla\forwardvanillaoption.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\options.hpp
+SOURCE=.\qla\options.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\optionutils.cpp
+SOURCE=.\qla\optionutils.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\optionutils.hpp
+SOURCE=.\qla\optionutils.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\stochasticprocess.cpp
+SOURCE=.\qla\stochasticprocess.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\stochasticprocess.hpp
+SOURCE=.\qla\stochasticprocess.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\vanillaoption.cpp
+SOURCE=.\qla\vanillaoption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\objects\vanillaoption.hpp
-# End Source File
-# End Group
-# Begin Group "functions"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\qla\functions\options.cpp
+SOURCE=.\qla\vanillaoption.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\functions\options.hpp
+SOURCE=.\qla\utilities.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\functions\utilities.cpp
+SOURCE=.\qla\utilities.hpp
 # End Source File
-# Begin Source File
-
-SOURCE=.\qla\functions\utilities.hpp
-# End Source File
-# End Group
 # Begin Source File
 
 SOURCE=.\qla\autolink.hpp

@@ -1,5 +1,5 @@
     try {
-%s        ObjHandler::Properties properties = QuantLibAddin::%s(
+        ObjHandler::Properties properties = %s(
 %s%s);
         propertiesToVaries(properties, result);
         return SUCCESS;

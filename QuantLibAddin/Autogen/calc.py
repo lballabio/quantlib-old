@@ -52,7 +52,7 @@ def generateAutoHeader(functionGroups):
 def generateHeader(fileHeader, function, suffix):
     'generate implementation for given function'
     if function[common.CTOR]:
-        fileHeader.write('        const STRING & handle,\n')
+        fileHeader.write('\n        const STRING & handle,')
     paramList = utils.generateParamList(function[common.PARAMS], 2, True,
         '', 'const STRING &', CALC_LONG,
         convertVec = 'const SEQSEQ(%s)& ',
@@ -95,19 +95,22 @@ def generateHeaders(functionGroups):
 
 def generateFuncSource(fileFunc, function, bufBody):
     'generate source for given function'
-    fileFunc.write('SEQSEQ( ANY ) SAL_CALL QLAddin::%s(\n' 
+    fileFunc.write('SEQSEQ( ANY ) SAL_CALL QLAddin::%s(' 
         % function[common.CODENAME])
     generateHeader(fileFunc, function, ' {')
     if function[common.CTOR]:
-        handle = '\n' + 12 * ' ' + 'OUStringToString(handle),'
+        handle = 12 * ' ' + 'OUStringToString(handle).c_str(),\n'
+        fName = 'QL_MAKE_OBJECT(%s)' % function[common.QLFUNC]
     else:
         handle = ''
+        fName = 'QuantLibAddin::' + function[common.NAME]
     paramList = utils.generateParamList(function[common.PARAMS], 3,
-        reformatString = 'OUStringToString(%s)', appendTensor = True)
+        reformatString = 'OUStringToString(%s).c_str()', 
+        arrayCount = True, appendTensor = True)
     conversions = utils.generateConversions(function[common.PARAMS])
     fileFunc.write(bufBody % (
         conversions,
-        function[common.NAME],
+        fName,
         handle,
         paramList,
         function[common.NAME]))

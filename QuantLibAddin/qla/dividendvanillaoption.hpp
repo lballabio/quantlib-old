@@ -18,25 +18,14 @@
 #ifndef qla_dividendvanillaoption_hpp
 #define qla_dividendvanillaoption_hpp
 
-#include <qla/objects/stochasticprocess.hpp>
+#include <qla/stochasticprocess.hpp>
 #include <ql/Instruments/dividendvanillaoption.hpp>
 
 namespace QuantLibAddin {
 
     class DividendVanillaOption : public ObjHandler::Object {
     public:
-        DividendVanillaOption(
-            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::vector<long>& dividendDatesLong,
-            const std::vector<double>& dividends,
-            const std::string &optionTypeID,
-            const std::string &payoffID,
-            const double &strike,
-            const std::string &exerciseID,
-            const long &exerciseDate,
-            const long &settlementDate,
-            const std::string &engineID,
-            const long &timeSteps);
+        DividendVanillaOption(va_list list);
     //    ~DividendVanillaOption();
         void setEngine(
             const std::string &engineName,

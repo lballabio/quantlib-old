@@ -18,24 +18,14 @@
 #ifndef qla_asianoption_hpp
 #define qla_asianoption_hpp
 
-#include <qla/objects/stochasticprocess.hpp>
+#include <qla/stochasticprocess.hpp>
 #include <ql/Instruments/asianoption.hpp>
 
 namespace QuantLibAddin {
 
     class ContinuousAveragingAsianOption : public ObjHandler::Object {
     public:
-        ContinuousAveragingAsianOption(
-            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::string &averageID,
-            const std::string &optionTypeID,
-            const std::string &payoffID,
-            const double &strike,
-            const std::string &exerciseID,
-            const long &exerciseDate,
-            const long &settlementDate,
-            const std::string &engineID,
-            const long &timeSteps);
+        ContinuousAveragingAsianOption(va_list list);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(
                 continuousAveragingAsianOption_);
@@ -47,20 +37,7 @@ namespace QuantLibAddin {
 
     class DiscreteAveragingAsianOption : public ObjHandler::Object {
     public:
-        DiscreteAveragingAsianOption(
-            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::string &averageID,
-            const double &runningAccumulator,
-            const long &pastFixings,
-            const std::vector<long> &fixingDates,
-            const std::string &optionTypeID,
-            const std::string &payoffID,
-            const double &strike,
-            const std::string &exerciseID,
-            const long &exerciseDate,
-            const long &settlementDate,
-            const std::string &engineID,
-            const long &timeSteps);
+        DiscreteAveragingAsianOption(va_list list);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(
                 discreteAveragingAsianOption_);

@@ -18,23 +18,31 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qla/config.hpp>
 #endif
-#include <qla/objects/dividendvanillaoption.hpp>
-#include <qla/objects/optionutils.hpp>
+#include <qla/forwardvanillaoption.hpp>
+#include <qla/optionutils.hpp>
 
 namespace QuantLibAddin {
 
-    DividendVanillaOption::DividendVanillaOption(
-            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::vector<long>& dividendDatesLong,
-            const std::vector<double>& dividends,
-            const std::string &optionTypeID,
-            const std::string &payoffID,
-            const double &strike,
-            const std::string &exerciseID,
-            const long &exerciseDate,
-            const long &settlementDate,
-            const std::string &engineID,
-            const long &timeSteps) {
+    ForwardVanillaOption::ForwardVanillaOption(va_list list) {
+        char *handleStochastic = va_arg(list, char *);
+        double moneyness = va_arg(list, double);
+        long resetDate = va_arg(list, long);
+        char *optionTypeID = va_arg(list, char *);
+        char *payoffID = va_arg(list, char *);
+        double strike = va_arg(list, double);
+        char *exerciseID = va_arg(list, char *);
+        long exerciseDate = va_arg(list, long);
+        long settlementDate = va_arg(list, long);
+        char *engineID = va_arg(list, char *);
+        long timeSteps = va_arg(list, long);
+
+        std::string handleStochasticStr(handleStochastic);
+        boost::shared_ptr<StochasticProcess> stochasticProcess =
+            boost::dynamic_pointer_cast<StochasticProcess>
+            (ObjHandler::ObjectHandler::instance().retrieveObject(handleStochasticStr));
+        if (!stochasticProcess)
+            QL_FAIL("ForwardVanillaOption: error retrieving object " + handleStochasticStr);
+
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             IDtoPayoff(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::Exercise> exercise = 
@@ -44,17 +52,15 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL = 
             boost::static_pointer_cast<QuantLib::BlackScholesProcess>
             (stochasticProcess->getReference());
-        const std::vector<QuantLib::Date>& dividendDates = 
-            longVectorToDateVector(dividendDatesLong);
-        dividendVanillaOption_ = boost::shared_ptr<QuantLib::DividendVanillaOption>(
-            new QuantLib::DividendVanillaOption(
+        forwardVanillaOption_ = boost::shared_ptr<QuantLib::ForwardVanillaOption>(
+            new QuantLib::ForwardVanillaOption(
+                moneyness,
+                QuantLib::Date(resetDate),
                 stochasticProcessQL, 
                 payoff, 
                 exercise, 
-                dividendDates,
-                dividends,
                 pricingEngine));
-        ObjHandler::any_ptr any_npv(new boost::any(dividendVanillaOption_->NPV()));
+        ObjHandler::any_ptr any_npv(new boost::any(forwardVanillaOption_->NPV()));
         ObjHandler::any_ptr any_engine(new boost::any(std::string(engineID)));
         ObjHandler::ObjectProperty prop_npv(FIELD_NPV, any_npv);
         ObjHandler::ObjectProperty prop_engine(FIELD_ENGINE, any_engine);
@@ -62,13 +68,13 @@ namespace QuantLibAddin {
         properties_.push_back(prop_engine);
     }
 
-    void DividendVanillaOption::setEngine(
+    void ForwardVanillaOption::setEngine(
             const std::string &engineID,
             const long &timeSteps) {
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             IDtoEngine(engineID, timeSteps);
-        dividendVanillaOption_->setPricingEngine(pricingEngine);
-        *properties_[IDX_NPV]() = dividendVanillaOption_->NPV();
+        forwardVanillaOption_->setPricingEngine(pricingEngine);
+        *properties_[IDX_NPV]() = forwardVanillaOption_->NPV();
         *properties_[IDX_ENGINE]() = engineID;
     }
 

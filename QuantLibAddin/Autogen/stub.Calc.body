@@ -1,6 +1,6 @@
     try {
-%s        Properties properties = %s(%s
-%s);
+%s        Properties properties = %s(
+%s%s);
         return getArray(properties, handle);
     } catch (const std::exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: %s: ") + e.what(), 2);

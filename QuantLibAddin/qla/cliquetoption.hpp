@@ -18,21 +18,14 @@
 #ifndef qla_cliquetoption_hpp
 #define qla_cliquetoption_hpp
 
-#include <qla/objects/stochasticprocess.hpp>
+#include <qla/stochasticprocess.hpp>
 #include <ql/Instruments/cliquetoption.hpp>
 
 namespace QuantLibAddin {
 
     class CliquetOption : public ObjHandler::Object {
     public:
-        CliquetOption::CliquetOption(
-            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::vector < long > &resetDatesLong,
-            const std::string &optionTypeID,
-            const double &strike,
-            const long &exerciseDate,
-            const std::string &engineID,
-            const long &timeSteps);
+        CliquetOption::CliquetOption(va_list list);
     //    ~CliquetOption();
         void setEngine(
             const std::string &engineName,

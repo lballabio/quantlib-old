@@ -15,29 +15,23 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_conversions_hpp
-#define qla_conversions_hpp
+#ifndef qla_barrieroption_hpp
+#define qla_barrieroption_hpp
 
-#include <oh/objhandler.hpp>
+#include <qla/stochasticprocess.hpp>
+#include <ql/Instruments/barrieroption.hpp>
 
 namespace QuantLibAddin {
 
-    template < typename T >
-    void handleVectorToObjectVector(
-            const std::vector<std::string > &v,
-            std::vector < boost::shared_ptr< T > > &ret) {
-        std::vector<std::string >::const_iterator i;
-        for (i = v.begin(); i != v.end(); i++) {
-            std::string handle = *i;
-            boost::shared_ptr< T > objPtr =
-                boost::dynamic_pointer_cast< T >
-                (ObjHandler::ObjectHandler::instance().retrieveObject(handle));
-            if (!objPtr)
-                throw ObjHandler::Exception(
-                    "handleVectorToObjectVector: error retrieving object " + handle);
-            ret.push_back(objPtr);
+    class BarrierOption : public ObjHandler::Object {
+    public:
+        BarrierOption(va_list list);
+        virtual boost::shared_ptr<void> getReference() const {
+            return boost::static_pointer_cast<void>(barrierOption_);
         }
-    }
+    private:
+        boost::shared_ptr<QuantLib::BarrierOption> barrierOption_;
+    };
 
 }
 

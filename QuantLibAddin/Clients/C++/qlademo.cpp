@@ -41,9 +41,8 @@ int main() {
         long timeSteps = 801;
         Date exerciseDate(17, May, 1999);
         Date settlementDate(17, May, 1998);
-        Date todaysDate(15, May, 1998);
 
-        Properties bsProperties = QL_STOCHASTIC_PROCESS(
+        Properties bsProperties = QL_MAKE_OBJECT(StochasticProcess)(
             "my_stochastic", 
             underlying,
             "ACT360",
@@ -52,7 +51,7 @@ int main() {
             dividendYield, 
             volatility);
 
-        Properties opProperties = QL_OPTION_VANILLA(
+        Properties opProperties = QL_MAKE_OBJECT(VanillaOption)(
             "my_option",                    // option handle
             "my_stochastic",                // stochastic process handle
             "PUT",                          // option type
@@ -100,36 +99,6 @@ int main() {
         ostringstream s;
         s << "underlying option NPV() = " << vanillaOptionQL->NPV();
         QL_LOGMESSAGE(s.str());
-
-        // example that takes a vector as input
-        std::vector<long> fixingDates(exerciseDate - todaysDate + 1);
-        for (Size i=0; i<fixingDates.size(); i++)
-            fixingDates[i] = todaysDate.serialNumber() + i;
-        Properties asProperties = QL_OPTION_ASIAN_D(
-            "my_asian_discrete",            // option handle
-            "my_stochastic",                // stochastic process handle
-            "G",                            // average type ("A"verage/"G"eometric)
-            1.0,                            // running accumulator
-            0,                              // past fixings
-            fixingDates,                    // fixingDates
-            "PUT",                          // option type
-            "VAN",                          // payoff type (plain vanilla)
-            strike,                         // strike price
-            "EU",                           // exercise type (american)
-            exerciseDate.serialNumber(),    // exercise date
-            0,                              // settlement date ignored when exercise = European
-            "ADGAPA",                       // engine type (AnalyticDiscreteGeometricAveragePriceAsianEngine)
-            timeSteps);                     // time steps
-
-        QL_LOGMESSAGE("High-level interrogation: after QL_OPTION_ASIAN_D");
-        for (it = asProperties.begin();
-            it != asProperties.end(); it++) {
-            ObjectProperty property = *it;
-            ostringstream s;
-            s << "property = " << property.name() 
-                << "\tvalue = " << property();
-            QL_LOGMESSAGE(s.str());
-        } 
 
         QL_LOGMESSAGE("end example program");
         return 0;

@@ -13,9 +13,9 @@ def generateFuncHeader(fileHeader, function, suffix):
     'generate source for prototype of given function'
     fileHeader.write('int %s(\n' % function[common.NAME])
     if function[common.CTOR]:
-        fileHeader.write('        const char* handle,\n')
+        fileHeader.write('        char* handle,\n')
     fileHeader.write(utils.generateParamList(function[common.PARAMS],
-        2, True, 'const ', 'char*', arrayCount = True,
+        2, True, convertString = 'char*', arrayCount = True,
         convertMatStr = 'char*'))
     fileHeader.write(',\n        VariesList *result)%s\n' % suffix)
 
@@ -29,36 +29,8 @@ def generateFuncHeaders(groupName, functionGroup):
     fileHeader.write('#define qla_%s_h\n\n' % groupName)
     for function in functionGroup[common.FUNCLIST]:
         generateFuncHeader(fileHeader, function, ';\n')
-    fileHeader.write('#endif\n')
+    fileHeader.write('#endif\n\n')
     fileHeader.close()
-
-def generateConversions(paramList):
-    'generate code to convert arrays to vectors/matrices'
-    ret = ''
-    for param in paramList:
-        if param[common.TENSOR] == common.VECTOR: 
-            nm = param[common.NAME] + 'Vector'
-            if param[common.TYPE] == common.STRING:
-                type = 'std::string'
-            else:
-                type = param[common.TYPE]
-            ret += 8 * ' ' + 'std::vector <' + type + \
-                '> ' + nm + ';\n' + 8 * ' ' + \
-                'arrayToVector(' + param[common.NAME] + \
-                'Size, ' + param[common.NAME] + ', ' + nm + ');\n'
-        elif param[common.TENSOR] == common.MATRIX: 
-            nm = param[common.NAME] + 'Matrix'
-            if param[common.TYPE] == common.STRING:
-                type = 'std::string'
-            else:
-                type = param[common.TYPE]
-            ret += 8 * ' ' + 'std::vector < std::vector <' + \
-                type + '> >' + param[common.NAME] + \
-                'Matrix;\n' + 8 * ' ' + \
-                'arrayToMatrix(' + param[common.NAME] + 'Rows, ' + \
-                param[common.NAME] + 'Cols, ' + param[common.NAME] + \
-                ', ' + nm + ');\n'
-    return ret
 
 def generateFuncDefs(groupName, functionGroup):
     'generate source for function implementations'
@@ -71,15 +43,17 @@ def generateFuncDefs(groupName, functionGroup):
     fileFunc.write(bufInclude % groupName)
     for function in functionGroup[common.FUNCLIST]:
         generateFuncHeader(fileFunc, function, ' {')
-        paramList = utils.generateParamList(function[common.PARAMS], 3,
-            appendTensor = True)
+        paramList = utils.generateParamList(function[common.PARAMS], 
+            3, convertString = 'char*', arrayCount = True, convertMatStr = 'char*')
         if function[common.CTOR]:
             handle = 12 * ' ' + 'handle,\n'
+            fName = 'QL_MAKE_OBJECT(%s)' % function[common.QLFUNC]
+            fileFunc.write(bufBody % (fName, handle,
+                paramList, function[common.NAME]))
         else:
             handle = ''
-        conversions = generateConversions(function[common.PARAMS])
-        fileFunc.write(bufBody %
-            (conversions, function[common.NAME], handle,
+            fName = 'QuantLibAddin::' + function[common.NAME]
+            fileFunc.write(bufBody % (fName, handle,
                 paramList, function[common.NAME]))
     fileFunc.close()
 

@@ -57,8 +57,6 @@ AC_CONFIG_FILES([
     Makefile
     Autogen/Makefile
     qla/Makefile
-    qla/objects/Makefile
-    qla/functions/Makefile
     Addins/C/Makefile
     Addins/Calc/Makefile
     Addins/Excel/Makefile

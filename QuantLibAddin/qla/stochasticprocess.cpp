@@ -18,7 +18,7 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qla/config.hpp>
 #endif
-#include <qla/objects/stochasticprocess.hpp>
+#include <qla/stochasticprocess.hpp>
 
 #include <ql/DayCounters/all.hpp>
 #include <ql/quote.hpp>
@@ -38,13 +38,14 @@ namespace QuantLibAddin {
             QL_FAIL("IDtoDayCounter: unrecognized dayCounterID: " + dayCounterID);
     }
 
-    StochasticProcess::StochasticProcess(
-            const double &underlying,
-            const std::string &dayCounterID,
-            const long &settlementDateLong,
-            const double &riskFreeRate,
-            const double &dividendYield,
-            const double &volatility) {
+    StochasticProcess::StochasticProcess(va_list list) {
+        double underlying = va_arg(list, double);
+        char *dayCounterID = va_arg(list, char *);
+        long settlementDateLong = va_arg(list, long);
+        double riskFreeRate = va_arg(list, double);
+        double dividendYield = va_arg(list, double);
+        double volatility = va_arg(list, double);
+
         QuantLib::Date settlementDate(settlementDateLong);
         QuantLib::DayCounter dayCounter = IDtoDayCounter(dayCounterID);
         QuantLib::Handle<QuantLib::Quote> underlyingH( 

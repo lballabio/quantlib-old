@@ -24,6 +24,8 @@
 
 #include <oh/objhandler.hpp>
 
+#define QL_MAKE_OBJECT(X) ObjHandler::Factory<QuantLibAddin::X>::makeObject
+
 namespace QuantLibAddin {
 
 /*! \group utilities
@@ -92,6 +94,11 @@ namespace QuantLibAddin {
     std::string QL_LOGMESSAGE(const std::string &message,
             const int &level = 4);
     //@}
+
+    const ObjHandler::Properties& QL_OPTION_SETENGINE(
+            const std::string &handle,
+            const std::string &engineName,
+            const long &timeSteps);
 
 }
 

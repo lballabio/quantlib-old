@@ -18,21 +18,29 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qla/config.hpp>
 #endif
-#include <qla/objects/vanillaoption.hpp>
-#include <qla/objects/optionutils.hpp>
+#include <qla/vanillaoption.hpp>
+#include <qla/optionutils.hpp>
 
 namespace QuantLibAddin {
 
-    VanillaOption::VanillaOption(
-            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::string &optionTypeID,
-            const std::string &payoffID,
-            const double &strike,
-            const std::string &exerciseID,
-            const long &exerciseDate,
-            const long &settlementDate,
-            const std::string &engineID,
-            const long &timeSteps) {
+    VanillaOption::VanillaOption(va_list list) {
+        char *handleStochastic = va_arg(list, char *);
+        char *optionTypeID = va_arg(list, char *);
+        char *payoffID = va_arg(list, char *);
+        double strike = va_arg(list, double);
+        char *exerciseID = va_arg(list, char *);
+        long exerciseDate = va_arg(list, long);
+        long settlementDate = va_arg(list, long);
+        char *engineID = va_arg(list, char *);
+        long timeSteps = va_arg(list, long);
+
+        std::string handleStochasticStr(handleStochastic);
+        boost::shared_ptr<StochasticProcess> stochasticProcess =
+            boost::dynamic_pointer_cast<StochasticProcess>
+            (ObjHandler::ObjectHandler::instance().retrieveObject(handleStochasticStr));
+        if (!stochasticProcess)
+            QL_FAIL("VanillaOption: error retrieving object " + handleStochasticStr);
+
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             IDtoPayoff(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::Exercise> exercise = 

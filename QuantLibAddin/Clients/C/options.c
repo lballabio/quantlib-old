@@ -173,11 +173,11 @@ int main() {
     if (QL_OPTION_BASKET(
             "opt_basket",                   // option handle
             2,                              // #/stochastic processes
-            (const char**)stochHandles,     // array of stoch process handles
+            stochHandles,                   // array of stoch process handles
             "MIN",                          // basket type
             2,                              // #/rows in correlations matrix
             2,                              // #/cols in correlations matrix
-            (const double**)correlations,   // correlations matrix
+            correlations,                   // correlations matrix
             "CALL",                         // option type
             40.0,                           // strike price
             "EU",                           // exercise type

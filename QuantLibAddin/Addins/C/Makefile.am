@@ -1,7 +1,5 @@
 
 AM_CPPFLAGS = -I${top_srcdir}
-#AM_LDFLAGS = -release $(PACKAGE_VERSION)
-#includedir = $(prefix)/include/qla
 
 EXTRA_DIST = \
     AddinC.dev \

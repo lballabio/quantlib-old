@@ -26,13 +26,7 @@ namespace QuantLibAddin {
     class StochasticProcess : public ObjHandler::Object {
     public:
 
-        StochasticProcess(
-            const double &underlying,
-            const std::string &dayCounterID,
-            const long &settlementDateLong,
-            const double &riskFreeRate,
-            const double &dividendYield,
-            const double &volatility);
+        StochasticProcess(va_list list);
 //        ~StochasticProcess();
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(stochasticProcess_);

@@ -18,8 +18,8 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qla/config.hpp>
 #endif
-#include <qla/objects/asianoption.hpp>
-#include <qla/objects/optionutils.hpp>
+#include <qla/asianoption.hpp>
+#include <qla/optionutils.hpp>
 
 namespace QuantLibAddin {
 
@@ -33,17 +33,25 @@ namespace QuantLibAddin {
             QL_FAIL("IDtoAverageType: unrecognized averageID: " + averageID);
     }
 
-    ContinuousAveragingAsianOption::ContinuousAveragingAsianOption(
-            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::string &averageID,
-            const std::string &optionTypeID,
-            const std::string &payoffID,
-            const double &strike,
-            const std::string &exerciseID,
-            const long &exerciseDate,
-            const long &settlementDate,
-            const std::string &engineID,
-            const long &timeSteps) {
+    ContinuousAveragingAsianOption::ContinuousAveragingAsianOption(va_list list) {
+        char *handleStochastic = va_arg(list, char *);
+        char *averageID = va_arg(list, char *);
+        char *optionTypeID = va_arg(list, char *);
+        char *payoffID = va_arg(list, char *);
+        double strike = va_arg(list, double);
+        char *exerciseID = va_arg(list, char *);
+        long exerciseDate = va_arg(list, long);
+        long settlementDate = va_arg(list, long);
+        char *engineID = va_arg(list, char *);
+        long timeSteps = va_arg(list, long);
+
+        std::string handleStochasticStr(handleStochastic);
+        boost::shared_ptr<StochasticProcess> stochasticProcess =
+            boost::dynamic_pointer_cast<StochasticProcess>
+            (ObjHandler::ObjectHandler::instance().retrieveObject(handleStochasticStr));
+        if (!stochasticProcess)
+            QL_FAIL("ContinuousAveragingAsianOption: error retrieving object " + handleStochasticStr);
+
         QuantLib::Average::Type averageType =
             IDtoAverageType(averageID);
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
@@ -73,20 +81,31 @@ namespace QuantLibAddin {
         properties_.push_back(prop_engine);
     }
 
-    DiscreteAveragingAsianOption::DiscreteAveragingAsianOption(
-            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::string &averageID,
-            const double &runningAccumulator,
-            const long &pastFixings,
-            const std::vector<long> &fixingDates,
-            const std::string &optionTypeID,
-            const std::string &payoffID,
-            const double &strike,
-            const std::string &exerciseID,
-            const long &exerciseDate,
-            const long &settlementDate,
-            const std::string &engineID,
-            const long &timeSteps) {
+    DiscreteAveragingAsianOption::DiscreteAveragingAsianOption(va_list list) {
+        char *handleStochastic = va_arg(list, char *);
+        char *averageID = va_arg(list, char *);
+        double runningAccumulator = va_arg(list, double);
+        long pastFixings = va_arg(list, long);
+        long fixingDatesSize = va_arg(list, long);
+        long *fixingDates = va_arg(list, long *);
+        char *optionTypeID = va_arg(list, char *);
+        char *payoffID = va_arg(list, char *);
+        double strike = va_arg(list, double);
+        char *exerciseID = va_arg(list, char *);
+        long exerciseDate = va_arg(list, long);
+        long settlementDate = va_arg(list, long);
+        char *engineID = va_arg(list, char *);
+        long timeSteps = va_arg(list, long);
+
+        std::string handleStochasticStr(handleStochastic);
+        boost::shared_ptr<StochasticProcess> stochasticProcess =
+            boost::dynamic_pointer_cast<StochasticProcess>
+            (ObjHandler::ObjectHandler::instance().retrieveObject(handleStochasticStr));
+        if (!stochasticProcess)
+            QL_FAIL("DiscreteAveragingAsianOption: error retrieving object " + handleStochasticStr);
+
+        std::vector <long> fixingDatesVector =
+            Conversion<long>::arrayToVector(fixingDatesSize, fixingDates);
         QuantLib::Average::Type averageType =
             IDtoAverageType(averageID);
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
@@ -100,7 +119,7 @@ namespace QuantLibAddin {
             (stochasticProcess->getReference());
         std::vector<QuantLib::Date> fixingDatesQL;
         std::vector<long>::const_iterator i;
-        for (i = fixingDates.begin(); i != fixingDates.end(); i++)
+        for (i = fixingDatesVector.begin(); i != fixingDatesVector.end(); i++)
             fixingDatesQL.push_back(QuantLib::Date(*i));
         discreteAveragingAsianOption_ = 
             boost::shared_ptr<QuantLib::DiscreteAveragingAsianOption>(

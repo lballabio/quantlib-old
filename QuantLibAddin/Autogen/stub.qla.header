@@ -1,9 +1,0 @@
-#if defined(HAVE_CONFIG_H)     // Dynamically created by configure
-    #include <qla/config.hpp>
-#endif
-#include <qla/functions/%s.hpp>
-#include <qla/functions/conversions.hpp>
-#include <qla/objects/%s.hpp>
-
-namespace QuantLibAddin {
-

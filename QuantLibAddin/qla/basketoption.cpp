@@ -18,8 +18,8 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qla/config.hpp>
 #endif
-#include <qla/objects/basketoption.hpp>
-#include <qla/objects/optionutils.hpp>
+#include <qla/basketoption.hpp>
+#include <qla/optionutils.hpp>
 
 namespace QuantLibAddin {
 
@@ -33,22 +33,30 @@ namespace QuantLibAddin {
             QL_FAIL("IDtoBasketType: unrecognized typeID: " + basketID);
     }
 
-    BasketOption::BasketOption(
-            const std::vector < 
-                boost::shared_ptr<StochasticProcess> > &stochasticProcs,
-            const std::string &basketID,
-            const std::vector < std::vector < double > > &correlationVV,
-            const std::string &optionTypeID,
-            const double &strike,
-            const std::string &exerciseID,
-            const long &exerciseDate,
-            const long &settlementDate,
-            const std::string &engineID,
-            const long &timeSteps) {
+    BasketOption::BasketOption(va_list list) {
+        long handleStochasticSize = va_arg(list, long);
+        char **handleStochastic = va_arg(list, char **);
+        char *basketID = va_arg(list, char *);
+        long correlationsRows = va_arg(list, long);
+        long correlationsCols = va_arg(list, long);
+        double **correlations = va_arg(list, double **);
+        char *optionTypeID = va_arg(list, char *);
+        double strike = va_arg(list, double);
+        char *exerciseID = va_arg(list, char *);
+        long exerciseDate = va_arg(list, long);
+        long settlementDate = va_arg(list, long);
+        char *engineID = va_arg(list, char *);
+        long timeSteps = va_arg(list, long);
+
+        std::vector <std::string> handleStochasticVector =
+            Conversion<std::string>::arrayToVector(handleStochasticSize, handleStochastic);
+
+        std::vector < std::vector <double> >correlationsMatrix =
+            Conversion<double>::arrayToMatrix(correlationsRows, correlationsCols, correlations);
         QuantLib::BasketOption::BasketType basketType = 
             IDtoBasketType(basketID);
         QuantLib::Matrix correlation =
-            vectorVectorToMatrix(correlationVV);
+            vectorVectorToMatrix(correlationsMatrix);
         QuantLib::Option::Type type = IDtoOptionType(optionTypeID);
         boost::shared_ptr<QuantLib::PlainVanillaPayoff> payoff(
             new QuantLib::PlainVanillaPayoff(type, strike));
@@ -58,9 +66,14 @@ namespace QuantLibAddin {
             IDtoEngine(engineID, timeSteps);
         std::vector < boost::shared_ptr<QuantLib::BlackScholesProcess> >
             stochasticProcsQL;
-        std::vector < boost::shared_ptr< StochasticProcess > >::const_iterator i;
-        for (i = stochasticProcs.begin(); i != stochasticProcs.end(); i++) {
-            boost::shared_ptr< StochasticProcess > stochasticProcess = *i;
+        std::vector < std::string >::const_iterator i;
+        for (i = handleStochasticVector.begin(); i != handleStochasticVector.end(); i++) {
+            std::string handleStochasticStr = *i;
+            boost::shared_ptr<StochasticProcess> stochasticProcess =
+                boost::dynamic_pointer_cast<StochasticProcess>
+                (ObjHandler::ObjectHandler::instance().retrieveObject(handleStochasticStr));
+            if (!stochasticProcess)
+                QL_FAIL("BasketOption: error retrieving object " + handleStochasticStr);
             const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL =
                 boost::static_pointer_cast<QuantLib::BlackScholesProcess>
                 (stochasticProcess->getReference());

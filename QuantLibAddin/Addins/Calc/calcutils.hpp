@@ -24,10 +24,49 @@ SEQSEQ( ANY ) getArray(ObjHandler::Properties properties,
 std::string OUStringToString(const STRING& s1);
 ANY stringToANY(const std::string &s);
 
-std::vector < long > longArrayToVector(const SEQSEQ(long)& s);
-std::vector < double > doubleArrayToVector(const SEQSEQ(double)& s);
-std::vector < std::string > stringArrayToVector(const SEQSEQ(STRING)& s);
-std::vector < std::vector < double > >doubleArrayToMatrix(const SEQSEQ(double)& s);
+template < typename T >
+class Conversion {
+public:
+
+    static void convertArray(const SEQSEQ(T)& s, T* &a, long &sz) {
+        SEQ(T) s2 = s[0];
+        sz = s.getLength() * s2.getLength();
+        a = new T[sz];
+        for (int i=0; i<s.getLength(); i++){
+            s2 = s[i];
+            for (int j=0; j<s2.getLength(); j++)
+                a[i * s2.getLength() + j] = s2[j];
+        }
+    }
+
+    static void convertArray(const SEQSEQ(STRING)& s, char** &a, long &sz) {
+        SEQ(STRING) s2 = s[0];
+        sz = s.getLength() * s2.getLength();
+        a = new char*[sz];
+        for (int i=0; i<s.getLength(); i++){
+            s2 = s[i];
+            for (int j=0; j<s2.getLength(); j++) {
+                int idx = i * s2.getLength() + j;
+                a[idx] = new char[s2.getLength() + 1];
+                sprintf(a[idx], OUStringToString(s2[j]).c_str());
+            }
+        }
+    }
+
+    static void convertMatrix(const SEQSEQ(double)& s, T** &a, long &r, long &c) {
+        SEQ(T) s2 = s[0];
+        r = s.getLength();
+        c = s2.getLength();
+        a = new T*[r];
+        for (int i=0; i<s.getLength(); i++) {
+            s2 = s[i];
+            a[i] = new T[c];
+            for (int j=0; j<s2.getLength(); j++)
+                a[i][j] = s2[j];
+        }
+    }
+
+};
 
 #endif
 

@@ -18,25 +18,14 @@
 #ifndef qla_basketoption_hpp
 #define qla_basketoption_hpp
 
-#include <qla/objects/stochasticprocess.hpp>
+#include <qla/stochasticprocess.hpp>
 #include <ql/Instruments/basketoption.hpp>
 
 namespace QuantLibAddin {
 
     class BasketOption : public ObjHandler::Object {
     public:
-        BasketOption(
-            const std::vector <
-                boost::shared_ptr<StochasticProcess> > &stochasticProcs,
-            const std::string &basketID,
-            const std::vector < std::vector < double > > &correlationVV,
-            const std::string &optionTypeID,
-            const double &strike,
-            const std::string &exerciseID,
-            const long &exerciseDate,
-            const long &settlementDate,
-            const std::string &engineID,
-            const long &timeSteps);
+        BasketOption(va_list list);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(barrierOption_);
         }

@@ -21,33 +21,5 @@
     void propertiesToVaries(const ObjHandler::Properties &properties, 
             VariesList *variesList);
 
-    template < typename T >
-    void arrayToVector(
-            const long& arraySize, 
-            const T* array,
-            std::vector < T > &ret) {
-        for (int i = 0; i < arraySize; i++)
-            ret.push_back(array[i]);
-    }
-
-    void arrayToVector(
-            const long& arraySize, 
-            const char** array,
-            std::vector < std::string > &ret);
-
-    template < typename T >
-    void arrayToMatrix(
-            const long& arrayRows, 
-            const long& arrayCols, 
-            const T** array,
-            std::vector < std::vector < T > > &ret) {
-        for (int i = 0; i < arrayRows; i++) {
-            std::vector < T > row;
-            for (int j = 0; j < arrayCols; j++)
-                row.push_back(array[i][j]);
-            ret.push_back(row);
-        }
-    }
-
 #endif
 

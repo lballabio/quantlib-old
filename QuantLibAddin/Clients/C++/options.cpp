@@ -54,7 +54,7 @@ int main() {
         Date settlementDate(17, May, 1998);
         Date todaysDate(15, May, 1998);
 
-        Properties p1 = QL_STOCHASTIC_PROCESS(
+        Properties p1 = QL_MAKE_OBJECT(StochasticProcess)(
             "stoch1", 
             underlying,
             "ACT360",
@@ -65,7 +65,7 @@ int main() {
 
         printObject("QL_STOCHASTIC_PROCESS", p1);
 
-        Properties p2 = QL_OPTION_VANILLA(
+        Properties p2 = QL_MAKE_OBJECT(VanillaOption)(
             "opt_van",                      // option handle
             "stoch1",                       // stochastic process handle
             "PUT",                          // option type
@@ -79,7 +79,7 @@ int main() {
 
         printObject("QL_OPTION_VANILLA", p2);
 
-        Properties p3 = QL_OPTION_ASIAN_C(
+        Properties p3 = QL_MAKE_OBJECT(ContinuousAveragingAsianOption)(
             "opt_asian_cont",               // option handle
             "stoch1",                       // stochastic process handle
             "G",                            // average type ("A"verage/"G"eometric)
@@ -94,15 +94,18 @@ int main() {
 
         printObject("QL_OPTION_ASIAN_C", p3);
 
-        std::vector<long> fixingDates(exerciseDate - todaysDate + 1);
-        for (Size i=0; i<fixingDates.size(); i++)
+
+        long fixingDatesCount = exerciseDate - todaysDate + 1;
+        long *fixingDates = new long[fixingDatesCount];
+        for (int i = 0; i < fixingDatesCount; i++)
             fixingDates[i] = todaysDate.serialNumber() + i;
-        Properties p4 = QL_OPTION_ASIAN_D(
+        Properties p4 = QL_MAKE_OBJECT(DiscreteAveragingAsianOption)(
             "opt_asian_disc",               // option handle
             "stoch1",                       // stochastic process handle
             "G",                            // average type
             1.0,                            // running accumulator
             0,                              // past fixings
+            fixingDatesCount,               // fixingDates
             fixingDates,                    // fixingDates
             "PUT",                          // option type
             "VAN",                          // payoff type
@@ -112,10 +115,11 @@ int main() {
             0,                              // settlement date ignored when exercise = European
             "ADGAPA",                       // engine type
             timeSteps);                     // time steps
+        delete [] fixingDates;
 
         printObject("QL_OPTION_ASIAN_D", p4);
 
-        Properties p5 = QL_OPTION_BARRIER(
+        Properties p5 = QL_MAKE_OBJECT(BarrierOption)(
             "opt_barrier",                  // option handle
             "stoch1",                       // stochastic process handle
             "DOWNIN",                       // barrier type
@@ -132,22 +136,22 @@ int main() {
 
         printObject("QL_OPTION_BARRIER", p5);
 
-        std::vector< std::string > v;
-        v.push_back("stoch1");
-        v.push_back("stoch1");
-        std::vector < std::vector < double > > correlations;
-        for (int i2=0;i2<2;i2++) {
-            std::vector < double > v;
-            for (int j2=0;j2<2;j2++)
-                v.push_back(0.9);
-            correlations.push_back(v);
-        }
-        for (int i3=0;i3<2;i3++)
-            correlations[i3][i3] = 1.0;
-        Properties p6 = QL_OPTION_BASKET(
+        char *stochHandles[] = { "stoch1", "stoch1" };
+        double **correlations = new double*[2];
+        correlations[0] = new double[2];
+        correlations[1] = new double[2];
+        correlations[0][0] = 1.0;
+        correlations[0][1] = 0.9;
+        correlations[1][0] = 0.9;
+        correlations[1][1] = 1.0;
+
+        Properties p6 = QL_MAKE_OBJECT(BasketOption)(
             "opt_basket",                   // option handle
-            v,                              // vector of stochastic process handles
+            2,
+            stochHandles,                   // vector of stochastic process handles
             "MIN",                          // basket type
+            2,
+            2,
             correlations,                   // correlations
             "CALL",                         // option type
             40.0,                           // strike price
@@ -157,13 +161,17 @@ int main() {
             "SE",                           // engine type
             timeSteps);                     // time steps
 
+        for (int i=0;i<2;i++)
+            delete correlations[i];
+        delete [] correlations;
+
         printObject("QL_OPTION_BASKET", p6);
 
-        std::vector< long > resetDates;
-        resetDates.push_back(todaysDate.serialNumber() + 90);
-        Properties p7 = QL_OPTION_CLIQUET(
+        long resetDates[] = { 36020 };
+        Properties p7 = QL_MAKE_OBJECT(CliquetOption)(
             "opt_cliquet",                  // option handle
             "stoch1",                       // stochastic process handle
+            1,
             resetDates,                     // reset dates
             "PUT",                          // option type
             strike,                         // strike price
@@ -173,16 +181,14 @@ int main() {
 
         printObject("QL_OPTION_CLIQUET", p7);
 
-        std::vector< long > dividendDates;
-        std::vector< double > dividends;
-        for (Date d = todaysDate + 3*Months; d < exerciseDate; d+= 6*Months) {
-            dividendDates.push_back(d.serialNumber());
-            dividends.push_back(5.0);
-        }
-        Properties p8 = QL_OPTION_DIVIDENDVANILLA(
+        long dividendDates[] = { 36022, 36206 };
+        double dividends[] = { 5., 5. };
+        Properties p8 = QL_MAKE_OBJECT(DividendVanillaOption)(
             "opt_divvan",                   // option handle
             "stoch1",                       // stochastic process handle
+            2,                              // dividend dates
             dividendDates,                  // dividend dates
+            2,                              // dividends
             dividends,                      // dividends
             "CALL",                         // option type
             "VAN",                          // payoff type
@@ -196,7 +202,7 @@ int main() {
         printObject("QL_OPTION_DIVIDENDVANILLA", p8);
 
         long resetDate = todaysDate.serialNumber() + 90;
-        Properties p9 = QL_OPTION_FORWARDVANILLA(
+        Properties p9 = QL_MAKE_OBJECT(ForwardVanillaOption)(
             "opt_fwdvan",                   // option handle
             "stoch1",                       // stochastic process handle
             12.,                            // moneyness

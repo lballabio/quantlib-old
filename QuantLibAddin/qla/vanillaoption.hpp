@@ -18,23 +18,14 @@
 #ifndef qla_vanillaoption_hpp
 #define qla_vanillaoption_hpp
 
-#include <qla/objects/stochasticprocess.hpp>
+#include <qla/stochasticprocess.hpp>
 #include <ql/Instruments/vanillaoption.hpp>
 
 namespace QuantLibAddin {
 
     class VanillaOption : public ObjHandler::Object {
     public:
-        VanillaOption(
-            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
-            const std::string &optionTypeID,
-            const std::string &payoffID,
-            const double &strike,
-            const std::string &exerciseID,
-            const long &exerciseDate,
-            const long &settlementDate,
-            const std::string &engineID,
-            const long &timeSteps);
+        VanillaOption(va_list list);
     //    ~VanillaOption();
         void setEngine(
             const std::string &engineName,

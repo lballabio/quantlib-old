@@ -19,7 +19,7 @@
     #include <qla/config.hpp>
 #endif
 #include <oh/objhandler.hpp>
-#include <qla/objects/optionutils.hpp>
+#include <qla/optionutils.hpp>
 #include <ql/PricingEngines/all.hpp>
 
 namespace QuantLibAddin {

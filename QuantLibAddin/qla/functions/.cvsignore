@@ -1,9 +1,0 @@
-.deps
-libFunctions.la
-.libs
-*.lo
-Makefile
-Makefile.in
-
-options.cpp
-options.hpp

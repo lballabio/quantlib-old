@@ -19,8 +19,8 @@
 #define qladdin_hpp
 
 #include <qla/qladdindefines.hpp>
-#include <qla/functions/options.hpp>
-#include <qla/functions/utilities.hpp>
+#include <qla/options.hpp>
+#include <qla/utilities.hpp>
 
 #endif
 

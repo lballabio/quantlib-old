@@ -42,7 +42,7 @@ def generateParamList(
         if datatypes == False:
             type = ''
             if param[common.TENSOR] == common.VECTOR and appendTensor == True:
-                paramName += 'Vector'
+                paramName += 'Array'
                 deref = ''
             if param[common.TENSOR] == common.MATRIX and appendTensor == True:
                 paramName += 'Matrix'
@@ -58,27 +58,46 @@ def generateParamList(
             else:
                 type = param[common.TYPE] + ' '
             if param[common.TENSOR] == common.VECTOR:
-                if arrayCount == True:
-                    ret += indentStr + prefix + 'long ' + \
-                        paramName + 'Size,' + '\n'
-                    type += '* '
-                elif convertVec != '':
+                if convertVec != '':
                     type = convertVec % type
                 else:
                     type = replaceTensor + ' '
                     deref = ''
             elif param[common.TENSOR] == common.MATRIX:
-                if arrayCount == True:
-                    ret += indentStr + prefix + 'long ' + \
-                        paramName + 'Rows,' + '\n' + \
-                        indentStr + prefix + 'long ' + \
-                        paramName + 'Cols,' + '\n'
-                    type += '** '
-                elif convertMat != '':
+                if convertMat != '':
                     type = convertMat % type
                 else:
                     type = replaceTensor + ' '
                     deref = ''
+        if arrayCount == True:
+            if datatypes == True:
+                if convertString and param[common.TYPE] == common.STRING:
+                    if param[common.TENSOR] == common.SCALAR:
+                        type = convertString + ' '
+                    else:
+                        type = convertMatStr + ' '
+                else:
+                    type = param[common.TYPE] + ' '
+            else:
+                type = ''
+            if param[common.TENSOR] == common.VECTOR:
+                    if datatypes == True:
+                        type += '* '
+                        x = 'long '
+                    else:
+                        x = ''
+                    ret += indentStr + prefix + x + \
+                        paramName + 'Size,' + '\n'
+            elif param[common.TENSOR] == common.MATRIX:
+                    if datatypes == True:
+                        type += '** '
+                        x = 'long '
+                    else:
+                        x = ''
+                    ret += indentStr + prefix + x + \
+                        paramName + 'Rows,' + '\n' + \
+                        indentStr + prefix + x + \
+                        paramName + 'Cols,' + '\n'
         if reformatString and param[common.TYPE] == common.STRING \
                 and param[common.TENSOR] == common.SCALAR:
             full = reformatString % paramName
@@ -96,25 +115,35 @@ def generateParamList(
 def generateConversions(paramList):
     'generate code to convert arrays to vectors/matrices'
     ret = ''
+    indent = 8 * ' ';
+    bigIndent = 12 * ' ';
     for param in paramList:
         if param[common.TENSOR] == common.VECTOR: 
             if param[common.TYPE] == common.STRING:
-                type = 'std::string'
+                type = 'char *'
             else:
-                type = param[common.TYPE]
-            ret += 8 * ' ' + 'std::vector <' + type + \
-                '> ' + param[common.NAME] + 'Vector =\n' + \
-                12 * ' ' + param[common.TYPE] + 'ArrayToVector(' + \
-                param[common.NAME] + ');\n'
+                type = param[common.TYPE] + ' '
+            nmArray = param[common.NAME] + 'Array'
+            nmSize = param[common.NAME] + 'ArraySize'
+            ret += indent + type + '*' + nmArray + ';\n' \
+                + indent + 'long ' + nmSize + ';\n' \
+                + indent + 'Conversion< ' + type + '>::convertArray(\n' \
+                + bigIndent + param[common.NAME] + ', ' + nmArray + ', ' \
+                + nmSize + ');\n'
         elif param[common.TENSOR] == common.MATRIX: 
             if param[common.TYPE] == common.STRING:
-                type = 'std::string'
+                type = 'char'
             else:
                 type = param[common.TYPE]
-            ret += 8 * ' ' + 'std::vector < std::vector < ' + \
-                type + '> >' + param[common.NAME] + \
-                'Matrix =\n' + 12 * ' ' + param[common.TYPE] + \
-                'ArrayToMatrix(' + param[common.NAME] + ');\n'
+            nmMatrix = param[common.NAME] + 'Matrix'
+            nmRows = param[common.NAME] + 'MatrixRows'
+            nmCols = param[common.NAME] + 'MatrixCols'
+            ret += indent + type + ' **' + nmMatrix + ';\n' \
+                + indent + 'long ' + nmRows + ';\n' \
+                + indent + 'long ' + nmCols + ';\n' \
+                + indent + 'Conversion<' + type + '>::convertMatrix(\n' \
+                + bigIndent + param[common.NAME] + ', ' + nmMatrix + ', ' \
+                + nmRows + ', ' + nmCols + ');\n'
     return ret
 
 def printTimeStamp(fileBuf, commentChar):
