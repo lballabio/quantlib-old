@@ -23,7 +23,7 @@
 
 using namespace ObjHandler;
 
-// FIXME not sure if this is the correct approach
+//! FIXME not sure if this is the correct approach
 #define PROPERTY_STR    "PROPERTY_STR"
 #define PROPERTY_INT    "PROPERTY_INT"
 #define IDX_STR            0

@@ -6,6 +6,5 @@ doxywarnings.txt
 Makefile
 Makefile.in
 .time-stamp*
-images
 man
-pages
+.objecthandler.doxy

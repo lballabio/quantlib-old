@@ -69,7 +69,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc80-mt-s-0_0_1.lib"
+				OutputFile="lib\ObjectHandler-vc80-mt-s-0_1_0.lib"
 				SuppressStartupBanner="TRUE"
 			/>
 			<Tool
@@ -146,7 +146,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc80-sgd-0_0_1.lib"
+				OutputFile="lib\ObjectHandler-vc80-sgd-0_1_0.lib"
 				SuppressStartupBanner="TRUE"
 			/>
 			<Tool
@@ -224,7 +224,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc80-mt-0_0_1.lib"
+				OutputFile="lib\ObjectHandler-vc80-mt-0_1_0.lib"
 				SuppressStartupBanner="TRUE"
 			/>
 			<Tool
@@ -302,7 +302,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc80-s-0_0_1.lib"
+				OutputFile="lib\ObjectHandler-vc80-s-0_1_0.lib"
 				SuppressStartupBanner="TRUE"
 			/>
 			<Tool
@@ -379,7 +379,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc80-mt-gd-0_0_1.lib"
+				OutputFile="lib\ObjectHandler-vc80-mt-gd-0_1_0.lib"
 				SuppressStartupBanner="TRUE"
 			/>
 			<Tool
@@ -456,7 +456,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc80-mt-sgd-0_0_1.lib"
+				OutputFile="lib\ObjectHandler-vc80-mt-sgd-0_1_0.lib"
 				SuppressStartupBanner="TRUE"
 			/>
 			<Tool

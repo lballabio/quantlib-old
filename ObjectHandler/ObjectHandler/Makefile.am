@@ -1,4 +1,5 @@
 AM_CPPFLAGS = -I${top_srcdir}
+includedir = $(prefix)/include/ObjectHandler
 
 include_HEADERS = \
     config.hpp \

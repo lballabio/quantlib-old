@@ -4,7 +4,7 @@
 .autodepend
 #.silent
 
-MAKE = $(MAKE) -DVERSION=0.0.1 -DVERSION_STRING=0_0_1
+MAKE = $(MAKE) -DVERSION=0.1.0 -DVERSION_STRING=0_1_0
 
 !ifdef __MT__
     MAKE = $(MAKE) -D__MT__

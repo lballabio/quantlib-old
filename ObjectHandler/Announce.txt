@@ -1,10 +1,17 @@
 
-ObjectHandler is etc.
+QuantLib integration into spreadsheets and other end user tools requires a
+standalone ObjectHandler component, a repository allowing objects to be stored,
+shared, updated, interrogated, and destroyed.
 
-Version 0.0.1 has been released and is available for download at
+ObjectHandler shares the QuantLib project structure with regard to distribution, 
+licensing, etc., all of which is documented on the main QuantLib website:
+http://quantlib.org
+
+Version 0.1.0 has been released and is available for download at
+http://sourceforge.net/project/showfiles.php?group_id=12740
 
 ObjectHandler depends on the Boost library (www.boost.org). You will need a
-working Boost installation in order to compile and use QuantLib.
+working Boost installation in order to compile and use ObjectHandler.
 Instructions for installing Boost from sources are available at
 <http://www.boost.org/more/getting_started.html>.
 Pre-packaged binaries might be available from other sources. Google is
@@ -13,7 +20,7 @@ your friend (or Debian, or Fink...)
 Please log any problems you have with this release in the SourceForge
 bug tracker at
 <http://sourceforge.net/tracker/?group_id=12740&atid=112740>
-specifying that you're using ObjectHandler 0.0.1
+specifying that you're using ObjectHandler 0.1.0
 
         The QuantLib group
 

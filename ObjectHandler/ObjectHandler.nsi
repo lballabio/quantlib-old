@@ -3,7 +3,7 @@
 
 SetCompressor lzma
 
-!define VER_NUMBER "0.0.1"
+!define VER_NUMBER "0.1.0"
 
 # HEADER CONFIGURATION COMMANDS
 Name "ObjectHandler"
@@ -69,19 +69,19 @@ SectionIn 1 2
     File /r "Example\*.vcproj"
 
     SetOutPath $INSTDIR\Docs
-    File /r "Docs\*.bmp"
-    File /r "Docs\*.pdf"
     File /r "Docs\*.am"
     File /r "Docs\*.bmp"
     File /r "Docs\*.css"
+    File /r "Docs\*.docs"
     File /r "Docs\*.doxy"
+    File /r "Docs\*.eps"
     File /r "Docs\*.html"
     File /r "Docs\*.jpg"
-    File /r "Docs\makefile.mak"
+    File /r "Docs\*.pdf"
     File /r "Docs\*.png"
-    File /r "Docs\*.eps"
     File /r "Docs\*.tex"
     File /r "Docs\*.txt"
+    File /r "Docs\makefile.mak"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\ObjectHandler" \

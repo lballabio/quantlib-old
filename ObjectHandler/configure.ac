@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT([Object Handler], [0.0.1],
+AC_INIT([Object Handler], [0.1.0],
         [quantlib-dev@lists.sourceforge.net],
         [ObjectHandler])
 AC_PREREQ(2.50)
