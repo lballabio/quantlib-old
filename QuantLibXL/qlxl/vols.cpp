@@ -39,8 +39,7 @@ extern "C"
                                      XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
         Date refDate = QlXlfOper(xlrefDate).AsDate();
-        QuantLib::RelinkableHandle<QuantLib::BlackVolTermStructure>
-            volSurface =
+        RelinkableHandle<BlackVolTermStructure> volSurface =
             QlXlfOper(xlblackVolSurface).AsBlackVolTermStructure(refDate);
         Date date1 = QlXlfOper(xldate1).AsDate();
         Date date2 = QlXlfOper(xldate2).AsDate();
@@ -52,5 +51,36 @@ extern "C"
         EXCEL_END;
     }
 
+    LPXLOPER EXCEL_EXPORT xlLocalVol(XlfOper xlvalueDate,
+                                     XlfOper xlunderlying,
+                                     XlfOper xldividendYield,
+                                     XlfOper xlriskFree,
+                                     XlfOper xlblackVolSurface,
+                                     XlfOper xlassetLevel,
+                                     XlfOper xlrefDate,
+                                     XlfOper xlallowExtrapolation) {
+        EXCEL_BEGIN;
+
+        Date valueDate    = QlXlfOper(xlvalueDate).AsDate();
+        double underlying = xlunderlying.AsDouble();
+
+        RelinkableHandle<TermStructure> dividendTS =
+            QlXlfOper(xldividendYield).AsTermStructure(valueDate);
+        RelinkableHandle<TermStructure> riskFreeTS =
+            QlXlfOper(xlriskFree).AsTermStructure(valueDate);
+        RelinkableHandle<BlackVolTermStructure> blackVolSurface =
+            QlXlfOper(xlblackVolSurface).AsBlackVolTermStructure(valueDate);
+
+        double assetLevel = xlassetLevel.AsDouble();
+        Date refDate      = QlXlfOper(xlrefDate).AsDate();
+
+        VolTermStructures::LocalVolSurface locVol(blackVolSurface,
+            riskFreeTS, dividendTS, underlying);
+
+        double result = locVol.localVol(refDate, assetLevel,
+            xlallowExtrapolation.AsBool());
+        return XlfOper(result);
+        EXCEL_END;
+    }
 
 }

@@ -83,6 +83,7 @@ extern "C" {
 
             XlfArgDesc optionType("type", "is the option type");
             XlfArgDesc underlying("underlying", "is the value of the underlying");
+            XlfArgDesc assetLevel("assetLevel", "is the level of the asset");
             XlfArgDesc moneyness("moneyness", "is the moneyness measured as percentage of the ATM level");
             XlfArgDesc strike("strike", "is the strike");
             XlfArgDesc strikes("strikes", "strikes");
@@ -269,8 +270,17 @@ extern "C" {
                 "Return the interpolated Black forward volatility for "
                 "a forward period at a fixed strike "
                 "given a Black volatility surface as input","QuantLibXL Finance");
-            blackVol.SetArguments(refDate+blackVolSurface+d01+d02+strike+allowExtrapolation);
+            blackVol.SetArguments(valueDate+blackVolSurface+d01+d02+strike+allowExtrapolation);
             blackVol.Register();
+
+            XlfFuncDesc localVol("xlLocalVol","qlLocalVol",
+                "Return the local volatility at a fixed date/time "
+                "and level of the asset "
+                "given the asset current value, the dividend curve, "
+                "the yield curve, and "
+                "the Black volatility surface as input","QuantLibXL Finance");
+            localVol.SetArguments(valueDate+underlying+dividendYield+riskFreeRate+blackVolSurface+assetLevel+valueDate+allowExtrapolation);
+            localVol.Register();
 
             // yield functions
             XlfFuncDesc discount("xlDiscount","qlDiscount",
