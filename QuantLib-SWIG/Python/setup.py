@@ -322,8 +322,8 @@ else:
     def my_init_posix():
         save_init_posix()
         g = sysconfig._config_vars
-        if os.environ.has_key('CC'):
-            g['CC'] = os.environ['CC']
+        if os.environ.has_key('CXX'):
+            g['CC'] = os.environ['CXX']
         else:
             g['CC'] = 'g++'
         g['LDSHARED'] = g['CC'] + ' -shared'
