@@ -23,8 +23,9 @@
 namespace ObjHandler {
 
     std::ostream& operator<<(std::ostream& out, const any_ptr& a);
-    int setLogFile(const std::string &newLogFileName);
-    void logMessage(const std::string &msg);
+    void setLogFile(const std::string &logFileName, const int &logLevel = 4);
+    void setLogLevel(const int &logLevel);
+    void logMessage(const std::string &message, const int &level = 4);
 
 }
 

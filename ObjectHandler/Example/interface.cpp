@@ -44,11 +44,11 @@ Properties FOO_UPDATE(
 
 void QL_LOGFILE(
         const std::string &logFileName) {
-    setLogFile(logFileName);
+    setLogFile(logFileName, 5);
 }
 
 void QL_LOGMESSAGE(
         const std::string &msg) {
-    logMessage(msg);
+    logMessage(msg, 4);
 }
 

@@ -21,8 +21,7 @@
 #include <oh/objhandlerdefines.hpp>
 #include <oh/utilities.hpp>
 #include <oh/exception.hpp>
-#include <sstream>
-#include <fstream>
+#include <oh/logger.hpp>
 
 namespace ObjHandler {
 
@@ -40,41 +39,19 @@ namespace ObjHandler {
 //            return out << "unrecognized type";
     }
 
-    // FIXME - below is a temporary approach to logging
-    // which will be revised in version 0.1.1.
-
-    std::string logFileName;    // "" = logging disabled
-
-    int setLogFile(const std::string &newLogFileName) {
-        std::ofstream logFile;
-        if (!newLogFileName.length()) {
-            logFileName = "";
-            return 0;
-        }
-        if (!logFileName.compare(std::string(newLogFileName)))
-            return 1;    // continue logging to same file
-        logFile.open(newLogFileName.c_str(), std::ios::app);
-        if (logFile.is_open()) {
-            logFile << "logging enabled" << std::endl;
-            logFile.close();
-            logFileName = newLogFileName;
-            return 1;
-        } else {
-            logFileName = "";
-            throw Exception("setLogFile: error opening logfile");
-        }
+    void setLogFile(const std::string &logFileName, 
+            const int &logLevel) {
+        Logger::instance().setLogFile(logFileName, logLevel);
     }
 
-    void logMessage(const std::string &msg) {
-        std::ofstream log1;
-        if (logFileName.length()) {
-            log1.open(logFileName.c_str(), std::ios::app);
-            if (log1.is_open()) {
-                log1 << msg << std::endl;
-                log1.close();
-            } else // error - disable logging
-                logFileName = "";
-        }
+    void setLogLevel(const int &logLevel) {
+        Logger::instance().setLogLevel(logLevel);
     }
+
+    void logMessage(const std::string &message, 
+            const int &level) {
+        Logger::instance().logMessage(message, level);
+    }
+
 }
 

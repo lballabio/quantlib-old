@@ -40,6 +40,11 @@ AC_PROG_CPP
 AC_PROG_LIBTOOL
 AC_LANG([C++])
 
+# confirm existence of dependencies
+
+AC_CHECK_HEADER([log4cxx/logger.h],[],
+    [AC_MSG_ERROR([ObjectHandler depends on log4cxx which cannot be found])])
+
 # Check for tools needed for building documentation
 AC_PATH_PROG([DOXYGEN], [doxygen])
 AC_PATH_PROG([SED], [sed])

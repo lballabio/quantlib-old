@@ -21,23 +21,22 @@
 #include <oh/objhandler.hpp>
 
 using namespace ObjHandler;
-using std::string;
 
 Properties FOO_MAKE(
-    const string &handle,
-    const string &s,
+    const std::string &handle,
+    const std::string &s,
     const int &i);
                                                                                 
 Properties FOO_UPDATE(
-    const string &handle,
-    const string &s,
+    const std::string &handle,
+    const std::string &s,
     const int &i);
 
 void QL_LOGFILE(
-    const string &logFileName);
+    const std::string &logFileName);
 
 void QL_LOGMESSAGE(
-    const string &msg);
+    const std::string &msg);
 
 #endif
 

@@ -40,7 +40,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=oh\object.cpp
+FileName=oh\logger.cpp
 Folder="Source Files"
 Compile=1
 CompileCpp=1
@@ -50,7 +50,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=oh\objecthandler.cpp
+FileName=oh\object.cpp
 Folder="Source Files"
 Compile=1
 CompileCpp=1
@@ -60,7 +60,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=oh\utilities.cpp
+FileName=oh\objecthandler.cpp
 Folder="Source Files"
 Compile=1
 CompileCpp=1
@@ -70,6 +70,16 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
+FileName=oh\utilities.cpp
+Folder="Source Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit6]
 FileName=oh\autolink.hpp
 Folder="Header Files"
 Compile=1
@@ -79,7 +89,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit6]
+[Unit7]
 FileName=oh\exception.hpp
 Folder="Header Files"
 Compile=1
@@ -89,18 +99,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit7]
-FileName=oh\object.hpp
-Folder="Header Files"
-Compile=1
-CompileCpp=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit8]
-FileName=oh\objecthandler.hpp
+FileName=oh\logger.hpp
 Folder="Header Files"
 Compile=1
 CompileCpp=1
@@ -110,7 +110,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
-FileName=oh\objhandler.hpp
+FileName=oh\object.hpp
 Folder="Header Files"
 Compile=1
 CompileCpp=1
@@ -120,7 +120,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit10]
-FileName=oh\objhandlerdefines.hpp
+FileName=oh\objecthandler.hpp
 Folder="Header Files"
 Compile=1
 CompileCpp=1
@@ -130,7 +130,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit11]
-FileName=oh\property.hpp
+FileName=oh\objhandler.hpp
 Folder="Header Files"
 Compile=1
 CompileCpp=1
@@ -140,7 +140,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit12]
-FileName=oh\singleton.hpp
+FileName=oh\objhandlerdefines.hpp
 Folder="Header Files"
 Compile=1
 CompileCpp=1
@@ -150,6 +150,26 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit13]
+FileName=oh\property.hpp
+Folder="Header Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit14]
+FileName=oh\singleton.hpp
+Folder="Header Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit15]
 FileName=oh\utilities.hpp
 Folder="Header Files"
 Compile=1

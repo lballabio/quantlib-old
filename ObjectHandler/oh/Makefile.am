@@ -3,6 +3,7 @@ includedir = $(prefix)/include/oh
 
 include_HEADERS = \
     exception.hpp \
+    logger.hpp \
     objecthandler.hpp \
     object.hpp \
     objhandlerdefines.hpp \
@@ -16,10 +17,11 @@ EXTRA_DIST = \
 	makefile.mak
 
 lib_LTLIBRARIES = libObjectHandler.la
-LDFLAGS = -release $(PACKAGE_VERSION)
+LDFLAGS = -llog4cxx -release $(PACKAGE_VERSION)
 
 libObjectHandler_la_SOURCES = \
     exception.cpp  \
+    logger.cpp  \
     object.cpp  \
     objecthandler.cpp  \
     utilities.cpp

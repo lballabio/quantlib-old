@@ -189,6 +189,10 @@ SOURCE=.\oh\exception.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\oh\logger.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\oh\object.cpp
 # End Source File
 # Begin Source File
@@ -210,6 +214,10 @@ SOURCE=.\oh\autolink.hpp
 # Begin Source File
 
 SOURCE=.\oh\exception.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\oh\logger.hpp
 # End Source File
 # Begin Source File
 
