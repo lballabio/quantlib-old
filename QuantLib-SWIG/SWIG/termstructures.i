@@ -66,8 +66,8 @@ class TermStructure : public Extrapolator {
 IsObservable(boost::shared_ptr<TermStructure>);
 
 
-%template(TermStructureHandle) RelinkableHandle<TermStructure>;
-IsObservable(RelinkableHandle<TermStructure>);
+%template(TermStructureHandle) Handle<TermStructure>;
+IsObservable(Handle<TermStructure>);
 
 
 // implied term structure
@@ -82,7 +82,7 @@ class ImpliedTermStructurePtr: public boost::shared_ptr<TermStructure> {
   public:
     %extend {
         ImpliedTermStructurePtr(
-                const RelinkableHandle<TermStructure>& curveHandle,
+                const Handle<TermStructure>& curveHandle,
                 const Date& todaysDate, const Date& referenceDate) {
             return new ImpliedTermStructurePtr(
                 new ImpliedTermStructure(curveHandle, todaysDate,
@@ -105,9 +105,8 @@ typedef boost::shared_ptr<TermStructure> ForwardSpreadedTermStructurePtr;
 class ZeroSpreadedTermStructurePtr : public boost::shared_ptr<TermStructure> {
   public:
     %extend {
-        ZeroSpreadedTermStructurePtr(
-                const RelinkableHandle<TermStructure>& curveHandle,
-                const RelinkableHandle<Quote>& spreadHandle) {
+        ZeroSpreadedTermStructurePtr(const Handle<TermStructure>& curveHandle,
+                                     const Handle<Quote>& spreadHandle) {
 	        return new ZeroSpreadedTermStructurePtr(
 	            new ZeroSpreadedTermStructure(curveHandle,spreadHandle));
         }
@@ -120,8 +119,8 @@ class ForwardSpreadedTermStructurePtr
   public:
     %extend {
         ForwardSpreadedTermStructurePtr(
-                const RelinkableHandle<TermStructure>& curveHandle,
-                const RelinkableHandle<Quote>& spreadHandle) {
+                                     const Handle<TermStructure>& curveHandle,
+                                     const Handle<Quote>& spreadHandle) {
 	        return new ForwardSpreadedTermStructurePtr(
 	            new ForwardSpreadedTermStructure(curveHandle,spreadHandle));
         }
@@ -142,7 +141,7 @@ class FlatForwardPtr : public boost::shared_ptr<TermStructure> {
     %extend {
         FlatForwardPtr(const Date& todaysDate,
                        const Date& referenceDate,
-                       const RelinkableHandle<Quote>& forward,
+                       const Handle<Quote>& forward,
                        const DayCounter& dayCounter) {
             return new FlatForwardPtr(
                 new FlatForward(todaysDate,referenceDate,forward,dayCounter));

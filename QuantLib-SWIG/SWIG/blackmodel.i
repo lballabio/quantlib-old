@@ -28,9 +28,8 @@ using QuantLib::BlackModel;
 
 %template(BlackModel) boost::shared_ptr<BlackModel>;
 %extend boost::shared_ptr<BlackModel> {
-    boost::shared_ptr<BlackModel>(
-                       const RelinkableHandle<Quote>& volatility,
-                       const RelinkableHandle<TermStructure>& termStructure) {
+    boost::shared_ptr<BlackModel>(const Handle<Quote>& volatility,
+                                  const Handle<TermStructure>& termStructure) {
         return new boost::shared_ptr<BlackModel>(
             new BlackModel(volatility,termStructure));
     }

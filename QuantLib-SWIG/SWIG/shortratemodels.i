@@ -62,12 +62,11 @@ class CalibrationHelper {
 class SwaptionHelperPtr : public boost::shared_ptr<CalibrationHelper> {
   public:
     %extend {
-        SwaptionHelperPtr(
-                const Period& maturity, const Period& length,
-                const RelinkableHandle<Quote>& volatility,
-                const XiborPtr& index,
-                const RelinkableHandle<TermStructure>& termStructure) {
-            boost::shared_ptr<Xibor> libor = 
+        SwaptionHelperPtr(const Period& maturity, const Period& length,
+                          const Handle<Quote>& volatility,
+                          const XiborPtr& index,
+                          const Handle<TermStructure>& termStructure) {
+            boost::shared_ptr<Xibor> libor =
                 boost::dynamic_pointer_cast<Xibor>(index);
             return new SwaptionHelperPtr(
                 new SwaptionHelper(maturity,length,volatility,
@@ -87,12 +86,11 @@ class SwaptionHelperPtr : public boost::shared_ptr<CalibrationHelper> {
 class CapHelperPtr : public boost::shared_ptr<CalibrationHelper> {
   public:
     %extend {
-        CapHelperPtr(
-                const Period& length,
-                const RelinkableHandle<Quote>& volatility,
-                const XiborPtr& index,
-                const RelinkableHandle<TermStructure>& termStructure) {
-            boost::shared_ptr<Xibor> libor = 
+        CapHelperPtr(const Period& length,
+                     const Handle<Quote>& volatility,
+                     const XiborPtr& index,
+                     const Handle<TermStructure>& termStructure) {
+            boost::shared_ptr<Xibor> libor =
                 boost::dynamic_pointer_cast<Xibor>(index);
             return new CapHelperPtr(
                 new CapHelper(length,volatility,libor,termStructure));
@@ -110,7 +108,7 @@ class CapHelperPtr : public boost::shared_ptr<CalibrationHelper> {
 
 // allow use of CalibrationHelper vectors
 namespace std {
-    %template(CalibrationHelperVector) 
+    %template(CalibrationHelperVector)
         vector<boost::shared_ptr<CalibrationHelper> >;
 }
 
@@ -148,9 +146,8 @@ typedef boost::shared_ptr<ShortRateModel> BlackKarasinskiPtr;
 class HullWhitePtr : public boost::shared_ptr<ShortRateModel> {
   public:
     %extend {
-        HullWhitePtr(
-                const RelinkableHandle<TermStructure>& termStructure, 
-                Real a = 0.1, Real sigma = 0.01) {
+        HullWhitePtr(const Handle<TermStructure>& termStructure,
+                     Real a = 0.1, Real sigma = 0.01) {
 	        return new HullWhitePtr(
 	            new HullWhite(termStructure, a, sigma));
         }
@@ -161,9 +158,8 @@ class HullWhitePtr : public boost::shared_ptr<ShortRateModel> {
 class BlackKarasinskiPtr : public boost::shared_ptr<ShortRateModel> {
   public:
     %extend {
-        BlackKarasinskiPtr(
-                const RelinkableHandle<TermStructure>& termStructure, 
-                Real a = 0.1, Real sigma = 0.1) {
+        BlackKarasinskiPtr(const Handle<TermStructure>& termStructure,
+                           Real a = 0.1, Real sigma = 0.1) {
 	        return new BlackKarasinskiPtr(
 	            new BlackKarasinski(termStructure, a, sigma));
         }
@@ -190,7 +186,7 @@ class JamshidianSwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
         JamshidianSwaptionEnginePtr(
                              const boost::shared_ptr<ShortRateModel>& model) {
             using QuantLib::OneFactorAffineModel;
-            boost::shared_ptr<OneFactorAffineModel> m = 
+            boost::shared_ptr<OneFactorAffineModel> m =
                  boost::dynamic_pointer_cast<OneFactorAffineModel>(model);
             QL_REQUIRE(model, "affine model required");
             return new JamshidianSwaptionEnginePtr(
@@ -223,7 +219,7 @@ class AnalyticCapFloorEnginePtr : public boost::shared_ptr<PricingEngine> {
         AnalyticCapFloorEnginePtr(
                              const boost::shared_ptr<ShortRateModel>& model) {
             using QuantLib::OneFactorAffineModel;
-            boost::shared_ptr<OneFactorAffineModel> m = 
+            boost::shared_ptr<OneFactorAffineModel> m =
                  boost::dynamic_pointer_cast<OneFactorAffineModel>(model);
             QL_REQUIRE(model, "affine model required");
             return new AnalyticCapFloorEnginePtr(

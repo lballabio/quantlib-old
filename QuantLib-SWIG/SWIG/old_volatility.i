@@ -38,34 +38,34 @@ using QuantLib::SwaptionVolatilityStructure;
 %ignore SwaptionVolatilityStructure;
 class SwaptionVolatilityStructure {
   public:
-	Volatility volatility(const Date& exercise, const Period& length, 
+	Volatility volatility(const Date& exercise, const Period& length,
                           Rate strike);
 	Volatility volatility(Time exercise, Time length, Rate strike);
 };
 
-%template(SwaptionVolatilityStructure) 
+%template(SwaptionVolatilityStructure)
     boost::shared_ptr<SwaptionVolatilityStructure>;
 IsObservable(boost::shared_ptr<SwaptionVolatilityStructure>);
 
-%template(SwaptionVolatilityStructureHandle) 
-    RelinkableHandle<SwaptionVolatilityStructure>;
-IsObservable(RelinkableHandle<SwaptionVolatilityStructure>);
+%template(SwaptionVolatilityStructureHandle)
+    Handle<SwaptionVolatilityStructure>;
+IsObservable(Handle<SwaptionVolatilityStructure>);
 
 %{
 using QuantLib::SwaptionVolatilityMatrix;
-typedef boost::shared_ptr<SwaptionVolatilityStructure> 
+typedef boost::shared_ptr<SwaptionVolatilityStructure>
     SwaptionVolatilityMatrixPtr;
 %}
 
 %rename(SwaptionVolatilityMatrix) SwaptionVolatilityMatrixPtr;
-class SwaptionVolatilityMatrixPtr 
+class SwaptionVolatilityMatrixPtr
 : public boost::shared_ptr<SwaptionVolatilityStructure> {
   public:
     %extend {
-        SwaptionVolatilityMatrixPtr(const Date& today, 
-                                    const std::vector<Date>& dates, 
-                                    const std::vector<Period>& lengths, 
-                                    const Matrix& vols, 
+        SwaptionVolatilityMatrixPtr(const Date& today,
+                                    const std::vector<Date>& dates,
+                                    const std::vector<Period>& lengths,
+                                    const Matrix& vols,
                                     const DayCounter& dayCounter) {
             return new SwaptionVolatilityMatrixPtr(
                 new SwaptionVolatilityMatrix(today,dates,lengths,
@@ -89,30 +89,30 @@ class CapFlatVolatilityStructure {
 	Volatility volatility(Time end, Rate strike);
 };
 
-%template(CapFlatVolatilityStructure) 
+%template(CapFlatVolatilityStructure)
     boost::shared_ptr<CapFlatVolatilityStructure>;
 IsObservable(boost::shared_ptr<CapFlatVolatilityStructure>);
 
 %template(CapFlatVolatilityStructureHandle)
-    RelinkableHandle<CapFlatVolatilityStructure>;
-IsObservable(RelinkableHandle<CapFlatVolatilityStructure>);
+    Handle<CapFlatVolatilityStructure>;
+IsObservable(Handle<CapFlatVolatilityStructure>);
 
 %{
 using QuantLib::CapFlatVolatilityVector;
-typedef boost::shared_ptr<CapFlatVolatilityStructure> 
+typedef boost::shared_ptr<CapFlatVolatilityStructure>
     CapFlatVolatilityVectorPtr;
 %}
 
 %rename(CapFlatVolatilityVector) CapFlatVolatilityVectorPtr;
-class CapFlatVolatilityVectorPtr 
+class CapFlatVolatilityVectorPtr
 : public boost::shared_ptr<CapFlatVolatilityStructure> {
   public:
     %extend {
-        CapFlatVolatilityVectorPtr(const Date& today, 
+        CapFlatVolatilityVectorPtr(const Date& today,
                                    const Calendar& calendar,
-                                   Integer settlementDays, 
+                                   Integer settlementDays,
                                    const std::vector<Period>& lengths,
-                                   const std::vector<Volatility>& vols, 
+                                   const std::vector<Volatility>& vols,
                                    const DayCounter& dayCounter) {
             return new CapFlatVolatilityVectorPtr(
                 new CapFlatVolatilityVector(today,calendar,settlementDays,

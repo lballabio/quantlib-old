@@ -36,8 +36,8 @@ class SwapPtr : public boost::shared_ptr<Instrument> {
     %extend {
         SwapPtr(const std::vector<boost::shared_ptr<CashFlow> >& firstLeg,
                 const std::vector<boost::shared_ptr<CashFlow> >& secondLeg,
-                const RelinkableHandle<TermStructure>& termStructure) {
-            return new SwapPtr(new Swap(firstLeg, secondLeg, 
+                const Handle<TermStructure>& termStructure) {
+            return new SwapPtr(new Swap(firstLeg, secondLeg,
                                         termStructure));
         }
         Date startDate() {
@@ -69,14 +69,14 @@ class SimpleSwapPtr : public SwapPtr {
     #endif
   public:
     %extend {
-        SimpleSwapPtr(bool payFixedRate, Real nominal, 
+        SimpleSwapPtr(bool payFixedRate, Real nominal,
                       const Schedule& fixedSchedule, Rate fixedRate,
                       const DayCounter& fixedDayCount,
                       const Schedule& floatSchedule,
                       const XiborPtr& index,
                       Integer indexFixingDays, Spread spread,
-                      const RelinkableHandle<TermStructure>& termStructure) {
-            boost::shared_ptr<Xibor> libor = 
+                      const Handle<TermStructure>& termStructure) {
+            boost::shared_ptr<Xibor> libor =
                 boost::dynamic_pointer_cast<Xibor>(index);
             return new SimpleSwapPtr(
                 new SimpleSwap(payFixedRate,nominal,fixedSchedule,fixedRate,

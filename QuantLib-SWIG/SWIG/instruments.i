@@ -32,7 +32,7 @@ using QuantLib::PricingEngine;
 
 %template(PricingEngine) boost::shared_ptr<PricingEngine>;
 
-// instrument 
+// instrument
 
 %{
 using QuantLib::Instrument;
@@ -76,7 +76,7 @@ typedef boost::shared_ptr<Instrument> StockPtr;
 class StockPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
-        StockPtr(const RelinkableHandle<Quote>& quote) {
+        StockPtr(const Handle<Quote>& quote) {
             return new StockPtr(new Stock(quote));
         }
     }

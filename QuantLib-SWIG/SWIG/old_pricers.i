@@ -82,7 +82,7 @@ class DiscreteGeometricAPO {
 
 class DiscreteGeometricASO {
   public:
-	DiscreteGeometricASO(OptionType type, Real underlying, 
+	DiscreteGeometricASO(OptionType type, Real underlying,
                          Spread dividendYield, Rate riskFreeRate,
                          const std::vector<Time>& timeDelays,
                          Volatility volatility);
@@ -104,7 +104,7 @@ class FdEuropean {
   public:
 	FdEuropean(OptionType type, Real underlying,
                Real strike, Spread dividendYield, Rate riskFreeRate,
-               Time residualTime, Volatility volatility, 
+               Time residualTime, Volatility volatility,
                Size timeSteps = 200, Size gridPoints = 800);
 	Real value() const;
 	Real delta() const;
@@ -130,8 +130,8 @@ class FdAmericanOption {
     #endif
   public:
 	FdAmericanOption(OptionType type, Real underlying, Real strike,
-                     Spread dividendYield, Rate riskFreeRate, 
-                     Time residualTime, Volatility volatility, 
+                     Spread dividendYield, Rate riskFreeRate,
+                     Time residualTime, Volatility volatility,
                      Size timeSteps = 100, Size gridPoints = 100);
 	Real value() const;
 	Real delta() const;
@@ -151,7 +151,7 @@ class FdDividendAmericanOption {
     #endif
   public:
 	FdDividendAmericanOption(OptionType type, Real underlying, Real strike,
-                             Spread dividendYield, Rate riskFreeRate, 
+                             Spread dividendYield, Rate riskFreeRate,
                              Time residualTime, Volatility volatility,
                              const std::vector<Spread>& dividends,
                              const std::vector<Time>& times,
@@ -180,8 +180,8 @@ class FdShoutOption {
     #endif
   public:
 	FdShoutOption(OptionType type, Real underlying, Real strike,
-                  Spread dividendYield, Rate riskFreeRate, 
-                  Time residualTime, Volatility volatility, 
+                  Spread dividendYield, Rate riskFreeRate,
+                  Time residualTime, Volatility volatility,
                   Size timeSteps = 100, Size gridPoints = 100);
 	Real value() const;
 	Real delta() const;
@@ -201,7 +201,7 @@ class FdDividendShoutOption{
     #endif
   public:
 	FdDividendShoutOption(OptionType type, Real underlying, Real strike,
-                          Spread dividendYield, Rate riskFreeRate, 
+                          Spread dividendYield, Rate riskFreeRate,
                           Time residualTime, Volatility volatility,
                           const std::vector<Spread>& dividends,
                           const std::vector<Time>& times,
@@ -225,8 +225,8 @@ using QuantLib::FdBermudanOption;
 class FdBermudanOption {
   public:
 	FdBermudanOption(OptionType type, Real underlying, Real strike,
-                     Spread dividendYield, Rate riskFreeRate, 
-                     Time residualTime, Volatility volatility, 
+                     Spread dividendYield, Rate riskFreeRate,
+                     Time residualTime, Volatility volatility,
                      const std::vector<Time>& exTimes,
                      Size timeSteps = 100, Size gridPoints = 100);
 	Real value() const;
@@ -261,13 +261,12 @@ class McDiscreteArithmeticAPO {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-	McDiscreteArithmeticAPO(
-                    OptionType type, Real underlying, Real strike,
-                    const RelinkableHandle<TermStructure>& dividendYield,
-                    const RelinkableHandle<TermStructure>& riskFreeRate,
-                    const RelinkableHandle<BlackVolTermStructure>& volatility,
-                    const std::vector<Time>& timeDelays,
-                    bool controlVariate, BigInteger seed = 0);
+	McDiscreteArithmeticAPO(OptionType type, Real underlying, Real strike,
+                            const Handle<TermStructure>& dividendYield,
+                            const Handle<TermStructure>& riskFreeRate,
+                            const Handle<BlackVolTermStructure>& volatility,
+                            const std::vector<Time>& timeDelays,
+                            bool controlVariate, BigInteger seed = 0);
     Real value(Real tolerance,
                Size maxSample = QL_MAX_INTEGER) const;
     Real valueWithSamples(Size samples) const;
@@ -280,13 +279,12 @@ class McDiscreteArithmeticASO {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-	McDiscreteArithmeticASO(
-                    OptionType type, Real underlying,
-                    const RelinkableHandle<TermStructure>& dividendYield,
-                    const RelinkableHandle<TermStructure>& riskFreeRate,
-                    const RelinkableHandle<BlackVolTermStructure>& volatility,
-                    const std::vector<Time>& timeDelays,
-                    bool controlVariate, BigInteger seed = 0);
+	McDiscreteArithmeticASO(OptionType type, Real underlying,
+                            const Handle<TermStructure>& dividendYield,
+                            const Handle<TermStructure>& riskFreeRate,
+                            const Handle<BlackVolTermStructure>& volatility,
+                            const std::vector<Time>& timeDelays,
+                            bool controlVariate, BigInteger seed = 0);
     Real value(Real tolerance,
                Size maxSample = QL_MAX_INTEGER) const;
     Real valueWithSamples(Size samples) const;
@@ -299,14 +297,13 @@ class McMaxBasket {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McMaxBasket(const std::vector<Real>& underlying, 
-                const std::vector<RelinkableHandle<TermStructure> >& 
-                                                             dividendYields,
-                const RelinkableHandle<TermStructure>& riskFreeRate,
-                const std::vector<RelinkableHandle<BlackVolTermStructure> >& 
+    McMaxBasket(const std::vector<Real>& underlying,
+                const std::vector<Handle<TermStructure> >& dividendYields,
+                const Handle<TermStructure>& riskFreeRate,
+                const std::vector<Handle<BlackVolTermStructure> >&
                                                              volatilities,
                 const Matrix& correlation,
-                Time residualTime, 
+                Time residualTime,
                 BigInteger seed = 0);
     Real value(Real tolerance,
                Size maxSample = QL_MAX_INTEGER) const;
@@ -320,14 +317,12 @@ class McHimalaya {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McHimalaya(const std::vector<Real>& underlying, 
-               const std::vector<RelinkableHandle<TermStructure> >& 
-                                                             dividendYields,
-               const RelinkableHandle<TermStructure>& riskFreeRate,
-               const std::vector<RelinkableHandle<BlackVolTermStructure> >& 
-                                                             volatilities,
+    McHimalaya(const std::vector<Real>& underlying,
+               const std::vector<Handle<TermStructure> >& dividendYields,
+               const Handle<TermStructure>& riskFreeRate,
+               const std::vector<Handle<BlackVolTermStructure> >& volatilities,
                const Matrix& correlation,
-			   Real strike, 
+			   Real strike,
                const std::vector<Time>& timeDelays,
 		       BigInteger seed = 0);
     Real value(Real tolerance,
@@ -342,11 +337,9 @@ class McEverest {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McEverest(const std::vector<RelinkableHandle<TermStructure> >& 
-                                                             dividendYield,
-              const RelinkableHandle<TermStructure>& riskFreeRate,
-              const std::vector<RelinkableHandle<BlackVolTermStructure> >& 
-                                                             volatilities,
+    McEverest(const std::vector<Handle<TermStructure> >& dividendYield,
+              const Handle<TermStructure>& riskFreeRate,
+              const std::vector<Handle<BlackVolTermStructure> >& volatilities,
               const Matrix& correlation,
               Time residualTime,
 			  BigInteger seed = 0);
@@ -362,14 +355,12 @@ class McPagoda {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McPagoda(const std::vector<Real>& portfolio, 
-             Real fraction, 
+    McPagoda(const std::vector<Real>& portfolio,
+             Real fraction,
              Real roof,
-             const std::vector<RelinkableHandle<TermStructure> >& 
-                                                             dividendYields,
-             const RelinkableHandle<TermStructure>& riskFreeRate,
-             const std::vector<RelinkableHandle<BlackVolTermStructure> >& 
-                                                             volatilities,
+             const std::vector<Handle<TermStructure> >& dividendYields,
+             const Handle<TermStructure>& riskFreeRate,
+             const std::vector<Handle<BlackVolTermStructure> >& volatilities,
              const Matrix& correlation,
 		     const std::vector<Time>& timeDelays,
 		     BigInteger seed = 0);

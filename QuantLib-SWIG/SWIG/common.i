@@ -24,7 +24,7 @@
 %{
 // generally useful classes
 using QuantLib::Error;
-using QuantLib::RelinkableHandle;
+using QuantLib::Handle;
 using QuantLib::IntegerFormatter;
 using QuantLib::DecimalFormatter;
 using QuantLib::StringFormatter;
@@ -58,7 +58,7 @@ namespace boost {
 
 
 template <class T>
-class RelinkableHandle {
+class Handle {
     #if defined(SWIGRUBY)
     %rename("null?")   isNull;
     %rename("empty?")  empty;
@@ -69,7 +69,7 @@ class RelinkableHandle {
     %rename("link-to!") linkTo;
     #endif
   public:
-    RelinkableHandle(const boost::shared_ptr<T>& = boost::shared_ptr<T>());
+    Handle(const boost::shared_ptr<T>& = boost::shared_ptr<T>());
     boost::shared_ptr<T> operator->();
     void linkTo(const boost::shared_ptr<T>&);
     #if defined(SWIGPYTHON)

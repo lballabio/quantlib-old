@@ -47,7 +47,7 @@ class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
   public:
     %extend {
         DepositRateHelperPtr(
-                const RelinkableHandle<Quote>& rate,
+                const Handle<Quote>& rate,
                 Integer n, TimeUnit units, Integer settlementDays,
                 const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter) {
@@ -71,7 +71,7 @@ class FraRateHelperPtr : public boost::shared_ptr<RateHelper> {
   public:
     %extend {
         FraRateHelperPtr(
-                const RelinkableHandle<Quote>& rate,
+                const Handle<Quote>& rate,
                 Integer monthsToStart, Integer monthsToEnd,
                 Integer settlementDays,
                 const Calendar& calendar, BusinessDayConvention convention,
@@ -100,7 +100,7 @@ class FuturesRateHelperPtr : public boost::shared_ptr<RateHelper> {
   public:
     %extend {
         FuturesRateHelperPtr(
-                const RelinkableHandle<Quote>& price,
+                const Handle<Quote>& price,
                 const Date& immDate, Integer nMonths,
                 const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter) {
@@ -117,7 +117,7 @@ class FuturesRateHelperPtr : public boost::shared_ptr<RateHelper> {
                                       calendar,convention,dayCounter));
         }
         FuturesRateHelperPtr(
-	            const RelinkableHandle<Quote>& price,
+	            const Handle<Quote>& price,
                 const Date& immDate, const Date& matDate,
                 const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter) {
@@ -133,7 +133,7 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
   public:
     %extend {
         SwapRateHelperPtr(
-                const RelinkableHandle<Quote>& rate,
+                const Handle<Quote>& rate,
                 Integer n, TimeUnit units, Integer settlementDays,
                 const Calendar& calendar,
                 Frequency fixedFrequency,

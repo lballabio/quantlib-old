@@ -74,8 +74,8 @@ class BlackVolTermStructure : public Extrapolator {
 %template(BlackVolTermStructure) boost::shared_ptr<BlackVolTermStructure>;
 IsObservable(boost::shared_ptr<BlackVolTermStructure>);
 
-%template(BlackVolTermStructureHandle) RelinkableHandle<BlackVolTermStructure>;
-IsObservable(RelinkableHandle<BlackVolTermStructure>);
+%template(BlackVolTermStructureHandle) Handle<BlackVolTermStructure>;
+IsObservable(Handle<BlackVolTermStructure>);
 
 
 %ignore LocalVolTermStructure;
@@ -105,8 +105,8 @@ class LocalVolTermStructure : public Extrapolator {
 %template(LocalVolTermStructure) boost::shared_ptr<LocalVolTermStructure>;
 IsObservable(boost::shared_ptr<LocalVolTermStructure>);
 
-%template(LocalVolTermStructureHandle) RelinkableHandle<LocalVolTermStructure>;
-IsObservable(RelinkableHandle<LocalVolTermStructure>);
+%template(LocalVolTermStructureHandle) Handle<LocalVolTermStructure>;
+IsObservable(Handle<LocalVolTermStructure>);
 
 
 // actual term structures below
@@ -129,7 +129,7 @@ class BlackConstantVolPtr : public boost::shared_ptr<BlackVolTermStructure> {
         }
         BlackConstantVolPtr(
                 const Date& referenceDate,
-                const RelinkableHandle<Quote>& volatility,
+                const Handle<Quote>& volatility,
                 const DayCounter& dayCounter = QuantLib::Actual365()) {
             return new BlackConstantVolPtr(
                 new BlackConstantVol(referenceDate, volatility, dayCounter));
@@ -209,7 +209,7 @@ class LocalConstantVolPtr : public boost::shared_ptr<LocalVolTermStructure> {
         }
         LocalConstantVolPtr(
                 const Date& referenceDate,
-                const RelinkableHandle<Quote>& volatility,
+                const Handle<Quote>& volatility,
                 const DayCounter& dayCounter = QuantLib::Actual365()) {
             return new LocalConstantVolPtr(
                 new LocalConstantVol(referenceDate, volatility, dayCounter));

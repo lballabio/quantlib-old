@@ -35,8 +35,8 @@ class Quote {
 %template(Quote) boost::shared_ptr<Quote>;
 IsObservable(boost::shared_ptr<Quote>);
 
-%template(QuoteHandle) RelinkableHandle<Quote>;
-IsObservable(RelinkableHandle<Quote>);
+%template(QuoteHandle) Handle<Quote>;
+IsObservable(Handle<Quote>);
 
 // actual market elements
 %{
@@ -76,13 +76,13 @@ class DerivedQuotePtr : public boost::shared_ptr<Quote> {
   public:
     %extend {
         #if defined(SWIGPYTHON)
-        DerivedQuotePtr(const RelinkableHandle<Quote>& h,
+        DerivedQuotePtr(const Handle<Quote>& h,
                         PyObject* function) {
             return new DerivedQuotePtr(
                 new DerivedQuote<UnaryFunction>(h,UnaryFunction(function)));
         }
         #elif defined(SWIGMZSCHEME)
-        DerivedQuotePtr(const RelinkableHandle<Quote>& h,
+        DerivedQuotePtr(const Handle<Quote>& h,
                         Scheme_Object* function) {
             return new DerivedQuotePtr(
                 new DerivedQuote<UnaryFunction>(h,UnaryFunction(function)));
@@ -97,16 +97,16 @@ class CompositeQuotePtr : public boost::shared_ptr<Quote> {
   public:
     %extend {
         #if defined(SWIGPYTHON)
-        CompositeQuotePtr(const RelinkableHandle<Quote>& h1,
-                          const RelinkableHandle<Quote>& h2,
+        CompositeQuotePtr(const Handle<Quote>& h1,
+                          const Handle<Quote>& h2,
                           PyObject* function) {
             return new CompositeQuotePtr(
                 new CompositeQuote<BinaryFunction>(
                     h1,h2,BinaryFunction(function)));
         }
         #elif defined(SWIGMZSCHEME)
-        CompositeQuotePtr(const RelinkableHandle<Quote>& h1,
-                          const RelinkableHandle<Quote>& h2,
+        CompositeQuotePtr(const Handle<Quote>& h1,
+                          const Handle<Quote>& h2,
                           Scheme_Object* function) {
             return new CompositeQuotePtr(
                 new CompositeQuote<BinaryFunction>(
@@ -120,7 +120,7 @@ class CompositeQuotePtr : public boost::shared_ptr<Quote> {
 
 namespace std {
     %template(QuoteVector) vector<boost::shared_ptr<Quote> >;
-    %template(QuoteHandleVector) vector<RelinkableHandle<Quote> >;
+    %template(QuoteHandleVector) vector<Handle<Quote> >;
 }
 
 
