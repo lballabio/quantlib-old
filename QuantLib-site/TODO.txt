@@ -8,7 +8,7 @@ on the home page: OO approach
 to provide (twice)
 COM/CORBA on the home page
 
-custom download page
+custom download page (including Debian mention)
 
 doc page html only
 

@@ -141,7 +141,24 @@ height="31" width="88"></a></p>
 They form a library which can be linked to any external
 project.</p>
 
-<h3>Operating Systems and compilers</h3>
+<p>What follows is a general overview: see the NEWS file included
+in the QuantLib source distribution for details about the recent
+developments.</p>
+
+<ul>
+<li><a href="#Oscpp">Operating Systems and compilers</a></li>
+
+<li><a href="#Lib">The library core</a></li>
+
+<li><a href="#LibDoc">Library documentation</a></li>
+
+<li><a href="#Ext">QuantLib-based Extension</a></li>
+
+<li><a href="#ToDo">Open interests</a></li>
+</ul>
+
+<hr>
+<h3 name="OScpp" id="OScpp">Operating Systems and compilers</h3>
 
 <p>The following is a list of configurations and compilers
 supported by QuantLib. All configuration names may have up to four
@@ -159,7 +176,7 @@ couples:</p>
 
 <tr>
 <td>i686-pc-debian2.2</td>
-<td>gcc 2.9.2.95</td>
+<td>gcc 2.9 and 3.0.1</td>
 <td>Enrico Sirola</td>
 </tr>
 
@@ -171,7 +188,9 @@ couples:</p>
 
 <tr>
 <td>i686-pc-WinNT4</td>
-<td>Borland free compiler</td>
+<td><a href=
+"http://www.borland.com/bcppbuilder/freecompiler/">Borland free
+compiler</a> </td>
 <td>Luigi Ballabio</td>
 </tr>
 </table>
@@ -260,7 +279,8 @@ configurations and/or compilers please report your feedback to: <a
 href=
 "mailto:quantlib-users@lists.sourceforge.net">quantlib-users@lists.sourceforge.net</a></p>
 
-<h3>The library core</h3>
+<hr>
+<h3 name="Lib" id="Lib">The library core</h3>
 
 <p>The following list is open for suggestions, corrections, and
 additions. Please consider using the <a href=
@@ -342,14 +362,16 @@ options)</li>
 <p>As you may notice this list has a fixed-income bias, so please
 feel free to suggest additional FX and equity targets.</p>
 
-<h3>Library documentation</h3>
+<hr>
+<h3 name="LibDoc" id="LibDoc">Library documentation</h3>
 
 <p>Documentation of classes and interfaces is mainly included in
 the code, automatically extracted, in multiple formats (HTML,
 LaTeX, PDF) by the means of <a href=
 "http://www.stack.nl/~dimitri/doxygen/">Doxygen</a>.</p>
 
-<h3>QuantLib-based Extension</h3>
+<hr>
+<h3 name="Ext" id="Ext">QuantLib-based Extension</h3>
 
 <p>QuantLib is available as a <strong>Python</strong> module by
 means of <a href="http://swig.sourceforge.net">SWIG</a>.</p>
@@ -381,10 +403,15 @@ extension.</li>
 allowing for object manipulation when possible, providing the
 function interface as bare minimum.</p>
 
-<h3>Open interests</h3>
+<hr>
+<h3 name="Todo" id="ToDo">Open interests</h3>
 
-<p>If enough work force is available, the following items could be
-considered for inclusion in the goals for the 1.0 release.</p>
+<p>A detailed and updated TODO list is available in the QuantLib
+source distribution.</p>
+
+<p>On a more general ground the following items could be considered
+for inclusion in the 1.0 release, if enough work force is
+available.</p>
 
 <ul>
 <li>Historical quote database
