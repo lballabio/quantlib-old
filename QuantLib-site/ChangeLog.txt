@@ -1,3 +1,66 @@
+2002-01-07 18:14  nando
+
+	* quep.html (1.17): Tidyfied
+
+2002-01-07 16:38  lballabio
+
+	* quep.html (1.16), quep/quep008.html (1.1): QuEP 8 added
+
+2002-01-07 09:46  nando
+
+	* license.html (1.28): incorporating Richard M. Stallman feedback
+
+2002-01-04 20:51  nando
+
+	* license.html (1.27): few fixes
+
+2002-01-04 20:40  nando
+
+	* license.html (1.26): few fixes
+
+2002-01-04 19:15  nando
+
+	* license.html (1.25): typos fixed
+
+2002-01-04 18:43  nando
+
+	* index.html (1.33), license.html (1.24): typos fixed
+
+2002-01-04 18:24  nando
+
+	* license.html (1.23): typo fixed
+
+2002-01-04 18:18  nando
+
+	* license.html (1.22): removed dead link
+
+2002-01-04 15:17  nando
+
+	* FAQ.html (1.27): bug fixed
+
+2002-01-04 14:52  nando
+
+	* FAQ.html (1.26), cvs.html (1.25), download.html (1.19),
+	extensions.html (1.12), index.html (1.32), license.html (1.21),
+	lists.html (1.23), mailinglists.html (1.12), marketconventions.html
+	(1.15), nextrelease.html (1.6), qltablehead.inc (1.18), quep.html
+	(1.15), snapshot.html (1.8), style.html (1.20), webclean.py (1.7),
+	quep/quep005.html (1.2), quep/quep006.html (1.2), quep/quep007.html
+	(1.2): quep7 ready to be published
+
+2002-01-04 12:57  lballabio
+
+	* quep.html (1.14), quep/quep007.html (1.1), quep/quep007.png
+	(1.1): QuEP 7 added
+
+2002-01-03 10:59  lballabio
+
+	* quep/quep006.html (1.1): [no log message]
+
+2001-12-19 10:57  nando
+
+	* ChangeLog.txt (1.7): updated
+
 2001-12-18 09:53  nando
 
 	* add.txt (1.1): no message
