@@ -1,5 +1,7 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+<meta name="generator" content="HTML Tidy, see www.w3.org">
 <title>QuEP 8: fixing copy behavior in the Observer class</title>
 <link rel="stylesheet" href="../styles/quantlib.css" type=
 "text/css">
@@ -11,13 +13,15 @@
 
 <h2>Abstract</h2>
 
-<p>The copy constructor and assignment operators of the <tt>Patterns::Observer</tt> class are currently the default ones provided by 
-the compiler. However, this can lead to incomplete state in the copied object 
-and it therefore inadequate for <tt>Observer</tt> functionality.</p>
+<p>The copy constructor and assignment operators of the
+<tt>Patterns::Observer</tt> class are currently the default ones
+provided by the compiler. However, this can lead to incomplete
+state in the copied object and it therefore inadequate for
+<tt>Observer</tt> functionality.</p>
 
-<p>An implementation of such methods is proposed which fixes the problem and 
-leads to increased security against <tt>Observer</tt>/<tt>Observable</tt> 
-lifetime issues.</p>
+<p>An implementation of such methods is proposed which fixes the
+problem and leads to increased security against
+<tt>Observer</tt>/<tt>Observable</tt> lifetime issues.</p>
 
 <h2>Current implementation</h2>
 
@@ -34,9 +38,9 @@ class Observable {
     // Observer management
     virtual void registerObserver(Observer*);
     virtual void unregisterObserver(Observer*);
-    void registerObservers(std::set<Observer*>&);
+    void registerObservers(std::set&lt;Observer*&gt;&amp;);
     virtual void unregisterObserver(Observer*);
-    void unregisterObservers(std::set<Observer*>&);
+    void unregisterObservers(std::set&lt;Observer*&gt;&amp;);
     virtual void unregisterAll();
     std::set&lt;Observer*&gt; observers() const;
     // Observer notification
@@ -46,12 +50,14 @@ class Observable {
 };
 </pre>
 
-<p>It can be seen from a number of glitches in the above interfaces that I was young and not very wise when I implemented this classes. Such glitches will be 
-outlined later together with proposed fixes.</p>
+<p>It can be seen from a number of glitches in the above interfaces
+that I was young and not very wise when I implemented this classes.
+Such glitches will be outlined later together with proposed
+fixes.</p>
 
-<p>However, the most important problem here is the lack of a copy constructor 
-and an assignment operator for <tt>Observer</tt>. The problem is evident in 
-the following code snippet:</p>
+<p>However, the most important problem here is the lack of a copy
+constructor and an assignment operator for <tt>Observer</tt>. The
+problem is evident in the following code snippet:</p>
 
 <pre>
 class SampleObserver : public Observer {
@@ -63,8 +69,8 @@ class SampleObserver : public Observer {
 };
 
 SampleObserver obiwan;
-theForce.registerObserver(&obiwan); // this expands to 
-                                    // theForce.observers().insert(&obiwan);
+theForce.registerObserver(&amp;obiwan); // this expands to 
+                                    // theForce.observers().insert(&amp;obiwan);
 
 SampleObserver clone = obiwan;      // clone is not registered with theForce
                                     // so it is not an exact copy of obiwan
@@ -73,50 +79,55 @@ obiwan = SampleObserver();          // obiwan is still registered so it
                                     // is not a newly initialized instance
 </pre>
 
-<p>This problem did not present itself yet because of the fact that classes 
-derived from <tt>Observer</tt> such as <tt>Instrument</tt> or 
-<tt>TermStructure</tt> are usually contained into <tt>Handle</tt>s. This 
-implies that observers are passed by reference rather than by value, so that 
-copy constructors and assignment operators are never invoked.</p>
+<p>This problem did not present itself yet because of the fact that
+classes derived from <tt>Observer</tt> such as <tt>Instrument</tt>
+or <tt>TermStructure</tt> are usually contained into
+<tt>Handle</tt>s. This implies that observers are passed by
+reference rather than by value, so that copy constructors and
+assignment operators are never invoked.</p>
 
-<p>However, implementations of the latter should be written which provide the
-right behavior. Such implementations are proposed in the following 
-section.</p>
+<p>However, implementations of the latter should be written which
+provide the right behavior. Such implementations are proposed in
+the following section.</p>
 
 <h3>Other glitches</h3>
 
-<p>Public methods are provided which pass an <tt>Observable</tt> raw pointers 
-to <tt>Observer</tt> for storing. This can lead to crashes should an 
-<tt>Observer</tt> be deleted before the <tt>Observables</tt> it registered 
-with.</p>
+<p>Public methods are provided which pass an <tt>Observable</tt>
+raw pointers to <tt>Observer</tt> for storing. This can lead to
+crashes should an <tt>Observer</tt> be deleted before the
+<tt>Observables</tt> it registered with.</p>
 
-<p>The <tt>Observable::notifyObservers</tt> has public visibility. However, 
-notification should be managed by the observables themselves. Therefore, 
-protected visibility would be a better choice. The same is true for the 
-<tt>Observable::observers</tt> method.</p>
+<p>The <tt>Observable::notifyObservers</tt> has public visibility.
+However, notification should be managed by the observables
+themselves. Therefore, protected visibility would be a better
+choice. The same is true for the <tt>Observable::observers</tt>
+method.</p>
 
-<p>Registration and unregistration of observers must be both performed 
-manually. It is left to the programmer to synchronize the two operations, most 
-often by remembering to unregister an <tt>Observer</tt> before it gets 
-destroyed. This also means that he must keep track of the <tt>Observable</tt>s 
-with which the registration was done. Automatic unregistration would be safer 
+<p>Registration and unregistration of observers must be both
+performed manually. It is left to the programmer to synchronize the
+two operations, most often by remembering to unregister an
+<tt>Observer</tt> before it gets destroyed. This also means that he
+must keep track of the <tt>Observable</tt>s with which the
+registration was done. Automatic unregistration would be safer
 besides relieving the programmer from the outlined tasks.</p>
 
-<p>A <tt>std::set</tt> is used for storing <tt>Observer</tt>s. This was chosen 
-so that an observer which registered twice with the same observable would 
-receive only one notification. However, registering twice and unregistering 
-once would result in being unregistered altogether. Often, this is not the 
-desired behavior.</p>
-
+<p>A <tt>std::set</tt> is used for storing <tt>Observer</tt>s. This
+was chosen so that an observer which registered twice with the same
+observable would receive only one notification. However,
+registering twice and unregistering once would result in being
+unregistered altogether. Often, this is not the desired
+behavior.</p>
 
 <h2>Proposed implementation</h2>
 
-<p>Registration and unregistration should be driven from the <tt>Observer</tt> 
-class. This would allow <tt>Observer</tt> instances to keep track of the 
-<tt>Observable</tt>s they registered with, automatically unregister with them 
-before being destroyed, and implement correct copy behavior.</p>
+<p>Registration and unregistration should be driven from the
+<tt>Observer</tt> class. This would allow <tt>Observer</tt>
+instances to keep track of the <tt>Observable</tt>s they registered
+with, automatically unregister with them before being destroyed,
+and implement correct copy behavior.</p>
 
-<p>The new implementation is outlined in the following pseudo-code:</p>
+<p>The new implementation is outlined in the following
+pseudo-code:</p>
 
 <pre>
 class Observable {
@@ -137,13 +148,13 @@ class Observer {
   public:
     Observer() {}   // default constructor does nothing
     // copy constructor
-    Observer(const Observer& o)
+    Observer(const Observer&amp; o)
     : observables_(o.observables_) {
         for (each observable in observables_)
             observable-&gt;registerObserver(this);
     }
     // assignment operator
-    Observer& operator=(const Observer& o) {
+    Observer&amp; operator=(const Observer&amp; o) {
         for (each observable in own observables_)
             observable-&gt;unregisterObserver(this);
         observables_ = o.observables_;
@@ -174,35 +185,38 @@ class Observer {
 };
 </pre>
 
-<p>This implementation solves all the outlined problems, namely:</p>
+<p>This implementation solves all the outlined problems,
+namely:</p>
 
 <ul>
-<li>copy behavior is correct. Copies of an <tt>Observer</tt> are 
-registered to the <tt>Observables</tt> the original one registered with.
+<li>copy behavior is correct. Copies of an <tt>Observer</tt> are
+registered to the <tt>Observables</tt> the original one registered
+with.</li>
 
-<li><tt>Observable</tt> methods still take raw <tt>Observer</tt> pointers. 
-However, such methods are now private and registration is handled by means of 
-the <tt>Observer</tt>s which will unregister themselves before being 
-destroyed. This makes it impossible for <tt>Observable</tt>s to access a 
-deallocated pointer. Also, it must be noted that storing raw pointers is 
-necessary because storing handles would lead to a circular reference 
-preventing both <tt>Observer</tt> and <tt>Observable</tt> from ever being 
-destroyed.
+<li><tt>Observable</tt> methods still take raw <tt>Observer</tt>
+pointers. However, such methods are now private and registration is
+handled by means of the <tt>Observer</tt>s which will unregister
+themselves before being destroyed. This makes it impossible for
+<tt>Observable</tt>s to access a deallocated pointer. Also, it must
+be noted that storing raw pointers is necessary because storing
+handles would lead to a circular reference preventing both
+<tt>Observer</tt> and <tt>Observable</tt> from ever being
+destroyed.</li>
 
-<li><tt>Observable::notifyObservers</tt> is now protected and accessible by 
-derived classes only.
+<li><tt>Observable::notifyObservers</tt> is now protected and
+accessible by derived classes only.</li>
 
-<li>Unregistration of an <tt>Observer</tt> being destroyed is now automatic. 
-It is no longer necessary for the programmer to unregister with 
-<tt>Observable</tt>s in classes derived from <tt>Observer</tt>. This will 
-often result in removing the need for a destructor altogether, i.e., in less 
-code to maintain.
+<li>Unregistration of an <tt>Observer</tt> being destroyed is now
+automatic. It is no longer necessary for the programmer to
+unregister with <tt>Observable</tt>s in classes derived from
+<tt>Observer</tt>. This will often result in removing the need for
+a destructor altogether, i.e., in less code to maintain.</li>
 
-<li>A <tt>std::list</tt> is now used for storing <tt>Observer</tt>s. This will 
-cause an observer which registered twice and unregistered once with the same 
-observer to be still registered.
+<li>A <tt>std::list</tt> is now used for storing
+<tt>Observer</tt>s. This will cause an observer which registered
+twice and unregistered once with the same observer to be still
+registered.</li>
 </ul>
-
 
 <h2>Feedback</h2>
 
