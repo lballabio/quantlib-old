@@ -20,6 +20,7 @@
 
 #include <qlxl/qlxl.hpp>
 #include <qlxl/qlxlfoper.hpp>
+#include <ql/stochasticprocess.hpp>
 #include <ql/PricingEngines/Vanilla/all.hpp>
 #include <ql/PricingEngines/Vanilla/mceuropeanengine.hpp>
 #include <ql/PricingEngines/Quanto/all.hpp>
@@ -49,8 +50,8 @@ extern "C"
         boost::shared_ptr<SimpleQuote> spot(new
             SimpleQuote(xlunderlying.AsDouble()));
 
-        boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
-            BlackScholesStochasticProcess(
+        boost::shared_ptr<BlackScholesProcess> stochProcess(new
+            BlackScholesProcess(
                 RelinkableHandle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
                 QlXlfOper(xlriskFree).AsTermStructure(refDate),
@@ -165,12 +166,13 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        boost::shared_ptr<PricingEngine> baseEngine(new AnalyticEuropeanEngine);
+        boost::shared_ptr<VanillaOption::engine> baseEngine(
+            new AnalyticEuropeanEngine);
 
         boost::shared_ptr<QuantoEngine<VanillaOption::arguments,
-                            VanillaOption::results> > quantoEngine(new
-               QuantoEngine<VanillaOption::arguments,
-                            VanillaOption::results>(baseEngine));
+                                       VanillaOption::results> > quantoEngine(
+            new QuantoEngine<VanillaOption::arguments,
+                             VanillaOption::results>(baseEngine));
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
@@ -233,12 +235,13 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        boost::shared_ptr<PricingEngine> baseEngine(new AnalyticEuropeanEngine);
+        boost::shared_ptr<VanillaOption::engine> baseEngine(
+            new AnalyticEuropeanEngine);
 
         boost::shared_ptr<ForwardEngine<VanillaOption::arguments,
-                             VanillaOption::results> > forwardEngine(new
-               ForwardEngine<VanillaOption::arguments,
-                             VanillaOption::results>(baseEngine));
+            VanillaOption::results> > forwardEngine(new
+                ForwardEngine<VanillaOption::arguments,
+                              VanillaOption::results>(baseEngine));
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
@@ -298,10 +301,11 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        boost::shared_ptr<PricingEngine> baseEngine(new AnalyticEuropeanEngine);
+        boost::shared_ptr<VanillaOption::engine> baseEngine(
+            new AnalyticEuropeanEngine);
 
         boost::shared_ptr<ForwardPerformanceEngine<VanillaOption::arguments,
-                                        VanillaOption::results> > engine(new
+            VanillaOption::results> > engine(new
                ForwardPerformanceEngine<VanillaOption::arguments,
                                         VanillaOption::results>(baseEngine));
 

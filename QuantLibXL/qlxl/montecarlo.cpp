@@ -144,9 +144,10 @@ extern "C"
             QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
                                               xlinterpolationType.AsInt());
 
+        boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(underlying));
         boost::shared_ptr<BlackScholesProcess> bs(new
-            BlackScholesProcess(riskFreeTS, dividendTS, blackVolTS,
-                                                        underlying));
+            BlackScholesProcess(RelinkableHandle<Quote>(spot),
+                riskFreeTS, dividendTS, blackVolTS));
 
         int generatorType = xlgeneratorType.AsInt();
         unsigned long mcSeed = xlseed.AsInt();
@@ -221,9 +222,10 @@ extern "C"
             QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
                                               xlinterpolationType.AsInt());
 
+        boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(underlying));
         boost::shared_ptr<DiffusionProcess> bs(new
-            BlackScholesProcess(riskFreeTS, dividendTS, blackVolTS,
-                                                        underlying));
+            BlackScholesProcess(RelinkableHandle<Quote>(spot),
+                riskFreeTS, dividendTS, blackVolTS));
 
         int generatorType = xlgeneratorType.AsInt();
         unsigned long mcSeed = xlseed.AsInt();
