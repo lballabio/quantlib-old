@@ -34,7 +34,7 @@ suite << SegmentIntegralTest.suite
 suite << Solver1DTest.suite
 suite << TermStructureTest.suite
 
-verbosity = Test::Unit::UI::Console::TestRunner::VERBOSE
+verbosity = Test::Unit::UI::VERBOSE
 runner = Test::Unit::UI::Console::TestRunner.new(suite,verbosity,STDOUT)
 result = runner.start
 unless result.passed?

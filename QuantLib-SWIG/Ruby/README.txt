@@ -20,7 +20,7 @@ The install step above might require superuser privileges.
 An alternate install location can be specified with the command:
     ruby setup.rb install --prefix=/home/johndoe
 
-The test suite is implemented on top of the Test::Unit framework, available
-from <http://testunit.talbott.ws>. Version 0.1.8 or above of Test::Unit is
-required for running the suite.
+The test suite is implemented on top of the Test::Unit framework, included
+in the standard Ruby distribution since version 1.8.0. A version of Test::Unit 
+for Ruby 1.6.x is available from <http://testunit.talbott.ws>. 
 
