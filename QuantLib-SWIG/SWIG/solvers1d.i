@@ -46,7 +46,7 @@ class Solver1D {
     %rename("upper-bound-set!")     setUpperBound;
     %rename("bracketed-solve")      bracketedSolve;
     #endif
-  private:
+  protected:
     Solver1D();
   public:
     void setMaxEvaluations(int evaluations);
@@ -103,42 +103,16 @@ class Solver1D {
 
 
 // Actual solvers
-class Brent : public Solver1D {
-  public:
-    Brent();
-};
-
-class Bisection : public Solver1D {
-  public:
-    Bisection();
-};
-
-class FalsePosition : public Solver1D {
-  public:
-    FalsePosition();
-};
-
-class Ridder : public Solver1D {
-  public:
-    Ridder();
-};
-
-class Secant : public Solver1D {
-  public:
-    Secant();
-};
+class Brent : public Solver1D {};
+class Bisection : public Solver1D {};
+class FalsePosition : public Solver1D {};
+class Ridder : public Solver1D {};
+class Secant : public Solver1D {};
 
 #if defined(SWIGPYTHON)
 // these two need f.derivative()
-class Newton : public Solver1D {
-  public:
-    Newton();
-};
-
-class NewtonSafe : public Solver1D {
-  public:
-    NewtonSafe();
-};
+class Newton : public Solver1D {};
+class NewtonSafe : public Solver1D {};
 #endif
 
 
