@@ -3,8 +3,8 @@
 
 SetCompressor lzma
 
-!define VER_NUMBER  "0.3.8"
-!define VER_NUMBER2 "0_3_8"
+!define VER_NUMBER  "0.3.9"
+!define VER_NUMBER2 "0_3_9"
 
 # HEADER CONFIGURATION COMMANDS
 Name "QuantLibXL"
