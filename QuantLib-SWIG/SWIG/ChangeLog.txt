@@ -1,0 +1,49 @@
+2002-04-08 07:51  nando
+
+	* ChangeLog.txt (1.1): added ChangeLog
+
+2002-04-05 14:34  lballabio
+
+	* calendars.i (1.2), currencies.i (1.2), date.i (1.2),
+	daycounters.i (1.2), qlarray.i (1.4), string.i (1.3), vector.i
+	(1.4): engaged the time machine and switched to SWIG 1.3.12
+
+2002-04-05 12:32  lballabio
+
+	* qlarray.i (1.3): QuantLib-Ruby now works on Win32
+
+2002-04-05 09:37  lballabio
+
+	* common.i (1.4), string.i (1.2), vector.i (1.2), vector.i (1.3):
+	vector.i migrated
+
+2002-04-04 15:01  lballabio
+
+	* ql.i (1.4), qlarray.i (1.2), vector.i (1.1): vector.i half
+	migrated
+
+2002-04-04 10:14  lballabio
+
+	* common.i (1.3), observer.i (1.1), ql.i (1.3): observer.i migrated
+
+2002-04-03 13:57  lballabio
+
+	* common.i (1.2), ql.i (1.2), qlarray.i (1.1), randomnumbers.i
+	(1.2), types.i (1.2): Array migrated
+
+2002-04-02 15:30  lballabio
+
+	* calendars.i (1.1), date.i (1.1), ql.i (1.1), quantlib.i (1.1),
+	string.i (1.1), types.i (1.1), common.i (1.1), currencies.i (1.1),
+	daycounters.i (1.1), distributions.i (1.1), null.i (1.1),
+	randomnumbers.i (1.1): Initial revision
+
+2002-04-02 15:30  lballabio
+
+	* calendars.i (1.1.1.1), date.i (1.1.1.1), ql.i (1.1.1.1),
+	quantlib.i (1.1.1.1), string.i (1.1.1.1), types.i (1.1.1.1),
+	common.i (1.1.1.1), currencies.i (1.1.1.1), daycounters.i
+	(1.1.1.1), distributions.i (1.1.1.1), null.i (1.1.1.1),
+	randomnumbers.i (1.1.1.1): Module for migration to SWIG 1.3.11 and
+	reunification of SWIG extensions
+
