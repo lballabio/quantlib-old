@@ -114,6 +114,15 @@ class FuturesRateHelperHandle : public Handle<RateHelper> {
                 new FuturesRateHelper(price,immDate,nMonths,
                     calendar,convention,dayCounter));
         }
+	FuturesRateHelperHandle(
+	        const RelinkableHandle<MarketElement>& price,
+		const Date& immDate, const Date& matDate,
+		const Calendar& calendar, RollingConvention convention,
+		const DayCounter& dayCounter) {
+            return new FuturesRateHelperHandle(
+                new FuturesRateHelper(price,immDate,matDate,
+		    calendar,convention,dayCounter));
+	}
     }
 };
 
@@ -175,6 +184,15 @@ class PiecewiseFlatForwardHandle : public Handle<TermStructure> {
 	            new PiecewiseFlatForward(todaysDate, referenceDate, 
                                          instruments, dayCounter, accuracy));
         }
+	PiecewiseFlatForwardHandle(
+	        const Date& todaysDate,
+		const std::vector<Date>& dates,
+		const std::vector<double>& forwards,
+		const DayCounter& dayCounter) {
+	        return new PiecewiseFlatForwardHandle(
+		   new PiecewiseFlatForward(todaysDate,
+		       dates, forwards, dayCounter));
+	}
         const std::vector<Date>& dates() {
             return Handle<PiecewiseFlatForward>(*self)->dates();
         }
