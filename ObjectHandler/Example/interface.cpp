@@ -17,6 +17,7 @@
 
 #include <interface.hpp>
 #include <objectfoo.hpp>
+#include <oh/logger.hpp>
 
 using namespace ObjHandler;
 
@@ -42,19 +43,21 @@ Properties FOO_UPDATE(
     return object->getProperties();
 }
 
-void QL_LOGFILE(
-        const std::string &logFileName) {
-    setLogFile(logFileName);
+void QL_LOGFILE(const std::string &logFileName) {
+    Logger::instance().setLogFile(logFileName);
 }
 
-void QL_CONSOLE(
-        const int &console) {
-    setConsole(console);
+void QL_LOGLEVEL(const int &logLevel) {
+    Logger::instance().setLogLevel(logLevel);
+}
+
+void QL_CONSOLE(const int &console) {
+    Logger::instance().setConsole(console);
 }
 
 void QL_LOGMESSAGE(
-        const std::string &msg,
+        const std::string &message,
         const int &level) {
-    logMessage(msg, level);
+    Logger::instance().logMessage(message, level);
 }
 

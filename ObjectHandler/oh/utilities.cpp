@@ -39,24 +39,5 @@ namespace ObjHandler {
 //            return out << "unrecognized type";
     }
 
-    void setLogFile(const std::string &logFileName, 
-            const int &logLevel) {
-        Logger::instance().setLogFile(logFileName, logLevel);
-    }
-
-    void setConsole(const int &console, 
-            const int &logLevel) {
-        Logger::instance().setConsole(console, logLevel);
-    }
-
-    void setLogLevel(const int &logLevel) {
-        Logger::instance().setLogLevel(logLevel);
-    }
-
-    void logMessage(const std::string &message, 
-            const int &level) {
-        Logger::instance().logMessage(message, level);
-    }
-
 }
 

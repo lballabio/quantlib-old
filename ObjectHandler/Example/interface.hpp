@@ -32,14 +32,14 @@ Properties FOO_UPDATE(
     const std::string &s,
     const int &i);
 
-void QL_LOGFILE(
-    const std::string &logFileName);
+void QL_LOGFILE(const std::string &logFileName);
 
-void QL_CONSOLE(
-    const int &console);
+void QL_LOGLEVEL(const int &logLevel);
+
+void QL_CONSOLE(const int &console);
 
 void QL_LOGMESSAGE(
-    const std::string &msg,
+    const std::string &message,
     const int &level = 4);
 
 #endif

@@ -20,6 +20,7 @@
 #endif
 #include <qla/functions/utilities.hpp>
 #include <ql/qldefines.hpp>
+#include <oh/logger.hpp>
 #include <sstream>
 
 using namespace ObjHandler;
@@ -49,22 +50,22 @@ namespace QuantLibAddin {
 
     std::string QL_LOGFILE(const std::string &logFileName,
             const int &logLevel) {
-        setLogFile(logFileName, logLevel);
+        Logger::instance().setLogFile(logFileName, logLevel);
         return logFileName;
     }
 
     void QL_CONSOLE(const int &console,
             const int &logLevel){
-        setConsole(console, logLevel);
+        Logger::instance().setConsole(console, logLevel);
     }
 
     void QL_LOGLEVEL(const int &logLevel) {
-        setLogLevel(logLevel);
+        Logger::instance().setLogLevel(logLevel);
     }
 
     std::string QL_LOGMESSAGE(const std::string &message,
             const int &level) {
-        logMessage(message, level);
+        Logger::instance().logMessage(message, level);
         return message;
     }
 
