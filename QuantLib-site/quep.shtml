@@ -1,0 +1,117 @@
+<!--
+ $Id$
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--#include virtual="qlmeta.inc"-->
+<meta http-equiv="Content-Language" content="en">
+<meta name="doc-class" content="Draft">
+<meta name="description" content="QuantLib Enhancement Proposals">
+<title>QuantLib Enhancement Proposals</title>
+
+<style type="text/css">
+ li.c1 {list-style: none}
+</style>
+</head>
+<body>
+<!--#include virtual="qlheader.inc"-->
+<h1>QuantLib Enhancement Proposals</h1>
+<table summary="humour" width="100%" border="0" cellpadding="0"
+cellspacing="0">
+<tr>
+<td width="20%">&nbsp;</td>
+<td>There are two ways of constructing a software design. One way
+is to make it so simple that there are obviously no deficiencies.
+And the other way is to make it so complicated that there are no
+obvious deficiencies.</td>
+</tr>
+<tr>
+<td width="20%">&nbsp;</td>
+<td align="right"><em>C. A. R. Hoare</em></td>
+</tr>
+</table>
+<p>While simple feature requests can be submitted using the
+<a href="http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">
+related page</a> on the Sourceforge site, more structured proposals
+can be published on this page for peer review and feedback.</p>
+<p>QuantLib Enhancement Proposals (QuEP) can contain UML diagrams
+or code snippets showing partial implementation, as well as a
+textual description. Any of the above are equally encouraged, and
+all of the above most of all.</p>
+<p>QuEPs can be submitted to the <a href=
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-users">QuantLib-users</a>
+mailing list, or to the QuantLib site administrator. In the latter
+case, an announcement of the new QuEP should be posted to the
+mailing list which is also where the discussion of QuEPs should
+take place.</p>
+<p>Here is the list of the current QuEPs:</p>
+<table summary="QuEP list">
+<tr>
+<th>#</th>
+<th align="left">Title</th>
+<th align="left">Status</th>
+</tr>
+<tr>
+<td>1</td>
+<td><a href="quep/quep001.html">Implementing polymorphic behavior
+by means of the pimpl idiom</a></td>
+<td>Implemented</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="quep/quep002.html">Reimplementing boundary conditions
+for finite-difference models</a></td>
+<td>Partially implemented</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="quep/quep3/optimization.html">Curve fitting and
+optimization</a></td>
+<td>In progress</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="quep/quep004.html">Reducing abstraction penalty by
+means of disposable arrays</a></td>
+<td>Superseded by QuEP 9</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="quep/quep005.html">Using replaceable pricing engines
+in option implementations</a></td>
+<td>Partially implemented</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="quep/quep006/quep006.html">A proposal for a Currency
+module</a></td>
+<td>Draft / Open for discussion</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="quep/quep007.html">Using the Visitor pattern to avoid
+interface bloat</a></td>
+<td>Implemented in CVS</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="quep/quep008.html">Fixing copy behavior in the
+Observer class</a></td>
+<td>Implemented</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="quep/quep009.html">Generic disposable objects</a></td>
+<td>Implemented in CVS</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="quep/quep010.html">Separation of concerns in
+RelinkableHandle</a></td>
+<td>Implemented</td>
+</tr>
+</table>
+<!--#include virtual="qlfooter.inc"-->
+</body>
+</html>

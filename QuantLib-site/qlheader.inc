@@ -12,30 +12,30 @@
 <ul class="navlinklist">
 <li><a class="navlink" href="http://quantlib.org">Home&nbsp;page</a></li>
 
-<li><a class="navlink" href="html/overview.html">Project Overview (exits)</a></li>
+<li><a class="navlink" href="html/overview.html">Project Overview</a></li>
 
-<li><a class="navlink" href="extensions.html">Extensions</a></li>
+<li><a class="navlink" href="extensions.shtml">Extensions</a></li>
 
-<li><a class="navlink" href="html/examples.html">Examples (exits)</a></li>
+<li><a class="navlink" href="html/examples.html">Examples</a></li>
 
-<li><a class="navlink" href="html/history.html">History (exits)</a></li>
+<li><a class="navlink" href="html/history.html">History</a></li>
 
-<li><a class="navlink" href="download.html">Download</a></li>
+<li><a class="navlink" href="download.shtml">Download</a></li>
 
-<li><a class="navlink" href="mailinglists.html">Mailing lists</a></li>
+<li><a class="navlink" href="mailinglists.shtml">Mailing lists</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/news/?group_id=12740">News (exits)</a></li>
+"http://sourceforge.net/news/?group_id=12740">News</a></li>
 
-<li><a class="navlink" href="html/index.html">Documentation (exits)</a></li>
+<li><a class="navlink" href="html/index.html">Documentation</a></li>
 
-<li><a class="navlink" href="license.html">License</a></li>
+<li><a class="navlink" href="license.shtml">License</a></li>
 
-<li><a class="navlink" href="html/group.html">QuantLib Group (exits)</a></li>
+<li><a class="navlink" href="html/group.html">QuantLib Group</a></li>
 
 <li><a class="navlink" href=
 "http://sourceforge.net/project/stats/index.php?report=months&amp;group_id=12740">Project
-Statistics (exits)</a></li>
+Statistics</a></li>
 </ul>
 
 <hr>
@@ -43,43 +43,42 @@ Statistics (exits)</a></li>
 
 <ul>
 <li><a class="navlink" href=
-"http://sourceforge.net/projects/quantlib">Project&nbsp;page (exits)</a></li>
+"http://sourceforge.net/projects/quantlib">Project&nbsp;page</a></li>
 
-<li><a class="navlink" href="quep.html">Enhancement Proposals</a></li>
+<li><a class="navlink" href="quep.shtml">Enhancement Proposals</a></li>
 
-<li><a class="navlink" href="cvs.html">CVS</a></li>
+<li><a class="navlink" href="cvs.shtml">CVS</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bugs
-(exits)</a></li>
+"http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bugs</a></li>
 
 <li><a class="navlink" href=
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=312740">Patches
-(exits)</a></li>
+</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">Feature&nbsp;Requests (exits)</a></li>
+"http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">Feature&nbsp;Requests</a></li>
 
-<li><a class="navlink" href="FAQ.html">Developer&nbsp;FAQ</a></li>
+<li><a class="navlink" href="developerFAQ.shtml">Developer&nbsp;FAQ</a></li>
 
-<li><a class="navlink" href="style.html">Programming Style Guidelines</a></li>
+<li><a class="navlink" href="style.shtml">Programming Style Guidelines</a></li>
 </ul>
 
 <hr>
 <h3 class="navbartitle">Quantitative Finance Resources</h3>
 
 <ul>
-<li><a class="navlink" href="books.html">Books</a></li>
+<li><a class="navlink" href="books.shtml">Books</a></li>
 
-<li><a class="navlink" href="lists.html">Lists of interest</a></li>
+<li><a class="navlink" href="lists.shtml">Lists of interest</a></li>
 
-<li><a class="navlink" href="http://www.elsevier.com/locate/econophys">Econophysics (exits)</a></li>
+<li><a class="navlink" href="http://www.elsevier.com/locate/econophys">Econophysics</a></li>
 
-<li><a class="navlink" href="marketconventions.html">Market Conventions</a></li>
+<li><a class="navlink" href="marketconventions.shtml">Market Conventions</a></li>
 
-<li><a class="navlink" href="http://www.wilmott.com/">Wilmott&nbsp;(exits)</a></li>
+<li><a class="navlink" href="http://www.wilmott.com/">Wilmott</a></li>
 
-<li><a class="navlink" href="http://www.quantnotes.com/">QuantNotes&nbsp;(exits)</a></li>
+<li><a class="navlink" href="http://www.quantnotes.com/">QuantNotes</a></li>
 </ul>
 
 <hr>

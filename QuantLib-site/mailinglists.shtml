@@ -1,0 +1,61 @@
+<!--
+ $Id$
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<meta name="author" content="Ferdinando Ametrano">
+<meta name="copyright" content=
+"Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
+<meta name="doc-class" content="Draft">
+<title>QuantLib Mailing Lists</title>
+<meta name="description" content="QuantLib Mailing Lists">
+<!--#include virtual="qlmeta.inc"-->
+</head>
+<body>
+<!--#include virtual="qlheader.inc"-->
+<h1 class="center">Mailing Lists</h1>
+Choose a list to browse, search, and post messages.
+<ul>
+<li><strong>quantlib-users</strong>:<br>
+QuantLib users general discussion list. This list is for everything
+related to the QuantLib usage and development. Topics about
+quantitative finance in general are also accepted.<br>
+(go to <a href=
+"http://sourceforge.net/mailarchive/forum.php?forum=quantlib-users">
+Archives</a>, <a href=
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-users">Subscribe/Unsubscribe/Preferences</a>)</li>
+<li><strong>quantlib-announce</strong>:<br>
+QuantLib announcement list (very low traffic). All major
+announcements about QuantLib will be posted here.<br>
+You cannot post to this list. If you have an announcement for the
+QuantLib community, please post it on quantlib-users: the QuantLib
+admin will forward it to quantlib-announce if appropriate.<br>
+(go to <a href=
+"http://sourceforge.net/mailarchive/forum.php?forum=quantlib-announce">
+Archives</a>, <a href=
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-announce">Subscribe/Unsubscribe/Preferences</a>)</li>
+<li><strong>quantlib-jobs</strong>:<br>
+Jobs list for supply and demand of quantitative finance jobs. You
+can post here: 1) job offers, 2) links to job offers, 3) your
+resume.<br>
+Plain text, HTML, and PDF are preferred. Attachment are allowed as
+long as they are not too big. No multiple posts, please.<br>
+All messages are archived for later browsing: please state how long
+your message is valid.<br>
+(go to <a href=
+"http://sourceforge.net/mailarchive/forum.php?forum=quantlib-jobs">Archives</a>,
+<a href=
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-jobs">Subscribe/Unsubscribe/Preferences</a>)</li>
+<li><strong>quantlib-cvs</strong>:<br>
+High-traffic list for automated QuantLib <a href="cvs.shtml">CVS</a>
+check-in messages. Every time the QuantLib CVS code changes an email
+documenting the change is automatically generated.<br>
+Suggested for developers only. Please do not directly post to this
+list.<br>
+(not archived yet, <a href=
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-cvs">Subscribe/Unsubscribe/Preferences</a>)</li>
+</ul>
+<!--#include virtual="qlfooter.inc"-->
+</body>
+</html>

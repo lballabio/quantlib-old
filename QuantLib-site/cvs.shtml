@@ -1,0 +1,137 @@
+<!--
+ $Id$
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<meta name="author" content="Ferdinando Ametrano">
+<meta name="copyright" content=
+"Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
+<meta name="doc-class" content="Draft">
+<title>QuantLib's CVS Repository</title>
+<meta name="description" content="QuantLib CVS">
+<!--#include virtual="qlmeta.inc"-->
+</head>
+<body>
+<!--#include virtual="qlheader.inc"-->
+<h1 class="center">QuantLib's CVS Repository</h1>
+<p>If you're new to CVS please read our <a href=
+"developerFAQ.shtml#cvs">FAQ</a> and <a href=
+"http://sourceforge.net/docman/?group_id=1">SourceForge.net CVS
+documentation</a>, especially their <a href=
+"http://sourceforge.net/docman/display_doc.php?docid=765&amp;group_id=1">
+CVS FAQ</a>. For general (and more advanced) information consult
+the <a href="http://cvsbook.red-bean.com/">free CVS Book</a> and
+the <a href="http://www.loria.fr/~molli/cvs/doc/cvs_toc.html">CVS
+Docs at www.loria.fr</a></p>
+<p>QuantLib's CVS repository includes the following modules:</p>
+<ul>
+<li>QuantLib (the C++ library)</li>
+<li>QuantLib-SWIG (bindings for Python, Ruby, MzScheme and
+Guile.)</li>
+<li>QuantLibXL (the Excel add-in)</li>
+<li>QuantLib-site (the HTML sources of these pages)</li>
+</ul>
+<p><em>Please note that QuantLib modules have capital Q and capital
+L.</em></p>
+<p>You can <a href=
+"http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/quantlib/">browse
+the CVS tree</a>: this gives you a view into the current
+status of the project's code. You may also view the complete
+histories of any file in the repository.</p>
+<h3>Anonymous CVS Access</h3>
+<p>The modules can be checked out through anonymous (pserver) CVS
+with the following instruction set. The module you wish to check
+out must be specified as the modulename. When prompted for a
+password for anonymous, simply press the Enter key.</p>
+<p>Unix:</p>
+<pre>
+export CVSROOT=:pserver:anonymous@cvs.quantlib.org:/cvsroot/quantlib
+cvs login
+cvs -z3 co -P modulename
+</pre>
+<p>Win32:</p>
+<pre>
+SET CVSROOT=:pserver:anonymous@cvs.quantlib.org:/cvsroot/quantlib
+cvs login
+cvs -z3 co -P modulename
+</pre>
+<p>After initial checkout, you can execute cvs commands in this
+directory without the CVSROOT exporting/setting. For example:</p>
+<pre>
+cvs update
+</pre>
+<p>If you are behind a firewall ask your sysadmin to open the
+cvspserver port (2401) for outgoing connection from your machine to
+cvs.quantlib.org<br>
+<!--
+If he refuses to allow an outgoing connection from one well
+defined machine (yours) to one well defined remote server on one
+specific port he is taking security to a pointless level that
+merely impedes the users' work flow, impairs the functionality of
+the network, and doesn't provide any extra security unless your
+sysadmin believes his network to be infested with backdoor
+trojans that might try to phone home on the port used by the CVS
+protocol, in which case he should be busy disinfecting the
+workstations rather than trying to stop them opening outgoing
+connections.
+-->
+Alternatively, if you are behind a strict firewall, you can
+download the <a href=
+"http://cvs.sourceforge.net/cvstarballs/quantlib-cvsroot.tar.bz2">nightly
+backup tarball</a> of the CVS repository (about XXMB). You'll need
+to install it as a local CVS repository to use it.</p>
+<br>
+<h3>Developer CVS Access via SSH</h3>
+<p>If you are a SourceForge.net-recognized QuantLib developer you
+can access the CVS tree via SSH (SSH must be installed on your
+client machine). To check if this is the case try the shell login.
+Substitute developername with the proper value:</p>
+<pre>
+ssh -l developername quantlib.org
+groups
+</pre>
+<p>You have to perform the shell login at least once, in order to
+have your user directory created. If the shell login is OK (type
+<em>exit</em> to log off), you can check out modules from the
+QuantLib CVS. Substitute modulename and developername with the
+proper values, enter your site password when prompted:</p>
+<p>Unix:</p>
+<pre>
+export CVSROOT=developername@cvs.quantlib.org:/cvsroot/quantlib
+export CVS_RSH=ssh
+cvs -z3 co -P modulename
+</pre>
+<p>Win32:</p>
+<pre>
+SET CVSROOT=developername@cvs.quantlib.org:/cvsroot/quantlib
+SET CVS_RSH=ssh
+cvs -z3 co -P modulename
+</pre>
+<p>After initial checkout, you can change into this directory and
+execute cvs commands without the CVSROOT exporting/setting. For
+example:</p>
+<pre>
+cvs update
+cvs commit -m "comments for this commit"
+cvs add myfile.c
+</pre>
+<p>If you are behind a firewall you need to open the ssh port (22)
+for outgoing connection from your machine to quantlib.org,
+shell.sf.net, and upload.sf.net (the latter just in case you plan
+to help the QuantLib release process).</p>
+<p><strong>Note for C++ Unix users</strong>: if you use CVS, you
+will need some GNU tools that usually only developers use, and
+which are not required to build QuantLib from tarballs. These are
+automake, autoconf, libtool, GNU m4, GNU make, and others which
+might escape me now. They all come with recent GNU/Linux
+distributions.</p>
+<p>To begin the build process from a CVS checkout, start with:</p>
+<pre>
+sh ./bootstrap
+</pre>
+<p>which will prepare the package for compilation. You can then use
+<em>./configure</em> and <em>make</em> in the usual way.</p>
+<!--#include virtual="qlfooter.inc"-->
+</body>
+</html>

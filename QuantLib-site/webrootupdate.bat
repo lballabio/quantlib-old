@@ -7,6 +7,6 @@ goto DONE
 set USERNAME=%1
 :DONE
 
-scp -C -r *.html %USERNAME%@shell.sourceforge.net:/home/groups/q/qu/quantlib/htdocs
+scp -C -r *.shtml %USERNAME%@shell.sourceforge.net:/home/groups/q/qu/quantlib/htdocs
 
 pause

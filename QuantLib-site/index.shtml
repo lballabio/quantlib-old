@@ -1,0 +1,130 @@
+<!--
+ $Id$
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<meta name="author" content="Ferdinando Ametrano">
+<meta name="copyright" content=
+"Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
+<meta name="doc-class" content="Draft">
+<title>QuantLib: a free/open-source library for quantitative
+finance</title>
+<meta name="description" content=
+"QuantLib: a free/open-source library for quantitative finance">
+<!--#include virtual="qlmeta.inc"-->
+</head>
+<!--#include virtual="qlheader.inc"-->
+<div class="center"><img src="images/QL-largish.jpg" alt=
+"QuantLib Logo"></div>
+<h2 class="center">A free/open-source library for quantitative
+finance</h2>
+<p>The QuantLib project is aimed at providing a comprehensive
+software framework for quantitative finance. QuantLib is a
+<em><a href=
+"http://www.gnu.org/philosophy/free-sw.html">free</a>/<a href=
+"http://www.opensource.org/">open-source</a></em> library for
+modeling, trading, and risk management in real-life.</p>
+<p>QuantLib is written in C++ with a clean object model, and is
+then exported to different languages such as Python, Ruby, and
+Scheme. An initial Excel add-in is also available. There are ports
+to the .NET framework in C# (see <a href=
+"http://www.quantlib.net">[1]</a> and <a href=
+"http://www.capetools.net/">[2]</a>). Bindings to other languages
+(including Java), and porting to Gnumeric, Matlab/Octave,
+S-PLUS/<a href=
+"http://dirk.eddelbuettel.com/code/rquantlib.html">R</a>, <a href=
+"http://www.nielses.dk/quantlib/mma/">Mathematica</a>,
+COM/CORBA/SOAP architectures, FpML, are under consideration. See
+the <a href="extensions.shtml">extensions</a> page for details.</p>
+<p>Appreciated by quantitative analysts and developers, it is
+intended for academics and practitioners alike, eventually
+promoting a stronger interaction between them. QuantLib offers
+tools that are useful both for practical implementation and for
+advanced modeling, with features such as market conventions, yield
+curve models, solvers, PDEs, Monte Carlo (low-discrepancy
+included), exotic options, VAR, and so on.</p>
+<p>Finance is an area where well-written open-source projects could
+make a tremendous difference:</p>
+<ul>
+<li>any financial institution needs a solid, time-effective,
+operative implementation of cutting edge pricing models and hedging
+tools. However, to get there, one is currently forced to re-invent
+the wheel every time. Even standard decade-old models, such as
+Black-Scholes, still lack a public robust implementation. As a
+consequences many good quants are wasting their time writing C++
+classes which have been already written thousands of times.</li>
+<li>By designing and building these tools in the open, QuantLib
+will both encourage peer review of the tools themselves, and
+demonstrate how this ought to be done for scientific and commercial
+software. Dan Gezelter's <a href=
+"http://www.openscience.org/talks/bnl/index.html">talk</a> at the
+first Open Source/Open Science conference discussed how the
+scientific tradition of peer review fits well with the philosophy
+of the Open Source movement. Open standards are the only fair way
+for science and technology to evolve.</li>
+</ul>
+<p>The library could be exploited across different research and
+regulatory institutions, banks, software companies, and so on.
+Being a free/open-source project, quants contributing to the
+library would not need to start from scratch every time.</p>
+<ul>
+<li>Students could master a library that is actually used in the
+real world and contribute to it in a meaningful way. This would
+potentially place them in a privileged position on the job
+market.</li>
+<li>Researchers would have a framework at hand, which vastly
+reduces the amount of low-level work necessary to build models, so
+to be able to focus on more complex and interesting problems.</li>
+<li>Financial firms could exploit QuantLib as base code and/or
+benchmark, while being able to engage in creating more innovative
+solutions that would make them more competitive on the market.</li>
+<li>Regulatory institutions may have a tool for standard pricing
+and risk management practices.</li>
+</ul>
+<p>The QuantLib <a href="license.shtml">license</a> is a modified
+BSD license suitable for use in both free software and proprietary
+applications, imposing no constraints at all on the use of the
+library.</p>
+<p>A few companies have commited significant resources to the
+development of this library, notably <a href=
+"http://www.riskmap.net">RiskMap</a>, a leading risk-management
+consulting firm in Italy.</p>
+<p>Help deciding the development road-map and start contributing to
+the library: the <a href="html/overview.html">project-overview</a>
+page gives a summary of the work in progress. <a href=
+"html/index.html">Documentation</a> is also available.</p>
+<p>A few resources have been setup with the help from QuantLib's
+generous host <a href=
+"http://sourceforge.net">SourceForge.net</a>:</p>
+<ul>
+<li>The <a href="http://sourceforge.net/projects/quantlib">QuantLib
+project page</a> is the main gathering point for the
+activities.</li>
+<li>Anyone interested is invited to join one of the <a href=
+"mailinglists.shtml">mailing lists</a>.</li>
+<li>Check the <a href=
+"http://sourceforge.net/news/?group_id=12740">latest news</a> for
+the most recent updates on the project.</li>
+<li>The released files (source code, binaries, documentation, etc.)
+are available at the <a href="download.shtml">download
+page</a>.</li>
+<li>The QuantLib CVS, providing all the snapshots of the
+development, can be <a href="cvs.shtml">accessed directly</a>, or
+through the <a href=
+"http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/quantlib/">CVS web
+interface</a>.</li>
+<li>To submit a bug report, please use the <a href=
+"http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bug
+Tracker</a>.</li>
+<li>If you have patches you'd like to submit, the best way is to
+use the <a href=
+"http://sourceforge.net/tracker/?group_id=12740&amp;atid=312740">Patch
+Manager</a>.</li>
+<li>If you have a feature request, please <a href=
+"http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">let
+us know</a>.</li>
+</ul>
+<!--#include virtual="qlfooter.inc"-->
+</body>
+</html>

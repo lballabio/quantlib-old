@@ -14,11 +14,9 @@ def walking(skip, dirname, names):
       else:
           filename = name
       if os.path.isfile(filename)==1:
-        if string.find(filename, ".htm")<>-1:
+        if string.find(filename, ".htm")<>-1 \
+               or string.find(filename, ".shtm")<>-1:
           print 'file:', filename, '  ----  ',
-          # include navigation bar, etc
-          print 'includeHTML,',
-          os.system('includeHTML -i '+filename+ ' -o ' + filename + ' -b * -s')
           # fix and validate xhtml
           print 'Tidy,'
           os.system('tidy -q -m ' + filename)

@@ -1,7 +1,6 @@
 
+<meta name="keywords" content="QuantLib, C++, library, finance, quantitative finance, quant, quants, analysts, developers, free software, opensource">
 <meta name="resource-type" content="document">
-<meta name="generator" content="HTML Tidy, see www.w3.org">
-<meta name="generator" content="HTML-Kit">
 <meta name="revisit-after" content="15 days">
 <meta name="classification" content="Personal">
 <meta name="robots" content="ALL">

@@ -1,0 +1,66 @@
+<!--
+ $Id$
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<meta name="author" content="Ferdinando Ametrano">
+<meta name="copyright" content=
+"Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
+<meta name="doc-class" content="Draft">
+<title>QuantLib License</title>
+<meta name="description" content="QuantLib license">
+<!--#include virtual="qlmeta.inc"-->
+</head>
+<body>
+<!--#include virtual="qlheader.inc"-->
+<h1 class="center">QuantLib License</h1>
+<p>QuantLib is <a href=
+"http://www.gnu.org/philosophy/categories.html#Non-CopyleftedFreeSoftware">
+Non-Copylefted Free Software</a> released under the <a href=
+"http://www.opensource.org/licenses/bsd-license.html">modified BSD
+License</a> (also known as XFree86-style license).</p>
+<p>QuantLib is <a href=
+"http://www.opensource.org/docs/definition.html">Open Source</a>
+because of its license: it is <a href=
+"http://www.opensource.org/docs/certification_mark.html">OSI
+Certified Open Source Software</a>. OSI Certified is a
+certification mark of the <a href="http://www.opensource.org">Open
+Source Initiative</a>.</p>
+<p>The modified BSD License is GPL compatible as confirmed by the
+<a href="http://www.gnu.org/philosophy/bsd.html">Free Software
+Foundation</a>.</p>
+<p>This License has been adopted to allow free use of QuantLib and
+its source, to make QuantLib flourish as a
+free-software/open-source project. It allows proprietary extensions
+to be commercialized.</p>
+<p>The license:</p>
+<pre>
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+    Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+
+    Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+
+    Neither the names of the copyright holders nor the names of the QuantLib
+    Group and its contributors may be used to endorse or promote products
+    derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</pre>
+<!--#include virtual="qlfooter.inc"-->
+</body>
+</html>

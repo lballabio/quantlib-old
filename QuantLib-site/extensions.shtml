@@ -1,0 +1,63 @@
+<!--
+ $Id$
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<meta name="author" content="Ferdinando Ametrano">
+<meta name="copyright" content=
+"Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
+<meta name="doc-class" content="Draft">
+<title>QuantLib Extensions</title>
+<meta name="description" content="QuantLib extensions">
+<!--#include virtual="qlmeta.inc"-->
+</head>
+<body>
+<!--#include virtual="qlheader.inc"-->
+<h1>QuantLib-based Extension</h1>
+<p>QuantLib is already <a href="download.shtml">available</a> as a
+<strong>Guile</strong>, <strong>MzScheme</strong>,
+<strong>Python</strong>, and <strong>Ruby</strong> modules by means of
+<a href="http://swig.sourceforge.net">SWIG</a>.<br> SWIG also supports
+Java, Tcl/Tk, Perl, and PHP, so this approach may easily help porting
+QuantLib to these languages. SWIG modules are available in the
+QuantLib <a href="cvs.shtml">CVS</a> under QuantLib-SWIG. We welcome
+any contribution aimed at exporting the library towards other
+programming languages; however, the use of SWIG is to be preferred to
+hand-made approaches since it leads to more maintainable code.</p>
+<p><strong>QuantLibXL</strong> is
+an initial Excel add-in built using <a href=
+"http://xlw.sf.net">xlw</a>.</p>
+<p>QuantLib has been ported to the .NET framework in C#. See
+<a href="http://www.quantlib.net">http://www.quantlib.net</a> and
+<a href="http://www.capetools.net">http://www.capetools.net</a> for
+more details.</p>
+<p>Initial GNU R support is provided with <a href=
+"http://dirk.eddelbuettel.com/code/rquantlib.html">RQuantLib</a> by
+Dirk Eddelbuettel.</p>
+<p>Niels Elken S&oslash;nderby has a page for the tentative
+Mathematica project <a href=
+"http://www.nielses.dk/quantlib/mma/">QuantLibMma</a>.</p>
+<p>In general the library should be exported to the maximum
+possible degree, allowing for object manipulation when possible,
+providing a function interface as bare minimum.</p>
+<p>There is a strong interest in having QuantLib available as
+extension for different platforms. We're looking for volunteers to
+help with:</p>
+<ul>
+<li>COM for Microsoft world (VB and Excel);</li>
+<li><a href="http://www.gnome.org/projects/gnumeric/">Gnumeric</a>
+add-in;</li>
+<li>Matlab/<a href="http://www.octave.org/">Octave</a>
+extension.</li>
+<li><a href=
+"http://www.wolfram.com/products/mathematica/">Mathematica</a>
+extension.</li>
+<li>S-Plus extension.</li>
+<li>CORBA</li>
+<li>Simple Object Access Protocol (SOAP)</li>
+<li>XML financial instrument definition (FpML?)</li>
+</ul>
+<!--#include virtual="qlfooter.inc"-->
+</body>
+</html>

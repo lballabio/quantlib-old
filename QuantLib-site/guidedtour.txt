@@ -1,37 +1,102 @@
-The starting point of a QuantLib guided tour is the web site: http://quantlib.org. The home page itself is a small introduction; other useful pages include the user manual at http://quantlib.org/html/index.html and an overview of the project at http://quantlib.org/html/overview.html. The overview page needs to be updated, and I'm going to write an updated version which I will send to you in few hours. The bottom line is that with QuantLib we're going to provide a benchmark _framework_ for quantitative finance. On the short term we're not concerned with very advanced topic, as much as we want to provide a common framework for numerical methods in finance (mainly Finite Differences and Monte Carlo).
-QuantLib aims to be the tool-kit all quants can use and refer to.
+The starting point of a QuantLib guided tour is the web site:
+http://quantlib.org. The home page itself is a small introduction;
+other useful pages include the user manual at
+http://quantlib.org/html/index.html and an overview of the project at
+http://quantlib.org/html/overview.html. The overview page needs to be
+updated, and I'm going to write an updated version which I will send
+to you in few hours. The bottom line is that with QuantLib we're going
+to provide a benchmark _framework_ for quantitative finance. On the
+short term we're not concerned with very advanced topic, as much as we
+want to provide a common framework for numerical methods in finance
+(mainly Finite Differences and Monte Carlo).  QuantLib aims to be the
+tool-kit all quants can use and refer to.
 
-From the home page I'll guide you through two tracks, one for QuantLib users and the other for QuantLib developers.
+From the home page I'll guide you through two tracks, one for QuantLib
+users and the other for QuantLib developers.
 
 1. The QuantLib user track
 
-To get assured that QuantLib is for real a new user can be interested in taking a look at the project statistics, provided by SourceForge, the generous host of the QuantLib project and thousands of other open source projects. The statistics (http://sourceforge.net/project/stats/index.php?report=months&group_id=12740) show a steady increase of interest for QuantLib. After few calm months, the new 0.3.3 release has put QuantLib in the highest 10% of SourceForge active projects.
+To get assured that QuantLib is for real a new user can be interested
+in taking a look at the project statistics, provided by SourceForge,
+the generous host of the QuantLib project and thousands of other open
+source projects. The statistics
+(http://sourceforge.net/project/stats/index.php?report=months&group_id=12740)
+show a steady increase of interest for QuantLib. After few calm
+months, the new 0.3.3 release has put QuantLib in the highest 10% of
+SourceForge active projects.
 
-To get QuantLib one should download it from http://quantlib.org/download.html
-For a Windows user the file QuantLib-0.3.3-full-inst.exe is enough since it includes source code, examples, documentation in multiple formats, etc. Through  Start Menu | Programs | QuantLib the user can access documentation, web site, and the source code. Microsoft Visual Studio project files are provided, the Borland command line compiler is supported ('make' in the QuantLib directory will compile the code and run the examples.)
+To get QuantLib one should download it from
+http://quantlib.org/download.shtml. For a Windows user the file
+QuantLib-0.3.3-full-inst.exe is enough since it includes source code,
+examples, documentation in multiple formats, etc. Through Start Menu |
+Programs | QuantLib the user can access documentation, web site, and
+the source code. Microsoft Visual Studio project files are provided,
+the Borland command line compiler is supported ('make' in the QuantLib
+directory will compile the code and run the examples.)
 
-A Unix user would probably download the source code QuantLib-0.3.3-src.tar.gz and documentation in html (QuantLib-0.3.3-docs-html.tar.gz) or PDF (QuantLib-0.3.3-docs-refman.pdf.gz) format. The supported compiler is gcc 2.95.x, 3.0.x and later. By the way, the Linux Debian distribution already includes QuantLib, and RPM are available for Red Heat, Mandrake, etc.
+A Unix user would probably download the source code
+QuantLib-0.3.3-src.tar.gz and documentation in html
+(QuantLib-0.3.3-docs-html.tar.gz) or PDF
+(QuantLib-0.3.3-docs-refman.pdf.gz) format. The supported compiler is
+gcc 2.95.x, 3.0.x and later. By the way, the Linux Debian distribution
+already includes QuantLib, and RPM are available for Red Heat,
+Mandrake, etc.
 
-The first part of the QuantLib manual, QuantLib-0.3.3-docs-refman, is the User Manual. It includes 3 section, "An introduction to QuantLib", "QuantLib Components", and "Examples". The User Manual is a required reading for someone approaching QuantLib. The section "An introduction to QuantLib" is very similar in spirit to this guided tour, so I do not repeat here what you can read there.
+The first part of the QuantLib manual, QuantLib-0.3.3-docs-refman, is
+the User Manual. It includes 3 section, "An introduction to QuantLib",
+"QuantLib Components", and "Examples". The User Manual is a required
+reading for someone approaching QuantLib. The section "An introduction
+to QuantLib" is very similar in spirit to this guided tour, so I do
+not repeat here what you can read there.
 
-Since QuantLib is a C++ library its usage is mainly for C++ developers. Anyway it can already be used in few higher level environments as the Python, Ruby, and Scheme languages. QuantLib-Python, QuantLib-Ruby, QuantLib-Guile, and QuantLib-Scheme are available from the download page. More extension are available in their early stage: Excel, R, and Mathematica. Other such extensions are under consideration. See http://quantlib.org/extensions.html for a list.
+Since QuantLib is a C++ library its usage is mainly for C++
+developers. Anyway it can already be used in few higher level
+environments as the Python, Ruby, and Scheme
+languages. QuantLib-Python, QuantLib-Ruby, QuantLib-Guile, and
+QuantLib-Scheme are available from the download page. More extension
+are available in their early stage: Excel, R, and Mathematica. Other
+such extensions are under consideration. See
+http://quantlib.org/extensions.shtml for a list.
 
-QuantLibXL, the Excel add-in, while in its early stage of development will probably play a major role in the QuantLib diffusion and public recognition, because of the wide-spread usage of Excel in financial modelling/prototyping.
+QuantLibXL, the Excel add-in, while in its early stage of development
+will probably play a major role in the QuantLib diffusion and public
+recognition, because of the wide-spread usage of Excel in financial
+modelling/prototyping.
 
-At this point a QuantLib user might consider to join the QuantLib mailing lists, or at least read the archives (see http://quantlib.org/mailinglists.html)
+At this point a QuantLib user might consider to join the QuantLib
+mailing lists, or at least read the archives (see
+http://quantlib.org/mailinglists.shtml)
 
-The line between a QuantLib user and a QuantLib developer is thin: usually the users are themselves developers who use the library in their own projects.
+The line between a QuantLib user and a QuantLib developer is thin:
+usually the users are themselves developers who use the library in
+their own projects.
 
-As it is often the case the users cross the line and give us feedback about the library: bug fixing, suggestion, etc.
+As it is often the case the users cross the line and give us feedback
+about the library: bug fixing, suggestion, etc.
 
 2. The QuantLib developer track
 
-From time to time a QuantLib user asks to get involved in the QuantLib development. The template letter I send as reply is available on-line at http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/quantlib/QuantLib/dev_tools/newdeveloperintro.txt?rev=HEAD&content-type=text/vnd.viewcvs-markup
+From time to time a QuantLib user asks to get involved in the QuantLib
+development. The template letter I send as reply is available on-line
+at
+http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/quantlib/QuantLib/dev_tools/newdeveloperintro.txt?rev=HEAD&content-type=text/vnd.viewcvs-markup
 
-This "new developer intro" letter introduce the reader to the development conventions and tools. The main tool is CVS (see http://quantlib.org/cvs.html), that allows for concurrent, distributed development and access of the source code base.
+This "new developer intro" letter introduce the reader to the
+development conventions and tools. The main tool is CVS (see
+http://quantlib.org/cvs.shtml), that allows for concurrent,
+distributed development and access of the source code base.
 
-The SourceForge QuantLib project page http://sourceforge.net/projects/quantlib is the "technical" home page from which the Bug Tracker, Features Request Tracker, Patch Tracker, CVS on-line browsing, and more can be accessed.
+The SourceForge QuantLib project page
+http://sourceforge.net/projects/quantlib is the "technical" home page
+from which the Bug Tracker, Features Request Tracker, Patch Tracker,
+CVS on-line browsing, and more can be accessed.
 
-The main QuantLib design decisions are discussed in public using the quantlib-users mailing list (a private mailing list quantlib-dev, for QuantLib developers, is used only for technical communication between active QuantLib developers). Our favorite approach is to publish on the web site a QuEP (QuantLib Enhancement Proposal). You can read all QuEPs at http://quantlib.org/quep.html
+The main QuantLib design decisions are discussed in public using the
+quantlib-users mailing list (a private mailing list quantlib-dev, for
+QuantLib developers, is used only for technical communication between
+active QuantLib developers). Our favorite approach is to publish on
+the web site a QuEP (QuantLib Enhancement Proposal). You can read all
+QuEPs at http://quantlib.org/quep.shtml
 
-Well, the above tour will probably require some time. The next level would/could be to read and discuss the actual source code.
+Well, the above tour will probably require some time. The next level
+would/could be to read and discuss the actual source code.
