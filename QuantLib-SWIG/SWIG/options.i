@@ -215,17 +215,17 @@ class VanillaOptionHandle : public Handle<Instrument> {
 // European engines
 
 %{
-using QuantLib::PricingEngines::AnalyticalVanillaEngine;
-typedef Handle<PricingEngine> AnalyticalVanillaEngineHandle;
+using QuantLib::PricingEngines::AnalyticEuropeanEngine;
+typedef Handle<PricingEngine> AnalyticEuropeanEngineHandle;
 %}
 
-%rename(AnalyticEuropeanEngine) AnalyticalVanillaEngineHandle;
-class AnalyticalVanillaEngineHandle : public Handle<PricingEngine> {
+%rename(AnalyticEuropeanEngine) AnalyticEuropeanEngineHandle;
+class AnalyticEuropeanEngineHandle : public Handle<PricingEngine> {
   public:
     %extend {
-        AnalyticalVanillaEngineHandle() {
-            return new AnalyticalVanillaEngineHandle(
-                new AnalyticalVanillaEngine);
+        AnalyticEuropeanEngineHandle() {
+            return new AnalyticEuropeanEngineHandle(
+                new AnalyticEuropeanEngine);
         }
     }
 };
