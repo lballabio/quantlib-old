@@ -54,7 +54,7 @@ end
 
 
 # Current QuantLib version
-Version = "0.3.3"
+Version = "0.3.4a1"
 
 # Files
 Info     =    [ 'Authors.txt', 'ChangeLog.txt', 'Contributors.txt',
