@@ -1,6 +1,7 @@
 2002-12-16 11:33  nando
 
-	* ChangeLog.txt (1.7), ChangeLog.txt (1.8): updated
+	* ChangeLog.txt (1.7), ChangeLog.txt (1.8), ChangeLog.txt (1.9):
+	updated
 
 2002-12-11 13:46  lballabio
 
