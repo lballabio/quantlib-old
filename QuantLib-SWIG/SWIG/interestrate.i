@@ -86,10 +86,11 @@ class InterestRate {
                             Time t,
                             Compounding comp,
                             Frequency freq = Annual);
-    InterestRate impliedInterestRate(Real compound,
-                                     Time t,
-                                     Compounding comp,
-                                     Frequency freq = Annual);
+    static InterestRate impliedInterestRate(Real compound,
+                                            Time t,
+                                            const DayCounter& resultDC,
+                                            Compounding comp,
+                                            Frequency freq = Annual);
     static Rate impliedRate(Real compound,
                             Date d1,
                             Date d2,
