@@ -28,6 +28,7 @@ using QuantLib::Beijing;
 using QuantLib::Budapest;
 using QuantLib::Copenhagen;
 using QuantLib::Frankfurt;
+using QuantLib::Germany;
 using QuantLib::Helsinki;
 using QuantLib::HongKong;
 using QuantLib::Johannesburg;
@@ -51,7 +52,6 @@ using QuantLib::UnitedKingdom;
 using QuantLib::UnitedStates;
 using QuantLib::Warsaw;
 using QuantLib::Wellington;
-using QuantLib::Xetra;
 using QuantLib::Zurich;
 %}
 
@@ -196,6 +196,14 @@ class Calendar {
                 return new Calendar(Copenhagen());
             else if (s == "frankfurt" || s == "fft")
                 return new Calendar(Frankfurt());
+            else if (s == "germany")
+                return new Calendar(Germany(Germany::Settlement));
+            else if (s == "germanyexchange")
+                return new Calendar(Germany(Germany::FrankfurtStockExchange));
+            else if (s == "germanyxetra" || s == "xetra")
+                return new Calendar(Germany(Germany::Xetra));
+            else if (s == "germanyeurex" || s == "eurex")
+                return new Calendar(Germany(Germany::Eurex));
             else if (s == "helsinki")
                 return new Calendar(Helsinki());
             else if (s == "hongkong")
@@ -230,8 +238,6 @@ class Calendar {
                 return new Calendar(Warsaw());
             else if (s == "wellington")
                 return new Calendar(Wellington());
-            else if (s == "xetra")
-                return new Calendar(Xetra());
             else if (s == "zurich" || s == "zur")
                 return new Calendar(Zurich());
             else if (s == "null")
