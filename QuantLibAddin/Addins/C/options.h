@@ -15,33 +15,36 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+// this file generated automatically by autogen.py on Sat Dec 11 16:06:43 2004
+// editing this file manually is not recommended
+
 #ifndef options_h
 #define options_h
 
 int QL_BLACKSCHOLES_C(
-	const char *handleStochastic, 
-	const double dividendYield,
-	const double riskFreeRate,
-	const double volatility,
-	const double underlying,
-	const long todaysDate,
-	const long settlementDate,
-	VariesList *result);
+		const char *handle,
+		const double dividendYield,
+		const double riskFreeRate,
+		const double volatility,
+		const double underlying,
+		const long todaysDate,
+		const long settlementDate,
+		VariesList *result);
 
 int QL_OPTION_C(
-	const char *handleOption, 
-	const char *handleStochastic,
-	const char *type,
-	const double strike,
-	const long timeSteps,
-	const long exerciseDate,
-	const long settlementDate,
-	VariesList *result);
+		const char *handle,
+		const char *handleStochastic,
+		const char *type,
+		const double strike,
+		const long timeSteps,
+		const long exerciseDate,
+		const long settlementDate,
+		VariesList *result);
 
 int QL_OPTION_SETENGINE_C(
-	const char *handleOption, 
-	const char *engineName,
-	const long timeSteps,
-	VariesList *result);
+		const char *handle,
+		const char *engineName,
+		const long timeSteps,
+		VariesList *result);
 
 #endif

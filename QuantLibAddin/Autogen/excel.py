@@ -20,23 +20,13 @@ def generateParamString(function):
 	paramStr += '",'
 	return paramStr
 
-def generateParamList(params):
-	paramList = '" '
-	i = 0
-	for param in params:
-		paramList += param[common.NAME]
-		i += 1
-		if i < len(params):
-			paramList += ','
-	paramList += '",'
+def generateFuncDec(function):
+	paramStr = generateParamString(function)
+	paramList = utils.generateParamList(function[common.PARAMS])
 	if len(paramList) >= 255:
 		raise ValueError, 'list of parameter names exceeds max Excel length of 255:\n' \
 			+ paramList
-	return paramList
-
-def generateFuncDec(function):
-	paramStr = generateParamString(function)
-	paramList = generateParamList(function[common.PARAMS])
+	paramList = '" ' + paramList + '",'
 	codeName = '" %s",' % function[common.CODENAME]
 	funcName = '" %s",' % function[common.NAME]
 	ret = '\t{ %-21s %-12s %s \n\t\t%s " 1", " QuantLib"},\n' \
@@ -97,7 +87,7 @@ def generateFuncDef(fileFunc, function):
 	fileFunc.write('\t}\n')
 	fileFunc.write('}\n\n')
 	return
-	
+
 def generateFuncDefs(functionGroups):
 	for groupName in functionGroups.keys():
 		functionGroup = functionGroups[groupName]
@@ -124,9 +114,11 @@ def generateExports(functionGroups):
 		for function in functionGroup[common.FUNCLIST]:
 			fileExps.write('\t%s\n' % function[common.CODENAME])
 		fileExps.write('\n')
+	return
 
 def generate(functionDefs):
 	generateFuncHeaders(functionDefs)
 	generateFuncDefs(functionDefs[common.FUNCGROUPS])
 	generateExports(functionDefs[common.FUNCGROUPS])
 	return
+
