@@ -29,7 +29,6 @@
 
 %{
 using QuantLib::IndexManager;
-using QuantLib::XiborManager;
 %}
 
 class IndexManager {
@@ -48,23 +47,6 @@ class IndexManager {
     const History& getHistory(const std::string& name) const;
     bool hasHistory(const std::string& name) const;
     std::vector<std::string> histories() const;
-};
-
-class XiborManager {
-    #if defined(SWIGRUBY)
-    %rename("hasHistory?")  hasHistory;
-    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("has-history?") hasHistory;
-    %rename("history-get")  getHistory;
-    %rename("history-set!") setHistory;
-    #endif
-  private:
-    XiborManager();
-  public:
-    static void setHistory(const std::string& name, const History& fixings);
-    static const History& getHistory(const std::string& name);
-    static bool hasHistory(const std::string& name);
-    // static std::vector<std::string> histories();
 };
 
 
@@ -153,14 +135,14 @@ class Name##Ptr : public XiborPtr {
 };
 %enddef
 
-export_xibor_instance(AUDLibor, Actual365);
-export_xibor_instance(CADLibor, Actual365);
+export_xibor_instance(AUDLibor, Actual365Fixed);
+export_xibor_instance(CADLibor, Actual365Fixed);
 export_xibor_instance(CHFLibor, Actual360);
 export_xibor_instance(Euribor, Actual360);
-export_xibor_instance(GBPLibor, Actual365);
+export_xibor_instance(GBPLibor, Actual365Fixed);
 export_xibor_instance(JPYLibor, Actual360);
 export_xibor_instance(USDLibor, Actual360);
-export_xibor_instance(ZARLibor, Actual365);
+export_xibor_instance(ZARLibor, Actual365Fixed);
 
 
 #endif

@@ -50,6 +50,7 @@
 
 %include common.i
 %include blackmodel.i
+%include bonds.i
 %include calendars.i
 %include capfloor.i
 %include cashflows.i

@@ -168,10 +168,10 @@
 
 (define pay-fixed #t)
 (define fixing-days 2)
-(define swap-start (Date-plus-years settlement-date 1))
+(define swap-start (Date-advance settlement-date 1 "year"))
 (define index (new-Euribor 6 "months" term-structure))
 (define swap-length 5)
-(define swap-end (Date-plus-years swap-start swap-length))
+(define swap-end (Date-advance swap-start swap-length "years"))
 
 (define fixed-schedule (new-Schedule calendar swap-start swap-end
                                      fixed-leg-frequency fixed-leg-adjustment))

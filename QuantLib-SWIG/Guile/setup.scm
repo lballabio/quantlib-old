@@ -44,6 +44,7 @@
         "ql.i"
         "common.i"
         "blackmodel.i"
+        "bonds.i"
         "calendars.i"
         "capfloor.i"
         "cashflows.i"
@@ -56,6 +57,7 @@
         "distributions.i"
         "exercise.i"
         "functions.i"
+        "grid.i"
         "history.i"
         "indexes.i"
         "instruments.i"
@@ -139,7 +141,7 @@
     (if (not (file-exists? swig-dir))
         (set! swig-dir "../SWIG"))
     (system (string-append "swig -guile -c++ -Linkage simple "
-                           "-scmstub "
+                           "-scmstub -gh "
                            (format #f "-I~A " swig-dir)
                            "-o quantlib_wrap.cpp "
                            "quantlib.i"))))

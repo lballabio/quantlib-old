@@ -183,26 +183,6 @@ class PiecewiseFlatForwardPtr : public boost::shared_ptr<YieldTermStructure> {
   public:
     %extend {
         PiecewiseFlatForwardPtr(
-                const Date& todaysDate,
-                const Date& referenceDate,
-                const std::vector<boost::shared_ptr<RateHelper> >& instruments,
-                const DayCounter& dayCounter,
-                Real accuracy = 1.0e-12) {
-	        return new PiecewiseFlatForwardPtr(
-	            new PiecewiseFlatForward(todaysDate, referenceDate,
-                                         instruments, dayCounter, accuracy));
-        }
-        PiecewiseFlatForwardPtr(
-                const Date& todaysDate,
-                const std::vector<Date>& dates,
-                const std::vector<Rate>& forwards,
-                const DayCounter& dayCounter) {
-	        return new PiecewiseFlatForwardPtr(
-                new PiecewiseFlatForward(todaysDate,
-                                         dates, forwards, dayCounter));
-        }
-
-        PiecewiseFlatForwardPtr(
                 const Date& referenceDate,
                 const std::vector<boost::shared_ptr<RateHelper> >& instruments,
                 const DayCounter& dayCounter,

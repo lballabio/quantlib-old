@@ -70,23 +70,18 @@
            ; check implied term structure observability
            (let ((flag #f))
              (let* ((calendar (new-TARGET))
-                    (today (TermStructureHandle-todays-date
-                            term-structure))
                     (settlement (TermStructureHandle-reference-date
                                  term-structure))
-                    (new-today (Date-plus-years today 3))
                     (new-settlement (Calendar-advance
-                                     calendar new-today 2 "days"))
+                                     calendar settlement 3 "years"))
                     (day-counter (TermStructureHandle-day-counter
                                   term-structure))
                     (implied (new-ImpliedTermStructure term-structure
-                                                       new-today
                                                        new-settlement))
                     (obs (new-Observer (lambda () (set! flag #t)))))
                (let ((temp (TermStructure->Observable implied)))
                  (Observer-register-with obs temp))
-               (let ((new-term-structure (new-FlatForward today
-                                                          settlement
+               (let ((new-term-structure (new-FlatForward settlement
                                                           0.05
                                                           day-counter)))
                  (TermStructureHandle-link-to! term-structure
@@ -97,9 +92,7 @@
            ; check forward-spreaded term structure observability
            (let ((flag #f)
                  (tolerance 1.0e-10))
-             (let* ((today (TermStructureHandle-todays-date
-                            term-structure))
-                    (settlement (TermStructureHandle-reference-date
+             (let* ((settlement (TermStructureHandle-reference-date
                                  term-structure))
                     (day-counter (TermStructureHandle-day-counter
                                   term-structure))
@@ -110,8 +103,7 @@
                     (obs (new-Observer (lambda () (set! flag #t)))))
                (let ((temp (TermStructure->Observable spreaded)))
                  (Observer-register-with obs temp))
-               (let ((new-term-structure (new-FlatForward today
-                                                          settlement
+               (let ((new-term-structure (new-FlatForward settlement
                                                           0.05
                                                           day-counter)))
                  (TermStructureHandle-link-to! term-structure
@@ -128,9 +120,7 @@
            ; check zero-spreaded term structure observability
            (let ((flag #f)
                  (tolerance 1.0e-10))
-             (let* ((today (TermStructureHandle-todays-date
-                            term-structure))
-                    (settlement (TermStructureHandle-reference-date
+             (let* ((settlement (TermStructureHandle-reference-date
                                  term-structure))
                     (day-counter (TermStructureHandle-day-counter
                                   term-structure))
@@ -141,8 +131,7 @@
                     (obs (new-Observer (lambda () (set! flag #t)))))
                (let ((temp (TermStructure->Observable spreaded)))
                  (Observer-register-with obs temp))
-               (let ((new-term-structure (new-FlatForward today
-                                                          settlement
+               (let ((new-term-structure (new-FlatForward settlement
                                                           0.05
                                                           day-counter)))
                  (TermStructureHandle-link-to! term-structure

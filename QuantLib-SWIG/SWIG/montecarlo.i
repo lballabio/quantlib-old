@@ -100,16 +100,16 @@ class Path {
 };
 
 %{
-typedef QuantLib::SingleAsset<PseudoRandom>::path_generator_type 
+typedef QuantLib::SingleAsset<PseudoRandom>::path_generator_type
     GaussianPathGenerator;
 %}
 %template(SamplePath) Sample<Path>;
 class GaussianPathGenerator {
   public:
     GaussianPathGenerator(const boost::shared_ptr<StochasticProcess>&,
-                          Time length, Size steps, 
+                          Time length, Size steps,
                           const GaussianRandomSequenceGenerator&,
-                          bool brownianBridge = false);
+                          bool brownianBridge);
 	Sample<Path> next() const;
 };
 
@@ -170,7 +170,7 @@ class MultiPath {
         #elif defined(SWIGMZSCHEME)
         void for_each_path(Scheme_Object* proc) {
             for (Size i=0; i<self->assetNumber(); i++) {
-                Scheme_Object* x = 
+                Scheme_Object* x =
                     SWIG_NewPointerObj(&((*self)[i]), $descriptor(Path *), 0);
                 scheme_apply(proc,1,&x);
             }
@@ -208,7 +208,7 @@ class MultiPath {
 };
 
 %{
-typedef QuantLib::MultiAsset<PseudoRandom>::path_generator_type 
+typedef QuantLib::MultiAsset<PseudoRandom>::path_generator_type
     GaussianMultiPathGenerator;
 %}
 %template(SampleMultiPath) Sample<MultiPath>;
@@ -216,7 +216,7 @@ class GaussianMultiPathGenerator {
   public:
     %extend {
       GaussianMultiPathGenerator(
-                     const std::vector<boost::shared_ptr<StochasticProcess> >& 
+                     const std::vector<boost::shared_ptr<StochasticProcess> >&
                                                                diffusionProcs,
                      const Matrix& correlation,
                      const std::vector<Time>& times,

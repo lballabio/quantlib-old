@@ -1,41 +1,561 @@
-2004-03-22 10:45  Ferdinando Ametrano <nando AT ametrano DOT net>
+2004-11-09 14:21  Luigi Ballabio
+
+	* Python/README.txt (1.12.2.1), SWIG/quantlib.i (1.9.2.1):
+
+	feature(autodoc) added for Python bindings
+
+2004-11-08 10:44  Luigi Ballabio
+
+	* SWIG/: bonds.i (1.1.2.1), ql.i (1.52.2.1):
+
+	Sync with C++
+
+2004-11-07 19:24  Luigi Ballabio
+
+	* Guile/setup.scm (1.27.2.2), Python/setup.py (1.80.2.2),
+	SWIG/interestrate.i (1.2.2.2), SWIG/linearalgebra.i (1.24.2.1),
+	SWIG/montecarlo.i (1.22.6.1):
+
+	Sync with C++
+
+2004-11-05 17:52  Luigi Ballabio
+
+	* Ruby/QuantLib.rb (1.25.2.1):
+
+	Removed warning
+
+2004-11-05 10:23  Luigi Ballabio
+
+	* SWIG/: interestrate.i (1.2.2.1), termstructures.i (1.24.2.1):
+
+	Slimmer interfaces for interest rate and term structure
+
+2004-11-04 12:05  Luigi Ballabio
+
+	* Ruby/.cvsignore (1.2.2.1), Ruby/examples/bermudan-swaption.rb
+	(1.8.2.1), Ruby/examples/swap.rb (1.8.2.1),
+	SWIG/piecewiseflatforward.i (1.26.2.1):
+
+	Fixes for Ruby bindings
+
+2004-11-04 12:04  Luigi Ballabio
+
+	* SWIG/: old_pricers.i (1.21.2.1), options.i (1.37.2.1):
+
+	Barrier options added (thanks to Ashish Kulkarni)
+
+2004-11-04 12:01  Luigi Ballabio
+
+	* Guile/setup.scm (1.27.2.1), MzScheme/setup.scm (1.28.2.1),
+	Python/setup.py (1.80.2.1), Ruby/setup.rb (1.72.2.1):
+
+	Missing file reference added
+
+2004-10-27 12:36  Luigi Ballabio
+
+	* Guile/setup.scm (1.28), MzScheme/setup.scm (1.29),
+	Python/QuantLib-Python.spec (1.5), Python/setup.py (1.81),
+	Ruby/QuantLib-Ruby.spec (1.5), Ruby/setup.rb (1.73), SWIG/ql.i
+	(1.53):
+
+	Bumped version number
+
+2004-10-25 17:47  Luigi Ballabio
+
+	* Guile/examples/bermudan-swaption.scm (1.3),
+	Guile/examples/swap.scm (1.2),
+	MzScheme/examples/bermudan-swaption.scm (1.3),
+	MzScheme/examples/swap.scm (1.2),
+	Python/examples/bermudan-swaption.py (1.8), Python/examples/swap.py
+	(1.12), Ruby/examples/bermudan-swaption.rb (1.8),
+	Ruby/examples/swap.rb (1.8), SWIG/discountcurve.i (1.16),
+	SWIG/old_volatility.i (1.12), SWIG/piecewiseflatforward.i (1.26):
+
+	Sync with C++
+
+2004-10-14 16:04  Luigi Ballabio
+
+	* Guile/setup.scm (1.27), Guile/examples/bermudan-swaption.scm
+	(1.2), Guile/examples/european-option.scm (1.2), MzScheme/setup.scm
+	(1.28), MzScheme/examples/bermudan-swaption.scm (1.2),
+	MzScheme/examples/european-option.scm (1.2), Python/setup.py
+	(1.80), Python/examples/bermudan-swaption.py (1.7),
+	Python/examples/swap.py (1.11), Ruby/QuantLib.rb (1.25),
+	Ruby/setup.rb (1.72), Ruby/examples/bermudan-swaption.rb (1.7),
+	Ruby/examples/swap.rb (1.7), SWIG/date.i (1.33), SWIG/daycounters.i
+	(1.28), SWIG/discountcurve.i (1.15), SWIG/interestrate.i (1.1),
+	SWIG/money.i (1.2), SWIG/old_volatility.i (1.11),
+	SWIG/piecewiseflatforward.i (1.25), SWIG/ql.i (1.52),
+	SWIG/termstructures.i (1.24), SWIG/interestrate.i (1.2):
+
+	Sync with C++
+
+2004-10-14 16:04  Luigi Ballabio
+
+	* Guile/examples/swap.scm (1.1), MzScheme/examples/swap.scm (1.1):
+
+	Completed Scheme examples
+
+2004-10-05 16:48  Luigi Ballabio
+
+	* Guile/setup.scm (1.26), Guile/examples/american-option.scm (1.1),
+	Guile/examples/bermudan-swaption.scm (1.1),
+	Guile/examples/european-option.scm (1.1),
+	Guile/examples/tabulate.scm (1.1), MzScheme/setup.scm (1.27),
+	MzScheme/examples/american-option.scm (1.1),
+	MzScheme/examples/bermudan-swaption.scm (1.1),
+	MzScheme/examples/european-option.scm (1.1),
+	MzScheme/examples/tabulate.scm (1.1), MzScheme/quantlib/ql-init.ss
+	(1.6), MzScheme/test/termstructures.scm (1.11), SWIG/instruments.i
+	(1.22), SWIG/options.i (1.37), SWIG/settings.i (1.2),
+	SWIG/shortratemodels.i (1.17), SWIG/termstructures.i (1.23):
+
+	Adding Scheme examples
+
+2004-09-23 13:33  Luigi Ballabio
+
+	* Guile/setup.scm (1.25), MzScheme/setup.scm (1.26),
+	MzScheme/quantlib/ql-init.ss (1.5), Python/README.txt (1.12),
+	Python/setup.py (1.79), Python/examples/american-option.py (1.6),
+	Python/examples/bermudan-swaption.py (1.6),
+	Python/examples/european-option.py (1.4), Python/examples/swap.py
+	(1.10), Ruby/QuantLib.rb (1.24), Ruby/setup.rb (1.71),
+	Ruby/examples/american-option.rb (1.3),
+	Ruby/examples/bermudan-swaption.rb (1.6),
+	Ruby/examples/european-option.rb (1.3), Ruby/examples/swap.rb
+	(1.6), SWIG/blackmodel.i (1.8), SWIG/capfloor.i (1.12),
+	SWIG/compoundforward.i (1.12), SWIG/discountcurve.i (1.14),
+	SWIG/indexes.i (1.19), SWIG/old_pricers.i (1.21),
+	SWIG/old_volatility.i (1.10), SWIG/options.i (1.36),
+	SWIG/piecewiseflatforward.i (1.24), SWIG/ql.i (1.51),
+	SWIG/randomnumbers.i (1.25), SWIG/settings.i (1.1),
+	SWIG/shortratemodels.i (1.16), SWIG/stochasticprocess.i (1.11),
+	SWIG/swap.i (1.23), SWIG/swaption.i (1.15), SWIG/termstructures.i
+	(1.22), SWIG/volatilities.i (1.17):
+
+	Sync with C++
+
+2004-08-23 11:15  Luigi Ballabio
+
+	* SWIG/: blackmodel.i (1.7), capfloor.i (1.11), common.i (1.30),
+	indexes.i (1.18), instruments.i (1.21), marketelements.i (1.19),
+	old_pricers.i (1.20), old_volatility.i (1.9),
+	piecewiseflatforward.i (1.23), shortratemodels.i (1.15),
+	stochasticprocess.i (1.10), swap.i (1.22), swaption.i (1.14),
+	termstructures.i (1.21), volatilities.i (1.16):
+
+	Replaced deprecated RelinkableHandle with Handle
+
+2004-08-20 16:10  Luigi Ballabio
+
+	* Python/examples/bermudan-swaption.py (1.5),
+	Python/examples/swap.py (1.9), Ruby/examples/bermudan-swaption.rb
+	(1.5), Ruby/examples/swap.rb (1.5), SWIG/indexes.i (1.17):
+
+	Exported Xibor children as proper classes
+
+2004-08-20 16:10  Luigi Ballabio
+
+	* SWIG/currencies.i (1.12):
+
+	Added forgotten currency
+
+2004-08-17 12:07  Luigi Ballabio
+
+	* SWIG/: calendars.i (1.42), common.i (1.29), date.i (1.32),
+	daycounters.i (1.27), exchangerates.i (1.1), indexes.i (1.16),
+	money.i (1.1), ql.i (1.50), vectors.i (1.7):
+
+	Sync with C++ (including new classes)
+
+2004-07-21 16:21  Luigi Ballabio
+
+	* Guile/test/termstructures.scm (1.11),
+	MzScheme/test/termstructures.scm (1.10),
+	Python/examples/bermudan-swaption.py (1.4), Python/examples/swap.py
+	(1.8), Python/test/termstructures.py (1.4),
+	Ruby/examples/bermudan-swaption.rb (1.4), Ruby/examples/swap.rb
+	(1.4), Ruby/test/termstructures.rb (1.20), SWIG/calendars.i (1.41),
+	SWIG/daycounters.i (1.26):
+
+	Exported derived calendars as classes
+
+2004-07-21 14:40  Luigi Ballabio
+
+	* Guile/test/termstructures.scm (1.10),
+	MzScheme/test/termstructures.scm (1.9),
+	Python/examples/american-option.py (1.5),
+	Python/examples/bermudan-swaption.py (1.3),
+	Python/examples/european-option.py (1.3), Python/examples/swap.py
+	(1.7), Python/test/termstructures.py (1.3),
+	Ruby/examples/american-option.rb (1.2),
+	Ruby/examples/bermudan-swaption.rb (1.3),
+	Ruby/examples/european-option.rb (1.2), Ruby/examples/swap.rb
+	(1.3), Ruby/test/termstructures.rb (1.19), SWIG/compoundforward.i
+	(1.11), SWIG/daycounters.i (1.25), SWIG/discountcurve.i (1.13),
+	SWIG/piecewiseflatforward.i (1.22), SWIG/termstructures.i (1.20),
+	SWIG/volatilities.i (1.15):
+
+	Exported derived day counters as classes
+
+2004-07-19 18:00  Luigi Ballabio
+
+	* SWIG/currencies.i (1.11):
+
+	More currencies added
+
+2004-07-16 17:55  Luigi Ballabio
+
+	* Guile/setup.scm (1.24), MzScheme/setup.scm (1.25),
+	Python/setup.py (1.78), Ruby/setup.rb (1.70), SWIG/currencies.i
+	(1.10), SWIG/ql.i (1.49), SWIG/quantlib.i (1.9), SWIG/rounding.i
+	(1.1):
+
+	Exported currency classes
+
+2004-07-12 11:55  Ferdinando Ametrano
+
+	* Guile/History.txt (1.6.4.1), Guile/News.txt (1.5.4.1),
+	MzScheme/History.txt (1.6.4.1), MzScheme/News.txt (1.5.4.1),
+	Python/History.txt (1.6.4.1), Python/News.txt (1.9.4.1),
+	Ruby/History.txt (1.6.4.1), Ruby/News.txt (1.9.4.1):
+
+	0.3.7 history/news
+
+2004-07-07 19:45  Luigi Ballabio
+
+	* Python/BUGS.txt (1.2), Python/setup.py (1.77),
+	Python/QuantLib/.cvsignore (1.2), Ruby/.cvsignore (1.2),
+	Ruby/BUGS.txt (1.2), Ruby/test/instruments.rb (1.10),
+	Ruby/test/marketelements.rb (1.9), Ruby/test/termstructures.rb
+	(1.18), SWIG/stochasticprocess.i (1.9):
+
+	Merged 0.3.7 branch
+
+2004-06-15 10:49  Luigi Ballabio
+
+	* Python/setup.py (1.75.4.1):
+
+	Fixed define format for distutils
+
+2004-06-10 16:33  Luigi Ballabio
+
+	* Guile/setup.scm (1.23), Guile/test/termstructures.scm (1.9),
+	MzScheme/setup.scm (1.24), MzScheme/test/termstructures.scm (1.8),
+	Python/QuantLib-Python.spec (1.4), Python/setup.py (1.76),
+	Python/test/termstructures.py (1.2), Ruby/QuantLib-Ruby.spec (1.4),
+	Ruby/setup.rb (1.69), Ruby/test/termstructures.rb (1.17),
+	SWIG/calendars.i (1.40), SWIG/cashflows.i (1.21), SWIG/indexes.i
+	(1.15), SWIG/old_pricers.i (1.19), SWIG/options.i (1.35),
+	SWIG/piecewiseflatforward.i (1.21), SWIG/ql.i (1.48),
+	SWIG/scheduler.i (1.14), SWIG/swap.i (1.21):
+
+	Sync with C++
+
+2004-05-27 14:13  Luigi Ballabio
+
+	* SWIG/: calendars.i (1.38), compoundforward.i (1.10), currencies.i
+	(1.9), discountcurve.i (1.12), indexes.i (1.14),
+	piecewiseflatforward.i (1.20), scheduler.i (1.13), swap.i (1.20):
+
+	Sync with C++
+
+2004-05-26 17:29  Luigi Ballabio
+
+	* Ruby/setup.rb (1.68):
+
+	Correct installation location
+
+2004-05-21 16:44  Luigi Ballabio
+
+	* SWIG/shortratemodels.i (1.14):
+
+	Exported missing calibration engine
+
+2004-05-21 14:04  Luigi Ballabio
+
+	* SWIG/calendars.i (1.37):
+
+	Sync with C++
+
+2004-05-19 13:48  Luigi Ballabio
+
+	* SWIG/: capfloor.i (1.10), old_pricers.i (1.18), shortratemodels.i
+	(1.13), swaption.i (1.13):
+
+	Sync with C++
+
+2004-05-12 09:47  Luigi Ballabio
+
+	* SWIG/: calendars.i (1.36), capfloor.i (1.9), cashflows.i (1.20),
+	common.i (1.28), compoundforward.i (1.9), date.i (1.31),
+	daycounters.i (1.24), discountcurve.i (1.11), distributions.i
+	(1.12), functions.i (1.11), grid.i (1.2), history.i (1.18),
+	indexes.i (1.13), instruments.i (1.20), integrals.i (1.4),
+	interpolation.i (1.18), linearalgebra.i (1.23), marketelements.i
+	(1.18), montecarlo.i (1.22), old_pricers.i (1.17), old_volatility.i
+	(1.8), operators.i (1.16), optimizers.i (1.11), options.i (1.34),
+	payoffs.i (1.3), piecewiseflatforward.i (1.19), randomnumbers.i
+	(1.24), scheduler.i (1.12), shortratemodels.i (1.12), statistics.i
+	(1.20), swap.i (1.19), termstructures.i (1.19), timebasket.i (1.7),
+	types.i (1.6), volatilities.i (1.14):
+
+	Using typedefs
+
+2004-05-05 10:07  Luigi Ballabio
+
+	* Python/examples/swap.py (1.5), Ruby/QuantLib.rb (1.22),
+	Ruby/setup.rb (1.67), Ruby/examples/american-option.rb (1.1),
+	Ruby/examples/bermudan-swaption.rb (1.1),
+	Ruby/examples/european-option.rb (1.1), Ruby/examples/swap.rb
+	(1.1), SWIG/optimizers.i (1.10), SWIG/swap.i (1.18):
+
+	Added Ruby examples
+
+2004-05-04 15:17  Luigi Ballabio
+
+	* SWIG/calendars.i (1.35):
+
+	Fixes for VC++6
+
+2004-05-04 11:33  Luigi Ballabio
+
+	* SWIG/: date.i (1.30), grid.i (1.1), interpolation.i (1.17),
+	optimizers.i (1.9), ql.i (1.46), shortratemodels.i (1.11):
+
+	Bermudan swaption example
+
+2004-05-04 11:30  Luigi Ballabio
+
+	* Python/examples/: bermudan-swaption.py (1.1), swap.py (1.4):
+
+	Bermudan swaption example
+
+2004-04-30 10:21  Luigi Ballabio
+
+	* SWIG/calendars.i (1.34):
+
+	Sync with C++ (new calendars)
+
+2004-04-26 17:53  Luigi Ballabio
+
+	* SWIG/calendars.i (1.33):
+
+	Sync with C++ (new calendar)
+
+2004-04-23 11:13  Luigi Ballabio
+
+	* SWIG/calendars.i (1.32):
+
+	Sync with C++ (new calendars)
+
+2004-04-22 15:25  Luigi Ballabio
+
+	* Python/setup.py (1.75), Guile/setup.scm (1.22),
+	MzScheme/setup.scm (1.22), Ruby/setup.rb (1.66),
+	SWIG/diffusionprocess.i (1.4), SWIG/montecarlo.i (1.21),
+	SWIG/options.i (1.33), SWIG/ql.i (1.45), SWIG/stochasticprocess.i
+	(1.6):
+
+	Sync with C++
+
+2004-04-22 10:44  Luigi Ballabio
+
+	* SWIG/: interpolation.i (1.16), termstructures.i (1.18),
+	volatilities.i (1.13):
+
+	Sync with C++
+
+2004-04-19 19:06  Luigi Ballabio
+
+	* Guile/setup.scm (1.21), MzScheme/setup.scm (1.21),
+	Python/setup.py (1.74), Python/examples/american-option.py (1.4),
+	Python/examples/european-option.py (1.2), Ruby/setup.rb (1.65),
+	SWIG/compoundforward.i (1.8), SWIG/diffusionprocess.i (1.3),
+	SWIG/options.i (1.32), SWIG/ql.i (1.44), SWIG/stochasticprocess.i
+	(1.5), SWIG/timebasket.i (1.6):
+
+	Sync with C++
+
+2004-04-15 14:08  Luigi Ballabio
+
+	* Guile/History.txt (1.6), Guile/News.txt (1.5), Guile/setup.scm
+	(1.20), MzScheme/History.txt (1.6), MzScheme/News.txt (1.5),
+	MzScheme/setup.scm (1.20), Python/History.txt (1.6),
+	Python/News.txt (1.9), Python/QuantLib-Python.spec (1.3),
+	Python/setup.py (1.73), Ruby/History.txt (1.6), Ruby/News.txt
+	(1.9), Ruby/QuantLib-Ruby.spec (1.3), Ruby/setup.rb (1.64),
+	SWIG/ql.i (1.43):
+
+	Bumped version number
+
+2004-04-09 16:35  Ferdinando Ametrano
+
+	* Python/setup.py (1.72):
+
+	catching up
+
+2004-04-09 16:11  Luigi Ballabio
+
+	* SWIG/: calendars.i (1.31), currencies.i (1.8), date.i (1.29),
+	daycounters.i (1.23), exercise.i (1.3), functions.i (1.10),
+	history.i (1.17), indexes.i (1.12), linearalgebra.i (1.22),
+	montecarlo.i (1.20), observer.i (1.17), old_pricers.i (1.16),
+	operators.i (1.15), options.i (1.31), quantlib.i (1.8), scheduler.i
+	(1.11), shortratemodels.i (1.10), swaption.i (1.12), volatilities.i
+	(1.12):
+
+	Sync with C++
+
+2004-04-08 15:01  Luigi Ballabio
+
+	* SWIG/options.i (1.30):
+
+	Added EuropeanOption (a vanilla option with a default engine)
+
+2004-04-07 09:32  Luigi Ballabio
+
+	* SWIG/: montecarlo.i (1.19), randomnumbers.i (1.23):
+
+	Deprecated RNG and MC typedefs
+
+2004-04-06 17:03  Luigi Ballabio
+
+	* SWIG/old_pricers.i (1.14):
+
+	Sync with C++
+
+2004-04-06 10:00  Luigi Ballabio
+
+	* Ruby/setup.rb (1.62):
+
+	Patch for Darwin
+
+2004-04-01 12:16  Luigi Ballabio
+
+	* SWIG/: diffusionprocess.i (1.2), montecarlo.i (1.18),
+	old_pricers.i (1.13):
+
+	Sync with C++
+
+2004-04-01 12:15  Luigi Ballabio
+
+	* Python/setup.py (1.71):
+
+	Patched for Darwin
+
+2004-03-31 14:27  Ferdinando Ametrano
+
+	* Guile/setup.scm (1.19):
+
+	typo fixed
+
+2004-03-31 13:39  Luigi Ballabio
+
+	* Guile/setup.scm (1.18), MzScheme/setup.scm (1.18),
+	Python/setup.py (1.70), Ruby/setup.rb (1.61):
+
+	Updated file list
+
+2004-03-31 13:02  Luigi Ballabio
+
+	* SWIG/: diffusionprocess.i (1.1), montecarlo.i (1.17),
+	old_pricers.i (1.12), ql.i (1.42):
+
+	Sync with C++
+
+2004-03-30 17:47  Luigi Ballabio
+
+	* SWIG/: old_pricers.i (1.11), randomnumbers.i (1.22):
+
+	Sync with C++
+
+2004-03-30 11:57  Ferdinando Ametrano
+
+	* Guile/History.txt (1.5), Guile/News.txt (1.4),
+	MzScheme/History.txt (1.5), MzScheme/News.txt (1.4),
+	Python/History.txt (1.5), Python/News.txt (1.8), Ruby/History.txt
+	(1.5), Ruby/News.txt (1.8):
+
+	updated
+
+2004-03-26 14:28  Luigi Ballabio
+
+	* SWIG/: blackmodel.i (1.6), capfloor.i (1.8), cashflows.i (1.19),
+	common.i (1.27), compoundforward.i (1.7), discountcurve.i (1.10),
+	exercise.i (1.2), indexes.i (1.11), instruments.i (1.18),
+	marketelements.i (1.17), observer.i (1.16), old_volatility.i (1.7),
+	operators.i (1.14), options.i (1.29), payoffs.i (1.2),
+	piecewiseflatforward.i (1.18), shortratemodels.i (1.9),
+	stochasticprocess.i (1.4), swap.i (1.17), swaption.i (1.11),
+	termstructures.i (1.17), volatilities.i (1.11):
+
+	boost::shared_ptr used throughout instead of Handle
+
+2004-03-26 10:58  Luigi Ballabio
+
+	* Python/QuantLib-Python.spec (1.2), Ruby/QuantLib-Ruby.spec (1.2):
+
+	Bumped version number
+
+2004-03-24 11:58  Luigi Ballabio
+
+	* SWIG/: cashflows.i (1.18), common.i (1.26), compoundforward.i
+	(1.6), discountcurve.i (1.9), indexes.i (1.10), linearalgebra.i
+	(1.21), marketelements.i (1.16), montecarlo.i (1.16), options.i
+	(1.28), piecewiseflatforward.i (1.17), shortratemodels.i (1.8),
+	swap.i (1.16), swaption.i (1.10):
+
+	Boost is now mandatory
+
+2004-03-23 16:58  Luigi Ballabio
+
+	* Guile/ChangeLog.txt (1.9), MzScheme/ChangeLog.txt (1.11),
+	MzScheme/setup.scm (1.17), Python/ChangeLog.txt (1.17),
+	Python/QuantLibPython.dsp (1.12), Python/QuantLibPython.mak (1.14),
+	Python/examples/american-option.py (1.3), Ruby/ChangeLog.txt
+	(1.20), SWIG/ChangeLog.txt (1.17), SWIG/interpolation.i (1.15):
+
+	Merged 0.3.5 branch
+
+2004-03-22 10:45  Ferdinando Ametrano
 
 	* SWIG/ql.i (1.41):
 
 	bump up version number
 
-2004-03-16 14:44  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-03-16 14:44  Luigi Ballabio
 
 	* MzScheme/setup.scm (1.16.2.1):
 
 	Increased VC++ heap
 
-2004-03-16 14:27  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-03-16 14:27  Luigi Ballabio
 
 	* SWIG/ChangeLog.txt (1.16.4.1):
 
 	Already everywhere else
 
-2004-03-15 16:52  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-03-15 16:52  Luigi Ballabio
 
 	* Guile/ChangeLog.txt (1.8.4.1), MzScheme/ChangeLog.txt (1.10.4.1),
 	Python/ChangeLog.txt (1.16.4.1), Ruby/ChangeLog.txt (1.19.4.1):
 
 	Updated
 
-2004-03-15 12:16  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-03-15 12:16  Luigi Ballabio
 
 	* SWIG/interpolation.i (1.14.2.1):
 
 	Added monotonic spline
 
-2004-03-11 13:02  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-03-11 13:02  Luigi Ballabio
 
 	* Python/setup.py (1.69):
 
 	Extended compiler heap
 
-2004-03-11 12:48  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-03-11 12:48  Luigi Ballabio
 
 	* Guile/setup.scm (1.17), MzScheme/setup.scm (1.16),
 	Python/setup.py (1.68), Python/examples/american-option.py (1.2),
@@ -44,49 +564,49 @@
 
 	Preparing for branch
 
-2004-03-09 13:40  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-03-09 13:40  Luigi Ballabio
 
 	* SWIG/interpolation.i (1.14):
 
 	Sync with C++
 
-2004-03-08 17:12  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-03-08 17:12  Luigi Ballabio
 
 	* SWIG/interpolation.i (1.13):
 
 	Sync with C++
 
-2004-02-23 12:34  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-02-23 12:34  Luigi Ballabio
 
 	* SWIG/linearalgebra.i (1.20):
 
 	Some work on SVD
 
-2004-02-20 17:35  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-02-20 17:35  Luigi Ballabio
 
 	* SWIG/linearalgebra.i (1.19):
 
 	SVD exported
 
-2004-02-16 19:14  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-02-16 19:14  Luigi Ballabio
 
 	* Python/examples/american-option.py (1.1), SWIG/options.i (1.26):
 
 	Exported American engines
 
-2004-02-16 15:05  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-02-16 15:05  Luigi Ballabio
 
 	* Python/setup.py (1.67):
 
 	Enabled optimizations with VC++
 
-2004-02-16 15:03  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-02-16 15:03  Luigi Ballabio
 
 	* Python/examples/swap.py (1.2):
 
 	Typo
 
-2004-02-16 12:31  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-02-16 12:31  Luigi Ballabio
 
 	* Python/: MANIFEST.in (1.4), setup.py (1.66), test/.cvsignore
 	(1.1), test/QuantLibTestSuite.py (1.1), test/date.py (1.1),
@@ -96,31 +616,31 @@
 
 	Moved some stuff around
 
-2004-02-06 14:55  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-02-06 14:55  Luigi Ballabio
 
 	* SWIG/: instruments.i (1.16), swap.i (1.15):
 
 	Removed unused baggage from Instrument class
 
-2004-01-13 13:26  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-01-13 13:26  Luigi Ballabio
 
 	* Python/: README.txt (1.11), setup.py (1.65):
 
 	Fixes for SWIG 1.3.21
 
-2004-01-05 12:14  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-01-05 12:14  Luigi Ballabio
 
 	* SWIG/swaption.i (1.9):
 
 	Sync with C++
 
-2004-01-05 10:40  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-01-05 10:40  Luigi Ballabio
 
 	* SWIG/stochasticprocess.i (1.2):
 
 	Sync with C++
 
-2004-01-03 17:44  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2004-01-03 17:44  Luigi Ballabio
 
 	* Guile/setup.scm (1.16), MzScheme/setup.scm (1.15),
 	Python/setup.py (1.64), Ruby/setup.rb (1.59), SWIG/options.i
@@ -129,7 +649,7 @@
 
 	Sync with C++
 
-2003-12-23 11:04  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-12-23 11:04  Luigi Ballabio
 
 	* Guile/setup.scm (1.15), MzScheme/setup.scm (1.14),
 	Python/setup.py (1.63), Ruby/setup.rb (1.58), SWIG/exercise.i
@@ -138,19 +658,19 @@
 
 	Sync with C++
 
-2003-12-11 13:41  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-12-11 13:41  Luigi Ballabio
 
 	* SWIG/: instruments.i (1.15), options.i (1.21):
 
 	Moved PricingEngine to instruments.i Exported Payoff
 
-2003-12-10 14:17  Marco Marchioro <marco.marchioro AT statpro.com>
+2003-12-10 14:17  Marco Marchioro
 
 	* SWIG/calendars.i (1.30):
 
 	Added calendar for Copenhagen
 
-2003-12-03 14:06  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-12-03 14:06  Luigi Ballabio
 
 	* Guile/README.txt (1.6), Guile/setup.scm (1.14),
 	Guile/test/instruments.scm (1.8), Guile/test/integrals.scm (1.4),
@@ -160,7 +680,7 @@
 
 	Guile ready for SWIG 1.3.20
 
-2003-12-03 12:59  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-12-03 12:59  Luigi Ballabio
 
 	* MzScheme/README.txt (1.6), MzScheme/quantlib/ql-init.ss (1.3),
 	MzScheme/test/instruments.scm (1.7), MzScheme/test/integrals.scm
@@ -171,7 +691,7 @@
 
 	MzScheme ready for SWIG 1.3.20
 
-2003-12-01 11:41  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-12-01 11:41  Luigi Ballabio
 
 	* Ruby/QuantLib.rb (1.21), SWIG/blackmodel.i (1.5),
 	SWIG/instruments.i (1.14), SWIG/marketelements.i (1.14),
@@ -181,13 +701,13 @@
 
 	Sync with C++
 
-2003-11-27 14:00  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-11-27 14:00  Luigi Ballabio
 
 	* SWIG/common.i (1.24):
 
 	Visual fails Koenig lookup (I guess)
 
-2003-11-27 11:47  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-11-27 11:47  Luigi Ballabio
 
 	* SWIG/: cashflows.i (1.17), common.i (1.23), compoundforward.i
 	(1.5), discountcurve.i (1.8), indexes.i (1.9), instruments.i
@@ -197,61 +717,61 @@
 
 	Sync with C++
 
-2003-11-21 17:32  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-11-21 17:32  Ferdinando Ametrano
 
 	* MzScheme/setup.scm (1.13), Guile/setup.scm (1.13):
 
 	added missing file
 
-2003-11-20 18:59  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-11-20 18:59  Ferdinando Ametrano
 
 	* SWIG/statistics.i (1.19):
 
 	The already deprecated MultivariateAccumulator is gone.  Use
 	SequenceStatistics instead
 
-2003-11-20 18:04  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-11-20 18:04  Luigi Ballabio
 
 	* Python/MANIFEST.in (1.2), Python/QuantLib-Python.spec (1.1),
 	Ruby/QuantLib-Ruby.spec (1.1), Ruby/setup.rb (1.56):
 
 	Added Liguo's spec file for RPM
 
-2003-11-18 21:12  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-11-18 21:12  Ferdinando Ametrano
 
 	* Guile/setup.scm (1.12), MzScheme/setup.scm (1.12), Ruby/setup.rb
 	(1.55):
 
 	R000304f0-branch-merge1 merged into trunk
 
-2003-11-06 11:21  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-11-06 11:21  Luigi Ballabio
 
 	* Ruby/: setup.rb (1.53.2.1), test/QuantLibTestSuite.rb (1.24.2.1):
 
 	Fixes for test/install process
 
-2003-11-03 17:41  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-11-03 17:41  Luigi Ballabio
 
 	* Guile/setup.scm (1.11), MzScheme/setup.scm (1.11),
 	Python/setup.py (1.62), Ruby/setup.rb (1.54), SWIG/ql.i (1.36):
 
 	Bumped version number
 
-2003-11-03 17:21  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-11-03 17:21  Luigi Ballabio
 
 	* Guile/setup.scm (1.10), MzScheme/setup.scm (1.10),
 	Python/setup.py (1.61), Ruby/setup.rb (1.53), SWIG/ql.i (1.35):
 
 	Bumped version number
 
-2003-11-03 16:04  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-11-03 16:04  Ferdinando Ametrano
 
 	* Guile/News.txt (1.3), MzScheme/News.txt (1.3), Python/News.txt
 	(1.7), Ruby/News.txt (1.7):
 
 	initial doc update
 
-2003-11-03 15:59  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-11-03 15:59  Ferdinando Ametrano
 
 	* Guile/History.txt (1.4), Guile/News.txt (1.2),
 	MzScheme/History.txt (1.4), MzScheme/News.txt (1.2),
@@ -260,14 +780,14 @@
 
 	let's try for November 21th, QuantLib 3rd anniversary :)
 
-2003-11-03 15:50  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-11-03 15:50  Ferdinando Ametrano
 
 	* Ruby/ChangeLog.txt (1.19), MzScheme/ChangeLog.txt (1.10),
 	Guile/ChangeLog.txt (1.8), SWIG/ChangeLog.txt (1.16):
 
 	updated
 
-2003-11-03 14:58  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-11-03 14:58  Ferdinando Ametrano
 
 	* Guile/setup.scm (1.9), Guile/test/common.scm (1.6),
 	Guile/test/instruments.scm (1.7), Guile/test/integrals.scm (1.3),
@@ -310,7 +830,7 @@
 
 	ferdinando@ametrano.net replaced by quantlib-dev@lists.sf.net
 
-2003-11-03 13:17  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-11-03 13:17  Ferdinando Ametrano
 
 	* Python/ChangeLog.txt (1.16), Ruby/ChangeLog.txt (1.18),
 	MzScheme/ChangeLog.txt (1.9), Guile/ChangeLog.txt (1.7),
@@ -318,20 +838,20 @@
 
 	updated
 
-2003-11-03 13:04  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-11-03 13:04  Ferdinando Ametrano
 
 	* SWIG/ChangeLog.txt (1.14):
 
 	updated
 
-2003-10-31 09:25  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-10-31 09:25  Luigi Ballabio
 
 	* Guile/README.txt (1.5), MzScheme/README.txt (1.5),
 	Python/README.txt (1.10), Ruby/README.txt (1.12):
 
 	Typos and other small stuff
 
-2003-10-29 16:43  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-10-29 16:43  Luigi Ballabio
 
 	* Guile/: .cvsignore (1.2), README.txt (1.4), setup.scm (1.8),
 	test/instruments.scm (1.6), test/integrals.scm (1.2),
@@ -341,7 +861,7 @@
 
 	Unit tests moved to the Greg framework
 
-2003-10-24 17:37  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-10-24 17:37  Luigi Ballabio
 
 	* Guile/setup.scm (1.7), Guile/test/integrals.scm (1.1),
 	Guile/test/quantlib-test-suite.scm (1.12),
@@ -356,20 +876,20 @@
 
 	Sync with C++
 
-2003-10-23 18:16  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-10-23 18:16  Luigi Ballabio
 
 	* Python/setup.py (1.57):
 
 	Allow compiling with either Multithreaded or Multithreaded-DLL code
 	generation
 
-2003-10-23 16:44  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-10-23 16:44  Luigi Ballabio
 
 	* SWIG/: swap.i (1.11), timebasket.i (1.2):
 
 	Sync with C++
 
-2003-10-17 17:03  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-10-17 17:03  Luigi Ballabio
 
 	* Guile/: setup.scm (1.6), test/calendars.scm (1.2),
 	test/capfloor.scm (1.2), test/covariance.scm (1.2), test/date.scm
@@ -384,7 +904,7 @@
 	Removed tests duplicating C++ tests. The Guile test-suite now tests
 	Guile-specific features only.
 
-2003-10-17 16:56  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-10-17 16:56  Luigi Ballabio
 
 	* MzScheme/: setup.scm (1.7), test/marketelements.scm (1.6),
 	test/calendars.scm (1.2), test/capfloor.scm (1.2),
@@ -399,7 +919,7 @@
 	Removed tests duplicating C++ tests. The MzScheme test-suite now
 	tests MzScheme-specific features only.
 
-2003-10-17 16:35  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-10-17 16:35  Luigi Ballabio
 
 	* Ruby/: setup.rb (1.49), test/QuantLibTestSuite.rb (1.22),
 	test/calendars.rb (1.4), test/capfloor.rb (1.11),
@@ -413,21 +933,21 @@
 	Removed tests duplicating C++ tests. The Ruby test-suite now tests
 	Ruby-specific features only.
 
-2003-10-17 16:18  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-10-17 16:18  Luigi Ballabio
 
 	* Python/setup.py (1.56):
 
 	Removed tests duplicating C++ tests. The Python test-suite now
 	tests Python-specific features only.
 
-2003-10-14 11:14  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-10-14 11:14  Luigi Ballabio
 
 	* SWIG/: interpolation.i (1.10), swap.i (1.10), volatilities.i
 	(1.7):
 
 	Sync with C++
 
-2003-10-10 15:10  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-10-10 15:10  Luigi Ballabio
 
 	* Guile/: .cvsignore (1.1), Authors.txt (1.3), ChangeLog.txt (1.6),
 	Contributors.txt (1.3), History.txt (1.3), LICENSE.TXT (1.3),
@@ -446,7 +966,7 @@
 
 	Detached Guile from MzScheme
 
-2003-10-10 14:36  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-10-10 14:36  Luigi Ballabio
 
 	* MzScheme/: .cvsignore (1.1), Authors.txt (1.3), ChangeLog.txt
 	(1.8), Contributors.txt (1.3), History.txt (1.3), LICENSE.TXT
@@ -466,43 +986,43 @@
 
 	Moved tests from in-house framework to Schemeunit
 
-2003-10-03 14:08  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-10-03 14:08  Luigi Ballabio
 
 	* Ruby/test/capfloor.rb (1.10), SWIG/capfloor.i (1.4):
 
 	Applied the Foo::arguments and Foo::results naming scheme
 
-2003-09-29 10:24  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-09-29 10:24  Luigi Ballabio
 
 	* SWIG/: calendars.i (1.27), daycounters.i (1.20):
 
 	Null calendar and simple day counter
 
-2003-09-23 17:51  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-09-23 17:51  Luigi Ballabio
 
 	* SWIG/old_pricers.i (1.7):
 
 	Synch with C++
 
-2003-09-19 15:08  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-09-19 15:08  Luigi Ballabio
 
 	* SWIG/: cashflows.i (1.13), scheduler.i (1.7), swap.i (1.9):
 
 	Updated for new Schedule stuff
 
-2003-09-09 12:48  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-09-09 12:48  Luigi Ballabio
 
 	* Python/setup.py (1.55):
 
 	Added PyPI metadata
 
-2003-09-01 16:22  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-09-01 16:22  Luigi Ballabio
 
 	* Ruby/setup.rb (1.48):
 
 	Final merge from 0.3.3 branch
 
-2003-08-28 17:56  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-08-28 17:56  Luigi Ballabio
 
 	* Python/ChangeLog.txt (1.15), Python/History.txt (1.3),
 	Python/News.txt (1.5), Python/setup.py (1.54),
@@ -514,19 +1034,19 @@
 
 	Merged 0.3.3 branch
 
-2003-08-21 17:35  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-08-21 17:35  Luigi Ballabio
 
 	* SWIG/discountcurve.i (1.4.2.1):
 
 	Split DiscountCurve in a simple and a complex version
 
-2003-08-19 15:12  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-08-19 15:12  Luigi Ballabio
 
 	* Ruby/setup.rb (1.45.2.1), SWIG/linearalgebra.i (1.13.8.1):
 
 	Removed warning and made compatible with Ruby 1.8
 
-2003-08-18 10:41  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-08-18 10:41  Luigi Ballabio
 
 	* Python/: setup.py (1.52.2.1), QuantLib/__init__.py (1.5.8.1):
 
@@ -557,44 +1077,44 @@
 
 	Added constructor with pre-constructed Scheduler to build vectors.
 
-2003-07-25 13:05  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-07-25 13:05  Luigi Ballabio
 
 	* Python/setup.py (1.53), Ruby/setup.rb (1.46), SWIG/ql.i (1.32):
 
 	Bumped version number after branching
 
-2003-07-25 12:51  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-07-25 12:51  Luigi Ballabio
 
 	* Python/setup.py (1.52), Ruby/setup.rb (1.45), SWIG/ql.i (1.31):
 
 	Bumped version number
 
-2003-07-24 09:43  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-07-24 09:43  Luigi Ballabio
 
 	* Python/setup.py (1.51), Ruby/setup.rb (1.44):
 
 	Added new files to setup
 
-2003-07-23 15:21  Marco Marchioro <marco.marchioro AT statpro.com>
+2003-07-23 15:21  Marco Marchioro
 
 	* SWIG/compoundforward.i (1.2):
 
 	somebosy forgot a commit
 
-2003-07-22 17:58  Marco Marchioro <marco.marchioro AT statpro.com>
+2003-07-22 17:58  Marco Marchioro
 
 	* SWIG/interpolation.i (1.9):
 
 	Added first and second derivatives to CubicSpline
 
-2003-07-22 17:34  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-07-22 17:34  Ferdinando Ametrano
 
 	* Python/ChangeLog.txt (1.14), Ruby/ChangeLog.txt (1.16),
 	SWIG/ChangeLog.txt (1.13):
 
 	updated
 
-2003-07-22 16:25  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-07-22 16:25  Luigi Ballabio
 
 	* SWIG/: cashflows.i (1.11), swap.i (1.7):
 
@@ -668,46 +1188,46 @@
 
 	Added MonthEndReference convention
 
-2003-07-16 15:17  Marco Marchioro <marco.marchioro AT statpro.com>
+2003-07-16 15:17  Marco Marchioro
 
 	* Python/setup.py (1.50):
 
 	'QL_DEBUG' problem fixed
 
-2003-07-14 13:36  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-07-14 13:36  Luigi Ballabio
 
 	* Python/setup.py (1.49):
 
 	Don't ask---I don't know
 
-2003-06-11 17:06  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-06-11 17:06  Luigi Ballabio
 
 	* Python/setup.py (1.47), Ruby/setup.rb (1.42), SWIG/ql.i (1.29):
 
 	Bumped version number
 
-2003-06-11 14:33  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-06-11 14:33  Luigi Ballabio
 
 	* Python/setup.py (1.46.2.1), Ruby/setup.rb (1.41.2.1), SWIG/ql.i
 	(1.28.2.1):
 
 	Preparing for release
 
-2003-05-30 11:52  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-05-30 11:52  Luigi Ballabio
 
 	* SWIG/ql.i (1.28), SWIG/shortratemodels.i (1.1), Python/setup.py
 	(1.46), Ruby/setup.rb (1.41):
 
 	Short rate models exported
 
-2003-05-22 17:30  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-05-22 17:30  Luigi Ballabio
 
 	* Ruby/test/solvers1d.rb (1.8), SWIG/functions.i (1.7),
 	SWIG/optimizers.i (1.4):
 
 	Synch with C++
 
-2003-05-16 18:16  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-05-16 18:16  Luigi Ballabio
 
 	* Python/setup.py (1.44), Python/QuantLib/__init__.py (1.5),
 	Ruby/QuantLib.rb (1.19), Ruby/setup.rb (1.39),
@@ -741,32 +1261,32 @@
 
 	First tag-free commit. Drink and be merry.
 
-2003-05-09 13:24  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-05-09 13:24  Luigi Ballabio
 
 	* Python/setup.py (1.43), Ruby/setup.rb (1.38), SWIG/ql.i (1.26),
 	SWIG/randomnumbers.i (1.17):
 
 	Synch with C++
 
-2003-05-06 18:57  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-05-06 18:57  Ferdinando Ametrano
 
 	* Python/: QuantLibPython.dsp (1.11), QuantLibPython.mak (1.13):
 
 	VC project catching up
 
-2003-05-06 16:52  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-05-06 16:52  Luigi Ballabio
 
 	* Python/setup.py (1.42):
 
 	Fixed Win installation paths
 
-2003-05-06 16:46  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-05-06 16:46  Luigi Ballabio
 
 	* SWIG/interpolation.i (1.7):
 
 	Made interpolation palatable to VC++
 
-2003-05-06 13:37  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-05-06 13:37  Luigi Ballabio
 
 	* Python/setup.py (1.41), Ruby/test/covariance.rb (1.6),
 	Ruby/test/riskstatistics.rb (1.10), Ruby/test/statistics.rb (1.11),
@@ -775,48 +1295,48 @@
 
 	Synch with C++ needed
 
-2003-04-22 16:54  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-04-22 16:54  Ferdinando Ametrano
 
 	* Python/ChangeLog.txt (1.13), Ruby/ChangeLog.txt (1.15),
 	SWIG/ChangeLog.txt (1.12):
 
 	updated
 
-2003-04-22 16:37  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-04-22 16:37  Ferdinando Ametrano
 
 	* Python/ChangeLog.txt (1.12), Ruby/ChangeLog.txt (1.14),
 	SWIG/ChangeLog.txt (1.11):
 
 	updated
 
-2003-04-22 16:07  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-04-22 16:07  Ferdinando Ametrano
 
 	* Python/: QuantLibPython.dsp (1.10), QuantLibPython.mak (1.12):
 
 	removed 'which' which is not supposed to be available on all
 	Win32/VC++ machines
 
-2003-04-22 15:17  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-04-22 15:17  Luigi Ballabio
 
 	* Ruby/test/covariance.rb (1.5), Ruby/test/old_pricers.rb (1.8),
 	SWIG/linearalgebra.i (1.12), SWIG/montecarlo.i (1.11):
 
 	Synch with C++
 
-2003-04-17 12:12  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-04-17 12:12  Luigi Ballabio
 
 	* Python/setup.py (1.40), Ruby/test/QuantLibTestSuite.rb (1.20),
 	Ruby/test/statistics.rb (1.10), SWIG/riskstatistics.i (1.13):
 
 	More indiscriminated greps :)
 
-2003-04-17 11:36  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-04-17 11:36  Ferdinando Ametrano
 
 	* SWIG/statistics.i (1.14):
 
 	no message
 
-2003-04-15 17:31  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-04-15 17:31  Ferdinando Ametrano
 
 	* Python/setup.py (1.39), Ruby/setup.rb (1.37),
 	Ruby/test/QuantLibTestSuite.rb (1.19), Ruby/test/riskstatistics.rb
@@ -826,25 +1346,25 @@
 	Statistics renamed GaussianStatistics and replaced by the former
 	HStatistics
 
-2003-04-13 10:31  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-04-13 10:31  Ferdinando Ametrano
 
 	* Python/: QuantLibPython.dsp (1.9), QuantLibPython.mak (1.11):
 
 	it does work with Visual Studio, Python 2.2 and swig 1.3.19
 
-2003-04-13 10:14  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-04-13 10:14  Ferdinando Ametrano
 
 	* Python/: QuantLibPython.dsp (1.8), QuantLibPython.mak (1.10):
 
 	it should now work with Visual Studio, Python 2.2 and swig 1.3.19
 
-2003-04-12 20:35  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-04-12 20:35  Ferdinando Ametrano
 
 	* Python/: QuantLibPython.dsp (1.7), QuantLibPython.mak (1.9):
 
 	more verbose wrapping generation (to help detect problems)
 
-2003-04-10 18:39  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-04-10 18:39  Luigi Ballabio
 
 	* Python/setup.py (1.38), Ruby/setup.rb (1.36),
 	Ruby/test/QuantLibTestSuite.rb (1.18), Ruby/test/riskstatistics.rb
@@ -853,7 +1373,7 @@
 
 	GRUMPF
 
-2003-04-10 13:47  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-04-10 13:47  Ferdinando Ametrano
 
 	* Python/ChangeLog.txt (1.11), Python/setup.py (1.37),
 	Ruby/ChangeLog.txt (1.13), Ruby/setup.rb (1.35),
@@ -863,88 +1383,88 @@
 
 	grammar rules: back to Statistics, with the final s
 
-2003-04-08 12:34  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-04-08 12:34  Ferdinando Ametrano
 
 	* Python/setup.py (1.36):
 
 	switched from Multithread DLL to Multithread
 
-2003-04-04 19:16  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-04-04 19:16  Ferdinando Ametrano
 
 	* Python/: QuantLibPython.dsp (1.6), QuantLibPython.mak (1.8):
 
 	VC++ moved from (Debug) Multithread DLL to (Debug) Multithread
 
-2003-03-28 18:32  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-03-28 18:32  Luigi Ballabio
 
 	* Python/setup.py (1.35):
 
 	Reduced the signal/noise ratio
 
-2003-03-28 11:21  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-03-28 11:21  Ferdinando Ametrano
 
 	* SWIG/old_pricers.i (1.4):
 
 	using std::vector instead of Array
 
-2003-03-19 18:37  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-03-19 18:37  Ferdinando Ametrano
 
 	* Python/: QuantLibPython.dsp (1.5), QuantLibPython.mak (1.7):
 
 	updated
 
-2003-03-19 18:37  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-03-19 18:37  Ferdinando Ametrano
 
 	* SWIG/montecarlo.i (1.9):
 
 	old PathPricer(s), PathGenerators, etc are available with a
 	trailing _old
 
-2003-03-18 18:23  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-03-18 18:23  Ferdinando Ametrano
 
 	* SWIG/randomnumbers.i (1.14):
 
 	more generators exported
 
-2003-03-18 18:00  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-03-18 18:00  Ferdinando Ametrano
 
 	* SWIG/randomnumbers.i (1.13):
 
 	more generators exported
 
-2003-03-18 17:59  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-03-18 17:59  Ferdinando Ametrano
 
 	* SWIG/distributions.i (1.8):
 
 	Moro Inverse Cumulative algorithm exported
 
-2003-03-18 17:59  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-03-18 17:59  Ferdinando Ametrano
 
 	* Python/setup.py (1.34):
 
 	verbose wrapper generation
 
-2003-03-17 11:10  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-03-17 11:10  Luigi Ballabio
 
 	* Ruby/test/capfloor.rb (1.8), Ruby/test/old_pricers.rb (1.6),
 	Ruby/test/swaption.rb (1.6), SWIG/options.i (1.13):
 
 	Works on gcc + errorEstimate() and misc
 
-2003-03-16 03:01  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-03-16 03:01  Ferdinando Ametrano
 
 	* Ruby/test/distributions.rb (1.10):
 
 	improved Cumulative and Inverse Cumulative Normal Distribution
 	functions
 
-2003-03-16 00:00  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-03-16 00:00  Ferdinando Ametrano
 
 	* Ruby/test/distributions.rb (1.9):
 
 	old bug fixed
 
-2003-03-15 21:24  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-03-15 21:24  Ferdinando Ametrano
 
 	* Ruby/test/distributions.rb (1.8), SWIG/distributions.i (1.7),
 	SWIG/randomnumbers.i (1.12):
@@ -953,45 +1473,45 @@
 	InverseCumulativeNormal.  2) Acklam's approximation for inverse
 	cumulative normal distribution function replaced Moro's algorithm.
 
-2003-03-14 10:27  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-03-14 10:27  Ferdinando Ametrano
 
 	* Python/ChangeLog.txt (1.10), Ruby/ChangeLog.txt (1.12),
 	SWIG/ChangeLog.txt (1.9):
 
 	updated
 
-2003-03-11 13:01  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-03-11 13:01  Luigi Ballabio
 
 	* SWIG/interpolation.i (1.6):
 
 	Bicubic interpolation
 
-2003-03-10 14:28  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-03-10 14:28  Luigi Ballabio
 
 	* Python/setup.py (1.33), Ruby/setup.rb (1.34):
 
 	Cleaned up installation
 
-2003-03-10 13:06  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-03-10 13:06  Luigi Ballabio
 
 	* Ruby/test/europeanoption.rb (1.13), SWIG/options.i (1.12),
 	SWIG/volatilities.i (1.5):
 
 	Synch with C++
 
-2003-02-25 11:24  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-02-25 11:24  Luigi Ballabio
 
 	* Ruby/test/instruments.rb (1.7), SWIG/instruments.i (1.9):
 
 	Test for frozen instrument
 
-2003-02-20 13:12  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-02-20 13:12  Luigi Ballabio
 
 	* SWIG/options.i (1.11):
 
 	Synch with C++
 
-2003-02-20 12:01  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-02-20 12:01  Luigi Ballabio
 
 	* SWIG/: calendars.i (1.24), cashflows.i (1.8), common.i (1.20),
 	date.i (1.24), daycounters.i (1.18), linearalgebra.i (1.11),
@@ -1000,26 +1520,26 @@
 
 	Workarounds no longer needed
 
-2003-02-17 09:16  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-02-17 09:16  Luigi Ballabio
 
 	* Ruby/test/: capfloor.rb (1.7), piecewiseflatforward.rb (1.11),
 	termstructures.rb (1.13):
 
 	Had tests work on Sundays
 
-2003-02-16 13:44  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-02-16 13:44  Luigi Ballabio
 
 	* Ruby/test/europeanoption.rb (1.11), SWIG/options.i (1.10):
 
 	Synch with C++
 
-2003-02-14 17:47  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-02-14 17:47  Luigi Ballabio
 
 	* SWIG/cashflows.i (1.7):
 
 	Par coupon named as such (so sue me)
 
-2003-02-13 17:28  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-02-13 17:28  Luigi Ballabio
 
 	* Ruby/: README.txt (1.10), test/QuantLibTestSuite.rb (1.16),
 	test/calendars.rb (1.2), test/capfloor.rb (1.6), test/covariance.rb
@@ -1034,59 +1554,59 @@
 
 	Updated for Test::Unit 0.1.8
 
-2003-02-13 14:51  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-02-13 14:51  Luigi Ballabio
 
 	* SWIG/common.i (1.19):
 
 	Handle conversions throw on failure
 
-2003-02-13 10:32  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-02-13 10:32  Ferdinando Ametrano
 
 	* Python/.cvsignore (1.3):
 
 	updated
 
-2003-02-11 19:22  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-02-11 19:22  Ferdinando Ametrano
 
 	* Python/QuantLibPython.mak (1.6):
 
 	updated
 
-2003-02-06 17:35  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-02-06 17:35  Luigi Ballabio
 
 	* Ruby/test/europeanoption.rb (1.9), SWIG/options.i (1.9):
 
 	Synch with C++
 
-2003-02-03 15:22  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-02-03 15:22  Ferdinando Ametrano
 
 	* Python/News.txt (1.4), Python/README.txt (1.8), Ruby/News.txt
 	(1.4), Ruby/README.txt (1.9):
 
 	improved documentation details
 
-2003-02-03 12:47  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-02-03 12:47  Ferdinando Ametrano
 
 	* Python/News.txt (1.3), Ruby/News.txt (1.3):
 
 	adding news.txt details Luigi: fill in other details if you like,
 	and I'll publish them for the 0.3.1 release
 
-2003-02-03 12:43  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-02-03 12:43  Ferdinando Ametrano
 
 	* Python/History.txt (1.2), Python/News.txt (1.2), Ruby/History.txt
 	(1.2), Ruby/News.txt (1.2):
 
 	date of release 0.3.1
 
-2003-01-31 11:45  Sadruddin Rejeb <sad AT quantlib.org>
+2003-01-31 11:45  Sadruddin Rejeb
 
 	* SWIG/daycounters.i (1.17):
 
 	Fixed 'act/act (Bond)' --> 'act/act (bond)' (reference must be
 	lowercase)
 
-2003-01-28 18:23  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-01-28 18:23  Luigi Ballabio
 
 	* Python/ChangeLog.txt (1.9), Python/LICENSE.TXT (1.2),
 	Python/setup.py (1.32), Python/QuantLib/LICENSE.TXT (1.2),
@@ -1123,7 +1643,7 @@
 
 	Merged changes made on 0.3.1 branch
 
-2003-01-28 09:29  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-01-28 09:29  Luigi Ballabio
 
 	* Python/setup.py (1.31), Ruby/setup.rb (1.32),
 	Ruby/test/QuantLibTestSuite.rb (1.14), Ruby/test/calendars.rb
@@ -1131,7 +1651,7 @@
 
 	Joint calendars and stuff
 
-2003-01-17 12:10  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-01-17 12:10  Luigi Ballabio
 
 	* Ruby/: README.txt (1.8), setup.rb (1.30),
 	test/QuantLibTestSuite.rb (1.13), test/capfloor.rb (1.4),
@@ -1146,20 +1666,20 @@
 
 	Migrated to Test::Unit
 
-2003-01-13 15:43  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2003-01-13 15:43  Luigi Ballabio
 
 	* Ruby/test/simpleswap.rb (1.4.4.2):
 
 	Hidden some dust under the carpet
 
-2003-01-01 13:22  Ferdinando Ametrano <nando AT ametrano DOT net>
+2003-01-01 13:22  Ferdinando Ametrano
 
 	* Python/ChangeLog.txt (1.8.2.1), Ruby/ChangeLog.txt (1.10.2.1),
 	SWIG/ChangeLog.txt (1.7.2.1):
 
 	updated
 
-2002-12-31 19:49  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-12-31 19:49  Ferdinando Ametrano
 
 	* Python/LICENSE.TXT (1.1.1.1.8.1), Python/setup.py (1.27.4.2),
 	Python/QuantLib/LICENSE.TXT (1.1.1.1.8.1),
@@ -1199,25 +1719,25 @@
 
 	updated copyright years
 
-2002-12-19 18:18  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-12-19 18:18  Luigi Ballabio
 
 	* Python/setup.py (1.28), Ruby/setup.rb (1.29):
 
 	Updated version
 
-2002-12-19 18:06  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-12-19 18:06  Luigi Ballabio
 
 	* Python/setup.py (1.27.4.1), Ruby/setup.rb (1.28.2.1):
 
 	Updated version
 
-2002-12-16 12:36  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-12-16 12:36  Ferdinando Ametrano
 
 	* SWIG/ChangeLog.txt (1.7):
 
 	updated
 
-2002-12-16 12:33  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-12-16 12:33  Ferdinando Ametrano
 
 	* Python/ChangeLog.txt (1.7), Ruby/ChangeLog.txt (1.7),
 	Ruby/ChangeLog.txt (1.8), Ruby/ChangeLog.txt (1.9),
@@ -1226,7 +1746,7 @@
 
 	updated
 
-2002-12-11 14:46  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-12-11 14:46  Luigi Ballabio
 
 	* Ruby/test/capfloor.rb (1.3), Ruby/test/piecewiseflatforward.rb
 	(1.7), Ruby/test/termstructures.rb (1.9),
@@ -1234,125 +1754,125 @@
 
 	Term structure and index fixing cleanup
 
-2002-12-09 14:28  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-12-09 14:28  Luigi Ballabio
 
 	* SWIG/volatilities.i (1.3):
 
 	Fixed local volatility interface
 
-2002-11-29 11:20  Marco Marchioro <marco.marchioro AT statpro.com>
+2002-11-29 11:20  Marco Marchioro
 
 	* SWIG/currencies.i (1.4):
 
 	added new currencies
 
-2002-11-27 13:35  Marco Marchioro <marco.marchioro AT statpro.com>
+2002-11-27 13:35  Marco Marchioro
 
 	* Python/QuantLibPython.mak (1.5):
 
 	no message
 
-2002-11-27 13:33  Marco Marchioro <marco.marchioro AT statpro.com>
+2002-11-27 13:33  Marco Marchioro
 
 	* SWIG/calendars.i (1.21):
 
 	Added calendars for Budapest, Oslo, Stockholm, and Warsaw
 
-2002-11-22 15:25  Marco Marchioro <marco.marchioro AT statpro.com>
+2002-11-22 15:25  Marco Marchioro
 
 	* SWIG/date.i (1.21):
 
 	Introduced Format { Long, Short, ISO };
 
-2002-11-20 15:38  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-11-20 15:38  Luigi Ballabio
 
 	* SWIG/date.i (1.20):
 
 	Exported overloaded Date::operator-
 
-2002-11-20 14:59  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-11-20 14:59  Luigi Ballabio
 
 	* Python/setup.py (1.27), Ruby/setup.rb (1.27),
 	SWIG/discountcurve.i (1.1), SWIG/ql.i (1.22):
 
 	Exported DiscountCurve
 
-2002-11-20 11:05  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-11-20 11:05  Luigi Ballabio
 
 	* SWIG/volatilities.i (1.2):
 
 	Constant Black vol exported
 
-2002-11-14 13:36  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-11-14 13:36  Luigi Ballabio
 
 	* SWIG/common.i (1.17):
 
 	Win32 fixes
 
-2002-11-12 17:36  Marco Marchioro <marco.marchioro AT statpro.com>
+2002-11-12 17:36  Marco Marchioro
 
 	* SWIG/date.i (1.19):
 
 	default constructor added
 
-2002-11-12 14:21  Marco Marchioro <marco.marchioro AT statpro.com>
+2002-11-12 14:21  Marco Marchioro
 
 	* Python/: QuantLibPython.dsp (1.4), QuantLibPython.mak (1.4):
 
 	Using _QuantLib instead of QuantLibc
 
-2002-11-12 11:59  Marco Marchioro <marco.marchioro AT statpro.com>
+2002-11-12 11:59  Marco Marchioro
 
 	* Python/: QuantLibPython.dsp (1.3), QuantLibPython.mak (1.3):
 
 	The includepath and libpath for python should be specified in the
 	options of VC++
 
-2002-11-11 14:46  Marco Marchioro <marco.marchioro AT statpro.com>
+2002-11-11 14:46  Marco Marchioro
 
 	* SWIG/ql.i (1.21):
 
 	VC++ regenerate wrappers automatically
 
-2002-11-11 12:02  Marco Marchioro <marco.marchioro AT statpro.com>
+2002-11-11 12:02  Marco Marchioro
 
 	* Python/: QuantLibPython.dsp (1.2), QuantLibPython.mak (1.2),
 	wrap.bat (1.1):
 
 	VC++ compiles
 
-2002-11-08 16:38  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-11-08 16:38  Luigi Ballabio
 
 	* Ruby/setup.rb (1.26):
 
 	s/CC/CXX/
 
-2002-11-08 16:09  Enrico Sirola <enrico.sirola AT statpro.com>>
+2002-11-08 16:09  Enrico Sirola
 
 	* Python/setup.py (1.26):
 
 	os.environ['CC'] --> os.environ['CXX'] (unix-like OSes)
 
-2002-11-05 15:58  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-11-05 15:58  Luigi Ballabio
 
 	* Ruby/test/old_pricers.rb (1.2), SWIG/old_pricers.i (1.2):
 
 	Almost there
 
-2002-10-27 14:06  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-10-27 14:06  Luigi Ballabio
 
 	* SWIG/operators.i (1.7):
 
 	Implemented QuEP 2
 
-2002-10-03 18:46  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-10-03 18:46  Luigi Ballabio
 
 	* Python/setup.py (1.23), Ruby/setup.rb (1.25), SWIG/ql.i (1.20),
 	SWIG/volatilities.i (1.1):
 
 	A few new-style vol term structures
 
-2002-09-24 16:25  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-09-24 16:25  Luigi Ballabio
 
 	* Python/setup.py (1.22), Ruby/setup.rb (1.24), SWIG/functions.i
 	(1.4), SWIG/optimizers.i (1.1), SWIG/ql.i (1.19), SWIG/solvers1d.i
@@ -1360,7 +1880,7 @@
 
 	A look at the optimizers (nothing major)
 
-2002-09-12 14:50  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-09-12 14:50  Luigi Ballabio
 
 	* Python/README.txt (1.7), Ruby/QuantLib.rb (1.17), Ruby/README.txt
 	(1.7), Ruby/test/capfloor.rb (1.2), Ruby/test/europeanoption.rb
@@ -1377,7 +1897,7 @@
 
 	Synch with QuantLib
 
-2002-09-01 17:15  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-09-01 17:15  Luigi Ballabio
 
 	* Python/setup.py (1.21), Ruby/QuantLib.rb (1.16), Ruby/setup.rb
 	(1.23), Ruby/test/QuantLibTestSuite.rb (1.12),
@@ -1391,7 +1911,7 @@
 
 	Almost there
 
-2002-08-07 18:46  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-08-07 18:46  Luigi Ballabio
 
 	* Python/README.txt (1.6), Ruby/test/dates.rb (1.4),
 	SWIG/calendars.i (1.17), SWIG/common.i (1.15), SWIG/date.i (1.15),
@@ -1401,13 +1921,13 @@
 
 	Catching up with SWIG
 
-2002-08-07 16:01  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-08-07 16:01  Luigi Ballabio
 
 	* SWIG/ql.i (1.17):
 
 	Catching up with MzScheme
 
-2002-08-06 19:12  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-08-06 19:12  Luigi Ballabio
 
 	* Ruby/test/piecewiseflatforward.rb (1.5),
 	Ruby/test/termstructures.rb (1.7), SWIG/observer.i (1.11),
@@ -1415,7 +1935,7 @@
 
 	Catching up with QuantLib
 
-2002-08-06 15:37  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-08-06 15:37  Luigi Ballabio
 
 	* Python/setup.py (1.20), Python/QuantLib/__init__.py (1.3),
 	Python/QuantLib/defaults.py (1.13), Ruby/QuantLib.rb (1.15),
@@ -1425,13 +1945,13 @@
 
 	Catching up with SWIG
 
-2002-08-05 19:50  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-08-05 19:50  Luigi Ballabio
 
 	* SWIG/solvers1d.i (1.5):
 
 	Catching up with SWIG
 
-2002-08-05 19:32  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-08-05 19:32  Luigi Ballabio
 
 	* Python/QuantLib/defaults.py (1.12), Ruby/QuantLib.rb (1.14),
 	SWIG/calendars.i (1.16), SWIG/cashflows.i (1.3), SWIG/common.i
@@ -1447,7 +1967,7 @@
 
 	Catching up with SWIG
 
-2002-08-03 18:16  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-08-03 18:16  Luigi Ballabio
 
 	* Python/README.txt (1.5), Python/setup.py (1.19),
 	Python/QuantLib/__init__.py (1.2), Python/QuantLib/defaults.py
@@ -1462,7 +1982,7 @@
 
 	Keeping up with SWIG
 
-2002-07-22 12:05  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-07-22 12:05  Luigi Ballabio
 
 	* Python/QuantLib/defaults.py (1.10), Ruby/QuantLib.rb (1.12),
 	Ruby/test/instruments.rb (1.3), Ruby/test/marketelements.rb (1.3),
@@ -1470,7 +1990,7 @@
 
 	Last couple of weeks
 
-2002-07-11 17:27  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-07-11 17:27  Luigi Ballabio
 
 	* Ruby/QuantLib.rb (1.11), Ruby/test/riskstatistics.rb (1.3),
 	Ruby/test/statistics.rb (1.3), SWIG/linearalgebra.i (1.3),
@@ -1479,21 +1999,21 @@
 
 	Last couple of weeks
 
-2002-07-11 17:18  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-07-11 17:18  Luigi Ballabio
 
 	* Python/.cvsignore (1.1), Python/QuantLib/.cvsignore (1.1),
 	Ruby/.cvsignore (1.1):
 
 	Some more .cvsignore
 
-2002-06-28 15:34  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-06-28 15:34  Luigi Ballabio
 
 	* Ruby/test/piecewiseflatforward.rb (1.3),
 	Ruby/test/termstructures.rb (1.4), SWIG/termstructures.i (1.4):
 
 	Improved term structure test
 
-2002-06-27 19:28  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-06-27 19:28  Luigi Ballabio
 
 	* Python/setup.py (1.18), Python/QuantLib/defaults.py (1.9),
 	Ruby/QuantLib.rb (1.10), Ruby/test/QuantLibTestSuite.rb (1.10),
@@ -1513,7 +2033,7 @@
 
 	Saved from laptop crash (phew...)
 
-2002-06-24 09:29  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-06-24 09:29  Luigi Ballabio
 
 	* Python/setup.py (1.17), Python/QuantLib/defaults.py (1.8),
 	Ruby/QuantLib.rb (1.9), Ruby/setup.rb (1.22),
@@ -1529,7 +2049,7 @@
 
 	a couple of weeks' worth
 
-2002-06-11 17:40  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-06-11 17:40  Luigi Ballabio
 
 	* Python/README.txt (1.4), Ruby/README.txt (1.5),
 	Ruby/test/europeanoption.rb (1.3), SWIG/cashflows.i (1.1),
@@ -1537,13 +2057,13 @@
 
 	Synch with QuantLib
 
-2002-06-03 12:29  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-06-03 12:29  Luigi Ballabio
 
 	* Ruby/test/europeanoption.rb (1.2), SWIG/options.i (1.2):
 
 	Synch with ql
 
-2002-05-31 17:35  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-05-31 17:35  Luigi Ballabio
 
 	* MzScheme/: Authors.txt (1.2), ChangeLog.txt (1.7),
 	Contributors.txt (1.2), History.txt (1.2), LICENSE.TXT (1.2),
@@ -1558,7 +2078,7 @@
 
 	Compacting MzScheme and Guile
 
-2002-05-31 17:23  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-05-31 17:23  Luigi Ballabio
 
 	* Guile/Authors.txt (1.2), Guile/ChangeLog.txt (1.5),
 	Guile/Contributors.txt (1.2), Guile/History.txt (1.2),
@@ -1577,7 +2097,7 @@
 
 	Compacting MzScheme and Guile
 
-2002-05-30 10:20  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-05-30 10:20  Luigi Ballabio
 
 	* Guile/setup.scm (1.3), Guile/test/common.scm (1.3),
 	Guile/test/date.scm (1.2), Guile/test/daycounters.scm (1.2),
@@ -1613,7 +2133,7 @@
 
 	Biweekly commit
 
-2002-05-17 18:07  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-05-17 18:07  Luigi Ballabio
 
 	* Guile/test/common.scm (1.2), Guile/test/distributions.scm (1.3),
 	Guile/test/operators.scm (1.1), Guile/test/quantlib-test-suite.scm
@@ -1635,19 +2155,19 @@
 
 	Weekly payload
 
-2002-05-16 16:28  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-05-16 16:28  Ferdinando Ametrano
 
 	* SWIG/randomnumbers.i (1.6):
 
 	removed InvCumulative2
 
-2002-05-13 18:04  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-05-13 18:04  Luigi Ballabio
 
 	* Python/setup.py (1.14), Ruby/setup.rb (1.19):
 
 	Allow passing CXXFLAGS
 
-2002-05-13 10:38  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-05-13 10:38  Luigi Ballabio
 
 	* Guile/README.txt (1.1), Guile/setup.scm (1.2),
 	Guile/test/common.scm (1.1), Guile/test/quantlib-test-suite.scm
@@ -1672,14 +2192,14 @@
 
 	Weekly payload
 
-2002-05-03 14:46  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-05-03 14:46  Luigi Ballabio
 
 	* Python/makewrappers.py (1.4), Python/setup.py (1.13),
 	Ruby/setup.rb (1.17):
 
 	More fixes in setup scripts
 
-2002-05-03 13:30  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-05-03 13:30  Luigi Ballabio
 
 	* Guile/Authors.txt (1.1), Guile/ChangeLog.txt (1.4),
 	Guile/Contributors.txt (1.1), Guile/History.txt (1.1),
@@ -1690,7 +2210,7 @@
 
 	More fixes in setup scripts
 
-2002-05-03 13:06  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-05-03 13:06  Luigi Ballabio
 
 	* MzScheme/build.scm (1.3), MzScheme/install.scm (1.2),
 	MzScheme/setup.scm (1.1), MzScheme/test.scm (1.2),
@@ -1700,7 +2220,7 @@
 
 	Fixed setup files
 
-2002-05-02 09:50  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-05-02 09:50  Luigi Ballabio
 
 	* Guile/test/instruments.scm (1.2), Guile/test/marketelements.scm
 	(1.2), Guile/test/quantlib-test-suite.scm (1.5),
@@ -1715,7 +2235,7 @@
 
 	Handles to base classes are templates, not typedefs
 
-2002-04-29 17:24  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-04-29 17:24  Luigi Ballabio
 
 	* Guile/test/instruments.scm (1.1),
 	Guile/test/quantlib-test-suite.scm (1.4),
@@ -1729,7 +2249,7 @@
 
 	Migrated instruments.i
 
-2002-04-26 09:57  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-04-26 09:57  Luigi Ballabio
 
 	* Guile/test/distributions.scm (1.2), Guile/test/marketelements.scm
 	(1.1), Guile/test/quantlib-test-suite.scm (1.3),
@@ -1751,7 +2271,7 @@
 
 	Migrated risk statistics and market elements
 
-2002-04-22 16:35  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-04-22 16:35  Luigi Ballabio
 
 	* Guile/test/quantlib-test-suite.scm (1.2),
 	Guile/test/solvers1d.scm (1.1),
@@ -1765,39 +2285,39 @@
 
 	Renamed Solver1D::lowBound and hiBound
 
-2002-04-21 23:21  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-04-21 23:21  Ferdinando Ametrano
 
 	* Python/setup.py (1.7.2.2), Ruby/setup.rb (1.10.2.2):
 
 	version number up
 
-2002-04-21 22:38  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-04-21 22:38  Ferdinando Ametrano
 
 	* Python/setup.py (1.7.2.1), Ruby/setup.rb (1.10.2.1), SWIG/ql.i
 	(1.7.2.1):
 
 	version number up
 
-2002-04-21 22:32  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-04-21 22:32  Ferdinando Ametrano
 
 	* Python/setup.py (1.8), Ruby/setup.rb (1.11), SWIG/ql.i (1.8):
 
 	version number up
 
-2002-04-21 21:30  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-04-21 21:30  Ferdinando Ametrano
 
 	* SWIG/ChangeLog.txt (1.5):
 
 	updated
 
-2002-04-21 21:27  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-04-21 21:27  Ferdinando Ametrano
 
 	* Python/ChangeLog.txt (1.6), Ruby/ChangeLog.txt (1.6),
 	MzScheme/ChangeLog.txt (1.6), Guile/ChangeLog.txt (1.3):
 
 	updated
 
-2002-04-18 13:37  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-04-18 13:37  Luigi Ballabio
 
 	* MzScheme/quantlib/quantlib.ss (1.5), Python/setup.py (1.7),
 	Python/QuantLib/defaults.py (1.2), Ruby/QuantLib.rb (1.3),
@@ -1807,7 +2327,7 @@
 
 	History.i migrated
 
-2002-04-16 23:58  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-04-16 23:58  Ferdinando Ametrano
 
 	* Python/ChangeLog.txt (1.5), Ruby/ChangeLog.txt (1.5),
 	MzScheme/ChangeLog.txt (1.5), Guile/ChangeLog.txt (1.2),
@@ -1815,13 +2335,13 @@
 
 	updated
 
-2002-04-16 23:53  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-04-16 23:53  Ferdinando Ametrano
 
 	* Guile/ChangeLog.txt (1.1):
 
 	added ChangeLog
 
-2002-04-16 15:30  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-04-16 15:30  Luigi Ballabio
 
 	* Guile/build.scm (1.1), Guile/install.scm (1.1), Guile/test.scm
 	(1.1), Guile/test/date.scm (1.1), Guile/test/daycounters.scm (1.1),
@@ -1834,7 +2354,7 @@
 
 	Got a language for free
 
-2002-04-10 17:37  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-04-10 17:37  Luigi Ballabio
 
 	* Python/setup.py (1.6), Ruby/setup.rb (1.9), SWIG/calendars.i
 	(1.3), SWIG/common.i (1.5), SWIG/currencies.i (1.3), SWIG/date.i
@@ -1845,52 +2365,52 @@
 
 	Towards SWIG 1.3.12
 
-2002-04-10 11:54  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-04-10 11:54  Ferdinando Ametrano
 
 	* Python/setup.py (1.5), Ruby/setup.rb (1.8), SWIG/ql.i (1.5):
 
 	version number up
 
-2002-04-09 14:30  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-04-09 14:30  Ferdinando Ametrano
 
 	* Ruby/setup.rb (1.7):
 
 	supporting also zip distribution for Win32
 
-2002-04-09 13:05  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-04-09 13:05  Ferdinando Ametrano
 
 	* Ruby/setup.rb (1.6):
 
 	supporting also zip distribution for Win32
 
-2002-04-09 11:15  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-04-09 11:15  Ferdinando Ametrano
 
 	* Python/ChangeLog.txt (1.4), Ruby/ChangeLog.txt (1.4),
 	MzScheme/ChangeLog.txt (1.4), SWIG/ChangeLog.txt (1.3):
 
 	updated
 
-2002-04-08 10:10  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-04-08 10:10  Ferdinando Ametrano
 
 	* Python/ChangeLog.txt (1.3), Ruby/ChangeLog.txt (1.3),
 	MzScheme/ChangeLog.txt (1.3), SWIG/ChangeLog.txt (1.2):
 
 	updated
 
-2002-04-08 10:01  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-04-08 10:01  Ferdinando Ametrano
 
 	* Python/ChangeLog.txt (1.2), Ruby/ChangeLog.txt (1.2),
 	MzScheme/ChangeLog.txt (1.2):
 
 	updated
 
-2002-04-08 09:51  Ferdinando Ametrano <nando AT ametrano DOT net>
+2002-04-08 09:51  Ferdinando Ametrano
 
 	* SWIG/ChangeLog.txt (1.1):
 
 	added ChangeLog
 
-2002-04-05 16:34  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-04-05 16:34  Luigi Ballabio
 
 	* Python/README.txt (1.2), Ruby/README.txt (1.3), SWIG/calendars.i
 	(1.2), SWIG/currencies.i (1.2), SWIG/date.i (1.2),
@@ -1899,34 +2419,34 @@
 
 	engaged the time machine and switched to SWIG 1.3.12
 
-2002-04-05 14:32  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-04-05 14:32  Luigi Ballabio
 
 	* Ruby/setup.rb (1.5), SWIG/qlarray.i (1.3), Ruby/README.txt (1.2):
 
 	QuantLib-Ruby now works on Win32
 
-2002-04-05 11:37  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-04-05 11:37  Luigi Ballabio
 
 	* SWIG/: common.i (1.4), string.i (1.2), vector.i (1.2), vector.i
 	(1.3):
 
 	vector.i migrated
 
-2002-04-04 17:01  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-04-04 17:01  Luigi Ballabio
 
 	* Python/setup.py (1.4), Ruby/QuantLib.rb (1.2), Ruby/setup.rb
 	(1.4), SWIG/ql.i (1.4), SWIG/qlarray.i (1.2), SWIG/vector.i (1.1):
 
 	vector.i half migrated
 
-2002-04-04 12:14  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-04-04 12:14  Luigi Ballabio
 
 	* MzScheme/build.scm (1.2), Python/setup.py (1.3), Ruby/setup.rb
 	(1.3), SWIG/common.i (1.3), SWIG/observer.i (1.1), SWIG/ql.i (1.3):
 
 	observer.i migrated
 
-2002-04-03 15:57  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-04-03 15:57  Luigi Ballabio
 
 	* MzScheme/quantlib/quantlib.ss (1.2), Python/setup.py (1.2),
 	Ruby/setup.rb (1.2), SWIG/common.i (1.2), SWIG/ql.i (1.2),
@@ -1935,7 +2455,7 @@
 
 	Array migrated
 
-2002-04-02 17:30  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-04-02 17:30  Luigi Ballabio
 
 	* MzScheme/Authors.txt (1.1), MzScheme/ChangeLog.txt (1.1),
 	MzScheme/Contributors.txt (1.1), MzScheme/History.txt (1.1),
@@ -1967,7 +2487,7 @@
 
 	Initial revision
 
-2002-04-02 17:30  Luigi Ballabio <luigi.ballabio AT statpro.com>
+2002-04-02 17:30  Luigi Ballabio
 
 	* MzScheme/Authors.txt (1.1.1.1), MzScheme/ChangeLog.txt (1.1.1.1),
 	MzScheme/Contributors.txt (1.1.1.1), MzScheme/History.txt
@@ -2001,4 +2521,45 @@
 
 	Module for migration to SWIG 1.3.11 and reunification of SWIG
 	extensions
+
+1970-01-01 01:00  
+
+	* Guile/ChangeLog.txt (), Guile/History.txt (), Guile/News.txt (),
+	Guile/setup.scm (), MzScheme/ChangeLog.txt (), MzScheme/History.txt
+	(), MzScheme/News.txt (), MzScheme/README.txt (),
+	MzScheme/setup.scm (), MzScheme/quantlib/.cvsignore (),
+	MzScheme/quantlib/ql-init.ss (), MzScheme/quantlib/quantlib.ss (),
+	MzScheme/test/date.scm (), MzScheme/test/quantlib-test-suite.scm
+	(), MzScheme/test/utilities.scm (), Python/.cvsignore (),
+	Python/BUGS.txt (), Python/ChangeLog.txt (), Python/History.txt (),
+	Python/MANIFEST.in (), Python/News.txt (),
+	Python/QuantLib-Python.spec (), Python/QuantLibPython.dsp (),
+	Python/QuantLibPython.mak (), Python/README.txt (), Python/setup.py
+	(), Python/wrap.bat (), Python/QuantLib/__init__.py (),
+	Python/examples/american-option.py (),
+	Python/examples/bermudan-swaption.py (),
+	Python/examples/european-option.py (), Python/examples/swap.py (),
+	Ruby/BUGS.txt (), Ruby/ChangeLog.txt (), Ruby/History.txt (),
+	Ruby/News.txt (), Ruby/QuantLib-Ruby.spec (), Ruby/QuantLib.rb (),
+	Ruby/README.txt (), Ruby/setup.rb (),
+	Ruby/examples/bermudan-swaption.rb (), Ruby/examples/swap.rb (),
+	Ruby/test/QuantLibTestSuite.rb (), Ruby/test/dates.rb (),
+	Ruby/test/europeanoption.rb (), Ruby/test/old_pricers.rb (),
+	Ruby/test/swaption.rb (), Ruby/test/termstructures.rb (),
+	SWIG/calendars.i (), SWIG/capfloor.i (), SWIG/cashflows.i (),
+	SWIG/compoundforward.i (), SWIG/date.i (), SWIG/daycounters.i (),
+	SWIG/discountcurve.i (), SWIG/distributions.i (), SWIG/functions.i
+	(), SWIG/history.i (), SWIG/indexes.i (), SWIG/instruments.i (),
+	SWIG/integrals.i (), SWIG/interpolation.i (), SWIG/linearalgebra.i
+	(), SWIG/marketelements.i (), SWIG/montecarlo.i (), SWIG/observer.i
+	(), SWIG/old_pricers.i (), SWIG/old_volatility.i (),
+	SWIG/operators.i (), SWIG/optimizers.i (), SWIG/options.i (),
+	SWIG/piecewiseflatforward.i (), SWIG/ql.i (), SWIG/qlarray.i (),
+	SWIG/quantlib.i (), SWIG/randomnumbers.i (), SWIG/scheduler.i (),
+	SWIG/shortratemodels.i (), SWIG/statistics.i (),
+	SWIG/stochasticprocess.i (), SWIG/swap.i (), SWIG/swaption.i (),
+	SWIG/termstructures.i (), SWIG/timebasket.i (), SWIG/types.i (),
+	SWIG/volatilities.i ():
+
+	[no log message]
 

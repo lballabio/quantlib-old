@@ -122,10 +122,10 @@ termStructure.linkTo(PiecewiseFlatForward(settlementDate,
 
 payFixed = 1
 fixingDays = 2
-swapStart = settlementDate.plusYears(1)
+swapStart = settlementDate + (1,'years')
 index = Euribor(6, 'months', termStructure)
 swapLength = 5
-swapEnd = swapStart.plusYears(swapLength)
+swapEnd = swapStart + (swapLength,'years')
 
 fixedSchedule = Schedule(calendar, swapStart, swapEnd,
                          fixedLegFrequency, fixedLegAdjustment)

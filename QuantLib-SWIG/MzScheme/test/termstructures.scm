@@ -59,7 +59,7 @@
                           2 "mf")))
                      swap-data))
              (term-structure (new-PiecewiseFlatForward
-                              today settlement
+                              settlement
                               (append deposits swaps)
                               day-counter)))
         (new-YieldTermStructureHandle term-structure))))
@@ -69,23 +69,18 @@
            ; check implied term structure observability
            (let ((flag #f))
              (let* ((calendar (new-TARGET))
-                    (today (YieldTermStructureHandle-todays-date
-                            term-structure))
                     (settlement (YieldTermStructureHandle-reference-date
                                  term-structure))
-                    (new-today (Date-plus-years today 3))
                     (new-settlement (Calendar-advance
-                                     calendar new-today 2 "days"))
+                                     calendar settlement 3 "years"))
                     (day-counter (YieldTermStructureHandle-day-counter
                                   term-structure))
                     (implied (new-ImpliedTermStructure term-structure
-                                                       new-today
                                                        new-settlement))
                     (obs (new-Observer (lambda () (set! flag #t)))))
                (let ((temp (YieldTermStructure->Observable implied)))
                  (Observer-register-with obs temp))
-               (let ((new-term-structure (new-FlatForward today
-                                                          settlement
+               (let ((new-term-structure (new-FlatForward settlement
                                                           0.05
                                                           day-counter)))
                  (YieldTermStructureHandle-link-to! term-structure
@@ -97,9 +92,7 @@
            ; check forward-spreaded term structure observability
            (let ((flag #f)
                  (tolerance 1.0e-10))
-             (let* ((today (YieldTermStructureHandle-todays-date
-                            term-structure))
-                    (settlement (YieldTermStructureHandle-reference-date
+             (let* ((settlement (YieldTermStructureHandle-reference-date
                                  term-structure))
                     (day-counter (YieldTermStructureHandle-day-counter
                                   term-structure))
@@ -110,8 +103,7 @@
                     (obs (new-Observer (lambda () (set! flag #t)))))
                (let ((temp (YieldTermStructure->Observable spreaded)))
                  (Observer-register-with obs temp))
-               (let ((new-term-structure (new-FlatForward today
-                                                          settlement
+               (let ((new-term-structure (new-FlatForward settlement
                                                           0.05
                                                           day-counter)))
                  (YieldTermStructureHandle-link-to! term-structure
@@ -127,9 +119,7 @@
            ; check zero-spreaded term structure observability
            (let ((flag #f)
                  (tolerance 1.0e-10))
-             (let* ((today (YieldTermStructureHandle-todays-date
-                            term-structure))
-                    (settlement (YieldTermStructureHandle-reference-date
+             (let* ((settlement (YieldTermStructureHandle-reference-date
                                  term-structure))
                     (day-counter (YieldTermStructureHandle-day-counter
                                   term-structure))
@@ -140,8 +130,7 @@
                     (obs (new-Observer (lambda () (set! flag #t)))))
                (let ((temp (YieldTermStructure->Observable spreaded)))
                  (Observer-register-with obs temp))
-               (let ((new-term-structure (new-FlatForward today
-                                                          settlement
+               (let ((new-term-structure (new-FlatForward settlement
                                                           0.05
                                                           day-counter)))
                  (YieldTermStructureHandle-link-to! term-structure

@@ -26,7 +26,7 @@
 %include linearalgebra.i
 
 
-// eventually the classes exported here will be redesigned and deprecated
+// eventually the classes exported here will be redesigned or deprecated
 
 
 // swaption volatilities
@@ -95,13 +95,6 @@ IsObservable(boost::shared_ptr<CapVolatilityStructure>);
 %template(CapVolatilityStructureHandle) Handle<CapVolatilityStructure>;
 IsObservable(Handle<CapVolatilityStructure>);
 
-#if defined(SWIGPYTHON)
-%pythoncode %{
-    CapFlatVolatilityStructure = CapVolatilityStructure
-    CapFlatVolatilityStructureHandle = CapVolatilityStructureHandle
-%}
-#endif
-
 %{
 using QuantLib::CapVolatilityVector;
 typedef boost::shared_ptr<CapVolatilityStructure> CapVolatilityVectorPtr;
@@ -112,17 +105,7 @@ class CapVolatilityVectorPtr
 : public boost::shared_ptr<CapVolatilityStructure> {
   public:
     %extend {
-        CapVolatilityVectorPtr(const Date& today,
-                               const Calendar& calendar,
-                               Integer settlementDays,
-                               const std::vector<Period>& lengths,
-                               const std::vector<Volatility>& vols,
-                               const DayCounter& dayCounter) {
-            return new CapVolatilityVectorPtr(
-                new CapVolatilityVector(today,calendar,settlementDays,
-                                        lengths,vols,dayCounter));
-        }
-        CapVolatilityVectorPtr(const Date& referenceDate,
+       CapVolatilityVectorPtr(const Date& referenceDate,
                                const std::vector<Period>& lengths,
                                const std::vector<Volatility>& vols,
                                const DayCounter& dayCounter) {
@@ -141,12 +124,6 @@ class CapVolatilityVectorPtr
         }
     }
 };
-
-#if defined(SWIGPYTHON)
-%pythoncode %{
-    CapFlatVolatilityVector = CapVolatilityVector
-%}
-#endif
 
 
 #endif

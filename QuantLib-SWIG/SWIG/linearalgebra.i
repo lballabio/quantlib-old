@@ -1129,8 +1129,7 @@ MapToString(SalvagingAlgorithm,salvagingAlgorithmFromString,
 
 Matrix transpose(const Matrix& m);
 Matrix outerProduct(const Array& v1, const Array& v2);
-Matrix pseudoSqrt(const Matrix& m,
-                  SalvagingAlgorithm a = QuantLib::SalvagingAlgorithm::None);
+Matrix pseudoSqrt(const Matrix& m, SalvagingAlgorithm a);
 
 class SVD {
   public:

@@ -205,10 +205,6 @@ class Date {
     %rename("day-of-year")    dayOfYear;
     %rename("weekday-number") weekdayNumber;
     %rename("serial-number")  serialNumber;
-    %rename("plus-days")      plusDays;
-    %rename("plus-weeks")     plusWeeks;
-    %rename("plus-months")    plusMonths;
-    %rename("plus-years")     plusYears;
     %rename("is-leap?")       isLeap;
     %rename("min-date")       minDate;
     %rename("max-date")       maxDate;
@@ -223,25 +219,16 @@ class Date {
     Weekday weekday() const;
     Day dayOfMonth() const;
     Day dayOfYear() const;        // one-based
-    bool isEndOfMonth() const;
-    Day lastDayOfMonth() const;
     Month month() const;
     Year year() const;
     BigInteger serialNumber() const;
-    // increment/decrement dates
-    Date plusDays(Integer days) const;
-    Date plusWeeks(Integer weeks) const;
-    Date plusMonths(Integer months) const;
-    Date plusYears(Integer years) const;
-    Date plus(Integer units, TimeUnit) const;
-    Date plus(const Period&) const;
-    // leap years
+    // static methods
     static bool isLeap(Year y);
-    // earliest and latest allowed date
     static Date minDate();
     static Date maxDate();
-    // today's date
     static Date todaysDate();
+    Date endOfMonth(const Date&);
+    static bool isEOM(const Date&);
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
     Date operator+(BigInteger days) const;
     Date operator-(BigInteger days) const;
@@ -293,7 +280,7 @@ class Date {
         #endif
         #if defined(SWIGRUBY)
         Date succ() {
-            return self->plusDays(1);
+            return *self + 1;
         }
         #endif
         #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)

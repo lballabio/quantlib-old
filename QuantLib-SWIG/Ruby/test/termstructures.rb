@@ -61,16 +61,16 @@ class TermStructureTest < Test::Unit::TestCase
         @calendar, 1, 'unadjusted', Thirty360.new,
         2, 'mf')
     }
-    @termStructure = PiecewiseFlatForward.new(today,settlement,
+    @termStructure = PiecewiseFlatForward.new(settlement,
                                               deposits+swaps,
                                               Actual360.new)
   end
   def testImpliedObs
     flag = false
-    h = TermStructureHandle.new
-    new_today = @termStructure.todaysDate.plusYears(3)
-    new_settlement = @calendar.advance(new_today,@settlementDays,'days')
-    implied = ImpliedTermStructure.new(h,new_today,new_settlement)
+    h = YieldTermStructureHandle.new
+    settlement = @termStructure.referenceDate
+    new_settlement = @calendar.advance(settlement,3,'years')
+    implied = ImpliedTermStructure.new(h,new_settlement)
     obs = Observer.new { flag = true }
     obs.registerWith(implied)
     h.linkTo!(@termStructure)
@@ -82,7 +82,7 @@ class TermStructureTest < Test::Unit::TestCase
     flag = false
     me = SimpleQuote.new(0.01)
     mh = QuoteHandle.new(me)
-    h = TermStructureHandle.new
+    h = YieldTermStructureHandle.new
     spreaded = ForwardSpreadedTermStructure.new(h,mh)
     obs = Observer.new { flag = true }
     obs.registerWith(spreaded)
@@ -100,7 +100,7 @@ class TermStructureTest < Test::Unit::TestCase
     flag = false
     me = SimpleQuote.new(0.01)
     mh = QuoteHandle.new(me)
-    h = TermStructureHandle.new
+    h = YieldTermStructureHandle.new
     spreaded = ZeroSpreadedTermStructure.new(h,mh)
     obs = Observer.new { flag = true }
     obs.registerWith(spreaded)

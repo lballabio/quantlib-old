@@ -28,7 +28,8 @@
 (define todays-date (new-Date 15 5 1998))
 (Settings-evaluation-date-set! (Settings-instance) todays-date)
 (define settlement-date (new-Date 17 5 1998))
-(define risk-free-rate (new-FlatForward settlement-date 0.06 (new-Actual365)))
+(define risk-free-rate (new-FlatForward settlement-date 0.06
+                                        (new-Actual365Fixed)))
 
 ; option parameters
 (define exercise (new-AmericanExercise settlement-date (new-Date 17 5 1999)))
@@ -36,8 +37,10 @@
 
 ; market data
 (define underlying (new-SimpleQuote 36.0))
-(define volatility (new-BlackConstantVol todays-date 0.20))
-(define dividend-yield (new-FlatForward settlement-date 0.00 (new-Actual365)))
+(define volatility (new-BlackConstantVol todays-date 0.20
+                                         (new-Actual365Fixed)))
+(define dividend-yield (new-FlatForward settlement-date 0.00
+                                        (new-Actual365Fixed)))
 
 ; report
 (define fmt '((20 r) (17 r 5) (17 r 4) (17 r 4)))

@@ -79,7 +79,6 @@ class Handle {
         }
     }
     #else
-    bool isNull();
     bool empty();
     #endif
 };

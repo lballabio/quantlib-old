@@ -31,28 +31,13 @@ typedef boost::shared_ptr<YieldTermStructure> CompoundForwardPtr;
 class CompoundForwardPtr : public boost::shared_ptr<YieldTermStructure> {
   public:
     %extend {
-        CompoundForwardPtr(const Date& todaysDate,
-                           const Date& settlementDate,
-                           const std::vector<Date>& dates,
-                           const std::vector<Rate>& rates,
-                           Calendar calendar,
-                           BusinessDayConvention roll,
-                           Integer compounding,
-                           const DayCounter& dayCounter
-                               = QuantLib::Actual365()) {
-	        return new CompoundForwardPtr(
-                new CompoundForward(todaysDate, settlementDate,
-                                    dates, rates, calendar, roll,
-                                    compounding, dayCounter));
-        }
         CompoundForwardPtr(const Date& settlementDate,
                            const std::vector<Date>& dates,
                            const std::vector<Rate>& rates,
                            Calendar calendar,
                            BusinessDayConvention roll,
                            Integer compounding,
-                           const DayCounter& dayCounter
-                               = QuantLib::Actual365()) {
+                           const DayCounter& dayCounter) {
 	        return new CompoundForwardPtr(
                 new CompoundForward(settlementDate,
                                     dates, rates, calendar, roll,

@@ -70,7 +70,6 @@ class DayCounter {
 namespace QuantLib {
 
     class Actual360 : public DayCounter {};
-    class Actual365 : public DayCounter {};
     class Actual365Fixed : public DayCounter {};
     class Thirty360 : public DayCounter {
       public:

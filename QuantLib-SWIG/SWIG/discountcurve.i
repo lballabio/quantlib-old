@@ -32,13 +32,6 @@ typedef boost::shared_ptr<YieldTermStructure> ExtendedDiscountCurvePtr;
 class DiscountCurvePtr : public boost::shared_ptr<YieldTermStructure> {
   public:
     %extend {
-        DiscountCurvePtr(const Date& todaysDate,
-                         const std::vector<Date>& dates,
-                         const std::vector<DiscountFactor>& discounts,
-                         const DayCounter& dayCounter) {
-            return new DiscountCurvePtr(
-                new DiscountCurve(todaysDate, dates, discounts, dayCounter));
-        }
         DiscountCurvePtr(const std::vector<Date>& dates,
                          const std::vector<DiscountFactor>& discounts,
                          const DayCounter& dayCounter) {
@@ -56,16 +49,6 @@ class DiscountCurvePtr : public boost::shared_ptr<YieldTermStructure> {
 class ExtendedDiscountCurvePtr : public DiscountCurvePtr {
   public:
     %extend {
-        ExtendedDiscountCurvePtr(const Date& todaysDate,
-                                 const std::vector<Date>& dates,
-                                 const std::vector<DiscountFactor>& discounts,
-                                 const Calendar& calendar,
-                                 BusinessDayConvention roll,
-                                 const DayCounter& dayCounter) {
-            return new ExtendedDiscountCurvePtr(
-                new ExtendedDiscountCurve(todaysDate, dates, discounts,
-                                          calendar, roll, dayCounter));
-        }
         ExtendedDiscountCurvePtr(const std::vector<Date>& dates,
                                  const std::vector<DiscountFactor>& discounts,
                                  const Calendar& calendar,

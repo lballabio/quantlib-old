@@ -24,10 +24,12 @@
 %include instruments.i
 %include stl.i
 
-// option types
+// option and barrier types
 %{
 using QuantLib::Option;
 typedef Option::Type OptionType;
+using QuantLib::Barrier;
+typedef Barrier::Type BarrierType;
 
 Option::Type optionTypeFromString(std::string s) {
     s = StringFormatter::toLowercase(s);
@@ -49,9 +51,39 @@ std::string optionTypeToString(Option::Type t) {
         QL_FAIL("unknown option type");
     }
 }
+
+BarrierType barrierTypeFromString(std::string s) {
+    s = StringFormatter::toLowercase(s);
+    if (s == "downin")
+        return Barrier::DownIn;
+    else if (s == "downout")
+        return Barrier::DownOut;
+    else if (s == "upin")
+        return Barrier::UpIn;
+    else if (s == "upout")
+        return Barrier::UpOut;
+    else
+        QL_FAIL("unknown barrier type: "+s);
+}
+
+std::string barrierTypeToString(BarrierType t) {
+    switch (t) {
+      case Barrier::DownIn:
+        return "DownIn";
+      case Barrier::DownOut:
+        return "DownOut";
+      case Barrier::UpIn:
+        return "UpIn";
+      case Barrier::UpOut:
+        return "UpOut";
+      default:
+        QL_FAIL("unknown barrier type");
+    }
+}
 %}
 
 MapToString(OptionType,optionTypeFromString,optionTypeToString);
+MapToString(BarrierType,barrierTypeFromString,barrierTypeToString);
 
 
 // payoff
@@ -330,6 +362,114 @@ class BjerksundStenslandApproximationEnginePtr
         BjerksundStenslandApproximationEnginePtr() {
             return new BjerksundStenslandApproximationEnginePtr(
                 new BjerksundStenslandApproximationEngine);
+        }
+    }
+};
+
+%{
+using QuantLib::AnalyticDigitalAmericanEngine;
+typedef boost::shared_ptr<PricingEngine> AnalyticDigitalAmericanEnginePtr;
+%}
+
+%rename(AnalyticDigitalAmericanEngine) AnalyticDigitalAmericanEnginePtr;
+class AnalyticDigitalAmericanEnginePtr 
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        AnalyticDigitalAmericanEnginePtr() {
+            return new AnalyticDigitalAmericanEnginePtr(
+                new AnalyticDigitalAmericanEngine);
+        }
+    }
+};
+
+
+// Barrier Option
+
+%{
+using QuantLib::BarrierOption;
+typedef boost::shared_ptr<Instrument> BarrierOptionPtr;
+%}
+
+%rename(BarrierOption) BarrierOptionPtr;
+class BarrierOptionPtr : public boost::shared_ptr<Instrument> {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("dividend-rho")       dividendRho;
+    %rename("implied-volatility") impliedVolatility;
+    #endif
+  public:
+    %extend {
+        BarrierOptionPtr(BarrierType barrierType,
+                         Real barrier, 
+                         Real rebate,
+                         const boost::shared_ptr<StochasticProcess>& process,
+                         const boost::shared_ptr<Payoff>& payoff,
+                         const boost::shared_ptr<Exercise>& exercise,
+                         const boost::shared_ptr<PricingEngine>& engine
+                                     = boost::shared_ptr<PricingEngine>()) {
+            boost::shared_ptr<StrikedTypePayoff> stPayoff =
+                 boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
+            QL_REQUIRE(stPayoff, "wrong payoff given");
+            boost::shared_ptr<BlackScholesProcess> bsProcess =
+                boost::dynamic_pointer_cast<BlackScholesProcess>(process);
+            QL_REQUIRE(bsProcess, "wrong stochastic process given");
+            return new BarrierOptionPtr(
+                new BarrierOption(barrierType, barrier, rebate, 
+                                  bsProcess,stPayoff,exercise,engine));
+        }
+        Real errorEstimate() {
+            return boost::dynamic_pointer_cast<BarrierOption>(*self)
+                 ->errorEstimate();
+        }
+        Real delta() {
+            return boost::dynamic_pointer_cast<BarrierOption>(*self)->delta();
+        }
+        Real gamma() {
+            return boost::dynamic_pointer_cast<BarrierOption>(*self)->gamma();
+        }
+        Real theta() {
+            return boost::dynamic_pointer_cast<BarrierOption>(*self)->theta();
+        }
+        Real vega() {
+            return boost::dynamic_pointer_cast<BarrierOption>(*self)->vega();
+        }
+        Real rho() {
+            return boost::dynamic_pointer_cast<BarrierOption>(*self)->rho();
+        }
+        Real dividendRho() {
+            return boost::dynamic_pointer_cast<BarrierOption>(*self)
+                 ->dividendRho();
+        }
+        Real strikeSensitivity() {
+            return boost::dynamic_pointer_cast<BarrierOption>(*self)
+                 ->strikeSensitivity();
+        }
+        Volatility impliedVolatility(Real targetValue, 
+                                     Real accuracy = 1.0e-4,
+                                     Size maxEvaluations = 100,
+                                     Volatility minVol = 1.0e-4, 
+                                     Volatility maxVol = 4.0) {
+            return boost::dynamic_pointer_cast<BarrierOption>(*self)
+                 ->impliedVolatility(targetValue,accuracy,maxEvaluations,
+                                     minVol,maxVol);
+        }
+    }
+};
+
+// Barrier engines
+
+%{
+using QuantLib::AnalyticBarrierEngine;
+typedef boost::shared_ptr<PricingEngine> AnalyticBarrierEnginePtr;
+%}
+
+%rename(AnalyticBarrierEngine) AnalyticBarrierEnginePtr;
+class AnalyticBarrierEnginePtr 
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        AnalyticBarrierEnginePtr() {
+            return new AnalyticBarrierEnginePtr(new AnalyticBarrierEngine);
         }
     }
 };

@@ -30,55 +30,8 @@
 // Analytic pricers
 
 %{
-using QuantLib::Barrier;
-typedef Barrier::Type BarrierType;
-
-BarrierType barrierTypeFromString(std::string s) {
-    s = StringFormatter::toLowercase(s);
-    if (s == "downin")
-        return Barrier::DownIn;
-    else if (s == "downout")
-        return Barrier::DownOut;
-    else if (s == "upin")
-        return Barrier::UpIn;
-    else if (s == "upout")
-        return Barrier::UpOut;
-    else
-        QL_FAIL("unknown barrier type: "+s);
-}
-
-std::string barrierTypeToString(BarrierType t) {
-    switch (t) {
-      case Barrier::DownIn:
-        return "DownIn";
-      case Barrier::DownOut:
-        return "DownOut";
-      case Barrier::UpIn:
-        return "UpIn";
-      case Barrier::UpOut:
-        return "UpOut";
-      default:
-        QL_FAIL("unknown barrier type");
-    }
-}
-%}
-
-MapToString(BarrierType,barrierTypeFromString,barrierTypeToString);
-
-
-%{
-using QuantLib::DiscreteGeometricAPO;
 using QuantLib::DiscreteGeometricASO;
 %}
-
-class DiscreteGeometricAPO {
-  public:
-	DiscreteGeometricAPO(OptionType type, Real underlying, Real strike,
-                         Spread dividendYield, Rate riskFreeRate,
-                         const std::vector<Time>& timeDelays,
-                         Volatility volatility);
-	Real value() const;
-};
 
 class DiscreteGeometricASO {
   public:
@@ -245,7 +198,6 @@ class FdBermudanOption {
 
 %{
 // single asset
-using QuantLib::McDiscreteArithmeticAPO;
 using QuantLib::McDiscreteArithmeticASO;
 
 // multi asset
@@ -254,24 +206,6 @@ using QuantLib::McEverest;
 using QuantLib::McHimalaya;
 using QuantLib::McPagoda;
 %}
-
-class McDiscreteArithmeticAPO {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("value-with-samples") valueWithSamples;
-    %rename("error-estimate")     errorEstimate;
-    #endif
-  public:
-	McDiscreteArithmeticAPO(OptionType type, Real underlying, Real strike,
-                            const Handle<YieldTermStructure>& dividendYield,
-                            const Handle<YieldTermStructure>& riskFreeRate,
-                            const Handle<BlackVolTermStructure>& volatility,
-                            const std::vector<Time>& timeDelays,
-                            bool controlVariate, BigInteger seed = 0);
-    Real value(Real tolerance,
-               Size maxSample = QL_MAX_INTEGER) const;
-    Real valueWithSamples(Size samples) const;
-    Real errorEstimate() const;
-};
 
 class McDiscreteArithmeticASO {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)

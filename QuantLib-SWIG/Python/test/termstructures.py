@@ -26,6 +26,7 @@ class TermStructureTest(unittest.TestCase):
     def setUp(self):
         self.calendar = TARGET()
         today = self.calendar.adjust(Date_todaysDate())
+        Settings_instance().setEvaluationDate(today)
         self.settlementDays = 2
         settlement = self.calendar.advance(today,self.settlementDays,'days')
         deposits = [
@@ -52,18 +53,20 @@ class TermStructureTest(unittest.TestCase):
                                   (30, 5.96) ]
         ]
 
-        self.termStructure = PiecewiseFlatForward(today,settlement,
+        self.termStructure = PiecewiseFlatForward(settlement,
                                                   deposits+swaps,
                                                   Actual360())
+    def tearDown(self):
+        Settings_instance().setEvaluationDate(Date())
+
     def testImpliedObs(self):
         "Testing observability of implied term structure"
         global flag
         flag = None
-        h = TermStructureHandle()
-        new_today = self.termStructure.todaysDate().plusYears(3)
-        new_settlement = self.calendar.advance(new_today,
-                                               self.settlementDays,'days')
-        implied = ImpliedTermStructure(h,new_today,new_settlement)
+        h = YieldTermStructureHandle()
+        settlement = self.termStructure.referenceDate()
+        new_settlement = self.calendar.advance(settlement,3,'years')
+        implied = ImpliedTermStructure(h,new_settlement)
         obs = Observer(raiseFlag)
         obs.registerWith(implied)
         h.linkTo(self.termStructure)
@@ -75,7 +78,7 @@ class TermStructureTest(unittest.TestCase):
         flag = None
         me = SimpleQuote(0.01)
         mh = QuoteHandle(me)
-        h = TermStructureHandle()
+        h = YieldTermStructureHandle()
         spreaded = ForwardSpreadedTermStructure(h,mh)
         obs = Observer(raiseFlag)
         obs.registerWith(spreaded)
@@ -92,7 +95,7 @@ class TermStructureTest(unittest.TestCase):
         flag = None
         me = SimpleQuote(0.01)
         mh = QuoteHandle(me)
-        h = TermStructureHandle()
+        h = YieldTermStructureHandle()
         spreaded = ZeroSpreadedTermStructure(h,mh)
         obs = Observer(raiseFlag)
         obs.registerWith(spreaded)

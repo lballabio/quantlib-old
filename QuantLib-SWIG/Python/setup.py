@@ -33,6 +33,7 @@ swig_files = ['quantlib.i',
               'ql.i',
               'common.i',
               'blackmodel.i',
+              'bonds.i',
               'calendars.i',
               'capfloor.i',
               'cashflows.i',
@@ -45,6 +46,7 @@ swig_files = ['quantlib.i',
               'distributions.i',
               'exercise.i',
               'functions.i',
+              'grid.i',
               'history.i',
               'indexes.i',
               'instruments.i',
@@ -94,122 +96,35 @@ class test(Command):
     user_options = [
         ('test-dir=', None,
          "directory that contains the test definitions"),
-        ('test-prefix=', None,
-         "prefix to the testcase filename"),
-        ('test-suffixes=', None,
-         "a list of suffixes used to generate names of the testcases")
         ]
 
     def initialize_options(self):
         self.build_base = 'build'
-        # these are decided only after 'build_base' has its final value
-        # (unless overridden by the user or client)
         self.test_dir = 'test'
-        self.test_prefix = 'QuantLibTestSuite'
-        self.test_suffixes = None
-
-    # initialize_options()
 
     def finalize_options(self):
-        import os
-        if self.test_suffixes is None:
-            self.test_suffixes = []
-            pref_len = len(self.test_prefix)
-            for file in os.listdir(self.test_dir):
-                if (file[-3:] == ".py" and
-                    file[:pref_len]==self.test_prefix):
-                    self.test_suffixes.append(file[pref_len:-3])
-
         build = self.get_finalized_command('build')
         self.build_purelib = build.build_purelib
         self.build_platlib = build.build_platlib
 
-    # finalize_options()
-
-
     def run(self):
         import sys
-        # Invoke the 'build' command to "build" pure Python modules
-        # (ie. copy 'em into the build tree)
+        # Testing depends on the module having been built
         self.run_command('build')
 
-        # remember old sys.path to restore it afterwards
-        old_path = sys.path[:]
-
         # extend sys.path
+        old_path = sys.path[:]
         sys.path.insert(0, self.build_purelib)
         sys.path.insert(0, self.build_platlib)
         sys.path.insert(0, self.test_dir)
 
-        # build include path for test
-
-        for case in self.test_suffixes:
-            TEST = __import__(self.test_prefix+case,
-                              globals(), locals(),
-                              [''])
-            try:
-                tested_modules = TEST.tested_modules
-            except AttributeError:
-                tested_modules = None
-            else:
-                from code_coverage import Coverage
-                coverage = Coverage(modules=tested_modules)
-                sys.settrace(coverage.trace)
-
-            TEST.test()
-
-            if tested_modules is not None:
-                # reload tested modules to get coverage of imports, etc.
-                for name in tested_modules:
-                    module = sys.modules.get(name)
-                    if module:
-                        reload(module)
-
-                sys.settrace(None)
-                sys.stdout.write("code coverage:\n")
-                coverage.write_results(sys.stdout)
+        # import and run test-suite
+        module = __import__('QuantLibTestSuite', globals(), locals(), [''])
+        module.test()
 
         # restore sys.path
         sys.path = old_path[:]
 
-    # run()
-
-# this sets installation paths for win32/unixes
-def get_paths(distro):
-    if sys.platform == 'win32':
-        if sys.hexversion >= 0x02020000:
-            predir = 'Lib\site-packages'
-        else:
-            predir = ''
-    else:
-        predir = 'include'
-    return predir
-
-# this is to have a separate installation folder for SWIG files
-class install_swigfiles(install_data):
-    description = "install SWIG files"
-    def finalize_options(self):
-        global predir
-        install_data.finalize_options(self)
-        predir = get_paths(self.distribution)
-        if sys.platform == 'win32':
-            swig_install_dir = os.path.join(
-                string.split(self.distribution.get_name(), '-')[0],
-                'SWIG')
-        else:
-            swig_install_dir = self.distribution.get_name()
-        swig_dir = os.path.join(".","SWIG")
-        if not os.path.exists(swig_dir):
-            swig_dir = os.path.join("..","SWIG")
-        self.data_files = [
-            [os.path.join(predir, swig_install_dir),
-             [os.path.join(swig_dir,f) for f in swig_files]]]
-
-class my_install(install):
-    description = "install everything"
-    def run(self):
-        install.run(self)
-        self.run_command('install_swigfiles')
 
 # This gathers the SWIG interface files before running sdist
 class my_sdist(sdist):
@@ -350,8 +265,8 @@ setup(name             = "QuantLib-Python",
       description      = "Python bindings for the QuantLib library",
       long_description = """
 QuantLib (http://quantlib.org/) is a C++ library for financial quantitative
-analysts and developers, aimed at providing a comprehensive software framework
-for quantitative finance.
+analysts and developers, aimed at providing a comprehensive software
+framework for quantitative finance.
       """,
       author           = "QuantLib Team",
       author_email     = "quantlib-users@lists.sourceforge.net",
@@ -370,8 +285,6 @@ for quantitative finance.
                          ],
       data_files       = datafiles,
       cmdclass         = {'test': test,
-                          'install_swigfiles': install_swigfiles,
-                          'install': my_install,
                           'sdist': my_sdist,
                           'wrap': my_wrap}
       )

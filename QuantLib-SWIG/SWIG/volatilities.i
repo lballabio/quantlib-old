@@ -125,21 +125,21 @@ class BlackConstantVolPtr : public boost::shared_ptr<BlackVolTermStructure> {
     %extend {
         BlackConstantVolPtr(
                 const Date& referenceDate, Volatility volatility,
-                const DayCounter& dayCounter = QuantLib::Actual365()) {
+                const DayCounter& dayCounter) {
             return new BlackConstantVolPtr(
                 new BlackConstantVol(referenceDate, volatility, dayCounter));
         }
         BlackConstantVolPtr(
                 const Date& referenceDate,
                 const Handle<Quote>& volatility,
-                const DayCounter& dayCounter = QuantLib::Actual365()) {
+                const DayCounter& dayCounter) {
             return new BlackConstantVolPtr(
                 new BlackConstantVol(referenceDate, volatility, dayCounter));
         }
         BlackConstantVolPtr(
                 Integer settlementDays, const Calendar& calendar,
                 Volatility volatility,
-                const DayCounter& dayCounter = QuantLib::Actual365()) {
+                const DayCounter& dayCounter) {
             return new BlackConstantVolPtr(
                 new BlackConstantVol(settlementDays, calendar,
                                      volatility, dayCounter));
@@ -147,7 +147,7 @@ class BlackConstantVolPtr : public boost::shared_ptr<BlackVolTermStructure> {
         BlackConstantVolPtr(
                 Integer settlementDays, const Calendar& calendar,
                 const Handle<Quote>& volatility,
-                const DayCounter& dayCounter = QuantLib::Actual365()) {
+                const DayCounter& dayCounter) {
             return new BlackConstantVolPtr(
                 new BlackConstantVol(settlementDays, calendar,
                                      volatility, dayCounter));
@@ -195,14 +195,14 @@ class BlackVarianceSurfacePtr
                 const std::vector<Date>& dates,
                 const std::vector<Real>& strikes,
                 const Matrix& blackVols,
+                const DayCounter& dayCounter,
                 VolExtrapolationType lower =
                     BlackVarianceSurface::InterpolatorDefaultExtrapolation,
                 VolExtrapolationType upper =
-                    BlackVarianceSurface::InterpolatorDefaultExtrapolation,
-                const DayCounter& dayCounter = QuantLib::Actual365()) {
+                    BlackVarianceSurface::InterpolatorDefaultExtrapolation) {
             return new BlackVarianceSurfacePtr(
                 new BlackVarianceSurface(referenceDate,dates,strikes,
-                                         blackVols,lower,upper,dayCounter));
+                                         blackVols,dayCounter,lower,upper));
         }
     }
 };
@@ -221,21 +221,21 @@ class LocalConstantVolPtr : public boost::shared_ptr<LocalVolTermStructure> {
     %extend {
         LocalConstantVolPtr(
                 const Date& referenceDate, Volatility volatility,
-                const DayCounter& dayCounter = QuantLib::Actual365()) {
+                const DayCounter& dayCounter) {
             return new LocalConstantVolPtr(
                 new LocalConstantVol(referenceDate, volatility, dayCounter));
         }
         LocalConstantVolPtr(
                 const Date& referenceDate,
                 const Handle<Quote>& volatility,
-                const DayCounter& dayCounter = QuantLib::Actual365()) {
+                const DayCounter& dayCounter) {
             return new LocalConstantVolPtr(
                 new LocalConstantVol(referenceDate, volatility, dayCounter));
         }
         LocalConstantVolPtr(
                 Integer settlementDays, const Calendar& calendar,
                 Volatility volatility,
-                const DayCounter& dayCounter = QuantLib::Actual365()) {
+                const DayCounter& dayCounter) {
             return new LocalConstantVolPtr(
                 new LocalConstantVol(settlementDays, calendar,
                                      volatility, dayCounter));
@@ -243,7 +243,7 @@ class LocalConstantVolPtr : public boost::shared_ptr<LocalVolTermStructure> {
         LocalConstantVolPtr(
                 Integer settlementDays, const Calendar& calendar,
                 const Handle<Quote>& volatility,
-                const DayCounter& dayCounter = QuantLib::Actual365()) {
+                const DayCounter& dayCounter) {
             return new LocalConstantVolPtr(
                 new LocalConstantVol(settlementDays, calendar,
                                      volatility, dayCounter));

@@ -76,6 +76,7 @@ Interfaces =  [ 'quantlib.i',
                 'ql.i',
                 'common.i',
                 'blackmodel.i',
+                'bonds.i',
                 'calendars.i',
                 'capfloor.i',
                 'cashflows.i',
@@ -88,6 +89,7 @@ Interfaces =  [ 'quantlib.i',
                 'distributions.i',
                 'exercise.i',
                 'functions.i',
+                'grid.i',
                 'history.i',
                 'indexes.i',
                 'instruments.i',
@@ -182,9 +184,10 @@ Build = Command.new {
     case cfg['host_os']
       when 'mswin32'
         QL_DIR = ENV['QL_DIR']
-        $CPPFLAGS += " /MD"
+        $CPPFLAGS += " /MT"
         $CPPFLAGS += " /GR"
         $CPPFLAGS += " /GX"
+        $CPPFLAGS += " /Zm250"
         $CPPFLAGS += " /DNOMINMAX"
         $CPPFLAGS += " /I#{QL_DIR}"
         $LIBPATH  += ["#{QL_DIR}\\lib"]

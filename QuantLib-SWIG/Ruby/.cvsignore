@@ -1,2 +1,6 @@
 quantlib_wrap.cpp
 Makefile
+*.pdb
+*.def
+*.exp
+*.lib

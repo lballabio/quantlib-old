@@ -82,43 +82,25 @@ class InterestRate {
     DiscountFactor discountFactor(Date d1, Date d2) const;
     Real compoundFactor(Time t) const;
     Real compoundFactor(Date d1, Date d2) const;
-    static Rate impliedRate(Real compound,
-                            Time t,
-                            Compounding comp,
-                            Frequency freq = Annual);
-    static InterestRate impliedInterestRate(Real compound,
-                                            Time t,
-                                            const DayCounter& resultDC,
-                                            Compounding comp,
-                                            Frequency freq = Annual);
-    static Rate impliedRate(Real compound,
-                            Date d1,
-                            Date d2,
-                            const DayCounter& resultDayCounter,
-                            Compounding comp,
-                            Frequency freq = Annual);
-    static InterestRate impliedInterestRate(Real compound,
-                                            Date d1,
-                                            Date d2,
-                                            const DayCounter& resultDC,
-                                            Compounding comp,
-                                            Frequency freq = Annual);
-    Rate equivalentRate(Time t,
-                        Compounding comp,
-                        Frequency freq = Annual) const;
-    InterestRate equivalentInterestRate(Time t,
-                                        Compounding comp,
-                                        Frequency freq = Annual) const;
-    Rate equivalentRate(Date d1,
-                        Date d2,
-                        const DayCounter& resultDayCounter,
-                        Compounding comp,
-                        Frequency freq = Annual) const;
-    InterestRate equivalentInterestRate(Date d1,
-                                        Date d2,
-                                        const DayCounter& resultDayCounter,
-                                        Compounding comp,
-                                        Frequency freq = Annual) const;
+    static InterestRate impliedRate(Real compound,
+                                    Time t,
+                                    const DayCounter& resultDC,
+                                    Compounding comp,
+                                    Frequency freq = Annual);
+    static InterestRate impliedRate(Real compound,
+                                    const Date& d1,
+                                    const Date& d2,
+                                    const DayCounter& resultDC,
+                                    Compounding comp,
+                                    Frequency freq = Annual);
+    InterestRate equivalentRate(Time t,
+                                Compounding comp,
+                                Frequency freq = Annual) const;
+    InterestRate equivalentRate(const Date& d1,
+                                const Date& d2,
+                                const DayCounter& resultDayCounter,
+                                Compounding comp,
+                                Frequency freq = Annual) const;
     %extend {
         std::string __str__() {
             return QuantLib::InterestRateFormatter::toString(*self);

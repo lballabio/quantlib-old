@@ -47,49 +47,23 @@ class YieldTermStructure : public Extrapolator {
   public:
     DayCounter dayCounter() const;
     Calendar calendar() const;
-	Date todaysDate() const;
 	Date referenceDate() const;
 	Date maxDate() const;
 	Time maxTime() const;
 	DiscountFactor discount(const Date&, bool extrapolate = false);
 	DiscountFactor discount(Time, bool extrapolate = false);
-    Rate zeroRate(const Date& d,
-                  const DayCounter&, Compounding, Frequency f = Annual,
-                  bool extrapolate = false) const;
-    Rate zeroRate(Time t,
-                  Compounding, Frequency f = Annual,
-                  bool extrapolate = false) const;
-    InterestRate zeroInterestRate(const Date& d,
-                                  const DayCounter&,
-                                  Compounding, Frequency f = Annual,
-                                  bool extrapolate = false) const;
-    InterestRate zeroInterestRate(Time t,
-                                  Compounding, Frequency f = Annual,
-                                  bool extrapolate = false) const;
-	Rate instantaneousForward(const Date&, bool extrapolate = false);
-	Rate instantaneousForward(Time, bool extrapolate = false);
-	Rate forward(const Date&, const Date&, bool extrapolate = false);
-	Rate forward(Time, Time, bool extrapolate = false);
-	Rate compoundForward(const Date&, Integer, bool extrapolate = false);
-	Rate compoundForward(Time, Integer, bool extrapolate = false);
+    InterestRate zeroRate(const Date& d,
+                          const DayCounter&, Compounding, Frequency f = Annual,
+                          bool extrapolate = false) const;
+    InterestRate zeroRate(Time t,
+                          Compounding, Frequency f = Annual,
+                          bool extrapolate = false) const;
     Rate forwardRate(const Date& d1, const Date& d2,
                      const DayCounter&, Compounding, Frequency f = Annual,
                      bool extrapolate = false) const;
     Rate forwardRate(Time t1, Time t2,
                      Compounding, Frequency f = Annual,
                      bool extrapolate = false) const;
-    InterestRate forwardInterestRate(const Date& d1, const Date& d2,
-                                     const DayCounter&,
-                                     Compounding comp, Frequency f = Annual,
-                                     bool extrapolate = false) const;
-    InterestRate forwardInterestRate(Time t1, Time t2,
-                                     Compounding comp, Frequency f = Annual,
-                                     bool extrapolate = false) const;
-
-	Rate zeroYield(const Date&, bool extrapolate = false);
-	Rate zeroYield(Time, bool extrapolate = false);
-	Rate zeroCoupon(const Date&, Integer, bool extrapolate = false);
-	Rate zeroCoupon(Time, Integer, bool extrapolate = false);
 };
 
 %template(YieldTermStructure) boost::shared_ptr<YieldTermStructure>;
@@ -97,13 +71,6 @@ IsObservable(boost::shared_ptr<YieldTermStructure>);
 
 %template(YieldTermStructureHandle) Handle<YieldTermStructure>;
 IsObservable(Handle<YieldTermStructure>);
-
-#if defined(SWIGPYTHON)
-%pythoncode %{
-    TermStructure = YieldTermStructure
-    TermStructureHandle = YieldTermStructureHandle
-%}
-#endif
 
 
 // implied term structure
@@ -117,13 +84,6 @@ typedef boost::shared_ptr<YieldTermStructure> ImpliedTermStructurePtr;
 class ImpliedTermStructurePtr: public boost::shared_ptr<YieldTermStructure> {
   public:
     %extend {
-        ImpliedTermStructurePtr(const Handle<YieldTermStructure>& curveHandle,
-                                const Date& todaysDate,
-                                const Date& referenceDate) {
-            return new ImpliedTermStructurePtr(
-                new ImpliedTermStructure(curveHandle, todaysDate,
-                                         referenceDate));
-        }
         ImpliedTermStructurePtr(const Handle<YieldTermStructure>& curveHandle,
                                 const Date& referenceDate) {
             return new ImpliedTermStructurePtr(
@@ -182,21 +142,6 @@ typedef boost::shared_ptr<YieldTermStructure> FlatForwardPtr;
 class FlatForwardPtr : public boost::shared_ptr<YieldTermStructure> {
   public:
     %extend {
-        FlatForwardPtr(const Date& todaysDate,
-                       const Date& referenceDate,
-                       const Handle<Quote>& forward,
-                       const DayCounter& dayCounter) {
-            return new FlatForwardPtr(
-                new FlatForward(todaysDate,referenceDate,forward,dayCounter));
-        }
-        FlatForwardPtr(const Date& todaysDate,
-                       const Date& referenceDate,
-                       Rate forward,
-                       const DayCounter& dayCounter) {
-            return new FlatForwardPtr(
-                new FlatForward(todaysDate,referenceDate,forward,dayCounter));
-        }
-
         FlatForwardPtr(const Date& referenceDate,
                        const Handle<Quote>& forward,
                        const DayCounter& dayCounter) {
@@ -209,7 +154,6 @@ class FlatForwardPtr : public boost::shared_ptr<YieldTermStructure> {
             return new FlatForwardPtr(
                            new FlatForward(referenceDate,forward,dayCounter));
         }
-
         FlatForwardPtr(Integer settlementDays, const Calendar& calendar,
                        const Handle<Quote>& forward,
                        const DayCounter& dayCounter) {

@@ -49,28 +49,20 @@ module QuantLibc
     alias cpp_add +
     alias cpp_sub -
     def +(x)
-      if x.type == Array and x.length == 2
+      if x.class == Array and x.length == 2
         cpp_add(Period.new(x[0],x[1]))
       else
         cpp_add(x)
       end
     end
     def -(x)
-      if x.type == Array and x.length == 2
+      if x.class == Array and x.length == 2
         cpp_sub(Period.new(x[0],x[1]))
       else
         cpp_sub(x)
       end
     end
   end
-
-  TermStructure = YieldTermStructure
-  TermStructureHandle = YieldTermStructureHandle
-
-  CapFlatVolatilityStructure = CapVolatilityStructure
-  CapFlatVolatilityStructureHandle = CapVolatilityStructureHandle
-
-  CapFlatVolatilityVector = CapVolatilityVector
 
 end
 
