@@ -1,3 +1,58 @@
+2003-04-22 13:17  lballabio
+
+	* test/: covariance.rb (1.5), old_pricers.rb (1.8): Synch with C++
+
+2003-04-17 10:12  lballabio
+
+	* test/: QuantLibTestSuite.rb (1.20), statistics.rb (1.10): More
+	indiscriminated greps :)
+
+2003-04-15 15:31  nando
+
+	* setup.rb (1.37), test/QuantLibTestSuite.rb (1.19),
+	test/riskstatistics.rb (1.9), test/statistics.rb (1.9): Statistics
+	renamed GaussianStatistics and replaced by the former HStatistics
+
+2003-04-10 16:39  lballabio
+
+	* setup.rb (1.36), test/QuantLibTestSuite.rb (1.18),
+	test/riskstatistics.rb (1.8), test/statistics.rb (1.8): GRUMPF
+
+2003-04-10 11:47  nando
+
+	* ChangeLog.txt (1.13), setup.rb (1.35), test/QuantLibTestSuite.rb
+	(1.17), test/riskstatistics.rb (1.7), test/statistics.rb (1.7):
+	grammar rules: back to Statistics, with the final s
+
+2003-03-28 17:33  lballabio
+
+	* README.txt (1.11), test/old_pricers.rb (1.7): [no log message]
+
+2003-03-17 10:10  lballabio
+
+	* test/: capfloor.rb (1.8), old_pricers.rb (1.6), swaption.rb
+	(1.6): Works on gcc + errorEstimate() and misc
+
+2003-03-16 02:01  nando
+
+	* test/distributions.rb (1.10): improved Cumulative and Inverse
+	Cumulative Normal Distribution functions
+
+2003-03-15 23:00  nando
+
+	* test/distributions.rb (1.9): old bug fixed
+
+2003-03-15 20:24  nando
+
+	* test/distributions.rb (1.8): 1) InvCumulativeNormalDistribution
+	renamed to InverseCumulativeNormal.  2) Acklam's approximation for
+	inverse cumulative normal distribution function replaced Moro's
+	algorithm.
+
+2003-03-14 09:27  nando
+
+	* ChangeLog.txt (1.12): updated
+
 2003-03-10 13:28  lballabio
 
 	* setup.rb (1.34): Cleaned up installation
@@ -31,9 +86,9 @@
 	test/distributions.rb (1.7), test/europeanoption.rb (1.10),
 	test/instruments.rb (1.6), test/marketelements.rb (1.6),
 	test/old_pricers.rb (1.5), test/operators.rb (1.5),
-	test/piecewiseflatforward.rb (1.10), test/riskstatisticss.rb (1.6),
+	test/piecewiseflatforward.rb (1.10), test/riskstatistics.rb (1.6),
 	test/segmentintegral.rb (1.4), test/simpleswap.rb (1.7),
-	test/solvers1d.rb (1.6), test/statisticss.rb (1.6), test/swaption.rb
+	test/solvers1d.rb (1.6), test/statistics.rb (1.6), test/swaption.rb
 	(1.5), test/termstructures.rb (1.12): Updated for Test::Unit 0.1.8
 
 2003-02-06 16:35  lballabio
@@ -66,9 +121,9 @@
 	test/europeanoption.rb (1.8), test/instruments.rb (1.5),
 	test/marketelements.rb (1.5), test/old_pricers.rb (1.4),
 	test/operators.rb (1.4), test/piecewiseflatforward.rb (1.9),
-	test/riskstatisticss.rb (1.5), test/segmentintegral.rb (1.3),
+	test/riskstatistics.rb (1.5), test/segmentintegral.rb (1.3),
 	test/simpleswap.rb (1.6), test/solvers1d.rb (1.5),
-	test/statisticss.rb (1.5), test/swaption.rb (1.4),
+	test/statistics.rb (1.5), test/swaption.rb (1.4),
 	test/termstructures.rb (1.11): Merged changes made on 0.3.1 branch
 
 2003-01-28 08:29  lballabio
@@ -88,9 +143,9 @@
 	test/distributions.rb (1.5), test/europeanoption.rb (1.7),
 	test/instruments.rb (1.4), test/marketelements.rb (1.4),
 	test/old_pricers.rb (1.3), test/operators.rb (1.3),
-	test/piecewiseflatforward.rb (1.8), test/riskstatisticss.rb (1.4),
+	test/piecewiseflatforward.rb (1.8), test/riskstatistics.rb (1.4),
 	test/segmentintegral.rb (1.2), test/simpleswap.rb (1.5),
-	test/solvers1d.rb (1.4), test/statisticss.rb (1.4), test/swaption.rb
+	test/solvers1d.rb (1.4), test/statistics.rb (1.4), test/swaption.rb
 	(1.3), test/termstructures.rb (1.10): Migrated to Test::Unit
 
 2003-01-13 14:43  lballabio
@@ -110,9 +165,9 @@
 	test/europeanoption.rb (1.6.4.1), test/instruments.rb (1.3.4.1),
 	test/marketelements.rb (1.3.4.1), test/old_pricers.rb (1.2.4.1),
 	test/operators.rb (1.2.4.1), test/piecewiseflatforward.rb
-	(1.7.2.1), test/riskstatisticss.rb (1.3.4.1),
+	(1.7.2.1), test/riskstatistics.rb (1.3.4.1),
 	test/segmentintegral.rb (1.1.4.1), test/simpleswap.rb (1.4.4.1),
-	test/solvers1d.rb (1.3.4.1), test/statisticss.rb (1.3.4.1),
+	test/solvers1d.rb (1.3.4.1), test/statistics.rb (1.3.4.1),
 	test/swaption.rb (1.2.4.1), test/termstructures.rb (1.9.2.1):
 	updated copyright years
 
@@ -203,8 +258,8 @@
 
 2002-07-11 15:27  lballabio
 
-	* QuantLib.rb (1.11), test/riskstatisticss.rb (1.3),
-	test/statisticss.rb (1.3): Last couple of weeks
+	* QuantLib.rb (1.11), test/riskstatistics.rb (1.3),
+	test/statistics.rb (1.3): Last couple of weeks
 
 2002-07-11 15:18  lballabio
 
@@ -246,8 +301,8 @@
 	* QuantLib.rb (1.8), setup.rb (1.21), test/QuantLibTestSuite.rb
 	(1.8), test/dates.rb (1.3), test/daycounters.rb (1.3),
 	test/distributions.rb (1.3), test/europeanoption.rb (1.1),
-	test/operators.rb (1.2), test/riskstatisticss.rb (1.2),
-	test/solvers1d.rb (1.3), test/statisticss.rb (1.2): Biweekly commit
+	test/operators.rb (1.2), test/riskstatistics.rb (1.2),
+	test/solvers1d.rb (1.3), test/statistics.rb (1.2): Biweekly commit
 
 2002-05-17 16:07  lballabio
 
@@ -262,7 +317,7 @@
 2002-05-13 08:38  lballabio
 
 	* README.txt (1.4), setup.rb (1.18), test/QuantLibTestSuite.rb
-	(1.6), test/segmentintegral.rb (1.1), test/statisticss.rb (1.1):
+	(1.6), test/segmentintegral.rb (1.1), test/statistics.rb (1.1):
 	Weekly payload
 
 2002-05-03 12:46  lballabio
@@ -293,8 +348,8 @@
 	* QuantLib.rb (1.4), setup.rb (1.13), test/QuantLibTestSuite.rb
 	(1.3), test/dates.rb (1.2), test/daycounters.rb (1.2),
 	test/distributions.rb (1.2), test/marketelements.rb (1.1),
-	test/riskstatisticss.rb (1.1), test/solvers1d.rb (1.2): Migrated
-	risk statisticss and market elements
+	test/riskstatistics.rb (1.1), test/solvers1d.rb (1.2): Migrated
+	risk statistics and market elements
 
 2002-04-22 14:35  lballabio
 

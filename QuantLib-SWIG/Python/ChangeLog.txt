@@ -1,3 +1,112 @@
+2003-04-22 14:07  nando
+
+	* QuantLibPython.dsp (1.10), QuantLibPython.mak (1.12): removed
+	'which' which is not supposed to be available on all Win32/VC++
+	machines
+
+2003-04-22 13:17  lballabio
+
+	* QuantLib/test/: covariance.py (1.3), old_pricers.py (1.7): Synch
+	with C++
+
+2003-04-17 10:12  lballabio
+
+	* setup.py (1.40), QuantLib/test/QuantLibTestSuite.py (1.16),
+	QuantLib/test/statistics.py (1.9): More indiscriminated greps :)
+
+2003-04-15 15:31  nando
+
+	* setup.py (1.39), QuantLib/test/QuantLibTestSuite.py (1.15),
+	QuantLib/test/riskstatistics.py (1.7), QuantLib/test/statistics.py
+	(1.8): Statistics renamed GaussianStatistics and replaced by the
+	former HStatistics
+
+2003-04-13 08:31  nando
+
+	* QuantLibPython.dsp (1.9), QuantLibPython.mak (1.11): it does work
+	with Visual Studio, Python 2.2 and swig 1.3.19
+
+2003-04-13 08:14  nando
+
+	* QuantLibPython.dsp (1.8), QuantLibPython.mak (1.10): it should
+	now work with Visual Studio, Python 2.2 and swig 1.3.19
+
+2003-04-12 18:35  nando
+
+	* QuantLibPython.dsp (1.7), QuantLibPython.mak (1.9): more verbose
+	wrapping generation (to help detect problems)
+
+2003-04-10 16:39  lballabio
+
+	* setup.py (1.38), QuantLib/test/riskstatistics.py (1.6),
+	QuantLib/test/statistics.py (1.7): GRUMPF
+
+2003-04-10 16:34  lballabio
+
+	* QuantLib/test/QuantLibTestSuite.py (1.14): Grumpf
+
+2003-04-10 11:47  nando
+
+	* ChangeLog.txt (1.11), setup.py (1.37),
+	QuantLib/test/QuantLibTestSuite.py (1.13),
+	QuantLib/test/riskstatistics.py (1.5), QuantLib/test/statistics.py
+	(1.6): grammar rules: back to Statistics, with the final s
+
+2003-04-08 10:34  nando
+
+	* setup.py (1.36): switched from Multithread DLL to Multithread
+
+2003-04-04 17:16  nando
+
+	* QuantLibPython.dsp (1.6), QuantLibPython.mak (1.8): VC++ moved
+	from (Debug) Multithread DLL to (Debug) Multithread
+
+2003-03-28 17:33  lballabio
+
+	* README.txt (1.9), QuantLib/test/old_pricers.py (1.6): [no log
+	message]
+
+2003-03-28 17:32  lballabio
+
+	* setup.py (1.35): Reduced the signal/noise ratio
+
+2003-03-24 23:39  nando
+
+	* QuantLib/test/.cvsignore (1.1): no message
+
+2003-03-19 17:37  nando
+
+	* QuantLibPython.dsp (1.5), QuantLibPython.mak (1.7): updated
+
+2003-03-18 16:59  nando
+
+	* setup.py (1.34): verbose wrapper generation
+
+2003-03-17 10:09  lballabio
+
+	* QuantLib/test/: capfloor.py (1.6), old_pricers.py (1.5),
+	swaption.py (1.4): Works on gcc + errorEstimate() and misc
+
+2003-03-16 02:01  nando
+
+	* QuantLib/test/distributions.py (1.8): improved Cumulative and
+	Inverse Cumulative Normal Distribution functions
+
+2003-03-15 23:01  nando
+
+	* QuantLib/test/distributions.py (1.7): old bug fixed
+
+2003-03-15 20:24  nando
+
+	* QuantLib/test/distributions.py (1.6): 1)
+	InvCumulativeNormalDistribution renamed to InverseCumulativeNormal.
+	 2) Acklam's approximation for inverse cumulative normal
+	distribution function replaced Moro's algorithm.
+
+2003-03-14 09:27  nando
+
+	* ChangeLog.txt (1.10): updated
+
 2003-03-10 13:28  lballabio
 
 	* setup.py (1.33): Cleaned up installation
@@ -64,10 +173,10 @@
 	(1.4), QuantLib/test/marketelements.py (1.4),
 	QuantLib/test/old_pricers.py (1.4), QuantLib/test/operators.py
 	(1.3), QuantLib/test/piecewiseflatforward.py (1.7),
-	QuantLib/test/riskstatisticss.py (1.4),
+	QuantLib/test/riskstatistics.py (1.4),
 	QuantLib/test/segmentintegral.py (1.3), QuantLib/test/simpleswap.py
 	(1.5), QuantLib/test/solvers1d.py (1.4),
-	QuantLib/test/statisticss.py (1.5), QuantLib/test/swaption.py (1.3),
+	QuantLib/test/statistics.py (1.5), QuantLib/test/swaption.py (1.3),
 	QuantLib/test/termstructures.py (1.11): Merged changes made on
 	0.3.1 branch
 
@@ -111,10 +220,10 @@
 	QuantLib/test/marketelements.py (1.3.4.1),
 	QuantLib/test/old_pricers.py (1.3.4.1), QuantLib/test/operators.py
 	(1.2.4.1), QuantLib/test/piecewiseflatforward.py (1.6.2.1),
-	QuantLib/test/riskstatisticss.py (1.3.4.1),
+	QuantLib/test/riskstatistics.py (1.3.4.1),
 	QuantLib/test/segmentintegral.py (1.2.4.1),
 	QuantLib/test/simpleswap.py (1.4.4.1), QuantLib/test/solvers1d.py
-	(1.3.4.1), QuantLib/test/statisticss.py (1.4.4.1),
+	(1.3.4.1), QuantLib/test/statistics.py (1.4.4.1),
 	QuantLib/test/swaption.py (1.2.4.1),
 	QuantLib/test/termstructures.py (1.10.2.1): updated copyright years
 
@@ -249,7 +358,7 @@
 
 2002-07-11 15:27  lballabio
 
-	* QuantLib/test/: riskstatisticss.py (1.3), statisticss.py (1.4):
+	* QuantLib/test/: riskstatistics.py (1.3), statistics.py (1.4):
 	Last couple of weeks
 
 2002-07-11 15:18  lballabio
@@ -279,10 +388,10 @@
 	(1.3), QuantLib/test/europeanoption.py (1.4),
 	QuantLib/test/operators.py (1.2),
 	QuantLib/test/piecewiseflatforward.py (1.1),
-	QuantLib/test/riskstatisticss.py (1.2),
+	QuantLib/test/riskstatistics.py (1.2),
 	QuantLib/test/segmentintegral.py (1.2), QuantLib/test/simpleswap.py
 	(1.1), QuantLib/test/solvers1d.py (1.3),
-	QuantLib/test/statisticss.py (1.3): a couple of weeks' worth
+	QuantLib/test/statistics.py (1.3): a couple of weeks' worth
 
 2002-06-11 15:40  lballabio
 
@@ -303,7 +412,7 @@
 	* setup.py (1.16), QuantLib/defaults.py (1.7),
 	QuantLib/test/QuantLibTestSuite.py (1.7),
 	QuantLib/test/europeanoption.py (1.1), QuantLib/test/solvers1d.py
-	(1.2), QuantLib/test/statisticss.py (1.2),
+	(1.2), QuantLib/test/statistics.py (1.2),
 	QuantLib/test/termstructures.py (1.2): Biweekly commit
 
 2002-05-17 16:07  lballabio
@@ -320,7 +429,7 @@
 2002-05-13 08:38  lballabio
 
 	* README.txt (1.3), QuantLib/test/QuantLibTestSuite.py (1.5),
-	QuantLib/test/segmentintegral.py (1.1), QuantLib/test/statisticss.py
+	QuantLib/test/segmentintegral.py (1.1), QuantLib/test/statistics.py
 	(1.1): Weekly payload
 
 2002-05-03 12:46  lballabio
@@ -354,7 +463,7 @@
 	QuantLib/test/QuantLibTestSuite.py (1.3), QuantLib/test/date.py
 	(1.2), QuantLib/test/distributions.py (1.2),
 	QuantLib/test/marketelements.py (1.1),
-	QuantLib/test/riskstatisticss.py (1.1): Migrated risk statisticss and
+	QuantLib/test/riskstatistics.py (1.1): Migrated risk statistics and
 	market elements
 
 2002-04-22 14:35  lballabio

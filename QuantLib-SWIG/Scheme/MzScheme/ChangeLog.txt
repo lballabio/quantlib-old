@@ -1,3 +1,11 @@
+2003-03-28 17:33  lballabio
+
+	* README.txt (1.7): [no log message]
+
+2003-03-14 09:28  nando
+
+	* ChangeLog.txt (1.4): updated
+
 2003-03-11 17:34  lballabio
 
 	* quantlib/ql-init.ss (1.7): [no log message]
