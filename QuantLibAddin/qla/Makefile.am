@@ -38,7 +38,6 @@ libQuantLibAddin_la_SOURCES = \
     fixedcouponbond.cpp \
     forwardvanillaoption.cpp \
     generalutils.cpp \
-    instruments.cpp \
     instrumentutils.cpp \
     optionutils.cpp \
     stochasticprocess.cpp \

@@ -12,6 +12,7 @@ Makefile.win
 *.plg
 *_private.*
 Options
+Instruments
 QLADemo
 quantlib.log
 xll

@@ -12,5 +12,6 @@ Makefile
 Makefile.in
 Makefile.win
 Options
+Instruments
 QLADemo
 quantlib.log
