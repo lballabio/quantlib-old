@@ -36,6 +36,10 @@ class OldPricerTest < RUNIT::TestCase
         "Testing old-style finite-difference European option pricer..."
       when 'testAmericanPricers'
         "Testing old-style American-type pricers..."
+      when 'testMcSingleFactorPricers'
+        "Testing old-style Monte Carlo single-factor pricers..."
+      when 'testMcMultiFactorPricers'
+        "Testing old-style Monte Carlo multi-factor pricers..."
     end
   end
   def relativeError(x1,x2,reference)
@@ -447,9 +451,660 @@ class OldPricerTest < RUNIT::TestCase
       end
     end
   end
+  def testMcSingleFactorPricers
+    seed = 3456789
+    fixedSamples = 100
+    minimumTol = 0.01
+    
+    # data from "Implementing Derivatives Model",
+    # Clewlow, Strickland, pag.118-123
+    cases = [
+      [DiscreteGeometricAPO, "Call", 100.0, 100.0, 0.03, 0.06,
+        [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+        0.2, 5.34255485619]
+    ]
+    cases.each do |pricer, optionType, underlying, strike,
+        dividendYield, riskFreeRate, timeIncrements,
+        volatility, storedValue|
+      p = pricer.new(optionType, underlying, strike, dividendYield,
+                     riskFreeRate, timeIncrements, volatility)
+      pvalue = p.value
+      unless (pvalue-storedValue).abs <= 1e-10
+        assert_fail(<<-MESSAGE
+
+    in batch 1:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                    MESSAGE
+                    )
+      end
+    end
+    
+    # data from "Option Pricing Formulas", Haug, pag.96-97
+    cases = [
+      [EuropeanOption,         "Put", 80.0, 85.0,
+        -0.03, 0.05, 0.25, 0.2, 5.21858890396],
+      [ContinuousGeometricAPO, "Put", 80.0, 85.0,
+        -0.03, 0.05, 0.25, 0.2, 4.69221973405]
+    ]
+
+    cases.each do |pricer, optionType, underlying, strike,
+        dividendYield, riskFreeRate, residualTime,
+        volatility, storedValue|
+      p = pricer.new(optionType, underlying, strike, dividendYield,
+                     riskFreeRate, residualTime, volatility)
+      pvalue = p.value
+      unless (pvalue-storedValue).abs <= 1e-10
+        assert_fail(<<-MESSAGE
+
+    in batch 2:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                    MESSAGE
+                    )
+      end
+    end
+
+    # trying to approximate the continous version with the discrete version
+    cases = [
+      [DiscreteGeometricAPO, "Put", 80.0, 85.0,
+        -0.03, 0.05, 0.25, 90000, 0.2, 4.6922231469]
+    ]
+
+    cases.each do |pricer, optionType, underlying, strike,
+        dividendYield, riskFreeRate, residualTime, timesteps,
+        volatility, storedValue|
+      dt=residualTime/timesteps
+      timeIncrements = (0...timesteps).map { |i| (i+1)*dt }
+      p = pricer.new(optionType, underlying, strike, dividendYield,
+                     riskFreeRate, timeIncrements, volatility)
+      pvalue = p.value
+      unless (pvalue-storedValue).abs <= 1e-10
+        assert_fail(<<-MESSAGE
+
+    in batch 3:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                    MESSAGE
+                    )
+      end
+    end
+
+    cases = [
+      [McEuropean,      "Put", 80.0, 85.0,
+        -0.03, 0.05, 0.25, 0.2, 5.9135872358, false],
+      [McEuropean,      "Put", 80.0, 85.0,
+        -0.03, 0.05, 0.25, 0.2, 5.42005964479, true],
+      [McEuropean,     "Call", 80.0, 85.0,
+        -0.03, 0.05, 0.25, 0.2, 1.98816310759, false],
+      [McEuropean,     "Call", 80.0, 85.0,
+        -0.03, 0.05, 0.25, 0.2, 2.12098432917, true],
+      [McEuropean, "Straddle", 80.0, 85.0,
+        -0.03, 0.05, 0.25, 0.2, 7.90175034339, false],
+      [McEuropean, "Straddle", 80.0, 85.0,
+        -0.03, 0.05, 0.25, 0.2, 7.54104397396, true]
+    ]
+    cases.each do |pricer, optionType, underlying, strike,
+             dividendYield, riskFreeRate, residualTime,
+             volatility, storedValue, antithetic|
+      p = pricer.new(optionType, underlying, strike, dividendYield,
+                     riskFreeRate, residualTime, volatility,
+                     antithetic, seed)
+      pvalue = p.valueWithSamples(fixedSamples)
+      unless (pvalue-storedValue).abs <= 1e-10
+        assert_fail(<<-MESSAGE
+
+    in batch 4:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                    MESSAGE
+                    )
+      end
+      tol = p.errorEstimate/pvalue
+      tol = [tol/2.0, minimumTol].min
+      pvalue = p.value(tol)
+      accuracy = p.errorEstimate/pvalue
+      unless accuracy <= tol
+        assert_fail(<<-MESSAGE
+
+    in batch 4:
+        accuracy reached    : #{accuracy}
+        tolerance requested : #{tol}
+
+                    MESSAGE
+                    )
+      end
+    end
+    
+    # data from "Asian Option", Levy, 1997
+    # in "Exotic Options: The State of the Art",
+    # edited by Clewlow, Strickland
+    cases = [
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0, 2, 0.13, 1.38418414762, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0, 4, 0.13, 1.57691714387, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0, 8, 0.13, 1.66062743445, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0, 12, 0.13, 1.68847081883, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0, 26, 0.13, 1.72955964448, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0, 52, 0.13, 1.73372169316, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0, 100, 0.13, 1.74918801089, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0, 250, 0.13, 1.75421310915, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0, 500, 0.13, 1.75158383443, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0, 1000, 0.13, 1.7516211018 , true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 2, 0.13, 1.83665087164, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 4, 0.13, 2.00560271429, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 8, 0.13, 2.07789721712, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 12, 0.13, 2.09622556625, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 26, 0.13, 2.14229795212, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 52, 0.13, 2.14470270916, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 100, 0.13, 2.1595414574, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 250, 0.13, 2.1600769002, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 500, 0.13, 2.159867044 , true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0,1000, 0.13, 2.1595163439, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 2, 0.13, 2.63315092584, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 4, 0.13, 2.76723962361, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 8, 0.13, 2.83124836881, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 12, 0.13, 2.84290301412, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 26, 0.13, 2.88179560417, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 52, 0.13, 2.88447044543, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 100, 0.13, 2.8998532960, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 250, 0.13, 2.9004729606, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 500, 0.13, 2.8981341216, true, true],
+      [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0,1000, 0.13, 2.8970336244, true, true]
+    ]
+    cases.each do |pricer, optionType, underlying, strike,
+        dividendYield, riskFreeRate, first, length, fixings,
+        volatility, storedValue, antithetic, controlVariate|
+      dt=(length)/(fixings-1)
+      timeIncrements = (0...fixings).map { |i| i*dt+first }
+      p = pricer.new(optionType, underlying, strike, dividendYield,
+                     riskFreeRate, timeIncrements, volatility,
+                     antithetic, controlVariate, seed)
+      pvalue = p.valueWithSamples(fixedSamples)
+      unless (pvalue-storedValue).abs <= 1e-10
+        assert_fail(<<-MESSAGE
+
+    in batch 5:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                    MESSAGE
+                    )
+      end
+      tol = p.errorEstimate/pvalue
+      tol = [tol/2.0, minimumTol].min
+      pvalue = p.value(tol)
+      accuracy = p.errorEstimate/pvalue
+      unless accuracy <= tol
+        assert_fail(<<-MESSAGE
+
+    in batch 5:
+        accuracy reached    : #{accuracy}
+        tolerance requested : #{tol}
+
+                    MESSAGE
+                    )
+      end
+    end
+
+    # data from "Asian Option", Levy, 1997
+    # in "Exotic Options: The State of the Art",
+    # edited by Clewlow, Strickland
+    cases = [
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0,    2, 0.13, 1.51917595129, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0,    4, 0.13, 1.67940165674, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0,    8, 0.13, 1.75371215251, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0,   12, 0.13, 1.77595318693, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0,   26, 0.13, 1.8143053663 , true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0,   52, 0.13, 1.82269246898, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0,  100, 0.13, 1.83822402464, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0,  250, 0.13, 1.83875059026, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0,  500, 0.13, 1.83750703638, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 0.0, 11.0/12.0, 1000, 0.13, 1.83887181884, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 2, 0.13, 1.51154400089, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 4, 0.13, 1.67103508506, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 8, 0.13, 1.7452968407 , true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 12, 0.13, 1.76667074564, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 26, 0.13, 1.80528400613, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 52, 0.13, 1.81400883891, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 100, 0.13, 1.8292290145, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 250, 0.13, 1.8293711177, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0, 500, 0.13, 1.8282619319, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 1.0/12.0, 11.0/12.0,1000, 0.13, 1.8296784665, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 2, 0.13, 1.49648170891, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 4, 0.13, 1.65443100462, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 8, 0.13, 1.72817806731, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 12, 0.13, 1.74877367895, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 26, 0.13, 1.78733801988, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 52, 0.13, 1.79624826757, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 100, 0.13, 1.8111418688, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 250, 0.13, 1.8110115259, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 500, 0.13, 1.8100231194, true, true],
+      [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+        0.06, 0.025, 3.0/12.0, 11.0/12.0, 1000, 0.13, 1.8114576031, true, true]
+    ]
+    cases.each do |pricer, optionType, underlying, strike,
+        dividendYield, riskFreeRate, first, length, fixings,
+        volatility, storedValue, antithetic, controlVariate|
+      dt=(length)/(fixings-1)
+      timeIncrements = (0...fixings).map { |i| i*dt+first }
+      p = pricer.new(optionType, underlying, dividendYield,
+                     riskFreeRate, timeIncrements, volatility,
+                     antithetic, controlVariate, seed)
+      pvalue = p.valueWithSamples(fixedSamples)
+      unless (pvalue-storedValue).abs <= 1e-10
+        assert_fail(<<-MESSAGE
+
+    in batch 6:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                    MESSAGE
+                    )
+      end
+      tol = p.errorEstimate/pvalue
+      tol = [tol/2.0, minimumTol].min
+      pvalue = p.value(tol)
+      accuracy = p.errorEstimate/pvalue
+      unless accuracy <= tol
+        assert_fail(<<-MESSAGE
+
+    in batch 6:
+        accuracy reached    : #{accuracy}
+        tolerance requested : #{tol}
+
+                    MESSAGE
+                    )
+      end
+    end
+  end
+  def testMcMultiFactorPricers
+    cor = [[1.00, 0.50, 0.30, 0.10],
+           [0.50, 1.00, 0.20, 0.40],
+           [0.30, 0.20, 1.00, 0.60],
+           [0.10, 0.40, 0.60, 1.00]]
+    volatilities = [0.30,  0.35,  0.25,  0.20]
+    cov = covariance(volatilities, cor)
+    dividendYields = [0.01, 0.05, 0.04, 0.03]
+    riskFreeRate = 0.05
+    resTime = 1.0
+    # degenerate portfolio
+    perfectCorrelation = [[1.00, 1.00, 1.00, 1.00],
+                          [1.00, 1.00, 1.00, 1.00],
+                          [1.00, 1.00, 1.00, 1.00],
+                          [1.00, 1.00, 1.00, 1.00]]
+    sameAssetVols = [0.30,  0.30,  0.30,  0.30]
+    sameAssetCovariance = covariance(sameAssetVols,
+                                     perfectCorrelation)
+    sameAssetDividend = [0.030,  0.030,  0.030,  0.030]
+    seed = 86421
+    fixedSamples = 100
+    minimumTol = 0.01
+    
+    # McEverest
+    p = McEverest.new(dividendYields, cov, riskFreeRate, resTime, false, seed)
+    storedValue = 0.743448
+    pvalue = p.valueWithSamples(fixedSamples)
+    unless (pvalue-storedValue).abs <= 1e-5
+      assert_fail(<<-MESSAGE
+
+    McEverest:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                  MESSAGE
+                  )
+    end
+    tol = p.errorEstimate/pvalue
+    tol = [tol/2.0, minimumTol].min
+    pvalue = p.value(tol)
+    accuracy = p.errorEstimate/pvalue
+    unless accuracy <= tol
+      assert_fail(<<-MESSAGE
+
+    McEverest:
+        accuracy reached    : #{accuracy}
+        tolerance requested : #{tol}
+
+                  MESSAGE
+                  )
+    end
+    p = McEverest.new(dividendYields, cov, riskFreeRate, resTime, true, seed)
+    storedValue = 0.756979
+    pvalue = p.valueWithSamples(fixedSamples)
+    unless (pvalue-storedValue).abs <= 1e-5
+      assert_fail(<<-MESSAGE
+
+    McEverest:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                  MESSAGE
+                  )
+    end
+    tol = p.errorEstimate/pvalue
+    tol = [tol/2.0, minimumTol].min
+    pvalue = p.value(tol)
+    accuracy = p.errorEstimate/pvalue
+    unless accuracy <= tol
+      assert_fail(<<-MESSAGE
+
+    McEverest:
+        accuracy reached    : #{accuracy}
+        tolerance requested : #{tol}
+
+                  MESSAGE
+                  )
+    end
+
+    # McBasket
+    sameAssetValues = [25,  25,   25,  25]
+    type = 'Call'
+    strike = 100
+    p = McBasket.new(type, sameAssetValues, strike, sameAssetDividend,
+                     sameAssetCovariance, riskFreeRate, resTime, false, seed)
+    # european would be 12.4426495605
+    storedValue = 10.448445
+    pvalue = p.valueWithSamples(fixedSamples)
+    unless (pvalue-storedValue).abs <= 1e-5
+      assert_fail(<<-MESSAGE
+
+    McBasket:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                  MESSAGE
+                  )
+    end
+    tol = p.errorEstimate/pvalue
+    tol = [tol/2.0, minimumTol].min
+    pvalue = p.value(tol)
+    accuracy = p.errorEstimate/pvalue
+    unless accuracy <= tol
+      assert_fail(<<-MESSAGE
+
+    McBasket:
+        accuracy reached    : #{accuracy}
+        tolerance requested : #{tol}
+
+                  MESSAGE
+                  )
+    end
+    p = McBasket.new(type, sameAssetValues, strike, sameAssetDividend,
+                     sameAssetCovariance, riskFreeRate, resTime, true, seed)
+    # european would be 12.4426495605
+    storedValue = 12.294677
+    pvalue = p.valueWithSamples(fixedSamples)
+    unless (pvalue-storedValue).abs <= 1e-5
+      assert_fail(<<-MESSAGE
+
+    McBasket:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                  MESSAGE
+                  )
+    end
+    tol = p.errorEstimate/pvalue
+    tol = [tol/2.0, minimumTol].min
+    pvalue = p.value(tol)
+    accuracy = p.errorEstimate/pvalue
+    unless accuracy <= tol
+      assert_fail(<<-MESSAGE
+
+    McBasket:
+        accuracy reached    : #{accuracy}
+        tolerance requested : #{tol}
+
+                  MESSAGE
+                  )
+    end
+
+    # McMaxBasket
+    assetValues = [ 100,  110,   90,  105]
+    p = McMaxBasket.new(assetValues, dividendYields, cov, 
+                        riskFreeRate, resTime, false, seed)
+    storedValue = 120.733780
+    pvalue = p.valueWithSamples(fixedSamples)
+    unless (pvalue-storedValue).abs <= 1e-5
+      assert_fail(<<-MESSAGE
+
+    McMaxBasket:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                  MESSAGE
+                  )
+    end
+    tol = p.errorEstimate/pvalue
+    tol = [tol/2.0, minimumTol].min
+    pvalue = p.value(tol)
+    accuracy = p.errorEstimate/pvalue
+    unless accuracy <= tol
+      assert_fail(<<-MESSAGE
+
+    McMaxBasket:
+        accuracy reached    : #{accuracy}
+        tolerance requested : #{tol}
+
+                  MESSAGE
+                  )
+    end
+    p = McMaxBasket.new(assetValues, dividendYields, cov, 
+                        riskFreeRate, resTime, true, seed)
+    storedValue = 123.520909
+    pvalue = p.valueWithSamples(fixedSamples)
+    unless (pvalue-storedValue).abs <= 1e-5
+      assert_fail(<<-MESSAGE
+
+    McMaxBasket:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                  MESSAGE
+                  )
+    end
+    tol = p.errorEstimate/pvalue
+    tol = [tol/2.0, minimumTol].min
+    pvalue = p.value(tol)
+    accuracy = p.errorEstimate/pvalue
+    unless accuracy <= tol
+      assert_fail(<<-MESSAGE
+
+    McMaxBasket:
+        accuracy reached    : #{accuracy}
+        tolerance requested : #{tol}
+
+                  MESSAGE
+                  )
+    end
+
+    # McPagoda
+    portfolio   = [0.15, 0.20, 0.35, 0.30]
+    fraction = 0.62
+    roof = 0.20
+    timeIncrements = [0.25, 0.5, 0.75, 1]
+    p = McPagoda.new(portfolio, fraction, roof, dividendYields, cov, 
+                     riskFreeRate, timeIncrements, false, seed);
+    storedValue =  0.0343898
+    pvalue = p.valueWithSamples(fixedSamples)
+    unless (pvalue-storedValue).abs <= 1e-5
+      assert_fail(<<-MESSAGE
+
+    McPagoda:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                  MESSAGE
+                  )
+    end
+    tol = p.errorEstimate/pvalue
+    tol = [tol/2.0, minimumTol].min
+    pvalue = p.value(tol)
+    accuracy = p.errorEstimate/pvalue
+    unless accuracy <= tol
+      assert_fail(<<-MESSAGE
+
+    McPagoda:
+        accuracy reached    : #{accuracy}
+        tolerance requested : #{tol}
+
+                  MESSAGE
+                  )
+    end
+    p = McPagoda.new(portfolio, fraction, roof, dividendYields, cov, 
+                     riskFreeRate, timeIncrements, true, seed);
+    storedValue = 0.0386095
+    pvalue = p.valueWithSamples(fixedSamples)
+    unless (pvalue-storedValue).abs <= 1e-5
+      assert_fail(<<-MESSAGE
+
+    McPagoda:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                  MESSAGE
+                  )
+    end
+    tol = p.errorEstimate/pvalue
+    tol = [tol/2.0, minimumTol].min
+    pvalue = p.value(tol)
+    accuracy = p.errorEstimate/pvalue
+    unless accuracy <= tol
+      assert_fail(<<-MESSAGE
+
+    McPagoda:
+        accuracy reached    : #{accuracy}
+        tolerance requested : #{tol}
+
+                  MESSAGE
+                  )
+    end
+
+    # McHimalaya
+    strike = 101
+    p = McHimalaya.new(assetValues, dividendYields, cov, riskFreeRate, 
+                       strike, timeIncrements, false, seed)
+    storedValue = 5.0768499
+    pvalue = p.valueWithSamples(fixedSamples)
+    unless (pvalue-storedValue).abs <= 1e-5
+      assert_fail(<<-MESSAGE
+
+    McHimalaya:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                  MESSAGE
+                  )
+    end
+    tol = p.errorEstimate/pvalue
+    tol = [tol/2.0, minimumTol].min
+    pvalue = p.value(tol)
+    accuracy = p.errorEstimate/pvalue
+    unless accuracy <= tol
+      assert_fail(<<-MESSAGE
+
+    McHimalaya:
+        accuracy reached    : #{accuracy}
+        tolerance requested : #{tol}
+
+                  MESSAGE
+                  )
+    end
+    p = McHimalaya.new(assetValues, dividendYields, cov, riskFreeRate, 
+                       strike, timeIncrements, true, seed)
+    storedValue = 6.2478050
+    pvalue = p.valueWithSamples(fixedSamples)
+    unless (pvalue-storedValue).abs <= 1e-5
+      assert_fail(<<-MESSAGE
+
+    McHimalaya:
+        calculated : #{pvalue}
+        expected   : #{storedValue}
+
+                  MESSAGE
+                  )
+    end
+    tol = p.errorEstimate/pvalue
+    tol = [tol/2.0, minimumTol].min
+    pvalue = p.value(tol)
+    accuracy = p.errorEstimate/pvalue
+    unless accuracy <= tol
+      assert_fail(<<-MESSAGE
+
+    McHimalaya:
+        accuracy reached    : #{accuracy}
+        tolerance requested : #{tol}
+
+                  MESSAGE
+                  )
+    end
+  end
 end
+
 
 if $0 == __FILE__
   RUNIT::CUI::TestRunner.run(OldPricerTest.suite)
 end
-

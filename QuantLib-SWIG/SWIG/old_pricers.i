@@ -23,6 +23,7 @@
 %include date.i
 %include options.i
 %include types.i
+%include linearalgebra.i
 %include vectors.i
 
 
@@ -362,6 +363,152 @@ class FdBermudanOption {
 	double dividendRho() const;
 	double impliedVolatility(double targetValue, double accuracy = 1e-4,
                              Size maxEvaluations = 100) const;
+};
+
+
+// MonteCarlo pricers
+
+%{
+// single asset
+using QuantLib::Pricers::McDiscreteArithmeticAPO;
+using QuantLib::Pricers::McDiscreteArithmeticASO;
+using QuantLib::Pricers::McEuropean;
+
+// multi asset
+using QuantLib::Pricers::McBasket;
+using QuantLib::Pricers::McMaxBasket;
+using QuantLib::Pricers::McEverest;
+using QuantLib::Pricers::McHimalaya;
+using QuantLib::Pricers::McPagoda;
+%}
+
+class McEuropean {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("value-with-samples") valueWithSamples;
+    %rename("error-estimate")     errorEstimate;
+    #endif
+  public:
+	McEuropean(OptionType type, double underlying, double strike,
+			   Spread dividendYield, Rate riskFreeRate,
+			   double residualTime, double volatility,
+			   bool antitheticVariance, long seed = 0);
+    double value(double tolerance,
+                 Size maxSample = QL_MAX_INT) const;
+    double valueWithSamples(Size samples) const;
+    double errorEstimate() const;
+};
+
+class McDiscreteArithmeticAPO {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("value-with-samples") valueWithSamples;
+    %rename("error-estimate")     errorEstimate;
+    #endif
+  public:
+	McDiscreteArithmeticAPO(OptionType type, double underlying, double strike,
+                            Spread dividendYield, Rate riskFreeRate,
+                            const std::vector<double>& timeDelays,
+                            double volatility, bool antitheticVariance,
+                            bool controlVariate, long seed = 0);
+    double value(double tolerance,
+                 Size maxSample = QL_MAX_INT) const;
+    double valueWithSamples(Size samples) const;
+    double errorEstimate() const;
+};
+
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("value-with-samples") valueWithSamples;
+    %rename("error-estimate")     errorEstimate;
+    #endif
+class McDiscreteArithmeticASO {
+  public:
+	McDiscreteArithmeticASO(OptionType type, double underlying,
+                            Spread dividendYield, Rate riskFreeRate,
+                            const std::vector<double>& timeDelays,
+                            double volatility, bool antitheticVariance,
+                            bool controlVariate, long seed = 0);
+    double value(double tolerance,
+                 Size maxSample = QL_MAX_INT) const;
+    double valueWithSamples(Size samples) const;
+    double errorEstimate() const;
+};
+
+class McBasket {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("value-with-samples") valueWithSamples;
+    %rename("error-estimate")     errorEstimate;
+    #endif
+  public:
+    McBasket(OptionType type, const Array& underlying, double strike,
+   		     const Array& dividendYield, const Matrix& covariance,
+		     Rate riskFreeRate, double residualTime,
+		     bool antitheticVariance, long seed = 0);
+    double value(double tolerance,
+                 Size maxSample = QL_MAX_INT) const;
+    double valueWithSamples(Size samples) const;
+    double errorEstimate() const;
+};
+
+class McMaxBasket {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("value-with-samples") valueWithSamples;
+    %rename("error-estimate")     errorEstimate;
+    #endif
+  public:
+    McMaxBasket(const Array& underlying, const Array& dividendYield,
+                const Matrix& covariance, Rate riskFreeRate,
+                double residualTime, bool antitheticVariance,
+                long seed = 0);
+    double value(double tolerance,
+                 Size maxSample = QL_MAX_INT) const;
+    double valueWithSamples(Size samples) const;
+    double errorEstimate() const;
+};
+
+class McHimalaya {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("value-with-samples") valueWithSamples;
+    %rename("error-estimate")     errorEstimate;
+    #endif
+  public:
+    McHimalaya(const Array& underlying, const Array& dividendYield,
+               const Matrix& covariance, Rate riskFreeRate,
+			   double strike, const std::vector<double>& timeDelays,
+		       bool antitheticVariance, long seed = 0);
+    double value(double tolerance,
+                 Size maxSample = QL_MAX_INT) const;
+    double valueWithSamples(Size samples) const;
+    double errorEstimate() const;
+};
+
+class McEverest {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("value-with-samples") valueWithSamples;
+    %rename("error-estimate")     errorEstimate;
+    #endif
+  public:
+    McEverest(const Array& dividendYield, const Matrix& covariance,
+              Rate riskFreeRate, Time residualTime,
+			  bool antitheticVariance, long seed = 0);
+    double value(double tolerance,
+                 Size maxSample = QL_MAX_INT) const;
+    double valueWithSamples(Size samples) const;
+    double errorEstimate() const;
+};
+
+class McPagoda {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("value-with-samples") valueWithSamples;
+    %rename("error-estimate")     errorEstimate;
+    #endif
+  public:
+    McPagoda(const Array& portfolio, double fraction, double roof,
+		     const Array& dividendYield, const Matrix& covariance,
+		     Rate riskFreeRate, const std::vector<double>& timeDelays,
+		     bool antithetic, long seed = 0);
+    double value(double tolerance,
+                 Size maxSample = QL_MAX_INT) const;
+    double valueWithSamples(Size samples) const;
+    double errorEstimate() const;
 };
 
 

@@ -136,6 +136,9 @@
                   "Testing old-style finite-difference European option pricer")
   (suite-add-test suite OldAmericanPricers-test
                   "Testing old-style American-type pricers")
-
+  (suite-add-test suite OldMcSingleFactorPricers-test
+                  "Testing old-style Monte Carlo single-factor pricers")
+  (suite-add-test suite OldMcMultiFactorPricers-test
+                  "Testing old-style Monte Carlo multi-factor pricers")
   (suite-run suite))
 

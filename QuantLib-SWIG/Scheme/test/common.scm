@@ -23,9 +23,11 @@
 
 ; common utility functions
 (define (range i j)
-  (if (= i j)
-      '()
-      (cons i (range (+ i 1) j))))
+  (define (range-iter i j acc)
+    (if (= i j)
+        acc
+        (range-iter (+ i 1) j (cons i acc))))
+  (reverse (range-iter i j '())))
 (define (sorted? l less-than?)
   (if (null? l)
       #t

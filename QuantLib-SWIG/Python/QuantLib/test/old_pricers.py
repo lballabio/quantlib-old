@@ -384,7 +384,542 @@ Option details: %(type)s %(u)f %(k)f %(q)f %(r)f %(T)s %(v)f
     calculated %(greek)s : %(calcl)+9.5f
     expected   %(greek)s : %(expct)+9.5f
                                   """ % locals())
+    def testMcSingleFactorPricers(self):
+        "Testing old-style Monte Carlo single-factor pricers"
+        seed = 3456789
+        fixedSamples = 100
+        minimumTol = 0.01
+        
+        # data from "Implementing Derivatives Model",
+        # Clewlow, Strickland, pag.118-123
+        cases = [
+            [DiscreteGeometricAPO, "Call", 100.0, 100.0, 0.03, 0.06,
+             [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+             0.2, 5.34255485619]
+        ]
 
+        for (pricer, optionType, underlying, strike,
+             dividendYield, riskFreeRate, timeIncrements,
+             volatility, storedValue) in cases:
+            p = pricer(optionType, underlying, strike, dividendYield,
+                       riskFreeRate, timeIncrements, volatility)
+            pvalue = p.value()
+
+            if not (abs(pvalue-storedValue) <= 1e-10):
+                self.fail("""
+in batch 1:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                          """ % locals())
+        
+        # data from "Option Pricing Formulas", Haug, pag.96-97
+        cases = [
+            [EuropeanOption,         "Put", 80.0, 85.0,
+             -0.03, 0.05, 0.25, 0.2, 5.21858890396],
+            [ContinuousGeometricAPO, "Put", 80.0, 85.0,
+             -0.03, 0.05, 0.25, 0.2, 4.69221973405]
+        ]
+
+        for (pricer, optionType, underlying, strike,
+             dividendYield, riskFreeRate, residualTime,
+             volatility, storedValue) in cases:
+            p = pricer(optionType, underlying, strike, dividendYield,
+                       riskFreeRate, residualTime, volatility)
+            pvalue = p.value()
+            if not (abs(pvalue-storedValue) <= 1e-10):
+                self.fail("""
+in batch 2:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                          """ % locals())
+
+        # trying to approximate the continous version with the discrete version
+        cases = [
+            [DiscreteGeometricAPO, "Put", 80.0, 85.0,
+             -0.03, 0.05, 0.25, 90000, 0.2, 4.6922231469]
+        ]
+
+        for (pricer, optionType, underlying, strike,
+             dividendYield, riskFreeRate, residualTime, timesteps,
+             volatility, storedValue) in cases:
+            dt=residualTime/timesteps
+            timeIncrements=[(i+1)*dt for i in range(timesteps)]
+            p = pricer(optionType, underlying, strike, dividendYield,
+                       riskFreeRate, timeIncrements, volatility)
+            pvalue = p.value()
+            if not (abs(pvalue-storedValue) <= 1e-10):
+                self.fail("""
+in batch 3:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                          """ % locals())
+
+        cases = [
+            [McEuropean,      "Put", 80.0, 85.0,
+             -0.03, 0.05, 0.25, 0.2, 5.9135872358, 0],
+            [McEuropean,      "Put", 80.0, 85.0,
+             -0.03, 0.05, 0.25, 0.2, 5.42005964479, 1],
+            [McEuropean,     "Call", 80.0, 85.0,
+             -0.03, 0.05, 0.25, 0.2, 1.98816310759, 0],
+            [McEuropean,     "Call", 80.0, 85.0,
+             -0.03, 0.05, 0.25, 0.2, 2.12098432917, 1],
+            [McEuropean, "Straddle", 80.0, 85.0,
+             -0.03, 0.05, 0.25, 0.2, 7.90175034339, 0],
+            [McEuropean, "Straddle", 80.0, 85.0,
+             -0.03, 0.05, 0.25, 0.2, 7.54104397396, 1]
+        ]
+        for (pricer, optionType, underlying, strike,
+             dividendYield, riskFreeRate, residualTime,
+             volatility, storedValue, antithetic) in cases:
+            p = pricer(optionType, underlying, strike, dividendYield,
+                       riskFreeRate, residualTime, volatility,
+                       antithetic, seed)
+            pvalue = p.valueWithSamples(fixedSamples)
+            if not (abs(pvalue-storedValue) <= 1e-10):
+                self.fail("""
+in batch 4:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                          """ % locals())
+            tol = p.errorEstimate()/pvalue
+            tol = min(tol/2.0, minimumTol)
+            pvalue = p.value(tol)
+            accuracy = p.errorEstimate()/pvalue
+            if not (accuracy <= tol):
+                self.fail("""
+in batch 4:
+accuracy reached   : %(accuracy)g
+tolerance requested: %(tol)g
+                          """ % locals())
+
+        # data from "Asian Option", Levy, 1997
+        # in "Exotic Options: The State of the Art",
+        # edited by Clewlow, Strickland
+        cases = [
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0, 2, 0.13, 1.38418414762, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0, 4, 0.13, 1.57691714387, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0, 8, 0.13, 1.66062743445, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0, 12, 0.13, 1.68847081883, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0, 26, 0.13, 1.72955964448, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0, 52, 0.13, 1.73372169316, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0, 100, 0.13, 1.74918801089, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0, 250, 0.13, 1.75421310915, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0, 500, 0.13, 1.75158383443, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0, 1000, 0.13, 1.7516211018 , 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 2, 0.13, 1.83665087164, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 4, 0.13, 2.00560271429, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 8, 0.13, 2.07789721712, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 12, 0.13, 2.09622556625, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 26, 0.13, 2.14229795212, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 52, 0.13, 2.14470270916, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 100, 0.13, 2.15954145741, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 250, 0.13, 2.16007690017, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 500, 0.13, 2.159867044  , 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0,1000, 0.13, 2.15951634387, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 2, 0.13, 2.63315092584, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 4, 0.13, 2.76723962361, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 8, 0.13, 2.83124836881, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 12, 0.13, 2.84290301412, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 26, 0.13, 2.88179560417, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 52, 0.13, 2.88447044543, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 100, 0.13, 2.89985329603, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 250, 0.13, 2.90047296063, 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 500, 0.13, 2.8981341216 , 1, 1],
+            [McDiscreteArithmeticAPO, "Put", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0,1000, 0.13, 2.89703362437, 1, 1]
+           ]
+        for (pricer, optionType, underlying, strike,
+             dividendYield, riskFreeRate, first, length, fixings,
+             volatility, storedValue, antithetic, controlVariate) in cases:
+            dt=(length)/(fixings-1)
+            timeIncrements = [i*dt+first for i in range(fixings)]
+            p = pricer(optionType, underlying, strike, dividendYield,
+                       riskFreeRate, timeIncrements, volatility,
+                       antithetic, controlVariate, seed)
+            pvalue = p.valueWithSamples(fixedSamples)
+            if not (abs(pvalue-storedValue) <= 1e-10):
+                self.fail("""
+in batch 5:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                          """ % locals())
+            tol = p.errorEstimate()/pvalue
+            tol = min(tol/2.0, minimumTol)
+            pvalue = p.value(tol)
+            accuracy = p.errorEstimate()/pvalue
+            if not (accuracy <= tol):
+                self.fail("""
+in batch 5:
+accuracy reached   : %(accuracy)g
+tolerance requested: %(tol)g
+                          """ % locals())
+
+        # data from "Asian Option", Levy, 1997
+        # in "Exotic Options: The State of the Art",
+        # edited by Clewlow, Strickland
+        cases = [
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0,    2, 0.13, 1.51917595129, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0,    4, 0.13, 1.67940165674, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0,    8, 0.13, 1.75371215251, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0,   12, 0.13, 1.77595318693, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0,   26, 0.13, 1.8143053663 , 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0,   52, 0.13, 1.82269246898, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0,  100, 0.13, 1.83822402464, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0,  250, 0.13, 1.83875059026, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0,  500, 0.13, 1.83750703638, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 0.0, 11.0/12.0, 1000, 0.13, 1.83887181884, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 2, 0.13, 1.51154400089, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 4, 0.13, 1.67103508506, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 8, 0.13, 1.7452968407 , 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 12, 0.13, 1.76667074564, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 26, 0.13, 1.80528400613, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 52, 0.13, 1.81400883891, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 100, 0.13, 1.82922901451, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 250, 0.13, 1.82937111773, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0, 500, 0.13, 1.82826193186, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 1.0/12.0, 11.0/12.0,1000, 0.13, 1.82967846654, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 2, 0.13, 1.49648170891, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 4, 0.13, 1.65443100462, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 8, 0.13, 1.72817806731, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 12, 0.13, 1.74877367895, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 26, 0.13, 1.78733801988, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 52, 0.13, 1.79624826757, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 100, 0.13, 1.81114186876, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 250, 0.13, 1.81101152587, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 500, 0.13, 1.81002311939, 1, 1],
+            [McDiscreteArithmeticASO, "Call", 90.0, 87.0,
+             0.06, 0.025, 3.0/12.0, 11.0/12.0, 1000, 0.13, 1.81145760308, 1, 1]
+           ]
+        for (pricer, optionType, underlying, strike,
+             dividendYield, riskFreeRate, first, length, fixings,
+             volatility, storedValue, antithetic, controlVariate) in cases:
+            dt=(length)/(fixings-1)
+            timeIncrements=[i*dt+first for i in range(fixings)]
+            p = pricer(optionType, underlying, dividendYield,
+                       riskFreeRate, timeIncrements, volatility,
+                       antithetic, controlVariate, seed)
+            pvalue = p.valueWithSamples(fixedSamples)
+            if not (abs(pvalue-storedValue) <= 1e-10):
+                self.fail("""
+in batch 6:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                          """ % locals())
+            tol = p.errorEstimate()/pvalue
+            tol = min(tol/2.0, minimumTol)
+            pvalue = p.value(tol)
+            accuracy = p.errorEstimate()/pvalue
+            if not (accuracy <= tol):
+                self.fail("""
+in batch 6:
+accuracy reached   : %(accuracy)g
+tolerance requested: %(tol)g
+                          """ % locals())
+
+    def testMcMultiFactorPricers(self):
+        "Testing old-style Monte Carlo multi-factor pricers"
+        cor = [[1.00, 0.50, 0.30, 0.10],
+               [0.50, 1.00, 0.20, 0.40],
+               [0.30, 0.20, 1.00, 0.60],
+               [0.10, 0.40, 0.60, 1.00]]
+        volatilities = [ 0.30,  0.35,  0.25,  0.20]
+        covariance = QuantLib.covariance(volatilities, cor)
+        dividendYields = [0.01, 0.05, 0.04, 0.03]
+        riskFreeRate = 0.05
+        resTime = 1.0
+        # degenerate portfolio
+        perfectCorrelation = [[1.00, 1.00, 1.00, 1.00],
+                              [1.00, 1.00, 1.00, 1.00],
+                              [1.00, 1.00, 1.00, 1.00],
+                              [1.00, 1.00, 1.00, 1.00]]
+        sameAssetVols = [ 0.30,  0.30,  0.30,  0.30]
+        sameAssetCovariance = QuantLib.covariance(sameAssetVols,
+                                                  perfectCorrelation)
+        sameAssetDividend = [ 0.030,  0.030,  0.030,  0.030]
+        seed = 86421
+        fixedSamples = 100
+        minimumTol = 0.01
+
+        # McEverest
+        p = McEverest(dividendYields, covariance,
+                      riskFreeRate, resTime, 0, seed)
+        storedValue = 0.7434481
+        pvalue = p.valueWithSamples(fixedSamples)
+        if not (abs(pvalue-storedValue) <= 1e-5):
+            self.fail("""
+McEverest:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                      """ % locals())
+        tol = p.errorEstimate()/pvalue
+        tol = min(tol/2.0, minimumTol)
+        pvalue = p.value(tol)
+        accuracy = p.errorEstimate()/pvalue
+        if not (accuracy <= tol):
+            self.fail("""
+McEverest:
+accuracy reached   : %(accuracy)g
+tolerance requested: %(tol)g
+                      """ % locals())
+        p = McEverest(dividendYields, covariance,
+                      riskFreeRate, resTime, 1, seed)
+        storedValue = 0.7569787
+        pvalue = p.valueWithSamples(fixedSamples)
+        if not (abs(pvalue-storedValue) <= 1e-5):
+            self.fail("""
+McEverest:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                      """ % locals())
+        tol = p.errorEstimate()/pvalue
+        tol = min(tol/2.0, minimumTol)
+        pvalue = p.value(tol)
+        accuracy = p.errorEstimate()/pvalue
+        if not (accuracy <= tol):
+            self.fail("""
+McEverest:
+accuracy reached   : %(accuracy)g
+tolerance requested: %(tol)g
+                      """ % locals())
+
+        # McBasket
+        sameAssetValues = [ 25,  25,   25,  25]
+        type = 'Call'
+        strike = 100
+        p = McBasket(type, sameAssetValues, strike, sameAssetDividend,
+                     sameAssetCovariance, riskFreeRate, resTime, 0, seed)
+        # european would be 12.4426495605
+        storedValue = 10.4484452
+        pvalue = p.valueWithSamples(fixedSamples)
+        if not (abs(pvalue-storedValue) <= 1e-3):
+            self.fail("""
+McBasket:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                      """ % locals())
+        tol = p.errorEstimate()/pvalue
+        tol = min(tol/2.0, minimumTol)
+        pvalue = p.value(tol)
+        accuracy = p.errorEstimate()/pvalue
+        if not (accuracy <= tol):
+            self.fail("""
+McBasket:
+accuracy reached   : %(accuracy)g
+tolerance requested: %(tol)g
+                      """ % locals())
+        p = McBasket(type, sameAssetValues, strike, sameAssetDividend,
+                     sameAssetCovariance, riskFreeRate, resTime, 1, seed)
+        # european would be 12.4426495605
+        storedValue = 12.2946771
+        pvalue = p.valueWithSamples(fixedSamples)
+        if not (abs(pvalue-storedValue) <= 1e-3):
+            self.fail("""
+McBasket:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                      """ % locals())
+        tol = p.errorEstimate()/pvalue
+        tol = min(tol/2.0, minimumTol)
+        pvalue = p.value(tol)
+        accuracy = p.errorEstimate()/pvalue
+        if not (accuracy <= tol):
+            self.fail("""
+McBasket:
+accuracy reached   : %(accuracy)g
+tolerance requested: %(tol)g
+                      """ % locals())
+
+        # McMaxBasket
+        assetValues = [ 100,  110,   90,  105]
+        p = McMaxBasket(assetValues, dividendYields,
+                        covariance, riskFreeRate, resTime, 0, seed)
+        storedValue = 120.7337797
+        pvalue = p.valueWithSamples(fixedSamples)
+        if not (abs(pvalue-storedValue) <= 1e-9):
+            self.fail("""
+McMaxBasket:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                      """ % locals())
+        tol = p.errorEstimate()/pvalue
+        tol = min(tol/2.0, minimumTol)
+        pvalue = p.value(tol)
+        accuracy = p.errorEstimate()/pvalue
+        if not (accuracy <= tol):
+            self.fail("""
+McMaxBasket:
+accuracy reached   : %(accuracy)g
+tolerance requested: %(tol)g
+                      """ % locals())
+        p = McMaxBasket(assetValues, dividendYields,
+                        covariance, riskFreeRate, resTime, 1, seed)
+        storedValue = 123.5209095
+        pvalue = p.valueWithSamples(fixedSamples)
+        if not (abs(pvalue-storedValue) <= 1e-9):
+            self.fail("""
+McMaxBasket:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                      """ % locals())
+        tol = p.errorEstimate()/pvalue
+        tol = min(tol/2.0, minimumTol)
+        pvalue = p.value(tol)
+        accuracy = p.errorEstimate()/pvalue
+        if not (accuracy <= tol):
+            self.fail("""
+McMaxBasket:
+accuracy reached   : %(accuracy)g
+tolerance requested: %(tol)g
+                      """ % locals())
+
+        # McPagoda
+        portfolio   = [0.15, 0.20, 0.35, 0.30]
+        fraction = 0.62
+        roof = 0.20
+        timeIncrements = [0.25, 0.5, 0.75, 1]
+        p = McPagoda(portfolio, fraction, roof,
+                     dividendYields, covariance, riskFreeRate,
+                     timeIncrements, 0, seed);
+        storedValue =  0.03438975
+        pvalue = p.valueWithSamples(fixedSamples)
+        if not (abs(pvalue-storedValue) <= 1e-5):
+            self.fail("""
+McPagoda:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                      """ % locals())
+        tol = p.errorEstimate()/pvalue
+        tol = min(tol/2.0, minimumTol)
+        pvalue = p.value(tol)
+        accuracy = p.errorEstimate()/pvalue
+        if not (accuracy <= tol):
+            self.fail("""
+McPagoda:
+accuracy reached   : %(accuracy)g
+tolerance requested: %(tol)g
+                      """ % locals())
+        p = McPagoda(portfolio, fraction, roof,
+                     dividendYields, covariance, riskFreeRate,
+                     timeIncrements, 1, seed);
+        storedValue = 0.03860954
+        pvalue = p.valueWithSamples(fixedSamples)
+        if not (abs(pvalue-storedValue) <= 1e-5):
+            self.fail("""
+McPagoda:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                      """ % locals())
+        tol = p.errorEstimate()/pvalue
+        tol = min(tol/2.0, minimumTol)
+        pvalue = p.value(tol)
+        accuracy = p.errorEstimate()/pvalue
+        if not (accuracy <= tol):
+            self.fail("""
+McPagoda:
+accuracy reached   : %(accuracy)g
+tolerance requested: %(tol)g
+                      """ % locals())
+
+        # McHimalaya
+        strike = 101
+        p = McHimalaya(assetValues, dividendYields, covariance,
+                       riskFreeRate, strike, timeIncrements, 0, seed)
+        storedValue = 5.0768499
+        pvalue = p.valueWithSamples(fixedSamples)
+        if not (abs(pvalue-storedValue) <= 1e-5):
+            self.fail("""
+McHimalaya:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                      """ % locals())
+        tol = p.errorEstimate()/pvalue
+        tol = min(tol/2.0, minimumTol)
+        pvalue = p.value(tol)
+        accuracy = p.errorEstimate()/pvalue
+        if not (accuracy <= tol):
+            self.fail("""
+McHimalaya:
+accuracy reached   : %(accuracy)g
+tolerance requested: %(tol)g
+                      """ % locals())
+        p = McHimalaya(assetValues, dividendYields, covariance,
+                       riskFreeRate, strike, timeIncrements, 1, seed)
+        storedValue = 6.2478050
+        pvalue = p.valueWithSamples(fixedSamples)
+        if not (abs(pvalue-storedValue) <= 1e-5):
+            self.fail("""
+McHimalaya:
+calculated value: %(pvalue)g
+stored value:     %(storedValue)g
+                      """ % locals())
+        tol = p.errorEstimate()/pvalue
+        tol = min(tol/2.0, minimumTol)
+        pvalue = p.value(tol)
+        accuracy = p.errorEstimate()/pvalue
+        if not (accuracy <= tol):
+            self.fail("""
+McHimalaya:
+accuracy reached   : %(accuracy)g
+tolerance requested: %(tol)g
+                      """ % locals())
 
 
 
