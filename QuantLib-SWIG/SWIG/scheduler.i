@@ -23,13 +23,13 @@
 %include types.i
 
 %{
-using QuantLib::Scheduler;
+using QuantLib::Schedule;
 %}
 
 #if defined(SWIGRUBY)
-%mixin Scheduler "Enumerable";
+%mixin Schedule "Enumerable";
 #endif
-class Scheduler {
+class Schedule {
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
     %rename(__len__)       size;
     %ignore                date;
@@ -40,11 +40,15 @@ class Scheduler {
     %rename("is-regular?") isRegular;
     #endif
   public:
-    Scheduler(const Calendar& calendar, 
-              const Date& startDate, const Date& endDate,
-              int frequency, RollingConvention rollingConvention, 
-              bool isAdjusted, const Date& stubDate = Date(),
-	      bool startFromEnd = 0, bool longFinal = 0);
+    Schedule(const Calendar& calendar, 
+             const Date& startDate, const Date& endDate,
+             int frequency, RollingConvention rollingConvention, 
+             bool isAdjusted, const Date& stubDate = Date(),
+             bool startFromEnd = false, bool longFinal = false);
+    Schedule(const std::vector<Date>&,
+             const Calendar& calendar, 
+             RollingConvention rollingConvention,
+             bool isAdjusted);
     Size size() const;
     Date date(Size i) const;
     bool isRegular(Size i) const;
@@ -57,7 +61,7 @@ class Scheduler {
             } else if (i<0 && -i<=size_) {
                 return self->date(size_+i);
             } else {
-                throw IndexError("Scheduler index out of range");
+                throw IndexError("Schedule index out of range");
             }
             QL_DUMMY_RETURN(Date())
         }
@@ -87,16 +91,23 @@ class Scheduler {
             }
         }
         %scheme%{
-            (define (Scheduler-map s f)
+            (define (Schedule-map s f)
               (let ((results '()))
-                (Scheduler-for-each s (lambda (d)
+                (Schedule-for-each s (lambda (d)
                                       (set! results (cons (f d) results))))
                 (reverse results)))
-            (export Scheduler-map)
+            (export Schedule-map)
         %}
         #endif
     }
 };
+
+#if defined(SWIGPYTHON)
+// deprecated
+%pythoncode %{
+Scheduler = Schedule
+%}
+#endif
 
 
 #endif

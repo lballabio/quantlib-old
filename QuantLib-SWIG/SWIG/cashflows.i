@@ -125,6 +125,15 @@ using QuantLib::CashFlows::FixedRateCouponVector;
 using QuantLib::CashFlows::FloatingRateCouponVector;
 %}
 
+std::vector<Handle<CashFlow> > 
+FixedRateCouponVector(const Schedule& schedule, 
+                      const std::vector<double>& nominals,
+                      const std::vector<Rate>& couponRates,
+                      const DayCounter& dayCount, 
+                      const DayCounter& firstPeriodDayCount
+                        = DayCounter());
+
+// deprecated
 std::vector<Handle<CashFlow> > FixedRateCouponVector(
     const std::vector<double>& nominals, 
     const std::vector<double>& couponRates,
@@ -134,12 +143,23 @@ std::vector<Handle<CashFlow> > FixedRateCouponVector(
     const DayCounter& firstPeriodDayCount, 
     const Date& stubDate = Date());
 
+// deprecated
 std::vector<Handle<CashFlow> > FixedRateCouponVector(
     const std::vector<double>& nominals,
     const std::vector<Rate>& couponRates,
     const DayCounter& dayCount, const DayCounter& firstPeriodDayCount,
-    const Scheduler& scheduler);
+    const Schedule& schedule);
 
+
+
+std::vector<Handle<CashFlow> > 
+FloatingRateCouponVector(const Schedule& schedule,
+                         const std::vector<double>& nominals,
+                         const XiborHandle& index, int fixingDays,
+                         const std::vector<Spread>& spreads = 
+                             std::vector<Spread>());
+
+// deprecated
 std::vector<Handle<CashFlow> > FloatingRateCouponVector(
     const std::vector<double>& nominals,
     const Date& startDate, const Date& endDate,
@@ -149,10 +169,12 @@ std::vector<Handle<CashFlow> > FloatingRateCouponVector(
     const std::vector<double>& spreads = std::vector<double>(), 
     const Date& stubDate = Date());
 
+// deprecated
 std::vector<Handle<CashFlow> > FloatingRateCouponVector(
     const std::vector<double>& nominals,
     const XiborHandle& index, int fixingDays,
     const std::vector<Spread>& spreads,
-    const Scheduler& scheduler);
+    const Schedule& schedule);
+
 
 #endif

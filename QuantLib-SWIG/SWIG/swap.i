@@ -133,23 +133,22 @@ class SimpleSwapHandle : public SwapHandle {
                                spread, termStructure, isinCode, description));
         }
         SimpleSwapHandle(bool payFixedRate,const Date& maturity,
-			 double nominal, Rate fixedRate,
-			 const DayCounter& fixedDayCount,
-			 const XiborHandle& index,
-			 int indexFixingDays, Spread spread,
-			 const RelinkableHandle<TermStructure>& termStructure,
-			 Scheduler& fixedSched,
-			 Scheduler& floatSched,
-			 const std::string& isinCode = "unknown",
+                         double nominal, Rate fixedRate,
+                         const DayCounter& fixedDayCount,
+                         const XiborHandle& index,
+                         int indexFixingDays, Spread spread,
+                         const RelinkableHandle<TermStructure>& termStructure,
+                         Schedule& fixedSchedule, Schedule& floatSchedule,
+                         const std::string& isinCode = "unknown",
                          const std::string& description = 
-                                                    "interest rate swap") {
-	   return new SimpleSwapHandle(
-	      new SimpleSwap(payFixedRate,maturity,
-			     nominal,fixedRate,fixedDayCount,index,
-			     indexFixingDays,spread,termStructure,
-			     fixedSched,floatSched,
-			     isinCode,description));
-	}
+                            "interest rate swap") {
+            return new SimpleSwapHandle(
+                new SimpleSwap(payFixedRate,maturity,
+                               nominal,fixedRate,fixedDayCount,index,
+                               indexFixingDays,spread,termStructure,
+                               fixedSchedule,floatSchedule,
+                               isinCode,description));
+        }
     #endif
         Rate fairRate() {
             return Handle<SimpleSwap>(*self)->fairRate();
