@@ -23,8 +23,8 @@
 #define qlxl_h
 
 #include <xlw/xlw.h>
-#include <ql/Functions/qlfunctions.hpp>
-#include <ql/errors.hpp>
+
+#include <ql/qldefines.hpp>
 
 
 //! version hexadecimal number
@@ -36,7 +36,6 @@
 #else
     #define QLXL_VERSION "0.3.8"
 #endif
-
 
 #if QL_HEX_VERSION < 0x000308a0
     #error using an old version of QuantLib, please update

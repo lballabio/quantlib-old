@@ -18,7 +18,6 @@
     \brief QuantLib Excel pricers based on the engine framework
 */
 
-#include <qlxl/qlxl.hpp>
 #include <qlxl/qlxlfoper.hpp>
 #include <ql/stochasticprocess.hpp>
 #include <ql/PricingEngines/Vanilla/all.hpp>
