@@ -35,6 +35,9 @@
 
 // 'int' : forcing value to bool 'true' or 'false' (performance warning)
 #pragma warning(disable: 4800)
+
+// debug info too long etc etc
+#pragma warning(disable: 4786)
 #endif
 %}
 
