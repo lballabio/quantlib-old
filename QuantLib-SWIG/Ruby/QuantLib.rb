@@ -18,14 +18,6 @@ require 'QuantLibc'
 
 module QuantLibc
   
-  # mixins
-
-  # aliases
-  MarketElement = Quote
-  MarketElementHandle = QuoteHandle
-  SimpleMarketElement = SimpleQuote
-  
-  # interface enhancements and fixes
   class Observer
     alias cpp_initialize initialize
     def initialize(*args,&block)
