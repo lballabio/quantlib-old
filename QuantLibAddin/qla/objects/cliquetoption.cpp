@@ -26,7 +26,6 @@ namespace QuantLibAddin {
             const std::string &optionTypeID,
             const float &strike,
             const long &exerciseDate,
-            const long &settlementDate,
             const std::string &engineID,
             const long &timeSteps) {
         QuantLib::Option::Type type = IDtoOptionType(optionTypeID);

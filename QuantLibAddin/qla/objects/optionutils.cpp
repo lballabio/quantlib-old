@@ -85,7 +85,7 @@ namespace QuantLibAddin {
         else if (idUpper.compare("AC") == 0)
             return boost::shared_ptr<QuantLib::PricingEngine> (
                 new QuantLib::AnalyticCliquetEngine);
-        else if (idUpper.compare("ACGAA") == 0)
+        else if (idUpper.compare("ACGAPA") == 0)
             return boost::shared_ptr<QuantLib::PricingEngine> (
                 new QuantLib::AnalyticContinuousGeometricAveragePriceAsianEngine);
         else if (idUpper.compare("ADA") == 0)

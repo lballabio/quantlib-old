@@ -23,9 +23,9 @@ namespace QuantLibAddin {
     QuantLib::BasketOption::BasketType IDtoBasketType(const std::string &basketID) {
         std::string idUpper = QuantLib::StringFormatter::toUppercase(basketID);
         if (idUpper.compare("MIN") ==0)
-            return QuantLib::BasketOption::Max;
-        else if (idUpper.compare("MAX") == 0)
             return QuantLib::BasketOption::Min;
+        else if (idUpper.compare("MAX") == 0)
+            return QuantLib::BasketOption::Max;
         else
             QL_FAIL("IDtoBasketType: unrecognized typeID: " + basketID);
     }
