@@ -1,6 +1,9 @@
 
+- settle on version number (0.0.1 or 0.3.9 ?)
+
+- doxygen documentation
+
 - consider a complete logging framework:
     http://logging.apache.org/log4cxx/
     http://sourceforge.net/projects/log4cpp/
     http://sourceforge.net/projects/log4cplus/
-

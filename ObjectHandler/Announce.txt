@@ -1,0 +1,19 @@
+
+ObjectHandler is etc.
+
+Version 0.0.1 has been released and is available for download at
+
+ObjectHandler depends on the Boost library (www.boost.org). You will need a
+working Boost installation in order to compile and use QuantLib.
+Instructions for installing Boost from sources are available at
+<http://www.boost.org/more/getting_started.html>.
+Pre-packaged binaries might be available from other sources. Google is
+your friend (or Debian, or Fink...)
+
+Please log any problems you have with this release in the SourceForge
+bug tracker at
+<http://sourceforge.net/tracker/?group_id=12740&atid=112740>
+specifying that you're using ObjectHandler 0.0.1
+
+        The QuantLib group
+
