@@ -27,7 +27,7 @@
 %include stl.i
 
 %{
-using QuantLib::Indexes::XiborManager;
+using QuantLib::XiborManager;
 %}
 
 class XiborManager {
@@ -76,15 +76,15 @@ class Index {
 
 // Xibor indexes
 %{
-using QuantLib::Indexes::Xibor;
-using QuantLib::Indexes::Euribor;
-using QuantLib::Indexes::AUDLibor;
-using QuantLib::Indexes::GBPLibor;
-using QuantLib::Indexes::USDLibor;
-using QuantLib::Indexes::JPYLibor;
-using QuantLib::Indexes::CADLibor;
-using QuantLib::Indexes::CHFLibor;
-using QuantLib::Indexes::ZARLibor;
+using QuantLib::Xibor;
+using QuantLib::Euribor;
+using QuantLib::AUDLibor;
+using QuantLib::GBPLibor;
+using QuantLib::USDLibor;
+using QuantLib::JPYLibor;
+using QuantLib::CADLibor;
+using QuantLib::CHFLibor;
+using QuantLib::ZARLibor;
 typedef Handle<Index> XiborHandle;
 %}
 
