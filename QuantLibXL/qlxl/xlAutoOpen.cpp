@@ -169,6 +169,51 @@ extern "C"
         normSInvDesc.SetArguments(probability);
         normSInvDesc.Register();
 
+
+        // Registers Risk Measures
+        XlfArgDesc percentile("percentile",
+            "is the confidence level");
+        XlfArgDesc targetReturn("target return",
+            "is the target return at which you want to perform the analysis");
+
+        XlfFuncDesc potentialUpsideDesc("xlpotentialUpside","qlpotentialUpside",
+            "Return the potential upside with a percentile confidence "
+            "for a normal distribution specified "
+            "by mean and standard deviation","qlMath");
+        potentialUpsideDesc.SetArguments(percentile+mean+std_dev);
+        potentialUpsideDesc.Register();
+
+        XlfFuncDesc valueAtRiskDesc("xlvalueAtRisk","qlvalueAtRisk",
+            "Return the value at risk with a percentile confidence "
+            "for a normal distribution specified "
+            "by mean and standard deviation","qlMath");
+        valueAtRiskDesc.SetArguments(percentile+mean+std_dev);
+        valueAtRiskDesc.Register();
+        
+        XlfFuncDesc expectedShortfallDesc("xlexpectedShortfall","qlexpectedShortfall",
+            "Return the expected shortfall with a percentile confidence "
+            "for a normal distribution specified "
+            "by mean and standard deviation","qlMath");
+        expectedShortfallDesc.SetArguments(percentile+mean+std_dev);
+        expectedShortfallDesc.Register();
+        
+        XlfFuncDesc shortfallDesc("xlshortfall","qlshortfall",
+            "Return the shortfall at the chosen target "
+            "for a normal distribution specified "
+            "by mean and standard deviation","qlMath");
+        shortfallDesc.SetArguments(targetReturn+mean+std_dev);
+        shortfallDesc.Register();
+        
+        XlfFuncDesc averageShortfallDesc("xlaverageShortfall","qlaverageShortfall",
+            "Return the average shortfall at the chosen target "
+            "for a normal distribution specified "
+            "by mean and standard deviation","qlMath");
+        averageShortfallDesc.SetArguments(targetReturn+mean+std_dev);
+        averageShortfallDesc.Register();
+        
+        
+        
+        
         // Clears the status bar.
         XlfExcel::Instance().SendMessage();
         return 1;

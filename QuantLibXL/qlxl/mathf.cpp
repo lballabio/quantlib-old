@@ -178,4 +178,52 @@ extern "C"
     }
 
 
+
+    LPXLOPER EXCEL_EXPORT xlpotentialUpside(XlfOper xlpercentile,
+        XlfOper xlmean, XlfOper xlstd_dev) {
+        EXCEL_BEGIN;
+        double result = Functions::potentialUpside(xlpercentile.AsDouble(),
+            xlmean.AsDouble(), xlstd_dev.AsDouble());
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlvalueAtRisk(XlfOper xlpercentile,
+        XlfOper xlmean, XlfOper xlstd_dev) {
+        EXCEL_BEGIN;
+        double result = Functions::valueAtRisk(xlpercentile.AsDouble(),
+            xlmean.AsDouble(), xlstd_dev.AsDouble());
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlexpectedShortfall(XlfOper xlpercentile,
+        XlfOper xlmean, XlfOper xlstd_dev) {
+        EXCEL_BEGIN;
+        double result = Functions::expectedShortfall(xlpercentile.AsDouble(),
+            xlmean.AsDouble(), xlstd_dev.AsDouble());
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlshortfall(XlfOper xltarget,
+        XlfOper xlmean, XlfOper xlstd_dev) {
+        EXCEL_BEGIN;
+        double result = Functions::shortfall(xltarget.AsDouble(),
+            xlmean.AsDouble(), xlstd_dev.AsDouble());
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlaverageShortfall(XlfOper xltarget,
+        XlfOper xlmean, XlfOper xlstd_dev) {
+        EXCEL_BEGIN;
+        double result = Functions::averageShortfall(xltarget.AsDouble(),
+            xlmean.AsDouble(), xlstd_dev.AsDouble());
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+
+
 }

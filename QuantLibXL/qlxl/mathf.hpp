@@ -56,6 +56,24 @@ extern "C"
                                     XlfOper xlmean,
                                     XlfOper xlstd_dev);
     LPXLOPER EXCEL_EXPORT xlnormSInv(XlfOper xlprobability);
+
+
+    
+    LPXLOPER EXCEL_EXPORT xlpotentialUpside(XlfOper xlpercentile,
+                                            XlfOper xlmean,
+                                            XlfOper xlstd_dev);
+    LPXLOPER EXCEL_EXPORT xlvalueAtRisk(XlfOper xlpercentile,
+                                        XlfOper xlmean,
+                                        XlfOper xlstd_dev);
+    LPXLOPER EXCEL_EXPORT xlexpectedShortfall(XlfOper xlpercentile,
+                                              XlfOper xlmean,
+                                              XlfOper xlstd_dev);
+    LPXLOPER EXCEL_EXPORT xlshortfall(XlfOper xltarget,
+                                      XlfOper xlmean,
+                                      XlfOper xlstd_dev);
+    LPXLOPER EXCEL_EXPORT xlaverageShortfall(XlfOper xltarget,
+                                             XlfOper xlmean,
+                                             XlfOper xlstd_dev);
 }
 
 #endif
