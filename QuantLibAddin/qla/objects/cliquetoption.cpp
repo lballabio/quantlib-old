@@ -24,24 +24,16 @@ namespace QuantLibAddin {
             const boost::shared_ptr<StochasticProcess> &stochasticProcess,
             const std::vector < long > &resetDatesLong,
             const std::string &optionTypeID,
-            const std::string &payoffID,
             const float &strike,
-            const std::string &exerciseID,
             const long &exerciseDate,
             const long &settlementDate,
             const std::string &engineID,
             const long &timeSteps) {
-        boost::shared_ptr<QuantLib::PercentageStrikePayoff> payoff =
-            boost::dynamic_pointer_cast<QuantLib::PercentageStrikePayoff>
-            (IDtoPayoff(optionTypeID, payoffID, strike));
-        if (!payoff)
-            QL_FAIL("CliquetOption: unrecognized payoffID: " + payoffID);
-        boost::shared_ptr<QuantLib::EuropeanExercise> exercise = 
-            boost::dynamic_pointer_cast<QuantLib::EuropeanExercise>
-            (IDtoExercise(exerciseID, QuantLib::Date(exerciseDate),
-                QuantLib::Date(settlementDate)));
-        if (!exercise)
-            QL_FAIL("CliquetOption: unrecognized exerciseID: " + exerciseID);
+        QuantLib::Option::Type type = IDtoOptionType(optionTypeID);
+        boost::shared_ptr<QuantLib::PercentageStrikePayoff> payoff(
+            new QuantLib::PercentageStrikePayoff(type, strike));
+        boost::shared_ptr<QuantLib::EuropeanExercise> exercise(
+            new QuantLib::EuropeanExercise(QuantLib::Date(exerciseDate)));
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             IDtoEngine(engineID, timeSteps);
         const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL = 

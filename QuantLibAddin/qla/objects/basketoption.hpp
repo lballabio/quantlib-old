@@ -31,7 +31,6 @@ namespace QuantLibAddin {
             const std::string &basketID,
             const std::vector < const std::vector < double > > &correlationVV,
             const std::string &optionTypeID,
-            const std::string &payoffID,
             const float &strike,
             const std::string &exerciseID,
             const long &exerciseDate,

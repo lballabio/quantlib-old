@@ -36,7 +36,6 @@ namespace QuantLibAddin {
             const std::string &basketID,
             const std::vector < const std::vector < double > > &correlationVV,
             const std::string &optionTypeID,
-            const std::string &payoffID,
             const float &strike,
             const std::string &exerciseID,
             const long &exerciseDate,
@@ -47,11 +46,9 @@ namespace QuantLibAddin {
             IDtoBasketType(basketID);
         QuantLib::Matrix correlation =
             vectorVectorToMatrix(correlationVV);
-        boost::shared_ptr<QuantLib::PlainVanillaPayoff> payoff =
-            boost::dynamic_pointer_cast<QuantLib::PlainVanillaPayoff>
-            (IDtoPayoff(optionTypeID, payoffID, strike));
-        if (!payoff)
-            QL_FAIL("BasketOption: unrecognized payoffID: " + payoffID);
+        QuantLib::Option::Type type = IDtoOptionType(optionTypeID);
+        boost::shared_ptr<QuantLib::PlainVanillaPayoff> payoff(
+            new QuantLib::PlainVanillaPayoff(type, strike));
         boost::shared_ptr<QuantLib::Exercise> exercise = 
             IDtoExercise(exerciseID, QuantLib::Date(exerciseDate),
                 QuantLib::Date(settlementDate));
