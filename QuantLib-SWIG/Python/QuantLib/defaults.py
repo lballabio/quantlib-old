@@ -76,13 +76,11 @@ TermStructureHandle.__init__ = TermStructureHandle_new___init__
 TermStructureHandle.linkTo = TermStructureHandle_new_linkTo
 
 FlatForward._old___init__ = FlatForward.__init__
-def FlatForward_new___init__(self,currency,dayCounter,todaysDate,
-                             settlementDate,forward):
+def FlatForward_new___init__(self,todaysDate,settlementDate,
+                             forward,dayCounter):
     if type(forward) == type(0) or type(forward) == type(0.0):
         h = MarketElementHandle(SimpleMarketElement(forward))
-        self._old___init__(currency,dayCounter,todaysDate,
-                           settlementDate,h)
+        self._old___init__(todaysDate,settlementDate,h,dayCounter)
     else:
-        self._old___init__(currency,dayCounter,todaysDate,
-                           settlementDate,forward)
+        self._old___init__(todaysDate,settlementDate,forward,dayCounter)
 FlatForward.__init__ = FlatForward_new___init__

@@ -24,15 +24,18 @@
 using QuantLib::Math::NormalDistribution;
 using QuantLib::Math::CumulativeNormalDistribution;
 using QuantLib::Math::InvCumulativeNormalDistribution;
-using QuantLib::Math::InvCumulativeNormalDistribution2;
 %}
 
 #if defined(SWIGRUBY)
-%rename(__call__) operator();
+%rename(__call__) NormalDistribution::operator();
+%rename(__call__) CumulativeNormalDistribution::operator();
+%rename(__call__) InvCumulativeNormalDistribution::operator();
 #endif
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(call) operator();
+%rename(call) NormalDistribution::operator();
+%rename(call) CumulativeNormalDistribution::operator();
+%rename(call) InvCumulativeNormalDistribution::operator();
 #endif
 
 
@@ -55,13 +58,6 @@ class InvCumulativeNormalDistribution {
     InvCumulativeNormalDistribution(double average = 0.0, double sigma = 1.0);
     double operator()(double x);
 };
-
-class InvCumulativeNormalDistribution2 {
-  public:
-    InvCumulativeNormalDistribution2(double average = 0.0, double sigma = 1.0);
-    double operator()(double x);
-};
-
 
 
 #endif

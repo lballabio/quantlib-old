@@ -42,8 +42,8 @@ def flatCurve(forward):
     today = Date_todaysDate()
     settlement = Calendar("TARGET").advance(today,2,'days')
     return TermStructureHandle(
-        FlatForward('EUR', DayCounter('act/360'),
-                    today, settlement, MarketElementHandle(forward)))
+        FlatForward(today, settlement, MarketElementHandle(forward),
+                    DayCounter('act/360')))
 
 class EuropeanOptionTest(unittest.TestCase):
     def testGreeks(self):
@@ -229,7 +229,7 @@ Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s
     corresponding price: %(value2)f
                                   """ % locals()
 
-    def testBinomialEngine(self):
+    def testBinomialEngines(self):
         "Testing binomial European engines against analytic results"
 
         tolerance = 0.1

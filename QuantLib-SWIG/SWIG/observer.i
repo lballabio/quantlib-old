@@ -175,8 +175,8 @@ class MzObserver : public Observer {
 
 // MzScheme wrapper
 %rename(Observer) MzObserver;
-%rename("register-with")   registerWith;
-%rename("unregister-with") unregisterWith;
+%rename("register-with")   MzObserver::registerWith;
+%rename("unregister-with") MzObserver::unregisterWith;
 class MzObserver {
   public:
 	MzObserver(Scheme_Object* callback);
@@ -210,8 +210,8 @@ class GuileObserver : public Observer {
 
 // Guile wrapper
 %rename(Observer) GuileObserver;
-%rename("register-with")   registerWith;
-%rename("unregister-with") unregisterWith;
+%rename("register-with")   GuileObserver::registerWith;
+%rename("unregister-with") GuileObserver::unregisterWith;
 class GuileObserver {
   public:
 	GuileObserver(SCM callback);

@@ -51,7 +51,6 @@ class DistributionTest(unittest.TestCase):
         normal = QuantLib.NormalDistribution(average, sigma)
         cum = QuantLib.CumulativeNormalDistribution(average, sigma)
         invCum = QuantLib.InvCumulativeNormalDistribution(average, sigma)
-        invCum2 = QuantLib.InvCumulativeNormalDistribution2(average, sigma)
 
         xMin = average - 4*sigma
         xMax = average + 4*sigma
@@ -66,7 +65,6 @@ class DistributionTest(unittest.TestCase):
         yTemp = map(normal, x)
         y2Temp = map(cum.derivative, x)
         xTemp = map(invCum, yIntegrated)
-        xTemp2 = map(invCum2, yIntegrated)
         yd = map(normal.derivative, x)
         ydTemp = map(lambda x: gaussianDerivative(x,average,sigma), x)
 
@@ -83,14 +81,6 @@ tolerance exceeded
         if not (e <= 1.0e-3):
             self.fail("""
 norm of C++ invCum(cum(.)) minus identity: %(e)5.2e
-tolerance exceeded
-                      """ % locals())
-
-        #check invCum2(cum) = Identity
-        e = norm(map(lambda x,y:x-y,xTemp2,x),h)
-        if not (e <= 1.0e-3):
-            self.fail("""
-norm of C++ invCum2(cum(.)) minus identity: %(e)5.2e
 tolerance exceeded
                       """ % locals())
 

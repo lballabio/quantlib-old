@@ -69,7 +69,6 @@ class DistributionTest < RUNIT::TestCase
     normal = QuantLib::NormalDistribution.new(average, sigma)
     cum =    QuantLib::CumulativeNormalDistribution.new(average, sigma)
     invCum = QuantLib::InvCumulativeNormalDistribution.new(average, sigma)
-    invCum2 = QuantLib::InvCumulativeNormalDistribution2.new(average, sigma)
 
     xMin = average - 4*sigma
     xMax = average + 4*sigma
@@ -86,7 +85,6 @@ class DistributionTest < RUNIT::TestCase
     yTemp       = x.map { |z| normal.call(z) }
     y2Temp      = x.map { |z| cum.derivative(z) }
     xTemp       = yIntegrated.map { |z| invCum.call(z) }
-    xTemp2      = yIntegrated.map { |z| invCum2.call(z) }
     yd          = x.map { |z| normal.derivative(z) }
     ydTemp      = x.map { |z| gaussianDerivative(z,average,sigma) }
 
@@ -101,12 +99,6 @@ class DistributionTest < RUNIT::TestCase
     e = xTemp.diff(x).norm(h)
     unless e <= 1.0e-3
       assert_fail("\nnorm of C++ invCum(cum(.)) minus identity: #{e}\n")
-    end
-
-    # check invCum2(cum) = Identity
-    e = xTemp2.diff(x).norm(h)
-    unless e <= 1.0e-3
-      assert_fail("\nnorm of C++ invCum2(cum(.)) minus identity: #{e}\n")
     end
 
     # check cum.derivative=normal

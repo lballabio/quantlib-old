@@ -68,25 +68,25 @@ using QuantLib::FiniteDifferences::TridiagonalOperator;
 %}
 
 #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-%rename(__add__) add;
-%rename(__sub__) sub;
-%rename(__mul__) mul;
-%rename(__div__) div;
+%rename(__add__) TridiagonalOperator::add;
+%rename(__sub__) TridiagonalOperator::sub;
+%rename(__mul__) TridiagonalOperator::mul;
+%rename(__div__) TridiagonalOperator::div;
 #endif
 #if defined(SWIGRUBY)
-%rename("lowerBC=")  setLowerBC;
-%rename("upperBC=")  setUpperBC;
-%rename("firstRow=") setFirstRow;
-%rename("midRow=")   setMidRow;
-%rename("midRows=")  setMidRows;
-%rename("lastRow=")  setLastRow;
+%rename("lowerBC=")  TridiagonalOperator::setLowerBC;
+%rename("upperBC=")  TridiagonalOperator::setUpperBC;
+%rename("firstRow=") TridiagonalOperator::setFirstRow;
+%rename("midRow=")   TridiagonalOperator::setMidRow;
+%rename("midRows=")  TridiagonalOperator::setMidRows;
+%rename("lastRow=")  TridiagonalOperator::setLastRow;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("lowerBC-set!")  setLowerBC;
-%rename("upperBC-set!")  setUpperBC;
-%rename("firstRow-set!") setFirstRow;
-%rename("midRow-set!")   setMidRow;
-%rename("midRows-set!")  setMidRows;
-%rename("lastRow-set!")  setLastRow;
+%rename("lowerBC-set!")  TridiagonalOperator::setLowerBC;
+%rename("upperBC-set!")  TridiagonalOperator::setUpperBC;
+%rename("firstRow-set!") TridiagonalOperator::setFirstRow;
+%rename("midRow-set!")   TridiagonalOperator::setMidRow;
+%rename("midRows-set!")  TridiagonalOperator::setMidRows;
+%rename("lastRow-set!")  TridiagonalOperator::setLastRow;
 #endif
 #if defined(SWIGGUILE)
 %scheme %{

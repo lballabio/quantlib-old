@@ -33,11 +33,11 @@ using QuantLib::Indexes::XiborManager;
 %}
 
 #if defined(SWIGRUBY)
-%rename("hasHistory?") hasHistory;
+%rename("hasHistory?") XiborManager::hasHistory;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("has-history?") hasHistory;
-%rename("history-get")  getHistory;
-%rename("history-set!") setHistory;
+%rename("has-history?") XiborManager::hasHistory;
+%rename("history-get")  XiborManager::getHistory;
+%rename("history-set!") XiborManager::setHistory;
 #endif
 
 class XiborManager {
@@ -58,7 +58,7 @@ using QuantLib::Index;
 %}
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(">string") __str__;
+%rename(">string") Handle<Index>::__str__;
 #endif
 %template(Index) Handle<Index>;
 %extend Handle<Index> {
@@ -91,11 +91,11 @@ typedef Handle<Index> XiborHandle;
 %}
 
 #if defined(SWIGRUBY)
-%rename("isAdjusted?") isAdjusted;
+%rename("isAdjusted?") XiborHandle::isAdjusted;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("is-adjusted?")       isAdjusted;
-%rename("rolling-convention") rollingConvention;
-%rename("day-counter")        dayCounter;
+%rename("is-adjusted?")       XiborHandle::isAdjusted;
+%rename("rolling-convention") XiborHandle::rollingConvention;
+%rename("day-counter")        XiborHandle::dayCounter;
 #endif
 %name(Xibor) class XiborHandle : public Handle<Index> {};
 %extend XiborHandle {

@@ -190,16 +190,16 @@ bool extractArray(PyObject* source, Array* target) {
 #endif
 
 #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-%rename(__len__) size;
+%rename(__len__) Array::size;
 #endif
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("length")  size;
-%rename("add")     __add__;
-%rename("sub")     __sub__;
-%rename("div")     __div__;
-%rename(">string") __str__;
-%rename("set!")    set;
+%rename("length")  Array::size;
+%rename("add")     Array::__add__;
+%rename("sub")     Array::__sub__;
+%rename("div")     Array::__div__;
+%rename(">string") Array::__str__;
+%rename("set!")    Array::set;
 // aliases
 #if defined(SWIGGUILE)
 %scheme %{
@@ -354,8 +354,8 @@ class LexicographicalViewColumn {
 #endif
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(">string") __str__;
-%rename("set!")    set;
+%rename(">string") LexicographicalView::__str__;
+%rename("set!")    LexicographicalView::set;
 #endif
 
 class LexicographicalView {
@@ -791,16 +791,16 @@ class MatrixRow {
 #endif
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("set!")     setitem;
-%rename(">string")  __str__;
-%rename("add")      __add__;
-%rename("sub")      __sub__;
-%rename("mul")      __mul__;
-%rename("div")      __div__;
-%rename("Matrix-transpose")    transpose;
-%rename("Array-outer-product") outerProduct;
-%rename("Matrix-product")      matrixProduct;
-%rename("Matrix-sqrt")         matrixSqrt;
+%rename("set!")     Matrix::setitem;
+%rename(">string")  Matrix::__str__;
+%rename("add")      Matrix::__add__;
+%rename("sub")      Matrix::__sub__;
+%rename("mul")      Matrix::__mul__;
+%rename("div")      Matrix::__div__;
+%rename("Matrix-transpose")    Matrix::transpose;
+%rename("Array-outer-product") Matrix::outerProduct;
+%rename("Matrix-product")      Matrix::matrixProduct;
+%rename("Matrix-sqrt")         Matrix::matrixSqrt;
 // aliases
 #if defined(SWIGGUILE)
 %scheme %{

@@ -61,9 +61,9 @@ typedef Handle<MarketElement> SimpleMarketElementHandle;
 %}
 
 #if defined(SWIGRUBY)
-%rename("value=") setValue;
+%rename("value=") SimpleMarketElementHandle::setValue;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("value-set!") setValue;
+%rename("value-set!") SimpleMarketElementHandle::setValue;
 #endif
 
 // Fake inheritance between Handles

@@ -29,18 +29,18 @@ using QuantLib::Math::RiskMeasures;
 %}
 
 #if defined(SWIGRUBY)
-%rename("reset!")                reset;
+%rename("reset!")                RiskStatistics::reset;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("add-sequence")          addSequence;
-%rename("add-weighted-sequence") addWeightedSequence;
-%rename("standard-deviation")    standardDeviation;
-%rename("error-estimate")        errorEstimate;
-%rename("potential-upside")      potentialUpside;
-%rename("value-at-risk")         valueAtRisk;
-%rename("average-shortfall")     averageShortfall;
-%rename("expected-shortfall")    expectedShortfall;
-%rename("weight-sum")            weightSum;
-%rename("reset!")                reset;
+%rename("add-sequence")          RiskStatistics::addSequence;
+%rename("add-weighted-sequence") RiskStatistics::addWeightedSequence;
+%rename("standard-deviation")    RiskStatistics::standardDeviation;
+%rename("error-estimate")        RiskStatistics::errorEstimate;
+%rename("potential-upside")      RiskStatistics::potentialUpside;
+%rename("value-at-risk")         RiskStatistics::valueAtRisk;
+%rename("average-shortfall")     RiskStatistics::averageShortfall;
+%rename("expected-shortfall")    RiskStatistics::expectedShortfall;
+%rename("weight-sum")            RiskStatistics::weightSum;
+%rename("reset!")                RiskStatistics::reset;
 #endif
 
 

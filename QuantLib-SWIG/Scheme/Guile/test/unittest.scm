@@ -67,7 +67,7 @@
 							 (test-msg (cdr test))
 							 (handler
 							  (lambda (key . args)
-								(display "failed. ") (newline) 
+								(display "failed ") (newline) 
                                 (flush-all-ports)
 								(add-error test-msg
                                            (apply format 
@@ -77,7 +77,7 @@
                                 (display test-msg) (display "... ") 
                                 (flush-all-ports)
                                 (test-proc)
-                                (display "ok. ") (newline) 
+                                (display "ok ") (newline) 
                                 (flush-all-ports))))
                       (catch #t run-test handler))))
 				 (run-all-tests

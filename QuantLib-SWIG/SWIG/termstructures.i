@@ -33,12 +33,17 @@ using QuantLib::TermStructure;
 %}
 
 // resolve overloadings
-%rename(discount_vs_time)  discount(Time,bool);
-%rename(discount_vs_date)  discount(const Date&,bool);
-%rename(zeroYield_vs_time) zeroYield(Time,bool);
-%rename(zeroYield_vs_date) zeroYield(const Date&,bool);
-%rename(forward_vs_time)   forward(Time,bool);
-%rename(forward_vs_date)   forward(const Date&,bool);
+%rename(discount_vs_time)  Handle<TermStructure>::discount(Time,bool);
+%rename(discount_vs_date)  Handle<TermStructure>::discount(const Date&,bool);
+%rename(zeroYield_vs_time) Handle<TermStructure>::zeroYield(Time,bool);
+%rename(zeroYield_vs_date) Handle<TermStructure>::zeroYield(const Date&,bool);
+%rename(forward_vs_time)   Handle<TermStructure>::forward(Time,Time,bool);
+%rename(forward_vs_date)   Handle<TermStructure>::forward(const Date&,
+                                                          const Date&,bool);
+%rename(instantaneousForward_vs_time) 
+    Handle<TermStructure>::instantaneousForward(Time,bool);
+%rename(instantaneousForward_vs_date) 
+    Handle<TermStructure>::instantaneousForward(const Date&,bool);
 #if defined(SWIGPYTHON)
 %feature("shadow") Handle<TermStructure>::discount() %{
     def discount(self,x,extrapolate=0):
@@ -55,11 +60,18 @@ using QuantLib::TermStructure;
             return self.zeroYield_vs_date(x,extrapolate)
 %}
 %feature("shadow") Handle<TermStructure>::forward() %{
-    def forward(self,x,extrapolate=0):
-        if type(x) == type(0.0) or type(x) == type(0):
-            return self.forward_vs_time(x,extrapolate)
+    def forward(self,x1,x2,extrapolate=0):
+        if type(x1) == type(0.0) or type(x1) == type(0):
+            return self.forward_vs_time(x1,x2,extrapolate)
         else:
-            return self.forward_vs_date(x,extrapolate)
+            return self.forward_vs_date(x1,x2,extrapolate)
+%}
+%feature("shadow") Handle<TermStructure>::instantaneousForward() %{
+    def instantaneousForward(self,x,extrapolate=0):
+        if type(x) == type(0.0) or type(x) == type(0):
+            return self.instantaneousForward_vs_time(x,extrapolate)
+        else:
+            return self.instantaneousForward_vs_date(x,extrapolate)
 %}
 #elif defined(SWIGGUILE)
 %scheme%{
@@ -68,42 +80,44 @@ using QuantLib::TermStructure;
         (if (number? x)
             (set! method TermStructure-discount-vs-time)
             (set! method TermStructure-discount-vs-date))
-        (apply method (cons self (cons x extrapolate)))))
+        (apply method self x extrapolate)))
     (define (TermStructure-zero-yield self x . extrapolate)
       (let ((method #f))
         (if (number? x)
             (set! method TermStructure-zeroYield-vs-time)
             (set! method TermStructure-zeroYield-vs-date))
-        (apply method (cons self (cons x extrapolate)))))
-    (define (TermStructure-forward self x . extrapolate)
+        (apply method self x extrapolate)))
+    (define (TermStructure-forward self x1 x2 . extrapolate)
       (let ((method #f))
-        (if (number? x)
+        (if (number? x1)
             (set! method TermStructure-forward-vs-time)
             (set! method TermStructure-forward-vs-date))
-        (apply method (cons self (cons x extrapolate)))))
+        (apply method self x1 x2 extrapolate)))
+    (define (TermStructure-instantaneous-forward self x . extrapolate)
+      (let ((method #f))
+        (if (number? x)
+            (set! method TermStructure-instantaneousForward-vs-time)
+            (set! method TermStructure-instantaneousForward-vs-date))
+        (apply method self x extrapolate)))
     (export TermStructure-discount
             TermStructure-zero-yield
-            TermStructure-forward)
+            TermStructure-forward
+            TermStructure-instantaneous-forward)
 %}
 #endif
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("todays-date")     todaysDate;
-%rename("day-counter")     dayCounter;
-%rename("settlement-date") settlementDate;
-%rename("min-date")        minDate;
-%rename("max-date")        maxDate;
-%rename("min-time")        minTime;
-%rename("max-time")        maxTime;
-%rename("zero-yield")      zeroYield;
+%rename("todays-date")     Handle<TermStructure>::todaysDate;
+%rename("day-counter")     Handle<TermStructure>::dayCounter;
+%rename("settlement-date") Handle<TermStructure>::settlementDate;
+%rename("max-date")        Handle<TermStructure>::maxDate;
+%rename("max-time")        Handle<TermStructure>::maxTime;
+%rename("zero-yield")      Handle<TermStructure>::zeroYield;
 #endif
 
 %template(TermStructure) Handle<TermStructure>;
 IsObservable(Handle<TermStructure>);
 %extend Handle<TermStructure> {
-	Currency currency() {
-		return (*self)->currency();
-	}
 	Date todaysDate() {
 		return (*self)->todaysDate();
 	}
@@ -115,15 +129,6 @@ IsObservable(Handle<TermStructure>);
 	}
 	Date maxDate() {
 		return (*self)->maxDate();
-	}
-	Date minDate() {
-		return (*self)->minDate();
-	}
-	Time maxTime() {
-		return (*self)->maxTime();
-	}
-	Time minTime() {
-		return (*self)->minTime();
 	}
 	DiscountFactor discount(const Date& d, bool extrapolate = false) {
 		return (*self)->discount(d, extrapolate);
@@ -137,17 +142,24 @@ IsObservable(Handle<TermStructure>);
 	Rate zeroYield(Time t, bool extrapolate = false) {
 		return (*self)->zeroYield(t, extrapolate);
 	}
-	Rate forward(const Date& d, bool extrapolate = false) {
-		return (*self)->forward(d, extrapolate);
+	Rate forward(const Date& d1, const Date& d2, bool extrapolate = false) {
+		return (*self)->forward(d1, d2, extrapolate);
 	}
-	Rate forward(Time t, bool extrapolate = false) {
-		return (*self)->forward(t, extrapolate);
+	Rate forward(Time t1, Time t2, bool extrapolate = false) {
+		return (*self)->forward(t1, t2, extrapolate);
+	}
+	Rate instantaneousForward(const Date& d, bool extrapolate = false) {
+		return (*self)->instantaneousForward(d, extrapolate);
+	}
+	Rate instantaneousForward(Time t, bool extrapolate = false) {
+		return (*self)->instantaneousForward(t, extrapolate);
 	}
     #if defined(SWIGPYTHON)
     // Hooks for shadow methods
     void discount() {}
     void zeroYield() {}
     void forward() {}
+    void instantaneousForward() {}
     #endif
 }
 
@@ -232,27 +244,24 @@ typedef Handle<TermStructure> FlatForwardHandle;
 %rename(FlatForward) FlatForwardHandle;
 class FlatForwardHandle : public Handle<TermStructure> {};
 %extend FlatForwardHandle {
-    FlatForwardHandle(Currency currency, const DayCounter& dayCounter,
-                      const Date& todaysDate, const Date& settlementDate, 
-                      const RelinkableHandle<MarketElement>& forward) {
+    FlatForwardHandle(const Date& todaysDate, const Date& settlementDate, 
+                      const RelinkableHandle<MarketElement>& forward,
+                      const DayCounter& dayCounter) {
 	    return new FlatForwardHandle(
-	        new FlatForward(currency,dayCounter,todaysDate,
-                            settlementDate,forward));
+	        new FlatForward(todaysDate, settlementDate,forward,dayCounter));
     }
 }
 #if defined(SWIGGUILE)
 %scheme %{
     (define FlatForward-old-init new-FlatForward)
-    (define (new-FlatForward currency dayCounter today settlement forward)
+    (define (new-FlatForward today settlement forward dayCounter)
       (if (number? forward)
-          (let* ((m (new-SimpleMarketElement forward))
-                 (h (new-MarketElementHandle m))
-                 (ff (FlatForward-old-init currency dayCounter 
-                                           today settlement h)))
-            (delete-MarketElementHandle h)
-            (delete-MarketElement m)
-            ff)
-          (FlatForward-old-init currency dayCounter today settlement forward)))
+          (deleting-let* ((m (new-SimpleMarketElement forward)
+                           delete-MarketElement)
+                          (h (new-MarketElementHandle m)
+                           delete-MarketElementHandle))
+           (FlatForward-old-init today settlement h dayCounter))
+          (FlatForward-old-init today settlement forward dayCounter)))
 %}
 #endif
 

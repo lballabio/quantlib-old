@@ -33,8 +33,8 @@ class TermStructureTest(unittest.TestCase):
         else:
             today = Date_todaysDate()
         settlement = Calendar('TARGET').advance(today,2,'days')
-        self.termStructure = FlatForward('EUR',DayCounter('act/365'),
-                                         today,settlement,0.05)
+        self.termStructure = FlatForward(today,settlement,0.05,
+                                         DayCounter('act/365'))
     def testImplied(self):
         "Testing consistency of implied term structure"
         tolerance = 1.0e-10
@@ -73,8 +73,8 @@ unable to reproduce discount from implied curve
         h = TermStructureHandle(self.termStructure)
         spreaded = ForwardSpreadedTermStructure(h,mh)
         test_date = self.termStructure.todaysDate().plusYears(5)
-        forward = self.termStructure.forward(test_date)
-        spreaded_forward = spreaded.forward(test_date)
+        forward = self.termStructure.instantaneousForward(test_date)
+        spreaded_forward = spreaded.instantaneousForward(test_date)
         if abs((forward+me.value())-spreaded_forward) > tolerance:
             self.fail("""
 unable to reproduce forward from spreaded curve

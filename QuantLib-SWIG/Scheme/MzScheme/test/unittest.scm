@@ -67,17 +67,17 @@
                          (test-msg (cdr test))
                          (handle-string
                           (lambda (str)
-                            (display "failed. ") (newline) (flush-output)
+                            (display "failed ") (newline) (flush-output)
                             (add-error test-msg str)))
                          (handle-exn
                           (lambda (e)
-                            (display "failed. ") (newline) (flush-output)
+                            (display "failed ") (newline) (flush-output)
                             (add-error test-msg (exn-message e)))))
                     (with-handlers ((string? handle-string)
                                     (exn? handle-exn))
                       (display test-msg) (display "... ") (flush-output)
                       (test-proc)
-                      (display "ok. ") (newline) (flush-output)))))
+                      (display "ok ") (newline) (flush-output)))))
                (run-all-tests
                 (lambda () (for-each run-single-test test-list))))
 		  (let-values (((a b c d)

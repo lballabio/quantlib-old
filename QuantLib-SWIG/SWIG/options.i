@@ -78,8 +78,8 @@ typedef Handle<Instrument> VanillaOptionHandle;
 %}
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("dividend-rho") dividendRho;
-%rename("implied-volatility") impliedVolatility;
+%rename("dividend-rho")       VanillaOptionHandle::dividendRho;
+%rename("implied-volatility") VanillaOptionHandle::impliedVolatility;
 #endif
 
 %rename(VanillaOption) VanillaOptionHandle;

@@ -34,12 +34,10 @@ using QuantLib::StringFormatter;
 %}
 
 #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("null?") isNull;
+%rename("null?") Handle::isNull;
 #endif
 template <class T>
 class Handle {
-  private:
-    Handle();
   public:
     #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     bool isNull();
@@ -53,9 +51,9 @@ class Handle {
 };
 
 #if defined(SWIGRUBY)
-%rename("linkTo!") linkTo;
+%rename("linkTo!") RelinkableHandle::linkTo;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("link-to!") linkTo;
+%rename("link-to!") RelinkableHandle::linkTo;
 #endif
 template <class T>
 class RelinkableHandle {

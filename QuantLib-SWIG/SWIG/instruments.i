@@ -31,13 +31,13 @@ using QuantLib::Instrument;
 %}
 
 #if defined(SWIGRUBY)
-%rename("isExpired?")   isExpired;
-%rename("recalculate!") recalculate;
+%rename("isExpired?")   Handle<Instrument>::isExpired;
+%rename("recalculate!") Handle<Instrument>::recalculate;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("isin-code")    isinCode;
-%rename(">string")      __str__;
-%rename("expired?")     isExpired;
-%rename("recalculate!") recalculate;
+%rename("isin-code")    Handle<Instrument>::isinCode;
+%rename(">string")      Handle<Instrument>::__str__;
+%rename("expired?")     Handle<Instrument>::isExpired;
+%rename("recalculate!") Handle<Instrument>::recalculate;
 #endif
 %template(Instrument) Handle<Instrument>;
 IsObservable(Handle<Instrument>);

@@ -172,9 +172,9 @@ class HistoryValidIterator {
 
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("first-date") firstDate;
-%rename("last-date")  lastDate;
-%rename("length")     __len__;
+%rename("first-date") History::firstDate;
+%rename("last-date")  History::lastDate;
+%rename("length")     History::__len__;
 #endif
 
 class History {

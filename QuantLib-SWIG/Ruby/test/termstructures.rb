@@ -23,13 +23,26 @@ require 'runit/cui/testrunner'
 class TermStructureTest < RUNIT::TestCase
   include QuantLib
   def name
-    "Testing basic term structures..."
+    case @method
+      when 'testImplied'
+        "Testing consistency of implied term structure..."
+      when 'testImpliedObs'
+        "Testing observability of implied term structure..."
+      when 'testFSpreaded'
+        "Testing consistency of forward-spreaded term structure..."
+      when 'testFSpreadedObs'
+        "Testing observability of forward-spreaded term structure..."
+      when 'testZSpreaded'
+        "Testing consistency of zero-spreaded term structure..."
+      when 'testZSpreadedObs'
+        "Testing observability of zero-spreaded term structure..."
+    end
   end
   def setup
     today = Date::todaysDate()
     settlement = Calendar.new('TARGET').advance(today,2,'days')
-    @termStructure = FlatForward.new('EUR',DayCounter.new('act/365'),
-                                     today,settlement,0.05)
+    @termStructure = FlatForward.new(today,settlement,0.05,
+                                     DayCounter.new('act/365'))
   end
   def testImplied
     tolerance = 1.0e-10
@@ -72,8 +85,8 @@ unable to reproduce discount from implied curve
     h = TermStructureHandle.new(@termStructure)
     spreaded = ForwardSpreadedTermStructure.new(h,mh)
     test_date = @termStructure.todaysDate.plusYears(5)
-    forward = @termStructure.forward(test_date)
-    spreaded_forward = spreaded.forward(test_date)
+    forward = @termStructure.instantaneousForward(test_date)
+    spreaded_forward = spreaded.instantaneousForward(test_date)
     unless ((forward+me.value)-spreaded_forward).abs <= tolerance
       assert_fail(<<-MESSAGE
 

@@ -54,6 +54,22 @@ suite.add_test(Solver1DTest.suite)
 suite.add_test(StatisticsTest.suite)
 suite.add_test(TermStructureTest.suite)
 
+module RUNIT
+  module CUI
+    class TestRunner
+      def add_failure(at, err)
+        @io.print("failed")
+      end
+      def add_error(at, err)
+        @io.print("error")
+      end
+      def end_test(t)
+        @io.print("ok")
+      end
+    end
+  end
+end
+
 result = RUNIT::CUI::TestRunner.run(suite)
 unless result.succeed?
   exit(1)

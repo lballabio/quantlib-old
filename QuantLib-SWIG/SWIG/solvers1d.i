@@ -36,16 +36,16 @@ using QuantLib::Solvers1D::Secant;
 %}
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("max-evaluations-set!") setMaxEvaluations;
-%rename("lower-bound-set!")     setLowerBound;
-%rename("upper-bound-set!")     setUpperBound;
-%rename("bracketed-solve")      bracketedSolve;
+%rename("max-evaluations-set!") Solver1D::setMaxEvaluations;
+%rename("lower-bound-set!")     Solver1D::setLowerBound;
+%rename("upper-bound-set!")     Solver1D::setUpperBound;
+%rename("bracketed-solve")      Solver1D::bracketedSolve;
 #endif
 
 #if defined(SWIGRUBY)
-%rename("maxEvaluations=") setMaxEvaluations;
-%rename("lowerBound=")     setLowerBound;
-%rename("upperBound=")     setUpperBound;
+%rename("maxEvaluations=") Solver1D::setMaxEvaluations;
+%rename("lowerBound=")     Solver1D::setLowerBound;
+%rename("upperBound=")     Solver1D::setUpperBound;
 #endif
 
 class Solver1D {

@@ -23,7 +23,18 @@ require 'runit/cui/testrunner'
 class SimpleSwapTest < RUNIT::TestCase
   include QuantLib
   def name
-    "Testing simple swaps..."
+    case @method
+      when 'testFairRate'
+        "Testing simple swap calculation of fair fixed rate..."
+      when 'testFairSpread'
+        "Testing simple swap calculation of fair floating spread..."
+      when 'testRateDependency'
+        "Testing simple swap dependency on fixed rate..."
+      when 'testSpreadDependency'
+        "Testing simple swap dependency on floating spread..."
+      when 'testCachedValue'
+        "Testing simple swap calculation against cached value..."
+    end
   end
   def setup
     @payFixed = true
@@ -44,8 +55,8 @@ class SimpleSwapTest < RUNIT::TestCase
     @settlement = @calendar.advance(@today,
                                     @settlementDays, "days",
                                     "following")
-    termStructure = FlatForward.new('EUR', DayCounter.new('Act/365'),
-                                    @today, @settlement, 0.05)
+    termStructure = FlatForward.new(@today, @settlement, 0.05,
+                                    DayCounter.new('Act/365'))
     @euriborHandle.linkTo!(termStructure)
   end
   def makeSwap(length,fixedRate,floatingSpread)
@@ -165,8 +176,8 @@ class SimpleSwapTest < RUNIT::TestCase
     @settlement = @calendar.advance(@today,
                                     @settlementDays, "days",
                                     "following")
-    termStructure = FlatForward.new('EUR', DayCounter.new('Act/365'),
-                                    @today, @settlement, 0.05)
+    termStructure = FlatForward.new(@today, @settlement, 0.05,
+                                    DayCounter.new('Act/365'))
     @euriborHandle.linkTo!(termStructure)
 
     swap = makeSwap(10,0.06,0.001)

@@ -115,11 +115,18 @@ module QuantLibc
         zeroYield_vs_date(x,extrapolate)
       end
     end
-    def forward(x,extrapolate=false)
-      if (x.is_a? Float) || (x.is_a? Integer)
-        forward_vs_time(x,extrapolate)
+    def forward(x1,x2,extrapolate=false)
+      if (x1.is_a? Float) || (x1.is_a? Integer)
+        forward_vs_time(x1,x2,extrapolate)
       else
-        forward_vs_date(x,extrapolate)
+        forward_vs_date(x1,x2,extrapolate)
+      end
+    end
+    def instantaneousForward(x,extrapolate=false)
+      if (x.is_a? Float) || (x.is_a? Integer)
+        instantaneousForward_vs_time(x,extrapolate)
+      else
+        instantaneousForward_vs_date(x,extrapolate)
       end
     end
   end
@@ -136,15 +143,12 @@ module QuantLibc
 
   class FlatForward
     alias cpp_initialize initialize
-    def initialize(currency,dayCounter,todaysDate,\
-                   settlementDate,forward)
+    def initialize(todaysDate,settlementDate,forward,dayCounter)
       if (forward.is_a? Float) || (forward.is_a? Integer)
         h = MarketElementHandle.new(SimpleMarketElement.new(forward))
-        cpp_initialize(currency,dayCounter,todaysDate,\
-                       settlementDate,h)
+        cpp_initialize(todaysDate,settlementDate,h,dayCounter)
       else
-        cpp_initialize(currency,dayCounter,todaysDate,\
-                       settlementDate,forward)
+        cpp_initialize(todaysDate,settlementDate,forward,dayCounter)
       end
     end
   end

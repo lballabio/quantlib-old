@@ -30,16 +30,16 @@ using QuantLib::Math::Statistics;
 %}
 
 #if defined(SWIGRUBY)
-%rename("reset!")                reset;
+%rename("reset!")                Statistics::reset;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("weight-sum")            weightSum;
-%rename("standard-deviation")    standardDeviation;
-%rename("downside-variance")     downsideVariance;
-%rename("downside-deviation")    downsideDeviation;
-%rename("error-estimate")        errorEstimate;
-%rename("add-sequence")          addSequence;
-%rename("add-weighted-sequence") addWeightedSequence;
-%rename("reset!")                reset;
+%rename("weight-sum")            Statistics::weightSum;
+%rename("standard-deviation")    Statistics::standardDeviation;
+%rename("downside-variance")     Statistics::downsideVariance;
+%rename("downside-deviation")    Statistics::downsideDeviation;
+%rename("error-estimate")        Statistics::errorEstimate;
+%rename("add-sequence")          Statistics::addSequence;
+%rename("add-weighted-sequence") Statistics::addWeightedSequence;
+%rename("reset!")                Statistics::reset;
 #endif
 
 class Statistics {

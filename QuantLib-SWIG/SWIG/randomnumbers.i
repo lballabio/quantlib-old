@@ -30,29 +30,32 @@ using QuantLib::RandomNumbers::KnuthUniformRng;
 using QuantLib::RandomNumbers::BoxMullerGaussianRng;
 using QuantLib::RandomNumbers::CLGaussianRng;
 using QuantLib::RandomNumbers::ICGaussianRng;
-
-typedef QuantLib::MonteCarlo::Sample<double> SampleNumber;
+using QuantLib::MonteCarlo::Sample;
+// typedef QuantLib::MonteCarlo::Sample<double> SampleNumber;
 %}
 
-class SampleNumber {
+template <class T>
+class Sample {
+    ReturnByValue(Sample<T>);
+  private:
+    Sample();
   public:
     %immutable;
-    double value;
+    T value;
     double weight;
     %mutable;
-  private:
-    SampleNumber();
 };
 
+%template(SampleNumber) Sample<double>;
 #if defined(SWIGMZSCHEME)
 // more convenient than redefining methods everywhere
-%typemap(out) SampleNumber {
-    $result = SWIG_MakePtr(new SampleNumber($1),$&1_descriptor);
-}
+//%typemap(out) SampleNumber {
+//    $result = SWIG_MakePtr(new SampleNumber($1),$&1_descriptor);
+//}
 #elif defined(SWIGGUILE)
-%typemap(out) SampleNumber {
-    $result = SWIG_Guile_MakePtr(new SampleNumber($1),$&1_descriptor);
-}
+//%typemap(out) SampleNumber {
+//    $result = SWIG_Guile_MakePtr(new SampleNumber($1),$&1_descriptor);
+//}
 %scheme%{
     (define SampleNumber-value  SampleNumber-value-get)
     (define SampleNumber-weight SampleNumber-weight-get)
@@ -65,31 +68,31 @@ class SampleNumber {
 class UniformRandomGenerator {
   public:
     UniformRandomGenerator(long seed=0);
-    SampleNumber next() const;
+    Sample<double> next() const;
 };
 
 class GaussianRandomGenerator {
   public:
     GaussianRandomGenerator(long seed=0);
-    SampleNumber next() const;
+    Sample<double> next() const;
 };
 
 class LecuyerUniformRng {
   public:
     LecuyerUniformRng(long seed=0);
-    SampleNumber next() const;
+    Sample<double> next() const;
 };
 
 class KnuthUniformRng {
   public:
     KnuthUniformRng(long seed=0);
-    SampleNumber next() const;
+    Sample<double> next() const;
 };
 
 template<class RNG> class BoxMullerGaussianRng {
   public:
     BoxMullerGaussianRng(long seed = 0);
-    SampleNumber next() const;
+    Sample<double> next() const;
 };
 
 %template(BoxMullerLecuyerGaussianRng) BoxMullerGaussianRng<LecuyerUniformRng>;
@@ -98,7 +101,7 @@ template<class RNG> class BoxMullerGaussianRng {
 template<class RNG> class CLGaussianRng {
   public:
     CLGaussianRng(long seed = 0);
-    SampleNumber next() const;
+    Sample<double> next() const;
 };
 
 %template(CentralLimitLecuyerGaussianRng) CLGaussianRng<LecuyerUniformRng>;
@@ -107,7 +110,7 @@ template<class RNG> class CLGaussianRng {
 template<class RNG, class F> class ICGaussianRng {
   public:
     ICGaussianRng(long seed = 0);
-    SampleNumber next() const;
+    Sample<double> next() const;
 };
 
 %template(InvCumulativeLecuyerGaussianRng)

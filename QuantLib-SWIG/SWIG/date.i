@@ -124,7 +124,7 @@ using QuantLib::Period;
 %}
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(">string")        __str__;
+%rename(">string")        Period::__str__;
 %rename("string->Period") PeriodFromString;
 #endif
 
@@ -172,24 +172,24 @@ using QuantLib::DateFormatter;
 %}
 
 #if defined(SWIGRUBY)
-%rename(__add__) operator+;
-%rename(__sub__) operator-;
+%rename(__add__) Date::operator+;
+%rename(__sub__) Date::operator-;
 #endif
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("day-of-month")   dayOfMonth;
-%rename("day-of-year")    dayOfYear;
-%rename("weekday-number") weekdayNumber;
-%rename("serial-number")  serialNumber;
-%rename("plus-days")      plusDays;
-%rename("plus-weeks")     plusWeeks;
-%rename("plus-months")    plusMonths;
-%rename("plus-years")     plusYears;
-%rename("is-leap?")       isLeap;
-%rename("min-date")       minDate;
-%rename("max-date")       maxDate;
-%rename("todays-date")    todaysDate;
-%rename(">string")        __str__;
+%rename("day-of-month")   Date::dayOfMonth;
+%rename("day-of-year")    Date::dayOfYear;
+%rename("weekday-number") Date::weekdayNumber;
+%rename("serial-number")  Date::serialNumber;
+%rename("plus-days")      Date::plusDays;
+%rename("plus-weeks")     Date::plusWeeks;
+%rename("plus-months")    Date::plusMonths;
+%rename("plus-years")     Date::plusYears;
+%rename("is-leap?")       Date::isLeap;
+%rename("min-date")       Date::minDate;
+%rename("max-date")       Date::maxDate;
+%rename("todays-date")    Date::todaysDate;
+%rename(">string")        Date::__str__;
 #endif
 // also, allow pass and return by value
 PassByValue(Date);

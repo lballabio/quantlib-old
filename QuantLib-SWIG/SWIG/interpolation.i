@@ -108,9 +108,11 @@ class BilinearInterpolation : public Interpolation2D {
 
 
 #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-%rename(__call__) operator();
+%rename(__call__) Interpolation::operator();
+%rename(__call__) Interpolation2D::operator();
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(call)     operator();
+%rename(call)     Interpolation::operator();
+%rename(call)     Interpolation2D::operator();
 #endif
 
 class Interpolation {

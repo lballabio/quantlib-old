@@ -23,7 +23,15 @@ require 'runit/cui/testrunner'
 class EuropeanOptionTest < RUNIT::TestCase
   include QuantLib
   def name
-    "Testing European options..."
+    #"Testing European options..."
+    case @method
+      when 'testGreeks'
+        "Testing European option greeks..."
+      when 'testImpliedVol'
+        "Testing European option implied volatility..."
+      when 'testBinomialEngines'
+        "Testing binomial European engines against analytic results..."
+    end
   end
   def relativeError(x1,x2,reference)
     if reference != 0.0
@@ -50,8 +58,8 @@ class EuropeanOptionTest < RUNIT::TestCase
     today = Date.todaysDate
     settlement = Calendar.new("TARGET").advance(today,2,'days')
     TermStructureHandle.new(
-        FlatForward.new('EUR', DayCounter.new('act/360'),
-                        today, settlement, MarketElementHandle.new(forward)))
+        FlatForward.new(today, settlement, MarketElementHandle.new(forward),
+                        DayCounter.new('act/360')))
   end
   def testGreeks
     calendar = Calendar.new('TARGET')

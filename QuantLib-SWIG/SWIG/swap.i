@@ -75,10 +75,10 @@ class FloatingSwapLeg {
 
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("fair-rate")        fairRate;
-%rename("fair-spread")      fairSpread;
-%rename("fixed-leg-BPS")    fixedLegBPS;
-%rename("floating-leg-BPS") floatingLegBPS;
+%rename("fair-rate")        SimpleSwapHandle::fairRate;
+%rename("fair-spread")      SimpleSwapHandle::fairSpread;
+%rename("fixed-leg-BPS")    SimpleSwapHandle::fixedLegBPS;
+%rename("floating-leg-BPS") SimpleSwapHandle::floatingLegBPS;
 #endif
 
 %rename(SimpleSwap) SimpleSwapHandle;

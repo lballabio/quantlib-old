@@ -83,8 +83,8 @@ class PiecewiseFlatForwardTest(unittest.TestCase):
         # all instruments
         instruments = deposits + swaps
         # instantiate curve
-        termStructure = PiecewiseFlatForward('EUR',DayCounter('Act/360'),
-            today,settlement,instruments)
+        termStructure = PiecewiseFlatForward(today,settlement,instruments,
+                                             DayCounter('Act/360'))
         euriborHandle.linkTo(termStructure)
         # check deposits
         for (n,units,expectedRate) in depositData:

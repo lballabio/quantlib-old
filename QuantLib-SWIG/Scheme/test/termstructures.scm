@@ -30,8 +30,8 @@
                                  delete-Date)
                      (day-counter (new-DayCounter "act/365")
                                   delete-DayCounter)
-                     (term-structure (new-FlatForward "EUR" day-counter
-                                                      today settlement 0.05)
+                     (term-structure (new-FlatForward today settlement 0.05
+                                                      day-counter)
                                      delete-TermStructure)
                      (handle (new-TermStructureHandle term-structure)
                              delete-TermStructureHandle))
@@ -77,9 +77,8 @@
        (deleting-let ((temp (TermStructure->Observable implied)
                             delete-Observable))
          (Observer-register-with obs temp))
-       (deleting-let ((new-term-structure (new-FlatForward "EUR" day-counter
-                                                           today settlement 
-                                                           0.05)
+       (deleting-let ((new-term-structure (new-FlatForward today settlement
+                                                           0.05 day-counter)
                                           delete-TermStructure))
          (TermStructureHandle-link-to! handle new-term-structure))
        (if (not flag)
@@ -97,8 +96,10 @@
                     (spreaded (new-ForwardSpreadedTermStructure handle h)
                               delete-TermStructure))
       (let ((tolerance 1.0e-10)
-            (forward (TermStructure-forward term-structure test-date))
-            (spreaded-forward (TermStructure-forward spreaded test-date)))
+            (forward (TermStructure-instantaneous-forward term-structure 
+                                                          test-date))
+            (spreaded-forward (TermStructure-instantaneous-forward spreaded 
+                                                                   test-date)))
         (check-expected (- spreaded-forward (MarketElement-value me)) forward 
                         tolerance
                         "forward from spreaded curve")))))
@@ -118,9 +119,8 @@
        (deleting-let ((temp (TermStructure->Observable spreaded)
                             delete-Observable))
          (Observer-register-with obs temp))
-       (deleting-let ((new-term-structure (new-FlatForward "EUR" day-counter
-                                                           today settlement 
-                                                           0.05)
+       (deleting-let ((new-term-structure (new-FlatForward today settlement 
+                                                           0.05 day-counter)
                                           delete-TermStructure))
          (TermStructureHandle-link-to! handle new-term-structure))
        (if (not flag)
@@ -163,9 +163,8 @@
        (deleting-let ((temp (TermStructure->Observable spreaded)
                             delete-Observable))
          (Observer-register-with obs temp))
-       (deleting-let ((new-term-structure (new-FlatForward "EUR" day-counter
-                                                           today settlement 
-                                                           0.05)
+       (deleting-let ((new-term-structure (new-FlatForward today settlement 
+                                                           0.05 day-counter)
                                           delete-TermStructure))
          (TermStructureHandle-link-to! handle new-term-structure))
        (if (not flag)

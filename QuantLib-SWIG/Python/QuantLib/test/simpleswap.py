@@ -38,8 +38,8 @@ class SimpleSwapTest(unittest.TestCase):
         self.settlement = self.calendar.advance(self.today,
                                                 self.settlementDays, "days",
                                                 "following")
-        termStructure = FlatForward('EUR', DayCounter('Act/365'),
-                                    self.today, self.settlement, 0.05)
+        termStructure = FlatForward(self.today, self.settlement, 0.05,
+                                    DayCounter('Act/365'))
         self.euriborHandle.linkTo(termStructure)
     def makeSwap(self,length,fixedRate,floatingSpread):
         return SimpleSwap(self.payFixed, self.settlement, length, 'years',
@@ -132,8 +132,8 @@ NPV is decreasing with the spread in a simple swap paying fixed:
         self.settlement = self.calendar.advance(self.today,
                                                 self.settlementDays, "days",
                                                 "following")
-        termStructure = FlatForward('EUR', DayCounter('Act/365'),
-                                    self.today, self.settlement, 0.05)
+        termStructure = FlatForward(self.today, self.settlement, 0.05,
+                                    DayCounter('Act/365'))
         self.euriborHandle.linkTo(termStructure)
 
         swap = self.makeSwap(10,0.06,0.001)

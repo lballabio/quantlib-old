@@ -35,10 +35,10 @@ using QuantLib::DayCounters::ActualActual;
 %}
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("day-count")     dayCount;
-%rename("year-fraction") yearFraction;
-%rename(">string")       __str__;
-%rename("equal")         __eq__;
+%rename("day-count")     DayCounter::dayCount;
+%rename("year-fraction") DayCounter::yearFraction;
+%rename(">string")       DayCounter::__str__;
+%rename("equal")         DayCounter::__eq__;
 #endif
 #if defined(SWIGGUILE)
 %scheme%{ 

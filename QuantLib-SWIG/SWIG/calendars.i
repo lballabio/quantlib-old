@@ -79,10 +79,10 @@ using QuantLib::Calendars::Sydney;
 %}
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("is-business-day?") isBusinessDay;
-%rename("is-holiday?")      isHoliday;
-%rename("equal")            __eq__;
-%rename(">string")          __str__;
+%rename("is-business-day?") Calendar::isBusinessDay;
+%rename("is-holiday?")      Calendar::isHoliday;
+%rename("equal")            Calendar::__eq__;
+%rename(">string")          Calendar::__str__;
 #endif
 #if defined(SWIGGUILE)
 %scheme%{ 
@@ -92,13 +92,15 @@ using QuantLib::Calendars::Sydney;
 #endif
 
 #if defined(SWIGRUBY)
-%rename("isBusinessDay?") isBusinessDay;
-%rename("isHoliday?")     isHoliday;
+%rename("isBusinessDay?") Calendar::isBusinessDay;
+%rename("isHoliday?")     Calendar::isHoliday;
 #endif
 
 // export Calendar
-%rename(advance_period) advance(const Date&,const Period&,RollingConvention);
-%rename(advance_units)  advance(const Date&,int,TimeUnit,RollingConvention);
+%rename(advance_period) Calendar::advance(const Date&,const Period&,
+                                          RollingConvention);
+%rename(advance_units)  Calendar::advance(const Date&,int,TimeUnit,
+                                          RollingConvention);
 #if defined(SWIGPYTHON)
 %feature("shadow") Calendar::advance() %{
     def advance(self,*args):
