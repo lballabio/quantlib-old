@@ -11,4 +11,5 @@ expand general resource section
 anonymous ftp site
 quantlib-job mailing list
 quantlib-papers mailing list
+quantlib-finance mailing list
 quantlib.org mx server
