@@ -1,3 +1,11 @@
+2003-04-22 12:06  nando
+
+	* index.html (1.50), extensions.html (1.28): mathematica added
+
+2003-03-14 09:27  nando
+
+	* ChangeLog.txt (1.24): updated
+
 2003-02-20 17:39  nando
 
 	* extensions.html (1.27), index.html (1.49): updated
