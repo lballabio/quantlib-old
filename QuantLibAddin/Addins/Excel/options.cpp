@@ -24,6 +24,7 @@
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
+using std::string;
 DLLEXPORT LPXLOPER qlOptionAsianC(
         char *handleChar,
         char *handleStochastic,
@@ -145,7 +146,7 @@ DLLEXPORT LPXLOPER qlOptionBasket(
         char *handleChar,
         LPXLOPER handleStochastic,
         char *basket,
-         correlations,
+        LPXLOPER correlations,
         char *optionType,
         double *strike,
         char *exercise,

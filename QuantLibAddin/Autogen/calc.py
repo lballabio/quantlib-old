@@ -89,14 +89,14 @@ def generateConversions(paramList):
     for param in paramList:
         if param[common.TENSOR] == common.VECTOR: 
             ret += 8 * ' ' + 'std::vector <' + param[common.TYPE] + \
-                '> ' + param[common.NAME] + 'Vector;\n' + \
-                8 * ' ' + 'sequenceToVector(' + param[common.NAME] + \
-                ', ' + param[common.NAME] + 'Vector);\n'
+                '> ' + param[common.NAME] + 'Vector =\n' + \
+                12 * ' ' + param[common.TYPE] + 'SequenceToVector(' + \
+                param[common.NAME] + ');\n'
         elif param[common.TENSOR] == common.MATRIX: 
             ret += 8 * ' ' + 'std::vector < std::vector < ' + \
                 param[common.TYPE] + '> >' + param[common.NAME] + \
-                'Matrix;\n' + 8 * ' ' + 'sequenceToMatrix(' + \
-                param[common.NAME] + ', ' + param[common.NAME] + 'Matrix);\n'
+                'Matrix =\n' + 12 * ' ' + param[common.TYPE] + \
+                'SequenceToMatrix(' + param[common.NAME] + ');\n'
     return ret
 
 def generateFuncSource(fileFunc, function, bufBody):

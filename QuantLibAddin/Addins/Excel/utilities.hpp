@@ -33,5 +33,8 @@ void setValues(LPXLOPER xArray,
                ObjHandler::Properties properties,
                const std::string &handle);
 std::vector <long> longXLOPERToVector(LPXLOPER xVec);
+std::vector <double> doubleXLOPERToVector(LPXLOPER xVec);
+std::vector <std::string> stringXLOPERToVector(LPXLOPER xVec);
+std::vector <std::vector <double> >doubleXLOPERToMatrix(LPXLOPER xVec);
 
 #endif

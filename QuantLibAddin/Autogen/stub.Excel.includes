@@ -4,3 +4,4 @@
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
+using std::string;

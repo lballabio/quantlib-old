@@ -97,3 +97,50 @@ std::vector <long> longXLOPERToVector(LPXLOPER xVec) {
     return ret;
 }
 
+std::vector <double> doubleXLOPERToVector(LPXLOPER xVec) {
+    std::vector <double> ret;
+    XLOPER xVal;
+    if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
+        throw exception("doubleXLOPERToVector: error on call to xlCoerce");
+    int size = xVal.val.array.rows * xVal.val.array.columns;
+    for (int i=0; i<size; i++) {
+        XLOPER xOp = xVal.val.array.lparray[i];
+        if (xOp.xltype == xltypeNum)
+            ret.push_back(xOp.val.num);
+    }
+    Excel(xlFree, 0, 1, &xVal);
+    return ret;
+}
+
+std::vector <std::string> stringXLOPERToVector(LPXLOPER xVec) {
+    std::vector <std::string> ret;
+    XLOPER xVal;
+    if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
+        throw exception("stringXLOPERToVector: error on call to xlCoerce");
+    int size = xVal.val.array.rows * xVal.val.array.columns;
+    for (int i=0; i<size; i++) {
+        XLOPER xOp = xVal.val.array.lparray[i];
+        if (xOp.xltype == xltypeStr)
+            ret.push_back(XLOPERtoString(&xOp));
+    }
+    Excel(xlFree, 0, 1, &xVal);
+    return ret;
+}
+
+std::vector <std::vector <double> >doubleXLOPERToMatrix(LPXLOPER xVec) {
+    std::vector <std::vector <double> > ret;
+    XLOPER xVal;
+    if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
+        throw exception("doubleXLOPERToVector: error on call to xlCoerce");
+    for (int i=0; i<xVal.val.array.rows; i++) {
+        std::vector <double> row;
+        for (int j=0; j<xVal.val.array.columns; j++) {
+            XLOPER xOp = xVal.val.array.lparray[i];
+            if (xOp.xltype == xltypeNum)
+                row.push_back(xOp.val.num);
+        }
+        ret.push_back(row);
+    }
+    Excel(xlFree, 0, 1, &xVal);
+    return ret;
+}

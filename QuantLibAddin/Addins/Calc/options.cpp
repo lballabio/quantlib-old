@@ -75,8 +75,8 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionAsianD(
         const STRING & engine,
         sal_Int32 timeSteps) THROWDEF_RTE_IAE {
     try {
-        std::vector <long> fixingDatesVector;
-        sequenceToVector(fixingDates, fixingDatesVector);
+        std::vector <long> fixingDatesVector =
+            longSequenceToVector(fixingDates);
         Properties properties = QL_OPTION_ASIAN_D(
             OUStringToString(handle),
             OUStringToString(handleStochastic),
@@ -148,10 +148,10 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionBasket(
         const STRING & engine,
         sal_Int32 timeSteps) THROWDEF_RTE_IAE {
     try {
-        std::vector <string> handleStochasticVector;
-        sequenceToVector(handleStochastic, handleStochasticVector);
-        std::vector < std::vector < double> >correlationsMatrix;
-        sequenceToMatrix(correlations, correlationsMatrix);
+        std::vector <string> handleStochasticVector =
+            stringSequenceToVector(handleStochastic);
+        std::vector < std::vector < double> >correlationsMatrix =
+            doubleSequenceToMatrix(correlations);
         Properties properties = QL_OPTION_BASKET(
             OUStringToString(handle),
             handleStochasticVector,
@@ -181,8 +181,8 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionCliquet(
         const STRING & engine,
         sal_Int32 timeSteps) THROWDEF_RTE_IAE {
     try {
-        std::vector <long> resetDatesVector;
-        sequenceToVector(resetDates, resetDatesVector);
+        std::vector <long> resetDatesVector =
+            longSequenceToVector(resetDates);
         Properties properties = QL_OPTION_CLIQUET(
             OUStringToString(handle),
             OUStringToString(handleStochastic),
@@ -213,10 +213,10 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionDividendVanilla(
         const STRING & engine,
         sal_Int32 timeSteps) THROWDEF_RTE_IAE {
     try {
-        std::vector <long> dividendDatesVector;
-        sequenceToVector(dividendDates, dividendDatesVector);
-        std::vector <double> dividendsVector;
-        sequenceToVector(dividends, dividendsVector);
+        std::vector <long> dividendDatesVector =
+            longSequenceToVector(dividendDates);
+        std::vector <double> dividendsVector =
+            doubleSequenceToVector(dividends);
         Properties properties = QL_OPTION_DIVIDENDVANILLA(
             OUStringToString(handle),
             OUStringToString(handleStochastic),

@@ -26,7 +26,7 @@
 #endif
 
 //! version hexadecimal number
-#define QLADDIN_HEX_VERSION 0x000308f0
+#define QLADDIN_HEX_VERSION 0x000309f0
 //! version string for output lib name
 #define QLADDIN_LIB_VERSION "0_3_9"
 
