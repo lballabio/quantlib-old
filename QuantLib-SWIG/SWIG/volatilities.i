@@ -82,22 +82,17 @@ class LocalVolTermStructure {
     %rename("day-counter")    dayCounter;
     %rename("max-date")       maxDate;
     %rename("max-time")       maxTime;
-    %rename("local-vol")      blackVol;
-    %rename("local-variance") blackVariance;
+    %rename("local-vol")      localVol;
     #endif
   public:
     Date referenceDate() const;
     DayCounter dayCounter() const;
     Date maxDate() const;
     Time maxTime() const;
-    double localVol(const Date&, const Date&, double u,
+    double localVol(const Date&, double u,
                     bool extrapolate = false) const;
-    double localVol(Time, Time, double u,
+    double localVol(Time, double u,
                     bool extrapolate = false) const;
-    double localVariance(const Date&, const Date&, double u,
-                         bool extrapolate = false) const;
-    double localVariance(Time, Time, double u,
-                         bool extrapolate = false) const;
 };
 
 %template(LocalVolTermStructure) Handle<LocalVolTermStructure>;
