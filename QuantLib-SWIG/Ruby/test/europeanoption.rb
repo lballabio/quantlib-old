@@ -43,11 +43,11 @@ class EuropeanOptionTest < Test::Unit::TestCase
                  exDate,volCurve,engineType='analytic')
     case engineType
       when 'analytic'
-        engine = EuropeanAnalyticEngine.new
+        engine = AnalyticEuropeanEngine.new
       when 'jr'
-        engine = EuropeanBinomialEngine.new('jr',800)
+        engine = BinomialEuropeanEngine.new('jr',800)
       when 'crr'
-        engine = EuropeanBinomialEngine.new('crr',800)
+        engine = BinomialEuropeanEngine.new('crr',800)
     end
     VanillaOption.new(type,MarketElementHandle.new(underlying),strike,
                       divCurve,rfCurve, EuropeanExercise.new(exDate),

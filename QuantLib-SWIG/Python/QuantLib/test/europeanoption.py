@@ -29,11 +29,11 @@ def relErr(x1, x2, reference):
 def EuropeanOption(type,underlying,strike,divCurve,rfCurve,
                    exDate,volCurve,engineType='analytic'):
     if engineType == 'analytic':
-        engine = EuropeanAnalyticEngine()
+        engine = AnalyticEuropeanEngine()
     elif engineType == 'jr':
-        engine = EuropeanBinomialEngine('jr',800)
+        engine = BinomialEuropeanEngine('jr',800)
     elif engineType == 'crr':
-        engine = EuropeanBinomialEngine('crr',800)
+        engine = BinomialEuropeanEngine('crr',800)
     return VanillaOption(type,MarketElementHandle(underlying),strike,
                          divCurve,rfCurve,EuropeanExercise(exDate),
                          volCurve,engine)

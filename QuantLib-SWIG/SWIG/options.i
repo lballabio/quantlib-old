@@ -209,46 +209,46 @@ class VanillaOptionHandle : public Handle<Instrument> {
 // European engines
 
 %{
-using QuantLib::PricingEngines::EuropeanAnalyticalEngine;
-typedef Handle<PricingEngine> EuropeanAnalyticEngineHandle;
+using QuantLib::PricingEngines::AnalyticalVanillaEngine;
+typedef Handle<PricingEngine> AnalyticalVanillaEngineHandle;
 %}
 
-%rename(EuropeanAnalyticEngine) EuropeanAnalyticEngineHandle;
-class EuropeanAnalyticEngineHandle : public Handle<PricingEngine> {
+%rename(AnalyticEuropeanEngine) AnalyticalVanillaEngineHandle;
+class AnalyticalVanillaEngineHandle : public Handle<PricingEngine> {
   public:
     %extend {
-        EuropeanAnalyticEngineHandle() {
-            return new EuropeanAnalyticEngineHandle(
-                new EuropeanAnalyticalEngine);
+        AnalyticalVanillaEngineHandle() {
+            return new AnalyticalVanillaEngineHandle(
+                new AnalyticalVanillaEngine);
         }
     }
 };
 
 
 %{
-using QuantLib::PricingEngines::EuropeanBinomialEngine;
-typedef EuropeanBinomialEngine::Type BinomialEngineType;
-typedef Handle<PricingEngine> EuropeanBinomialEngineHandle;
+using QuantLib::PricingEngines::BinomialVanillaEngine;
+typedef BinomialVanillaEngine::Type BinomialEngineType;
+typedef Handle<PricingEngine> BinomialVanillaEngineHandle;
 
-EuropeanBinomialEngine::Type binomialEngineTypeFromString(std::string s) {
+BinomialVanillaEngine::Type binomialEngineTypeFromString(std::string s) {
     s = StringFormatter::toLowercase(s);
     if (s == "crr" || s == "coxrossrubinstein")
-        return EuropeanBinomialEngine::CoxRossRubinstein;
+        return BinomialVanillaEngine::CoxRossRubinstein;
     else if (s == "jr" || s == "jarrowrudd")
-        return EuropeanBinomialEngine::JarrowRudd;
+        return BinomialVanillaEngine::JarrowRudd;
     else if (s == "lr" || s == "leisenreimer")
-        return EuropeanBinomialEngine::LeisenReimer;
+        return BinomialVanillaEngine::LeisenReimer;
     else
         throw Error("unknown binomial engine type: "+s);
 }
 
-std::string binomialEngineTypeToString(EuropeanBinomialEngine::Type t) {
+std::string binomialEngineTypeToString(BinomialVanillaEngine::Type t) {
     switch (t) {
-      case EuropeanBinomialEngine::CoxRossRubinstein:
+      case BinomialVanillaEngine::CoxRossRubinstein:
         return "CoxRossRubinstein";
-      case EuropeanBinomialEngine::JarrowRudd:
+      case BinomialVanillaEngine::JarrowRudd:
         return "JarrowRudd";
-      case EuropeanBinomialEngine::LeisenReimer:
+      case BinomialVanillaEngine::LeisenReimer:
         return "LeisenReimer";
       default:
         throw Error("unknown binomial engine type");
@@ -259,14 +259,14 @@ std::string binomialEngineTypeToString(EuropeanBinomialEngine::Type t) {
 MapToString(BinomialEngineType,binomialEngineTypeFromString,
             binomialEngineTypeToString);
 
-%rename(EuropeanBinomialEngine) EuropeanBinomialEngineHandle;
-class EuropeanBinomialEngineHandle : public Handle<PricingEngine> {
+%rename(BinomialEuropeanEngine) BinomialVanillaEngineHandle;
+class BinomialVanillaEngineHandle : public Handle<PricingEngine> {
   public:
     %extend {
-        EuropeanBinomialEngineHandle(BinomialEngineType type,
+        BinomialVanillaEngineHandle(BinomialEngineType type,
                                      Size steps) {
-            return new EuropeanBinomialEngineHandle
-                (new EuropeanBinomialEngine(type,steps));
+            return new BinomialVanillaEngineHandle
+                (new BinomialVanillaEngine(type,steps));
         }
     }
 };
