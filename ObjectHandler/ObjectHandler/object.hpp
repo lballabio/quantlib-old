@@ -23,6 +23,7 @@
 #include <ObjectHandler/property.hpp>
 #include <vector>
 #include <string>
+// the line below cannot be commented out. Why?
 using namespace std;
 
 namespace ObjHandler {
