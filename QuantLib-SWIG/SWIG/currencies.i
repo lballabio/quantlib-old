@@ -26,16 +26,6 @@
 
 %{
 using QuantLib::Currency;
-using QuantLib::AUDCurrency;
-using QuantLib::CADCurrency;
-using QuantLib::CHFCurrency;
-using QuantLib::DEMCurrency;
-using QuantLib::EURCurrency;
-using QuantLib::GBPCurrency;
-using QuantLib::ITLCurrency;
-using QuantLib::JPYCurrency;
-using QuantLib::USDCurrency;
-using QuantLib::ZARCurrency;
 %}
 
 class Currency {
@@ -87,18 +77,68 @@ class Currency {
 %}
 #endif
 
-
+namespace QuantLib {
+class ARSCurrency : public Currency {};
+class ATSCurrency : public Currency {};
 class AUDCurrency : public Currency {};
+class BDTCurrency : public Currency {};
+class BEFCurrency : public Currency {};
+class BGLCurrency : public Currency {};
+class BRLCurrency : public Currency {};
+class BYRCurrency : public Currency {};
 class CADCurrency : public Currency {};
 class CHFCurrency : public Currency {};
+class CLPCurrency : public Currency {};
+class CNYCurrency : public Currency {};
+class COPCurrency : public Currency {};
+class CYPCurrency : public Currency {};
+class CZKCurrency : public Currency {};
 class DEMCurrency : public Currency {};
+class DKKCurrency : public Currency {};
+class EEKCurrency : public Currency {};
+class ESPCurrency : public Currency {};
 class EURCurrency : public Currency {};
+class FIMCurrency : public Currency {};
+class FRFCurrency : public Currency {};
 class GBPCurrency : public Currency {};
+class GRDCurrency : public Currency {};
+class HKDCurrency : public Currency {};
+class HUFCurrency : public Currency {};
+class IEPCurrency : public Currency {};
+class ILSCurrency : public Currency {};
+class INRCurrency : public Currency {};
+class IQDCurrency : public Currency {};
+class IRRCurrency : public Currency {};
+class ISKCurrency : public Currency {};
 class ITLCurrency : public Currency {};
 class JPYCurrency : public Currency {};
+class KRWCurrency : public Currency {};
+class KWDCurrency : public Currency {};
+class LTLCurrency : public Currency {};
+class LUFCurrency : public Currency {};
+class LVLCurrency : public Currency {};
+class MTLCurrency : public Currency {};
+class MXNCurrency : public Currency {};
+class NLGCurrency : public Currency {};
+class NOKCurrency : public Currency {};
+class NPRCurrency : public Currency {};
+class NZDCurrency : public Currency {};
+class PKRCurrency : public Currency {};
+class PLNCurrency : public Currency {};
+class PTECurrency : public Currency {};
+class ROLCurrency : public Currency {};
+class SARCurrency : public Currency {};
+class SEKCurrency : public Currency {};
+class SGDCurrency : public Currency {};
+class SITCurrency : public Currency {};
+class SKKCurrency : public Currency {};
+class THBCurrency : public Currency {};
+class TRLCurrency : public Currency {};
+class TTDCurrency : public Currency {};
 class USDCurrency : public Currency {};
+class VEBCurrency : public Currency {};
 class ZARCurrency : public Currency {};
-
+}
 
 // currency tags
 
