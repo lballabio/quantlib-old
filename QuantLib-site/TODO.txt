@@ -10,3 +10,4 @@ add FAQ entry about swig
 add FAQ entry about doxygen
 add FAQ entry about GPL compatibility
 
+add http://www.mcqmc.org/ link
