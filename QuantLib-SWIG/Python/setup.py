@@ -261,7 +261,7 @@ if sys.platform == 'win32':
         library_dirs = [os.path.join(QL_INSTALL_DIR,
                                      'lib', 'win32', 'VisualStudio')]
         libraries = None
-        extra_compile_args = ['/GR', '/FD']
+        extra_compile_args = ['/GR', '/FD', '/Zm150']
         define_macros = [('__WIN32__', None), ('WIN32', None),
                          ('NDEBUG', None), ('_WINDOWS', None),
                          ('NOMINMAX', None)]
