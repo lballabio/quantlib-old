@@ -130,7 +130,6 @@ class Calendar {
     %rename("isHoliday?")       isHoliday;
     %rename("addHoliday!")      addHoliday;
     %rename("removeHoliday!")   removeHoliday;
-    %rename("load!")            load;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("is-business-day?") isBusinessDay;
     %rename("is-holiday?")      isHoliday;
@@ -146,7 +145,6 @@ class Calendar {
     bool isHoliday(const Date&);
     void addHoliday(const Date&);
     void removeHoliday(const Date&);
-    void load(const std::string& filename);
     Date roll(const Date& d, 
               RollingConvention convention = QuantLib::Following,
 	      const Date& origin = Date());
