@@ -9,7 +9,7 @@ EXTRA_DIST = \
 
 DOXYGEN_CONFIG := qladdin.doxy
 DOXYGEN_CUSTOM := quantlib.css qla_header.html qla_footer.html
-DOXYGEN_INPUT := $(shell find ${top_srcdir}/qla/functions -name *.hpp) \
+DOXYGEN_INPUT := $(shell find ${top_srcdir}/qla -name *.hpp) \
                  $(wildcard pages/*.docs)
 
 %.gz: %
