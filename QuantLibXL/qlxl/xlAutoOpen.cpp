@@ -198,6 +198,7 @@ extern "C" {
             americanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+valueDate+expiryDate+volatility+timeSteps+gridPoints);
             americanOption_fd.Register();
 
+            // new engine framework
             XlfFuncDesc quantoEuropeanOption("xlQuantoEuropeanOption","qlQuantoEuropeanOption",
                 "Quanto european option","QuantLibXL Finance");
             quantoEuropeanOption.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+valueDate+expiryDate+volatility+foreignRiskFreeRate+exchangeVolatility+correlation);

@@ -191,8 +191,7 @@ extern "C"
         Date valueDate = QlXlfOper(xlvalueDate).AsDate();
 
         arguments->type = QlXlfOper(xltype).AsOptionType();
-        // dummy underlying
-        // ForwardPerformanceOptionParameter should not include underlying
+        // underlying is needed to interpolate on the vol surface
         arguments->underlying = xlunderlying.AsDouble();
         // dummy strike
         // ForwardPerformanceOptionParameter should not include strike
