@@ -178,11 +178,10 @@ Build = Command.new {
 	    $CPPFLAGS += " /I#{QL_DIR}"
 	    $LIBPATH  += ["#{QL_DIR}\\lib\\Win32\\VisualStudio"]
 	  when 'linux'
-        $CFLAGS   += ENV['CFLAGS'] || ""
-    	$CFLAGS   += " -DHAVE_CONFIG_H"
-        $CPPFLAGS += ENV['CXXFLAGS'] || ""
-    	$CPPFLAGS += " -I/usr/local/include"
-    	$libs     += " -lQuantLib"
+        $CFLAGS   += " " + (ENV['CFLAGS'] || "")
+        $CPPFLAGS += " " + IO.popen("quantlib-config --cflags").gets.strip
+        $CPPFLAGS += " " + (ENV['CXXFLAGS'] || "")
+    	$libs     += " " + IO.popen("quantlib-config --libs").gets.strip
         old_cc = cfg['CC']
         cfg['CC'] = ENV['CXX'] || "g++"
         cfg['CPP'].sub!(old_cc,cfg['CC'])

@@ -282,14 +282,11 @@ if sys.platform == 'win32':
 
 else:
     from distutils import sysconfig
-    ql_prefix = os.popen('quantlib-config --prefix').read()[:-1]
-    ql_include_dir = ql_prefix+'/include'
-    ql_library_dir = ql_prefix+'/lib'
     ql_compile_args = os.popen('quantlib-config --cflags').read()[:-1]
     ql_link_args = os.popen('quantlib-config --libs').read()[:-1]
-    include_dirs = [ql_include_dir]
-    library_dirs = [ql_library_dir]
-    libraries = ["QuantLib"]
+    include_dirs = None
+    library_dirs = None
+    libraries = None
     extra_compile_args = [ql_compile_args]
     if os.environ.has_key('CXXFLAGS'):
         extra_compile_args.extend(string.split(os.environ['CXXFLAGS']))
