@@ -230,194 +230,99 @@ extern "C"
         EXCEL_END;
     }
 
-    LPXLOPER EXCEL_EXPORT xlpotentialUpside(XlfOper xlpercentile,
-        XlfOper xldata_array) {
-        EXCEL_BEGIN;
 
-        WIZARD_NO_CALC;
 
-        std::vector<double> data_value = xldata_array.AsDoubleVector();
-        GenericRiskStatistics<Statistics> s;
-        s.addSequence(data_value.begin(), data_value.end());
-        double result = s.potentialUpside(xlpercentile.AsDouble());
-        return XlfOper(result);
-        EXCEL_END;
+
+
+
+
+
+
+
+
+    #define TYPICAL_ARRAY_STAT_FUNCTION(METHOD) \
+    LPXLOPER EXCEL_EXPORT METHOD( \
+        XlfOper xldata_array) { \
+        EXCEL_BEGIN; \
+        WIZARD_NO_CALC; \
+        std::vector<double> data_value = xldata_array.AsDoubleVector(); \
+        GenericRiskStatistics<Statistics> s; \
+        s.addSequence(data_value.begin(), data_value.end()); \
+        double result = s.METHOD(); \
+        return XlfOper(result); \
+        EXCEL_END; \
     }
+    TYPICAL_ARRAY_STAT_FUNCTION(mean)
+    TYPICAL_ARRAY_STAT_FUNCTION(variance)
+    TYPICAL_ARRAY_STAT_FUNCTION(standardDeviation)
+    TYPICAL_ARRAY_STAT_FUNCTION(skewness)
+    TYPICAL_ARRAY_STAT_FUNCTION(kurtosis)
+    TYPICAL_ARRAY_STAT_FUNCTION(min)
+    TYPICAL_ARRAY_STAT_FUNCTION(max)
+    TYPICAL_ARRAY_STAT_FUNCTION(semiDeviation)
+    TYPICAL_ARRAY_STAT_FUNCTION(semiVariance)
+    TYPICAL_ARRAY_STAT_FUNCTION(downsideDeviation)
+    TYPICAL_ARRAY_STAT_FUNCTION(downsideVariance)
 
-    LPXLOPER EXCEL_EXPORT xlgaussianPotentialUpside(XlfOper xlpercentile,
-        XlfOper xlmean, XlfOper xlstd_dev) {
-        EXCEL_BEGIN;
-
-        WIZARD_NO_CALC;
-
-        StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble());
-        GaussianStatistics<StatsHolder> s(h);
-        double result = s.gaussianPotentialUpside(xlpercentile.AsDouble());
-        return XlfOper(result);
-        EXCEL_END;
+    #define TYPICAL_DOUBLE_ARRAY_STAT_FUNCTION(METHOD) \
+    LPXLOPER EXCEL_EXPORT METHOD( \
+        XlfOper xldouble, XlfOper xldata_array) { \
+        EXCEL_BEGIN; \
+        WIZARD_NO_CALC; \
+        std::vector<double> data_value = xldata_array.AsDoubleVector(); \
+        GenericRiskStatistics<Statistics> s; \
+        s.addSequence(data_value.begin(), data_value.end()); \
+        double result = s.METHOD(xldouble.AsDouble()); \
+        return XlfOper(result); \
+        EXCEL_END; \
     }
+    TYPICAL_DOUBLE_ARRAY_STAT_FUNCTION(percentile)
+    TYPICAL_DOUBLE_ARRAY_STAT_FUNCTION(valueAtRisk)
+    TYPICAL_DOUBLE_ARRAY_STAT_FUNCTION(topPercentile)
+    TYPICAL_DOUBLE_ARRAY_STAT_FUNCTION(potentialUpside)
+    TYPICAL_DOUBLE_ARRAY_STAT_FUNCTION(expectedShortfall)
+    TYPICAL_DOUBLE_ARRAY_STAT_FUNCTION(shortfall)
+    TYPICAL_DOUBLE_ARRAY_STAT_FUNCTION(averageShortfall)
+    TYPICAL_DOUBLE_ARRAY_STAT_FUNCTION(regret)
 
-    LPXLOPER EXCEL_EXPORT xlvalueAtRisk(XlfOper xlpercentile,
-        XlfOper xldata_array) {
-        EXCEL_BEGIN;
 
-        WIZARD_NO_CALC;
-
-        std::vector<double> data_value = xldata_array.AsDoubleVector();
-        GenericRiskStatistics<Statistics> s;
-        s.addSequence(data_value.begin(), data_value.end());
-        double result = s.valueAtRisk(xlpercentile.AsDouble());
-        return XlfOper(result);
-        EXCEL_END;
+    #define TYPICAL_2DOUBLE_STAT_FUNCTION(METHOD) \
+    LPXLOPER EXCEL_EXPORT METHOD( \
+        XlfOper xlmean, XlfOper xlstd_dev) { \
+        EXCEL_BEGIN; \
+        WIZARD_NO_CALC; \
+        StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble()); \
+        GaussianStatistics<StatsHolder> s(h); \
+        double result = s.METHOD(); \
+        return XlfOper(result); \
+        EXCEL_END; \
     }
+    TYPICAL_2DOUBLE_STAT_FUNCTION(gaussianDownsideDeviation)
+    TYPICAL_2DOUBLE_STAT_FUNCTION(gaussianDownsideVariance)
 
-    LPXLOPER EXCEL_EXPORT xlgaussianValueAtRisk(XlfOper xlpercentile,
-        XlfOper xlmean, XlfOper xlstd_dev) {
-        EXCEL_BEGIN;
-
-        WIZARD_NO_CALC;
-
-        StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble());
-        GaussianStatistics<StatsHolder> s(h);
-        double result = s.gaussianValueAtRisk(xlpercentile.AsDouble());
-        return XlfOper(result);
-        EXCEL_END;
+    #define TYPICAL_DOUBLE_2DOUBLE_STAT_FUNCTION(METHOD) \
+    LPXLOPER EXCEL_EXPORT METHOD( \
+        XlfOper xldouble, XlfOper xlmean, XlfOper xlstd_dev) { \
+        EXCEL_BEGIN; \
+        WIZARD_NO_CALC; \
+        StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble()); \
+        GaussianStatistics<StatsHolder> s(h); \
+        double result = s.METHOD(xldouble.AsDouble()); \
+        return XlfOper(result); \
+        EXCEL_END; \
     }
+    TYPICAL_DOUBLE_2DOUBLE_STAT_FUNCTION(gaussianPercentile)
+    TYPICAL_DOUBLE_2DOUBLE_STAT_FUNCTION(gaussianValueAtRisk)
+    TYPICAL_DOUBLE_2DOUBLE_STAT_FUNCTION(gaussianTopPercentile)
+    TYPICAL_DOUBLE_2DOUBLE_STAT_FUNCTION(gaussianPotentialUpside)
+    TYPICAL_DOUBLE_2DOUBLE_STAT_FUNCTION(gaussianExpectedShortfall)
+    TYPICAL_DOUBLE_2DOUBLE_STAT_FUNCTION(gaussianShortfall)
+    TYPICAL_DOUBLE_2DOUBLE_STAT_FUNCTION(gaussianAverageShortfall)
+    TYPICAL_DOUBLE_2DOUBLE_STAT_FUNCTION(gaussianRegret)
 
-    LPXLOPER EXCEL_EXPORT xlexpectedShortfall(
-        XlfOper xlpercentile, XlfOper xldata_array) {
-        EXCEL_BEGIN;
 
-        WIZARD_NO_CALC;
 
-        std::vector<double> data_value = xldata_array.AsDoubleVector();
-        GenericRiskStatistics<Statistics> s;
-        s.addSequence(data_value.begin(), data_value.end());
-        double result = s.expectedShortfall(xlpercentile.AsDouble());
-        return XlfOper(result);
-        EXCEL_END;
-    }
 
-    LPXLOPER EXCEL_EXPORT xlgaussianExpectedShortfall(
-        XlfOper xlpercentile, XlfOper xlmean, XlfOper xlstd_dev) {
-        EXCEL_BEGIN;
-
-        WIZARD_NO_CALC;
-
-        StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble());
-        GaussianStatistics<StatsHolder> s(h);
-        double result = s.gaussianExpectedShortfall(xlpercentile.AsDouble());
-        return XlfOper(result);
-        EXCEL_END;
-    }
-
-    LPXLOPER EXCEL_EXPORT xlshortfall(
-        XlfOper xltarget, XlfOper xldata_array) {
-        EXCEL_BEGIN;
-
-        WIZARD_NO_CALC;
-
-        std::vector<double> data_value = xldata_array.AsDoubleVector();
-        GenericRiskStatistics<Statistics> s;
-        s.addSequence(data_value.begin(), data_value.end());
-        double result = s.shortfall(xltarget.AsDouble());
-        return XlfOper(result);
-        EXCEL_END;
-    }
-
-    LPXLOPER EXCEL_EXPORT xlgaussianShortfall(
-        XlfOper xltarget, XlfOper xlmean, XlfOper xlstd_dev) {
-        EXCEL_BEGIN;
-
-        WIZARD_NO_CALC;
-
-        StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble());
-        GaussianStatistics<StatsHolder> s(h);
-        double result = s.gaussianShortfall(xltarget.AsDouble());
-        return XlfOper(result);
-        EXCEL_END;
-    }
-
-    LPXLOPER EXCEL_EXPORT xlaverageShortfall(
-        XlfOper xltarget, XlfOper xldata_array) {
-        EXCEL_BEGIN;
-
-        WIZARD_NO_CALC;
-
-        std::vector<double> data_value = xldata_array.AsDoubleVector();
-        GenericRiskStatistics<Statistics> s;
-        s.addSequence(data_value.begin(), data_value.end());
-        double result = s.averageShortfall(xltarget.AsDouble());
-        return XlfOper(result);
-        EXCEL_END;
-    }
-
-    LPXLOPER EXCEL_EXPORT xlgaussianAverageShortfall(
-        XlfOper xltarget, XlfOper xlmean, XlfOper xlstd_dev) {
-        EXCEL_BEGIN;
-
-        WIZARD_NO_CALC;
-
-        StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble());
-        GaussianStatistics<StatsHolder> s(h);
-        double result = s.gaussianAverageShortfall(xltarget.AsDouble());
-        return XlfOper(result);
-        EXCEL_END;
-    }
-
-    LPXLOPER EXCEL_EXPORT xlregret(
-        XlfOper xltarget, XlfOper xldata_array) {
-        EXCEL_BEGIN;
-
-        WIZARD_NO_CALC;
-
-        std::vector<double> data_value = xldata_array.AsDoubleVector();
-        GenericRiskStatistics<Statistics> s;
-        s.addSequence(data_value.begin(), data_value.end());
-        double result = s.regret(xltarget.AsDouble());
-        return XlfOper(result);
-        EXCEL_END;
-    }
-
-    LPXLOPER EXCEL_EXPORT xlgaussianRegret(
-        XlfOper xltarget, XlfOper xlmean, XlfOper xlstd_dev) {
-        EXCEL_BEGIN;
-
-        WIZARD_NO_CALC;
-
-        StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble());
-        GaussianStatistics<StatsHolder> s(h);
-        double result = s.gaussianRegret(xltarget.AsDouble());
-        return XlfOper(result);
-        EXCEL_END;
-    }
-
-    LPXLOPER EXCEL_EXPORT xldownsideDeviation(
-        XlfOper xldata_array) {
-        EXCEL_BEGIN;
-
-        WIZARD_NO_CALC;
-
-        std::vector<double> data_value = xldata_array.AsDoubleVector();
-        GenericRiskStatistics<Statistics> s;
-        s.addSequence(data_value.begin(), data_value.end());
-        double result = s.downsideDeviation();
-        return XlfOper(result);
-        EXCEL_END;
-    }
-
-    LPXLOPER EXCEL_EXPORT xlgaussianDownsideDeviation(
-        XlfOper xlmean, XlfOper xlstd_dev) {
-        EXCEL_BEGIN;
-
-        WIZARD_NO_CALC;
-
-        StatsHolder h(xlmean.AsDouble(), xlstd_dev.AsDouble());
-        GaussianStatistics<StatsHolder> s(h);
-        double result = s.gaussianDownsideDeviation();
-        return XlfOper(result);
-        EXCEL_END;
-    }
 
 
 

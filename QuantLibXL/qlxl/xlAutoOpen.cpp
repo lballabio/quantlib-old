@@ -195,139 +195,248 @@ extern "C" {
 
 
 
-            // Registers Risk Measures
-            XlfFuncDesc valueAtRiskDesc(
-                "xlvalueAtRisk",
-                "qlValueAtRisk",
-                "Return the value at risk with a percentile confidence "
-                "for an empirical distribution",
-                "QuantLibXL Math");
-            valueAtRiskDesc.SetArguments(percentile+data_array);
-            valueAtRiskDesc.Register();
+            // Registers Statistics
+            XlfFuncDesc meanDesc(
+                "mean",
+                "qlMean",
+                "Return the mean of the observations",
+                "QuantLibXL Statistics");
+            meanDesc.SetArguments(data_array);
+            meanDesc.Register();
 
-            XlfFuncDesc gaussianValueAtRiskDesc(
-                "xlgaussianValueAtRisk",
-                "qlGaussianValueAtRisk",
-                "Return the value at risk with a percentile confidence for a "
-                "normal distribution specified by mean and standard deviation",
-                "QuantLibXL Math");
-            gaussianValueAtRiskDesc.SetArguments(percentile+mean+std_dev);
-            gaussianValueAtRiskDesc.Register();
+            XlfFuncDesc varianceDesc(
+                "variance",
+                "qlVariance",
+                "Return the variance of the observations",
+                "QuantLibXL Statistics");
+            varianceDesc.SetArguments(data_array);
+            varianceDesc.Register();
 
-            XlfFuncDesc potentialUpsideDesc(
-                "xlpotentialUpside",
-                "qlPotentialUpside",
-                "Return the potential upside with a percentile confidence "
-                "for an empirical distribution",
-                "QuantLibXL Math");
-            potentialUpsideDesc.SetArguments(percentile+data_array);
-            potentialUpsideDesc.Register();
+            XlfFuncDesc standardDeviationDesc(
+                "standardDeviation",
+                "qlStandardDeviation",
+                "Return the standard deviation of the observations",
+                "QuantLibXL Statistics");
+            standardDeviationDesc.SetArguments(data_array);
+            standardDeviationDesc.Register();
 
-            XlfFuncDesc gaussianPotentialUpsideDesc(
-                "xlgaussianPotentialUpside",
-                "qlGaussianPotentialUpside",
-                "Return the potential upside with a percentile confidence "
-                "for a normal distribution specified "
-                "by mean and standard deviation",
-                "QuantLibXL Math");
-            gaussianPotentialUpsideDesc.SetArguments(percentile+mean+std_dev);
-            gaussianPotentialUpsideDesc.Register();
+            XlfFuncDesc skewnessDesc(
+                "skewness",
+                "qlSkewness",
+                "Return the skewness of the observations",
+                "QuantLibXL Statistics");
+            skewnessDesc.SetArguments(data_array);
+            skewnessDesc.Register();
 
-            XlfFuncDesc expectedShortfallDesc(
-                "xlexpectedShortfall",
-                "qlExpectedShortfall",
-                "Return the expected shortfall with a percentile confidence "
-                "for an empirical distribution",
-                "QuantLibXL Math");
-            expectedShortfallDesc.SetArguments(percentile+data_array);
-            expectedShortfallDesc.Register();
+            XlfFuncDesc kurtosisDesc(
+                "kurtosis",
+                "qlKurtosis",
+                "Return the excess kurtosis of the observations",
+                "QuantLibXL Statistics");
+            kurtosisDesc.SetArguments(data_array);
+            kurtosisDesc.Register();
 
-            XlfFuncDesc gaussianExpectedShortfallDesc(
-                "xlgaussianExpectedShortfall",
-                "qlGaussianExpectedShortfall",
-                "Return the expected shortfall with a percentile confidence "
-                "for a normal distribution specified "
-                "by mean and standard deviation",
-                "QuantLibXL Math");
-            gaussianExpectedShortfallDesc.SetArguments(percentile+mean+std_dev);
-            gaussianExpectedShortfallDesc.Register();
+            XlfFuncDesc minDesc(
+                "min",
+                "qlMin",
+                "Return the minimun of the observations",
+                "QuantLibXL Statistics");
+            minDesc.SetArguments(data_array);
+            minDesc.Register();
 
-            XlfFuncDesc shortfallDesc(
-                "xlshortfall",
-                "qlShortfall",
-                "Return the shortfall at the chosen target for "
-                "for an empirical distribution",
-                "QuantLibXL Math");
-            shortfallDesc.SetArguments(targetReturn+data_array);
-            shortfallDesc.Register();
+            XlfFuncDesc maxDesc(
+                "max",
+                "qlMax",
+                "Return the maximum of the observations",
+                "QuantLibXL Statistics");
+            maxDesc.SetArguments(data_array);
+            maxDesc.Register();
 
-            XlfFuncDesc gaussianShortfallDesc(
-                "xlgaussianShortfall",
-                "qlGaussianShortfall",
-                "Return the shortfall at the chosen target for "
-                "a normal distribution specified "
-                "by mean and standard deviation",
-                "QuantLibXL Math");
-            gaussianShortfallDesc.SetArguments(targetReturn+mean+std_dev);
-            gaussianShortfallDesc.Register();
+            XlfFuncDesc semiDeviationDesc(
+                "semiDeviation",
+                "qlSemiDeviation",
+                "Return the standard deviation of the observations below the mean",
+                "QuantLibXL Statistics");
+            semiDeviationDesc.SetArguments(data_array);
+            semiDeviationDesc.Register();
 
-            XlfFuncDesc averageShortfallDesc(
-                "xlaverageShortfall",
-                "qlAverageShortfall",
-                "Return the average shortfall at the chosen target "
-                "for an empirical distribution",
-                "QuantLibXL Math");
-            averageShortfallDesc.SetArguments(targetReturn+data_array);
-            averageShortfallDesc.Register();
-
-            XlfFuncDesc gaussianAverageShortfallDesc(
-                "xlgaussianAverageShortfall",
-                "qlGaussianAverageShortfall",
-                "Return the average shortfall at the chosen target "
-                "for a normal distribution specified "
-                "by mean and standard deviation",
-                "QuantLibXL Math");
-            gaussianAverageShortfallDesc.SetArguments(targetReturn+mean+std_dev);
-            gaussianAverageShortfallDesc.Register();
-
-
-            XlfFuncDesc regretDesc(
-                "xlregret",
-                "qlRegret",
-                "Return the regret at the chosen target "
-                "for an empirical distribution",
-                "QuantLibXL Math");
-            regretDesc.SetArguments(targetReturn+data_array);
-            regretDesc.Register();
-
-            XlfFuncDesc gaussianRegretDesc(
-                "xlgaussianRegret",
-                "qlGaussianRegret",
-                "Return the regret at the chosen target "
-                "for a normal distribution specified "
-                "by mean and standard deviation",
-                "QuantLibXL Math");
-            gaussianRegretDesc.SetArguments(targetReturn+mean+std_dev);
-            gaussianRegretDesc.Register();
+            XlfFuncDesc semiVarianceDesc(
+                "semiVariance",
+                "qlSemiVariance",
+                "Return the variance of the observations below the mean",
+                "QuantLibXL Statistics");
+            semiVarianceDesc.SetArguments(data_array);
+            semiVarianceDesc.Register();
 
             XlfFuncDesc downsideDeviationDesc(
-                "xldownsideDeviation",
+                "downsideDeviation",
                 "qlDownsideDeviation",
-                "Return the downside deviation at the chosen target "
-                "for an empirical distribution",
-                "QuantLibXL Math");
+                "Return the standard deviation of the negative observations",
+                "QuantLibXL Statistics");
             downsideDeviationDesc.SetArguments(data_array);
             downsideDeviationDesc.Register();
 
+            XlfFuncDesc downsideVarianceDesc(
+                "downsideVariance",
+                "qlDownsideVariance",
+                "Return the variance of the negative observations",
+                "QuantLibXL Statistics");
+            downsideVarianceDesc.SetArguments(data_array);
+            downsideVarianceDesc.Register();
+
+            XlfFuncDesc percentileDesc(
+                "percentile",
+                "qlPercentile",
+                "Return the percentile of the distribution",
+                "QuantLibXL Statistics");
+            percentileDesc.SetArguments(percentile+data_array);
+            percentileDesc.Register();
+
+            XlfFuncDesc valueAtRiskDesc(
+                "valueAtRisk",
+                "qlValueAtRisk",
+                "Return the value at risk with a percentile confidence",
+                "QuantLibXL Statistics");
+            valueAtRiskDesc.SetArguments(percentile+data_array);
+            valueAtRiskDesc.Register();
+
+            XlfFuncDesc topPercentileDesc(
+                "topPercentile",
+                "qlTopPercentile",
+                "Return the top percentile of the distribution",
+                "QuantLibXL Statistics");
+            topPercentileDesc.SetArguments(percentile+data_array);
+            topPercentileDesc.Register();
+
+            XlfFuncDesc potentialUpsideDesc(
+                "potentialUpside",
+                "qlPotentialUpside",
+                "Return the potential upside of the distribution with a percentile confidence",
+                "QuantLibXL Statistics");
+            potentialUpsideDesc.SetArguments(percentile+data_array);
+            potentialUpsideDesc.Register();
+
+            XlfFuncDesc expectedShortfallDesc(
+                "expectedShortfall",
+                "qlExpectedShortfall",
+                "Return the expected shortfall with a percentile confidence ",
+                "QuantLibXL Statistics");
+            expectedShortfallDesc.SetArguments(percentile+data_array);
+            expectedShortfallDesc.Register();
+
+            XlfFuncDesc shortfallDesc(
+                "shortfall",
+                "qlShortfall",
+                "Return the shortfall at the chosen target",
+                "QuantLibXL Statistics");
+            shortfallDesc.SetArguments(targetReturn+data_array);
+            shortfallDesc.Register();
+
+            XlfFuncDesc averageShortfallDesc(
+                "averageShortfall",
+                "qlAverageShortfall",
+                "Return the average shortfall at the chosen target",
+                "QuantLibXL Statistics");
+            averageShortfallDesc.SetArguments(targetReturn+data_array);
+            averageShortfallDesc.Register();
+
+            XlfFuncDesc regretDesc(
+                "regret",
+                "qlRegret",
+                "Return the regret at the chosen target",
+                "QuantLibXL Statistics");
+            regretDesc.SetArguments(targetReturn+data_array);
+            regretDesc.Register();
+
             XlfFuncDesc gaussianDownsideDeviationDesc(
-                "xlgaussianDownsideDeviation",
+                "gaussianDownsideDeviation",
                 "qlGaussianDownsideDeviation",
-                "Return the downside deviation at the chosen target "
-                "for a normal distribution specified "
-                "by mean and standard deviation",
-                "QuantLibXL Math");
+                "Return the standard deviation of the negative part "
+                "of a normal distribution N(mean, standard deviation)",
+                "QuantLibXL Statistics");
             gaussianDownsideDeviationDesc.SetArguments(mean+std_dev);
             gaussianDownsideDeviationDesc.Register();
+
+            XlfFuncDesc gaussianDownsideVarianceDesc(
+                "gaussianDownsideVariance",
+                "qlGaussianDownsideVariance",
+                "Return the variance of the negative part "
+                "of a normal distribution N(mean, standard deviation)",
+                "QuantLibXL Statistics");
+            gaussianDownsideVarianceDesc.SetArguments(mean+std_dev);
+            gaussianDownsideVarianceDesc.Register();
+
+            XlfFuncDesc gaussianPercentileDesc(
+                "gaussianPercentile",
+                "qlGaussianPercentile",
+                "Return the percentile "
+                "of a normal distribution N(mean, standard deviation)",
+                "QuantLibXL Statistics");
+            gaussianPercentileDesc.SetArguments(percentile+mean+std_dev);
+            gaussianPercentileDesc.Register();
+
+            XlfFuncDesc gaussianValueAtRiskDesc(
+                "gaussianValueAtRisk",
+                "qlGaussianValueAtRisk",
+                "Return the value at risk with a percentile confidence"
+                "of a normal distribution N(mean, standard deviation)",
+                "QuantLibXL Statistics");
+            gaussianValueAtRiskDesc.SetArguments(percentile+mean+std_dev);
+            gaussianValueAtRiskDesc.Register();
+
+            XlfFuncDesc gaussianTopPercentileDesc(
+                "gaussianTopPercentile",
+                "qlGaussianTopPercentile",
+                "Return the top percentile "
+                "of a normal distribution N(mean, standard deviation)",
+                "QuantLibXL Statistics");
+            gaussianTopPercentileDesc.SetArguments(percentile+mean+std_dev);
+            gaussianTopPercentileDesc.Register();
+
+            XlfFuncDesc gaussianPotentialUpsideDesc(
+                "gaussianPotentialUpside",
+                "qlGaussianPotentialUpside",
+                "Return the potential upside with a percentile confidence "
+                "of a normal distribution N(mean, standard deviation)",
+                "QuantLibXL Statistics");
+            gaussianPotentialUpsideDesc.SetArguments(percentile+mean+std_dev);
+            gaussianPotentialUpsideDesc.Register();
+
+            XlfFuncDesc gaussianExpectedShortfallDesc(
+                "gaussianExpectedShortfall",
+                "qlGaussianExpectedShortfall",
+                "Return the expected shortfall with a percentile confidence "
+                "of a normal distribution N(mean, standard deviation)",
+                "QuantLibXL Statistics");
+            gaussianExpectedShortfallDesc.SetArguments(percentile+mean+std_dev);
+            gaussianExpectedShortfallDesc.Register();
+
+            XlfFuncDesc gaussianShortfallDesc(
+                "gaussianShortfall",
+                "qlGaussianShortfall",
+                "Return the shortfall at the chosen target for "
+                "of a normal distribution N(mean, standard deviation)",
+                "QuantLibXL Statistics");
+            gaussianShortfallDesc.SetArguments(targetReturn+mean+std_dev);
+            gaussianShortfallDesc.Register();
+
+            XlfFuncDesc gaussianAverageShortfallDesc(
+                "gaussianAverageShortfall",
+                "qlGaussianAverageShortfall",
+                "Return the average shortfall at the chosen target "
+                "of a normal distribution N(mean, standard deviation)",
+                "QuantLibXL Statistics");
+            gaussianAverageShortfallDesc.SetArguments(targetReturn+mean+std_dev);
+            gaussianAverageShortfallDesc.Register();
+
+            XlfFuncDesc gaussianRegretDesc(
+                "gaussianRegret",
+                "qlGaussianRegret",
+                "Return the regret at the chosen target "
+                "of a normal distribution N(mean, standard deviation)",
+                "QuantLibXL Statistics");
+            gaussianRegretDesc.SetArguments(targetReturn+mean+std_dev);
+            gaussianRegretDesc.Register();
 
 
 
