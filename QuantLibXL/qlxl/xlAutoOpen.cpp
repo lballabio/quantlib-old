@@ -71,7 +71,6 @@ extern "C" {
             XlfArgDesc x_array("x_array", "x data array");
             XlfArgDesc y_array("y_array", "y data array");
             XlfArgDesc z_matrix("z_matrix", "z data matrix");
-            XlfArgDesc matrix("matrix", "input matrix");
             XlfArgDesc x_value("x_value", "x value to be interpolated");
             XlfArgDesc y_value("y_value", "y value to be interpolated");
             XlfArgDesc interpolationType("interpolation_type",
@@ -79,6 +78,11 @@ extern "C" {
             XlfArgDesc allowExtrapolation("allow_extrapolation",
                 "allow extrapolation boolean");
             XlfArgDesc absoluteIndex("absoluteIndex", "zero based index");
+
+            XlfArgDesc matrix("matrix", "input matrix");
+            XlfArgDesc salvagingAlgorithm("salvagingAlgorithm", "salvaging "
+                "algorithm to be used for the pseudo square root calculation "
+                "when the input matrix in not positive semi definite");
 
             XlfArgDesc optionType("type", "is the option type");
             XlfArgDesc underlying("underlying", "is the current value of the underlying");
@@ -247,6 +251,21 @@ extern "C" {
                 "return the eigenvalues of the input matrix","QuantLibXL Math");
             eigenValuesDesc.SetArguments(matrix);
             eigenValuesDesc.Register();
+
+            XlfFuncDesc pseudoSQRTDesc("xlpseudoSQRT","qlpseudoSQRT",
+                "return the pseudo square root of the input matrix, such that InputMatrix = ResultMatrix * transpose(ResultMatrix)","QuantLibXL Math");
+            pseudoSQRTDesc.SetArguments(matrix+salvagingAlgorithm);
+            pseudoSQRTDesc.Register();
+
+            XlfFuncDesc matrixProductDesc("xlmatrixProduct","qlmatrixProduct",
+                "return the product of the input matrices","QuantLibXL Math");
+            matrixProductDesc.SetArguments(matrix+matrix);
+            matrixProductDesc.Register();
+
+            XlfFuncDesc matrixTransposeDesc("xlmatrixTranspose","qlmatrixTranspose",
+                "return the transoped of the input matrix","QuantLibXL Math");
+            matrixTransposeDesc.SetArguments(matrix);
+            matrixTransposeDesc.Register();
 
             // Registers Normal distribution
 

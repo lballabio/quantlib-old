@@ -183,4 +183,32 @@ extern "C"
         EXCEL_END;
     }
 
+    LPXLOPER EXCEL_EXPORT xlpseudoSQRT(XlfOper xlmatrix,
+                                       XlfOper xlsalvagingAlgorithm) {
+        EXCEL_BEGIN;
+        Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
+        SalvagingAlgorithm sa = SalvagingAlgorithm(xlsalvagingAlgorithm.AsInt());
+        Matrix result = pseudoSqrt(data_matrix, sa);
+        return XlfOper(result.rows(), result.columns(), result.begin());
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlmatrixProduct(XlfOper xlmatrix,
+                                          XlfOper xlmatrix2) {
+        EXCEL_BEGIN;
+        Matrix data_matrix  = QlXlfOper(xlmatrix ).AsMatrix();
+        Matrix data_matrix2 = QlXlfOper(xlmatrix2).AsMatrix();
+        Matrix result = data_matrix * data_matrix2;
+        return XlfOper(result.rows(), result.columns(), result.begin());
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlmatrixTranspose(XlfOper xlmatrix) {
+        EXCEL_BEGIN;
+        Matrix data_matrix  = QlXlfOper(xlmatrix ).AsMatrix();
+        Matrix result = transpose(data_matrix);
+        return XlfOper(result.rows(), result.columns(), result.begin());
+        EXCEL_END;
+    }
+
 }
