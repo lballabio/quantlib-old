@@ -50,9 +50,9 @@ int main() {
         double underlying = 36;
         double strike = 40;
         long timeSteps = 801;
-        Date exerciseDate(17, May, 1999);
-        Date settlementDate(17, May, 1998);
-        Date todaysDate(15, May, 1998);
+        Date exerciseDate(13, March, 2020);
+        Date settlementDate(13, March, 2019);
+        Date todaysDate(13, March, 2005);
 
         ArgStack a1;
         a1.push(underlying);                // underlying
@@ -160,7 +160,7 @@ int main() {
         printObject("BasketOption", p6);
 
         vector < long > resetDates;
-        resetDates.push_back(Date(13, August, 1998).serialNumber());
+        resetDates.push_back(Date(12, March, 2020).serialNumber());
         ArgStack a7;
         a7.push(string("stoch1"));          // stochastic process handle
         a7.push(resetDates);                // reset dates
@@ -172,10 +172,9 @@ int main() {
         Properties p7 =
             QL_OBJECT_MAKE(CliquetOption)("opt_cliquet", a7);
         printObject("CliquetOption", p7);
-
         vector < long > dividendDates;
-        dividendDates.push_back(Date(15, August, 1998).serialNumber());
-        dividendDates.push_back(Date(15, February, 1999).serialNumber());
+        dividendDates.push_back(Date(13, September, 2019).serialNumber());
+        dividendDates.push_back(Date(13, March, 2020).serialNumber());
         vector < double >dividends;
         dividends.push_back(5.);
         dividends.push_back(5.);
@@ -196,7 +195,7 @@ int main() {
             QL_OBJECT_MAKE(DividendVanillaOption)("opt_divvan", a8);
         printObject("DividendVanillaOption", p8);
 
-        long resetDate = todaysDate.serialNumber() + 90;
+        long resetDate = exerciseDate.serialNumber() - 90;
 
         ArgStack a9;
         a9.push(string("stoch1"));          // stochastic process handle

@@ -53,6 +53,8 @@ namespace QuantLibAddin {
             return QuantLib::Germany();
         else if (idUpper.compare("IT") == 0)
             return QuantLib::Italy();
+        else if (idUpper.compare("TARGET") == 0)
+            return QuantLib::TARGET();
         else if (idUpper.compare("TOKYO") == 0)
             return QuantLib::Tokyo();
         else if (idUpper.compare("UK") == 0)

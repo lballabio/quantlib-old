@@ -29,7 +29,8 @@ namespace QuantLibAddin {
         std::string dayCounterID  = ObjHandler::Args<std::string>::popArg(args);
         std::string frequencyID   = ObjHandler::Args<std::string>::popArg(args);
         double yield              = ObjHandler::Args<double>::popArg(args);
-        double coupon             = ObjHandler::Args<double>::popArg(args);
+        std::vector < double > coupons 
+            = ObjHandler::Args< std::vector < double > >::popArg(args);
         long settlementDays       = ObjHandler::Args<long>::popArg(args);
         long maturityDate         = ObjHandler::Args<long>::popArg(args);
         long datedDate            = ObjHandler::Args<long>::popArg(args);
@@ -37,10 +38,16 @@ namespace QuantLibAddin {
 
         // BusinessDayConvention convention = Following;
         // Real redemption = 100.0;
+        // Handle<YieldTermStructure> discountCurve
+        //                       = Handle<YieldTermStructure>();
+        // Date stub = Date();
+        // bool fromEnd = true;
 
         QuantLib::Frequency couponFrequency = IDtoFrequency(frequencyID);
         QuantLib::DayCounter dayCounter     = IDtoDayCounter(dayCounterID);
         QuantLib::Calendar calendar         = IDtoCalendar(calendarID);
+        const std::vector<QuantLib::Rate> couponsQL = 
+            doubleVectorToRateVector(coupons);
 
         myFixedCouponBond = 
             boost::shared_ptr<QuantLib::FixedCouponBond>(
@@ -48,7 +55,7 @@ namespace QuantLibAddin {
                                               QuantLib::Date(datedDate),
                                               QuantLib::Date(maturityDate),
                                               settlementDays,
-                                              coupon,
+                                              couponsQL,
                                               couponFrequency,
                                               dayCounter,
                                               calendar));

@@ -38,7 +38,7 @@
     <param>
         <name>coupon</name>
         <type>double</type>
-        <tensorrank>scalar</tensorrank>
+        <tensorrank>vector</tensorrank>
         <desc>coupon</desc>
     </param>
     <param>

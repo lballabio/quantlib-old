@@ -44,14 +44,14 @@ int main() {
         QL_CONSOLE(1);
         QL_LOGMESSAGE("begin instruments test");
 
-        Date issueDate(1, January, 2000);           // issue date
-        Date datedDate(15, July, 2001);         // dated date
-        Date maturityDate(1, January, 2010);        // maturity date
+        Date issueDate(13, March, 2005);        // issue date
+        Date datedDate(13, March, 2005);        // dated date
+        Date maturityDate(13, March, 2015);     // maturity date
         long settlementDays         = 3;        // settlement days
-        double coupon               = 0.04;     // coupon
+        vector < double > coupons(1, 0.04);     // coupons
         double yield                = 0.06;     // yield
         string frequencyID          = "A";      // frequency (annual)
-        string dayCounterID         = "ACTACT"; // day count (actual/actual)
+        string dayCounterID         = "THIRTY360"; // day count (30/360)
         string calendarID           = "DE";     // calendar (Germany)
 
         ArgStack a1;
@@ -59,7 +59,7 @@ int main() {
         a1.push(datedDate.serialNumber());      // dated date as long
         a1.push(maturityDate.serialNumber());   // maturity date as long
         a1.push(settlementDays);                // settlement days
-        a1.push(coupon);                        // coupon
+        a1.push(coupons);                       // coupons
         a1.push(yield);                         // yield
         a1.push(frequencyID);                   // frequency ID
         a1.push(dayCounterID);                  // day counter ID

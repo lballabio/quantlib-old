@@ -45,17 +45,17 @@ int main() {
     double underlying = 36;
     double strike = 40;
     long timeSteps = 801;
-    long exerciseDate = 36297;      // (17, May, 1999);
-    long settlementDate = 35932;    // (17, May, 1998);
-    long todaysDate = 35930;        // (15, May, 1998);
+    long exerciseDate = 43903;      // (13, March, 2020);
+    long settlementDate = 43537;    // (13, March, 2019);
+    long todaysDate = 38424;        // (13, March, 2005);
     long fixingDatesCount;
     long *fixingDates;
     char *stochHandles[] = { "stoch1", "stoch1" };
     double **correlations;
-    long resetDates[] = { 36020 };
-    long dividendDates[] = { 36022, 36206 };
+    long resetDates[] = { 43902 };
+    long dividendDates[] = { 43721, 43903 };
     double dividends[] = { 5., 5. };
-    long resetDate = 36020;
+    long resetDate = 43813;
 
     QL_LOGFILE("quantlib.log");
     QL_CONSOLE(1);

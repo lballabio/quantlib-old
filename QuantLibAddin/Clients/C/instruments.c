@@ -30,14 +30,14 @@ void printVariesList(const char *s, const VariesList vo) {
 int main() {
     VariesList vfcb;                        // fixed coupon bond
     // inputs
-    long issueDate              = 36526;    // issue date (1 January 2000)
-    long datedDate              = 37087;    // dated date (15 July 2001)
-    long maturityDate           = 40179;    // maturity date (1 January 2010)
+    long issueDate              = 38424;    // issue date (1 January 2000)
+    long datedDate              = 38424;    // dated date (15 July 2001)
+    long maturityDate           = 42076;    // maturity date (1 January 2010)
     long settlementDays         = 3;        // settlement days
-    double coupon               = 0.04;     // coupon
+    double coupons[] = { 0.04 };            // coupons
     double yield                = 0.06;     // yield
     char *frequencyID          = "A";       // frequency (annual)
-    char *dayCounterID         = "ACTACT";  // day count (actual/actual)
+    char *dayCounterID         = "THIRTY360";// day count (30/360)
     char *calendarID           = "DE";      // calendar (Germany)
 
     QL_LOGFILE("quantlib.log");
@@ -50,7 +50,8 @@ int main() {
             datedDate,
             maturityDate, 
             settlementDays, 
-            coupon, 
+            1,                      // #/coupons
+            coupons, 
             yield, 
             frequencyID, 
             dayCounterID, 

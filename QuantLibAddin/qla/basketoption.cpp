@@ -58,7 +58,7 @@ namespace QuantLibAddin {
             IDtoExercise(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             IDtoEngine(engineID, timeSteps);
-        std::vector < boost::shared_ptr<QuantLib::BlackScholesProcess> >
+        std::vector < boost::shared_ptr<QuantLib::StochasticProcess> >
             stochasticProcsQL;
         std::vector < std::string >::const_iterator i;
         for (i = handleStochasticVector.begin(); i != handleStochasticVector.end(); i++) {
@@ -73,7 +73,8 @@ namespace QuantLibAddin {
                 (stochasticProcess->getReference());
             stochasticProcsQL.push_back(stochasticProcessQL);
         }
-        barrierOption_ = boost::shared_ptr<QuantLib::BasketOption>(
+
+        basketOption_ = boost::shared_ptr<QuantLib::BasketOption>(
             new QuantLib::BasketOption(
                 basketType,
                 stochasticProcsQL, 
@@ -81,7 +82,7 @@ namespace QuantLibAddin {
                 exercise, 
                 correlation,
                 pricingEngine));
-        ObjHandler::any_ptr any_npv(new boost::any(barrierOption_->NPV()));
+        ObjHandler::any_ptr any_npv(new boost::any(basketOption_->NPV()));
         ObjHandler::any_ptr any_engine(new boost::any(std::string(engineID)));
         ObjHandler::ObjectProperty prop_npv(FIELD_NPV, any_npv);
         ObjHandler::ObjectProperty prop_engine(FIELD_ENGINE, any_engine);

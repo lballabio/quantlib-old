@@ -19,7 +19,7 @@
 #define qla_stochasticprocess_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/stochasticprocess.hpp>
+#include <ql/Processes/blackscholesprocess.hpp>
 
 namespace QuantLibAddin {
 

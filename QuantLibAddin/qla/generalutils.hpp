@@ -28,6 +28,9 @@ namespace QuantLibAddin {
     QuantLib::DayCounter IDtoDayCounter(
         const std::string &dayCounterID);
 
+    std::vector<QuantLib::Rate> doubleVectorToRateVector(
+        const std::vector < double > &v);
+
 }
 
 #endif

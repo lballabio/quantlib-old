@@ -31,8 +31,19 @@ namespace QuantLibAddin {
             return QuantLib::Actual360();
         else if (idUpper.compare("ACTACT") == 0)
             return QuantLib::ActualActual();
+        else if (idUpper.compare("THIRTY360") == 0)
+            return QuantLib::Thirty360();
         else
             QL_FAIL("IDtoDayCounter: unrecognized dayCounterID: " + dayCounterID);
+    }
+
+    std::vector<QuantLib::Rate> doubleVectorToRateVector(
+            const std::vector < double > &v) {
+        std::vector<QuantLib::Rate> ret;
+        std::vector<double>::const_iterator i;
+        for (i=v.begin(); i!=v.end(); i++)
+            ret.push_back(QuantLib::Rate(*i));
+        return ret;
     }
 
 }

@@ -53,7 +53,7 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL = 
             boost::static_pointer_cast<QuantLib::BlackScholesProcess>
             (stochasticProcess->getReference());
-        const std::vector<QuantLib::Date>& dividendDatesQL = 
+        const std::vector<QuantLib::Date> dividendDatesQL = 
             longVectorToDateVector(dividendDates);
         dividendVanillaOption_ = boost::shared_ptr<QuantLib::DividendVanillaOption>(
             new QuantLib::DividendVanillaOption(

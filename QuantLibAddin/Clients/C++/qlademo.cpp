@@ -38,8 +38,8 @@ int main() {
         double underlying = 36;
         double strike = 40;
         long timeSteps = 801;
-        Date exerciseDate(17, May, 1999);
-        Date settlementDate(17, May, 1998);
+        Date exerciseDate(13, March, 2020);
+        Date settlementDate(13, March, 2019);
 
         ArgStack bsArgs;
         bsArgs.push(underlying);            // underlying

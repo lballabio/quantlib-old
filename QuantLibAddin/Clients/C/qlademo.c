@@ -26,8 +26,8 @@ int main() {
     double underlying = 36;
     double strike = 40;
     long timeSteps = 801;
-    long exerciseDate = 36297;      // (17, May, 1999);
-    long settlementDate = 35932;    // (17, May, 1998);
+    long exerciseDate = 43903;      // (13, March, 2020);
+    long settlementDate = 43537;    // (13, March, 2019);
     VariesList vbs;                 // attributes of black scholes object
     VariesList vo;                  // attributes of vanilla option object
     int i;                          // iterator
