@@ -175,9 +175,11 @@ class BlackKarasinskiPtr : public boost::shared_ptr<ShortRateModel> {
 %{
 using QuantLib::JamshidianSwaptionEngine;
 using QuantLib::TreeSwaptionEngine;
+using QuantLib::AnalyticCapFloorEngine;
 using QuantLib::TreeCapFloorEngine;
 typedef boost::shared_ptr<PricingEngine> JamshidianSwaptionEnginePtr;
 typedef boost::shared_ptr<PricingEngine> TreeSwaptionEnginePtr;
+typedef boost::shared_ptr<PricingEngine> AnalyticCapFloorEnginePtr;
 typedef boost::shared_ptr<PricingEngine> TreeCapFloorEnginePtr;
 %}
 
@@ -210,6 +212,22 @@ class TreeSwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
                               const TimeGrid& grid) {
             return new TreeSwaptionEnginePtr(
                                      new TreeSwaptionEngine(model,grid));
+        }
+    }
+};
+
+%rename(AnalyticCapFloorEngine) AnalyticCapFloorEnginePtr;
+class AnalyticCapFloorEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        AnalyticCapFloorEnginePtr(
+                             const boost::shared_ptr<ShortRateModel>& model) {
+            using QuantLib::OneFactorAffineModel;
+            boost::shared_ptr<OneFactorAffineModel> m = 
+                 boost::dynamic_pointer_cast<OneFactorAffineModel>(model);
+            QL_REQUIRE(model, "affine model required");
+            return new AnalyticCapFloorEnginePtr(
+                                           new AnalyticCapFloorEngine(m));
         }
     }
 };
