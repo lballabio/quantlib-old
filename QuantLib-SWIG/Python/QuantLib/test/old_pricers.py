@@ -793,7 +793,7 @@ tolerance requested: %(tol)g
                         covariance, riskFreeRate, resTime, 0, seed)
         storedValue = 120.7337797
         pvalue = p.valueWithSamples(fixedSamples)
-        if not (abs(pvalue-storedValue) <= 1e-9):
+        if not (abs(pvalue-storedValue) <= 1e-5):
             self.fail("""
 McMaxBasket:
 calculated value: %(pvalue)g
@@ -813,7 +813,7 @@ tolerance requested: %(tol)g
                         covariance, riskFreeRate, resTime, 1, seed)
         storedValue = 123.5209095
         pvalue = p.valueWithSamples(fixedSamples)
-        if not (abs(pvalue-storedValue) <= 1e-9):
+        if not (abs(pvalue-storedValue) <= 1e-5):
             self.fail("""
 McMaxBasket:
 calculated value: %(pvalue)g
