@@ -55,7 +55,12 @@ window.open(location.href);
 <ul class="navlinklist">
 <li><a class="navlink" href="index.html">Home&nbsp;page</a></li>
 
-<li><a class="navlink" href="status.html">Project Status
+<li><a class="navlink" href="html/overview.html">Project Overview
+(exits)</a></li>
+
+<li><a class="navlink" href="extensions.html">Extensions</a></li>
+
+<li><a class="navlink" href="html/history.html">History
 (exits)</a></li>
 
 <li><a class="navlink" href="download.html">Download</a></li>
@@ -64,14 +69,18 @@ window.open(location.href);
 lists</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/news/?group_id=12740">News</a></li>
+"http://sourceforge.net/news/?group_id=12740">News (exits)</a></li>
 
 <li><a class="navlink" href="html/index.html">Documentation
 (exits)</a></li>
 
+<li><a class="navlink" href="html/platforms.html">Supported
+Platforms (exits)</a></li>
+
 <li><a class="navlink" href="license.html">License</a></li>
 
-<li><a class="navlink" href="group.html">QuantLib Group</a></li>
+<li><a class="navlink" href="html/group.html">QuantLib Group
+(exits)</a></li>
 </ul>
 
 <hr>
@@ -531,8 +540,8 @@ installation guide can be found there.
 
 <li>select "download from internet"</li>
 
-<li>select local package directory (for example
-C:\sources\cygwin)</li>
+<li>select the package archive directory (for example
+C:\archive\cygwin)</li>
 
 <li>select the type of connection you prefer</li>
 
@@ -541,11 +550,17 @@ C:\sources\cygwin)</li>
 <li>select a site near you and click next</li>
 
 <li>now it presents you the list of all the packages that will be
-installed. Choose them as you like (typically install all)</li>
+downloaded. Choose them as you like (all is suggested)</li>
 
 <li>the packages will be downloaded</li>
 
-<li>select root directory for installation</li>
+<li>run setup.exe once again</li>
+
+<li>select "install from local"</li>
+
+<li>select the package archive directory (C:\archive\cygwin in our example)</li>
+
+<li>select root directory for installation (suggested: C:\cygwin)</li>
 
 <li>click install and wait for all the packages to be
 installed</li>
@@ -583,7 +598,7 @@ $PATH. On Win9x, this can be done in a batch file or autoexec.bat;
 e.g., 
 
 <pre>
-    set PATH=C:\cygwin\usr\local\bin;C:\cygwin\bin;$PATH
+    set PATH=$PATH;C:\cygwin\usr\local\bin;C:\cygwin\bin
 </pre>
 
 Run the batch file, or reboot if you're using autoexec.bat. On NT

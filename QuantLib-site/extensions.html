@@ -5,10 +5,10 @@
 <meta name="copyright" content=
 "Ferdinando Ametrano (c) 2000, 2001">
 <meta name="doc-class" content="Draft">
-<title>QuantLib Group</title>
+<title>QuantLib Extensions</title>
 <meta name="description" content="QuantLib status">
 <meta name="keywords" content=
-"QuantLib, QuantLib Group, QuantLib Team, C++, library, finance, quantitative finance, quant, quants, analysts, developers">
+"QuantLib, C++, extensions, modules, Python, Jave, R, S-Plus, Octave, Matlab, Gnumeric, Excel, library, finance, quantitative finance">
 <!--includeHTML file="qlmeta.inc"-->
 <meta name="resource-type" content="document">
 <meta name="generator" content="HTML Tidy, see www.w3.org">
@@ -54,7 +54,12 @@ window.open(location.href);
 <ul class="navlinklist">
 <li><a class="navlink" href="index.html">Home&nbsp;page</a></li>
 
-<li><a class="navlink" href="status.html">Project Status
+<li><a class="navlink" href="html/overview.html">Project Overview
+(exits)</a></li>
+
+<li><a class="navlink" href="extensions.html">Extensions</a></li>
+
+<li><a class="navlink" href="html/history.html">History
 (exits)</a></li>
 
 <li><a class="navlink" href="download.html">Download</a></li>
@@ -63,14 +68,18 @@ window.open(location.href);
 lists</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/news/?group_id=12740">News</a></li>
+"http://sourceforge.net/news/?group_id=12740">News (exits)</a></li>
 
 <li><a class="navlink" href="html/index.html">Documentation
 (exits)</a></li>
 
+<li><a class="navlink" href="html/platforms.html">Supported
+Platforms (exits)</a></li>
+
 <li><a class="navlink" href="license.html">License</a></li>
 
-<li><a class="navlink" href="group.html">QuantLib Group</a></li>
+<li><a class="navlink" href="html/group.html">QuantLib Group
+(exits)</a></li>
 </ul>
 
 <hr>
@@ -135,182 +144,45 @@ height="31" width="88"></a></p>
 </div>
 </td>
 <td class="main"><!--/includeHTML-->
-<h1 class="center">QuantLib Group</h1>
+<h1>QuantLib-based Extension</h1>
 
-<p>The QuantLib Group holds the copyright of all the QuantLib
-source code. Its current members are:</p>
+<p>QuantLib is already available as a <strong>Python</strong>
+module by means of <a href=
+"http://swig.sourceforge.net">SWIG</a>.</p>
 
-<table summary="QuantLib developers and contributors">
-<tr>
-<th>name</th>
-<th>email</th>
-<th>role</th>
-<th>SourceForge user name</th>
-</tr>
+<p>SWIG supports Java, Tcl, Perl5, Guile, MZScheme and Ruby besides
+Python, so this approach may easily help porting QuantLib to these
+languages. We welcome any contribution aimed at exporting the
+library towards other programming languages; however, the use of
+SWIG is to be preferred to hand-made approaches since it leads to
+more maintainable code.</p>
 
-<tr>
-<td><em>Mario Aleppo</em></td>
-<td><a href=
-"mailto:mario.aleppo@riskmap.net">mario.aleppo@riskmap.net</a></td>
-<td></td>
-<td><a href="http://sourceforge.net/users/aleppo/">aleppo</a></td>
-</tr>
+<p>There is a strong interest in having QuantLib available as
+extension for different platforms. We're looking for volunteers to
+help with:</p>
 
-<tr>
-<td><em><a href="http://www.ametrano.net/">Ferdinando
-Ametrano</a></em></td>
-<td><a href=
-"mailto:ferdinando@ametrano.net">ferdinando@ametrano.net</a></td>
-<td>admin</td>
-<td><a href="http://sourceforge.net/users/nando/">nando</a></td>
-</tr>
+<ul>
+<li>COM for Microsoft world (VB and Excel);</li>
 
-<tr>
-<td><em><a href="http://homepage.mac.com/ballabio/">Luigi
-Ballabio</a></em></td>
-<td><a href=
-"mailto:luigi.ballabio@riskmap.net">luigi.ballabio@riskmap.net</a></td>
-<td>designer</td>
-<td><a href=
-"http://sourceforge.net/users/lballabio/">lballabio</a></td>
-</tr>
+<li><a href="http://www.gnome.org/projects/gnumeric/">Gnumeric</a>
+add-in;</li>
 
-<tr>
-<td><em>Adolfo Benin</em></td>
-<td>adolfo.benin@riskmap.net</td>
-<td></td>
-<td><a href="http://sourceforge.net/users/benin/">benin</a></td>
-</tr>
+<li>Matlab/<a href="http://www.octave.org/">Octave</a>
+extension.</li>
 
-<tr>
-<td><em>Marco Marchioro</em></td>
-<td>marco.marchioro@riskmap.net</td>
-<td></td>
-<td><a href="http://sourceforge.net/users/marmar/">marmar</a></td>
-</tr>
+<li>S-Plus/<a href="http://www.r-project.org/">R</a>
+extension.</li>
 
-<tr>
-<td><em>Enrico Sirola</em></td>
-<td>enrico.sirola@riskmap.net</td>
-<td></td>
-<td><a href="http://sourceforge.net/users/enri/">enri</a></td>
-</tr>
+<li>CORBA</li>
 
-<tr>
-<td><em>Maxim Sokolov</em></td>
-<td>maxim_sokolov@rambler.ru</td>
-<td></td>
-<td><a href="http://sourceforge.net/users/dzuki/">dzuki</a></td>
-</tr>
+<li>Simple Object Access Protocol (SOAP)</li>
 
-<tr>
-<td><em><a href="http://www.riskmap.net/">RiskMap</a></em></td>
-<td><a href="mailto:info@riskmap.net">info@riskmap.net</a></td>
-<td>main sponsor</td>
-<td></td>
-</tr>
+<li>XML financial instrument definition (FpML?)</li>
+</ul>
 
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-
-<tr>
-<td colspan="4">Many thanks to the QuantLib contributors:</td>
-</tr>
-
-<tr>
-<th>name</th>
-<th>email</th>
-<th>contribution</th>
-<th>SourceForge user name</th>
-</tr>
-
-<tr>
-<td><em>Christopher Baus</em></td>
-<td></td>
-<td>inspiration for custom iterators</td>
-<td></td>
-</tr>
-
-<tr>
-<td><em>Thomas Becker</em></td>
-<td></td>
-<td>inspiration for custom iterators</td>
-<td></td>
-</tr>
-
-<tr>
-<td><em>David Binderman</em></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td><em>Dirk Eddelbuettel</em></td>
-<td></td>
-<td>Debian packager</td>
-<td><a href=
-"http://sourceforge.net/users/eddelbuettel/">eddelbuettel</a></td>
-</tr>
-
-<tr>
-<td><em>Matteo Gallivanoni</em></td>
-<td>matteo.gallivanoni@riskmap.net</td>
-<td></td>
-<td><a href="http://sourceforge.net/users/sigmud/">sigmud</a></td>
-</tr>
-
-<tr>
-<td><em>Gilbert Peffer</em></td>
-<td></td>
-<td></td>
-<td><a href=
-"http://sourceforge.net/users/gilbert_peffer/">gilbert_peffer</a></td>
-</tr>
-
-<tr>
-<td><em>Sadruddin Rejeb</em></td>
-<td><a href=
-"mailto:sad.rejeb@riskmap.it">sad.rejeb@riskmap.it</a></td>
-<td>gcc-3.0.1 port</td>
-<td><a href=
-"http://sourceforge.net/users/sadrejeb/">sadrejeb</a></td>
-</tr>
-
-<tr>
-<td><em>Peter Schmitteckert</em></td>
-<td><a href=
-"mailto:quantlib@schmitteckert.com">quantlib@schmitteckert.com</a></td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td><em>Bernd Johannes Wuebben</em></td>
-<td></td>
-<td></td>
-<td><a href=
-"http://sourceforge.net/users/berndwuebben/">berndwuebben</a></td>
-</tr>
-</table>
+<p>The library should be exported to the maximum possible degree,
+allowing for object manipulation when possible, providing a
+function interface as bare minimum.</p>
 
 <!--includeHTML file="qltablefoot.inc"-->
 <div class="endmatter">
