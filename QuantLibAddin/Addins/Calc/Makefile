@@ -8,9 +8,9 @@ CC_INCLUDES=-I. -I../.. -I/usr/include -I$(OFFICE_SDK_PATH)/include \
 CC_DEFINES=-DHAVE_CONFIG_H -DUNX -DGCC -DLINUX -DCPPU_ENV=gcc3
 LINK=g++
 LIBRARY_LINK_FLAGS=-shared
-LINK_LIBS=-L$(OFFICE_PROGRAM_PATH) -L/usr/local/lib -L../C++
-LIBRARY_LIBS := -lcppuhelpergcc3 -lcppu -lsal -lstlport_gcc -lvcl645li -lvos3gcc3 \
-	-lQuantLib -lQuantLibAddin -lboost_regex
+LINK_LIBS=-L$(OFFICE_PROGRAM_PATH) -L/usr/local/lib -L../../QuantLibAddin
+LIBRARY_LIBS := -lcppuhelpergcc3 -lcppu -lsal -lstlport_gcc -lvcl645li \
+				-lvos3gcc3 -lQuantLib -lQuantLibAddin -lboost_regex
 CXXFILES := $(wildcard *.cpp)
 OBJFILES := $(patsubst %.cpp,%.o,$(CXXFILES))
 

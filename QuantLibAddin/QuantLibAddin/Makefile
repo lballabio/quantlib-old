@@ -1,8 +1,9 @@
-target = QuantLibAddin.a
+target = libQuantLibAddin.a
 
 sources := $(wildcard *.cpp)
 objects := $(patsubst %.cpp,%.o,$(sources))
 includes = -I.. -I../../ObjectHandler
+libs :=	$(wildcard ../../ObjectHandler/ObjectHandler/*.o)
 
 all : $(target)
 
@@ -13,4 +14,4 @@ $(objects) : %.o : %.cpp
 	g++ -DHAVE_CONFIG_H $(includes) -g -c -o $@ $<
 
 $(target) : $(objects)
-	ar rcs $@ $^
+	ar rcs $@ $^ $(libs)
