@@ -1,3 +1,27 @@
+2002-01-10 14:57  nando
+
+	* license.html (1.31): new copyright and license agreement
+
+2002-01-10 09:27  nando
+
+	* webquepupdate.bat (1.6), quep/quep009.html (1.2): tidyfied
+
+2002-01-09 14:48  lballabio
+
+	* quep.html (1.18), quep/quep009.html (1.1): QuEP 9 added
+
+2002-01-09 11:44  nando
+
+	* license.html (1.30): new copyright and license agreement
+
+2002-01-09 11:18  nando
+
+	* license.html (1.29): new copyright and license agreement
+
+2002-01-08 17:24  nando
+
+	* ChangeLog.txt (1.8): updated
+
 2002-01-07 18:14  nando
 
 	* quep.html (1.17): Tidyfied
