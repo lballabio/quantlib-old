@@ -109,7 +109,7 @@ src="images/swig17.png" border="0" alt="SWIG Logo"></a></div>
 <br>
 <br>
 <div class="center"><a href=
-"http://http://xlw.sourceforge.net/"><strong>XLW</strong></a></div>
+"http://xlw.sourceforge.net/"><strong>XLW</strong></a></div>
 
 <hr>
 <div class="center">
