@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
+<functionlist>
+
+<function>
+<name>QL_BLACKSHOLES</name>
+<description>construct and return a handle to a Black Scholes object</description>
+<parameters>
+	<param>
+		<name>handleStochastic</name>
+		<type>string</type>
+		<desc>handle of the Black Scholes object</desc>
+	</param>
+	<param>
+		<name>dividendYield</name>
+		<type>double</type>
+		<desc>dividend yield</desc>
+	</param>
+	<param>
+		<name>riskFreeRate</name>
+		<type>double</type>
+		<desc>risk free rate</desc>
+	</param>
+	<param>
+		<name>volatility</name>
+		<type>double</type>
+		<desc>volatility</desc>
+	</param>
+	<param>
+		<name>underlying</name>
+		<type>double</type>
+		<desc>underlying</desc>
+	</param>
+	<param>
+		<name>todaysDate</name>
+		<type>long</type>
+		<desc>today's date</desc>
+	</param>
+	<param>
+		<name>settlementDate</name>
+		<type>long</type>
+		<desc>settlement date</desc>
+	</param>
+</parameters>
+<returnvalue>
+	<type>property vector</type>
+	<desc>list of properties describing the Black Scholes object</desc>
+</returnvalue>
+</function>
+
+<function>
+<name>QL_OPTION</name>
+<description>construct and return a handle to an Option object</description>
+<parameters>
+	<param>
+		<name>handleOption</name>
+		<type>string</type>
+		<desc>handle of the Option object</desc>
+	</param>
+	<param>
+		<name>handleStochastic</name>
+		<type>string</type>
+		<desc>handle of the Black Scholes object</desc>
+	</param>
+	<param>
+		<name>type</name>
+		<type>string</type>
+		<desc>type</desc>
+	</param>
+	<param>
+		<name>strike</name>
+		<type>double</type>
+		<desc>strike</desc>
+	</param>
+	<param>
+		<name>timeSteps</name>
+		<type>long</type>
+		<desc>time steps</desc>
+	</param>
+	<param>
+		<name>exerciseDate</name>
+		<type>long</type>
+		<desc>exercise date</desc>
+	</param>
+	<param>
+		<name>settlementDate</name>
+		<type>long</type>
+		<desc>settlement date</desc>
+	</param>
+</parameters>
+<returnvalue>
+	<type>property vector</type>
+	<desc>list of properties describing the Option object</desc>
+</returnvalue>
+</function>
+
+<function>
+<name>QL_OPTION_SETENGINE</name>
+<description>change the pricing engine of an existing Option object</description>
+<parameters>
+	<param>
+		<name>handleOption</name>
+		<type>string</type>
+		<desc>handle of the Option object</desc>
+	</param>
+	<param>
+		<name>engineName</name>
+		<type>string</type>
+		<desc>engine name</desc>
+	</param>
+	<param>
+		<name>timeSteps</name>
+		<type>long</type>
+		<desc>time steps</desc>
+	</param>
+	
+</parameters>
+<returnvalue>
+	<type>property vector</type>
+	<desc>list of properties describing the Option object</desc>
+</returnvalue>
+</function>
+
+</functionlist>
