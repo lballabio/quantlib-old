@@ -102,12 +102,5 @@ class Schedule {
     }
 };
 
-#if defined(SWIGPYTHON)
-// deprecated
-%pythoncode %{
-Scheduler = Schedule
-%}
-#endif
-
 
 #endif

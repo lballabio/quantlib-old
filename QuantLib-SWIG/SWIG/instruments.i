@@ -85,7 +85,7 @@ typedef Handle<Instrument> StockHandle;
 class StockHandle : public Handle<Instrument> {
   public:
     %extend {
-        StockHandle(const RelinkableHandle<MarketElement>& quote,
+        StockHandle(const RelinkableHandle<Quote>& quote,
                     const std::string& isinCode = "unknown", 
                     const std::string& description = "stock") {
             return new StockHandle(new Stock(quote,isinCode,description));

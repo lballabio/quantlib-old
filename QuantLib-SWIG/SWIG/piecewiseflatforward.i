@@ -47,7 +47,7 @@ class DepositRateHelperHandle : public Handle<RateHelper> {
   public:
     %extend {
         DepositRateHelperHandle(
-                const RelinkableHandle<MarketElement>& rate,
+                const RelinkableHandle<Quote>& rate,
                 int n, TimeUnit units, int settlementDays,
                 const Calendar& calendar, RollingConvention convention, 
                 const DayCounter& dayCounter) {
@@ -71,7 +71,7 @@ class FraRateHelperHandle : public Handle<RateHelper> {
   public:
     %extend {
         FraRateHelperHandle(
-                const RelinkableHandle<MarketElement>& rate,
+                const RelinkableHandle<Quote>& rate,
                 int monthsToStart, int monthsToEnd, int settlementDays,
                 const Calendar& calendar, RollingConvention convention,
                 const DayCounter& dayCounter) {
@@ -98,7 +98,7 @@ class FuturesRateHelperHandle : public Handle<RateHelper> {
   public:
     %extend {
         FuturesRateHelperHandle(
-                const RelinkableHandle<MarketElement>& price,
+                const RelinkableHandle<Quote>& price,
                 const Date& immDate, int nMonths,
                 const Calendar& calendar, RollingConvention convention,
                 const DayCounter& dayCounter) {
@@ -115,7 +115,7 @@ class FuturesRateHelperHandle : public Handle<RateHelper> {
                                       calendar,convention,dayCounter));
         }
         FuturesRateHelperHandle(
-	            const RelinkableHandle<MarketElement>& price,
+	            const RelinkableHandle<Quote>& price,
                 const Date& immDate, const Date& matDate,
                 const Calendar& calendar, RollingConvention convention,
                 const DayCounter& dayCounter) {
@@ -131,7 +131,7 @@ class SwapRateHelperHandle : public Handle<RateHelper> {
   public:
     %extend {
         SwapRateHelperHandle(
-                const RelinkableHandle<MarketElement>& rate,
+                const RelinkableHandle<Quote>& rate,
                 int n, TimeUnit units, int settlementDays,
                 const Calendar& calendar, RollingConvention rollingConvention,
                 int fixedFrequency, bool fixedIsAdjusted,

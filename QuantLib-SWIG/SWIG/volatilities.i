@@ -120,7 +120,7 @@ class BlackConstantVolHandle : public Handle<BlackVolTermStructure> {
         }
         BlackConstantVolHandle(
                 const Date& referenceDate,
-                const RelinkableHandle<MarketElement>& volatility,
+                const RelinkableHandle<Quote>& volatility,
                 const DayCounter& dayCounter = Actual365()) {
             return new BlackConstantVolHandle(
                 new BlackConstantVol(referenceDate, volatility, dayCounter));
@@ -199,7 +199,7 @@ class LocalConstantVolHandle : public Handle<LocalVolTermStructure> {
         }
         LocalConstantVolHandle(
                 const Date& referenceDate,
-                const RelinkableHandle<MarketElement>& volatility,
+                const RelinkableHandle<Quote>& volatility,
                 const DayCounter& dayCounter = Actual365()) {
             return new LocalConstantVolHandle(
                 new LocalConstantVol(referenceDate, volatility, dayCounter));

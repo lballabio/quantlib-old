@@ -30,7 +30,7 @@ class TermStructureTest(unittest.TestCase):
         settlement = self.calendar.advance(today,self.settlementDays,'days')
         deposits = [
             DepositRateHelper(
-                MarketElementHandle(SimpleMarketElement(rate/100)),
+                QuoteHandle(SimpleQuote(rate/100)),
                 n, units, self.settlementDays,
                 self.calendar, 'mf', DayCounter('act/360'))
             for (n,units,rate) in [ (1,  'month', 4.581),
@@ -41,7 +41,7 @@ class TermStructureTest(unittest.TestCase):
         ]
         swaps = [
             SwapRateHelper(
-                MarketElementHandle(SimpleMarketElement(rate/100)),
+                QuoteHandle(SimpleQuote(rate/100)),
                 years, "years", self.settlementDays,
                 self.calendar, 'mf', 1, 0, DayCounter('30/360'), 2)
             for (years,rate) in [ ( 1, 4.54),
@@ -72,8 +72,8 @@ class TermStructureTest(unittest.TestCase):
         "Testing observability of forward-spreaded term structure"
         global flag
         flag = None
-        me = SimpleMarketElement(0.01)
-        mh = MarketElementHandle(me)
+        me = SimpleQuote(0.01)
+        mh = QuoteHandle(me)
         h = TermStructureHandle()
         spreaded = ForwardSpreadedTermStructure(h,mh)
         obs = Observer(raiseFlag)
@@ -89,8 +89,8 @@ class TermStructureTest(unittest.TestCase):
         "Testing observability of zero-spreaded term structure"
         global flag
         flag = None
-        me = SimpleMarketElement(0.01)
-        mh = MarketElementHandle(me)
+        me = SimpleQuote(0.01)
+        mh = QuoteHandle(me)
         h = TermStructureHandle()
         spreaded = ZeroSpreadedTermStructure(h,mh)
         obs = Observer(raiseFlag)

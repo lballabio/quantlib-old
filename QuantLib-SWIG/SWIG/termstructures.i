@@ -107,7 +107,7 @@ class ZeroSpreadedTermStructureHandle : public Handle<TermStructure> {
     %extend {
         ZeroSpreadedTermStructureHandle(
                 const RelinkableHandle<TermStructure>& curveHandle,
-                const RelinkableHandle<MarketElement>& spreadHandle) {
+                const RelinkableHandle<Quote>& spreadHandle) {
 	        return new ZeroSpreadedTermStructureHandle(
 	            new ZeroSpreadedTermStructure(curveHandle,spreadHandle));
         }
@@ -120,7 +120,7 @@ class ForwardSpreadedTermStructureHandle : public Handle<TermStructure> {
     %extend {
         ForwardSpreadedTermStructureHandle(
                 const RelinkableHandle<TermStructure>& curveHandle,
-                const RelinkableHandle<MarketElement>& spreadHandle) {
+                const RelinkableHandle<Quote>& spreadHandle) {
 	        return new ForwardSpreadedTermStructureHandle(
 	            new ForwardSpreadedTermStructure(curveHandle,spreadHandle));
         }
@@ -141,7 +141,7 @@ class FlatForwardHandle : public Handle<TermStructure> {
     %extend {
         FlatForwardHandle(const Date& todaysDate, 
                           const Date& referenceDate, 
-                          const RelinkableHandle<MarketElement>& forward,
+                          const RelinkableHandle<Quote>& forward,
                           const DayCounter& dayCounter) {
             return new FlatForwardHandle(
                 new FlatForward(todaysDate,referenceDate,forward,dayCounter));

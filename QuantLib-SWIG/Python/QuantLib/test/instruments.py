@@ -27,8 +27,8 @@ class InstrumentTest(unittest.TestCase):
         "Testing observability of stocks"
         global flag
         flag = None
-        me1 = QuantLib.SimpleMarketElement(0.0)
-        h = QuantLib.MarketElementHandle(me1)
+        me1 = QuantLib.SimpleQuote(0.0)
+        h = QuantLib.QuoteHandle(me1)
         s = QuantLib.Stock(h)
 
         obs = QuantLib.Observer(raiseFlag)
@@ -39,7 +39,7 @@ class InstrumentTest(unittest.TestCase):
             self.fail("Observer was not notified of instrument change")
 
         flag = None
-        me2 = QuantLib.SimpleMarketElement(0.0)
+        me2 = QuantLib.SimpleQuote(0.0)
         h.linkTo(me2)
         if not flag:
             self.fail("Observer was not notified of instrument change")

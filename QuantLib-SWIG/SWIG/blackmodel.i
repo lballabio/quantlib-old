@@ -28,7 +28,7 @@ using QuantLib::BlackModel;
 
 %template(BlackModel) Handle<BlackModel>;
 %extend Handle<BlackModel> {
-    Handle<BlackModel>(const RelinkableHandle<MarketElement>& volatility,
+    Handle<BlackModel>(const RelinkableHandle<Quote>& volatility,
                        const RelinkableHandle<TermStructure>& termStructure) {
         return new Handle<BlackModel>(
             new BlackModel(volatility,termStructure));

@@ -162,7 +162,7 @@ class VanillaOptionHandle : public Handle<Instrument> {
     %extend {
         VanillaOptionHandle(
                 OptionType type,
-                const RelinkableHandle<MarketElement>& underlying, 
+                const RelinkableHandle<Quote>& underlying, 
                 double strike,
                 const RelinkableHandle<TermStructure>& dividendYield,
                 const RelinkableHandle<TermStructure>& riskFreeRate,

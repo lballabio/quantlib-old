@@ -57,7 +57,7 @@ class SwaptionHelperHandle : public Handle<CalibrationHelper> {
     %extend {
         SwaptionHelperHandle(
                 const Period& maturity, const Period& length,
-                const RelinkableHandle<MarketElement>& volatility,
+                const RelinkableHandle<Quote>& volatility,
                 const XiborHandle& index,
                 const RelinkableHandle<TermStructure>& termStructure) {
             %#if defined(HAVE_BOOST)
@@ -78,7 +78,7 @@ class CapHelperHandle : public Handle<CalibrationHelper> {
     %extend {
         CapHelperHandle(
                 const Period& length,
-                const RelinkableHandle<MarketElement>& volatility,
+                const RelinkableHandle<Quote>& volatility,
                 const XiborHandle& index,
                 const RelinkableHandle<TermStructure>& termStructure) {
             %#if defined(HAVE_BOOST)

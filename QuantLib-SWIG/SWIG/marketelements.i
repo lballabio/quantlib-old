@@ -23,32 +23,38 @@
 %include functions.i
 
 %{
-using QuantLib::MarketElement;
+using QuantLib::Quote;
 %}
 
-%ignore MarketElement;
-class MarketElement {
+%ignore Quote;
+class Quote {
   public:
     double value() const;
 };
 
-%template(MarketElement) Handle<MarketElement>;
-IsObservable(Handle<MarketElement>);
+%template(Quote) Handle<Quote>;
+IsObservable(Handle<Quote>);
 
-%template(MarketElementHandle) RelinkableHandle<MarketElement>;
-IsObservable(RelinkableHandle<MarketElement>);
+%template(QuoteHandle) RelinkableHandle<Quote>;
+IsObservable(RelinkableHandle<Quote>);
 
+#if defined(SWIGPYTHON)
+%pythoncode %{
+    MarketElement = Quote
+    MarketElementHandle = QuoteHandle
+%}
+#endif
 
 
 // actual market elements
 %{
-using QuantLib::SimpleMarketElement;
-typedef Handle<MarketElement> SimpleMarketElementHandle;
+using QuantLib::SimpleQuote;
+typedef Handle<Quote> SimpleQuoteHandle;
 %}
 
 // Fake inheritance between Handles
-%rename(SimpleMarketElement) SimpleMarketElementHandle;
-class SimpleMarketElementHandle : public Handle<MarketElement> {
+%rename(SimpleQuote) SimpleQuoteHandle;
+class SimpleQuoteHandle : public Handle<Quote> {
     #if defined(SWIGRUBY)
     %rename("value=")     setValue;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -56,80 +62,96 @@ class SimpleMarketElementHandle : public Handle<MarketElement> {
     #endif
   public:
     %extend {
-        SimpleMarketElementHandle(double value) {
-            return new SimpleMarketElementHandle(
-                new SimpleMarketElement(value));
+        SimpleQuoteHandle(double value) {
+            return new SimpleQuoteHandle(new SimpleQuote(value));
         }
         void setValue(double value) {
             %#if defined(HAVE_BOOST)
-            boost::dynamic_pointer_cast<SimpleMarketElement>(*self)
-                 ->setValue(value);
+            boost::dynamic_pointer_cast<SimpleQuote>(*self)->setValue(value);
             %#else
-            Handle<SimpleMarketElement>(*self)->setValue(value);
+            Handle<SimpleQuote>(*self)->setValue(value);
             %#endif
         }
     }
 };
 
+#if defined(SWIGPYTHON)
+%pythoncode %{
+    SimpleMarketElement = SimpleQuote
+%}
+#endif
+
 
 #if defined(SWIGPYTHON) || defined(SWIGMZSCHEME)
 %{
-using QuantLib::DerivedMarketElement;
-using QuantLib::CompositeMarketElement;
-typedef Handle<MarketElement> DerivedMarketElementHandle;
-typedef Handle<MarketElement> CompositeMarketElementHandle;
+using QuantLib::DerivedQuote;
+using QuantLib::CompositeQuote;
+typedef Handle<Quote> DerivedQuoteHandle;
+typedef Handle<Quote> CompositeQuoteHandle;
 %}
 
-%rename(DerivedMarketElement) DerivedMarketElementHandle;
-class DerivedMarketElementHandle : public Handle<MarketElement> {
+%rename(DerivedQuote) DerivedQuoteHandle;
+class DerivedQuoteHandle : public Handle<Quote> {
   public:
     %extend {
         #if defined(SWIGPYTHON)
-        DerivedMarketElementHandle(const RelinkableHandle<MarketElement>& h,
-                                   PyObject* function) {
-            return new DerivedMarketElementHandle(
-                new DerivedMarketElement<UnaryFunction>(
-                    h,UnaryFunction(function)));
+        DerivedQuoteHandle(const RelinkableHandle<Quote>& h,
+                           PyObject* function) {
+            return new DerivedQuoteHandle(
+                new DerivedQuote<UnaryFunction>(h,UnaryFunction(function)));
         }
         #elif defined(SWIGMZSCHEME)
-        DerivedMarketElementHandle(const RelinkableHandle<MarketElement>& h,
-                                   Scheme_Object* function) {
-            return new DerivedMarketElementHandle(
-                new DerivedMarketElement<UnaryFunction>(
-                    h,UnaryFunction(function)));
+        DerivedQuoteHandle(const RelinkableHandle<Quote>& h,
+                           Scheme_Object* function) {
+            return new DerivedQuoteHandle(
+                new DerivedQuote<UnaryFunction>(h,UnaryFunction(function)));
         }
         #endif
     }
 };
 
-%rename(CompositeMarketElement) CompositeMarketElementHandle;
-class CompositeMarketElementHandle : public Handle<MarketElement> {
+#if defined(SWIGPYTHON)
+%pythoncode %{
+    DerivedMarketElement = DerivedQuote
+%}
+#endif
+
+
+%rename(CompositeQuote) CompositeQuoteHandle;
+class CompositeQuoteHandle : public Handle<Quote> {
   public:
     %extend {
         #if defined(SWIGPYTHON)
-        CompositeMarketElementHandle(const RelinkableHandle<MarketElement>& h1,
-                                     const RelinkableHandle<MarketElement>& h2,
-                                     PyObject* function) {
-            return new CompositeMarketElementHandle(
-                new CompositeMarketElement<BinaryFunction>(
+        CompositeQuoteHandle(const RelinkableHandle<Quote>& h1,
+                             const RelinkableHandle<Quote>& h2,
+                             PyObject* function) {
+            return new CompositeQuoteHandle(
+                new CompositeQuote<BinaryFunction>(
                     h1,h2,BinaryFunction(function)));
         }
         #elif defined(SWIGMZSCHEME)
-        CompositeMarketElementHandle(const RelinkableHandle<MarketElement>& h1,
-                                     const RelinkableHandle<MarketElement>& h2,
-                                     Scheme_Object* function) {
-            return new CompositeMarketElementHandle(
-                new CompositeMarketElement<BinaryFunction>(
+        CompositeQuoteHandle(const RelinkableHandle<Quote>& h1,
+                             const RelinkableHandle<Quote>& h2,
+                             Scheme_Object* function) {
+            return new CompositeQuoteHandle(
+                new CompositeQuote<BinaryFunction>(
                     h1,h2,BinaryFunction(function)));
         }
         #endif
     }
 };
+
+#if defined(SWIGPYTHON)
+%pythoncode %{
+    CompositeMarketElement = CompositeQuote
+%}
+#endif
+
 #endif
 
 namespace std {
-    %template(MarketElementVector) vector<Handle<MarketElement> >;
-    %template(MarketElementHandleVector) vector<RelinkableHandle<MarketElement> >;
+    %template(QuoteVector) vector<Handle<Quote> >;
+    %template(QuoteHandleVector) vector<RelinkableHandle<Quote> >;
 }
 
 #endif
