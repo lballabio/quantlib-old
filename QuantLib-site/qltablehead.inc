@@ -97,6 +97,21 @@ height="31" border="0" alt="SourceForge.net Logo"></a></div>
 SourceForge.net, Open Source, CVS, etc.</a>
 
 <hr>
+<h3 class="navbartitle">QuantLib uses:</h3>
+<div class="center"><a href="http://www.boost.org"><img src=
+"images/c++boost.gif" border="0" alt="Boost Logo"></a></div>
+<div class="center"><a href="http://www.doxygen.org/"><img src=
+"images/doxygen.png" border="0" alt="doxygen Logo"></a></div>
+<div class="center"><a href="http://nsis.sourceforge.net"><img
+src="images/left.gif" border="0" alt="NSIS Logo"></a></div>
+<div class="center"><a href="http://www.swig.org"><img
+src="images/swig17.png" border="0" alt="SWIG Logo"></a></div>
+<br>
+<br>
+<div class="center"><a href=
+"http://http://xlw.sourceforge.net/"><strong>XLW</strong></a></div>
+
+<hr>
 <div class="center">
   <p>
     <a href="http://validator.w3.org/check/referer"><img border="0"
