@@ -18,19 +18,19 @@ void anyToXLOPER(const any_ptr &any, XLOPER &xOp) {
 }
 
 void setValues(LPXLOPER xArray, obj_ptr object, const string &handle) {
-	vector < string > fieldNames = object->getFieldNames();
+	Properties properties = object->getProperties();
 	xArray->xltype = xltypeMulti;
 	xArray->val.array.rows = 1;
-	xArray->val.array.columns = fieldNames.size() + 1;
+	xArray->val.array.columns = properties.size() + 1;
 	// FIXME - memory allocated below gets leaked - need to set xlbitXLFree ?
-	xArray->val.array.lparray = new XLOPER[fieldNames.size() + 1]; 
+	xArray->val.array.lparray = new XLOPER[properties.size() + 1]; 
 	if (!xArray->val.array.lparray)
 		throw("setValues: error on call to new");
 	setXLOPERString(xArray->val.array.lparray[0], handle.c_str());
-	for (unsigned int i = 0; i < fieldNames.size(); i++) {
-		string fieldName = fieldNames[i];
-		any_ptr any = object->getValue(fieldName);
-		anyToXLOPER(any, xArray->val.array.lparray[i + 1]);
+	for (unsigned int i = 0; i < properties.size(); i++) {
+		ObjectProperty property = properties[i];
+		any_ptr a = property();
+		anyToXLOPER(a, xArray->val.array.lparray[i + 1]);
 	}
 }
 

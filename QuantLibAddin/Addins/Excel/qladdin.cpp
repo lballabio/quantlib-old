@@ -2,13 +2,12 @@
 #include "xlcall.h"
 #include "framewrk.hpp"
 
-#define NUM_FUNCS 6
+#define NUM_FUNCS 5
 #define NUM_ATTS 6
 
 static LPSTR func[NUM_FUNCS][NUM_ATTS] = {
 	// utils
-	{" QL_FIELDNAMES",		" RC",		" QL_FIELDNAMES",		" ", " 1", " QuantLib"},
-	{" QL_VALUE",			" RCC",		" QL_VALUE",			" ", " 1", " QuantLib"},
+	{" QL_QUERY",			" RC",		" QL_QUERY",			" ", " 1", " QuantLib"},
 	{" QL_LOGFILE",			" RC",		" QL_LOGFILE",			" ", " 1", " QuantLib"},
 	// options
 	{" QL_BLACKSCHOLES",	" REEEENN#"," QL_BLACKSCHOLES",		" ", " 1", " QuantLib"},

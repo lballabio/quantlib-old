@@ -6,47 +6,32 @@ using std::ostringstream;
 
 extern ObjectHandler objectHandler;
 
-LPXLOPER QL_FIELDNAMES(char *handleObject_char) {
+LPXLOPER QL_QUERY(char *handleObject_char) {
 	try {
 		string handleObject(handleObject_char);
 		boost::shared_ptr<Object> object = 
 			(objectHandler.retrieveObject(handleObject));
 		if (!object)
 			QL_FAIL("error retrieving object " + handleObject);
-		vector < string > fieldNames = object->getFieldNames();
+
+		Properties properties = object->getProperties();
 		static XLOPER xRet;
 		xRet.xltype = xltypeMulti;
-		xRet.val.array.rows = fieldNames.size();
-		xRet.val.array.columns = 1;
+		xRet.val.array.rows = properties.size();
+		xRet.val.array.columns = 2;
 		// FIXME - memory allocated below gets leaked - need to set xlbitXLFree ?
-		xRet.val.array.lparray = new XLOPER[fieldNames.size()];
+		xRet.val.array.lparray = new XLOPER[2 * properties.size()];
 		if (!xRet.val.array.lparray)
 			QL_FAIL("error on call to new");
-		for (unsigned int i = 0; i < fieldNames.size(); i++)
-			setXLOPERString(xRet.val.array.lparray[i], fieldNames[i].c_str());
+		for (unsigned int i = 0; i < properties.size(); i++) {
+			ObjectProperty property = properties[i];
+			any_ptr a = property();
+			setXLOPERString(xRet.val.array.lparray[i * 2], property.name().c_str());
+			anyToXLOPER(a, xRet.val.array.lparray[i * 2 + 1]);
+		}
 		return &xRet;
 	} catch (const exception &e) {
 		logMessage(string("ERROR: QL_FIELDNAMES: ") + e.what());
-		return 0;
-	}
-}
-
-LPXLOPER QL_VALUE(
-		char *handleObject_char,
-		char *fieldName_char) {
-	try {
-		string handleObject(handleObject_char);
-		boost::shared_ptr<Object> object = 
-			(objectHandler.retrieveObject(handleObject));
-		if (!object)
-			throw(string("error retrieving object " + handleObject).c_str());
-		string fieldName(fieldName_char);
-		any_ptr any = object->getValue(fieldName);
-		static XLOPER xRet;
-		anyToXLOPER(any, xRet);
-		return &xRet;
-	} catch (const exception &e) {
-		logMessage(string("ERROR: QL_VALUE: ") + e.what());
 		return 0;
 	}
 }
