@@ -1,56 +1,114 @@
-2002-04-18 11:37  lballabio
+2002-12-16 10:38  lballabio
 
-	* quantlib/quantlib.ss (1.5): History.i migrated
+	* setup.scm (1.13): [no log message]
 
-2002-04-16 21:59  nando
+2002-12-06 14:37  lballabio
 
-	* ChangeLog.txt (1.5): updated
+	* setup.scm (1.12): [no log message]
 
-2002-04-16 13:30  lballabio
+2002-11-20 13:59  lballabio
 
-	* quantlib/quantlib.ss (1.4): Got a language for free
+	* setup.scm (1.11): Exported DiscountCurve
 
-2002-04-15 16:25  lballabio
+2002-11-14 12:36  lballabio
 
-	* quantlib/quantlib.ss (1.3), test/date.scm (1.2): [no log message]
+	* setup.scm (1.10): Win32 fixes
 
-2002-04-09 09:15  nando
+2002-11-08 15:38  lballabio
 
-	* ChangeLog.txt (1.4): updated
+	* setup.scm (1.9): s/CC/CXX/
 
-2002-04-08 08:11  nando
+2002-11-05 14:58  lballabio
 
-	* ChangeLog.txt (1.3): updated
+	* test/quantlib-test-suite.scm (1.9): Almost there
 
-2002-04-08 08:02  nando
+2002-10-03 16:46  lballabio
 
-	* ChangeLog.txt (1.2): updated
+	* setup.scm (1.8): A few new-style vol term structures
 
-2002-04-04 10:14  lballabio
+2002-09-24 14:25  lballabio
 
-	* build.scm (1.2): observer.i migrated
+	* setup.scm (1.7): A look at the optimizers (nothing major)
 
-2002-04-03 13:57  lballabio
+2002-09-12 12:50  lballabio
 
-	* quantlib/quantlib.ss (1.2): Array migrated
+	* README.txt (1.5), quantlib/ql-init.ss (1.5): Synch with QuantLib
 
-2002-04-02 15:30  lballabio
+2002-09-01 15:15  lballabio
+
+	* setup.scm (1.6), quantlib/ql-init.ss (1.4),
+	test/quantlib-test-suite.scm (1.8), test/unittest.scm (1.5),
+	test/utilities.scm (1.2): Almost there
+
+2002-08-08 08:15  lballabio
+
+	* quantlib/ql-init.ss (1.3): [no log message]
+
+2002-08-07 16:46  lballabio
+
+	* README.txt (1.4), quantlib/ql-init.ss (1.2): Catching up with
+	SWIG
+
+2002-08-07 14:01  lballabio
+
+	* setup.scm (1.5), quantlib/ql-init.ss (1.1), quantlib/quantlib.ss
+	(1.8), test/quantlib-test-suite.scm (1.7), test/unittest.scm (1.4),
+	test/utilities.scm (1.1): Catching up with MzScheme
+
+2002-08-06 13:41  lballabio
+
+	* quantlib/quantlib.ss (1.7): Catching up with SWIG
+
+2002-08-06 13:37  lballabio
+
+	* quantlib/quantlib.ss (1.6): Catching up with SWIG
+
+2002-08-03 16:16  lballabio
+
+	* README.txt (1.3), quantlib/quantlib.ss (1.5): Keeping up with
+	SWIG
+
+2002-07-22 10:05  lballabio
+
+	* test/quantlib-test-suite.scm (1.6): Last couple of weeks
+
+2002-07-11 15:27  lballabio
+
+	* quantlib/quantlib.ss (1.4): Last couple of weeks
+
+2002-07-11 15:26  lballabio
+
+	* .cvsignore (1.1): Some more .cvsignore
+
+2002-06-27 17:28  lballabio
+
+	* quantlib/quantlib.ss (1.3), test/unittest.scm (1.3): Saved from
+	laptop crash (phew...)
+
+2002-06-24 07:29  lballabio
+
+	* setup.scm (1.4), quantlib/quantlib.ss (1.2),
+	test/quantlib-test-suite.scm (1.5): a couple of weeks' worth
+
+2002-06-11 15:40  lballabio
+
+	* README.txt (1.2), test/quantlib-test-suite.scm (1.4): Synch with
+	QuantLib
+
+2002-06-03 08:24  lballabio
+
+	* setup.scm (1.3), test/quantlib-test-suite.scm (1.3),
+	test/unittest.scm (1.2): unified tests for MzScheme and Guile
+
+2002-05-31 15:32  lballabio
+
+	* setup.scm (1.2), test/quantlib-test-suite.scm (1.2): Compacting
+	MzScheme and Guile
+
+2002-05-31 15:29  lballabio
 
 	* Authors.txt (1.1), ChangeLog.txt (1.1), Contributors.txt (1.1),
-	History.txt (1.1), LICENSE.TXT (1.1), build.scm (1.1), install.scm
-	(1.1), test.scm (1.1), quantlib/quantlib.ss (1.1), test/date.scm
-	(1.1), test/daycounters.scm (1.1), test/distributions.scm (1.1),
-	test/quantlib-test-suite.scm (1.1), test/unittest.scm (1.1):
-	Initial revision
-
-2002-04-02 15:30  lballabio
-
-	* Authors.txt (1.1.1.1), ChangeLog.txt (1.1.1.1), Contributors.txt
-	(1.1.1.1), History.txt (1.1.1.1), LICENSE.TXT (1.1.1.1), build.scm
-	(1.1.1.1), install.scm (1.1.1.1), test.scm (1.1.1.1),
-	quantlib/quantlib.ss (1.1.1.1), test/date.scm (1.1.1.1),
-	test/daycounters.scm (1.1.1.1), test/distributions.scm (1.1.1.1),
-	test/quantlib-test-suite.scm (1.1.1.1), test/unittest.scm
-	(1.1.1.1): Module for migration to SWIG 1.3.11 and reunification of
-	SWIG extensions
+	History.txt (1.1), LICENSE.TXT (1.1), README.txt (1.1), setup.scm
+	(1.1), quantlib/quantlib.ss (1.1), test/quantlib-test-suite.scm
+	(1.1), test/unittest.scm (1.1): Compacting MzScheme and Guile
 

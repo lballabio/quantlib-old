@@ -1,3 +1,244 @@
+2002-12-11 13:46  lballabio
+
+	* piecewiseflatforward.i (1.7), termstructures.i (1.10): Term
+	structure and index fixing cleanup
+
+2002-12-09 13:28  lballabio
+
+	* volatilities.i (1.3): Fixed local volatility interface
+
+2002-11-29 10:20  marmar
+
+	* currencies.i (1.4): added new currencies
+
+2002-11-27 12:33  marmar
+
+	* calendars.i (1.21): Added calendars for Budapest, Oslo,
+	Stockholm, and Warsaw
+
+2002-11-22 14:25  marmar
+
+	* date.i (1.21): Introduced Format { Long, Short, ISO };
+
+2002-11-20 14:38  lballabio
+
+	* date.i (1.20): Exported overloaded Date::operator-
+
+2002-11-20 13:59  lballabio
+
+	* discountcurve.i (1.1), ql.i (1.22): Exported DiscountCurve
+
+2002-11-20 10:05  lballabio
+
+	* volatilities.i (1.2): Constant Black vol exported
+
+2002-11-14 12:36  lballabio
+
+	* common.i (1.17): Win32 fixes
+
+2002-11-12 16:36  marmar
+
+	* date.i (1.19): default constructor added
+
+2002-11-12 08:33  lballabio
+
+	* calendars.i (1.20), daycounters.i (1.15): [no log message]
+
+2002-11-11 13:46  marmar
+
+	* ql.i (1.21): VC++ regenerate wrappers automatically
+
+2002-11-05 14:58  lballabio
+
+	* old_pricers.i (1.2): Almost there
+
+2002-10-27 13:06  lballabio
+
+	* operators.i (1.7): Implemented QuEP 2
+
+2002-10-03 16:46  lballabio
+
+	* ql.i (1.20), volatilities.i (1.1): A few new-style vol term
+	structures
+
+2002-09-24 14:25  lballabio
+
+	* functions.i (1.4), optimizers.i (1.1), ql.i (1.19), solvers1d.i
+	(1.6): A look at the optimizers (nothing major)
+
+2002-09-12 12:50  lballabio
+
+	* calendars.i (1.19), cashflows.i (1.5), common.i (1.16), date.i
+	(1.18), history.i (1.10), indexes.i (1.4), instruments.i (1.7),
+	linearalgebra.i (1.9), montecarlo.i (1.5), null.i (1.6),
+	old_volatility.i (1.2), piecewiseflatforward.i (1.6),
+	riskstatistics.i (1.8), scheduler.i (1.2), statistics.i (1.8),
+	termstructures.i (1.9): Synch with QuantLib
+
+2002-09-01 15:15  lballabio
+
+	* blackmodel.i (1.1), capfloor.i (1.1), cashflows.i (1.4), date.i
+	(1.17), history.i (1.9), montecarlo.i (1.4), old_pricers.i (1.1),
+	old_volatility.i (1.1), options.i (1.7), ql.i (1.18), scheduler.i
+	(1.1), swaption.i (1.1), vectors.i (1.3): Almost there
+
+2002-08-08 08:15  lballabio
+
+	* calendars.i (1.18), date.i (1.16), daycounters.i (1.14),
+	linearalgebra.i (1.8), operators.i (1.6): [no log message]
+
+2002-08-07 16:46  lballabio
+
+	* calendars.i (1.17), common.i (1.15), date.i (1.15),
+	linearalgebra.i (1.7), null.i (1.5), operators.i (1.5),
+	riskstatistics.i (1.7), statistics.i (1.7), termstructures.i (1.8):
+	Catching up with SWIG
+
+2002-08-07 14:01  lballabio
+
+	* ql.i (1.17): Catching up with MzScheme
+
+2002-08-06 17:12  lballabio
+
+	* observer.i (1.11), piecewiseflatforward.i (1.5): Catching up with
+	QuantLib
+
+2002-08-06 13:37  lballabio
+
+	* common.i (1.14), history.i (1.8), linearalgebra.i (1.6),
+	marketelements.i (1.8), observer.i (1.10), termstructures.i (1.7):
+	Catching up with SWIG
+
+2002-08-05 17:50  lballabio
+
+	* solvers1d.i (1.5): Catching up with SWIG
+
+2002-08-05 17:32  lballabio
+
+	* calendars.i (1.16), cashflows.i (1.3), common.i (1.13), date.i
+	(1.14), daycounters.i (1.13), distributions.i (1.5), history.i
+	(1.7), indexes.i (1.3), instruments.i (1.6), interpolation.i (1.4),
+	linearalgebra.i (1.5), marketelements.i (1.7), montecarlo.i (1.3),
+	observer.i (1.9), operators.i (1.4), options.i (1.6),
+	piecewiseflatforward.i (1.4), riskstatistics.i (1.6),
+	segmentintegral.i (1.2), solvers1d.i (1.4), statistics.i (1.6),
+	swap.i (1.3), termstructures.i (1.6): Catching up with SWIG
+
+2002-08-03 16:16  lballabio
+
+	* calendars.i (1.15), common.i (1.12), piecewiseflatforward.i
+	(1.3), riskstatistics.i (1.5), statistics.i (1.5), termstructures.i
+	(1.5), vectors.i (1.2): Keeping up with SWIG
+
+2002-07-22 10:05  lballabio
+
+	* linearalgebra.i (1.4): Last couple of weeks
+
+2002-07-11 15:27  lballabio
+
+	* linearalgebra.i (1.3), montecarlo.i (1.2), randomnumbers.i (1.9),
+	riskstatistics.i (1.4), statistics.i (1.4): Last couple of weeks
+
+2002-06-28 13:34  lballabio
+
+	* termstructures.i (1.4): Improved term structure test
+
+2002-06-27 17:28  lballabio
+
+	* calendars.i (1.14), common.i (1.11), date.i (1.13), daycounters.i
+	(1.12), distributions.i (1.4), history.i (1.6), indexes.i (1.2),
+	instruments.i (1.5), interpolation.i (1.3), linearalgebra.i (1.2),
+	marketelements.i (1.6), observer.i (1.8), operators.i (1.3),
+	options.i (1.5), piecewiseflatforward.i (1.2), randomnumbers.i
+	(1.8), riskstatistics.i (1.3), solvers1d.i (1.3), statistics.i
+	(1.3), swap.i (1.2), termstructures.i (1.3): Saved from laptop
+	crash (phew...)
+
+2002-06-24 07:29  lballabio
+
+	* cashflows.i (1.2), common.i (1.10), date.i (1.12), daycounters.i
+	(1.11), instruments.i (1.4), interpolation.i (1.2), linearalgebra.i
+	(1.1), matrix.i (1.2), montecarlo.i (1.1), operators.i (1.2),
+	options.i (1.4), piecewiseflatforward.i (1.1), ql.i (1.16),
+	qlarray.i (1.11), statistics.i (1.2), swap.i (1.1): a couple of
+	weeks' worth
+
+2002-06-11 15:40  lballabio
+
+	* cashflows.i (1.1), options.i (1.3), ql.i (1.15): Synch with
+	QuantLib
+
+2002-06-03 10:29  lballabio
+
+	* options.i (1.2): Synch with ql
+
+2002-05-30 08:20  lballabio
+
+	* calendars.i (1.13), date.i (1.11), options.i (1.1), ql.i (1.14),
+	termstructures.i (1.2), indexes.i (1.1): Biweekly commit
+
+2002-05-17 16:07  lballabio
+
+	* calendars.i (1.12), daycounters.i (1.10), history.i (1.5),
+	marketelements.i (1.5), operators.i (1.1), ql.i (1.13), qlarray.i
+	(1.10), randomnumbers.i (1.7), termstructures.i (1.1): Weekly
+	payload
+
+2002-05-16 14:28  nando
+
+	* randomnumbers.i (1.6): removed InvCumulative2
+
+2002-05-13 08:38  lballabio
+
+	* calendars.i (1.11), common.i (1.9), date.i (1.10), daycounters.i
+	(1.9), functions.i (1.3), history.i (1.4), instruments.i (1.3),
+	interpolation.i (1.1), marketelements.i (1.4), matrix.i (1.1),
+	observer.i (1.7), ql.i (1.12), qlarray.i (1.9), riskstatistics.i
+	(1.2), segmentintegral.i (1.1), solvers1d.i (1.2), statistics.i
+	(1.1): Weekly payload
+
+2002-05-03 11:06  lballabio
+
+	* calendars.i (1.10), date.i (1.9), daycounters.i (1.8): Fixed
+	setup files
+
+2002-05-02 07:50  lballabio
+
+	* common.i (1.8), instruments.i (1.2), marketelements.i (1.3),
+	observer.i (1.6): Handles to base classes are templates, not
+	typedefs
+
+2002-04-29 15:24  lballabio
+
+	* calendars.i (1.9), instruments.i (1.1), marketelements.i (1.2),
+	ql.i (1.11): Migrated instruments.i
+
+2002-04-26 07:57  lballabio
+
+	* calendars.i (1.8), common.i (1.7), date.i (1.8), functions.i
+	(1.2), history.i (1.3), marketelements.i (1.1), observer.i (1.5),
+	ql.i (1.10), riskstatistics.i (1.1), vectors.i (1.1): Migrated risk
+	statistics and market elements
+
+2002-04-22 14:35  lballabio
+
+	* calendars.i (1.7), date.i (1.7), daycounters.i (1.7), functions.i
+	(1.1), history.i (1.2), null.i (1.4), observer.i (1.4), ql.i (1.9),
+	qlarray.i (1.8), solvers1d.i (1.1): Renamed Solver1D::lowBound and
+	hiBound
+
+2002-04-21 20:38  nando
+
+	* ql.i (1.7.2.1): version number up
+
+2002-04-21 20:32  nando
+
+	* ql.i (1.8): version number up
+
+2002-04-21 19:30  nando
+
+	* ChangeLog.txt (1.5): updated
+
 2002-04-18 11:37  lballabio
 
 	* calendars.i (1.6), date.i (1.6), daycounters.i (1.6), history.i

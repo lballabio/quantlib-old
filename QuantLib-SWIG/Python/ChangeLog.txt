@@ -1,3 +1,248 @@
+2002-12-11 13:46  lballabio
+
+	* QuantLib/test/: capfloor.py (1.3), piecewiseflatforward.py (1.6),
+	termstructures.py (1.10): Term structure and index fixing cleanup
+
+2002-12-06 14:37  lballabio
+
+	* .cvsignore (1.2): [no log message]
+
+2002-11-27 12:35  marmar
+
+	* QuantLibPython.mak (1.5): no message
+
+2002-11-20 13:59  lballabio
+
+	* setup.py (1.27): Exported DiscountCurve
+
+2002-11-12 13:21  marmar
+
+	* QuantLibPython.dsp (1.4), QuantLibPython.mak (1.4): Using
+	_QuantLib instead of QuantLibc
+
+2002-11-12 10:59  marmar
+
+	* QuantLibPython.dsp (1.3), QuantLibPython.mak (1.3): The
+	includepath and libpath for python should be specified in the
+	options of VC++
+
+2002-11-12 08:33  lballabio
+
+	* wrap.bat (1.2): [no log message]
+
+2002-11-11 11:02  marmar
+
+	* QuantLibPython.dsp (1.2), QuantLibPython.mak (1.2), wrap.bat
+	(1.1): VC++ compiles
+
+2002-11-08 15:09  enri
+
+	* setup.py (1.26): os.environ['CC'] --> os.environ['CXX']
+	(unix-like OSes)
+
+2002-11-08 12:57  lballabio
+
+	* QuantLib/test/old_pricers.py (1.3): [no log message]
+
+2002-11-05 16:07  lballabio
+
+	* setup.py (1.25): [no log message]
+
+2002-11-05 15:43  lballabio
+
+	* setup.py (1.24): [no log message]
+
+2002-11-05 14:58  lballabio
+
+	* QuantLib/test/old_pricers.py (1.2): Almost there
+
+2002-10-03 16:46  lballabio
+
+	* setup.py (1.23): A few new-style vol term structures
+
+2002-09-24 14:25  lballabio
+
+	* setup.py (1.22): A look at the optimizers (nothing major)
+
+2002-09-12 12:50  lballabio
+
+	* README.txt (1.7), QuantLib/test/capfloor.py (1.2),
+	QuantLib/test/europeanoption.py (1.7),
+	QuantLib/test/piecewiseflatforward.py (1.5),
+	QuantLib/test/simpleswap.py (1.4), QuantLib/test/swaption.py (1.2),
+	QuantLib/test/termstructures.py (1.9): Synch with QuantLib
+
+2002-09-01 15:15  lballabio
+
+	* setup.py (1.21), QuantLib/test/QuantLibTestSuite.py (1.9),
+	QuantLib/test/capfloor.py (1.1), QuantLib/test/old_pricers.py
+	(1.1), QuantLib/test/swaption.py (1.1): Almost there
+
+2002-08-07 16:46  lballabio
+
+	* README.txt (1.6), QuantLib/test/date.py (1.4): Catching up with
+	SWIG
+
+2002-08-06 17:12  lballabio
+
+	* QuantLib/test/: piecewiseflatforward.py (1.4), termstructures.py
+	(1.8): Catching up with QuantLib
+
+2002-08-06 13:37  lballabio
+
+	* setup.py (1.20), QuantLib/__init__.py (1.3), QuantLib/defaults.py
+	(1.13): Catching up with SWIG
+
+2002-08-05 17:32  lballabio
+
+	* QuantLib/defaults.py (1.12): Catching up with SWIG
+
+2002-08-03 16:16  lballabio
+
+	* README.txt (1.5), setup.py (1.19), QuantLib/__init__.py (1.2),
+	QuantLib/defaults.py (1.11), QuantLib/test/europeanoption.py (1.6),
+	QuantLib/test/piecewiseflatforward.py (1.3),
+	QuantLib/test/simpleswap.py (1.3), QuantLib/test/termstructures.py
+	(1.7): Keeping up with SWIG
+
+2002-07-22 10:05  lballabio
+
+	* QuantLib/: defaults.py (1.10), test/instruments.py (1.3),
+	test/marketelements.py (1.3), test/termstructures.py (1.6): Last
+	couple of weeks
+
+2002-07-11 15:27  lballabio
+
+	* QuantLib/test/: riskstatistics.py (1.3), statistics.py (1.4):
+	Last couple of weeks
+
+2002-07-11 15:18  lballabio
+
+	* .cvsignore (1.1), QuantLib/.cvsignore (1.1): Some more .cvsignore
+
+2002-06-28 13:34  lballabio
+
+	* QuantLib/test/termstructures.py (1.5): Improved term structure
+	test
+
+2002-06-27 17:28  lballabio
+
+	* setup.py (1.18), QuantLib/defaults.py (1.9),
+	QuantLib/test/distributions.py (1.4),
+	QuantLib/test/europeanoption.py (1.5),
+	QuantLib/test/piecewiseflatforward.py (1.2),
+	QuantLib/test/simpleswap.py (1.2), QuantLib/test/termstructures.py
+	(1.4): Saved from laptop crash (phew...)
+
+2002-06-24 07:29  lballabio
+
+	* setup.py (1.17), QuantLib/defaults.py (1.8),
+	QuantLib/test/QuantLibTestSuite.py (1.8),
+	QuantLib/test/covariance.py (1.1), QuantLib/test/date.py (1.3),
+	QuantLib/test/daycounters.py (1.2), QuantLib/test/distributions.py
+	(1.3), QuantLib/test/europeanoption.py (1.4),
+	QuantLib/test/operators.py (1.2),
+	QuantLib/test/piecewiseflatforward.py (1.1),
+	QuantLib/test/riskstatistics.py (1.2),
+	QuantLib/test/segmentintegral.py (1.2), QuantLib/test/simpleswap.py
+	(1.1), QuantLib/test/solvers1d.py (1.3),
+	QuantLib/test/statistics.py (1.3): a couple of weeks' worth
+
+2002-06-11 15:40  lballabio
+
+	* README.txt (1.4), QuantLib/test/europeanoption.py (1.3): Synch
+	with QuantLib
+
+2002-06-03 10:29  lballabio
+
+	* QuantLib/test/europeanoption.py (1.2): Synch with ql
+
+2002-05-31 15:23  lballabio
+
+	* QuantLib/test/termstructures.py (1.3): Compacting MzScheme and
+	Guile
+
+2002-05-30 08:20  lballabio
+
+	* setup.py (1.16), QuantLib/defaults.py (1.7),
+	QuantLib/test/QuantLibTestSuite.py (1.7),
+	QuantLib/test/europeanoption.py (1.1), QuantLib/test/solvers1d.py
+	(1.2), QuantLib/test/statistics.py (1.2),
+	QuantLib/test/termstructures.py (1.2): Biweekly commit
+
+2002-05-17 16:07  lballabio
+
+	* setup.py (1.15), QuantLib/defaults.py (1.6),
+	QuantLib/test/QuantLibTestSuite.py (1.6),
+	QuantLib/test/operators.py (1.1), QuantLib/test/termstructures.py
+	(1.1): Weekly payload
+
+2002-05-13 16:04  lballabio
+
+	* setup.py (1.14): Allow passing CXXFLAGS
+
+2002-05-13 08:38  lballabio
+
+	* README.txt (1.3), QuantLib/test/QuantLibTestSuite.py (1.5),
+	QuantLib/test/segmentintegral.py (1.1), QuantLib/test/statistics.py
+	(1.1): Weekly payload
+
+2002-05-03 12:46  lballabio
+
+	* makewrappers.py (1.4), setup.py (1.13): More fixes in setup
+	scripts
+
+2002-05-03 11:30  lballabio
+
+	* makewrappers.py (1.3): More fixes in setup scripts
+
+2002-05-03 11:06  lballabio
+
+	* makewrappers.py (1.2), setup.py (1.12): Fixed setup files
+
+2002-05-02 07:50  lballabio
+
+	* QuantLib/: defaults.py (1.5), test/instruments.py (1.2),
+	test/marketelements.py (1.2): Handles to base classes are
+	templates, not typedefs
+
+2002-04-29 15:24  lballabio
+
+	* setup.py (1.11), QuantLib/defaults.py (1.4),
+	QuantLib/test/QuantLibTestSuite.py (1.4),
+	QuantLib/test/instruments.py (1.1): Migrated instruments.i
+
+2002-04-26 07:57  lballabio
+
+	* setup.py (1.10), QuantLib/defaults.py (1.3),
+	QuantLib/test/QuantLibTestSuite.py (1.3), QuantLib/test/date.py
+	(1.2), QuantLib/test/distributions.py (1.2),
+	QuantLib/test/marketelements.py (1.1),
+	QuantLib/test/riskstatistics.py (1.1): Migrated risk statistics and
+	market elements
+
+2002-04-22 14:35  lballabio
+
+	* setup.py (1.9), QuantLib/test/QuantLibTestSuite.py (1.2),
+	QuantLib/test/solvers1d.py (1.1): Renamed Solver1D::lowBound and
+	hiBound
+
+2002-04-21 21:21  nando
+
+	* setup.py (1.7.2.2): version number up
+
+2002-04-21 20:38  nando
+
+	* setup.py (1.7.2.1): version number up
+
+2002-04-21 20:32  nando
+
+	* setup.py (1.8): version number up
+
+2002-04-21 19:27  nando
+
+	* ChangeLog.txt (1.6): updated
+
 2002-04-18 11:37  lballabio
 
 	* setup.py (1.7), QuantLib/defaults.py (1.2): History.i migrated

@@ -1,3 +1,92 @@
+2002-12-11 17:52  nando
+
+	* books.txt (1.6): updated
+
+2002-12-10 09:07  nando
+
+	* cvs.html (1.42): typo fixed
+
+2002-10-25 15:47  lballabio
+
+	* quep.html (1.31): Implemented in QuEP 2
+
+2002-08-06 16:27  nando
+
+	* contacts.txt (1.2): obsolete
+
+2002-06-07 07:52  nando
+
+	* books.txt (1.5), index.html (1.44), quep/quep005.html (1.5): no
+	message
+
+2002-05-27 22:29  nando
+
+	* quep/quep006/: quep006.html (1.1), quep6.html~ (1.1),
+	dia_diagrams/quep_6_static_DateTime (1.1),
+	dia_diagrams/quep_6_static_Exchange (1.1),
+	dia_diagrams/quep_6_static_Money (1.1),
+	dia_diagrams/quep_6_static_RoundTruncate (1.1),
+	dia_diagrams/quep_6_static_diagram (1.1),
+	quep_6_files/quep_6_static_diagram.png (1.1),
+	quep_6_files/quep_6_static_diagram_DateTime.png (1.1),
+	quep_6_files/quep_6_static_diagram_exchange.png (1.1),
+	quep_6_files/quep_6_static_diagram_money.png (1.1),
+	quep_6_files/quep_6_static_diagram_rounding.png (1.1): added
+	currency quep.	Not yet published on quantlib.org
+
+2002-05-11 19:40  nando
+
+	* cvs.html (1.41), style.html (1.31): more info
+
+2002-05-06 17:23  nando
+
+	* download.html (1.33), nextrelease.html (1.19): added CVS tag
+
+2002-05-06 15:22  lballabio
+
+	* quep.html (1.30): Updated
+
+2002-05-06 13:48  lballabio
+
+	* style.html (1.30): [no log message]
+
+2002-05-06 07:12  nando
+
+	* download.html (1.32), nextrelease.html (1.18): getting ready for
+	the new release
+
+2002-05-05 00:05  nando
+
+	* FAQ.html (1.39), cvs.html (1.40), download.html (1.31),
+	extensions.html (1.24), nextrelease.html (1.17), snapshot.html
+	(1.19), webnextreleaseupdate.bat (1.1.4.1): R000300f0-branch-merge1
+	merged into trunk
+
+2002-05-04 23:29  nando
+
+	* FAQ.html (1.38.2.1), cvs.html (1.38.2.1), download.html
+	(1.30.2.2), extensions.html (1.23.2.1), nextrelease.html
+	(1.16.2.2), snapshot.html (1.18.2.1): updated
+
+2002-05-03 08:58  nando
+
+	* webnextreleaseupdate.bat (1.1): file webnextreleaseupdate.bat was
+	initially added on branch R000300f0-branch.
+
+2002-05-03 08:58  nando
+
+	* download.html (1.30.2.1), nextrelease.html (1.16.2.1),
+	webnextreleaseupdate.bat (1.1.2.1): getting ready for the new
+	release
+
+2002-04-25 07:46  nando
+
+	* cvs.html (1.39): developer cvs access info updated
+
+2002-04-21 19:20  nando
+
+	* ChangeLog.txt (1.20): updated
+
 2002-04-16 21:56  nando
 
 	* ChangeLog.txt (1.19): updated

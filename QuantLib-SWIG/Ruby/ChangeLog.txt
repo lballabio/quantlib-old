@@ -1,3 +1,191 @@
+2002-12-11 13:46  lballabio
+
+	* test/: capfloor.rb (1.3), piecewiseflatforward.rb (1.7),
+	termstructures.rb (1.9): Term structure and index fixing cleanup
+
+2002-12-06 14:37  lballabio
+
+	* setup.rb (1.28): [no log message]
+
+2002-11-20 13:59  lballabio
+
+	* setup.rb (1.27): Exported DiscountCurve
+
+2002-11-08 15:38  lballabio
+
+	* setup.rb (1.26): s/CC/CXX/
+
+2002-11-05 14:58  lballabio
+
+	* test/old_pricers.rb (1.2): Almost there
+
+2002-10-03 16:46  lballabio
+
+	* setup.rb (1.25): A few new-style vol term structures
+
+2002-09-24 14:25  lballabio
+
+	* setup.rb (1.24): A look at the optimizers (nothing major)
+
+2002-09-12 12:50  lballabio
+
+	* QuantLib.rb (1.17), README.txt (1.7), test/capfloor.rb (1.2),
+	test/europeanoption.rb (1.6), test/piecewiseflatforward.rb (1.6),
+	test/simpleswap.rb (1.4), test/swaption.rb (1.2),
+	test/termstructures.rb (1.8): Synch with QuantLib
+
+2002-09-01 15:15  lballabio
+
+	* QuantLib.rb (1.16), setup.rb (1.23), test/QuantLibTestSuite.rb
+	(1.12), test/capfloor.rb (1.1), test/old_pricers.rb (1.1),
+	test/swaption.rb (1.1): Almost there
+
+2002-08-07 16:46  lballabio
+
+	* test/dates.rb (1.4): Catching up with SWIG
+
+2002-08-06 17:12  lballabio
+
+	* test/: piecewiseflatforward.rb (1.5), termstructures.rb (1.7):
+	Catching up with QuantLib
+
+2002-08-06 13:37  lballabio
+
+	* QuantLib.rb (1.15): Catching up with SWIG
+
+2002-08-05 17:32  lballabio
+
+	* QuantLib.rb (1.14): Catching up with SWIG
+
+2002-08-03 16:16  lballabio
+
+	* QuantLib.rb (1.13), README.txt (1.6), test/QuantLibTestSuite.rb
+	(1.11), test/europeanoption.rb (1.5), test/piecewiseflatforward.rb
+	(1.4), test/simpleswap.rb (1.3), test/termstructures.rb (1.6):
+	Keeping up with SWIG
+
+2002-07-22 10:05  lballabio
+
+	* QuantLib.rb (1.12), test/instruments.rb (1.3),
+	test/marketelements.rb (1.3), test/termstructures.rb (1.5): Last
+	couple of weeks
+
+2002-07-11 15:27  lballabio
+
+	* QuantLib.rb (1.11), test/riskstatistics.rb (1.3),
+	test/statistics.rb (1.3): Last couple of weeks
+
+2002-07-11 15:18  lballabio
+
+	* .cvsignore (1.1): Some more .cvsignore
+
+2002-06-28 13:34  lballabio
+
+	* test/: piecewiseflatforward.rb (1.3), termstructures.rb (1.4):
+	Improved term structure test
+
+2002-06-27 17:28  lballabio
+
+	* QuantLib.rb (1.10), test/QuantLibTestSuite.rb (1.10),
+	test/distributions.rb (1.4), test/europeanoption.rb (1.4),
+	test/piecewiseflatforward.rb (1.2), test/simpleswap.rb (1.2),
+	test/termstructures.rb (1.3): Saved from laptop crash (phew...)
+
+2002-06-24 07:29  lballabio
+
+	* QuantLib.rb (1.9), setup.rb (1.22), test/QuantLibTestSuite.rb
+	(1.9), test/covariance.rb (1.1), test/piecewiseflatforward.rb
+	(1.1), test/simpleswap.rb (1.1): a couple of weeks' worth
+
+2002-06-11 15:40  lballabio
+
+	* README.txt (1.5), test/europeanoption.rb (1.3): Synch with
+	QuantLib
+
+2002-06-03 10:29  lballabio
+
+	* test/europeanoption.rb (1.2): Synch with ql
+
+2002-05-31 15:23  lballabio
+
+	* test/termstructures.rb (1.2): Compacting MzScheme and Guile
+
+2002-05-30 08:20  lballabio
+
+	* QuantLib.rb (1.8), setup.rb (1.21), test/QuantLibTestSuite.rb
+	(1.8), test/dates.rb (1.3), test/daycounters.rb (1.3),
+	test/distributions.rb (1.3), test/europeanoption.rb (1.1),
+	test/operators.rb (1.2), test/riskstatistics.rb (1.2),
+	test/solvers1d.rb (1.3), test/statistics.rb (1.2): Biweekly commit
+
+2002-05-17 16:07  lballabio
+
+	* QuantLib.rb (1.7), setup.rb (1.20), test/QuantLibTestSuite.rb
+	(1.7), test/operators.rb (1.1), test/termstructures.rb (1.1):
+	Weekly payload
+
+2002-05-13 16:04  lballabio
+
+	* setup.rb (1.19): Allow passing CXXFLAGS
+
+2002-05-13 08:38  lballabio
+
+	* README.txt (1.4), setup.rb (1.18), test/QuantLibTestSuite.rb
+	(1.6), test/segmentintegral.rb (1.1), test/statistics.rb (1.1):
+	Weekly payload
+
+2002-05-03 12:46  lballabio
+
+	* setup.rb (1.17): More fixes in setup scripts
+
+2002-05-03 11:30  lballabio
+
+	* setup.rb (1.16): More fixes in setup scripts
+
+2002-05-03 11:06  lballabio
+
+	* setup.rb (1.15): Fixed setup files
+
+2002-05-02 07:50  lballabio
+
+	* QuantLib.rb (1.6), test/QuantLibTestSuite.rb (1.5),
+	test/instruments.rb (1.2), test/marketelements.rb (1.2): Handles to
+	base classes are templates, not typedefs
+
+2002-04-29 15:24  lballabio
+
+	* QuantLib.rb (1.5), setup.rb (1.14), test/QuantLibTestSuite.rb
+	(1.4), test/instruments.rb (1.1): Migrated instruments.i
+
+2002-04-26 07:57  lballabio
+
+	* QuantLib.rb (1.4), setup.rb (1.13), test/QuantLibTestSuite.rb
+	(1.3), test/dates.rb (1.2), test/daycounters.rb (1.2),
+	test/distributions.rb (1.2), test/marketelements.rb (1.1),
+	test/riskstatistics.rb (1.1), test/solvers1d.rb (1.2): Migrated
+	risk statistics and market elements
+
+2002-04-22 14:35  lballabio
+
+	* setup.rb (1.12), test/QuantLibTestSuite.rb (1.2),
+	test/solvers1d.rb (1.1): Renamed Solver1D::lowBound and hiBound
+
+2002-04-21 21:21  nando
+
+	* setup.rb (1.10.2.2): version number up
+
+2002-04-21 20:38  nando
+
+	* setup.rb (1.10.2.1): version number up
+
+2002-04-21 20:32  nando
+
+	* setup.rb (1.11): version number up
+
+2002-04-21 19:28  nando
+
+	* ChangeLog.txt (1.6): updated
+
 2002-04-18 11:37  lballabio
 
 	* QuantLib.rb (1.3), setup.rb (1.10): History.i migrated
