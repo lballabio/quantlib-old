@@ -89,18 +89,19 @@
 
             (if (> (Instrument-NPV option) 1.0e-5)
                 (begin
-                  (add-result expected "delta" (PlainOption-delta option))
-                  (add-result expected "gamma" (PlainOption-gamma option))
-                  (add-result expected "rho" (PlainOption-rho option))
+                  (add-result expected "delta" (VanillaOption-delta option))
+                  (add-result expected "gamma" (VanillaOption-gamma option))
+                  (add-result expected "rho" (VanillaOption-rho option))
                   (add-result expected "dividend-rho"
-                              (PlainOption-dividend-rho option))
-                  (add-result expected "vega" (PlainOption-vega option))
-                  (add-result expected "theta" (PlainOption-theta option))
+                              (VanillaOption-dividend-rho option))
+                  (add-result expected "vega" (VanillaOption-vega option))
+                  (add-result expected "theta" (VanillaOption-theta option))
 
                   (add-result calculated "delta"
                               (derivative Instrument-NPV option underlying))
                   (add-result calculated "gamma"
-                              (derivative PlainOption-delta option underlying))
+                              (derivative VanillaOption-delta 
+                                          option underlying))
                   (add-result calculated "rho" 
                               (derivative Instrument-NPV option r-rate))
                   (add-result calculated "dividend-rho"
@@ -161,7 +162,7 @@
                   (begin
                     ; shift guess somehow
                     (SimpleMarketElement-value-set! volatility (* v 1.5))
-                    (let ((implied-vol (PlainOption-implied-volatility
+                    (let ((implied-vol (VanillaOption-implied-volatility
                                         option
                                         value
                                         tolerance
@@ -187,9 +188,9 @@
                       delete-MarketElementHandle)
                   (vh (new-MarketElementHandle volatility)
                       delete-MarketElementHandle)
-                  (engine (new-EuropeanEngine) delete-OptionEngine))
-    (new-PlainOption type uh strike div-curve
-                     rf-curve ex-date vh engine)))
+                  (engine (new-EuropeanEngine) delete-PricingEngine))
+    (new-VanillaOption type uh strike div-curve
+                       rf-curve ex-date vh engine)))
 (define (eu-test-make-flat-curve forward)
   (deleting-let* ((today (Date-todays-date) delete-Date)
                   (calendar (new-Calendar "TARGET") delete-Calendar)

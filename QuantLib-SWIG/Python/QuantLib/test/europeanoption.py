@@ -29,9 +29,9 @@ def relErr(x1, x2, reference):
         return 10e+10
 
 def EuropeanOption(type,underlying,strike,divCurve,rfCurve,exDate,volatility):
-    return PlainOption(type,MarketElementHandle(underlying),strike,
-                       divCurve,rfCurve, exDate,
-                       MarketElementHandle(volatility),EuropeanEngine())
+    return VanillaOption(type,MarketElementHandle(underlying),strike,
+                         divCurve,rfCurve, exDate,
+                         MarketElementHandle(volatility),EuropeanEngine())
 
 def flatCurve(forward):
     today = Date_todaysDate()

@@ -64,17 +64,17 @@ MapToString(OptionType,optionTypeFromString,optionTypeToString);
 // option pricing engines
 
 %{
-using QuantLib::OptionPricingEngine;
+using QuantLib::PricingEngine;
 %}
 
-%template(OptionEngine) Handle<OptionPricingEngine>;
+%template(PricingEngine) Handle<PricingEngine>;
 
 
 // plain options and engines
 
 %{
-using QuantLib::Instruments::PlainOption;
-typedef Handle<Instrument> PlainOptionHandle;
+using QuantLib::Instruments::VanillaOption;
+typedef Handle<Instrument> VanillaOptionHandle;
 std::string OptionDefaultIsinCode = "unknown";
 std::string OptionDefaultDescription = "option";
 %}
@@ -84,58 +84,58 @@ std::string OptionDefaultDescription = "option";
 %rename("implied-volatility") impliedVolatility;
 #endif
 
-%rename(PlainOption) PlainOptionHandle;
-class PlainOptionHandle : public Handle<Instrument> {};
+%rename(VanillaOption) VanillaOptionHandle;
+class VanillaOptionHandle : public Handle<Instrument> {};
 
-%extend PlainOptionHandle {
-    PlainOptionHandle(OptionType type,
-                      const RelinkableHandle<MarketElement>& underlying, 
-                      double strike,
-                      const RelinkableHandle<TermStructure>& dividendYield,
-                      const RelinkableHandle<TermStructure>& riskFreeRate,
-                      const Date& exerciseDate,
-                      const RelinkableHandle<MarketElement>& volatility,
-                      const Handle<OptionPricingEngine>& engine,
-                      const std::string& isinCode = OptionDefaultIsinCode, 
-                      const std::string& desc = OptionDefaultDescription) {
-        return new PlainOptionHandle(
-            new PlainOption(type,underlying,strike,dividendYield,
-                            riskFreeRate,exerciseDate,volatility,
-                            engine,isinCode,desc));
+%extend VanillaOptionHandle {
+    VanillaOptionHandle(OptionType type,
+                        const RelinkableHandle<MarketElement>& underlying, 
+                        double strike,
+                        const RelinkableHandle<TermStructure>& dividendYield,
+                        const RelinkableHandle<TermStructure>& riskFreeRate,
+                        const Date& exerciseDate,
+                        const RelinkableHandle<MarketElement>& volatility,
+                        const Handle<PricingEngine>& engine,
+                        const std::string& isinCode = OptionDefaultIsinCode, 
+                        const std::string& desc = OptionDefaultDescription) {
+        return new VanillaOptionHandle(
+            new VanillaOption(type,underlying,strike,dividendYield,
+                              riskFreeRate,exerciseDate,volatility,
+                              engine,isinCode,desc));
     }
     double delta() {
-        return Handle<PlainOption>(*self)->delta();
+        return Handle<VanillaOption>(*self)->delta();
     }
     double gamma() {
-        return Handle<PlainOption>(*self)->gamma();
+        return Handle<VanillaOption>(*self)->gamma();
     }
     double theta() {
-        return Handle<PlainOption>(*self)->theta();
+        return Handle<VanillaOption>(*self)->theta();
     }
     double vega() {
-        return Handle<PlainOption>(*self)->vega();
+        return Handle<VanillaOption>(*self)->vega();
     }
     double rho() {
-        return Handle<PlainOption>(*self)->rho();
+        return Handle<VanillaOption>(*self)->rho();
     }
     double dividendRho() {
-        return Handle<PlainOption>(*self)->dividendRho();
+        return Handle<VanillaOption>(*self)->dividendRho();
     }
     double impliedVolatility(double targetValue, double accuracy = 1.0e-4,
                              Size maxEvaluations = 100,
                              double minVol = 1.0e-4, double maxVol = 4.0) {
-        return Handle<PlainOption>(*self)->impliedVolatility(
+        return Handle<VanillaOption>(*self)->impliedVolatility(
             targetValue,accuracy,maxEvaluations,minVol,maxVol);
     }
 }
 
 %{
 using QuantLib::Pricers::EuropeanEngine;
-typedef Handle<OptionPricingEngine> EuropeanEngineHandle;
+typedef Handle<PricingEngine> EuropeanEngineHandle;
 %}
 
 %rename(EuropeanEngine) EuropeanEngineHandle;
-class EuropeanEngineHandle : public Handle<OptionPricingEngine> {};
+class EuropeanEngineHandle : public Handle<PricingEngine> {};
 
 %extend EuropeanEngineHandle {
     EuropeanEngineHandle() {

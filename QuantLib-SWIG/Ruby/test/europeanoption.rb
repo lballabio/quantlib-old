@@ -33,9 +33,9 @@ class EuropeanOptionTest < RUNIT::TestCase
     end
   end
   def makeOption(type,underlying,strike,divCurve,rfCurve,exDate,volatility)
-    PlainOption.new(type,MarketElementHandle.new(underlying),strike,
-                    divCurve,rfCurve, exDate,
-                    MarketElementHandle.new(volatility),EuropeanEngine.new())
+    VanillaOption.new(type,MarketElementHandle.new(underlying),strike,
+                      divCurve,rfCurve, exDate,
+                      MarketElementHandle.new(volatility),EuropeanEngine.new)
   end
   def makeFlatCurve(forward)
     today = Date.todaysDate
