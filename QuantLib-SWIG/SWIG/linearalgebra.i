@@ -26,6 +26,7 @@
 using QuantLib::Array;
 using QuantLib::Matrix;
 using QuantLib::ArrayFormatter;
+using QuantLib::MatrixFormatter;
 %}
 
 %define QL_TYPECHECK_ARRAY       4210    %enddef
@@ -90,7 +91,7 @@ bool extractArray(PyObject* source, Array* target) {
     } else {
         /* wrapped Array? */
         Array* v;
-        if (SWIG_ConvertPtr($input,(void **) &v, 
+        if (SWIG_ConvertPtr($input,(void **) &v,
                             $&1_descriptor,0) != -1)
             $1 = 1;
         else
@@ -114,7 +115,7 @@ bool extractArray(PyObject* source, Array* target) {
     } else {
         /* wrapped Array? */
         Array* v;
-        if (SWIG_ConvertPtr($input,(void **) &v, 
+        if (SWIG_ConvertPtr($input,(void **) &v,
                             $1_descriptor,0) != -1)
             $1 = 1;
         else
@@ -154,7 +155,7 @@ bool extractArray(PyObject* source, Array* target) {
                                         PyTuple_Size(o) :
                                         PyList_Size(o));
                 if (items != cols) {
-                    PyErr_SetString(PyExc_TypeError, 
+                    PyErr_SetString(PyExc_TypeError,
                         "Matrix must have equal-length rows");
                     Py_DECREF(o);
                     return NULL;
@@ -217,7 +218,7 @@ bool extractArray(PyObject* source, Array* target) {
                                         PyTuple_Size(o) :
                                         PyList_Size(o));
                 if (items != cols) {
-                    PyErr_SetString(PyExc_TypeError, 
+                    PyErr_SetString(PyExc_TypeError,
                         "Matrix must have equal-length rows");
                     Py_DECREF(o);
                     return NULL;
@@ -256,7 +257,7 @@ bool extractArray(PyObject* source, Array* target) {
     /* wrapped Matrix? */
     } else {
         Matrix* m;
-        if (SWIG_ConvertPtr($input,(void **) &m, 
+        if (SWIG_ConvertPtr($input,(void **) &m,
                             $&1_descriptor,0) != -1)
             $1 = 1;
         else
@@ -270,7 +271,7 @@ bool extractArray(PyObject* source, Array* target) {
     /* wrapped Matrix? */
     } else {
         Matrix* m;
-        if (SWIG_ConvertPtr($input,(void **) &m, 
+        if (SWIG_ConvertPtr($input,(void **) &m,
                             $1_descriptor,0) != -1)
             $1 = 1;
         else
@@ -326,7 +327,7 @@ bool extractArray(PyObject* source, Array* target) {
     /* wrapped Array? */
     } else {
         Array* v;
-        if (SWIG_ConvertPtr($input,(void **) &v, 
+        if (SWIG_ConvertPtr($input,(void **) &v,
                             $&1_descriptor,0) != -1)
             $1 = 1;
         else
@@ -340,7 +341,7 @@ bool extractArray(PyObject* source, Array* target) {
     /* wrapped Array? */
     } else {
         Array* v;
-        if (SWIG_ConvertPtr($input,(void **) &v, 
+        if (SWIG_ConvertPtr($input,(void **) &v,
                             $1_descriptor,0) != -1)
             $1 = 1;
         else
@@ -439,7 +440,7 @@ bool extractArray(PyObject* source, Array* target) {
     /* wrapped Matrix? */
     } else {
         Matrix* m;
-        if (SWIG_ConvertPtr($input,(void **) &m, 
+        if (SWIG_ConvertPtr($input,(void **) &m,
                             $&1_descriptor,0) != -1)
             $1 = 1;
         else
@@ -453,7 +454,7 @@ bool extractArray(PyObject* source, Array* target) {
     /* wrapped Matrix? */
     } else {
         Matrix* m;
-        if (SWIG_ConvertPtr($input,(void **) &m, 
+        if (SWIG_ConvertPtr($input,(void **) &m,
                             $1_descriptor,0) != -1)
             $1 = 1;
         else
@@ -471,7 +472,7 @@ bool extractArray(PyObject* source, Array* target) {
             if (SCHEME_REALP(o))
                 (($1_type &)$1)[i] = scheme_real_to_double(o);
             else
-                scheme_wrong_type(FUNC_NAME, "Array", 
+                scheme_wrong_type(FUNC_NAME, "Array",
                                   $argnum, argc, argv);
         }
     } else {
@@ -491,7 +492,7 @@ bool extractArray(PyObject* source, Array* target) {
             if (SCHEME_REALP(o))
                 temp[i] = scheme_real_to_double(o);
             else
-                scheme_wrong_type(FUNC_NAME, "Array", 
+                scheme_wrong_type(FUNC_NAME, "Array",
                                   $argnum, argc, argv);
         }
     } else {
@@ -505,7 +506,7 @@ bool extractArray(PyObject* source, Array* target) {
     /* wrapped Array? */
     } else {
         Array* v;
-        $1 = (SWIG_ConvertPtr($input,(void **) &v,$&1_descriptor,0) != -1) ? 
+        $1 = (SWIG_ConvertPtr($input,(void **) &v,$&1_descriptor,0) != -1) ?
             1 : 0;
     }
 }
@@ -516,7 +517,7 @@ bool extractArray(PyObject* source, Array* target) {
     /* wrapped Array? */
     } else {
         Array* v;
-        $1 = (SWIG_ConvertPtr($input,(void **) &v,$1_descriptor,0) != -1) ? 
+        $1 = (SWIG_ConvertPtr($input,(void **) &v,$1_descriptor,0) != -1) ?
             1 : 0;
     }
 }
@@ -539,7 +540,7 @@ bool extractArray(PyObject* source, Array* target) {
             Scheme_Object* o = items[i];
             if (SCHEME_VECTORP(o)) {
                 if (SCHEME_VEC_SIZE(o) != cols) {
-                    scheme_wrong_type(FUNC_NAME, "Matrix", 
+                    scheme_wrong_type(FUNC_NAME, "Matrix",
                                       $argnum, argc, argv);
                 }
                 Scheme_Object** els = SCHEME_VEC_ELS(o);
@@ -548,11 +549,11 @@ bool extractArray(PyObject* source, Array* target) {
                     if (SCHEME_REALP(x))
                         $1[i][j] = scheme_real_to_double(x);
                     else
-                        scheme_wrong_type(FUNC_NAME, "Matrix", 
+                        scheme_wrong_type(FUNC_NAME, "Matrix",
                                           $argnum, argc, argv);
                 }
             } else {
-                scheme_wrong_type(FUNC_NAME, "Matrix", 
+                scheme_wrong_type(FUNC_NAME, "Matrix",
                                   $argnum, argc, argv);
             }
         }
@@ -580,7 +581,7 @@ bool extractArray(PyObject* source, Array* target) {
             Scheme_Object* o = items[i];
             if (SCHEME_VECTORP(o)) {
                 if (SCHEME_VEC_SIZE(o) != cols) {
-                    scheme_wrong_type(FUNC_NAME, "Matrix", 
+                    scheme_wrong_type(FUNC_NAME, "Matrix",
                                       $argnum, argc, argv);
                 }
                 Scheme_Object** els = SCHEME_VEC_ELS(o);
@@ -589,11 +590,11 @@ bool extractArray(PyObject* source, Array* target) {
                     if (SCHEME_REALP(x))
                         temp[i][j] = scheme_real_to_double(x);
                     else
-                        scheme_wrong_type(FUNC_NAME, "Matrix", 
+                        scheme_wrong_type(FUNC_NAME, "Matrix",
                                           $argnum, argc, argv);
                 }
             } else {
-                scheme_wrong_type(FUNC_NAME, "Matrix", 
+                scheme_wrong_type(FUNC_NAME, "Matrix",
                                   $argnum, argc, argv);
             }
         }
@@ -608,7 +609,7 @@ bool extractArray(PyObject* source, Array* target) {
     /* wrapped Matrix? */
     } else {
         Matrix* m;
-        $1 = (SWIG_ConvertPtr($input,(void **) &m,$&1_descriptor,0) != -1) ? 
+        $1 = (SWIG_ConvertPtr($input,(void **) &m,$&1_descriptor,0) != -1) ?
             1 : 0;
     }
 }
@@ -619,7 +620,7 @@ bool extractArray(PyObject* source, Array* target) {
     /* wrapped Matrix? */
     } else {
         Matrix* m;
-        $1 = (SWIG_ConvertPtr($input,(void **) &m,$1_descriptor,0) != -1) ? 
+        $1 = (SWIG_ConvertPtr($input,(void **) &m,$1_descriptor,0) != -1) ?
             1 : 0;
     }
 }
@@ -778,7 +779,7 @@ class Array {
     Size size() const;
     %extend {
         std::string __str__() {
-            return ArrayFormatter::toString(self->begin(),self->end());
+            return ArrayFormatter::toString(*self);
         }
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         Array __add__(const Array& a) {
@@ -911,7 +912,7 @@ class Array {
 %{
 typedef QuantLib::LexicographicalView<Array::iterator>
     LexicographicalView;
-typedef QuantLib::LexicographicalView<Array::iterator>::y_iterator 
+typedef QuantLib::LexicographicalView<Array::iterator>::y_iterator
     LexicographicalViewColumn;
 %}
 
@@ -1011,17 +1012,7 @@ class Matrix {
     Size columns() const;
     %extend {
         std::string __str__() {
-            std::string s;
-            for (Size j=0; j<self->rows(); j++) {
-                s += "\n";
-                s += QuantLib::DecimalFormatter::toString((*self)[j][0]);
-                for (Size i=1; i<self->columns(); i++) {
-                    s += ",";
-                    s += QuantLib::DecimalFormatter::toString((*self)[j][i]);
-                }
-            }
-            s += "\n";
-            return s;
+            return MatrixFormatter::toString(*self);
         }
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         Matrix __add__(const Matrix& m) {
