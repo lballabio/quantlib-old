@@ -21,7 +21,7 @@
 <meta name="doc-type" content="Web Page">
 <meta name="doc-rights" content="Public">
 <meta http-equiv="PICS-Label" content=
-'(PICS-1.1 "http://www.rsac.org/ratingsv01.html" l gen true comment "RSACi North America Server" for "http://www.ametrano.net/" on "2000.08.21T16:43-0800" r (n 0 s 0 v 0 l 0))'>
+'(PICS-1.1 &quot;http://www.rsac.org/ratingsv01.html&quot; l gen true comment &quot;RSACi North America Server&quot; for &quot;http://www.ametrano.net/&quot; on &quot;2000.08.21T16:43-0800&quot; r (n 0 s 0 v 0 l 0))'>
 <meta http-equiv="reply-to" content="ferdinando@ametrano.net">
 <meta http-equiv="Content-Type" content=
 "text/html; charset=ISO-8859-1">
@@ -54,7 +54,7 @@ window.open(location.href);
 "QuantLib Logo"></div>
 
 <ul class="navlinklist">
-<li><a class="navlink" href="index.html">Home&nbsp;page</a></li>
+<li><a class="navlink" href="index.html">Home page</a></li>
 
 <li><a class="navlink" href="status.html">Project Status</a></li>
 
@@ -70,7 +70,7 @@ window.open(location.href);
 
 <ul>
 <li><a class="navlink" href=
-"http://sourceforge.net/projects/quantlib">Project&nbsp;page</a></li>
+"http://sourceforge.net/projects/quantlib">Project page</a></li>
 
 <li><a class="navlink" href=
 "http://sourceforge.net/mail/?group_id=12740">Mailing
@@ -85,7 +85,7 @@ lists</a></li>
 <li><a class="navlink" href="cvs.html">CVS</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/bugs/?group_id=12740">Bug&nbsp;Report</a></li>
+"http://sourceforge.net/bugs/?group_id=12740">Bug Report</a></li>
 
 <li><a class="navlink" href=
 "http://sourceforge.net/patch/?group_id=12740">Patches</a></li>
@@ -100,14 +100,17 @@ Guidelines</a></li>
 <h3 class="navbartitle">General Resources</h3>
 
 <ul>
-<li><a class="navlink" href="lists.html">Lists of interest</a></li>
+<li><a class="navlink" href="lists.html">Lists of
+interest</a></li>
 </ul>
 
 <hr>
-<div class="center"><strong>Hosted by</strong><br>
+<div class="center"><strong>Hosted by</strong>
+<br>
  <a href="http://sourceforge.net"><img src=
 "http://sourceforge.net/sflogo.php?group_id=12740" width="88"
 height="31" border="0" alt="SourceForge Logo"></a></div>
+
 
 <br>
  <a href="http://sourceforge.net/docman/?group_id=1">About
@@ -120,31 +123,23 @@ SourceForge, Open Source, CVS, etc.</a> </td>
 <em>beta</em> status.</p>
 
 <p>A number of C++ classes and functions are currently available.
-They form a library which can be linked to any external project.
-Also, such classes are made available as a <a href=
-"http://www.python.org">Python</a> module by means of <a href=
-"http://swig.sourceforge.net">SWIG</a>. We welcome any contribution
-aimed at exporting the library towards other programming languages;
-however, the use of SWIG is to be preferred to hand-made approaches
-since it leads to more maintainable code. SWIG supports Java, Tcl,
-Perl5, Guile, MZScheme and Ruby besides Python. SWIG can be
-downloaded from <a href=
-"http://swig.sourceforge.net/download.html">http://swig.sourceforge.net/download.html</a>.</p>
+They form a library which can be linked to any external
+project.</p>
 
-<h2 class="center">Operating Systems and compilers</h2>
+<h3>Operating Systems and compilers</h3>
 
 <p>The following is a list of configurations and compilers
-supported by QuantLib. All configuration names may have up to four
-parts: cpu-manufacturer-kernel-operating_system.</p>
+supported by QuantLib. All configuration names may have up to
+four parts: cpu-manufacturer-kernel-operating_system.</p>
 
 <p>There are 3 officially supported configuration/compiler
 couples:</p>
 
 <table summary="configuration table" border>
 <tr>
-<td>CONFIGURATION</td>
-<td>COMPILER</td>
-<td>MAINTAINER</td>
+<td><em>CONFIGURATION</em></td>
+<td><em>COMPILER</em></td>
+<td><em>MAINTAINER</em></td>
 </tr>
 
 <tr>
@@ -170,8 +165,8 @@ couples:</p>
 
 <table summary="configuration table" border>
 <tr>
-<td>CONFIGURATION</td>
-<td>COMPILER</td>
+<td><em>CONFIGURATION</em></td>
+<td><em>COMPILER</em></td>
 </tr>
 
 <tr>
@@ -201,58 +196,56 @@ couples:</p>
 
 <tr>
 <td>arm</td>
-<td></td>
+<td> </td>
 </tr>
 
 <tr>
 <td>ia64</td>
-<td></td>
+<td> </td>
 </tr>
 
 <tr>
 <td>m68k</td>
-<td></td>
+<td> </td>
 </tr>
 
 <tr>
 <td>mips</td>
-<td></td>
+<td> </td>
 </tr>
 
 <tr>
 <td>mipsel</td>
-<td></td>
+<td> </td>
 </tr>
 
 <tr>
 <td>powerpc</td>
-<td></td>
+<td> </td>
 </tr>
 
 <tr>
 <td>s390</td>
-<td></td>
+<td> </td>
 </tr>
 </table>
 
 <p>If you compiled (or failed to compile) QuantLib on different
-configurations and/or compilers please report your feedback to: <a
-href=
+configurations and/or compilers please report your feedback to:
+<a href=
 "mailto:quantlib-users@lists.sourceforge.net">quantlib-users@lists.sourceforge.net</a></p>
 
-<h2 class="center">Goals for release 1.0</h2>
+<h3>The library core</h3>
 
-<p>The following targets are open for suggestions, corrections, and
-additions. Please consider using the QuantLib <a href=
-"http://lists.sourceforge.net/mailman/listinfo/quantlib-users">user</a>
+<p>The following list is open for suggestions, corrections,
+and additions. Please consider using the <a href=
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-users">QuantLib-users</a>
 mailing list for proposal. Every proposal will be seriously
 considered, especially if volunteers show up to implement it.</p>
 
 <ol>
 <li>
-<h3>The library core</h3>
-
-<h5>Interfaces</h5>
+<h5 class="addtopspace">Interfaces</h5>
 
 <ul>
 <li>yield term structure</li>
@@ -268,8 +261,10 @@ vertical inclusion)</li>
 
 <li>volatility term structure for cap/floor and swaption</li>
 </ul>
+</li>
 
-<h5>Generic Tools</h5>
+<li>
+<h5 class="addtopspace">Generic Tools</h5>
 
 <ul>
 <li>date/time module</li>
@@ -290,8 +285,10 @@ vertical inclusion)</li>
 
 <li>Montecarlo module</li>
 </ul>
+</li>
 
-<h5>Financial Tools</h5>
+<li>
+<h5 class="addtopspace">Financial Tools</h5>
 
 <ul>
 <li>Black-Scholes analytic implementation</li>
@@ -314,48 +311,53 @@ options)</li>
 
 <li>Short-rate models (BDT, BK, HW, etc.)</li>
 </ul>
+</li>
+</ol>
 
 <p>As you may notice this list has a fixed-income bias, so please
 feel free to suggest additional FX and equity targets.</p>
 
-<p>The library is object-oriented, but an additional function
-interface will be designed.</p>
-</li>
-
-<li>
 <h3>Library documentation</h3>
 
-<p>Documentation of classes and interfaces should be included in
+<p>Documentation of classes and interfaces is mainly included in
 the code, automatically extracted, in multiple formats (HTML,
-LaTeX, PDF). As of now we're using <a href=
+LaTeX, PDF) by the means of <a href=
 "http://www.stack.nl/~dimitri/doxygen/">Doxygen</a>.</p>
-</li>
 
-<li>
-<h3>Executable implementations</h3>
+<h3>QuantLib-based Extension</h3>
+
+<p>QuantLib is available as a <strong>Python</strong> module by means of <a href=
+"http://swig.sourceforge.net">SWIG</a>.</p>
+
+<p>SWIG supports Java, Tcl,
+Perl5, Guile, MZScheme and Ruby besides Python, so this approach
+may easily help porting QuantLib to these languages. We welcome
+any contribution aimed at exporting the library towards other
+programming languages; however, the use of SWIG is to be
+preferred to hand-made approaches since it leads to more
+maintainable code.</p>
+
+<p>There is a strong interest in having QuantLib available as
+extension for different platform. We&#39;re looking for
+volunteers to help with:</p>
 
 <ul>
-<li>COM for porting to the Microsoft world (VB and Excel)</li>
+<li>COM for Microsoft world (VB and Excel);</li>
 
-<li>Matlab/Octave extension</li>
+<li><a href="http://www.gnome.org/projects/gnumeric/">Gnumeric</a> add-in;</li>
 
-<li>Python module</li>
+<li>Matlab/<a href="http://www.octave.org/">Octave</a>
+extension.</li>
 </ul>
-
-<p>For porting to Python we're using <a href=
-"http://www.swig.org">SWIG</a>. This approach may easily help
-porting QuantLib to Perl, Tcl, etc,</p>
 
 <p>The library should be exported to the maximum possible degree,
 allowing for object manipulation when possible, providing the
 function interface as bare minimum.</p>
-</li>
 
-<li>
 <h3>Open interests</h3>
 
-<p>If enough work force is available, the following items could be
-considered for inclusion in the goals for the 1.0 release.</p>
+<p>If enough work force is available, the following items could
+be considered for inclusion in the goals for the 1.0 release.</p>
 
 <ul>
 <li>Historical quote database
@@ -369,25 +371,26 @@ considered for inclusion in the goals for the 1.0 release.</p>
 etc.</li>
 </ul>
 
-<p>&nbsp;</p>
-</li>
-</ol>
-
 <!--includeHTML file="qltablefoot.inc"-->
 <div class="endmatter">
 <hr>
 <div class="center">
 <p>Feedback and questions concerning this site and project can be
-directed to<br>
+directed to
+<br>
  the <a href=
 "http://lists.sourceforge.net/mailman/listinfo/quantlib-users">QuantLib-users</a>
-mailing list<br>
- or<br>
+mailing list
+<br>
+ or
+<br>
 the QuantLib administrator <a href=
-"mailto:ferdinando.ametrano@riskmap.it">Ferdinando&nbsp;Ametrano</a>.</p>
+"mailto:ferdinando.ametrano@riskmap.it">Ferdinando Ametrano</a>.</p>
 
 <script type="text/javascript" language="javascript" src=
 "http://ss.webring.yahoo.com/navbar?f=j&amp;y=ametrano&amp;u=98033809110220824">
+
+
 
 </script>
 </div>

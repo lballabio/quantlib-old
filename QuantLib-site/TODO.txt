@@ -1,6 +1,6 @@
 
 update status page and insert that into DoxyGen documentation
-update coding standards
+update coding standards (including file&classes DoxyGen requirements)
 insert QuantLib-site\tobeincludedindoxygen.txt into DoxyGen documentation
 
 add references to ISDA and OMG documents
