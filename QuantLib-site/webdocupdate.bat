@@ -7,6 +7,9 @@ goto DONE
 set USERNAME=%1
 :DONE
 
-scp -C -r QuantLib-0.2.1-docs-html-online.tar.bz2 %USERNAME%@shell.sourceforge.net:/home/groups/q/qu/quantlib/htdocs
+set RNAME=0.3.1
+set TARGETDIR=D:\Data\QL031
+
+scp "%TARGETDIR%/QuantLib-docs/QuantLib-%RNAME%-docs-html-online.tar.gz" nando@shell.sourceforge.net:/home/groups/q/qu/quantlib/htdocs/
 
 pause
