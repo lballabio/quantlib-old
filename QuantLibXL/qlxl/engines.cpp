@@ -53,9 +53,10 @@ extern "C"
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        arguments->type = QlXlfOper(xltype).AsOptionType();
+        arguments->payoff = Handle<Payoff>(
+            new PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
+                                   xlstrike.AsDouble()));
         arguments->underlying = xlunderlying.AsDouble();
-        arguments->strike = xlstrike.AsDouble();
         arguments->dividendTS = QlXlfOper(xldividendYield).AsTermStructure(refDate);
         arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
         arguments->exerciseType = Exercise::European;
@@ -118,9 +119,10 @@ extern "C"
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        arguments->type = QlXlfOper(xltype).AsOptionType();
+        arguments->payoff = Handle<Payoff>(
+            new PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
+                                   xlstrike.AsDouble()));
         arguments->underlying = xlunderlying.AsDouble();
-        arguments->strike = xlstrike.AsDouble();
         arguments->dividendTS = QlXlfOper(xldividendYield).AsTermStructure(refDate);
         arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
         arguments->stoppingTimes = std::vector<Time>();
@@ -191,11 +193,12 @@ extern "C"
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        arguments->type = QlXlfOper(xltype).AsOptionType();
         arguments->underlying = xlunderlying.AsDouble();
         // dummy strike
         // ForwardOptionParameter should not include strike
-        arguments->strike = arguments->underlying;
+        arguments->payoff = Handle<Payoff>(
+            new PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
+                                   arguments->underlying));
         arguments->moneyness = xlmoneyness.AsDouble();
         arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(refDate);
         arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
@@ -260,12 +263,13 @@ extern "C"
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        arguments->type = QlXlfOper(xltype).AsOptionType();
         // underlying is needed to interpolate on the vol surface
         arguments->underlying = xlunderlying.AsDouble();
         // dummy strike
         // ForwardPerformanceOptionParameter should not include strike
-        arguments->strike = arguments->underlying;
+        arguments->payoff = Handle<Payoff>(
+            new PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
+                                   arguments->underlying));
         arguments->moneyness = xlmoneyness.AsDouble();
         arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(refDate);
         arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
