@@ -25,6 +25,7 @@
 %include currencies.i
 %include observer.i
 %include marketelements.i
+%include interpolation.i
 
 %{
 using QuantLib::BlackVolTermStructure;
@@ -32,12 +33,14 @@ using QuantLib::LocalVolTermStructure;
 %}
 
 %ignore BlackVolTermStructure;
-class BlackVolTermStructure {
+class BlackVolTermStructure : public Extrapolator {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("reference-date") referenceDate;
     %rename("day-counter")    dayCounter;
     %rename("max-date")       maxDate;
     %rename("max-time")       maxTime;
+    %rename("min-strike")     minStrike;
+    %rename("max-strike")     maxStrike;
     %rename("black-vol")      blackVol;
     %rename("black-variance") blackVariance;
     %rename("black-forward-vol")      blackVol;
@@ -48,6 +51,8 @@ class BlackVolTermStructure {
     DayCounter dayCounter() const;
     Date maxDate() const;
     Time maxTime() const;
+    double minStrike() const;
+    double maxStrike() const;
     double blackVol(const Date&, double strike, 
                     bool extrapolate = false) const;
     double blackVol(Time, double strike, 
@@ -74,12 +79,14 @@ IsObservable(RelinkableHandle<BlackVolTermStructure>);
 
 
 %ignore LocalVolTermStructure;
-class LocalVolTermStructure {
+class LocalVolTermStructure : public Extrapolator {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("reference-date") referenceDate;
     %rename("day-counter")    dayCounter;
     %rename("max-date")       maxDate;
     %rename("max-time")       maxTime;
+    %rename("min-strike")     minStrike;
+    %rename("max-strike")     maxStrike;
     %rename("local-vol")      localVol;
     #endif
   public:
@@ -87,6 +94,8 @@ class LocalVolTermStructure {
     DayCounter dayCounter() const;
     Date maxDate() const;
     Time maxTime() const;
+    double minStrike() const;
+    double maxStrike() const;
     double localVol(const Date&, double u,
                     bool extrapolate = false) const;
     double localVol(Time, double u,

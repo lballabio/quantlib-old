@@ -25,13 +25,14 @@
 %include currencies.i
 %include observer.i
 %include marketelements.i
+%include interpolation.i
 
 %{
 using QuantLib::TermStructure;
 %}
 
 %ignore TermStructure;
-class TermStructure {
+class TermStructure : public Extrapolator {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("day-counter")     dayCounter;
     %rename("todays-date")     todaysDate;
