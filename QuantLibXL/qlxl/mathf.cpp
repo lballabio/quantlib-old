@@ -119,7 +119,8 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlpotentialUpside(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = RiskMeasures().potentialUpside(xlpercentile.AsDouble(),
+        double result =
+            RiskMeasures().gaussianPotentialUpside(xlpercentile.AsDouble(),
             xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
@@ -128,7 +129,8 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlvalueAtRisk(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = RiskMeasures().valueAtRisk(xlpercentile.AsDouble(),
+        double result =
+            RiskMeasures().gaussianValueAtRisk(xlpercentile.AsDouble(),
             xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
@@ -137,7 +139,8 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlexpectedShortfall(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = RiskMeasures().expectedShortfall(
+        double result =
+            RiskMeasures().gaussianEpectedShortfall(
             xlpercentile.AsDouble(), xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
@@ -146,7 +149,8 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlshortfall(XlfOper xltarget,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = RiskMeasures().shortfall(xltarget.AsDouble(),
+        double result =
+            RiskMeasures().gaussianShortfall(xltarget.AsDouble(),
             xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
@@ -155,7 +159,8 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlaverageShortfall(XlfOper xltarget,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = RiskMeasures().averageShortfall(xltarget.AsDouble(),
+        double result =
+            RiskMeasures().gaussianAverageShortfall(xltarget.AsDouble(),
             xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
