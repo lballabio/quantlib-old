@@ -5,3 +5,5 @@ AddinExcel.mak
 AddinExcel.ncb
 AddinExcel.opt
 AddinExcel.plg
+AddinExcel_private.*
+Makefile.win

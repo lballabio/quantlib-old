@@ -1,8 +1,11 @@
 build
 lib
+Makefile.win
 QuantLibAddin.dep
+QuantLibAddin.layout
 QuantLibAddin.mak
 QuantLibAddin.ncb
 QuantLibAddin.opt
 QuantLibAddin.plg
 QuantLibAddin.suo
+QuantLibAddin_private.*

@@ -5,3 +5,5 @@ ClientCPP.mak
 ClientCPP.ncb
 ClientCPP.opt
 ClientCPP.plg
+ClientCPP_private.*
+Makefile.win

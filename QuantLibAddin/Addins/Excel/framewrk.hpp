@@ -24,10 +24,10 @@
 // Function prototypes
 //
 
-void far cdecl debugPrintf(LPSTR lpFormat, ...);
+void far __cdecl debugPrintf(LPSTR lpFormat, ...);
 LPSTR GetTempMemory(int cBytes);
 void FreeAllTempMemory(void);
-int cdecl Excel(int xlfn, LPXLOPER pxResult, int count, ...);
+int __cdecl Excel(int xlfn, LPXLOPER pxResult, int count, ...);
 LPXLOPER TempNum(double d);
 LPXLOPER TempStr(LPSTR lpstr);
 LPXLOPER TempBool(int b);

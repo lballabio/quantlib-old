@@ -5,3 +5,5 @@ AddinCPP.mak
 AddinCPP.ncb
 AddinCPP.opt
 AddinCPP.plg
+AddinCPP_private.*
+Makefile.win

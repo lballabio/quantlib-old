@@ -42,7 +42,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="bin\QuantLibAddinClientCPP.exe"
+				OutputFile="bin\QuantLibAddinClientCPP-vc71-0_3_8.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,..\..\Addins\C++\lib"
@@ -106,7 +106,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="bin\QuantLibAddinClientCPP_d.exe"
+				OutputFile="bin\QuantLibAddinClientCPP-vc71-gd-0_3_8.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,..\..\Addins\C++\lib"
