@@ -312,4 +312,67 @@ class MCEuropeanEngineHandle : public Handle<PricingEngine> {
 };
 
 
+// American engines
+
+%{
+using QuantLib::BaroneAdesiWhaleyApproximationEngine;
+typedef Handle<PricingEngine> BaroneAdesiWhaleyApproximationEngineHandle;
+%}
+
+%rename(BaroneAdesiWhaleyEngine) 
+    BaroneAdesiWhaleyApproximationEngineHandle;
+class BaroneAdesiWhaleyApproximationEngineHandle 
+    : public Handle<PricingEngine> {
+  public:
+    %extend {
+        BaroneAdesiWhaleyApproximationEngineHandle() {
+            return new BaroneAdesiWhaleyApproximationEngineHandle(
+                new BaroneAdesiWhaleyApproximationEngine);
+        }
+    }
+};
+
+
+%{
+using QuantLib::BjerksundStenslandApproximationEngine;
+typedef Handle<PricingEngine> BjerksundStenslandApproximationEngineHandle;
+%}
+
+%rename(BjerksundStenslandEngine) 
+    BjerksundStenslandApproximationEngineHandle;
+class BjerksundStenslandApproximationEngineHandle 
+    : public Handle<PricingEngine> {
+  public:
+    %extend {
+        BjerksundStenslandApproximationEngineHandle() {
+            return new BjerksundStenslandApproximationEngineHandle(
+                new BjerksundStenslandApproximationEngine);
+        }
+    }
+};
+
+
+%{
+using QuantLib::AmericanMCVanillaEngine;
+typedef Handle<PricingEngine> AmericanMCVanillaEngineHandle;
+%}
+
+%rename(AmericanMCVanillaEngine) AmericanMCVanillaEngineHandle;
+class AmericanMCVanillaEngineHandle : public Handle<PricingEngine> {
+  public:
+    %extend {
+        AmericanMCVanillaEngineHandle(Size requiredSamples,
+                                      Size timeSteps,
+                                      long seed = 0) {
+            return new AmericanMCVanillaEngineHandle(
+                         new AmericanMCVanillaEngine(requiredSamples,
+                                                     timeSteps,
+                                                     seed));
+        }
+    }
+};
+
+
+
+
 #endif
