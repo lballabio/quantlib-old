@@ -1,13 +1,13 @@
 
 Autogeneration
 - document how it works
-- only update files if they change
 - extend function metadata to support autogeneration of QuantLibAddin classes
 - autogenerate QuantLibAddin classes
 - autogenerate Doxygen function documentation (direct to Docs/pages)
+- accept make labels as command line input to control behavior e.g. 'make calc' >> 'autogen.py calc'
 
 Calc
-- document all the steps and dependencies required to compile
+- document steps/dependencies required to compile
 - clean up memory management
 - allow null inputs where appropriate
 - function help info in function wizard
