@@ -32,6 +32,7 @@ using QuantLib::Helsinki;
 using QuantLib::HongKong;
 using QuantLib::Johannesburg;
 using QuantLib::JointCalendar;
+using QuantLib::Italy;
 using QuantLib::London;
 using QuantLib::Milan;
 using QuantLib::NewYork;
@@ -46,8 +47,11 @@ using QuantLib::TARGET;
 using QuantLib::Taiwan;
 using QuantLib::Tokyo;
 using QuantLib::Toronto;
+using QuantLib::UnitedKingdom;
+using QuantLib::UnitedStates;
 using QuantLib::Warsaw;
 using QuantLib::Wellington;
+using QuantLib::Xetra;
 using QuantLib::Zurich;
 %}
 
@@ -162,8 +166,21 @@ class Calendar {
                 return new Calendar(TARGET());
             else if (s == "newyork" || s == "ny" || s == "nyc")
                 return new Calendar(NewYork());
+            else if (s == "unitedstates" || s == "us")
+                return new Calendar(UnitedStates(UnitedStates::Settlement));
+            else if (s == "usexchange" || s == "nyexchange" || s == "nyse")
+                return new Calendar(UnitedStates(UnitedStates::Exchange));
+            else if (s == "usbonds" || s == "usbond")
+                return new Calendar(
+                                UnitedStates(UnitedStates::GovernmentBond));
             else if (s == "london" || s == "lon")
                 return new Calendar(London());
+            else if (s == "unitedkingdom" || s == "uk")
+                return new Calendar(UnitedKingdom(UnitedKingdom::Settlement));
+            else if (s == "ukexchange" || s == "londonexchange")
+                return new Calendar(UnitedKingdom(UnitedKingdom::Exchange));
+            else if (s == "ukmetals" || s == "londonmetals")
+                return new Calendar(UnitedKingdom(UnitedKingdom::Metals));
             else if (s == "beijing")
                 return new Calendar(Beijing());
             else if (s == "budapest")
@@ -176,6 +193,10 @@ class Calendar {
                 return new Calendar(Helsinki());
             else if (s == "hongkong")
                 return new Calendar(HongKong());
+            else if (s == "italy")
+                return new Calendar(Italy(Italy::Settlement));
+            else if (s == "italyexchange" || s == "milanexchange")
+                return new Calendar(Italy(Italy::Exchange));
             else if (s == "johannesburg" || s == "jhb")
                 return new Calendar(Johannesburg());
             else if (s == "milan" || s == "mil")
@@ -202,6 +223,8 @@ class Calendar {
                 return new Calendar(Warsaw());
             else if (s == "wellington")
                 return new Calendar(Wellington());
+            else if (s == "xetra")
+                return new Calendar(Xetra());
             else if (s == "zurich" || s == "zur")
                 return new Calendar(Zurich());
             else if (s == "null")
