@@ -83,7 +83,8 @@ And provide the definition of the new function.  In this example we define funct
     
 </parameters>
 <returnval>
-    <type>propertyvector</type>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
     <desc>vector of properties describing Instrument</desc>
 </returnval>
 </function>
@@ -116,8 +117,11 @@ Elements describing each function parameter:
 \endverbatim
 
 Elements describing each function's return value:
-\li \b type - the datatype of the return value - for constructors this is usually the propertyvector describing the newly constructed object
+\li \b type - the datatype of the return value
+\li \b tensorrank - whether the return value is \c scalar/vector/matrix
 \li \b desc - description of the return value - displayed in spreadsheet help
+
+For constructors the return value is usually a vector of anys.
 
 Rebuild the Autogen project to generate the source for the Addins.
 
