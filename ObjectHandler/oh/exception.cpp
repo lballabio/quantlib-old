@@ -15,6 +15,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#if defined(HAVE_CONFIG_H)     // Dynamically created by configure
+    #include <oh/config.hpp>
+#endif
 #include <oh/exception.hpp>
 
 namespace ObjHandler {

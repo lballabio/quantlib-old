@@ -15,6 +15,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#if defined(HAVE_CONFIG_H)     // Dynamically created by configure
+    #include <oh/config.hpp>
+#endif
 #include <oh/objhandlerdefines.hpp>
 #include <oh/utilities.hpp>
 #include <oh/exception.hpp>
@@ -38,7 +41,7 @@ namespace ObjHandler {
     }
 
     // FIXME - below is a temporary approach to logging
-    // which will be revised in version 0.0.2.
+    // which will be revised in version 0.1.1.
 
     std::string logFileName;    // "" = logging disabled
 

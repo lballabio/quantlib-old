@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT([Object Handler], [0.1.1],
+AC_INIT([ObjectHandler], [0.1.1],
         [quantlib-dev@lists.sourceforge.net],
         [ObjectHandler])
 AC_PREREQ(2.50)
@@ -8,7 +8,11 @@ AC_CONFIG_AUX_DIR([config])
 AC_CONFIG_HEADERS([oh/config.hpp])
 AM_INIT_AUTOMAKE([foreign])
 
-AC_COPYRIGHT([Copyright (C) 2005 Eric Ehlers
+AC_COPYRIGHT([    Copyright (C) 2004, 2005 Eric Ehlers
+
+    Copyright (C) 2004 Ferdinando Ametrano
+    Copyright (C) 2004 Daniel Duffy - Datasim
+    Copyright (C) 2004 StatPro Italia srl
 
 This file is part of QuantLib, a free-software/open-source library
 for financial quantitative analysts and developers - http://quantlib.org/
