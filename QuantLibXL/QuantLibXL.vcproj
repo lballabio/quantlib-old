@@ -43,7 +43,7 @@
 				OutputFile="xll\QuantLibXL-vc71-mt-sgd-0_3_7.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(XLW_DIR)\lib\Win32\VisualStudio,$(QL_DIR)\lib"
+				AdditionalLibraryDirectories="$(XLW_DIR)\lib,$(QL_DIR)\lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile=".\build\Debug/QuantLibXL_d.pdb"
 				ImportLibrary=".\build\Debug/QuantLibXL_d.lib"
@@ -111,7 +111,7 @@
 				OutputFile="xll\QuantLibXL-vc71-mt-s-0_3_7.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(XLW_DIR)\lib\Win32\VisualStudio,$(QL_DIR)\lib"
+				AdditionalLibraryDirectories="$(XLW_DIR)\lib,$(QL_DIR)\lib"
 				ProgramDatabaseFile=".\build\Release/QuantLibXL.pdb"
 				ImportLibrary=".\build\Release/QuantLibXL.lib"
 				TargetMachine="1"/>

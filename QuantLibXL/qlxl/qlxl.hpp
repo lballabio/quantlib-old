@@ -28,7 +28,7 @@
 
 
 //! version hexadecimal number
-#define QLXL_HEX_VERSION 0x000306a0
+#define QLXL_HEX_VERSION 0x000307f0
 
 //! version string
 #ifdef QL_DEBUG
@@ -38,7 +38,7 @@
 #endif
 
 
-#if QL_HEX_VERSION < 0x000307a0
+#if QL_HEX_VERSION < 0x000307f0
     #error using an old version of QuantLib, please update
 #endif
 

@@ -3,7 +3,8 @@
 
 SetCompressor lzma
 
-!define VER_NUMBER "0.3.5"
+!define VER_NUMBER  "0.3.7"
+!define VER_NUMBER2 "0_3_7"
 
 # HEADER CONFIGURATION COMMANDS
 Name "QuantLibXL"
@@ -46,9 +47,9 @@ SectionIn 1 2 3
     File "TODO.txt"
 
     SetOutPath $INSTDIR\xll\Win32\VisualStudio
-    File "xll\Win32\VisualStudio\QuantLibXL.xll"
+    File "xll\QuantLibXL-vc71-mt-s-${VER_NUMBER2}.xll"
 #    SetOutPath $INSTDIR\xll\Win32\Borland
-#    File "xll\Win32\Borland\QuantLibXL.xll"
+#    File "xll\QuantLibXL-bcb-mt-s-${VER_NUMBER2}.xll"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
