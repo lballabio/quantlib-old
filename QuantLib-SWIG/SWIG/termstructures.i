@@ -55,6 +55,10 @@ class TermStructure {
 	Rate forward(Time, Time, bool extrapolate = false);
 	Rate instantaneousForward(const Date&, bool extrapolate = false);
 	Rate instantaneousForward(Time, bool extrapolate = false);
+	Rate compoundForward(const Date&, int, bool extrapolate = false);
+	Rate compoundForward(Time, int, bool extrapolate = false);
+	Rate zeroCoupon(const Date&, int, bool extrapolate = false);
+	Rate zeroCoupon(Time, int, bool extrapolate = false);
 };
 
 %template(TermStructure) Handle<TermStructure>;
