@@ -1,6 +1,8 @@
 #include <windows.h>
 #include <Addins/Excel/xlcall.h>
 #include <Addins/Excel/framewrk.hpp>
+#include <sstream>
+#include <exception>
 
 char vMemBlock[MEMORYSIZE]; // Memory for temporary XLOPERs
 int vOffsetMemBlock=0;      // Offset of next memory block to allocate
@@ -92,25 +94,25 @@ void FreeAllTempMemory(void)
 int Excel(int xlfn, LPXLOPER pxResult, int count, ...) {
     int xlret = Excel4v(xlfn, pxResult, count, (LPXLOPER FAR *)(&count+1));
     FreeAllTempMemory();
-/*
+
     if (xlret != xlretSuccess) {
-        ostringstream msg;
+        std::ostringstream msg;
         msg << "Error in call to Excel: (";
         if (xlfn & xlCommand)        msg << "xlCommand | ";
         if (xlfn & xlSpecial)        msg << "xlSpecial | ";
         if (xlfn & xlIntl)            msg << "xlIntl | ";
         if (xlfn & xlPrompt)        msg << "xlPrompt | ";
-        msg << (xlfn & 0x0FFF) << ") callback failed:" << endl;
-        if (xlret & xlretAbort)     msg << "Macro Halted" << endl;
-        if (xlret & xlretInvXlfn)   msg << "Invalid Function Number" << endl;
-        if (xlret & xlretInvCount)  msg << "Invalid Number of Arguments" << endl;
-        if (xlret & xlretInvXloper) msg << "Invalid XLOPER" << endl;
-        if (xlret & xlretStackOvfl) msg << "Stack Overflow" << endl;
-        if (xlret & xlretFailed)    msg << "Command failed" << endl;
-        if (xlret & xlretUncalced)  msg << "Uncalced cell" << endl;
-        logMessage(msg.str());
+        msg << (xlfn & 0x0FFF) << ") callback failed: ";
+        if (xlret & xlretAbort)     msg << " Macro Halted ";
+        if (xlret & xlretInvXlfn)   msg << " Invalid Function Number ";
+        if (xlret & xlretInvCount)  msg << " Invalid Number of Arguments ";
+        if (xlret & xlretInvXloper) msg << " Invalid XLOPER ";
+        if (xlret & xlretStackOvfl) msg << " Stack Overflow ";
+        if (xlret & xlretFailed)    msg << " Command failed ";
+        if (xlret & xlretUncalced)  msg << " Uncalced cell ";
+        throw exception(msg.str().c_str());
     }
-*/
+
     return xlret;
 }
 

@@ -36,8 +36,6 @@ def generateParamString(function):
                 paramStr += 'N'
             else:
                 raise ValueError, 'unknown datatype: ' + type
-    if function[common.CTOR]:
-        paramStr += '#'
     return paramStr
 
 def generateFuncRegister(fileHeader, function):

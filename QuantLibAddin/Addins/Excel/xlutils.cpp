@@ -22,6 +22,8 @@
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
+#define XL_MAX_STR_LEN 255
+
 void anyToXLOPER(const any_ptr &any, XLOPER &xOp) {
     if (any->type() == typeid(int)) {
         xOp.xltype = xltypeInt;
@@ -65,7 +67,7 @@ std::string XLOPERtoString(const XLOPER &xOp) {
 void stringToXLOPER(XLOPER &xStr, const char *s) {
     xStr.xltype = xltypeStr;
     xStr.xltype |= xlbitDLLFree;
-    int len = __min(255, strlen(s));    // XLOPER string max length is 255
+    int len = __min(XL_MAX_STR_LEN, strlen(s));
     xStr.val.str = new char[ len + 1 ];
     if (!xStr.val.str) 
         throw exception("error calling new in function stringToXLOPER");
@@ -73,23 +75,35 @@ void stringToXLOPER(XLOPER &xStr, const char *s) {
     xStr.val.str[0] = len;
 }
 
+DLLEXPORT LPXLOPER GetAddress(LPXLOPER xCaller) {
+    XLOPER xRef;
+    static XLOPER xStr;
+    if (xlretSuccess != Excel(xlfVolatile, 0, 1, TempBool(0)))
+        throw exception("error on call to xlfVolatile");
+    if (xlretSuccess != Excel(xlfGetCell, &xRef, 2, TempInt(1), xCaller))
+        throw exception("error on call to xlfGetCell");
+    if (xlretSuccess != Excel(xlCoerce, &xStr, 2, &xRef, TempInt(xltypeStr))) 
+        throw exception("error on call to xlCoerce");
+    Excel(xlFree, 0, 1, &xRef);
+    xStr.xltype |= xlbitXLFree;
+    return &xStr;
+}
+
 std::string getHandleFull(const std::string &handle) {
-    XLOPER xCaller, xRef, xStr;
+    XLOPER xCaller, xStr;
     try {
         if (xlretSuccess != Excel(xlfCaller, &xCaller, 0))
             throw exception("error on call to xlfCaller");
-        if (xlretSuccess != Excel(xlfGetCell, &xRef, 2, TempInt(1), &xCaller))
-            throw exception("error on call to xlfGetCell");
-        if (xlretSuccess != Excel(xlCoerce, &xStr, 2, &xRef, TempInt(xltypeStr))) 
-            throw exception("error on call to xlCoerce");
+        if (xlretSuccess != Excel(xlUDF, &xStr, 2, TempStr(" GetAddress"), &xCaller))
+            throw exception("error on call to GetAddress");
     } catch(const exception &e) {
-        Excel(xlFree, 0, 3, &xCaller, &xRef, &xStr);
+        Excel(xlFree, 0, 2, &xCaller, &xStr);
         std::ostringstream s1;
         s1 << "getHandleFull: " << e.what();
         throw exception(s1.str().c_str());
     }
     std::string ret(handle + '#' + XLOPERtoString(xStr));
-    Excel(xlFree, 0, 3, &xCaller, &xRef, &xStr);
+    Excel(xlFree, 0, 2, &xCaller, &xStr);
     return ret;
 }
 

@@ -8,3 +8,10 @@ DLLEXPORT int xlAutoOpen() {
     static XLOPER xDll;
     Excel(xlGetName, &xDll, 0);
 
+    Excel(xlfRegister, 0, 6, &xDll,
+        TempStr(" GetAddress"),
+        TempStr(" PR#"),
+        TempStr(" GetAddress"),
+        TempMissing(),
+        TempInt(0));
+
