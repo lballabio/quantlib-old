@@ -3,7 +3,7 @@ IDL_DIR=$(OFFICE_SDK_PATH)/idl
 DKREGISTRYNAME=$(OFFICE_PROGRAM_PATH)/types.rdb
 #CC=g++
 CC=/usr/local/gcc/3.3.3/bin/g++
-CC_FLAGS=-c -fPIC
+CC_FLAGS=-c -fPIC -O2
 CC_INCLUDES=-I. -I../.. -I/usr/include -I$(OFFICE_SDK_PATH)/include \
 	-I../../../ObjectHandler
 CC_DEFINES=-DHAVE_CONFIG_H -DUNX -DGCC -DLINUX -DCPPU_ENV=gcc3
@@ -48,7 +48,7 @@ $(COMPONENT_NAME).flag2 : $(COMPONENT_NAME).flag1
 $(COMPONENT_NAME).so : $(OBJFILES)
 	$(LINK) $(LIBRARY_LINK_FLAGS) $(LINK_LIBS) -o $(COMPONENT_NAME).so $(OBJFILES) $(LIBRARY_LIBS)
 
-$(COMPONENT_NAME).flag3 : $(COMPONENT_NAME).rdb $(COMPONENT_NAME).so
+$(COMPONENT_NAME).flag3 : $(COMPONENT_NAME).flag1 $(COMPONENT_NAME).so
 	regcomp -register -r $(COMPONENT_NAME).rdb -c $(COMPONENT_NAME).so
 	echo flagged > $@
 
