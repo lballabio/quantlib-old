@@ -54,7 +54,7 @@ extern "C"
         double riskFreeRate  = xlriskFreeRate.AsDouble();
         Date valueDate       = QlXlfOper(xlvalueDate).AsDate();
         Date maturityDate    = QlXlfOper(xlmaturityDate).AsDate();
-        double maturity      = Actual365().yearFraction(valueDate, maturityDate);
+        double maturity      = Actual365Fixed().yearFraction(valueDate, maturityDate);
         double volatility    = xlvolatility.AsDouble();
         Size timeSteps       = xltimeSteps.AsInt();
         Size gridPoints      = xlgridPoints.AsInt();
@@ -124,19 +124,23 @@ extern "C"
         std::vector<Time> vols(fixingDates.size());
         fixingTimes[0] = riskFreeRateTS->dayCounter().yearFraction(
             refDate, fixingDates[0]);
-        dividends[0]   = dividendYieldTS->forward(
-            refDate, fixingDates[0]);
-        rates[0]       = riskFreeRateTS->forward(
-            refDate, fixingDates[0]);
+        dividends[0]   = dividendYieldTS->forwardRate(
+            refDate, fixingDates[0],
+            QuantLib::Actual365Fixed(), Continuous, NoFrequency);
+        rates[0]       = riskFreeRateTS->forwardRate(
+            refDate, fixingDates[0],
+            QuantLib::Actual365Fixed(), Continuous, NoFrequency);
         vols[0]        = volTS->blackForwardVol(
             refDate, fixingDates[0], underlying);
         for (Size i = 1; i<fixingDates.size(); i++) {
             fixingTimes[i] = riskFreeRateTS->dayCounter().yearFraction(
                 refDate, fixingDates[i]);
-            dividends[i]   = dividendYieldTS->forward(
-                fixingDates[i-1], fixingDates[i]);
-            rates[i]       = riskFreeRateTS->forward(
-                fixingDates[i-1], fixingDates[i]);
+            dividends[i]   = dividendYieldTS->forwardRate(
+                fixingDates[i-1], fixingDates[i],
+                QuantLib::Actual365Fixed(), Continuous, NoFrequency);
+            rates[i]       = riskFreeRateTS->forwardRate(
+                fixingDates[i-1], fixingDates[i],
+                QuantLib::Actual365Fixed(), Continuous, NoFrequency);
             vols[i]        = volTS->blackForwardVol(
                 fixingDates[i-1], fixingDates[i], underlying);
         }
@@ -254,7 +258,7 @@ extern "C"
         double riskFreeRate  = xlriskFreeRate.AsDouble();
         Date valueDate       = QlXlfOper(xlvalueDate).AsDate();
         Date maturityDate    = QlXlfOper(xlmaturityDate).AsDate();
-        double maturity      = Actual365().yearFraction(valueDate, maturityDate);
+        double maturity      = Actual365Fixed().yearFraction(valueDate, maturityDate);
         double volatility    = xlvolatility.AsDouble();
         Size timeSteps       = xltimeSteps.AsInt();
         Size gridPoints      = xlgridPoints.AsInt();

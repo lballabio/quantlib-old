@@ -61,7 +61,8 @@ extern "C"
             QlXlfOper(xltermStructure).AsTermStructure(refDate);
         Date date = QlXlfOper(xldate).AsDate();
 
-        double result = termStructure->zeroYield(date,
+        double result = termStructure->zeroRate(date,
+            QuantLib::Actual365Fixed(), Continuous, NoFrequency,
             xlallowExtrapolation.AsBool());
         return XlfOper(result);
         EXCEL_END;
@@ -83,7 +84,8 @@ extern "C"
         Date date1 = QlXlfOper(xldate1).AsDate();
         Date date2 = QlXlfOper(xldate2).AsDate();
 
-        double result = termStructure->forward(date1, date2,
+        double result = termStructure->forwardRate(date1, date2,
+            QuantLib::Actual365Fixed(), Continuous, NoFrequency,
             xlallowExtrapolation.AsBool());
         return XlfOper(result);
         EXCEL_END;

@@ -44,7 +44,6 @@ SectionIn 1 2 3
     File "LICENSE.txt"
     File "News.txt"
     File "README.txt"
-    File "TODO.txt"
 
     SetOutPath $INSTDIR\xll
     File "xll\QuantLibXL-vc*-mt-s-${VER_NUMBER2}.xll"
@@ -83,10 +82,11 @@ SectionEnd
 Section "Source Code"
 SectionIn 1
   SetOutPath $INSTDIR
-  File ChangeLog.txt
   File makefile.mak
   File QuantLibXL.dsp
+  File QuantLibXL.vcproj
   File QuantLibXL.dsw
+  File QuantLibXL.sln
   File QuantLibXL.mak
   File QuantLibXL.nsi
 
@@ -95,8 +95,11 @@ SectionIn 1
   File /r "qlxl\*.cpp"
   File /r "qlxl\makefile.mak"
 
-  CreateShortCut "$SMPROGRAMS\QuantLibXL\QuantLibXL project workspace.lnk" \
+  CreateShortCut "$SMPROGRAMS\QuantLibXL\QuantLibXL VC6 project workspace.lnk" \
                  "$INSTDIR\QuantLibXL.dsw"
+
+  CreateShortCut "$SMPROGRAMS\QuantLibXL\QuantLibXL VC7 project workspace.lnk" \
+                 "$INSTDIR\QuantLibXL.sln"
 
 SectionEnd
 

@@ -25,9 +25,11 @@
 #include <ql/Math/matrix.hpp>
 #include <ql/date.hpp>
 #include <ql/daycounter.hpp>
+#include <ql/DayCounters/actual365fixed.hpp>
 #include <ql/termstructure.hpp>
 #include <ql/option.hpp>
 #include <ql/voltermstructure.hpp>
+#include <ql/Math/Matrix.hpp>
 
 class QlXlfOper {
 public:
@@ -39,9 +41,12 @@ public:
     QuantLib::Matrix AsMatrix() const;
     QuantLib::Option::Type AsOptionType() const;
     QuantLib::Handle<QuantLib::BlackVolTermStructure> AsBlackVolTermStructure(
-        const QuantLib::Date& referenceDate, int interpolationType) const;
+        const QuantLib::Date& referenceDate,
+        int interpolationType,
+        const QuantLib::DayCounter& dc = QuantLib::Actual365Fixed()) const;
     QuantLib::Handle<QuantLib::YieldTermStructure> AsTermStructure(
-        const QuantLib::Date& referenceDate) const;
+        const QuantLib::Date& referenceDate,
+        const QuantLib::DayCounter& dc = QuantLib::Actual365Fixed()) const;
 private:
     XlfOper xlfOper_;
 };

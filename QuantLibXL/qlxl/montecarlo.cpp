@@ -51,13 +51,18 @@ extern "C"
         GenericPseudoRandom<MersenneTwisterUniformRng,
             InverseCumulativeNormal>::ursg_type rsg(dimension, mcSeed);
         // LowDiscrepancy::ursg_type ldsg(dimension, mcSeed);
-        GenericLowDiscrepancy<SobolRsg>::ursg_type  so1ldsg(dimension, mcSeed,
+        GenericLowDiscrepancy<SobolRsg,
+            InverseCumulativeNormal>::ursg_type  so1ldsg(dimension, mcSeed,
             SobolRsg::Jaeckel);
-        GenericLowDiscrepancy<HaltonRsg>::ursg_type halldsg(dimension, mcSeed);
-        GenericLowDiscrepancy<FaureRsg>::ursg_type  fauldsg(dimension);
-        GenericLowDiscrepancy<SobolRsg>::ursg_type  so2ldsg(dimension, mcSeed,
+        GenericLowDiscrepancy<HaltonRsg,
+            InverseCumulativeNormal>::ursg_type halldsg(dimension, mcSeed);
+        GenericLowDiscrepancy<FaureRsg,
+            InverseCumulativeNormal>::ursg_type  fauldsg(dimension);
+        GenericLowDiscrepancy<SobolRsg,
+            InverseCumulativeNormal>::ursg_type  so2ldsg(dimension, mcSeed,
             SobolRsg::Unit);
-        GenericLowDiscrepancy<SobolRsg>::ursg_type  so3ldsg(dimension, mcSeed,
+        GenericLowDiscrepancy<SobolRsg,
+            InverseCumulativeNormal>::ursg_type  so3ldsg(dimension, mcSeed,
             SobolRsg::SobolLevitan);
 
         RamdomizedLDS<SobolRsg,
@@ -129,23 +134,33 @@ extern "C"
             InverseCumulativeNormal>::rsg_type grsg(rsg);
         // LowDiscrepancy::ursg_type ldsg(dimension, mcSeed);
         // LowDiscrepancy::rsg_type gldsg(ldsg);
-        GenericLowDiscrepancy<SobolRsg>::ursg_type so1ldsg(dimension, mcSeed,
+        GenericLowDiscrepancy<SobolRsg,
+            InverseCumulativeNormal>::ursg_type so1ldsg(dimension, mcSeed,
             SobolRsg::Jaeckel);
-        GenericLowDiscrepancy<SobolRsg>::rsg_type gso1ldsg(so1ldsg);
+        GenericLowDiscrepancy<SobolRsg,
+            InverseCumulativeNormal>::rsg_type gso1ldsg(so1ldsg);
 
-        GenericLowDiscrepancy<HaltonRsg>::ursg_type halldsg(dimension, mcSeed);
-        GenericLowDiscrepancy<HaltonRsg>::rsg_type ghalldsg(halldsg);
+        GenericLowDiscrepancy<HaltonRsg,
+            InverseCumulativeNormal>::ursg_type halldsg(dimension, mcSeed);
+        GenericLowDiscrepancy<HaltonRsg,
+            InverseCumulativeNormal>::rsg_type ghalldsg(halldsg);
 
-        GenericLowDiscrepancy<FaureRsg>::ursg_type  fauldsg(dimension);
-        GenericLowDiscrepancy<FaureRsg>::rsg_type gfauldsg(fauldsg);
+        GenericLowDiscrepancy<FaureRsg,
+            InverseCumulativeNormal>::ursg_type  fauldsg(dimension);
+        GenericLowDiscrepancy<FaureRsg,
+            InverseCumulativeNormal>::rsg_type gfauldsg(fauldsg);
 
-        GenericLowDiscrepancy<SobolRsg>::ursg_type so2ldsg(dimension, mcSeed,
+        GenericLowDiscrepancy<SobolRsg,
+            InverseCumulativeNormal>::ursg_type so2ldsg(dimension, mcSeed,
             SobolRsg::Unit);
-        GenericLowDiscrepancy<SobolRsg>::rsg_type gso2ldsg(so2ldsg);
+        GenericLowDiscrepancy<SobolRsg,
+            InverseCumulativeNormal>::rsg_type gso2ldsg(so2ldsg);
 
-        GenericLowDiscrepancy<SobolRsg>::ursg_type so3ldsg(dimension, mcSeed,
+        GenericLowDiscrepancy<SobolRsg,
+            InverseCumulativeNormal>::ursg_type so3ldsg(dimension, mcSeed,
             SobolRsg::SobolLevitan);
-        GenericLowDiscrepancy<SobolRsg>::rsg_type gso3ldsg(so3ldsg);
+        GenericLowDiscrepancy<SobolRsg,
+            InverseCumulativeNormal>::rsg_type gso3ldsg(so3ldsg);
 
 
         Matrix result(samples, dimension);

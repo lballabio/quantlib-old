@@ -1,5 +1,9 @@
 
-July 2004  In sync with the QuantLib 0.3.7 release, built with a
+Jan-2005   In sync with the QuantLib 0.3.8 release, built with a 2005-01-04
+           snapshot of the XLW (xlw.sf.net) CVS, compiled with XLW_AUTOLINK
+           defined.
+
+Jul-2004   In sync with the QuantLib 0.3.7 release, built with a
            2004-07-07 snapshot of XLW (xlw.sf.net) CVS, compiled with
            XLW_AUTOLINK defined.
 

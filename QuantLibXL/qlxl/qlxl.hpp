@@ -37,7 +37,7 @@
     #define QLXL_VERSION "0.3.8"
 #endif
 
-#if QL_HEX_VERSION < 0x000308a0
+#if QL_HEX_VERSION < 0x000308f0
     #error using an old version of QuantLib, please update
 #endif
 

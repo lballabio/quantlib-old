@@ -166,7 +166,8 @@ Option::Type QlXlfOper::AsOptionType() const {
 }
 
 Handle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
-    const Date& referenceDate, int interpolationType) const {
+    const Date& referenceDate, int interpolationType,
+    const DayCounter& dc) const {
 
 
     XlfRef range = xlfOper_.AsRef();
@@ -177,7 +178,7 @@ Handle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
         double vol = range(0,0).AsDouble();
         return Handle<BlackVolTermStructure>(
             boost::shared_ptr<BlackVolTermStructure>(new
-                BlackConstantVol(referenceDate, vol)));
+                BlackConstantVol(referenceDate, vol, dc)));
     } else if (rowNo>=1 && colNo==2) {
         // vertical time dependent vol
         std::vector<Date> dates(rowNo);
@@ -187,7 +188,7 @@ Handle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
             vols[j] = range(j, 1).AsDouble();
         }
         boost::shared_ptr<BlackVarianceCurve> ts(new
-                BlackVarianceCurve(referenceDate,dates,vols));
+                BlackVarianceCurve(referenceDate,dates,vols,dc));
         switch (interpolationType) {
             case 1:
                 return Handle<BlackVolTermStructure>(ts);
@@ -212,7 +213,7 @@ Handle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
             vols[j] = range(1, j).AsDouble();
         }
         boost::shared_ptr<BlackVarianceCurve> ts(new
-            BlackVarianceCurve(referenceDate,dates,vols));
+            BlackVarianceCurve(referenceDate,dates,vols,dc));
         switch (interpolationType) {
             case 1:
                 return Handle<BlackVolTermStructure>(ts);
@@ -248,7 +249,7 @@ Handle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
             }
         }
         boost::shared_ptr<BlackVarianceSurface> ts(new
-            BlackVarianceSurface(referenceDate, dates, strikes, vols));
+            BlackVarianceSurface(referenceDate, dates, strikes, vols, dc));
         switch (interpolationType) {
             case 1:
                 return Handle<BlackVolTermStructure>(ts);
@@ -271,7 +272,7 @@ Handle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
 
 
 Handle<YieldTermStructure> QlXlfOper::AsTermStructure(
-    const Date& referenceDate) const {
+    const Date& referenceDate, const DayCounter& dc) const {
 
     XlfRef range = xlfOper_.AsRef();
     Size rowNo = range.GetNbRows();
@@ -281,7 +282,7 @@ Handle<YieldTermStructure> QlXlfOper::AsTermStructure(
         double forwardRate = range(0,0).AsDouble();
         return Handle<YieldTermStructure>(
             boost::shared_ptr<YieldTermStructure>(new
-                FlatForward(referenceDate, forwardRate)));
+                FlatForward(referenceDate, forwardRate, dc)));
     } else if (rowNo>1 && colNo==2 && range(0,1).AsDouble()==1.0) {
         // vertical discount grid
 
@@ -296,7 +297,7 @@ Handle<YieldTermStructure> QlXlfOper::AsTermStructure(
 
         return Handle<YieldTermStructure>(
             boost::shared_ptr<YieldTermStructure>(new
-                DiscountCurve(dates, discounts)));
+                DiscountCurve(dates, discounts, dc)));
     } else if (rowNo==2 && colNo>1 && range(1,0).AsDouble()==1.0) {
         // horizontal discount grid
 
@@ -311,7 +312,7 @@ Handle<YieldTermStructure> QlXlfOper::AsTermStructure(
 
         return Handle<YieldTermStructure>(
             boost::shared_ptr<YieldTermStructure>(new
-                DiscountCurve(dates, discounts)));
+                DiscountCurve(dates, discounts, dc)));
     } else if (rowNo>1 && colNo==2) {
         // vertical piecewise forward grid (annual continuos act/365)
         std::vector<Date> dates(rowNo);
@@ -324,7 +325,7 @@ Handle<YieldTermStructure> QlXlfOper::AsTermStructure(
 
         return Handle<YieldTermStructure>(
             boost::shared_ptr<YieldTermStructure>(new
-                PiecewiseFlatForward(dates, forwards)));
+                PiecewiseFlatForward(dates, forwards, dc)));
     } else if (rowNo==2 && colNo>1) {
         // horizontal piecewise forward grid (annual continuos act/365)
         std::vector<Date> dates(colNo);
@@ -337,7 +338,7 @@ Handle<YieldTermStructure> QlXlfOper::AsTermStructure(
 
         return Handle<YieldTermStructure>(
             boost::shared_ptr<YieldTermStructure>(new
-                PiecewiseFlatForward(dates, forwards)));
+                PiecewiseFlatForward(dates, forwards, dc)));
     } else
         QL_FAIL("Not a yield term structure range");
 
