@@ -11,7 +11,6 @@ mailing list<br>
 the QuantLib administrator <a href=
 "mailto:ferdinando.ametrano@quantlib.org">Ferdinando&nbsp;Ametrano</a>.</p>
 
-</script>
 </div>
 </div>
 </td>
