@@ -5,7 +5,7 @@ AC_INIT([Object Handler], [0.0.1],
 AC_PREREQ(2.50)
 AC_CONFIG_SRCDIR([ObjectHandler/objecthandler.hpp])
 AC_CONFIG_AUX_DIR([config])
-#AC_CONFIG_HEADERS([ql/config.hpp])
+AC_CONFIG_HEADERS([ObjectHandler/config.hpp])
 AM_INIT_AUTOMAKE([foreign])
 
 AC_COPYRIGHT([Copyright (C) 2004, 2005 Eric Ehlers
@@ -69,8 +69,7 @@ AC_PATH_PROG([DVIPS], [dvips])
 AC_CONFIG_FILES([
     Makefile
     ObjectHandler/Makefile
-    Example/Makefile
-    ])
+    Example/Makefile])
 #    Docs/Makefile])
 #AC_CONFIG_FILES([quantlib-config],[chmod +x quantlib-config])
 #AC_CONFIG_FILES([QuantLib.spec])

@@ -10,3 +10,13 @@ ObjectHandler.plg
 ObjectHandler.suo
 ObjectHandler_private.*
 example.log
+autom4te.cache
+aclocal.m4
+config.log
+config.status
+configure
+Makefile
+Makefile.in
+config
+libtool
+stamp-h1

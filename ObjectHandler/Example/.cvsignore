@@ -8,3 +8,7 @@ Example.mak
 Makefile.win
 Example
 example.log
+.deps
+Makefile
+Makefile.in
+.libs

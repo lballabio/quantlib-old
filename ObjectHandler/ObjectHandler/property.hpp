@@ -24,7 +24,7 @@ namespace ObjHandler {
         }
     //  Property(const Property<Name, Type>& source);
 
-    //  virtual ~Property{};
+        virtual ~Property() {};
 
     //  Accessing function operators (use operator overloading)
         virtual Type operator() () const { return con; }

@@ -1,6 +1,6 @@
-AM_CPPFLAGS = -I. -I${top_srcdir}
+AM_CPPFLAGS = -I${top_srcdir}
 AM_LDFLAGS = -lboost_regex
-LDADD = ../ObjectHandler/libObjectHandler.a
+LDADD = ../ObjectHandler/libObjectHandler.la
 
 EXTRA_DIST = \
     Example.dev \
@@ -9,9 +9,9 @@ EXTRA_DIST = \
     Example_8.vcproj \
     makefile.mak
 
-example_SOURCES = \
+Example_SOURCES = \
     example.cpp  \
     interface.cpp  \
     objectwidget.cpp
 
-noinst_PROGRAMS = example
+noinst_PROGRAMS = Example

@@ -1,1 +1,9 @@
 *.obj*
+.deps
+Makefile
+Makefile.in
+stamp-h1
+.libs
+config.hpp*
+*.lo
+*.la
