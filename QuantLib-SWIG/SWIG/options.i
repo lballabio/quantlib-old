@@ -38,7 +38,7 @@ Option::Type optionTypeFromString(std::string s) {
     else if (s == "s" || s == "straddle")
         return Option::Straddle;
     else
-        throw Error("unknown option type: "+s);
+        QL_FAIL("unknown option type: "+s);
 }
 
 std::string optionTypeToString(Option::Type t) {
@@ -50,7 +50,7 @@ std::string optionTypeToString(Option::Type t) {
       case Option::Straddle:
         return "Straddle";
       default:
-        throw Error("unknown option type");
+        QL_FAIL("unknown option type");
     }
 }
 %}
@@ -101,11 +101,11 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
                    = boost::shared_ptr<PricingEngine>()) {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
-            QL_REQUIRE(stPayoff, "Wrong payoff given");
+            QL_REQUIRE(stPayoff, "wrong payoff given");
             boost::shared_ptr<BlackScholesStochasticProcess> bsProcess =
                 boost::dynamic_pointer_cast<BlackScholesStochasticProcess>(
                                                                      process);
-            QL_REQUIRE(bsProcess, "Wrong stochastic process given");
+            QL_REQUIRE(bsProcess, "wrong stochastic process given");
             return new VanillaOptionPtr(
                 new VanillaOption(bsProcess,stPayoff,exercise,engine));
         }
@@ -165,11 +165,11 @@ class EuropeanOptionPtr : public VanillaOptionPtr {
                    = boost::shared_ptr<PricingEngine>()) {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
-            QL_REQUIRE(stPayoff, "Wrong payoff given");
+            QL_REQUIRE(stPayoff, "wrong payoff given");
             boost::shared_ptr<BlackScholesStochasticProcess> bsProcess =
                 boost::dynamic_pointer_cast<BlackScholesStochasticProcess>(
                                                                      process);
-            QL_REQUIRE(bsProcess, "Wrong stochastic process given");
+            QL_REQUIRE(bsProcess, "wrong stochastic process given");
             return new EuropeanOptionPtr(
                 new EuropeanOption(bsProcess,stPayoff,exercise,engine));
         }
@@ -248,7 +248,7 @@ class BinomialVanillaEnginePtr : public boost::shared_ptr<PricingEngine> {
                 return new BinomialVanillaEnginePtr(
                     new BinomialVanillaEngine<LeisenReimer>(steps));
             else
-                throw Error("unknown binomial engine type: "+s);
+                QL_FAIL("unknown binomial engine type: "+s);
         }
     }
 };
@@ -294,7 +294,7 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
                                                             maxSamples,
                                                             seed));
             else
-                throw Error("unknown Monte Carlo engine type: "+s);
+                QL_FAIL("unknown Monte Carlo engine type: "+s);
         }
     }
 };

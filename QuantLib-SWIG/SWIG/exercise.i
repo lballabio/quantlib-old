@@ -35,7 +35,7 @@ Exercise::Type exerciseTypeFromString(std::string s) {
     else if (s == "b" || s == "bermudan")
         return Exercise::Bermudan;
     else
-        throw Error("unknown exercise type: "+s);
+        QL_FAIL("unknown exercise type: "+s);
 }
 
 std::string exerciseTypeToString(Exercise::Type t) {
@@ -47,7 +47,7 @@ std::string exerciseTypeToString(Exercise::Type t) {
       case Exercise::Bermudan:
         return "Bermudan";
       default:
-        throw Error("unknown exercise type");
+        QL_FAIL("unknown exercise type");
     }
 }
 %}

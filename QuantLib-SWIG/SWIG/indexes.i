@@ -119,7 +119,7 @@ class XiborPtr : public boost::shared_ptr<Index> {
             else if (s == "zarlibor")
                 return new XiborPtr(new ZARLibor(n,units,h));
             else
-                throw Error("unknown index: " + name);
+                QL_FAIL("unknown index: " + name);
             QL_DUMMY_RETURN(new XiborPtr);
         }
         Period tenor() {

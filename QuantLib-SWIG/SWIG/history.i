@@ -138,7 +138,7 @@ class HistoryIterator {
     %extend {
         HistoryEntry next() {
             if (self->i == self->end) {
-                throw Error();
+                QL_FAIL("end reached");
             } else {
                 History::Entry e = *(self->i);
                 (self->i)++;
@@ -155,7 +155,7 @@ class HistoryValidIterator {
     %extend {
         HistoryEntry next() {
             if (self->i == self->end) {
-                throw Error();
+                QL_FAIL("end reached");
             } else {
                 History::Entry e = *(self->i);
                 (self->i)++;

@@ -168,8 +168,7 @@ class JamshidianSwaptionPtr : public boost::shared_ptr<PricingEngine> {
             using QuantLib::OneFactorAffineModel;
             boost::shared_ptr<OneFactorAffineModel> m = 
                  boost::dynamic_pointer_cast<OneFactorAffineModel>(model);
-            QL_REQUIRE(model,
-                       "JamshidianSwaption: affine model required");
+            QL_REQUIRE(model, "affine model required");
             return new JamshidianSwaptionPtr(new JamshidianSwaption(m));
         }
     }

@@ -161,8 +161,7 @@ class RubyCostFunction : public CostFunction {
 class UnaryFunction {
   public:
 	UnaryFunction(Scheme_Object* function) : function_(function) {
-        if (!SCHEME_PROCP(function))
-            throw Error("procedure expected");
+        QL_REQUIRE(SCHEME_PROCP(function), "procedure expected");
 	    scheme_dont_gc_ptr(function_);
     }
     UnaryFunction(const UnaryFunction& f) : function_(f.function_) {
@@ -194,8 +193,7 @@ class UnaryFunction {
 class BinaryFunction {
   public:
 	BinaryFunction(Scheme_Object* function) : function_(function) {
-        if (!SCHEME_PROCP(function))
-            throw Error("procedure expected");
+        QL_REQUIRE(SCHEME_PROCP(function), "procedure expected");
 	    scheme_dont_gc_ptr(function_);
     }
     BinaryFunction(const BinaryFunction& f) : function_(f.function_) {
@@ -231,8 +229,7 @@ class BinaryFunction {
 class MzCostFunction : public CostFunction {
   public:
 	MzCostFunction(Scheme_Object* function) : function_(function) {
-        if (!SCHEME_PROCP(function))
-            throw Error("procedure expected");
+        QL_REQUIRE(SCHEME_PROCP(function), "procedure expected");
 	    scheme_dont_gc_ptr(function_);
     }
     MzCostFunction(const MzCostFunction& f) 
@@ -272,8 +269,7 @@ class MzCostFunction : public CostFunction {
 class UnaryFunction {
   public:
 	UnaryFunction(SCM function) : function_(function) {
-        if (!gh_procedure_p(function))
-            throw Error("procedure expected");
+        QL_REQUIRE(gh_procedure_p(function), "procedure expected");
 	    scm_protect_object(function_);
     }
     ~UnaryFunction() {
@@ -297,8 +293,7 @@ class UnaryFunction {
 class GuileCostFunction : public CostFunction {
   public:
 	GuileCostFunction(SCM function) : function_(function) {
-        if (!gh_procedure_p(function))
-            throw Error("procedure expected");
+        QL_REQUIRE(gh_procedure_p(function), "procedure expected");
 	    scm_protect_object(function_);
     }
     ~GuileCostFunction() {

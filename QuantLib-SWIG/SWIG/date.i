@@ -53,7 +53,7 @@ Weekday weekdayFromString(std::string s) {
     else if (s == "sat" || s == "saturday")
         return QuantLib::Saturday;
     else
-        throw Error("unknown weekday");
+        QL_FAIL("unknown weekday");
 }
  
 std::string stringFromWeekday(Weekday w) {
@@ -65,7 +65,7 @@ std::string stringFromWeekday(Weekday w) {
       case QuantLib::Thursday:  return "Thursday";
       case QuantLib::Friday:    return "Friday";
       case QuantLib::Saturday:  return "Saturday";
-      default:                  throw Error("unknown weekday");
+      default:                  QL_FAIL("unknown weekday");
     }
 }
 %}
@@ -98,7 +98,7 @@ TimeUnit timeunitFromString(std::string s) {
     else if (s == "y" || s == "year" || s == "years")
         return QuantLib::Years;
     else 
-        throw Error("unknown time unit");
+        QL_FAIL("unknown time unit");
 }
 
 std::string stringFromTimeunit(TimeUnit u) {
@@ -107,7 +107,7 @@ std::string stringFromTimeunit(TimeUnit u) {
       case QuantLib::Weeks:  return "weeks";
       case QuantLib::Months: return "months";
       case QuantLib::Years:  return "years";
-      default:               throw Error("unknown time unit");
+      default:               QL_FAIL("unknown time unit");
     }
 }
 %}

@@ -26,7 +26,7 @@
 %exception {
     try {
         $action
-    } catch (IndexError& e) {
+    } catch (std::out_of_range& e) {
         SWIG_exception(SWIG_IndexError,const_cast<char*>(e.what()));
     } catch (std::exception& e) {
         SWIG_exception(SWIG_RuntimeError,const_cast<char*>(e.what()));

@@ -39,8 +39,7 @@ class SwaptionPtr : public boost::shared_ptr<Instrument> {
                     const boost::shared_ptr<PricingEngine>& engine) {
             boost::shared_ptr<SimpleSwap> swap = 
                  boost::dynamic_pointer_cast<SimpleSwap>(simpleSwap);
-            QL_REQUIRE(swap,
-                       "Swaption: simple swap required");
+            QL_REQUIRE(swap, "simple swap required");
             return new SwaptionPtr(new Swaption(swap,exercise,
                                                 termStructure,engine));
         }

@@ -62,7 +62,7 @@ class Path {
             } else if (i<0 && -i<=size_) {
                 return (*self)[size_+i];
             } else {
-                throw IndexError("Path index out of range");
+                throw std::out_of_range("path index out of range");
             }
             QL_DUMMY_RETURN(0.0)
         }
@@ -72,7 +72,7 @@ class Path {
             if (i>=0 && i<size_) {
                 return (*self)[i];
             } else {
-                throw IndexError("Path index out of range");
+                throw std::out_of_range("path index out of range");
             }
             QL_DUMMY_RETURN(0.0)
         }
@@ -140,7 +140,7 @@ class MultiPath {
             } else if (i<0 && -i<=assets_) {
                 return (*self)[assets_+i];
             } else {
-                throw IndexError("MultiPath index out of range");
+                throw std::out_of_range("multi-path index out of range");
             }
             QL_DUMMY_RETURN((*self)[0])
         }
@@ -151,7 +151,7 @@ class MultiPath {
             if (i>=0 && i<assets_ && j>=0 && j<size_) {
                 return (*self)[i][j];
             } else {
-                throw IndexError("MultiPath index out of range");
+                throw std::out_of_range("multi-path index out of range");
             }
             QL_DUMMY_RETURN(0.0)
         }

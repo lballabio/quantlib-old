@@ -26,7 +26,6 @@
 using QuantLib::Array;
 using QuantLib::Matrix;
 using QuantLib::ArrayFormatter;
-using QuantLib::IndexError;
 %}
 
 %define QL_TYPECHECK_ARRAY       4210    %enddef
@@ -826,7 +825,7 @@ class Array {
             i = QL_MAX(0,i);
             j = QL_MIN(size_,j);
             QL_ENSURE(static_cast<int>(rhs.size()) == j-i,
-                      "Arrays are not resizable");
+                      "arrays are not resizable");
             std::copy(rhs.begin(),rhs.end(),self->begin()+i);
         }
         bool __nonzero__() {
@@ -847,7 +846,7 @@ class Array {
             } else if (i<0 && -i<=size_) {
                 return (*self)[size_+i];
             } else {
-                throw IndexError("Array index out of range");
+                throw std::out_of_range("array index out of range");
             }
             QL_DUMMY_RETURN(0.0)
         }
@@ -858,7 +857,7 @@ class Array {
             } else if (i<0 && -i<=size_) {
                 (*self)[size_+i] = x;
             } else {
-                throw IndexError("Array index out of range");
+                throw std::out_of_range("array index out of range");
             }
         }
         #endif
@@ -867,14 +866,14 @@ class Array {
             if (i<self->size())
                 return (*self)[i];
             else
-                throw IndexError("Array index out of range");
+                throw std::out_of_range("array index out of range");
             QL_DUMMY_RETURN(0.0)
         }
         void set(Size i, double x) {
             if (i<self->size())
                 (*self)[i] = x;
             else
-                throw IndexError("Array index out of range");
+                throw std::out_of_range("array index out of range");
         }
         #endif
     }
@@ -1117,7 +1116,7 @@ SalvagingAlgorithm salvagingAlgorithmFromString(std::string s) {
     else if (s == "hypersphere")
         return QuantLib::SalvagingAlgorithm::Hypersphere;
     else
-        throw Error("unknown salvaging algorithm: "+s);
+        QL_FAIL("unknown salvaging algorithm: "+s);
 }
 
 std::string salvagingAlgorithmToString(SalvagingAlgorithm a) {
@@ -1129,7 +1128,7 @@ std::string salvagingAlgorithmToString(SalvagingAlgorithm a) {
       case QuantLib::SalvagingAlgorithm::Hypersphere:
         return "Hypersphere";
       default:
-        throw Error("unknown salvaging algorithm");
+        QL_FAIL("unknown salvaging algorithm");
     }
 }
 %}

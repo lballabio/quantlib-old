@@ -44,7 +44,7 @@ BarrierType barrierTypeFromString(std::string s) {
     else if (s == "upout")
         return Barrier::UpOut;
     else
-        throw Error("unknown barrier type: "+s);
+        QL_FAIL("unknown barrier type: "+s);
 }
 
 std::string barrierTypeToString(BarrierType t) {
@@ -58,7 +58,7 @@ std::string barrierTypeToString(BarrierType t) {
       case Barrier::UpOut:
         return "UpOut";
       default:
-        throw Error("unknown barrier type");
+        QL_FAIL("unknown barrier type");
     }
 }
 %}

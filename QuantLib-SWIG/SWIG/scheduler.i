@@ -61,7 +61,7 @@ class Schedule {
             } else if (i<0 && -i<=size_) {
                 return self->date(size_+i);
             } else {
-                throw IndexError("Schedule index out of range");
+                throw std::out_of_range("schedule index out of range");
             }
             QL_DUMMY_RETURN(Date())
         }

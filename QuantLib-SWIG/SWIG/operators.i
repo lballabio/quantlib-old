@@ -35,7 +35,7 @@ BoundaryCondition::Side BCSideFromString(std::string s) {
     else if (s == "lower")
         return BoundaryCondition::Lower;
     else
-        throw Error("unknown boundary condition side: "+s);
+        QL_FAIL("unknown boundary condition side: "+s);
 }
 
 std::string BCSideToString(BoundaryCondition::Side type) {
@@ -47,7 +47,7 @@ std::string BCSideToString(BoundaryCondition::Side type) {
       case BoundaryCondition::Lower:
         return "lower";
       default:
-        throw Error("unknown boundary condition side");
+        QL_FAIL("unknown boundary condition side");
     }
 }
 %}

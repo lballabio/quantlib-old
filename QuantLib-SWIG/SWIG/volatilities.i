@@ -141,7 +141,7 @@ VolExtrapolationType volExTypeFromString(std::string s) {
     else if (s == "" || s == "default")
         return BlackVarianceSurface::InterpolatorDefaultExtrapolation;
     else
-        throw Error("unknown extrapolation type: "+s);
+        QL_FAIL("unknown extrapolation type: "+s);
 }
 
 std::string volExTypeToString(VolExtrapolationType t) {
@@ -151,7 +151,7 @@ std::string volExTypeToString(VolExtrapolationType t) {
       case BlackVarianceSurface::InterpolatorDefaultExtrapolation:
         return "default";
       default:
-        throw Error("unknown extrapolation type");
+        QL_FAIL("unknown extrapolation type");
     }
 }
 %}

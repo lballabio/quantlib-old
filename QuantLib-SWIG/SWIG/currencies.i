@@ -82,7 +82,7 @@ Currency currencyFromString(std::string s) {
     else if (s == "USD") return QuantLib::USD;
     else if (s == "VEB") return QuantLib::VEB;
     else if (s == "ZAR") return QuantLib::ZAR;
-    else throw Error("unknown currency: " + s);
+    else QL_FAIL("unknown currency: " + s);
 }
 
 std::string currencyToString(Currency c) {

@@ -62,7 +62,7 @@ RollingConvention rollconvFromString(std::string s) {
     else if (s == "mer" ||s == "mendref" || s == "monthendreference")
         return QuantLib::MonthEndReference;
     else 
-        throw Error("unknown rolling convention");
+        QL_FAIL("unknown rolling convention");
 }
 
 std::string rollconvToString(RollingConvention rc) {
@@ -78,7 +78,7 @@ std::string rollconvToString(RollingConvention rc) {
       case QuantLib::MonthEndReference:
         return "MonthEndReference";
       default:
-        throw Error("unknown rolling convention");
+        QL_FAIL("unknown rolling convention");
     }
 }
 %}
@@ -97,7 +97,7 @@ JointCalendarRule joinRuleFromString(std::string s) {
     else if (s == "b" ||s == "businessdays" || s == "joinbusinessdays")
         return QuantLib::JoinBusinessDays;
     else 
-        throw Error("unknown joint calendar rule");
+        QL_FAIL("unknown joint calendar rule");
 }
 
 std::string joinRuleToString(JointCalendarRule jr) {
@@ -107,7 +107,7 @@ std::string joinRuleToString(JointCalendarRule jr) {
       case QuantLib::JoinBusinessDays:
         return "JoinBusinessDays";
       default:
-        throw Error("unknown joint calendar rule");
+        QL_FAIL("unknown joint calendar rule");
     }
 }
 %}
@@ -180,7 +180,7 @@ class Calendar {
             else if (s == "null")
                 return new Calendar(NullCalendar());
             else
-                throw Error("Unknown calendar: " + name);
+                QL_FAIL("Unknown calendar: " + name);
             QL_DUMMY_RETURN((Calendar*)(0));
         }
         std::string __str__() {

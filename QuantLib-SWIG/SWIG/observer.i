@@ -149,8 +149,7 @@ class MzObserver : public Observer {
   public:
 	MzObserver(Scheme_Object* callback)
 	: callback_(callback) {
-        if (!SCHEME_PROCP(callback))
-            throw Error("procedure expected");
+        QL_REQUIRE(SCHEME_PROCP(callback), "procedure expected");
 	    /* make sure the MzScheme object stays alive
 	       as long as we need it */
 	    scheme_dont_gc_ptr(callback_);

@@ -71,7 +71,7 @@ class DayCounter {
             else if (s == "simple")
                 return new DayCounter(SimpleDayCounter());
             else
-                throw Error("Unknown day counter: " + s);
+                QL_FAIL("Unknown day counter: " + s);
             QL_DUMMY_RETURN((DayCounter*)(0));
         }
         std::string __str__() {
