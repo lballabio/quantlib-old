@@ -318,12 +318,38 @@ else:
 
 datafiles  = []
 
+# patch distutils if it can't cope with the "classifiers" or
+# "download_url" keywords
+if sys.version < '2.2.3':
+    from distutils.dist import DistributionMetadata
+    DistributionMetadata.classifiers = None
+    DistributionMetadata.download_url = None
+
+classifiers = [
+    'Development Status :: 4 - Beta',
+    'Environment :: Console',
+    'Intended Audience :: Developers',
+    'Intended Audience :: End Users/Desktop',
+    'License :: OSI Approved :: BSD License',
+    'Natural Language :: English',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python',
+    'Topic :: Scientific/Engineering',
+]
+
 setup(name             = "QuantLib-Python",
-      description      = "QuantLib Python extension",
-      maintainer       = "QuantLib Team",
-      maintainer_email = "quantlib-users@lists.sourceforge.net",
+      version          = "0.3.4a1",
+      description      = "Python bindings for the QuantLib library",
+      long_description = """
+QuantLib (http://quantlib.org/) is a C++ library for financial quantitative
+analysts and developers, aimed at providing a comprehensive software framework
+for quantitative finance.
+      """,
+      author           = "QuantLib Team",
+      author_email     = "quantlib-users@lists.sourceforge.net",
       url              = "http://quantlib.org",
       license          = open('LICENSE.TXT','r+').read(),
+      classifiers      = classifiers,
       py_modules       = ['QuantLib.__init__','QuantLib.QuantLib'],
       ext_modules      = [Extension("QuantLib._QuantLib",
                                     ["QuantLib/quantlib_wrap.cpp"],
@@ -339,5 +365,5 @@ setup(name             = "QuantLib-Python",
                           'install_swigfiles': install_swigfiles,
                           'install': my_install,
                           'sdist': my_sdist,
-                          'wrap': my_wrap},
-      version          = "0.3.4a1")
+                          'wrap': my_wrap}
+      )
