@@ -1,3 +1,6 @@
+
+verify site is browsable also from quantlib.sf.net
+
 add http://quantlib.org on the site map
 
 revise home page (BS no market value? QL plans to offer)
@@ -5,8 +8,13 @@ on the home page: OO approach
 to provide (twice)
 COM/CORBA on the home page
 
+custom download page
+
+doc page html only
+
+
 check MatLab capitalization
-add R/S+ to the list of extension
+add R/S+ links
 revise mailing list welcome messages
 mailing lists custom page
 create quantlib-job mailing list
@@ -16,7 +24,6 @@ create quantlib-finance mailing list
 update coding standards (including file&classes DoxyGen requirements)
 
 expand general resource section
-add references to ISDA and OMG documents
 
 add FAQ entry about books
 add FAQ entry about swig

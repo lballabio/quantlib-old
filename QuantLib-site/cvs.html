@@ -214,6 +214,21 @@ cvs -z9 co -P modulename
 <p>Updates from within the module's directory do not need the
 CVSROOT exporting/setting.</p>
 
+<p><strong>Note for Unix users</strong>: if you use CVS, you will
+need some GNU tools that usually only developers use, and which are
+not required to build QuantLib from tarballs. These are automake,
+autoconf, libtool, GNU m4, GNU make, and others which might escape
+me now. They all come with recent GNU/Linux distributions.</p>
+
+<p>To begin the build process from a CVS checkout, start with:</p>
+
+<pre>
+sh ./bootstrap
+</pre>
+
+<p>which will prepare the package for compilation. You can then use
+<em>./configure</em> and <em>make</em> in the usual way.</p>
+
 <!--includeHTML file="qltablefoot.inc"-->
 <div class="endmatter">
 <hr>
