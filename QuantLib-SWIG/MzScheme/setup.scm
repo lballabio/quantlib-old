@@ -230,7 +230,6 @@
                        (append-extension-suffix "QuantLibc"))))))
 
 (define (sdist)
-  (wrap)
   (display "Packing source distribution...") (newline)
   (let ((distribution-dir (string-append "QuantLib-MzScheme-" version)))
     (if (directory-exists? distribution-dir)

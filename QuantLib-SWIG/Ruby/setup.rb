@@ -226,9 +226,9 @@ Install = Command.new {
         # strip old prefix and add the new one
         oldPrefix = Config::CONFIG["prefix"]
         archDir    = Prefix + \
-                     Config::CONFIG["archdir"].gsub("^#{oldPrefix}","")
+                     Config::CONFIG["archdir"].gsub(/^#{oldPrefix}/,"")
         libDir     = Prefix + \
-                     Config::CONFIG["rubylibdir"].gsub("^#{oldPrefix}","")
+                     Config::CONFIG["rubylibdir"].gsub(/^#{oldPrefix}/,"")
     end
     [archDir,libDir].each { |path| File.makedirs path }
     File.install "./QuantLibc.so", archDir+"/QuantLibc.so", 0555, true

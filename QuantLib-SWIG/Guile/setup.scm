@@ -15,7 +15,7 @@
 
 ; usage
 (define (usage)
-  (format #t "Usage: mzscheme -r setup scm command\n")
+  (format #t "Usage: guile -s setup scm command\n")
   (format #t "  Commands:\n")
   (format #t "    wrap             generate wrappers from SWIG interfaces\n")
   (format #t "    build            build QuantLib-Guile\n")
@@ -70,6 +70,7 @@
         "options.i"
         "piecewiseflatforward.i"
         "randomnumbers.i"
+        "scheduler.i"
         "shortratemodels.i"
         "statistics.i"
         "swap.i"
@@ -83,7 +84,7 @@
         "old_pricers.i"
         "old_volatility.i"))
 (define test-files
-  (list "quantlib-test-suite"
+  (list "quantlib-test-suite.scm"
         "instruments.scm"
         "integrals.scm"
         "marketelements.scm"
@@ -209,7 +210,6 @@
               '("QuantLib.scm" "QuantLibc.so"))))
 
 (define (sdist)
-  (wrap)
   (display "Packing source distribution...") (newline)
   (let ((distribution-dir (string-append "QuantLib-Guile-" version)))
     (if (file-exists? distribution-dir)
