@@ -42,13 +42,19 @@ int main() {
         Date settlementDate(13, March, 2019);
         Date todaysDate(13, March, 2005);
 
+        ArgStack a0;
+        a0.push(settlementDate.serialNumber()); // settlement date as long
+        a0.push(volatility);            // volatility
+        a0.push(string("ACT360"));      // daycount convention
+        QL_OBJECT_MAKE(BlackConstantVol)("blackConstantVol", a0);
+
         ArgStack a1;
+        a1.push(string("blackConstantVol"));// black constant vol handle
         a1.push(underlying);                // underlying
         a1.push(string("ACT360"));          // daycount convention
         a1.push(settlementDate.serialNumber()); // settlement date as long
         a1.push(riskFreeRate);              // risk free rate
         a1.push(dividendYield);             // dividend yield
-        a1.push(volatility);                // volatility
         QL_OBJECT_MAKE(StochasticProcess)("stochasticProcess", a1);
         QL_LOG_OBJECT("stochasticProcess");
 

@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
+<functionlist>
+<headeronly>false</headeronly>
+<desc>functions to construct QuantLib volatility objects</desc>
+<displayname>Volatilities</displayname>
+
+<function>
+<name>QL_BLACK_CONSTANT_VOL</name>
+<codename>qlBlackConstantVol</codename>
+<desc>construct and return a handle to a Black Constant Vol object</desc>
+<constructor>true</constructor>
+<qlfunction>BlackConstantVol</qlfunction>
+<parameters>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+    <param>
+        <name>volatility</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>volatility</desc>
+    </param>
+    <param>
+        <name>dayCounter</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>day counter</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
+    <desc>vector of properties describing Stochastic Process object</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_BLACK_VARIANCE_SURFACE</name>
+<codename>qlBlackVarianceSurface</codename>
+<desc>construct and return a handle to a Black Variance Surface object</desc>
+<constructor>true</constructor>
+<qlfunction>BlackVarianceSurface</qlfunction>
+<parameters>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+    <param>
+        <name>dates</name>
+        <type>long</type>
+        <tensorrank>vector</tensorrank>
+        <desc>dates</desc>
+    </param>
+    <param>
+        <name>strikes</name>
+        <type>double</type>
+        <tensorrank>vector</tensorrank>
+        <desc>strikes</desc>
+    </param>
+    <param>
+        <name>volatilities</name>
+        <type>double</type>
+        <tensorrank>matrix</tensorrank>
+        <desc>volatilities</desc>
+    </param>
+    <param>
+        <name>dayCounter</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>day counter</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
+    <desc>vector of properties describing Stochastic Process object</desc>
+</returnval>
+</function>
+
+</functionlist>

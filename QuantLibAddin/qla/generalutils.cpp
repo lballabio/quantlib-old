@@ -111,15 +111,6 @@ namespace QuantLibAddin {
             QL_FAIL("IDtoFrequency: unrecognized frequencyID: " + frequencyID);
     }
 
-    std::vector<QuantLib::Rate> doubleVectorToRateVector(
-            const std::vector < double > &v) {
-        std::vector<QuantLib::Rate> ret;
-        std::vector<double>::const_iterator i;
-        for (i=v.begin(); i!=v.end(); i++)
-            ret.push_back(QuantLib::Rate(*i));
-        return ret;
-    }
-
     std::vector<QuantLib::Date> longVectorToDateVector(
             const std::vector < long > &v) {
         std::vector<QuantLib::Date> ret;

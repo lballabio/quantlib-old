@@ -25,3 +25,5 @@ termstructures.hpp
 capfloor.cpp
 capfloor.hpp
 shortratemodels.cpp
+volatilities.cpp
+volatilities.hpp

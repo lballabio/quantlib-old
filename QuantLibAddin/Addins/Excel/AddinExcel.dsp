@@ -124,6 +124,10 @@ SOURCE=.\utilities.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\volatilities.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\xlutils.cpp
 # End Source File
 # End Group

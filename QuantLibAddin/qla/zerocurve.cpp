@@ -32,15 +32,13 @@ namespace QuantLibAddin {
             = ObjHandler::Args< std::vector < long > >::popArg(args);
 
         QuantLib::DayCounter dayCounter     = IDtoDayCounter(dayCounterID);
-        const std::vector<QuantLib::Rate> yieldsQL = 
-            doubleVectorToRateVector(yields);
         const std::vector<QuantLib::Date> datesQL = 
             longVectorToDateVector(dates);
 
         zeroCurve_ = 
             boost::shared_ptr<QuantLib::ZeroCurve>(
                 new QuantLib::ZeroCurve(datesQL,
-                                        yieldsQL,
+                                        yields,
                                         dayCounter));
 
         std::vector<QuantLib::Date> retrievedDates = zeroCurve_->dates();

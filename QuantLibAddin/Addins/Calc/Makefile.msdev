@@ -32,7 +32,8 @@ OBJECTS="$(INT_DIR)\qladdin.obj" \
 	"$(INT_DIR)\instruments.obj" \
 	"$(INT_DIR)\capfloor.obj" \
 	"$(INT_DIR)\shortratemodels.obj" \
-	"$(INT_DIR)\termstructures.obj"
+	"$(INT_DIR)\termstructures.obj" \
+	"$(INT_DIR)\volatilities.obj"
 LINK="$(MSVC_DIR)\BIN\LINK" /nologo
 LFLAGS=libcmtd.lib libcpmtd.lib kernel32.lib wsock32.lib \
 	oldnames.lib netapi32.lib advapi32.lib gdi32.lib comdlg32.lib \

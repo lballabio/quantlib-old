@@ -23,6 +23,7 @@
 #include <Addins/C/utilities.h>
 #include <Addins/C/options.h>
 #include <Addins/C/instruments.h>
+#include <Addins/C/volatilities.h>
 
 #endif
 

@@ -19,20 +19,21 @@
     #include <qla/config.hpp>
 #endif
 #include <qla/stochasticprocess.hpp>
+#include <qla/volatilities.hpp>
 #include <qla/generalutils.hpp>
 #include <ql/quote.hpp>
 #include <ql/TermStructures/flatforward.hpp>
-#include <ql/Volatilities/blackconstantvol.hpp>
+#include <ql/voltermstructure.hpp>
 
 namespace QuantLibAddin {
 
     StochasticProcess::StochasticProcess(ObjHandler::ArgStack &args) {
-        double volatility           = ObjHandler::Args<double>::popArg(args);
         double dividendYield        = ObjHandler::Args<double>::popArg(args);
         double riskFreeRate         = ObjHandler::Args<double>::popArg(args);
         long settlementDateLong     = ObjHandler::Args<long>::popArg(args);
         std::string dayCounterID    = ObjHandler::Args<std::string>::popArg(args);
         double underlying           = ObjHandler::Args<double>::popArg(args);
+        std::string handleBlackVol  = ObjHandler::Args<std::string>::popArg(args);
 
         QuantLib::Date settlementDate(settlementDateLong);
         QuantLib::DayCounter dayCounter = IDtoDayCounter(dayCounterID);
@@ -45,15 +46,24 @@ namespace QuantLibAddin {
         QuantLib::Handle<QuantLib::YieldTermStructure> flatDividendTS(
             boost::shared_ptr<QuantLib::YieldTermStructure>(
             new QuantLib::FlatForward(settlementDate, dividendYield, dayCounter)));
-        QuantLib::Handle<QuantLib::BlackVolTermStructure> flatVolTS(
-            boost::shared_ptr<QuantLib::BlackVolTermStructure>(
-            new QuantLib::BlackConstantVol(settlementDate, volatility, dayCounter)));
+
+        boost::shared_ptr<BlackVolTermStructure> blackVolTermStructure =
+            boost::dynamic_pointer_cast<BlackVolTermStructure>
+            (QL_OBJECT_GET(handleBlackVol));
+        if (!blackVolTermStructure)
+            QL_FAIL("StochasticProcess: error retrieving object " + handleBlackVol);
+        boost::shared_ptr<QuantLib::BlackVolTermStructure> blackVolTermStructureP = 
+            boost::static_pointer_cast<QuantLib::BlackVolTermStructure>
+            (blackVolTermStructure->getReference());
+        QuantLib::Handle<QuantLib::BlackVolTermStructure> 
+            blackVolTermStructureH(blackVolTermStructureP);
+
         stochasticProcess_ = boost::shared_ptr<QuantLib::BlackScholesProcess> (
             new QuantLib::BlackScholesProcess(
                 underlyingH,
                 flatDividendTS,
                 flatTermStructure,
-                flatVolTS));
+                blackVolTermStructureH));
     }
 
 }

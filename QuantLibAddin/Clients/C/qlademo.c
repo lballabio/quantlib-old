@@ -28,6 +28,7 @@ int main() {
     long timeSteps = 801;
     long exerciseDate = 43903;      // (13, March, 2020);
     long settlementDate = 43537;    // (13, March, 2019);
+    VariesList vbc;                 // attributes of black constant vols
     VariesList vbs;                 // attributes of black scholes object
     VariesList vo;                  // attributes of vanilla option object
     int i;                          // iterator
@@ -39,14 +40,24 @@ int main() {
     QL_LOGMESSAGE(QL_VER());
     QL_LOGMESSAGE(QL_OH_VER());
 
+    if (QL_BLACK_CONSTANT_VOL(
+            "my_blackconstantvol", 
+            settlementDate, 
+            volatility, 
+            "ACT360",
+            &vbc) != SUCCESS) {
+        QL_LOGMESSAGE("Error on call to QL_BLACK_CONSTANT_VOL");
+        goto fail;
+    }
+
     if (QL_STOCHASTIC_PROCESS(
             "my_stochastic", 
+            "my_blackconstantvol", 
             underlying, 
             "ACT360",
             settlementDate, 
             riskFreeRate, 
             dividendYield, 
-            volatility, 
             &vbs) != SUCCESS) {
         QL_LOGMESSAGE("Error on call to QL_STOCHASTIC_PROCESS");
         goto fail;
@@ -87,6 +98,7 @@ int main() {
         QL_LOGMESSAGE("field = %s, value = %s", vo.varies[i].Label, 
             variesToString(&vo.varies[i]));
 
+    freeVariesList(&vbc);
     freeVariesList(&vbs);
     freeVariesList(&vo);
 

@@ -595,6 +595,12 @@
 <qlfunction>StochasticProcess</qlfunction>
 <parameters>
     <param>
+        <name>handleBlackVol</name>
+        <type class="BlackVolTermStructure">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle to a Black Vol Term Structure object</desc>
+    </param>
+    <param>
         <name>underlying</name>
         <type>double</type>
         <tensorrank>scalar</tensorrank>
@@ -623,12 +629,6 @@
         <type>double</type>
         <tensorrank>scalar</tensorrank>
         <desc>dividend yield</desc>
-    </param>
-    <param>
-        <name>volatility</name>
-        <type>double</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>volatility</desc>
     </param>
 </parameters>
 <returnval>

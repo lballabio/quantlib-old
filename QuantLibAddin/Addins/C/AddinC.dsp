@@ -111,6 +111,10 @@ SOURCE=.\utilities.cpp
 
 SOURCE=.\varies.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\volatilities.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
@@ -154,6 +158,10 @@ SOURCE=.\varies.h
 # Begin Source File
 
 SOURCE=.\varies.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\volatilities.h
 # End Source File
 # End Group
 # End Target

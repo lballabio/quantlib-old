@@ -23,3 +23,5 @@ capfloor.cpp
 capfloor.h
 shortratemodels.cpp
 shortratemodels.h
+volatilities.cpp
+volatilities.h

@@ -245,6 +245,10 @@ SOURCE=.\qla\vanillaoption.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\volatilities.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\zerocouponbond.cpp
 # End Source File
 # Begin Source File
@@ -334,6 +338,10 @@ SOURCE=.\qla\utilities.hpp
 # Begin Source File
 
 SOURCE=.\qla\vanillaoption.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\volatilities.hpp
 # End Source File
 # Begin Source File
 

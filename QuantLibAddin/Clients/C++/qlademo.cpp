@@ -41,13 +41,20 @@ int main() {
         Date exerciseDate(13, March, 2020);
         Date settlementDate(13, March, 2019);
 
+        ArgStack bcArgs;
+        bcArgs.push(settlementDate.serialNumber()); // settlement date as long
+        bcArgs.push(volatility);            // volatility
+        bcArgs.push(string("ACT360"));      // daycount convention
+        Properties bcProperties =
+            QL_OBJECT_MAKE(BlackConstantVol)("my_blackconstantvol", bcArgs);
+
         ArgStack bsArgs;
+        bsArgs.push(string("my_blackconstantvol")); // black constant vol handle
         bsArgs.push(underlying);            // underlying
         bsArgs.push(string("ACT360"));      // daycount convention
         bsArgs.push(settlementDate.serialNumber()); // settlement date as long
         bsArgs.push(riskFreeRate);          // risk free rate
         bsArgs.push(dividendYield);         // dividend yield
-        bsArgs.push(volatility);            // volatility
         Properties bsProperties =
             QL_OBJECT_MAKE(StochasticProcess)("my_stochastic", bsArgs);
 

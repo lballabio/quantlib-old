@@ -127,6 +127,10 @@ SOURCE=.\termstructures.cpp
 
 SOURCE=.\utilities.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\volatilities.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
@@ -172,6 +176,10 @@ SOURCE=.\termstructures.hpp
 # Begin Source File
 
 SOURCE=.\utilities.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\volatilities.hpp
 # End Source File
 # End Group
 # Begin Group "Make"

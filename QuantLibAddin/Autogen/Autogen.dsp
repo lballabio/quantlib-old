@@ -208,6 +208,10 @@ SOURCE=.\termstructures.xml
 
 SOURCE=.\utilities.xml
 # End Source File
+# Begin Source File
+
+SOURCE=.\volatilities.xml
+# End Source File
 # End Group
 # Begin Source File
 

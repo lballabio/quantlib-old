@@ -42,9 +42,6 @@ namespace QuantLibAddin {
     QuantLib::Frequency IDtoFrequency(
         const std::string &frequencyID);
 
-    std::vector<QuantLib::Rate> doubleVectorToRateVector(
-        const std::vector < double > &v);
-
     std::vector<QuantLib::Date> longVectorToDateVector(
         const std::vector < long > &v);
 

@@ -28,6 +28,7 @@ void printVariesList(const char *s, const VariesList vo) {
 }
 
 int main() {
+    VariesList vbc;                 // black constant vols
     VariesList vbs;                 // black scholes
     VariesList vo;                  // vanilla option
     VariesList voac;                // asian continuous
@@ -61,14 +62,24 @@ int main() {
     QL_CONSOLE(1);
     QL_LOGMESSAGE("begin options test");
 
+    if (QL_BLACK_CONSTANT_VOL(
+            "blackconstantvol", 
+            settlementDate, 
+            volatility, 
+            "ACT360",
+            &vbc) != SUCCESS) {
+        QL_LOGMESSAGE("Error on call to QL_BLACK_CONSTANT_VOL");
+        goto fail;
+    }
+
     if (QL_STOCHASTIC_PROCESS(
             "stoch1", 
+            "blackconstantvol", 
             underlying, 
             "ACT360",
             settlementDate, 
             riskFreeRate, 
             dividendYield, 
-            volatility, 
             &vbs) != SUCCESS) {
         QL_LOGMESSAGE("Error on call to QL_STOCHASTIC_PROCESS");
         goto fail;
@@ -253,6 +264,7 @@ int main() {
     for (i=0;i<2;i++)
         free(correlations[i]);
     free(correlations);
+    freeVariesList(&vbc);
     freeVariesList(&vbs);
     freeVariesList(&vo);
     freeVariesList(&voac);

@@ -25,6 +25,7 @@
 #include <qla/shortratemodels.hpp>
 #include <qla/termstructures.hpp>
 #include <qla/utilities.hpp>
+#include <qla/volatilities.hpp>
 
 #endif
 

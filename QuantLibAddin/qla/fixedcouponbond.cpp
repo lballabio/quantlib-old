@@ -53,8 +53,8 @@ namespace QuantLibAddin {
         QuantLib::Frequency couponFrequency = IDtoFrequency(frequencyID);
         QuantLib::DayCounter dayCounter     = IDtoDayCounter(dayCounterID);
         QuantLib::Calendar calendar         = IDtoCalendar(calendarID);
-        const std::vector<QuantLib::Rate> couponsQL = 
-            doubleVectorToRateVector(coupons);
+//        const std::vector<QuantLib::Rate> couponsQL = 
+//            doubleVectorToRateVector(coupons);
 
         myFixedCouponBond = 
             boost::shared_ptr<QuantLib::FixedCouponBond>(
@@ -62,7 +62,7 @@ namespace QuantLibAddin {
                                               QuantLib::Date(datedDate),
                                               QuantLib::Date(maturityDate),
                                               settlementDays,
-                                              couponsQL,
+                                              coupons,
                                               couponFrequency,
                                               dayCounter,
                                               calendar));
