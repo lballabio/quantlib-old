@@ -62,7 +62,7 @@ def webclean():
   cmd = 'del ..\\' + sitename + '.zip .'
   print '\nplease wait while performing:',
   print cmd
-  cmd = 'zip -T -r ..\\' + sitename + '.zip .'
+  cmd = 'zip -r ..\\' + sitename + '.zip .'
   print '\nplease wait while performing:',
   print cmd
   os.system(cmd)
