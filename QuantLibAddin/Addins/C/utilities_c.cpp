@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,13 +20,11 @@ extern "C" {
 #include <Addins/C/utilities.h>
 }
 
-using namespace QuantLibAddin;
-
-const char *QL_LOGFILE_C(const char *logFileName) {
-    std::string ret = QL_LOGFILE(logFileName);
+const char *QL_LOGFILE(const char *logFileName) {
+    std::string ret = QuantLibAddin::QL_LOGFILE(logFileName);
     return ret.c_str();
 }
 
-void QL_LOGMESSAGE_C(const char *msg) {
-    QL_LOGMESSAGE(msg);
+void QL_LOGMESSAGE(const char *msg) {
+    QuantLibAddin::QL_LOGMESSAGE(msg);
 }

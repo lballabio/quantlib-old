@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Thu Jan 20 00:11:04 2005
+// this file generated automatically by autogen.py on Wed Jan 26 13:34:31 2005
 // editing this file manually is not recommended
 
 #include <QuantLibAddin/qladdin.hpp>
@@ -26,10 +26,7 @@ extern "C" {
 }
 #include <Addins/C/varies.hpp>
 
-using namespace ObjHandler;
-using namespace QuantLibAddin;
-
-int QL_STOCHASTIC_PROCESS_C(
+int QL_STOCHASTIC_PROCESS(
         const char *handle,
         const double underlying,
         const char* dayCounterID,
@@ -39,7 +36,7 @@ int QL_STOCHASTIC_PROCESS_C(
         const double volatility,
         VariesList *result) {
     try {
-        Properties properties = QL_STOCHASTIC_PROCESS(
+        ObjHandler::Properties properties = QuantLibAddin::QL_STOCHASTIC_PROCESS(
             handle,
             underlying,
             dayCounterID,
@@ -50,13 +47,13 @@ int QL_STOCHASTIC_PROCESS_C(
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE("QL_STOCHASTIC_PROCESS_C Error: " + std::string(e.what()));
+        QuantLibAddin::QL_LOGMESSAGE("QL_STOCHASTIC_PROCESS_C Error: " + std::string(e.what()));
         result = 0;
         return FAIL;
     }
 }
 
-int QL_OPTION_VANILLA_C(
+int QL_OPTION_VANILLA(
         const char *handle,
         const char* handleStochastic,
         const char* typeOption,
@@ -69,7 +66,7 @@ int QL_OPTION_VANILLA_C(
         const long timeSteps,
         VariesList *result) {
     try {
-        Properties properties = QL_OPTION_VANILLA(
+        ObjHandler::Properties properties = QuantLibAddin::QL_OPTION_VANILLA(
             handle,
             handleStochastic,
             typeOption,
@@ -83,13 +80,13 @@ int QL_OPTION_VANILLA_C(
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE("QL_OPTION_VANILLA_C Error: " + std::string(e.what()));
+        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_VANILLA_C Error: " + std::string(e.what()));
         result = 0;
         return FAIL;
     }
 }
 
-int QL_OPTION_ASIAN_C_C(
+int QL_OPTION_ASIAN_C(
         const char *handle,
         const char* handleStochastic,
         const char* typeAverage,
@@ -103,7 +100,7 @@ int QL_OPTION_ASIAN_C_C(
         const long timeSteps,
         VariesList *result) {
     try {
-        Properties properties = QL_OPTION_ASIAN_C(
+        ObjHandler::Properties properties = QuantLibAddin::QL_OPTION_ASIAN_C(
             handle,
             handleStochastic,
             typeAverage,
@@ -118,13 +115,13 @@ int QL_OPTION_ASIAN_C_C(
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE("QL_OPTION_ASIAN_C_C Error: " + std::string(e.what()));
+        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_ASIAN_C_C Error: " + std::string(e.what()));
         result = 0;
         return FAIL;
     }
 }
 
-int QL_OPTION_BARRIER_C(
+int QL_OPTION_BARRIER(
         const char *handle,
         const char* handleStochastic,
         const char* typeBarrier,
@@ -140,7 +137,7 @@ int QL_OPTION_BARRIER_C(
         const long timeSteps,
         VariesList *result) {
     try {
-        Properties properties = QL_OPTION_BARRIER(
+        ObjHandler::Properties properties = QuantLibAddin::QL_OPTION_BARRIER(
             handle,
             handleStochastic,
             typeBarrier,
@@ -157,26 +154,26 @@ int QL_OPTION_BARRIER_C(
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE("QL_OPTION_BARRIER_C Error: " + std::string(e.what()));
+        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_BARRIER_C Error: " + std::string(e.what()));
         result = 0;
         return FAIL;
     }
 }
 
-int QL_OPTION_SETENGINE_C(
+int QL_OPTION_SETENGINE(
         const char* handle,
         const char* engineName,
         const long timeSteps,
         VariesList *result) {
     try {
-        Properties properties = QL_OPTION_SETENGINE(
+        ObjHandler::Properties properties = QuantLibAddin::QL_OPTION_SETENGINE(
             handle,
             engineName,
             timeSteps);
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE("QL_OPTION_SETENGINE_C Error: " + std::string(e.what()));
+        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_SETENGINE_C Error: " + std::string(e.what()));
         result = 0;
         return FAIL;
     }

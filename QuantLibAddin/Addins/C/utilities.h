@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,16 +18,10 @@
 #ifndef utilities_h
 #define utilities_h
 
-const char *QL_LOGFILE_C(
+const char *QL_LOGFILE(
     const char *logFileName);
 
-void QL_LOGMESSAGE_C(
+void QL_LOGMESSAGE(
     const char *msg);
-
-//string QL_ANY2STRING(
-//    const ObjHandler::any_ptr &a);
-
-//Properties QL_QUERY(
-//    const string &handle);
 
 #endif

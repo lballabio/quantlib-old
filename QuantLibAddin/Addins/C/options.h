@@ -15,13 +15,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Thu Jan 20 00:11:04 2005
+// this file generated automatically by autogen.py on Wed Jan 26 13:34:31 2005
 // editing this file manually is not recommended
 
 #ifndef options_h
 #define options_h
 
-int QL_STOCHASTIC_PROCESS_C(
+int QL_STOCHASTIC_PROCESS(
         const char *handle,
         const double underlying,
         const char* dayCounterID,
@@ -31,7 +31,7 @@ int QL_STOCHASTIC_PROCESS_C(
         const double volatility,
         VariesList *result);
 
-int QL_OPTION_VANILLA_C(
+int QL_OPTION_VANILLA(
         const char *handle,
         const char* handleStochastic,
         const char* typeOption,
@@ -44,7 +44,7 @@ int QL_OPTION_VANILLA_C(
         const long timeSteps,
         VariesList *result);
 
-int QL_OPTION_ASIAN_C_C(
+int QL_OPTION_ASIAN_C(
         const char *handle,
         const char* handleStochastic,
         const char* typeAverage,
@@ -58,7 +58,7 @@ int QL_OPTION_ASIAN_C_C(
         const long timeSteps,
         VariesList *result);
 
-int QL_OPTION_BARRIER_C(
+int QL_OPTION_BARRIER(
         const char *handle,
         const char* handleStochastic,
         const char* typeBarrier,
@@ -74,7 +74,7 @@ int QL_OPTION_BARRIER_C(
         const long timeSteps,
         VariesList *result);
 
-int QL_OPTION_SETENGINE_C(
+int QL_OPTION_SETENGINE(
         const char* handle,
         const char* engineName,
         const long timeSteps,

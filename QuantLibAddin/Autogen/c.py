@@ -10,7 +10,7 @@ INCLUDES = 'stub.C.includes'
 BODY = 'stub.C.body'
 
 def generateFuncHeader(fileHeader, function, suffix):
-    fileHeader.write('int %s_C(\n' % function[common.NAME])
+    fileHeader.write('int %s(\n' % function[common.NAME])
     if function[common.CTOR]:
         fileHeader.write('        const char *handle,\n')
     fileHeader.write(utils.generateParamList(function[common.PARAMS],

@@ -34,10 +34,10 @@ int main() {
 
     printf("hi\n");
 
-    QL_LOGFILE_C("quantlib.log");
-    QL_LOGMESSAGE_C("begin example program");
+    QL_LOGFILE("quantlib.log");
+    QL_LOGMESSAGE("begin example program");
 
-    if (QL_STOCHASTIC_PROCESS_C(
+    if (QL_STOCHASTIC_PROCESS(
             "my_stochastic", 
             underlying, 
             "ACT360",
@@ -46,11 +46,11 @@ int main() {
             dividendYield, 
             volatility, 
             &vbs) != SUCCESS) {
-        printf("Error on call to QL_STOCHASTIC_PROCESS_C\n");
+        printf("Error on call to QL_STOCHASTIC_PROCESS\n");
         goto fail;
     }
 
-    if (QL_OPTION_VANILLA_C(
+    if (QL_OPTION_VANILLA(
             "my_option",                    // option handle
             "my_stochastic",                // stochastic process handle
             "PUT",                          // option type
@@ -62,31 +62,31 @@ int main() {
             "JR",                           // engine type (jarrow rudd)
             timeSteps,                      // time steps
             &vo) != SUCCESS) {
-        printf("Error on call to QL_OPTION_VANILLA_C\n");
+        printf("Error on call to QL_OPTION_VANILLA\n");
         goto fail;
     }
 
-    printf("\nhigh-level interrogation - after QL_OPTION_VANILLA_C\n");
+    printf("\nhigh-level interrogation - after QL_OPTION_VANILLA\n");
     for (i=0; i<vo.count; i++)
         printf("field = %s, value = %s\n", vo.varies[i].Label, variesToString(&vo.varies[i]));
 
-    if (QL_OPTION_SETENGINE_C(
+    if (QL_OPTION_SETENGINE(
             "my_option", 
             "AEQPB",   // AdditiveEQPBinomialTree
             801, 
             &vo) != SUCCESS) {
-        printf("Error on call to QL_OPTION_SETENGINE_C\n");
+        printf("Error on call to QL_OPTION_SETENGINE\n");
         goto fail;
     }
 
-    printf("\nhigh-level interrogation - after QL_OPTION_SETENGINE_C\n");
+    printf("\nhigh-level interrogation - after QL_OPTION_SETENGINE\n");
     for (i=0; i<vo.count; i++)
         printf("field = %s, value = %s\n", vo.varies[i].Label, variesToString(&vo.varies[i]));
 
     freeVariesList(&vbs);
     freeVariesList(&vo);
 
-    QL_LOGMESSAGE_C("end example program");
+    QL_LOGMESSAGE("end example program");
 
     printf("\nbye\n");
 
