@@ -369,24 +369,243 @@ using QuantLib::Null;
 
 #elif defined(SWIGMZSCHEME)
 
-// to do
+%typemap(in) vector<double> {
+    if (SCHEME_VECTORP($input)) {
+        Size size = SCHEME_VEC_SIZE($input);
+        $1.resize(size);
+        Scheme_Object** items = SCHEME_VEC_ELS($input);
+        for (Size i=0; i<size; i++) {
+            Scheme_Object* o = items[i];
+            if (SCHEME_DBLP(o))
+                $1[i] = SCHEME_DBL_VAL(o);
+            else if (SCHEME_RATIONALP(o))
+                $1[i] = scheme_rational_to_double(o);
+            else if (SCHEME_INTP(o))
+                $1[i] = double(SCHEME_INT_VAL(o));
+            else
+                scheme_wrong_type(FUNC_NAME, "numeric sequence", 
+                                  $argnum, argc, argv);
+        }
+    } else if (SCHEME_NULLP($input)) {
+        ;
+    } else if (SCHEME_PAIRP($input)) {
+        Scheme_Object *head, *tail;
+        tail = $input;
+        while (!SCHEME_NULLP(tail)) {
+            head = scheme_car(tail);
+            tail = scheme_cdr(tail);
+            if (SCHEME_DBLP(head))
+                $1.push_back(SCHEME_DBL_VAL(head));
+            else if (SCHEME_RATIONALP(head))
+                $1.push_back(scheme_rational_to_double(head));
+            else if (SCHEME_INTP(head))
+                $1.push_back(double(SCHEME_INT_VAL(head)));
+            else
+                scheme_wrong_type(FUNC_NAME, "numeric sequence", 
+                                  $argnum, argc, argv);
+        }
+    } else {
+        scheme_wrong_type(FUNC_NAME, "numeric sequence", 
+                          $argnum, argc, argv);
+    }
+}
 
+%typemap(in) const vector<double>& (vector<double> temp) {
+    $1 = &temp;
+    if (SCHEME_VECTORP($input)) {
+        Size size = SCHEME_VEC_SIZE($input);
+        temp.resize(size);
+        Scheme_Object** items = SCHEME_VEC_ELS($input);
+        for (Size i=0; i<size; i++) {
+            Scheme_Object* o = items[i];
+            if (SCHEME_DBLP(o))
+                temp[i] = SCHEME_DBL_VAL(o);
+            else if (SCHEME_RATIONALP(o))
+                temp[i] = scheme_rational_to_double(o);
+            else if (SCHEME_INTP(o))
+                temp[i] = double(SCHEME_INT_VAL(o));
+            else
+                scheme_wrong_type(FUNC_NAME, "numeric sequence", 
+                                  $argnum, argc, argv);
+        }
+    } else if (SCHEME_NULLP($input)) {
+        ;
+    } else if (SCHEME_PAIRP($input)) {
+        Scheme_Object *head, *tail;
+        tail = $input;
+        while (!SCHEME_NULLP(tail)) {
+            head = scheme_car(tail);
+            tail = scheme_cdr(tail);
+            if (SCHEME_DBLP(head))
+                temp.push_back(SCHEME_DBL_VAL(head));
+            else if (SCHEME_RATIONALP(head))
+                temp.push_back(scheme_rational_to_double(head));
+            else if (SCHEME_INTP(head))
+                temp.push_back(double(SCHEME_INT_VAL(head)));
+            else
+                scheme_wrong_type(FUNC_NAME, "numeric sequence", 
+                                  $argnum, argc, argv);
+        }
+    } else {
+        scheme_wrong_type(FUNC_NAME, "numeric sequence", 
+                          $argnum, argc, argv);
+    }
+}
+
+%typemap(out) vector<double> {
+    $result = scheme_make_vector($1.size(),scheme_undefined);
+    Scheme_Object** els = SCHEME_VEC_ELS($result);
+    for (Size i=0; i<$1.size(); i++)
+        els[i] = scheme_make_double($1[i]);
+}
+
+
+%typemap(in) vector<int> {
+    if (SCHEME_VECTORP($input)) {
+        Size size = SCHEME_VEC_SIZE($input);
+        $1.resize(size);
+        Scheme_Object** items = SCHEME_VEC_ELS($input);
+        for (Size i=0; i<size; i++) {
+            Scheme_Object* o = items[i];
+            if (SCHEME_INTP(o))
+                $1[i] = SCHEME_INT_VAL(o);
+            else
+                scheme_wrong_type(FUNC_NAME, "int sequence", 
+                                  $argnum, argc, argv);
+        }
+    } else if (SCHEME_NULLP($input)) {
+        ;
+    } else if (SCHEME_PAIRP($input)) {
+        Scheme_Object *head, *tail;
+        tail = $input;
+        while (!SCHEME_NULLP(tail)) {
+            head = scheme_car(tail);
+            tail = scheme_cdr(tail);
+            if (SCHEME_INTP(head))
+                $1.push_back(SCHEME_INT_VAL(head));
+            else
+                scheme_wrong_type(FUNC_NAME, "int sequence", 
+                                  $argnum, argc, argv);
+        }
+    } else {
+        scheme_wrong_type(FUNC_NAME, "int sequence", 
+                          $argnum, argc, argv);
+    }
+}
+
+%typemap(in) const vector<int>& (vector<int> temp) {
+    $1 = &temp;
+    if (SCHEME_VECTORP($input)) {
+        Size size = SCHEME_VEC_SIZE($input);
+        temp.resize(size);
+        Scheme_Object** items = SCHEME_VEC_ELS($input);
+        for (Size i=0; i<size; i++) {
+            Scheme_Object* o = items[i];
+            if (SCHEME_INTP(o))
+                temp[i] = SCHEME_INT_VAL(o);
+            else
+                scheme_wrong_type(FUNC_NAME, "int sequence", 
+                                  $argnum, argc, argv);
+        }
+    } else if (SCHEME_NULLP($input)) {
+        ;
+    } else if (SCHEME_PAIRP($input)) {
+        Scheme_Object *head, *tail;
+        tail = $input;
+        while (!SCHEME_NULLP(tail)) {
+            head = scheme_car(tail);
+            tail = scheme_cdr(tail);
+            if (SCHEME_INTP(head))
+                temp.push_back(SCHEME_INT_VAL(head));
+            else
+                scheme_wrong_type(FUNC_NAME, "int sequence", 
+                                  $argnum, argc, argv);
+        }
+    } else {
+        scheme_wrong_type(FUNC_NAME, "int sequence", 
+                          $argnum, argc, argv);
+    }
+}
+
+%typemap(out) vector<int> {
+    $result = scheme_make_vector($1.size(),scheme_undefined);
+    Scheme_Object** els = SCHEME_VEC_ELS($result);
+    for (Size i=0; i<$1.size(); i++)
+        els[i] = scheme_make_integer_value($1[i]);
+}
+
+
+%define TypemapVector(T)
+%typemap(in) vector<T> {
+    if (SCHEME_VECTORP($input)) {
+        Size size = SCHEME_VEC_SIZE($input);
+        $1.resize(size);
+        Scheme_Object** items = SCHEME_VEC_ELS($input);
+        for (Size i=0; i<size; i++) {
+            Scheme_Object* o = items[i];
+            $1[i] = *((T*) SWIG_MustGetPtr(o,SWIGTYPE_p_##T,$argnum));
+        }
+    } else if (SCHEME_NULLP($input)) {
+        ;
+    } else if (SCHEME_PAIRP($input)) {
+        Scheme_Object *head, *tail;
+        tail = $input;
+        while (!SCHEME_NULLP(tail)) {
+            head = scheme_car(tail);
+            tail = scheme_cdr(tail);
+            $1.push_back(*((T*) SWIG_MustGetPtr(head,SWIGTYPE_p_##T,$argnum)));
+        }
+    } else {
+        scheme_wrong_type(FUNC_NAME, "T" " sequence", 
+                          $argnum, argc, argv);
+    }
+}
+
+%typemap(in) const vector<T>& (vector<T> temp) {
+    $1 = &temp;
+    if (SCHEME_VECTORP($input)) {
+        Size size = SCHEME_VEC_SIZE($input);
+        temp.resize(size);
+        Scheme_Object** items = SCHEME_VEC_ELS($input);
+        for (Size i=0; i<size; i++) {
+            Scheme_Object* o = items[i];
+            temp[i] = *((T*) SWIG_MustGetPtr(o,SWIGTYPE_p_##T,$argnum));
+        }
+    } else if (SCHEME_NULLP($input)) {
+        ;
+    } else if (SCHEME_PAIRP($input)) {
+        Scheme_Object *head, *tail;
+        tail = $input;
+        while (!SCHEME_NULLP(tail)) {
+            head = scheme_car(tail);
+            tail = scheme_cdr(tail);
+            temp.push_back(
+                *((T*) SWIG_MustGetPtr(head,SWIGTYPE_p_##T,$argnum)));
+        }
+    } else {
+        scheme_wrong_type(FUNC_NAME, "T" " sequence", 
+                          $argnum, argc, argv);
+    }
+}
+
+%typemap(out) vector<T> {
+    $result = scheme_make_vector($1.size(),scheme_undefined);
+    Scheme_Object** els = SCHEME_VEC_ELS($result);
+    for (Size i=0; i<$1.size(); i++) {
+        T* x = new T($1[i]);
+        els[i] = SWIG_MakePtr(x,SWIGTYPE_p_##T);
+    }
+}
+%enddef
 
 #endif
 
-// test
 TypemapVector(Date);
 
 %inline %{
-vector<int> f1(vector<int> v) { return v; }
-vector<int> f2(const vector<int>& v) { return v; }
-vector<double> f3(vector<double> v) { return v; }
-vector<double> f4(const vector<double>& v) { return v; }
-vector<Date> f5(vector<Date> v) { return v; }
-vector<Date> f6(const vector<Date>& v) { return v; }
+    vector<Date> f(vector<Date> v) { return v; }
+    vector<Date> g(const vector<Date>& v) { return v; }
 %}
-
-
 
 
 #endif

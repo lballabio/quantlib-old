@@ -86,7 +86,7 @@ using std::string;
     if (SCHEME_STRINGP($input)) {
         $1 = std::string(SCHEME_STR_VAL($input));
     } else {
-        scheme_wrong_type("$name", "MZ_NAME", $argnum, argc, argv);
+        scheme_wrong_type(FUNC_NAME, "string", $argnum, argc, argv);
     }
 };
 
@@ -95,7 +95,7 @@ using std::string;
         temp = std::string(SCHEME_STR_VAL($input));
         $1 = &temp;
     } else {
-        scheme_wrong_type("$name", "MZ_NAME", $argnum, argc, argv);
+        scheme_wrong_type(FUNC_NAME, "string", $argnum, argc, argv);
     }
 };
 

@@ -76,7 +76,7 @@
     if (SCHEME_INTP($input)) {
         $1 = Type(SCHEME_INT_VAL($input));
     } else {
-        scheme_wrong_type("$name", "MZ_NAME", $argnum, argc, argv);
+        scheme_wrong_type(FUNC_NAME, "Type", $argnum, argc, argv);
     }
 };
 
@@ -139,10 +139,10 @@
         try {
             $1 = TypeFromString(s);
         } catch (Error&) {
-            scheme_wrong_type("$name", "MZ_NAME", $argnum, argc, argv);
+            scheme_wrong_type(FUNC_NAME, "Type", $argnum, argc, argv);
         }
     } else {
-        scheme_wrong_type("$name", "MZ_NAME", $argnum, argc, argv);
+        scheme_wrong_type(FUNC_NAME, "Type", $argnum, argc, argv);
     }
 };
 
