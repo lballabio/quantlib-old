@@ -17,3 +17,8 @@ The building and installation process consists of the following commands:
 
 The install step above might require superuser privileges.
 
+The test suite is implemented on top of the Schemeunit framework, available
+from <http://schematics.sourceforge.net>. Version 1.4 of above of Schemeunit
+is required for running the suite.
+
+
