@@ -1,5 +1,6 @@
-/*
- Copyright (C) 2004 Eric Ehlers
+
+/*!
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -38,3 +39,4 @@ void ObjectWidget::update(const std::string &s, const int &i) {
 boost::shared_ptr<void> ObjectWidget::getReference() const {
     return boost::static_pointer_cast<void>(widget_);
 }
+

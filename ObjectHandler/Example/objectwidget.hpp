@@ -1,5 +1,6 @@
-/*
- Copyright (C) 2004 Eric Ehlers
+
+/*!
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,7 +23,7 @@
 
 using namespace ObjHandler;
 
-// FIXME
+// FIXME not sure if this is the correct approach
 #define PROPERTY_STR    "PROPERTY_STR"
 #define PROPERTY_INT    "PROPERTY_INT"
 #define IDX_STR            0
@@ -38,3 +39,4 @@ private:
 };
 
 #endif
+

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -43,7 +43,9 @@ namespace ObjHandler {
         return s.str();
     }
 
-    // FIXME
+    // FIXME - below is a temporary approach to logging
+    // which will be revised in version 0.0.2.
+
     std::string logFileName;    // "" = logging disabled
 
     int setLogFile(const std::string &newLogFileName) {
@@ -78,3 +80,4 @@ namespace ObjHandler {
         }
     }
 }
+
