@@ -24,25 +24,28 @@
 
 %{
 using QuantLib::Calendar;
-using QuantLib::TARGET;
-using QuantLib::NewYork;
+using QuantLib::Budapest;
+using QuantLib::Copenhagen;
+using QuantLib::Frankfurt;
+using QuantLib::Helsinki;
+using QuantLib::HongKong;
+using QuantLib::Johannesburg;
+using QuantLib::JointCalendar;
 using QuantLib::London;
 using QuantLib::Milan;
-using QuantLib::Frankfurt;
-using QuantLib::Zurich;
-using QuantLib::Helsinki;
-using QuantLib::Johannesburg;
-using QuantLib::Wellington;
+using QuantLib::NewYork;
+using QuantLib::NullCalendar;
+using QuantLib::Oslo;
+using QuantLib::Seoul;
+using QuantLib::Stockholm;
+using QuantLib::Sydney;
+using QuantLib::TARGET;
+using QuantLib::Taiwan;
 using QuantLib::Tokyo;
 using QuantLib::Toronto;
-using QuantLib::Sydney;
-using QuantLib::Budapest;
-using QuantLib::Oslo;
-using QuantLib::Copenhagen;
-using QuantLib::Stockholm;
 using QuantLib::Warsaw;
-using QuantLib::NullCalendar;
-using QuantLib::JointCalendar;
+using QuantLib::Wellington;
+using QuantLib::Zurich;
 %}
 
 // typemap rolling conventions to corresponding strings
@@ -149,34 +152,40 @@ class Calendar {
                 return new Calendar(NewYork());
             else if (s == "london" || s == "lon")
                 return new Calendar(London());
-            else if (s == "milan" || s == "mil")
-                return new Calendar(Milan());
-            else if (s == "frankfurt" || s == "fft")
-                return new Calendar(Frankfurt());
-            else if (s == "zurich" || s == "zur")
-                return new Calendar(Zurich());
-            else if (s == "helsinki")
-                return new Calendar(Helsinki());
-            else if (s == "johannesburg" || s == "jhb")
-                return new Calendar(Johannesburg());
-            else if (s == "wellington")
-                return new Calendar(Wellington());
-            else if (s == "tokyo")
-                return new Calendar(Tokyo());
-            else if (s == "toronto")
-                return new Calendar(Toronto());
-            else if (s == "sydney")
-                return new Calendar(Sydney());
             else if (s == "budapest")
                 return new Calendar(Budapest());
             else if (s == "copenhagen")
                 return new Calendar(Copenhagen());
+            else if (s == "frankfurt" || s == "fft")
+                return new Calendar(Frankfurt());
+            else if (s == "helsinki")
+                return new Calendar(Helsinki());
+            else if (s == "hongkong")
+                return new Calendar(HongKong());
+            else if (s == "johannesburg" || s == "jhb")
+                return new Calendar(Johannesburg());
+            else if (s == "milan" || s == "mil")
+                return new Calendar(Milan());
             else if (s == "oslo")
                 return new Calendar(Oslo());
+            else if (s == "seoul")
+                return new Calendar(Seoul());
             else if (s == "stockholm")
                 return new Calendar(Stockholm());
+            else if (s == "sydney")
+                return new Calendar(Sydney());
+            else if (s == "taiwan")
+                return new Calendar(Taiwan());
+            else if (s == "tokyo")
+                return new Calendar(Tokyo());
+            else if (s == "toronto")
+                return new Calendar(Toronto());
             else if (s == "warsaw")
                 return new Calendar(Warsaw());
+            else if (s == "wellington")
+                return new Calendar(Wellington());
+            else if (s == "zurich" || s == "zur")
+                return new Calendar(Zurich());
             else if (s == "null")
                 return new Calendar(NullCalendar());
             else
