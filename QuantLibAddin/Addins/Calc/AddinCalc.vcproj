@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="AddinCalc"
+	SccProjectName=""
+	SccLocalPath=""
+	Keyword="MakeFileProj">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory=".\Release"
+			IntermediateDirectory=".\Release"
+			ConfigurationType="0"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="WINDOWS SUPPORT PENDING"
+				ReBuildCommandLine="WINDOWS SUPPORT PENDING /a"
+				Output="Addin.lib"/>
+		</Configuration>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory=".\Debug"
+			IntermediateDirectory=".\Debug"
+			ConfigurationType="0"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="WINDOWS SUPPORT PENDING"
+				ReBuildCommandLine="WINDOWS SUPPORT PENDING /a"
+				Output="Addin.lib"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<File
+			RelativePath="Addin.idl">
+		</File>
+		<File
+			RelativePath="AddinCalc.dsp">
+		</File>
+		<File
+			RelativePath="functions.cpp">
+		</File>
+		<File
+			RelativePath="Makefile">
+		</File>
+		<File
+			RelativePath="options.cpp">
+		</File>
+		<File
+			RelativePath="qladdin.cpp">
+		</File>
+		<File
+			RelativePath="qladdin.hpp">
+		</File>
+		<File
+			RelativePath="qldefs.hpp">
+		</File>
+		<File
+			RelativePath="readme.txt">
+		</File>
+		<File
+			RelativePath="utilities.cpp">
+		</File>
+		<File
+			RelativePath="utilities.hpp">
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

@@ -27,7 +27,7 @@ void setValues(LPXLOPER xArray, obj_ptr object, const string &handle) {
 	if (!xArray->val.array.lparray)
 		throw("setValues: error on call to new");
 	setXLOPERString(xArray->val.array.lparray[0], handle.c_str());
-	for (int i = 0; i < fieldNames.size(); i++) {
+	for (unsigned int i = 0; i < fieldNames.size(); i++) {
 		string fieldName = fieldNames[i];
 		any_ptr any = object->getValue(fieldName);
 		anyToXLOPER(any, xArray->val.array.lparray[i + 1]);

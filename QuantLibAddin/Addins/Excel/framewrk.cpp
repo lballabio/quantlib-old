@@ -239,7 +239,7 @@ LPXLOPER TempBool(int b)
     }
 
     lpx->xltype = xltypeBool;
-    lpx->val.bool = b?1:0;
+    lpx->val.boolean = b?1:0;
 
     return lpx;
 }

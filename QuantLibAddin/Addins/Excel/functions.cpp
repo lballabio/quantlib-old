@@ -22,7 +22,7 @@ LPXLOPER QL_FIELDNAMES(char *handleObject_char) {
 		xRet.val.array.lparray = new XLOPER[fieldNames.size()];
 		if (!xRet.val.array.lparray)
 			QL_FAIL("error on call to new");
-		for (int i = 0; i < fieldNames.size(); i++)
+		for (unsigned int i = 0; i < fieldNames.size(); i++)
 			setXLOPERString(xRet.val.array.lparray[i], fieldNames[i].c_str());
 		return &xRet;
 	} catch (const exception &e) {
