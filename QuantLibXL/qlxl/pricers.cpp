@@ -30,8 +30,12 @@ extern "C"
 
     using namespace QuantLib;
     using QuantLib::Pricers::EuropeanOption;
-    using QuantLib::Pricers::McEuropean;
     using QuantLib::Pricers::FdEuropean;
+    using QuantLib::Pricers::McEuropean;
+    using QuantLib::Pricers::CliquetOption;
+    using QuantLib::Pricers::McCliquetOption;
+    using QuantLib::Pricers::PerformanceOption;
+    using QuantLib::Pricers::McPerformanceOption;
     using QuantLib::Pricers::FdAmericanOption;
 
         
@@ -84,6 +88,9 @@ extern "C"
         EXCEL_END;
     }
 
+
+    
+    
     LPXLOPER EXCEL_EXPORT xlEuropeanOption_FD(
                         XlfOper xltype,
                         XlfOper xlunderlying,
@@ -187,7 +194,202 @@ extern "C"
 
 
 
+    LPXLOPER EXCEL_EXPORT xlCliquetOption(
+                        XlfOper xltype,
+                        XlfOper xlunderlying,
+                        XlfOper xlmoneyness,
+                        XlfOper xldividendYield,
+                        XlfOper xlriskFreeRate,
+                        XlfOper xltimes,
+                        XlfOper xlvolatility)
+    {
+        EXCEL_BEGIN;
 
+        std::string temp(xltype.AsString());
+        temp = StringFormatter::toLowercase(temp);
+
+        Option::Type type;
+        if (temp == "c" || temp == "call") {
+            type = Option::Call;
+        } else if (temp == "p" || temp == "put") {
+            type = Option::Put;
+        } else if (temp == "s" || temp == "straddle") {
+            type = Option::Straddle;
+        } else
+            throw Error("Unknown option type");
+
+        double underlying       = xlunderlying.AsDouble();
+        double moneyness           = xlmoneyness.AsDouble();
+        std::vector<double> dividendYield    = xldividendYield.AsDoubleVector();
+        std::vector<double> riskFreeRate     = xlriskFreeRate.AsDoubleVector();
+        std::vector<double> volatility       = xlvolatility.AsDoubleVector();
+        std::vector<Time> times         = xltimes.AsDoubleVector();
+
+
+        CliquetOption cliquet(type, underlying, moneyness, dividendYield,
+           riskFreeRate, times, volatility);
+        double results[7];
+        results[0] = cliquet.value();
+        results[1] = cliquet.delta();
+        results[2] = cliquet.gamma();
+        results[3] = cliquet.theta();
+        results[4] = cliquet.vega();
+        results[5] = cliquet.rho();
+        results[6] = cliquet.dividendRho();
+
+        return XlfOper(1,7,results);
+        EXCEL_END;
+    }
+
+    
+    LPXLOPER EXCEL_EXPORT xlCliquetOption_MC(
+                        XlfOper xltype,
+                        XlfOper xlunderlying,
+                        XlfOper xlmoneyness,
+                        XlfOper xldividendYield,
+                        XlfOper xlriskFreeRate,
+                        XlfOper xltimes,
+                        XlfOper xlvolatility,
+                        XlfOper xlantitheticVariance,
+                        XlfOper xlsamples)
+    {
+        EXCEL_BEGIN;
+
+        std::string temp(xltype.AsString());
+        temp = StringFormatter::toLowercase(temp);
+
+        Option::Type type;
+        if (temp == "c" || temp == "call") {
+            type = Option::Call;
+        } else if (temp == "p" || temp == "put") {
+            type = Option::Put;
+        } else if (temp == "s" || temp == "straddle") {
+            type = Option::Straddle;
+        } else
+            throw Error("Unknown option type");
+
+        double underlying       = xlunderlying.AsDouble();
+        double moneyness           = xlmoneyness.AsDouble();
+        std::vector<double> dividendYield    = xldividendYield.AsDoubleVector();
+        std::vector<double> riskFreeRate     = xlriskFreeRate.AsDoubleVector();
+        std::vector<Time> times         = xltimes.AsDoubleVector();
+        std::vector<double> volatility       = xlvolatility.AsDoubleVector();
+        bool antitheticVariance = xlantitheticVariance.AsBool();
+        Size samples            = xlsamples.AsDouble();
+
+
+
+
+        McCliquetOption cliquet(type, underlying, moneyness, dividendYield,
+           riskFreeRate, times, volatility, antitheticVariance);
+        double results[2];
+        results[0] = cliquet.valueWithSamples(samples);
+        results[1] = cliquet.errorEstimate();
+
+        return XlfOper(2,1,results);
+        EXCEL_END;
+    }
+
+
+    
+    LPXLOPER EXCEL_EXPORT xlPerformanceOption(
+                        XlfOper xltype,
+                        XlfOper xlunderlying,
+                        XlfOper xlmoneyness,
+                        XlfOper xldividendYield,
+                        XlfOper xlriskFreeRate,
+                        XlfOper xltimes,
+                        XlfOper xlvolatility)
+    {
+        EXCEL_BEGIN;
+
+        std::string temp(xltype.AsString());
+        temp = StringFormatter::toLowercase(temp);
+
+        Option::Type type;
+        if (temp == "c" || temp == "call") {
+            type = Option::Call;
+        } else if (temp == "p" || temp == "put") {
+            type = Option::Put;
+        } else if (temp == "s" || temp == "straddle") {
+            type = Option::Straddle;
+        } else
+            throw Error("Unknown option type");
+
+        double underlying       = xlunderlying.AsDouble();
+        double moneyness           = xlmoneyness.AsDouble();
+        std::vector<double> dividendYield    = xldividendYield.AsDoubleVector();
+        std::vector<double> riskFreeRate     = xlriskFreeRate.AsDoubleVector();
+        std::vector<Time> times         = xltimes.AsDoubleVector();
+        std::vector<double> volatility       = xlvolatility.AsDoubleVector();
+
+
+        PerformanceOption perfCliquet(type, underlying, moneyness, dividendYield,
+           riskFreeRate, times, volatility);
+        double results[7];
+        results[0] = perfCliquet.value();
+        results[1] = perfCliquet.delta();
+        results[2] = perfCliquet.gamma();
+        results[3] = perfCliquet.theta();
+        results[4] = perfCliquet.vega();
+        results[5] = perfCliquet.rho();
+        results[6] = perfCliquet.dividendRho();
+
+        return XlfOper(1,7,results);
+        EXCEL_END;
+    }
+
+    
+    LPXLOPER EXCEL_EXPORT xlPerformanceOption_MC(
+                        XlfOper xltype,
+                        XlfOper xlunderlying,
+                        XlfOper xlmoneyness,
+                        XlfOper xldividendYield,
+                        XlfOper xlriskFreeRate,
+                        XlfOper xltimes,
+                        XlfOper xlvolatility,
+                        XlfOper xlantitheticVariance,
+                        XlfOper xlsamples)
+    {
+        EXCEL_BEGIN;
+
+        std::string temp(xltype.AsString());
+        temp = StringFormatter::toLowercase(temp);
+
+        Option::Type type;
+        if (temp == "c" || temp == "call") {
+            type = Option::Call;
+        } else if (temp == "p" || temp == "put") {
+            type = Option::Put;
+        } else if (temp == "s" || temp == "straddle") {
+            type = Option::Straddle;
+        } else
+            throw Error("Unknown option type");
+
+        double underlying       = xlunderlying.AsDouble();
+        double moneyness           = xlmoneyness.AsDouble();
+        std::vector<double> dividendYield    = xldividendYield.AsDoubleVector();
+        std::vector<double> riskFreeRate     = xlriskFreeRate.AsDoubleVector();
+        std::vector<Time> times         = xltimes.AsDoubleVector();
+        std::vector<double> volatility       = xlvolatility.AsDoubleVector();
+        bool antitheticVariance = xlantitheticVariance.AsBool();
+        Size samples            = xlsamples.AsDouble();
+
+
+
+
+        McPerformanceOption perfCliquet(type, underlying, moneyness, dividendYield,
+           riskFreeRate, times, volatility, antitheticVariance);
+        double results[2];
+        results[0] = perfCliquet.valueWithSamples(samples);
+        results[1] = perfCliquet.errorEstimate();
+
+        return XlfOper(2,1,results);
+        EXCEL_END;
+    }
+    
+    
+    
     LPXLOPER EXCEL_EXPORT xlAmericanOption_FD(
                         XlfOper xltype,
                         XlfOper xlunderlying,

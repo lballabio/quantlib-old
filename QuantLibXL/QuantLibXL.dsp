@@ -198,6 +198,10 @@ SOURCE=.\qlxl\qlxl.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qlxl\qlxlfoper.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qlxl\utilities.hpp
 # End Source File
 # End Group

@@ -43,18 +43,41 @@ extern "C"
         EXCEL_BEGIN;
 
         double underlying = xlunderlying.AsDouble();
-        double variance = xlvolatility.AsDouble()*xlvolatility.AsDouble();
-        double drift = xldrift.AsDouble() - 0.5*variance;
-        std::vector<double> times = xltimes.AsDoubleVector();
-        Size n = times.size();
         Size samples = xlsamples.AsInt();
 
+        std::vector<Time> times = xltimes.AsDoubleVector();
+        Size n = times.size();
+
+        std::vector<double> volatility = xlvolatility.AsDoubleVector();
+        std::vector<double> inputDrift = xldrift.AsDoubleVector();
+        QL_REQUIRE(volatility.size()<= n,
+            "volatility and time arrays mismatched");
+        QL_REQUIRE(inputDrift.size()<= n,
+            "drift and time arrays mismatched");
+
+        Size i;
+        std::vector<double> variance(n);
+        for (i=0; i< volatility.size(); i++) {
+            variance[i] = volatility[i]*volatility[i];
+        }
+        for (i=volatility.size(); i<n ; i++) {
+            variance[i] = variance[volatility.size()-1];
+        }
+
+        std::vector<double> drift(n);
+        for (i=0; i< inputDrift.size(); i++) {
+            drift[i] = inputDrift[i] - 0.5*variance[i];
+        }
+        for (i=inputDrift.size(); i<n ; i++) {
+            drift[i] = inputDrift[inputDrift.size()-1] - 0.5*variance[i];
+        }
+        
 
         PathGenerator<InvCumulativeKnuthGaussianRng> myPathGenerator =
             PathGenerator<InvCumulativeKnuthGaussianRng>(
             drift, variance, times);
 
-        Size i, j;
+        Size j;
         Path myPath(n);
         Matrix result(n, samples);
         for (j = 0; j < samples; j++) {

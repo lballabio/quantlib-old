@@ -30,6 +30,7 @@
 #include <xlw/xlw.h>
 #include <ql/quantlib.hpp>
 
+
 //! version hexadecimal number
 #define QLXL_HEX_VERSION 0x000301a0
 
