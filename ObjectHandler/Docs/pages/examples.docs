@@ -29,12 +29,12 @@
     Sample implementation of an object to be stored in ObjectHandler.
 */
 
-/*! \example interface.hpp
-    Sample declaration of an interface into ObjectHandler.
+/*! \example utilities.hpp
+    Sample interface of wrapper for ObjectHandler utilities.
 */
 
-/*! \example interface.cpp
-    Sample implementation of an interface into ObjectHandler.
+/*! \example utilities.cpp
+    Sample implementation of wrapper for ObjectHandler utilities.
 */
 
 /*! \example example.cpp

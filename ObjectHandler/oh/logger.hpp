@@ -28,9 +28,6 @@
 #include <log4cxx/fileappender.h>
 #include <log4cxx/consoleappender.h>
 
-//! ObjHandler
-/*! name space for the Object Handler
-*/
 namespace ObjHandler {
 
     //! Logger class

@@ -21,24 +21,22 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! \page index Introduction
+/*! \page log4cxx log4cxx
 
     \section overview Overview
-    QuantLib integration into spreadsheets and other end user tools 
-    requires a standalone <strong>ObjectHandler</strong> component, 
-    a repository allowing objects to be stored, shared, updated, 
-    interrogated, and destroyed.
-
-    \section quantlib QuantLib
-    ObjectHandler shares the QuantLib project structure with regard
-    to distribution, licensing, etc., all of which is documented
-    on the main QuantLib website:<br>
-    http://quantlib.org
-
-    \section log4cxx log4cxx
     ObjectHandler logging is performed by 
     <a href="http://logging.apache.org/log4cxx/index.html">log4cxx</a>, 
-    the logging framework for the Apache project.  Please see the
-    <a href="log4cxx.html">notes</a> for installing log4cxx for ObjectHandler.
+    the logging framework for the Apache project.
+    Before building ObjectHandler you'll need to install and build
+    log4cxx.  ObjectHandler has been tested against log4cxx version 0.9.7.
+
+    Under Linux, log4cxx should build as documented.  Below are some additional notes for building log4cxx under Windows, using a debug build as an example:
+    <ul>
+    <li>log4cxx should be unzipped to a path containing no spaces as the library seems to complain otherwise</li>
+    <li>please build log4cxx, project "static", configuration "Win32 Debug".</li>
+    <li>you need to manually set environment variable LOG4CXX_DIR to the top level log4cxx directory e.g. C:\\log4cxx-0.9.7</li>
+    <li>if MSDEV is running you need to restart it to pick up the new environment variable.</li>
+    <li>build ObjectHandler and Example, configuration "Win32 Debug"</li>
+    </ul>
 
 */
