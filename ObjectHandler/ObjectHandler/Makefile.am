@@ -12,7 +12,8 @@ include_HEADERS = \
     utilities.hpp
 
 EXTRA_DIST = \
-    autolink.hpp
+    autolink.hpp \
+	makefile.mak
 
 lib_LTLIBRARIES = libObjectHandler.la
 LDFLAGS = -release $(PACKAGE_VERSION)

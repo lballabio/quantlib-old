@@ -44,10 +44,10 @@ SectionIn 1 2
     File "ObjectHandler.dsw"
     File "ObjectHandler.sln"
     File "ObjectHandler.dev"
+    File "makefile.mak"
 
     File "*.txt"
     File "*.TXT"
-    File "*.mak"
     File "*.am"
     File "*.dsp"
     File "*.vcproj"
@@ -56,7 +56,7 @@ SectionIn 1 2
     SetOutPath  $INSTDIR\ObjectHandler
     File /r "ObjectHandler\*.hpp"
     File /r "ObjectHandler\*.cpp"
-    File /r "ObjectHandler\*.mak"
+    File /r "ObjectHandler\makefile.mak"
     File /r "ObjectHandler\*.am"
 
     SetOutPath $INSTDIR\Example
@@ -64,12 +64,24 @@ SectionIn 1 2
     File /r "Example\*.cpp"
     File /r "Example\*.dsp"
     File /r "Example\*.dev"
-    File /r "Example\*.mak"
+    File /r "Example\makefile.mak"
     File /r "Example\*.am"
     File /r "Example\*.vcproj"
 
     SetOutPath $INSTDIR\Docs
     File /r "Docs\*.bmp"
+    File /r "Docs\*.pdf"
+    File /r "Docs\*.am"
+    File /r "Docs\*.bmp"
+    File /r "Docs\*.css"
+    File /r "Docs\*.doxy"
+    File /r "Docs\*.html"
+    File /r "Docs\*.jpg"
+    File /r "Docs\makefile.mak"
+    File /r "Docs\*.png"
+    File /r "Docs\*.eps"
+    File /r "Docs\*.tex"
+    File /r "Docs\*.txt"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\ObjectHandler" \
@@ -98,6 +110,9 @@ SectionIn 1 2
 
     CreateShortCut "$SMPROGRAMS\ObjectHandler\ObjectHandler VC 7 project workspace.lnk" \
                    "$INSTDIR\ObjectHandler.sln"
+
+    CreateShortCut "$SMPROGRAMS\ObjectHandler\ObjectHandler VC 8 project workspace.lnk" \
+                   "$INSTDIR\ObjectHandler_vc8.sln"
 
     WriteUninstaller "ObjectHandlerUninstall.exe"
 
