@@ -67,43 +67,37 @@ class Scheduler {
         void each() {
             for (Size i=0; i<self->size(); i++) {
                 Date* d = new Date(self->date(i));
-                rb_yield(SWIG_NewPointerObj((void *) d, SWIGTYPE_p_Date, 1));
+                rb_yield(SWIG_NewPointerObj((void *) d, 
+                                            $descriptor(Date *), 1));
             }
         }
+        #elif defined(SWIGMZSCHEME)
+        void for_each(Scheme_Object* proc) {
+            for (Size i=0; i<self->size(); i++) {
+                Date* d = new Date(self->date(i));
+                Scheme_Object* x = SWIG_MakePtr(d, $descriptor(Date *));
+                scheme_apply(proc,1,&x);
+            }
+        }
+        #elif defined(SWIGGUILE)
+        void for_each(SCM proc) {
+            for (Size i=0; i<self->size(); i++) {
+                Date* d = new Date(self->date(i));
+                SCM x = SWIG_Guile_MakePtr(d, $descriptor(Date *));
+                gh_call1(proc,x);
+            }
+        }
+        %scheme%{
+            (define (Scheduler-map s f)
+              (let ((results '()))
+                (Scheduler-for-each s (lambda (d)
+                                      (set! results (cons (f d) results))))
+                (reverse results)))
+            (export Scheduler-map)
+        %}
         #endif
     }
 };
-
-#if defined(SWIGMZSCHEME)
-%inline %{
-void Scheduler_for_each(Scheme_Object* proc, Scheduler* s) {
-    for (Size i=0; i<s->size(); i++) {
-        Date* d = new Date(s->date(i));
-        Scheme_Object* x = SWIG_MakePtr(d, SWIGTYPE_p_Date);
-        scheme_apply(proc,1,&x);
-    }
-}
-%}
-#elif defined(SWIGGUILE)
-%inline %{
-void Scheduler_for_each(SCM proc, Scheduler* s) {
-    for (Size i=0; i<s->size(); i++) {
-        Date* d = new Date(s->date(i));
-        SCM x = SWIG_Guile_MakePtr(d, SWIGTYPE_p_Date);
-        gh_call1(proc,x);
-    }
-}
-%}
-%scheme%{
-    (define (Scheduler-map f s)
-      (let ((results '()))
-        (Scheduler-for-each (lambda (d)
-                              (set! results (cons (f d) results)))
-                            s)
-        (reverse results)))
-    (export Scheduler-map)
-%}
-#endif
 
 
 #endif
