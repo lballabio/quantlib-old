@@ -29,9 +29,10 @@ def generateParamChar(param):
             return 'C'
         elif param[common.TYPE] == common.DOUBLE:
             return 'E'
-        elif param[common.TYPE] == common.LONG or \
-             param[common.TYPE] == common.BOOL:
+        elif param[common.TYPE] == common.LONG:
             return 'N'
+        elif param[common.TYPE] == common.BOOL:
+            return 'L'
         else:
             raise ValueError, 'unknown datatype: ' + type
 

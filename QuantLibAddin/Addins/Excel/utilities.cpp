@@ -135,9 +135,9 @@ DLLEXPORT long* qlLogLevel(long *logLevel) {
     }
 }
 
-DLLEXPORT long* qlLogObject(char *handleObject) {
+DLLEXPORT short int* qlLogObject(char *handleObject) {
     try {
-        static long ret = 0;
+        static short int ret = FALSE;
         QL_LOG_OBJECT(handleObject);
         return &ret;
     } catch (const exception &e) {
@@ -146,9 +146,9 @@ DLLEXPORT long* qlLogObject(char *handleObject) {
     }
 }
 
-DLLEXPORT long* qlLogAllObjects() {
+DLLEXPORT short int* qlLogAllObjects() {
     try {
-        static long ret = 0;
+        static short int ret = FALSE;
         QL_LOG_ALL_OBJECTS();
         return &ret;
     } catch (const exception &e) {
@@ -157,9 +157,9 @@ DLLEXPORT long* qlLogAllObjects() {
     }
 }
 
-DLLEXPORT long* qlObjectDelete(char *handleObject) {
+DLLEXPORT short int* qlObjectDelete(char *handleObject) {
     try {
-        static long ret = 0;
+        static short int ret = FALSE;
         QL_OBJECT_DELETE(handleObject);
         return &ret;
     } catch (const exception &e) {
@@ -168,9 +168,9 @@ DLLEXPORT long* qlObjectDelete(char *handleObject) {
     }
 }
 
-DLLEXPORT long* qlObjectDeleteAll() {
+DLLEXPORT short int* qlObjectDeleteAll() {
     try {
-        static long ret = 0;
+        static short int ret = FALSE;
         QL_OBJECT_DELETE_ALL();
         return &ret;
     } catch (const exception &e) {
