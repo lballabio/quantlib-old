@@ -42,25 +42,6 @@ def webpublish():
 
   print 'sourcedir', sourcedir
 
-  if 1:
-    cmd = 'zip -q -r '
-    cmd = cmd + sitename +time.strftime('%Y%m%d%H%M', time.localtime())
-    cmd = cmd +'.zip *.*'
-    print 'performing:'
-    print cmd
-    print 'please wait ....',
-    os.system(cmd)
-    print 'done'
-  else:
-    targetdir = 'V:\\enotebook\\myweb\\publish'
-    print 'targetdir',targetdir
-    if os.path.exists(targetdir):
-        shutil.rmtree(targetdir)
-        print 'old', targetdir, 'removed'
-    print 'copying', sourcedir,  'to', targetdir, '....',
-    shutil.copytree(sourcedir, targetdir)
-    print 'done'
-
   skip = []
   for z in donotpublish:
     skip.append('"' + targetdir+'\\'+z+'"')
@@ -78,7 +59,7 @@ def webpublish():
   #if bobbyCheck=='y':
   #  pass
 
-  cmd = 'zip -q -r ' + sitename + '.zip *.*'
+  cmd = 'zip -r -n html,jpg ..\\' + sitename + '.zip .'
   print 'performing:'
   print cmd
   print 'please wait ....',
