@@ -38,8 +38,11 @@ namespace ObjHandler {
         }
     }
 
-    void Logger::setLogFile(const std::string &logFileName,
+    void Logger::setLogFile(
+            const std::string &logFileName,
             const int &logLevel) {
+        if (logFileName.empty())
+            throw Exception("Logger::setLogFile: log file name is null");
         try {
             _logger->removeAppender(_fileAppender);
             _fileAppender = AppenderPtr(new FileAppender(_layout, logFileName));
@@ -50,7 +53,8 @@ namespace ObjHandler {
         }
     }
 
-    void Logger::setConsole(const int &console,
+    void Logger::setConsole(
+            const int &console,
             const int &logLevel) {
         try {
             _logger->removeAppender(_consoleAppender);
@@ -95,7 +99,8 @@ namespace ObjHandler {
         }
     }
 
-    void Logger::logMessage(const std::string &message,
+    void Logger::logMessage(
+            const std::string &message,
             const int &level) {
         try {
             switch (level) {

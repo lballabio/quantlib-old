@@ -16,6 +16,7 @@
 */
 
 #include <sstream>
+#include <iostream>
 #include <exception>
 #include <utilities.hpp>
 #include <objectfoo.hpp>    // only required for low-level interrogation
@@ -29,7 +30,15 @@ int main() {
         // also direct log messages to stdout
         OH_CONSOLE(1);
         OH_LOGMESSAGE("begin example program");
+    } catch (const exception &e) {
+        cout << "Unable to initialize logging: " << e.what() << endl;
+        return 1;
+    } catch (...) {
+        cout << "Unable to initialize logging." << endl;
+        return 1;
+    }
 
+    try {
         // construct some objects and store them in the object handler
         ArgStack f1Args;
         f1Args.push(string("abc"));
@@ -74,6 +83,9 @@ int main() {
         ostringstream s;
         s << "Error: " << e.what();
         OH_LOGMESSAGE(s.str(), 1);
+        return 1;
+    } catch (...) {
+        OH_LOGMESSAGE("Error", 1);
         return 1;
     }
 }
