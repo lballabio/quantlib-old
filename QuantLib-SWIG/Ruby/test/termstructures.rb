@@ -53,8 +53,7 @@ class TermStructureTest < RUNIT::TestCase
     deposits = depositData.map { |n,units,rate|
       DepositRateHelper.new(
         MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
-        0, n, units,
-        calendar, 'mf', DayCounter.new('act/360'))
+        n, units, calendar, 'mf', DayCounter.new('act/360'))
     }    
     swapData = [
         [ 1, 4.54],
@@ -66,8 +65,7 @@ class TermStructureTest < RUNIT::TestCase
     swaps = swapData.map { |years,rate|
       SwapRateHelper.new(
         MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
-        0, years, calendar,
-        'mf', 1, false, DayCounter.new('30/360'), 2)
+        years, calendar, 'mf', 1, false, DayCounter.new('30/360'), 2)
     }
     @termStructure = PiecewiseFlatForward.new(settlement,
                                               deposits+swaps,

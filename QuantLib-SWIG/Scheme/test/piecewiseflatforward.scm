@@ -75,8 +75,8 @@
                                    (new-DepositRateHelper
                                     (new-MarketElementHandle
                                      (new-SimpleMarketElement (/ rate 100)))
-                                    0 n units calendar 
-                                    rolling-convention day-counter)))
+                                    n units calendar rolling-convention 
+                                    day-counter)))
                                deposit-data)
                           ; add swaps
                           (map (lambda (datum)
@@ -84,10 +84,9 @@
                                    (new-SwapRateHelper
                                     (new-MarketElementHandle
                                      (new-SimpleMarketElement (/ rate 100)))
-                                    0 years calendar
-                                    swap-rolling-convention fixed-frequency 
-                                    fixed-is-adjusted fixed-day-count 
-                                    floating-frequency)))
+                                    years calendar swap-rolling-convention 
+                                    fixed-frequency fixed-is-adjusted 
+                                    fixed-day-count floating-frequency)))
                                swap-data))
                          ; clean-up function
                          (lambda (l) (for-each delete-RateHelper l)))

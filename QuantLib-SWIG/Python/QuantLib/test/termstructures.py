@@ -34,8 +34,7 @@ class TermStructureTest(unittest.TestCase):
         deposits = [
             DepositRateHelper(
                 MarketElementHandle(SimpleMarketElement(rate/100)),
-                0, n, units,
-                calendar, 'mf', DayCounter('act/360'))
+                n, units, calendar, 'mf', DayCounter('act/360'))
             for (n,units,rate) in [ (1,  'month', 4.581),
                                     (2, 'months', 4.573),
                                     (3, 'months', 4.557),
@@ -45,8 +44,7 @@ class TermStructureTest(unittest.TestCase):
         swaps = [
             SwapRateHelper(
                 MarketElementHandle(SimpleMarketElement(rate/100)),
-                0, years, calendar,
-                'mf', 1, 0, DayCounter('30/360'), 2)
+                years, calendar, 'mf', 1, 0, DayCounter('30/360'), 2)
             for (years,rate) in [ ( 1, 4.54),
                                   ( 5, 4.99),
                                   (10, 5.47),

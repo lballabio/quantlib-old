@@ -48,8 +48,7 @@ class PiecewiseFlatForwardTest < RUNIT::TestCase
     deposits = depositData.map { |n,units,rate|
       DepositRateHelper.new(
         MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
-        0, n, units,
-        calendar, rollingConvention, dayCounter)
+        n, units, calendar, rollingConvention, dayCounter)
     }
     # swaps
     swapRollingConvention = 'modifiedFollowing'
@@ -77,9 +76,8 @@ class PiecewiseFlatForwardTest < RUNIT::TestCase
     swaps = swapData.map { |years,rate|
       SwapRateHelper.new(
         MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
-        0, years, calendar,
-        swapRollingConvention, fixedFrequency, fixedIsAdjusted,
-        fixedDayCount, floatingFrequency)
+        years, calendar, swapRollingConvention, fixedFrequency, 
+        fixedIsAdjusted, fixedDayCount, floatingFrequency)
     }
     # all instruments
     instruments = deposits + swaps

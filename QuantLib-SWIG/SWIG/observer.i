@@ -97,12 +97,13 @@ class PyObserver {
 	PyObserver(PyObject* callback);
     void registerWith(const Handle<Observable>&);
     void unregisterWith(const Handle<Observable>&);
+    %pythoncode %{
+        def registerWith(self,x):
+            self._registerWith(x.asObservable())
+        def unregisterWith(self,x):
+            self._unregisterWith(x.asObservable())
+    %}
 };
-
-%pythoncode %{
-Observer.registerWith   = lambda self,x: self._registerWith(x.asObservable())
-Observer.unregisterWith = lambda self,x: self._unregisterWith(x.asObservable())
-%}
 
 #elif defined(SWIGRUBY)
 

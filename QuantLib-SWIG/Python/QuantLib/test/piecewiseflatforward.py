@@ -45,8 +45,7 @@ class PiecewiseFlatForwardTest(unittest.TestCase):
         deposits = [
             DepositRateHelper(
                 MarketElementHandle(SimpleMarketElement(rate/100)),
-                0, n, units,
-                calendar, rollingConvention, dayCounter)
+                n, units, calendar, rollingConvention, dayCounter)
             for (n,units,rate) in depositData
         ]
         # swaps
@@ -75,9 +74,8 @@ class PiecewiseFlatForwardTest(unittest.TestCase):
         swaps = [
             SwapRateHelper(
                 MarketElementHandle(SimpleMarketElement(rate/100)),
-                0, years, calendar,
-                swapRollingConvention, fixedFrequency, fixedIsAdjusted,
-                fixedDayCount, floatingFrequency)
+                years, calendar, swapRollingConvention, fixedFrequency,
+                fixedIsAdjusted, fixedDayCount, floatingFrequency)
             for (years,rate) in swapData
         ]
         # all instruments

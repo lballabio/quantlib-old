@@ -51,11 +51,11 @@ class DepositRateHelperHandle : public Handle<RateHelper> {
     %extend {
         DepositRateHelperHandle(
                 const RelinkableHandle<MarketElement>& rate,
-                int settlementDays, int n, TimeUnit units, 
+                int n, TimeUnit units, 
                 const Calendar& calendar, RollingConvention convention, 
                 const DayCounter& dayCounter) {
             return new DepositRateHelperHandle(
-                new DepositRateHelper(rate,settlementDays,n,units,calendar,
+                new DepositRateHelper(rate,n,units,calendar,
                     convention,dayCounter));
         }
     }
@@ -67,11 +67,11 @@ class FraRateHelperHandle : public Handle<RateHelper> {
     %extend {
         FraRateHelperHandle(
                 const RelinkableHandle<MarketElement>& rate,
-                int settlementDays, int monthsToStart, int monthsToEnd,
+                int monthsToStart, int monthsToEnd,
                 const Calendar& calendar, RollingConvention convention,
                 const DayCounter& dayCounter) {
             return new FraRateHelperHandle(
-                new FraRateHelper(rate,settlementDays,monthsToStart,
+                new FraRateHelper(rate,monthsToStart,
                     monthsToEnd,calendar,convention,dayCounter));
         }
     }
@@ -83,11 +83,11 @@ class FuturesRateHelperHandle : public Handle<RateHelper> {
     %extend {
         FuturesRateHelperHandle(
                 const RelinkableHandle<MarketElement>& price,
-                const Date& immDate, int settlementDays, int nMonths,
+                const Date& immDate, int nMonths,
                 const Calendar& calendar, RollingConvention convention,
                 const DayCounter& dayCounter) {
             return new FuturesRateHelperHandle(
-                new FuturesRateHelper(price,immDate,settlementDays,nMonths,
+                new FuturesRateHelper(price,immDate,nMonths,
                     calendar,convention,dayCounter));
         }
     }
@@ -99,12 +99,12 @@ class SwapRateHelperHandle : public Handle<RateHelper> {
     %extend {
         SwapRateHelperHandle(
                 const RelinkableHandle<MarketElement>& rate,
-                int settlementDays, int lengthInYears, 
+                int lengthInYears, 
                 const Calendar& calendar, RollingConvention rollingConvention,
                 int fixedFrequency, bool fixedIsAdjusted,
                 const DayCounter& fixedDayCount, int floatingFrequency) {
             return new SwapRateHelperHandle(
-                new SwapRateHelper(rate, settlementDays, lengthInYears,
+                new SwapRateHelper(rate, lengthInYears,
                     calendar, rollingConvention, fixedFrequency,
                     fixedIsAdjusted, fixedDayCount, floatingFrequency));
         }

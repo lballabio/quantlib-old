@@ -50,8 +50,7 @@
                                       (new-DepositRateHelper
                                        (new-MarketElementHandle
                                         (new-SimpleMarketElement (/ rate 100)))
-                                       0 n units calendar 
-                                       "mf" day-counter)))
+                                       n units calendar "mf" day-counter)))
                                   deposit-data)
                                  (lambda (l)
                                    (for-each delete-RateHelper l)))
@@ -61,8 +60,7 @@
                                    (new-SwapRateHelper
                                     (new-MarketElementHandle
                                      (new-SimpleMarketElement (/ rate 100)))
-                                    0 years calendar
-                                    "mf" 1 #f day-counter-2 2)))
+                                    years calendar "mf" 1 #f day-counter-2 2)))
                                swap-data)
                               (lambda (l)
                                 (for-each delete-RateHelper l)))
