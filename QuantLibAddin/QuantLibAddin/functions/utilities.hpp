@@ -30,7 +30,7 @@ namespace QuantLibAddin {
 	std::string QL_ANY2STRING(
 		const ObjHandler::any_ptr &a);
 
-	ObjHandler::Properties QL_QUERY(
+	const ObjHandler::Properties& QL_QUERY(
 		const std::string &handle);
 
 }

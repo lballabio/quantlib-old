@@ -39,7 +39,7 @@ namespace QuantLibAddin {
 		return AnyToString(a);
 	}
 
-	Properties QL_QUERY(
+	const Properties& QL_QUERY(
 			const std::string &handle) {
 		boost::shared_ptr<Object> object =
 				ObjectHandler::instance().retrieveObject(handle);

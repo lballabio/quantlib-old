@@ -19,8 +19,7 @@
 
 namespace ObjHandler {
 
-    // FIXME must prevent caller from modifying any_ptrs in properties
-    Properties Object::getProperties() {
+    const Properties& Object::getProperties() const {
 	    return properties_;
     }
 

@@ -79,7 +79,7 @@ namespace ObjHandler {
 		/*! returns the property vector
 			describing the underlying object
 		*/
-	    Properties getProperties();
+	    const Properties& getProperties() const;
 		//@}
     protected:
 	    Properties properties_;

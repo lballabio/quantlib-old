@@ -22,7 +22,7 @@
 
 namespace QuantLibAddin {
 
-	ObjHandler::Properties QL_BLACKSCHOLES(
+	const ObjHandler::Properties& QL_BLACKSCHOLES(
 		const std::string &handleStochastic, 
 		const double &dividendYield,
 		const double &riskFreeRate,
@@ -31,7 +31,7 @@ namespace QuantLibAddin {
 		const long &todaysDate,
 		const long &settlementDate);
 
-	ObjHandler::Properties QL_OPTION(
+	const ObjHandler::Properties& QL_OPTION(
 		const std::string &handleOption, 
 		const std::string &handleStochastic,
 		const std::string &type,
@@ -40,7 +40,7 @@ namespace QuantLibAddin {
 		const long &exerciseDate,
 		const long &settlementDate);
 
-	ObjHandler::Properties QL_OPTION_SETENGINE(
+	const ObjHandler::Properties& QL_OPTION_SETENGINE(
 		const std::string &handleOption, 
 		const std::string &engineName,
 		const long &timeSteps);
