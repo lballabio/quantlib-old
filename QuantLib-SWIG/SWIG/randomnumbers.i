@@ -27,23 +27,30 @@ using QuantLib::Sample;
 using QuantLib::LecuyerUniformRng;
 using QuantLib::KnuthUniformRng;
 using QuantLib::MersenneTwisterUniformRng;
-using QuantLib::UniformRandomGenerator;
+
+typedef QuantLib::PseudoRandom::urng_type UniformRandomGenerator;
 
 using QuantLib::CLGaussianRng;
 using QuantLib::BoxMullerGaussianRng;
 using QuantLib::ICGaussianRng;
-using QuantLib::GaussianRandomGenerator;
+
+typedef QuantLib::PseudoRandom::rng_type GaussianRandomGenerator;
 
 using QuantLib::RandomSequenceGenerator;
 
-using QuantLib::UniformRandomSequenceGenerator;
+typedef QuantLib::PseudoRandom::ursg_type UniformRandomSequenceGenerator;
+
 using QuantLib::HaltonRsg;
 using QuantLib::SobolRsg;
-using QuantLib::UniformLowDiscrepancySequenceGenerator;
+
+typedef QuantLib::LowDiscrepancy::ursg_type 
+    UniformLowDiscrepancySequenceGenerator;
 
 using QuantLib::ICGaussianRsg;
-using QuantLib::GaussianRandomSequenceGenerator;
-using QuantLib::GaussianLowDiscrepancySequenceGenerator;
+
+typedef QuantLib::PseudoRandom::rsg_type GaussianRandomSequenceGenerator;
+typedef QuantLib::LowDiscrepancy::rsg_type 
+    GaussianLowDiscrepancySequenceGenerator;
 %}
 
 template <class T>

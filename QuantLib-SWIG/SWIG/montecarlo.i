@@ -101,7 +101,8 @@ class Path {
 };
 
 %{
-using QuantLib::GaussianPathGenerator;
+typedef QuantLib::SingleAsset<PseudoRandom>::path_generator_type 
+    GaussianPathGenerator;
 %}
 %template(SamplePath) Sample<Path>;
 class GaussianPathGenerator {
@@ -210,7 +211,8 @@ class MultiPath {
 };
 
 %{
-using QuantLib::GaussianMultiPathGenerator;
+typedef QuantLib::MultiAsset<PseudoRandom>::path_generator_type 
+    GaussianMultiPathGenerator;
 %}
 %template(SampleMultiPath) Sample<MultiPath>;
 class GaussianMultiPathGenerator {
