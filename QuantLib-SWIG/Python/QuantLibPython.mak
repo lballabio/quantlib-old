@@ -77,7 +77,7 @@ LINK32_OBJS= \
 <<
 
 SOURCE="$(InputPath)"
-PostBuild_Desc=copying QuantLib-Python files
+PostBuild_Desc=copying QuantLib-Python files into .\build\lib.win32-2.2
 DS_POSTBUILD_DEP=$(INTDIR)\postbld.dep
 
 ALL : $(DS_POSTBUILD_DEP)
@@ -139,7 +139,7 @@ LINK32_OBJS= \
 <<
 
 SOURCE="$(InputPath)"
-PostBuild_Desc=copying QuantLib-Python files
+PostBuild_Desc=copying QuantLib-Python files into .\build\lib.win32-2.2
 DS_POSTBUILD_DEP=$(INTDIR)\postbld.dep
 
 ALL : $(DS_POSTBUILD_DEP)
@@ -149,7 +149,7 @@ OutDir=.\build\temp.win32-2.2\Debug
 # End Custom Macros
 
 $(DS_POSTBUILD_DEP) : ".\build\lib.win32-2.2\QuantLib\_QuantLib_d.pyd" "$(OUTDIR)\QuantLibPython.bsc"
-   copy .\QuantLib\*.py .\build\lib.win32-2.1\QuantLib
+   copy .\QuantLib\*.py .\build\lib.win32-2.2\QuantLib
 	echo Helper for Post-build step > "$(DS_POSTBUILD_DEP)"
 
 !ELSEIF  "$(CFG)" == "QuantLibPython - Win32 OnTheEdgeRelease"
@@ -198,7 +198,7 @@ LINK32_OBJS= \
 <<
 
 SOURCE="$(InputPath)"
-PostBuild_Desc=copying QuantLib-Python files
+PostBuild_Desc=copying QuantLib-Python files into .\build\lib.win32-2.2
 DS_POSTBUILD_DEP=$(INTDIR)\postbld.dep
 
 ALL : $(DS_POSTBUILD_DEP)
@@ -208,7 +208,7 @@ OutDir=.\build\temp.win32-2.2\OnTheEdgeRelease
 # End Custom Macros
 
 $(DS_POSTBUILD_DEP) : ".\build\lib.win32-2.2\QuantLib\_QuantLib.pyd" "$(OUTDIR)\QuantLibPython.bsc"
-   copy .\QuantLib\*.py .\build\lib.win32-2.1\QuantLib
+   copy .\QuantLib\*.py .\build\lib.win32-2.2\QuantLib
 	echo Helper for Post-build step > "$(DS_POSTBUILD_DEP)"
 
 !ELSEIF  "$(CFG)" == "QuantLibPython - Win32 OnTheEdgeDebug"
@@ -260,7 +260,7 @@ LINK32_OBJS= \
 <<
 
 SOURCE="$(InputPath)"
-PostBuild_Desc=copying QuantLib-Python files
+PostBuild_Desc=copying QuantLib-Python files into .\build\lib.win32-2.2
 DS_POSTBUILD_DEP=$(INTDIR)\postbld.dep
 
 ALL : $(DS_POSTBUILD_DEP)
@@ -270,7 +270,7 @@ OutDir=.\build\temp.win32-2.2\OnTheEdgeDebug
 # End Custom Macros
 
 $(DS_POSTBUILD_DEP) : ".\build\lib.win32-2.2\QuantLib\_QuantLib_d.pyd" "$(OUTDIR)\QuantLibPython.bsc"
-   copy .\QuantLib\*.py .\build\lib.win32-2.1\QuantLib
+   copy .\QuantLib\*.py .\build\lib.win32-2.2\QuantLib
 	echo Helper for Post-build step > "$(DS_POSTBUILD_DEP)"
 
 !ENDIF 

@@ -59,7 +59,7 @@ LINK32=link.exe
 # SUBTRACT LINK32 /verbose /profile
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Desc=copying QuantLib-Python files
+PostBuild_Desc=copying QuantLib-Python files into .\build\lib.win32-2.2
 PostBuild_Cmds=copy .\QuantLib\*.py .\build\lib.win32-2.2\QuantLib
 # End Special Build Tool
 
@@ -91,8 +91,8 @@ LINK32=link.exe
 # SUBTRACT LINK32 /verbose /profile
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Desc=copying QuantLib-Python files
-PostBuild_Cmds=copy .\QuantLib\*.py .\build\lib.win32-2.1\QuantLib
+PostBuild_Desc=copying QuantLib-Python files into .\build\lib.win32-2.2
+PostBuild_Cmds=copy .\QuantLib\*.py .\build\lib.win32-2.2\QuantLib
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "QuantLibPython - Win32 OnTheEdgeRelease"
@@ -124,8 +124,8 @@ LINK32=link.exe
 # SUBTRACT LINK32 /verbose /profile
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Desc=copying QuantLib-Python files
-PostBuild_Cmds=copy .\QuantLib\*.py .\build\lib.win32-2.1\QuantLib
+PostBuild_Desc=copying QuantLib-Python files into .\build\lib.win32-2.2
+PostBuild_Cmds=copy .\QuantLib\*.py .\build\lib.win32-2.2\QuantLib
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "QuantLibPython - Win32 OnTheEdgeDebug"
@@ -157,8 +157,8 @@ LINK32=link.exe
 # SUBTRACT LINK32 /verbose /profile
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Desc=copying QuantLib-Python files
-PostBuild_Cmds=copy .\QuantLib\*.py .\build\lib.win32-2.1\QuantLib
+PostBuild_Desc=copying QuantLib-Python files into .\build\lib.win32-2.2
+PostBuild_Cmds=copy .\QuantLib\*.py .\build\lib.win32-2.2\QuantLib
 # End Special Build Tool
 
 !ENDIF 
