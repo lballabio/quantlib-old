@@ -22,6 +22,7 @@
   (format #t "    install          install QuantLib-MzScheme\n")
   (format #t "    sdist            create source distribution\n")
   ;(format #t "    bdist            create binary distribution\n")
+  (format #t "    clean            clean up\n")
   (exit))
 
 
@@ -272,6 +273,13 @@
 ; 	system "tar cfz #{distDir}.#{Config::CONFIG['arch']}.tar.gz #{distDir}/"
 ; }
 
+(define (clean)
+  (define (clean-file file)
+    (if (file-exists? file)
+        (delete-file file)))
+  (for-each clean-file
+            '("QuantLib.scm" "QuantLibc.so" "quantlib_wrap.cpp"
+              "quantlib_wrap.o")))
 
 
 (define available-commands
@@ -279,7 +287,8 @@
         (cons "build"   build)
         (cons "test"    test)
         (cons "install" install)
-        (cons "sdist"   sdist)))
+        (cons "sdist"   sdist)
+        (cons "clean"   clean)))
 
 ; parse command line
 (let ((argv (command-line)))

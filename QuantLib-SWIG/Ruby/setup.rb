@@ -27,6 +27,7 @@ Usage: ruby setup.rb command [options]
     install [--prefix=path]   install QuantLib-Ruby in path
     sdist                     create source distribution
     bdist                     create binary distribution
+    clean                     clean up
 EOU
     exit
 end
@@ -34,7 +35,8 @@ end
 # parse command line
 cmd = ARGV.shift or usage()
 cmd.downcase!
-usage() unless ['wrap','build','test','install','sdist','bdist'].member? cmd
+usage() unless ['wrap','build','test','install',
+                'sdist','bdist','clean'].member? cmd
 if cmd != "install"
 	usage() if ARGV.shift
 else
@@ -244,6 +246,12 @@ Install = Command.new {
 	File.install "./QuantLib.rb", libDir+"/QuantLib.rb", 0555, true
 }
 
+Clean = Command.new {
+    ['QuantLibc.so','quantlib_wrap.cpp','quantlib_wrap.o',
+     'Makefile','mkmf.log'].each { |file|
+      File.safe_unlink file if File.exists? file
+    }
+}
 
 availableCommands = {
     "wrap"    => Wrap,
@@ -251,7 +259,8 @@ availableCommands = {
 	"test"    => RunTests,
   	"install" => Install,
   	"sdist"   => SDist,
-  	"bdist"   => BDist }
+  	"bdist"   => BDist,
+    "clean"   => Clean }
 
 availableCommands[cmd].execute
 

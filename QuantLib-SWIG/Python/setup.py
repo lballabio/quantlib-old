@@ -191,7 +191,7 @@ def get_paths(distro):
 
 # this is to have a separate installation folder for SWIG files
 class install_swigfiles(install_data):
-    description = "installs SWIG files"
+    description = "install SWIG files"
     def finalize_options(self):
         global predir
         install_data.finalize_options(self)
@@ -210,14 +210,14 @@ class install_swigfiles(install_data):
              [os.path.join(swig_dir,f) for f in swig_files]]]
 
 class my_install(install):
-    description = "installs everything"
+    description = "install everything"
     def run(self):
         install.run(self)
         self.run_command('install_swigfiles')
 
 # This gathers the SWIG interface files before running sdist
 class my_sdist(sdist):
-    description = "builds source distribution including SWIG interfaces"
+    description = "build source distribution including SWIG interfaces"
     def run(self):
         swig_dir = os.path.join(".","QuantLib","SWIG")
         cleanup = 0
@@ -235,6 +235,7 @@ class my_sdist(sdist):
             os.rmdir(swig_dir)
 
 class my_wrap(Command):
+    description = "generate Python wrappers"
     user_options = []
     def initialize_options(self): pass
     def finalize_options(self): pass
@@ -312,7 +313,7 @@ setup(name             = "QuantLib-Python",
       maintainer       = "QuantLib Team",
       maintainer_email = "quantlib-users@lists.sourceforge.net",
       url              = "http://quantlib.org",
-      licence          = open('LICENSE.TXT','r+').read(),
+      license          = open('LICENSE.TXT','r+').read(),
       py_modules       = ['QuantLib.__init__','QuantLib.QuantLib'],
       ext_modules      = [Extension("QuantLib._QuantLib",
                                     ["QuantLib/quantlib_wrap.cpp"],
