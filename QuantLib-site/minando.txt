@@ -1,8 +1,10 @@
 $Id$
+============== PRIMA PARTE: sturttura teconogica  ============== 
 * CROSS PLATFORM
 		OS/compilers
 * C++
-		fast, reliable, iterators
+		fast, reliable, 
+		iterators velocita' da linguaggio macchina
 * DOXYGEN
 		Generazione automatica della documentazione
 * SWIG
@@ -10,19 +12,32 @@ $Id$
 		DB, SOAP, COM, CORBA
 		DB independent
 * OGGETI DISTRIBUITI
-
+		modularita' del codice
+		piu' linguaggi allo stesso tempo
+		piu' sistemi operativi insieme
+* UML
+		nato per la progettazione
+		ottimo per la documentazione
+		arricchisce la comunicabilita'
 * QUANTLIB
-	open source, collaborazioni
+		filosofia open-source 
+		collaborazioni
 
 * CONVENZIONI DI MERCATO
 		calendari
 * INDEXES
-* TERM STRUCTURE
-		bootstrapping
-* CASH FLOW
-* STRUCTURED PRODUCTS
+
+============== SECONDA PARTE: struttura quantitativa ============== 
 * ANALYTICAL MODELS
 		europee, asiatiche, barriere
+
+* FINITE DIFFERENCE
+		veloce rispetto agli alberi
+		modelli a bassa dimensionalita'
+* FINITE DIFFERENCE
+		esplicito, implicito, misto, control variate
+* PASSPORT OPTION
+		gestione di strategie ottimali
 * MONTE CARLO
 		monodimensionale/multidimensionale
 * MONTE CARLO
@@ -37,15 +52,14 @@ $Id$
 		Bonds, Options, Exotics (Observers)
 		Market data, database, network (Observable)
 		Models/Engine pattern
-* PASSPORT OPTION
-		gestione di strategie ottimali
-
-* FINITE DIFFERENCE
-		veloce rispetto agli alberi
-		modelli a bassa dimensionalita'
-* FINITE DIFFERENCE
-		esplicito, implicito, misto, control variate
 * ASSET ALLOCATION
 		ottimizzatori, 
 				linear complementarity
 				algoritmi genetici
+* TERM STRUCTURE
+		bootstrapping
+* CASH FLOW
+		building-block di qualunque prodotto finanziario
+* STRUCTURED PRODUCTS
+		???
+
