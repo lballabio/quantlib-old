@@ -21,10 +21,13 @@
 #ifndef quantlib_functions_i
 #define quantlib_functions_i
 
+%include linearalgebra.i
+%include types.i
+
 %{
 using QuantLib::ObjectiveFunction;
+using QuantLib::Optimization::CostFunction;
 %}
-
 
 #if defined(SWIGPYTHON)
 
@@ -129,6 +132,41 @@ class PyObjectiveFunction : public ObjectiveFunction {
   private:
 	PyObject* function_;
 };
+
+class PyCostFunction : public CostFunction {
+  public:
+	PyCostFunction(PyObject* function) : function_(function) {
+	    Py_XINCREF(function_);
+    }
+    PyCostFunction(const PyCostFunction& f)
+    : function_(f.function_) {
+	    Py_XINCREF(function_);
+    }
+    PyCostFunction& operator=(const PyCostFunction& f) {
+        if ((this != &f) && (function_ != f.function_)) {
+            Py_XDECREF(function_);
+            function_ = f.function_;
+    	    Py_XINCREF(function_);
+        }
+        return *this;
+    }
+    ~PyCostFunction() {
+        Py_XDECREF(function_);
+    }
+	double value(const Array& x) const {
+        PyObject* tuple = PyTuple_New(x.size());
+        for (Size i=0; i<x.size(); i++)
+            PyTuple_SetItem(tuple,i,PyFloat_FromDouble(x[i]));
+		PyObject* pyResult = PyObject_CallObject(function_,tuple);
+        Py_XDECREF(tuple);
+		QL_ENSURE(pyResult != NULL, "failed to call Python function");
+		double result = PyFloat_AsDouble(pyResult);
+		Py_XDECREF(pyResult);
+		return result;
+	}
+  private:
+	PyObject* function_;
+};
 %}
 
 #elif defined(SWIGRUBY)
@@ -145,6 +183,16 @@ class RubyObjectiveFunction : public ObjectiveFunction {
   public:
     double operator()(double x) const {
         return NUM2DBL(rb_yield(rb_float_new(x)));
+    }
+};
+
+class RubyCostFunction : public CostFunction {
+  public:
+    double value(const Array& x) const {
+        VALUE a = rb_ary_new2(x.size());
+        for (Size i=0; i<x.size(); i++)
+            rb_ary_store(a,i,rb_float_new(x[i]));
+        return NUM2DBL(rb_yield(a));
     }
 };
 %}
@@ -255,6 +303,43 @@ class MzObjectiveFunction : public ObjectiveFunction {
   private:
 	Scheme_Object* function_;
 };
+
+class MzCostFunction : public CostFunction {
+  public:
+	MzCostFunction(Scheme_Object* function) : function_(function) {
+        if (!SCHEME_PROCP(function))
+            throw Error("procedure expected");
+	    scheme_dont_gc_ptr(function_);
+    }
+    MzCostFunction(const MzCostFunction& f) 
+    : function_(f.function_) {
+	    scheme_dont_gc_ptr(function_);
+    }
+    MzCostFunction& operator=(const MzCostFunction& f) {
+        if ((this != &f) && (function_ != f.function_)) {
+            scheme_gc_ptr_ok(function_);
+            function_ = f.function_;
+    	    scheme_dont_gc_ptr(function_);
+        }
+        return *this;
+    }
+    ~MzCostFunction() {
+        scheme_gc_ptr_ok(function_);
+    }
+	double value(const Array& x) const {
+        Scheme_Object** args = new Scheme_Object*[x.size()];
+        for (Size i=0; i<x.size(); i++)
+            args[i] = scheme_make_double(x[i]);
+        Scheme_Object* mzResult = scheme_apply(function_,x.size(),args);
+        delete[] args;
+        QL_ENSURE(SCHEME_REALP(mzResult),
+                  "the function did not return a double");
+		double result = scheme_real_to_double(mzResult);
+		return result;
+	}
+  private:
+	Scheme_Object* function_;
+};
 %}
 
 #elif defined(SWIGGUILE)
@@ -306,6 +391,33 @@ class GuileObjectiveFunction : public ObjectiveFunction {
     // inhibit copy
     GuileObjectiveFunction(const GuileObjectiveFunction& f) {}
     GuileObjectiveFunction& operator=(const GuileObjectiveFunction& f) {
+        return *this;
+    }
+};
+
+class GuileCostFunction : public CostFunction {
+  public:
+	GuileCostFunction(SCM function) : function_(function) {
+        if (!gh_procedure_p(function))
+            throw Error("procedure expected");
+	    scm_protect_object(function_);
+    }
+    ~GuileCostFunction() {
+        scm_unprotect_object(function_);
+    }
+	double value(const Array& x) const {
+        SCM v = gh_make_vector(gh_long2scm(x.size()),SCM_UNSPECIFIED);
+        for (Size i=0; i<x.size(); i++)
+            gh_vector_set_x(v,gh_long2scm(i),gh_double2scm(x[i]));
+        SCM guileResult = gh_apply(function_,gh_vector_to_list(v));
+		double result = gh_scm2double(guileResult);
+		return result;
+	}
+  private:
+	SCM function_;
+    // inhibit copy
+    GuileCostFunction(const GuileCostFunction& f) {}
+    GuileCostFunction& operator=(const GuileCostFunction& f) {
         return *this;
     }
 };

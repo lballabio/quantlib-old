@@ -17,12 +17,12 @@
 
 // $Id$
 
-#ifndef quantlib_solver1d_i
-#define quantlib_solver1d_i
+#ifndef quantlib_optimizers_i
+#define quantlib_optimizers_i
 
 %include functions.i
 
-// 1D Solver interface
+// 1D Solvers
 
 %{
 using QuantLib::Solver1D;
@@ -100,8 +100,6 @@ class Solver1D {
     }
 };
 
-
-
 // Actual solvers
 class Brent : public Solver1D {};
 class Bisection : public Solver1D {};
@@ -113,6 +111,118 @@ class Secant : public Solver1D {};
 // these two need f.derivative()
 class Newton : public Solver1D {};
 class NewtonSafe : public Solver1D {};
+#endif
+
+
+// Optimizers
+
+%{
+using QuantLib::Optimization::Constraint;
+using QuantLib::Optimization::BoundaryConstraint;
+using QuantLib::Optimization::NoConstraint;
+using QuantLib::Optimization::PositiveConstraint;
+%}
+        
+class Constraint {
+    // prevent direct instantiation
+  private:
+    Constraint();
+};
+
+class BoundaryConstraint : public Constraint {
+  public:
+    BoundaryConstraint(double lower, double upper);
+};
+
+class NoConstraint : public Constraint {
+  public:
+    NoConstraint();
+};
+
+class PositiveConstraint : public Constraint {
+  public:
+    PositiveConstraint();
+};
+
+%{
+using QuantLib::Optimization::Method;
+using QuantLib::Optimization::ConjugateGradient;
+using QuantLib::Optimization::Simplex;
+using QuantLib::Optimization::SteepestDescent;
+%}
+
+class Method {
+    #if defined(SWIGRUBY)
+    %rename("initialValue=") setInitialValue;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("initial-value-set!") setInitialValue;
+    #endif
+  private:
+    // prevent direct instantiation
+    Method();
+  public:
+    void setInitialValue(const Array&);
+};
+
+class ConjugateGradient : public Method {
+  public:
+    ConjugateGradient();
+};
+
+class Simplex : public Method {
+  public:
+    Simplex(double lambda, double tol);
+};
+
+class SteepestDescent : public Method {
+  public:
+    SteepestDescent();
+};
+
+
+%{
+using QuantLib::Optimization::Problem;
+%}
+
+%inline %{
+    class Optimizer {};
+%}
+#if defined(SWIGPYTHON)
+%extend Optimizer {
+    Array solve(PyObject* function, Constraint& c, Method& m) {
+        PyCostFunction f(function);
+        Problem p(f,c,m);
+        p.minimize();
+        return p.minimumValue();
+    }
+}
+#elif defined(SWIGRUBY)
+%extend Optimizer {
+    Array solve(Constraint& c, Method& m) {
+        RubyCostFunction f;
+        Problem p(f,c,m);
+        p.minimize();
+        return p.minimumValue();
+    }
+}
+#elif defined(SWIGMZSCHEME)
+%extend Optimizer {
+    Array solve(Scheme_Object* function, Constraint& c, Method& m) {
+        MzCostFunction f(function);
+        Problem p(f,c,m);
+        p.minimize();
+        return p.minimumValue();
+    }
+}
+#elif defined(SWIGGUILE)
+%extend Optimizer {
+    Array solve(SCM function, Constraint& c, Method& m) {
+        GuileCostFunction f(function);
+        Problem p(f,c,m);
+        p.minimize();
+        return p.minimumValue();
+    }
+}
 #endif
 
 

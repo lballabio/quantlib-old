@@ -51,13 +51,13 @@ swig_files = ['quantlib.i',
               'null.i',
               'observer.i',
               'operators.i',
+              'optimizers.i',
               'options.i',
               'piecewiseflatforward.i',
               'randomnumbers.i',
               'riskstatistics.i',
               'scheduler.i',
               'segmentintegral.i',
-              'solvers1d.i',
               'statistics.i',
               'swap.i',
               'swaption.i',
@@ -307,7 +307,7 @@ else:
     ql_library_dir = ql_prefix+'/lib'
     ql_compile_args = os.popen('quantlib-config --cflags').read()[:-1]
     ql_link_args = os.popen('quantlib-config --libs').read()[:-1]
-    include_dirs = [ql_include_dir,"/usr/local/include","/usr/include"]
+    include_dirs = [ql_include_dir]
     library_dirs = [ql_library_dir]
     libraries = ["QuantLib"]
     extra_compile_args = [ql_compile_args]
