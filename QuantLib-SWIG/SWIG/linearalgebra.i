@@ -190,141 +190,130 @@ bool extractArray(PyObject* source, Array* target) {
 }
 #endif
 
-#if defined(SWIGPYTHON) || defined(SWIGRUBY)
-%rename(__len__) Array::size;
-#endif
-
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("length")  Array::size;
-%rename("add")     Array::__add__;
-%rename("sub")     Array::__sub__;
-%rename("div")     Array::__div__;
-%rename(">string") Array::__str__;
-%rename("set!")    Array::set;
-// aliases
-#if defined(SWIGGUILE)
-%scheme %{
-    (define Array+ Array-add)
-    (define Array- Array-sub)
-    (define (Array* a x)
-      (if (number? x)
-          (Array-mul-d a x)
-          (Array-mul-a a x)))
-    (define Array/ Array-div)
-    (export Array+
-            Array-
-            Array*
-            Array/)
-%}
-#endif
-#endif
-ReturnByValue(Array);
-
 class Array {
+    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+    %rename(__len__)   size;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("length")  size;
+    %rename("add")     __add__;
+    %rename("sub")     __sub__;
+    %rename("div")     __div__;
+    %rename(">string") __str__;
+    %rename("set!")    set;
+    #if defined(SWIGGUILE)
+    %scheme %{
+        (define Array+ Array-add)
+        (define Array- Array-sub)
+        (define (Array* a x)
+          (if (number? x)
+              (Array-mul-d a x)
+              (Array-mul-a a x)))
+        (define Array/ Array-div)
+        (export Array+
+                Array-
+                Array*
+                Array/)
+    %}
+    #endif
+    #endif
   public:
     Array(Size n, double fill = 0);
     Size size() const;
-};
-
-%extend Array {
-    std::string __str__() {
-        return ArrayFormatter::toString(*self);
-    }
-
-    Array __add__(const Array& a) {
-        return Array(*self+a);
-    }
-    Array __sub__(const Array& a) {
-        return Array(*self-a);
-    }
-    Array mul_d(double a) {
-        return Array(*self*a);
-    }
-    double mul_a(const Array& a) {
-        return QuantLib::DotProduct(*self,a);
-    }
-    Array __div__(double a) {
-        return Array(*self/a);
-    }
-
-    #if defined(SWIGPYTHON)
-    Array __getslice__(int i, int j) {
-        int size_ = static_cast<int>(self->size());
-        if (i<0)
-            i = size_+i;
-        if (j<0)
-            j = size_+j;
-        i = QL_MAX(0,i);
-        j = QL_MIN(size_,j);
-        Array tmp(j-i);
-        std::copy(self->begin()+i,self->begin()+j,tmp.begin());
-        return tmp;
-    }
-    void __setslice__(int i, int j, const Array& rhs) {
-        int size_ = static_cast<int>(self->size());
-        if (i<0)
-            i = size_+i;
-        if (j<0)
-            j = size_+j;
-        i = QL_MAX(0,i);
-        j = QL_MIN(size_,j);
-        QL_ENSURE(static_cast<int>(rhs.size()) == j-i,
-            "Arrays are not resizable");
-        std::copy(rhs.begin(),rhs.end(),self->begin()+i);
-    }
-    bool __nonzero__() {
-        return (self->size() != 0);
-    }
-    #endif
-
-    #if defined(SWIGRUBY)
-    void each() {
-        for (unsigned int i=0; i<self->size(); i++)
-            rb_yield(rb_float_new((*self)[i]));
-    }
-    #endif
-
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-    double __getitem__(int i) {
-        int size_ = static_cast<int>(self->size());
-        if (i>=0 && i<size_) {
-            return (*self)[i];
-        } else if (i<0 && -i<=size_) {
-            return (*self)[size_+i];
-        } else {
-            throw IndexError("Array index out of range");
+    %extend {
+        std::string __str__() {
+            return ArrayFormatter::toString(*self);
         }
-        QL_DUMMY_RETURN(0.0)
-    }
-    void __setitem__(int i, double x) {
-        int size_ = static_cast<int>(self->size());
-        if (i>=0 && i<size_) {
-            (*self)[i] = x;
-        } else if (i<0 && -i<=size_) {
-            (*self)[size_+i] = x;
-        } else {
-            throw IndexError("Array index out of range");
+        Array __add__(const Array& a) {
+            return Array(*self+a);
         }
+        Array __sub__(const Array& a) {
+            return Array(*self-a);
+        }
+        Array mul_d(double a) {
+            return Array(*self*a);
+        }
+        double mul_a(const Array& a) {
+            return QuantLib::DotProduct(*self,a);
+        }
+        Array __div__(double a) {
+            return Array(*self/a);
+        }
+        #if defined(SWIGPYTHON)
+        Array __getslice__(int i, int j) {
+            int size_ = static_cast<int>(self->size());
+            if (i<0)
+                i = size_+i;
+            if (j<0)
+                j = size_+j;
+            i = QL_MAX(0,i);
+            j = QL_MIN(size_,j);
+            Array tmp(j-i);
+            std::copy(self->begin()+i,self->begin()+j,tmp.begin());
+            return tmp;
+        }
+        void __setslice__(int i, int j, const Array& rhs) {
+            int size_ = static_cast<int>(self->size());
+            if (i<0)
+                i = size_+i;
+            if (j<0)
+                j = size_+j;
+            i = QL_MAX(0,i);
+            j = QL_MIN(size_,j);
+            QL_ENSURE(static_cast<int>(rhs.size()) == j-i,
+                      "Arrays are not resizable");
+            std::copy(rhs.begin(),rhs.end(),self->begin()+i);
+        }
+        bool __nonzero__() {
+            return (self->size() != 0);
+        }
+        #endif
+        #if defined(SWIGRUBY)
+        void each() {
+            for (unsigned int i=0; i<self->size(); i++)
+                rb_yield(rb_float_new((*self)[i]));
+        }
+        #endif
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        double __getitem__(int i) {
+            int size_ = static_cast<int>(self->size());
+            if (i>=0 && i<size_) {
+                return (*self)[i];
+            } else if (i<0 && -i<=size_) {
+                return (*self)[size_+i];
+            } else {
+                throw IndexError("Array index out of range");
+            }
+            QL_DUMMY_RETURN(0.0)
+        }
+        void __setitem__(int i, double x) {
+            int size_ = static_cast<int>(self->size());
+            if (i>=0 && i<size_) {
+                (*self)[i] = x;
+            } else if (i<0 && -i<=size_) {
+                (*self)[size_+i] = x;
+            } else {
+                throw IndexError("Array index out of range");
+            }
+        }
+        #endif
+        #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        double ref(Size i) {
+            if (i<self->size())
+                return (*self)[i];
+            else
+                throw IndexError("Array index out of range");
+            QL_DUMMY_RETURN(0.0)
+        }
+        void set(Size i, double x) {
+            if (i<self->size())
+                (*self)[i] = x;
+            else
+                throw IndexError("Array index out of range");
+        }
+        #endif
     }
-    #endif
-
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    double ref(Size i) {
-        if (i<self->size())
-            return (*self)[i];
-        else
-            throw IndexError("Array index out of range");
-        QL_DUMMY_RETURN(0.0)
-    }
-    void set(Size i, double x) {
-        if (i<self->size())
-            (*self)[i] = x;
-        else
-            throw IndexError("Array index out of range");
-    }
-    #endif
-
 };
+ReturnByValue(Array);
 
 
 
@@ -342,63 +331,58 @@ class LexicographicalViewColumn {
   private:
     // access control - no constructor exported
     LexicographicalViewColumn();
-};
-
-%extend LexicographicalViewColumn {
-    double __getitem__(int i) {
-        return (*self)[i];
+  public:
+    %extend {
+        double __getitem__(int i) {
+            return (*self)[i];
+        }
+        void __setitem__(int i, double x) {
+            (*self)[i] = x;
+        }
     }
-    void __setitem__(int i, double x) {
-        (*self)[i] = x;
-    }
 };
-#endif
-
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(">string") LexicographicalView::__str__;
-%rename("set!")    LexicographicalView::set;
 #endif
 
 class LexicographicalView {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename(">string") __str__;
+    %rename("set!")    set;
+    #endif
   public:
     Size xSize() const;
     Size ySize() const;
-};
-
-%extend LexicographicalView {
-    LexicographicalView(Array& a, Size xSize) {
-        return new LexicographicalView(a.begin(),a.end(),xSize);
-    }
-    std::string __str__() {
-        std::string s;
-        for (int j=0; j<static_cast<int>(self->ySize()); j++) {
-    	    s += "\n";
-            for (int i=0; i<static_cast<int>(self->xSize()); i++) {
-                if (i != 0)
-                    s += ",";
-                s += DoubleFormatter::toString((*self)[i][j]);
-            }
+    %extend {
+        LexicographicalView(Array& a, Size xSize) {
+            return new LexicographicalView(a.begin(),a.end(),xSize);
         }
-        s += "\n";
-        return s;
+        std::string __str__() {
+            std::string s;
+            for (int j=0; j<static_cast<int>(self->ySize()); j++) {
+                s += "\n";
+                for (int i=0; i<static_cast<int>(self->xSize()); i++) {
+                    if (i != 0)
+                        s += ",";
+                    s += DoubleFormatter::toString((*self)[i][j]);
+                }
+            }
+            s += "\n";
+            return s;
+        }
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        LexicographicalViewColumn __getitem__(Size i) {
+            return (*self)[i];
+        }
+        #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        double ref(Size i, Size j) {
+            return (*self)[i][j];
+        }
+        void set(Size i, Size j, double x) {
+            (*self)[i][j] = x;
+        }
+        #endif
     }
-
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-    LexicographicalViewColumn __getitem__(Size i) {
-        return (*self)[i];
-    }
-    #endif
-    
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    double ref(Size i, Size j) {
-        return (*self)[i][j];
-    }
-    void set(Size i, Size j, double x) {
-        (*self)[i][j] = x;
-    }
-    #endif
-
 };
+
 
 
 // matrix class
@@ -793,88 +777,89 @@ class MatrixRow {
 }
 #endif
 
+
+class Matrix {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("set!")     setitem;
+    %rename(">string")  __str__;
+    %rename("add")      __add__;
+    %rename("sub")      __sub__;
+    %rename("mul")      __mul__;
+    %rename("div")      __div__;
+    // aliases
+    #if defined(SWIGGUILE)
+    %scheme %{
+        (define Matrix+ Matrix-add)
+        (define Matrix- Matrix-sub)
+        (define Matrix* Matrix-mul)
+        (define Matrix/ Matrix-div)
+        (export Matrix+
+                Matrix-
+                Matrix*
+                Matrix/)
+    %}
+    #endif
+    #endif
+  public:
+    Matrix(Size rows, Size columns, double fill = 0.0);
+    Size rows() const;
+    Size columns() const;
+    %extend {
+        std::string __str__() {
+            std::string s;
+            for (Size j=0; j<self->rows(); j++) {
+                s += "\n";
+                s += QuantLib::DoubleFormatter::toString((*self)[j][0]);
+                for (Size i=1; i<self->columns(); i++) {
+                    s += ",";
+                    s += QuantLib::DoubleFormatter::toString((*self)[j][i]);
+                }
+            }
+            s += "\n";
+            return s;
+        }
+        Matrix __add__(const Matrix& m) {
+            return *self+m;
+        }
+        Matrix __sub__(const Matrix& m) {
+            return *self-m;
+        }
+        Matrix __mul__(double x) {
+            return *self*x;
+        }
+        Matrix __div__(double x) {
+            return *self/x;
+        }
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        MatrixRow __getitem__(Size i) {
+            return (*self)[i];
+        }
+        #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        double ref(Size i, Size j) {
+            return (*self)[i][j];
+        }
+        void setitem(Size i, Size j, double x) {
+            (*self)[i][j] = x;
+        }
+        #endif
+        #if defined(SWIGPYTHON)
+        Matrix __rmul__(double x) {
+            return *self*x;
+        }
+        #endif
+    }
+};
+ReturnByValue(Matrix);
+
+
+// functions
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("set!")     Matrix::setitem;
-%rename(">string")  Matrix::__str__;
-%rename("add")      Matrix::__add__;
-%rename("sub")      Matrix::__sub__;
-%rename("mul")      Matrix::__mul__;
-%rename("div")      Matrix::__div__;
 %rename("Matrix-transpose")    transpose;
 %rename("Array-outer-product") outerProduct;
 %rename("Array-inner-product") innerProduct;
 %rename("Matrix-product")      matrixProduct;
 %rename("Matrix-sqrt")         matrixSqrt;
-// aliases
-#if defined(SWIGGUILE)
-%scheme %{
-    (define Matrix+ Matrix-add)
-    (define Matrix- Matrix-sub)
-    (define Matrix* Matrix-mul)
-    (define Matrix/ Matrix-div)
-    (export Matrix+
-            Matrix-
-            Matrix*
-            Matrix/)
-%}
 #endif
-#endif
-ReturnByValue(Matrix);
-
-class Matrix {
-  public:
-    Matrix(Size rows, Size columns, double fill = 0.0);
-    Size rows() const;
-    Size columns() const;
-};
-
-%extend Matrix {
-    std::string __str__() {
-        std::string s;
-        for (Size j=0; j<self->rows(); j++) {
-    	    s += "\n";
-            s += QuantLib::DoubleFormatter::toString((*self)[j][0]);
-            for (Size i=1; i<self->columns(); i++) {
-                s += ",";
-                s += QuantLib::DoubleFormatter::toString((*self)[j][i]);
-            }
-        }
-        s += "\n";
-        return s;
-    }
-    Matrix __add__(const Matrix& m) {
-        return *self+m;
-    }
-    Matrix __sub__(const Matrix& m) {
-        return *self-m;
-    }
-    Matrix __mul__(double x) {
-        return *self*x;
-    }
-    Matrix __div__(double x) {
-        return *self/x;
-    }
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-    MatrixRow __getitem__(Size i) {
-        return (*self)[i];
-    }
-    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    double ref(Size i, Size j) {
-        return (*self)[i][j];
-    }
-    void setitem(Size i, Size j, double x) {
-        (*self)[i][j] = x;
-    }
-    #endif
-    #if defined(SWIGPYTHON)
-    Matrix __rmul__(double x) {
-        return *self*x;
-    }
-    #endif
-};
-
-
-// functions
 Matrix transpose(const Matrix& m);
 Matrix outerProduct(const Array& v1, const Array& v2);
 %inline %{

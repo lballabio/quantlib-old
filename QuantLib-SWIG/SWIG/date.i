@@ -123,38 +123,38 @@ MapToString(TimeUnit,timeunitFromString,stringFromTimeunit);
 using QuantLib::Period;
 %}
 
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(">string")        Period::__str__;
-%rename("string->Period") PeriodFromString;
-#endif
-
 class Period {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename(">string")        __str__;
+    #endif
   public:
     Period(int n, TimeUnit units);
     int length() const;
     TimeUnit units() const;
-};
-
-%extend Period {
-    std::string __str__() {
-        std::string s = IntegerFormatter::toString(self->length());
-        switch (self->units()) {
-          case QuantLib::Days:
-            return s + " day(s)";
-          case QuantLib::Weeks:
-            return s + " week(s)";
-          case QuantLib::Months:
-            return s + " month(s)";
-          case QuantLib::Years:
-            return s + " year(s)";
-          default:
-            return "Unknown period";
+    %extend {
+        std::string __str__() {
+            std::string s = IntegerFormatter::toString(self->length());
+            switch (self->units()) {
+              case QuantLib::Days:
+                return s + " day(s)";
+              case QuantLib::Weeks:
+                return s + " week(s)";
+              case QuantLib::Months:
+                return s + " month(s)";
+              case QuantLib::Years:
+                return s + " year(s)";
+              default:
+                return "Unknown period";
+            }
+            QL_DUMMY_RETURN(std::string());
         }
-        QL_DUMMY_RETURN(std::string());
     }
-}
-
+};
 ReturnByValue(Period);
+
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("string->Period") PeriodFromString;
+#endif
 %inline %{
     Period PeriodFromString(const std::string& s) {
         return Period(s);
@@ -164,38 +164,44 @@ ReturnByValue(Period);
 
 
 
-// and finally, the Date class
-
 %{
 using QuantLib::Date;
 using QuantLib::DateFormatter;
 %}
 
-#if defined(SWIGRUBY)
-%rename(__add__) Date::operator+;
-%rename(__sub__) Date::operator-;
-#endif
-
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("day-of-month")   Date::dayOfMonth;
-%rename("day-of-year")    Date::dayOfYear;
-%rename("weekday-number") Date::weekdayNumber;
-%rename("serial-number")  Date::serialNumber;
-%rename("plus-days")      Date::plusDays;
-%rename("plus-weeks")     Date::plusWeeks;
-%rename("plus-months")    Date::plusMonths;
-%rename("plus-years")     Date::plusYears;
-%rename("is-leap?")       Date::isLeap;
-%rename("min-date")       Date::minDate;
-%rename("max-date")       Date::maxDate;
-%rename("todays-date")    Date::todaysDate;
-%rename(">string")        Date::__str__;
-#endif
-// also, allow pass and return by value
-PassByValue(Date);
-ReturnByValue(Date);
-
 class Date {
+    #if defined(SWIGRUBY)
+    %rename(__add__)          operator+;
+    %rename(__sub__)          operator-;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("day-of-month")   dayOfMonth;
+    %rename("day-of-year")    dayOfYear;
+    %rename("weekday-number") weekdayNumber;
+    %rename("serial-number")  serialNumber;
+    %rename("plus-days")      plusDays;
+    %rename("plus-weeks")     plusWeeks;
+    %rename("plus-months")    plusMonths;
+    %rename("plus-years")     plusYears;
+    %rename("is-leap?")       isLeap;
+    %rename("min-date")       minDate;
+    %rename("max-date")       maxDate;
+    %rename("todays-date")    todaysDate;
+    %rename(">string")        __str__;
+    #if defined(SWIGGUILE)
+    %scheme%{
+        (define Date=?  Date-equal)
+        (define Date<?  Date-less)
+        (define Date>?  Date-greater)
+        (define Date<=? Date-less-equal)
+        (define Date>=? Date-greater-equal)
+        (export Date=?
+                Date<?
+                Date>?
+                Date<=?
+                Date>=?)
+    %}
+    #endif
+    #endif
   public:
     Date(Day d, Month m, Year y);
     // access functions
@@ -222,75 +228,58 @@ class Date {
     Date operator+(int days) const;
     Date operator-(int days) const;
     #endif
+    %extend {
+        int weekdayNumber() {
+            return int(self->weekday());
+        }
+        std::string __str__() {
+            return DateFormatter::toString(*self);
+        }
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        int __cmp__(const Date& other) {
+            if (*self < other)
+                return -1;
+            else if (*self == other)
+                return 0;
+            else 
+                return 1;
+        }
+        #endif
+        #if defined(SWIGPYTHON)
+        bool __nonzero__() {
+            return (*self != Date());
+        }
+        #endif
+        #if defined(SWIGRUBY)
+        Date succ() {
+            return self->plusDays(1);
+        }
+        #endif
+        #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        // difference - comparison
+        int days_between(const Date& other) {
+            return other-(*self);
+        }
+        bool equal(const Date& other) {
+            return (*self == other);
+        }
+        bool less(const Date& other) {
+            return (*self < other);
+        }
+        bool less_equal(const Date& other) {
+            return (*self <= other);
+        }
+        bool greater(const Date& other) {
+            return (*self > other);
+        }
+        bool greater_equal(const Date& other) {
+            return (*self >= other);
+        }
+        #endif
+    }
 };
-
-%extend Date {
-    int weekdayNumber() {
-        return int(self->weekday());
-    }
-    std::string __str__() {
-        return DateFormatter::toString(*self);
-    }
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-    int __cmp__(const Date& other) {
-        if (*self < other)
-            return -1;
-        else if (*self == other)
-            return 0;
-        else 
-            return 1;
-    }
-    #endif
-    
-    #if defined(SWIGPYTHON)
-    bool __nonzero__() {
-        return (*self != Date());
-    }
-    #endif
-    
-    #if defined(SWIGRUBY)
-    Date succ() {
-        return self->plusDays(1);
-    }
-    #endif
-    
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    // difference - comparison
-    int days_between(const Date& other) {
-        return other-(*self);
-    }
-    bool equal(const Date& other) {
-        return (*self == other);
-    }
-    bool less(const Date& other) {
-        return (*self < other);
-    }
-    bool less_equal(const Date& other) {
-        return (*self <= other);
-    }
-    bool greater(const Date& other) {
-        return (*self > other);
-    }
-    bool greater_equal(const Date& other) {
-        return (*self >= other);
-    }
-    #endif
-}
-#if defined(SWIGGUILE)
-%scheme%{
-    (define Date=?  Date-equal)
-    (define Date<?  Date-less)
-    (define Date>?  Date-greater)
-    (define Date<=? Date-less-equal)
-    (define Date>=? Date-greater-equal)
-    (export Date=?
-            Date<?
-            Date>?
-            Date<=?
-            Date>=?)
-%}
-#endif
-
+PassByValue(Date);
+ReturnByValue(Date);
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename("Date-from-serial-number") DateFromSerialNumber;

@@ -32,7 +32,13 @@
 using QuantLib::TermStructure;
 %}
 
+%template(TermStructure) Handle<TermStructure>;
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("day-counter")     Handle<TermStructure>::dayCounter;
+%rename("settlement-date") Handle<TermStructure>::settlementDate;
+%rename("max-date")        Handle<TermStructure>::maxDate;
+%rename("max-time")        Handle<TermStructure>::maxTime;
+%rename("zero-yield")      Handle<TermStructure>::zeroYield;
 // resolve overloadings
 %rename(discount_vs_time)  Handle<TermStructure>::discount(Time,bool);
 %rename(discount_vs_date)  Handle<TermStructure>::discount(const Date&,bool);
@@ -78,16 +84,6 @@ using QuantLib::TermStructure;
 %}
 #endif
 #endif
-
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("day-counter")     Handle<TermStructure>::dayCounter;
-%rename("settlement-date") Handle<TermStructure>::settlementDate;
-%rename("max-date")        Handle<TermStructure>::maxDate;
-%rename("max-time")        Handle<TermStructure>::maxTime;
-%rename("zero-yield")      Handle<TermStructure>::zeroYield;
-#endif
-
-%template(TermStructure) Handle<TermStructure>;
 IsObservable(Handle<TermStructure>);
 %extend Handle<TermStructure> {
 	DayCounter dayCounter() {
@@ -153,16 +149,17 @@ typedef Handle<TermStructure> ImpliedTermStructureHandle;
 
 // fake inheritance between handles
 %rename(ImpliedTermStructure) ImpliedTermStructureHandle;
-
-class ImpliedTermStructureHandle: public Handle<TermStructure> {};
-%extend ImpliedTermStructureHandle {
-    ImpliedTermStructureHandle(
-        const RelinkableHandle<TermStructure>& curveHandle,
-        const Date& settlementDate) {
+class ImpliedTermStructureHandle: public Handle<TermStructure> {
+  public:
+    %extend {
+        ImpliedTermStructureHandle(
+                const RelinkableHandle<TermStructure>& curveHandle,
+                const Date& settlementDate) {
             return new ImpliedTermStructureHandle(
                 new ImpliedTermStructure(curveHandle, settlementDate));
+        }
     }
-}
+};
 
 
 // spreaded term structures
@@ -175,27 +172,30 @@ typedef Handle<TermStructure> ForwardSpreadedTermStructureHandle;
 %}
 
 %rename(ZeroSpreadedTermStructure) ZeroSpreadedTermStructureHandle;
-%rename(ForwardSpreadedTermStructure) ForwardSpreadedTermStructureHandle;
-
-class ZeroSpreadedTermStructureHandle : public Handle<TermStructure> {};
-%extend ZeroSpreadedTermStructureHandle {
-    ZeroSpreadedTermStructureHandle(
-        const RelinkableHandle<TermStructure>& curveHandle,
-        const RelinkableHandle<MarketElement>& spreadHandle) {
+class ZeroSpreadedTermStructureHandle : public Handle<TermStructure> {
+  public:
+    %extend {
+        ZeroSpreadedTermStructureHandle(
+                const RelinkableHandle<TermStructure>& curveHandle,
+                const RelinkableHandle<MarketElement>& spreadHandle) {
 	        return new ZeroSpreadedTermStructureHandle(
 	            new ZeroSpreadedTermStructure(curveHandle,spreadHandle));
+        }
     }
-}
+};
 
-class ForwardSpreadedTermStructureHandle : public Handle<TermStructure> {};
-%extend ForwardSpreadedTermStructureHandle {
-    ForwardSpreadedTermStructureHandle(
-        const RelinkableHandle<TermStructure>& curveHandle,
-        const RelinkableHandle<MarketElement>& spreadHandle) {
+%rename(ForwardSpreadedTermStructure) ForwardSpreadedTermStructureHandle;
+class ForwardSpreadedTermStructureHandle : public Handle<TermStructure> {
+  public:
+    %extend {
+        ForwardSpreadedTermStructureHandle(
+                const RelinkableHandle<TermStructure>& curveHandle,
+                const RelinkableHandle<MarketElement>& spreadHandle) {
 	        return new ForwardSpreadedTermStructureHandle(
 	            new ForwardSpreadedTermStructure(curveHandle,spreadHandle));
+        }
     }
-}
+};
 
 
 // flat forward curve
@@ -206,28 +206,41 @@ typedef Handle<TermStructure> FlatForwardHandle;
 %}
 
 %rename(FlatForward) FlatForwardHandle;
-class FlatForwardHandle : public Handle<TermStructure> {};
-%extend FlatForwardHandle {
-    FlatForwardHandle(const Date& settlementDate, 
-                      const RelinkableHandle<MarketElement>& forward,
-                      const DayCounter& dayCounter) {
-	    return new FlatForwardHandle(
-	        new FlatForward(settlementDate,forward,dayCounter));
+class FlatForwardHandle : public Handle<TermStructure> {
+  public:
+    %extend {
+        FlatForwardHandle(const Date& settlementDate, 
+                          const RelinkableHandle<MarketElement>& forward,
+                          const DayCounter& dayCounter) {
+            return new FlatForwardHandle(
+                new FlatForward(settlementDate,forward,dayCounter));
+        }
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        // overload constructor
+        FlatForwardHandle(const Date& settlementDate, 
+                          double forward,
+                          const DayCounter& dayCounter) {
+            RelinkableHandle<MarketElement> h;
+            h.linkTo(Handle<MarketElement>(new SimpleMarketElement(forward)));
+            return new FlatForwardHandle(
+                new FlatForward(settlementDate,h,dayCounter));
+        }
+        #endif
     }
-}
-#if defined(SWIGGUILE)
-%scheme %{
-    (define FlatForward-old-init new-FlatForward)
-    (define (new-FlatForward settlement forward dayCounter)
-      (if (number? forward)
-          (deleting-let* ((m (new-SimpleMarketElement forward)
-                           delete-MarketElement)
-                          (h (new-MarketElementHandle m)
-                           delete-MarketElementHandle))
-           (FlatForward-old-init settlement h dayCounter))
-          (FlatForward-old-init settlement forward dayCounter)))
-%}
-#endif
+    #if defined(SWIGGUILE)
+    %scheme %{
+        (define FlatForward-old-init new-FlatForward)
+        (define (new-FlatForward settlement forward dayCounter)
+          (if (number? forward)
+              (deleting-let* ((m (new-SimpleMarketElement forward)
+                               delete-MarketElement)
+                              (h (new-MarketElementHandle m)
+                               delete-MarketElementHandle))
+               (FlatForward-old-init settlement h dayCounter))
+              (FlatForward-old-init settlement forward dayCounter)))
+    %}
+    #endif
+};
 
 
 #endif

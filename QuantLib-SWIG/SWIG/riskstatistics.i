@@ -28,37 +28,6 @@ using QuantLib::RiskStatistics;
 using QuantLib::Math::RiskMeasures;
 %}
 
-#if defined(SWIGRUBY)
-%rename("reset!")                RiskStatistics::reset;
-#elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("standard-deviation")    RiskStatistics::standardDeviation;
-%rename("error-estimate")        RiskStatistics::errorEstimate;
-%rename("potential-upside")      RiskStatistics::potentialUpside;
-%rename("value-at-risk")         RiskStatistics::valueAtRisk;
-%rename("average-shortfall")     RiskStatistics::averageShortfall;
-%rename("expected-shortfall")    RiskStatistics::expectedShortfall;
-%rename("weight-sum")            RiskStatistics::weightSum;
-%rename("reset!")                RiskStatistics::reset;
-#endif
-
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-// resolve overloading
-%rename("add_single")   RiskStatistics::add(double,double);
-%rename("add_sequence") RiskStatistics::add(const std::vector<double>&);
-%rename("add_weighted_sequence") 
-RiskStatistics::add(const std::vector<double>&, const std::vector<double>&);
-#if defined(SWIGGUILE)
-%scheme %{
-    (define (RiskStatistics-add stats value . weight)
-      (let ((method (cond ((number? value) RiskStatistics-add-single)
-                          ((null? weight) RiskStatistics-add-sequence)
-                          (else RiskStatistics-add-weighted-sequence))))
-        (apply method stats value weight)))
-    (export RiskStatistics-add)
-%}
-#endif
-#endif
-
 class RiskMeasures {
   public:
     RiskMeasures();
@@ -68,8 +37,34 @@ class RiskMeasures {
     double averageShortfall(double target, double mean, double std) const;
 };
 
-
 class RiskStatistics {
+    #if defined(SWIGRUBY)
+    %rename("reset!")                reset;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("standard-deviation")    standardDeviation;
+    %rename("error-estimate")        errorEstimate;
+    %rename("potential-upside")      potentialUpside;
+    %rename("value-at-risk")         valueAtRisk;
+    %rename("average-shortfall")     averageShortfall;
+    %rename("expected-shortfall")    expectedShortfall;
+    %rename("weight-sum")            weightSum;
+    %rename("reset!")                reset;
+    // resolve overloading
+    %rename("add_single")            add(double,double);
+    %rename("add_sequence")          add(const std::vector<double>&);
+    %rename("add_weighted_sequence") add(const std::vector<double>&, 
+                                         const std::vector<double>&);
+    #if defined(SWIGGUILE)
+    %scheme %{
+        (define (RiskStatistics-add stats value . weight)
+          (let ((method (cond ((number? value) RiskStatistics-add-single)
+                              ((null? weight) RiskStatistics-add-sequence)
+                              (else RiskStatistics-add-weighted-sequence))))
+            (apply method stats value weight)))
+        (export RiskStatistics-add)
+    %}
+    #endif
+    #endif
   public:
     RiskStatistics();
     // Accessors
@@ -89,19 +84,19 @@ class RiskStatistics {
     double shortfall(double target) const;
     double averageShortfall(double target) const;
     // Modifiers
-    void add(double value, double weight = 1.0);
     void reset();
+    void add(double value, double weight = 1.0);
+    %extend {
+        void add(const std::vector<double>& values) {
+            self->addSequence(values.begin(), values.end());
+        }
+        void add(const std::vector<double>& values, 
+                 const std::vector<double>& weights) {
+            self->addSequence(values.begin(), values.end(), weights.begin());
+        }
+    }
 };
 
-%extend RiskStatistics {
-    void add(const std::vector<double>& values) {
-        self->addSequence(values.begin(), values.end());
-    }
-    void add(const std::vector<double>& values, 
-             const std::vector<double>& weights) {
-        self->addSequence(values.begin(), values.end(), weights.begin());
-    }
-}
 
 
 #endif

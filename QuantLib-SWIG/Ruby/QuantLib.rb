@@ -116,18 +116,6 @@ module QuantLibc
     end
   end
 
-  class FlatForward
-    alias cpp_initialize initialize
-    def initialize(settlementDate,forward,dayCounter)
-      if (forward.is_a? Float) || (forward.is_a? Integer)
-        h = MarketElementHandle.new(SimpleMarketElement.new(forward))
-        cpp_initialize(settlementDate,h,dayCounter)
-      else
-        cpp_initialize(settlementDate,forward,dayCounter)
-      end
-    end
-  end
-
   class SimpleSwap
     alias cpp_initialize initialize
     def initialize(payFixedRate, startDate, n, unit, calendar,\

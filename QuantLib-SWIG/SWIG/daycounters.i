@@ -34,20 +34,19 @@ using QuantLib::DayCounters::Thirty360;
 using QuantLib::DayCounters::ActualActual;
 %}
 
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("day-count")     DayCounter::dayCount;
-%rename("year-fraction") DayCounter::yearFraction;
-%rename(">string")       DayCounter::__str__;
-%rename("equal")         DayCounter::__eq__;
-#endif
-#if defined(SWIGGUILE)
-%scheme%{ 
-    (define DayCounter=? DayCounter-equal) 
-    (export DayCounter=?)
-%}
-#endif
-
 class DayCounter {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("day-count")     dayCount;
+    %rename("year-fraction") yearFraction;
+    %rename(">string")       __str__;
+    %rename("equal")         __eq__;
+    #if defined(SWIGGUILE)
+    %scheme%{ 
+        (define DayCounter=? DayCounter-equal) 
+        (export DayCounter=?)
+    %}
+    #endif
+    #endif
   private:
     DayCounter();
   public:
@@ -55,50 +54,45 @@ class DayCounter {
     Time yearFraction(const Date& d1, const Date& d2,
                       const Date& startRef = Date(), 
                       const Date& endRef = Date());
+    %extend {
+        DayCounter(std::string s) {
+            s = StringFormatter::toLowercase(s);
+            if (s == "act365" || s == "act/365")
+                return new Actual365;
+            else if (s == "act360" || s == "act/360")
+                return new Actual360;
+            else if (s == "30/360" || s == "30/360us")
+                return new Thirty360(Thirty360::USA);
+            else if (s == "30e/360" || s == "30/360e" || s == "30/360eu")
+                return new Thirty360(Thirty360::European);
+            else if (s == "30/360i" || s == "30/360it")
+                return new Thirty360(Thirty360::Italian);
+            else if (s == "actact" || s == "act/act" || 
+                     s == "act/act(b)" || s == "act/act (Bond)")
+                return new ActualActual(ActualActual::Bond);
+            else if (s == "actacte" || s == "act/act(e)" 
+                     || s == "act/act(Euro)")
+                return new ActualActual(ActualActual::Euro);
+            else if (s == "actacth" || s == "act/act(h)" 
+                     || s == "act/act (ISDA)")
+                return new ActualActual(ActualActual::Historical);
+            else
+                throw Error("Unknown day counter: " + s);
+            QL_DUMMY_RETURN((DayCounter*)(0));
+        }
+        std::string __str__() {
+            return self->name()+" day counter";
+        }
+        bool __eq__(const DayCounter& other) {
+            return (*self) == other;
+        }
+        #if defined(SWIGPYTHON)
+        bool __ne__(const DayCounter& other) {
+            return (*self) != other;
+        }
+        #endif
+    }
 };
-
-// replicate the DayCounter interface
-%extend DayCounter {
-    DayCounter(std::string s) {
-        s = StringFormatter::toLowercase(s);
-        if (s == "act365" || s == "act/365")
-            return new Actual365;
-        else if (s == "act360" || s == "act/360")
-            return new Actual360;
-        else if (s == "30/360" || s == "30/360us")
-            return new Thirty360(Thirty360::USA);
-        else if (s == "30e/360" || s == "30/360e" || s == "30/360eu")
-            return new Thirty360(Thirty360::European);
-        else if (s == "30/360i" || s == "30/360it")
-            return new Thirty360(Thirty360::Italian);
-        else if (s == "actact" || s == "act/act" || 
-                 s == "act/act(b)" || s == "act/act (Bond)")
-            return new ActualActual(ActualActual::Bond);
-        else if (s == "actacte" || s == "act/act(e)" 
-                 || s == "act/act(Euro)")
-            return new ActualActual(ActualActual::Euro);
-        else if (s == "actacth" || s == "act/act(h)" 
-                 || s == "act/act (ISDA)")
-            return new ActualActual(ActualActual::Historical);
-        else
-            throw Error("Unknown day counter: " + s);
-        QL_DUMMY_RETURN((DayCounter*)(0));
-    }
-    std::string __str__() {
-        return self->name()+" day counter";
-    }
-    bool __eq__(const DayCounter& other) {
-        return (*self) == other;
-    }
-    
-    #if defined(SWIGPYTHON)
-    bool __ne__(const DayCounter& other) {
-        return (*self) != other;
-    }
-    #endif
-   
-}
-
 ReturnByValue(DayCounter);
 
 

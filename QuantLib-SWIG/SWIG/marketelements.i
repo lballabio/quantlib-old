@@ -60,25 +60,25 @@ using QuantLib::SimpleMarketElement;
 typedef Handle<MarketElement> SimpleMarketElementHandle;
 %}
 
-#if defined(SWIGRUBY)
-%rename("value=") SimpleMarketElementHandle::setValue;
-#elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("value-set!") SimpleMarketElementHandle::setValue;
-#endif
-
 // Fake inheritance between Handles
 %rename(SimpleMarketElement) SimpleMarketElementHandle;
-class SimpleMarketElementHandle : public Handle<MarketElement> {};
-
-%extend SimpleMarketElementHandle {
-    SimpleMarketElementHandle(double value) {
-        return new SimpleMarketElementHandle(
-            new SimpleMarketElement(value));
+class SimpleMarketElementHandle : public Handle<MarketElement> {
+    #if defined(SWIGRUBY)
+    %rename("value=")     setValue;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("value-set!") setValue;
+    #endif
+  public:
+    %extend {
+        SimpleMarketElementHandle(double value) {
+            return new SimpleMarketElementHandle(
+                new SimpleMarketElement(value));
+        }
+        void setValue(double value) {
+            Handle<SimpleMarketElement>(*self)->setValue(value);
+        }
     }
-    void setValue(double value) {
-        Handle<SimpleMarketElement>(*self)->setValue(value);
-    }
-}
+};
 
 
 #if defined(SWIGPYTHON) || defined(SWIGMZSCHEME)
@@ -90,47 +90,50 @@ typedef Handle<MarketElement> CompositeMarketElementHandle;
 %}
 
 %rename(DerivedMarketElement) DerivedMarketElementHandle;
-class DerivedMarketElementHandle : public Handle<MarketElement> {};
+class DerivedMarketElementHandle : public Handle<MarketElement> {
+  public:
+    %extend {
+        #if defined(SWIGPYTHON)
+        DerivedMarketElementHandle(const RelinkableHandle<MarketElement>& h,
+                                   PyObject* function) {
+            return new DerivedMarketElementHandle(
+                new DerivedMarketElement<UnaryFunction>(
+                    h,UnaryFunction(function)));
+        }
+        #elif defined(SWIGMZSCHEME)
+        DerivedMarketElementHandle(const RelinkableHandle<MarketElement>& h,
+                                   Scheme_Object* function) {
+            return new DerivedMarketElementHandle(
+                new DerivedMarketElement<UnaryFunction>(
+                    h,UnaryFunction(function)));
+        }
+        #endif
+    }
+};
+
 %rename(CompositeMarketElement) CompositeMarketElementHandle;
-class CompositeMarketElementHandle : public Handle<MarketElement> {};
-
-%extend DerivedMarketElementHandle {
-    #if defined(SWIGPYTHON)
-    DerivedMarketElementHandle(const RelinkableHandle<MarketElement>& h,
-                               PyObject* function) {
-        return new DerivedMarketElementHandle(
-            new DerivedMarketElement<UnaryFunction>(
-                h,UnaryFunction(function)));
+class CompositeMarketElementHandle : public Handle<MarketElement> {
+  public:
+    %extend {
+        #if defined(SWIGPYTHON)
+        CompositeMarketElementHandle(const RelinkableHandle<MarketElement>& h1,
+                                     const RelinkableHandle<MarketElement>& h2,
+                                     PyObject* function) {
+            return new CompositeMarketElementHandle(
+                new CompositeMarketElement<BinaryFunction>(
+                    h1,h2,BinaryFunction(function)));
+        }
+        #elif defined(SWIGMZSCHEME)
+        CompositeMarketElementHandle(const RelinkableHandle<MarketElement>& h1,
+                                     const RelinkableHandle<MarketElement>& h2,
+                                     Scheme_Object* function) {
+            return new CompositeMarketElementHandle(
+                new CompositeMarketElement<BinaryFunction>(
+                    h1,h2,BinaryFunction(function)));
+        }
+        #endif
     }
-    #elif defined(SWIGMZSCHEME)
-    DerivedMarketElementHandle(const RelinkableHandle<MarketElement>& h,
-                               Scheme_Object* function) {
-        return new DerivedMarketElementHandle(
-            new DerivedMarketElement<UnaryFunction>(
-                h,UnaryFunction(function)));
-    }
-    #endif
-}
-
-%extend CompositeMarketElementHandle {
-    #if defined(SWIGPYTHON)
-    CompositeMarketElementHandle(const RelinkableHandle<MarketElement>& h1,
-                                 const RelinkableHandle<MarketElement>& h2,
-                                 PyObject* function) {
-        return new CompositeMarketElementHandle(
-            new CompositeMarketElement<BinaryFunction>(
-                h1,h2,BinaryFunction(function)));
-    }
-    #elif defined(SWIGMZSCHEME)
-    CompositeMarketElementHandle(const RelinkableHandle<MarketElement>& h1,
-                                 const RelinkableHandle<MarketElement>& h2,
-                                 Scheme_Object* function) {
-        return new CompositeMarketElementHandle(
-            new CompositeMarketElement<BinaryFunction>(
-                h1,h2,BinaryFunction(function)));
-    }
-    #endif
-}
+};
 #endif
 
 

@@ -32,15 +32,14 @@
 using QuantLib::Indexes::XiborManager;
 %}
 
-#if defined(SWIGRUBY)
-%rename("hasHistory?") XiborManager::hasHistory;
-#elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("has-history?") XiborManager::hasHistory;
-%rename("history-get")  XiborManager::getHistory;
-%rename("history-set!") XiborManager::setHistory;
-#endif
-
 class XiborManager {
+    #if defined(SWIGRUBY)
+    %rename("hasHistory?")  hasHistory;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("has-history?") hasHistory;
+    %rename("history-get")  getHistory;
+    %rename("history-set!") setHistory;
+    #endif
   private:
     XiborManager();
   public:
@@ -57,10 +56,10 @@ class XiborManager {
 using QuantLib::Index;
 %}
 
+%template(Index) Handle<Index>;
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename(">string") Handle<Index>::__str__;
 #endif
-%template(Index) Handle<Index>;
 %extend Handle<Index> {
     Rate fixing(const Date& fixingDate) {
         return (*self)->fixing(fixingDate);
@@ -90,57 +89,60 @@ using QuantLib::Indexes::ZARLibor;
 typedef Handle<Index> XiborHandle;
 %}
 
-#if defined(SWIGRUBY)
-%rename("isAdjusted?") XiborHandle::isAdjusted;
-#elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("is-adjusted?")       XiborHandle::isAdjusted;
-%rename("rolling-convention") XiborHandle::rollingConvention;
-%rename("day-counter")        XiborHandle::dayCounter;
-#endif
-%name(Xibor) class XiborHandle : public Handle<Index> {};
-%extend XiborHandle {
-    XiborHandle(const std::string& name, int n, TimeUnit units,
-                const RelinkableHandle<TermStructure>& h) {
-        std::string s = StringFormatter::toLowercase(name);
-        if (s == "euribor")
-            return new XiborHandle(new Euribor(n,units,h));
-        else if (s == "audlibor")
-            return new XiborHandle(new AUDLibor(n,units,h));
-        else if (s == "gbplibor")
-            return new XiborHandle(new GBPLibor(n,units,h));
-        else if (s == "usdlibor")
-            return new XiborHandle(new USDLibor(n,units,h));
-        else if (s == "jpylibor")
-            return new XiborHandle(new JPYLibor(n,units,h));
-        else if (s == "cadlibor")
-            return new XiborHandle(new CADLibor(n,units,h));
-        else if (s == "chflibor")
-            return new XiborHandle(new CHFLibor(n,units,h));
-        else if (s == "zarlibor")
-            return new XiborHandle(new ZARLibor(n,units,h));
-        else
-            throw Error("unknown index: " + name);
-        QL_DUMMY_RETURN(new XiborHandle);
+%rename(Xibor) XiborHandle;
+class XiborHandle : public Handle<Index> {
+    #if defined(SWIGRUBY)
+    %rename("isAdjusted?")        isAdjusted;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("is-adjusted?")       isAdjusted;
+    %rename("rolling-convention") rollingConvention;
+    %rename("day-counter")        dayCounter;
+    #endif
+  public:
+    %extend {
+        XiborHandle(const std::string& name, int n, TimeUnit units,
+                    const RelinkableHandle<TermStructure>& h) {
+            std::string s = StringFormatter::toLowercase(name);
+            if (s == "euribor")
+                return new XiborHandle(new Euribor(n,units,h));
+            else if (s == "audlibor")
+                return new XiborHandle(new AUDLibor(n,units,h));
+            else if (s == "gbplibor")
+                return new XiborHandle(new GBPLibor(n,units,h));
+            else if (s == "usdlibor")
+                return new XiborHandle(new USDLibor(n,units,h));
+            else if (s == "jpylibor")
+                return new XiborHandle(new JPYLibor(n,units,h));
+            else if (s == "cadlibor")
+                return new XiborHandle(new CADLibor(n,units,h));
+            else if (s == "chflibor")
+                return new XiborHandle(new CHFLibor(n,units,h));
+            else if (s == "zarlibor")
+                return new XiborHandle(new ZARLibor(n,units,h));
+            else
+                throw Error("unknown index: " + name);
+            QL_DUMMY_RETURN(new XiborHandle);
+        }
+        Period tenor() {
+            return Handle<Xibor>(*self)->tenor();
+        }
+        Currency currency() {
+            return Handle<Xibor>(*self)->currency();
+        }
+        Calendar calendar() {
+            return Handle<Xibor>(*self)->calendar();
+        }
+        bool isAdjusted() {
+            return Handle<Xibor>(*self)->isAdjusted();
+        }
+        RollingConvention rollingConvention() {
+            return Handle<Xibor>(*self)->rollingConvention();
+        }
+        DayCounter dayCounter() {
+            return Handle<Xibor>(*self)->dayCounter();
+        }
     }
-    Period tenor() {
-        return Handle<Xibor>(*self)->tenor();
-    }
-    Currency currency() {
-        return Handle<Xibor>(*self)->currency();
-    }
-    Calendar calendar() {
-        return Handle<Xibor>(*self)->calendar();
-    }
-    bool isAdjusted() {
-        return Handle<Xibor>(*self)->isAdjusted();
-    }
-    RollingConvention rollingConvention() {
-        return Handle<Xibor>(*self)->rollingConvention();
-    }
-    DayCounter dayCounter() {
-        return Handle<Xibor>(*self)->dayCounter();
-    }
-}
+};
 
 
 #endif

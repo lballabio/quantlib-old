@@ -46,62 +46,70 @@ typedef Handle<RateHelper> SwapRateHelperHandle;
 ReturnByValue(Handle<RateHelper>);
 
 %rename(DepositRateHelper) DepositRateHelperHandle;
-class DepositRateHelperHandle : public Handle<RateHelper> {};
-%extend DepositRateHelperHandle {
-    DepositRateHelperHandle(
-        const RelinkableHandle<MarketElement>& rate,
-        int settlementDays, int n, TimeUnit units, 
-        const Calendar& calendar, RollingConvention convention, 
-        const DayCounter& dayCounter) {
+class DepositRateHelperHandle : public Handle<RateHelper> {
+  public:
+    %extend {
+        DepositRateHelperHandle(
+                const RelinkableHandle<MarketElement>& rate,
+                int settlementDays, int n, TimeUnit units, 
+                const Calendar& calendar, RollingConvention convention, 
+                const DayCounter& dayCounter) {
             return new DepositRateHelperHandle(
                 new DepositRateHelper(rate,settlementDays,n,units,calendar,
                     convention,dayCounter));
+        }
     }
-}
+};
 
 %rename(FraRateHelper) FraRateHelperHandle;
-class FraRateHelperHandle : public Handle<RateHelper> {};
-%extend FraRateHelperHandle {
-    FraRateHelperHandle(
-        const RelinkableHandle<MarketElement>& rate,
-        int settlementDays, int monthsToStart, int monthsToEnd,
-        const Calendar& calendar, RollingConvention convention,
-        const DayCounter& dayCounter) {
+class FraRateHelperHandle : public Handle<RateHelper> {
+  public:
+    %extend {
+        FraRateHelperHandle(
+                const RelinkableHandle<MarketElement>& rate,
+                int settlementDays, int monthsToStart, int monthsToEnd,
+                const Calendar& calendar, RollingConvention convention,
+                const DayCounter& dayCounter) {
             return new FraRateHelperHandle(
                 new FraRateHelper(rate,settlementDays,monthsToStart,
                     monthsToEnd,calendar,convention,dayCounter));
+        }
     }
-}
+};
 
 %rename(FuturesRateHelper) FuturesRateHelperHandle;
-class FuturesRateHelperHandle : public Handle<RateHelper> {};
-%extend FuturesRateHelperHandle {
-    FuturesRateHelperHandle(
-        const RelinkableHandle<MarketElement>& price,
-        const Date& immDate, int settlementDays, int nMonths,
-        const Calendar& calendar, RollingConvention convention,
-        const DayCounter& dayCounter) {
+class FuturesRateHelperHandle : public Handle<RateHelper> {
+  public:
+    %extend {
+        FuturesRateHelperHandle(
+                const RelinkableHandle<MarketElement>& price,
+                const Date& immDate, int settlementDays, int nMonths,
+                const Calendar& calendar, RollingConvention convention,
+                const DayCounter& dayCounter) {
             return new FuturesRateHelperHandle(
                 new FuturesRateHelper(price,immDate,settlementDays,nMonths,
                     calendar,convention,dayCounter));
+        }
     }
-}
+};
 
 %rename(SwapRateHelper) SwapRateHelperHandle;
-class SwapRateHelperHandle : public Handle<RateHelper> {};
-%extend SwapRateHelperHandle {
-    SwapRateHelperHandle(
-        const RelinkableHandle<MarketElement>& rate,
-        int settlementDays, int lengthInYears, 
-        const Calendar& calendar, RollingConvention rollingConvention,
-        int fixedFrequency, bool fixedIsAdjusted,
-        const DayCounter& fixedDayCount, int floatingFrequency) {
+class SwapRateHelperHandle : public Handle<RateHelper> {
+  public:
+    %extend {
+        SwapRateHelperHandle(
+                const RelinkableHandle<MarketElement>& rate,
+                int settlementDays, int lengthInYears, 
+                const Calendar& calendar, RollingConvention rollingConvention,
+                int fixedFrequency, bool fixedIsAdjusted,
+                const DayCounter& fixedDayCount, int floatingFrequency) {
             return new SwapRateHelperHandle(
                 new SwapRateHelper(rate, settlementDays, lengthInYears,
                     calendar, rollingConvention, fixedFrequency,
                     fixedIsAdjusted, fixedDayCount, floatingFrequency));
+        }
     }
-}
+};
 
 
 // allow use of RateHelper vectors
@@ -118,24 +126,26 @@ typedef Handle<TermStructure> PiecewiseFlatForwardHandle;
 %}
 
 %rename(PiecewiseFlatForward) PiecewiseFlatForwardHandle;
-class PiecewiseFlatForwardHandle : public Handle<TermStructure> {};
-%extend PiecewiseFlatForwardHandle {
-    PiecewiseFlatForwardHandle(
-        const Date& settlementDate, 
-        const std::vector<Handle<RateHelper> >& instruments,
-        const DayCounter& dayCounter, 
-        double accuracy = 1.0e-12) {
+class PiecewiseFlatForwardHandle : public Handle<TermStructure> {
+  public:
+    %extend {
+        PiecewiseFlatForwardHandle(
+                const Date& settlementDate, 
+                const std::vector<Handle<RateHelper> >& instruments,
+                const DayCounter& dayCounter, 
+                double accuracy = 1.0e-12) {
 	        return new PiecewiseFlatForwardHandle(
 	            new PiecewiseFlatForward(settlementDate, instruments, 
                                          dayCounter, accuracy));
+        }
+        const std::vector<Date>& dates() {
+            return Handle<PiecewiseFlatForward>(*self)->dates();
+        }
+        const std::vector<double>& times() {
+            return Handle<PiecewiseFlatForward>(*self)->times();
+        }
     }
-    const std::vector<Date>& dates() {
-        return Handle<PiecewiseFlatForward>(*self)->dates();
-    }
-    const std::vector<double>& times() {
-        return Handle<PiecewiseFlatForward>(*self)->times();
-    }
-}
+};
 
 
 #endif

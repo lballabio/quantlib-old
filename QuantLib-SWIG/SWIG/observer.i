@@ -30,9 +30,9 @@ using QuantLib::Patterns::Observable;
 %template(Observable) Handle<Observable>;
 %define IsObservable(Type)
 #if defined(SWIGRUBY)
-%rename("toObservable") asObservable;
+%rename("toObservable") Type::asObservable;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(">Observable") asObservable;
+%rename(">Observable")  Type::asObservable;
 #endif
 %extend Type {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -175,9 +175,9 @@ class MzObserver : public Observer {
 
 // MzScheme wrapper
 %rename(Observer) MzObserver;
-%rename("register-with")   MzObserver::registerWith;
-%rename("unregister-with") MzObserver::unregisterWith;
 class MzObserver {
+    %rename("register-with")   registerWith;
+    %rename("unregister-with") unregisterWith;
   public:
 	MzObserver(Scheme_Object* callback);
     void registerWith(const Handle<Observable>&);
@@ -210,9 +210,9 @@ class GuileObserver : public Observer {
 
 // Guile wrapper
 %rename(Observer) GuileObserver;
-%rename("register-with")   GuileObserver::registerWith;
-%rename("unregister-with") GuileObserver::unregisterWith;
 class GuileObserver {
+    %rename("register-with")   registerWith;
+    %rename("unregister-with") unregisterWith;
   public:
 	GuileObserver(SCM callback);
     void registerWith(const Handle<Observable>&);

@@ -32,17 +32,19 @@ typedef Handle<Instrument> SimpleSwapHandle;
 %}
 
 %rename(Swap) SwapHandle;
-class SwapHandle : public Handle<Instrument> {};
-%extend SwapHandle {
-    SwapHandle(const std::vector<Handle<CashFlow> >& firstLeg,
-               const std::vector<Handle<CashFlow> >& secondLeg,
-               const RelinkableHandle<TermStructure>& termStructure,
-               const std::string& isinCode = "unknown", 
-               const std::string& description = "interest rate swap") {
-        return new SwapHandle(new Swap(firstLeg, secondLeg, termStructure,
-                                       isinCode, description));
+class SwapHandle : public Handle<Instrument> {
+  public:
+    %extend {
+        SwapHandle(const std::vector<Handle<CashFlow> >& firstLeg,
+                   const std::vector<Handle<CashFlow> >& secondLeg,
+                   const RelinkableHandle<TermStructure>& termStructure,
+                   const std::string& isinCode = "unknown", 
+                   const std::string& description = "interest rate swap") {
+            return new SwapHandle(new Swap(firstLeg, secondLeg, termStructure,
+                                           isinCode, description));
+        }
     }
-}
+};
 
 #if defined(SWIGRUBY)
 // too many parameters for a native function.
@@ -74,73 +76,72 @@ class FloatingSwapLeg {
 #endif
 
 
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("fair-rate")        SimpleSwapHandle::fairRate;
-%rename("fair-spread")      SimpleSwapHandle::fairSpread;
-%rename("fixed-leg-BPS")    SimpleSwapHandle::fixedLegBPS;
-%rename("floating-leg-BPS") SimpleSwapHandle::floatingLegBPS;
-#endif
-
 %rename(SimpleSwap) SimpleSwapHandle;
-class SimpleSwapHandle : public Handle<Instrument> {};
-#if defined(SWIGRUBY)
-%extend SimpleSwapHandle {
-    SimpleSwapHandle(bool payFixedRate, const Date& startDate, 
-                     int n, TimeUnit unit, const Calendar& calendar, 
-                     RollingConvention rollingConvention, double nominal,
-                     const FixedSwapLeg& fixedLeg,
-                     const FloatingSwapLeg& floatingLeg,
-                     const RelinkableHandle<TermStructure>& termStructure, 
-                     const std::string& isinCode, 
-                     const std::string& description) {
-        return new SimpleSwapHandle(
-            new SimpleSwap(payFixedRate, startDate, n, unit, calendar,
-                           rollingConvention, nominal, 
-                           fixedLeg.fixedFrequency, fixedLeg.fixedRate, 
-                           fixedLeg.fixedIsAdjusted, fixedLeg.fixedDayCount, 
-                           floatingLeg.floatingFrequency, floatingLeg.index, 
-                           floatingLeg.indexFixingDays, floatingLeg.spread, 
-                           termStructure, isinCode, description));
+class SimpleSwapHandle : public Handle<Instrument> {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("fair-rate")        fairRate;
+    %rename("fair-spread")      fairSpread;
+    %rename("fixed-leg-BPS")    fixedLegBPS;
+    %rename("floating-leg-BPS") floatingLegBPS;
+    #endif
+  public:
+    %extend {
+    #if defined(SWIGRUBY)
+        SimpleSwapHandle(bool payFixedRate, const Date& startDate, 
+                         int n, TimeUnit unit, const Calendar& calendar, 
+                         RollingConvention rollingConvention, double nominal,
+                         const FixedSwapLeg& fixedLeg,
+                         const FloatingSwapLeg& floatingLeg,
+                         const RelinkableHandle<TermStructure>& termStructure, 
+                         const std::string& isinCode, 
+                         const std::string& description) {
+            return new SimpleSwapHandle(
+                new SimpleSwap(
+                    payFixedRate, startDate, n, unit, calendar,
+                    rollingConvention, nominal, 
+                    fixedLeg.fixedFrequency, fixedLeg.fixedRate, 
+                    fixedLeg.fixedIsAdjusted, fixedLeg.fixedDayCount, 
+                    floatingLeg.floatingFrequency, floatingLeg.index, 
+                    floatingLeg.indexFixingDays, floatingLeg.spread, 
+                    termStructure, isinCode, description));
+        }
+    #else
+        SimpleSwapHandle(bool payFixedRate, const Date& startDate, 
+                         int n, TimeUnit unit, const Calendar& calendar, 
+                         RollingConvention rollingConvention, double nominal, 
+                         int fixedFrequency, Rate fixedRate,
+                         bool fixedIsAdjusted, const DayCounter& fixedDayCount,
+                         int floatingFrequency, const XiborHandle& index, 
+                         int indexFixingDays, Spread spread, 
+                         const RelinkableHandle<TermStructure>& termStructure, 
+                         const std::string& isinCode = "unknown", 
+                         const std::string& description = 
+                                                    "interest rate swap") {
+            return new SimpleSwapHandle(
+                new SimpleSwap(payFixedRate, startDate, n, unit, calendar,
+                               rollingConvention, nominal, fixedFrequency, 
+                               fixedRate, fixedIsAdjusted, fixedDayCount, 
+                               floatingFrequency, index, indexFixingDays, 
+                               spread, termStructure, isinCode, description));
+        }
+    #endif
+        Rate fairRate() {
+            return Handle<SimpleSwap>(*self)->fairRate();
+        }
+        Spread fairSpread() {
+            return Handle<SimpleSwap>(*self)->fairSpread();
+        }
+        double fixedLegBPS() {
+            return Handle<SimpleSwap>(*self)->fixedLegBPS();
+        }
+        double floatingLegBPS() {
+            return Handle<SimpleSwap>(*self)->floatingLegBPS();
+        }
+        Date maturity() {
+            return Handle<SimpleSwap>(*self)->maturity();
+        }
     }
-}
-#else
-%extend SimpleSwapHandle {
-    SimpleSwapHandle(bool payFixedRate, const Date& startDate, 
-                     int n, TimeUnit unit, const Calendar& calendar, 
-                     RollingConvention rollingConvention, double nominal, 
-                     int fixedFrequency, Rate fixedRate,
-                     bool fixedIsAdjusted, const DayCounter& fixedDayCount,
-                     int floatingFrequency, const XiborHandle& index, 
-                     int indexFixingDays, Spread spread, 
-                     const RelinkableHandle<TermStructure>& termStructure, 
-                     const std::string& isinCode = "unknown", 
-                     const std::string& description = "interest rate swap") {
-        return new SimpleSwapHandle(
-            new SimpleSwap(payFixedRate, startDate, n, unit, calendar,
-                           rollingConvention, nominal, fixedFrequency, 
-                           fixedRate, fixedIsAdjusted, fixedDayCount, 
-                           floatingFrequency, index, indexFixingDays, 
-                           spread, termStructure, isinCode, description));
-    }
-}
-#endif
-%extend SimpleSwapHandle {
-    Rate fairRate() {
-        return Handle<SimpleSwap>(*self)->fairRate();
-    }
-    Spread fairSpread() {
-        return Handle<SimpleSwap>(*self)->fairSpread();
-    }
-    double fixedLegBPS() {
-        return Handle<SimpleSwap>(*self)->fixedLegBPS();
-    }
-    double floatingLegBPS() {
-        return Handle<SimpleSwap>(*self)->floatingLegBPS();
-    }
-    Date maturity() {
-        return Handle<SimpleSwap>(*self)->maturity();
-    }
-}
+};
 
 
 #endif

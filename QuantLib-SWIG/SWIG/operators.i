@@ -67,42 +67,40 @@ class BoundaryCondition {
 using QuantLib::FiniteDifferences::TridiagonalOperator;
 %}
 
-#if defined(SWIGPYTHON) || defined(SWIGRUBY)
-%rename(__add__) TridiagonalOperator::add;
-%rename(__sub__) TridiagonalOperator::sub;
-%rename(__mul__) TridiagonalOperator::mul;
-%rename(__div__) TridiagonalOperator::div;
-#endif
-#if defined(SWIGRUBY)
-%rename("lowerBC=")  TridiagonalOperator::setLowerBC;
-%rename("upperBC=")  TridiagonalOperator::setUpperBC;
-%rename("firstRow=") TridiagonalOperator::setFirstRow;
-%rename("midRow=")   TridiagonalOperator::setMidRow;
-%rename("midRows=")  TridiagonalOperator::setMidRows;
-%rename("lastRow=")  TridiagonalOperator::setLastRow;
-#elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("lowerBC-set!")  TridiagonalOperator::setLowerBC;
-%rename("upperBC-set!")  TridiagonalOperator::setUpperBC;
-%rename("firstRow-set!") TridiagonalOperator::setFirstRow;
-%rename("midRow-set!")   TridiagonalOperator::setMidRow;
-%rename("midRows-set!")  TridiagonalOperator::setMidRows;
-%rename("lastRow-set!")  TridiagonalOperator::setLastRow;
-#endif
-#if defined(SWIGGUILE)
-%scheme %{
-    (define TridiagonalOperator+ TridiagonalOperator-add)
-    (define TridiagonalOperator- TridiagonalOperator-sub)
-    (define TridiagonalOperator* TridiagonalOperator-mul)
-    (define TridiagonalOperator/ TridiagonalOperator-div)
-    (export TridiagonalOperator+
-            TridiagonalOperator-
-            TridiagonalOperator*
-            TridiagonalOperator/)
-%}
-#endif
-ReturnByValue(TridiagonalOperator);
-
 class TridiagonalOperator {
+    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+    %rename(__add__)          add;
+    %rename(__sub__)          sub;
+    %rename(__mul__)          mul;
+    %rename(__div__)          div;
+    #endif
+    #if defined(SWIGRUBY)
+    %rename("lowerBC=")       setLowerBC;
+    %rename("upperBC=")       setUpperBC;
+    %rename("firstRow=")      setFirstRow;
+    %rename("midRow=")        setMidRow;
+    %rename("midRows=")       setMidRows;
+    %rename("lastRow=")       setLastRow;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("lower-bc-set!")  setLowerBC;
+    %rename("upper-bc-set!")  setUpperBC;
+    %rename("first-row-set!") setFirstRow;
+    %rename("mid-row-set!")   setMidRow;
+    %rename("mid-rows-set!")  setMidRows;
+    %rename("last-row-set!")  setLastRow;
+    #if defined(SWIGGUILE)
+    %scheme %{
+        (define TridiagonalOperator+ TridiagonalOperator-add)
+        (define TridiagonalOperator- TridiagonalOperator-sub)
+        (define TridiagonalOperator* TridiagonalOperator-mul)
+        (define TridiagonalOperator/ TridiagonalOperator-div)
+        (export TridiagonalOperator+
+                TridiagonalOperator-
+                TridiagonalOperator*
+                TridiagonalOperator/)
+    %}
+    #endif
+    #endif
   public:
     // constructors
     TridiagonalOperator(const Array& low, const Array& mid, const Array& high);
@@ -120,39 +118,40 @@ class TridiagonalOperator {
     void setLastRow(double, double);
     // identity
     static TridiagonalOperator identity(Size size);
+    %extend {
+        TridiagonalOperator add(const TridiagonalOperator& O) {
+            return *self+O;
+        }
+        TridiagonalOperator sub(const TridiagonalOperator& O) {
+            return *self-O;
+        }
+        TridiagonalOperator mul(double a) {
+            return *self*a;
+        }
+        TridiagonalOperator div(double a) {
+            return *self/a;
+        }
+        #if defined(SWIGPYTHON)
+        TridiagonalOperator __iadd__(const TridiagonalOperator& O) {
+            return *self+O;
+        }
+        TridiagonalOperator __isub__(const TridiagonalOperator& O) {
+            return *self-O;
+        }
+        TridiagonalOperator __imul__(double a) {
+            return *self*a;
+        }
+        TridiagonalOperator __rmul__(double a) {
+            return *self*a;
+        }
+        TridiagonalOperator __idiv__(double a) {
+            return *self/a;
+        }
+        #endif
+    }
 };
+ReturnByValue(TridiagonalOperator);
 
-%extend TridiagonalOperator {
-    TridiagonalOperator add(const TridiagonalOperator& O) {
-        return *self+O;
-    }
-    TridiagonalOperator sub(const TridiagonalOperator& O) {
-        return *self-O;
-    }
-    TridiagonalOperator mul(double a) {
-        return *self*a;
-    }
-    TridiagonalOperator div(double a) {
-        return *self/a;
-    }
-    #if defined(SWIGPYTHON)
-    TridiagonalOperator __iadd__(const TridiagonalOperator& O) {
-        return *self+O;
-    }
-    TridiagonalOperator __isub__(const TridiagonalOperator& O) {
-        return *self-O;
-    }
-    TridiagonalOperator __imul__(double a) {
-        return *self*a;
-    }
-    TridiagonalOperator __rmul__(double a) {
-        return *self*a;
-    }
-    TridiagonalOperator __idiv__(double a) {
-        return *self/a;
-    }
-    #endif
-};
 
 %{
 using QuantLib::FiniteDifferences::DPlus;

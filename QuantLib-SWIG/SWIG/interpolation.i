@@ -107,15 +107,12 @@ class BilinearInterpolation : public Interpolation2D {
 %}
 
 
-#if defined(SWIGPYTHON) || defined(SWIGRUBY)
-%rename(__call__) Interpolation::operator();
-%rename(__call__) Interpolation2D::operator();
-#elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(call)     Interpolation::operator();
-%rename(call)     Interpolation2D::operator();
-#endif
-
 class Interpolation {
+    #if defined(SWIGRUBY)
+    %rename(__call__) operator();
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename(call)     operator();
+    #endif
   private:
     Interpolation();
   public:
@@ -139,6 +136,11 @@ class CubicSpline : public Interpolation {
 
 
 class Interpolation2D {
+    #if defined(SWIGRUBY)
+    %rename(__call__) operator();
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename(call)     operator();
+    #endif
   private:
     Interpolation2D();
   public:

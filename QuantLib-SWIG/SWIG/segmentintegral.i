@@ -31,31 +31,31 @@ using QuantLib::Math::SegmentIntegral;
 class SegmentIntegral {
   public:
     SegmentIntegral(Size intervals);
+    %extend {
+        #if defined(SWIGPYTHON)
+        double __call__(PyObject* pyFunction, double a, double b) {
+            UnaryFunction f(pyFunction);
+            return (*self)(f, a, b);
+        }
+        #elif defined(SWIGRUBY)
+        double __call__(double a, double b) {
+            UnaryFunction f;
+            return (*self)(f, a, b);
+        }
+        #elif defined(SWIGMZSCHEME)
+        double calculate(Scheme_Object* mzFunction, double a, double b) {
+            UnaryFunction f(mzFunction);
+            return (*self)(f, a, b);
+        }
+        #elif defined(SWIGGUILE)
+        double calculate(SCM ghFunction, double a, double b) {
+            UnaryFunction f(ghFunction);
+            return (*self)(f, a, b);
+        }
+        #endif
+    }
 };
 
-%extend SegmentIntegral {
-    #if defined(SWIGPYTHON)
-    double __call__(PyObject* pyFunction, double a, double b) {
-        UnaryFunction f(pyFunction);
-        return (*self)(f, a, b);
-    }
-    #elif defined(SWIGRUBY)
-    double __call__(double a, double b) {
-        UnaryFunction f;
-        return (*self)(f, a, b);
-    }
-    #elif defined(SWIGMZSCHEME)
-    double calculate(Scheme_Object* mzFunction, double a, double b) {
-        UnaryFunction f(mzFunction);
-        return (*self)(f, a, b);
-    }
-    #elif defined(SWIGGUILE)
-    double calculate(SCM ghFunction, double a, double b) {
-        UnaryFunction f(ghFunction);
-        return (*self)(f, a, b);
-    }
-    #endif
-}
 
 
 #endif

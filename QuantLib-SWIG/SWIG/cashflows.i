@@ -57,44 +57,50 @@ typedef Handle<CashFlow> FloatingRateCouponHandle;
 %}
 
 %rename(SimpleCashFlow) SimpleCashFlowHandle;
-class SimpleCashFlowHandle : public Handle<CashFlow> {};
-%extend SimpleCashFlowHandle {
-    SimpleCashFlowHandle(double amount, const Date& date) {
-        return new SimpleCashFlowHandle(
-            new SimpleCashFlow(amount,date));
+class SimpleCashFlowHandle : public Handle<CashFlow> {
+  public:
+    %extend {
+        SimpleCashFlowHandle(double amount, const Date& date) {
+            return new SimpleCashFlowHandle(
+                new SimpleCashFlow(amount,date));
+        }
     }
-}
+};
 
 %rename(FixedRateCoupon) FixedRateCouponHandle;
-class FixedRateCouponHandle : public Handle<CashFlow> {};
-%extend FixedRateCouponHandle {
-    FixedRateCouponHandle(double nominal, const Date& paymentDate, 
-                          Rate rate, const DayCounter& dayCounter, 
-                          const Date& startDate, const Date& endDate,
-                          const Date& refPeriodStart = Date(), 
-                          const Date& refPeriodEnd = Date()) {
-        return new FixedRateCouponHandle(
-            new FixedRateCoupon(nominal, paymentDate, rate, 
-                dayCounter, startDate, endDate, refPeriodStart,
-                refPeriodEnd));
+class FixedRateCouponHandle : public Handle<CashFlow> {
+  public:
+    %extend {
+        FixedRateCouponHandle(double nominal, const Date& paymentDate, 
+                              Rate rate, const DayCounter& dayCounter, 
+                              const Date& startDate, const Date& endDate,
+                              const Date& refPeriodStart = Date(), 
+                              const Date& refPeriodEnd = Date()) {
+            return new FixedRateCouponHandle(
+                new FixedRateCoupon(nominal, paymentDate, rate, 
+                                    dayCounter, startDate, endDate, 
+                                    refPeriodStart, refPeriodEnd));
+        }
     }
-}
+};
 
 %rename(FloatingRateCoupon) FloatingRateCouponHandle;
-class FloatingRateCouponHandle : public Handle<CashFlow> {};
-%extend FloatingRateCouponHandle {
-    FloatingRateCouponHandle(double nominal, const Date& paymentDate, 
-                             const XiborHandle& index, const Date& startDate, 
-                             const Date& endDate, int fixingDays, 
-                             Spread spread = 0.0, 
-                             const Date& refPeriodStart = Date(), 
-                             const Date& refPeriodEnd = Date()) {
-        return new FloatingRateCouponHandle(
-            new FloatingRateCoupon(nominal, paymentDate, index,
-                startDate, endDate, fixingDays, spread,
-                refPeriodStart, refPeriodEnd));
+class FloatingRateCouponHandle : public Handle<CashFlow> {
+  public:
+    %extend {
+        FloatingRateCouponHandle(double nominal, const Date& paymentDate, 
+                                 const XiborHandle& index, 
+                                 const Date& startDate, const Date& endDate, 
+                                 int fixingDays, Spread spread = 0.0, 
+                                 const Date& refPeriodStart = Date(), 
+                                 const Date& refPeriodEnd = Date()) {
+            return new FloatingRateCouponHandle(
+                new FloatingRateCoupon(nominal, paymentDate, index,
+                                       startDate, endDate, fixingDays, spread,
+                                       refPeriodStart, refPeriodEnd));
+        }
     }
-}
+};
 
 namespace std {
     %template(CashFlowVector) vector<Handle<CashFlow> >;

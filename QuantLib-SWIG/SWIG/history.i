@@ -171,154 +171,154 @@ class HistoryValidIterator {
 #endif
 
 
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("first-date") History::firstDate;
-%rename("last-date")  History::lastDate;
-%rename("length")     History::__len__;
-#endif
-
 class History {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("first-date") firstDate;
+    %rename("last-date")  lastDate;
+    %rename("length")     __len__;
+    #if defined(SWIGGUILE)
+    %scheme %{
+        (define History-old-init new-History)
+        (define (new-History dates values)
+          (let ((null (null-double)))
+            (History-old-init dates
+                              (map (lambda (x) (or x null)) values))))
+    %}
+    #endif
+    #endif
   public:
     History(const std::vector<Date>& dates, 
             const std::vector<double>& values);
     Date firstDate() const;
     Date lastDate() const;
-};
-#if defined(SWIGGUILE)
-%scheme %{
-    (define History-old-init new-History)
-    (define (new-History dates values)
-      (let ((null (null-double)))
-        (History-old-init dates
-                          (map (lambda (x) (or x null)) values))))
-%}
-#endif
-%extend History {
-    Size __len__() {
-        return self->size();
-    }
-    // Getting a single datum
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-    doubleOrNull __getitem__(const Date& d) {
-        return (*self)[d];
-    }
-    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    HistoryEntry assoc(const Date& d) {
-        if (d < self->firstDate() || d > self->lastDate())
-            return History::Entry();
-        else
-            return *(self->begin()+(d-self->firstDate()));
-    }
-    #endif
-    // Iterating
-    #if defined(SWIGPYTHON)
-    HistoryIterator __iter__() {
-        return HistoryIterator(self->begin(),self->end());
-    }
-    HistoryValidIterator valid() {
-        return HistoryValidIterator(self->vbegin(),self->vend());
-    }
-    #elif defined(SWIGRUBY)
-    void each() {
-        History::const_iterator i=self->begin(), end=self->end();
-        for ( ; i!=end; ++i) {
-            Date* d = new Date(i->date());
-            double v = i->value();
-            VALUE entry = rb_ary_new2(2);
-            VALUE date = SWIG_NewPointerObj(d, SWIGTYPE_p_Date, 1);
-            VALUE value = (v == Null<double>() ? Qnil : rb_float_new(v));
-            rb_ary_store(entry,0,date);
-            rb_ary_store(entry,1,value);
-            rb_yield(entry);
+    %extend {
+        Size __len__() {
+            return self->size();
         }
-    }
-    void each_valid() {
-        History::const_valid_iterator i=self->vbegin(), end=self->vend();
-        for ( ; i!=end; ++i) {
-            Date* d = new Date(i->date());
-            double v = i->value();
-            VALUE entry = rb_ary_new2(2);
-            VALUE date = SWIG_NewPointerObj(d, SWIGTYPE_p_Date, 1);
-            VALUE value = rb_float_new(v);
-            rb_ary_store(entry,0,date);
-            rb_ary_store(entry,1,value);
-            rb_yield(entry);
+        // Getting a single datum
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        doubleOrNull __getitem__(const Date& d) {
+            return (*self)[d];
         }
-    }
-    #elif defined(SWIGMZSCHEME)
-    void for_each(Scheme_Object* proc) {
-        History::const_iterator i=self->begin(), end=self->end();
-        for ( ; i!=end; ++i) {
-            double v = i->value();
-            Scheme_Object* entry;
-            if (v == Null<double>()) {
-                entry = scheme_false;
-            } else {
+        #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        HistoryEntry assoc(const Date& d) {
+            if (d < self->firstDate() || d > self->lastDate())
+                return History::Entry();
+            else
+                return *(self->begin()+(d-self->firstDate()));
+        }
+        #endif
+        // Iterating
+        #if defined(SWIGPYTHON)
+        HistoryIterator __iter__() {
+            return HistoryIterator(self->begin(),self->end());
+        }
+        HistoryValidIterator valid() {
+            return HistoryValidIterator(self->vbegin(),self->vend());
+        }
+        #elif defined(SWIGRUBY)
+        void each() {
+            History::const_iterator i=self->begin(), end=self->end();
+            for ( ; i!=end; ++i) {
+                Date* d = new Date(i->date());
+                double v = i->value();
+                VALUE entry = rb_ary_new2(2);
+                VALUE date = SWIG_NewPointerObj(d, SWIGTYPE_p_Date, 1);
+                VALUE value = (v == Null<double>() ? Qnil : rb_float_new(v));
+                rb_ary_store(entry,0,date);
+                rb_ary_store(entry,1,value);
+                rb_yield(entry);
+            }
+        }
+        void each_valid() {
+            History::const_valid_iterator i=self->vbegin(), end=self->vend();
+            for ( ; i!=end; ++i) {
+                Date* d = new Date(i->date());
+                double v = i->value();
+                VALUE entry = rb_ary_new2(2);
+                VALUE date = SWIG_NewPointerObj(d, SWIGTYPE_p_Date, 1);
+                VALUE value = rb_float_new(v);
+                rb_ary_store(entry,0,date);
+                rb_ary_store(entry,1,value);
+                rb_yield(entry);
+            }
+        }
+        #elif defined(SWIGMZSCHEME)
+        void for_each(Scheme_Object* proc) {
+            History::const_iterator i=self->begin(), end=self->end();
+            for ( ; i!=end; ++i) {
+                double v = i->value();
+                Scheme_Object* entry;
+                if (v == Null<double>()) {
+                    entry = scheme_false;
+                } else {
+                    Date* d = new Date(i->date());
+                    Scheme_Object* car = SWIG_MakePtr(d, SWIGTYPE_p_Date);
+                    Scheme_Object* cdr = scheme_make_double(v);
+                    entry = scheme_make_pair(car,cdr);
+                }
+                scheme_apply(proc,1,&entry);
+            }
+        }
+        void for_each_valid(Scheme_Object* proc) {
+            History::const_valid_iterator i=self->vbegin(), end=self->vend();
+            for ( ; i!=end; ++i) {
+                double v = i->value();
                 Date* d = new Date(i->date());
                 Scheme_Object* car = SWIG_MakePtr(d, SWIGTYPE_p_Date);
                 Scheme_Object* cdr = scheme_make_double(v);
-                entry = scheme_make_pair(car,cdr);
+                Scheme_Object* cons = scheme_make_pair(car,cdr);
+                scheme_apply(proc,1,&cons);
             }
-            scheme_apply(proc,1,&entry);
         }
-    }
-    void for_each_valid(Scheme_Object* proc) {
-        History::const_valid_iterator i=self->vbegin(), end=self->vend();
-        for ( ; i!=end; ++i) {
-            double v = i->value();
-            Date* d = new Date(i->date());
-            Scheme_Object* car = SWIG_MakePtr(d, SWIGTYPE_p_Date);
-            Scheme_Object* cdr = scheme_make_double(v);
-            Scheme_Object* cons = scheme_make_pair(car,cdr);
-            scheme_apply(proc,1,&cons);
+        #elif defined(SWIGGUILE)
+        void for_each(SCM proc) {
+            History::const_iterator i=self->begin(), end=self->end();
+            for ( ; i!=end; ++i) {
+                double v = i->value();
+                SCM entry;
+                if (v == Null<double>()) {
+                    entry = SCM_BOOL_F;
+                } else {
+                    Date* d = new Date(i->date());
+                    SCM car = SWIG_Guile_MakePtr(d, SWIGTYPE_p_Date);
+                    SCM cdr = gh_double2scm(v);
+                    entry = gh_cons(car,cdr);
+                }
+                gh_call1(proc,entry);
+            }
         }
-    }
-    #elif defined(SWIGGUILE)
-    void for_each(SCM proc) {
-        History::const_iterator i=self->begin(), end=self->end();
-        for ( ; i!=end; ++i) {
-            double v = i->value();
-            SCM entry;
-            if (v == Null<double>()) {
-                entry = SCM_BOOL_F;
-            } else {
+        void for_each_valid(SCM proc) {
+            History::const_valid_iterator i=self->vbegin(), end=self->vend();
+            for ( ; i!=end; ++i) {
+                double v = i->value();
                 Date* d = new Date(i->date());
                 SCM car = SWIG_Guile_MakePtr(d, SWIGTYPE_p_Date);
                 SCM cdr = gh_double2scm(v);
-                entry = gh_cons(car,cdr);
+                SCM cons = gh_cons(car,cdr);
+                gh_call1(proc,cons);
             }
-            gh_call1(proc,entry);
         }
+        %scheme%{
+            (define (History-map h f)
+              (let ((results '()))
+                (History-for-each h (lambda (e)
+                                      (if e
+                                          (set! results (cons (f e) results))
+                                          (set! results (cons #f results)))))
+                (reverse results)))
+            (define (History-map-valid h f)
+              (let ((results '()))
+                (History-for-each-valid h (lambda (e)
+                                            (set! results 
+                                                  (cons (f e) results))))
+                (reverse results)))
+            (export History-map
+                    History-map-valid)
+        %}
+        #endif
     }
-    void for_each_valid(SCM proc) {
-        History::const_valid_iterator i=self->vbegin(), end=self->vend();
-        for ( ; i!=end; ++i) {
-            double v = i->value();
-            Date* d = new Date(i->date());
-            SCM car = SWIG_Guile_MakePtr(d, SWIGTYPE_p_Date);
-            SCM cdr = gh_double2scm(v);
-            SCM cons = gh_cons(car,cdr);
-            gh_call1(proc,cons);
-        }
-    }
-    %scheme%{
-        (define (History-map h f)
-          (let ((results '()))
-            (History-for-each h (lambda (e)
-                                  (if e
-                                      (set! results (cons (f e) results))
-                                      (set! results (cons #f results)))))
-            (reverse results)))
-        (define (History-map-valid h f)
-          (let ((results '()))
-            (History-for-each-valid h (lambda (e)
-                                        (set! results (cons (f e) results))))
-            (reverse results)))
-        (export History-map
-                History-map-valid)
-    %}
-    #endif
-}
+};
 
 
 #endif

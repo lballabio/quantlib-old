@@ -30,6 +30,7 @@
 using QuantLib::Instrument;
 %}
 
+%template(Instrument) Handle<Instrument>;
 #if defined(SWIGRUBY)
 %rename("isExpired?")   Handle<Instrument>::isExpired;
 %rename("recalculate!") Handle<Instrument>::recalculate;
@@ -39,7 +40,6 @@ using QuantLib::Instrument;
 %rename("expired?")     Handle<Instrument>::isExpired;
 %rename("recalculate!") Handle<Instrument>::recalculate;
 #endif
-%template(Instrument) Handle<Instrument>;
 IsObservable(Handle<Instrument>);
 %extend Handle<Instrument> {
 	std::string isinCode() {
@@ -81,14 +81,16 @@ typedef Handle<Instrument> StockHandle;
 // Fake inheritance between Handles
 
 %rename(Stock) StockHandle;
-class StockHandle : public Handle<Instrument> {};
-%extend StockHandle {
-    StockHandle(const RelinkableHandle<MarketElement>& quote,
-                const std::string& isinCode = "unknown", 
-                const std::string& description = "stock") {
-        return new StockHandle(new Stock(quote,isinCode,description));
+class StockHandle : public Handle<Instrument> {
+  public:
+    %extend {
+        StockHandle(const RelinkableHandle<MarketElement>& quote,
+                    const std::string& isinCode = "unknown", 
+                    const std::string& description = "stock") {
+            return new StockHandle(new Stock(quote,isinCode,description));
+        }
     }
-}
+};
 
 
 #endif

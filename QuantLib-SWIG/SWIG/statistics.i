@@ -29,36 +29,32 @@
 using QuantLib::Math::Statistics;
 %}
 
-#if defined(SWIGRUBY)
-%rename("reset!")                Statistics::reset;
-#elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("weight-sum")            Statistics::weightSum;
-%rename("standard-deviation")    Statistics::standardDeviation;
-%rename("downside-variance")     Statistics::downsideVariance;
-%rename("downside-deviation")    Statistics::downsideDeviation;
-%rename("error-estimate")        Statistics::errorEstimate;
-%rename("reset!")                Statistics::reset;
-#endif
-
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-// resolve overloading
-%rename("add_single")             Statistics::add(double,double);
-%rename("add_sequence")           Statistics::add(const std::vector<double>&);
-%rename("add_weighted_sequence")  Statistics::add(const std::vector<double>&,
-                                                  const std::vector<double>&);
-#if defined(SWIGGUILE)
-%scheme %{
-    (define (Statistics-add stats value . weight)
-      (let ((method (cond ((number? value) Statistics-add-single)
-                          ((null? weight) Statistics-add-sequence)
-                          (else Statistics-add-weighted-sequence))))
-        (apply method stats value weight)))
-    (export Statistics-add)
-%}
-#endif
-#endif
-
 class Statistics {
+    #if defined(SWIGRUBY)
+    %rename("reset!")                reset;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("weight-sum")            weightSum;
+    %rename("standard-deviation")    standardDeviation;
+    %rename("downside-variance")     downsideVariance;
+    %rename("downside-deviation")    downsideDeviation;
+    %rename("error-estimate")        errorEstimate;
+    %rename("reset!")                reset;
+    // resolve overloading
+    %rename("add_single")            add(double,double);
+    %rename("add_sequence")          add(const std::vector<double>&);
+    %rename("add_weighted_sequence") add(const std::vector<double>&,
+                                         const std::vector<double>&);
+    #if defined(SWIGGUILE)
+    %scheme %{
+        (define (Statistics-add stats value . weight)
+          (let ((method (cond ((number? value) Statistics-add-single)
+                              ((null? weight) Statistics-add-sequence)
+                              (else Statistics-add-weighted-sequence))))
+            (apply method stats value weight)))
+        (export Statistics-add)
+    %}
+    #endif
+    #endif
   public:
     Size samples() const;
     double weightSum() const;
@@ -73,19 +69,19 @@ class Statistics {
     double min() const;
     double max() const;
     // Modifiers
-    void add(double value, double weight = 1.0);
     void reset();
+    void add(double value, double weight = 1.0);
+    %extend {
+        void add(const std::vector<double>& values) {
+            self->addSequence(values.begin(), values.end());
+        }
+        void add(const std::vector<double>& values, 
+                 const std::vector<double>& weights) {
+            self->addSequence(values.begin(), values.end(), weights.begin());
+        }
+    }
 };
 
-%extend Statistics {
-    void add(const std::vector<double>& values) {
-        self->addSequence(values.begin(), values.end());
-    }
-    void add(const std::vector<double>& values, 
-             const std::vector<double>& weights) {
-        self->addSequence(values.begin(), values.end(), weights.begin());
-    }
-}
 
 
 %{

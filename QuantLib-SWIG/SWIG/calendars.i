@@ -78,41 +78,40 @@ using QuantLib::Calendars::Toronto;
 using QuantLib::Calendars::Sydney;
 %}
 
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("is-business-day?") Calendar::isBusinessDay;
-%rename("is-holiday?")      Calendar::isHoliday;
-%rename("equal")            Calendar::__eq__;
-%rename(">string")          Calendar::__str__;
-#endif
 #if defined(SWIGGUILE)
 %scheme%{ 
-    (define Calendar=? Calendar-equal)
-    (export Calendar=?)
 %}
 #endif
 
-#if defined(SWIGRUBY)
-%rename("isBusinessDay?") Calendar::isBusinessDay;
-%rename("isHoliday?")     Calendar::isHoliday;
-#endif
 
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-// resolve overloading
-%rename(advance_period) Calendar::advance(const Date&,const Period&,
-                                          RollingConvention);
-%rename(advance_units)  Calendar::advance(const Date&,int,TimeUnit,
-                                          RollingConvention);
-#if defined(SWIGGUILE)
-%scheme %{
-    (define (Calendar-advance . args)
-      (if (integer? (caddr args))
+class Calendar {
+    #if defined(SWIGRUBY)
+    %rename("isBusinessDay?")   isBusinessDay;
+    %rename("isHoliday?")       isHoliday;
+    #endif
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("is-business-day?") isBusinessDay;
+    %rename("is-holiday?")      isHoliday;
+    %rename("equal")            __eq__;
+    %rename(">string")          __str__;
+    // resolve overloading
+    %rename(advance_period)     advance(const Date&,const Period&,
+                                        RollingConvention);
+    %rename(advance_units)      advance(const Date&,int,TimeUnit,
+                                        RollingConvention);
+    #if defined(SWIGGUILE)
+    %scheme %{
+        (define (Calendar-advance . args)
+         (if (integer? (caddr args))
           (apply Calendar-advance-units args)
           (apply Calendar-advance-period args)))
-    (export Calendar-advance)
-%}
-#endif
-#endif
-class Calendar {
+            (export Calendar-advance)
+            
+            (define Calendar=? Calendar-equal)
+            (export Calendar=?)
+            %}
+    #endif
+    #endif
   private:
     Calendar();
   public:
@@ -125,54 +124,51 @@ class Calendar {
                  RollingConvention convention = QuantLib::Following);
     Date advance(const Date& d, const Period& period,
                  RollingConvention convention = QuantLib::Following);
+    %extend {
+        Calendar(const std::string& name) {
+            std::string s = StringFormatter::toLowercase(name);
+            if (s == "target" || s == "euro" || s == "eur")
+                return new TARGET;
+            else if (s == "newyork" || s == "ny" || s == "nyc")
+                return new NewYork;
+            else if (s == "london" || s == "lon")
+                return new London;
+            else if (s == "milan" || s == "mil")
+                return new Milan;
+            else if (s == "frankfurt" || s == "fft")
+                return new Frankfurt;
+            else if (s == "zurich" || s == "zur")
+                return new Zurich;
+            else if (s == "helsinki")
+                return new Helsinki;
+            else if (s == "johannesburg")
+                return new Johannesburg;
+            else if (s == "wellington")
+                return new Wellington;
+            else if (s == "tokyo")
+                return new Tokyo;
+            else if (s == "toronto")
+                return new Toronto;
+            else if (s == "sydney")
+                return new Sydney;
+            else
+                throw Error("Unknown calendar: " + name);
+            QL_DUMMY_RETURN((Calendar*)(0));
+        }
+        std::string __str__() {
+            return self->name()+" calendar";
+        }
+        bool __eq__(const Calendar& other) {
+            return (*self) == other;
+        }
+        #if defined(SWIGPYTHON)
+        bool __ne__(const Calendar& other) {
+            return (*self) != other;
+        }
+        #endif
+    }
 };
 ReturnByValue(Calendar);
-
-%extend Calendar {
-    Calendar(const std::string& name) {
-        std::string s = StringFormatter::toLowercase(name);
-        if (s == "target" || s == "euro" || s == "eur")
-            return new TARGET;
-        else if (s == "newyork" || s == "ny" || s == "nyc")
-            return new NewYork;
-        else if (s == "london" || s == "lon")
-            return new London;
-        else if (s == "milan" || s == "mil")
-            return new Milan;
-        else if (s == "frankfurt" || s == "fft")
-            return new Frankfurt;
-        else if (s == "zurich" || s == "zur")
-            return new Zurich;
-        else if (s == "helsinki")
-            return new Helsinki;
-        else if (s == "johannesburg")
-            return new Johannesburg;
-        else if (s == "wellington")
-            return new Wellington;
-        else if (s == "tokyo")
-            return new Tokyo;
-        else if (s == "toronto")
-            return new Toronto;
-        else if (s == "sydney")
-            return new Sydney;
-        else
-            throw Error("Unknown calendar: " + name);
-        QL_DUMMY_RETURN((Calendar*)(0));
-    }
-    std::string __str__() {
-        return self->name()+" calendar";
-    }
-    bool __eq__(const Calendar& other) {
-        return (*self) == other;
-    }
-    
-    #if defined(SWIGPYTHON)
-    bool __ne__(const Calendar& other) {
-        return (*self) != other;
-    }
-    #endif
-    
-}
 
 
 #endif

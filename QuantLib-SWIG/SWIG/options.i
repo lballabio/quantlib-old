@@ -77,55 +77,57 @@ using QuantLib::Instruments::VanillaOption;
 typedef Handle<Instrument> VanillaOptionHandle;
 %}
 
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("dividend-rho")       VanillaOptionHandle::dividendRho;
-%rename("implied-volatility") VanillaOptionHandle::impliedVolatility;
-#endif
 
 %rename(VanillaOption) VanillaOptionHandle;
-class VanillaOptionHandle : public Handle<Instrument> {};
-
-%extend VanillaOptionHandle {
-    VanillaOptionHandle(OptionType type,
-                        const RelinkableHandle<MarketElement>& underlying, 
-                        double strike,
-                        const RelinkableHandle<TermStructure>& dividendYield,
-                        const RelinkableHandle<TermStructure>& riskFreeRate,
-                        const Date& exerciseDate,
-                        const RelinkableHandle<MarketElement>& volatility,
-                        const Handle<PricingEngine>& engine,
-                        const std::string& isinCode = "unknown", 
-                        const std::string& desc = "option") {
-        return new VanillaOptionHandle(
-            new VanillaOption(type,underlying,strike,dividendYield,
-                              riskFreeRate,exerciseDate,volatility,
-                              engine,isinCode,desc));
+class VanillaOptionHandle : public Handle<Instrument> {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("dividend-rho")       dividendRho;
+    %rename("implied-volatility") impliedVolatility;
+    #endif
+  public:
+    %extend {
+        VanillaOptionHandle(
+                OptionType type,
+                const RelinkableHandle<MarketElement>& underlying, 
+                double strike,
+                const RelinkableHandle<TermStructure>& dividendYield,
+                const RelinkableHandle<TermStructure>& riskFreeRate,
+                const Date& exerciseDate,
+                const RelinkableHandle<MarketElement>& volatility,
+                const Handle<PricingEngine>& engine,
+                const std::string& isinCode = "unknown", 
+                const std::string& desc = "option") {
+            return new VanillaOptionHandle(
+                new VanillaOption(type,underlying,strike,dividendYield,
+                                  riskFreeRate,exerciseDate,volatility,
+                                  engine,isinCode,desc));
+        }
+        double delta() {
+            return Handle<VanillaOption>(*self)->delta();
+        }
+        double gamma() {
+            return Handle<VanillaOption>(*self)->gamma();
+        }
+        double theta() {
+            return Handle<VanillaOption>(*self)->theta();
+        }
+        double vega() {
+            return Handle<VanillaOption>(*self)->vega();
+        }
+        double rho() {
+            return Handle<VanillaOption>(*self)->rho();
+        }
+        double dividendRho() {
+            return Handle<VanillaOption>(*self)->dividendRho();
+        }
+        double impliedVolatility(double targetValue, double accuracy = 1.0e-4,
+                                 Size maxEvaluations = 100,
+                                 double minVol = 1.0e-4, double maxVol = 4.0) {
+            return Handle<VanillaOption>(*self)->impliedVolatility(
+                targetValue,accuracy,maxEvaluations,minVol,maxVol);
+        }
     }
-    double delta() {
-        return Handle<VanillaOption>(*self)->delta();
-    }
-    double gamma() {
-        return Handle<VanillaOption>(*self)->gamma();
-    }
-    double theta() {
-        return Handle<VanillaOption>(*self)->theta();
-    }
-    double vega() {
-        return Handle<VanillaOption>(*self)->vega();
-    }
-    double rho() {
-        return Handle<VanillaOption>(*self)->rho();
-    }
-    double dividendRho() {
-        return Handle<VanillaOption>(*self)->dividendRho();
-    }
-    double impliedVolatility(double targetValue, double accuracy = 1.0e-4,
-                             Size maxEvaluations = 100,
-                             double minVol = 1.0e-4, double maxVol = 4.0) {
-        return Handle<VanillaOption>(*self)->impliedVolatility(
-            targetValue,accuracy,maxEvaluations,minVol,maxVol);
-    }
-}
+};
 
 
 // European engines
@@ -136,13 +138,15 @@ typedef Handle<PricingEngine> EuropeanAnalyticEngineHandle;
 %}
 
 %rename(EuropeanAnalyticEngine) EuropeanAnalyticEngineHandle;
-class EuropeanAnalyticEngineHandle : public Handle<PricingEngine> {};
-
-%extend EuropeanAnalyticEngineHandle {
-    EuropeanAnalyticEngineHandle() {
-        return new EuropeanAnalyticEngineHandle(new EuropeanAnalyticalEngine);
+class EuropeanAnalyticEngineHandle : public Handle<PricingEngine> {
+  public:
+    %extend {
+        EuropeanAnalyticEngineHandle() {
+            return new EuropeanAnalyticEngineHandle(
+                new EuropeanAnalyticalEngine);
+        }
     }
-}
+};
 
 
 %{
@@ -180,16 +184,16 @@ MapToString(BinomialEngineType,binomialEngineTypeFromString,
             binomialEngineTypeToString);
 
 %rename(EuropeanBinomialEngine) EuropeanBinomialEngineHandle;
-class EuropeanBinomialEngineHandle : public Handle<PricingEngine> {};
-
-%extend EuropeanBinomialEngineHandle {
-    EuropeanBinomialEngineHandle(BinomialEngineType type,
-                                 Size steps) {
-        return new EuropeanBinomialEngineHandle
-            (new EuropeanBinomialEngine(type,steps));
+class EuropeanBinomialEngineHandle : public Handle<PricingEngine> {
+  public:
+    %extend {
+        EuropeanBinomialEngineHandle(BinomialEngineType type,
+                                     Size steps) {
+            return new EuropeanBinomialEngineHandle
+                (new EuropeanBinomialEngine(type,steps));
+        }
     }
-}
-
+};
 
 
 #endif
