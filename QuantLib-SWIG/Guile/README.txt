@@ -1,13 +1,15 @@
 
 The C++ wrappers for the QuantLib-Guile extension module are created
-by means of SWIG (Simple Wrapper Interface Generator) available from
-<http://swig.sourceforge.net/>. Features used in the QuantLib-Guile
+by means of SWIG (Simplified Wrapper and Interface Generator) available
+from <http://www.swig.org/>.  Features used in the QuantLib-Guile
 interface files require version 1.3.18 or later of SWIG.
 
 The wrappers are generated on all supported platforms by issuing the command
     guile -s setup.scm wrap
 The above assumes that the SWIG executable is named "swig" and can be found
-in the system path.
+in the system path. However, this step is only necessary if you are compiling
+from sources checked out from the CVS repository. It is not required if you
+are using a distributed tarball.
 
 The building and installation process consists of the following commands:
     guile -s setup.scm build
