@@ -20,6 +20,7 @@
 #ifndef quantlib_instruments_i
 #define quantlib_instruments_i
 
+%include common.i
 %include types.i
 %include marketelements.i
 %include observer.i
@@ -27,12 +28,74 @@
 
 %{
 using QuantLib::Instrument;
-using QuantLib::Handle;
-typedef Handle<Observable> InstrumentHandle;
 %}
 
-// Export Handle<Instrument>
-%rename(Instrument) InstrumentHandle;
+#if defined(SWIGRUBY)
+%rename("null?") isNull;
+%rename("toObservable") asObservable;
+%rename("isExpired?")   isExpired;
+%rename("recalculate!") recalculate;
+#elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("null?") isNull;
+%rename(">Observable") asObservable;
+%rename("isin-code")    isinCode;
+%rename(">string")      __str__;
+%rename("expired?")     isExpired;
+%rename("recalculate!") recalculate;
+#endif
+template <>
+class Handle<Instrument> {
+  public:
+    #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    bool isNull();
+    #endif
+    %addmethods {
+        std::string isinCode() {
+            return (*self)->isinCode();
+        }
+        std::string description() {
+            return (*self)->description();
+        }
+        double NPV() {
+            return (*self)->NPV();
+        }
+        bool isExpired() {
+            return (*self)->isExpired();
+        }
+        void recalculate() {
+            (*self)->recalculate();
+        }
+        std::string __str__() {
+            Handle<Instrument> h(*self);
+            if (self->isNull())
+                return "Null instrument";
+            std::string isin = (*self)->isinCode();
+            if (isin == "")
+                isin = "unknown";
+            std::string desc = (*self)->description();
+            if (desc == "")
+                desc = "no description available";
+            return ("Instrument: "+isin+" ("+desc+")");
+        }
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        Handle<Observable> asObservable() {
+            return Handle<Observable>(*self);
+        }
+        #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        Handle<Observable>* asObservable() {
+            return new Handle<Observable>(*self);
+        }
+        #endif
+        #if defined(SWIGPYTHON) 
+        bool __nonzero__() {
+            return !(self->isNull());
+        }
+        #endif
+    }
+};
+%template(Instrument) Handle<Instrument>;
+
+/*
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename("isin-code")    isinCode;
 %rename(">string")      __str__;
@@ -42,50 +105,44 @@ typedef Handle<Observable> InstrumentHandle;
 %rename("isExpired?")   isExpired;
 %rename("recalculate!") recalculate;
 #endif
-
-
-class InstrumentHandle : public ObservableHandle {
-  private:
-    InstrumentHandle();
-};
-
-// replicate the Instrument interface
-%addmethods InstrumentHandle {
+%template(Instrument) Handle<Instrument>;
+IsObservable(Handle<Instrument>);
+%addmethods Handle<Instrument> {
 	std::string isinCode() {
-		return Handle<Instrument>(*self)->isinCode();
+		return (*self)->isinCode();
 	}
 	std::string description() {
-		return Handle<Instrument>(*self)->description();
+		return (*self)->description();
 	}
 	double NPV() {
-		return Handle<Instrument>(*self)->NPV();
+		return (*self)->NPV();
 	}
 	bool isExpired() {
-		return Handle<Instrument>(*self)->isExpired();
+		return (*self)->isExpired();
 	}
 	void recalculate() {
-		Handle<Instrument>(*self)->recalculate();
+		(*self)->recalculate();
 	}
 	std::string __str__() {
         Handle<Instrument> h(*self);
-	    if (h.isNull())
+	    if (self->isNull())
 	        return "Null instrument";
-    	std::string isin = h->isinCode();
+    	std::string isin = (*self)->isinCode();
     	if (isin == "")
     		isin = "unknown";
-    	std::string desc = h->description();
+    	std::string desc = (*self)->description();
     	if (desc == "")
     		desc = "no description available";
     	return ("Instrument: "+isin+" ("+desc+")");
 	}
 }
-
+*/
 
 // actual instruments
 
 %{
 using QuantLib::Instruments::Stock;
-typedef Handle<Observable> StockHandle;
+typedef Handle<Instrument> StockHandle;
 std::string StockDefaultIsinCode = "unknown";
 std::string StockDefaultDescription = "stock";
 %}
@@ -93,10 +150,9 @@ std::string StockDefaultDescription = "stock";
 // Fake inheritance between Handles
 
 %rename(Stock) StockHandle;
-class StockHandle : public InstrumentHandle {};
-
+class StockHandle : public Handle<Instrument> {};
 %addmethods StockHandle {
-    StockHandle(const MarketElementRelinkableHandle& quote,
+    StockHandle(const RelinkableHandle<MarketElement>& quote,
                 const std::string& isinCode = StockDefaultIsinCode, 
                 const std::string& description = StockDefaultDescription) {
         return new StockHandle(new Stock(quote,isinCode,description));

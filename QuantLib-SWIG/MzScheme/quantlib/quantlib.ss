@@ -38,3 +38,9 @@
                                 (set! results (cons (f e) results))))
     (reverse results)))
 
+(define MarketElementHandle-old-init new-MarketElementHandle)
+(define (new-MarketElementHandle . args)
+  (let ((h (MarketElementHandle-old-init)))
+    (if (not (null? args))
+        (MarketElementHandle-link-to! h (car args)))
+    h))

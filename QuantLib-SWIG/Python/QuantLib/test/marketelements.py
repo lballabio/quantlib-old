@@ -32,8 +32,24 @@ class MarketElementTest(unittest.TestCase):
         flag = None
         me = QuantLib.SimpleMarketElement(0.0)
         obs = QuantLib.Observer(raiseFlag)
-        obs.registerWith(me)
+        obs.registerWith(me.asObservable())
         me.setValue(3.14)
+        if not flag:
+            self.fail("Observer was not notified of market element change")
+    def testObservableHandle(self):
+        "Testing observability of market element handles"
+        global flag
+        flag = None
+        me1 = QuantLib.SimpleMarketElement(0.0)
+        h = QuantLib.MarketElementHandle(me1)
+        obs = QuantLib.Observer(raiseFlag)
+        obs.registerWith(h.asObservable())
+        me1.setValue(3.14)
+        if not flag:
+            self.fail("Observer was not notified of market element change")
+        flag = None
+        me2 = QuantLib.SimpleMarketElement(0.0)
+        h.linkTo(me2)
         if not flag:
             self.fail("Observer was not notified of market element change")
     def testDerived(self):

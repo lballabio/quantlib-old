@@ -44,6 +44,8 @@
                   "Testing derived market elements")
   (suite-add-test suite Market-element-test-3
                   "Testing composite market elements")
+  (suite-add-test suite Market-element-handle-test
+                  "Testing observability of market element handles")
   (suite-add-test suite Risk-statistics-test
                   "Testing risk statistics")
   (suite-add-test suite Solver-1D-test

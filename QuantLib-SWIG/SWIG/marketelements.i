@@ -20,63 +20,109 @@
 #ifndef quantlib_market_elements_i
 #define quantlib_market_elements_i
 
+%include common.i
 %include observer.i
 %include functions.i
 
 %{
 using QuantLib::MarketElement;
-using QuantLib::Handle;
-using QuantLib::RelinkableHandle;
-typedef Handle<Observable> MarketElementHandle;
-typedef RelinkableHandle<MarketElement> MarketElementRelinkableHandle;
-MarketElementHandle NullMarketElement;
 %}
 
 // Export handles
-%rename(MarketElement) MarketElementHandle;
-%rename(MarketElementHandle) MarketElementRelinkableHandle;
-#if defined(SWIGRUBY)
-%rename("null?")   isNull;
-%rename("linkTo!") linkTo;
-#elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("null?")    isNull;
-%rename("link-to!") linkTo;
-#endif
 
-class MarketElementHandle : public ObservableHandle {
-  private:
-    MarketElementHandle();
+#if defined(SWIGRUBY)
+%rename("null?") isNull;
+%rename("toObservable") asObservable;
+#elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("null?") isNull;
+%rename(">Observable") asObservable;
+#endif
+template <>
+class Handle<MarketElement> {
+  public:
+    #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    bool isNull();
+    #endif
+    %addmethods {
+        double value() {
+            return (*self)->value();
+        }
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        Handle<Observable> asObservable() {
+            return Handle<Observable>(*self);
+        }
+        #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        Handle<Observable>* asObservable() {
+            return new Handle<Observable>(*self);
+        }
+        #endif
+        #if defined(SWIGPYTHON) 
+        bool __nonzero__() {
+            return !(self->isNull());
+        }
+        #endif
+    }
 };
 
-%addmethods MarketElementHandle {
+%template(MarketElement) Handle<MarketElement>;
+/*
+%addmethods Handle<MarketElement> {
 	double value() {
-		return Handle<MarketElement>(*self)->value();
+		return (*self)->value();
 	}
 }
+IsObservable(Handle<MarketElement>);
+*/
 
-class MarketElementRelinkableHandle {
+#if defined(SWIGRUBY)
+%rename("linkTo!") linkTo;
+#elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("link-to!") linkTo;
+#endif
+template <>
+class RelinkableHandle<MarketElement> {
   public:
-    MarketElementRelinkableHandle(
-        const MarketElementHandle& h = NullMarketElement);
-	void linkTo(const MarketElementHandle&);
+    void linkTo(const Handle<MarketElement>&);
     #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    bool isNull() const;
+    bool isNull();
     #endif
+    %addmethods {
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        Handle<Observable> asObservable() {
+            return Handle<Observable>(*self);
+        }
+        #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        Handle<Observable>* asObservable() {
+            return new Handle<Observable>(*self);
+        }
+        #endif
+        #if defined(SWIGPYTHON)
+        bool __nonzero__() {
+            return !(self->isNull());
+        }
+        #endif
+    }
 };
 
-%addmethods MarketElementRelinkableHandle {
-    #if defined(SWIGPYTHON)
-    bool __nonzero__() {
-        return !self->isNull();
-    }
-    #endif
-}
+%template(MarketElementHandle) RelinkableHandle<MarketElement>;
+// IsObservable(RelinkableHandle<MarketElement>);
+#if defined(SWIGGUILE)
+%scheme%{
+(define MarketElementHandle-old-init new-MarketElementHandle)
+(define (new-MarketElementHandle . args)
+  (let ((h (MarketElementHandle-old-init)))
+    (if (not (null? args))
+        (MarketElementHandle-link-to! h (car args)))
+    h))
+%}
+#endif
+
 
 
 // actual market elements
 %{
 using QuantLib::SimpleMarketElement;
-typedef Handle<Observable> SimpleMarketElementHandle;
+typedef Handle<MarketElement> SimpleMarketElementHandle;
 %}
 
 #if defined(SWIGRUBY)
@@ -87,7 +133,7 @@ typedef Handle<Observable> SimpleMarketElementHandle;
 
 // Fake inheritance between Handles
 %rename(SimpleMarketElement) SimpleMarketElementHandle;
-class SimpleMarketElementHandle : public MarketElementHandle {};
+class SimpleMarketElementHandle : public Handle<MarketElement> {};
 
 %addmethods SimpleMarketElementHandle {
     SimpleMarketElementHandle(double value) {
@@ -104,27 +150,25 @@ class SimpleMarketElementHandle : public MarketElementHandle {};
 %{
 using QuantLib::DerivedMarketElement;
 using QuantLib::CompositeMarketElement;
-typedef Handle<Observable>
-    DerivedMarketElementHandle;
-typedef Handle<Observable> 
-    CompositeMarketElementHandle;
+typedef Handle<MarketElement> DerivedMarketElementHandle;
+typedef Handle<MarketElement> CompositeMarketElementHandle;
 %}
 
 %rename(DerivedMarketElement) DerivedMarketElementHandle;
-class DerivedMarketElementHandle : public MarketElementHandle {};
+class DerivedMarketElementHandle : public Handle<MarketElement> {};
 %rename(CompositeMarketElement) CompositeMarketElementHandle;
-class CompositeMarketElementHandle : public MarketElementHandle {};
+class CompositeMarketElementHandle : public Handle<MarketElement> {};
 
 %addmethods DerivedMarketElementHandle {
     #if defined(SWIGPYTHON)
-    DerivedMarketElementHandle(const MarketElementRelinkableHandle& h,
+    DerivedMarketElementHandle(const RelinkableHandle<MarketElement>& h,
                                PyObject* function) {
         return new DerivedMarketElementHandle(
             new DerivedMarketElement<UnaryFunction>(
                 h,UnaryFunction(function)));
     }
     #elif defined(SWIGMZSCHEME)
-    DerivedMarketElementHandle(const MarketElementRelinkableHandle& h,
+    DerivedMarketElementHandle(const RelinkableHandle<MarketElement>& h,
                                Scheme_Object* function) {
         return new DerivedMarketElementHandle(
             new DerivedMarketElement<UnaryFunction>(
@@ -135,16 +179,16 @@ class CompositeMarketElementHandle : public MarketElementHandle {};
 
 %addmethods CompositeMarketElementHandle {
     #if defined(SWIGPYTHON)
-    CompositeMarketElementHandle(const MarketElementRelinkableHandle& h1,
-                                 const MarketElementRelinkableHandle& h2,
+    CompositeMarketElementHandle(const RelinkableHandle<MarketElement>& h1,
+                                 const RelinkableHandle<MarketElement>& h2,
                                  PyObject* function) {
         return new CompositeMarketElementHandle(
             new CompositeMarketElement<BinaryFunction>(
                 h1,h2,BinaryFunction(function)));
     }
     #elif defined(SWIGMZSCHEME)
-    CompositeMarketElementHandle(const MarketElementRelinkableHandle& h1,
-                                 const MarketElementRelinkableHandle& h2,
+    CompositeMarketElementHandle(const RelinkableHandle<MarketElement>& h1,
+                                 const RelinkableHandle<MarketElement>& h2,
                                  Scheme_Object* function) {
         return new CompositeMarketElementHandle(
             new CompositeMarketElement<BinaryFunction>(

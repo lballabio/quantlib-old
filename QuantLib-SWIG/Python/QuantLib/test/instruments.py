@@ -32,9 +32,10 @@ class InstrumentTest(unittest.TestCase):
         flag = None
         me = QuantLib.SimpleMarketElement(0.0)
         h = QuantLib.MarketElementHandle(me)
+        h.linkTo(me)
         s = QuantLib.Stock(h)
         obs = QuantLib.Observer(raiseFlag)
-        obs.registerWith(s)
+        obs.registerWith(s.asObservable())
         me.setValue(3.14)
         if not flag:
             self.fail("Observer was not notified of stock value change")

@@ -40,11 +40,9 @@ History.__init__ = History_new___init__
 MarketElementHandle._old___init__ = MarketElementHandle.__init__
 MarketElementHandle._old_linkTo = MarketElementHandle.linkTo
 def MarketElementHandle_new___init__(self,h=None):
+    self._old___init__()
     if h:
-        self._old___init__(h)
-    else:
-        self._old___init__()
-    self.currentLink = h
+        self.linkTo(h)
 def MarketElementHandle_new_linkTo(self,h):
     self._old_linkTo(h)
     self.currentLink = h

@@ -27,10 +27,48 @@
 // generally useful classes
 using QuantLib::Error;
 using QuantLib::Handle;
+using QuantLib::RelinkableHandle;
 using QuantLib::IntegerFormatter;
 using QuantLib::DoubleFormatter;
 using QuantLib::StringFormatter;
 %}
+
+#if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("null?") isNull;
+#endif
+template <class T>
+class Handle {
+  public:
+    #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    bool isNull();
+    #elif defined(SWIGPYTHON)
+    %addmethods {
+        bool __nonzero__() {
+            return !(self->isNull());
+        }
+    }
+    #endif
+};
+
+#if defined(SWIGRUBY)
+%rename("linkTo!") linkTo;
+#elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("link-to!") linkTo;
+#endif
+template <class T>
+class RelinkableHandle {
+  public:
+    void linkTo(const Handle<T>&);
+    #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    bool isNull();
+    #elif defined(SWIGPYTHON)
+    %addmethods {
+        bool __nonzero__() {
+            return !(self->isNull());
+        }
+    }
+    #endif
+};
 
 
 // import opaque values from the scripting language API

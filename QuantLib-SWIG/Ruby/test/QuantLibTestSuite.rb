@@ -34,6 +34,7 @@ suite.add_test(DayCounterTest.suite)
 suite.add_test(DistributionTest.suite)
 suite.add_test(InstrumentTest.suite)
 suite.add_test(MarketElementTest.suite)
+suite.add_test(MarketElementHandleTest.suite)
 suite.add_test(RiskStatisticsTest.suite)
 suite.add_test(Solver1DTest.suite)
 

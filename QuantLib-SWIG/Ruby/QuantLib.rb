@@ -82,6 +82,16 @@ module QuantLibc
     end
   end
 
+  class MarketElementHandle
+    alias cpp_initialize initialize
+    def initialize(marketElement = nil)
+      cpp_initialize()
+      unless marketElement.nil?
+        linkTo! marketElement
+      end
+    end
+  end
+
 end
 
 QuantLib = QuantLibc

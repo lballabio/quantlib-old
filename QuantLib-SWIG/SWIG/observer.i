@@ -25,16 +25,21 @@
 %{
 using QuantLib::Patterns::Observer;
 using QuantLib::Patterns::Observable;
-
-typedef Handle<Observer> ObserverHandle;
-typedef Handle<Observable> ObservableHandle;
 %}
 
-%rename(Observable) ObservableHandle;
-class ObservableHandle {
-  private:
-    ObservableHandle();
-};
+%template(Observable) Handle<Observable>;
+%define IsObservable(Type)
+#if defined(SWIGRUBY)
+%rename("toObservable") asObservable;
+#elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename(">Observable") asObservable;
+#endif
+%addmethods Type {
+    Handle<Observable> asObservable() {
+        return Handle<Observable>(*self);
+    }
+}
+%enddef
 
         
 #if defined(SWIGPYTHON)
@@ -82,8 +87,8 @@ class PyObserver : public Observer {
 class PyObserver {
   public:
 	PyObserver(PyObject* callback);
-    void registerWith(const ObservableHandle&);
-    void unregisterWith(const ObservableHandle&);
+    void registerWith(const Handle<Observable>&);
+    void unregisterWith(const Handle<Observable>&);
 };
 
 #elif defined(SWIGRUBY)
@@ -118,8 +123,8 @@ void markRubyObserver(void* p) {
 class RubyObserver {
   public:
 	RubyObserver(VALUE callback);
-    void registerWith(const ObservableHandle&);
-    void unregisterWith(const ObservableHandle&);
+    void registerWith(const Handle<Observable>&);
+    void unregisterWith(const Handle<Observable>&);
 };
 
 #elif defined(SWIGMZSCHEME)
@@ -169,8 +174,8 @@ class MzObserver : public Observer {
 class MzObserver {
   public:
 	MzObserver(Scheme_Object* callback);
-    void registerWith(const ObservableHandle&);
-    void unregisterWith(const ObservableHandle&);
+    void registerWith(const Handle<Observable>&);
+    void unregisterWith(const Handle<Observable>&);
 };
 
 #elif defined(SWIGGUILE)
@@ -204,8 +209,8 @@ class GuileObserver : public Observer {
 class GuileObserver {
   public:
 	GuileObserver(SCM callback);
-    void registerWith(const ObservableHandle&);
-    void unregisterWith(const ObservableHandle&);
+    void registerWith(const Handle<Observable>&);
+    void unregisterWith(const Handle<Observable>&);
 };
 
 #endif
