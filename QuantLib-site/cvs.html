@@ -6,7 +6,7 @@
 "Ferdinando Ametrano (c) 2000, 2001">
 <meta name="doc-class" content="Draft">
 <title>QuantLib's CVS Repository</title>
-<meta name="description" content="QuantLib status">
+<meta name="description" content="QuantLib CVS">
 <meta name="keywords" content=
 "QuantLib, CVS, C++, library, finance, quantitative finance, quant, quants, analysts, developers">
 <!--includeHTML file="qlmeta.inc"-->
@@ -96,6 +96,8 @@ Platforms (exits)</a></li>
 (exits)</a></li>
 
 <li><a class="navlink" href="cvs.html">CVS</a></li>
+
+<li><a class="navlink" href="snapshot.html">Nightly Build</a></li>
 
 <li><a class="navlink" href=
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bugs
@@ -197,16 +199,16 @@ password for anonymous, simply press the Enter key.</p>
 
 <pre>
 export CVSROOT=:pserver:anonymous@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
-cvs login 
-cvs -z9 co -P modulename 
+cvs login
+cvs -z9 co -P modulename
 </pre>
 
 <p>Win32:</p>
 
 <pre>
 SET CVSROOT=:pserver:anonymous@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
-cvs login 
-cvs -z9 co -P modulename 
+cvs login
+cvs -z9 co -P modulename
 </pre>
 
 <p>Updates from within the module's directory do not need the
@@ -224,16 +226,16 @@ values. Enter your site password when prompted.</p>
 
 <pre>
 export CVSROOT=developername@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
-export CVS_RSH=ssh 
-cvs -z9 co -P modulename 
+export CVS_RSH=ssh
+cvs -z9 co -P modulename
 </pre>
 
 <p>Win32:</p>
 
 <pre>
 SET CVSROOT=developername@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
-SET CVS_RSH=ssh 
-cvs -z9 co -P modulename 
+SET CVS_RSH=ssh
+cvs -z9 co -P modulename
 </pre>
 
 <p>Updates from within the module's directory do not need the
