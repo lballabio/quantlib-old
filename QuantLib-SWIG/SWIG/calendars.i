@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2004 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -37,6 +37,7 @@ using QuantLib::NewYork;
 using QuantLib::NullCalendar;
 using QuantLib::Oslo;
 using QuantLib::Seoul;
+using QuantLib::Singapore;
 using QuantLib::Stockholm;
 using QuantLib::Sydney;
 using QuantLib::TARGET;
@@ -125,17 +126,25 @@ class Calendar {
     #if defined(SWIGRUBY)
     %rename("isBusinessDay?")   isBusinessDay;
     %rename("isHoliday?")       isHoliday;
+    %rename("addHoliday!")      addHoliday;
+    %rename("removeHoliday!")   removeHoliday;
+    %rename("load!")            load;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("is-business-day?") isBusinessDay;
     %rename("is-holiday?")      isHoliday;
+    %rename("add-holiday")      addHoliday;
+    %rename("remove-holiday")   removeHoliday;
     %rename(">string")          __str__;
     #endif
   private:
     Calendar();
   public:
     // constructor redefined below as string-based factory
-    bool isBusinessDay(const Date& d);
-    bool isHoliday(const Date& d);
+    bool isBusinessDay(const Date&);
+    bool isHoliday(const Date&);
+    void addHoliday(const Date&);
+    void removeHoliday(const Date&);
+    void load(const std::string& filename);
     Date roll(const Date& d, 
               RollingConvention convention = QuantLib::Following,
 	      const Date& origin = Date());
@@ -170,6 +179,8 @@ class Calendar {
                 return new Calendar(Oslo());
             else if (s == "seoul")
                 return new Calendar(Seoul());
+            else if (s == "singapore")
+                return new Calendar(Singapore());
             else if (s == "stockholm")
                 return new Calendar(Stockholm());
             else if (s == "sydney")
