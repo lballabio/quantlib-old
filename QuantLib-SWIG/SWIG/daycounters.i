@@ -61,7 +61,7 @@ class DayCounter {
             else if (s == "30/360i" || s == "30/360it")
                 return new DayCounter(Thirty360(Thirty360::Italian));
             else if (s == "actact" || s == "act/act" || 
-                     s == "act/act(b)" || s == "act/act (Bond)")
+                     s == "act/act(b)" || s == "act/act (bond)")
                 return new DayCounter(ActualActual(ActualActual::Bond));
             else if (s == "actacte" || s == "act/act(e)" 
                      || s == "act/act(Euro)")
