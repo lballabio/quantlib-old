@@ -19,6 +19,7 @@
     #include <oh/config.hpp>
 #endif
 #include <oh/objhandlerdefines.hpp>
+#include <oh/objecthandler.hpp>
 #include <oh/utilities.hpp>
 #include <oh/exception.hpp>
 #include <oh/logger.hpp>
@@ -65,6 +66,27 @@ namespace ObjHandler {
                 " value = " << property() << std::endl;
         } 
         return out;
+    }
+
+    void logObject(const std::string &handle) {
+        std::ostringstream msg;
+        obj_ptr object = 
+            ObjectHandler::instance().retrieveObject(handle);
+        if (!object) {
+            msg << "no object in repository with handle = " << handle << std::endl;
+        } else {
+            msg << "log dump of object with handle = " << handle << std::endl;
+            msg << object->getProperties();
+        }
+        Logger::instance().logMessage(msg.str());
+    }
+
+    void logAllObjects() {
+        std::vector < std::string > handles = 
+            ObjectHandler::instance().getHandles();
+        for (std::vector < std::string >::const_iterator i = handles.begin();
+                i!=handles.end(); i++)
+            logObject(*i);
     }
     
 }

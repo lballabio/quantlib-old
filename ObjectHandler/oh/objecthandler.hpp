@@ -63,6 +63,21 @@ namespace ObjHandler {
             with that handle.
         */
         obj_ptr retrieveObject(const std::string &handle) const;
+        //! Delete Object with given handle.
+        /*! Does nothing if no Object exists
+            with that handle.
+        */
+        void deleteObject(const std::string &handle);
+        //! Delete all Objects in repository.
+        /*! Does nothing if repository
+            is already empty.
+        */
+        void deleteAllObjects();
+        //! Return a vector of handles for all objects.
+        /*! Returns a null vector if
+            the repository is empty.
+        */
+        std::vector < std::string >getHandles();
         //@}
     private:
         ObjectHandler() {}

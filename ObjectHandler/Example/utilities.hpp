@@ -22,6 +22,9 @@
 
 #define OH_OBJECT_MAKE(X) ObjHandler::Factory<X>::makeObject
 #define OH_OBJECT_GET(X) ObjHandler::ObjectHandler::instance().retrieveObject(X)
+#define OH_OBJECT_DELETE(X) ObjHandler::ObjectHandler::instance().deleteObject(X)
+#define OH_LOG_OBJECT(X) logObject(X)
+#define OH_LOG_ALL_OBJECTS() logAllObjects()
                                                                        
 const ObjHandler::Properties& FOO_UPDATE(
     const std::string &handle,

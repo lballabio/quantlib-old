@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file utilities.hpp
+    \brief ObjectHandler utilities
+*/
+
 #ifndef oh_utilities_hpp
 #define oh_utilities_hpp
 
@@ -22,8 +26,26 @@
 
 namespace ObjHandler {
 
+    //! any_ptr ostream operator.
+    /*! Write contents of boost::any
+        to output stream.
+    */
     std::ostream& operator<<(std::ostream& out, const any_ptr& a);
+    //! Properties ostream operator.
+    /*! Write contents of Object Property vector
+        to output stream.
+    */
     std::ostream& operator<<(std::ostream& out, const Properties &p);
+    //! Write Object with given handle to log file.
+    /*! Writes a warning message to log file
+        if no object is found with given handle.
+    */
+    void logObject(const std::string &handle);
+    //! Write all Objects to log file.
+    /*! Takes no action if ObjectHandler
+        repository is empty.
+    */
+    void logAllObjects();
 
 }
 

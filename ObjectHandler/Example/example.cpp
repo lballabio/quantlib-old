@@ -43,19 +43,14 @@ int main() {
 
         // high level interrogation
         OH_LOGMESSAGE("high level interrogation - after constructor");
-
-        ostringstream s;
-        s << f2Properties;
-        OH_LOGMESSAGE(s.str());
+        OH_LOG_OBJECT("foo2");
 
         // update an object
         FOO_UPDATE("foo2", "ghi", 789);
 
         // high level interrogation
         OH_LOGMESSAGE("high level interrogation - after update");
-        s.str("");
-        s << f2Properties;
-        OH_LOGMESSAGE(s.str());
+        OH_LOG_OBJECT("foo2");
 
         // low-level interrogation
         OH_LOGMESSAGE("low-level interrogation - after FOO_UPDATE");
@@ -67,6 +62,10 @@ int main() {
             (objectFoo->getReference());
         OH_LOGMESSAGE("value of property s() of underlying foo = "
             + foo->s());
+
+        OH_OBJECT_DELETE("foo2");
+        OH_LOGMESSAGE("log all objects after deleting foo2:");
+        OH_LOG_ALL_OBJECTS();
 
         OH_LOGMESSAGE("end example program");
 
