@@ -14,6 +14,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 =end
 
+require 'rbconfig'
 require 'test/unit'
 require 'test/unit/testsuite'
 require 'test/unit/ui/console/testrunner'
@@ -34,8 +35,13 @@ suite << SegmentIntegralTest.suite
 suite << Solver1DTest.suite
 suite << TermStructureTest.suite
 
-verbosity = Test::Unit::UI::VERBOSE
-runner = Test::Unit::UI::Console::TestRunner.new(suite,verbosity,STDOUT)
+if Config::CONFIG['ruby_version'] == '1.8'
+  verbosity = Test::Unit::UI::VERBOSE
+  runner = Test::Unit::UI::Console::TestRunner.new(suite,verbosity,STDOUT)
+else
+  verbosity = Test::Unit::UI::Console::TestRunner::VERBOSE
+  runner = Test::Unit::UI::Console::TestRunner.new(suite,verbosity,STDOUT)
+end
 result = runner.start
 unless result.passed?
   exit(1)
