@@ -10,7 +10,7 @@
 
 Summary: The Ruby wrapper for the QuantLib library.
 Name: QuantLib-Ruby
-Version: 0.3.8
+Version: 0.3.9
 Epoch: 0
 Release: 0
 License: BSD License
@@ -29,20 +29,20 @@ QuantLib-Ruby is the Ruby wrapper for the QuantLib library.
 
 
 %prep
-%setup -q 
+%setup -q
 
 %if %(if [[ %{rbVMajor} -ge 1 ]]; then echo 1; else echo 0; fi) && %(if [[ %{rbVMinor} -ge 8 ]]; then echo 1; else echo 0; fi)
     %define test 1
 %else
     %define test 0
-%endif 
+%endif
 
 
 %build
 %{ruby} setup.rb build
 %if %{test}
   %{ruby} setup.rb test
-%endif 
+%endif
 
 
 %install
@@ -67,7 +67,7 @@ libdir=`%{ruby} -e "require 'rbconfig';puts Config::CONFIG['libdir']"`
 ln -s $libdir/ruby/QuantLib/QuantLib.rb $rubylibdir/QuantLib.rb
 ln -s $libdir/ruby/QuantLib/QuantLibc.so $archdir/QuantLibc.so
 
-%postun 
+%postun
 rubylibdir=`%{ruby} -e "require 'rbconfig';puts Config::CONFIG['rubylibdir']"`
 archdir=`%{ruby} -e "require 'rbconfig';puts Config::CONFIG['archdir']"`
 rm -f $rubylibdir/QuantLib.rb $archdir/QuantLibc.so
