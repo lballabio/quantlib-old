@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2002, 2003 Ferdinando Ametrano
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2004 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -36,14 +36,11 @@ class SafeInterpolation {
 };
 %}
 
-%define make_safe_interpolation(T)
+%define make_safe_interpolation(T,Alias)
 %{
-typedef SafeInterpolation<
-            QuantLib::T<Array::const_iterator,
-                        Array::const_iterator> >
-    Safe##T;
+typedef SafeInterpolation<QuantLib::T> Safe##T;
 %}
-%rename(T) Safe##T;
+%rename(Alias) Safe##T;
 class Safe##T {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename(call)     operator();
@@ -54,11 +51,11 @@ class Safe##T {
 };
 %enddef
 
-make_safe_interpolation(LinearInterpolation);
-make_safe_interpolation(CubicSplineInterpolation);
-make_safe_interpolation(LogLinearInterpolation);
+make_safe_interpolation(LinearInterpolation,LinearInterpolation);
+make_safe_interpolation(NaturalCubicSpline,CubicSpline);
+make_safe_interpolation(LogLinearInterpolation,LogLinearInterpolation);
 
-%extend SafeCubicSplineInterpolation {
+%extend SafeNaturalCubicSpline {
     double derivative(double x, bool extrapolate = false) {
         return self->f_.derivative(x,extrapolate);
     }
@@ -75,8 +72,8 @@ class SafeInterpolation2D {
   public:
     SafeInterpolation2D(const Array& x, const Array& y, const Matrix& m)
     : x_(x), y_(y), m_(m), f_(x_.begin(),x_.end(),y_.begin(),y_.end(),m_) {}
-    double operator()(double x, double y, bool allowExtrapolation=false) { 
-        return f_(x,y, allowExtrapolation); 
+    double operator()(double x, double y, bool allowExtrapolation=false) {
+        return f_(x,y, allowExtrapolation);
     }
   protected:
     Array x_, y_;
