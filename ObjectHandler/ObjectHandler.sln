@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ObjectHandler", "ObjectHandler.vcproj", "{212AAA56-2F52-46A8-8054-EC825B0E9288}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Debug MTDLL = Debug MTDLL
+		Debug SingleThread = Debug SingleThread
+		Release = Release
+		Release MTDLL = Release MTDLL
+		Release SingleThread = Release SingleThread
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{212AAA56-2F52-46A8-8054-EC825B0E9288}.Debug.ActiveCfg = Debug|Win32
+		{212AAA56-2F52-46A8-8054-EC825B0E9288}.Debug.Build.0 = Debug|Win32
+		{212AAA56-2F52-46A8-8054-EC825B0E9288}.Debug MTDLL.ActiveCfg = Debug MTDLL|Win32
+		{212AAA56-2F52-46A8-8054-EC825B0E9288}.Debug MTDLL.Build.0 = Debug MTDLL|Win32
+		{212AAA56-2F52-46A8-8054-EC825B0E9288}.Debug SingleThread.ActiveCfg = Debug SingleThread|Win32
+		{212AAA56-2F52-46A8-8054-EC825B0E9288}.Debug SingleThread.Build.0 = Debug SingleThread|Win32
+		{212AAA56-2F52-46A8-8054-EC825B0E9288}.Release.ActiveCfg = Release|Win32
+		{212AAA56-2F52-46A8-8054-EC825B0E9288}.Release.Build.0 = Release|Win32
+		{212AAA56-2F52-46A8-8054-EC825B0E9288}.Release MTDLL.ActiveCfg = Release MTDLL|Win32
+		{212AAA56-2F52-46A8-8054-EC825B0E9288}.Release MTDLL.Build.0 = Release MTDLL|Win32
+		{212AAA56-2F52-46A8-8054-EC825B0E9288}.Release SingleThread.ActiveCfg = Release SingleThread|Win32
+		{212AAA56-2F52-46A8-8054-EC825B0E9288}.Release SingleThread.Build.0 = Release SingleThread|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
