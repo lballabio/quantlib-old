@@ -148,11 +148,11 @@ Conventions</a></li>
 <div class="center"><strong>Hosted by</strong><br>
  <a href="http://sourceforge.net"><img src=
 "http://sourceforge.net/sflogo.php?group_id=12740" width="88"
-height="31" border="0" alt="SourceForge Logo"></a></div>
+height="31" border="0" alt="SourceForge.net Logo"></a></div>
 
 <br>
  <a href="http://sourceforge.net/docman/?group_id=1">About
-SourceForge, Open Source, CVS, etc.</a> 
+SourceForge.net, Open Source, CVS, etc.</a> 
 
 <hr>
 <div class="center">
@@ -177,7 +177,7 @@ height="31" width="88"></a></p>
 <h2><a href="#general">1. General</a></h2>
 
 <ol>
-<li><a href="#g1">What is SourceForge?</a></li>
+<li><a href="#g1">What is SourceForge.net?</a></li>
 
 <li><a href="#g2">Where do I find QuantLib there?</a></li>
 
@@ -261,13 +261,13 @@ manager?</a></li>
 
 <h3><a name="g1" id="g1"></a>1.1.:</h3>
 
-<p><strong>Q: What is SourceForge?<br>
- A:</strong> <a href="http://sourceforge.net">SourceForge</a> is a
-free hosting service for <a href="http://opensource.org">Open
+<p><strong>Q: What is SourceForge.net?<br>
+ A:</strong> <a href="http://sourceforge.net">SourceForge.net</a>
+is a free hosting service for <a href="http://opensource.org">Open
 source</a> projects. The main web site is found at <a href=
 "http://sourceforge.net">http://sourceforge.net</a><br>
-Documentation and help files about SourceForge can be found at <a
-href=
+Documentation and help files about SourceForge.net can be found at
+<a href=
 "http://sourceforge.net/docman/?group_id=1">http://sourceforge.net/docman/?group_id=1</a></p>
 
 <br>
@@ -276,7 +276,7 @@ href=
 
 <h3><a name="g2" id="g2"></a>1.2.:</h3>
 
-<p><strong>Q: Where can I find QuantLib on SourceForge?<br>
+<p><strong>Q: Where can I find QuantLib on SourceForge.net?<br>
  A:</strong> The <a href=
 "http://sourceforge.net/projects/quantlib">QuantLib project
 page</a> can be found at <a href=
@@ -286,7 +286,7 @@ page</a> can be found at <a href=
 
 <p><strong>Q: How can I change the pages at
 http://quantlib.org?<br>
- A:</strong> First you have to be in the SourceForge group
+ A:</strong> First you have to be in the SourceForge.net group
 "<tt>QuantLib</tt>" (true for all developers). Then you can upload
 files using SCP:</p>
 
@@ -313,10 +313,10 @@ href=
  A:</strong>Write to the QuantLib <a href=
 "mailto:ferdinando@ametrano.net">administrator</a> and describe
 your experience and interests.<br>
- You will need a SourceForge account: your SourceForge user-name is
-necessary to grant you write permission on the CVS. If you don't
-have an account yet go to the <em>New Account Registration</em>
-page at <a href=
+ You will need a SourceForge.net account: your SourceForge.net
+user-name is necessary to grant you write permission on the CVS. If
+you don't have an account yet go to the <em>New Account
+Registration</em> page at <a href=
 "http://sourceforge.net/account/register.php">http://sourceforge.net/account/register.php</a><br>
 
  Please read the <a href="style.html">Programming Style
@@ -332,7 +332,7 @@ and take a look at the <a href=
 <h3><a name="c1" id="c1"></a>2.1.:</h3>
 
 <p><strong>How do I check out a CVS version of QuantLib?<br>
- A:</strong> If you are not a SourceForge-recognized QuantLib
+ A:</strong> If you are not a SourceForge.net-recognized QuantLib
 developer you can still check out an anonymous CVS version
 (read-only) of QuantLib:</p>
 
@@ -350,14 +350,16 @@ version with ssh:
 CVSROOT=sf_username@cvs.quantlib.org:/cvsroot/quantlib</tt><br>
  <tt>cvs -z3 co -P QuantLib</tt></blockquote>
 
-<p>Quantlib's CVS repository includes three modules:</p>
+<p>Quantlib's CVS repository includes the following modules:</p>
 
 <ul>
-<li>QuantLib (the library itself)</li>
+<li>QuantLib (the C++ library)</li>
 
 <li>QuantLib-Python (the Python extension)</li>
 
-<li>QuantLib-site (this site HTML pages)</li>
+<li>QuantLib-Ruby (the Ruby extension)</li>
+
+<li>QuantLib-site (the HTML sources of these pages)</li>
 </ul>
 
 Please note that the module's name has capital Q and capital L. 
@@ -382,7 +384,7 @@ history file /cvsroot/quantlib/CVSROOT/history</tt><br>
 <br>
  <strong>A:</strong> If you are not a developer, you don't have
 read/write access. You have to check out an anonymous copy. If you
-are a developer you have to be in the SourceForge group
+are a developer you have to be in the SourceForge.net group
 "<tt>QuantLib</tt>". You can check this with the following
 commands: 
 
@@ -390,22 +392,20 @@ commands:
  <tt>groups</tt></blockquote>
 
 If you have just recently (&lt; 6 hours) been added to the QuantLib
-project, you probably have to wait for the SourceForge servers to
-synch up. This can take up to 6 hours. 
+project, you probably have to wait for the SourceForge.net servers
+to synch up. This can take up to 6 hours. 
 
 <h3><a name="c4" id="c4"></a>2.4.:</h3>
 
 <p><strong>Q: Where can I learn more about CVS?<br>
- A:</strong> For SourceForge specific information consult their <a
-href="http://sourceforge.net/docman/?group_id=1">SourceForge CVS
-documentation</a>, especially their <a href=
+ A:</strong> For SourceForge.net specific information consult their
+<a href="http://sourceforge.net/docman/?group_id=1">SourceForge.net
+CVS documentation</a>, especially their <a href=
 "http://sourceforge.net/docman/display_doc.php?docid=765&amp;group_id=1">
 CVS FAQ</a>. For general (and more advanced) information consult
-the the <a href=
-"http://cvsbook.red-bean.com/cvsbook.html#Introduction">free CVS
-Book</a> and/or the <a href=
-"http://www.loria.fr/~molli/cvs/doc/cvs_toc.html">CVS Docs at
-www.loria.fr</a></p>
+the <a href="http://cvsbook.red-bean.com/">free CVS Book</a> and
+the <a href="http://www.loria.fr/~molli/cvs/doc/cvs_toc.html">CVS
+Docs at www.loria.fr</a></p>
 
 <h3><a name="c5" id="c5"></a>2.5.:</h3>
 
@@ -493,9 +493,9 @@ FAQ.<br>
 
 <p><strong>Q: How to change the status of a patch?<br>
  A:</strong> To change the status of a patch or assign it to
-somebody else you have to be a) a SourceForge-recognized QuantLib
-developer and b) a patch administrator. Unfortunately the
-SourceForge default for developers is not to be patch
+somebody else you have to be a) a SourceForge.net-recognized
+QuantLib developer and b) a patch administrator. Unfortunately the
+SourceForge.net default for developers is not to be patch
 administrators. Contact one of the project administrators if the
 following does not work for you.</p>
 
@@ -507,7 +507,7 @@ hit the "Submit Changes" button at the bottom of the page.</p>
 
 <p>Note: If you are sure that you have the right permissions and a
 drop-box does not appear, check that you are actually logged in to
-SourceForge!</p>
+SourceForge.net!</p>
 
 <p>For more information about the use of the "Status:" and
 "Assigned To:" fields consult the <a href="#a1">Patch Manager
@@ -655,8 +655,8 @@ http://sourceforge.net/docman/display_doc.php?docid=2973&amp;group_id=1</a>.</p>
 <h3><a name="b1" id="b1"></a>6.1.:</h3>
 
 <p><strong>Q: Where can I submit/view bugs for QuantLib?<br>
- A:</strong> The QuantLib project uses SourceForge's bug tracking
-facility. Go to <a href=
+ A:</strong> The QuantLib project uses SourceForge.net's bug
+tracking facility. Go to <a href=
 "http://sourceforge.net/bugs/?group_id=12740">http://sourceforge.net/bugs/?group_id=12740</a>
 for all bug management needs.</p>
 
@@ -674,8 +674,8 @@ the page.</p>
 
 <h3><a name="a1" id="a1"></a>A.1.: Patch Manager Guidelines</h3>
 
-<h4>Intended use of SourceForge patch status &amp; "assigned to"
-fields</h4>
+<h4>Intended use of SourceForge.net patch status &amp; "assigned
+to" fields</h4>
 
 <p>In general, the status field should be close to
 self-explanatory, and the "Assigned to:" field should be the person
@@ -713,8 +713,8 @@ the person they most want to review it.<br>
  Else the patch will be random assigned to a QuantLib
 developer.<br>
  Discussion of major patches is carried out on the QuantLib mailing
-list. For simple patches, the SourceForge comment mechanism should
-be sufficient.<br>
+list. For simple patches, the SourceForge.net comment mechanism
+should be sufficient.<br>
  For the reviewer: If you're certain the patch should be applied,
 change the status to Accepted and assign it back to the submitter
 (if possible) for checkin. If you're certain the patch should never
@@ -758,8 +758,8 @@ the patch no longer works.<br>
  Please enter a comment when changing the status to "Out of date",
 to record the nature of the problem and the previous status.<br>
  Also assign it back to the submitter, as they need to upload a new
-version (note that SourceForge will not allow anyone other than the
-original submitter to update the patch).</blockquote>
+version (note that SourceForge.net will not allow anyone other than
+the original submitter to update the patch).</blockquote>
 
 <h4>Postponed</h4>
 
@@ -776,28 +776,28 @@ status should change again.</blockquote>
 <h4>Deleted</h4>
 
 <blockquote>Bit bucket.<br>
- Use only if it's OK for the patch and its SourceForge history to
-disappear.<br>
+ Use only if it's OK for the patch and its SourceForge.net history
+to disappear.<br>
  As of 09-July-2000, SF does not actually throw away Deleted
 patches, but that may change.</blockquote>
 
 <h3><a name="a2" id="a2"></a>A.2.: QuantLib Patch Submission
 Guidelines</h3>
 
-<p>We use the SourceForge Patch Manager. Here are the main
+<p>We use the SourceForge.net Patch Manager. Here are the main
 guidelines:</p>
 
 <ul>
 <li><strong>Submit your patch to the <a href=
 "http://sourceforge.net/patch/?group_id=12740">patch manager</a>
 interface at <a href=
-"http://sourceforge.net/project/?group_id=12740">SourceForge</a>.</strong>
+"http://sourceforge.net/project/?group_id=12740">SourceForge.net</a>.</strong>
 We strongly recommend that you <a href=
 "http://sourceforge.net/account/register.php">register with
-SourceForge</a> before submitting a patch. The patch manager is for
-<strong>patches</strong> only; if you have a problem or suggestion
-but don't know how to write the code for it, use the <a href=
-"#b1">bug reporting mechanism</a> instead. The bugs list is
+SourceForge.net</a> before submitting a patch. The patch manager is
+for <strong>patches</strong> only; if you have a problem or
+suggestion but don't know how to write the code for it, use the <a
+href="#b1">bug reporting mechanism</a> instead. The bugs list is
 searchable; if you have a problem and you're not sure if it has
 been reported or fixed already, this is the first place to
 look.</li>
@@ -818,8 +818,8 @@ These are our latest sources.</li>
 <li>Please try to conform as much as possible to our <a href=
 "style.html">Coding Guidelines</a>.</li>
 
-<li>Please add a succinct message to your SourceForge entry that
-explains what the patch is about that we can use directly as a
+<li>Please add a succinct message to your SourceForge.net entry
+that explains what the patch is about that we can use directly as a
 checkin message. Ideally, such a message explains the problem and
 describes the fix in a few lines.</li>
 

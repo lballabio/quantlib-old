@@ -147,11 +147,11 @@ Conventions</a></li>
 <div class="center"><strong>Hosted by</strong><br>
  <a href="http://sourceforge.net"><img src=
 "http://sourceforge.net/sflogo.php?group_id=12740" width="88"
-height="31" border="0" alt="SourceForge Logo"></a></div>
+height="31" border="0" alt="SourceForge.net Logo"></a></div>
 
 <br>
  <a href="http://sourceforge.net/docman/?group_id=1">About
-SourceForge, Open Source, CVS, etc.</a> 
+SourceForge.net, Open Source, CVS, etc.</a> 
 
 <hr>
 <div class="center">
@@ -163,14 +163,17 @@ height="31" width="88"></a></p>
 <td class="main"><!--/includeHTML-->
 <h1 class="center">QuantLib's CVS Repository</h1>
 
-<p>If you're new to CVS please check <a href=
-"http://sourceforge.net/docman/?group_id=1">SourceForge
-documentation</a> and our <a href="FAQ.html#cvs">FAQ</a>. For
-general (and more advanced) information consult the <a href=
-"http://cvsbook.red-bean.com/cvsbook.html#Introduction">free CVS
-Book</a>.</p>
+<p>If you're new to CVS please read our <a href=
+"FAQ.html#cvs">FAQ</a> and <a href=
+"http://sourceforge.net/docman/?group_id=1">SourceForge.net CVS
+documentation</a>, especially their <a href=
+"http://sourceforge.net/docman/display_doc.php?docid=765&amp;group_id=1">
+CVS FAQ</a>. For general (and more advanced) information consult
+the <a href="http://cvsbook.red-bean.com/">free CVS Book</a> and
+the <a href="http://www.loria.fr/~molli/cvs/doc/cvs_toc.html">CVS
+Docs at www.loria.fr</a></p>
 
-<p>Quantlib's CVS repository includes four modules:</p>
+<p>Quantlib's CVS repository includes the following modules:</p>
 
 <ul>
 <li>QuantLib (the C++ library)</li>
@@ -214,16 +217,20 @@ cvs login
 cvs -z3 co -P modulename
 </pre>
 
-<p>Updates from within the module's directory do not need the
-CVSROOT exporting/setting.</p>
+<p>After initial checkout, you can execute cvs commands in this
+directory without the CVSROOT exporting/setting. For example:</p>
+
+<pre>
+cvs update
+</pre>
 
 <br>
 <h3>Developer CVS Access via SSH</h3>
 
-<p>If you are a SourceForge-recognized QuantLib developer you can
-access the CVS tree via SSH. SSH1 must be installed on your client
-machine. Substitute modulename and developername with the proper
-values. Enter your site password when prompted.</p>
+<p>If you are a SourceForge.net-recognized QuantLib developer you
+can access the CVS tree via SSH. SSH1 must be installed on your
+client machine. Substitute modulename and developername with the
+proper values. Enter your site password when prompted.</p>
 
 <p>Unix:</p>
 
@@ -241,8 +248,15 @@ SET CVS_RSH=ssh
 cvs -z3 co -P modulename
 </pre>
 
-<p>Updates from within the module's directory do not need the
-CVSROOT exporting/setting.</p>
+<p>After initial checkout, you can change into this directory and
+execute cvs commands without the CVSROOT exporting/setting. For
+example:</p>
+
+<pre>
+cvs update
+cvs commit -m "comments for this commit"
+cvs add myfile.c 
+</pre>
 
 <p><strong>Note for Unix users</strong>: if you use CVS, you will
 need some GNU tools that usually only developers use, and which are
