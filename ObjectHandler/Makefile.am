@@ -19,3 +19,17 @@ EXTRA_DIST = \
 	TODO.txt \
 	autogen.sh \
 	makefile.mak
+
+.PHONY: docs docs-online docs-dist docs-clean
+BASEPATH = @abs_top_srcdir@
+docs:
+	BASEPATH=$(BASEPATH) $(MAKE) -C Docs docs-all
+html-local:
+	BASEPATH=$(BASEPATH) $(MAKE) -C Docs docs-html
+docs-online:
+	BASEPATH=$(BASEPATH) $(MAKE) -C Docs docs-online
+docs-dist:
+	BASEPATH=$(BASEPATH) $(MAKE) -C Docs docs-dist
+docs-clean:
+	$(MAKE) -C Docs docs-clean
+
