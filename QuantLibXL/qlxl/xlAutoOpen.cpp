@@ -117,6 +117,8 @@ extern "C" {
             XlfArgDesc salvagingAlgorithm("salvagingAlgorithm", "salvaging "
                 "algorithm to be used "
                 "when the input matrix in not positive semi definite");
+            XlfArgDesc flexible("flexible", "if TRUE "
+                "it doesn't fail with a positive semi definite input matrix");
 
             XlfArgDesc optionType("type", "is the option type");
             XlfArgDesc underlying("underlying",
@@ -475,7 +477,7 @@ extern "C" {
             XlfFuncDesc choleskyDesc("xlCholesky","qlCholesky",
                 "return the Cholesky decomposition of the input matrix",
                 "QuantLibXL Math");
-            choleskyDesc.SetArguments(matrix);
+            choleskyDesc.SetArguments(matrix+flexible);
             choleskyDesc.Register();
 
             XlfFuncDesc matrixProductDesc("xlmatrixProduct","qlmatrixProduct",

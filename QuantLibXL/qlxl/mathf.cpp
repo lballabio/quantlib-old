@@ -379,8 +379,14 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlCholesky(XlfOper xlmatrix,
                                      XlfOper xlcholeskyFlexible) {
         EXCEL_BEGIN;
+
+	    // Checks if called from the function wizard
+        if (XlfExcel::Instance().IsCalledByFuncWiz())
+            return XlfOper(true);
+
         Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
-        bool flexible = xlcholeskyFlexible.AsBool();
+        bool flexible = (xlcholeskyFlexible.IsMissing() ?
+            false : xlcholeskyFlexible.AsBool());
         Matrix result = CholeskyDecomposition(data_matrix,
             flexible);
         return XlfOper(result.rows(), result.columns(), result.begin());
