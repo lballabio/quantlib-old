@@ -600,12 +600,6 @@ using QuantLib::Null;
 
 #endif
 
-TypemapVector(Date);
-
-%inline %{
-    vector<Date> f(vector<Date> v) { return v; }
-    vector<Date> g(const vector<Date>& v) { return v; }
-%}
 
 
 #endif
