@@ -11,8 +11,9 @@ HEADER = 'stub.qla.header'
 CTOR = 'stub.qla.constructor'
 FUNC = 'stub.qla.function'
 CONV = 'stub.qla.conversion'
+FUNCDOXY = '    /*! %s\n    */\n'
 
-def generateFuncHeader(fileHeader, function, suffix):
+def generateFuncHeader(fileHeader, function, suffix, genDoxy = False):
     'generate function prototype'
     fileHeader.write('    const ObjHandler::Properties& %s(\n'
         % function[common.NAME])
@@ -22,7 +23,8 @@ def generateFuncHeader(fileHeader, function, suffix):
         3, True, 'const ', 'std::string', dereference = '&',
         convertVec = 'std::vector< %s >', 
         convertMat = 'std::vector < std::vector < %s > >',
-        convertString2 = 'std::string'))
+        convertMatStr = 'std::string',
+        genDoxy = genDoxy))
     fileHeader.write(')%s\n' % suffix)
 
 def generateFuncHeaders(groupName, functionGroup):
@@ -32,10 +34,12 @@ def generateFuncHeaders(groupName, functionGroup):
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
     bufInclude = utils.loadBuffer(INCLUDES)
-    fileHeader.write(bufInclude % (groupName, groupName))
+    fileHeader.write(bufInclude % (groupName, 
+        functionGroup[common.DESC], groupName, groupName))
     for function in functionGroup[common.FUNCLIST]:
-        generateFuncHeader(fileHeader, function, ';\n')
-    fileHeader.write('}\n\n#endif\n')
+        fileHeader.write(FUNCDOXY % function[common.DESC])
+        generateFuncHeader(fileHeader, function, ';\n', True)
+    fileHeader.write('}\n\n#endif\n\n')
     fileHeader.close()
 
 def generateFuncDef(function, body, fileFunc):

@@ -2,6 +2,7 @@
 <!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
 <functionlist>
 <headeronly>true</headeronly>
+<desc>diagnostic and utility functions</desc>
 
 <function>
 <name>QL_VER</name>

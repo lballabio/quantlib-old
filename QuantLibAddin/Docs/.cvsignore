@@ -1,0 +1,10 @@
+QuantLibAddin-docs-*.*
+html
+html-online
+latex
+doxywarnings.txt
+Makefile
+Makefile.in
+.time-stamp*
+man
+.qladdin.doxy

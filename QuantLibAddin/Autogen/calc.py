@@ -55,7 +55,7 @@ def generateHeader(fileHeader, function, suffix):
     paramList = utils.generateParamList(function[common.PARAMS], 2, True,
         '', 'const STRING &', 'sal_Int32', 
         convertVec = 'const SEQSEQ(%s)& ',
-        convertMat = 'const SEQSEQ(%s)& ', convertString2 = "STRING")
+        convertMat = 'const SEQSEQ(%s)& ', convertMatStr = "STRING")
     if paramList != '':
         fileHeader.write('\n')
         fileHeader.write(paramList)

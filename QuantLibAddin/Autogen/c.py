@@ -16,7 +16,7 @@ def generateFuncHeader(fileHeader, function, suffix):
         fileHeader.write('        const char* handle,\n')
     fileHeader.write(utils.generateParamList(function[common.PARAMS],
         2, True, 'const ', 'char*', arrayCount = True,
-        convertString2 = 'char*'))
+        convertMatStr = 'char*'))
     fileHeader.write(',\n        VariesList *result)%s\n' % suffix)
 
 def generateFuncHeaders(groupName, functionGroup):

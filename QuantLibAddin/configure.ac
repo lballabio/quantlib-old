@@ -52,6 +52,7 @@ AC_CONFIG_FILES([
     Clients/C/Makefile
     Clients/C++/Makefile
     Clients/Calc/Makefile
-    Clients/Excel/Makefile])
+    Clients/Excel/Makefile
+    Docs/Makefile])
 AC_OUTPUT
 

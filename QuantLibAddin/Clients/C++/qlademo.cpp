@@ -17,7 +17,6 @@
 
 #include <qla/qladdin.hpp>
 #include <qla/objects/vanillaoption.hpp>
-//#include <ql/quantlib.hpp>
 #include <iostream>
 
 using namespace std;

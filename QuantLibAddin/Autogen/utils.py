@@ -27,10 +27,12 @@ def generateParamList(
         convertVec = '',        # string to convert datatype to appropriate vector
         convertMat = '',        # string to convert datatype to appropriate matrix
         replaceTensor = '',     # replace vector/matrix datatype with given string 
-        convertString2 = ''):   # replace matrix datatype with given string 
+        convertMatStr = '',     # replace matrix datatype with given string 
+        genDoxy = False):       # generate comments for Doxygen
     'reformat params into a list of parameters using given format options'
     ret = ''
     i = 0
+    indentStr = indent * 4 * ' '
     for param in paramList:
         i += 1
         if skipFirst == True and i == 1:
@@ -50,14 +52,14 @@ def generateParamList(
                 if param[common.TENSOR] == common.SCALAR:
                     type = convertString + ' '
                 else:
-                    type = convertString2 + ' '
+                    type = convertMatStr + ' '
             elif convertLong and param[common.TYPE] == common.LONG:
                 type = convertLong + ' '
             else:
                 type = param[common.TYPE] + ' '
             if param[common.TENSOR] == common.VECTOR:
                 if arrayCount == True:
-                    ret += indent * 4 * ' ' + prefix + 'long ' + \
+                    ret += indentStr + prefix + 'long ' + \
                         paramName + 'Size,' + '\n'
                     type += '* '
                 elif convertVec != '':
@@ -67,9 +69,9 @@ def generateParamList(
                     deref = ''
             elif param[common.TENSOR] == common.MATRIX:
                 if arrayCount == True:
-                    ret += indent * 4 * ' ' + prefix + 'long ' + \
+                    ret += indentStr + prefix + 'long ' + \
                         paramName + 'Rows,' + '\n' + \
-                        indent * 4 * ' ' + prefix + 'long ' + \
+                        indentStr + prefix + 'long ' + \
                         paramName + 'Cols,' + '\n'
                     type += '** '
                 elif convertMat != '':
@@ -84,7 +86,9 @@ def generateParamList(
             full = common.HANDLE + param[common.CLASS]
         else:
             full = type + deref + paramName
-        ret += '%s%s%s' % (indent * 4 * ' ', prefix, full)
+        if genDoxy == True:
+            ret += '%s/*! %s\n%s*/\n' % (indentStr, param[common.DESC], indentStr)
+        ret += '%s%s%s' % (indentStr, prefix, full)
         if i < len(paramList):
             ret += ',\n'
     return ret

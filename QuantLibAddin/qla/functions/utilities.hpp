@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file utilities.hpp
+    \brief diagnostic and information functions for QuantLibAddin
+*/
+
 #ifndef qla_utilities_hpp
 #define qla_utilities_hpp
 
@@ -22,17 +26,40 @@
 
 namespace QuantLibAddin {
 
+/*! \group utilities
+    util func xxx
+*/
+
+    /*! return the version of QuantLib
+    */
     std::string QL_VER();
 
+    /*! return the version of ObjectHandler
+    */
     std::string QL_OH_VER();
 
+    /*! enable/disable logging
+    */
     std::string QL_LOGFILE(
+        /*! name of the logfile
+            (pass null string to disable logging)
+        */
         const std::string &logFileName);
 
+    /*! write a message to the logfile
+    */
     void QL_LOGMESSAGE(
+        /*! string to be written to logfile
+            (will be automatically suffixed with a carriage return)
+        */
         const std::string &msg);
 
+    /*! return the vector of Properties
+        describing an Object in the ObjectHandler
+    */
     const ObjHandler::Properties& QL_QUERY(
+        /*! handle of object to be interrogated
+        */
         const std::string &handle);
 
 }

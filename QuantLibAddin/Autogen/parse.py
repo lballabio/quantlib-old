@@ -81,8 +81,10 @@ def getFunctionGroup(doc):
         function = getFunction(functionNode)
         functionList.append(function)
     hdronlyNode = doc.getElementsByTagName(common.HDRONLY)[0]
+    descNode = doc.getElementsByTagName(common.DESC)[0]
     functionGroup[common.FUNCLIST] = functionList
     functionGroup[common.HDRONLY] = getBoolean(hdronlyNode)
+    functionGroup[common.DESC] = getText(descNode)
     return functionGroup
 
 def getFunctionDefs():

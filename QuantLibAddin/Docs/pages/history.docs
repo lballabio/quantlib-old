@@ -1,0 +1,39 @@
+
+/*
+ Copyright (C) 2005 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page history Version history
+
+    <strong>Release 0.3.9 - March 2005</strong>
+
+    REQUIRED PACKAGES
+    - Boost version 1.31.0 or later is required.
+
+    DOCUMENTATION
+
+    Initial release consisting of prototype framework:
+
+    - set of example functions for constructing various option classes
+    - basic utility functions to support diagnostics, querying objects, etc.
+
+*/
+

@@ -2,6 +2,7 @@
 <!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
 <functionlist>
 <headeronly>false</headeronly>
+<desc>functions to construct QuantLib option objects</desc>
 
 <function>
 <name>QL_OPTION_ASIAN_C</name>
