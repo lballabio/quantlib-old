@@ -30,3 +30,4 @@ std::vector < std::string > stringArrayToVector(const SEQSEQ(STRING)& s);
 std::vector < std::vector < double > >doubleArrayToMatrix(const SEQSEQ(double)& s);
 
 #endif
+

@@ -107,3 +107,4 @@ std::vector < std::vector < double > >doubleArrayToMatrix(const SEQSEQ(double)& 
     }
     return ret;
 }
+
