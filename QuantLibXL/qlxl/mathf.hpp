@@ -46,6 +46,16 @@ extern "C"
                                           XlfOper xly,
                                           XlfOper xlinterpolation2DType,
                                           XlfOper xlallowExtrapolation);
+
+    LPXLOPER EXCEL_EXPORT xlnormDist(XlfOper xlx,
+                                     XlfOper xlmean,
+                                     XlfOper xlstd_dev,
+                                     XlfOper xlcumulative);
+    LPXLOPER EXCEL_EXPORT xlnormSDist(XlfOper xlx);
+    LPXLOPER EXCEL_EXPORT xlnormInv(XlfOper xlprobability,
+                                    XlfOper xlmean,
+                                    XlfOper xlstd_dev);
+    LPXLOPER EXCEL_EXPORT xlnormSInv(XlfOper xlprobability);
 }
 
 #endif

@@ -136,4 +136,46 @@ extern "C"
         return XlfOper(result);
         EXCEL_END;
     }
+
+
+
+
+
+    LPXLOPER EXCEL_EXPORT xlnormDist(XlfOper xlx,
+                                     XlfOper xlmean,
+                                     XlfOper xlstd_dev,
+                                     XlfOper xlcumulative) {
+        EXCEL_BEGIN;
+        double result = Functions::normDist(xlx.AsDouble(), xlmean.AsDouble(),
+            xlstd_dev.AsDouble(), xlcumulative.AsBool());
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlnormSDist(XlfOper xlx) {
+        EXCEL_BEGIN;
+        double result = Functions::normDist(xlx.AsDouble(), 0.0,
+            1.0, true);
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlnormInv(XlfOper xlprobability,
+                                    XlfOper xlmean,
+                                    XlfOper xlstd_dev) {
+        EXCEL_BEGIN;
+        double result = Functions::normInv(xlprobability.AsDouble(), xlmean.AsDouble(),
+            xlstd_dev.AsDouble());
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlnormSInv(XlfOper xlprobability) {
+        EXCEL_BEGIN;
+        double result = Functions::normInv(xlprobability.AsDouble(), 0.0, 1.0);
+        return XlfOper(result);
+        EXCEL_END;
+    }
+
+
 }

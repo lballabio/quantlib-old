@@ -70,7 +70,6 @@ extern "C"
         XlfArgDesc allowExtrapolation("allow_extrapolation",
             "allow extrapolation boolean");
 
-        
         // Registers qlversion
         XlfFuncDesc QLversion("xlQLversion","QLversion",
             "QuantLib version string","qlUtilities");
@@ -131,6 +130,44 @@ extern "C"
         interpolate2DDesc.SetArguments(x_array+y_array+z_matrix+x_value+y_value+interpolation2DType+allowExtrapolation);
         interpolate2DDesc.Register();
 
+
+        // Registers Normal distribution
+        XlfArgDesc x_dist_value("x",
+            "is the value for which you want the distribution");
+        XlfArgDesc mean("mean", "is the arithmetic mean of the distribution");
+        XlfArgDesc std_dev("std_dev", "is the standard deviation of "
+            "the distribution");
+        XlfArgDesc cumulative("cumulative", "is a logical value that determines "
+            "the form of the function. If cumulative is TRUE, NORMDIST returns "
+            "the cumulative distribution function; if FALSE, it returns "
+            "the probability mass function");
+        XlfArgDesc probability("probability", "is a probability corresponding"
+            " to the normal distribution");
+        
+        XlfFuncDesc normDistDesc("xlnormDist","qlnormDist",
+            "Return the normal cumulative distribution for the specified "
+            "mean and standard deviation","qlMath");
+        normDistDesc.SetArguments(x_dist_value+mean+std_dev+cumulative);
+        normDistDesc.Register();
+
+        XlfFuncDesc normSDistDesc("xlnormSDist","qlnormSDist",
+            "Return the standard normal cumulative distribution (has a mean of zero "
+            "and a standard deviation of one","qlMath");
+        normSDistDesc.SetArguments(x_dist_value);
+        normSDistDesc.Register();
+
+        XlfFuncDesc normInvDesc("xlnormInv","qlnormInv",
+            "Return the inverse of the normal cumulative distribution for the specified "
+            "mean and standard deviation","qlMath");
+        normInvDesc.SetArguments(probability+mean+std_dev);
+        normInvDesc.Register();
+
+        XlfFuncDesc normSInvDesc("xlnormSInv","qlnormSInv",
+            "Return the inverse of the standard normal cumulative distribution "
+            "(has a mean of zero "
+            "and a standard deviation of one","qlMath");
+        normSInvDesc.SetArguments(probability);
+        normSInvDesc.Register();
 
         // Clears the status bar.
         XlfExcel::Instance().SendMessage();
