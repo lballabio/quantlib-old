@@ -24,7 +24,7 @@ noinst_HEADERS = \
     varies.hpp
 
 libQuantLibAddinC_la_SOURCES = \
-    options_c.cpp \
-    utilities_c.cpp \
+    options.cpp \
+    utilities.cpp \
     varies.cpp
 

@@ -30,7 +30,7 @@ def generateFuncHeaders(groupName, functionGroup):
     fileHeader.close()
 
 def generateFuncDefs(groupName, functionGroup):
-    fileName = ROOT + groupName + '_c.cpp'
+    fileName = ROOT + groupName + '.cpp'
     utils.logMessage('    generating file ' + fileName + '...')
     fileFunc = file(fileName, 'w')
     utils.printHeader(fileFunc)
