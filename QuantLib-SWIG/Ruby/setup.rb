@@ -87,6 +87,7 @@ Interfaces =  [ 'quantlib.i',
                 'stochasticprocess.i',
                 'discountcurve.i',
                 'distributions.i',
+                'exchangerates.i',
                 'exercise.i',
                 'functions.i',
                 'grid.i',
@@ -98,6 +99,7 @@ Interfaces =  [ 'quantlib.i',
                 'interpolation.i',
                 'linearalgebra.i',
                 'marketelements.i',
+                'money.i',
                 'montecarlo.i',
                 'null.i',
                 'observer.i',
@@ -196,6 +198,7 @@ Build = Command.new {
         $CPPFLAGS += " " + IO.popen("quantlib-config --cflags").gets.strip
         $CPPFLAGS += " -Wno-uninitialized -Wno-unused"
         $CPPFLAGS += " " + (ENV['CXXFLAGS'] || "")
+        $CPPFLAGS += " -DBOOST_DISABLE_THREADS"
         $libs     += " " + IO.popen("quantlib-config --libs").gets.strip
         old_cc = cfg['CC']
         cfg['CC'] = ENV['CXX'] || "g++"
