@@ -14,87 +14,69 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#include "Addins/C++/qladdin.hpp"
 #include "utilities.hpp"
 #include <string>
 #include <sstream>
-#include "QuantLibAddin/objectoption.hpp"
 using std::ostringstream;
 using std::string;
 using namespace ObjHandler;
-using namespace QuantLib;
 
-LPXLOPER QL_BLACKSCHOLES(
+LPXLOPER qlBlackscholes(
 		double *dividendYield,
 		double *riskFreeRate,
 		double *volatility,
 		double *underlying,
-		long int *todaysDateNum,
-		long int *settlementDateNum) {
+		long *todaysDate,
+		long *settlementDate) {
 	try {
-		std::string handleStochastic = getCaller();
-		Date todaysDate(*todaysDateNum);
-		Date settlementDate(*settlementDateNum);
-		obj_ptr objectStochastic(
-			new ObjectStochastic(*dividendYield, *riskFreeRate, *volatility, 
-				*underlying, todaysDate, settlementDate));
-		ObjectHandler::instance().storeObject(handleStochastic, objectStochastic);
+		std::string handle = getCaller();
+		Properties properties = QL_BLACKSCHOLES(handle,
+			*dividendYield, *riskFreeRate, *volatility, *underlying,
+			*todaysDate, *settlementDate);
 		static XLOPER xRet;
-		setValues(&xRet, objectStochastic, handleStochastic);
+		setValues(&xRet, properties, handle);
 		return &xRet;
 	} catch (const exception &e) {
-		logMessage(std::string("ERROR: QL_BLACKSCHOLES: ") + e.what());
+		QL_LOGMESSAGE(std::string("ERROR: QL_BLACKSCHOLES: ") + e.what());
 		return 0;
 	}
 }
 
-LPXLOPER QL_OPTION(
-		char *handleStochastic_char,
+LPXLOPER qlOption(
+		char *handleStochastic,
 		char *type,
 		double *strike,
-		long int *timeSteps,
-		long int *exerciseDateNum,
-		long int *settlementDateNum) {
+		long *timeSteps,
+		long *exerciseDate,
+		long *settlementDate) {
 	try {
-		std::string handleStochastic(handleStochastic_char);
-		boost::shared_ptr<ObjectStochastic> objectStochastic = 
-			boost::dynamic_pointer_cast<ObjectStochastic>
-			(ObjectHandler::instance().retrieveObject(handleStochastic));
-		if (!objectStochastic)
-			QL_FAIL("error retrieving object " + handleStochastic);
-		Date exerciseDate(*exerciseDateNum);
-		Date settlementDate(*settlementDateNum);
-		obj_ptr objectOption(
-			new ObjectOption(objectStochastic, type, *strike, *timeSteps,
-			exerciseDate, settlementDate));
-		std::string handleOption = getCaller();
-		ObjectHandler::instance().storeObject(handleOption, objectOption);
+		std::string handle = getCaller();
+		Properties properties = QL_OPTION(handle,
+			std::string(handleStochastic), std::string(type),
+			*strike, *timeSteps, *exerciseDate, *settlementDate);
 		static XLOPER xRet;
-		setValues(&xRet, objectOption, handleOption);
+		setValues(&xRet, properties, handle);
 		return &xRet;
 	} catch(const exception &e) {
-		logMessage(std::string("ERROR: QL_OPTION: ") + e.what());
+		QL_LOGMESSAGE(std::string("ERROR: QL_OPTION: ") + e.what());
 		return 0;
 	}
 }
 
-LPXLOPER QL_OPTION_SETENGINE(
-		char *handleOption_char,
-		char *engineName_char,
-		long int *timeSteps) {
+LPXLOPER qlOptionSetEngine(
+		char *handle,
+		char *engineName,
+		long *timeSteps) {
 	try {
-		std::string handleOption(handleOption_char);
-		boost::shared_ptr<ObjectOption> objectOption = 
-			boost::dynamic_pointer_cast<ObjectOption>
-			(ObjectHandler::instance().retrieveObject(handleOption));
-		if (!objectOption)
-			QL_FAIL("error retrieving object " + handleOption);
-		std::string engineName(engineName_char);
-		objectOption->setEngine(engineName, *timeSteps);
+
+		Properties properties = QL_OPTION_SETENGINE(std::string(handle),
+			std::string(engineName), *timeSteps);
 		static XLOPER xRet;
-		setValues(&xRet, objectOption, handleOption);
+		setValues(&xRet, properties, handle);
 		return &xRet;
 	} catch(const exception &e) {
-		logMessage(std::string("ERROR: QL_OPTION_SETENGINE: ") + e.what());
+		QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_SETENGINE: ") + e.what());
 		return 0;
 	}
 }

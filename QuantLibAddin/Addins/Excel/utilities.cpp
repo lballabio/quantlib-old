@@ -14,6 +14,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#include "Addins/C++/qladdin.hpp"
 #include "utilities.hpp"
 #include "framewrk.hpp"
 #include <exception>
@@ -35,8 +36,7 @@ void anyToXLOPER(const any_ptr &any, XLOPER &xOp) {
 		xOp.xltype = xltypeErr;
 }
 
-void setValues(LPXLOPER xArray, obj_ptr object, const std::string &handle) {
-	Properties properties = object->getProperties();
+void setValues(LPXLOPER xArray, Properties properties, const std::string &handle) {
 	xArray->xltype = xltypeMulti;
 	xArray->val.array.rows = 1;
 	xArray->val.array.columns = properties.size() + 1;

@@ -84,7 +84,7 @@ LINK32=link.exe
 # Name "ClientCPP - Win32 Debug"
 # Begin Source File
 
-SOURCE=.\qldemo.cpp
+SOURCE=.\qlademo.cpp
 # End Source File
 # End Target
 # End Project

@@ -18,7 +18,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "AddinCalc"=.\Addins\Calc\AddinCalc.dsp - Package Owner=<4>
+Project: "AddinCalc"=".\Addins\Calc\AddinCalc.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -33,7 +33,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "AddinExcel"=.\Addins\Excel\AddinExcel.dsp - Package Owner=<4>
+Project: "AddinExcel"=".\Addins\Excel\AddinExcel.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -42,7 +42,7 @@ Package=<5>
 Package=<4>
 {{{
     Begin Project Dependency
-    Project_Dep_Name QuantLibAddin
+    Project_Dep_Name AddinCPP
     End Project Dependency
 }}}
 
@@ -63,7 +63,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "QuantLibAddin"=.\QuantLibAddin.dsp - Package Owner=<4>
+Project: "QuantLibAddin"=".\QuantLibAddin.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{

@@ -23,12 +23,12 @@
 
 static LPSTR func[NUM_FUNCS][NUM_ATTS] = {
 	// utils
-	{" QL_QUERY",			" RC",		" QL_QUERY",			" ", " 1", " QuantLib"},
-	{" QL_LOGFILE",			" RC",		" QL_LOGFILE",			" ", " 1", " QuantLib"},
+	{" qlQuery",			" RC",		" QL_QUERY",			" ", " 1", " QuantLib"},
+	{" qlLogfile",			" RC",		" QL_LOGFILE",			" ", " 1", " QuantLib"},
 	// options
-	{" QL_BLACKSCHOLES",	" REEEENN#"," QL_BLACKSCHOLES",		" ", " 1", " QuantLib"},
-	{" QL_OPTION",			" RCCENNN#"," QL_OPTION",			" ", " 1", " QuantLib"},
-	{" QL_OPTION_SETENGINE"," RCCN",	" QL_OPTION_SETENGINE",	" ", " 1", " QuantLib"},
+	{" qlBlackscholes",		" REEEENN#"," QL_BLACKSCHOLES",		" ", " 1", " QuantLib"},
+	{" qlOption",			" RCCENNN#"," QL_OPTION",			" ", " 1", " QuantLib"},
+	{" qlOptionSetEngine",	" RCCN",	" QL_OPTION_SETENGINE",	" ", " 1", " QuantLib"},
 };
 
 int xlAutoOpen() {

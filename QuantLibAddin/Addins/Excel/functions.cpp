@@ -14,31 +14,25 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#include "Addins/C++/qladdin.hpp"
 #include "utilities.hpp"
 #include <sstream>
-#include <ql/quantlib.hpp>
 
 using std::ostringstream;
 using namespace ObjHandler;
-using namespace QuantLib;
 
-LPXLOPER QL_QUERY(char *handleObject_char) {
+LPXLOPER qlQuery(char *handleObject) {
 	try {
-		std::string handleObject(handleObject_char);
-		boost::shared_ptr<Object> object = 
-			ObjectHandler::instance().retrieveObject(handleObject);
-		if (!object)
-			QL_FAIL("error retrieving object " + handleObject);
-
-		Properties properties = object->getProperties();
+		Properties properties = QL_QUERY(std::string(handleObject));
 		static XLOPER xRet;
 		xRet.xltype = xltypeMulti;
 		xRet.val.array.rows = properties.size();
 		xRet.val.array.columns = 2;
 		// FIXME - memory allocated below gets leaked - need to set xlbitXLFree ?
 		xRet.val.array.lparray = new XLOPER[2 * properties.size()];
-		if (!xRet.val.array.lparray)
-			QL_FAIL("error on call to new");
+		// FIXME error handling temporarily un-#included from here
+//		if (!xRet.val.array.lparray)
+//			QL_FAIL("error on call to new");
 		for (unsigned int i = 0; i < properties.size(); i++) {
 			ObjectProperty property = properties[i];
 			any_ptr a = property();
@@ -47,22 +41,14 @@ LPXLOPER QL_QUERY(char *handleObject_char) {
 		}
 		return &xRet;
 	} catch (const exception &e) {
-		logMessage(std::string("ERROR: QL_FIELDNAMES: ") + e.what());
+		QL_LOGMESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what());
 		return 0;
 	}
 }
 
-LPXLOPER QL_LOGFILE(char *logFileName) {
+LPXLOPER qlLogfile(char *logFileName) {
 	static XLOPER xRet;
-	try {
-		if (setLogFile(std::string(logFileName)))
-			setXLOPERString(xRet, logFileName);
-		else
-			setXLOPERString(xRet, "logging disabled");
-	} catch (const exception &e) {
-		ostringstream msg;
-		msg << "error opening logfile: " << e.what();
-		setXLOPERString(xRet, msg.str().c_str());
-	}
+	std::string ret = QL_LOGFILE(std::string(logFileName));
+	setXLOPERString(xRet, ret.c_str());
 	return &xRet;
 }

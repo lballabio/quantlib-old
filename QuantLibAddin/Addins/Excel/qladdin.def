@@ -3,9 +3,9 @@ LIBRARY QUANTLIBADDIN
 EXPORTS
 	xlAutoOpen
 ;	utils
-	QL_QUERY
-	QL_LOGFILE
+	qlQuery
+	qlLogfile
 ;	options
-	QL_BLACKSCHOLES
-	QL_OPTION
-	QL_OPTION_SETENGINE
+	qlBlackscholes
+	qlOption
+	qlOptionSetEngine
