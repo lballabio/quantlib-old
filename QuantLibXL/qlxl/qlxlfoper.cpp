@@ -49,7 +49,8 @@ DayCounter QlXlfOper::AsDayCounter() const {
         dc = Actual365();
     else if (s == "2" || s == "act360" || s == "act/360")
         dc = Actual360();
-    else if (s == "3" || s == "actacte" || s == "act/act(e)" || s == "act/act(Euro)")
+    else if (s == "3" || s == "actacte" || s == "act/act(e)"
+                                        || s == "act/act(Euro)")
         dc = ActualActual(ActualActual::Euro);
     else if (s == "4" || s == "30/360" || s == "30/360us")
         dc = Thirty360(Thirty360::USA);
@@ -57,9 +58,11 @@ DayCounter QlXlfOper::AsDayCounter() const {
         dc = Thirty360(Thirty360::European);
     else if (s == "6" || s == "30/360i" || s == "30/360it")
         dc = Thirty360(Thirty360::Italian);
-    else if (s == "7" || s == "actact" || s == "act/act" || s == "act/act(b)" || s == "act/act (Bond)")
+    else if (s == "7" || s == "actact" || s == "act/act" || s == "act/act(b)"
+                                       || s == "act/act (Bond)")
         dc = ActualActual(ActualActual::Bond);
-    else if (s == "8" || s == "actacth" || s == "act/act(h)" || s == "act/act (ISDA)")
+    else if (s == "8" || s == "actacth" || s == "act/act(h)"
+                                        || s == "act/act (ISDA)")
         dc = ActualActual(ActualActual::Historical);
     else if (s == "9" || s == "30/360isda")
         dc = Thirty360(Thirty360::USA);
@@ -270,7 +273,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
             boost::shared_ptr<TermStructure>(new
                 DiscountCurve(today, dates, discounts, Actual365())));
     } else if (rowNo>1 && colNo==2) {
-        // vertical piecewise forward (annual continuos compounding act/365) grid
+        // vertical piecewise forward grid (annual continuos act/365)
         std::vector<Date> dates(rowNo);
         std::vector<Rate> forwards(rowNo);
         for (Size j = 0; j<rowNo; j++) {
@@ -283,7 +286,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
             boost::shared_ptr<TermStructure>(new
                 PiecewiseFlatForward(today, dates, forwards, Actual365())));
     } else if (rowNo==2 && colNo>1) {
-        // horizontal piecewise forward (annual continuos compounding act/365) grid
+        // horizontal piecewise forward grid (annual continuos act/365)
         std::vector<Date> dates(colNo);
         std::vector<Rate> forwards(colNo);
         for (Size j = 0; j<colNo; j++) {
