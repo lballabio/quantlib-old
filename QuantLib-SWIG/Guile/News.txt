@@ -1,7 +1,9 @@
 2003-11-21 Release 0.3.4
 Changes since Release 0.3.3:
     - in sync with QuantLib 0.3.4
-    -
+    - Unit tests moved to the Greg framework
+    - Removed tests duplicating C++ tests. The Guile test-suite now tests
+      Guile-specific features only.
 
 2003-09-03 Release 0.3.3
 Changes since Release 0.3.1:

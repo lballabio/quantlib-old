@@ -1,7 +1,8 @@
 2003-11-21 Release 0.3.4
 Changes since Release 0.3.3:
     - in sync with QuantLib 0.3.4
-    -
+    - Removed tests duplicating C++ tests. The Ruby test-suite now tests
+      Ruby-specific features only.
 
 2003-09-03 Release 0.3.3
 Changes since Release 0.3.1:
