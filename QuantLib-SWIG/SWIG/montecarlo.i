@@ -18,6 +18,7 @@
 #ifndef quantlib_montecarlo_tools_i
 #define quantlib_montecarlo_tools_i
 
+%include diffusionprocess.i
 %include linearalgebra.i
 %include randomnumbers.i
 %include types.i
@@ -100,14 +101,15 @@ class Path {
 };
 
 %{
-using QuantLib::GaussianPathGenerator_old;
+using QuantLib::GaussianPathGenerator;
 %}
 %template(SamplePath) Sample<Path>;
-%rename(GaussianPathGenerator) GaussianPathGenerator_old;
-class GaussianPathGenerator_old {
+class GaussianPathGenerator {
   public:
-    GaussianPathGenerator_old(double drift, double variance,
-                              Time length, Size steps, long seed = 0);
+    GaussianPathGenerator(const boost::shared_ptr<DiffusionProcess>&,
+                          Time length, Size steps, 
+                          const GaussianRandomSequenceGenerator&,
+                          bool brownianBridge = false);
 	Sample<Path> next() const;
 };
 

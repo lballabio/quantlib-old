@@ -22,6 +22,8 @@
 %include options.i
 %include types.i
 %include linearalgebra.i
+%include termstructures.i
+%include volatilities.i
 %include vectors.i
 
 
@@ -343,28 +345,32 @@ class McDiscreteArithmeticAPO {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-	McDiscreteArithmeticAPO(OptionType type, double underlying, double strike,
-                            Spread dividendYield, Rate riskFreeRate,
-                            const std::vector<double>& timeDelays,
-                            double volatility, bool controlVariate, 
-                            long seed = 0);
+	McDiscreteArithmeticAPO(
+                    OptionType type, double underlying, double strike,
+                    const RelinkableHandle<TermStructure>& dividendYield,
+                    const RelinkableHandle<TermStructure>& riskFreeRate,
+                    const RelinkableHandle<BlackVolTermStructure>& volatility,
+                    const std::vector<double>& timeDelays,
+                    bool controlVariate, long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;
     double valueWithSamples(Size samples) const;
     double errorEstimate() const;
 };
 
+class McDiscreteArithmeticASO {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("value-with-samples") valueWithSamples;
     %rename("error-estimate")     errorEstimate;
     #endif
-class McDiscreteArithmeticASO {
   public:
-	McDiscreteArithmeticASO(OptionType type, double underlying,
-                            Spread dividendYield, Rate riskFreeRate,
-                            const std::vector<double>& timeDelays,
-                            double volatility, bool controlVariate, 
-                            long seed = 0);
+	McDiscreteArithmeticASO(
+                    OptionType type, double underlying,
+                    const RelinkableHandle<TermStructure>& dividendYield,
+                    const RelinkableHandle<TermStructure>& riskFreeRate,
+                    const RelinkableHandle<BlackVolTermStructure>& volatility,
+                    const std::vector<double>& timeDelays,
+                    bool controlVariate, long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;
     double valueWithSamples(Size samples) const;

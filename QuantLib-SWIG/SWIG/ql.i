@@ -57,6 +57,7 @@
 %include currencies.i
 %include date.i
 %include daycounters.i
+%include diffusionprocess.i
 %include discountcurve.i
 %include distributions.i
 %include exercise.i
