@@ -264,10 +264,25 @@ if sys.platform == 'win32':
         extra_link_args = ['/subsystem:windows',
                            '/machine:I386']
 
-    if '--debug' in sys.argv:
-        extra_compile_args.append('/MTd')
+    if "--dll" in sys.argv:
+        use_dll = 1
+        for i in range(len(sys.argv)):
+            if sys.argv[i] == "--dll":
+                del sys.argv[i]
+                break
     else:
-        extra_compile_args.append('/MT')
+        use_dll = 0
+
+    if '--debug' in sys.argv:
+        if use_dll:
+            extra_compile_args.append('/MDd')
+        else:
+            extra_compile_args.append('/MTd')
+    else:
+        if use_dll:
+            extra_compile_args.append('/MD')
+        else:
+            extra_compile_args.append('/MT')
         extra_compile_args.append('/Od')
 
 else:
