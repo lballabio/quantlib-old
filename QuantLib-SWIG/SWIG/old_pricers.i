@@ -53,7 +53,6 @@ class EuropeanOption {
 
 
 %{
-using QuantLib::Pricers::BarrierOption;
 using QuantLib::Barrier;
 typedef Barrier::Type BarrierType;
 
@@ -88,49 +87,6 @@ std::string barrierTypeToString(BarrierType t) {
 %}
 
 MapToString(BarrierType,barrierTypeFromString,barrierTypeToString);
-
-class BarrierOption {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("dividend-rho")       dividendRho;
-    #endif
-  public:
-    BarrierOption(BarrierType barrType, OptionType type, double underlying,
-                  double strike, Spread dividendYield, Rate riskFreeRate,
-                  Time residualTime, double volatility, double barrier,
-                  double rebate = 0.0);
-    double value() const;
-	double delta() const;
-	double gamma() const;
-	double theta() const;
-	double vega() const;
-	double rho() const;
-	double dividendRho() const;
-};
-
-
-%{
-using QuantLib::Pricers::BinaryOption;
-%}
-
-class BinaryOption {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("dividend-rho")       dividendRho;
-    %rename("implied-volatility") impliedVolatility;
-    #endif
-  public:
-	BinaryOption(OptionType type, double underlying, double strike,
-                 Spread dividendYield, Rate riskFreeRate, Time residualTime,
-                 double volatility, double cashPayoff = 1.0);
-	double value() const;
-	double delta() const;
-	double gamma() const;
-	double theta() const;
-	double vega() const;
-	double rho() const;
-	double dividendRho() const;
-	double impliedVolatility(double targetValue, double accuracy = 1e-4,
-                             Size maxEvaluations = 100) const ;
-};
 
 
 %{
@@ -371,7 +327,6 @@ class FdBermudanOption {
 // single asset
 using QuantLib::Pricers::McDiscreteArithmeticAPO;
 using QuantLib::Pricers::McDiscreteArithmeticASO;
-using QuantLib::Pricers::McEuropean;
 
 // multi asset
 using QuantLib::Pricers::McBasket;
@@ -380,22 +335,6 @@ using QuantLib::Pricers::McEverest;
 using QuantLib::Pricers::McHimalaya;
 using QuantLib::Pricers::McPagoda;
 %}
-
-class McEuropean {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("value-with-samples") valueWithSamples;
-    %rename("error-estimate")     errorEstimate;
-    #endif
-  public:
-	McEuropean(OptionType type, double underlying, double strike,
-			   Spread dividendYield, Rate riskFreeRate,
-			   double residualTime, double volatility,
-			   bool antitheticVariance, long seed = 0);
-    double value(double tolerance,
-                 Size maxSample = QL_MAX_INT) const;
-    double valueWithSamples(Size samples) const;
-    double errorEstimate() const;
-};
 
 class McDiscreteArithmeticAPO {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
