@@ -3,7 +3,7 @@
 #include <sstream>
 using std::ostringstream;
 using std::string;
-#include "ObjectClassLibrary/ObjectOption.hpp"
+#include "QuantLibAddin/ObjectOption.hpp"
 
 extern ObjectHandler objectHandler;
 

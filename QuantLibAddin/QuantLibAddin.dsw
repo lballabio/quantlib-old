@@ -1,0 +1,86 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "AddinCPP"=".\Addins\C++\AddinCPP.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name QuantLibAddin
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "AddinCalc"=.\Addins\Calc\AddinCalc.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name QuantLibAddin
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "AddinExcel"=.\Addins\Excel\AddinExcel.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name QuantLibAddin
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "ClientCPP"=".\Clients\C++\ClientCPP.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "QuantLibAddin"=.\QuantLibAddin.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

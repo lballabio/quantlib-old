@@ -1,7 +1,7 @@
 #ifndef qladdin_h
 #define qladdin_h
 
-#include "ObjectClassLibrary/objectoption.hpp"
+#include "QuantLibAddin/objectoption.hpp"
 #include <string>
 using std::string;
 
