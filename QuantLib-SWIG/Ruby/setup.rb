@@ -58,7 +58,8 @@ Version = "0.3.5a1"
 
 # Files
 Info     =    [ 'Authors.txt', 'ChangeLog.txt', 'Contributors.txt',
-                'LICENSE.TXT', 'README.txt', 'History.txt', 'News.txt' ]
+                'LICENSE.TXT', 'README.txt', 'History.txt', 'News.txt',
+                'QuantLib-Ruby.spec' ]
 Sources  =    [ 'QuantLib.rb', 'quantlib_wrap.cpp' ]
 Binaries =    [ 'QuantLibc.so' ]
 Scripts  =    [ 'setup.rb' ]
