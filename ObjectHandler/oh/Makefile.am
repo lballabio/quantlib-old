@@ -3,6 +3,7 @@ includedir = $(prefix)/include/oh
 
 include_HEADERS = \
     exception.hpp \
+    factory.hpp \
     logger.hpp \
     objecthandler.hpp \
     object.hpp \

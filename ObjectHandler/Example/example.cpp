@@ -24,7 +24,6 @@ using namespace std;
 
 int main() {
     try {
-
         // specify log file
         QL_LOGFILE("example.log");
         // also direct log messages to stdout
@@ -32,8 +31,10 @@ int main() {
         QL_LOGMESSAGE("begin example program");
 
         // construct some objects and store them in the object handler
-        Properties f1Properties = FOO_MAKE("foo1", "abc", 123);
-        Properties f2Properties = FOO_MAKE("foo2", "def", 456);
+        Properties f1Properties = QL_MAKE_OBJECT(ObjectFoo)(
+            "foo1", "abc", 123);
+        Properties f2Properties = QL_MAKE_OBJECT(ObjectFoo)(
+            "foo2", "def", 456);
 
         // high level interrogation
         QL_LOGMESSAGE("high level interrogation - after constructor");
@@ -72,6 +73,7 @@ int main() {
             + foo->s());
 
         QL_LOGMESSAGE("end example program");
+
         return 0;
     } catch (const exception &e) {
         ostringstream s;

@@ -1,6 +1,6 @@
 
-/*!
- Copyright (C) 2004, 2005 Eric Ehlers
+/*
+ Copyright (C) 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,27 +15,29 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef interface_hpp
-#define interface_hpp
+#ifndef oh_factory_hpp
+#define oh_factory_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 
-#define QL_MAKE_OBJECT(X) ObjHandler::Factory<X>::makeObject
-                                                                                
-const ObjHandler::Properties& FOO_UPDATE(
-    const std::string &handle,
-    const std::string &s,
-    const int &i);
+namespace ObjHandler {
 
-void QL_LOGFILE(const std::string &logFileName);
+    template < class T >
+        class Factory {
+        public:
+        static const Properties& makeObject(
+                char *handle,
+                ...) {
+            va_list list;
+            va_start(list, handle);
+            obj_ptr object = obj_ptr(new T(list));
+            va_end(list);
+            ObjectHandler::instance().storeObject(handle, object);
+            return object->getProperties();
+        }
+    };
 
-void QL_LOGLEVEL(const int &logLevel);
-
-void QL_CONSOLE(const int &console);
-
-void QL_LOGMESSAGE(
-    const std::string &message,
-    const int &level = 4);
+}
 
 #endif
 

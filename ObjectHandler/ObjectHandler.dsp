@@ -217,6 +217,10 @@ SOURCE=.\oh\exception.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\oh\factory.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\oh\logger.hpp
 # End Source File
 # Begin Source File

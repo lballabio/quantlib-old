@@ -25,12 +25,12 @@
 #include <oh/utilities.hpp>
 #include <oh/singleton.hpp>
 #include <map>
+#include <cstdarg>
 
 //! ObjHandler
 /*! name space for the Object Handler
 */
 namespace ObjHandler {
-
     //! Object pointer
     /*! A boost shared pointer to an Object.
     */

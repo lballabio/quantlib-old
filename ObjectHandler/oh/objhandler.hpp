@@ -21,6 +21,7 @@
 #include <oh/objhandlerdefines.hpp>
 #include <oh/objecthandler.hpp>
 #include <oh/exception.hpp>
+#include <oh/factory.hpp>
 
 #endif
 

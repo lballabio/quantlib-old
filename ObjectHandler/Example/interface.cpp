@@ -21,16 +21,7 @@
 
 using namespace ObjHandler;
 
-Properties FOO_MAKE(
-        const std::string &handle,
-        const std::string &s,
-        const int &i) {
-    obj_ptr object(new ObjectFoo(s, i));
-    ObjectHandler::instance().storeObject(handle, object);
-    return object->getProperties();
-}
-
-Properties FOO_UPDATE(
+const Properties& FOO_UPDATE(
         const std::string &handle,
         const std::string &s,
         const int &i) {

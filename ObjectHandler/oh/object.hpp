@@ -62,9 +62,9 @@ namespace ObjHandler {
             in the ObjectHandler, call
                 ObjectHandler::instance().storeObject(handle, object);
         */
-        Object() {}
+        Object() {};
         //! Default destructor.
-        virtual ~Object() {}
+        virtual ~Object() {};
         //@}
         //! \name Object interrogation
         //@{
