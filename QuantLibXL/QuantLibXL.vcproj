@@ -21,7 +21,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				GlobalOptimizations="TRUE"
+				GlobalOptimizations="FALSE"
 				ImproveFloatingPointConsistency="TRUE"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories=".\,$(XLW_DIR),$(QL_DIR),$(QL_DIR)\functions"
@@ -46,7 +46,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="xll\QuantLibXL-vc71-mt-sgd-0_3_8.xll"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(XLW_DIR)\lib,$(QL_DIR)\lib"
 				GenerateDebugInformation="TRUE"
