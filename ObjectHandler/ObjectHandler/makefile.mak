@@ -27,7 +27,6 @@ CORE_OBJS = \
     "exception.obj$(_mt)$(_D)" \
     "object.obj$(_mt)$(_D)" \
     "objecthandler.obj$(_mt)$(_D)" \
-    "property.obj$(_mt)$(_D)" \
     "utilities.obj$(_mt)$(_D)"
 
 # Tools to be used
