@@ -218,6 +218,9 @@ class Date {
         std::string __str__() {
             return DateFormatter::toString(*self);
         }
+        std::string ISO() {
+            return DateFormatter::toString(*self,DateFormatter::ISO);
+        }
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         int operator-(const Date& other) {
             return *self - other;
