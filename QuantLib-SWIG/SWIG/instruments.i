@@ -35,10 +35,14 @@ class Instrument {
     #if defined(SWIGRUBY)
     %rename("isExpired?")   isExpired;
     %rename("recalculate!") recalculate;
+    %rename("freeze!")      freeze;
+    %rename("unfreeze!")    unfreeze;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("isin-code")    isinCode;
     %rename("expired?")     isExpired;
     %rename("recalculate!") recalculate;
+    %rename("freeze!")      freeze;
+    %rename("unfreeze!")    unfreeze;
     #endif
   public:
     std::string isinCode() const;
@@ -46,6 +50,8 @@ class Instrument {
     double NPV() const;
     bool isExpired() const;
     void recalculate();
+    void freeze();
+    void unfreeze();
 };
 
 %template(Instrument) Handle<Instrument>;

@@ -26,14 +26,33 @@ class InstrumentTest < Test::Unit::TestCase
   end
   def testStock
     flag = false
-    me = QuantLib::SimpleMarketElement.new(0.0)
-    h = QuantLib::MarketElementHandle.new(me)
+    me1 = QuantLib::SimpleMarketElement.new(0.0)
+    h = QuantLib::MarketElementHandle.new(me1)
     s = QuantLib::Stock.new(h)
     obs = QuantLib::Observer.new { flag = true }
     obs.registerWith(s)
-    me.value = 3.14
+
+    me1.value = 3.14
     unless flag
-        flunk("Observer was not notified of stock value change")
+        flunk("Observer was not notified of instrument change")
+    end
+
+    flag = false
+    me2 = QuantLib::SimpleMarketElement.new(0.0)
+    h.linkTo!(me2)
+    unless flag
+        flunk("Observer was not notified of instrument change")
+    end
+
+    flag = false
+    s.freeze!
+    me2.value = 2.71
+    if flag
+        flunk("Observer was notified of frozen instrument change")
+    end
+    s.unfreeze!
+    unless flag
+        flunk("Observer was not notified of instrument change")
     end
   end
 end

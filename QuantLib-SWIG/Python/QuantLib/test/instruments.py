@@ -30,17 +30,32 @@ class InstrumentTest(unittest.TestCase):
         "Testing observability of stocks"
         global flag
         flag = None
-        me = QuantLib.SimpleMarketElement(0.0)
-        h = QuantLib.MarketElementHandle(me)
-        h.linkTo(me)
+        me1 = QuantLib.SimpleMarketElement(0.0)
+        h = QuantLib.MarketElementHandle(me1)
         s = QuantLib.Stock(h)
+
         obs = QuantLib.Observer(raiseFlag)
         obs.registerWith(s)
-        me.setValue(3.14)
+
+        me1.setValue(3.14)
         if not flag:
-            self.fail("Observer was not notified of stock value change")
+            self.fail("Observer was not notified of instrument change")
 
+        flag = None
+        me2 = QuantLib.SimpleMarketElement(0.0)
+        h.linkTo(me2)
+        if not flag:
+            self.fail("Observer was not notified of instrument change")
 
+        flag = None
+        s.freeze()
+        me2.setValue(2.71)
+        if flag:
+            self.fail("Observer was notified of frozen instrument change")
+        s.unfreeze()
+        if not flag:
+            self.fail("Observer was not notified of instrument change")
+        
 if __name__ == '__main__':
     print 'testing QuantLib', QuantLib.__version__
     suite = unittest.TestSuite()
