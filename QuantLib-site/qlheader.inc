@@ -30,7 +30,7 @@
 
 <li><a class="navlink" href="reference/faq.html">FAQ</a></li>
 
-<li><a class="navlink" href="docs.shtml">Documentation</a></li>
+<li><a class="navlink" href="docs.shtml">Documentation and Papers</a></li>
 
 <li><a class="navlink" href=
 "http://wiki.quantlib.org">QuantLib Wiki</a></li>

@@ -17,6 +17,8 @@
 <li><a class="navlink" href=
 "http://sourceforge.net/projects/quantlib">Project&nbsp;page</a></li>
 
+<li><a class="navlink" href="reference/index.html">Reference Manual</a></li>
+
 <li><a class="navlink" href="quep.shtml">Enhancement Proposals</a></li>
 
 <li><a class="navlink" href="cvs.shtml">CVS</a></li>
