@@ -25,7 +25,7 @@ namespace QuantLibAddin {
 
     class CliquetOption : public ObjHandler::Object {
     public:
-        CliquetOption::CliquetOption(va_list list);
+        CliquetOption::CliquetOption(ObjHandler::ArgStack &args);
     //    ~CliquetOption();
         void setEngine(
             const std::string &engineName,

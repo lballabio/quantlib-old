@@ -25,7 +25,7 @@ namespace QuantLibAddin {
 
     class BarrierOption : public ObjHandler::Object {
     public:
-        BarrierOption(va_list list);
+        BarrierOption(ObjHandler::ArgStack &args);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(barrierOption_);
         }

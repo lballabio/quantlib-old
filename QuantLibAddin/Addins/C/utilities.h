@@ -25,8 +25,12 @@ const char *QL_OH_VER();
 const char *QL_LOGFILE(
     const char *logFileName);
 
+void QL_CONSOLE(
+    const int console);
+
 void QL_LOGMESSAGE(
-    const char *msg);
+    const char *fmt,
+    ...);
 
 #endif
 

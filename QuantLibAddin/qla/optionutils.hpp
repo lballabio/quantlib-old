@@ -30,6 +30,8 @@
 #define IDX_NPV                         0
 #define IDX_ENGINE                      1
 
+#define QL_OBJECT_GET(X) ObjHandler::ObjectHandler::instance().retrieveObject(X)
+
 namespace QuantLibAddin {
 
     QuantLib::Option::Type IDtoOptionType(
@@ -55,43 +57,6 @@ namespace QuantLibAddin {
 
     std::vector<QuantLib::Date> longVectorToDateVector(
         const std::vector < long > &v);
-
-    template < typename T >
-    class Conversion {
-    public:
-        static std::vector < T > arrayToVector(
-                const long& arraySize,
-                const T* array) {
-            std::vector < T > ret;
-            for (int i = 0; i < arraySize; i++)
-                ret.push_back(array[i]);
-            return ret;
-        }
-
-        static std::vector < std::string > arrayToVector(
-                const long& arraySize,
-                char** array) {
-            std::vector < std::string > ret;
-            for (int i = 0; i < arraySize; i++)
-                ret.push_back(std::string(array[i]));
-            return ret;
-        }
-
-        static std::vector < std::vector < T > > arrayToMatrix(
-                const long& arrayRows,
-                const long& arrayCols,
-                T** array) {
-            std::vector < std::vector < T > > ret;
-            for (int i = 0; i < arrayRows; i++) {
-                std::vector < T > row;
-                for (int j = 0; j < arrayCols; j++)
-                    row.push_back(array[i][j]);
-                ret.push_back(row);
-            }
-            return ret;
-        }
-
-    };
 
 }
 

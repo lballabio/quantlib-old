@@ -21,11 +21,10 @@
 
 void printVariesList(const char *s, const VariesList vo) {
     int i;
-    printf("%s\n", s);
+    QL_LOGMESSAGE(s);
     for (i=0; i<vo.count; i++)
-        printf("field = %s, value = %s\n", vo.varies[i].Label, 
+        QL_LOGMESSAGE("field = %s, value = %s", vo.varies[i].Label, 
             variesToString(&vo.varies[i]));
-    printf("\n");
 }
 
 int main() {
@@ -58,9 +57,8 @@ int main() {
     double dividends[] = { 5., 5. };
     long resetDate = 36020;
 
-    printf("begin options test\n\n");
-
     QL_LOGFILE("quantlib.log");
+    QL_CONSOLE(1);
     QL_LOGMESSAGE("begin options test");
 
     if (QL_STOCHASTIC_PROCESS(
@@ -72,7 +70,7 @@ int main() {
             dividendYield, 
             volatility, 
             &vbs) != SUCCESS) {
-        printf("Error on call to QL_STOCHASTIC_PROCESS\n");
+        QL_LOGMESSAGE("Error on call to QL_STOCHASTIC_PROCESS");
         goto fail;
     }
 
@@ -90,7 +88,7 @@ int main() {
             "JR",                           // engine type (jarrow rudd)
             timeSteps,                      // time steps
             &vo) != SUCCESS) {
-        printf("Error on call to QL_OPTION_VANILLA\n");
+        QL_LOGMESSAGE("Error on call to QL_OPTION_VANILLA");
         goto fail;
     }
 
@@ -109,7 +107,7 @@ int main() {
             "ACGAPA",                       // engine type
             timeSteps,                      // time steps
             &voac) != SUCCESS) {
-        printf("Error on call to QL_OPTION_VANILLA\n");
+        QL_LOGMESSAGE("Error on call to QL_OPTION_VANILLA");
         goto fail;
     }
 
@@ -136,7 +134,7 @@ int main() {
             "ADGAPA",                       // engine type (AnalyticDiscreteGeometricAveragePriceAsianEngine)
             timeSteps,                      // time steps
             &voad) != SUCCESS) {
-        printf("Error on call to QL_OPTION_ASIAN_D\n");
+        QL_LOGMESSAGE("Error on call to QL_OPTION_ASIAN_D");
         goto fail;
     }
 
@@ -157,7 +155,7 @@ int main() {
             "AB",                           // engine type
             timeSteps,                      // time steps
             &voba) != SUCCESS) {
-        printf("Error on call to QL_OPTION_BARRIER\n");
+        QL_LOGMESSAGE("Error on call to QL_OPTION_BARRIER");
         goto fail;
     }
 
@@ -186,7 +184,7 @@ int main() {
             "SE",                           // engine type
             timeSteps,                      // time steps
             &vobs) != SUCCESS) {
-        printf("Error on call to QL_OPTION_BASKET\n");
+        QL_LOGMESSAGE("Error on call to QL_OPTION_BASKET");
         goto fail;
     }
 
@@ -203,7 +201,7 @@ int main() {
             "AC",                           // engine type
             timeSteps,                      // time steps
             &voc) != SUCCESS) {
-        printf("Error on call to QL_OPTION_CLIQUET\n");
+        QL_LOGMESSAGE("Error on call to QL_OPTION_CLIQUET");
         goto fail;
     }
 
@@ -225,7 +223,7 @@ int main() {
             "ADE",                          // engine type
             timeSteps,                      // time steps
             &vod) != SUCCESS) {
-        printf("Error on call to QL_OPTION_DIVIDENDVANILLA\n");
+        QL_LOGMESSAGE("Error on call to QL_OPTION_DIVIDENDVANILLA");
         goto fail;
     }
 
@@ -245,7 +243,7 @@ int main() {
             "FE",                           // engine type
             timeSteps,                      // time steps
             &vof) != SUCCESS) {
-        printf("Error on call to QL_OPTION_FORWARDVANILLA\n");
+        QL_LOGMESSAGE("Error on call to QL_OPTION_FORWARDVANILLA");
         goto fail;
     }
 
@@ -266,8 +264,6 @@ int main() {
     freeVariesList(&vof);
 
     QL_LOGMESSAGE("end options test");
-
-    printf("end options test\n");
 
     return 0;
 

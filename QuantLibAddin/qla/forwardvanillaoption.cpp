@@ -23,25 +23,24 @@
 
 namespace QuantLibAddin {
 
-    ForwardVanillaOption::ForwardVanillaOption(va_list list) {
-        char *handleStochastic = va_arg(list, char *);
-        double moneyness = va_arg(list, double);
-        long resetDate = va_arg(list, long);
-        char *optionTypeID = va_arg(list, char *);
-        char *payoffID = va_arg(list, char *);
-        double strike = va_arg(list, double);
-        char *exerciseID = va_arg(list, char *);
-        long exerciseDate = va_arg(list, long);
-        long settlementDate = va_arg(list, long);
-        char *engineID = va_arg(list, char *);
-        long timeSteps = va_arg(list, long);
+    ForwardVanillaOption::ForwardVanillaOption(ObjHandler::ArgStack &args) {
+        long timeSteps = ObjHandler::Args<long>::popArg(args);
+        std::string engineID = ObjHandler::Args<std::string>::popArg(args);
+        long settlementDate = ObjHandler::Args<long>::popArg(args);
+        long exerciseDate = ObjHandler::Args<long>::popArg(args);
+        std::string exerciseID = ObjHandler::Args<std::string>::popArg(args);
+        double strike = ObjHandler::Args<double>::popArg(args);
+        std::string payoffID = ObjHandler::Args<std::string>::popArg(args);
+        std::string optionTypeID = ObjHandler::Args<std::string>::popArg(args);
+        long resetDate = ObjHandler::Args<long>::popArg(args);
+        double moneyness = ObjHandler::Args<double>::popArg(args);
+        std::string handleStochastic = ObjHandler::Args<std::string>::popArg(args);
 
-        std::string handleStochasticStr(handleStochastic);
         boost::shared_ptr<StochasticProcess> stochasticProcess =
             boost::dynamic_pointer_cast<StochasticProcess>
-            (ObjHandler::ObjectHandler::instance().retrieveObject(handleStochasticStr));
+            (QL_OBJECT_GET(handleStochastic));
         if (!stochasticProcess)
-            QL_FAIL("ForwardVanillaOption: error retrieving object " + handleStochasticStr);
+            QL_FAIL("ForwardVanillaOption: error retrieving object " + handleStochastic);
 
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             IDtoPayoff(optionTypeID, payoffID, strike);

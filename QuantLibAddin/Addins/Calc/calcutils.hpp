@@ -27,42 +27,43 @@ template < typename T >
 class Conversion {
 public:
 
-    static void convertArray(const SEQSEQ(STRING)& s, char** &a, long &sz) {
-        SEQ(STRING) s2 = s[0];
-        sz = s.getLength() * s2.getLength();
-        a = new char*[sz];
-        for (int i=0; i<s.getLength(); i++){
-            s2 = s[i];
-            for (int j=0; j<s2.getLength(); j++) {
-                int idx = i * s2.getLength() + j;
-                a[idx] = new char[s2.getLength() + 1];
-                sprintf(a[idx], OUStringToString(s2[j]).c_str());
-            }
-        }
+    static std::vector < T >convertVector(const SEQSEQ(T)& s) {
+        std::vector < T >ret;
+        if (!s.getLength())
+            return ret;
+        if (!s[0].getLength())
+            return ret;
+        for (int i=0; i<s.getLength(); i++)
+            for (int j=0; j<s[i].getLength(); j++)
+                ret.push_back(s[i][j]);
+        return ret;
     }
 
-    static void convertArray(const SEQSEQ(T)& s, T* &a, long &sz) {
-        SEQ(T) s2 = s[0];
-        sz = s.getLength() * s2.getLength();
-        a = new T[sz];
-        for (int i=0; i<s.getLength(); i++){
-            s2 = s[i];
-            for (int j=0; j<s2.getLength(); j++)
-                a[i * s2.getLength() + j] = s2[j];
-        }
+    static std::vector < std::string >convertStrVector(const SEQSEQ(STRING)& s) {
+        std::vector < std::string > ret;
+        if (!s.getLength())
+            return ret;
+        if (!s[0].getLength())
+            return ret;
+        for (int i=0; i<s.getLength(); i++)
+            for (int j=0; j<s[i].getLength(); j++)
+                ret.push_back(OUStringToString(s[i][j]));
+        return ret;
     }
 
-    static void convertMatrix(const SEQSEQ(double)& s, T** &a, long &r, long &c) {
-        SEQ(T) s2 = s[0];
-        r = s.getLength();
-        c = s2.getLength();
-        a = new T*[r];
+    static std::vector < std::vector < T > >convertMatrix(const SEQSEQ(double)& s) {
+        std::vector < std::vector < T > >ret;
+        if (!s.getLength())
+            return ret;
+        if (!s[0].getLength())
+            return ret;
         for (int i=0; i<s.getLength(); i++) {
-            s2 = s[i];
-            a[i] = new T[c];
-            for (int j=0; j<s2.getLength(); j++)
-                a[i][j] = s2[j];
+            std::vector < T >row;
+            for (int j=0; j<s[i].getLength(); j++)
+                row.push_back(s[i][j]);
+            ret.push_back(row);
         }
+        return ret;
     }
 
 };

@@ -115,40 +115,23 @@ def generateParamList(
             ret += ',\n'
     return ret
 
-def generateConversions(paramList):
-    'generate code to convert arrays to vectors/matrices'
-    ret = ''
+def generateArgList(
+        paramList,              # list of dicts describing parameters
+        dereference = '',       # dereference arguments
+        reformatString = 'std::string(%s)') : # string reformatting
     indent = 8 * ' ';
-    bigIndent = 12 * ' ';
+    ret = indent + 'ObjHandler::ArgStack args;\n'
     for param in paramList:
-        if param[common.TENSOR] == common.VECTOR: 
+        if param[common.TENSOR] == common.SCALAR:
             if param[common.TYPE] == common.STRING:
-                type = 'char *'
-                type2 = 'char **'
+                name = reformatString % param[common.NAME]
             else:
-                type = param[common.TYPE] + ' '
-                type2 = param[common.TYPE] + ' '
-            nmArray = param[common.NAME] + 'Array'
-            nmSize = param[common.NAME] + 'ArraySize'
-            ret += indent + type + '*' + nmArray + ';\n' \
-                + indent + 'long ' + nmSize + ';\n' \
-                + indent + 'Conversion< ' + type2 + '>::convertArray(\n' \
-                + bigIndent + param[common.NAME] + ', ' + nmArray + ', ' \
-                + nmSize + ');\n'
+                name = dereference + param[common.NAME]
+        elif param[common.TENSOR] == common.VECTOR: 
+            name = param[common.NAME] + 'Vector'
         elif param[common.TENSOR] == common.MATRIX: 
-            if param[common.TYPE] == common.STRING:
-                type = 'char'
-            else:
-                type = param[common.TYPE]
-            nmMatrix = param[common.NAME] + 'Matrix'
-            nmRows = param[common.NAME] + 'MatrixRows'
-            nmCols = param[common.NAME] + 'MatrixCols'
-            ret += indent + type + ' **' + nmMatrix + ';\n' \
-                + indent + 'long ' + nmRows + ';\n' \
-                + indent + 'long ' + nmCols + ';\n' \
-                + indent + 'Conversion<' + type + '>::convertMatrix(\n' \
-                + bigIndent + param[common.NAME] + ', ' + nmMatrix + ', ' \
-                + nmRows + ', ' + nmCols + ');\n'
+            name = param[common.NAME] + 'Matrix'
+        ret += indent + 'args.push(%s);\n' % name
     return ret
 
 def updateIfChanged(fileNew):

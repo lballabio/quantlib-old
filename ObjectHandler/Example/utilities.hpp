@@ -20,8 +20,9 @@
 
 #include <oh/objhandler.hpp>
 
-#define OH_MAKE_OBJECT(X) ObjHandler::Factory<X>::makeObject
-                                                                                
+#define OH_OBJECT_MAKE(X) ObjHandler::Factory<X>::makeObject
+#define OH_OBJECT_GET(X) ObjHandler::ObjectHandler::instance().retrieveObject(X)
+                                                                       
 const ObjHandler::Properties& FOO_UPDATE(
     const std::string &handle,
     const std::string &s,

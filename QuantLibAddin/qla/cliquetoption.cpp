@@ -23,25 +23,22 @@
 
 namespace QuantLibAddin {
 
-    CliquetOption::CliquetOption(va_list list) {
-        char *handleStochastic = va_arg(list, char *);
-        long resetDatesSize = va_arg(list, long);
-        long *resetDates = va_arg(list, long *);
-        char *optionTypeID = va_arg(list, char *);
-        double strike = va_arg(list, double);
-        long exerciseDate = va_arg(list, long);
-        char *engineID = va_arg(list, char *);
-        long timeSteps = va_arg(list, long);
+    CliquetOption::CliquetOption(ObjHandler::ArgStack &args) {
+        long timeSteps = ObjHandler::Args<long>::popArg(args);
+        std::string engineID = ObjHandler::Args<std::string>::popArg(args);
+        long exerciseDate = ObjHandler::Args<long>::popArg(args);
+        double strike = ObjHandler::Args<double>::popArg(args);
+        std::string optionTypeID = ObjHandler::Args<std::string>::popArg(args);
+        std::vector < long > resetDates 
+            = ObjHandler::Args< std::vector < long > >::popArg(args);
+        std::string handleStochastic = ObjHandler::Args<std::string>::popArg(args);
 
-        std::string handleStochasticStr(handleStochastic);
         boost::shared_ptr<StochasticProcess> stochasticProcess =
             boost::dynamic_pointer_cast<StochasticProcess>
-            (ObjHandler::ObjectHandler::instance().retrieveObject(handleStochasticStr));
+            (QL_OBJECT_GET(handleStochastic));
         if (!stochasticProcess)
-            QL_FAIL("CliquetOption: error retrieving object " + handleStochasticStr);
+            QL_FAIL("CliquetOption: error retrieving object " + handleStochastic);
 
-        std::vector <long> resetDatesVector =
-            Conversion<long>::arrayToVector(resetDatesSize, resetDates);
         QuantLib::Option::Type type = IDtoOptionType(optionTypeID);
         boost::shared_ptr<QuantLib::PercentageStrikePayoff> payoff(
             new QuantLib::PercentageStrikePayoff(type, strike));
@@ -53,7 +50,7 @@ namespace QuantLibAddin {
             boost::static_pointer_cast<QuantLib::BlackScholesProcess>
             (stochasticProcess->getReference());
         std::vector<QuantLib::Date> resetDatesQL =
-            longVectorToDateVector(resetDatesVector);
+            longVectorToDateVector(resetDates);
         cliquetOption_ = boost::shared_ptr<QuantLib::CliquetOption>(
             new QuantLib::CliquetOption(
                 stochasticProcessQL, 

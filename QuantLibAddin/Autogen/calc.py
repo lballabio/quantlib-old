@@ -18,6 +18,7 @@ IDL_HEAD = 'stub.Calc.idlhead'
 IDL_FOOT = 'stub.Calc.idlfoot'
 IDL_FUNC = 'stub.Calc.idlfunc'
 CALC_LONG = 'sal_Int32'
+STR_FMT = 'OUStringToString(%s)'
 
 def generateFuncMap(functionGroups):
     'generate array that lists all functions in the addin'
@@ -93,27 +94,51 @@ def generateHeaders(functionGroups):
         fileHeader.close()
         utils.updateIfChanged(fileName)
 
+def generateConversions(paramList):
+    'generate code to convert arrays to vectors/matrices'
+    ret = ''
+    indent = 8 * ' ';
+    bigIndent = 12 * ' ';
+    for param in paramList:
+        if param[common.TYPE] == common.STRING:
+            type = 'std::string'
+            funcArray = 'convertStrVector'
+        else:
+            type = param[common.TYPE]
+            funcArray = 'convertVector'
+        if param[common.TENSOR] == common.VECTOR: 
+            nmArray = param[common.NAME] + 'Vector'
+            ret += indent + 'std::vector < ' + type + ' >' + nmArray + '\n' \
+                + bigIndent + '= Conversion< ' + type + ' >::' \
+                + funcArray + '(' + param[common.NAME] + ');\n'
+        elif param[common.TENSOR] == common.MATRIX: 
+            nmMatrix = param[common.NAME] + 'Matrix'
+            ret += indent + 'std::vector < std::vector < ' + type + ' > >' \
+                + nmMatrix + '\n' \
+                + bigIndent + '= Conversion< ' + type + ' >::' \
+                + 'convertMatrix(' + param[common.NAME] + ');\n'            
+    return ret
+
 def generateFuncSource(fileFunc, function, bufBody):
     'generate source for given function'
     fileFunc.write('SEQSEQ( ANY ) SAL_CALL QLAddin::%s(' 
         % function[common.CODENAME])
     generateHeader(fileFunc, function, ' {')
     if function[common.CTOR]:
-        handle = 12 * ' ' + 'OUStringToString(handle).c_str(),\n'
-        fName = 'QL_MAKE_OBJECT(%s)' % function[common.QLFUNC]
+        handle = 12 * ' ' + 'OUStringToString(handle), args'
+        fName = 'QL_OBJECT_MAKE(%s)' % function[common.QLFUNC]
+        args = utils.generateArgList(function[common.PARAMS], 
+            reformatString = STR_FMT)
+        paramList = ''
     else:
         handle = ''
         fName = 'QuantLibAddin::' + function[common.NAME]
-    paramList = utils.generateParamList(function[common.PARAMS], 3,
-        reformatString = 'OUStringToString(%s).c_str()', 
-        arrayCount = True, appendTensor = True)
-    conversions = utils.generateConversions(function[common.PARAMS])
-    fileFunc.write(bufBody % (
-        conversions,
-        fName,
-        handle,
-        paramList,
-        function[common.NAME]))
+        args = ''
+        paramList = utils.generateParamList(function[common.PARAMS], 3,
+            reformatString = STR_FMT, arrayCount = True, appendTensor = True)
+    conversions = generateConversions(function[common.PARAMS])
+    fileFunc.write(bufBody % (conversions, args, fName, handle,
+        paramList, function[common.NAME]))
 
 def generateFuncSources(functionGroups):
     'generate source for function implementations'

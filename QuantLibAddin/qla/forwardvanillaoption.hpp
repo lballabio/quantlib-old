@@ -25,7 +25,7 @@ namespace QuantLibAddin {
 
     class ForwardVanillaOption : public ObjHandler::Object {
     public:
-        ForwardVanillaOption(va_list list);
+        ForwardVanillaOption(ObjHandler::ArgStack &args);
     //    ~ForwardVanillaOption();
         void setEngine(
             const std::string &engineName,

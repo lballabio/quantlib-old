@@ -38,13 +38,13 @@ namespace QuantLibAddin {
             QL_FAIL("IDtoDayCounter: unrecognized dayCounterID: " + dayCounterID);
     }
 
-    StochasticProcess::StochasticProcess(va_list list) {
-        double underlying = va_arg(list, double);
-        char *dayCounterID = va_arg(list, char *);
-        long settlementDateLong = va_arg(list, long);
-        double riskFreeRate = va_arg(list, double);
-        double dividendYield = va_arg(list, double);
-        double volatility = va_arg(list, double);
+    StochasticProcess::StochasticProcess(ObjHandler::ArgStack &args) {
+        double volatility = ObjHandler::Args<double>::popArg(args);
+        double dividendYield = ObjHandler::Args<double>::popArg(args);
+        double riskFreeRate = ObjHandler::Args<double>::popArg(args);
+        long settlementDateLong = ObjHandler::Args<long>::popArg(args);
+        std::string dayCounterID = ObjHandler::Args<std::string>::popArg(args);
+        double underlying = ObjHandler::Args<double>::popArg(args);
 
         QuantLib::Date settlementDate(settlementDateLong);
         QuantLib::DayCounter dayCounter = IDtoDayCounter(dayCounterID);

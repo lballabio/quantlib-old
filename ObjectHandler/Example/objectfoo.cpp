@@ -17,9 +17,12 @@
 
 #include <objectfoo.hpp>
 
-ObjectFoo::ObjectFoo(va_list list) {
-    char *s = va_arg(list, char *);
-    int i = va_arg(list, int);
+#include <iostream>
+using namespace std;
+
+ObjectFoo::ObjectFoo(ArgStack &args) {
+    int i = Args<int>::popArg(args);
+    std::string s = Args<std::string>::popArg(args);
     foo_ = boost::shared_ptr<Foo>(new Foo(s, i));
     // populate base class Property vector
     any_ptr anyString(new boost::any(foo_->s()));

@@ -25,7 +25,7 @@ namespace QuantLibAddin {
 
     class DividendVanillaOption : public ObjHandler::Object {
     public:
-        DividendVanillaOption(va_list list);
+        DividendVanillaOption(ObjHandler::ArgStack &args);
     //    ~DividendVanillaOption();
         void setEngine(
             const std::string &engineName,

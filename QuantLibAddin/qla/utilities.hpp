@@ -24,7 +24,7 @@
 
 #include <oh/objhandler.hpp>
 
-#define QL_MAKE_OBJECT(X) ObjHandler::Factory<QuantLibAddin::X>::makeObject
+#define QL_OBJECT_MAKE(X) ObjHandler::Factory<QuantLibAddin::X>::makeObject
 
 namespace QuantLibAddin {
 

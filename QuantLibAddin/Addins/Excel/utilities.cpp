@@ -25,14 +25,14 @@ using namespace QuantLibAddin;
 DLLEXPORT LPXLOPER qlVer() {
     static XLOPER xRet;
     std::string ret = QL_VER();
-    setXLOPERString(xRet, ret.c_str());
+    stringToXLOPER(xRet, ret.c_str());
     return &xRet;
 }
 
 DLLEXPORT LPXLOPER qlOhVer() {
     static XLOPER xRet;
     std::string ret = QL_OH_VER();
-    setXLOPERString(xRet, ret.c_str());
+    stringToXLOPER(xRet, ret.c_str());
     return &xRet;
 }
 
@@ -50,7 +50,7 @@ DLLEXPORT LPXLOPER qlQuery(char *handleObject) {
         for (unsigned int i = 0; i < properties.size(); i++) {
             ObjectProperty property = properties[i];
             any_ptr a = property();
-            setXLOPERString(xRet.val.array.lparray[i * 2], property.name().c_str());
+            stringToXLOPER(xRet.val.array.lparray[i * 2], property.name().c_str());
             anyToXLOPER(a, xRet.val.array.lparray[i * 2 + 1]);
         }
         return &xRet;
@@ -64,7 +64,7 @@ DLLEXPORT LPXLOPER qlLogfile(char *logFileName, long *logLevel) {
     static XLOPER xRet;
     int lvl = *logLevel ? *logLevel : 4;
     std::string ret = QL_LOGFILE(std::string(logFileName), lvl);
-    setXLOPERString(xRet, ret.c_str());
+    stringToXLOPER(xRet, ret.c_str());
     return &xRet;
 }
 
@@ -72,7 +72,7 @@ DLLEXPORT LPXLOPER qlLogMessage(char *logMessage, long *logLevel) {
     static XLOPER xRet;
     int lvl = *logLevel ? *logLevel : 4;
     std::string ret = QL_LOGMESSAGE(std::string(logMessage), lvl);
-    setXLOPERString(xRet, ret.c_str());
+    stringToXLOPER(xRet, ret.c_str());
     return &xRet;
 }
 

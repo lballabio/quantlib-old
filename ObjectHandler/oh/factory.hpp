@@ -26,12 +26,9 @@ namespace ObjHandler {
         class Factory {
         public:
         static const Properties& makeObject(
-                const char *handle,
-                ...) {
-            va_list list;
-            va_start(list, handle);
-            obj_ptr object = obj_ptr(new T(list));
-            va_end(list);
+                const std::string &handle,
+                ArgStack &args) {
+            obj_ptr object = obj_ptr(new T(args));
             ObjectHandler::instance().storeObject(handle, object);
             return object->getProperties();
         }

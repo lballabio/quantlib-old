@@ -31,12 +31,12 @@ void anyToXLOPER(const any_ptr &any, XLOPER &xOp) {
         xOp.val.num = boost::any_cast<double>(*any);
     } else if (any->type() == typeid(std::string)) {
         std::string s = boost::any_cast<std::string>(*any);
-        setXLOPERString(xOp, s.c_str());
+        stringToXLOPER(xOp, s.c_str());
     } else
         xOp.xltype = xltypeErr;
 }
 
-void setValues(LPXLOPER xArray, Properties properties, const char *handle) {
+void setValues(LPXLOPER xArray, Properties properties, const std::string &handle) {
     xArray->xltype = xltypeMulti;
     xArray->xltype |= xlbitDLLFree;
     xArray->val.array.rows = 1;
@@ -44,7 +44,7 @@ void setValues(LPXLOPER xArray, Properties properties, const char *handle) {
     xArray->val.array.lparray = new XLOPER[properties.size() + 1]; 
     if (!xArray->val.array.lparray)
         throw("setValues: error on call to new");
-    setXLOPERString(xArray->val.array.lparray[0], handle);
+    stringToXLOPER(xArray->val.array.lparray[0], handle.c_str());
     for (unsigned int i = 0; i < properties.size(); i++) {
         ObjectProperty property = properties[i];
         any_ptr a = property();
@@ -52,9 +52,9 @@ void setValues(LPXLOPER xArray, Properties properties, const char *handle) {
     }
 }
 
-std::string XLOPERtoString(LPXLOPER xOp) {
+std::string XLOPERtoString(const XLOPER &xOp) {
     XLOPER xStr;
-    if (xlretSuccess != Excel(xlCoerce, &xStr, 2, xOp, TempInt(xltypeStr))) 
+    if (xlretSuccess != Excel(xlCoerce, &xStr, 2, &xOp, TempInt(xltypeStr))) 
         throw exception("XLOPERtoString: error on call to xlCoerce");
     std::string s;
     s.assign(xStr.val.str + 1, xStr.val.str[0]);
@@ -62,32 +62,34 @@ std::string XLOPERtoString(LPXLOPER xOp) {
     return s;
 }
 
-void setXLOPERString(XLOPER &xStr, const char *s) {
+void stringToXLOPER(XLOPER &xStr, const char *s) {
     xStr.xltype = xltypeStr;
+    xStr.xltype |= xlbitDLLFree;
     int len = __min(255, strlen(s));    // XLOPER string max length is 255
-    xStr.val.str = new char[ len + 1 ]; // caller needs to delete
+    xStr.val.str = new char[ len + 1 ];
     if (!xStr.val.str) 
-        throw exception("error calling new in function setXLOPERString");
+        throw exception("error calling new in function stringToXLOPER");
     strncpy(xStr.val.str + 1, s, len);
     xStr.val.str[0] = len;
 }
 
-// FIXME need to call xlfree
-char *getHandleFull(const char *handle) {
-    XLOPER xCaller, xRef;
-    if (xlretSuccess != Excel(xlfCaller, &xCaller, 0))
-        throw exception("getHandleFull: error on call to xlfCaller");
-    if (xlretSuccess != Excel(xlfGetCell, &xRef, 2, TempInt(1), &xCaller))
-        throw exception("getHandleFull: error on call to xlfGetCell");
-    XLOPER xStr;
-    if (xlretSuccess != Excel(xlCoerce, &xStr, 2, &xRef, TempInt(xltypeStr))) 
-        throw exception("getHandleFull: error on call to xlCoerce");
-    char *ret = new char[strlen(handle) + xStr.val.str[0] + 2];
-    strncpy(ret, handle, strlen(handle));
-    ret[strlen(handle)] = '#';
-    strncpy(ret + strlen(handle) + 1, &xStr.val.str[1], xStr.val.str[0]);
-    ret[strlen(handle) + xStr.val.str[0] + 1] = 0;
-    Excel(xlFree, 0, 1, &xStr);
+std::string getHandleFull(const std::string &handle) {
+    XLOPER xCaller, xRef, xStr;
+    try {
+        if (xlretSuccess != Excel(xlfCaller, &xCaller, 0))
+            throw exception("error on call to xlfCaller");
+        if (xlretSuccess != Excel(xlfGetCell, &xRef, 2, TempInt(1), &xCaller))
+            throw exception("error on call to xlfGetCell");
+        if (xlretSuccess != Excel(xlCoerce, &xStr, 2, &xRef, TempInt(xltypeStr))) 
+            throw exception("error on call to xlCoerce");
+    } catch(const exception &e) {
+        Excel(xlFree, 0, 3, &xCaller, &xRef, &xStr);
+        std::ostringstream s1;
+        s1 << "getHandleFull: " << e.what();
+        throw exception(s1.str().c_str());
+    }
+    std::string ret(handle + '#' + XLOPERtoString(xStr));
+    Excel(xlFree, 0, 3, &xCaller, &xRef, &xStr);
     return ret;
 }
 

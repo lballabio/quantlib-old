@@ -1,6 +1,6 @@
     try {
-        ObjHandler::Properties properties = %s(
-%s%s);
+%s%s        ObjHandler::Properties properties = 
+            %s(%s%s);
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {

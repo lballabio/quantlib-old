@@ -32,6 +32,34 @@ def generateFuncHeaders(groupName, functionGroup):
     fileHeader.close()
     utils.updateIfChanged(fileName)
 
+def generateConversions(paramList):
+    'generate code to convert arrays to vectors/matrices'
+    ret = ''
+    indent = 8 * ' ';
+    bigIndent = 12 * ' ';
+    for param in paramList:
+        if param[common.TYPE] == common.STRING:
+            type = 'std::string'
+        else:
+            type = param[common.TYPE]
+        if param[common.TENSOR] == common.VECTOR: 
+            nmArray = param[common.NAME] + 'Vector'
+            nmSize = param[common.NAME] + 'Size'
+            ret += indent + 'std::vector < ' + type + ' >' + nmArray + '\n' \
+                + bigIndent + '= Conversion< ' + type + ' >::' \
+                + 'convertVector(' + param[common.NAME] \
+                + ', ' + nmSize + ');\n'
+        elif param[common.TENSOR] == common.MATRIX: 
+            nmMatrix = param[common.NAME] + 'Matrix'
+            nmRows = param[common.NAME] + 'Rows'
+            nmCols = param[common.NAME] + 'Cols'
+            ret += indent + 'std::vector < std::vector < ' + type + ' > >' \
+                + nmMatrix + '\n' \
+                + bigIndent + '= Conversion< ' + type + ' >::' \
+                + 'convertMatrix(' + param[common.NAME] \
+                + ', ' + nmRows + ', ' + nmCols + ');\n'            
+    return ret
+
 def generateFuncDefs(groupName, functionGroup):
     'generate source for function implementations'
     fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
@@ -42,18 +70,20 @@ def generateFuncDefs(groupName, functionGroup):
     fileFunc.write(bufInclude % groupName)
     for function in functionGroup[common.FUNCLIST]:
         generateFuncHeader(fileFunc, function, ' {')
-        paramList = utils.generateParamList(function[common.PARAMS], 
-            3, convertString = 'char*', arrayCount = True, convertMatStr = 'char*')
+        conversions = generateConversions(function[common.PARAMS])
         if function[common.CTOR]:
-            handle = 12 * ' ' + 'handle,\n'
-            fName = 'QL_MAKE_OBJECT(%s)' % function[common.QLFUNC]
-            fileFunc.write(bufBody % (fName, handle,
-                paramList, function[common.NAME]))
+            args = utils.generateArgList(function[common.PARAMS])
+            fName = 'QL_OBJECT_MAKE(%s)' % function[common.QLFUNC]
+            handle = 'handle, args'
+            paramList = ''
         else:
-            handle = ''
+            args = ''
             fName = 'QuantLibAddin::' + function[common.NAME]
-            fileFunc.write(bufBody % (fName, handle,
-                paramList, function[common.NAME]))
+            handle = '\n'
+            paramList = utils.generateParamList(function[common.PARAMS], 
+                3, convertString = 'char*', arrayCount = True, convertMatStr = 'char*')
+        fileFunc.write(bufBody % (conversions, args, fName, handle,
+            paramList, function[common.NAME]))
     fileFunc.close()
     utils.updateIfChanged(fileName)
 

@@ -32,7 +32,7 @@ struct OUSTRCOMP : public std::binary_function< STRING, STRING, bool > {
     bool operator()(STRING s1, STRING s2) { return ((s1.compareTo(s2) < 0)); }
 };
 
-class QLAddin :    public CSS::sheet::addin::XQL,
+class QLAddin :     public CSS::sheet::addin::XQL,
                     public CSS::sheet::XAddIn,
                     public CSS::lang::XServiceName,
                     public CSS::lang::XServiceInfo,

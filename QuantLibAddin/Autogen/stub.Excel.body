@@ -1,7 +1,7 @@
 DLLEXPORT LPXLOPER %s(
 %s%s) {
     try {
-%s%s        Properties properties = %s(
+%s%s%s        Properties properties = %s(
 %s%s);
         static XLOPER xRet;
         setValues(&xRet, properties, handle);

@@ -25,7 +25,7 @@ namespace QuantLibAddin {
 
     class VanillaOption : public ObjHandler::Object {
     public:
-        VanillaOption(va_list list);
+        VanillaOption(ObjHandler::ArgStack &args);
     //    ~VanillaOption();
         void setEngine(
             const std::string &engineName,

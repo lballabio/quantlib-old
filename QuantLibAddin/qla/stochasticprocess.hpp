@@ -26,7 +26,7 @@ namespace QuantLibAddin {
     class StochasticProcess : public ObjHandler::Object {
     public:
 
-        StochasticProcess(va_list list);
+        StochasticProcess(ObjHandler::ArgStack &args);
 //        ~StochasticProcess();
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(stochasticProcess_);

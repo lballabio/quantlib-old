@@ -37,26 +37,25 @@ namespace QuantLibAddin {
             QL_FAIL("IDtoBarrierType: unrecognized typeID: " + typeBarrier);
     }
 
-    BarrierOption::BarrierOption(va_list list) {
-        char *handleStochastic = va_arg(list, char *);
-        char *typeBarrier = va_arg(list, char *);
-        double barrier = va_arg(list, double);
-        double rebate = va_arg(list, double);
-        char *optionTypeID = va_arg(list, char *);
-        char *payoffID = va_arg(list, char *);
-        double strike = va_arg(list, double);
-        char *exerciseID = va_arg(list, char *);
-        long exerciseDate = va_arg(list, long);
-        long settlementDate = va_arg(list, long);
-        char *engineID = va_arg(list, char *);
-        long timeSteps = va_arg(list, long);
+    BarrierOption::BarrierOption(ObjHandler::ArgStack &args) {
+        long timeSteps = ObjHandler::Args<long>::popArg(args);
+        std::string engineID = ObjHandler::Args<std::string>::popArg(args);
+        long settlementDate = ObjHandler::Args<long>::popArg(args);
+        long exerciseDate = ObjHandler::Args<long>::popArg(args);
+        std::string exerciseID = ObjHandler::Args<std::string>::popArg(args);
+        double strike = ObjHandler::Args<double>::popArg(args);
+        std::string payoffID = ObjHandler::Args<std::string>::popArg(args);
+        std::string optionTypeID = ObjHandler::Args<std::string>::popArg(args);
+        double rebate = ObjHandler::Args<double>::popArg(args);
+        double barrier = ObjHandler::Args<double>::popArg(args);
+        std::string typeBarrier = ObjHandler::Args<std::string>::popArg(args);
+        std::string handleStochastic = ObjHandler::Args<std::string>::popArg(args);
 
-        std::string handleStochasticStr(handleStochastic);
         boost::shared_ptr<StochasticProcess> stochasticProcess =
             boost::dynamic_pointer_cast<StochasticProcess>
-            (ObjHandler::ObjectHandler::instance().retrieveObject(handleStochasticStr));
+            (QL_OBJECT_GET(handleStochastic));
         if (!stochasticProcess)
-            QL_FAIL("BarrierOption: error retrieving object " + handleStochasticStr);
+            QL_FAIL("BarrierOption: error retrieving object " + handleStochastic);
 
         QuantLib::Barrier::Type barrierType = 
             IDtoBarrierType(typeBarrier);

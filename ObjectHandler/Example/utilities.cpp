@@ -26,8 +26,8 @@ const Properties& FOO_UPDATE(
         const std::string &s,
         const int &i) {
     boost::shared_ptr<ObjectFoo> object =
-        boost::dynamic_pointer_cast<ObjectFoo>
-        (ObjectHandler::instance().retrieveObject(handle));
+        boost::dynamic_pointer_cast<ObjectFoo>        
+        (OH_OBJECT_GET(handle));
     if (!object)
         throw Exception("FOO_UPDATE: unable to retrieve object " + handle);
     object->update(s, i);

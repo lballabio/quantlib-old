@@ -26,15 +26,15 @@ using namespace QuantLib;
 using namespace ObjHandler;
 using namespace QuantLibAddin;
     
-void printObject(const string &s, const Properties &p) {
-    QL_LOGMESSAGE("Object properties:");
+void printObject(const string &className, const Properties &p) {
+    QL_LOGMESSAGE("Object properties - class " + className);
     Properties::const_iterator it;
     for (it = p.begin(); it != p.end(); it++) {
         ObjectProperty property = *it;
-        ostringstream s;
-        s << left << "property = " << setw(10) << property.name() <<
+        ostringstream os;
+        os << left << "property = " << setw(10) << property.name() <<
             "value = " << property();
-        QL_LOGMESSAGE(s.str());
+        QL_LOGMESSAGE(os.str());
     } 
 }
 
@@ -54,169 +54,165 @@ int main() {
         Date settlementDate(17, May, 1998);
         Date todaysDate(15, May, 1998);
 
-        Properties p1 = QL_MAKE_OBJECT(StochasticProcess)(
-            "stoch1", 
-            underlying,
-            "ACT360",
-            settlementDate.serialNumber(),
-            riskFreeRate,
-            dividendYield, 
-            volatility);
+        ArgStack a1;
+        a1.push(underlying);                // underlying
+        a1.push(string("ACT360"));          // daycount convention
+        a1.push(settlementDate.serialNumber()); // settlement date as long
+        a1.push(riskFreeRate);              // risk free rate
+        a1.push(dividendYield);             // dividend yield
+        a1.push(volatility);                // volatility
+        Properties p1 =
+            QL_OBJECT_MAKE(StochasticProcess)("stoch1", a1);
+        printObject("StochasticProcess", p1);
 
-        printObject("QL_STOCHASTIC_PROCESS", p1);
-
-        Properties p2 = QL_MAKE_OBJECT(VanillaOption)(
-            "opt_van",                      // option handle
-            "stoch1",                       // stochastic process handle
-            "PUT",                          // option type
-            "VAN",                          // payoff type
-            strike,                         // strike price
-            "AM",                           // exercise type
-            exerciseDate.serialNumber(),    // exercise date
-            settlementDate.serialNumber(),  // settlement date
-            "JR",                           // engine type
-            timeSteps);                     // time steps
-
+        ArgStack a2;
+        a2.push(string("stoch1"));          // stochastic process handle
+        a2.push(string("PUT"));             // option type
+        a2.push(string("VAN"));             // payoff type (plain vanilla)
+        a2.push(strike);                    // strike price
+        a2.push(string("AM"));              // exercise type (american)
+        a2.push(exerciseDate.serialNumber()); // exercise date
+        a2.push(settlementDate.serialNumber()); // settlement date
+        a2.push(string("JR"));              // engine type (jarrow rudd)
+        a2.push(timeSteps);                 // time steps
+        Properties p2 =
+            QL_OBJECT_MAKE(VanillaOption)("opt_van", a2);
         printObject("QL_OPTION_VANILLA", p2);
 
-        Properties p3 = QL_MAKE_OBJECT(ContinuousAveragingAsianOption)(
-            "opt_asian_cont",               // option handle
-            "stoch1",                       // stochastic process handle
-            "G",                            // average type ("A"verage/"G"eometric)
-            "PUT",                          // option type
-            "VAN",                          // payoff type
-            strike,                         // strike price
-            "EU",                           // exercise type
-            exerciseDate.serialNumber(),    // exercise date
-            0,                              // settlement date ignored when exercise = European
-            "ACGAPA",                       // engine type
-            timeSteps);                     // time steps
+        ArgStack a3;
+        a3.push(string("stoch1"));          // stochastic process handle
+        a3.push(string("G"));               // average type ("A"verage/"G"eometric)
+        a3.push(string("PUT"));             // option type
+        a3.push(string("VAN"));             // payoff type (plain vanilla)
+        a3.push(strike);                    // strike price
+        a3.push(string("EU"));              // exercise type (american)
+        a3.push(exerciseDate.serialNumber()); // exercise date
+        a3.push(0l);                        // settlement date ignored when exercise = European
+        a3.push(string("ACGAPA"));          // engine type
+        a3.push(timeSteps);                 // time steps
+        Properties p3 =
+            QL_OBJECT_MAKE(ContinuousAveragingAsianOption)("opt_asian_cont", a3);
+        printObject("ContinuousAveragingAsianOption", p3);
 
-        printObject("QL_OPTION_ASIAN_C", p3);
+        vector < long > fixingDates;
+        for (int i = 0; i < exerciseDate - todaysDate + 1; i++)
+            fixingDates.push_back(todaysDate.serialNumber() + i);
+        ArgStack a4;
+        a4.push(string("stoch1"));          // stochastic process handle
+        a4.push(string("G"));               // average type ("A"verage/"G"eometric)
+        a4.push(1.0);                       // running accumulator
+        a4.push(0l);                        // past fixings
+        a4.push(fixingDates);               // fixingDates
+        a4.push(string("PUT"));             // option type
+        a4.push(string("VAN"));             // payoff type (plain vanilla)
+        a4.push(strike);                    // strike price
+        a4.push(string("EU"));              // exercise type (american)
+        a4.push(exerciseDate.serialNumber()); // exercise date
+        a4.push(0l);                        // settlement date ignored when exercise = European
+        a4.push(string("ADGAPA"));          // engine type
+        a4.push(timeSteps);                 // time steps
+        Properties p4 =
+            QL_OBJECT_MAKE(DiscreteAveragingAsianOption)("opt_asian_disc", a4);
+        printObject("DiscreteAveragingAsianOption", p4);
 
+        ArgStack a5;
+        a5.push(string("stoch1"));          // stochastic process handle
+        a5.push(string("DOWNIN"));          // barrier type
+        a5.push(35.0);                      // barrier
+        a5.push(3.0);                       // rebate
+        a5.push(string("PUT"));             // option type
+        a5.push(string("VAN"));             // payoff type (plain vanilla)
+        a5.push(strike);                    // strike price
+        a5.push(string("EU"));              // exercise type (american)
+        a5.push(exerciseDate.serialNumber()); // exercise date
+        a5.push(0l);                        // settlement date ignored when exercise = European
+        a5.push(string("AB"));              // engine type
+        a5.push(timeSteps);                 // time steps
+        Properties p5 =
+            QL_OBJECT_MAKE(BarrierOption)("opt_barrier", a5);
+        printObject("BarrierOption", p5);
 
-        long fixingDatesCount = exerciseDate - todaysDate + 1;
-        long *fixingDates = new long[fixingDatesCount];
-        for (int i = 0; i < fixingDatesCount; i++)
-            fixingDates[i] = todaysDate.serialNumber() + i;
-        Properties p4 = QL_MAKE_OBJECT(DiscreteAveragingAsianOption)(
-            "opt_asian_disc",               // option handle
-            "stoch1",                       // stochastic process handle
-            "G",                            // average type
-            1.0,                            // running accumulator
-            0,                              // past fixings
-            fixingDatesCount,               // fixingDates
-            fixingDates,                    // fixingDates
-            "PUT",                          // option type
-            "VAN",                          // payoff type
-            strike,                         // strike price
-            "EU",                           // exercise type
-            exerciseDate.serialNumber(),    // exercise date
-            0,                              // settlement date ignored when exercise = European
-            "ADGAPA",                       // engine type
-            timeSteps);                     // time steps
-        delete [] fixingDates;
+        vector < string > stochHandles;
+        stochHandles.push_back("stoch1");
+        stochHandles.push_back("stoch1");
+        vector < vector < double > >correlations;
+        vector < double > row1, row2;
+        row1.push_back(1.0);
+        row1.push_back(0.9);
+        row2.push_back(0.9);
+        row2.push_back(1.0);
+        correlations.push_back(row1);
+        correlations.push_back(row2);
 
-        printObject("QL_OPTION_ASIAN_D", p4);
+        ArgStack a6;
+        a6.push(stochHandles);              // vector of stochastic process handles
+        a6.push(string("MIN"));             // basket type
+        a6.push(correlations);              // correlations matrix
+        a6.push(string("CALL"));            // option type
+        a6.push(strike);                    // strike price
+        a6.push(string("EU"));              // exercise type (american)
+        a6.push(exerciseDate.serialNumber()); // exercise date
+        a6.push(0l);                        // settlement date ignored when exercise = European
+        a6.push(string("SE"));              // engine type
+        a6.push(timeSteps);                 // time steps
+        Properties p6 =
+            QL_OBJECT_MAKE(BasketOption)("opt_basket", a6);
+        printObject("BasketOption", p6);
 
-        Properties p5 = QL_MAKE_OBJECT(BarrierOption)(
-            "opt_barrier",                  // option handle
-            "stoch1",                       // stochastic process handle
-            "DOWNIN",                       // barrier type
-            35.0,                           // barrier
-            3.0,                            // rebate
-            "PUT",                          // option type
-            "VAN",                          // payoff type
-            strike,                         // strike price
-            "EU",                           // exercise type
-            exerciseDate.serialNumber(),    // exercise date
-            0,                              // settlement date ignored when exercise = European
-            "AB",                           // engine type
-            timeSteps);                     // time steps
+        vector < long > resetDates;
+        resetDates.push_back(Date(13, August, 1998).serialNumber());
+        ArgStack a7;
+        a7.push(string("stoch1"));          // stochastic process handle
+        a7.push(resetDates);                // reset dates
+        a7.push(string("PUT"));             // option type
+        a7.push(strike);                    // strike price
+        a7.push(exerciseDate.serialNumber()); // exercise date
+        a7.push(string("AC"));              // engine type
+        a7.push(timeSteps);                 // time steps
+        Properties p7 =
+            QL_OBJECT_MAKE(CliquetOption)("opt_cliquet", a7);
+        printObject("CliquetOption", p7);
 
-        printObject("QL_OPTION_BARRIER", p5);
+        vector < long > dividendDates;
+        dividendDates.push_back(Date(15, August, 1998).serialNumber());
+        dividendDates.push_back(Date(15, February, 1999).serialNumber());
+        vector < double >dividends;
+        dividends.push_back(5.);
+        dividends.push_back(5.);
 
-        char *stochHandles[] = { "stoch1", "stoch1" };
-        double **correlations = new double*[2];
-        correlations[0] = new double[2];
-        correlations[1] = new double[2];
-        correlations[0][0] = 1.0;
-        correlations[0][1] = 0.9;
-        correlations[1][0] = 0.9;
-        correlations[1][1] = 1.0;
-
-        Properties p6 = QL_MAKE_OBJECT(BasketOption)(
-            "opt_basket",                   // option handle
-            2,
-            stochHandles,                   // vector of stochastic process handles
-            "MIN",                          // basket type
-            2,
-            2,
-            correlations,                   // correlations
-            "CALL",                         // option type
-            40.0,                           // strike price
-            "EU",                           // exercise type
-            exerciseDate.serialNumber(),    // exercise date
-            0,                              // settlement date ignored when exercise = European
-            "SE",                           // engine type
-            timeSteps);                     // time steps
-
-        for (int j=0; j<2; j++)
-            delete correlations[j];
-        delete [] correlations;
-
-        printObject("QL_OPTION_BASKET", p6);
-
-        long resetDates[] = { 36020 };
-        Properties p7 = QL_MAKE_OBJECT(CliquetOption)(
-            "opt_cliquet",                  // option handle
-            "stoch1",                       // stochastic process handle
-            1,
-            resetDates,                     // reset dates
-            "PUT",                          // option type
-            strike,                         // strike price
-            exerciseDate.serialNumber(),    // exercise date
-            "AC",                           // engine type
-            timeSteps);                     // time steps
-
-        printObject("QL_OPTION_CLIQUET", p7);
-
-        long dividendDates[] = { 36022, 36206 };
-        double dividends[] = { 5., 5. };
-        Properties p8 = QL_MAKE_OBJECT(DividendVanillaOption)(
-            "opt_divvan",                   // option handle
-            "stoch1",                       // stochastic process handle
-            2,                              // dividend dates
-            dividendDates,                  // dividend dates
-            2,                              // dividends
-            dividends,                      // dividends
-            "CALL",                         // option type
-            "VAN",                          // payoff type
-            10.0,                           // strike price
-            "EU",                           // exercise type
-            exerciseDate.serialNumber(),    // exercise date
-            0,                              // settlement date ignored when exercise = European
-            "ADE",                          // engine type
-            timeSteps);                     // time steps
-
-        printObject("QL_OPTION_DIVIDENDVANILLA", p8);
+        ArgStack a8;
+        a8.push(string("stoch1"));          // stochastic process handle
+        a8.push(dividendDates);             // dividend dates
+        a8.push(dividends);                 // dividends
+        a8.push(string("CALL"));            // option type
+        a8.push(string("VAN"));             // payoff type (plain vanilla)
+        a8.push(10.0);                      // strike price
+        a8.push(string("EU"));              // exercise type
+        a8.push(exerciseDate.serialNumber()); // exercise date
+        a8.push(0l);                        // settlement date ignored when exercise = European
+        a8.push(string("ADE"));             // engine type (jarrow rudd)
+        a8.push(timeSteps);                 // time steps
+        Properties p8 =
+            QL_OBJECT_MAKE(DividendVanillaOption)("opt_divvan", a8);
+        printObject("DividendVanillaOption", p8);
 
         long resetDate = todaysDate.serialNumber() + 90;
-        Properties p9 = QL_MAKE_OBJECT(ForwardVanillaOption)(
-            "opt_fwdvan",                   // option handle
-            "stoch1",                       // stochastic process handle
-            12.,                            // moneyness
-            resetDate,                      // reset date
-            "PUT",                          // option type
-            "VAN",                          // payoff type
-            strike,                         // strike price
-            "EU",                           // exercise type
-            exerciseDate.serialNumber(),    // exercise date
-            0,                              // settlement date ignored when exercise = European
-            "FE",                           // engine type
-            timeSteps);                     // time steps
 
-        printObject("QL_OPTION_FORWARDVANILLA", p9);
+        ArgStack a9;
+        a9.push(string("stoch1"));          // stochastic process handle
+        a9.push(12.);                       // moneyness
+        a9.push(resetDate);                 // reset date
+        a9.push(string("PUT"));             // option type
+        a9.push(string("VAN"));             // payoff type (plain vanilla)
+        a9.push(strike);                    // strike price
+        a9.push(string("EU"));              // exercise type
+        a9.push(exerciseDate.serialNumber()); // exercise date
+        a9.push(0l);                        // settlement date ignored when exercise = European
+        a9.push(string("FE"));              // engine type (jarrow rudd)
+        a9.push(timeSteps);                 // time steps
+        Properties p9 =
+            QL_OBJECT_MAKE(ForwardVanillaOption)("opt_fwdvan", a9);
+        printObject("ForwardVanillaOption", p9);
 
         QL_LOGMESSAGE("end options test");
         return 0;

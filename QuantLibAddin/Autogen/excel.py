@@ -103,27 +103,55 @@ def generateFuncRegisters(functionDefs):
     fileHeader.close()
     utils.updateIfChanged(fileName)
 
+def generateConversions(paramList):
+    'generate code to convert arrays to vectors/matrices'
+    ret = ''
+    indent = 8 * ' ';
+    bigIndent = 12 * ' ';
+    for param in paramList:
+        if param[common.TYPE] == common.STRING:
+            type = 'std::string'
+            funcArray = 'convertStrVector'
+        else:
+            type = param[common.TYPE]
+            funcArray = 'convertVector'
+        if param[common.TENSOR] == common.VECTOR: 
+            nmArray = param[common.NAME] + 'Vector'
+            ret += indent + 'std::vector < ' + type + ' >' + nmArray + '\n' \
+                + bigIndent + '= Conversion< ' + type + ' >::' \
+                + funcArray + '(' + param[common.NAME] + ');\n'
+        elif param[common.TENSOR] == common.MATRIX: 
+            nmMatrix = param[common.NAME] + 'Matrix'
+            ret += indent + 'std::vector < std::vector < ' + type + ' > >' \
+                + nmMatrix + '\n' \
+                + bigIndent + '= Conversion< ' + type + ' >::' \
+                + 'convertMatrix(' + param[common.NAME] + ');\n'            
+    return ret
+
 def generateFuncDef(fileFunc, function, bufBody):
     'generate source code for body of given function'
     paramList1 = utils.generateParamList(function[common.PARAMS], 2,
         True, '', 'char', dereference = '*', replaceTensor = 'LPXLOPER')
-    paramList2 = utils.generateParamList(function[common.PARAMS], 3,
-        reformatString = '%s', 
-        arrayCount = True, dereference = '*', appendTensor = True)
     if function[common.CTOR]:
         handle1 = 8 * ' ' + 'char *handleStub,\n'
-        handle2 = 8 * ' ' + 'char *handle = getHandleFull(handleStub);\n'
-        handle3 = 12 * ' ' + 'handle,\n'
-        fName = 'QL_MAKE_OBJECT(%s)' % function[common.QLFUNC]
+        handle2 = 8 * ' ' + 'std::string handle = getHandleFull(handleStub);\n'
+        handle3 = 12 * ' ' + 'handle, args'
+        fName = 'QL_OBJECT_MAKE(%s)' % function[common.QLFUNC]
+        args = utils.generateArgList(function[common.PARAMS], '*')
+        paramList2 = ''
     else:
         handle1 = ''
         handle2 = ''
         handle3 = ''
         fName = 'QuantLibAddin::' + function[common.NAME]
-    conversions = utils.generateConversions(function[common.PARAMS])
+        args = ''
+        paramList2 = utils.generateParamList(function[common.PARAMS], 3,
+            reformatString = '%s', 
+            arrayCount = True, dereference = '*', appendTensor = True)
+    conversions = generateConversions(function[common.PARAMS])
     fileFunc.write(bufBody %
-        (function[common.CODENAME], handle1, paramList1, conversions, handle2,
-        fName, handle3, paramList2, function[common.NAME]))
+        (function[common.CODENAME], handle1, paramList1, conversions, args,
+            handle2, fName, handle3, paramList2, function[common.NAME]))
 
 def generateFuncDefs(functionGroups):
     'generate source code for function bodies'

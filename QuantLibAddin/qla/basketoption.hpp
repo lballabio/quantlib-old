@@ -25,7 +25,7 @@ namespace QuantLibAddin {
 
     class BasketOption : public ObjHandler::Object {
     public:
-        BasketOption(va_list list);
+        BasketOption(ObjHandler::ArgStack &args);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(barrierOption_);
         }

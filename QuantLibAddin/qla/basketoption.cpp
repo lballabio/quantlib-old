@@ -33,30 +33,24 @@ namespace QuantLibAddin {
             QL_FAIL("IDtoBasketType: unrecognized typeID: " + basketID);
     }
 
-    BasketOption::BasketOption(va_list list) {
-        long handleStochasticSize = va_arg(list, long);
-        char **handleStochastic = va_arg(list, char **);
-        char *basketID = va_arg(list, char *);
-        long correlationsRows = va_arg(list, long);
-        long correlationsCols = va_arg(list, long);
-        double **correlations = va_arg(list, double **);
-        char *optionTypeID = va_arg(list, char *);
-        double strike = va_arg(list, double);
-        char *exerciseID = va_arg(list, char *);
-        long exerciseDate = va_arg(list, long);
-        long settlementDate = va_arg(list, long);
-        char *engineID = va_arg(list, char *);
-        long timeSteps = va_arg(list, long);
+    BasketOption::BasketOption(ObjHandler::ArgStack &args) {
+        long timeSteps = ObjHandler::Args<long>::popArg(args);
+        std::string engineID = ObjHandler::Args<std::string>::popArg(args);
+        long settlementDate = ObjHandler::Args<long>::popArg(args);
+        long exerciseDate = ObjHandler::Args<long>::popArg(args);
+        std::string exerciseID = ObjHandler::Args<std::string>::popArg(args);
+        double strike = ObjHandler::Args<double>::popArg(args);
+        std::string optionTypeID = ObjHandler::Args<std::string>::popArg(args);
+        std::vector < std::vector < double > > correlations 
+            = ObjHandler::Args< std::vector < std::vector < double > > >::popArg(args);
+        std::string basketID = ObjHandler::Args<std::string>::popArg(args);
+        std::vector < std::string > handleStochasticVector 
+            = ObjHandler::Args< std::vector < std::string > >::popArg(args);
 
-        std::vector <std::string> handleStochasticVector =
-            Conversion<std::string>::arrayToVector(handleStochasticSize, handleStochastic);
-
-        std::vector < std::vector <double> >correlationsMatrix =
-            Conversion<double>::arrayToMatrix(correlationsRows, correlationsCols, correlations);
         QuantLib::BasketOption::BasketType basketType = 
             IDtoBasketType(basketID);
         QuantLib::Matrix correlation =
-            vectorVectorToMatrix(correlationsMatrix);
+            vectorVectorToMatrix(correlations);
         QuantLib::Option::Type type = IDtoOptionType(optionTypeID);
         boost::shared_ptr<QuantLib::PlainVanillaPayoff> payoff(
             new QuantLib::PlainVanillaPayoff(type, strike));
@@ -68,12 +62,12 @@ namespace QuantLibAddin {
             stochasticProcsQL;
         std::vector < std::string >::const_iterator i;
         for (i = handleStochasticVector.begin(); i != handleStochasticVector.end(); i++) {
-            std::string handleStochasticStr = *i;
+            std::string handleStochastic = *i;
             boost::shared_ptr<StochasticProcess> stochasticProcess =
                 boost::dynamic_pointer_cast<StochasticProcess>
-                (ObjHandler::ObjectHandler::instance().retrieveObject(handleStochasticStr));
+                (QL_OBJECT_GET(handleStochastic));
             if (!stochasticProcess)
-                QL_FAIL("BasketOption: error retrieving object " + handleStochasticStr);
+                QL_FAIL("BasketOption: error retrieving object " + handleStochastic);
             const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL =
                 boost::static_pointer_cast<QuantLib::BlackScholesProcess>
                 (stochasticProcess->getReference());

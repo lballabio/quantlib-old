@@ -31,7 +31,7 @@ using namespace ObjHandler;
 
 class ObjectFoo : public Object {
 public:
-    ObjectFoo(va_list list);
+    ObjectFoo(ArgStack &args);
     virtual boost::shared_ptr<void> getReference() const;
     void update(const std::string &s, const int &i);
 private:

@@ -26,19 +26,18 @@ int main() {
     double underlying = 36;
     double strike = 40;
     long timeSteps = 801;
-    long exerciseDate = 36297;       // (17, May, 1999);
-    long settlementDate = 35932;     // (17, May, 1998);
-    VariesList vbs;                  // attributes of black scholes object
-    VariesList vo;                   // attributes of vanilla option object
-    int i;                           // iterator
+    long exerciseDate = 36297;      // (17, May, 1999);
+    long settlementDate = 35932;    // (17, May, 1998);
+    VariesList vbs;                 // attributes of black scholes object
+    VariesList vo;                  // attributes of vanilla option object
+    int i;                          // iterator
 
-    printf("hi\n");
-
-    QL_LOGFILE("quantlib.log");
+    QL_LOGFILE("quantlib.log");     // specify log file
+    QL_CONSOLE(1);                  // log messages to stdout
     QL_LOGMESSAGE("begin example program");
 
-    printf("%s\n", QL_VER());
-    printf("%s\n", QL_OH_VER());
+    QL_LOGMESSAGE(QL_VER());
+    QL_LOGMESSAGE(QL_OH_VER());
 
     if (QL_STOCHASTIC_PROCESS(
             "my_stochastic", 
@@ -49,7 +48,7 @@ int main() {
             dividendYield, 
             volatility, 
             &vbs) != SUCCESS) {
-        printf("Error on call to QL_STOCHASTIC_PROCESS\n");
+        QL_LOGMESSAGE("Error on call to QL_STOCHASTIC_PROCESS");
         goto fail;
     }
 
@@ -65,13 +64,13 @@ int main() {
             "JR",                           // engine type (jarrow rudd)
             timeSteps,                      // time steps
             &vo) != SUCCESS) {
-        printf("Error on call to QL_OPTION_VANILLA\n");
+        QL_LOGMESSAGE("Error on call to QL_OPTION_VANILLA");
         goto fail;
     }
 
-    printf("\nhigh-level interrogation - after QL_OPTION_VANILLA\n");
+    QL_LOGMESSAGE("high-level interrogation - after QL_OPTION_VANILLA");
     for (i=0; i<vo.count; i++)
-        printf("field = %s, value = %s\n", vo.varies[i].Label, 
+        QL_LOGMESSAGE("field = %s, value = %s", vo.varies[i].Label, 
             variesToString(&vo.varies[i]));
 
     if (QL_OPTION_SETENGINE(
@@ -79,21 +78,19 @@ int main() {
             "AEQPB",   // AdditiveEQPBinomialTree
             801, 
             &vo) != SUCCESS) {
-        printf("Error on call to QL_OPTION_SETENGINE\n");
+        QL_LOGMESSAGE("Error on call to QL_OPTION_SETENGINE");
         goto fail;
     }
 
-    printf("\nhigh-level interrogation - after QL_OPTION_SETENGINE\n");
+    QL_LOGMESSAGE("high-level interrogation - after QL_OPTION_SETENGINE");
     for (i=0; i<vo.count; i++)
-        printf("field = %s, value = %s\n", vo.varies[i].Label, 
+        QL_LOGMESSAGE("field = %s, value = %s", vo.varies[i].Label, 
             variesToString(&vo.varies[i]));
 
     freeVariesList(&vbs);
     freeVariesList(&vo);
 
     QL_LOGMESSAGE("end example program");
-
-    printf("\nbye\n");
 
     return 0;
 

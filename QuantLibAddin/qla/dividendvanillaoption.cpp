@@ -23,32 +23,27 @@
 
 namespace QuantLibAddin {
 
-    DividendVanillaOption::DividendVanillaOption(va_list list) {
-        char *handleStochastic = va_arg(list, char *);
-        long dividendDatesSize = va_arg(list, long);
-        long *dividendDates = va_arg(list, long *);
-        long dividendsSize = va_arg(list, long);
-        double *dividends = va_arg(list, double *);
-        char *optionTypeID = va_arg(list, char *);
-        char *payoffID = va_arg(list, char *);
-        double strike = va_arg(list, double);
-        char *exerciseID = va_arg(list, char *);
-        long exerciseDate = va_arg(list, long);
-        long settlementDate = va_arg(list, long);
-        char *engineID = va_arg(list, char *);
-        long timeSteps = va_arg(list, long);
+    DividendVanillaOption::DividendVanillaOption(ObjHandler::ArgStack &args) {
+        long timeSteps = ObjHandler::Args<long>::popArg(args);
+        std::string engineID = ObjHandler::Args<std::string>::popArg(args);
+        long settlementDate = ObjHandler::Args<long>::popArg(args);
+        long exerciseDate = ObjHandler::Args<long>::popArg(args);
+        std::string exerciseID = ObjHandler::Args<std::string>::popArg(args);
+        double strike = ObjHandler::Args<double>::popArg(args);
+        std::string payoffID = ObjHandler::Args<std::string>::popArg(args);
+        std::string optionTypeID = ObjHandler::Args<std::string>::popArg(args);
+        std::vector < double > dividends 
+            = ObjHandler::Args< std::vector < double > >::popArg(args);
+        std::vector < long > dividendDates 
+            = ObjHandler::Args< std::vector < long > >::popArg(args);
+        std::string handleStochastic = ObjHandler::Args<std::string>::popArg(args);
 
-        std::string handleStochasticStr(handleStochastic);
         boost::shared_ptr<StochasticProcess> stochasticProcess =
             boost::dynamic_pointer_cast<StochasticProcess>
-            (ObjHandler::ObjectHandler::instance().retrieveObject(handleStochasticStr));
+            (QL_OBJECT_GET(handleStochastic));
         if (!stochasticProcess)
-            QL_FAIL("DividendVanillaOption: error retrieving object " + handleStochasticStr);
+            QL_FAIL("DividendVanillaOption: error retrieving object " + handleStochastic);
 
-        std::vector <long> dividendDatesVector = 
-            Conversion<long>::arrayToVector(dividendDatesSize, dividendDates);
-        std::vector <double> dividendsVector =
-            Conversion<double>::arrayToVector(dividendsSize, dividends);
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             IDtoPayoff(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::Exercise> exercise = 
@@ -59,14 +54,14 @@ namespace QuantLibAddin {
             boost::static_pointer_cast<QuantLib::BlackScholesProcess>
             (stochasticProcess->getReference());
         const std::vector<QuantLib::Date>& dividendDatesQL = 
-            longVectorToDateVector(dividendDatesVector);
+            longVectorToDateVector(dividendDates);
         dividendVanillaOption_ = boost::shared_ptr<QuantLib::DividendVanillaOption>(
             new QuantLib::DividendVanillaOption(
                 stochasticProcessQL, 
                 payoff, 
                 exercise, 
                 dividendDatesQL,
-                dividendsVector,
+                dividends,
                 pricingEngine));
         ObjHandler::any_ptr any_npv(new boost::any(dividendVanillaOption_->NPV()));
         ObjHandler::any_ptr any_engine(new boost::any(std::string(engineID)));

@@ -16,6 +16,7 @@
 */
 
 #include <qla/qladdin.hpp>
+#include <cstdarg>
 
 extern "C" {
 #include <Addins/C/utilities.h>
@@ -36,7 +37,18 @@ extern "C" {
         return ret.c_str();
     }
 
-    void QL_LOGMESSAGE(const char *msg) {
-        QuantLibAddin::QL_LOGMESSAGE(msg);
+    void QL_CONSOLE(const int console) {
+        QuantLibAddin::QL_CONSOLE(console);
+    }
+
+    void QL_LOGMESSAGE(
+            const char *fmt,
+            ...) {
+        char buf[1000]; // FIXME
+        va_list list;
+        va_start(list, fmt);
+        vsprintf(buf, fmt, list);
+        va_end(list);
+        QuantLibAddin::QL_LOGMESSAGE(buf);
     }
 

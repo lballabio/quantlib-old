@@ -25,8 +25,8 @@ using namespace QuantLibAddin;
 
 int main() {
     try {
-        QL_LOGFILE("quantlib.log");
-        QL_CONSOLE(1);
+        QL_LOGFILE("quantlib.log");         // specify log file
+        QL_CONSOLE(1);                      // log messages to stdout
         QL_LOGMESSAGE("begin example program");
 
         QL_LOGMESSAGE(QL_VER());
@@ -41,26 +41,28 @@ int main() {
         Date exerciseDate(17, May, 1999);
         Date settlementDate(17, May, 1998);
 
-        Properties bsProperties = QL_MAKE_OBJECT(StochasticProcess)(
-            "my_stochastic", 
-            underlying,
-            "ACT360",
-            settlementDate.serialNumber(),
-            riskFreeRate,
-            dividendYield, 
-            volatility);
+        ArgStack bsArgs;
+        bsArgs.push(underlying);            // underlying
+        bsArgs.push(string("ACT360"));      // daycount convention
+        bsArgs.push(settlementDate.serialNumber()); // settlement date as long
+        bsArgs.push(riskFreeRate);          // risk free rate
+        bsArgs.push(dividendYield);         // dividend yield
+        bsArgs.push(volatility);            // volatility
+        Properties bsProperties =
+            QL_OBJECT_MAKE(StochasticProcess)("my_stochastic", bsArgs);
 
-        Properties opProperties = QL_MAKE_OBJECT(VanillaOption)(
-            "my_option",                    // option handle
-            "my_stochastic",                // stochastic process handle
-            "PUT",                          // option type
-            "VAN",                          // payoff type (plain vanilla)
-            strike,                         // strike price
-            "AM",                           // exercise type (american)
-            exerciseDate.serialNumber(),    // exercise date
-            settlementDate.serialNumber(),  // settlement date
-            "JR",                           // engine type (jarrow rudd)
-            timeSteps);                     // time steps
+        ArgStack opArgs;
+        opArgs.push(string("my_stochastic")); // stochastic process handle
+        opArgs.push(string("PUT"));         // option type
+        opArgs.push(string("VAN"));         // payoff type (plain vanilla)
+        opArgs.push(strike);                // strike price
+        opArgs.push(string("AM"));          // exercise type (american)
+        opArgs.push(exerciseDate.serialNumber()); // exercise date
+        opArgs.push(settlementDate.serialNumber()); // settlement date
+        opArgs.push(string("JR"));          // engine type (jarrow rudd)
+        opArgs.push(timeSteps);             // time steps
+        Properties opProperties =
+            QL_OBJECT_MAKE(VanillaOption)("my_option", opArgs);
     
         QL_LOGMESSAGE("High-level interrogation: after QL_OPTION_VANILLA");
         Properties::const_iterator it;

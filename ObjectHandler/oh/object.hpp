@@ -26,10 +26,20 @@
 #include <boost/any.hpp>
 #include <oh/property.hpp>
 #include <vector>
+#include <stack>
 #include <string>
 
 namespace ObjHandler {
-
+    typedef std::stack<boost::any> ArgStack;
+    template < class T >
+    class Args {
+        public:
+        static T popArg(ArgStack &args) {
+            boost::any a = args.top();
+            args.pop();
+            return boost::any_cast<T>(a);
+        }
+    };
     //! Shared pointer to any.
     /*! Used to hold the value for
         each of the Object's properties.

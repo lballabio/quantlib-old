@@ -25,66 +25,60 @@
 
 #define DLLEXPORT extern "C" __declspec(dllexport)
 
-void setXLOPERString(XLOPER &xStr, const char *s);
+std::string XLOPERtoString(const XLOPER &xOp);
+void stringToXLOPER(XLOPER &xStr, const char *s);
 void anyToXLOPER(const ObjHandler::any_ptr &any, XLOPER &xOp);
-char *getHandleFull(const char *handle);
+std::string getHandleFull(const std::string &handle);
 void setValues(LPXLOPER xArray,
                ObjHandler::Properties properties,
-               const char *handle);
+               const std::string &handle);
 
 template < typename T >
 class Conversion {
 public:
 
-    static void convertArray(const LPXLOPER xVec, T* &a, long &sz) {
+    static std::vector < T >convertVector(const LPXLOPER xVec) {
         XLOPER xVal;
         if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
             throw exception("convertArray: error on call to xlCoerce");
-        sz = xVal.val.array.rows * xVal.val.array.columns;
-        a = new T[sz];
-        for (int i=0; i<sz; i++) {
+        std::vector < T >ret;
+        for (int i=0; i<xVal.val.array.rows * xVal.val.array.columns; i++) {
             XLOPER xOp;
             if (xlretSuccess != Excel(xlCoerce, &xOp, 2, &xVal.val.array.lparray[i], TempInt(xltypeNum)))
                 throw exception("convertArray: error on call to xlCoerce");
-            a[i] = xOp.val.num;
+            ret.push_back(xOp.val.num);
         }
         Excel(xlFree, 0, 1, &xVal);
+        return ret;
     }
 
-    static void convertArray(const LPXLOPER xVec, char** &a, long &sz) {
+    static std::vector < std::string >convertStrVector(const LPXLOPER xVec) {
         XLOPER xVal;
         if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
             throw exception("convertArray: error on call to xlCoerce");
-        sz = xVal.val.array.rows * xVal.val.array.columns;
-        a = new char*[sz];
-        for (int i=0; i<sz; i++) {
-            XLOPER xOp;
-            if (xlretSuccess != Excel(xlCoerce, &xOp, 2, &xVal.val.array.lparray[i], TempInt(xltypeStr)))
-                throw exception("convertArray: error on call to xlCoerce");
-            a[i] = new char[xOp.val.str[0] + 1];
-            strncpy(a[i], &xOp.val.str[1], xOp.val.str[0]);
-            a[i][xOp.val.str[0]] = 0;
-            Excel(xlFree, 0, 1, &xOp);
-        }
+        std::vector < std::string >ret;
+        for (int i=0; i<xVal.val.array.rows * xVal.val.array.columns; i++)
+            ret.push_back(XLOPERtoString(xVal.val.array.lparray[i]));
         Excel(xlFree, 0, 1, &xVal);
+        return ret;
     }
 
-    static void convertMatrix(const LPXLOPER xMat, T** &a, long &r, long &c) {
+    static std::vector < std::vector < T > >convertMatrix(const LPXLOPER xMat) {
         XLOPER xVal;
         if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xMat, TempInt(xltypeMulti)))
             throw exception("convertMatrix: error on call to xlCoerce");
-        r = xVal.val.array.rows;
-        c = xVal.val.array.columns;
-        a = new T*[r];
-        for (int i=0; i<r; i++) {
-            a[i] = new T[c];
-            for (int j=0; j<c; j++) {
+        std::vector < std::vector < T > >ret;
+        for (int i=0; i<xVal.val.array.rows; i++) {
+            std::vector < T >row;
+            for (int j=0; j<xVal.val.array.columns; j++) {
                 XLOPER xOp;
-                if (xlretSuccess != Excel(xlCoerce, &xOp, 2, &xVal.val.array.lparray[i * c + j], TempInt(xltypeNum)))
+                if (xlretSuccess != Excel(xlCoerce, &xOp, 2, &xVal.val.array.lparray[i * xVal.val.array.columns + j], TempInt(xltypeNum)))
                     throw exception("convertMatrix: error on call to xlCoerce");
-                a[i][j] = xOp.val.num;
+                row.push_back(xOp.val.num);
             }
+            ret.push_back(row);
         }
+        return ret;
     }
 
 };

@@ -31,10 +31,15 @@ int main() {
         OH_LOGMESSAGE("begin example program");
 
         // construct some objects and store them in the object handler
-        Properties f1Properties = OH_MAKE_OBJECT(ObjectFoo)(
-            "foo1", "abc", 123);
-        Properties f2Properties = OH_MAKE_OBJECT(ObjectFoo)(
-            "foo2", "def", 456);
+        ArgStack f1Args;
+        f1Args.push(string("abc"));
+        f1Args.push(123);
+        Properties f1Properties = OH_OBJECT_MAKE(ObjectFoo)("foo1", f1Args);
+
+        ArgStack f2Args;
+        f2Args.push(string("def"));
+        f2Args.push(456);
+        Properties f2Properties = OH_OBJECT_MAKE(ObjectFoo)("foo2", f2Args);
 
         // high level interrogation
         OH_LOGMESSAGE("high level interrogation - after constructor");
