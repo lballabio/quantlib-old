@@ -135,6 +135,7 @@ class SKKCurrency : public Currency {};
 class THBCurrency : public Currency {};
 class TRLCurrency : public Currency {};
 class TTDCurrency : public Currency {};
+class TWDCurrency : public Currency {};
 class USDCurrency : public Currency {};
 class VEBCurrency : public Currency {};
 class ZARCurrency : public Currency {};
