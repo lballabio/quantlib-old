@@ -23,6 +23,8 @@
 %{
 using QuantLib::Integer;
 using QuantLib::BigInteger;
+using QuantLib::Natural;
+using QuantLib::BigNatural;
 using QuantLib::Real;
 using QuantLib::Decimal;
 using QuantLib::Time;
@@ -35,6 +37,8 @@ using QuantLib::Size;
 
 typedef int Integer;
 typedef long BigInteger;
+typedef unsigned int Natural;
+typedef unsigned long BigNatural;
 typedef double Real;
 
 typedef Real Decimal;
