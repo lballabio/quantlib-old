@@ -25,8 +25,8 @@ def generateFuncHeaders(groupName, functionGroup):
     utils.logMessage('    generating file ' + fileName + '...')
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
-    fileHeader.write('#ifndef qlac_%s_h\n' % groupName)
-    fileHeader.write('#define qlac_%s_h\n\n' % groupName)
+    fileHeader.write('#ifndef qla_%s_h\n' % groupName)
+    fileHeader.write('#define qla_%s_h\n\n' % groupName)
     for function in functionGroup[common.FUNCLIST]:
         generateFuncHeader(fileHeader, function, ';\n')
     fileHeader.write('#endif\n')
