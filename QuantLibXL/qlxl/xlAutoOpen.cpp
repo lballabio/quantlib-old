@@ -97,12 +97,15 @@ extern "C" {
                 "(spline-only) 0=not-a-knot; 1=first derivative value; 2=second derivative value");
             XlfArgDesc rightEndValue("right end value",
                 "(spline-only) derivative value (ignored for not-a-knot end condition)");
-            XlfArgDesc interpolationType("interpolation_type",
-                "interpolation type (1:linear; 2:spline; 3:log-linear)");
-            XlfArgDesc allowExtrapolation("allow_extrapolation",
+            XlfArgDesc interpolationType("interpolationType",
+                "1:linear; 2:spline; 3:log-linear");
+            XlfArgDesc allowExtrapolation("extrapolation",
                 "allow extrapolation boolean");
-            XlfArgDesc monotonicityConstraint("monotonicity_constraint",
+            XlfArgDesc monotonicityConstraint("monotonicity_",
                 "enforce monotonicity constraint");
+            XlfArgDesc derivativeOrder("derivativeOrder",
+                ": -1 (primitive), 0 (function), 1 (1st derivative), "
+                "or 2 (2nd derivative)");
             XlfArgDesc absoluteIndex("absoluteIndex", "zero based index");
 
             XlfArgDesc matrix("matrix", "input matrix");
@@ -426,7 +429,7 @@ extern "C" {
             // Registers interpolation
             XlfFuncDesc interpolateDesc("xlinterpolate","qlInterpolate",
                 "1 dimensional interpolation","QuantLibXL Math");
-            interpolateDesc.SetArguments(x_array+y_array+x_value+interpolationType+allowExtrapolation+leftEndCondition+leftEndValue+rightEndCondition+rightEndValue+monotonicityConstraint);
+            interpolateDesc.SetArguments(x_array+y_array+x_value+interpolationType+allowExtrapolation+leftEndCondition+leftEndValue+rightEndCondition+rightEndValue+monotonicityConstraint+derivativeOrder);
             interpolateDesc.Register();
 
             XlfFuncDesc interpolate2DDesc("xlinterpolate2D","qlInterpolate2D",

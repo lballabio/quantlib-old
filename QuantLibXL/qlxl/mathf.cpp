@@ -44,7 +44,8 @@ extern "C"
                                         XlfOper xlleftConditionValue,
                                         XlfOper xlrightConditionType,
                                         XlfOper xlrightConditionValue,
-                                        XlfOper xlmonotonicityConstraint) {
+                                        XlfOper xlmonotonicityConstraint,
+                                        XlfOper xlderivativeOrder) {
         EXCEL_BEGIN;
 
         std::vector<double> x_value = xlx_array.AsDoubleVector();
@@ -54,6 +55,7 @@ extern "C"
 
         double x = xlx.AsDouble();
 
+        int interpolationType = xlinterpolationType.AsInt();
         bool allowExtrapolation = xlallowExtrapolation.AsBool();
 
         double y1a = Null<double>(),
@@ -90,14 +92,15 @@ extern "C"
 
         bool monotonicityConstraint = xlmonotonicityConstraint.AsBool();
 
-        int interpolationType = xlinterpolationType.AsInt();
+        int derivativeOrder = xlderivativeOrder.AsInt();
 
         double result = interpolate(x_value, y_value, x,
             interpolationType,
             allowExtrapolation,
             y1a, y2a,
             y1b, y2b,
-            monotonicityConstraint);
+            monotonicityConstraint,
+            derivativeOrder);
         return XlfOper(result);
         EXCEL_END;
     }
