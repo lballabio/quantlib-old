@@ -4,7 +4,9 @@ includedir = $(prefix)/include/qla
 
 SUBDIRS = objects functions
 
-#EXTRA_DIST = 
+EXTRA_DIST = \
+    autolink.hpp
+
 include_HEADERS = \
     autolink.hpp \
     qladdindefines.hpp \
