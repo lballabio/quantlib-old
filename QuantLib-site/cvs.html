@@ -208,7 +208,7 @@ password for anonymous, simply press the Enter key.</p>
 <p>Unix:</p>
 
 <pre>
-export CVSROOT=:pserver:anonymous@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
+export CVSROOT=:pserver:anonymous@cvs.quantlib.org:/cvsroot/quantlib
 cvs login
 cvs -z3 co -P modulename
 </pre>
@@ -216,7 +216,7 @@ cvs -z3 co -P modulename
 <p>Win32:</p>
 
 <pre>
-SET CVSROOT=:pserver:anonymous@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
+SET CVSROOT=:pserver:anonymous@cvs.quantlib.org:/cvsroot/quantlib
 cvs login
 cvs -z3 co -P modulename
 </pre>
@@ -239,7 +239,7 @@ proper values. Enter your site password when prompted.</p>
 <p>Unix:</p>
 
 <pre>
-export CVSROOT=developername@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
+export CVSROOT=developername@cvs.quantlib.org:/cvsroot/quantlib
 export CVS_RSH=ssh
 cvs -z3 co -P modulename
 </pre>
@@ -247,7 +247,7 @@ cvs -z3 co -P modulename
 <p>Win32:</p>
 
 <pre>
-SET CVSROOT=developername@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
+SET CVSROOT=developername@cvs.quantlib.org:/cvsroot/quantlib
 SET CVS_RSH=ssh
 cvs -z3 co -P modulename
 </pre>
@@ -259,7 +259,7 @@ example:</p>
 <pre>
 cvs update
 cvs commit -m "comments for this commit"
-cvs add myfile.c 
+cvs add myfile.c
 </pre>
 
 <p><strong>Note for C++ Unix users</strong>: if you use CVS, you
