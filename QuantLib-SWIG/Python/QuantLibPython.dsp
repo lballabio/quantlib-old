@@ -338,9 +338,7 @@ USERDEP__QUANT="..\SWIG\blackmodel.i"	"..\SWIG\calendars.i"	"..\SWIG\capfloor.i"
 InputPath=..\SWIG\quantlib.i
 
 ".\QuantLib\quantlib_wrap.cpp" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	which swig 
 	swig -version 
-	which python 
 	python -V 
 	python setup.py wrap 
 	
