@@ -46,6 +46,7 @@
         "blackmodel.i"
         "calendars.i"
         "capfloor.i"
+        "cashflows.i"
         "compoundforward.i"
         "currencies.i"
         "date.i"
