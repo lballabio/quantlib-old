@@ -148,7 +148,6 @@ Build = Command.new {
         $CFLAGS   += ENV['CFLAGS'] || ""
     	$CFLAGS   += " -DHAVE_CONFIG_H"
         $CPPFLAGS += ENV['CXXFLAGS'] || ""
-        $CPPFLAGS += ENV['CPPFLAGS'] || ""
     	$CPPFLAGS += " -I/usr/local/include"
     	$libs     += " -lQuantLib"
     	cfg['LDSHARED'] = cfg['LDSHARED'].sub('gcc','g++')

@@ -276,6 +276,8 @@ else:
     library_dirs = [ql_library_dir]
     libraries = ["QuantLib"]
     extra_compile_args = [ql_compile_args]
+    if os.environ.has_key('CXXFLAGS'):
+        extra_compile_args.extend(string.split(os.environ['CXXFLAGS']))
     extra_link_args = [ql_link_args]
     define_macros = None
     # changes the compiler from gcc to g++
