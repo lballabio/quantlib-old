@@ -66,9 +66,12 @@ std::string OUStringToString(const STRING& s1) {
         throw Exception("OUStringToString: unable to convert string");
 }
 
-std::vector < long > longSequenceToVector(const SEQ(long)& s) {
+std::vector < long > longSequenceToVector(const SEQSEQ(long)& s) {
     std::vector < long > ret;
-    for (int i=0; i<s.getLength(); i++)
-        ret.push_back(s[i]);
-   return ret;
+    for (int i=0; i<s.getLength(); i++){
+        SEQ(long) s2 = s[i];
+        for (int j=0; j<s2.getLength(); j++)
+            ret.push_back(s2[j]);
+    }
+    return ret;
 }

@@ -117,7 +117,7 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionAsianD(
         const STRING & typeAverage,
         double runningAccumulator,
         sal_Int32 pastFixings,
-        const SEQ(sal_Int32 )& fixingDates,
+        const SEQSEQ(sal_Int32 )& fixingDates,
         const STRING & typeOption,
         const STRING & typePayoff,
         double strike,

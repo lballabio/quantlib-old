@@ -50,9 +50,9 @@ def generateHeader(fileHeader, function, suffix):
     'generate implementation for given function'
     if function[common.CTOR]:
         fileHeader.write('        const STRING & handle,\n')
-    paramList = utils.generateParamList(function[common.PARAMS], 2, True, \
+    paramList = utils.generateParamList(function[common.PARAMS], 2, True,
         '', 'const STRING &', 'sal_Int32', 
-        convertVec = 'const SEQ(%s)& ')
+        convertVec = 'const SEQSEQ(%s)& ')
     fileHeader.write(paramList)
     fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)
 
@@ -159,7 +159,7 @@ def generateIDLSource(functionGroups):
             returnTypeIDL = getReturnTypeCalcIDL(function)
             paramList = utils.generateParamList(function[common.PARAMS],
                  6, True, '[in] ', 
-                convertVec = 'sequence < %s > ')
+                convertVec = 'sequence < sequence < %s > > ')
             fileIDL.write(bufIDLFunc %
                 (returnTypeIDL, function[common.CODENAME], handle, paramList))
     bufIDLFoot = utils.loadBuffer(IDL_FOOT)
