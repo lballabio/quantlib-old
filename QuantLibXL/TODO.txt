@@ -1,3 +1,5 @@
+how to avoid recalculation
+bug with operation in term structure input
 
 Borland compilation
 gcc autoconfiscation
