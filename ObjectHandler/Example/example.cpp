@@ -17,7 +17,6 @@
 #include <iostream>
 #include <exception>
 #include <interface.hpp>
-#include <ObjectHandler/autolink.hpp>
 
 using namespace std;
 

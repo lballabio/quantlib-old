@@ -17,6 +17,7 @@
 #ifndef interface_h
 #define interface_h
 
+#include <boost/config.hpp>
 #include <ObjectHandler/objecthandler.hpp>
 #include <objectwidget.hpp>
 
