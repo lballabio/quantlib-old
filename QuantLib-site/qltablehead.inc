@@ -16,6 +16,8 @@
 
 <li><a class="navlink" href="extensions.html">Extensions</a></li>
 
+<li><a class="navlink" href="html/examples.html">Examples (exits)</a></li>
+
 <li><a class="navlink" href="html/history.html">History (exits)</a></li>
 
 <li><a class="navlink" href="download.html">Download</a></li>
