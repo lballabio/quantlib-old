@@ -1,5 +1,5 @@
     try {
-        Properties properties = %s(%s
+%s        Properties properties = %s(%s
 %s);
         return getArray(properties, handle);
     } catch (const std::exception &e) {

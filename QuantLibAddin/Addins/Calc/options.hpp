@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Thu Jan 20 00:11:04 2005
+// this file generated automatically by autogen.py on Mon Jan 31 11:40:03 2005
 // editing this file manually is not recommended
 
     virtual SEQSEQ(ANY) SAL_CALL qlStochasticProcess(
@@ -43,6 +43,22 @@
         const STRING & handle,
         const STRING & handleStochastic,
         const STRING & typeAverage,
+        const STRING & typeOption,
+        const STRING & typePayoff,
+        double strike,
+        const STRING & typeExercise,
+        sal_Int32 exerciseDate,
+        sal_Int32 settlementDate,
+        const STRING & typeEngine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE;
+
+    virtual SEQSEQ(ANY) SAL_CALL qlOptionAsianD(
+        const STRING & handle,
+        const STRING & handleStochastic,
+        const STRING & typeAverage,
+        float runningAccumulator,
+        sal_Int32 pastFixings,
+        const SEQ(sal_Int32 )& fixingDates,
         const STRING & typeOption,
         const STRING & typePayoff,
         double strike,

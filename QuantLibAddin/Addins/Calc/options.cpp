@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Fri Jan 28 22:36:30 2005
+// this file generated automatically by autogen.py on Mon Jan 31 11:40:03 2005
 // editing this file manually is not recommended
 
 #include <qla/qladdin.hpp>
@@ -111,6 +111,46 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionAsianC(
     }
 }
 
+SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionAsianD(
+        const STRING & handle,
+        const STRING & handleStochastic,
+        const STRING & typeAverage,
+        float runningAccumulator,
+        sal_Int32 pastFixings,
+        const SEQ(sal_Int32 )& fixingDates,
+        const STRING & typeOption,
+        const STRING & typePayoff,
+        double strike,
+        const STRING & typeExercise,
+        sal_Int32 exerciseDate,
+        sal_Int32 settlementDate,
+        const STRING & typeEngine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE {
+    try {
+        std::vector <long> fixingDatesVector = 
+            sequenceToVector(fixingDates);
+        Properties properties = QL_OPTION_ASIAN_D(
+            OUStringToString(handle),
+            OUStringToString(handleStochastic),
+            OUStringToString(typeAverage),
+            runningAccumulator,
+            pastFixings,
+            fixingDatesVector,
+            OUStringToString(typeOption),
+            OUStringToString(typePayoff),
+            strike,
+            OUStringToString(typeExercise),
+            exerciseDate,
+            settlementDate,
+            OUStringToString(typeEngine),
+            timeSteps);
+        return getArray(properties, handle);
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_ASIAN_D: ") + e.what());
+        THROW_RTE;
+    }
+}
+
 SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionBarrier(
         const STRING & handle,
         const STRING & handleStochastic,
@@ -162,3 +202,4 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionSetEngine(
         THROW_RTE;
     }
 }
+

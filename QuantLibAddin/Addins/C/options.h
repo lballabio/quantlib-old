@@ -15,14 +15,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Wed Jan 26 13:34:31 2005
+// this file generated automatically by autogen.py on Mon Jan 31 11:40:03 2005
 // editing this file manually is not recommended
 
 #ifndef options_h
 #define options_h
 
 int QL_STOCHASTIC_PROCESS(
-        const char *handle,
+        const char* handle,
         const double underlying,
         const char* dayCounterID,
         const long settlementDate,
@@ -32,7 +32,7 @@ int QL_STOCHASTIC_PROCESS(
         VariesList *result);
 
 int QL_OPTION_VANILLA(
-        const char *handle,
+        const char* handle,
         const char* handleStochastic,
         const char* typeOption,
         const char* typePayoff,
@@ -45,7 +45,7 @@ int QL_OPTION_VANILLA(
         VariesList *result);
 
 int QL_OPTION_ASIAN_C(
-        const char *handle,
+        const char* handle,
         const char* handleStochastic,
         const char* typeAverage,
         const char* typeOption,
@@ -58,8 +58,26 @@ int QL_OPTION_ASIAN_C(
         const long timeSteps,
         VariesList *result);
 
+int QL_OPTION_ASIAN_D(
+        const char* handle,
+        const char* handleStochastic,
+        const char* typeAverage,
+        const float runningAccumulator,
+        const long pastFixings,
+        const long fixingDatesSize,
+        const long* fixingDates,
+        const char* typeOption,
+        const char* typePayoff,
+        const double strike,
+        const char* typeExercise,
+        const long exerciseDate,
+        const long settlementDate,
+        const char* typeEngine,
+        const long timeSteps,
+        VariesList *result);
+
 int QL_OPTION_BARRIER(
-        const char *handle,
+        const char* handle,
         const char* handleStochastic,
         const char* typeBarrier,
         const double barrier,

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,5 +23,7 @@ SEQSEQ( ANY ) getArray(ObjHandler::Properties properties,
                        STRING handle);
 std::string OUStringToString(const STRING& s1);
 ANY stringToANY(const std::string &s);
+template <typename T>
+std::vector < T > sequenceToVector(const SEQ(T)& s);
 
 #endif

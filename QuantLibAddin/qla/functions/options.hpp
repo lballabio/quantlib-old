@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Fri Jan 28 22:36:30 2005
+// this file generated automatically by autogen.py on Mon Jan 31 11:40:03 2005
 // editing this file manually is not recommended
 
 #ifndef qla_options_hpp
@@ -50,6 +50,22 @@ namespace QuantLibAddin {
             const std::string &handleObject,
             const std::string &handleStochastic,
             const std::string &typeAverage,
+            const std::string &typeOption,
+            const std::string &typePayoff,
+            const double &strike,
+            const std::string &typeExercise,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &typeEngine,
+            const long &timeSteps);
+
+    const ObjHandler::Properties& QL_OPTION_ASIAN_D(
+            const std::string &handleObject,
+            const std::string &handleStochastic,
+            const std::string &typeAverage,
+            const float &runningAccumulator,
+            const long &pastFixings,
+            const std::vector<long >&fixingDates,
             const std::string &typeOption,
             const std::string &typePayoff,
             const double &strike,

@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Fri Jan 28 22:36:30 2005
+// this file generated automatically by autogen.py on Mon Jan 31 11:40:03 2005
 // editing this file manually is not recommended
 
 #include <qla/qladdin.hpp>
@@ -27,7 +27,7 @@ extern "C" {
 #include <Addins/C/varies.hpp>
 
 int QL_STOCHASTIC_PROCESS(
-        const char *handle,
+        const char* handle,
         const double underlying,
         const char* dayCounterID,
         const long settlementDate,
@@ -47,14 +47,15 @@ int QL_STOCHASTIC_PROCESS(
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        QuantLibAddin::QL_LOGMESSAGE("QL_STOCHASTIC_PROCESS_C Error: " + std::string(e.what()));
+        QuantLibAddin::QL_LOGMESSAGE("QL_STOCHASTIC_PROCESS Error: "
+            + std::string(e.what()));
         result = 0;
         return FAIL;
     }
 }
 
 int QL_OPTION_VANILLA(
-        const char *handle,
+        const char* handle,
         const char* handleStochastic,
         const char* typeOption,
         const char* typePayoff,
@@ -80,14 +81,15 @@ int QL_OPTION_VANILLA(
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_VANILLA_C Error: " + std::string(e.what()));
+        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_VANILLA Error: "
+            + std::string(e.what()));
         result = 0;
         return FAIL;
     }
 }
 
 int QL_OPTION_ASIAN_C(
-        const char *handle,
+        const char* handle,
         const char* handleStochastic,
         const char* typeAverage,
         const char* typeOption,
@@ -115,14 +117,60 @@ int QL_OPTION_ASIAN_C(
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_ASIAN_C_C Error: " + std::string(e.what()));
+        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_ASIAN_C Error: "
+            + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+
+int QL_OPTION_ASIAN_D(
+        const char* handle,
+        const char* handleStochastic,
+        const char* typeAverage,
+        const float runningAccumulator,
+        const long pastFixings,
+        const long fixingDatesSize,
+        const long* fixingDates,
+        const char* typeOption,
+        const char* typePayoff,
+        const double strike,
+        const char* typeExercise,
+        const long exerciseDate,
+        const long settlementDate,
+        const char* typeEngine,
+        const long timeSteps,
+        VariesList *result) {
+    try {
+        std::vector <long> fixingDatesVector = 
+            longArrayToVector(fixingDatesSize, fixingDates);
+        ObjHandler::Properties properties = QuantLibAddin::QL_OPTION_ASIAN_D(
+            handle,
+            handleStochastic,
+            typeAverage,
+            runningAccumulator,
+            pastFixings,
+            fixingDatesVector,
+            typeOption,
+            typePayoff,
+            strike,
+            typeExercise,
+            exerciseDate,
+            settlementDate,
+            typeEngine,
+            timeSteps);
+        propertiesToVaries(properties, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_ASIAN_D Error: "
+            + std::string(e.what()));
         result = 0;
         return FAIL;
     }
 }
 
 int QL_OPTION_BARRIER(
-        const char *handle,
+        const char* handle,
         const char* handleStochastic,
         const char* typeBarrier,
         const double barrier,
@@ -154,7 +202,8 @@ int QL_OPTION_BARRIER(
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_BARRIER_C Error: " + std::string(e.what()));
+        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_BARRIER Error: "
+            + std::string(e.what()));
         result = 0;
         return FAIL;
     }
@@ -173,7 +222,8 @@ int QL_OPTION_SETENGINE(
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_SETENGINE_C Error: " + std::string(e.what()));
+        QuantLibAddin::QL_LOGMESSAGE("QL_OPTION_SETENGINE Error: "
+            + std::string(e.what()));
         result = 0;
         return FAIL;
     }

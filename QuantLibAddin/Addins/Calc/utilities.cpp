@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -59,10 +59,18 @@ SEQSEQ( ANY ) getArray(Properties properties, STRING handle) {
 
 std::string OUStringToString(const STRING& s1) {
     ::rtl::OString s2;
-    if (s1.convertToString(&s2, 
-    RTL_TEXTENCODING_ASCII_US, OUSTRING_TO_OSTRING_CVTFLAGS))
+    if (s1.convertToString(&s2, RTL_TEXTENCODING_ASCII_US, 
+        OUSTRING_TO_OSTRING_CVTFLAGS))
         return s2.getStr();
     else
         throw Exception("OUStringToString: unable to convert string");
+}
+
+template <typename T>
+std::vector < T > sequenceToVector(const SEQ(T)& s) {
+    std::vector < T > ret;
+    for (int i=0; i<s.size(); i++)
+        ret.push_back(s[i]);
+    return ret;
 }
 

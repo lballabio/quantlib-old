@@ -20,6 +20,8 @@
 
 void propertiesToVaries(const ObjHandler::Properties &properties, 
         VariesList *variesList);
+std::vector < long > longArrayToVector(
+        const long& arraySize, const long* array);
 
 #endif
 

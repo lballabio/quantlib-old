@@ -29,7 +29,8 @@ int main() {
     long settlementDate = 35932;     // (17, May, 1998);
     long todaysDate = 35930;         // (15, May, 1998);
     VariesList vbs;                  // attributes of black scholes object
-    VariesList vo;                   // attributes of option object
+    VariesList vo;                   // attributes of vanilla option object
+    VariesList va;                   // attributes of asian option object
     int i;
 
     printf("hi\n");
@@ -68,7 +69,8 @@ int main() {
 
     printf("\nhigh-level interrogation - after QL_OPTION_VANILLA\n");
     for (i=0; i<vo.count; i++)
-        printf("field = %s, value = %s\n", vo.varies[i].Label, variesToString(&vo.varies[i]));
+        printf("field = %s, value = %s\n", vo.varies[i].Label, 
+            variesToString(&vo.varies[i]));
 
     if (QL_OPTION_SETENGINE(
             "my_option", 
@@ -81,10 +83,43 @@ int main() {
 
     printf("\nhigh-level interrogation - after QL_OPTION_SETENGINE\n");
     for (i=0; i<vo.count; i++)
-        printf("field = %s, value = %s\n", vo.varies[i].Label, variesToString(&vo.varies[i]));
+        printf("field = %s, value = %s\n", vo.varies[i].Label, 
+            variesToString(&vo.varies[i]));
+
+        // example that takes a vector as input
+    long fixingDatesCount = exerciseDate - todaysDate + 1;
+    long *fixingDates = (long *) malloc(sizeof(long) * fixingDatesCount);
+    for (i = 0; i < fixingDatesCount; i++)
+        fixingDates[i] = todaysDate + i;
+    if (QL_OPTION_ASIAN_D(
+            "my_asian_discrete",            // option handle
+            "my_stochastic",                // stochastic process handle
+            "G",                            // average type ("A"verage/"G"eometric)
+            1.0,                            // running accumulator
+            0,                              // past fixings
+            fixingDatesCount,               // #/fixingDates
+            fixingDates,                    // fixingDates
+            "PUT",                          // option type
+            "VAN",                          // payoff type (plain vanilla)
+            strike,                         // strike price
+            "EU",                           // exercise type (european)
+            exerciseDate,                   // exercise date
+            settlementDate,                 // settlement date
+            "ADGAPA",                       // engine type (AnalyticDiscreteGeometricAveragePriceAsianEngine)
+            timeSteps,                      // time steps
+            &va) != SUCCESS) {
+        printf("Error on call to QL_OPTION_ASIAN_D\n");
+        goto fail;
+    }
+
+    printf("\nhigh-level interrogation - after QL_OPTION_ASIAN_D\n");
+    for (i=0; i<va.count; i++)
+        printf("field = %s, value = %s\n", va.varies[i].Label, 
+            variesToString(&va.varies[i]));
 
     freeVariesList(&vbs);
     freeVariesList(&vo);
+    freeVariesList(&va);
 
     QL_LOGMESSAGE("end example program");
 

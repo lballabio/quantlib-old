@@ -37,21 +37,22 @@ namespace QuantLibAddin {
             const std::string &typeEngine,
             const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(continuousAveragingAsianOption_);
+            return boost::static_pointer_cast<void>(
+                continuousAveragingAsianOption_);
         }
     private:
-        boost::shared_ptr<QuantLib::ContinuousAveragingAsianOption> continuousAveragingAsianOption_;
+        boost::shared_ptr<QuantLib::ContinuousAveragingAsianOption> 
+            continuousAveragingAsianOption_;
     };
 
-/*  this class expects a vector which QLA doesn't yet support
     class DiscreteAveragingAsianOption : public ObjHandler::Object {
     public:
         DiscreteAveragingAsianOption(
             const boost::shared_ptr<StochasticProcess> &stochasticProcess,
             const std::string &typeAverage,
-            const float runningAccumulator,
-            const long pastFixings,
-            const std::vector<QuantLib::Date> fixingDates,
+            const float &runningAccumulator,
+            const long &pastFixings,
+            const std::vector<long> &fixingDates,
             const std::string &typeOption,
             const std::string &typePayoff,
             const float &strike,
@@ -61,12 +62,14 @@ namespace QuantLibAddin {
             const std::string &typeEngine,
             const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(discreteAveragingAsianOption_);
+            return boost::static_pointer_cast<void>(
+                discreteAveragingAsianOption_);
         }
     private:
-        boost::shared_ptr<QuantLib::DiscreteAveragingAsianOption> discreteAveragingAsianOption_;
+        boost::shared_ptr<QuantLib::DiscreteAveragingAsianOption> 
+            discreteAveragingAsianOption_;
     };
-*/
+
 }
 
 #endif

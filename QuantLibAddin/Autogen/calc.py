@@ -19,6 +19,7 @@ IDL_FOOT = 'stub.Calc.idlfoot'
 IDL_FUNC = 'stub.Calc.idlfunc'
 
 def generateFuncMap(functionGroups):
+    'generate array that lists all functions in the addin'
     fileName = ROOT + MAPFILE
     utils.logMessage('    generating file ' + fileName + '...')
     fileMap = file(fileName, 'w')
@@ -31,10 +32,11 @@ def generateFuncMap(functionGroups):
         for function in functionGroup[common.FUNCLIST]:
             fileMap.write(MAPLINE
                 % (function[common.CODENAME], function[common.NAME]))
-    fileMap.write('\n}\n')
+    fileMap.write('\n}\n\n')
     fileMap.close()
 
 def generateAutoHeader(functionGroups):
+    'generate header file that lists all other headers'
     fileName = ROOT + AUTOHDR
     utils.logMessage('    generating file ' + fileName + '...')
     fileHeader = file(fileName, 'w')
@@ -45,13 +47,17 @@ def generateAutoHeader(functionGroups):
     fileHeader.close()
 
 def generateHeader(fileHeader, function, suffix):
+    'generate implementation for given function'
     if function[common.CTOR]:
         fileHeader.write('        const STRING & handle,\n')
-    fileHeader.write(utils.generateParamList(function[common.PARAMS],
-        2, True, '', 'const STRING &', 'sal_Int32'))
+    paramList = utils.generateParamList(function[common.PARAMS], 2, True, \
+        '', 'const STRING &', 'sal_Int32', 
+        convertVec = 'const SEQ(%s)& ')
+    fileHeader.write(paramList)
     fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)
 
 def getReturnTypeCalc(function):
+    'derive return type for function'
     returnType = function[common.RETVAL][common.TYPE]
     if returnType == common.PROPVEC:
         return 'SEQSEQ(ANY)'
@@ -61,6 +67,7 @@ def getReturnTypeCalc(function):
         raise ValueError, 'unexpected return type: ' + returnType
 
 def generateHeaders(functionGroups):
+    'generate source for function prototypes'
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
         fileName = ROOT + groupName + '.hpp'
@@ -75,7 +82,19 @@ def generateHeaders(functionGroups):
             fileHeader.write('\n')
     fileHeader.close()
 
+def generateConversions(paramList):
+    'generate code to convert arrays to vectors'
+    ret = ''
+    for param in paramList:
+        if param[common.TENSOR] == common.VECTOR: 
+            ret += 8 * ' ' + 'std::vector <' + param[common.TYPE] + \
+                '> ' + param[common.NAME] + \
+                'Vector = \n' + 12 * ' ' + \
+                'sequenceToVector(' + param[common.NAME] + ');\n'
+    return ret
+
 def generateFuncSource(fileFunc, function, bufBody):
+    'generate source for given function'
     fileFunc.write('SEQSEQ( ANY ) SAL_CALL QLAddin::%s(\n' 
         % function[common.CODENAME])
     generateHeader(fileFunc, function, ' {')
@@ -83,15 +102,18 @@ def generateFuncSource(fileFunc, function, bufBody):
         handle = '\n' + 12 * ' ' + 'OUStringToString(handle),'
     else:
         handle = ''
-    paramList = utils.generateParamList(function[common.PARAMS],
-        3, False, reformatString = 'OUStringToString(%s)')
+    paramList = utils.generateParamList(function[common.PARAMS], 3, False, 
+        reformatString = 'OUStringToString(%s)', appendVec = True)
+    conversions = generateConversions(function[common.PARAMS])
     fileFunc.write(bufBody % (
+        conversions,
         function[common.NAME],
         handle,
         paramList,
         function[common.NAME]))
 
 def generateFuncSources(functionGroups):
+    'generate source or function implementations'
     bufInclude = utils.loadBuffer(INCLUDES)
     bufBody = utils.loadBuffer(BODY)
     for groupName in functionGroups.keys():
@@ -108,6 +130,7 @@ def generateFuncSources(functionGroups):
         fileFunc.close()
 
 def getReturnTypeCalcIDL(function):
+    'derive the return type of a function'
     returnType = function[common.RETVAL][common.TYPE]
     if returnType == common.PROPVEC:
         return 'sequence < sequence < any > >'
@@ -117,6 +140,7 @@ def getReturnTypeCalcIDL(function):
         raise ValueError, 'unexpected return type: ' + returnType
 
 def generateIDLSource(functionGroups):
+    'generate the IDL file for the addin'
     fileName = ROOT + IDL
     utils.logMessage('    generating file ' + fileName + '...')
     fileIDL = file(fileName, 'w')
@@ -134,7 +158,8 @@ def generateIDLSource(functionGroups):
                 handle = ''
             returnTypeIDL = getReturnTypeCalcIDL(function)
             paramList = utils.generateParamList(function[common.PARAMS],
-                 6, True, '[in] ')
+                 6, True, '[in] ', 
+                convertVec = 'sequence < %s > ')
             fileIDL.write(bufIDLFunc %
                 (returnTypeIDL, function[common.CODENAME], handle, paramList))
     bufIDLFoot = utils.loadBuffer(IDL_FOOT)
@@ -142,6 +167,7 @@ def generateIDLSource(functionGroups):
     fileIDL.close()
 
 def generate(functionDefs):
+    'generate source code for Calc addin'
     utils.logMessage('  begin generating Calc ...')
     functionGroups = functionDefs[common.FUNCGROUPS]
     generateFuncMap(functionGroups)

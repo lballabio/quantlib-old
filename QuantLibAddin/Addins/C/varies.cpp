@@ -77,3 +77,11 @@ void freeVariesList(VariesList *vl) {
     delete [] vl->varies;
 }
 
+std::vector < long > longArrayToVector(
+        const long& arraySize, const long* array) {
+    std::vector < long > ret;
+    for (int i = 0; i < arraySize; i++)
+        ret.push_back(array[i]);
+    return ret;
+}
+

@@ -71,5 +71,56 @@ namespace QuantLibAddin {
         properties_.push_back(prop_engine);
     }
 
+    DiscreteAveragingAsianOption::DiscreteAveragingAsianOption(
+            const boost::shared_ptr<StochasticProcess> &stochasticProcess,
+            const std::string &typeAverage,
+            const float &runningAccumulator,
+            const long &pastFixings,
+            const std::vector<long> &fixingDates,
+            const std::string &typeOption,
+            const std::string &typePayoff,
+            const float &strike,
+            const std::string &typeExercise,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &typeEngine,
+            const long &timeSteps) {
+        QuantLib::Average::Type averageType =
+            IDtoAverageType(typeAverage);
+        boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
+            IDtoPayoff(typeOption, typePayoff, strike);
+        boost::shared_ptr<QuantLib::Exercise> exercise = 
+            IDtoExercise(typeExercise, QuantLib::Date(exerciseDate), 
+                QuantLib::Date(settlementDate));
+        boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
+            IDtoEngine(typeEngine, timeSteps);
+        const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL = 
+            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
+            (stochasticProcess->getReference());
+        std::vector<QuantLib::Date> fixingDatesQL;
+        std::vector<long>::const_iterator i;
+        for (i = fixingDates.begin(); i != fixingDates.end(); i++)
+            fixingDatesQL.push_back(QuantLib::Date(*i));
+        discreteAveragingAsianOption_ = 
+            boost::shared_ptr<QuantLib::DiscreteAveragingAsianOption>(
+                new QuantLib::DiscreteAveragingAsianOption(
+                    averageType,
+                    runningAccumulator,
+                    pastFixings,
+                    fixingDatesQL,
+                    stochasticProcessQL, 
+                    payoff, 
+                    exercise, 
+                    pricingEngine));
+        ObjHandler::any_ptr any_npv(
+            new boost::any(discreteAveragingAsianOption_->NPV()));
+        ObjHandler::any_ptr any_engine(
+            new boost::any(std::string(typeEngine)));
+        ObjHandler::ObjectProperty prop_npv(FIELD_NPV, any_npv);
+        ObjHandler::ObjectProperty prop_engine(FIELD_ENGINE, any_engine);
+        properties_.push_back(prop_npv);
+        properties_.push_back(prop_engine);
+    }
+
 }
 

@@ -16,7 +16,10 @@ def generateParamList(
         suffix = '\n',          # text to append to each parameter
         dereference = '',       # dereference character e.g. * or &
         skipFirst = False,      # skip first parm in list (for object handles)
-        xlateNames = False):    # translate parm name using its CLASS attribute
+        xlateNames = False,     # translate parm name using its CLASS attribute
+        arrayCount = False,     # C code requires array size separate from array
+        appendVec = False,       # append string 'Vector' to vector variable names
+        convertVec = ''):       # string to convert datatype to appropriate vector
     'reformat params into a list of parameters using given format options'
     ret = ''
     i = 0
@@ -24,20 +27,31 @@ def generateParamList(
         i += 1
         if skipFirst == True and i == 1:
             continue
+        paramName = param[common.NAME]
         if datatypes == False:
             type = ''
-        elif convertString and param[common.TYPE] == common.STRING:
-            type = convertString + ' '
-        elif convertLong and param[common.TYPE] == common.LONG:
-            type = convertLong + ' '
+            if param[common.TENSOR] == common.VECTOR and appendVec == True:
+                paramName += 'Vector'
         else:
-            type = param[common.TYPE] + ' '
+            if convertString and param[common.TYPE] == common.STRING:
+                type = convertString + ' '
+            elif convertLong and param[common.TYPE] == common.LONG:
+                type = convertLong + ' '
+            else:
+                type = param[common.TYPE] + ' '
+            if param[common.TENSOR] == common.VECTOR:
+                if arrayCount == True:
+                    ret += indent * 4 * ' ' + prefix + 'long ' + \
+                        paramName + 'Size,' + suffix
+                    type = param[common.TYPE] + '* '
+                else:
+                    type = convertVec % type
         if reformatString and param[common.TYPE] == common.STRING:
-            full = reformatString % param[common.NAME]
+            full = reformatString % paramName
         elif xlateNames == True and param[common.CLASS] != '':
             full = common.HANDLE + param[common.CLASS]
         else:
-            full = type + dereference + param[common.NAME]
+            full = type + dereference + paramName
         ret += '%s%s%s' % (indent * 4 * ' ', prefix, full)
         if i < len(paramList):
             ret += ',' + suffix

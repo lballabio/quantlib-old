@@ -10,14 +10,16 @@ INCLUDES = 'stub.C.includes'
 BODY = 'stub.C.body'
 
 def generateFuncHeader(fileHeader, function, suffix):
+    'generate source for prototype of given function'
     fileHeader.write('int %s(\n' % function[common.NAME])
     if function[common.CTOR]:
-        fileHeader.write('        const char *handle,\n')
+        fileHeader.write('        const char* handle,\n')
     fileHeader.write(utils.generateParamList(function[common.PARAMS],
-        2, True, 'const ', 'char*'))
+        2, True, 'const ', 'char*', arrayCount = True))
     fileHeader.write(',\n        VariesList *result)%s\n' % suffix)
 
 def generateFuncHeaders(groupName, functionGroup):
+    'generate source for function prototypes'
     fileName = ROOT + groupName + '.h'
     utils.logMessage('    generating file ' + fileName + '...')
     fileHeader = file(fileName, 'w')
@@ -29,7 +31,20 @@ def generateFuncHeaders(groupName, functionGroup):
     fileHeader.write('#endif\n')
     fileHeader.close()
 
+def generateConversions(paramList):
+    'generate code to convert arrays to vectors'
+    ret = ''
+    for param in paramList:
+        if param[common.TENSOR] == common.VECTOR: 
+            ret += 8 * ' ' + 'std::vector <' + param[common.TYPE] + \
+                '> ' + param[common.NAME] + \
+                'Vector = \n' + 12 * ' ' + param[common.TYPE] + \
+                'ArrayToVector(' + param[common.NAME] + \
+                'Size, ' + param[common.NAME] + ');\n'
+    return ret
+
 def generateFuncDefs(groupName, functionGroup):
+    'generate source for function implementations'
     fileName = ROOT + groupName + '.cpp'
     utils.logMessage('    generating file ' + fileName + '...')
     fileFunc = file(fileName, 'w')
@@ -39,16 +54,20 @@ def generateFuncDefs(groupName, functionGroup):
     fileFunc.write(bufInclude % groupName)
     for function in functionGroup[common.FUNCLIST]:
         generateFuncHeader(fileFunc, function, ' {')
-        paramList = utils.generateParamList(function[common.PARAMS], 3)
+        paramList = utils.generateParamList(function[common.PARAMS], 3,
+            appendVec = True)
         if function[common.CTOR]:
             handle = 12 * ' ' + 'handle,\n'
         else:
             handle = ''
+        conversions = generateConversions(function[common.PARAMS])
         fileFunc.write(bufBody %
-            (function[common.NAME], handle, paramList, function[common.NAME]))
+            (conversions, function[common.NAME], handle,
+                paramList, function[common.NAME]))
     fileFunc.close()
 
 def generate(functionDefs):
+    'generate source code for C addin'
     utils.logMessage('  begin generating C ...')
     functionGroups = functionDefs[common.FUNCGROUPS]
     for groupName in functionGroups.keys():

@@ -19,7 +19,8 @@ def generateFuncHeader(fileHeader, function, suffix):
     if function[common.CTOR]:
         fileHeader.write('            const std::string &handleObject,\n')
     fileHeader.write(utils.generateParamList(function[common.PARAMS],
-        3, True, 'const ', 'std::string', dereference = '&'))
+        3, True, 'const ', 'std::string', dereference = '&',
+        convertVec = 'std::vector<%s>'))
     fileHeader.write(')%s\n' % suffix)
 
 def generateFuncHeaders(groupName, functionGroup):
@@ -41,7 +42,7 @@ def generateFuncDef(function, body, fileFunc):
     paramName = firstParam[common.NAME]
     paramClass = firstParam[common.CLASS]
     paramList = utils.generateParamList(function[common.PARAMS], 
-        suffix = ' ', skipFirst = True)
+        suffix = ' ', skipFirst = True, convertVec = 'std::vector<%s>')
     fileFunc.write(body %
         (paramClass, paramClass, paramName, 
          function[common.NAME], paramName,

@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Fri Jan 28 22:36:30 2005
+// this file generated automatically by autogen.py on Mon Jan 31 11:40:03 2005
 // editing this file manually is not recommended
 
 #include <qla/functions/options.hpp>
@@ -104,6 +104,49 @@ namespace QuantLibAddin {
             new ContinuousAveragingAsianOption(
                 handleStochasticProcess,
                 typeAverage,
+                typeOption,
+                typePayoff,
+                strike,
+                typeExercise,
+                exerciseDate,
+                settlementDate,
+                typeEngine,
+                timeSteps));
+        ObjHandler::ObjectHandler::instance().storeObject(
+            handleObject, objectPointer);
+        return objectPointer->getProperties();
+
+    }
+
+    const ObjHandler::Properties& QL_OPTION_ASIAN_D(
+            const std::string &handleObject,
+            const std::string &handleStochastic,
+            const std::string &typeAverage,
+            const float &runningAccumulator,
+            const long &pastFixings,
+            const std::vector<long >&fixingDates,
+            const std::string &typeOption,
+            const std::string &typePayoff,
+            const double &strike,
+            const std::string &typeExercise,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &typeEngine,
+            const long &timeSteps) {
+
+        boost::shared_ptr<StochasticProcess> handleStochasticProcess =
+            boost::dynamic_pointer_cast<StochasticProcess>
+            (ObjHandler::ObjectHandler::instance().retrieveObject(handleStochastic));
+        if (!handleStochasticProcess)
+            QL_FAIL("QL_OPTION_ASIAN_D: error retrieving object " + handleStochastic);
+
+        ObjHandler::obj_ptr objectPointer(
+            new DiscreteAveragingAsianOption(
+                handleStochasticProcess,
+                typeAverage,
+                runningAccumulator,
+                pastFixings,
+                fixingDates,
                 typeOption,
                 typePayoff,
                 strike,

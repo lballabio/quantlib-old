@@ -13,6 +13,7 @@
 	<param>
 		<name>handleObject</name>
 		<type>string</type>
+		<tensorrank>scalar</tensorrank>
 		<desc>handle of object to be queried</desc>
 	</param>
 </parameters>
@@ -32,6 +33,7 @@
 	<param>
 		<name>logFileName</name>
 		<type>string</type>
+		<tensorrank>scalar</tensorrank>
 		<desc>path and name of log file</desc>
 	</param>
 </parameters>
