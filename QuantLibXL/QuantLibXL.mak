@@ -35,17 +35,26 @@ RSC=rc.exe
 
 OUTDIR=.\build\Release
 INTDIR=.\build\Release
+# Begin Custom Macros
+OutDir=.\build\Release
+# End Custom Macros
 
-ALL : ".\xll\Win32\VisualStudio\QuantLibXL.xll"
+ALL : ".\xll\Win32\VisualStudio\QuantLibXL.xll" "$(OUTDIR)\QuantLibXL.bsc"
 
 
 CLEAN :
 	-@erase "$(INTDIR)\datef.obj"
+	-@erase "$(INTDIR)\datef.sbr"
 	-@erase "$(INTDIR)\mathf.obj"
+	-@erase "$(INTDIR)\mathf.sbr"
 	-@erase "$(INTDIR)\pricers.obj"
+	-@erase "$(INTDIR)\pricers.sbr"
 	-@erase "$(INTDIR)\utilities.obj"
+	-@erase "$(INTDIR)\utilities.sbr"
 	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(INTDIR)\xlAutoOpen.obj"
+	-@erase "$(INTDIR)\xlAutoOpen.sbr"
+	-@erase "$(OUTDIR)\QuantLibXL.bsc"
 	-@erase "$(OUTDIR)\QuantLibXL.exp"
 	-@erase "$(OUTDIR)\QuantLibXL.lib"
 	-@erase ".\xll\Win32\VisualStudio\QuantLibXL.xll"
@@ -53,12 +62,22 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MD /W3 /GR /GX /O2 /I ".\\" /I "$(XLW_DIR)" /I "$(QL_DIR)" /D "NDEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MD /W3 /GR /GX /O2 /I ".\\" /I "$(XLW_DIR)" /I "$(QL_DIR)" /D "NDEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /win32 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibXL.bsc" 
 BSC32_SBRS= \
-	
+	"$(INTDIR)\datef.sbr" \
+	"$(INTDIR)\mathf.sbr" \
+	"$(INTDIR)\pricers.sbr" \
+	"$(INTDIR)\utilities.sbr" \
+	"$(INTDIR)\xlAutoOpen.sbr"
+
+"$(OUTDIR)\QuantLibXL.bsc" : "$(OUTDIR)" $(BSC32_SBRS)
+    $(BSC32) @<<
+  $(BSC32_FLAGS) $(BSC32_SBRS)
+<<
+
 LINK32=link.exe
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\QuantLibXL.pdb" /machine:I386 /out:"xll\Win32\VisualStudio\QuantLibXL.xll" /implib:"$(OUTDIR)\QuantLibXL.lib" /libpath:"$(XLW_DIR)\lib\Win32\VisualStudio" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" 
 LINK32_OBJS= \
@@ -77,18 +96,27 @@ LINK32_OBJS= \
 
 OUTDIR=.\build\Debug
 INTDIR=.\build\Debug
+# Begin Custom Macros
+OutDir=.\build\Debug
+# End Custom Macros
 
-ALL : ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
+ALL : ".\xll\Win32\VisualStudio\QuantLibXL_d.xll" "$(OUTDIR)\QuantLibXL.bsc"
 
 
 CLEAN :
 	-@erase "$(INTDIR)\datef.obj"
+	-@erase "$(INTDIR)\datef.sbr"
 	-@erase "$(INTDIR)\mathf.obj"
+	-@erase "$(INTDIR)\mathf.sbr"
 	-@erase "$(INTDIR)\pricers.obj"
+	-@erase "$(INTDIR)\pricers.sbr"
 	-@erase "$(INTDIR)\utilities.obj"
+	-@erase "$(INTDIR)\utilities.sbr"
 	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(INTDIR)\vc60.pdb"
 	-@erase "$(INTDIR)\xlAutoOpen.obj"
+	-@erase "$(INTDIR)\xlAutoOpen.sbr"
+	-@erase "$(OUTDIR)\QuantLibXL.bsc"
 	-@erase "$(OUTDIR)\QuantLibXL_d.exp"
 	-@erase "$(OUTDIR)\QuantLibXL_d.lib"
 	-@erase "$(OUTDIR)\QuantLibXL_d.pdb"
@@ -98,12 +126,22 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I ".\\" /I "$(XLW_DIR)" /I "$(QL_DIR)" /D "QL_DEBUG" /D "_DEBUG" /D "XLW_DEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
+CPP_PROJ=/nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I ".\\" /I "$(XLW_DIR)" /I "$(QL_DIR)" /D "QL_DEBUG" /D "_DEBUG" /D "XLW_DEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
 MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /win32 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibXL.bsc" 
 BSC32_SBRS= \
-	
+	"$(INTDIR)\datef.sbr" \
+	"$(INTDIR)\mathf.sbr" \
+	"$(INTDIR)\pricers.sbr" \
+	"$(INTDIR)\utilities.sbr" \
+	"$(INTDIR)\xlAutoOpen.sbr"
+
+"$(OUTDIR)\QuantLibXL.bsc" : "$(OUTDIR)" $(BSC32_SBRS)
+    $(BSC32) @<<
+  $(BSC32_FLAGS) $(BSC32_SBRS)
+<<
+
 LINK32=link.exe
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\QuantLibXL_d.pdb" /debug /machine:I386 /out:"xll\Win32\VisualStudio\QuantLibXL_d.xll" /implib:"$(OUTDIR)\QuantLibXL_d.lib" /pdbtype:sept /libpath:"$(XLW_DIR)\lib\Win32\VisualStudio" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" 
 LINK32_OBJS= \
@@ -122,17 +160,26 @@ LINK32_OBJS= \
 
 OUTDIR=.\build\OnTheEdgeRelease
 INTDIR=.\build\OnTheEdgeRelease
+# Begin Custom Macros
+OutDir=.\build\OnTheEdgeRelease
+# End Custom Macros
 
-ALL : ".\xll\Win32\VisualStudio\QuantLibXL.xll"
+ALL : ".\xll\Win32\VisualStudio\QuantLibXL.xll" "$(OUTDIR)\QuantLibXL.bsc"
 
 
 CLEAN :
 	-@erase "$(INTDIR)\datef.obj"
+	-@erase "$(INTDIR)\datef.sbr"
 	-@erase "$(INTDIR)\mathf.obj"
+	-@erase "$(INTDIR)\mathf.sbr"
 	-@erase "$(INTDIR)\pricers.obj"
+	-@erase "$(INTDIR)\pricers.sbr"
 	-@erase "$(INTDIR)\utilities.obj"
+	-@erase "$(INTDIR)\utilities.sbr"
 	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(INTDIR)\xlAutoOpen.obj"
+	-@erase "$(INTDIR)\xlAutoOpen.sbr"
+	-@erase "$(OUTDIR)\QuantLibXL.bsc"
 	-@erase "$(OUTDIR)\QuantLibXL.exp"
 	-@erase "$(OUTDIR)\QuantLibXL.lib"
 	-@erase ".\xll\Win32\VisualStudio\QuantLibXL.xll"
@@ -140,12 +187,22 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MD /W3 /GR /GX /O2 /I ".\\" /I "..\XLW" /I "..\QuantLib" /D "NDEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MD /W3 /GR /GX /O2 /I ".\\" /I "..\XLW" /I "..\QuantLib" /D "NDEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /win32 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibXL.bsc" 
 BSC32_SBRS= \
-	
+	"$(INTDIR)\datef.sbr" \
+	"$(INTDIR)\mathf.sbr" \
+	"$(INTDIR)\pricers.sbr" \
+	"$(INTDIR)\utilities.sbr" \
+	"$(INTDIR)\xlAutoOpen.sbr"
+
+"$(OUTDIR)\QuantLibXL.bsc" : "$(OUTDIR)" $(BSC32_SBRS)
+    $(BSC32) @<<
+  $(BSC32_FLAGS) $(BSC32_SBRS)
+<<
+
 LINK32=link.exe
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\QuantLibXL.pdb" /machine:I386 /out:"xll\Win32\VisualStudio\QuantLibXL.xll" /implib:"$(OUTDIR)\QuantLibXL.lib" /libpath:"..\XLW\lib\Win32\VisualStudio" /libpath:"..\QuantLib\lib\Win32\VisualStudio" 
 LINK32_OBJS= \
@@ -164,18 +221,27 @@ LINK32_OBJS= \
 
 OUTDIR=.\build\OnTheEdgeDebug
 INTDIR=.\build\OnTheEdgeDebug
+# Begin Custom Macros
+OutDir=.\build\OnTheEdgeDebug
+# End Custom Macros
 
-ALL : ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
+ALL : ".\xll\Win32\VisualStudio\QuantLibXL_d.xll" "$(OUTDIR)\QuantLibXL.bsc"
 
 
 CLEAN :
 	-@erase "$(INTDIR)\datef.obj"
+	-@erase "$(INTDIR)\datef.sbr"
 	-@erase "$(INTDIR)\mathf.obj"
+	-@erase "$(INTDIR)\mathf.sbr"
 	-@erase "$(INTDIR)\pricers.obj"
+	-@erase "$(INTDIR)\pricers.sbr"
 	-@erase "$(INTDIR)\utilities.obj"
+	-@erase "$(INTDIR)\utilities.sbr"
 	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(INTDIR)\vc60.pdb"
 	-@erase "$(INTDIR)\xlAutoOpen.obj"
+	-@erase "$(INTDIR)\xlAutoOpen.sbr"
+	-@erase "$(OUTDIR)\QuantLibXL.bsc"
 	-@erase "$(OUTDIR)\QuantLibXL_d.exp"
 	-@erase "$(OUTDIR)\QuantLibXL_d.lib"
 	-@erase "$(OUTDIR)\QuantLibXL_d.pdb"
@@ -185,12 +251,22 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I ".\\" /I "..\XLW" /I "..\QuantLib" /D "QL_DEBUG" /D "_DEBUG" /D "XLW_DEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
+CPP_PROJ=/nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I ".\\" /I "..\XLW" /I "..\QuantLib" /D "QL_DEBUG" /D "_DEBUG" /D "XLW_DEBUG" /D "NOMINMAX" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\QuantLibXL.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
 MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /win32 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibXL.bsc" 
 BSC32_SBRS= \
-	
+	"$(INTDIR)\datef.sbr" \
+	"$(INTDIR)\mathf.sbr" \
+	"$(INTDIR)\pricers.sbr" \
+	"$(INTDIR)\utilities.sbr" \
+	"$(INTDIR)\xlAutoOpen.sbr"
+
+"$(OUTDIR)\QuantLibXL.bsc" : "$(OUTDIR)" $(BSC32_SBRS)
+    $(BSC32) @<<
+  $(BSC32_FLAGS) $(BSC32_SBRS)
+<<
+
 LINK32=link.exe
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\QuantLibXL_d.pdb" /debug /machine:I386 /out:"xll\Win32\VisualStudio\QuantLibXL_d.xll" /implib:"$(OUTDIR)\QuantLibXL_d.lib" /pdbtype:sept /libpath:"..\XLW\lib\Win32\VisualStudio" /libpath:"..\QuantLib\lib\Win32\VisualStudio" 
 LINK32_OBJS= \
@@ -250,31 +326,31 @@ LINK32_OBJS= \
 !IF "$(CFG)" == "QuantLibXL - Win32 Release" || "$(CFG)" == "QuantLibXL - Win32 Debug" || "$(CFG)" == "QuantLibXL - Win32 OnTheEdgeRelease" || "$(CFG)" == "QuantLibXL - Win32 OnTheEdgeDebug"
 SOURCE=.\qlxl\datef.cpp
 
-"$(INTDIR)\datef.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\datef.obj"	"$(INTDIR)\datef.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\qlxl\mathf.cpp
 
-"$(INTDIR)\mathf.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\mathf.obj"	"$(INTDIR)\mathf.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\qlxl\pricers.cpp
 
-"$(INTDIR)\pricers.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\pricers.obj"	"$(INTDIR)\pricers.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\qlxl\utilities.cpp
 
-"$(INTDIR)\utilities.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\utilities.obj"	"$(INTDIR)\utilities.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\qlxl\xlAutoOpen.cpp
 
-"$(INTDIR)\xlAutoOpen.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\xlAutoOpen.obj"	"$(INTDIR)\xlAutoOpen.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 

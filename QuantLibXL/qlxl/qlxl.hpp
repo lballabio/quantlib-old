@@ -40,4 +40,13 @@
     #define QLXL_VERSION "0.3.0b1-cvs"
 #endif
 
+
+#if QL_HEX_VERSION < 0x000300b1
+    #error using an old version of QuantLib, please update
+#endif
+
+#if XLW_HEX_VERSION < 0x010100a2
+    #error using an old version of xlw, please update
+#endif
+
 #endif
