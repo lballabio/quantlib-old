@@ -1,3 +1,7 @@
+2003-04-22 14:38  nando
+
+	* ChangeLog.txt (1.11): updated
+
 2003-04-22 13:17  lballabio
 
 	* linearalgebra.i (1.12), montecarlo.i (1.11): Synch with C++

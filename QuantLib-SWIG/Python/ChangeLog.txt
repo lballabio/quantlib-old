@@ -1,3 +1,7 @@
+2003-04-22 14:37  nando
+
+	* ChangeLog.txt (1.12): updated
+
 2003-04-22 14:07  nando
 
 	* QuantLibPython.dsp (1.10), QuantLibPython.mak (1.12): removed

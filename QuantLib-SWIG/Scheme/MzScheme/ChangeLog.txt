@@ -1,3 +1,7 @@
+2003-04-22 14:38  nando
+
+	* ChangeLog.txt (1.5): updated
+
 2003-03-28 17:33  lballabio
 
 	* README.txt (1.7): [no log message]

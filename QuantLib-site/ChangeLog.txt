@@ -1,3 +1,7 @@
+2003-04-22 14:37  nando
+
+	* ChangeLog.txt (1.26): updated
+
 2003-04-22 13:17  nando
 
 	* ChangeLog.txt (1.25): updated
