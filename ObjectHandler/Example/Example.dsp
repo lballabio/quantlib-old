@@ -91,11 +91,11 @@ SOURCE=.\example.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\interface.cpp
+SOURCE=.\objectfoo.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\objectfoo.cpp
+SOURCE=.\utilities.cpp
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -107,11 +107,11 @@ SOURCE=.\foo.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\interface.hpp
+SOURCE=.\objectfoo.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\objectfoo.hpp
+SOURCE=.\utilities.hpp
 # End Source File
 # End Group
 # End Target

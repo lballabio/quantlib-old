@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef interface_hpp
-#define interface_hpp
+#ifndef utilities_hpp
+#define utilities_hpp
 
 #include <oh/objhandler.hpp>
 

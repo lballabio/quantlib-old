@@ -17,7 +17,7 @@
 
 #include <sstream>
 #include <exception>
-#include <interface.hpp>
+#include <utilities.hpp>
 #include <objectfoo.hpp>    // only required for low-level interrogation
 
 using namespace std;
