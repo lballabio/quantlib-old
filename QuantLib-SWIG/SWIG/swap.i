@@ -71,7 +71,7 @@ class SimpleSwapPtr : public SwapPtr {
     %extend {
         SimpleSwapPtr(bool payFixedRate, const Date& startDate, 
                       Integer n, TimeUnit unit, const Calendar& calendar, 
-                      RollingConvention rollingConvention, Real nominal, 
+                      BusinessDayConvention rollingConvention, Real nominal, 
                       Frequency fixedFrequency, Rate fixedRate,
                       bool fixedIsAdjusted, const DayCounter& fixedDayCount,
                       Frequency floatingFrequency, const XiborPtr& index, 

@@ -21,12 +21,12 @@
 %include common.i
 
 %{
-using QuantLib::Currency;
+using QuantLib::CurrencyTag;
 using QuantLib::CurrencyFormatter;
 %}
 
 %{
-Currency currencyFromString(std::string s) {
+CurrencyTag currtagFromString(std::string s) {
     s = StringFormatter::toUppercase(s);
     if (s == "ARS")      return QuantLib::ARS;
     else if (s == "ATS") return QuantLib::ATS;
@@ -85,13 +85,13 @@ Currency currencyFromString(std::string s) {
     else QL_FAIL("unknown currency: " + s);
 }
 
-std::string currencyToString(Currency c) {
+std::string currtagToString(CurrencyTag c) {
     return CurrencyFormatter::toString(c);
 
 }
 %}
 
-MapToString(Currency,currencyFromString,currencyToString);
+MapToString(CurrencyTag,currtagFromString,currtagToString);
 
 
 #endif

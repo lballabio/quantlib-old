@@ -49,7 +49,7 @@ class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
         DepositRateHelperPtr(
                 const RelinkableHandle<Quote>& rate,
                 Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar, RollingConvention convention, 
+                const Calendar& calendar, BusinessDayConvention convention, 
                 const DayCounter& dayCounter) {
             return new DepositRateHelperPtr(
                 new DepositRateHelper(rate,n,units,settlementDays,
@@ -57,7 +57,7 @@ class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
         }
         DepositRateHelperPtr(
                 Rate rate, Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar, RollingConvention convention, 
+                const Calendar& calendar, BusinessDayConvention convention, 
                 const DayCounter& dayCounter) {
             return new DepositRateHelperPtr(
                 new DepositRateHelper(rate,n,units,settlementDays,
@@ -74,7 +74,7 @@ class FraRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 const RelinkableHandle<Quote>& rate,
                 Integer monthsToStart, Integer monthsToEnd, 
                 Integer settlementDays,
-                const Calendar& calendar, RollingConvention convention,
+                const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter) {
             return new FraRateHelperPtr(
                 new FraRateHelper(rate,monthsToStart,monthsToEnd,
@@ -85,7 +85,7 @@ class FraRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 Rate rate,
                 Integer monthsToStart, Integer monthsToEnd, 
                 Integer settlementDays,
-                const Calendar& calendar, RollingConvention convention,
+                const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter) {
             return new FraRateHelperPtr(
                 new FraRateHelper(rate,monthsToStart,monthsToEnd,
@@ -102,7 +102,7 @@ class FuturesRateHelperPtr : public boost::shared_ptr<RateHelper> {
         FuturesRateHelperPtr(
                 const RelinkableHandle<Quote>& price,
                 const Date& immDate, Integer nMonths,
-                const Calendar& calendar, RollingConvention convention,
+                const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter) {
             return new FuturesRateHelperPtr(
                 new FuturesRateHelper(price,immDate,nMonths,
@@ -110,7 +110,7 @@ class FuturesRateHelperPtr : public boost::shared_ptr<RateHelper> {
         }
         FuturesRateHelperPtr(
                 Real price, const Date& immDate, Integer nMonths,
-                const Calendar& calendar, RollingConvention convention,
+                const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter) {
             return new FuturesRateHelperPtr(
                 new FuturesRateHelper(price,immDate,nMonths,
@@ -119,7 +119,7 @@ class FuturesRateHelperPtr : public boost::shared_ptr<RateHelper> {
         FuturesRateHelperPtr(
 	            const RelinkableHandle<Quote>& price,
                 const Date& immDate, const Date& matDate,
-                const Calendar& calendar, RollingConvention convention,
+                const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter) {
             return new FuturesRateHelperPtr(
                 new FuturesRateHelper(price,immDate,matDate,
@@ -135,7 +135,8 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
         SwapRateHelperPtr(
                 const RelinkableHandle<Quote>& rate,
                 Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar, RollingConvention rollingConvention,
+                const Calendar& calendar, 
+                BusinessDayConvention rollingConvention,
                 Frequency fixedFrequency, bool fixedIsAdjusted,
                 const DayCounter& fixedDayCount, Frequency floatingFrequency) {
             return new SwapRateHelperPtr(
@@ -146,7 +147,8 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
         }
         SwapRateHelperPtr(
                 Rate rate, Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar, RollingConvention rollingConvention,
+                const Calendar& calendar, 
+                BusinessDayConvention rollingConvention,
                 Frequency fixedFrequency, bool fixedIsAdjusted,
                 const DayCounter& fixedDayCount, Frequency floatingFrequency) {
             return new SwapRateHelperPtr(

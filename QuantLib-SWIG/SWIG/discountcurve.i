@@ -54,7 +54,7 @@ class ExtendedDiscountCurvePtr : public DiscountCurvePtr {
                                  const std::vector<Date>& dates,
                                  const std::vector<DiscountFactor>& discounts,
                                  const Calendar& calendar,
-                                 RollingConvention roll,
+                                 BusinessDayConvention roll,
                                  const DayCounter& dayCounter=Actual365()) {
             return new ExtendedDiscountCurvePtr(
                 new ExtendedDiscountCurve(todaysDate, dates, discounts, 

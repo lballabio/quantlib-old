@@ -57,11 +57,13 @@ using QuantLib::Zurich;
 
 // typemap rolling conventions to corresponding strings
 %{
-using QuantLib::RollingConvention;
+using QuantLib::BusinessDayConvention;
 
-RollingConvention rollconvFromString(std::string s) {
+BusinessDayConvention bdconvFromString(std::string s) {
     s = StringFormatter::toLowercase(s);
-    if (s == "f" || s == "fol" || s == "following")
+    if (s == "" || s == "none" || s == "unadjusted")
+        return QuantLib::Unadjusted;
+    else if (s == "f" || s == "fol" || s == "following")
         return QuantLib::Following;
     else if (s == "mf" ||s == "modfol" || s == "modifiedfollowing")
         return QuantLib::ModifiedFollowing;
@@ -72,11 +74,13 @@ RollingConvention rollconvFromString(std::string s) {
     else if (s == "mer" ||s == "mendref" || s == "monthendreference")
         return QuantLib::MonthEndReference;
     else 
-        QL_FAIL("unknown rolling convention");
+        QL_FAIL("unknown business day convention");
 }
 
-std::string rollconvToString(RollingConvention rc) {
+std::string bdconvToString(BusinessDayConvention rc) {
     switch (rc) {
+      case QuantLib::Unadjusted:
+        return "Unadjusted";
       case QuantLib::Following:
         return "Following";
       case QuantLib::ModifiedFollowing:
@@ -88,12 +92,12 @@ std::string rollconvToString(RollingConvention rc) {
       case QuantLib::MonthEndReference:
         return "MonthEndReference";
       default:
-        QL_FAIL("unknown rolling convention");
+        QL_FAIL("unknown business day convention");
     }
 }
 %}
 
-MapToString(RollingConvention,rollconvFromString,rollconvToString);
+MapToString(BusinessDayConvention,bdconvFromString,bdconvToString);
 
 // typemap joint calendar rules to corresponding strings
 %{
@@ -152,13 +156,16 @@ class Calendar {
     bool isEndOfMonth(const Date&);
     void addHoliday(const Date&);
     void removeHoliday(const Date&);
+    Date adjust(const Date& d, 
+                BusinessDayConvention convention = QuantLib::Following,
+                const Date& origin = Date());
     Date roll(const Date& d, 
-              RollingConvention convention = QuantLib::Following,
+              BusinessDayConvention convention = QuantLib::Following,
               const Date& origin = Date());
     Date advance(const Date& d, Integer n, TimeUnit unit,
-                 RollingConvention convention = QuantLib::Following);
+                 BusinessDayConvention convention = QuantLib::Following);
     Date advance(const Date& d, const Period& period,
-                 RollingConvention convention = QuantLib::Following);
+                 BusinessDayConvention convention = QuantLib::Following);
     %extend {
         Calendar(const std::string& name) {
             std::string s = StringFormatter::toLowercase(name);

@@ -125,7 +125,7 @@ class XiborPtr : public boost::shared_ptr<Index> {
         Period tenor() {
             return boost::dynamic_pointer_cast<Xibor>(*self)->tenor();
         }
-        Currency currency() {
+        CurrencyTag currency() {
             return boost::dynamic_pointer_cast<Xibor>(*self)->currency();
         }
         Calendar calendar() {
@@ -134,7 +134,7 @@ class XiborPtr : public boost::shared_ptr<Index> {
         bool isAdjusted() {
             return boost::dynamic_pointer_cast<Xibor>(*self)->isAdjusted();
         }
-        RollingConvention rollingConvention() {
+        BusinessDayConvention rollingConvention() {
             return boost::dynamic_pointer_cast<Xibor>(*self)
                  ->rollingConvention();
         }

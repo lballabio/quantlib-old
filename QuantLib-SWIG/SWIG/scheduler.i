@@ -42,12 +42,12 @@ class Schedule {
   public:
     Schedule(const Calendar& calendar, 
              const Date& startDate, const Date& endDate,
-             Frequency frequency, RollingConvention rollingConvention, 
+             Frequency frequency, BusinessDayConvention rollingConvention, 
              bool isAdjusted, const Date& stubDate = Date(),
              bool startFromEnd = false, bool longFinal = false);
     Schedule(const std::vector<Date>&,
              const Calendar& calendar, 
-             RollingConvention rollingConvention,
+             BusinessDayConvention rollingConvention,
              bool isAdjusted);
     Size size() const;
     Date date(Size i) const;

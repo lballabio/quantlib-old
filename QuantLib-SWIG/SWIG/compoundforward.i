@@ -36,7 +36,7 @@ class CompoundForwardPtr : public boost::shared_ptr<TermStructure> {
                            const std::vector<Date>& dates,
                            const std::vector<Rate>& rates,
                            Calendar calendar,
-                           RollingConvention roll,
+                           BusinessDayConvention roll,
                            Integer compounding,
                            const DayCounter& dayCounter = Actual365()) {
 	        return new CompoundForwardPtr(
