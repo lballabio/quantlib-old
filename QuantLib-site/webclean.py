@@ -33,7 +33,7 @@ def walking(skip, dirname, names):
           print 'no processing'
 
 
-def webpublish():
+def webclean():
   import time, os
   sourcedir = os.curdir
   targetdir = os.curdir
@@ -59,14 +59,15 @@ def webpublish():
   #if bobbyCheck=='y':
   #  pass
 
-  cmd = 'zip -r -n html,jpg ..\\' + sitename + '.zip .'
-  print 'performing:'
+  cmd = 'del ..\\' + sitename + '.zip .'
+  print '\nplease wait while performing:',
   print cmd
-  print 'please wait ....',
+  cmd = 'zip -T -r ..\\' + sitename + '.zip .'
+  print '\nplease wait while performing:',
+  print cmd
   os.system(cmd)
-  print 'done'
 
 
-# when executed, just run webpublish():
+# when executed, just run webclean():
 if __name__ == '__main__':
-    webpublish()
+    webclean()
