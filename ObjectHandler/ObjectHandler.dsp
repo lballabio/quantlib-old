@@ -197,6 +197,10 @@ SOURCE=.\ObjectHandler\objecthandler.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\ObjectHandler\property.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\ObjectHandler\utilities.cpp
 # End Source File
 # End Group
@@ -222,6 +226,10 @@ SOURCE=.\ObjectHandler\objecthandler.hpp
 # Begin Source File
 
 SOURCE=.\ObjectHandler\objecthandlerversion.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ObjectHandler\property.hpp
 # End Source File
 # Begin Source File
 
