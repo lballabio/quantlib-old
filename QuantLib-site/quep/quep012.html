@@ -103,8 +103,8 @@ public:
    void setEngine(
       const string &amp;engineName,
       const Size &amp;timeSteps);
-    virtual boost::shared_ptr<void> getReference() const {
-        return boost::static_pointer_cast<void>(vanillaOption_);
+    virtual boost::shared_ptr&lt;void&gt; getReference() const {
+        return boost::static_pointer_cast&lt;void&gt;(vanillaOption_);
     }
 private:
    boost::shared_ptr&lt;VanillaOption&gt; vanillaOption_;
@@ -127,7 +127,7 @@ ObjectOption::ObjectOption(
    <font class="comment">// acquire a reference to the BlackScholesProcess object</font>
    const boost::shared_ptr&lt;BlackScholesProcess&gt; stochasticProcess =
       boost::static_pointer_cast&lt;BlackScholesProcess&gt;
-      (objectStochastic->getReference());
+      (objectStochastic-&gt;getReference());
 
    <font class="comment">// use the inputs to construct exercise / payoff / pricing engine.</font>
    ...
@@ -208,18 +208,18 @@ Properties QL_OPTION(
       (ObjectHandler::instance().retrieveObject(handleStochastic));
    obj_ptr objectOption(new ObjectOption(objectStochastic, inputs ...));
    ObjectHandler::instance().storeObject(handleOption, objectOption);
-   return objectOption->getProperties();
+   return objectOption-&gt;getProperties();
 }
 
 Properties QL_OPTION_SETENGINE(
-      const std::string &handleOption,
-      const std::string &engineName,
-      const long &timeSteps) {
+      const std::string &amp;handleOption,
+      const std::string &amp;engineName,
+      const long &amp;timeSteps) {
    boost::shared_ptr&lt;ObjectOption&gt; objectOption =
       boost::dynamic_pointer_cast&lt;ObjectOption&gt;
    (ObjectHandler::instance().retrieveObject(handleOption));
-   objectOption->setEngine(engineName, timeSteps);
-   return objectOption->getProperties();
+   objectOption-&gt;setEngine(engineName, timeSteps);
+   return objectOption-&gt;getProperties();
 }
 </pre>
 <a name="tag_2_3"></a><h3>2.3 <a href="#tag_contents">Addins</a></h3>
@@ -302,12 +302,12 @@ int main() {
    }
 
    cout &lt;&lt; "Low-level interrogation: NPV of underlying option object" &lt;&lt; endl;
-   boost::shared_ptr&lt;ObjectOption> objectOption =
+   boost::shared_ptr&lt;ObjectOption&gt; objectOption =
       boost::dynamic_pointer_cast&lt;ObjectOption&gt;
       (objectHandler.retrieveObject("my_option"));
    boost::shared_ptr&lt;VanillaOption&gt; const vanillaOption =
       boost::static_pointer_cast&lt;VanillaOption&gt;
-      (objectOption-&t;getReference());
+      (objectOption-&gt;getReference());
    cout &lt;&lt; "underlying option NPV() = " &lt;&lt; vanillaOption-&gt;NPV() &lt;&lt; endl;
 
    cout &lt;&lt; "bye" &lt;&lt; endl;
