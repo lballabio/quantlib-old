@@ -1,3 +1,7 @@
+2002-12-16 11:33  nando
+
+	* ChangeLog.txt (1.21): updated
+
 2002-12-11 17:52  nando
 
 	* books.txt (1.6): updated
