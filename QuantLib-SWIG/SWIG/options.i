@@ -74,39 +74,39 @@ class Payoff {
     double operator()(double price) const;
 };
 
-%template(Payoff) Handle<Payoff>;
+%template(Payoff) boost::shared_ptr<Payoff>;
 
 
 // plain options and engines
 
 %{
 using QuantLib::VanillaOption;
-typedef Handle<Instrument> VanillaOptionHandle;
+typedef boost::shared_ptr<Instrument> VanillaOptionPtr;
 %}
 
 
-%rename(VanillaOption) VanillaOptionHandle;
-class VanillaOptionHandle : public Handle<Instrument> {
+%rename(VanillaOption) VanillaOptionPtr;
+class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("dividend-rho")       dividendRho;
     %rename("implied-volatility") impliedVolatility;
     #endif
   public:
     %extend {
-        VanillaOptionHandle(
-                const Handle<StochasticProcess>& process,
-                const Handle<Payoff>& payoff,
-                const Handle<Exercise>& exercise,
-                const Handle<PricingEngine>& engine
-                   = Handle<PricingEngine>()) {
-            Handle<StrikedTypePayoff> stPayoff =
+        VanillaOptionPtr(
+                const boost::shared_ptr<StochasticProcess>& process,
+                const boost::shared_ptr<Payoff>& payoff,
+                const boost::shared_ptr<Exercise>& exercise,
+                const boost::shared_ptr<PricingEngine>& engine
+                   = boost::shared_ptr<PricingEngine>()) {
+            boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "Wrong payoff given");
-            Handle<BlackScholesStochasticProcess> bsProcess =
+            boost::shared_ptr<BlackScholesStochasticProcess> bsProcess =
                 boost::dynamic_pointer_cast<BlackScholesStochasticProcess>(
                                                                      process);
             QL_REQUIRE(bsProcess, "Wrong stochastic process given");
-            return new VanillaOptionHandle(
+            return new VanillaOptionPtr(
                 new VanillaOption(bsProcess,stPayoff,exercise,engine));
         }
         double errorEstimate() {
@@ -151,16 +151,15 @@ class VanillaOptionHandle : public Handle<Instrument> {
 
 %{
 using QuantLib::AnalyticEuropeanEngine;
-typedef Handle<PricingEngine> AnalyticEuropeanEngineHandle;
+typedef boost::shared_ptr<PricingEngine> AnalyticEuropeanEnginePtr;
 %}
 
-%rename(AnalyticEuropeanEngine) AnalyticEuropeanEngineHandle;
-class AnalyticEuropeanEngineHandle : public Handle<PricingEngine> {
+%rename(AnalyticEuropeanEngine) AnalyticEuropeanEnginePtr;
+class AnalyticEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        AnalyticEuropeanEngineHandle() {
-            return new AnalyticEuropeanEngineHandle(
-                new AnalyticEuropeanEngine);
+        AnalyticEuropeanEnginePtr() {
+            return new AnalyticEuropeanEnginePtr(new AnalyticEuropeanEngine);
         }
     }
 };
@@ -168,15 +167,15 @@ class AnalyticEuropeanEngineHandle : public Handle<PricingEngine> {
 
 %{
 using QuantLib::IntegralEngine;
-typedef Handle<PricingEngine> IntegralEngineHandle;
+typedef boost::shared_ptr<PricingEngine> IntegralEnginePtr;
 %}
 
-%rename(IntegralEngine) IntegralEngineHandle;
-class IntegralEngineHandle : public Handle<PricingEngine> {
+%rename(IntegralEngine) IntegralEnginePtr;
+class IntegralEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        IntegralEngineHandle() {
-            return new IntegralEngineHandle(new IntegralEngine);
+        IntegralEnginePtr() {
+            return new IntegralEnginePtr(new IntegralEngine);
         }
     }
 };
@@ -190,33 +189,33 @@ using QuantLib::AdditiveEQPBinomialTree;
 using QuantLib::Trigeorgis;
 using QuantLib::Tian;
 using QuantLib::LeisenReimer;
-typedef Handle<PricingEngine> BinomialVanillaEngineHandle;
+typedef boost::shared_ptr<PricingEngine> BinomialVanillaEnginePtr;
 %}
 
-%rename(BinomialEuropeanEngine) BinomialVanillaEngineHandle;
-class BinomialVanillaEngineHandle : public Handle<PricingEngine> {
+%rename(BinomialEuropeanEngine) BinomialVanillaEnginePtr;
+class BinomialVanillaEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        BinomialVanillaEngineHandle(const std::string& type,
-                                    Size steps) {
+        BinomialVanillaEnginePtr(const std::string& type,
+                                 Size steps) {
             std::string s = StringFormatter::toLowercase(type);
             if (s == "crr" || s == "coxrossrubinstein")
-                return new BinomialVanillaEngineHandle(
+                return new BinomialVanillaEnginePtr(
                     new BinomialVanillaEngine<CoxRossRubinstein>(steps));
             else if (s == "jr" || s == "jarrowrudd")
-                return new BinomialVanillaEngineHandle(
+                return new BinomialVanillaEnginePtr(
                     new BinomialVanillaEngine<JarrowRudd>(steps));
             else if (s == "eqp")
-                return new BinomialVanillaEngineHandle(
+                return new BinomialVanillaEnginePtr(
                     new BinomialVanillaEngine<AdditiveEQPBinomialTree>(steps));
             else if (s == "trigeorgis")
-                return new BinomialVanillaEngineHandle(
+                return new BinomialVanillaEnginePtr(
                     new BinomialVanillaEngine<Trigeorgis>(steps));
             else if (s == "tian")
-                return new BinomialVanillaEngineHandle(
+                return new BinomialVanillaEnginePtr(
                     new BinomialVanillaEngine<Tian>(steps));
             else if (s == "lr" || s == "leisenreimer")
-                return new BinomialVanillaEngineHandle(
+                return new BinomialVanillaEnginePtr(
                     new BinomialVanillaEngine<LeisenReimer>(steps));
             else
                 throw Error("unknown binomial engine type: "+s);
@@ -229,25 +228,25 @@ class BinomialVanillaEngineHandle : public Handle<PricingEngine> {
 using QuantLib::MCEuropeanEngine;
 using QuantLib::PseudoRandom;
 using QuantLib::LowDiscrepancy;
-typedef Handle<PricingEngine> MCEuropeanEngineHandle;
+typedef boost::shared_ptr<PricingEngine> MCEuropeanEnginePtr;
 %}
 
-%rename(MCEuropeanEngine) MCEuropeanEngineHandle;
-class MCEuropeanEngineHandle : public Handle<PricingEngine> {
-    %feature("kwargs") MCEuropeanEngineHandle;
+%rename(MCEuropeanEngine) MCEuropeanEnginePtr;
+class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
+    %feature("kwargs") MCEuropeanEnginePtr;
   public:
     %extend {
-        MCEuropeanEngineHandle(const std::string& traits,
-                               Size timeSteps,
-                               bool antitheticVariate = false,
-                               bool controlVariate = false,
-                               intOrNull requiredSamples = Null<int>(),
-                               doubleOrNull requiredTolerance = Null<double>(),
-                               intOrNull maxSamples = Null<int>(),
-                               long seed = 0) {
+        MCEuropeanEnginePtr(const std::string& traits,
+                            Size timeSteps,
+                            bool antitheticVariate = false,
+                            bool controlVariate = false,
+                            intOrNull requiredSamples = Null<int>(),
+                            doubleOrNull requiredTolerance = Null<double>(),
+                            intOrNull maxSamples = Null<int>(),
+                            long seed = 0) {
             std::string s = StringFormatter::toLowercase(traits);
             if (s == "pseudorandom" || s == "pr")
-                return new MCEuropeanEngineHandle(
+                return new MCEuropeanEnginePtr(
                          new MCEuropeanEngine<PseudoRandom>(timeSteps,
                                                             antitheticVariate,
                                                             controlVariate,
@@ -256,7 +255,7 @@ class MCEuropeanEngineHandle : public Handle<PricingEngine> {
                                                             maxSamples,
                                                             seed));
             else if (s == "lowdiscrepancy" || s == "ld")
-                return new MCEuropeanEngineHandle(
+                return new MCEuropeanEnginePtr(
                        new MCEuropeanEngine<LowDiscrepancy>(timeSteps,
                                                             antitheticVariate,
                                                             controlVariate,
@@ -275,17 +274,17 @@ class MCEuropeanEngineHandle : public Handle<PricingEngine> {
 
 %{
 using QuantLib::BaroneAdesiWhaleyApproximationEngine;
-typedef Handle<PricingEngine> BaroneAdesiWhaleyApproximationEngineHandle;
+typedef boost::shared_ptr<PricingEngine> 
+    BaroneAdesiWhaleyApproximationEnginePtr;
 %}
 
-%rename(BaroneAdesiWhaleyEngine) 
-    BaroneAdesiWhaleyApproximationEngineHandle;
-class BaroneAdesiWhaleyApproximationEngineHandle 
-    : public Handle<PricingEngine> {
+%rename(BaroneAdesiWhaleyEngine) BaroneAdesiWhaleyApproximationEnginePtr;
+class BaroneAdesiWhaleyApproximationEnginePtr 
+    : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        BaroneAdesiWhaleyApproximationEngineHandle() {
-            return new BaroneAdesiWhaleyApproximationEngineHandle(
+        BaroneAdesiWhaleyApproximationEnginePtr() {
+            return new BaroneAdesiWhaleyApproximationEnginePtr(
                 new BaroneAdesiWhaleyApproximationEngine);
         }
     }
@@ -294,17 +293,17 @@ class BaroneAdesiWhaleyApproximationEngineHandle
 
 %{
 using QuantLib::BjerksundStenslandApproximationEngine;
-typedef Handle<PricingEngine> BjerksundStenslandApproximationEngineHandle;
+typedef boost::shared_ptr<PricingEngine> 
+    BjerksundStenslandApproximationEnginePtr;
 %}
 
-%rename(BjerksundStenslandEngine) 
-    BjerksundStenslandApproximationEngineHandle;
-class BjerksundStenslandApproximationEngineHandle 
-    : public Handle<PricingEngine> {
+%rename(BjerksundStenslandEngine) BjerksundStenslandApproximationEnginePtr;
+class BjerksundStenslandApproximationEnginePtr 
+    : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        BjerksundStenslandApproximationEngineHandle() {
-            return new BjerksundStenslandApproximationEngineHandle(
+        BjerksundStenslandApproximationEnginePtr() {
+            return new BjerksundStenslandApproximationEnginePtr(
                 new BjerksundStenslandApproximationEngine);
         }
     }

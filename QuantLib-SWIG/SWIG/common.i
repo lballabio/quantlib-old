@@ -28,30 +28,34 @@ using QuantLib::RelinkableHandle;
 using QuantLib::IntegerFormatter;
 using QuantLib::DoubleFormatter;
 using QuantLib::StringFormatter;
-using QuantLib::IsNull;
 %}
 
-template <class T>
-class Handle {
-    #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("null?") isNull;
-    #endif
-  public:
-    T* operator->();
-    #if defined(SWIGPYTHON)
-    %extend {
-        bool __nonzero__() {
-            return !(IsNull(*self));
+namespace boost {
+
+    template <class T>
+    class shared_ptr {
+        #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        %rename("null?") isNull;
+        #endif
+      public:
+        T* operator->();
+        #if defined(SWIGPYTHON)
+        %extend {
+            bool __nonzero__() {
+                return !!(*self);
+            }
         }
-    }
-    #else
-    %extend {
-        bool isNull() {
-            return IsNull(*self);
+        #else
+        %extend {
+            bool isNull() {
+                return !(*self);
+            }
         }
-    }
-    #endif
-};
+        #endif
+    };
+
+}
+
 
 template <class T>
 class RelinkableHandle {
@@ -63,9 +67,9 @@ class RelinkableHandle {
     %rename("link-to!") linkTo;
     #endif
   public:
-    RelinkableHandle(const Handle<T>& = Handle<T>());
-    Handle<T> operator->();
-    void linkTo(const Handle<T>&);
+    RelinkableHandle(const boost::shared_ptr<T>& = boost::shared_ptr<T>());
+    boost::shared_ptr<T> operator->();
+    void linkTo(const boost::shared_ptr<T>&);
     #if defined(SWIGPYTHON)
     %extend {
         bool __nonzero__() {

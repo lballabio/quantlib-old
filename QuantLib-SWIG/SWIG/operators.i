@@ -56,31 +56,31 @@ MapToString(BoundaryConditionSide,BCSideFromString,BCSideToString);
 
 %ignore BoundaryCondition;
 class BoundaryCondition {};
-%template(BoundaryCondition) Handle<BoundaryCondition>;
+%template(BoundaryCondition) boost::shared_ptr<BoundaryCondition>;
 
 %{
 using QuantLib::NeumannBC;
 using QuantLib::DirichletBC;
-typedef Handle<BoundaryCondition> NeumannBCHandle;
-typedef Handle<BoundaryCondition> DirichletBCHandle;
+typedef boost::shared_ptr<BoundaryCondition> NeumannBCPtr;
+typedef boost::shared_ptr<BoundaryCondition> DirichletBCPtr;
 %}
 
-%rename(NeumannBC) NeumannBCHandle;
-class NeumannBCHandle: public Handle<BoundaryCondition> {
+%rename(NeumannBC) NeumannBCPtr;
+class NeumannBCPtr: public boost::shared_ptr<BoundaryCondition> {
   public:
     %extend {
-        NeumannBCHandle(double value, BoundaryConditionSide side) {
-            return new NeumannBCHandle(new NeumannBC(value, side));
+        NeumannBCPtr(double value, BoundaryConditionSide side) {
+            return new NeumannBCPtr(new NeumannBC(value, side));
         }
     }
 };
 
-%rename(DirichletBC) DirichletBCHandle;
-class DirichletBCHandle: public Handle<BoundaryCondition> {
+%rename(DirichletBC) DirichletBCPtr;
+class DirichletBCPtr: public boost::shared_ptr<BoundaryCondition> {
   public:
     %extend {
-        DirichletBCHandle(double value, BoundaryConditionSide side) {
-            return new DirichletBCHandle(new DirichletBC(value, side));
+        DirichletBCPtr(double value, BoundaryConditionSide side) {
+            return new DirichletBCPtr(new DirichletBC(value, side));
         }
     }
 };

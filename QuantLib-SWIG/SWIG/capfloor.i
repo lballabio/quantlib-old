@@ -27,65 +27,62 @@
 using QuantLib::Cap;
 using QuantLib::Floor;
 using QuantLib::Collar;
-typedef Handle<Instrument> CapHandle;
-typedef Handle<Instrument> FloorHandle;
-typedef Handle<Instrument> CollarHandle;
+typedef boost::shared_ptr<Instrument> CapPtr;
+typedef boost::shared_ptr<Instrument> FloorPtr;
+typedef boost::shared_ptr<Instrument> CollarPtr;
 %}
 
-%rename(Cap) CapHandle;
-class CapHandle : public Handle<Instrument> {
+%rename(Cap) CapPtr;
+class CapPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
-        CapHandle(const std::vector<Handle<CashFlow> >& leg,
+        CapPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
+               const std::vector<double>& capRates,
+               const RelinkableHandle<TermStructure>& h,
+               const boost::shared_ptr<PricingEngine>& engine) {
+            return new CapPtr(new Cap(leg,capRates,h,engine));
+        }
+    }
+};
+
+%rename(Floor) FloorPtr;
+class FloorPtr : public boost::shared_ptr<Instrument> {
+  public:
+    %extend {
+        FloorPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
+                 const std::vector<double>& floorRates,
+                 const RelinkableHandle<TermStructure>& h,
+                 const boost::shared_ptr<PricingEngine>& engine) {
+            return new FloorPtr(new Floor(leg,floorRates,h,engine));
+        }
+    }
+};
+
+%rename(Collar) CollarPtr;
+class CollarPtr : public boost::shared_ptr<Instrument> {
+  public:
+    %extend {
+        CollarPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
                   const std::vector<double>& capRates,
+                  const std::vector<double>& floorRates,
                   const RelinkableHandle<TermStructure>& h,
-                  const Handle<PricingEngine>& engine) {
-            return new CapHandle(
-                new Cap(leg,capRates,h,engine));
-        }
-    }
-};
-
-%rename(Floor) FloorHandle;
-class FloorHandle : public Handle<Instrument> {
-  public:
-    %extend {
-        FloorHandle(const std::vector<Handle<CashFlow> >& leg,
-                    const std::vector<double>& floorRates,
-                    const RelinkableHandle<TermStructure>& h,
-                    const Handle<PricingEngine>& engine) {
-            return new FloorHandle(
-                new Floor(leg,floorRates,h,engine));
-        }
-    }
-};
-
-%rename(Collar) CollarHandle;
-class CollarHandle : public Handle<Instrument> {
-  public:
-    %extend {
-        CollarHandle(const std::vector<Handle<CashFlow> >& leg,
-                     const std::vector<double>& capRates,
-                     const std::vector<double>& floorRates,
-                     const RelinkableHandle<TermStructure>& h,
-                     const Handle<PricingEngine>& engine) {
-            return new CollarHandle(
-                new Collar(leg,capRates,floorRates, h,engine));
+                  const boost::shared_ptr<PricingEngine>& engine) {
+            return new CollarPtr(new Collar(leg,capRates,floorRates,h,engine));
         }
     }
 };
 
 %{
 using QuantLib::BlackCapFloor;
-typedef Handle<PricingEngine> BlackCapFloorEngineHandle;
+typedef boost::shared_ptr<PricingEngine> BlackCapFloorEnginePtr;
 %}
 
-%rename(BlackCapFloorEngine) BlackCapFloorEngineHandle;
-class BlackCapFloorEngineHandle : public Handle<PricingEngine> {
+%rename(BlackCapFloorEngine) BlackCapFloorEnginePtr;
+class BlackCapFloorEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        BlackCapFloorEngineHandle(const Handle<BlackModel>& model) {
-            return new BlackCapFloorEngineHandle(new BlackCapFloor(model));
+        BlackCapFloorEnginePtr(const boost::shared_ptr<BlackModel>& model) {
+            return new BlackCapFloorEnginePtr(new BlackCapFloor(model));
         }
     }
 };

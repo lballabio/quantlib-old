@@ -26,23 +26,23 @@
 
 %{
 using QuantLib::Swaption;
-typedef Handle<Instrument> SwaptionHandle;
+typedef boost::shared_ptr<Instrument> SwaptionPtr;
 %}
 
-%rename(Swaption) SwaptionHandle;
-class SwaptionHandle : public Handle<Instrument> {
+%rename(Swaption) SwaptionPtr;
+class SwaptionPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
-        SwaptionHandle(const Handle<Instrument>& simpleSwap,
-                       const Handle<Exercise>& exercise,
-                       const RelinkableHandle<TermStructure>& termStructure,
-                       const Handle<PricingEngine>& engine) {
-            Handle<SimpleSwap> swap = 
+        SwaptionPtr(const boost::shared_ptr<Instrument>& simpleSwap,
+                    const boost::shared_ptr<Exercise>& exercise,
+                    const RelinkableHandle<TermStructure>& termStructure,
+                    const boost::shared_ptr<PricingEngine>& engine) {
+            boost::shared_ptr<SimpleSwap> swap = 
                  boost::dynamic_pointer_cast<SimpleSwap>(simpleSwap);
-            QL_REQUIRE(!IsNull(swap),
+            QL_REQUIRE(swap,
                        "Swaption: simple swap required");
-            return new SwaptionHandle(new Swaption(swap,exercise,
-                                                   termStructure,engine));
+            return new SwaptionPtr(new Swaption(swap,exercise,
+                                                termStructure,engine));
         }
     }
 };
@@ -52,15 +52,15 @@ class SwaptionHandle : public Handle<Instrument> {
 
 %{
 using QuantLib::BlackSwaption;
-typedef Handle<PricingEngine> BlackSwaptionEngineHandle;
+typedef boost::shared_ptr<PricingEngine> BlackSwaptionEnginePtr;
 %}
 
-%rename(BlackSwaptionEngine) BlackSwaptionEngineHandle;
-class BlackSwaptionEngineHandle : public Handle<PricingEngine> {
+%rename(BlackSwaptionEngine) BlackSwaptionEnginePtr;
+class BlackSwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        BlackSwaptionEngineHandle(const Handle<BlackModel>& model) {
-            return new BlackSwaptionEngineHandle(new BlackSwaption(model));
+        BlackSwaptionEnginePtr(const boost::shared_ptr<BlackModel>& model) {
+            return new BlackSwaptionEnginePtr(new BlackSwaption(model));
         }
     }
 };

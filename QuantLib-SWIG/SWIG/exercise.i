@@ -61,35 +61,35 @@ class Exercise {
     std::vector<Date> dates() const;
 };
 
-%template(Exercise) Handle<Exercise>;
+%template(Exercise) boost::shared_ptr<Exercise>;
 
 %{
 using QuantLib::EuropeanExercise;
 using QuantLib::AmericanExercise;
 using QuantLib::BermudanExercise;
-typedef Handle<Exercise> EuropeanExerciseHandle;
-typedef Handle<Exercise> AmericanExerciseHandle;
-typedef Handle<Exercise> BermudanExerciseHandle;
+typedef boost::shared_ptr<Exercise> EuropeanExercisePtr;
+typedef boost::shared_ptr<Exercise> AmericanExercisePtr;
+typedef boost::shared_ptr<Exercise> BermudanExercisePtr;
 %}
 
-%rename(EuropeanExercise) EuropeanExerciseHandle;
-class EuropeanExerciseHandle : public Handle<Exercise> {
+%rename(EuropeanExercise) EuropeanExercisePtr;
+class EuropeanExercisePtr : public boost::shared_ptr<Exercise> {
   public:
     %extend {
-        EuropeanExerciseHandle(const Date& date) {
-            return new EuropeanExerciseHandle(new EuropeanExercise(date));
+        EuropeanExercisePtr(const Date& date) {
+            return new EuropeanExercisePtr(new EuropeanExercise(date));
         }
     }
 };
 
-%rename(AmericanExercise) AmericanExerciseHandle;
-class AmericanExerciseHandle : public Handle<Exercise> {
+%rename(AmericanExercise) AmericanExercisePtr;
+class AmericanExercisePtr : public boost::shared_ptr<Exercise> {
   public:
     %extend {
-        AmericanExerciseHandle(const Date& earliestDate, 
-                               const Date& latestDate,
-                               bool payoffAtExpiry = false) {
-            return new AmericanExerciseHandle(
+        AmericanExercisePtr(const Date& earliestDate, 
+                            const Date& latestDate,
+                            bool payoffAtExpiry = false) {
+            return new AmericanExercisePtr(
                                         new AmericanExercise(earliestDate,
                                                              latestDate,
                                                              payoffAtExpiry));
@@ -97,13 +97,13 @@ class AmericanExerciseHandle : public Handle<Exercise> {
     }
 };
 
-%rename(BermudanExercise) BermudanExerciseHandle;
-class BermudanExerciseHandle : public Handle<Exercise> {
+%rename(BermudanExercise) BermudanExercisePtr;
+class BermudanExercisePtr : public boost::shared_ptr<Exercise> {
   public:
     %extend {
-        BermudanExerciseHandle(const std::vector<Date>& dates,
-                               bool payoffAtExpiry = false) {
-            return new BermudanExerciseHandle(
+        BermudanExercisePtr(const std::vector<Date>& dates,
+                            bool payoffAtExpiry = false) {
+            return new BermudanExercisePtr(
                                         new BermudanExercise(dates,
                                                              payoffAtExpiry));
         }

@@ -34,8 +34,8 @@
 using QuantLib::CalibrationHelper;
 using QuantLib::SwaptionHelper;
 using QuantLib::CapHelper;
-typedef Handle<CalibrationHelper> SwaptionHelperHandle;
-typedef Handle<CalibrationHelper> CapHelperHandle;
+typedef boost::shared_ptr<CalibrationHelper> SwaptionHelperPtr;
+typedef boost::shared_ptr<CalibrationHelper> CapHelperPtr;
 %}
 
 // calibration helpers
@@ -47,38 +47,40 @@ class CalibrationHelper {
     %rename("pricing-engine-set!") setPricingEngine;
     #endif
   public:
-    void setPricingEngine(const Handle<PricingEngine>& engine);
+    void setPricingEngine(const boost::shared_ptr<PricingEngine>& engine);
 };
-%template(CalibrationHelper) Handle<CalibrationHelper>;
+%template(CalibrationHelper) boost::shared_ptr<CalibrationHelper>;
 
-%rename(SwaptionHelper) SwaptionHelperHandle;
-class SwaptionHelperHandle : public Handle<CalibrationHelper> {
+%rename(SwaptionHelper) SwaptionHelperPtr;
+class SwaptionHelperPtr : public boost::shared_ptr<CalibrationHelper> {
   public:
     %extend {
-        SwaptionHelperHandle(
+        SwaptionHelperPtr(
                 const Period& maturity, const Period& length,
                 const RelinkableHandle<Quote>& volatility,
-                const XiborHandle& index,
+                const XiborPtr& index,
                 const RelinkableHandle<TermStructure>& termStructure) {
-            Handle<Xibor> libor = boost::dynamic_pointer_cast<Xibor>(index);
-            return new SwaptionHelperHandle(
+            boost::shared_ptr<Xibor> libor = 
+                boost::dynamic_pointer_cast<Xibor>(index);
+            return new SwaptionHelperPtr(
                 new SwaptionHelper(maturity,length,volatility,
                                    libor,termStructure));
         }
     }
 };
 
-%rename(CapHelper) CapHelperHandle;
-class CapHelperHandle : public Handle<CalibrationHelper> {
+%rename(CapHelper) CapHelperPtr;
+class CapHelperPtr : public boost::shared_ptr<CalibrationHelper> {
   public:
     %extend {
-        CapHelperHandle(
+        CapHelperPtr(
                 const Period& length,
                 const RelinkableHandle<Quote>& volatility,
-                const XiborHandle& index,
+                const XiborPtr& index,
                 const RelinkableHandle<TermStructure>& termStructure) {
-            Handle<Xibor> libor = boost::dynamic_pointer_cast<Xibor>(index);
-            return new CapHelperHandle(
+            boost::shared_ptr<Xibor> libor = 
+                boost::dynamic_pointer_cast<Xibor>(index);
+            return new CapHelperPtr(
                 new CapHelper(length,volatility,libor,termStructure));
         }
     }
@@ -87,7 +89,8 @@ class CapHelperHandle : public Handle<CalibrationHelper> {
 
 // allow use of CalibrationHelper vectors
 namespace std {
-    %template(CalibrationHelperVector) vector<Handle<CalibrationHelper> >;
+    %template(CalibrationHelperVector) 
+        vector<boost::shared_ptr<CalibrationHelper> >;
 }
 
 
@@ -104,43 +107,43 @@ class ShortRateModel {
   public:
     Array params() const;
     void calibrate(
-        const std::vector<Handle<CalibrationHelper> >& instruments,
-        OptimizationMethod& method);
+        const std::vector<boost::shared_ptr<CalibrationHelper> >&,
+        OptimizationMethod&);
 };
 
-%template(ShortRateModel) Handle<ShortRateModel>;
-IsObservable(Handle<ShortRateModel>);
+%template(ShortRateModel) boost::shared_ptr<ShortRateModel>;
+IsObservable(boost::shared_ptr<ShortRateModel>);
 
 // actual models
 
 %{
 using QuantLib::HullWhite;
 using QuantLib::BlackKarasinski;
-typedef Handle<ShortRateModel> HullWhiteHandle;
-typedef Handle<ShortRateModel> BlackKarasinskiHandle;
+typedef boost::shared_ptr<ShortRateModel> HullWhitePtr;
+typedef boost::shared_ptr<ShortRateModel> BlackKarasinskiPtr;
 %}
 
-%rename(HullWhite) HullWhiteHandle;
-class HullWhiteHandle : public Handle<ShortRateModel> {
+%rename(HullWhite) HullWhitePtr;
+class HullWhitePtr : public boost::shared_ptr<ShortRateModel> {
   public:
     %extend {
-        HullWhiteHandle(
+        HullWhitePtr(
                 const RelinkableHandle<TermStructure>& termStructure, 
                 double a = 0.1, double sigma = 0.01) {
-	        return new HullWhiteHandle(
+	        return new HullWhitePtr(
 	            new HullWhite(termStructure, a, sigma));
         }
     }
 };
 
-%rename(BlackKarasinski) BlackKarasinskiHandle;
-class BlackKarasinskiHandle : public Handle<ShortRateModel> {
+%rename(BlackKarasinski) BlackKarasinskiPtr;
+class BlackKarasinskiPtr : public boost::shared_ptr<ShortRateModel> {
   public:
     %extend {
-        BlackKarasinskiHandle(
+        BlackKarasinskiPtr(
                 const RelinkableHandle<TermStructure>& termStructure, 
                 double a = 0.1, double sigma = 0.1) {
-	        return new BlackKarasinskiHandle(
+	        return new BlackKarasinskiPtr(
 	            new BlackKarasinski(termStructure, a, sigma));
         }
     }
@@ -152,45 +155,45 @@ class BlackKarasinskiHandle : public Handle<ShortRateModel> {
 using QuantLib::JamshidianSwaption;
 using QuantLib::TreeSwaption;
 using QuantLib::TreeCapFloor;
-typedef Handle<PricingEngine> JamshidianSwaptionHandle;
-typedef Handle<PricingEngine> TreeSwaptionHandle;
-typedef Handle<PricingEngine> TreeCapFloorHandle;
+typedef boost::shared_ptr<PricingEngine> JamshidianSwaptionPtr;
+typedef boost::shared_ptr<PricingEngine> TreeSwaptionPtr;
+typedef boost::shared_ptr<PricingEngine> TreeCapFloorPtr;
 %}
 
-%rename(JamshidianSwaption) JamshidianSwaptionHandle;
-class JamshidianSwaptionHandle : public Handle<PricingEngine> {
+%rename(JamshidianSwaption) JamshidianSwaptionPtr;
+class JamshidianSwaptionPtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        JamshidianSwaptionHandle(const Handle<ShortRateModel>& model) {
+        JamshidianSwaptionPtr(const boost::shared_ptr<ShortRateModel>& model) {
             using QuantLib::OneFactorAffineModel;
-            Handle<OneFactorAffineModel> m = 
+            boost::shared_ptr<OneFactorAffineModel> m = 
                  boost::dynamic_pointer_cast<OneFactorAffineModel>(model);
-            QL_REQUIRE(!IsNull(model),
+            QL_REQUIRE(model,
                        "JamshidianSwaption: affine model required");
-            return new JamshidianSwaptionHandle(new JamshidianSwaption(m));
+            return new JamshidianSwaptionPtr(new JamshidianSwaption(m));
         }
     }
 };
 
-%rename(TreeSwaption) TreeSwaptionHandle;
-class TreeSwaptionHandle : public Handle<PricingEngine> {
+%rename(TreeSwaption) TreeSwaptionPtr;
+class TreeSwaptionPtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        TreeSwaptionHandle(const Handle<ShortRateModel>& model,
-                           Size timeSteps) {
-            return new TreeSwaptionHandle(
+        TreeSwaptionPtr(const boost::shared_ptr<ShortRateModel>& model,
+                        Size timeSteps) {
+            return new TreeSwaptionPtr(
                 new TreeSwaption(model,timeSteps));
         }
     }
 };
 
-%rename(TreeCapFloor) TreeCapFloorHandle;
-class TreeCapFloorHandle : public Handle<PricingEngine> {
+%rename(TreeCapFloor) TreeCapFloorPtr;
+class TreeCapFloorPtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        TreeCapFloorHandle(const Handle<ShortRateModel>& model,
-                           Size timeSteps) {
-            return new TreeCapFloorHandle(
+        TreeCapFloorPtr(const boost::shared_ptr<ShortRateModel>& model,
+                        Size timeSteps) {
+            return new TreeCapFloorPtr(
                 new TreeCapFloor(model,timeSteps));
         }
     }

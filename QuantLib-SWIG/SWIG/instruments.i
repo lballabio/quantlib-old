@@ -30,7 +30,7 @@
 using QuantLib::PricingEngine;
 %}
 
-%template(PricingEngine) Handle<PricingEngine>;
+%template(PricingEngine) boost::shared_ptr<PricingEngine>;
 
 // instrument 
 
@@ -54,30 +54,28 @@ class Instrument {
   public:
     double NPV() const;
     bool isExpired() const;
-    void setPricingEngine(const Handle<PricingEngine>&);
+    void setPricingEngine(const boost::shared_ptr<PricingEngine>&);
     void recalculate();
     void freeze();
     void unfreeze();
 };
 
-%template(Instrument) Handle<Instrument>;
-IsObservable(Handle<Instrument>);
+%template(Instrument) boost::shared_ptr<Instrument>;
+IsObservable(boost::shared_ptr<Instrument>);
 
 // actual instruments
 
 %{
 using QuantLib::Stock;
-typedef Handle<Instrument> StockHandle;
+typedef boost::shared_ptr<Instrument> StockPtr;
 %}
 
-// Fake inheritance between Handles
-
-%rename(Stock) StockHandle;
-class StockHandle : public Handle<Instrument> {
+%rename(Stock) StockPtr;
+class StockPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
-        StockHandle(const RelinkableHandle<Quote>& quote) {
-            return new StockHandle(new Stock(quote));
+        StockPtr(const RelinkableHandle<Quote>& quote) {
+            return new StockPtr(new Stock(quote));
         }
     }
 };

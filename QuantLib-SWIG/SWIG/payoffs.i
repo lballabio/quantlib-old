@@ -28,70 +28,70 @@ using QuantLib::PercentageStrikePayoff;
 using QuantLib::CashOrNothingPayoff;
 using QuantLib::AssetOrNothingPayoff;
 using QuantLib::SuperSharePayoff;
-typedef Handle<Payoff> PlainVanillaPayoffHandle;
-typedef Handle<Payoff> PercentageStrikePayoffHandle;
-typedef Handle<Payoff> CashOrNothingPayoffHandle;
-typedef Handle<Payoff> AssetOrNothingPayoffHandle;
-typedef Handle<Payoff> SuperSharePayoffHandle;
+typedef boost::shared_ptr<Payoff> PlainVanillaPayoffPtr;
+typedef boost::shared_ptr<Payoff> PercentageStrikePayoffPtr;
+typedef boost::shared_ptr<Payoff> CashOrNothingPayoffPtr;
+typedef boost::shared_ptr<Payoff> AssetOrNothingPayoffPtr;
+typedef boost::shared_ptr<Payoff> SuperSharePayoffPtr;
 %}
 
-%rename(PlainVanillaPayoff) PlainVanillaPayoffHandle;
-class PlainVanillaPayoffHandle : public Handle<Payoff> {
+%rename(PlainVanillaPayoff) PlainVanillaPayoffPtr;
+class PlainVanillaPayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
-        PlainVanillaPayoffHandle(OptionType type,
-                                 double strike) {
-            return new PlainVanillaPayoffHandle(
+        PlainVanillaPayoffPtr(OptionType type,
+                              double strike) {
+            return new PlainVanillaPayoffPtr(
                                         new PlainVanillaPayoff(type, strike));
         }
     }
 };
 
-%rename(PercentageStrikePayoff) PercentageStrikePayoffHandle;
-class PercentageStrikePayoffHandle : public Handle<Payoff> {
+%rename(PercentageStrikePayoff) PercentageStrikePayoffPtr;
+class PercentageStrikePayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
-        PercentageStrikePayoffHandle(OptionType type,
-                                     double moneyness) {
-            return new PercentageStrikePayoffHandle(
+        PercentageStrikePayoffPtr(OptionType type,
+                                  double moneyness) {
+            return new PercentageStrikePayoffPtr(
                                  new PercentageStrikePayoff(type, moneyness));
         }
     }
 };
 
-%rename(CashOrNothingPayoff) CashOrNothingPayoffHandle;
-class CashOrNothingPayoffHandle : public Handle<Payoff> {
+%rename(CashOrNothingPayoff) CashOrNothingPayoffPtr;
+class CashOrNothingPayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
-        CashOrNothingPayoffHandle(OptionType type,
-                                  double strike,
-                                  double payoff) {
-            return new CashOrNothingPayoffHandle(
+        CashOrNothingPayoffPtr(OptionType type,
+                               double strike,
+                               double payoff) {
+            return new CashOrNothingPayoffPtr(
                                new CashOrNothingPayoff(type, strike, payoff));
         }
     }
 };
 
-%rename(AssetOrNothingPayoff) AssetOrNothingPayoffHandle;
-class AssetOrNothingPayoffHandle : public Handle<Payoff> {
+%rename(AssetOrNothingPayoff) AssetOrNothingPayoffPtr;
+class AssetOrNothingPayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
-        AssetOrNothingPayoffHandle(OptionType type,
-                                   double strike) {
-            return new AssetOrNothingPayoffHandle(
+        AssetOrNothingPayoffPtr(OptionType type,
+                                double strike) {
+            return new AssetOrNothingPayoffPtr(
                                       new AssetOrNothingPayoff(type, strike));
         }
     }
 };
 
-%rename(SuperSharePayoff) SuperSharePayoffHandle;
-class SuperSharePayoffHandle : public Handle<Payoff> {
+%rename(SuperSharePayoff) SuperSharePayoffPtr;
+class SuperSharePayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
-        SuperSharePayoffHandle(OptionType type,
-                               double strike,
-                               double increment) {
-            return new SuperSharePayoffHandle(
+        SuperSharePayoffPtr(OptionType type,
+                            double strike,
+                            double increment) {
+            return new SuperSharePayoffPtr(
                                new SuperSharePayoff(type, strike, increment));
         }
     }

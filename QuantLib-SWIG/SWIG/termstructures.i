@@ -61,8 +61,8 @@ class TermStructure {
 	Rate zeroCoupon(Time, int, bool extrapolate = false);
 };
 
-%template(TermStructure) Handle<TermStructure>;
-IsObservable(Handle<TermStructure>);
+%template(TermStructure) boost::shared_ptr<TermStructure>;
+IsObservable(boost::shared_ptr<TermStructure>);
 
 
 %template(TermStructureHandle) RelinkableHandle<TermStructure>;
@@ -73,18 +73,17 @@ IsObservable(RelinkableHandle<TermStructure>);
 
 %{
 using QuantLib::ImpliedTermStructure;
-typedef Handle<TermStructure> ImpliedTermStructureHandle;
+typedef boost::shared_ptr<TermStructure> ImpliedTermStructurePtr;
 %}
 
-// fake inheritance between handles
-%rename(ImpliedTermStructure) ImpliedTermStructureHandle;
-class ImpliedTermStructureHandle: public Handle<TermStructure> {
+%rename(ImpliedTermStructure) ImpliedTermStructurePtr;
+class ImpliedTermStructurePtr: public boost::shared_ptr<TermStructure> {
   public:
     %extend {
-        ImpliedTermStructureHandle(
+        ImpliedTermStructurePtr(
                 const RelinkableHandle<TermStructure>& curveHandle,
                 const Date& todaysDate, const Date& referenceDate) {
-            return new ImpliedTermStructureHandle(
+            return new ImpliedTermStructurePtr(
                 new ImpliedTermStructure(curveHandle, todaysDate, 
                                          referenceDate));
         }
@@ -97,31 +96,32 @@ class ImpliedTermStructureHandle: public Handle<TermStructure> {
 %{
 using QuantLib::ZeroSpreadedTermStructure;
 using QuantLib::ForwardSpreadedTermStructure;
-typedef Handle<TermStructure> ZeroSpreadedTermStructureHandle;
-typedef Handle<TermStructure> ForwardSpreadedTermStructureHandle;
+typedef boost::shared_ptr<TermStructure> ZeroSpreadedTermStructurePtr;
+typedef boost::shared_ptr<TermStructure> ForwardSpreadedTermStructurePtr;
 %}
 
-%rename(ZeroSpreadedTermStructure) ZeroSpreadedTermStructureHandle;
-class ZeroSpreadedTermStructureHandle : public Handle<TermStructure> {
+%rename(ZeroSpreadedTermStructure) ZeroSpreadedTermStructurePtr;
+class ZeroSpreadedTermStructurePtr : public boost::shared_ptr<TermStructure> {
   public:
     %extend {
-        ZeroSpreadedTermStructureHandle(
+        ZeroSpreadedTermStructurePtr(
                 const RelinkableHandle<TermStructure>& curveHandle,
                 const RelinkableHandle<Quote>& spreadHandle) {
-	        return new ZeroSpreadedTermStructureHandle(
+	        return new ZeroSpreadedTermStructurePtr(
 	            new ZeroSpreadedTermStructure(curveHandle,spreadHandle));
         }
     }
 };
 
-%rename(ForwardSpreadedTermStructure) ForwardSpreadedTermStructureHandle;
-class ForwardSpreadedTermStructureHandle : public Handle<TermStructure> {
+%rename(ForwardSpreadedTermStructure) ForwardSpreadedTermStructurePtr;
+class ForwardSpreadedTermStructurePtr 
+    : public boost::shared_ptr<TermStructure> {
   public:
     %extend {
-        ForwardSpreadedTermStructureHandle(
+        ForwardSpreadedTermStructurePtr(
                 const RelinkableHandle<TermStructure>& curveHandle,
                 const RelinkableHandle<Quote>& spreadHandle) {
-	        return new ForwardSpreadedTermStructureHandle(
+	        return new ForwardSpreadedTermStructurePtr(
 	            new ForwardSpreadedTermStructure(curveHandle,spreadHandle));
         }
     }
@@ -132,25 +132,25 @@ class ForwardSpreadedTermStructureHandle : public Handle<TermStructure> {
 
 %{
 using QuantLib::FlatForward;
-typedef Handle<TermStructure> FlatForwardHandle;
+typedef boost::shared_ptr<TermStructure> FlatForwardPtr;
 %}
 
-%rename(FlatForward) FlatForwardHandle;
-class FlatForwardHandle : public Handle<TermStructure> {
+%rename(FlatForward) FlatForwardPtr;
+class FlatForwardPtr : public boost::shared_ptr<TermStructure> {
   public:
     %extend {
-        FlatForwardHandle(const Date& todaysDate, 
-                          const Date& referenceDate, 
-                          const RelinkableHandle<Quote>& forward,
-                          const DayCounter& dayCounter) {
-            return new FlatForwardHandle(
+        FlatForwardPtr(const Date& todaysDate, 
+                       const Date& referenceDate, 
+                       const RelinkableHandle<Quote>& forward,
+                       const DayCounter& dayCounter) {
+            return new FlatForwardPtr(
                 new FlatForward(todaysDate,referenceDate,forward,dayCounter));
         }
-        FlatForwardHandle(const Date& todaysDate, 
-                          const Date& referenceDate, 
-                          double forward,
-                          const DayCounter& dayCounter) {
-            return new FlatForwardHandle(
+        FlatForwardPtr(const Date& todaysDate, 
+                       const Date& referenceDate, 
+                       double forward,
+                       const DayCounter& dayCounter) {
+            return new FlatForwardPtr(
                 new FlatForward(todaysDate,referenceDate,forward,dayCounter));
         }
     }

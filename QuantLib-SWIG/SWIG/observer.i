@@ -25,7 +25,7 @@ using QuantLib::Observer;
 using QuantLib::Observable;
 %}
 
-%template(Observable) Handle<Observable>;
+%template(Observable) boost::shared_ptr<Observable>;
 %define IsObservable(Type)
 #if defined(SWIGRUBY)
 %rename("toObservable") Type::asObservable;
@@ -34,12 +34,12 @@ using QuantLib::Observable;
 #endif
 %extend Type {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    Handle<Observable>* asObservable() {
-        return new Handle<Observable>(*self);
+    boost::shared_ptr<Observable>* asObservable() {
+        return new boost::shared_ptr<Observable>(*self);
     }
     #else
-    Handle<Observable> asObservable() {
-        return Handle<Observable>(*self);
+    boost::shared_ptr<Observable> asObservable() {
+        return boost::shared_ptr<Observable>(*self);
     }
     #endif
 }
@@ -93,8 +93,8 @@ class PyObserver {
     %rename(_unregisterWith) unregisterWith;
   public:
 	PyObserver(PyObject* callback);
-    void registerWith(const Handle<Observable>&);
-    void unregisterWith(const Handle<Observable>&);
+    void registerWith(const boost::shared_ptr<Observable>&);
+    void unregisterWith(const boost::shared_ptr<Observable>&);
     %pythoncode %{
         def registerWith(self,x):
             self._registerWith(x.asObservable())
@@ -137,8 +137,8 @@ class RubyObserver {
     %rename(_unregisterWith) unregisterWith;
   public:
 	RubyObserver(VALUE callback);
-    void registerWith(const Handle<Observable>&);
-    void unregisterWith(const Handle<Observable>&);
+    void registerWith(const boost::shared_ptr<Observable>&);
+    void unregisterWith(const boost::shared_ptr<Observable>&);
 };
 
 #elif defined(SWIGMZSCHEME)
@@ -188,8 +188,8 @@ class MzObserver {
     %rename("unregister-with") unregisterWith;
   public:
 	MzObserver(Scheme_Object* callback);
-    void registerWith(const Handle<Observable>&);
-    void unregisterWith(const Handle<Observable>&);
+    void registerWith(const boost::shared_ptr<Observable>&);
+    void unregisterWith(const boost::shared_ptr<Observable>&);
 };
 
 #elif defined(SWIGGUILE)
@@ -223,8 +223,8 @@ class GuileObserver {
     %rename("unregister-with") unregisterWith;
   public:
 	GuileObserver(SCM callback);
-    void registerWith(const Handle<Observable>&);
-    void unregisterWith(const Handle<Observable>&);
+    void registerWith(const boost::shared_ptr<Observable>&);
+    void unregisterWith(const boost::shared_ptr<Observable>&);
 };
 
 #endif

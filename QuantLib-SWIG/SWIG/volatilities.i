@@ -66,8 +66,8 @@ class BlackVolTermStructure {
                                 bool extrapolate = false) const;
 };
 
-%template(BlackVolTermStructure) Handle<BlackVolTermStructure>;
-IsObservable(Handle<BlackVolTermStructure>);
+%template(BlackVolTermStructure) boost::shared_ptr<BlackVolTermStructure>;
+IsObservable(boost::shared_ptr<BlackVolTermStructure>);
 
 %template(BlackVolTermStructureHandle) RelinkableHandle<BlackVolTermStructure>;
 IsObservable(RelinkableHandle<BlackVolTermStructure>);
@@ -93,8 +93,8 @@ class LocalVolTermStructure {
                     bool extrapolate = false) const;
 };
 
-%template(LocalVolTermStructure) Handle<LocalVolTermStructure>;
-IsObservable(Handle<LocalVolTermStructure>);
+%template(LocalVolTermStructure) boost::shared_ptr<LocalVolTermStructure>;
+IsObservable(boost::shared_ptr<LocalVolTermStructure>);
 
 %template(LocalVolTermStructureHandle) RelinkableHandle<LocalVolTermStructure>;
 IsObservable(RelinkableHandle<LocalVolTermStructure>);
@@ -105,24 +105,24 @@ IsObservable(RelinkableHandle<LocalVolTermStructure>);
 // constant Black vol term structure
 %{
 using QuantLib::BlackConstantVol;
-typedef Handle<BlackVolTermStructure> BlackConstantVolHandle;
+typedef boost::shared_ptr<BlackVolTermStructure> BlackConstantVolPtr;
 %}
 
-%rename(BlackConstantVol) BlackConstantVolHandle;
-class BlackConstantVolHandle : public Handle<BlackVolTermStructure> {
+%rename(BlackConstantVol) BlackConstantVolPtr;
+class BlackConstantVolPtr : public boost::shared_ptr<BlackVolTermStructure> {
   public:
     %extend {
-        BlackConstantVolHandle(
+        BlackConstantVolPtr(
                 const Date& referenceDate, double volatility,
                 const DayCounter& dayCounter = Actual365()) {
-            return new BlackConstantVolHandle(
+            return new BlackConstantVolPtr(
                 new BlackConstantVol(referenceDate, volatility, dayCounter));
         }
-        BlackConstantVolHandle(
+        BlackConstantVolPtr(
                 const Date& referenceDate,
                 const RelinkableHandle<Quote>& volatility,
                 const DayCounter& dayCounter = Actual365()) {
-            return new BlackConstantVolHandle(
+            return new BlackConstantVolPtr(
                 new BlackConstantVol(referenceDate, volatility, dayCounter));
         }
     }
@@ -132,7 +132,7 @@ class BlackConstantVolHandle : public Handle<BlackVolTermStructure> {
 %{
 using QuantLib::BlackVarianceSurface;
 typedef BlackVarianceSurface::Extrapolation VolExtrapolationType;
-typedef Handle<BlackVolTermStructure> BlackVarianceSurfaceHandle;
+typedef boost::shared_ptr<BlackVolTermStructure> BlackVarianceSurfacePtr;
 
 VolExtrapolationType volExTypeFromString(std::string s) {
     s = StringFormatter::toLowercase(s);
@@ -158,11 +158,12 @@ std::string volExTypeToString(VolExtrapolationType t) {
 
 MapToString(VolExtrapolationType,volExTypeFromString,volExTypeToString);
 
-%rename(BlackVarianceSurface) BlackVarianceSurfaceHandle;
-class BlackVarianceSurfaceHandle : public Handle<BlackVolTermStructure> {
+%rename(BlackVarianceSurface) BlackVarianceSurfacePtr;
+class BlackVarianceSurfacePtr 
+    : public boost::shared_ptr<BlackVolTermStructure> {
   public:
     %extend {
-        BlackVarianceSurfaceHandle(
+        BlackVarianceSurfacePtr(
                 const Date& referenceDate, 
                 const std::vector<Date>& dates,
                 const std::vector<double>& strikes,
@@ -172,7 +173,7 @@ class BlackVarianceSurfaceHandle : public Handle<BlackVolTermStructure> {
                 VolExtrapolationType upper = 
                     BlackVarianceSurface::InterpolatorDefaultExtrapolation,
                 const DayCounter& dayCounter = Actual365()) {
-            return new BlackVarianceSurfaceHandle(
+            return new BlackVarianceSurfacePtr(
                 new BlackVarianceSurface(referenceDate,dates,strikes,
                                          blackVols,lower,upper,dayCounter));
         }
@@ -184,24 +185,24 @@ class BlackVarianceSurfaceHandle : public Handle<BlackVolTermStructure> {
 // constant local vol term structure
 %{
 using QuantLib::LocalConstantVol;
-typedef Handle<LocalVolTermStructure> LocalConstantVolHandle;
+typedef boost::shared_ptr<LocalVolTermStructure> LocalConstantVolPtr;
 %}
 
-%rename(LocalConstantVol) LocalConstantVolHandle;
-class LocalConstantVolHandle : public Handle<LocalVolTermStructure> {
+%rename(LocalConstantVol) LocalConstantVolPtr;
+class LocalConstantVolPtr : public boost::shared_ptr<LocalVolTermStructure> {
   public:
     %extend {
-        LocalConstantVolHandle(
+        LocalConstantVolPtr(
                 const Date& referenceDate, double volatility,
                 const DayCounter& dayCounter = Actual365()) {
-            return new LocalConstantVolHandle(
+            return new LocalConstantVolPtr(
                 new LocalConstantVol(referenceDate, volatility, dayCounter));
         }
-        LocalConstantVolHandle(
+        LocalConstantVolPtr(
                 const Date& referenceDate,
                 const RelinkableHandle<Quote>& volatility,
                 const DayCounter& dayCounter = Actual365()) {
-            return new LocalConstantVolHandle(
+            return new LocalConstantVolPtr(
                 new LocalConstantVol(referenceDate, volatility, dayCounter));
         }
     }

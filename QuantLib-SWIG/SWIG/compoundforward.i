@@ -26,22 +26,22 @@
 
 %{
 using QuantLib::CompoundForward;
-typedef Handle<TermStructure> CompoundForwardHandle;
+typedef boost::shared_ptr<TermStructure> CompoundForwardPtr;
 %}
 
-%rename(CompoundForward) CompoundForwardHandle;
-class CompoundForwardHandle : public Handle<TermStructure> {
+%rename(CompoundForward) CompoundForwardPtr;
+class CompoundForwardPtr : public boost::shared_ptr<TermStructure> {
   public:
     %extend {
-        CompoundForwardHandle(const Date& todaysDate,
-                              const Date& settlementDate,
-                              const std::vector<Date>& dates,
-                              const std::vector<double>& rates,
-                              Calendar calendar,
-                              RollingConvention roll,
-                              int compounding,
-                              const DayCounter& dayCounter = Actual365()) {
-	        return new CompoundForwardHandle(
+        CompoundForwardPtr(const Date& todaysDate,
+                           const Date& settlementDate,
+                           const std::vector<Date>& dates,
+                           const std::vector<double>& rates,
+                           Calendar calendar,
+                           RollingConvention roll,
+                           int compounding,
+                           const DayCounter& dayCounter = Actual365()) {
+	        return new CompoundForwardPtr(
                 new CompoundForward(todaysDate, settlementDate,
                                     dates, rates, calendar, roll,
                                     compounding, dayCounter));

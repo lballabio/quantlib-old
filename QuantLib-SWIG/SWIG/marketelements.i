@@ -32,8 +32,8 @@ class Quote {
     double value() const;
 };
 
-%template(Quote) Handle<Quote>;
-IsObservable(Handle<Quote>);
+%template(Quote) boost::shared_ptr<Quote>;
+IsObservable(boost::shared_ptr<Quote>);
 
 %template(QuoteHandle) RelinkableHandle<Quote>;
 IsObservable(RelinkableHandle<Quote>);
@@ -41,12 +41,11 @@ IsObservable(RelinkableHandle<Quote>);
 // actual market elements
 %{
 using QuantLib::SimpleQuote;
-typedef Handle<Quote> SimpleQuoteHandle;
+typedef boost::shared_ptr<Quote> SimpleQuotePtr;
 %}
 
-// Fake inheritance between Handles
-%rename(SimpleQuote) SimpleQuoteHandle;
-class SimpleQuoteHandle : public Handle<Quote> {
+%rename(SimpleQuote) SimpleQuotePtr;
+class SimpleQuotePtr : public boost::shared_ptr<Quote> {
     #if defined(SWIGRUBY)
     %rename("value=")     setValue;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -54,8 +53,8 @@ class SimpleQuoteHandle : public Handle<Quote> {
     #endif
   public:
     %extend {
-        SimpleQuoteHandle(double value) {
-            return new SimpleQuoteHandle(new SimpleQuote(value));
+        SimpleQuotePtr(double value) {
+            return new SimpleQuotePtr(new SimpleQuote(value));
         }
         void setValue(double value) {
             boost::dynamic_pointer_cast<SimpleQuote>(*self)->setValue(value);
@@ -68,24 +67,24 @@ class SimpleQuoteHandle : public Handle<Quote> {
 %{
 using QuantLib::DerivedQuote;
 using QuantLib::CompositeQuote;
-typedef Handle<Quote> DerivedQuoteHandle;
-typedef Handle<Quote> CompositeQuoteHandle;
+typedef boost::shared_ptr<Quote> DerivedQuotePtr;
+typedef boost::shared_ptr<Quote> CompositeQuotePtr;
 %}
 
-%rename(DerivedQuote) DerivedQuoteHandle;
-class DerivedQuoteHandle : public Handle<Quote> {
+%rename(DerivedQuote) DerivedQuotePtr;
+class DerivedQuotePtr : public boost::shared_ptr<Quote> {
   public:
     %extend {
         #if defined(SWIGPYTHON)
-        DerivedQuoteHandle(const RelinkableHandle<Quote>& h,
-                           PyObject* function) {
-            return new DerivedQuoteHandle(
+        DerivedQuotePtr(const RelinkableHandle<Quote>& h,
+                        PyObject* function) {
+            return new DerivedQuotePtr(
                 new DerivedQuote<UnaryFunction>(h,UnaryFunction(function)));
         }
         #elif defined(SWIGMZSCHEME)
-        DerivedQuoteHandle(const RelinkableHandle<Quote>& h,
-                           Scheme_Object* function) {
-            return new DerivedQuoteHandle(
+        DerivedQuotePtr(const RelinkableHandle<Quote>& h,
+                        Scheme_Object* function) {
+            return new DerivedQuotePtr(
                 new DerivedQuote<UnaryFunction>(h,UnaryFunction(function)));
         }
         #endif
@@ -93,23 +92,23 @@ class DerivedQuoteHandle : public Handle<Quote> {
 };
 
 
-%rename(CompositeQuote) CompositeQuoteHandle;
-class CompositeQuoteHandle : public Handle<Quote> {
+%rename(CompositeQuote) CompositeQuotePtr;
+class CompositeQuotePtr : public boost::shared_ptr<Quote> {
   public:
     %extend {
         #if defined(SWIGPYTHON)
-        CompositeQuoteHandle(const RelinkableHandle<Quote>& h1,
-                             const RelinkableHandle<Quote>& h2,
-                             PyObject* function) {
-            return new CompositeQuoteHandle(
+        CompositeQuotePtr(const RelinkableHandle<Quote>& h1,
+                          const RelinkableHandle<Quote>& h2,
+                          PyObject* function) {
+            return new CompositeQuotePtr(
                 new CompositeQuote<BinaryFunction>(
                     h1,h2,BinaryFunction(function)));
         }
         #elif defined(SWIGMZSCHEME)
-        CompositeQuoteHandle(const RelinkableHandle<Quote>& h1,
-                             const RelinkableHandle<Quote>& h2,
-                             Scheme_Object* function) {
-            return new CompositeQuoteHandle(
+        CompositeQuotePtr(const RelinkableHandle<Quote>& h1,
+                          const RelinkableHandle<Quote>& h2,
+                          Scheme_Object* function) {
+            return new CompositeQuotePtr(
                 new CompositeQuote<BinaryFunction>(
                     h1,h2,BinaryFunction(function)));
         }
@@ -120,8 +119,9 @@ class CompositeQuoteHandle : public Handle<Quote> {
 #endif
 
 namespace std {
-    %template(QuoteVector) vector<Handle<Quote> >;
+    %template(QuoteVector) vector<boost::shared_ptr<Quote> >;
     %template(QuoteHandleVector) vector<RelinkableHandle<Quote> >;
 }
+
 
 #endif

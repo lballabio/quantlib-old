@@ -61,13 +61,13 @@ class Index {
     std::string name() const;
 };
 
-%template(Index) Handle<Index>;
+%template(Index) boost::shared_ptr<Index>;
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(">string") Handle<Index>::__str__;
+%rename(">string") boost::shared_ptr<Index>::__str__;
 #endif
-%extend Handle<Index> {
+%extend boost::shared_ptr<Index> {
     std::string __str__() {
-        if (!IsNull(*self))
+        if (*self)
             return (*self)->name()+" index";
         else
             return "Null index";
@@ -85,11 +85,11 @@ using QuantLib::JPYLibor;
 using QuantLib::CADLibor;
 using QuantLib::CHFLibor;
 using QuantLib::ZARLibor;
-typedef Handle<Index> XiborHandle;
+typedef boost::shared_ptr<Index> XiborPtr;
 %}
 
-%rename(Xibor) XiborHandle;
-class XiborHandle : public Handle<Index> {
+%rename(Xibor) XiborPtr;
+class XiborPtr : public boost::shared_ptr<Index> {
     #if defined(SWIGRUBY)
     %rename("isAdjusted?")        isAdjusted;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -99,28 +99,28 @@ class XiborHandle : public Handle<Index> {
     #endif
   public:
     %extend {
-        XiborHandle(const std::string& name, int n, TimeUnit units,
-                    const RelinkableHandle<TermStructure>& h) {
+        XiborPtr(const std::string& name, int n, TimeUnit units,
+                 const RelinkableHandle<TermStructure>& h) {
             std::string s = StringFormatter::toLowercase(name);
             if (s == "euribor")
-                return new XiborHandle(new Euribor(n,units,h));
+                return new XiborPtr(new Euribor(n,units,h));
             else if (s == "audlibor")
-                return new XiborHandle(new AUDLibor(n,units,h));
+                return new XiborPtr(new AUDLibor(n,units,h));
             else if (s == "gbplibor")
-                return new XiborHandle(new GBPLibor(n,units,h));
+                return new XiborPtr(new GBPLibor(n,units,h));
             else if (s == "usdlibor")
-                return new XiborHandle(new USDLibor(n,units,h));
+                return new XiborPtr(new USDLibor(n,units,h));
             else if (s == "jpylibor")
-                return new XiborHandle(new JPYLibor(n,units,h));
+                return new XiborPtr(new JPYLibor(n,units,h));
             else if (s == "cadlibor")
-                return new XiborHandle(new CADLibor(n,units,h));
+                return new XiborPtr(new CADLibor(n,units,h));
             else if (s == "chflibor")
-                return new XiborHandle(new CHFLibor(n,units,h));
+                return new XiborPtr(new CHFLibor(n,units,h));
             else if (s == "zarlibor")
-                return new XiborHandle(new ZARLibor(n,units,h));
+                return new XiborPtr(new ZARLibor(n,units,h));
             else
                 throw Error("unknown index: " + name);
-            QL_DUMMY_RETURN(new XiborHandle);
+            QL_DUMMY_RETURN(new XiborPtr);
         }
         Period tenor() {
             return boost::dynamic_pointer_cast<Xibor>(*self)->tenor();

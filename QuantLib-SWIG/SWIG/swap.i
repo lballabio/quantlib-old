@@ -26,19 +26,19 @@
 %{
 using QuantLib::Swap;
 using QuantLib::SimpleSwap;
-typedef Handle<Instrument> SwapHandle;
-typedef Handle<Instrument> SimpleSwapHandle;
+typedef boost::shared_ptr<Instrument> SwapPtr;
+typedef boost::shared_ptr<Instrument> SimpleSwapPtr;
 %}
 
-%rename(Swap) SwapHandle;
-class SwapHandle : public Handle<Instrument> {
+%rename(Swap) SwapPtr;
+class SwapPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
-        SwapHandle(const std::vector<Handle<CashFlow> >& firstLeg,
-                   const std::vector<Handle<CashFlow> >& secondLeg,
-                   const RelinkableHandle<TermStructure>& termStructure) {
-            return new SwapHandle(new Swap(firstLeg, secondLeg, 
-                                           termStructure));
+        SwapPtr(const std::vector<boost::shared_ptr<CashFlow> >& firstLeg,
+                const std::vector<boost::shared_ptr<CashFlow> >& secondLeg,
+                const RelinkableHandle<TermStructure>& termStructure) {
+            return new SwapPtr(new Swap(firstLeg, secondLeg, 
+                                        termStructure));
         }
         Date startDate() {
             return boost::dynamic_pointer_cast<Swap>(*self)->startDate();
@@ -75,12 +75,12 @@ class FixedSwapLeg {
 };
 class FloatingSwapLeg {
   public:
-    FloatingSwapLeg(int floatingFrequency, XiborHandle index, 
+    FloatingSwapLeg(int floatingFrequency, XiborPtr index, 
                     int indexFixingDays, Spread spread)
     : floatingFrequency(floatingFrequency), index(index),
       indexFixingDays(indexFixingDays), spread(spread) {}
     int floatingFrequency;
-    XiborHandle index;
+    XiborPtr index;
     int indexFixingDays;
     Spread spread;
 };
@@ -88,8 +88,8 @@ class FloatingSwapLeg {
 #endif
 
 
-%rename(SimpleSwap) SimpleSwapHandle;
-class SimpleSwapHandle : public SwapHandle {
+%rename(SimpleSwap) SimpleSwapPtr;
+class SimpleSwapPtr : public SwapPtr {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("fair-rate")        fairRate;
     %rename("fair-spread")      fairSpread;
@@ -99,16 +99,15 @@ class SimpleSwapHandle : public SwapHandle {
   public:
     %extend {
     #if defined(SWIGRUBY)
-        SimpleSwapHandle(bool payFixedRate, const Date& startDate, 
-                         int n, TimeUnit unit, const Calendar& calendar, 
-                         RollingConvention rollingConvention, double nominal,
-                         const FixedSwapLeg& fixedLeg,
-                         const FloatingSwapLeg& floatingLeg,
-                         const RelinkableHandle<TermStructure>& 
-                                                             termStructure) {
-            Handle<Xibor> libor = 
+        SimpleSwapPtr(bool payFixedRate, const Date& startDate, 
+                      int n, TimeUnit unit, const Calendar& calendar, 
+                      RollingConvention rollingConvention, double nominal,
+                      const FixedSwapLeg& fixedLeg,
+                      const FloatingSwapLeg& floatingLeg,
+                      const RelinkableHandle<TermStructure>& termStructure) {
+            boost::shared_ptr<Xibor> libor = 
                  boost::dynamic_pointer_cast<Xibor>(floatingLeg.index);
-            return new SimpleSwapHandle(
+            return new SimpleSwapPtr(
                 new SimpleSwap(
                     payFixedRate, startDate, n, unit, calendar,
                     rollingConvention, nominal, 
@@ -119,33 +118,33 @@ class SimpleSwapHandle : public SwapHandle {
                     termStructure));
         }
     #else
-        SimpleSwapHandle(bool payFixedRate, const Date& startDate, 
-                         int n, TimeUnit unit, const Calendar& calendar, 
-                         RollingConvention rollingConvention, double nominal, 
-                         int fixedFrequency, Rate fixedRate,
-                         bool fixedIsAdjusted, const DayCounter& fixedDayCount,
-                         int floatingFrequency, const XiborHandle& index, 
-                         int indexFixingDays, Spread spread, 
-                         const RelinkableHandle<TermStructure>& 
-                                                            termStructure) {
-            Handle<Xibor> libor = boost::dynamic_pointer_cast<Xibor>(index);
-            return new SimpleSwapHandle(
+        SimpleSwapPtr(bool payFixedRate, const Date& startDate, 
+                      int n, TimeUnit unit, const Calendar& calendar, 
+                      RollingConvention rollingConvention, double nominal, 
+                      int fixedFrequency, Rate fixedRate,
+                      bool fixedIsAdjusted, const DayCounter& fixedDayCount,
+                      int floatingFrequency, const XiborPtr& index, 
+                      int indexFixingDays, Spread spread, 
+                      const RelinkableHandle<TermStructure>& termStructure) {
+            boost::shared_ptr<Xibor> libor = 
+                boost::dynamic_pointer_cast<Xibor>(index);
+            return new SimpleSwapPtr(
                 new SimpleSwap(payFixedRate, startDate, n, unit, calendar,
                                rollingConvention, nominal, fixedFrequency, 
                                fixedRate, fixedIsAdjusted, fixedDayCount, 
                                floatingFrequency, libor, indexFixingDays, 
                                spread, termStructure));
         }
-        SimpleSwapHandle(bool payFixedRate, double nominal, 
-                         const Schedule& fixedSchedule, Rate fixedRate,
-                         const DayCounter& fixedDayCount,
-                         const Schedule& floatSchedule,
-                         const XiborHandle& index,
-                         int indexFixingDays, Spread spread,
-                         const RelinkableHandle<TermStructure>& 
-                                                          termStructure) {
-            Handle<Xibor> libor = boost::dynamic_pointer_cast<Xibor>(index);
-            return new SimpleSwapHandle(
+        SimpleSwapPtr(bool payFixedRate, double nominal, 
+                      const Schedule& fixedSchedule, Rate fixedRate,
+                      const DayCounter& fixedDayCount,
+                      const Schedule& floatSchedule,
+                      const XiborPtr& index,
+                      int indexFixingDays, Spread spread,
+                      const RelinkableHandle<TermStructure>& termStructure) {
+            boost::shared_ptr<Xibor> libor = 
+                boost::dynamic_pointer_cast<Xibor>(index);
+            return new SimpleSwapPtr(
                 new SimpleSwap(payFixedRate,nominal,fixedSchedule,fixedRate,
                                fixedDayCount,floatSchedule,libor,
                                indexFixingDays,spread,termStructure));

@@ -29,25 +29,26 @@ using QuantLib::StochasticProcess;
 %ignore StochasticProcess;
 class StochasticProcess {};
 
-%template(StochasticProcess) Handle<StochasticProcess>;
+%template(StochasticProcess) boost::shared_ptr<StochasticProcess>;
 
 %{
 using QuantLib::BlackScholesStochasticProcess;
 using QuantLib::Merton76StochasticProcess;
-typedef Handle<StochasticProcess> BlackScholesStochasticProcessHandle;
-typedef Handle<StochasticProcess> Merton76StochasticProcessHandle;
+typedef boost::shared_ptr<StochasticProcess> BlackScholesStochasticProcessPtr;
+typedef boost::shared_ptr<StochasticProcess> Merton76StochasticProcessPtr;
 %}
 
-%rename(BlackScholesStochasticProcess) BlackScholesStochasticProcessHandle;
-class BlackScholesStochasticProcessHandle : public Handle<StochasticProcess> {
+%rename(BlackScholesStochasticProcess) BlackScholesStochasticProcessPtr;
+class BlackScholesStochasticProcessPtr 
+    : public boost::shared_ptr<StochasticProcess> {
   public:
     %extend {
-      BlackScholesStochasticProcessHandle(
+      BlackScholesStochasticProcessPtr(
                        const RelinkableHandle<Quote>& stateVariable,
                        const RelinkableHandle<TermStructure>& dividendTS,
                        const RelinkableHandle<TermStructure>& riskFreeTS,
                        const RelinkableHandle<BlackVolTermStructure>& volTS) {
-          return new BlackScholesStochasticProcessHandle(
+          return new BlackScholesStochasticProcessPtr(
                               new BlackScholesStochasticProcess(stateVariable,
                                                                 dividendTS,
                                                                 riskFreeTS,
@@ -56,11 +57,12 @@ class BlackScholesStochasticProcessHandle : public Handle<StochasticProcess> {
     }
 };
 
-%rename(Merton76StochasticProcess) Merton76StochasticProcessHandle;
-class Merton76StochasticProcessHandle : public Handle<StochasticProcess> {
+%rename(Merton76StochasticProcess) Merton76StochasticProcessPtr;
+class Merton76StochasticProcessPtr 
+    : public boost::shared_ptr<StochasticProcess> {
   public:
     %extend {
-      Merton76StochasticProcessHandle(
+      Merton76StochasticProcessPtr(
                        const RelinkableHandle<Quote>& stateVariable,
                        const RelinkableHandle<TermStructure>& dividendTS,
                        const RelinkableHandle<TermStructure>& riskFreeTS,
@@ -68,7 +70,7 @@ class Merton76StochasticProcessHandle : public Handle<StochasticProcess> {
                        const RelinkableHandle<Quote>& jumpIntensity, 
                        const RelinkableHandle<Quote>& meanLogJump,
                        const RelinkableHandle<Quote>& jumpVolatility) {
-            return new Merton76StochasticProcessHandle(
+            return new Merton76StochasticProcessPtr(
                               new Merton76StochasticProcess(stateVariable,
                                                             dividendTS,
                                                             riskFreeTS,

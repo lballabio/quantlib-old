@@ -38,8 +38,8 @@ class CashFlow {
     Date date() const;
 };
 
-%template(CashFlow) Handle<CashFlow>;
-IsObservable(Handle<CashFlow>);
+%template(CashFlow) boost::shared_ptr<CashFlow>;
+IsObservable(boost::shared_ptr<CashFlow>);
 
 
 // implementations
@@ -48,32 +48,31 @@ IsObservable(Handle<CashFlow>);
 using QuantLib::SimpleCashFlow;
 using QuantLib::FixedRateCoupon;
 using QuantLib::ParCoupon;
-typedef Handle<CashFlow> SimpleCashFlowHandle;
-typedef Handle<CashFlow> FixedRateCouponHandle;
-typedef Handle<CashFlow> ParCouponHandle;
+typedef boost::shared_ptr<CashFlow> SimpleCashFlowPtr;
+typedef boost::shared_ptr<CashFlow> FixedRateCouponPtr;
+typedef boost::shared_ptr<CashFlow> ParCouponPtr;
 %}
 
-%rename(SimpleCashFlow) SimpleCashFlowHandle;
-class SimpleCashFlowHandle : public Handle<CashFlow> {
+%rename(SimpleCashFlow) SimpleCashFlowPtr;
+class SimpleCashFlowPtr : public boost::shared_ptr<CashFlow> {
   public:
     %extend {
-        SimpleCashFlowHandle(double amount, const Date& date) {
-            return new SimpleCashFlowHandle(
-                new SimpleCashFlow(amount,date));
+        SimpleCashFlowPtr(double amount, const Date& date) {
+            return new SimpleCashFlowPtr(new SimpleCashFlow(amount,date));
         }
     }
 };
 
-%rename(FixedRateCoupon) FixedRateCouponHandle;
-class FixedRateCouponHandle : public Handle<CashFlow> {
+%rename(FixedRateCoupon) FixedRateCouponPtr;
+class FixedRateCouponPtr : public boost::shared_ptr<CashFlow> {
   public:
     %extend {
-        FixedRateCouponHandle(double nominal, const Date& paymentDate, 
-                              Rate rate, const DayCounter& dayCounter, 
-                              const Date& startDate, const Date& endDate,
-                              const Date& refPeriodStart = Date(), 
-                              const Date& refPeriodEnd = Date()) {
-            return new FixedRateCouponHandle(
+        FixedRateCouponPtr(double nominal, const Date& paymentDate, 
+                           Rate rate, const DayCounter& dayCounter, 
+                           const Date& startDate, const Date& endDate,
+                           const Date& refPeriodStart = Date(), 
+                           const Date& refPeriodEnd = Date()) {
+            return new FixedRateCouponPtr(
                 new FixedRateCoupon(nominal, paymentDate, rate, 
                                     dayCounter, startDate, endDate, 
                                     refPeriodStart, refPeriodEnd));
@@ -81,18 +80,19 @@ class FixedRateCouponHandle : public Handle<CashFlow> {
     }
 };
 
-%rename(ParCoupon) ParCouponHandle;
-class ParCouponHandle : public Handle<CashFlow> {
+%rename(ParCoupon) ParCouponPtr;
+class ParCouponPtr : public boost::shared_ptr<CashFlow> {
   public:
     %extend {
-        ParCouponHandle(double nominal, const Date& paymentDate, 
-                        const XiborHandle& index, 
-                        const Date& startDate, const Date& endDate, 
-                        int fixingDays, Spread spread = 0.0, 
-                        const Date& refPeriodStart = Date(), 
-                        const Date& refPeriodEnd = Date()) {
-            Handle<Xibor> libor = boost::dynamic_pointer_cast<Xibor>(index);
-            return new ParCouponHandle(
+        ParCouponPtr(double nominal, const Date& paymentDate, 
+                     const XiborPtr& index, 
+                     const Date& startDate, const Date& endDate, 
+                     int fixingDays, Spread spread = 0.0, 
+                     const Date& refPeriodStart = Date(), 
+                     const Date& refPeriodEnd = Date()) {
+            boost::shared_ptr<Xibor> libor = 
+                boost::dynamic_pointer_cast<Xibor>(index);
+            return new ParCouponPtr(
                 new ParCoupon(nominal, paymentDate, libor,
                               startDate, endDate, fixingDays, spread,
                               refPeriodStart, refPeriodEnd));
@@ -118,7 +118,7 @@ class ParCouponHandle : public Handle<CashFlow> {
 };
 
 namespace std {
-    %template(CashFlowVector) vector<Handle<CashFlow> >;
+    %template(CashFlowVector) vector<boost::shared_ptr<CashFlow> >;
 }
 
 // cash flow vector builders
@@ -127,7 +127,7 @@ namespace std {
 using QuantLib::FixedRateCouponVector;
 %}
 
-std::vector<Handle<CashFlow> > 
+std::vector<boost::shared_ptr<CashFlow> > 
 FixedRateCouponVector(const Schedule& schedule, 
                       const std::vector<double>& nominals,
                       const std::vector<Rate>& couponRates,
@@ -136,13 +136,14 @@ FixedRateCouponVector(const Schedule& schedule,
                         = DayCounter());
 
 %inline %{
-std::vector<Handle<CashFlow> > 
+std::vector<boost::shared_ptr<CashFlow> > 
 FloatingRateCouponVector(const Schedule& schedule,
                          const std::vector<double>& nominals,
-                         const XiborHandle& index, int fixingDays,
+                         const XiborPtr& index, int fixingDays,
                          const std::vector<Spread>& spreads = 
                              std::vector<Spread>()) {
-    Handle<Xibor> libor = boost::dynamic_pointer_cast<Xibor>(index);
+    boost::shared_ptr<Xibor> libor = 
+        boost::dynamic_pointer_cast<Xibor>(index);
     return QuantLib::FloatingRateCouponVector(schedule,nominals,libor,
                                               fixingDays,spreads);
 }
