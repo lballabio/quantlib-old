@@ -147,8 +147,10 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 return ts;
                 break;
             case 2:
+/*
                 dynamic_cast<BlackVarianceCurve*>(ts)->setInterpolation(
                     CubicSpline());
+*/
                 return ts;
                 break;
             default:
@@ -179,7 +181,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 return ts;
                 break;
             case 2:
-                ts->setInterpolation();
+//                ts->setInterpolation();
                 return ts;
                 break;
             default:

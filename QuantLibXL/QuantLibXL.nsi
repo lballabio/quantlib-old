@@ -10,7 +10,7 @@
 # $Id$
 
 
-!define VER_NUMBER "0.3.4a1"
+!define VER_NUMBER "0.3.4"
 
 # HEADER CONFIGURATION COMMANDS
 !ifdef LIGHT
@@ -60,9 +60,6 @@ SectionIn 1 2 3
     File "News.txt"
     File "README.txt"
     File "TODO.txt"
-
-    SetOutPath  $INSTDIR\qlxl
-    File /r "qlxl\*.hpp"
 
     SetOutPath $INSTDIR\xll\Win32\VisualStudio
     File "xll\Win32\VisualStudio\QuantLibXL.xll"
@@ -118,6 +115,7 @@ SectionIn 1
   File QuantLibXL.nsi
 
   SetOutPath  $INSTDIR\qlxl
+  File /r "qlxl\*.hpp"
   File /r "qlxl\*.cpp"
   File /r "qlxl\makefile.mak"
 
