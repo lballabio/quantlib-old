@@ -23,8 +23,21 @@
 (define version "$Revision$")
 
 (use-modules (QuantLib))
+(load "common.scm")
 
 (define (Distribution-test)
+  (define (check-difference f1 f2 h tolerance f1-name f2-name)
+    (let ((e (norm (difference f1 f2) h)))
+      (if (> e tolerance)
+          (let ((error-msg
+                 (string-append
+                  (format #f "norm of ~A minus ~A: ~A:\n"
+                          f1-name f2-name e)
+                  (format #f "tolerance exceeded\n"))))
+            (error error-msg)))))
+  (define (difference f1 f2)
+    (map - f1 f2))
+
   (let ((average 0.0)
         (sigma 1.0)
         (N 10001))
@@ -82,42 +95,4 @@
             (check-difference yd yd-temp h 1.0e-16
                               "C++ NormalDist.derivative"
                               "analytic Gaussian derivative")))))))
-
-
-(define (grid-step xmin xmax N)
-  (/ (- xmax xmin) (- N 1)))
-
-(define (grid xmin xmax N)
-  (let ((h (grid-step xmin xmax N)))
-    (define (loop i accum)
-      (if (= i N)
-          accum
-          (loop (+ i 1) (cons (+ xmin (* h i)) accum))))
-    (loop 0 '())))
-
-
-(define (check-difference f1 f2 h tolerance f1-name f2-name)
-  (let ((e (norm (difference f1 f2) h)))
-    (if (> e tolerance)
-        (let ((error-msg
-               (string-append
-                (format #f "norm of ~A minus ~A: ~A:\n"
-                        f1-name f2-name e)
-                (format #f "tolerance exceeded\n"))))
-          (error error-msg)))))
-
-(define (difference f1 f2)
-  (map - f1 f2))
-
-(define (norm f h)
-  (let ((f^2 (map (lambda (x) (* x x)) f)))
-    (integral f^2 h)))
-
-(define (integral f h)
-  (let ((first (car f))
-        (last (list-ref f (- (length f) 1))))
-    (sqrt (* h (- (sum f) (* 0.5 first) (* 0.5 last))))))
-
-(define (sum f)
-  (apply + f))
 

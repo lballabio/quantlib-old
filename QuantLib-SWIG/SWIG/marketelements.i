@@ -43,12 +43,12 @@ IsObservable(Handle<MarketElement>);
 IsObservable(RelinkableHandle<MarketElement>);
 #if defined(SWIGGUILE)
 %scheme%{
-(define MarketElementHandle-old-init new-MarketElementHandle)
-(define (new-MarketElementHandle . args)
-  (let ((h (MarketElementHandle-old-init)))
-    (if (not (null? args))
-        (MarketElementHandle-link-to! h (car args)))
-    h))
+    (define MarketElementHandle-old-init new-MarketElementHandle)
+    (define (new-MarketElementHandle . args)
+      (let ((h (MarketElementHandle-old-init)))
+        (if (not (null? args))
+          (MarketElementHandle-link-to! h (car args)))
+        h))
 %}
 #endif
 

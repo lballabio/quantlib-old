@@ -44,8 +44,8 @@
         (normal (new-NormalDistribution average sigma)))
     (let ((data-min (- average (* sigmas sigma)))
           (data-max (+ average (* sigmas sigma))))
-      (let ((h (risk-stat-grid-step data-min data-max N))
-            (data (risk-stat-grid data-min data-max N)))
+      (let ((h (grid-step data-min data-max N))
+            (data (grid data-min data-max N)))
         (let ((weights (map gaussian data)))
           (RiskStatistics-add-weighted-sequence stats data weights)
           (check "number of samples"
@@ -133,15 +133,4 @@
                        (* 1.0e-4 right-avg-shortfall))))
               (delete-CumulativeNormalDistribution cum))))))
   (RiskStatistics-reset! stats))
-
-(define (risk-stat-grid-step xmin xmax N)
-  (/ (- xmax xmin) (- N 1)))
-
-(define (risk-stat-grid xmin xmax N)
-  (let ((h (grid-step xmin xmax N)))
-    (define (loop i accum)
-      (if (= i N)
-          accum
-          (loop (+ i 1) (cons (+ xmin (* h i)) accum))))
-    (loop 0 '())))
 

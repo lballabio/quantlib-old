@@ -115,4 +115,5 @@ template<class RNG, class F> class ICGaussianRng {
 %template(InvCumulativeKnuthGaussianRng)
     ICGaussianRng<KnuthUniformRng,InvCumulativeNormalDistribution>;
 
+
 #endif

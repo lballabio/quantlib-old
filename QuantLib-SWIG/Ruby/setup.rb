@@ -62,24 +62,30 @@ Sources  =    [ 'QuantLib.rb', 'quantlib_wrap.cpp' ]
 Binaries =    [ 'QuantLibc.so' ]
 Scripts  =    [ 'setup.rb' ]
 
-Interfaces =  [ 'common.i',
+Interfaces =  [ 'quantlib.i',
+                'common.i',
                 'calendars.i',
                 'currencies.i',
                 'date.i',
                 'daycounters.i',
                 'distributions.i',
                 'functions.i',
-                'instruments.i',
                 'history.i',
+                'instruments.i',
+                'interpolation.i',
                 'marketelements.i',
+                'matrix.i',
                 'null.i',
                 'observer.i',
-                'quantlib.i',
+                'operators.i',
                 'ql.i',
                 'qlarray.i',
                 'randomnumbers.i',
                 'riskstatistics.i',
+                'segmentintegral.i',
                 'solvers1d.i',
+                'statistics.i',
+                'termstructures.i',
                 'types.i',
                 'vectors.i']
 
@@ -88,8 +94,12 @@ Tests =       [ 'dates.rb',
                 'distributions.rb',
                 'instruments.rb',
                 'marketelements.rb',
+		'operators.rb',
                 'riskstatistics.rb',
+                'segmentintegral.rb',
                 'solvers1d.rb',
+                'statistics.rb',
+                'termstructures.rb',
                 'QuantLibTestSuite.rb' ]
 
 # commands
@@ -150,7 +160,10 @@ Build = Command.new {
         $CPPFLAGS += ENV['CXXFLAGS'] || ""
     	$CPPFLAGS += " -I/usr/local/include"
     	$libs     += " -lQuantLib"
-    	cfg['LDSHARED'] = cfg['LDSHARED'].sub('gcc','g++')
+        old_cc = cfg['CC']
+        cfg['CC'] = ENV['CC'] || "g++"
+        cfg['CPP'].sub!(old_cc,cfg['CC'])
+    	cfg['LDSHARED'].sub!(old_cc,cfg['CC'])
       else
         puts "Unknown host: " + cfg['host_os']
     end

@@ -23,12 +23,15 @@ import new
 import code
 import types
 
+# static methods
 if sys.hexversion >= 0x020200a0:
     Date.isLeap  = staticmethod(Date_isLeap)
     Date.minDate = staticmethod(Date_minDate)
     Date.maxDate = staticmethod(Date_maxDate)
     Date.todaysDate = staticmethod(Date_todaysDate)
+    TridiagonalOperator.identity = staticmethod(TridiagonalOperator_identity)
 
+#interface enhancements
 History._old___init__ = History.__init__
 def History_new___init__(self,dates,values):
     values = values[:]
@@ -48,4 +51,16 @@ def MarketElementHandle_new_linkTo(self,h):
     self.currentLink = h
 MarketElementHandle.__init__ = MarketElementHandle_new___init__
 MarketElementHandle.linkTo = MarketElementHandle_new_linkTo
+
+TermStructureHandle._old___init__ = TermStructureHandle.__init__
+TermStructureHandle._old_linkTo = TermStructureHandle.linkTo
+def TermStructureHandle_new___init__(self,h=None):
+    self._old___init__()
+    if h:
+        self.linkTo(h)
+def TermStructureHandle_new_linkTo(self,h):
+    self._old_linkTo(h)
+    self.currentLink = h
+TermStructureHandle.__init__ = TermStructureHandle_new___init__
+TermStructureHandle.linkTo = TermStructureHandle_new_linkTo
 

@@ -21,39 +21,36 @@ __version__ = "$Revision$"
 import sys
 import unittest
 
+from date import DateTest
+from daycounters import DayCounterTest
+from distributions import DistributionTest
+from instruments import InstrumentTest
+from marketelements import MarketElementTest
+from operators import OperatorTest
+from riskstatistics import RiskStatisticsTest
+from segmentintegral import SegmentIntegralTest
+from solvers1d import Solver1DTest
+from statistics import StatisticsTest
+from termstructures import TermStructureTest
+
 def test():
     import QuantLib
     print 'testing QuantLib', QuantLib.__version__
 
     suite = unittest.TestSuite()
 
-    from date import DateTest
     suite.addTest(DateTest())
-
-    from daycounters import DayCounterTest
     suite.addTest(DayCounterTest())
-
-    from distributions import DistributionTest
     suite.addTest(DistributionTest())
-
-    from instruments import InstrumentTest
     suite.addTest(unittest.makeSuite(InstrumentTest,'test'))
-    
-    from marketelements import MarketElementTest
     suite.addTest(unittest.makeSuite(MarketElementTest,'test'))
-    
-    from riskstatistics import RiskStatisticsTest
+    suite.addTest(OperatorTest())
     suite.addTest(RiskStatisticsTest())
-
-    from segmentintegral import SegmentIntegralTest
     suite.addTest(SegmentIntegralTest())
-
-    from solvers1d import Solver1DTest
     suite.addTest(Solver1DTest())
-
-    from statistics import StatisticsTest
     suite.addTest(StatisticsTest())
-
+    suite.addTest(unittest.makeSuite(TermStructureTest,'test'))
+    
     result = unittest.TextTestRunner(verbosity=2).run(suite)
 
     if not result.wasSuccessful:

@@ -50,9 +50,8 @@ module QuantLibc
   
   # interface enhancements
   class Calendar
-    alias advance_units advance
     def advance(*args)
-      if args[1].kind_of? Integer
+      if args[1].is_a? Integer
         advance_units(*args)
       else
         advance_period(*args)
@@ -76,8 +75,7 @@ module QuantLibc
   class History
     alias cpp_initialize initialize
     def initialize(dates,values)
-      vs = []
-      values.each { |v| vs.push(v || QuantLibc::nullDouble) }
+      vs = values.map { |v| v || QuantLibc::nullDouble }
       cpp_initialize(dates,vs)
     end
   end
@@ -88,6 +86,40 @@ module QuantLibc
       cpp_initialize()
       unless marketElement.nil?
         linkTo! marketElement
+      end
+    end
+  end
+
+  class TermStructure
+    def discount(x,extrapolate=false)
+      if (x.is_a? Float) || (x.is_a? Integer)
+        discount_vs_time(x,extrapolate)
+      else
+        discount_vs_date(x,extrapolate)
+      end
+    end
+    def zeroYield(x,extrapolate=false)
+      if (x.is_a? Float) || (x.is_a? Integer)
+        zeroYield_vs_time(x,extrapolate)
+      else
+        zeroYield_vs_date(x,extrapolate)
+      end
+    end
+    def forward(x,extrapolate=false)
+      if (x.is_a? Float) || (x.is_a? Integer)
+        forward_vs_time(x,extrapolate)
+      else
+        forward_vs_date(x,extrapolate)
+      end
+    end
+  end
+
+  class TermStructureHandle
+    alias cpp_initialize initialize
+    def initialize(termStructure = nil)
+      cpp_initialize()
+      unless termStructure.nil?
+        linkTo! termStructure
       end
     end
   end

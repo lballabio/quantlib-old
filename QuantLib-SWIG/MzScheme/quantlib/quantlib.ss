@@ -3,7 +3,7 @@
 (load-extension (build-path (collection-path "quantlib") 
                             (append-extension-suffix "QuantLibc")))
 
-; more scheme-like names which could'n be set from SWIG
+; more scheme-like names which couldn't be set from SWIG
 
 (define calendar=? calendar-equal)
 
@@ -18,13 +18,23 @@
 (define samplenumber-value  samplenumber-value-get)
 (define samplenumber-weight samplenumber-weight-get)
 
+(define tridiagonaloperator+ tridiagonaloperator-add)
+(define tridiagonaloperator- tridiagonaloperator-sub)
+(define tridiagonaloperator* tridiagonaloperator-mul)
+(define tridiagonaloperator/ tridiagonaloperator-div)
+
 ; added functionality
-(define Calendar-advance-units Calendar-advance)
 (define (Calendar-advance . args)
   (if (integer? (caddr args))
       (apply Calendar-advance-units args)
       (apply Calendar-advance-period args)))
 
+
+(define History-old-init new-History)
+(define (new-History dates values)
+  (let ((null (null-double)))
+    (History-old-init dates
+                      (map (lambda (x) (or x null)) values))))
 (define (History-map h f)
   (let ((results '()))
     (History-for-each h (lambda (e)
@@ -43,4 +53,30 @@
   (let ((h (MarketElementHandle-old-init)))
     (if (not (null? args))
         (MarketElementHandle-link-to! h (car args)))
+    h))
+
+(define (TermStructure-discount self x . extrapolate)
+  (let ((method #f))
+    (if (number? x)
+        (set! method TermStructure-discount-vs-time)
+        (set! method TermStructure-discount-vs-date))
+    (apply method (cons self (cons x extrapolate)))))
+(define (TermStructure-zero-yield self x . extrapolate)
+  (let ((method #f))
+    (if (number? x)
+        (set! method TermStructure-zeroYield-vs-time)
+        (set! method TermStructure-zeroYield-vs-date))
+    (apply method (cons self (cons x extrapolate)))))
+(define (TermStructure-forward self x . extrapolate)
+  (let ((method #f))
+    (if (number? x)
+        (set! method TermStructure-forward-vs-time)
+        (set! method TermStructure-forward-vs-date))
+    (apply method (cons self (cons x extrapolate)))))
+
+(define TermStructureHandle-old-init new-TermStructureHandle)
+(define (new-TermStructureHandle . args)
+  (let ((h (TermStructureHandle-old-init)))
+    (if (not (null? args))
+        (TermStructureHandle-link-to! h (car args)))
     h))

@@ -20,6 +20,7 @@
 #ifndef quantlib_day_counters_i
 #define quantlib_day_counters_i
 
+%include common.i
 %include date.i
 %include types.i
 %include stl.i
@@ -47,8 +48,9 @@ using QuantLib::DayCounters::ActualActual;
 #endif
 
 class DayCounter {
+  private:
+    DayCounter();
   public:
-    // constructor redefined below as string-based factory
     int dayCount(const Date& d1, const Date& d2);
     Time yearFraction(const Date& d1, const Date& d2,
                       const Date& startRef = NullDate, 
@@ -97,6 +99,7 @@ class DayCounter {
    
 }
 
+ReturnByValue(DayCounter);
 
 
 #endif

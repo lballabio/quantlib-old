@@ -26,10 +26,12 @@
 (load "distributions.scm")
 (load "instruments.scm")
 (load "marketelements.scm")
+(load "operators.scm")
 (load "riskstatistics.scm")
 (load "segmentintegral.scm")
 (load "solvers1d.scm")
 (load "statistics.scm")
+(load "termstructures.scm")
 
 (let ((suite (make-suite)))
   (suite-add-test suite Date-test
@@ -48,6 +50,8 @@
                   "Testing composite market elements")
   (suite-add-test suite Market-element-handle-test
                   "Testing observability of market element handles")
+  (suite-add-test suite Operator-test
+                  "Testing differential operators")
   (suite-add-test suite Risk-statistics-test
                   "Testing risk statistics")
   (suite-add-test suite Segment-integral-test
@@ -56,5 +60,17 @@
                   "Testing 1D solvers")
   (suite-add-test suite Statistics-test
                   "Testing statistics")
+  (suite-add-test suite Term-structure-test-1
+                  "Testing consistency of implied term structure")
+  (suite-add-test suite Term-structure-test-2
+                  "Testing observability of implied term structure")
+  (suite-add-test suite Term-structure-test-3
+                  "Testing consistency of forward-spreaded term structure")
+  (suite-add-test suite Term-structure-test-4
+                  "Testing observability of forward-spreaded term structure")
+  (suite-add-test suite Term-structure-test-5
+                  "Testing consistency of zero-spreaded term structure")
+  (suite-add-test suite Term-structure-test-6
+                  "Testing observability of zero-spreaded term structure")
   (suite-run suite))
 

@@ -42,14 +42,20 @@ swig_files = ['../SWIG/quantlib.i',
               '../SWIG/functions.i',
               '../SWIG/history.i',
               '../SWIG/instruments.i',
+              '../SWIG/interpolation.i',
               '../SWIG/marketelements.i',
+              '../SWIG/matrix.i',
               '../SWIG/null.i',
               '../SWIG/observer.i',
+              '../SWIG/operators.i',
               '../SWIG/ql.i',
               '../SWIG/qlarray.i',
               '../SWIG/randomnumbers.i',
               '../SWIG/riskstatistics.i',
+              '../SWIG/segmentintegral.i',
               '../SWIG/solvers1d.i',
+              '../SWIG/statistics.i',
+              '../SWIG/termstructures.i',
               '../SWIG/types.i',
               '../SWIG/vectors.i']
 
@@ -59,8 +65,12 @@ test_files = ['QuantLib/test/QuantLibTestSuite.py',
               'QuantLib/test/distributions.py',
               'QuantLib/test/instruments.py',
               'QuantLib/test/marketelements.py',
+              'QuantLib/test/operators.py',
               'QuantLib/test/riskstatistics.py',
-              'QuantLib/test/solvers1d.py']
+              'QuantLib/test/segmentintegral.py',
+              'QuantLib/test/solvers1d.py',
+              'QuantLib/test/statistics.py',
+              'QuantLib/test/termstructures.py']
 
 class test(Command):
     # Original version of this class posted
@@ -286,8 +296,11 @@ else:
         print 'my_init_posix: changing gcc to g++'
         save_init_posix()
         g = sysconfig._config_vars
-        g['CC'] = 'g++'
-        g['LDSHARED'] = 'g++ -shared'
+        if os.environ.has_key('CC'):
+            g['CC'] = os.environ['CC']
+        else:
+            g['CC'] = 'g++'
+        g['LDSHARED'] = g['CC'] + ' -shared'
     sysconfig._init_posix = my_init_posix
 
 datafiles  = []

@@ -30,7 +30,8 @@
 								(list (cons (car args) (cadr args))))))
 	   ; run the test suite
 	   ((eqv? command 'run)
-		(letrec ((error-list '())
+		(letrec ((elapsed-time #f)
+                 (error-list '())
 				 (add-error
 				  (lambda (test-msg error-msg)
 					(set! error-list
@@ -57,13 +58,15 @@
                       (catch #t run-test handler))))
 				 (run-all-tests
 				  (lambda () (for-each run-single-test test-list))))
-          (run-all-tests) ; possible to time this?
-
-		  (display (length test-list)) (display " test(s) run.") (newline)
-		  (cond ((null? error-list) (display "All tests passed.") (newline))
+          (set! elapsed-time (tms:clock (times))) ; actually the start time
+          (run-all-tests)
+          (set! elapsed-time (/ (- (tms:clock (times)) elapsed-time) 100.0))
+          (format #t "~A test(s) run in ~A s.\n" 
+                  (length test-list) elapsed-time)
+		  (cond ((null? error-list) 
+                 (format #t "All tests passed.\n"))
 				(else
-				 (display (length error-list)) (display " failure(s).") 
-                 (newline)
+				 (format #t "~A failure(s).\n" (length error-list))
 				 (for-each
 				  (lambda (err)
 					(let ((test-msg (car err))

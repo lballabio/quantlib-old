@@ -31,7 +31,6 @@ using QuantLib::IndexError;
 %}
 
 #if defined(SWIGPYTHON)
-
 %{
 bool extractArray(PyObject* source, Array* target) {
     if (PyTuple_Check(source) || PyList_Check(source)) {
@@ -84,8 +83,112 @@ bool extractArray(PyObject* source, Array* target) {
         return NULL;
     }
 };
+#elif defined(SWIGRUBY)
+%typemap(in) Array {
+    if (rb_obj_is_kind_of($input,rb_cArray)) {
+        unsigned int size = RARRAY($input)->len;
+        $1 = Array(size);
+        for (unsigned int i=0; i<size; i++) {
+            VALUE o = RARRAY($input)->ptr[i];
+            if (TYPE(o) == T_FLOAT)
+                (($1_type &)$1)[i] = NUM2DBL(o);
+            else if (FIXNUM_P(o))
+                (($1_type &)$1)[i] = double(FIX2INT(o));
+            else
+                rb_raise(rb_eTypeError,
+                         "wrong argument type"
+                         " (expected Array)");
+        }
+    } else {
+        $1 = *(($&1_type) SWIG_ConvertPtr($input,$&1_descriptor));
+    }
+}
+%typemap(in) const Array& (Array temp),
+             const Array* (Array temp) {
+    if (rb_obj_is_kind_of($input,rb_cArray)) {
+        unsigned int size = RARRAY($input)->len;
+        temp = Array(size);
+        $1 = &temp;
+        for (unsigned int i=0; i<size; i++) {
+            VALUE o = RARRAY($input)->ptr[i];
+            if (TYPE(o) == T_FLOAT)
+                temp[i] = NUM2DBL(o);
+            else if (FIXNUM_P(o))
+                temp[i] = double(FIX2INT(o));
+            else
+                rb_raise(rb_eTypeError,
+                         "wrong argument type"
+                         " (expected Array)");
+        }
+    } else {
+        $1 = ($1_ltype) SWIG_ConvertPtr($input,$1_descriptor);
+    }
+}
+#elif defined(SWIGMZSCHEME)
+%typemap(in) Array {
+    if (SCHEME_VECTORP($input)) {
+        unsigned int size = SCHEME_VEC_SIZE($input);
+        $1 = Array(size);
+        Scheme_Object** items = SCHEME_VEC_ELS($input);
+        for (unsigned int i=0; i<size; i++) {
+            Scheme_Object* o = items[i];
+            if (SCHEME_REALP(o))
+                (($1_type &)$1)[i] = scheme_real_to_double(o);
+            else
+                scheme_wrong_type(FUNC_NAME, "Array", 
+                                  $argnum, argc, argv);
+        }
+    } else {
+        $1 = *(($&1_type)
+               SWIG_MustGetPtr($input,$&1_descriptor,$argnum));
+    }
+}
+%typemap(in) const Array& (Array temp),
+             const Array* (Array temp) {
+    if (SCHEME_VECTORP($input)) {
+        unsigned int size = SCHEME_VEC_SIZE($input);
+        temp = Array(size);
+        $1 = &temp;
+        Scheme_Object** items = SCHEME_VEC_ELS($input);
+        for (unsigned int i=0; i<size; i++) {
+            Scheme_Object* o = items[i];
+            if (SCHEME_REALP(o))
+                temp[i] = scheme_real_to_double(o);
+            else
+                scheme_wrong_type(FUNC_NAME, "Array", 
+                                  $argnum, argc, argv);
+        }
+    } else {
+        $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum);
+    }
+}
+#elif defined(SWIGGUILE)
+%typemap(in) Array {
+    if (gh_vector_p($input)) {
+        unsigned long size = gh_vector_length($input);
+        $1 = Array(size);
+        double* data = gh_scm2doubles($input,NULL);
+        std::copy(data,data+size,$1.begin());
+        free(data);
+    } else {
+        $1 = *(($&1_type)
+               SWIG_MustGetPtr($input,$&1_descriptor,$argnum));
+    }
+}
+%typemap(in) const Array& (Array temp),
+             const Array* (Array temp) {
+    if (gh_vector_p($input)) {
+        unsigned long size = gh_vector_length($input);
+        temp = Array(size);
+        $1 = &temp;
+        double* data = gh_scm2doubles($input,NULL);
+        std::copy(data,data+size,temp.begin());
+        free(data);
+    } else {
+        $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum);
+    }
+}
 #endif
-
 
 #if defined(SWIGPYTHON) || defined(SWIGRUBY)
 %rename(__len__) size;
@@ -100,7 +203,7 @@ ReturnByValue(Array);
 
 class Array {
   public:
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    #if !defined(SWIGPYTHON)
     Array(Size n, double fill = 0);
     #endif
     Size size() const;
@@ -145,27 +248,6 @@ class Array {
     #endif
 
     #if defined(SWIGRUBY)
-    Array(VALUE v) {
-        if (rb_obj_is_kind_of(v,rb_cArray)) {
-            int size = RARRAY(v)->len;
-            Array* temp = new Array(size);
-            for (int i=0; i<size; i++) {
-                VALUE o = RARRAY(v)->ptr[i];
-                if (FIXNUM_P(o))
-                    (*temp)[i] = double(FIX2INT(o));
-                else if (TYPE(o) == T_FLOAT)
-                    (*temp)[i] = NUM2DBL(o);
-                else
-                    rb_raise(rb_eTypeError,
-                             "wrong argument type (expected numbers)");
-            }
-            return temp;
-        } else {
-            rb_raise(rb_eTypeError,
-                     "wrong argument type (expected array)");
-        }
-        QL_DUMMY_RETURN((Array*)0);
-    }
     void each() {
         for (int i=0; i<self->size(); i++)
             rb_yield(rb_float_new((*self)[i]));

@@ -25,10 +25,12 @@ require 'daycounters'
 require 'distributions'
 require 'instruments'
 require 'marketelements'
+require 'operators'
 require 'riskstatistics'
 require 'segmentintegral'
 require 'solvers1d'
 require 'statistics'
+require 'termstructures'
 
 suite = RUNIT::TestSuite.new
 suite.add_test(DateTest.suite)
@@ -37,10 +39,12 @@ suite.add_test(DistributionTest.suite)
 suite.add_test(InstrumentTest.suite)
 suite.add_test(MarketElementTest.suite)
 suite.add_test(MarketElementHandleTest.suite)
+suite.add_test(OperatorTest.suite)
 suite.add_test(RiskStatisticsTest.suite)
 suite.add_test(SegmentIntegralTest.suite)
 suite.add_test(Solver1DTest.suite)
 suite.add_test(StatisticsTest.suite)
+suite.add_test(TermStructureTest.suite)
 
 result = RUNIT::CUI::TestRunner.run(suite)
 unless result.succeed?

@@ -184,7 +184,15 @@ class History {
     Date firstDate() const;
     Date lastDate() const;
 };
-
+#if defined(SWIGGUILE)
+%scheme %{
+    (define History-old-init new-History)
+    (define (new-History dates values)
+      (let ((null (null-double)))
+        (History-old-init dates
+                          (map (lambda (x) (or x null)) values))))
+%}
+#endif
 %extend History {
     Size __len__() {
         return self->size();

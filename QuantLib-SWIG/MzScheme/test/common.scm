@@ -28,3 +28,25 @@
               (format "    calculated: ~a~n" calculated)
               (format "    expected:   ~a~n" expected))))
         (error error-msg))))
+
+; make a grid
+(define (grid-step xmin xmax N)
+  (/ (- xmax xmin) (- N 1)))
+(define (grid xmin xmax N)
+  (define (up-to n1 n2)
+    (if (> n1 n2)
+        '()
+        (cons n1 (up-to (+ n1 1) n2))))
+  (let ((h (grid-step xmin xmax N)))
+    (map (lambda (i) (+ xmin (* h i))) (up-to 0 (- N 1)))))
+
+; norm of a discretized function
+(define (norm f h)
+  (define (sum f)
+    (apply + f))
+  (define (integral f h)
+    (let ((first (car f))
+          (last (list-ref f (- (length f) 1))))
+      (sqrt (* h (- (sum f) (* 0.5 first) (* 0.5 last))))))
+  (let ((f^2 (map (lambda (x) (* x x)) f)))
+    (integral f^2 h)))

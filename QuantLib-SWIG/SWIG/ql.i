@@ -61,11 +61,14 @@
 %include matrix.i
 %include null.i
 %include observer.i
+%include operators.i
 %include qlarray.i
 %include randomnumbers.i
 %include riskstatistics.i
 %include segmentintegral.i
 %include solvers1d.i
 %include statistics.i
+%include termstructures.i
 %include types.i
+%include vectors.i
 
