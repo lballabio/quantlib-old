@@ -19,11 +19,12 @@
 #pragma warning(disable: 4503)
 #endif
 
-#include "Addins/C++/qladdincpp.hpp"
+#include <Addins/C++/qladdincpp.hpp>
 #include <iostream>
-using namespace std;
+
 using namespace ObjHandler;
 using namespace QuantLib;
+using namespace std;
 
 int main() {
 	try {

@@ -7,19 +7,19 @@
 CFG=AddinCalc - Win32 Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE
+!MESSAGE 
 !MESSAGE NMAKE /f "AddinCalc.mak".
-!MESSAGE
+!MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE
+!MESSAGE 
 !MESSAGE NMAKE /f "AddinCalc.mak" CFG="AddinCalc - Win32 Debug"
-!MESSAGE
+!MESSAGE 
 !MESSAGE Possible choices for configuration are:
-!MESSAGE
+!MESSAGE 
 !MESSAGE "AddinCalc - Win32 Release" (based on "Win32 (x86) External Target")
 !MESSAGE "AddinCalc - Win32 Debug" (based on "Win32 (x86) External Target")
-!MESSAGE
+!MESSAGE 
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -28,7 +28,7 @@ CFG=AddinCalc - Win32 Debug
 
 !IF  "$(CFG)" == "AddinCalc - Win32 Release"
 
-# PROP BASE Use_MFC
+# PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
 # PROP BASE Output_Dir "Release"
 # PROP BASE Intermediate_Dir "Release"
@@ -37,7 +37,7 @@ CFG=AddinCalc - Win32 Debug
 # PROP BASE Target_File "AddinCalc.exe"
 # PROP BASE Bsc_Name "AddinCalc.bsc"
 # PROP BASE Target_Dir ""
-# PROP Use_MFC
+# PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "Release"
 # PROP Intermediate_Dir "Release"
@@ -49,7 +49,7 @@ CFG=AddinCalc - Win32 Debug
 
 !ELSEIF  "$(CFG)" == "AddinCalc - Win32 Debug"
 
-# PROP BASE Use_MFC
+# PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
 # PROP BASE Output_Dir "Debug"
 # PROP BASE Intermediate_Dir "Debug"
@@ -58,7 +58,7 @@ CFG=AddinCalc - Win32 Debug
 # PROP BASE Target_File "AddinCalc.exe"
 # PROP BASE Bsc_Name "AddinCalc.bsc"
 # PROP BASE Target_Dir ""
-# PROP Use_MFC
+# PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
 # PROP Output_Dir "Debug"
 # PROP Intermediate_Dir "Debug"
@@ -68,7 +68,7 @@ CFG=AddinCalc - Win32 Debug
 # PROP Bsc_Name ""
 # PROP Target_Dir ""
 
-!ENDIF
+!ENDIF 
 
 # Begin Target
 
@@ -79,19 +79,11 @@ CFG=AddinCalc - Win32 Debug
 
 !ELSEIF  "$(CFG)" == "AddinCalc - Win32 Debug"
 
-!ENDIF
+!ENDIF 
 
-# Begin Source File
-
-SOURCE=.\AddinCalc.dsp
-# End Source File
 # Begin Source File
 
 SOURCE=.\functions.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\Makefile
 # End Source File
 # Begin Source File
 
@@ -111,7 +103,7 @@ SOURCE=.\qldefs.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\Addin.idl
+SOURCE=.\QuantLibAddin.idl
 # End Source File
 # Begin Source File
 

@@ -6,12 +6,13 @@ module com {
     module star {
       module sheet {
         module addin {
-            interface XQL: com::sun::star::uno::XInterface
-            {
+            interface XQL: com::sun::star::uno::XInterface {
+
 				long incrementNum( [in] long nValue )
 					raises( com::sun::star::lang::IllegalArgumentException );
 
 				// pricers
+
 				sequence < sequence < any > > qlBlackScholes(
                         [in] string handle,
                         [in] double dividendYield,
@@ -39,6 +40,7 @@ module com {
 					raises( com::sun::star::lang::IllegalArgumentException );
 
 				// utilities
+
 				sequence < sequence < any > > qlQuery(
                         [in] string handleObject)
 					raises( com::sun::star::lang::IllegalArgumentException );
@@ -46,6 +48,7 @@ module com {
 				string qlLogfile(
                         [in] string logFileName)
 					raises( com::sun::star::lang::IllegalArgumentException );
+
             };
         };
       };

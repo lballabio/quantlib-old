@@ -1,13 +1,27 @@
+/*
+ Copyright (C) 2004 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
 #include "utilities.hpp"
 #include <string>
 #include <sstream>
-#include "QuantLibAddin/ObjectOption.hpp"
+#include "QuantLibAddin/objectoption.hpp"
 using std::ostringstream;
 using std::string;
 using namespace ObjHandler;
 using namespace QuantLib;
-
-extern ObjectHandler objectHandler;
 
 LPXLOPER QL_BLACKSCHOLES(
 		double *dividendYield,
@@ -23,7 +37,7 @@ LPXLOPER QL_BLACKSCHOLES(
 		obj_ptr objectStochastic(
 			new ObjectStochastic(*dividendYield, *riskFreeRate, *volatility, 
 				*underlying, todaysDate, settlementDate));
-		objectHandler.storeObject(handleStochastic, objectStochastic);
+		ObjectHandler::instance().storeObject(handleStochastic, objectStochastic);
 		static XLOPER xRet;
 		setValues(&xRet, objectStochastic, handleStochastic);
 		return &xRet;
@@ -44,7 +58,7 @@ LPXLOPER QL_OPTION(
 		std::string handleStochastic(handleStochastic_char);
 		boost::shared_ptr<ObjectStochastic> objectStochastic = 
 			boost::dynamic_pointer_cast<ObjectStochastic>
-			(objectHandler.retrieveObject(handleStochastic));
+			(ObjectHandler::instance().retrieveObject(handleStochastic));
 		if (!objectStochastic)
 			QL_FAIL("error retrieving object " + handleStochastic);
 		Date exerciseDate(*exerciseDateNum);
@@ -53,7 +67,7 @@ LPXLOPER QL_OPTION(
 			new ObjectOption(objectStochastic, type, *strike, *timeSteps,
 			exerciseDate, settlementDate));
 		std::string handleOption = getCaller();
-		objectHandler.storeObject(handleOption, objectOption);
+		ObjectHandler::instance().storeObject(handleOption, objectOption);
 		static XLOPER xRet;
 		setValues(&xRet, objectOption, handleOption);
 		return &xRet;
@@ -71,7 +85,7 @@ LPXLOPER QL_OPTION_SETENGINE(
 		std::string handleOption(handleOption_char);
 		boost::shared_ptr<ObjectOption> objectOption = 
 			boost::dynamic_pointer_cast<ObjectOption>
-			(objectHandler.retrieveObject(handleOption));
+			(ObjectHandler::instance().retrieveObject(handleOption));
 		if (!objectOption)
 			QL_FAIL("error retrieving object " + handleOption);
 		std::string engineName(engineName_char);

@@ -18,7 +18,6 @@
 #define qladdincpp_h
 
 #include <QuantLibAddin/qladdindefines.hpp>
-#include <string>
 
 // options
 
