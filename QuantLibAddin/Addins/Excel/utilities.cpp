@@ -69,7 +69,7 @@ std::string getCaller() {
         throw exception("getCaller: error on call to xlfCaller");
     if (xlretSuccess != Excel(xlfGetCell, &xRef, 2, TempInt(1), &xCaller))
         throw exception("getCaller: error on call to xlfGetCell");
-    return "QL#" + XLOPERtoString(&xRef);
+    return "#" + XLOPERtoString(&xRef);
 }
 
 void setXLOPERString(XLOPER &xStr, const char *s) {

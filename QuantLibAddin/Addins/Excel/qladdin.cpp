@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Tue Jan 25 21:01:30 2005
+// this file generated automatically by autogen.py on Sat Jan 29 13:00:36 2005
 // editing this file manually is not recommended
 
 #include <windows.h>
@@ -56,17 +56,18 @@ extern "C" __declspec(dllexport) int xlAutoOpen() {
 
     // options
 
-    Excel(xlfRegister, 0, 17, &xDll,
+    Excel(xlfRegister, 0, 18, &xDll,
         TempStr(" qlStochasticProcess"),
-        TempStr(" RECNEEE#"),
+        TempStr(" RCECNEEE#"),
         TempStr(" QL_STOCHASTIC_PROCESS"),
-        TempStr(" underlying,dayCounterID,settlementDate,riskFreeRate,dividendYield,volatility"),
+        TempStr(" handle,underlying,dayCounterID,settlementDate,riskFreeRate,dividendYield,volatility"),
         TempStr(" 1"),
         TempStr(" QuantLib"),
         TempStr(" "),
         TempStr(" "),
         TempStr(" construct and return a handle to a Stochastic Process object"),
         TempStr(" qlStochasticProcess"),
+        TempStr(" handle of new object"),
         TempStr(" underlying"),
         TempStr(" ID of day counter"),
         TempStr(" settlement date"),
@@ -74,17 +75,18 @@ extern "C" __declspec(dllexport) int xlAutoOpen() {
         TempStr(" dividend yield"),
         TempStr(" volatility"));
 
-    Excel(xlfRegister, 0, 20, &xDll,
+    Excel(xlfRegister, 0, 21, &xDll,
         TempStr(" qlOptionVanilla"),
-        TempStr(" RCCCECNNCN#"),
+        TempStr(" RCCCCECNNCN#"),
         TempStr(" QL_OPTION_VANILLA"),
-        TempStr(" handleStochastic,typeOption,typePayoff,strike,typeExercise,exerciseDate,settlementDate,typeEngine,timeSteps"),
+        TempStr(" handle,handleStochastic,typeOption,typePayoff,strike,typeExercise,exerciseDate,settlementDate,typeEngine,timeSteps"),
         TempStr(" 1"),
         TempStr(" QuantLib"),
         TempStr(" "),
         TempStr(" "),
         TempStr(" construct and return a handle to a Vanilla Option object"),
         TempStr(" qlOptionVanilla"),
+        TempStr(" handle of new object"),
         TempStr(" handle of the Stochastic Process object"),
         TempStr(" option type"),
         TempStr(" payoff type"),
@@ -95,17 +97,18 @@ extern "C" __declspec(dllexport) int xlAutoOpen() {
         TempStr(" engine type"),
         TempStr(" time steps"));
 
-    Excel(xlfRegister, 0, 21, &xDll,
+    Excel(xlfRegister, 0, 22, &xDll,
         TempStr(" qlOptionAsianC"),
-        TempStr(" RCCCCECNNCN#"),
+        TempStr(" RCCCCCECNNCN#"),
         TempStr(" QL_OPTION_ASIAN_C"),
-        TempStr(" handleStochastic,typeAverage,typeOption,typePayoff,strike,typeExercise,exerciseDate,settlementDate,typeEngine,timeSteps"),
+        TempStr(" handle,handleStochastic,typeAverage,typeOption,typePayoff,strike,typeExercise,exerciseDate,settlementDate,typeEngine,timeSteps"),
         TempStr(" 1"),
         TempStr(" QuantLib"),
         TempStr(" "),
         TempStr(" "),
         TempStr(" construct and return a handle to a ContinuousAveragingAsianOption object"),
         TempStr(" qlOptionAsianC"),
+        TempStr(" handle of new object"),
         TempStr(" handle of the Stochastic Process object"),
         TempStr(" average type"),
         TempStr(" option type"),
@@ -117,17 +120,18 @@ extern "C" __declspec(dllexport) int xlAutoOpen() {
         TempStr(" engine type"),
         TempStr(" time steps"));
 
-    Excel(xlfRegister, 0, 23, &xDll,
+    Excel(xlfRegister, 0, 24, &xDll,
         TempStr(" qlOptionBarrier"),
-        TempStr(" RCCEECCECNNCN#"),
+        TempStr(" RCCCEECCECNNCN#"),
         TempStr(" QL_OPTION_BARRIER"),
-        TempStr(" handleStochastic,typeBarrier,barrier,rebate,typeOption,typePayoff,strike,typeExercise,exerciseDate,settlementDate,typeEngine,timeSteps"),
+        TempStr(" handle,handleStochastic,typeBarrier,barrier,rebate,typeOption,typePayoff,strike,typeExercise,exerciseDate,settlementDate,typeEngine,timeSteps"),
         TempStr(" 1"),
         TempStr(" QuantLib"),
         TempStr(" "),
         TempStr(" "),
         TempStr(" construct and return a handle to a Barrier Option object"),
         TempStr(" qlOptionBarrier"),
+        TempStr(" handle of new object"),
         TempStr(" handle of the Stochastic Process object"),
         TempStr(" barrier type"),
         TempStr(" barrier"),

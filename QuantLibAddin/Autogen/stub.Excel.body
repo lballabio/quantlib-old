@@ -1,5 +1,5 @@
 DLLEXPORT LPXLOPER %s(
-%s) {
+%s%s) {
     try {
 %s        Properties properties = %s(
 %s%s);

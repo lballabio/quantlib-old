@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Fri Jan 28 22:36:30 2005
+// this file generated automatically by autogen.py on Sat Jan 29 13:00:36 2005
 // editing this file manually is not recommended
 
 #include <qla/qladdin.hpp>
@@ -25,6 +25,7 @@ using namespace ObjHandler;
 using namespace QuantLibAddin;
 
 DLLEXPORT LPXLOPER qlStochasticProcess(
+        char *handleChar,
         double *underlying,
         char *dayCounterID,
         long *settlementDate,
@@ -32,7 +33,7 @@ DLLEXPORT LPXLOPER qlStochasticProcess(
         double *dividendYield,
         double *volatility) {
     try {
-        std::string handle = getCaller();
+        std::string handle = std::string(handleChar) + getCaller();
         Properties properties = QL_STOCHASTIC_PROCESS(
             handle,
             *underlying,
@@ -51,6 +52,7 @@ DLLEXPORT LPXLOPER qlStochasticProcess(
 }
 
 DLLEXPORT LPXLOPER qlOptionVanilla(
+        char *handleChar,
         char *handleStochastic,
         char *typeOption,
         char *typePayoff,
@@ -61,7 +63,7 @@ DLLEXPORT LPXLOPER qlOptionVanilla(
         char *typeEngine,
         long *timeSteps) {
     try {
-        std::string handle = getCaller();
+        std::string handle = std::string(handleChar) + getCaller();
         Properties properties = QL_OPTION_VANILLA(
             handle,
             std::string(handleStochastic),
@@ -83,6 +85,7 @@ DLLEXPORT LPXLOPER qlOptionVanilla(
 }
 
 DLLEXPORT LPXLOPER qlOptionAsianC(
+        char *handleChar,
         char *handleStochastic,
         char *typeAverage,
         char *typeOption,
@@ -94,7 +97,7 @@ DLLEXPORT LPXLOPER qlOptionAsianC(
         char *typeEngine,
         long *timeSteps) {
     try {
-        std::string handle = getCaller();
+        std::string handle = std::string(handleChar) + getCaller();
         Properties properties = QL_OPTION_ASIAN_C(
             handle,
             std::string(handleStochastic),
@@ -117,6 +120,7 @@ DLLEXPORT LPXLOPER qlOptionAsianC(
 }
 
 DLLEXPORT LPXLOPER qlOptionBarrier(
+        char *handleChar,
         char *handleStochastic,
         char *typeBarrier,
         double *barrier,
@@ -130,7 +134,7 @@ DLLEXPORT LPXLOPER qlOptionBarrier(
         char *typeEngine,
         long *timeSteps) {
     try {
-        std::string handle = getCaller();
+        std::string handle = std::string(handleChar) + getCaller();
         Properties properties = QL_OPTION_BARRIER(
             handle,
             std::string(handleStochastic),

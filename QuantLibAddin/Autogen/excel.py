@@ -20,6 +20,8 @@ MAXLENERR  = 'list of parameter names exceeds max Excel length of %d:\n%s'
 def generateParamString(function):
     'generate string to register function parameters'
     paramStr = 'R'
+    if function[common.CTOR]:
+        paramStr += 'C'
     for param in function[common.PARAMS]:
         type = param[common.TYPE]
         if type == 'string':
@@ -38,12 +40,16 @@ def generateFuncRegister(fileHeader, function):
     'generate call to xlfRegister for given function'
     params = function[common.PARAMS]
     numParams = len(params)
-    numParamsTotal = numParams + 11 # 11 extra params to register the function
+    numParamsTotal = numParams + 11    # 11 extra params to register the function
+    if function[common.CTOR]:
+        numParamsTotal += 1            # extra parameter for object handle
     # FIXME validation below to be moved into parse.py
     if numParamsTotal > MAXPARAM:
         raise ValueError, MAXPARMERR % MAXPARAM
     paramStr = generateParamString(function)
     paramList = utils.generateParamList(params, suffix = '')
+    if function[common.CTOR]:
+        paramList = "handle," + paramList
     if len(paramList) >= MAXLEN:
         raise ValueError, MAXLENERR % (MAXLEN, paramList)
     regLine = '        TempStr(" %s"),\n'
@@ -58,6 +64,8 @@ def generateFuncRegister(fileHeader, function):
     fileHeader.write(regLine % '')
     fileHeader.write(regLine % function[common.DESC])
     fileHeader.write(regLine % function[common.CODENAME])
+    if function[common.CTOR]:
+        fileHeader.write('        TempStr(" handle of new object"),\n')
     i = 0
     for param in params:
         fileHeader.write('        TempStr(" ' + param[common.DESC] + '")')
@@ -90,14 +98,16 @@ def generateFuncDef(fileFunc, function, bufBody):
     paramList2 = utils.generateParamList(function[common.PARAMS],
         3, reformatString = 'std::string(%s)', dereference = '*')
     if function[common.CTOR]:
-        handle1 = 8 * ' ' + 'std::string handle = getCaller();\n'
-        handle2 = 12 * ' ' + 'handle,\n'
+        handle1 = 8 * ' ' + 'char *handleChar,\n'
+        handle2 = 8 * ' ' + 'std::string handle = std::string(handleChar) + getCaller();\n'
+        handle3 = 12 * ' ' + 'handle,\n'
     else:
         handle1 = ''
         handle2 = ''
+        handle3 = ''
     fileFunc.write(bufBody %
-        (function[common.CODENAME], paramList1, handle1,
-        function[common.NAME], handle2, paramList2, function[common.NAME]))
+        (function[common.CODENAME], handle1, paramList1, handle2,
+        function[common.NAME], handle3, paramList2, function[common.NAME]))
 
 def generateFuncDefs(functionGroups):
     'generate source code for function bodies'
