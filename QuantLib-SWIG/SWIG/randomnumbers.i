@@ -112,12 +112,7 @@ template<class RNG, class F> class ICGaussianRng {
 
 %template(InvCumulativeLecuyerGaussianRng)
     ICGaussianRng<LecuyerUniformRng,InvCumulativeNormalDistribution>;
-%template(InvCumulative2LecuyerGaussianRng)
-    ICGaussianRng<LecuyerUniformRng,InvCumulativeNormalDistribution2>;
 %template(InvCumulativeKnuthGaussianRng)
     ICGaussianRng<KnuthUniformRng,InvCumulativeNormalDistribution>;
-%template(InvCumulative2KnuthGaussianRng)
-    ICGaussianRng<KnuthUniformRng,InvCumulativeNormalDistribution2>;
-
 
 #endif
