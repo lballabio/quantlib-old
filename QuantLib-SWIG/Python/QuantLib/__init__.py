@@ -18,8 +18,6 @@
 # $Id$
 
 from QuantLib import *
-import defaults
-del defaults
 
 __author__ = 'The QuantLib Group'
 __email__ = 'quantlib-users@lists.sourceforge.net'

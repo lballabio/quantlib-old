@@ -47,7 +47,10 @@
 
 (define Matrix+ Matrix-add)
 (define Matrix- Matrix-sub)
-(define Matrix* Matrix-mul)
+(define (Matrix* m x)
+  (if (number? x)
+      (Matrix-mul-d m x)
+      (Matrix-mul-m m x)))
 (define Matrix/ Matrix-div)
 
 (define TridiagonalOperator+ TridiagonalOperator-add)

@@ -57,20 +57,8 @@ module QuantLibc
   end
   
   # interface enhancements
-  class Array
-    def *(x)
-      if (x.is_a? Float) || (x.is_a? Integer)
-        mul_d(x)
-      else
-        mul_a(x)
-      end
-    end
-  end
-
   class Observer
     alias cpp_initialize initialize
-    alias cpp_registerWith registerWith
-    alias cpp_unregisterWith unregisterWith
     def initialize(*args,&block)
       if (block)
         cpp_initialize(block)
@@ -81,10 +69,10 @@ module QuantLibc
       end
     end
     def registerWith(x)
-      cpp_registerWith(x.toObservable)
+      _registerWith(x.toObservable)
     end
     def unregisterWith(x)
-      cpp_unregisterWith(x.toObservable)
+      _unregisterWith(x.toObservable)
     end
   end
 
@@ -93,26 +81,6 @@ module QuantLibc
     def initialize(dates,values)
       vs = values.map { |v| v || QuantLibc::nullDouble }
       cpp_initialize(dates,vs)
-    end
-  end
-
-  class MarketElementHandle
-    alias cpp_initialize initialize
-    def initialize(marketElement = nil)
-      cpp_initialize()
-      unless marketElement.nil?
-        linkTo! marketElement
-      end
-    end
-  end
-
-  class TermStructureHandle
-    alias cpp_initialize initialize
-    def initialize(termStructure = nil)
-      cpp_initialize()
-      unless termStructure.nil?
-        linkTo! termStructure
-      end
     end
   end
 

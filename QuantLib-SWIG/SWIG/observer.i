@@ -91,11 +91,18 @@ class PyObserver : public Observer {
 // Python wrapper
 %rename(Observer) PyObserver;
 class PyObserver {
+    %rename(_registerWith)   registerWith;
+    %rename(_unregisterWith) unregisterWith;
   public:
 	PyObserver(PyObject* callback);
     void registerWith(const Handle<Observable>&);
     void unregisterWith(const Handle<Observable>&);
 };
+
+%pythoncode %{
+Observer.registerWith   = lambda self,x: self._registerWith(x.asObservable())
+Observer.unregisterWith = lambda self,x: self._unregisterWith(x.asObservable())
+%}
 
 #elif defined(SWIGRUBY)
 
@@ -127,6 +134,8 @@ void markRubyObserver(void* p) {
 %rename(Observer) RubyObserver;
 %markfunc RubyObserver "markRubyObserver";
 class RubyObserver {
+    %rename(_registerWith)   registerWith;
+    %rename(_unregisterWith) unregisterWith;
   public:
 	RubyObserver(VALUE callback);
     void registerWith(const Handle<Observable>&);

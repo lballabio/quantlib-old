@@ -32,27 +32,44 @@
 using QuantLib::TermStructure;
 %}
 
+%ignore TermStructure;
+class TermStructure {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("day-counter")     dayCounter;
+    %rename("settlement-date") settlementDate;
+    %rename("max-date")        maxDate;
+    %rename("max-time")        maxTime;
+    %rename("zero-yield")      zeroYield;
+    // resolve overloadings
+    %rename(discount_vs_time)  discount(Time,bool);
+    %rename(discount_vs_date)  discount(const Date&,bool);
+    %rename(zeroYield_vs_time) zeroYield(Time,bool);
+    %rename(zeroYield_vs_date) zeroYield(const Date&,bool);
+    %rename(forward_vs_time)   forward(Time,Time,bool);
+    %rename(forward_vs_date)   forward(const Date&,const Date&,bool);
+    %rename(instantaneousForward_vs_time) instantaneousForward(Time,bool);
+    %rename(instantaneousForward_vs_date) instantaneousForward(const Date&,
+                                                               bool);
+    #endif
+  public:
+    DayCounter dayCounter() const;
+	Date settlementDate() const;
+	Date maxDate() const;
+	Time maxTime() const;
+	DiscountFactor discount(const Date&, bool extrapolate = false);
+	DiscountFactor discount(Time, bool extrapolate = false);
+	Rate zeroYield(const Date&, bool extrapolate = false);
+	Rate zeroYield(Time, bool extrapolate = false);
+	Rate forward(const Date&, const Date&, bool extrapolate = false);
+	Rate forward(Time, Time, bool extrapolate = false);
+	Rate instantaneousForward(const Date&, bool extrapolate = false);
+	Rate instantaneousForward(Time, bool extrapolate = false);
+};
+
 %template(TermStructure) Handle<TermStructure>;
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("day-counter")     Handle<TermStructure>::dayCounter;
-%rename("settlement-date") Handle<TermStructure>::settlementDate;
-%rename("max-date")        Handle<TermStructure>::maxDate;
-%rename("max-time")        Handle<TermStructure>::maxTime;
-%rename("zero-yield")      Handle<TermStructure>::zeroYield;
-// resolve overloadings
-%rename(discount_vs_time)  Handle<TermStructure>::discount(Time,bool);
-%rename(discount_vs_date)  Handle<TermStructure>::discount(const Date&,bool);
-%rename(zeroYield_vs_time) Handle<TermStructure>::zeroYield(Time,bool);
-%rename(zeroYield_vs_date) Handle<TermStructure>::zeroYield(const Date&,bool);
-%rename(forward_vs_time)   Handle<TermStructure>::forward(Time,Time,bool);
-%rename(forward_vs_date)   Handle<TermStructure>::forward(const Date&,
-                                                          const Date&,bool);
-%rename(instantaneousForward_vs_time) 
-    Handle<TermStructure>::instantaneousForward(Time,bool);
-%rename(instantaneousForward_vs_date) 
-    Handle<TermStructure>::instantaneousForward(const Date&,bool);
+IsObservable(Handle<TermStructure>);
 #if defined(SWIGGUILE)
-%scheme%{
+%scheme %{
     (define (TermStructure-discount self x . extrapolate)
       (let ((method #f))
         (if (number? x)
@@ -83,61 +100,42 @@ using QuantLib::TermStructure;
             TermStructure-instantaneous-forward)
 %}
 #endif
-#endif
-IsObservable(Handle<TermStructure>);
-%extend Handle<TermStructure> {
-	DayCounter dayCounter() {
-		return (*self)->dayCounter();
-	}
-	Date settlementDate() {
-		return (*self)->settlementDate();
-	}
-	Date maxDate() {
-		return (*self)->maxDate();
-	}
-	Time maxTime() {
-		return (*self)->maxTime();
-	}
-	DiscountFactor discount(const Date& d, bool extrapolate = false) {
-		return (*self)->discount(d, extrapolate);
-	}
-	DiscountFactor discount(Time t, bool extrapolate = false) {
-		return (*self)->discount(t, extrapolate);
-	}
-	Rate zeroYield(const Date& d, bool extrapolate = false) {
-		return (*self)->zeroYield(d, extrapolate);
-	}
-	Rate zeroYield(Time t, bool extrapolate = false) {
-		return (*self)->zeroYield(t, extrapolate);
-	}
-	Rate forward(const Date& d1, const Date& d2, bool extrapolate = false) {
-		return (*self)->forward(d1, d2, extrapolate);
-	}
-	Rate forward(Time t1, Time t2, bool extrapolate = false) {
-		return (*self)->forward(t1, t2, extrapolate);
-	}
-	Rate instantaneousForward(const Date& d, bool extrapolate = false) {
-		return (*self)->instantaneousForward(d, extrapolate);
-	}
-	Rate instantaneousForward(Time t, bool extrapolate = false) {
-		return (*self)->instantaneousForward(t, extrapolate);
-	}
-}
 
 
 %template(TermStructureHandle) RelinkableHandle<TermStructure>;
 IsObservable(RelinkableHandle<TermStructure>);
 #if defined(SWIGGUILE)
-%scheme%{
-    (define TermStructureHandle-old-init new-TermStructureHandle)
-    (define (new-TermStructureHandle . args)
-      (let ((h (TermStructureHandle-old-init)))
-        (if (not (null? args))
-          (TermStructureHandle-link-to! h (car args)))
-        h))
+%scheme %{
+    (define (TermStructureHandle-discount self x . extrapolate)
+      (let ((method #f))
+        (if (number? x)
+            (set! method TermStructureHandle-discount-vs-time)
+            (set! method TermStructureHandle-discount-vs-date))
+        (apply method self x extrapolate)))
+    (define (TermStructureHandle-zero-yield self x . extrapolate)
+      (let ((method #f))
+        (if (number? x)
+            (set! method TermStructureHandle-zeroYield-vs-time)
+            (set! method TermStructureHandle-zeroYield-vs-date))
+        (apply method self x extrapolate)))
+    (define (TermStructureHandle-forward self x1 x2 . extrapolate)
+      (let ((method #f))
+        (if (number? x1)
+            (set! method TermStructureHandle-forward-vs-time)
+            (set! method TermStructureHandle-forward-vs-date))
+        (apply method self x1 x2 extrapolate)))
+    (define (TermStructureHandle-instantaneous-forward self x . extrapolate)
+      (let ((method #f))
+        (if (number? x)
+            (set! method TermStructureHandle-instantaneousForward-vs-time)
+            (set! method TermStructureHandle-instantaneousForward-vs-date))
+        (apply method self x extrapolate)))
+    (export TermStructureHandle-discount
+            TermStructureHandle-zero-yield
+            TermStructureHandle-forward
+            TermStructureHandle-instantaneous-forward)
 %}
 #endif
-
 
 
 // implied term structure

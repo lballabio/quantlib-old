@@ -39,6 +39,7 @@ class Handle {
     %rename("null?") isNull;
     #endif
   public:
+    T* operator->();
     #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     bool isNull();
     #elif defined(SWIGPYTHON)
@@ -60,6 +61,8 @@ class RelinkableHandle {
     %rename("link-to!") linkTo;
     #endif
   public:
+    RelinkableHandle(const Handle<T>& = Handle<T>());
+    Handle<T> operator->();
     void linkTo(const Handle<T>&);
     #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     bool isNull();

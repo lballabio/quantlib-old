@@ -26,9 +26,13 @@
 
 %{
 using QuantLib::Array;
+using QuantLib::Math::Matrix;
 using QuantLib::ArrayFormatter;
 using QuantLib::IndexError;
 %}
+
+%define QL_TYPECHECK_ARRAY       4210    %enddef
+%define QL_TYPECHECK_MATRIX      4220    %enddef
 
 #if defined(SWIGPYTHON)
 %{
@@ -57,7 +61,6 @@ bool extractArray(PyObject* source, Array* target) {
     }
 }
 %}
-
 %typemap(in) Array (Array* v) {
     if (extractArray($input,&$1)) {
         ;
@@ -66,7 +69,6 @@ bool extractArray(PyObject* source, Array* target) {
         $1 = *v;
     }
 };
-
 %typemap(in) const Array& (Array temp) {
     if (extractArray($input,&temp)) {
         $1 = &temp;
@@ -74,345 +76,37 @@ bool extractArray(PyObject* source, Array* target) {
         SWIG_ConvertPtr($input,(void **) &$1,$1_descriptor,1);
     }
 };
-#elif defined(SWIGRUBY)
-%typemap(in) Array (Array* v) {
-    if (rb_obj_is_kind_of($input,rb_cArray)) {
-        unsigned int size = RARRAY($input)->len;
-        $1 = Array(size);
-        for (unsigned int i=0; i<size; i++) {
-            VALUE o = RARRAY($input)->ptr[i];
-            if (TYPE(o) == T_FLOAT)
-                (($1_type &)$1)[i] = NUM2DBL(o);
-            else if (FIXNUM_P(o))
-                (($1_type &)$1)[i] = double(FIX2INT(o));
-            else
-                rb_raise(rb_eTypeError,
-                         "wrong argument type"
-                         " (expected Array)");
-        }
+%typecheck(QL_TYPECHECK_ARRAY) Array {
+    /* native sequence? */
+    if (PyTuple_Check($input) || PyList_Check($input)) {
+        $1 = 1;
+    /* wrapped Array? */
     } else {
-        #if SWIG_VERSION <= 0x010313
-        $1 = *(($&1_type) SWIG_ConvertPtr($input,$&1_descriptor));
-        #else
-        SWIG_ConvertPtr($input,(void **) &v,$&1_descriptor,1);
-        $1 = *v;
-        #endif
+        Array* v;
+        if (SWIG_ConvertPtr($input,(void **) &v, 
+                            $&1_descriptor,0) != -1)
+            $1 = 1;
+        else
+            $1 = 0;
     }
 }
-%typemap(in) const Array& (Array temp),
-             const Array* (Array temp) {
-    if (rb_obj_is_kind_of($input,rb_cArray)) {
-        unsigned int size = RARRAY($input)->len;
-        temp = Array(size);
-        $1 = &temp;
-        for (unsigned int i=0; i<size; i++) {
-            VALUE o = RARRAY($input)->ptr[i];
-            if (TYPE(o) == T_FLOAT)
-                temp[i] = NUM2DBL(o);
-            else if (FIXNUM_P(o))
-                temp[i] = double(FIX2INT(o));
-            else
-                rb_raise(rb_eTypeError,
-                         "wrong argument type"
-                         " (expected Array)");
-        }
+%typecheck(QL_TYPECHECK_ARRAY) const Array & {
+    /* native sequence? */
+    if (PyTuple_Check($input) || PyList_Check($input)) {
+        $1 = 1;
+    /* wrapped Array? */
     } else {
-        #if SWIG_VERSION <= 0x010313
-        $1 = ($1_ltype) SWIG_ConvertPtr($input,$1_descriptor);
-        #else
-        SWIG_ConvertPtr($input,(void **) &$1,$1_descriptor,1);
-        #endif
+        Array* v;
+        if (SWIG_ConvertPtr($input,(void **) &v, 
+                            $1_descriptor,0) != -1)
+            $1 = 1;
+        else
+            $1 = 0;
     }
 }
-#elif defined(SWIGMZSCHEME)
-%typemap(in) Array {
-    if (SCHEME_VECTORP($input)) {
-        unsigned int size = SCHEME_VEC_SIZE($input);
-        $1 = Array(size);
-        Scheme_Object** items = SCHEME_VEC_ELS($input);
-        for (unsigned int i=0; i<size; i++) {
-            Scheme_Object* o = items[i];
-            if (SCHEME_REALP(o))
-                (($1_type &)$1)[i] = scheme_real_to_double(o);
-            else
-                scheme_wrong_type(FUNC_NAME, "Array", 
-                                  $argnum, argc, argv);
-        }
-    } else {
-        $1 = *(($&1_type)
-               SWIG_MustGetPtr($input,$&1_descriptor,$argnum));
-    }
-}
-%typemap(in) const Array& (Array temp),
-             const Array* (Array temp) {
-    if (SCHEME_VECTORP($input)) {
-        unsigned int size = SCHEME_VEC_SIZE($input);
-        temp = Array(size);
-        $1 = &temp;
-        Scheme_Object** items = SCHEME_VEC_ELS($input);
-        for (unsigned int i=0; i<size; i++) {
-            Scheme_Object* o = items[i];
-            if (SCHEME_REALP(o))
-                temp[i] = scheme_real_to_double(o);
-            else
-                scheme_wrong_type(FUNC_NAME, "Array", 
-                                  $argnum, argc, argv);
-        }
-    } else {
-        $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum);
-    }
-}
-#elif defined(SWIGGUILE)
-%typemap(in) Array {
-    if (gh_vector_p($input)) {
-        unsigned long size = gh_vector_length($input);
-        $1 = Array(size);
-        double* data = gh_scm2doubles($input,NULL);
-        std::copy(data,data+size,$1.begin());
-        free(data);
-    } else {
-        $1 = *(($&1_type)
-               SWIG_MustGetPtr($input,$&1_descriptor,$argnum));
-    }
-}
-%typemap(in) const Array& (Array temp),
-             const Array* (Array temp) {
-    if (gh_vector_p($input)) {
-        unsigned long size = gh_vector_length($input);
-        temp = Array(size);
-        $1 = &temp;
-        double* data = gh_scm2doubles($input,NULL);
-        std::copy(data,data+size,temp.begin());
-        free(data);
-    } else {
-        $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum);
-    }
-}
-#endif
-
-class Array {
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-    %rename(__len__)   size;
-    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("length")  size;
-    %rename("add")     __add__;
-    %rename("sub")     __sub__;
-    %rename("div")     __div__;
-    %rename(">string") __str__;
-    %rename("set!")    set;
-    #if defined(SWIGGUILE)
-    %scheme %{
-        (define Array+ Array-add)
-        (define Array- Array-sub)
-        (define (Array* a x)
-          (if (number? x)
-              (Array-mul-d a x)
-              (Array-mul-a a x)))
-        (define Array/ Array-div)
-        (export Array+
-                Array-
-                Array*
-                Array/)
-    %}
-    #endif
-    #endif
-  public:
-    Array(Size n, double fill = 0);
-    Size size() const;
-    %extend {
-        std::string __str__() {
-            return ArrayFormatter::toString(*self);
-        }
-        Array __add__(const Array& a) {
-            return Array(*self+a);
-        }
-        Array __sub__(const Array& a) {
-            return Array(*self-a);
-        }
-        Array mul_d(double a) {
-            return Array(*self*a);
-        }
-        double mul_a(const Array& a) {
-            return QuantLib::DotProduct(*self,a);
-        }
-        Array __div__(double a) {
-            return Array(*self/a);
-        }
-        #if defined(SWIGPYTHON)
-        Array __getslice__(int i, int j) {
-            int size_ = static_cast<int>(self->size());
-            if (i<0)
-                i = size_+i;
-            if (j<0)
-                j = size_+j;
-            i = QL_MAX(0,i);
-            j = QL_MIN(size_,j);
-            Array tmp(j-i);
-            std::copy(self->begin()+i,self->begin()+j,tmp.begin());
-            return tmp;
-        }
-        void __setslice__(int i, int j, const Array& rhs) {
-            int size_ = static_cast<int>(self->size());
-            if (i<0)
-                i = size_+i;
-            if (j<0)
-                j = size_+j;
-            i = QL_MAX(0,i);
-            j = QL_MIN(size_,j);
-            QL_ENSURE(static_cast<int>(rhs.size()) == j-i,
-                      "Arrays are not resizable");
-            std::copy(rhs.begin(),rhs.end(),self->begin()+i);
-        }
-        bool __nonzero__() {
-            return (self->size() != 0);
-        }
-        #endif
-        #if defined(SWIGRUBY)
-        void each() {
-            for (unsigned int i=0; i<self->size(); i++)
-                rb_yield(rb_float_new((*self)[i]));
-        }
-        #endif
-        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-        double __getitem__(int i) {
-            int size_ = static_cast<int>(self->size());
-            if (i>=0 && i<size_) {
-                return (*self)[i];
-            } else if (i<0 && -i<=size_) {
-                return (*self)[size_+i];
-            } else {
-                throw IndexError("Array index out of range");
-            }
-            QL_DUMMY_RETURN(0.0)
-        }
-        void __setitem__(int i, double x) {
-            int size_ = static_cast<int>(self->size());
-            if (i>=0 && i<size_) {
-                (*self)[i] = x;
-            } else if (i<0 && -i<=size_) {
-                (*self)[size_+i] = x;
-            } else {
-                throw IndexError("Array index out of range");
-            }
-        }
-        #endif
-        #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-        double ref(Size i) {
-            if (i<self->size())
-                return (*self)[i];
-            else
-                throw IndexError("Array index out of range");
-            QL_DUMMY_RETURN(0.0)
-        }
-        void set(Size i, double x) {
-            if (i<self->size())
-                (*self)[i] = x;
-            else
-                throw IndexError("Array index out of range");
-        }
-        #endif
-    }
-};
-ReturnByValue(Array);
 
 
 
-// 2-D view
-
-%{
-typedef QuantLib::Math::LexicographicalView<Array::iterator>  
-    LexicographicalView;
-typedef QuantLib::Math::LexicographicalView<Array::iterator>::y_iterator 
-    LexicographicalViewColumn;
-%}
-
-#if defined(SWIGPYTHON) || defined(SWIGRUBY)
-class LexicographicalViewColumn {
-  private:
-    // access control - no constructor exported
-    LexicographicalViewColumn();
-  public:
-    %extend {
-        double __getitem__(int i) {
-            return (*self)[i];
-        }
-        void __setitem__(int i, double x) {
-            (*self)[i] = x;
-        }
-    }
-};
-#endif
-
-class LexicographicalView {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename(">string") __str__;
-    %rename("set!")    set;
-    #endif
-  public:
-    Size xSize() const;
-    Size ySize() const;
-    %extend {
-        LexicographicalView(Array& a, Size xSize) {
-            return new LexicographicalView(a.begin(),a.end(),xSize);
-        }
-        std::string __str__() {
-            std::string s;
-            for (int j=0; j<static_cast<int>(self->ySize()); j++) {
-                s += "\n";
-                for (int i=0; i<static_cast<int>(self->xSize()); i++) {
-                    if (i != 0)
-                        s += ",";
-                    s += DoubleFormatter::toString((*self)[i][j]);
-                }
-            }
-            s += "\n";
-            return s;
-        }
-        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-        LexicographicalViewColumn __getitem__(Size i) {
-            return (*self)[i];
-        }
-        #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-        double ref(Size i, Size j) {
-            return (*self)[i][j];
-        }
-        void set(Size i, Size j, double x) {
-            (*self)[i][j] = x;
-        }
-        #endif
-    }
-};
-
-
-
-// matrix class
-%{
-using QuantLib::Math::Matrix;
-typedef QuantLib::Math::Matrix::row_iterator MatrixRow;
-using QuantLib::Math::outerProduct;
-using QuantLib::Math::transpose;
-using QuantLib::Math::matrixSqrt;
-%}
-
-#if defined(SWIGPYTHON) || defined(SWIGRUBY)
-class MatrixRow {
-  private:
-    MatrixRow();
-  public:
-    %extend {
-        double __getitem__(int i) {
-            return (*self)[i];
-        }
-        void __setitem__(int i, double x) {
-            (*self)[i] = x;
-        }
-    }
-};
-#endif
-
-
-#if defined(SWIGPYTHON)
-// typemap Python list of lists of numbers to Matrix
 %typemap(in) Matrix (Matrix* m) {
     if (PyTuple_Check($input) || PyList_Check($input)) {
         Size rows, cols;
@@ -538,7 +232,106 @@ class MatrixRow {
         SWIG_ConvertPtr($input,(void **) &$1,$1_descriptor,1);
     }
 };
+%typecheck(QL_TYPECHECK_MATRIX) Matrix {
+    /* native sequence? */
+    if (PyTuple_Check($input) || PyList_Check($input)) {
+        $1 = 1;
+    /* wrapped Matrix? */
+    } else {
+        Matrix* m;
+        if (SWIG_ConvertPtr($input,(void **) &m, 
+                            $&1_descriptor,0) != -1)
+            $1 = 1;
+        else
+            $1 = 0;
+    }
+}
+%typecheck(QL_TYPECHECK_MATRIX) const Matrix & {
+    /* native sequence? */
+    if (PyTuple_Check($input) || PyList_Check($input)) {
+        $1 = 1;
+    /* wrapped Matrix? */
+    } else {
+        Matrix* m;
+        if (SWIG_ConvertPtr($input,(void **) &m, 
+                            $1_descriptor,0) != -1)
+            $1 = 1;
+        else
+            $1 = 0;
+    }
+}
 #elif defined(SWIGRUBY)
+%typemap(in) Array (Array* v) {
+    if (rb_obj_is_kind_of($input,rb_cArray)) {
+        unsigned int size = RARRAY($input)->len;
+        $1 = Array(size);
+        for (unsigned int i=0; i<size; i++) {
+            VALUE o = RARRAY($input)->ptr[i];
+            if (TYPE(o) == T_FLOAT)
+                (($1_type &)$1)[i] = NUM2DBL(o);
+            else if (FIXNUM_P(o))
+                (($1_type &)$1)[i] = double(FIX2INT(o));
+            else
+                rb_raise(rb_eTypeError,
+                         "wrong argument type"
+                         " (expected Array)");
+        }
+    } else {
+        SWIG_ConvertPtr($input,(void **) &v,$&1_descriptor,1);
+        $1 = *v;
+    }
+}
+%typemap(in) const Array& (Array temp),
+             const Array* (Array temp) {
+    if (rb_obj_is_kind_of($input,rb_cArray)) {
+        unsigned int size = RARRAY($input)->len;
+        temp = Array(size);
+        $1 = &temp;
+        for (unsigned int i=0; i<size; i++) {
+            VALUE o = RARRAY($input)->ptr[i];
+            if (TYPE(o) == T_FLOAT)
+                temp[i] = NUM2DBL(o);
+            else if (FIXNUM_P(o))
+                temp[i] = double(FIX2INT(o));
+            else
+                rb_raise(rb_eTypeError,
+                         "wrong argument type"
+                         " (expected Array)");
+        }
+    } else {
+        SWIG_ConvertPtr($input,(void **) &$1,$1_descriptor,1);
+    }
+}
+%typecheck(QL_TYPECHECK_ARRAY) Array {
+    /* native sequence? */
+    if (rb_obj_is_kind_of($input,rb_cArray)) {
+        $1 = 1;
+    /* wrapped Array? */
+    } else {
+        Array* v;
+        if (SWIG_ConvertPtr($input,(void **) &v, 
+                            $&1_descriptor,0) != -1)
+            $1 = 1;
+        else
+            $1 = 0;
+    }
+}
+%typecheck(QL_TYPECHECK_ARRAY) const Array & {
+    /* native sequence? */
+    if (rb_obj_is_kind_of($input,rb_cArray)) {
+        $1 = 1;
+    /* wrapped Array? */
+    } else {
+        Array* v;
+        if (SWIG_ConvertPtr($input,(void **) &v, 
+                            $1_descriptor,0) != -1)
+            $1 = 1;
+        else
+            $1 = 0;
+    }
+}
+
+
 %typemap(in) Matrix (Matrix* m) {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
         Size rows, cols;
@@ -576,12 +369,8 @@ class MatrixRow {
             }
         }
     } else {
-        #if SWIG_VERSION <= 0x010313
-        $1 = *(($&1_type) SWIG_ConvertPtr($input,$&1_descriptor));
-        #else
         SWIG_ConvertPtr($input,(void **) &m,$&1_descriptor,1);
         $1 = *m;
-        #endif
     }
 }
 %typemap(in) const Matrix& (Matrix temp),
@@ -623,14 +412,76 @@ class MatrixRow {
             }
         }
     } else {
-        #if SWIG_VERSION <= 0x010313
-        $1 = ($1_ltype) SWIG_ConvertPtr($input,$1_descriptor);
-        #else
         SWIG_ConvertPtr($input,(void **) &$1,$1_descriptor,1);
-        #endif
+    }
+}
+%typecheck(QL_TYPECHECK_MATRIX) Matrix {
+    /* native sequence? */
+    if (rb_obj_is_kind_of($input,rb_cArray)) {
+        $1 = 1;
+    /* wrapped Matrix? */
+    } else {
+        Matrix* m;
+        if (SWIG_ConvertPtr($input,(void **) &m, 
+                            $&1_descriptor,0) != -1)
+            $1 = 1;
+        else
+            $1 = 0;
+    }
+}
+%typecheck(QL_TYPECHECK_MATRIX) const Matrix & {
+    /* native sequence? */
+    if (rb_obj_is_kind_of($input,rb_cArray)) {
+        $1 = 1;
+    /* wrapped Matrix? */
+    } else {
+        Matrix* m;
+        if (SWIG_ConvertPtr($input,(void **) &m, 
+                            $1_descriptor,0) != -1)
+            $1 = 1;
+        else
+            $1 = 0;
     }
 }
 #elif defined(SWIGMZSCHEME)
+%typemap(in) Array {
+    if (SCHEME_VECTORP($input)) {
+        unsigned int size = SCHEME_VEC_SIZE($input);
+        $1 = Array(size);
+        Scheme_Object** items = SCHEME_VEC_ELS($input);
+        for (unsigned int i=0; i<size; i++) {
+            Scheme_Object* o = items[i];
+            if (SCHEME_REALP(o))
+                (($1_type &)$1)[i] = scheme_real_to_double(o);
+            else
+                scheme_wrong_type(FUNC_NAME, "Array", 
+                                  $argnum, argc, argv);
+        }
+    } else {
+        $1 = *(($&1_type)
+               SWIG_MustGetPtr($input,$&1_descriptor,$argnum));
+    }
+}
+%typemap(in) const Array& (Array temp),
+             const Array* (Array temp) {
+    if (SCHEME_VECTORP($input)) {
+        unsigned int size = SCHEME_VEC_SIZE($input);
+        temp = Array(size);
+        $1 = &temp;
+        Scheme_Object** items = SCHEME_VEC_ELS($input);
+        for (unsigned int i=0; i<size; i++) {
+            Scheme_Object* o = items[i];
+            if (SCHEME_REALP(o))
+                temp[i] = scheme_real_to_double(o);
+            else
+                scheme_wrong_type(FUNC_NAME, "Array", 
+                                  $argnum, argc, argv);
+        }
+    } else {
+        $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum);
+    }
+}
+
 %typemap(in) Matrix {
     if (SCHEME_VECTORP($input)) {
         Size rows, cols;
@@ -711,6 +562,32 @@ class MatrixRow {
     }
 }
 #elif defined(SWIGGUILE)
+%typemap(in) Array {
+    if (gh_vector_p($input)) {
+        unsigned long size = gh_vector_length($input);
+        $1 = Array(size);
+        double* data = gh_scm2doubles($input,NULL);
+        std::copy(data,data+size,$1.begin());
+        free(data);
+    } else {
+        $1 = *(($&1_type)
+               SWIG_MustGetPtr($input,$&1_descriptor,$argnum));
+    }
+}
+%typemap(in) const Array& (Array temp),
+             const Array* (Array temp) {
+    if (gh_vector_p($input)) {
+        unsigned long size = gh_vector_length($input);
+        temp = Array(size);
+        $1 = &temp;
+        double* data = gh_scm2doubles($input,NULL);
+        std::copy(data,data+size,temp.begin());
+        free(data);
+    } else {
+        $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum);
+    }
+}
+
 %typemap(in) Matrix {
     if (gh_vector_p($input)) {
         Size rows, cols;
@@ -777,31 +654,264 @@ class MatrixRow {
 }
 #endif
 
+class Array {
+    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+    %rename(__len__)   size;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("length")  size;
+    %rename(">string") __str__;
+    %rename("set!")    set;
+    #endif
+  public:
+    Array(Size n, double fill = 0.0);
+    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+    Array(const Array&);
+    #endif
+    Size size() const;
+    %extend {
+        std::string __str__() {
+            return ArrayFormatter::toString(*self);
+        }
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        Array __add__(const Array& a) {
+            return Array(*self+a);
+        }
+        Array __sub__(const Array& a) {
+            return Array(*self-a);
+        }
+        Array __mul__(double a) {
+            return Array(*self*a);
+        }
+        double __mul__(const Array& a) {
+            return QuantLib::DotProduct(*self,a);
+        }
+        Array __mul__(const Matrix& a) {
+            return *self*a;
+        }
+        Array __div__(double a) {
+            return Array(*self/a);
+        }
+        #endif
+        #if defined(SWIGPYTHON)
+        Array __rmul__(double a) {
+            return Array(*self*a);
+        }
+        Array __getslice__(int i, int j) {
+            int size_ = static_cast<int>(self->size());
+            if (i<0)
+                i = size_+i;
+            if (j<0)
+                j = size_+j;
+            i = QL_MAX(0,i);
+            j = QL_MIN(size_,j);
+            Array tmp(j-i);
+            std::copy(self->begin()+i,self->begin()+j,tmp.begin());
+            return tmp;
+        }
+        void __setslice__(int i, int j, const Array& rhs) {
+            int size_ = static_cast<int>(self->size());
+            if (i<0)
+                i = size_+i;
+            if (j<0)
+                j = size_+j;
+            i = QL_MAX(0,i);
+            j = QL_MIN(size_,j);
+            QL_ENSURE(static_cast<int>(rhs.size()) == j-i,
+                      "Arrays are not resizable");
+            std::copy(rhs.begin(),rhs.end(),self->begin()+i);
+        }
+        bool __nonzero__() {
+            return (self->size() != 0);
+        }
+        #endif
+        #if defined(SWIGRUBY)
+        void each() {
+            for (unsigned int i=0; i<self->size(); i++)
+                rb_yield(rb_float_new((*self)[i]));
+        }
+        #endif
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        double __getitem__(int i) {
+            int size_ = static_cast<int>(self->size());
+            if (i>=0 && i<size_) {
+                return (*self)[i];
+            } else if (i<0 && -i<=size_) {
+                return (*self)[size_+i];
+            } else {
+                throw IndexError("Array index out of range");
+            }
+            QL_DUMMY_RETURN(0.0)
+        }
+        void __setitem__(int i, double x) {
+            int size_ = static_cast<int>(self->size());
+            if (i>=0 && i<size_) {
+                (*self)[i] = x;
+            } else if (i<0 && -i<=size_) {
+                (*self)[size_+i] = x;
+            } else {
+                throw IndexError("Array index out of range");
+            }
+        }
+        #endif
+        #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        double ref(Size i) {
+            if (i<self->size())
+                return (*self)[i];
+            else
+                throw IndexError("Array index out of range");
+            QL_DUMMY_RETURN(0.0)
+        }
+        void set(Size i, double x) {
+            if (i<self->size())
+                (*self)[i] = x;
+            else
+                throw IndexError("Array index out of range");
+        }
+        #endif
+    }
+};
+ReturnByValue(Array);
+
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%inline %{
+    Array Array_add(const Array& a, const Array& b) {
+        return a+b;
+    }
+    Array Array_sub(const Array& a, const Array& b) {
+        return a-b;
+    }
+    Array Array_div(const Array& a, double x) {
+        return a/x;
+    }
+    Array Array_mul_d(const Array& a, double x) {
+        return a*x;
+    }
+    double Array_mul_a(const Array& a, const Array& b) {
+        return QuantLib::DotProduct(a,b);;
+    }
+    Array Array_Matrix_product(const Array& a, const Matrix& m) {
+        return a*m;
+    }
+%}
+#if defined(SWIGGUILE)
+%scheme %{
+    (define Array+ Array-add)
+    (define Array- Array-sub)
+    (define (Array* a x)
+      (if (number? x)
+          (Array-mul-d a x)
+          (Array-mul-a a x)))
+    (define Array/ Array-div)
+    (export Array+
+            Array-
+            Array*
+            Array/)
+%}
+#endif
+#endif
+
+// 2-D view
+
+%{
+typedef QuantLib::Math::LexicographicalView<Array::iterator>  
+    LexicographicalView;
+typedef QuantLib::Math::LexicographicalView<Array::iterator>::y_iterator 
+    LexicographicalViewColumn;
+%}
+
+#if defined(SWIGPYTHON) || defined(SWIGRUBY)
+class LexicographicalViewColumn {
+  private:
+    // access control - no constructor exported
+    LexicographicalViewColumn();
+  public:
+    %extend {
+        double __getitem__(int i) {
+            return (*self)[i];
+        }
+        void __setitem__(int i, double x) {
+            (*self)[i] = x;
+        }
+    }
+};
+#endif
+
+class LexicographicalView {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename(">string") __str__;
+    %rename("set!")    set;
+    #endif
+  public:
+    Size xSize() const;
+    Size ySize() const;
+    %extend {
+        LexicographicalView(Array& a, Size xSize) {
+            return new LexicographicalView(a.begin(),a.end(),xSize);
+        }
+        std::string __str__() {
+            std::string s;
+            for (int j=0; j<static_cast<int>(self->ySize()); j++) {
+                s += "\n";
+                for (int i=0; i<static_cast<int>(self->xSize()); i++) {
+                    if (i != 0)
+                        s += ",";
+                    s += DoubleFormatter::toString((*self)[i][j]);
+                }
+            }
+            s += "\n";
+            return s;
+        }
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        LexicographicalViewColumn __getitem__(Size i) {
+            return (*self)[i];
+        }
+        #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        double ref(Size i, Size j) {
+            return (*self)[i][j];
+        }
+        void set(Size i, Size j, double x) {
+            (*self)[i][j] = x;
+        }
+        #endif
+    }
+};
+
+
+
+// matrix class
+%{
+typedef QuantLib::Math::Matrix::row_iterator MatrixRow;
+using QuantLib::Math::outerProduct;
+using QuantLib::Math::transpose;
+using QuantLib::Math::matrixSqrt;
+%}
+
+#if defined(SWIGPYTHON) || defined(SWIGRUBY)
+class MatrixRow {
+  private:
+    MatrixRow();
+  public:
+    %extend {
+        double __getitem__(int i) {
+            return (*self)[i];
+        }
+        void __setitem__(int i, double x) {
+            (*self)[i] = x;
+        }
+    }
+};
+#endif
 
 class Matrix {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("set!")     setitem;
     %rename(">string")  __str__;
-    %rename("add")      __add__;
-    %rename("sub")      __sub__;
-    %rename("mul")      __mul__;
-    %rename("div")      __div__;
-    // aliases
-    #if defined(SWIGGUILE)
-    %scheme %{
-        (define Matrix+ Matrix-add)
-        (define Matrix- Matrix-sub)
-        (define Matrix* Matrix-mul)
-        (define Matrix/ Matrix-div)
-        (export Matrix+
-                Matrix-
-                Matrix*
-                Matrix/)
-    %}
-    #endif
     #endif
   public:
     Matrix(Size rows, Size columns, double fill = 0.0);
+    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+    Matrix(const Matrix&);
+    #endif
     Size rows() const;
     Size columns() const;
     %extend {
@@ -818,6 +928,7 @@ class Matrix {
             s += "\n";
             return s;
         }
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         Matrix __add__(const Matrix& m) {
             return *self+m;
         }
@@ -827,9 +938,16 @@ class Matrix {
         Matrix __mul__(double x) {
             return *self*x;
         }
+        Array __mul__(const Array& x) {
+            return *self*x;
+        }
+        Matrix __mul__(const Matrix& x) {
+            return *self*x;
+        }
         Matrix __div__(double x) {
             return *self/x;
         }
+        #endif
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         MatrixRow __getitem__(Size i) {
             return (*self)[i];
@@ -851,25 +969,52 @@ class Matrix {
 };
 ReturnByValue(Matrix);
 
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%inline %{
+    Matrix Matrix_add(const Matrix& m, const Matrix& n) {
+        return m+n;
+    }
+    Matrix Matrix_sub(const Matrix& m, const Matrix& n) {
+        return m-n;
+    }
+    Matrix Matrix_div(const Matrix& m, double x) {
+        return m/x;
+    }
+    Matrix Matrix_mul_d(const Matrix& m, double x) {
+        return m*x;
+    }
+    Array Matrix_Array_product(const Matrix& m, const Array& a) {
+        return m*a;
+    }
+    Matrix Matrix_mul_m(const Matrix& m, const Matrix& n) {
+        return m*n;
+    }
+%}
+#if defined(SWIGGUILE)
+%scheme %{
+    (define Matrix+ Matrix-add)
+    (define Matrix- Matrix-sub)
+    (define (Matrix* m x)
+      (if (number? x)
+          (Matrix-mul-d m x)
+          (Matrix-mul-m m x)))
+    (define Matrix/ Matrix-div)
+    (export Matrix+
+            Matrix-
+            Matrix*
+            Matrix/)
+%}
+#endif
+#endif
 
 // functions
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename("Matrix-transpose")    transpose;
 %rename("Array-outer-product") outerProduct;
-%rename("Array-inner-product") innerProduct;
-%rename("Matrix-product")      matrixProduct;
 %rename("Matrix-sqrt")         matrixSqrt;
 #endif
 Matrix transpose(const Matrix& m);
 Matrix outerProduct(const Array& v1, const Array& v2);
-%inline %{
-    Matrix matrixProduct(const Matrix& m1, const Matrix& m2) {
-        return m1*m2;
-    }
-    Array innerProduct(const Array& a, const Matrix& m) {
-        return a*m;
-    }
-%}
 Matrix matrixSqrt(const Matrix& m);
 
 
