@@ -27,7 +27,7 @@
 namespace QuantLibAddin {
 
 /*! \group utilities
-    util func xxx
+    diagnostic and information functions for QuantLibAddin
 */
 
     /*! return the version of QuantLib
