@@ -112,10 +112,9 @@ A:</strong> To get the developer name from the user name, go to
 "http://sourceforge.net/project/memberlist.php?group_id=12740">http://sourceforge.net/project/memberlist.php?group_id=12740</a></p>
 <h3><a name="g5" id="g5"></a>1.5.:</h3>
 <p><strong>Q: How do I become a developer?<br>
-A:</strong>Contact either project administrators (<a href=
-"mailto:nando at users.sourceforge.net">Nando</a>  and <a href=
-"mailto:lballabio at users.sourceforge.net">Luigi</a>) and describe
-your experience and interests. Before doing this, please read:
+A:</strong>Contact the QuantLib developers' mailing list
+(&lt;quantlib-dev at lists.sourceforge.net&gt;) and describe your
+experience and interests. Before doing this, please read:
 <ul>
 <li>the generic <a href=
 "http://cvs.sourceforge.net/viewcvs.py/quantlib/QuantLib/dev_tools/newdeveloperintro.txt?view=markup">introduction

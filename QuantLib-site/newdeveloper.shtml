@@ -15,14 +15,13 @@
 <!--#include virtual="qldevheader.inc"-->
 <h1 class="center">Developer introduction</h1>
 <p>Developers willing to contribute to the QuantLib project may
-contact either project administrators (Nando &lt;nando at
-users.sourceforge.net&gt; or Luigi &lt;luigi.ballabio at
-gmail.com&gt;) and describe their experience and interests. You
-might want to specify an area of the library you are particularly
-interested to, or which would be most useful to you. Asking the
-administrators to choose a task for you is ok, but it might take
-time to get an answer and it increases the odds that the chosen
-task will bore you or otherwise discourage you from completing
+contact the QuantLib developers' mailing list (&lt;quantlib-dev at
+lists.sourceforge.net&gt;) and describe their experience and
+interests. You might want to specify an area of the library you are
+particularly interested to, or which would be most useful to
+you. Asking the administrators to choose a task for you is ok, but it
+might take time to get an answer and it increases the odds that the
+chosen task will bore you or otherwise discourage you from completing
 it.</p>
 <p>Should you want to review a list of needed tasks, the project
 overview (<a href=
