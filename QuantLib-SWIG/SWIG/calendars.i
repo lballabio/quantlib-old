@@ -163,6 +163,7 @@ class Calendar {
 namespace QuantLib {
 
     class Beijing : public Calendar {};
+    class Bratislava : public Calendar {};
     class Budapest : public Calendar {};
     class Copenhagen : public Calendar {};
 
@@ -184,6 +185,7 @@ namespace QuantLib {
     class Johannesburg : public Calendar {};
     class NullCalendar : public Calendar {};
     class Oslo : public Calendar {};
+    class Prague : public Calendar {};
     class Riyadh : public Calendar {};
     class Seoul : public Calendar {};
     class Singapore : public Calendar {};
