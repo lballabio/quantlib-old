@@ -28,6 +28,8 @@
 <li><a class="navlink" href=
 "http://sourceforge.net/news/?group_id=12740">News</a></li>
 
+<li><a class="navlink" href="reference/faq.html">FAQ</a></li>
+
 <li><a class="navlink" href="docs.shtml">Documentation</a></li>
 
 <li><a class="navlink" href="license.shtml">License</a></li>

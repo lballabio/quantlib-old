@@ -38,6 +38,25 @@ free-software/open-source project. It allows proprietary extensions
 to be commercialized.</p>
 <p>The license:</p>
 <pre>
+QuantLib is
+    Copyright (C) 2002, 2003, 2004 Ferdinando Ametrano
+    Copyright (C) 2000, 2001, 2002, 2003, 2004 StatPro Italia srl
+
+    Copyright (C) 2002, 2003, 2004 Decillion Pty(Ltd)
+    Copyright (C) 2001, 2002, 2003 Nicolas Di Césaré
+    Copyright (C) 2003, 2004 Neil Firth
+    Copyright (C) 2001, 2002, 2003 Sadruddin Rejeb
+    Copyright (C) 2003 Niels Elken Sønderby
+
+    Copyright (C) 2004 FIMAT Group
+    Copyright (C) 2003, 2004 Roman Gitlin
+    Copyright (C) 2004 M-Dimension Consulting Inc.
+    Copyright (C) 2004 Mike Parker
+    Copyright (C) 2004 Walter Penschke
+    Copyright (C) 2004 Gianni Piolanti
+    Copyright (C) 2003 Kawanishi Tomoya
+    Copyright (C) 2004 Jeff Yu
+
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
 

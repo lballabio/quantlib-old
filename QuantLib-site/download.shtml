@@ -17,24 +17,12 @@
 <body>
 <!--#include virtual="qlheader.inc"-->
 <h1 class="center">Download Page</h1>
-<p>The latest QuantLib release is the 0.3.7 version (July 2004.) It
-includes the following packages:</p>
-<ol>
-<li>QuantLib</li>
-<li>QuantLib documentation</li>
-<li>QuantLib-Guile (bindings for Guile)</li>
-<li>QuantLib-MzScheme (bindings for PLT Scheme)</li>
-<li>QuantLib-Python (bindings for Python)</li>
-<li>QuantLib-Ruby (bindings for Ruby)</li>
-<li>QuantLibXL (Excel add-in)</li>
-</ol>
-<p><b>Debian users</b> can find version 0.3.7 of the different
+<p>The latest QuantLib release is the 0.3.8 version (December 2004.)
+<p><b>Debian users</b> may find version 0.3.8 of the different
 QuantLib packages in the "unstable" (a.k.a. "Sid") distribution;
 see the <a href=
 "http://packages.debian.org/cgi-bin/search_packages.pl?keywords=quantlib&amp;searchon=names&amp;subword=1&amp;version=unstable&amp;release=all">
-Debian site</a> for a list of available packages. The previous
-release, 0.3.6, is still in the "testing" (a.k.a. "Sarge")
-distribution, but should be replaced by 0.3.7 in a few days.</p>
+Debian site</a> for a list of available packages.</p>
 <p>For <b>Mac OS X users</b>, Fink packages are available in the
 "10.3/unstable" tree; for a list of available QuantLib-related
 files see the <a href=
@@ -48,7 +36,11 @@ install the main library.</p>
 <p>Packages for <b>other platforms</b> are available from the
 SourceForge <a href=
 "http://sourceforge.net/project/showfiles.php?group_id=12740">download
-page</a> in a number of different formats.</p>
+page</a> in a number of different formats.  This also applies to eager
+Debian or Mac OS X users not wanting to wait for the library to be
+packaged, or to advanced users wanting to <a
+href="reference/config.html">configure the library</a> with
+non-default settings.</p>
 <!--#include virtual="qlfooter.inc"-->
 </body>
 </html>
