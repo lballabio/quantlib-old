@@ -29,6 +29,7 @@ extern "C"
 
 
     using namespace QuantLib;
+    using namespace QuantLib::Math;
 
     LPXLOPER EXCEL_EXPORT xlinterpolate(XlfOper xlx_array,
                                         XlfOper xly_array,
@@ -58,7 +59,7 @@ extern "C"
         EXCEL_BEGIN;
         std::vector<double> x_value = xlx_array.AsDoubleVector();
         std::vector<double> y_value = xly_array.AsDoubleVector();
-        Math::Matrix data_matrix = QlXlfOper(xlz_matrix).AsMatrix();
+        Matrix data_matrix = QlXlfOper(xlz_matrix).AsMatrix();
         QL_REQUIRE(data_matrix.columns()==x_value.size(),
             "the matrix range must be NxM");
         QL_REQUIRE(data_matrix.rows()==y_value.size(),
@@ -116,7 +117,7 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlpotentialUpside(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = Math::RiskMeasures().potentialUpside(xlpercentile.AsDouble(),
+        double result = RiskMeasures().potentialUpside(xlpercentile.AsDouble(),
             xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
@@ -125,7 +126,7 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlvalueAtRisk(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = Math::RiskMeasures().valueAtRisk(xlpercentile.AsDouble(),
+        double result = RiskMeasures().valueAtRisk(xlpercentile.AsDouble(),
             xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
@@ -134,7 +135,7 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlexpectedShortfall(XlfOper xlpercentile,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = Math::RiskMeasures().expectedShortfall(xlpercentile.AsDouble(),
+        double result = RiskMeasures().expectedShortfall(xlpercentile.AsDouble(),
             xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
@@ -143,7 +144,7 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlshortfall(XlfOper xltarget,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = Math::RiskMeasures().shortfall(xltarget.AsDouble(),
+        double result = RiskMeasures().shortfall(xltarget.AsDouble(),
             xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
@@ -152,12 +153,17 @@ extern "C"
     LPXLOPER EXCEL_EXPORT xlaverageShortfall(XlfOper xltarget,
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = Math::RiskMeasures().averageShortfall(xltarget.AsDouble(),
+        double result = RiskMeasures().averageShortfall(xltarget.AsDouble(),
             xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
     }
 
+    LPXLOPER EXCEL_EXPORT xlprimeNumbers(XlfOper xlabsoluteIndex) {
+        EXCEL_BEGIN;
+        return XlfOper(short(Functions::primeNumbers(xlabsoluteIndex.AsInt())));
+        EXCEL_END;
+    }
 
 
 }

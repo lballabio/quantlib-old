@@ -77,6 +77,7 @@ extern "C" {
                 "interpolation type (1:linear; 2:spline; 3:log-linear)");
             XlfArgDesc allowExtrapolation("allow_extrapolation",
                 "allow extrapolation boolean");
+            XlfArgDesc absoluteIndex("absoluteIndex", "zero based index");
 
             XlfArgDesc optionType("type", "is the option type");
             XlfArgDesc underlying("underlying", "is the current value of the underlying");
@@ -230,6 +231,11 @@ extern "C" {
                 "2 dimensional interpolation","QuantLibXL Math");
             interpolate2DDesc.SetArguments(x_array+y_array+z_matrix+x_value+y_value+interpolationType+allowExtrapolation);
             interpolate2DDesc.Register();
+
+            XlfFuncDesc primeNumbersDesc("xlprimeNumbers","qlprimeNumbers",
+                "return the (absoluteIndex+1)-th prime number","QuantLibXL Math");
+            primeNumbersDesc.SetArguments(absoluteIndex);
+            primeNumbersDesc.Register();
 
 
             // Registers Normal distribution
