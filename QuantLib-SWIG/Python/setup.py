@@ -246,7 +246,7 @@ class my_wrap(Command):
         swig_dir = os.path.join("./QuantLib/SWIG")
         if not os.path.exists(swig_dir):
             swig_dir = "../SWIG"
-            os.system('swig -python -c++ -shadow -keyword ' +
+            os.system('swig -python -c++ ' +
                       '-I%s ' % swig_dir +
                       '-o QuantLib/quantlib_wrap.cpp quantlib.i')
 
@@ -318,7 +318,7 @@ setup(name             = "QuantLib-Python",
       url              = "http://quantlib.org",
       licence          = open('LICENSE.TXT','r+').read(),
       py_modules       = ['QuantLib.QuantLib','QuantLib.defaults'],
-      ext_modules      = [Extension("QuantLib.QuantLibc",
+      ext_modules      = [Extension("QuantLib._QuantLib",
                                     ["QuantLib/quantlib_wrap.cpp"],
                                     libraries = libraries,
                                     define_macros = define_macros,

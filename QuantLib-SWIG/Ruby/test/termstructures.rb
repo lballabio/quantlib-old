@@ -53,7 +53,7 @@ class TermStructureTest < RUNIT::TestCase
     deposits = depositData.map { |n,units,rate|
       DepositRateHelper.new(
         MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
-        settlementDays, n, units,
+        0, n, units,
         calendar, 'mf', DayCounter.new('act/360'))
     }    
     swapData = [
@@ -66,20 +66,19 @@ class TermStructureTest < RUNIT::TestCase
     swaps = swapData.map { |years,rate|
       SwapRateHelper.new(
         MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
-        settlementDays, years, calendar,
+        0, years, calendar,
         'mf', 1, false, DayCounter.new('30/360'), 2)
     }
-    @termStructure = PiecewiseFlatForward.new(today,settlement,
+    @termStructure = PiecewiseFlatForward.new(settlement,
                                               deposits+swaps,
                                               DayCounter.new('Act/360'))
   end
   def testImplied
     tolerance = 1.0e-10
     h = TermStructureHandle.new(@termStructure)
-    new_today = @termStructure.todaysDate.plusYears(3)
-    new_settlement = Calendar.new('TARGET').advance(new_today,2,'days')
+    new_settlement = @termStructure.settlementDate.plusYears(3)
     test_date = new_settlement.plusYears(5)
-    implied = ImpliedTermStructure.new(h,new_today,new_settlement)
+    implied = ImpliedTermStructure.new(h,new_settlement)
     base_discount = @termStructure.discount(new_settlement)
     discount = @termStructure.discount(test_date)
     implied_discount = implied.discount(test_date)
@@ -97,9 +96,8 @@ unable to reproduce discount from implied curve
   def testImpliedObs
     flag = false
     h = TermStructureHandle.new
-    new_today = @termStructure.todaysDate.plusYears(3)
-    new_settlement = Calendar.new('TARGET').advance(new_today,2,'days')
-    implied = ImpliedTermStructure.new(h,new_today,new_settlement)
+    new_settlement = @termStructure.settlementDate.plusYears(3)
+    implied = ImpliedTermStructure.new(h,new_settlement)
     obs = Observer.new { flag = true }
     obs.registerWith(implied)
     h.linkTo!(@termStructure)
@@ -113,7 +111,7 @@ unable to reproduce discount from implied curve
     mh = MarketElementHandle.new(me)
     h = TermStructureHandle.new(@termStructure)
     spreaded = ForwardSpreadedTermStructure.new(h,mh)
-    test_date = @termStructure.todaysDate.plusYears(5)
+    test_date = @termStructure.settlementDate.plusYears(5)
     forward = @termStructure.instantaneousForward(test_date)
     spreaded_forward = spreaded.instantaneousForward(test_date)
     unless ((forward+me.value)-spreaded_forward).abs <= tolerance
@@ -151,7 +149,7 @@ unable to reproduce forward from spreaded curve
     mh = MarketElementHandle.new(me)
     h = TermStructureHandle.new(@termStructure)
     spreaded = ZeroSpreadedTermStructure.new(h,mh)
-    test_date = @termStructure.todaysDate.plusYears(5)
+    test_date = @termStructure.settlementDate.plusYears(5)
     zero = @termStructure.zeroYield(test_date)
     spreaded_zero = spreaded.zeroYield(test_date)
     unless ((zero+me.value)-spreaded_zero).abs <= tolerance

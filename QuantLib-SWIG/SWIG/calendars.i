@@ -96,20 +96,13 @@ using QuantLib::Calendars::Sydney;
 %rename("isHoliday?")     Calendar::isHoliday;
 #endif
 
-// export Calendar
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+// resolve overloading
 %rename(advance_period) Calendar::advance(const Date&,const Period&,
                                           RollingConvention);
 %rename(advance_units)  Calendar::advance(const Date&,int,TimeUnit,
                                           RollingConvention);
-#if defined(SWIGPYTHON)
-%feature("shadow") Calendar::advance() %{
-    def advance(self,*args):
-        if type(args[1]) == type(0):
-            return apply(self.advance_units,args)
-        else:
-            return apply(self.advance_period,args)
-%}
-#elif defined(SWIGGUILE)
+#if defined(SWIGGUILE)
 %scheme %{
     (define (Calendar-advance . args)
       (if (integer? (caddr args))
@@ -117,6 +110,7 @@ using QuantLib::Calendars::Sydney;
           (apply Calendar-advance-period args)))
     (export Calendar-advance)
 %}
+#endif
 #endif
 class Calendar {
   private:
@@ -173,7 +167,6 @@ ReturnByValue(Calendar);
     }
     
     #if defined(SWIGPYTHON)
-    void advance() { /* hook for shadow method redefinition */ };
     bool __ne__(const Calendar& other) {
         return (*self) != other;
     }

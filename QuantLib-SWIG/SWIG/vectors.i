@@ -20,6 +20,8 @@
 #ifndef quantlib_vectors_i
 #define quantlib_vectors_i
 
+%include stl.i
+
 namespace std {
     %template(DoubleVector) vector<double>;
     %template(DateVector) vector<Date>;

@@ -75,7 +75,7 @@
                                    (new-DepositRateHelper
                                     (new-MarketElementHandle
                                      (new-SimpleMarketElement (/ rate 100)))
-                                    settlement-days n units calendar 
+                                    0 n units calendar 
                                     rolling-convention day-counter)))
                                deposit-data)
                           ; add swaps
@@ -84,7 +84,7 @@
                                    (new-SwapRateHelper
                                     (new-MarketElementHandle
                                      (new-SimpleMarketElement (/ rate 100)))
-                                    settlement-days years calendar
+                                    0 years calendar
                                     swap-rolling-convention fixed-frequency 
                                     fixed-is-adjusted fixed-day-count 
                                     floating-frequency)))
@@ -93,7 +93,7 @@
                          (lambda (l) (for-each delete-RateHelper l)))
                         ; the curve itself
                         (term-structure (new-PiecewiseFlatForward
-                                         today settlement instruments 
+                                         settlement instruments 
                                          curve-day-counter)
                                         delete-TermStructure))
           (TermStructureHandle-link-to! euribor-handle term-structure)

@@ -64,7 +64,6 @@ module RUNIT
         @io.print("error")
       end
       def end_test(t)
-        @io.print("ok")
       end
     end
   end

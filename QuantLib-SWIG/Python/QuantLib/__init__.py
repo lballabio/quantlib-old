@@ -24,17 +24,17 @@ del defaults
 __author__ = 'The QuantLib Group'
 __email__ = 'quantlib-users@lists.sourceforge.net'
 
-if hasattr(QuantLibc,'__version__'):
-    __version__ = QuantLibc.__version__
-elif hasattr(QuantLibc.cvar,'__version__'):
-    __version__ = QuantLibc.cvar.__version__
+if hasattr(_QuantLib,'__version__'):
+    __version__ = _QuantLib.__version__
+elif hasattr(_QuantLib.cvar,'__version__'):
+    __version__ = _QuantLib.cvar.__version__
 else:
     print 'Could not find __version__ attribute'
 
-if hasattr(QuantLibc,'__hexversion__'):
-    __hexversion__ = QuantLibc.__hexversion__
-elif hasattr(QuantLibc.cvar,'__hexversion__'):
-    __hexversion__ = QuantLibc.cvar.__hexversion__
+if hasattr(_QuantLib,'__hexversion__'):
+    __hexversion__ = _QuantLib.__hexversion__
+elif hasattr(_QuantLib.cvar,'__hexversion__'):
+    __hexversion__ = _QuantLib.cvar.__hexversion__
 else:
     print 'Could not find __hexversion__ attribute'
 

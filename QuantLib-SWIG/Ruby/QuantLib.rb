@@ -67,16 +67,6 @@ module QuantLibc
     end
   end
 
-  class Calendar
-    def advance(*args)
-      if args[1].is_a? Integer
-        advance_units(*args)
-      else
-        advance_period(*args)
-      end
-    end
-  end
-
   class Observer
     alias cpp_initialize initialize
     alias cpp_registerWith registerWith
@@ -116,61 +106,6 @@ module QuantLibc
     end
   end
 
-  class RiskStatistics
-    def add(x,weight=nil)
-      if (x.is_a? Float) || (x.is_a? Integer)
-        add_single(x,weight||1.0)
-      elsif weight
-        add_weighted_sequence(x,weight)
-      else
-        add_sequence(x)
-      end
-    end
-  end
-
-  class Statistics
-    def add(x,weight=nil)
-      if (x.is_a? Float) || (x.is_a? Integer)
-        add_single(x,weight||1.0)
-      elsif weight
-        add_weighted_sequence(x,weight)
-      else
-        add_sequence(x)
-      end
-    end
-  end
-
-  class TermStructure
-    def discount(x,extrapolate=false)
-      if (x.is_a? Float) || (x.is_a? Integer)
-        discount_vs_time(x,extrapolate)
-      else
-        discount_vs_date(x,extrapolate)
-      end
-    end
-    def zeroYield(x,extrapolate=false)
-      if (x.is_a? Float) || (x.is_a? Integer)
-        zeroYield_vs_time(x,extrapolate)
-      else
-        zeroYield_vs_date(x,extrapolate)
-      end
-    end
-    def forward(x1,x2,extrapolate=false)
-      if (x1.is_a? Float) || (x1.is_a? Integer)
-        forward_vs_time(x1,x2,extrapolate)
-      else
-        forward_vs_date(x1,x2,extrapolate)
-      end
-    end
-    def instantaneousForward(x,extrapolate=false)
-      if (x.is_a? Float) || (x.is_a? Integer)
-        instantaneousForward_vs_time(x,extrapolate)
-      else
-        instantaneousForward_vs_date(x,extrapolate)
-      end
-    end
-  end
-
   class TermStructureHandle
     alias cpp_initialize initialize
     def initialize(termStructure = nil)
@@ -183,12 +118,12 @@ module QuantLibc
 
   class FlatForward
     alias cpp_initialize initialize
-    def initialize(todaysDate,settlementDate,forward,dayCounter)
+    def initialize(settlementDate,forward,dayCounter)
       if (forward.is_a? Float) || (forward.is_a? Integer)
         h = MarketElementHandle.new(SimpleMarketElement.new(forward))
-        cpp_initialize(todaysDate,settlementDate,h,dayCounter)
+        cpp_initialize(settlementDate,h,dayCounter)
       else
-        cpp_initialize(todaysDate,settlementDate,forward,dayCounter)
+        cpp_initialize(settlementDate,forward,dayCounter)
       end
     end
   end

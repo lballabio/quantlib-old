@@ -38,7 +38,6 @@ class SimpleSwapTest < RUNIT::TestCase
   end
   def setup
     @payFixed = true
-    @today = Date.todaysDate
     @settlementDays = 2
     @fixingDays = 2
     @nominal = 100
@@ -51,11 +50,12 @@ class SimpleSwapTest < RUNIT::TestCase
     @index = Xibor.new("Euribor",
                        12/@floatingFrequency,'Months',
                        @euriborHandle)
+    today = Date.todaysDate
     @calendar = @index.calendar
-    @settlement = @calendar.advance(@today,
+    @settlement = @calendar.advance(today,
                                     @settlementDays, "days",
                                     "following")
-    termStructure = FlatForward.new(@today, @settlement, 0.05,
+    termStructure = FlatForward.new(@settlement, 0.05,
                                     DayCounter.new('Act/365'))
     @euriborHandle.linkTo!(termStructure)
   end
@@ -172,11 +172,11 @@ class SimpleSwapTest < RUNIT::TestCase
     end
   end
   def testCachedValue
-    @today = Date.new(17,6,2002)
-    @settlement = @calendar.advance(@today,
+    today = Date.new(17,6,2002)
+    @settlement = @calendar.advance(today,
                                     @settlementDays, "days",
                                     "following")
-    termStructure = FlatForward.new(@today, @settlement, 0.05,
+    termStructure = FlatForward.new(@settlement, 0.05,
                                     DayCounter.new('Act/365'))
     @euriborHandle.linkTo!(termStructure)
 

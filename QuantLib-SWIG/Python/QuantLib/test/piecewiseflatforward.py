@@ -45,7 +45,7 @@ class PiecewiseFlatForwardTest(unittest.TestCase):
         deposits = [
             DepositRateHelper(
                 MarketElementHandle(SimpleMarketElement(rate/100)),
-                settlementDays, n, units,
+                0, n, units,
                 calendar, rollingConvention, dayCounter)
             for (n,units,rate) in depositData
         ]
@@ -75,7 +75,7 @@ class PiecewiseFlatForwardTest(unittest.TestCase):
         swaps = [
             SwapRateHelper(
                 MarketElementHandle(SimpleMarketElement(rate/100)),
-                settlementDays, years, calendar,
+                0, years, calendar,
                 swapRollingConvention, fixedFrequency, fixedIsAdjusted,
                 fixedDayCount, floatingFrequency)
             for (years,rate) in swapData
@@ -83,7 +83,7 @@ class PiecewiseFlatForwardTest(unittest.TestCase):
         # all instruments
         instruments = deposits + swaps
         # instantiate curve
-        termStructure = PiecewiseFlatForward(today,settlement,instruments,
+        termStructure = PiecewiseFlatForward(settlement,instruments,
                                              DayCounter('Act/360'))
         euriborHandle.linkTo(termStructure)
         # check deposits

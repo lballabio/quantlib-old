@@ -106,6 +106,8 @@ class RelinkableHandle {
     $result = PyInt_FromLong(long($1));
 };
 
+%typemap(typecheck) Type = int;
+
 #elif defined(SWIGRUBY)
 
 %typemap(in) Type {
@@ -118,6 +120,8 @@ class RelinkableHandle {
 %typemap(out) Type {
     $result = INT2NUM(int($1));
 };
+
+%typemap(typecheck) Type = int;
 
 #elif defined(SWIGMZSCHEME)
 
@@ -168,6 +172,8 @@ class RelinkableHandle {
     $result = PyString_FromString(TypeToString($1).c_str());
 };
 
+%typemap(typecheck) Type = char *;
+
 #elif defined(SWIGRUBY)
 
 %typemap(in) Type {
@@ -186,6 +192,8 @@ class RelinkableHandle {
 %typemap(out) Type {
     $result = rb_str_new2(TypeToString($1).c_str());
 };
+
+%typemap(typecheck) Type = char *;
 
 #elif defined(SWIGMZSCHEME)
 

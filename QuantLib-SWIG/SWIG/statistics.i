@@ -29,10 +29,6 @@
 using QuantLib::Math::Statistics;
 %}
 
-%rename("add_single")             Statistics::add(double,double);
-%rename("add_sequence")           Statistics::add(const std::vector<double>&);
-%rename("add_weighted_sequence")  Statistics::add(const std::vector<double>&,
-                                                  const std::vector<double>&);
 #if defined(SWIGRUBY)
 %rename("reset!")                Statistics::reset;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -44,17 +40,13 @@ using QuantLib::Math::Statistics;
 %rename("reset!")                Statistics::reset;
 #endif
 
-#if defined(SWIGPYTHON)
-%feature("shadow") Statistics::add() %{
-    def add(self,*args):
-        if type(args[0]) == type(0) or type(args[0]) == type(0.0):
-            return apply(self.add_single,args)
-        elif len(args) == 1:
-            return apply(self.add_sequence,args)
-        else:
-            return apply(self.add_weighted_sequence,args)
-%}
-#elif defined(SWIGGUILE)
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+// resolve overloading
+%rename("add_single")             Statistics::add(double,double);
+%rename("add_sequence")           Statistics::add(const std::vector<double>&);
+%rename("add_weighted_sequence")  Statistics::add(const std::vector<double>&,
+                                                  const std::vector<double>&);
+#if defined(SWIGGUILE)
 %scheme %{
     (define (Statistics-add stats value . weight)
       (let ((method (cond ((number? value) Statistics-add-single)
@@ -64,6 +56,8 @@ using QuantLib::Math::Statistics;
     (export Statistics-add)
 %}
 #endif
+#endif
+
 class Statistics {
   public:
     Size samples() const;
@@ -91,10 +85,6 @@ class Statistics {
              const std::vector<double>& weights) {
         self->addSequence(values.begin(), values.end(), weights.begin());
     }
-    #if defined(SWIGPYTHON)
-    // hook for shadow method redefinition
-    void add() {};
-    #endif
 }
 
 

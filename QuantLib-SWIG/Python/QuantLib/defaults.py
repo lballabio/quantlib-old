@@ -16,6 +16,11 @@
 
 # $Id$
 
+# move this to .i files into
+#%pythoncode %{
+#    foo
+#%}
+
 from QuantLib import *
 import sys
 import os
@@ -28,7 +33,7 @@ if sys.hexversion >= 0x020200a0:
     Date.isLeap  = staticmethod(Date_isLeap)
     Date.minDate = staticmethod(Date_minDate)
     Date.maxDate = staticmethod(Date_maxDate)
-    Date.todaysDate = staticmethod(Date_todaysDate)
+    #Date.todaysDate = staticmethod(Date_todaysDate)
     TridiagonalOperator.identity = staticmethod(TridiagonalOperator_identity)
     XiborManager.setHistory = staticmethod(XiborManager_setHistory)
     XiborManager.getHistory = staticmethod(XiborManager_getHistory)
@@ -76,13 +81,13 @@ TermStructureHandle.__init__ = TermStructureHandle_new___init__
 TermStructureHandle.linkTo = TermStructureHandle_new_linkTo
 
 FlatForward._old___init__ = FlatForward.__init__
-def FlatForward_new___init__(self,todaysDate,settlementDate,
+def FlatForward_new___init__(self,settlementDate,
                              forward,dayCounter):
     if type(forward) == type(0) or type(forward) == type(0.0):
         h = MarketElementHandle(SimpleMarketElement(forward))
-        self._old___init__(todaysDate,settlementDate,h,dayCounter)
+        self._old___init__(settlementDate,h,dayCounter)
     else:
-        self._old___init__(todaysDate,settlementDate,forward,dayCounter)
+        self._old___init__(settlementDate,forward,dayCounter)
 FlatForward.__init__ = FlatForward_new___init__
 
 Observer._old_registerWith = Observer.registerWith

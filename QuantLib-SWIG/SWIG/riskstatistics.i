@@ -28,10 +28,6 @@ using QuantLib::RiskStatistics;
 using QuantLib::Math::RiskMeasures;
 %}
 
-%rename("add_single")   RiskStatistics::add(double,double);
-%rename("add_sequence") RiskStatistics::add(const std::vector<double>&);
-%rename("add_weighted_sequence") 
-RiskStatistics::add(const std::vector<double>&, const std::vector<double>&);
 #if defined(SWIGRUBY)
 %rename("reset!")                RiskStatistics::reset;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -45,17 +41,13 @@ RiskStatistics::add(const std::vector<double>&, const std::vector<double>&);
 %rename("reset!")                RiskStatistics::reset;
 #endif
 
-#if defined(SWIGPYTHON)
-%feature("shadow") RiskStatistics::add() %{
-    def add(self,*args):
-        if type(args[0]) == type(0) or type(args[0]) == type(0.0):
-            return apply(self.add_single,args)
-        elif len(args) == 1:
-            return apply(self.add_sequence,args)
-        else:
-            return apply(self.add_weighted_sequence,args)
-%}
-#elif defined(SWIGGUILE)
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+// resolve overloading
+%rename("add_single")   RiskStatistics::add(double,double);
+%rename("add_sequence") RiskStatistics::add(const std::vector<double>&);
+%rename("add_weighted_sequence") 
+RiskStatistics::add(const std::vector<double>&, const std::vector<double>&);
+#if defined(SWIGGUILE)
 %scheme %{
     (define (RiskStatistics-add stats value . weight)
       (let ((method (cond ((number? value) RiskStatistics-add-single)
@@ -64,6 +56,7 @@ RiskStatistics::add(const std::vector<double>&, const std::vector<double>&);
         (apply method stats value weight)))
     (export RiskStatistics-add)
 %}
+#endif
 #endif
 
 class RiskMeasures {
@@ -108,10 +101,6 @@ class RiskStatistics {
              const std::vector<double>& weights) {
         self->addSequence(values.begin(), values.end(), weights.begin());
     }
-    #if defined(SWIGPYTHON)
-    // hook for shadow method redefinition
-    void add() {};
-    #endif
 }
 
 

@@ -272,6 +272,6 @@
                                delete-DayCounter)
                   (fh (new-MarketElementHandle forward)
                       delete-MarketElementHandle)
-                  (curve (new-FlatForward today settlement fh day-counter)
+                  (curve (new-FlatForward settlement fh day-counter)
                          delete-TermStructure))
     (new-TermStructureHandle curve)))

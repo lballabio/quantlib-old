@@ -51,7 +51,7 @@
                                    delete-Date))
          (deleting-let* ((curve-day-count (new-DayCounter "act/365")
                                           delete-DayCounter)
-                         (term-structure (new-FlatForward today settlement 0.05
+                         (term-structure (new-FlatForward settlement 0.05
                                                           curve-day-count)
                                          delete-TermStructure))
            (TermStructureHandle-link-to! euribor-handle term-structure))

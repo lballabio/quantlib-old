@@ -23,7 +23,7 @@ import unittest
 class SimpleSwapTest(unittest.TestCase):
     def setUp(self):
         self.payFixed = 1
-        self.today = Date_todaysDate()
+        today = Date_todaysDate()
         self.settlementDays = 2
         self.fixingDays = 2
         self.nominal = 100
@@ -35,10 +35,10 @@ class SimpleSwapTest(unittest.TestCase):
                            12/self.floatingFrequency,'Months',
                            self.euriborHandle)
         self.calendar = self.index.calendar()
-        self.settlement = self.calendar.advance(self.today,
+        self.settlement = self.calendar.advance(today,
                                                 self.settlementDays, "days",
                                                 "following")
-        termStructure = FlatForward(self.today, self.settlement, 0.05,
+        termStructure = FlatForward(self.settlement, 0.05,
                                     DayCounter('Act/365'))
         self.euriborHandle.linkTo(termStructure)
     def makeSwap(self,length,fixedRate,floatingSpread):
@@ -128,11 +128,11 @@ NPV is decreasing with the spread in a simple swap paying fixed:
                                      values[i],  spreads[i]*100))
     def testCachedValue(self):
         "Testing simple swap calculation against cached value"
-        self.today = Date(17,6,2002)
-        self.settlement = self.calendar.advance(self.today,
+        today = Date(17,6,2002)
+        self.settlement = self.calendar.advance(today,
                                                 self.settlementDays, "days",
                                                 "following")
-        termStructure = FlatForward(self.today, self.settlement, 0.05,
+        termStructure = FlatForward(self.settlement, 0.05,
                                     DayCounter('Act/365'))
         self.euriborHandle.linkTo(termStructure)
 

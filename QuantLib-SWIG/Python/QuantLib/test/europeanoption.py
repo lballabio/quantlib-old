@@ -42,7 +42,7 @@ def flatCurve(forward):
     today = Date_todaysDate()
     settlement = Calendar("TARGET").advance(today,2,'days')
     return TermStructureHandle(
-        FlatForward(today, settlement, MarketElementHandle(forward),
+        FlatForward(settlement, MarketElementHandle(forward),
                     DayCounter('act/360')))
 
 class EuropeanOptionTest(unittest.TestCase):

@@ -34,7 +34,7 @@ class TermStructureTest(unittest.TestCase):
         deposits = [
             DepositRateHelper(
                 MarketElementHandle(SimpleMarketElement(rate/100)),
-                settlementDays, n, units,
+                0, n, units,
                 calendar, 'mf', DayCounter('act/360'))
             for (n,units,rate) in [ (1,  'month', 4.581),
                                     (2, 'months', 4.573),
@@ -45,7 +45,7 @@ class TermStructureTest(unittest.TestCase):
         swaps = [
             SwapRateHelper(
                 MarketElementHandle(SimpleMarketElement(rate/100)),
-                settlementDays, years, calendar,
+                0, years, calendar,
                 'mf', 1, 0, DayCounter('30/360'), 2)
             for (years,rate) in [ ( 1, 4.54),
                                   ( 5, 4.99),
@@ -54,17 +54,16 @@ class TermStructureTest(unittest.TestCase):
                                   (30, 5.96) ]
         ]        
         
-        self.termStructure = PiecewiseFlatForward(today,settlement,
+        self.termStructure = PiecewiseFlatForward(settlement,
                                                   deposits+swaps,
                                                   DayCounter('Act/360'))
     def testImplied(self):
         "Testing consistency of implied term structure"
         tolerance = 1.0e-10
         h = TermStructureHandle(self.termStructure)
-        new_today = self.termStructure.todaysDate().plusYears(3)
-        new_settlement = Calendar('TARGET').advance(new_today,2,'days')
+        new_settlement = self.termStructure.settlementDate().plusYears(3)
         test_date = new_settlement.plusYears(5)
-        implied = ImpliedTermStructure(h,new_today,new_settlement)
+        implied = ImpliedTermStructure(h,new_settlement)
         base_discount = self.termStructure.discount(new_settlement)
         discount = self.termStructure.discount(test_date)
         implied_discount = implied.discount(test_date)
@@ -79,9 +78,8 @@ unable to reproduce discount from implied curve
         global flag
         flag = None
         h = TermStructureHandle()
-        new_today = self.termStructure.todaysDate().plusYears(3)
-        new_settlement = Calendar('TARGET').advance(new_today,2,'days')
-        implied = ImpliedTermStructure(h,new_today,new_settlement)
+        new_settlement = self.termStructure.settlementDate().plusYears(3)
+        implied = ImpliedTermStructure(h,new_settlement)
         obs = Observer(raiseFlag)
         obs.registerWith(implied)
         h.linkTo(self.termStructure)
@@ -94,7 +92,7 @@ unable to reproduce discount from implied curve
         mh = MarketElementHandle(me)
         h = TermStructureHandle(self.termStructure)
         spreaded = ForwardSpreadedTermStructure(h,mh)
-        test_date = self.termStructure.todaysDate().plusYears(5)
+        test_date = self.termStructure.settlementDate().plusYears(5)
         forward = self.termStructure.instantaneousForward(test_date)
         spreaded_forward = spreaded.instantaneousForward(test_date)
         if abs((forward+me.value())-spreaded_forward) > tolerance:
@@ -127,7 +125,7 @@ unable to reproduce forward from spreaded curve
         mh = MarketElementHandle(me)
         h = TermStructureHandle(self.termStructure)
         spreaded = ZeroSpreadedTermStructure(h,mh)
-        test_date = self.termStructure.todaysDate().plusYears(5)
+        test_date = self.termStructure.settlementDate().plusYears(5)
         zero = self.termStructure.zeroYield(test_date)
         spreaded_zero = spreaded.zeroYield(test_date)
         if abs((zero+me.value())-spreaded_zero) > tolerance:

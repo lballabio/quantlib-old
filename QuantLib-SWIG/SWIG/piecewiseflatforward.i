@@ -121,14 +121,13 @@ typedef Handle<TermStructure> PiecewiseFlatForwardHandle;
 class PiecewiseFlatForwardHandle : public Handle<TermStructure> {};
 %extend PiecewiseFlatForwardHandle {
     PiecewiseFlatForwardHandle(
-        const Date& todaysDate,
         const Date& settlementDate, 
         const std::vector<Handle<RateHelper> >& instruments,
         const DayCounter& dayCounter, 
         double accuracy = 1.0e-12) {
 	        return new PiecewiseFlatForwardHandle(
-	            new PiecewiseFlatForward(todaysDate, settlementDate,
-                                         instruments, dayCounter, accuracy));
+	            new PiecewiseFlatForward(settlementDate, instruments, 
+                                         dayCounter, accuracy));
     }
     const std::vector<Date>& dates() {
         return Handle<PiecewiseFlatForward>(*self)->dates();
