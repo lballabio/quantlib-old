@@ -2,7 +2,7 @@
 
 extern ObjectHandler objectHandler;
 
-void QL_BLACKSCHOLES(
+Properties QL_BLACKSCHOLES(
 		const string &handleStochastic, 
 		const Spread &dividendYield,
 		const Rate &riskFreeRate,
@@ -14,9 +14,10 @@ void QL_BLACKSCHOLES(
 		new ObjectStochastic(dividendYield, riskFreeRate, volatility, underlying,
 			todaysDate, settlementDate));
     objectHandler.storeObject(handleStochastic, objectStochastic);
+	return objectStochastic->getProperties();
 }
 
-void QL_OPTION(
+Properties QL_OPTION(
 	const string &handleOption, 
 	const string &handleStochastic,
 	const string &type,
@@ -33,9 +34,10 @@ void QL_OPTION(
 		new ObjectOption(objectStochastic, type, strike, timeSteps,
 		exerciseDate, settlementDate));
     objectHandler.storeObject(handleOption, objectOption);
+	return objectOption->getProperties();
 }
 
-void QL_OPTION_SETENGINE(
+Properties QL_OPTION_SETENGINE(
 	const string &handleOption, 
 	const string &engineName,
 	const Size &timeSteps) {
@@ -45,4 +47,5 @@ void QL_OPTION_SETENGINE(
 	if (!objectOption)
 		QL_FAIL("QL_OPTION_SETENGINE: error retrieving object " + handleOption);
 	objectOption->setEngine(engineName, timeSteps);
+	return objectOption->getProperties();
 }

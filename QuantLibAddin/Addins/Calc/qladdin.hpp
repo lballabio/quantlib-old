@@ -54,7 +54,7 @@ public:
 	virtual sal_Int32 SAL_CALL incrementNum( sal_Int32 nVal ) THROWDEF_RTE_IAE;
 
 	// options
-	virtual SEQSEQ( ANY ) SAL_CALL qlBlackScholes( 
+	virtual SEQSEQ(ANY) SAL_CALL qlBlackScholes( 
 		const STRING& handle,
 		double dividendYield,
 		double riskFreeRate,
@@ -63,7 +63,7 @@ public:
 		sal_Int32 todaysDateNum,
 		sal_Int32 settlementDateNum) THROWDEF_RTE_IAE;
 
-	virtual SEQSEQ( ANY ) SAL_CALL qlOption( 
+	virtual SEQSEQ(ANY) SAL_CALL qlOption( 
 		const STRING& handle,
 		const STRING& handleStochastic,
 		const STRING& typeOption,
@@ -72,18 +72,15 @@ public:
 		sal_Int32 exerciseDateNum,
 		sal_Int32 settlementDateNum) THROWDEF_RTE_IAE;
 
-	virtual SEQSEQ( ANY ) SAL_CALL qlOptionSetEngine( 
+	virtual SEQSEQ(ANY) SAL_CALL qlOptionSetEngine( 
 		const STRING& handle,
 		sal_Int32 engineID,
 		sal_Int32 timeSteps) THROWDEF_RTE_IAE;
 
 	// utilities
-	virtual SEQSEQ( STRING ) SAL_CALL qlFieldNames(
-		const STRING& handleObject) THROWDEF_RTE_IAE;
 
-	virtual ANY SAL_CALL qlValue(
-		const STRING& handleObject,
-		const STRING& fieldName) THROWDEF_RTE_IAE;
+	virtual SEQSEQ(ANY) SAL_CALL qlQuery(
+		const STRING& handleObject) THROWDEF_RTE_IAE;
 
 	virtual STRING SAL_CALL qlLogfile(
 		const STRING& logFileName) THROWDEF_RTE_IAE;

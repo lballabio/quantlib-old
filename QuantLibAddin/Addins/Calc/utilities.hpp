@@ -4,5 +4,6 @@
 ANY anyToANY(const any_ptr &a); // convert boost::any to Calc Any
 SEQSEQ( ANY ) getArray(obj_ptr object, STRING handle);
 string OUStringToString(const STRING& s1);
+ANY stringToANY(const string &s);
 
 #endif

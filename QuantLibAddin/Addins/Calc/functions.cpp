@@ -4,7 +4,7 @@
 
 extern ObjectHandler objectHandler;
 
-SEQSEQ( STRING ) SAL_CALL QLAddin::qlFieldNames(
+SEQSEQ(ANY) SAL_CALL QLAddin::qlQuery(
 			const STRING& handleObject) THROWDEF_RTE_IAE {
 	try {
 		string handleObject2 = OUStringToString(handleObject);
@@ -12,34 +12,19 @@ SEQSEQ( STRING ) SAL_CALL QLAddin::qlFieldNames(
 			(objectHandler.retrieveObject(handleObject2));
 		if (!object)
 			QL_FAIL("error retrieving object " + handleObject2);
-		vector < string > fieldNames = object->getFieldNames();
-		SEQSEQ(STRING) rows(fieldNames.size());
-		for (int i = 0; i < fieldNames.size(); i++) {
-			SEQ(STRING) row(1);
-			row[0] = STRFROMASCII(fieldNames[i].c_str());
+		Properties properties = object->getProperties();
+		SEQSEQ( ANY ) rows(properties.size());
+		for (int i = 0; i < properties.size(); i++) {
+			SEQ( ANY ) row(2);
+			ObjectProperty property = properties[i];
+			any_ptr a = property();
+			row[0] = stringToANY(property.name());
+			row[1] = anyToANY(a);
 			rows[i] = row;
 		}
 		return rows;
 	} catch (const exception &e) {
 		logMessage(string("ERROR: QL_FIELDNAMES: ") + e.what());
-		THROW_RTE;
-	}
-}
-
-ANY SAL_CALL QLAddin::qlValue(
-			const STRING& handleObject,
-			const STRING& fieldName) THROWDEF_RTE_IAE {
-	try {
-		string handleObject2 = OUStringToString(handleObject);
-		string fieldName2 = OUStringToString(fieldName);
-		boost::shared_ptr<Object> object = 
-			(objectHandler.retrieveObject(handleObject2));
-		if (!object)
-			QL_FAIL("error retrieving object " + handleObject2);
-		any_ptr a = object->getValue(fieldName2);
-		return anyToANY(a);
-	} catch (const exception &e) {
-		logMessage(string("ERROR: QL_VALUE: ") + e.what());
 		THROW_RTE;
 	}
 }

@@ -19,14 +19,19 @@ ANY anyToANY(const any_ptr &a) {
 		QL_FAIL("anyToANY: unable to interpret value");
 }
 
+ANY stringToANY(const string &s) {
+	STRING s2 = STRFROMASCII( s.c_str() );
+	return CSS::uno::makeAny(s2);
+}
+
 SEQSEQ( ANY ) getArray(obj_ptr object, STRING handle) {
-	vector < string > fieldNames = object->getFieldNames();
     SEQSEQ( ANY ) rows(1);
-	SEQ( ANY ) row(fieldNames.size() + 1);
+	Properties properties = object->getProperties();
+	SEQ( ANY ) row(properties.size() + 1);
 	row[0] = CSS::uno::makeAny(handle);
-    for (int i = 0; i < fieldNames.size(); i++) {
-		string fieldName = fieldNames[i];
-		any_ptr a = object->getValue(fieldName);
+    for (int i = 0; i < properties.size(); i++) {
+		ObjectProperty property = properties[i];
+		any_ptr a = property();
         row[i + 1] = anyToANY(a);
     }
 	rows[0] = row;

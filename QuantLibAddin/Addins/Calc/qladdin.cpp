@@ -98,10 +98,8 @@ QLAddin::QLAddin() throw () : m_refcount( 0 ) {
 	funcMap[ STRFROMANSI( "qlOptionSetEngine" ) ]
 		=  STRFROMANSI( "QL_OPTION_SETENGINE" );
 //	functions
-	funcMap[ STRFROMANSI( "qlFieldNames" ) ]
-		=  STRFROMANSI( "QL_FIELDNAMES" );
-	funcMap[ STRFROMANSI( "qlValue" ) ]
-		=  STRFROMANSI( "QL_VALUE" );
+	funcMap[ STRFROMANSI( "qlQuery" ) ]
+		=  STRFROMANSI( "QL_QUERY" );
 	funcMap[ STRFROMANSI( "qlLogfile" ) ]
 		=  STRFROMANSI( "QL_LOGFILE" );
 }
