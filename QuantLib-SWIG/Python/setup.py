@@ -270,4 +270,4 @@ setup(name             = "QuantLib-Python",
                           'install_testfiles': install_testfiles,
                           'install_docs': install_docs,
                           'install': my_install},
-      version          = "0.3.0c0-cvs")
+      version          = "0.3.1a0-cvs")
