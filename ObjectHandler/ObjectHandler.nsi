@@ -53,7 +53,7 @@ SectionIn 1 2
     File "*.vcproj"
     File "*.nsi"
 
-    SetOutPath  $INSTDIR\ObjectHandler
+    SetOutPath  $INSTDIR\oh
     File /r "oh\*.hpp"
     File /r "oh\*.cpp"
     File /r "oh\makefile.mak"
@@ -79,8 +79,6 @@ SectionIn 1 2
     File /r "Docs\*.jpg"
     File /r "Docs\*.pdf"
     File /r "Docs\*.png"
-    File /r "Docs\*.tex"
-    File /r "Docs\*.txt"
     File /r "Docs\makefile.mak"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
