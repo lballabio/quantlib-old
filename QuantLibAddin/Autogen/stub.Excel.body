@@ -1,0 +1,14 @@
+LPXLOPER %s(
+%s) {
+    try {
+%s        Properties properties = %s(
+%s%s);
+        static XLOPER xRet;
+        setValues(&xRet, properties, handle);
+        return &xRet;
+    } catch (const exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: %s: ") + e.what());
+        return 0;
+    }
+}
+

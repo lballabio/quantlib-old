@@ -1,0 +1,12 @@
+    try {
+        Properties properties = %s(
+%s%s);
+        propertiesToVaries(properties, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE("%s_C Error: " + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+

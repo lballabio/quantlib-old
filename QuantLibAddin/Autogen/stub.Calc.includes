@@ -1,0 +1,7 @@
+#include <QuantLibAddin/qladdin.hpp>
+#include <Addins/Calc/qladdin.hpp>
+#include <Addins/Calc/utilities.hpp>
+
+using namespace ObjHandler;
+using namespace QuantLibAddin;
+

@@ -1,0 +1,11 @@
+    {   %-30s// function name (code)
+        %-30s// parameter types
+        %-30s// function name (Excel)
+        // parameter names:
+        %s
+        " 1",                         // macro type
+        " QuantLib",                  // category
+        " ",                          // shortcut text
+        " ",                          // help topic
+        // function help:
+        %s
