@@ -23,33 +23,33 @@ using namespace ObjHandler;
 using namespace QuantLibAddin;
 
 SEQSEQ(ANY) SAL_CALL QLAddin::qlQuery(
-			const STRING& handleObject) THROWDEF_RTE_IAE {
-	try {
-		Properties properties = QL_QUERY(OUStringToString(handleObject));
-		SEQSEQ( ANY ) rows(properties.size());
-		for (int i = 0; i < properties.size(); i++) {
-			SEQ( ANY ) row(2);
-			ObjectProperty property = properties[i];
-			any_ptr a = property();
-			row[0] = stringToANY(property.name());
-			row[1] = anyToANY(a);
-			rows[i] = row;
-		}
-		return rows;
-	} catch (const std::exception &e) {
-		QL_LOGMESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what());
-		THROW_RTE;
-	}
+            const STRING& handleObject) THROWDEF_RTE_IAE {
+    try {
+        Properties properties = QL_QUERY(OUStringToString(handleObject));
+        SEQSEQ( ANY ) rows(properties.size());
+        for (int i = 0; i < properties.size(); i++) {
+            SEQ( ANY ) row(2);
+            ObjectProperty property = properties[i];
+            any_ptr a = property();
+            row[0] = stringToANY(property.name());
+            row[1] = anyToANY(a);
+            rows[i] = row;
+        }
+        return rows;
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what());
+        THROW_RTE;
+    }
 }
 
 STRING SAL_CALL QLAddin::qlLogfile(
-			const STRING& logFileName) THROWDEF_RTE_IAE {
-	try {
-		std::string ret =  QL_LOGFILE(OUStringToString(logFileName));
-		return STRFROMANSI(ret.c_str());
-	} catch (const std::exception &e) {
-		QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what());
-		THROW_RTE;
-	}
+            const STRING& logFileName) THROWDEF_RTE_IAE {
+    try {
+        std::string ret =  QL_LOGFILE(OUStringToString(logFileName));
+        return STRFROMANSI(ret.c_str());
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what());
+        THROW_RTE;
+    }
 }
 

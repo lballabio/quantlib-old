@@ -21,19 +21,19 @@
 typedef enum { INT, LONG, DOUBLE, CHARP } Type;
 
 typedef struct {
-	union {
-		int AsInt;
-		long AsLong;
-		double AsDouble;
-		char* AsCharP;
-	};
-	Type type;
-	char* Label;
+    union {
+        int AsInt;
+        long AsLong;
+        double AsDouble;
+        char* AsCharP;
+    };
+    Type type;
+    char* Label;
 } Varies;
 
 typedef struct {
-	int count;
-	Varies *varies;
+    int count;
+    Varies *varies;
 } VariesList;
 
 const char *variesToString(const Varies *v);

@@ -21,17 +21,17 @@
 
 namespace QuantLibAddin {
 
-	std::string QL_LOGFILE(
-		const std::string &logFileName);
+    std::string QL_LOGFILE(
+        const std::string &logFileName);
 
-	void QL_LOGMESSAGE(
-		const std::string &msg);
+    void QL_LOGMESSAGE(
+        const std::string &msg);
 
-	std::string QL_ANY2STRING(
-		const ObjHandler::any_ptr &a);
+    std::string QL_ANY2STRING(
+        const ObjHandler::any_ptr &a);
 
-	const ObjHandler::Properties& QL_QUERY(
-		const std::string &handle);
+    const ObjHandler::Properties& QL_QUERY(
+        const std::string &handle);
 
 }
 

@@ -19,15 +19,15 @@
 #define utilities_h
 
 const char *QL_LOGFILE_C(
-	const char *logFileName);
+    const char *logFileName);
 
 void QL_LOGMESSAGE_C(
-	const char *msg);
+    const char *msg);
 
 //string QL_ANY2STRING(
-//	const ObjHandler::any_ptr &a);
+//    const ObjHandler::any_ptr &a);
 
 //Properties QL_QUERY(
-//	const string &handle);
+//    const string &handle);
 
 #endif

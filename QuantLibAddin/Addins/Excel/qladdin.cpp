@@ -21,31 +21,31 @@
 #include <Addins/Excel/funcdef.hpp>
 
 int xlAutoOpen() {
-	static XLOPER xDll;
-	Excel(xlGetName, &xDll, 0);
-	for (int i=0; i<NUM_FUNCS; i++)
-		Excel(xlfRegister, 0, NUM_ATTS + 1, &xDll,
-			TempStr(func[i][0]),
-			TempStr(func[i][1]),
-			TempStr(func[i][2]),
-			TempStr(func[i][3]),
-			TempStr(func[i][4]),
-			TempStr(func[i][5]),
-			TempStr(func[i][6]),
-			TempStr(func[i][7]),
-			TempStr(func[i][8]),
-			TempStr(func[i][9]),
-			TempStr(func[i][10]),
-			TempStr(func[i][11]),
-			TempStr(func[i][12]),
-			TempStr(func[i][13]),
-			TempStr(func[i][14]),
-			TempStr(func[i][15]));
-	Excel(xlFree, 0, 1, &xDll);
-	return 1;
+    static XLOPER xDll;
+    Excel(xlGetName, &xDll, 0);
+    for (int i=0; i<NUM_FUNCS; i++)
+        Excel(xlfRegister, 0, NUM_ATTS + 1, &xDll,
+            TempStr(func[i][0]),
+            TempStr(func[i][1]),
+            TempStr(func[i][2]),
+            TempStr(func[i][3]),
+            TempStr(func[i][4]),
+            TempStr(func[i][5]),
+            TempStr(func[i][6]),
+            TempStr(func[i][7]),
+            TempStr(func[i][8]),
+            TempStr(func[i][9]),
+            TempStr(func[i][10]),
+            TempStr(func[i][11]),
+            TempStr(func[i][12]),
+            TempStr(func[i][13]),
+            TempStr(func[i][14]),
+            TempStr(func[i][15]));
+    Excel(xlFree, 0, 1, &xDll);
+    return 1;
 }
 
 void xlAutoFree(LPXLOPER px) {
-	if (px->xltype == xltypeMulti && px->val.array.lparray)
-		delete [] px->val.array.lparray;
+    if (px->xltype == xltypeMulti && px->val.array.lparray)
+        delete [] px->val.array.lparray;
 }

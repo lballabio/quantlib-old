@@ -1,7 +1,7 @@
 ///***************************************************************************
-// File:		FRAMEWRK.H
+// File:        FRAMEWRK.H
 //
-// Purpose:		Header file for Framework library
+// Purpose:        Header file for Framework library
 //
 // Platform:    Microsoft Windows
 //

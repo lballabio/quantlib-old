@@ -19,7 +19,7 @@
 #define varies_hpp
 
 void propertiesToVaries(const ObjHandler::Properties &properties, 
-		VariesList *variesList);
+        VariesList *variesList);
 
 #endif
 

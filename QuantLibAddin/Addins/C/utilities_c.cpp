@@ -23,10 +23,10 @@ extern "C" {
 using namespace QuantLibAddin;
 
 const char *QL_LOGFILE_C(const char *logFileName) {
-	std::string ret = QL_LOGFILE(logFileName);
-	return ret.c_str();
+    std::string ret = QL_LOGFILE(logFileName);
+    return ret.c_str();
 }
 
 void QL_LOGMESSAGE_C(const char *msg) {
-	QL_LOGMESSAGE(msg);
+    QL_LOGMESSAGE(msg);
 }

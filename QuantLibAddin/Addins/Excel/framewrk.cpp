@@ -60,8 +60,8 @@ LPSTR GetTempMemory(int cBytes)
         lpMemory = (LPSTR) &vMemBlock + vOffsetMemBlock;
         vOffsetMemBlock += cBytes;
 
-		/* Prevent odd pointers */
-		if (vOffsetMemBlock & 1) vOffsetMemBlock++;
+        /* Prevent odd pointers */
+        if (vOffsetMemBlock & 1) vOffsetMemBlock++;
         return lpMemory;
     }
 }
@@ -94,13 +94,13 @@ int Excel(int xlfn, LPXLOPER pxResult, int count, ...) {
     FreeAllTempMemory();
 /*
     if (xlret != xlretSuccess) {
-		ostringstream msg;
+        ostringstream msg;
         msg << "Error in call to Excel: (";
-        if (xlfn & xlCommand)		msg << "xlCommand | ";
-        if (xlfn & xlSpecial)		msg << "xlSpecial | ";
-        if (xlfn & xlIntl)			msg << "xlIntl | ";
-        if (xlfn & xlPrompt)		msg << "xlPrompt | ";
-		msg << (xlfn & 0x0FFF) << ") callback failed:" << endl;
+        if (xlfn & xlCommand)        msg << "xlCommand | ";
+        if (xlfn & xlSpecial)        msg << "xlSpecial | ";
+        if (xlfn & xlIntl)            msg << "xlIntl | ";
+        if (xlfn & xlPrompt)        msg << "xlPrompt | ";
+        msg << (xlfn & 0x0FFF) << ") callback failed:" << endl;
         if (xlret & xlretAbort)     msg << "Macro Halted" << endl;
         if (xlret & xlretInvXlfn)   msg << "Invalid Function Number" << endl;
         if (xlret & xlretInvCount)  msg << "Invalid Number of Arguments" << endl;
@@ -108,7 +108,7 @@ int Excel(int xlfn, LPXLOPER pxResult, int count, ...) {
         if (xlret & xlretStackOvfl) msg << "Stack Overflow" << endl;
         if (xlret & xlretFailed)    msg << "Command failed" << endl;
         if (xlret & xlretUncalced)  msg << "Uncalced cell" << endl;
-		logMessage(msg.str());
+        logMessage(msg.str());
     }
 */
     return xlret;

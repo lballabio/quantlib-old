@@ -22,32 +22,32 @@
 
 namespace QuantLibAddin {
 
-	// FIXME
-	#define FIELD_NPV 						"NPV"
-	#define FIELD_ENGINE 					"ENGINE"
-	#define IDX_NPV 						0
-	#define IDX_ENGINE 						1
-	#define BINOMIAL_JARROW_RUDD			"BINOMIAL JARROW-RUDD"
-	#define BINOMIAL_COX_ROSS_RUBINSTEIN	"BINOMIAL COX-ROSS-RUBINSTEIN"
-	#define ADDITIVE_EQUIPROBABILITIES		"ADDITIVE EQUIPROBABILITIES"
+    // FIXME
+    #define FIELD_NPV                         "NPV"
+    #define FIELD_ENGINE                     "ENGINE"
+    #define IDX_NPV                         0
+    #define IDX_ENGINE                         1
+    #define BINOMIAL_JARROW_RUDD            "BINOMIAL JARROW-RUDD"
+    #define BINOMIAL_COX_ROSS_RUBINSTEIN    "BINOMIAL COX-ROSS-RUBINSTEIN"
+    #define ADDITIVE_EQUIPROBABILITIES        "ADDITIVE EQUIPROBABILITIES"
 
-	class ObjectOption : public ObjHandler::Object {
-	public:
-		ObjectOption(boost::shared_ptr<ObjectStochastic>,
-			const std::string &typestr,
-			const QuantLib::Real &strike,
-			const QuantLib::Size &timeSteps,
-			const QuantLib::Date &exerciseDate,
-			const QuantLib::Date &settlementDate);
-	//	~ObjectOption();
-		void setEngine(const std::string &engineName,
-			const QuantLib::Size &timeSteps);
-		virtual boost::shared_ptr<void> getReference() const {
-			return boost::static_pointer_cast<void>(vanillaOption_);
-		}
-	private:
-		boost::shared_ptr<QuantLib::VanillaOption> vanillaOption_;
-	};
+    class ObjectOption : public ObjHandler::Object {
+    public:
+        ObjectOption(boost::shared_ptr<ObjectStochastic>,
+            const std::string &typestr,
+            const QuantLib::Real &strike,
+            const QuantLib::Size &timeSteps,
+            const QuantLib::Date &exerciseDate,
+            const QuantLib::Date &settlementDate);
+    //    ~ObjectOption();
+        void setEngine(const std::string &engineName,
+            const QuantLib::Size &timeSteps);
+        virtual boost::shared_ptr<void> getReference() const {
+            return boost::static_pointer_cast<void>(vanillaOption_);
+        }
+    private:
+        boost::shared_ptr<QuantLib::VanillaOption> vanillaOption_;
+    };
 
 }
 

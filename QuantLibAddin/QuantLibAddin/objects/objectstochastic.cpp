@@ -22,31 +22,31 @@ using namespace ObjHandler;
 
 namespace QuantLibAddin {
 
-	ObjectStochastic::ObjectStochastic(
-			const Spread &dividendYield,
-			const Rate &riskFreeRate,
-			const Volatility &volatility,
-			const Real &underlying,
-			const Date &todaysDate,
-			const Date &settlementDate) {
-		DayCounter dayCounter = Actual365Fixed();
-		Handle<Quote> underlyingH( boost::shared_ptr<Quote>(new
-			SimpleQuote(underlying)));
-		Handle<YieldTermStructure> flatTermStructure(
-    		boost::shared_ptr<YieldTermStructure>(
-    		new FlatForward(settlementDate, riskFreeRate, dayCounter)));
-		Handle<YieldTermStructure> flatDividendTS(
-    		boost::shared_ptr<YieldTermStructure>(
-    		new FlatForward(settlementDate, dividendYield, dayCounter)));
-		Handle<BlackVolTermStructure> flatVolTS(
-    		boost::shared_ptr<BlackVolTermStructure>(new
-			BlackConstantVol(settlementDate, volatility, dayCounter)));
-		stochasticProcess_ = boost::shared_ptr<BlackScholesProcess> (new
-			BlackScholesProcess(
-				underlyingH,
-				flatDividendTS,
-				flatTermStructure,
-				flatVolTS));
-	}
+    ObjectStochastic::ObjectStochastic(
+            const Spread &dividendYield,
+            const Rate &riskFreeRate,
+            const Volatility &volatility,
+            const Real &underlying,
+            const Date &todaysDate,
+            const Date &settlementDate) {
+        DayCounter dayCounter = Actual365Fixed();
+        Handle<Quote> underlyingH( boost::shared_ptr<Quote>(new
+            SimpleQuote(underlying)));
+        Handle<YieldTermStructure> flatTermStructure(
+            boost::shared_ptr<YieldTermStructure>(
+            new FlatForward(settlementDate, riskFreeRate, dayCounter)));
+        Handle<YieldTermStructure> flatDividendTS(
+            boost::shared_ptr<YieldTermStructure>(
+            new FlatForward(settlementDate, dividendYield, dayCounter)));
+        Handle<BlackVolTermStructure> flatVolTS(
+            boost::shared_ptr<BlackVolTermStructure>(new
+            BlackConstantVol(settlementDate, volatility, dayCounter)));
+        stochasticProcess_ = boost::shared_ptr<BlackScholesProcess> (new
+            BlackScholesProcess(
+                underlyingH,
+                flatDividendTS,
+                flatTermStructure,
+                flatVolTS));
+    }
 
 }

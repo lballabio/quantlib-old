@@ -21,32 +21,32 @@ using namespace ObjHandler;
 
 namespace QuantLibAddin {
 
-	std::string QL_LOGFILE(
-			const std::string &logFileName) {
-		if (setLogFile(logFileName))
-			return logFileName;
-		else
-			return "logging disabled";
-	}
+    std::string QL_LOGFILE(
+            const std::string &logFileName) {
+        if (setLogFile(logFileName))
+            return logFileName;
+        else
+            return "logging disabled";
+    }
 
-	void QL_LOGMESSAGE(
-			const std::string &msg) {
-		logMessage(msg);
-	}
+    void QL_LOGMESSAGE(
+            const std::string &msg) {
+        logMessage(msg);
+    }
 
-	std::string QL_ANY2STRING(
-			const any_ptr &a) {
-		return AnyToString(a);
-	}
+    std::string QL_ANY2STRING(
+            const any_ptr &a) {
+        return AnyToString(a);
+    }
 
-	const Properties& QL_QUERY(
-			const std::string &handle) {
-		boost::shared_ptr<Object> object =
-				ObjectHandler::instance().retrieveObject(handle);
-		if (!object)
-				throw Exception("error retrieving object " + handle);
-		return object->getProperties();
-	}
+    const Properties& QL_QUERY(
+            const std::string &handle) {
+        boost::shared_ptr<Object> object =
+                ObjectHandler::instance().retrieveObject(handle);
+        if (!object)
+                throw Exception("error retrieving object " + handle);
+        return object->getProperties();
+    }
 
 }
 

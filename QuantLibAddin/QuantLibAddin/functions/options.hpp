@@ -22,28 +22,28 @@
 
 namespace QuantLibAddin {
 
-	const ObjHandler::Properties& QL_BLACKSCHOLES(
-		const std::string &handleStochastic, 
-		const double &dividendYield,
-		const double &riskFreeRate,
-		const double &volatility,
-		const double &underlying,
-		const long &todaysDate,
-		const long &settlementDate);
+    const ObjHandler::Properties& QL_BLACKSCHOLES(
+        const std::string &handleStochastic, 
+        const double &dividendYield,
+        const double &riskFreeRate,
+        const double &volatility,
+        const double &underlying,
+        const long &todaysDate,
+        const long &settlementDate);
 
-	const ObjHandler::Properties& QL_OPTION(
-		const std::string &handleOption, 
-		const std::string &handleStochastic,
-		const std::string &type,
-		const double &strike,
-		const long &timeSteps,
-		const long &exerciseDate,
-		const long &settlementDate);
+    const ObjHandler::Properties& QL_OPTION(
+        const std::string &handleOption, 
+        const std::string &handleStochastic,
+        const std::string &type,
+        const double &strike,
+        const long &timeSteps,
+        const long &exerciseDate,
+        const long &settlementDate);
 
-	const ObjHandler::Properties& QL_OPTION_SETENGINE(
-		const std::string &handleOption, 
-		const std::string &engineName,
-		const long &timeSteps);
+    const ObjHandler::Properties& QL_OPTION_SETENGINE(
+        const std::string &handleOption, 
+        const std::string &engineName,
+        const long &timeSteps);
 
 }
 

@@ -29,9 +29,9 @@
 #include <osl/mutex.hxx>
 #include <rtl/uuid.h>
 
-#define ADDIN_SERVICE	"com.sun.star.sheet.AddIn"
-#define MY_SERVICE		"com.sun.star.sheet.addin.QL"
-#define MY_IMPLNAME		"com.sun.star.sheet.addin.QLImpl"
+#define ADDIN_SERVICE    "com.sun.star.sheet.AddIn"
+#define MY_SERVICE        "com.sun.star.sheet.addin.QL"
+#define MY_IMPLNAME        "com.sun.star.sheet.addin.QLImpl"
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -45,7 +45,7 @@ static struct ::cppu::ImplementationEntry s_component_entries [] = {
     {
         QL_CreateInstance, QLAddin::getImplementationName_Static,
         QLAddin::getSupportedServiceNames_Static,
-		::cppu::createSingleComponentFactory, 0, 0
+        ::cppu::createSingleComponentFactory, 0, 0
     },
     { 0, 0, 0, 0, 0, 0 }
 };
@@ -53,12 +53,12 @@ static struct ::cppu::ImplementationEntry s_component_entries [] = {
 extern "C" {
 
 void SAL_CALL component_getImplementationEnvironment(
-		const sal_Char** ppEnvTypeName, uno_Environment** ppEnv ) {
-	*ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
+        const sal_Char** ppEnvTypeName, uno_Environment** ppEnv ) {
+    *ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
 }
 
 sal_Bool SAL_CALL component_writeInfo(
-		lang::XMultiServiceFactory * xMgr, registry::XRegistryKey * xRegistry ) {
+        lang::XMultiServiceFactory * xMgr, registry::XRegistryKey * xRegistry ) {
     return ::cppu::component_writeInfoHelper(
         xMgr, xRegistry, s_component_entries );
 }
@@ -75,7 +75,7 @@ void * SAL_CALL component_getFactory(
 // XInterface
 
 CSS::uno::Any QLAddin::queryInterface(
-		CSS::uno::Type const & type) THROWDEF_RTE {
+        CSS::uno::Type const & type) THROWDEF_RTE {
 //    if (type.equals( ::getCppuType( (REF ( XInterface ) const *)0 ) )) {
     if (type.equals( ::getCppuType( (REF ( CSS::uno::XInterface ) const *)0 ) )) {
         // return XInterface interface (resolve ambiguity by casting to lang::XTypeProvider)
@@ -155,84 +155,84 @@ SEQ ( sal_Int8 ) QLAddin::getImplementationId() THROWDEF_RTE {
 // Static
 
 STRING QLAddin::getImplementationName_Static() {
-	return STRFROMASCII( MY_IMPLNAME );
+    return STRFROMASCII( MY_IMPLNAME );
 }
 
 SEQ( STRING ) QLAddin::getSupportedServiceNames_Static() {
-	SEQ( STRING )	aRet(2);
-	STRING*			pArray = aRet.getArray();
-	pArray[0] = STRFROMASCII( ADDIN_SERVICE );
-	pArray[1] = STRFROMASCII( MY_SERVICE );
-	return aRet;
+    SEQ( STRING )    aRet(2);
+    STRING*            pArray = aRet.getArray();
+    pArray[0] = STRFROMASCII( ADDIN_SERVICE );
+    pArray[1] = STRFROMASCII( MY_SERVICE );
+    return aRet;
 }
 
 // XAddIn
 
 STRING SAL_CALL QLAddin::getProgrammaticFuntionName( 
-		const STRING& aDisplayName) THROWDEF_RTE {
-	return STRING();
+        const STRING& aDisplayName) THROWDEF_RTE {
+    return STRING();
 }
 
 STRING SAL_CALL QLAddin::getDisplayFunctionName( 
-		const STRING& aProgrammaticName) THROWDEF_RTE {
-	return funcMap[ aProgrammaticName ];
+        const STRING& aProgrammaticName) THROWDEF_RTE {
+    return funcMap[ aProgrammaticName ];
 }
 
 STRING SAL_CALL QLAddin::getFunctionDescription( 
-		const STRING& aProgrammaticName) THROWDEF_RTE {
-	return STRFROMANSI( "This function accepts as input a single integer, the return value is one plus the input value" );
+        const STRING& aProgrammaticName) THROWDEF_RTE {
+    return STRFROMANSI( "This function accepts as input a single integer, the return value is one plus the input value" );
 }
 
 STRING SAL_CALL QLAddin::getDisplayArgumentName( 
-		const STRING& aName, sal_Int32 nArg) THROWDEF_RTE {
-	return STRFROMANSI( "argument 1" );
+        const STRING& aName, sal_Int32 nArg) THROWDEF_RTE {
+    return STRFROMANSI( "argument 1" );
 }
 
 STRING SAL_CALL QLAddin::getArgumentDescription( 
-		const STRING& aName, sal_Int32 nArg ) THROWDEF_RTE {
-	return STRFROMANSI( "Number to increment" );
+        const STRING& aName, sal_Int32 nArg ) THROWDEF_RTE {
+    return STRFROMANSI( "Number to increment" );
 }
 
 STRING SAL_CALL QLAddin::getProgrammaticCategoryName(
-		STRING const & str) THROWDEF_RTE {
-	return STRFROMASCII( "Add-In" );
+        STRING const & str) THROWDEF_RTE {
+    return STRFROMASCII( "Add-In" );
 }
 
 STRING SAL_CALL QLAddin::getDisplayCategoryName(
-		STRING const & str) THROWDEF_RTE {
-	return STRFROMASCII( "Add-In" );
+        STRING const & str) THROWDEF_RTE {
+    return STRFROMASCII( "Add-In" );
 }
 
 // XServiceName
 
-STRING SAL_CALL	QLAddin::getServiceName() THROWDEF_RTE {
-	return STRFROMASCII( MY_SERVICE );
+STRING SAL_CALL    QLAddin::getServiceName() THROWDEF_RTE {
+    return STRFROMASCII( MY_SERVICE );
 }
 
 // XServiceInfo
 
-STRING SAL_CALL	QLAddin::getImplementationName() THROWDEF_RTE {
-	return getImplementationName_Static();
+STRING SAL_CALL    QLAddin::getImplementationName() THROWDEF_RTE {
+    return getImplementationName_Static();
 }
 
 sal_Bool SAL_CALL QLAddin::supportsService(
-		const STRING& aName) THROWDEF_RTE {
-	return aName.compareToAscii( ADDIN_SERVICE ) == 0 || 
-		aName.compareToAscii( MY_SERVICE ) == 0;
+        const STRING& aName) THROWDEF_RTE {
+    return aName.compareToAscii( ADDIN_SERVICE ) == 0 || 
+        aName.compareToAscii( MY_SERVICE ) == 0;
 }
 
 SEQ(STRING) SAL_CALL QLAddin::getSupportedServiceNames() THROWDEF_RTE {
-	return getSupportedServiceNames_Static();
+    return getSupportedServiceNames_Static();
 }
 
 // XLocalizable
 
 void SAL_CALL QLAddin::setLocale(
-		const lang::Locale& eLocale) THROWDEF_RTE {
-	aFuncLoc = eLocale;
+        const lang::Locale& eLocale) THROWDEF_RTE {
+    aFuncLoc = eLocale;
 }
 
 lang::Locale SAL_CALL QLAddin::getLocale() THROWDEF_RTE {
-	return aFuncLoc;
+    return aFuncLoc;
 }
 

@@ -28,6 +28,6 @@ void anyToXLOPER(const ObjHandler::any_ptr &any,
                  XLOPER &xOp);
 std::string getCaller();
 void setValues(LPXLOPER xArray,
-			   ObjHandler::Properties properties,
+               ObjHandler::Properties properties,
                const std::string &handle);
 #endif
