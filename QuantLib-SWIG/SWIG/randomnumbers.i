@@ -38,9 +38,6 @@ using QuantLib::RandomNumbers::GaussianRandomGenerator;
 
 using QuantLib::RandomNumbers::RandomSequenceGenerator;
 
-using QuantLib::RandomNumbers::LecuyerUniformRsg;
-using QuantLib::RandomNumbers::KnuthUniformRsg;
-using QuantLib::RandomNumbers::MersenneTwisterUniformRsg;
 using QuantLib::RandomNumbers::UniformRandomSequenceGenerator;
 using QuantLib::RandomNumbers::HaltonRsg;
 using QuantLib::RandomNumbers::SobolRsg;
