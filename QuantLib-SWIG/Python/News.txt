@@ -8,6 +8,7 @@ Changes since Release 0.3.1:
 
 Changes since Release 0.3.0:
     - in sync with QuantLib 0.3.1
+    - merged under the global QuantLib-SWIG project
     - bug fixing
 
 
