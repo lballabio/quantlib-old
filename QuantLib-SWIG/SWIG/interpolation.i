@@ -25,152 +25,84 @@
 
 %{
 // safe versions which copy their arguments
-class Interpolation {
+template <class I>
+class SafeInterpolation {
   public:
-    Interpolation(const Array& x, const Array& y)
-    : x_(x), y_(y) {}
+    SafeInterpolation(const Array& x, const Array& y)
+    : x_(x), y_(y), f_(x_.begin(),x_.end(),y_.begin()) {}
     double operator()(double x, bool allowExtrapolation=false) { 
-        return (*f_)(x, allowExtrapolation); 
+        return f_(x, allowExtrapolation); 
     }
   protected:
     Array x_, y_;
-    Handle<QuantLib::Math::Interpolation<Array::const_iterator,
-                                         Array::const_iterator> > f_;
+    I f_;
 };
+%}
 
-class Interpolation2D {
+%define make_safe_interpolation(T)
+%{
+typedef SafeInterpolation<
+            QuantLib::Math::T<Array::const_iterator,
+                              Array::const_iterator> >
+    Safe##T;
+%}
+%rename(Safe##T) T;
+class Safe##T {
+    #if defined(SWIGRUBY)
+    %rename(__call__) operator();
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename(call)     operator();
+    #endif
   public:
-    Interpolation2D(const Array& x, const Array& y, const Matrix& m)
-    : x_(x), y_(y), m_(m) {}
+    Safe##T(const Array& x, const Array& y);
+    double operator()(double x, bool allowExtrapolation=false);
+};
+%enddef
+
+make_safe_interpolation(LinearInterpolation);
+make_safe_interpolation(CubicSpline);
+make_safe_interpolation(LogLinearInterpolation);
+
+%{
+// safe versions which copy their arguments
+template <class I>
+class SafeInterpolation2D {
+  public:
+    SafeInterpolation2D(const Array& x, const Array& y, const Matrix& m)
+    : x_(x), y_(y), m_(m), f_(x_.begin(),x_.end(),y_.begin(),y_.end(),m_) {}
     double operator()(double x, double y, bool allowExtrapolation=false) { 
-        return (*f_)(x,y, allowExtrapolation); 
+        return f_(x,y, allowExtrapolation); 
     }
   protected:
     Array x_, y_;
     Matrix m_;
-    Handle<QuantLib::Math::Interpolation2D<Array::const_iterator,
-                                           Array::const_iterator,
-                                           Matrix> > f_;
-};
-
-
-class LinearInterpolation : public Interpolation {
-  public:
-    LinearInterpolation(const Array& x, const Array& y)
-    : Interpolation(x,y) {
-        f_ = Handle<QuantLib::Math::Interpolation<Array::const_iterator,
-                                                  Array::const_iterator> >(
-            new QuantLib::Math::LinearInterpolation<Array::const_iterator,
-                                                    Array::const_iterator>(
-                x_.begin(),x_.end(),y_.begin()));
-    }
-};
-
-class CubicSpline : public Interpolation {
-  public:
-    CubicSpline(const Array& x, const Array& y)
-    : Interpolation(x,y) {
-        f_ = Handle<QuantLib::Math::Interpolation<Array::const_iterator,
-                                                  Array::const_iterator> >(
-            new QuantLib::Math::CubicSpline<Array::const_iterator,
-                                            Array::const_iterator>(
-                x_.begin(),x_.end(),y_.begin()));
-    }
-};
-
-class LogLinearInterpolation : public Interpolation {
-  public:
-    LogLinearInterpolation(const Array& x, const Array& y)
-    : Interpolation(x,y) {
-        f_ = Handle<QuantLib::Math::Interpolation<Array::const_iterator,
-                                                  Array::const_iterator> >(
-            new QuantLib::Math::LogLinearInterpolation<Array::const_iterator,
-                                                       Array::const_iterator>(
-                x_.begin(),x_.end(),y_.begin()));
-    }
-};
-
-
-class BilinearInterpolation : public Interpolation2D {
-  public:
-    BilinearInterpolation(const Array& x, const Array& y, const Matrix& m)
-    : Interpolation2D(x,y,m) {
-        f_ = Handle<QuantLib::Math::Interpolation2D<Array::const_iterator,
-                                                    Array::const_iterator,
-                                                    Matrix> >(
-            new QuantLib::Math::BilinearInterpolation<Array::const_iterator,
-                                                      Array::const_iterator,
-                                                      Matrix>(
-                x_.begin(),x_.end(),y_.begin(),y_.end(),m_));
-    }
-};
-
-class BicubicSplineInterpolation : public Interpolation2D {
-  public:
-    BicubicSplineInterpolation(const Array& x, const Array& y, const Matrix& m)
-    : Interpolation2D(x,y,m) {
-        f_ = Handle<QuantLib::Math::Interpolation2D<Array::const_iterator,
-                                                    Array::const_iterator,
-                                                    Matrix> >(
-          new QuantLib::Math::BicubicSplineInterpolation<Array::const_iterator,
-                                                         Array::const_iterator,
-                                                         Matrix>(
-                x_.begin(),x_.end(),y_.begin(),y_.end(),m_));
-    }
+    I f_;
 };
 %}
 
-
-class Interpolation {
+%define make_safe_interpolation2d(T)
+%{
+typedef SafeInterpolation2D<
+            QuantLib::Math::T<Array::const_iterator,
+                              Array::const_iterator,
+                              Matrix> >
+    Safe##T;
+%}
+%rename(Safe##T) T;
+class Safe##T {
     #if defined(SWIGRUBY)
     %rename(__call__) operator();
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename(call)     operator();
     #endif
-  private:
-    Interpolation();
   public:
-    double operator()(double x, bool allowExtrapolation=false);
-};
-
-class LinearInterpolation : public Interpolation {
-  public:
-    LinearInterpolation(const Array& x, const Array& y);
-};
-
-class LogLinearInterpolation : public Interpolation {
-  public:
-    LogLinearInterpolation(const Array& x, const Array& y);
-};
-
-class CubicSpline : public Interpolation {
-  public:
-    CubicSpline(const Array& x, const Array& y);
-};
-
-
-class Interpolation2D {
-    #if defined(SWIGRUBY)
-    %rename(__call__) operator();
-    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename(call)     operator();
-    #endif
-  private:
-    Interpolation2D();
-  public:
+    Safe##T(const Array& x, const Array& y, const Matrix& m);
     double operator()(double x, double y, bool allowExtrapolation=false);
 };
+%enddef
 
-class BilinearInterpolation : public Interpolation2D {
-  public:
-    BilinearInterpolation(const Array& x, const Array& y, const Matrix& m);
-};
-
-class BicubicSplineInterpolation : public Interpolation2D {
-  public:
-    BicubicSplineInterpolation(const Array& x, const Array& y, 
-                               const Matrix& m);
-};
+make_safe_interpolation2d(BilinearInterpolation);
+make_safe_interpolation2d(BicubicSplineInterpolation);
 
 
 #endif
