@@ -32,7 +32,7 @@ NULL=nul
 OUTDIR=.\build\Release
 INTDIR=.\build\Release
 
-ALL : ".\xll\Win32\VisualStudio\qlxl.xll"
+ALL : ".\xll\Win32\VisualStudio\QuantLibXL.xll"
 
 
 CLEAN :
@@ -42,9 +42,9 @@ CLEAN :
 	-@erase "$(INTDIR)\utilities.obj"
 	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(INTDIR)\xlAutoOpen.obj"
-	-@erase "$(OUTDIR)\qlxl.exp"
-	-@erase "$(OUTDIR)\qlxl.lib"
-	-@erase ".\xll\Win32\VisualStudio\qlxl.xll"
+	-@erase "$(OUTDIR)\QuantLibXL.exp"
+	-@erase "$(OUTDIR)\QuantLibXL.lib"
+	-@erase ".\xll\Win32\VisualStudio\QuantLibXL.xll"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -90,7 +90,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibXL.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\qlxl.pdb" /machine:I386 /out:"xll\Win32\VisualStudio\qlxl.xll" /implib:"$(OUTDIR)\qlxl.lib" /libpath:"$(XLW_DIR)\lib\Win32\VisualStudio" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\QuantLibXL.pdb" /machine:I386 /out:"xll\Win32\VisualStudio\QuantLibXL.xll" /implib:"$(OUTDIR)\QuantLibXL.lib" /libpath:"$(XLW_DIR)\lib\Win32\VisualStudio" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" 
 LINK32_OBJS= \
 	"$(INTDIR)\datef.obj" \
 	"$(INTDIR)\mathf.obj" \
@@ -98,7 +98,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\xlAutoOpen.obj"
 
-".\xll\Win32\VisualStudio\qlxl.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+".\xll\Win32\VisualStudio\QuantLibXL.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
@@ -108,7 +108,7 @@ LINK32_OBJS= \
 OUTDIR=.\build\Debug
 INTDIR=.\build\Debug
 
-ALL : ".\xll\Win32\VisualStudio\qlxl_d.xll"
+ALL : ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
 
 
 CLEAN :
@@ -119,11 +119,11 @@ CLEAN :
 	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(INTDIR)\vc60.pdb"
 	-@erase "$(INTDIR)\xlAutoOpen.obj"
-	-@erase "$(OUTDIR)\qlxl_d.exp"
-	-@erase "$(OUTDIR)\qlxl_d.lib"
-	-@erase "$(OUTDIR)\qlxl_d.pdb"
-	-@erase ".\xll\Win32\VisualStudio\qlxl_d.ilk"
-	-@erase ".\xll\Win32\VisualStudio\qlxl_d.xll"
+	-@erase "$(OUTDIR)\QuantLibXL_d.exp"
+	-@erase "$(OUTDIR)\QuantLibXL_d.lib"
+	-@erase "$(OUTDIR)\QuantLibXL_d.pdb"
+	-@erase ".\xll\Win32\VisualStudio\QuantLibXL_d.ilk"
+	-@erase ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -169,7 +169,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibXL.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\qlxl_d.pdb" /debug /machine:I386 /out:"xll\Win32\VisualStudio\qlxl_d.xll" /implib:"$(OUTDIR)\qlxl_d.lib" /pdbtype:sept /libpath:"$(XLW_DIR)\lib\Win32\VisualStudio" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\QuantLibXL_d.pdb" /debug /machine:I386 /out:"xll\Win32\VisualStudio\QuantLibXL_d.xll" /implib:"$(OUTDIR)\QuantLibXL_d.lib" /pdbtype:sept /libpath:"$(XLW_DIR)\lib\Win32\VisualStudio" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" 
 LINK32_OBJS= \
 	"$(INTDIR)\datef.obj" \
 	"$(INTDIR)\mathf.obj" \
@@ -177,7 +177,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\xlAutoOpen.obj"
 
-".\xll\Win32\VisualStudio\qlxl_d.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+".\xll\Win32\VisualStudio\QuantLibXL_d.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
@@ -187,7 +187,7 @@ LINK32_OBJS= \
 OUTDIR=.\build\OnTheEdgeRelease
 INTDIR=.\build\OnTheEdgeRelease
 
-ALL : ".\xll\Win32\VisualStudio\qlxl.xll"
+ALL : ".\xll\Win32\VisualStudio\QuantLibXL.xll"
 
 
 CLEAN :
@@ -197,9 +197,9 @@ CLEAN :
 	-@erase "$(INTDIR)\utilities.obj"
 	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(INTDIR)\xlAutoOpen.obj"
-	-@erase "$(OUTDIR)\qlxl.exp"
-	-@erase "$(OUTDIR)\qlxl.lib"
-	-@erase ".\xll\Win32\VisualStudio\qlxl.xll"
+	-@erase "$(OUTDIR)\QuantLibXL.exp"
+	-@erase "$(OUTDIR)\QuantLibXL.lib"
+	-@erase ".\xll\Win32\VisualStudio\QuantLibXL.xll"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -245,7 +245,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibXL.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\qlxl.pdb" /machine:I386 /out:"xll\Win32\VisualStudio\qlxl.xll" /implib:"$(OUTDIR)\qlxl.lib" /libpath:"..\XLW\lib\Win32\VisualStudio" /libpath:"..\QuantLib\lib\Win32\VisualStudio" 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\QuantLibXL.pdb" /machine:I386 /out:"xll\Win32\VisualStudio\QuantLibXL.xll" /implib:"$(OUTDIR)\QuantLibXL.lib" /libpath:"..\XLW\lib\Win32\VisualStudio" /libpath:"..\QuantLib\lib\Win32\VisualStudio" 
 LINK32_OBJS= \
 	"$(INTDIR)\datef.obj" \
 	"$(INTDIR)\mathf.obj" \
@@ -253,7 +253,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\xlAutoOpen.obj"
 
-".\xll\Win32\VisualStudio\qlxl.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+".\xll\Win32\VisualStudio\QuantLibXL.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
@@ -263,7 +263,7 @@ LINK32_OBJS= \
 OUTDIR=.\build\OnTheEdgeDebug
 INTDIR=.\build\OnTheEdgeDebug
 
-ALL : ".\xll\Win32\VisualStudio\qlxl_d.xll"
+ALL : ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
 
 
 CLEAN :
@@ -274,11 +274,11 @@ CLEAN :
 	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(INTDIR)\vc60.pdb"
 	-@erase "$(INTDIR)\xlAutoOpen.obj"
-	-@erase "$(OUTDIR)\qlxl_d.exp"
-	-@erase "$(OUTDIR)\qlxl_d.lib"
-	-@erase "$(OUTDIR)\qlxl_d.pdb"
-	-@erase ".\xll\Win32\VisualStudio\qlxl_d.ilk"
-	-@erase ".\xll\Win32\VisualStudio\qlxl_d.xll"
+	-@erase "$(OUTDIR)\QuantLibXL_d.exp"
+	-@erase "$(OUTDIR)\QuantLibXL_d.lib"
+	-@erase "$(OUTDIR)\QuantLibXL_d.pdb"
+	-@erase ".\xll\Win32\VisualStudio\QuantLibXL_d.ilk"
+	-@erase ".\xll\Win32\VisualStudio\QuantLibXL_d.xll"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -324,7 +324,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\QuantLibXL.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\qlxl_d.pdb" /debug /machine:I386 /out:"xll\Win32\VisualStudio\qlxl_d.xll" /implib:"$(OUTDIR)\qlxl_d.lib" /pdbtype:sept /libpath:"..\XLW\lib\Win32\VisualStudio" /libpath:"..\QuantLib\lib\Win32\VisualStudio" 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\QuantLibXL_d.pdb" /debug /machine:I386 /out:"xll\Win32\VisualStudio\QuantLibXL_d.xll" /implib:"$(OUTDIR)\QuantLibXL_d.lib" /pdbtype:sept /libpath:"..\XLW\lib\Win32\VisualStudio" /libpath:"..\QuantLib\lib\Win32\VisualStudio" 
 LINK32_OBJS= \
 	"$(INTDIR)\datef.obj" \
 	"$(INTDIR)\mathf.obj" \
@@ -332,7 +332,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\xlAutoOpen.obj"
 
-".\xll\Win32\VisualStudio\qlxl_d.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+".\xll\Win32\VisualStudio\QuantLibXL_d.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<

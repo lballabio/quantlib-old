@@ -37,7 +37,7 @@ extern "C"
 
         // Displays a message in the status bar.
         XlfExcel::Instance().SendMessage(
-            "Registering QuantLib XL v"
+            "Registering QuantLibXL v"
             QLXL_VERSION
             " library...");
 
