@@ -1,3 +1,101 @@
+2003-10-31 17:28  nando
+
+	* download.html (1.48), guidedtour.txt (1.3): updated
+
+2003-10-09 17:10  nando
+
+	* download.html (1.47): updated for RPM docs
+
+2003-09-11 10:10  nando
+
+	* lists.html (1.40): updated
+
+2003-09-10 10:11  nando
+
+	* books.html (1.10): updated
+
+2003-09-07 21:08  nando
+
+	* books.html (1.9): www.jaeckel.org errata added
+
+2003-09-04 20:04  nando
+
+	* download.html (1.46): removed i686, per Lingo request
+
+2003-09-03 15:08  nando
+
+	* guidedtour.txt (1.2): updated
+
+2003-09-03 14:36  nando
+
+	* books.html (1.8): updated
+
+2003-09-03 13:26  nando
+
+	* download.html (1.45): 0.3.3
+
+2003-09-02 15:46  nando
+
+	* TODO.txt (1.14), index.html (1.56): getting ready for 0.3.3
+
+2003-09-02 11:44  nando
+
+	* FAQ.html (1.46), books.html (1.7), cvs.html (1.50), download.html
+	(1.44), extensions.html (1.33), index.html (1.55), license.html
+	(1.53), lists.html (1.39), mailinglists.html (1.34),
+	marketconventions.html (1.31), nextrelease.html (1.30),
+	qltablefoot.inc (1.12), quep.html (1.41), snapshot.html (1.26),
+	style.html (1.38): getting ready for 0.3.3
+
+2003-09-02 11:38  nando
+
+	* FAQ.html (1.45), books.html (1.6), cvs.html (1.49), download.html
+	(1.42), extensions.html (1.32), index.html (1.54), license.html
+	(1.52), lists.html (1.38), mailinglists.html (1.33),
+	marketconventions.html (1.30), nextrelease.html (1.29),
+	qltablehead.inc (1.26), quep.html (1.40), snapshot.html (1.25),
+	style.html (1.37), styles/quantlib.css (1.9), download.html (1.43):
+	getting ready for 0.3.3
+
+2003-09-02 10:41  nando
+
+	* FAQ.html (1.44), books.html (1.5), cvs.html (1.48), download.html
+	(1.41), extensions.html (1.31), index.html (1.53), license.html
+	(1.51), lists.html (1.37), mailinglists.html (1.32),
+	marketconventions.html (1.29), nextrelease.html (1.28),
+	qltablehead.inc (1.25), quep.html (1.39), snapshot.html (1.24),
+	style.html (1.36): getting ready for 0.3.3
+
+2003-09-02 10:08  nando
+
+	* nextrelease.html (1.27): getting ready for 0.3.3
+
+2003-09-02 08:11  nando
+
+	* FAQ.html (1.43), books.html (1.4), cvs.html (1.47), download.html
+	(1.40), extensions.html (1.30), index.html (1.52), license.html
+	(1.50), lists.html (1.36), mailinglists.html (1.31),
+	marketconventions.html (1.28), nextrelease.html (1.26),
+	qltablehead.inc (1.24), quep.html (1.38), snapshot.html (1.23),
+	style.html (1.35): getting ready for 0.3.3
+
+2003-09-01 17:01  nando
+
+	* FAQ.html (1.42), books.html (1.3), cvs.html (1.46), download.html
+	(1.39), extensions.html (1.29), index.html (1.51), license.html
+	(1.49), lists.html (1.35), mailinglists.html (1.30),
+	marketconventions.html (1.27), nextrelease.html (1.25),
+	qltablehead.inc (1.23), quep.html (1.37), snapshot.html (1.22),
+	style.html (1.34): getting ready for 0.3.3
+
+2003-07-25 12:53  lballabio
+
+	* cvs.html (1.45): Removed reference to dead modules
+
+2003-07-22 15:33  nando
+
+	* ChangeLog.txt (1.28): updated
+
 2003-04-23 15:34  lballabio
 
 	* quep.html (1.36): [no log message]
