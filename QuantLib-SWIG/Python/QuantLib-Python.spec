@@ -1,6 +1,6 @@
 Summary: The Python wrapper for the QuantLib library.
 Name: QuantLib-Python
-Version: 0.3.6
+Version: 0.3.7
 Epoch: 0
 Release: 0
 License: BSD License
