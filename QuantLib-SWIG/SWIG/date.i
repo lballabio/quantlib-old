@@ -186,14 +186,14 @@ class Date {
   public:
     Date();
     Date(Day d, Month m, Year y);
-    Date(int serialNumber);
+    Date(long serialNumber);
     // access functions
     Weekday weekday() const;
     Day dayOfMonth() const;
     Day dayOfYear() const;        // one-based
     Month month() const;
     Year year() const;
-    int serialNumber() const;
+    long serialNumber() const;
     // increment/decrement dates
     Date plusDays(int days) const;
     Date plusWeeks(int weeks) const;
@@ -222,7 +222,7 @@ class Date {
             return DateFormatter::toString(*self,DateFormatter::ISO);
         }
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-        int operator-(const Date& other) {
+        long operator-(const Date& other) {
             return *self - other;
         }
         int __cmp__(const Date& other) {
@@ -261,7 +261,7 @@ namespace std {
 %rename("Date>=?") Date_greater_equal;
 %inline %{
     // difference - comparison
-    int Date_days_between(const Date& d1, const Date& d2) {
+    long Date_days_between(const Date& d1, const Date& d2) {
         return d2-d1;
     }
     bool Date_equal(const Date& d1, const Date& d2) {

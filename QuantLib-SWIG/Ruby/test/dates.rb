@@ -27,7 +27,7 @@ class DateTest < Test::Unit::TestCase
     STDOUT.flush
   end
   def testAllDates
-    minDate = QuantLib::Date.minDate.serialNumber
+    minDate = QuantLib::Date.minDate.serialNumber+1
     maxDate = QuantLib::Date.maxDate.serialNumber
     
     dyold  = QuantLib::Date.new(minDate-1).dayOfYear

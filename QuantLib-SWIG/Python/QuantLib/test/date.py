@@ -23,8 +23,8 @@ import unittest
 class DateTest(unittest.TestCase):
     def runTest(self):
         "Testing dates"
-        mindate = QuantLib.Date_minDate().serialNumber()
-        maxdate = QuantLib.Date_maxDate().serialNumber() + 1 #excluded
+        mindate = QuantLib.Date_minDate().serialNumber() + 1
+        maxdate = QuantLib.Date_maxDate().serialNumber() + 1
 
         dyold  = QuantLib.Date(mindate-1).dayOfYear()
         dold   = QuantLib.Date(mindate-1).dayOfMonth()
