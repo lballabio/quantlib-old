@@ -1,3 +1,12 @@
+2001-12-05 10:31  nando
+
+	* cvs.html (1.24), readme.txt (1.4): quantlib.sourceforge.net
+	changed into quantlib.org
+
+2001-12-05 09:55  nando
+
+	* ChangeLog.txt (1.3): updated
+
 2001-12-04 16:34  nando
 
 	* extensions.html (1.11): R000201-branch-merge2 merged into trunk
