@@ -481,6 +481,27 @@ bool extractArray(PyObject* source, Array* target) {
         $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum);
     }
 }
+%typecheck(QL_TYPECHECK_ARRAY) Array {
+    /* native sequence? */
+    if (SCHEME_VECTORP($input)) {
+        $1 = 1;
+    /* wrapped Array? */
+    } else {
+        Array* v;
+        $1 = (SWIG_GetPtr($input,(void **) &v,$&1_descriptor) != -1) ? 1 : 0;
+    }
+}
+%typecheck(QL_TYPECHECK_ARRAY) const Array & {
+    /* native sequence? */
+    if (SCHEME_VECTORP($input)) {
+        $1 = 1;
+    /* wrapped Array? */
+    } else {
+        Array* v;
+        $1 = (SWIG_GetPtr($input,(void **) &v,$1_descriptor) != -1) ? 1 : 0;
+    }
+}
+
 
 %typemap(in) Matrix {
     if (SCHEME_VECTORP($input)) {
@@ -559,6 +580,26 @@ bool extractArray(PyObject* source, Array* target) {
         }
     } else {
         $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum);
+    }
+}
+%typecheck(QL_TYPECHECK_MATRIX) Matrix {
+    /* native sequence? */
+    if (SCHEME_VECTORP($input)) {
+        $1 = 1;
+    /* wrapped Matrix? */
+    } else {
+        Matrix* m;
+        $1 = (SWIG_GetPtr($input,(void **) &m,$&1_descriptor) != -1) ? 1 : 0;
+    }
+}
+%typecheck(QL_TYPECHECK_MATRIX) const Matrix & {
+    /* native sequence? */
+    if (SCHEME_VECTORP($input)) {
+        $1 = 1;
+    /* wrapped Matrix? */
+    } else {
+        Matrix* m;
+        $1 = (SWIG_GetPtr($input,(void **) &m,$1_descriptor) != -1) ? 1 : 0;
     }
 }
 #elif defined(SWIGGUILE)
@@ -664,7 +705,8 @@ class Array {
     #endif
   public:
     Array(Size n, double fill = 0.0);
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+    #if !defined(SWIGGUILE)
+    Array();
     Array(const Array&);
     #endif
     Size size() const;
@@ -773,6 +815,10 @@ class Array {
 ReturnByValue(Array);
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+#if defined(SWIGGUILE)
+%rename(Array_mul_d) Array_mul(const Array&,double);
+%rename(Array_mul_a) Array_mul(const Array&,const Array&);
+#endif
 %inline %{
     Array Array_add(const Array& a, const Array& b) {
         return a+b;
@@ -783,10 +829,10 @@ ReturnByValue(Array);
     Array Array_div(const Array& a, double x) {
         return a/x;
     }
-    Array Array_mul_d(const Array& a, double x) {
+    Array Array_mul(const Array& a, double x) {
         return a*x;
     }
-    double Array_mul_a(const Array& a, const Array& b) {
+    double Array_mul(const Array& a, const Array& b) {
         return QuantLib::DotProduct(a,b);;
     }
     Array Array_Matrix_product(const Array& a, const Matrix& m) {
@@ -909,7 +955,8 @@ class Matrix {
     #endif
   public:
     Matrix(Size rows, Size columns, double fill = 0.0);
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+    #if !defined(SWIGGUILE)
+    Matrix();
     Matrix(const Matrix&);
     #endif
     Size rows() const;
@@ -970,6 +1017,10 @@ class Matrix {
 ReturnByValue(Matrix);
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+#if defined(SWIGGUILE)
+%rename(Matrix_mul_d) Matrix_mul(const Matrix&,double);
+%rename(Matrix_mul_m) Matrix_mul(const Matrix&,const Matrix&);
+#endif
 %inline %{
     Matrix Matrix_add(const Matrix& m, const Matrix& n) {
         return m+n;
@@ -980,13 +1031,13 @@ ReturnByValue(Matrix);
     Matrix Matrix_div(const Matrix& m, double x) {
         return m/x;
     }
-    Matrix Matrix_mul_d(const Matrix& m, double x) {
+    Matrix Matrix_mul(const Matrix& m, double x) {
         return m*x;
     }
     Array Matrix_Array_product(const Matrix& m, const Array& a) {
         return m*a;
     }
-    Matrix Matrix_mul_m(const Matrix& m, const Matrix& n) {
+    Matrix Matrix_mul(const Matrix& m, const Matrix& n) {
         return m*n;
     }
 %}

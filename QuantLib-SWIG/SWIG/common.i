@@ -40,14 +40,14 @@ class Handle {
     #endif
   public:
     T* operator->();
-    #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    bool isNull();
-    #elif defined(SWIGPYTHON)
+    #if defined(SWIGPYTHON)
     %extend {
         bool __nonzero__() {
             return !(self->isNull());
         }
     }
+    #else
+    bool isNull();
     #endif
 };
 
@@ -64,14 +64,14 @@ class RelinkableHandle {
     RelinkableHandle(const Handle<T>& = Handle<T>());
     Handle<T> operator->();
     void linkTo(const Handle<T>&);
-    #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    bool isNull();
-    #elif defined(SWIGPYTHON)
+    #if defined(SWIGPYTHON)
     %extend {
         bool __nonzero__() {
             return !(self->isNull());
         }
     }
+    #else
+    bool isNull();
     #endif
 };
 
@@ -140,6 +140,8 @@ class RelinkableHandle {
 %typemap(out) Type {
     $result = scheme_make_integer_value(int($1));
 };
+
+%typemap(typecheck) Type = int;
 
 #elif defined(SWIGGUILE)
 
@@ -218,6 +220,8 @@ class RelinkableHandle {
 %typemap(out) Type {
     $result = scheme_make_string(TypeToString($1).c_str());
 };
+
+%typemap(typecheck) Type = char *;
 
 #elif defined(SWIGGUILE)
 

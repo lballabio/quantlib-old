@@ -94,12 +94,12 @@ class Calendar {
     %rename("is-holiday?")      isHoliday;
     %rename("equal")            __eq__;
     %rename(">string")          __str__;
+    #if defined(SWIGGUILE)
     // resolve overloading
     %rename(advance_period)     advance(const Date&,const Period&,
                                         RollingConvention);
     %rename(advance_units)      advance(const Date&,int,TimeUnit,
                                         RollingConvention);
-    #if defined(SWIGGUILE)
     %scheme %{
         (define (Calendar-advance . args)
          (if (integer? (caddr args))

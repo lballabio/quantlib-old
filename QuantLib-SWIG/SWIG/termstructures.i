@@ -40,6 +40,10 @@ class TermStructure {
     %rename("max-date")        maxDate;
     %rename("max-time")        maxTime;
     %rename("zero-yield")      zeroYield;
+    #if defined(SWIGMZSCHEME)
+    %rename("instantaneous-forward") instantaneousForward;
+    #endif
+    #if defined(SWIGGUILE)
     // resolve overloadings
     %rename(discount_vs_time)  discount(Time,bool);
     %rename(discount_vs_date)  discount(const Date&,bool);
@@ -50,6 +54,7 @@ class TermStructure {
     %rename(instantaneousForward_vs_time) instantaneousForward(Time,bool);
     %rename(instantaneousForward_vs_date) instantaneousForward(const Date&,
                                                                bool);
+    #endif
     #endif
   public:
     DayCounter dayCounter() const;
@@ -213,7 +218,7 @@ class FlatForwardHandle : public Handle<TermStructure> {
             return new FlatForwardHandle(
                 new FlatForward(settlementDate,forward,dayCounter));
         }
-        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        #if !defined(SWIGGUILE)
         // overload constructor
         FlatForwardHandle(const Date& settlementDate, 
                           double forward,

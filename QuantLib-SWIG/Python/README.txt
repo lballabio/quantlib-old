@@ -2,7 +2,8 @@
 The C++ wrappers for the QuantLib-Python extension module are created
 by means of SWIG (Simple Wrapper Interface Generator) available from
 <http://www.swig.org/>. Features used in the QuantLib-Python
-interface files require version 1.3.14 or later of SWIG.
+interface files require version 2.1 or later of Python and version 1.3.14 
+or later of SWIG.
 
 The wrappers are generated on all supported platforms by issuing the command
     python setup.py wrap
@@ -37,6 +38,5 @@ be created in your Python\libs folder by the command:
 coff2omf python22.lib python22_bcpp.lib
 coff2omf python22_d.lib python22_d_bcpp.lib
 
-The test suite is implemented on top of the PyUnit framework, available from
-<http://pyunit.sourceforge.net/> and included in the Python standard library
-since the Python 2.1 release.
+The test suite is implemented on top of the PyUnit framework, included in 
+the Python standard library.

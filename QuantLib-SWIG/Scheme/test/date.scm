@@ -34,7 +34,7 @@
 
 (define (Date-test-single-date serial-number end dyold dold mold yold wdold)
   (if (< serial-number end)
-	  (let ((date (Date-from-serial-number serial-number)))
+	  (let ((date (new-Date serial-number)))
         (let ((serial (Date-serial-number date))
               (dy (Date-day-of-year date))
 			  (d  (Date-day-of-month date))

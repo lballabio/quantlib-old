@@ -26,14 +26,14 @@ class DateTest(unittest.TestCase):
         mindate = QuantLib.Date_minDate().serialNumber()
         maxdate = QuantLib.Date_maxDate().serialNumber() + 1 #excluded
 
-        dyold  = QuantLib.DateFromSerialNumber(mindate-1).dayOfYear()
-        dold   = QuantLib.DateFromSerialNumber(mindate-1).dayOfMonth()
-        mold   = QuantLib.DateFromSerialNumber(mindate-1).month()
-        yold   = QuantLib.DateFromSerialNumber(mindate-1).year()
-        wdnold = QuantLib.DateFromSerialNumber(mindate-1).weekdayNumber()
+        dyold  = QuantLib.Date(mindate-1).dayOfYear()
+        dold   = QuantLib.Date(mindate-1).dayOfMonth()
+        mold   = QuantLib.Date(mindate-1).month()
+        yold   = QuantLib.Date(mindate-1).year()
+        wdnold = QuantLib.Date(mindate-1).weekdayNumber()
 
         for i in range(mindate,maxdate):
-            t = QuantLib.DateFromSerialNumber(i)
+            t = QuantLib.Date(i)
             serial = t.serialNumber()
             # check serial number consistency
             if not (serial == i):

@@ -28,14 +28,14 @@ class DateTest < RUNIT::TestCase
     minDate = QuantLib::Date.minDate.serialNumber
     maxDate = QuantLib::Date.maxDate.serialNumber
     
-    dyold  = QuantLib.DateFromSerialNumber(minDate-1).dayOfYear
-    dold   = QuantLib.DateFromSerialNumber(minDate-1).dayOfMonth
-    mold   = QuantLib.DateFromSerialNumber(minDate-1).month
-    yold   = QuantLib.DateFromSerialNumber(minDate-1).year
-    wdnold = QuantLib.DateFromSerialNumber(minDate-1).weekdayNumber
+    dyold  = QuantLib::Date.new(minDate-1).dayOfYear
+    dold   = QuantLib::Date.new(minDate-1).dayOfMonth
+    mold   = QuantLib::Date.new(minDate-1).month
+    yold   = QuantLib::Date.new(minDate-1).year
+    wdnold = QuantLib::Date.new(minDate-1).weekdayNumber
     
     minDate.upto(maxDate) do |i|
-      t = QuantLib.DateFromSerialNumber(i)
+      t = QuantLib::Date.new(i)
       # check serial number consistency
       unless t.serialNumber == i
         assert_fail(<<-MESSAGE

@@ -48,7 +48,9 @@ double nullDouble() { return Null<double>(); }
     else
         SWIG_exception(SWIG_TypeError,"int expected");
 }
-
+%typecheck(SWIG_TYPECHECK_INTEGER) intOrNull {
+    $1 = ($input == Py_None || PyInt_Check($input)) ? 1 : 0;
+}
 %typemap(out) intOrNull {
     if ($1 == Null<int>()) {
         Py_INCREF(Py_None);
@@ -66,7 +68,9 @@ double nullDouble() { return Null<double>(); }
     else
         SWIG_exception(SWIG_TypeError,"double expected");
 }
-
+%typecheck(SWIG_TYPECHECK_DOUBLE) doubleOrNull {
+    $1 = ($input == Py_None || PyFloat_Check($input)) ? 1 : 0;
+}
 %typemap(out) doubleOrNull {
     if ($1 == Null<double>()) {
         Py_INCREF(Py_None);
@@ -86,7 +90,9 @@ double nullDouble() { return Null<double>(); }
     else
         SWIG_exception(SWIG_TypeError,"not an integer");
 }
-
+%typecheck(SWIG_TYPECHECK_INTEGER) intOrNull {
+    $1 = ($input == Qnil || FIXNUM_P($input)) ? 1 : 0;
+}
 %typemap(out) intOrNull {
     if ($1 == Null<int>())
         $result = Qnil;
@@ -104,7 +110,10 @@ double nullDouble() { return Null<double>(); }
     else
         SWIG_exception(SWIG_TypeError,"not a double");
 }
-
+%typecheck(SWIG_TYPECHECK_DOUBLE) doubleOrNull {
+    $1 = ($input == Qnil || TYPE($input) == T_FLOAT || 
+          FIXNUM_P($input)) ? 1 : 0;
+}
 %typemap(out) doubleOrNull {
     if ($1 == Null<double>())
         $result = Qnil;
@@ -122,7 +131,9 @@ double nullDouble() { return Null<double>(); }
     else
         SWIG_exception(SWIG_TypeError,"integer expected");
 }
-
+%typecheck(SWIG_TYPECHECK_INTEGER) intOrNull {
+    $1 = (SCHEME_FALSEP($input) || SCHEME_INTP($input)) ? 1 : 0;
+}
 %typemap(out) intOrNull {
     if ($1 == Null<int>())
         $result = scheme_false;
@@ -131,14 +142,16 @@ double nullDouble() { return Null<double>(); }
 }
 
 %typemap(in) doubleOrNull {
-    if (SCHEME_FALSEP($input))
-        $1 = Null<double>();
-    else if (SCHEME_REALP($input))
-        $1 = scheme_real_to_double($input);
-    else
-        SWIG_exception(SWIG_TypeError,"double expected");
+    $1 = (SCHEME_FALSEP($input) || SCHEME_REALP($input)) ? 1 : 0;
 }
-
+%typecheck(SWIG_TYPECHECK_DOUBLE) doubleOrNull {
+    if (SCHEME_FALSEP($input))
+        $1 = 1;
+    else if (SCHEME_REALP($input))
+        $1 = 1;
+    else
+        $1 = 0;
+}
 %typemap(out) doubleOrNull {
     if ($1 == Null<double>())
         $result = scheme_false;

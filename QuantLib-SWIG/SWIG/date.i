@@ -129,6 +129,9 @@ class Period {
     #endif
   public:
     Period(int n, TimeUnit units);
+    #if !defined(SWIGGUILE)
+    Period(const std::string&);
+    #endif
     int length() const;
     TimeUnit units() const;
     %extend {
@@ -152,14 +155,20 @@ class Period {
 };
 ReturnByValue(Period);
 
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("string->Period") PeriodFromString;
-#endif
+#if defined(SWIGGUILE)
 %inline %{
-    Period PeriodFromString(const std::string& s) {
+    Period Period_from_string(const std::string& s) {
         return Period(s);
     }
 %}
+%scheme %{
+(define Period-old-init new-Period)
+(define (new-Period . args)
+ (if (= (length args) 1)
+     (apply Period-from-string args)
+     (apply Period-old-init args)))
+%}
+#endif
 
 
 
@@ -204,6 +213,9 @@ class Date {
     #endif
   public:
     Date(Day d, Month m, Year y);
+    #if !defined(SWIGGUILE)
+    Date(int serialNumber);
+    #endif
     // access functions
     Weekday weekday() const;
     Day dayOfMonth() const;
@@ -281,15 +293,20 @@ class Date {
 PassByValue(Date);
 ReturnByValue(Date);
 
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("Date-from-serial-number") DateFromSerialNumber;
-#endif
+#if defined(SWIGGUILE)
 %inline %{
-    Date DateFromSerialNumber(int serialNumber) {
+    Date Date_from_serial_number(int serialNumber) {
         return Date(serialNumber);
     }
 %}
-
+%scheme %{
+(define Date-old-init new-Date)
+(define (new-Date . args)
+    (if (= (length args) 1)
+        (apply Date-from-serial-number args)
+        (apply Date-old-init args)))
+%}
+#endif
 
 
 #endif
