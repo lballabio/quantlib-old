@@ -45,7 +45,7 @@ STRING SAL_CALL QLAddin::qlOhVersion() THROWDEF_RTE_IAE {
 SEQSEQ(ANY) SAL_CALL QLAddin::qlFieldNames(
         const STRING& handleObject) THROWDEF_RTE_IAE {
     try {
-        Properties properties = QL_QUERY(OUStringToString(handleObject));
+        Properties properties = OH_QUERY_OBJECT(OUStringToString(handleObject));
         SEQSEQ( ANY ) rows(properties.size());
         for (unsigned int i=0; i<properties.size(); i++) {
             SEQ( ANY ) row(1);
@@ -112,7 +112,7 @@ SEQSEQ(ANY) SAL_CALL QLAddin::qlValue(
         const STRING& handleObject,
         const STRING& fieldName) THROWDEF_RTE_IAE {
     try {
-        Properties properties = QL_QUERY(OUStringToString(handleObject));
+        Properties properties = OH_QUERY_OBJECT(OUStringToString(handleObject));
         for (unsigned int i=0; i<properties.size(); i++) {
             ObjectProperty property = properties[i];
             any_ptr a = property();

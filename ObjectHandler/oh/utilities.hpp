@@ -98,7 +98,11 @@ namespace ObjHandler {
     */
     void OH_LOG_ALL_OBJECTS();
     //@}
-
+    //! Return Property vector for given Object.
+    /*! Throws an exception if no Object exists
+        with given handle.
+    */
+    const Properties& OH_QUERY_OBJECT(const std::string &handle);
 }
 
 #endif

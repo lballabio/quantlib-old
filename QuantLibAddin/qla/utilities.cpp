@@ -41,14 +41,5 @@ namespace QuantLibAddin {
         return s.str();
     }
 
-    const Properties& QL_QUERY(
-            const std::string &handle) {
-        boost::shared_ptr<Object> object =
-                ObjectHandler::instance().retrieveObject(handle);
-        if (!object)
-                throw Exception("error retrieving object " + handle);
-        return object->getProperties();
-    }
-
 }
 

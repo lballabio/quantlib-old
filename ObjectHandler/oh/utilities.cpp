@@ -20,6 +20,7 @@
 #endif
 #include <oh/utilities.hpp>
 #include <oh/logger.hpp>
+#include <oh/exception.hpp>
 #include <sstream>
 
 namespace ObjHandler {
@@ -63,6 +64,15 @@ namespace ObjHandler {
         std::ostringstream msg;
         ObjectHandler::instance().dump(msg);
         Logger::instance().logMessage(msg.str());
+    }
+
+    const Properties& OH_QUERY_OBJECT(
+            const std::string &handle) {
+        boost::shared_ptr<Object> object =
+                ObjectHandler::instance().retrieveObject(handle);
+        if (!object)
+                throw Exception("error retrieving object " + handle);
+        return object->getProperties();
     }
 
 }

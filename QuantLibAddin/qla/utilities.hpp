@@ -45,10 +45,6 @@ namespace QuantLibAddin {
     /*! return the vector of Properties
         describing an Object in the ObjectHandler
     */
-    const ObjHandler::Properties& QL_QUERY(
-        /*! handle of object to be interrogated
-        */
-        const std::string &handle);
 
 }
 

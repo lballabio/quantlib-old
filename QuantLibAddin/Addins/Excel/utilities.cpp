@@ -54,7 +54,7 @@ DLLEXPORT LPXLOPER qlFieldNames(char *handleObject) {
     static XLOPER xRet;
     xRet.val.array.lparray = 0;
     try {
-        Properties properties = QL_QUERY(std::string(handleObject));
+        Properties properties = OH_QUERY_OBJECT(std::string(handleObject));
         xRet.xltype = xltypeMulti;
         xRet.xltype |= xlbitDLLFree;
         xRet.val.array.rows = properties.size();
@@ -78,7 +78,7 @@ DLLEXPORT LPXLOPER qlFieldNames(char *handleObject) {
 
 DLLEXPORT LPXLOPER qlValue(char *handleObject, char *fieldName) {
     try {
-        Properties properties = QL_QUERY(std::string(handleObject));
+        Properties properties = OH_QUERY_OBJECT(std::string(handleObject));
         static XLOPER xRet;
         std::string fieldNameUpper = QuantLib::StringFormatter::toUppercase(fieldName);
         for (unsigned int i=0; i<properties.size(); i++) {
