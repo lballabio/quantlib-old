@@ -190,8 +190,6 @@ Option::Type QlXlfOper::AsOptionType() const {
         type = Option::Call;
     } else if (s == "p" || s == "put") {
         type = Option::Put;
-    } else if (s == "s" || s == "straddle") {
-        type = Option::Straddle;
     } else
         QL_FAIL("Unknown option type");
 
