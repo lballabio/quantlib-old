@@ -442,7 +442,7 @@ USERDEP__QUANT="..\SWIG\blackmodel.i"	"..\SWIG\calendars.i"	"..\SWIG\capfloor.i"
 ".\QuantLib\quantlib_wrap.cpp" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)" $(USERDEP__QUANT)
 	<<tempfile.bat 
 	@echo off 
-	python setup.py wrap
+	python setup.py wrap 
 << 
 	
 
@@ -454,7 +454,7 @@ USERDEP__QUANT="..\SWIG\blackmodel.i"	"..\SWIG\calendars.i"	"..\SWIG\capfloor.i"
 ".\QuantLib\quantlib_wrap.cpp" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)" $(USERDEP__QUANT)
 	<<tempfile.bat 
 	@echo off 
-	python setup.py wrap
+	python setup.py wrap 
 << 
 	
 
