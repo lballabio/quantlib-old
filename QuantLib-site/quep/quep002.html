@@ -4,12 +4,11 @@
 <meta name="generator" content="HTML Tidy, see www.w3.org">
 <title>QuEP 2: reimplementing boundary conditions for
 finite-difference models</title>
-<style type="text/css">
- div.c1 {text-align: center}
-</style>
+<link rel="stylesheet" href="../styles/quantlib.css" type="text/css">
 </head>
 <body>
 <h1>QuEP 2: reimplementing boundary conditions for FD models</h1>
+<div class="center">Luigi Ballabio</div>
 
 <h2>Abstract</h2>
 
@@ -28,7 +27,6 @@ the finite-difference model as much as the differential operator
 and the time scheme.</p>
 
 <h2>Current implementation</h2>
-
 <p>The present implementation of FiniteDifferenceMethod contains an
 Evolver, which in turn contains an Operator. BC:s are set to the
 operator before the latter is passed to the model which in turn
@@ -37,7 +35,7 @@ operator; also, BC:s are stored in the operator and applied to the
 input and/or output array when the applyTo() or solveFor() methods
 are invoked.</p>
 
-<div class="c1"><img src="quep002a.png" width="683" height="319"
+<div class="center"><img src="quep002a.png" width="683" height="319"
 alt="UML diagram"></div>
 
 <h3>Disadvantages:</h3>
@@ -63,7 +61,6 @@ reason, care must be taken that the implementation of the operator
 algebra propagates the BC:s from D to (dt*D) to (I+(dt*D)).</p>
 
 <h2>Proposed implementation</h2>
-
 <p>A polymorphic BoundaryCondition class is defined which
 encapsulates the BC logic. Its interface is defined so that it
 should be able to manage different kind of required modifications,
@@ -73,7 +70,7 @@ simultaneously on the operator and the right-hand side of the
 equation. Also, a setTime() interface is provided which allows to
 manage time-dependent BC:s.</p>
 
-<div class="c1"><img src="quep002b.png" width="674" height="446"
+<div class="center"><img src="quep002b.png" width="674" height="446"
 alt="UML diagram"></div>
 
 <p>The BC:s are passed to the model together with the operator and
@@ -173,14 +170,9 @@ class FiniteDifferenceMethod {
 };
 </pre>
 
-<br>
-<br>
- 
-
 <p>Another would be to pass to the model one BC which represents
 the set of all BC:s which are local to a part of the solution. The
 Composite pattern could be used to define such set as</p>
-
 <pre>
 class CompositeBC : public BoundaryCondition {
   public:
@@ -202,8 +194,7 @@ class CompositeBC : public BoundaryCondition {
 };
 </pre>
 
-In this case, the constructor of a model would be implemented as 
-
+<p>In this case, the constructor of a model would be implemented as:</p>
 <pre>
 class FiniteDifferenceMethod {
   public:
@@ -214,20 +205,17 @@ class FiniteDifferenceMethod {
 };
 </pre>
 
-<br>
-<br>
- 
 
 <h2>Acknowledgements</h2>
+<p>Many thanks to Nicolas Di C&eacute;sar&eacute; for the fruitful 
+discussion---which is in fact still ongoing and still fruitful.</p>
 
-Many thanks to Nicolas Di C&eacute;sar&eacute; for the fruitful
-discussion---which is in fact still ongoing and still fruitful. 
 
 <h2>Feedback</h2>
-
-Feedback on the above proposal should be posted to the <a href=
+<p>Feedback on the above proposal should be posted to the <a href=
 "mailto:quantlib-users@lists.sourceforge.net">QuantLib users</a>
-mailing list.
+mailing list.</p>
+
 </body>
 </html>
 
