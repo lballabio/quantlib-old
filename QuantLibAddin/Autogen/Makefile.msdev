@@ -1,0 +1,45 @@
+# QuantLibAddin\Autogen\Makefile.win32
+
+COMPONENT_NAME=Autogen
+INT_DIR=build\vc6
+FLAG1=$(INT_DIR)\$(COMPONENT_NAME).flag1
+STUBS=stub.C.body \
+	stub.C.includes \
+	stub.Calc.body \
+	stub.Calc.idlfoot \
+	stub.Calc.idlfunc \
+	stub.Calc.idlhead \
+	stub.Calc.includes \
+	stub.Calc.map \
+	stub.copyright \
+	stub.Excel.body \
+	stub.Excel.includes \
+	stub.Excel.regfooter \
+	stub.Excel.regheader
+SCRIPTS=autogen.py \
+	c.py \
+	calc.py \
+	common.py \
+	excel.py \
+	parse.py \
+	utils.py
+METADATA=options.xml \
+	utilities.xml
+
+!IF "$(OS)" == "Windows_NT"
+NULL=
+!ELSE 
+NULL=nul
+!ENDIF
+
+ALL : $(FLAG1)
+
+"$(INT_DIR)" :
+    if not exist "$(INT_DIR)/$(NULL)" mkdir "$(INT_DIR)"
+
+$(FLAG1) : $(STUBS) $(SCRIPTS) $(METADATA) $(INT_DIR)
+	autogen.py
+	echo flagged > $@
+
+CLEAN :
+	-@ if EXIST "$(INT_DIR)\*"			del /f /q "$(INT_DIR)\*"

@@ -4,3 +4,7 @@ del.sh
 Makefile
 Makefile.in
 .time-stamp
+Autogen.plg
+build
+Autogen.dsp
+Debug

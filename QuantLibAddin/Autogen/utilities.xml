@@ -11,8 +11,8 @@
 <qlfunction></qlfunction>
 <constructor>false</constructor>
 <returnval>
-	<type>string</type>
-	<desc>QuantLib version number</desc>
+    <type>string</type>
+    <desc>QuantLib version number</desc>
 </returnval>
 </function>
 
@@ -23,8 +23,8 @@
 <qlfunction></qlfunction>
 <constructor>false</constructor>
 <returnval>
-	<type>string</type>
-	<desc>ObjectHandler version number</desc>
+    <type>string</type>
+    <desc>ObjectHandler version number</desc>
 </returnval>
 </function>
 
@@ -35,16 +35,16 @@
 <qlfunction></qlfunction>
 <constructor>false</constructor>
 <parameters>
-	<param>
-		<name>handleObject</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>handle of object to be queried</desc>
-	</param>
+    <param>
+        <name>handleObject</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of object to be queried</desc>
+    </param>
 </parameters>
 <returnval>
-	<type>propertyvector</type>
-	<desc>vector of properties describing queried object</desc>
+    <type>propertyvector</type>
+    <desc>vector of properties describing queried object</desc>
 </returnval>
 </function>
 
@@ -55,22 +55,22 @@
 <desc>begin logging to named file</desc>
 <constructor>false</constructor>
 <parameters>
-	<param>
-		<name>logFileName</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>path and name of log file</desc>
-	</param>
-	<param>
-		<name>logLevel</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>threshold for log messages</desc>
-	</param>
+    <param>
+        <name>logFileName</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>path and name of log file</desc>
+    </param>
+    <param>
+        <name>logLevel</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>threshold for log messages</desc>
+    </param>
 </parameters>
 <returnval>
-	<type>string</type>
-	<desc>name of logfile</desc>
+    <type>string</type>
+    <desc>name of logfile</desc>
 </returnval>
 </function>
 
@@ -81,22 +81,22 @@
 <desc>log a message</desc>
 <constructor>false</constructor>
 <parameters>
-	<param>
-		<name>logMessage</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>message to be logged</desc>
-	</param>
-	<param>
-		<name>logLevel</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>threshold for log messages</desc>
-	</param>
+    <param>
+        <name>logMessage</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>message to be logged</desc>
+    </param>
+    <param>
+        <name>logLevel</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>threshold for log messages</desc>
+    </param>
 </parameters>
 <returnval>
-	<type>string</type>
-	<desc>message logged</desc>
+    <type>string</type>
+    <desc>message logged</desc>
 </returnval>
 </function>
 
@@ -107,16 +107,16 @@
 <desc>set threshold for log messages</desc>
 <constructor>false</constructor>
 <parameters>
-	<param>
-		<name>logLevel</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>threshold for log messages</desc>
-	</param>
+    <param>
+        <name>logLevel</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>threshold for log messages</desc>
+    </param>
 </parameters>
 <returnval>
-	<type>long</type>
-	<desc>returns new logging threshold</desc>
+    <type>long</type>
+    <desc>returns new logging threshold</desc>
 </returnval>
 </function>
 

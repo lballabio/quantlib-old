@@ -11,70 +11,70 @@
 <qlfunction>ContinuousAveragingAsianOption</qlfunction>
 <constructor>true</constructor>
 <parameters>
-	<param>
-		<name>handleStochastic</name>
-		<type class="StochasticProcess">string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>handle of the Stochastic Process object</desc>
-	</param>
-	<param>
-		<name>average</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>average type</desc>
-	</param>
-	<param>
-		<name>optionType</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>option type</desc>
-	</param>
-	<param>
-		<name>payoff</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>payoff type</desc>
-	</param>
-	<param>
-		<name>strike</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>strike</desc>
-	</param>
-	<param>
-		<name>exercise</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise type</desc>
-	</param>
-	<param>
-		<name>exerciseDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise date</desc>
-	</param>
-	<param>
-		<name>settlementDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>settlement date</desc>
-	</param>
-	<param>
-		<name>engine</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>engine type</desc>
-	</param>
-	<param>
-		<name>timeSteps</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>time steps</desc>
-	</param>
+    <param>
+        <name>handleStochastic</name>
+        <type class="StochasticProcess">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Stochastic Process object</desc>
+    </param>
+    <param>
+        <name>average</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>average type</desc>
+    </param>
+    <param>
+        <name>optionType</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>option type</desc>
+    </param>
+    <param>
+        <name>payoff</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>payoff type</desc>
+    </param>
+    <param>
+        <name>strike</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>strike</desc>
+    </param>
+    <param>
+        <name>exercise</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise type</desc>
+    </param>
+    <param>
+        <name>exerciseDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise date</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+    <param>
+        <name>engine</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>engine type</desc>
+    </param>
+    <param>
+        <name>timeSteps</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>time steps</desc>
+    </param>
 </parameters>
 <returnval>
-	<type>propertyvector</type>
-	<desc>vector of properties describing Option</desc>
+    <type>propertyvector</type>
+    <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
 
@@ -85,88 +85,88 @@
 <qlfunction>DiscreteAveragingAsianOption</qlfunction>
 <constructor>true</constructor>
 <parameters>
-	<param>
-		<name>handleStochastic</name>
-		<type class="StochasticProcess">string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>handle of the Stochastic Process object</desc>
-	</param>
-	<param>
-		<name>average</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>average type</desc>
-	</param>
-	<param>
-		<name>runningAccumulator</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>running accumulator</desc>
-	</param>
-	<param>
-		<name>pastFixings</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>past fixings</desc>
-	</param>
-	<param>
-		<name>fixingDates</name>
-		<type>long</type>
-		<tensorrank>vector</tensorrank>
-		<desc>fixing dates</desc>
-	</param>
-	<param>
-		<name>optionType</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>option type</desc>
-	</param>
-	<param>
-		<name>payoff</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>payoff type</desc>
-	</param>
-	<param>
-		<name>strike</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>strike</desc>
-	</param>
-	<param>
-		<name>exercise</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise type</desc>
-	</param>
-	<param>
-		<name>exerciseDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise date</desc>
-	</param>
-	<param>
-		<name>settlementDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>settlement date</desc>
-	</param>
-	<param>
-		<name>engine</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>engine type</desc>
-	</param>
-	<param>
-		<name>timeSteps</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>time steps</desc>
-	</param>
+    <param>
+        <name>handleStochastic</name>
+        <type class="StochasticProcess">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Stochastic Process object</desc>
+    </param>
+    <param>
+        <name>average</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>average type</desc>
+    </param>
+    <param>
+        <name>runningAccumulator</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>running accumulator</desc>
+    </param>
+    <param>
+        <name>pastFixings</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>past fixings</desc>
+    </param>
+    <param>
+        <name>fixingDates</name>
+        <type>long</type>
+        <tensorrank>vector</tensorrank>
+        <desc>fixing dates</desc>
+    </param>
+    <param>
+        <name>optionType</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>option type</desc>
+    </param>
+    <param>
+        <name>payoff</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>payoff type</desc>
+    </param>
+    <param>
+        <name>strike</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>strike</desc>
+    </param>
+    <param>
+        <name>exercise</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise type</desc>
+    </param>
+    <param>
+        <name>exerciseDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise date</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+    <param>
+        <name>engine</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>engine type</desc>
+    </param>
+    <param>
+        <name>timeSteps</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>time steps</desc>
+    </param>
 </parameters>
 <returnval>
-	<type>propertyvector</type>
-	<desc>vector of properties describing Option</desc>
+    <type>propertyvector</type>
+    <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
 
@@ -177,82 +177,82 @@
 <qlfunction>BarrierOption</qlfunction>
 <constructor>true</constructor>
 <parameters>
-	<param>
-		<name>handleStochastic</name>
-		<type class="StochasticProcess">string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>handle of the Stochastic Process object</desc>
-	</param>
-	<param>
-		<name>typeBarrier</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>barrier type</desc>
-	</param>
-	<param>
-		<name>barrier</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>barrier</desc>
-	</param>
-	<param>
-		<name>rebate</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>rebate</desc>
-	</param>
-	<param>
-		<name>optionType</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>option type</desc>
-	</param>
-	<param>
-		<name>payoff</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>payoff type</desc>
-	</param>
-	<param>
-		<name>strike</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>strike</desc>
-	</param>
-	<param>
-		<name>exercise</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise type</desc>
-	</param>
-	<param>
-		<name>exerciseDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise date</desc>
-	</param>
-	<param>
-		<name>settlementDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>settlement date</desc>
-	</param>
-	<param>
-		<name>engine</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>engine type</desc>
-	</param>
-	<param>
-		<name>timeSteps</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>time steps</desc>
-	</param>
+    <param>
+        <name>handleStochastic</name>
+        <type class="StochasticProcess">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Stochastic Process object</desc>
+    </param>
+    <param>
+        <name>typeBarrier</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>barrier type</desc>
+    </param>
+    <param>
+        <name>barrier</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>barrier</desc>
+    </param>
+    <param>
+        <name>rebate</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>rebate</desc>
+    </param>
+    <param>
+        <name>optionType</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>option type</desc>
+    </param>
+    <param>
+        <name>payoff</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>payoff type</desc>
+    </param>
+    <param>
+        <name>strike</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>strike</desc>
+    </param>
+    <param>
+        <name>exercise</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise type</desc>
+    </param>
+    <param>
+        <name>exerciseDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise date</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+    <param>
+        <name>engine</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>engine type</desc>
+    </param>
+    <param>
+        <name>timeSteps</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>time steps</desc>
+    </param>
 </parameters>
 <returnval>
-	<type>propertyvector</type>
-	<desc>vector of properties describing Option</desc>
+    <type>propertyvector</type>
+    <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
 
@@ -263,70 +263,70 @@
 <qlfunction>BasketOption</qlfunction>
 <constructor>true</constructor>
 <parameters>
-	<param>
-		<name>handleStochastic</name>
-		<type class="StochasticProcess">string</type>
-		<tensorrank>vector</tensorrank>
-		<desc>vector of Stochastic Process object handles</desc>
-	</param>
-	<param>
-		<name>basket</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>basket ID</desc>
-	</param>
-	<param>
-		<name>correlations</name>
-		<type>double</type>
-		<tensorrank>matrix</tensorrank>
-		<desc>correlations matrix</desc>
-	</param>
-	<param>
-		<name>optionType</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>option type</desc>
-	</param>
-	<param>
-		<name>strike</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>strike</desc>
-	</param>
-	<param>
-		<name>exercise</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise type</desc>
-	</param>
-	<param>
-		<name>exerciseDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise date</desc>
-	</param>
-	<param>
-		<name>settlementDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>settlement date</desc>
-	</param>
-	<param>
-		<name>engine</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>engine type</desc>
-	</param>
-	<param>
-		<name>timeSteps</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>time steps</desc>
-	</param>
+    <param>
+        <name>handleStochastic</name>
+        <type class="StochasticProcess">string</type>
+        <tensorrank>vector</tensorrank>
+        <desc>vector of Stochastic Process object handles</desc>
+    </param>
+    <param>
+        <name>basket</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>basket ID</desc>
+    </param>
+    <param>
+        <name>correlations</name>
+        <type>double</type>
+        <tensorrank>matrix</tensorrank>
+        <desc>correlations matrix</desc>
+    </param>
+    <param>
+        <name>optionType</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>option type</desc>
+    </param>
+    <param>
+        <name>strike</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>strike</desc>
+    </param>
+    <param>
+        <name>exercise</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise type</desc>
+    </param>
+    <param>
+        <name>exerciseDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise date</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+    <param>
+        <name>engine</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>engine type</desc>
+    </param>
+    <param>
+        <name>timeSteps</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>time steps</desc>
+    </param>
 </parameters>
 <returnval>
-	<type>propertyvector</type>
-	<desc>vector of properties describing Option</desc>
+    <type>propertyvector</type>
+    <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
 
@@ -337,52 +337,52 @@
 <qlfunction>CliquetOption</qlfunction>
 <constructor>true</constructor>
 <parameters>
-	<param>
-		<name>handleStochastic</name>
-		<type class="StochasticProcess">string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>handle of the Stochastic Process object</desc>
-	</param>
-	<param>
-		<name>resetDates</name>
-		<type>long</type>
-		<tensorrank>vector</tensorrank>
-		<desc>vector of reset dates</desc>
-	</param>
-	<param>
-		<name>optionType</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>option type</desc>
-	</param>
-	<param>
-		<name>strike</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>strike</desc>
-	</param>
-	<param>
-		<name>exerciseDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise date</desc>
-	</param>
-	<param>
-		<name>engine</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>engine type</desc>
-	</param>
-	<param>
-		<name>timeSteps</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>time steps</desc>
-	</param>
+    <param>
+        <name>handleStochastic</name>
+        <type class="StochasticProcess">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Stochastic Process object</desc>
+    </param>
+    <param>
+        <name>resetDates</name>
+        <type>long</type>
+        <tensorrank>vector</tensorrank>
+        <desc>vector of reset dates</desc>
+    </param>
+    <param>
+        <name>optionType</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>option type</desc>
+    </param>
+    <param>
+        <name>strike</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>strike</desc>
+    </param>
+    <param>
+        <name>exerciseDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise date</desc>
+    </param>
+    <param>
+        <name>engine</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>engine type</desc>
+    </param>
+    <param>
+        <name>timeSteps</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>time steps</desc>
+    </param>
 </parameters>
 <returnval>
-	<type>propertyvector</type>
-	<desc>vector of properties describing Option</desc>
+    <type>propertyvector</type>
+    <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
 
@@ -393,76 +393,76 @@
 <qlfunction>DividendVanillaOption</qlfunction>
 <constructor>true</constructor>
 <parameters>
-	<param>
-		<name>handleStochastic</name>
-		<type class="StochasticProcess">string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>handle of the Stochastic Process object</desc>
-	</param>
-	<param>
-		<name>dividendDates</name>
-		<type>long</type>
-		<tensorrank>vector</tensorrank>
-		<desc>vector of dividend dates</desc>
-	</param>
-	<param>
-		<name>dividends</name>
-		<type>double</type>
-		<tensorrank>vector</tensorrank>
-		<desc>vector of dividends</desc>
-	</param>
-	<param>
-		<name>optionType</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>option type</desc>
-	</param>
-	<param>
-		<name>payoff</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>payoff type</desc>
-	</param>
-	<param>
-		<name>strike</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>strike</desc>
-	</param>
-	<param>
-		<name>exercise</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise type</desc>
-	</param>
-	<param>
-		<name>exerciseDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise date</desc>
-	</param>
-	<param>
-		<name>settlementDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>settlement date</desc>
-	</param>
-	<param>
-		<name>engine</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>engine type</desc>
-	</param>
-	<param>
-		<name>timeSteps</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>time steps</desc>
-	</param>
+    <param>
+        <name>handleStochastic</name>
+        <type class="StochasticProcess">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Stochastic Process object</desc>
+    </param>
+    <param>
+        <name>dividendDates</name>
+        <type>long</type>
+        <tensorrank>vector</tensorrank>
+        <desc>vector of dividend dates</desc>
+    </param>
+    <param>
+        <name>dividends</name>
+        <type>double</type>
+        <tensorrank>vector</tensorrank>
+        <desc>vector of dividends</desc>
+    </param>
+    <param>
+        <name>optionType</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>option type</desc>
+    </param>
+    <param>
+        <name>payoff</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>payoff type</desc>
+    </param>
+    <param>
+        <name>strike</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>strike</desc>
+    </param>
+    <param>
+        <name>exercise</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise type</desc>
+    </param>
+    <param>
+        <name>exerciseDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise date</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+    <param>
+        <name>engine</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>engine type</desc>
+    </param>
+    <param>
+        <name>timeSteps</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>time steps</desc>
+    </param>
 </parameters>
 <returnval>
-	<type>propertyvector</type>
-	<desc>vector of properties describing Option</desc>
+    <type>propertyvector</type>
+    <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
 
@@ -473,76 +473,76 @@
 <qlfunction>ForwardVanillaOption</qlfunction>
 <constructor>true</constructor>
 <parameters>
-	<param>
-		<name>handleStochastic</name>
-		<type class="StochasticProcess">string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>handle of the Stochastic Process object</desc>
-	</param>
-	<param>
-		<name>moneyness</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>moneyness</desc>
-	</param>
-	<param>
-		<name>resetDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>reset date</desc>
-	</param>
-	<param>
-		<name>optionType</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>option type</desc>
-	</param>
-	<param>
-		<name>payoff</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>payoff type</desc>
-	</param>
-	<param>
-		<name>strike</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>strike</desc>
-	</param>
-	<param>
-		<name>exercise</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise type</desc>
-	</param>
-	<param>
-		<name>exerciseDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise date</desc>
-	</param>
-	<param>
-		<name>settlementDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>settlement date</desc>
-	</param>
-	<param>
-		<name>engine</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>engine type</desc>
-	</param>
-	<param>
-		<name>timeSteps</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>time steps</desc>
-	</param>
+    <param>
+        <name>handleStochastic</name>
+        <type class="StochasticProcess">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Stochastic Process object</desc>
+    </param>
+    <param>
+        <name>moneyness</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>moneyness</desc>
+    </param>
+    <param>
+        <name>resetDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>reset date</desc>
+    </param>
+    <param>
+        <name>optionType</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>option type</desc>
+    </param>
+    <param>
+        <name>payoff</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>payoff type</desc>
+    </param>
+    <param>
+        <name>strike</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>strike</desc>
+    </param>
+    <param>
+        <name>exercise</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise type</desc>
+    </param>
+    <param>
+        <name>exerciseDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise date</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+    <param>
+        <name>engine</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>engine type</desc>
+    </param>
+    <param>
+        <name>timeSteps</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>time steps</desc>
+    </param>
 </parameters>
 <returnval>
-	<type>propertyvector</type>
-	<desc>vector of properties describing Option</desc>
+    <type>propertyvector</type>
+    <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
 
@@ -553,28 +553,28 @@
 <qlfunction>setEngine</qlfunction>
 <constructor>false</constructor>
 <parameters>
-	<param>
-		<name>handle</name>
-		<type class="VanillaOption">string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>handle of the Option object</desc>
-	</param>
-	<param>
-		<name>engineName</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>engine name</desc>
-	</param>
-	<param>
-		<name>timeSteps</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>time steps</desc>
-	</param>
+    <param>
+        <name>handle</name>
+        <type class="VanillaOption">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Option object</desc>
+    </param>
+    <param>
+        <name>engineName</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>engine name</desc>
+    </param>
+    <param>
+        <name>timeSteps</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>time steps</desc>
+    </param>
 </parameters>
 <returnval>
-	<type>propertyvector</type>
-	<desc>vector of properties reflecting revised Option</desc>
+    <type>propertyvector</type>
+    <desc>vector of properties reflecting revised Option</desc>
 </returnval>
 </function>
 
@@ -585,46 +585,46 @@
 <qlfunction>StochasticProcess</qlfunction>
 <constructor>true</constructor>
 <parameters>
-	<param>
-		<name>underlying</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>underlying</desc>
-	</param>
-	<param>
-		<name>dayCounter</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>day counter</desc>
-	</param>
-	<param>
-		<name>settlementDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>settlement date</desc>
-	</param>
-	<param>
-		<name>riskFreeRate</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>risk free rate</desc>
-	</param>
-	<param>
-		<name>dividendYield</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>dividend yield</desc>
-	</param>
-	<param>
-		<name>volatility</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>volatility</desc>
-	</param>
+    <param>
+        <name>underlying</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>underlying</desc>
+    </param>
+    <param>
+        <name>dayCounter</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>day counter</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+    <param>
+        <name>riskFreeRate</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>risk free rate</desc>
+    </param>
+    <param>
+        <name>dividendYield</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dividend yield</desc>
+    </param>
+    <param>
+        <name>volatility</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>volatility</desc>
+    </param>
 </parameters>
 <returnval>
-	<type>propertyvector</type>
-	<desc>vector of properties describing Stochastic Process object</desc>
+    <type>propertyvector</type>
+    <desc>vector of properties describing Stochastic Process object</desc>
 </returnval>
 </function>
 
@@ -635,64 +635,64 @@
 <qlfunction>VanillaOption</qlfunction>
 <constructor>true</constructor>
 <parameters>
-	<param>
-		<name>handleStochastic</name>
-		<type class="StochasticProcess">string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>handle of the Stochastic Process object</desc>
-	</param>
-	<param>
-		<name>optionType</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>option type</desc>
-	</param>
-	<param>
-		<name>payoff</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>payoff type</desc>
-	</param>
-	<param>
-		<name>strike</name>
-		<type>double</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>strike</desc>
-	</param>
-	<param>
-		<name>exercise</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise type</desc>
-	</param>
-	<param>
-		<name>exerciseDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>exercise date</desc>
-	</param>
-	<param>
-		<name>settlementDate</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>settlement date</desc>
-	</param>
-	<param>
-		<name>engine</name>
-		<type>string</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>engine type</desc>
-	</param>
-	<param>
-		<name>timeSteps</name>
-		<type>long</type>
-		<tensorrank>scalar</tensorrank>
-		<desc>time steps</desc>
-	</param>
+    <param>
+        <name>handleStochastic</name>
+        <type class="StochasticProcess">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Stochastic Process object</desc>
+    </param>
+    <param>
+        <name>optionType</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>option type</desc>
+    </param>
+    <param>
+        <name>payoff</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>payoff type</desc>
+    </param>
+    <param>
+        <name>strike</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>strike</desc>
+    </param>
+    <param>
+        <name>exercise</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise type</desc>
+    </param>
+    <param>
+        <name>exerciseDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise date</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+    <param>
+        <name>engine</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>engine type</desc>
+    </param>
+    <param>
+        <name>timeSteps</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>time steps</desc>
+    </param>
 </parameters>
 <returnval>
-	<type>propertyvector</type>
-	<desc>vector of properties describing Option</desc>
+    <type>propertyvector</type>
+    <desc>vector of properties describing Option</desc>
 </returnval>
 </function>
 
