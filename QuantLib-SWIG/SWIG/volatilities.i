@@ -109,6 +109,32 @@ IsObservable(RelinkableHandle<LocalVolTermStructure>);
 
 // actual term structures below
 
+// constant Black vol term structure
+%{
+using QuantLib::VolTermStructures::BlackConstantVol;
+typedef Handle<BlackVolTermStructure> BlackConstantVolHandle;
+%}
+
+%rename(BlackConstantVol) BlackConstantVolHandle;
+class BlackConstantVolHandle : public Handle<BlackVolTermStructure> {
+  public:
+    %extend {
+        BlackConstantVolHandle(
+                const Date& referenceDate, double volatility,
+                const DayCounter& dayCounter = Actual365()) {
+            return new BlackConstantVolHandle(
+                new BlackConstantVol(referenceDate, volatility, dayCounter));
+        }
+        BlackConstantVolHandle(
+                const Date& referenceDate,
+                const RelinkableHandle<MarketElement>& volatility,
+                const DayCounter& dayCounter = Actual365()) {
+            return new BlackConstantVolHandle(
+                new BlackConstantVol(referenceDate, volatility, dayCounter));
+        }
+    }
+};
+
 // Black smiled surface
 %{
 using QuantLib::VolTermStructures::BlackVarianceSurface;
@@ -145,7 +171,6 @@ std::string volExTypeToString(VolExtrapolationType t) {
 
 MapToString(VolExtrapolationType,volExTypeFromString,volExTypeToString);
 
-// fake inheritance between handles
 %rename(BlackVarianceSurface) BlackVarianceSurfaceHandle;
 class BlackVarianceSurfaceHandle : public Handle<BlackVolTermStructure> {
   public:
@@ -175,7 +200,6 @@ using QuantLib::VolTermStructures::LocalConstantVol;
 typedef Handle<LocalVolTermStructure> LocalConstantVolHandle;
 %}
 
-// fake inheritance between handles
 %rename(LocalConstantVol) LocalConstantVolHandle;
 class LocalConstantVolHandle : public Handle<LocalVolTermStructure> {
   public:
