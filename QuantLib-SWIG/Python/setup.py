@@ -38,6 +38,7 @@ swig_files = ['../SWIG/common.i',
               '../SWIG/distributions.i',
               '../SWIG/null.i',
               '../SWIG/ql.i',
+              '../SWIG/qlarray.i',
               '../SWIG/randomnumbers.i',
               '../SWIG/string.i',
               '../SWIG/types.i']

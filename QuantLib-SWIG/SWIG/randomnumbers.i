@@ -30,8 +30,10 @@ typedef QuantLib::MonteCarlo::Sample<double> SampleNumber;
 
 class SampleNumber {
   public:
+    %readonly
     double value;
     double weight;
+    %readwrite
   private:
     SampleNumber();
 };

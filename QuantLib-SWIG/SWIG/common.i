@@ -22,6 +22,18 @@
 
 %include string.i
 
+// import opaque values from the scripting language API
+
+#if defined(SWIGPYTHON)
+%typemap(in) PyObject* { $1 = $input; };
+#endif
+
+#if defined(SWIGRUBY)
+%typemap(in) VALUE { $1 = $input; };
+#endif
+
+
+
 // typemap a C++ type to integers in the scripting language
 
 %define MapToInteger(Type)
