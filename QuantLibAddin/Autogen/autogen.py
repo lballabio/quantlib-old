@@ -16,6 +16,6 @@ p.StartElementHandler = start_element
 p.EndElementHandler = end_element
 p.CharacterDataHandler = char_data
 
-fileMeta = file("option.xml")
+fileMeta = file("options.xml")
 
 p.ParseFile(fileMeta)
