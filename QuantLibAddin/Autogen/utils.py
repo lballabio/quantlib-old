@@ -5,11 +5,32 @@ import time
 import sys
 import os
 
-def generateParamList(params, prefix = '', suffix = ''):
+def generateParamList( \
+		params, \
+		indent, \
+		datatypes, \
+		prefix = '', \
+		convertString = '', \
+		convertLong = '', \
+		reformatString = '', \
+		suffix = '\n', \
+		dereference = ''):
 	paramList = ''
 	i = 0
 	for param in params:
-		paramList += prefix + param[common.NAME]
+		if datatypes == False:
+			type = ''
+		elif convertString and param['type'] == 'string':
+			type = convertString + ' '
+		elif convertLong and param['type'] == 'long':
+			type = convertLong + ' '
+		else:
+			type = param['type'] + ' '
+		if reformatString and param['type'] == 'string':
+			full = reformatString % param['name']
+		else:
+			full = type + dereference + param['name']
+		paramList += '%s%s%s' % (indent * '\t', prefix, full)
 		i += 1
 		if i < len(params):
 			paramList += ',' + suffix

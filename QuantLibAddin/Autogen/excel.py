@@ -22,7 +22,8 @@ def generateParamString(function):
 
 def generateFuncDec(function):
 	paramStr = generateParamString(function)
-	paramList = utils.generateParamList(function[common.PARAMS])
+	paramList = utils.generateParamList(function[common.PARAMS], \
+		0, False, '', '', '', '', '')
 	if len(paramList) >= 255:
 		raise ValueError, 'list of parameter names exceeds max Excel length of 255:\n' \
 			+ paramList
@@ -46,48 +47,21 @@ def generateFuncHeaders(functionDefs):
 			fileHeader.write(generateFuncDec(function))
 	fileHeader.write('};\n')
 	fileHeader.close()
-	return
 
 def generateFuncDef(fileFunc, function):
-	fileFunc.write('LPXLOPER %s(' % function[common.CODENAME])
-# FIXME call utils.generateParamList
-	i = 0
-	for param in function[common.PARAMS]:
-		if param[common.TYPE] == 'string':
-			type = 'char'
-		else:
-			type = param[common.TYPE]
-		fileFunc.write('\n\t\t%s *%s' % (type, param[common.NAME]))
-		i += 1
-		if i < len(function[common.PARAMS]):
-			fileFunc.write(',')
-	fileFunc.write(') {\n')
-	fileFunc.write('\ttry {\n')
+	paramList1 = utils.generateParamList(function[common.PARAMS], \
+		2, True, '', 'char', '', '', '\n', '*')
+	paramList2 = utils.generateParamList(function[common.PARAMS], \
+		2, False, '', '', '', 'std::string(%s)', '\n', '*')
 	if function[common.HANDLE]:
-		fileFunc.write('\t\tstd::string handle = getCaller();\n')
-	fileFunc.write('\t\tProperties properties = %s(' % function[common.NAME])
-	if function[common.HANDLE]:
-		fileFunc.write('handle,')
-	i = 0
-	for param in function[common.PARAMS]:
-		if param[common.TYPE] == 'string':
-			fileFunc.write('\n\t\t\tstd::string(%s)' % param[common.NAME])
-		else:
-			fileFunc.write('\n\t\t\t*' + param[common.NAME])
-		i += 1
-		if i < len(function[common.PARAMS]):
-			fileFunc.write(',')
-	fileFunc.write(');\n')
-	fileFunc.write('\t\tstatic XLOPER xRet;\n')
-	fileFunc.write('\t\tsetValues(&xRet, properties, handle);\n')
-	fileFunc.write('\t\treturn &xRet;\n')
-	fileFunc.write('\t} catch (const exception &e) {\n')
-	fileFunc.write('\t\tQL_LOGMESSAGE(std::string("ERROR: %s: ") + e.what());\n' \
-		% function[common.NAME])
-	fileFunc.write('\t\treturn 0;\n')
-	fileFunc.write('\t}\n')
-	fileFunc.write('}\n\n')
-	return
+		handle1 = '\t\tstd::string handle = getCaller();\n'
+		handle2 = '\t\tstd::string(handle),\n'
+	else:
+		handle1 = ''
+		handle2 = ''
+	fileFunc.write(common.XL_SOURCE % \
+		(function[common.CODENAME], paramList1, handle1,\
+		function[common.NAME], handle2, paramList2, function[common.NAME]))
 
 def generateFuncDefs(functionGroups):
 	for groupName in functionGroups.keys():
@@ -96,14 +70,10 @@ def generateFuncDefs(functionGroups):
 			continue
 		fileFunc = file(common.XL_ROOT + groupName + '.cpp', 'w')
 		utils.printHeader(fileFunc)
-		fileFunc.write('#include <QuantLibAddin/qladdin.hpp>\n')
-		fileFunc.write('#include <Addins/Excel/utilities.hpp>\n')
-		fileFunc.write('using namespace ObjHandler;\n')
-		fileFunc.write('using namespace QuantLibAddin;\n\n')
+		fileFunc.write(common.XL_INCLUDE)
 		for function in functionGroup[common.FUNCLIST]:
 			generateFuncDef(fileFunc, function)
 		fileFunc.close()
-	return
 
 def generateExports(functionGroups):
 	fileExps = file(common.XL_ROOT + common.EXPORTFILE, 'w')
@@ -115,11 +85,9 @@ def generateExports(functionGroups):
 		for function in functionGroup[common.FUNCLIST]:
 			fileExps.write('\t%s\n' % function[common.CODENAME])
 		fileExps.write('\n')
-	return
 
 def generate(functionDefs):
 	generateFuncHeaders(functionDefs)
 	generateFuncDefs(functionDefs[common.FUNCGROUPS])
 	generateExports(functionDefs[common.FUNCGROUPS])
-	return
 

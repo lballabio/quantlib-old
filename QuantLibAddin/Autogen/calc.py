@@ -15,7 +15,6 @@ def generateFuncMap(functionGroups):
 				% (function[common.CODENAME], function[common.NAME]))
 	fileMap.write('\n}\n')
 	fileMap.close()
-	return
 
 def generateAutoHeader(functionGroups):
 	fileHeader = file(common.CALC_ROOT + common.CALC_AUTOHDR, 'w')
@@ -26,21 +25,10 @@ def generateAutoHeader(functionGroups):
 	fileHeader.close()
 
 def generateHeader(fileHeader, function, suffix):
-	paramList = function[common.PARAMS]
 	if function[common.HANDLE]:
-		fileHeader.write('\t\tconst STRING& handle,\n')
-	i = 0
-	for param in paramList:
-		if param[common.TYPE] == 'string':
-			type = 'const STRING &'
-		elif param[common.TYPE] == 'long':
-			type = 'sal_Int32 '
-		else:
-			type = param[common.TYPE] + ' '
-		fileHeader.write('\t\t%s%s' % (type, param[common.NAME]))
-		i += 1
-		if i < len(paramList):
-			fileHeader.write(',\n')
+		fileHeader.write('\t\tconst STRING & handle,\n')
+	fileHeader.write(utils.generateParamList(function[common.PARAMS], \
+		2, True, '', 'const STRING &', 'sal_Int32'))
 	fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)
 
 def getReturnTypeCalc(function):
@@ -65,19 +53,6 @@ def generateHeaders(functionGroups):
 			fileHeader.write('\n')
 	fileHeader.close()
 
-def generateParamList(paramList):
-	paramStr = ''
-	i = 0
-	for param in paramList:
-		if param[common.TYPE] == 'string':
-			paramStr += '\t\t\tOUStringToString(%s)' % param[common.NAME]
-		else:
-			paramStr += '\t\t\t' + param[common.NAME]
-		i += 1
-		if i < len(paramList):
-			paramStr += ',\n'
-	return paramStr
-
 def generateFuncSource(fileFunc, function):
 	fileFunc.write('SEQSEQ( ANY ) SAL_CALL QLAddin::%s(\n' % function[common.CODENAME])
 	generateHeader(fileFunc, function, ' {')
@@ -85,8 +60,8 @@ def generateFuncSource(fileFunc, function):
 		handle = '\n\t\t\tOUStringToString(handle),'
 	else:
 		handle = ''
-# FIXME call utils.generateParamList
-	paramList = generateParamList(function[common.PARAMS])
+	paramList = utils.generateParamList(function[common.PARAMS], \
+		3, False, '', '', '', 'OUStringToString(%s)')
 	fileFunc.write(common.CALC_BODY % (\
 		function[common.NAME],\
 		handle,\
@@ -114,17 +89,6 @@ def getReturnTypeCalcIDL(function):
 	else:
 		raise ValueError, 'unexpected return type: ' + returnType
 
-def getParamListIDL(params):
-	paramList = ''
-	i = 0
-	for param in params:
-		paramList += '\t\t\t\t\t\t[in] %s %s' \
-			% (param[common.TYPE], param[common.NAME])
-		i += 1
-		if i < len(params):
-			paramList += ',\n'
-	return paramList
-
 def generateIDLSource(functionGroups):
 	fileIDL = file(common.CALC_ROOT + common.CALC_IDL, 'w')
 	utils.printTimeStamp(fileIDL, '//')
@@ -138,8 +102,8 @@ def generateIDLSource(functionGroups):
 			else:
 				handle = ''
 			returnTypeIDL = getReturnTypeCalcIDL(function)
-# FIXME call utils.generateParamList
-			paramList = getParamListIDL(function[common.PARAMS])
+			paramList = utils.generateParamList(function[common.PARAMS],\
+				 6, True, '[in] ')
 			fileIDL.write(common.CALC_IDL_FUNC % \
 				(returnTypeIDL, function[common.CODENAME], handle, paramList))
 	fileIDL.write(common.CALC_IDL_FOOT)
@@ -152,4 +116,3 @@ def generate(functionDefs):
 	generateHeaders(functionGroups)
 	generateFuncSources(functionGroups)
 	generateIDLSource(functionGroups)
-

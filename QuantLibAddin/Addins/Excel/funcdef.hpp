@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Sat Dec 11 14:06:01 2004
+// this file generated automatically by autogen.py on Sun Dec 12 14:39:53 2004
 // editing this file manually is not recommended
 
 #define NUM_FUNCS 5
@@ -28,10 +28,10 @@ static LPSTR func[NUM_FUNCS][NUM_ATTS] = {
 	{ " qlLogfile",         " RC",       " QL_LOGFILE", 
 		" logFileName", " 1", " QuantLib"},
 	// options
-	{ " qlBlackscholes",    " REEEENN#", " QL_BLACKSCHOLES", 
+	{ " qlBlackScholes",    " REEEENN#", " QL_BLACKSCHOLES", 
 		" dividendYield,riskFreeRate,volatility,underlying,todaysDate,settlementDate", " 1", " QuantLib"},
 	{ " qlOption",          " RCCENNN#", " QL_OPTION", 
-		" handleStochastic,type,strike,timeSteps,exerciseDate,settlementDate", " 1", " QuantLib"},
+		" handleStochastic,typeOption,strike,timeSteps,exerciseDate,settlementDate", " 1", " QuantLib"},
 	{ " qlOptionSetEngine", " RCCN",     " QL_OPTION_SETENGINE", 
 		" handle,engineName,timeSteps", " 1", " QuantLib"},
 };

@@ -15,15 +15,16 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Sat Dec 11 14:06:01 2004
+// this file generated automatically by autogen.py on Sun Dec 12 14:39:53 2004
 // editing this file manually is not recommended
 
 #include <QuantLibAddin/qladdin.hpp>
 #include <Addins/Excel/utilities.hpp>
+
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
-LPXLOPER qlBlackscholes(
+LPXLOPER qlBlackScholes(
 		double *dividendYield,
 		double *riskFreeRate,
 		double *volatility,
@@ -32,13 +33,14 @@ LPXLOPER qlBlackscholes(
 		long *settlementDate) {
 	try {
 		std::string handle = getCaller();
-		Properties properties = QL_BLACKSCHOLES(handle,
-			*dividendYield,
-			*riskFreeRate,
-			*volatility,
-			*underlying,
-			*todaysDate,
-			*settlementDate);
+		Properties properties = QL_BLACKSCHOLES(
+		std::string(handle),
+		*dividendYield,
+		*riskFreeRate,
+		*volatility,
+		*underlying,
+		*todaysDate,
+		*settlementDate);
 		static XLOPER xRet;
 		setValues(&xRet, properties, handle);
 		return &xRet;
@@ -50,20 +52,21 @@ LPXLOPER qlBlackscholes(
 
 LPXLOPER qlOption(
 		char *handleStochastic,
-		char *type,
+		char *typeOption,
 		double *strike,
 		long *timeSteps,
 		long *exerciseDate,
 		long *settlementDate) {
 	try {
 		std::string handle = getCaller();
-		Properties properties = QL_OPTION(handle,
-			std::string(handleStochastic),
-			std::string(type),
-			*strike,
-			*timeSteps,
-			*exerciseDate,
-			*settlementDate);
+		Properties properties = QL_OPTION(
+		std::string(handle),
+		std::string(handleStochastic),
+		std::string(typeOption),
+		*strike,
+		*timeSteps,
+		*exerciseDate,
+		*settlementDate);
 		static XLOPER xRet;
 		setValues(&xRet, properties, handle);
 		return &xRet;
@@ -79,9 +82,9 @@ LPXLOPER qlOptionSetEngine(
 		long *timeSteps) {
 	try {
 		Properties properties = QL_OPTION_SETENGINE(
-			std::string(handle),
-			std::string(engineName),
-			*timeSteps);
+		std::string(handle),
+		std::string(engineName),
+		*timeSteps);
 		static XLOPER xRet;
 		setValues(&xRet, properties, handle);
 		return &xRet;

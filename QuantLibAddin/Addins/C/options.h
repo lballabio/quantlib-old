@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Sat Dec 11 16:06:43 2004
+// this file generated automatically by autogen.py on Sun Dec 12 14:39:53 2004
 // editing this file manually is not recommended
 
 #ifndef options_h
@@ -33,8 +33,8 @@ int QL_BLACKSCHOLES_C(
 
 int QL_OPTION_C(
 		const char *handle,
-		const char *handleStochastic,
-		const char *type,
+		const char* handleStochastic,
+		const char* typeOption,
 		const double strike,
 		const long timeSteps,
 		const long exerciseDate,
@@ -42,8 +42,8 @@ int QL_OPTION_C(
 		VariesList *result);
 
 int QL_OPTION_SETENGINE_C(
-		const char *handle,
-		const char *engineName,
+		const char* handle,
+		const char* engineName,
 		const long timeSteps,
 		VariesList *result);
 

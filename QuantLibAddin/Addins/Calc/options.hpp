@@ -15,11 +15,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Sun Dec 12 10:34:49 2004
+// this file generated automatically by autogen.py on Sun Dec 12 14:39:53 2004
 // editing this file manually is not recommended
 
 	virtual SEQSEQ(ANY) SAL_CALL qlBlackScholes(
-		const STRING& handle,
+		const STRING & handle,
 		double dividendYield,
 		double riskFreeRate,
 		double volatility,
@@ -28,16 +28,16 @@
 		sal_Int32 settlementDate) THROWDEF_RTE_IAE;
 
 	virtual SEQSEQ(ANY) SAL_CALL qlOption(
-		const STRING& handle,
-		const STRING &handleStochastic,
-		const STRING &typeOption,
+		const STRING & handle,
+		const STRING & handleStochastic,
+		const STRING & typeOption,
 		double strike,
 		sal_Int32 timeSteps,
 		sal_Int32 exerciseDate,
 		sal_Int32 settlementDate) THROWDEF_RTE_IAE;
 
 	virtual SEQSEQ(ANY) SAL_CALL qlOptionSetEngine(
-		const STRING &handle,
-		const STRING &engineName,
+		const STRING & handle,
+		const STRING & engineName,
 		sal_Int32 timeSteps) THROWDEF_RTE_IAE;
 

@@ -51,13 +51,6 @@ C_BODY = '\
 \t}\n\
 }\n\n'
 
-# Excel
-
-XL_ROOT = ADDIN_ROOT + 'Excel/'
-XL_FUNC = 'funcdef.hpp'
-EXPORTFILE = 'qladdin.def'
-EXPORTHEADER = 'LIBRARY QUANTLIBADDIN\n\nEXPORTS\n\txlAutoOpen\n\txlAutoFree\n\n'
-
 # Calc
 
 CALC_ROOT = ADDIN_ROOT + 'Calc/'
@@ -104,3 +97,26 @@ CALC_IDL_FUNC = '\t\t\t\t%s %s(\n\
 %s%s)\n\
 \t\t\t\t\traises( com::sun::star::lang::IllegalArgumentException );\n\n'
 
+# Excel
+
+XL_ROOT = ADDIN_ROOT + 'Excel/'
+XL_FUNC = 'funcdef.hpp'
+EXPORTFILE = 'qladdin.def'
+EXPORTHEADER = 'LIBRARY QUANTLIBADDIN\n\nEXPORTS\n\txlAutoOpen\n\txlAutoFree\n\n'
+XL_INCLUDE = '#include <QuantLibAddin/qladdin.hpp>\n\
+#include <Addins/Excel/utilities.hpp>\n\n\
+using namespace ObjHandler;\n\
+using namespace QuantLibAddin;\n\n'
+XL_SOURCE = 'LPXLOPER %s(\n\
+%s) {\n\
+\ttry {\n\
+%s\t\tProperties properties = %s(\n%s\
+%s);\n\
+\t\tstatic XLOPER xRet;\n\
+\t\tsetValues(&xRet, properties, handle);\n\
+\t\treturn &xRet;\n\
+\t} catch (const exception &e) {\n\
+\t\tQL_LOGMESSAGE(std::string("ERROR: %s: ") + e.what());\n\
+\t\treturn 0;\n\
+\t}\n\
+}\n\n'

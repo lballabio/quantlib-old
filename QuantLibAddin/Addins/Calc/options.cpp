@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Sun Dec 12 10:34:49 2004
+// this file generated automatically by autogen.py on Sun Dec 12 14:39:53 2004
 // editing this file manually is not recommended
 
 #include <QuantLibAddin/qladdin.hpp>
@@ -26,7 +26,7 @@ using namespace ObjHandler;
 using namespace QuantLibAddin;
 
 SEQSEQ( ANY ) SAL_CALL QLAddin::qlBlackScholes(
-		const STRING& handle,
+		const STRING & handle,
 		double dividendYield,
 		double riskFreeRate,
 		double volatility,
@@ -50,9 +50,9 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlBlackScholes(
 }
 
 SEQSEQ( ANY ) SAL_CALL QLAddin::qlOption(
-		const STRING& handle,
-		const STRING &handleStochastic,
-		const STRING &typeOption,
+		const STRING & handle,
+		const STRING & handleStochastic,
+		const STRING & typeOption,
 		double strike,
 		sal_Int32 timeSteps,
 		sal_Int32 exerciseDate,
@@ -74,8 +74,8 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOption(
 }
 
 SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionSetEngine(
-		const STRING &handle,
-		const STRING &engineName,
+		const STRING & handle,
+		const STRING & engineName,
 		sal_Int32 timeSteps) THROWDEF_RTE_IAE {
 	try {
 		Properties properties = QL_OPTION_SETENGINE(

@@ -119,6 +119,18 @@ SOURCE=.\utilities.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
+SOURCE=.\autogen.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\functions.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\options.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qladdin.hpp
 # PROP Intermediate_Dir "."
 # End Source File

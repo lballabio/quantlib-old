@@ -15,12 +15,12 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Sun Dec 12 10:34:49 2004
+// this file generated automatically by autogen.py on Sun Dec 12 14:39:53 2004
 // editing this file manually is not recommended
 
 	virtual SEQSEQ(ANY) SAL_CALL qlQuery(
-		const STRING &handleObject) THROWDEF_RTE_IAE;
+		const STRING & handleObject) THROWDEF_RTE_IAE;
 
 	virtual STRING SAL_CALL qlLogfile(
-		const STRING &logFileName) THROWDEF_RTE_IAE;
+		const STRING & logFileName) THROWDEF_RTE_IAE;
 

@@ -7,15 +7,9 @@ def generateFuncHeader(fileHeader, function, suffix):
 	fileHeader.write('int %s_C(\n' % function[common.NAME])
 	if function[common.HANDLE]:
 		fileHeader.write('\t\tconst char *handle,\n')
-# FIXME call utils.generateParamList
-	for param in function[common.PARAMS]:
-		if param[common.TYPE] == 'string':
-			type = 'char *'
-		else:
-			type = param[common.TYPE] + ' '
-		fileHeader.write('\t\tconst %s%s,\n' % (type, param[common.NAME]))
-	fileHeader.write('\t\tVariesList *result)%s\n' % suffix)
-	return
+	fileHeader.write(utils.generateParamList(function[common.PARAMS], \
+		2, True, 'const ', 'char*', ''))
+	fileHeader.write(',\n\t\tVariesList *result)%s\n' % suffix)
 
 def generateFuncHeaders(groupName, functionGroup):
 	fileHeader = file(common.C_ROOT + groupName + '.h', 'w')
@@ -26,7 +20,6 @@ def generateFuncHeaders(groupName, functionGroup):
 		generateFuncHeader(fileHeader, function, ';\n')
 	fileHeader.write('#endif\n')
 	fileHeader.close()
-	return
 
 def generateFuncDefs(groupName, functionGroup):
 	fileFunc = file(common.C_ROOT + groupName + '_c.cpp', 'w')
@@ -34,8 +27,7 @@ def generateFuncDefs(groupName, functionGroup):
 	fileFunc.write(common.C_INCLUDES % groupName)
 	for function in functionGroup[common.FUNCLIST]:
 		generateFuncHeader(fileFunc, function, ' {')
-		paramList = utils.generateParamList(function[common.PARAMS], \
-			'\t\t\t', '\n')
+		paramList = utils.generateParamList(function[common.PARAMS], 3, False)
 		if function[common.HANDLE]:
 			handle = '\t\t\thandle,\n'
 		else:
@@ -43,7 +35,6 @@ def generateFuncDefs(groupName, functionGroup):
 		fileFunc.write(common.C_BODY % \
 			(function[common.NAME], handle, paramList, function[common.NAME]))
 	fileFunc.close()
-	return
 
 def generate(functionDefs):
 	functionGroups = functionDefs[common.FUNCGROUPS]
@@ -53,5 +44,3 @@ def generate(functionDefs):
 			continue
 		generateFuncHeaders(groupName, functionGroup)
 		generateFuncDefs(groupName, functionGroup)
-	return
-
