@@ -24,6 +24,7 @@
 
 %{
 using QuantLib::Calendar;
+using QuantLib::Beijing;
 using QuantLib::Budapest;
 using QuantLib::Copenhagen;
 using QuantLib::Frankfurt;
@@ -36,6 +37,7 @@ using QuantLib::Milan;
 using QuantLib::NewYork;
 using QuantLib::NullCalendar;
 using QuantLib::Oslo;
+using QuantLib::Riyadh;
 using QuantLib::Seoul;
 using QuantLib::Singapore;
 using QuantLib::Stockholm;
@@ -161,6 +163,8 @@ class Calendar {
                 return new Calendar(NewYork());
             else if (s == "london" || s == "lon")
                 return new Calendar(London());
+            else if (s == "beijing")
+                return new Calendar(Beijing());
             else if (s == "budapest")
                 return new Calendar(Budapest());
             else if (s == "copenhagen")
@@ -177,6 +181,8 @@ class Calendar {
                 return new Calendar(Milan());
             else if (s == "oslo")
                 return new Calendar(Oslo());
+            else if (s == "riyadh")
+                return new Calendar(Riyadh());
             else if (s == "seoul")
                 return new Calendar(Seoul());
             else if (s == "singapore")
