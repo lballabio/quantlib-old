@@ -31,9 +31,9 @@
 %include vectors.i
 
 %{
-using QuantLib::ShortRateModels::CalibrationHelper;
-using QuantLib::ShortRateModels::CalibrationHelpers::SwaptionHelper;
-using QuantLib::ShortRateModels::CalibrationHelpers::CapHelper;
+using QuantLib::CalibrationHelper;
+using QuantLib::SwaptionHelper;
+using QuantLib::CapHelper;
 typedef Handle<CalibrationHelper> SwaptionHelperHandle;
 typedef Handle<CalibrationHelper> CapHelperHandle;
 %}
@@ -91,7 +91,7 @@ namespace std {
 
 // the base class for models
 %{
-using QuantLib::ShortRateModels::Model;
+using QuantLib::Model;
 %}
 
 %ignore Model;
@@ -112,8 +112,8 @@ IsObservable(Handle<Model>);
 // actual models
 
 %{
-using QuantLib::ShortRateModels::HullWhite;
-using QuantLib::ShortRateModels::BlackKarasinski;
+using QuantLib::HullWhite;
+using QuantLib::BlackKarasinski;
 typedef Handle<Model> HullWhiteHandle;
 typedef Handle<Model> BlackKarasinskiHandle;
 %}

@@ -23,13 +23,13 @@
 // 1D Solvers
 
 %{
-using QuantLib::Solvers1D::Bisection;
-using QuantLib::Solvers1D::Brent;
-using QuantLib::Solvers1D::FalsePosition;
-using QuantLib::Solvers1D::Newton;
-using QuantLib::Solvers1D::NewtonSafe;
-using QuantLib::Solvers1D::Ridder;
-using QuantLib::Solvers1D::Secant;
+using QuantLib::Bisection;
+using QuantLib::Brent;
+using QuantLib::FalsePosition;
+using QuantLib::Newton;
+using QuantLib::NewtonSafe;
+using QuantLib::Ridder;
+using QuantLib::Secant;
 %}
 
 #if defined(SWIGMZSCHEME)

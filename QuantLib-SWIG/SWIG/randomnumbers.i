@@ -24,26 +24,26 @@
 %{
 using QuantLib::Sample;
 
-using QuantLib::RandomNumbers::LecuyerUniformRng;
-using QuantLib::RandomNumbers::KnuthUniformRng;
-using QuantLib::RandomNumbers::MersenneTwisterUniformRng;
-using QuantLib::RandomNumbers::UniformRandomGenerator;
+using QuantLib::LecuyerUniformRng;
+using QuantLib::KnuthUniformRng;
+using QuantLib::MersenneTwisterUniformRng;
+using QuantLib::UniformRandomGenerator;
 
-using QuantLib::RandomNumbers::CLGaussianRng;
-using QuantLib::RandomNumbers::BoxMullerGaussianRng;
-using QuantLib::RandomNumbers::ICGaussianRng;
-using QuantLib::RandomNumbers::GaussianRandomGenerator;
+using QuantLib::CLGaussianRng;
+using QuantLib::BoxMullerGaussianRng;
+using QuantLib::ICGaussianRng;
+using QuantLib::GaussianRandomGenerator;
 
-using QuantLib::RandomNumbers::RandomSequenceGenerator;
+using QuantLib::RandomSequenceGenerator;
 
-using QuantLib::RandomNumbers::UniformRandomSequenceGenerator;
-using QuantLib::RandomNumbers::HaltonRsg;
-using QuantLib::RandomNumbers::SobolRsg;
-using QuantLib::RandomNumbers::UniformLowDiscrepancySequenceGenerator;
+using QuantLib::UniformRandomSequenceGenerator;
+using QuantLib::HaltonRsg;
+using QuantLib::SobolRsg;
+using QuantLib::UniformLowDiscrepancySequenceGenerator;
 
-using QuantLib::RandomNumbers::ICGaussianRsg;
-using QuantLib::RandomNumbers::GaussianRandomSequenceGenerator;
-using QuantLib::RandomNumbers::GaussianLowDiscrepancySequenceGenerator;
+using QuantLib::ICGaussianRsg;
+using QuantLib::GaussianRandomSequenceGenerator;
+using QuantLib::GaussianLowDiscrepancySequenceGenerator;
 %}
 
 template <class T>
