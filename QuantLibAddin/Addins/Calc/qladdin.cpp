@@ -14,8 +14,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#ifdef WIN32
+#pragma warning(disable: 4786)
+#pragma warning(disable: 4503)
+#endif
+
 #include <string.h>
 #include <Addins/Calc/qladdin.hpp>
+#include <QuantLibAddin/autolink.hpp>
 #include <cppuhelper/factory.hxx>
 #include <cppuhelper/implementationentry.hxx>
 #include <osl/interlck.h>
@@ -69,35 +75,37 @@ void * SAL_CALL component_getFactory(
 
 CSS::uno::Any QLAddin::queryInterface(
 		CSS::uno::Type const & type) THROWDEF_RTE {
-    if (type.equals( ::getCppuType( (REF ( XInterface ) const *)0 ) )) {
+//    if (type.equals( ::getCppuType( (REF ( XInterface ) const *)0 ) )) {
+    if (type.equals( ::getCppuType( (REF ( CSS::uno::XInterface ) const *)0 ) )) {
         // return XInterface interface (resolve ambiguity by casting to lang::XTypeProvider)
-        REF ( XInterface ) x( static_cast< CSS::lang::XTypeProvider * >( this ) );
-        return makeAny( x );
+        REF ( CSS::uno::XInterface ) x( static_cast< CSS::lang::XTypeProvider * >( this ) );
+        return CSS::uno::makeAny( x );
     }
     if (type.equals( ::getCppuType( (REF ( CSS::lang::XTypeProvider ) const *)0 ) )) {
         // return XInterface interface
-        REF ( XInterface ) x( static_cast< CSS::lang::XTypeProvider * >( this ) );
-        return makeAny( x );
+//        REF ( XInterface ) x( static_cast< CSS::lang::XTypeProvider * >( this ) );
+        REF ( CSS::uno::XInterface ) x( static_cast< CSS::lang::XTypeProvider * >( this ) );
+        return CSS::uno::makeAny( x );
     }
     if (type.equals( ::getCppuType( (REF ( CSS::lang::XServiceName ) const *)0 ) )) {
         // return XServiceName interface
         REF ( CSS::lang::XServiceName ) x( static_cast< CSS::lang::XServiceName * >( this ) );
-        return makeAny( x );
+        return CSS::uno::makeAny( x );
     }
     if (type.equals( ::getCppuType( (REF ( CSS::lang::XServiceInfo ) const *)0 ) )) {
         // return XServiceInfo interface
         REF ( CSS::lang::XServiceInfo ) x( static_cast< CSS::lang::XServiceInfo * >( this ) );
-        return makeAny( x );
+        return CSS::uno::makeAny( x );
     }
     if (type.equals( ::getCppuType( (REF ( CSS::sheet::XAddIn ) const *)0 ) )) {
         // return XAddIn interface
         REF ( CSS::sheet::XAddIn ) x( static_cast< CSS::sheet::XAddIn * >( this ) );
-        return makeAny( x );
+        return CSS::uno::makeAny( x );
     }
     if (type.equals( ::getCppuType( (REF ( CSS::sheet::addin::XQL ) const *)0 ) )) {
         // return sample interface
         REF ( CSS::sheet::addin::XQL ) x( static_cast< CSS::sheet::addin::XQL * >( this ) );
-        return makeAny( x );
+        return CSS::uno::makeAny( x );
     }
     // querying for unsupported type
     return CSS::uno::Any();

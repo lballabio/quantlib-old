@@ -1,9 +1,10 @@
-quantlib addin for OpenOffice.org calc
+QuantLib addin for OpenOffice.org Calc - linux and windows
 
-linux only, windows support under development
-
-this project is in a rough state and is intended only as a proof of concept.
-
-for instructions on building and installing please visit
+for instructions on building and installing on linux please visit
 	http://www.ehlers.plus.com/pricer/example.htm
-installation currently manual, automatic "make install" to be supported shortly.
+
+the procedure on windows is similar
+except that the program and SDK directories are
+		C:\Program Files\OpenOffice.org1.1.3\program
+		C:\path\to\OpenOffice.org1.1_SDK\windows\bin
+

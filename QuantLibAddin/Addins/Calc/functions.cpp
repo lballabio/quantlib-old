@@ -44,7 +44,7 @@ SEQSEQ(ANY) SAL_CALL QLAddin::qlQuery(
 STRING SAL_CALL QLAddin::qlLogfile(
 			const STRING& logFileName) THROWDEF_RTE_IAE {
 	try {
-		string ret =  QL_LOGFILE(OUStringToString(logFileName));
+		std::string ret =  QL_LOGFILE(OUStringToString(logFileName));
 		return STRFROMANSI(ret.c_str());
 	} catch (const std::exception &e) {
 		QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what());

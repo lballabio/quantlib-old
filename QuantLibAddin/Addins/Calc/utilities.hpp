@@ -14,8 +14,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef utilities_h
-#define utilities_h
+// temporary workaround to avoid conflict with Object Handler utilities_h
+#ifndef utilities_calc_h
+#define utilities_calc_h
 
 ANY anyToANY(const ObjHandler::any_ptr &a); // convert boost::any to Calc Any
 SEQSEQ( ANY ) getArray(ObjHandler::Properties properties,

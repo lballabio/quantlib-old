@@ -41,9 +41,9 @@ CFG=AddinCalc - Win32 Debug
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "Release"
 # PROP Intermediate_Dir "Release"
-# PROP Cmd_Line "WINDOWS SUPPORT PENDING"
+# PROP Cmd_Line "nmake /f Makefile.win32"
 # PROP Rebuild_Opt "/a"
-# PROP Target_File "QuantLibAddin.lib"
+# PROP Target_File "QuantLibAddin.dll"
 # PROP Bsc_Name ""
 # PROP Target_Dir ""
 
@@ -62,9 +62,9 @@ CFG=AddinCalc - Win32 Debug
 # PROP Use_Debug_Libraries 1
 # PROP Output_Dir "Debug"
 # PROP Intermediate_Dir "Debug"
-# PROP Cmd_Line "WINDOWS SUPPORT PENDING"
+# PROP Cmd_Line "nmake /f Makefile.win32.debug"
 # PROP Rebuild_Opt "/a"
-# PROP Target_File "QuantLibAddin.lib"
+# PROP Target_File "QuantLibAddin.dll"
 # PROP Bsc_Name ""
 # PROP Target_Dir ""
 
@@ -87,18 +87,27 @@ CFG=AddinCalc - Win32 Debug
 # Begin Source File
 
 SOURCE=.\functions.cpp
+# PROP Intermediate_Dir "."
 # End Source File
 # Begin Source File
 
 SOURCE=.\options.cpp
+# PROP Intermediate_Dir "."
 # End Source File
 # Begin Source File
 
 SOURCE=.\qladdin.cpp
+# PROP Intermediate_Dir "."
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin.def
+# PROP Intermediate_Dir "."
 # End Source File
 # Begin Source File
 
 SOURCE=.\utilities.cpp
+# PROP Intermediate_Dir "."
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -107,23 +116,42 @@ SOURCE=.\utilities.cpp
 # Begin Source File
 
 SOURCE=.\qladdin.hpp
+# PROP Intermediate_Dir "."
 # End Source File
 # Begin Source File
 
 SOURCE=.\qldefs.hpp
+# PROP Intermediate_Dir "."
 # End Source File
 # Begin Source File
 
 SOURCE=.\utilities.hpp
+# PROP Intermediate_Dir "."
+# End Source File
+# End Group
+# Begin Group "make"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\Makefile.win32
+# PROP Intermediate_Dir "."
+# End Source File
+# Begin Source File
+
+SOURCE=.\Makefile.win32.debug
+# PROP Intermediate_Dir "."
 # End Source File
 # End Group
 # Begin Source File
 
 SOURCE=.\QuantLibAddin.idl
+# PROP Intermediate_Dir "."
 # End Source File
 # Begin Source File
 
 SOURCE=.\readme.txt
+# PROP Intermediate_Dir "."
 # End Source File
 # End Target
 # End Project
