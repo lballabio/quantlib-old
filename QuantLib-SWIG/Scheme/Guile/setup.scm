@@ -206,11 +206,17 @@
   (display "Installing QuantLib-Guile...") (newline)
   (let ((install-path (find-install-path %load-path)))
     (for-each (lambda (file)
-                (system (format #f "install -m 0555 ~A ~A"
-                                file
-                                (string-append install-path
-                                               "/"
-                                               file))))
+                (let ((destination-file (string-append install-path
+                                                       "/"
+                                                       file)))
+                  (display (string-append
+                            "./" file
+                            " -> "
+                            destination-file))
+                  (newline)
+                  (system (format #f "install -m 0555 ~A ~A"
+                                  file
+                                  destination-file))))
               '("QuantLib.scm" "QuantLibc.so"))))
 
 (define (sdist)

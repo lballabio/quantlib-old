@@ -230,6 +230,11 @@
                            (build-path installation-path f)))
                      (if (file-exists? destination-file)
                          (delete-file destination-file))
+                     (display (string-append 
+                               (build-path "." "quantlib" f)
+                               " -> "
+                               destination-file))
+                     (newline)
                      (copy-file (build-path "quantlib" f) 
                                 destination-file)))
                  (list "quantlib.ss" 
