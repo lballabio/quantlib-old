@@ -33,46 +33,6 @@
       (if (not flag)
           (error "Observer was not notified of market element change")))))
 
-(define (Derived-market-element-test)
-  (for-each 
-   (lambda (f)
-     (deleting-let* ((me (new-SimpleMarketElement 17.0)
-                         delete-MarketElement)
-                     (h (new-MarketElementHandle me)
-                        delete-MarketElementHandle)
-                     (derived-me (new-DerivedMarketElement h f)
-                                 delete-MarketElement))
-       (let ((derived-result (MarketElement-value derived-me))
-             (function-result (f (MarketElement-value me))))
-         (check-equal derived-result function-result 1.0e-10
-                      "derived market element yields " derived-result cr
-                      "function result is " function-result cr))))
-   (list (lambda (x) (+ x 10))
-         (lambda (x) (* x 10))
-         (lambda (x) (- x 10)))))
-
-(define (Composite-market-element-test)
-  (deleting-let* ((me1 (new-SimpleMarketElement 12.0) delete-MarketElement)
-                  (me2 (new-SimpleMarketElement 13.0) delete-MarketElement)
-                  (h1 (new-MarketElementHandle me1)
-                      delete-MarketElementHandle)
-                  (h2 (new-MarketElementHandle me2)
-                      delete-MarketElementHandle))
-    (for-each 
-     (lambda (f)
-       (deleting-let ((composite-me (new-CompositeMarketElement h1 h2 f)
-                                    delete-MarketElement))
-         (let ((composite-result (MarketElement-value composite-me))
-               (function-result (f (MarketElement-value me1)
-                                   (MarketElement-value me2))))
-           (check-equal composite-result function-result 1.0e-10
-                        "composite market element yields " 
-                        composite-result cr
-                        "function result is " function-result cr))))
-     (list (lambda (x y) (+ x y))
-           (lambda (x y) (* x y))
-           (lambda (x y) (- x y))))))
-
 (define (Market-element-handle-observability-test)
   (let ((flag #f))
     (deleting-let* ((me1 (new-SimpleMarketElement 0.0)
@@ -99,10 +59,6 @@
    "Market element tests"
    (make-test-case/msg "Testing observability of market elements" 
                        (Market-element-observability-test))
-   (make-test-case/msg "Testing derived market elements"
-                       (Derived-market-element-test))
-   (make-test-case/msg "Testing composite market elements"
-                       (Composite-market-element-test))
    (make-test-case/msg "Testing observability of market element handles"
                        (Market-element-handle-observability-test))))
 

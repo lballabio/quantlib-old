@@ -22,49 +22,19 @@
 (load "unittest.scm")
 (load "utilities.scm")
 
-(load "calendars.scm")
-(load "capfloor.scm")
-(load "covariance.scm")
-(load "date.scm")
-(load "daycounters.scm")
-(load "distributions.scm")
-(load "europeanoption.scm")
 (load "instruments.scm")
 (load "marketelements.scm")
-(load "operators.scm")
-(load "piecewiseflatforward.scm")
-(load "riskstatistics.scm")
 (load "segmentintegral.scm")
-(load "simpleswap.scm")
 (load "solvers1d.scm")
-(load "statistics.scm")
-(load "swaption.scm")
 (load "termstructures.scm")
-; to be removed
-(load "old_pricers.scm")
 
 (define tests
   (list
-   Calendar-suite
-   CapFloor-suite
-   Covariance-suite
-   Date-suite
-   DayCounter-suite
-   Distribution-suite
-   EuropeanOption-suite
    Instrument-suite
    MarketElement-suite
-   Operator-suite
-   PiecewiseFlatForward-suite
-   RiskStatistics-suite
    SegmentIntegral-suite
-   SimpleSwap-suite
    Solver1D-suite
-   Statistics-suite
-   Swaption-suite
-   TermStructure-suite
-   ; to be removed
-   OldPricers-suite))
+   TermStructure-suite))
 
 (define suite
   (apply make-test-suite "QuantLib-MzScheme test suite" (reverse tests)))

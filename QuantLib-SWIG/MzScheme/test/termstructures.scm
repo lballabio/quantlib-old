@@ -75,37 +75,7 @@
   ; setup
   (deleting-let ((term-structure (make-test-structure-handle)
                                  delete-TermStructureHandle))
-    (cond ((equal? tag 'implied)
-           ; check implied term structure consistency
-           (deleting-let* ((calendar (new-Calendar "TARGET")
-                                     delete-Calendar)
-                           (new-today 
-                            (Date-plus-years 
-                             (TermStructureHandle-todays-date 
-                              term-structure)
-                             3)
-                            delete-Date)
-                           (new-settlement 
-                            (Calendar-advance
-                             calendar new-today 2 "days")
-                            delete-Date)
-                           (test-date (Date-plus-years new-settlement 5) 
-                                      delete-Date)
-                           (implied (new-ImpliedTermStructure term-structure
-                                                              new-today 
-                                                              new-settlement)
-                                    delete-TermStructure))
-             (let ((tolerance 1.0e-10)
-                   (base-discount (TermStructureHandle-discount 
-                                   term-structure new-settlement))
-                   (discount (TermStructureHandle-discount 
-                              term-structure test-date))
-                   (implied-discount (TermStructure-discount 
-                                      implied test-date)))
-               (check-expected (* base-discount implied-discount) discount
-                               tolerance
-                               "discount from implied curve"))))
-          ((equal? tag 'implied-obs)
+    (cond ((equal? tag 'implied-obs)
            ; check implied term structure observability
            (let ((flag #f))
              (deleting-let* ((calendar (new-Calendar "TARGET")
@@ -144,28 +114,6 @@
                (if (not flag)
                    (error 
                     "Observer was not notified of term structure change")))))
-          ((equal? tag 'fw-spreaded)
-           ; check forward-spreaded term structure consistency
-           (deleting-let* ((me (new-SimpleMarketElement 0.01)
-                               delete-MarketElement)
-                           (h (new-MarketElementHandle me)
-                              delete-MarketElementHandle)
-                           (test-date (Date-plus-years 
-                                       (TermStructureHandle-reference-date
-                                        term-structure) 
-                                       5)
-                                      delete-Date)
-                           (spreaded (new-ForwardSpreadedTermStructure 
-                                      term-structure h)
-                                     delete-TermStructure))
-             (let ((tolerance 1.0e-10)
-                   (forward (TermStructureHandle-instantaneous-forward 
-                             term-structure test-date))
-                   (spreaded-forward (TermStructure-instantaneous-forward 
-                                      spreaded test-date)))
-               (check-expected (- spreaded-forward (MarketElement-value me)) 
-                               forward tolerance
-                               "forward from spreaded curve"))))
           ((equal? tag 'fw-spreaded-obs)
            ; check forward-spreaded term structure observability
            (let ((flag #f)
@@ -205,28 +153,6 @@
                (SimpleMarketElement-value-set! me 0.005)
                (if (not flag)
                    (error "Observer was not notified of spread change")))))
-          ((equal? tag 'z-spreaded)
-           ; check zero-spreaded term structure consistency
-           (deleting-let* ((me (new-SimpleMarketElement 0.01)
-                               delete-MarketElement)
-                           (h (new-MarketElementHandle me)
-                              delete-MarketElementHandle)
-                           (test-date (Date-plus-years 
-                                       (TermStructureHandle-reference-date
-                                        term-structure) 
-                                       5)
-                                      delete-Date)
-                           (spreaded (new-ZeroSpreadedTermStructure 
-                                      term-structure h)
-                                     delete-TermStructure))
-             (let ((tolerance 1.0e-10)
-                   (zero (TermStructureHandle-zero-yield term-structure 
-                                                         test-date))
-                   (spreaded-zero (TermStructure-zero-yield spreaded 
-                                                            test-date)))
-               (check-expected (- spreaded-zero (MarketElement-value me)) zero 
-                               tolerance
-                               "zero yield from spreaded curve"))))
           ((equal? tag 'z-spreaded-obs)
            ; check zero-spreaded term structure observability
            (let ((flag #f)
@@ -267,33 +193,21 @@
                (if (not flag)
                    (error "Observer was not notified of spread change"))))))))
 
-(define (Implied-term-structure-consistency-test)
-  (TermStructure-test 'implied))
 (define (Implied-term-structure-observability-test)
   (TermStructure-test 'implied-obs))
-(define (Forward-spreaded-term-structure-consistency-test)
-  (TermStructure-test 'fw-spreaded))
 (define (Forward-spreaded-term-structure-observability-test)
   (TermStructure-test 'fw-spreaded-obs))
-(define (Zero-spreaded-term-structure-consistency-test)
-  (TermStructure-test 'z-spreaded))
 (define (Zero-spreaded-term-structure-observability-test)
   (TermStructure-test 'z-spreaded-obs))
 
 (define TermStructure-suite
   (make-test-suite 
    "Term-structure tests"
-   (make-test-case/msg "Testing consistency of implied term structure"
-                       (Implied-term-structure-consistency-test))
    (make-test-case/msg "Testing observability of implied term structure"
                        (Implied-term-structure-observability-test))
-   (make-test-case/msg "Testing consistency of forward-spreaded term structure"
-                       (Forward-spreaded-term-structure-consistency-test))
    (make-test-case/msg 
     "Testing observability of forward-spreaded term structure"
     (Forward-spreaded-term-structure-observability-test))
-   (make-test-case/msg "Testing consistency of zero-spreaded term structure"
-                       (Zero-spreaded-term-structure-consistency-test))
    (make-test-case/msg "Testing observability of zero-spreaded term structure"
                        (Zero-spreaded-term-structure-observability-test))))
 
