@@ -24,7 +24,6 @@
 
 %{
 using QuantLib::Quote;
-using QuantLib::MarketElement;
 %}
 
 %ignore Quote;
@@ -33,21 +32,11 @@ class Quote {
     double value() const;
 };
 
-typedef Quote MarketElement;
-
 %template(Quote) Handle<Quote>;
 IsObservable(Handle<Quote>);
 
 %template(QuoteHandle) RelinkableHandle<Quote>;
 IsObservable(RelinkableHandle<Quote>);
-
-#if defined(SWIGPYTHON)
-%pythoncode %{
-    MarketElement = Quote
-    MarketElementHandle = QuoteHandle
-%}
-#endif
-
 
 // actual market elements
 %{
@@ -69,20 +58,10 @@ class SimpleQuoteHandle : public Handle<Quote> {
             return new SimpleQuoteHandle(new SimpleQuote(value));
         }
         void setValue(double value) {
-            %#if defined(HAVE_BOOST)
             boost::dynamic_pointer_cast<SimpleQuote>(*self)->setValue(value);
-            %#else
-            Handle<SimpleQuote>(*self)->setValue(value);
-            %#endif
         }
     }
 };
-
-#if defined(SWIGPYTHON)
-%pythoncode %{
-    SimpleMarketElement = SimpleQuote
-%}
-#endif
 
 
 #if defined(SWIGPYTHON) || defined(SWIGMZSCHEME)
@@ -113,12 +92,6 @@ class DerivedQuoteHandle : public Handle<Quote> {
     }
 };
 
-#if defined(SWIGPYTHON)
-%pythoncode %{
-    DerivedMarketElement = DerivedQuote
-%}
-#endif
-
 
 %rename(CompositeQuote) CompositeQuoteHandle;
 class CompositeQuoteHandle : public Handle<Quote> {
@@ -143,12 +116,6 @@ class CompositeQuoteHandle : public Handle<Quote> {
         #endif
     }
 };
-
-#if defined(SWIGPYTHON)
-%pythoncode %{
-    CompositeMarketElement = CompositeQuote
-%}
-#endif
 
 #endif
 

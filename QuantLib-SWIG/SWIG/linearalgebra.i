@@ -980,7 +980,6 @@ class LexicographicalView {
 typedef QuantLib::Matrix::row_iterator MatrixRow;
 using QuantLib::outerProduct;
 using QuantLib::transpose;
-using QuantLib::matrixSqrt;
 using QuantLib::SVD;
 %}
 
@@ -1102,11 +1101,46 @@ class Matrix {
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename("Matrix-transpose")    transpose;
 %rename("Array-outer-product") outerProduct;
-%rename("Matrix-sqrt")         matrixSqrt;
+%rename("Matrix-pseudo-sqrt")  pseudoSqrt;
 #endif
+
+%{
+using QuantLib::pseudoSqrt;
+typedef QuantLib::SalvagingAlgorithm::Type SalvagingAlgorithm;
+
+SalvagingAlgorithm salvagingAlgorithmFromString(std::string s) {
+    s = StringFormatter::toLowercase(s);
+    if (s == "none")
+        return QuantLib::SalvagingAlgorithm::None;
+    else if (s == "spectral")
+        return QuantLib::SalvagingAlgorithm::Spectral;
+    else if (s == "hypersphere")
+        return QuantLib::SalvagingAlgorithm::Hypersphere;
+    else
+        throw Error("unknown salvaging algorithm: "+s);
+}
+
+std::string salvagingAlgorithmToString(SalvagingAlgorithm a) {
+    switch (a) {
+      case QuantLib::SalvagingAlgorithm::None:
+        return "None";
+      case QuantLib::SalvagingAlgorithm::Spectral:
+        return "Spectral";
+      case QuantLib::SalvagingAlgorithm::Hypersphere:
+        return "Hypersphere";
+      default:
+        throw Error("unknown salvaging algorithm");
+    }
+}
+%}
+
+MapToString(SalvagingAlgorithm,salvagingAlgorithmFromString,
+            salvagingAlgorithmToString);
+
 Matrix transpose(const Matrix& m);
 Matrix outerProduct(const Array& v1, const Array& v2);
-Matrix matrixSqrt(const Matrix& m);
+Matrix pseudoSqrt(const Matrix& m,
+                  SalvagingAlgorithm a = QuantLib::SalvagingAlgorithm::None);
 
 class SVD {
   public:

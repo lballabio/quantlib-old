@@ -40,11 +40,7 @@ class DiscountCurveHandle : public Handle<TermStructure> {
                 new DiscountCurve(todaysDate, dates, discounts, dayCounter));
         }
         const std::vector<Date>& dates() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<DiscountCurve>(*self)->dates();
-            %#else
-            return Handle<DiscountCurve>(*self)->dates();
-            %#endif
         }
     }
 };

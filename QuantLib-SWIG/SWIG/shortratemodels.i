@@ -60,11 +60,7 @@ class SwaptionHelperHandle : public Handle<CalibrationHelper> {
                 const RelinkableHandle<Quote>& volatility,
                 const XiborHandle& index,
                 const RelinkableHandle<TermStructure>& termStructure) {
-            %#if defined(HAVE_BOOST)
             Handle<Xibor> libor = boost::dynamic_pointer_cast<Xibor>(index);
-            %#else
-            Handle<Xibor> libor = index;
-            %#endif
             return new SwaptionHelperHandle(
                 new SwaptionHelper(maturity,length,volatility,
                                    libor,termStructure));
@@ -81,11 +77,7 @@ class CapHelperHandle : public Handle<CalibrationHelper> {
                 const RelinkableHandle<Quote>& volatility,
                 const XiborHandle& index,
                 const RelinkableHandle<TermStructure>& termStructure) {
-            %#if defined(HAVE_BOOST)
             Handle<Xibor> libor = boost::dynamic_pointer_cast<Xibor>(index);
-            %#else
-            Handle<Xibor> libor = index;
-            %#endif
             return new CapHelperHandle(
                 new CapHelper(length,volatility,libor,termStructure));
         }
@@ -171,12 +163,8 @@ class JamshidianSwaptionHandle : public Handle<PricingEngine> {
     %extend {
         JamshidianSwaptionHandle(const Handle<ShortRateModel>& model) {
             using QuantLib::OneFactorAffineModel;
-            %#if defined(HAVE_BOOST)
             Handle<OneFactorAffineModel> m = 
                  boost::dynamic_pointer_cast<OneFactorAffineModel>(model);
-            %#else
-            Handle<OneFactorAffineModel> m = model;
-            %#endif
             QL_REQUIRE(!IsNull(model),
                        "JamshidianSwaption: affine model required");
             return new JamshidianSwaptionHandle(new JamshidianSwaption(m));

@@ -123,47 +123,23 @@ class XiborHandle : public Handle<Index> {
             QL_DUMMY_RETURN(new XiborHandle);
         }
         Period tenor() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<Xibor>(*self)->tenor();
-            %#else
-            return Handle<Xibor>(*self)->tenor();
-            %#endif
         }
         Currency currency() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<Xibor>(*self)->currency();
-            %#else
-            return Handle<Xibor>(*self)->currency();
-            %#endif
         }
         Calendar calendar() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<Xibor>(*self)->calendar();
-            %#else
-            return Handle<Xibor>(*self)->calendar();
-            %#endif
         }
         bool isAdjusted() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<Xibor>(*self)->isAdjusted();
-            %#else
-            return Handle<Xibor>(*self)->isAdjusted();
-            %#endif
         }
         RollingConvention rollingConvention() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<Xibor>(*self)
                  ->rollingConvention();
-            %#else
-            return Handle<Xibor>(*self)->rollingConvention();
-            %#endif
         }
         DayCounter dayCounter() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<Xibor>(*self)->dayCounter();
-            %#else
-            return Handle<Xibor>(*self)->dayCounter();
-            %#endif
         }
     }
 };

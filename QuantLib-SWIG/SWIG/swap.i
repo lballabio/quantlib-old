@@ -41,39 +41,19 @@ class SwapHandle : public Handle<Instrument> {
                                            termStructure));
         }
         Date startDate() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<Swap>(*self)->startDate();
-            %#else
-            return Handle<Swap>(*self)->startDate();
-            %#endif
         }
         Date maturity() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<Swap>(*self)->maturity();
-            %#else
-            return Handle<Swap>(*self)->maturity();
-            %#endif
         }
         double firstLegBPS() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<Swap>(*self)->firstLegBPS();
-            %#else
-            return Handle<Swap>(*self)->firstLegBPS();
-            %#endif
         }
         double secondLegBPS() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<Swap>(*self)->secondLegBPS();
-            %#else
-            return Handle<Swap>(*self)->secondLegBPS();
-            %#endif
         }
         TimeBasket sensitivity() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<Swap>(*self)->sensitivity();
-            %#else
-            return Handle<Swap>(*self)->sensitivity();
-            %#endif
         }
     }
 };
@@ -126,12 +106,8 @@ class SimpleSwapHandle : public SwapHandle {
                          const FloatingSwapLeg& floatingLeg,
                          const RelinkableHandle<TermStructure>& 
                                                              termStructure) {
-            %#if defined(HAVE_BOOST)
             Handle<Xibor> libor = 
                  boost::dynamic_pointer_cast<Xibor>(floatingLeg.index);
-            %#else
-            Handle<Xibor> libor = floatingLeg.index;
-            %#endif
             return new SimpleSwapHandle(
                 new SimpleSwap(
                     payFixedRate, startDate, n, unit, calendar,
@@ -152,11 +128,7 @@ class SimpleSwapHandle : public SwapHandle {
                          int indexFixingDays, Spread spread, 
                          const RelinkableHandle<TermStructure>& 
                                                             termStructure) {
-            %#if defined(HAVE_BOOST)
             Handle<Xibor> libor = boost::dynamic_pointer_cast<Xibor>(index);
-            %#else
-            Handle<Xibor> libor = index;
-            %#endif
             return new SimpleSwapHandle(
                 new SimpleSwap(payFixedRate, startDate, n, unit, calendar,
                                rollingConvention, nominal, fixedFrequency, 
@@ -172,11 +144,7 @@ class SimpleSwapHandle : public SwapHandle {
                          int indexFixingDays, Spread spread,
                          const RelinkableHandle<TermStructure>& 
                                                           termStructure) {
-            %#if defined(HAVE_BOOST)
             Handle<Xibor> libor = boost::dynamic_pointer_cast<Xibor>(index);
-            %#else
-            Handle<Xibor> libor = index;
-            %#endif
             return new SimpleSwapHandle(
                 new SimpleSwap(payFixedRate,nominal,fixedSchedule,fixedRate,
                                fixedDayCount,floatSchedule,libor,
@@ -184,35 +152,19 @@ class SimpleSwapHandle : public SwapHandle {
         }
     #endif
         Rate fairRate() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<SimpleSwap>(*self)->fairRate();
-            %#else
-            return Handle<SimpleSwap>(*self)->fairRate();
-            %#endif
         }
         Spread fairSpread() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<SimpleSwap>(*self)
                  ->fairSpread();
-            %#else
-            return Handle<SimpleSwap>(*self)->fairSpread();
-            %#endif
         }
         double fixedLegBPS() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<SimpleSwap>(*self)
                  ->fixedLegBPS();
-            %#else
-            return Handle<SimpleSwap>(*self)->fixedLegBPS();
-            %#endif
         }
         double floatingLegBPS() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<SimpleSwap>(*self)
                  ->floatingLegBPS();
-            %#else
-            return Handle<SimpleSwap>(*self)->floatingLegBPS();
-            %#endif
         }
     }
 };

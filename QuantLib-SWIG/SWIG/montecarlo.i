@@ -220,7 +220,7 @@ class GaussianMultiPathGenerator {
                                  long seed=0) {
           return new GaussianMultiPathGenerator(drifts,
                                                 covariance,
-                                                QL::TimeGrid(
+                                                QuantLib::TimeGrid(
                                                     timeDelays.begin(),
                                                     timeDelays.end()),
                                                 seed);

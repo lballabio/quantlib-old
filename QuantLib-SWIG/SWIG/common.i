@@ -28,9 +28,6 @@ using QuantLib::RelinkableHandle;
 using QuantLib::IntegerFormatter;
 using QuantLib::DoubleFormatter;
 using QuantLib::StringFormatter;
-#if !defined(HAVE_BOOST)
-using QuantLib::Handle;
-#endif
 using QuantLib::IsNull;
 %}
 

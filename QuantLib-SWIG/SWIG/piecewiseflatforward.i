@@ -194,20 +194,12 @@ class PiecewiseFlatForwardHandle : public Handle<TermStructure> {
                                          dates, forwards, dayCounter));
         }
         const std::vector<Date>& dates() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<PiecewiseFlatForward>(*self)
                  ->dates();
-            %#else
-            return Handle<PiecewiseFlatForward>(*self)->dates();
-            %#endif
         }
         const std::vector<double>& times() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<PiecewiseFlatForward>(*self)
                  ->times();
-            %#else
-            return Handle<PiecewiseFlatForward>(*self)->times();
-            %#endif
         }
     }
 };

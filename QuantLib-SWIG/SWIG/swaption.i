@@ -37,12 +37,8 @@ class SwaptionHandle : public Handle<Instrument> {
                        const Handle<Exercise>& exercise,
                        const RelinkableHandle<TermStructure>& termStructure,
                        const Handle<PricingEngine>& engine) {
-            %#if defined(HAVE_BOOST)
             Handle<SimpleSwap> swap = 
                  boost::dynamic_pointer_cast<SimpleSwap>(simpleSwap);
-            %#else
-            Handle<SimpleSwap> swap = simpleSwap;
-            %#endif
             QL_REQUIRE(!IsNull(swap),
                        "Swaption: simple swap required");
             return new SwaptionHandle(new Swaption(swap,exercise,

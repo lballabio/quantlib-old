@@ -47,12 +47,8 @@ class CompoundForwardHandle : public Handle<TermStructure> {
                                     compounding, dayCounter));
         }
         const std::vector<Date>& dates() {
-            %#if defined(HAVE_BOOST)
             return boost::dynamic_pointer_cast<CompoundForward>(*self)
                  ->dates();
-            %#else
-            return Handle<CompoundForward>(*self)->dates();
-            %#endif
         }
     }
 };
