@@ -3,21 +3,6 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "AddinCPP"=".\Addins\C++\AddinCPP.dsp" - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name QuantLibAddin
-    End Project Dependency
-}}}
-
-###############################################################################
-
 Project: "AddinCalc"=".\Addins\Calc\AddinCalc.dsp" - Package Owner=<4>
 
 Package=<5>
@@ -42,7 +27,7 @@ Package=<5>
 Package=<4>
 {{{
     Begin Project Dependency
-    Project_Dep_Name AddinCPP
+    Project_Dep_Name QuantLibAddin
     End Project Dependency
 }}}
 
@@ -57,7 +42,7 @@ Package=<5>
 Package=<4>
 {{{
     Begin Project Dependency
-    Project_Dep_Name AddinCPP
+    Project_Dep_Name QuantLibAddin
     End Project Dependency
 }}}
 

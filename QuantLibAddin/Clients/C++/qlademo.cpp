@@ -19,7 +19,7 @@
 #pragma warning(disable: 4503)
 #endif
 
-#include <Addins/C++/qladdin.hpp>
+#include <QuantLibAddin/interface.hpp>
 #include <iostream>
 
 using namespace std;

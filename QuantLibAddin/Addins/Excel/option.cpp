@@ -14,7 +14,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include "Addins/C++/qladdin.hpp"
+#include "QuantLibAddin/interface.hpp"
 #include "utilities.hpp"
 #include <string>
 #include <sstream>

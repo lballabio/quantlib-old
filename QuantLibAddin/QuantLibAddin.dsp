@@ -191,6 +191,14 @@ SOURCE=.\QuantLibAddin\objectoption.cpp
 
 SOURCE=.\QuantLibAddin\objectstochastic.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\options.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\utilities.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
@@ -198,6 +206,10 @@ SOURCE=.\QuantLibAddin\objectstochastic.cpp
 # Begin Source File
 
 SOURCE=.\QuantLibAddin\autolink.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\interface.hpp
 # End Source File
 # Begin Source File
 
