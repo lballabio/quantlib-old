@@ -25,16 +25,7 @@
 
 #include <ql/quantlib.hpp>
 
-// Rate and Time are just double, but having their own types allows for
-// a stronger check at compile time
-using QuantLib::Rate;
-using QuantLib::Time;
-
-// Option is a helper class that holds the enumeration {Call, Put, Straddle}
-using QuantLib::Option;
-
-// Handle is the QuantLib way to have reference-counted objects
-using QuantLib::Handle;
+using namespace QuantLib;
 
 // class for statistical analysis
 using QuantLib::Math::Statistics;
@@ -56,12 +47,9 @@ using QuantLib::MonteCarlo::OneFactorMonteCarloOption;
 using QuantLib::MonteCarlo::MonteCarloModel;
 
 using QuantLib::MonteCarlo::EuropeanPathPricer;
-using QuantLib::MonteCarlo::UniformRandomGenerator;
+using QuantLib::RandomNumbers::UniformRandomGenerator;
 using QuantLib::Pricers::EuropeanOption;
 using QuantLib::Pricers::FiniteDifferenceEuropean;
-
-// to format the output of doubles
-using QuantLib::DoubleFormatter;
 
 // helper function for option payoff: MAX((stike-underlying),0), etc.
 using QuantLib::Pricers::ExercisePayoff;
@@ -90,7 +78,7 @@ private:
     Time maturity_;
     double strike_;
     double s0_;
-	double sigma_;
+    double sigma_;
     Rate r_;
 };
 
@@ -101,7 +89,7 @@ int main(int argc, char* argv[])
         // our option
         double underlying = 100;
         double strike = 100;      // at the money
-        Rate dividendYield = 0.0; // no dividends
+        Spread dividendYield = 0.0; // no dividends
         Rate riskFreeRate = 0.05; // 5%
         Time maturity = 1.0;      // 1 year
         double volatility = 0.20; // 20%
@@ -109,12 +97,12 @@ int main(int argc, char* argv[])
                   << std::endl;
         std::cout << "Underlying price = "        << underlying
                   << std::endl;
-	    std::cout << "Strike = "                  << strike
-	              << std::endl;
+        std::cout << "Strike = "                  << strike
+                  << std::endl;
         std::cout << "Risk-free interest rate = " << riskFreeRate
                   << std::endl;
-	    std::cout << "Volatility = "              << volatility
-	              << std::endl;
+        std::cout << "Volatility = "              << volatility
+                  << std::endl;
         std::cout << std::endl;
 
         // write column headings
@@ -184,7 +172,7 @@ int main(int argc, char* argv[])
 
         // fourth method: Finite Differences
         method ="Finite Diff.";
-        unsigned int grid = 100;
+        size_t grid = 100;
         value = FiniteDifferenceEuropean(Option::Call, underlying, strike,
             dividendYield, riskFreeRate, maturity, volatility, grid).value();
         discrepancy = QL_FABS(value-rightValue);
@@ -206,7 +194,7 @@ int main(int argc, char* argv[])
         int nSamples = 200000;
         // this causes the actual seed to change randomly at each run
         long seed = 0;
-	    double drift = riskFreeRate - 0.5*volatility*volatility;
+        double drift = riskFreeRate - 0.5*volatility*volatility;
         Statistics samples;
         Handle<GaussianPathGenerator> myPathGenerator(
             new GaussianPathGenerator(drift, volatility*volatility,
@@ -224,8 +212,8 @@ int main(int argc, char* argv[])
         // The OneFactorMontecarloModel generates paths using myPathGenerator
         // each path is priced using myPathPricer
         // prices will be accumulated into samples
-	    OneFactorMonteCarloOption mc(myPathGenerator, myEuropeanPathPricer,
-		    samples);
+        OneFactorMonteCarloOption mc(myPathGenerator, myEuropeanPathPricer,
+            samples);
         // the model simulates nSamples paths
         mc.addSamples(nSamples);
         // the sampleAccumulator method of OneFactorMonteCarloOption
@@ -252,8 +240,8 @@ int main(int argc, char* argv[])
             antitheticVariance));
         // reset the statistic accumulator
         samples.reset();
-	    mc = OneFactorMonteCarloOption(myPathGenerator, myEuropeanPathPricer,
-		    samples);
+        mc = OneFactorMonteCarloOption(myPathGenerator, myEuropeanPathPricer,
+            samples);
         mc.addSamples(nSamples);
         value = mc.sampleAccumulator().mean();
         estimatedError = mc.sampleAccumulator().errorEstimate();
@@ -267,7 +255,7 @@ int main(int argc, char* argv[])
              << std::endl;
 
 
-	    return 0;
+        return 0;
     } catch (std::exception& e) {
         std::cout << e.what() << std::endl;
         return 1;

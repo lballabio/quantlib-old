@@ -10,7 +10,7 @@ AC_INIT(ql/qldefines.hpp)
 AC_CONFIG_AUX_DIR(config)
 
 AM_CONFIG_HEADER(ql/config.hpp)
-AM_INIT_AUTOMAKE(QuantLib, 0.2.1a4)
+AM_INIT_AUTOMAKE(QuantLib, 0.2.1a5)
 
 dnl Check for programs
 
@@ -133,9 +133,11 @@ AC_OUTPUT(Makefile \
     ql/MonteCarlo/Makefile \
     ql/Patterns/Makefile \
     ql/Pricers/Makefile \
+    ql/RandomNumbers/Makefile \
     ql/Solvers1D/Makefile \
     ql/TermStructures/Makefile \
     ql/Utilities/Makefile \
+    man/Makefile \
     Examples/Makefile \
     Examples/DiscreteHedging/Makefile \
     Examples/EuropeanOption/Makefile \

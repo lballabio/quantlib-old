@@ -45,7 +45,7 @@ namespace QuantLib {
         class DividendEuropeanOption : public EuropeanOption    {
           public:
             DividendEuropeanOption(Option::Type type, double underlying, 
-                double strike, Rate dividendYield, Rate riskFreeRate, 
+                double strike, Spread dividendYield, Rate riskFreeRate, 
                 Time residualTime, double volatility, 
                 const std::vector<double>& dividends,
                 const std::vector<Time>& exdivdates);
@@ -70,7 +70,7 @@ namespace QuantLib {
             std::vector<double> divs, std::vector<Time> divDates) const{
 
             double tmp_riskless = 0.0;
-            for(unsigned int j = 0; j < divs.size(); j++)
+            for(size_t j = 0; j < divs.size(); j++)
                 tmp_riskless += divs[j]*QL_EXP(-r*divDates[j]);
             return tmp_riskless;
         }

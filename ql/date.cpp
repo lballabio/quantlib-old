@@ -39,28 +39,28 @@ namespace QuantLib {
     namespace { // hide implementation in an anonymous namespace
 
         // valid date interval definition
-        const unsigned int MinimumSerialNumber = 367;       // Jan 1st, 1901
-        const unsigned int MaximumSerialNumber = 73050;    // Dec 31st, 2099
+        const size_t MinimumSerialNumber = 367;       // Jan 1st, 1901
+        const size_t MaximumSerialNumber = 73050;    // Dec 31st, 2099
         const Date MinimumDate = Date(MinimumSerialNumber);
         const Date MaximumDate = Date(MaximumSerialNumber);
 
-        const unsigned int MonthOffset[]     = {
+        const size_t MonthOffset[]     = {
               0,  31,  59,  90, 120, 151,   // Jan - Jun
             181, 212, 243, 273, 304, 334,   // Jun - Dec
             365     // used in dayOfMonth to bracket day
         };
 
-        const unsigned int MonthLeapOffset[] = {
+        const size_t MonthLeapOffset[] = {
               0,  31,  60,  91, 121, 152,   // Jan - Jun
             182, 213, 244, 274, 305, 335,   // Jun - Dec
             366     // used in dayOfMonth to bracket day
         };
 
-        const unsigned int MonthLength[]     = {
+        const size_t MonthLength[]     = {
             31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
         };
 
-        const unsigned int MonthLeapLength[] = {
+        const size_t MonthLeapLength[] = {
             31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
         };
 
@@ -68,7 +68,7 @@ namespace QuantLib {
 
         // the list of all December 31st in the preceding year
         // e.g. for 1901 yearOffset[1] is 366 that is December 31 1900
-        const unsigned int YearOffset[] = {
+        const size_t YearOffset[] = {
             // 1900-1909
                 0,  366,  731, 1096, 1461, 1827, 2192, 2557, 2922, 3288,
             // 1910-1919
@@ -180,14 +180,19 @@ namespace QuantLib {
 
     Date::Date(Day d, Month m, Year y) {
         QL_REQUIRE(int(y) > 1900 && int(y) < 2100,
-            "Year outside allowed range 1901-2099");
+            "Date::Date : year " + IntegerFormatter::toString(int(y)) +
+            " out of bound. It must be in [1901,2099]");
         QL_REQUIRE(int(m) > 0 && int(m) < 13,
-            "Month outside January-December range");
+            "Date::Date : month " + IntegerFormatter::toString(int(m)) +
+            " outside January-December range [1,12]");
 
         bool leap = isLeap(y);
         Day len = monthLength(m,leap), offset = monthOffset(m,leap);
         QL_REQUIRE(int(d) <= len && int(d) > 0,
-            "day greater than last day in month");
+            "Date::Date : day outside month (" +
+            IntegerFormatter::toString(int(m)) + ") day-range "
+            "Date::Date : month " + IntegerFormatter::toString(int(m)) +
+            "[1," + IntegerFormatter::toString(int(len)) + "]");
 
         serialNumber_ = d + offset + yearOffset(y);
         #ifdef QL_DEBUG
@@ -299,7 +304,8 @@ namespace QuantLib {
         }
 
         QL_ENSURE(y >= 1900 && y <= 2099, "Date::plusMonths() : "
-                "result must be between Jan. 1st, 1901 and Dec. 31, 2099");
+            "year " + IntegerFormatter::toString(y) +
+            " out of bound. It must be in [1901,2099]");
 
         int length = monthLength(Month(m), isLeap(y));
         if (d > length)
@@ -312,8 +318,9 @@ namespace QuantLib {
         Month m = month();
         Year y = year()+years;
 
-        QL_ENSURE(y >= 1900 && y <= 2099, "Date::plusYears() : "
-                "result must be between Jan. 1st, 1901 and Dec. 31, 2099");
+        QL_ENSURE(y >= 1900 && y <= 2099, "Date::plusMonths() : "
+            "year " + IntegerFormatter::toString(y) +
+            " out of bound. It must be in [1901,2099]");
 
         if (d == 29 && m == February && !isLeap(y))
             d = 28;
@@ -353,15 +360,15 @@ namespace QuantLib {
         return YearIsLeap[y-1900];
     }
 
-    unsigned int Date::monthLength(Month m, bool leapYear) {
+    size_t Date::monthLength(Month m, bool leapYear) {
         return (leapYear? MonthLeapLength[m-1] : MonthLength[m-1]);
     }
 
-    unsigned int Date::monthOffset(Month m, bool leapYear) {
+    size_t Date::monthOffset(Month m, bool leapYear) {
         return (leapYear? MonthLeapOffset[m-1] : MonthOffset[m-1]);
     }
 
-    unsigned int Date::yearOffset(Year y) {
+    size_t Date::yearOffset(Year y) {
         return YearOffset[y-1900];
     }
 

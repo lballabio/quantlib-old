@@ -49,13 +49,13 @@ namespace QuantLib {
           protected:
             // constructor
             MultiPeriodOption(Option::Type type, double underlying,
-                double strike, Rate dividendYield, Rate riskFreeRate,
+                double strike, Spread dividendYield, Rate riskFreeRate,
                 Time residualTime, double volatility, int gridPoints,
                 const std::vector<Time>& dates,
                 int timeSteps);
             // Protected attributes
             std::vector<Time> dates_;
-            unsigned int dateNumber_;
+            size_t dateNumber_;
             int timeStepPerPeriod_;
             bool lastDateIsResTime_;
             int lastIndex_;

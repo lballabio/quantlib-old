@@ -62,7 +62,6 @@
 #include "ql/Calendars/newyork.hpp"
 #include "ql/Calendars/target.hpp"
 #include "ql/Calendars/wellington.hpp"
-#include "ql/Calendars/westerncalendar.hpp"
 #include "ql/Calendars/zurich.hpp"
 
 #include "ql/CashFlows/cashflowvectors.hpp"
@@ -76,7 +75,6 @@
 #include "ql/DayCounters/actualactual.hpp"
 #include "ql/DayCounters/thirty360.hpp"
 
-#include "ql/FiniteDifferences/backwardeuler.hpp"
 #include "ql/FiniteDifferences/boundarycondition.hpp"
 #include "ql/FiniteDifferences/bsmoperator.hpp"
 #include "ql/FiniteDifferences/cranknicolson.hpp"
@@ -84,9 +82,10 @@
 #include "ql/FiniteDifferences/dplus.hpp"
 #include "ql/FiniteDifferences/dplusdminus.hpp"
 #include "ql/FiniteDifferences/dzero.hpp"
+#include "ql/FiniteDifferences/expliciteuler.hpp"
 #include "ql/FiniteDifferences/fdtypedefs.hpp"
 #include "ql/FiniteDifferences/finitedifferencemodel.hpp"
-#include "ql/FiniteDifferences/forwardeuler.hpp"
+#include "ql/FiniteDifferences/impliciteuler.hpp"
 #include "ql/FiniteDifferences/stepcondition.hpp"
 #include "ql/FiniteDifferences/tridiagonaloperator.hpp"
 #include "ql/FiniteDifferences/valueatcenter.hpp"
@@ -118,21 +117,14 @@
 #include "ql/MonteCarlo/avgpriceasianpathpricer.hpp"
 #include "ql/MonteCarlo/avgstrikeasianpathpricer.hpp"
 #include "ql/MonteCarlo/basketpathpricer.hpp"
-#include "ql/MonteCarlo/boxmuller.hpp"
-#include "ql/MonteCarlo/centrallimitgaussian.hpp"
 #include "ql/MonteCarlo/controlvariatedpathpricer.hpp"
 #include "ql/MonteCarlo/europeanpathpricer.hpp"
 #include "ql/MonteCarlo/everestpathpricer.hpp"
 #include "ql/MonteCarlo/geometricasianpathpricer.hpp"
 #include "ql/MonteCarlo/getcovariance.hpp"
 #include "ql/MonteCarlo/himalayapathpricer.hpp"
-#include "ql/MonteCarlo/inversecumulativegaussian.hpp"
-#include "ql/MonteCarlo/knuthrandomgenerator.hpp"
-#include "ql/MonteCarlo/lecuyerrandomgenerator.hpp"
-#include "ql/MonteCarlo/mcpricer.hpp"
 #include "ql/MonteCarlo/mctypedefs.hpp"
 #include "ql/MonteCarlo/montecarlomodel.hpp"
-#include "ql/MonteCarlo/multifactorpricer.hpp"
 #include "ql/MonteCarlo/multipath.hpp"
 #include "ql/MonteCarlo/multipathgenerator.hpp"
 #include "ql/MonteCarlo/multipathpricer.hpp"
@@ -140,7 +132,6 @@
 #include "ql/MonteCarlo/path.hpp"
 #include "ql/MonteCarlo/pathgenerator.hpp"
 #include "ql/MonteCarlo/pathpricer.hpp"
-#include "ql/MonteCarlo/randomarraygenerator.hpp"
 #include "ql/MonteCarlo/singleassetpathpricer.hpp"
 
 #include "ql/Patterns/factory.hpp"
@@ -148,8 +139,6 @@
 
 #include "ql/Pricers/americancondition.hpp"
 #include "ql/Pricers/americanoption.hpp"
-#include "ql/Pricers/averagepriceasian.hpp"
-#include "ql/Pricers/averagestrikeasian.hpp"
 #include "ql/Pricers/barrieroption.hpp"
 #include "ql/Pricers/bermudanoption.hpp"
 #include "ql/Pricers/binaryoption.hpp"
@@ -161,18 +150,29 @@
 #include "ql/Pricers/dividendshoutoption.hpp"
 #include "ql/Pricers/europeanengine.hpp"
 #include "ql/Pricers/europeanoption.hpp"
-#include "ql/Pricers/everestoption.hpp"
 #include "ql/Pricers/finitedifferenceeuropean.hpp"
 #include "ql/Pricers/geometricasianoption.hpp"
-#include "ql/Pricers/himalaya.hpp"
-#include "ql/Pricers/mceuropeanpricer.hpp"
+#include "ql/Pricers/mcaveragepriceasian.hpp"
+#include "ql/Pricers/mcaveragestrikeasian.hpp"
+#include "ql/Pricers/mcbasket.hpp"
+#include "ql/Pricers/mceuropean.hpp"
+#include "ql/Pricers/mceverest.hpp"
+#include "ql/Pricers/mchimalaya.hpp"
+#include "ql/Pricers/mcpagoda.hpp"
+#include "ql/Pricers/mcpricer.hpp"
 #include "ql/Pricers/multiperiodoption.hpp"
-#include "ql/Pricers/pagodaoption.hpp"
-#include "ql/Pricers/plainbasketoption.hpp"
 #include "ql/Pricers/shoutcondition.hpp"
 #include "ql/Pricers/shoutoption.hpp"
 #include "ql/Pricers/singleassetoption.hpp"
 #include "ql/Pricers/stepconditionoption.hpp"
+
+#include "ql/RandomNumbers/boxmullergaussianrng.hpp"
+#include "ql/RandomNumbers/centrallimitgaussianrng.hpp"
+#include "ql/RandomNumbers/inversecumulativegaussianrng.hpp"
+#include "ql/RandomNumbers/knuthuniformrng.hpp"
+#include "ql/RandomNumbers/lecuyeruniformrng.hpp"
+#include "ql/RandomNumbers/randomarraygenerator.hpp"
+#include "ql/RandomNumbers/rngtypedefs.hpp"
 
 #include "ql/Solvers1D/bisection.hpp"
 #include "ql/Solvers1D/brent.hpp"
@@ -206,20 +206,10 @@ namespace QLMTH = QuantLib::Math;
 namespace QLMNT = QuantLib::MonteCarlo;
 namespace QLPAT = QuantLib::Patterns;
 namespace QLPRC = QuantLib::Pricers;
+namespace QLRNG = QuantLib::RandomNumbers;
 namespace QLS1D = QuantLib::Solvers1D;
 namespace QLTST = QuantLib::TermStructures;
 namespace QLUTL = QuantLib::Utilities;
-
-
-/*** library to be linked***/
-
-#if defined(_MSC_VER)
-    #ifdef _DEBUG
-        #pragma comment(lib,"QuantLib_d.lib")
-    #else
-        #pragma comment(lib,"QuantLib.lib")
-    #endif
-#endif
 
 
 #endif

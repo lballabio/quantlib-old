@@ -43,18 +43,18 @@ namespace QuantLib {
         const double PiecewiseFlatForward::accuracy_ = 1.0e-12;
 
         PiecewiseFlatForward::PiecewiseFlatForward(Currency currency,
-            const Handle<DayCounter>& dayCounter, const Date& todaysDate, 
-            const Handle<Calendar>& calendar, int settlementDays,
+            const DayCounter& dayCounter, const Date& todaysDate,
+            const Calendar& calendar, int settlementDays,
             const std::vector<Handle<RateHelper> >& instruments)
         : currency_(currency), dayCounter_(dayCounter),
-          todaysDate_(todaysDate), calendar_(calendar), 
+          todaysDate_(todaysDate), calendar_(calendar),
           settlementDays_(settlementDays), instruments_(instruments),
           needsBootstrap_(true) {
             QL_REQUIRE(instruments_.size()>0, "No instrument given");
-            settlementDate_ = calendar_->advance(
+            settlementDate_ = calendar_.advance(
                 todaysDate_,settlementDays_,Days);
             // sort risk helpers
-			unsigned int i;
+            size_t i;
             for (i=0; i<instruments_.size(); i++)
                 instruments_[i]->setTermStructure(this);
             std::sort(instruments_.begin(),instruments_.end(),
@@ -72,12 +72,12 @@ namespace QuantLib {
         }
 
         PiecewiseFlatForward::~PiecewiseFlatForward() {
-            for (unsigned int i=0; i<instruments_.size(); i++)
+            for (size_t i=0; i<instruments_.size(); i++)
                 instruments_[i]->unregisterObserver(this);
         }
 
         void PiecewiseFlatForward::bootstrap() const {
-            // prevent recursively calling bootstrap() when the 
+            // prevent recursively calling bootstrap() when the
             // term structure methods are called by the rate helpers
             needsBootstrap_ = false;
             try {
@@ -86,17 +86,20 @@ namespace QuantLib {
                 times_ = std::vector<Time>(1, 0.0);
                 discounts_ = std::vector<DiscountFactor>(1, 1.0);
                 forwards_ = zeroYields_ = std::vector<Rate>();
-    
-                // the choice of the solver determines whether the 
+
+                // the choice of the solver determines whether the
                 // accuracy is on the discount or the instrument rate
                 Brent solver;
-    
+
                 // bootstrapping loop
-                for (unsigned int i=1; i<instruments_.size()+1; i++) {
+                for (size_t i=1; i<instruments_.size()+1; i++) {
                     Handle<RateHelper> instrument = instruments_[i-1];
+                    // don't try this at home!
+                    instrument->setTermStructure(
+                        const_cast<PiecewiseFlatForward*>(this));
                     double guess = instrument->discountGuess();
                     if (guess == Null<double>()) {
-                        if (i > 1) {    // we can extrapolate 
+                        if (i > 1) {    // we can extrapolate
                             guess = this->discount(
                                 instrument->maturity(),true);
                         } else {        // any guess will do
@@ -116,7 +119,7 @@ namespace QuantLib {
             }
         }
 
-        Rate PiecewiseFlatForward::zeroYieldImpl(Time t, 
+        Rate PiecewiseFlatForward::zeroYieldImpl(Time t,
             bool extrapolate) const {
                 if (needsBootstrap_) bootstrap();
                 if (t == 0.0) {
@@ -150,7 +153,7 @@ namespace QuantLib {
                 QL_DUMMY_RETURN(DiscountFactor());
         }
 
-        Rate PiecewiseFlatForward::forwardImpl(Time t, 
+        Rate PiecewiseFlatForward::forwardImpl(Time t,
             bool extrapolate) const {
                 if (needsBootstrap_) bootstrap();
                 if (t == 0.0) {
@@ -165,10 +168,10 @@ namespace QuantLib {
             Time t, bool extrapolate) const {
                 QL_REQUIRE(t >= 0.0 && (t <= times_.back() || extrapolate),
                     "PiecewiseFlatForward: time (" +
-					DoubleFormatter::toString(t) +
-					") outside curve definition [" +
-					DoubleFormatter::toString(0.0) + ", " +					
-					DoubleFormatter::toString(times_.back()) + "]");
+                    DoubleFormatter::toString(t) +
+                    ") outside curve definition [" +
+                    DoubleFormatter::toString(0.0) + ", " +
+                    DoubleFormatter::toString(times_.back()) + "]");
                 if (t>=times_.back())
                     return times_.size()-1;
                 std::vector<Time>::const_iterator i=times_.begin(),
@@ -184,13 +187,13 @@ namespace QuantLib {
         }
 
         PiecewiseFlatForward::FFObjFunction::FFObjFunction(
-            const PiecewiseFlatForward* curve, 
+            const PiecewiseFlatForward* curve,
             const Handle<RateHelper>& rateHelper,
             int segment)
         : curve_(curve), rateHelper_(rateHelper), segment_(segment) {
             // extend curve to next point
             curve_->maxDate_ = rateHelper_->maturity();
-            curve_->times_.push_back(curve_->dayCounter()->yearFraction(
+            curve_->times_.push_back(curve_->dayCounter().yearFraction(
                 curve_->settlementDate(),curve_->maxDate_));
             if (segment_ == 1) {
                 // add dummy values at settlement
@@ -215,7 +218,7 @@ namespace QuantLib {
                     curve_->forwards_[0] = curve_->zeroYields_[0] =
                         curve_->forwards_[1];
                 }
-                return rateHelper_->rateError();
+                return rateHelper_->quoteError();
         }
 
         bool PiecewiseFlatForward::RateHelperSorter::operator()(

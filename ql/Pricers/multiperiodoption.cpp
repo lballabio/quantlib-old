@@ -44,7 +44,7 @@ namespace QuantLib {
         using FiniteDifferences::secondDerivativeAtCenter;
 
         MultiPeriodOption::MultiPeriodOption(Option::Type type, 
-            double underlying, double strike, Rate dividendYield, 
+            double underlying, double strike, Spread dividendYield, 
             Rate riskFreeRate, Time residualTime, double volatility, 
             int gridPoints, const std::vector<Time>& dates,
             int timeSteps)
@@ -89,7 +89,7 @@ namespace QuantLib {
                 if (dateNumber_ > 0){
                     if (!firstDateIsZero_)
                         firstNonZeroDate_ = dates_[0];
-                    for (unsigned int j = 1; j < dateNumber_; j++)
+                    for (size_t j = 1; j < dateNumber_; j++)
                         QL_REQUIRE(dates_[j-1] < dates_[j],
                             "Dates must be in increasing order:" +
                             DoubleFormatter::toString(dates_[j-1]) +

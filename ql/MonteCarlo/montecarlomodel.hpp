@@ -34,8 +34,12 @@
 #ifndef quantlib_montecarlo_model_h
 #define quantlib_montecarlo_model_h
 
+#include <ql/handle.hpp>
+
 namespace QuantLib {
 
+    //! Monte Carlo framework
+    /*! See sect. \ref mcarlo */
     namespace MonteCarlo {
 
         //! General purpose Monte Carlo model for path samples
@@ -47,6 +51,9 @@ namespace QuantLib {
             MonteCarloModel<S, PG, PP> puts together these three elements.
             The constructor accepts two safe references, i.e. two smart
             pointers, one to a path generator and the other to a path pricer.
+            In case of control variate technique the user should provide the
+            additional control option, namely the option path pricer and the
+            option value.
 
             The minimal interfaces for the classes S, PG, and PP are:
 
@@ -70,34 +77,44 @@ namespace QuantLib {
           public:
             MonteCarloModel(const Handle<PG>& pathGenerator,
                             const Handle<PP>& pathPricer,
-                            const S& sampleAccumulator);
-            void addSamples(unsigned int samples);
+                            const S& sampleAccumulator,
+                            const Handle<PP>& cvPathPricer = Handle<PP>(),
+                            double cvOptionValue=0);
+            void addSamples(size_t samples);
             const S& sampleAccumulator(void) const;
           private:
             Handle<PG> pathGenerator_;
             Handle<PP> pathPricer_;
             S sampleAccumulator_;
+            Handle<PP> cvPathPricer_;
+            double cvOptionValue_;
+            bool isControlVariate_;
         };
 
         // inline definitions
         template<class S, class PG, class PP>
         inline MonteCarloModel<S, PG, PP>::MonteCarloModel(
                 const Handle<PG>& pathGenerator,
-                const Handle<PP>& pathPricer,
-                const S& sampleAccumulator) :
-                pathGenerator_(pathGenerator),
-                pathPricer_(pathPricer),
-                sampleAccumulator_(sampleAccumulator)
-                {}
+                const Handle<PP>& pathPricer, const S& sampleAccumulator,
+                const Handle<PP>& cvPathPricer, double cvOptionValue)
+        : pathGenerator_(pathGenerator), pathPricer_(pathPricer),
+          sampleAccumulator_(sampleAccumulator), cvPathPricer_(cvPathPricer),
+          cvOptionValue_(cvOptionValue) {
+            if (cvPathPricer_.isNull())
+                isControlVariate_=false;
+            else
+                isControlVariate_=true;
+        }
 
         template<class S, class PG, class PP>
         inline void MonteCarloModel<S, PG, PP>::
-                    addSamples(unsigned int samples) {
-            for(unsigned int j = 1; j <= samples; j++) {
+                    addSamples(size_t samples) {
+            for(size_t j = 1; j <= samples; j++) {
                 typename PG::sample_type path = pathGenerator_->next();
                 typename PP::result_type price = (*pathPricer_)(path);
-                double weight = pathGenerator_->weight();
-                sampleAccumulator_.add(price, weight);
+                if (isControlVariate_)
+                    price += cvOptionValue_-(*cvPathPricer_)(path);
+                sampleAccumulator_.add(price, pathGenerator_->weight());
             }
         }
 

@@ -45,9 +45,9 @@ namespace QuantLib {
         using FiniteDifferences::secondDerivativeAtCenter;
 
         BSMNumericalOption::BSMNumericalOption(Option::Type type,
-            double underlying, double strike, Rate dividendYield,
+            double underlying, double strike, Spread dividendYield,
             Rate riskFreeRate, Time residualTime, double volatility,
-            unsigned int gridPoints)
+            size_t gridPoints)
         : SingleAssetOption(type, underlying, strike, dividendYield, 
             riskFreeRate, residualTime, volatility),
             gridPoints_(safeGridPoints(gridPoints, residualTime)),
@@ -107,13 +107,13 @@ namespace QuantLib {
             gridLogSpacing_ = (QL_LOG(sMax_)-QL_LOG(sMin_))/(gridPoints_-1);
             double edx = QL_EXP(gridLogSpacing_);
             grid_[0] = sMin_;
-            unsigned int j;
+            size_t j;
             for (j=1; j<gridPoints_; j++)
                 grid_[j] = grid_[j-1]*edx;
         }
 
         void BSMNumericalOption::initializeInitialCondition() const {
-            unsigned int j;
+            size_t j;
             switch (type_) {
               case Option::Call:
                 for(j = 0; j < gridPoints_; j++)

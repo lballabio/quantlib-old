@@ -43,6 +43,7 @@
 namespace QuantLib {
 
     //! Pricing models for options
+    /*! See sect. \ref pricers */
     namespace Pricers {
 
 
@@ -51,9 +52,13 @@ namespace QuantLib {
         //! Black-Scholes-Merton option
         class SingleAssetOption {
           public:
-            SingleAssetOption(Option::Type type, double underlying, 
-                double strike, Rate dividendYield, Rate riskFreeRate, 
-                Time residualTime, double volatility);
+            SingleAssetOption(Option::Type type,
+                              double underlying,
+                              double strike,
+                              Spread dividendYield,
+                              Rate riskFreeRate,
+                              Time residualTime,
+                              double volatility);
             virtual ~SingleAssetOption() {}    // just in case
             // modifiers
             virtual void setVolatility(double newVolatility) ;
@@ -68,16 +73,17 @@ namespace QuantLib {
             virtual double rho() const;
             virtual double dividendRho() const;
             double impliedVolatility(double targetValue,
-                double accuracy = 1e-4, unsigned int maxEvaluations = 100,
-                double minVol = QL_MIN_VOLATILITY,
-                double maxVol = QL_MAX_VOLATILITY) const ;
+                                     double accuracy = 1e-4,
+                                     size_t maxEvaluations = 100,
+                                     double minVol = QL_MIN_VOLATILITY,
+                                     double maxVol = QL_MAX_VOLATILITY) const ;
             virtual Handle<SingleAssetOption> clone() const = 0;
           protected:
             // results declared as mutable to preserve the logical
             Option::Type type_;
             double underlying_;
             double strike_;
-            Rate dividendYield_;
+            Spread dividendYield_;
             Time residualTime_;
             mutable bool hasBeenCalculated_;
             mutable double rho_, dividendRho_, vega_;
@@ -93,7 +99,8 @@ namespace QuantLib {
 
         class SingleAssetOption::VolatilityFunction : public ObjectiveFunction {
           public:
-            VolatilityFunction(const Handle<SingleAssetOption>& tempBSM, double targetPrice);
+            VolatilityFunction(const Handle<SingleAssetOption>& tempBSM,
+                               double targetPrice);
             double operator()(double x) const;
           private:
             mutable Handle<SingleAssetOption> bsm;
@@ -101,7 +108,8 @@ namespace QuantLib {
         };
 
         inline SingleAssetOption::VolatilityFunction::VolatilityFunction(
-                const Handle<SingleAssetOption>& tempBSM, double targetPrice) {
+                const Handle<SingleAssetOption>& tempBSM,
+                double targetPrice) {
             bsm = tempBSM;
             targetPrice_ = targetPrice;
         }

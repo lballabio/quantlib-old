@@ -42,20 +42,20 @@ namespace QuantLib {
     //! %Date scheduler
     class Scheduler {
       public:
-        Scheduler(const Handle<Calendar>& calendar,
+        Scheduler(const Calendar& calendar,
             const Date& startDate, const Date& endDate,
             int frequency, RollingConvention rollingConvention,
             bool isAdjusted, const Date& stubDate = Date());
         // inspectors
-        unsigned int size() const { return dates_.size(); }
+        size_t size() const { return dates_.size(); }
         const Date& date(int i) const;
-        bool isRegular(unsigned int i) const;
+        bool isRegular(size_t i) const;
         // iterators
         typedef std::vector<Date>::const_iterator const_iterator;
         const_iterator begin() const { return dates_.begin(); }
         const_iterator end() const { return dates_.end(); }
       private:
-        Handle<Calendar> calendar_;
+        Calendar calendar_;
         Date startDate_, endDate_;
         int frequency_;
         RollingConvention rollingConvention_;

@@ -45,7 +45,7 @@ namespace QuantLib {
         /*! \warning This class does not perform any date adjustment,
             i.e., the start and end date passed upon construction
             should be already rolled to a business day.
-	    */
+        */
         class FloatingRateCoupon : public Coupon,
                                    public Patterns::Observer {
           public:
@@ -53,6 +53,7 @@ namespace QuantLib {
                 const Handle<Indexes::Xibor>& index,
                 const RelinkableHandle<TermStructure>& termStructure,
                 const Date& startDate, const Date& endDate,
+                int fixingDays,
                 Spread spread = 0.0,
                 const Date& refPeriodStart = Date(),
                 const Date& refPeriodEnd = Date());
@@ -73,6 +74,7 @@ namespace QuantLib {
           private:
             RelinkableHandle<TermStructure> termStructure_;
             Handle<Indexes::Xibor> index_;
+            int fixingDays_;
             Spread spread_;
         };
 
@@ -83,7 +85,7 @@ namespace QuantLib {
             termStructure_.unregisterObserver(this);
         }
 
-        inline const Handle<Indexes::Xibor>& 
+        inline const Handle<Indexes::Xibor>&
         FloatingRateCoupon::index() const {
             return index_;
         }

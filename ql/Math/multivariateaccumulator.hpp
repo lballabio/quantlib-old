@@ -51,13 +51,15 @@ namespace QuantLib {
         class MultivariateAccumulator {
           public:
             MultivariateAccumulator();
-            MultivariateAccumulator(unsigned int size);
+            MultivariateAccumulator(size_t size);
             //! \name Inspectors
             //@{
             //! size of each sample
-            unsigned int size() const;
+            size_t size() const;
             //! number of samples collected
-            double samples() const;
+            size_t samples() const;
+            //! sum of data weights
+            double weightSum() const;
             //! returns the mean as an Array
             Array mean() const;
             //! returns the mean as a std::vector<double>
@@ -89,7 +91,7 @@ namespace QuantLib {
             void reset();
             //@}
           private:
-            unsigned int size_;
+            size_t size_;
             double sampleNumber_;
             double sampleWeight_;
             Array sum_;
@@ -98,12 +100,16 @@ namespace QuantLib {
 
 
         // inline definitions
-        inline unsigned int MultivariateAccumulator::size() const {
+        inline size_t MultivariateAccumulator::size() const {
             return size_;
         }
 
-        inline double MultivariateAccumulator::samples() const {
+        inline size_t MultivariateAccumulator::samples() const {
           return sampleNumber_;
+        }
+
+        inline double MultivariateAccumulator::weightSum() const {
+          return sampleWeight_;
         }
 
         inline Array MultivariateAccumulator::mean() const {

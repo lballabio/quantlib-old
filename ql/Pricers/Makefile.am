@@ -7,8 +7,6 @@ includedir = $(prefix)/include/ql/Pricers
 include_HEADERS = \
     americancondition.hpp \
     americanoption.hpp \
-    averagepriceasian.hpp \
-    averagestrikeasian.hpp \
     barrieroption.hpp \
     bermudanoption.hpp \
     binaryoption.hpp \
@@ -20,14 +18,17 @@ include_HEADERS = \
     dividendshoutoption.hpp \
     europeanengine.hpp \
     europeanoption.hpp \
-    everestoption.hpp \
     finitedifferenceeuropean.hpp \
     geometricasianoption.hpp \
-    himalaya.hpp \
-    mceuropeanpricer.hpp \
+    mcaveragepriceasian.hpp \
+    mcaveragestrikeasian.hpp \
+    mcbasket.hpp \
+    mceuropean.hpp \
+    mceverest.hpp \
+    mchimalaya.hpp \
+    mcpagoda.hpp \
+    mcpricer.hpp \
     multiperiodoption.hpp \
-    pagodaoption.hpp \
-    plainbasketoption.hpp \
     shoutcondition.hpp \
     shoutoption.hpp \
     singleassetoption.hpp \
@@ -36,26 +37,26 @@ include_HEADERS = \
 EXTRA_DIST=makefile.mak
 
 libPricers_la_SOURCES = \
-    averagepriceasian.cpp \
-    averagestrikeasian.cpp \
     barrieroption.cpp \
-    binaryoption.cpp \
     bermudanoption.cpp \
+    binaryoption.cpp \
     bsmnumericaloption.cpp \
     cliquetoption.cpp \
-    dividendoption.cpp \
-    dividendshoutoption.cpp \
     dividendamericanoption.cpp \
     dividendeuropeanoption.cpp \
+    dividendoption.cpp \
+    dividendshoutoption.cpp \
     europeanengine.cpp \
     europeanoption.cpp \
-    everestoption.cpp \
     finitedifferenceeuropean.cpp \
-    himalaya.cpp \
-    mceuropeanpricer.cpp \
+    mcaveragepriceasian.cpp \
+    mcaveragestrikeasian.cpp \
+    mcbasket.cpp \
+    mceuropean.cpp \
+    mceverest.cpp \
+    mchimalaya.cpp \
+    mcpagoda.cpp \
     multiperiodoption.cpp \
-    plainbasketoption.cpp \
-    pagodaoption.cpp \
     singleassetoption.cpp \
     stepconditionoption.cpp
 

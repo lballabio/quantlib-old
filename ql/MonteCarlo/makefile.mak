@@ -15,19 +15,18 @@ BCC_INCLUDE    = $(MAKEDIR)\..\include
 BCC_LIBS       = $(MAKEDIR)\..\lib
 
 # Object files
-OBJS = avgpriceasianpathpricer.obj$(_D) \
-       avgstrikeasianpathpricer.obj$(_D) \
-       basketpathpricer.obj$(_D) \
-       controlvariatedpathpricer.obj$(_D) \
-       europeanpathpricer.obj$(_D) \
-       everestpathpricer.obj$(_D) \
-       geometricasianpathpricer.obj$(_D) \
-       getcovariance.obj$(_D) \
-       himalayapathpricer.obj$(_D) \
-       knuthrandomgenerator.obj$(_D) \
-       lecuyerrandomgenerator.obj$(_D) \
-       pagodapathpricer.obj$(_D) \
-       singleassetpathpricer.obj$(_D)
+OBJS = \
+    avgpriceasianpathpricer.obj$(_D) \
+    avgstrikeasianpathpricer.obj$(_D) \
+    basketpathpricer.obj$(_D) \
+    controlvariatedpathpricer.obj$(_D) \
+    europeanpathpricer.obj$(_D) \
+    everestpathpricer.obj$(_D) \
+    geometricasianpathpricer.obj$(_D) \
+    getcovariance.obj$(_D) \
+    himalayapathpricer.obj$(_D) \
+    pagodapathpricer.obj$(_D) \
+    singleassetpathpricer.obj$(_D)
 
 # Tools to be used
 CC        = bcc32

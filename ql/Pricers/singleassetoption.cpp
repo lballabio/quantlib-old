@@ -58,7 +58,7 @@ namespace QuantLib {
         const double SingleAssetOption::dRMultiplier_ = 0.0001;
 
         SingleAssetOption::SingleAssetOption(Option::Type type, 
-            double underlying, double strike, Rate dividendYield, 
+            double underlying, double strike, Spread dividendYield, 
             Rate riskFreeRate, Time residualTime, double volatility)
             : type_(type), underlying_(underlying),
             strike_(strike), dividendYield_(dividendYield),
@@ -161,7 +161,7 @@ namespace QuantLib {
         }
 
         double SingleAssetOption::impliedVolatility(double targetValue, double accuracy,
-                    unsigned int maxEvaluations, double minVol, double maxVol) const {
+                    size_t maxEvaluations, double minVol, double maxVol) const {
             // check option targetValue boundary condition
             QL_REQUIRE(targetValue > 0.0,
              "SingleAssetOption::impliedVol : targetValue must be positive");

@@ -1,28 +1,43 @@
 
 # $Id$
 
-EXTRA_DIST = makefile.mak \
-             groups.docs \
-             index.docs \
-             overview.docs \
-             where.docs \
-             install.docs \
-             usage.docs \
-             platforms.docs \
-             history.docs \
-             resources.docs \
+EXTRA_DIST = \
              authors.docs \
-             license.docs \
+             calendars.docs \
+             cashflows.docs \
              coreclasses.docs \
-             findiff.docs \
-             mcarlo.docs \
+             currencies.docs \
+             daycounters.docs \
              examples.docs \
+             findiff.docs \
+             groups.docs \
+             history.docs \
+             index.docs \
+             indexes.docs \
+             install.docs \
+             instruments.docs \
+             license.docs \
+             makefile.mak \
+             math.docs \
+             mcarlo.docs \
+             overview.docs \
+             patterns.docs \
+             platforms.docs \
+             pricers.docs \
+             quantlib.css \
              quantlib.doxy \
-             quantlibheader.html \
              quantlibfooter.html \
              quantlibfooteronline.html \
+             quantlibheader.html \
              quantlibheader.tex \
-             README.txt
+             randomnumbers.docs \
+             README.txt \
+             resources.docs \
+             solvers1d.docs \
+             termstructures.docs \
+             usage.docs \
+             utilities.docs \
+             where.docs
 
 docs-all: docs-pdf docs-ps
 docs-html: docs-html-offline
@@ -60,34 +75,60 @@ tex-files: docs-html
 	$(SED) -e "/Page Index/d" \
 	       -e "/input{pages}/d" \
 	       -e "/Page Documentation/d" \
-	       -e "64,$$ s/input{index}/ /" \
-	       -e "64,$$ s/include{index}/ /" \
-	       -e "64,$$ s/input{overview}/ /" \
-	       -e "64,$$ s/include{overview}/ /" \
-	       -e "64,$$ s/input{where}/ /" \
-	       -e "64,$$ s/include{where}/ /" \
-	       -e "64,$$ s/input{install}/ /" \
-	       -e "64,$$ s/include{install}/ /" \
-	       -e "64,$$ s/input{usage}/ /" \
-	       -e "64,$$ s/include{usage}/ /" \
-	       -e "64,$$ s/input{platforms}/ /" \
-	       -e "64,$$ s/include{platforms}/ /" \
-	       -e "64,$$ s/input{history}/ /" \
-	       -e "64,$$ s/include{history}/ /" \
-	       -e "64,$$ s/input{todo}/ /" \
-	       -e "64,$$ s/include{todo}/ /" \
-	       -e "64,$$ s/input{resources}/ /" \
-	       -e "64,$$ s/include{resources}/ /" \
-	       -e "64,$$ s/input{group}/ /" \
-	       -e "64,$$ s/include{group}/ /" \
-	       -e "64,$$ s/input{license}/ /" \
-	       -e "64,$$ s/include{license}/ /" \
-	       -e "64,$$ s/input{coreclasses}/ /" \
-	       -e "64,$$ s/include{coreclasses}/ /" \
-	       -e "64,$$ s/input{findiff}/ /" \
-	       -e "64,$$ s/include{findiff}/ /" \
-	       -e "64,$$ s/input{mcarlo}/ /" \
-	       -e "64,$$ s/include{mcarlo}/ /" \
+	       -e "76,$$ s/input{index}/ /" \
+	       -e "76,$$ s/include{index}/ /" \
+	       -e "76,$$ s/input{overview}/ /" \
+	       -e "76,$$ s/include{overview}/ /" \
+	       -e "76,$$ s/input{where}/ /" \
+	       -e "76,$$ s/include{where}/ /" \
+	       -e "76,$$ s/input{install}/ /" \
+	       -e "76,$$ s/include{install}/ /" \
+	       -e "76,$$ s/input{usage}/ /" \
+	       -e "76,$$ s/include{usage}/ /" \
+	       -e "76,$$ s/input{platforms}/ /" \
+	       -e "76,$$ s/include{platforms}/ /" \
+	       -e "76,$$ s/input{history}/ /" \
+	       -e "76,$$ s/include{history}/ /" \
+	       -e "76,$$ s/input{todo}/ /" \
+	       -e "76,$$ s/include{todo}/ /" \
+	       -e "76,$$ s/input{resources}/ /" \
+	       -e "76,$$ s/include{resources}/ /" \
+	       -e "76,$$ s/input{group}/ /" \
+	       -e "76,$$ s/include{group}/ /" \
+	       -e "76,$$ s/input{license}/ /" \
+	       -e "76,$$ s/include{license}/ /" \
+	       -e "76,$$ s/input{coreclasses}/ /" \
+	       -e "76,$$ s/include{coreclasses}/ /" \
+	       -e "76,$$ s/input{calendars}/ /" \
+	       -e "76,$$ s/include{calendars}/ /" \
+	       -e "76,$$ s/input{cashflows}/ /" \
+	       -e "76,$$ s/include{cashflows}/ /" \
+	       -e "76,$$ s/input{currencies}/ /" \
+	       -e "76,$$ s/include{currencies}/ /" \
+	       -e "76,$$ s/input{daycounters}/ /" \
+	       -e "76,$$ s/include{daycounters}/ /" \
+	       -e "76,$$ s/input{findiff}/ /" \
+	       -e "76,$$ s/include{findiff}/ /" \
+	       -e "76,$$ s/input{indexes}/ /" \
+	       -e "76,$$ s/include{indexes}/ /" \
+	       -e "76,$$ s/input{instruments}/ /" \
+	       -e "76,$$ s/include{instruments}/ /" \
+	       -e "76,$$ s/input{math}/ /" \
+	       -e "76,$$ s/include{math}/ /" \
+	       -e "76,$$ s/input{mcarlo}/ /" \
+	       -e "76,$$ s/include{mcarlo}/ /" \
+	       -e "76,$$ s/input{patterns}/ /" \
+	       -e "76,$$ s/include{patterns}/ /" \
+	       -e "76,$$ s/input{pricers}/ /" \
+	       -e "76,$$ s/include{pricers}/ /" \
+	       -e "76,$$ s/input{randomnumbers}/ /" \
+	       -e "76,$$ s/include{randomnumbers}/ /" \
+	       -e "76,$$ s/input{solvers1d}/ /" \
+	       -e "76,$$ s/include{solvers1d}/ /" \
+	       -e "76,$$ s/input{termstructures}/ /" \
+	       -e "76,$$ s/include{termstructures}/ /" \
+	       -e "76,$$ s/input{utilities}/ /" \
+	       -e "76,$$ s/include{utilities}/ /" \
 	       -e "s/ple Documentation}/ple Documentation}\\\\label{exchap}/" \
 	       oldrefman.tex > latex/refman.tex
 	rm -f oldrefman.tex
