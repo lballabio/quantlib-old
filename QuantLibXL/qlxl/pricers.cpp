@@ -69,9 +69,18 @@ extern "C"
 
         EuropeanOption eur(type, underlying, strike, dividendYield,
            riskFreeRate, maturity, volatility);
+        double results[7];
         double value = eur.value();
+        results[0] = eur.value();
+        results[1] = eur.delta();
+        results[2] = eur.gamma();
+        results[3] = eur.theta();
+        results[4] = eur.vega();
+        results[5] = eur.rho();
+        results[6] = eur.dividendRho();
 
-        return XlfOper(value);
+//        return XlfOper(value);
+        return XlfOper(1,7,results);
         EXCEL_END;
     }
 
