@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -14,6 +15,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#ifndef xl_utilities_hpp
+#define xl_utilities_hpp
+
 #include <windows.h>
 #include "xlcall.h"
 #include <string>
@@ -26,3 +30,4 @@ std::string getCaller();
 void setValues(LPXLOPER xArray,
 			   ObjHandler::Properties properties,
                const std::string &handle);
+#endif

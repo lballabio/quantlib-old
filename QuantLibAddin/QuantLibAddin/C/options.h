@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -44,4 +45,3 @@ int QL_OPTION_SETENGINE_C(
 	VariesList *result);
 
 #endif
-

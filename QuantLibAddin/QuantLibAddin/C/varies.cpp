@@ -1,17 +1,24 @@
+
 /*
-	this code is based on the article at
-	http://www.kuro5hin.org/story/2002/5/1/142321/9513
+ Copyright (C) 2004 Eric Ehlers
 
-	I've emailed the author to ask for his requirements
-	regarding copyright / attribution
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
 
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#include <ObjectHandler/objhandler.hpp>
 extern "C" {
 #include <QuantLibAddin/C/varies.h>
 }
-#include <ObjectHandler/propertyvector.hpp>
-#include <ObjectHandler/exception.hpp>
 
 using namespace ObjHandler;
 
@@ -69,4 +76,3 @@ void freeVariesList(VariesList *vl) {
 	}
 	delete [] vl->varies;
 }
-

@@ -18,8 +18,8 @@
 #ifndef qladdin_autolink_h
 #define qladdin_autolink_h
 
-#include <boost/config.hpp>
-#include <QuantLibAddin/qladdindefines.hpp>
+//#include <boost/config.hpp>
+//#include <QuantLibAddin/qladdindefines.hpp>
 
 // select toolset:
 #if (_MSC_VER < 1200)
@@ -33,7 +33,6 @@
 #else
 #  define QLADDIN_LIB_TOOLSET "vc" BOOST_STRINGIZE(_MSC_VER)
 #endif
-
 
 /*** libraries to be linked ***/
 

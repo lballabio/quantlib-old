@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -14,14 +15,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ObjectHandler/propertyvector.hpp>
+#include <QuantLibAddin/qladdin.hpp>
 extern "C" {
 #include <QuantLibAddin/C/varies.h>
 #include <QuantLibAddin/C/options.h>
 #include <QuantLibAddin/C/defines.h>
 }
 #include <QuantLibAddin/C/varies.hpp>
-#include <QuantLibAddin/qladdin.hpp>
 
 using namespace ObjHandler;
 using namespace QuantLibAddin;
@@ -84,4 +84,3 @@ int QL_OPTION_SETENGINE_C(
 		return FAIL;
 	}
 }
-

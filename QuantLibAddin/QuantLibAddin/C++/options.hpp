@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -17,7 +18,7 @@
 #ifndef options_hpp
 #define options_hpp
 
-#include <ObjectHandler/objecthandler.hpp>
+#include <ObjectHandler/objhandler.hpp>
 
 namespace QuantLibAddin {
 
@@ -47,4 +48,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

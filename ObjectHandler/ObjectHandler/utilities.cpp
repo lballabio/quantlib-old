@@ -20,7 +20,6 @@
 #include <sstream>
 #include <fstream>
 
-
 namespace ObjHandler {
 
     std::string toUpper(const std::string& s) {

@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -17,8 +18,11 @@
 #ifndef qladdin_hpp
 #define qladdin_hpp
 
-#include <ObjectHandler/propertyvector.hpp>
-#include <ObjectHandler/exception.hpp>
+#include <ql/quantlib.hpp>
+#include <ObjectHandler/objhandler.hpp>
+#include <QuantLibAddin/qladdindefines.hpp>
+#include <QuantLibAddin/objects/objectoption.hpp>
+#include <QuantLibAddin/objects/objectstochastic.hpp>
 #include <QuantLibAddin/C++/options.hpp>
 #include <QuantLibAddin/C++/utilities.hpp>
 

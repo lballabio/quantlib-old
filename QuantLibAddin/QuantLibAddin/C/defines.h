@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -21,4 +22,3 @@
 #define FAIL 1
 
 #endif
-

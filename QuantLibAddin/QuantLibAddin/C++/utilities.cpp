@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -15,9 +16,6 @@
 */
 
 #include <QuantLibAddin/C++/utilities.hpp>
-#include <ObjectHandler/utilities.hpp>
-#include <ObjectHandler/exception.hpp>
-#include <ObjectHandler/objecthandler.hpp>
 
 using namespace ObjHandler;
 

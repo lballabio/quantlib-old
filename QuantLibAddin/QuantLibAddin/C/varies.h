@@ -1,3 +1,4 @@
+
 /*
 	this code is based on the article at
 	http://www.kuro5hin.org/story/2002/5/1/142321/9513
@@ -32,4 +33,3 @@ const char *variesToString(const Varies *v);
 void freeVariesList(VariesList *vl);
 
 #endif
-

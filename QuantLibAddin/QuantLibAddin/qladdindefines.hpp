@@ -20,9 +20,9 @@
 
 //! version string
 #ifdef _DEBUG
-    #define QLADDIN_VERSION "0.3.9-debug"
+    #define QLADDIN_VERSION "0.3.8-debug"
 #else
-    #define QLADDIN_VERSION "0.3.9"
+    #define QLADDIN_VERSION "0.3.8"
 #endif
 
 //! version hexadecimal number
@@ -32,16 +32,10 @@
 
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
    for example) also #define _MSC_VER
-
 */
 #include <boost/config.hpp>
 #ifdef BOOST_MSVC
 #  include <QuantLibAddin/autolink.hpp>
 #endif
-
-#include <QuantLibAddin/objects/objectoption.hpp>
-#include <QuantLibAddin/objects/objectstochastic.hpp>
-#include <ql/quantlib.hpp>
-#include <ObjectHandler/objecthandler.hpp>
 
 #endif

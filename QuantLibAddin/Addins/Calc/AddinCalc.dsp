@@ -129,7 +129,7 @@ SOURCE=.\utilities.hpp
 # PROP Intermediate_Dir "."
 # End Source File
 # End Group
-# Begin Group "make"
+# Begin Group "Make"
 
 # PROP Default_Filter ""
 # Begin Source File

@@ -56,10 +56,6 @@ int main() {
 				QL_ANY2STRING(any) << endl;
 		}
 
-/*
-		low-level interrogation no longer supported in standard #includes -
-		will still be possible with additional #includes/links
-
 		// low-level interrogation
 		cout << endl << "low-level interrogation - after WIDGET_UPDATE" << endl;
 		boost::shared_ptr<ObjectWidget> const objectWidget =
@@ -70,7 +66,6 @@ int main() {
 			(objectWidget->getReference());
 		cout << "value of property s() of underlying widget = "
 			<< widget->s() << endl;
-*/
 
 		QL_LOGMESSAGE("bye");
 		cout << endl << "bye" << endl;

@@ -15,10 +15,6 @@
 */
 
 #include <interface.hpp>
-#include <ObjectHandler/objecthandler.hpp>
-#include <ObjectHandler/exception.hpp>
-#include <ObjectHandler/utilities.hpp>
-#include <objectwidget.hpp>
 
 using namespace ObjHandler;
 

@@ -14,15 +14,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifdef WIN32
-#pragma warning(disable: 4786)
-#pragma warning(disable: 4503)
-#endif
-
 #include <QuantLibAddin/qladdin.hpp>
 #include <iostream>
 
 using namespace std;
+using namespace QuantLib;
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
@@ -69,10 +65,6 @@ int main() {
                 QL_ANY2STRING(any) << endl;
         } 
 
-/*
-	low-level interrogation no longer supported in standard #includes -
-	will still be possible with additional #includes
-
 		cout << endl << "Low-level interrogation: NPV of underlying option object" << endl;
 		boost::shared_ptr<ObjectOption> objectOption = 
 			boost::dynamic_pointer_cast<ObjectOption> 
@@ -82,7 +74,6 @@ int main() {
 			(objectOption->getReference());
 		cout << "underlying option NPV() = " 
 			<< vanillaOption->NPV() << endl;
-*/
 
 		QL_LOGMESSAGE("end example program");
 		cout << endl << "bye" << endl;

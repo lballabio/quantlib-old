@@ -17,7 +17,7 @@
 #ifndef interface_h
 #define interface_h
 
-#include <ObjectHandler/propertyvector.hpp>
+#include <objectwidget.hpp>
 
 using namespace ObjHandler;
 using std::string;

@@ -15,23 +15,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef objecthandler_h
-#define objecthandler_h
+#ifndef objecthandler_hpp
+#define objecthandler_hpp
 
-#include <ObjectHandler/objecthandlerversion.hpp>
-/* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
-   for example) also #define _MSC_VER
-
-*/
-#ifdef BOOST_MSVC
-#  include <ObjectHandler/autolink.hpp>
-#endif
-
+#include <ObjectHandler/object.hpp>
 #include <ObjectHandler/utilities.hpp>
 #include <ObjectHandler/singleton.hpp>
-
 #include <map>
-
 
 namespace ObjHandler {
 

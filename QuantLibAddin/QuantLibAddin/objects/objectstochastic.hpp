@@ -18,7 +18,7 @@
 #ifndef objectstochastic_h
 #define objectstochastic_h
 
-#include <ObjectHandler/objecthandler.hpp>
+#include <ObjectHandler/objhandler.hpp>
 #include <ql/quantlib.hpp>
 
 namespace QuantLibAddin {

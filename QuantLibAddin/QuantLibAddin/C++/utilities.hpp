@@ -14,10 +14,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef utilities_hpp
-#define utilities_hpp
+#ifndef qla_utilities_hpp
+#define qla_utilities_hpp
 
-#include <ObjectHandler/objecthandler.hpp>
+#include <ObjectHandler/objhandler.hpp>
 
 namespace QuantLibAddin {
 

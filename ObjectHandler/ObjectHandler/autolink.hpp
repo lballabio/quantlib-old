@@ -15,10 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef objecthandler_autolink_h
-#define objecthandler_autolink_h
+#ifndef objecthandler_autolink_hpp
+#define objecthandler_autolink_hpp
 
-#include <ObjectHandler/objecthandlerversion.hpp>
+//#include <ObjectHandler/objecthandlerversion.hpp>
 
 // select toolset:
 #if (_MSC_VER < 1200)

@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -15,7 +16,6 @@
 */
 
 #include <QuantLibAddin/C++/options.hpp>
-#include <ObjectHandler/exception.hpp>
 #include <QuantLibAddin/objects/objectoption.hpp>
 
 using namespace QuantLib;

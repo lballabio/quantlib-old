@@ -15,26 +15,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*
-	definition of Object Property vector
-	this is in a separate header file because it's all an addin needs to know
-*/
+#ifndef objhandler_hpp
+#define objhandler_hpp
 
-#ifndef propertyvector_h
-#define propertyvector_h
-
-#include <boost/shared_ptr.hpp>
-#include <boost/any.hpp>
-#include <ObjectHandler/property.hpp>
-#include <vector>
-#include <string>
-
-namespace ObjHandler {
-
-    typedef boost::shared_ptr<boost::any> any_ptr;
-    typedef Property<std::string, any_ptr> ObjectProperty;
-    typedef std::vector<ObjectProperty> Properties;
-
-}
+#include <ObjectHandler/objhandlerdefines.hpp>
+#include <ObjectHandler/objecthandler.hpp>
+#include <ObjectHandler/exception.hpp>
 
 #endif

@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -49,4 +50,3 @@ namespace QuantLibAddin {
 	}
 
 }
-

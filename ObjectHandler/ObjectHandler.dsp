@@ -221,15 +221,15 @@ SOURCE=.\ObjectHandler\objecthandler.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ObjectHandler\objecthandlerversion.hpp
+SOURCE=.\ObjectHandler\objhandler.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ObjectHandler\objhandlerdefines.hpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\ObjectHandler\property.hpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\ObjectHandler\propertyvector.hpp
 # End Source File
 # Begin Source File
 

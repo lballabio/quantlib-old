@@ -27,4 +27,3 @@ namespace ObjHandler {
 	    return message_.c_str();
     }
 }
-

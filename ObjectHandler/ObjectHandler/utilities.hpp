@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef utilities_h
-#define utilities_h
+#ifndef utilities_hpp
+#define utilities_hpp
 
 #include <ObjectHandler/object.hpp>
 

@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -14,11 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ObjectHandler/propertyvector.hpp>
+#include <QuantLibAddin/qladdin.hpp>
 extern "C" {
 #include <QuantLibAddin/C/utilities.h>
 }
-#include <QuantLibAddin/qladdin.hpp>
 
 using namespace QuantLibAddin;
 
@@ -30,4 +30,3 @@ const char *QL_LOGFILE_C(const char *logFileName) {
 void QL_LOGMESSAGE_C(const char *msg) {
 	QL_LOGMESSAGE(msg);
 }
-

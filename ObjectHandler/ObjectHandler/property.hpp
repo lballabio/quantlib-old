@@ -1,11 +1,12 @@
+
 /*
  Original code from "Financial Instrument Pricing Using C++" by Daniel Duffy
 
  Copyright notice pending
 */
 
-#ifndef property_h
-#define property_h
+#ifndef property_hpp
+#define property_hpp
 
 namespace ObjHandler {
 

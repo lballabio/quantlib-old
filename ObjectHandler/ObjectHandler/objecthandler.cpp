@@ -15,20 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
-   for example) also #define _MSC_VER
-
-*/
-#include <boost/config.hpp>
-#ifdef BOOST_MSVC
-#  define BOOST_LIB_DIAGNOSTIC
-#  include <ObjectHandler/autolink.hpp>
-#  undef BOOST_LIB_DIAGNOSTIC
-#endif
-
 #include <ObjectHandler/objecthandler.hpp>
-#include <iostream>
-#include <sstream>
 
 namespace ObjHandler {
 

@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef exception_h
-#define exception_h
+#ifndef exception_hpp
+#define exception_hpp
 
 #include <exception>
 #include <string>

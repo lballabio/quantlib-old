@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -14,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef utilities_c_h
-#define utilities_c_h
+#ifndef utilities_h
+#define utilities_h
 
 const char *QL_LOGFILE_C(
 	const char *logFileName);
@@ -30,4 +31,3 @@ void QL_LOGMESSAGE_C(
 //	const string &handle);
 
 #endif
-
