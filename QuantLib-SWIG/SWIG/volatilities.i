@@ -131,30 +131,24 @@ class BlackConstantVolHandle : public Handle<BlackVolTermStructure> {
 // Black smiled surface
 %{
 using QuantLib::VolTermStructures::BlackVarianceSurface;
-typedef BlackVarianceSurface<
-    QuantLib::Math::BilinearInterpolation<
-        std::vector<Time>::const_iterator,
-        std::vector<double>::const_iterator,
-        Matrix> > 
-    DefBlackVarianceSurface;
-typedef DefBlackVarianceSurface::Extrapolation VolExtrapolationType;
+typedef BlackVarianceSurface::Extrapolation VolExtrapolationType;
 typedef Handle<BlackVolTermStructure> BlackVarianceSurfaceHandle;
 
 VolExtrapolationType volExTypeFromString(std::string s) {
     s = StringFormatter::toLowercase(s);
     if (s == "const" || s == "constant")
-        return DefBlackVarianceSurface::ConstantExtrapolation;
+        return BlackVarianceSurface::ConstantExtrapolation;
     else if (s == "" || s == "default")
-        return DefBlackVarianceSurface::InterpolatorDefaultExtrapolation;
+        return BlackVarianceSurface::InterpolatorDefaultExtrapolation;
     else
         throw Error("unknown extrapolation type: "+s);
 }
 
 std::string volExTypeToString(VolExtrapolationType t) {
     switch (t) {
-      case DefBlackVarianceSurface::ConstantExtrapolation:
+      case BlackVarianceSurface::ConstantExtrapolation:
         return "constant";
-      case DefBlackVarianceSurface::InterpolatorDefaultExtrapolation:
+      case BlackVarianceSurface::InterpolatorDefaultExtrapolation:
         return "default";
       default:
         throw Error("unknown extrapolation type");
@@ -174,13 +168,13 @@ class BlackVarianceSurfaceHandle : public Handle<BlackVolTermStructure> {
                 const std::vector<double>& strikes,
                 const Matrix& blackVols,
                 VolExtrapolationType lower = 
-                    DefBlackVarianceSurface::InterpolatorDefaultExtrapolation,
+                    BlackVarianceSurface::InterpolatorDefaultExtrapolation,
                 VolExtrapolationType upper = 
-                    DefBlackVarianceSurface::InterpolatorDefaultExtrapolation,
+                    BlackVarianceSurface::InterpolatorDefaultExtrapolation,
                 const DayCounter& dayCounter = Actual365()) {
             return new BlackVarianceSurfaceHandle(
-                new DefBlackVarianceSurface(referenceDate,dates,strikes,
-                                            blackVols,lower,upper,dayCounter));
+                new BlackVarianceSurface(referenceDate,dates,strikes,
+                                         blackVols,lower,upper,dayCounter));
         }
     }
 };

@@ -55,10 +55,10 @@ class Safe##T {
 %enddef
 
 make_safe_interpolation(LinearInterpolation);
-make_safe_interpolation(CubicSpline);
+make_safe_interpolation(CubicSplineInterpolation);
 make_safe_interpolation(LogLinearInterpolation);
 
-%extend SafeCubicSpline {
+%extend SafeCubicSplineInterpolation {
     double derivative(double x, bool extrapolate = false) {
         return self->f_.derivative(x,extrapolate);
     }

@@ -42,15 +42,21 @@ class SwapHandle : public Handle<Instrument> {
             return new SwapHandle(new Swap(firstLeg, secondLeg, termStructure,
                                            isinCode, description));
         }
-	double firstLegBPS() {
-	   return Handle<Swap>(*self)->firstLegBPS();
-	}
-	double secondLegBPS() {
-	   return Handle<Swap>(*self)->secondLegBPS();
-	}
-	TimeBasketHandle sensitivity() {
-	   return Handle<Swap>(*self)->sensitivity();
-	}
+        Date startDate() {
+            return Handle<Swap>(*self)->startDate();
+        }
+        Date maturity() {
+            return Handle<Swap>(*self)->maturity();
+        }
+        double firstLegBPS() {
+            return Handle<Swap>(*self)->firstLegBPS();
+        }
+        double secondLegBPS() {
+            return Handle<Swap>(*self)->secondLegBPS();
+        }
+        TimeBasketHandle sensitivity() {
+            return Handle<Swap>(*self)->sensitivity();
+        }
     }
 };
 
@@ -132,21 +138,20 @@ class SimpleSwapHandle : public SwapHandle {
                                floatingFrequency, index, indexFixingDays, 
                                spread, termStructure, isinCode, description));
         }
-        SimpleSwapHandle(bool payFixedRate,const Date& maturity,
-                         double nominal, Rate fixedRate,
+        SimpleSwapHandle(bool payFixedRate, double nominal, 
+                         const Schedule& fixedSchedule, Rate fixedRate,
                          const DayCounter& fixedDayCount,
+                         const Schedule& floatSchedule,
                          const XiborHandle& index,
                          int indexFixingDays, Spread spread,
                          const RelinkableHandle<TermStructure>& termStructure,
-                         Schedule& fixedSchedule, Schedule& floatSchedule,
                          const std::string& isinCode = "unknown",
                          const std::string& description = 
                             "interest rate swap") {
             return new SimpleSwapHandle(
-                new SimpleSwap(payFixedRate,maturity,
-                               nominal,fixedRate,fixedDayCount,index,
+                new SimpleSwap(payFixedRate,nominal,fixedSchedule,fixedRate,
+                               fixedDayCount,floatSchedule,index,
                                indexFixingDays,spread,termStructure,
-                               fixedSchedule,floatSchedule,
                                isinCode,description));
         }
     #endif
@@ -161,9 +166,6 @@ class SimpleSwapHandle : public SwapHandle {
         }
         double floatingLegBPS() {
             return Handle<SimpleSwap>(*self)->floatingLegBPS();
-        }
-        Date maturity() {
-            return Handle<SimpleSwap>(*self)->maturity();
         }
     }
 };
