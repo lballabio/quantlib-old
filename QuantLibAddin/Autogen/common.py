@@ -1,0 +1,6 @@
+FUNC = 'function'
+NAME = 'name'
+DESC = 'description'
+PARMS = 'parameters'
+TYPE = 'type'
+DESC = 'desc'

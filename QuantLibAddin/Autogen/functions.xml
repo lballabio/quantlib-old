@@ -25,12 +25,12 @@
 	<param>
 		<name>logFileName</name>
 		<type>string</type>
-		<desc>path & name of log file</desc>
+		<desc>path and name of log file</desc>
 	</param>
 </parameters>
 <returnvalue>
 	<type>string</type>
-	<desc>path & name of log file</desc>
+	<desc>path and name of log file</desc>
 </returnvalue>
 </function>
 
