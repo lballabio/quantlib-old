@@ -76,25 +76,6 @@ class RelinkableHandle {
 };
 
 
-// import opaque values from the scripting language API
-
-#if defined(SWIGPYTHON)
-%typemap(in) PyObject* { $1 = $input; };
-#endif
-
-#if defined(SWIGRUBY)
-%typemap(in) VALUE { $1 = $input; };
-#endif
-
-#if defined(SWIGMZSCHEME)
-%typemap(in) Scheme_Object* { $1 = $input; };
-#endif
-
-#if defined(SWIGGUILE)
-%typemap(in) SCM { $1 = $input; };
-#endif
-
-
 // typemap a C++ type to integers in the scripting language
 
 %define MapToInteger(Type)
