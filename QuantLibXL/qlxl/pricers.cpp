@@ -56,7 +56,7 @@ extern "C"
         double riskFreeRate  = xlriskFreeRate.AsDouble();
         Date valueDate       = QlXlfOper(xlvalueDate).AsDate();
         Date maturityDate    = QlXlfOper(xlmaturityDate).AsDate();
-        double maturity      = DayCounters::Actual365().yearFraction(valueDate, maturityDate);
+        double maturity      = Actual365().yearFraction(valueDate, maturityDate);
         double volatility    = xlvolatility.AsDouble();
         Size timeSteps       = xltimeSteps.AsDouble();
         Size gridPoints      = xlgridPoints.AsDouble();
@@ -309,7 +309,7 @@ extern "C"
         double riskFreeRate  = xlriskFreeRate.AsDouble();
         Date valueDate       = QlXlfOper(xlvalueDate).AsDate();
         Date maturityDate    = QlXlfOper(xlmaturityDate).AsDate();
-        double maturity      = DayCounters::Actual365().yearFraction(valueDate, maturityDate);
+        double maturity      = Actual365().yearFraction(valueDate, maturityDate);
         double volatility    = xlvolatility.AsDouble();
         Size timeSteps       = xltimeSteps.AsDouble();
         Size gridPoints      = xlgridPoints.AsDouble();

@@ -43,29 +43,29 @@ DayCounter QlXlfOper::AsDayCounter() const {
 
     std::string inputString(xlfOper_.AsString());
     std::string s = StringFormatter::toLowercase(inputString);
-    DayCounter dc = DayCounters::Actual365();
+    DayCounter dc = Actual365();
 
 
     if (s == "1" || s == "act365" || s == "act/365")
-        dc = DayCounters::Actual365();
+        dc = Actual365();
     else if (s == "2" || s == "act360" || s == "act/360")
-        dc = DayCounters::Actual360();
+        dc = Actual360();
     else if (s == "3" || s == "actacte" || s == "act/act(e)" || s == "act/act(Euro)")
-        dc = DayCounters::ActualActual(DayCounters::ActualActual::Euro);
+        dc = ActualActual(ActualActual::Euro);
     else if (s == "4" || s == "30/360" || s == "30/360us")
-        dc = DayCounters::Thirty360(DayCounters::Thirty360::USA);
+        dc = Thirty360(Thirty360::USA);
     else if (s == "5" || s == "30e/360" || s == "30/360e" || s == "30/360eu")
-        dc = DayCounters::Thirty360(DayCounters::Thirty360::European);
+        dc = Thirty360(Thirty360::European);
     else if (s == "6" || s == "30/360i" || s == "30/360it")
-        dc = DayCounters::Thirty360(DayCounters::Thirty360::Italian);
+        dc = Thirty360(Thirty360::Italian);
     else if (s == "7" || s == "actact" || s == "act/act" || s == "act/act(b)" || s == "act/act (Bond)")
-        dc = DayCounters::ActualActual(DayCounters::ActualActual::Bond);
+        dc = ActualActual(ActualActual::Bond);
     else if (s == "8" || s == "actacth" || s == "act/act(h)" || s == "act/act (ISDA)")
-        dc = DayCounters::ActualActual(DayCounters::ActualActual::Historical);
+        dc = ActualActual(ActualActual::Historical);
     else if (s == "9" || s == "30/360isda")
-        dc = DayCounters::Thirty360(DayCounters::Thirty360::USA);
+        dc = Thirty360(Thirty360::USA);
     else if (s == "10"|| s == "30e/360isda")
-        dc = DayCounters::Thirty360(DayCounters::Thirty360::European);
+        dc = Thirty360(Thirty360::European);
     else
         throw Error("Unknown day counter: " + inputString);
 
@@ -242,7 +242,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         double forwardRate = range(0,0).AsDouble();
         return Handle<TermStructure>(new
             FlatForward(today, referenceDate, forwardRate,
-                               DayCounters::Actual365()));
+                               Actual365()));
     } else if (rowNo>1 && colNo==2 && range(0,1).AsDouble()==1.0) {
         // vertical discount grid
 
@@ -256,10 +256,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         Date today=dates[0];
 
         return Handle<TermStructure>(new
-            TermStructures::DiscountCurve(today,
-                                          dates,
-                                          discounts,
-                                          DayCounters::Actual365()));
+            DiscountCurve(today, dates, discounts, Actual365()));
     } else if (rowNo==2 && colNo>1 && range(1,0).AsDouble()==1.0) {
         // horizontal discount grid
 
@@ -273,8 +270,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         Date today=dates[0];
 
         return Handle<TermStructure>(new
-            DiscountCurve(today, dates, discounts,
-                                  DayCounters::Actual365()));
+            DiscountCurve(today, dates, discounts, Actual365()));
     } else if (rowNo>1 && colNo==2) {
         // vertical piecewise forward (annual continuos compounding act/365) grid
         std::vector<Date> dates(rowNo);
@@ -286,10 +282,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         Date today=dates[0];
 
         return Handle<TermStructure>(new
-            TermStructures::PiecewiseFlatForward(today,
-                                                 dates,
-                                                 forwards,
-                                                 DayCounters::Actual365()));
+            PiecewiseFlatForward(today, dates, forwards, Actual365()));
     } else if (rowNo==2 && colNo>1) {
         // horizontal piecewise forward (annual continuos compounding act/365) grid
         std::vector<Date> dates(colNo);
@@ -301,8 +294,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         Date today=dates[0];
 
         return Handle<TermStructure>(new
-            PiecewiseFlatForward(today, dates, forwards,
-                             DayCounters::Actual365()));
+            PiecewiseFlatForward(today, dates, forwards, Actual365()));
     } else
         throw Error("Not a yield term structure range");
 
