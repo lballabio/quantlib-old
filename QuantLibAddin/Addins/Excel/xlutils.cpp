@@ -18,6 +18,7 @@
 #include <qla/qladdin.hpp>
 #include <Addins/Excel/xlutils.hpp>
 #include <exception>
+#include <sstream>
 
 using namespace ObjHandler;
 using namespace QuantLibAddin;
