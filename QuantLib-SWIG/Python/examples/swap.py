@@ -142,7 +142,7 @@ def report(swap):
     print 'spot 5-years swap'
     print '    NPV:         %.2f' % swap.NPV()
     print '    fair spread: %.2f %%' % (swap.fairSpread()*100)
-    print '    rair rate:   %.2f %%' % (swap.fairRate()*100)
+    print '    fair rate:   %.2f %%' % (swap.fairRate()*100)
     print
     
 print 'using depo-futures-swap curve\n'
