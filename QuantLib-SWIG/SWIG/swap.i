@@ -21,11 +21,12 @@
 %include instruments.i
 %include termstructures.i
 %include cashflows.i
+%include timebasket.i
 
 %{
 using QuantLib::Instruments::Swap;
 using QuantLib::Instruments::SimpleSwap;
-typedef Handle<Instrument> SwapHandle;
+typedef Handle<Swap> SwapHandle;
 typedef Handle<Instrument> SimpleSwapHandle;
 %}
 
@@ -41,6 +42,18 @@ class SwapHandle : public Handle<Instrument> {
             return new SwapHandle(new Swap(firstLeg, secondLeg, termStructure,
                                            isinCode, description));
         }
+	double firstLegBPS() {
+	   return Handle<Swap>(*self)->firstLegBPS();
+	}
+	double secondLegBPS() {
+	   return Handle<Swap>(*self)->secondLegBPS();
+	}
+	double fairRate() {
+	   return Handle<Swap>(*self)->fairRate();
+	}
+	TimeBasketHandle sensitivity() {
+	   return Handle<Swap>(*self)->sensitivity();
+	}
     }
 };
 
@@ -75,7 +88,7 @@ class FloatingSwapLeg {
 
 
 %rename(SimpleSwap) SimpleSwapHandle;
-class SimpleSwapHandle : public Handle<Instrument> {
+class SimpleSwapHandle : public SwapHandle {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("fair-rate")        fairRate;
     %rename("fair-spread")      fairSpread;
@@ -122,6 +135,32 @@ class SimpleSwapHandle : public Handle<Instrument> {
                                floatingFrequency, index, indexFixingDays, 
                                spread, termStructure, isinCode, description));
         }
+        SimpleSwapHandle(bool payFixedRate, const Date& startDate,
+			 const Date& maturity, const Calendar& calendar,
+			 RollingConvention rollingConvention, double nominal,
+			 int fixedFrequency, Rate fixedRate,
+			 bool fixedIsAdjusted, const DayCounter& fixedDayCount,
+			 int floatingFrequency, const XiborHandle& index,
+			 int indexFixingDays, Spread spread,
+			 const RelinkableHandle<TermStructure>& termStructure,
+			 const Date& fixedStubDate = Date(),
+			 bool fixedFromEnd = 0, bool fixedLongFinal = 0,
+			 const Date& floatStubDate = Date(),
+			 bool floatFromEnd = 0, bool floatLongFinal = 0,
+			 const std::string& isinCode = "unknown",
+                         const std::string& description = 
+                                                    "interest rate swap") {
+	   return new SimpleSwapHandle(
+	      new SimpleSwap(payFixedRate, startDate, maturity, calendar,
+			     rollingConvention, nominal,
+			     fixedFrequency,
+			     fixedRate, fixedIsAdjusted,fixedDayCount,
+			     floatingFrequency,
+			     index, indexFixingDays, spread, termStructure, 
+			     fixedStubDate, fixedFromEnd, fixedLongFinal,
+			     floatStubDate, floatFromEnd, floatLongFinal,
+			     isinCode, description));
+	}
     #endif
         Rate fairRate() {
             return Handle<SimpleSwap>(*self)->fairRate();
