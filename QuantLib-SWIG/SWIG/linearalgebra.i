@@ -614,7 +614,7 @@ bool extractArray(PyObject* source, Array* target) {
         free(data);
     } else {
         $1 = *(($&1_type)
-               SWIG_MustGetPtr($input,$&1_descriptor,$argnum));
+               SWIG_MustGetPtr($input,$&1_descriptor,$argnum,0));
     }
 }
 %typemap(in) const Array& (Array temp),
@@ -627,7 +627,7 @@ bool extractArray(PyObject* source, Array* target) {
         std::copy(data,data+size,temp.begin());
         free(data);
     } else {
-        $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum);
+        $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum,0);
     }
 }
 %typecheck(QL_TYPECHECK_ARRAY) Array {
@@ -681,7 +681,7 @@ bool extractArray(PyObject* source, Array* target) {
             }
         }
     } else {
-        $1 = *(($&1_type) SWIG_MustGetPtr($input,$&1_descriptor,$argnum));
+        $1 = *(($&1_type) SWIG_MustGetPtr($input,$&1_descriptor,$argnum,0));
     }
 }
 %typemap(in) const Matrix& (Matrix temp),
@@ -714,7 +714,7 @@ bool extractArray(PyObject* source, Array* target) {
             }
         }
     } else {
-        $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum);
+        $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum,0);
     }
 }
 %typecheck(QL_TYPECHECK_MATRIX) Matrix {

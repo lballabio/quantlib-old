@@ -47,39 +47,6 @@
 %}
 #endif
 
-#ifdef SWIGGUILE
-%scheme %{
-; macros for making it easier to free memory
-; careful: they prevent tail-recursion!
-
-(define-macro deleting-let
-  (lambda (bindings . body)
-    (let ((thunk (gensym))
-          (result (gensym)))
-      `(let ,(map (lambda (b) (list (car b) (cadr b))) bindings)
-         (define ,thunk (lambda () ,@body))
-         (let ((,result (,thunk)))
-           ,@(map (lambda (b) (list (caddr b) (car b))) bindings)
-           ,result)))))
-
-(define-macro deleting-let*
-  (lambda (bindings . body)
-    (let ((thunk (gensym))
-          (result (gensym)))
-      `(let* ,(map (lambda (b) (list (car b) (cadr b))) bindings)
-         (define ,thunk (lambda () ,@body))
-         (let ((,result (,thunk)))
-           ,@(map (lambda (b) (list (caddr b) (car b))) bindings)
-           ,result)))))
-
-(define (do-not-delete x) #f)
-
-(export deleting-let
-        deleting-let*
-        do-not-delete)
-%}
-#endif
-
 
 %include common.i
 %include blackmodel.i

@@ -28,7 +28,7 @@
  (let* ((pi (acos -1.0))
         (gauss (lambda (x)
                  (/ (exp (- (* x x 0.5))) (sqrt (* 2.0 pi))))))
-   (deleting-let ((I (new-SegmentIntegral 10000) delete-SegmentIntegral))
+   (let ((I (new-SegmentIntegral 10000)))
      (let ((tolerance 1.0e-4)
            (cases (list
                    (list "f(x) = 1"        (lambda (x) 1.0)      0  1    1)

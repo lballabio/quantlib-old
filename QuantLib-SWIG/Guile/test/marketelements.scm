@@ -24,37 +24,29 @@
 (greg-assert/display
  "Testing observability of market elements"
  (let ((flag #f))
-   (deleting-let ((me (new-SimpleMarketElement 0.0)
-                      delete-MarketElement)
-                  (obs (new-Observer (lambda () (set! flag #t)))
-                       delete-Observer))
-     (deleting-let ((temp (MarketElement->Observable me)
-                          delete-Observable))
+   (let ((me (new-SimpleQuote 0.0))
+         (obs (new-Observer (lambda () (set! flag #t)))))
+     (let ((temp (Quote->Observable me)))
        (Observer-register-with obs temp))
-     (SimpleMarketElement-value-set! me 3.14)
+     (SimpleQuote-value-set! me 3.14)
      (check flag
             "Observer was not notified of market element change"))))
 
 (greg-assert/display
  "Testing observability of market element handles"
  (let ((flag #f))
-   (deleting-let* ((me1 (new-SimpleMarketElement 0.0)
-                        delete-MarketElement)
-                   (me2 (new-SimpleMarketElement 0.0)
-                        delete-MarketElement)
-                   (h (new-MarketElementHandle me1)
-                      delete-MarketElementHandle)
-                   (obs (new-Observer (lambda () (set! flag #t)))
-                        delete-Observer))
-     (deleting-let ((temp (MarketElementHandle->Observable h)
-                          delete-Observable))
+   (let* ((me1 (new-SimpleQuote 0.0))
+          (me2 (new-SimpleQuote 0.0))
+          (h (new-QuoteHandle me1))
+          (obs (new-Observer (lambda () (set! flag #t)))))
+     (let ((temp (QuoteHandle->Observable h)))
        (Observer-register-with obs temp))
      (and
-      (begin (SimpleMarketElement-value-set! me1 3.14)
+      (begin (SimpleQuote-value-set! me1 3.14)
              (check flag
                     "Observer was not notified of market element change"))
       (begin (set! flag #f)
-             (MarketElementHandle-link-to! h me2)
+             (QuoteHandle-link-to! h me2)
              (check flag
                     "Observer was not notified of market element change"))))))
 

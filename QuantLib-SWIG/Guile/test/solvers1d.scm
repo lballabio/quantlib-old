@@ -21,8 +21,8 @@
 (load "unittest.scm")
 (use-modules (QuantLib))
 
-(define (test-solver make solve delete)
-  (deleting-let ((solver (make) delete))
+(define (test-solver make solve)
+  (let ((solver (make)))
     (for-each (lambda (accuracy)
                 (let ((root (solve solver 
                                    (lambda (x) (- (* x x) 1))
@@ -52,20 +52,10 @@
  "Testing 1D solvers"
  (check-all
   (map (lambda (l) (apply test-solver l))
-       (list (list new-Brent
-                   Brent-solve
-                   delete-Brent)
-             (list new-Bisection
-                   Bisection-solve
-                   delete-Bisection)
-             (list new-FalsePosition
-                   FalsePosition-solve
-                   delete-FalsePosition)
-             (list new-Ridder
-                   Ridder-solve
-                   delete-Ridder)
-             (list new-Secant
-                   Secant-solve
-                   delete-Secant)))))
+       (list (list new-Brent Brent-solve)
+             (list new-Bisection Bisection-solve)
+             (list new-FalsePosition FalsePosition-solve)
+             (list new-Ridder Ridder-solve)
+             (list new-Secant Secant-solve)))))
 
 
