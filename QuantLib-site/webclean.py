@@ -71,3 +71,4 @@ def webclean():
 # when executed, just run webclean():
 if __name__ == '__main__':
     webclean()
+    raw_input('press any key to continue')
