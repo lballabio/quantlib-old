@@ -1,0 +1,3 @@
+
+200X-XX-XX First decent release, version number XX.YY.ZZ
+           in sync with the QuantLib XX.YY.ZZ release
