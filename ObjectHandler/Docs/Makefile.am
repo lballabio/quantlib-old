@@ -23,9 +23,8 @@ DOXYGEN_INPUT := $(shell find ${top_srcdir} -name *.hpp) \
 .PHONY: docs-dist docs-html-dist 
 
 dist-hook:
-	mkdir -p $(distdir)/pages $(distdir)/Examples $(distdir)/images
+	mkdir -p $(distdir)/pages $(distdir)/images
 	cp -p $(srcdir)/pages/*.docs $(distdir)/pages
-	cp -p $(srcdir)/Examples/*.cpp $(distdir)/Examples
 	cp -p $(srcdir)/images/*.bmp $(srcdir)/images/*.eps \
 	      $(srcdir)/images/*.jpg $(srcdir)/images/*.png \
 	      $(srcdir)/images/*.pdf $(srcdir)/images/*.ico $(distdir)/images
