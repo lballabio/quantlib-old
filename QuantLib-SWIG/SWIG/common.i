@@ -260,7 +260,7 @@ class RelinkableHandle {
 %define ReturnByValue(T)
 #if defined(SWIGMZSCHEME)
 %typemap(out) T {
-    $result = SWIG_MakePtr(new T($1), $&1_descriptor);
+    $result = SWIG_MakePtr(new T((T&)$1), $&1_descriptor);
 }
 #elif defined(SWIGGUILE)
 %typemap(out) T {

@@ -128,7 +128,11 @@
       (map (lambda (b e) (substring s b e)) begins ends))))
 
 (define (execute prog . args)
-  (let ((full-path (find-executable-path prog #f))
+  (let ((full-path (find-executable-path 
+                    (if (eqv? (system-type) 'windows)
+                        (string-append prog ".exe")
+                        prog)
+                    #f))
         (stdin (current-input-port))
         (stdout (current-output-port))
         (stderr (current-output-port)))
