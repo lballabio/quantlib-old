@@ -58,6 +58,14 @@ class DepositRateHelperHandle : public Handle<RateHelper> {
                 new DepositRateHelper(rate,n,units,settlementDays,
                                       calendar, convention,dayCounter));
         }
+        DepositRateHelperHandle(
+                double rate, int n, TimeUnit units, int settlementDays,
+                const Calendar& calendar, RollingConvention convention, 
+                const DayCounter& dayCounter) {
+            return new DepositRateHelperHandle(
+                new DepositRateHelper(rate,n,units,settlementDays,
+                                      calendar, convention,dayCounter));
+        }
     }
 };
 
@@ -67,6 +75,16 @@ class FraRateHelperHandle : public Handle<RateHelper> {
     %extend {
         FraRateHelperHandle(
                 const RelinkableHandle<MarketElement>& rate,
+                int monthsToStart, int monthsToEnd, int settlementDays,
+                const Calendar& calendar, RollingConvention convention,
+                const DayCounter& dayCounter) {
+            return new FraRateHelperHandle(
+                new FraRateHelper(rate,monthsToStart,monthsToEnd,
+                                  settlementDays,calendar,convention,
+                                  dayCounter));
+        }
+        FraRateHelperHandle(
+                double rate,
                 int monthsToStart, int monthsToEnd, int settlementDays,
                 const Calendar& calendar, RollingConvention convention,
                 const DayCounter& dayCounter) {
@@ -91,6 +109,14 @@ class FuturesRateHelperHandle : public Handle<RateHelper> {
                 new FuturesRateHelper(price,immDate,nMonths,
                     calendar,convention,dayCounter));
         }
+        FuturesRateHelperHandle(
+                double price, const Date& immDate, int nMonths,
+                const Calendar& calendar, RollingConvention convention,
+                const DayCounter& dayCounter) {
+            return new FuturesRateHelperHandle(
+                new FuturesRateHelper(price,immDate,nMonths,
+                    calendar,convention,dayCounter));
+        }
     }
 };
 
@@ -101,6 +127,17 @@ class SwapRateHelperHandle : public Handle<RateHelper> {
         SwapRateHelperHandle(
                 const RelinkableHandle<MarketElement>& rate,
                 int n, TimeUnit units, int settlementDays,
+                const Calendar& calendar, RollingConvention rollingConvention,
+                int fixedFrequency, bool fixedIsAdjusted,
+                const DayCounter& fixedDayCount, int floatingFrequency) {
+            return new SwapRateHelperHandle(
+                new SwapRateHelper(rate, n, units, settlementDays,
+                                   calendar, rollingConvention, 
+                                   fixedFrequency, fixedIsAdjusted, 
+                                   fixedDayCount, floatingFrequency));
+        }
+        SwapRateHelperHandle(
+                double rate, int n, TimeUnit units, int settlementDays,
                 const Calendar& calendar, RollingConvention rollingConvention,
                 int fixedFrequency, bool fixedIsAdjusted,
                 const DayCounter& fixedDayCount, int floatingFrequency) {
