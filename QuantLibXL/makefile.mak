@@ -21,11 +21,15 @@ inst::
     if exist "$(QLXL_DIR)\qlxl" rmdir /S /Q "$(QLXL_DIR)\qlxl"
     xcopy qlxl\*.h* "$(QLXL_DIR)\qlxl" /S /I
 
-    if exist "$(QLXL_DIR)\xll\Win32\VisualStudio" rmdir /S /Q "$(QLXL_DIR)\xll\Win32\VisualStudio"
-    xcopy xll\\Win32\VisualStudio\*.xll "$(QLXL_DIR)\xll\Win32\VisualStudio" /S /I
-    xcopy xll\\Win32\VisualStudio\*.pdb "$(QLXL_DIR)\xll\Win32\VisualStudio" /S /I
+    if exist "$(QLXL_DIR)\xll\Win32\VisualStudio" \
+        rmdir /S /Q "$(QLXL_DIR)\xll\Win32\VisualStudio"
+    xcopy xll\\Win32\VisualStudio\*.xll \
+        "$(QLXL_DIR)\xll\Win32\VisualStudio" /S /I
+    xcopy xll\\Win32\VisualStudio\*.pdb \
+        "$(QLXL_DIR)\xll\Win32\VisualStudio" /S /I
 
-    if exist "$(QLXL_DIR)\xll\Win32\Borland" rmdir /S /Q "$(QLXL_DIR)\xll\Win32\Borland"
+    if exist "$(QLXL_DIR)\xll\Win32\Borland" \
+        rmdir /S /Q "$(QLXL_DIR)\xll\Win32\Borland"
     xcopy xll\\Win32\Borland\*.xll "$(QLXL_DIR)\xll\Win32\Borland" /S /I
 
 

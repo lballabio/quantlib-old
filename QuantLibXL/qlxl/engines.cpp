@@ -45,9 +45,9 @@ extern "C"
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        Handle<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
+        boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
 
-        Handle<BlackScholesStochasticProcess> stochProcess(new
+        boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
             BlackScholesStochasticProcess(
                 RelinkableHandle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
@@ -55,14 +55,14 @@ extern "C"
                 QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
                                                 xlinterpolationType.AsInt())));
 
-        Handle<StrikedTypePayoff> payoff(new
+        boost::shared_ptr<StrikedTypePayoff> payoff(new
             PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
                                xlstrike.AsDouble()));
 
-        Handle<Exercise> exercise(new
+        boost::shared_ptr<Exercise> exercise(new
             EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate()));
 
-        Handle<PricingEngine> engine(new AnalyticEuropeanEngine);
+        boost::shared_ptr<PricingEngine> engine(new AnalyticEuropeanEngine);
 
         VanillaOption option(stochProcess, payoff, exercise, engine);
 
@@ -107,7 +107,7 @@ extern "C"
         Size maxSamples = Null<Size>();
         long mcSeed = 0;
 
-        Handle<PricingEngine> engine(new
+        boost::shared_ptr<PricingEngine> engine(new
             MCEuropeanEngine<PseudoRandom>(maxTimeStepPerYear,
                                            antitheticVariate, controlVariate, 
                                            nSamples, tolerance, 
@@ -118,9 +118,9 @@ extern "C"
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        Handle<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
+        boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
 
-        Handle<BlackScholesStochasticProcess> stochProcess(new
+        boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
             BlackScholesStochasticProcess(
                 RelinkableHandle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
@@ -128,11 +128,11 @@ extern "C"
                 QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
                                                 interpolationType)));
 
-        Handle<StrikedTypePayoff> payoff(new
+        boost::shared_ptr<StrikedTypePayoff> payoff(new
             PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
                                xlstrike.AsDouble()));
 
-        Handle<Exercise> exercise(new
+        boost::shared_ptr<Exercise> exercise(new
             EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate()));
 
         VanillaOption option(stochProcess, payoff, exercise, engine);
@@ -162,18 +162,18 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        Handle<PricingEngine> baseEngine(new AnalyticEuropeanEngine);
+        boost::shared_ptr<PricingEngine> baseEngine(new AnalyticEuropeanEngine);
 
-        Handle<QuantoEngine<VanillaOption::arguments,
+        boost::shared_ptr<QuantoEngine<VanillaOption::arguments,
                             VanillaOption::results> > quantoEngine(new
                QuantoEngine<VanillaOption::arguments,
                             VanillaOption::results>(baseEngine));
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        Handle<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
+        boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
 
-        Handle<BlackScholesStochasticProcess> stochProcess(new
+        boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
             BlackScholesStochasticProcess(
                 RelinkableHandle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
@@ -181,18 +181,18 @@ extern "C"
                 QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
                                                 xlinterpolationType.AsInt())));
 
-        Handle<StrikedTypePayoff> payoff(new
+        boost::shared_ptr<StrikedTypePayoff> payoff(new
             PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
                                xlstrike.AsDouble()));
 
-        Handle<Exercise> exercise(new
+        boost::shared_ptr<Exercise> exercise(new
             EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate()));
 
         QuantoVanillaOption quantoOption(
             QlXlfOper(xlforeignRiskFreeRate).AsTermStructure(refDate),
             QlXlfOper(xlexchangeVolatility).AsBlackVolTermStructure(refDate,
                                                   xlinterpolationType.AsInt()),
-            RelinkableHandle<Quote>(Handle<Quote>(new
+            RelinkableHandle<Quote>(boost::shared_ptr<Quote>(new
                 SimpleQuote(xlcorrelation.AsDouble()))),
             stochProcess,
             payoff,
@@ -229,18 +229,18 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        Handle<PricingEngine> baseEngine(new AnalyticEuropeanEngine);
+        boost::shared_ptr<PricingEngine> baseEngine(new AnalyticEuropeanEngine);
 
-        Handle<ForwardEngine<VanillaOption::arguments,
+        boost::shared_ptr<ForwardEngine<VanillaOption::arguments,
                              VanillaOption::results> > forwardEngine(new
                ForwardEngine<VanillaOption::arguments,
                              VanillaOption::results>(baseEngine));
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        Handle<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
+        boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
 
-        Handle<BlackScholesStochasticProcess> stochProcess(new
+        boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
             BlackScholesStochasticProcess(
                 RelinkableHandle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
@@ -250,11 +250,11 @@ extern "C"
 
         // dummy strike
         // ForwardOptionParameter should not include strike
-        Handle<StrikedTypePayoff> payoff(new
+        boost::shared_ptr<StrikedTypePayoff> payoff(new
             PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
                                xlunderlying.AsDouble()));
 
-        Handle<Exercise> exercise(new
+        boost::shared_ptr<Exercise> exercise(new
             EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate()));
 
         ForwardVanillaOption option(xlmoneyness.AsDouble(),
@@ -293,9 +293,9 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        Handle<PricingEngine> baseEngine(new AnalyticEuropeanEngine);
+        boost::shared_ptr<PricingEngine> baseEngine(new AnalyticEuropeanEngine);
 
-        Handle<ForwardPerformanceEngine<VanillaOption::arguments,
+        boost::shared_ptr<ForwardPerformanceEngine<VanillaOption::arguments,
                                         VanillaOption::results> > engine(new
                ForwardPerformanceEngine<VanillaOption::arguments,
                                         VanillaOption::results>(baseEngine));
@@ -303,9 +303,9 @@ extern "C"
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
         // underlying is needed to interpolate on the vol surface
-        Handle<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
+        boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
 
-        Handle<BlackScholesStochasticProcess> stochProcess(new
+        boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
             BlackScholesStochasticProcess(
                 RelinkableHandle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
@@ -315,11 +315,11 @@ extern "C"
 
         // dummy strike
         // ForwardOptionParameter should not include strike
-        Handle<StrikedTypePayoff> payoff(new
+        boost::shared_ptr<StrikedTypePayoff> payoff(new
             PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
                                xlunderlying.AsDouble()));
 
-        Handle<Exercise> exercise(new
+        boost::shared_ptr<Exercise> exercise(new
             EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate()));
 
         ForwardVanillaOption option(xlmoneyness.AsDouble(),

@@ -13,6 +13,7 @@ INCLUDE_DIR     = ..
 XLW_INCLUDE_DIR = "$(XLW_DIR)"
 XLW_LIB_DIR     = "$(XLW_DIR)\lib\Win32\Borland"
 QL_INCLUDE_DIR  = "$(QL_DIR)"
+QL_FUN_DIR      = "$(QL_FUN_DIR)"
 QL_LIB_DIR      = "$(QL_DIR)\lib\Win32\Borland"
 BCC_INCLUDE     = $(MAKEDIR)\..\include
 BCC_LIBS        = $(MAKEDIR)\..\lib
@@ -20,16 +21,16 @@ OUTPUT_DIR      = ..\xll\Win32\Borland
 
 # Object files
 CORE_OBJS = \
-    mathf.obj$(_D) \
-    datef.obj$(_D) \
-    engines.obj$(_D) \
     montecarlo.obj$(_D) \
     pricers.obj$(_D) \
     qlxlfoper.obj$(_D) \
     termstructures.obj$(_D) \
     utilities.obj$(_D) \
     vols.obj$(_D) \
-    xlAutoOpen.obj$(_D)
+    xlAutoOpen.obj$(_D) \
+    datef.obj$(_D) \
+    engines.obj$(_D) \
+    mathf.obj$(_D)
 
 # Tools to be used
 CC        = bcc32
@@ -47,6 +48,7 @@ CC_OPTS = -vi- \
     -I$(INCLUDE_DIR) \
     -I$(XLW_INCLUDE_DIR) \
     -I$(QL_INCLUDE_DIR) \
+    -I$(QL_FUN_DIR) \
     -I$(BCC_INCLUDE)
 !ifdef DEBUG
 CC_OPTS = $(CC_OPTS) -v -DXLW_DEBUG -DQL_DEBUG

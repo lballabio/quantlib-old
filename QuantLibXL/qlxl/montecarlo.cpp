@@ -39,8 +39,10 @@ extern "C"
 
         int generatorType = xlgeneratorType.AsInt();
         unsigned long mcSeed = xlseed.AsInt();
-        UniformRandomSequenceGenerator rsg(dimension, mcSeed);
-        UniformLowDiscrepancySequenceGenerator ldsg(dimension);
+
+        PseudoRandom::ursg_type rsg(dimension, mcSeed);
+        LowDiscrepancy::ursg_type ldsg(dimension, mcSeed);
+
 
         Matrix result(dimension, samples);
         Array sample;
@@ -53,7 +55,7 @@ extern "C"
                 sample = ldsg.nextSequence().value;
                 break;
             default:
-                throw Error("Unknown generator");
+                QL_FAIL("Unknown generator");
             }
 
             for (Size i=0; i<dimension; i++) {
@@ -79,10 +81,12 @@ extern "C"
 
         int generatorType = xlgeneratorType.AsInt();
         unsigned long mcSeed = xlseed.AsInt();
-        UniformRandomSequenceGenerator rsg(dimension, mcSeed);
-        GaussianRandomSequenceGenerator grsg(rsg);
-        UniformLowDiscrepancySequenceGenerator ldsg(dimension);
-        GaussianLowDiscrepancySequenceGenerator gldsg(ldsg);
+
+        PseudoRandom::ursg_type rsg(dimension, mcSeed);
+        LowDiscrepancy::ursg_type ldsg(dimension);
+
+        PseudoRandom::rsg_type grsg(rsg);
+        LowDiscrepancy::rsg_type gldsg(ldsg);
 
         Matrix result(dimension, samples);
         Array sample;
@@ -95,7 +99,7 @@ extern "C"
                 sample = gldsg.nextSequence().value;
                 break;
             default:
-                throw Error("Unknown generator");
+                QL_FAIL("Unknown generator");
             }
 
             for (Size i=0; i<dimension; i++) {
@@ -139,22 +143,25 @@ extern "C"
             QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
                                               xlinterpolationType.AsInt());
 
-        Handle<BlackScholesProcess> bs(new
+        boost::shared_ptr<BlackScholesProcess> bs(new
             BlackScholesProcess(riskFreeTS, dividendTS, blackVolTS,
                                                         underlying));
 
         int generatorType = xlgeneratorType.AsInt();
         unsigned long mcSeed = xlseed.AsInt();
-        UniformRandomSequenceGenerator rsg(timeSteps, mcSeed);
-        GaussianRandomSequenceGenerator grsg(rsg);
-        UniformLowDiscrepancySequenceGenerator ldsg(timeSteps);
-        GaussianLowDiscrepancySequenceGenerator gldsg(ldsg);
 
-        PathGenerator<GaussianRandomSequenceGenerator>
+        PseudoRandom::ursg_type rsg(timeSteps, mcSeed);
+        LowDiscrepancy::ursg_type ldsg(timeSteps);
+
+        PseudoRandom::rsg_type grsg(rsg);
+        LowDiscrepancy::rsg_type gldsg(ldsg);
+
+
+        PathGenerator<PseudoRandom::rsg_type>
             PseudoRandomPathGenerator(bs, timeGrid, grsg, false);
 
         // BB here
-        PathGenerator<GaussianLowDiscrepancySequenceGenerator>
+        PathGenerator<LowDiscrepancy::rsg_type>
             QuasiRandomPathGenerator(bs, timeGrid, gldsg, true);
 
         Size j;
@@ -169,7 +176,7 @@ extern "C"
                 myPath = QuasiRandomPathGenerator.next().value;
                 break;
             default:
-                throw Error("Unknown generator");
+                QL_FAIL("Unknown generator");
             }
 
             result[0][j] = underlying * QL_EXP(myPath[0]);
@@ -213,7 +220,7 @@ extern "C"
             QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
                                               xlinterpolationType.AsInt());
 
-        Handle<DiffusionProcess> bs(new
+        boost::shared_ptr<DiffusionProcess> bs(new
             BlackScholesProcess(riskFreeTS, dividendTS, blackVolTS,
                                                         underlying));
 
@@ -223,9 +230,10 @@ extern "C"
         std::vector<double> myPath;
         Size j, i;
         if (generatorType==1) {
-            UniformRandomSequenceGenerator rsg(timeSteps, mcSeed);
-            GaussianRandomSequenceGenerator grsg(rsg);
-            BrownianBridge<GaussianRandomSequenceGenerator>
+			PseudoRandom::ursg_type rsg(timeSteps, mcSeed);
+			PseudoRandom::rsg_type grsg(rsg);
+
+            BrownianBridge<PseudoRandom::rsg_type>
                 PseudoRandomBrownianBridge(bs, timeGrid, grsg);
             for (j=0; j<samples; j++) {
                 myPath = PseudoRandomBrownianBridge.next().value;
@@ -235,9 +243,10 @@ extern "C"
             }
             return XlfOper(timeSteps, samples, result.begin());
         } else {
-            UniformLowDiscrepancySequenceGenerator ldsg(timeSteps);
-            GaussianLowDiscrepancySequenceGenerator gldsg(ldsg);
-            BrownianBridge<GaussianLowDiscrepancySequenceGenerator>
+			LowDiscrepancy::ursg_type ldsg(timeSteps);
+			LowDiscrepancy::rsg_type gldsg(ldsg);
+
+            BrownianBridge<LowDiscrepancy::rsg_type>
                 QuasiRandomBrownianBridge(bs, timeGrid, gldsg);
             for (j=0; j<samples; j++) {
                 myPath = QuasiRandomBrownianBridge.next().value;

@@ -66,7 +66,7 @@ DayCounter QlXlfOper::AsDayCounter() const {
     else if (s == "10"|| s == "30e/360isda")
         dc = Thirty360(Thirty360::European);
     else
-        throw Error("Unknown day counter: " + inputString);
+        QL_FAIL("Unknown day counter: " + inputString);
 
     return dc;
 
@@ -114,7 +114,7 @@ Option::Type QlXlfOper::AsOptionType() const {
     } else if (s == "s" || s == "straddle") {
         type = Option::Straddle;
     } else
-        throw Error("Unknown option type");
+        QL_FAIL("Unknown option type");
 
     return type;
 }
@@ -129,7 +129,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
     if (rowNo==1 && colNo==1) {
         // constant vol
         double vol = range(0,0).AsDouble();
-        return Handle<BlackVolTermStructure>(new
+        return boost::shared_ptr<BlackVolTermStructure>(new
             BlackConstantVol(referenceDate,
             vol));
     } else if (rowNo>=1 && colNo==2) {
@@ -140,7 +140,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
             dates[j] = QlXlfOper(range(j, 0)).AsDate();
             vols[j] = range(j, 1).AsDouble();
         }
-        Handle<BlackVarianceCurve> ts(new
+        boost::shared_ptr<BlackVarianceCurve> ts(new
             BlackVarianceCurve(referenceDate,dates,vols));
         switch (interpolationType) {
             case 1:
@@ -155,8 +155,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 return ts;
                 break;
             default:
-                throw IllegalArgumentError(
-                    "interpolate: invalid interpolation type");
+                QL_FAIL("interpolate: invalid interpolation type");
         }
     } else if (rowNo==2 && colNo>=1) {
         // horizontal time dependent vol
@@ -166,7 +165,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
             dates[j] = QlXlfOper(range(0, j)).AsDate();
             vols[j] = range(1, j).AsDouble();
         }
-        Handle<BlackVarianceCurve> ts(new
+        boost::shared_ptr<BlackVarianceCurve> ts(new
             BlackVarianceCurve(referenceDate,dates,vols));
         switch (interpolationType) {
             case 1:
@@ -181,8 +180,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 return ts;
                 break;
             default:
-                throw IllegalArgumentError(
-                    "interpolate: invalid interpolation type");
+                QL_FAIL("interpolate: invalid interpolation type");
         }
     } else if (rowNo>3 && colNo>2) {
         // time/strike (horizontal/vertical) dependent vol
@@ -203,7 +201,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 vols[i-1][j-1] = range(i, j).AsDouble();
             }
         }
-        Handle<BlackVarianceSurface> ts(new
+        boost::shared_ptr<BlackVarianceSurface> ts(new
             BlackVarianceSurface(referenceDate, dates, strikes, vols));
         switch (interpolationType) {
             case 1:
@@ -218,11 +216,10 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 return ts;
                 break;
             default:
-                throw IllegalArgumentError(
-                    "interpolate: invalid interpolation type");
+                QL_FAIL("interpolate: invalid interpolation type");
         }
     } else
-        throw Error("Not a vol surface range");
+        QL_FAIL("Not a vol surface range");
 
 }
 
@@ -239,7 +236,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
     if (rowNo==1 && colNo==1) {
         // constant rate continuos compounding act/365
         double forwardRate = range(0,0).AsDouble();
-        return Handle<TermStructure>(new
+        return boost::shared_ptr<TermStructure>(new
             FlatForward(today, referenceDate, forwardRate,
                                Actual365()));
     } else if (rowNo>1 && colNo==2 && range(0,1).AsDouble()==1.0) {
@@ -254,7 +251,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         }
         Date today=dates[0];
 
-        return Handle<TermStructure>(new
+        return boost::shared_ptr<TermStructure>(new
             DiscountCurve(today, dates, discounts, Actual365()));
     } else if (rowNo==2 && colNo>1 && range(1,0).AsDouble()==1.0) {
         // horizontal discount grid
@@ -268,7 +265,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         }
         Date today=dates[0];
 
-        return Handle<TermStructure>(new
+        return boost::shared_ptr<TermStructure>(new
             DiscountCurve(today, dates, discounts, Actual365()));
     } else if (rowNo>1 && colNo==2) {
         // vertical piecewise forward (annual continuos compounding act/365) grid
@@ -280,7 +277,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         }
         Date today=dates[0];
 
-        return Handle<TermStructure>(new
+        return boost::shared_ptr<TermStructure>(new
             PiecewiseFlatForward(today, dates, forwards, Actual365()));
     } else if (rowNo==2 && colNo>1) {
         // horizontal piecewise forward (annual continuos compounding act/365) grid
@@ -292,9 +289,9 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         }
         Date today=dates[0];
 
-        return Handle<TermStructure>(new
+        return boost::shared_ptr<TermStructure>(new
             PiecewiseFlatForward(today, dates, forwards, Actual365()));
     } else
-        throw Error("Not a yield term structure range");
+        QL_FAIL("Not a yield term structure range");
 
 }

@@ -197,10 +197,9 @@ extern "C"
         bool antitheticVariance = xlantitheticVariance.AsBool();
         int samples            = xlsamples.AsInt();
 
-        McCliquetOption cliquet(type, underlying, moneyness, dividends,
-           rates, fixingTimes, vols, accruedCoupon, lastFixing,
-           localCap, localFloor, globalCap, globalFloor, redemptionOnly,
-           antitheticVariance);
+        McCliquetOption cliquet(type, underlying, moneyness, dividendYieldTS,
+           riskFreeRateTS, volTS, fixingTimes, accruedCoupon, lastFixing,
+           localCap, localFloor, globalCap, globalFloor, redemptionOnly);
         double results[2];
         results[0] = cliquet.valueWithSamples(samples);
         results[1] = cliquet.errorEstimate();
@@ -220,12 +219,14 @@ extern "C"
                         XlfOper xlriskFreeRate,
                         XlfOper xltimes,
                         XlfOper xlvolatility)
+
     {
         EXCEL_BEGIN;
 
         Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying       = xlunderlying.AsDouble();
         double moneyness           = xlmoneyness.AsDouble();
+
         std::vector<double> dividendYield    = xldividendYield.AsDoubleVector();
         std::vector<double> riskFreeRate     = xlriskFreeRate.AsDoubleVector();
         std::vector<Time> times         = xltimes.AsDoubleVector();
@@ -254,8 +255,10 @@ extern "C"
                         XlfOper xlmoneyness,
                         XlfOper xldividendYield,
                         XlfOper xlriskFreeRate,
-                        XlfOper xltimes,
+                        XlfOper xlrefDate,
+                        XlfOper xlfixingDates,
                         XlfOper xlvolatility,
+                        XlfOper xlinterpolationType,
                         XlfOper xlantitheticVariance,
                         XlfOper xlsamples)
     {
@@ -264,18 +267,29 @@ extern "C"
         Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying       = xlunderlying.AsDouble();
         double moneyness           = xlmoneyness.AsDouble();
-        std::vector<double> dividendYield    = xldividendYield.AsDoubleVector();
-        std::vector<double> riskFreeRate     = xlriskFreeRate.AsDoubleVector();
-        std::vector<Time> times         = xltimes.AsDoubleVector();
-        std::vector<double> volatility       = xlvolatility.AsDoubleVector();
-        bool antitheticVariance = xlantitheticVariance.AsBool();
         Size samples            = xlsamples.AsDouble();
 
+        Date refDate = QlXlfOper(xlrefDate).AsDate();
+
+        RelinkableHandle<TermStructure> dividendYieldTS =
+            QlXlfOper(xldividendYield).AsTermStructure(refDate);
+        RelinkableHandle<TermStructure> riskFreeRateTS  =
+            QlXlfOper(xlriskFreeRate).AsTermStructure(refDate);
+        RelinkableHandle<BlackVolTermStructure> volTS =
+            QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+            xlinterpolationType.AsInt());
+        
+        std::vector<Date> fixingDates=QlXlfOper(xlfixingDates).AsDateVector();
+        std::vector<Time> fixingTimes(fixingDates.size());
+        for (Size i = 0; i<fixingDates.size(); i++) {
+            fixingTimes[i] = riskFreeRateTS->dayCounter().yearFraction(
+                refDate, fixingDates[i]);
+        }
 
 
 
-        McPerformanceOption perfCliquet(type, underlying, moneyness, dividendYield,
-           riskFreeRate, times, volatility, antitheticVariance);
+        McPerformanceOption perfCliquet(type, underlying, moneyness, dividendYieldTS,
+           riskFreeRateTS, volTS, fixingTimes);
         double results[2];
         results[0] = perfCliquet.valueWithSamples(samples);
         results[1] = perfCliquet.errorEstimate();
