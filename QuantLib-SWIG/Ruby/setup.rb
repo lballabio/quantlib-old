@@ -125,6 +125,7 @@ SDist = Command.new {
 	Interfaces.each { |file| File.syscopy '../SWIG/'+file, swigDir }
 	Tests.each      { |file| File.syscopy 'test/'+file, testDir }
 	system "tar cfz #{distDir}.tar.gz #{distDir}/"
+	system "zip -q -r #{distDir}.zip #{distDir}/"
 }
 
 Build = Command.new {
