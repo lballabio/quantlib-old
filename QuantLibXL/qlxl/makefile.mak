@@ -1,9 +1,4 @@
 
-#
-# makefile for main.cpp under Borland C++
-#
-# $Id$
-
 .autodepend
 .silent
 
@@ -25,11 +20,17 @@ OUTPUT_DIR      = ..\xll\Win32\Borland
 
 # Object files
 CORE_OBJS = \
-    mathf.obj$(_D) \
     datef.obj$(_D) \
+    engines.obj$(_D) \
+    mathf.obj$(_D) \
+    montecarlo.obj$(_D) \
     pricers.obj$(_D) \
     qlxl.obj$(_D) \
-    utilities.obj$(_D)
+    qlxlfoper.obj$(_D) \
+    termstructures.obj$(_D) \
+    utilities.obj$(_D) \
+    vols.obj$(_D) \
+    xlAutoOpen.obj$(_D)
 
 # Tools to be used
 CC        = bcc32
@@ -37,14 +38,12 @@ TLIB      = tlib
 !ifdef DEBUG
     MAKE = $(MAKE) -DDEBUG
 !endif
+!ifdef SAFE
+    MAKE = $(MAKE) -DSAFE
+!endif
 
-#Warning W8026 :
-#Warning W8027 :
-#Warning W8012 :
-#Warning W8057 : Parameter 'argc' is never used in function main(int,char * *)
 
 # Options
-#    -w-8026 -w-8027 -w-8012 -w-8057 \
 CC_OPTS = -vi- \
     -I$(INCLUDE_DIR) \
     -I$(XLW_INCLUDE_DIR) \
@@ -52,6 +51,9 @@ CC_OPTS = -vi- \
     -I$(BCC_INCLUDE)
 !ifdef DEBUG
 CC_OPTS = $(CC_OPTS) -v -DXLW_DEBUG -DQL_DEBUG
+!endif
+!ifdef SAFE
+CC_OPTS = $(CC_OPTS) -DQL_EXTRA_SAFETY_CHECKS
 !endif
 
 TLIB_OPTS    = /P32
@@ -66,14 +68,19 @@ TLIB_OPTS    = /P64
     $(CC) $(CC_OPTS) -o$@ $<
 
 # Primary target:
-$(OUTPUT_DIR)\QuantLibXL$(_D).xll:: $(CORE_OBJS)
+$(OUTPUT_DIR)\QuantLibXL$(_D).xll:: $(OUTPUT_DIR) $(CORE_OBJS)
     if exist $(OUTPUT_DIR)\QuantLibXL$(_D).xll del $(OUTPUT_DIR)\QuantLibXL$(_D).xll
-#    $(TLIB) $(TLIB_OPTS) $(OUTPUT_DIR)\QuantLibXL$(_D).xll/a $(CORE_OBJS)
+    $(TLIB) $(TLIB_OPTS) $(OUTPUT_DIR)\QuantLibXL$(_D).xll /a $(CORE_OBJS)
 #    bcc32 $(CC_OPTS) -L$(XLW_LIB_DIR) -L$(QL_LIB_DIR) -L$(BCC_LIBS) -tWD -oqlxl$(_D).obj -e"$(OUTPUT_DIR)\QuantLibXL$(_D).xll" qlxl.cpp QuantLib$(_D).lib xlw$(_D2).lib
+
+$(OUTPUT_DIR):
+    if not exist ..\xll md ..\xll
+    if not exist ..\xll\Win32 md ..\xll\Win32
+    if not exist ..\xll\Win32\Borland md ..\xll\Win32\Borland
 
 # Clean up
 clean::
-    if exist *.obj   del /q *.obj
+    if exist *.obj                del /q *.obj
     if exist *.tds                del /q *.tds
     if exist $(OUTPUT_DIR)\*.tds  del $(OUTPUT_DIR)\*.tds
     if exist *.xll                del /q *.xll
