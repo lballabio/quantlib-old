@@ -62,6 +62,11 @@ docs-html:
     $(MAKE) html
     cd ..
 
+docs-htmlhelp:
+    cd Docs
+    $(MAKE) htmlhelp
+    cd ..
+
 docs-html-online:
     cd Docs
     $(MAKE) html-online
@@ -82,7 +87,8 @@ docs-ps:
 clean::
     cd ObjectHandler
     $(MAKE) clean
-    cd ..
-    cd Example
+    cd ..\Example
+    $(MAKE) clean
+    cd ..\Docs
     $(MAKE) clean
     cd ..

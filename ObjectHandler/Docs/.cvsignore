@@ -1,2 +1,4 @@
-ObjectHandler-docs-*.chm
+ObjectHandler-docs-*.*
 html
+html-online
+latex
