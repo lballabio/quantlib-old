@@ -26,7 +26,7 @@ void propertiesToVaries(const Properties &properties,
 		VariesList *variesList) {
 	variesList->count = properties.size();
 	variesList->varies = new Varies[properties.size()];
-	for (int i = 0; i < properties.size(); i++) {
+	for (size_t i = 0; i < properties.size(); i++) {
 		ObjectProperty property = properties[i];
 		variesList->varies[i].Label = new char[property.name().size() + 1];
 		sprintf(variesList->varies[i].Label, property.name().c_str());
