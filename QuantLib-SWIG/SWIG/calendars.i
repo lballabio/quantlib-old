@@ -78,35 +78,18 @@ using QuantLib::Calendars::Toronto;
 using QuantLib::Calendars::Sydney;
 %}
 
-#if defined(SWIGGUILE)
-%scheme%{ 
-%}
+
+#if defined(SWIGRUBY)
+%mixin Calendar "Comparable";
 #endif
-
-
 class Calendar {
     #if defined(SWIGRUBY)
     %rename("isBusinessDay?")   isBusinessDay;
     %rename("isHoliday?")       isHoliday;
-    #endif
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("is-business-day?") isBusinessDay;
     %rename("is-holiday?")      isHoliday;
     %rename(">string")          __str__;
-    #if defined(SWIGGUILE)
-    // resolve overloading
-    %rename(advance_period)     advance(const Date&,const Period&,
-                                        RollingConvention);
-    %rename(advance_units)      advance(const Date&,int,TimeUnit,
-                                        RollingConvention);
-    %scheme %{
-    (define (Calendar-advance . args)
-      (if (integer? (caddr args))
-          (apply Calendar-advance-units args)
-          (apply Calendar-advance-period args)))
-    (export Calendar-advance)
-    %}
-    #endif
     #endif
   private:
     Calendar();

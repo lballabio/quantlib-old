@@ -51,7 +51,7 @@ class SwaptionTest < RUNIT::TestCase
                                     @settlementDays,"days",
                                     'following')
     @fixingDays = 2
-    @termStructure.linkTo!(FlatForward.new(@settlement,
+    @termStructure.linkTo!(FlatForward.new(@today,@settlement,
                                            0.05,DayCounter.new('Act/365')))
     @cases = []
     [1, 2, 3, 5, 7, 10].each { |exercise|
@@ -199,8 +199,9 @@ class SwaptionTest < RUNIT::TestCase
     end
   end
   def testCachedValue
+    cachedToday = Date.new(13,3,2002)
     cachedSettlement = Date.new(15,3,2002)
-    @termStructure.linkTo!(FlatForward.new(cachedSettlement,
+    @termStructure.linkTo!(FlatForward.new(cachedToday,cachedSettlement,
                                            0.05,DayCounter.new('Act/365')))
     exerciseDate = @calendar.roll(cachedSettlement.plusYears(5))
     startDate = @calendar.advance(exerciseDate,

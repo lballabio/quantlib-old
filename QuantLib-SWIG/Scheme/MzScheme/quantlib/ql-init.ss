@@ -36,7 +36,7 @@
 
 (define-syntax deleting-let*
   (syntax-rules ()
-    ((deleting-let ((name val dtor) ...) body1 body2 ...)
+    ((deleting-let* ((name val dtor) ...) body1 body2 ...)
      (let* ((name val) ...)
        (let ((result (begin body1 body2 ...)))
          (dtor name) ...

@@ -171,6 +171,9 @@ class HistoryValidIterator {
 #endif
 
 
+#if defined(SWIGRUBY)
+%mixin History "Enumerable";
+#endif
 class History {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("first-date") firstDate;

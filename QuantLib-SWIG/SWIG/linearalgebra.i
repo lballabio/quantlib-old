@@ -628,6 +628,28 @@ bool extractArray(PyObject* source, Array* target) {
         $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum);
     }
 }
+%typecheck(QL_TYPECHECK_ARRAY) Array {
+    /* native sequence? */
+    if (gh_vector_p($input)) {
+        $1 = 1;
+    /* wrapped Array? */
+    } else {
+        Array* v;
+        $1 = (SWIG_Guile_GetPtr($input,(void **) &v,
+                                $&1_descriptor) != -1) ? 1 : 0;
+    }
+}
+%typecheck(QL_TYPECHECK_ARRAY) const Array & {
+    /* native sequence? */
+    if (gh_vector_p($input)) {
+        $1 = 1;
+    /* wrapped Array? */
+    } else {
+        Array* v;
+        $1 = (SWIG_Guile_GetPtr($input,(void **) &v,
+                                $1_descriptor) != -1) ? 1 : 0;
+    }
+}
 
 %typemap(in) Matrix {
     if (gh_vector_p($input)) {
@@ -693,8 +715,33 @@ bool extractArray(PyObject* source, Array* target) {
         $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum);
     }
 }
+%typecheck(QL_TYPECHECK_MATRIX) Matrix {
+    /* native sequence? */
+    if (gh_vector_p($input)) {
+        $1 = 1;
+    /* wrapped Matrix? */
+    } else {
+        Matrix* m;
+        $1 = (SWIG_Guile_GetPtr($input,(void **) &m,
+                                $&1_descriptor) != -1) ? 1 : 0;
+    }
+}
+%typecheck(QL_TYPECHECK_MATRIX) const Matrix & {
+    /* native sequence? */
+    if (gh_vector_p($input)) {
+        $1 = 1;
+    /* wrapped Matrix? */
+    } else {
+        Matrix* m;
+        $1 = (SWIG_Guile_GetPtr($input,(void **) &m,
+                                $1_descriptor) != -1) ? 1 : 0;
+    }
+}
 #endif
 
+#if defined(SWIGRUBY)
+%mixin Array "Enumerable";
+#endif
 class Array {
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
     %rename(__len__)   size;
@@ -704,11 +751,9 @@ class Array {
     %rename("set!")    set;
     #endif
   public:
-    Array(Size n, double fill = 0.0);
-    #if !defined(SWIGGUILE)
     Array();
+    Array(Size n, double fill = 0.0);
     Array(const Array&);
-    #endif
     Size size() const;
     %extend {
         std::string __str__() {
@@ -818,13 +863,7 @@ ReturnByValue(Array);
 %rename("Array+")  Array_add;
 %rename("Array-")  Array_sub;
 %rename("Array/")  Array_div;
-#if defined(SWIGMZSCHEME)
 %rename("Array*")  Array_mul;
-#elif defined(SWIGGUILE)
-%rename("Array*d")      Array_mul(const Array&,double);
-%rename("Array*a")      Array_mul(const Array&,const Array&);
-%rename("Array*Matrix") Array_mul(const Array&,const Matrix&);
-#endif
 %inline %{
     Array Array_add(const Array& a, const Array& b) {
         return a+b;
@@ -845,15 +884,6 @@ ReturnByValue(Array);
         return a*m;
     }
 %}
-#if defined(SWIGGUILE)
-%scheme %{
-    (define (Array* a x)
-      (if (number? x)
-          (Array*-d a x)
-          (Array*a a x)))
-    (export Array*)
-%}
-#endif
 #endif
 
 // 2-D view
@@ -954,11 +984,9 @@ class Matrix {
     %rename(">string")  __str__;
     #endif
   public:
-    Matrix(Size rows, Size columns, double fill = 0.0);
-    #if !defined(SWIGGUILE)
     Matrix();
+    Matrix(Size rows, Size columns, double fill = 0.0);
     Matrix(const Matrix&);
-    #endif
     Size rows() const;
     Size columns() const;
     %extend {
@@ -1020,13 +1048,7 @@ ReturnByValue(Matrix);
 %rename("Matrix+")  Matrix_add;
 %rename("Matrix-")  Matrix_sub;
 %rename("Matrix/")  Matrix_div;
-#if defined(SWIGMZSCHEME)
 %rename("Matrix*")  Matrix_mul;
-#elif defined(SWIGGUILE)
-%rename("Matrix*d") Matrix_mul(const Matrix&,double);
-%rename("Matrix*m") Matrix_mul(const Matrix&,const Matrix&);
-%rename("Matrix*Array") Matrix_mul(const Matrix&,const Array&);
-#endif
 %inline %{
     Matrix Matrix_add(const Matrix& m, const Matrix& n) {
         return m+n;
@@ -1047,15 +1069,6 @@ ReturnByValue(Matrix);
         return m*n;
     }
 %}
-#if defined(SWIGGUILE)
-%scheme %{
-    (define (Matrix* m x)
-      (if (number? x)
-          (Matrix-mul-d m x)
-          (Matrix-mul-m m x)))
-    (export Matrix*)
-%}
-#endif
 #endif
 
 // functions

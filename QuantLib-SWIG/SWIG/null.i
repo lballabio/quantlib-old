@@ -142,15 +142,15 @@ double nullDouble() { return Null<double>(); }
 }
 
 %typemap(in) doubleOrNull {
-    $1 = (SCHEME_FALSEP($input) || SCHEME_REALP($input)) ? 1 : 0;
+    if (SCHEME_FALSEP($input))
+        $1 = Null<double>();
+    else if (SCHEME_REALP($input))
+        $1 = scheme_real_to_double($input);
+    else
+        SWIG_exception(SWIG_TypeError,"double expected");
 }
 %typecheck(SWIG_TYPECHECK_DOUBLE) doubleOrNull {
-    if (SCHEME_FALSEP($input))
-        $1 = 1;
-    else if (SCHEME_REALP($input))
-        $1 = 1;
-    else
-        $1 = 0;
+    $1 = (SCHEME_FALSEP($input) || SCHEME_REALP($input)) ? 1 : 0;
 }
 %typemap(out) doubleOrNull {
     if ($1 == Null<double>())
@@ -162,12 +162,14 @@ double nullDouble() { return Null<double>(); }
 #elif defined(SWIGGUILE)
 
 %typemap(in) intOrNull {
-    if (gh_boolean_p($input) && !gh_scm2bool($input))
+    if (SCM_FALSEP($input))
         $1 = Null<int>();
     else
         $1 = gh_scm2int($input);
 }
-
+%typecheck(SWIG_TYPECHECK_INTEGER) intOrNull {
+    $1 = (SCM_FALSEP($input) || SCM_NFALSEP(scm_integer_p($input)) ? 1 : 0);
+}
 %typemap(out) intOrNull {
     if ($1 == Null<int>())
         $result = SCM_BOOL_F;
@@ -176,12 +178,14 @@ double nullDouble() { return Null<double>(); }
 }
 
 %typemap(in) doubleOrNull {
-    if (gh_boolean_p($input) && !gh_scm2bool($input))
+    if (SCM_FALSEP($input))
         $1 = Null<double>();
     else
         $1 = gh_scm2double($input);
 }
-
+%typecheck(SWIG_TYPECHECK_DOUBLE) doubleOrNull {
+    $1 = (SCM_FALSEP($input) || SCM_NFALSEP(scm_real_p($input)) ? 1 : 0);
+}
 %typemap(out) doubleOrNull {
     if ($1 == Null<double>())
         $result = SCM_BOOL_F;

@@ -56,17 +56,18 @@ class XiborManager {
 using QuantLib::Index;
 %}
 
+%ignore Index;
+class Index {
+  public:
+    Rate fixing(const Date& fixingDate) const;
+    std::string name() const;
+};
+
 %template(Index) Handle<Index>;
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename(">string") Handle<Index>::__str__;
 #endif
 %extend Handle<Index> {
-    Rate fixing(const Date& fixingDate) {
-        return (*self)->fixing(fixingDate);
-    }
-    std::string name() {
-        return (*self)->name();
-    }
     std::string __str__() {
         if (!self->isNull())
             return (*self)->name()+" index";

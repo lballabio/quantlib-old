@@ -22,48 +22,6 @@ module QuantLibc
   
   # mixins
   
-  # Comparable classes
-  class Date
-    include Comparable
-  end
-  
-  class Calendar
-    include Comparable
-  end
-  
-  # Enumerable classes
-  class Array
-    include Enumerable
-  end
-
-  class IntVector
-    include Enumerable
-  end
-  
-  class DoubleVector
-    include Enumerable
-  end
-  
-  class DateVector
-    include Enumerable
-  end
-
-  class CashFlowVector
-    include Enumerable
-  end
-
-  class Path
-    include Enumerable
-  end
-
-  class History
-    include Enumerable
-  end
-
-  class Scheduler
-    include Enumerable
-  end
-  
   # interface enhancements
   class Observer
     alias cpp_initialize initialize

@@ -36,7 +36,7 @@ class SwaptionTest(unittest.TestCase):
                                                 self.settlementDays,"days",
                                                'following')
         self.fixingDays = 2
-        self.termStructure.linkTo(FlatForward(self.settlement,
+        self.termStructure.linkTo(FlatForward(self.today,self.settlement,
                                               0.05,DayCounter('Act/365')))
         self.cases = [ (exercise,length,payFixed)
                         for exercise in [1, 2, 3, 5, 7, 10]
@@ -175,8 +175,9 @@ wrong spread treatment:
     # check 4
     def testCachedValue(self):
         "Testing swaption value against cached value"
+        cachedToday = Date(13,3,2002)
         cachedSettlement = Date(15,3,2002)
-        self.termStructure.linkTo(FlatForward(cachedSettlement,
+        self.termStructure.linkTo(FlatForward(cachedToday,cachedSettlement,
                                               0.05,DayCounter('Act/365')))
         exerciseDate = self.calendar.roll(cachedSettlement.plusYears(5))
         startDate = self.calendar.advance(exerciseDate,

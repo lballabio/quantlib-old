@@ -48,7 +48,7 @@ class CapFloorTest < RUNIT::TestCase
                                     @settlementDays,"days",
                                     'following')
     @fixingDays = 2
-    @termStructure.linkTo!(FlatForward.new(@settlement,
+    @termStructure.linkTo!(FlatForward.new(@today,@settlement,
                                            0.05,DayCounter.new('Act/360')))
   end
   def makeLeg(startDate,length)
@@ -180,8 +180,9 @@ class CapFloorTest < RUNIT::TestCase
     end
   end
   def testCachedValue
+    cachedToday = Date.new(16,3,2002)
     cachedSettlement = Date.new(18,3,2002)
-    @termStructure.linkTo!(FlatForward.new(cachedSettlement,
+    @termStructure.linkTo!(FlatForward.new(cachedToday,cachedSettlement,
                                            0.05, DayCounter.new('Act/360')))
     startDate = @termStructure.settlementDate
     leg = makeLeg(startDate,20)

@@ -35,6 +35,9 @@ Matrix getCovariance(const Array& volatilities, const Matrix& correlations);
 using QuantLib::MonteCarlo::Path;
 %}
 
+#if defined(SWIGRUBY)
+%mixin Path "Enumerable";
+#endif
 class Path {
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
     %rename(__len__) size;

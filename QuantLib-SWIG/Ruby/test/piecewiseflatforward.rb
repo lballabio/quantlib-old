@@ -82,7 +82,7 @@ class PiecewiseFlatForwardTest < RUNIT::TestCase
     # all instruments
     instruments = deposits + swaps
     # instantiate curve
-    termStructure = PiecewiseFlatForward.new(settlement,instruments,
+    termStructure = PiecewiseFlatForward.new(today,settlement,instruments,
                                              DayCounter.new('Act/360'))
     euriborHandle.linkTo!(termStructure)
     # check deposits

@@ -65,7 +65,7 @@
         ; setup
         (deleting-let* ((day-counter (new-DayCounter "act/360") 
                                      delete-DayCounter)
-                        (flat-curve (new-FlatForward settlement 0.05 
+                        (flat-curve (new-FlatForward today settlement 0.05 
                                                      day-counter)
                                     delete-TermStructure))
           (TermStructureHandle-link-to! term-structure flat-curve)
@@ -175,11 +175,14 @@
                         "swap value: " (Instrument-NPV swap))))))
                 ((equal? tag 'cached)
                  ; check calculations against cached values
-                 (deleting-let* ((cached-settlement (new-Date 18 3 2002)
+                 (deleting-let* ((cached-today (new-Date 16 3 2002)
+                                                    delete-Date)
+                                 (cached-settlement (new-Date 18 3 2002)
                                                     delete-Date)
                                  (day-counter (new-DayCounter "act/360")
                                               delete-DayCounter)
-                                 (flat-curve (new-FlatForward cached-settlement
+                                 (flat-curve (new-FlatForward cached-today
+                                                              cached-settlement
                                                               0.05 
                                                               day-counter)
                                              delete-TermStructure))

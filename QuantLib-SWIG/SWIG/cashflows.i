@@ -32,15 +32,14 @@
 using QuantLib::CashFlow;
 %}
 
+%ignore CashFlow;
+class CashFlow {
+  public:
+    double amount() const;
+    Date date() const;
+};
+
 %template(CashFlow) Handle<CashFlow>;
-%extend Handle<CashFlow> {
-    double amount() {
-        return (*self)->amount();
-    }
-    Date date() {
-        return (*self)->date();
-    }
-}
 IsObservable(Handle<CashFlow>);
 ReturnByValue(Handle<CashFlow>);
 

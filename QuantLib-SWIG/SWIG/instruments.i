@@ -30,33 +30,30 @@
 using QuantLib::Instrument;
 %}
 
+%ignore Instrument;
+class Instrument {
+    #if defined(SWIGRUBY)
+    %rename("isExpired?")   isExpired;
+    %rename("recalculate!") recalculate;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("isin-code")    isinCode;
+    %rename("expired?")     isExpired;
+    %rename("recalculate!") recalculate;
+    #endif
+  public:
+    std::string isinCode() const;
+    std::string description() const;
+    double NPV() const;
+    bool isExpired() const;
+    void recalculate();
+};
+
 %template(Instrument) Handle<Instrument>;
-#if defined(SWIGRUBY)
-%rename("isExpired?")   Handle<Instrument>::isExpired;
-%rename("recalculate!") Handle<Instrument>::recalculate;
-#elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("isin-code")    Handle<Instrument>::isinCode;
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename(">string")      Handle<Instrument>::__str__;
-%rename("expired?")     Handle<Instrument>::isExpired;
-%rename("recalculate!") Handle<Instrument>::recalculate;
 #endif
 IsObservable(Handle<Instrument>);
 %extend Handle<Instrument> {
-	std::string isinCode() {
-		return (*self)->isinCode();
-	}
-	std::string description() {
-		return (*self)->description();
-	}
-	double NPV() {
-		return (*self)->NPV();
-	}
-	bool isExpired() {
-		return (*self)->isExpired();
-	}
-	void recalculate() {
-		(*self)->recalculate();
-	}
 	std::string __str__() {
 	    if (self->isNull())
 	        return "Null instrument";

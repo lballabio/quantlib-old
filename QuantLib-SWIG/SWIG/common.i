@@ -98,6 +98,9 @@ class RelinkableHandle {
 // typemap a C++ type to integers in the scripting language
 
 %define MapToInteger(Type)
+
+%typemap(typecheck) Type = int;
+
 #if defined(SWIGPYTHON)
 
 %typemap(in) Type {
@@ -110,8 +113,6 @@ class RelinkableHandle {
 %typemap(out) Type {
     $result = PyInt_FromLong(long($1));
 };
-
-%typemap(typecheck) Type = int;
 
 #elif defined(SWIGRUBY)
 
@@ -126,8 +127,6 @@ class RelinkableHandle {
     $result = INT2NUM(int($1));
 };
 
-%typemap(typecheck) Type = int;
-
 #elif defined(SWIGMZSCHEME)
 
 %typemap(in) Type {
@@ -140,8 +139,6 @@ class RelinkableHandle {
 %typemap(out) Type {
     $result = scheme_make_integer_value(int($1));
 };
-
-%typemap(typecheck) Type = int;
 
 #elif defined(SWIGGUILE)
 
@@ -160,6 +157,9 @@ class RelinkableHandle {
 // typemap a C++ type to strings in the scripting language
 
 %define MapToString(Type,TypeFromString,TypeToString)
+
+%typemap(typecheck) Type = char *;
+
 #if defined(SWIGPYTHON)
 
 %typemap(in) Type {
@@ -178,8 +178,6 @@ class RelinkableHandle {
 %typemap(out) Type {
     $result = PyString_FromString(TypeToString($1).c_str());
 };
-
-%typemap(typecheck) Type = char *;
 
 #elif defined(SWIGRUBY)
 
@@ -200,8 +198,6 @@ class RelinkableHandle {
     $result = rb_str_new2(TypeToString($1).c_str());
 };
 
-%typemap(typecheck) Type = char *;
-
 #elif defined(SWIGMZSCHEME)
 
 %typemap(in) Type {
@@ -220,8 +216,6 @@ class RelinkableHandle {
 %typemap(out) Type {
     $result = scheme_make_string(TypeToString($1).c_str());
 };
-
-%typemap(typecheck) Type = char *;
 
 #elif defined(SWIGGUILE)
 

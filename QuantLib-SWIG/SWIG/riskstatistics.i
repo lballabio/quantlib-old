@@ -49,21 +49,6 @@ class RiskStatistics {
     %rename("expected-shortfall")    expectedShortfall;
     %rename("weight-sum")            weightSum;
     %rename("reset!")                reset;
-    #if defined(SWIGGUILE)
-    // resolve overloading
-    %rename("add_single")            add(double,double);
-    %rename("add_sequence")          add(const std::vector<double>&);
-    %rename("add_weighted_sequence") add(const std::vector<double>&, 
-                                         const std::vector<double>&);
-    %scheme %{
-        (define (RiskStatistics-add stats value . weight)
-          (let ((method (cond ((number? value) RiskStatistics-add-single)
-                              ((null? weight) RiskStatistics-add-sequence)
-                              (else RiskStatistics-add-weighted-sequence))))
-            (apply method stats value weight)))
-        (export RiskStatistics-add)
-    %}
-    #endif
     #endif
   public:
     RiskStatistics();

@@ -28,6 +28,9 @@
 using QuantLib::Scheduler;
 %}
 
+#if defined(SWIGRUBY)
+%mixin Scheduler "Enumerable";
+#endif
 class Scheduler {
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
     %rename(__len__)       size;

@@ -36,28 +36,16 @@ using QuantLib::TermStructure;
 class TermStructure {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("day-counter")     dayCounter;
+    %rename("todays-date")     todaysDate;
     %rename("settlement-date") settlementDate;
     %rename("max-date")        maxDate;
     %rename("max-time")        maxTime;
     %rename("zero-yield")      zeroYield;
-    #if defined(SWIGMZSCHEME)
     %rename("instantaneous-forward") instantaneousForward;
-    #endif
-    #if defined(SWIGGUILE)
-    // resolve overloadings
-    %rename(discount_vs_time)  discount(Time,bool);
-    %rename(discount_vs_date)  discount(const Date&,bool);
-    %rename(zeroYield_vs_time) zeroYield(Time,bool);
-    %rename(zeroYield_vs_date) zeroYield(const Date&,bool);
-    %rename(forward_vs_time)   forward(Time,Time,bool);
-    %rename(forward_vs_date)   forward(const Date&,const Date&,bool);
-    %rename(instantaneousForward_vs_time) instantaneousForward(Time,bool);
-    %rename(instantaneousForward_vs_date) instantaneousForward(const Date&,
-                                                               bool);
-    #endif
     #endif
   public:
     DayCounter dayCounter() const;
+	Date todaysDate() const;
 	Date settlementDate() const;
 	Date maxDate() const;
 	Time maxTime() const;
@@ -73,74 +61,10 @@ class TermStructure {
 
 %template(TermStructure) Handle<TermStructure>;
 IsObservable(Handle<TermStructure>);
-#if defined(SWIGGUILE)
-%scheme %{
-    (define (TermStructure-discount self x . extrapolate)
-      (let ((method #f))
-        (if (number? x)
-            (set! method TermStructure-discount-vs-time)
-            (set! method TermStructure-discount-vs-date))
-        (apply method self x extrapolate)))
-    (define (TermStructure-zero-yield self x . extrapolate)
-      (let ((method #f))
-        (if (number? x)
-            (set! method TermStructure-zeroYield-vs-time)
-            (set! method TermStructure-zeroYield-vs-date))
-        (apply method self x extrapolate)))
-    (define (TermStructure-forward self x1 x2 . extrapolate)
-      (let ((method #f))
-        (if (number? x1)
-            (set! method TermStructure-forward-vs-time)
-            (set! method TermStructure-forward-vs-date))
-        (apply method self x1 x2 extrapolate)))
-    (define (TermStructure-instantaneous-forward self x . extrapolate)
-      (let ((method #f))
-        (if (number? x)
-            (set! method TermStructure-instantaneousForward-vs-time)
-            (set! method TermStructure-instantaneousForward-vs-date))
-        (apply method self x extrapolate)))
-    (export TermStructure-discount
-            TermStructure-zero-yield
-            TermStructure-forward
-            TermStructure-instantaneous-forward)
-%}
-#endif
 
 
 %template(TermStructureHandle) RelinkableHandle<TermStructure>;
 IsObservable(RelinkableHandle<TermStructure>);
-#if defined(SWIGGUILE)
-%scheme %{
-    (define (TermStructureHandle-discount self x . extrapolate)
-      (let ((method #f))
-        (if (number? x)
-            (set! method TermStructureHandle-discount-vs-time)
-            (set! method TermStructureHandle-discount-vs-date))
-        (apply method self x extrapolate)))
-    (define (TermStructureHandle-zero-yield self x . extrapolate)
-      (let ((method #f))
-        (if (number? x)
-            (set! method TermStructureHandle-zeroYield-vs-time)
-            (set! method TermStructureHandle-zeroYield-vs-date))
-        (apply method self x extrapolate)))
-    (define (TermStructureHandle-forward self x1 x2 . extrapolate)
-      (let ((method #f))
-        (if (number? x1)
-            (set! method TermStructureHandle-forward-vs-time)
-            (set! method TermStructureHandle-forward-vs-date))
-        (apply method self x1 x2 extrapolate)))
-    (define (TermStructureHandle-instantaneous-forward self x . extrapolate)
-      (let ((method #f))
-        (if (number? x)
-            (set! method TermStructureHandle-instantaneousForward-vs-time)
-            (set! method TermStructureHandle-instantaneousForward-vs-date))
-        (apply method self x extrapolate)))
-    (export TermStructureHandle-discount
-            TermStructureHandle-zero-yield
-            TermStructureHandle-forward
-            TermStructureHandle-instantaneous-forward)
-%}
-#endif
 
 
 // implied term structure
@@ -157,9 +81,10 @@ class ImpliedTermStructureHandle: public Handle<TermStructure> {
     %extend {
         ImpliedTermStructureHandle(
                 const RelinkableHandle<TermStructure>& curveHandle,
-                const Date& settlementDate) {
+                const Date& todaysDate, const Date& settlementDate) {
             return new ImpliedTermStructureHandle(
-                new ImpliedTermStructure(curveHandle, settlementDate));
+                new ImpliedTermStructure(curveHandle, todaysDate, 
+                                         settlementDate));
         }
     }
 };
@@ -212,37 +137,23 @@ typedef Handle<TermStructure> FlatForwardHandle;
 class FlatForwardHandle : public Handle<TermStructure> {
   public:
     %extend {
-        FlatForwardHandle(const Date& settlementDate, 
+        FlatForwardHandle(const Date& todaysDate, 
+                          const Date& settlementDate, 
                           const RelinkableHandle<MarketElement>& forward,
                           const DayCounter& dayCounter) {
             return new FlatForwardHandle(
-                new FlatForward(settlementDate,forward,dayCounter));
+                new FlatForward(todaysDate,settlementDate,forward,dayCounter));
         }
-        #if !defined(SWIGGUILE)
-        // overload constructor
-        FlatForwardHandle(const Date& settlementDate, 
+        FlatForwardHandle(const Date& todaysDate, 
+                          const Date& settlementDate, 
                           double forward,
                           const DayCounter& dayCounter) {
             RelinkableHandle<MarketElement> h;
             h.linkTo(Handle<MarketElement>(new SimpleMarketElement(forward)));
             return new FlatForwardHandle(
-                new FlatForward(settlementDate,h,dayCounter));
+                new FlatForward(todaysDate,settlementDate,h,dayCounter));
         }
-        #endif
     }
-    #if defined(SWIGGUILE)
-    %scheme %{
-        (define FlatForward-old-init new-FlatForward)
-        (define (new-FlatForward settlement forward dayCounter)
-          (if (number? forward)
-              (deleting-let* ((m (new-SimpleMarketElement forward)
-                               delete-MarketElement)
-                              (h (new-MarketElementHandle m)
-                               delete-MarketElementHandle))
-               (FlatForward-old-init settlement h dayCounter))
-              (FlatForward-old-init settlement forward dayCounter)))
-    %}
-    #endif
 };
 
 

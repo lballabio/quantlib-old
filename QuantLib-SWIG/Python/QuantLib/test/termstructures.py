@@ -28,13 +28,13 @@ def raiseFlag():
 class TermStructureTest(unittest.TestCase):
     def setUp(self):
         today = Date_todaysDate()
-        calendar = Calendar('TARGET')
-        settlementDays = 2
-        settlement = calendar.advance(today,settlementDays,'days')
+        self.calendar = Calendar('TARGET')
+        self.settlementDays = 2
+        settlement = self.calendar.advance(today,self.settlementDays,'days')
         deposits = [
             DepositRateHelper(
                 MarketElementHandle(SimpleMarketElement(rate/100)),
-                n, units, calendar, 'mf', DayCounter('act/360'))
+                n, units, self.calendar, 'mf', DayCounter('act/360'))
             for (n,units,rate) in [ (1,  'month', 4.581),
                                     (2, 'months', 4.573),
                                     (3, 'months', 4.557),
@@ -44,7 +44,7 @@ class TermStructureTest(unittest.TestCase):
         swaps = [
             SwapRateHelper(
                 MarketElementHandle(SimpleMarketElement(rate/100)),
-                years, calendar, 'mf', 1, 0, DayCounter('30/360'), 2)
+                years, self.calendar, 'mf', 1, 0, DayCounter('30/360'), 2)
             for (years,rate) in [ ( 1, 4.54),
                                   ( 5, 4.99),
                                   (10, 5.47),
@@ -52,16 +52,18 @@ class TermStructureTest(unittest.TestCase):
                                   (30, 5.96) ]
         ]        
         
-        self.termStructure = PiecewiseFlatForward(settlement,
+        self.termStructure = PiecewiseFlatForward(today,settlement,
                                                   deposits+swaps,
                                                   DayCounter('Act/360'))
     def testImplied(self):
         "Testing consistency of implied term structure"
         tolerance = 1.0e-10
         h = TermStructureHandle(self.termStructure)
-        new_settlement = self.termStructure.settlementDate().plusYears(3)
+        new_today = self.termStructure.todaysDate().plusYears(3)
+        new_settlement = self.calendar.advance(new_today,
+                                               self.settlementDays,'days')
         test_date = new_settlement.plusYears(5)
-        implied = ImpliedTermStructure(h,new_settlement)
+        implied = ImpliedTermStructure(h,new_today,new_settlement)
         base_discount = self.termStructure.discount(new_settlement)
         discount = self.termStructure.discount(test_date)
         implied_discount = implied.discount(test_date)
@@ -76,8 +78,10 @@ unable to reproduce discount from implied curve
         global flag
         flag = None
         h = TermStructureHandle()
-        new_settlement = self.termStructure.settlementDate().plusYears(3)
-        implied = ImpliedTermStructure(h,new_settlement)
+        new_today = self.termStructure.todaysDate().plusYears(3)
+        new_settlement = self.calendar.advance(new_today,
+                                               self.settlementDays,'days')
+        implied = ImpliedTermStructure(h,new_today,new_settlement)
         obs = Observer(raiseFlag)
         obs.registerWith(implied)
         h.linkTo(self.termStructure)

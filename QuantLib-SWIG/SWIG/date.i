@@ -129,9 +129,7 @@ class Period {
     #endif
   public:
     Period(int n, TimeUnit units);
-    #if !defined(SWIGGUILE)
     Period(const std::string&);
-    #endif
     int length() const;
     TimeUnit units() const;
     %extend {
@@ -159,22 +157,6 @@ namespace std {
     %template(PeriodVector) vector<Period>;
 }
 
-#if defined(SWIGGUILE)
-%inline %{
-    Period Period_from_string(const std::string& s) {
-        return Period(s);
-    }
-%}
-%scheme %{
-(define Period-old-init new-Period)
-(define (new-Period . args)
- (if (= (length args) 1)
-     (apply Period-from-string args)
-     (apply Period-old-init args)))
-%}
-#endif
-
-
 
 
 %{
@@ -182,11 +164,11 @@ using QuantLib::Date;
 using QuantLib::DateFormatter;
 %}
 
+#if defined(SWIGRUBY)
+%mixin Date "Comparable";
+#endif
 class Date {
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-    %rename(__add__)          operator+;
-    %rename(__sub__)          operator-;
-    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("day-of-month")   dayOfMonth;
     %rename("day-of-year")    dayOfYear;
     %rename("weekday-number") weekdayNumber;
@@ -203,9 +185,7 @@ class Date {
     #endif
   public:
     Date(Day d, Month m, Year y);
-    #if !defined(SWIGGUILE)
     Date(int serialNumber);
-    #endif
     // access functions
     Weekday weekday() const;
     Day dayOfMonth() const;
@@ -292,20 +272,6 @@ namespace std {
     bool Date_greater_equal(const Date& d1, const Date& d2) {
         return d1 >= d2;
     }
-%}
-#endif
-#if defined(SWIGGUILE)
-%inline %{
-    Date Date_from_serial_number(int serialNumber) {
-        return Date(serialNumber);
-    }
-%}
-%scheme %{
-(define Date-old-init new-Date)
-(define (new-Date . args)
-    (if (= (length args) 1)
-        (apply Date-from-serial-number args)
-        (apply Date-old-init args)))
 %}
 #endif
 

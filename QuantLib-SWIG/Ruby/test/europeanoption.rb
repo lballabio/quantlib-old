@@ -58,7 +58,7 @@ class EuropeanOptionTest < RUNIT::TestCase
     today = Date.todaysDate
     settlement = Calendar.new("TARGET").advance(today,2,'days')
     TermStructureHandle.new(
-        FlatForward.new(settlement, MarketElementHandle.new(forward),
+        FlatForward.new(today, settlement, MarketElementHandle.new(forward),
                         DayCounter.new('act/360')))
   end
   def testGreeks

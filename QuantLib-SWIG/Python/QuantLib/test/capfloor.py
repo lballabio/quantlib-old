@@ -34,7 +34,7 @@ class CapFloorTest(unittest.TestCase):
                                                 self.settlementDays,"days",
                                                'following')
         self.fixingDays = 2
-        self.termStructure.linkTo(FlatForward(self.settlement,
+        self.termStructure.linkTo(FlatForward(self.today, self.settlement,
                                               0.05, DayCounter('Act/360')))
     def makeLeg(self,startDate,length):
         endDate = self.calendar.advance(startDate,length,"years",
@@ -156,8 +156,9 @@ put/call parity violated:
     # check 4
     def testCachedValue(self):
         "Testing cap/floor value against cached values"
+        cachedToday = Date(16,3,2002)
         cachedSettlement = Date(18,3,2002)
-        self.termStructure.linkTo(FlatForward(cachedSettlement,
+        self.termStructure.linkTo(FlatForward(cachedToday, cachedSettlement,
                                               0.05, DayCounter('Act/360')))
         startDate = self.termStructure.settlementDate()
         leg = self.makeLeg(startDate,20)

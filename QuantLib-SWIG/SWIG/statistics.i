@@ -39,21 +39,6 @@ class Statistics {
     %rename("downside-deviation")    downsideDeviation;
     %rename("error-estimate")        errorEstimate;
     %rename("reset!")                reset;
-    #if defined(SWIGGUILE)
-    // resolve overloading
-    %rename("add_single")            add(double,double);
-    %rename("add_sequence")          add(const std::vector<double>&);
-    %rename("add_weighted_sequence") add(const std::vector<double>&,
-                                         const std::vector<double>&);
-    %scheme %{
-        (define (Statistics-add stats value . weight)
-          (let ((method (cond ((number? value) Statistics-add-single)
-                              ((null? weight) Statistics-add-sequence)
-                              (else Statistics-add-weighted-sequence))))
-            (apply method stats value weight)))
-        (export Statistics-add)
-    %}
-    #endif
     #endif
   public:
     Size samples() const;

@@ -39,11 +39,6 @@ using QuantLib::SwaptionVolatilityStructure;
 
 %ignore SwaptionVolatilityStructure;
 class SwaptionVolatilityStructure {
-    #if defined(SWIGGUILE)
-    // resolve overloadings
-    %rename(volatility_vs_date) volatility(const Date&,const Period&,Rate);
-    %rename(volatility_vs_time) volatility(Time,double,Rate);
-    #endif
   public:
 	double volatility(const Date& exercise, const Period& length, 
                       Rate strike);
@@ -52,33 +47,10 @@ class SwaptionVolatilityStructure {
 
 %template(SwaptionVolatilityStructure) Handle<SwaptionVolatilityStructure>;
 IsObservable(Handle<SwaptionVolatilityStructure>);
-#if defined(SWIGGUILE)
-%scheme %{
-    (define (SwaptionVolatilityStructure-volatility h exercise length strike)
-      (let ((method #f))
-        (if (number? exercise)
-            (set! method SwaptionVolatilityStructure-volatility-vs-time)
-            (set! method SwaptionVolatilityStructure-volatility-vs-date))
-        (method h exercise length strike)))
-    (export SwaptionVolatilityStructure-volatility)
-%}
-#endif
 
 %template(SwaptionVolatilityStructureHandle) 
     RelinkableHandle<SwaptionVolatilityStructure>;
 IsObservable(RelinkableHandle<SwaptionVolatilityStructure>);
-#if defined(SWIGGUILE)
-%scheme %{
-    (define (SwaptionVolatilityStructureHandle-volatility h exercise 
-                                                          length strike)
-      (let ((method #f))
-        (if (number? exercise)
-            (set! method SwaptionVolatilityStructureHandle-volatility-vs-time)
-            (set! method SwaptionVolatilityStructureHandle-volatility-vs-date))
-        (method h exercise length strike)))
-    (export SwaptionVolatilityStructureHandle-volatility)
-%}
-#endif
 
 %{
 using QuantLib::Volatilities::SwaptionVolatilityMatrix;
@@ -112,11 +84,6 @@ using QuantLib::CapFlatVolatilityStructure;
 
 %ignore CapFlatVolatilityStructure;
 class CapFlatVolatilityStructure {
-    #if defined(SWIGGUILE)
-    // resolve overloadings
-    %rename(volatility_vs_date) volatility(const Date&,Rate);
-    %rename(volatility_vs_time) volatility(Time,Rate);
-    #endif
   public:
 	double volatility(const Date& end, Rate strike);
 	double volatility(Time end, Rate strike);
@@ -124,32 +91,10 @@ class CapFlatVolatilityStructure {
 
 %template(CapFlatVolatilityStructure) Handle<CapFlatVolatilityStructure>;
 IsObservable(Handle<CapFlatVolatilityStructure>);
-#if defined(SWIGGUILE)
-%scheme %{
-    (define (CapFlatVolatilityStructure-volatility h end strike)
-      (let ((method #f))
-        (if (number? end)
-            (set! method CapFlatVolatilityStructure-volatility-vs-time)
-            (set! method CapFlatVolatilityStructure-volatility-vs-date))
-        (method h end strike)))
-    (export CapFlatVolatilityStructure-volatility)
-%}
-#endif
 
 %template(CapFlatVolatilityStructureHandle)
     RelinkableHandle<CapFlatVolatilityStructure>;
 IsObservable(RelinkableHandle<CapFlatVolatilityStructure>);
-#if defined(SWIGGUILE)
-%scheme %{
-    (define (CapFlatVolatilityStructureHandle-volatility h end strike)
-      (let ((method #f))
-        (if (number? end)
-            (set! method CapFlatVolatilityStructureHandle-volatility-vs-time)
-            (set! method CapFlatVolatilityStructureHandle-volatility-vs-date))
-        (method h end strike)))
-    (export CapFlatVolatilityStructureHandle-volatility)
-%}
-#endif
 
 %{
 using QuantLib::Volatilities::CapFlatVolatilityVector;

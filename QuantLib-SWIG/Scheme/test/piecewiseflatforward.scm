@@ -91,7 +91,7 @@
                          (lambda (l) (for-each delete-RateHelper l)))
                         ; the curve itself
                         (term-structure (new-PiecewiseFlatForward
-                                         settlement instruments 
+                                         today settlement instruments 
                                          curve-day-counter)
                                         delete-TermStructure))
           (TermStructureHandle-link-to! euribor-handle term-structure)

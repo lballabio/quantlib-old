@@ -65,7 +65,7 @@
                              (lambda (l)
                                (for-each delete-RateHelper l)))
                       (term-structure (new-PiecewiseFlatForward
-                                       settlement 
+                                       today settlement 
                                        (append deposits swaps)
                                        day-counter)
                                       delete-TermStructure))
@@ -75,15 +75,22 @@
                                  delete-TermStructureHandle))
     (cond ((equal? tag 'implied)
            ; check implied term structure consistency
-           (deleting-let* ((new-settlement 
+           (deleting-let* ((calendar (new-Calendar "TARGET")
+                                     delete-Calendar)
+                           (new-today 
                             (Date-plus-years 
-                             (TermStructureHandle-settlement-date 
+                             (TermStructureHandle-todays-date 
                               term-structure)
                              3)
+                            delete-Date)
+                           (new-settlement 
+                            (Calendar-advance
+                             calendar new-today 2 "days")
                             delete-Date)
                            (test-date (Date-plus-years new-settlement 5) 
                                       delete-Date)
                            (implied (new-ImpliedTermStructure term-structure
+                                                              new-today 
                                                               new-settlement)
                                     delete-TermStructure))
              (let ((tolerance 1.0e-10)
@@ -99,15 +106,25 @@
           ((equal? tag 'implied-obs)
            ; check implied term structure observability
            (let ((flag #f))
-             (deleting-let* ((settlement (TermStructureHandle-settlement-date 
+             (deleting-let* ((calendar (new-Calendar "TARGET")
+                                     delete-Calendar)
+                             (today (TermStructureHandle-todays-date 
+                                     term-structure)
+                                    delete-Date)
+                             (settlement (TermStructureHandle-settlement-date 
                                           term-structure)
                                          delete-Date)
+                             (new-today (Date-plus-years today 3)
+                                        delete-Date)
+                             (new-settlement 
+                              (Calendar-advance
+                               calendar new-today 2 "days")
+                              delete-Date)
                              (day-counter (TermStructureHandle-day-counter
                                            term-structure)
                                           delete-DayCounter)
-                             (new-settlement (Date-plus-years settlement 3)
-                                             delete-Date)
                              (implied (new-ImpliedTermStructure term-structure 
+                                                                new-today
                                                                 new-settlement)
                                       delete-TermStructure)
                              (obs (new-Observer (lambda () (set! flag #t)))
@@ -115,7 +132,8 @@
                (deleting-let ((temp (TermStructure->Observable implied)
                                     delete-Observable))
                  (Observer-register-with obs temp))
-               (deleting-let ((new-term-structure (new-FlatForward settlement
+               (deleting-let ((new-term-structure (new-FlatForward today
+                                                                   settlement
                                                                    0.05 
                                                                    day-counter)
                                                   delete-TermStructure))
@@ -150,7 +168,10 @@
            ; check forward-spreaded term structure observability
            (let ((flag #f)
                  (tolerance 1.0e-10))
-             (deleting-let* ((settlement (TermStructureHandle-settlement-date 
+             (deleting-let* ((today (TermStructureHandle-todays-date 
+                                     term-structure)
+                                    delete-Date)
+                             (settlement (TermStructureHandle-settlement-date 
                                           term-structure)
                                          delete-Date)
                              (day-counter (TermStructureHandle-day-counter
@@ -168,7 +189,8 @@
                (deleting-let ((temp (TermStructure->Observable spreaded)
                                     delete-Observable))
                  (Observer-register-with obs temp))
-               (deleting-let ((new-term-structure (new-FlatForward settlement 
+               (deleting-let ((new-term-structure (new-FlatForward today
+                                                                   settlement 
                                                                    0.05 
                                                                    day-counter)
                                                   delete-TermStructure))
@@ -207,7 +229,10 @@
            ; check zero-spreaded term structure observability
            (let ((flag #f)
                  (tolerance 1.0e-10))
-             (deleting-let* ((settlement (TermStructureHandle-settlement-date 
+             (deleting-let* ((today (TermStructureHandle-todays-date 
+                                     term-structure)
+                                    delete-Date)
+                             (settlement (TermStructureHandle-settlement-date 
                                           term-structure)
                                          delete-Date)
                              (day-counter (TermStructureHandle-day-counter
@@ -225,7 +250,8 @@
                (deleting-let ((temp (TermStructure->Observable spreaded)
                                     delete-Observable))
                  (Observer-register-with obs temp))
-               (deleting-let ((new-term-structure (new-FlatForward settlement 
+               (deleting-let ((new-term-structure (new-FlatForward today
+                                                                   settlement 
                                                                    0.05 
                                                                    day-counter)
                                                   delete-TermStructure))
