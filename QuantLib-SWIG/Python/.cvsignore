@@ -2,3 +2,4 @@ build
 MANIFEST
 *.dep
 *.plg
+vc60.idb
