@@ -19,12 +19,11 @@
 #pragma warning(disable: 4503)
 #endif
 
-#include <Addins/C++/qladdincpp.hpp>
+#include <Addins/C++/qladdin.hpp>
 #include <iostream>
 
-using namespace ObjHandler;
-using namespace QuantLib;
 using namespace std;
+using namespace ObjHandler;
 
 int main() {
 	try {
@@ -33,45 +32,45 @@ int main() {
 		QL_LOGFILE("quantlib.log");
 		QL_LOGMESSAGE("begin example program");
 
-	    Spread dividendYield = 0.00;
-	    Rate riskFreeRate = 0.06;
-	    Volatility volatility = 0.20;
-	    Real underlying = 36;
-	    Real strike = 40;
-	    Size timeSteps = 801;
-		Date exerciseDate(17, May, 1999);
-		Date settlementDate(17, May, 1998);
-	    Date todaysDate(15, May, 1998);
+	    double dividendYield = 0.00;
+	    double riskFreeRate = 0.06;
+	    double volatility = 0.20;
+	    double underlying = 36;
+	    double strike = 40;
+	    long timeSteps = 801;
+		long exerciseDate = 36297; 		// (17, May, 1999);
+		long settlementDate = 35932; 	// (17, May, 1998);
+	    long todaysDate = 35930; 		// (15, May, 1998);
 	
-		QL_BLACKSCHOLES("my_blackscholes", dividendYield, riskFreeRate, 
-			volatility, underlying, todaysDate, settlementDate);
-		QL_OPTION("my_option", "my_blackscholes", "PUT", strike, timeSteps,
-			exerciseDate, settlementDate);
+		Properties bsProperties = QL_BLACKSCHOLES("my_blackscholes", dividendYield, 
+			riskFreeRate, volatility, underlying, todaysDate, settlementDate);
+		Properties opProperties = QL_OPTION("my_option", "my_blackscholes", "PUT", 
+			strike, timeSteps, exerciseDate, settlementDate);
 	
 		cout << endl << "High-level interrogation: after QL_OPTION" << endl;
-		// get object from handler and retrieve its properties -
-		// (properties also returned by QL_OPTION)
-		obj_ptr object = ObjectHandler::instance().retrieveObject("my_option");
-        Properties properties = object->getProperties();
 		Properties::const_iterator i;
-        for (i = properties.begin();
-            i != properties.end(); i++) {
+        for (i = opProperties.begin();
+            i != opProperties.end(); i++) {
 			ObjectProperty property = *i;
             any_ptr any = property();
             cout << "property = " << property.name() << "\tvalue = " <<
-                AnyToString(any) << endl;
+                QL_ANY2STRING(any) << endl;
         } 
 
 		QL_OPTION_SETENGINE("my_option", "Additive Equiprobabilities", 801);
 
 		cout << endl << "High-level interrogation: after QL_OPTION_SETENGINE" << endl;
-        for (i = properties.begin();
-            i != properties.end(); i++) {
+        for (i = opProperties.begin();
+            i != opProperties.end(); i++) {
 			ObjectProperty property = *i;
             any_ptr any = property();
             cout << "property = " << property.name() << "\tvalue = " <<
-                AnyToString(any) << endl;
+                QL_ANY2STRING(any) << endl;
         } 
+
+/*
+	low-level interrogation no longer supported in standard #includes -
+	will still be possible with additional #includes/links
 
 		cout << endl << "Low-level interrogation: NPV of underlying option object" << endl;
 		boost::shared_ptr<ObjectOption> objectOption = 
@@ -82,6 +81,7 @@ int main() {
 			(objectOption->getReference());
 		cout << "underlying option NPV() = " 
 			<< vanillaOption->NPV() << endl;
+*/
 
 		QL_LOGMESSAGE("end example program");
 		cout << endl << "bye" << endl;
