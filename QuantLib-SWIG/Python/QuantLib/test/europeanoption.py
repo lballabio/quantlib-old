@@ -14,9 +14,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-__version__ = "$Revision$"
-# $Id$
-
 from QuantLib import *
 import unittest
 

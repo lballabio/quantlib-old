@@ -15,8 +15,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-# $Id$
-
 from QuantLib import *
 
 __author__ = 'The QuantLib Group'

@@ -16,8 +16,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// $Id$
-
 #ifndef quantlib_interpolation_i
 #define quantlib_interpolation_i
 

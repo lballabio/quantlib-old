@@ -14,8 +14,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 =end
 
-# $Id$
-
 require 'QuantLibc'
 
 module QuantLibc

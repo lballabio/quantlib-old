@@ -14,8 +14,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 =end
 
-# $Id$
-
 require 'test/unit'
 require 'test/unit/testsuite'
 require 'test/unit/ui/console/testrunner'

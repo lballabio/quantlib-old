@@ -14,9 +14,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-__version__ = "$Revision$"
-# $Id$
-
 import QuantLib
 from QuantLib import Date, Calendar, JointCalendar
 import unittest

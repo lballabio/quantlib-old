@@ -16,9 +16,6 @@
 
 from __future__ import nested_scopes
 
-__version__ = "$Revision$"
-# $Id$
-
 import QuantLib
 import unittest
 from math import sqrt

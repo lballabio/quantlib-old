@@ -17,8 +17,6 @@
 ;
 ; The QuantLib License is also available at http://quantlib.org/license.html
 ; The members of the QuantLib Group are listed in the QuantLib License
-;
-; $Id$
 
 (define (Date-test)
   (define (test-single-date serial-number end dyold dold mold yold wdold)

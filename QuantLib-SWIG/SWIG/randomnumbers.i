@@ -16,8 +16,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// $Id$
-
 #ifndef quantlib_random_numbers_i
 #define quantlib_random_numbers_i
 

@@ -15,8 +15,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// $Id$
-
 #if defined(SWIGPYTHON) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %module QuantLib
 #elif defined(SWIGRUBY)

@@ -17,8 +17,6 @@
 ;
 ; The QuantLib License is also available at http://quantlib.org/license.html
 ; The members of the QuantLib Group are listed in the QuantLib License
-;
-; $Id$
 
 (define (Solver-1D-test)
   (define (test-solver make delete)

@@ -13,9 +13,6 @@
 ; ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 ; FOR A PARTICULAR PURPOSE.  See the license for more details.
 
-; $Id$
-
-
 ; usage
 (define (usage)
   (format #t "Usage: mzscheme -r setup scm command\n")

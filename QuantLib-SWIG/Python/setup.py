@@ -14,8 +14,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-# $Id$
-
 import os, sys, string
 from distutils.cmd import Command
 from distutils.command.install_data import install_data

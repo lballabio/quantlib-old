@@ -14,9 +14,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-__version__ = "$Revision$"
-# $Id$
-
 # see http://www.isda.org/c_and_a/pdf/mktc1198.pdf for reference
 
 import QuantLib

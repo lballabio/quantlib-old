@@ -17,8 +17,6 @@
 ;
 ; The QuantLib License is also available at http://quantlib.org/license.html
 ; The members of the QuantLib Group are listed in the QuantLib License
-;
-; $Id$
 
 (define-macro assert
   (lambda (check . msg)

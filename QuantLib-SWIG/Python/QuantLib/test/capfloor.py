@@ -14,8 +14,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-# $Id$
-
 from QuantLib import *
 import unittest
 

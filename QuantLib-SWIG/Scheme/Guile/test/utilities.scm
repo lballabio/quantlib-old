@@ -17,9 +17,6 @@
 ;
 ; The QuantLib License is also available at http://quantlib.org/license.html
 ; The members of the QuantLib Group are listed in the QuantLib License
-;
-; $Id$
-
 
 ; bind a set of names to the elements of a list
 (define-macro let-at-once
