@@ -13,11 +13,9 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
+
 /*! \file mathf.cpp
     \brief QuantLib Excel math functions
-
-    \fullpath
-    qlxl/%mathf.cpp
 */
 
 #include <qlxl/qlxlfoper.hpp>

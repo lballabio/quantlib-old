@@ -13,11 +13,10 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
+
 /*! \file utilities.cpp
     \brief QuantLib Excel utilities
 
-    \fullpath
-    qlxl/%utilities.cpp
 */
 
 #include <qlxl/qlxl.hpp>

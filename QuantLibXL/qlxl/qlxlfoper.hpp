@@ -13,11 +13,9 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
+
 /*! \file qlxlfoper.hpp
     \brief XlfOper specialization for QuantLib classes
-
-    \fullpath
-    qlxl/%qlxlfoper.hpp
 */
 
 #ifndef qlxl_qlxlfoper_h

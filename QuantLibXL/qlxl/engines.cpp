@@ -16,9 +16,6 @@
 
 /*! \file engines.cpp
     \brief QuantLib Excel pricers based on the engine framework
-
-    \fullpath
-    qlxl/%engines.cpp
 */
 
 #include <qlxl/qlxl.hpp>

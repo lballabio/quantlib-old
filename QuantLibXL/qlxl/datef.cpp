@@ -13,11 +13,9 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
+
 /*! \file datef.cpp
     \brief QuantLib Excel date functions
-
-    \fullpath
-    qlxl/%datef.cpp
 */
 
 #include <qlxl/qlxlfoper.hpp>

@@ -13,11 +13,10 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
+
 /*! \file termstructures.cpp
     \brief QuantLib Excel yield term structure functions
 
-    \fullpath
-    qlxl/%termstructures.cpp
 */
 
 #include <qlxl/qlxlfoper.hpp>
