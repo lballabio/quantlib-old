@@ -287,7 +287,6 @@ if sys.platform == 'win32':
                 extra_compile_args.append('/MD')
             else:
                 extra_compile_args.append('/MT')
-            extra_compile_args.append('/Od')
 
 else:
     from distutils import sysconfig
