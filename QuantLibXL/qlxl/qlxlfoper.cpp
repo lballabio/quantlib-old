@@ -194,7 +194,7 @@ Handle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 return Handle<BlackVolTermStructure>(ts);
                 break;
             case 2:
-                #if defined(QL_PATCH_MICROSOFT)
+                #if defined(QL_PATCH_MSVC6)
                 ts->setInterpolation(Cubic());
                 #else
                 ts->setInterpolation<Cubic>();
@@ -219,7 +219,7 @@ Handle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 return Handle<BlackVolTermStructure>(ts);
                 break;
             case 2:
-                #if defined(QL_PATCH_MICROSOFT)
+                #if defined(QL_PATCH_MSVC6)
                 ts->setInterpolation(Cubic());
                 #else
                 ts->setInterpolation<Cubic>();
@@ -255,7 +255,7 @@ Handle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 return Handle<BlackVolTermStructure>(ts);
                 break;
             case 2:
-                #if defined(QL_PATCH_MICROSOFT)
+                #if defined(QL_PATCH_MSVC6)
                 ts->setInterpolation(Cubic());
                 #else
                 ts->setInterpolation<Cubic>();
