@@ -674,6 +674,19 @@ extern "C" {
             CovFromCorr.SetArguments(matrix+volatilities);
             CovFromCorr.Register();
 
+            XlfFuncDesc CorrFromCov("xlCorrFromCov",
+                "qlCorrFromCov",
+                "Correlation matrix from covariance matrix",
+                "QuantLibXL Finance");
+            CorrFromCov.SetArguments(matrix);
+            CorrFromCov.Register();
+
+            XlfFuncDesc VolsFromCov("xlVolsFromCov",
+                "qlVolsFromCov",
+                "Volatilities array from covariance matrix",
+                "QuantLibXL Finance");
+            VolsFromCov.SetArguments(matrix);
+            VolsFromCov.Register();
 
 
             // Registers distributions

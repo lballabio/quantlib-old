@@ -23,6 +23,7 @@
 #include <ql/MonteCarlo/getcovariance.hpp>
 #include <ql/RandomNumbers/haltonrsg.hpp>
 #include <ql/RandomNumbers/faurersg.hpp>
+#include <ql/RandomNumbers/randomizedlds.hpp>
 #include <boost/shared_ptr.hpp>
 
 extern "C"
@@ -59,6 +60,11 @@ extern "C"
         GenericLowDiscrepancy<SobolRsg>::ursg_type  so3ldsg(dimension, mcSeed,
             SobolRsg::SobolLevitan);
 
+        RamdomizedLDS<SobolRsg,
+            RandomSequenceGenerator<MersenneTwisterUniformRng> >
+                rldsg(so1ldsg);
+
+
         Matrix result(samples, dimension);
         Array sample;
         for (Size j=0; j<samples; j++) {
@@ -80,6 +86,9 @@ extern "C"
                 break;
             case 6:
                 sample = so3ldsg.nextSequence().value;
+                break;
+            case 7:
+                sample = rldsg.nextSequence().value;
                 break;
             default:
                 QL_FAIL("Unknown generator");
@@ -200,9 +209,9 @@ extern "C"
         Size timeSteps = times.size();
 
 
-        Handle<TermStructure> riskFreeTS =
+        Handle<YieldTermStructure> riskFreeTS =
             QlXlfOper(xlriskFree).AsTermStructure(refDate);
-        Handle<TermStructure> dividendTS =
+        Handle<YieldTermStructure> dividendTS =
             QlXlfOper(xldividendYield).AsTermStructure(refDate);
         Handle<BlackVolTermStructure> blackVolTS =
             QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
@@ -280,9 +289,9 @@ extern "C"
         Size timeSteps = times.size();
 
 
-        Handle<TermStructure> riskFreeTS =
+        Handle<YieldTermStructure> riskFreeTS =
             QlXlfOper(xlriskFree).AsTermStructure(refDate);
-        Handle<TermStructure> dividendTS =
+        Handle<YieldTermStructure> dividendTS =
             QlXlfOper(xldividendYield).AsTermStructure(refDate);
         Handle<BlackVolTermStructure> blackVolTS =
             QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
@@ -343,4 +352,27 @@ extern "C"
         EXCEL_END;
     }
 
+    LPXLOPER EXCEL_EXPORT xlCorrFromCov(XlfOper xlmatrix) {
+
+        EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
+        Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
+        Matrix result = CovarianceDecomposition(data_matrix).correlationMatrix();
+        return XlfOper(result.rows(), result.columns(), result.begin());
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlVolsFromCov(XlfOper xlmatrix) {
+
+        EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
+        Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
+        Array result = CovarianceDecomposition(data_matrix).standardDeviations();
+        return XlfOper(result.size(), 1, result.begin());
+        EXCEL_END;
+    }
 }
