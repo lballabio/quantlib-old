@@ -57,11 +57,18 @@ end
 Version = "0.3.5"
 
 # Files
+cfg = Config::MAKEFILE_CONFIG
 Info     =    [ 'Authors.txt', 'ChangeLog.txt', 'Contributors.txt',
                 'LICENSE.TXT', 'README.txt', 'History.txt', 'News.txt',
                 'QuantLib-Ruby.spec' ]
 Sources  =    [ 'QuantLib.rb', 'quantlib_wrap.cpp' ]
-Binaries =    [ 'QuantLibc.so' ]
+case cfg['host_os']
+  when 'darwin'
+    Binary = 'QuantLibc.bundle'
+  else
+    Binary = 'QuantLibc.so'
+end
+
 Scripts  =    [ 'setup.rb' ]
 
 Interfaces =  [ 'quantlib.i',
@@ -152,7 +159,7 @@ SDist = Command.new {
     case cfg['host_os']
       when 'mswin32'
         system "zip -q -r #{distDir}.zip #{distDir}/"
-      when 'linux','linux-gnu'
+      when 'linux','linux-gnu','darwin'
         system "tar cfz #{distDir}.tar.gz #{distDir}/"
       else
         puts "Unknown host: " + cfg['host_os']
@@ -171,7 +178,7 @@ Build = Command.new {
         $CPPFLAGS += " /DNOMINMAX"
         $CPPFLAGS += " /I#{QL_DIR}"
         $LIBPATH  += ["#{QL_DIR}\\lib\\Win32\\VisualStudio"]
-      when 'linux','linux-gnu'
+      when 'linux','linux-gnu','darwin'
         $CFLAGS   += " " + (ENV['CFLAGS'] || "")
         $CPPFLAGS += " " + IO.popen("quantlib-config --cflags").gets.strip
         $CPPFLAGS += " -Wno-uninitialized -Wno-unused-function"
@@ -181,6 +188,10 @@ Build = Command.new {
         cfg['CC'] = ENV['CXX'] || "g++"
         cfg['CPP'].sub!(old_cc,cfg['CC'])
         cfg['LDSHARED'].sub!(old_cc,cfg['CC'])
+        if cfg['host_os']=='darwin'
+          cfg['LDSHARED'].sub!('cc',cfg['CC'])
+          cfg['LDSHARED'] += " -flat_namespace -undefined suppress"
+        end
       else
         puts "Unknown host: " + cfg['host_os']
     end
@@ -212,9 +223,9 @@ BDist = Command.new {
     swigDir = distDir+"/SWIG"
     testDir = distDir+"/test"
     [distDir,swigDir,testDir].each { |path| File.makedirs path }
+    File.syscopy Binary, distDir
     Info.each       { |file| File.syscopy file, distDir }
     Sources.each    { |file| File.syscopy file, distDir }
-    Binaries.each   { |file| File.syscopy file, distDir }
     Scripts.each    { |file| File.syscopy file, distDir }
     Interfaces.each { |file| File.syscopy '../SWIG/'+file, swigDir }
     Tests.each      { |file| File.syscopy 'test/'+file, testDir }
@@ -236,12 +247,12 @@ Install = Command.new {
                      Config::CONFIG["rubylibdir"].gsub(/^#{oldPrefix}/,"")
     end
     [archDir,libDir].each { |path| File.makedirs path }
-    File.install "./QuantLibc.so", archDir+"/QuantLibc.so", 0555, true
+    File.install "./"+Binary, archDir+"/"+Binary, 0555, true 
     File.install "./QuantLib.rb", libDir+"/QuantLib.rb", 0555, true
 }
 
 Clean = Command.new {
-    ['QuantLibc.so','quantlib_wrap.cpp','quantlib_wrap.o',
+    [Binary,'quantlib_wrap.cpp','quantlib_wrap.o',
      'Makefile','mkmf.log'].each { |file|
       File.safe_unlink file if File.exists? file
     }
