@@ -36,6 +36,9 @@ def test():
     from distributions import DistributionTest
     suite.addTest(DistributionTest())
 
+    from instruments import InstrumentTest
+    suite.addTest(unittest.makeSuite(InstrumentTest,'test'))
+    
     from marketelements import MarketElementTest
     suite.addTest(unittest.makeSuite(MarketElementTest,'test'))
     

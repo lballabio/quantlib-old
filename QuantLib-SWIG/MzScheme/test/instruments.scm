@@ -20,29 +20,20 @@
 ;
 ; $Id$
 
-(load "unittest.scm")
-(load "date.scm")
-(load "daycounters.scm")
-(load "distributions.scm")
-(load "instruments.scm")
-(load "marketelements.scm")
-(load "riskstatistics.scm")
-(load "solvers1d.scm")
+(require-library "quantlib.ss" "quantlib")
 
-(let ((suite (make-suite)))
-  (suite-add-test suite Date-test
-                  "Testing dates")
-  (suite-add-test suite DayCounter-test
-                  "Testing act/act day counters")
-  (suite-add-test suite Distribution-test
-                  "Testing distributions")
-  (suite-add-test suite Instrument-test
-                  "Testing observability of stocks")
-  (suite-add-test suite Market-element-test
-                  "Testing observability of market elements")
-  (suite-add-test suite Risk-statistics-test
-                  "Testing risk statistics")
-  (suite-add-test suite Solver-1D-test
-                  "Testing 1-D solvers")
-  (suite-run suite))
+(define (Instrument-test)
+  (let ((flag #f))
+    (letrec ((me (new-SimpleMarketElement 0.0))
+             (h (new-MarketElementHandle me))
+             (s (new-Stock h))
+             (obs (new-Observer (lambda () (set! flag #t)))))
+      (Observer-register-with obs s)
+      (SimpleMarketElement-value-set! me 3.14)
+      (if (not flag)
+          (error "Observer was not notified of stock value change"))
+      (delete-Observer obs)
+      (delete-Stock s)
+      (delete-MarketElementHandle h)
+      (delete-SimpleMarketElement me))))
 

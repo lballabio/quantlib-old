@@ -24,6 +24,7 @@
 (load "date.scm")
 (load "daycounters.scm")
 (load "distributions.scm")
+(load "instruments.scm")
 (load "marketelements.scm")
 (load "riskstatistics.scm")
 (load "solvers1d.scm")
@@ -35,6 +36,8 @@
                   "Testing act/act day counters")
   (suite-add-test suite Distribution-test
                   "Testing distributions")
+  (suite-add-test suite Instrument-test
+                  "Testing observability of stocks")
   (suite-add-test suite Market-element-test-1
                   "Testing observability of market elements")
   (suite-add-test suite Market-element-test-2

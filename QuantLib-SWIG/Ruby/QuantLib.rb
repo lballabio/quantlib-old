@@ -48,7 +48,6 @@ module QuantLibc
     include Enumerable
   end
   
-  
   # interface enhancements
   class Calendar
     alias advance_units advance

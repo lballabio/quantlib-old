@@ -50,3 +50,4 @@ def MarketElementHandle_new_linkTo(self,h):
     self.currentLink = h
 MarketElementHandle.__init__ = MarketElementHandle_new___init__
 MarketElementHandle.linkTo = MarketElementHandle_new_linkTo
+

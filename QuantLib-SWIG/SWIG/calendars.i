@@ -92,8 +92,8 @@ using QuantLib::Calendars::Sydney;
 #endif
 
 #if defined(SWIGRUBY)
-%predicate Calendar::isBusinessDay;
-%predicate Calendar::isHoliday;
+%rename("isBusinessDay?") isBusinessDay;
+%rename("isHoliday?")     isHoliday;
 #endif
 
 // export Calendar

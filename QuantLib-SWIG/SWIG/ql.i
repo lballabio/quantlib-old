@@ -55,6 +55,7 @@
 %include distributions.i
 %include functions.i
 %include history.i
+%include instruments.i
 %include marketelements.i
 %include null.i
 %include observer.i

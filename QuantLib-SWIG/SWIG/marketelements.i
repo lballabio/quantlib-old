@@ -27,7 +27,7 @@
 using QuantLib::MarketElement;
 using QuantLib::Handle;
 using QuantLib::RelinkableHandle;
-typedef Handle<MarketElement> MarketElementHandle;
+typedef Handle<Observable> MarketElementHandle;
 typedef RelinkableHandle<MarketElement> MarketElementRelinkableHandle;
 MarketElementHandle NullMarketElement;
 %}
@@ -35,9 +35,7 @@ MarketElementHandle NullMarketElement;
 // Export handles
 %rename(MarketElement) MarketElementHandle;
 %rename(MarketElementHandle) MarketElementRelinkableHandle;
-#if defined(SWIGPYTHON)
-%rename(__nonzero__) isNull;
-#elif defined(SWIGRUBY)
+#if defined(SWIGRUBY)
 %rename("null?")   isNull;
 %rename("linkTo!") linkTo;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -48,20 +46,12 @@ MarketElementHandle NullMarketElement;
 class MarketElementHandle : public ObservableHandle {
   private:
     MarketElementHandle();
-    #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    bool isNull() const;
-    #endif
 };
 
 %addmethods MarketElementHandle {
 	double value() {
-		return (*self)->value();
+		return Handle<MarketElement>(*self)->value();
 	}
-    #if defined(SWIGPYTHON)
-    bool __nonzero__() {
-        return !self->isNull();
-    }
-    #endif
 }
 
 class MarketElementRelinkableHandle {
@@ -86,7 +76,7 @@ class MarketElementRelinkableHandle {
 // actual market elements
 %{
 using QuantLib::SimpleMarketElement;
-typedef Handle<SimpleMarketElement> SimpleMarketElementHandle;
+typedef Handle<Observable> SimpleMarketElementHandle;
 %}
 
 #if defined(SWIGRUBY)
@@ -105,7 +95,7 @@ class SimpleMarketElementHandle : public MarketElementHandle {};
             new SimpleMarketElement(value));
     }
     void setValue(double value) {
-        (*self)->setValue(value);
+        Handle<SimpleMarketElement>(*self)->setValue(value);
     }
 }
 
@@ -114,9 +104,9 @@ class SimpleMarketElementHandle : public MarketElementHandle {};
 %{
 using QuantLib::DerivedMarketElement;
 using QuantLib::CompositeMarketElement;
-typedef Handle<DerivedMarketElement<UnaryFunction> >
+typedef Handle<Observable>
     DerivedMarketElementHandle;
-typedef Handle<CompositeMarketElement<BinaryFunction> > 
+typedef Handle<Observable> 
     CompositeMarketElementHandle;
 %}
 
