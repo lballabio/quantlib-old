@@ -90,31 +90,28 @@ class UniformRandomGenerator {
 template<class RNG> class CLGaussianRng {
   public:
     CLGaussianRng(const RNG& rng);
-    CLGaussianRng(long seed = 0);
     Sample<double> next() const;
 };
 
 %template(CentralLimitLecuyerGaussianRng) CLGaussianRng<LecuyerUniformRng>;
 %template(CentralLimitKnuthGaussianRng)   CLGaussianRng<KnuthUniformRng>;
-%template(CentralLimitMersenneTwisterGaussianRng)   
+%template(CentralLimitMersenneTwisterGaussianRng)
     CLGaussianRng<MersenneTwisterUniformRng>;
 
 template<class RNG> class BoxMullerGaussianRng {
   public:
     BoxMullerGaussianRng(const RNG& rng);
-    BoxMullerGaussianRng(long seed = 0);
     Sample<double> next() const;
 };
 
 %template(BoxMullerLecuyerGaussianRng) BoxMullerGaussianRng<LecuyerUniformRng>;
 %template(BoxMullerKnuthGaussianRng)   BoxMullerGaussianRng<KnuthUniformRng>;
-%template(BoxMullerMersenneTwisterGaussianRng)   
+%template(BoxMullerMersenneTwisterGaussianRng)
     BoxMullerGaussianRng<MersenneTwisterUniformRng>;
 
 template<class RNG, class F> class ICGaussianRng {
   public:
     ICGaussianRng(const RNG& rng);
-    ICGaussianRng(long seed = 0);
     Sample<double> next() const;
 };
 
@@ -135,7 +132,6 @@ template<class RNG, class F> class ICGaussianRng {
 class GaussianRandomGenerator {
   public:
     GaussianRandomGenerator(const UniformRandomGenerator& rng);
-    GaussianRandomGenerator(long seed=0);
     Sample<double> next() const;
 };
 

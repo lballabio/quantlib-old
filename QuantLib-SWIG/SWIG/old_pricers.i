@@ -346,8 +346,8 @@ class McDiscreteArithmeticAPO {
 	McDiscreteArithmeticAPO(OptionType type, double underlying, double strike,
                             Spread dividendYield, Rate riskFreeRate,
                             const std::vector<double>& timeDelays,
-                            double volatility, bool antitheticVariance,
-                            bool controlVariate, long seed = 0);
+                            double volatility, bool controlVariate, 
+                            long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;
     double valueWithSamples(Size samples) const;
@@ -363,8 +363,8 @@ class McDiscreteArithmeticASO {
 	McDiscreteArithmeticASO(OptionType type, double underlying,
                             Spread dividendYield, Rate riskFreeRate,
                             const std::vector<double>& timeDelays,
-                            double volatility, bool antitheticVariance,
-                            bool controlVariate, long seed = 0);
+                            double volatility, bool controlVariate, 
+                            long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;
     double valueWithSamples(Size samples) const;
@@ -380,8 +380,7 @@ class McBasket {
     McBasket(OptionType type, const std::vector<double>& underlying, 
              double strike, const Array& dividendYield, 
              const Matrix& covariance, Rate riskFreeRate, 
-             double residualTime, bool antitheticVariance, 
-             long seed = 0);
+             double residualTime, long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;
     double valueWithSamples(Size samples) const;
@@ -394,10 +393,10 @@ class McMaxBasket {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McMaxBasket(const std::vector<double>& underlying, const Array& dividendYield,
+    McMaxBasket(const std::vector<double>& underlying, 
+                const Array& dividendYield,
                 const Matrix& covariance, Rate riskFreeRate,
-                double residualTime, bool antitheticVariance,
-                long seed = 0);
+                double residualTime, long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;
     double valueWithSamples(Size samples) const;
@@ -410,10 +409,11 @@ class McHimalaya {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McHimalaya(const std::vector<double>& underlying, const Array& dividendYield,
+    McHimalaya(const std::vector<double>& underlying, 
+               const Array& dividendYield,
                const Matrix& covariance, Rate riskFreeRate,
 			   double strike, const std::vector<double>& timeDelays,
-		       bool antitheticVariance, long seed = 0);
+		       long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;
     double valueWithSamples(Size samples) const;
@@ -428,7 +428,7 @@ class McEverest {
   public:
     McEverest(const Array& dividendYield, const Matrix& covariance,
               Rate riskFreeRate, Time residualTime,
-			  bool antitheticVariance, long seed = 0);
+			  long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;
     double valueWithSamples(Size samples) const;
@@ -441,10 +441,11 @@ class McPagoda {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McPagoda(const std::vector<double>& portfolio, double fraction, double roof,
+    McPagoda(const std::vector<double>& portfolio, 
+             double fraction, double roof,
 		     const Array& dividendYield, const Matrix& covariance,
 		     Rate riskFreeRate, const std::vector<double>& timeDelays,
-		     bool antithetic, long seed = 0);
+		     long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;
     double valueWithSamples(Size samples) const;
