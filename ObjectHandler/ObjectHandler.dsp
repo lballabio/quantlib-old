@@ -229,6 +229,10 @@ SOURCE=.\ObjectHandler\property.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\ObjectHandler\singleton.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\ObjectHandler\utilities.hpp
 # End Source File
 # End Group
