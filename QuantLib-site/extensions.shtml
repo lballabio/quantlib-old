@@ -4,6 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
+<meta name="generator" content=
+"HTML Tidy for Linux/x86 (vers 1st March 2004), see www.w3.org">
 <meta name="author" content="Ferdinando Ametrano">
 <meta name="copyright" content=
 "Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
@@ -17,17 +19,17 @@
 <h1>QuantLib-based Extension</h1>
 <p>QuantLib is already <a href="download.shtml">available</a> as a
 <strong>Guile</strong>, <strong>MzScheme</strong>,
-<strong>Python</strong>, and <strong>Ruby</strong> modules by means of
-<a href="http://swig.sourceforge.net">SWIG</a>.<br> SWIG also supports
-Java, Tcl/Tk, Perl, and PHP, so this approach may easily help porting
-QuantLib to these languages. SWIG modules are available in the
-QuantLib <a href="cvs.shtml">CVS</a> under QuantLib-SWIG. We welcome
-any contribution aimed at exporting the library towards other
-programming languages; however, the use of SWIG is to be preferred to
-hand-made approaches since it leads to more maintainable code.</p>
-<p><strong>QuantLibXL</strong> is
-an initial Excel add-in built using <a href=
-"http://xlw.sf.net">xlw</a>.</p>
+<strong>Python</strong>, and <strong>Ruby</strong> modules by means
+of <a href="http://swig.sourceforge.net">SWIG</a>.<br>
+SWIG also supports Java, Tcl/Tk, Perl, and PHP, so this approach
+may easily help porting QuantLib to these languages. SWIG modules
+are available in the QuantLib <a href="cvs.shtml">CVS</a> under
+QuantLib-SWIG. We welcome any contribution aimed at exporting the
+library towards other programming languages; however, the use of
+SWIG is to be preferred to hand-made approaches since it leads to
+more maintainable code.</p>
+<p><strong>QuantLibXL</strong> is an initial Excel add-in built
+using <a href="http://xlw.sf.net">xlw</a>.</p>
 <p>QuantLib has been ported to the .NET framework in C#. See
 <a href="http://www.quantlib.net">http://www.quantlib.net</a> and
 <a href="http://www.capetools.net">http://www.capetools.net</a> for

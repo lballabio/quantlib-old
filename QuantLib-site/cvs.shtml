@@ -4,6 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
+<meta name="generator" content=
+"HTML Tidy for Linux/x86 (vers 1st March 2004), see www.w3.org">
 <meta name="author" content="Ferdinando Ametrano">
 <meta name="copyright" content=
 "Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
@@ -36,9 +38,9 @@ Guile.)</li>
 L.</em></p>
 <p>You can <a href=
 "http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/quantlib/">browse
-the CVS tree</a>: this gives you a view into the current
-status of the project's code. You may also view the complete
-histories of any file in the repository.</p>
+the CVS tree</a>: this gives you a view into the current status of
+the project's code. You may also view the complete histories of any
+file in the repository.</p>
 <h3>Anonymous CVS Access</h3>
 <p>The modules can be checked out through anonymous (pserver) CVS
 with the following instruction set. The module you wish to check

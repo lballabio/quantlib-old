@@ -4,6 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
+<meta name="generator" content=
+"HTML Tidy for Linux/x86 (vers 1st March 2004), see www.w3.org">
 <meta name="author" content="Ferdinando Ametrano">
 <meta name="copyright" content=
 "Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
@@ -48,9 +50,10 @@ your message is valid.<br>
 <a href=
 "http://lists.sourceforge.net/mailman/listinfo/quantlib-jobs">Subscribe/Unsubscribe/Preferences</a>)</li>
 <li><strong>quantlib-cvs</strong>:<br>
-High-traffic list for automated QuantLib <a href="cvs.shtml">CVS</a>
-check-in messages. Every time the QuantLib CVS code changes an email
-documenting the change is automatically generated.<br>
+High-traffic list for automated QuantLib <a href=
+"cvs.shtml">CVS</a> check-in messages. Every time the QuantLib CVS
+code changes an email documenting the change is automatically
+generated.<br>
 Suggested for developers only. Please do not directly post to this
 list.<br>
 (not archived yet, <a href=
