@@ -27,8 +27,8 @@
 %{
 using QuantLib::TermStructures::CompoundForward;
 typedef Handle<TermStructure> CompoundForwardHandle;
-using QuantLib::TermStructures::CompoundSpreadedTermStructure;
-typedef Handle<TermStructure> CompoundSpreadedTermStructureHandle;
+//using QuantLib::TermStructures::CompoundSpreadedTermStructure;
+//typedef Handle<TermStructure> CompoundSpreadedTermStructureHandle;
 %}
 
 %rename(CompoundForward) CompoundForwardHandle;
@@ -56,6 +56,7 @@ class CompoundForwardHandle : public Handle<TermStructure> {
     }
 };
 
+/*
 %rename(CompoundSpreadedTermStructure) CompoundSpreadedTermStructureHandle;
 class CompoundSpreadedTermStructureHandle : public Handle<TermStructure> {
   public:
@@ -79,6 +80,7 @@ class CompoundSpreadedTermStructureHandle : public Handle<TermStructure> {
         }
     }
 };
+*/
 
 
 #endif
