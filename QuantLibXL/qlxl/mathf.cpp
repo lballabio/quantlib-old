@@ -140,7 +140,7 @@ extern "C"
         XlfOper xlmean, XlfOper xlstd_dev) {
         EXCEL_BEGIN;
         double result =
-            RiskMeasures().gaussianEpectedShortfall(
+            RiskMeasures().gaussianExpectedShortfall(
             xlpercentile.AsDouble(), xlmean.AsDouble(), xlstd_dev.AsDouble());
         return XlfOper(result);
         EXCEL_END;
