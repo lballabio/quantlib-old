@@ -115,21 +115,25 @@ A:</strong> To get the developer name from the user name, go to
 "http://sourceforge.net/project/memberlist.php?group_id=12740">http://sourceforge.net/project/memberlist.php?group_id=12740</a></p>
 <h3><a name="g5" id="g5"></a>1.5.:</h3>
 <p><strong>Q: How do I became a developer?<br>
-A:</strong>Write to the QuantLib <a href=
-"mailto:ferdinando@ametrano.net">administrator</a> and describe
-your experience and interests.<br>
-You will need a SourceForge.net account: your SourceForge.net
-user-name is necessary to grant you write permission on the CVS. If
-you don't have an account yet go to the <em>New Account
-Registration</em> page at <a href=
-"http://sourceforge.net/account/register.php">http://sourceforge.net/account/register.php</a><br>
-
-Please read the <a href="style.shtml">Programming Style
-Guidelines</a> and this FAQ file (especially the part about CVS),
-subscribe the QuantLib <a href=
-"http://sourceforge.net/mail/?group_id=12740">mailing lists</a>,
-and take a look at the <a href=
-"http://sourceforge.net/projects/quantlib">project page</a>.</p>
+A:</strong>Contact either project administrators (<a href=
+"mailto:nando at users.sourceforge.net">Nando</a>  and <a href=
+"mailto:lballabio at users.sourceforge.net">Luigi</a>) and describe
+your experience and interests. Before doing this, please read:
+<ul>
+<li>the generic <a href=
+"http://cvs.sourceforge.net/viewcvs.py/quantlib/QuantLib/dev_tools/newdeveloperintro.txt?view=markup">introduction
+for new developers</a></li>
+<li>the project <a href=
+"http://www.quantlib.org/reference/overview.html">overview</a>, with its to-do
+suggestions</li>
+<li>the <a href=
+"http://www.quantlib.org/reference/faq.html">FAQ</a></li>
+<li>The Programming Style Guidelines
+      <http://www.quantlib.org/style.shtml></li>
+<li>the detailed low-level to-do list
+      <http://www.quantlib.org/reference/todo.html></li>
+</ul>
+</p>
 <h3><a name="g6" id="g6"></a>1.6.:</h3>
 <p><strong>Q: Which book do you suggest for ...?<br>
 A:</strong>Please see this <a href="books.shtml">list of
