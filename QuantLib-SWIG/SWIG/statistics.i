@@ -26,11 +26,11 @@
 %include stl.i
 
 %{
-using QuantLib::Math::GaussianStatistics;
+using QuantLib::Math::Statistics;
 using QuantLib::Math::SequenceStatistics;
 %}
 
-class GaussianStatistics {
+class Statistics {
     #if defined(SWIGRUBY)
     %rename("reset!")                reset;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -100,7 +100,7 @@ class SequenceStatistics {
     void add(const Array& value, double weight = 1.0);
 };
 
-%template(MultipleStatistics) SequenceStatistics<GaussianStatistics>;
+%template(MultipleStatistics) SequenceStatistics<Statistics>;
 
 %{
 using QuantLib::Math::MultivariateAccumulator;
