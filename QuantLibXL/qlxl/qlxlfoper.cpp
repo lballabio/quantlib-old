@@ -27,6 +27,7 @@
 
 using namespace QuantLib;
 using namespace QuantLib::Math;
+using namespace QuantLib::VolTermStructures;
 //using QuantLib::DayCounter;
 //using QuantLib::Date;
 //using QuantLib::Math::Matrix;
@@ -129,7 +130,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
         // constant vol
         double vol = range(0,0).AsDouble();
         return Handle<BlackVolTermStructure>(new
-            VolTermStructures::BlackConstantVol(referenceDate,
+            BlackConstantVol(referenceDate,
             vol));
     } else if (rowNo==2 && colNo>=1) {
         // time dependent vol
@@ -139,20 +140,16 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
             dates[j] = QlXlfOper(range(0, j)).AsDate();
             vols[j] = range(1, j).AsDouble();
         }
+        Handle<BlackVolTermStructure> ts = Handle<BlackVolTermStructure>(new
+            BlackVarianceCurve(referenceDate,dates,vols));
         switch (interpolationType) {
             case 1:
-                return Handle<BlackVolTermStructure>(new
-                    VolTermStructures::BlackVarianceCurve<LinearInterpolation<
-                    std::vector<double>::const_iterator,
-			        std::vector<double>::const_iterator> >(
-                    referenceDate, dates, vols));
+                return ts;
                 break;
             case 2:
-                return Handle<BlackVolTermStructure>(new
-                    VolTermStructures::BlackVarianceCurve<CubicSpline<
-                    std::vector<double>::const_iterator,
-			        std::vector<double>::const_iterator> >(
-                    referenceDate, dates, vols));
+                dynamic_cast<BlackVarianceCurve*>(ts)->setInterpolation(
+                    CubicSpline());
+                return ts;
                 break;
             default:
                 throw IllegalArgumentError(
@@ -175,22 +172,15 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 vols[i-1][j-1] = range(i, j).AsDouble();
             }
         }
+        Handle<BlackVolTermStructure> ts = Handle<BlackVolTermStructure>(new
+            BlackVarianceSurface(referenceDate, dates, strikes, vols));
         switch (interpolationType) {
             case 1:
-                return Handle<QuantLib::BlackVolTermStructure>(new
-                    VolTermStructures::BlackVarianceSurface<
-                    BilinearInterpolation<
-                    std::vector<double>::const_iterator,
-			        std::vector<double>::const_iterator,
-                    Matrix> >(referenceDate, dates, strikes, vols));
+                return ts;
                 break;
             case 2:
-                return Handle<QuantLib::BlackVolTermStructure>(new
-                    VolTermStructures::BlackVarianceSurface<
-                    BicubicSplineInterpolation<
-                    std::vector<double>::const_iterator,
-			        std::vector<double>::const_iterator,
-                    Matrix> >(referenceDate, dates, strikes, vols));
+                ts->setInterpolation();
+                return ts;
                 break;
             default:
                 throw IllegalArgumentError(

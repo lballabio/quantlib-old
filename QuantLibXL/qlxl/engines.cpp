@@ -31,6 +31,7 @@ extern "C"
 
     using namespace QuantLib;
     using namespace QuantLib::PricingEngines;
+    using namespace QuantLib::Instruments;
 
     LPXLOPER EXCEL_EXPORT xlEuropeanOption(
                         XlfOper xltype,
@@ -48,8 +49,8 @@ extern "C"
         Handle<AnalyticEuropeanEngine> engine(new
             AnalyticEuropeanEngine);
 
-        VanillaOptionArguments* arguments =
-            dynamic_cast<VanillaOptionArguments*>(
+        VanillaOption::arguments* arguments =
+            dynamic_cast<VanillaOption::arguments*>(
                 engine->arguments());
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
@@ -70,8 +71,8 @@ extern "C"
         arguments->validate();
         engine->calculate();
 
-        const VanillaOptionResults* vResults =
-            dynamic_cast<const VanillaOptionResults*>(
+        const VanillaOption::results* vResults =
+            dynamic_cast<const VanillaOption::results*>(
                 engine->results());
         double results[8];
         results[0] = vResults->value;
@@ -108,14 +109,14 @@ extern "C"
         Handle<AnalyticEuropeanEngine> baseEngine(new
             AnalyticEuropeanEngine);
 
-        Handle<QuantoEngine<VanillaOptionArguments,
-                            VanillaOptionResults> >
-            quantoEngine(new QuantoEngine<VanillaOptionArguments,
-                                          VanillaOptionResults>(baseEngine));
+        Handle<QuantoEngine<VanillaOption::arguments,
+                            VanillaOption::results> >
+            quantoEngine(new QuantoEngine<VanillaOption::arguments,
+                                          VanillaOption::results>(baseEngine));
 
-        PricingEngines::QuantoOptionArguments<VanillaOptionArguments>* arguments =
+        QuantoOptionArguments<VanillaOption::arguments>* arguments =
             dynamic_cast
-            <QuantoOptionArguments<VanillaOptionArguments>*>(
+            <QuantoOptionArguments<VanillaOption::arguments>*>(
             quantoEngine->arguments());
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
@@ -143,8 +144,8 @@ extern "C"
         arguments->validate();
         quantoEngine->calculate();
 
-        const VanillaOptionResults* vResults =
-            dynamic_cast<const VanillaOptionResults*>(
+        const VanillaOption::results* vResults =
+            dynamic_cast<const VanillaOption::results*>(
                 quantoEngine->results());
         double results[10];
         results[0] = vResults->value;
@@ -155,8 +156,8 @@ extern "C"
         results[5] = vResults->rho;
         results[6] = vResults->dividendRho;
 
-        const QuantoOptionResults<VanillaOptionResults>* qResults =
-            dynamic_cast<const QuantoOptionResults<VanillaOptionResults>*>(
+        const QuantoOptionResults<VanillaOption::results>* qResults =
+            dynamic_cast<const QuantoOptionResults<VanillaOption::results>*>(
                 quantoEngine->results());
         results[7] = qResults->qvega;
         results[8] = qResults->qrho;
@@ -182,14 +183,14 @@ extern "C"
 
         Handle<AnalyticEuropeanEngine> baseEngine(new
             AnalyticEuropeanEngine);
-        Handle<ForwardEngine<VanillaOptionArguments,
-                             VanillaOptionResults> >
-            forwardEngine(new ForwardEngine<VanillaOptionArguments,
-                                            VanillaOptionResults>(baseEngine));
+        Handle<ForwardEngine<VanillaOption::arguments,
+                             VanillaOption::results> >
+            forwardEngine(new ForwardEngine<VanillaOption::arguments,
+                                            VanillaOption::results>(baseEngine));
 
-        PricingEngines::ForwardOptionArguments<VanillaOptionArguments>*
+        ForwardOptionArguments<VanillaOption::arguments>*
             arguments = dynamic_cast
-            <ForwardOptionArguments<VanillaOptionArguments>*>(
+            <ForwardOptionArguments<VanillaOption::arguments>*>(
             forwardEngine->arguments());
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
@@ -215,8 +216,8 @@ extern "C"
         arguments->validate();
         forwardEngine->calculate();
 
-        const VanillaOptionResults* vResults =
-            dynamic_cast<const VanillaOptionResults*>(
+        const VanillaOption::results* vResults =
+            dynamic_cast<const VanillaOption::results*>(
                 forwardEngine->results());
         double results[7];
         results[0] = vResults->value;
@@ -250,16 +251,16 @@ extern "C"
         Handle<AnalyticEuropeanEngine> baseEngine(new
             AnalyticEuropeanEngine);
 
-        Handle<ForwardPerformanceEngine<VanillaOptionArguments,
-                                        VanillaOptionResults> >
+        Handle<ForwardPerformanceEngine<VanillaOption::arguments,
+                                        VanillaOption::results> >
             forwardPerformanceEngine(
-                new ForwardPerformanceEngine<VanillaOptionArguments,
-                                             VanillaOptionResults>(
+                new ForwardPerformanceEngine<VanillaOption::arguments,
+                                             VanillaOption::results>(
                     baseEngine));
 
-        PricingEngines::ForwardOptionArguments<VanillaOptionArguments>*
+        ForwardOptionArguments<VanillaOption::arguments>*
             arguments = dynamic_cast
-            <ForwardOptionArguments<VanillaOptionArguments>*>(
+            <ForwardOptionArguments<VanillaOption::arguments>*>(
             forwardPerformanceEngine->arguments());
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
@@ -286,8 +287,8 @@ extern "C"
         arguments->validate();
         forwardPerformanceEngine->calculate();
 
-        const VanillaOptionResults* vResults =
-            dynamic_cast<const VanillaOptionResults*>(
+        const VanillaOption::results* vResults =
+            dynamic_cast<const VanillaOption::results*>(
                 forwardPerformanceEngine->results());
         double results[7];
         results[0] = vResults->value;
