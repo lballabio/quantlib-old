@@ -32,16 +32,16 @@ void propertiesToVaries(const Properties &properties, VariesList *variesList) {
 		sprintf(variesList->varies[i].Label, property.name().c_str());
         any_ptr a = property();
 		if (a->type() == typeid(int)) {
-			variesList->varies[i].type = Varies.INT;
+			variesList->varies[i].type = INT;
 		    variesList->varies[i].AsInt = boost::any_cast<int>(*a);
 		} else if (a->type() == typeid(long)) {
-			variesList->varies[i].type = Varies.LONG;
+			variesList->varies[i].type = LONG;
 		    variesList->varies[i].AsLong = boost::any_cast<long>(*a);
 		} else if (a->type() == typeid(double)) {
-			variesList->varies[i].type = Varies.DOUBLE;
+			variesList->varies[i].type = DOUBLE;
 		    variesList->varies[i].AsDouble = boost::any_cast<double>(*a);
 		} else if (a->type() == typeid(std::string)) {
-			variesList->varies[i].type = Varies.CHARP;
+			variesList->varies[i].type = CHARP;
 		    sprintf(variesList->varies[i].AsCharP, (boost::any_cast<std::string>(*a)).c_str());
 		} else {
 			delete [] variesList->varies;
@@ -52,13 +52,13 @@ void propertiesToVaries(const Properties &properties, VariesList *variesList) {
 
 char c[100];	// FIXME
 const char *variesToString(const Varies *v) {
-	if (v->type == Varies.INT)
+	if (v->type == INT)
 		sprintf(c, "%d", v->AsInt);
-	else if (v->type == Varies.LONG)
+	else if (v->type == LONG)
 		sprintf(c, "%d", v->AsLong);
-	else if (v->type == Varies.DOUBLE)
+	else if (v->type == DOUBLE)
 		sprintf(c, "%f", v->AsDouble);
-	else if (v->type == Varies.CHARP)
+	else if (v->type == CHARP)
 		sprintf(c, "%s", v->AsCharP);
 	else
 		throw Exception("variesToString: unrecognized type");
@@ -81,7 +81,7 @@ int QL_BLACKSCHOLES_C(
 			riskFreeRate, volatility, underlying, todaysDate, settlementDate);
 		propertiesToVaries(properties, result);
 		return SUCCESS;
-	} catch (const exception &e) {
+	} catch (const std::exception &e) {
 		QL_LOGMESSAGE("QL_BLACKSCHOLES_C Error: " + string(e.what()));
 		result = 0;
 		return FAIL;
@@ -102,7 +102,7 @@ int QL_OPTION_C(
 			strike, timeSteps, exerciseDate, settlementDate);
 		propertiesToVaries(properties, result);
 		return SUCCESS;
-	} catch (const exception &e) {
+	} catch (const std::exception &e) {
 		QL_LOGMESSAGE("QL_OPTION_C Error: " + string(e.what()));
 		result = 0;
 		return FAIL;

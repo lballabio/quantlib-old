@@ -23,6 +23,9 @@
 // utilities - to be moved to separate file
 
 // from http://www.kuro5hin.org/story/2002/5/1/142321/9513
+
+typedef enum { INT, LONG, DOUBLE, CHARP } Type;
+
 typedef struct {
 	union {
 		int AsInt;
@@ -31,7 +34,7 @@ typedef struct {
 //		char* AsCharP;
 		char AsCharP[100];	// FIXME to be allocated on stack
 	};
-	enum { INT, LONG, DOUBLE, CHARP } type;
+	Type type;
 	char Label[100];		// FIXME to be allocated on stack
 } Varies;
 
@@ -84,3 +87,4 @@ void QL_LOGMESSAGE_C(
 //	const string &handle);
 
 #endif
+

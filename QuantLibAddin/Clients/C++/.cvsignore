@@ -7,3 +7,5 @@ ClientCPP.opt
 ClientCPP.plg
 ClientCPP_private.*
 Makefile.win
+QLADemo
+quantlib.log

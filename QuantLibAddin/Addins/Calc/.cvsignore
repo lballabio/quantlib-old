@@ -5,3 +5,7 @@ AddinCalc.mak
 AddinCalc.ncb
 AddinCalc.opt
 AddinCalc.plg
+QuantLibAddin.flag*
+QuantLibAddin.rdb
+QuantLibAddin.urd
+com
