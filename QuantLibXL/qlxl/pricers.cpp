@@ -47,6 +47,8 @@ extern "C"
     {
         EXCEL_BEGIN;
 
+    	WIZARD_NO_CALC;
+
         Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying    = xlunderlying.AsDouble();
         double strike        = xlstrike.AsDouble();
@@ -88,6 +90,8 @@ extern "C"
                         XlfOper xlvolatility)
     {
         EXCEL_BEGIN;
+
+    	WIZARD_NO_CALC;
 
         Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying       = xlunderlying.AsDouble();
@@ -135,6 +139,8 @@ extern "C"
                         XlfOper xlsamples)
     {
         EXCEL_BEGIN;
+
+    	WIZARD_NO_CALC;
 
         Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying = xlunderlying.AsDouble();
@@ -223,6 +229,8 @@ extern "C"
     {
         EXCEL_BEGIN;
 
+    	WIZARD_NO_CALC;
+
         Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying       = xlunderlying.AsDouble();
         double moneyness           = xlmoneyness.AsDouble();
@@ -263,6 +271,8 @@ extern "C"
                         XlfOper xlsamples)
     {
         EXCEL_BEGIN;
+
+    	WIZARD_NO_CALC;
 
         Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying       = xlunderlying.AsDouble();
@@ -313,6 +323,8 @@ extern "C"
                         XlfOper xlgridPoints)
     {
         EXCEL_BEGIN;
+
+    	WIZARD_NO_CALC;
 
         Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying    = xlunderlying.AsDouble();

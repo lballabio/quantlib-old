@@ -46,6 +46,8 @@ extern "C"
     {
         EXCEL_BEGIN;
 
+    	WIZARD_NO_CALC;
+
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
         boost::shared_ptr<SimpleQuote> spot(new
@@ -99,6 +101,8 @@ extern "C"
                         XlfOper xlsamples)
     {
         EXCEL_BEGIN;
+
+    	WIZARD_NO_CALC;
 
         // some of them hard coded for the time being
         Size maxTimeStepPerYear = Null<Size>();
@@ -166,6 +170,8 @@ extern "C"
                         XlfOper xlcorrelation)
     {
         EXCEL_BEGIN;
+
+    	WIZARD_NO_CALC;
 
         boost::shared_ptr<VanillaOption::engine> baseEngine(
             new AnalyticEuropeanEngine);
@@ -236,6 +242,8 @@ extern "C"
     {
         EXCEL_BEGIN;
 
+    	WIZARD_NO_CALC;
+
         boost::shared_ptr<VanillaOption::engine> baseEngine(
             new AnalyticEuropeanEngine);
 
@@ -301,6 +309,8 @@ extern "C"
                         XlfOper xlinterpolationType)
     {
         EXCEL_BEGIN;
+
+    	WIZARD_NO_CALC;
 
         boost::shared_ptr<VanillaOption::engine> baseEngine(
             new AnalyticEuropeanEngine);
