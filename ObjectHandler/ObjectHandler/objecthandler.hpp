@@ -39,7 +39,7 @@ namespace ObjHandler {
 	*/
     typedef std::map<std::string, obj_ptr> ObjectList;
 
-	//! Object Handler class
+    //! Object Handler class
 	/*! maintains a repository of objects
         objects may be created/amended/destroyed
 		by client application
@@ -54,12 +54,12 @@ namespace ObjHandler {
 			is deleted
 		*/
         void storeObject(const std::string &handle,
-                        const obj_ptr &object);
+                         const obj_ptr &object);
 		//! retrieve object with given handle
 		/*! returns null if no object exists
 			with that handle
 		*/
-	    obj_ptr retrieveObject(const std::string &handle);
+	    obj_ptr retrieveObject(const std::string &handle) const;
 		//@}
     private:
         ObjectHandler() {}

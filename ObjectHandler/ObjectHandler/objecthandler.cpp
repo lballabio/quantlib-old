@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Ferdinando Ametrano
  Copyright (C) 2004 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -24,8 +25,15 @@ namespace ObjHandler {
 	    objectList_[handle] = object;
     }
 
-    obj_ptr ObjectHandler::retrieveObject(const std::string &handle) {
-	    return objectList_[handle];
+    obj_ptr ObjectHandler::retrieveObject(const std::string &handle) const {
+	    /* return objectList_[handle];
+           cannot be used as it is non-const
+        */
+        ObjectList::const_iterator result = objectList_.find(handle);
+        if (result!=objectList_.end())
+            return result->second;
+        else
+            return obj_ptr();
     }
 
 }
