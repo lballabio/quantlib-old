@@ -89,6 +89,30 @@ def generateParamList(
             ret += ',\n'
     return ret
 
+def generateConversions(paramList):
+    'generate code to convert arrays to vectors/matrices'
+    ret = ''
+    for param in paramList:
+        if param[common.TENSOR] == common.VECTOR: 
+            if param[common.TYPE] == common.STRING:
+                type = 'std::string'
+            else:
+                type = param[common.TYPE]
+            ret += 8 * ' ' + 'std::vector <' + type + \
+                '> ' + param[common.NAME] + 'Vector =\n' + \
+                12 * ' ' + param[common.TYPE] + 'ArrayToVector(' + \
+                param[common.NAME] + ');\n'
+        elif param[common.TENSOR] == common.MATRIX: 
+            if param[common.TYPE] == common.STRING:
+                type = 'std::string'
+            else:
+                type = param[common.TYPE]
+            ret += 8 * ' ' + 'std::vector < std::vector < ' + \
+                type + '> >' + param[common.NAME] + \
+                'Matrix =\n' + 12 * ' ' + param[common.TYPE] + \
+                'ArrayToMatrix(' + param[common.NAME] + ');\n'
+    return ret
+
 def printTimeStamp(fileBuf, commentChar):
     fileBuf.write(HEADER % (commentChar, 
         os.path.basename(sys.argv[0]), time.asctime(), commentChar))

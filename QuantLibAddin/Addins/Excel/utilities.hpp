@@ -32,9 +32,9 @@ std::string getCaller();
 void setValues(LPXLOPER xArray,
                ObjHandler::Properties properties,
                const std::string &handle);
-std::vector <long> longXLOPERToVector(LPXLOPER xVec);
-std::vector <double> doubleXLOPERToVector(LPXLOPER xVec);
-std::vector <std::string> stringXLOPERToVector(LPXLOPER xVec);
-std::vector <std::vector <double> >doubleXLOPERToMatrix(LPXLOPER xVec);
+std::vector <long> longArrayToVector(LPXLOPER xVec);
+std::vector <double> doubleArrayToVector(LPXLOPER xVec);
+std::vector <std::string> stringArrayToVector(LPXLOPER xVec);
+std::vector <std::vector <double> >doubleArrayToMatrix(LPXLOPER xVec);
 
 #endif

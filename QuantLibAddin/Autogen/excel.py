@@ -51,8 +51,12 @@ def generateFuncRegister(fileHeader, function):
         raise ValueError, MAXPARMERR % MAXPARAM
     paramStr = generateParamString(function)
     paramList = ''
+    i = 0
     for param in params:
-        paramList += param[common.NAME] + ','
+        paramList += param[common.NAME]
+        i += 1
+        if i < numParams:
+            paramList += ','
     if function[common.CTOR]:
         paramList = "handle," + paramList
     if len(paramList) >= MAXLEN:
@@ -96,22 +100,6 @@ def generateFuncRegisters(functionDefs):
     fileHeader.write(bufFoot)
     fileHeader.close()
 
-def generateConversions(paramList):
-    'generate code to convert XLOPERs to vectors/matrices'
-    ret = ''
-    for param in paramList:
-        if param[common.TENSOR] == common.VECTOR: 
-            ret += 8 * ' ' + 'std::vector <' + param[common.TYPE] + \
-                '> ' + param[common.NAME] + \
-                'Vector = \n' + 12 * ' ' + param[common.TYPE] + \
-                'XLOPERToVector(' + param[common.NAME] + ');\n'
-        elif param[common.TENSOR] == common.MATRIX: 
-            ret += 8 * ' ' + 'std::vector < std::vector <' + \
-                param[common.TYPE] + '> >' + param[common.NAME] + \
-                'Matrix = \n' + 12 * ' ' + param[common.TYPE] + \
-                'XLOPERToMatrix(' + param[common.NAME] + ');\n'
-    return ret
-
 def generateFuncDef(fileFunc, function, bufBody):
     'generate source code for body of given function'
     paramList1 = utils.generateParamList(function[common.PARAMS], 2,
@@ -126,7 +114,7 @@ def generateFuncDef(fileFunc, function, bufBody):
         handle1 = ''
         handle2 = ''
         handle3 = ''
-    conversions = generateConversions(function[common.PARAMS])
+    conversions = utils.generateConversions(function[common.PARAMS])
     fileFunc.write(bufBody %
         (function[common.CODENAME], handle1, paramList1, conversions, handle2,
         function[common.NAME], handle3, paramList2, function[common.NAME]))

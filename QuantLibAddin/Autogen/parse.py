@@ -10,7 +10,7 @@ def getText(parentNode):
     if parentNode != None:
         for node in parentNode.childNodes:
             if node.nodeType == node.TEXT_NODE:
-                t = t + node.data
+                t += node.data
     return t
 
 def getBoolean(parentNode):

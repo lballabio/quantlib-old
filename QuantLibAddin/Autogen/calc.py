@@ -83,22 +83,6 @@ def generateHeaders(functionGroups):
             fileHeader.write('\n')
     fileHeader.close()
 
-def generateConversions(paramList):
-    'generate code to convert arrays to vectors/matrices'
-    ret = ''
-    for param in paramList:
-        if param[common.TENSOR] == common.VECTOR: 
-            ret += 8 * ' ' + 'std::vector <' + param[common.TYPE] + \
-                '> ' + param[common.NAME] + 'Vector =\n' + \
-                12 * ' ' + param[common.TYPE] + 'SequenceToVector(' + \
-                param[common.NAME] + ');\n'
-        elif param[common.TENSOR] == common.MATRIX: 
-            ret += 8 * ' ' + 'std::vector < std::vector < ' + \
-                param[common.TYPE] + '> >' + param[common.NAME] + \
-                'Matrix =\n' + 12 * ' ' + param[common.TYPE] + \
-                'SequenceToMatrix(' + param[common.NAME] + ');\n'
-    return ret
-
 def generateFuncSource(fileFunc, function, bufBody):
     'generate source for given function'
     fileFunc.write('SEQSEQ( ANY ) SAL_CALL QLAddin::%s(\n' 
@@ -110,7 +94,7 @@ def generateFuncSource(fileFunc, function, bufBody):
         handle = ''
     paramList = utils.generateParamList(function[common.PARAMS], 3,
         reformatString = 'OUStringToString(%s)', appendTensor = True)
-    conversions = generateConversions(function[common.PARAMS])
+    conversions = utils.generateConversions(function[common.PARAMS])
     fileFunc.write(bufBody % (
         conversions,
         function[common.NAME],

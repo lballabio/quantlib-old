@@ -66,7 +66,7 @@ std::string OUStringToString(const STRING& s1) {
         throw Exception("OUStringToString: unable to convert string");
 }
 
-std::vector < long > longSequenceToVector(const SEQSEQ(long)& s) {
+std::vector < long > longArrayToVector(const SEQSEQ(long)& s) {
     std::vector < long > ret;
     for (int i=0; i<s.getLength(); i++){
         SEQ(long) s2 = s[i];
@@ -76,7 +76,7 @@ std::vector < long > longSequenceToVector(const SEQSEQ(long)& s) {
     return ret;
 }
 
-std::vector < double > doubleSequenceToVector(const SEQSEQ(double)& s) {
+std::vector < double > doubleArrayToVector(const SEQSEQ(double)& s) {
     std::vector < double > ret;
     for (int i=0; i<s.getLength(); i++){
         SEQ(double) s2 = s[i];
@@ -86,7 +86,7 @@ std::vector < double > doubleSequenceToVector(const SEQSEQ(double)& s) {
     return ret;
 }
 
-std::vector < std::string > stringSequenceToVector(const SEQSEQ(STRING)& s) {
+std::vector < std::string > stringArrayToVector(const SEQSEQ(STRING)& s) {
     std::vector < std::string > ret;
     for (int i=0; i<s.getLength(); i++){
         SEQ(STRING) s2 = s[i];
@@ -96,7 +96,7 @@ std::vector < std::string > stringSequenceToVector(const SEQSEQ(STRING)& s) {
     return ret;
 }
 
-std::vector < std::vector < double > >doubleSequenceToMatrix(const SEQSEQ(double)& s) {
+std::vector < std::vector < double > >doubleArrayToMatrix(const SEQSEQ(double)& s) {
     std::vector < std::vector < double > > ret;
     for (int i=0; i<s.getLength(); i++) {
         std::vector < double > row;

@@ -82,7 +82,7 @@ void setXLOPERString(XLOPER &xStr, const char *s) {
     xStr.val.str[0] = len;
 }
 
-std::vector <long> longXLOPERToVector(LPXLOPER xVec) {
+std::vector <long> longArrayToVector(LPXLOPER xVec) {
     std::vector <long> ret;
     XLOPER xVal;
     if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
@@ -97,7 +97,7 @@ std::vector <long> longXLOPERToVector(LPXLOPER xVec) {
     return ret;
 }
 
-std::vector <double> doubleXLOPERToVector(LPXLOPER xVec) {
+std::vector <double> doubleArrayToVector(LPXLOPER xVec) {
     std::vector <double> ret;
     XLOPER xVal;
     if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
@@ -112,7 +112,7 @@ std::vector <double> doubleXLOPERToVector(LPXLOPER xVec) {
     return ret;
 }
 
-std::vector <std::string> stringXLOPERToVector(LPXLOPER xVec) {
+std::vector <std::string> stringArrayToVector(LPXLOPER xVec) {
     std::vector <std::string> ret;
     XLOPER xVal;
     if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
@@ -127,7 +127,7 @@ std::vector <std::string> stringXLOPERToVector(LPXLOPER xVec) {
     return ret;
 }
 
-std::vector <std::vector <double> >doubleXLOPERToMatrix(LPXLOPER xVec) {
+std::vector <std::vector <double> >doubleArrayToMatrix(LPXLOPER xVec) {
     std::vector <std::vector <double> > ret;
     XLOPER xVal;
     if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))

@@ -24,9 +24,9 @@ SEQSEQ( ANY ) getArray(ObjHandler::Properties properties,
 std::string OUStringToString(const STRING& s1);
 ANY stringToANY(const std::string &s);
 
-std::vector < long > longSequenceToVector(const SEQSEQ(long)& s);
-std::vector < double > doubleSequenceToVector(const SEQSEQ(double)& s);
-std::vector < std::string > stringSequenceToVector(const SEQSEQ(STRING)& s);
-std::vector < std::vector < double > >doubleSequenceToMatrix(const SEQSEQ(double)& s);
+std::vector < long > longArrayToVector(const SEQSEQ(long)& s);
+std::vector < double > doubleArrayToVector(const SEQSEQ(double)& s);
+std::vector < std::string > stringArrayToVector(const SEQSEQ(STRING)& s);
+std::vector < std::vector < double > >doubleArrayToMatrix(const SEQSEQ(double)& s);
 
 #endif

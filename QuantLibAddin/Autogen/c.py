@@ -38,14 +38,22 @@ def generateConversions(paramList):
     for param in paramList:
         if param[common.TENSOR] == common.VECTOR: 
             nm = param[common.NAME] + 'Vector'
-            ret += 8 * ' ' + 'std::vector <' + param[common.TYPE] + \
+            if param[common.TYPE] == common.STRING:
+                type = 'std::string'
+            else:
+                type = param[common.TYPE]
+            ret += 8 * ' ' + 'std::vector <' + type + \
                 '> ' + nm + ';\n' + 8 * ' ' + \
                 'arrayToVector(' + param[common.NAME] + \
                 'Size, ' + param[common.NAME] + ', ' + nm + ');\n'
         elif param[common.TENSOR] == common.MATRIX: 
             nm = param[common.NAME] + 'Matrix'
+            if param[common.TYPE] == common.STRING:
+                type = 'std::string'
+            else:
+                type = param[common.TYPE]
             ret += 8 * ' ' + 'std::vector < std::vector <' + \
-                param[common.TYPE] + '> >' + param[common.NAME] + \
+                type + '> >' + param[common.NAME] + \
                 'Matrix;\n' + 8 * ' ' + \
                 'arrayToMatrix(' + param[common.NAME] + 'Rows, ' + \
                 param[common.NAME] + 'Cols, ' + param[common.NAME] + \
