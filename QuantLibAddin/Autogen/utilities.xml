@@ -29,9 +29,9 @@
 </function>
 
 <function>
-<name>QL_QUERY</name>
-<codename>qlQuery</codename>
-<desc>retrieve the properties of a given object</desc>
+<name>QL_FIELDNAMES</name>
+<codename>qlFieldNames</codename>
+<desc>retrieve the field names of a given object</desc>
 <qlfunction></qlfunction>
 <constructor>false</constructor>
 <parameters>
@@ -44,7 +44,33 @@
 </parameters>
 <returnval>
     <type>propertyvector</type>
-    <desc>vector of properties describing queried object</desc>
+    <desc>list of fieldnames for queried object</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_VALUE</name>
+<codename>qlValue</codename>
+<desc>retrieve the value of a named field</desc>
+<qlfunction></qlfunction>
+<constructor>false</constructor>
+<parameters>
+    <param>
+        <name>handleObject</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of object to be queried</desc>
+    </param>
+    <param>
+        <name>fieldName</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>name of field</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>propertyvector</type>
+    <desc>value of named field</desc>
 </returnval>
 </function>
 

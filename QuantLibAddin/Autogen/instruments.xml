@@ -72,4 +72,99 @@
 </returnval>
 </function>
 
+<function>
+<name>QL_ZERO_CURVE</name>
+<codename>qlZeroCurve</codename>
+<desc>construct and return a handle to a ZeroCurve object</desc>
+<qlfunction>ZeroCurve</qlfunction>
+<constructor>true</constructor>
+<parameters>
+    <param>
+        <name>curveDates</name>
+        <type>long</type>
+        <tensorrank>vector</tensorrank>
+        <desc>dates of the zero curve</desc>
+    </param>
+    <param>
+        <name>curveYields</name>
+        <type>double</type>
+        <tensorrank>vector</tensorrank>
+        <desc>yields of the zero curve</desc>
+    </param>
+    <param>
+        <name>dayCounterID</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>day counter ID</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>propertyvector</type>
+    <desc>vector of properties describing Instrument</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_ZERO_COUPON_BOND</name>
+<codename>qlZeroCouponBond</codename>
+<desc>construct and return a handle to a ZeroCouponBond object</desc>
+<qlfunction>ZeroCouponBond</qlfunction>
+<constructor>true</constructor>
+<parameters>
+    <param>
+        <name>issueDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>issue date</desc>
+    </param>
+    <param>
+        <name>maturityDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>maturity date</desc>
+    </param>
+    <param>
+        <name>settlementDays</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement days</desc>
+    </param>
+    <param>
+        <name>dayCounterID</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>day counter ID</desc>
+    </param>
+    <param>
+        <name>calendarID</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>calendar ID</desc>
+    </param>
+    <param>
+        <name>conventionID</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>convention ID</desc>
+    </param>
+    <param>
+        <name>redemption</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>redemption</desc>
+    </param>
+    <param>
+        <name>handleZeroCurve</name>
+        <type class="ZeroCurve">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Zero Curve object</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>propertyvector</type>
+    <desc>vector of properties describing Instrument</desc>
+</returnval>
+</function>
+
 </functionlist>
+

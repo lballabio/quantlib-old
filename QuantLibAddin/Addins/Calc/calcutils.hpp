@@ -18,7 +18,8 @@
 #ifndef qla_calc_calcutils_hpp
 #define qla_calc_calcutils_hpp
 
-ANY anyToANY(const ObjHandler::any_ptr &a); // convert boost::any to Calc Any
+// convert boost::any to Calc Any
+ANY anyToANY(const ObjHandler::any_ptr &a);
 SEQSEQ( ANY ) getArray(ObjHandler::Properties properties, STRING handle);
 std::string OUStringToString(const STRING& s1);
 ANY stringToANY(const std::string &s);

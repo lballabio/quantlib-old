@@ -42,20 +42,85 @@ STRING SAL_CALL QLAddin::qlOhVer() THROWDEF_RTE_IAE {
     }
 }
 
-SEQSEQ(ANY) SAL_CALL QLAddin::qlQuery(
+SEQSEQ(ANY) SAL_CALL QLAddin::qlFieldNames(
             const STRING& handleObject) THROWDEF_RTE_IAE {
     try {
         Properties properties = QL_QUERY(OUStringToString(handleObject));
         SEQSEQ( ANY ) rows(properties.size());
-        for (unsigned int i = 0; i < properties.size(); i++) {
-            SEQ( ANY ) row(2);
+        for (unsigned int i=0; i<properties.size(); i++) {
+            SEQ( ANY ) row(1);
             ObjectProperty property = properties[i];
             any_ptr a = property();
             row[0] = stringToANY(property.name());
-            row[1] = anyToANY(a);
             rows[i] = row;
         }
         return rows;
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what());
+        THROW_RTE;
+    }
+}
+
+// convert boost::any to Calc SEQSEQ(ANY)
+SEQSEQ(ANY) anyToSEQANY(const any_ptr &a) {
+    if (a->type() == typeid(int)) {
+        int i1 = boost::any_cast<int>(*a);
+        sal_Int32 i2 = static_cast< sal_Int32 >(i1);
+        SEQSEQ( ANY ) rows(1);
+        SEQ( ANY ) row(1);
+        row[0] = CSS::uno::makeAny(i2);
+        rows[0] = row;
+        return rows;
+    } else if (a->type() == typeid(double)) {
+        double d = boost::any_cast<double>(*a);
+        SEQSEQ( ANY ) rows(1);
+        SEQ( ANY ) row(1);
+        row[0] = CSS::uno::makeAny(d);
+        rows[0] = row;
+        return rows;
+    } else if (a->type() == typeid(std::string)) {
+        std::string s1 = boost::any_cast<std::string>(*a);
+        STRING s2 = STRFROMASCII( s1.c_str() );
+        SEQSEQ( ANY ) rows(1);
+        SEQ( ANY ) row(1);
+        row[0] = CSS::uno::makeAny(s2);
+        rows[0] = row;
+        return rows;
+    } else if (a->type() == typeid(std::vector<long>)) {
+        std::vector<long> v= boost::any_cast< std::vector<long> >(*a);
+        SEQSEQ( ANY ) rows(v.size());
+        for (int i=0; i<v.size(); i++) {
+            SEQ( ANY ) row(1);
+            row[0] = CSS::uno::makeAny(v[i]);
+            rows[i] = row;
+        }
+        return rows;
+    } else if (a->type() == typeid(std::vector<double>)) {
+        std::vector<double> v= boost::any_cast< std::vector<double> >(*a);
+        SEQSEQ( ANY ) rows(v.size());
+        for (int i=0; i<v.size(); i++) {
+            SEQ( ANY ) row(1);
+            row[0] = CSS::uno::makeAny(v[i]);
+            rows[i] = row;
+        }
+        return rows;
+    } else
+        throw Exception("anyToSEQANY: unable to interpret value");
+}
+
+SEQSEQ(ANY) SAL_CALL QLAddin::qlValue(
+            const STRING& handleObject,
+            const STRING& fieldName) THROWDEF_RTE_IAE {
+    try {
+        Properties properties = QL_QUERY(OUStringToString(handleObject));
+        for (unsigned int i=0; i<properties.size(); i++) {
+            ObjectProperty property = properties[i];
+            any_ptr a = property();
+            STRING propertyName = STRFROMANSI(property.name().c_str());
+            if (fieldName.equalsIgnoreAsciiCase(propertyName))
+                return anyToSEQANY(a);
+        }
+        throw Exception(std::string("no field with name ") + OUStringToString(fieldName));
     } catch (const std::exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what());
         THROW_RTE;

@@ -1,6 +1,5 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Walter Penschke
 
  This file is part of QuantLib, a free-software/open-source library
@@ -16,34 +15,35 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_instrumentutils_hpp
-#define qla_instrumentutils_hpp
+#ifndef qla_zerocurve_hpp
+#define qla_zerocurve_hpp
 
-#include <qla/generalutils.hpp>
-#include <ql/calendar.hpp>
+#include <oh/objhandler.hpp>
+#include <ql/TermStructures/zerocurve.hpp>
 
 // indexes to the Property vector
 // FIXME - need a cleaner way to achieve this
-#define CLEAN_PRICE                     "CLEAN_PRICE"
-#define DIRTY_PRICE                     "DIRTY_PRICE"
-#define IDX_CLEAN_PRICE                 0
-#define IDX_DIRTY_PRICE                 1
-
+#define FIELD_RATES                     "RATES"
+#define FIELD_DATES                     "DATES"
+#define IDX_RATES                       0
+#define IDX_DATES                       1
 
 namespace QuantLibAddin {
 
-    QuantLib::Frequency IDtoFrequency(
-        const std::string &frequencyID);
+    class ZeroCurve : public ObjHandler::Object {
+    public:
+        ZeroCurve(ObjHandler::ArgStack& args);
 
-    QuantLib::DayCounter IDtoDayCounter(
-        const std::string &dayCounterID);
+        virtual boost::shared_ptr<void> getReference() const {
+            return boost::static_pointer_cast<void>(zeroCurve_);
+        }
 
-    QuantLib::Calendar IDtoCalendar(
-        const std::string &calendarID);
-
-    QuantLib::BusinessDayConvention 
-        IDtoConvention(const std::string &conventionID);
-
+    private:
+        boost::shared_ptr<QuantLib::ZeroCurve> zeroCurve_;
+    };
 }
 
 #endif
+
+
+

@@ -137,6 +137,9 @@ Package=<5>
 
 Package=<4>
 {{{
+    Begin Project Dependency
+    Project_Dep_Name QuantLibAddin
+    End Project Dependency
 }}}
 
 ###############################################################################

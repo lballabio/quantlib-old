@@ -15,13 +15,28 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_instruments_hpp
-#define qla_instruments_hpp
+#ifndef qla_zerocouponbond_hpp
+#define qla_zerocouponbond_hpp
 
-#include <qla/fixedcouponbond.hpp>
-#include <qla/zerocurve.hpp>
-#include <qla/zerocouponbond.hpp>
+#include <oh/objhandler.hpp>
+#include <ql/Instruments/zerocouponbond.hpp>
+
+namespace QuantLibAddin {
+
+    class ZeroCouponBond : public ObjHandler::Object {
+    public:
+        ZeroCouponBond(ObjHandler::ArgStack& args);
+
+        virtual boost::shared_ptr<void> getReference() const {
+            return boost::static_pointer_cast<void>(zeroCouponBond_);
+        }
+
+    private:
+        boost::shared_ptr<QuantLib::ZeroCouponBond> zeroCouponBond_;
+    };
+}
 
 #endif
+
 
 

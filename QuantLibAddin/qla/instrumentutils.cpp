@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005 Walter Penschke
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -65,5 +66,24 @@ namespace QuantLibAddin {
             QL_FAIL("IDtoCalendar: unrecognized calendarID: " + calendarID);
     }
 
+    QuantLib::BusinessDayConvention IDtoConvention(const std::string &conventionID) {
+        std::string idUpper = QuantLib::StringFormatter::toUppercase(conventionID);
+        if (idUpper.compare("F") ==0)
+            return QuantLib::Following;
+        else if (idUpper.compare("MF") == 0)
+            return QuantLib::ModifiedFollowing;
+        else if (idUpper.compare("MP") == 0)
+            return QuantLib::ModifiedPreceding;
+        else if (idUpper.compare("MER") == 0)
+            return QuantLib::MonthEndReference;
+        else if (idUpper.compare("P") == 0)
+            return QuantLib::Preceding;
+        else if (idUpper.compare("U") == 0)
+            return QuantLib::Unadjusted;
+        else
+            QL_FAIL("IDtoConvention: unrecognized conventionID: " + conventionID);
+    }
+
 }
+
 

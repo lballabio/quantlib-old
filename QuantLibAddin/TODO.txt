@@ -10,6 +10,7 @@ Calc
 
 Excel
 - autoconf?
+- add version number to XLL name
 
 QuantLibAddin core
 - extend support for bonds

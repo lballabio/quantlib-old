@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005 Walter Penschke
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,30 +20,19 @@
 
 #include <qla/qladdin.hpp>
 #include <sstream>
-#include <iomanip>
 
 using namespace std;
 using namespace QuantLib;
 using namespace ObjHandler;
 using namespace QuantLibAddin;
-    
-void printObject(const string &className, const Properties &p) {
-    QL_LOGMESSAGE("Object properties - class " + className);
-    Properties::const_iterator it;
-    for (it = p.begin(); it != p.end(); it++) {
-        ObjectProperty property = *it;
-        ostringstream os;
-        os << left << "property = " << setw(10) << property.name() <<
-            "value = " << property();
-        QL_LOGMESSAGE(os.str());
-    } 
-}
 
 int main() {
     try {
         QL_LOGFILE("quantlib.log");
         QL_CONSOLE(1);
         QL_LOGMESSAGE("begin instruments test");
+
+        // Fixed Coupon Bond
 
         Date issueDate(13, March, 2005);        // issue date
         Date datedDate(13, March, 2005);        // dated date
@@ -66,7 +56,68 @@ int main() {
         a1.push(calendarID);                    // calendar ID
         Properties p1 =
             QL_OBJECT_MAKE(FixedCouponBond)("bond1", a1);
-        printObject("FixedCouponBond", p1);
+        ostringstream s;
+        s << "FixedCouponBond:" << endl << p1;
+        QL_LOGMESSAGE(s.str());
+
+        // ZeroCurve
+
+        Date todaysDate(15, March, 2005);
+
+        long todayAsLong = todaysDate.serialNumber();
+        vector<long> datesAsLong;
+        vector<double> yieldsAsDouble;
+        DayCounter dayCounter = ActualActual();
+
+        datesAsLong.push_back(todayAsLong);        yieldsAsDouble.push_back(0.04);
+        datesAsLong.push_back(todayAsLong + 30);   yieldsAsDouble.push_back(0.041);
+        datesAsLong.push_back(todayAsLong + 60);   yieldsAsDouble.push_back(0.042);
+        datesAsLong.push_back(todayAsLong + 90);   yieldsAsDouble.push_back(0.043);
+        datesAsLong.push_back(todayAsLong + 182);  yieldsAsDouble.push_back(0.044);
+        datesAsLong.push_back(todayAsLong + 365);  yieldsAsDouble.push_back(0.045);
+        datesAsLong.push_back(todayAsLong + 730);  yieldsAsDouble.push_back(0.046);
+        datesAsLong.push_back(todayAsLong + 1826); yieldsAsDouble.push_back(0.047);
+        datesAsLong.push_back(todayAsLong + 3652); yieldsAsDouble.push_back(0.048);
+
+        ArgStack zeroCurveArgs;
+        zeroCurveArgs.push(datesAsLong);
+        zeroCurveArgs.push(yieldsAsDouble);
+        zeroCurveArgs.push(string("ACTACT"));
+
+        Properties zeroCurveProps 
+            = QL_OBJECT_MAKE(ZeroCurve)("myZeroCurve", zeroCurveArgs);
+
+        s.str("");
+        s << "myZeroCurve:" << endl << zeroCurveProps;
+        QL_LOGMESSAGE(s.str());
+
+        // ZeroBond
+
+        long issueDateAsLong = issueDate.serialNumber();
+        long maturityDateAsLong = maturityDate.serialNumber();
+        // Integer settlementDays = 3;
+        std::string dayCounterId = "ACTACT";
+        std::string calendarId = "DE";
+        std::string conventionId = "F";
+        double redemption = 100.0;
+        std::string zeroCurveHandle = "myZeroCurve";
+
+        ArgStack zeroCouponBondArgs;
+        zeroCouponBondArgs.push(issueDateAsLong);
+        zeroCouponBondArgs.push(maturityDateAsLong);
+        zeroCouponBondArgs.push((long)settlementDays);
+        zeroCouponBondArgs.push(dayCounterId);
+        zeroCouponBondArgs.push(calendarId);
+        zeroCouponBondArgs.push(conventionId);
+        zeroCouponBondArgs.push((double)redemption);
+        zeroCouponBondArgs.push(zeroCurveHandle);
+
+        Properties zeroCouponBondProps 
+            = QL_OBJECT_MAKE(ZeroCouponBond)("myZeroCouponBond", zeroCouponBondArgs);
+
+        s.str("");
+        s << "myZeroCouponBond:" << endl << zeroCouponBondProps;
+        QL_LOGMESSAGE(s.str());
 
         QL_LOGMESSAGE("end instruments test");
         return 0;

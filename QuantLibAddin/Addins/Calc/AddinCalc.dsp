@@ -125,6 +125,10 @@ SOURCE=.\calcutils.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\instruments.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\options.hpp
 # End Source File
 # Begin Source File

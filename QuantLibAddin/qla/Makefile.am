@@ -25,7 +25,9 @@ include_HEADERS = \
     qladdin.hpp \
     stochasticprocess.hpp \
     utilities.hpp \
-    vanillaoption.hpp
+    vanillaoption.hpp \
+    zerocouponbond.hpp \
+    zerocurve.hpp
 
 lib_LTLIBRARIES = libQuantLibAddin.la
 
@@ -42,5 +44,7 @@ libQuantLibAddin_la_SOURCES = \
     optionutils.cpp \
     stochasticprocess.cpp \
     utilities.cpp \
-    vanillaoption.cpp
+    vanillaoption.cpp \
+    zerocouponbond.cpp \
+    zerocurve.cpp
 

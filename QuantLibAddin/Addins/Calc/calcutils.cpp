@@ -35,6 +35,10 @@ ANY anyToANY(const any_ptr &a) {
         std::string s1 = boost::any_cast<std::string>(*a);
         STRING s2 = STRFROMASCII( s1.c_str() );
         return CSS::uno::makeAny(s2);
+    } else if (a->type() == typeid(std::vector<long>)) {
+        return CSS::uno::makeAny(STRFROMASCII("<VECTOR>"));
+    } else if (a->type() == typeid(std::vector<double>)) {
+        return CSS::uno::makeAny(STRFROMASCII("<VECTOR>"));
     } else
         throw Exception("anyToANY: unable to interpret value");
 }
@@ -45,15 +49,19 @@ ANY stringToANY(const std::string &s) {
 }
 
 SEQSEQ( ANY ) getArray(Properties properties, STRING handle) {
-    SEQSEQ( ANY ) rows(1);
-    SEQ( ANY ) row(properties.size() + 1);
-    row[0] = CSS::uno::makeAny(handle);
-    for (unsigned int i = 0; i < properties.size(); i++) {
+    SEQSEQ( ANY ) rows(2);
+    SEQ( ANY ) row0(properties.size() + 1);
+    SEQ( ANY ) row1(properties.size() + 1);
+    row0[0] = CSS::uno::makeAny(STRFROMASCII("HANDLE"));
+    row1[0] = CSS::uno::makeAny(handle);
+    for (unsigned int i=0; i<properties.size(); i++) {
         ObjectProperty property = properties[i];
+        row0[i + 1] = CSS::uno::makeAny(STRFROMASCII(property.name().c_str()));
         any_ptr a = property();
-        row[i + 1] = anyToANY(a);
+        row1[i + 1] = anyToANY(a);
     }
-    rows[0] = row;
+    rows[0] = row0;
+    rows[1] = row1;
     return rows;
 }
 

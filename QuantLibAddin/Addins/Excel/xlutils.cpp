@@ -25,7 +25,9 @@ using namespace QuantLibAddin;
 
 #define XL_MAX_STR_LEN 255
 
-void anyToXLOPER(const any_ptr &any, XLOPER &xOp) {
+void anyToXLOPER(const any_ptr &any, 
+                 XLOPER &xOp, 
+                 const bool &expandVectors) {
     if (any->type() == typeid(int)) {
         xOp.xltype = xltypeInt;
         xOp.val.w = boost::any_cast<int>(*any);
@@ -35,6 +37,42 @@ void anyToXLOPER(const any_ptr &any, XLOPER &xOp) {
     } else if (any->type() == typeid(std::string)) {
         std::string s = boost::any_cast<std::string>(*any);
         stringToXLOPER(xOp, s.c_str());
+    } else if (any->type() == typeid(std::vector<long>)) {
+        if (expandVectors) {
+            std::vector<long> v= boost::any_cast< std::vector<long> >(*any);
+            xOp.xltype = xltypeMulti;
+            xOp.xltype |= xlbitDLLFree;
+            xOp.val.array.rows = v.size();
+            xOp.val.array.columns = 1;
+            xOp.val.array.lparray = new XLOPER[v.size()];
+            if (!xOp.val.array.lparray)
+                throw Exception("error on call to new");
+            for (int i=0; i<v.size(); i++) {
+                xOp.val.array.lparray[i].xltype = xltypeNum;
+                xOp.val.array.lparray[i].val.num = v[i];
+            }
+        } else {
+            std::string s("<VECTOR>");
+            stringToXLOPER(xOp, s.c_str());
+        }
+    } else if (any->type() == typeid(std::vector<double>)) {
+        if (expandVectors) {
+            std::vector<double> v= boost::any_cast< std::vector<double> >(*any);
+            xOp.xltype = xltypeMulti;
+            xOp.xltype |= xlbitDLLFree;
+            xOp.val.array.rows = v.size();
+            xOp.val.array.columns = 1;
+            xOp.val.array.lparray = new XLOPER[v.size()];
+            if (!xOp.val.array.lparray)
+                throw Exception("error on call to new");
+            for (int i=0; i<v.size(); i++) {
+                xOp.val.array.lparray[i].xltype = xltypeNum;
+                xOp.val.array.lparray[i].val.num = v[i];
+            }
+        } else {
+            std::string s("<VECTOR>");
+            stringToXLOPER(xOp, s.c_str());
+        }
     } else
         xOp.xltype = xltypeErr;
 }
@@ -42,16 +80,18 @@ void anyToXLOPER(const any_ptr &any, XLOPER &xOp) {
 void setValues(LPXLOPER xArray, Properties properties, const std::string &handle) {
     xArray->xltype = xltypeMulti;
     xArray->xltype |= xlbitDLLFree;
-    xArray->val.array.rows = 1;
+    xArray->val.array.rows = 2;
     xArray->val.array.columns = properties.size() + 1;
-    xArray->val.array.lparray = new XLOPER[properties.size() + 1]; 
+    xArray->val.array.lparray = new XLOPER[2 * (properties.size() + 1)]; 
     if (!xArray->val.array.lparray)
         throw("setValues: error on call to new");
-    stringToXLOPER(xArray->val.array.lparray[0], handle.c_str());
-    for (unsigned int i = 0; i < properties.size(); i++) {
+    stringToXLOPER(xArray->val.array.lparray[0], "HANDLE");
+    stringToXLOPER(xArray->val.array.lparray[properties.size() + 1], handle.c_str());
+    for (unsigned int i=0; i<properties.size(); i++) {
         ObjectProperty property = properties[i];
         any_ptr a = property();
-        anyToXLOPER(a, xArray->val.array.lparray[i + 1]);
+        stringToXLOPER(xArray->val.array.lparray[i+1], property.name().c_str());
+        anyToXLOPER(a, xArray->val.array.lparray[i + properties.size() + 2]);
     }
 }
 

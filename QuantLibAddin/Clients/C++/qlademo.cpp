@@ -65,15 +65,9 @@ int main() {
             QL_OBJECT_MAKE(VanillaOption)("my_option", opArgs);
     
         QL_LOGMESSAGE("High-level interrogation: after QL_OPTION_VANILLA");
-        Properties::const_iterator it;
-        for (it = opProperties.begin();
-            it != opProperties.end(); it++) {
-            ObjectProperty property = *it;
-            ostringstream s;
-            s << "property = " << property.name() 
-                << "\tvalue = " << property();
-            QL_LOGMESSAGE(s.str());
-        } 
+        ostringstream s;
+        s << opProperties;
+        QL_LOGMESSAGE(s.str());
 
         QL_OPTION_SETENGINE(
             "my_option", 
@@ -81,14 +75,9 @@ int main() {
             timeSteps);
 
         QL_LOGMESSAGE("High-level interrogation: after QL_OPTION_SETENGINE");
-        for (it = opProperties.begin();
-            it != opProperties.end(); it++) {
-            ObjectProperty property = *it;
-            ostringstream s;
-            s << "property = " << property.name() 
-                << "\tvalue = " << property();
-            QL_LOGMESSAGE(s.str());
-        } 
+        s.str("");
+        s << opProperties;
+        QL_LOGMESSAGE(s.str());
 
         QL_LOGMESSAGE("Low-level interrogation: NPV of underlying option object");
         boost::shared_ptr<QuantLibAddin::VanillaOption> vanillaOptionQLA = 
@@ -97,7 +86,7 @@ int main() {
         boost::shared_ptr<QuantLib::VanillaOption> const vanillaOptionQL =
             boost::static_pointer_cast<QuantLib::VanillaOption>
             (vanillaOptionQLA->getReference());
-        ostringstream s;
+        s.str("");
         s << "underlying option NPV() = " << vanillaOptionQL->NPV();
         QL_LOGMESSAGE(s.str());
 

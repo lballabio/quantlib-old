@@ -25,18 +25,6 @@ using namespace std;
 using namespace QuantLib;
 using namespace ObjHandler;
 using namespace QuantLibAddin;
-    
-void printObject(const string &className, const Properties &p) {
-    QL_LOGMESSAGE("Object properties - class " + className);
-    Properties::const_iterator it;
-    for (it = p.begin(); it != p.end(); it++) {
-        ObjectProperty property = *it;
-        ostringstream os;
-        os << left << "property = " << setw(10) << property.name() <<
-            "value = " << property();
-        QL_LOGMESSAGE(os.str());
-    } 
-}
 
 int main() {
     try {
@@ -63,7 +51,10 @@ int main() {
         a1.push(volatility);                // volatility
         Properties p1 =
             QL_OBJECT_MAKE(StochasticProcess)("stoch1", a1);
-        printObject("StochasticProcess", p1);
+
+        ostringstream s;
+        s << "StochasticProcess:" << endl << p1;
+        QL_LOGMESSAGE(s.str());
 
         ArgStack a2;
         a2.push(string("stoch1"));          // stochastic process handle
@@ -77,7 +68,9 @@ int main() {
         a2.push(timeSteps);                 // time steps
         Properties p2 =
             QL_OBJECT_MAKE(VanillaOption)("opt_van", a2);
-        printObject("QL_OPTION_VANILLA", p2);
+        s.str("");
+        s << "VanillaOption:" << endl << p2;
+        QL_LOGMESSAGE(s.str());
 
         ArgStack a3;
         a3.push(string("stoch1"));          // stochastic process handle
@@ -92,7 +85,9 @@ int main() {
         a3.push(timeSteps);                 // time steps
         Properties p3 =
             QL_OBJECT_MAKE(ContinuousAveragingAsianOption)("opt_asian_cont", a3);
-        printObject("ContinuousAveragingAsianOption", p3);
+        s.str("");
+        s << "ContinuousAveragingAsianOption:" << endl << p3;
+        QL_LOGMESSAGE(s.str());
 
         vector < long > fixingDates;
         for (int i = 0; i < exerciseDate - todaysDate + 1; i++)
@@ -113,7 +108,9 @@ int main() {
         a4.push(timeSteps);                 // time steps
         Properties p4 =
             QL_OBJECT_MAKE(DiscreteAveragingAsianOption)("opt_asian_disc", a4);
-        printObject("DiscreteAveragingAsianOption", p4);
+        s.str("");
+        s << "DiscreteAveragingAsianOption:" << endl << p4;
+        QL_LOGMESSAGE(s.str());
 
         ArgStack a5;
         a5.push(string("stoch1"));          // stochastic process handle
@@ -130,7 +127,9 @@ int main() {
         a5.push(timeSteps);                 // time steps
         Properties p5 =
             QL_OBJECT_MAKE(BarrierOption)("opt_barrier", a5);
-        printObject("BarrierOption", p5);
+        s.str("");
+        s << "BarrierOption:" << endl << p5;
+        QL_LOGMESSAGE(s.str());
 
         vector < string > stochHandles;
         stochHandles.push_back("stoch1");
@@ -157,7 +156,9 @@ int main() {
         a6.push(timeSteps);                 // time steps
         Properties p6 =
             QL_OBJECT_MAKE(BasketOption)("opt_basket", a6);
-        printObject("BasketOption", p6);
+        s.str("");
+        s << "BasketOption:" << endl << p6;
+        QL_LOGMESSAGE(s.str());
 
         vector < long > resetDates;
         resetDates.push_back(Date(12, March, 2020).serialNumber());
@@ -171,7 +172,10 @@ int main() {
         a7.push(timeSteps);                 // time steps
         Properties p7 =
             QL_OBJECT_MAKE(CliquetOption)("opt_cliquet", a7);
-        printObject("CliquetOption", p7);
+        s.str("");
+        s << "CliquetOption:" << endl << p7;
+        QL_LOGMESSAGE(s.str());
+
         vector < long > dividendDates;
         dividendDates.push_back(Date(13, September, 2019).serialNumber());
         dividendDates.push_back(Date(13, March, 2020).serialNumber());
@@ -193,7 +197,9 @@ int main() {
         a8.push(timeSteps);                 // time steps
         Properties p8 =
             QL_OBJECT_MAKE(DividendVanillaOption)("opt_divvan", a8);
-        printObject("DividendVanillaOption", p8);
+        s.str("");
+        s << "DividendVanillaOption:" << endl << p8;
+        QL_LOGMESSAGE(s.str());
 
         long resetDate = exerciseDate.serialNumber() - 90;
 
@@ -211,7 +217,9 @@ int main() {
         a9.push(timeSteps);                 // time steps
         Properties p9 =
             QL_OBJECT_MAKE(ForwardVanillaOption)("opt_fwdvan", a9);
-        printObject("ForwardVanillaOption", p9);
+        s.str("");
+        s << "ForwardVanillaOption:" << endl << p9;
+        QL_LOGMESSAGE(s.str());
 
         QL_LOGMESSAGE("end options test");
         return 0;

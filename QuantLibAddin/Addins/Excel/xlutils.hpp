@@ -27,7 +27,9 @@
 
 std::string XLOPERtoString(const XLOPER &xOp);
 void stringToXLOPER(XLOPER &xStr, const char *s);
-void anyToXLOPER(const ObjHandler::any_ptr &any, XLOPER &xOp);
+void anyToXLOPER(const ObjHandler::any_ptr &any, 
+                 XLOPER &xOp, 
+                 const bool &expandVectors = false);
 std::string getHandleFull(const std::string &handle);
 void setValues(LPXLOPER xArray,
                ObjHandler::Properties properties,

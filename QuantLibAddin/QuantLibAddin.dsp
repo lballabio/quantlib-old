@@ -235,6 +235,14 @@ SOURCE=.\qla\utilities.cpp
 
 SOURCE=.\qla\vanillaoption.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\qla\zerocouponbond.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\zerocurve.cpp
+# End Source File
 # End Group
 # Begin Group "Header files"
 
@@ -310,6 +318,14 @@ SOURCE=.\qla\utilities.hpp
 # Begin Source File
 
 SOURCE=.\qla\vanillaoption.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\zerocouponbond.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\zerocurve.hpp
 # End Source File
 # End Group
 # Begin Source File
