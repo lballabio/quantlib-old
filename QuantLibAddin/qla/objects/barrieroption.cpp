@@ -15,6 +15,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#if defined(HAVE_CONFIG_H)     // Dynamically created by configure
+    #include <qla/config.hpp>
+#endif
 #include <qla/objects/barrieroption.hpp>
 #include <qla/objects/optionutils.hpp>
 

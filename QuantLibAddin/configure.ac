@@ -8,7 +8,10 @@ AC_CONFIG_AUX_DIR([config])
 AC_CONFIG_HEADERS([qla/config.hpp])
 AM_INIT_AUTOMAKE([foreign])
 
-AC_COPYRIGHT([Copyright (C) 2005 Eric Ehlers
+AC_COPYRIGHT([    Copyright (C) 2004, 2005 Eric Ehlers
+
+    Copyright (C) 2004, 2005 Ferdinando Ametrano
+    Copyright (C) 2004, 2005 StatPro Italia srl
 
 This file is part of QuantLib, a free-software/open-source library
 for financial quantitative analysts and developers - http://quantlib.org/

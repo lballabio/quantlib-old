@@ -46,12 +46,10 @@
 //! version string for output lib name
 #define QLADDIN_LIB_VERSION "0_3_9"
 
-#if defined(HAVE_CONFIG_H)     // Dynamically created by configure
-    #include <qla/config.hpp>
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors 
    (Metrowerks, for example) also #define _MSC_VER
 */
-#elif defined BOOST_MSVC       // Microsoft Visual C++
+#if defined BOOST_MSVC       // Microsoft Visual C++
 #  include <qla/autolink.hpp>
 #endif
 
