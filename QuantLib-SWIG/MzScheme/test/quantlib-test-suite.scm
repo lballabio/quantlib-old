@@ -23,7 +23,7 @@
 (load "utilities.scm")
 
 (load "instruments.scm")
-(load "integral.scm")
+(load "integrals.scm")
 (load "marketelements.scm")
 (load "solvers1d.scm")
 (load "termstructures.scm")
