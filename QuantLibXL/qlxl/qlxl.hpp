@@ -35,9 +35,9 @@
 
 //! version string
 #ifdef QL_DEBUG
-    #define QLXL_VERSION "0.3.0b1-20020321-debug"
+    #define QLXL_VERSION "0.3.0b1-cvs-debug"
 #else
-    #define QLXL_VERSION "0.3.0b1-20020321"
+    #define QLXL_VERSION "0.3.0b1-cvs"
 #endif
 
 #endif
