@@ -25,18 +25,20 @@
 #include <string>
 using namespace std;
 
-typedef boost::shared_ptr<boost::any> any_ptr;
-typedef Property<string, any_ptr> ObjectProperty;
-typedef vector<ObjectProperty> Properties;
+namespace ObjHandler {
+    typedef boost::shared_ptr<boost::any> any_ptr;
+    typedef Property<string, any_ptr> ObjectProperty;
+    typedef vector<ObjectProperty> Properties;
 
-class Object {
-public:
-	Object();
-	virtual ~Object();
-	virtual boost::shared_ptr<void> getReference() const = 0;
-	Properties getProperties();
-protected:
-	Properties properties_;
-};
+    class Object {
+    public:
+        Object() {}
+	    virtual ~Object() {}
+	    virtual boost::shared_ptr<void> getReference() const = 0;
+	    Properties getProperties();
+    protected:
+	    Properties properties_;
+    };
+}
 
 #endif

@@ -16,15 +16,12 @@
 */
 
 #include <ObjectHandler/object.hpp>
-#include <ObjectHandler/utilities.hpp>
 
-Object::Object() {
-}
+namespace ObjHandler {
 
-Object::~Object() {
-}
+    // FIXME must prevent caller from modifying any_ptrs in properties
+    Properties Object::getProperties() {
+	    return properties_;
+    }
 
-// FIXME must prevent caller from modifying any_ptrs in properties
-Properties Object::getProperties() {
-	return properties_;
 }

@@ -30,19 +30,17 @@
 #include <iostream>
 #include <sstream>
 
-ObjectHandler objectHandler; // FIXME
+namespace ObjHandler {
 
-ObjectHandler::ObjectHandler() {
+    ObjectHandler objectHandler; // FIXME
+
+    void ObjectHandler::storeObject(const std::string &handle,
+                                    const obj_ptr &object) {
+	    objectList_[handle] = object;
+    }
+
+    obj_ptr ObjectHandler::retrieveObject(const std::string &handle) {
+	    return objectList_[handle];
+    }
+
 }
-
-ObjectHandler::~ObjectHandler() {
-}
-
-void ObjectHandler::storeObject(const string &handle, const obj_ptr &object) {
-	objectList_[handle] = object;
-}
-
-obj_ptr ObjectHandler::retrieveObject(const string &handle) {
-	return objectList_[handle];
-}
-

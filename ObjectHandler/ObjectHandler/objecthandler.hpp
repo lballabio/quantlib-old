@@ -30,17 +30,24 @@
 #include <ObjectHandler/utilities.hpp>
 
 #include <map>
-typedef boost::shared_ptr<Object> obj_ptr;
-typedef map<string, obj_ptr> ObjectList;
 
-class ObjectHandler {
-public:
-	void storeObject(const string &handle, const obj_ptr &object);
-	obj_ptr retrieveObject(const string &handle);
-	ObjectHandler();
-	~ObjectHandler();
-private:
-	ObjectList objectList_;
-};
+
+namespace ObjHandler {
+
+    typedef boost::shared_ptr<Object> obj_ptr;
+    typedef map<string, obj_ptr> ObjectList;
+
+    class ObjectHandler {
+    public:
+        void storeObject(const std::string &handle,
+                        const obj_ptr &object);
+	    obj_ptr retrieveObject(const std::string &handle);
+        ObjectHandler() {}
+        ~ObjectHandler() {}
+    private:
+	    ObjectList objectList_;
+    };
+
+}
 
 #endif
