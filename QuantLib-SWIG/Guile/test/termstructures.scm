@@ -60,54 +60,54 @@
                           2 "mf")))
                      swap-data))
              (term-structure (new-PiecewiseFlatForward
-                              today settlement
+                              settlement
                               (append deposits swaps)
                               day-counter)))
-        (new-TermStructureHandle term-structure))))
+        (new-YieldTermStructureHandle term-structure))))
   ; setup
   (let ((term-structure (make-test-structure-handle)))
     (cond ((equal? tag 'implied-obs)
            ; check implied term structure observability
            (let ((flag #f))
              (let* ((calendar (new-TARGET))
-                    (settlement (TermStructureHandle-reference-date
+                    (settlement (YieldTermStructureHandle-reference-date
                                  term-structure))
                     (new-settlement (Calendar-advance
                                      calendar settlement 3 "years"))
-                    (day-counter (TermStructureHandle-day-counter
+                    (day-counter (YieldTermStructureHandle-day-counter
                                   term-structure))
                     (implied (new-ImpliedTermStructure term-structure
                                                        new-settlement))
                     (obs (new-Observer (lambda () (set! flag #t)))))
-               (let ((temp (TermStructure->Observable implied)))
+               (let ((temp (YieldTermStructure->Observable implied)))
                  (Observer-register-with obs temp))
                (let ((new-term-structure (new-FlatForward settlement
                                                           0.05
                                                           day-counter)))
-                 (TermStructureHandle-link-to! term-structure
-                                               new-term-structure))
+                 (YieldTermStructureHandle-link-to! term-structure
+                                                    new-term-structure))
                (check flag
                       "Observer was not notified of term structure change"))))
           ((equal? tag 'fw-spreaded-obs)
            ; check forward-spreaded term structure observability
            (let ((flag #f)
                  (tolerance 1.0e-10))
-             (let* ((settlement (TermStructureHandle-reference-date
+             (let* ((settlement (YieldTermStructureHandle-reference-date
                                  term-structure))
-                    (day-counter (TermStructureHandle-day-counter
+                    (day-counter (YieldTermStructureHandle-day-counter
                                   term-structure))
                     (me (new-SimpleQuote 0.01))
                     (h (new-QuoteHandle me))
                     (spreaded (new-ForwardSpreadedTermStructure
                                term-structure h))
                     (obs (new-Observer (lambda () (set! flag #t)))))
-               (let ((temp (TermStructure->Observable spreaded)))
+               (let ((temp (YieldTermStructure->Observable spreaded)))
                  (Observer-register-with obs temp))
                (let ((new-term-structure (new-FlatForward settlement
                                                           0.05
                                                           day-counter)))
-                 (TermStructureHandle-link-to! term-structure
-                                               new-term-structure))
+                 (YieldTermStructureHandle-link-to! term-structure
+                                                    new-term-structure))
                (and
                 (check flag
                        "Observer was not notified of term structure change")
@@ -120,22 +120,22 @@
            ; check zero-spreaded term structure observability
            (let ((flag #f)
                  (tolerance 1.0e-10))
-             (let* ((settlement (TermStructureHandle-reference-date
+             (let* ((settlement (YieldTermStructureHandle-reference-date
                                  term-structure))
-                    (day-counter (TermStructureHandle-day-counter
+                    (day-counter (YieldTermStructureHandle-day-counter
                                   term-structure))
                     (me (new-SimpleQuote 0.01))
                     (h (new-QuoteHandle me))
                     (spreaded (new-ZeroSpreadedTermStructure
                                term-structure h))
                     (obs (new-Observer (lambda () (set! flag #t)))))
-               (let ((temp (TermStructure->Observable spreaded)))
+               (let ((temp (YieldTermStructure->Observable spreaded)))
                  (Observer-register-with obs temp))
                (let ((new-term-structure (new-FlatForward settlement
                                                           0.05
                                                           day-counter)))
-                 (TermStructureHandle-link-to! term-structure
-                                               new-term-structure))
+                 (YieldTermStructureHandle-link-to! term-structure
+                                                    new-term-structure))
                (and
                 (check flag
                        "Observer was not notified of term structure change")
