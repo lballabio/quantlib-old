@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,25 +15,19 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef objecthandler_h
-#define objecthandler_h
+#ifndef objecthandler_version_h
+#define objecthandler_version_h
 
+//! version string
+#ifdef _DEBUG
+    #define OBJHANDLER_VERSION "0.0.1-debug"
+#else
+    #define OBJHANDLER_VERSION "0.0.1"
+#endif
 
-#include <ObjectHandler/objecthandlerversion.hpp>
-#include "autolink.hpp"
-#include "utilities.hpp"
-
-typedef boost::shared_ptr<Object> obj_ptr;
-typedef map<string, obj_ptr> ObjectList;
-
-class ObjectHandler {
-public:
-	void storeObject(const string &handle, const obj_ptr &object);
-	obj_ptr retrieveObject(const string &handle);
-	ObjectHandler();
-	~ObjectHandler();
-private:
-	ObjectList objectList_;
-};
+//! version hexadecimal number
+#define OBJHANDLER_HEX_VERSION 0x000001f0
+//! version string for output lib name
+#define OBJHANDLER_LIB_VERSION "0_0_1"
 
 #endif

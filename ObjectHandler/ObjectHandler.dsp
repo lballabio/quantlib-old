@@ -2,9 +2,9 @@
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
 # ** DO NOT EDIT **
 
-# TARGTYPE "Win32 (x86) Console Application" 0x0103
+# TARGTYPE "Win32 (x86) Static Library" 0x0104
 
-CFG=ObjectHandler - Win32 Debug
+CFG=ObjectHandler - Win32 Debug SingleThread
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
@@ -13,12 +13,16 @@ CFG=ObjectHandler - Win32 Debug
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "ObjectHandler.mak" CFG="ObjectHandler - Win32 Debug"
+!MESSAGE NMAKE /f "ObjectHandler.mak" CFG="ObjectHandler - Win32 Debug SingleThread"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "ObjectHandler - Win32 Release" (based on "Win32 (x86) Console Application")
-!MESSAGE "ObjectHandler - Win32 Debug" (based on "Win32 (x86) Console Application")
+!MESSAGE "ObjectHandler - Win32 Release" (based on "Win32 (x86) Static Library")
+!MESSAGE "ObjectHandler - Win32 Debug" (based on "Win32 (x86) Static Library")
+!MESSAGE "ObjectHandler - Win32 Release SingleThread" (based on "Win32 (x86) Static Library")
+!MESSAGE "ObjectHandler - Win32 Debug MTDLL" (based on "Win32 (x86) Static Library")
+!MESSAGE "ObjectHandler - Win32 Debug SingleThread" (based on "Win32 (x86) Static Library")
+!MESSAGE "ObjectHandler - Win32 Release MTDLL" (based on "Win32 (x86) Static Library")
 !MESSAGE 
 
 # Begin Project
@@ -37,42 +41,134 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "Release"
-# PROP Intermediate_Dir "Release"
+# PROP Output_Dir "build\Release"
+# PROP Intermediate_Dir "build\Release"
 # PROP Target_Dir ""
-# ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /c
-# ADD CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /c
+# ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD CPP /nologo /MT /W3 /GR /GX /O2 /I "." /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
 # ADD BASE RSC /l 0x809 /d "NDEBUG"
 # ADD RSC /l 0x809 /d "NDEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386
+LIB32=link.exe -lib
+# ADD BASE LIB32 /nologo
+# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-s-0_0_1.lib"
 
 !ELSEIF  "$(CFG)" == "ObjectHandler - Win32 Debug"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "Debug"
-# PROP BASE Intermediate_Dir "Debug"
+# PROP BASE Output_Dir "ObjectHandler___Win32_Debug"
+# PROP BASE Intermediate_Dir "ObjectHandler___Win32_Debug"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "Debug"
-# PROP Intermediate_Dir "Debug"
+# PROP Output_Dir "build\Debug"
+# PROP Intermediate_Dir "build\Debug"
 # PROP Target_Dir ""
-# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /GZ  /c
-# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /GZ  /c
+# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD CPP /nologo /MTd /W3 /Gm /GR /GX /ZI /Od /I "." /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
 # ADD BASE RSC /l 0x809 /d "_DEBUG"
 # ADD RSC /l 0x809 /d "_DEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
+LIB32=link.exe -lib
+# ADD BASE LIB32 /nologo
+# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-sgd-0_0_1.lib"
+
+!ELSEIF  "$(CFG)" == "ObjectHandler - Win32 Release SingleThread"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "ObjectHandler___Win32_Release_SingleThread"
+# PROP BASE Intermediate_Dir "ObjectHandler___Win32_Release_SingleThread"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "build\ReleaseSingleThread"
+# PROP Intermediate_Dir "build\ReleaseSingleThread"
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD CPP /nologo /W3 /GR /GX /O2 /I "." /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD BASE RSC /l 0x809 /d "NDEBUG"
+# ADD RSC /l 0x809 /d "NDEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LIB32=link.exe -lib
+# ADD BASE LIB32 /nologo /out:"lib\ObjectHandler.lib"
+# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-s-0_0_1.lib"
+
+!ELSEIF  "$(CFG)" == "ObjectHandler - Win32 Debug MTDLL"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "ObjectHandler___Win32_Debug_MTDLL"
+# PROP BASE Intermediate_Dir "ObjectHandler___Win32_Debug_MTDLL"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "build\DebugMTDLL"
+# PROP Intermediate_Dir "build\DebugMTDLL"
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /W3 /Gm /GR /GX /ZI /Od /I "C:\Program Files\QuantLib" /I "C:\boost_1_31_0" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "." /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD BASE RSC /l 0x809 /d "_DEBUG"
+# ADD RSC /l 0x809 /d "_DEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LIB32=link.exe -lib
+# ADD BASE LIB32 /nologo /out:"lib\ObjectHandler_d.lib"
+# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-gd-0_0_1.lib"
+
+!ELSEIF  "$(CFG)" == "ObjectHandler - Win32 Debug SingleThread"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "ObjectHandler___Win32_Debug_SingleThread"
+# PROP BASE Intermediate_Dir "ObjectHandler___Win32_Debug_SingleThread"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "build\DebugSingleThread"
+# PROP Intermediate_Dir "build\DebugSingleThread"
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /W3 /Gm /GR /GX /ZI /Od /I "C:\Program Files\QuantLib" /I "C:\boost_1_31_0" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD CPP /nologo /W3 /Gm /GR /GX /ZI /Od /I "." /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD BASE RSC /l 0x809 /d "_DEBUG"
+# ADD RSC /l 0x809 /d "_DEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LIB32=link.exe -lib
+# ADD BASE LIB32 /nologo /out:"lib\ObjectHandler_d.lib"
+# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-sgd-0_0_1.lib"
+
+!ELSEIF  "$(CFG)" == "ObjectHandler - Win32 Release MTDLL"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "ObjectHandler___Win32_Release_MTDLL"
+# PROP BASE Intermediate_Dir "ObjectHandler___Win32_Release_MTDLL"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "build\ReleaseMTDLL"
+# PROP Intermediate_Dir "build\ReleaseMTDLL"
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "." /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD BASE RSC /l 0x809 /d "NDEBUG"
+# ADD RSC /l 0x809 /d "NDEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LIB32=link.exe -lib
+# ADD BASE LIB32 /nologo /out:"lib\ObjectHandler.lib"
+# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-0_0_1.lib"
 
 !ENDIF 
 
@@ -80,17 +176,57 @@ LINK32=link.exe
 
 # Name "ObjectHandler - Win32 Release"
 # Name "ObjectHandler - Win32 Debug"
+# Name "ObjectHandler - Win32 Release SingleThread"
+# Name "ObjectHandler - Win32 Debug MTDLL"
+# Name "ObjectHandler - Win32 Debug SingleThread"
+# Name "ObjectHandler - Win32 Release MTDLL"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
+# Begin Source File
+
+SOURCE=.\ObjectHandler\exception.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ObjectHandler\object.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ObjectHandler\objecthandler.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ObjectHandler\utilities.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
-# End Group
-# Begin Group "Resource Files"
+# Begin Source File
 
-# PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
+SOURCE=.\ObjectHandler\autolink.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ObjectHandler\exception.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ObjectHandler\object.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ObjectHandler\objecthandler.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ObjectHandler\objecthandlerversion.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ObjectHandler\utilities.hpp
+# End Source File
 # End Group
 # End Target
 # End Project
