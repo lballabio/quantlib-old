@@ -144,27 +144,39 @@ class FlatForwardPtr : public boost::shared_ptr<YieldTermStructure> {
     %extend {
         FlatForwardPtr(const Date& referenceDate,
                        const Handle<Quote>& forward,
-                       const DayCounter& dayCounter) {
+                       const DayCounter& dayCounter,
+                       Compounding compounding = QuantLib::Continuous,
+                       Frequency frequency = QuantLib::Annual) {
             return new FlatForwardPtr(
-                           new FlatForward(referenceDate,forward,dayCounter));
+                           new FlatForward(referenceDate,forward,dayCounter,
+                                           compounding,frequency));
         }
         FlatForwardPtr(const Date& referenceDate,
                        Rate forward,
-                       const DayCounter& dayCounter) {
+                       const DayCounter& dayCounter,
+                       Compounding compounding = QuantLib::Continuous,
+                       Frequency frequency = QuantLib::Annual) {
             return new FlatForwardPtr(
-                           new FlatForward(referenceDate,forward,dayCounter));
+                           new FlatForward(referenceDate,forward,dayCounter,
+                                           compounding,frequency));
         }
         FlatForwardPtr(Integer settlementDays, const Calendar& calendar,
                        const Handle<Quote>& forward,
-                       const DayCounter& dayCounter) {
+                       const DayCounter& dayCounter,
+                       Compounding compounding = QuantLib::Continuous,
+                       Frequency frequency = QuantLib::Annual) {
             return new FlatForwardPtr(
-                 new FlatForward(settlementDays,calendar,forward,dayCounter));
+                 new FlatForward(settlementDays,calendar,forward,dayCounter,
+                                 compounding,frequency));
         }
         FlatForwardPtr(Integer settlementDays, const Calendar& calendar,
                        Rate forward,
-                       const DayCounter& dayCounter) {
+                       const DayCounter& dayCounter,
+                       Compounding compounding = QuantLib::Continuous,
+                       Frequency frequency = QuantLib::Annual) {
             return new FlatForwardPtr(
-                 new FlatForward(settlementDays,calendar,forward,dayCounter));
+                 new FlatForward(settlementDays,calendar,forward,dayCounter,
+                                 compounding,frequency));
         }
     }
 };
