@@ -82,6 +82,13 @@ backup tarball</a> of the CVS repository. You'll need to install it
 as a local CVS repository to use it. However, we advise against
 such operation as the tarball size exceeds 60 MB at the time of
 this writing.</p>
+<p>Finally, another possibility (untested at this time) might be to
+use an http grabber such as <a
+href="http://cvsgrab.sourceforge.net">CVSGrab</a> or <a
+href="http://www.angelfire.com/rnb/sfcvs/">sfcvs</a>. We'll be
+grateful to anyone reporting success or failure with these
+packages.</p>
+
 <br>
 <h3>Developer CVS Access via SSH</h3>
 <p>If you are a SourceForge.net-recognized QuantLib developer you
