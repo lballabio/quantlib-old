@@ -45,6 +45,9 @@ SectionIn 1 2 3
     File "News.txt"
     File "README.txt"
 
+    SetOutPath $INSTDIR\Docs\images
+    File "Docs\images\QL-largish.bmp"
+
     SetOutPath $INSTDIR\xll
     File "xll\QuantLibXL-vc*-mt-s-${VER_NUMBER2}.xll"
 #    SetOutPath $INSTDIR\xll
