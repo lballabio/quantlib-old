@@ -167,5 +167,20 @@ extern "C"
         EXCEL_END;
     }
 
+    LPXLOPER EXCEL_EXPORT xleigenVectors(XlfOper xlmatrix) {
+        EXCEL_BEGIN;
+        Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
+        Matrix result = SymmetricSchurDecomposition(data_matrix).eigenvectors();
+        return XlfOper(result.rows(), result.columns(), result.begin());
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xleigenValues(XlfOper xlmatrix) {
+        EXCEL_BEGIN;
+        Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
+        Array result = SymmetricSchurDecomposition(data_matrix).eigenvalues();
+        return XlfOper(result.size(), 1, result.begin());
+        EXCEL_END;
+    }
 
 }

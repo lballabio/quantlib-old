@@ -71,6 +71,7 @@ extern "C" {
             XlfArgDesc x_array("x_array", "x data array");
             XlfArgDesc y_array("y_array", "y data array");
             XlfArgDesc z_matrix("z_matrix", "z data matrix");
+            XlfArgDesc matrix("matrix", "input matrix");
             XlfArgDesc x_value("x_value", "x value to be interpolated");
             XlfArgDesc y_value("y_value", "y value to be interpolated");
             XlfArgDesc interpolationType("interpolation_type",
@@ -237,6 +238,15 @@ extern "C" {
             primeNumbersDesc.SetArguments(absoluteIndex);
             primeNumbersDesc.Register();
 
+            XlfFuncDesc eigenVectorsDesc("xleigenVectors","qlEigenVectors",
+                "return the eigenvectors of the input matrix, one for each column of the result matrix","QuantLibXL Math");
+            eigenVectorsDesc.SetArguments(matrix);
+            eigenVectorsDesc.Register();
+
+            XlfFuncDesc eigenValuesDesc("xleigenValues","qlEigenValues",
+                "return the eigenvalues of the input matrix","QuantLibXL Math");
+            eigenValuesDesc.SetArguments(matrix);
+            eigenValuesDesc.Register();
 
             // Registers Normal distribution
 
