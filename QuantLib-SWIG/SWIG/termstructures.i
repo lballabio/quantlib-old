@@ -130,6 +130,9 @@ IsObservable(Handle<TermStructure>);
 	Date maxDate() {
 		return (*self)->maxDate();
 	}
+	Time maxTime() {
+		return (*self)->maxTime();
+	}
 	DiscountFactor discount(const Date& d, bool extrapolate = false) {
 		return (*self)->discount(d, extrapolate);
 	}

@@ -24,18 +24,56 @@
 
 (define-macro with-test-structure
   (lambda body 
-    `(deleting-let* ((today (Date-todays-date) delete-Date)
-                     (calendar (new-Calendar "TARGET") delete-Calendar)
-                     (settlement (Calendar-advance calendar today 2 "days")
-                                 delete-Date)
-                     (day-counter (new-DayCounter "act/365")
-                                  delete-DayCounter)
-                     (term-structure (new-FlatForward today settlement 0.05
-                                                      day-counter)
-                                     delete-TermStructure)
-                     (handle (new-TermStructureHandle term-structure)
-                             delete-TermStructureHandle))
-       ,@body)))
+    `(let ((settlement-days 2)
+           (deposit-data '((1  "month" 4.581)
+                           (2 "months" 4.573)
+                           (3 "months" 4.557)
+                           (6 "months" 4.496)
+                           (9 "months" 4.490)))
+           (swap-data '((1 4.54)
+                        (5 4.99)
+                        (10 5.47)
+                        (20 5.89)
+                        (30 5.96))))
+       (deleting-let* ((today (Date-todays-date) delete-Date)
+                       (calendar (new-Calendar "TARGET") delete-Calendar)
+                       (settlement (Calendar-advance calendar today
+                                                     settlement-days "days")
+                                   delete-Date)
+                       (day-counter (new-DayCounter "act/360")
+                                    delete-DayCounter)
+                       (day-counter-2 (new-DayCounter "30/360")
+                                      delete-DayCounter)
+                       (deposits (map
+                                  (lambda (datum)
+                                    (let-at-once ((n units rate) datum)
+                                      (new-DepositRateHelper
+                                       (new-MarketElementHandle
+                                        (new-SimpleMarketElement (/ rate 100)))
+                                       settlement-days n units calendar 
+                                       "mf" day-counter)))
+                                  deposit-data)
+                                 (lambda (l)
+                                   (for-each delete-RateHelper l)))
+                       (swaps (map 
+                               (lambda (datum)
+                                 (let-at-once ((years rate) datum)
+                                   (new-SwapRateHelper
+                                    (new-MarketElementHandle
+                                     (new-SimpleMarketElement (/ rate 100)))
+                                    settlement-days years calendar
+                                    "mf" 1 #f day-counter-2 2)))
+                               swap-data)
+                              (lambda (l)
+                                (for-each delete-RateHelper l)))
+                       (term-structure (new-PiecewiseFlatForward
+                                        today settlement 
+                                        (append deposits swaps)
+                                        day-counter)
+                                       delete-TermStructure)
+                       (handle (new-TermStructureHandle term-structure)
+                               delete-TermStructureHandle))
+         ,@body))))
 
 (define (Implied-term-structure-consistency-test)
   (with-test-structure

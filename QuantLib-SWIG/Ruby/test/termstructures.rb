@@ -40,9 +40,38 @@ class TermStructureTest < RUNIT::TestCase
   end
   def setup
     today = Date::todaysDate()
-    settlement = Calendar.new('TARGET').advance(today,2,'days')
-    @termStructure = FlatForward.new(today,settlement,0.05,
-                                     DayCounter.new('act/365'))
+    calendar = Calendar.new('TARGET')
+    settlementDays = 2
+    settlement = calendar.advance(today,settlementDays,'days')
+    depositData = [
+      [1,  'month', 4.581],
+      [2, 'months', 4.573],
+      [3, 'months', 4.557],
+      [6, 'months', 4.496],
+      [9, 'months', 4.490]
+    ]
+    deposits = depositData.map { |n,units,rate|
+      DepositRateHelper.new(
+        MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
+        settlementDays, n, units,
+        calendar, 'mf', DayCounter.new('act/360'))
+    }    
+    swapData = [
+        [ 1, 4.54],
+        [ 5, 4.99],
+        [10, 5.47],
+        [20, 5.89],
+        [30, 5.96]
+    ]
+    swaps = swapData.map { |years,rate|
+      SwapRateHelper.new(
+        MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
+        settlementDays, years, calendar,
+        'mf', 1, false, DayCounter.new('30/360'), 2)
+    }
+    @termStructure = PiecewiseFlatForward.new(today,settlement,
+                                              deposits+swaps,
+                                              DayCounter.new('Act/360'))
   end
   def testImplied
     tolerance = 1.0e-10

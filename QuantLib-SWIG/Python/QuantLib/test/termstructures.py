@@ -27,14 +27,36 @@ def raiseFlag():
 
 class TermStructureTest(unittest.TestCase):
     def setUp(self):
-        import sys
-        if sys.hexversion >= 0x020200a0:
-            today = Date.todaysDate()
-        else:
-            today = Date_todaysDate()
-        settlement = Calendar('TARGET').advance(today,2,'days')
-        self.termStructure = FlatForward(today,settlement,0.05,
-                                         DayCounter('act/365'))
+        today = Date_todaysDate()
+        calendar = Calendar('TARGET')
+        settlementDays = 2
+        settlement = calendar.advance(today,settlementDays,'days')
+        deposits = [
+            DepositRateHelper(
+                MarketElementHandle(SimpleMarketElement(rate/100)),
+                settlementDays, n, units,
+                calendar, 'mf', DayCounter('act/360'))
+            for (n,units,rate) in [ (1,  'month', 4.581),
+                                    (2, 'months', 4.573),
+                                    (3, 'months', 4.557),
+                                    (6, 'months', 4.496),
+                                    (9, 'months', 4.490) ]
+        ]
+        swaps = [
+            SwapRateHelper(
+                MarketElementHandle(SimpleMarketElement(rate/100)),
+                settlementDays, years, calendar,
+                'mf', 1, 0, DayCounter('30/360'), 2)
+            for (years,rate) in [ ( 1, 4.54),
+                                  ( 5, 4.99),
+                                  (10, 5.47),
+                                  (20, 5.89),
+                                  (30, 5.96) ]
+        ]        
+        
+        self.termStructure = PiecewiseFlatForward(today,settlement,
+                                                  deposits+swaps,
+                                                  DayCounter('Act/360'))
     def testImplied(self):
         "Testing consistency of implied term structure"
         tolerance = 1.0e-10

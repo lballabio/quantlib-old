@@ -58,22 +58,22 @@ class PiecewiseFlatForwardTest < RUNIT::TestCase
     fixedDayCount = DayCounter.new('30/360')
     floatingFrequency = 2
     swapData = [
-            [ 1, 4.54],
-            [ 2, 4.63],
-            [ 3, 4.75],
-            [ 4, 4.86],
-            [ 5, 4.99],
-            [ 6, 5.11],
-            [ 7, 5.23],
-            [ 8, 5.33],
-            [ 9, 5.41],
-            [10, 5.47],
-            [12, 5.60],
-            [15, 5.75],
-            [20, 5.89],
-            [25, 5.95],
-            [30, 5.96]
-        ]
+        [ 1, 4.54],
+        [ 2, 4.63],
+        [ 3, 4.75],
+        [ 4, 4.86],
+        [ 5, 4.99],
+        [ 6, 5.11],
+        [ 7, 5.23],
+        [ 8, 5.33],
+        [ 9, 5.41],
+        [10, 5.47],
+        [12, 5.60],
+        [15, 5.75],
+        [20, 5.89],
+        [25, 5.95],
+        [30, 5.96]
+    ]
     swaps = swapData.map { |years,rate|
       SwapRateHelper.new(
         MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
