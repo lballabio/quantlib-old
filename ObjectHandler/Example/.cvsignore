@@ -4,3 +4,5 @@ Example.plg
 Example.dep
 Example.mak
 Makefile.win
+Example
+example.log
