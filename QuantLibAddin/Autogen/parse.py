@@ -1,3 +1,5 @@
+'xml parser'
+
 import common
 import xml.dom.minidom
 import re
@@ -23,8 +25,9 @@ def getParameter(parmNode):
 	parm[common.DESC] = desc
 	return parm
 
-def getParameters(parmNodes):
+def getParameters(parmsNode):
 	parmList = []
+	parmNodes = parmsNode.getElementsByTagName(common.PARM)
 	for parmNode in parmNodes:
 		parm = getParameter(parmNode)
 		parmList.append(parm)
@@ -33,14 +36,13 @@ def getParameters(parmNodes):
 def getFunction(functionNode):
 	function = {}
 	nameNode = functionNode.getElementsByTagName(common.NAME)[0]
+	codeNameNode = functionNode.getElementsByTagName(common.CODENAME)[0]
 	descNode = functionNode.getElementsByTagName(common.DESC)[0]
-	parmNodes = functionNode.getElementsByTagName(common.PARMS)
-	name = getText(nameNode)
-	desc = getText(descNode)
-	parmList = getParameters(parmNodes)
-	function[common.NAME] = name
-	function[common.DESC] = desc
-	function[common.PARMS] = parmList
+	parmsNode = functionNode.getElementsByTagName(common.PARMS)[0]
+	function[common.NAME] = getText(nameNode)
+	function[common.CODENAME] = getText(codeNameNode)
+	function[common.DESC] = getText(descNode)
+	function[common.PARMS] = getParameters(parmsNode)
 	return function
 
 def getFunctionList(functionNodes):
@@ -52,27 +54,16 @@ def getFunctionList(functionNodes):
 
 def getFunctionLists():
 	functionLists = {}
-	xmlSuffix = re.compile('.*\.xml$')
+	xmlSuffix = re.compile(r'(.*).xml\Z')
 	fileNames = os.listdir('.')
 	for fileName in fileNames:
-		if not xmlSuffix.match(fileName): continue
-		listName = os.path.basename(fileName)
+		m = xmlSuffix.match(fileName)
+		if not m: continue
+		listName = m.group(1)
 		fileObj = file(fileName)
 		dom = xml.dom.minidom.parse(fileObj)
 		functionNodes = dom.documentElement.getElementsByTagName(common.FUNC)
 		functionList = getFunctionList(functionNodes)
 		functionLists[listName] = functionList
+		common.NUMFUNC += len(functionList)
 	return functionLists
-
-def debug(functionLists):
-	for listName in functionLists.keys():
-		print "list name =", listName
-		functionList = functionLists[listName]
-		for function in functionList:
-			print "\tname =", function[common.NAME]
-			print "\tdesc =", function[common.DESC]
-			parms = function[common.PARMS]
-			for parm in parms:
-				print "\t\tname =", parm[common.NAME]
-				print "\t\ttype =", parm[common.TYPE]
-				print "\t\tdesc =", parm[common.DESC]

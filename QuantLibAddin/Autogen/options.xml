@@ -4,11 +4,12 @@
 
 <function>
 <name>QL_BLACKSHOLES</name>
+<codename>qlBlackscholes</codename>
 <description>construct and return a handle to a Black Scholes object</description>
 <parameters>
 	<param>
-		<name>handleStochastic</name>
-		<type>string</type>
+		<name>handleBlackScholes</name>
+		<type>handle</type>
 		<desc>handle of the Black Scholes object</desc>
 	</param>
 	<param>
@@ -50,11 +51,12 @@
 
 <function>
 <name>QL_OPTION</name>
+<codename>qlOption</codename>
 <description>construct and return a handle to an Option object</description>
 <parameters>
 	<param>
 		<name>handleOption</name>
-		<type>string</type>
+		<type>handle</type>
 		<desc>handle of the Option object</desc>
 	</param>
 	<param>
@@ -96,6 +98,7 @@
 
 <function>
 <name>QL_OPTION_SETENGINE</name>
+<codename>qlOptionSetEngine</codename>
 <description>change the pricing engine of an existing Option object</description>
 <parameters>
 	<param>
@@ -113,7 +116,6 @@
 		<type>long</type>
 		<desc>time steps</desc>
 	</param>
-	
 </parameters>
 <returnvalue>
 	<type>property vector</type>
