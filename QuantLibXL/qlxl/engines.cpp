@@ -107,6 +107,7 @@ extern "C"
         // some of them hard coded for the time being
         Size maxTimeStepPerYear = Null<Size>();
         maxTimeStepPerYear = 1;
+        bool brownianBridge = false;
         bool antitheticVariate = xlantitheticVariance.AsBool();
         bool controlVariate = false;
         Size nSamples= Null<Size>();
@@ -117,6 +118,7 @@ extern "C"
 
         boost::shared_ptr<PricingEngine> engine(new
             MCEuropeanEngine<PseudoRandom>(maxTimeStepPerYear,
+                                           brownianBridge,
                                            antitheticVariate, controlVariate,
                                            nSamples, tolerance,
                                            maxSamples, mcSeed));
