@@ -71,6 +71,6 @@ DLLEXPORT LPXLOPER qlLogLevel(long *logLevel) {
     static XLOPER xRet;
     QL_LOGLEVEL(*logLevel);
     xRet.xltype = xltypeInt;
-    xRet.val.w = logLevel;
+    xRet.val.w = *logLevel;
     return &xRet;
 }
