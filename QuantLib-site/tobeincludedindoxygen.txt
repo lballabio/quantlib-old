@@ -97,17 +97,3 @@ time.</p>
 A number of such solvers is contained in the <tt>Solvers1D</tt>
 namespace.</p>
 
-<h3 class="center">The Finite Difference package</h3>
-
-<p>A framework for the resolution of partial differential
-equations, for the time being a very basic one, which have a
-finite-difference approach is included in the library (see the
-documentation for details.) This package is currently used to
-obtain the numerical solution for the the Black-Scholes equation in
-the case of american option.</p>
-
-<p>This framework is aimed to evolve into the first example of a
-general model interface. This interface will permit to price code
-with homogeneity among different theoretical models, e.g.
-Black-Scholes, interest-rate single-factor models, and numerical
-techniques such as trinomial tree, finite difference, etc.</p>
