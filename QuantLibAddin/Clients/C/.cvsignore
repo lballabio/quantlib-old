@@ -8,3 +8,5 @@ xll
 *_private.*
 *.layout
 Makefile.win
+QLADemo
+quantlib.log
