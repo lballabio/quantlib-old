@@ -17,10 +17,11 @@
 
 #include <QuantLibAddin/qladdin.hpp>
 #include <QuantLibAddin/objects/objectoption.hpp>		// ObjectOption
-#include <ql/quantlib.hpp>								// VanillaOption
+#include <ql/quantlib.hpp>								// VanillaOption, Date
 #include <iostream>
 
 using namespace std;
+using namespace QuantLib;
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
@@ -37,14 +38,14 @@ int main() {
 	    double underlying = 36;
 	    double strike = 40;
 	    long timeSteps = 801;
-		long exerciseDate = 36297; 		// (17, May, 1999);
-		long settlementDate = 35932; 	// (17, May, 1998);
-	    long todaysDate = 35930; 		// (15, May, 1998);
+		Date exerciseDate(17, May, 1999);
+		Date settlementDate(17, May, 1998);
+	    Date todaysDate(15, May, 1998);
 	
-		Properties bsProperties = QL_BLACKSCHOLES("my_blackscholes", dividendYield, 
-			riskFreeRate, volatility, underlying, todaysDate, settlementDate);
+		Properties bsProperties = QL_BLACKSCHOLES("my_blackscholes", dividendYield, riskFreeRate,
+			volatility, underlying, todaysDate.serialNumber(), settlementDate.serialNumber());
 		Properties opProperties = QL_OPTION("my_option", "my_blackscholes", "PUT", 
-			strike, timeSteps, exerciseDate, settlementDate);
+			strike, timeSteps, exerciseDate.serialNumber(), settlementDate.serialNumber());
 	
 		cout << endl << "High-level interrogation: after QL_OPTION" << endl;
 		Properties::const_iterator i;
@@ -71,8 +72,8 @@ int main() {
 		boost::shared_ptr<ObjectOption> objectOption = 
 			boost::dynamic_pointer_cast<ObjectOption> 
 			(ObjectHandler::instance().retrieveObject("my_option"));
-		boost::shared_ptr<QuantLib::VanillaOption> const vanillaOption =
-			boost::static_pointer_cast<QuantLib::VanillaOption>
+		boost::shared_ptr<VanillaOption> const vanillaOption =
+			boost::static_pointer_cast<VanillaOption>
 			(objectOption->getReference());
 		cout << "underlying option NPV() = " 
 			<< vanillaOption->NPV() << endl;
