@@ -3,6 +3,7 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="QuantLibXL"
+	ProjectGUID="{0590C0EB-9DA3-4243-BAD2-D2BCF464A880}"
 	SccProjectName=""
 	SccLocalPath="">
 	<Platforms>
@@ -25,7 +26,7 @@
 				ImproveFloatingPointConsistency="TRUE"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories=".\,$(XLW_DIR),$(QL_DIR),$(QL_DIR)\functions"
-				PreprocessorDefinitions="XLW_AUTOLINK, "
+				PreprocessorDefinitions="XLW_AUTOLINK, NOMINMAX"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				DisableLanguageExtensions="FALSE"
@@ -98,7 +99,7 @@
 				ImproveFloatingPointConsistency="TRUE"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories=".\,$(XLW_DIR),$(QL_DIR),$(QL_DIR)\functions"
-				PreprocessorDefinitions="XLW_AUTOLINK, "
+				PreprocessorDefinitions="XLW_AUTOLINK, NOMINMAX"
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="TRUE"

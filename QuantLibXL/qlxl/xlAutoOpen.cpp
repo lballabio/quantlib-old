@@ -20,7 +20,6 @@
 
 */
 
-#include <qlxl/qlxl.hpp>
 #include <qlxl/qlxlfoper.hpp>
 
 #define BOOST_LIB_DIAGNOSTIC

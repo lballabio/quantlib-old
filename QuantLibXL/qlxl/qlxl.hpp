@@ -22,16 +22,18 @@
 #ifndef qlxl_h
 #define qlxl_h
 
-#include <xlw/xlw.h>
-
-#include <ql/qldefines.hpp>
-
 #ifdef max
-#   undef max
+#  undef max
 #endif
 #ifdef min
-#   undef min
+#  undef min
 #endif
+#ifndef NOMINMAX
+#  define NOMINMAX
+#endif
+
+#include <xlw/xlw.h>
+#include <ql/qldefines.hpp>
 
 //! version hexadecimal number
 #define QLXL_HEX_VERSION 0x000309a0
