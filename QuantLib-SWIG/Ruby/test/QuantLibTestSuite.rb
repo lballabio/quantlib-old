@@ -23,11 +23,13 @@ require 'runit/cui/testrunner'
 require 'dates'
 require 'daycounters'
 require 'distributions'
+require 'solvers1d'
 
 suite = RUNIT::TestSuite.new
 suite.add_test(DateTest.suite)
 suite.add_test(DayCounterTest.suite)
 suite.add_test(DistributionTest.suite)
+suite.add_test(Solver1DTest.suite)
 
 result = RUNIT::CUI::TestRunner.run(suite)
 unless result.succeed?

@@ -36,18 +36,21 @@ swig_files = ['../SWIG/common.i',
               '../SWIG/date.i',
               '../SWIG/daycounters.i',
               '../SWIG/distributions.i',
+              '../SWIG/functions.i',
               '../SWIG/history.i',
               '../SWIG/null.i',
               '../SWIG/observer.i',
               '../SWIG/ql.i',
               '../SWIG/qlarray.i',
               '../SWIG/randomnumbers.i',
+              '../SWIG/solvers1d.i',
               '../SWIG/types.i']
 
 test_files = ['QuantLib/test/QuantLibTestSuite.py',
               'QuantLib/test/date.py',
               'QuantLib/test/daycounters.py',
-              'QuantLib/test/distributions.py']
+              'QuantLib/test/distributions.py',
+              'QuantLib/test/solvers1d.py']
 
 class test(Command):
     # Original version of this class posted

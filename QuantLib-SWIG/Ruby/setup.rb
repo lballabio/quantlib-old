@@ -67,6 +67,7 @@ Interfaces =  [ 'common.i',
                 'date.i',
                 'daycounters.i',
                 'distributions.i',
+                'functions.i',
                 'history.i',
                 'null.i',
                 'observer.i',
@@ -74,11 +75,13 @@ Interfaces =  [ 'common.i',
                 'ql.i',
                 'qlarray.i',
                 'randomnumbers.i',
+                'solvers1d.i',
                 'types.i']
 
 Tests =       [ 'dates.rb',
                 'daycounters.rb',
                 'distributions.rb',
+                'solvers1d.rb',
                 'QuantLibTestSuite.rb' ]
 
 # commands

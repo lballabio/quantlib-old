@@ -36,6 +36,9 @@ def test():
     from distributions import DistributionTest
     suite.addTest(DistributionTest())
 
+    from solvers1d import Solver1DTest
+    suite.addTest(Solver1DTest())
+
     result = unittest.TextTestRunner(verbosity=2).run(suite)
 
     if not result.wasSuccessful:

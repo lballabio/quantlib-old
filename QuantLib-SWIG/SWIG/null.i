@@ -29,8 +29,8 @@ typedef double doubleOrNull;
 %}
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(null_int) nullInt;
-%rename(null_double) nullDouble;
+%rename("null-int")    nullInt;
+%rename("null-double") nullDouble;
 #endif
 
 %inline%{

@@ -24,10 +24,12 @@
 (load "date.scm")
 (load "daycounters.scm")
 (load "distributions.scm")
+(load "solvers1d.scm")
 
 (let ((suite (make-suite)))
   (suite-add-test suite Date-test         "Testing dates")
   (suite-add-test suite DayCounter-test   "Testing act/act day counters")
   (suite-add-test suite Distribution-test "Testing distributions")
+  (suite-add-test suite Solver-1D-test    "Testing 1-D solvers")
   (suite-run suite))
 

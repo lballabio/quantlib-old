@@ -53,10 +53,12 @@
 %include date.i
 %include daycounters.i
 %include distributions.i
+%include functions.i
 %include history.i
 %include null.i
 %include observer.i
 %include qlarray.i
 %include randomnumbers.i
+%include solvers1d.i
 %include types.i
 

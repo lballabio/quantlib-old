@@ -177,9 +177,9 @@ class HistoryValidIterator {
 
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(first_date) firstDate;
-%rename(last_date)  lastDate;
-%rename(length)     __len__;
+%rename("first-date") firstDate;
+%rename("last-date")  lastDate;
+%rename("length")     __len__;
 #endif
 
 class History {

@@ -92,7 +92,7 @@ bool extractArray(PyObject* source, Array* target) {
 #endif
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(length)    size;
+%rename("length")  size;
 %rename(">string") __str__;
 %rename("set!")    set;
 #endif

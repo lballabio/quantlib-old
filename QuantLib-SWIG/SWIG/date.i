@@ -167,18 +167,18 @@ Date NullDate = Date();
 #endif
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(day_of_month)   dayOfMonth;
-%rename(day_of_year)    dayOfYear;
-%rename(weekday_number) weekdayNumber;
-%rename(serial_number)  serialNumber;
-%rename(plus_days)      plusDays;
-%rename(plus_weeks)     plusWeeks;
-%rename(plus_months)    plusMonths;
-%rename(plus_years)     plusYears;
-%rename("is_leap?")     isLeap;
-%rename(min_date)       minDate;
-%rename(max_date)       maxDate;
-%rename(">string")      __str__;
+%rename("day-of-month")   dayOfMonth;
+%rename("day-of-year")    dayOfYear;
+%rename("weekday-number") weekdayNumber;
+%rename("serial-number")  serialNumber;
+%rename("plus-days")      plusDays;
+%rename("plus-weeks")     plusWeeks;
+%rename("plus-months")    plusMonths;
+%rename("plus-years")     plusYears;
+%rename("is-leap?")       isLeap;
+%rename("min-date")       minDate;
+%rename("max-date")       maxDate;
+%rename(">string")        __str__;
 #endif
 // also, allow pass and return by value
 #if defined(SWIGMZSCHEME)
@@ -297,7 +297,7 @@ class Date {
 
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(Date_from_serial_number) DateFromSerialNumber;
+%rename("Date-from-serial-number") DateFromSerialNumber;
 #endif
 %inline %{
     Date DateFromSerialNumber(int serialNumber) {

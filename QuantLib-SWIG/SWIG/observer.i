@@ -103,8 +103,8 @@ class RubyObserver : public Observer {
   private:
 	VALUE callback_;
     // inhibit copies
-    RubyObserver(const RubyObserver& o) {}
-    RubyObserver& operator=(const RubyObserver& o) { return *this; }
+    RubyObserver(const RubyObserver&) {}
+    RubyObserver& operator=(const RubyObserver&) { return *this; }
 };
 
 void markRubyObserver(void* p) {
@@ -166,6 +166,8 @@ class MzObserver : public Observer {
 
 // MzScheme wrapper
 %rename(Observer) MzObserver;
+%rename("register-with")   registerWith;
+%rename("unregister-with") unregisterWith;
 class MzObserver {
   public:
 	MzObserver(Scheme_Object* callback);
