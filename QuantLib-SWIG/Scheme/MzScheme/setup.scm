@@ -161,7 +161,7 @@
   (let ((platform (system-type))
         (include-dirs '()))
     (cond ((eqv? platform 'unix)
-           (let ((c++-compiler (getenv "CC"))
+           (let ((c++-compiler (getenv "CXX"))
                  (c-flags (getenv "CFLAGS"))
                  (c++-flags (getenv "CXXFLAGS")))
              (if (not c++-compiler)

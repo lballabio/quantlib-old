@@ -131,7 +131,7 @@
             (ends (reverse (cons n spcs))))
         (map (lambda (b e) (substring s b e)) begins ends))))
   (display "Building QuantLib-Guile...") (newline)
-  (let ((c++-compiler (getenv "CC"))
+  (let ((c++-compiler (getenv "CXX"))
         (c-flags (getenv "CFLAGS"))
         (c++-flags (getenv "CXXFLAGS")))
     (if (not c++-compiler) (set! c++-compiler "g++"))

@@ -181,7 +181,7 @@ Build = Command.new {
     	$CPPFLAGS += " -I/usr/local/include"
     	$libs     += " -lQuantLib"
         old_cc = cfg['CC']
-        cfg['CC'] = ENV['CC'] || "g++"
+        cfg['CC'] = ENV['CXX'] || "g++"
         cfg['CPP'].sub!(old_cc,cfg['CC'])
     	cfg['LDSHARED'].sub!(old_cc,cfg['CC'])
       else
