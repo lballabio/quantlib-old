@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2000, 2001, 2002 RiskMap srl
+ Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -39,8 +39,10 @@ else:
 __license__ = """
 COPYRIGHT AND PERMISSION NOTICE
 
-Copyright (c) 2000-2001 QuantLib Group
-
+Copyright (c) 2002, 2003 Ferdinando Ametrano
+Copyright (c) 2001, 2002, 2003 Nicolas Di Césaré
+Copyright (c) 2001, 2002, 2003 Sadruddin Rejeb
+Copyright (c) 2000, 2001, 2002, 2003 RiskMap srl
 All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

@@ -1,5 +1,5 @@
 """
- Copyright (C) 2000, 2001, 2002 RiskMap srl
+ Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,7 +23,6 @@ import unittest
 class SimpleSwapTest(unittest.TestCase):
     def setUp(self):
         self.payFixed = 1
-        self.today = Date_todaysDate()
         self.settlementDays = 2
         self.fixingDays = 2
         self.nominal = 100
@@ -35,6 +34,7 @@ class SimpleSwapTest(unittest.TestCase):
                            12/self.floatingFrequency,'Months',
                            self.euriborHandle)
         self.calendar = self.index.calendar()
+	self.today = self.calendar.roll(Date_todaysDate())
         self.settlement = self.calendar.advance(self.today,
                                                 self.settlementDays, "days",
                                                 "following")

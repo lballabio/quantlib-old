@@ -1,3 +1,19 @@
+2002-12-31 18:49  nando
+
+	* LICENSE.TXT (1.1.4.1): updated copyright years
+
+2002-12-19 17:18  lballabio
+
+	* setup.scm (1.14): Updated version
+
+2002-12-19 17:06  lballabio
+
+	* setup.scm (1.13.2.1): Updated version
+
+2002-12-16 11:36  nando
+
+	* ChangeLog.txt (1.2): updated
+
 2002-12-16 10:38  lballabio
 
 	* setup.scm (1.13): [no log message]

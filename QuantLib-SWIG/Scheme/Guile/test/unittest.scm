@@ -1,4 +1,4 @@
-; Copyright (C) 2000, 2001, 2002 RiskMap srl
+; Copyright (C) 2002, 2003 RiskMap srl
 ;
 ; This file is part of QuantLib, a free-software/open-source library
 ; for financial quantitative analysts and developers - http://quantlib.org/

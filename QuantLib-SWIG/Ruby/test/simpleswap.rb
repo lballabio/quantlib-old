@@ -1,5 +1,5 @@
 =begin
- Copyright (C) 2000, 2001, 2002 RiskMap srl
+ Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -51,8 +51,8 @@ class SimpleSwapTest < Test::Unit::TestCase
     @index = Xibor.new("Euribor",
                        12/@floatingFrequency,'Months',
                        @euriborHandle)
-    @today = Date.todaysDate
     @calendar = @index.calendar
+    @today = @calendar.roll(Date.todaysDate)
     @settlement = @calendar.advance(@today,
                                     @settlementDays, "days",
                                     "following")

@@ -1,4 +1,4 @@
-; Copyright (C) 2000, 2001, 2002 RiskMap srl
+; Copyright (C) 2002, 2003 RiskMap srl
 ;
 ; This file is part of QuantLib, a free-software/open-source library
 ; for financial quantitative analysts and developers - http://quantlib.org/
@@ -41,14 +41,15 @@
                                         "months" euribor-handle)
                              delete-Index)
                       (calendar (Xibor-calendar index) delete-Calendar)
-                      (settlement (Calendar-advance calendar today 
+		      (rolled-today (Calendar-roll calendar today) delete-Date)
+                      (settlement (Calendar-advance calendar rolled-today 
                                                     settlement-days "days" 
                                                     "following")
                                   delete-Date)
                       (curve-day-count (new-DayCounter "act/365")
                                        delete-DayCounter)
-                      (term-structure (new-FlatForward today settlement 0.05
-                                                       curve-day-count)
+                      (term-structure (new-FlatForward rolled-today settlement 
+                                                       0.05 curve-day-count)
                                       delete-TermStructure))
         (TermStructureHandle-link-to! euribor-handle term-structure)
         (new-SimpleSwap pay-fixed settlement length "years" calendar
