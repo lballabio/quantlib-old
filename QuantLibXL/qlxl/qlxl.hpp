@@ -26,6 +26,12 @@
 
 #include <ql/qldefines.hpp>
 
+#ifdef max
+#   undef max
+#endif
+#ifdef min
+#   undef min
+#endif
 
 //! version hexadecimal number
 #define QLXL_HEX_VERSION 0x000309a0
