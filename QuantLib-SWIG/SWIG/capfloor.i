@@ -24,53 +24,53 @@
 %include blackmodel.i
 
 %{
-using QuantLib::Instruments::VanillaCap;
-using QuantLib::Instruments::VanillaFloor;
-using QuantLib::Instruments::VanillaCollar;
-typedef Handle<Instrument> VanillaCapHandle;
-typedef Handle<Instrument> VanillaFloorHandle;
-typedef Handle<Instrument> VanillaCollarHandle;
+using QuantLib::Instruments::Cap;
+using QuantLib::Instruments::Floor;
+using QuantLib::Instruments::Collar;
+typedef Handle<Instrument> CapHandle;
+typedef Handle<Instrument> FloorHandle;
+typedef Handle<Instrument> CollarHandle;
 %}
 
-%rename(Cap) VanillaCapHandle;
-class VanillaCapHandle : public Handle<Instrument> {
+%rename(Cap) CapHandle;
+class CapHandle : public Handle<Instrument> {
   public:
     %extend {
-        VanillaCapHandle(const std::vector<Handle<CashFlow> >& leg,
-                         const std::vector<double>& capRates,
-                         const RelinkableHandle<TermStructure>& h,
-                         const Handle<PricingEngine>& engine) {
-            return new VanillaCapHandle(
-                new VanillaCap(leg,capRates,h,engine));
+        CapHandle(const std::vector<Handle<CashFlow> >& leg,
+                  const std::vector<double>& capRates,
+                  const RelinkableHandle<TermStructure>& h,
+                  const Handle<PricingEngine>& engine) {
+            return new CapHandle(
+                new Cap(leg,capRates,h,engine));
         }
     }
 };
 
-%rename(Floor) VanillaFloorHandle;
-class VanillaFloorHandle : public Handle<Instrument> {
+%rename(Floor) FloorHandle;
+class FloorHandle : public Handle<Instrument> {
   public:
     %extend {
-        VanillaFloorHandle(const std::vector<Handle<CashFlow> >& leg,
-                           const std::vector<double>& floorRates,
-                           const RelinkableHandle<TermStructure>& h,
-                           const Handle<PricingEngine>& engine) {
-            return new VanillaFloorHandle(
-                new VanillaFloor(leg,floorRates,h,engine));
+        FloorHandle(const std::vector<Handle<CashFlow> >& leg,
+                    const std::vector<double>& floorRates,
+                    const RelinkableHandle<TermStructure>& h,
+                    const Handle<PricingEngine>& engine) {
+            return new FloorHandle(
+                new Floor(leg,floorRates,h,engine));
         }
     }
 };
 
-%rename(Collar) VanillaCollarHandle;
-class VanillaCollarHandle : public Handle<Instrument> {
+%rename(Collar) CollarHandle;
+class CollarHandle : public Handle<Instrument> {
   public:
     %extend {
-        VanillaCollarHandle(const std::vector<Handle<CashFlow> >& leg,
-                            const std::vector<double>& capRates,
-                            const std::vector<double>& floorRates,
-                            const RelinkableHandle<TermStructure>& h,
-                            const Handle<PricingEngine>& engine) {
-            return new VanillaCollarHandle(
-                new VanillaCollar(leg,capRates,floorRates, h,engine));
+        CollarHandle(const std::vector<Handle<CashFlow> >& leg,
+                     const std::vector<double>& capRates,
+                     const std::vector<double>& floorRates,
+                     const RelinkableHandle<TermStructure>& h,
+                     const Handle<PricingEngine>& engine) {
+            return new CollarHandle(
+                new Collar(leg,capRates,floorRates, h,engine));
         }
     }
 };

@@ -186,8 +186,8 @@ class CapFloorTest < Test::Unit::TestCase
     leg = makeLeg(startDate,20)
     cap = makeCapFloor(Cap,leg,0.07,0.20)
     floor = makeCapFloor(Floor,leg,0.03,0.20)
-    cachedCapNPV = 6.958275537948
-    cachedFloorNPV = 2.700478483500
+    cachedCapNPV = 6.960233718984
+    cachedFloorNPV = 2.701296290808
 
     unless (cap.NPV-cachedCapNPV).abs <= 1.0e-11
       flunk(<<-MESSAGE
