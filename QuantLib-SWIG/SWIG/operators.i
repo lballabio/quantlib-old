@@ -24,43 +24,70 @@
 %include linearalgebra.i
 
 %{
-using QuantLib::FiniteDifferences::BoundaryCondition;
-typedef BoundaryCondition::Type BoundaryConditionType;
+typedef QuantLib::FiniteDifferences::BoundaryCondition<
+	QuantLib::FiniteDifferences::TridiagonalOperator>
+		BoundaryCondition;
+typedef BoundaryCondition::Side BoundaryConditionSide;
 
-BoundaryCondition::Type BCfromString(std::string s) {
+BoundaryCondition::Side BCSideFromString(std::string s) {
     s = StringFormatter::toLowercase(s);
     if (s == "" || s == "none")
         return BoundaryCondition::None;
-    else if (s == "neumann")
-        return BoundaryCondition::Neumann;
-    else if (s == "dirichlet")
-        return BoundaryCondition::Dirichlet;
+    else if (s == "upper")
+        return BoundaryCondition::Upper;
+    else if (s == "lower")
+        return BoundaryCondition::Lower;
     else
-        throw Error("unknown boundary condition type: "+s);
+        throw Error("unknown boundary condition side: "+s);
 }
 
-std::string BCtoString(BoundaryCondition::Type type) {
+std::string BCSideToString(BoundaryCondition::Side type) {
     switch (type) {
       case BoundaryCondition::None:
         return "None";
-      case BoundaryCondition::Neumann:
-        return "Neumann";
-      case BoundaryCondition::Dirichlet:
-        return "Dirichlet";
+      case BoundaryCondition::Upper:
+        return "upper";
+      case BoundaryCondition::Lower:
+        return "lower";
       default:
-        throw Error("unknown boundary condition type");
+        throw Error("unknown boundary condition side");
     }
 }
 %}
 
-MapToString(BoundaryConditionType,BCfromString,BCtoString);
+MapToString(BoundaryConditionSide,BCSideFromString,BCSideToString);
 
-class BoundaryCondition {
+%ignore BoundaryCondition;
+class BoundaryCondition {};
+%template(BoundaryCondition) Handle<BoundaryCondition>;
+
+%{
+using QuantLib::FiniteDifferences::NeumannBC;
+using QuantLib::FiniteDifferences::DirichletBC;
+typedef Handle<BoundaryCondition> NeumannBCHandle;
+typedef Handle<BoundaryCondition> DirichletBCHandle;
+%}
+
+%rename(NeumannBC) NeumannBCHandle;
+class NeumannBCHandle: public Handle<BoundaryCondition> {
   public:
-	BoundaryCondition(BoundaryConditionType type, double value);
-	BoundaryConditionType type() const;
-	double value() const;
+    %extend {
+        NeumannBCHandle(double value, BoundaryConditionSide side) {
+            return new NeumannBCHandle(new NeumannBC(value, side));
+        }
+    }
 };
+
+%rename(DirichletBC) DirichletBCHandle;
+class DirichletBCHandle: public Handle<BoundaryCondition> {
+  public:
+    %extend {
+        DirichletBCHandle(double value, BoundaryConditionSide side) {
+            return new DirichletBCHandle(new DirichletBC(value, side));
+        }
+    }
+};
+
 
 
 %{
@@ -69,8 +96,6 @@ using QuantLib::FiniteDifferences::TridiagonalOperator;
 
 class TridiagonalOperator {
     #if defined(SWIGRUBY)
-    %rename("lowerBC=")       setLowerBC;
-    %rename("upperBC=")       setUpperBC;
     %rename("firstRow=")      setFirstRow;
     %rename("midRow=")        setMidRow;
     %rename("midRows=")       setMidRows;
@@ -78,8 +103,6 @@ class TridiagonalOperator {
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("solve-for")      solveFor;
     %rename("apply-to")       applyTo;
-    %rename("lower-bc-set!")  setLowerBC;
-    %rename("upper-bc-set!")  setUpperBC;
     %rename("first-row-set!") setFirstRow;
     %rename("mid-row-set!")   setMidRow;
     %rename("mid-rows-set!")  setMidRows;
@@ -94,8 +117,6 @@ class TridiagonalOperator {
     // inspectors
     Size size() const;
     // modifiers
-    void setLowerBC(const BoundaryCondition& bc);
-    void setUpperBC(const BoundaryCondition& bc);
     void setFirstRow(double, double);
     void setMidRow(Size, double, double, double);
     void setMidRows(double, double, double);
