@@ -46,8 +46,8 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        Handle<EuropeanAnalyticalEngine> baseEngine(new
-            EuropeanAnalyticalEngine);
+        Handle<AnalyticalVanillaEngine> baseEngine(new
+            AnalyticalVanillaEngine);
 
         Handle<QuantoEngine<VanillaOptionArguments,
                             VanillaOptionResults> >
@@ -113,8 +113,8 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        Handle<EuropeanAnalyticalEngine> baseEngine(new
-            EuropeanAnalyticalEngine);
+        Handle<AnalyticalVanillaEngine> baseEngine(new
+            AnalyticalVanillaEngine);
         Handle<ForwardEngine<VanillaOptionArguments,
                              VanillaOptionResults> >
             forwardEngine(new ForwardEngine<VanillaOptionArguments,
@@ -173,8 +173,8 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        Handle<EuropeanAnalyticalEngine> baseEngine(new
-            EuropeanAnalyticalEngine);
+        Handle<AnalyticalVanillaEngine> baseEngine(new
+            AnalyticalVanillaEngine);
 
         Handle<ForwardPerformanceEngine<VanillaOptionArguments,
                                         VanillaOptionResults> >
