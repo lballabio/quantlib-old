@@ -15,6 +15,6 @@ feedback, questions, etc. The mailing list is only for subscribers, so please
 subscribe before posting.
 
 If you are interested in participating in QuantLibXL development, please send
-mail to Ferdinando Ametrano -- ferdinando@ametrano.net -- describing your
+mail to Ferdinando Ametrano -- nando AT ametrano DOT net -- describing your
 experience and interests. See the TODO.txt file
 
