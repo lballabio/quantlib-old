@@ -31,6 +31,11 @@ module QuantLibc
         include Comparable
     end
 
+    # Enumerable classes
+    class Array
+        include Enumerable
+    end
+
 end
 
 QuantLib = QuantLibc

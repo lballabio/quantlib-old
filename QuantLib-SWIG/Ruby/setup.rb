@@ -55,22 +55,32 @@ end
 Version = "0.3.0b1-cvs"
 
 # Files
-Info     =   [ 'Authors.txt', 'ChangeLog.txt', 'Contributors.txt',
-               'LICENSE.TXT', 'README.txt', 'History.txt', 'News.txt' ]
-Sources  =   [ 'QuantLib.rb', 'quantlib_wrap.cpp' ]
-Binaries =   [ 'QuantLibc.so' ]
-Scripts  =   [ 'setup.rb' ]
-Interfaces = [
-    'common.i',             'calendars.i',          'currencies.i',
-    'date.i',               'daycounters.i',        'distributions.i',
-    'null.i',               'observer.i',           'quantlib.i',
-    'ql.i',                 'qlarray.i',            'randomnumbers.i',
-    'string.i',             'types.i'
-]
-Tests = [
-    'dates.rb',                     'daycounters.rb',
-    'distributions.rb',             'QuantLibTestSuite.rb'
-]
+Info     =    [ 'Authors.txt', 'ChangeLog.txt', 'Contributors.txt',
+                'LICENSE.TXT', 'README.txt', 'History.txt', 'News.txt' ]
+Sources  =    [ 'QuantLib.rb', 'quantlib_wrap.cpp' ]
+Binaries =    [ 'QuantLibc.so' ]
+Scripts  =    [ 'setup.rb' ]
+
+Interfaces =  [ 'common.i',
+                'calendars.i',
+                'currencies.i',
+                'date.i',
+                'daycounters.i',
+                'distributions.i',
+                'null.i',
+                'observer.i',
+                'quantlib.i',
+                'ql.i',
+                'qlarray.i',
+                'randomnumbers.i',
+                'string.i',
+                'types.i',
+                'vector.i' ]
+
+Tests =       [ 'dates.rb',
+                'daycounters.rb',
+                'distributions.rb',
+                'QuantLibTestSuite.rb' ]
 
 # commands
 class Command

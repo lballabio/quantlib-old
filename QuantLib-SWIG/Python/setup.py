@@ -42,7 +42,8 @@ swig_files = ['../SWIG/common.i',
               '../SWIG/qlarray.i',
               '../SWIG/randomnumbers.i',
               '../SWIG/string.i',
-              '../SWIG/types.i']
+              '../SWIG/types.i',
+              '../SWIG/vector.i']
 
 test_files = ['QuantLib/test/QuantLibTestSuite.py',
               'QuantLib/test/date.py',

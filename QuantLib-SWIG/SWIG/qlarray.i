@@ -200,19 +200,17 @@ class Array {
 
     #if defined(SWIGMZSCHEME)
     double ref(Size i) {
-        if (i>=0 && i<self->size()) {
+        if (i<self->size())
             return (*self)[i];
-        } else {
+        else
             throw IndexError("Array index out of range");
-        }
         QL_DUMMY_RETURN(0.0)
     }
-    void set(int i, double x) {
-        if (i>=0 && i<self->size()) {
+    void set(Size i, double x) {
+        if (i<self->size())
             (*self)[i] = x;
-        } else {
+        else
             throw IndexError("Array index out of range");
-        }
     }
     #endif
 

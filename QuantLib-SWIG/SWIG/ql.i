@@ -58,3 +58,5 @@
 %include randomnumbers.i
 %include string.i
 %include types.i
+%include vector.i
+
