@@ -241,8 +241,6 @@ class my_wrap(Command):
     def finalize_options(self): pass
     def run(self):
         print 'Generating Python bindings for QuantLib...'
-        os.system('python -V')
-        os.system('swig -version')
         swig_dir = os.path.join(".","QuantLib","SWIG")
         if not os.path.exists(swig_dir):
             swig_dir = os.path.join("..","SWIG")
