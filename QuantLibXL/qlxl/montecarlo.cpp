@@ -50,10 +50,14 @@ extern "C"
         GenericPseudoRandom<MersenneTwisterUniformRng,
             InverseCumulativeNormal>::ursg_type rsg(dimension, mcSeed);
         // LowDiscrepancy::ursg_type ldsg(dimension, mcSeed);
-        GenericLowDiscrepancy<SobolRsg>::ursg_type  so1ldsg(dimension, mcSeed);
+        GenericLowDiscrepancy<SobolRsg>::ursg_type  so1ldsg(dimension, mcSeed,
+            SobolRsg::DirectionIntegers::Jaeckel);
         GenericLowDiscrepancy<HaltonRsg>::ursg_type halldsg(dimension, mcSeed);
         GenericLowDiscrepancy<FaureRsg>::ursg_type  fauldsg(dimension);
-        GenericLowDiscrepancy<SobolRsg>::ursg_type  so2ldsg(dimension, mcSeed, true);
+        GenericLowDiscrepancy<SobolRsg>::ursg_type  so2ldsg(dimension, mcSeed,
+            SobolRsg::DirectionIntegers::Unit);
+        GenericLowDiscrepancy<SobolRsg>::ursg_type  so3ldsg(dimension, mcSeed,
+            SobolRsg::DirectionIntegers::SobolLevitan);
 
         Matrix result(samples, dimension);
         Array sample;
@@ -73,6 +77,9 @@ extern "C"
                 break;
             case 5:
                 sample = so2ldsg.nextSequence().value;
+                break;
+            case 6:
+                sample = so3ldsg.nextSequence().value;
                 break;
             default:
                 QL_FAIL("Unknown generator");
@@ -113,7 +120,8 @@ extern "C"
             InverseCumulativeNormal>::rsg_type grsg(rsg);
         // LowDiscrepancy::ursg_type ldsg(dimension, mcSeed);
         // LowDiscrepancy::rsg_type gldsg(ldsg);
-        GenericLowDiscrepancy<SobolRsg>::ursg_type so1ldsg(dimension, mcSeed);
+        GenericLowDiscrepancy<SobolRsg>::ursg_type so1ldsg(dimension, mcSeed,
+            SobolRsg::DirectionIntegers::Jaeckel);
         GenericLowDiscrepancy<SobolRsg>::rsg_type gso1ldsg(so1ldsg);
 
         GenericLowDiscrepancy<HaltonRsg>::ursg_type halldsg(dimension, mcSeed);
@@ -122,8 +130,13 @@ extern "C"
         GenericLowDiscrepancy<FaureRsg>::ursg_type  fauldsg(dimension);
         GenericLowDiscrepancy<FaureRsg>::rsg_type gfauldsg(fauldsg);
 
-        GenericLowDiscrepancy<SobolRsg>::ursg_type so2ldsg(dimension, mcSeed, true);
+        GenericLowDiscrepancy<SobolRsg>::ursg_type so2ldsg(dimension, mcSeed,
+            SobolRsg::DirectionIntegers::Unit);
         GenericLowDiscrepancy<SobolRsg>::rsg_type gso2ldsg(so2ldsg);
+
+        GenericLowDiscrepancy<SobolRsg>::ursg_type so3ldsg(dimension, mcSeed,
+            SobolRsg::DirectionIntegers::SobolLevitan);
+        GenericLowDiscrepancy<SobolRsg>::rsg_type gso3ldsg(so3ldsg);
 
 
         Matrix result(samples, dimension);
@@ -144,6 +157,9 @@ extern "C"
                 break;
             case 5:
                 sample = gso2ldsg.nextSequence().value;
+                break;
+            case 6:
+                sample = gso3ldsg.nextSequence().value;
                 break;
             default:
                 QL_FAIL("Unknown generator");

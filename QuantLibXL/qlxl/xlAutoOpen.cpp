@@ -187,7 +187,7 @@ extern "C" {
                 "is the dimensionality of the Monte Carlo simulation");
             XlfArgDesc generatorType("random number generator type",
                 "1 Mersenne Twister, 2 Jäckel-Sobol, 3 Halton, 4 Faure, "
-                "5 unit-Sobol");
+                "5 unit-Sobol, 6 SobolLevitan-Sobol");
 
 
 
