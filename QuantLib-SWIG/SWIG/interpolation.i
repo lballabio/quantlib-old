@@ -31,7 +31,6 @@ class SafeInterpolation {
     double operator()(double x, bool allowExtrapolation=false) { 
         return f_(x, allowExtrapolation); 
     }
-  protected:
     Array x_, y_;
     I f_;
 };
@@ -44,11 +43,9 @@ typedef SafeInterpolation<
                               Array::const_iterator> >
     Safe##T;
 %}
-%rename(Safe##T) T;
+%rename(T) Safe##T;
 class Safe##T {
-    #if defined(SWIGRUBY)
-    %rename(__call__) operator();
-    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename(call)     operator();
     #endif
   public:
@@ -60,6 +57,16 @@ class Safe##T {
 make_safe_interpolation(LinearInterpolation);
 make_safe_interpolation(CubicSpline);
 make_safe_interpolation(LogLinearInterpolation);
+
+%extend SafeCubicSpline {
+    double derivative(double x, bool extrapolate = false) {
+        return self->f_.derivative(x,extrapolate);
+    }
+    double secondDerivative(double x, bool extrapolate = false) {
+        return self->f_.secondDerivative(x,extrapolate);
+    }
+}
+
 
 %{
 // safe versions which copy their arguments
