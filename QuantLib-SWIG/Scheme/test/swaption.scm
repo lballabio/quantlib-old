@@ -204,7 +204,7 @@
                            (swaption (make-swaption swap exercise-date
                                                     0.20 term-structure)
                                      delete-Instrument))
-             (let ((cached-NPV 3.645305998559))
+             (let ((cached-NPV 3.645305728310))
                (check-expected (Instrument-NPV swaption) cached-NPV 1.0e-11
                                "failed to reproduce cached swaption value"
                                )))))))

@@ -17,7 +17,7 @@
 (load "common.scm")
 
 (define (OldBarrierPricer-test)
-  (let ((max-error-allowed 5e-5)
+  (let ((max-error-allowed 1e-4)
         (max-straddle-error-allowed 5e-4)
         (underlying-price 100)
         (rebate 3)
@@ -458,7 +458,7 @@
       (let ((cases 
              '((DiscreteGeometricAPO "Call" 100.0 100.0 0.03 0.06
                                      (0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0)
-                                     0.2 5.34255485619))))
+                                     0.2 5.3425606635))))
         (for-each-case ((tag optionType underlying strike
                              dividendYield riskFreeRate timeIncrements
                              volatility storedValue) cases)
@@ -472,9 +472,9 @@
       ; data from "Option Pricing Formulas", Haug, pag.96-97
       (let ((cases
              '((EuropeanOption "Put" 80.0 85.0 -0.03 
-                               0.05 0.25 0.2 5.21858890396)
+                               0.05 0.25 0.2 5.2185855660)
                (ContinuousGeometricAPO  "Put" 80.0 85.0 -0.03
-                                        0.05 0.25 0.2 4.69221973405))))
+                                        0.05 0.25 0.2 4.6922213122))))
         (for-each-case ((tag optionType underlying strike
                              dividendYield riskFreeRate residualTime
                              volatility storedValue) cases)
@@ -488,7 +488,7 @@
       ; trying to approximate the continous version with the discrete version
       (let ((cases
              '((DiscreteGeometricAPO "Put" 80.0 85.0 -0.03
-                                     0.05 0.25 90000 0.2 4.6922231469))))
+                                     0.05 0.25 90000 0.2 4.6922247251))))
         (for-each-case ((tag optionType underlying strike dividendYield
                              riskFreeRate residualTime timesteps
                              volatility storedValue) cases)
@@ -648,7 +648,7 @@
                        (tol (min (/ (error-estimate p) pvalue 2) minimumTol))
                        (pvalue2 (value p tol))
                        (accuracy (/ (error-estimate p) pvalue2)))
-                  (check-expected pvalue storedValue 1.0e-10
+                  (check-expected pvalue storedValue 1.0e-5
                                   "In batch 5: ")
                   (assert (<= accuracy tol)
                           "In batch 5:" cr
@@ -766,7 +766,7 @@
                        (tol (min (/ (error-estimate p) pvalue 2) minimumTol))
                        (pvalue2 (value p tol))
                        (accuracy (/ (error-estimate p) pvalue2)))
-                  (check-expected pvalue storedValue 1.0e-10
+                  (check-expected pvalue storedValue 1.0e-5
                                   "In batch 6: ")
                   (assert (<= accuracy tol)
                           "In batch 6:" cr

@@ -178,6 +178,9 @@ class VanillaOptionHandle : public Handle<Instrument> {
                                   riskFreeRate,exerciseDate,volatility,
                                   engine,isinCode,desc));
         }
+        double errorEstimate() {
+            return Handle<VanillaOption>(*self)->errorEstimate();
+        }
         double delta() {
             return Handle<VanillaOption>(*self)->delta();
         }
@@ -195,6 +198,9 @@ class VanillaOptionHandle : public Handle<Instrument> {
         }
         double dividendRho() {
             return Handle<VanillaOption>(*self)->dividendRho();
+        }
+        double strikeSensitivity() {
+            return Handle<VanillaOption>(*self)->strikeSensitivity();
         }
         double impliedVolatility(double targetValue, double accuracy = 1.0e-4,
                                  Size maxEvaluations = 100,

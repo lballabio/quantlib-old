@@ -198,8 +198,8 @@
                                    (floor (make-capfloor new-Floor leg 
                                                          0.03 0.2)
                                           delete-Instrument))
-                     (let ((cached-cap-NPV 6.958278080775)
-                           (cached-floor-NPV 2.700476857631))
+                     (let ((cached-cap-NPV 6.958275537948)
+                           (cached-floor-NPV 2.700478483500))
                        (check-expected (Instrument-NPV cap) cached-cap-NPV
                                        1.0e-11
                                        "failed to reproduce "

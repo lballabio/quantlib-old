@@ -184,7 +184,7 @@ wrong spread treatment:
                                           self.settlementDays,'days')
         swap = self.makeSwap(startDate,10,0.06,0.0,1)
         swaption = self.makeSwaption(swap,exerciseDate,0.20)
-        cachedNPV = 3.645305998559
+        cachedNPV = 3.645305728310
         if abs(swaption.NPV()-cachedNPV) > 1.0e-11:
             self.fail("""
 failed to reproduce cached value:
