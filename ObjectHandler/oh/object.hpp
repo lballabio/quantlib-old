@@ -83,6 +83,9 @@ namespace ObjHandler {
         //@}
     protected:
         Properties properties_;
+    private:
+        Object& operator= (const Object&) {}
+        Object(const Object&) {}
     };
 }
 
