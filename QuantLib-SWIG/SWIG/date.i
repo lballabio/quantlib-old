@@ -147,6 +147,29 @@ class Period {
             }
             QL_DUMMY_RETURN(std::string());
         }
+        std::string __repr__() {
+            std::string s = IntegerFormatter::toString(self->length());
+            switch (self->units()) {
+              case QuantLib::Days:
+                return s + "D";
+              case QuantLib::Weeks:
+                return s + "W";
+              case QuantLib::Months:
+                return s + "M";
+              case QuantLib::Years:
+                return s + "Y";
+              default:
+                return "Unknown period";
+            }
+            QL_DUMMY_RETURN(std::string());
+        }
+	int __cmp__(const Period& other) {
+	   if (*self < other)
+	      return -1;
+	   if (*self == other)
+	      return 0;
+	   return 1;
+	}
     }
 };
 
@@ -183,11 +206,14 @@ class Date {
   public:
     Date();
     Date(Day d, Month m, Year y);
+    Date(const std::string& str, const std::string& fmt);
     Date(long serialNumber);
     // access functions
     Weekday weekday() const;
     Day dayOfMonth() const;
     Day dayOfYear() const;        // one-based
+    bool isLastDayOfMonth() const;
+    Day lastDayOfMonth() const;
     Month month() const;
     Year year() const;
     long serialNumber() const;
@@ -215,6 +241,15 @@ class Date {
         std::string __str__() {
             return DateFormatter::toString(*self);
         }
+	std::string __repr__() {
+	   return "Date(" +
+	      IntegerFormatter::toString(self->dayOfMonth()) +
+	      "," +
+	      IntegerFormatter::toString(int(self->month())) +
+	      "," +
+	      IntegerFormatter::toString(self->year()) +
+	      ")";
+	}
         std::string ISO() {
             return DateFormatter::toString(*self,DateFormatter::ISO);
         }
