@@ -2,9 +2,9 @@ target = QLDemo
 
 sources := $(wildcard *.cpp)
 objects := $(patsubst %.cpp,%.o,$(sources))
-includes = -I../..
+includes = -I../.. -I../../../ObjectHandler
 libs = 	../../Addins/C++/QuantLibAddin.a \
-		../../ObjectHandler/ObjectHandler.a
+		../../../ObjectHandler/ObjectHandler/ObjectHandler.a
 sharedlibs = -lQuantLib -lboost_regex
 
 all : $(target)
