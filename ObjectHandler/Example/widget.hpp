@@ -21,16 +21,16 @@
 
 class Widget {
 public:
-   Widget(const std::string &s, const int &i) : s_(s), i_(i) {};
-   void update(const std::string &s, const int &i) {
-      s_ = s;
-      i_ = i;
-   }
-   std::string s() { return s_; };
-   int i() { return i_; };
+    Widget(const std::string &s, const int &i) : s_(s), i_(i) {};
+    void update(const std::string &s, const int &i) {
+       s_ = s;
+       i_ = i;
+    }
+    std::string s() { return s_; };
+    int i() { return i_; };
 private:
-   std::string s_;
-   int i_;
+    std::string s_;
+    int i_;
 };
 
 #endif

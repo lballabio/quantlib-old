@@ -28,43 +28,43 @@
 
 namespace ObjHandler {
 
-	//! Object pointer
-	/*! a boost shared pointer to an Object
-	*/
+    //! Object pointer
+    /*! a boost shared pointer to an Object
+    */
     typedef boost::shared_ptr<Object> obj_ptr;
-	//! Object list
-	/*! a map of string/obj_ptr pairs
-		representing all of the Objects
-		maintained in the Object Handler
-	*/
+    //! Object list
+    /*! a map of string/obj_ptr pairs
+        representing all of the Objects
+        maintained in the Object Handler
+    */
     typedef std::map<std::string, obj_ptr> ObjectList;
 
     //! Object Handler class
-	/*! maintains a repository of objects
+    /*! maintains a repository of objects
         objects may be created/amended/destroyed
-		by client application
-	*/
+        by client application
+    */
     class ObjectHandler : public Singleton<ObjectHandler> {
-		friend class Singleton<ObjectHandler>;
+        friend class Singleton<ObjectHandler>;
     public:
-		//! \name storing & retrieving objects
-		//@{
-		//! store object with given handle
-		/*! any existing object with that handle
-			is deleted
-		*/
+        //! \name storing & retrieving objects
+        //@{
+        //! store object with given handle
+        /*! any existing object with that handle
+            is deleted
+        */
         void storeObject(const std::string &handle,
                          const obj_ptr &object);
-		//! retrieve object with given handle
-		/*! returns null if no object exists
-			with that handle
-		*/
-	    obj_ptr retrieveObject(const std::string &handle) const;
-		//@}
+        //! retrieve object with given handle
+        /*! returns null if no object exists
+            with that handle
+        */
+        obj_ptr retrieveObject(const std::string &handle) const;
+        //@}
     private:
         ObjectHandler() {}
-		// ~ObjectHandler() {}
-	    ObjectList objectList_;
+        // ~ObjectHandler() {}
+        ObjectList objectList_;
     };
 
 }

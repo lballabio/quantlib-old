@@ -23,22 +23,22 @@ using namespace ObjHandler;
 using std::string;
 
 Properties WIDGET_MAKE(
-	const string &handle,
-	const string &s,
-	const int &i);
+    const string &handle,
+    const string &s,
+    const int &i);
                                                                                 
 Properties WIDGET_UPDATE(
-	const string &handle,
-	const string &s,
-	const int &i);
+    const string &handle,
+    const string &s,
+    const int &i);
 
 void QL_LOGFILE(
-	const string &logFileName);
+    const string &logFileName);
 
 void QL_LOGMESSAGE(
-	const string &msg);
+    const string &msg);
 
 string QL_ANY2STRING(
-	const ObjHandler::any_ptr &a);
+    const ObjHandler::any_ptr &a);
 
 #endif

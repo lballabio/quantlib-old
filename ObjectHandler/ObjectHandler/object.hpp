@@ -30,59 +30,59 @@
 
 namespace ObjHandler {
 
-	//! shared pointer to any
-	/*! used to hold the value for
-		each of the Object's properties
-	*/
+    //! shared pointer to any
+    /*! used to hold the value for
+        each of the Object's properties
+    */
     typedef boost::shared_ptr<boost::any> any_ptr;
-	//! Property string/any pair
-	/*! the string names the property
-		and the any holds the corresponding value
-	*/
+    //! Property string/any pair
+    /*! the string names the property
+        and the any holds the corresponding value
+    */
     typedef Property<std::string, any_ptr> ObjectProperty;
-	//! Property vector
-	/*! each Object is described by a vector of properties
-		which is maintained dynamically throughout
-		the life of the object
-	*/
+    //! Property vector
+    /*! each Object is described by a vector of properties
+        which is maintained dynamically throughout
+        the life of the object
+    */
     typedef std::vector<ObjectProperty> Properties;
 
-	//! Object class
-	/*! abstract base class
-		implementing interface for objects
-		to be stored in the Object Handler
-	*/
+    //! Object class
+    /*! abstract base class
+        implementing interface for objects
+        to be stored in the Object Handler
+    */
     class Object {
     public:
-		//! \name constructors & destructors
-		//@{
-		//! default constructor
-		/*! construct an object
-			to store the resulting object 
-			in the Object Handler, call
-				ObjectHandler::instance().storeObject(handle, object);
-		*/
+        //! \name constructors & destructors
+        //@{
+        //! default constructor
+        /*! construct an object
+            to store the resulting object 
+            in the Object Handler, call
+                ObjectHandler::instance().storeObject(handle, object);
+        */
         Object() {}
-		//! default destructor
-	    virtual ~Object() {}
-		//@}
-		//! \name object interrogation
-		//@{
-		//! acquire a reference to underlying object
-		/*! returns a reference to the client object
-			stored in the Object
-			this is a shared pointer to void which
-			must be recast appropriately
-		*/
-	    virtual boost::shared_ptr<void> getReference() const = 0;
-		//! return the Object's property vector
-		/*! returns the property vector
-			describing the underlying object
-		*/
-	    const Properties& getProperties() const;
-		//@}
+        //! default destructor
+        virtual ~Object() {}
+        //@}
+        //! \name object interrogation
+        //@{
+        //! acquire a reference to underlying object
+        /*! returns a reference to the client object
+            stored in the Object
+            this is a shared pointer to void which
+            must be recast appropriately
+        */
+        virtual boost::shared_ptr<void> getReference() const = 0;
+        //! return the Object's property vector
+        /*! returns the property vector
+            describing the underlying object
+        */
+        const Properties& getProperties() const;
+        //@}
     protected:
-	    Properties properties_;
+        Properties properties_;
     };
 }
 

@@ -22,13 +22,10 @@ namespace ObjHandler {
 
     void ObjectHandler::storeObject(const std::string &handle,
                                     const obj_ptr &object) {
-	    objectList_[handle] = object;
+        objectList_[handle] = object;
     }
 
     obj_ptr ObjectHandler::retrieveObject(const std::string &handle) const {
-	    /* return objectList_[handle];
-           cannot be used as it is non-const
-        */
         ObjectList::const_iterator result = objectList_.find(handle);
         if (result!=objectList_.end())
             return result->second;

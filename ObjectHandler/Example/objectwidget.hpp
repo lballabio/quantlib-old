@@ -23,18 +23,18 @@
 using namespace ObjHandler;
 
 // FIXME
-#define PROPERTY_STR	"PROPERTY_STR"
-#define PROPERTY_INT	"PROPERTY_INT"
-#define IDX_STR			0
-#define IDX_INT			1
+#define PROPERTY_STR    "PROPERTY_STR"
+#define PROPERTY_INT    "PROPERTY_INT"
+#define IDX_STR            0
+#define IDX_INT            1
 
 class ObjectWidget : public Object {
 public:
-   ObjectWidget(const std::string &s, const int &i);
-   virtual boost::shared_ptr<void> getReference() const;
-   void update(const std::string &s, const int &i);
+    ObjectWidget(const std::string &s, const int &i);
+    virtual boost::shared_ptr<void> getReference() const;
+    void update(const std::string &s, const int &i);
 private:
-   boost::shared_ptr<Widget> widget_;
+    boost::shared_ptr<Widget> widget_;
 };
 
 #endif

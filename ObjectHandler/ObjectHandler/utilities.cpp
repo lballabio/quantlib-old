@@ -31,50 +31,50 @@ namespace ObjHandler {
     }
 
     std::string AnyToString(const any_ptr &a) {
-	    std::ostringstream s;
-	    if (a->type() == typeid(int))
-		    s << boost::any_cast<int>(*a);
-	    else if (a->type() == typeid(double))
-		    s << boost::any_cast<double>(*a);
-	    else if (a->type() == typeid(std::string))
-		    s << boost::any_cast<std::string>(*a);
-	    else
-		    throw Exception("AnyToString: unrecognized type");
-	    return s.str();
+        std::ostringstream s;
+        if (a->type() == typeid(int))
+            s << boost::any_cast<int>(*a);
+        else if (a->type() == typeid(double))
+            s << boost::any_cast<double>(*a);
+        else if (a->type() == typeid(std::string))
+            s << boost::any_cast<std::string>(*a);
+        else
+            throw Exception("AnyToString: unrecognized type");
+        return s.str();
     }
 
     // FIXME
-    std::string logFileName;	// "" = logging disabled
+    std::string logFileName;    // "" = logging disabled
 
     int setLogFile(const std::string &newLogFileName) {
-	    std::ofstream logFile;
-	    if (!newLogFileName.length()) {
-		    logFileName = "";
-		    return 0;
-	    }
-	    if (!logFileName.compare(std::string(newLogFileName)))
-		    return 1;	// continue logging to same file
-	    logFile.open(newLogFileName.c_str(), std::ios::app);
-	    if (logFile.is_open()) {
-		    logFile << "logging enabled" << std::endl;
-		    logFile.close();
-		    logFileName = newLogFileName;
-		    return 1;
-	    } else {
-		    logFileName = "";
-		    throw Exception("setLogFile: error opening logfile");
-	    }
+        std::ofstream logFile;
+        if (!newLogFileName.length()) {
+            logFileName = "";
+            return 0;
+        }
+        if (!logFileName.compare(std::string(newLogFileName)))
+            return 1;    // continue logging to same file
+        logFile.open(newLogFileName.c_str(), std::ios::app);
+        if (logFile.is_open()) {
+            logFile << "logging enabled" << std::endl;
+            logFile.close();
+            logFileName = newLogFileName;
+            return 1;
+        } else {
+            logFileName = "";
+            throw Exception("setLogFile: error opening logfile");
+        }
     }
 
     void logMessage(const std::string &msg) {
-	    std::ofstream log1;
-	    if (logFileName.length()) {
-		    log1.open(logFileName.c_str(), std::ios::app);
-		    if (log1.is_open()) {
-			    log1 << msg << std::endl;
-			    log1.close();
-		    } else // error - disable logging
-			    logFileName = "";
-	    }
+        std::ofstream log1;
+        if (logFileName.length()) {
+            log1.open(logFileName.c_str(), std::ios::app);
+            if (log1.is_open()) {
+                log1 << msg << std::endl;
+                log1.close();
+            } else // error - disable logging
+                logFileName = "";
+        }
     }
 }

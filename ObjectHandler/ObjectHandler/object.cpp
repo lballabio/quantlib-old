@@ -20,7 +20,7 @@
 namespace ObjHandler {
 
     const Properties& Object::getProperties() const {
-	    return properties_;
+        return properties_;
     }
 
 }
