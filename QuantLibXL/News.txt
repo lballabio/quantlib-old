@@ -1,6 +1,12 @@
+
 2004-03-31 In sync with the QuantLib 0.3.5 release, built with a
            2003-03-17 snapshot of XLW (xlw.sf.net) CVS.
-           Added few more spreadsheets as example of
+           Cubic interpolation improved with monotone non-restrictive Hyman
+           filter and more rich boundary conditions. Interpolation now offers
+           primitive, first derivative, and second derivative calculation. Added
+           example of put-call simmetry. Added Poisson, Combin, BinomDist,
+           PeizerPratt, etc. Added covariance. Added Cholesky, rankReducedSqrt,
+           and improved pseudoSqrt. Added few more spreadsheets as example of
            QuantLibXL usage.
 
 2003-11-21 In sync with the QuantLib 0.3.4 release, built with a
