@@ -30,17 +30,18 @@ namespace ObjHandler {
         return upper;
     }
 
-    std::string AnyToString(const any_ptr &a) {
-        std::ostringstream s;
-        if (a->type() == typeid(int))
-            s << boost::any_cast<int>(*a);
+    std::ostream& operator<<(std::ostream& out, const any_ptr& a) {
+        if (a->empty())
+            return out << "null";
+        else if (a->type() == typeid(int))
+            return out << boost::any_cast<int>(*a);
         else if (a->type() == typeid(double))
-            s << boost::any_cast<double>(*a);
+            return out << boost::any_cast<double>(*a);
         else if (a->type() == typeid(std::string))
-            s << boost::any_cast<std::string>(*a);
+            return out << boost::any_cast<std::string>(*a);
         else
-            throw Exception("AnyToString: unrecognized type");
-        return s.str();
+            throw Exception("any_ptr << operator: unrecognized type");
+//            return out << "unrecognized type";
     }
 
     // FIXME - below is a temporary approach to logging

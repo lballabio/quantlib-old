@@ -51,8 +51,3 @@ void QL_LOGMESSAGE(
     logMessage(msg);
 }
 
-string QL_ANY2STRING(
-        const any_ptr &a) {
-    return AnyToString(a);
-}
-

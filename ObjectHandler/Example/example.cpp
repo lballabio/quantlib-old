@@ -39,9 +39,8 @@ int main() {
         for (i = w2Properties.begin();
             i != w2Properties.end(); i++) {
             ObjectProperty property = *i;
-            any_ptr any = property();
             cout << "property = " << property.name() << "\tvalue = " <<
-                QL_ANY2STRING(any) << endl;
+                property() << endl;
         }
 
         // update an object
@@ -52,9 +51,8 @@ int main() {
         for (i = w2Properties.begin();
             i != w2Properties.end(); i++) {
             ObjectProperty property = *i;
-            any_ptr any = property();
             cout << "property = " << property.name() << "\tvalue = " <<
-                QL_ANY2STRING(any) << endl;
+                property() << endl;
         }
 
         // low-level interrogation

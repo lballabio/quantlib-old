@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,10 +23,11 @@
 namespace ObjHandler {
 
     std::string toUpper(const std::string &s);
-    std::string AnyToString(const any_ptr &a);
+    std::ostream& operator<<(std::ostream& out, const any_ptr& a);
     int setLogFile(const std::string &newLogFileName);
     void logMessage(const std::string &msg);
 
 }
+
 
 #endif

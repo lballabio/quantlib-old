@@ -67,9 +67,8 @@ int main() {
         for (i = opProperties.begin();
             i != opProperties.end(); i++) {
 			ObjectProperty property = *i;
-            any_ptr any = property();
             cout << "property = " << property.name() << "\tvalue = " <<
-                QL_ANY2STRING(any) << endl;
+                property() << endl;
         } 
 
 		QL_OPTION_SETENGINE(
@@ -81,9 +80,8 @@ int main() {
         for (i = opProperties.begin();
             i != opProperties.end(); i++) {
 			ObjectProperty property = *i;
-            any_ptr any = property();
             cout << "property = " << property.name() << "\tvalue = " <<
-                QL_ANY2STRING(any) << endl;
+                property() << endl;
         } 
 
 		cout << endl << "Low-level interrogation: NPV of underlying option object" << endl;

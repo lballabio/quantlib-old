@@ -39,8 +39,5 @@ void QL_LOGFILE(
 void QL_LOGMESSAGE(
     const string &msg);
 
-string QL_ANY2STRING(
-    const ObjHandler::any_ptr &a);
-
 #endif
 

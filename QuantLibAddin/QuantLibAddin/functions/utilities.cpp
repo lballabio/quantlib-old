@@ -34,11 +34,6 @@ namespace QuantLibAddin {
         logMessage(msg);
     }
 
-    std::string QL_ANY2STRING(
-            const any_ptr &a) {
-        return AnyToString(a);
-    }
-
     const Properties& QL_QUERY(
             const std::string &handle) {
         boost::shared_ptr<Object> object =
@@ -49,3 +44,4 @@ namespace QuantLibAddin {
     }
 
 }
+
