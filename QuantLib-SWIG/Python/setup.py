@@ -239,7 +239,8 @@ class my_wrap(Command):
             swig_dir = os.path.join("..","SWIG")
         os.system('swig -python -c++ ' +
                   '-I%s ' % swig_dir +
-                  '-o QuantLib/quantlib_wrap.cpp quantlib.i')
+                  '-outdir QuantLib -o QuantLib/quantlib_wrap.cpp ' +
+                  'quantlib.i')
 
 
 if sys.platform == 'win32':
