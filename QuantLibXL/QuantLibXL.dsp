@@ -158,6 +158,10 @@ SOURCE=.\qlxl\mathf.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qlxl\montecarlo.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qlxl\pricers.cpp
 # End Source File
 # Begin Source File
@@ -179,6 +183,10 @@ SOURCE=.\qlxl\datef.hpp
 # Begin Source File
 
 SOURCE=.\qlxl\mathf.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qlxl\montecarlo.hpp
 # End Source File
 # Begin Source File
 
