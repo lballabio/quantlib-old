@@ -28,7 +28,7 @@ namespace QuantLibAddin {
 
     class CapFloor : public ObjHandler::Object {
       public:
-        CapFloor(ObjHandler::ArgStack& args);
+        CapFloor(ObjHandler::ArgumentStack& args);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(capfloor_);
         }
@@ -38,7 +38,7 @@ namespace QuantLibAddin {
     
     class AnalyticCapFloorEngine : public ObjHandler::Object {
       public:
-        AnalyticCapFloorEngine(ObjHandler::ArgStack& args);
+        AnalyticCapFloorEngine(ObjHandler::ArgumentStack& args);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(engine_);
         }

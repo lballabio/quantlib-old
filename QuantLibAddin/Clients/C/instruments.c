@@ -21,9 +21,9 @@
 
 void printVariesList(const char *s, const VariesList vo) {
     int i;
-    QL_LOGMESSAGE(s);
+    QL_LOG_MESSAGE(s);
     for (i=0; i<vo.count; i++)
-        QL_LOGMESSAGE("field = %s, value = %s", vo.varies[i].Label, 
+        QL_LOG_MESSAGE("field = %s, value = %s", vo.varies[i].Label, 
             variesToString(&vo.varies[i]));
 }
 
@@ -42,7 +42,7 @@ int main() {
 
     QL_LOGFILE("quantlib.log");
     QL_CONSOLE(1);
-    QL_LOGMESSAGE("begin options test");
+    QL_LOG_MESSAGE("begin options test");
 
     if (QL_FIXED_COUPON_BOND(
             "bond1", 
@@ -57,7 +57,7 @@ int main() {
             dayCounterID, 
             calendarID, 
             &vfcb) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_FIXED_COUPON_BOND");
+        QL_LOG_MESSAGE("Error on call to QL_FIXED_COUPON_BOND");
         goto fail;
     }
 
@@ -65,7 +65,7 @@ int main() {
 
     freeVariesList(&vfcb);
 
-    QL_LOGMESSAGE("end instruments test");
+    QL_LOG_MESSAGE("end instruments test");
 
     return 0;
 

@@ -24,6 +24,28 @@
 
 namespace ObjHandler {
 
+    void OH_LOGFILE(
+            const std::string &logFileName,
+            const int &logLevel) {
+        Logger::instance().setLogFile(logFileName, logLevel);
+    }
+
+    void OH_LOG_MESSAGE(
+            const std::string &message,
+            const int &level) {
+        Logger::instance().logMessage(message, level);
+    }
+
+    void OH_LOG_LEVEL(const int &logLevel) {
+        Logger::instance().setLogLevel(logLevel);
+    }
+
+    void OH_CONSOLE(
+            const int &console,
+            const int &logLevel) {
+        Logger::instance().setConsole(console, logLevel);
+    }
+
     void OH_LOG_OBJECT(const std::string &handle) {
         std::ostringstream msg;
         obj_ptr object = 
@@ -41,28 +63,6 @@ namespace ObjHandler {
         std::ostringstream msg;
         ObjectHandler::instance().dump(msg);
         Logger::instance().logMessage(msg.str());
-    }
-
-    void OH_LOGFILE(
-            const std::string &logFileName,
-            const int &logLevel) {
-        Logger::instance().setLogFile(logFileName, logLevel);
-    }
-
-    void OH_LOGLEVEL(const int &logLevel) {
-        Logger::instance().setLogLevel(logLevel);
-    }
-
-    void OH_CONSOLE(
-            const int &console,
-            const int &logLevel) {
-        Logger::instance().setConsole(console, logLevel);
-    }
-
-    void OH_LOGMESSAGE(
-            const std::string &message,
-            const int &level) {
-        Logger::instance().logMessage(message, level);
     }
 
 }

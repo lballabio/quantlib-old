@@ -35,12 +35,12 @@ namespace QuantLibAddin {
 
     class BlackConstantVol : public BlackVolTermStructure {
     public:
-        BlackConstantVol(ObjHandler::ArgStack &args);
+        BlackConstantVol(ObjHandler::ArgumentStack &args);
     };
 
     class BlackVarianceSurface : public BlackVolTermStructure {
     public:
-        BlackVarianceSurface(ObjHandler::ArgStack &args);
+        BlackVarianceSurface(ObjHandler::ArgumentStack &args);
     };
 
 }

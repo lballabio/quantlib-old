@@ -23,8 +23,6 @@
 #include <ql/calendar.hpp>
 #include <ql/Math/matrix.hpp>
 
-#define QL_OBJECT_GET(X) ObjHandler::ObjectHandler::instance().retrieveObject(X)
-
 namespace QuantLibAddin {
 
     QuantLib::DayCounter IDtoDayCounter(

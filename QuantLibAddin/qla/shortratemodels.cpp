@@ -26,30 +26,28 @@
 
 namespace QuantLibAddin {
     
-    Vasicek::Vasicek(ObjHandler::ArgStack& args) {
-        double sigma = ObjHandler::Args<double>::popArg(args);
-        double lambda = ObjHandler::Args<double>::popArg(args);
-        double b = ObjHandler::Args<double>::popArg(args);
-        double a = ObjHandler::Args<double>::popArg(args);
+    Vasicek::Vasicek(ObjHandler::ArgumentStack& arguments) {
+        double sigma    = OH_POP_ARGUMENT(double, arguments);
+        double lambda   = OH_POP_ARGUMENT(double, arguments);
+        double b        = OH_POP_ARGUMENT(double, arguments);
+        double a        = OH_POP_ARGUMENT(double, arguments);
         
         model_ = boost::shared_ptr<QuantLib::Vasicek>(
             new QuantLib::Vasicek(a, b, lambda, sigma));
     }
     
-    HullWhite::HullWhite(ObjHandler::ArgStack& args) {
-        double sigma = ObjHandler::Args<double>::popArg(args);
-        double a = ObjHandler::Args<double>::popArg(args);
-        std::string handleTermStructure = ObjHandler::Args<std::string>::popArg(args);
+    HullWhite::HullWhite(ObjHandler::ArgumentStack& arguments) {
+        double sigma                        = OH_POP_ARGUMENT(double, arguments);
+        double a                            = OH_POP_ARGUMENT(double, arguments);
+        std::string handleTermStructure     = OH_POP_ARGUMENT(std::string, arguments);
         
         boost::shared_ptr<YieldTermStructure> termStructure =
-            boost::dynamic_pointer_cast<YieldTermStructure>(
-                QL_OBJECT_GET(handleTermStructure));
+            OH_GET_OBJECT(YieldTermStructure, handleTermStructure);
         if (!termStructure)
             QL_FAIL("HullWhite: error retrieving object " + handleTermStructure);
         
         boost::shared_ptr<QuantLib::YieldTermStructure> termStructureP =
-            boost::static_pointer_cast<QuantLib::YieldTermStructure>(
-                termStructure->getReference());
+            OH_GET_REFERENCE(QuantLib::YieldTermStructure, termStructure);
         
         QuantLib::Handle<QuantLib::YieldTermStructure> termStructureH(termStructureP);
                 
@@ -58,3 +56,4 @@ namespace QuantLibAddin {
     }
     
 }
+

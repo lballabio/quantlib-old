@@ -21,9 +21,9 @@
 
 void printVariesList(const char *s, const VariesList vo) {
     int i;
-    QL_LOGMESSAGE(s);
+    QL_LOG_MESSAGE(s);
     for (i=0; i<vo.count; i++)
-        QL_LOGMESSAGE("field = %s, value = %s", vo.varies[i].Label, 
+        QL_LOG_MESSAGE("field = %s, value = %s", vo.varies[i].Label, 
             variesToString(&vo.varies[i]));
 }
 
@@ -60,7 +60,7 @@ int main() {
 
     QL_LOGFILE("quantlib.log");
     QL_CONSOLE(1);
-    QL_LOGMESSAGE("begin options test");
+    QL_LOG_MESSAGE("begin options test");
 
     if (QL_BLACK_CONSTANT_VOL(
             "blackconstantvol", 
@@ -68,7 +68,7 @@ int main() {
             volatility, 
             "ACT360",
             &vbc) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_BLACK_CONSTANT_VOL");
+        QL_LOG_MESSAGE("Error on call to QL_BLACK_CONSTANT_VOL");
         goto fail;
     }
 
@@ -81,7 +81,7 @@ int main() {
             riskFreeRate, 
             dividendYield, 
             &vbs) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_BLACK_SCHOLES_PROCESS");
+        QL_LOG_MESSAGE("Error on call to QL_BLACK_SCHOLES_PROCESS");
         goto fail;
     }
 
@@ -99,7 +99,7 @@ int main() {
             "JR",                           // engine type (jarrow rudd)
             timeSteps,                      // time steps
             &vo) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_VANILLA_OPTION");
+        QL_LOG_MESSAGE("Error on call to QL_VANILLA_OPTION");
         goto fail;
     }
 
@@ -118,7 +118,7 @@ int main() {
             "ACGAPA",                       // engine type
             timeSteps,                      // time steps
             &voac) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_CA_ASIAN_OPTION");
+        QL_LOG_MESSAGE("Error on call to QL_CA_ASIAN_OPTION");
         goto fail;
     }
 
@@ -145,7 +145,7 @@ int main() {
             "ADGAPA",                       // engine type (AnalyticDiscreteGeometricAveragePriceAsianEngine)
             timeSteps,                      // time steps
             &voad) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_DA_ASIAN_OPTION");
+        QL_LOG_MESSAGE("Error on call to QL_DA_ASIAN_OPTION");
         goto fail;
     }
 
@@ -166,7 +166,7 @@ int main() {
             "AB",                           // engine type
             timeSteps,                      // time steps
             &voba) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_BARRIER_OPTION");
+        QL_LOG_MESSAGE("Error on call to QL_BARRIER_OPTION");
         goto fail;
     }
 
@@ -195,7 +195,7 @@ int main() {
             "SE",                           // engine type
             timeSteps,                      // time steps
             &vobs) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_BASKET_OPTION");
+        QL_LOG_MESSAGE("Error on call to QL_BASKET_OPTION");
         goto fail;
     }
 
@@ -212,7 +212,7 @@ int main() {
             "AC",                           // engine type
             timeSteps,                      // time steps
             &voc) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_CLIQUET_OPTION");
+        QL_LOG_MESSAGE("Error on call to QL_CLIQUET_OPTION");
         goto fail;
     }
 
@@ -234,7 +234,7 @@ int main() {
             "ADE",                          // engine type
             timeSteps,                      // time steps
             &vod) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_DIVIDEND_VANILLA_OPTION");
+        QL_LOG_MESSAGE("Error on call to QL_DIVIDEND_VANILLA_OPTION");
         goto fail;
     }
 
@@ -254,7 +254,7 @@ int main() {
             "FE",                           // engine type
             timeSteps,                      // time steps
             &vof) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_FORWARD_VANILLA_OPTION");
+        QL_LOG_MESSAGE("Error on call to QL_FORWARD_VANILLA_OPTION");
         goto fail;
     }
 
@@ -275,7 +275,7 @@ int main() {
     freeVariesList(&vod);
     freeVariesList(&vof);
 
-    QL_LOGMESSAGE("end options test");
+    QL_LOG_MESSAGE("end options test");
 
     return 0;
 

@@ -31,17 +31,17 @@
 
 namespace QuantLibAddin {
 
-    FixedCouponBond::FixedCouponBond(ObjHandler::ArgStack& args) {
-        std::string calendarID    = ObjHandler::Args<std::string>::popArg(args);
-        std::string dayCounterID  = ObjHandler::Args<std::string>::popArg(args);
-        std::string frequencyID   = ObjHandler::Args<std::string>::popArg(args);
-        double yield              = ObjHandler::Args<double>::popArg(args);
+    FixedCouponBond::FixedCouponBond(ObjHandler::ArgumentStack& arguments) {
+        std::string calendarID    = OH_POP_ARGUMENT(std::string, arguments);
+        std::string dayCounterID  = OH_POP_ARGUMENT(std::string, arguments);
+        std::string frequencyID   = OH_POP_ARGUMENT(std::string, arguments);
+        double yield              = OH_POP_ARGUMENT(double, arguments);
         std::vector < double > coupons 
-            = ObjHandler::Args< std::vector < double > >::popArg(args);
-        long settlementDays       = ObjHandler::Args<long>::popArg(args);
-        long maturityDate         = ObjHandler::Args<long>::popArg(args);
-        long datedDate            = ObjHandler::Args<long>::popArg(args);
-        long issueDate            = ObjHandler::Args<long>::popArg(args);
+            = OH_POP_ARGUMENT(std::vector < double >, arguments);
+        long settlementDays       = OH_POP_ARGUMENT(long, arguments);
+        long maturityDate         = OH_POP_ARGUMENT(long, arguments);
+        long datedDate            = OH_POP_ARGUMENT(long, arguments);
+        long issueDate            = OH_POP_ARGUMENT(long, arguments);
 
         // BusinessDayConvention convention = Following;
         // Real redemption = 100.0;
@@ -82,3 +82,4 @@ namespace QuantLibAddin {
         properties_.push_back(propDirtyPrice);
     }
 }
+

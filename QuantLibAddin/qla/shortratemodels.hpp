@@ -36,12 +36,12 @@ namespace QuantLibAddin {
     
     class Vasicek : public AffineModel {
       public:
-        Vasicek(ObjHandler::ArgStack& args);
+        Vasicek(ObjHandler::ArgumentStack& args);
     };
     
     class HullWhite : public AffineModel {
       public:
-        HullWhite(ObjHandler::ArgStack& args);
+        HullWhite(ObjHandler::ArgumentStack& args);
     };
     
 }

@@ -41,8 +41,8 @@ namespace ObjHandler {
         */
         static const Properties& makeObject(
                 const std::string &handle,
-                ArgStack &args) {
-            obj_ptr object = obj_ptr(new T(args));
+                ArgumentStack &arguments) {
+            obj_ptr object = obj_ptr(new T(arguments));
             ObjectHandler::instance().storeObject(handle, object);
             return object->getProperties();
         }

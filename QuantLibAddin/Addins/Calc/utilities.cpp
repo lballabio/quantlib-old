@@ -27,7 +27,7 @@ STRING SAL_CALL QLAddin::qlVer() THROWDEF_RTE_IAE {
         std::string ret =  QL_VER();
         return STRFROMANSI(ret.c_str());
     } catch (const std::exception &e) {
-        OH_LOGMESSAGE(std::string("ERROR: QL_VER: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_VER: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -37,7 +37,7 @@ STRING SAL_CALL QLAddin::qlOhVer() THROWDEF_RTE_IAE {
         std::string ret =  QL_OH_VER();
         return STRFROMANSI(ret.c_str());
     } catch (const std::exception &e) {
-        OH_LOGMESSAGE(std::string("ERROR: QL_OH_VER: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_OH_VER: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -56,7 +56,7 @@ SEQSEQ(ANY) SAL_CALL QLAddin::qlFieldNames(
         }
         return rows;
     } catch (const std::exception &e) {
-        OH_LOGMESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -122,7 +122,7 @@ SEQSEQ(ANY) SAL_CALL QLAddin::qlValue(
         }
         throw Exception(std::string("no field with name ") + OUStringToString(fieldName));
     } catch (const std::exception &e) {
-        OH_LOGMESSAGE(std::string("ERROR: QL_VALUE: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_VALUE: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -135,7 +135,7 @@ STRING SAL_CALL QLAddin::qlLogfile(
         OH_LOGFILE(OUStringToString(logFileName), lvl);
         return logFileName;
     } catch (const std::exception &e) {
-        OH_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -145,7 +145,7 @@ STRING SAL_CALL QLAddin::qlLogMessage(
         sal_Int32 logLevel) THROWDEF_RTE_IAE {
     try {
         int lvl = logLevel ? logLevel : 4;
-        OH_LOGMESSAGE(OUStringToString(logMessage), lvl);
+        OH_LOG_MESSAGE(OUStringToString(logMessage), lvl);
         return logMessage;
     } catch (...) {
         THROW_RTE;
@@ -155,10 +155,10 @@ STRING SAL_CALL QLAddin::qlLogMessage(
 sal_Int32 SAL_CALL QLAddin::qlLogLevel(
         sal_Int32 logLevel) THROWDEF_RTE_IAE {
     try {
-        OH_LOGLEVEL(logLevel);
+        OH_LOG_LEVEL(logLevel);
         return logLevel;
     } catch (const std::exception &e) {
-        OH_LOGMESSAGE(std::string("ERROR: QL_LOGLEVEL: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_LOGLEVEL: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -169,7 +169,7 @@ sal_Bool SAL_CALL QLAddin::qlLogObject(
         OH_LOG_OBJECT(OUStringToString(handleObject));
         return sal_False;
     } catch (const std::exception &e) {
-        OH_LOGMESSAGE(std::string("ERROR: QL_LOG_OBJECT: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_LOG_OBJECT: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -179,7 +179,7 @@ sal_Bool SAL_CALL QLAddin::qlLogAllObjects() THROWDEF_RTE_IAE {
         OH_LOG_ALL_OBJECTS();
         return sal_False;
     } catch (const std::exception &e) {
-        OH_LOGMESSAGE(std::string("ERROR: QL_LOG_ALL_OBJECTS: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_LOG_ALL_OBJECTS: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -187,20 +187,20 @@ sal_Bool SAL_CALL QLAddin::qlLogAllObjects() THROWDEF_RTE_IAE {
 sal_Bool SAL_CALL QLAddin::qlObjectDelete(
         const STRING & handleObject) THROWDEF_RTE_IAE {
     try {
-        OH_OBJECT_DELETE(OUStringToString(handleObject));
+        OH_DELETE_OBJECT(OUStringToString(handleObject));
         return sal_False;
     } catch (const std::exception &e) {
-        OH_LOGMESSAGE(std::string("ERROR: QL_OBJECT_DELETE: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_OBJECT_DELETE: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
 sal_Bool SAL_CALL QLAddin::qlObjectDeleteAll() THROWDEF_RTE_IAE {
     try {
-        OH_OBJECT_DELETE_ALL();
+        OH_DELETE_ALL_OBJECTS();
         return sal_False;
     } catch (const std::exception &e) {
-        OH_LOGMESSAGE(std::string("ERROR: QL_OBJECT_DELETE_ALL: ") + e.what(), 2);
+        OH_LOG_MESSAGE(std::string("ERROR: QL_OBJECT_DELETE_ALL: ") + e.what(), 2);
         THROW_RTE;
     }
 }

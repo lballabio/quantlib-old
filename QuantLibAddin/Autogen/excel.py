@@ -153,14 +153,14 @@ def generateFuncDef(fileFunc, function, bufBody):
         handle1 = 8 * ' ' + 'char *handleStub,\n'
         handle2 = 8 * ' ' + 'std::string handle = getHandleFull(handleStub);\n'
         handle3 = 12 * ' ' + 'handle, args'
-        fName = 'OH_OBJECT_MAKE(QuantLibAddin::%s)' % function[common.QLFUNC]
+        fName = common.MAKE_COMMAND % function[common.QLFUNC]
         args = utils.generateArgList(function[common.PARAMS], '*')
         paramList2 = ''
     else:
         handle1 = ''
         handle2 = ''
         handle3 = ''
-        fName = 'QuantLibAddin::' + function[common.NAME]
+        fName = 'QuantLibAddin::' + function[common.NAME] + '('
         args = ''
         paramList2 = utils.generateParamList(function[common.PARAMS], 3,
             reformatString = '%s', 

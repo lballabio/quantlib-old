@@ -17,6 +17,7 @@
 
 #include <qla/qladdin.hpp>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 using namespace QuantLib;
@@ -27,10 +28,18 @@ int main() {
     try {
         OH_LOGFILE("quantlib.log");         // specify log file
         OH_CONSOLE(1);                      // log messages to stdout
-        OH_LOGMESSAGE("begin example program");
+        OH_LOG_MESSAGE("begin example program");
+    } catch (const exception &e) {
+        cout << "Unable to initialize logging: " << e.what() << endl;
+        return 1;
+    } catch (...) {
+        cout << "Unable to initialize logging." << endl;
+        return 1;
+    }
 
-        OH_LOGMESSAGE(QL_VER());
-        OH_LOGMESSAGE(QL_OH_VER());
+    try {
+        OH_LOG_MESSAGE(QL_VER());
+        OH_LOG_MESSAGE(QL_OH_VER());
 
         double dividendYield = 0.00;
         double riskFreeRate = 0.06;
@@ -41,14 +50,14 @@ int main() {
         Date exerciseDate(13, March, 2020);
         Date settlementDate(13, March, 2019);
 
-        ArgStack bcArgs;
+        ArgumentStack bcArgs;
         bcArgs.push(settlementDate.serialNumber()); // settlement date as long
         bcArgs.push(volatility);            // volatility
         bcArgs.push(string("ACT360"));      // daycount convention
         Properties bcProperties =
-            OH_OBJECT_MAKE(QuantLibAddin::BlackConstantVol)("my_blackconstantvol", bcArgs);
+            OH_MAKE_OBJECT(QuantLibAddin::BlackConstantVol, "my_blackconstantvol", bcArgs);
 
-        ArgStack bsArgs;
+        ArgumentStack bsArgs;
         bsArgs.push(string("my_blackconstantvol")); // black constant vol handle
         bsArgs.push(underlying);            // underlying
         bsArgs.push(string("ACT360"));      // daycount convention
@@ -56,9 +65,9 @@ int main() {
         bsArgs.push(riskFreeRate);          // risk free rate
         bsArgs.push(dividendYield);         // dividend yield
         Properties bsProperties =
-            OH_OBJECT_MAKE(QuantLibAddin::BlackScholesProcess)("my_stochastic", bsArgs);
+            OH_MAKE_OBJECT(QuantLibAddin::BlackScholesProcess, "my_stochastic", bsArgs);
 
-        ArgStack opArgs;
+        ArgumentStack opArgs;
         opArgs.push(string("my_stochastic")); // stochastic process handle
         opArgs.push(string("PUT"));         // option type
         opArgs.push(string("VAN"));         // payoff type (plain vanilla)
@@ -68,9 +77,9 @@ int main() {
         opArgs.push(settlementDate.serialNumber()); // settlement date
         opArgs.push(string("JR"));          // engine type (jarrow rudd)
         opArgs.push(timeSteps);             // time steps
-        OH_OBJECT_MAKE(QuantLibAddin::VanillaOption)("my_option", opArgs);
+        OH_MAKE_OBJECT(QuantLibAddin::VanillaOption, "my_option", opArgs);
     
-        OH_LOGMESSAGE("High-level interrogation: after QL_OPTION_VANILLA");
+        OH_LOG_MESSAGE("High-level interrogation: after QL_OPTION_VANILLA");
         OH_LOG_OBJECT("my_option");
 
         QL_OPTION_SETENGINE(
@@ -78,10 +87,10 @@ int main() {
             "AEQPB",    // AdditiveEQPBinomialTree
             timeSteps);
 
-        OH_LOGMESSAGE("High-level interrogation: after QL_OPTION_SETENGINE");
+        OH_LOG_MESSAGE("High-level interrogation: after QL_OPTION_SETENGINE");
         OH_LOG_OBJECT("my_option");
 
-        OH_LOGMESSAGE("Low-level interrogation: NPV of underlying option object");
+        OH_LOG_MESSAGE("Low-level interrogation: NPV of underlying option object");
         boost::shared_ptr<QuantLibAddin::VanillaOption> vanillaOptionQLA = 
             boost::dynamic_pointer_cast<QuantLibAddin::VanillaOption> 
             (ObjectHandler::instance().retrieveObject("my_option"));
@@ -90,17 +99,17 @@ int main() {
             (vanillaOptionQLA->getReference());
         ostringstream s;
         s << "underlying option NPV() = " << vanillaOptionQL->NPV();
-        OH_LOGMESSAGE(s.str());
+        OH_LOG_MESSAGE(s.str());
 
-        OH_LOGMESSAGE("end example program");
+        OH_LOG_MESSAGE("end example program");
         return 0;
     } catch (const exception &e) {
         ostringstream s;
         s << "Error: " << e.what();
-        OH_LOGMESSAGE(s.str(), 1);
+        OH_LOG_MESSAGE(s.str(), 1);
         return 1;
     } catch (...) {
-        OH_LOGMESSAGE("unknown error", 1);
+        OH_LOG_MESSAGE("unknown error", 1);
         return 1;
     }
 }

@@ -37,12 +37,12 @@ namespace QuantLibAddin {
     
     class DepositRateHelper : public RateHelper {
       public:
-        DepositRateHelper(ObjHandler::ArgStack& args);
+        DepositRateHelper(ObjHandler::ArgumentStack& args);
     };
     
     class SwapRateHelper : public RateHelper {
       public:
-        SwapRateHelper(ObjHandler::ArgStack& args);
+        SwapRateHelper(ObjHandler::ArgumentStack& args);
     };
     
     class YieldTermStructure : public ObjHandler::Object {
@@ -56,7 +56,7 @@ namespace QuantLibAddin {
     
     class PiecewiseFlatForward : public YieldTermStructure {
       public:
-        PiecewiseFlatForward(ObjHandler::ArgStack& args);
+        PiecewiseFlatForward(ObjHandler::ArgumentStack& args);
     };
     
 }

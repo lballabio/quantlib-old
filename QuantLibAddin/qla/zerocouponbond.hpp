@@ -30,7 +30,7 @@ namespace QuantLibAddin {
 
     class ZeroCouponBond : public ObjHandler::Object {
     public:
-        ZeroCouponBond(ObjHandler::ArgStack& args);
+        ZeroCouponBond(ObjHandler::ArgumentStack& args);
 
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(zeroCouponBond_);

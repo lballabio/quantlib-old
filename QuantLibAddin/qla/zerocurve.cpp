@@ -24,12 +24,12 @@
 
 namespace QuantLibAddin {
 
-    ZeroCurve::ZeroCurve(ObjHandler::ArgStack& args) {
-        std::string dayCounterID  = ObjHandler::Args<std::string>::popArg(args);
+    ZeroCurve::ZeroCurve(ObjHandler::ArgumentStack& arguments) {
+        std::string dayCounterID  = OH_POP_ARGUMENT(std::string, arguments);
         std::vector < double > yields 
-            = ObjHandler::Args< std::vector < double > >::popArg(args);
+            = OH_POP_ARGUMENT(std::vector < double >, arguments);
         std::vector < long > dates 
-            = ObjHandler::Args< std::vector < long > >::popArg(args);
+            = OH_POP_ARGUMENT(std::vector < long >, arguments);
 
         QuantLib::DayCounter dayCounter     = IDtoDayCounter(dayCounterID);
         const std::vector<QuantLib::Date> datesQL = 

@@ -25,7 +25,7 @@ namespace QuantLibAddin {
 
     class FixedCouponBond : public ObjHandler::Object {
     public:
-        FixedCouponBond(ObjHandler::ArgStack& args);
+        FixedCouponBond(ObjHandler::ArgumentStack& args);
 
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(myFixedCouponBond);

@@ -29,7 +29,7 @@ int main() {
         OH_LOGFILE("example.log");
         // also direct log messages to stdout
         OH_CONSOLE(1);
-        OH_LOGMESSAGE("begin example program");
+        OH_LOG_MESSAGE("begin example program");
     } catch (const exception &e) {
         cout << "Unable to initialize logging: " << e.what() << endl;
         return 1;
@@ -40,52 +40,52 @@ int main() {
 
     try {
         // construct some objects and store them in the object handler
-        ArgStack f1Args;
-        f1Args.push(string("abc"));
-        f1Args.push(123);
-        Properties f1Properties = OH_OBJECT_MAKE(ObjectFoo)("foo1", f1Args);
+        ArgumentStack foo1Arguments;
+        foo1Arguments.push(string("abc"));
+        foo1Arguments.push(123);
+        Properties foo1Properties = 
+            OH_MAKE_OBJECT(ObjectFoo, "foo1", foo1Arguments);
 
-        ArgStack f2Args;
-        f2Args.push(string("def"));
-        f2Args.push(456);
-        Properties f2Properties = OH_OBJECT_MAKE(ObjectFoo)("foo2", f2Args);
+        ArgumentStack foo2Arguments;
+        foo2Arguments.push(string("def"));
+        foo2Arguments.push(456);
+        Properties foo2Properties = 
+            OH_MAKE_OBJECT(ObjectFoo, "foo2", foo2Arguments);
 
         // high level interrogation
-        OH_LOGMESSAGE("high level interrogation - after constructor");
+        OH_LOG_MESSAGE("high level interrogation - after constructor");
         OH_LOG_OBJECT("foo2");
 
         // update an object
         FOO_UPDATE("foo2", "ghi", 789);
 
         // high level interrogation
-        OH_LOGMESSAGE("high level interrogation - after update");
+        OH_LOG_MESSAGE("high level interrogation - after update");
         OH_LOG_OBJECT("foo2");
 
         // low-level interrogation
-        OH_LOGMESSAGE("low-level interrogation - after FOO_UPDATE");
+        OH_LOG_MESSAGE("low-level interrogation - after FOO_UPDATE");
         boost::shared_ptr<ObjectFoo> const objectFoo =
-            boost::dynamic_pointer_cast<ObjectFoo>
-            (OH_OBJECT_GET("foo2"));
-        boost::shared_ptr<Foo> foo =
-            boost::static_pointer_cast<Foo>
-            (objectFoo->getReference());
-        OH_LOGMESSAGE("value of property s() of underlying foo = "
+            OH_GET_OBJECT(ObjectFoo, "foo2");
+        boost::shared_ptr<Foo> foo = 
+            OH_GET_REFERENCE(Foo, objectFoo);
+        OH_LOG_MESSAGE("value of property s() of underlying foo = "
             + foo->s());
 
-        OH_OBJECT_DELETE("foo2");
-        OH_LOGMESSAGE("log all objects after deleting foo2:");
+        OH_DELETE_OBJECT("foo2");
+        OH_LOG_MESSAGE("log all objects after deleting foo2:");
         OH_LOG_ALL_OBJECTS();
 
-        OH_LOGMESSAGE("end example program");
+        OH_LOG_MESSAGE("end example program");
 
         return 0;
     } catch (const exception &e) {
         ostringstream s;
         s << "Error: " << e.what();
-        OH_LOGMESSAGE(s.str(), 1);
+        OH_LOG_MESSAGE(s.str(), 1);
         return 1;
     } catch (...) {
-        OH_LOGMESSAGE("Error", 1);
+        OH_LOG_MESSAGE("Error", 1);
         return 1;
     }
 }

@@ -34,17 +34,17 @@ namespace ObjHandler {
     /*! Argument stack passed from Factory::makeObject
         to Object constructor.
     */
-    typedef std::stack<boost::any> ArgStack;
+    typedef std::stack<boost::any> ArgumentStack;
     //! Template class to represent a stack of arguments.
     /*! Pop an Object of class T
         from the argument stack.
     */
     template < class T >
-    class Args {
+    class Arguments {
         public:
-        static T popArg(ArgStack &args) {
-            boost::any a = args.top();
-            args.pop();
+        static T popArgument(ArgumentStack &arguments) {
+            boost::any a = arguments.top();
+            arguments.pop();
             return boost::any_cast<T>(a);
         }
     };

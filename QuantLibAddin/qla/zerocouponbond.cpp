@@ -25,27 +25,26 @@
 
 namespace QuantLibAddin {
 
-    ZeroCouponBond::ZeroCouponBond(ObjHandler::ArgStack& args) {
+    ZeroCouponBond::ZeroCouponBond(ObjHandler::ArgumentStack& arguments) {
         
-        std::string handleZeroCurve = ObjHandler::Args<std::string>::popArg(args);        
+        std::string handleZeroCurve = OH_POP_ARGUMENT(std::string, arguments);
 
         boost::shared_ptr<ZeroCurve> zeroCurve =
-            boost::dynamic_pointer_cast<ZeroCurve>(QL_OBJECT_GET(handleZeroCurve));
+            OH_GET_OBJECT(ZeroCurve, handleZeroCurve);
         
         if (!zeroCurve)
             QL_FAIL("ZeroCouponBond: error retrieving object " + handleZeroCurve);
 
-        boost::shared_ptr<QuantLib::YieldTermStructure> zeroCurveQl
-            = boost::static_pointer_cast<QuantLib::YieldTermStructure>
-            (zeroCurve->getReference());
+        boost::shared_ptr<QuantLib::YieldTermStructure> zeroCurveQl =
+            OH_GET_REFERENCE(QuantLib::YieldTermStructure, zeroCurve);
 
-        double redemption = ObjHandler::Args<double>::popArg(args);
-        std::string conventionID  = ObjHandler::Args<std::string>::popArg(args);
-        std::string calendarID  = ObjHandler::Args<std::string>::popArg(args);
-        std::string dayCounterID  = ObjHandler::Args<std::string>::popArg(args);
-        long settlementDays = ObjHandler::Args<long>::popArg(args);
-        long maturityDate = ObjHandler::Args<long>::popArg(args);
-        long issueDate = ObjHandler::Args<long>::popArg(args);
+        double redemption           = OH_POP_ARGUMENT(double, arguments);
+        std::string conventionID    = OH_POP_ARGUMENT(std::string, arguments);
+        std::string calendarID      = OH_POP_ARGUMENT(std::string, arguments);
+        std::string dayCounterID    = OH_POP_ARGUMENT(std::string, arguments);
+        long settlementDays         = OH_POP_ARGUMENT(long, arguments);
+        long maturityDate           = OH_POP_ARGUMENT(long, arguments);
+        long issueDate              = OH_POP_ARGUMENT(long, arguments);
 
         QuantLib::BusinessDayConvention convention = IDtoConvention(conventionID);
         QuantLib::Calendar calendar = IDtoCalendar(calendarID);

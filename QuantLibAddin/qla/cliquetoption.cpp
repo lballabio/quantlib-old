@@ -23,24 +23,22 @@
 
 namespace QuantLibAddin {
 
-    CliquetOption::CliquetOption(ObjHandler::ArgStack &args) {
-        long timeSteps                  = ObjHandler::Args<long>::popArg(args);
-        std::string engineID            = ObjHandler::Args<std::string>::popArg(args);
-        long exerciseDate               = ObjHandler::Args<long>::popArg(args);
-        double strike                   = ObjHandler::Args<double>::popArg(args);
-        std::string optionTypeID        = ObjHandler::Args<std::string>::popArg(args);
+    CliquetOption::CliquetOption(ObjHandler::ArgumentStack &arguments) {
+        long timeSteps                  = OH_POP_ARGUMENT(long, arguments);
+        std::string engineID            = OH_POP_ARGUMENT(std::string, arguments);
+        long exerciseDate               = OH_POP_ARGUMENT(long, arguments);
+        double strike                   = OH_POP_ARGUMENT(double, arguments);
+        std::string optionTypeID        = OH_POP_ARGUMENT(std::string, arguments);
         std::vector < long > resetDates 
-            = ObjHandler::Args< std::vector < long > >::popArg(args);
-        std::string handleBlackScholes  = ObjHandler::Args<std::string>::popArg(args);
+            = OH_POP_ARGUMENT(std::vector < long >, arguments);
+        std::string handleBlackScholes  = OH_POP_ARGUMENT(std::string, arguments);
 
         boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
-            boost::dynamic_pointer_cast<BlackScholesProcess>
-            (QL_OBJECT_GET(handleBlackScholes));
+            OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);
         if (!blackScholesProcess)
             QL_FAIL("CliquetOption: error retrieving object " + handleBlackScholes);
         const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
-            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
-            (blackScholesProcess->getReference());
+            OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
         QuantLib::Option::Type type = IDtoOptionType(optionTypeID);
         boost::shared_ptr<QuantLib::PercentageStrikePayoff> payoff(

@@ -45,7 +45,7 @@ void QL_CONSOLE(const int console) {
     OH_CONSOLE(console);
 }
 
-void QL_LOGMESSAGE(
+void QL_LOG_MESSAGE(
         const char *fmt,
         ...) {
     char buf[1000]; // FIXME
@@ -53,6 +53,6 @@ void QL_LOGMESSAGE(
     va_start(list, fmt);
     vsprintf(buf, fmt, list);
     va_end(list);
-    OH_LOGMESSAGE(buf);
+    OH_LOG_MESSAGE(buf);
 }
 

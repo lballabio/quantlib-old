@@ -27,13 +27,13 @@
 
 namespace QuantLibAddin {
 
-    BlackScholesProcess::BlackScholesProcess(ObjHandler::ArgStack &args) {
-        double dividendYield        = ObjHandler::Args<double>::popArg(args);
-        double riskFreeRate         = ObjHandler::Args<double>::popArg(args);
-        long settlementDateLong     = ObjHandler::Args<long>::popArg(args);
-        std::string dayCounterID    = ObjHandler::Args<std::string>::popArg(args);
-        double underlying           = ObjHandler::Args<double>::popArg(args);
-        std::string handleBlackVol  = ObjHandler::Args<std::string>::popArg(args);
+    BlackScholesProcess::BlackScholesProcess(ObjHandler::ArgumentStack &arguments) {
+        double dividendYield        = OH_POP_ARGUMENT(double, arguments);
+        double riskFreeRate         = OH_POP_ARGUMENT(double, arguments);
+        long settlementDateLong     = OH_POP_ARGUMENT(long, arguments);
+        std::string dayCounterID    = OH_POP_ARGUMENT(std::string, arguments);
+        double underlying           = OH_POP_ARGUMENT(double, arguments);
+        std::string handleBlackVol  = OH_POP_ARGUMENT(std::string, arguments);
 
         QuantLib::Date settlementDate(settlementDateLong);
         QuantLib::DayCounter dayCounter = IDtoDayCounter(dayCounterID);
@@ -48,13 +48,11 @@ namespace QuantLibAddin {
             new QuantLib::FlatForward(settlementDate, dividendYield, dayCounter)));
 
         boost::shared_ptr<BlackVolTermStructure> blackVolTermStructure =
-            boost::dynamic_pointer_cast<BlackVolTermStructure>
-            (QL_OBJECT_GET(handleBlackVol));
+            OH_GET_OBJECT(BlackVolTermStructure, handleBlackVol);
         if (!blackVolTermStructure)
             QL_FAIL("BlackScholesProcess: error retrieving object " + handleBlackVol);
         boost::shared_ptr<QuantLib::BlackVolTermStructure> blackVolTermStructureP = 
-            boost::static_pointer_cast<QuantLib::BlackVolTermStructure>
-            (blackVolTermStructure->getReference());
+            OH_GET_REFERENCE(QuantLib::BlackVolTermStructure, blackVolTermStructure);
         QuantLib::Handle<QuantLib::BlackVolTermStructure> 
             blackVolTermStructureH(blackVolTermStructureP);
 

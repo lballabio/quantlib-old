@@ -20,10 +20,10 @@
 
 using namespace std;
 
-ObjectFoo::ObjectFoo(ArgStack &args) {
-    int i = Args<int>::popArg(args);
-    std::string s = Args<std::string>::popArg(args);
-    foo_ = boost::shared_ptr<Foo>(new Foo(s, i));
+ObjectFoo::ObjectFoo(ArgumentStack &arguments) {
+    int i       = OH_POP_ARGUMENT(int, arguments);
+    string s    = OH_POP_ARGUMENT(string, arguments);
+    foo_        = boost::shared_ptr<Foo>(new Foo(s, i));
     // populate base class Property vector
     any_ptr anyString(new boost::any(foo_->s()));
     any_ptr anyInt(new boost::any(foo_->i()));
@@ -32,9 +32,9 @@ ObjectFoo::ObjectFoo(ArgStack &args) {
     properties_.push_back(propString);
     properties_.push_back(propInt);    
 }
-                                                                                
+
 // wrapper for underlying member function
-void ObjectFoo::update(const std::string &s, const int &i) {
+void ObjectFoo::update(const string &s, const int &i) {
     foo_->update(s, i);
     // update Property vector
     *properties_[IDX_STR]() = s;
@@ -47,14 +47,14 @@ boost::shared_ptr<void> ObjectFoo::getReference() const {
 
 // utility function for updating object of class Foo
 const Properties& FOO_UPDATE(
-        const std::string &handle,
-        const std::string &s,
+        const string &handle,
+        const string &s,
         const int &i) {
     boost::shared_ptr<ObjectFoo> object =
-        boost::dynamic_pointer_cast<ObjectFoo>        
-        (OH_OBJECT_GET(handle));
+        OH_GET_OBJECT(ObjectFoo, handle);
     if (!object)
         throw Exception("FOO_UPDATE: unable to retrieve object " + handle);
     object->update(s, i);
     return object->getProperties();
 }
+

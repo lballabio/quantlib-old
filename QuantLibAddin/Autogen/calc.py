@@ -137,13 +137,13 @@ def generateFuncSource(fileFunc, function, bufBody):
     generateHeader(fileFunc, function, ' {')
     if function[common.CTOR]:
         handle = 12 * ' ' + 'OUStringToString(handle), args'
-        fName = 'OH_OBJECT_MAKE(QuantLibAddin::%s)' % function[common.QLFUNC]
+        fName = common.MAKE_COMMAND % function[common.QLFUNC]
         args = utils.generateArgList(function[common.PARAMS], 
             reformatString = STR_FMT)
         paramList = ''
     else:
         handle = ''
-        fName = 'QuantLibAddin::' + function[common.NAME]
+        fName = 'QuantLibAddin::' + function[common.NAME] + '('
         args = ''
         paramList = utils.generateParamList(function[common.PARAMS], 3,
             reformatString = STR_FMT, arrayCount = True, 

@@ -31,42 +31,38 @@
 
 namespace QuantLibAddin {
     
-    CapFloor::CapFloor(ObjHandler::ArgStack& args) {
-        std::string optionID = ObjHandler::Args<std::string>::popArg(args);
-        std::string handleEngine = ObjHandler::Args<std::string>::popArg(args);
-        double strike = ObjHandler::Args<double>::popArg(args);
-        double nominal = ObjHandler::Args<double>::popArg(args);
-        std::string handleTermStructure = ObjHandler::Args<std::string>::popArg(args);
-        long fixingDays = ObjHandler::Args<long>::popArg(args);
-        std::string frequencyID = ObjHandler::Args<std::string>::popArg(args);
-        std::string conventionID = ObjHandler::Args<std::string>::popArg(args);
-        std::string timeUnitsID = ObjHandler::Args<std::string>::popArg(args);
-        long length = ObjHandler::Args<long>::popArg(args);
-        long start = ObjHandler::Args<long>::popArg(args);
+    CapFloor::CapFloor(ObjHandler::ArgumentStack& arguments) {
+        std::string optionID                = OH_POP_ARGUMENT(std::string, arguments);
+        std::string handleEngine            = OH_POP_ARGUMENT(std::string, arguments);
+        double strike                       = OH_POP_ARGUMENT(double, arguments);
+        double nominal                      = OH_POP_ARGUMENT(double, arguments);
+        std::string handleTermStructure     = OH_POP_ARGUMENT(std::string, arguments);
+        long fixingDays                     = OH_POP_ARGUMENT(long, arguments);
+        std::string frequencyID             = OH_POP_ARGUMENT(std::string, arguments);
+        std::string conventionID            = OH_POP_ARGUMENT(std::string, arguments);
+        std::string timeUnitsID             = OH_POP_ARGUMENT(std::string, arguments);
+        long length                         = OH_POP_ARGUMENT(long, arguments);
+        long start                          = OH_POP_ARGUMENT(long, arguments);
         
         QuantLib::BusinessDayConvention convention = IDtoConvention(conventionID);
         QuantLib::Frequency frequency = IDtoFrequency(frequencyID);
         QuantLib::TimeUnit timeUnits = IDtoTimeUnit(timeUnitsID);
         
         boost::shared_ptr<AnalyticCapFloorEngine> engine =
-            boost::dynamic_pointer_cast<AnalyticCapFloorEngine>
-            (QL_OBJECT_GET(handleEngine));
+            OH_GET_OBJECT(AnalyticCapFloorEngine, handleEngine);
         if (!engine)
             QL_FAIL("CapFloor: error retrieving object " + handleEngine);
         
         boost::shared_ptr<QuantLib::PricingEngine> engineQL =
-            boost::static_pointer_cast<QuantLib::PricingEngine>
-            (engine->getReference());
+            OH_GET_REFERENCE(QuantLib::PricingEngine, engine);
         
         boost::shared_ptr<YieldTermStructure> termStructure =
-            boost::dynamic_pointer_cast<YieldTermStructure>
-            (QL_OBJECT_GET(handleTermStructure));
+            OH_GET_OBJECT(YieldTermStructure, handleTermStructure);
         if (!termStructure)
             QL_FAIL("CapFloor: error retrieving object " + handleTermStructure);
         
         boost::shared_ptr<QuantLib::YieldTermStructure> termStructureP =
-            boost::static_pointer_cast<QuantLib::YieldTermStructure>
-            (termStructure->getReference());
+            OH_GET_REFERENCE(QuantLib::YieldTermStructure, termStructure);
         QuantLib::Handle<QuantLib::YieldTermStructure> termStructureH(termStructureP);
         
         boost::shared_ptr<QuantLib::Xibor> index(
@@ -110,20 +106,20 @@ namespace QuantLibAddin {
         properties_.push_back(prop_npv);
     }
     
-    AnalyticCapFloorEngine::AnalyticCapFloorEngine(ObjHandler::ArgStack& args) {
-        std::string handleModel = ObjHandler::Args<std::string>::popArg(args);
+    AnalyticCapFloorEngine::AnalyticCapFloorEngine(ObjHandler::ArgumentStack& arguments) {
+        std::string handleModel = OH_POP_ARGUMENT(std::string, arguments);
         
         boost::shared_ptr<AffineModel> model = 
-            boost::dynamic_pointer_cast<AffineModel>
-            (QL_OBJECT_GET(handleModel));
+            OH_GET_OBJECT(AffineModel, handleModel);
         if (!model)
             QL_FAIL("AnalyticCapFloorEngine: error retrieving object " + handleModel);
         
         const boost::shared_ptr<QuantLib::AffineModel> modelQL =
-            boost::static_pointer_cast<QuantLib::AffineModel>(model->getReference());
+            OH_GET_REFERENCE(QuantLib::AffineModel, model);
         
         engine_ = boost::shared_ptr<QuantLib::AnalyticCapFloorEngine>(
             new QuantLib::AnalyticCapFloorEngine(modelQL));
     }
 
 }
+

@@ -25,7 +25,7 @@ namespace QuantLibAddin {
 
     class ContinuousAveragingAsianOption : public ObjHandler::Object {
     public:
-        ContinuousAveragingAsianOption(ObjHandler::ArgStack &args);
+        ContinuousAveragingAsianOption(ObjHandler::ArgumentStack &args);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(
                 continuousAveragingAsianOption_);
@@ -37,7 +37,7 @@ namespace QuantLibAddin {
 
     class DiscreteAveragingAsianOption : public ObjHandler::Object {
     public:
-        DiscreteAveragingAsianOption(ObjHandler::ArgStack &args);
+        DiscreteAveragingAsianOption(ObjHandler::ArgumentStack &args);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(
                 discreteAveragingAsianOption_);

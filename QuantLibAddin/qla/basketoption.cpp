@@ -33,19 +33,19 @@ namespace QuantLibAddin {
             QL_FAIL("IDtoBasketType: unrecognized typeID: " + basketID);
     }
 
-    BasketOption::BasketOption(ObjHandler::ArgStack &args) {
-        long timeSteps              = ObjHandler::Args<long>::popArg(args);
-        std::string engineID        = ObjHandler::Args<std::string>::popArg(args);
-        long settlementDate         = ObjHandler::Args<long>::popArg(args);
-        long exerciseDate           = ObjHandler::Args<long>::popArg(args);
-        std::string exerciseID      = ObjHandler::Args<std::string>::popArg(args);
-        double strike = ObjHandler::Args<double>::popArg(args);
-        std::string optionTypeID    = ObjHandler::Args<std::string>::popArg(args);
+    BasketOption::BasketOption(ObjHandler::ArgumentStack &arguments) {
+        long timeSteps              = OH_POP_ARGUMENT(long, arguments);
+        std::string engineID        = OH_POP_ARGUMENT(std::string, arguments);
+        long settlementDate         = OH_POP_ARGUMENT(long, arguments);
+        long exerciseDate           = OH_POP_ARGUMENT(long, arguments);
+        std::string exerciseID      = OH_POP_ARGUMENT(std::string, arguments);
+        double strike               = OH_POP_ARGUMENT(double, arguments);
+        std::string optionTypeID    = OH_POP_ARGUMENT(std::string, arguments);
         std::vector < std::vector < double > > correlations 
-            = ObjHandler::Args< std::vector < std::vector < double > > >::popArg(args);
-        std::string basketID        = ObjHandler::Args<std::string>::popArg(args);
+            = OH_POP_ARGUMENT(std::vector < std::vector < double > >, arguments);
+        std::string basketID        = OH_POP_ARGUMENT(std::string, arguments);
         std::vector < std::string > handleBlackScholesVector 
-            = ObjHandler::Args< std::vector < std::string > >::popArg(args);
+            = OH_POP_ARGUMENT(std::vector < std::string >, arguments);
 
         QuantLib::BasketOption::BasketType basketType = 
             IDtoBasketType(basketID);
@@ -65,13 +65,11 @@ namespace QuantLibAddin {
         for (i = handleBlackScholesVector.begin(); i != handleBlackScholesVector.end(); i++) {
             std::string handleBlackScholes = *i;
             boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
-                boost::dynamic_pointer_cast<BlackScholesProcess>
-                (QL_OBJECT_GET(handleBlackScholes));
+                OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);
             if (!blackScholesProcess)
                 QL_FAIL("BasketOption: error retrieving object " + handleBlackScholes);
             boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL =
-                boost::static_pointer_cast<QuantLib::BlackScholesProcess>
-                (blackScholesProcess->getReference());
+                OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
             boost::shared_ptr<QuantLib::StochasticProcess> stochasticProcessQL =
                 boost::dynamic_pointer_cast<QuantLib::StochasticProcess>
                 (blackScholesProcessQL);

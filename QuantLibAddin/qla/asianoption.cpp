@@ -33,26 +33,25 @@ namespace QuantLibAddin {
             QL_FAIL("IDtoAverageType: unrecognized averageID: " + averageID);
     }
 
-    ContinuousAveragingAsianOption::ContinuousAveragingAsianOption(ObjHandler::ArgStack &args) {
-        long timeSteps                  = ObjHandler::Args<long>::popArg(args);
-        std::string engineID            = ObjHandler::Args<std::string>::popArg(args);
-        long settlementDate             = ObjHandler::Args<long>::popArg(args);
-        long exerciseDate               = ObjHandler::Args<long>::popArg(args);
-        std::string exerciseID          = ObjHandler::Args<std::string>::popArg(args);
-        double strike                   = ObjHandler::Args<double>::popArg(args);
-        std::string payoffID            = ObjHandler::Args<std::string>::popArg(args);
-        std::string optionTypeID        = ObjHandler::Args<std::string>::popArg(args);
-        std::string averageID           = ObjHandler::Args<std::string>::popArg(args);
-        std::string handleBlackScholes  = ObjHandler::Args<std::string>::popArg(args);
+    ContinuousAveragingAsianOption::ContinuousAveragingAsianOption(
+            ObjHandler::ArgumentStack &arguments) {
+        long timeSteps                  = OH_POP_ARGUMENT(long, arguments);
+        std::string engineID            = OH_POP_ARGUMENT(std::string, arguments);
+        long settlementDate             = OH_POP_ARGUMENT(long, arguments);
+        long exerciseDate               = OH_POP_ARGUMENT(long, arguments);
+        std::string exerciseID          = OH_POP_ARGUMENT(std::string, arguments);
+        double strike                   = OH_POP_ARGUMENT(double, arguments);
+        std::string payoffID            = OH_POP_ARGUMENT(std::string, arguments);
+        std::string optionTypeID        = OH_POP_ARGUMENT(std::string, arguments);
+        std::string averageID           = OH_POP_ARGUMENT(std::string, arguments);
+        std::string handleBlackScholes  = OH_POP_ARGUMENT(std::string, arguments);
 
         boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
-            boost::dynamic_pointer_cast<BlackScholesProcess>
-            (QL_OBJECT_GET(handleBlackScholes));
+            OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);
         if (!blackScholesProcess)
             QL_FAIL("ContinuousAveragingAsianOption: error retrieving object " + handleBlackScholes);
         const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
-            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
-            (blackScholesProcess->getReference());
+            OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
         QuantLib::Average::Type averageType =
             IDtoAverageType(averageID);
@@ -80,30 +79,29 @@ namespace QuantLibAddin {
         properties_.push_back(prop_engine);
     }
 
-    DiscreteAveragingAsianOption::DiscreteAveragingAsianOption(ObjHandler::ArgStack &args) {
-        long timeSteps                  = ObjHandler::Args<long>::popArg(args);
-        std::string engineID            = ObjHandler::Args<std::string>::popArg(args);
-        long settlementDate             = ObjHandler::Args<long>::popArg(args);
-        long exerciseDate               = ObjHandler::Args<long>::popArg(args);
-        std::string exerciseID          = ObjHandler::Args<std::string>::popArg(args);
-        double strike                   = ObjHandler::Args<double>::popArg(args);
-        std::string payoffID            = ObjHandler::Args<std::string>::popArg(args);
-        std::string optionTypeID        = ObjHandler::Args<std::string>::popArg(args);
+    DiscreteAveragingAsianOption::DiscreteAveragingAsianOption(
+            ObjHandler::ArgumentStack &arguments) {
+        long timeSteps                  = OH_POP_ARGUMENT(long, arguments);
+        std::string engineID            = OH_POP_ARGUMENT(std::string, arguments);
+        long settlementDate             = OH_POP_ARGUMENT(long, arguments);
+        long exerciseDate               = OH_POP_ARGUMENT(long, arguments);
+        std::string exerciseID          = OH_POP_ARGUMENT(std::string, arguments);
+        double strike                   = OH_POP_ARGUMENT(double, arguments);
+        std::string payoffID            = OH_POP_ARGUMENT(std::string, arguments);
+        std::string optionTypeID        = OH_POP_ARGUMENT(std::string, arguments);
         std::vector < long > fixingDates 
-            = ObjHandler::Args< std::vector < long > >::popArg(args);
-        long pastFixings = ObjHandler::Args<long>::popArg(args);
-        double runningAccumulator       = ObjHandler::Args<double>::popArg(args);
-        std::string averageID           = ObjHandler::Args<std::string>::popArg(args);
-        std::string handleBlackScholes  = ObjHandler::Args<std::string>::popArg(args);
+            = OH_POP_ARGUMENT(std::vector < long >, arguments);
+        long pastFixings                = OH_POP_ARGUMENT(long, arguments);
+        double runningAccumulator       = OH_POP_ARGUMENT(double, arguments);
+        std::string averageID           = OH_POP_ARGUMENT(std::string, arguments);
+        std::string handleBlackScholes  = OH_POP_ARGUMENT(std::string, arguments);
 
         boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
-            boost::dynamic_pointer_cast<BlackScholesProcess>
-            (QL_OBJECT_GET(handleBlackScholes));
+            OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);
         if (!blackScholesProcess)
             QL_FAIL("DiscreteAveragingAsianOption: error retrieving object " + handleBlackScholes);
         const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
-            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
-            (blackScholesProcess->getReference());
+            OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
         QuantLib::Average::Type averageType =
             IDtoAverageType(averageID);

@@ -31,7 +31,7 @@ int main()
         
         OH_LOGFILE("quantlib.log");
         OH_CONSOLE(1);
-        OH_LOGMESSAGE("begin capfloor test");
+        OH_LOG_MESSAGE("begin capfloor test");
         
         double dQuotes[] = { 0.020800, 0.020960, 0.021500, 0.021700, 0.021860, 0.022120,
                              0.022420, 0.022720, 0.023020, 0.023330, 0.023620, 0.023920 };
@@ -46,7 +46,7 @@ int main()
         
         for (std::size_t i=0 ; i < LENGTH(dQuotes) ; i++)
         {
-            ArgStack stack;
+            ArgumentStack stack;
             stack.push(dQuotes[i]);
             stack.push(dMaturities[i]);
             stack.push(string("MONTHS"));
@@ -56,13 +56,13 @@ int main()
             stack.push(string("ACT360"));
             std::string handle = "handleDeposit"
                                + IntegerFormatter::toString(dMaturities[i]);
-            Properties prop = OH_OBJECT_MAKE(QuantLibAddin::DepositRateHelper)(handle, stack);            
+            Properties prop = OH_MAKE_OBJECT(QuantLibAddin::DepositRateHelper, handle, stack);            
             rateHelpers.push_back(handle);
         }
         
         for (std::size_t i2=0 ; i2 < LENGTH(dMaturities) ; i2++)
         {
-            ArgStack stack;
+            ArgumentStack stack;
             stack.push(sQuotes[i2]);
             stack.push(sMaturities[i2]);
             stack.push(string("YEARS"));
@@ -75,33 +75,33 @@ int main()
             stack.push(string("MF"));                   // floating convention
             std::string handle = "handleSwap"
                                  + IntegerFormatter::toString(sMaturities[i2]);
-            (void) OH_OBJECT_MAKE(QuantLibAddin::SwapRateHelper)(handle, stack);            
+            (void) OH_MAKE_OBJECT(QuantLibAddin::SwapRateHelper, handle, stack);            
             rateHelpers.push_back(handle);        
         }
         
         Date evaluationDate(23, March, 2005);
         Date settlementDate(25, March, 2005);
         
-        ArgStack tsArgs;
+        ArgumentStack tsArgs;
         tsArgs.push(evaluationDate.serialNumber());
         tsArgs.push(settlementDate.serialNumber());
         tsArgs.push(rateHelpers);
         tsArgs.push(string("ACT360"));
-        (void) OH_OBJECT_MAKE(QuantLibAddin::PiecewiseFlatForward)("my_termStructure", tsArgs);
+        (void) OH_MAKE_OBJECT(QuantLibAddin::PiecewiseFlatForward, "my_termStructure", tsArgs);
         
-        ArgStack hwArgs;
+        ArgumentStack hwArgs;
         hwArgs.push(string("my_termStructure"));
         hwArgs.push(0.1);
         hwArgs.push(0.01);
-        (void) OH_OBJECT_MAKE(QuantLibAddin::HullWhite)("my_hullwhite", hwArgs);
+        (void) OH_MAKE_OBJECT(QuantLibAddin::HullWhite, "my_hullwhite", hwArgs);
         
-        ArgStack engineArgs;
+        ArgumentStack engineArgs;
         engineArgs.push(string("my_hullwhite"));
-        (void) OH_OBJECT_MAKE(QuantLibAddin::AnalyticCapFloorEngine)("my_closedForm", engineArgs);
+        (void) OH_MAKE_OBJECT(QuantLibAddin::AnalyticCapFloorEngine, "my_closedForm", engineArgs);
         
         Date startDate(25, March, 2006);
         
-        ArgStack capArgs;
+        ArgumentStack capArgs;
         capArgs.push(startDate.serialNumber());
         capArgs.push(5l);
         capArgs.push(string("YEARS"));
@@ -113,20 +113,20 @@ int main()
         capArgs.push(0.04);
         capArgs.push(string("my_closedForm"));
         capArgs.push(string("Cap"));
-        Properties opProperties = OH_OBJECT_MAKE(QuantLibAddin::CapFloor)("my_cap", capArgs);
+        Properties opProperties = OH_MAKE_OBJECT(QuantLibAddin::CapFloor, "my_cap", capArgs);
         
         OH_LOG_OBJECT("my_cap");
-        OH_LOGMESSAGE("end capfloor test");
+        OH_LOG_MESSAGE("end capfloor test");
         
         return 0;
     
     } catch (const exception &e) {
         ostringstream s;
         s << "Error: " << e.what();
-        OH_LOGMESSAGE(s.str(), 1);
+        OH_LOG_MESSAGE(s.str(), 1);
         return 1;
     } catch (...) {
-        OH_LOGMESSAGE("unknown error", 1);
+        OH_LOG_MESSAGE("unknown error", 1);
         return 1;
     }
 }

@@ -32,7 +32,7 @@ namespace QuantLibAddin {
 
     class ZeroCurve : public ObjHandler::Object {
     public:
-        ZeroCurve(ObjHandler::ArgStack& args);
+        ZeroCurve(ObjHandler::ArgumentStack& args);
 
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(zeroCurve_);

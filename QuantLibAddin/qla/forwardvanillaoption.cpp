@@ -23,27 +23,25 @@
 
 namespace QuantLibAddin {
 
-    ForwardVanillaOption::ForwardVanillaOption(ObjHandler::ArgStack &args) {
-        long timeSteps                  = ObjHandler::Args<long>::popArg(args);
-        std::string engineID            = ObjHandler::Args<std::string>::popArg(args);
-        long settlementDate             = ObjHandler::Args<long>::popArg(args);
-        long exerciseDate               = ObjHandler::Args<long>::popArg(args);
-        std::string exerciseID          = ObjHandler::Args<std::string>::popArg(args);
-        double strike                   = ObjHandler::Args<double>::popArg(args);
-        std::string payoffID            = ObjHandler::Args<std::string>::popArg(args);
-        std::string optionTypeID        = ObjHandler::Args<std::string>::popArg(args);
-        long resetDate                  = ObjHandler::Args<long>::popArg(args);
-        double moneyness                = ObjHandler::Args<double>::popArg(args);
-        std::string handleBlackScholes  = ObjHandler::Args<std::string>::popArg(args);
+    ForwardVanillaOption::ForwardVanillaOption(ObjHandler::ArgumentStack &arguments) {
+        long timeSteps                  = OH_POP_ARGUMENT(long, arguments);
+        std::string engineID            = OH_POP_ARGUMENT(std::string, arguments);
+        long settlementDate             = OH_POP_ARGUMENT(long, arguments);
+        long exerciseDate               = OH_POP_ARGUMENT(long, arguments);
+        std::string exerciseID          = OH_POP_ARGUMENT(std::string, arguments);
+        double strike                   = OH_POP_ARGUMENT(double, arguments);
+        std::string payoffID            = OH_POP_ARGUMENT(std::string, arguments);
+        std::string optionTypeID        = OH_POP_ARGUMENT(std::string, arguments);
+        long resetDate                  = OH_POP_ARGUMENT(long, arguments);
+        double moneyness                = OH_POP_ARGUMENT(double, arguments);
+        std::string handleBlackScholes  = OH_POP_ARGUMENT(std::string, arguments);
 
         boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
-            boost::dynamic_pointer_cast<BlackScholesProcess>
-            (QL_OBJECT_GET(handleBlackScholes));
+            OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);
         if (!blackScholesProcess)
             QL_FAIL("ForwardVanillaOption: error retrieving object " + handleBlackScholes);
         const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
-            boost::static_pointer_cast<QuantLib::BlackScholesProcess>
-            (blackScholesProcess->getReference());
+            OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             IDtoPayoff(optionTypeID, payoffID, strike);

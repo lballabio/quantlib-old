@@ -23,10 +23,10 @@
 
 namespace QuantLibAddin {
 
-    BlackConstantVol::BlackConstantVol(ObjHandler::ArgStack &args) {
-        std::string dayCounterID    = ObjHandler::Args<std::string>::popArg(args);
-        double volatility           = ObjHandler::Args<double>::popArg(args);
-        long settlementDateLong     = ObjHandler::Args<long>::popArg(args);
+    BlackConstantVol::BlackConstantVol(ObjHandler::ArgumentStack &arguments) {
+        std::string dayCounterID    = OH_POP_ARGUMENT(std::string, arguments);
+        double volatility           = OH_POP_ARGUMENT(double, arguments);
+        long settlementDateLong     = OH_POP_ARGUMENT(long, arguments);
 
         QuantLib::Date settlementDate(settlementDateLong);
         QuantLib::DayCounter dayCounter = IDtoDayCounter(dayCounterID);
@@ -37,15 +37,15 @@ namespace QuantLibAddin {
                 dayCounter));
     }
 
-    BlackVarianceSurface::BlackVarianceSurface(ObjHandler::ArgStack &args) {
-        std::string dayCounterID    = ObjHandler::Args<std::string>::popArg(args);
+    BlackVarianceSurface::BlackVarianceSurface(ObjHandler::ArgumentStack &arguments) {
+        std::string dayCounterID    = OH_POP_ARGUMENT(std::string, arguments);
         std::vector < std::vector < double > > vols 
-            = ObjHandler::Args< std::vector < std::vector < double > > >::popArg(args);
+            = OH_POP_ARGUMENT(std::vector < std::vector < double > >, arguments);
         std::vector < double > strikes 
-            = ObjHandler::Args< std::vector < double > >::popArg(args);
+            = OH_POP_ARGUMENT(std::vector < double >, arguments);
         std::vector < long > dates 
-            = ObjHandler::Args< std::vector < long > >::popArg(args);
-        long settlementDate         = ObjHandler::Args<long>::popArg(args);
+            = OH_POP_ARGUMENT(std::vector < long >, arguments);
+        long settlementDate         = OH_POP_ARGUMENT(long, arguments);
 
         QuantLib::Date settlementDateQL(settlementDate);
         const std::vector<QuantLib::Date> datesQL = 

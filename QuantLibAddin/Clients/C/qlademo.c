@@ -35,10 +35,10 @@ int main() {
 
     QL_LOGFILE("quantlib.log");     // specify log file
     QL_CONSOLE(1);                  // log messages to stdout
-    QL_LOGMESSAGE("begin example program");
+    QL_LOG_MESSAGE("begin example program");
 
-    QL_LOGMESSAGE(QL_VER());
-    QL_LOGMESSAGE(QL_OH_VER());
+    QL_LOG_MESSAGE(QL_VER());
+    QL_LOG_MESSAGE(QL_OH_VER());
 
     if (QL_BLACK_CONSTANT_VOL(
             "my_blackconstantvol", 
@@ -46,7 +46,7 @@ int main() {
             volatility, 
             "ACT360",
             &vbc) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_BLACK_CONSTANT_VOL");
+        QL_LOG_MESSAGE("Error on call to QL_BLACK_CONSTANT_VOL");
         goto fail;
     }
 
@@ -59,7 +59,7 @@ int main() {
             riskFreeRate, 
             dividendYield, 
             &vbs) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_BLACK_SCHOLES_PROCESS");
+        QL_LOG_MESSAGE("Error on call to QL_BLACK_SCHOLES_PROCESS");
         goto fail;
     }
 
@@ -75,13 +75,13 @@ int main() {
             "JR",                           // engine type (jarrow rudd)
             timeSteps,                      // time steps
             &vo) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_VANILLA_OPTION");
+        QL_LOG_MESSAGE("Error on call to QL_VANILLA_OPTION");
         goto fail;
     }
 
-    QL_LOGMESSAGE("high-level interrogation - after QL_VANILLA_OPTION");
+    QL_LOG_MESSAGE("high-level interrogation - after QL_VANILLA_OPTION");
     for (i=0; i<vo.count; i++)
-        QL_LOGMESSAGE("field = %s, value = %s", vo.varies[i].Label, 
+        QL_LOG_MESSAGE("field = %s, value = %s", vo.varies[i].Label, 
             variesToString(&vo.varies[i]));
 
     if (QL_OPTION_SETENGINE(
@@ -89,20 +89,20 @@ int main() {
             "AEQPB",   // AdditiveEQPBinomialTree
             801, 
             &vo) != SUCCESS) {
-        QL_LOGMESSAGE("Error on call to QL_OPTION_SETENGINE");
+        QL_LOG_MESSAGE("Error on call to QL_OPTION_SETENGINE");
         goto fail;
     }
 
-    QL_LOGMESSAGE("high-level interrogation - after QL_OPTION_SETENGINE");
+    QL_LOG_MESSAGE("high-level interrogation - after QL_OPTION_SETENGINE");
     for (i=0; i<vo.count; i++)
-        QL_LOGMESSAGE("field = %s, value = %s", vo.varies[i].Label, 
+        QL_LOG_MESSAGE("field = %s, value = %s", vo.varies[i].Label, 
             variesToString(&vo.varies[i]));
 
     freeVariesList(&vbc);
     freeVariesList(&vbs);
     freeVariesList(&vo);
 
-    QL_LOGMESSAGE("end example program");
+    QL_LOG_MESSAGE("end example program");
 
     return 0;
 
