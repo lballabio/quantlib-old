@@ -574,9 +574,6 @@
 			RelativePath="QuantLibAddin\autolink.hpp">
 		</File>
 		<File
-			RelativePath="QuantLibAddin\qladdin.h">
-		</File>
-		<File
 			RelativePath="QuantLibAddin\qladdin.hpp">
 		</File>
 		<File

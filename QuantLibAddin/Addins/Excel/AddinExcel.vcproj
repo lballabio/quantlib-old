@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib XLCALL32.LIB"
-				OutputFile="build\Debug\QuantLibAddin.xll"
+				OutputFile=".\xll\QuantLibAddin-vc71-mt-sgd-0_3_8.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\QuantLib\lib,..\..\lib,.\lib"
@@ -110,7 +110,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib XLCALL32.LIB"
-				OutputFile="build\Release\QuantLibAddin.xll"
+				OutputFile=".\xll\QuantLibAddin-vc71-mt-s-0_3_8.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,.\lib"

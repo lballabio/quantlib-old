@@ -6,10 +6,10 @@ IsCpp=1
 Type=3
 Compiler=-D__GNUWIN32__ -W -fexceptions -DWIN32 -DNDEBUG -D_WINDOWS -D_MBCS -D_USRDLL -DADDINEXCEL_EXPORTS_@@_
 CppCompiler=-D__GNUWIN32__ -W -fexceptions -DWIN32 -DNDEBUG -D_WINDOWS -D_MBCS -D_USRDLL -DADDINEXCEL_EXPORTS_@@_
-Includes=..\..;$(OBJECT_HANDLER_DIR);$(QL_DIR)
-Linker=-lkernel32 -luser32 -lgdi32 -lwinspool -lcomdlg32 -ladvapi32 -lshell32 -lole32 -loleaut32 -luuid -lodbc32 -lodbccp32 -lXLCALL32_@@_
-Libs=$(OBJECT_HANDLER_DIR)\lib;$(QL_DIR)\lib;..\..\lib;.\lib
-UnitCount=9
+Includes=..\..
+Linker=-lkernel32 -luser32 -lgdi32 -lwinspool -lcomdlg32 -ladvapi32 -lshell32 -lole32 -loleaut32 -luuid -lodbc32 -lodbccp32 -lXLCALL32_@@_libQuantLib-mgw-0_3_9.a_@@_../../lib/libQuantLibAddin-mgw-0_3_8.a_@@_
+Libs=
+UnitCount=10
 Folders="Header Files","Source Files"
 ObjFiles=
 PrivateResource=AddinExcel_private.rc
@@ -17,9 +17,9 @@ ResourceIncludes=
 MakeIncludes=
 Icon=
 ExeOutput=xll
-ObjectOutput=build\MinGW
+ObjectOutput=build\mingw
 OverrideOutput=1
-OverrideOutputName=QuantLibAddin.dll
+OverrideOutputName=AddinExcel-mgw-0_3_9.dll
 HostApplication=
 CommandLine=
 UseCustomMakefile=0
@@ -50,7 +50,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=option.cpp
+FileName=options.cpp
 Folder="Source Files"
 Compile=1
 CompileCpp=1
@@ -100,7 +100,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit8]
-FileName=utilities.hpp
+FileName=funcdef.hpp
 Folder="Header Files"
 Compile=1
 CompileCpp=1
@@ -110,6 +110,16 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
+FileName=utilities.hpp
+Folder="Header Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit10]
 FileName=XLCALL.H
 Folder="Header Files"
 Compile=1
@@ -122,18 +132,18 @@ BuildCmd=
 [VersionInfo]
 Major=0
 Minor=3
-Release=8
-Build=1
+Release=9
+Build=0
 LanguageID=1033
 CharsetID=1252
 CompanyName=
-FileVersion=0.1
+FileVersion=
 FileDescription=Developed using the Dev-C++ IDE
 InternalName=
 LegalCopyright=
 LegalTrademarks=
-OriginalFilename=AddinExcel.dll
-ProductName=AddinExcel
-ProductVersion=0.1
+OriginalFilename=
+ProductName=
+ProductVersion=
 AutoIncBuildNr=0
 

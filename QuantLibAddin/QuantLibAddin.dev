@@ -6,20 +6,20 @@ IsCpp=1
 Type=2
 Compiler=-D__GNUWIN32__ -W -fexceptions -DWIN32 -DNDEBUG -D_MBCS -D_LIB_@@_
 CppCompiler=-D__GNUWIN32__ -W -fexceptions -DWIN32 -DNDEBUG -D_MBCS -D_LIB_@@_
-Includes=$(OBJECT_HANDLER_DIR);$(QL_DIR);.
+Includes=./
 Linker=
 Libs=
-UnitCount=6
-Folders="Header Files","Source Files"
+UnitCount=11
+Folders=functions,objects
 ObjFiles=
 PrivateResource=QuantLibAddin_private.rc
 ResourceIncludes=
 MakeIncludes=
 Icon=
-ExeOutput=lib
-ObjectOutput=build\MinGW
+ExeOutput=.\lib
+ObjectOutput=.\build\mingw
 OverrideOutput=1
-OverrideOutputName=QuantLibAddin-mgw-0_3_8.a
+OverrideOutputName=libQuantLibAddin-mgw-0_3_8.a
 HostApplication=
 CommandLine=
 UseCustomMakefile=0
@@ -30,8 +30,8 @@ CompilerSet=0
 CompilerSettings=0000000000000000000000
 
 [Unit1]
-FileName=QuantLibAddin\objectoption.cpp
-Folder="Source Files"
+FileName=QuantLibAddin\objects\objectoption.cpp
+Folder=objects
 Compile=1
 CompileCpp=1
 Link=1
@@ -40,8 +40,8 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=QuantLibAddin\objectstochastic.cpp
-Folder="Source Files"
+FileName=QuantLibAddin\objects\objectoption.hpp
+Folder=objects
 Compile=1
 CompileCpp=1
 Link=1
@@ -50,8 +50,8 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=QuantLibAddin\autolink.hpp
-Folder="Header Files"
+FileName=QuantLibAddin\objects\objectstochastic.cpp
+Folder=objects
 Compile=1
 CompileCpp=1
 Link=1
@@ -60,8 +60,8 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=QuantLibAddin\objectoption.hpp
-Folder="Header Files"
+FileName=QuantLibAddin\objects\objectstochastic.hpp
+Folder=objects
 Compile=1
 CompileCpp=1
 Link=1
@@ -70,8 +70,8 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=QuantLibAddin\objectstochastic.hpp
-Folder="Header Files"
+FileName=QuantLibAddin\functions\options.cpp
+Folder=functions
 Compile=1
 CompileCpp=1
 Link=1
@@ -80,8 +80,58 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
+FileName=QuantLibAddin\functions\options.hpp
+Folder=functions
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit7]
+FileName=QuantLibAddin\functions\utilities.cpp
+Folder=functions
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit8]
+FileName=QuantLibAddin\functions\utilities.hpp
+Folder=functions
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit9]
+FileName=QuantLibAddin\autolink.hpp
+Folder=
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit10]
+FileName=QuantLibAddin\qladdin.hpp
+Folder=
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit11]
 FileName=QuantLibAddin\qladdindefines.hpp
-Folder="Header Files"
+Folder=
 Compile=1
 CompileCpp=1
 Link=1
@@ -93,17 +143,17 @@ BuildCmd=
 Major=0
 Minor=3
 Release=8
-Build=1
+Build=0
 LanguageID=1033
 CharsetID=1252
 CompanyName=
-FileVersion=0.1
+FileVersion=
 FileDescription=Developed using the Dev-C++ IDE
 InternalName=
 LegalCopyright=
 LegalTrademarks=
-OriginalFilename=QuantLibAddin.a
-ProductName=QuantLibAddin
-ProductVersion=0.1
+OriginalFilename=
+ProductName=
+ProductVersion=
 AutoIncBuildNr=0
 

@@ -40,10 +40,10 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="build\Release\QLADemo.exe"
+				OutputFile=".\bin\QLADemo-vc71-mt-s-0_3_8.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,..\..\Addins\C++\lib"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib"
 				ProgramDatabaseFile=".\build\Release/QLADemo.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
@@ -102,10 +102,10 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="build\Debug\QLADemo.exe"
+				OutputFile=".\bin\QLADemo-vc71-mt-sgd-0_3_8.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,..\..\Addins\C++\lib"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile=".\build\Debug/QLADemo.pdb"
 				SubSystem="1"
