@@ -89,12 +89,6 @@ class DayCounter {
         return (*self) == other;
     }
     
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-    std::string __repr__() {
-        return "DayCounter('"+self->name()+"')";
-    }
-    #endif
-
     #if defined(SWIGPYTHON)
     bool __ne__(const DayCounter& other) {
         return (*self) != other;

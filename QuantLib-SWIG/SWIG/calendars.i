@@ -168,12 +168,6 @@ class Calendar {
         return (*self) == other;
     }
     
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-    std::string __repr__() {
-        return "Calendar('" + self->name() + "')";
-    }
-    #endif
-
     #if defined(SWIGPYTHON)
     bool __ne__(const Calendar& other) {
         return (*self) != other;

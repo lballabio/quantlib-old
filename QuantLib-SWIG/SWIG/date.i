@@ -244,9 +244,6 @@ class Date {
     #endif
     
     #if defined(SWIGPYTHON)
-    std::string __repr__() {
-        return DateFormatter::toString(*self);
-    }
     bool __nonzero__() {
         return (*self != Date());
     }

@@ -22,6 +22,8 @@ import os, sys, string
 from distutils.cmd import Command
 from distutils.command.install_data import install_data
 from distutils.command.install import install
+from distutils.command.sdist import sdist
+from distutils.file_util import copy_file
 from distutils.core import setup, Extension
 
 docs = ['LICENSE.TXT',
@@ -30,7 +32,8 @@ docs = ['LICENSE.TXT',
         'History.txt',
         'README.txt']
 
-swig_files = ['../SWIG/common.i',
+swig_files = ['../SWIG/quantlib.i',
+              '../SWIG/common.i',
               '../SWIG/calendars.i',
               '../SWIG/currencies.i',
               '../SWIG/date.i',
@@ -203,6 +206,22 @@ class my_install(install):
         self.run_command('install_testfiles')
         self.run_command('install_docs')
 
+# This gathers the SWIG interface files before running sdist
+class my_sdist(sdist):
+    description = "builds source distribution including SWIG interfaces"
+    def run(self):
+        swig_dir = os.path.join(".","QuantLib","SWIG")
+        os.makedirs(swig_dir)
+        for f in swig_files:
+            copy_file(f,swig_dir)
+        # now do what you do
+        sdist.run(self)
+        # clean up
+        for f in os.listdir(swig_dir):
+            os.remove(os.path.join(swig_dir,f))
+        os.rmdir(swig_dir)
+        
+
 if sys.platform == 'win32':
     try:
         QL_INSTALL_DIR = os.environ['QL_DIR']
@@ -279,5 +298,6 @@ setup(name             = "QuantLib-Python",
                           'install_swigfiles': install_swigfiles,
                           'install_testfiles': install_testfiles,
                           'install_docs': install_docs,
-                          'install': my_install},
+                          'install': my_install,
+                          'sdist': my_sdist},
       version          = "0.3.1a0-cvs")

@@ -18,8 +18,11 @@
 import os
 
 def main():
+    swig_dir = os.path.join("./QuantLib/SWIG")
+    if not os.path.exists(swig_dir):
+        swig_dir = "../SWIG"
     os.system('swig -python -c++ -shadow -keyword ' +
-              '-I../SWIG ' +
+              '-I%s ' % swig_dir +
               '-o QuantLib/quantlib_wrap.cpp quantlib.i')
 
 if __name__ == '__main__':

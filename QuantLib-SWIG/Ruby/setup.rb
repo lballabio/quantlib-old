@@ -102,12 +102,14 @@ class Command
 end
 
 Wrap = Command.new {
+    swigDir = "./SWIG"
+    swigDir = "../SWIG" if not File.exists? swigDir
 	# check dependencies
 	if File.exists? "quantlib_wrap.cpp"
 		genTime = File.mtime("quantlib_wrap.cpp")
 		needsWrapping = false
 		Interfaces.each { |file|
-			if File.mtime("../SWIG/#{file}") > genTime
+            if File.mtime("#{swigDir}/#{file}") > genTime
 				needsWrapping = true
 			end
 		}
@@ -116,7 +118,7 @@ Wrap = Command.new {
 	end
 	if needsWrapping
 		puts "Generating wrappers for QuantLib-Ruby..."
-		system "swig -ruby -c++ -I../SWIG -o ./quantlib_wrap.cpp quantlib.i"
+        system "swig -ruby -c++ -I#{swigDir} -o ./quantlib_wrap.cpp quantlib.i"
 	end
 }
 
@@ -133,6 +135,7 @@ SDist = Command.new {
 	Scripts.each    { |file| File.syscopy file, distDir }
 	Interfaces.each { |file| File.syscopy '../SWIG/'+file, swigDir }
 	Tests.each      { |file| File.syscopy 'test/'+file, testDir }
+	cfg = Config::MAKEFILE_CONFIG
 	case cfg['host_os']
 	  when 'mswin32'
     	system "zip -q -r #{distDir}.zip #{distDir}/"
