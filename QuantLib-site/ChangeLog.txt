@@ -1,3 +1,11 @@
+2001-12-18 09:53  nando
+
+	* add.txt (1.1): no message
+
+2001-12-13 18:28  nando
+
+	* ChangeLog.txt (1.6): updated
+
 2001-12-12 10:09  nando
 
 	* ChangeLog.txt (1.5): updated
