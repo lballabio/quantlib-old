@@ -3,13 +3,14 @@
 <functionlist>
 <headeronly>false</headeronly>
 <desc>functions to construct QuantLib option objects</desc>
+<displayname>Options</displayname>
 
 <function>
 <name>QL_OPTION_ASIAN_C</name>
 <codename>qlOptionAsianC</codename>
 <desc>construct and return a handle to a ContinuousAveragingAsianOption object</desc>
-<qlfunction>ContinuousAveragingAsianOption</qlfunction>
 <constructor>true</constructor>
+<qlfunction>ContinuousAveragingAsianOption</qlfunction>
 <parameters>
     <param>
         <name>handleStochastic</name>
@@ -83,8 +84,8 @@
 <name>QL_OPTION_ASIAN_D</name>
 <codename>qlOptionAsianD</codename>
 <desc>construct and return a handle to a DiscreteAveragingAsianOption object</desc>
-<qlfunction>DiscreteAveragingAsianOption</qlfunction>
 <constructor>true</constructor>
+<qlfunction>DiscreteAveragingAsianOption</qlfunction>
 <parameters>
     <param>
         <name>handleStochastic</name>
@@ -176,8 +177,8 @@
 <name>QL_OPTION_BARRIER</name>
 <codename>qlOptionBarrier</codename>
 <desc>construct and return a handle to a Barrier Option object</desc>
-<qlfunction>BarrierOption</qlfunction>
 <constructor>true</constructor>
+<qlfunction>BarrierOption</qlfunction>
 <parameters>
     <param>
         <name>handleStochastic</name>
@@ -263,8 +264,8 @@
 <name>QL_OPTION_BASKET</name>
 <codename>qlOptionBasket</codename>
 <desc>construct and return a handle to a Basket Option object</desc>
-<qlfunction>BasketOption</qlfunction>
 <constructor>true</constructor>
+<qlfunction>BasketOption</qlfunction>
 <parameters>
     <param>
         <name>handleStochastic</name>
@@ -338,8 +339,8 @@
 <name>QL_OPTION_CLIQUET</name>
 <codename>qlOptionCliquet</codename>
 <desc>construct and return a handle to a Cliquet Option object</desc>
-<qlfunction>CliquetOption</qlfunction>
 <constructor>true</constructor>
+<qlfunction>CliquetOption</qlfunction>
 <parameters>
     <param>
         <name>handleStochastic</name>
@@ -395,8 +396,8 @@
 <name>QL_OPTION_DIVIDENDVANILLA</name>
 <codename>qlOptionDividendVanilla</codename>
 <desc>construct and return a handle to a Dividend Vanilla Option object</desc>
-<qlfunction>DividendVanillaOption</qlfunction>
 <constructor>true</constructor>
+<qlfunction>DividendVanillaOption</qlfunction>
 <parameters>
     <param>
         <name>handleStochastic</name>
@@ -476,8 +477,8 @@
 <name>QL_OPTION_FORWARDVANILLA</name>
 <codename>qlOptionForwardVanilla</codename>
 <desc>construct and return a handle to a Forward Vanilla Option object</desc>
-<qlfunction>ForwardVanillaOption</qlfunction>
 <constructor>true</constructor>
+<qlfunction>ForwardVanillaOption</qlfunction>
 <parameters>
     <param>
         <name>handleStochastic</name>
@@ -557,8 +558,8 @@
 <name>QL_OPTION_SETENGINE</name>
 <codename>qlOptionSetEngine</codename>
 <desc>change the pricing engine of an existing Option object</desc>
-<qlfunction>setEngine</qlfunction>
 <constructor>false</constructor>
+<qlfunction>setEngine</qlfunction>
 <parameters>
     <param>
         <name>handle</name>
@@ -590,8 +591,8 @@
 <name>QL_STOCHASTIC_PROCESS</name>
 <codename>qlStochasticProcess</codename>
 <desc>construct and return a handle to a Stochastic Process object</desc>
-<qlfunction>StochasticProcess</qlfunction>
 <constructor>true</constructor>
+<qlfunction>StochasticProcess</qlfunction>
 <parameters>
     <param>
         <name>underlying</name>
@@ -641,8 +642,8 @@
 <name>QL_OPTION_VANILLA</name>
 <codename>qlOptionVanilla</codename>
 <desc>construct and return a handle to a Vanilla Option object</desc>
-<qlfunction>VanillaOption</qlfunction>
 <constructor>true</constructor>
+<qlfunction>VanillaOption</qlfunction>
 <parameters>
     <param>
         <name>handleStochastic</name>

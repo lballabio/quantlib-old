@@ -32,7 +32,7 @@ def generateDocs(functionGroups):
         fileName = ROOT + groupName + '.docs' + common.TEMPFILE
         fileDoc = file(fileName, 'w')
         utils.printHeader(fileDoc)
-        fileDoc.write('/*! \page %s %s\n' % (groupName, groupName))
+        fileDoc.write('/*! \page %s %s\n' % (groupName, functionGroup[common.DISPLAYNAME]))
         fileDoc.write('\\section overview Overview\n')
         fileDoc.write('%s\n' % functionGroup[common.DESC])
         fileDoc.write('\\section functions Function List\n')

@@ -110,6 +110,10 @@ SOURCE=.\common.py
 # End Source File
 # Begin Source File
 
+SOURCE=.\doxygen.py
+# End Source File
+# Begin Source File
+
 SOURCE=.\excel.py
 # End Source File
 # Begin Source File

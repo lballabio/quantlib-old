@@ -65,8 +65,8 @@ def getFunction(functionNode):
     nameNode     = functionNode.getElementsByTagName(common.NAME)[0]
     codeNameNode = functionNode.getElementsByTagName(common.CODENAME)[0]
     descNode     = functionNode.getElementsByTagName(common.DESC)[0]
-    qlfNode      = functionNode.getElementsByTagName(common.QLFUNC)[0]
     handleNode   = functionNode.getElementsByTagName(common.CTOR)[0]
+    qlfNode      = functionNode.getElementsByTagName(common.QLFUNC)[0]
     paramsNode   = functionNode.getElementsByTagName(common.PARAMS)
     if paramsNode:
         function[common.PARAMS] = getParameters(paramsNode[0])
@@ -91,9 +91,11 @@ def getFunctionGroup(doc):
         functionList.append(function)
     hdronlyNode = doc.getElementsByTagName(common.HDRONLY)[0]
     descNode    = doc.getElementsByTagName(common.DESC)[0]
-    functionGroup[common.FUNCLIST] = functionList
-    functionGroup[common.HDRONLY]  = getBoolean(hdronlyNode)
-    functionGroup[common.DESC]     = getText(descNode)
+    displayNode = doc.getElementsByTagName(common.DISPLAYNAME)[0]
+    functionGroup[common.FUNCLIST]    = functionList
+    functionGroup[common.HDRONLY]     = getBoolean(hdronlyNode)
+    functionGroup[common.DESC]        = getText(descNode)
+    functionGroup[common.DISPLAYNAME] = getText(displayNode)
     return functionGroup
 
 def getFunctionDefs():

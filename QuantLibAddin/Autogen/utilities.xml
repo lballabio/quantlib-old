@@ -3,13 +3,14 @@
 <functionlist>
 <headeronly>true</headeronly>
 <desc>diagnostic and utility functions</desc>
+<displayname>Utilities</displayname>
 
 <function>
 <name>QL_VER</name>
 <codename>qlVer</codename>
 <desc>returns the version number of QuantLib</desc>
-<qlfunction></qlfunction>
 <constructor>false</constructor>
+<qlfunction></qlfunction>
 <returnval>
     <type>string</type>
     <tensorrank>scalar</tensorrank>
@@ -21,8 +22,8 @@
 <name>QL_OH_VER</name>
 <codename>qlOhVer</codename>
 <desc>returns the version number of ObjectHandler</desc>
-<qlfunction></qlfunction>
 <constructor>false</constructor>
+<qlfunction></qlfunction>
 <returnval>
     <type>string</type>
     <tensorrank>scalar</tensorrank>
@@ -34,8 +35,8 @@
 <name>QL_FIELDNAMES</name>
 <codename>qlFieldNames</codename>
 <desc>retrieve the field names of a given object</desc>
-<qlfunction></qlfunction>
 <constructor>false</constructor>
+<qlfunction></qlfunction>
 <parameters>
     <param>
         <name>handleObject</name>
@@ -55,8 +56,8 @@
 <name>QL_VALUE</name>
 <codename>qlValue</codename>
 <desc>retrieve the value of a named field</desc>
-<qlfunction></qlfunction>
 <constructor>false</constructor>
+<qlfunction></qlfunction>
 <parameters>
     <param>
         <name>handleObject</name>
@@ -81,9 +82,9 @@
 <function>
 <name>QL_LOGFILE</name>
 <codename>qlLogfile</codename>
-<qlfunction></qlfunction>
 <desc>begin logging to named file</desc>
 <constructor>false</constructor>
+<qlfunction></qlfunction>
 <parameters>
     <param>
         <name>logFileName</name>
@@ -108,9 +109,9 @@
 <function>
 <name>QL_LOGMESSAGE</name>
 <codename>qlLogMessage</codename>
-<qlfunction></qlfunction>
 <desc>log a message</desc>
 <constructor>false</constructor>
+<qlfunction></qlfunction>
 <parameters>
     <param>
         <name>logMessage</name>
@@ -135,9 +136,9 @@
 <function>
 <name>QL_LOGLEVEL</name>
 <codename>qlLogLevel</codename>
-<qlfunction></qlfunction>
 <desc>set threshold for log messages</desc>
 <constructor>false</constructor>
+<qlfunction></qlfunction>
 <parameters>
     <param>
         <name>logLevel</name>
@@ -156,9 +157,9 @@
 <function>
 <name>QL_LOG_OBJECT</name>
 <codename>qlLogObject</codename>
-<qlfunction></qlfunction>
 <desc>write object description to log file</desc>
 <constructor>false</constructor>
+<qlfunction></qlfunction>
 <parameters>
     <param>
         <name>handleObject</name>
@@ -177,9 +178,9 @@
 <function>
 <name>QL_LOG_ALL_OBJECTS</name>
 <codename>qlLogAllObjects</codename>
-<qlfunction></qlfunction>
 <desc>write all object descriptions to log file</desc>
 <constructor>false</constructor>
+<qlfunction></qlfunction>
 <returnval>
     <type>bool</type>
     <tensorrank>scalar</tensorrank>
@@ -190,9 +191,9 @@
 <function>
 <name>QL_OBJECT_DELETE</name>
 <codename>qlObjectDelete</codename>
-<qlfunction></qlfunction>
 <desc>delete object from repository</desc>
 <constructor>false</constructor>
+<qlfunction></qlfunction>
 <parameters>
     <param>
         <name>handleObject</name>
@@ -211,9 +212,9 @@
 <function>
 <name>QL_OBJECT_DELETE_ALL</name>
 <codename>qlObjectDeleteAll</codename>
-<qlfunction></qlfunction>
 <desc>delete all objects from repository</desc>
 <constructor>false</constructor>
+<qlfunction></qlfunction>
 <returnval>
     <type>bool</type>
     <tensorrank>scalar</tensorrank>

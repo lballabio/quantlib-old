@@ -20,6 +20,7 @@ SCRIPTS=autogen.py \
 	c.py \
 	calc.py \
 	common.py \
+	doxygen.py \
 	excel.py \
 	parse.py \
 	utils.py
