@@ -54,11 +54,8 @@ int main() {
         a1.push(frequencyID);                   // frequency ID
         a1.push(dayCounterID);                  // day counter ID
         a1.push(calendarID);                    // calendar ID
-        Properties p1 =
-            QL_OBJECT_MAKE(FixedCouponBond)("bond1", a1);
-        ostringstream s;
-        s << "FixedCouponBond:" << endl << p1;
-        QL_LOGMESSAGE(s.str());
+        QL_OBJECT_MAKE(FixedCouponBond)("fixedCouponBond", a1);
+        QL_LOG_OBJECT("fixedCouponBond");
 
         // ZeroCurve
 
@@ -84,12 +81,8 @@ int main() {
         zeroCurveArgs.push(yieldsAsDouble);
         zeroCurveArgs.push(string("ACTACT"));
 
-        Properties zeroCurveProps 
-            = QL_OBJECT_MAKE(ZeroCurve)("myZeroCurve", zeroCurveArgs);
-
-        s.str("");
-        s << "myZeroCurve:" << endl << zeroCurveProps;
-        QL_LOGMESSAGE(s.str());
+        QL_OBJECT_MAKE(ZeroCurve)("myZeroCurve", zeroCurveArgs);
+        QL_LOG_OBJECT("myZeroCurve");
 
         // ZeroBond
 
@@ -112,12 +105,8 @@ int main() {
         zeroCouponBondArgs.push((double)redemption);
         zeroCouponBondArgs.push(zeroCurveHandle);
 
-        Properties zeroCouponBondProps 
-            = QL_OBJECT_MAKE(ZeroCouponBond)("myZeroCouponBond", zeroCouponBondArgs);
-
-        s.str("");
-        s << "myZeroCouponBond:" << endl << zeroCouponBondProps;
-        QL_LOGMESSAGE(s.str());
+        QL_OBJECT_MAKE(ZeroCouponBond)("myZeroCouponBond", zeroCouponBondArgs);
+        QL_LOG_OBJECT("myZeroCouponBond");
 
         QL_LOGMESSAGE("end instruments test");
         return 0;

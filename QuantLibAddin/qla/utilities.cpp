@@ -87,5 +87,9 @@ namespace QuantLibAddin {
 
     }
 
+//    void QL_LOG_OBJECT(const std::string &handle) {
+//        ObjHandler::logObject(handle);
+//    }
+
 }
 

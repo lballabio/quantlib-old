@@ -23,8 +23,14 @@
 #define qla_utilities_hpp
 
 #include <oh/objhandler.hpp>
+#include <oh/utilities.hpp>
 
 #define QL_OBJECT_MAKE(X) ObjHandler::Factory<QuantLibAddin::X>::makeObject
+#define QL_OBJECT_GET(X) ObjHandler::ObjectHandler::instance().retrieveObject(X)
+#define QL_OBJECT_DELETE(X) ObjHandler::ObjectHandler::instance().deleteObject(X)
+#define QL_OBJECT_DELETE_ALL() ObjHandler::ObjectHandler::instance().deleteAllObjects()
+#define QL_LOG_OBJECT(X) ObjHandler::logObject(X)
+#define QL_LOG_ALL_OBJECTS() ObjHandler::logAllObjects()
 
 namespace QuantLibAddin {
 
@@ -93,8 +99,9 @@ namespace QuantLibAddin {
     */
     std::string QL_LOGMESSAGE(const std::string &message,
             const int &level = 4);
-    //@}
+//    void QL_LOG_OBJECT(const std::string &handle);
 
+    // FIXME this needs to be moved to options file
     const ObjHandler::Properties& QL_OPTION_SETENGINE(
             const std::string &handle,
             const std::string &engineName,

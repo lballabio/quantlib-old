@@ -49,15 +49,11 @@ int main() {
         a1.push(riskFreeRate);              // risk free rate
         a1.push(dividendYield);             // dividend yield
         a1.push(volatility);                // volatility
-        Properties p1 =
-            QL_OBJECT_MAKE(StochasticProcess)("stoch1", a1);
-
-        ostringstream s;
-        s << "StochasticProcess:" << endl << p1;
-        QL_LOGMESSAGE(s.str());
+        QL_OBJECT_MAKE(StochasticProcess)("stochasticProcess", a1);
+        QL_LOG_OBJECT("stochasticProcess");
 
         ArgStack a2;
-        a2.push(string("stoch1"));          // stochastic process handle
+        a2.push(string("stochasticProcess"));// stochastic process handle
         a2.push(string("PUT"));             // option type
         a2.push(string("VAN"));             // payoff type (plain vanilla)
         a2.push(strike);                    // strike price
@@ -66,14 +62,11 @@ int main() {
         a2.push(settlementDate.serialNumber()); // settlement date
         a2.push(string("JR"));              // engine type (jarrow rudd)
         a2.push(timeSteps);                 // time steps
-        Properties p2 =
-            QL_OBJECT_MAKE(VanillaOption)("opt_van", a2);
-        s.str("");
-        s << "VanillaOption:" << endl << p2;
-        QL_LOGMESSAGE(s.str());
+        QL_OBJECT_MAKE(VanillaOption)("vanillaOption", a2);
+        QL_LOG_OBJECT("vanillaOption");
 
         ArgStack a3;
-        a3.push(string("stoch1"));          // stochastic process handle
+        a3.push(string("stochasticProcess"));// stochastic process handle
         a3.push(string("G"));               // average type ("A"verage/"G"eometric)
         a3.push(string("PUT"));             // option type
         a3.push(string("VAN"));             // payoff type (plain vanilla)
@@ -83,17 +76,14 @@ int main() {
         a3.push(0l);                        // settlement date ignored when exercise = European
         a3.push(string("ACGAPA"));          // engine type
         a3.push(timeSteps);                 // time steps
-        Properties p3 =
-            QL_OBJECT_MAKE(ContinuousAveragingAsianOption)("opt_asian_cont", a3);
-        s.str("");
-        s << "ContinuousAveragingAsianOption:" << endl << p3;
-        QL_LOGMESSAGE(s.str());
+        QL_OBJECT_MAKE(ContinuousAveragingAsianOption)("continuous", a3);
+        QL_LOG_OBJECT("continuous");
 
         vector < long > fixingDates;
         for (int i = 0; i < exerciseDate - todaysDate + 1; i++)
             fixingDates.push_back(todaysDate.serialNumber() + i);
         ArgStack a4;
-        a4.push(string("stoch1"));          // stochastic process handle
+        a4.push(string("stochasticProcess"));// stochastic process handle
         a4.push(string("G"));               // average type ("A"verage/"G"eometric)
         a4.push(1.0);                       // running accumulator
         a4.push(0l);                        // past fixings
@@ -106,14 +96,11 @@ int main() {
         a4.push(0l);                        // settlement date ignored when exercise = European
         a4.push(string("ADGAPA"));          // engine type
         a4.push(timeSteps);                 // time steps
-        Properties p4 =
-            QL_OBJECT_MAKE(DiscreteAveragingAsianOption)("opt_asian_disc", a4);
-        s.str("");
-        s << "DiscreteAveragingAsianOption:" << endl << p4;
-        QL_LOGMESSAGE(s.str());
+        QL_OBJECT_MAKE(DiscreteAveragingAsianOption)("discrete", a4);
+        QL_LOG_OBJECT("discrete");
 
         ArgStack a5;
-        a5.push(string("stoch1"));          // stochastic process handle
+        a5.push(string("stochasticProcess"));// stochastic process handle
         a5.push(string("DOWNIN"));          // barrier type
         a5.push(35.0);                      // barrier
         a5.push(3.0);                       // rebate
@@ -125,15 +112,12 @@ int main() {
         a5.push(0l);                        // settlement date ignored when exercise = European
         a5.push(string("AB"));              // engine type
         a5.push(timeSteps);                 // time steps
-        Properties p5 =
-            QL_OBJECT_MAKE(BarrierOption)("opt_barrier", a5);
-        s.str("");
-        s << "BarrierOption:" << endl << p5;
-        QL_LOGMESSAGE(s.str());
+        QL_OBJECT_MAKE(BarrierOption)("barrierOption", a5);
+        QL_LOG_OBJECT("barrierOption");
 
         vector < string > stochHandles;
-        stochHandles.push_back("stoch1");
-        stochHandles.push_back("stoch1");
+        stochHandles.push_back("stochasticProcess");
+        stochHandles.push_back("stochasticProcess");
         vector < vector < double > >correlations;
         vector < double > row1, row2;
         row1.push_back(1.0);
@@ -154,27 +138,21 @@ int main() {
         a6.push(0l);                        // settlement date ignored when exercise = European
         a6.push(string("SE"));              // engine type
         a6.push(timeSteps);                 // time steps
-        Properties p6 =
-            QL_OBJECT_MAKE(BasketOption)("opt_basket", a6);
-        s.str("");
-        s << "BasketOption:" << endl << p6;
-        QL_LOGMESSAGE(s.str());
+        QL_OBJECT_MAKE(BasketOption)("basketOption", a6);
+        QL_LOG_OBJECT("basketOption");
 
         vector < long > resetDates;
         resetDates.push_back(Date(12, March, 2020).serialNumber());
         ArgStack a7;
-        a7.push(string("stoch1"));          // stochastic process handle
+        a7.push(string("stochasticProcess"));// stochastic process handle
         a7.push(resetDates);                // reset dates
         a7.push(string("PUT"));             // option type
         a7.push(strike);                    // strike price
         a7.push(exerciseDate.serialNumber()); // exercise date
         a7.push(string("AC"));              // engine type
         a7.push(timeSteps);                 // time steps
-        Properties p7 =
-            QL_OBJECT_MAKE(CliquetOption)("opt_cliquet", a7);
-        s.str("");
-        s << "CliquetOption:" << endl << p7;
-        QL_LOGMESSAGE(s.str());
+        QL_OBJECT_MAKE(CliquetOption)("cliquetOption", a7);
+        QL_LOG_OBJECT("cliquetOption");
 
         vector < long > dividendDates;
         dividendDates.push_back(Date(13, September, 2019).serialNumber());
@@ -184,7 +162,7 @@ int main() {
         dividends.push_back(5.);
 
         ArgStack a8;
-        a8.push(string("stoch1"));          // stochastic process handle
+        a8.push(string("stochasticProcess"));          // stochastic process handle
         a8.push(dividendDates);             // dividend dates
         a8.push(dividends);                 // dividends
         a8.push(string("CALL"));            // option type
@@ -195,16 +173,13 @@ int main() {
         a8.push(0l);                        // settlement date ignored when exercise = European
         a8.push(string("ADE"));             // engine type (jarrow rudd)
         a8.push(timeSteps);                 // time steps
-        Properties p8 =
-            QL_OBJECT_MAKE(DividendVanillaOption)("opt_divvan", a8);
-        s.str("");
-        s << "DividendVanillaOption:" << endl << p8;
-        QL_LOGMESSAGE(s.str());
+        QL_OBJECT_MAKE(DividendVanillaOption)("dividendVanillaOption", a8);
+        QL_LOG_OBJECT("dividendVanillaOption");
 
         long resetDate = exerciseDate.serialNumber() - 90;
 
         ArgStack a9;
-        a9.push(string("stoch1"));          // stochastic process handle
+        a9.push(string("stochasticProcess"));          // stochastic process handle
         a9.push(12.);                       // moneyness
         a9.push(resetDate);                 // reset date
         a9.push(string("PUT"));             // option type
@@ -215,11 +190,8 @@ int main() {
         a9.push(0l);                        // settlement date ignored when exercise = European
         a9.push(string("FE"));              // engine type (jarrow rudd)
         a9.push(timeSteps);                 // time steps
-        Properties p9 =
-            QL_OBJECT_MAKE(ForwardVanillaOption)("opt_fwdvan", a9);
-        s.str("");
-        s << "ForwardVanillaOption:" << endl << p9;
-        QL_LOGMESSAGE(s.str());
+        QL_OBJECT_MAKE(ForwardVanillaOption)("forwardVanillaOption", a9);
+        QL_LOG_OBJECT("forwardVanillaOption");
 
         QL_LOGMESSAGE("end options test");
         return 0;

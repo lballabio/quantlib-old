@@ -27,7 +27,7 @@ STRING SAL_CALL QLAddin::qlVer() THROWDEF_RTE_IAE {
         std::string ret =  QL_VER();
         return STRFROMANSI(ret.c_str());
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what());
+        QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -37,13 +37,13 @@ STRING SAL_CALL QLAddin::qlOhVer() THROWDEF_RTE_IAE {
         std::string ret =  QL_OH_VER();
         return STRFROMANSI(ret.c_str());
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what());
+        QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
 SEQSEQ(ANY) SAL_CALL QLAddin::qlFieldNames(
-            const STRING& handleObject) THROWDEF_RTE_IAE {
+        const STRING& handleObject) THROWDEF_RTE_IAE {
     try {
         Properties properties = QL_QUERY(OUStringToString(handleObject));
         SEQSEQ( ANY ) rows(properties.size());
@@ -56,7 +56,7 @@ SEQSEQ(ANY) SAL_CALL QLAddin::qlFieldNames(
         }
         return rows;
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what());
+        QL_LOGMESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -89,7 +89,7 @@ SEQSEQ(ANY) anyToSEQANY(const any_ptr &a) {
     } else if (a->type() == typeid(std::vector<long>)) {
         std::vector<long> v= boost::any_cast< std::vector<long> >(*a);
         SEQSEQ( ANY ) rows(v.size());
-        for (int i=0; i<v.size(); i++) {
+        for (unsigned int i=0; i<v.size(); i++) {
             SEQ( ANY ) row(1);
             row[0] = CSS::uno::makeAny(v[i]);
             rows[i] = row;
@@ -98,7 +98,7 @@ SEQSEQ(ANY) anyToSEQANY(const any_ptr &a) {
     } else if (a->type() == typeid(std::vector<double>)) {
         std::vector<double> v= boost::any_cast< std::vector<double> >(*a);
         SEQSEQ( ANY ) rows(v.size());
-        for (int i=0; i<v.size(); i++) {
+        for (unsigned int i=0; i<v.size(); i++) {
             SEQ( ANY ) row(1);
             row[0] = CSS::uno::makeAny(v[i]);
             rows[i] = row;
@@ -109,8 +109,8 @@ SEQSEQ(ANY) anyToSEQANY(const any_ptr &a) {
 }
 
 SEQSEQ(ANY) SAL_CALL QLAddin::qlValue(
-            const STRING& handleObject,
-            const STRING& fieldName) THROWDEF_RTE_IAE {
+        const STRING& handleObject,
+        const STRING& fieldName) THROWDEF_RTE_IAE {
     try {
         Properties properties = QL_QUERY(OUStringToString(handleObject));
         for (unsigned int i=0; i<properties.size(); i++) {
@@ -122,44 +122,86 @@ SEQSEQ(ANY) SAL_CALL QLAddin::qlValue(
         }
         throw Exception(std::string("no field with name ") + OUStringToString(fieldName));
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what());
+        QL_LOGMESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
 STRING SAL_CALL QLAddin::qlLogfile(
-            const STRING& logFileName,
-            sal_Int32 logLevel) THROWDEF_RTE_IAE {
+        const STRING& logFileName,
+        sal_Int32 logLevel) THROWDEF_RTE_IAE {
     try {
         int lvl = logLevel ? logLevel : 4;
         std::string ret =  QL_LOGFILE(OUStringToString(logFileName), lvl);
         return STRFROMANSI(ret.c_str());
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what());
+        QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
 STRING SAL_CALL QLAddin::qlLogMessage(
-            const STRING& logMessage,
-            sal_Int32 logLevel) THROWDEF_RTE_IAE {
+        const STRING& logMessage,
+        sal_Int32 logLevel) THROWDEF_RTE_IAE {
     try {
         int lvl = logLevel ? logLevel : 4;
         std::string ret =  QL_LOGMESSAGE(OUStringToString(logMessage), lvl);
         return STRFROMANSI(ret.c_str());
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what());
+        QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
 sal_Int32 SAL_CALL QLAddin::qlLogLevel(
-            sal_Int32 logLevel) THROWDEF_RTE_IAE {
+        sal_Int32 logLevel) THROWDEF_RTE_IAE {
     try {
         QL_LOGLEVEL(logLevel);
         return logLevel;
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_LOGLEVEL: ") + e.what());
+        QL_LOGMESSAGE(std::string("ERROR: QL_LOGLEVEL: ") + e.what(), 2);
+        THROW_RTE;
+    }
+}
+
+sal_Int32 SAL_CALL QLAddin::qlLogObject(
+        const STRING & handleObject) THROWDEF_RTE_IAE {
+    try {
+        QL_LOG_OBJECT(OUStringToString(handleObject));
+        return 0;
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_LOG_OBJECT: ") + e.what(), 2);
+        THROW_RTE;
+    }
+}
+
+sal_Int32 SAL_CALL QLAddin::qlLogAllObjects() THROWDEF_RTE_IAE {
+    try {
+        QL_LOG_ALL_OBJECTS();
+        return 0;
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_LOG_ALL_OBJECTS: ") + e.what(), 2);
+        THROW_RTE;
+    }
+}
+
+sal_Int32 SAL_CALL QLAddin::qlObjectDelete(
+        const STRING & handleObject) THROWDEF_RTE_IAE {
+    try {
+        QL_OBJECT_DELETE(OUStringToString(handleObject));
+        return 0;
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_OBJECT_DELETE: ") + e.what(), 2);
+        THROW_RTE;
+    }
+}
+
+sal_Int32 SAL_CALL QLAddin::qlObjectDeleteAll() THROWDEF_RTE_IAE {
+    try {
+        QL_OBJECT_DELETE_ALL();
+        return 0;
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_OBJECT_DELETE_ALL: ") + e.what(), 2);
         THROW_RTE;
     }
 }

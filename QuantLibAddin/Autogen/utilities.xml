@@ -146,4 +146,68 @@
 </returnval>
 </function>
 
+<function>
+<name>QL_LOG_OBJECT</name>
+<codename>qlLogObject</codename>
+<qlfunction></qlfunction>
+<desc>write object description to log file</desc>
+<constructor>false</constructor>
+<parameters>
+    <param>
+        <name>handleObject</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of object to be logged</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>long</type>
+    <desc>success/failure</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_LOG_ALL_OBJECTS</name>
+<codename>qlLogAllObjects</codename>
+<qlfunction></qlfunction>
+<desc>write all object descriptions to log file</desc>
+<constructor>false</constructor>
+<returnval>
+    <type>long</type>
+    <desc>success/failure</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_OBJECT_DELETE</name>
+<codename>qlObjectDelete</codename>
+<qlfunction></qlfunction>
+<desc>delete object from repository</desc>
+<constructor>false</constructor>
+<parameters>
+    <param>
+        <name>handleObject</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of object to be deleted</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>long</type>
+    <desc>success/failure</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_OBJECT_DELETE_ALL</name>
+<codename>qlObjectDeleteAll</codename>
+<qlfunction></qlfunction>
+<desc>delete all objects from repository</desc>
+<constructor>false</constructor>
+<returnval>
+    <type>long</type>
+    <desc>success/failure</desc>
+</returnval>
+</function>
+
 </functionlist>

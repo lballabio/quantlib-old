@@ -61,13 +61,10 @@ int main() {
         opArgs.push(settlementDate.serialNumber()); // settlement date
         opArgs.push(string("JR"));          // engine type (jarrow rudd)
         opArgs.push(timeSteps);             // time steps
-        Properties opProperties =
-            QL_OBJECT_MAKE(VanillaOption)("my_option", opArgs);
+        QL_OBJECT_MAKE(VanillaOption)("my_option", opArgs);
     
         QL_LOGMESSAGE("High-level interrogation: after QL_OPTION_VANILLA");
-        ostringstream s;
-        s << opProperties;
-        QL_LOGMESSAGE(s.str());
+        QL_LOG_OBJECT("my_option");
 
         QL_OPTION_SETENGINE(
             "my_option", 
@@ -75,9 +72,7 @@ int main() {
             timeSteps);
 
         QL_LOGMESSAGE("High-level interrogation: after QL_OPTION_SETENGINE");
-        s.str("");
-        s << opProperties;
-        QL_LOGMESSAGE(s.str());
+        QL_LOG_OBJECT("my_option");
 
         QL_LOGMESSAGE("Low-level interrogation: NPV of underlying option object");
         boost::shared_ptr<QuantLibAddin::VanillaOption> vanillaOptionQLA = 
@@ -86,7 +81,7 @@ int main() {
         boost::shared_ptr<QuantLib::VanillaOption> const vanillaOptionQL =
             boost::static_pointer_cast<QuantLib::VanillaOption>
             (vanillaOptionQLA->getReference());
-        s.str("");
+        ostringstream s;
         s << "underlying option NPV() = " << vanillaOptionQL->NPV();
         QL_LOGMESSAGE(s.str());
 
