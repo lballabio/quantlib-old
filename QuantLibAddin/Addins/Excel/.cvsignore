@@ -1,9 +1,6 @@
 build
 xll
-AddinExcel.dep
-AddinExcel.mak
-AddinExcel.ncb
-AddinExcel.opt
-AddinExcel.plg
-AddinExcel_private.*
+*.plg
+*_private.*
+*.layout
 Makefile.win

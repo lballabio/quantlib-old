@@ -1,4 +1,6 @@
-QLADemo
-quantlib.log
-ClientC.plg
 build
+bin
+*.plg
+*_private.*
+*.layout
+Makefile.win

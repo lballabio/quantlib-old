@@ -1,2 +1,6 @@
-Debug
-AddinC.plg
+build
+lib
+*.plg
+*_private.*
+*.layout
+Makefile.win
