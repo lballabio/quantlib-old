@@ -129,7 +129,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="$(OBJECT_HANDLER_DIR),$(QL_DIR),./"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;NOMINMAX"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				RuntimeTypeInfo="TRUE"

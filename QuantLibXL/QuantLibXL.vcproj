@@ -25,7 +25,7 @@
 				ImproveFloatingPointConsistency="TRUE"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories=".\,$(XLW_DIR),$(QL_DIR),$(QL_DIR)\functions"
-				PreprocessorDefinitions="XLW_AUTOLINK, NOMINMAX"
+				PreprocessorDefinitions="XLW_AUTOLINK, "
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				DisableLanguageExtensions="FALSE"
@@ -98,7 +98,7 @@
 				ImproveFloatingPointConsistency="TRUE"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories=".\,$(XLW_DIR),$(QL_DIR),$(QL_DIR)\functions"
-				PreprocessorDefinitions="XLW_AUTOLINK, NOMINMAX"
+				PreprocessorDefinitions="XLW_AUTOLINK, "
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="TRUE"
@@ -172,7 +172,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="_DEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -181,7 +181,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="NDEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -192,7 +192,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="_DEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -201,7 +201,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="NDEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -212,7 +212,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="_DEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -221,7 +221,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="NDEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -232,7 +232,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="_DEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -241,7 +241,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="NDEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -252,7 +252,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="_DEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -261,7 +261,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="NDEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -272,7 +272,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="_DEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -281,7 +281,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="NDEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -292,7 +292,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="_DEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -301,7 +301,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="NDEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -312,7 +312,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="_DEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -321,7 +321,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="NDEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -332,7 +332,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="_DEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -341,7 +341,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="NDEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -352,7 +352,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="_DEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -361,7 +361,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="NDEBUG;NOMINMAX;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;;WIN32;_WINDOWS;_MBCS;_USRDLL;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 		</Filter>
