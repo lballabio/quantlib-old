@@ -23,17 +23,11 @@
 %module QuantLibc
 #endif
 
-%{
-#include <ql/quantlib.hpp>
-
-using QuantLib::Error;
-using QuantLib::IndexError;
-%}
-
 #if defined(SWIGPYTHON)
-%except(python) {
+
+%exception {
     try {
-        $function
+        $action
     } catch (IndexError& e) {
         PyErr_SetString(PyExc_IndexError,e.what());
         return NULL;
@@ -50,18 +44,21 @@ using QuantLib::IndexError;
 }
 
 %{
-    const int    __hexversion__ = QL_HEX_VERSION;
-    const char* __version__    = QL_VERSION;
+#include <ql/quantlib.hpp>
+const int    __hexversion__ = QL_HEX_VERSION;
+const char* __version__    = QL_VERSION;
 %}
 
 const int __hexversion__;
-%readonly
+%immutable;
 const char* __version__;
-%readwrite
+%mutable;
+
 #elif defined(SWIGRUBY)
-%except(ruby) {
+
+%exception {
     try {
-        $function
+        $action
     } catch (IndexError& e) {
         rb_raise(rb_eIndexError,e.what());
     } catch (Error& e) {
@@ -72,18 +69,36 @@ const char* __version__;
         rb_raise(rb_eStandardError,"unknown error");
     }
 }
+
 #elif defined(SWIGMZSCHEME)
-%except(mzscheme) {
+
+%exception {
     try {
-        $function
+        $action
     } catch (std::exception& e) {
         scheme_signal_error("%s",e.what());
     } catch (...) {
         scheme_signal_error("unknown error");
     }
 }
-#endif
 
+#endif
 
 %include ql.i
 
+stl_vector(Date);
+/* testing
+%inline%{
+    std::vector<int> foo_int(std::vector<int> v) { return v; }
+    const std::vector<int>& bar_int(const std::vector<int>& v) { return v; }
+    std::vector<int>* baz_int(std::vector<int>* v) { return v; }
+
+    std::vector<double> foo_double(std::vector<double> v) { return v; }
+    const std::vector<double>& bar_double(const std::vector<double>& v) { return v; }
+    std::vector<double>* baz_double(std::vector<double>* v) { return v; }
+
+    std::vector<Date> foo_date(std::vector<Date> v) { return v; }
+    const std::vector<Date>& bar_date(const std::vector<Date>& v) { return v; }
+    std::vector<Date>* baz_date(std::vector<Date>* v) { return v; }
+%}
+*/

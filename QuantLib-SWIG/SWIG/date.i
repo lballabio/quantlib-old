@@ -21,10 +21,9 @@
 #define quantlib_date_i
 
 %include types.i
-%include string.i
+%include stl.i
 
 %{
-using QuantLib::Date;
 using QuantLib::Day;
 using QuantLib::Year;
 %}
@@ -32,54 +31,42 @@ using QuantLib::Year;
 typedef int Day;
 typedef int Year;
 
+
 // typemap weekdays to corresponding strings
 
 %{
 using QuantLib::Weekday;
-using QuantLib::Sunday;
-using QuantLib::Monday;
-using QuantLib::Tuesday;
-using QuantLib::Wednesday;
-using QuantLib::Thursday;
-using QuantLib::Friday;
-using QuantLib::Saturday;
 
-using QuantLib::StringFormatter;
-using QuantLib::DateFormatter;
-using QuantLib::IntegerFormatter;
-%}
-
-%{
 Weekday weekdayFromString(std::string s) {
     s = StringFormatter::toLowercase(s);
     if (s == "sun" || s == "sunday")
-        return Sunday;
+        return QuantLib::Sunday;
     else if (s == "mon" || s == "monday")
-        return Monday;
+        return QuantLib::Monday;
     else if (s == "tue" || s == "tuesday")
-        return Tuesday;
+        return QuantLib::Tuesday;
     else if (s == "wed" || s == "wednesday")
-        return Wednesday;
+        return QuantLib::Wednesday;
     else if (s == "thu" || s == "thursday")
-        return Thursday;
+        return QuantLib::Thursday;
     else if (s == "fri" || s == "friday")
-        return Friday;
+        return QuantLib::Friday;
     else if (s == "sat" || s == "saturday")
-        return Saturday;
+        return QuantLib::Saturday;
     else
         throw Error("unknown weekday");
 }
-
+ 
 std::string stringFromWeekday(Weekday w) {
     switch (w) {
-      case Sunday:    return "Sunday";
-      case Monday:    return "Monday";
-      case Tuesday:   return "Tuesday";
-      case Wednesday: return "Wednesday";
-      case Thursday:  return "Thursday";
-      case Friday:    return "Friday";
-      case Saturday:  return "Saturday";
-      default:        throw Error("unknown weekday");
+      case QuantLib::Sunday:    return "Sunday";
+      case QuantLib::Monday:    return "Monday";
+      case QuantLib::Tuesday:   return "Tuesday";
+      case QuantLib::Wednesday: return "Wednesday";
+      case QuantLib::Thursday:  return "Thursday";
+      case QuantLib::Friday:    return "Friday";
+      case QuantLib::Saturday:  return "Saturday";
+      default:                  throw Error("unknown weekday");
     }
 }
 %}
@@ -100,34 +87,28 @@ MapToInteger(Month);
 
 %{
 using QuantLib::TimeUnit;
-using QuantLib::Days;
-using QuantLib::Weeks;
-using QuantLib::Months;
-using QuantLib::Years;
-%}
 
-%{
 TimeUnit timeunitFromString(std::string s) {
     s = StringFormatter::toLowercase(s);
     if (s == "d" || s == "day" || s == "days")
-        return Days;
+        return QuantLib::Days;
     else if (s == "w" || s == "week" || s == "weeks")
-        return Weeks;
+        return QuantLib::Weeks;
     else if (s == "m" || s == "month" || s == "months")
-        return Months;
+        return QuantLib::Months;
     else if (s == "y" || s == "year" || s == "years")
-        return Years;
+        return QuantLib::Years;
     else 
         throw Error("unknown time unit");
 }
 
 std::string stringFromTimeunit(TimeUnit u) {
     switch (u) {
-      case Days:   return "days";
-      case Weeks:  return "weeks";
-      case Months: return "months";
-      case Years:  return "years";
-      default:        throw Error("unknown time unit");
+      case QuantLib::Days:   return "days";
+      case QuantLib::Weeks:  return "weeks";
+      case QuantLib::Months: return "months";
+      case QuantLib::Years:  return "years";
+      default:               throw Error("unknown time unit");
     }
 }
 %}
@@ -141,6 +122,10 @@ MapToString(TimeUnit,timeunitFromString,stringFromTimeunit);
 using QuantLib::Period;
 %}
 
+#if defined(SWIGMZSCHEME)
+%rename(str) __str__;
+#endif
+
 class Period {
   public:
     Period(int n, TimeUnit units);
@@ -152,13 +137,13 @@ class Period {
     std::string __str__() {
         std::string s = IntegerFormatter::toString(self->length());
         switch (self->units()) {
-          case Days:
+          case QuantLib::Days:
             return s + " day(s)";
-          case Weeks:
+          case QuantLib::Weeks:
             return s + " week(s)";
-          case Months:
+          case QuantLib::Months:
             return s + " month(s)";
-          case Years:
+          case QuantLib::Years:
             return s + " year(s)";
           default:
             return "Unknown period";
@@ -170,17 +155,34 @@ class Period {
 
 // and finally, the Date class
 
+%{
+using QuantLib::Date;
+using QuantLib::DateFormatter;
+Date NullDate = Date();
+%}
+
 #if defined(SWIGRUBY)
 %rename(__add__) operator+;
 %rename(__sub__) operator-;
 #endif
 
 #if defined(SWIGMZSCHEME)
-%rename(day_of_month)  dayOfMonth;
-%rename(day_of_year)   dayOfYear;
+%rename(day_of_month)   dayOfMonth;
+%rename(day_of_year)    dayOfYear;
 %rename(weekday_number) weekdayNumber;
-%rename(serial_number) serialNumber;
+%rename(serial_number)  serialNumber;
+%rename(plus_days)   plusDays;
+%rename(plus_weeks)  plusWeeks;
+%rename(plus_months) plusMonths;
+%rename(plus_years)  plusYears;
+%rename(is_leap) isLeap;
+%rename(min_date) minDate;
+%rename(max_date) maxDate;
 %rename(str) __str__;
+// also, allow return by value
+%typemap(out) Date {
+    $result = SWIG_MakePtr (new Date($1), SWIGTYPE_p_Date);
+}
 #endif
 
 class Date {
@@ -193,10 +195,7 @@ class Date {
     Month month() const;
     Year year() const;
     int serialNumber() const;
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
     // increment/decrement dates
-    Date operator+(int days) const;
-    Date operator-(int days) const;
     Date plusDays(int days) const;
     Date plusWeeks(int weeks) const;
     Date plusMonths(int months) const;
@@ -207,6 +206,9 @@ class Date {
     // earliest and latest allowed date
     static Date minDate();
     static Date maxDate();
+    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+    Date operator+(int days) const;
+    Date operator-(int days) const;
     #endif
 };
 
@@ -242,31 +244,15 @@ class Date {
         return self->plusDays(1);
     }
     #endif
-
+    
     #if defined(SWIGMZSCHEME)
-    // increment/decrement dates
-    Date* plus_days(int days) {
-		return new Date(self->plusDays(days));
-	}
-    Date* plus_weeks(int weeks) {
-		return new Date(self->plusWeeks(weeks));
-	}
-    Date* plus_months(int months) {
-		return new Date(self->plusMonths(months));
-	}
-    Date* plus_years(int years) {
-		return new Date(self->plusYears(years));
-	}
-    Date* plus(int n, TimeUnit unit) {
-		return new Date(self->plus(n,unit));
-	}
-	// difference - comparison
+    // difference - comparison
     int days_from(const Date& other) {
         return (*self)-other;
     }
-	bool equal(const Date& other) {
-		return (*self == other);
-	}
+    bool equal(const Date& other) {
+        return (*self == other);
+    }
     bool less(const Date& other) {
         return (*self < other);
     }
@@ -282,30 +268,15 @@ class Date {
     #endif
 }
 
-#if defined(SWIGPYTHON) || defined(SWIGRUBY)
+#if defined(SWIGMZSCHEME)
+%rename(date_from_serial_number) DateFromSerialNumber;
+#endif
 %inline %{
     Date DateFromSerialNumber(int serialNumber) {
         return Date(serialNumber);
     }
 %}
-#endif
 
-#if defined(SWIGMZSCHEME)
-%inline %{
-	Date* Date_from_serial_number(int serialNumber) {
-		return new Date(serialNumber);
-	}
-    bool Date_is_leap(int y) {
-		return Date::isLeap(Year(y)) ? 1 : 0;
-	}
-    Date* Date_min_date() {
-		return new Date(Date::minDate());
-	}
-    Date* Date_max_date() {
-		return new Date(Date::maxDate());
-	}
-%}
-#endif
 
 
 #endif

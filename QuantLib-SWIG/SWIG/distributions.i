@@ -24,6 +24,7 @@
 using QuantLib::Math::NormalDistribution;
 using QuantLib::Math::CumulativeNormalDistribution;
 using QuantLib::Math::InvCumulativeNormalDistribution;
+using QuantLib::Math::InvCumulativeNormalDistribution2;
 %}
 
 #if defined(SWIGRUBY)
@@ -51,10 +52,16 @@ class CumulativeNormalDistribution {
 
 class InvCumulativeNormalDistribution {
   public:
-    InvCumulativeNormalDistribution(double average = 0.0,  double sigma = 1.0);
-    ~InvCumulativeNormalDistribution();
+    InvCumulativeNormalDistribution(double average = 0.0, double sigma = 1.0);
     double operator()(double x);
 };
+
+class InvCumulativeNormalDistribution2 {
+  public:
+    InvCumulativeNormalDistribution2(double average = 0.0, double sigma = 1.0);
+    double operator()(double x);
+};
+
 
 
 #endif

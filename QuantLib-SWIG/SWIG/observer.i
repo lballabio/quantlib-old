@@ -20,10 +20,12 @@
 #ifndef quantlib_observer_i
 #define quantlib_observer_i
 
+%include common.i
+
 %{
 using QuantLib::Patterns::Observer;
 using QuantLib::Patterns::Observable;
-using QuantLib::Handle;
+
 typedef Handle<Observer> ObserverHandle;
 typedef Handle<Observable> ObservableHandle;
 %}
@@ -34,7 +36,7 @@ class ObservableHandle {
     ObservableHandle();
 };
 
-
+        
 #if defined(SWIGPYTHON)
 
 %{

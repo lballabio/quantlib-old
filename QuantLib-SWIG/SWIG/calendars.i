@@ -22,42 +22,36 @@
 
 %include common.i
 %include date.i
-%include string.i
-
-%{
-using QuantLib::RollingConvention;
-using QuantLib::Preceding;
-using QuantLib::ModifiedPreceding;
-using QuantLib::Following;
-using QuantLib::ModifiedFollowing;
-%}
+%include stl.i
 
 // typemap rolling conventions to corresponding strings
 
 %{
+using QuantLib::RollingConvention;
+
 RollingConvention rollconvFromString(std::string s) {
     s = StringFormatter::toLowercase(s);
     if (s == "f" || s == "fol" || s == "following")
-        return Following;
+        return QuantLib::Following;
     else if (s == "mf" ||s == "modfol" || s == "modifiedfollowing")
-        return ModifiedFollowing;
+        return QuantLib::ModifiedFollowing;
     else if (s == "p" || s == "pre" || s == "preceding")
-        return Preceding;
+        return QuantLib::Preceding;
     else if (s == "mp" ||s == "modpre" || s == "modifiedpreceding")
-        return ModifiedPreceding;
+        return QuantLib::ModifiedPreceding;
     else 
         throw Error("unknown rolling convention");
 }
 
 std::string rollconvToString(RollingConvention rc) {
     switch (rc) {
-      case Following:
+      case QuantLib::Following:
         return "Following";
-      case ModifiedFollowing:
+      case QuantLib::ModifiedFollowing:
         return "ModifiedFollowing";
-      case Preceding:
+      case QuantLib::Preceding:
         return "Preceding";
-      case ModifiedPreceding:
+      case QuantLib::ModifiedPreceding:
         return "ModifiedPreceding";
       default:
         throw Error("unknown rolling convention");
@@ -70,24 +64,30 @@ MapToString(RollingConvention,rollconvFromString,rollconvToString);
 
 %{
 using QuantLib::Calendar;
-using QuantLib::Calendars::Frankfurt;
-using QuantLib::Calendars::Helsinki;
-using QuantLib::Calendars::Johannesburg;
+using QuantLib::Calendars::TARGET;
+using QuantLib::Calendars::NewYork;
 using QuantLib::Calendars::London;
 using QuantLib::Calendars::Milan;
-using QuantLib::Calendars::NewYork;
-using QuantLib::Calendars::TARGET;
+using QuantLib::Calendars::Frankfurt;
+using QuantLib::Calendars::Zurich;
+using QuantLib::Calendars::Helsinki;
+using QuantLib::Calendars::Johannesburg;
+using QuantLib::Calendars::Wellington;
 using QuantLib::Calendars::Tokyo;
 using QuantLib::Calendars::Toronto;
 using QuantLib::Calendars::Sydney;
-using QuantLib::Calendars::Wellington;
-using QuantLib::Calendars::Zurich;
 %}
 
 #if defined(SWIGMZSCHEME)
 %rename(is_business_day) isBusinessDay;
 %rename(is_holiday)      isHoliday;
+%rename(equal)           __eq__;
 %rename(str)             __str__;
+#endif
+
+#if defined(SWIGRUBY)
+%predicate Calendar::isBusinessDay;
+%predicate Calendar::isHoliday;
 #endif
 
 // export Calendar
@@ -96,18 +96,11 @@ class Calendar {
     // constructor redefined below as string-based factory
     bool isBusinessDay(const Date& d);
     bool isHoliday(const Date& d);
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
     Date roll(const Date& d, 
-              RollingConvention convention = Following);
+              RollingConvention convention = QuantLib::Following);
     Date advance(const Date& d, int n, TimeUnit unit,
-                 RollingConvention convention = Following);
-    #endif
-    #if defined(SWIGRUBY)
-    %pragma(ruby) pred = "isBusinessDay";
-    %pragma(ruby) pred = "isHoliday";
-    #endif
+                 RollingConvention convention = QuantLib::Following);
 };
-
 
 %addmethods Calendar {
     Calendar(const std::string& name) {
@@ -143,29 +136,22 @@ class Calendar {
     std::string __str__() {
         return self->name()+" calendar";
     }
-
+    bool __eq__(const Calendar& other) {
+        return (*self) == other;
+    }
+    
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
     std::string __repr__() {
         return "Calendar('" + self->name() + "')";
     }
-    int __cmp__(const Calendar& other) {
-        return ((*self) == other ? 0 : 1);
-    }
     #endif
 
-    #if defined(SWIGMZSCHEME)
-    Date* roll(const Date& d, 
-               RollingConvention convention = Following) {
-        return new Date(self->roll(d,convention));
-    }
-    Date* advance(const Date& d, int n, TimeUnit unit,
-                  RollingConvention convention = Following) {
-        return new Date(self->advance(d,n,unit,convention));
-    }
-    bool equal(const Calendar& other) {
-        return (*self) == other;
+    #if defined(SWIGPYTHON)
+    bool __ne__(const Calendar& other) {
+        return (*self) != other;
     }
     #endif
+    
 }
 
 

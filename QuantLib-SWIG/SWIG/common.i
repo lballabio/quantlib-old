@@ -20,7 +20,17 @@
 #ifndef quantlib_common_i
 #define quantlib_common_i
 
-%include string.i
+%include stl.i
+
+%{
+// generally useful classes
+using QuantLib::Error;
+using QuantLib::Handle;
+using QuantLib::IntegerFormatter;
+using QuantLib::DoubleFormatter;
+using QuantLib::StringFormatter;
+%}
+
 
 // import opaque values from the scripting language API
 

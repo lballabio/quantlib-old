@@ -20,9 +20,7 @@
 #ifndef quantlib_null_values_i
 #define quantlib_null_values_i
 
-%{
-QuantLib::Date NullDate = QuantLib::Date();
-%}
+// might be useful later
 
 
 #endif

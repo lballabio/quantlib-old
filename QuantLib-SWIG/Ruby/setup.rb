@@ -73,9 +73,7 @@ Interfaces =  [ 'common.i',
                 'ql.i',
                 'qlarray.i',
                 'randomnumbers.i',
-                'string.i',
-                'types.i',
-                'vector.i' ]
+                'types.i']
 
 Tests =       [ 'dates.rb',
                 'daycounters.rb',

@@ -22,18 +22,13 @@
 
 %include common.i
 %include types.i
-%include string.i
+%include stl.i
 
 %{
 using QuantLib::Array;
 using QuantLib::ArrayFormatter;
-
-typedef QuantLib::Math::LexicographicalView<Array::iterator>
-    LexicographicalView;
-typedef QuantLib::Math::LexicographicalView<Array::iterator>::y_iterator
-    LexicographicalViewColumn;
+using QuantLib::IndexError;
 %}
-
 
 #if defined(SWIGPYTHON)
 
@@ -221,6 +216,13 @@ class Array {
 
 // 2-D view
 
+%{
+typedef QuantLib::Math::LexicographicalView<Array::iterator>  
+    LexicographicalView;
+typedef QuantLib::Math::LexicographicalView<Array::iterator>::y_iterator 
+    LexicographicalViewColumn;
+%}
+
 #if defined(SWIGPYTHON) || defined(SWIGRUBY)
 class LexicographicalViewColumn {
   private:
@@ -259,7 +261,7 @@ class LexicographicalView {
             for (int i=0; i<static_cast<int>(self->xSize()); i++) {
                 if (i != 0)
                     s += ",";
-                s += QuantLib::DoubleFormatter::toString((*self)[i][j]);
+                s += DoubleFormatter::toString((*self)[i][j]);
             }
         }
         s += "\n";
