@@ -3,8 +3,8 @@
 
 SetCompressor lzma
 
-!define VER_NUMBER  "0.3.7"
-!define VER_NUMBER2 "0_3_7"
+!define VER_NUMBER  "0.3.8"
+!define VER_NUMBER2 "0_3_8"
 
 # HEADER CONFIGURATION COMMANDS
 Name "QuantLibXL"
@@ -52,11 +52,11 @@ SectionIn 1 2 3
 #    File "xll\QuantLibXL-bcb-mt-s-${VER_NUMBER2}.xll"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
-                "DisplayName" "QuantLibXL (remove only)"
+        "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
+        "DisplayName" "QuantLibXL (remove only)"
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
-                "UninstallString" '"QuantLibXLUninstall.exe"'
+        "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
+        "UninstallString" '"QuantLibXLUninstall.exe"'
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "SOFTWARE\QuantLibXL" \
                 "Install_Dir" "$INSTDIR"
@@ -129,7 +129,7 @@ SectionIn 1 2
      File /r "Workbooks\quantlib.xls"
      File /r "Workbooks\RandomNumbers.xls"
      File /r "Workbooks\RankReduction.xls"
-     File /r "Workbooks\riskmeasures.xls"
+     File /r "Workbooks\StatisticsAndRiskMeasures.xls"
      File /r "Workbooks\tsconstforward.xls"
      File /r "Workbooks\tsdiscount.xls"
      File /r "Workbooks\tspwcf.xls"
