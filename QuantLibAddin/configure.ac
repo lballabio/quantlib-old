@@ -46,6 +46,7 @@ AC_PATH_PROG([SED], [sed])
 # done, output the configured files
 AC_CONFIG_FILES([
     Makefile
+    Autogen/Makefile
     qla/Makefile
     qla/objects/Makefile
     qla/functions/Makefile

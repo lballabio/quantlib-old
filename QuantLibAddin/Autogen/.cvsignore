@@ -1,3 +1,6 @@
 *.pyc
 test.py
 del.sh
+Makefile
+Makefile.in
+.time-stamp
