@@ -1,17 +1,17 @@
-COMPONENT_NAME = Addin
+COMPONENT_NAME = QuantLibAddin
 IDL_DIR=/erik/OpenOffice.org1.1_SDK/idl
 DKREGISTRYNAME=/usr/lib/ooo-1.1/program/types.rdb
 CC=g++
 CC_FLAGS=-c -fPIC
 CC_INCLUDES=-I. -I../.. -I/usr/include -I/erik/OpenOffice.org1.1_SDK/include \
-	-I/usr/quantlib/QuantLib-0.3.7
+	-I../../../ObjectHandler
 CC_DEFINES=-DHAVE_CONFIG_H -DUNX -DGCC -DLINUX -DCPPU_ENV=gcc3
 LINK=g++
 LIBRARY_LINK_FLAGS=-shared
 LINK_LIBS=-L../linux/lib -L/usr/lib/ooo-1.1/program -L/usr/local/lib
 LIBRARY_LIBS := -lcppuhelpergcc3 -lcppu -lsal -lstlport_gcc -lvcl645li -lvos3gcc3 \
 	-lQuantLib -lboost_regex \
-	../../ObjectHandler/ObjectHandler.a \
+	../../../ObjectHandler/ObjectHandler/ObjectHandler.a \
 	$(wildcard ../../QuantLibAddin/*.o)
 CXXFILES := $(wildcard *.cpp)
 OBJFILES := $(patsubst %.cpp,%.o,$(CXXFILES))
