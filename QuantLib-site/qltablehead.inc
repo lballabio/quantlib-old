@@ -68,15 +68,6 @@ Statistics (exits)</a></li>
 </ul>
 
 <hr>
-<h3 class="navbartitle">.NET C# ports</h3>
-
-<ul>
-<li><a href="http://www.quantlib.net">http://www.quantlib.net</a></li>
-<li><a href="http://www.capetools.net">http://www.capetools.net/</a></li>
-
-</ul>
-
-<hr>
 <h3 class="navbartitle">Quantitative Finance Resources</h3>
 
 <ul>
