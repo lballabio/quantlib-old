@@ -4,7 +4,7 @@ DLLEXPORT LPXLOPER %s(
 %s%s%s        Properties properties = %s(
 %s%s);
         static XLOPER xRet;
-        setValues(&xRet, properties, handle);
+        setArray(&xRet, properties, handle);
         return &xRet;
     } catch (const exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: %s: ") + e.what(), 2);

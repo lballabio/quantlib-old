@@ -75,21 +75,19 @@ void anyToXLOPER(const any_ptr &any,
         xOp.xltype = xltypeErr;
 }
 
-void setValues(LPXLOPER xArray, Properties properties, const std::string &handle) {
+void setArray(LPXLOPER xArray, Properties properties, const std::string &handle) {
     xArray->xltype = xltypeMulti;
     xArray->xltype |= xlbitDLLFree;
-    xArray->val.array.rows = 2;
+    xArray->val.array.rows = 1;
     xArray->val.array.columns = properties.size() + 1;
-    xArray->val.array.lparray = new XLOPER[2 * (properties.size() + 1)]; 
+    xArray->val.array.lparray = new XLOPER[properties.size() + 1]; 
     if (!xArray->val.array.lparray)
         throw("setValues: error on call to new");
-    stringToXLOPER(xArray->val.array.lparray[0], "HANDLE");
-    stringToXLOPER(xArray->val.array.lparray[properties.size() + 1], handle.c_str());
+    stringToXLOPER(xArray->val.array.lparray[0], handle.c_str());
     for (unsigned int i=0; i<properties.size(); i++) {
         ObjectProperty property = properties[i];
         any_ptr a = property();
-        stringToXLOPER(xArray->val.array.lparray[i+1], property.name().c_str());
-        anyToXLOPER(a, xArray->val.array.lparray[i + properties.size() + 2]);
+        anyToXLOPER(a, xArray->val.array.lparray[i + 1]);
     }
 }
 

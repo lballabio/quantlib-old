@@ -26,15 +26,15 @@
 #define DLLEXPORT extern "C" __declspec(dllexport)
 #define XL_MAX_STR_LEN 255
 
+void setArray(LPXLOPER xArray,
+               ObjHandler::Properties properties,
+               const std::string &handle);
 std::string XLOPERtoString(const XLOPER &xOp);
 void stringToXLOPER(XLOPER &xStr, const char *s);
 void anyToXLOPER(const ObjHandler::any_ptr &any, 
                  XLOPER &xOp, 
                  const bool &expandVectors = false);
 std::string getHandleFull(const std::string &handle);
-void setValues(LPXLOPER xArray,
-               ObjHandler::Properties properties,
-               const std::string &handle);
 
 template < typename T >
 class Conversion {

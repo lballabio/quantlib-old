@@ -153,7 +153,6 @@ SOURCE=.\utilities.hpp
 # Begin Group "Make"
 
 # PROP Default_Filter ""
-# End Group
 # Begin Source File
 
 SOURCE=.\Makefile.msdev
@@ -162,6 +161,7 @@ SOURCE=.\Makefile.msdev
 
 SOURCE=.\Makefile.msdev.debug
 # End Source File
+# End Group
 # Begin Source File
 
 SOURCE=.\QuantLibAddin.idl
