@@ -155,6 +155,7 @@ extern "C"
         PathGenerator<GaussianRandomSequenceGenerator>
             PseudoRandomPathGenerator(bs, timeGrid, grsg, false);
 
+        // BB here
         PathGenerator<GaussianLowDiscrepancySequenceGenerator>
             QuasiRandomPathGenerator(bs, timeGrid, gldsg, true);
 
