@@ -1,6 +1,3 @@
-<!--
- $Id$
--->
 
 <table summary=
 "Layout table: navigation bar in the first cell, contents in the second cell"

@@ -1,6 +1,3 @@
-<!--
- $Id$
--->
 
 <div class="endmatter">
 <hr>

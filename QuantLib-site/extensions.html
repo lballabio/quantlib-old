@@ -177,23 +177,15 @@ height="31" width="88"></a></p>
 <p>QuantLib is already available as a <a href=
 "download.html#qlpython"><strong>Python</strong></a> and <a href=
 "download.html#qlruby"><strong>Ruby</strong></a> modules by means
-of <a href="http://swig.sourceforge.net">SWIG</a>.</p>
-
-<p>RQuantLib (which connects GNU R with QuantLib) is provided by
-Dirk Eddelbuettel at <a href=
-"http://dirk.eddelbuettel.com/code/rquantlib.html">http://dirk.eddelbuettel.com/code/rquantlib.html</a></p>
-
-<p>An initial Excel add-in is available in the QuantLib <a href=
-"cvs.html">CVS</a> as QuantLibXL.</p>
-
-<p>SWIG supports Java, Tcl, Perl5, Guile, and MZScheme besides Ruby
+of <a href="http://swig.sourceforge.net">SWIG</a>.<br>
+SWIG supports Java, Tcl, Perl5, Guile, and MZScheme besides Ruby
 and Python, so this approach may easily help porting QuantLib to
 these languages. An initial MZScheme module is available in the
-QuantLib <a href="cvs.html">CVS</a> as QuantLib-MzScheme. We
-welcome any contribution aimed at exporting the library towards
-other programming languages; however, the use of SWIG is to be
-preferred to hand-made approaches since it leads to more
-maintainable code.</p>
+QuantLib <a href="cvs.html">CVS</a> under QuantLib-SWIG. We welcome
+any contribution aimed at exporting the library towards other
+programming languages; however, the use of SWIG is to be preferred
+to hand-made approaches since it leads to more maintainable
+code.</p>
 
 <p>There is a strong interest in having QuantLib available as
 extension for different platforms. We're looking for volunteers to
@@ -218,9 +210,17 @@ extension.</li>
 <li>XML financial instrument definition (FpML?)</li>
 </ul>
 
-<p>The library should be exported to the maximum possible degree,
-allowing for object manipulation when possible, providing a
-function interface as bare minimum.</p>
+<p>Initial GNU R support is provided with <a href=
+"http://dirk.eddelbuettel.com/code/rquantlib.html">RQuantLib</a> by
+Dirk Eddelbuettel.</p>
+
+<p>An initial Excel add-in is available as QuantLibXL in the
+QuantLib <a href="cvs.html">CVS</a> and downloadable from <a href=
+"http://quantlib.org/AutomatedBuilds/QuantLibXL/">http://quantlib.org/AutomatedBuilds/QuantLibXL/</a>.</p>
+
+<p>In general the library should be exported to the maximum
+possible degree, allowing for object manipulation when possible,
+providing a function interface as bare minimum.</p>
 
 <!--includeHTML file="qltablefoot.inc"--><!--
  $Id$
