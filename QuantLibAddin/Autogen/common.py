@@ -17,6 +17,7 @@ DESC = 'desc'
 NUMFUNC = 'numfunc'
 RETVAL = 'returnval'
 PROPVEC = 'propertyvector'
+XMLSUFFIX = r'(.*).xml\Z'
 
 # General
 

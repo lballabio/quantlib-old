@@ -78,13 +78,12 @@ def getFunctionGroup(doc):
 def getFunctionDefs():
 	functionDefs = {}
 	functionGroups = {}
-	xmlSuffix = re.compile(r'(.*).xml\Z')
 	fileNames = os.listdir('.')
 	functionDefs[common.NUMFUNC] = 0
 	for fileName in fileNames:
-		m = xmlSuffix.match(fileName)
-		if not m: continue
-		groupName = m.group(1)
+		matchName = re.match(common.XMLSUFFIX, fileName)
+		if not matchName: continue
+		groupName = matchName.group(1)
 		fileObj = file(fileName)
 		dom = xml.dom.minidom.parse(fileObj)
 		functionGroups[groupName] = getFunctionGroup(dom.documentElement)
