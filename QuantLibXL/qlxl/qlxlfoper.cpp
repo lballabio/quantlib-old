@@ -149,9 +149,9 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 break;
             case 2:
                 #if defined(QL_PATCH_MICROSOFT)
-                ts->setInterpolation(CubicSpline());
+                ts->setInterpolation(Cubic());
                 #else
-                ts->setInterpolation<CubicSpline>();
+                ts->setInterpolation<Cubic>();
                 #endif
                 return ts;
                 break;
@@ -175,9 +175,9 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 break;
             case 2:
                 #if defined(QL_PATCH_MICROSOFT)
-                ts->setInterpolation(CubicSpline());
+                ts->setInterpolation(Cubic());
                 #else
-                ts->setInterpolation<CubicSpline>();
+                ts->setInterpolation<Cubic>();
                 #endif
                 return ts;
                 break;
@@ -212,9 +212,9 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 break;
             case 2:
                 #if defined(QL_PATCH_MICROSOFT)
-                ts->setInterpolation(CubicSpline());
+                ts->setInterpolation(Cubic());
                 #else
-                ts->setInterpolation<CubicSpline>();
+                ts->setInterpolation<Cubic>();
                 #endif
                 return ts;
                 break;

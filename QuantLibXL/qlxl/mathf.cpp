@@ -58,20 +58,10 @@ extern "C"
         int interpolationType = xlinterpolationType.AsInt();
         bool allowExtrapolation = xlallowExtrapolation.AsBool();
 
-        CubicSplineInterpolation<
-            std::vector<double>::const_iterator,
-            std::vector<double>::const_iterator>::BoundaryCondition
-                leftConditionType = CubicSplineInterpolation<
-                    std::vector<double>::const_iterator,
-                    std::vector<double>::const_iterator>::BoundaryCondition(
-                        xlleftConditionType.AsInt());
-        CubicSplineInterpolation<
-            std::vector<double>::const_iterator,
-            std::vector<double>::const_iterator>::BoundaryCondition
-                rightConditionType = CubicSplineInterpolation<
-                    std::vector<double>::const_iterator,
-                    std::vector<double>::const_iterator>::BoundaryCondition(
-                        xlrightConditionType.AsInt());
+        CubicSpline::BoundaryCondition leftConditionType =
+            CubicSpline::BoundaryCondition(xlleftConditionType.AsInt());
+        CubicSpline::BoundaryCondition rightConditionType =
+            CubicSpline::BoundaryCondition(xlrightConditionType.AsInt());
 
         bool monotonicityConstraint = xlmonotonicityConstraint.AsBool();
 
