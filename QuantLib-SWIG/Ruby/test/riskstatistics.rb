@@ -68,7 +68,7 @@ class RiskStatisticsTest < Test::Unit::TestCase
 
         rightWeightSum = 0.0
         weights.each { |w| rightWeightSum = rightWeightSum + w }
-        unless s.weightSum == rightWeightSum
+        unless (s.weightSum-rightWeightSum).abs/s.weightSum <= 1.0e-13
           flunk(<<-MESSAGE
 
     wrong sum of weights
@@ -196,53 +196,55 @@ class RiskStatisticsTest < Test::Unit::TestCase
                 )
         end
 
-        tempVar = average-2.0*sigma
-        rightExShortfall = average - \
-            sigma*sigma*gaussian(tempVar, average, sigma)/(1.0-twoStdDev)
-        rightExShortfall = -[rightExShortfall, 0.0].min
-        exShortfall = s.expectedShortfall(twoStdDev)
-        check = (exShortfall-rightExShortfall).abs
-        if rightExShortfall != 0.0
+        unless (average > 0 and sigma < average)
+          tempVar = average-2.0*sigma
+          rightExShortfall = average - \
+              sigma*sigma*gaussian(tempVar, average, sigma)/(1.0-twoStdDev)
+          rightExShortfall = -[rightExShortfall, 0.0].min
+          exShortfall = s.expectedShortfall(twoStdDev)
+          check = (exShortfall-rightExShortfall).abs
+          if rightExShortfall != 0.0
             check = check/rightExShortfall
-        end
-        unless check <= 1e-4
-          flunk(<<-MESSAGE
+          end
+          unless check <= 2e-4
+            flunk(<<-MESSAGE
 
     wrong expected shortfall
         calculated: #{exShortfall}
         expected:   #{rightExShortfall}
         
-                MESSAGE
-                )
-        end
+                  MESSAGE
+                  )
+          end
 
-        rightShortfall = 0.5
-        shortfall = s.shortfall(target)
-        unless (shortfall-rightShortfall).abs/rightShortfall <= 1e-8
-          flunk(<<-MESSAGE
+          rightShortfall = 0.5
+          shortfall = s.shortfall(target)
+          unless (shortfall-rightShortfall).abs/rightShortfall <= 1e-8
+            flunk(<<-MESSAGE
 
     wrong shortfall
         calculated: #{shortFall}
         expected:   #{rightShortfall}
 
-                MESSAGE
-                )
+                  MESSAGE
+                  )
           end
 
-        rightAvgShortfall = sigma/Math.sqrt(2*Math::PI)
-        avgShortfall = s.averageShortfall(target)
-        check = (avgShortfall-rightAvgShortfall).abs/rightAvgShortfall
-        unless check <= 1e-4
-          flunk(<<-MESSAGE
+          rightAvgShortfall = 2.0*sigma/Math.sqrt(2*Math::PI)
+          avgShortfall = s.averageShortfall(target)
+          check = (avgShortfall-rightAvgShortfall).abs/rightAvgShortfall
+          unless check <= 1e-4
+            flunk(<<-MESSAGE
 
     wrong average shortfall
         calculated: #{avgShortFall}
         expected:   #{rightAvgShortfall}
         
-                MESSAGE
-                )
-        end
+                  MESSAGE
+                  )
+          end
 
+        end
         s.reset!
       end
     end

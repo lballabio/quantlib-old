@@ -108,7 +108,6 @@
 %include options.i
 %include piecewiseflatforward.i
 %include randomnumbers.i
-%include riskstatistics.i
 %include scheduler.i
 %include segmentintegral.i
 %include statistics.i

@@ -110,18 +110,6 @@ wrong kurtosis
     expected  : -0.151799637209
                       """ % locals())
 
-        s.reset()
-
-        data = [ x-3 for x in data ]
-        s.add(data, weights)
-        downDev = s.downsideDeviation()
-        if not (abs(downDev-0.333333333) <= tol):
-            self.fail("""
-wrong downside deviation
-    calculated: %(downDev)f
-    expected  : 0.333333333
-                      """ % locals())
-
 
 if __name__ == '__main__':
     print 'testing QuantLib', QuantLib.__version__

@@ -146,19 +146,6 @@ class StatisticsTest < Test::Unit::TestCase
                   MESSAGE
                   )
         end
-
-        s.reset!
-        s.add(data.map { |x| x-3 },weights)
-        unless (s.downsideDeviation-0.333333333).abs <= tolerance
-            flunk(<<-MESSAGE
-
-    wrong downside deviation
-        calculated: #{s.downsideDeviation}
-        expected:   -0.333333333
-
-                  MESSAGE
-                  )
-        end
     end
 end
 

@@ -27,6 +27,7 @@
 
 %{
 using QuantLib::Math::Statistics;
+using QuantLib::Math::RiskStatistics;
 using QuantLib::Math::SequenceStatistics;
 %}
 
@@ -36,8 +37,6 @@ class Statistics {
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("weight-sum")            weightSum;
     %rename("standard-deviation")    standardDeviation;
-    %rename("downside-variance")     downsideVariance;
-    %rename("downside-deviation")    downsideDeviation;
     %rename("error-estimate")        errorEstimate;
     %rename("reset!")                reset;
     #endif
@@ -47,8 +46,6 @@ class Statistics {
     double mean() const;
     double variance() const;
     double standardDeviation() const;
-    double downsideVariance() const;
-    double downsideDeviation() const;
     double errorEstimate() const;
     double skewness() const;
     double kurtosis() const;
@@ -68,6 +65,30 @@ class Statistics {
     }
 };
 
+class RiskStatistics : public Statistics {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("semi-variance")         semiVariance;
+    %rename("semi-deviation")        semiDeviation;
+    %rename("downside-variance")     downsideVariance;
+    %rename("downside-deviation")    downsideDeviation;
+    %rename("potential-upside")      potentialUpside;
+    %rename("value-at-risk")         valueAtRisk;
+    %rename("expected-shortfall")    expectedShortfall;
+    %rename("average-shortfall")     averageShortfall;
+    #endif
+  public:
+    double semiVariance() const;
+    double semiDeviation() const;
+    double downsideVariance() const;
+    double downsideDeviation() const;
+    double regret(double target) const;
+    double potentialUpside(double percentile) const;
+    double valueAtRisk(double percentile) const;
+    double expectedShortfall(double percentile) const;
+    double shortfall(double target) const;
+    double averageShortfall(double target) const;
+};
+
 template <class S>
 class SequenceStatistics {
     #if defined(SWIGRUBY)
@@ -75,8 +96,6 @@ class SequenceStatistics {
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("weight-sum")            weightSum;
     %rename("standard-deviation")    standardDeviation;
-    %rename("downside-variance")     downsideVariance;
-    %rename("downside-deviation")    downsideDeviation;
     %rename("error-estimate")        errorEstimate;
     %rename("reset!")                reset;
     #endif
@@ -87,8 +106,6 @@ class SequenceStatistics {
     std::vector<double> mean() const;
     std::vector<double> variance() const;
     std::vector<double> standardDeviation() const;
-    std::vector<double> downsideVariance() const;
-    std::vector<double> downsideDeviation() const;
     std::vector<double> errorEstimate() const;
     std::vector<double> skewness() const;
     std::vector<double> kurtosis() const;

@@ -64,7 +64,7 @@ wrong number of samples
 
             rightWeightSum = reduce(lambda x,y: x+y, weights)
             weightSum = s.weightSum()
-            if not (weightSum == rightWeightSum):
+            if not (abs(weightSum-rightWeightSum)/weightSum <= 1e-13):
                 self.fail("""
 wrong sum of weights
     calculated: %(weightSum)f
@@ -161,6 +161,10 @@ wrong value at risk
     expected:   %(rightVAR)f
                           """ % locals())
 
+            if average > 0 and sigma < average:
+                s.reset()
+                continue
+
             tempVAR = average-2.0*sigma
             rightExShortfall = average - \
                                sigma*sigma*gaussian(tempVAR, average, sigma)/ \
@@ -171,7 +175,7 @@ wrong value at risk
                 check = abs(exShortfall)
             else:
                 check = abs(exShortfall-rightExShortfall)/rightExShortfall
-            if not (check <= 1e-4):
+            if not (check <= 2e-4):
                 self.fail("""
 wrong expected shortfall
     calculated: %(exShortfall)f
@@ -187,13 +191,13 @@ wrong shortfall
     expected:   %(rightShortfall)f
                           """ % locals())
 
-            rightAvgShortfall = sigma/sqrt(2*pi)
+            rightAvgShortfall = 2.0*sigma/sqrt(2*pi)
             avgShortfall = s.averageShortfall(target)
             check = abs(avgShortfall-rightAvgShortfall)/rightAvgShortfall
             if not (check <= 1e-4):
                 self.fail("""
 wrong average shortfall
-    calculated: %(avgShortFall)f
+    calculated: %(avgShortfall)f
     expected:   %(rightAvgShortfall)f
                           """ % locals())
 

@@ -48,10 +48,4 @@
       (check-expected (Statistics-skewness stats) 0.359543071407 tolerance
                       "skewness")
       (check-expected (Statistics-kurtosis stats) -0.151799637209 tolerance
-                      "kurtosis")
-      (Statistics-reset! stats)
-
-      (Statistics-add stats (map (lambda (x) (- x 3)) data) weights)
-      (check-expected (Statistics-downside-deviation stats) 0.333333333 
-                      tolerance
-                      "downside deviation"))))
+                      "kurtosis"))))
