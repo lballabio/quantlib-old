@@ -24,24 +24,24 @@
 
 %{
 using QuantLib::Calendar;
-using QuantLib::Calendars::TARGET;
-using QuantLib::Calendars::NewYork;
-using QuantLib::Calendars::London;
-using QuantLib::Calendars::Milan;
-using QuantLib::Calendars::Frankfurt;
-using QuantLib::Calendars::Zurich;
-using QuantLib::Calendars::Helsinki;
-using QuantLib::Calendars::Johannesburg;
-using QuantLib::Calendars::Wellington;
-using QuantLib::Calendars::Tokyo;
-using QuantLib::Calendars::Toronto;
-using QuantLib::Calendars::Sydney;
-using QuantLib::Calendars::Budapest;
-using QuantLib::Calendars::Oslo;
-using QuantLib::Calendars::Stockholm;
-using QuantLib::Calendars::Warsaw;
-using QuantLib::Calendars::NullCalendar;
-using QuantLib::Calendars::JointCalendar;
+using QuantLib::TARGET;
+using QuantLib::NewYork;
+using QuantLib::London;
+using QuantLib::Milan;
+using QuantLib::Frankfurt;
+using QuantLib::Zurich;
+using QuantLib::Helsinki;
+using QuantLib::Johannesburg;
+using QuantLib::Wellington;
+using QuantLib::Tokyo;
+using QuantLib::Toronto;
+using QuantLib::Sydney;
+using QuantLib::Budapest;
+using QuantLib::Oslo;
+using QuantLib::Stockholm;
+using QuantLib::Warsaw;
+using QuantLib::NullCalendar;
+using QuantLib::JointCalendar;
 %}
 
 // typemap rolling conventions to corresponding strings
@@ -86,24 +86,24 @@ MapToString(RollingConvention,rollconvFromString,rollconvToString);
 
 // typemap joint calendar rules to corresponding strings
 %{
-using QuantLib::Calendars::JointCalendarRule;
-using QuantLib::Calendars::JoinBusinessDays;
+using QuantLib::JointCalendarRule;
+using QuantLib::JoinBusinessDays;
 
 JointCalendarRule joinRuleFromString(std::string s) {
     s = StringFormatter::toLowercase(s);
     if (s == "h" || s == "holidays" || s == "joinholidays")
-        return QuantLib::Calendars::JoinHolidays;
+        return QuantLib::JoinHolidays;
     else if (s == "b" ||s == "businessdays" || s == "joinbusinessdays")
-        return QuantLib::Calendars::JoinBusinessDays;
+        return QuantLib::JoinBusinessDays;
     else 
         throw Error("unknown joint calendar rule");
 }
 
 std::string joinRuleToString(JointCalendarRule jr) {
     switch (jr) {
-      case QuantLib::Calendars::JoinHolidays:
+      case QuantLib::JoinHolidays:
         return "JoinHolidays";
-      case QuantLib::Calendars::JoinBusinessDays:
+      case QuantLib::JoinBusinessDays:
         return "JoinBusinessDays";
       default:
         throw Error("unknown joint calendar rule");
@@ -209,12 +209,12 @@ class Calendar {
 class JointCalendar : public Calendar {
   public:
     JointCalendar(const Calendar&, const Calendar&,
-                  JointCalendarRule rule = QuantLib::Calendars::JoinHolidays);
+                  JointCalendarRule rule = QuantLib::JoinHolidays);
     JointCalendar(const Calendar&, const Calendar&, const Calendar&,
-                  JointCalendarRule rule = QuantLib::Calendars::JoinHolidays);
+                  JointCalendarRule rule = QuantLib::JoinHolidays);
     JointCalendar(const Calendar&, const Calendar&, 
                   const Calendar&, const Calendar&,
-                  JointCalendarRule rule = QuantLib::Calendars::JoinHolidays);
+                  JointCalendarRule rule = QuantLib::JoinHolidays);
 };
 
 
