@@ -66,15 +66,13 @@ CALC_IDL_FUNC = 'stub.Calc.idlfunc'
 # Excel
 
 XL_ROOT = ADDIN_ROOT + 'Excel/'
-XL_FUNCDEF = 'funcdef.hpp'
+XL_ADDIN = 'qladdin.cpp'
 XL_BODY_BUF = ''
 XL_INCLUDES = 'stub.Excel.includes'
-XL_BODY = 'stub.Excel.body'
-XL_FUNC = 'stub.Excel.func'
-XLMAXPARMERR = 'number of parameters exceeds Excel max of %d'
-XLMAXLENERR  = 'list of parameter names exceeds max Excel length of 255:\n'
-# maximum number of parameters to be passed to an Excel function -
-# if you change this number you must also change the call to xlfRegister
-# in QuantLibAddin\Addins\Excel\qladdin.cpp
-XLMAXPARAM=15
-
+XL_BODY     = 'stub.Excel.body'
+XL_REGHEAD  = 'stub.Excel.regheader'
+XL_REGFOOT  = 'stub.Excel.regfooter'
+XL_MAXPARAM  = 30
+XL_MAXLEN    = 255
+XL_MAXPARMERR = 'number of function parameters exceeds max of %d'
+XL_MAXLENERR  = 'list of parameter names exceeds max Excel length of %d:\n%s'

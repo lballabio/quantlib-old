@@ -1,0 +1,8 @@
+#include <windows.h>
+#include <Addins/Excel/xlcall.h>
+#include <Addins/Excel/framewrk.hpp>
+
+extern "C" __declspec(dllexport) int xlAutoOpen() {
+    static XLOPER xDll;
+    Excel(xlGetName, &xDll, 0);
+

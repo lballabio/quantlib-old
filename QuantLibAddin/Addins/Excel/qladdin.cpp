@@ -15,40 +15,147 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+// this file generated automatically by autogen.py on Tue Jan 25 21:01:30 2005
+// editing this file manually is not recommended
+
 #include <windows.h>
 #include <Addins/Excel/xlcall.h>
 #include <Addins/Excel/framewrk.hpp>
-#include <Addins/Excel/funcdef.hpp>
 
 extern "C" __declspec(dllexport) int xlAutoOpen() {
     static XLOPER xDll;
     Excel(xlGetName, &xDll, 0);
-    for (int i=0; i<NUM_FUNCS; i++)
-        Excel(xlfRegister, 0, NUM_ATTS + 1, &xDll,
-            TempStr(func[i][0]),
-            TempStr(func[i][1]),
-            TempStr(func[i][2]),
-            TempStr(func[i][3]),
-            TempStr(func[i][4]),
-            TempStr(func[i][5]),
-            TempStr(func[i][6]),
-            TempStr(func[i][7]),
-            TempStr(func[i][8]),
-            TempStr(func[i][9]),
-            TempStr(func[i][10]),
-            TempStr(func[i][11]),
-            TempStr(func[i][12]),
-            TempStr(func[i][13]),
-            TempStr(func[i][14]),
-            TempStr(func[i][15]),
-            TempStr(func[i][16]),
-            TempStr(func[i][17]),
-            TempStr(func[i][18]),
-            TempStr(func[i][19]),
-            TempStr(func[i][20]),
-            TempStr(func[i][21]),
-            TempStr(func[i][22]),
-            TempStr(func[i][23]));
+
+    // functions
+
+    Excel(xlfRegister, 0, 12, &xDll,
+        TempStr(" qlQuery"),
+        TempStr(" RC"),
+        TempStr(" QL_QUERY"),
+        TempStr(" handleObject"),
+        TempStr(" 1"),
+        TempStr(" QuantLib"),
+        TempStr(" "),
+        TempStr(" "),
+        TempStr(" retrieve the properties of a given object"),
+        TempStr(" qlQuery"),
+        TempStr(" handle of object to be queried"));
+
+    Excel(xlfRegister, 0, 12, &xDll,
+        TempStr(" qlLogfile"),
+        TempStr(" RC"),
+        TempStr(" QL_LOGFILE"),
+        TempStr(" logFileName"),
+        TempStr(" 1"),
+        TempStr(" QuantLib"),
+        TempStr(" "),
+        TempStr(" "),
+        TempStr(" begin logging to named file"),
+        TempStr(" qlLogfile"),
+        TempStr(" path and name of log file"));
+
+    // options
+
+    Excel(xlfRegister, 0, 17, &xDll,
+        TempStr(" qlStochasticProcess"),
+        TempStr(" RECNEEE#"),
+        TempStr(" QL_STOCHASTIC_PROCESS"),
+        TempStr(" underlying,dayCounterID,settlementDate,riskFreeRate,dividendYield,volatility"),
+        TempStr(" 1"),
+        TempStr(" QuantLib"),
+        TempStr(" "),
+        TempStr(" "),
+        TempStr(" construct and return a handle to a Stochastic Process object"),
+        TempStr(" qlStochasticProcess"),
+        TempStr(" underlying"),
+        TempStr(" ID of day counter"),
+        TempStr(" settlement date"),
+        TempStr(" risk free rate"),
+        TempStr(" dividend yield"),
+        TempStr(" volatility"));
+
+    Excel(xlfRegister, 0, 20, &xDll,
+        TempStr(" qlOptionVanilla"),
+        TempStr(" RCCCECNNCN#"),
+        TempStr(" QL_OPTION_VANILLA"),
+        TempStr(" handleStochastic,typeOption,typePayoff,strike,typeExercise,exerciseDate,settlementDate,typeEngine,timeSteps"),
+        TempStr(" 1"),
+        TempStr(" QuantLib"),
+        TempStr(" "),
+        TempStr(" "),
+        TempStr(" construct and return a handle to a Vanilla Option object"),
+        TempStr(" qlOptionVanilla"),
+        TempStr(" handle of the Stochastic Process object"),
+        TempStr(" option type"),
+        TempStr(" payoff type"),
+        TempStr(" strike"),
+        TempStr(" exercise type"),
+        TempStr(" exercise date"),
+        TempStr(" settlement date"),
+        TempStr(" engine type"),
+        TempStr(" time steps"));
+
+    Excel(xlfRegister, 0, 21, &xDll,
+        TempStr(" qlOptionAsianC"),
+        TempStr(" RCCCCECNNCN#"),
+        TempStr(" QL_OPTION_ASIAN_C"),
+        TempStr(" handleStochastic,typeAverage,typeOption,typePayoff,strike,typeExercise,exerciseDate,settlementDate,typeEngine,timeSteps"),
+        TempStr(" 1"),
+        TempStr(" QuantLib"),
+        TempStr(" "),
+        TempStr(" "),
+        TempStr(" construct and return a handle to a ContinuousAveragingAsianOption object"),
+        TempStr(" qlOptionAsianC"),
+        TempStr(" handle of the Stochastic Process object"),
+        TempStr(" average type"),
+        TempStr(" option type"),
+        TempStr(" payoff type"),
+        TempStr(" strike"),
+        TempStr(" exercise type"),
+        TempStr(" exercise date"),
+        TempStr(" settlement date"),
+        TempStr(" engine type"),
+        TempStr(" time steps"));
+
+    Excel(xlfRegister, 0, 23, &xDll,
+        TempStr(" qlOptionBarrier"),
+        TempStr(" RCCEECCECNNCN#"),
+        TempStr(" QL_OPTION_BARRIER"),
+        TempStr(" handleStochastic,typeBarrier,barrier,rebate,typeOption,typePayoff,strike,typeExercise,exerciseDate,settlementDate,typeEngine,timeSteps"),
+        TempStr(" 1"),
+        TempStr(" QuantLib"),
+        TempStr(" "),
+        TempStr(" "),
+        TempStr(" construct and return a handle to a Barrier Option object"),
+        TempStr(" qlOptionBarrier"),
+        TempStr(" handle of the Stochastic Process object"),
+        TempStr(" barrier type"),
+        TempStr(" barrier"),
+        TempStr(" rebate"),
+        TempStr(" option type"),
+        TempStr(" payoff type"),
+        TempStr(" strike"),
+        TempStr(" exercise type"),
+        TempStr(" exercise date"),
+        TempStr(" settlement date"),
+        TempStr(" engine type"),
+        TempStr(" time steps"));
+
+    Excel(xlfRegister, 0, 14, &xDll,
+        TempStr(" qlOptionSetEngine"),
+        TempStr(" RCCN"),
+        TempStr(" QL_OPTION_SETENGINE"),
+        TempStr(" handle,engineName,timeSteps"),
+        TempStr(" 1"),
+        TempStr(" QuantLib"),
+        TempStr(" "),
+        TempStr(" "),
+        TempStr(" change the pricing engine of an existing Option object"),
+        TempStr(" qlOptionSetEngine"),
+        TempStr(" handle of the Option object"),
+        TempStr(" engine name"),
+        TempStr(" time steps"));
+
     Excel(xlFree, 0, 1, &xDll);
     return 1;
 }

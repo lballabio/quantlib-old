@@ -120,10 +120,6 @@ SOURCE=.\framewrk.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\funcdef.hpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\utilities.hpp
 # End Source File
 # Begin Source File

@@ -4,7 +4,8 @@ import common
 import utils
 
 def generateParamString(function):
-    paramStr = '" R'
+    'generate string to register function parameters'
+    paramStr = 'R'
     for param in function[common.PARAMS]:
         type = param[common.TYPE]
         if type == 'string':
@@ -17,54 +18,59 @@ def generateParamString(function):
             raise ValueError, 'unknown datatype: ' + type
     if function[common.CTOR]:
         paramStr += '#'
-    paramStr += '",'
     return paramStr
 
-def generateFuncDec(fileHeader, function):
-    bufExcelFunc = utils.loadBuffer(common.XL_FUNC)
+def generateFuncRegister(fileHeader, function):
+    'generate call to xlfRegister for given function'
+    params = function[common.PARAMS]
+    numParams = len(params)
+    numParamsTotal = numParams + 11 # 11 extra params to register the function
     # FIXME validation below to be moved into parse.py
-    if len(function[common.PARAMS]) > common.XLMAXPARAM:
-        raise ValueError, common.XLMAXPARMERR % common.XLMAXPARAM
+    if numParamsTotal > common.XL_MAXPARAM:
+        raise ValueError, common.XL_MAXPARMERR % common.XL_MAXPARAM
     paramStr = generateParamString(function)
-    paramList = utils.generateParamList(function[common.PARAMS], suffix = '')
-    if len(paramList) >= 255:
-        raise ValueError, common.XLMAXLENERR + paramList
-    paramList =    '" ' + paramList                 + '",'
-    funcCodeName = '" ' + function[common.CODENAME] + '",'
-    funcName =     '" ' + function[common.NAME]     + '",'
-    funcDesc =     '" ' + function[common.DESC]     + '",'
-    fileHeader.write(bufExcelFunc % (
-        funcCodeName, paramStr, funcName, paramList, funcDesc))
+    paramList = utils.generateParamList(params, suffix = '')
+    if len(paramList) >= common.XL_MAXLEN:
+        raise ValueError, common.XL_MAXLENERR % (common.XL_MAXLEN, paramList)
+    regLine = '        TempStr(" %s"),\n'
+    fileHeader.write('    Excel(xlfRegister, 0, %d, &xDll,\n' % numParamsTotal)
+    fileHeader.write(regLine % function[common.CODENAME])
+    fileHeader.write(regLine % paramStr)
+    fileHeader.write(regLine % function[common.NAME])
+    fileHeader.write(regLine % paramList)
+    fileHeader.write(regLine % '1')
+    fileHeader.write(regLine % 'QuantLib')
+    fileHeader.write(regLine % '')
+    fileHeader.write(regLine % '')
+    fileHeader.write(regLine % function[common.DESC])
+    fileHeader.write(regLine % function[common.CODENAME])
     i = 0
-    for param in function[common.PARAMS]:
-        paramDesc = '" ' + param[common.DESC] + '",'
-        fileHeader.write('        %-30s// param %d\n' % (paramDesc, i))
-        i+=1
-    fileHeader.write('        // unused params:\n        ')
-    while i < common.XLMAXPARAM:
-        fileHeader.write('" "')
-        if i < common.XLMAXPARAM - 1:
-            fileHeader.write(', ')
-        i+=1
-    fileHeader.write('\n    },\n\n')
+    for param in params:
+        fileHeader.write('        TempStr(" ' + param[common.DESC] + '")')
+        i += 1
+        if i < numParams:
+            fileHeader.write(',\n')
+    fileHeader.write(');\n\n')
 
-def generateFuncHeaders(functionDefs):
-    fileName = common.XL_ROOT + common.XL_FUNCDEF
+def generateFuncRegisters(functionDefs):
+    'generate source code to register functions'
+    fileName = common.XL_ROOT + common.XL_ADDIN
     utils.logMessage('    generating file ' + fileName + '...')
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
-    fileHeader.write('#define NUM_FUNCS %d\n' % functionDefs[common.NUMFUNC])
-    fileHeader.write('#define NUM_ATTS %d\n\n' % (common.XLMAXPARAM + 9))
-    fileHeader.write('static LPSTR func[NUM_FUNCS][NUM_ATTS] = {\n')
+    bufRegHead = utils.loadBuffer(common.XL_REGHEAD)
+    bufRegFoot = utils.loadBuffer(common.XL_REGFOOT)
+    fileHeader.write(bufRegHead)
     functionGroups = functionDefs[common.FUNCGROUPS]
     for groupName in functionGroups.keys():
-        fileHeader.write('    // %s\n' % groupName)
+        fileHeader.write('    // %s\n\n' % groupName)
         for function in functionGroups[groupName][common.FUNCLIST]:
-            generateFuncDec(fileHeader, function)
-    fileHeader.write('};\n')
+            generateFuncRegister(fileHeader, function)
+    fileHeader.write(bufRegFoot)
     fileHeader.close()
 
 def generateFuncDef(fileFunc, function):
+    'generate source code for body of given function'
     paramList1 = utils.generateParamList(function[common.PARAMS],
         2, True, '', 'char', dereference = '*')
     paramList2 = utils.generateParamList(function[common.PARAMS],
@@ -80,6 +86,7 @@ def generateFuncDef(fileFunc, function):
         function[common.NAME], handle2, paramList2, function[common.NAME]))
 
 def generateFuncDefs(functionGroups):
+    'generate source code for function bodies'
     common.XL_BODY_BUF = utils.loadBuffer(common.XL_BODY)
     bufExcelIncludes = utils.loadBuffer(common.XL_INCLUDES)
     for groupName in functionGroups.keys():
@@ -96,8 +103,8 @@ def generateFuncDefs(functionGroups):
         fileFunc.close()
 
 def generate(functionDefs):
+    'generate source code for Excel addin'
     utils.logMessage('  begin generating Excel ...')
-    generateFuncHeaders(functionDefs)
+    generateFuncRegisters(functionDefs)
     generateFuncDefs(functionDefs[common.FUNCGROUPS])
     utils.logMessage('  done generating Excel.')
-
