@@ -22,9 +22,7 @@
 #include <ql/DayCounters/actual365.hpp>
 #include <ql/Pricers/fdeuropean.hpp>
 #include <ql/Pricers/fdamericanoption.hpp>
-#include <ql/Pricers/cliquetoptionpricer.hpp>
 #include <ql/Pricers/mccliquetoption.hpp>
-#include <ql/Pricers/performanceoption.hpp>
 #include <ql/Pricers/mcperformanceoption.hpp>
 
 extern "C"
@@ -79,43 +77,6 @@ extern "C"
         EXCEL_END;
     }
 
-
-    LPXLOPER EXCEL_EXPORT xlCliquetOption(
-                        XlfOper xltype,
-                        XlfOper xlunderlying,
-                        XlfOper xlmoneyness,
-                        XlfOper xldividendYield,
-                        XlfOper xlriskFreeRate,
-                        XlfOper xltimes,
-                        XlfOper xlvolatility)
-    {
-        EXCEL_BEGIN;
-
-    	WIZARD_NO_CALC;
-
-        Option::Type type = QlXlfOper(xltype).AsOptionType();
-        double underlying       = xlunderlying.AsDouble();
-        double moneyness           = xlmoneyness.AsDouble();
-        std::vector<double> dividendYield    = xldividendYield.AsDoubleVector();
-        std::vector<double> riskFreeRate     = xlriskFreeRate.AsDoubleVector();
-        std::vector<double> volatility       = xlvolatility.AsDoubleVector();
-        std::vector<Time> times         = xltimes.AsDoubleVector();
-
-
-        CliquetOptionPricer cliquet(type, underlying, moneyness, dividendYield,
-           riskFreeRate, times, volatility);
-        double results[7];
-        results[0] = cliquet.value();
-        results[1] = cliquet.delta();
-        results[2] = cliquet.gamma();
-        results[3] = cliquet.theta();
-        results[4] = cliquet.vega();
-        results[5] = cliquet.rho();
-        results[6] = cliquet.dividendRho();
-
-        return XlfOper(1,7,results);
-        EXCEL_END;
-    }
 
     
     LPXLOPER EXCEL_EXPORT xlCliquetOption_MC(
@@ -215,46 +176,6 @@ extern "C"
         EXCEL_END;
     }
 
-
-    
-    LPXLOPER EXCEL_EXPORT xlPerformanceOption(
-                        XlfOper xltype,
-                        XlfOper xlunderlying,
-                        XlfOper xlmoneyness,
-                        XlfOper xldividendYield,
-                        XlfOper xlriskFreeRate,
-                        XlfOper xltimes,
-                        XlfOper xlvolatility)
-
-    {
-        EXCEL_BEGIN;
-
-    	WIZARD_NO_CALC;
-
-        Option::Type type = QlXlfOper(xltype).AsOptionType();
-        double underlying       = xlunderlying.AsDouble();
-        double moneyness           = xlmoneyness.AsDouble();
-
-        std::vector<double> dividendYield    = xldividendYield.AsDoubleVector();
-        std::vector<double> riskFreeRate     = xlriskFreeRate.AsDoubleVector();
-        std::vector<Time> times         = xltimes.AsDoubleVector();
-        std::vector<double> volatility       = xlvolatility.AsDoubleVector();
-
-
-        PerformanceOption perfCliquet(type, underlying, moneyness, dividendYield,
-           riskFreeRate, times, volatility);
-        double results[7];
-        results[0] = perfCliquet.value();
-        results[1] = perfCliquet.delta();
-        results[2] = perfCliquet.gamma();
-        results[3] = perfCliquet.theta();
-        results[4] = perfCliquet.vega();
-        results[5] = perfCliquet.rho();
-        results[6] = perfCliquet.dividendRho();
-
-        return XlfOper(1,7,results);
-        EXCEL_END;
-    }
 
     
     LPXLOPER EXCEL_EXPORT xlPerformanceOption_MC(
