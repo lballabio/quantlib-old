@@ -1,8 +1,8 @@
-target = AddinCPP.a
+target = QuantLibAddin.a
 
 sources := $(wildcard *.cpp)
 objects := $(patsubst %.cpp,%.o,$(sources))
-includes = -I../..
+includes = -I../.. -I../../../ObjectHandler
 libs :=	$(wildcard ../../QuantLibAddin/*.o)
 
 all : $(target)
