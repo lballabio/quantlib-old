@@ -184,7 +184,7 @@ Handle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
         double forwardRate = range(0,0).AsDouble();
         return Handle<QuantLib::TermStructure>(new
             TermStructures::FlatForward(
-            referenceDate, referenceDate, forwardRate,
+            referenceDate, forwardRate,
             DayCounters::Actual365()));
     } else if (rowNo>1 && colNo==2 && range(0,1).AsDouble()==1.0) {
         // discount grid
@@ -196,7 +196,7 @@ Handle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
         }
         return Handle<QuantLib::TermStructure>(new
             TermStructures::DiscountCurve(
-            referenceDate, dates, discounts,
+            dates, discounts,
             DayCounters::Actual365()));
     } else if (rowNo>2 && colNo>=1) {
         // piecewise forward (annual continuos compounding act/365) grid
@@ -208,7 +208,7 @@ Handle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
         }
         return Handle<QuantLib::TermStructure>(new
             TermStructures::PiecewiseFlatForward(
-            referenceDate, dates, forwards,
+            dates, forwards,
             DayCounters::Actual365()));
     } else
         throw Error("Not a yield term structure range");
