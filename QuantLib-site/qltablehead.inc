@@ -36,7 +36,7 @@
 <li><a class="navlink" href="html/group.html">QuantLib Group (exits)</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/project/stats/?group_id=12740">Project
+"http://sourceforge.net/project/stats/index.php?report=months&amp;group_id=12740">Project
 Statistics (exits)</a></li>
 </ul>
 
