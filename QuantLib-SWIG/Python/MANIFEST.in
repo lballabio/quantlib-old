@@ -1,0 +1,3 @@
+
+include *.in *.py *.txt *.TXT
+recursive-include QuantLib *.i *.py *.TXT *.cpp

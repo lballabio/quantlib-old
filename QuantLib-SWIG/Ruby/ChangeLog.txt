@@ -1,0 +1,502 @@
+2002-03-14 08:39  nando
+
+	* ChangeLog.txt (1.15): updated
+
+2002-03-12 11:27  nando
+
+	* SWIG/Interpolation.i (1.8): added allowExtrapolation parameter to
+	interpolation classes, it has no default value yet
+
+2002-03-12 11:12  lballabio
+
+	* test/piecewise_flat_forward.rb (1.5): Test fixed
+
+2002-03-07 14:06  lballabio
+
+	* QuantLib.rb (1.7), test/swap.rb (1.5): SimpleSwap made a bit
+	simpler
+
+2002-03-05 17:31  nando
+
+	* setup.rb (1.11), SWIG/ql.i (1.9): version number up to b1
+
+2002-03-05 17:30  nando
+
+	* ChangeLog.txt (1.14): updated
+
+2002-03-05 16:56  nando
+
+	* setup.rb (1.10), SWIG/ql.i (1.8): version number up to a9
+
+2002-03-05 16:08  nando
+
+	* ChangeLog.txt (1.13): updated
+
+2002-03-01 17:11  nando
+
+	* setup.rb (1.9), SWIG/ql.i (1.7): version number up to a8 branch
+	a7 created
+
+2002-03-01 16:49  nando
+
+	* setup.rb (1.8), SWIG/ql.i (1.6): version number up to a7 I
+	screwed up a6 branch
+
+2002-02-12 19:47  nando
+
+	* LICENSE.TXT (1.6): copyright revisited
+
+2002-02-11 17:40  marmar
+
+	* ChangeLog.txt (1.12), setup.rb (1.7), SWIG/ql.i (1.5): version
+	0.3.0a5 changed with 0.3.0a6
+
+2002-01-29 16:40  nando
+
+	* Authors.txt (1.2): updated
+
+2002-01-23 14:09  lballabio
+
+	* SWIG/PiecewiseFlatForward.i (1.6): dates() and times() added to
+	PiecewiseFlatForward
+
+2002-01-16 16:24  nando
+
+	* ChangeLog.txt (1.11), setup.rb (1.6), SWIG/ql.i (1.4): version
+	number up to a5
+
+2002-01-16 15:17  nando
+
+	* QuantLib.rb (1.6), setup.rb (1.5), test/QuantLibTestSuite.rb
+	(1.6), test/american_option.rb (1.4), test/barrier_option.rb (1.4),
+	test/binary_option.rb (1.4), test/cliquet_option.rb (1.4),
+	test/covariance.rb (1.4), test/dates.rb (1.5), test/day_counters.rb
+	(1.4), test/distributions.rb (1.5), test/european_option.rb (1.4),
+	test/european_with_dividends.rb (1.5),
+	test/finite_difference_european.rb (1.5),
+	test/implied_volatility.rb (1.4), test/mc_multifactor_pricers.rb
+	(1.6), test/montecarlo_pricers.rb (1.5),
+	test/piecewise_flat_forward.rb (1.4), test/random_generators.rb
+	(1.6), test/risk_statistics.rb (1.5), test/segment_integral.rb
+	(1.4), test/statistics.rb (1.6), test/swap.rb (1.4): new license
+	and copyright notice
+
+2002-01-16 14:51  nando
+
+	* SWIG/: BoundaryConditions.i (1.6), Calendars.i (1.11),
+	CashFlows.i (1.6), Covariance.i (1.4), Currencies.i (1.8), Date.i
+	(1.8), DayCounters.i (1.11), Distributions.i (1.6), History.i
+	(1.7), Indexes.i (1.6), Instruments.i (1.5), Interpolation.i (1.7),
+	MarketElements.i (1.6), Matrix.i (1.4), MontecarloPricers.i (1.6),
+	Operators.i (1.7), Options.i (1.6), PiecewiseFlatForward.i (1.5),
+	Pricers.i (1.5), QLArray.i (1.7), QuantLib.i (1.13),
+	RandomGenerators.i (1.7), RateHelpers.i (1.5), RiskStatistics.i
+	(1.8), SegmentIntegral.i (1.5), Solvers1D.i (1.7), Statistics.i
+	(1.6), String.i (1.6), Swap.i (1.6), TermStructures.i (1.6),
+	Types.i (1.6), Vectors.i (1.7), ql.i (1.3): new license and
+	copyright notice
+
+2002-01-16 14:44  nando
+
+	* LICENSE.TXT (1.5): new license and copyright notice
+
+2002-01-16 12:25  nando
+
+	* setup.rb (1.4): typo fixed
+
+2002-01-16 12:22  lballabio
+
+	* setup.rb (1.3): Missing quote added
+
+2002-01-16 12:21  nando
+
+	* LICENSE.TXT (1.4): new license and copyright notice
+
+2002-01-16 11:11  nando
+
+	* setup.rb (1.2): added trailing -cvs to version identifier
+
+2002-01-16 10:10  nando
+
+	* ChangeLog.txt (1.10): updated
+
+2002-01-15 16:40  lballabio
+
+	* README.txt (1.6), build.rb (1.4), install.rb (1.4), makedist.rb
+	(1.7), makewrappers.rb (1.4), setup.rb (1.1): new setup.rb script
+
+2002-01-15 11:28  lballabio
+
+	* SWIG/: Calendars.i (1.10), DayCounters.i (1.10), QuantLib.i
+	(1.12): Removed Factory - too clumsy for the little or no use we
+	had
+
+2002-01-14 10:37  lballabio
+
+	* makedist.rb (1.6): Missing file added
+
+2002-01-11 14:26  nando
+
+	* makedist.rb (1.4.2.1): version number up to 0.3.0a3 (forgot to do
+	so last time)
+
+2002-01-11 14:25  nando
+
+	* makedist.rb (1.5): version number up to 0.3.0a4
+
+2002-01-11 12:22  nando
+
+	* SWIG/ql.i (1.2): version number up to 0.3.0a4
+
+2002-01-10 16:19  nando
+
+	* ChangeLog.txt (1.9): updated
+
+2002-01-09 13:30  nando
+
+	* QuantLib.rb (1.5), build.rb (1.3), install.rb (1.3), makedist.rb
+	(1.4), makewrappers.rb (1.3), test/QuantLibTestSuite.rb (1.5),
+	test/barrier_option.rb (1.3), test/binary_option.rb (1.3),
+	test/cliquet_option.rb (1.3), test/covariance.rb (1.3),
+	test/dates.rb (1.4), test/day_counters.rb (1.3),
+	test/distributions.rb (1.4), test/european_option.rb (1.3),
+	test/european_with_dividends.rb (1.4),
+	test/finite_difference_european.rb (1.4),
+	test/implied_volatility.rb (1.3), test/mc_multifactor_pricers.rb
+	(1.5), test/montecarlo_pricers.rb (1.4),
+	test/piecewise_flat_forward.rb (1.3), test/random_generators.rb
+	(1.5), test/risk_statistics.rb (1.4), test/segment_integral.rb
+	(1.3), test/statistics.rb (1.5), test/swap.rb (1.3): new copyright
+	and license agreement
+
+2002-01-08 17:25  nando
+
+	* ChangeLog.txt (1.8): updated
+
+2002-01-08 15:06  nando
+
+	* Authors.txt (1.1): new copyright and license agreement
+
+2002-01-08 11:14  nando
+
+	* LICENSE.TXT (1.3), Contributors.txt (1.1): new copyright and
+	license agreement
+
+2002-01-08 10:08  nando
+
+	* SWIG/: QuantLib.i (1.11), ql.i (1.1): adopting an approach
+	similar to QuantLib-Python
+
+2002-01-02 16:26  lballabio
+
+	* SWIG/: CashFlows.i (1.5), Indexes.i (1.5), Instruments.i (1.4),
+	Interpolation.i (1.6), MarketElements.i (1.5), Options.i (1.5),
+	PiecewiseFlatForward.i (1.4), RateHelpers.i (1.4), Swap.i (1.5),
+	TermStructures.i (1.5): Derived classes exported as Handle<Derived>
+
+2001-12-19 14:00  nando
+
+	* SWIG/: BoundaryConditions.i (1.5), Calendars.i (1.9), CashFlows.i
+	(1.4), Covariance.i (1.3), Currencies.i (1.7), Date.i (1.7),
+	DayCounters.i (1.9), Distributions.i (1.5), History.i (1.6),
+	Indexes.i (1.4), Instruments.i (1.3), Interpolation.i (1.5),
+	MarketElements.i (1.4), Matrix.i (1.3), MontecarloPricers.i (1.5),
+	Operators.i (1.6), Options.i (1.4), PiecewiseFlatForward.i (1.3),
+	Pricers.i (1.4), QLArray.i (1.6), QuantLib.i (1.10),
+	RandomGenerators.i (1.6), RateHelpers.i (1.3), RiskStatistics.i
+	(1.7), SegmentIntegral.i (1.4), Solvers1D.i (1.6), Statistics.i
+	(1.5), String.i (1.5), Swap.i (1.4), TermStructures.i (1.4),
+	Types.i (1.5), Vectors.i (1.6): reference updated
+
+2001-12-19 11:35  nando
+
+	* News.txt (1.5): typo fixed
+
+2001-12-19 11:18  nando
+
+	* News.txt (1.4): updated
+
+2001-12-19 10:57  nando
+
+	* ChangeLog.txt (1.7): updated
+
+2001-12-18 16:30  nando
+
+	* SWIG/BoundaryConditions.i (1.4), SWIG/Calendars.i (1.8),
+	SWIG/CashFlows.i (1.3), SWIG/Covariance.i (1.2), SWIG/Currencies.i
+	(1.6), SWIG/Date.i (1.6), SWIG/DayCounters.i (1.8),
+	SWIG/Distributions.i (1.4), SWIG/History.i (1.5), SWIG/Indexes.i
+	(1.3), SWIG/Instruments.i (1.2), SWIG/Interpolation.i (1.4),
+	SWIG/MarketElements.i (1.3), SWIG/Matrix.i (1.2),
+	SWIG/MontecarloPricers.i (1.4), SWIG/Operators.i (1.5),
+	SWIG/Options.i (1.3), SWIG/PiecewiseFlatForward.i (1.2),
+	SWIG/Pricers.i (1.3), SWIG/QLArray.i (1.5), SWIG/QuantLib.i (1.9),
+	SWIG/RandomGenerators.i (1.5), SWIG/RateHelpers.i (1.2),
+	SWIG/RiskStatistics.i (1.6), SWIG/SegmentIntegral.i (1.3),
+	SWIG/Solvers1D.i (1.5), SWIG/Statistics.i (1.4), SWIG/String.i
+	(1.4), SWIG/Swap.i (1.3), SWIG/TermStructures.i (1.3), SWIG/Types.i
+	(1.4), SWIG/Vectors.i (1.5), test/QuantLibTestSuite.rb (1.4),
+	test/american_option.rb (1.3), test/barrier_option.rb (1.2),
+	test/binary_option.rb (1.2), test/cliquet_option.rb (1.2),
+	test/covariance.rb (1.2), test/dates.rb (1.3), test/day_counters.rb
+	(1.2), test/distributions.rb (1.3), test/european_option.rb (1.2),
+	test/european_with_dividends.rb (1.3),
+	test/finite_difference_european.rb (1.3),
+	test/implied_volatility.rb (1.2), test/mc_multifactor_pricers.rb
+	(1.4), test/montecarlo_pricers.rb (1.3),
+	test/piecewise_flat_forward.rb (1.2), test/random_generators.rb
+	(1.4), test/risk_statistics.rb (1.3), test/segment_integral.rb
+	(1.2), test/statistics.rb (1.4), test/swap.rb (1.2):
+	quantlib.sourceforge.net replaced with quantlib.org
+
+2001-12-18 14:17  lballabio
+
+	* SWIG/MontecarloPricers.i (1.3), SWIG/TermStructures.i (1.2),
+	test/QuantLibTestSuite.rb (1.3), test/american_option.rb (1.2),
+	test/european_with_dividends.rb (1.2),
+	test/finite_difference_european.rb (1.2),
+	test/mc_multifactor_pricers.rb (1.3), test/montecarlo_pricers.rb
+	(1.2): Tests work again
+
+2001-12-17 16:51  nando
+
+	* SWIG/Pricers.i (1.2): Finite Difference pricers now start with
+	'Fd' letters
+
+2001-12-13 18:29  nando
+
+	* ChangeLog.txt (1.6): updated
+
+2001-12-12 10:10  nando
+
+	* ChangeLog.txt (1.5): updated
+
+2001-12-11 11:41  nando
+
+	* SWIG/QuantLib.i (1.8): using old version of the library forbidden
+
+2001-12-06 14:05  nando
+
+	* makedist.rb (1.3), makedist.rb (1.2.4.1): fixed Ruby version
+	number
+
+2001-12-05 15:13  nando
+
+	* ChangeLog.txt (1.4), History.txt (1.3), News.txt (1.3): before
+	branching out 0.3.1a1
+
+2001-12-05 09:55  nando
+
+	* ChangeLog.txt (1.3): updated
+
+2001-12-04 09:40  lballabio
+
+	* SWIG/: BoundaryConditions.i (1.3), Calendars.i (1.7), CashFlows.i
+	(1.2), Currencies.i (1.5), Date.i (1.5), Distributions.i (1.3),
+	History.i (1.4), Indexes.i (1.2), Interpolation.i (1.3),
+	MarketElements.i (1.2), Operators.i (1.4), Options.i (1.2),
+	QLArray.i (1.4), QuantLib.i (1.7), RandomGenerators.i (1.4),
+	RiskStatistics.i (1.5), SegmentIntegral.i (1.2), Solvers1D.i (1.4),
+	Statistics.i (1.3), String.i (1.3), Swap.i (1.2), Types.i (1.3),
+	Vectors.i (1.4): Handle is now downcastable
+
+2001-11-30 08:23  lballabio
+
+	* ChangeLog.txt (1.2), LICENSE.TXT (1.2), News.txt (1.2): Readded -
+	lost from merge?
+
+2001-11-29 17:39  nando
+
+	* ChangeLog.txt (1.1.4.1), History.txt (1.2), LICENSE.TXT
+	(1.1.4.1), News.txt (1.1.4.1), install.rb (1.2), makedist.rb (1.2),
+	SWIG/MontecarloPricers.i (1.2), test/mc_multifactor_pricers.rb
+	(1.2): R000201-branch-merge1 merged into trunk
+
+2001-11-29 12:33  nando
+
+	* ChangeLog.txt (1.1.2.2), History.txt (1.1.2.3), News.txt
+	(1.1.2.3): 0.2.1 release final touch
+
+2001-11-29 11:57  lballabio
+
+	* makedist.rb (1.1.2.5), SWIG/MontecarloPricers.i (1.1.2.1),
+	test/mc_multifactor_pricers.rb (1.1.2.1): [no log message]
+
+2001-11-27 16:49  lballabio
+
+	* makedist.rb (1.1.2.4): [no log message]
+
+2001-11-27 16:29  lballabio
+
+	* makedist.rb (1.1.2.3): [no log message]
+
+2001-11-26 09:25  lballabio
+
+	* History.txt (1.1.2.2), News.txt (1.1.2.2), makedist.rb (1.1.2.2):
+	[no log message]
+
+2001-11-26 09:19  lballabio
+
+	* LICENSE.TXT (1.1): file LICENSE.TXT was initially added on branch
+	R000201-branch.
+
+2001-11-26 09:19  lballabio
+
+	* LICENSE.TXT (1.1.2.1), install.rb (1.1.2.1), makedist.rb
+	(1.1.2.1): More complete installation
+
+2001-11-23 23:20  nando
+
+	* ChangeLog.txt (1.1): file ChangeLog.txt was initially added on
+	branch R000201-branch.
+
+2001-11-23 23:20  nando
+
+	* ChangeLog.txt (1.1.2.1), History.txt (1.1.2.1), News.txt
+	(1.1.2.1): release 0.2.1 final touches
+
+2001-11-23 23:20  nando
+
+	* News.txt (1.1): file News.txt was initially added on branch
+	R000201-branch.
+
+2001-11-23 16:57  lballabio
+
+	* README.txt (1.5), makedist.rb (1.1), makewrappers.rb (1.2):
+	makedist script added
+
+2001-11-22 14:43  lballabio
+
+	* QuantLib.rb (1.4), README.txt (1.4), SWIG/Calendars.i (1.6),
+	SWIG/CashFlows.i (1.1), SWIG/Covariance.i (1.1), SWIG/Date.i (1.4),
+	SWIG/Indexes.i (1.1), SWIG/Instruments.i (1.1),
+	SWIG/MarketElements.i (1.1), SWIG/Matrix.i (1.1),
+	SWIG/MontecarloPricers.i (1.1), SWIG/Options.i (1.1),
+	SWIG/PiecewiseFlatForward.i (1.1), SWIG/Pricers.i (1.1),
+	SWIG/QuantLib.i (1.6), SWIG/RateHelpers.i (1.1),
+	SWIG/RiskStatistics.i (1.4), SWIG/SegmentIntegral.i (1.1),
+	SWIG/Swap.i (1.1), SWIG/TermStructures.i (1.1), SWIG/Types.i (1.2),
+	SWIG/Vectors.i (1.3), test/QuantLibTestSuite.rb (1.2),
+	test/american_option.rb (1.1), test/barrier_option.rb (1.1),
+	test/binary_option.rb (1.1), test/cliquet_option.rb (1.1),
+	test/covariance.rb (1.1), test/dates.rb (1.2), test/day_counters.rb
+	(1.1), test/distributions.rb (1.2), test/european_option.rb (1.1),
+	test/european_with_dividends.rb (1.1),
+	test/finite_difference_european.rb (1.1),
+	test/implied_volatility.rb (1.1), test/mc_multifactor_pricers.rb
+	(1.1), test/montecarlo_pricers.rb (1.1),
+	test/piecewise_flat_forward.rb (1.1), test/random_generators.rb
+	(1.3), test/risk_statistics.rb (1.2), test/segment_integral.rb
+	(1.1), test/statistics.rb (1.3), test/swap.rb (1.1): Ruby strikes
+	back
+
+2001-11-19 14:43  lballabio
+
+	* SWIG/Calendars.i (1.5), SWIG/DayCounters.i (1.7), SWIG/QuantLib.i
+	(1.5), SWIG/RandomGenerators.i (1.3), test/random_generators.rb
+	(1.2): Periodic sanity check
+
+2001-09-24 13:15  lballabio
+
+	* SWIG/: History.i (1.3), QLArray.i (1.3), Solvers1D.i (1.3): Fixes
+	for SWIG 1.3.8
+
+2001-09-14 15:02  lballabio
+
+	* SWIG/DayCounters.i (1.6): Grouped act/act day counters and 30/360
+	day counters
+
+2001-09-14 08:45  nando
+
+	* SWIG/Operators.i (1.3): void setHigherBC(BoundaryCondition bc) is
+	now void setUpperBC(BoundaryCondition bc);
+
+2001-07-25 10:24  lballabio
+
+	* QuantLib.rb (1.3), build.rb (1.2), SWIG/DayCounters.i (1.5):
+	Defaults added
+
+2001-07-20 13:46  lballabio
+
+	* QuantLib.rb (1.2), SWIG/Calendars.i (1.4), SWIG/DayCounters.i
+	(1.4): Glitches
+
+2001-07-20 10:46  lballabio
+
+	* QuantLib.rb (1.1), README.txt (1.3), build.rb (1.1), extconf.rb
+	(1.2), install.rb (1.1), SWIG/QuantLib.i (1.4), test/statistics.rb
+	(1.2): Worked around missing features in SWIG
+
+2001-07-05 15:58  lballabio
+
+	* SWIG/: Date.i (1.3), DayCounters.i (1.3), Financial.i (1.3),
+	QuantLib.i (1.3), Types.i (1.1): Collected typedefs in a single
+	file
+
+2001-06-04 10:48  lballabio
+
+	* SWIG/Currencies.i (1.4): Added a truckload of currencies
+
+2001-05-29 15:33  lballabio
+
+	* SWIG/Calendars.i (1.3): Reintroduced RollingConventions
+
+2001-05-28 13:19  nando
+
+	* SWIG/RiskStatistics.i (1.3): R019-branch-merge1 merged into trunk
+
+2001-05-28 12:45  nando
+
+	* SWIG/RiskStatistics.i (1.2.2.1): VarTool renamed RiskMeasures
+
+2001-05-25 10:15  lballabio
+
+	* History.txt (1.1), README.txt (1.2): Added history and updated
+	readme
+
+2001-05-24 11:33  lballabio
+
+	* SWIG/Currencies.i (1.3): Stripped conventions from Currencies
+
+2001-05-21 10:29  lballabio
+
+	* SWIG/: BoundaryConditions.i (1.2), Calendars.i (1.2),
+	Currencies.i (1.2), Date.i (1.2), DayCounters.i (1.2),
+	Distributions.i (1.2), Financial.i (1.2), History.i (1.2),
+	Interpolation.i (1.2), Operators.i (1.2), QLArray.i (1.2),
+	QuantLib.i (1.2), RandomGenerators.i (1.2), RiskStatistics.i (1.2),
+	Solvers1D.i (1.2), Statistics.i (1.2), String.i (1.2), Vectors.i
+	(1.2): Interfaces are now Ruby-only
+
+2001-05-21 09:31  lballabio
+
+	* README.txt (1.1), extconf.rb (1.1), makewrappers.rb (1.1),
+	SWIG/BoundaryConditions.i (1.1), SWIG/Calendars.i (1.1),
+	SWIG/Currencies.i (1.1), SWIG/Date.i (1.1), SWIG/DayCounters.i
+	(1.1), SWIG/Distributions.i (1.1), SWIG/Financial.i (1.1),
+	SWIG/History.i (1.1), SWIG/Interpolation.i (1.1), SWIG/Operators.i
+	(1.1), SWIG/QLArray.i (1.1), SWIG/QuantLib.i (1.1),
+	SWIG/RandomGenerators.i (1.1), SWIG/RiskStatistics.i (1.1),
+	SWIG/Solvers1D.i (1.1), SWIG/Statistics.i (1.1), SWIG/String.i
+	(1.1), SWIG/Vectors.i (1.1), test/QuantLibTestSuite.rb (1.1),
+	test/dates.rb (1.1), test/distributions.rb (1.1),
+	test/random_generators.rb (1.1), test/risk_statistics.rb (1.1),
+	test/statistics.rb (1.1): Initial revision
+
+2001-05-21 09:31  lballabio
+
+	* README.txt (1.1.1.1), extconf.rb (1.1.1.1), makewrappers.rb
+	(1.1.1.1), SWIG/BoundaryConditions.i (1.1.1.1), SWIG/Calendars.i
+	(1.1.1.1), SWIG/Currencies.i (1.1.1.1), SWIG/Date.i (1.1.1.1),
+	SWIG/DayCounters.i (1.1.1.1), SWIG/Distributions.i (1.1.1.1),
+	SWIG/Financial.i (1.1.1.1), SWIG/History.i (1.1.1.1),
+	SWIG/Interpolation.i (1.1.1.1), SWIG/Operators.i (1.1.1.1),
+	SWIG/QLArray.i (1.1.1.1), SWIG/QuantLib.i (1.1.1.1),
+	SWIG/RandomGenerators.i (1.1.1.1), SWIG/RiskStatistics.i (1.1.1.1),
+	SWIG/Solvers1D.i (1.1.1.1), SWIG/Statistics.i (1.1.1.1),
+	SWIG/String.i (1.1.1.1), SWIG/Vectors.i (1.1.1.1),
+	test/QuantLibTestSuite.rb (1.1.1.1), test/dates.rb (1.1.1.1),
+	test/distributions.rb (1.1.1.1), test/random_generators.rb
+	(1.1.1.1), test/risk_statistics.rb (1.1.1.1), test/statistics.rb
+	(1.1.1.1): Ruby wrappers for QuantLib
+

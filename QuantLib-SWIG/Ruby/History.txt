@@ -1,0 +1,5 @@
+
+2002-XX-XX Release 0.3.0
+
+2001-12-03 First decent release, version number 0.2.1
+           in sync with the QuantLib 0.2.1 release

@@ -1,0 +1,126 @@
+2002-03-05 17:30  nando
+
+	* ChangeLog.txt (1.8): updated
+
+2002-03-05 17:30  nando
+
+	* SWIG/ql.i (1.9): version number up to b1
+
+2002-03-05 16:55  nando
+
+	* SWIG/ql.i (1.8): version number up to a9
+
+2002-03-05 16:10  nando
+
+	* ChangeLog.txt (1.7): updated
+
+2002-03-01 17:10  nando
+
+	* SWIG/ql.i (1.7): version number up to a8 branch a7 created
+
+2002-03-01 16:48  nando
+
+	* SWIG/ql.i (1.6): version number up to a7 I screwed up a6 branch
+
+2002-02-12 19:47  nando
+
+	* LICENSE.TXT (1.4): copyright revisited
+
+2002-02-11 17:41  marmar
+
+	* ChangeLog.txt (1.6), SWIG/ql.i (1.5): version 0.3.0a5 changed
+	with 0.3.0a6
+
+2002-01-29 16:41  nando
+
+	* Authors.txt (1.2): updated
+
+2002-01-23 14:10  lballabio
+
+	* build.scm (1.1), build.sh (1.2), install.scm (1.1), install.sh
+	(1.2), quantlib.ss (1.3), test.scm (1.1), test.sh (1.2),
+	quantlib/quantlib.ss (1.1), test/date.scm (1.4),
+	test/day-counters.scm (1.3): dates() and times() added to
+	PiecewiseFlatForward
+
+2002-01-16 16:24  nando
+
+	* ChangeLog.txt (1.5), SWIG/ql.i (1.4): version number up to a5
+
+2002-01-16 14:51  nando
+
+	* LICENSE.TXT (1.3), SWIG/Date.i (1.3), SWIG/DayCounters.i (1.2),
+	SWIG/QuantLib.i (1.4), SWIG/String.i (1.2), SWIG/Types.i (1.2),
+	SWIG/ql.i (1.3): new license and copyright notice
+
+2002-01-16 12:21  nando
+
+	* LICENSE.TXT (1.2): new license and copyright notice
+
+2002-01-16 10:09  nando
+
+	* ChangeLog.txt (1.4): updated
+
+2002-01-11 12:21  nando
+
+	* SWIG/ql.i (1.2): version number up to 0.3.0a4
+
+2002-01-10 16:38  lballabio
+
+	* History.txt (1.2): [no log message]
+
+2002-01-10 16:19  nando
+
+	* ChangeLog.txt (1.3): updated
+
+2002-01-09 13:31  nando
+
+	* test/: date.scm (1.3), day-counters.scm (1.2),
+	quantlib-test-suite.scm (1.3), unittest.scm (1.3): new copyright
+	and license agreement
+
+2002-01-08 17:34  nando
+
+	* ChangeLog.txt (1.2): updated
+
+2002-01-08 17:34  nando
+
+	* Authors.txt (1.1), ChangeLog.txt (1.1): new copyright and license
+	agreement
+
+2002-01-08 11:17  nando
+
+	* History.txt (1.1): new copyright and license agreement
+
+2002-01-08 11:13  nando
+
+	* LICENSE.TXT (1.1), Contributors.txt (1.1): new copyright and
+	license agreement
+
+2002-01-08 10:12  nando
+
+	* SWIG/: QuantLib.i (1.3), ql.i (1.1): adopting an approach similar
+	to QuantLib-Python
+
+2001-12-31 08:56  lballabio
+
+	* quantlib.ss (1.2), SWIG/Date.i (1.2), SWIG/DayCounters.i (1.1),
+	SWIG/QuantLib.i (1.2), SWIG/String.i (1.1), SWIG/Types.i (1.1),
+	test/date.scm (1.2), test/day-counters.scm (1.1),
+	test/quantlib-test-suite.scm (1.2), test/unittest.scm (1.2): Proof
+	of concept
+
+2001-12-21 17:35  lballabio
+
+	* build.sh (1.1), install.sh (1.1), quantlib.ss (1.1), test.sh
+	(1.1), SWIG/Date.i (1.1), SWIG/QuantLib.i (1.1), test/date.scm
+	(1.1), test/quantlib-test-suite.scm (1.1), test/unittest.scm (1.1):
+	Initial revision
+
+2001-12-21 17:35  lballabio
+
+	* build.sh (1.1.1.1), install.sh (1.1.1.1), quantlib.ss (1.1.1.1),
+	test.sh (1.1.1.1), SWIG/Date.i (1.1.1.1), SWIG/QuantLib.i
+	(1.1.1.1), test/date.scm (1.1.1.1), test/quantlib-test-suite.scm
+	(1.1.1.1), test/unittest.scm (1.1.1.1): New toy
+

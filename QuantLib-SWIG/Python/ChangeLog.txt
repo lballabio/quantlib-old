@@ -1,0 +1,2061 @@
+2002-03-23 20:57  nando
+
+	* ChangeLog.txt (1.18): updated
+
+2002-03-21 14:48  nando
+
+	* QuantLibPython.mak (1.23): removed project dependencies: they
+	make makefile not portable
+
+2002-03-20 16:53  nando
+
+	* README.txt (1.9): improved Borland instructions
+
+2002-03-19 17:19  nando
+
+	* QuantLib/test/mcmultifactorpricers.py (1.15): added McBasket test
+
+2002-03-19 08:25  nando
+
+	* QuantLibPython.mak (1.22): updated
+
+2002-03-15 09:36  nando
+
+	* QuantLibPython.mak (1.21): updated
+
+2002-03-14 17:40  lballabio
+
+	* QuantLib/: defaults.py (1.30), SWIG/Volatility.i (1.4):
+	Reorganized vol structures
+
+2002-03-14 14:08  lballabio
+
+	* setup.py (1.68), QuantLib/defaults.py (1.29),
+	QuantLib/SWIG/BlackInstruments.i (1.2),
+	QuantLib/test/QuantLibTestSuite.py (1.34),
+	QuantLib/test/capfloor.py (1.1), QuantLib/test/swaption.py (1.3):
+	Exported cap/floor
+
+2002-03-14 08:48  nando
+
+	* ChangeLog.txt (1.17): updated
+
+2002-03-14 08:17  lballabio
+
+	* QuantLib/test/swaption.py (1.2): fixed test
+
+2002-03-13 16:15  lballabio
+
+	* setup.py (1.67): Swaption exported
+
+2002-03-13 16:09  lballabio
+
+	* setup.py (1.66), QuantLib/SWIG/BlackInstruments.i (1.1),
+	QuantLib/SWIG/Exercise.i (1.1), QuantLib/SWIG/ql.i (1.29),
+	QuantLib/test/QuantLibTestSuite.py (1.33),
+	QuantLib/test/swaption.py (1.1): Swaption exported
+
+2002-03-12 11:39  nando
+
+	* QuantLib/test/mcmultifactorpricers.py (1.14): reverting wrong
+	changes back
+
+2002-03-12 11:25  nando
+
+	* QuantLib/: SWIG/Interpolation.i (1.11),
+	test/mcmultifactorpricers.py (1.13): added allowExtrapolation
+	parameter to interpolation classes, it has no default value yet
+
+2002-03-11 14:08  lballabio
+
+	* QuantLib/: defaults.py (1.28), SWIG/Date.i (1.21),
+	SWIG/Volatility.i (1.3): Swaption vol matrix defined in terms of
+	Period
+
+2002-03-08 14:22  lballabio
+
+	* QuantLib/SWIG/Volatility.i (1.2): Using day counter in Swaption
+	volatility surface
+
+2002-03-08 09:54  lballabio
+
+	* setup.cfg (1.2): Removed to allow per-user cfg
+
+2002-03-07 14:06  lballabio
+
+	* QuantLib/: defaults.py (1.27), SWIG/Swap.i (1.22),
+	test/piecewiseflatforward.py (1.30), test/swap.py (1.17):
+	SimpleSwap made a bit simpler
+
+2002-03-06 17:58  nando
+
+	* QuantLibPython.dsp (1.11), QuantLibPython.mak (1.20): added
+	volatility files
+
+2002-03-06 16:47  lballabio
+
+	* setup.py (1.65), QuantLib/defaults.py (1.26),
+	QuantLib/SWIG/TermStructures.i (1.29), QuantLib/SWIG/Volatility.i
+	(1.1), QuantLib/SWIG/ql.i (1.28): Added swaption volatility matrix
+
+2002-03-06 11:42  lballabio
+
+	* QuantLib/SWIG/Interpolation.i (1.10): Fixed bilinear
+	interpolation
+
+2002-03-05 17:31  nando
+
+	* ChangeLog.txt (1.16): updated
+
+2002-03-05 17:30  nando
+
+	* setup.py (1.64), QuantLib/SWIG/ql.i (1.27): version number up to
+	b1
+
+2002-03-05 16:58  lballabio
+
+	* QuantLib/: defaults.py (1.25), SWIG/CashFlows.i (1.24),
+	SWIG/Instruments.i (1.17), SWIG/MarketElements.i (1.17),
+	SWIG/Observer.i (1.11), SWIG/TermStructures.i (1.28): Implemented
+	QuEP 8 and 10
+
+2002-03-05 16:56  nando
+
+	* setup.py (1.63), QuantLib/SWIG/ql.i (1.26): version number up to
+	a9
+
+2002-03-05 16:10  nando
+
+	* ChangeLog.txt (1.15): updated
+
+2002-03-04 17:25  lballabio
+
+	* QuantLib/: SWIG/Matrix.i (1.15), test/get_covariance.py (1.12),
+	test/mcmultifactorpricers.py (1.12): Typemapped list of lists to
+	Matrix
+
+2002-03-01 17:11  nando
+
+	* setup.py (1.62), QuantLib/SWIG/ql.i (1.25): version number up to
+	a8 branch a7 created
+
+2002-03-01 16:48  nando
+
+	* setup.py (1.61), QuantLib/SWIG/ql.i (1.24): version number up to
+	a7 I screwed up a6 branch
+
+2002-02-22 11:50  lballabio
+
+	* QuantLib/test/QuantLibTestSuite.py (1.32): RNGTest wasn't testing
+	jack
+
+2002-02-19 10:35  lballabio
+
+	* QuantLib/SWIG/: Indexes.i (1.24), String.i (1.9): Added
+	XiborManager::histories()
+
+2002-02-18 14:11  nando
+
+	* QuantLib/SWIG/DayCounters.i (1.22): more choices new methods not
+	supported yet
+
+2002-02-15 16:38  marmar
+
+	* QuantLib/SWIG/: Calendars.i (1.19), Indexes.i (1.23): new
+	exciting calendars and xibors introduced
+
+2002-02-15 15:06  marmar
+
+	* QuantLib/SWIG/: Calendars.i (1.18), Indexes.i (1.22): new
+	exciting calendars and xibors introduced
+
+2002-02-12 19:46  nando
+
+	* LICENSE.TXT (1.9), QuantLibPython.mak (1.19),
+	QuantLib/LICENSE.TXT (1.5): copyright revisited
+
+2002-02-11 18:17  nando
+
+	* makewrappers.py (1.13): comment added
+
+2002-02-11 17:40  marmar
+
+	* ChangeLog.txt (1.14), setup.py (1.60), QuantLib/SWIG/ql.i (1.23):
+	version 0.3.0a5 changed with 0.3.0a6
+
+2002-02-11 11:47  lballabio
+
+	* setup.py (1.59): Installation path changed for Python 2.2
+
+2002-02-11 09:22  lballabio
+
+	* QuantLib/SWIG/Indexes.i (1.21): [no log message]
+
+2002-01-30 14:55  lballabio
+
+	* QuantLib/SWIG/Instruments.i (1.16): added isExpired() to
+	Instrument interface
+
+2002-01-29 16:40  nando
+
+	* Authors.txt (1.3): updated
+
+2002-01-23 10:17  lballabio
+
+	* QuantLib/SWIG/PiecewiseFlatForward.i (1.14): Added dates() and
+	times() to PiecewiseFlatForward
+
+2002-01-21 09:44  lballabio
+
+	* QuantLib/defaults.py (1.24): Somewhat simplified
+	(new.instancemethod was not necessary in most cases)
+
+2002-01-17 12:10  aleppo
+
+	* QuantLib/SWIG/Statistics.i (1.12): Added Correlation Matrix
+	method
+
+2002-01-17 11:24  marmar
+
+	* QuantLib/defaults.py (1.23): improved
+	MarketElementHandle___getattr__
+
+2002-01-16 16:24  nando
+
+	* ChangeLog.txt (1.13), setup.py (1.58), QuantLib/SWIG/ql.i (1.22):
+	version number up to a5
+
+2002-01-16 15:11  nando
+
+	* makewrappers.py (1.12), setup.py (1.57), QuantLib/__init__.py
+	(1.15), QuantLib/defaults.py (1.22),
+	QuantLib/test/QuantLibTestSuite.py (1.31),
+	QuantLib/test/american_option.py (1.14),
+	QuantLib/test/barrier_option.py (1.16),
+	QuantLib/test/binary_option.py (1.12),
+	QuantLib/test/cliquet_option.py (1.13),
+	QuantLib/test/complexmarketelements.py (1.8), QuantLib/test/date.py
+	(1.12), QuantLib/test/daycounters.py (1.16),
+	QuantLib/test/distributions.py (1.14),
+	QuantLib/test/european_option.py (1.15),
+	QuantLib/test/european_with_dividends.py (1.13),
+	QuantLib/test/finite_difference_european.py (1.16),
+	QuantLib/test/forwardspreadedcurve.py (1.7),
+	QuantLib/test/get_covariance.py (1.11),
+	QuantLib/test/implied_volatility.py (1.16),
+	QuantLib/test/mcmultifactorpricers.py (1.11),
+	QuantLib/test/montecarlo_pricers.py (1.28),
+	QuantLib/test/old_european_option.py (1.11),
+	QuantLib/test/old_implied_volatility.py (1.10),
+	QuantLib/test/piecewiseflatforward.py (1.29),
+	QuantLib/test/random_generators.py (1.11),
+	QuantLib/test/risk_statistics.py (1.15),
+	QuantLib/test/segmentintegral.py (1.11),
+	QuantLib/test/statistics.py (1.12), QuantLib/test/swap.py (1.16):
+	new license and copyright notice
+
+2002-01-16 14:50  nando
+
+	* QuantLib/SWIG/: Barrier.i (1.7), BoundaryConditions.i (1.7),
+	Calendars.i (1.17), CashFlows.i (1.23), Currencies.i (1.9), Date.i
+	(1.20), DayCounters.i (1.21), Distributions.i (1.8), FdPricers.i
+	(1.7), Functions.i (1.7), History.i (1.11), Indexes.i (1.20),
+	Instruments.i (1.15), Interpolation.i (1.9), MarketElements.i
+	(1.16), Matrix.i (1.14), MontecarloPricers.i (1.26),
+	MontecarloTools.i (1.13), MultiPath.i (1.11), Null.i (1.10),
+	Observer.i (1.10), Operators.i (1.9), Options.i (1.14), Path.i
+	(1.12), PiecewiseFlatForward.i (1.13), Pricers.i (1.16), QLArray.i
+	(1.15), QuantLib.i (1.12), RandomNumbers.i (1.9), RateHelpers.i
+	(1.23), RiskStatistics.i (1.13), Scheduler.i (1.8),
+	SegmentIntegrals.i (1.11), Solvers1D.i (1.9), Statistics.i (1.11),
+	String.i (1.8), Swap.i (1.21), TermStructures.i (1.27), Types.i
+	(1.10), Vectors.i (1.16), ql.i (1.21): new license and copyright
+	notice
+
+2002-01-16 14:44  nando
+
+	* LICENSE.TXT (1.8), QuantLib/LICENSE.TXT (1.4): new license and
+	copyright notice
+
+2002-01-16 14:00  sadrejeb
+
+	* setup.py (1.56): removed garbage line
+
+2002-01-16 13:59  lballabio
+
+	* setup.py (1.55): Flags from quantlib-config added
+
+2002-01-16 12:21  nando
+
+	* LICENSE.TXT (1.7), QuantLib/LICENSE.TXT (1.3): new license and
+	copyright notice
+
+2002-01-16 11:10  nando
+
+	* setup.py (1.54): added trailing -cvs to version identifier
+
+2002-01-16 10:13  nando
+
+	* ChangeLog.txt (1.12): updated
+
+2002-01-15 14:37  nando
+
+	* QuantLib/: SWIG/ql.i (1.20), test/QuantLibTestSuite.py (1.30):
+	python >= 2.1 required
+
+2002-01-15 13:24  nando
+
+	* QuantLibPython.dsp (1.10), QuantLibPython.mak (1.18), setup.py
+	(1.53): added NOMINMAX define
+
+2002-01-15 11:28  lballabio
+
+	* QuantLib/SWIG/: Calendars.i (1.16), DayCounters.i (1.20),
+	QuantLib.i (1.11): Removed Factory - too clumsy for the little or
+	no use we had
+
+2002-01-14 15:56  nando
+
+	* README.txt (1.8): adding debug borland info
+
+2002-01-11 12:21  nando
+
+	* setup.py (1.52), QuantLib/SWIG/ql.i (1.19): version number up to
+	0.3.0a4
+
+2002-01-10 16:26  lballabio
+
+	* QuantLib/defaults.py (1.21): win doesn't have os.uname()
+
+2002-01-10 16:19  nando
+
+	* ChangeLog.txt (1.11): updated
+
+2002-01-10 12:10  lballabio
+
+	* QuantLib/SWIG/Matrix.i (1.13): compilation warnings removed
+
+2002-01-10 10:18  lballabio
+
+	* QuantLib/: defaults.py (1.20), test/implied_volatility.py (1.15):
+	Works on alpha
+
+2002-01-09 13:26  nando
+
+	* QuantLib/test/: QuantLibTestSuite.py (1.29), american_option.py
+	(1.13), barrier_option.py (1.15), binary_option.py (1.11),
+	cliquet_option.py (1.12), complexmarketelements.py (1.7), date.py
+	(1.11), daycounters.py (1.15), distributions.py (1.13),
+	european_option.py (1.14), european_with_dividends.py (1.12),
+	finite_difference_european.py (1.15), forwardspreadedcurve.py
+	(1.6), get_covariance.py (1.10), implied_volatility.py (1.14),
+	mcmultifactorpricers.py (1.10), montecarlo_pricers.py (1.27),
+	old_european_option.py (1.10), old_implied_volatility.py (1.9),
+	piecewiseflatforward.py (1.28), random_generators.py (1.10),
+	risk_statistics.py (1.14), segmentintegral.py (1.10), statistics.py
+	(1.11), swap.py (1.15): new copyright and license agreement
+
+2002-01-09 09:59  lballabio
+
+	* QuantLib/SWIG/: Date.i (1.19), Matrix.i (1.12),
+	MontecarloPricers.i (1.25), MultiPath.i (1.10), Options.i (1.13),
+	Path.i (1.11), QLArray.i (1.14), RiskStatistics.i (1.12),
+	SegmentIntegrals.i (1.10), Statistics.i (1.10), Types.i (1.9),
+	Vectors.i (1.15): Temporarily removed Size typedef to avoid
+	mismatch between type sizes
+
+2002-01-08 18:24  nando
+
+	* QuantLib/SWIG/: Barrier.i (1.6), BoundaryConditions.i (1.6),
+	Calendars.i (1.15), CashFlows.i (1.22), Currencies.i (1.8), Date.i
+	(1.18), DayCounters.i (1.19), Distributions.i (1.7), FdPricers.i
+	(1.6), Functions.i (1.6), History.i (1.10), Indexes.i (1.19),
+	Instruments.i (1.14), Interpolation.i (1.8), MarketElements.i
+	(1.15), Matrix.i (1.11), MontecarloPricers.i (1.24),
+	MontecarloTools.i (1.12), MultiPath.i (1.9), Null.i (1.9),
+	Observer.i (1.9), Operators.i (1.8), Options.i (1.12), Path.i
+	(1.10), PiecewiseFlatForward.i (1.12), Pricers.i (1.15), QLArray.i
+	(1.13), QuantLib.i (1.10), RandomNumbers.i (1.8), RateHelpers.i
+	(1.22), RiskStatistics.i (1.11), Scheduler.i (1.7),
+	SegmentIntegrals.i (1.9), Solvers1D.i (1.8), Statistics.i (1.9),
+	String.i (1.7), Swap.i (1.20), TermStructures.i (1.26), Types.i
+	(1.8), Vectors.i (1.14), ql.i (1.18): new copyright and license
+	agreement
+
+2002-01-08 18:09  benin
+
+	* QuantLib/test/: complexmarketelements.py (1.6),
+	forwardspreadedcurve.py (1.5), old_implied_volatility.py (1.8):
+	Reverting back last changes
+
+2002-01-08 18:08  nando
+
+	* makewrappers.py (1.11), setup.py (1.51), QuantLib/__init__.py
+	(1.14), QuantLib/defaults.py (1.19),
+	QuantLib/test/QuantLibTestSuite.py (1.28),
+	QuantLib/test/american_option.py (1.12),
+	QuantLib/test/barrier_option.py (1.14),
+	QuantLib/test/binary_option.py (1.10),
+	QuantLib/test/cliquet_option.py (1.11), QuantLib/test/date.py
+	(1.10), QuantLib/test/daycounters.py (1.14),
+	QuantLib/test/distributions.py (1.12),
+	QuantLib/test/european_option.py (1.13),
+	QuantLib/test/european_with_dividends.py (1.11),
+	QuantLib/test/finite_difference_european.py (1.14),
+	QuantLib/test/get_covariance.py (1.9),
+	QuantLib/test/implied_volatility.py (1.13),
+	QuantLib/test/mcmultifactorpricers.py (1.9),
+	QuantLib/test/montecarlo_pricers.py (1.26),
+	QuantLib/test/old_european_option.py (1.9),
+	QuantLib/test/piecewiseflatforward.py (1.27),
+	QuantLib/test/random_generators.py (1.9),
+	QuantLib/test/risk_statistics.py (1.13),
+	QuantLib/test/segmentintegral.py (1.9), QuantLib/test/statistics.py
+	(1.10), QuantLib/test/swap.py (1.14): reverting back wrong changes
+
+2002-01-08 17:33  nando
+
+	* makewrappers.py (1.10), setup.py (1.50), QuantLib/__init__.py
+	(1.13), QuantLib/defaults.py (1.18), QuantLib/SWIG/Barrier.i (1.5),
+	QuantLib/SWIG/BoundaryConditions.i (1.5), QuantLib/SWIG/Calendars.i
+	(1.14), QuantLib/SWIG/CashFlows.i (1.21),
+	QuantLib/SWIG/Currencies.i (1.7), QuantLib/SWIG/Date.i (1.17),
+	QuantLib/SWIG/DayCounters.i (1.18), QuantLib/SWIG/Distributions.i
+	(1.6), QuantLib/SWIG/FdPricers.i (1.5), QuantLib/SWIG/Functions.i
+	(1.5), QuantLib/SWIG/History.i (1.9), QuantLib/SWIG/Indexes.i
+	(1.18), QuantLib/SWIG/Instruments.i (1.13),
+	QuantLib/SWIG/Interpolation.i (1.7), QuantLib/SWIG/MarketElements.i
+	(1.14), QuantLib/SWIG/Matrix.i (1.10),
+	QuantLib/SWIG/MontecarloPricers.i (1.23),
+	QuantLib/SWIG/MontecarloTools.i (1.11), QuantLib/SWIG/MultiPath.i
+	(1.8), QuantLib/SWIG/Null.i (1.8), QuantLib/SWIG/Observer.i (1.8),
+	QuantLib/SWIG/Operators.i (1.7), QuantLib/SWIG/Options.i (1.11),
+	QuantLib/SWIG/Path.i (1.9), QuantLib/SWIG/PiecewiseFlatForward.i
+	(1.11), QuantLib/SWIG/Pricers.i (1.14), QuantLib/SWIG/QLArray.i
+	(1.12), QuantLib/SWIG/QuantLib.i (1.9),
+	QuantLib/SWIG/RandomNumbers.i (1.7), QuantLib/SWIG/RateHelpers.i
+	(1.21), QuantLib/SWIG/RiskStatistics.i (1.10),
+	QuantLib/SWIG/Scheduler.i (1.6), QuantLib/SWIG/SegmentIntegrals.i
+	(1.8), QuantLib/SWIG/Solvers1D.i (1.7), QuantLib/SWIG/Statistics.i
+	(1.8), QuantLib/SWIG/String.i (1.6), QuantLib/SWIG/Swap.i (1.19),
+	QuantLib/SWIG/TermStructures.i (1.25), QuantLib/SWIG/Types.i (1.7),
+	QuantLib/SWIG/Vectors.i (1.13), QuantLib/SWIG/ql.i (1.17),
+	QuantLib/test/QuantLibTestSuite.py (1.27),
+	QuantLib/test/american_option.py (1.11),
+	QuantLib/test/barrier_option.py (1.13),
+	QuantLib/test/binary_option.py (1.9),
+	QuantLib/test/cliquet_option.py (1.10),
+	QuantLib/test/complexmarketelements.py (1.5), QuantLib/test/date.py
+	(1.9), QuantLib/test/daycounters.py (1.13),
+	QuantLib/test/distributions.py (1.11),
+	QuantLib/test/european_option.py (1.12),
+	QuantLib/test/european_with_dividends.py (1.10),
+	QuantLib/test/finite_difference_european.py (1.13),
+	QuantLib/test/forwardspreadedcurve.py (1.4),
+	QuantLib/test/get_covariance.py (1.8),
+	QuantLib/test/implied_volatility.py (1.12),
+	QuantLib/test/mcmultifactorpricers.py (1.8),
+	QuantLib/test/montecarlo_pricers.py (1.25),
+	QuantLib/test/old_european_option.py (1.8),
+	QuantLib/test/old_implied_volatility.py (1.7),
+	QuantLib/test/piecewiseflatforward.py (1.26),
+	QuantLib/test/random_generators.py (1.8),
+	QuantLib/test/risk_statistics.py (1.12),
+	QuantLib/test/segmentintegral.py (1.8), QuantLib/test/statistics.py
+	(1.9), QuantLib/test/swap.py (1.13): new copyright and license
+	agreement
+
+2002-01-08 17:26  nando
+
+	* ChangeLog.txt (1.10): updated
+
+2002-01-08 14:59  nando
+
+	* Authors.txt (1.2), Contributors.txt (1.2), TODO.txt (1.12),
+	makewrappers.py (1.9), setup.py (1.49), QuantLib/LICENSE.TXT (1.2),
+	QuantLib/__init__.py (1.12), QuantLib/defaults.py (1.17): new
+	copyright and license agreement
+
+2002-01-08 11:14  nando
+
+	* LICENSE.TXT (1.6): new copyright and license agreement
+
+2002-01-04 16:30  lballabio
+
+	* QuantLib/SWIG/: Date.i (1.16), Matrix.i (1.9),
+	MontecarloPricers.i (1.22), MultiPath.i (1.7), Options.i (1.10),
+	Path.i (1.8), QLArray.i (1.11), RiskStatistics.i (1.9),
+	SegmentIntegrals.i (1.7), Statistics.i (1.7), Types.i (1.6),
+	Vectors.i (1.12): size_t changed to QL::Size
+
+2002-01-02 16:00  lballabio
+
+	* QuantLib/SWIG/: CashFlows.i (1.20), Indexes.i (1.17),
+	Instruments.i (1.12), Interpolation.i (1.6), MarketElements.i
+	(1.13), Options.i (1.9), PiecewiseFlatForward.i (1.10),
+	RateHelpers.i (1.20), Swap.i (1.18), TermStructures.i (1.24):
+	Derived classes exported as Handle<Derived>
+
+2001-12-28 12:51  lballabio
+
+	* QuantLib/SWIG/: Calendars.i (1.13), DayCounters.i (1.16),
+	DayCounters.i (1.17): Added quotes to representation
+
+2001-12-28 12:25  lballabio
+
+	* QuantLib/SWIG/: Calendars.i (1.12), Date.i (1.15), DayCounters.i
+	(1.15): Added more friendly __repr__ methods
+
+2001-12-28 10:33  lballabio
+
+	* QuantLib/SWIG/Vectors.i (1.11): Added typedefs to vector typemap
+	macros
+
+2001-12-28 10:32  lballabio
+
+	* QuantLib/SWIG/TermStructures.i (1.23): Added %include directive
+
+2001-12-28 10:31  lballabio
+
+	* makewrappers.py (1.8): Removed -opt switch (deprecated in SWIG)
+
+2001-12-20 09:57  marmar
+
+	* QuantLib/test/forwardspreadedcurve.py (1.3): now this is a real
+	test
+
+2001-12-19 13:56  nando
+
+	* QuantLib/SWIG/: Barrier.i (1.4), BoundaryConditions.i (1.4),
+	Calendars.i (1.11), CashFlows.i (1.19), Currencies.i (1.6), Date.i
+	(1.14), DayCounters.i (1.14), Distributions.i (1.5), FdPricers.i
+	(1.4), Functions.i (1.4), History.i (1.8), Indexes.i (1.16),
+	Instruments.i (1.11), Interpolation.i (1.5), MarketElements.i
+	(1.12), Matrix.i (1.8), MontecarloPricers.i (1.21),
+	MontecarloTools.i (1.10), MultiPath.i (1.6), Null.i (1.7),
+	Observer.i (1.7), Operators.i (1.6), Options.i (1.8), Path.i (1.7),
+	PiecewiseFlatForward.i (1.9), Pricers.i (1.13), QLArray.i (1.10),
+	QuantLib.i (1.8), RandomNumbers.i (1.6), RateHelpers.i (1.19),
+	RiskStatistics.i (1.8), Scheduler.i (1.5), SegmentIntegrals.i
+	(1.6), Solvers1D.i (1.6), Statistics.i (1.6), String.i (1.5),
+	Swap.i (1.17), TermStructures.i (1.22), Types.i (1.5), Vectors.i
+	(1.10), ql.i (1.16): reference updated
+
+2001-12-19 11:34  nando
+
+	* News.txt (1.8): typo fixed
+
+2001-12-19 11:13  nando
+
+	* News.txt (1.7): updated
+
+2001-12-19 10:58  nando
+
+	* ChangeLog.txt (1.9): updated
+
+2001-12-18 16:28  nando
+
+	* QuantLib/: __init__.py (1.11), defaults.py (1.16), SWIG/Barrier.i
+	(1.3), SWIG/BoundaryConditions.i (1.3), SWIG/Calendars.i (1.10),
+	SWIG/CashFlows.i (1.18), SWIG/Currencies.i (1.5), SWIG/Date.i
+	(1.13), SWIG/DayCounters.i (1.13), SWIG/Distributions.i (1.4),
+	SWIG/FdPricers.i (1.3), SWIG/Functions.i (1.3), SWIG/History.i
+	(1.7), SWIG/Indexes.i (1.15), SWIG/Instruments.i (1.10),
+	SWIG/Interpolation.i (1.4), SWIG/MarketElements.i (1.11),
+	SWIG/Matrix.i (1.7), SWIG/MontecarloPricers.i (1.20),
+	SWIG/MontecarloTools.i (1.9), SWIG/MultiPath.i (1.5), SWIG/Null.i
+	(1.6), SWIG/Observer.i (1.6), SWIG/Operators.i (1.5),
+	SWIG/Options.i (1.7), SWIG/Path.i (1.6),
+	SWIG/PiecewiseFlatForward.i (1.8), SWIG/Pricers.i (1.12),
+	SWIG/QLArray.i (1.9), SWIG/QuantLib.i (1.7), SWIG/RandomNumbers.i
+	(1.5), SWIG/RateHelpers.i (1.18), SWIG/RiskStatistics.i (1.7),
+	SWIG/Scheduler.i (1.4), SWIG/SegmentIntegrals.i (1.5),
+	SWIG/Solvers1D.i (1.5), SWIG/Statistics.i (1.5), SWIG/String.i
+	(1.4), SWIG/Swap.i (1.16), SWIG/TermStructures.i (1.21),
+	SWIG/Types.i (1.4), SWIG/Vectors.i (1.9), SWIG/ql.i (1.15),
+	test/QuantLibTestSuite.py (1.26), test/american_option.py (1.10),
+	test/barrier_option.py (1.12), test/binary_option.py (1.8),
+	test/cliquet_option.py (1.9), test/complexmarketelements.py (1.4),
+	test/date.py (1.8), test/daycounters.py (1.12),
+	test/distributions.py (1.10), test/european_option.py (1.11),
+	test/european_with_dividends.py (1.9),
+	test/finite_difference_european.py (1.12),
+	test/forwardspreadedcurve.py (1.2), test/get_covariance.py (1.7),
+	test/implied_volatility.py (1.11), test/mcmultifactorpricers.py
+	(1.7), test/montecarlo_pricers.py (1.24),
+	test/old_european_option.py (1.7), test/old_implied_volatility.py
+	(1.6), test/piecewiseflatforward.py (1.25),
+	test/random_generators.py (1.7), test/risk_statistics.py (1.11),
+	test/segmentintegral.py (1.7), test/statistics.py (1.8),
+	test/swap.py (1.12): quantlib.sourceforge.net replaced with
+	quantlib.org
+
+2001-12-18 15:52  marmar
+
+	* QuantLib/test/forwardspreadedcurve.py (1.1): new test!
+
+2001-12-18 12:21  marmar
+
+	* setup.py (1.48), QuantLib/SWIG/TermStructures.i (1.20),
+	QuantLib/test/QuantLibTestSuite.py (1.25): Fixed forward-spreaded
+	term structure, and test
+
+2001-12-18 10:24  nando
+
+	* QuantLibPython.dsp (1.9), QuantLibPython.mak (1.17), setup.py
+	(1.47): Finite Difference pricers now start with 'Fd' letters
+
+2001-12-17 17:36  nando
+
+	* QuantLib/test/montecarlo_pricers.py (1.23): typo fixed
+
+2001-12-17 16:27  nando
+
+	* QuantLib/: SWIG/FdPricers.i (1.2),
+	test/finite_difference_european.py (1.11): Finite Difference
+	pricers now start with 'Fd' letters
+
+2001-12-17 16:21  nando
+
+	* QuantLib/SWIG/: FdPricers.i (1.1), Pricers.i (1.11), ql.i (1.14):
+	Finite Difference pricers now start with 'Fd' letters
+
+2001-12-17 16:10  nando
+
+	* QuantLib/: SWIG/Pricers.i (1.10), test/QuantLibTestSuite.py
+	(1.24), test/american_option.py (1.9),
+	test/european_with_dividends.py (1.8): Finite Difference pricers
+	now start with 'Fd' letters
+
+2001-12-17 12:40  marmar
+
+	* QuantLib/SWIG/TermStructures.i (1.19): introduced
+	ForwardSpreadedTermStructure
+
+2001-12-17 12:17  nando
+
+	* QuantLib/test/mcmultifactorpricers.py (1.6): platform dependant
+	results fixed
+
+2001-12-17 12:09  nando
+
+	* QuantLib/test/montecarlo_pricers.py (1.22): platform dependant
+	results fixed
+
+2001-12-14 15:52  nando
+
+	* QuantLib/: SWIG/Statistics.i (1.4), test/statistics.py (1.7):
+	added downsideVariance
+
+2001-12-14 10:05  marmar
+
+	* QuantLib/: defaults.py (1.15), test/piecewiseflatforward.py
+	(1.24): default accuracy set to 1e-12
+
+2001-12-13 18:37  nando
+
+	* News.txt (1.6): updated
+
+2001-12-13 18:30  nando
+
+	* ChangeLog.txt (1.8): updated
+
+2001-12-13 18:14  nando
+
+	* QuantLib/test/: QuantLibTestSuite.py (1.23), american_option.py
+	(1.8), barrier_option.py (1.11), binary_option.py (1.7),
+	cliquet_option.py (1.8), complexmarketelements.py (1.3), date.py
+	(1.7), daycounters.py (1.11), distributions.py (1.9),
+	european_option.py (1.10), european_with_dividends.py (1.7),
+	finite_difference_european.py (1.10), get_covariance.py (1.6),
+	implied_volatility.py (1.10), montecarlo_pricers.py (1.21),
+	old_european_option.py (1.6), old_implied_volatility.py (1.5),
+	piecewiseflatforward.py (1.23), random_generators.py (1.6),
+	risk_statistics.py (1.10), segmentintegral.py (1.6), statistics.py
+	(1.6), swap.py (1.11): more info on the tested library
+
+2001-12-13 16:58  marmar
+
+	* QuantLib/: SWIG/PiecewiseFlatForward.i (1.7),
+	test/piecewiseflatforward.py (1.22): accuracy is now given as input
+
+2001-12-13 15:35  nando
+
+	* QuantLib/test/mcmultifactorpricers.py (1.5): improved convergence
+	in MCPricer
+
+2001-12-13 14:00  nando
+
+	* QuantLib/test/mcmultifactorpricers.py (1.4): more info on the
+	tested library
+
+2001-12-13 12:47  nando
+
+	* QuantLib/: SWIG/MontecarloPricers.i (1.19),
+	test/montecarlo_pricers.py (1.20): improved convergence in MCPricer
+
+2001-12-12 10:11  nando
+
+	* ChangeLog.txt (1.7): updated
+
+2001-12-11 09:23  nando
+
+	* QuantLib/SWIG/: QuantLib.i (1.6), ql.i (1.13): using old version
+	of the library forbidden
+
+2001-12-10 15:17  lballabio
+
+	* QuantLib/test/: american_option.py (1.7), barrier_option.py
+	(1.10), binary_option.py (1.6), cliquet_option.py (1.7),
+	complexmarketelements.py (1.2), date.py (1.6), daycounters.py
+	(1.10), distributions.py (1.8), european_option.py (1.9),
+	european_with_dividends.py (1.6), finite_difference_european.py
+	(1.9), get_covariance.py (1.5), implied_volatility.py (1.9),
+	mcmultifactorpricers.py (1.3), montecarlo_pricers.py (1.19),
+	old_european_option.py (1.5), old_implied_volatility.py (1.4),
+	piecewiseflatforward.py (1.21), risk_statistics.py (1.9),
+	segmentintegral.py (1.5), statistics.py (1.5), swap.py (1.10):
+	Using unittest methods for signaling failures
+
+2001-12-10 11:06  nando
+
+	* QuantLib/test/QuantLibTestSuite.py (1.22): now also "setup.py
+	test" displays which version of the library is going to be tested
+
+2001-12-05 15:41  nando
+
+	* setup.py (1.46): after branching out 0.3.1a2
+
+2001-12-05 15:34  nando
+
+	* setup.py (1.45): before branching out 0.3.1a2
+
+2001-12-05 15:13  nando
+
+	* ChangeLog.txt (1.6), History.txt (1.8), News.txt (1.5): before
+	branching out 0.3.1a1
+
+2001-12-05 09:55  nando
+
+	* ChangeLog.txt (1.5): updated
+
+2001-12-03 14:59  lballabio
+
+	* QuantLib/SWIG/: CashFlows.i (1.17), Indexes.i (1.14),
+	MarketElements.i (1.10), Observer.i (1.5), Options.i (1.6), Swap.i
+	(1.15), TermStructures.i (1.18): Handle can be assigned to Handles
+	to compatible types
+
+2001-11-29 18:06  nando
+
+	* ChangeLog.txt (1.4), QuantLibPython.mak (1.16):
+	R000201-branch-merge1 merged into trunk
+
+2001-11-29 17:07  nando
+
+	* ChangeLog.txt (1.3), History.txt (1.7), News.txt (1.4),
+	QuantLibPython.mak (1.15), TODO.txt (1.11),
+	QuantLib/SWIG/MontecarloPricers.i (1.18), QuantLib/SWIG/Null.i
+	(1.5), QuantLib/SWIG/QuantLib.i (1.5),
+	QuantLib/test/QuantLibTestSuite.py (1.21),
+	QuantLib/test/american_option.py (1.6),
+	QuantLib/test/barrier_option.py (1.9),
+	QuantLib/test/binary_option.py (1.5),
+	QuantLib/test/cliquet_option.py (1.6), QuantLib/test/date.py (1.5),
+	QuantLib/test/daycounters.py (1.9), QuantLib/test/distributions.py
+	(1.7), QuantLib/test/european_option.py (1.8),
+	QuantLib/test/european_with_dividends.py (1.5),
+	QuantLib/test/finite_difference_european.py (1.8),
+	QuantLib/test/implied_volatility.py (1.8),
+	QuantLib/test/mcmultifactorpricers.py (1.2),
+	QuantLib/test/montecarlo_pricers.py (1.18),
+	QuantLib/test/old_european_option.py (1.4): R000201-branch-merge1
+	merged into trunk
+
+2001-11-29 12:32  nando
+
+	* ChangeLog.txt (1.2.2.2), History.txt (1.6.16.2), News.txt
+	(1.3.14.3): 0.2.1 release final touch
+
+2001-11-29 09:14  nando
+
+	* QuantLib/test/QuantLibTestSuite.py (1.19.6.4): removed any
+	instance of #import ontheedge
+
+2001-11-27 21:45  nando
+
+	* QuantLib/test/: QuantLibTestSuite.py (1.19.6.3),
+	american_option.py (1.5.6.1), barrier_option.py (1.8.6.1),
+	binary_option.py (1.4.6.1), cliquet_option.py (1.5.6.1), date.py
+	(1.4.6.1), daycounters.py (1.8.4.1), distributions.py (1.6.4.1),
+	european_option.py (1.7.6.1), european_with_dividends.py (1.4.6.1),
+	finite_difference_european.py (1.7.2.1), implied_volatility.py
+	(1.7.6.1), mcmultifactorpricers.py (1.1.6.2), montecarlo_pricers.py
+	(1.17.2.2), old_european_option.py (1.3.6.1): removed any instance
+	of #import ontheedge
+
+2001-11-27 14:39  lballabio
+
+	* QuantLib/: defaults.py (1.14), SWIG/CashFlows.i (1.16),
+	SWIG/Functions.i (1.2), SWIG/MarketElements.i (1.9),
+	SWIG/Observer.i (1.4): Fixed reference counting of imported
+	PyObjects
+
+2001-11-27 11:19  marmar
+
+	* setup.py (1.44), QuantLib/test/QuantLibTestSuite.py (1.20),
+	QuantLib/test/complexmarketelements.py (1.1): Test for complex
+	market elements added
+
+2001-11-27 10:32  lballabio
+
+	* QuantLib/SWIG/Functions.i (1.1): [no log message]
+
+2001-11-27 10:19  lballabio
+
+	* QuantLib/: defaults.py (1.13), SWIG/MarketElements.i (1.8),
+	SWIG/Solvers1D.i (1.4), SWIG/ql.i (1.12): Exported derived and
+	composite market element
+
+2001-11-26 19:32  nando
+
+	* QuantLibPython.mak (1.14.2.1): PathPricer and MultiPathPricer
+	merged into PathPricer
+
+2001-11-26 18:42  nando
+
+	* TODO.txt (1.10.6.1): PathPricer and MultiPathPricer merged into
+	PathPricer
+
+2001-11-26 18:00  nando
+
+	* QuantLib/test/QuantLibTestSuite.py (1.19.6.2): PathPricer and
+	MultiPathPricer merged into PathPricer
+
+2001-11-26 17:56  nando
+
+	* QuantLib/: SWIG/MontecarloPricers.i (1.17.2.1),
+	test/mcmultifactorpricers.py (1.1.6.1): PathPricer and
+	MultiPathPricer merged into PathPricer
+
+2001-11-26 14:29  lballabio
+
+	* News.txt (1.3.14.2): [no log message]
+
+2001-11-23 23:20  nando
+
+	* ChangeLog.txt (1.2.2.1), History.txt (1.6.16.1), News.txt
+	(1.3.14.1), QuantLib/test/QuantLibTestSuite.py (1.19.6.1): release
+	0.2.1 final touches
+
+2001-11-20 19:28  nando
+
+	* QuantLib/SWIG/: Null.i (1.4.6.1), QuantLib.i (1.4.12.1): #include
+	"ql/*.hpp" turned into #include <ql/*.hpp>
+
+2001-11-20 17:09  nando
+
+	* QuantLib/test/montecarlo_pricers.py (1.17.2.1): nothing relevant
+
+2001-11-20 16:17  nando
+
+	* setup.py (1.43): version number up to 0.3.0a1
+
+2001-11-20 15:54  nando
+
+	* ChangeLog.txt (1.2): updated
+
+2001-11-20 15:44  nando
+
+	* setup.py (1.42): version number up to 0.2.1 (I'm going to branch
+	out) tabs removed gcc warnings purged
+
+2001-11-20 13:58  nando
+
+	* setup.py (1.41): version number up to 0.2.1a6 (overdue)
+
+2001-11-19 18:14  nando
+
+	* QuantLib/: SWIG/MontecarloPricers.i (1.17),
+	test/montecarlo_pricers.py (1.17): average strike now working. 
+	still to be improved
+
+2001-11-19 09:01  nando
+
+	* QuantLib/test/montecarlo_pricers.py (1.16): typo fixed
+
+2001-11-15 17:53  nando
+
+	* QuantLibPython.mak (1.14), QuantLib/SWIG/MontecarloPricers.i
+	(1.16), QuantLib/SWIG/Pricers.i (1.9),
+	QuantLib/test/montecarlo_pricers.py (1.15): asian option
+	refactoring discrete geometric ASO does not work yet
+
+2001-11-15 08:47  lballabio
+
+	* QuantLib/: SWIG/MultiPath.i (1.4), SWIG/Path.i (1.5),
+	SWIG/RandomNumbers.i (1.4), test/finite_difference_european.py
+	(1.7), test/random_generators.py (1.5): Sample as a (value,weight)
+	struct
+
+2001-11-13 15:47  nando
+
+	* setup.py (1.40): version number up to 0.2.1a5
+
+2001-11-09 17:08  nando
+
+	* QuantLibPython.mak (1.13): updated
+
+2001-11-09 17:03  nando
+
+	* QuantLibPython.mak (1.12): BackwardEuler and ForwardEuler renamed
+	ImplicitEuler and ExplicitEuler
+
+2001-11-09 14:43  nando
+
+	* QuantLib/test/: distributions.py (1.6), risk_statistics.py (1.8):
+	tabs removed
+
+2001-11-08 15:23  nando
+
+	* QuantLib/SWIG/: RiskStatistics.i (1.6), Statistics.i (1.3):
+	samples() method of statistical classes now returns size_t instead
+	of double
+
+2001-11-08 14:54  lballabio
+
+	* QuantLib/test/piecewiseflatforward.py (1.20): Fixing days fixed
+
+2001-11-08 12:26  nando
+
+	* QuantLibPython.mak (1.11): MS VC++ makefiles updated
+
+2001-11-07 12:49  marmar
+
+	* QuantLib/: defaults.py (1.12), SWIG/CashFlows.i (1.15),
+	SWIG/Swap.i (1.14), test/piecewiseflatforward.py (1.19),
+	test/swap.py (1.9): Fixing days introduced for floating-coupon bond
+
+2001-11-07 10:49  lballabio
+
+	* QuantLib/: defaults.py (1.11), SWIG/Calendars.i (1.9),
+	SWIG/CashFlows.i (1.14), SWIG/DayCounters.i (1.12), SWIG/Indexes.i
+	(1.13), SWIG/PiecewiseFlatForward.i (1.6), SWIG/RateHelpers.i
+	(1.17), SWIG/Scheduler.i (1.3), SWIG/Swap.i (1.13),
+	SWIG/TermStructures.i (1.17), test/daycounters.py (1.8): Calendar
+	and DayCounter now use the Strategy pattern
+
+2001-11-07 01:01  nando
+
+	* TODO.txt (1.10), QuantLib/SWIG/MontecarloPricers.i (1.15),
+	QuantLib/SWIG/Pricers.i (1.8), QuantLib/SWIG/RateHelpers.i (1.16):
+	added FuturesRateHelpers (no convexity adjustment yet)
+	dividendYield is now a Spread instead of a Rate (that is: cost of
+	carry) fixed a bug in the FRAHelper class
+
+2001-11-06 15:23  nando
+
+	* QuantLib/SWIG/: Barrier.i (1.2), Currencies.i (1.4), Date.i
+	(1.12), Distributions.i (1.3), Matrix.i (1.6), MontecarloPricers.i
+	(1.14), MontecarloTools.i (1.8), MultiPath.i (1.3), Options.i
+	(1.5), Path.i (1.4), QLArray.i (1.8), RandomNumbers.i (1.3),
+	SegmentIntegrals.i (1.4), String.i (1.3), Types.i (1.3), Vectors.i
+	(1.8): 'unsigned int' replaced by size_t
+
+2001-11-05 16:38  aleppo
+
+	* setup.py (1.39): Up to date test files.
+
+2001-11-05 13:59  lballabio
+
+	* QuantLib/test/: old_european_option.py (1.3),
+	old_implied_volatility.py (1.3): Temporarily removed the
+	deprecation of EuropeanOption
+
+2001-11-05 13:51  nando
+
+	* QuantLib/: SWIG/MontecarloPricers.i (1.13),
+	test/QuantLibTestSuite.py (1.19), test/everest_option.py (1.9),
+	test/himalaya_option.py (1.8), test/mcmultifactorpricers.py (1.1),
+	test/montecarlo_pricers.py (1.14), test/pagoda_option.py (1.9),
+	test/plain_basket_option.py (1.10): Monte Carlo Pricers new
+	interface
+
+2001-10-30 15:49  lballabio
+
+	* setup.py (1.38): Fixed file name
+
+2001-10-30 15:10  nando
+
+	* QuantLibPython.dsp (1.8), QuantLibPython.mak (1.10): random
+	number generators moved under RandomNumbers folder and namespace
+
+2001-10-30 14:11  nando
+
+	* QuantLib/SWIG/RandomNumbers.i (1.2): random number generators
+	moved under RandomNumbers folder and namespace
+
+2001-10-30 11:44  nando
+
+	* QuantLib/SWIG/RandomGenerators.i (1.4),
+	QuantLib/SWIG/RandomNumbers.i (1.1), QuantLib/SWIG/ql.i (1.11),
+	QuantLibPython.dsp (1.7), QuantLibPython.mak (1.9): random number
+	generators moved under RandomNumbers folder and namespace
+
+2001-10-30 10:36  nando
+
+	* QuantLib/: SWIG/MontecarloPricers.i (1.12),
+	test/everest_option.py (1.8), test/montecarlo_pricers.py (1.13),
+	test/pagoda_option.py (1.8), test/plain_basket_option.py (1.9):
+	merged mcmultipricer and mcpricer
+
+2001-10-25 09:04  nando
+
+	* QuantLib/SWIG/SegmentIntegrals.i (1.3): long -> unsigned int
+
+2001-10-23 16:20  lballabio
+
+	* QuantLib/: defaults.py (1.10), SWIG/History.i (1.6): Changed
+	iterator behavior in Python module
+
+2001-10-23 15:21  nando
+
+	* QuantLibPython.dep (1.6): removed
+
+2001-10-23 14:46  nando
+
+	* QuantLib/test/QuantLibTestSuite.py (1.18): added 'testing
+	QuantLib x.x.x' message to tests
+
+2001-10-23 14:22  nando
+
+	* QuantLib/test/: QuantLibTestSuite.py (1.17), american_option.py
+	(1.5), barrier_option.py (1.8), binary_option.py (1.4),
+	cliquet_option.py (1.5), date.py (1.4), daycounters.py (1.7),
+	distributions.py (1.5), european_option.py (1.7),
+	european_with_dividends.py (1.4), everest_option.py (1.7),
+	finite_difference_european.py (1.6), get_covariance.py (1.4),
+	himalaya_option.py (1.7), implied_volatility.py (1.7),
+	montecarlo_pricers.py (1.12), old_european_option.py (1.2),
+	old_implied_volatility.py (1.2), pagoda_option.py (1.7),
+	piecewiseflatforward.py (1.18), plain_basket_option.py (1.8),
+	random_generators.py (1.4), risk_statistics.py (1.7),
+	segmentintegral.py (1.4), statistics.py (1.4), swap.py (1.8): added
+	'testing QuantLib x.x.x' message to tests
+
+2001-10-23 10:58  nando
+
+	* README.txt (1.7): added swig version
+
+2001-10-23 07:15  nando
+
+	* MANIFEST.in (1.15): in order to avoid warning on non-existant
+	files
+
+2001-10-22 14:36  nando
+
+	* QuantLib/: SWIG/MontecarloPricers.i (1.11),
+	test/montecarlo_pricers.py (1.11): moving on Monte Carlo Pricers
+	clean up
+
+2001-10-22 13:54  marmar
+
+	* QuantLib/SWIG/: Indexes.i (1.12), MarketElements.i (1.7),
+	TermStructures.i (1.16): Null.i included
+
+2001-10-22 10:31  nando
+
+	* QuantLib/test/montecarlo_pricers.py (1.10): moving on Monte Carlo
+	Pricers clean up
+
+2001-10-22 09:01  nando
+
+	* QuantLib/: SWIG/MontecarloPricers.i (1.10),
+	test/montecarlo_pricers.py (1.9): moving on Monte Carlo Pricers
+	clean up
+
+2001-10-19 15:54  nando
+
+	* QuantLib/test/montecarlo_pricers.py (1.8): GeometricAsianOption:
+	bug fixed
+
+2001-10-19 15:04  nando
+
+	* QuantLib/SWIG/: MontecarloPricers.i (1.9), Pricers.i (1.7): moved
+	GeometricAsian where it belongs
+
+2001-10-19 13:08  lballabio
+
+	* QuantLib/SWIG/: Operators.i (1.4), Pricers.i (1.6): Started
+	cleanup of finite difference models
+
+2001-10-19 11:41  nando
+
+	* QuantLib/test/: everest_option.py (1.6), himalaya_option.py
+	(1.6), pagoda_option.py (1.6), plain_basket_option.py (1.7):
+	antithetic variance reduction technique STEP 7 -- final Now it
+	works for multiasset. The naive multiasset approach was right.
+
+2001-10-18 16:51  lballabio
+
+	* QuantLib/: SWIG/RateHelpers.i (1.15), SWIG/Swap.i (1.12),
+	test/piecewiseflatforward.py (1.17): PiecewiseFlatForward now
+	observer of rates passed as MarketElements
+
+2001-10-18 10:47  lballabio
+
+	* QuantLib/: defaults.py (1.9), SWIG/MarketElements.i (1.6),
+	SWIG/Null.i (1.4), SWIG/TermStructures.i (1.15),
+	test/european_option.py (1.6), test/implied_volatility.py (1.6):
+	Last bit of reworking for TermStructure; RelinkableHandle
+	initialized with an optional Handle; made defaults.py a bit more
+	readable
+
+2001-10-18 10:04  nando
+
+	* QuantLib/: SWIG/MontecarloPricers.i (1.8), SWIG/MultiPath.i
+	(1.2), test/everest_option.py (1.5), test/himalaya_option.py (1.5),
+	test/pagoda_option.py (1.5), test/plain_basket_option.py (1.6):
+	antithetic variance reduction technique STEP 5 Introducing
+	antithetic approach to multi asset option general cleaning of
+	multiasset MC interface
+
+2001-10-17 13:12  nando
+
+	* QuantLibPython.dep (1.5), QuantLibPython.dsp (1.6),
+	QuantLibPython.mak (1.8): updated Swig files' dependencies for MS
+	VC++ project
+
+2001-10-17 11:22  lballabio
+
+	* QuantLib/: defaults.py (1.8), SWIG/TermStructures.i (1.14):
+	Unified Date and Time interface in TermStructure
+
+2001-10-17 08:49  nando
+
+	* setup.py (1.37): antithetic variance reduction technique STEP 4
+	Introducing antithetic approach to multi asset option
+
+2001-10-16 16:17  nando
+
+	* QuantLib/SWIG/MultiPath.i (1.1): antithetic variance reduction
+	technique STEP 3 MultiPath is now a class
+
+2001-10-16 14:53  nando
+
+	* QuantLibPython.dsp (1.5), QuantLibPython.mak (1.7),
+	QuantLib/SWIG/MontecarloPricers.i (1.7),
+	QuantLib/SWIG/MontecarloTools.i (1.7), QuantLib/SWIG/Path.i (1.3),
+	QuantLib/SWIG/ql.i (1.10), QuantLib/test/montecarlo_pricers.py
+	(1.7), QuantLib/test/plain_basket_option.py (1.5): antithetic
+	variance reduction technique STEP 3 MultiPath is now a class
+
+2001-10-16 11:09  lballabio
+
+	* QuantLib/: SWIG/MarketElements.i (1.5), SWIG/Swap.i (1.11),
+	SWIG/TermStructures.i (1.13), test/piecewiseflatforward.py (1.16),
+	test/swap.py (1.7): Added BPS to generic swap legs
+
+2001-10-15 13:54  nando
+
+	* README.txt (1.6): updated for Borland compilation
+
+2001-10-12 17:29  nando
+
+	* QuantLib/SWIG/MontecarloPricers.i (1.6): introduced antithetic
+	variance reduction technique
+
+2001-10-12 17:21  nando
+
+	* QuantLib/: test/montecarlo_pricers.py (1.6),
+	SWIG/MontecarloPricers.i (1.5): introduced antithetic variance
+	reduction technique
+
+2001-10-12 13:11  lballabio
+
+	* setup.py (1.36), QuantLib/test/QuantLibTestSuite.py (1.16),
+	QuantLib/test/old_european_option.py (1.1),
+	QuantLib/test/old_implied_volatility.py (1.1): Reintegrated tests
+	for deprecated pricers
+
+2001-10-12 12:12  lballabio
+
+	* QuantLib/test/: european_option.py (1.5), implied_volatility.py
+	(1.5): Tests now use the new European pricer
+
+2001-10-12 09:05  lballabio
+
+	* QuantLib/defaults.py (1.7): In Python, relinkable handles proxy
+	the linked object's methods
+
+2001-10-11 15:50  lballabio
+
+	* QuantLib/: defaults.py (1.6), SWIG/Options.i (1.4): First working
+	option engine
+
+2001-10-05 16:17  nando
+
+	* ChangeLog (1.2), ChangeLog.txt (1.1): updated
+
+2001-10-05 11:18  nando
+
+	* setup.py (1.35): version number up to 0.2.1a4
+
+2001-10-05 11:09  nando
+
+	* setup.py (1.34): version number up to 0.2.1a3
+
+2001-10-04 12:16  lballabio
+
+	* QuantLib/__init__.py (1.10): Search __version__ and
+	__hexversion__ in a couple of possible places instead of just one
+
+2001-10-04 09:08  lballabio
+
+	* QuantLib/SWIG/: Options.i (1.3), QLArray.i (1.7): Formatting
+	glitches
+
+2001-10-04 08:27  lballabio
+
+	* QuantLib/: defaults.py (1.5), SWIG/CashFlows.i (1.13),
+	SWIG/Swap.i (1.10): CashFlow/Coupon reorganization
+
+2001-10-03 13:11  nando
+
+	* setup.py (1.33): version number up to 0.2.1a2
+
+2001-10-03 10:46  nando
+
+	* QuantLib/SWIG/QuantLib.i (1.4): added __version__ and
+	__hexversion__
+
+2001-10-03 10:46  nando
+
+	* QuantLib/__init__.py (1.9): added QL_VERSION and QL_HEX_VERSION
+
+2001-10-02 17:09  enri
+
+	* MANIFEST.in (1.14): *.txt added
+
+2001-10-02 08:42  lballabio
+
+	* QuantLib/SWIG/: Calendars.i (1.8), DayCounters.i (1.11),
+	QuantLib.i (1.3), ql.i (1.9): Added Calendar and DayCounter
+	factories
+
+2001-10-01 15:56  nando
+
+	* makewrappers.py (1.7): removed raw_input('press any key to
+	continue') when run as __main__
+
+2001-10-01 08:46  nando
+
+	* makewrappers.py (1.6): added raw_input('press any key to
+	continue') when run as __main__
+
+2001-10-01 08:23  marmar
+
+	* makewrappers.py (1.5): if __name__ == '__main__' added
+
+2001-09-28 09:12  lballabio
+
+	* TODO.txt (1.9): [no log message]
+
+2001-09-24 15:55  lballabio
+
+	* QuantLib/: SWIG/Calendars.i (1.7), SWIG/CashFlows.i (1.12),
+	SWIG/Date.i (1.11), SWIG/Distributions.i (1.2),
+	SWIG/MarketElements.i (1.4), SWIG/Operators.i (1.3),
+	SWIG/RateHelpers.i (1.14), SWIG/RiskStatistics.i (1.5),
+	SWIG/SegmentIntegrals.i (1.2), SWIG/Swap.i (1.9), SWIG/Vectors.i
+	(1.7), test/daycounters.py (1.6), test/piecewiseflatforward.py
+	(1.15): Some more 1.3.8 cleaning up
+
+2001-09-24 13:09  lballabio
+
+	* QuantLib/SWIG/History.i (1.5): Fixes for SWIG 1.3.8
+
+2001-09-24 12:45  lballabio
+
+	* QuantLib/SWIG/: Matrix.i (1.5), MontecarloPricers.i (1.4),
+	QLArray.i (1.6): Fixes for SWIG 1.3.8
+
+2001-09-19 15:12  lballabio
+
+	* QuantLib/SWIG/: BoundaryConditions.i (1.2), Date.i (1.10):
+	Removed warnings from wrapper code
+
+2001-09-19 10:35  lballabio
+
+	* QuantLib/SWIG/: CashFlows.i (1.11), Date.i (1.9), History.i
+	(1.4), Indexes.i (1.11), Instruments.i (1.9), Interpolation.i
+	(1.3), MarketElements.i (1.3), Matrix.i (1.4), Observer.i (1.3),
+	Path.i (1.2), PiecewiseFlatForward.i (1.5), QLArray.i (1.5),
+	RateHelpers.i (1.13), Scheduler.i (1.2), Solvers1D.i (1.3),
+	Statistics.i (1.2), TermStructures.i (1.12): Steps towards SWIG
+	1.3.8 (we'll skip 1.3.7 - it's kind of buggy)
+
+2001-09-18 14:00  nando
+
+	* News.txt (1.3), README.txt (1.5): R020-branch-merge1 merged into
+	trunk
+
+2001-09-17 17:22  nando
+
+	* TODO.txt (1.8): updated
+
+2001-09-17 08:08  nando
+
+	* News.txt (1.2.2.1): Typo fixed
+
+2001-09-14 16:24  lballabio
+
+	* setup.py (1.32), QuantLib/SWIG/TermStructures.i (1.11),
+	QuantLib/test/QuantLibTestSuite.py (1.15),
+	QuantLib/test/term_structures.py (1.7): Removed deprecated classes
+
+2001-09-14 15:01  lballabio
+
+	* QuantLib/: SWIG/DayCounters.i (1.10),
+	test/piecewiseflatforward.py (1.14), test/swap.py (1.6),
+	test/term_structures.py (1.6): Grouped act/act day counters and
+	30/360 day counters
+
+2001-09-14 09:41  nando
+
+	* README.txt (1.4.2.1): Swing 1.3.7 not supported
+
+2001-09-13 08:32  lballabio
+
+	* History.txt (1.6), News.txt (1.2), TODO.txt (1.7),
+	QuantLib/SWIG/MontecarloPricers.i (1.3),
+	QuantLib/SWIG/RandomGenerators.i (1.3): Preparing for release
+
+2001-09-12 14:53  nando
+
+	* QuantLib/test/QuantLibTestSuite.py (1.14): reverting wrong change
+
+2001-09-12 14:53  nando
+
+	* setup.py (1.31), QuantLib/__init__.py (1.8),
+	QuantLib/test/QuantLibTestSuite.py (1.13): version updated to 0.2.0
+
+2001-09-12 14:44  nando
+
+	* QuantLib/test/montecarlo_pricers.py (1.5): nothing ...
+
+2001-09-11 16:46  nando
+
+	* QuantLib/SWIG/Operators.i (1.2): setHigherBC has been changed to
+	setUpperBC, but these files were not updated.
+	
+	Updating now ...
+
+2001-09-10 10:25  lballabio
+
+	* setup.py (1.30), QuantLib/SWIG/MontecarloTools.i (1.6),
+	QuantLib/SWIG/Path.i (1.1), QuantLib/SWIG/ql.i (1.8): Path revamped
+
+2001-09-04 13:59  nando
+
+	* History.txt (1.5), News.txt (1.1), setup.py (1.29): first draft
+	of the 0.2 News
+
+2001-09-04 13:42  enri
+
+	* ChangeLog (1.1): new file added
+
+2001-09-03 15:29  nando
+
+	* QuantLibPython.dep (1.4), QuantLibPython.mak (1.6): MS VC now
+	uses the build dir
+
+2001-09-03 14:46  lballabio
+
+	* setup.py (1.28): Disabled a bazillion of warnings
+
+2001-09-03 14:10  nando
+
+	* QuantLibPython.dsp (1.4), QuantLibPython.mak (1.5), setup.py
+	(1.27): QuantLib source (*.hpp and *.cpp) moved under topdir/ql
+
+2001-09-03 08:11  nando
+
+	* QuantLib/test/segmentintegral.py (1.3): using math.pi instead of
+	3.14....
+
+2001-09-03 08:09  nando
+
+	* setup.py (1.26), QuantLib/__init__.py (1.7): version update to
+	0.2
+
+2001-09-03 08:06  nando
+
+	* LICENSE.TXT (1.5): added initial blank line
+
+2001-08-31 13:17  nando
+
+	* QuantLibPython.dep (1.3), QuantLibPython.mak (1.4): updated
+
+2001-08-31 10:20  nando
+
+	* QuantLib/test/: QuantLibTestSuite.py (1.12), american_option.py
+	(1.4), barrier_option.py (1.7), binary_option.py (1.3),
+	cliquet_option.py (1.4), date.py (1.3), daycounters.py (1.5),
+	distributions.py (1.4), european_option.py (1.4),
+	european_with_dividends.py (1.3), everest_option.py (1.4),
+	finite_difference_european.py (1.5), get_covariance.py (1.3),
+	himalaya_option.py (1.4), implied_volatility.py (1.4),
+	montecarlo_pricers.py (1.4), pagoda_option.py (1.4),
+	piecewiseflatforward.py (1.13), plain_basket_option.py (1.4),
+	random_generators.py (1.3), risk_statistics.py (1.6),
+	segmentintegral.py (1.2), statistics.py (1.3), swap.py (1.5),
+	term_structures.py (1.5): different comments
+
+2001-08-30 20:22  nando
+
+	* QuantLib/test/: barrier_option.py (1.6), daycounters.py (1.4):
+	little changes
+
+2001-08-30 15:02  nando
+
+	* TODO.txt (1.6): updated
+
+2001-08-30 13:27  nando
+
+	* QuantLib/: SWIG/DayCounters.i (1.9), test/daycounters.py (1.3):
+	daycounters works with Python test suite step 2: no reference dates
+	were they are not needed
+
+2001-08-30 12:33  nando
+
+	* QuantLib/test/: QuantLibTestSuite.py (1.11), daycounters.py
+	(1.2): daycounters works with Python test suite step 1
+
+2001-08-30 10:41  nando
+
+	* QuantLibPython.dep (1.2), QuantLibPython.dsp (1.3),
+	QuantLibPython.mak (1.3), setup.py (1.25),
+	QuantLib/test/american_option.py (1.3),
+	QuantLib/test/distributions.py (1.3): little changes
+
+2001-08-30 08:22  nando
+
+	* TODO.txt (1.5): updated
+
+2001-08-30 08:20  nando
+
+	* QuantLib/test/QuantLibTestSuite.py (1.10): bug fixed
+
+2001-08-29 19:08  nando
+
+	* QuantLibPython.dsp (1.2), QuantLibPython.mak (1.2),
+	QuantLib/test/QuantLibTestSuite.py (1.9): no message
+
+2001-08-29 19:07  nando
+
+	* setup.py (1.24): removed wrong compile arg
+
+2001-08-29 18:11  nando
+
+	* setup.py (1.23), QuantLib/defaults.py (1.4),
+	QuantLib/SWIG/DayCounters.i (1.8), QuantLib/test/daycounters.py
+	(1.1): added daycounter test
+
+2001-08-29 09:47  nando
+
+	* MANIFEST.in (1.13): little tweaks to avoid warnings
+
+2001-08-29 09:39  nando
+
+	* QuantLib/SWIG/: Date.i (1.8), Matrix.i (1.3): little tweaks to
+	avoid gcc warnings
+
+2001-08-29 09:25  nando
+
+	* QuantLib/test/: QuantLibTestSuite.py (1.8), date.py (1.2),
+	distributions.py (1.2), everest_option.py (1.3), get_covariance.py
+	(1.2), himalaya_option.py (1.3), implied_volatility.py (1.3),
+	pagoda_option.py (1.3), piecewiseflatforward.py (1.12),
+	plain_basket_option.py (1.3), random_generators.py (1.2),
+	statistics.py (1.2): comments removed
+
+2001-08-29 09:11  nando
+
+	* QuantLibPython.dep (1.1): added dep files to avoid annoying
+	warning
+
+2001-08-28 18:00  nando
+
+	* QuantLib/: SWIG/Matrix.i (1.2), SWIG/Vectors.i (1.6),
+	test/finite_difference_european.py (1.4): unsigned int instead of
+	int
+
+2001-08-28 13:33  aleppo
+
+	* QuantLib/test/: everest_option.py (1.2), himalaya_option.py
+	(1.2), montecarlo_pricers.py (1.3), pagoda_option.py (1.2),
+	plain_basket_option.py (1.2): Changed stored values after a  bug
+	fixing done  by Nando.
+
+2001-08-28 12:13  nando
+
+	* QuantLib/: SWIG/Date.i (1.7), SWIG/QLArray.i (1.4),
+	SWIG/Vectors.i (1.5), test/QuantLibTestSuite.py (1.7): unsigned int
+	size() instead of int size() warnings removed
+
+2001-08-28 12:12  nando
+
+	* TODO.txt (1.4): updated
+
+2001-08-28 12:09  nando
+
+	* QuantLib/SWIG/TermStructures.i (1.10): removed comments
+
+2001-08-22 17:50  nando
+
+	* QuantLibPython.mak (1.1): added MS VC++ dsp
+
+2001-08-22 17:45  nando
+
+	* QuantLibPython.dsp (1.1): added MS VC++ dsp
+
+2001-08-22 14:17  nando
+
+	* QuantLib/SWIG/MontecarloTools.i (1.5): updated
+
+2001-08-21 10:49  nando
+
+	* QuantLib/test/: QuantLibTestSuite.py (1.6),
+	piecewiseflatforward.py (1.11): '#import ontheedge' comment added
+
+2001-08-13 15:02  nando
+
+	* TODO.txt (1.3), QuantLib/SWIG/Pricers.i (1.5),
+	QuantLib/test/american_option.py (1.2),
+	QuantLib/test/barrier_option.py (1.5),
+	QuantLib/test/binary_option.py (1.2),
+	QuantLib/test/cliquet_option.py (1.3),
+	QuantLib/test/european_option.py (1.3),
+	QuantLib/test/european_with_dividends.py (1.2),
+	QuantLib/test/finite_difference_european.py (1.3): added
+	dividendRho method
+
+2001-08-09 10:58  marmar
+
+	* setup.py (1.22): s
+
+2001-08-08 15:47  marmar
+
+	* setup.py (1.21), QuantLib/SWIG/SegmentIntegrals.i (1.1),
+	QuantLib/SWIG/ql.i (1.7), QuantLib/test/QuantLibTestSuite.py (1.5),
+	QuantLib/test/segmentintegral.py (1.1): Class SegmentIntegral
+	computes the integral of a function over an interval
+
+2001-08-08 10:59  nando
+
+	* QuantLib/test/montecarlo_pricers.py (1.2): extended test
+
+2001-08-07 17:40  nando
+
+	* QuantLib/: SWIG/MontecarloTools.i (1.4),
+	test/QuantLibTestSuite.py (1.4): 1) StandardPathGenerator now is
+	GaussianPathGenerator; 2) StandardMultiPathGenerator now is
+	GaussianMultiPathGenerator; 3) PathMonteCarlo now is
+	MonteCarloModel; 4) added ICGaussian, a Gaussian distribution that
+	use    QuantLib::Math::InvCumulativeNormalDistribution to convert
+	uniform    distribution extractions into gaussian distribution
+	extractions; 5) added a few trailing underscore to private members
+	6) style enforced here and there ....
+
+2001-08-06 16:43  nando
+
+	* QuantLib/test/: cliquet_option.py (1.2), european_option.py
+	(1.2), finite_difference_european.py (1.2), implied_volatility.py
+	(1.2): BSMOption now is SingleAssetOption BSMEuropeanOption now is
+	EuropeanOption
+
+2001-08-06 15:44  nando
+
+	* QuantLib/SWIG/Pricers.i (1.4): BSMOption now is SingleAssetOption
+	BSMEuropeanOption now is EuropeanOption
+
+2001-07-30 13:46  marmar
+
+	* QuantLib/SWIG/Options.i (1.2): Added more aliases for option type
+
+2001-07-30 13:46  marmar
+
+	* QuantLib/SWIG/Calendars.i (1.6): Added more aliases for rolling
+	convention
+
+2001-07-27 07:26  nando
+
+	* QuantLib/test/barrier_option.py (1.4): removed 'import ontheedge'
+
+2001-07-26 13:56  nando
+
+	* QuantLib/test/barrier_option.py (1.3): straddle barrier option
+	handled
+
+2001-07-26 10:58  nando
+
+	* QuantLib/test/barrier_option.py (1.2): added a reference
+
+2001-07-19 11:01  nando
+
+	* TODO.txt (1.2): updated
+
+2001-07-18 17:29  nando
+
+	* TODO.txt (1.1): to do list
+
+2001-07-18 12:49  marmar
+
+	* QuantLib/SWIG/History.i (1.3): Mapped None to null history
+
+2001-07-17 16:16  marmar
+
+	* QuantLib/SWIG/: Calendars.i (1.5), Date.i (1.6), DayCounters.i
+	(1.7), Instruments.i (1.8), Interpolation.i (1.2), MarketElements.i
+	(1.2), QLArray.i (1.3), TermStructures.i (1.9), Vectors.i (1.4):
+	Fixed a few negated __nonzero__
+
+2001-07-17 14:19  marmar
+
+	* QuantLib/SWIG/: History.i (1.2), Null.i (1.3), Pricers.i (1.3):
+	Typemapped Null<double> and Null<int> to None and viceversa
+
+2001-07-16 16:08  lballabio
+
+	* setup.py (1.20), QuantLib/defaults.py (1.3),
+	QuantLib/SWIG/CashFlows.i (1.10), QuantLib/SWIG/Instruments.i
+	(1.7), QuantLib/SWIG/Null.i (1.2), QuantLib/SWIG/Observer.i (1.2),
+	QuantLib/SWIG/QLArray.i (1.2), QuantLib/SWIG/TermStructures.i
+	(1.8), QuantLib/SWIG/Vectors.i (1.3), QuantLib/SWIG/ql.i (1.6),
+	QuantLib/SWIG/MarketElements.i (1.1): Market elements and stuff
+
+2001-07-13 09:48  nando
+
+	* README.txt (1.4): update to mention swig 1.3.6
+
+2001-07-13 09:42  nando
+
+	* README.txt (1.3): update to mention swig 1.3.6
+
+2001-07-09 16:29  lballabio
+
+	* QuantLib/SWIG/Types.i (1.2): Some documentation and market
+	element
+
+2001-07-06 18:24  nando
+
+	* QuantLib/SWIG/QuantLib.i (1.2): slight modifications to avoid
+	VisualStudio warnings
+
+2001-07-06 09:36  lballabio
+
+	* setup.py (1.19), QuantLib/__init__.py (1.6): Hidden 'defaults'
+	module
+
+2001-07-05 15:58  lballabio
+
+	* setup.py (1.18), QuantLib/SWIG/CashFlows.i (1.9),
+	QuantLib/SWIG/Date.i (1.5), QuantLib/SWIG/DayCounters.i (1.6),
+	QuantLib/SWIG/Financial.i (1.2), QuantLib/SWIG/Indexes.i (1.10),
+	QuantLib/SWIG/Instruments.i (1.6),
+	QuantLib/SWIG/MontecarloPricers.i (1.2), QuantLib/SWIG/Pricers.i
+	(1.2), QuantLib/SWIG/RateHelpers.i (1.12),
+	QuantLib/SWIG/TermStructures.i (1.7), QuantLib/SWIG/Types.i (1.1),
+	QuantLib/SWIG/ql.i (1.5): Collected typedefs in a single file
+
+2001-07-03 13:19  lballabio
+
+	* QuantLib/SWIG/RandomGenerators.i (1.2): Added Knuth random
+	generator after doubts were casted on the NR one
+
+2001-06-27 16:07  nando
+
+	* QuantLib/test/QuantLibTestSuite.py (1.3): removed useless comment
+	to increase Activity percentile
+
+2001-06-26 12:37  marmar
+
+	* QuantLib/SWIG/Instruments.i (1.5): typo corrected
+
+2001-06-26 09:07  enri
+
+	* setup.py (1.17): installation folders changed (for win32 and
+	unixes)  - new target install_swigfiles  - new target install_docs 
+	     - new target install_testfiles
+
+2001-06-25 11:46  nando
+
+	* QuantLib/README.txt (1.2): removed because it was outdated and
+	useless
+
+2001-06-25 10:26  lballabio
+
+	* QuantLib/: defaults.py (1.2), SWIG/CashFlows.i (1.8),
+	SWIG/Instruments.i (1.4), SWIG/Swap.i (1.8), SWIG/TermStructures.i
+	(1.6): A few defaults added
+
+2001-06-22 16:49  lballabio
+
+	* setup.py (1.16), QuantLib/__init__.py (1.5), QuantLib/defaults.py
+	(1.1), QuantLib/SWIG/Calendars.i (1.4), QuantLib/SWIG/DayCounters.i
+	(1.5): Some default arguments added
+
+2001-06-22 14:00  marmar
+
+	* QuantLib/SWIG/Calendars.i (1.3): Error message enhanced
+
+2001-06-21 14:35  lballabio
+
+	* QuantLib/SWIG/: Indexes.i (1.9), Instruments.i (1.3):
+	Observability is back
+
+2001-06-20 16:10  nando
+
+	* QuantLib/test/risk_statistics.py (1.5): comments removed
+
+2001-06-20 15:40  lballabio
+
+	* QuantLib/SWIG/Observer.i (1.1): Some observability is back
+
+2001-06-20 11:52  lballabio
+
+	* setup.py (1.15), QuantLib/SWIG/TermStructures.i (1.5),
+	QuantLib/SWIG/ql.i (1.4), QuantLib/test/term_structures.py (1.4):
+	Some observability is back
+
+2001-06-19 08:20  lballabio
+
+	* setup.py (1.14), QuantLib/SWIG/Date.i (1.4),
+	QuantLib/SWIG/DayCounters.i (1.4), QuantLib/SWIG/Null.i (1.1),
+	QuantLib/SWIG/ql.i (1.3): Added macros for null objects
+
+2001-06-18 11:55  lballabio
+
+	* QuantLib/SWIG/Indexes.i (1.8): Restored name() method
+
+2001-06-18 11:54  lballabio
+
+	* QuantLib/SWIG/DayCounters.i (1.3): Allowed passing of None as
+	null day counter
+
+2001-06-18 08:06  lballabio
+
+	* QuantLib/: SWIG/CashFlows.i (1.7), SWIG/Indexes.i (1.7),
+	SWIG/RateHelpers.i (1.11), SWIG/Swap.i (1.7),
+	test/piecewiseflatforward.py (1.10), test/swap.py (1.4): Reworked
+	indexes and floating rate coupon
+
+2001-06-15 13:52  lballabio
+
+	* QuantLib/SWIG/: CashFlows.i (1.6), Date.i (1.3), Indexes.i (1.6):
+	Reworked indexes
+
+2001-06-13 16:18  lballabio
+
+	* QuantLib/: SWIG/RateHelpers.i (1.10),
+	test/piecewiseflatforward.py (1.9): Polished rate helper interfaces
+
+2001-06-12 15:10  lballabio
+
+	* QuantLib/SWIG/Indexes.i (1.5): Renamed Libor to GBPLibor and
+	LiborManager to XiborManager
+
+2001-06-12 13:44  lballabio
+
+	* QuantLib/: SWIG/PiecewiseFlatForward.i (1.4), SWIG/RateHelpers.i
+	(1.9), SWIG/TermStructures.i (1.4), test/piecewiseflatforward.py
+	(1.8), test/swap.py (1.3), test/term_structures.py (1.3): Today's
+	date is back into term structures Instruments are now constructed
+	with settlement days instead of settlement date
+
+2001-06-11 16:12  nando
+
+	* QuantLib/: SWIG/RiskStatistics.i (1.4), test/risk_statistics.py
+	(1.4): potentialUpfront is now potentialUpside
+
+2001-06-11 13:50  aleppo
+
+	* QuantLib/: SWIG/RiskStatistics.i (1.3), test/risk_statistics.py
+	(1.3): Potential  Up Front added
+
+2001-06-11 12:08  lballabio
+
+	* QuantLib/SWIG/: CashFlows.i (1.5), Date.i (1.2),
+	PiecewiseFlatForward.i (1.3), RateHelpers.i (1.8), String.i (1.2),
+	Vectors.i (1.2): Rationalized vector typemaps
+
+2001-06-08 13:35  lballabio
+
+	* QuantLib/SWIG/RateHelpers.i (1.7): Exported FraRateHelper
+
+2001-06-08 11:17  lballabio
+
+	* QuantLib/SWIG/: CashFlows.i (1.4), Solvers1D.i (1.2): Added
+	possibility to define Python cash flows which can be passed e.g. to
+	Swap
+
+2001-06-07 09:37  nando
+
+	* LICENSE.TXT (1.4), MANIFEST.in (1.12), setup.py (1.13): smoothed
+	out a few warning
+
+2001-06-05 12:46  nando
+
+	* QuantLib/SWIG/MontecarloTools.i (1.3): R019-branch-merge4 merged
+	into trunk
+
+2001-06-04 16:24  lballabio
+
+	* QuantLib/SWIG/: CashFlows.i (1.3), RateHelpers.i (1.6), Swap.i
+	(1.6): Less clumsy preprocessing directives
+
+2001-06-04 10:48  lballabio
+
+	* QuantLib/SWIG/Currencies.i (1.3): Added a truckload of currencies
+
+2001-06-04 09:40  lballabio
+
+	* QuantLib/test/piecewiseflatforward.py (1.7): Added swaps to
+	piecewise flat forward test
+
+2001-06-01 16:54  lballabio
+
+	* setup.py (1.12), QuantLib/SWIG/CashFlows.i (1.2),
+	QuantLib/SWIG/MontecarloTools.i (1.2), QuantLib/SWIG/RateHelpers.i
+	(1.5), QuantLib/SWIG/Swap.i (1.5),
+	QuantLib/test/piecewiseflatforward.py (1.6), QuantLib/test/swap.py
+	(1.2): Term structure on deposits and swaps
+
+2001-06-01 13:15  marmar
+
+	* QuantLib/SWIG/MontecarloTools.i (1.1.2.1): include guards changed
+
+2001-05-31 16:01  lballabio
+
+	* QuantLib/SWIG/Swap.i (1.4), QuantLib/test/QuantLibTestSuite.py
+	(1.2), QuantLib/test/swap.py (1.1), setup.py (1.11): Added
+	SimpleSwap test
+
+2001-05-31 14:48  lballabio
+
+	* QuantLib/SWIG/Swap.i (1.3): Worked around Visual C++ deficiencies
+
+2001-05-31 13:18  lballabio
+
+	* QuantLib/SWIG/Swap.i (1.2): Added SimpleSwap
+
+2001-05-31 09:00  lballabio
+
+	* setup.py (1.10), QuantLib/SWIG/CashFlows.i (1.1),
+	QuantLib/SWIG/Scheduler.i (1.1), QuantLib/SWIG/Swap.i (1.1),
+	QuantLib/SWIG/ql.i (1.2): Cash flows, scheduler, and generic swap
+	added - the latter should be specialized and tested
+
+2001-05-31 06:54  nando
+
+	* Authors.txt (1.1), Contributors.txt (1.1): They were missing from
+	QuantLib-Python
+
+2001-05-30 15:21  nando
+
+	* History.txt (1.4): added release date
+
+2001-05-30 15:10  nando
+
+	* History.txt (1.3): more clear
+
+2001-05-29 15:17  lballabio
+
+	* QuantLib/: SWIG/Calendars.i (1.2), SWIG/DayCounters.i (1.2),
+	SWIG/Indexes.i (1.4), SWIG/RateHelpers.i (1.4),
+	test/piecewiseflatforward.py (1.5): Reintroduced RollingConventions
+
+2001-05-29 09:24  lballabio
+
+	* QuantLib/: SWIG/Indexes.i (1.3), SWIG/TermStructures.i (1.3),
+	test/piecewiseflatforward.py (1.4): Using relinkable handle to term
+	structure
+
+2001-05-28 14:54  lballabio
+
+	* QuantLib/: SWIG/RateHelpers.i (1.3), test/piecewiseflatforward.py
+	(1.3): Deposit rates are always adjusted
+
+2001-05-28 13:36  nando
+
+	* QuantLib/: SWIG/RiskStatistics.i (1.2), test/risk_statistics.py
+	(1.2): R019-branch-merge3 merged into trunk
+
+2001-05-28 12:53  lballabio
+
+	* QuantLib/SWIG/Instruments.i (1.2): Simplified Instrument
+	interface
+
+2001-05-28 12:45  nando
+
+	* QuantLib/: SWIG/RiskStatistics.i (1.1.2.1),
+	test/risk_statistics.py (1.1.2.1): VarTool renamed RiskMeasures
+
+2001-05-25 16:05  nando
+
+	* setup.py (1.9), QuantLib/__init__.py (1.4): R019-branch-merge2
+	merged into trunk
+
+2001-05-25 15:13  nando
+
+	* setup.py (1.7.2.1), QuantLib/__init__.py (1.2.2.1): release
+	version updated to 0.1.9
+
+2001-05-25 13:52  nando
+
+	* History.txt (1.2): generic sentence removed
+
+2001-05-25 10:15  lballabio
+
+	* History.txt (1.1), README.txt (1.2): Added history and updated
+	readme
+
+2001-05-24 11:21  lballabio
+
+	* makewrappers.py (1.4), setup.py (1.8), QuantLib/QuantLibc.def
+	(1.2), QuantLib/__init__.py (1.3), QuantLib/borland.mak (1.2),
+	QuantLib/SWIG/Currencies.i (1.2), QuantLib/SWIG/Indexes.i (1.2),
+	QuantLib/SWIG/PiecewiseFlatForward.i (1.2),
+	QuantLib/SWIG/RateHelpers.i (1.2), QuantLib/SWIG/TermStructures.i
+	(1.2), QuantLib/test/piecewiseflatforward.py (1.2),
+	QuantLib/test/term_structures.py (1.2): Stripped conventions from
+	Currencies
+
+2001-05-23 17:19  nando
+
+	* MANIFEST.in (1.10), MANIFEST.in (1.11): package transformation
+
+2001-05-23 17:14  nando
+
+	* MANIFEST.in (1.9): package transformation
+
+2001-05-23 16:35  nando
+
+	* setup.py (1.7): package transformation
+
+2001-05-23 15:03  nando
+
+	* MANIFEST.in (1.8), setup.py (1.6), QuantLib/__init__.py (1.2),
+	QuantLib/test/QuantLibTestSuite.py (1.1),
+	QuantLib/test/montecarlo_pricers.py (1.1),
+	QuantLib/test/pagoda_option.py (1.1),
+	QuantLib/test/piecewiseflatforward.py (1.1),
+	QuantLib/test/plain_basket_option.py (1.1),
+	QuantLib/test/random_generators.py (1.1),
+	QuantLib/test/risk_statistics.py (1.1), QuantLib/test/statistics.py
+	(1.1), QuantLib/test/term_structures.py (1.1): package
+	transformation
+
+2001-05-23 13:20  nando
+
+	* MANIFEST.in (1.7): package transformation
+
+2001-05-23 13:14  nando
+
+	* LICENSE.TXT (1.3), MANIFEST.in (1.6), QuantLibc.def (1.2),
+	__init__.py (1.2), borland.mak (1.6), makewrappers.py (1.3),
+	setup.py (1.5), QuantLib/LICENSE.TXT (1.1), QuantLib/QuantLibc.def
+	(1.1), QuantLib/README.txt (1.1), QuantLib/__init__.py (1.1),
+	QuantLib/borland.mak (1.1), QuantLib/SWIG/Barrier.i (1.1),
+	QuantLib/SWIG/BoundaryConditions.i (1.1), QuantLib/SWIG/Calendars.i
+	(1.1), QuantLib/SWIG/Currencies.i (1.1), QuantLib/SWIG/Date.i
+	(1.1), QuantLib/SWIG/DayCounters.i (1.1),
+	QuantLib/SWIG/Distributions.i (1.1), QuantLib/SWIG/Financial.i
+	(1.1), QuantLib/SWIG/History.i (1.1), QuantLib/SWIG/Indexes.i
+	(1.1), QuantLib/SWIG/Instruments.i (1.1),
+	QuantLib/SWIG/Interpolation.i (1.1), QuantLib/SWIG/Matrix.i (1.1),
+	QuantLib/SWIG/MontecarloPricers.i (1.1),
+	QuantLib/SWIG/MontecarloTools.i (1.1), QuantLib/SWIG/Operators.i
+	(1.1), QuantLib/SWIG/Options.i (1.1),
+	QuantLib/SWIG/PiecewiseFlatForward.i (1.1), QuantLib/SWIG/Pricers.i
+	(1.1), QuantLib/SWIG/QLArray.i (1.1), QuantLib/SWIG/QuantLib.i
+	(1.1), QuantLib/SWIG/RandomGenerators.i (1.1),
+	QuantLib/SWIG/RateHelpers.i (1.1), QuantLib/SWIG/RiskStatistics.i
+	(1.1), QuantLib/SWIG/Solvers1D.i (1.1), QuantLib/SWIG/Statistics.i
+	(1.1), QuantLib/SWIG/String.i (1.1), QuantLib/SWIG/TermStructures.i
+	(1.1), QuantLib/SWIG/Vectors.i (1.1), QuantLib/SWIG/ql.i (1.1),
+	QuantLib/test/american_option.py (1.1),
+	QuantLib/test/barrier_option.py (1.1),
+	QuantLib/test/binary_option.py (1.1),
+	QuantLib/test/cliquet_option.py (1.1), QuantLib/test/date.py (1.1),
+	QuantLib/test/distributions.py (1.1),
+	QuantLib/test/european_option.py (1.1),
+	QuantLib/test/european_with_dividends.py (1.1),
+	QuantLib/test/everest_option.py (1.1),
+	QuantLib/test/finite_difference_european.py (1.1),
+	QuantLib/test/get_covariance.py (1.1),
+	QuantLib/test/himalaya_option.py (1.1),
+	QuantLib/test/implied_volatility.py (1.1): package transformation
+
+2001-05-23 12:04  lballabio
+
+	* borland.mak (1.5): Fixed typo
+
+2001-05-23 09:31  lballabio
+
+	* LICENSE.TXT (1.2), __init__.py (1.1): [no log message]
+
+2001-05-22 16:18  nando
+
+	* MANIFEST.in (1.5): prune wrap cpp file
+
+2001-05-22 09:00  lballabio
+
+	* borland.mak (1.4): Using python script to build wrappers
+
+2001-05-21 17:29  nando
+
+	* setup.py (1.4): added license reference
+
+2001-05-21 17:03  nando
+
+	* MANIFEST.in (1.4): pruned QuantLib.py
+
+2001-05-21 17:00  nando
+
+	* MANIFEST.in (1.3): added *.TXT files
+
+2001-05-21 16:41  nando
+
+	* setup.py (1.3): distributions' file names changed
+
+2001-05-21 16:08  lballabio
+
+	* setup.py (1.2): Installs ql.i
+
+2001-05-21 15:10  nando
+
+	* borland.mak (1.3): ql.i lists all *.i files to be included
+
+2001-05-21 15:08  nando
+
+	* makewrappers.py (1.2), MANIFEST.in (1.2): polished up
+
+2001-05-21 10:09  lballabio
+
+	* borland.mak (1.2): Interfaces are now Python-only
+
+2001-05-21 09:25  lballabio
+
+	* LICENSE.TXT (1.1), MANIFEST.in (1.1), QuantLibc.def (1.1),
+	README.txt (1.1), borland.mak (1.1), makewrappers.py (1.1),
+	setup.cfg (1.1), setup.py (1.1): Initial revision
+
+2001-05-21 09:25  lballabio
+
+	* LICENSE.TXT (1.1.1.1), MANIFEST.in (1.1.1.1), QuantLibc.def
+	(1.1.1.1), README.txt (1.1.1.1), borland.mak (1.1.1.1),
+	makewrappers.py (1.1.1.1), setup.cfg (1.1.1.1), setup.py (1.1.1.1):
+	Python wrappers for QuantLib
+
