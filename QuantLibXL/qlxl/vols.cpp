@@ -41,7 +41,7 @@ extern "C"
         WIZARD_NO_CALC;
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
-        RelinkableHandle<BlackVolTermStructure> volSurface =
+        Handle<BlackVolTermStructure> volSurface =
             QlXlfOper(xlblackVolSurface).AsBlackVolTermStructure(refDate,
             interpolationType.AsInt());
         Date date1 = QlXlfOper(xldate1).AsDate();
@@ -70,11 +70,11 @@ extern "C"
         Date refDate    = QlXlfOper(xlrefDate).AsDate();
         double underlying = xlunderlying.AsDouble();
 
-        RelinkableHandle<TermStructure> dividendTS =
+        Handle<TermStructure> dividendTS =
             QlXlfOper(xldividendYield).AsTermStructure(refDate);
-        RelinkableHandle<TermStructure> riskFreeTS =
+        Handle<TermStructure> riskFreeTS =
             QlXlfOper(xlriskFree).AsTermStructure(refDate);
-        RelinkableHandle<BlackVolTermStructure> blackVolSurface =
+        Handle<BlackVolTermStructure> blackVolSurface =
             QlXlfOper(xlblackVolSurface).AsBlackVolTermStructure(refDate,
             xlinterpolationType.AsInt());
 

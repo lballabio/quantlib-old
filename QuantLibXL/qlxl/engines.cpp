@@ -55,7 +55,7 @@ extern "C"
 
         boost::shared_ptr<BlackScholesProcess> stochProcess(new
             BlackScholesProcess(
-                RelinkableHandle<Quote>(spot),
+                Handle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
                 QlXlfOper(xlriskFree).AsTermStructure(refDate),
                 QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
@@ -131,7 +131,7 @@ extern "C"
 
         boost::shared_ptr<BlackScholesProcess> stochProcess(new
             BlackScholesProcess(
-                RelinkableHandle<Quote>(spot),
+                Handle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
                 QlXlfOper(xlriskFree).AsTermStructure(refDate),
                 QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
@@ -188,7 +188,7 @@ extern "C"
 
         boost::shared_ptr<BlackScholesProcess> stochProcess(new
             BlackScholesProcess(
-                RelinkableHandle<Quote>(spot),
+                Handle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
                 QlXlfOper(xlriskFree).AsTermStructure(refDate),
                 QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
@@ -203,10 +203,10 @@ extern "C"
 
         QuantoVanillaOption quantoOption(
             QlXlfOper(xlforeignRiskFreeRate).AsTermStructure(refDate),
-            QlXlfOper(xlexchangeVolatility).AsBlackVolTermStructure(refDate,
-                                                  xlinterpolationType.AsInt()),
-            RelinkableHandle<Quote>(boost::shared_ptr<Quote>(new
-                SimpleQuote(xlcorrelation.AsDouble()))),
+            QlXlfOper(xlexchangeVolatility).AsBlackVolTermStructure(
+                refDate, xlinterpolationType.AsInt()),
+                Handle<Quote>(boost::shared_ptr<Quote>(new
+                    SimpleQuote(xlcorrelation.AsDouble()))),
             stochProcess,
             payoff,
             exercise,
@@ -259,7 +259,7 @@ extern "C"
 
         boost::shared_ptr<BlackScholesProcess> stochProcess(new
             BlackScholesProcess(
-                RelinkableHandle<Quote>(spot),
+                Handle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
                 QlXlfOper(xlriskFree).AsTermStructure(refDate),
                 QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
@@ -328,7 +328,7 @@ extern "C"
 
         boost::shared_ptr<BlackScholesProcess> stochProcess(new
             BlackScholesProcess(
-                RelinkableHandle<Quote>(spot),
+                Handle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
                 QlXlfOper(xlriskFree).AsTermStructure(refDate),
                 QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
@@ -387,7 +387,7 @@ extern "C"
 
         boost::shared_ptr<BlackScholesProcess> stochProcess(new
             BlackScholesProcess(
-                RelinkableHandle<Quote>(spot),
+                Handle<Quote>(spot),
                 QlXlfOper(xldividend).AsTermStructure(refDate),
                 QlXlfOper(xlriskFree).AsTermStructure(refDate),
                 QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
@@ -444,7 +444,7 @@ extern "C"
 
         boost::shared_ptr<BlackScholesProcess> stochProcess(new
             BlackScholesProcess(
-                RelinkableHandle<Quote>(spot),
+                Handle<Quote>(spot),
                 QlXlfOper(xldividend).AsTermStructure(refDate),
                 QlXlfOper(xlriskFree).AsTermStructure(refDate),
                 QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,

@@ -109,11 +109,11 @@ extern "C"
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        RelinkableHandle<TermStructure> dividendYieldTS =
+        Handle<TermStructure> dividendYieldTS =
             QlXlfOper(xldividendYield).AsTermStructure(refDate);
-        RelinkableHandle<TermStructure> riskFreeRateTS  =
+        Handle<TermStructure> riskFreeRateTS  =
             QlXlfOper(xlriskFreeRate).AsTermStructure(refDate);
-        RelinkableHandle<BlackVolTermStructure> volTS =
+        Handle<BlackVolTermStructure> volTS =
             QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
             xlinterpolationType.AsInt());
 
@@ -202,11 +202,11 @@ extern "C"
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        RelinkableHandle<TermStructure> dividendYieldTS =
+        Handle<TermStructure> dividendYieldTS =
             QlXlfOper(xldividendYield).AsTermStructure(refDate);
-        RelinkableHandle<TermStructure> riskFreeRateTS  =
+        Handle<TermStructure> riskFreeRateTS  =
             QlXlfOper(xlriskFreeRate).AsTermStructure(refDate);
-        RelinkableHandle<BlackVolTermStructure> volTS =
+        Handle<BlackVolTermStructure> volTS =
             QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
             xlinterpolationType.AsInt());
         

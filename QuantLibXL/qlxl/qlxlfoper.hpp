@@ -38,9 +38,9 @@ public:
     std::vector<QuantLib::Date> AsDateVector() const;
     QuantLib::Matrix AsMatrix() const;
     QuantLib::Option::Type AsOptionType() const;
-    QuantLib::RelinkableHandle<QuantLib::BlackVolTermStructure> AsBlackVolTermStructure(
+    QuantLib::Handle<QuantLib::BlackVolTermStructure> AsBlackVolTermStructure(
         const QuantLib::Date& referenceDate, int interpolationType) const;
-    QuantLib::RelinkableHandle<QuantLib::TermStructure> AsTermStructure(
+    QuantLib::Handle<QuantLib::TermStructure> AsTermStructure(
         const QuantLib::Date& referenceDate) const;
 private:
     XlfOper xlfOper_;

@@ -36,7 +36,7 @@ extern "C"
         WIZARD_NO_CALC;
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
-        RelinkableHandle<TermStructure>
+        Handle<TermStructure>
             termStructure =
             QlXlfOper(xltermStructure).AsTermStructure(refDate);
         Date date = QlXlfOper(xldate).AsDate();
@@ -56,7 +56,7 @@ extern "C"
         WIZARD_NO_CALC;
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
-        RelinkableHandle<TermStructure>
+        Handle<TermStructure>
             termStructure =
             QlXlfOper(xltermStructure).AsTermStructure(refDate);
         Date date = QlXlfOper(xldate).AsDate();
@@ -77,7 +77,7 @@ extern "C"
         WIZARD_NO_CALC;
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
-        RelinkableHandle<TermStructure>
+        Handle<TermStructure>
             termStructure =
             QlXlfOper(xltermStructure).AsTermStructure(refDate);
         Date date1 = QlXlfOper(xldate1).AsDate();

@@ -196,7 +196,7 @@ Option::Type QlXlfOper::AsOptionType() const {
     return type;
 }
 
-RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
+Handle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
     const Date& referenceDate, int interpolationType) const {
 
 
@@ -206,7 +206,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
     if (rowNo==1 && colNo==1) {
         // constant vol
         double vol = range(0,0).AsDouble();
-        return RelinkableHandle<BlackVolTermStructure>(
+        return Handle<BlackVolTermStructure>(
             boost::shared_ptr<BlackVolTermStructure>(new
                 BlackConstantVol(referenceDate, vol)));
     } else if (rowNo>=1 && colNo==2) {
@@ -221,7 +221,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 BlackVarianceCurve(referenceDate,dates,vols));
         switch (interpolationType) {
             case 1:
-                return RelinkableHandle<BlackVolTermStructure>(ts);
+                return Handle<BlackVolTermStructure>(ts);
                 break;
             case 2:
                 #if defined(QL_PATCH_MICROSOFT)
@@ -229,7 +229,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 #else
                 ts->setInterpolation<Cubic>();
                 #endif
-                return RelinkableHandle<BlackVolTermStructure>(ts);
+                return Handle<BlackVolTermStructure>(ts);
                 break;
             default:
                 QL_FAIL("interpolate: invalid interpolation type");
@@ -246,7 +246,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
             BlackVarianceCurve(referenceDate,dates,vols));
         switch (interpolationType) {
             case 1:
-                return RelinkableHandle<BlackVolTermStructure>(ts);
+                return Handle<BlackVolTermStructure>(ts);
                 break;
             case 2:
                 #if defined(QL_PATCH_MICROSOFT)
@@ -254,7 +254,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 #else
                 ts->setInterpolation<Cubic>();
                 #endif
-                return RelinkableHandle<BlackVolTermStructure>(ts);
+                return Handle<BlackVolTermStructure>(ts);
                 break;
             default:
                 QL_FAIL("interpolate: invalid interpolation type");
@@ -282,7 +282,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
             BlackVarianceSurface(referenceDate, dates, strikes, vols));
         switch (interpolationType) {
             case 1:
-                return RelinkableHandle<BlackVolTermStructure>(ts);
+                return Handle<BlackVolTermStructure>(ts);
                 break;
             case 2:
                 #if defined(QL_PATCH_MICROSOFT)
@@ -290,7 +290,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 #else
                 ts->setInterpolation<Cubic>();
                 #endif
-                return RelinkableHandle<BlackVolTermStructure>(ts);
+                return Handle<BlackVolTermStructure>(ts);
                 break;
             default:
                 QL_FAIL("interpolate: invalid interpolation type");
@@ -301,7 +301,7 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
 }
 
 
-RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
+Handle<TermStructure> QlXlfOper::AsTermStructure(
     const Date& referenceDate) const {
 
     // Should we add today to the interface of AsTermStructure ?
@@ -313,7 +313,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
     if (rowNo==1 && colNo==1) {
         // constant rate continuos compounding act/365
         double forwardRate = range(0,0).AsDouble();
-        return RelinkableHandle<TermStructure>(
+        return Handle<TermStructure>(
             boost::shared_ptr<TermStructure>(new
                 FlatForward(today, referenceDate, forwardRate, Actual365())));
     } else if (rowNo>1 && colNo==2 && range(0,1).AsDouble()==1.0) {
@@ -328,7 +328,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         }
         Date today=dates[0];
 
-        return RelinkableHandle<TermStructure>(
+        return Handle<TermStructure>(
             boost::shared_ptr<TermStructure>(new
                 DiscountCurve(today, dates, discounts, Actual365())));
     } else if (rowNo==2 && colNo>1 && range(1,0).AsDouble()==1.0) {
@@ -343,7 +343,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         }
         Date today=dates[0];
 
-        return RelinkableHandle<TermStructure>(
+        return Handle<TermStructure>(
             boost::shared_ptr<TermStructure>(new
                 DiscountCurve(today, dates, discounts, Actual365())));
     } else if (rowNo>1 && colNo==2) {
@@ -356,7 +356,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         }
         Date today=dates[0];
 
-        return RelinkableHandle<TermStructure>(
+        return Handle<TermStructure>(
             boost::shared_ptr<TermStructure>(new
                 PiecewiseFlatForward(today, dates, forwards, Actual365())));
     } else if (rowNo==2 && colNo>1) {
@@ -369,7 +369,7 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         }
         Date today=dates[0];
 
-        return RelinkableHandle<TermStructure>(
+        return Handle<TermStructure>(
             boost::shared_ptr<TermStructure>(new
                 PiecewiseFlatForward(today, dates, forwards, Actual365())));
     } else

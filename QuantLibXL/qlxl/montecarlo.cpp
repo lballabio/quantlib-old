@@ -184,17 +184,17 @@ extern "C"
         Size timeSteps = times.size();
 
 
-        RelinkableHandle<TermStructure> riskFreeTS =
+        Handle<TermStructure> riskFreeTS =
             QlXlfOper(xlriskFree).AsTermStructure(refDate);
-        RelinkableHandle<TermStructure> dividendTS =
+        Handle<TermStructure> dividendTS =
             QlXlfOper(xldividendYield).AsTermStructure(refDate);
-        RelinkableHandle<BlackVolTermStructure> blackVolTS =
+        Handle<BlackVolTermStructure> blackVolTS =
             QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
                                               xlinterpolationType.AsInt());
 
         boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(underlying));
         boost::shared_ptr<BlackScholesProcess> bs(new
-            BlackScholesProcess(RelinkableHandle<Quote>(spot),
+            BlackScholesProcess(Handle<Quote>(spot),
                 riskFreeTS, dividendTS, blackVolTS));
 
         int generatorType = xlgeneratorType.AsInt();
@@ -264,17 +264,17 @@ extern "C"
         Size timeSteps = times.size();
 
 
-        RelinkableHandle<TermStructure> riskFreeTS =
+        Handle<TermStructure> riskFreeTS =
             QlXlfOper(xlriskFree).AsTermStructure(refDate);
-        RelinkableHandle<TermStructure> dividendTS =
+        Handle<TermStructure> dividendTS =
             QlXlfOper(xldividendYield).AsTermStructure(refDate);
-        RelinkableHandle<BlackVolTermStructure> blackVolTS =
+        Handle<BlackVolTermStructure> blackVolTS =
             QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
                                               xlinterpolationType.AsInt());
 
         boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(underlying));
         boost::shared_ptr<StochasticProcess> bs(new
-            BlackScholesProcess(RelinkableHandle<Quote>(spot),
+            BlackScholesProcess(Handle<Quote>(spot),
                 riskFreeTS, dividendTS, blackVolTS));
 
         int generatorType = xlgeneratorType.AsInt();
