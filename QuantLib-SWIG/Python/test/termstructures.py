@@ -26,7 +26,6 @@ class TermStructureTest(unittest.TestCase):
     def setUp(self):
         self.calendar = TARGET()
         today = self.calendar.adjust(Date_todaysDate())
-        Settings_instance().setEvaluationDate(today)
         self.settlementDays = 2
         settlement = self.calendar.advance(today,self.settlementDays,'days')
         deposits = [
@@ -56,8 +55,6 @@ class TermStructureTest(unittest.TestCase):
         self.termStructure = PiecewiseFlatForward(settlement,
                                                   deposits+swaps,
                                                   Actual360())
-    def tearDown(self):
-        Settings_instance().setEvaluationDate(Date())
 
     def testImpliedObs(self):
         "Testing observability of implied term structure"

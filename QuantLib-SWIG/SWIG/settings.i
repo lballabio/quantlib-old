@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 StatPro Italia srl
+ Copyright (C) 2004, 2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -25,9 +25,8 @@ using QuantLib::Settings;
 %}
 
 class Settings {
-    #if defined(SWIGPYTHON)
-    %rename("getEvaluationDate") evaluationDate;
-    #elif defined(SWIGRUBY)
+    #if defined(SWIGRUBY)
+    %rename("evaluationDate") getEvaluationDate;
     %rename("evaluationDate=") setEvaluationDate;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("evaluation-date-get")  evaluationDate;
@@ -37,8 +36,14 @@ class Settings {
     Settings();
   public:
     static Settings& instance();
-    Date evaluationDate() const;
-    void setEvaluationDate(const Date&);
+    %extend {
+        Date getEvaluationDate() {
+            return self->evaluationDate();
+        }
+        void setEvaluationDate(const Date& d) {
+            self->evaluationDate() = d;
+        }
+    }
     #if defined(SWIGPYTHON)
     %pythoncode %{
     evaluationDate = property(getEvaluationDate,setEvaluationDate,None)
