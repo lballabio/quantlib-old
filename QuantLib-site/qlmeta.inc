@@ -14,7 +14,7 @@
 <meta http-equiv="Content-Style-Type" content="text/ccs">
 <meta http-equiv="Window-target" content="_top">
 <meta http-equiv="Content-Language" content="en">
-<link rel="stylesheet" href="styles/main.css" type="text/css">
+<link rel="stylesheet" href="styles/quantlib.css" type="text/css">
 <link rev="made" href="mailto:ferdinando@ametrano.net">
 <script type="text/javascript">
 <!-- hiding

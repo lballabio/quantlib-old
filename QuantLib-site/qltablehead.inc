@@ -5,14 +5,22 @@
 <tbody>
 <tr>
 <td class="navbar">
-<div class="center"><img src="images/QL-small.jpg" alt="QuantLib Logo"></div>
+<div class="center"><img class="addtopspace"
+    src="images/QL-small.jpg" alt="QuantLib Logo"></div>
 
 <ul class="navlinklist">
 <li><a class="navlink" href="index.html">Home&nbsp;page</a></li>
 
-<li><a class="navlink" href="status.html">Project Status</a></li>
+<li><a class="navlink" href="status.html">Project Status (exits)</a></li>
 
-<li><a class="navlink" href="docs.html">Documentation</a></li>
+<li><a class="navlink" href="download.html">Download</a></li>
+
+<li><a class="navlink" href="mailinglists.html">Mailing lists</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/news/?group_id=12740">News</a></li>
+
+<li><a class="navlink" href="html/index.html">Documentation (exits)</a></li>
 
 <li><a class="navlink" href="license.html">License</a></li>
 
@@ -24,27 +32,20 @@
 
 <ul>
 <li><a class="navlink" href=
-"http://sourceforge.net/projects/quantlib">Project&nbsp;page</a></li>
-
-<li><a class="navlink" href=
-"http://sourceforge.net/mail/?group_id=12740">Mailing lists</a></li>
-
-<li><a class="navlink" href=
-"http://sourceforge.net/news/?group_id=12740">News</a></li>
-
-<li><a class="navlink" href=
-"http://sourceforge.net/project/showfiles.php?group_id=12740">Download</a></li>
+"http://sourceforge.net/projects/quantlib">Project&nbsp;page (exits)</a></li>
 
 <li><a class="navlink" href="cvs.html">CVS</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bugs</a></li>
+"http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bugs
+(exits)</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/tracker/?group_id=12740&amp;atid=312740">Patches</a></li>
+"http://sourceforge.net/tracker/?group_id=12740&amp;atid=312740">Patches
+(exits)</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">Feature&nbsp;Requests</a></li>
+"http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">Feature&nbsp;Requests (exits)</a></li>
 
 <li><a class="navlink" href="FAQ.html">Developer&nbsp;FAQ</a></li>
 
@@ -59,7 +60,7 @@
 
 <li><a class="navlink" href="marketconventions.html">Market Conventions</a></li>
 
-<li><a class="navlink" href="http://www.wilmott.com">Wilmott&nbsp;(exits)</a></li>
+<li><a class="navlink" href="http://www.wilmott.com/">Wilmott&nbsp;(exits)</a></li>
 
 <li><a class="navlink" href="http://www.quantnotes.com/">QuantNotes&nbsp;(exits)</a></li>
 </ul>

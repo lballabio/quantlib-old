@@ -28,7 +28,7 @@
 <meta http-equiv="Content-Style-Type" content="text/ccs">
 <meta http-equiv="Window-target" content="_top">
 <meta http-equiv="Content-Language" content="en">
-<link rel="stylesheet" href="styles/main.css" type="text/css">
+<link rel="stylesheet" href="styles/quantlib.css" type="text/css">
 <link rev="made" href="mailto:ferdinando@ametrano.net">
 <script type="text/javascript">
 <!-- hiding
@@ -50,15 +50,25 @@ window.open(location.href);
 <tbody>
 <tr>
 <td class="navbar">
-<div class="center"><img src="images/QL-small.jpg" alt=
-"QuantLib Logo"></div>
+<div class="center"><img class="addtopspace" src=
+"images/QL-small.jpg" alt="QuantLib Logo"></div>
 
 <ul class="navlinklist">
 <li><a class="navlink" href="index.html">Home&nbsp;page</a></li>
 
-<li><a class="navlink" href="status.html">Project Status</a></li>
+<li><a class="navlink" href="status.html">Project Status
+(exits)</a></li>
 
-<li><a class="navlink" href="docs.html">Documentation</a></li>
+<li><a class="navlink" href="download.html">Download</a></li>
+
+<li><a class="navlink" href="mailinglists.html">Mailing
+lists</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/news/?group_id=12740">News</a></li>
+
+<li><a class="navlink" href="html/index.html">Documentation
+(exits)</a></li>
 
 <li><a class="navlink" href="license.html">License</a></li>
 
@@ -70,28 +80,22 @@ window.open(location.href);
 
 <ul>
 <li><a class="navlink" href=
-"http://sourceforge.net/projects/quantlib">Project&nbsp;page</a></li>
-
-<li><a class="navlink" href=
-"http://sourceforge.net/mail/?group_id=12740">Mailing
-lists</a></li>
-
-<li><a class="navlink" href=
-"http://sourceforge.net/news/?group_id=12740">News</a></li>
-
-<li><a class="navlink" href=
-"http://sourceforge.net/project/showfiles.php?group_id=12740">Download</a></li>
+"http://sourceforge.net/projects/quantlib">Project&nbsp;page
+(exits)</a></li>
 
 <li><a class="navlink" href="cvs.html">CVS</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bugs</a></li>
+"http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bugs
+(exits)</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/tracker/?group_id=12740&amp;atid=312740">Patches</a></li>
+"http://sourceforge.net/tracker/?group_id=12740&amp;atid=312740">Patches
+(exits)</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">Feature&nbsp;Requests</a></li>
+"http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">Feature&nbsp;Requests
+(exits)</a></li>
 
 <li><a class="navlink" href="FAQ.html">Developer&nbsp;FAQ</a></li>
 
@@ -109,7 +113,7 @@ Guidelines</a></li>
 Conventions</a></li>
 
 <li><a class="navlink" href=
-"http://www.wilmott.com">Wilmott&nbsp;(exits)</a></li>
+"http://www.wilmott.com/">Wilmott&nbsp;(exits)</a></li>
 
 <li><a class="navlink" href=
 "http://www.quantnotes.com/">QuantNotes&nbsp;(exits)</a></li>
@@ -208,8 +212,6 @@ Statements</a></li>
 <li><a href="#Comments">6.3 Comments</a></li>
 </ul>
 </li>
-
-<li><a href="#References">8 References</a></li>
 </ul>
 
 <hr width="100%">
@@ -253,10 +255,11 @@ state the background for the recommendation.</p>
 
 <h3><a name="Recommendation"></a>1.2 Recommendation Importance</h3>
 
-<p>In the guideline sections the terms <i>must</i>, <i>should</i>
-and <i>can</i> have special meaning. A <i>must</i> requirement must
-be followed, a <i>should</i> is a strong recommendation, and a
-<i>can</i> is a general guideline.</p>
+<p>In the guideline sections the terms <em>must</em>,
+<em>should</em> and <em>can</em> have special meaning. A
+<em>must</em> requirement must be followed, a <em>should</em> is a
+strong recommendation, and a <em>can</em> is a general
+guideline.</p>
 
 <h2><a name="General Recommendations"></a>2 General
 Recommendations</h2>
@@ -414,8 +417,8 @@ better choice:<br>
 <p><tt>int getMaxIterations() &nbsp; &nbsp; // NOT: MAX_ITERATIONS
 = 25<br>
  {<br>
-&nbsp; return 25;<br>
-}</tt></p>
+ &nbsp; return 25;<br>
+ }</tt></p>
 
 <p>This form is both easier to read, and it ensures a unified
 interface towards class values.</p>
@@ -506,7 +509,7 @@ uppercase when used as name [4].</td>
 <tr>
 <td><tt>exportHtmlSource(); &nbsp;&nbsp; // NOT:
 exportHTMLSource();<br>
-openDvdPlayer(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // NOT:
+ openDvdPlayer(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // NOT:
 openDVDPlayer();</tt></td>
 </tr>
 
@@ -556,9 +559,9 @@ underscore suffix.</td>
 
 <tr>
 <td><tt>class SomeClass {<br>
-&nbsp; private:<br>
-&nbsp;&nbsp;&nbsp; int&nbsp; length_;<br>
-}</tt> </td>
+ &nbsp; private:<br>
+ &nbsp;&nbsp;&nbsp; int&nbsp; length_;<br>
+ }</tt> </td>
 </tr>
 
 <tr>
@@ -575,9 +578,9 @@ nicely resolves the problem of finding reasonable variable names
 for setter methods and constructors:</p>
 
 <p><tt>void setDepth (int depth)<br>
-{<br>
-&nbsp; depth_ = depth;<br>
-}</tt></p>
+ {<br>
+ &nbsp; depth_ = depth;<br>
+ }</tt></p>
 
 <p>An issue is whether the underscore should be added as a prefix
 or as a suffix. Both practices are commonly used, but the latter is
@@ -633,7 +636,7 @@ it is a strong indication that the type name is badly chosen.</p>
 often be named by combining role and type:</p>
 
 <p><tt>Point startingPoint, centerPoint;<br>
-Name&nbsp; loginName;<br>
+ Name&nbsp; loginName;<br>
 </tt></p>
 </td>
 </tr>
@@ -717,8 +720,8 @@ example.</td>
 -->
 <table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">17. The term <i>set</i> must be used to set the
-value of an attribute. The term <i>get</i> could be used when an
+<td class="recom">17. The term <em>set</em> must be used to set the
+value of an attribute. The term <em>get</em> could be used when an
 attribute is accessed directly.</td>
 </tr>
 
@@ -726,7 +729,7 @@ attribute is accessed directly.</td>
 <td>
 <tt>employee.name();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 matrix.getElement(2, 4);<br>
-employee.setName(name);&nbsp;&nbsp; matrix.setElement(2, 4,
+ employee.setName(name);&nbsp;&nbsp; matrix.setElement(2, 4,
 value);</tt> </td>
 </tr>
 
@@ -744,7 +747,7 @@ standard.</td>
 -->
 <table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">18. The term <i>compute</i> can be used in
+<td class="recom">18. The term <em>compute</em> can be used in
 methods where something is computed.</td>
 </tr>
 
@@ -768,7 +771,7 @@ enhances readability.</td>
 -->
 <table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">19. The term <i>find</i> can be used in methods
+<td class="recom">19. The term <em>find</em> can be used in methods
 where something is looked up.</td>
 </tr>
 
@@ -791,8 +794,8 @@ Consistent use of the term enhances readability.</td>
 -->
 <table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">20. The term <i>initialize</i> can be used where
-an object or a concept is established.</td>
+<td class="recom">20. The term <em>initialize</em> can be used
+where an object or a concept is established.</td>
 </tr>
 
 <tr>
@@ -800,9 +803,9 @@ an object or a concept is established.</td>
 </tr>
 
 <tr>
-<td class="rationale">The american <i>initialize</i> should be
-preferred over the english <i>initialise</i>. Abbreviation
-<i>init</i> should be avoided.</td>
+<td class="rationale">The american <em>initialize</em> should be
+preferred over the english <em>initialise</em>. Abbreviation
+<em>init</em> should be avoided.</td>
 </tr>
 </table>
 
@@ -837,7 +840,7 @@ objects resources.</td>
 -->
 <table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">22. The suffix <i>List</i> should be used on
+<td class="recom">22. The suffix <em>List</em> should be used on
 names representing a list of objects.</td>
 </tr>
 
@@ -857,10 +860,10 @@ operations that can be performed on the object.
 since the two only differ in a single character and are thereby
 difficult to distinguish.</p>
 
-<p>A <i>list</i> in this context is the compound data type that can
-be traversed backwards, forwards, etc. (typically an STL
-<tt>vector</tt>). A plain array is simpler. The suffix <i>Array</i>
-can be used to denote an array of objects.</p>
+<p>A <em>list</em> in this context is the compound data type that
+can be traversed backwards, forwards, etc. (typically an STL
+<tt>vector</tt>). A plain array is simpler. The suffix
+<em>Array</em> can be used to denote an array of objects.</p>
 </td>
 </tr>
 </table>
@@ -872,7 +875,7 @@ can be used to denote an array of objects.</p>
 -->
 <table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">23. The prefix <i>n</i> should be used for
+<td class="recom">23. The prefix <em>n</em> should be used for
 variables representing a number of objects.</td>
 </tr>
 
@@ -894,7 +897,7 @@ objects.</td>
 -->
 <table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">24.The suffix <i>No</i>, <em>Num</em> or
+<td class="recom">24.The suffix <em>No</em>, <em>Num</em> or
 <em>Number</em> should be used for variables representing an entity
 number.</td>
 </tr>
@@ -928,12 +931,12 @@ less common.</p>
 <tr>
 <td><tt>for (int i = 0; i &lt; nTables); i++) {<br>
  &nbsp; :<br>
-}<br>
+ }<br>
 <br>
-vector&lt;MyClass&gt;::iterator i;<br>
-for (i = list.begin(); i != list.end(); i++) {<br>
+ vector&lt;MyClass&gt;::iterator i;<br>
+ for (i = list.begin(); i != list.end(); i++) {<br>
  &nbsp; Element element = *i;<br>
-&nbsp; ...<br>
+ &nbsp; ...<br>
  }<br>
 </tt> </td>
 </tr>
@@ -953,7 +956,7 @@ it is an established convention for indicating iterators.<br>
 -->
 <table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">26. The prefix <i>is</i> should be used for
+<td class="recom">26. The prefix <em>is</em> should be used for
 boolean variables and methods.</td>
 </tr>
 
@@ -965,7 +968,7 @@ boolean variables and methods.</td>
 <td class="rationale">Common practice in the C++ development
 community and partially enforced in Java. 
 
-<p>Using the <i>is</i> prefix solves a common problem of choosing
+<p>Using the <em>is</em> prefix solves a common problem of choosing
 bad boolean names like <tt>status</tt> or <tt>flag</tt>.
 <tt>isStatus</tt> or <tt>isFlag</tt> simply doesn't fit, and the
 programmer is forced to choose more meaningful names.</p>
@@ -1114,10 +1117,10 @@ common type name.</td>
 
 <tr>
 <td><tt>enum Color {<br>
-&nbsp; COLOR_RED,<br>
-&nbsp; COLOR_GREEN,<br>
-&nbsp; COLOR_BLUE<br>
-};</tt> </td>
+ &nbsp; COLOR_RED,<br>
+ &nbsp; COLOR_GREEN,<br>
+ &nbsp; COLOR_BLUE<br>
+ };</tt> </td>
 </tr>
 
 <tr>
@@ -1145,10 +1148,10 @@ through their common type: <tt>Color::RED</tt>,
 
 <tr>
 <td><tt>class AccessException<br>
-{<br>
-&nbsp; :<br>
-}<br>
-</tt></td>
+ {<br>
+ &nbsp; :<br>
+ }<br>
+</tt> </td>
 </tr>
 
 <tr>
@@ -1166,8 +1169,8 @@ stand out relative to the other classes.</td>
 <table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">33. Functions (methods returning something)
-should be named after what they return and procedures (<i>void</i>
-methods) after what they do.</td>
+should be named after what they return and procedures
+(<em>void</em> methods) after what they do.</td>
 </tr>
 
 <tr>
@@ -1197,8 +1200,8 @@ effects.</td>
 <table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">34. C++ header files should have the extension
-<i>.hpp</i>. Source files should have the extension
-<i>.cpp</i>.</td>
+<em>.hpp</em>. Source files should have the extension
+<em>.cpp</em>.</td>
 </tr>
 
 <tr>
@@ -1325,15 +1328,16 @@ made obvious [1].</td>
 
 <tr>
 <td><tt>totalSum = a + b + c +<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d +
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d +
 e;<br>
-function (param1, param2,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; param3);<br>
-setText ("Long line split"<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "into two
+ function (param1, param2,<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+param3);<br>
+ setText ("Long line split"<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "into two
 parts.");<br>
-for (tableNo = 0; tableNo &lt; nTables;<br>
-&nbsp;&nbsp;&nbsp;&nbsp; tableNo += tableStep)</tt> </td>
+ for (tableNo = 0; tableNo &lt; nTables;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp; tableNo += tableStep)</tt> </td>
 </tr>
 
 <tr>
@@ -1374,9 +1378,9 @@ suffix.</td>
 
 <tr>
 <td><tt>#ifndef MOD_FILENAME_H<br>
-#define MOD_FILENAME_H<br>
-&nbsp;:<br>
-#endif</tt> </td>
+ #define MOD_FILENAME_H<br>
+ &nbsp;:<br>
+ #endif</tt> </td>
 </tr>
 
 <tr>
@@ -1403,13 +1407,13 @@ of include statements.</td>
 
 <tr>
 <td><tt>#include &lt;fstream&gt;<br>
-#include &lt;iomanip&gt;<br>
+ #include &lt;iomanip&gt;<br>
 <br>
  #include &lt;Xm/Xm.h&gt;<br>
-#include &lt;Xm/ToggleB.h&gt;<br>
+ #include &lt;Xm/ToggleB.h&gt;<br>
 <br>
  #include "ui/PropertiesDialog.h"<br>
-#include "ui/MainWindow.h"</tt> </td>
+ #include "ui/MainWindow.h"</tt> </td>
 </tr>
 
 <tr>
@@ -1476,8 +1480,8 @@ declared inside that file.</td>
 <table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">44. The parts of a class must be sorted
-<i>public</i>, <i>protected</i> and <i>private</i> [2][3]. All
-sections must be identified explicitly. Not applicable sections
+<em>public</em>, <em>protected</em> and <em>private</em> [2][3].
+All sections must be identified explicitly. Not applicable sections
 should be left out.</td>
 </tr>
 
@@ -1486,8 +1490,8 @@ should be left out.</td>
 </tr>
 
 <tr>
-<td class="rationale">The ordering is <i>"most public first"</i> so
-people who only wish to use the class can stop reading when they
+<td class="rationale">The ordering is <em>"most public first"</em>
+so people who only wish to use the class can stop reading when they
 reach the <tt>protected/private</tt> sections.</td>
 </tr>
 </table>
@@ -1617,9 +1621,10 @@ is when the class is essentially a data structure, with no behavior
 (equivalent to a C <tt>struct</tt>). In this case it is appropriate
 to make the class' instance variables public [2]. 
 
-<p>Note that <i>struct</i>s are kept in C++ for compatibility with
-C only, and avoiding them increases the readability of the code by
-reducing the number of constructs used. Use a class instead.</p>
+<p>Note that <em>struct</em>s are kept in C++ for compatibility
+with C only, and avoiding them increases the readability of the
+code by reducing the number of constructs used. Use a class
+instead.</p>
 </td>
 </tr>
 </table>
@@ -1639,7 +1644,7 @@ statement.</td>
 
 <tr>
 <td><tt>float&nbsp; x, y, z;<br>
-float&nbsp; revenueJanuary, revenueFebruary, revenueMarch;</tt>
+ float&nbsp; revenueJanuary, revenueFebruary, revenueMarch;</tt>
 </td>
 </tr>
 
@@ -1664,9 +1669,9 @@ name [3].</td>
 
 <tr>
 <td><tt>float *x;&nbsp;&nbsp;&nbsp; // NOT:&nbsp; float* x;<br>
-int &nbsp; &amp;y;&nbsp;&nbsp;&nbsp; // NOT:&nbsp; int&amp; &nbsp;
+ int &nbsp; &amp;y;&nbsp;&nbsp;&nbsp; // NOT:&nbsp; int&amp; &nbsp;
 y;<br>
-</tt></td>
+</tt> </td>
 </tr>
 
 <tr>
@@ -1709,14 +1714,14 @@ former is more commonly used that should be the convention.</td>
 -->
 <table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">53. Implicit test for <i>0</i> should not be used
-other than for boolean variables and pointers.</td>
+<td class="recom">53. Implicit test for <em>0</em> should not be
+used other than for boolean variables and pointers.</td>
 </tr>
 
 <tr>
 <td><tt>if (nLines != 0)&nbsp;&nbsp;&nbsp; // NOT:&nbsp;&nbsp; if
 (nLines)<br>
-if (value != 0.0)&nbsp;&nbsp; // NOT:&nbsp;&nbsp; if (value)</tt>
+ if (value != 0.0)&nbsp;&nbsp; // NOT:&nbsp;&nbsp; if (value)</tt>
 </td>
 </tr>
 
@@ -1771,7 +1776,7 @@ in the <tt>for()</tt> construction.</td>
 &nbsp; &nbsp; // NOT: for (i = 0, sum = 0; i &lt; 100; i++)<br>
  for (i = 0; i &lt; 100; i++) &nbsp;// &nbsp; &nbsp; &nbsp;
 &nbsp;sum += value[i];<br>
-&nbsp; sum += value[i];</tt> </td>
+ &nbsp; sum += value[i];</tt> </td>
 </tr>
 
 <tr>
@@ -1795,11 +1800,11 @@ immediately before the loop.</td>
 <tr>
 <td><tt>isDone = false; &nbsp; &nbsp; &nbsp; // NOT: &nbsp; bool
 isDone = false;<br>
-while (!isDone) { &nbsp; &nbsp; // &nbsp; &nbsp; &nbsp; &nbsp;
+ while (!isDone) { &nbsp; &nbsp; // &nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp;:<br>
-&nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp; // &nbsp; &nbsp; &nbsp;&nbsp; while (!isDone) {<br>
-} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ } &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp; // &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; :<br>
  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</tt> </td>
@@ -1873,17 +1878,17 @@ for infinite loops.</td>
 
 <tr>
 <td><tt>while (true) {<br>
-&nbsp; :<br>
+ &nbsp; :<br>
  }<br>
 <br>
-for (;;) { // NO!<br>
-&nbsp; :<br>
-}<br>
+ for (;;) { // NO!<br>
+ &nbsp; :<br>
+ }<br>
 <br>
-while (1) { // NO!<br>
-&nbsp; :<br>
-}<br>
-</tt></td>
+ while (1) { // NO!<br>
+ &nbsp; :<br>
+ }<br>
+</tt> </td>
 </tr>
 
 <tr>
@@ -1908,18 +1913,18 @@ avoided. Introduce temporary boolean variables instead [1].</td>
 
 <tr>
 <td><tt>if ((elementNo &lt; 0) || (elementNo &gt; maxElement)||<br>
-&nbsp;&nbsp;&nbsp; elementNo == lastElement) {<br>
-&nbsp; :<br>
-}</tt> 
+ &nbsp;&nbsp;&nbsp; elementNo == lastElement) {<br>
+ &nbsp; :<br>
+ }</tt> 
 
 <p>should be replaced by:</p>
 
 <p><tt>isFinished&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = (elementNo &lt;
 0) || (elementNo &gt; maxElement);<br>
-isRepeatedEntry = elementNo == lastElement;<br>
-if (isFinished || isRepeatedEntry) {<br>
-&nbsp; :<br>
-}</tt></p>
+ isRepeatedEntry = elementNo == lastElement;<br>
+ if (isFinished || isRepeatedEntry) {<br>
+ &nbsp; :<br>
+ }</tt></p>
 </td>
 </tr>
 
@@ -1938,18 +1943,18 @@ construction will be easier to read and to debug.</td>
 <table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">62. The nominal case should be put in the
-<i>if</i>-part and the exception in the <i>else</i>-part of an if
-statement [1].</td>
+<em>if</em>-part and the exception in the <em>else</em>-part of an
+if statement [1].</td>
 </tr>
 
 <tr>
 <td><tt>isError = readFile (fileName);<br>
-if (!isError) {<br>
-&nbsp; :<br>
-}<br>
-else {<br>
-&nbsp; :<br>
-}</tt> </td>
+ if (!isError) {<br>
+ &nbsp; :<br>
+ }<br>
+ else {<br>
+ &nbsp; :<br>
+ }</tt> </td>
 </tr>
 
 <tr>
@@ -1974,7 +1979,7 @@ line.</td>
 <td><tt>if
 (isDone)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp; // NOT:&nbsp; if (isDone) doCleanup();<br>
-&nbsp; doCleanup();</tt> </td>
+ &nbsp; doCleanup();</tt> </td>
 </tr>
 
 <tr>
@@ -1997,16 +2002,16 @@ avoided.</td>
 
 <tr>
 <td><tt>// Bad!<br>
-if (!(fileHandle = open (fileName, "w"))) {<br>
+ if (!(fileHandle = open (fileName, "w"))) {<br>
  &nbsp; :<br>
  }<br>
 <br>
  // Better!<br>
-fileHandle = open (fileName, "w");<br>
-if (!fileHandle) {<br>
-&nbsp; :<br>
-}<br>
-</tt></td>
+ fileHandle = open (fileName, "w");<br>
+ if (!fileHandle) {<br>
+ &nbsp; :<br>
+ }<br>
+</tt> </td>
 </tr>
 
 <tr>
@@ -2026,7 +2031,7 @@ programmers new to C/C++.</td>
 <table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">65. The use of magic numbers in the code should
-be avoided. Numbers other than <i>0</i> and <i>1</i> should be
+be avoided. Numbers other than <em>0</em> and <em>1</em> should be
 considered declared as named constants instead.</td>
 </tr>
 
@@ -2055,9 +2060,9 @@ explicitly listed.</td>
 
 <tr>
 <td><tt>int getValue() &nbsp; &nbsp; // NOT: getValue()<br>
-{<br>
-&nbsp; :<br>
-}<br>
+ {<br>
+ &nbsp; :<br>
+ }<br>
 </tt> </td>
 </tr>
 
@@ -2132,7 +2137,7 @@ library, but is made obsolete in C++.</td>
 
 <tr>
 <td><tt>for (i = 0; i &lt; nElements; i++)<br>
-&nbsp; a[i] = 0;</tt> </td>
+ &nbsp; a[i] = 0;</tt> </td>
 </tr>
 
 <tr>
@@ -2159,22 +2164,22 @@ not be as shown in example 3.</td>
 
 <tr>
 <td width="33%"><tt>while (!done) {<br>
-&nbsp; doSomething();<br>
-&nbsp; done = moreToDo();<br>
-}<br>
-</tt></td>
+ &nbsp; doSomething();<br>
+ &nbsp; done = moreToDo();<br>
+ }<br>
+</tt> </td>
 <td width="33%"><tt>while (!done)<br>
-{<br>
-&nbsp; doSomething();<br>
-&nbsp; done = moreToDo();<br>
-}<br>
-</tt></td>
+ {<br>
+ &nbsp; doSomething();<br>
+ &nbsp; done = moreToDo();<br>
+ }<br>
+</tt> </td>
 <td><tt>while (!done)<br>
-&nbsp; {<br>
-&nbsp;&nbsp;&nbsp; doSomething();<br>
-&nbsp;&nbsp;&nbsp; done = moreToDo();<br>
-&nbsp; }<br>
-</tt></td>
+ &nbsp; {<br>
+ &nbsp;&nbsp;&nbsp; doSomething();<br>
+ &nbsp;&nbsp;&nbsp; done = moreToDo();<br>
+ &nbsp; }<br>
+</tt> </td>
 </tr>
 
 <tr>
@@ -2197,15 +2202,15 @@ the following form:</td>
 
 <tr>
 <td><tt>class SomeClass : public BaseClass<br>
-{<br>
-&nbsp; public:<br>
+ {<br>
+ &nbsp; public:<br>
  &nbsp; &nbsp; ...<br>
  &nbsp; protected:<br>
  &nbsp; &nbsp; ...<br>
  &nbsp; private:<br>
  &nbsp; &nbsp; ...<br>
  }<br>
-</tt></td>
+</tt> </td>
 </tr>
 
 <tr>
@@ -2228,9 +2233,9 @@ following form:</td>
 <tr>
 <td><tt>void someMethod()<br>
  {<br>
-&nbsp; ...<br>
-}<br>
-</tt></td>
+ &nbsp; ...<br>
+ }<br>
+</tt> </td>
 </tr>
 
 <tr>
@@ -2252,32 +2257,32 @@ should have the following form:</td>
 
 <tr>
 <td><tt>if (condition) {<br>
-&nbsp; statements;<br>
-} else {<br>
  &nbsp; statements;<br>
-}<br>
+ } else {<br>
+ &nbsp; statements;<br>
+ }<br>
 <br>
-if (condition) {<br>
-&nbsp; statements;<br>
-}<br>
+ if (condition) {<br>
+ &nbsp; statements;<br>
+ }<br>
 <br>
-if (condition) {<br>
-&nbsp; statements;<br>
-}<br>
-else {<br>
-&nbsp; statements;<br>
-}<br>
+ if (condition) {<br>
+ &nbsp; statements;<br>
+ }<br>
+ else {<br>
+ &nbsp; statements;<br>
+ }<br>
 <br>
-if (condition) {<br>
-&nbsp; statements;<br>
-}<br>
-else if (condition) {<br>
-&nbsp; statements;<br>
-}<br>
-else {<br>
-&nbsp; statements;<br>
-}<br>
-</tt></td>
+ if (condition) {<br>
+ &nbsp; statements;<br>
+ }<br>
+ else if (condition) {<br>
+ &nbsp; statements;<br>
+ }<br>
+ else {<br>
+ &nbsp; statements;<br>
+ }<br>
+</tt> </td>
 </tr>
 
 <tr>
@@ -2302,9 +2307,9 @@ following form:</td>
 
 <tr>
 <td><tt>for (initialization; condition; update) {<br>
-&nbsp; statements;<br>
-}<br>
-</tt></td>
+ &nbsp; statements;<br>
+ }<br>
+</tt> </td>
 </tr>
 
 <tr>
@@ -2326,7 +2331,7 @@ the following form:</td>
 
 <tr>
 <td><tt>for (initialization; condition; update)<br>
-&nbsp; ;</tt> </td>
+ &nbsp; ;</tt> </td>
 </tr>
 
 <tr>
@@ -2349,9 +2354,9 @@ following form:</td>
 
 <tr>
 <td><tt>while (condition) {<br>
-&nbsp; statements;<br>
-}<br>
-</tt></td>
+ &nbsp; statements;<br>
+ }<br>
+</tt> </td>
 </tr>
 
 <tr>
@@ -2373,9 +2378,9 @@ following form:</td>
 
 <tr>
 <td><tt>do {<br>
-&nbsp; statements;<br>
-} while (condition);<br>
-</tt></td>
+ &nbsp; statements;<br>
+ } while (condition);<br>
+</tt> </td>
 </tr>
 
 <tr>
@@ -2397,30 +2402,30 @@ following form:</td>
 
 <tr>
 <td><tt>switch (condition) {<br>
-&nbsp; case ABC :<br>
+ &nbsp; case ABC :<br>
  &nbsp; &nbsp; statements;<br>
-&nbsp; &nbsp; // Fallthrough<br>
+ &nbsp; &nbsp; // Fallthrough<br>
 <br>
-&nbsp; case DEF :<br>
+ &nbsp; case DEF :<br>
  &nbsp; &nbsp; statements;<br>
-&nbsp; &nbsp; break;<br>
+ &nbsp; &nbsp; break;<br>
 <br>
-&nbsp; case XYZ :<br>
+ &nbsp; case XYZ :<br>
  &nbsp; &nbsp; statements;<br>
-&nbsp; &nbsp; break;<br>
+ &nbsp; &nbsp; break;<br>
 <br>
-&nbsp; default :<br>
+ &nbsp; default :<br>
  &nbsp; &nbsp; statements;<br>
-&nbsp; &nbsp; break;<br>
-}<br>
-</tt></td>
+ &nbsp; &nbsp; break;<br>
+ }<br>
+</tt> </td>
 </tr>
 
 <tr>
 <td class="rationale">Note that each <tt>case</tt> keyword is
 indented relative to the switch statement as a whole. This makes
 the entire switch statement stand out. Note also the extra space
-before the <i>:</i> character. The explicit <i>Fallthrough</i>
+before the <em>:</em> character. The explicit <em>Fallthrough</em>
 comment should be included whenever there is a case statement
 without a <tt>break</tt> statement. Leaving the <tt>break</tt> out
 is a common error, and it must be made clear that it is intentional
@@ -2441,11 +2446,11 @@ the following form:</td>
 
 <tr>
 <td><tt>try {<br>
-&nbsp; statements;<br>
-}<br>
-catch (Exception exception) {<br>
-&nbsp; statements;<br>
-}<br>
+ &nbsp; statements;<br>
+ }<br>
+ catch (Exception exception) {<br>
+ &nbsp; statements;<br>
+ }<br>
 </tt> </td>
 </tr>
 
@@ -2473,13 +2478,13 @@ brackets.</td>
 <td><tt>if (condition)<br>
  &nbsp; statement;<br>
 <br>
-while (condition)<br>
+ while (condition)<br>
  &nbsp; statement;<br>
 <br>
-for (initialization; condition; update)<br>
+ for (initialization; condition; update)<br>
  &nbsp; statement;<br>
 <br>
-</tt></td>
+</tt> </td>
 </tr>
 
 <tr>
@@ -2504,10 +2509,10 @@ left column immediately above the function name.</td>
 
 <tr>
 <td><tt>void<br>
-MyClass::myMethod (void)<br>
-{<br>
-&nbsp; :<br>
-}</tt> </td>
+ MyClass::myMethod (void)<br>
+ {<br>
+ &nbsp; :<br>
+ }</tt> </td>
 </tr>
 
 <tr>
@@ -2540,15 +2545,15 @@ character.</td>
 <td><tt>a = (b + c) *
 d;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 // NOT:&nbsp;&nbsp; a=(b+c)*d<br>
-while (true)
+ while (true)
 {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 // NOT:&nbsp;&nbsp; while(true) ...<br>
-doSomething (a, b, c, d);&nbsp;&nbsp; // NOT:&nbsp;&nbsp;
+ doSomething (a, b, c, d);&nbsp;&nbsp; // NOT:&nbsp;&nbsp;
 doSomething (a,b,c,d);<br>
-case 100
+ case 100
 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp; // NOT:&nbsp;&nbsp; case 100:<br>
-for (i = 0; i &lt; 10; i++) {&nbsp; // NOT:&nbsp;&nbsp; for
+ for (i = 0; i &lt; 10; i++) {&nbsp; // NOT:&nbsp;&nbsp; for
 (i=0;i&lt;10;i++){</tt> </td>
 </tr>
 
@@ -2639,8 +2644,8 @@ aligned.</td>
 
 <tr>
 <td><tt>AsciiFile&nbsp; *file;<br>
-int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nPoints;<br>
-float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x, y;</tt> </td>
+ int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nPoints;<br>
+ float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x, y;</tt> </td>
 </tr>
 
 <tr>
@@ -2663,8 +2668,9 @@ readability. Argument lists should have stacked arguments.</td>
 <tr>
 <td><tt>if&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (a ==
 lowValue)&nbsp;&nbsp;&nbsp; compueSomething();<br>
-else if (a == mediumValue) computeSomethingElse();<br>
-else if (a == highValue)&nbsp;&nbsp; computeSomethingElseYet();<br>
+ else if (a == mediumValue) computeSomethingElse();<br>
+ else if (a == highValue)&nbsp;&nbsp;
+computeSomethingElseYet();<br>
 <br>
 <br>
  runThisRoutine(int numNodes,<br>
@@ -2672,30 +2678,30 @@ else if (a == highValue)&nbsp;&nbsp; computeSomethingElseYet();<br>
  double* coordinateList,<br>
  int* connectivityList) {<br>
  blah blah<br>
-}<br>
+ }<br>
 <br>
 <br>
  value = (potential&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *
 oilDensity)&nbsp;&nbsp; / constant1 +<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 (depth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 * waterDensity) / constant2 +<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (zCoordinateValue *
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (zCoordinateValue *
 gasDensity)&nbsp;&nbsp; / constant3;<br>
 <br>
 <br>
  minPosition&nbsp;&nbsp;&nbsp;&nbsp; = computeDistance
 (min,&nbsp;&nbsp;&nbsp;&nbsp; x, y, z);<br>
-averagePosition = computeDistance (average, x, y, z);<br>
+ averagePosition = computeDistance (average, x, y, z);<br>
 <br>
 <br>
  switch (value) {<br>
-&nbsp; case PHASE_OIL&nbsp;&nbsp; : strcpy (string,
+ &nbsp; case PHASE_OIL&nbsp;&nbsp; : strcpy (string,
 "Oil");&nbsp;&nbsp; break;<br>
-&nbsp; case PHASE_WATER : strcpy (string, "Water"); break;<br>
-&nbsp; case PHASE_GAS&nbsp;&nbsp; : strcpy (string,
+ &nbsp; case PHASE_WATER : strcpy (string, "Water"); break;<br>
+ &nbsp; case PHASE_GAS&nbsp;&nbsp; : strcpy (string,
 "Gas");&nbsp;&nbsp; break;<br>
-}</tt> </td>
+ }</tt> </td>
 </tr>
 
 <tr>
@@ -2768,14 +2774,14 @@ position in the code.</td>
 <td><tt>while (true)
 {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
 NOT:&nbsp;&nbsp;&nbsp; while (true) {<br>
-&nbsp; // Do something&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp; // Do something&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 //&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Do
 something<br>
-&nbsp;
+ &nbsp;
 something();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 //&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 something();<br>
-}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 //&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</tt> </td>
 </tr>
@@ -2819,7 +2825,7 @@ directed to<br>
 mailing list<br>
  or<br>
 the QuantLib administrator <a href=
-"mailto:ferdinando.ametrano@riskmap.it">Ferdinando&nbsp;Ametrano</a>.</p>
+"mailto:ferdinando@ametrano.net">Ferdinando&nbsp;Ametrano</a>.</p>
 
 <script type="text/javascript" language="javascript" src=
 "http://ss.webring.yahoo.com/navbar?f=j&amp;y=ametrano&amp;u=98033809110220824">
