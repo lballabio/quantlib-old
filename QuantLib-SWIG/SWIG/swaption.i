@@ -50,7 +50,7 @@ class SwaptionPtr : public boost::shared_ptr<Instrument> {
 // pricing engines
 
 %{
-using QuantLib::BlackSwaption;
+using QuantLib::BlackSwaptionEngine;
 typedef boost::shared_ptr<PricingEngine> BlackSwaptionEnginePtr;
 %}
 
@@ -59,11 +59,10 @@ class BlackSwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
         BlackSwaptionEnginePtr(const boost::shared_ptr<BlackModel>& model) {
-            return new BlackSwaptionEnginePtr(new BlackSwaption(model));
+            return new BlackSwaptionEnginePtr(new BlackSwaptionEngine(model));
         }
     }
 };
-
 
 
 #endif

@@ -325,7 +325,7 @@ class McDiscreteArithmeticAPO {
                     const std::vector<Time>& timeDelays,
                     bool controlVariate, BigInteger seed = 0);
     Real value(Real tolerance,
-               Size maxSample = QL_MAX_INT) const;
+               Size maxSample = QL_MAX_INTEGER) const;
     Real valueWithSamples(Size samples) const;
     Real errorEstimate() const;
 };
@@ -344,7 +344,7 @@ class McDiscreteArithmeticASO {
                     const std::vector<Time>& timeDelays,
                     bool controlVariate, BigInteger seed = 0);
     Real value(Real tolerance,
-               Size maxSample = QL_MAX_INT) const;
+               Size maxSample = QL_MAX_INTEGER) const;
     Real valueWithSamples(Size samples) const;
     Real errorEstimate() const;
 };
@@ -367,7 +367,7 @@ class McBasket {
              Time residualTime, 
              BigInteger seed = 0);
     Real value(Real tolerance,
-               Size maxSample = QL_MAX_INT) const;
+               Size maxSample = QL_MAX_INTEGER) const;
     Real valueWithSamples(Size samples) const;
     Real errorEstimate() const;
 };
@@ -388,7 +388,7 @@ class McMaxBasket {
                 Time residualTime, 
                 BigInteger seed = 0);
     Real value(Real tolerance,
-               Size maxSample = QL_MAX_INT) const;
+               Size maxSample = QL_MAX_INTEGER) const;
     Real valueWithSamples(Size samples) const;
     Real errorEstimate() const;
 };
@@ -410,7 +410,7 @@ class McHimalaya {
                const std::vector<Time>& timeDelays,
 		       BigInteger seed = 0);
     Real value(Real tolerance,
-               Size maxSample = QL_MAX_INT) const;
+               Size maxSample = QL_MAX_INTEGER) const;
     Real valueWithSamples(Size samples) const;
     Real errorEstimate() const;
 };
@@ -430,7 +430,7 @@ class McEverest {
               Time residualTime,
 			  BigInteger seed = 0);
     Real value(Real tolerance,
-               Size maxSample = QL_MAX_INT) const;
+               Size maxSample = QL_MAX_INTEGER) const;
     Real valueWithSamples(Size samples) const;
     Real errorEstimate() const;
 };
@@ -453,7 +453,7 @@ class McPagoda {
 		     const std::vector<Time>& timeDelays,
 		     BigInteger seed = 0);
     Real value(Real tolerance,
-               Size maxSample = QL_MAX_INT) const;
+               Size maxSample = QL_MAX_INTEGER) const;
     Real valueWithSamples(Size samples) const;
     Real errorEstimate() const;
 };

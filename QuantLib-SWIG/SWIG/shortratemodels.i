@@ -173,58 +173,60 @@ class BlackKarasinskiPtr : public boost::shared_ptr<ShortRateModel> {
 
 // pricing engines for calibration helpers
 %{
-using QuantLib::JamshidianSwaption;
-using QuantLib::TreeSwaption;
-using QuantLib::TreeCapFloor;
-typedef boost::shared_ptr<PricingEngine> JamshidianSwaptionPtr;
-typedef boost::shared_ptr<PricingEngine> TreeSwaptionPtr;
-typedef boost::shared_ptr<PricingEngine> TreeCapFloorPtr;
+using QuantLib::JamshidianSwaptionEngine;
+using QuantLib::TreeSwaptionEngine;
+using QuantLib::TreeCapFloorEngine;
+typedef boost::shared_ptr<PricingEngine> JamshidianSwaptionEnginePtr;
+typedef boost::shared_ptr<PricingEngine> TreeSwaptionEnginePtr;
+typedef boost::shared_ptr<PricingEngine> TreeCapFloorEnginePtr;
 %}
 
-%rename(JamshidianSwaption) JamshidianSwaptionPtr;
-class JamshidianSwaptionPtr : public boost::shared_ptr<PricingEngine> {
+%rename(JamshidianSwaptionEngine) JamshidianSwaptionEnginePtr;
+class JamshidianSwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        JamshidianSwaptionPtr(const boost::shared_ptr<ShortRateModel>& model) {
+        JamshidianSwaptionEnginePtr(
+                             const boost::shared_ptr<ShortRateModel>& model) {
             using QuantLib::OneFactorAffineModel;
             boost::shared_ptr<OneFactorAffineModel> m = 
                  boost::dynamic_pointer_cast<OneFactorAffineModel>(model);
             QL_REQUIRE(model, "affine model required");
-            return new JamshidianSwaptionPtr(new JamshidianSwaption(m));
+            return new JamshidianSwaptionEnginePtr(
+                                             new JamshidianSwaptionEngine(m));
         }
     }
 };
 
-%rename(TreeSwaption) TreeSwaptionPtr;
-class TreeSwaptionPtr : public boost::shared_ptr<PricingEngine> {
+%rename(TreeSwaptionEngine) TreeSwaptionEnginePtr;
+class TreeSwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        TreeSwaptionPtr(const boost::shared_ptr<ShortRateModel>& model,
-                        Size timeSteps) {
-            return new TreeSwaptionPtr(
-                new TreeSwaption(model,timeSteps));
+        TreeSwaptionEnginePtr(const boost::shared_ptr<ShortRateModel>& model,
+                              Size timeSteps) {
+            return new TreeSwaptionEnginePtr(
+                                     new TreeSwaptionEngine(model,timeSteps));
         }
-        TreeSwaptionPtr(const boost::shared_ptr<ShortRateModel>& model,
-                        const TimeGrid& grid) {
-            return new TreeSwaptionPtr(
-                new TreeSwaption(model,grid));
+        TreeSwaptionEnginePtr(const boost::shared_ptr<ShortRateModel>& model,
+                              const TimeGrid& grid) {
+            return new TreeSwaptionEnginePtr(
+                                     new TreeSwaptionEngine(model,grid));
         }
     }
 };
 
-%rename(TreeCapFloor) TreeCapFloorPtr;
-class TreeCapFloorPtr : public boost::shared_ptr<PricingEngine> {
+%rename(TreeCapFloorEngine) TreeCapFloorEnginePtr;
+class TreeCapFloorEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        TreeCapFloorPtr(const boost::shared_ptr<ShortRateModel>& model,
-                        Size timeSteps) {
-            return new TreeCapFloorPtr(
-                new TreeCapFloor(model,timeSteps));
+        TreeCapFloorEnginePtr(const boost::shared_ptr<ShortRateModel>& model,
+                              Size timeSteps) {
+            return new TreeCapFloorEnginePtr(
+                                     new TreeCapFloorEngine(model,timeSteps));
         }
-        TreeCapFloorPtr(const boost::shared_ptr<ShortRateModel>& model,
-                        const TimeGrid& grid) {
-            return new TreeCapFloorPtr(
-                new TreeCapFloor(model,grid));
+        TreeCapFloorEnginePtr(const boost::shared_ptr<ShortRateModel>& model,
+                              const TimeGrid& grid) {
+            return new TreeCapFloorEnginePtr(
+                                     new TreeCapFloorEngine(model,grid));
         }
     }
 };

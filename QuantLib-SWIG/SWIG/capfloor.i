@@ -74,7 +74,7 @@ class CollarPtr : public boost::shared_ptr<Instrument> {
 };
 
 %{
-using QuantLib::BlackCapFloor;
+using QuantLib::BlackCapFloorEngine;
 typedef boost::shared_ptr<PricingEngine> BlackCapFloorEnginePtr;
 %}
 
@@ -83,7 +83,7 @@ class BlackCapFloorEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
         BlackCapFloorEnginePtr(const boost::shared_ptr<BlackModel>& model) {
-            return new BlackCapFloorEnginePtr(new BlackCapFloor(model));
+            return new BlackCapFloorEnginePtr(new BlackCapFloorEngine(model));
         }
     }
 };
