@@ -27,7 +27,7 @@ typedef QuantLib::BoundaryCondition<QuantLib::TridiagonalOperator>
 typedef BoundaryCondition::Side BoundaryConditionSide;
 
 BoundaryCondition::Side BCSideFromString(std::string s) {
-    s = StringFormatter::toLowercase(s);
+    s = QuantLib::lowercase(s);
     if (s == "" || s == "none")
         return BoundaryCondition::None;
     else if (s == "upper")

@@ -32,7 +32,7 @@ using QuantLib::Barrier;
 typedef Barrier::Type BarrierType;
 
 Option::Type optionTypeFromString(std::string s) {
-    s = StringFormatter::toLowercase(s);
+    s = QuantLib::lowercase(s);
     if (s == "c" || s == "call")
         return Option::Call;
     else if (s == "p" || s == "put")
@@ -53,7 +53,7 @@ std::string optionTypeToString(Option::Type t) {
 }
 
 BarrierType barrierTypeFromString(std::string s) {
-    s = StringFormatter::toLowercase(s);
+    s = QuantLib::lowercase(s);
     if (s == "downin")
         return Barrier::DownIn;
     else if (s == "downout")
@@ -252,7 +252,7 @@ class BinomialVanillaEnginePtr : public boost::shared_ptr<PricingEngine> {
     %extend {
         BinomialVanillaEnginePtr(const std::string& type,
                                  Size steps) {
-            std::string s = StringFormatter::toLowercase(type);
+            std::string s = QuantLib::lowercase(type);
             if (s == "crr" || s == "coxrossrubinstein")
                 return new BinomialVanillaEnginePtr(
                     new BinomialVanillaEngine<CoxRossRubinstein>(steps));
@@ -299,7 +299,7 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
                             doubleOrNull requiredTolerance = Null<Real>(),
                             intOrNull maxSamples = Null<Integer>(),
                             BigInteger seed = 0) {
-            std::string s = StringFormatter::toLowercase(traits);
+            std::string s = QuantLib::lowercase(traits);
             if (s == "pseudorandom" || s == "pr")
                 return new MCEuropeanEnginePtr(
                          new MCEuropeanEngine<PseudoRandom>(timeSteps,
@@ -372,7 +372,7 @@ typedef boost::shared_ptr<PricingEngine> AnalyticDigitalAmericanEnginePtr;
 %}
 
 %rename(AnalyticDigitalAmericanEngine) AnalyticDigitalAmericanEnginePtr;
-class AnalyticDigitalAmericanEnginePtr 
+class AnalyticDigitalAmericanEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
@@ -400,7 +400,7 @@ class BarrierOptionPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
         BarrierOptionPtr(BarrierType barrierType,
-                         Real barrier, 
+                         Real barrier,
                          Real rebate,
                          const boost::shared_ptr<StochasticProcess>& process,
                          const boost::shared_ptr<Payoff>& payoff,
@@ -414,7 +414,7 @@ class BarrierOptionPtr : public boost::shared_ptr<Instrument> {
                 boost::dynamic_pointer_cast<BlackScholesProcess>(process);
             QL_REQUIRE(bsProcess, "wrong stochastic process given");
             return new BarrierOptionPtr(
-                new BarrierOption(barrierType, barrier, rebate, 
+                new BarrierOption(barrierType, barrier, rebate,
                                   bsProcess,stPayoff,exercise,engine));
         }
         Real errorEstimate() {
@@ -444,10 +444,10 @@ class BarrierOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<BarrierOption>(*self)
                  ->strikeSensitivity();
         }
-        Volatility impliedVolatility(Real targetValue, 
+        Volatility impliedVolatility(Real targetValue,
                                      Real accuracy = 1.0e-4,
                                      Size maxEvaluations = 100,
-                                     Volatility minVol = 1.0e-4, 
+                                     Volatility minVol = 1.0e-4,
                                      Volatility maxVol = 4.0) {
             return boost::dynamic_pointer_cast<BarrierOption>(*self)
                  ->impliedVolatility(targetValue,accuracy,maxEvaluations,
@@ -464,7 +464,7 @@ typedef boost::shared_ptr<PricingEngine> AnalyticBarrierEnginePtr;
 %}
 
 %rename(AnalyticBarrierEngine) AnalyticBarrierEnginePtr;
-class AnalyticBarrierEnginePtr 
+class AnalyticBarrierEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {

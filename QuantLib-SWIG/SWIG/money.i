@@ -61,7 +61,9 @@ class Money {
                 return 1;
         }
         std::string __str__() {
-            return QuantLib::MoneyFormatter::toString(*self);
+            std::ostringstream out;
+            out << *self;
+            return out.str();
         }
     }
     #endif

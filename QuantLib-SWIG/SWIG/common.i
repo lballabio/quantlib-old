@@ -25,9 +25,6 @@
 // generally useful classes
 using QuantLib::Error;
 using QuantLib::Handle;
-using QuantLib::IntegerFormatter;
-using QuantLib::DecimalFormatter;
-using QuantLib::StringFormatter;
 %}
 
 namespace boost {

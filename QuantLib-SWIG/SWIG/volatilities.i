@@ -162,7 +162,7 @@ typedef BlackVarianceSurface::Extrapolation VolExtrapolationType;
 typedef boost::shared_ptr<BlackVolTermStructure> BlackVarianceSurfacePtr;
 
 VolExtrapolationType volExTypeFromString(std::string s) {
-    s = StringFormatter::toLowercase(s);
+    s = QuantLib::lowercase(s);
     if (s == "const" || s == "constant")
         return BlackVarianceSurface::ConstantExtrapolation;
     else if (s == "" || s == "default")

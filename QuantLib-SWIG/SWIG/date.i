@@ -37,7 +37,7 @@ typedef Integer Year;
 using QuantLib::Weekday;
 
 Weekday weekdayFromString(std::string s) {
-    s = StringFormatter::toLowercase(s);
+    s = QuantLib::lowercase(s);
     if (s == "sun" || s == "sunday")
         return QuantLib::Sunday;
     else if (s == "mon" || s == "monday")
@@ -88,7 +88,7 @@ MapToInteger(Month);
 using QuantLib::TimeUnit;
 
 TimeUnit timeunitFromString(std::string s) {
-    s = StringFormatter::toLowercase(s);
+    s = QuantLib::lowercase(s);
     if (s == "d" || s == "day" || s == "days")
         return QuantLib::Days;
     else if (s == "w" || s == "week" || s == "weeks")
@@ -143,36 +143,14 @@ class Period {
             return new Period(PeriodParser::parse(str));
         }
         std::string __str__() {
-            std::string s = IntegerFormatter::toString(self->length());
-            switch (self->units()) {
-              case QuantLib::Days:
-                return s + " day(s)";
-              case QuantLib::Weeks:
-                return s + " week(s)";
-              case QuantLib::Months:
-                return s + " month(s)";
-              case QuantLib::Years:
-                return s + " year(s)";
-              default:
-                return "Unknown period";
-            }
-            QL_DUMMY_RETURN(std::string());
+            std::ostringstream out;
+            out << *self;
+            return out.str();
         }
         std::string __repr__() {
-            std::string s = IntegerFormatter::toString(self->length());
-            switch (self->units()) {
-              case QuantLib::Days:
-                return s + "D";
-              case QuantLib::Weeks:
-                return s + "W";
-              case QuantLib::Months:
-                return s + "M";
-              case QuantLib::Years:
-                return s + "Y";
-              default:
-                return "Unknown period";
-            }
-            QL_DUMMY_RETURN(std::string());
+            std::ostringstream out;
+            out << "Period(\"" << QuantLib::io::short_period(*self) << "\")";
+            return out.str();
         }
         int __cmp__(const Period& other) {
             if (*self < other)
@@ -192,7 +170,6 @@ namespace std {
 
 %{
 using QuantLib::Date;
-using QuantLib::DateFormatter;
 using QuantLib::DateParser;
 %}
 
@@ -243,19 +220,20 @@ class Date {
             return int(self->weekday());
         }
         std::string __str__() {
-            return DateFormatter::toString(*self);
+            std::ostringstream out;
+            out << *self;
+            return out.str();
         }
         std::string __repr__() {
-            return "Date(" +
-                IntegerFormatter::toString(self->dayOfMonth()) +
-                "," +
-                IntegerFormatter::toString(int(self->month())) +
-                "," +
-                IntegerFormatter::toString(self->year()) +
-                ")";
+            std::ostringstream out;
+            out << "Date(" << self->dayOfMonth() << ","
+                << int(self->month()) << "," << self->year() << ")";
+            return out.str();
         }
         std::string ISO() {
-            return DateFormatter::toString(*self,DateFormatter::ISO);
+            std::ostringstream out;
+            out << QuantLib::io::iso_date(*self);
+            return out.str();
         }
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         BigInteger operator-(const Date& other) {

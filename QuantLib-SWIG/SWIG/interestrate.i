@@ -26,7 +26,7 @@
 using QuantLib::Compounding;
 
 Compounding compoundingFromString(std::string s) {
-    s = StringFormatter::toLowercase(s);
+    s = QuantLib::lowercase(s);
     if (s == "simple")
         return QuantLib::Simple;
     else if (s == "compounded")
@@ -103,7 +103,9 @@ class InterestRate {
                                 Frequency freq = Annual) const;
     %extend {
         std::string __str__() {
-            return QuantLib::InterestRateFormatter::toString(*self);
+            std::ostringstream out;
+            out << *self;
+            return out.str();
         }
     }
 };

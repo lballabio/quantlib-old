@@ -31,7 +31,7 @@ using QuantLib::Calendar;
 using QuantLib::BusinessDayConvention;
 
 BusinessDayConvention bdconvFromString(std::string s) {
-    s = StringFormatter::toLowercase(s);
+    s = QuantLib::lowercase(s);
     if (s == "" || s == "none" || s == "unadjusted")
         return QuantLib::Unadjusted;
     else if (s == "f" || s == "fol" || s == "following")
@@ -76,7 +76,7 @@ using QuantLib::JointCalendarRule;
 using QuantLib::JoinBusinessDays;
 
 JointCalendarRule joinRuleFromString(std::string s) {
-    s = StringFormatter::toLowercase(s);
+    s = QuantLib::lowercase(s);
     if (s == "h" || s == "holidays" || s == "joinholidays")
         return QuantLib::JoinHolidays;
     else if (s == "b" ||s == "businessdays" || s == "joinbusinessdays")

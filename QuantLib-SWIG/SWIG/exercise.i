@@ -27,7 +27,7 @@ using QuantLib::Exercise;
 typedef Exercise::Type ExerciseType;
 
 Exercise::Type exerciseTypeFromString(std::string s) {
-    s = StringFormatter::toLowercase(s);
+    s = QuantLib::lowercase(s);
     if (s == "e" || s == "european")
         return Exercise::European;
     else if (s == "a" || s == "american")
@@ -86,7 +86,7 @@ class EuropeanExercisePtr : public boost::shared_ptr<Exercise> {
 class AmericanExercisePtr : public boost::shared_ptr<Exercise> {
   public:
     %extend {
-        AmericanExercisePtr(const Date& earliestDate, 
+        AmericanExercisePtr(const Date& earliestDate,
                             const Date& latestDate,
                             bool payoffAtExpiry = false) {
             return new AmericanExercisePtr(

@@ -25,8 +25,6 @@
 %{
 using QuantLib::Array;
 using QuantLib::Matrix;
-using QuantLib::ArrayFormatter;
-using QuantLib::MatrixFormatter;
 %}
 
 %define QL_TYPECHECK_ARRAY       4210    %enddef
@@ -779,7 +777,9 @@ class Array {
     Size size() const;
     %extend {
         std::string __str__() {
-            return ArrayFormatter::toString(*self);
+            std::ostringstream out;
+            out << *self;
+            return out.str();
         }
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         Array __add__(const Array& a) {
@@ -946,17 +946,17 @@ class LexicographicalView {
             return new LexicographicalView(a.begin(),a.end(),xSize);
         }
         std::string __str__() {
-            std::string s;
+            std::ostringstream s;
             for (Size j=0; j<self->ySize(); j++) {
-                s += "\n";
+                s << "\n";
                 for (Size i=0; i<self->xSize(); i++) {
                     if (i != 0)
-                        s += ",";
-                    s += DecimalFormatter::toString((*self)[i][j]);
+                        s << ",";
+                    s << (*self)[i][j];
                 }
             }
-            s += "\n";
-            return s;
+            s << "\n";
+            return s.str();
         }
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         LexicographicalViewColumn __getitem__(Size i) {
@@ -1012,7 +1012,9 @@ class Matrix {
     Size columns() const;
     %extend {
         std::string __str__() {
-            return MatrixFormatter::toString(*self);
+            std::ostringstream out;
+            out << *self;
+            return out.str();
         }
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         Matrix __add__(const Matrix& m) {
@@ -1099,7 +1101,7 @@ using QuantLib::pseudoSqrt;
 typedef QuantLib::SalvagingAlgorithm::Type SalvagingAlgorithm;
 
 SalvagingAlgorithm salvagingAlgorithmFromString(std::string s) {
-    s = StringFormatter::toLowercase(s);
+    s = QuantLib::lowercase(s);
     if (s == "none")
         return QuantLib::SalvagingAlgorithm::None;
     else if (s == "spectral")
