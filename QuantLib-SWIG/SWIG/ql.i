@@ -59,6 +59,7 @@
 %include daycounters.i
 %include discountcurve.i
 %include distributions.i
+%include exchangerates.i
 %include exercise.i
 %include functions.i
 %include grid.i
@@ -69,6 +70,7 @@
 %include interpolation.i
 %include linearalgebra.i
 %include marketelements.i
+%include money.i
 %include montecarlo.i
 %include null.i
 %include observer.i

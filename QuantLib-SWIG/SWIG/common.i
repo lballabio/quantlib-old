@@ -61,9 +61,11 @@ template <class T>
 class RelinkableHandle {
     #if defined(SWIGRUBY)
     %rename("null?")   isNull;
+    %rename("empty?")  empty;
     %rename("linkTo!") linkTo;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("null?")    isNull;
+    %rename("empty?")  empty;
     %rename("link-to!") linkTo;
     #endif
   public:
@@ -73,11 +75,12 @@ class RelinkableHandle {
     #if defined(SWIGPYTHON)
     %extend {
         bool __nonzero__() {
-            return !(self->isNull());
+            return !self->empty();
         }
     }
     #else
     bool isNull();
+    bool empty();
     #endif
 };
 

@@ -34,7 +34,7 @@ class DayCounter {
     %rename("year-fraction") yearFraction;
     %rename(">string")       __str__;
     #endif
-  private:
+  protected:
     DayCounter();
   public:
     BigInteger dayCount(const Date& d1, const Date& d2);
@@ -69,14 +69,8 @@ class DayCounter {
 
 namespace QuantLib {
 
-    class Actual360 : public DayCounter {
-      public:
-        Actual360();
-    };
-    class Actual365 : public DayCounter {
-      public:
-        Actual365();
-    };
+    class Actual360 : public DayCounter {};
+    class Actual365 : public DayCounter {};
     class Thirty360 : public DayCounter {
       public:
         enum Convention { USA, European, Italian };
@@ -87,10 +81,7 @@ namespace QuantLib {
         enum Convention { ISMA, Bond, ISDA, Historical, AFB, Euro };
         ActualActual(Convention c = ISMA);
     };
-    class SimpleDayCounter : public DayCounter {
-      public:
-        SimpleDayCounter();
-    };
+    class SimpleDayCounter : public DayCounter {};
 
 }
 

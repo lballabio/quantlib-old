@@ -21,14 +21,34 @@
 %include date.i
 %include calendars.i
 %include daycounters.i
+%include currencies.i
 %include types.i
 %include termstructures.i
 %include history.i
-%include stl.i
+%include vectors.i
 
 %{
+using QuantLib::IndexManager;
 using QuantLib::XiborManager;
 %}
+
+class IndexManager {
+    #if defined(SWIGRUBY)
+    %rename("hasHistory?")  hasHistory;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("has-history?") hasHistory;
+    %rename("history-get")  getHistory;
+    %rename("history-set!") setHistory;
+    #endif
+  private:
+    IndexManager();
+  public:
+    static IndexManager& instance();
+    void setHistory(const std::string& name, const History& fixings);
+    const History& getHistory(const std::string& name) const;
+    bool hasHistory(const std::string& name) const;
+    std::vector<std::string> histories() const;
+};
 
 class XiborManager {
     #if defined(SWIGRUBY)
@@ -125,7 +145,7 @@ class XiborPtr : public boost::shared_ptr<Index> {
         Period tenor() {
             return boost::dynamic_pointer_cast<Xibor>(*self)->tenor();
         }
-        CurrencyTag currency() {
+        Currency currency() {
             return boost::dynamic_pointer_cast<Xibor>(*self)->currency();
         }
         Calendar calendar() {

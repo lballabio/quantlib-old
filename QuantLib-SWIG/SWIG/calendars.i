@@ -118,7 +118,7 @@ class Calendar {
     %rename("remove-holiday")   removeHoliday;
     %rename(">string")          __str__;
     #endif
-  private:
+  protected:
     Calendar();
   public:
     // constructor redefined below as string-based factory
@@ -162,20 +162,9 @@ class Calendar {
 
 namespace QuantLib {
 
-    class Beijing : public Calendar {
-      public:
-        Beijing();
-    };
-
-    class Budapest : public Calendar {
-      public:
-        Budapest();
-    };
-
-    class Copenhagen : public Calendar {
-      public:
-        Copenhagen();
-    };
+    class Beijing : public Calendar {};
+    class Budapest : public Calendar {};
+    class Copenhagen : public Calendar {};
 
     class Germany : public Calendar {
       public:
@@ -183,15 +172,8 @@ namespace QuantLib {
         Germany(Market m = FrankfurtStockExchange);
     };
 
-    class Helsinki : public Calendar {
-      public:
-        Helsinki();
-    };
-
-    class HongKong : public Calendar {
-      public:
-        HongKong();
-    };
+    class Helsinki : public Calendar {};
+    class HongKong : public Calendar {};
 
     class Italy : public Calendar {
       public:
@@ -199,65 +181,18 @@ namespace QuantLib {
         Italy(Market m = Settlement);
     };
 
-    class Johannesburg : public Calendar {
-      public:
-        Johannesburg();
-    };
-
-    class NullCalendar : public Calendar {
-      public:
-        NullCalendar();
-    };
-
-    class Oslo : public Calendar {
-      public:
-        Oslo();
-    };
-
-    class Riyadh : public Calendar {
-      public:
-        Riyadh();
-    };
-
-    class Seoul : public Calendar {
-      public:
-        Seoul();
-    };
-
-    class Singapore : public Calendar {
-      public:
-        Singapore();
-    };
-
-    class Stockholm : public Calendar {
-      public:
-        Stockholm();
-    };
-
-    class Sydney : public Calendar {
-      public:
-        Sydney();
-    };
-
-    class TARGET : public Calendar {
-      public:
-        TARGET();
-    };
-
-    class Taiwan : public Calendar {
-      public:
-        Taiwan();
-    };
-
-    class Tokyo : public Calendar {
-      public:
-        Tokyo();
-    };
-
-    class Toronto : public Calendar {
-      public:
-        Toronto();
-    };
+    class Johannesburg : public Calendar {};
+    class NullCalendar : public Calendar {};
+    class Oslo : public Calendar {};
+    class Riyadh : public Calendar {};
+    class Seoul : public Calendar {};
+    class Singapore : public Calendar {};
+    class Stockholm : public Calendar {};
+    class Sydney : public Calendar {};
+    class TARGET : public Calendar {};
+    class Taiwan : public Calendar {};
+    class Tokyo : public Calendar {};
+    class Toronto : public Calendar {};
 
     class UnitedKingdom : public Calendar {
       public:
@@ -271,20 +206,9 @@ namespace QuantLib {
         UnitedStates(Market m = Settlement);
     };
 
-    class Warsaw : public Calendar {
-      public:
-        Warsaw();
-    };
-
-    class Wellington : public Calendar {
-      public:
-        Wellington();
-    };
-
-    class Zurich : public Calendar {
-      public:
-        Zurich();
-    };
+    class Warsaw : public Calendar {};
+    class Wellington : public Calendar {};
+    class Zurich : public Calendar {};
 
     class JointCalendar : public Calendar {
       public:

@@ -23,6 +23,7 @@
 namespace std {
     %template(IntVector) vector<int>;
     %template(DoubleVector) vector<double>;
+    %template(StrVector) vector<std::string>;
 }
 
 

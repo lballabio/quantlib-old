@@ -55,7 +55,7 @@ Weekday weekdayFromString(std::string s) {
     else
         QL_FAIL("unknown weekday");
 }
- 
+
 std::string stringFromWeekday(Weekday w) {
     switch (w) {
       case QuantLib::Sunday:    return "Sunday";
@@ -97,7 +97,7 @@ TimeUnit timeunitFromString(std::string s) {
         return QuantLib::Months;
     else if (s == "y" || s == "year" || s == "years")
         return QuantLib::Years;
-    else 
+    else
         QL_FAIL("unknown time unit");
 }
 
@@ -127,7 +127,7 @@ MapToInteger(Frequency);
 
 %{
 using QuantLib::Period;
-using QuantLib::PeriodParser; 
+using QuantLib::PeriodParser;
 %}
 
 class Period {
@@ -193,7 +193,7 @@ namespace std {
 %{
 using QuantLib::Date;
 using QuantLib::DateFormatter;
-using QuantLib::DateParser; 
+using QuantLib::DateParser;
 %}
 
 #if defined(SWIGRUBY)
@@ -277,7 +277,7 @@ class Date {
                 return -1;
             else if (*self == other)
                 return 0;
-            else 
+            else
                 return 1;
         }
         #endif
