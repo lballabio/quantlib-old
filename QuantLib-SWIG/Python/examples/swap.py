@@ -83,14 +83,15 @@ futuresHelpers = [ FuturesRateHelper(QuoteHandle(futures[d]),
 
 settlementDays = 2
 fixedLegFrequency = 1
-fixedLegAdjustment = 0
+fixedLegAdjustment = 'unadjusted'
 fixedLegDayCounter = DayCounter('30/360')
 floatingLegFrequency = 2
+floatingLegAdjustment = 'modifiedfollowing'
 swapHelpers = [ SwapRateHelper(QuoteHandle(swaps[(n,unit)]),
-                               n, unit, settlementDays,
-                               calendar, 'mf',
+                               n, unit, settlementDays, calendar,
                                fixedLegFrequency, fixedLegAdjustment,
-                               fixedLegDayCounter, floatingLegFrequency)
+                               fixedLegDayCounter, floatingLegFrequency,
+                               floatingLegAdjustment)
                 for n, unit in swaps.keys() ]
 
 # term structure handles
@@ -112,10 +113,11 @@ depoFraSwapCurve = PiecewiseFlatForward(todaysDate, settlementDate,
 
 nominal = 1000000
 length = 5
+maturity = calendar.advance(settlementDate,length,'years')
 payFixed = 1
 
 fixedLegFrequency = 1
-fixedLegAdjustment = 0
+fixedLegAdjustment = 'unadjusted'
 fixedLegDayCounter = DayCounter('30/360')
 fixedRate = 0.04
 
@@ -123,18 +125,29 @@ floatingLegFrequency = 2
 spread = 0.0
 fixingDays = 2
 index = Xibor('Euribor', 6, 'months', forecastTermStructure)
+floatingLegAdjustment = 'modifiedfollowing'
 
-spot = SimpleSwap(payFixed, settlementDate, length, 'years',
-                  calendar, 'mf', nominal, fixedLegFrequency,
-                  fixedRate, fixedLegAdjustment, fixedLegDayCounter,
-                  floatingLegFrequency, index, fixingDays, spread,
+fixedSchedule = Schedule(calendar, settlementDate, maturity,
+                         fixedLegFrequency, fixedLegAdjustment)
+floatingSchedule = Schedule(calendar, settlementDate, maturity,
+                            floatingLegFrequency, floatingLegAdjustment)
+
+spot = SimpleSwap(payFixed, nominal,
+                  fixedSchedule, fixedRate, fixedLegDayCounter,
+                  floatingSchedule, index, fixingDays, spread,
                   discountTermStructure)
 
-forward = SimpleSwap(payFixed, calendar.advance(settlementDate,1,'year'),
-                     length, 'years', calendar, 'mf', nominal,
-                     fixedLegFrequency, fixedRate, fixedLegAdjustment,
-                     fixedLegDayCounter, floatingLegFrequency, index,
-                     fixingDays, spread, discountTermStructure)
+forwardStart = calendar.advance(settlementDate,1,'year')
+forwardEnd = calendar.advance(forwardStart,length,'years')
+fixedSchedule = Schedule(calendar, forwardStart, forwardEnd,
+                         fixedLegFrequency, fixedLegAdjustment)
+floatingSchedule = Schedule(calendar, forwardStart, forwardEnd,
+                            floatingLegFrequency, floatingLegAdjustment)
+
+forward = SimpleSwap(payFixed, nominal,
+                     fixedSchedule, fixedRate, fixedLegDayCounter,
+                     floatingSchedule, index, fixingDays, spread,
+                     discountTermStructure)
 
 # price on the bootstrapped curves
 
@@ -212,7 +225,7 @@ print dblrule
 print tab + "5-years swap paying %s" % formatRate(fixedRate)
 print separator.join(headers)
 print rule
-    
+
 discountTermStructure.linkTo(depoFuturesSwapCurve)
 forecastTermStructure.linkTo(depoFuturesSwapCurve)
 report(spot,'depo-fut-swap')

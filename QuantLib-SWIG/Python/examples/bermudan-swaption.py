@@ -47,7 +47,7 @@ def calibrate(model, helpers, l, name):
     rule = '-' * len(header)
     dblrule = '=' * len(header)
 
-    print 
+    print
     print dblrule
     print name
     print rule
@@ -58,7 +58,7 @@ def calibrate(model, helpers, l, name):
 
     print 'Parameters: %s' % model.params()
     print rule
-    
+
     print header
     print rule
 
@@ -96,14 +96,15 @@ depositHelpers = [ DepositRateHelper(QuoteHandle(SimpleQuote(rate)),
                                          (1, 'year',   0.0353)] ]
 
 fixedLegFrequency = 1
-fixedLegAdjustment = 0
+fixedLegAdjustment = 'unadjusted'
 fixedLegDayCounter = DayCounter('30/360')
 floatingLegFrequency = 2
+floatingLegAdjustment = 'modifiedfollowing'
 swapHelpers = [ SwapRateHelper(QuoteHandle(SimpleQuote(rate)),
-                               n, unit, settlementDays,
-                               calendar, 'mf',
+                               n, unit, settlementDays, calendar,
                                fixedLegFrequency, fixedLegAdjustment,
-                               fixedLegDayCounter, floatingLegFrequency)
+                               fixedLegDayCounter, floatingLegFrequency,
+                               floatingLegAdjustment)
                 for n, unit, rate in [(2,  'years', 0.04875),
                                       (3,  'years', 0.0438),
                                       (5,  'years', 0.0474325),
@@ -125,23 +126,28 @@ index = Xibor('Euribor', 6, 'months', termStructure)
 swapLength = 5
 swapEnd = swapStart.plusYears(swapLength)
 
-atmRate = SimpleSwap(payFixed, swapStart, swapLength, 'years', calendar, 'mf',
-                     100.0, fixedLegFrequency, 0.0, fixedLegAdjustment,
-                     fixedLegDayCounter, floatingLegFrequency, index,
-                     fixingDays, 0.0, termStructure).fairRate()
+fixedSchedule = Schedule(calendar, swapStart, swapEnd,
+                         fixedLegFrequency, fixedLegAdjustment)
+floatingSchedule = Schedule(calendar, swapStart, swapEnd,
+                            floatingLegFrequency, floatingLegAdjustment)
 
-atmSwap = SimpleSwap(payFixed, swapStart, swapLength, 'years', calendar, 'mf',
-                     100.0, fixedLegFrequency, atmRate, fixedLegAdjustment,
-                     fixedLegDayCounter, floatingLegFrequency, index,
-                     fixingDays, 0.0, termStructure)
-otmSwap = SimpleSwap(payFixed, swapStart, swapLength, 'years', calendar, 'mf',
-                     100.0, fixedLegFrequency, atmRate*1.2, fixedLegAdjustment,
-                     fixedLegDayCounter, floatingLegFrequency, index,
-                     fixingDays, 0.0, termStructure)
-itmSwap = SimpleSwap(payFixed, swapStart, swapLength, 'years', calendar, 'mf',
-                     100.0, fixedLegFrequency, atmRate*0.8, fixedLegAdjustment,
-                     fixedLegDayCounter, floatingLegFrequency, index,
-                     fixingDays, 0.0, termStructure)
+atmRate = SimpleSwap(payFixed, 100.0,
+                     fixedSchedule, 0.0, fixedLegDayCounter,
+                     floatingSchedule, index, fixingDays, 0.0,
+                     termStructure).fairRate()
+
+atmSwap = SimpleSwap(payFixed, 100.0,
+                     fixedSchedule, atmRate, fixedLegDayCounter,
+                     floatingSchedule, index, fixingDays, 0.0,
+                     termStructure)
+otmSwap = SimpleSwap(payFixed, 100.0,
+                     fixedSchedule, atmRate*1.2, fixedLegDayCounter,
+                     floatingSchedule, index, fixingDays, 0.0,
+                     termStructure)
+itmSwap = SimpleSwap(payFixed, 100.0,
+                     fixedSchedule, atmRate*0.8, fixedLegDayCounter,
+                     floatingSchedule, index, fixingDays, 0.0,
+                     termStructure)
 
 helpers = [ SwaptionHelper(maturity, length,
                            QuoteHandle(SimpleQuote(vol)),
@@ -164,21 +170,21 @@ BK = BlackKarasinski(termStructure)
 print "Calibrating..."
 
 for h in helpers:
-    h.setPricingEngine(JamshidianSwaption(HW))
+    h.setPricingEngine(JamshidianSwaptionEngine(HW))
 calibrate(HW, helpers, 0.05, "Hull-White (analytic formulae)")
 
 for h in helpers:
-    h.setPricingEngine(TreeSwaption(HW2,grid))
+    h.setPricingEngine(TreeSwaptionEngine(HW2,grid))
 calibrate(HW2, helpers, 0.05, "Hull-White (numerical calibration)")
 
 for h in helpers:
-    h.setPricingEngine(TreeSwaption(BK,grid))
+    h.setPricingEngine(TreeSwaptionEngine(BK,grid))
 calibrate(BK, helpers, 0.05, "Black-Karasinski (numerical calibration)")
 
 
 # price Bermudan swaptions on defined swaps
 
-schedule = Schedule(calendar, swapStart, swapEnd, 1, 'mf', 1)
+schedule = Schedule(calendar, swapStart, swapEnd, 1, 'mf')
 bermudanDates = [ d for d in schedule ]
 exercise = BermudanExercise(bermudanDates[:-1])
 
@@ -195,25 +201,25 @@ print header
 print rule
 
 atmSwaption = Swaption(atmSwap, exercise, termStructure,
-                       TreeSwaption(HW, 100))
+                       TreeSwaptionEngine(HW, 100))
 otmSwaption = Swaption(otmSwap, exercise, termStructure,
-                       TreeSwaption(HW, 100))
+                       TreeSwaptionEngine(HW, 100))
 itmSwaption = Swaption(itmSwap, exercise, termStructure,
-                       TreeSwaption(HW, 100))
+                       TreeSwaptionEngine(HW, 100))
 
 print format % ('HW analytic', formatPrice(itmSwaption.NPV()),
                 formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV()))
 
-atmSwaption.setPricingEngine(TreeSwaption(HW2, 100))
-otmSwaption.setPricingEngine(TreeSwaption(HW2, 100))
-itmSwaption.setPricingEngine(TreeSwaption(HW2, 100))
+atmSwaption.setPricingEngine(TreeSwaptionEngine(HW2, 100))
+otmSwaption.setPricingEngine(TreeSwaptionEngine(HW2, 100))
+itmSwaption.setPricingEngine(TreeSwaptionEngine(HW2, 100))
 
 print format % ('HW numerical', formatPrice(itmSwaption.NPV()),
                 formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV()))
 
-atmSwaption.setPricingEngine(TreeSwaption(BK, 100))
-otmSwaption.setPricingEngine(TreeSwaption(BK, 100))
-itmSwaption.setPricingEngine(TreeSwaption(BK, 100))
+atmSwaption.setPricingEngine(TreeSwaptionEngine(BK, 100))
+otmSwaption.setPricingEngine(TreeSwaptionEngine(BK, 100))
+itmSwaption.setPricingEngine(TreeSwaptionEngine(BK, 100))
 
 print format % ('BK numerical', formatPrice(itmSwaption.NPV()),
                 formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV()))
