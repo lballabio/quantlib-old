@@ -39,7 +39,7 @@
 ; files
 (define info-files
   (list "Authors.txt" "ChangeLog.txt" "Contributors.txt"
-        "LICENSE.TXT" "History.txt" "README.txt"))
+        "LICENSE.TXT" "News.txt" "History.txt" "README.txt"))
 (define source-files
   (list (build-path "quantlib" "quantlib.ss")
         (build-path "quantlib" "ql-init.ss")
@@ -111,13 +111,13 @@
         ((= i n))
       (if (char=? (string-ref s i) c)
           (set! spcs (cons i spcs))))
-    (let ((begins (cons 0 (map (lambda (i) (+ i 1)) 
+    (let ((begins (cons 0 (map (lambda (i) (+ i 1))
                                (reverse spcs))))
           (ends (reverse (cons n spcs))))
       (map (lambda (b e) (substring s b e)) begins ends))))
 
 (define (execute prog . args)
-  (let ((full-path (find-executable-path 
+  (let ((full-path (find-executable-path
                     (if (eqv? (system-type) 'windows)
                         (string-append prog ".exe")
                         prog)
@@ -125,7 +125,7 @@
         (stdin (current-input-port))
         (stdout (current-output-port))
         (stderr (current-output-port)))
-    (call-with-values (lambda () (apply subprocess 
+    (call-with-values (lambda () (apply subprocess
                                         stdout stdin stderr full-path args))
       (lambda (proc _1 _2 _3) (subprocess-wait proc)))))
 
@@ -148,7 +148,7 @@
         (set! swig-dir "../SWIG"))
     (execute "swig" "-mzscheme" "-c++"
              (string-append "-I" swig-dir)
-             "-o" "quantlib_wrap.cpp" 
+             "-o" "quantlib_wrap.cpp"
              "quantlib.i")))
 
 (define (build)
@@ -191,7 +191,7 @@
           (else
            (error "Unsupported platform")))
     (let ((object (append-object-suffix "quantlib_wrap"))
-          (extension (build-path "quantlib" 
+          (extension (build-path "quantlib"
                                  (append-extension-suffix "QuantLibc"))))
       (compile-extension #f "quantlib_wrap.cpp" object include-dirs)
       (link-extension #f (list object) extension))))
@@ -212,20 +212,20 @@
               (let ((installation-path (build-path collect-path "quantlib")))
                 (if (not (directory-exists? installation-path))
                     (make-directory installation-path))
-                (for-each 
+                (for-each
                  (lambda (f)
                    (let* ((destination-file
                            (build-path installation-path f)))
                      (if (file-exists? destination-file)
                          (delete-file destination-file))
-                     (display (string-append 
+                     (display (string-append
                                (build-path "." "quantlib" f)
                                " -> "
                                destination-file))
                      (newline)
-                     (copy-file (build-path "quantlib" f) 
+                     (copy-file (build-path "quantlib" f)
                                 destination-file)))
-                 (list "quantlib.ss" 
+                 (list "quantlib.ss"
                        "ql-init.ss"
                        (append-extension-suffix "QuantLibc"))))))
 
@@ -238,7 +238,7 @@
           (test-dir (build-path distribution-dir "test"))
           (module-dir (build-path distribution-dir "quantlib")))
       (define (install-files files source-dir target-dir)
-        (for-each 
+        (for-each
          (lambda (f)
            (let ((source-file (build-path source-dir f))
                  (destination-file (build-path distribution-dir target-dir f)))
@@ -256,7 +256,7 @@
       (install-files test-files "./test" "test")
       (let ((os (system-type)))
         (cond ((equal? os 'unix)
-               (execute "tar" "cfz" 
+               (execute "tar" "cfz"
                         (string-append distribution-dir ".tar.gz")
                         distribution-dir))
               ((equal? os 'windows)

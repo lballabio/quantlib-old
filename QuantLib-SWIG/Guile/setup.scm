@@ -33,7 +33,7 @@
 ; files
 (define info-files
   (list "Authors.txt" "ChangeLog.txt" "Contributors.txt"
-        "LICENSE.TXT" "History.txt" "README.txt"))
+        "LICENSE.TXT" "History.txt" "News.txt" "README.txt"))
 (define source-files
   (list "QuantLib.scm" "quantlib_wrap.cpp"))
 (define binary-files
@@ -98,11 +98,11 @@
 (define (ls path)
   (define (read-one s acc)
     (let ((x (readdir s)))
-      (cond ((eof-object? x) 
+      (cond ((eof-object? x)
              acc)
             ((or (string=? x ".") (string=? x ".."))
              (read-one s acc))
-            (else 
+            (else
              (read-one s (cons x acc))))))
   (let ((s (opendir path)))
     (let ((l (read-one s '())))
@@ -140,7 +140,7 @@
           ((= i n))
         (if (char=? (string-ref s i) #\space)
             (set! spcs (cons i spcs))))
-      (let ((begins (cons 0 (map (lambda (i) (+ i 1)) 
+      (let ((begins (cons 0 (map (lambda (i) (+ i 1))
                                  (reverse spcs))))
             (ends (reverse (cons n spcs))))
         (map (lambda (b e) (substring s b e)) begins ends))))
@@ -155,7 +155,7 @@
           (set! flags (append flags (string-split c-flags))))
       (if c++-flags
           (set! flags (append flags (string-split c++-flags))))
-      (let ((command (apply string-append 
+      (let ((command (apply string-append
                             (map
                              (lambda (s) (string-append s " "))
                              (append (list c++-compiler)
@@ -183,11 +183,11 @@
 
 (define (install)
   (define (find-install-path path)
-    (if (null? path) 
+    (if (null? path)
         #f
         (let ((dir (car path))
               (cwd (getcwd)))
-          (if (and (file-exists? dir) 
+          (if (and (file-exists? dir)
                    (file-is-directory? dir)
                    (not (string=? dir "."))
                    (not (string=? dir cwd)))
@@ -219,10 +219,10 @@
     (let ((swig-dir (string-append distribution-dir "/SWIG"))
           (test-dir (string-append distribution-dir "/test")))
       (define (install-files files source-dir target-dir)
-        (for-each 
+        (for-each
          (lambda (f)
            (let ((source-file (string-append source-dir "/" f))
-                 (destination-file (string-append distribution-dir "/" 
+                 (destination-file (string-append distribution-dir "/"
                                                   target-dir "/" f)))
              (copy-file source-file destination-file)))
          files))
@@ -236,7 +236,7 @@
             (set! i-dir "../SWIG"))
         (install-files SWIG-interfaces i-dir "SWIG"))
       (install-files test-files "test" "test")
-      (system (string-append "tar cfz " 
+      (system (string-append "tar cfz "
                              distribution-dir ".tar.gz "
                              distribution-dir))
       (rec-delete-directory distribution-dir))))
