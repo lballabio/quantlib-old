@@ -21,16 +21,17 @@ qlxl::
 
 # the installation directive requires the QLXL_DIR environment variable to
 # point to the installed version of QLXL
+install: inst
 inst::
     if exist "$(QLXL_DIR)\qlxl" rmdir /S /Q "$(QLXL_DIR)\qlxl"
-    xcopy xlw\*.h* "$(QLXL_DIR)\qlxl" /S /I
+    xcopy qlxl\*.h* "$(QLXL_DIR)\qlxl" /S /I
 
     if exist "$(QLXL_DIR)\xll\Win32\VisualStudio" rmdir /S /Q "$(QLXL_DIR)\xll\Win32\VisualStudio"
-    xcopy lib\Win32\VisualStudio\*.xll "$(QLXL_DIR)\xll\Win32\VisualStudio" /S /I
-    xcopy lib\Win32\VisualStudio\*.pdb "$(QLXL_DIR)\xll\Win32\VisualStudio" /S /I
+    xcopy xll\\Win32\VisualStudio\*.xll "$(QLXL_DIR)\xll\Win32\VisualStudio" /S /I
+    xcopy xll\\Win32\VisualStudio\*.pdb "$(QLXL_DIR)\xll\Win32\VisualStudio" /S /I
 
     if exist "$(QLXL_DIR)\xll\Win32\Borland" rmdir /S /Q "$(QLXL_DIR)\xll\Win32\Borland"
-    xcopy lib\Win32\Borland\*.xll "$(QLXL_DIR)\xll\Win32\Borland" /S /I
+    xcopy xll\\Win32\Borland\*.xll "$(QLXL_DIR)\xll\Win32\Borland" /S /I
 
 
 # Documentation
