@@ -23,7 +23,7 @@
 
 #include <qlxl/qlxl.hpp>
 #include <qlxl/qlxlfoper.hpp>
-#include <ql/PricingEngines/vanillaengines.hpp>
+#include <ql/PricingEngines/Vanilla/vanillaengines.hpp>
 #include <ql/PricingEngines/mceuropeanengine.hpp>
 #include <ql/PricingEngines/quantoengines.hpp>
 #include <ql/PricingEngines/forwardengines.hpp>
