@@ -23,17 +23,27 @@
 
 /*! \page history Version history
 
-    <strong>Release 0.3.9 - March 2005</strong>
+    <strong>Release 0.3.9 - April 2005</strong>
 
     REQUIRED PACKAGES
-    - Boost version 1.31.0 or later is required.
+    - Boost version 1.31.0 or later
+    - QuantLib version 0.3.9
+    - ObjectHandler version 0.1.1
 
-    DOCUMENTATION
+    OVERVIEW
 
     Initial release consisting of prototype framework:
+    - core library of supported classes
+    - function metadata
+    - script to autogenerate source for target platforms
+    - sample client applications and spreadsheets
 
-    - set of example functions for constructing various option classes
-    - basic utility functions to support diagnostics, querying objects, etc.
+    FUNCTIONALITY
+
+    - bonds & zero curves (Walter Penschke)
+    - caps & floors (Aurelien Chanudet)
+    - options
+    - diagnostic and utility functions
 
 */
 

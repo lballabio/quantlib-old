@@ -25,6 +25,14 @@
     General demo of a QuantLibAddin C++ client.
 */
 
+/*! \example capfloor.cpp
+    Example QuantLibAddin C++ client which calls all cap/floor functions.
+*/
+
+/*! \example instruments.cpp
+    Example QuantLibAddin C++ client which calls all instruments functions.
+*/
+
 /*! \example options.cpp
     Example QuantLibAddin C++ client which calls all options functions.
 */

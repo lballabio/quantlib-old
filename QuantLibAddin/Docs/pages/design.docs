@@ -23,8 +23,6 @@
 
 /*! \page design QuantLibAddin Design
 
-<h1>QuEP 12: QuantLibAddin</h1>
-<div class="center">Eric Ehlers</div>
 <h2>Abstract</h2>
 <p>There is a requirement to supplement QuantLib's existing C++ API with a high-level API, <b>QuantLibAddin</b>, which implements a procedural interface that can be deployed on any platform capable of linking C++ libraries.  QuantLibAddin is less flexible than the native API but allows QuantLib functionality to be loaded directly to end-user environments such as spreadsheets.</p>
 <a name="tag_contents"><h2>Contents</h2>
@@ -59,13 +57,13 @@
 \section sec_1_1 1.1 Classes
 <p>The class for each QuantLib object to be stored in ObjectHandler is wrapped in a class derived from <tt>Object</tt>.  The constructor of the derived Object class calls the constructor of the corresponding QuantLib class, and the resulting QuantLib object is stored as a member variable of the derived Object.  The Propery vector in the base Object class is populated appropriately.</p>
 \section sec_1_2 1.2 Functions
-<p>QuantLibAddin exports a standard set of functions. Typically each function corresponds to a constructor or member variable of an Object class. The function returns the Property vector of the object which has been created / amended.  An object returned from one function may be passed as a parameter to another.</p>
+<p>QuantLibAddin exports a standard set of functions. Typically each function corresponds to a constructor or member variable of an Object class. (QuantLibAddin constructors are wrappers of \c ObjectHandler factory function \c makeObject). Each function returns the Property vector of the object which has been created / amended.  An object returned from one function may be passed as a parameter to another.</p>
 \section sec_1_3 1.3 Addins
 <p>The core QuantLibAddin binary can be linked directly into end-user C++ applications.  For other platforms, QuantLibAddin is linked into a platform-specific library which:</p>
 <ul>
 <li>retrieves inputs in native format from host application</li>
 <li>converts inputs to QuantLib format</li>
-<li>invokes the QuantLibAddin interface function and captures its return value</li>
+<li>invokes the QuantLibAddin function and captures its return value</li>
 <li>converts the return value to native format and returns it to the host application</li>
 </ul>
 <p>The above is wrapped in try/catch.  All Addins use standard calls to log exceptions to the QuantLibAddin log file, and may perform addition platform-specific error handling e.g. throwing a new exception for the host application.</p>
@@ -418,11 +416,13 @@ int QL_OPTION_C(
 	<param>
 		<name>dividendYield</name>
 		<type>double</type>
+	    <tensorrank>scalar</tensorrank>
 		<desc>dividend yield</desc>
 	</param>
 	<param>
 		<name>riskFreeRate</name>
 		<type>double</type>
+	    <tensorrank>scalar</tensorrank>
 		<desc>risk free rate</desc>
 	</param>
 
@@ -430,16 +430,16 @@ int QL_OPTION_C(
 
 </parameters>
 <returnval>
-	<type>propertyvector</type>
+	<type>any</type>
+	<tensorrank>vector</tensorrank>
 	<desc>vector of properties describing Black Scholes object</desc>
 </returnval>
 </function>
 \endcode
-<p>The autogeneration script loads the metadata from the XML files and passes this to each platform-specific module which automatically generates the business functionality for that Addin, which is then recompiled.  Auto generated source is booked in to CVS so that people who download QuantLibAddin source from CVS can recompile without necessarily regenerating the source.</p>
+<p>The autogeneration script loads the metadata from the XML files and passes this to each platform-specific module which automatically generates the business functionality for that Addin, which is then recompiled.</p>
 \section sec_5 5. Notes
 <ul>
 <li><b>separation of processes:</b> At present all QuantLibAddin functionality is bundled together with ObjectHandler into a single process.  As QuantLibAddin grows it will be preferable to divide it into multiple processes - for example one Addin for each product line, all sharing a single global instance of ObjectHandler.  This reduces the footprint of QuantLibAddin for a given user, who can load only the product lines needed.</li>
-<li><b>QuantLibAddin version number:</b> At present it is proposed that QuantLibAddin use the same version numbering as QuantLib, implying that each QuantLib release is followed by a single release of QuantLibAddin.  It may be desirable to release QuantLibAddin more often than QuantLib,  in which case QuantLibAddin would need its own numbering scheme.</li>
 </ul>
 \section sec_6 6. Feedback
 <p>Feedback on this proposal should be posted to the <a href="
