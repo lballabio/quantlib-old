@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief Factory function to instantiate an Object in ObjectHandler
+*/
+
 #ifndef oh_factory_hpp
 #define oh_factory_hpp
 
@@ -22,9 +26,19 @@
 
 namespace ObjHandler {
 
+    //! Template class implementing a factory function for constructing Objects.
+    /*! Accepts a classname, handle, and argument stack
+        and instantiates the corresponding Object in ObjectHandler.
+    */
     template < class T >
         class Factory {
         public:
+        //! Create an Object.
+        /*! Instantiates an Object in ObjectHandler.
+            Object is stored under given handle.
+            The argument stack is passed to the Object's constructor.
+            The Object's Property vector is returned.
+        */
         static const Properties& makeObject(
                 const std::string &handle,
                 ArgStack &args) {

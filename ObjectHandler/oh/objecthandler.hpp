@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file objecthandler.hpp
+/*! \file
     \brief ObjectHandler class
 */
 
@@ -43,7 +43,7 @@ namespace ObjHandler {
     */
     typedef std::map<std::string, obj_ptr> ObjectList;
 
-    //! ObjectHandler class
+    //! Global Object repository.
     /*! Maintains a repository of Objects.
         Objects may be created/amended/destroyed
         by the client application.
@@ -51,7 +51,7 @@ namespace ObjHandler {
     class ObjectHandler : public Singleton<ObjectHandler> {
         friend class Singleton<ObjectHandler>;
     public:
-        //! \name storing & retrieving Objects
+        //! \name storing / retrieving / deleting Objects
         //@{
         //! Store Object with given handle.
         /*! Any existing Object with that handle
@@ -74,6 +74,9 @@ namespace ObjHandler {
             is already empty.
         */
         void deleteAllObjects();
+        //@}
+        //! \name utilities
+        //@{
         //! Return a vector of handles for all objects.
         /*! Returns a null vector if
             the repository is empty.
@@ -90,8 +93,6 @@ namespace ObjHandler {
         // ~ObjectHandler() {}
         ObjectList objectList_;
     };
-
-    std::ostream& operator<<(std::ostream& out, const ObjectHandler &objectHandler);
 
 }
 

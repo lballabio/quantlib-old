@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file singleton.hpp
+/*! \file
     \brief basic support for the singleton pattern
 */
 

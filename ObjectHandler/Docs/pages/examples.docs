@@ -29,14 +29,6 @@
     Sample implementation of an object to be stored in ObjectHandler.
 */
 
-/*! \example utilities.hpp
-    Sample interface of wrapper for ObjectHandler utilities.
-*/
-
-/*! \example utilities.cpp
-    Sample implementation of wrapper for ObjectHandler utilities.
-*/
-
 /*! \example example.cpp
     Sample client application using the ObjectHandler.
 */

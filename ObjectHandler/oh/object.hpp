@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file object.hpp
+/*! \file
     \brief Object class
 */
 
@@ -30,7 +30,15 @@
 #include <string>
 
 namespace ObjHandler {
+    //! A \c stack of values of class \c any.
+    /*! Argument stack passed from Factory::makeObject
+        to Object constructor.
+    */
     typedef std::stack<boost::any> ArgStack;
+    //! Template class to represent a stack of arguments.
+    /*! Pop an Object of class T
+        from the argument stack.
+    */
     template < class T >
     class Args {
         public:
@@ -57,10 +65,9 @@ namespace ObjHandler {
     */
     typedef std::vector<ObjectProperty> Properties;
 
-    //! Object class.
-    /*! Abstract base class
-        implementing interface for Objects
-        to be stored in the ObjectHandler.
+    //! ABC implementing interface for Objects to be stored in the ObjectHandler.
+    /*! Objects are constructed via the Factory function makeObject
+        and stored in the global ObjectHandler repository.
     */
     class Object {
     public:
@@ -108,6 +115,7 @@ namespace ObjHandler {
     */
     std::ostream& operator<<(std::ostream& out, const any_ptr& any);
 
+    /*! \relates Object */
     //! obj_ptr ostream operator.
     /*! Write contents of Object Property vector
         to output stream.

@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file utilities.hpp
+/*! \file
     \brief ObjectHandler utilities
 */
 
@@ -25,8 +25,8 @@
 #include <oh/objecthandler.hpp>
 
 /*! 
-    #define for ObjectHandler factory function
-    to construct an object of class \a X.
+    #define for ObjectHandler factory function makeObject.
+    Constructs an object of class \a X.
 */
 #define OH_OBJECT_MAKE(X)       ObjHandler::Factory<X>::makeObject
 /*! 
@@ -47,6 +47,13 @@
 
 namespace ObjHandler {
 
+    /** \name Logging framework
+     *  These functions wrap calls to the Logger class
+        simplifying the syntax for the client application
+        and alleviating the need for the client application
+        to #include log4cxx headers.
+    */
+    //@{
     //! Write Object with given handle to log file.
     /*! Writes a warning message to log file
         if no object is found with given handle.
@@ -81,6 +88,7 @@ namespace ObjHandler {
     void OH_LOGMESSAGE(
             const std::string &message,
             const int &level = 4);
+    //@}
 
 }
 

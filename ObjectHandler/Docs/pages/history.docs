@@ -23,12 +23,25 @@
 
 /*! \page history Version history
 
+    <strong>Release 0.1.1 - April 2005</strong>
+
+    REQUIRED PACKAGES
+    - Boost version 1.31.0 or later
+    - log4cxx version 0.9.7 or later
+
+    CHANGES SINCE RELEASE 0.1.0
+    - interface layer replaced with factory function (thanks to Walter Penschke)
+    - logging implemented with log4cxx framework from Apache project
+    - additional functions deleteObject, deleteAllObjects
+    - output manipulators for Object and ObjectHandler classes
+    - utility functions consolidated
+
     <strong>Release 0.1.0 - February 2005</strong>
 
     REQUIRED PACKAGES
-    - Boost version 1.31.0 or later is required.
+    - Boost version 1.31.0 or later
 
-    DOCUMENTATION
+    OVERVIEW
 
     Initial release consisting of prototype framework:
 

@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief a simple Exception class for ObjectHandler.
+*/
+
 #ifndef oh_exception_hpp
 #define oh_exception_hpp
 
@@ -23,6 +27,10 @@
 
 namespace ObjHandler {
 
+    //! Simple implementation of an exception.
+    /*! Descended from std::exception,
+        supports an error message string.
+    */
     class Exception : public std::exception {
         public:
             Exception(const std::string& message);

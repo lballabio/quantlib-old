@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file logger.hpp
+/*! \file
     \brief Logger class wrapper for logging framework
 */
 
@@ -30,9 +30,8 @@
 
 namespace ObjHandler {
 
-    //! Logger class
-    /*! Provides a wrapper for the logging framework.
-        Native exceptions generated within the logging framework
+    //! Wrapper for the logging framework.
+    /*! Native exceptions generated within the logging framework
         are propagated as exceptions of ObjectHandler's Exception
         class (derived from std::exception).
     */

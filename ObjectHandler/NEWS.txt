@@ -1,2 +1,11 @@
+April 2005 - Release 0.1.1
+Changes since Release 0.1.0:
 
-Jan-2005 first version released
+- interface layer replaced with factory function (thanks to Walter Penschke)
+- logging implemented with log4cxx framework from Apache project
+- additional functions deleteObject, deleteAllObjects
+- output manipulators for Object and ObjectHandler classes
+- utility functions consolidated
+
+Feb-2005 - Release 0.1.0
+
