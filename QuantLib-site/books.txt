@@ -1,0 +1,256 @@
+
+
+*** VOLATILITY
+
+Volatility and Correlation
+Riccardo Rebonato
+Hardcover - 360 pages (15 October, 1999)
+John Wiley and Sons Ltd; ISBN: 0471899984
+
+Volatility
+Robert Jarrow (Editor)
+Paperback - 356 pages (June 1998)
+Risk Books; ISBN: 1899332464
+
+*** VALUE AT RISK
+
+VAR
+Risk Books
+Paperback - 397 pages (1997)
+Risk Books; ISBN: 189933226X
+
+Value at Risk
+Philippe Jorion
+Hardcover - 364 pages 2nd Ed (1 September, 2000)
+McGraw-Hill Education; ISBN: 0071355022
+
+RiskMetrics Technical Document
+http://www.riskmetrics.com/techdoc.html
+
+*** MONTE CARLO
+
+Monte Carlo
+Bruno Dupire (Editor)
+Paperback - 340 pages (November 1999)
+Risk Books; ISBN: 189933291X
+
+*** FINITE DIFFERENCES
+
+Option Pricing
+P. Wilmott
+Hardcover (September 1993)
+Oxford Financial Press; ISBN: 0952208202
+
+Pricing Financial Instruments: The Finite Difference Method
+Domingo Tavella, Curt Randall
+Hardcover - 237 pages 1st (15 April, 2000)
+John Wiley & Sons; ISBN: 0471197602
+
+
+*** STOCHASTIC CALCULUS
+
+Steven Shreve: Stochastic Calculus and Finance
+Shreve, Chalasani, Jha
+free e-book
+http://www-2.cs.cmu.edu/~chal/shreve.html
+
+An Introduction to the Mathematics of Financial Derivatives, Second Edition
+Salih Neftci
+Hardcover - 527 pages 2nd Ed (30 June, 2000)
+Academic Press; ISBN: 0125153929
+
+Brownian Motion and Stochastic Calculus
+I. Karatzas, S.E. Shreve
+Paperback - 481 pages 2nd Ed
+Springer-Verlag New York Inc.; ISBN: 0387976558
+
+*** GENERAL
+
+Paul Wilmott on Quantitative Finance
+Paul Wilmott
+Hardcover - 1064 pages 2nd revised edition (27 April, 2000)
+John Wiley and Sons Ltd; ISBN: 0471874388
+
+Options, Futures, and Other Derivatives with Disk
+John C. Hull
+Hardcover - 698 pages 4th (15 January, 2000)
+Prentice Hall; ISBN: 0130224448
+
+Black-Scholes and Beyond
+Neil A. Chriss
+Hardcover - 500 pages (30 September, 1996)
+Irwin Professional (USA); ISBN: 0786310251
+
+*** INTEREST RATE
+
+Interest Rate Models - Theory and Practice
+D. Brigo, F. Mercurio
+Hardcover - 500 pages (June 2001)
+Springer-Verlag Berlin and Heidelberg GmbH & Co. KG; ISBN: 3540417729
+
+Interest-Rate Option Models
+Riccardo Rebonato
+Hardcover - 546 pages 2nd Ed (27 March, 1998)
+John Wiley and Sons Ltd; ISBN: 0471979589
+
+Interest Rate Modelling
+Nick Webber, Jessica James
+Paperback - 672 pages (5 April, 2000)
+John Wiley and Sons Ltd; ISBN: 0471975230
+
+Modelling Fixed Income Securities and Interest Rate Options
+Robert A. Jarrow
+Hardcover (October 1995)
+McGraw Hill College Div; ISBN: 0070323739
+
+*** HANDS ON
+
+Implementing Derivative Models
+Les Clewlow, Chris Strickland
+Hardcover - 330 pages (29 April, 1998)
+John Wiley and Sons Ltd; ISBN: 0471966517
+
+The Complete Guide to Option Pricing Formulas
+Espen Gaarder Haug
+Hardcover - 232 pages (October 1997)
+Irwin Professional (USA); ISBN: 0786312408
+
+
+*** EXCEL
+
+Definitive Guide to Excel VBA
+M. Kofler
+Paperback - 800 pages (November 2000)
+Apress; ISBN: 1893115798
+
+Excel 2002 VBA Programmer's Reference
+John Green, Stephen Bullen, Rob Bovey, Robert Rosenberg
+Paperback - 1000 pages (September 2001)
+Wrox Press Ltd; ISBN: 1861005709
+
+Excel 2002 Power Programing with VBA
+John Walkenbach
+Paperback - 850 pages (2 July, 2001)
+Hungry Minds Inc; ISBN: 0764547992
+
+Excel 2002 Formulas
+John Walkenbach
+Paperback - 831 pages (3 December, 2001)
+Hungry Minds Inc; ISBN: 076454800X
+
+Microsoft Excel 2002 Visual Basic for Applications Step by Step
+Reed Jacobson
+Paperback - 368 pages Bk&Cd-Rom (12 September, 2001)
+Microsoft Press; ISBN: 0735613591
+
+
+
+*** EXCEL AND FINANCE
+
+Financial Modelling
+Simon Benninga
+Hardcover - 640 pages 2nd Ed (2 October, 2000)
+The MIT Press; ISBN: 0262024829
+
+Advanced modelling in finance using Excel and VBA
+Mary Jackson, Mike Staunton
+Hardcover - 276 pages Bk&Cd-Rom (30 May, 2001)
+John Wiley & Sons; ISBN: 0471499226
+
+*** PROGRAMMING
+
+The C++ Programming Language, Special Edition
+Bjarne Stroustrup
+Hardcover - 1040 pages Rev. Ed (11 February, 2000)
+Addison Wesley; ISBN: 0201700735
+
+Thinking in C++: Introduction to Standard C++, Volume One
+Bruce Eckel
+Paperback - 814 pages 2nd (15 April, 2000)
+Prentice Hall; ISBN: 0139798099
+
+Thinking in Java (2nd Edition) (with CD ROM)
+Bruce Eckel
+Paperback - 1127 pages 2nd Ed (8 June, 2000)
+Prentice Hall PTR; ISBN: 0130273635
+
+UML Distilled
+Martin Fowler, Kendall Scott
+Paperback - 224 pages 2nd Ed (30 September, 1999)
+Addison Wesley; ISBN: 020165783X
+
+Learning Python
+Mark Lutz, David Ascher
+Paperback - 384 pages (26 April, 1999)
+O'Reilly UK; ISBN: 1565924649
+
+Programming Python
+Mark Lutz, Guido van Rossum, Laura Lewin, Frank Willison
+Paperback - 1296 pages 2nd Ed (14 March, 2001)
+O'Reilly UK; ISBN: 0596000855
+
+Python Essential Reference
+David Beazley
+Paperback - 400 pages 2nd Ed (30 June, 2001)
+New Riders; ISBN: 0735710910
+
+Python Programming on Win32
+Mark Hammond, Andy Robinson
+Paperback - 672 pages (January 2000)
+O'Reilly UK; ISBN: 1565926218
+
+
+*** RISK MANAGEMENT
+
+Risk Management and Analysis: Measuring and Modelling Financial Risk
+Carol Alexander (Editor)
+Hardcover - 304 pages Revised Ed (12 November, 1998)
+John Wiley and Sons Ltd; ISBN: 0471979570
+
+Mastering Risk: Volume 2 - Applications: Your Single-Source Guide to Becoming a Master of Risk
+Carol Alexander
+Paperback - 264 pages 1 (24 October, 2001)
+Pearson Education; ISBN: 0273654365
+
+
+
+
+*** FORTHCOMING
+
+New Directions in Mathematical Finance
+Paul Wilmott (Editor), Henrik Rasmussen (Editor)
+Hardcover - 224 pages (28 February, 2002)
+John Wiley and Sons Ltd; ISBN: 0471498173
+
+Modern Pricing of Interest Rate Derivatives
+Riccardo Rebonato
+Hardcover (31 July, 2002)
+Princeton University Press; ISBN: 0691089736
+
+Dynamic Hedging (Revised Edition)
+Nassim Taleb
+Hardcover - 558 pages (16 August, 2002)
+John Wiley & Sons Inc; ISBN: 0471353477
+
+*** NOT ENOUGH ?
+
+Energy Derivatives
+Les Clewlow, Chris Strickland
+Hardcover (August 2000)
+Lacima Group; ISBN: 0953889602
+
+
+Hull-White on Derivatives
+John Hull, Alan White
+Paperback - 356 pages (June 1996)
+Risk Books; ISBN: 1899332456
+
+Exotic Options: The State of the Art
+Les Clewlow (Editor), Chris Strickland (Editor)
+Hardcover (June 1997)
+International Thomson Business Press; ISBN: 0412631709
+
+Market Models
+C.O. Alexander
+Hardcover - 514 pages (26 September, 2001)
+John Wiley and Sons Ltd; ISBN: 0471899755
