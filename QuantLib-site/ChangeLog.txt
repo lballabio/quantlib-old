@@ -1,3 +1,43 @@
+2002-03-23 18:31  nando
+
+	* FAQ.html (1.35), cvs.html (1.35), extensions.html (1.20):
+	references updated
+
+2002-03-21 19:09  nando
+
+	* FAQ.html (1.34), cvs.html (1.34), download.html (1.27),
+	extensions.html (1.19), index.html (1.40), license.html (1.42),
+	lists.html (1.29), mailinglists.html (1.20), marketconventions.html
+	(1.21), nextrelease.html (1.13), qltablehead.inc (1.20), quep.html
+	(1.26), snapshot.html (1.15), style.html (1.26): latest build
+
+2002-03-21 18:49  nando
+
+	* FAQ.html (1.33), cvs.html (1.33), download.html (1.26),
+	extensions.html (1.18), index.html (1.39), license.html (1.41),
+	lists.html (1.28), mailinglists.html (1.19), marketconventions.html
+	(1.20), nextrelease.html (1.12), quep.html (1.25), snapshot.html
+	(1.14), style.html (1.25), quep/quep004.html (1.4),
+	quep/quep005.html (1.4), quep/quep009.html (1.4): added QuantLibXL
+
+2002-03-14 13:30  nando
+
+	* FAQ.html (1.32), TODO.txt (1.12), books.txt (1.4), cvs.html
+	(1.32), download.html (1.25), extensions.html (1.17), index.html
+	(1.38), license.html (1.40), lists.html (1.27), mailinglists.html
+	(1.18), marketconventions.html (1.19), nextrelease.html (1.11),
+	qlmeta.inc (1.6), qltablefoot.inc (1.8), qltablehead.inc (1.19),
+	quep.html (1.24), readme.txt (1.5), snapshot.html (1.13),
+	style.html (1.24), quep/quep001.html (1.5), quep/quep002.html
+	(1.8), quep/quep004.html (1.3), quep/quep005.html (1.3),
+	quep/quep006.html (1.3), quep/quep007.html (1.3), quep/quep008.html
+	(1.3), quep/quep009.html (1.3), quep/quep010.html (1.3): added CVS
+	Id tag
+
+2002-03-14 08:39  nando
+
+	* ChangeLog.txt (1.13): updated
+
 2002-03-12 12:26  nando
 
 	* FAQ.html (1.31), cvs.html (1.31), download.html (1.24),
