@@ -1,3 +1,6 @@
+<!--
+ $Id$
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -54,7 +57,7 @@ class RelinkableHandle {
     };
     InnerObserver* observer_;
 };
-   
+
 </pre>
 
 <p>A number of issues are present in this design, namely:</p>
@@ -144,7 +147,7 @@ class Link : public Observable, public Observer {
   private:
     Handle&lt;T&gt; link_;
 };
-   
+
 </pre>
 
 <p>This would allow <tt>RelinkableHandle</tt> to be defined as:</p>
@@ -152,7 +155,7 @@ class Link : public Observable, public Observer {
 <pre>
 template &lt;class T&gt;
 class RelinkableHandle : public Handle&lt;Link&lt;T&gt; &gt; { ... };
-   
+
 </pre>
 
 <p>Inheriting from <tt>Handle&lt;Link&gt;</tt> already solves our
@@ -183,8 +186,8 @@ class RelinkableHandle : public Handle&lt;Link&lt;T&gt; &gt; {
     Handle&lt;T&gt;&amp; operator-&gt;() const { return (**this).currentLink(); }
     // isNull checks the Handle&lt;T&gt; rather than itself
     bool isNull() const { return (**this).currentLink().isNull(); }
-};    
-   
+};
+
 </pre>
 
 <h2>Conclusion</h2>

@@ -1,3 +1,6 @@
+<!--
+ $Id$
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -167,7 +170,7 @@ model would be implemented as</p>
 <pre>
 class FiniteDifferenceMethod {
   public:
-    FiniteDifferenceMethod(const Operator&amp; L, 
+    FiniteDifferenceMethod(const Operator&amp; L,
                            const std::list&lt;Handle&lt;BoundaryCondition&gt; &gt;&amp; bc)
     : evolver_(L,bc) { ... }
     ...
@@ -181,7 +184,7 @@ Composite pattern could be used to define such set as</p>
 <pre>
 class CompositeBC : public BoundaryCondition {
   public:
-    CompositeBC(const std::list&lt;Handle&lt;BoundaryCondition&gt; &gt;&amp; bc = 
+    CompositeBC(const std::list&lt;Handle&lt;BoundaryCondition&gt; &gt;&amp; bc =
                 std::list&lt;Handle&lt;BoundaryCondition&gt; &gt;())
     : bc_(bc) {}
     void add(const Handle&lt;BoundaryCondition&gt;&amp; c) {
@@ -205,7 +208,7 @@ as:</p>
 <pre>
 class FiniteDifferenceMethod {
   public:
-    FiniteDifferenceMethod(const Operator&amp; L, 
+    FiniteDifferenceMethod(const Operator&amp; L,
                            const Handle&lt;BoundaryCondition&gt;&amp; bc)
     : evolver_(L,bc) { ... }
     ...

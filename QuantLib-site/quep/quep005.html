@@ -1,3 +1,6 @@
+<!--
+ $Id$
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -133,7 +136,7 @@ class EuropeanOptionParameters : public OptionParameters,
 
 class EuropeanOptionResults : public OptionValue,
                               public OptionGreeks {};
-                              
+
 class EuropeanEngine : public OptionPricingEngine {
   private:
     EuropeanOptionParameters parameters_;
@@ -162,19 +165,19 @@ void Option::performCalculations() const {
     engine_-&gt;validateParameters();
     // .. and this calculates and store results in the Results struct
     engine_-&gt;calculate();
-    
+
     // get the results:
     // Option only needs to fulfill Instrument requirements, i.e.,
     // set the NPV value.
-    
+
     // downcast the Results struct to the appropriate type...
-    const OptionValue* results = 
+    const OptionValue* results =
         dynamic_cast&lt;const OptionValue*&gt;(engine_-&gt;results());
     // ... check that the cast succeeded...
     QL_ENSURE(results != 0, "results do not contain an option value slot");
     // ... and read the results.
     NPV_ = results-&gt;value;
-    
+
 }
 </pre>
 
@@ -198,7 +201,7 @@ class EuropeanOption : public Option {
 void EuropeanOption::setupEngine() const {
 
     // downcast the Arguments struct to the appropriate type...
-    UnderlyingParams* underArgs = 
+    UnderlyingParams* underArgs =
         dynamic_cast&lt;UnderlyingParams*&gt;(engine_-&gt;parameters());
     QL_ENSURE(underArgs != 0, ...);
     // ... and set the values
@@ -206,11 +209,11 @@ void EuropeanOption::setupEngine() const {
     underArgs-&gt;volatility = underlyingVol_-&gt;value();
 
     // do the same for other parameter sets:
-    MarketParams* marketArgs = 
+    MarketParams* marketArgs =
         dynamic_cast&lt;marketParams*&gt;(engine_-&gt;parameters());
     ...
     marketArgs-&gt;riskFreeRate = riskFreeCurve_-&gt;discount(exerciseDate_);
-    
+
     ...
 }
 </pre>
@@ -220,12 +223,12 @@ extending the base <tt>performCalculation</tt> method:</p>
 
 <pre>
 void EuropeanOption::performCalculations() const {
-    
+
     // the main logic is in the parent class method
     Option::performCalculations();
-    
+
     // now read additional results
-    const OptionGreeks* results = 
+    const OptionGreeks* results =
         dynamic_cast&lt;const OptionGreeks*&gt;(engine_-&gt;results());
     QL_ENSURE(...);
     delta_ = results-&gt;delta;
@@ -286,7 +289,7 @@ A rough proof of concept is available in the library. The base
 classes are implemented, as well as an analytic European engine and
 a concrete option class by the unsatisfactory name of
 <tt>PlainOption</tt>. The implementation can be found in the
-following files: 
+following files:
 
 <ul>
 <li>ql/argsandresults.hpp</li>

@@ -1,3 +1,6 @@
+<!--
+ $Id$
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -62,14 +65,14 @@ problem is evident in the following code snippet:</p>
 <pre>
 class SampleObserver : public Observer {
   public:
-    void update() { 
+    void update() {
         std::cout &lt;&lt; "I felt a disturbance in the Force"
                   &lt;&lt; std::endl;
     }
 };
 
 SampleObserver obiwan;
-theForce.registerObserver(&amp;obiwan); // this expands to 
+theForce.registerObserver(&amp;obiwan); // this expands to
                                     // theForce.observers().insert(&amp;obiwan);
 
 SampleObserver clone = obiwan;      // clone is not registered with theForce
@@ -140,7 +143,7 @@ class Observable {
     // Observer management...
     virtual void registerObserver(Observer*);
     virtual void unregisterObserver(Observer*);
-    // ...and storage. 
+    // ...and storage.
     std::list&lt;Observer*&gt; observers_;
 };
 
@@ -161,7 +164,7 @@ class Observer {
         for (each observable in observables_)
             observable-&gt;registerObserver(this);
     }
-    // destructor with automatic unregistration        
+    // destructor with automatic unregistration
     virtual ~Observer() {
         for (each observable in own observables_)
             observable-&gt;unregisterObserver(this);
