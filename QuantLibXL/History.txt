@@ -1,2 +1,4 @@
 
-2002-XX-XX Release 0.3.0
+2003-09-03 First decent release, version number 0.3.3
+           in sync with the QuantLib 0.3.1 release,
+           use a CVS snapshot (2003-09-01) of XLW

@@ -10,7 +10,7 @@
 # $Id$
 
 
-!define VER_NUMBER "0.3.4a1"
+!define VER_NUMBER "0.3.3f0"
 
 # HEADER CONFIGURATION COMMANDS
 !ifdef LIGHT
@@ -166,10 +166,10 @@ Function .onInit
 
   SetOutPath $TEMP
   File /oname=spltmp.bmp "Docs\images\QL-largish.bmp"
-  #the following line depends on NSIS being installed under D:\programs
+  #the following line depends on NSIS being installed under C:\programs
   #sorry, but no better solution available yet
-  IfFileExists "D:\programs\NSIS\splash.exe" 0 NoSplashExecutable
-      File /oname=spltmp.exe "D:\programs\NSIS\splash.exe"
+  IfFileExists "C:\programs\NSIS\splash.exe" 0 NoSplashExecutable
+      File /oname=spltmp.exe "C:\programs\NSIS\splash.exe"
       ExecWait '"$TEMP\spltmp.exe" 4000 $HWNDPARENT $TEMP\spltmp'
       Delete $TEMP\spltmp.exe
       Delete $TEMP\spltmp.bmp
