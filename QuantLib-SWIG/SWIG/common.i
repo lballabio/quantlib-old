@@ -223,31 +223,4 @@ class RelinkableHandle {
 %enddef
 
 
-// Pass an object by value in MzScheme or Guile
-%define PassByValue(T)
-#if defined(SWIGMZSCHEME)
-%typemap(in) T {
-    $1 = *((T*) SWIG_MustGetPtr($input,$1_descriptor,$argnum));
-}
-#elif defined(SWIGGUILE)
-%typemap(in) T {
-    $1 = *((T*) SWIG_Guile_MustGetPtr($input,$1_descriptor,
-                                      $argnum,FUNC_NAME));
-}
-#endif
-%enddef
-
-// Return an object by value in MzScheme or Guile
-%define ReturnByValue(T)
-#if defined(SWIGMZSCHEME)
-%typemap(out) T {
-    $result = SWIG_MakePtr(new T((T&)$1), $&1_descriptor);
-}
-#elif defined(SWIGGUILE)
-%typemap(out) T {
-    $result = SWIG_Guile_MakePtr(new T($1), $&1_descriptor);
-}
-#endif
-%enddef
-
 #endif

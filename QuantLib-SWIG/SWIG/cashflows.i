@@ -41,7 +41,6 @@ class CashFlow {
 
 %template(CashFlow) Handle<CashFlow>;
 IsObservable(Handle<CashFlow>);
-ReturnByValue(Handle<CashFlow>);
 
 
 // implementations

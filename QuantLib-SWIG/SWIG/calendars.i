@@ -189,7 +189,6 @@ class Calendar {
         #endif
     }
 };
-ReturnByValue(Calendar);
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename("Calendar=?") Calendar_equal;

@@ -151,7 +151,6 @@ class Period {
         }
     }
 };
-ReturnByValue(Period);
 
 namespace std {
     %template(PeriodVector) vector<Period>;
@@ -246,8 +245,6 @@ class Date {
         #endif
     }
 };
-PassByValue(Date);
-ReturnByValue(Date);
 
 namespace std {
     %template(DateVector) vector<Date>;

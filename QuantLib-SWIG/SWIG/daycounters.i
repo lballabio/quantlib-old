@@ -88,7 +88,6 @@ class DayCounter {
         #endif
     }
 };
-ReturnByValue(DayCounter);
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename("DayCounter=?") DayCounter_equal;

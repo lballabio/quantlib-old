@@ -35,7 +35,6 @@ using QuantLib::MonteCarlo::Sample;
 
 template <class T>
 class Sample {
-    ReturnByValue(Sample<T>);
   private:
     Sample();
   public:

@@ -857,7 +857,6 @@ class Array {
         #endif
     }
 };
-ReturnByValue(Array);
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename("Array+")  Array_add;
@@ -1042,7 +1041,6 @@ class Matrix {
         #endif
     }
 };
-ReturnByValue(Matrix);
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename("Matrix+")  Matrix_add;

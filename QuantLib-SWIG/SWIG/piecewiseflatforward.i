@@ -43,7 +43,6 @@ typedef Handle<RateHelper> SwapRateHelperHandle;
 
 // rate helpers for curve bootstrapping
 %template(RateHelper) Handle<RateHelper>;
-ReturnByValue(Handle<RateHelper>);
 
 %rename(DepositRateHelper) DepositRateHelperHandle;
 class DepositRateHelperHandle : public Handle<RateHelper> {

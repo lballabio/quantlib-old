@@ -82,7 +82,7 @@ class Path {
         #endif
     }
 };
-ReturnByValue(Path);
+
 #if defined(SWIGMZSCHEME)
 %inline %{
 void Path_for_each(Scheme_Object* proc, Path* p) {
@@ -174,7 +174,6 @@ class MultiPath {
         #endif
     }
 };
-ReturnByValue(MultiPath);
 
 #if defined(SWIGMZSCHEME)
 %inline %{

@@ -157,7 +157,6 @@ class TridiagonalOperator {
     }
     #endif
 };
-ReturnByValue(TridiagonalOperator);
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename("TridiagonalOperator+") TridiagonalOperator_add;
