@@ -9,17 +9,15 @@ all : $(target)
 
 $(objects2):
 	cd objects && $(MAKE)
-	cd C && $(MAKE)
-	cd C++ && $(MAKE)
+	cd functions && $(MAKE)
 
 clean:
 	cd objects && $(MAKE) clean
-	cd C && $(MAKE) clean
-	cd C++ && $(MAKE) clean
+	cd functions && $(MAKE) clean
 	rm -f $(target) $(objects)
 
 $(objects) : %.o : %.cpp
-	g++ -DHAVE_CONFIG_H $(includes) -g -c -o $@ $<
+	g++ $(includes) -g -c -o $@ $<
 
 $(target) : $(objects) $(objects2)
 	ar rcs $@ $^ $(libs)

@@ -180,62 +180,6 @@ LIB32=link.exe -lib
 # Name "QuantLibAddin - Win32 Release SingleThread"
 # Name "QuantLibAddin - Win32 Debug MTDLL"
 # Name "QuantLibAddin - Win32 Debug SingleThread"
-# Begin Group "C"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\QuantLibAddin\C\defines.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\QuantLibAddin\C\options.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\QuantLibAddin\C\options_c.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\QuantLibAddin\C\utilities.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\QuantLibAddin\C\utilities_c.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\QuantLibAddin\C\varies.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\QuantLibAddin\C\varies.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\QuantLibAddin\C\varies.hpp
-# End Source File
-# End Group
-# Begin Group "C++"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=".\QuantLibAddin\C++\options.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE=".\QuantLibAddin\C++\options.hpp"
-# End Source File
-# Begin Source File
-
-SOURCE=".\QuantLibAddin\C++\utilities.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE=".\QuantLibAddin\C++\utilities.hpp"
-# End Source File
-# End Group
 # Begin Group "objects"
 
 # PROP Default_Filter ""
@@ -254,6 +198,26 @@ SOURCE=.\QuantLibAddin\objects\objectstochastic.cpp
 # Begin Source File
 
 SOURCE=.\QuantLibAddin\objects\objectstochastic.hpp
+# End Source File
+# End Group
+# Begin Group "functions"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\functions\options.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\functions\options.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\functions\utilities.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\functions\utilities.hpp
 # End Source File
 # End Group
 # Begin Source File

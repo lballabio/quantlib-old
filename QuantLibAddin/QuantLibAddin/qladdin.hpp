@@ -20,7 +20,7 @@
 
 #include <ObjectHandler/objhandler.hpp>
 #include <QuantLibAddin/qladdindefines.hpp>
-#include <QuantLibAddin/C++/options.hpp>
-#include <QuantLibAddin/C++/utilities.hpp>
+#include <QuantLibAddin/functions/options.hpp>
+#include <QuantLibAddin/functions/utilities.hpp>
 
 #endif

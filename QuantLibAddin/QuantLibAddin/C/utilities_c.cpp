@@ -17,7 +17,7 @@
 
 #include <QuantLibAddin/qladdin.hpp>
 extern "C" {
-#include <QuantLibAddin/C/utilities.h>
+#include <Addins/C/utilities.h>
 }
 
 using namespace QuantLibAddin;

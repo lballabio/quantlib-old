@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <QuantLibAddin/C++/options.hpp>
+#include <QuantLibAddin/functions/options.hpp>
 #include <QuantLibAddin/objects/objectoption.hpp>
 
 using namespace QuantLib;

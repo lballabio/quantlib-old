@@ -17,7 +17,7 @@
 
 #include <ObjectHandler/objhandler.hpp>
 extern "C" {
-#include <QuantLibAddin/C/varies.h>
+#include <Addins/C/varies.h>
 }
 
 using namespace ObjHandler;

@@ -3,15 +3,15 @@ IDL_DIR=$(OFFICE_SDK_PATH)/idl
 DKREGISTRYNAME=$(OFFICE_PROGRAM_PATH)/types.rdb
 #CC=g++
 CC=/usr/local/gcc/3.3.3/bin/g++
-CC_FLAGS=-c -fPIC -O2
+CC_FLAGS=-c -fPIC
 CC_INCLUDES=-I. -I../.. -I/usr/include -I$(OFFICE_SDK_PATH)/include \
 	-I../../../ObjectHandler
-CC_DEFINES=-DHAVE_CONFIG_H -DUNX -DGCC -DLINUX -DCPPU_ENV=gcc3
+CC_DEFINES=-DUNX -DGCC -DLINUX -DCPPU_ENV=gcc3
 LINK=g++
 LIBRARY_LINK_FLAGS=-shared
 LINK_LIBS=-L$(OFFICE_PROGRAM_PATH) -L/usr/local/lib -L../../QuantLibAddin
-LIBRARY_LIBS := -lcppuhelpergcc3 -lcppu -lsal -lstlport_gcc -lvcl645li \
-				-lvos3gcc3 -lQuantLib -lQuantLibAddin -lboost_regex
+LIBRARY_LIBS := -lcppuhelpergcc3 -lcppu -lsal \
+				-lQuantLibAddin -lQuantLib -lboost_regex
 CXXFILES := $(wildcard *.cpp)
 OBJFILES := $(patsubst %.cpp,%.o,$(CXXFILES))
 

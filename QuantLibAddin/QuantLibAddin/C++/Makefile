@@ -8,4 +8,4 @@ clean:
 	rm -f $(objects)
 
 $(objects) : %.o : %.cpp
-	g++ -DHAVE_CONFIG_H $(includes) -g -c -o $@ $<
+	g++ $(includes) -g -c -o $@ $<

@@ -17,11 +17,11 @@
 
 #include <QuantLibAddin/qladdin.hpp>
 extern "C" {
-#include <QuantLibAddin/C/varies.h>
-#include <QuantLibAddin/C/options.h>
-#include <QuantLibAddin/C/defines.h>
+#include <Addins/C/varies.h>
+#include <Addins/C/options.h>
+#include <Addins/C/defines.h>
 }
-#include <QuantLibAddin/C/varies.hpp>
+#include <Addins/C/varies.hpp>
 
 using namespace ObjHandler;
 using namespace QuantLibAddin;

@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <QuantLibAddin/qladdin.h>
+#include <Addins/C/qladdin.h>
 #include <stdio.h>
 
 int main() {
