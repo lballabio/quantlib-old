@@ -155,30 +155,94 @@ extern "C"
                         XlfOper xlmoneyness,
                         XlfOper xldividendYield,
                         XlfOper xlriskFreeRate,
-                        XlfOper xltimes,
+                        XlfOper xlrefDate,
+                        XlfOper xlfixingDates,
                         XlfOper xlvolatility,
+                        XlfOper xlinterpolationType,
+                        XlfOper xlaccruedCoupon,
+                        XlfOper xllastFixing,
+                        XlfOper xllocalCap,
+                        XlfOper xllocalFloor,
+                        XlfOper xlglobalCap,
+                        XlfOper xlglobalFloor,
+                        XlfOper xlredemptionOnly,
                         XlfOper xlantitheticVariance,
                         XlfOper xlsamples)
     {
         EXCEL_BEGIN;
 
         Option::Type type = QlXlfOper(xltype).AsOptionType();
-        double underlying       = xlunderlying.AsDouble();
-        double moneyness           = xlmoneyness.AsDouble();
-        std::vector<double> dividendYield    = xldividendYield.AsDoubleVector();
-        std::vector<double> riskFreeRate     = xlriskFreeRate.AsDoubleVector();
-        std::vector<Time> times         = xltimes.AsDoubleVector();
-        std::vector<double> volatility       = xlvolatility.AsDoubleVector();
-        bool antitheticVariance = xlantitheticVariance.AsBool();
-        Size samples            = xlsamples.AsDouble();
+        double underlying = xlunderlying.AsDouble();
+        double moneyness  = xlmoneyness.AsDouble();
 
-        McCliquetOption cliquet(type, underlying, moneyness, dividendYield,
-           riskFreeRate, times, volatility, antitheticVariance);
+        Date refDate = QlXlfOper(xlrefDate).AsDate();
+
+        RelinkableHandle<TermStructure> dividendYieldTS =
+            QlXlfOper(xldividendYield).AsTermStructure(refDate);
+        RelinkableHandle<TermStructure> riskFreeRateTS  =
+            QlXlfOper(xlriskFreeRate).AsTermStructure(refDate);
+        RelinkableHandle<BlackVolTermStructure> volTS =
+            QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+            xlinterpolationType.AsInt());
+
+        std::vector<Date> fixingDates=QlXlfOper(xlfixingDates).AsDateVector();
+        std::vector<Time> fixingTimes(fixingDates.size());
+        std::vector<Time> dividends(fixingDates.size());
+        std::vector<Time> rates(fixingDates.size());
+        std::vector<Time> vols(fixingDates.size());
+        fixingTimes[0] = riskFreeRateTS->dayCounter().yearFraction(
+            refDate, fixingDates[0]);
+        dividends[0]   = dividendYieldTS->forward(
+            refDate, fixingDates[0]);
+        rates[0]       = riskFreeRateTS->forward(
+            refDate, fixingDates[0]);
+        vols[0]        = volTS->blackForwardVol(
+            refDate, fixingDates[0], underlying);
+        for (Size i = 1; i<fixingDates.size(); i++) {
+            fixingTimes[i] = riskFreeRateTS->dayCounter().yearFraction(
+                refDate, fixingDates[i]);
+            dividends[i]   = dividendYieldTS->forward(
+                fixingDates[i-1], fixingDates[i]);
+            rates[i]       = riskFreeRateTS->forward(
+                fixingDates[i-1], fixingDates[i]);
+            vols[i]        = volTS->blackForwardVol(
+                fixingDates[i-1], fixingDates[i], underlying);
+        }
+
+
+        double accruedCoupon = xlaccruedCoupon.AsDouble();
+        if (accruedCoupon<0)   accruedCoupon = Null<double>();
+
+        double lastFixing    = xllastFixing.AsDouble();
+        if (lastFixing<0)      lastFixing = Null<double>();
+
+        double localCap      = xllocalCap.AsDouble();
+        if (localCap<0)        localCap = Null<double>();
+
+        double localFloor    = xllocalFloor.AsDouble();
+        if (localFloor<0)      localFloor = Null<double>();
+
+        double globalCap     = xlglobalCap.AsDouble();
+        if (globalCap<0)       globalCap = Null<double>();
+
+        double globalFloor   = xlglobalFloor.AsDouble();
+        if (globalFloor<0)     globalFloor = Null<double>();
+
+        bool redemptionOnly     = xlredemptionOnly.AsBool();
+        bool antitheticVariance = xlantitheticVariance.AsBool();
+        int samples            = xlsamples.AsInt();
+
+        McCliquetOption cliquet(type, underlying, moneyness, dividends,
+           rates, fixingTimes, vols, accruedCoupon, lastFixing,
+           localCap, localFloor, globalCap, globalFloor, redemptionOnly,
+           antitheticVariance);
         double results[2];
         results[0] = cliquet.valueWithSamples(samples);
         results[1] = cliquet.errorEstimate();
 
         return XlfOper(2,1,results);
+
+        return XlfOper(0.0);
         EXCEL_END;
     }
 

@@ -63,7 +63,8 @@ extern "C" {
             XlfArgDesc evalDate("evalDate", "evaluation date");
             XlfArgDesc expiryDate("expiryDate", "expiry date");
             XlfArgDesc resetDate("resetDate", "strike-setting date");
-            XlfArgDesc dates("dates", "dates");
+            XlfArgDesc fixingDates("fixingDates", "list of fixing dates");
+            XlfArgDesc dates("dates", "list of dates");
 
 
             XlfArgDesc dayCount("dayCount", "day count convention");
@@ -95,6 +96,16 @@ extern "C" {
             XlfArgDesc foreignRiskFreeRate("foreign risk-free rate", "is the risk free rate in the foreign currency");
             XlfArgDesc blackVolSurface("blackVolSurface", "Black (market) volatility surface");
             XlfArgDesc volatility("volatility", "is the underlying's volatility");
+
+            XlfArgDesc accruedCoupon("accrued coupon", "is coupon accrued so far");
+            XlfArgDesc lastFixing("last fixing", "is the underlying's last fixing");
+            XlfArgDesc localCap("local cap", "is a local cap");
+            XlfArgDesc localFloor("local floor", "is a local floor");
+            XlfArgDesc globalCap("global cap", "is a global cap");
+            XlfArgDesc globalFloor("global floor", "is a global floor");
+            XlfArgDesc redemptionOnly("redemption only", "if true all the payoffs are paid at redemption "
+                "instead of being paid immediatly");
+
             XlfArgDesc exchangeVolatility("exchangeVolatility", "is the volatility of the FX rate");
             XlfArgDesc correlation("correlation", "is the correlation");
             XlfArgDesc timeSteps("time steps", "is the number of time steps");
@@ -182,9 +193,10 @@ extern "C" {
             cliquetOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+expiryDate+volatility);
             cliquetOption.Register();
 
+
             XlfFuncDesc cliquetOption_mc("xlCliquetOption_MC","qlCliquetOption_MC",
                 "european cliquet option computed with Monte Carlo simulation","QuantLibXL Finance");
-            cliquetOption_mc.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+expiryDate+volatility+anthiteticVariance+samples);
+            cliquetOption_mc.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+fixingDates+blackVolSurface+interpolationType+accruedCoupon+lastFixing+localCap+localFloor+globalCap+globalFloor+redemptionOnly+anthiteticVariance+samples);
             cliquetOption_mc.Register();
 
             XlfFuncDesc performanceOption("xlPerformanceOption","qlPerformanceOption",

@@ -56,7 +56,7 @@ extern "C"
         arguments->type = QlXlfOper(xltype).AsOptionType();
         arguments->underlying = xlunderlying.AsDouble();
         arguments->strike = xlstrike.AsDouble();
-        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(refDate);
+        arguments->dividendTS = QlXlfOper(xldividendYield).AsTermStructure(refDate);
         arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
         arguments->exerciseType = Exercise::European;
         Date maturityDate = QlXlfOper(xlmaturityDate).AsDate();

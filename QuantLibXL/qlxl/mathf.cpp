@@ -211,4 +211,17 @@ extern "C"
         EXCEL_END;
     }
 
+    LPXLOPER EXCEL_EXPORT xlrandomize(XlfOper xlseed) {
+        EXCEL_BEGIN;
+        Functions::randomize(xlseed.AsInt());
+        return XlfOper(std::string("done"));
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlrand() {
+        EXCEL_BEGIN;
+        return XlfOper(Functions::rand());
+        EXCEL_END;
+    }
+
 }
