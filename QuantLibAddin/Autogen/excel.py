@@ -107,20 +107,23 @@ def generateFuncDef(fileFunc, function, bufBody):
     'generate source code for body of given function'
     paramList1 = utils.generateParamList(function[common.PARAMS], 2,
         True, '', 'char', dereference = '*', replaceTensor = 'LPXLOPER')
-    paramList2 = utils.generateParamList(function[common.PARAMS],
-        3, reformatString = 'std::string(%s)', dereference = '*', appendTensor = True)
+    paramList2 = utils.generateParamList(function[common.PARAMS], 3,
+        reformatString = '%s', 
+        arrayCount = True, dereference = '*', appendTensor = True)
     if function[common.CTOR]:
-        handle1 = 8 * ' ' + 'char *handleChar,\n'
-        handle2 = 8 * ' ' + 'std::string handle = std::string(handleChar) + getCaller();\n'
+        handle1 = 8 * ' ' + 'char *handleStub,\n'
+        handle2 = 8 * ' ' + 'char *handle = getHandleFull(handleStub);\n'
         handle3 = 12 * ' ' + 'handle,\n'
+        fName = 'QL_MAKE_OBJECT(%s)' % function[common.QLFUNC]
     else:
         handle1 = ''
         handle2 = ''
         handle3 = ''
+        fName = 'QuantLibAddin::' + function[common.NAME]
     conversions = utils.generateConversions(function[common.PARAMS])
     fileFunc.write(bufBody %
         (function[common.CODENAME], handle1, paramList1, conversions, handle2,
-        function[common.NAME], handle3, paramList2, function[common.NAME]))
+        fName, handle3, paramList2, function[common.NAME]))
 
 def generateFuncDefs(functionGroups):
     'generate source code for function bodies'

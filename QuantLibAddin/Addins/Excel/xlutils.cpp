@@ -17,7 +17,6 @@
 
 #include <qla/qladdin.hpp>
 #include <Addins/Excel/xlutils.hpp>
-#include <Addins/Excel/framewrk.hpp>
 #include <exception>
 
 using namespace ObjHandler;
@@ -37,7 +36,7 @@ void anyToXLOPER(const any_ptr &any, XLOPER &xOp) {
         xOp.xltype = xltypeErr;
 }
 
-void setValues(LPXLOPER xArray, Properties properties, const std::string &handle) {
+void setValues(LPXLOPER xArray, Properties properties, const char *handle) {
     xArray->xltype = xltypeMulti;
     xArray->xltype |= xlbitDLLFree;
     xArray->val.array.rows = 1;
@@ -45,7 +44,7 @@ void setValues(LPXLOPER xArray, Properties properties, const std::string &handle
     xArray->val.array.lparray = new XLOPER[properties.size() + 1]; 
     if (!xArray->val.array.lparray)
         throw("setValues: error on call to new");
-    setXLOPERString(xArray->val.array.lparray[0], handle.c_str());
+    setXLOPERString(xArray->val.array.lparray[0], handle);
     for (unsigned int i = 0; i < properties.size(); i++) {
         ObjectProperty property = properties[i];
         any_ptr a = property();
@@ -55,21 +54,12 @@ void setValues(LPXLOPER xArray, Properties properties, const std::string &handle
 
 std::string XLOPERtoString(LPXLOPER xOp) {
     XLOPER xStr;
-    if (xlretSuccess != Excel4(xlCoerce, &xStr, 2, xOp, TempInt(xltypeStr))) 
+    if (xlretSuccess != Excel(xlCoerce, &xStr, 2, xOp, TempInt(xltypeStr))) 
         throw exception("XLOPERtoString: error on call to xlCoerce");
     std::string s;
     s.assign(xStr.val.str + 1, xStr.val.str[0]);
     Excel(xlFree, 0, 1, &xStr);
     return s;
-}
-
-std::string getCaller() {
-    XLOPER xCaller, xRef;
-    if (xlretSuccess != Excel(xlfCaller, &xCaller, 0))
-        throw exception("getCaller: error on call to xlfCaller");
-    if (xlretSuccess != Excel(xlfGetCell, &xRef, 2, TempInt(1), &xCaller))
-        throw exception("getCaller: error on call to xlfGetCell");
-    return "#" + XLOPERtoString(&xRef);
 }
 
 void setXLOPERString(XLOPER &xStr, const char *s) {
@@ -82,65 +72,22 @@ void setXLOPERString(XLOPER &xStr, const char *s) {
     xStr.val.str[0] = len;
 }
 
-std::vector <long> longArrayToVector(LPXLOPER xVec) {
-    std::vector <long> ret;
-    XLOPER xVal;
-    if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
-        throw exception("longXLOPERToVector: error on call to xlCoerce");
-    int size = xVal.val.array.rows * xVal.val.array.columns;
-    for (int i=0; i<size; i++) {
-        XLOPER xOp = xVal.val.array.lparray[i];
-        if (xOp.xltype == xltypeNum)
-            ret.push_back(xOp.val.num);
-    }
-    Excel(xlFree, 0, 1, &xVal);
+// FIXME need to call xlfree
+char *getHandleFull(const char *handle) {
+    XLOPER xCaller, xRef;
+    if (xlretSuccess != Excel(xlfCaller, &xCaller, 0))
+        throw exception("getHandleFull: error on call to xlfCaller");
+    if (xlretSuccess != Excel(xlfGetCell, &xRef, 2, TempInt(1), &xCaller))
+        throw exception("getHandleFull: error on call to xlfGetCell");
+    XLOPER xStr;
+    if (xlretSuccess != Excel(xlCoerce, &xStr, 2, &xRef, TempInt(xltypeStr))) 
+        throw exception("getHandleFull: error on call to xlCoerce");
+    char *ret = new char[strlen(handle) + xStr.val.str[0] + 2];
+    strncpy(ret, handle, strlen(handle));
+    ret[strlen(handle)] = '#';
+    strncpy(ret + strlen(handle) + 1, &xStr.val.str[1], xStr.val.str[0]);
+    ret[strlen(handle) + xStr.val.str[0] + 1] = 0;
+    Excel(xlFree, 0, 1, &xStr);
     return ret;
 }
 
-std::vector <double> doubleArrayToVector(LPXLOPER xVec) {
-    std::vector <double> ret;
-    XLOPER xVal;
-    if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
-        throw exception("doubleXLOPERToVector: error on call to xlCoerce");
-    int size = xVal.val.array.rows * xVal.val.array.columns;
-    for (int i=0; i<size; i++) {
-        XLOPER xOp = xVal.val.array.lparray[i];
-        if (xOp.xltype == xltypeNum)
-            ret.push_back(xOp.val.num);
-    }
-    Excel(xlFree, 0, 1, &xVal);
-    return ret;
-}
-
-std::vector <std::string> stringArrayToVector(LPXLOPER xVec) {
-    std::vector <std::string> ret;
-    XLOPER xVal;
-    if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
-        throw exception("stringXLOPERToVector: error on call to xlCoerce");
-    int size = xVal.val.array.rows * xVal.val.array.columns;
-    for (int i=0; i<size; i++) {
-        XLOPER xOp = xVal.val.array.lparray[i];
-        if (xOp.xltype == xltypeStr)
-            ret.push_back(XLOPERtoString(&xOp));
-    }
-    Excel(xlFree, 0, 1, &xVal);
-    return ret;
-}
-
-std::vector <std::vector <double> >doubleArrayToMatrix(LPXLOPER xVec) {
-    std::vector <std::vector <double> > ret;
-    XLOPER xVal;
-    if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
-        throw exception("doubleXLOPERToVector: error on call to xlCoerce");
-    for (int i=0; i<xVal.val.array.rows; i++) {
-        std::vector <double> row;
-        for (int j=0; j<xVal.val.array.columns; j++) {
-            XLOPER xOp = xVal.val.array.lparray[i];
-            if (xOp.xltype == xltypeNum)
-                row.push_back(xOp.val.num);
-        }
-        ret.push_back(row);
-    }
-    Excel(xlFree, 0, 1, &xVal);
-    return ret;
-}

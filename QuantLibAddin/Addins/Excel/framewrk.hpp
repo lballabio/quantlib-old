@@ -12,6 +12,8 @@
 // From the Microsoft Excel Developer's Kit, Version 8
 // Copyright (c) 1997 Microsoft Corporation. All rights reserved.
 ///***************************************************************************
+#ifndef xl_framewrk_h
+#define xl_framewrk_h
 
 //
 // Total amount of memory to allocate for all temporary XLOPERs
@@ -38,3 +40,5 @@ LPXLOPER TempActiveRow(WORD rw);
 LPXLOPER TempActiveColumn(BYTE col);
 LPXLOPER TempErr(WORD i);
 LPXLOPER TempMissing(void);
+
+#endif

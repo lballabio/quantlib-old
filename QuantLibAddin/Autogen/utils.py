@@ -121,13 +121,15 @@ def generateConversions(paramList):
         if param[common.TENSOR] == common.VECTOR: 
             if param[common.TYPE] == common.STRING:
                 type = 'char *'
+                type2 = 'char **'
             else:
                 type = param[common.TYPE] + ' '
+                type2 = param[common.TYPE] + ' '
             nmArray = param[common.NAME] + 'Array'
             nmSize = param[common.NAME] + 'ArraySize'
             ret += indent + type + '*' + nmArray + ';\n' \
                 + indent + 'long ' + nmSize + ';\n' \
-                + indent + 'Conversion< ' + type + '>::convertArray(\n' \
+                + indent + 'Conversion< ' + type2 + '>::convertArray(\n' \
                 + bigIndent + param[common.NAME] + ', ' + nmArray + ', ' \
                 + nmSize + ');\n'
         elif param[common.TENSOR] == common.MATRIX: 

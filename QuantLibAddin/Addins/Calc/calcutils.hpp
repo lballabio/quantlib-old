@@ -19,25 +19,13 @@
 #define qla_calc_calcutils_hpp
 
 ANY anyToANY(const ObjHandler::any_ptr &a); // convert boost::any to Calc Any
-SEQSEQ( ANY ) getArray(ObjHandler::Properties properties,
-                       STRING handle);
+SEQSEQ( ANY ) getArray(ObjHandler::Properties properties, STRING handle);
 std::string OUStringToString(const STRING& s1);
 ANY stringToANY(const std::string &s);
 
 template < typename T >
 class Conversion {
 public:
-
-    static void convertArray(const SEQSEQ(T)& s, T* &a, long &sz) {
-        SEQ(T) s2 = s[0];
-        sz = s.getLength() * s2.getLength();
-        a = new T[sz];
-        for (int i=0; i<s.getLength(); i++){
-            s2 = s[i];
-            for (int j=0; j<s2.getLength(); j++)
-                a[i * s2.getLength() + j] = s2[j];
-        }
-    }
 
     static void convertArray(const SEQSEQ(STRING)& s, char** &a, long &sz) {
         SEQ(STRING) s2 = s[0];
@@ -50,6 +38,17 @@ public:
                 a[idx] = new char[s2.getLength() + 1];
                 sprintf(a[idx], OUStringToString(s2[j]).c_str());
             }
+        }
+    }
+
+    static void convertArray(const SEQSEQ(T)& s, T* &a, long &sz) {
+        SEQ(T) s2 = s[0];
+        sz = s.getLength() * s2.getLength();
+        a = new T[sz];
+        for (int i=0; i<s.getLength(); i++){
+            s2 = s[i];
+            for (int j=0; j<s2.getLength(); j++)
+                a[i * s2.getLength() + j] = s2[j];
         }
     }
 
