@@ -1,3 +1,30 @@
+2002-04-16 13:30  lballabio
+
+	* calendars.i (1.5), common.i (1.6), date.i (1.5), daycounters.i
+	(1.5), distributions.i (1.3), qlarray.i (1.7), quantlib.i (1.4),
+	randomnumbers.i (1.4): Got a language for free
+
+2002-04-15 16:26  lballabio
+
+	* calendars.i (1.4), date.i (1.4), daycounters.i (1.4), qlarray.i
+	(1.6), quantlib.i (1.3): [no log message]
+
+2002-04-10 15:38  lballabio
+
+	* calendars.i (1.3), common.i (1.5), currencies.i (1.3), date.i
+	(1.3), daycounters.i (1.3), distributions.i (1.2), null.i (1.2),
+	observer.i (1.2), ql.i (1.6), qlarray.i (1.5), quantlib.i (1.2),
+	randomnumbers.i (1.3), string.i (1.4), vector.i (1.5): Towards SWIG
+	1.3.12
+
+2002-04-10 09:54  nando
+
+	* ql.i (1.5): version number up
+
+2002-04-09 09:15  nando
+
+	* ChangeLog.txt (1.3): updated
+
 2002-04-08 08:11  nando
 
 	* ChangeLog.txt (1.2): updated

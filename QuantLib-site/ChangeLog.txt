@@ -1,3 +1,20 @@
+2002-04-10 13:36  nando
+
+	* FAQ.html (1.37), cvs.html (1.37), download.html (1.29),
+	extensions.html (1.22), index.html (1.42), license.html (1.44),
+	lists.html (1.31), mailinglists.html (1.22), marketconventions.html
+	(1.23), nextrelease.html (1.15), quep.html (1.28), snapshot.html
+	(1.17), style.html (1.28), FAQ.html (1.38), cvs.html (1.38),
+	download.html (1.30), extensions.html (1.23), index.html (1.43),
+	license.html (1.45), lists.html (1.32), mailinglists.html (1.23),
+	marketconventions.html (1.24), nextrelease.html (1.16), qlmeta.inc
+	(1.7), qltablefoot.inc (1.9), qltablehead.inc (1.21), quep.html
+	(1.29), snapshot.html (1.18), style.html (1.29): updated
+
+2002-04-09 09:14  nando
+
+	* ChangeLog.txt (1.18): updated
+
 2002-04-08 08:11  nando
 
 	* ChangeLog.txt (1.17): updated

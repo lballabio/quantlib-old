@@ -1,0 +1,11 @@
+2002-04-16 21:53  nando
+
+	* ChangeLog.txt (1.1): added ChangeLog
+
+2002-04-16 13:30  lballabio
+
+	* build.scm (1.1), install.scm (1.1), test.scm (1.1), test/date.scm
+	(1.1), test/daycounters.scm (1.1), test/distributions.scm (1.1),
+	test/quantlib-test-suite.scm (1.1), test/unittest.scm (1.1): Got a
+	language for free
+

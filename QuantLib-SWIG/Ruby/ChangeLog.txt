@@ -1,3 +1,23 @@
+2002-04-10 15:38  lballabio
+
+	* setup.rb (1.9): Towards SWIG 1.3.12
+
+2002-04-10 09:54  nando
+
+	* setup.rb (1.8): version number up
+
+2002-04-09 12:30  nando
+
+	* setup.rb (1.7): supporting also zip distribution for Win32
+
+2002-04-09 11:05  nando
+
+	* setup.rb (1.6): supporting also zip distribution for Win32
+
+2002-04-09 09:15  nando
+
+	* ChangeLog.txt (1.4): updated
+
 2002-04-08 08:10  nando
 
 	* ChangeLog.txt (1.3): updated

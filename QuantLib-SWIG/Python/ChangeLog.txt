@@ -1,3 +1,15 @@
+2002-04-10 15:37  lballabio
+
+	* setup.py (1.6): Towards SWIG 1.3.12
+
+2002-04-10 09:54  nando
+
+	* setup.py (1.5): version number up
+
+2002-04-09 09:15  nando
+
+	* ChangeLog.txt (1.4): updated
+
 2002-04-08 08:10  nando
 
 	* ChangeLog.txt (1.3): updated
