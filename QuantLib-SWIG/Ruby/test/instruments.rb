@@ -30,7 +30,7 @@ class InstrumentTest < RUNIT::TestCase
     h = QuantLib::MarketElementHandle.new(me)
     s = QuantLib::Stock.new(h)
     obs = QuantLib::Observer.new { flag = true }
-    obs.registerWith(s.toObservable)
+    obs.registerWith(s)
     me.value = 3.14
     unless flag
         assert_fail("Observer was not notified of stock value change")

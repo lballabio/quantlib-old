@@ -58,32 +58,24 @@ bool extractArray(PyObject* source, Array* target) {
 }
 %}
 
-%typemap(in) Array {
-    Array* v;
+%typemap(in) Array (Array* v) {
     if (extractArray($input,&$1)) {
         ;
-    } else if ((SWIG_ConvertPtr($input,(void **) &v,
-                                SWIGTYPE_p_Array,0)) != -1) {
-        $1 = *v;
     } else {
-        PyErr_SetString(PyExc_TypeError,"Array expected");
-        return NULL;
+        SWIG_ConvertPtr($input,(void **) &v, $&1_descriptor,1);
+        $1 = *v;
     }
 };
 
-%typemap(in) const Array& (Array temp, Array* v) {
+%typemap(in) const Array& (Array temp) {
     if (extractArray($input,&temp)) {
         $1 = &temp;
-    } else if ((SWIG_ConvertPtr($input,(void **) &v,
-                                SWIGTYPE_p_Array,0)) != -1) {
-        $1 = v;
     } else {
-        PyErr_SetString(PyExc_TypeError,"Array expected");
-        return NULL;
+        SWIG_ConvertPtr($input,(void **) &$1,$1_descriptor,1);
     }
 };
 #elif defined(SWIGRUBY)
-%typemap(in) Array {
+%typemap(in) Array (Array* v) {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
         unsigned int size = RARRAY($input)->len;
         $1 = Array(size);
@@ -99,7 +91,12 @@ bool extractArray(PyObject* source, Array* target) {
                          " (expected Array)");
         }
     } else {
+        #if SWIG_VERSION <= 0x010313
         $1 = *(($&1_type) SWIG_ConvertPtr($input,$&1_descriptor));
+        #else
+        SWIG_ConvertPtr($input,(void **) &v,$&1_descriptor,1);
+        $1 = *v;
+        #endif
     }
 }
 %typemap(in) const Array& (Array temp),
@@ -120,7 +117,11 @@ bool extractArray(PyObject* source, Array* target) {
                          " (expected Array)");
         }
     } else {
+        #if SWIG_VERSION <= 0x010313
         $1 = ($1_ltype) SWIG_ConvertPtr($input,$1_descriptor);
+        #else
+        SWIG_ConvertPtr($input,(void **) &$1,$1_descriptor,1);
+        #endif
     }
 }
 #elif defined(SWIGMZSCHEME)
@@ -485,15 +486,12 @@ class MatrixRow {
                 return NULL;
             }
         }
-    } else if ((SWIG_ConvertPtr($input,(void **) &m,
-                                SWIGTYPE_p_Matrix,0)) != -1) {
-        $1 = *m;
     } else {
-        PyErr_SetString(PyExc_TypeError,"Matrix expected");
-        return NULL;
+        SWIG_ConvertPtr($input,(void **) &m,$&1_descriptor,1);
+        $1 = *m;
     }
 };
-%typemap(in) const Matrix & (Matrix temp, Matrix* m) {
+%typemap(in) const Matrix & (Matrix temp) {
     if (PyTuple_Check($input) || PyList_Check($input)) {
         Size rows, cols;
         rows = (PyTuple_Check($input) ?
@@ -552,16 +550,12 @@ class MatrixRow {
             }
         }
         $1 = &temp;
-    } else if ((SWIG_ConvertPtr($input,(void **) &m,
-                                SWIGTYPE_p_Matrix,0)) != -1) {
-        $1 = m;
     } else {
-        PyErr_SetString(PyExc_TypeError,"Matrix expected");
-        return NULL;
+        SWIG_ConvertPtr($input,(void **) &$1,$1_descriptor,1);
     }
 };
 #elif defined(SWIGRUBY)
-%typemap(in) Matrix {
+%typemap(in) Matrix (Matrix* m) {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
         Size rows, cols;
         rows = RARRAY($input)->len;
@@ -598,7 +592,12 @@ class MatrixRow {
             }
         }
     } else {
+        #if SWIG_VERSION <= 0x010313
         $1 = *(($&1_type) SWIG_ConvertPtr($input,$&1_descriptor));
+        #else
+        SWIG_ConvertPtr($input,(void **) &m,$&1_descriptor,1);
+        $1 = *m;
+        #endif
     }
 }
 %typemap(in) const Matrix& (Matrix temp),
@@ -640,7 +639,11 @@ class MatrixRow {
             }
         }
     } else {
+        #if SWIG_VERSION <= 0x010313
         $1 = ($1_ltype) SWIG_ConvertPtr($input,$1_descriptor);
+        #else
+        SWIG_ConvertPtr($input,(void **) &$1,$1_descriptor,1);
+        #endif
     }
 }
 #elif defined(SWIGMZSCHEME)

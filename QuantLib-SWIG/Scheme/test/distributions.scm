@@ -23,6 +23,7 @@
 (load "common.scm")
 
 (define (Distribution-test)
+  "Testing distributions"
   (define (check-difference f1 f2 h tolerance f1-name f2-name)
     (let ((e (norm (difference f1 f2) h)))
       (assert-zero e tolerance

@@ -22,7 +22,7 @@
 
 (require-library "quantlib.ss" "quantlib")
 (load "unittest.scm")
-
+
 (let ((test-dir (build-path ".." ".." "test")))
   (if (directory-exists? test-dir)
       (current-directory test-dir)))

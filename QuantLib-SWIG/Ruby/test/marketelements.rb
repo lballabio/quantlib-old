@@ -28,7 +28,7 @@ class MarketElementTest < RUNIT::TestCase
     flag = false
     me = QuantLib::SimpleMarketElement.new(0.0)
     obs = QuantLib::Observer.new { flag = true }
-    obs.registerWith(me.toObservable)
+    obs.registerWith(me)
     me.value = 3.14
     unless flag
         assert_fail("Observer was not notified of market element change")
@@ -45,7 +45,7 @@ class MarketElementHandleTest < RUNIT::TestCase
     me1 = QuantLib::SimpleMarketElement.new(0.0)
     h = QuantLib::MarketElementHandle.new(me1)
     obs = QuantLib::Observer.new { flag = true }
-    obs.registerWith(h.toObservable)
+    obs.registerWith(h)
     me1.value = 3.14
     unless flag
         assert_fail("Observer was not notified of market element change")

@@ -20,6 +20,8 @@
 ;
 ; $Id$
 
+(use-modules (ice-9 documentation))
+
 (define-macro assert
   (lambda (check . msg)
     `(if (not ,check)
@@ -50,8 +52,11 @@
 	  (cond
 	   ; add a test to the suite
 	   ((eqv? command 'add)
-		(set! test-list (append test-list
-								(list (cons (car args) (cadr args))))))
+        (let ((test-case (car args)))
+          (set! test-list 
+                (append test-list
+                        (list (cons test-case
+                                    (object-documentation test-case)))))))
 	   ; run the test suite
 	   ((eqv? command 'run)
 		(letrec ((elapsed-time #f)
@@ -101,7 +106,7 @@
 				  error-list)
 				 (newline)))))))))
 
-(define (suite-add-test suite test-proc test-msg)
-  (suite 'add test-proc test-msg))
+(define (suite-add-test suite test-proc)
+  (suite 'add test-proc))
 (define (suite-run suite)
   (suite 'run))

@@ -32,7 +32,7 @@ class MarketElementTest(unittest.TestCase):
         flag = None
         me = QuantLib.SimpleMarketElement(0.0)
         obs = QuantLib.Observer(raiseFlag)
-        obs.registerWith(me.asObservable())
+        obs.registerWith(me)
         me.setValue(3.14)
         if not flag:
             self.fail("Observer was not notified of market element change")
@@ -43,7 +43,7 @@ class MarketElementTest(unittest.TestCase):
         me1 = QuantLib.SimpleMarketElement(0.0)
         h = QuantLib.MarketElementHandle(me1)
         obs = QuantLib.Observer(raiseFlag)
-        obs.registerWith(h.asObservable())
+        obs.registerWith(h)
         me1.setValue(3.14)
         if not flag:
             self.fail("Observer was not notified of market element change")

@@ -35,7 +35,7 @@ class InstrumentTest(unittest.TestCase):
         h.linkTo(me)
         s = QuantLib.Stock(h)
         obs = QuantLib.Observer(raiseFlag)
-        obs.registerWith(s.asObservable())
+        obs.registerWith(s)
         me.setValue(3.14)
         if not flag:
             self.fail("Observer was not notified of stock value change")

@@ -23,6 +23,7 @@
 (load "common.scm")
 
 (define (PiecewiseFlatForward-test)
+  "Testing piecewise flat forward curve"
   (let ((settlement-days 2)
         (fixing-days 2))
     (deleting-let* ((euribor-handle (new-TermStructureHandle)

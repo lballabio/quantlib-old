@@ -73,6 +73,7 @@
 
 
 (define (SimpleSwap-fair-rate-test)
+  "Testing simple swap calculation of fair fixed rate"
   (with-todays-date (Date-todays-date)
     (let ((fixed-rate 0.0))
       (for-each-combination ((length '(1 2 5 10 20))
@@ -83,6 +84,7 @@
               (check-expected (Instrument-NPV swap) 0.0 1.0e-10
                               "Recalculating NPV with fair rate"))))))))
 (define (SimpleSwap-fair-spread-test)
+  "Testing simple swap calculation of fair floating spread"
   (with-todays-date (Date-todays-date)
     (let ((spread 0.0))
       (for-each-combination ((length '(1 2 5 10 20))
@@ -93,6 +95,7 @@
               (check-expected (Instrument-NPV swap) 0.0 1.0e-10
                               "Recalculating NPV with fair spread"))))))))
 (define (SimpleSwap-rate-dependency-test)
+  "Testing simple swap dependency on fixed rate"
   (with-todays-date (Date-todays-date)
     (for-each-combination ((length '(1 2 5 10 20))
                            (spread '(-0.001 -0.01 0 0.01 0.001)))
@@ -105,6 +108,7 @@
                 "NPV is increasing with the fixed rate "
                 "in a simple swap paying fixed")))))
 (define (SimpleSwap-spread-dependency-test)
+  "Testing simple swap dependency on floating spread"
   (with-todays-date (Date-todays-date)
     (for-each-combination ((length '(1 2 5 10 20))
                            (rate '(0.04 0.05 0.06 0.07)))
@@ -117,6 +121,7 @@
                 "NPV is decreasing with the spread "
                 "in a simple swap paying fixed")))))
 (define (SimpleSwap-cached-value-test)
+  "Testing simple swap calculation against cached value"
   (with-todays-date (new-Date 17 6 2002)
     (with-test-swap 10 0.06 0.001
       (let ((cached-NPV -5.883663676727))

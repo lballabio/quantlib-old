@@ -23,6 +23,7 @@
 (load "common.scm")
 
 (define (European-option-Greek-test)
+  "Testing European option greeks"
   (define (derivative f obj datum)
     (let* ((x (MarketElement-value datum))
            (dx (/ x 10000))
@@ -126,6 +127,7 @@
                               "dividend-rho" "vega")))))))))))
 
 (define (European-option-implied-vol-test)
+  "Testing European option implied volatility"
   (deleting-let* ((underlying (new-SimpleMarketElement 0.0)
                               delete-MarketElement)
                   (volatility (new-SimpleMarketElement 0.0)
@@ -180,6 +182,7 @@
                                             "recalculated NPV:")))))))))))))
 
 (define (European-option-binomial-engine-test)
+  "Testing binomial European engines against analytic results"
   (deleting-let* ((underlying (new-SimpleMarketElement 0.0)
                               delete-MarketElement)
                   (volatility (new-SimpleMarketElement 0.0)

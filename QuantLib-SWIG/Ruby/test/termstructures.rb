@@ -101,7 +101,7 @@ unable to reproduce discount from implied curve
     new_settlement = Calendar.new('TARGET').advance(new_today,2,'days')
     implied = ImpliedTermStructure.new(h,new_today,new_settlement)
     obs = Observer.new { flag = true }
-    obs.registerWith(implied.toObservable)
+    obs.registerWith(implied)
     h.linkTo!(@termStructure)
     unless flag
       assert_fail("Observer was not notified of term structure change")
@@ -134,7 +134,7 @@ unable to reproduce forward from spreaded curve
     h = TermStructureHandle.new
     spreaded = ForwardSpreadedTermStructure.new(h,mh)
     obs = Observer.new { flag = true }
-    obs.registerWith(spreaded.toObservable)
+    obs.registerWith(spreaded)
     h.linkTo!(@termStructure)
     unless flag
       assert_fail("Observer was not notified of term structure change")
@@ -172,7 +172,7 @@ unable to reproduce zero yield from spreaded curve
     h = TermStructureHandle.new
     spreaded = ZeroSpreadedTermStructure.new(h,mh)
     obs = Observer.new { flag = true }
-    obs.registerWith(spreaded.toObservable)
+    obs.registerWith(spreaded)
     h.linkTo!(@termStructure)
     unless flag
       assert_fail("Observer was not notified of term structure change")

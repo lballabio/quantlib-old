@@ -21,6 +21,7 @@
 ; $Id$
 
 (define (Date-test)
+  "Testing dates"
   (deleting-let ((min-date (Date-min-date) delete-Date)
                  (max-date (Date-max-date) delete-Date))
 	(let ((begin (+ (Date-serial-number min-date) 1))

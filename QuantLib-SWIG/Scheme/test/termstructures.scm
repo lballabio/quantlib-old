@@ -76,6 +76,7 @@
          ,@body))))
 
 (define (Implied-term-structure-consistency-test)
+  "Testing consistency of implied term structure"
   (with-test-structure
     (deleting-let* ((new-today (Date-plus-years 
                                 (TermStructure-todays-date term-structure)
@@ -98,6 +99,7 @@
                         "discount from implied curve")))))
 
 (define (Implied-term-structure-observability-test)
+  "Testing observability of implied term structure"
   (with-test-structure
    (let ((flag #f))
      (deleting-let* ((new-today (Date-plus-years 
@@ -123,6 +125,7 @@
            (error "Observer was not notified of term structure change"))))))
              
 (define (Forward-spreaded-term-structure-consistency-test)
+  "Testing consistency of forward-spreaded term structure"
   (with-test-structure
     (deleting-let* ((me (new-SimpleMarketElement 0.01)
                         delete-MarketElement)
@@ -143,6 +146,7 @@
                         "forward from spreaded curve")))))
 
 (define (Forward-spreaded-term-structure-observability-test)
+  "Testing observability of forward-spreaded term structure"
   (with-test-structure
    (let ((flag #f)
          (tolerance 1.0e-10))
@@ -169,6 +173,7 @@
            (error "Observer was not notified of spread change"))))))
 
 (define (Zero-spreaded-term-structure-consistency-test)
+  "Testing consistency of zero-spreaded term structure"
   (with-test-structure
     (deleting-let* ((me (new-SimpleMarketElement 0.01)
                         delete-MarketElement)
@@ -187,6 +192,7 @@
                         "zero yield from spreaded curve")))))
 
 (define (Zero-spreaded-term-structure-observability-test)
+  "Testing observability of zero-spreaded term structure"
   (with-test-structure
    (let ((flag #f)
          (tolerance 1.0e-10))

@@ -79,6 +79,8 @@ module QuantLibc
 
   class Observer
     alias cpp_initialize initialize
+    alias cpp_registerWith registerWith
+    alias cpp_unregisterWith unregisterWith
     def initialize(*args,&block)
       if (block)
         cpp_initialize(block)
@@ -87,6 +89,12 @@ module QuantLibc
       else
         raise "block or callable object needed"
       end
+    end
+    def registerWith(x)
+      cpp_registerWith(x.toObservable)
+    end
+    def unregisterWith(x)
+      cpp_unregisterWith(x.toObservable)
     end
   end
 

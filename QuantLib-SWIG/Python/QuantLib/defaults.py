@@ -84,3 +84,13 @@ def FlatForward_new___init__(self,todaysDate,settlementDate,
     else:
         self._old___init__(todaysDate,settlementDate,forward,dayCounter)
 FlatForward.__init__ = FlatForward_new___init__
+
+Observer._old_registerWith = Observer.registerWith
+Observer._old_unregisterWith = Observer.unregisterWith
+def Observer_new_registerWith(self,x):
+    self._old_registerWith(x.asObservable())
+def Observer_new_unregisterWith(self,x):
+    self._old_unregisterWith(x.asObservable())
+Observer.registerWith = Observer_new_registerWith
+Observer.unregisterWith = Observer_new_unregisterWith
+
