@@ -25,6 +25,7 @@
     (format "  Commands:~n")
     (format "    wrap             generate wrappers from SWIG interfaces~n")
     (format "    build            build QuantLib-MzScheme~n")
+    (format "    test             test QuantLib-MzScheme~n")
     (format "    install          install QuantLib-MzScheme~n")
     (format "    sdist            create source distribution~n")
     ;(format "    bdist            create binary distribution~n")
@@ -111,9 +112,9 @@
         "swaption.scm"
         "termstructures.scm"
         ; to be removed
-        "old_pricers.scm"))
-(define test-support-files
-  (list "unittest.scm"
+        "old_pricers.scm"
+        ; test support
+        "unittest.scm"
         "utilities.scm"
         "quantlib-test-suite.scm"))
 
@@ -159,7 +160,7 @@
   (display "Generating MzScheme bindings for QuantLib...") (newline)
   (let ((swig-dir "./SWIG"))
     (if (not (directory-exists? swig-dir))
-        (set! swig-dir "../../SWIG"))
+        (set! swig-dir "../SWIG"))
     (execute "swig" "-mzscheme" "-c++"
              (string-append "-I" swig-dir)
              "-o" "quantlib_wrap.cpp" 
@@ -266,13 +267,9 @@
       (install-files scripts "." ".")
       (let ((i-dir "./SWIG"))
         (if (not (directory-exists? i-dir))
-            (set! i-dir "../../SWIG"))
+            (set! i-dir "../SWIG"))
         (install-files SWIG-interfaces i-dir "SWIG"))
-      (install-files test-support-files "test" "test")
-      (let ((t-dir "../test"))
-        (if (not (directory-exists? t-dir))
-            (set! t-dir "./test"))
-        (install-files test-files t-dir "test"))
+      (install-files test-files "./test" "test")
       (let ((os (system-type)))
         (cond ((equal? os 'unix)
                (execute "tar" "cfz" 
