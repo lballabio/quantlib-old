@@ -17,7 +17,7 @@ LPXLOPER QL_BLACKSCHOLES(
 		long int *todaysDateNum,
 		long int *settlementDateNum) {
 	try {
-		string handleStochastic = getCaller();
+		std::string handleStochastic = getCaller();
 		Date todaysDate(*todaysDateNum);
 		Date settlementDate(*settlementDateNum);
 		obj_ptr objectStochastic(
@@ -28,7 +28,7 @@ LPXLOPER QL_BLACKSCHOLES(
 		setValues(&xRet, objectStochastic, handleStochastic);
 		return &xRet;
 	} catch (const exception &e) {
-		logMessage(string("ERROR: QL_BLACKSCHOLES: ") + e.what());
+		logMessage(std::string("ERROR: QL_BLACKSCHOLES: ") + e.what());
 		return 0;
 	}
 }
@@ -41,7 +41,7 @@ LPXLOPER QL_OPTION(
 		long int *exerciseDateNum,
 		long int *settlementDateNum) {
 	try {
-		string handleStochastic(handleStochastic_char);
+		std::string handleStochastic(handleStochastic_char);
 		boost::shared_ptr<ObjectStochastic> objectStochastic = 
 			boost::dynamic_pointer_cast<ObjectStochastic>
 			(objectHandler.retrieveObject(handleStochastic));
@@ -52,13 +52,13 @@ LPXLOPER QL_OPTION(
 		obj_ptr objectOption(
 			new ObjectOption(objectStochastic, type, *strike, *timeSteps,
 			exerciseDate, settlementDate));
-		string handleOption = getCaller();
+		std::string handleOption = getCaller();
 		objectHandler.storeObject(handleOption, objectOption);
 		static XLOPER xRet;
 		setValues(&xRet, objectOption, handleOption);
 		return &xRet;
 	} catch(const exception &e) {
-		logMessage(string("ERROR: QL_OPTION: ") + e.what());
+		logMessage(std::string("ERROR: QL_OPTION: ") + e.what());
 		return 0;
 	}
 }
@@ -68,19 +68,19 @@ LPXLOPER QL_OPTION_SETENGINE(
 		char *engineName_char,
 		long int *timeSteps) {
 	try {
-		string handleOption(handleOption_char);
+		std::string handleOption(handleOption_char);
 		boost::shared_ptr<ObjectOption> objectOption = 
 			boost::dynamic_pointer_cast<ObjectOption>
 			(objectHandler.retrieveObject(handleOption));
 		if (!objectOption)
 			QL_FAIL("error retrieving object " + handleOption);
-		string engineName(engineName_char);
+		std::string engineName(engineName_char);
 		objectOption->setEngine(engineName, *timeSteps);
 		static XLOPER xRet;
 		setValues(&xRet, objectOption, handleOption);
 		return &xRet;
 	} catch(const exception &e) {
-		logMessage(string("ERROR: QL_OPTION_SETENGINE: ") + e.what());
+		logMessage(std::string("ERROR: QL_OPTION_SETENGINE: ") + e.what());
 		return 0;
 	}
 }

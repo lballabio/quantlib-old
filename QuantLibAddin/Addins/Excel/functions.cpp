@@ -10,7 +10,7 @@ extern ObjectHandler objectHandler;
 
 LPXLOPER QL_QUERY(char *handleObject_char) {
 	try {
-		string handleObject(handleObject_char);
+		std::string handleObject(handleObject_char);
 		boost::shared_ptr<Object> object = 
 			(objectHandler.retrieveObject(handleObject));
 		if (!object)
@@ -33,7 +33,7 @@ LPXLOPER QL_QUERY(char *handleObject_char) {
 		}
 		return &xRet;
 	} catch (const exception &e) {
-		logMessage(string("ERROR: QL_FIELDNAMES: ") + e.what());
+		logMessage(std::string("ERROR: QL_FIELDNAMES: ") + e.what());
 		return 0;
 	}
 }
@@ -41,7 +41,7 @@ LPXLOPER QL_QUERY(char *handleObject_char) {
 LPXLOPER QL_LOGFILE(char *logFileName) {
 	static XLOPER xRet;
 	try {
-		if (setLogFile(string(logFileName)))
+		if (setLogFile(std::string(logFileName)))
 			setXLOPERString(xRet, logFileName);
 		else
 			setXLOPERString(xRet, "logging disabled");

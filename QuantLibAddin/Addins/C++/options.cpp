@@ -5,7 +5,7 @@ using namespace QuantLib;
 extern ObjectHandler objectHandler;
 
 Properties QL_BLACKSCHOLES(
-		const string &handleStochastic, 
+		const std::string &handleStochastic, 
 		const Spread &dividendYield,
 		const Rate &riskFreeRate,
 		const Volatility &volatility,
@@ -20,9 +20,9 @@ Properties QL_BLACKSCHOLES(
 }
 
 Properties QL_OPTION(
-	const string &handleOption, 
-	const string &handleStochastic,
-	const string &type,
+	const std::string &handleOption, 
+	const std::string &handleStochastic,
+	const std::string &type,
 	const Real &strike,
 	const Size &timeSteps,
 	const Date &exerciseDate,
@@ -40,8 +40,8 @@ Properties QL_OPTION(
 }
 
 Properties QL_OPTION_SETENGINE(
-	const string &handleOption, 
-	const string &engineName,
+	const std::string &handleOption, 
+	const std::string &engineName,
 	const Size &timeSteps) {
 	boost::shared_ptr<ObjectOption> objectOption = 
 		boost::dynamic_pointer_cast<ObjectOption>

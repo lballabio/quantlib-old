@@ -32,9 +32,9 @@ ObjHandler::Properties QL_OPTION_SETENGINE(
 // utilities
 
 void QL_LOGFILE(
-	const string &logFileName);
+	const std::string &logFileName);
 
 void QL_LOGMESSAGE(
-	const string &msg);
+	const std::string &msg);
 
 #endif

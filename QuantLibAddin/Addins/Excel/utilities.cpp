@@ -11,14 +11,14 @@ void anyToXLOPER(const any_ptr &any, XLOPER &xOp) {
 	} else if (any->type() == typeid(double)) {
 		xOp.xltype = xltypeNum;
 		xOp.val.num = boost::any_cast<double>(*any);
-	} else if (any->type() == typeid(string)) {
-		string s = boost::any_cast<string>(*any);
+	} else if (any->type() == typeid(std::string)) {
+		std::string s = boost::any_cast<std::string>(*any);
 		setXLOPERString(xOp, s.c_str());
 	} else
 		xOp.xltype = xltypeErr;
 }
 
-void setValues(LPXLOPER xArray, obj_ptr object, const string &handle) {
+void setValues(LPXLOPER xArray, obj_ptr object, const std::string &handle) {
 	Properties properties = object->getProperties();
 	xArray->xltype = xltypeMulti;
 	xArray->val.array.rows = 1;
@@ -35,17 +35,17 @@ void setValues(LPXLOPER xArray, obj_ptr object, const string &handle) {
 	}
 }
 
-string XLOPERtoString(LPXLOPER xOp) {
+std::string XLOPERtoString(LPXLOPER xOp) {
 	XLOPER xStr;
 	if (xlretSuccess != Excel4(xlCoerce, &xStr, 2, xOp, TempInt(xltypeStr))) 
 		throw exception("XLOPERtoString: error on call to xlCoerce");
-	string s;
+	std::string s;
 	s.assign(xStr.val.str + 1, xStr.val.str[0]);
 	Excel(xlFree, 0, 1, &xStr);
 	return s;
 }
 
-string getCaller() {
+std::string getCaller() {
 	XLOPER xCaller, xRef;
 	if (xlretSuccess != Excel(xlfCaller, &xCaller, 0))
 		throw exception("getCaller: error on call to xlfCaller");

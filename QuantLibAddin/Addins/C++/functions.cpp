@@ -2,11 +2,11 @@
 using namespace ObjHandler;
 
 void QL_LOGFILE(
-	const string &logFileName) {
+	const std::string &logFileName) {
 	setLogFile(logFileName);
 }
 
 void QL_LOGMESSAGE(
-	const string &msg) {
+	const std::string &msg) {
 	logMessage(msg);
 }
