@@ -42,6 +42,7 @@ using QuantLib::DayCounters::ActualActual;
 #if defined(SWIGGUILE)
 %scheme%{ 
     (define DayCounter=? DayCounter-equal) 
+    (export DayCounter=?)
 %}
 #endif
 

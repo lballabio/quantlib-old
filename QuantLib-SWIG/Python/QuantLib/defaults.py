@@ -23,3 +23,10 @@ import new
 import code
 import types
 
+History._old___init__ = History.__init__
+def History_new___init__(self,dates,values):
+    values = values[:]
+    for i in range(len(values)):
+        values[i] = values[i] or nullDouble()
+    self._old___init__(dates,values)
+History.__init__ = History_new___init__

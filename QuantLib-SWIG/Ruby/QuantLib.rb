@@ -19,22 +19,58 @@
 require 'QuantLibc'
 
 module QuantLibc
+  
+  # mixins
+  
+  # Comparable classes
+  class Date
+    include Comparable
+  end
+  
+  class Calendar
+    include Comparable
+  end
+  
+  # Enumerable classes
+  class Array
+    include Enumerable
+  end
 
-    # mixins
-
-    # Comparable classes
-    class Date
-        include Comparable
+  class IntVector
+    include Enumerable
+  end
+  
+  class DoubleVector
+    include Enumerable
+  end
+  
+  class DateVector
+    include Enumerable
+  end
+  
+  
+  # interface enhancements
+  class Observer
+    alias cpp_initialize initialize
+    def initialize(*args,&block)
+      if (block)
+        cpp_initialize(block)
+      elsif (args.size > 0 and args[0].respond_to? "call")
+        cpp_initialize(args[0])
+      else
+        raise "block or callable object needed"
+      end
     end
+  end
 
-    class Calendar
-        include Comparable
+  class History
+    alias cpp_initialize initialize
+    def initialize(dates,values)
+      vs = []
+      values.each { |v| vs.push(v || QuantLibc::nullDouble) }
+      cpp_initialize(dates,vs)
     end
-
-    # Enumerable classes
-    class Array
-        include Enumerable
-    end
+  end
 
 end
 

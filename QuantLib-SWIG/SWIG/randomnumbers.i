@@ -56,6 +56,8 @@ class SampleNumber {
 %scheme%{
     (define SampleNumber-value  SampleNumber-value-get)
     (define SampleNumber-weight SampleNumber-weight-get)
+    (export SampleNumber-value
+            SampleNumber-weight)
 %}
 #endif
 

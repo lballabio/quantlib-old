@@ -84,12 +84,47 @@ class PyObserver {
 	PyObserver(PyObject* callback);
     void registerWith(const ObservableHandle&);
     void unregisterWith(const ObservableHandle&);
+    void update();
 };
-#endif
 
+#elif defined(SWIGRUBY)
 
+%{
+// C++ wrapper for Ruby observer
+class RubyObserver : public Observer {
+  public:
+	RubyObserver(VALUE callback)
+    : callback_(callback) {}
+    void mark() { ((void (*)(VALUE))(rb_gc_mark))(callback_); }
+    void update() {
+        ID method = rb_intern("call");
+        rb_funcall(callback_,method,0);
+    }
+  private:
+	VALUE callback_;
+    // inhibit copies
+    RubyObserver(const RubyObserver& o) {}
+    RubyObserver& operator=(const RubyObserver& o) { return *this; }
+};
 
-#if defined(SWIGMZSCHEME)
+void markRubyObserver(void* p) {
+    RubyObserver* o = static_cast<RubyObserver*>(p);
+    o->mark();
+}
+%}
+
+// Ruby wrapper
+%rename(Observer) RubyObserver;
+%markfunc RubyObserver "markRubyObserver";
+class RubyObserver {
+  public:
+	RubyObserver(VALUE callback);
+    void registerWith(const ObservableHandle&);
+    void unregisterWith(const ObservableHandle&);
+    void update();
+};
+
+#elif defined(SWIGMZSCHEME)
 
 %{
 // C++ wrapper for MzScheme observer
@@ -136,6 +171,7 @@ class MzObserver {
 	MzObserver(Scheme_Object* callback);
     void registerWith(const ObservableHandle&);
     void unregisterWith(const ObservableHandle&);
+    void update();
 };
 #endif
 

@@ -287,6 +287,11 @@ class Date {
     (define Date>?  Date-greater)
     (define Date<=? Date-less-equal)
     (define Date>=? Date-greater-equal)
+    (export Date=?
+            Date<?
+            Date>?
+            Date<=?
+            Date>=?)
 %}
 #endif
 

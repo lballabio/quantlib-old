@@ -86,7 +86,8 @@ using QuantLib::Calendars::Sydney;
 #endif
 #if defined(SWIGGUILE)
 %scheme%{ 
-    (define Calendar=? Calendar-equal) 
+    (define Calendar=? Calendar-equal)
+    (export Calendar=?)
 %}
 #endif
 

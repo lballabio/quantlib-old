@@ -18,3 +18,17 @@
 (define samplenumber-value  samplenumber-value-get)
 (define samplenumber-weight samplenumber-weight-get)
 
+; added functionality
+(define (History-map h f)
+  (let ((results '()))
+    (History-for-each h (lambda (e)
+                          (if e
+                              (set! results (cons (f e) results))
+                              (set! results (cons #f results)))))
+    (reverse results)))
+(define (History-map-valid h f)
+  (let ((results '()))
+    (History-for-each-valid h (lambda (e)
+                                (set! results (cons (f e) results))))
+    (reverse results)))
+
