@@ -18,7 +18,7 @@
 #ifndef qla_stochasticprocess_hpp
 #define qla_stochasticprocess_hpp
 
-#include <ObjectHandler/objhandler.hpp>
+#include <oh/objhandler.hpp>
 #include <ql/stochasticprocess.hpp>
 
 namespace QuantLibAddin {

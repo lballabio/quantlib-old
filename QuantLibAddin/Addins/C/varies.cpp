@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ObjectHandler/objhandler.hpp>
+#include <oh/objhandler.hpp>
 extern "C" {
 #include <Addins/C/varies.h>
 }
@@ -76,3 +76,4 @@ void freeVariesList(VariesList *vl) {
     }
     delete [] vl->varies;
 }
+

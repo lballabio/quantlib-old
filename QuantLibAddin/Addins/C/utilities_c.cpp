@@ -28,3 +28,4 @@ const char *QL_LOGFILE(const char *logFileName) {
 void QL_LOGMESSAGE(const char *msg) {
     QuantLibAddin::QL_LOGMESSAGE(msg);
 }
+

@@ -18,7 +18,7 @@
 #ifndef qla_utilities_hpp
 #define qla_utilities_hpp
 
-#include <ObjectHandler/objhandler.hpp>
+#include <oh/objhandler.hpp>
 
 namespace QuantLibAddin {
 

@@ -18,9 +18,10 @@
 #ifndef qladdin_hpp
 #define qladdin_hpp
 
-#include <ObjectHandler/objhandler.hpp>
+#include <oh/objhandler.hpp>
 #include <QuantLibAddin/qladdindefines.hpp>
 #include <QuantLibAddin/functions/options.hpp>
 #include <QuantLibAddin/functions/utilities.hpp>
 
 #endif
+

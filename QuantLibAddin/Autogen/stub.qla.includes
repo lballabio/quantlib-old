@@ -1,7 +1,7 @@
 #ifndef qla_%s_hpp
 #define qla_%s_hpp
 
-#include <ObjectHandler/objhandler.hpp>
+#include <oh/objhandler.hpp>
 
 namespace QuantLibAddin {
 

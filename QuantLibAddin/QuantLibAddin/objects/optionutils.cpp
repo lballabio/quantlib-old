@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ObjectHandler/objhandler.hpp>
+#include <oh/objhandler.hpp>
 #include <QuantLibAddin/objects/optionutils.hpp>
 #include <ql/PricingEngines/all.hpp>
 

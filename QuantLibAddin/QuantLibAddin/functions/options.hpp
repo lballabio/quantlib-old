@@ -15,13 +15,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Tue Jan 25 14:57:59 2005
+// this file generated automatically by autogen.py on Fri Jan 28 22:07:44 2005
 // editing this file manually is not recommended
 
 #ifndef qla_options_hpp
 #define qla_options_hpp
 
-#include <ObjectHandler/objhandler.hpp>
+#include <oh/objhandler.hpp>
 
 namespace QuantLibAddin {
 
