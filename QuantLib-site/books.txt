@@ -102,6 +102,18 @@ Robert A. Jarrow
 Hardcover (October 1995)
 McGraw Hill College Div; ISBN: 0070323739
 
+*** FX
+
+Foreign Exchange Risk
+Jurgen Hakala, Uwe Wystup
+Hardcover: 300 pages
+Risk Books; ISBN: 1899332375; (February 12, 2002)
+
+Mathematical Methods For Foreign Exchange
+by Alexander Lipton
+Paperback: 700 pages
+World Scientific Publishing Co., Inc.; ISBN: 9810248237; (October 15, 2001)
+
 *** RISK MANAGEMENT
 
 Risk Management and Analysis: Measuring and Modelling Financial Risk
@@ -255,4 +267,6 @@ C.O. Alexander
 Hardcover - 514 pages (26 September, 2001)
 John Wiley and Sons Ltd; ISBN: 0471899755
 
-Nelken
+Pricing, Hedging, and Trading Exotic Options
+Israel Nelken
+
