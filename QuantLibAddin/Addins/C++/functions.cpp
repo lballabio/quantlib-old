@@ -1,4 +1,4 @@
-#include "qladdin.hpp"
+#include "qladdincpp.hpp"
 
 void QL_LOGFILE(
 	const string &logFileName) {

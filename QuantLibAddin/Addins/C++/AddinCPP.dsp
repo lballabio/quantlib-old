@@ -4,7 +4,7 @@
 
 # TARGTYPE "Win32 (x86) Static Library" 0x0104
 
-CFG=AddinCPP - Win32 Debug
+CFG=AddinCPP - Win32 Debug SingleThread
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
@@ -13,12 +13,16 @@ CFG=AddinCPP - Win32 Debug
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "AddinCPP.mak" CFG="AddinCPP - Win32 Debug"
+!MESSAGE NMAKE /f "AddinCPP.mak" CFG="AddinCPP - Win32 Debug SingleThread"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
 !MESSAGE "AddinCPP - Win32 Release" (based on "Win32 (x86) Static Library")
 !MESSAGE "AddinCPP - Win32 Debug" (based on "Win32 (x86) Static Library")
+!MESSAGE "AddinCPP - Win32 Release MTDLL" (based on "Win32 (x86) Static Library")
+!MESSAGE "AddinCPP - Win32 Debug MTDLL" (based on "Win32 (x86) Static Library")
+!MESSAGE "AddinCPP - Win32 Release SingleThread" (based on "Win32 (x86) Static Library")
+!MESSAGE "AddinCPP - Win32 Debug SingleThread" (based on "Win32 (x86) Static Library")
 !MESSAGE 
 
 # Begin Project
@@ -49,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\AddinCPP.lib"
+# ADD LIB32 /nologo /out:"lib\AddinCPP-vc6-mt-s-0_3_8.lib"
 
 !ELSEIF  "$(CFG)" == "AddinCPP - Win32 Debug"
 
@@ -72,7 +76,99 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\AddinCPP_d.lib"
+# ADD LIB32 /nologo /out:"lib\AddinCPP-vc6-mt-sgd-0_3_8.lib"
+
+!ELSEIF  "$(CFG)" == "AddinCPP - Win32 Release MTDLL"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "AddinCPP___Win32_Release_MTDLL"
+# PROP BASE Intermediate_Dir "AddinCPP___Win32_Release_MTDLL"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "build\ReleaseMTDLL"
+# PROP Intermediate_Dir "build\ReleaseMTDLL"
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /MT /W3 /GR /GX /O2 /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD BASE RSC /l 0x809 /d "NDEBUG"
+# ADD RSC /l 0x809 /d "NDEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LIB32=link.exe -lib
+# ADD BASE LIB32 /nologo /out:"lib\AddinCPP.lib"
+# ADD LIB32 /nologo /out:"lib\AddinCPP-vc6-mt-0_3_8.lib"
+
+!ELSEIF  "$(CFG)" == "AddinCPP - Win32 Debug MTDLL"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "AddinCPP___Win32_Debug_MTDLL"
+# PROP BASE Intermediate_Dir "AddinCPP___Win32_Debug_MTDLL"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "build\DebugMTDLL"
+# PROP Intermediate_Dir "build\DebugMTDLL"
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /MTd /W3 /Gm /GR /GX /ZI /Od /I "C:\Program Files\QuantLib" /I "C:\boost_1_31_0" /I "../.." /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "C:\Program Files\QuantLib" /I "C:\boost_1_31_0" /I "../.." /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD BASE RSC /l 0x809 /d "_DEBUG"
+# ADD RSC /l 0x809 /d "_DEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LIB32=link.exe -lib
+# ADD BASE LIB32 /nologo /out:"lib\AddinCPP_d.lib"
+# ADD LIB32 /nologo /out:"lib\AddinCPP-vc6-mt-gd-0_3_8.lib"
+
+!ELSEIF  "$(CFG)" == "AddinCPP - Win32 Release SingleThread"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "AddinCPP___Win32_Release_SingleThread"
+# PROP BASE Intermediate_Dir "AddinCPP___Win32_Release_SingleThread"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "build\ReleaseSingleThread"
+# PROP Intermediate_Dir "build\ReleaseSingleThread"
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /MT /W3 /GR /GX /O2 /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD CPP /nologo /W3 /GR /GX /O2 /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD BASE RSC /l 0x809 /d "NDEBUG"
+# ADD RSC /l 0x809 /d "NDEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LIB32=link.exe -lib
+# ADD BASE LIB32 /nologo /out:"lib\AddinCPP.lib"
+# ADD LIB32 /nologo /out:"lib\AddinCPP-vc6-s-0_3_8.lib"
+
+!ELSEIF  "$(CFG)" == "AddinCPP - Win32 Debug SingleThread"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "AddinCPP___Win32_Debug_SingleThread"
+# PROP BASE Intermediate_Dir "AddinCPP___Win32_Debug_SingleThread"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "build\DebugSingleThread"
+# PROP Intermediate_Dir "build\DebugSingleThread"
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /MTd /W3 /Gm /GR /GX /ZI /Od /I "C:\Program Files\QuantLib" /I "C:\boost_1_31_0" /I "../.." /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD CPP /nologo /W3 /Gm /GR /GX /ZI /Od /I "C:\Program Files\QuantLib" /I "C:\boost_1_31_0" /I "../.." /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD BASE RSC /l 0x809 /d "_DEBUG"
+# ADD RSC /l 0x809 /d "_DEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LIB32=link.exe -lib
+# ADD BASE LIB32 /nologo /out:"lib\AddinCPP_d.lib"
+# ADD LIB32 /nologo /out:"lib\AddinCPP-vc6-sgd-0_3_8.lib"
 
 !ENDIF 
 
@@ -80,6 +176,10 @@ LIB32=link.exe -lib
 
 # Name "AddinCPP - Win32 Release"
 # Name "AddinCPP - Win32 Debug"
+# Name "AddinCPP - Win32 Release MTDLL"
+# Name "AddinCPP - Win32 Debug MTDLL"
+# Name "AddinCPP - Win32 Release SingleThread"
+# Name "AddinCPP - Win32 Debug SingleThread"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
@@ -97,7 +197,7 @@ SOURCE=.\options.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=.\qladdin.hpp
+SOURCE=.\qladdincpp.hpp
 # End Source File
 # End Group
 # End Target

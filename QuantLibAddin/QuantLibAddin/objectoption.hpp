@@ -20,7 +20,6 @@
 
 #include "objectstochastic.hpp"
 #include <ObjectHandler/objecthandler.hpp>
-#include <QuantLibAddin/qladdindefines.hpp>
 
 // FIXME
 #define FIELD_NPV 						"NPV"

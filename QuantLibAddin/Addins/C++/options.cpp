@@ -1,4 +1,4 @@
-#include "qladdin.hpp"
+#include "qladdincpp.hpp"
 
 extern ObjectHandler objectHandler;
 

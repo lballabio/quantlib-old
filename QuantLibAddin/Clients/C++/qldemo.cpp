@@ -3,8 +3,8 @@
 #pragma warning(disable: 4503)
 #endif
 
+#include "Addins/C++/qladdincpp.hpp"
 #include <iostream>
-#include "Addins/C++/qladdin.hpp"
 using namespace std;
 
 extern ObjectHandler objectHandler;

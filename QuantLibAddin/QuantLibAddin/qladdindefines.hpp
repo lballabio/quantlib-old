@@ -39,4 +39,9 @@
 #  include <QuantLibAddin/autolink.hpp>
 #endif
 
+#include <QuantLibAddin/objectoption.hpp>
+#include <QuantLibAddin/objectstochastic.hpp>
+#include <ql/quantlib.hpp>
+#include <ObjectHandler/objecthandler.hpp>
+
 #endif
