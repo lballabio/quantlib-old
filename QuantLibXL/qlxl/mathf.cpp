@@ -58,37 +58,20 @@ extern "C"
         int interpolationType = xlinterpolationType.AsInt();
         bool allowExtrapolation = xlallowExtrapolation.AsBool();
 
-        double y1a = Null<double>(),
-               y2a = Null<double>();
-        int leftConditionType = xlleftConditionType.AsInt();
-        switch (leftConditionType) {
-        case 0:
-            break;
-        case 1:
-            y1a=xlleftConditionValue.AsDouble();
-            break;
-        case 2:
-            y2a=xlleftConditionValue.AsDouble();
-            break;
-        default:
-            throw Error("unknown case");
-        }
-
-        double y1b = Null<double>(),
-               y2b = Null<double>();
-        int rightConditionType = xlrightConditionType.AsInt();
-        switch (rightConditionType) {
-        case 0:
-            break;
-        case 1:
-            y1b=xlrightConditionValue.AsDouble();
-            break;
-        case 2:
-            y2b=xlrightConditionValue.AsDouble();
-            break;
-        default:
-            throw Error("unknown case");
-        }
+        CubicSplineInterpolation<
+            std::vector<double>::const_iterator,
+            std::vector<double>::const_iterator>::BoundaryCondition
+                leftConditionType = CubicSplineInterpolation<
+                    std::vector<double>::const_iterator,
+                    std::vector<double>::const_iterator>::BoundaryCondition(
+                        xlleftConditionType.AsInt());
+        CubicSplineInterpolation<
+            std::vector<double>::const_iterator,
+            std::vector<double>::const_iterator>::BoundaryCondition
+                rightConditionType = CubicSplineInterpolation<
+                    std::vector<double>::const_iterator,
+                    std::vector<double>::const_iterator>::BoundaryCondition(
+                        xlrightConditionType.AsInt());
 
         bool monotonicityConstraint = xlmonotonicityConstraint.AsBool();
 
@@ -97,8 +80,8 @@ extern "C"
         double result = interpolate(x_value, y_value, x,
             interpolationType,
             allowExtrapolation,
-            y1a, y2a,
-            y1b, y2b,
+            leftConditionType, xlleftConditionValue.AsDouble(),
+            rightConditionType, xlrightConditionValue.AsDouble(),
             monotonicityConstraint,
             derivativeOrder);
         return XlfOper(result);
@@ -412,7 +395,7 @@ extern "C"
                                        XlfOper xlsalvagingAlgorithm) {
         EXCEL_BEGIN;
         Matrix data_matrix = QlXlfOper(xlmatrix).AsMatrix();
-        SalvagingAlgorithm::Type sa = 
+        SalvagingAlgorithm::Type sa =
             SalvagingAlgorithm::Type(xlsalvagingAlgorithm.AsInt());
         Matrix result = pseudoSqrt(data_matrix, sa);
         return XlfOper(result.rows(), result.columns(), result.begin());
