@@ -20,8 +20,8 @@
 
 #include <boost/shared_ptr.hpp>
 #include <boost/any.hpp>
+#include <ObjectHandler/property.hpp>
 #include <vector>
-#include <ObjectHandler/property.cpp>
 #include <string>
 using namespace std;
 
