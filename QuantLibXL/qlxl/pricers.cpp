@@ -31,46 +31,6 @@ extern "C"
     using namespace QuantLib::Pricers;
 
         
-    LPXLOPER EXCEL_EXPORT xlEuropeanOption(
-                        XlfOper xltype,
-                        XlfOper xlunderlying,
-                        XlfOper xlstrike,
-                        XlfOper xldividendYield,
-                        XlfOper xlriskFreeRate,
-                        XlfOper xlvalueDate,
-                        XlfOper xlmaturityDate,
-                        XlfOper xlvolatility)
-    {
-        EXCEL_BEGIN;
-
-        Option::Type type = QlXlfOper(xltype).AsOptionType();
-        double underlying    = xlunderlying.AsDouble();
-        double strike        = xlstrike.AsDouble();
-        double dividendYield = xldividendYield.AsDouble();
-        double riskFreeRate  = xlriskFreeRate.AsDouble();
-        Date valueDate       = QlXlfOper(xlvalueDate).AsDate();
-        Date maturityDate    = QlXlfOper(xlmaturityDate).AsDate();
-        double maturity      = DayCounters::Actual365().yearFraction(valueDate, maturityDate);
-        double volatility    = xlvolatility.AsDouble();
-
-        EuropeanOption eur(type, underlying, strike, dividendYield,
-           riskFreeRate, maturity, volatility);
-        double results[7];
-        results[0] = eur.value();
-        results[1] = eur.delta();
-        results[2] = eur.gamma();
-        results[3] = eur.theta();
-        results[4] = eur.vega();
-        results[5] = eur.rho();
-        results[6] = eur.dividendRho();
-
-        return XlfOper(1,7,results);
-        EXCEL_END;
-    }
-
-
-    
-    
     LPXLOPER EXCEL_EXPORT xlEuropeanOption_FD(
                         XlfOper xltype,
                         XlfOper xlunderlying,

@@ -31,6 +31,57 @@ extern "C"
     using namespace QuantLib;
     using namespace QuantLib::PricingEngines;
 
+    LPXLOPER EXCEL_EXPORT xlEuropeanOption(
+                        XlfOper xltype,
+                        XlfOper xlunderlying,
+                        XlfOper xlstrike,
+                        XlfOper xldividendYield,
+                        XlfOper xlriskFree,
+                        XlfOper xlvalueDate,
+                        XlfOper xlmaturityDate,
+                        XlfOper xlvolatility)
+    {
+        EXCEL_BEGIN;
+
+        Handle<AnalyticalVanillaEngine> engine(new
+            AnalyticalVanillaEngine);
+
+        VanillaOptionArguments* arguments =
+            dynamic_cast<VanillaOptionArguments*>(
+                engine->arguments());
+
+        Date valueDate = QlXlfOper(xlvalueDate).AsDate();
+
+        arguments->type = QlXlfOper(xltype).AsOptionType();
+        arguments->underlying = xlunderlying.AsDouble();
+        arguments->strike = xlstrike.AsDouble();
+        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(valueDate);
+        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(valueDate);
+        arguments->exercise = EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate());
+        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(valueDate);
+
+        arguments->validate();
+        engine->calculate();
+
+        const VanillaOptionResults* vResults =
+            dynamic_cast<const VanillaOptionResults*>(
+                engine->results());
+        double results[8];
+        results[0] = vResults->value;
+        results[1] = vResults->delta;
+        results[2] = vResults->gamma;
+        results[3] = vResults->theta;
+        results[4] = vResults->vega;
+        results[5] = vResults->rho;
+        results[6] = vResults->dividendRho;
+        results[7] = vResults->strikeSensitivity;
+
+        return XlfOper(1,8,results);
+        EXCEL_END;
+    }
+
+
+
     LPXLOPER EXCEL_EXPORT xlQuantoEuropeanOption(
                         XlfOper xltype,
                         XlfOper xlunderlying,
