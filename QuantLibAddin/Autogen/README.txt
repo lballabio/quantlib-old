@@ -1,0 +1,2 @@
+
+- explain how autogeneration works
