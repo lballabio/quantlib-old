@@ -161,8 +161,8 @@ int main() {
             "SE",                           // engine type
             timeSteps);                     // time steps
 
-        for (int i=0;i<2;i++)
-            delete correlations[i];
+        for (int j=0; j<2; j++)
+            delete correlations[j];
         delete [] correlations;
 
         printObject("QL_OPTION_BASKET", p6);

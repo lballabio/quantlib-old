@@ -16,7 +16,6 @@
 */
 
 #include <qla/qladdin.hpp>
-#include <qla/objects/vanillaoption.hpp>
 #include <sstream>
 
 using namespace std;

@@ -3,6 +3,7 @@ for 0.3.9:
 Autogeneration
 - document how it works
 - only update files if they change (need to exclude timestamp from diff)
+- clean up common.generateParams
 
 Doxygen
 - now that the interface layer has been replaced by the factory function,

@@ -18,7 +18,7 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qla/config.hpp>
 #endif
-#include <qla/functions/utilities.hpp>
+#include <qla/utilities.hpp>
 #include <ql/qldefines.hpp>
 #include <oh/logger.hpp>
 #include <sstream>
