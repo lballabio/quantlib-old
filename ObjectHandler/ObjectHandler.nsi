@@ -58,8 +58,10 @@ SectionIn 1 2
     File /r "ObjectHandler\*.mak"
 
     SetOutPath $INSTDIR\Example
+    File /r "Example\*.hpp"
     File /r "Example\*.cpp"
     File /r "Example\*.dsp"
+    File /r "Example\*.dev"
     File /r "Example\*.mak"
     File /r "Example\*.vcproj"
 
@@ -100,11 +102,12 @@ SectionEnd
 
 Section "WinHelp documentation"
 SectionIn 1
-  SetOutPath "$INSTDIR\Docs\html"
-  File /nonfatal "Docs\html\index.chm"
-  IfFileExists "$INSTDIR\Docs\html\index.chm" 0 NoWinHelpDoc
+  SetOutPath "$INSTDIR\Docs"
+  File /nonfatal "Docs\ObjectHandler-docs-${VER_NUMBER}.chm"
+  IfFileExists "$INSTDIR\Docs\ObjectHandler-docs-${VER_NUMBER}.chm" 0 \
+                                                                 NoWinHelpDoc
       CreateShortCut "$SMPROGRAMS\ObjectHandler\Documentation (WinHelp).lnk" \
-                 "$INSTDIR\Docs\html\index.chm"
+                 "$INSTDIR\Docs\ObjectHandler-docs-${VER_NUMBER}.chm"
   NoWinHelpDoc:
 SectionEnd
 

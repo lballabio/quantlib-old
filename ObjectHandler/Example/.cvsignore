@@ -1,5 +1,7 @@
 bin
 build
+*.lib
+*.obj*
 Example.plg
 Example.dep
 Example.mak
