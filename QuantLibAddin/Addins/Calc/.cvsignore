@@ -4,3 +4,5 @@ dll
 Debug
 AddinCalc.plg
 *.urd
+*.rdb
+*.flag*
