@@ -150,6 +150,12 @@ extern "C" {
                 "1 for pseudo-random (Mersenne Twister), "
                 "2 for quasi-random (Jäckel-Sobol)");
 
+
+            
+            
+            
+            
+            
             // Registers Risk Measures
             XlfFuncDesc valueAtRiskDesc(
                 "xlvalueAtRisk",
@@ -285,6 +291,15 @@ extern "C" {
             gaussianDownsideDeviationDesc.Register();
 
 
+
+            
+            
+            
+            
+            
+            
+            
+            
             // Registers accrual_days
             XlfFuncDesc accrualDaysDesc("xlaccrualDays",
                 "qlAccrual_days",
@@ -433,11 +448,14 @@ extern "C" {
 
             // Registers Random Number functions
 
-            XlfFuncDesc rand("xlrand","qlRand",
+            XlfFuncDesc rand(
+                "xlrand",
+                "qlRand",
                 "Drop-in replacement for Excel's rand() function. "
                 "It uses a Mersenne Twister random number generator, which can be "
                 "re-initialize at any time using qlRandomize(seed).",
-                "QuantLibXL Random Numbers", XlfFuncDesc::Volatile);
+                "QuantLibXL Random Numbers",
+                XlfFuncDesc::Volatile);
             rand.Register();
 
             XlfFuncDesc randomize("xlrandomize","qlRandomize",
@@ -544,34 +562,63 @@ extern "C" {
             forward.SetArguments(refDate+termStructure+d01+d02+allowExtrapolation);
             forward.Register();
 
+
+
+
+
+
             // Registers qlversion
-            XlfFuncDesc QLversion("xlQLversion","qlQLVersion",
-                "QuantLib version string","QuantLibXL Utilities");
+            XlfFuncDesc QLversion(
+                "xlQLversion",
+                "qlQLVersion",
+                "QuantLib version string",
+                "QuantLibXL Utilities",
+                XlfFuncDesc::Volatile);
             QLversion.Register();
 
             // Registers qlhexversion
-            XlfFuncDesc QLhexversion("xlQLhexversion","qlQLHexVersion",
-                "QuantLib version number","QuantLibXL Utilities");
+            XlfFuncDesc QLhexversion(
+                "xlQLhexversion",
+                "qlQLHexVersion",
+                "QuantLib version number",
+                "QuantLibXL Utilities",
+                XlfFuncDesc::Volatile);
             QLhexversion.Register();
 
             // Registers xlwversion
-            XlfFuncDesc XLWversion("xlXLWversion","qlXLWVersion",
-                "QuantLib version string","QuantLibXL Utilities");
+            XlfFuncDesc XLWversion(
+                "xlXLWversion",
+                "qlXLWVersion",
+                "QuantLib version string",
+                "QuantLibXL Utilities",
+                XlfFuncDesc::Volatile);
             XLWversion.Register();
 
             // Registers xlwhexversion
-            XlfFuncDesc XLWhexversion("xlXLWhexversion","qlXLWHexVersion",
-                "QuantLib version number","QuantLibXL Utilities");
+            XlfFuncDesc XLWhexversion(
+                "xlXLWhexversion",
+                "qlXLWHexVersion",
+                "QuantLib version number",
+                "QuantLibXL Utilities",
+                XlfFuncDesc::Volatile);
             XLWhexversion.Register();
 
             // Registers qlxlversion
-            XlfFuncDesc QLXLversion("xlQLXLversion","qlQLXLVersion",
-                "QuantLib version string","QuantLibXL Utilities");
+            XlfFuncDesc QLXLversion(
+                "xlQLXLversion",
+                "qlQLXLVersion",
+                "QuantLib version string",
+                "QuantLibXL Utilities",
+                XlfFuncDesc::Volatile);
             QLXLversion.Register();
 
             // Registers qlxlhexversion
-            XlfFuncDesc QLXLhexversion("xlQLXLhexversion","qlQLXLHexVersion",
-                "QuantLib version number","QuantLibXL Utilities");
+            XlfFuncDesc QLXLhexversion(
+                "xlQLXLhexversion",
+                "qlQLXLHexVersion",
+                "QuantLib version number",
+                "QuantLibXL Utilities",
+                XlfFuncDesc::Volatile);
             QLXLhexversion.Register();
 
 

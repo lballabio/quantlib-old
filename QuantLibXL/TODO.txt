@@ -1,4 +1,3 @@
-rivedere paths
 n dim normal sample
 integrare spreadsheets corsi
 daycount in quantlib.xls
@@ -7,7 +6,6 @@ daycount in quantlib.xls
 ** PORT TO JENS THIEL'S LIB-XLL FRAMEWORK **
 ********************************************
 
-export all riskmeasures
 how to avoid recalculation
 bug with operation in term structure input
 

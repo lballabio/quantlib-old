@@ -87,6 +87,8 @@ SectionIn 1 2 3
                    "$INSTDIR\LICENSE.txt"
     CreateShortCut "$SMPROGRAMS\QuantLibXL\What's new.lnk" \
                    "$INSTDIR\News.txt"
+    CreateShortCut "$SMPROGRAMS\QuantLibXL\History.txt.lnk" \
+                   "$INSTDIR\History.txt"
 
     WriteUninstaller "QuantLibXLUninstall.exe"
 SectionEnd
@@ -142,13 +144,14 @@ SectionIn 1 2
      File /r "Workbooks\QLPaths.xls"
      File /r "Workbooks\quantlib.xls"
      File /r "Workbooks\riskmeasures.xls"
+     File /r "Workbooks\RandomNumbers.xls"
      File /r "Workbooks\tsconstforward.xls"
      File /r "Workbooks\tsdiscount.xls"
      File /r "Workbooks\tspwcf.xls"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL\QuantLibXL Directory.lnk" \
                    "$INSTDIR"
-    CreateShortCut "$SMPROGRAMS\QuantLibXL\Test workbooks.lnk" \
+    CreateShortCut "$SMPROGRAMS\QuantLibXL\Example workbooks.lnk" \
                    "$INSTDIR\Workbooks"
 
 SectionEnd

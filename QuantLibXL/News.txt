@@ -1,5 +1,5 @@
-2003-11-21 In sync with the QuantLib 0.3.3 release, built with a
-           2003-11-03 snapshot of XLW (xlw.sf.net) CVS.
+2003-11-21 In sync with the QuantLib 0.3.4 release, built with a
+           2003-11-17 snapshot of XLW (xlw.sf.net) CVS.
            Exported all the QuantLib risk measures, uniform pseudo-random and
            quasi random generators. Added few more spreadsheets as example of
            QuantLibXL usage.
