@@ -18,8 +18,9 @@
   (format #t "Usage: mzscheme -r setup scm command\n")
   (format #t "  Commands:\n")
   (format #t "    wrap             generate wrappers from SWIG interfaces\n")
-  (format #t "    build            build QuantLib-MzScheme\n")
-  (format #t "    install          install QuantLib-MzScheme\n")
+  (format #t "    build            build QuantLib-Guile\n")
+  (format #t "    test             test QuantLib-Guile\n")
+  (format #t "    install          install QuantLib-Guile\n")
   (format #t "    sdist            create source distribution\n")
   ;(format #t "    bdist            create binary distribution\n")
   (format #t "    clean            clean up\n")
@@ -102,9 +103,9 @@
         "swaption.scm"
         "termstructures.scm"
         ; to be removed
-        "old_pricers.scm"))
-(define test-support-files
-  (list "unittest.scm"
+        "old_pricers.scm"
+        ; support files
+        "unittest.scm"
         "utilities.scm"
         "quantlib-test-suite.scm"))
 
@@ -138,7 +139,7 @@
   (display "Generating Guile bindings for QuantLib...") (newline)
   (let ((swig-dir "./SWIG"))
     (if (not (file-exists? swig-dir))
-        (set! swig-dir "../../SWIG"))
+        (set! swig-dir "../SWIG"))
     (system (string-append "swig -guile -c++ -Linkage simple "
                            "-scmstub QuantLib.scm "
                            (format #f "-I~A " swig-dir)
@@ -246,13 +247,9 @@
       (install-files scripts "." ".")
       (let ((i-dir "SWIG"))
         (if (not (file-exists? i-dir))
-            (set! i-dir "../../SWIG"))
+            (set! i-dir "../SWIG"))
         (install-files SWIG-interfaces i-dir "SWIG"))
-      (install-files test-support-files "test" "test")
-      (let ((t-dir "../test"))
-        (if (not (file-exists? t-dir))
-            (set! t-dir "test"))
-        (install-files test-files t-dir "test"))
+      (install-files test-files "test" "test")
       (system (string-append "tar cfz " 
                              distribution-dir ".tar.gz "
                              distribution-dir))
