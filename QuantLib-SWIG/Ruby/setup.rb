@@ -177,7 +177,7 @@ Build = Command.new {
         $CPPFLAGS += " /GX"
         $CPPFLAGS += " /DNOMINMAX"
         $CPPFLAGS += " /I#{QL_DIR}"
-        $LIBPATH  += ["#{QL_DIR}\\lib\\Win32\\VisualStudio"]
+        $LIBPATH  += ["#{QL_DIR}\\lib"]
       when 'linux','linux-gnu','darwin'
         $CFLAGS   += " " + (ENV['CFLAGS'] || "")
         $CPPFLAGS += " " + IO.popen("quantlib-config --cflags").gets.strip
