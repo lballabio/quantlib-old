@@ -7,21 +7,21 @@
 CFG=QuantLibPython - Win32 OnTheEdgeDebug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE
+!MESSAGE 
 !MESSAGE NMAKE /f "QuantLibPython.mak".
-!MESSAGE
+!MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE
+!MESSAGE 
 !MESSAGE NMAKE /f "QuantLibPython.mak" CFG="QuantLibPython - Win32 OnTheEdgeDebug"
-!MESSAGE
+!MESSAGE 
 !MESSAGE Possible choices for configuration are:
-!MESSAGE
+!MESSAGE 
 !MESSAGE "QuantLibPython - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "QuantLibPython - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "QuantLibPython - Win32 OnTheEdgeRelease" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "QuantLibPython - Win32 OnTheEdgeDebug" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE
+!MESSAGE 
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -45,7 +45,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /YX /FD /c
-# ADD CPP /nologo /MD /W3 /Gi /GR /GX /Od /I "$(QL_DIR)" /D "WIN32" /D "NDEBUG" /D "NOMINMAX" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR /YX /FD /c
+# ADD CPP /nologo /MD /W3 /Gi /GR /GX /Od /I "$(QL_DIR)" /I "$(PYTHON_INCLUDE)" /D "WIN32" /D "NDEBUG" /D "NOMINMAX" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR /YX /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG"
@@ -55,7 +55,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\QuantLibc.pyd" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLibc.pyd" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" /libpath:"$(PYTHON_LIB)"
 # SUBTRACT LINK32 /verbose /profile
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
@@ -77,7 +77,7 @@ PostBuild_Cmds=copy .\QuantLib\*.py .\build\lib.win32-2.1\QuantLib
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /YX /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /Gi /GR /GX /ZI /Od /I "$(QL_DIR)" /D "WIN32" /D "NOMINMAX" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /D "QL_DEBUG" /FR /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /Gi /GR /GX /ZI /Od /I "$(QL_DIR)" /I "$(PYTHON_INCLUDE)" /D "WIN32" /D "NOMINMAX" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /D "QL_DEBUG" /FR /YX /FD /GZ /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG"
@@ -87,7 +87,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\QuantLibc_d.pyd" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.pyd" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" /libpath:"$(PYTHON_LIB)"
 # SUBTRACT LINK32 /verbose /profile
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
@@ -110,7 +110,7 @@ PostBuild_Cmds=copy .\QuantLib\*.py .\build\lib.win32-2.1\QuantLib
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /Od /I "..\QuantLib\Include" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /YX /FD /c
-# ADD CPP /nologo /MD /W3 /Gi /GR /GX /Od /I "..\QuantLib" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "NOMINMAX" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR /YX /FD /c
+# ADD CPP /nologo /MD /W3 /Gi /GR /GX /Od /I "..\QuantLib" /I "$(PYTHON_INCLUDE)" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "NOMINMAX" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /FR /YX /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG"
@@ -120,7 +120,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"Release/QuantLibc.pyd" /libpath:"..\QuantLib\lib\Win32\VisualStudio"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\QuantLibc.pyd" /libpath:"..\QuantLib\lib\Win32\VisualStudio"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLibc.pyd" /libpath:"..\QuantLib\lib\Win32\VisualStudio" /libpath:"$(PYTHON_LIB)"
 # SUBTRACT LINK32 /verbose /profile
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
@@ -143,7 +143,7 @@ PostBuild_Cmds=copy .\QuantLib\*.py .\build\lib.win32-2.1\QuantLib
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "..\QuantLib\Include" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /YX /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /Gi /GR /GX /ZI /Od /I "..\QuantLib" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /D "NOMINMAX" /D "QL_DEBUG" /FR /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /Gi /GR /GX /ZI /Od /I "..\QuantLib" /I "$(PYTHON_INCLUDE)" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "QUANTLIBPYTHON_EXPORTS" /D "NOMINMAX" /D "QL_DEBUG" /FR /YX /FD /GZ /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG"
@@ -153,7 +153,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:"Debug/QuantLibc_d.pyd" /pdbtype:sept /libpath:"..\QuantLib\lib\Win32\VisualStudio"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\QuantLibc_d.pyd" /libpath:"..\QuantLib\lib\Win32\VisualStudio"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.pyd" /libpath:"..\QuantLib\lib\Win32\VisualStudio" /libpath:"$(PYTHON_LIB)"
 # SUBTRACT LINK32 /verbose /profile
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
@@ -161,7 +161,7 @@ PostBuild_Desc=copying QuantLib-Python files
 PostBuild_Cmds=copy .\QuantLib\*.py .\build\lib.win32-2.1\QuantLib
 # End Special Build Tool
 
-!ENDIF
+!ENDIF 
 
 # Begin Target
 
@@ -190,226 +190,155 @@ SOURCE=".\QuantLib\quantlib_wrap.cpp"
 # PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Barrier.i"
+SOURCE=..\SWIG\blackmodel.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\BoundaryConditions.i"
+SOURCE=..\SWIG\calendars.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Calendars.i"
+SOURCE=..\SWIG\capfloor.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\CashFlows.i"
+SOURCE=..\SWIG\cashflows.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Currencies.i"
+SOURCE=..\SWIG\common.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Date.i"
+SOURCE=..\SWIG\currencies.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\DayCounters.i"
+SOURCE=..\SWIG\date.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Distributions.i"
+SOURCE=..\SWIG\daycounters.i
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLib\SWIG\FdPricers.i
+SOURCE=..\SWIG\distributions.i
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLib\SWIG\Functions.i
+SOURCE=..\SWIG\functions.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\History.i"
+SOURCE=..\SWIG\history.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Indexes.i"
+SOURCE=..\SWIG\indexes.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Instruments.i"
+SOURCE=..\SWIG\instruments.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Interpolation.i"
+SOURCE=..\SWIG\interpolation.i
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLib\SWIG\MarketElements.i
+SOURCE=..\SWIG\linearalgebra.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Matrix.i"
+SOURCE=..\SWIG\marketelements.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\MontecarloPricers.i"
+SOURCE=..\SWIG\montecarlo.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\MontecarloTools.i"
+SOURCE=..\SWIG\null.i
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLib\SWIG\MultiPath.i
+SOURCE=..\SWIG\observer.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Null.i"
+SOURCE=..\SWIG\old_pricers.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Observer.i"
+SOURCE=..\SWIG\old_volatility.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Operators.i"
+SOURCE=..\SWIG\operators.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Options.i"
+SOURCE=..\SWIG\optimizers.i
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLib\SWIG\Path.i
+SOURCE=..\SWIG\options.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\PiecewiseFlatForward.i"
+SOURCE=..\SWIG\piecewiseflatforward.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Pricers.i"
+SOURCE=..\SWIG\ql.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\ql.i"
+SOURCE=..\SWIG\quantlib.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\QLArray.i"
+SOURCE=..\SWIG\randomnumbers.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\QuantLib.i"
-
-!IF  "$(CFG)" == "QuantLibPython - Win32 Release"
-
-# PROP Ignore_Default_Tool 1
-USERDEP__QUANT=".\QuantLib\SWIG\Barrier.i"	".\QuantLib\SWIG\BoundaryConditions.i"	".\QuantLib\SWIG\Calendars.i"	".\QuantLib\SWIG\CashFlows.i"	".\QuantLib\SWIG\Currencies.i"	".\QuantLib\SWIG\Date.i"	".\QuantLib\SWIG\DayCounters.i"	".\QuantLib\SWIG\Distributions.i"	".\QuantLib\SWIG\FdPricers.i"	".\QuantLib\SWIG\Functions.i"	".\QuantLib\SWIG\History.i"	".\QuantLib\SWIG\Indexes.i"	".\QuantLib\SWIG\Instruments.i"	".\QuantLib\SWIG\Interpolation.i"	".\QuantLib\SWIG\MarketElements.i"	".\QuantLib\SWIG\Matrix.i"	".\QuantLib\SWIG\MontecarloPricers.i"	".\QuantLib\SWIG\MontecarloTools.i"	".\QuantLib\SWIG\MultiPath.i"	".\QuantLib\SWIG\Null.i"	".\QuantLib\SWIG\Observer.i"	".\QuantLib\SWIG\Operators.i"	".\QuantLib\SWIG\Options.i"	".\QuantLib\SWIG\Path.i"	".\QuantLib\SWIG\PiecewiseFlatForward.i"	".\QuantLib\SWIG\Pricers.i"	".\QuantLib\SWIG\QLArray.i"	".\QuantLib\SWIG\RandomNumbers.i"	".\QuantLib\SWIG\RateHelpers.i"	".\QuantLib\SWIG\RiskStatistics.i"	".\QuantLib\SWIG\Scheduler.i"	".\QuantLib\SWIG\SegmentIntegrals.i"	".\QuantLib\SWIG\Solvers1D.i"	".\QuantLib\SWIG\Statistics.i"	".\QuantLib\SWIG\String.i"	".\QuantLib\SWIG\Swap.i"	".\QuantLib\SWIG\TermStructures.i"	".\QuantLib\SWIG\Types.i"\
-	".\QuantLib\SWIG\Vectors.i"	".\QuantLib\SWIG\Volatility.i"	".\QuantLib\SWIG\ql.i"
-# Begin Custom Build - Compiling QuantLib.i ...
-InputPath=".\QuantLib\SWIG\QuantLib.i"
-
-".\QuantLib\quantlib_wrap.cpp" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	python makewrappers.py
-
-# End Custom Build
-
-!ELSEIF  "$(CFG)" == "QuantLibPython - Win32 Debug"
-
-# PROP Ignore_Default_Tool 1
-USERDEP__QUANT=".\QuantLib\SWIG\Barrier.i"	".\QuantLib\SWIG\BoundaryConditions.i"	".\QuantLib\SWIG\Calendars.i"	".\QuantLib\SWIG\CashFlows.i"	".\QuantLib\SWIG\Currencies.i"	".\QuantLib\SWIG\Date.i"	".\QuantLib\SWIG\DayCounters.i"	".\QuantLib\SWIG\Distributions.i"	".\QuantLib\SWIG\FdPricers.i"	".\QuantLib\SWIG\Functions.i"	".\QuantLib\SWIG\History.i"	".\QuantLib\SWIG\Indexes.i"	".\QuantLib\SWIG\Instruments.i"	".\QuantLib\SWIG\Interpolation.i"	".\QuantLib\SWIG\MarketElements.i"	".\QuantLib\SWIG\Matrix.i"	".\QuantLib\SWIG\MontecarloPricers.i"	".\QuantLib\SWIG\MontecarloTools.i"	".\QuantLib\SWIG\MultiPath.i"	".\QuantLib\SWIG\Null.i"	".\QuantLib\SWIG\Observer.i"	".\QuantLib\SWIG\Operators.i"	".\QuantLib\SWIG\Options.i"	".\QuantLib\SWIG\Path.i"	".\QuantLib\SWIG\PiecewiseFlatForward.i"	".\QuantLib\SWIG\Pricers.i"	".\QuantLib\SWIG\QLArray.i"	".\QuantLib\SWIG\RandomNumbers.i"	".\QuantLib\SWIG\RateHelpers.i"	".\QuantLib\SWIG\RiskStatistics.i"	".\QuantLib\SWIG\Scheduler.i"	".\QuantLib\SWIG\SegmentIntegrals.i"	".\QuantLib\SWIG\Solvers1D.i"	".\QuantLib\SWIG\Statistics.i"	".\QuantLib\SWIG\String.i"	".\QuantLib\SWIG\Swap.i"	".\QuantLib\SWIG\TermStructures.i"	".\QuantLib\SWIG\Types.i"\
-	".\QuantLib\SWIG\Vectors.i"	".\QuantLib\SWIG\Volatility.i"	".\QuantLib\SWIG\ql.i"
-# Begin Custom Build - Compiling QuantLib.i ...
-InputPath=".\QuantLib\SWIG\QuantLib.i"
-
-".\QuantLib\quantlib_wrap.cpp" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	python makewrappers.py
-
-# End Custom Build
-
-!ELSEIF  "$(CFG)" == "QuantLibPython - Win32 OnTheEdgeRelease"
-
-# PROP Ignore_Default_Tool 1
-USERDEP__QUANT=".\QuantLib\SWIG\Barrier.i"	".\QuantLib\SWIG\BoundaryConditions.i"	".\QuantLib\SWIG\Calendars.i"	".\QuantLib\SWIG\CashFlows.i"	".\QuantLib\SWIG\Currencies.i"	".\QuantLib\SWIG\Date.i"	".\QuantLib\SWIG\DayCounters.i"	".\QuantLib\SWIG\Distributions.i"	".\QuantLib\SWIG\FdPricers.i"	".\QuantLib\SWIG\Functions.i"	".\QuantLib\SWIG\History.i"	".\QuantLib\SWIG\Indexes.i"	".\QuantLib\SWIG\Instruments.i"	".\QuantLib\SWIG\Interpolation.i"	".\QuantLib\SWIG\MarketElements.i"	".\QuantLib\SWIG\Matrix.i"	".\QuantLib\SWIG\MontecarloPricers.i"	".\QuantLib\SWIG\MontecarloTools.i"	".\QuantLib\SWIG\MultiPath.i"	".\QuantLib\SWIG\Null.i"	".\QuantLib\SWIG\Observer.i"	".\QuantLib\SWIG\Operators.i"	".\QuantLib\SWIG\Options.i"	".\QuantLib\SWIG\Path.i"	".\QuantLib\SWIG\PiecewiseFlatForward.i"	".\QuantLib\SWIG\Pricers.i"	".\QuantLib\SWIG\QLArray.i"	".\QuantLib\SWIG\RandomNumbers.i"	".\QuantLib\SWIG\RateHelpers.i"	".\QuantLib\SWIG\RiskStatistics.i"	".\QuantLib\SWIG\Scheduler.i"	".\QuantLib\SWIG\SegmentIntegrals.i"	".\QuantLib\SWIG\Solvers1D.i"	".\QuantLib\SWIG\Statistics.i"	".\QuantLib\SWIG\String.i"	".\QuantLib\SWIG\Swap.i"	".\QuantLib\SWIG\TermStructures.i"	".\QuantLib\SWIG\Types.i"\
-	".\QuantLib\SWIG\Vectors.i"	".\QuantLib\SWIG\Volatility.i"	".\QuantLib\SWIG\ql.i"
-# Begin Custom Build - Compiling QuantLib.i ...
-InputPath=".\QuantLib\SWIG\QuantLib.i"
-
-".\QuantLib\quantlib_wrap.cpp" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	python makewrappers.py
-
-# End Custom Build
-
-!ELSEIF  "$(CFG)" == "QuantLibPython - Win32 OnTheEdgeDebug"
-
-# PROP Ignore_Default_Tool 1
-USERDEP__QUANT=".\QuantLib\SWIG\Barrier.i"	".\QuantLib\SWIG\BoundaryConditions.i"	".\QuantLib\SWIG\Calendars.i"	".\QuantLib\SWIG\CashFlows.i"	".\QuantLib\SWIG\Currencies.i"	".\QuantLib\SWIG\Date.i"	".\QuantLib\SWIG\DayCounters.i"	".\QuantLib\SWIG\Distributions.i"	".\QuantLib\SWIG\FdPricers.i"	".\QuantLib\SWIG\Functions.i"	".\QuantLib\SWIG\History.i"	".\QuantLib\SWIG\Indexes.i"	".\QuantLib\SWIG\Instruments.i"	".\QuantLib\SWIG\Interpolation.i"	".\QuantLib\SWIG\MarketElements.i"	".\QuantLib\SWIG\Matrix.i"	".\QuantLib\SWIG\MontecarloPricers.i"	".\QuantLib\SWIG\MontecarloTools.i"	".\QuantLib\SWIG\MultiPath.i"	".\QuantLib\SWIG\Null.i"	".\QuantLib\SWIG\Observer.i"	".\QuantLib\SWIG\Operators.i"	".\QuantLib\SWIG\Options.i"	".\QuantLib\SWIG\Path.i"	".\QuantLib\SWIG\PiecewiseFlatForward.i"	".\QuantLib\SWIG\Pricers.i"	".\QuantLib\SWIG\QLArray.i"	".\QuantLib\SWIG\RandomNumbers.i"	".\QuantLib\SWIG\RateHelpers.i"	".\QuantLib\SWIG\RiskStatistics.i"	".\QuantLib\SWIG\Scheduler.i"	".\QuantLib\SWIG\SegmentIntegrals.i"	".\QuantLib\SWIG\Solvers1D.i"	".\QuantLib\SWIG\Statistics.i"	".\QuantLib\SWIG\String.i"	".\QuantLib\SWIG\Swap.i"	".\QuantLib\SWIG\TermStructures.i"	".\QuantLib\SWIG\Types.i"\
-	".\QuantLib\SWIG\Vectors.i"	".\QuantLib\SWIG\Volatility.i"	".\QuantLib\SWIG\ql.i"
-# Begin Custom Build - Compiling QuantLib.i ...
-InputPath=".\QuantLib\SWIG\QuantLib.i"
-
-".\QuantLib\quantlib_wrap.cpp" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	python makewrappers.py
-
-# End Custom Build
-
-!ENDIF
-
+SOURCE=..\SWIG\riskstatistics.i
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLib\SWIG\RandomNumbers.i
+SOURCE=..\SWIG\scheduler.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\RateHelpers.i"
+SOURCE=..\SWIG\segmentintegral.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\RiskStatistics.i"
+SOURCE=..\SWIG\statistics.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Scheduler.i"
+SOURCE=..\SWIG\swap.i
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLib\SWIG\SegmentIntegrals.i
+SOURCE=..\SWIG\swaption.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Solvers1D.i"
+SOURCE=..\SWIG\termstructures.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Statistics.i"
+SOURCE=..\SWIG\types.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\String.i"
+SOURCE=..\SWIG\vectors.i
 # End Source File
 # Begin Source File
 
-SOURCE=".\QuantLib\SWIG\Swap.i"
-# End Source File
-# Begin Source File
-
-SOURCE=".\QuantLib\SWIG\TermStructures.i"
-# End Source File
-# Begin Source File
-
-SOURCE=".\QuantLib\SWIG\Types.i"
-# End Source File
-# Begin Source File
-
-SOURCE=".\QuantLib\SWIG\Vectors.i"
-# End Source File
-# Begin Source File
-
-SOURCE=.\QuantLib\SWIG\Volatility.i
+SOURCE=..\SWIG\volatilities.i
 # End Source File
 # End Group
 # End Target
