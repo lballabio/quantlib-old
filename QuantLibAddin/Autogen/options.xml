@@ -7,7 +7,8 @@
 <name>QL_STOCHASTIC_PROCESS</name>
 <codename>qlStochasticProcess</codename>
 <desc>construct and return a handle to a Stochastic Process object</desc>
-<handle>true</handle>
+<qlfunction>StochasticProcess</qlfunction>
+<constructor>true</constructor>
 <parameters>
 	<param>
 		<name>underlying</name>
@@ -50,11 +51,12 @@
 <name>QL_OPTION_VANILLA</name>
 <codename>qlOptionVanilla</codename>
 <desc>construct and return a handle to a Vanilla Option object</desc>
-<handle>true</handle>
+<qlfunction>VanillaOption</qlfunction>
+<constructor>true</constructor>
 <parameters>
 	<param>
 		<name>handleStochastic</name>
-		<type>string</type>
+		<type class="StochasticProcess">string</type>
 		<desc>handle of the Stochastic Process object</desc>
 	</param>
 	<param>
@@ -108,11 +110,12 @@
 <name>QL_OPTION_ASIAN_C</name>
 <codename>qlOptionAsianC</codename>
 <desc>construct and return a handle to a ContinuousAveragingAsianOption object</desc>
-<handle>true</handle>
+<qlfunction>ContinuousAveragingAsianOption</qlfunction>
+<constructor>true</constructor>
 <parameters>
 	<param>
 		<name>handleStochastic</name>
-		<type>string</type>
+		<type class="StochasticProcess">string</type>
 		<desc>handle of the Stochastic Process object</desc>
 	</param>
 	<param>
@@ -171,11 +174,12 @@
 <name>QL_OPTION_BARRIER</name>
 <codename>qlOptionBarrier</codename>
 <desc>construct and return a handle to a Barrier Option object</desc>
-<handle>true</handle>
+<qlfunction>BarrierOption</qlfunction>
+<constructor>true</constructor>
 <parameters>
 	<param>
 		<name>handleStochastic</name>
-		<type>string</type>
+		<type class="StochasticProcess">string</type>
 		<desc>handle of the Stochastic Process object</desc>
 	</param>
 	<param>
@@ -244,11 +248,12 @@
 <name>QL_OPTION_SETENGINE</name>
 <codename>qlOptionSetEngine</codename>
 <desc>change the pricing engine of an existing Option object</desc>
-<handle>false</handle>
+<qlfunction>setEngine</qlfunction>
+<constructor>false</constructor>
 <parameters>
 	<param>
 		<name>handle</name>
-		<type>string</type>
+		<type class="VanillaOption">string</type>
 		<desc>handle of the Option object</desc>
 	</param>
 	<param>

@@ -1,0 +1,10 @@
+%s
+        ObjHandler::obj_ptr objectPointer(
+            new %s(
+%s));
+        ObjHandler::ObjectHandler::instance().storeObject(
+            handleObject, objectPointer);
+        return objectPointer->getProperties();
+
+    }
+

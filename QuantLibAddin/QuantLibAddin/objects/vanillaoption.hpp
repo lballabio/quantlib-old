@@ -29,16 +29,16 @@ namespace QuantLibAddin {
             boost::shared_ptr<StochasticProcess>,
             const std::string &typeOption,
             const std::string &typePayoff,
-            const QuantLib::Real &strike,
+            const float &strike,
             const std::string &typeExercise,
-            const QuantLib::Date &exerciseDate,
-            const QuantLib::Date &settlementDate,
+            const long &exerciseDate,
+            const long &settlementDate,
             const std::string &typeEngine,
-            const QuantLib::Size &timeSteps);
+            const long &timeSteps);
     //    ~VanillaOption();
         void setEngine(
             const std::string &engineName,
-            const QuantLib::Size &timeSteps);
+            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(vanillaOption_);
         }

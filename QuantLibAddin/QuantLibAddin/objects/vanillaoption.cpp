@@ -23,16 +23,17 @@ namespace QuantLibAddin {
     VanillaOption::VanillaOption(boost::shared_ptr<StochasticProcess> stochasticProcess,
             const std::string &typeOption,
             const std::string &typePayoff,
-            const QuantLib::Real &strike,
+            const float &strike,
             const std::string &typeExercise,
-            const QuantLib::Date &exerciseDate,
-            const QuantLib::Date &settlementDate,
+            const long &exerciseDate,
+            const long &settlementDate,
             const std::string &typeEngine,
-            const QuantLib::Size &timeSteps) {
+            const long &timeSteps) {
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             IDtoPayoff(typeOption, typePayoff, strike);
         boost::shared_ptr<QuantLib::Exercise> exercise = 
-            IDtoExercise(typeExercise, exerciseDate, settlementDate);
+            IDtoExercise(typeExercise, QuantLib::Date(exerciseDate),
+                QuantLib::Date(settlementDate));
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             IDtoEngine(typeEngine, timeSteps);
         const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL = 
@@ -54,7 +55,7 @@ namespace QuantLibAddin {
 
     void VanillaOption::setEngine(
             const std::string &typeEngine,
-            const QuantLib::Size &timeSteps) {
+            const long &timeSteps) {
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             IDtoEngine(typeEngine, timeSteps);
         vanillaOption_->setPricingEngine(pricingEngine);

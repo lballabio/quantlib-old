@@ -35,25 +35,26 @@ namespace QuantLibAddin {
     }
 
     StochasticProcess::StochasticProcess(
-            const QuantLib::Real &underlying,
+            const float &underlying,
             const std::string &dayCounterID,
-            const QuantLib::Date &settlementDate,
-            const QuantLib::Rate &riskFreeRate,
-            const QuantLib::Spread &dividendYield,
-            const QuantLib::Volatility &volatility) {
+            const long &settlementDate,
+            const float &riskFreeRate,
+            const float &dividendYield,
+            const float &volatility) {
+        QuantLib::Date settlementDate2(settlementDate);
         QuantLib::DayCounter dayCounter = IDtoDayCounter(dayCounterID);
         QuantLib::Handle<QuantLib::Quote> underlyingH( 
             boost::shared_ptr<QuantLib::Quote>(
             new QuantLib::SimpleQuote(underlying)));
         QuantLib::Handle<QuantLib::YieldTermStructure> flatTermStructure(
             boost::shared_ptr<QuantLib::YieldTermStructure>(
-            new QuantLib::FlatForward(settlementDate, riskFreeRate, dayCounter)));
+            new QuantLib::FlatForward(settlementDate2, riskFreeRate, dayCounter)));
         QuantLib::Handle<QuantLib::YieldTermStructure> flatDividendTS(
             boost::shared_ptr<QuantLib::YieldTermStructure>(
-            new QuantLib::FlatForward(settlementDate, dividendYield, dayCounter)));
+            new QuantLib::FlatForward(settlementDate2, dividendYield, dayCounter)));
         QuantLib::Handle<QuantLib::BlackVolTermStructure> flatVolTS(
             boost::shared_ptr<QuantLib::BlackVolTermStructure>(
-            new QuantLib::BlackConstantVol(settlementDate, volatility, dayCounter)));
+            new QuantLib::BlackConstantVol(settlementDate2, volatility, dayCounter)));
         stochasticProcess_ = boost::shared_ptr<QuantLib::BlackScholesProcess> (
             new QuantLib::BlackScholesProcess(
                 underlyingH,

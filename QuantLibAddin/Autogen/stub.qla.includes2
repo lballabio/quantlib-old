@@ -1,0 +1,7 @@
+#include <QuantLibAddin/functions/options.hpp>
+#include <QuantLibAddin/objects/vanillaoption.hpp>
+#include <QuantLibAddin/objects/asianoption.hpp>
+#include <QuantLibAddin/objects/barrieroption.hpp>
+
+namespace QuantLibAddin {
+

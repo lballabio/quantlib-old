@@ -28,16 +28,16 @@ namespace QuantLibAddin {
         BarrierOption(
             boost::shared_ptr<StochasticProcess>,
             const std::string &typeBarrier,
-            const QuantLib::Real &barrier,
-            const QuantLib::Real &rebate,
+            const float &barrier,
+            const float &rebate,
             const std::string &typeOption,
             const std::string &typePayoff,
-            const QuantLib::Real &strike,
+            const float &strike,
             const std::string &typeExercise,
-            const QuantLib::Date &exerciseDate,
-            const QuantLib::Date &settlementDate,
+            const long &exerciseDate,
+            const long &settlementDate,
             const std::string &typeEngine,
-            const QuantLib::Size &timeSteps);
+            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(barrierOption_);
         }

@@ -14,7 +14,7 @@ def generateFuncMap(functionGroups):
         fileMap.write('\n    //%s\n\n' % groupName)
         functionGroup = functionGroups[groupName]
         for function in functionGroup[common.FUNCLIST]:
-            fileMap.write(common.CALC_MAPLINE \
+            fileMap.write(common.CALC_MAPLINE
                 % (function[common.CODENAME], function[common.NAME]))
     fileMap.write('\n}\n')
     fileMap.close()
@@ -30,9 +30,9 @@ def generateAutoHeader(functionGroups):
     fileHeader.close()
 
 def generateHeader(fileHeader, function, suffix):
-    if function[common.HANDLE]:
+    if function[common.CTOR]:
         fileHeader.write('        const STRING & handle,\n')
-    fileHeader.write(utils.generateParamList(function[common.PARAMS], \
+    fileHeader.write(utils.generateParamList(function[common.PARAMS],
         2, True, '', 'const STRING &', 'sal_Int32'))
     fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)
 
@@ -54,25 +54,26 @@ def generateHeaders(functionGroups):
         utils.printHeader(fileHeader)
         for function in functionGroup[common.FUNCLIST]:
             returnTypeCalc = getReturnTypeCalc(function)
-            fileHeader.write('    virtual %s SAL_CALL %s(\n' \
+            fileHeader.write('    virtual %s SAL_CALL %s(\n'
                 % (returnTypeCalc, function[common.CODENAME]))
             generateHeader(fileHeader, function, ';')
             fileHeader.write('\n')
     fileHeader.close()
 
 def generateFuncSource(fileFunc, function):
-    fileFunc.write('SEQSEQ( ANY ) SAL_CALL QLAddin::%s(\n' % function[common.CODENAME])
+    fileFunc.write('SEQSEQ( ANY ) SAL_CALL QLAddin::%s(\n' 
+        % function[common.CODENAME])
     generateHeader(fileFunc, function, ' {')
-    if function[common.HANDLE]:
+    if function[common.CTOR]:
         handle = '\n' + 12 * ' ' + 'OUStringToString(handle),'
     else:
         handle = ''
-    paramList = utils.generateParamList(function[common.PARAMS], \
+    paramList = utils.generateParamList(function[common.PARAMS],
         3, False, '', '', '', 'OUStringToString(%s)')
-    fileFunc.write(common.CALC_BODY_BUF % (\
-        function[common.NAME],\
-        handle,\
-        paramList,\
+    fileFunc.write(common.CALC_BODY_BUF % (
+        function[common.NAME],
+        handle,
+        paramList,
         function[common.NAME]))
 
 def generateFuncSources(functionGroups):
@@ -110,14 +111,14 @@ def generateIDLSource(functionGroups):
         fileIDL.write('                // %s\n\n' % groupName)
         functionGroup = functionGroups[groupName]
         for function in functionGroup[common.FUNCLIST]:
-            if function[common.HANDLE]:
+            if function[common.CTOR]:
                 handle = 24 * ' ' + '[in] string handle,\n'
             else:
                 handle = ''
             returnTypeIDL = getReturnTypeCalcIDL(function)
-            paramList = utils.generateParamList(function[common.PARAMS],\
+            paramList = utils.generateParamList(function[common.PARAMS],
                  6, True, '[in] ')
-            fileIDL.write(bufIDLFunc % \
+            fileIDL.write(bufIDLFunc %
                 (returnTypeIDL, function[common.CODENAME], handle, paramList))
     bufIDLFoot = utils.loadBuffer(common.CALC_IDL_FOOT)
     fileIDL.write(bufIDLFoot)
@@ -132,3 +133,4 @@ def generate(functionDefs):
     generateFuncSources(functionGroups)
     generateIDLSource(functionGroups)
     utils.logMessage('  done generating Calc.')
+

@@ -1,0 +1,6 @@
+
+        boost::shared_ptr<%s> %s =
+            boost::dynamic_pointer_cast<%s>
+            (ObjHandler::ObjectHandler::instance().retrieveObject(%s));
+        if (!%s)
+            QL_FAIL("%s: error retrieving object " + %s);

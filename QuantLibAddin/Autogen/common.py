@@ -8,7 +8,8 @@ FUNCLIST = 'functionlist'
 NAME = 'name'
 CODENAME = 'codename'
 DESC = 'description'
-HANDLE = 'handle'
+CTOR = 'constructor'
+CLASS = 'class'
 HDRONLY = 'headeronly'
 PARAMS = 'parameters'
 PARAM = 'param'
@@ -18,6 +19,10 @@ NUMFUNC = 'numfunc'
 RETVAL = 'returnval'
 PROPVEC = 'propertyvector'
 XMLSUFFIX = r'(.*).xml\Z'
+QLFUNC = 'qlfunction'
+STRING = 'string'
+LONG = 'long'
+HANDLE = 'handle'
 
 # General
 
@@ -26,6 +31,15 @@ CR_BUFFER = ''
 HEADER = '%s this file generated automatically by %s on %s\n\
 %s editing this file manually is not recommended\n\n'
 ADDIN_ROOT = '../Addins/'
+
+# QuantLibAddin
+
+QLA_ROOT = '../QuantLibAddin/functions/'
+QLA_INCLUDES = 'stub.qla.includes'
+QLA_INCLUDES2 = 'stub.qla.includes2'
+QLA_CTOR = 'stub.qla.constructor'
+QLA_FUNC = 'stub.qla.function'
+QLA_CONV = 'stub.qla.conversion'
 
 # C
 
@@ -57,7 +71,10 @@ XL_BODY_BUF = ''
 XL_INCLUDES = 'stub.Excel.includes'
 XL_BODY = 'stub.Excel.body'
 XL_FUNC = 'stub.Excel.func'
+XLMAXPARMERR = 'number of parameters exceeds Excel max of %d'
+XLMAXLENERR  = 'list of parameter names exceeds max Excel length of 255:\n'
 # maximum number of parameters to be passed to an Excel function -
 # if you change this number you must also change the call to xlfRegister
 # in QuantLibAddin\Addins\Excel\qladdin.cpp
 XLMAXPARAM=15
+

@@ -15,7 +15,7 @@ def generateParamString(function):
             paramStr += 'N'
         else:
             raise ValueError, 'unknown datatype: ' + type
-    if function[common.HANDLE]:
+    if function[common.CTOR]:
         paramStr += '#'
     paramStr += '",'
     return paramStr
@@ -24,19 +24,16 @@ def generateFuncDec(fileHeader, function):
     bufExcelFunc = utils.loadBuffer(common.XL_FUNC)
     # FIXME validation below to be moved into parse.py
     if len(function[common.PARAMS]) > common.XLMAXPARAM:
-        raise ValueError, \
-            'number of parameters exceeds Excel max of %d' % common.XLMAXPARAM
+        raise ValueError, common.XLMAXPARMERR % common.XLMAXPARAM
     paramStr = generateParamString(function)
-    paramList = utils.generateParamList(function[common.PARAMS], \
-        0, False, '', '', '', '', '')
+    paramList = utils.generateParamList(function[common.PARAMS], suffix = '')
     if len(paramList) >= 255:
-        raise ValueError, 'list of parameter names exceeds max Excel length of 255:\n' \
-            + paramList
+        raise ValueError, common.XLMAXLENERR + paramList
     paramList =    '" ' + paramList                 + '",'
     funcCodeName = '" ' + function[common.CODENAME] + '",'
     funcName =     '" ' + function[common.NAME]     + '",'
     funcDesc =     '" ' + function[common.DESC]     + '",'
-    fileHeader.write(bufExcelFunc % (\
+    fileHeader.write(bufExcelFunc % (
         funcCodeName, paramStr, funcName, paramList, funcDesc))
     i = 0
     for param in function[common.PARAMS]:
@@ -68,18 +65,18 @@ def generateFuncHeaders(functionDefs):
     fileHeader.close()
 
 def generateFuncDef(fileFunc, function):
-    paramList1 = utils.generateParamList(function[common.PARAMS], \
-        2, True, '', 'char', '', '', '\n', '*')
-    paramList2 = utils.generateParamList(function[common.PARAMS], \
-        3, False, '', '', '', 'std::string(%s)', '\n', '*')
-    if function[common.HANDLE]:
+    paramList1 = utils.generateParamList(function[common.PARAMS],
+        2, True, '', 'char', dereference = '*')
+    paramList2 = utils.generateParamList(function[common.PARAMS],
+        3, reformatString = 'std::string(%s)', dereference = '*')
+    if function[common.CTOR]:
         handle1 = 8 * ' ' + 'std::string handle = getCaller();\n'
         handle2 = 12 * ' ' + 'handle,\n'
     else:
         handle1 = ''
         handle2 = ''
-    fileFunc.write(common.XL_BODY_BUF % \
-        (function[common.CODENAME], paramList1, handle1,\
+    fileFunc.write(common.XL_BODY_BUF %
+        (function[common.CODENAME], paramList1, handle1,
         function[common.NAME], handle2, paramList2, function[common.NAME]))
 
 def generateFuncDefs(functionGroups):

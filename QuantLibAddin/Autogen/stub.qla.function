@@ -1,0 +1,12 @@
+
+        boost::shared_ptr<%s> objectPointer =
+            boost::dynamic_pointer_cast<%s>
+            (ObjHandler::ObjectHandler::instance().retrieveObject(%s));
+        if (!objectPointer)
+            QL_FAIL("%s: error retrieving object " + %s);
+
+        objectPointer->%s(%s);
+        return objectPointer->getProperties();
+
+    }
+

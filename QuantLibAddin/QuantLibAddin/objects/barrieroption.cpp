@@ -37,22 +37,23 @@ namespace QuantLibAddin {
     BarrierOption::BarrierOption(
             boost::shared_ptr<StochasticProcess> stochasticProcess,
             const std::string &typeBarrier,
-            const QuantLib::Real &barrier,
-            const QuantLib::Real &rebate,
+            const float &barrier,
+            const float &rebate,
             const std::string &typeOption,
             const std::string &typePayoff,
-            const QuantLib::Real &strike,
+            const float &strike,
             const std::string &typeExercise,
-            const QuantLib::Date &exerciseDate,
-            const QuantLib::Date &settlementDate,
+            const long &exerciseDate,
+            const long &settlementDate,
             const std::string &typeEngine,
-            const QuantLib::Size &timeSteps) {
+            const long &timeSteps) {
         QuantLib::Barrier::Type barrierType = 
             IDtoBarrierType(typeBarrier);
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             IDtoPayoff(typeOption, typePayoff, strike);
         boost::shared_ptr<QuantLib::Exercise> exercise = 
-            IDtoExercise(typeExercise, exerciseDate, settlementDate);
+            IDtoExercise(typeExercise, QuantLib::Date(exerciseDate),
+                QuantLib::Date(settlementDate));
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             IDtoEngine(typeEngine, timeSteps);
         const boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcessQL = 

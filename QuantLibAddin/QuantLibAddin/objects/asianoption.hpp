@@ -30,12 +30,12 @@ namespace QuantLibAddin {
             const std::string &typeAverage,
             const std::string &typeOption,
             const std::string &typePayoff,
-            const QuantLib::Real &strike,
+            const float &strike,
             const std::string &typeExercise,
-            const QuantLib::Date &exerciseDate,
-            const QuantLib::Date &settlementDate,
+            const long &exerciseDate,
+            const long &settlementDate,
             const std::string &typeEngine,
-            const QuantLib::Size &timeSteps);
+            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(continuousAveragingAsianOption_);
         }
@@ -49,17 +49,17 @@ namespace QuantLibAddin {
         DiscreteAveragingAsianOption(
             boost::shared_ptr<StochasticProcess>,
             const std::string &typeAverage,
-            const QuantLib::Real runningAccumulator,
-            const QuantLib::Size pastFixings,
+            const float runningAccumulator,
+            const long pastFixings,
             const std::vector<QuantLib::Date> fixingDates,
             const std::string &typeOption,
             const std::string &typePayoff,
-            const QuantLib::Real &strike,
+            const float &strike,
             const std::string &typeExercise,
-            const QuantLib::Date &exerciseDate,
-            const QuantLib::Date &settlementDate,
+            const long &exerciseDate,
+            const long &settlementDate,
             const std::string &typeEngine,
-            const QuantLib::Size &timeSteps);
+            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(discreteAveragingAsianOption_);
         }

@@ -5,10 +5,10 @@ import utils
 
 def generateFuncHeader(fileHeader, function, suffix):
     fileHeader.write('int %s_C(\n' % function[common.NAME])
-    if function[common.HANDLE]:
+    if function[common.CTOR]:
         fileHeader.write('        const char *handle,\n')
-    fileHeader.write(utils.generateParamList(function[common.PARAMS], \
-        2, True, 'const ', 'char*', ''))
+    fileHeader.write(utils.generateParamList(function[common.PARAMS],
+        2, True, 'const ', 'char*'))
     fileHeader.write(',\n        VariesList *result)%s\n' % suffix)
 
 def generateFuncHeaders(groupName, functionGroup):
@@ -28,17 +28,17 @@ def generateFuncDefs(groupName, functionGroup):
     utils.logMessage('    generating file ' + fileName + '...')
     fileFunc = file(fileName, 'w')
     utils.printHeader(fileFunc)
-    bufCInclude = utils.loadBuffer(common.C_INCLUDES)
-    bufCBody = utils.loadBuffer(common.C_BODY)
-    fileFunc.write(bufCInclude % groupName)
+    bufInclude = utils.loadBuffer(common.C_INCLUDES)
+    bufBody = utils.loadBuffer(common.C_BODY)
+    fileFunc.write(bufInclude % groupName)
     for function in functionGroup[common.FUNCLIST]:
         generateFuncHeader(fileFunc, function, ' {')
-        paramList = utils.generateParamList(function[common.PARAMS], 3, False)
-        if function[common.HANDLE]:
+        paramList = utils.generateParamList(function[common.PARAMS], 3)
+        if function[common.CTOR]:
             handle = 12 * ' ' + 'handle,\n'
         else:
             handle = ''
-        fileFunc.write(bufCBody % \
+        fileFunc.write(bufBody % \
             (function[common.NAME], handle, paramList, function[common.NAME]))
     fileFunc.close()
 
@@ -52,3 +52,4 @@ def generate(functionDefs):
         generateFuncHeaders(groupName, functionGroup)
         generateFuncDefs(groupName, functionGroup)
     utils.logMessage('  done generating C.')
+

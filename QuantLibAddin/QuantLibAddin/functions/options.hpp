@@ -15,6 +15,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+// this file generated automatically by autogen.py on Tue Jan 25 14:57:59 2005
+// editing this file manually is not recommended
+
 #ifndef qla_options_hpp
 #define qla_options_hpp
 
@@ -23,58 +26,59 @@
 namespace QuantLibAddin {
 
     const ObjHandler::Properties& QL_STOCHASTIC_PROCESS(
-        const std::string &handleStochastic,
-        const double &underlying,
-        const std::string &dayCounterID,
-        const long &settlementDate,
-        const double &riskFreeRate,
-        const double &dividendYield,
-        const double &volatility);
+            const std::string &handleObject,
+            const double &underlying,
+            const std::string &dayCounterID,
+            const long &settlementDate,
+            const double &riskFreeRate,
+            const double &dividendYield,
+            const double &volatility);
 
     const ObjHandler::Properties& QL_OPTION_VANILLA(
-        const std::string &handleOption, 
-        const std::string &handleStochastic, 
-        const std::string &typeOption,
-        const std::string &typePayoff,
-        const double &strike,
-        const std::string &typeExercise,
-        const long &exerciseDate,
-        const long &settlementDate,
-        const std::string &typeEngine,
-        const long &timeSteps);
+            const std::string &handleObject,
+            const std::string &handleStochastic,
+            const std::string &typeOption,
+            const std::string &typePayoff,
+            const double &strike,
+            const std::string &typeExercise,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &typeEngine,
+            const long &timeSteps);
 
     const ObjHandler::Properties& QL_OPTION_ASIAN_C(
-        const std::string &handleOption, 
-        const std::string &handleStochastic, 
-        const std::string &typeAverage,
-        const std::string &typeOption,
-        const std::string &typePayoff,
-        const double &strike,
-        const std::string &typeExercise,
-        const long &exerciseDate,
-        const long &settlementDate,
-        const std::string &typeEngine,
-        const long &timeSteps);
+            const std::string &handleObject,
+            const std::string &handleStochastic,
+            const std::string &typeAverage,
+            const std::string &typeOption,
+            const std::string &typePayoff,
+            const double &strike,
+            const std::string &typeExercise,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &typeEngine,
+            const long &timeSteps);
 
     const ObjHandler::Properties& QL_OPTION_BARRIER(
-        const std::string &handleOption, 
-        const std::string &handleStochastic, 
-        const std::string &typeBarrier,
-        const double &barrier,
-        const double &rebate,
-        const std::string &typeOption,
-        const std::string &typePayoff,
-        const double &strike,
-        const std::string &typeExercise,
-        const long &exerciseDate,
-        const long &settlementDate,
-        const std::string &typeEngine,
-        const long &timeSteps);
+            const std::string &handleObject,
+            const std::string &handleStochastic,
+            const std::string &typeBarrier,
+            const double &barrier,
+            const double &rebate,
+            const std::string &typeOption,
+            const std::string &typePayoff,
+            const double &strike,
+            const std::string &typeExercise,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &typeEngine,
+            const long &timeSteps);
 
     const ObjHandler::Properties& QL_OPTION_SETENGINE(
-        const std::string &handleOption, 
-        const std::string &engineName,
-        const long &timeSteps);
+            const std::string &handle,
+            const std::string &engineName,
+            const long &timeSteps);
+
 }
 
 #endif

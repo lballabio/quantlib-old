@@ -15,6 +15,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+// this file generated automatically by autogen.py on Tue Jan 25 14:57:59 2005
+// editing this file manually is not recommended
+
 #include <QuantLibAddin/functions/options.hpp>
 #include <QuantLibAddin/objects/vanillaoption.hpp>
 #include <QuantLibAddin/objects/asianoption.hpp>
@@ -23,29 +26,31 @@
 namespace QuantLibAddin {
 
     const ObjHandler::Properties& QL_STOCHASTIC_PROCESS(
-            const std::string &handleStochastic,
+            const std::string &handleObject,
             const double &underlying,
             const std::string &dayCounterID,
             const long &settlementDate,
             const double &riskFreeRate,
             const double &dividendYield,
             const double &volatility) {
-        ObjHandler::obj_ptr stochasticProcess(
+
+        ObjHandler::obj_ptr objectPointer(
             new StochasticProcess(
                 underlying,
                 dayCounterID,
-                QuantLib::Date(settlementDate),
+                settlementDate,
                 riskFreeRate,
                 dividendYield,
                 volatility));
         ObjHandler::ObjectHandler::instance().storeObject(
-            handleStochastic, stochasticProcess);
-        return stochasticProcess->getProperties();
+            handleObject, objectPointer);
+        return objectPointer->getProperties();
+
     }
 
-  const ObjHandler::Properties& QL_OPTION_VANILLA(
-            const std::string &handleOption, 
-            const std::string &handleStochastic, 
+    const ObjHandler::Properties& QL_OPTION_VANILLA(
+            const std::string &handleObject,
+            const std::string &handleStochastic,
             const std::string &typeOption,
             const std::string &typePayoff,
             const double &strike,
@@ -54,30 +59,33 @@ namespace QuantLibAddin {
             const long &settlementDate,
             const std::string &typeEngine,
             const long &timeSteps) {
-        boost::shared_ptr<StochasticProcess> stochasticProcess = 
+
+        boost::shared_ptr<StochasticProcess> handleStochasticProcess =
             boost::dynamic_pointer_cast<StochasticProcess>
             (ObjHandler::ObjectHandler::instance().retrieveObject(handleStochastic));
-        if (!stochasticProcess)
+        if (!handleStochasticProcess)
             QL_FAIL("QL_OPTION_VANILLA: error retrieving object " + handleStochastic);
-        ObjHandler::obj_ptr vanillaOption(
+
+        ObjHandler::obj_ptr objectPointer(
             new VanillaOption(
-                stochasticProcess,
+                handleStochasticProcess,
                 typeOption,
                 typePayoff,
                 strike,
                 typeExercise,
-                QuantLib::Date(exerciseDate),
-                QuantLib::Date(settlementDate),
+                exerciseDate,
+                settlementDate,
                 typeEngine,
                 timeSteps));
         ObjHandler::ObjectHandler::instance().storeObject(
-            handleOption, vanillaOption);
-        return vanillaOption->getProperties();
+            handleObject, objectPointer);
+        return objectPointer->getProperties();
+
     }
 
-  const ObjHandler::Properties& QL_OPTION_ASIAN_C(
-            const std::string &handleOption, 
-            const std::string &handleStochastic, 
+    const ObjHandler::Properties& QL_OPTION_ASIAN_C(
+            const std::string &handleObject,
+            const std::string &handleStochastic,
             const std::string &typeAverage,
             const std::string &typeOption,
             const std::string &typePayoff,
@@ -87,31 +95,34 @@ namespace QuantLibAddin {
             const long &settlementDate,
             const std::string &typeEngine,
             const long &timeSteps) {
-        boost::shared_ptr<StochasticProcess> stochasticProcess = 
+
+        boost::shared_ptr<StochasticProcess> handleStochasticProcess =
             boost::dynamic_pointer_cast<StochasticProcess>
             (ObjHandler::ObjectHandler::instance().retrieveObject(handleStochastic));
-        if (!stochasticProcess)
+        if (!handleStochasticProcess)
             QL_FAIL("QL_OPTION_ASIAN_C: error retrieving object " + handleStochastic);
-        ObjHandler::obj_ptr asianOption(
+
+        ObjHandler::obj_ptr objectPointer(
             new ContinuousAveragingAsianOption(
-                stochasticProcess,
+                handleStochasticProcess,
                 typeAverage,
                 typeOption,
                 typePayoff,
                 strike,
                 typeExercise,
-                QuantLib::Date(exerciseDate),
-                QuantLib::Date(settlementDate),
+                exerciseDate,
+                settlementDate,
                 typeEngine,
                 timeSteps));
         ObjHandler::ObjectHandler::instance().storeObject(
-            handleOption, asianOption);
-        return asianOption->getProperties();
+            handleObject, objectPointer);
+        return objectPointer->getProperties();
+
     }
 
-  const ObjHandler::Properties& QL_OPTION_BARRIER(
-            const std::string &handleOption, 
-            const std::string &handleStochastic, 
+    const ObjHandler::Properties& QL_OPTION_BARRIER(
+            const std::string &handleObject,
+            const std::string &handleStochastic,
             const std::string &typeBarrier,
             const double &barrier,
             const double &rebate,
@@ -123,14 +134,16 @@ namespace QuantLibAddin {
             const long &settlementDate,
             const std::string &typeEngine,
             const long &timeSteps) {
-        boost::shared_ptr<StochasticProcess> stochasticProcess = 
+
+        boost::shared_ptr<StochasticProcess> handleStochasticProcess =
             boost::dynamic_pointer_cast<StochasticProcess>
             (ObjHandler::ObjectHandler::instance().retrieveObject(handleStochastic));
-        if (!stochasticProcess)
+        if (!handleStochasticProcess)
             QL_FAIL("QL_OPTION_BARRIER: error retrieving object " + handleStochastic);
-        ObjHandler::obj_ptr barrierOption(
+
+        ObjHandler::obj_ptr objectPointer(
             new BarrierOption(
-                stochasticProcess,
+                handleStochasticProcess,
                 typeBarrier,
                 barrier,
                 rebate,
@@ -138,25 +151,30 @@ namespace QuantLibAddin {
                 typePayoff,
                 strike,
                 typeExercise,
-                QuantLib::Date(exerciseDate),
-                QuantLib::Date(settlementDate),
+                exerciseDate,
+                settlementDate,
                 typeEngine,
                 timeSteps));
         ObjHandler::ObjectHandler::instance().storeObject(
-            handleOption, barrierOption);
-        return barrierOption->getProperties();
+            handleObject, objectPointer);
+        return objectPointer->getProperties();
+
     }
+
     const ObjHandler::Properties& QL_OPTION_SETENGINE(
-        const std::string &handleOption, 
-        const std::string &engineName,
-        const long &timeSteps) {
-        boost::shared_ptr<VanillaOption> vanillaOption = 
+            const std::string &handle,
+            const std::string &engineName,
+            const long &timeSteps) {
+
+        boost::shared_ptr<VanillaOption> objectPointer =
             boost::dynamic_pointer_cast<VanillaOption>
-            (ObjHandler::ObjectHandler::instance().retrieveObject(handleOption));
-        if (!vanillaOption)
-            QL_FAIL("QL_OPTION_SETENGINE: error retrieving object " + handleOption);
-        vanillaOption->setEngine(engineName, timeSteps);
-        return vanillaOption->getProperties();
+            (ObjHandler::ObjectHandler::instance().retrieveObject(handle));
+        if (!objectPointer)
+            QL_FAIL("QL_OPTION_SETENGINE: error retrieving object " + handle);
+
+        objectPointer->setEngine(engineName, timeSteps);
+        return objectPointer->getProperties();
+
     }
 
 }
