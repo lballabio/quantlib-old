@@ -266,9 +266,9 @@ class my_wrap(Command):
         swig_dir = os.path.join(".","QuantLib","SWIG")
         if not os.path.exists(swig_dir):
             swig_dir = os.path.join("..","SWIG")
-            os.system('swig -python -c++ ' +
-                      '-I%s ' % swig_dir +
-                      '-o QuantLib/quantlib_wrap.cpp quantlib.i')
+        os.system('swig -python -c++ ' +
+                  '-I%s ' % swig_dir +
+                  '-o QuantLib/quantlib_wrap.cpp quantlib.i')
 
 
 if sys.platform == 'win32':
