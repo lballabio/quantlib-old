@@ -37,9 +37,9 @@
                                 delete-NormalDistribution)
                    (cumul-dist (new-CumulativeNormalDistribution average sigma)
                                delete-CumulativeNormalDistribution)
-                   (inverse-dist (new-InvCumulativeNormalDistribution 
+                   (inverse-dist (new-InverseCumulativeNormal 
                                   average sigma)
-                                 delete-InvCumulativeNormalDistribution))
+                                 delete-InverseCumulativeNormal))
       (let* ((N 10001)
              (xmin (- average (* 4.0 sigma)))
              (xmax (+ average (* 4.0 sigma)))
@@ -64,7 +64,7 @@
         (define (cumulative-derivative x)
           (CumulativeNormalDistribution-derivative cumul-dist x))
         (define (inverse-cumulative x)
-          (InvCumulativeNormalDistribution-call inverse-dist x))
+          (InverseCumulativeNormal-call inverse-dist x))
 
         (let* ((y (map gaussian x))
                (y-int (map cumulative x))

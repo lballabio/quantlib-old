@@ -68,7 +68,7 @@ class DistributionTest < Test::Unit::TestCase
 
     normal = QuantLib::NormalDistribution.new(average, sigma)
     cum =    QuantLib::CumulativeNormalDistribution.new(average, sigma)
-    invCum = QuantLib::InvCumulativeNormalDistribution.new(average, sigma)
+    invCum = QuantLib::InverseCumulativeNormal.new(average, sigma)
 
     xMin = average - 4*sigma
     xMax = average + 4*sigma

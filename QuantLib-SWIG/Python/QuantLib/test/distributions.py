@@ -50,7 +50,7 @@ class DistributionTest(unittest.TestCase):
         sigma = 1.0
         normal = QuantLib.NormalDistribution(average, sigma)
         cum = QuantLib.CumulativeNormalDistribution(average, sigma)
-        invCum = QuantLib.InvCumulativeNormalDistribution(average, sigma)
+        invCum = QuantLib.InverseCumulativeNormal(average, sigma)
 
         xMin = average - 4*sigma
         xMax = average + 4*sigma
