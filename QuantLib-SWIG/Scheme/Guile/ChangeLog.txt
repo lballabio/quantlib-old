@@ -1,3 +1,33 @@
+2003-06-11 15:06  lballabio
+
+	* setup.scm (1.20): Bumped version number
+
+2003-06-11 12:33  lballabio
+
+	* setup.scm (1.19.2.1): Preparing for release
+
+2003-05-30 09:52  lballabio
+
+	* setup.scm (1.19): Short rate models exported
+
+2003-05-20 08:07  lballabio
+
+	* setup.scm (1.18): [no log message]
+
+2003-05-16 16:16  lballabio
+
+	* setup.scm (1.17), test/quantlib-test-suite.scm (1.12),
+	test/unittest.scm (1.8), test/utilities.scm (1.4): First tag-free
+	commit. Drink and be merry.
+
+2003-05-09 11:24  lballabio
+
+	* setup.scm (1.16): Synch with C++
+
+2003-04-22 14:55  nando
+
+	* ChangeLog.txt (1.6): updated
+
 2003-04-22 14:38  nando
 
 	* ChangeLog.txt (1.5): updated

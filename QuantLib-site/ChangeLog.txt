@@ -1,3 +1,11 @@
+2003-04-23 15:34  lballabio
+
+	* quep.html (1.36): [no log message]
+
+2003-04-22 14:54  nando
+
+	* ChangeLog.txt (1.27): updated
+
 2003-04-22 14:37  nando
 
 	* ChangeLog.txt (1.26): updated
@@ -182,14 +190,14 @@
 
 2002-05-03 08:58  nando
 
-	* webnextreleaseupdate.bat (1.1): file webnextreleaseupdate.bat was
-	initially added on branch R000300f0-branch.
-
-2002-05-03 08:58  nando
-
 	* download.html (1.30.2.1), nextrelease.html (1.16.2.1),
 	webnextreleaseupdate.bat (1.1.2.1): getting ready for the new
 	release
+
+2002-05-03 08:58  nando
+
+	* webnextreleaseupdate.bat (1.1): file webnextreleaseupdate.bat was
+	initially added on branch R000300f0-branch.
 
 2002-04-25 07:46  nando
 
@@ -592,12 +600,12 @@
 
 2001-11-23 23:20  nando
 
-	* ChangeLog.txt (1.1.2.1): final touches
+	* ChangeLog.txt (1.1): file ChangeLog.txt was initially added on
+	branch R000201-branch.
 
 2001-11-23 23:20  nando
 
-	* ChangeLog.txt (1.1): file ChangeLog.txt was initially added on
-	branch R000201-branch.
+	* ChangeLog.txt (1.1.2.1): final touches
 
 2001-11-20 09:28  nando
 
@@ -1084,18 +1092,6 @@
 
 2001-07-18 17:15  nando
 
-	* contacts.txt (1.1), cvs.html (1.1), docs.html (1.1), FAQ.html
-	(1.1), LICENSE.TXT (1.1), goals.html (1.1), group.html (1.1),
-	index.html (1.1), license.html (1.1), lists.html (1.1), qlmeta.inc
-	(1.1), qltablefoot.inc (1.1), qltablehead.inc (1.1), status.html
-	(1.1), style.html (1.1), images/QL-notitle.jpg (1.1),
-	images/QL-notitle.png (1.1), images/QL-small-notitle.jpg (1.1),
-	images/QL-small-notitle.png (1.1), images/QL-small.jpg (1.1),
-	images/QL-small.png (1.1), images/QL.jpg (1.1), images/QL.png
-	(1.1), styles/main.css (1.1): Initial revision
-
-2001-07-18 17:15  nando
-
 	* contacts.txt (1.1.1.1), cvs.html (1.1.1.1), docs.html (1.1.1.1),
 	FAQ.html (1.1.1.1), LICENSE.TXT (1.1.1.1), goals.html (1.1.1.1),
 	group.html (1.1.1.1), index.html (1.1.1.1), license.html (1.1.1.1),
@@ -1107,4 +1103,16 @@
 	images/QL-small.jpg (1.1.1.1), images/QL-small.png (1.1.1.1),
 	images/QL.jpg (1.1.1.1), images/QL.png (1.1.1.1), styles/main.css
 	(1.1.1.1): initial import
+
+2001-07-18 17:15  nando
+
+	* contacts.txt (1.1), cvs.html (1.1), docs.html (1.1), FAQ.html
+	(1.1), LICENSE.TXT (1.1), goals.html (1.1), group.html (1.1),
+	index.html (1.1), license.html (1.1), lists.html (1.1), qlmeta.inc
+	(1.1), qltablefoot.inc (1.1), qltablehead.inc (1.1), status.html
+	(1.1), style.html (1.1), images/QL-notitle.jpg (1.1),
+	images/QL-notitle.png (1.1), images/QL-small-notitle.jpg (1.1),
+	images/QL-small-notitle.png (1.1), images/QL-small.jpg (1.1),
+	images/QL-small.png (1.1), images/QL.jpg (1.1), images/QL.png
+	(1.1), styles/main.css (1.1): Initial revision
 

@@ -1,3 +1,109 @@
+2003-07-22 14:25  lballabio
+
+	* cashflows.i (1.11), swap.i (1.7): Trust me...
+
+2003-07-22 12:10  andrelouw
+
+	* timebasket.i (1.1): Time Baske SWIG interface file.
+
+2003-07-22 12:06  andrelouw
+
+	* ql.i (1.30): Added compoundforward.i
+
+2003-07-22 12:00  andrelouw
+
+	* termstructures.i (1.13): Added compound forward and zero coupon
+	rates.
+
+2003-07-22 11:59  andrelouw
+
+	* swap.i (1.6): Construct simpleswap to specified maturity. Ability
+	to generate dates from end.
+
+2003-07-22 11:56  andrelouw
+
+	* scheduler.i (1.6): Added functionality to generate dates from
+	end.
+
+2003-07-22 11:55  andrelouw
+
+	* piecewiseflatforward.i (1.12): Added Future with specified
+	maturity date, construct termstructure from input vector of dates
+	and rates.
+
+2003-07-22 11:53  andrelouw
+
+	* discountcurve.i (1.4): Change to parameters passed in.
+
+2003-07-22 11:52  andrelouw
+
+	* date.i (1.26): Added input string parsing as well as __repr__ of
+	period.
+
+2003-07-22 11:50  andrelouw
+
+	* compoundforward.i (1.1): Compound Forward termstructure
+	implementation
+
+2003-07-22 11:48  andrelouw
+
+	* cashflows.i (1.10): Added parameters to do with generating from
+	the end.
+
+2003-07-22 11:41  andrelouw
+
+	* calendars.i (1.26): Added MonthEndReference convention
+
+2003-06-11 15:06  lballabio
+
+	* ql.i (1.29): Bumped version number
+
+2003-06-11 12:33  lballabio
+
+	* ql.i (1.28.2.1): Preparing for release
+
+2003-05-30 09:52  lballabio
+
+	* ql.i (1.28), shortratemodels.i (1.1): Short rate models exported
+
+2003-05-22 15:30  lballabio
+
+	* functions.i (1.7), optimizers.i (1.4): Synch with C++
+
+2003-05-16 16:16  lballabio
+
+	* blackmodel.i (1.3), calendars.i (1.25), capfloor.i (1.3),
+	cashflows.i (1.9), common.i (1.21), currencies.i (1.6), date.i
+	(1.25), daycounters.i (1.19), discountcurve.i (1.3),
+	distributions.i (1.9), functions.i (1.6), history.i (1.14),
+	indexes.i (1.6), instruments.i (1.10), interpolation.i (1.8),
+	linearalgebra.i (1.13), marketelements.i (1.10), montecarlo.i
+	(1.12), null.i (1.8), observer.i (1.13), old_pricers.i (1.6),
+	old_volatility.i (1.4), operators.i (1.10), optimizers.i (1.3),
+	options.i (1.15), piecewiseflatforward.i (1.11), ql.i (1.27),
+	quantlib.i (1.6), randomnumbers.i (1.18), scheduler.i (1.5),
+	segmentintegral.i (1.4), statistics.i (1.16), swap.i (1.5),
+	swaption.i (1.3), termstructures.i (1.12), types.i (1.4), vectors.i
+	(1.5), volatilities.i (1.6): First tag-free commit. Drink and be
+	merry.
+
+2003-05-09 11:24  lballabio
+
+	* ql.i (1.26), randomnumbers.i (1.17): Synch with C++
+
+2003-05-06 14:46  lballabio
+
+	* interpolation.i (1.7): Made interpolation palatable to VC++
+
+2003-05-06 11:37  lballabio
+
+	* ql.i (1.25), riskstatistics.i (1.14), statistics.i (1.15): Synch
+	with C++ needed
+
+2003-04-22 14:55  nando
+
+	* ChangeLog.txt (1.12): updated
+
 2003-04-22 14:38  nando
 
 	* ChangeLog.txt (1.11): updated

@@ -1,3 +1,80 @@
+2003-07-16 13:17  marmar
+
+	* setup.py (1.50): 'QL_DEBUG' problem fixed
+
+2003-07-14 11:36  lballabio
+
+	* setup.py (1.49): Don't ask---I don't know
+
+2003-06-26 09:22  lballabio
+
+	* setup.py (1.48): [no log message]
+
+2003-06-13 13:35  lballabio
+
+	* setup.py (1.46.2.2): [no log message]
+
+2003-06-11 15:06  lballabio
+
+	* setup.py (1.47): Bumped version number
+
+2003-06-11 12:33  lballabio
+
+	* setup.py (1.46.2.1): Preparing for release
+
+2003-05-30 09:52  lballabio
+
+	* setup.py (1.46): Short rate models exported
+
+2003-05-22 15:30  lballabio
+
+	* QuantLib/test/solvers1d.py (1.6): Synch with C++
+
+2003-05-20 08:07  lballabio
+
+	* setup.py (1.45): [no log message]
+
+2003-05-16 16:16  lballabio
+
+	* setup.py (1.44), QuantLib/__init__.py (1.5),
+	QuantLib/test/QuantLibTestSuite.py (1.17),
+	QuantLib/test/calendars.py (1.2), QuantLib/test/capfloor.py (1.7),
+	QuantLib/test/covariance.py (1.4), QuantLib/test/date.py (1.7),
+	QuantLib/test/daycounters.py (1.4), QuantLib/test/distributions.py
+	(1.9), QuantLib/test/europeanoption.py (1.13),
+	QuantLib/test/instruments.py (1.6), QuantLib/test/marketelements.py
+	(1.5), QuantLib/test/old_pricers.py (1.8),
+	QuantLib/test/operators.py (1.4),
+	QuantLib/test/piecewiseflatforward.py (1.9),
+	QuantLib/test/riskstatistics.py (1.9),
+	QuantLib/test/segmentintegral.py (1.4), QuantLib/test/simpleswap.py
+	(1.6), QuantLib/test/solvers1d.py (1.5),
+	QuantLib/test/statistics.py (1.11), QuantLib/test/swaption.py
+	(1.5), QuantLib/test/termstructures.py (1.13): First tag-free
+	commit. Drink and be merry.
+
+2003-05-09 11:24  lballabio
+
+	* setup.py (1.43): Synch with C++
+
+2003-05-06 16:57  nando
+
+	* QuantLibPython.dsp (1.11), QuantLibPython.mak (1.13): VC project
+	catching up
+
+2003-05-06 14:52  lballabio
+
+	* setup.py (1.42): Fixed Win installation paths
+
+2003-05-06 11:37  lballabio
+
+	* setup.py (1.41), QuantLib/test/riskstatistics.py (1.8),
+	QuantLib/test/statistics.py (1.10): Synch with C++ needed
+
+2003-04-22 14:54  nando
+
+	* ChangeLog.txt (1.13): updated
+
 2003-04-22 14:37  nando
 
 	* ChangeLog.txt (1.12): updated

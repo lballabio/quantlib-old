@@ -1,3 +1,58 @@
+2003-06-26 09:22  lballabio
+
+	* setup.rb (1.43): [no log message]
+
+2003-06-13 13:36  lballabio
+
+	* setup.rb (1.41.2.2): [no log message]
+
+2003-06-11 15:06  lballabio
+
+	* setup.rb (1.42): Bumped version number
+
+2003-06-11 12:33  lballabio
+
+	* setup.rb (1.41.2.1): Preparing for release
+
+2003-05-30 09:52  lballabio
+
+	* setup.rb (1.41): Short rate models exported
+
+2003-05-22 15:30  lballabio
+
+	* test/solvers1d.rb (1.8): Synch with C++
+
+2003-05-20 08:07  lballabio
+
+	* setup.rb (1.40): [no log message]
+
+2003-05-16 16:16  lballabio
+
+	* QuantLib.rb (1.19), setup.rb (1.39), test/QuantLibTestSuite.rb
+	(1.21), test/calendars.rb (1.3), test/capfloor.rb (1.9),
+	test/covariance.rb (1.7), test/dates.rb (1.9), test/daycounters.rb
+	(1.7), test/distributions.rb (1.11), test/europeanoption.rb (1.14),
+	test/instruments.rb (1.8), test/marketelements.rb (1.7),
+	test/old_pricers.rb (1.9), test/operators.rb (1.6),
+	test/piecewiseflatforward.rb (1.12), test/riskstatistics.rb (1.11),
+	test/segmentintegral.rb (1.5), test/simpleswap.rb (1.8),
+	test/solvers1d.rb (1.7), test/statistics.rb (1.12),
+	test/swaption.rb (1.7), test/termstructures.rb (1.14): First
+	tag-free commit. Drink and be merry.
+
+2003-05-09 11:24  lballabio
+
+	* setup.rb (1.38): Synch with C++
+
+2003-05-06 11:37  lballabio
+
+	* test/: covariance.rb (1.6), riskstatistics.rb (1.10),
+	statistics.rb (1.11): Synch with C++ needed
+
+2003-04-22 14:55  nando
+
+	* ChangeLog.txt (1.15): updated
+
 2003-04-22 14:37  nando
 
 	* ChangeLog.txt (1.14): updated
