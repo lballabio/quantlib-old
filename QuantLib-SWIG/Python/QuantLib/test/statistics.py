@@ -22,13 +22,13 @@ import unittest
 
 class StatisticsTest(unittest.TestCase):
     def runTest(self):
-        "Testing gaussianstatistics"
+        "Testing statistics"
         tol = 1e-9
 
         data =    [3.0, 4.0, 5.0, 2.0, 3.0, 4.0, 5.0, 6.0, 4.0, 7.0]
         weights = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 
-        s = QuantLib.GaussianStatistics()
+        s = QuantLib.Statistics()
         s.add(data, weights)
 
         samples = s.samples()
@@ -68,7 +68,8 @@ wrong maximum value
                       """ % locals())
 
         mean = s.mean()
-        rightMean = reduce(lambda x,y:x+y, map(lambda x,y:x*y, data, weights)) \
+        rightMean = reduce(lambda x,y:x+y,
+                           map(lambda x,y:x*y, data, weights)) \
             / reduce(lambda x,y:x+y, weights)
         if not (abs(mean-rightMean) <= tol):
             self.fail("""

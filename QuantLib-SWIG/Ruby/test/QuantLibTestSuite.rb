@@ -35,7 +35,7 @@ require 'riskstatistics'
 require 'segmentintegral'
 require 'simpleswap'
 require 'solvers1d'
-require 'gaussianstatistics'
+require 'statistics'
 require 'swaption'
 require 'termstructures'
 # to be removed

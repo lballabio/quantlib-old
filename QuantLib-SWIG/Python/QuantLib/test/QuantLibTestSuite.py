@@ -35,7 +35,7 @@ from riskstatistics import RiskStatisticsTest
 from segmentintegral import SegmentIntegralTest
 from simpleswap import SimpleSwapTest
 from solvers1d import Solver1DTest
-from gaussianstatistics import StatisticsTest
+from statistics import StatisticsTest
 from swaption import SwaptionTest
 from termstructures import TermStructureTest
 # the ones below test deprecated features

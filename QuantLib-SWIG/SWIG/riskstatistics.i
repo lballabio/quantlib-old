@@ -25,17 +25,7 @@
 
 %{
 using QuantLib::RiskStatistics;
-using QuantLib::Math::RiskMeasures;
 %}
-
-class RiskMeasures {
-  public:
-    RiskMeasures();
-    double gaussianPotentialUpside(double percentile, double mean, double std) const;
-    double gaussianValueAtRisk(double percentile, double mean, double std) const;
-    double gaussianShortfall(double target, double mean, double std) const;
-    double gaussianAverageShortfall(double target, double mean, double std) const;
-};
 
 class RiskStatistics {
     #if defined(SWIGRUBY)
