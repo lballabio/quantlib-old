@@ -70,9 +70,9 @@ extern "C"
         Date refDate    = QlXlfOper(xlrefDate).AsDate();
         double underlying = xlunderlying.AsDouble();
 
-        Handle<TermStructure> dividendTS =
+        Handle<YieldTermStructure> dividendTS =
             QlXlfOper(xldividendYield).AsTermStructure(refDate);
-        Handle<TermStructure> riskFreeTS =
+        Handle<YieldTermStructure> riskFreeTS =
             QlXlfOper(xlriskFree).AsTermStructure(refDate);
         Handle<BlackVolTermStructure> blackVolSurface =
             QlXlfOper(xlblackVolSurface).AsBlackVolTermStructure(refDate,

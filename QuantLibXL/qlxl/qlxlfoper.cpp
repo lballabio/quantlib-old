@@ -22,7 +22,7 @@
 
 #include <qlxl/qlxlfoper.hpp>
 #include <ql/Calendars/all.hpp>
-#include <ql/DayCounters/all.hpp>
+#include <ql/Functions/daycounters.hpp>
 #include <ql/Volatilities/blackconstantvol.hpp>
 #include <ql/Volatilities/blackvariancecurve.hpp>
 #include <ql/Volatilities/blackvariancesurface.hpp>
@@ -117,38 +117,7 @@ Calendar QlXlfOper::AsCalendar() const {
 DayCounter QlXlfOper::AsDayCounter() const {
 
     std::string inputString(xlfOper_.AsString());
-    std::string s = StringFormatter::toLowercase(inputString);
-    DayCounter dc = Actual365();
-
-
-    if (s == "1" || s == "act365" || s == "act/365")
-        dc = Actual365();
-    else if (s == "2" || s == "act360" || s == "act/360")
-        dc = Actual360();
-    else if (s == "3" || s == "actacte" || s == "act/act(e)"
-                                        || s == "act/act(Euro)")
-        dc = ActualActual(ActualActual::Euro);
-    else if (s == "4" || s == "30/360" || s == "30/360us")
-        dc = Thirty360(Thirty360::USA);
-    else if (s == "5" || s == "30e/360" || s == "30/360e" || s == "30/360eu")
-        dc = Thirty360(Thirty360::European);
-    else if (s == "6" || s == "30/360i" || s == "30/360it")
-        dc = Thirty360(Thirty360::Italian);
-    else if (s == "7" || s == "actact" || s == "act/act" || s == "act/act(b)"
-                                       || s == "act/act (Bond)")
-        dc = ActualActual(ActualActual::Bond);
-    else if (s == "8" || s == "actacth" || s == "act/act(h)"
-                                        || s == "act/act (ISDA)")
-        dc = ActualActual(ActualActual::Historical);
-    else if (s == "9" || s == "30/360isda")
-        dc = Thirty360(Thirty360::USA);
-    else if (s == "10"|| s == "30e/360isda")
-        dc = Thirty360(Thirty360::European);
-    else
-        QL_FAIL("Unknown day counter: " + inputString);
-
-    return dc;
-
+    return dayCounterFromString(inputString);
 }
 
 Date QlXlfOper::AsDate() const {
@@ -301,11 +270,8 @@ Handle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
 }
 
 
-Handle<TermStructure> QlXlfOper::AsTermStructure(
+Handle<YieldTermStructure> QlXlfOper::AsTermStructure(
     const Date& referenceDate) const {
-
-    // Should we add today to the interface of AsTermStructure ?
-    Date today=referenceDate;
 
     XlfRef range = xlfOper_.AsRef();
     Size rowNo = range.GetNbRows();
@@ -313,9 +279,9 @@ Handle<TermStructure> QlXlfOper::AsTermStructure(
     if (rowNo==1 && colNo==1) {
         // constant rate continuos compounding act/365
         double forwardRate = range(0,0).AsDouble();
-        return Handle<TermStructure>(
-            boost::shared_ptr<TermStructure>(new
-                FlatForward(today, referenceDate, forwardRate, Actual365())));
+        return Handle<YieldTermStructure>(
+            boost::shared_ptr<YieldTermStructure>(new
+                FlatForward(referenceDate, forwardRate)));
     } else if (rowNo>1 && colNo==2 && range(0,1).AsDouble()==1.0) {
         // vertical discount grid
 
@@ -328,9 +294,9 @@ Handle<TermStructure> QlXlfOper::AsTermStructure(
         }
         Date today=dates[0];
 
-        return Handle<TermStructure>(
-            boost::shared_ptr<TermStructure>(new
-                DiscountCurve(today, dates, discounts, Actual365())));
+        return Handle<YieldTermStructure>(
+            boost::shared_ptr<YieldTermStructure>(new
+                DiscountCurve(dates, discounts)));
     } else if (rowNo==2 && colNo>1 && range(1,0).AsDouble()==1.0) {
         // horizontal discount grid
 
@@ -343,9 +309,9 @@ Handle<TermStructure> QlXlfOper::AsTermStructure(
         }
         Date today=dates[0];
 
-        return Handle<TermStructure>(
-            boost::shared_ptr<TermStructure>(new
-                DiscountCurve(today, dates, discounts, Actual365())));
+        return Handle<YieldTermStructure>(
+            boost::shared_ptr<YieldTermStructure>(new
+                DiscountCurve(dates, discounts)));
     } else if (rowNo>1 && colNo==2) {
         // vertical piecewise forward grid (annual continuos act/365)
         std::vector<Date> dates(rowNo);
@@ -356,9 +322,9 @@ Handle<TermStructure> QlXlfOper::AsTermStructure(
         }
         Date today=dates[0];
 
-        return Handle<TermStructure>(
-            boost::shared_ptr<TermStructure>(new
-                PiecewiseFlatForward(today, dates, forwards, Actual365())));
+        return Handle<YieldTermStructure>(
+            boost::shared_ptr<YieldTermStructure>(new
+                PiecewiseFlatForward(dates, forwards)));
     } else if (rowNo==2 && colNo>1) {
         // horizontal piecewise forward grid (annual continuos act/365)
         std::vector<Date> dates(colNo);
@@ -369,9 +335,9 @@ Handle<TermStructure> QlXlfOper::AsTermStructure(
         }
         Date today=dates[0];
 
-        return Handle<TermStructure>(
-            boost::shared_ptr<TermStructure>(new
-                PiecewiseFlatForward(today, dates, forwards, Actual365())));
+        return Handle<YieldTermStructure>(
+            boost::shared_ptr<YieldTermStructure>(new
+                PiecewiseFlatForward(dates, forwards)));
     } else
         QL_FAIL("Not a yield term structure range");
 

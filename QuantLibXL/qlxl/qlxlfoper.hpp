@@ -40,7 +40,7 @@ public:
     QuantLib::Option::Type AsOptionType() const;
     QuantLib::Handle<QuantLib::BlackVolTermStructure> AsBlackVolTermStructure(
         const QuantLib::Date& referenceDate, int interpolationType) const;
-    QuantLib::Handle<QuantLib::TermStructure> AsTermStructure(
+    QuantLib::Handle<QuantLib::YieldTermStructure> AsTermStructure(
         const QuantLib::Date& referenceDate) const;
 private:
     XlfOper xlfOper_;
