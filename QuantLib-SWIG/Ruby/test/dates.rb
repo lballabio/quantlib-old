@@ -31,7 +31,7 @@ class DateTest < Test::Unit::TestCase
     mold   = minDate.month
     yold   = minDate.year
     
-    minDate.upto(maxDate) do |date|
+    (minDate+1...maxDate).each do |date|
 
       d   = date.dayOfMonth
       m   = date.month

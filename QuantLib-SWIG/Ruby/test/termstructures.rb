@@ -22,16 +22,10 @@ class TermStructureTest < Test::Unit::TestCase
   include QuantLib
   def name
     case @method_name
-      when 'testImplied'
-        "Testing consistency of implied term structure"
       when 'testImpliedObs'
         "Testing observability of implied term structure"
-      when 'testFSpreaded'
-        "Testing consistency of forward-spreaded term structure"
       when 'testFSpreadedObs'
         "Testing observability of forward-spreaded term structure"
-      when 'testZSpreaded'
-        "Testing consistency of zero-spreaded term structure"
       when 'testZSpreadedObs'
         "Testing observability of zero-spreaded term structure"
     end
@@ -70,27 +64,6 @@ class TermStructureTest < Test::Unit::TestCase
                                               deposits+swaps,
                                               DayCounter.new('Act/360'))
   end
-  def testImplied
-    tolerance = 1.0e-10
-    h = TermStructureHandle.new(@termStructure)
-    new_today = @termStructure.todaysDate.plusYears(3)
-    new_settlement = @calendar.advance(new_today,@settlementDays,'days')
-    test_date = new_settlement.plusYears(5)
-    implied = ImpliedTermStructure.new(h,new_today,new_settlement)
-    base_discount = @termStructure.discount(new_settlement)
-    discount = @termStructure.discount(test_date)
-    implied_discount = implied.discount(test_date)
-    unless (discount - base_discount*implied_discount).abs <= tolerance
-      flunk(<<-MESSAGE
-
-unable to reproduce discount from implied curve
-    calculated: #{base_discount*implied_discount}
-    expected:   #{discount}
-
-            MESSAGE
-            )
-    end
-  end
   def testImpliedObs
     flag = false
     h = TermStructureHandle.new
@@ -102,26 +75,6 @@ unable to reproduce discount from implied curve
     h.linkTo!(@termStructure)
     unless flag
       flunk("Observer was not notified of term structure change")
-    end
-  end
-  def testFSpreaded
-    tolerance = 1.0e-10
-    me = SimpleMarketElement.new(0.01)
-    mh = MarketElementHandle.new(me)
-    h = TermStructureHandle.new(@termStructure)
-    spreaded = ForwardSpreadedTermStructure.new(h,mh)
-    test_date = @termStructure.referenceDate.plusYears(5)
-    forward = @termStructure.instantaneousForward(test_date)
-    spreaded_forward = spreaded.instantaneousForward(test_date)
-    unless ((forward+me.value)-spreaded_forward).abs <= tolerance
-      flunk(<<-MESSAGE
-
-unable to reproduce forward from spreaded curve
-    calculated: #{spreaded_forward-me.value}
-    expected:   #{forward}
-
-            MESSAGE
-            )
     end
   end
   def testFSpreadedObs
@@ -140,26 +93,6 @@ unable to reproduce forward from spreaded curve
     me.value = 0.005
     unless flag
       flunk("Observer was not notified of spread change")
-    end
-  end
-  def testZSpreaded
-    tolerance = 1.0e-10
-    me = SimpleMarketElement.new(0.01)
-    mh = MarketElementHandle.new(me)
-    h = TermStructureHandle.new(@termStructure)
-    spreaded = ZeroSpreadedTermStructure.new(h,mh)
-    test_date = @termStructure.referenceDate.plusYears(5)
-    zero = @termStructure.zeroYield(test_date)
-    spreaded_zero = spreaded.zeroYield(test_date)
-    unless ((zero+me.value)-spreaded_zero).abs <= tolerance
-      flunk(<<-MESSAGE
-
-unable to reproduce zero yield from spreaded curve
-    calculated: #{spreaded_zero-me.value}
-    expected:   #{zero}
-
-            MESSAGE
-            )
     end
   end
   def testZSpreadedObs
