@@ -20,7 +20,7 @@
 %{
 #include <ql/quantlib.hpp>
 
-#if QL_HEX_VERSION < 0x000301a0
+#if QL_HEX_VERSION < 0x000302a1
     #error using an old version of QuantLib, please update
 #endif
 
@@ -44,7 +44,7 @@
 #ifdef SWIGPYTHON
 %{
 #if PY_VERSION_HEX < 0x02010000
-    #error using an unsupported Python version, please update
+    #error Python version 2.1.0 or later is required
 #endif
 %}
 #endif

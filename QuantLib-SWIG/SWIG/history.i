@@ -110,7 +110,7 @@ struct HistoryValidIterator {
     try {
         $action
     } catch (...) {
-        %#if PY_VERSION_HEX >= 0x020200a0
+        %#if PY_VERSION_HEX >= 0x02020000
         PyErr_SetString(PyExc_StopIteration,"");
         %#else
         PyErr_SetString(PyExc_IndexError,"end of history reached");
@@ -123,7 +123,7 @@ struct HistoryValidIterator {
     try {
         $action
     } catch (...) {
-        %#if PY_VERSION_HEX >= 0x020200a0
+        %#if PY_VERSION_HEX >= 0x02020000
         PyErr_SetString(PyExc_StopIteration,"");
         %#else
         PyErr_SetString(PyExc_IndexError,"end of history reached");
