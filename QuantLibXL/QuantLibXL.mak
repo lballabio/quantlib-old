@@ -38,6 +38,7 @@ ALL : ".\xll\QuantLibXL-vc6-mt-s-0_3_7.xll"
 
 
 CLEAN :
+	-@erase "$(INTDIR)\calendars.obj"
 	-@erase "$(INTDIR)\datef.obj"
 	-@erase "$(INTDIR)\engines.obj"
 	-@erase "$(INTDIR)\mathf.obj"
@@ -74,7 +75,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\termstructures.obj" \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\vols.obj" \
-	"$(INTDIR)\xlAutoOpen.obj"
+	"$(INTDIR)\xlAutoOpen.obj" \
+	"$(INTDIR)\calendars.obj"
 
 ".\xll\QuantLibXL-vc6-mt-s-0_3_7.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -90,6 +92,7 @@ ALL : ".\xll\QuantLibXL-vc6-mt-sgd-0_3_7.xll"
 
 
 CLEAN :
+	-@erase "$(INTDIR)\calendars.obj"
 	-@erase "$(INTDIR)\datef.obj"
 	-@erase "$(INTDIR)\engines.obj"
 	-@erase "$(INTDIR)\mathf.obj"
@@ -129,7 +132,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\termstructures.obj" \
 	"$(INTDIR)\utilities.obj" \
 	"$(INTDIR)\vols.obj" \
-	"$(INTDIR)\xlAutoOpen.obj"
+	"$(INTDIR)\xlAutoOpen.obj" \
+	"$(INTDIR)\calendars.obj"
 
 ".\xll\QuantLibXL-vc6-mt-sgd-0_3_7.xll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -179,6 +183,12 @@ LINK32_OBJS= \
 
 
 !IF "$(CFG)" == "QuantLibXL - Win32 Release" || "$(CFG)" == "QuantLibXL - Win32 Debug"
+SOURCE=.\qlxl\calendars.cpp
+
+"$(INTDIR)\calendars.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
 SOURCE=.\qlxl\datef.cpp
 
 "$(INTDIR)\datef.obj" : $(SOURCE) "$(INTDIR)"

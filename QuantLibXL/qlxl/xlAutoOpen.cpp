@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2002, 2003 Ferdinando Ametrano
+ Copyright (C) 2002, 2003, 2004 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -81,6 +81,9 @@ extern "C" {
 
 
             XlfArgDesc dayCount("dayCount", "day count convention");
+
+            XlfArgDesc calendar("calendar", "holiday calendar");
+            XlfArgDesc includeWeekEnds("includeWeekEnds", "true: consider week-ends as holidays");
 
             XlfArgDesc data_array("data_array", "data array");
             XlfArgDesc x_array("x_array", "x data array");
@@ -325,6 +328,13 @@ extern "C" {
 
 
 
+            // Registers calendars
+            XlfFuncDesc holidayList("xlholidayList",
+                "qlHolidayList",
+                "holiday list for a given calendar",
+                "QuantLibXL Date Functions");
+            holidayList.SetArguments(calendar+d01+d02+includeWeekEnds);
+            holidayList.Register();
 
 
 

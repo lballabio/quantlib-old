@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2002, 2003 Ferdinando Ametrano
+ Copyright (C) 2002, 2003, 2004 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,10 +21,8 @@
 */
 
 #include <qlxl/qlxlfoper.hpp>
-#include <ql/DayCounters/actual365.hpp>
-#include <ql/DayCounters/actual360.hpp>
-#include <ql/DayCounters/actualactual.hpp>
-#include <ql/DayCounters/thirty360.hpp>
+#include <ql/Calendars/all.hpp>
+#include <ql/DayCounters/all.hpp>
 #include <ql/Volatilities/blackconstantvol.hpp>
 #include <ql/Volatilities/blackvariancecurve.hpp>
 #include <ql/Volatilities/blackvariancesurface.hpp>
@@ -38,6 +36,83 @@ using namespace QuantLib;
 
 QlXlfOper::QlXlfOper(const XlfOper& xlfOper)
 : xlfOper_(xlfOper) {}
+
+Calendar QlXlfOper::AsCalendar() const {
+
+    std::string inputString(xlfOper_.AsString());
+    std::string s = StringFormatter::toLowercase(inputString);
+    Calendar cal = TARGET();
+
+    if (s == "target" || s == "euro" || s == "eur")
+        return TARGET();
+    else if (s == "unitedstates" || s == "us")
+        return UnitedStates(UnitedStates::Settlement);
+    else if (s == "usexchange" || s == "nyexchange" || s == "nyse")
+        return UnitedStates(UnitedStates::Exchange);
+    else if (s == "usbonds" || s == "usbond")
+        return UnitedStates(UnitedStates::GovernmentBond);
+    else if (s == "unitedkingdom" || s == "uk")
+        return UnitedKingdom(UnitedKingdom::Settlement);
+    else if (s == "ukexchange" || s == "londonexchange")
+        return UnitedKingdom(UnitedKingdom::Exchange);
+    else if (s == "ukmetals" || s == "londonmetals")
+        return UnitedKingdom(UnitedKingdom::Metals);
+    else if (s == "beijing")
+        return Beijing();
+    else if (s == "budapest")
+        return Budapest();
+    else if (s == "copenhagen")
+        return Copenhagen();
+    else if (s == "germany")
+        return Germany(Germany::Settlement);
+    else if (s == "germanyexchange")
+        return Germany(Germany::FrankfurtStockExchange);
+    else if (s == "germanyxetra" || s == "xetra")
+        return Germany(Germany::Xetra);
+    else if (s == "germanyeurex" || s == "eurex")
+        return Germany(Germany::Eurex);
+    else if (s == "helsinki")
+        return Helsinki();
+    else if (s == "hongkong")
+        return HongKong();
+    else if (s == "italy")
+        return Italy(Italy::Settlement);
+    else if (s == "italyexchange" || s == "milanexchange")
+        return Italy(Italy::Exchange);
+    else if (s == "johannesburg" || s == "jhb")
+        return Johannesburg();
+    else if (s == "oslo")
+        return Oslo();
+    else if (s == "riyadh")
+        return Riyadh();
+    else if (s == "seoul")
+        return Seoul();
+    else if (s == "singapore")
+        return Singapore();
+    else if (s == "stockholm")
+        return Stockholm();
+    else if (s == "sydney")
+        return Sydney();
+    else if (s == "taiwan")
+        return Taiwan();
+    else if (s == "tokyo")
+        return Tokyo();
+    else if (s == "toronto")
+        return Toronto();
+    else if (s == "warsaw")
+        return Warsaw();
+    else if (s == "wellington")
+        return Wellington();
+    else if (s == "zurich" || s == "zur")
+        return Zurich();
+    else if (s == "null")
+        return NullCalendar();
+    else
+        QL_FAIL("Unknown calendar: " + inputString);
+
+    return cal;
+
+}
 
 DayCounter QlXlfOper::AsDayCounter() const {
 

@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2002, 2003 Ferdinando Ametrano
+ Copyright (C) 2002, 2003, 2004 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -32,6 +32,7 @@ class QlXlfOper {
 public:
     QlXlfOper(const XlfOper& xlfOper);
     QuantLib::DayCounter AsDayCounter() const;
+    QuantLib::Calendar AsCalendar() const;
     QuantLib::Date AsDate() const;
     std::vector<QuantLib::Date> AsDateVector() const;
     QuantLib::Matrix AsMatrix() const;
