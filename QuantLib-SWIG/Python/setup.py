@@ -318,7 +318,11 @@ else:
             g['CC'] = os.environ['CXX']
         else:
             g['CC'] = 'g++'
-        g['LDSHARED'] = g['CC'] + ' -shared'
+        if sys.platform.startswith("darwin"):
+            g['LDSHARED'] = g['CC'] + \
+                            ' -bundle -flat_namespace -undefined suppress'
+        else:
+            g['LDSHARED'] = g['CC'] + ' -shared'
     sysconfig._init_posix = my_init_posix
 
 datafiles  = []
