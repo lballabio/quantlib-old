@@ -98,9 +98,9 @@ class FiniteDifferenceMethod {
     Evolver evolver_;
 };
 
-class ForwardEuler {
+class ExplicitEuler {
   public:
-    ForwardEuler(const Operator&amp; L, ??? boundaryConditions)
+    ExplicitEuler(const Operator&amp; L, ??? boundaryConditions)
     : L_(L), boundaryConditions_(boundaryConditions) { ... }
     void step(Array&amp; a, Time t) {
         ... // call L.setTime(t) if needed
@@ -114,9 +114,9 @@ class ForwardEuler {
     }
 };
 
-class BackwardEuler {
+class ImplicitEuler {
   public:
-    BackwardEuler(const Operator&amp; L, ??? boundaryConditions)
+    ImplicitEuler(const Operator&amp; L, ??? boundaryConditions)
     : L_(L), boundaryConditions_(boundaryConditions) { ... }
     void step(Array&amp; a, Time t) {
         ... // call L.setTime(t-dt) if needed
