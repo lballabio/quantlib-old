@@ -38,6 +38,7 @@ using QuantLib::Toronto;
 using QuantLib::Sydney;
 using QuantLib::Budapest;
 using QuantLib::Oslo;
+using QuantLib::Copenhagen;
 using QuantLib::Stockholm;
 using QuantLib::Warsaw;
 using QuantLib::NullCalendar;
@@ -168,6 +169,8 @@ class Calendar {
                 return new Calendar(Sydney());
             else if (s == "budapest")
                 return new Calendar(Budapest());
+            else if (s == "copenhagen")
+                return new Calendar(Copenhagen());
             else if (s == "oslo")
                 return new Calendar(Oslo());
             else if (s == "stockholm")
