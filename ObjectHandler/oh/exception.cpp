@@ -15,18 +15,16 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef utilities_hpp
-#define utilities_hpp
-
-#include <ObjectHandler/object.hpp>
+#include <oh/exception.hpp>
 
 namespace ObjHandler {
 
-    std::ostream& operator<<(std::ostream& out, const any_ptr& a);
-    int setLogFile(const std::string &newLogFileName);
-    void logMessage(const std::string &msg);
+    Exception::Exception(const std::string& message)
+        : message_(message) {
+    }
 
+    const char* Exception::what() const throw () {
+        return message_.c_str();
+    }
 }
 
-
-#endif

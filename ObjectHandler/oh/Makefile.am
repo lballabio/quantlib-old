@@ -1,5 +1,5 @@
 AM_CPPFLAGS = -I${top_srcdir}
-includedir = $(prefix)/include/ObjectHandler
+includedir = $(prefix)/include/oh
 
 include_HEADERS = \
     config.hpp \
@@ -24,3 +24,4 @@ libObjectHandler_la_SOURCES = \
     object.cpp  \
     objecthandler.cpp  \
     utilities.cpp
+

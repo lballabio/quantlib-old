@@ -334,7 +334,7 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
-				RelativePath="ObjectHandler\exception.cpp">
+				RelativePath="oh\exception.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -388,7 +388,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="ObjectHandler\object.cpp">
+				RelativePath="oh\object.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -442,7 +442,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="ObjectHandler\objecthandler.cpp">
+				RelativePath="oh\objecthandler.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -496,7 +496,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="ObjectHandler\utilities.cpp">
+				RelativePath="oh\utilities.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -554,31 +554,31 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
-				RelativePath="ObjectHandler\autolink.hpp">
+				RelativePath="oh\autolink.hpp">
 			</File>
 			<File
-				RelativePath="ObjectHandler\exception.hpp">
+				RelativePath="oh\exception.hpp">
 			</File>
 			<File
-				RelativePath="ObjectHandler\object.hpp">
+				RelativePath="oh\object.hpp">
 			</File>
 			<File
-				RelativePath="ObjectHandler\objecthandler.hpp">
+				RelativePath="oh\objecthandler.hpp">
 			</File>
 			<File
-				RelativePath="ObjectHandler\objhandler.hpp">
+				RelativePath="oh\objhandler.hpp">
 			</File>
 			<File
-				RelativePath="ObjectHandler\objhandlerdefines.hpp">
+				RelativePath="oh\objhandlerdefines.hpp">
 			</File>
 			<File
-				RelativePath="ObjectHandler\property.hpp">
+				RelativePath="oh\property.hpp">
 			</File>
 			<File
-				RelativePath="ObjectHandler\singleton.hpp">
+				RelativePath="oh\singleton.hpp">
 			</File>
 			<File
-				RelativePath="ObjectHandler\utilities.hpp">
+				RelativePath="oh\utilities.hpp">
 			</File>
 		</Filter>
 	</Files>

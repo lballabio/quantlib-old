@@ -54,10 +54,10 @@ SectionIn 1 2
     File "*.nsi"
 
     SetOutPath  $INSTDIR\ObjectHandler
-    File /r "ObjectHandler\*.hpp"
-    File /r "ObjectHandler\*.cpp"
-    File /r "ObjectHandler\makefile.mak"
-    File /r "ObjectHandler\*.am"
+    File /r "oh\*.hpp"
+    File /r "oh\*.cpp"
+    File /r "oh\makefile.mak"
+    File /r "oh\*.am"
 
     SetOutPath $INSTDIR\Example
     File /r "Example\*.hpp"
@@ -166,7 +166,7 @@ Section "Uninstall"
     RMDir "$SMPROGRAMS\ObjectHandler"
     RMDir /r "$INSTDIR\Examples"
     RMDir /r "$INSTDIR\Docs"
-    RMDir /r "$INSTDIR\ObjectHandler"
+    RMDir /r "$INSTDIR\oh"
     RMDir /r "$INSTDIR\lib"
     RMDir /r "$INSTDIR"
 SectionEnd

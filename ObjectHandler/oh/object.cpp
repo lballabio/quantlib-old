@@ -15,14 +15,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef objhandler_hpp
-#define objhandler_hpp
+#include <oh/object.hpp>
 
-#if defined(HAVE_CONFIG_H)    // Dynamically created by configure
-    #include <ObjectHandler/config.hpp>
-#endif
-#include <ObjectHandler/objhandlerdefines.hpp>
-#include <ObjectHandler/objecthandler.hpp>
-#include <ObjectHandler/exception.hpp>
+namespace ObjHandler {
 
-#endif
+    const Properties& Object::getProperties() const {
+        return properties_;
+    }
+
+}
+

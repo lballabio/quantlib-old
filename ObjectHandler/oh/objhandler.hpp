@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,12 +15,15 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ObjectHandler/object.hpp>
+#ifndef objhandler_hpp
+#define objhandler_hpp
 
-namespace ObjHandler {
+#if defined(HAVE_CONFIG_H)    // Dynamically created by configure
+    #include <oh/config.hpp>
+#endif
+#include <oh/objhandlerdefines.hpp>
+#include <oh/objecthandler.hpp>
+#include <oh/exception.hpp>
 
-    const Properties& Object::getProperties() const {
-        return properties_;
-    }
+#endif
 
-}

@@ -19,12 +19,12 @@
     \brief Object class
 */
 
-#ifndef object_hpp
-#define object_hpp
+#ifndef oh_object_hpp
+#define oh_object_hpp
 
 #include <boost/shared_ptr.hpp>
 #include <boost/any.hpp>
-#include <ObjectHandler/property.hpp>
+#include <oh/property.hpp>
 #include <vector>
 #include <string>
 
@@ -87,3 +87,4 @@ namespace ObjHandler {
 }
 
 #endif
+

@@ -185,19 +185,19 @@ LIB32=link.exe -lib
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=.\ObjectHandler\exception.cpp
+SOURCE=.\oh\exception.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ObjectHandler\object.cpp
+SOURCE=.\oh\object.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ObjectHandler\objecthandler.cpp
+SOURCE=.\oh\objecthandler.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ObjectHandler\utilities.cpp
+SOURCE=.\oh\utilities.cpp
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -205,39 +205,39 @@ SOURCE=.\ObjectHandler\utilities.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=.\ObjectHandler\autolink.hpp
+SOURCE=.\oh\autolink.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ObjectHandler\exception.hpp
+SOURCE=.\oh\exception.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ObjectHandler\object.hpp
+SOURCE=.\oh\object.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ObjectHandler\objecthandler.hpp
+SOURCE=.\oh\objecthandler.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ObjectHandler\objhandler.hpp
+SOURCE=.\oh\objhandler.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ObjectHandler\objhandlerdefines.hpp
+SOURCE=.\oh\objhandlerdefines.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ObjectHandler\property.hpp
+SOURCE=.\oh\property.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ObjectHandler\singleton.hpp
+SOURCE=.\oh\singleton.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ObjectHandler\utilities.hpp
+SOURCE=.\oh\utilities.hpp
 # End Source File
 # End Group
 # End Target

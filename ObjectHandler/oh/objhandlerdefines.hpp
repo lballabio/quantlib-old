@@ -40,7 +40,7 @@
    for example) also #define _MSC_VER
 */
 #ifdef BOOST_MSVC
-#  include <ObjectHandler/autolink.hpp>
+#  include <oh/autolink.hpp>
 #endif
 
 #include <cctype>
@@ -49,3 +49,4 @@
 #endif
 
 #endif
+

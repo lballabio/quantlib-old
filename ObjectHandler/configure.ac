@@ -3,9 +3,9 @@ AC_INIT([Object Handler], [0.1.0],
         [quantlib-dev@lists.sourceforge.net],
         [ObjectHandler])
 AC_PREREQ(2.50)
-AC_CONFIG_SRCDIR([ObjectHandler/objecthandler.hpp])
+AC_CONFIG_SRCDIR([oh/objecthandler.hpp])
 AC_CONFIG_AUX_DIR([config])
-AC_CONFIG_HEADERS([ObjectHandler/config.hpp])
+AC_CONFIG_HEADERS([oh/config.hpp])
 AM_INIT_AUTOMAKE([foreign])
 
 AC_COPYRIGHT([Copyright (C) 2005 Eric Ehlers
@@ -43,7 +43,7 @@ AC_PATH_PROG([SED], [sed])
 # done, output the configured files
 AC_CONFIG_FILES([
     Makefile
-    ObjectHandler/Makefile
+    oh/Makefile
     Example/Makefile
     Docs/Makefile])
 AC_OUTPUT

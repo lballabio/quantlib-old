@@ -5,8 +5,8 @@
  Copyright notice pending
 */
 
-#ifndef property_hpp
-#define property_hpp
+#ifndef oh_property_hpp
+#define oh_property_hpp
 
 namespace ObjHandler {
 
@@ -41,3 +41,4 @@ namespace ObjHandler {
 }
 
 #endif
+

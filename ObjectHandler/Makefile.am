@@ -1,5 +1,5 @@
 
-SUBDIRS = ObjectHandler Example Docs
+SUBDIRS = oh Example Docs
 
 EXTRA_DIST = \
 	Announce.txt \

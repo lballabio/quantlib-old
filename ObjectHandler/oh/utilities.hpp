@@ -1,7 +1,6 @@
 
 /*
- Copyright (C) 2005 Ferdinando Ametrano
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,21 +15,18 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ObjectHandler/objecthandler.hpp>
+#ifndef oh_utilities_hpp
+#define oh_utilities_hpp
+
+#include <oh/object.hpp>
 
 namespace ObjHandler {
 
-    void ObjectHandler::storeObject(const std::string &handle,
-                                    const obj_ptr &object) {
-        objectList_[handle] = object;
-    }
-
-    obj_ptr ObjectHandler::retrieveObject(const std::string &handle) const {
-        ObjectList::const_iterator result = objectList_.find(handle);
-        if (result!=objectList_.end())
-            return result->second;
-        else
-            return obj_ptr();
-    }
+    std::ostream& operator<<(std::ostream& out, const any_ptr& a);
+    int setLogFile(const std::string &newLogFileName);
+    void logMessage(const std::string &msg);
 
 }
+
+#endif
+

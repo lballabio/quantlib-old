@@ -19,8 +19,8 @@
     \brief basic support for the singleton pattern
 */
 
-#ifndef singleton_hpp
-#define singleton_hpp
+#ifndef oh_singleton_hpp
+#define oh_singleton_hpp
 
 #include <boost/shared_ptr.hpp>
 
@@ -88,3 +88,4 @@ namespace ObjHandler {
 }
 
 #endif
+

@@ -18,7 +18,7 @@
 #ifndef objectwidget_h
 #define objectwidget_h
 
-#include <ObjectHandler/objhandler.hpp>
+#include <oh/objhandler.hpp>
 #include <widget.hpp>
 
 using namespace ObjHandler;

@@ -22,7 +22,7 @@ MAKE = $(MAKE) -DVERSION=0.1.0 -DVERSION_STRING=0_1_0
 # Primary target:
 # ObjectHandler library
 objecthandler::
-    cd ObjectHandler
+    cd oh
     $(MAKE)
     cd ..
 
@@ -42,9 +42,9 @@ check: example
 # variable to point to the installed version of ObjectHandler
 install : inst
 inst:: objecthandler
-    if exist "$(OBJECT_HANDLER_DIR)\ObjectHandler" \
-            rmdir /S /Q "$(OBJECT_HANDLER_DIR)\ObjectHandler"
-    xcopy ObjectHandler\*.hpp "$(OBJECT_HANDLER_DIR)\ObjectHandler" /S /I
+    if exist "$(OBJECT_HANDLER_DIR)\oh" \
+            rmdir /S /Q "$(OBJECT_HANDLER_DIR)\oh"
+    xcopy oh\*.hpp "$(OBJECT_HANDLER_DIR)\oh" /S /I
 
     if exist "$(OBJECT_HANDLER_DIR)\lib" rmdir /S /Q "$(OBJECT_HANDLER_DIR)\lib"
     xcopy lib\*.lib "$(OBJECT_HANDLER_DIR)\lib" /S /I
@@ -85,7 +85,7 @@ docs-ps:
 
 # Clean up
 clean::
-    cd ObjectHandler
+    cd oh
     $(MAKE) clean
     cd ..\Example
     $(MAKE) clean

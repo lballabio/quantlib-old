@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef objecthandler_autolink_hpp
-#define objecthandler_autolink_hpp
+#ifndef oh_autolink_hpp
+#define oh_autolink_hpp
 
 // select toolset:
 #if (_MSC_VER < 1200)
@@ -67,3 +67,4 @@
 #endif
 
 #endif
+

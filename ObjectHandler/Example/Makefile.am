@@ -1,6 +1,5 @@
 AM_CPPFLAGS = -I${top_srcdir}
-AM_LDFLAGS = -lboost_regex
-LDADD = ../ObjectHandler/libObjectHandler.la
+LDADD = ../oh/libObjectHandler.la
 
 EXTRA_DIST = \
     Example.dev \
@@ -18,3 +17,4 @@ Example_SOURCES = \
     objectwidget.cpp
 
 noinst_PROGRAMS = Example
+

@@ -22,8 +22,8 @@
 #ifndef objecthandler_hpp
 #define objecthandler_hpp
 
-#include <ObjectHandler/utilities.hpp>
-#include <ObjectHandler/singleton.hpp>
+#include <oh/utilities.hpp>
+#include <oh/singleton.hpp>
 #include <map>
 
 //! ObjHandler
@@ -73,3 +73,4 @@ namespace ObjHandler {
 }
 
 #endif
+

@@ -15,9 +15,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ObjectHandler/objhandlerdefines.hpp>
-#include <ObjectHandler/utilities.hpp>
-#include <ObjectHandler/exception.hpp>
+#include <oh/objhandlerdefines.hpp>
+#include <oh/utilities.hpp>
+#include <oh/exception.hpp>
 #include <sstream>
 #include <fstream>
 

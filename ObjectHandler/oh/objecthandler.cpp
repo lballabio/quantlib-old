@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2005 Ferdinando Ametrano
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,15 +16,22 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ObjectHandler/exception.hpp>
+#include <oh/objecthandler.hpp>
 
 namespace ObjHandler {
 
-    Exception::Exception(const std::string& message)
-        : message_(message) {
+    void ObjectHandler::storeObject(const std::string &handle,
+                                    const obj_ptr &object) {
+        objectList_[handle] = object;
     }
 
-    const char* Exception::what() const throw () {
-        return message_.c_str();
+    obj_ptr ObjectHandler::retrieveObject(const std::string &handle) const {
+        ObjectList::const_iterator result = objectList_.find(handle);
+        if (result!=objectList_.end())
+            return result->second;
+        else
+            return obj_ptr();
     }
+
 }
+

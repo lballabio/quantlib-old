@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef exception_hpp
-#define exception_hpp
+#ifndef oh_exception_hpp
+#define oh_exception_hpp
 
 #include <exception>
 #include <string>
@@ -33,3 +33,4 @@ namespace ObjHandler {
     };
 }
 #endif
+
