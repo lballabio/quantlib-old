@@ -104,10 +104,6 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
             return new VanillaOptionPtr(
                 new VanillaOption(bsProcess,stPayoff,exercise,engine));
         }
-        Real errorEstimate() {
-            return boost::dynamic_pointer_cast<VanillaOption>(*self)
-                 ->errorEstimate();
-        }
         Real delta() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)->delta();
         }

@@ -29,7 +29,7 @@ class Settings {
     %rename("getEvaluationDate") evaluationDate;
     #elif defined(SWIGRUBY)
     %rename("evaluationDate=") setEvaluationDate;
-    #elif defined(SWIGSCHEME) || defined(SWIGGUILE)
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("evaluation-date-get")  evaluationDate;
     %rename("evaluation-date-set!") setEvaluationDate;
     #endif

@@ -47,6 +47,7 @@ class Instrument {
     %rename("freeze!")        freeze;
     %rename("unfreeze!")      unfreeze;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("error-estimate")      errorEstimate;
     %rename("expired?")            isExpired;
     %rename("pricing-engine-set!") setPricingEngine;
     %rename("recalculate!")        recalculate;
@@ -55,6 +56,7 @@ class Instrument {
     #endif
   public:
     Real NPV() const;
+    Real errorEstimate() const;
     bool isExpired() const;
     void setPricingEngine(const boost::shared_ptr<PricingEngine>&);
     void recalculate();

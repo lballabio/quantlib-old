@@ -75,11 +75,6 @@ IsObservable(Handle<YieldTermStructure>);
     TermStructure = YieldTermStructure
     TermStructureHandle = YieldTermStructureHandle
 %}
-#elif defined(SWIGGUILE)
-%scheme %{
-    (define TermStructure YieldTermStructure)
-    (define TermStructureHandle YieldTermStructureHandle)
-%}
 #endif
 
 

@@ -107,6 +107,12 @@
         "unittest.scm"
         "utilities.scm"
         "quantlib-test-suite.scm"))
+(define example-files
+  (list "american-option.scm"
+        "bermudan-swaption.scm"
+        "european-option.scm"
+        ; support
+        "tabulate.scm"))
 
 ; utilities
 (define (string-split s c)
@@ -241,6 +247,7 @@
         (rec-delete-directory distribution-dir))
     (let ((swig-dir (build-path distribution-dir "SWIG"))
           (test-dir (build-path distribution-dir "test"))
+          (example-dir (build-path distribution-dir "examples"))
           (module-dir (build-path distribution-dir "quantlib")))
       (define (install-files files source-dir target-dir)
         (for-each
@@ -250,7 +257,8 @@
              (copy-file source-file destination-file)))
          files))
       (for-each make-directory
-                (list distribution-dir swig-dir test-dir module-dir))
+                (list distribution-dir swig-dir test-dir
+                      example-dir module-dir))
       (install-files info-files "." ".")
       (install-files source-files "." ".")
       (install-files scripts "." ".")
@@ -259,6 +267,7 @@
             (set! i-dir "../SWIG"))
         (install-files SWIG-interfaces i-dir "SWIG"))
       (install-files test-files "./test" "test")
+      (install-files example-files "./examples" "examples")
       (let ((os (system-type)))
         (cond ((equal? os 'unix)
                (execute "tar" "cfz"

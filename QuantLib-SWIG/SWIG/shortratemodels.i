@@ -46,6 +46,10 @@ class CalibrationHelper {
     %rename("pricingEngine=")      setPricingEngine;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("pricing-engine-set!") setPricingEngine;
+    %rename("market-value")        marketValue;
+    %rename("model-value")         modelValue;
+    %rename("implied-volatility")  impliedVolatility;
+    %rename("black-price")         blackPrice;
     #endif
   public:
     void setPricingEngine(const boost::shared_ptr<PricingEngine>& engine);

@@ -98,6 +98,12 @@
         "common.scm"
         "unittest.scm"
         "utilities.scm"))
+(define example-files
+  (list "american-option.scm"
+        "bermudan-swaption.scm"
+        "european-option.scm"
+        ; support
+        "tabulate.scm"))
 
 (define (ls path)
   (define (read-one s acc)
@@ -221,6 +227,7 @@
             (rec-delete-directory distribution-dir)
             (delete-file distribution-dir)))
     (let ((swig-dir (string-append distribution-dir "/SWIG"))
+          (example-dir (string-append distribution-dir "/examples"))
           (test-dir (string-append distribution-dir "/test")))
       (define (install-files files source-dir target-dir)
         (for-each
@@ -231,7 +238,7 @@
              (copy-file source-file destination-file)))
          files))
       (mkdir distribution-dir)
-      (for-each mkdir (list swig-dir test-dir))
+      (for-each mkdir (list swig-dir test-dir example-dir))
       (install-files info-files "." ".")
       (install-files source-files "." ".")
       (install-files scripts "." ".")
@@ -240,6 +247,7 @@
             (set! i-dir "../SWIG"))
         (install-files SWIG-interfaces i-dir "SWIG"))
       (install-files test-files "test" "test")
+      (install-files example-files "examples" "examples")
       (system (string-append "tar cfz "
                              distribution-dir ".tar.gz "
                              distribution-dir))
