@@ -2,4 +2,5 @@
 libFunctions.la
 .libs
 *.lo
+Makefile
 Makefile.in

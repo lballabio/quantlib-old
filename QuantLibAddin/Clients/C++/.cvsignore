@@ -8,6 +8,7 @@ ClientCPP.plg
 ClientCPP_private.*
 .deps
 .libs
+Makefile
 Makefile.in
 Makefile.win
 QLADemo

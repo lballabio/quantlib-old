@@ -1,6 +1,8 @@
 
 AM_CPPFLAGS = -I${top_srcdir}
-includedir = $(prefix)/include/qla
+includedir = $(prefix)/include/qla/functions
+
+#EXTRA_DIST = makefile.mak
 
 include_HEADERS = \
     options.hpp \

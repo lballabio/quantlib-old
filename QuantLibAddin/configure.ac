@@ -48,7 +48,10 @@ AC_CONFIG_FILES([
     qla/functions/Makefile
     Addins/C/Makefile
     Addins/Calc/Makefile
+    Addins/Excel/Makefile
+    Clients/C/Makefile
     Clients/C++/Makefile
-    Clients/C/Makefile])
+    Clients/Calc/Makefile
+    Clients/Excel/Makefile])
 AC_OUTPUT
 

@@ -3,15 +3,12 @@ AM_CPPFLAGS = -I${top_srcdir}
 LDADD = ../../qla/libQuantLibAddin.la
 LDFLAGS = -lObjectHandler -lQuantLib
 
-#EXTRA_DIST = \
-#    Example.dev \
-#    Example.dsp \
-#    Example.vcproj \
-#    Example_vc8.vcproj \
-#    makefile.mak \
-#    interface.hpp \
-#    objectwidget.hpp \
-#    widget.hpp
+#    makefile.mak
+EXTRA_DIST = \
+    ClientCPP.dev \
+    ClientCPP.dsp \
+    ClientCPP_vc8.vcproj \
+    ClientCPP.vcproj
 
 QLADemo_SOURCES = qlademo.cpp
 

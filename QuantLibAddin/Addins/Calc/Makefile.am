@@ -1,10 +1,11 @@
 
-includedir = $(prefix)/include/qla
+#includedir = $(prefix)/include/qla
 AM_CPPFLAGS = -I${top_srcdir} -I$(OFFICE_SDK_PATH)/include \
 -DUNX -DGCC -DLINUX -DCPPU_ENV=gcc3
 AM_LDFLAGS = -L$(OFFICE_PROGRAM_PATH) \
     -lcppuhelpergcc3 -lcppu -lsal \
-    -lQuantLib -lObjectHandler
+    -lQuantLib -lObjectHandler \
+    -release $(PACKAGE_VERSION)
 
 COMPONENT_NAME=QuantLibAddin
 IDL_DIR=$(OFFICE_SDK_PATH)/idl
@@ -40,14 +41,31 @@ $(COMPONENT_NAME).flag2 : $(COMPONENT_NAME).flag1
 #	regcomp -register -r $(COMPONENT_NAME).rdb -c $(COMPONENT_NAME).so
 #	echo flagged > $@
 
-lib_LTLIBRARIES = libQuantLibAddinCalc.la
-libQuantLibAddinCalc_la_LDFLAGS = -release $(PACKAGE_VERSION)
+EXTRA_DIST = \
+    AddinCalc.dsp \
+    AddinCalc.vcproj \
+    Makefile.win32 \
+    Makefile.win32.debug \
+    QuantLibAddin.def \
+    QuantLibAddin.idl \
+    readme.txt
 
-#libQuantLibAddinCalc_la_DEPENDENCIES = $(COMPONENT_NAME).flag2
+# for now we do not install the Calc addin
+noinst_LTLIBRARIES = libQuantLibAddinCalc.la
+
 # FIXME need a better way to force this dependency
 funcdef.cpp : $(COMPONENT_NAME).flag2
+#libQuantLibAddinCalc_la_DEPENDENCIES = $(COMPONENT_NAME).flag2
 
 libQuantLibAddinCalc_la_LIBADD = ../../qla/libQuantLibAddin.la
+
+noinst_HEADERS = \
+    autogen.hpp \
+    options.hpp \
+    functions.hpp \
+    qladdin.hpp \
+    qldefs.hpp \
+    utilities.hpp
 
 libQuantLibAddinCalc_la_SOURCES = \
     funcdef.cpp \

@@ -3,27 +3,30 @@ SUBDIRS = \
     qla \
     Addins/C \
     Addins/Calc \
+    Addins/Excel \
+    Clients/C \
     Clients/C++ \
-    Clients/C
+    Clients/Calc \
+    Clients/Excel
 
-#EXTRA_DIST =
-#	Announce.txt \
-#	Authors.txt \
-#	Contributors.txt \
-#	LICENSE.TXT \
-#	NEWS.txt \
-#	QuantLibAddin.dev \
-#	QuantLibAddin.dsp \
-#	QuantLibAddin.dsw \
-#	QuantLibAddin.nsi \
-#	QuantLibAddin.sln \
-#	QuantLibAddin.vcproj \
-#	QuantLibAddin_vc8.sln \
-#	QuantLibAddin_vc8.vcproj \
-#	README.txt \
-#	TODO.txt \
-#	autogen.sh \
-#	makefile.mak
+#   makefile.mak
+EXTRA_DIST = \
+    Announce.txt \
+    Authors.txt \
+    autogen.sh \
+    configure.ac \
+    Contributors.txt \
+    LICENSE.TXT \
+    NEWS.txt \
+    QuantLibAddin.dev \
+    QuantLibAddin.dsp \
+    QuantLibAddin.dsw \
+    QuantLibAddin.sln \
+    QuantLibAddin_vc8.sln \
+    QuantLibAddin_vc8.vcproj \
+    QuantLibAddin.vcproj \
+    README.txt \
+    TODO.txt
 
 #.PHONY: docs docs-online docs-dist docs-clean
 #BASEPATH = @abs_top_srcdir@

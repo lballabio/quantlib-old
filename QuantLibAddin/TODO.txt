@@ -6,8 +6,9 @@ for 0.3.9:
 - include QuEP 12 in the doxygen documentation
 - improve existing options functionality
 - document if and how Calc add-in can be genereated using VC6
-(this is in QuantLibAddin\Addins\Calc\readme.txt - is it adequate?)
+- autoconf for Excel?
 
 for a later release:
 - extend functionalities
 - add more Excel/Calc spreadsheets (port the QunatLibXl spreadsheets)
+- add function manager help for inputs to Calc functions

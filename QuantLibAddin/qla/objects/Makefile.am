@@ -1,6 +1,8 @@
 
 AM_CPPFLAGS = -I${top_srcdir}
-includedir = $(prefix)/include/qla
+includedir = $(prefix)/include/qla/objects
+
+#EXTRA_DIST = makefile.mak
 
 include_HEADERS = \
     asianoption.hpp \
