@@ -48,8 +48,8 @@ using QuantLib::CashFlows::SimpleCashFlow;
 using QuantLib::CashFlows::FixedRateCoupon;
 using QuantLib::CashFlows::ParCoupon;
 typedef Handle<CashFlow> SimpleCashFlowHandle;
-typedef Handle<FixedRateCoupon> FixedRateCouponHandle;
-typedef Handle<ParCoupon> ParCouponHandle;
+typedef Handle<CashFlow> FixedRateCouponHandle;
+typedef Handle<CashFlow> ParCouponHandle;
 %}
 
 %rename(SimpleCashFlow) SimpleCashFlowHandle;

@@ -26,7 +26,7 @@
 %{
 using QuantLib::Instruments::Swap;
 using QuantLib::Instruments::SimpleSwap;
-typedef Handle<Swap> SwapHandle;
+typedef Handle<Instrument> SwapHandle;
 typedef Handle<Instrument> SimpleSwapHandle;
 %}
 
