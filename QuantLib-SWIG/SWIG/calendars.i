@@ -1,4 +1,3 @@
-
 /*
  Copyright (C) 2000, 2001, 2002 RiskMap srl
 
@@ -76,6 +75,10 @@ using QuantLib::Calendars::Wellington;
 using QuantLib::Calendars::Tokyo;
 using QuantLib::Calendars::Toronto;
 using QuantLib::Calendars::Sydney;
+using QuantLib::Calendars::Budapest;
+using QuantLib::Calendars::Oslo;
+using QuantLib::Calendars::Stockholm;
+using QuantLib::Calendars::Warsaw;
 %}
 
 
@@ -130,6 +133,14 @@ class Calendar {
                 return new Calendar(Toronto());
             else if (s == "sydney")
                 return new Calendar(Sydney());
+            else if (s == "budapest")
+                return new Calendar(Budapest());
+            else if (s == "oslo")
+                return new Calendar(Oslo());
+            else if (s == "stockholm")
+                return new Calendar(Stockholm());
+            else if (s == "warsaw")
+                return new Calendar(Warsaw());
             else
                 throw Error("Unknown calendar: " + name);
             QL_DUMMY_RETURN((Calendar*)(0));
