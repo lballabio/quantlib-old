@@ -105,7 +105,7 @@ class Payoff {
 %template(Payoff) boost::shared_ptr<Payoff>;
 
 
-// plain options and engines
+// plain option and engines
 
 %{
 using QuantLib::VanillaOption;
@@ -434,7 +434,136 @@ class AnalyticDigitalAmericanEnginePtr
 };
 
 
-// Barrier Option
+// Dividend option
+
+%{
+using QuantLib::DividendVanillaOption;
+typedef boost::shared_ptr<Instrument> DividendVanillaOptionPtr;
+%}
+
+
+%rename(DividendVanillaOption) DividendVanillaOptionPtr;
+class DividendVanillaOptionPtr : public boost::shared_ptr<Instrument> {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("dividend-rho")       dividendRho;
+    %rename("implied-volatility") impliedVolatility;
+    #endif
+  public:
+    %extend {
+        DividendVanillaOptionPtr(
+                const boost::shared_ptr<StochasticProcess>& process,
+                const boost::shared_ptr<Payoff>& payoff,
+                const boost::shared_ptr<Exercise>& exercise,
+                const std::vector<Date>& dividendDates,
+                const std::vector<Real>& dividends,
+                const boost::shared_ptr<PricingEngine>& engine
+                   = boost::shared_ptr<PricingEngine>()) {
+            boost::shared_ptr<StrikedTypePayoff> stPayoff =
+                 boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
+            QL_REQUIRE(stPayoff, "wrong payoff given");
+            boost::shared_ptr<BlackScholesProcess> bsProcess =
+                boost::dynamic_pointer_cast<BlackScholesProcess>(process);
+            QL_REQUIRE(bsProcess, "wrong stochastic process given");
+            return new DividendVanillaOptionPtr(
+                new DividendVanillaOption(bsProcess,stPayoff,exercise,
+                                          dividendDates,dividends,engine));
+        }
+        Real delta() {
+            return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
+                ->delta();
+        }
+        Real gamma() {
+            return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
+                ->gamma();
+        }
+        Real theta() {
+            return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
+                ->theta();
+        }
+        Real vega() {
+            return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
+                ->vega();
+        }
+        Real rho() {
+            return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
+                ->rho();
+        }
+        Real dividendRho() {
+            return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
+                 ->dividendRho();
+        }
+        Real strikeSensitivity() {
+            return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
+                 ->strikeSensitivity();
+        }
+        Volatility impliedVolatility(Real targetValue,
+                                     Real accuracy = 1.0e-4,
+                                     Size maxEvaluations = 100,
+                                     Volatility minVol = 1.0e-4,
+                                     Volatility maxVol = 4.0) {
+            return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
+                 ->impliedVolatility(targetValue,accuracy,maxEvaluations,
+                                     minVol,maxVol);
+        }
+    }
+};
+
+%{
+using QuantLib::AnalyticDividendEuropeanEngine;
+typedef boost::shared_ptr<PricingEngine> AnalyticDividendEuropeanEnginePtr;
+%}
+
+%rename(AnalyticDividendEuropeanEngine) AnalyticDividendEuropeanEnginePtr;
+class AnalyticDividendEuropeanEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        AnalyticDividendEuropeanEnginePtr() {
+            return new AnalyticDividendEuropeanEnginePtr(
+                new AnalyticDividendEuropeanEngine);
+        }
+    }
+};
+
+%{
+using QuantLib::FDDividendEuropeanEngine;
+using QuantLib::FDDividendAmericanEngine;
+typedef boost::shared_ptr<PricingEngine> FDDividendEuropeanEnginePtr;
+typedef boost::shared_ptr<PricingEngine> FDDividendAmericanEnginePtr;
+%}
+
+%rename(FDDividendEuropeanEngine) FDDividendEuropeanEnginePtr;
+class FDDividendEuropeanEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        FDDividendEuropeanEnginePtr(Size timeSteps = 100,
+                                    Size gridPoints = 100,
+                                    bool timeDependent = false) {
+            return new FDDividendEuropeanEnginePtr(
+                new FDDividendEuropeanEngine(timeSteps,gridPoints,
+                                             timeDependent));
+        }
+    }
+};
+
+%rename(FDDividendAmericanEngine) FDDividendAmericanEnginePtr;
+class FDDividendAmericanEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        FDDividendAmericanEnginePtr(Size timeSteps = 100,
+                                    Size gridPoints = 100,
+                                    bool timeDependent = false) {
+            return new FDDividendAmericanEnginePtr(
+                new FDDividendAmericanEngine(timeSteps,gridPoints,
+                                             timeDependent));
+        }
+    }
+};
+
+
+// Barrier option
 
 %{
 using QuantLib::BarrierOption;
