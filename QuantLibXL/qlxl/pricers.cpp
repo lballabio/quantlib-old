@@ -22,8 +22,7 @@
 
 // $Id$
 
-#include <qlxl/qlxl.hpp>
-#include <qlxl/pricers.hpp>
+#include <qlxl/qlxlfoper.hpp>
 
 extern "C"
 {
@@ -50,28 +49,13 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        std::string temp(xltype.AsString());
-        temp = StringFormatter::toLowercase(temp);
-
-        Option::Type type;
-        if (temp == "c" || temp == "call") {
-            type = Option::Call;
-        } else if (temp == "p" || temp == "put") {
-            type = Option::Put;
-        } else if (temp == "s" || temp == "straddle") {
-            type = Option::Straddle;
-        } else
-            throw Error("Unknown option type");
-
+        Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying    = xlunderlying.AsDouble();
         double strike        = xlstrike.AsDouble();
         double dividendYield = xldividendYield.AsDouble();
         double riskFreeRate  = xlriskFreeRate.AsDouble();
         double maturity      = xlmaturity.AsDouble();
         double volatility    = xlvolatility.AsDouble();
-
-
-
 
         EuropeanOption eur(type, underlying, strike, dividendYield,
            riskFreeRate, maturity, volatility);
@@ -104,19 +88,7 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        std::string temp(xltype.AsString());
-        temp = StringFormatter::toLowercase(temp);
-
-        Option::Type type;
-        if (temp == "c" || temp == "call") {
-            type = Option::Call;
-        } else if (temp == "p" || temp == "put") {
-            type = Option::Put;
-        } else if (temp == "s" || temp == "straddle") {
-            type = Option::Straddle;
-        } else
-            throw Error("Unknown option type");
-
+        Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying    = xlunderlying.AsDouble();
         double strike        = xlstrike.AsDouble();
         double dividendYield = xldividendYield.AsDouble();
@@ -157,19 +129,7 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        std::string temp(xltype.AsString());
-        temp = StringFormatter::toLowercase(temp);
-
-        Option::Type type;
-        if (temp == "c" || temp == "call") {
-            type = Option::Call;
-        } else if (temp == "p" || temp == "put") {
-            type = Option::Put;
-        } else if (temp == "s" || temp == "straddle") {
-            type = Option::Straddle;
-        } else
-            throw Error("Unknown option type");
-
+        Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying       = xlunderlying.AsDouble();
         double strike           = xlstrike.AsDouble();
         double dividendYield    = xldividendYield.AsDouble();
@@ -178,9 +138,6 @@ extern "C"
         double volatility       = xlvolatility.AsDouble();
         bool antitheticVariance = xlantitheticVariance.AsBool();
         Size samples            = xlsamples.AsDouble();
-
-
-
 
         McEuropean eur(type, underlying, strike, dividendYield,
            riskFreeRate, maturity, volatility, antitheticVariance);
@@ -205,19 +162,7 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        std::string temp(xltype.AsString());
-        temp = StringFormatter::toLowercase(temp);
-
-        Option::Type type;
-        if (temp == "c" || temp == "call") {
-            type = Option::Call;
-        } else if (temp == "p" || temp == "put") {
-            type = Option::Put;
-        } else if (temp == "s" || temp == "straddle") {
-            type = Option::Straddle;
-        } else
-            throw Error("Unknown option type");
-
+        Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying       = xlunderlying.AsDouble();
         double moneyness           = xlmoneyness.AsDouble();
         std::vector<double> dividendYield    = xldividendYield.AsDoubleVector();
@@ -255,19 +200,7 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        std::string temp(xltype.AsString());
-        temp = StringFormatter::toLowercase(temp);
-
-        Option::Type type;
-        if (temp == "c" || temp == "call") {
-            type = Option::Call;
-        } else if (temp == "p" || temp == "put") {
-            type = Option::Put;
-        } else if (temp == "s" || temp == "straddle") {
-            type = Option::Straddle;
-        } else
-            throw Error("Unknown option type");
-
+        Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying       = xlunderlying.AsDouble();
         double moneyness           = xlmoneyness.AsDouble();
         std::vector<double> dividendYield    = xldividendYield.AsDoubleVector();
@@ -276,9 +209,6 @@ extern "C"
         std::vector<double> volatility       = xlvolatility.AsDoubleVector();
         bool antitheticVariance = xlantitheticVariance.AsBool();
         Size samples            = xlsamples.AsDouble();
-
-
-
 
         McCliquetOption cliquet(type, underlying, moneyness, dividendYield,
            riskFreeRate, times, volatility, antitheticVariance);
@@ -303,19 +233,7 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        std::string temp(xltype.AsString());
-        temp = StringFormatter::toLowercase(temp);
-
-        Option::Type type;
-        if (temp == "c" || temp == "call") {
-            type = Option::Call;
-        } else if (temp == "p" || temp == "put") {
-            type = Option::Put;
-        } else if (temp == "s" || temp == "straddle") {
-            type = Option::Straddle;
-        } else
-            throw Error("Unknown option type");
-
+        Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying       = xlunderlying.AsDouble();
         double moneyness           = xlmoneyness.AsDouble();
         std::vector<double> dividendYield    = xldividendYield.AsDoubleVector();
@@ -353,19 +271,7 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        std::string temp(xltype.AsString());
-        temp = StringFormatter::toLowercase(temp);
-
-        Option::Type type;
-        if (temp == "c" || temp == "call") {
-            type = Option::Call;
-        } else if (temp == "p" || temp == "put") {
-            type = Option::Put;
-        } else if (temp == "s" || temp == "straddle") {
-            type = Option::Straddle;
-        } else
-            throw Error("Unknown option type");
-
+        Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying       = xlunderlying.AsDouble();
         double moneyness           = xlmoneyness.AsDouble();
         std::vector<double> dividendYield    = xldividendYield.AsDoubleVector();
@@ -403,19 +309,7 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        std::string temp(xltype.AsString());
-        temp = StringFormatter::toLowercase(temp);
-
-        Option::Type type;
-        if (temp == "c" || temp == "call") {
-            type = Option::Call;
-        } else if (temp == "p" || temp == "put") {
-            type = Option::Put;
-        } else if (temp == "s" || temp == "straddle") {
-            type = Option::Straddle;
-        } else
-            throw Error("Unknown option type");
-
+        Option::Type type = QlXlfOper(xltype).AsOptionType();
         double underlying    = xlunderlying.AsDouble();
         double strike        = xlstrike.AsDouble();
         double dividendYield = xldividendYield.AsDouble();

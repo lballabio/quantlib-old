@@ -22,8 +22,7 @@
 
 // $Id$
 
-#include <qlxl/qlxl.hpp>
-#include <qlxl/mathf.hpp>
+#include <qlxl/qlxlfoper.hpp>
 
 extern "C"
 {
@@ -59,32 +58,12 @@ extern "C"
         EXCEL_BEGIN;
         std::vector<double> x_value = xlx_array.AsDoubleVector();
         std::vector<double> y_value = xly_array.AsDoubleVector();
-
-
-        // Initialization of the counter variables.
-        size_t i, j, rowNo = y_value.size(), colNo = x_value.size();
-
-        XlfRef matrix_range = xlz_matrix.AsRef();
-        QL_REQUIRE(matrix_range.GetNbCols()==colNo,
+        Math::Matrix data_matrix = QlXlfOper(xlz_matrix).AsMatrix();
+        QL_REQUIRE(data_matrix.columns()==x_value.size(),
             "the matrix range must be NxM");
-        QL_REQUIRE(matrix_range.GetNbRows()==rowNo,
+        QL_REQUIRE(data_matrix.rows()==y_value.size(),
             "the matrix range must be NxM");
 
-
-        // XlfExcel::Coerce method (internally called) will return to Excel
-        // if one of the cell was invalidated and need to be recalculated.
-        // Excel will calculate this cell and call again our function.
-        // Thus we copy first all the data to avoid to partially compute the
-        // average for nothing since one of the cell might be uncalculated.
-
-        // Allocate the vectors where to copy the values.
-        Math::Matrix data_matrix(rowNo, colNo);
-        for (i = 0; i < rowNo; ++i) {
-            for (j = 0; j < colNo; ++j) {
-                data_matrix[i][j] = matrix_range(i,j).AsDouble();
-            }
-        }
-        
         double result = Functions::interpolate2D(x_value, y_value, data_matrix,
             xlx.AsDouble(), xly.AsDouble(), xlinterpolation2DType.AsInt(),
             xlallowExtrapolation.AsBool());

@@ -25,14 +25,19 @@
 #ifndef qlxl_qlxlfoper_h
 #define qlxl_qlxlfoper_h
 
-class QlXlfOper : public XlfOper {
+#include <qlxl/qlxl.hpp>
+
+class QlXlfOper {
 public:
-    QlXlfOper(XlfOper xlfOper);
+    QlXlfOper(const XlfOper& xlfOper);
+    QuantLib::DayCounter AsDayCounter() const;
+    QuantLib::Date AsDate() const;
+    std::vector<QuantLib::Date> AsDateVector() const;
+    QuantLib::Math::Matrix AsMatrix() const;
+    QuantLib::Option::Type AsOptionType() const;
 private:
     XlfOper xlfOper_;
 };
 
-QlXlfOper::QlXlfOper(XlfOper xlfOper)
-: xlfOper_(xlfOper) {}
 
 #endif

@@ -22,8 +22,7 @@
 
 // $Id$
 
-#include <qlxl/qlxl.hpp>
-#include <qlxl/montecarlo.hpp>
+#include <qlxl/qlxlfoper.hpp>
 
 extern "C"
 {

@@ -22,8 +22,7 @@
 
 // $Id$
 
-#include <qlxl/qlxl.hpp>
-#include <qlxl/datef.hpp>
+#include <qlxl/qlxlfoper.hpp>
 
 extern "C"
 {
@@ -38,38 +37,9 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        std::string inputString(xlDayCountType.AsString());
-        std::string s = StringFormatter::toLowercase(inputString);
-        DayCounter dc = DayCounters::Actual365();
-
-
-        if (s == "1" || s == "act365" || s == "act/365")
-            dc = DayCounters::Actual365();
-        else if (s == "2" || s == "act360" || s == "act/360")
-            dc = DayCounters::Actual360();
-        else if (s == "3" || s == "actacte" || s == "act/act(e)" || s == "act/act(Euro)")
-            dc = DayCounters::ActualActual(DayCounters::ActualActual::Euro);
-        else if (s == "4" || s == "30/360" || s == "30/360us")
-            dc = DayCounters::Thirty360(DayCounters::Thirty360::USA);
-        else if (s == "5" || s == "30e/360" || s == "30/360e" || s == "30/360eu")
-            dc = DayCounters::Thirty360(DayCounters::Thirty360::European);
-        else if (s == "6" || s == "30/360i" || s == "30/360it")
-            dc = DayCounters::Thirty360(DayCounters::Thirty360::Italian);
-        else if (s == "7" || s == "actact" || s == "act/act" || s == "act/act(b)" || s == "act/act (Bond)")
-            dc = DayCounters::ActualActual(DayCounters::ActualActual::Bond);
-        else if (s == "8" || s == "actacth" || s == "act/act(h)" || s == "act/act (ISDA)")
-            dc = DayCounters::ActualActual(DayCounters::ActualActual::Historical);
-        else if (s == "9" || s == "30/360isda")
-            dc = DayCounters::Thirty360(DayCounters::Thirty360::USA);
-        else if (s == "10"|| s == "30e/360isda")
-            dc = DayCounters::Thirty360(DayCounters::Thirty360::European);
-        else
-            throw Error("Unknown day counter: " + inputString);
-
-
-		Date d1(xlDate1.AsInt());
-		Date d2(xlDate2.AsInt());
-
+		Date d1 = QlXlfOper(xlDate1).AsDate();
+		Date d2 = QlXlfOper(xlDate2).AsDate();
+        DayCounter dc = QlXlfOper(xlDayCountType).AsDayCounter();
 		double result = Functions::accrualDays(dc, d1, d2);
         return XlfOper(result);
 
@@ -85,44 +55,11 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        std::string inputString(xlDayCountType.AsString());
-        std::string s = StringFormatter::toLowercase(inputString);
-        DayCounter dc = DayCounters::Actual365();
-
-
-        if (s == "1" || s == "act365" || s == "act/365")
-            dc = DayCounters::Actual365();
-        else if (s == "2" || s == "act360" || s == "act/360")
-            dc = DayCounters::Actual360();
-        else if (s == "3" || s == "actacte" || s == "act/act(e)" || s == "act/act(Euro)")
-            dc = DayCounters::ActualActual(DayCounters::ActualActual::Euro);
-        else if (s == "4" || s == "30/360" || s == "30/360us")
-            dc = DayCounters::Thirty360(DayCounters::Thirty360::USA);
-        else if (s == "5" || s == "30e/360" || s == "30/360e" || s == "30/360eu")
-            dc = DayCounters::Thirty360(DayCounters::Thirty360::European);
-        else if (s == "6" || s == "30/360i" || s == "30/360it")
-            dc = DayCounters::Thirty360(DayCounters::Thirty360::Italian);
-        else if (s == "7" || s == "actact" || s == "act/act" || s == "act/act(b)" || s == "act/act (Bond)")
-            dc = DayCounters::ActualActual(DayCounters::ActualActual::Bond);
-        else if (s == "8" || s == "actacth" || s == "act/act(h)" || s == "act/act (ISDA)")
-            dc = DayCounters::ActualActual(DayCounters::ActualActual::Historical);
-        else if (s == "9" || s == "30/360isda")
-            dc = DayCounters::Thirty360(DayCounters::Thirty360::USA);
-        else if (s == "10"|| s == "30e/360isda")
-            dc = DayCounters::Thirty360(DayCounters::Thirty360::European);
-        else
-            throw Error("Unknown day counter: " + inputString);
-
-
-		Date d1(xlDate1.AsInt());
-		Date d2(xlDate2.AsInt());
-
-        Date d3 = Date();
-        Date d4 = Date();
-/*
-        if (!xlDate3.IsMissing()) d3(xlDate3.AsInt());
-        if (!xlDate4.IsMissing)() d4(xlDate4.AsInt());
-*/
+		Date d1 = QlXlfOper(xlDate1).AsDate();
+		Date d2 = QlXlfOper(xlDate2).AsDate();
+        DayCounter dc = QlXlfOper(xlDayCountType).AsDayCounter();
+		Date d3 = QlXlfOper(xlDate3).AsDate();
+		Date d4 = QlXlfOper(xlDate4).AsDate();
 
         double result = Functions::accrualFactor(dc, d1, d2, d3, d4);
         return XlfOper(result);

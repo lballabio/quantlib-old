@@ -23,7 +23,7 @@
 // $Id$
 
 #include <qlxl/qlxl.hpp>
-#include <ql/quantlib.hpp>
+#include <qlxl/qlxlfoper.hpp>
 
 extern "C"
 {
@@ -67,18 +67,7 @@ extern "C"
             <QuantoOptionParameters<VanillaOptionParameters>*>(
             quantoEngine->parameters());
 
-        std::string temp(xltype.AsString());
-        temp = StringFormatter::toLowercase(temp);
-        Option::Type type;
-        if (temp == "c" || temp == "call") {
-            type = Option::Call;
-        } else if (temp == "p" || temp == "put") {
-            type = Option::Put;
-        } else if (temp == "s" || temp == "straddle") {
-            type = Option::Straddle;
-        } else
-            throw Error("Unknown option type");
-        parameters->type = type;
+        parameters->type = QlXlfOper(xltype).AsOptionType();
         parameters->underlying = xlunderlying.AsDouble();
         parameters->strike = xlstrike.AsDouble();
         parameters->dividendYield = xldividendYield .AsDouble();
@@ -139,18 +128,7 @@ extern "C"
             <ForwardOptionParameters<VanillaOptionParameters>*>(
             forwardEngine->parameters());
 
-        std::string temp(xltype.AsString());
-        temp = StringFormatter::toLowercase(temp);
-        Option::Type type;
-        if (temp == "c" || temp == "call") {
-            type = Option::Call;
-        } else if (temp == "p" || temp == "put") {
-            type = Option::Put;
-        } else if (temp == "s" || temp == "straddle") {
-            type = Option::Straddle;
-        } else
-            throw Error("Unknown option type");
-        parameters->type = type;
+        parameters->type = QlXlfOper(xltype).AsOptionType();
         parameters->underlying = xlunderlying.AsDouble();
         // dummy strike
         // ForwardOptionParameter shoul not include strike
@@ -205,18 +183,7 @@ extern "C"
             <ForwardOptionParameters<VanillaOptionParameters>*>(
             performanceEngine->parameters());
 
-        std::string temp(xltype.AsString());
-        temp = StringFormatter::toLowercase(temp);
-        Option::Type type;
-        if (temp == "c" || temp == "call") {
-            type = Option::Call;
-        } else if (temp == "p" || temp == "put") {
-            type = Option::Put;
-        } else if (temp == "s" || temp == "straddle") {
-            type = Option::Straddle;
-        } else
-            throw Error("Unknown option type");
-        parameters->type = type;
+        parameters->type = QlXlfOper(xltype).AsOptionType();
         // dummy underlying
         // ForwardPerformanceOptionParameter should not include underlying
         parameters->underlying = xlunderlying.AsDouble();

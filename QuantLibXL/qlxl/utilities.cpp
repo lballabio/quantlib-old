@@ -23,7 +23,6 @@
 // $Id$
 
 #include <qlxl/qlxl.hpp>
-#include <qlxl/utilities.hpp>
 
 extern "C"
 {
