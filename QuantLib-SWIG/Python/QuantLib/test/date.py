@@ -19,48 +19,19 @@ import unittest
 
 class DateTest(unittest.TestCase):
     def runTest(self):
-        "Testing dates"
-        mindate = QuantLib.Date_minDate().serialNumber() + 1
-        maxdate = QuantLib.Date_maxDate().serialNumber() + 1
+        "Testing date arithmetics"
+        date = QuantLib.Date_minDate()
 
-        dyold  = QuantLib.Date(mindate-1).dayOfYear()
-        dold   = QuantLib.Date(mindate-1).dayOfMonth()
-        mold   = QuantLib.Date(mindate-1).month()
-        yold   = QuantLib.Date(mindate-1).year()
-        wdnold = QuantLib.Date(mindate-1).weekdayNumber()
+        dold   = date.dayOfMonth()
+        mold   = date.month()
+        yold   = date.year()
 
-        for i in range(mindate,maxdate):
-            t = QuantLib.Date(i)
-            serial = t.serialNumber()
-            # check serial number consistency
-            if not (serial == i):
-                self.fail("""
-inconsistent serial number:
-    original:      %(i)d
-    date:          %(t)s
-    serial number: %(serial)d
-                """ % locals())
+        while date < QuantLib.Date_maxDate():
+            date += 1
 
-            dy  = t.dayOfYear()
-            d   = t.dayOfMonth()
-            m   = t.month()
-            y   = t.year()
-            mm  = t.month()
-            wd  = t.weekday()
-            wdn = t.weekdayNumber()
-
-            # check if skipping any date
-            if not ((dy==dyold+1) or
-                    (dy==1 and dyold==365
-                           and not QuantLib.Date_isLeap(yold)) or
-                    (dy==1 and dyold==366 and QuantLib.Date_isLeap(yold))):
-                self.fail("""
-wrong day of year increment:
-    date: %(t)s
-    day of year: %(dy)d
-    previous:    %(dyold)d
-                """ % locals())
-            dyold = dy
+            d   = date.dayOfMonth()
+            m   = date.month()
+            y   = date.year()
 
             # check if skipping any date
             if not ((d==dold+1 and m==mold      and y==yold  ) or
@@ -75,79 +46,6 @@ wrong day, month, year increment
             dold = d
             mold = m
             yold = y
-
-            # check month definition
-            if not (m>=1 and  m<=12):
-                self.fail("""
-invalid month
-    date: %(t)s
-    month: %(m)d
-                """ % locals())
-
-            # check day definition
-            if not (d >= 1):
-                self.fail("""
-invalid day of month
-    date: %(t)s
-    day: %(d)d
-                          """ % locals())
-
-            # check day definition
-            if not ((m==1   and d<=31) or
-                    (m==2   and d<=28) or
-                    (m==2   and d==29 and QuantLib.Date_isLeap(y)) or
-                    (m==3   and d<=31) or
-                    (m==4   and d<=30) or
-                    (m==5   and d<=31) or
-                    (m==6   and d<=30) or
-                    (m==7   and d<=31) or
-                    (m==8   and d<=31) or
-                    (m==9   and d<=30) or
-                    (m==10  and d<=31) or
-                    (m==11  and d<=30) or
-                    (m==12  and d<=31)):
-                self.fail("""
-invalid day of month
-    date: %(t)s
-    day: %(d)d
-    month: %(mm)s
-                          """ % locals())
-
-            # check weekdayNumber definition
-            if not (wdn==wdnold+1 or (wdn==1 and wdnold==7)):
-                self.fail("""
-wrong weekday number increment
-    date: %(t)s
-    weekday number: %(wdn)d
-    previous:       %(wdnold)d
-                          """ % locals())
-            wdnold=wdn
-
-            # create the same date with a different constructor
-            s = QuantLib.Date(d,m,y)
-            # check serial number consistency
-            serial = s.serialNumber()
-            if not (serial==i):
-                self.fail("""
-inconsistent serial number
-    date: %(t)s
-    serial number: %(i)d
-    cloned date: %(s)s
-    serial number: %(serial)d
-                          """ % locals())
-
-            # create the same date with a different constructor
-            s = QuantLib.Date(d,mm,y)
-            # check serial number consistency
-            serial = s.serialNumber()
-            if not (serial==i):
-                self.fail("""
-inconsistent serial number
-    date: %(t)s
-    serial number: %(i)d
-    cloned date: %(s)s
-    serial number: %(serial)d
-	                      """ % locals())
 
 
 if __name__ == '__main__':

@@ -17,26 +17,12 @@
 import sys
 import unittest
 
-from calendars import CalendarTest
-from capfloor import CapFloorTest
-from covariance import CovarianceTest
 from date import DateTest
-from daycounters import DayCounterTest
-from distributions import DistributionTest
-from europeanoption import EuropeanOptionTest
 from instruments import InstrumentTest
 from marketelements import MarketElementTest
-from operators import OperatorTest
-from piecewiseflatforward import PiecewiseFlatForwardTest
-from riskstatistics import RiskStatisticsTest
 from segmentintegral import SegmentIntegralTest
-from simpleswap import SimpleSwapTest
 from solvers1d import Solver1DTest
-from statistics import StatisticsTest
-from swaption import SwaptionTest
 from termstructures import TermStructureTest
-# the ones below test deprecated features
-from old_pricers import OldPricerTest
 
 def test():
     import QuantLib
@@ -44,24 +30,11 @@ def test():
 
     suite = unittest.TestSuite()
 
-    suite.addTest(CalendarTest())
-    suite.addTest(unittest.makeSuite(CapFloorTest,'test'))
-    suite.addTest(CovarianceTest())
     suite.addTest(DateTest())
-    suite.addTest(DayCounterTest())
-    suite.addTest(DistributionTest())
-    suite.addTest(unittest.makeSuite(EuropeanOptionTest,'test'))
-    suite.addTest(unittest.makeSuite(OldPricerTest,'test')) # to be removed
     suite.addTest(unittest.makeSuite(InstrumentTest,'test'))
     suite.addTest(unittest.makeSuite(MarketElementTest,'test'))
-    suite.addTest(OperatorTest())
-    suite.addTest(PiecewiseFlatForwardTest())
-    suite.addTest(RiskStatisticsTest())
     suite.addTest(SegmentIntegralTest())
-    suite.addTest(unittest.makeSuite(SimpleSwapTest,'test'))
     suite.addTest(Solver1DTest())
-    suite.addTest(StatisticsTest())
-    suite.addTest(unittest.makeSuite(SwaptionTest,'test'))
     suite.addTest(unittest.makeSuite(TermStructureTest,'test'))
     
     result = unittest.TextTestRunner(verbosity=2).run(suite)

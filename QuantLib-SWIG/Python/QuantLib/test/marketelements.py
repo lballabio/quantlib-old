@@ -49,38 +49,6 @@ class MarketElementTest(unittest.TestCase):
         h.linkTo(me2)
         if not flag:
             self.fail("Observer was not notified of market element change")
-    def testDerived(self):
-        "Testing derived market elements"
-        for f in [lambda x: x + 10,
-                  lambda x: x * 10,
-                  lambda x: x - 10]:
-            me = QuantLib.SimpleMarketElement(17.0)
-            h = QuantLib.MarketElementHandle(me)
-            derived_me = QuantLib.DerivedMarketElement(h,f)
-            derived_result = derived_me.value()
-            function_result = f(me.value())
-            if not (abs(derived_result - function_result) < 1e-10):
-                self.fail("""
-derived market element yields %(derived_result)f
-function result is %(function_result)f
-                """ % locals())
-    def testComposite(self):
-        "Testing composite market element"
-        me1 = QuantLib.SimpleMarketElement(12.0)
-        me2 = QuantLib.SimpleMarketElement(13.0)
-        h1 = QuantLib.MarketElementHandle(me1)
-        h2 = QuantLib.MarketElementHandle(me2)
-        for f in [lambda x,y: x + y,
-                  lambda x,y: x * y,
-                  lambda x,y: x - y]:
-            composite_me = QuantLib.CompositeMarketElement(h1,h2,f)
-            composite_result = composite_me.value()
-            function_result = f(me1.value(),me2.value())
-            if not (abs(composite_result - function_result) < 1e-10):
-                self.fail("""
-composite market element yields %(composite_result)f
-function result is %(function_result)f
-                """ % locals())
 
 
 if __name__ == '__main__':

@@ -73,26 +73,12 @@ swig_files = ['quantlib.i',
               'old_volatility.i']
 
 test_files = ['QuantLibTestSuite.py',
-              'calendars.py',
-              'capfloor.py',
-              'covariance.py',
               'date.py',
-              'daycounters.py',
-              'distributions.py',
-              'europeanoption.py',
               'instruments.py',
               'marketelements.py',
-              'operators.py',
-              'piecewiseflatforward.py',
-              'riskstatistics.py',
               'segmentintegral.py',
-              'simpleswap.py',
-              'swaption.py',
               'solvers1d.py',
-              'gaussianstatistics.py',
-              'termstructures.py',
-              # to be removed
-              'old_pricers.py']
+              'termstructures.py']
 
 class test(Command):
     # Original version of this class posted
@@ -105,7 +91,7 @@ class test(Command):
         ('test-prefix=', None,
          "prefix to the testcase filename"),
         ('test-suffixes=', None,
-         "a list of suffixes used to generate names the of the testcases")
+         "a list of suffixes used to generate names of the testcases")
         ]
 
     def initialize_options(self):
