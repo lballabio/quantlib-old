@@ -83,11 +83,11 @@ TLIB_OPTS    = /P32
 
 # Primary target:
 # ObjectHandler library
-$(OUTPUT_DIR)\ObjectHandler-bcb$(_mt)$(_D)-0_0_1.lib:: $(OUTPUT_DIR) $(CORE_OBJS)
-    if exist $(OUTPUT_DIR)\ObjectHandler-bcb$(_mt)$(_D)-0_0_1.lib \
-         del $(OUTPUT_DIR)\ObjectHandler-bcb$(_mt)$(_D)-0_0_1.lib
+$(OUTPUT_DIR)\ObjectHandler-bcb$(_mt)$(_D)-$(VERSION_STRING).lib:: $(OUTPUT_DIR) $(CORE_OBJS)
+    if exist $(OUTPUT_DIR)\ObjectHandler-bcb$(_mt)$(_D)-$(VERSION_STRING).lib \
+         del $(OUTPUT_DIR)\ObjectHandler-bcb$(_mt)$(_D)-$(VERSION_STRING).lib
     $(TLIB) $(TLIB_OPTS) \
-        "$(OUTPUT_DIR)\ObjectHandler-bcb$(_mt)$(_D)-0_0_1.lib" /a $(CORE_OBJS)
+        "$(OUTPUT_DIR)\ObjectHandler-bcb$(_mt)$(_D)-$(VERSION_STRING).lib" /a $(CORE_OBJS)
 
 $(OUTPUT_DIR):
     if not exist ..\lib md ..\lib

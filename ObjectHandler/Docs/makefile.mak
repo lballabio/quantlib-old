@@ -25,12 +25,12 @@ all:: html-config htmlhelp-config tex-config tex-files
     $(LATEX) $(TEX_OPTS) refman
     $(DVIPS) refman
     cd ..
-    copy latex\refman.pdf ObjectHandler-docs-0.0.1.pdf
-    copy latex\refman.ps  ObjectHandler-docs-0.0.1.ps
+    copy latex\refman.pdf ObjectHandler-docs-$(VERSION).pdf
+    copy latex\refman.ps  ObjectHandler-docs-$(VERSION).ps
 
 generic-config::
     $(SED) -e "s|oh_basepath|D:/Projects/ObjectHandler|" \
-           -e "s|oh_version|0.0.1|" \
+           -e "s|oh_version|$(VERSION)|" \
            objecthandler.doxy > objecthandler.doxy.temp
 
 html-config:: generic-config
@@ -121,7 +121,7 @@ pdf:: tex-files
     $(MAKEINDEX) refman.idx
     $(PDFLATEX) $(TEX_OPTS) refman
     cd ..
-    copy latex\refman.pdf ObjectHandler-docs-0.0.1.pdf
+    copy latex\refman.pdf ObjectHandler-docs-$(VERSION).pdf
 
 # PostScript documentation
 ps:: tex-files
@@ -131,7 +131,7 @@ ps:: tex-files
     $(LATEX) $(TEX_OPTS) refman
     $(DVIPS) refman
     cd ..
-    copy latex\refman.ps ObjectHandler-docs-0.0.1.ps
+    copy latex\refman.ps ObjectHandler-docs-$(VERSION).ps
 
 
 # Clean up

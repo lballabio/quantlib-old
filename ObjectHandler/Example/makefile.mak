@@ -69,7 +69,7 @@ $(EXE_DIR)\Example-bcb$(_mt)$(_D).exe:: $(EXE_DIR) $(OBJHANDLER_EXAMPLE_LIB)
          del $(EXE_DIR)\Example-bcb$(_mt)$(_D).exe
     $(CC) $(CC_OPTS) -L$(OBJECT_HANDLER_LIB_DIR) \
           -e"$(EXE_DIR)\Example-bcb$(_mt)$(_D).exe" \
-          $(OBJHANDLER_EXAMPLE_LIB) ObjectHandler-bcb$(_mt)$(_D)-0_0_1.lib
+          $(OBJHANDLER_EXAMPLE_LIB) ObjectHandler-bcb$(_mt)$(_D)-$(VERSION_STRING).lib
 
 $(EXE_DIR):
     if not exist .\bin md .\bin
