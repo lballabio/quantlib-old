@@ -53,6 +53,7 @@
 %include daycounters.i
 %include distributions.i
 %include null.i
+%include observer.i
 %include qlarray.i
 %include randomnumbers.i
 %include string.i

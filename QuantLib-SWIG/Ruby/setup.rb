@@ -63,9 +63,9 @@ Scripts  =   [ 'setup.rb' ]
 Interfaces = [
     'common.i',             'calendars.i',          'currencies.i',
     'date.i',               'daycounters.i',        'distributions.i',
-    'null.i',               'quantlib.i',           'ql.i',
-    'qlarray.i',            'randomnumbers.i',      'string.i',
-    'types.i'
+    'null.i',               'observer.i',           'quantlib.i',
+    'ql.i',                 'qlarray.i',            'randomnumbers.i',
+    'string.i',             'types.i'
 ]
 Tests = [
     'dates.rb',                     'daycounters.rb',

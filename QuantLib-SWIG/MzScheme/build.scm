@@ -3,6 +3,7 @@
 (require-library "link.ss" "dynext")
 (require-library "file.ss" "dynext")
 
+(display "Generating wrappers for QuantLib...") (newline)
 (system "swig -mzscheme -c++ -I../SWIG -o quantlib_wrap.cpp quantlib.i")
 
 (let ((platform (system-type))

@@ -32,6 +32,10 @@
 %typemap(in) VALUE { $1 = $input; };
 #endif
 
+#if defined(SWIGMZSCHEME)
+%typemap(in) Scheme_Object* { $1 = $input; };
+#endif
+
 
 
 // typemap a C++ type to integers in the scripting language
