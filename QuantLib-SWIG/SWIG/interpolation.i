@@ -51,8 +51,8 @@ class SafeInterpolation {
   public:
     SafeInterpolation(const Array& x, const Array& y)
     : x_(x), y_(y), f_(x_.begin(),x_.end(),y_.begin()) {}
-    Real operator()(Real x, bool allowExtrapolation=false) { 
-        return f_(x, allowExtrapolation); 
+    Real operator()(Real x, bool allowExtrapolation=false) {
+        return f_(x, allowExtrapolation);
     }
     Array x_, y_;
     I f_;
@@ -75,9 +75,11 @@ class Safe##T {
 %enddef
 
 make_safe_interpolation(LinearInterpolation,LinearInterpolation);
+make_safe_interpolation(LogLinearInterpolation,LogLinearInterpolation);
+make_safe_interpolation(BackwardFlatInterpolation,BackwardFlatInterpolation);
+make_safe_interpolation(ForwardFlatInterpolation,ForwardFlatInterpolation);
 make_safe_interpolation(NaturalCubicSpline,CubicSpline);
 make_safe_interpolation(NaturalMonotonicCubicSpline,MonotonicCubicSpline);
-make_safe_interpolation(LogLinearInterpolation,LogLinearInterpolation);
 
 %define extend_spline(T)
 %extend Safe##T {
