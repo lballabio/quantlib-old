@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,24 +15,25 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef objectstochastic_h
-#define objectstochastic_h
+#ifndef qla_stochasticprocess_hpp
+#define qla_stochasticprocess_hpp
 
 #include <ObjectHandler/objhandler.hpp>
-#include <ql/quantlib.hpp>
+#include <ql/stochasticprocess.hpp>
 
 namespace QuantLibAddin {
 
-    class ObjectStochastic : public ObjHandler::Object {
+    class StochasticProcess : public ObjHandler::Object {
     public:
-        ObjectStochastic(
-            const QuantLib::Spread &dividendYield,
-            const QuantLib::Rate &riskFreeRate,
-            const QuantLib::Volatility &volatility,
+
+        StochasticProcess(
             const QuantLib::Real &underlying,
-            const QuantLib::Date &todaysDate,
-            const QuantLib::Date &settlementDate);
-//        ~ObjectStochastic();
+            const std::string &dayCounterID,
+            const QuantLib::Date &settlementDate,
+            const QuantLib::Rate &riskFreeRate,
+            const QuantLib::Spread &dividendYield,
+            const QuantLib::Volatility &volatility);
+//        ~StochasticProcess();
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(stochasticProcess_);
         }

@@ -7,23 +7,23 @@
 CFG=QuantLibAddin - Win32 Debug SingleThread
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE
+!MESSAGE 
 !MESSAGE NMAKE /f "QuantLibAddin.mak".
-!MESSAGE
+!MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE
+!MESSAGE 
 !MESSAGE NMAKE /f "QuantLibAddin.mak" CFG="QuantLibAddin - Win32 Debug SingleThread"
-!MESSAGE
+!MESSAGE 
 !MESSAGE Possible choices for configuration are:
-!MESSAGE
+!MESSAGE 
 !MESSAGE "QuantLibAddin - Win32 Release" (based on "Win32 (x86) Static Library")
 !MESSAGE "QuantLibAddin - Win32 Debug" (based on "Win32 (x86) Static Library")
 !MESSAGE "QuantLibAddin - Win32 Release MTDLL" (based on "Win32 (x86) Static Library")
 !MESSAGE "QuantLibAddin - Win32 Release SingleThread" (based on "Win32 (x86) Static Library")
 !MESSAGE "QuantLibAddin - Win32 Debug MTDLL" (based on "Win32 (x86) Static Library")
 !MESSAGE "QuantLibAddin - Win32 Debug SingleThread" (based on "Win32 (x86) Static Library")
-!MESSAGE
+!MESSAGE 
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -68,7 +68,7 @@ LIB32=link.exe -lib
 # PROP Intermediate_Dir "build\vc6\Debug"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
-# ADD CPP /nologo /MTd /W3 /Gm /GR /GX /ZI /Od /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "./" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /D "" /YX /FD /GZ /c
+# ADD CPP /nologo /MTd /W3 /Gm /GR /GX /ZI /Od /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "./" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /FR /YX /FD /GZ /c
 # ADD BASE RSC /l 0x809 /d "_DEBUG"
 # ADD RSC /l 0x809 /d "_DEBUG"
 BSC32=bscmake.exe
@@ -170,7 +170,7 @@ LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"lib\QuantLibAddin_d.lib"
 # ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-sgd-0_3_9.lib"
 
-!ENDIF
+!ENDIF 
 
 # Begin Target
 
@@ -185,19 +185,43 @@ LIB32=link.exe -lib
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objects\objectoption.cpp
+SOURCE=.\QuantLibAddin\objects\asianoption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objects\objectoption.hpp
+SOURCE=.\QuantLibAddin\objects\asianoption.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objects\objectstochastic.cpp
+SOURCE=.\QuantLibAddin\objects\barrieroption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin\objects\objectstochastic.hpp
+SOURCE=.\QuantLibAddin\objects\barrieroption.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\objects\optionutils.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\objects\optionutils.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\objects\stochasticprocess.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\objects\stochasticprocess.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\objects\vanillaoption.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin\objects\vanillaoption.hpp
 # End Source File
 # End Group
 # Begin Group "functions"

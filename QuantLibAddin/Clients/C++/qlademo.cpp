@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,8 +16,8 @@
 */
 
 #include <QuantLibAddin/qladdin.hpp>
-#include <QuantLibAddin/objects/objectoption.hpp>		// ObjectOption
-#include <ql/quantlib.hpp>								// VanillaOption, Date
+#include <QuantLibAddin/objects/vanillaoption.hpp>
+#include <ql/quantlib.hpp>
 #include <iostream>
 
 using namespace std;
@@ -41,13 +41,28 @@ int main() {
 		Date exerciseDate(17, May, 1999);
 		Date settlementDate(17, May, 1998);
 	    Date todaysDate(15, May, 1998);
+		Properties bsProperties = QL_STOCHASTIC_PROCESS(
+            "my_stochastic", 
+            underlying,
+            "ACT360",
+            settlementDate.serialNumber(),
+            riskFreeRate,
+            dividendYield, 
+			volatility);
+
+		Properties opProperties = QL_OPTION_VANILLA(
+            "my_option",                    // option handle
+            "my_stochastic",                // stochastic process handle
+            "PUT",                          // option type
+            "VAN",                          // payoff type (plain vanilla)
+			strike,                         // strike price
+            "AM",                           // exercise type (american)
+            exerciseDate.serialNumber(),    // exercise date
+            settlementDate.serialNumber(),  // settlement date
+            "JR",                           // engine type (jarrow rudd)
+            timeSteps);                     // time steps
 	
-		Properties bsProperties = QL_BLACKSCHOLES("my_blackscholes", dividendYield, riskFreeRate,
-			volatility, underlying, todaysDate.serialNumber(), settlementDate.serialNumber());
-		Properties opProperties = QL_OPTION("my_option", "my_blackscholes", "PUT", 
-			strike, timeSteps, exerciseDate.serialNumber(), settlementDate.serialNumber());
-	
-		cout << endl << "High-level interrogation: after QL_OPTION" << endl;
+		cout << endl << "High-level interrogation: after QL_OPTION_VANILLA" << endl;
 		Properties::const_iterator i;
         for (i = opProperties.begin();
             i != opProperties.end(); i++) {
@@ -57,7 +72,10 @@ int main() {
                 QL_ANY2STRING(any) << endl;
         } 
 
-		QL_OPTION_SETENGINE("my_option", "Additive Equiprobabilities", 801);
+		QL_OPTION_SETENGINE(
+            "my_option", 
+            "AEQPB",    // AdditiveEQPBinomialTree
+            801);
 
 		cout << endl << "High-level interrogation: after QL_OPTION_SETENGINE" << endl;
         for (i = opProperties.begin();
@@ -69,14 +87,14 @@ int main() {
         } 
 
 		cout << endl << "Low-level interrogation: NPV of underlying option object" << endl;
-		boost::shared_ptr<ObjectOption> objectOption = 
-			boost::dynamic_pointer_cast<ObjectOption> 
+        boost::shared_ptr<QuantLibAddin::VanillaOption> vanillaOptionQLA = 
+			boost::dynamic_pointer_cast<QuantLibAddin::VanillaOption> 
 			(ObjectHandler::instance().retrieveObject("my_option"));
-		boost::shared_ptr<VanillaOption> const vanillaOption =
-			boost::static_pointer_cast<VanillaOption>
-			(objectOption->getReference());
+		boost::shared_ptr<QuantLib::VanillaOption> const vanillaOptionQL =
+			boost::static_pointer_cast<QuantLib::VanillaOption>
+			(vanillaOptionQLA->getReference());
 		cout << "underlying option NPV() = " 
-			<< vanillaOption->NPV() << endl;
+			<< vanillaOptionQL->NPV() << endl;
 
 		QL_LOGMESSAGE("end example program");
 		cout << endl << "bye" << endl;

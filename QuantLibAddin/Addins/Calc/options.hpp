@@ -15,26 +15,57 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Mon Jan 10 18:55:01 2005
+// this file generated automatically by autogen.py on Thu Jan 20 00:11:04 2005
 // editing this file manually is not recommended
 
-    virtual SEQSEQ(ANY) SAL_CALL qlBlackScholes(
+    virtual SEQSEQ(ANY) SAL_CALL qlStochasticProcess(
         const STRING & handle,
-        double dividendYield,
-        double riskFreeRate,
-        double volatility,
         double underlying,
-        sal_Int32 todaysDate,
-        sal_Int32 settlementDate) THROWDEF_RTE_IAE;
+        const STRING & dayCounterID,
+        sal_Int32 settlementDate,
+        double riskFreeRate,
+        double dividendYield,
+        double volatility) THROWDEF_RTE_IAE;
 
-    virtual SEQSEQ(ANY) SAL_CALL qlOption(
+    virtual SEQSEQ(ANY) SAL_CALL qlOptionVanilla(
         const STRING & handle,
         const STRING & handleStochastic,
         const STRING & typeOption,
+        const STRING & typePayoff,
         double strike,
-        sal_Int32 timeSteps,
+        const STRING & typeExercise,
         sal_Int32 exerciseDate,
-        sal_Int32 settlementDate) THROWDEF_RTE_IAE;
+        sal_Int32 settlementDate,
+        const STRING & typeEngine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE;
+
+    virtual SEQSEQ(ANY) SAL_CALL qlOptionAsianC(
+        const STRING & handle,
+        const STRING & handleStochastic,
+        const STRING & typeAverage,
+        const STRING & typeOption,
+        const STRING & typePayoff,
+        double strike,
+        const STRING & typeExercise,
+        sal_Int32 exerciseDate,
+        sal_Int32 settlementDate,
+        const STRING & typeEngine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE;
+
+    virtual SEQSEQ(ANY) SAL_CALL qlOptionBarrier(
+        const STRING & handle,
+        const STRING & handleStochastic,
+        const STRING & typeBarrier,
+        double barrier,
+        double rebate,
+        const STRING & typeOption,
+        const STRING & typePayoff,
+        double strike,
+        const STRING & typeExercise,
+        sal_Int32 exerciseDate,
+        sal_Int32 settlementDate,
+        const STRING & typeEngine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE;
 
     virtual SEQSEQ(ANY) SAL_CALL qlOptionSetEngine(
         const STRING & handle,

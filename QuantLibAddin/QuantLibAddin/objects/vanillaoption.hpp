@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,32 +15,29 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef objectoption_h
-#define objectoption_h
+#ifndef qla_vanillaoption_hpp
+#define qla_vanillaoption_hpp
 
-#include <QuantLibAddin/objects/objectstochastic.hpp>
+#include <QuantLibAddin/objects/stochasticprocess.hpp>
+#include <ql/Instruments/vanillaoption.hpp>
 
 namespace QuantLibAddin {
 
-    // FIXME
-    #define FIELD_NPV                         "NPV"
-    #define FIELD_ENGINE                     "ENGINE"
-    #define IDX_NPV                         0
-    #define IDX_ENGINE                         1
-    #define BINOMIAL_JARROW_RUDD            "BINOMIAL JARROW-RUDD"
-    #define BINOMIAL_COX_ROSS_RUBINSTEIN    "BINOMIAL COX-ROSS-RUBINSTEIN"
-    #define ADDITIVE_EQUIPROBABILITIES        "ADDITIVE EQUIPROBABILITIES"
-
-    class ObjectOption : public ObjHandler::Object {
+    class VanillaOption : public ObjHandler::Object {
     public:
-        ObjectOption(boost::shared_ptr<ObjectStochastic>,
-            const std::string &typestr,
+        VanillaOption(
+            boost::shared_ptr<StochasticProcess>,
+            const std::string &typeOption,
+            const std::string &typePayoff,
             const QuantLib::Real &strike,
-            const QuantLib::Size &timeSteps,
+            const std::string &typeExercise,
             const QuantLib::Date &exerciseDate,
-            const QuantLib::Date &settlementDate);
-    //    ~ObjectOption();
-        void setEngine(const std::string &engineName,
+            const QuantLib::Date &settlementDate,
+            const std::string &typeEngine,
+            const QuantLib::Size &timeSteps);
+    //    ~VanillaOption();
+        void setEngine(
+            const std::string &engineName,
             const QuantLib::Size &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(vanillaOption_);

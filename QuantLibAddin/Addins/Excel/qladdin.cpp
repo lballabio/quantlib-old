@@ -40,7 +40,15 @@ extern "C" __declspec(dllexport) int xlAutoOpen() {
             TempStr(func[i][12]),
             TempStr(func[i][13]),
             TempStr(func[i][14]),
-            TempStr(func[i][15]));
+            TempStr(func[i][15]),
+            TempStr(func[i][16]),
+            TempStr(func[i][17]),
+            TempStr(func[i][18]),
+            TempStr(func[i][19]),
+            TempStr(func[i][20]),
+            TempStr(func[i][21]),
+            TempStr(func[i][22]),
+            TempStr(func[i][23]));
     Excel(xlFree, 0, 1, &xDll);
     return 1;
 }

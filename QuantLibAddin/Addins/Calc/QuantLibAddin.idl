@@ -1,4 +1,4 @@
-// this file generated automatically by autogen.py on Mon Jan 10 18:55:01 2005
+// this file generated automatically by autogen.py on Thu Jan 20 00:11:04 2005
 // editing this file manually is not recommended
 
 #include <com/sun/star/uno/XInterface.idl>
@@ -23,24 +23,57 @@ module com {
 
                 // options
 
-                sequence < sequence < any > > qlBlackScholes(
+                sequence < sequence < any > > qlStochasticProcess(
                         [in] string handle,
-                        [in] double dividendYield,
-                        [in] double riskFreeRate,
-                        [in] double volatility,
                         [in] double underlying,
-                        [in] long todaysDate,
-                        [in] long settlementDate)
+                        [in] string dayCounterID,
+                        [in] long settlementDate,
+                        [in] double riskFreeRate,
+                        [in] double dividendYield,
+                        [in] double volatility)
                     raises( com::sun::star::lang::IllegalArgumentException );
 
-                sequence < sequence < any > > qlOption(
+                sequence < sequence < any > > qlOptionVanilla(
                         [in] string handle,
                         [in] string handleStochastic,
                         [in] string typeOption,
+                        [in] string typePayoff,
                         [in] double strike,
-                        [in] long timeSteps,
+                        [in] string typeExercise,
                         [in] long exerciseDate,
-                        [in] long settlementDate)
+                        [in] long settlementDate,
+                        [in] string typeEngine,
+                        [in] long timeSteps)
+                    raises( com::sun::star::lang::IllegalArgumentException );
+
+                sequence < sequence < any > > qlOptionAsianC(
+                        [in] string handle,
+                        [in] string handleStochastic,
+                        [in] string typeAverage,
+                        [in] string typeOption,
+                        [in] string typePayoff,
+                        [in] double strike,
+                        [in] string typeExercise,
+                        [in] long exerciseDate,
+                        [in] long settlementDate,
+                        [in] string typeEngine,
+                        [in] long timeSteps)
+                    raises( com::sun::star::lang::IllegalArgumentException );
+
+                sequence < sequence < any > > qlOptionBarrier(
+                        [in] string handle,
+                        [in] string handleStochastic,
+                        [in] string typeBarrier,
+                        [in] double barrier,
+                        [in] double rebate,
+                        [in] string typeOption,
+                        [in] string typePayoff,
+                        [in] double strike,
+                        [in] string typeExercise,
+                        [in] long exerciseDate,
+                        [in] long settlementDate,
+                        [in] string typeEngine,
+                        [in] long timeSteps)
                     raises( com::sun::star::lang::IllegalArgumentException );
 
                 sequence < sequence < any > > qlOptionSetEngine(

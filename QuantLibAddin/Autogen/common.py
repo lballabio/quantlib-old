@@ -60,4 +60,4 @@ XL_FUNC = 'stub.Excel.func'
 # maximum number of parameters to be passed to an Excel function -
 # if you change this number you must also change the call to xlfRegister
 # in QuantLibAddin\Addins\Excel\qladdin.cpp
-XLMAXPARAM=7
+XLMAXPARAM=15

@@ -15,11 +15,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Mon Jan 10 18:55:01 2005
+// this file generated automatically by autogen.py on Thu Jan 20 00:11:04 2005
 // editing this file manually is not recommended
 
-#define NUM_FUNCS 5
-#define NUM_ATTS 16
+#define NUM_FUNCS 7
+#define NUM_ATTS 24
 
 static LPSTR func[NUM_FUNCS][NUM_ATTS] = {
     // functions
@@ -36,7 +36,7 @@ static LPSTR func[NUM_FUNCS][NUM_ATTS] = {
         " retrieve the properties of a given object",
         " handle of object to be queried",// param 0
         // unused params:
-        " ", " ", " ", " ", " ", " "
+        " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "
     },
 
     {   " qlLogfile",                 // function name (code)
@@ -52,50 +52,105 @@ static LPSTR func[NUM_FUNCS][NUM_ATTS] = {
         " begin logging to named file",
         " path and name of log file", // param 0
         // unused params:
-        " ", " ", " ", " ", " ", " "
+        " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "
     },
 
     // options
-    {   " qlBlackScholes",            // function name (code)
-        " REEEENN#",                  // parameter types
-        " QL_BLACKSCHOLES",           // function name (Excel)
+    {   " qlStochasticProcess",       // function name (code)
+        " RECNEEE#",                  // parameter types
+        " QL_STOCHASTIC_PROCESS",     // function name (Excel)
         // parameter names:
-        " dividendYield,riskFreeRate,volatility,underlying,todaysDate,settlementDate",
+        " underlying,dayCounterID,settlementDate,riskFreeRate,dividendYield,volatility",
         " 1",                         // macro type
         " QuantLib",                  // category
         " ",                          // shortcut text
         " ",                          // help topic
         // function help:
-        " construct and return a handle to a Black Scholes object",
-        " dividend yield",            // param 0
-        " risk free rate",            // param 1
-        " volatility",                // param 2
-        " underlying",                // param 3
-        " today's date",              // param 4
-        " settlement date",           // param 5
+        " construct and return a handle to a Stochastic Process object",
+        " underlying",                // param 0
+        " ID of day counter",         // param 1
+        " settlement date",           // param 2
+        " risk free rate",            // param 3
+        " dividend yield",            // param 4
+        " volatility",                // param 5
         // unused params:
-        " "
+        " ", " ", " ", " ", " ", " ", " ", " ", " "
     },
 
-    {   " qlOption",                  // function name (code)
-        " RCCENNN#",                  // parameter types
-        " QL_OPTION",                 // function name (Excel)
+    {   " qlOptionVanilla",           // function name (code)
+        " RCCCECNNCN#",               // parameter types
+        " QL_OPTION_VANILLA",         // function name (Excel)
         // parameter names:
-        " handleStochastic,typeOption,strike,timeSteps,exerciseDate,settlementDate",
+        " handleStochastic,typeOption,typePayoff,strike,typeExercise,exerciseDate,settlementDate,typeEngine,timeSteps",
         " 1",                         // macro type
         " QuantLib",                  // category
         " ",                          // shortcut text
         " ",                          // help topic
         // function help:
-        " construct and return a handle to an Option object",
-        " handle of the Black Scholes object",// param 0
+        " construct and return a handle to a Vanilla Option object",
+        " handle of the Stochastic Process object",// param 0
         " option type",               // param 1
-        " strike",                    // param 2
-        " time steps",                // param 3
-        " exercise date",             // param 4
-        " settlement date",           // param 5
+        " payoff type",               // param 2
+        " strike",                    // param 3
+        " exercise type",             // param 4
+        " exercise date",             // param 5
+        " settlement date",           // param 6
+        " engine type",               // param 7
+        " time steps",                // param 8
         // unused params:
-        " "
+        " ", " ", " ", " ", " ", " "
+    },
+
+    {   " qlOptionAsianC",            // function name (code)
+        " RCCCCECNNCN#",              // parameter types
+        " QL_OPTION_ASIAN_C",         // function name (Excel)
+        // parameter names:
+        " handleStochastic,typeAverage,typeOption,typePayoff,strike,typeExercise,exerciseDate,settlementDate,typeEngine,timeSteps",
+        " 1",                         // macro type
+        " QuantLib",                  // category
+        " ",                          // shortcut text
+        " ",                          // help topic
+        // function help:
+        " construct and return a handle to a ContinuousAveragingAsianOption object",
+        " handle of the Stochastic Process object",// param 0
+        " average type",              // param 1
+        " option type",               // param 2
+        " payoff type",               // param 3
+        " strike",                    // param 4
+        " exercise type",             // param 5
+        " exercise date",             // param 6
+        " settlement date",           // param 7
+        " engine type",               // param 8
+        " time steps",                // param 9
+        // unused params:
+        " ", " ", " ", " ", " "
+    },
+
+    {   " qlOptionBarrier",           // function name (code)
+        " RCCEECCECNNCN#",            // parameter types
+        " QL_OPTION_BARRIER",         // function name (Excel)
+        // parameter names:
+        " handleStochastic,typeBarrier,barrier,rebate,typeOption,typePayoff,strike,typeExercise,exerciseDate,settlementDate,typeEngine,timeSteps",
+        " 1",                         // macro type
+        " QuantLib",                  // category
+        " ",                          // shortcut text
+        " ",                          // help topic
+        // function help:
+        " construct and return a handle to a Barrier Option object",
+        " handle of the Stochastic Process object",// param 0
+        " barrier type",              // param 1
+        " barrier",                   // param 2
+        " rebate",                    // param 3
+        " option type",               // param 4
+        " payoff type",               // param 5
+        " strike",                    // param 6
+        " exercise type",             // param 7
+        " exercise date",             // param 8
+        " settlement date",           // param 9
+        " engine type",               // param 10
+        " time steps",                // param 11
+        // unused params:
+        " ", " ", " "
     },
 
     {   " qlOptionSetEngine",         // function name (code)
@@ -113,7 +168,7 @@ static LPSTR func[NUM_FUNCS][NUM_ATTS] = {
         " engine name",               // param 1
         " time steps",                // param 2
         // unused params:
-        " ", " ", " ", " "
+        " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "
     },
 
 };

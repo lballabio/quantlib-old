@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Mon Jan 10 18:55:01 2005
+// this file generated automatically by autogen.py on Thu Jan 20 00:11:04 2005
 // editing this file manually is not recommended
 
 #ifdef WIN32
@@ -36,10 +36,14 @@ QLAddin::QLAddin() throw () : m_refcount( 0 ) {
 
     //options
 
-    funcMap[ STRFROMANSI( "qlBlackScholes" ) ]
-        =  STRFROMANSI( "QL_BLACKSCHOLES" );
-    funcMap[ STRFROMANSI( "qlOption" ) ]
-        =  STRFROMANSI( "QL_OPTION" );
+    funcMap[ STRFROMANSI( "qlStochasticProcess" ) ]
+        =  STRFROMANSI( "QL_STOCHASTIC_PROCESS" );
+    funcMap[ STRFROMANSI( "qlOptionVanilla" ) ]
+        =  STRFROMANSI( "QL_OPTION_VANILLA" );
+    funcMap[ STRFROMANSI( "qlOptionAsianC" ) ]
+        =  STRFROMANSI( "QL_OPTION_ASIAN_C" );
+    funcMap[ STRFROMANSI( "qlOptionBarrier" ) ]
+        =  STRFROMANSI( "QL_OPTION_BARRIER" );
     funcMap[ STRFROMANSI( "qlOptionSetEngine" ) ]
         =  STRFROMANSI( "QL_OPTION_SETENGINE" );
 

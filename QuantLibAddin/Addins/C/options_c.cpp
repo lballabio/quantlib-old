@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Mon Jan 10 18:55:01 2005
+// this file generated automatically by autogen.py on Thu Jan 20 00:11:04 2005
 // editing this file manually is not recommended
 
 #include <QuantLibAddin/qladdin.hpp>
@@ -29,55 +29,135 @@ extern "C" {
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
-int QL_BLACKSCHOLES_C(
+int QL_STOCHASTIC_PROCESS_C(
         const char *handle,
-        const double dividendYield,
-        const double riskFreeRate,
-        const double volatility,
         const double underlying,
-        const long todaysDate,
+        const char* dayCounterID,
         const long settlementDate,
+        const double riskFreeRate,
+        const double dividendYield,
+        const double volatility,
         VariesList *result) {
     try {
-        Properties properties = QL_BLACKSCHOLES(
+        Properties properties = QL_STOCHASTIC_PROCESS(
             handle,
-            dividendYield,
-            riskFreeRate,
-            volatility,
             underlying,
-            todaysDate,
-            settlementDate);
+            dayCounterID,
+            settlementDate,
+            riskFreeRate,
+            dividendYield,
+            volatility);
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE("QL_BLACKSCHOLES_C Error: " + std::string(e.what()));
+        QL_LOGMESSAGE("QL_STOCHASTIC_PROCESS_C Error: " + std::string(e.what()));
         result = 0;
         return FAIL;
     }
 }
 
-int QL_OPTION_C(
+int QL_OPTION_VANILLA_C(
         const char *handle,
         const char* handleStochastic,
         const char* typeOption,
+        const char* typePayoff,
         const double strike,
-        const long timeSteps,
+        const char* typeExercise,
         const long exerciseDate,
         const long settlementDate,
+        const char* typeEngine,
+        const long timeSteps,
         VariesList *result) {
     try {
-        Properties properties = QL_OPTION(
+        Properties properties = QL_OPTION_VANILLA(
             handle,
             handleStochastic,
             typeOption,
+            typePayoff,
             strike,
-            timeSteps,
+            typeExercise,
             exerciseDate,
-            settlementDate);
+            settlementDate,
+            typeEngine,
+            timeSteps);
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE("QL_OPTION_C Error: " + std::string(e.what()));
+        QL_LOGMESSAGE("QL_OPTION_VANILLA_C Error: " + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+
+int QL_OPTION_ASIAN_C_C(
+        const char *handle,
+        const char* handleStochastic,
+        const char* typeAverage,
+        const char* typeOption,
+        const char* typePayoff,
+        const double strike,
+        const char* typeExercise,
+        const long exerciseDate,
+        const long settlementDate,
+        const char* typeEngine,
+        const long timeSteps,
+        VariesList *result) {
+    try {
+        Properties properties = QL_OPTION_ASIAN_C(
+            handle,
+            handleStochastic,
+            typeAverage,
+            typeOption,
+            typePayoff,
+            strike,
+            typeExercise,
+            exerciseDate,
+            settlementDate,
+            typeEngine,
+            timeSteps);
+        propertiesToVaries(properties, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE("QL_OPTION_ASIAN_C_C Error: " + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+
+int QL_OPTION_BARRIER_C(
+        const char *handle,
+        const char* handleStochastic,
+        const char* typeBarrier,
+        const double barrier,
+        const double rebate,
+        const char* typeOption,
+        const char* typePayoff,
+        const double strike,
+        const char* typeExercise,
+        const long exerciseDate,
+        const long settlementDate,
+        const char* typeEngine,
+        const long timeSteps,
+        VariesList *result) {
+    try {
+        Properties properties = QL_OPTION_BARRIER(
+            handle,
+            handleStochastic,
+            typeBarrier,
+            barrier,
+            rebate,
+            typeOption,
+            typePayoff,
+            strike,
+            typeExercise,
+            exerciseDate,
+            settlementDate,
+            typeEngine,
+            timeSteps);
+        propertiesToVaries(properties, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE("QL_OPTION_BARRIER_C Error: " + std::string(e.what()));
         result = 0;
         return FAIL;
     }

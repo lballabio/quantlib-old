@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Mon Jan 10 18:55:01 2005
+// this file generated automatically by autogen.py on Thu Jan 20 00:11:04 2005
 // editing this file manually is not recommended
 
 #include <QuantLibAddin/qladdin.hpp>
@@ -25,50 +25,124 @@
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
-SEQSEQ( ANY ) SAL_CALL QLAddin::qlBlackScholes(
+SEQSEQ( ANY ) SAL_CALL QLAddin::qlStochasticProcess(
         const STRING & handle,
-        double dividendYield,
-        double riskFreeRate,
-        double volatility,
         double underlying,
-        sal_Int32 todaysDate,
-        sal_Int32 settlementDate) THROWDEF_RTE_IAE {
+        const STRING & dayCounterID,
+        sal_Int32 settlementDate,
+        double riskFreeRate,
+        double dividendYield,
+        double volatility) THROWDEF_RTE_IAE {
     try {
-        Properties properties = QL_BLACKSCHOLES(
+        Properties properties = QL_STOCHASTIC_PROCESS(
             OUStringToString(handle),
-            dividendYield,
-            riskFreeRate,
-            volatility,
             underlying,
-            todaysDate,
-            settlementDate);
+            OUStringToString(dayCounterID),
+            settlementDate,
+            riskFreeRate,
+            dividendYield,
+            volatility);
         return getArray(properties, handle);
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_BLACKSCHOLES: ") + e.what());
+        QL_LOGMESSAGE(std::string("ERROR: QL_STOCHASTIC_PROCESS: ") + e.what());
         THROW_RTE;
     }
 }
 
-SEQSEQ( ANY ) SAL_CALL QLAddin::qlOption(
+SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionVanilla(
         const STRING & handle,
         const STRING & handleStochastic,
         const STRING & typeOption,
+        const STRING & typePayoff,
         double strike,
-        sal_Int32 timeSteps,
+        const STRING & typeExercise,
         sal_Int32 exerciseDate,
-        sal_Int32 settlementDate) THROWDEF_RTE_IAE {
+        sal_Int32 settlementDate,
+        const STRING & typeEngine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE {
     try {
-        Properties properties = QL_OPTION(
+        Properties properties = QL_OPTION_VANILLA(
             OUStringToString(handle),
             OUStringToString(handleStochastic),
             OUStringToString(typeOption),
+            OUStringToString(typePayoff),
             strike,
-            timeSteps,
+            OUStringToString(typeExercise),
             exerciseDate,
-            settlementDate);
+            settlementDate,
+            OUStringToString(typeEngine),
+            timeSteps);
         return getArray(properties, handle);
     } catch (const std::exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_OPTION: ") + e.what());
+        QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_VANILLA: ") + e.what());
+        THROW_RTE;
+    }
+}
+
+SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionAsianC(
+        const STRING & handle,
+        const STRING & handleStochastic,
+        const STRING & typeAverage,
+        const STRING & typeOption,
+        const STRING & typePayoff,
+        double strike,
+        const STRING & typeExercise,
+        sal_Int32 exerciseDate,
+        sal_Int32 settlementDate,
+        const STRING & typeEngine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE {
+    try {
+        Properties properties = QL_OPTION_ASIAN_C(
+            OUStringToString(handle),
+            OUStringToString(handleStochastic),
+            OUStringToString(typeAverage),
+            OUStringToString(typeOption),
+            OUStringToString(typePayoff),
+            strike,
+            OUStringToString(typeExercise),
+            exerciseDate,
+            settlementDate,
+            OUStringToString(typeEngine),
+            timeSteps);
+        return getArray(properties, handle);
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_ASIAN_C: ") + e.what());
+        THROW_RTE;
+    }
+}
+
+SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionBarrier(
+        const STRING & handle,
+        const STRING & handleStochastic,
+        const STRING & typeBarrier,
+        double barrier,
+        double rebate,
+        const STRING & typeOption,
+        const STRING & typePayoff,
+        double strike,
+        const STRING & typeExercise,
+        sal_Int32 exerciseDate,
+        sal_Int32 settlementDate,
+        const STRING & typeEngine,
+        sal_Int32 timeSteps) THROWDEF_RTE_IAE {
+    try {
+        Properties properties = QL_OPTION_BARRIER(
+            OUStringToString(handle),
+            OUStringToString(handleStochastic),
+            OUStringToString(typeBarrier),
+            barrier,
+            rebate,
+            OUStringToString(typeOption),
+            OUStringToString(typePayoff),
+            strike,
+            OUStringToString(typeExercise),
+            exerciseDate,
+            settlementDate,
+            OUStringToString(typeEngine),
+            timeSteps);
+        return getArray(properties, handle);
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_BARRIER: ") + e.what());
         THROW_RTE;
     }
 }
