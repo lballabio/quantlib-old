@@ -55,7 +55,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLibc.pyd" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio"
 # SUBTRACT LINK32 /verbose /profile
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
@@ -87,7 +87,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.pyd" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio"
 # SUBTRACT LINK32 /verbose /profile
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
@@ -120,7 +120,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"Release/QuantLibc.pyd" /libpath:"..\QuantLib\lib\Win32\VisualStudio"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLibc.pyd" /libpath:"..\..\QuantLib\lib\Win32\VisualStudio"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd" /libpath:"..\..\QuantLib\lib\Win32\VisualStudio"
 # SUBTRACT LINK32 /verbose /profile
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
@@ -153,7 +153,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:"Debug/QuantLibc_d.pyd" /pdbtype:sept /libpath:"..\QuantLib\lib\Win32\VisualStudio"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.pyd" /libpath:"..\..\QuantLib\lib\Win32\VisualStudio"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd" /libpath:"..\..\QuantLib\lib\Win32\VisualStudio"
 # SUBTRACT LINK32 /verbose /profile
 # Begin Special Build Tool
 SOURCE="$(InputPath)"

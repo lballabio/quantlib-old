@@ -39,17 +39,28 @@ INTDIR=.\build\temp.win32-2.1\Release
 OutDir=.\build\temp.win32-2.1\Release
 # End Custom Macros
 
-ALL : ".\build\lib.win32-2.1\QuantLib\_QuantLibc.pyd" "$(OUTDIR)\QuantLibPython.bsc"
+!IF "$(RECURSE)" == "0" 
 
+ALL : ".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd" "$(OUTDIR)\QuantLibPython.bsc"
 
+!ELSE 
+
+ALL : "QuantLib - Win32 Release" ".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd" "$(OUTDIR)\QuantLibPython.bsc"
+
+!ENDIF 
+
+!IF "$(RECURSE)" == "1" 
+CLEAN :"QuantLib - Win32 ReleaseCLEAN" 
+!ELSE 
 CLEAN :
+!ENDIF 
 	-@erase "$(INTDIR)\quantlib_wrap.obj"
 	-@erase "$(INTDIR)\quantlib_wrap.sbr"
 	-@erase "$(INTDIR)\vc60.idb"
-	-@erase "$(OUTDIR)\_QuantLibc.exp"
-	-@erase "$(OUTDIR)\_QuantLibc.lib"
+	-@erase "$(OUTDIR)\_QuantLib.exp"
+	-@erase "$(OUTDIR)\_QuantLib.lib"
 	-@erase "$(OUTDIR)\QuantLibPython.bsc"
-	-@erase ".\build\lib.win32-2.1\QuantLib\_QuantLibc.pyd"
+	-@erase ".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -67,11 +78,12 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\_QuantLibc.pdb" /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLibc.pyd" /implib:"$(OUTDIR)\_QuantLibc.lib" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\_QuantLib.pdb" /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd" /implib:"$(OUTDIR)\_QuantLib.lib" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" 
 LINK32_OBJS= \
-	"$(INTDIR)\quantlib_wrap.obj"
+	"$(INTDIR)\quantlib_wrap.obj" \
+	"..\..\QuantLib\lib\Win32\VisualStudio\QuantLib.lib"
 
-".\build\lib.win32-2.1\QuantLib\_QuantLibc.pyd" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
@@ -86,7 +98,7 @@ ALL : $(DS_POSTBUILD_DEP)
 OutDir=.\build\temp.win32-2.1\Release
 # End Custom Macros
 
-$(DS_POSTBUILD_DEP) : ".\build\lib.win32-2.1\QuantLib\_QuantLibc.pyd" "$(OUTDIR)\QuantLibPython.bsc"
+$(DS_POSTBUILD_DEP) : "QuantLib - Win32 Release" ".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd" "$(OUTDIR)\QuantLibPython.bsc"
    copy .\QuantLib\*.py .\build\lib.win32-2.1\QuantLib
 	echo Helper for Post-build step > "$(DS_POSTBUILD_DEP)"
 
@@ -98,20 +110,31 @@ INTDIR=.\build\temp.win32-2.1\Debug
 OutDir=.\build\temp.win32-2.1\Debug
 # End Custom Macros
 
-ALL : ".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.pyd" "$(OUTDIR)\QuantLibPython.bsc"
+!IF "$(RECURSE)" == "0" 
 
+ALL : ".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd" "$(OUTDIR)\QuantLibPython.bsc"
 
+!ELSE 
+
+ALL : "QuantLib - Win32 Debug" ".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd" "$(OUTDIR)\QuantLibPython.bsc"
+
+!ENDIF 
+
+!IF "$(RECURSE)" == "1" 
+CLEAN :"QuantLib - Win32 DebugCLEAN" 
+!ELSE 
 CLEAN :
+!ENDIF 
 	-@erase "$(INTDIR)\quantlib_wrap.obj"
 	-@erase "$(INTDIR)\quantlib_wrap.sbr"
 	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(INTDIR)\vc60.pdb"
-	-@erase "$(OUTDIR)\_QuantLibc_d.exp"
-	-@erase "$(OUTDIR)\_QuantLibc_d.lib"
-	-@erase "$(OUTDIR)\_QuantLibc_d.pdb"
+	-@erase "$(OUTDIR)\_QuantLib_d.exp"
+	-@erase "$(OUTDIR)\_QuantLib_d.lib"
+	-@erase "$(OUTDIR)\_QuantLib_d.pdb"
 	-@erase "$(OUTDIR)\QuantLibPython.bsc"
-	-@erase ".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.ilk"
-	-@erase ".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.pyd"
+	-@erase ".\build\lib.win32-2.1\QuantLib\_QuantLib_d.ilk"
+	-@erase ".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -129,11 +152,12 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\_QuantLibc_d.pdb" /debug /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.pyd" /implib:"$(OUTDIR)\_QuantLibc_d.lib" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\_QuantLib_d.pdb" /debug /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd" /implib:"$(OUTDIR)\_QuantLib_d.lib" /libpath:"$(QL_DIR)\lib\Win32\VisualStudio" 
 LINK32_OBJS= \
-	"$(INTDIR)\quantlib_wrap.obj"
+	"$(INTDIR)\quantlib_wrap.obj" \
+	"..\..\QuantLib\lib\Win32\VisualStudio\QuantLib_d.lib"
 
-".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.pyd" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
@@ -148,7 +172,7 @@ ALL : $(DS_POSTBUILD_DEP)
 OutDir=.\build\temp.win32-2.1\Debug
 # End Custom Macros
 
-$(DS_POSTBUILD_DEP) : ".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.pyd" "$(OUTDIR)\QuantLibPython.bsc"
+$(DS_POSTBUILD_DEP) : "QuantLib - Win32 Debug" ".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd" "$(OUTDIR)\QuantLibPython.bsc"
    copy .\QuantLib\*.py .\build\lib.win32-2.1\QuantLib
 	echo Helper for Post-build step > "$(DS_POSTBUILD_DEP)"
 
@@ -160,17 +184,28 @@ INTDIR=.\build\temp.win32-2.1\OnTheEdgeRelease
 OutDir=.\build\temp.win32-2.1\OnTheEdgeRelease
 # End Custom Macros
 
-ALL : ".\build\lib.win32-2.1\QuantLib\_QuantLibc.pyd" "$(OUTDIR)\QuantLibPython.bsc"
+!IF "$(RECURSE)" == "0" 
 
+ALL : ".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd" "$(OUTDIR)\QuantLibPython.bsc"
 
+!ELSE 
+
+ALL : "QuantLib - Win32 OnTheEdgeRelease" ".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd" "$(OUTDIR)\QuantLibPython.bsc"
+
+!ENDIF 
+
+!IF "$(RECURSE)" == "1" 
+CLEAN :"QuantLib - Win32 OnTheEdgeReleaseCLEAN" 
+!ELSE 
 CLEAN :
+!ENDIF 
 	-@erase "$(INTDIR)\quantlib_wrap.obj"
 	-@erase "$(INTDIR)\quantlib_wrap.sbr"
 	-@erase "$(INTDIR)\vc60.idb"
-	-@erase "$(OUTDIR)\_QuantLibc.exp"
-	-@erase "$(OUTDIR)\_QuantLibc.lib"
+	-@erase "$(OUTDIR)\_QuantLib.exp"
+	-@erase "$(OUTDIR)\_QuantLib.lib"
 	-@erase "$(OUTDIR)\QuantLibPython.bsc"
-	-@erase ".\build\lib.win32-2.1\QuantLib\_QuantLibc.pyd"
+	-@erase ".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -188,11 +223,12 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\_QuantLibc.pdb" /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLibc.pyd" /implib:"$(OUTDIR)\_QuantLibc.lib" /libpath:"..\..\QuantLib\lib\Win32\VisualStudio" 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\_QuantLib.pdb" /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd" /implib:"$(OUTDIR)\_QuantLib.lib" /libpath:"..\..\QuantLib\lib\Win32\VisualStudio" 
 LINK32_OBJS= \
-	"$(INTDIR)\quantlib_wrap.obj"
+	"$(INTDIR)\quantlib_wrap.obj" \
+	"..\..\QuantLib\lib\Win32\VisualStudio\QuantLib.lib"
 
-".\build\lib.win32-2.1\QuantLib\_QuantLibc.pyd" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
@@ -207,7 +243,7 @@ ALL : $(DS_POSTBUILD_DEP)
 OutDir=.\build\temp.win32-2.1\OnTheEdgeRelease
 # End Custom Macros
 
-$(DS_POSTBUILD_DEP) : ".\build\lib.win32-2.1\QuantLib\_QuantLibc.pyd" "$(OUTDIR)\QuantLibPython.bsc"
+$(DS_POSTBUILD_DEP) : "QuantLib - Win32 OnTheEdgeRelease" ".\build\lib.win32-2.1\QuantLib\_QuantLib.pyd" "$(OUTDIR)\QuantLibPython.bsc"
    copy .\QuantLib\*.py .\build\lib.win32-2.1\QuantLib
 	echo Helper for Post-build step > "$(DS_POSTBUILD_DEP)"
 
@@ -219,20 +255,31 @@ INTDIR=.\build\temp.win32-2.1\OnTheEdgeDebug
 OutDir=.\build\temp.win32-2.1\OnTheEdgeDebug
 # End Custom Macros
 
-ALL : ".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.pyd" "$(OUTDIR)\QuantLibPython.bsc"
+!IF "$(RECURSE)" == "0" 
 
+ALL : ".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd" "$(OUTDIR)\QuantLibPython.bsc"
 
+!ELSE 
+
+ALL : "QuantLib - Win32 OnTheEdgeDebug" ".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd" "$(OUTDIR)\QuantLibPython.bsc"
+
+!ENDIF 
+
+!IF "$(RECURSE)" == "1" 
+CLEAN :"QuantLib - Win32 OnTheEdgeDebugCLEAN" 
+!ELSE 
 CLEAN :
+!ENDIF 
 	-@erase "$(INTDIR)\quantlib_wrap.obj"
 	-@erase "$(INTDIR)\quantlib_wrap.sbr"
 	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(INTDIR)\vc60.pdb"
-	-@erase "$(OUTDIR)\_QuantLibc_d.exp"
-	-@erase "$(OUTDIR)\_QuantLibc_d.lib"
-	-@erase "$(OUTDIR)\_QuantLibc_d.pdb"
+	-@erase "$(OUTDIR)\_QuantLib_d.exp"
+	-@erase "$(OUTDIR)\_QuantLib_d.lib"
+	-@erase "$(OUTDIR)\_QuantLib_d.pdb"
 	-@erase "$(OUTDIR)\QuantLibPython.bsc"
-	-@erase ".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.ilk"
-	-@erase ".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.pyd"
+	-@erase ".\build\lib.win32-2.1\QuantLib\_QuantLib_d.ilk"
+	-@erase ".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -250,11 +297,12 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\_QuantLibc_d.pdb" /debug /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.pyd" /implib:"$(OUTDIR)\_QuantLibc_d.lib" /libpath:"..\..\QuantLib\lib\Win32\VisualStudio" 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\_QuantLib_d.pdb" /debug /machine:I386 /out:".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd" /implib:"$(OUTDIR)\_QuantLib_d.lib" /libpath:"..\..\QuantLib\lib\Win32\VisualStudio" 
 LINK32_OBJS= \
-	"$(INTDIR)\quantlib_wrap.obj"
+	"$(INTDIR)\quantlib_wrap.obj" \
+	"..\..\QuantLib\lib\Win32\VisualStudio\QuantLib_d.lib"
 
-".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.pyd" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
@@ -269,7 +317,7 @@ ALL : $(DS_POSTBUILD_DEP)
 OutDir=.\build\temp.win32-2.1\OnTheEdgeDebug
 # End Custom Macros
 
-$(DS_POSTBUILD_DEP) : ".\build\lib.win32-2.1\QuantLib\_QuantLibc_d.pyd" "$(OUTDIR)\QuantLibPython.bsc"
+$(DS_POSTBUILD_DEP) : "QuantLib - Win32 OnTheEdgeDebug" ".\build\lib.win32-2.1\QuantLib\_QuantLib_d.pyd" "$(OUTDIR)\QuantLibPython.bsc"
    copy .\QuantLib\*.py .\build\lib.win32-2.1\QuantLib
 	echo Helper for Post-build step > "$(DS_POSTBUILD_DEP)"
 
@@ -409,6 +457,56 @@ USERDEP__QUANT="..\SWIG\blackmodel.i"	"..\SWIG\calendars.i"	"..\SWIG\capfloor.i"
 	python setup.py wrap
 << 
 	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "QuantLibPython - Win32 Release"
+
+"QuantLib - Win32 Release" : 
+   cd "\backedup\projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 Release" 
+   cd "..\QuantLib-SWIG\Python"
+
+"QuantLib - Win32 ReleaseCLEAN" : 
+   cd "\backedup\projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 Release" RECURSE=1 CLEAN 
+   cd "..\QuantLib-SWIG\Python"
+
+!ELSEIF  "$(CFG)" == "QuantLibPython - Win32 Debug"
+
+"QuantLib - Win32 Debug" : 
+   cd "\backedup\projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 Debug" 
+   cd "..\QuantLib-SWIG\Python"
+
+"QuantLib - Win32 DebugCLEAN" : 
+   cd "\backedup\projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 Debug" RECURSE=1 CLEAN 
+   cd "..\QuantLib-SWIG\Python"
+
+!ELSEIF  "$(CFG)" == "QuantLibPython - Win32 OnTheEdgeRelease"
+
+"QuantLib - Win32 OnTheEdgeRelease" : 
+   cd "\backedup\projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 OnTheEdgeRelease" 
+   cd "..\QuantLib-SWIG\Python"
+
+"QuantLib - Win32 OnTheEdgeReleaseCLEAN" : 
+   cd "\backedup\projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 OnTheEdgeRelease" RECURSE=1 CLEAN 
+   cd "..\QuantLib-SWIG\Python"
+
+!ELSEIF  "$(CFG)" == "QuantLibPython - Win32 OnTheEdgeDebug"
+
+"QuantLib - Win32 OnTheEdgeDebug" : 
+   cd "\backedup\projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 OnTheEdgeDebug" 
+   cd "..\QuantLib-SWIG\Python"
+
+"QuantLib - Win32 OnTheEdgeDebugCLEAN" : 
+   cd "\backedup\projects\QuantLib"
+   $(MAKE) /$(MAKEFLAGS) /F .\QuantLib.mak CFG="QuantLib - Win32 OnTheEdgeDebug" RECURSE=1 CLEAN 
+   cd "..\QuantLib-SWIG\Python"
 
 !ENDIF 
 
