@@ -14,15 +14,15 @@
 <br>
  <br>
 <br>
- 
+
 
 <table summary="" width="100%">
 <tr>
-<td><a href="index.html">Doxygen documentation</a><br>
-<a href="CurveFitting.zip">source code zip file</a><br>
+<td><a href="quep003/index.html">Doxygen documentation</a><br>
+<a href="quep003/CurveFitting.zip">source code zip file</a><br>
 <br>
 <br>
- 
+
 
 <h3><b>Table of contents</b></h3>
 
@@ -30,12 +30,12 @@
 example</a><br>
  <a href="#OPTIMIZATION">II- Optimization</a><br>
  <a href="#OPTIEXAMPLE">III- Optimization Example</a><br>
- <a name="LEASTSQUARE"></a> 
+ <a name="LEASTSQUARE"></a>
 
 <h2><b>I- Least Square : Curve Fitting example</b></h2>
 
 (see <a href=
-"CurveFitting_8cpp-source.html">CurveFitting.cpp</a>)<br>
+"quep003/CurveFitting_8cpp-source.html">CurveFitting.cpp</a>)<br>
 <br>
  We present here an example of curve fitting. Curve fitting is a
 particular case of least square problems. We solve least square
@@ -58,59 +58,52 @@ derivatives (<b>da</b>(double t), <b>db</b>(double t),
 <b>dc</b>(double t) and <b>dd</b>(double t)) values are defined int
 the class <b>BraceVolatilityFunction</b>.<br>
 <br>
- 
+
 
 <div class="fragment">
 <pre>
  <font class="keyword">class</font> <a class="code" href=
-"classBraceVolatilityFunction.html">BraceVolatilityFunction</a> {
+"quep003/classBraceVolatilityFunction.html">BraceVolatilityFunction</a> {
    <font class="keywordtype">double</font> a_, b_, c_, d_;
  <font class="keyword">public</font> :
    <font class="keyword">inline</font> <a class="code" href=
-"classBraceVolatilityFunction.html#a0">BraceVolatilityFunction</a>(<font
+"quep003/classBraceVolatilityFunction.html#a0">BraceVolatilityFunction</a>(<font
  class="keywordtype">double</font> a, <font class=
 "keywordtype">double</font> b, <font class=
 "keywordtype">double</font> c, <font class=
 "keywordtype">double</font> d)
      : <a class="code" href=
-"classBraceVolatilityFunction.html#o0">a_</a>(a), <a class="code"
-href="classBraceVolatilityFunction.html#o1">b_</a>(b), <a class=
-"code" href="classBraceVolatilityFunction.html#o2">c_</a>(c), <a
-class="code" href=
-"classBraceVolatilityFunction.html#o3">d_</a>(d) {}
-   <font class="keyword">inline</font> <a class="code" href=
-"classBraceVolatilityFunction.html#a1">~BraceVolatilityFunction</a>() {}
+"quep003/classBraceVolatilityFunction.html#o0">a_</a>(a), <a class="code"
+href="quep003/classBraceVolatilityFunction.html#o1">b_</a>(b), <a class=
+"code" href="quep003/classBraceVolatilityFunction.html#o2">c_</a>(c), <a
+class="code" href="quep003/classBraceVolatilityFunction.html#o3">d_</a>(d) {}
+   <font class="keyword">inline</font> <a class="code" href="quep003/classBraceVolatilityFunction.html#a1">~BraceVolatilityFunction</a>() {}
 
    <font class="keyword">inline</font> <font class=
-"keywordtype">double</font> <a class="code" href=
-"classBraceVolatilityFunction.html#a2">operator()</a> (<font class=
-"keywordtype">double</font> t) 
+"keywordtype">double</font> <a class="code" href="quep003/classBraceVolatilityFunction.html#a2">operator()</a> (<font class=
+"keywordtype">double</font> t)
   { <font class=
 "keywordflow">return</font> (a_+b_*t)*exp(-c_*t) + d_; }
- 
+
    <font class="keyword">inline</font> <font class=
-"keywordtype">double</font> <a class="code" href=
-"classBraceVolatilityFunction.html#a3">da</a>(<font class=
-"keywordtype">double</font> t) 
+"keywordtype">double</font> <a class="code" href="quep003/classBraceVolatilityFunction.html#a3">da</a>(<font class=
+"keywordtype">double</font> t)
   { <font class="keywordflow">return</font> exp(-c_*t); }
- 
+
    <font class="keyword">inline</font> <font class=
-"keywordtype">double</font> <a class="code" href=
-"classBraceVolatilityFunction.html#a4">db</a>(<font class=
-"keywordtype">double</font> t) 
+"keywordtype">double</font> <a class="code" href="quep003/classBraceVolatilityFunction.html#a4">db</a>(<font class=
+"keywordtype">double</font> t)
   { <font class="keywordflow">return</font> t*exp(-c_*t); }
- 
+
    <font class="keyword">inline</font> <font class=
-"keywordtype">double</font> <a class="code" href=
-"classBraceVolatilityFunction.html#a5">dc</a>(<font class=
-"keywordtype">double</font> t) 
+"keywordtype">double</font> <a class="code" href="quep003/classBraceVolatilityFunction.html#a5">dc</a>(<font class=
+"keywordtype">double</font> t)
   { <font class=
 "keywordflow">return</font> -t*(a_+b_*t)*exp(-c_*t); }
- 
+
    <font class="keyword">inline</font> <font class=
-"keywordtype">double</font> <a class="code" href=
-"classBraceVolatilityFunction.html#a6">dd</a>(<font class=
-"keywordtype">double</font> t) 
+"keywordtype">double</font> <a class="code" href="quep003/classBraceVolatilityFunction.html#a6">dd</a>(<font class=
+"keywordtype">double</font> t)
   { <font class="keywordflow">return</font> 1.; }
  };
 </pre>
@@ -144,7 +137,7 @@ perform the optimization by calling the member <b>Perform</b> on
 the <b>CurveFittingProblem</b> cfp. The member returns the solution
 vector.<br>
 <br>
- 
+
 
 <div class="fragment">
 <pre>
@@ -154,24 +147,21 @@ vector.<br>
 class="comment">// It is the square of the accuracy</font>
  <font class="comment">// Maximum number of iterations</font>
  <font class="keywordtype">int</font> maxiter = 10000;
- 
+
  Array initialValue(4, 0.1);// Initial value
- 
+
  <font class="comment">// Least square optimizer</font>
- <a class="code" href=
-"classNonLinearLeastSquare.html">NonLinearLeastSquare&lt;Array &gt;</a> lsqnonlin(accuracy,maxiter);
- 
+ <a class="code" href="quep003/classNonLinearLeastSquare.html">NonLinearLeastSquare&lt;Array &gt;</a> lsqnonlin(accuracy,maxiter);
+
  <font class="comment">// Define the least square problem</font>
- <a class="code" href=
-"classCurveFittingProblem.html">CurveFittingProblem</a> cfp(timeToMaturity, targetValue);
- 
+ <a class="code" href="quep003/classCurveFittingProblem.html">CurveFittingProblem</a> cfp(timeToMaturity, targetValue);
+
  <font class="comment">// Set initial values</font>
  lsqnonlin.setInitialValue(initialValue);
  <font class="comment">// perform fitting</font>
- Array solution = lsqnonlin.<a class="code" href=
-"classNonLinearLeastSquare.html#a3">Perform</a>(cfp);
- 
- cout &lt;&lt; endl 
+ Array solution = lsqnonlin.<a class="code" href="quep003/classNonLinearLeastSquare.html#a3">Perform</a>(cfp);
+
+ cout &lt;&lt; endl
       &lt;&lt; <font class=
 "stringliteral">"Optimal values  : "</font> &lt;&lt; abcd
       &lt;&lt; <font class=
@@ -188,41 +178,34 @@ underlying least-square problem. It is done by the definition of
 class <b>CurveFittingProblem</b> deriving from the abstract class
 <b>LeastSquareProblem&lt;Array,Matrix &gt;</b>.<br>
 <br>
- 
+
 
 <div class="fragment">
 <pre>
- <font class="keyword">class</font> <a class="code" href=
-"classCurveFittingProblem.html">CurveFittingProblem</a> 
-     : <font class="keyword">public</font> <a class="code" href=
-"classLeastSquareProblem.html">LeastSquareProblem</a>&lt;Array,Matrix &gt; {
+ <font class="keyword">class</font> <a class="code" href="quep003/classCurveFittingProblem.html">CurveFittingProblem</a>
+     : <font class="keyword">public</font> <a class="code" href="quep003/classLeastSquareProblem.html">LeastSquareProblem</a>&lt;Array,Matrix &gt; {
      <font class="keyword">const</font> Array &amp;ttm_;
      <font class="keyword">const</font> Array &amp;target_;
  <font class="keyword">public</font> :
-   <a class="code" href=
-"classCurveFittingProblem.html#a0">CurveFittingProblem</a>(<font
+   <a class="code" href="quep003/classCurveFittingProblem.html#a0">CurveFittingProblem</a>(<font
 class="keyword">const</font> Array&amp; ttm, <font class=
 "keyword">const</font> Array&amp; target)
        : ttm_(ttm), target_(target) {}
-   <font class="keyword">virtual</font> <a class="code" href=
-"classCurveFittingProblem.html#a1">~CurveFittingProblem</a>() {}
+   <font class="keyword">virtual</font> <a class="code" href="quep003/classCurveFittingProblem.html#a1">~CurveFittingProblem</a>() {}
 
    <font class="keyword">virtual</font> <font class=
-"keywordtype">int</font> <a class="code" href=
-"classLeastSquareProblem.html#a0">size</a>() { <font class=
+"keywordtype">int</font> <a class="code" href="quep003/classLeastSquareProblem.html#a0">size</a>() { <font class=
 "keywordflow">return</font> ttm_.size(); }
 
    <font class="keyword">virtual</font> <font class=
-"keywordtype">void</font> <a class="code" href=
-"classLeastSquareProblem.html#a1">targetAndValue</a>(<font class=
-"keyword">const</font> Array&amp; abcd, 
-                               Array&amp; target, 
+"keywordtype">void</font> <a class="code" href="quep003/classLeastSquareProblem.html#a1">targetAndValue</a>(<font class=
+"keyword">const</font> Array&amp; abcd,
+                               Array&amp; target,
                                Array&amp; fct2fit);
- 
+
    <font class="keyword">virtual</font> <font class=
-"keywordtype">void</font> <a class="code" href=
-"classLeastSquareProblem.html#a2">targetValueAndfirstDerivative</a>(<font
- class="keyword">const</font> Array&amp; abcd, 
+"keywordtype">void</font> <a class="code" href="quep003/classLeastSquareProblem.html#a2">targetValueAndfirstDerivative</a>(<font
+ class="keyword">const</font> Array&amp; abcd,
  };
 </pre>
 </div>
@@ -231,7 +214,7 @@ class="keyword">const</font> Array&amp; ttm, <font class=
 <br>
  To fully satisfied the requirements of the abstract class
 <b>LeastSquareProblem</b>, we have to define the following members
-: 
+:
 
 <ul>
 <li>int <b>size</b>() : return the size of the least square
@@ -250,33 +233,29 @@ values.</li>
 
 <br>
 <br>
- 
+
 
 <div class="fragment">
 <pre>
  template &lt;class V, class M&gt;
- <font class="keyword">class</font> <a class="code" href=
-"classLeastSquareProblem.html">LeastSquareProblem</a> {
+ <font class="keyword">class</font> <a class="code" href="quep003/classLeastSquareProblem.html">LeastSquareProblem</a> {
  <font class="keyword">public</font>:
    <font class="keyword">virtual</font> <font class=
-"keywordtype">int</font> <a class="code" href=
-"classLeastSquareProblem.html#a0">size</a>()  = 0;
+"keywordtype">int</font> <a class="code" href="quep003/classLeastSquareProblem.html#a0">size</a>()  = 0;
    <font class="keyword">virtual</font> <font class=
-"keywordtype">void</font> <a class="code" href=
-"classLeastSquareProblem.html#a1">targetAndValue</a>(<font class=
+"keywordtype">void</font> <a class="code" href="quep003/classLeastSquareProblem.html#a1">targetAndValue</a>(<font class=
 "keyword">const</font> V&amp; x, V&amp; target, V&amp; fct2fit) = 0;
    <font class="keyword">virtual</font> <font class=
-"keywordtype">void</font> <a class="code" href=
-"classLeastSquareProblem.html#a2">targetValueAndfirstDerivative</a>(<font
- class="keyword">const</font> V&amp; x, 
-                                              M&amp; grad_fct2fit, 
-                                              V&amp; target, 
+"keywordtype">void</font> <a class="code" href="quep003/classLeastSquareProblem.html#a2">targetValueAndfirstDerivative</a>(<font
+ class="keyword">const</font> V&amp; x,
+                                              M&amp; grad_fct2fit,
+                                              V&amp; target,
                                               V&amp; fct2fit) = 0;
  };
 </pre>
 </div>
 
-<a name="OPTIMIZATION"></a> 
+<a name="OPTIMIZATION"></a>
 
 <h2><b>II- Optimization</b></h2>
 
@@ -289,7 +268,7 @@ optimization problem, new optimization method and new line search
 by simply respecting some constraints (abstract classe
 interfaces).<br>
 <br>
- Here are the idea that lead to the abstract classes : 
+ Here are the idea that lead to the abstract classes :
 
 <ul>
 <li>The <b>Cost Function</b> is the function to minimize. We have
@@ -320,45 +299,38 @@ value and the first derivative of the function at the same time,
 thus we provide the member <b>valueAndFirstDerivative</b>(V&amp;
 grad_f, const V&amp; x) to do that.<br>
 <br>
- 
+
 
 <div class="fragment">
 <pre>
  template &lt;class V&gt;
- <font class="keyword">class</font> <a class="code" href=
-"classCostFunction.html">CostFunction</a> {
+ <font class="keyword">class</font> <a class="code" href="quep003/classCostFunction.html">CostFunction</a> {
  <font class="keyword">public</font>:
    <font class="keyword">typedef</font> <font class=
 "keywordtype">double</font> value_type;
- 
+
    <font class="keyword">virtual</font> value_type <a class="code"
-href="classCostFunction.html#a0">value</a>(<font class=
+href="quep003/classCostFunction.html#a0">value</a>(<font class=
 "keyword">const</font> V&amp; x) = 0;
- 
+
    <font class="keyword">virtual</font> <font class=
-"keywordtype">void</font> <a class="code" href=
-"classCostFunction.html#a1">firstDerivative</a>(V&amp; grad_f, <font
+"keywordtype">void</font> <a class="code" href="quep003/classCostFunction.html#a1">firstDerivative</a>(V&amp; grad_f, <font
  class="keyword">const</font> V&amp; x)
    { <font class=
 "comment">/* default is finite difference computation */</font> }
- 
+
    <font class="keyword">virtual</font> value_type <a class="code"
-href=
-"classCostFunction.html#a2">valueAndFirstDerivative</a>(V&amp; grad_f, <font
- class="keyword">const</font> V&amp; x) 
-  { <a class="code" href=
-"classCostFunction.html#a1">firstDerivative</a>(grad_f, x); <font
-class="keywordflow">return</font> <a class="code" href=
-"classCostFunction.html#a0">value</a>(x);}<font class=
+href="quep003/classCostFunction.html#a2">valueAndFirstDerivative</a>(V&amp; grad_f, <font
+ class="keyword">const</font> V&amp; x)
+  { <a class="code" href="quep003/classCostFunction.html#a1">firstDerivative</a>(grad_f, x); <font
+class="keywordflow">return</font> <a class="code" href="quep003/classCostFunction.html#a0">value</a>(x);}<font class=
 "comment">// default case</font>
- 
-   <font class="keyword">virtual</font> <font class=
-"keywordtype">void</font> <a class="code" href=
-"classCostFunction.html#a3">Update</a>() {}
 
    <font class="keyword">virtual</font> <font class=
-"keywordtype">double</font> <a class="code" href=
-"classCostFunction.html#a4">finiteDifferenceEpsilon</a>() { <font
+"keywordtype">void</font> <a class="code" href="quep003/classCostFunction.html#a3">Update</a>() {}
+
+   <font class="keyword">virtual</font> <font class=
+"keywordtype">double</font> <a class="code" href="quep003/classCostFunction.html#a4">finiteDifferenceEpsilon</a>() { <font
 class="keywordflow">return</font> 1e-8;}
  };
 </pre>
@@ -375,170 +347,132 @@ first derivative, the last function value, the last norm of the
 first derivative, the current and initial values of the unknown,
 the search direction and the optimization end criteria.<br>
 <br>
- 
+
 
 <div class="fragment">
 <pre>
  template &lt;class V&gt;
- <font class="keyword">class</font> <a class="code" href=
-"classOptimizationMethod.html">OptimizationMethod</a> {
+ <font class="keyword">class</font> <a class="code" href="quep003/classOptimizationMethod.html">OptimizationMethod</a> {
  <font class="keyword">public</font>:
    <font class="keyword">typedef</font> <font class=
 "keywordtype">double</font> value_type;
  <font class="keyword">protected</font>:
    V initialValue_;
    <font class="keywordtype">int</font> iterationNumber_;
-   <a class="code" href=
-"classOptimizationEndCriteria.html">OptimizationEndCriteria</a> endCriteria_;
+   <a class="code" href="quep003/classOptimizationEndCriteria.html">OptimizationEndCriteria</a> endCriteria_;
    <font class=
 "keywordtype">int</font> functionEvaluation_, gradientEvaluation_;
    value_type functionValue_, squaredNorm_;
    V x_, searchDirection_;
  <font class="keyword">public</font>:
-   <font class="keyword">explicit</font> OptimizationMethod(); 
+   <font class="keyword">explicit</font> OptimizationMethod();
    <font class="keyword">virtual</font> ~OptimizationMethod() {}
- 
-   <font class="keyword">inline</font> <font class=
-"keywordtype">void</font> <a class="code" href=
-"classOptimizationMethod.html#a2">setInitialValue</a>(<font class=
-"keyword">const</font> V&amp; initialValue); 
-   <font class="keyword">inline</font> <font class=
-"keywordtype">void</font> <a class="code" href=
-"classOptimizationMethod.html#a3">setEndCriteria</a>(<font class=
-"keyword">const</font> <a class="code" href=
-"classOptimizationEndCriteria.html">OptimizationEndCriteria</a>&amp; endCriteria); 
 
    <font class="keyword">inline</font> <font class=
-"keywordtype">int</font>&amp; <a class="code" href=
-"classOptimizationMethod.html#a4">iterationNumber</a>() { <font
+"keywordtype">void</font> <a class="code" href="quep003/classOptimizationMethod.html#a2">setInitialValue</a>(<font class=
+"keyword">const</font> V&amp; initialValue);
+   <font class="keyword">inline</font> <font class=
+"keywordtype">void</font> <a class="code" href="quep003/classOptimizationMethod.html#a3">setEndCriteria</a>(<font class=
+"keyword">const</font> <a class="code" href="quep003/classOptimizationEndCriteria.html">OptimizationEndCriteria</a>&amp; endCriteria);
+
+   <font class="keyword">inline</font> <font class=
+"keywordtype">int</font>&amp; <a class="code" href="quep003/classOptimizationMethod.html#a4">iterationNumber</a>() { <font
 class="keywordflow">return</font> iterationNumber_;}
-   <font class="keyword">inline</font> <a class="code" href=
-"classOptimizationEndCriteria.html">OptimizationEndCriteria</a>&amp; <a
- class="code" href=
-"classOptimizationMethod.html#a5">endCriteria</a>() { <font class=
+   <font class="keyword">inline</font> <a class="code" href="quep003/classOptimizationEndCriteria.html">OptimizationEndCriteria</a>&amp; <a
+ class="code" href="quep003/classOptimizationMethod.html#a5">endCriteria</a>() { <font class=
 "keywordflow">return</font> endCriteria_;}
    <font class="keyword">inline</font> <font class=
-"keywordtype">int</font> &amp; <a class="code" href=
-"classOptimizationMethod.html#a6">functionEvaluation</a>() { <font
+"keywordtype">int</font> &amp; <a class="code" href="quep003/classOptimizationMethod.html#a6">functionEvaluation</a>() { <font
 class="keywordflow">return</font> functionEvaluation_; }
    <font class="keyword">inline</font> <font class=
-"keywordtype">int</font> &amp; <a class="code" href=
-"classOptimizationMethod.html#a7">gradientEvaluation</a>() { <font
+"keywordtype">int</font> &amp; <a class="code" href="quep003/classOptimizationMethod.html#a7">gradientEvaluation</a>() { <font
 class="keywordflow">return</font> gradientEvaluation_; }
    <font class="keyword">inline</font> value_type&amp; <a class=
-"code" href=
-"classOptimizationMethod.html#a8">functionValue</a>() { <font
+"code" href="quep003/classOptimizationMethod.html#a8">functionValue</a>() { <font
 class="keywordflow">return</font> functionValue_; }
    <font class="keyword">inline</font> value_type&amp; <a class=
-"code" href=
-"classOptimizationMethod.html#a9">gradientNormValue</a>() { <font
+"code" href="quep003/classOptimizationMethod.html#a9">gradientNormValue</a>() { <font
 class="keywordflow">return</font> squaredNorm_; }
-   V&amp; <a class="code" href=
-"classOptimizationMethod.html#a10">x</a>() { <font class=
+   V&amp; <a class="code" href="quep003/classOptimizationMethod.html#a10">x</a>() { <font class=
 "keywordflow">return</font> x_;}
-   V&amp; <a class="code" href=
-"classOptimizationMethod.html#a11">searchDirection</a>() { <font
+   V&amp; <a class="code" href="quep003/classOptimizationMethod.html#a11">searchDirection</a>() { <font
 class="keywordflow">return</font> searchDirection_;}
-   
+
    <font class="keyword">virtual</font> <font class=
-"keywordtype">void</font> <a class="code" href=
-"classOptimizationMethod.html#a12">Minimize</a>(<a class="code"
-href=
-"classOptimizationProblem.html">OptimizationProblem&lt;V&gt;</a> &amp; P) = 0;
+"keywordtype">void</font> <a class="code" href="quep003/classOptimizationMethod.html#a12">Minimize</a>(<a class="code"
+href="quep003/classOptimizationProblem.html">OptimizationProblem&lt;V&gt;</a> &amp; P) = 0;
  };
 </pre>
 </div>
 
 <br>
 <br>
- <a class="code" href="classSteepestDescent.html">Steepest
-Descent</a> and <a class="code" href=
-"classConjugateGradient.html">Conjugate Gradient</a> optimization
-methods are implemented using <a class="code" href=
-"classArmijoLineSearch.html">Armijo</a> line search algorithm.<br>
+ <a class="code" href="quep003/classSteepestDescent.html">Steepest
+Descent</a> and <a class="code" href="quep003/classConjugateGradient.html">Conjugate Gradient</a> optimization
+methods are implemented using <a class="code" href="quep003/classArmijoLineSearch.html">Armijo</a> line search algorithm.<br>
 <br>
  The class <b>OptimizationProblem</b> is the implementation of the
 last idea. It is the core of the optimization design. Given
 references to <b>CostFunction</b> and <b>OptimizationMethod</b>
 classes, it performs the optimization task.<br>
 <br>
- 
+
 
 <div class="fragment">
 <pre>
  template &lt;class V&gt;
- <font class="keyword">class</font> <a class="code" href=
-"classOptimizationProblem.html">OptimizationProblem</a> {
+ <font class="keyword">class</font> <a class="code" href="quep003/classOptimizationProblem.html">OptimizationProblem</a> {
  <font class="keyword">public</font>:
    <font class="keyword">typedef</font> <font class=
 "keywordtype">double</font> value_type;
  <font class="keyword">protected</font>:
-   <a class="code" href=
-"classCostFunction.html">CostFunction&lt;V&gt;</a> &amp; costFunction_;
-   <a class="code" href=
-"classOptimizationMethod.html">OptimizationMethod&lt;V&gt;</a> &amp; method_;
+   <a class="code" href="quep003/classCostFunction.html">CostFunction&lt;V&gt;</a> &amp; costFunction_;
+   <a class="code" href="quep003/classOptimizationMethod.html">OptimizationMethod&lt;V&gt;</a> &amp; method_;
    QuantLib::Handle&lt;OptimizationProblemOutput&lt;V&gt; &gt; opo_;
  <font class="keyword">public</font>:
-   <a class="code" href=
-"classOptimizationProblem.html#a0">OptimizationProblem</a>(<a
-class="code" href=
-"classCostFunction.html">CostFunction&lt;V&gt;</a> &amp; f,
-               <a class="code" href=
-"classOptimizationMethod.html">OptimizationMethod&lt;V&gt;</a> &amp; meth);  
-   <a class="code" href=
-"classOptimizationProblem.html#a0">OptimizationProblem</a>(<a
-class="code" href=
-"classCostFunction.html">CostFunction&lt;V&gt;</a> &amp; f,
-               <a class="code" href=
-"classOptimizationMethod.html">OptimizationMethod&lt;V&gt;</a> &amp; meth,
+   <a class="code" href="quep003/classOptimizationProblem.html#a0">OptimizationProblem</a>(<a
+class="code" href="quep003/classCostFunction.html">CostFunction&lt;V&gt;</a> &amp; f,
+               <a class="code" href="quep003/classOptimizationMethod.html">OptimizationMethod&lt;V&gt;</a> &amp; meth);
+   <a class="code" href="quep003/classOptimizationProblem.html#a0">OptimizationProblem</a>(<a
+class="code" href="quep003/classCostFunction.html">CostFunction&lt;V&gt;</a> &amp; f,
+               <a class="code" href="quep003/classOptimizationMethod.html">OptimizationMethod&lt;V&gt;</a> &amp; meth,
                QuantLib::Handle&lt;OptimizationProblemOutput&lt;V&gt; &gt;&amp; opo);
- 
-   <a class="code" href=
-"classOptimizationProblem.html#a2">~OptimizationProblem</a>() {}
-   value_type <a class="code" href=
-"classOptimizationProblem.html#a3">value</a>(<font class=
+
+   <a class="code" href="quep003/classOptimizationProblem.html#a2">~OptimizationProblem</a>() {}
+   value_type <a class="code" href="quep003/classOptimizationProblem.html#a3">value</a>(<font class=
 "keyword">const</font> V&amp; x);
-   <font class="keywordtype">void</font> <a class="code" href=
-"classOptimizationProblem.html#a4">firstDerivative</a>(V&amp; grad_f, <font
+   <font class="keywordtype">void</font> <a class="code" href="quep003/classOptimizationProblem.html#a4">firstDerivative</a>(V&amp; grad_f, <font
  class="keyword">const</font> V&amp; x);
-   value_type <a class="code" href=
-"classOptimizationProblem.html#a5">valueAndFirstDerivative</a>(V&amp; grad_f, <font
+   value_type <a class="code" href="quep003/classOptimizationProblem.html#a5">valueAndFirstDerivative</a>(V&amp; grad_f, <font
  class="keyword">const</font> V&amp; x);
 
-   <a class="code" href=
-"classOptimizationMethod.html">OptimizationMethod&lt;V&gt;</a> &amp; <a
- class="code" href=
-"classOptimizationProblem.html#a6">optimisationMethod</a>() { <font
+   <a class="code" href="quep003/classOptimizationMethod.html">OptimizationMethod&lt;V&gt;</a> &amp; <a
+ class="code" href="quep003/classOptimizationProblem.html#a6">optimisationMethod</a>() { <font
 class="keywordflow">return</font> method_;}
- 
-   <font class="keywordtype">void</font> <a class="code" href=
-"classOptimizationProblem.html#a7">Minimize</a>() { method_.<a
-class="code" href=
-"classOptimizationMethod.html#a12">Minimize</a>( *<font class=
+
+   <font class="keywordtype">void</font> <a class="code" href="quep003/classOptimizationProblem.html#a7">Minimize</a>() { method_.<a
+class="code" href="quep003/classOptimizationMethod.html#a12">Minimize</a>( *<font class=
 "keyword">this</font> ); }
- 
+
    V&amp; minimumValue() { <font class=
-"keywordflow">return</font> method_.<a class="code" href=
-"classOptimizationMethod.html#a10">x</a>();}
- 
-   <font class="keywordtype">void</font> <a class="code" href=
-"classOptimizationProblem.html#a9">Save</a>(<font class=
-"keywordtype">int</font> iterationNumber, 
-         value_type function, 
+"keywordflow">return</font> method_.<a class="code" href="quep003/classOptimizationMethod.html#a10">x</a>();}
+
+   <font class="keywordtype">void</font> <a class="code" href="quep003/classOptimizationProblem.html#a9">Save</a>(<font class=
+"keywordtype">int</font> iterationNumber,
+         value_type function,
          value_type normGradient,
          value_type lineSearchStep,
-         <a class="code" href=
-"classOptimizationMethod.html">OptimizationMethod&lt;V&gt;</a>&amp; method);
+         <a class="code" href="quep003/classOptimizationMethod.html">OptimizationMethod&lt;V&gt;</a>&amp; method);
  };
 </pre>
 </div>
 
-<a name="OPTIEXAMPLE"></a> 
+<a name="OPTIEXAMPLE"></a>
 
 <h2><b>III- Optimization Example</b></h2>
 
 It's a 1-D example, just replace Array size with N and you will
-obtain a N-D example 
+obtain a N-D example
 
 <h3>Definition of a new cost function</h3>
 
@@ -550,7 +484,7 @@ obtain a N-D example
  <font class="keyword">public</font>:
    xSquare() {}
    <font class="keyword">virtual</font> ~xSquare() {}
- 
+
    <font class="keyword">virtual</font> <font class=
 "keywordtype">double</font> value(<font class=
 "keyword">const</font> V&amp; x)
@@ -558,22 +492,22 @@ obtain a N-D example
      <font class="keywordtype">double</font> x0 = x[0];
      <font class="keywordflow">return</font> x0*x0;
    }
- 
+
    <font class="keyword">virtual</font> <font class=
 "keywordtype">void</font> firstDerivative(V&amp; grad_f, <font
 class="keyword">const</font> V&amp; x)
-  { 
+  {
      <font class="keywordtype">double</font> x0 = x[0];
-     grad_f[0] = 2.*x0; 
+     grad_f[0] = 2.*x0;
    }
- 
+
  };
 </pre>
 </div>
 
 <br>
 <br>
- 
+
 
 <h3>Minimization example</h3>
 
@@ -581,30 +515,30 @@ class="keyword">const</font> V&amp; x)
 <pre>
  <font class="keywordtype">double</font> eps = 1e-8;
  <font class="keywordtype">int</font> maxIter = 10000;
- 
+
  Array x0(1,4.);
 
  xSquare&lt;Array&gt; Square;
- 
+
  <font class="keywordtype">double</font> alpha = 0.5, beta = 0.65;
- Handle&lt;LineSearch&lt;Array&gt; &gt; armijoLineSearch = 
+ Handle&lt;LineSearch&lt;Array&gt; &gt; armijoLineSearch =
             <font class=
 "keyword">new</font> ArmijoLineSearch&lt;Array&gt;(eps,alpha,beta);
  ConjugateGradient&lt;Array&gt; conjugateGradient(armijoLineSearch);
 
  conjugateGradient.setInitialValue(x0);
  conjugateGradient.setEndCriteria(OptimizationEndCriteria(maxIter, eps) );
-     
+
  OptimizationProblem&lt;Array&gt; P(Square,conjugateGradient);
- 
+
  P.Minimize();
- 
- std::cout &lt;&lt; std::endl 
+
+ std::cout &lt;&lt; std::endl
            &lt;&lt; <font class=
-"stringliteral">"criteria = "</font> 
+"stringliteral">"criteria = "</font>
            &lt;&lt; conjugateGradient.endCriteria().criteria() &lt;&lt; std::endl
            &lt;&lt; <font class=
-"stringliteral">"Minimum value : "</font> 
+"stringliteral">"Minimum value : "</font>
            &lt;&lt; P.minimumValue();
 </pre>
 </div>
@@ -629,10 +563,10 @@ class="keyword">const</font> V&amp; x)
 <!-- 00160     cout &lt;&lt; <font class="stringliteral">"Optimal values  : "</font> &lt;&lt; abcd &lt;&lt; endl; -->
 <!-- 00161  -->
 <!-- 00162     <font class="comment">// Define the target volatility function</font> -->
-<!-- 00163     <a class="code" href="classBraceVolatilityFunction.html">BraceVolatilityFunction</a> bvf(abcd[0],abcd[1],abcd[2],abcd[3]); -->
+<!-- 00163     <a class="code" href="quep003/classBraceVolatilityFunction.html">BraceVolatilityFunction</a> bvf(abcd[0],abcd[1],abcd[2],abcd[3]); -->
 <!-- 00164  -->
-<!-- 00165     <a class="code" href="classTimer.html">Timer</a> t; -->
-<!-- 00166     t.<a class="code" href="classTimer.html#a1">start</a>(); -->
+<!-- 00165     <a class="code" href="quep003/classTimer.html">Timer</a> t; -->
+<!-- 00166     t.<a class="code" href="quep003/classTimer.html#a1">start</a>(); -->
 <!-- 00167     <font class="keywordflow">try</font> { -->
 <!-- 00168   -->
 <!-- 00169         <font class="keywordtype">double</font> t,  -->

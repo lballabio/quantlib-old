@@ -62,7 +62,7 @@ for finite-difference models</a></td>
 </tr>
 <tr>
 <td>3</td>
-<td><a href="quep/quep3/optimization.html">Curve fitting and
+<td><a href="quep/quep003.html">Curve fitting and
 optimization</a></td>
 <td>In progress</td>
 </tr>
@@ -80,7 +80,7 @@ in option implementations</a></td>
 </tr>
 <tr>
 <td>6</td>
-<td><a href="quep/quep006/quep006.html">A proposal for a Currency
+<td><a href="quep/quep006.html">A proposal for a Currency
 module</a></td>
 <td>Partially implemented</td>
 </tr>
