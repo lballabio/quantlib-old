@@ -31,14 +31,14 @@ extern "C"
     using namespace QuantLib;
     using QuantLib::PricingEngines::EuropeanAnalyticalEngine;
 
-    using QuantLib::PricingEngines::VanillaOptionParameters;
+    using QuantLib::PricingEngines::VanillaOptionArguments;
     using QuantLib::PricingEngines::VanillaOptionResults;
 
-    using QuantLib::PricingEngines::QuantoOptionParameters;
+    using QuantLib::PricingEngines::QuantoOptionArguments;
     using QuantLib::PricingEngines::QuantoOptionResults;
     using QuantLib::PricingEngines::QuantoVanillaAnalyticEngine;
 
-    using QuantLib::PricingEngines::ForwardOptionParameters;
+    using QuantLib::PricingEngines::ForwardOptionArguments;
     using QuantLib::PricingEngines::ForwardVanillaAnalyticEngine;
 
     using QuantLib::PricingEngines::ForwardPerformanceVanillaAnalyticEngine;
@@ -62,25 +62,25 @@ extern "C"
         Handle<QuantoVanillaAnalyticEngine> quantoEngine(new
             QuantoVanillaAnalyticEngine(baseEngine));
 
-        PricingEngines::QuantoOptionParameters<VanillaOptionParameters>* parameters =
+        PricingEngines::QuantoOptionArguments<VanillaOptionArguments>* arguments =
             dynamic_cast
-            <QuantoOptionParameters<VanillaOptionParameters>*>(
-            quantoEngine->parameters());
+            <QuantoOptionArguments<VanillaOptionArguments>*>(
+            quantoEngine->arguments());
 
-        parameters->type = QlXlfOper(xltype).AsOptionType();
-        parameters->underlying = xlunderlying.AsDouble();
-        parameters->strike = xlstrike.AsDouble();
-        parameters->dividendYield = xldividendYield .AsDouble();
-        parameters->riskFreeRate= xlriskFreeRate.AsDouble();
-        parameters->residualTime = xlmaturity.AsDouble();
-        parameters->volatility = xlvolatility.AsDouble();
-        parameters->foreignRiskFreeRate =
+        arguments->type = QlXlfOper(xltype).AsOptionType();
+        arguments->underlying = xlunderlying.AsDouble();
+        arguments->strike = xlstrike.AsDouble();
+        arguments->dividendYield = xldividendYield .AsDouble();
+        arguments->riskFreeRate= xlriskFreeRate.AsDouble();
+        arguments->residualTime = xlmaturity.AsDouble();
+        arguments->volatility = xlvolatility.AsDouble();
+        arguments->foreignRiskFreeRate =
             xlforeignRiskFreeRate.AsDouble();
-        parameters->exchangeRateVolatility =
+        arguments->exchangeRateVolatility =
             xlexchangeVolatility.AsDouble();
-        parameters->correlation = xlcorrelation.AsDouble();
+        arguments->correlation = xlcorrelation.AsDouble();
 
-        parameters->validate();
+        arguments->validate();
         quantoEngine->calculate();
 
         const VanillaOptionResults* vResults =
@@ -123,24 +123,24 @@ extern "C"
         Handle<ForwardVanillaAnalyticEngine> forwardEngine(new
             ForwardVanillaAnalyticEngine(baseEngine));
 
-        PricingEngines::ForwardOptionParameters<VanillaOptionParameters>*
-            parameters = dynamic_cast
-            <ForwardOptionParameters<VanillaOptionParameters>*>(
-            forwardEngine->parameters());
+        PricingEngines::ForwardOptionArguments<VanillaOptionArguments>*
+            arguments = dynamic_cast
+            <ForwardOptionArguments<VanillaOptionArguments>*>(
+            forwardEngine->arguments());
 
-        parameters->type = QlXlfOper(xltype).AsOptionType();
-        parameters->underlying = xlunderlying.AsDouble();
+        arguments->type = QlXlfOper(xltype).AsOptionType();
+        arguments->underlying = xlunderlying.AsDouble();
         // dummy strike
         // ForwardOptionParameter shoul not include strike
-        parameters->strike = parameters->underlying;
-        parameters->moneyness = xlmoneyness.AsDouble();
-        parameters->dividendYield = xldividendYield .AsDouble();
-        parameters->riskFreeRate= xlriskFreeRate.AsDouble();
-        parameters->resetTime = xlresetTime.AsDouble();
-        parameters->residualTime = xlmaturity.AsDouble();
-        parameters->volatility = xlvolatility.AsDouble();
+        arguments->strike = arguments->underlying;
+        arguments->moneyness = xlmoneyness.AsDouble();
+        arguments->dividendYield = xldividendYield .AsDouble();
+        arguments->riskFreeRate= xlriskFreeRate.AsDouble();
+        arguments->resetTime = xlresetTime.AsDouble();
+        arguments->residualTime = xlmaturity.AsDouble();
+        arguments->volatility = xlvolatility.AsDouble();
 
-        parameters->validate();
+        arguments->validate();
         forwardEngine->calculate();
 
         const VanillaOptionResults* vResults =
@@ -178,26 +178,26 @@ extern "C"
         Handle<ForwardPerformanceVanillaAnalyticEngine> performanceEngine(new
             ForwardPerformanceVanillaAnalyticEngine(baseEngine));
 
-        PricingEngines::ForwardOptionParameters<VanillaOptionParameters>*
-            parameters = dynamic_cast
-            <ForwardOptionParameters<VanillaOptionParameters>*>(
-            performanceEngine->parameters());
+        PricingEngines::ForwardOptionArguments<VanillaOptionArguments>*
+            arguments = dynamic_cast
+            <ForwardOptionArguments<VanillaOptionArguments>*>(
+            performanceEngine->arguments());
 
-        parameters->type = QlXlfOper(xltype).AsOptionType();
+        arguments->type = QlXlfOper(xltype).AsOptionType();
         // dummy underlying
         // ForwardPerformanceOptionParameter should not include underlying
-        parameters->underlying = xlunderlying.AsDouble();
+        arguments->underlying = xlunderlying.AsDouble();
         // dummy strike
         // ForwardPerformanceOptionParameter should not include strike
-        parameters->strike = parameters->underlying;
-        parameters->moneyness = xlmoneyness.AsDouble();
-        parameters->dividendYield = xldividendYield .AsDouble();
-        parameters->riskFreeRate= xlriskFreeRate.AsDouble();
-        parameters->resetTime = xlresetTime.AsDouble();
-        parameters->residualTime = xlmaturity.AsDouble();
-        parameters->volatility = xlvolatility.AsDouble();
+        arguments->strike = arguments->underlying;
+        arguments->moneyness = xlmoneyness.AsDouble();
+        arguments->dividendYield = xldividendYield .AsDouble();
+        arguments->riskFreeRate= xlriskFreeRate.AsDouble();
+        arguments->resetTime = xlresetTime.AsDouble();
+        arguments->residualTime = xlmaturity.AsDouble();
+        arguments->volatility = xlvolatility.AsDouble();
 
-        parameters->validate();
+        arguments->validate();
         performanceEngine->calculate();
 
         const VanillaOptionResults* vResults =
