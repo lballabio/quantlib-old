@@ -1,5 +1,5 @@
 
-# Copyright (C) 2000-2004 StatPro Italia srl
+# Copyright (C) 2004 StatPro Italia srl
 #
 # This file is part of QuantLib, a free-software/open-source library
 # for financial quantitative analysts and developers - http://quantlib.org/
@@ -208,6 +208,10 @@ swaps[(5,'years')].setValue(0.046)
 print dblrule
 print "5-year market swap-rate = %s" % formatRate(swaps[(5,'years')].value())
 print dblrule
+
+print tab + "5-years swap paying %s" % formatRate(fixedRate)
+print separator.join(headers)
+print rule
     
 discountTermStructure.linkTo(depoFuturesSwapCurve)
 forecastTermStructure.linkTo(depoFuturesSwapCurve)

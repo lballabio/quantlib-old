@@ -53,23 +53,6 @@ module QuantLibc
     end
   end
 
-  class SimpleSwap
-    alias cpp_initialize initialize
-    def initialize(payFixedRate, startDate, n, unit, calendar,\
-                   rollingConvention, nominal, fixedFrequency, fixedRate,\
-                   fixedIsAdjusted, fixedDayCount, floatingFrequency,\
-                   index, indexFixingDays, spread, termStructure,\
-                   isinCode = "unknown", description = "interest rate swap")
-      fixedLeg = FixedSwapLeg.new(fixedFrequency, fixedRate,\
-                                  fixedIsAdjusted, fixedDayCount)
-      floatingLeg = FloatingSwapLeg.new(floatingFrequency, index,\
-                                        indexFixingDays, spread)
-      cpp_initialize(payFixedRate, startDate, n, unit, calendar, 
-                     rollingConvention, nominal, fixedLeg, floatingLeg,
-                     termStructure, isinCode, description)
-    end
-  end
-
 end
 
 QuantLib = QuantLibc

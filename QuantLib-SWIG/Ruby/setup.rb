@@ -115,7 +115,7 @@ Interfaces =  [ 'quantlib.i',
                 'volatilities.i',
                 # to be removed
                 'old_pricers.i',
-                'old_volatility.i']
+                'old_volatility.i' ]
 
 Tests =       [ 'QuantLibTestSuite.rb',
                 'dates.rb',
@@ -123,7 +123,12 @@ Tests =       [ 'QuantLibTestSuite.rb',
                 'integrals.rb',
                 'marketelements.rb',
                 'solvers1d.rb',
-                'termstructures.rb']
+                'termstructures.rb' ]
+
+Examples =    [ 'american-option.rb',
+                'bermudan-swaption.rb',
+                'european-option.rb',
+                'swap.rb' ]
 
 # commands
 class Command
@@ -148,12 +153,14 @@ SDist = Command.new {
     raise "Directory #{distDir} already exist" if File.exists? distDir
     swigDir = distDir+"/SWIG"
     testDir = distDir+"/test"
-    [distDir,swigDir,testDir].each { |path| File.makedirs path }
+    exampleDir = distDir+"/examples"
+    [distDir,swigDir,testDir,exampleDir].each { |path| File.makedirs path }
     Info.each       { |file| File.syscopy file, distDir }
     Sources.each    { |file| File.syscopy file, distDir }
     Scripts.each    { |file| File.syscopy file, distDir }
     Interfaces.each { |file| File.syscopy '../SWIG/'+file, swigDir }
     Tests.each      { |file| File.syscopy 'test/'+file, testDir }
+    Examples.each   { |file| File.syscopy 'examples/'+file, exampleDir }
     cfg = Config::MAKEFILE_CONFIG
     case cfg['host_os']
       when 'mswin32'

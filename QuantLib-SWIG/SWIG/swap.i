@@ -98,26 +98,6 @@ class SimpleSwapPtr : public SwapPtr {
     #endif
   public:
     %extend {
-    #if defined(SWIGRUBY)
-        SimpleSwapPtr(bool payFixedRate, const Date& startDate, 
-                      int n, TimeUnit unit, const Calendar& calendar, 
-                      RollingConvention rollingConvention, double nominal,
-                      const FixedSwapLeg& fixedLeg,
-                      const FloatingSwapLeg& floatingLeg,
-                      const RelinkableHandle<TermStructure>& termStructure) {
-            boost::shared_ptr<Xibor> libor = 
-                 boost::dynamic_pointer_cast<Xibor>(floatingLeg.index);
-            return new SimpleSwapPtr(
-                new SimpleSwap(
-                    payFixedRate, startDate, n, unit, calendar,
-                    rollingConvention, nominal, 
-                    fixedLeg.fixedFrequency, fixedLeg.fixedRate, 
-                    fixedLeg.fixedIsAdjusted, fixedLeg.fixedDayCount, 
-                    floatingLeg.floatingFrequency, libor, 
-                    floatingLeg.indexFixingDays, floatingLeg.spread, 
-                    termStructure));
-        }
-    #else
         SimpleSwapPtr(bool payFixedRate, const Date& startDate, 
                       int n, TimeUnit unit, const Calendar& calendar, 
                       RollingConvention rollingConvention, double nominal, 
@@ -149,7 +129,6 @@ class SimpleSwapPtr : public SwapPtr {
                                fixedDayCount,floatSchedule,libor,
                                indexFixingDays,spread,termStructure));
         }
-    #endif
         Rate fairRate() {
             return boost::dynamic_pointer_cast<SimpleSwap>(*self)->fairRate();
         }

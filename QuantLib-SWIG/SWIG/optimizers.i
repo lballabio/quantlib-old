@@ -185,7 +185,7 @@ using QuantLib::SteepestDescent;
 class OptimizationMethod {
     #if defined(SWIGRUBY)
     %rename("initialValue=") setInitialValue;
-    %rename("endCriteria==") setEndCriteria;
+    %rename("endCriteria=")  setEndCriteria;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("initial-value-set!") setInitialValue;
     %rename("end-criteria-set!") setEndCriteria;
