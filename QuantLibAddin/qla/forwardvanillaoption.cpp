@@ -24,17 +24,17 @@
 namespace QuantLibAddin {
 
     ForwardVanillaOption::ForwardVanillaOption(ObjHandler::ArgStack &args) {
-        long timeSteps = ObjHandler::Args<long>::popArg(args);
-        std::string engineID = ObjHandler::Args<std::string>::popArg(args);
-        long settlementDate = ObjHandler::Args<long>::popArg(args);
-        long exerciseDate = ObjHandler::Args<long>::popArg(args);
-        std::string exerciseID = ObjHandler::Args<std::string>::popArg(args);
-        double strike = ObjHandler::Args<double>::popArg(args);
-        std::string payoffID = ObjHandler::Args<std::string>::popArg(args);
-        std::string optionTypeID = ObjHandler::Args<std::string>::popArg(args);
-        long resetDate = ObjHandler::Args<long>::popArg(args);
-        double moneyness = ObjHandler::Args<double>::popArg(args);
-        std::string handleStochastic = ObjHandler::Args<std::string>::popArg(args);
+        long timeSteps                  = ObjHandler::Args<long>::popArg(args);
+        std::string engineID            = ObjHandler::Args<std::string>::popArg(args);
+        long settlementDate             = ObjHandler::Args<long>::popArg(args);
+        long exerciseDate               = ObjHandler::Args<long>::popArg(args);
+        std::string exerciseID          = ObjHandler::Args<std::string>::popArg(args);
+        double strike                   = ObjHandler::Args<double>::popArg(args);
+        std::string payoffID            = ObjHandler::Args<std::string>::popArg(args);
+        std::string optionTypeID        = ObjHandler::Args<std::string>::popArg(args);
+        long resetDate                  = ObjHandler::Args<long>::popArg(args);
+        double moneyness                = ObjHandler::Args<double>::popArg(args);
+        std::string handleStochastic    = ObjHandler::Args<std::string>::popArg(args);
 
         boost::shared_ptr<StochasticProcess> stochasticProcess =
             boost::dynamic_pointer_cast<StochasticProcess>

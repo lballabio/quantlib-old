@@ -20,6 +20,7 @@
 
 #include <qla/qladdindefines.hpp>
 #include <qla/options.hpp>
+#include <qla/instruments.hpp>
 #include <qla/utilities.hpp>
 
 #endif

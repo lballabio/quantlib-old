@@ -1,4 +1,4 @@
-# QuantLibAddin\Addins\Calc\Makefile.win32.debug
+# QuantLibAddin\Addins\Calc\Makefile.msdev - currently identical to debug file
 
 COMPONENT_NAME=QuantLibAddin
 DLL_NAME=QuantLibAddin-vc6-mt-sgd

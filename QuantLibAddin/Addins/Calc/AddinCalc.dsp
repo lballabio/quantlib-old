@@ -41,7 +41,7 @@ CFG=AddinCalc - Win32 Debug
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "Release"
 # PROP Intermediate_Dir "Release"
-# PROP Cmd_Line "nmake /f Makefile.win32"
+# PROP Cmd_Line "nmake /f Makefile.msdev"
 # PROP Rebuild_Opt "/a"
 # PROP Target_File "QuantLibAddin.dll"
 # PROP Bsc_Name ""
@@ -62,7 +62,7 @@ CFG=AddinCalc - Win32 Debug
 # PROP Use_Debug_Libraries 1
 # PROP Output_Dir "Debug"
 # PROP Intermediate_Dir "Debug"
-# PROP Cmd_Line "nmake /f Makefile.win32.debug"
+# PROP Cmd_Line "nmake /f Makefile.msdev.debug"
 # PROP Rebuild_Opt "/a"
 # PROP Target_File "QuantLibAddin.dll"
 # PROP Bsc_Name ""
@@ -145,17 +145,15 @@ SOURCE=.\utilities.hpp
 # Begin Group "Make"
 
 # PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\Makefile.win32
-# PROP Intermediate_Dir "."
-# End Source File
-# Begin Source File
-
-SOURCE=.\Makefile.win32.debug
-# PROP Intermediate_Dir "."
-# End Source File
 # End Group
+# Begin Source File
+
+SOURCE=.\Makefile.msdev
+# End Source File
+# Begin Source File
+
+SOURCE=.\Makefile.msdev.debug
+# End Source File
 # Begin Source File
 
 SOURCE=.\QuantLibAddin.idl

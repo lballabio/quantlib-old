@@ -1,4 +1,4 @@
-# QuantLibAddin\Addins\Calc\Makefile.win32 - currently identical to debug file
+# QuantLibAddin\Addins\Calc\Makefile.msdev.debug
 
 COMPONENT_NAME=QuantLibAddin
 DLL_NAME=QuantLibAddin-vc6-mt-sgd
@@ -28,7 +28,8 @@ OBJECTS="$(INT_DIR)\qladdin.obj" \
 	"$(INT_DIR)\funcdef.obj" \
 	"$(INT_DIR)\calcutils.obj" \
 	"$(INT_DIR)\utilities.obj" \
-	"$(INT_DIR)\options.obj"	
+	"$(INT_DIR)\options.obj" \
+	"$(INT_DIR)\instruments.obj"
 LINK="$(MSVC_DIR)\BIN\LINK" /nologo
 LFLAGS=libcmtd.lib libcpmtd.lib kernel32.lib wsock32.lib \
 	oldnames.lib netapi32.lib advapi32.lib gdi32.lib comdlg32.lib \

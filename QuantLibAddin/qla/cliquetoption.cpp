@@ -24,14 +24,14 @@
 namespace QuantLibAddin {
 
     CliquetOption::CliquetOption(ObjHandler::ArgStack &args) {
-        long timeSteps = ObjHandler::Args<long>::popArg(args);
-        std::string engineID = ObjHandler::Args<std::string>::popArg(args);
-        long exerciseDate = ObjHandler::Args<long>::popArg(args);
-        double strike = ObjHandler::Args<double>::popArg(args);
-        std::string optionTypeID = ObjHandler::Args<std::string>::popArg(args);
+        long timeSteps                  = ObjHandler::Args<long>::popArg(args);
+        std::string engineID            = ObjHandler::Args<std::string>::popArg(args);
+        long exerciseDate               = ObjHandler::Args<long>::popArg(args);
+        double strike                   = ObjHandler::Args<double>::popArg(args);
+        std::string optionTypeID        = ObjHandler::Args<std::string>::popArg(args);
         std::vector < long > resetDates 
             = ObjHandler::Args< std::vector < long > >::popArg(args);
-        std::string handleStochastic = ObjHandler::Args<std::string>::popArg(args);
+        std::string handleStochastic    = ObjHandler::Args<std::string>::popArg(args);
 
         boost::shared_ptr<StochasticProcess> stochasticProcess =
             boost::dynamic_pointer_cast<StochasticProcess>

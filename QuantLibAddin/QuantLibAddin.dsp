@@ -205,7 +205,19 @@ SOURCE=.\qla\dividendvanillaoption.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\fixedcouponbond.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\forwardvanillaoption.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\generalutils.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\instrumentutils.cpp
 # End Source File
 # Begin Source File
 
@@ -253,7 +265,23 @@ SOURCE=.\qla\dividendvanillaoption.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\fixedcouponbond.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\forwardvanillaoption.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\generalutils.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\instruments.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\instrumentutils.hpp
 # End Source File
 # Begin Source File
 

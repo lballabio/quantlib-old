@@ -38,8 +38,8 @@ endif
 EXTRA_DIST = \
     AddinCalc.dsp \
     AddinCalc.vcproj \
-    Makefile.win32 \
-    Makefile.win32.debug \
+    Makefile.msdev \
+    Makefile.msdev.debug \
     QuantLibAddin.def \
     QuantLibAddin.idl \
     readme.txt
@@ -47,6 +47,7 @@ EXTRA_DIST = \
 noinst_HEADERS = \
     autogen.hpp \
     calcutils.hpp \
+    instruments.hpp \
     options.hpp \
     qladdin.hpp \
     qldefs.hpp \
@@ -61,6 +62,7 @@ endif
 libQuantLibAddinCalc_la_SOURCES = \
     calcutils.cpp \
     funcdef.cpp \
+    instruments.cpp \
     options.cpp \
     qladdin.cpp \
     utilities.cpp

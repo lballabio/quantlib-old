@@ -16,7 +16,6 @@ Makefile.in
 QuantLibAddin.idl
 autogen.hpp
 funcdef.cpp
-options.cpp
-options.hpp
-
+options.*
+instruments.*
 utilities.hpp

@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_obj_options_hpp
-#define qla_obj_options_hpp
+#ifndef qla_options_hpp
+#define qla_options_hpp
 
 #include <qla/asianoption.hpp>
 #include <qla/barrieroption.hpp>

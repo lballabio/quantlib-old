@@ -15,5 +15,5 @@ Makefile.win
 *_private.*
 xll
 
-options.cpp
-options.h
+options.*
+instruments.*

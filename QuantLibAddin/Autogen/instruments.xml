@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
+<functionlist>
+<headeronly>false</headeronly>
+<desc>functions to construct QuantLib instrument objects</desc>
+
+<function>
+<name>QL_BOND_FIXED_COUPON</name>
+<codename>qlBondFixedCoupon</codename>
+<desc>construct and return a handle to a FixedCouponBond object</desc>
+<qlfunction>FixedCouponBond</qlfunction>
+<constructor>true</constructor>
+<parameters>
+    <param>
+        <name>issueDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>issue date</desc>
+    </param>
+    <param>
+        <name>datedDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dated date</desc>
+    </param>
+    <param>
+        <name>maturityDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>maturity date</desc>
+    </param>
+    <param>
+        <name>settlementDays</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement days</desc>
+    </param>
+    <param>
+        <name>coupon</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>coupon</desc>
+    </param>
+    <param>
+        <name>yield</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>yield</desc>
+    </param>
+    <param>
+        <name>frequencyID</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>frequency ID</desc>
+    </param>
+    <param>
+        <name>dayCounterID</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>day counter ID</desc>
+    </param>
+    <param>
+        <name>calendarID</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>calendar ID</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>propertyvector</type>
+    <desc>vector of properties describing Instrument</desc>
+</returnval>
+</function>
+
+</functionlist>

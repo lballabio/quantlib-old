@@ -21,7 +21,7 @@
 #include <ql/option.hpp>
 #include <ql/Instruments/payoffs.hpp>
 #include <ql/Math/matrix.hpp>
-#include <ql/basicdataformatters.hpp>
+#include <qla/generalutils.hpp>
 
 // indexes to the Property vector
 // FIXME - need a cleaner way to achieve this
@@ -29,8 +29,6 @@
 #define FIELD_ENGINE                    "ENGINE"
 #define IDX_NPV                         0
 #define IDX_ENGINE                      1
-
-#define QL_OBJECT_GET(X) ObjHandler::ObjectHandler::instance().retrieveObject(X)
 
 namespace QuantLibAddin {
 

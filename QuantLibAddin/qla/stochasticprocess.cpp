@@ -19,32 +19,20 @@
     #include <qla/config.hpp>
 #endif
 #include <qla/stochasticprocess.hpp>
-
-#include <ql/DayCounters/all.hpp>
+#include <qla/generalutils.hpp>
 #include <ql/quote.hpp>
 #include <ql/TermStructures/flatforward.hpp>
 #include <ql/Volatilities/blackconstantvol.hpp>
-#include <ql/basicdataformatters.hpp>
 
 namespace QuantLibAddin {
 
-    QuantLib::DayCounter IDtoDayCounter(const std::string &dayCounterID) {
-        std::string idUpper = QuantLib::StringFormatter::toUppercase(dayCounterID);
-        if (idUpper.compare("ACT365FIX") ==0)
-            return QuantLib::Actual365Fixed();
-        else if (idUpper.compare("ACT360") == 0)
-            return QuantLib::Actual360();
-        else
-            QL_FAIL("IDtoDayCounter: unrecognized dayCounterID: " + dayCounterID);
-    }
-
     StochasticProcess::StochasticProcess(ObjHandler::ArgStack &args) {
-        double volatility = ObjHandler::Args<double>::popArg(args);
-        double dividendYield = ObjHandler::Args<double>::popArg(args);
-        double riskFreeRate = ObjHandler::Args<double>::popArg(args);
-        long settlementDateLong = ObjHandler::Args<long>::popArg(args);
-        std::string dayCounterID = ObjHandler::Args<std::string>::popArg(args);
-        double underlying = ObjHandler::Args<double>::popArg(args);
+        double volatility           = ObjHandler::Args<double>::popArg(args);
+        double dividendYield        = ObjHandler::Args<double>::popArg(args);
+        double riskFreeRate         = ObjHandler::Args<double>::popArg(args);
+        long settlementDateLong     = ObjHandler::Args<long>::popArg(args);
+        std::string dayCounterID    = ObjHandler::Args<std::string>::popArg(args);
+        double underlying           = ObjHandler::Args<double>::popArg(args);
 
         QuantLib::Date settlementDate(settlementDateLong);
         QuantLib::DayCounter dayCounter = IDtoDayCounter(dayCounterID);

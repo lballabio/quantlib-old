@@ -182,6 +182,10 @@ SOURCE=.\stub.Excel.regheader
 # PROP Default_Filter "*.xml"
 # Begin Source File
 
+SOURCE=.\instruments.xml
+# End Source File
+# Begin Source File
+
 SOURCE=.\options.xml
 # End Source File
 # Begin Source File

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2005 Walter Penschke
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,14 +15,27 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qladdin_h
-#define qladdin_h
+#ifndef qla_fixedcouponbond_hpp
+#define qla_fixedcouponbond_hpp
 
-#include <Addins/C/defines.h>
-#include <Addins/C/varies.h>
-#include <Addins/C/utilities.h>
-#include <Addins/C/options.h>
-#include <Addins/C/instruments.h>
+#include <oh/objhandler.hpp>
+#include <ql/Instruments/fixedcouponbond.hpp>
+
+namespace QuantLibAddin {
+
+    class FixedCouponBond : public ObjHandler::Object {
+    public:
+        FixedCouponBond(ObjHandler::ArgStack& args);
+
+        virtual boost::shared_ptr<void> getReference() const {
+            return boost::static_pointer_cast<void>(myFixedCouponBond);
+        }
+
+    private:
+        boost::shared_ptr<QuantLib::FixedCouponBond> myFixedCouponBond;
+    };
+}
 
 #endif
+
 

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2005 Walter Penschke
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,14 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qladdin_h
-#define qladdin_h
+#ifndef qla_instruments_hpp
+#define qla_instruments_hpp
 
-#include <Addins/C/defines.h>
-#include <Addins/C/varies.h>
-#include <Addins/C/utilities.h>
-#include <Addins/C/options.h>
-#include <Addins/C/instruments.h>
+#include <qla/fixedcouponbond.hpp>
 
 #endif
 

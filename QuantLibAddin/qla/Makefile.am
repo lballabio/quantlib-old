@@ -14,7 +14,11 @@ include_HEADERS = \
     basketoption.hpp \
     cliquetoption.hpp \
     dividendvanillaoption.hpp \
+    fixedcouponbond.hpp \
     forwardvanillaoption.hpp \
+    generalutils.hpp \
+    instruments.hpp \
+    instrumentutils.hpp \
     options.hpp \
     optionutils.hpp \
     qladdindefines.hpp \
@@ -31,7 +35,11 @@ libQuantLibAddin_la_SOURCES = \
     basketoption.cpp \
     cliquetoption.cpp \
     dividendvanillaoption.cpp \
+    fixedcouponbond.cpp \
     forwardvanillaoption.cpp \
+    generalutils.cpp \
+    instruments.cpp \
+    instrumentutils.cpp \
     optionutils.cpp \
     stochasticprocess.cpp \
     utilities.cpp \

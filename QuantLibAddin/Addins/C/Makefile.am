@@ -15,6 +15,7 @@ libQuantLibAddinC_la_LIBADD = ../../qla/libQuantLibAddin.la
 # for now we do not install the C addin headers
 noinst_HEADERS = \
     defines.h \
+    instruments.h \
     options.h \
     qladdin.h \
     utilities.h \
@@ -22,6 +23,7 @@ noinst_HEADERS = \
     varies.hpp
 
 libQuantLibAddinC_la_SOURCES = \
+    instruments.cpp \
     options.cpp \
     utilities.cpp \
     varies.cpp

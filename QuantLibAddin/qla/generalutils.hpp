@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,14 +15,20 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qladdin_h
-#define qladdin_h
+#ifndef qla_generalutils_hpp
+#define qla_generalutils_hpp
 
-#include <Addins/C/defines.h>
-#include <Addins/C/varies.h>
-#include <Addins/C/utilities.h>
-#include <Addins/C/options.h>
-#include <Addins/C/instruments.h>
+#include <ql/DayCounters/all.hpp>
+#include <ql/basicdataformatters.hpp>
+
+#define QL_OBJECT_GET(X) ObjHandler::ObjectHandler::instance().retrieveObject(X)
+
+namespace QuantLibAddin {
+
+    QuantLib::DayCounter IDtoDayCounter(
+        const std::string &dayCounterID);
+
+}
 
 #endif
 

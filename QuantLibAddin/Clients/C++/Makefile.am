@@ -12,6 +12,7 @@ EXTRA_DIST = \
 
 QLADemo_SOURCES = qlademo.cpp
 Options_SOURCES = options.cpp
+Instruments_SOURCES = instruments.cpp
 
-noinst_PROGRAMS = QLADemo Options
+noinst_PROGRAMS = QLADemo Options Instruments
 

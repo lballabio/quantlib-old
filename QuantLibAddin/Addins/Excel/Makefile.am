@@ -6,6 +6,7 @@ EXTRA_DIST = \
     AddinExcel.vcproj \
     framewrk.cpp \
     framewrk.hpp \
+    instruments.cpp \
     options.cpp \
     qladdin.cpp \
     utilities.cpp \

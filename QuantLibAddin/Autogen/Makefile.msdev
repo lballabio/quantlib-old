@@ -24,6 +24,7 @@ SCRIPTS=autogen.py \
 	parse.py \
 	utils.py
 METADATA=options.xml \
+	instruments.xml \
 	utilities.xml
 
 !IF "$(OS)" == "Windows_NT"

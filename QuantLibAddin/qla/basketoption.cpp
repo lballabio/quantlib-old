@@ -34,16 +34,16 @@ namespace QuantLibAddin {
     }
 
     BasketOption::BasketOption(ObjHandler::ArgStack &args) {
-        long timeSteps = ObjHandler::Args<long>::popArg(args);
-        std::string engineID = ObjHandler::Args<std::string>::popArg(args);
-        long settlementDate = ObjHandler::Args<long>::popArg(args);
-        long exerciseDate = ObjHandler::Args<long>::popArg(args);
-        std::string exerciseID = ObjHandler::Args<std::string>::popArg(args);
+        long timeSteps              = ObjHandler::Args<long>::popArg(args);
+        std::string engineID        = ObjHandler::Args<std::string>::popArg(args);
+        long settlementDate         = ObjHandler::Args<long>::popArg(args);
+        long exerciseDate           = ObjHandler::Args<long>::popArg(args);
+        std::string exerciseID      = ObjHandler::Args<std::string>::popArg(args);
         double strike = ObjHandler::Args<double>::popArg(args);
-        std::string optionTypeID = ObjHandler::Args<std::string>::popArg(args);
+        std::string optionTypeID    = ObjHandler::Args<std::string>::popArg(args);
         std::vector < std::vector < double > > correlations 
             = ObjHandler::Args< std::vector < std::vector < double > > >::popArg(args);
-        std::string basketID = ObjHandler::Args<std::string>::popArg(args);
+        std::string basketID        = ObjHandler::Args<std::string>::popArg(args);
         std::vector < std::string > handleStochasticVector 
             = ObjHandler::Args< std::vector < std::string > >::popArg(args);
 
