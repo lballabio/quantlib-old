@@ -107,29 +107,29 @@ class Calendar {
         Calendar(const std::string& name) {
             std::string s = StringFormatter::toLowercase(name);
             if (s == "target" || s == "euro" || s == "eur")
-                return new TARGET;
+                return new Calendar(TARGET());
             else if (s == "newyork" || s == "ny" || s == "nyc")
-                return new NewYork;
+                return new Calendar(NewYork());
             else if (s == "london" || s == "lon")
-                return new London;
+                return new Calendar(London());
             else if (s == "milan" || s == "mil")
-                return new Milan;
+                return new Calendar(Milan());
             else if (s == "frankfurt" || s == "fft")
-                return new Frankfurt;
+                return new Calendar(Frankfurt());
             else if (s == "zurich" || s == "zur")
-                return new Zurich;
+                return new Calendar(Zurich());
             else if (s == "helsinki")
-                return new Helsinki;
+                return new Calendar(Helsinki());
             else if (s == "johannesburg")
-                return new Johannesburg;
+                return new Calendar(Johannesburg());
             else if (s == "wellington")
-                return new Wellington;
+                return new Calendar(Wellington());
             else if (s == "tokyo")
-                return new Tokyo;
+                return new Calendar(Tokyo());
             else if (s == "toronto")
-                return new Toronto;
+                return new Calendar(Toronto());
             else if (s == "sydney")
-                return new Sydney;
+                return new Calendar(Sydney());
             else
                 throw Error("Unknown calendar: " + name);
             QL_DUMMY_RETURN((Calendar*)(0));

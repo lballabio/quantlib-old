@@ -51,24 +51,24 @@ class DayCounter {
         DayCounter(std::string s) {
             s = StringFormatter::toLowercase(s);
             if (s == "act365" || s == "act/365")
-                return new Actual365;
+                return new DayCounter(Actual365());
             else if (s == "act360" || s == "act/360")
-                return new Actual360;
+                return new DayCounter(Actual360());
             else if (s == "30/360" || s == "30/360us")
-                return new Thirty360(Thirty360::USA);
+                return new DayCounter(Thirty360(Thirty360::USA));
             else if (s == "30e/360" || s == "30/360e" || s == "30/360eu")
-                return new Thirty360(Thirty360::European);
+                return new DayCounter(Thirty360(Thirty360::European));
             else if (s == "30/360i" || s == "30/360it")
-                return new Thirty360(Thirty360::Italian);
+                return new DayCounter(Thirty360(Thirty360::Italian));
             else if (s == "actact" || s == "act/act" || 
                      s == "act/act(b)" || s == "act/act (Bond)")
-                return new ActualActual(ActualActual::Bond);
+                return new DayCounter(ActualActual(ActualActual::Bond));
             else if (s == "actacte" || s == "act/act(e)" 
                      || s == "act/act(Euro)")
-                return new ActualActual(ActualActual::Euro);
+                return new DayCounter(ActualActual(ActualActual::Euro));
             else if (s == "actacth" || s == "act/act(h)" 
                      || s == "act/act (ISDA)")
-                return new ActualActual(ActualActual::Historical);
+                return new DayCounter(ActualActual(ActualActual::Historical));
             else
                 throw Error("Unknown day counter: " + s);
             QL_DUMMY_RETURN((DayCounter*)(0));
