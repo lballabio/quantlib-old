@@ -44,7 +44,7 @@ def webpublish():
 
   if 1:
     cmd = 'zip -q -r '
-    cmd = cmd + '..\\' + sitename +time.strftime('%Y%m%d%H%M', time.localtime())
+    cmd = cmd + sitename +time.strftime('%Y%m%d%H%M', time.localtime())
     cmd = cmd +'.zip *.*'
     print 'performing:'
     print cmd
@@ -78,7 +78,7 @@ def webpublish():
   #if bobbyCheck=='y':
   #  pass
 
-  cmd = 'zip -q -r ..\\' + sitename + '.zip *.*'
+  cmd = 'zip -q -r ' + sitename + '.zip *.*'
   print 'performing:'
   print cmd
   print 'please wait ....',
