@@ -147,7 +147,7 @@ SDist = Command.new {
     case cfg['host_os']
       when 'mswin32'
         system "zip -q -r #{distDir}.zip #{distDir}/"
-      when 'linux'
+      when 'linux','linux-gnu'
         system "tar cfz #{distDir}.tar.gz #{distDir}/"
       else
         puts "Unknown host: " + cfg['host_os']
@@ -166,7 +166,7 @@ Build = Command.new {
         $CPPFLAGS += " /DNOMINMAX"
         $CPPFLAGS += " /I#{QL_DIR}"
         $LIBPATH  += ["#{QL_DIR}\\lib\\Win32\\VisualStudio"]
-      when 'linux'
+      when 'linux','linux-gnu'
         $CFLAGS   += " " + (ENV['CFLAGS'] || "")
         $CPPFLAGS += " " + IO.popen("quantlib-config --cflags").gets.strip
         $CPPFLAGS += " -Wno-uninitialized"
