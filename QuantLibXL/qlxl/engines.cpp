@@ -22,9 +22,10 @@
 #include <qlxl/qlxlfoper.hpp>
 #include <ql/stochasticprocess.hpp>
 #include <ql/PricingEngines/Vanilla/all.hpp>
-#include <ql/PricingEngines/Vanilla/mceuropeanengine.hpp>
 #include <ql/PricingEngines/Quanto/all.hpp>
 #include <ql/PricingEngines/Forward/all.hpp>
+#include <ql/Instruments/quantovanillaoption.hpp>
+#include <ql/Instruments/forwardvanillaoption.hpp>
 #include <boost/shared_ptr.hpp>
 
 extern "C"
@@ -124,8 +125,8 @@ extern "C"
         boost::shared_ptr<SimpleQuote> spot(new
             SimpleQuote(xlunderlying.AsDouble()));
 
-        boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
-            BlackScholesStochasticProcess(
+        boost::shared_ptr<BlackScholesProcess> stochProcess(new
+            BlackScholesProcess(
                 RelinkableHandle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
                 QlXlfOper(xlriskFree).AsTermStructure(refDate),
@@ -179,8 +180,8 @@ extern "C"
         boost::shared_ptr<SimpleQuote> spot(new
             SimpleQuote(xlunderlying.AsDouble()));
 
-        boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
-            BlackScholesStochasticProcess(
+        boost::shared_ptr<BlackScholesProcess> stochProcess(new
+            BlackScholesProcess(
                 RelinkableHandle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
                 QlXlfOper(xlriskFree).AsTermStructure(refDate),
@@ -248,8 +249,8 @@ extern "C"
         boost::shared_ptr<SimpleQuote> spot(new
             SimpleQuote(xlunderlying.AsDouble()));
 
-        boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
-            BlackScholesStochasticProcess(
+        boost::shared_ptr<BlackScholesProcess> stochProcess(new
+            BlackScholesProcess(
                 RelinkableHandle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
                 QlXlfOper(xlriskFree).AsTermStructure(refDate),
@@ -315,8 +316,8 @@ extern "C"
         boost::shared_ptr<SimpleQuote> spot(new
             SimpleQuote(xlunderlying.AsDouble()));
 
-        boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
-            BlackScholesStochasticProcess(
+        boost::shared_ptr<BlackScholesProcess> stochProcess(new
+            BlackScholesProcess(
                 RelinkableHandle<Quote>(spot),
                 QlXlfOper(xldividendYield).AsTermStructure(refDate),
                 QlXlfOper(xlriskFree).AsTermStructure(refDate),

@@ -19,7 +19,7 @@
 */
 
 #include <qlxl/qlxlfoper.hpp>
-#include <ql/MonteCarlo/mctypedefs.hpp>
+#include <ql/MonteCarlo/montecarlomodel.hpp>
 #include <ql/MonteCarlo/getcovariance.hpp>
 #include <boost/shared_ptr.hpp>
 
@@ -223,7 +223,7 @@ extern "C"
                                               xlinterpolationType.AsInt());
 
         boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(underlying));
-        boost::shared_ptr<DiffusionProcess> bs(new
+        boost::shared_ptr<StochasticProcess> bs(new
             BlackScholesProcess(RelinkableHandle<Quote>(spot),
                 riskFreeTS, dividendTS, blackVolTS));
 
