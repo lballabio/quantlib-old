@@ -21,8 +21,7 @@
 namespace QuantLibAddin {
 
     QuantLib::Average::Type IDtoAverageType(const std::string &typeAverage) {
-        std::string idUpper = typeAverage;
-        boost::to_upper(idUpper);
+        std::string idUpper = QuantLib::StringFormatter::toUppercase(typeAverage);
         if (idUpper.compare("A") ==0)
             return QuantLib::Average::Arithmetic;
         else if (idUpper.compare("G") == 0)

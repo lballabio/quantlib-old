@@ -21,8 +21,7 @@
 namespace QuantLibAddin {
 
     QuantLib::Barrier::Type IDtoBarrierType(const std::string &typeBarrier) {
-        std::string idUpper = typeBarrier;
-        boost::to_upper(idUpper);
+        std::string idUpper = QuantLib::StringFormatter::toUppercase(typeBarrier);
         if (idUpper.compare("DOWNIN") ==0)
             return QuantLib::Barrier::DownIn;
         else if (idUpper.compare("UPIN") == 0)

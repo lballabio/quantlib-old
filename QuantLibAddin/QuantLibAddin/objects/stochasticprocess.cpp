@@ -21,13 +21,11 @@
 #include <ql/quote.hpp>
 #include <ql/TermStructures/flatforward.hpp>
 #include <ql/Volatilities/blackconstantvol.hpp>
-#include <boost/algorithm/string.hpp>
 
 namespace QuantLibAddin {
 
     QuantLib::DayCounter IDtoDayCounter(const std::string &dayCounterID) {
-        std::string idUpper = dayCounterID;
-        boost::to_upper(idUpper);
+        std::string idUpper = QuantLib::StringFormatter::toUppercase(dayCounterID);
         if (idUpper.compare("ACT365FIX") ==0)
             return QuantLib::Actual365Fixed();
         else if (idUpper.compare("ACT360") == 0)
