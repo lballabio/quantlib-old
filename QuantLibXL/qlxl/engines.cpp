@@ -45,7 +45,8 @@ extern "C"
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
+        boost::shared_ptr<SimpleQuote> spot(new
+            SimpleQuote(xlunderlying.AsDouble()));
 
         boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
             BlackScholesStochasticProcess(
@@ -109,8 +110,8 @@ extern "C"
 
         boost::shared_ptr<PricingEngine> engine(new
             MCEuropeanEngine<PseudoRandom>(maxTimeStepPerYear,
-                                           antitheticVariate, controlVariate, 
-                                           nSamples, tolerance, 
+                                           antitheticVariate, controlVariate,
+                                           nSamples, tolerance,
                                            maxSamples, mcSeed));
 
         // hard coded for the time being
@@ -118,7 +119,8 @@ extern "C"
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
+        boost::shared_ptr<SimpleQuote> spot(new
+            SimpleQuote(xlunderlying.AsDouble()));
 
         boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
             BlackScholesStochasticProcess(
@@ -145,7 +147,7 @@ extern "C"
         EXCEL_END;
     }
 
-    
+
     LPXLOPER EXCEL_EXPORT xlQuantoEuropeanOption(
                         XlfOper xltype,
                         XlfOper xlunderlying,
@@ -171,7 +173,8 @@ extern "C"
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
+        boost::shared_ptr<SimpleQuote> spot(new
+            SimpleQuote(xlunderlying.AsDouble()));
 
         boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
             BlackScholesStochasticProcess(
@@ -238,7 +241,8 @@ extern "C"
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
+        boost::shared_ptr<SimpleQuote> spot(new
+            SimpleQuote(xlunderlying.AsDouble()));
 
         boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
             BlackScholesStochasticProcess(
@@ -303,7 +307,8 @@ extern "C"
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
         // underlying is needed to interpolate on the vol surface
-        boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
+        boost::shared_ptr<SimpleQuote> spot(new
+            SimpleQuote(xlunderlying.AsDouble()));
 
         boost::shared_ptr<BlackScholesStochasticProcess> stochProcess(new
             BlackScholesStochasticProcess(
