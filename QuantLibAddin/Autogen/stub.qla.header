@@ -1,0 +1,5 @@
+#include <QuantLibAddin/functions/%s.hpp>
+#include <QuantLibAddin/objects/%s.hpp>
+
+namespace QuantLibAddin {
+

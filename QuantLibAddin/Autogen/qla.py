@@ -69,11 +69,11 @@ def generateFuncDefs(groupName, functionGroup):
     utils.logMessage('    generating file ' + fileName + '...')
     fileFunc = file(fileName, 'w')
     utils.printHeader(fileFunc)
-    bufInclude = utils.loadBuffer(common.QLA_INCLUDES2)
+    bufHeader = utils.loadBuffer(common.QLA_HEADER)
     bufCtor = utils.loadBuffer(common.QLA_CTOR)
     bufFunc = utils.loadBuffer(common.QLA_FUNC)
     bufConv = utils.loadBuffer(common.QLA_CONV)
-    fileFunc.write(bufInclude)
+    fileFunc.write(bufHeader % (groupName, groupName))
     for function in functionGroup[common.FUNCLIST]:
         generateFuncHeader(fileFunc, function, ' {')
         if function[common.CTOR]:

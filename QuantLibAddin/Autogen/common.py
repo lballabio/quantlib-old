@@ -36,7 +36,7 @@ ADDIN_ROOT = '../Addins/'
 
 QLA_ROOT = '../QuantLibAddin/functions/'
 QLA_INCLUDES = 'stub.qla.includes'
-QLA_INCLUDES2 = 'stub.qla.includes2'
+QLA_HEADER = 'stub.qla.header'
 QLA_CTOR = 'stub.qla.constructor'
 QLA_FUNC = 'stub.qla.function'
 QLA_CONV = 'stub.qla.conversion'

@@ -15,13 +15,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// this file generated automatically by autogen.py on Tue Jan 25 14:57:59 2005
+// this file generated automatically by autogen.py on Tue Jan 25 18:20:02 2005
 // editing this file manually is not recommended
 
 #include <QuantLibAddin/functions/options.hpp>
-#include <QuantLibAddin/objects/vanillaoption.hpp>
-#include <QuantLibAddin/objects/asianoption.hpp>
-#include <QuantLibAddin/objects/barrieroption.hpp>
+#include <QuantLibAddin/objects/options.hpp>
 
 namespace QuantLibAddin {
 
