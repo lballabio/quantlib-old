@@ -48,8 +48,8 @@ using QuantLib::CashFlows::SimpleCashFlow;
 using QuantLib::CashFlows::FixedRateCoupon;
 using QuantLib::CashFlows::ParCoupon;
 typedef Handle<CashFlow> SimpleCashFlowHandle;
-typedef Handle<CashFlow> FixedRateCouponHandle;
-typedef Handle<CashFlow> ParCouponHandle;
+typedef Handle<FixedRateCoupon> FixedRateCouponHandle;
+typedef Handle<ParCoupon> ParCouponHandle;
 %}
 
 %rename(SimpleCashFlow) SimpleCashFlowHandle;
@@ -95,6 +95,21 @@ class ParCouponHandle : public Handle<CashFlow> {
                               startDate, endDate, fixingDays, spread,
                               refPeriodStart, refPeriodEnd));
         }
+	Date accrualStartDate() {
+	   return Handle<ParCoupon>(*self)->accrualStartDate();
+	}
+	Date accrualEndDate() {
+	   return Handle<ParCoupon>(*self)->accrualEndDate();
+	}
+	double fixing() {
+	   return Handle<ParCoupon>(*self)->fixing();
+	}
+	double nominal() {
+	   return Handle<ParCoupon>(*self)->nominal();
+	}
+	double amount() {
+	   return Handle<ParCoupon>(*self)->amount();
+	}
     }
 };
 
@@ -116,7 +131,9 @@ std::vector<Handle<CashFlow> > FixedRateCouponVector(
     const Calendar& calendar, RollingConvention convention,
     bool isAdjusted, const DayCounter& dayCount,
     const DayCounter& firstPeriodDayCount, 
-    const Date& stubDate = Date());
+    const Date& stubDate = Date(),
+    bool startFromEnd = 0,
+    bool longFinal = 0);
 
 std::vector<Handle<CashFlow> > FloatingRateCouponVector(
     const std::vector<double>& nominals,
@@ -125,7 +142,9 @@ std::vector<Handle<CashFlow> > FloatingRateCouponVector(
     RollingConvention convention,
     const XiborHandle& index, int indexFixingDays, 
     const std::vector<double>& spreads = std::vector<double>(), 
-    const Date& stubDate = Date());
+    const Date& stubDate = Date(),
+    bool startFromEnd = 0,
+    bool longFinal = 0);
 
 
 #endif
