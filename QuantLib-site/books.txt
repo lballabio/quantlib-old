@@ -169,7 +169,17 @@ Thinking in C++: Introduction to Standard C++, Volume One
 Bruce Eckel
 Paperback - 814 pages 2nd (15 April, 2000)
 Prentice Hall; ISBN: 0139798099
-also available as a free book from www.bruceeckel.com
+also available as a free book from http://www.mindview.net/Books
+
+Numerical Recipies in C
+also available on-line from http://www.nr.com/
+
+GNU Autoconf, Automake, and Libtool
+also available as a free book from http://sources.redhat.com/autobook/
+
+Open Source Development with CVS
+Karl Fogel
+also available as a free book from http://cvsbook.red-bean.com/
 
 UML Distilled
 Martin Fowler, Kendall Scott
