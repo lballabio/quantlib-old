@@ -23,7 +23,6 @@
 // 1D Solvers
 
 %{
-using QuantLib::Solver1D;
 using QuantLib::Solvers1D::Bisection;
 using QuantLib::Solvers1D::Brent;
 using QuantLib::Solvers1D::FalsePosition;
@@ -33,7 +32,18 @@ using QuantLib::Solvers1D::Ridder;
 using QuantLib::Solvers1D::Secant;
 %}
 
-class Solver1D {
+#if defined(SWIGMZSCHEME)
+%typecheck(SWIG_TYPECHECK_POINTER) Scheme_Object* {
+    $1 = 1;
+}
+#elif defined(SWIGGUILE)
+%typecheck(SWIG_TYPECHECK_POINTER) SCM {
+    $1 = 1;
+}
+#endif
+
+%define DeclareSolver(SolverName)
+class SolverName {
     #if defined(SWIGRUBY)
     %rename("maxEvaluations=")      setMaxEvaluations;
     %rename("lowerBound=")          setLowerBound;
@@ -42,73 +52,71 @@ class Solver1D {
     %rename("max-evaluations-set!") setMaxEvaluations;
     %rename("lower-bound-set!")     setLowerBound;
     %rename("upper-bound-set!")     setUpperBound;
-    %rename("bracketed-solve")      bracketedSolve;
     #endif
-  protected:
-    Solver1D();
   public:
     void setMaxEvaluations(int evaluations);
     void setLowerBound(double lowerBound);
     void setUpperBound(double upperBound);
     %extend {
         #if defined(SWIGPYTHON)
-        double solve(PyObject* function, double xAccuracy, double guess,
-                     double step) {
-            PyObjectiveFunction f(function);
+        double solve(PyObject* function, double xAccuracy, 
+                     double guess, double step) {
+            UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, step);
         }
-        double bracketedSolve(PyObject* function, double xAccuracy,
-                              double guess, double xMin, double xMax) {
-            PyObjectiveFunction f(function);
+        double solve(PyObject* function, double xAccuracy,
+                     double guess, double xMin, double xMax) {
+            UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, xMin, xMax);
         }
         #elif defined(SWIGRUBY)
         double solve(double xAccuracy, double guess, double step) {
-            RubyObjectiveFunction f;
+            UnaryFunction f;
             return self->solve(f, xAccuracy, guess, step);
         }
-        double bracketedSolve(double xAccuracy, double guess,
-                              double xMin, double xMax) {
-            RubyObjectiveFunction f;
+        double solve(double xAccuracy, double guess,
+                     double xMin, double xMax) {
+            UnaryFunction f;
             return self->solve(f, xAccuracy, guess, xMin, xMax);
         }
         #elif defined(SWIGMZSCHEME)
-        double solve(Scheme_Object* function, double xAccuracy, double guess,
-                     double step) {
-            MzObjectiveFunction f(function);
+        double solve(Scheme_Object* function, double xAccuracy, 
+                     double guess, double step) {
+            UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, step);
         }
-        double bracketedSolve(Scheme_Object* function, double xAccuracy,
-                              double guess, double xMin, double xMax) {
-            MzObjectiveFunction f(function);
+        double solve(Scheme_Object* function, double xAccuracy,
+                     double guess, double xMin, double xMax) {
+            UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, xMin, xMax);
         }
         #elif defined(SWIGGUILE)
-        double solve(SCM function, double xAccuracy, double guess,
-                     double step) {
-            GuileObjectiveFunction f(function);
+        double solve(SCM function, double xAccuracy, 
+                     double guess, double step) {
+            UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, step);
         }
-        double bracketedSolve(SCM function, double xAccuracy,
-                              double guess, double xMin, double xMax) {
-            GuileObjectiveFunction f(function);
+        double solve(SCM function, double xAccuracy,
+                     double guess, double xMin, double xMax) {
+            UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, xMin, xMax);
         }
         #endif
     }
 };
+%enddef
 
 // Actual solvers
-class Brent : public Solver1D {};
-class Bisection : public Solver1D {};
-class FalsePosition : public Solver1D {};
-class Ridder : public Solver1D {};
-class Secant : public Solver1D {};
+DeclareSolver(Brent);
+DeclareSolver(Bisection);
+DeclareSolver(FalsePosition);
+DeclareSolver(Ridder);
+DeclareSolver(Secant);
 
 #if defined(SWIGPYTHON)
 // these two need f.derivative()
-class Newton : public Solver1D {};
-class NewtonSafe : public Solver1D {};
+DeclareSolver(Newton);
+DeclareSolver(NewtonSafe);
 #endif
 
 

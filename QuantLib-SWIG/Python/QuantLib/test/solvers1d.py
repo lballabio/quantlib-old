@@ -39,12 +39,12 @@ class Solver1DTest(unittest.TestCase):
     calculated root:  %(root)g
     accuracy:         %(accuracy)s
                           """ % locals())
-                root = solver.bracketedSolve(lambda x:x*x-1.0,
-                                             accuracy,1.5,0.0,1.0)
+                root = solver.solve(lambda x:x*x-1.0,
+                                    accuracy,1.5,0.0,1.0)
                 if not (abs(root-1.0)<accuracy):
                     self.fail("""
 %(factory)s
-    bracketedSolve():
+    bracketed solve():
     expected:         1.0
     calculated root:  %(root)g
     accuracy:         %(accuracy)s
@@ -61,11 +61,11 @@ class Solver1DTest(unittest.TestCase):
     calculated root:  %(root)g
     accuracy:         %(accuracy)s
                           """ % locals())
-                root = solver.bracketedSolve(Foo(),accuracy,1.5,0.0,1.0)
+                root = solver.solve(Foo(),accuracy,1.5,0.0,1.0)
                 if not (abs(root-1.0)<accuracy):
                     self.fail("""
 %(factory)s
-    bracketedSolve():
+    bracketed solve():
     expected:         1.0
     calculated root:  %(root)g
     accuracy:         %(accuracy)s

@@ -44,12 +44,12 @@ class Solver1DTest < Test::Unit::TestCase
                 )
         end
 
-        root = solver.bracketedSolve(accuracy,1.5,0.0,1.0) { |x| x*x-1.0 }
+        root = solver.solve(accuracy,1.5,0.0,1.0) { |x| x*x-1.0 }
         unless (root-1.0).abs <= accuracy
           flunk(<<-MESSAGE
 
 #{factory}
-    bracketedSolve():
+    bracketed solve():
     expected:         1.0
     calculated root:  #{root}
     accuracy:         #{accuracy}
