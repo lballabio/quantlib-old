@@ -3,6 +3,8 @@
 
 - doxygen documentation
 
+- Unix autoconfiscation ?
+
 - consider a complete logging framework:
     http://logging.apache.org/log4cxx/
     http://sourceforge.net/projects/log4cpp/
