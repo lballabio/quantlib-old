@@ -250,18 +250,14 @@ if sys.platform == 'win32':
     except Exception, e:
         raise 'unable to detect QuantLib installation'
     include_dirs = [QL_INSTALL_DIR]
+    library_dirs = [os.path.join(QL_INSTALL_DIR, 'lib')]
+    libraries = None
 
     if '--compiler=bcpp' in sys.argv:
-        library_dirs = [os.path.join(QL_INSTALL_DIR,
-                                     'lib', 'win32', 'Borland')]
-        libraries = ['QuantLib.lib']
         extra_compile_args = ['-vi-','-w-8057']
         define_macros = [('__WIN32__', None), ('MSC_CORE_BC_EXT', None)]
         extra_link_args = None
     else:
-        library_dirs = [os.path.join(QL_INSTALL_DIR,
-                                     'lib', 'win32', 'VisualStudio')]
-        libraries = None
         extra_compile_args = ['/GR', '/FD', '/Zm150']
         define_macros = [('__WIN32__', None), ('WIN32', None),
                          ('NDEBUG', None), ('_WINDOWS', None),
