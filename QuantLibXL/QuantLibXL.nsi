@@ -10,7 +10,7 @@
 # $Id$
 
 
-!define VER_NUMBER "0.3.3f0"
+!define VER_NUMBER "0.3.3"
 
 # HEADER CONFIGURATION COMMANDS
 !ifdef LIGHT
@@ -130,7 +130,23 @@ Section "Workbooks"
 SectionIn 1 2
     SetOutPath $INSTDIR\Workbooks
 #    File /r "test\*.txt"
-    File /r "Workbooks\*.xls"
+#    File /r "Workbooks\*.xls"
+     File /r "Workbooks\BlackScholes.xls"
+     File /r "Workbooks\blackvol.xls"
+     File /r "Workbooks\CorrelationMatrix.xls"
+     File /r "Workbooks\europeangreeks.xls"
+     File /r "Workbooks\FiniteDifferences.xls"
+     File /r "Workbooks\interp.xls"
+     File /r "Workbooks\localvolatility.xls"
+     File /r "Workbooks\normdist.xls"
+     File /r "Workbooks\Paths.xls"
+     File /r "Workbooks\primeNumbers.xls"
+     File /r "Workbooks\QLPaths.xls"
+     File /r "Workbooks\quantlib.xls"
+     File /r "Workbooks\riskmeasures.xls"
+     File /r "Workbooks\tsconstforward.xls"
+     File /r "Workbooks\tsdiscount.xls"
+     File /r "Workbooks\tspwcf.xls"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL\QuantLibXL Directory.lnk" \
                    "$INSTDIR"

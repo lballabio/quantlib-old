@@ -31,13 +31,13 @@
 
 
 //! version hexadecimal number
-#define QLXL_HEX_VERSION 0x000304a1
+#define QLXL_HEX_VERSION 0x000303f0
 
 //! version string
 #ifdef QL_DEBUG
-    #define QLXL_VERSION "0.3.4a1-debug"
+    #define QLXL_VERSION "0.3.3-debug"
 #else
-    #define QLXL_VERSION "0.3.4a1"
+    #define QLXL_VERSION "0.3.3"
 #endif
 
 
