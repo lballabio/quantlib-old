@@ -282,16 +282,24 @@ if sys.platform == 'win32':
 
 else:
     from distutils import sysconfig
-    ql_compile_args = os.popen('quantlib-config --cflags').read()[:-1]
-    ql_link_args = os.popen('quantlib-config --libs').read()[:-1]
-    include_dirs = None
-    library_dirs = None
-    libraries = None
-    extra_compile_args = [ql_compile_args]
+    ql_compile_args = os.popen('quantlib-config --cflags').read()[:-1].split()
+    ql_link_args = os.popen('quantlib-config --libs').read()[:-1].split()
+    define_macros = [ arg[2:] for arg in ql_compile_args
+                              if arg.startswith('-D') ]
+    include_dirs = [ arg[2:] for arg in ql_compile_args
+                             if arg.startswith('-I') ]
+    library_dirs = [ arg[2:] for arg in ql_link_args
+                             if arg.startswith('-L') ]
+    libraries = [ arg[2:] for arg in ql_link_args
+                          if arg.startswith('-l') ]
+    extra_compile_args = [ arg for arg in ql_compile_args
+                               if not arg.startswith('-D')
+                               if not arg.startswith('-I') ]
     if os.environ.has_key('CXXFLAGS'):
         extra_compile_args.extend(string.split(os.environ['CXXFLAGS']))
-    extra_link_args = [ql_link_args]
-    define_macros = None
+    extra_link_args = [ arg for arg in ql_link_args
+                            if not arg.startswith('-L')
+                            if not arg.startswith('-l') ]
     # changes the compiler from gcc to g++
     save_init_posix = sysconfig._init_posix
     def my_init_posix():
