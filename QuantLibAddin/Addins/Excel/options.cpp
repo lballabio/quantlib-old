@@ -125,7 +125,7 @@ DLLEXPORT LPXLOPER qlOptionAsianD(
         char *typeAverage,
         double *runningAccumulator,
         long *pastFixings,
-        long *fixingDates,
+        LPXLOPER fixingDates,
         char *typeOption,
         char *typePayoff,
         double *strike,
@@ -135,6 +135,8 @@ DLLEXPORT LPXLOPER qlOptionAsianD(
         char *typeEngine,
         long *timeSteps) {
     try {
+        std::vector <long> fixingDatesVector = 
+            longXLOPERToVector(fixingDates);
         std::string handle = std::string(handleChar) + getCaller();
         Properties properties = QL_OPTION_ASIAN_D(
             handle,
@@ -142,7 +144,7 @@ DLLEXPORT LPXLOPER qlOptionAsianD(
             std::string(typeAverage),
             *runningAccumulator,
             *pastFixings,
-            *fixingDates,
+            fixingDatesVector,
             std::string(typeOption),
             std::string(typePayoff),
             *strike,

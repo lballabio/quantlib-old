@@ -25,7 +25,8 @@ def generateParamList(
         xlateNames = False,     # translate parm name using its CLASS attribute
         arrayCount = False,     # C code requires array size separate from array
         appendVec = False,      # append string 'Vector' to vector variable names
-        convertVec = ''):       # string to convert datatype to appropriate vector
+        convertVec = '',        # string to convert datatype to appropriate vector
+        replaceVec = ''):       # replace vector datatype with given string
     'reformat params into a list of parameters using given format options'
     ret = ''
     i = 0
@@ -34,10 +35,12 @@ def generateParamList(
         if skipFirst == True and i == 1:
             continue
         paramName = param[common.NAME]
+        deref = dereference
         if datatypes == False:
             type = ''
             if param[common.TENSOR] == common.VECTOR and appendVec == True:
                 paramName += 'Vector'
+                deref = ''
         else:
             if convertString and param[common.TYPE] == common.STRING:
                 type = convertString + ' '
@@ -50,14 +53,17 @@ def generateParamList(
                     ret += indent * 4 * ' ' + prefix + 'long ' + \
                         paramName + 'Size,' + suffix
                     type = param[common.TYPE] + '* '
-                else:
+                elif convertVec != '':
                     type = convertVec % type
+                else:
+                    type = replaceVec + ' '
+                    deref = ''
         if reformatString and param[common.TYPE] == common.STRING:
             full = reformatString % paramName
         elif xlateNames == True and param[common.CLASS] != '':
             full = common.HANDLE + param[common.CLASS]
         else:
-            full = type + dereference + paramName
+            full = type + deref + paramName
         ret += '%s%s%s' % (indent * 4 * ' ', prefix, full)
         if i < len(paramList):
             ret += ',' + suffix

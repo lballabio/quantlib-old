@@ -81,3 +81,23 @@ void setXLOPERString(XLOPER &xStr, const char *s) {
     strncpy(xStr.val.str + 1, s, len);
     xStr.val.str[0] = len;
 }
+
+std::vector <long> longXLOPERToVector(LPXLOPER xVec) {
+    std::vector <long> ret;
+    if (xVec->xltype == xltypeNum)
+        ret.push_back(xVec->val.num);
+    else if (xVec->xltype == xltypeSRef || xVec->xltype == xltypeRef) {
+        XLOPER xVal;
+        Excel4(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti));
+        int size = xVal.val.array.rows * xVal.val.array.columns;
+        for (int i=0; i<size; i++) {
+            XLOPER xOp = xVal.val.array.lparray[i];
+            if (xOp.xltype == xltypeNum)
+                ret.push_back(xOp.val.num);
+        }
+        Excel4(xlFree, 0, 1, &xVal);
+    } else
+        throw exception("longXLOPERToVector: unexpected datatype");
+    return ret;
+}
+

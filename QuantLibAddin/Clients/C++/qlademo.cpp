@@ -75,7 +75,7 @@ int main() {
         QL_OPTION_SETENGINE(
             "my_option", 
             "AEQPB",    // AdditiveEQPBinomialTree
-            801);
+            timeSteps);
 
         cout << endl << "High-level interrogation: after QL_OPTION_SETENGINE" << endl;
         for (it = opProperties.begin();
@@ -107,7 +107,7 @@ int main() {
             fixingDates,                    // fixingDates
             "PUT",                          // option type
             "VAN",                          // payoff type (plain vanilla)
-            strike,                             // strike price
+            strike,                         // strike price
             "EU",                           // exercise type (american)
             exerciseDate.serialNumber(),    // exercise date
             settlementDate.serialNumber(),  // settlement date

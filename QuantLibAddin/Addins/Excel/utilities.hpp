@@ -32,4 +32,6 @@ std::string getCaller();
 void setValues(LPXLOPER xArray,
                ObjHandler::Properties properties,
                const std::string &handle);
+std::vector <long> longXLOPERToVector(LPXLOPER xVec);
+
 #endif

@@ -23,15 +23,17 @@ def generateParamString(function):
     if function[common.CTOR]:
         paramStr += 'C'
     for param in function[common.PARAMS]:
-        type = param[common.TYPE]
-        if type == 'string':
-            paramStr += 'C'
-        elif type == 'double':
-            paramStr += 'E'
-        elif type == 'long':
-            paramStr += 'N'
+        if param[common.TENSOR] == common.VECTOR:
+            paramStr += 'R'
         else:
-            raise ValueError, 'unknown datatype: ' + type
+            if param[common.TYPE] == common.STRING:
+                paramStr += 'C'
+            elif param[common.TYPE] == common.DOUBLE:
+                paramStr += 'E'
+            elif param[common.TYPE] == common.LONG:
+                paramStr += 'N'
+            else:
+                raise ValueError, 'unknown datatype: ' + type
     if function[common.CTOR]:
         paramStr += '#'
     return paramStr
@@ -91,12 +93,23 @@ def generateFuncRegisters(functionDefs):
     fileHeader.write(bufFoot)
     fileHeader.close()
 
+def generateConversions(paramList):
+    'generate code to convert XLOPERs to vectors'
+    ret = ''
+    for param in paramList:
+        if param[common.TENSOR] == common.VECTOR: 
+            ret += 8 * ' ' + 'std::vector <' + param[common.TYPE] + \
+                '> ' + param[common.NAME] + \
+                'Vector = \n' + 12 * ' ' + param[common.TYPE] + \
+                'XLOPERToVector(' + param[common.NAME] + ');\n'
+    return ret
+
 def generateFuncDef(fileFunc, function, bufBody):
     'generate source code for body of given function'
     paramList1 = utils.generateParamList(function[common.PARAMS],
-        2, True, '', 'char', dereference = '*', convertVec = '%s')
+        2, True, '', 'char', dereference = '*', replaceVec = 'LPXLOPER')
     paramList2 = utils.generateParamList(function[common.PARAMS],
-        3, reformatString = 'std::string(%s)', dereference = '*')
+        3, reformatString = 'std::string(%s)', dereference = '*', appendVec = True)
     if function[common.CTOR]:
         handle1 = 8 * ' ' + 'char *handleChar,\n'
         handle2 = 8 * ' ' + 'std::string handle = std::string(handleChar) + getCaller();\n'
@@ -105,8 +118,9 @@ def generateFuncDef(fileFunc, function, bufBody):
         handle1 = ''
         handle2 = ''
         handle3 = ''
+    conversions = generateConversions(function[common.PARAMS])
     fileFunc.write(bufBody %
-        (function[common.CODENAME], handle1, paramList1, handle2,
+        (function[common.CODENAME], handle1, paramList1, conversions, handle2,
         function[common.NAME], handle3, paramList2, function[common.NAME]))
 
 def generateFuncDefs(functionGroups):

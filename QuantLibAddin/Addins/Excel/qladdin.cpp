@@ -122,7 +122,7 @@ extern "C" __declspec(dllexport) int xlAutoOpen() {
 
     Excel(xlfRegister, 0, 25, &xDll,
         TempStr(" qlOptionAsianD"),
-        TempStr(" RCCCENNCCECNNCN#"),
+        TempStr(" RCCCENRCCECNNCN#"),
         TempStr(" QL_OPTION_ASIAN_D"),
         TempStr(" handle,handleStochastic,typeAverage,runningAccumulator,pastFixings,fixingDates,typeOption,typePayoff,strike,typeExercise,exerciseDate,settlementDate,typeEngine,timeSteps"),
         TempStr(" 1"),
