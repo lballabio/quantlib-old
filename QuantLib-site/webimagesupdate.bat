@@ -9,5 +9,6 @@ set USERNAME=%1
 
 
 scp -C -r images/*.jpg %USERNAME%@shell.sourceforge.net:/home/groups/q/qu/quantlib/htdocs/images
+scp -C -r images/*.png %USERNAME%@shell.sourceforge.net:/home/groups/q/qu/quantlib/htdocs/images
 
 pause

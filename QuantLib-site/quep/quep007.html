@@ -4,7 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 1st March 2004), see www.w3.org">
 <title>QuEP 7: using the Visitor pattern to avoid interface
 bloat</title>
 <link rel="stylesheet" href="../styles/quantlib.css" type=
@@ -12,21 +13,15 @@ bloat</title>
 </head>
 <body>
 <h1>QuEP 7: using the Visitor pattern to avoid interface bloat</h1>
-
 <div class="center">Luigi Ballabio</div>
-
 <h2>Abstract</h2>
-
 <p>A technique is here proposed which allows one to specialize
 calculations on a per-derived-class basis without increasing the
 number of virtual member functions in the base class interface.</p>
-
 <p>Such technique consists in the usage of the Visitor pattern
 which is shortly outlined together with possible applications to
 the existing class hierarchies.</p>
-
 <h2>Introduction</h2>
-
 <p>It has been argued [1] that functionalities that can be
 implemented by means of the public interface of a class should be
 made available as a non-friend, non-member function rather than
@@ -34,13 +29,11 @@ another method of the class. This actually improves encapsulation
 since this enlarged class interface (meant as the set of the class
 methods and the additional non-member functions) is thus made less
 dependent on the class internals.</p>
-
 <p>However, there are situations where this simple approach would
 not be convenient, either because knowledge of the exact type of
 the instance is actually needed, or because it would prevent the
 developer from applying useful optimizations depending on the
 instance type.</p>
-
 <p>An example of the first case is a number of report
 functionalities which can be desired for the <tt>CashFlow</tt>
 hierarchy. Derived classes include simple cash flows whose amount
@@ -49,7 +42,6 @@ fixed or a floating rate. For each of the latter types, whether the
 amount of the cashflow was already fixed or the extent of its
 basis-point sensitivity can be determined based entirely on their
 public interface, as shown in the following pseudo-code:</p>
-
 <pre>
 procedure WasFixed(CashFlow)
     case SimpleCashFlow:
@@ -68,7 +60,6 @@ procedure BPS(CashFlow,TermStructure)
     case Coupon:
         return nominal()*accrualPeriod()*discount(date())
 </pre>
-
 <p>The above could be naturally implemented as virtual member
 functions. However, a number of such functionalities could be found
 which would end up bloating the base <tt>CashFlow</tt> interface,
@@ -76,19 +67,16 @@ and the more so should the hierarchy be extended with more complex
 coupons. Moreover, functionalities which make sense only for part
 of the hierarchy should not be exposed by the <tt>CashFlow</tt>
 interface.</p>
-
 <p>An example of the second case is a number of calculations which
 could be performed on term structures. For instance, one might want
 to know the average of the instantaneous forward rate over a given
 period in order to feed it to an option pricer. According to the
 definition of zero yield rate, this could be implemented as
 (pseudo-code again):</p>
-
 <pre>
 procedure averageForward(TermStructure,Time t0,Time t1)
     return (t1*zeroYield(t1)-t0*zeroYield(t0))/(t1-t0)
 </pre>
-
 <p>This would be the optimal choice for a term structure which can
 calculate zero yields directly. However, if the latter were
 calculated by integrating the instantaneous forward rates, the
@@ -101,22 +89,17 @@ zero yields efficiently. Optimizations should clearly be done on a
 per-class basis. Again, this could be achieved by means of virtual
 functions. However, it would lead to interface bloat as more and
 more such functionalities are requested.</p>
-
 <p>The solution would be a dispatch mechanism, other than virtual
 functions, which can call the appropriate external function for the
 given instance type without resorting to dynamic casts.</p>
-
 <h2>The Visitor pattern</h2>
-
 <p>The Visitor pattern [2,3] is a double-dispatch mechanism which
 allows one to specialize a function on a per-base class without
 modifying the original base class interface. The pattern structure
 is shown in the following diagram for the <tt>CashFlow</tt> class.
 However, it applies unchanged to any other hierarchy.</p>
-
 <div class="center"><img src="quep007.png" width="959" height="341"
 alt="UML diagram"></div>
-
 <p>The only addition to the base class interface consist of an
 abstract <tt>acceptVisitor</tt> method which takes a
 <tt>CashFlowVisitor</tt>. The latter is an abstract class whose
@@ -126,23 +109,19 @@ an instance of the corresponding <em>derived</em> type. Finally,
 each class derived from <tt>CashFlow</tt> implements
 <tt>acceptVisitor</tt> by passing itself to the right
 <tt>visit</tt> method of the passed visitor.</p>
-
 <p>It is easy to see how this implementation allows one to dispatch
 a generic method call to the desired method specialization
 depending on the actual cash flow type. Its usage is the
 following:</p>
-
 <pre>
 Handle&lt;CashFlow&gt; cashFlow;      // (1)
 WasFixedVisitor v;
 cashFlow-&gt;acceptVisitor(v);     // (2)
 bool fixed = v.wasFixed();      // (3)
 </pre>
-
 <p>(1) Let's say for the sake of explanation that this handle
 points to a <tt>FloatingRateCoupon</tt>. However, the latter is
 stored as an upcasted pointer to <tt>CashFlow</tt>.</p>
-
 <p>(2) This method call triggers the virtual method dispatch
 mechanism, so that <tt>FloatingRateCoupon::acceptVisitor</tt> is
 executed. In turn, the latter calls
@@ -151,7 +130,6 @@ reference to the coupon <em>as a floating-rate coupon</em>. The
 called visitor method can then use the full
 <tt>FloatingRateCoupon</tt> interface to calculate the result
 rather than the base class interface only.</p>
-
 <p>(3) The result is retrieved from the visitor. Such result could
 not be returned directly from <tt>CashFlow::acceptVisitor</tt>
 since the result type depends on the particular <tt>Visitor</tt>
@@ -161,7 +139,6 @@ is to have both <tt>acceptVisitor</tt> and the <tt>visitXXX</tt>
 methods return <tt>void</tt> and to have the latter methods store
 the result in a data member of the visitor, which can be of the
 desired type.</p>
-
 <p>Finally, it can be noted that a variant of the Visitor pattern
 exists which is called Acyclic Visitor pattern [4]. It is based on
 the same principle, while addressing issues such as the mutual
@@ -172,44 +149,33 @@ interested hierarchy is supposed to grow in time, which is the case
 in QuantLib. It also allows to express more naturally the case in
 which it makes only sense to apply a given visitor to a limited
 subset of the hierarchy.</p>
-
 <h2>Conclusion</h2>
-
 <p>The Visitor pattern was proposed for use in the QuantLib
 library. Such pattern allows one to effectively add virtual
 behavior to a function without making it a member of the interested
 class, thus avoiding interface bloat and improving
 encapsulation.</p>
-
 <p>The Acyclic Visitor pattern is also proposed. The latter adds a
 bit of complexity to the Visitor implementation but effectively
 addresses a few shortcomings of the original pattern. The choice
 between the two patterns will hopefully made more clear by future
 discussion of this proposal.</p>
-
 <h2>References</h2>
-
 <p>[1] Scott Meyers, <a href=
 "http://www.cuj.com/articles/2000/0002/0002c/0002c.htm">How
 Non-Member Functions Improve Encapsulation</a></p>
-
 <p>[2] Gamma, Helm, Johnson, and Vlissides, <a href=
 "http://hillside.net/patterns/DPBook/DPBook.html">Design Patterns:
 Elements of Reusable Object-Oriented Software</a></p>
-
 <p>[3] Jim Hyslop and Herb Sutter, <a href=
 "http://www.cuj.com/experts/1811/hyslop.htm?topic=experts">Conversations:
 By Any Other Name</a></p>
-
 <p>[4] Robert C. Martin, <a href=
 "http://www.objectmentor.com/publications/acv.pdf">Acyclic
 Visitor</a></p>
-
 <h2>Feedback</h2>
-
 <p>Feedback on the above proposal should be posted to the <a href=
 "mailto:quantlib-users@lists.sourceforge.net">QuantLib users</a>
 mailing list.</p>
 </body>
 </html>
-

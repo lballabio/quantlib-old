@@ -4,7 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 1st March 2004), see www.w3.org">
 <title>QuEP 4: reducing abstraction penalty by means of disposable
 arrays</title>
 <link rel="stylesheet" href="../styles/quantlib.css" type=
@@ -13,11 +14,8 @@ arrays</title>
 <body>
 <h1>QuEP 4: reducing abstraction penalty by means of disposable
 arrays</h1>
-
 <div class="center">Luigi Ballabio</div>
-
 <h2>Abstract</h2>
-
 <p>Writing vectorial operation such as <tt>v = L.applyTo(u)</tt>
 carries an abstraction penalty due to the creation and copy of the
 returned array. Optimization of the above expression would cause it
@@ -26,18 +24,14 @@ functional rather than object-oriented style of programming and
 would decrease the readability of the code since it is not
 immediately obvious which of <tt>u</tt> and <tt>v</tt> are the
 input and output array.</p>
-
 <p>An implementation of a "disposable" array is proposed which
 reduces the abstraction penalty by eliminating unnecessary copying
 of the returned array. This allows vectorial operations and more
 generally functions returning an array to be written in the more
 natural style.</p>
-
 <h2>Current implementation</h2>
-
 <p>The application of a tridiagonal operator to an array is
 currently implemented as shown in the following code.</p>
-
 <pre>
 Array TridiagonalOperator::applyTo(const Array&amp; v) const {
     // preconditions - omitted for brevity
@@ -54,10 +48,8 @@ Array TridiagonalOperator::applyTo(const Array&amp; v) const {
     return result;
 }
 </pre>
-
 <p>The above method is then used, i.e., in an explicit
 finite-difference scheme as following:</p>
-
 <pre>
 // an initial condition is chosen
 Array v = ...;
@@ -69,46 +61,32 @@ for (int i=0; i&lt;timeSteps; i++) {
     v = L.applyTo(v);
 }
 </pre>
-
 <p>At each step of the for loop, 1, 2 and 3 are executed. This
 results in:</p>
-
 <ol>
 <li>the allocation of the local array <tt>result</tt> of size
 N;</li>
-
 <li>the allocation of an array of size N to be returned and the
 deep copy of <tt>result</tt> into the latter;</li>
-
 <li>the deep copy of the returned array into <tt>v</tt>;</li>
 </ol>
-
 adding up to two allocations and two deep copies of an N-sized
-array. <br>
+array.<br>
 <br>
- 
-
 <p>Before implementing the proposal in this QuEP, the above can be
 already improved by making the <tt>result</tt> array a mutable data
 member of the operator and have <tt>applyTo</tt> return it by const
 reference. This would result in:</p>
-
 <ol>
 <li>no allocation necessary since <tt>result</tt> already
 exists;</li>
-
 <li>no allocation and deep copy since a const reference is
 returned;</li>
-
 <li>the deep copy of the returned array into <tt>v</tt>;</li>
 </ol>
-
-adding up to a single deep copy of an N-sized array. <br>
+adding up to a single deep copy of an N-sized array.<br>
 <br>
- 
-
 <h2>Proposed implementation</h2>
-
 <p>A disposable or temporary array class can be implemented which
 inherits from Array and redefines its copy semantics. A copy
 constructor and assignment operator would be added to Array which
@@ -122,10 +100,8 @@ no longer used. This inexpensive pointer-copy operation will
 hereafter be referred to as <em>shallow</em> copy, as opposed to
 the usual deep copy in which each element of the source array is
 copied to the corresponding element of the target.</p>
-
 <p>A draft implementation of such <tt>TempArray</tt> can be written
 as follows.</p>
-
 <pre>
 class Array {
     // This is needed for TempArray to access the Array data members.
@@ -159,10 +135,8 @@ class TempArray : public Array {
     void resize(size_t n);
 };
 </pre>
-
 <p>The tridiagonal operator application could now be written
 as:</p>
-
 <pre>
 TempArray TridiagonalOperator::applyTo(const Array&amp; v) const {
     // 1. allocate space for the result array
@@ -185,28 +159,20 @@ for (int i=0; i&lt;timeSteps; i++) {
     v = L.applyTo(v);
 }
 </pre>
-
 <p>This would result in:</p>
-
 <ol>
 <li>the allocation of the local disposable array
 <tt>result</tt>;</li>
-
 <li>no allocation and deep copy since a shallow copy is performed
 upon return;</li>
-
 <li>the shallow copy of the returned array into <tt>v</tt>;</li>
 </ol>
-
-adding up to a single allocation of an N-sized array. <br>
+adding up to a single allocation of an N-sized array.<br>
 <br>
- 
-
 <p>Moreover, the use of the disposable array can be combined with
 the previously introduced technique of storing the result array as
 a mutable data member. The implementation of <tt>applyTo</tt> would
 be in this case:</p>
-
 <pre>
 TempArray&amp; TridiagonalOperator::applyTo(const Array&amp; v) const {
     // 1. make sure that the disposable array is of the right size
@@ -230,44 +196,33 @@ for (int i=0; i&lt;timeSteps; i++) {
     v = L.applyTo(v);
 }
 </pre>
-
 <p>This would result in:</p>
-
 <ol>
 <li>no allocation of <tt>result_</tt> except at the first step
 only: at each subsequent step result_ contains the storage
 previously contained in <tt>v</tt> which is already of size N, and
 resize() is smart enough to reuse the existing storage if large
 enough;</li>
-
 <li>no allocation and deep copy since the result is returned by
 reference;</li>
-
 <li>the shallow copy of the returned array into <tt>v</tt>;</li>
 </ol>
-
-adding up to no allocations and no deep copies. How about that?
+adding up to no allocations and no deep copies. How about that?<br>
 <br>
-<br>
- 
-
 <h2>Sobering thoughts and a question</h2>
-
-<p>The above seems perfectly fine on paper even if not really <a
-href=
+<p>The above seems perfectly fine on paper even if not really
+<a href=
 "http://www.tuxedo.org/~esr/jargon/html/entry/cuspy.html">cuspy</a>.
 I implemented it and had it working in my previous life as a
 physicists. The only care to be taken while coding is to use
 disposable arrays as such---i.e., as temporary objects to be used
 for storing values to be immediately passed to a "real" array and
 not as persistent storage.</p>
-
 <p>However, unlikely as it seems to me, I am not entirely sure that
 it could not be broken by some optimizing compiler trying to do
 things too smart for its own good. Does anyone know something of
 the inner working of such beasts? Could (s)he give any informed
 advice of this?</p>
-
 <p>Finally, I would not advise to run around waving one's hands in
 the air and shouting in joy at the prospect of huge performance
 gains. The disposable array trick merely takes away some
@@ -275,22 +230,16 @@ abstraction penalty from functions returning an array. It won't
 make the implementation of the corresponding algorithms any faster,
 and therefore the performance gain will be small if returning the
 array by value was not a large part of the total function time.</p>
-
 <h2>Conclusion</h2>
-
 <p>A disposable array implementation was proposed which can in
 principle remove the abstraction penalty imposed by returning an
 array from a function.</p>
-
 <p>This can allow one to give such function a more natural
 interface than the one requesting the output array to be previously
 allocated and passed to the function.</p>
-
 <h2>Feedback</h2>
-
 <p>Feedback on the above proposal should be posted to the <a href=
 "mailto:quantlib-users@lists.sourceforge.net">QuantLib users</a>
 mailing list.</p>
 </body>
 </html>
-

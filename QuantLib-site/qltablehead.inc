@@ -29,8 +29,6 @@
 
 <li><a class="navlink" href="html/index.html">Documentation (exits)</a></li>
 
-<li><a class="navlink" href="html/platforms.html">Supported Platforms (exits)</a></li>
-
 <li><a class="navlink" href="license.html">License</a></li>
 
 <li><a class="navlink" href="html/group.html">QuantLib Group (exits)</a></li>
@@ -85,8 +83,12 @@ Statistics (exits)</a></li>
 </ul>
 
 <hr>
+<div class="center">
+<a href="http://opensource.org/docs/definition.html"><img src=
+"images/osi-certified-90x75.png" alt="OSI Certification Mark"></a></div>
+<hr>
 <div class="center"><strong>Hosted by</strong><br>
- <a href="http://sourceforge.net"><img src=
+<a href="http://sourceforge.net"><img src=
 "http://sourceforge.net/sflogo.php?group_id=12740" width="88"
 height="31" border="0" alt="SourceForge.net Logo"></a></div>
 

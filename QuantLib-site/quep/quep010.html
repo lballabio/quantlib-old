@@ -4,34 +4,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 1st March 2004), see www.w3.org">
 <title>QuEP 10: Separation of concerns in RelinkableHandle</title>
 <link rel="stylesheet" href="../styles/quantlib.css" type=
 "text/css">
 </head>
 <body>
 <h1>QuEP 10: Separation of concerns in RelinkableHandle</h1>
-
 <div class="center">Luigi Ballabio</div>
-
 <h2>Abstract</h2>
-
 <p>The <tt>RelinkableHandle</tt> class reimplements a number of
 functionalities which are already present in the <tt>Handle</tt>
 and <tt>Observable</tt> classes.</p>
-
 <p>A reimplementation of the former is presented which takes
 advantage of code reuse while achieving separation of concerns.</p>
-
 <h2>Current implementation</h2>
-
 <p>The purpose of the <tt>RelinkableHandle</tt> class is to provide
 a shared point of access to a <tt>Handle</tt>. Should the latter be
 replaced, all the clients of the <tt>RelinkableHandle</tt> would be
 aware of the change and would start accessing the new
 <tt>Handle</tt>. Its current implementation can be sketched as
 follows:</p>
-
 <pre>
 template &lt;class Type&gt;
 class RelinkableHandle {
@@ -59,18 +53,14 @@ class RelinkableHandle {
 };
 
 </pre>
-
 <p>A number of issues are present in this design, namely:</p>
-
 <ul>
 <li>The point of access to the <tt>Handle</tt> should be shared
 among the copies of <tt>RelinkableHandle</tt>; hence the
 <tt>Handle**</tt> data member;</li>
-
 <li>Reference counting is implemented in order to keep the
 <tt>Handle</tt> alive as long as the last <tt>RelinkableHandle</tt>
 copy is; hence the <tt>int*</tt> data member;</li>
-
 <li>Observability must be shared as well, i.e., an
 <tt>Observer</tt> which registered with a <tt>RelinkableHandle</tt>
 should be notified of relinking occurring in any copy of the
@@ -81,13 +71,10 @@ provide per-instance observability. Instead,
 <tt>Observable</tt> class; hence the <tt>InnerObserver*</tt> data
 member.</li>
 </ul>
-
 <p>Also, all these issues force <tt>RelinkableHandle</tt> to
 implement the appropriate copy semantics and to perform the
 appropriate clean-up upon destruction.</p>
-
 <h3>Disadvantages:</h3>
-
 <ul>
 <li>The reference-counted sharing implementation is already
 implemented in <tt>Handle</tt> itself and is unnecessarily
@@ -98,7 +85,6 @@ pointer implementation such as <tt>boost::shared_ptr</tt> or any
 other class in a future C++ standard, its implementation could not
 be easily replicated into <tt>RelinkableHandle</tt>. As a matter of
 fact, it should not.</li>
-
 <li>The implementation of <a href="quep008.html">QuEP 8</a> would
 clash with the fact that <tt>RelinkableHandle</tt> is not an
 <tt>Observable</tt> and as such cannot be stored by the registered
@@ -114,16 +100,13 @@ there would exist the possibility that a stored <tt>Handle</tt> to
 the inner observer could outlive its <tt>RelinkableHandle</tt>. The
 possibility was too scary for me to analyze its consequences.</li>
 </ul>
-
 <h2>Proposed implementation</h2>
-
 <p>The <tt>Handle</tt> implementation of reference-counted
 shared-body semantics can be reused by adding another layer of
 indirection between <tt>RelinkableHandle</tt> and its underlying
 shared instance. Namely, a class would be introduced which
 encapsulates the concept of shared and relinkable access to a
 <tt>Handle</tt> as follows:</p>
-
 <pre>
 template &lt;class T&gt;
 class Link : public Observable, public Observer {
@@ -149,15 +132,12 @@ class Link : public Observable, public Observer {
 };
 
 </pre>
-
 <p>This would allow <tt>RelinkableHandle</tt> to be defined as:</p>
-
 <pre>
 template &lt;class T&gt;
 class RelinkableHandle : public Handle&lt;Link&lt;T&gt; &gt; { ... };
 
 </pre>
-
 <p>Inheriting from <tt>Handle&lt;Link&gt;</tt> already solves our
 problems. Namely, <tt>RelinkableHandle</tt> now inherits the
 correct copy semantics and clean-up. Also, it can be automatically
@@ -166,14 +146,12 @@ transparently stored into <tt>Observer</tt> without modifying the
 latter. Finally, it can be made to work with another shared pointer
 implementation simply by replacing <tt>Handle</tt> with the latter
 in <tt>Link</tt> and in the inheritance declaration.</p>
-
 <p>The reason why we actually inherit from
 <tt>Handle&lt;Link&gt;</tt> instead of using a simple
 <tt>typedef</tt> is that inheritance allows us to made the new
 <tt>RelinkableHandle</tt> backward-compatible and define a few
 syntactic shortcuts. The new class simply acts as an adapter to its
 base class and can be sketched as follows:</p>
-
 <pre>
 template &lt;class T&gt;
 class RelinkableHandle : public Handle&lt;Link&lt;T&gt; &gt; {
@@ -189,19 +167,14 @@ class RelinkableHandle : public Handle&lt;Link&lt;T&gt; &gt; {
 };
 
 </pre>
-
 <h2>Conclusion</h2>
-
 <p>An implementation of <tt>RelinkableHandle</tt> was proposed
 which leverages functionalities already implemented in the QuantLib
 library. The resulting design is simpler and more easily adaptable
 to future changes.</p>
-
 <h2>Feedback</h2>
-
 <p>Feedback on the above proposal should be posted to the <a href=
 "mailto:quantlib-users@lists.sourceforge.net">QuantLib users</a>
 mailing list.</p>
 </body>
 </html>
-

@@ -1,34 +1,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 1st March 2004), see www.w3.org">
 <title>QuEP 6: Currency, Money, and Exchange Rates</title>
 </head>
 <body>
-<h1 align="Center">QuEP 6: Currency, Money, and Exchange Rates</h1>
-
-<div align="Center">Joel Nelson</div>
-
+<h1 align="center">QuEP 6: Currency, Money, and Exchange Rates</h1>
+<div align="center">Joel Nelson</div>
 <h2>Abstract</h2>
-
 <p>This is a proposal to enhance QuantLib with a new module for
 handling currencies, money, and foreign exchange. The
-implementation follows closely the OMG Currency specifications (<a
-href=
+implementation follows closely the OMG Currency specifications
+(<a href=
 "ftp://ftp.omg.org/pub/docs/formal/00-06-29.pdf">ftp://ftp.omg.org/pub/docs/formal/00-06-29.pdf</a>),
 but not to the end of being 100% OMG compliant. In addition to new
 classes, some of the current functionality relating to "date-time"
 and "amount of time" concepts are extended to meet the needs of the
 currency module.</p>
-
 <h2>Current implementation and Disadvantages</h2>
-
 <p>This is an add-on enhancement for missing functionality more
 than it is an extension of any current implementation. Currency
 only exists as an enumeration of some ISO currency codes. Apart
 from this, there is are no abstractions of "currency", "money", or
 "exchange rates" available from within the library.</p>
-
 <p>A Date abstraction exists in the QuantLib::Date class and
 contains a pretty complete "date" implementation. However, it has
 no "time" component for representing "date-time". Another potential
@@ -41,7 +36,6 @@ produce the date in any other form. While functionally correct, it
 is can be a drag on performance. Providing a Date-Time abstract
 class instead of just wrapping QuantLib::Date allows us to add new
 Date and DateTime implementations as needed.</p>
-
 <p>"Amount of time" exists as QuantLib::Period, but the
 implementation is limited to a specific use. It can hold a "unit of
 time" as an integer, but can not convert between units.
@@ -53,102 +47,64 @@ hold an "amount of time", but it isn't as flexible as the OMG
 DAmountOfTime object. QuantLib::Period is fine for what it
 represents, but the library needs the functionality in AmountOfTime
 as a complimentary class.</p>
-
 <h2>Proposed implementation</h2>
-
 <p>Following the OMG spec, the currency module can be broken down
 into four main components and the supporting enhancements.<br>
 The new components are:</p>
-
 <ul>
 <li>Currency: the concept of currency as a mnemonic, description,
 symbol, exchange conventions, rounding conventions, etc.</li>
-
 <li>Money: an "amount of some currency" providing math operations,
 the input and return parameters for foreign exchange, etc.</li>
-
 <li>Exchange Rates: classes for holding dynamic and static exchange
 rates and managing exchange rate tables.</li>
-
 <li>The money formatters.</li>
 </ul>
-
-The enhancements are: 
-
+The enhancements are:
 <ul>
 <li>the Date-Time classes</li>
-
 <li>amount of time class</li>
-
 <li>the rounding classes</li>
 </ul>
-
 <p>For a more detailed business level explanation of the module,
 see the related OMG document (<a href=
 "ftp://ftp.omg.org/pub/docs/formal/00-06-29.pdf">ftp://ftp.omg.org/pub/docs/formal/00-06-29.pdf</a>).</p>
-
 <h3>Quantlib::Currency Namespace Note</h3>
-
 <p>All related currency, money, and exchange rate classes in a new
 namespace named "Currency". The supporting enhancements are all
 contained the "QuantLib" namespace.</p>
-
 <h3>Currency Component Description</h3>
-
 <p>Currency encapsulates basic descriptive information of a
 currency, the methods used to create a currency and. This
-includes:<br>
-</p>
-
+includes:<br></p>
 <ol>
 <li>currency name. e.g. "U.S. Dollar"</li>
-
 <li>mnemonic e.g. "USD"</li>
-
 <li>numeric code e.g. "840" (used for ISO currencies)</li>
-
 <li>symbol e.g. "$"</li>
-
 <li>fraction symbol e.g. "&cent;"</li>
-
 <li>scale factor e.g. 10</li>
-
 <li>ratio of fraction to whole e.g. 100 for dollar:cents</li>
-
 <li>description e.g. "United States Dollar"</li>
-
 <li>introduction date e.g. (QuantLib default date)</li>
-
 <li>expiration date e.g. (QuantLib default date)</li>
-
 <li>if it represents and ISO currency description</li>
-
 <li>if ISO, which version it represents</li>
-
 <li>if the external/internal output should display fractional
 part</li>
-
 <li>operations to allow setting external/internal output
 display</li>
-
 <li>a set of locales for which the currency is used (for ISO
 currencies)</li>
-
 <li>operations to add/remove locales</li>
-
 <li>operations to return exchange triangulation next/last
 currencies</li>
-
 <li>operations to return preferred rounding method</li>
-
 <li>an equality operator for comparing two currencies</li>
 </ol>
-
 <h4>Currency Module Design and Static Model</h4>
-
 <img src="quep_6_files/quep_6_static_diagram.png" alt=
-"Currency static diagram" width="912" height="486"> 
-
+"Currency static diagram" width="912" height="486">
 <p>The Currency class hierarchy is using the pimpl idiom for
 lightweight copying and to make polymorphic currency behavior
 available to scripting languages without the Handle template
@@ -158,7 +114,6 @@ and getter definitions for Currency. (For more information about
 the pimpl idiom, see <a href=
 "http://www.quantlib.org/quep/quep001.html">1: Implementing
 polymorphic behavior by means of the pimpl idiom.</a></p>
-
 <p>Usually when applying the pimpl idiom, all operations called on
 Currency would then be proxied to peer operations on the
 CurrencyImpl class through the Handle reference. For the Currency
@@ -167,19 +122,16 @@ class this is only true for the <b>addLocale</b> and
 member variables of the CurrencyImpl. it would create more work to
 duplicate all the <b>getXXX</b> operations in the Currency and
 CurrencyImpl classes without providing any clear benefits.</p>
-
 <p>The only responsibility of the CurrencyImpl subclasses are to
 define implementation for the <b>addLocale/removeLocale</b> and
 <b>setExtern/InternOutputShowingFractions</b> operations and data
 initialization on construction.</p>
-
 <p>The DefaultCurrency class is used by the client to create
 currencies that do not already exist as classes in the library. Two
 constructors are provided: a default constructor that creates a
 Currency with only the default data values and a constructor that
 takes in the parameters to create a Currency object with user
 specified values.</p>
-
 <p>There are also several Currency subclasses that implement the
 most common ISO currencies. They are all designed as singletons so
 their constructors are declared protected. Instances should be
@@ -190,13 +142,10 @@ subclasses need only handle data initialization for the relevant
 ISO currency definition. Planned ISO currency classes are
 USDCurrency, JPYCurrency, EURCurrency, and GBPCurrency. This list
 will grow as needed.</p>
-
 <h4>Currency Implementation Notes</h4>
-
 <p>The following are descriptions of the data fields on the
 CurrencyImpl class. Collectively they hold the state information
 for every currency object.</p>
-
 <blockquote><b>string name</b><br>
 <b>string mnemonic</b><br>
 <b>string numeric</b><br>
@@ -206,7 +155,7 @@ for every currency object.</p>
 They are meant to contain ISO 4217:1995 data, but that is left up
 to the client constructing the Currency instance.<br>
 <br>
- <b>long Currency::scaleFactor</b><br>
+<b>long Currency::scaleFactor</b><br>
 This is the number of significant digits preferred to represent an
 amount of this currency. For now, setting the <b>scaleFactor</b>
 will have no effect. It is intended to be used by Money via the
@@ -251,15 +200,12 @@ to follow triangulated exchange requirements of some currencies.
 All of the Euro member currencies will return the instance of
 EURCurrency. There is more on this in the ExchangeRateManager
 notes.</blockquote>
-
 <!-- END QUANTLIB::CURRENCY::CURRENCY CLASSES -->
 <!-- BEGIN MONEY -->
 <h3>Money</h3>
-
 <p>Money can be thought of as a currency instance. It holds a
 decimal value (some amount of money) and provides for arithmetic
 and comparison operations on that amount of money.</p>
-
 <p>Note that the Money class makes use of a new type: Decimal. For
 now, that is just a typedef to a double. Going forward it should a
 typedef to a class which contains arbitrary precision decimal
@@ -268,35 +214,28 @@ rounding problems with floats. For convenience, this should
 probably expose math operations like rounding (through compositor
 Rounding class), abs, etc. But this should be the subject of
 another QuEP.</p>
-
 <h4>Money Static Model</h4>
-
 <img src="quep_6_files/quep_6_static_diagram_Money.png" alt=
-"Money static diagram"> 
-
+"Money static diagram">
 <p>Money is a concrete class providing all the operations necessary
 to create a new instance, compare two Money objects, and to do
 basic math. The client can instantiate a Money object with a
 different rounding to that which the Currency prefers and/or to
 provide a reference to an ExchangeRateManager object (for currency
 conversion).</p>
-
 <p>At the minimum, the client must pass a Currency and a Decimal to
 create a Money instance. Money will attempt to use the rounding
 associated with its Currency if no other Rounding object is
 specified. If the Currency has no specific rounding associated to
 it, no rounding will be performed until the client provides a
 Rounding object with the setRounding operation.</p>
-
 <p>The CurrencyParams class contains two static variables used by
 Money when attempting math on two Money objects of different
 Currencies. The ConversionType contains the values that indicate
 whether this type of operation is legal and if so what kind of
 conversion to use. The Base_Currency refers to the Currency to use
 for conversion if ConversionType = "BASE_CURRENCY_CONVERSION".</p>
-
 <h4>Money Implementation Notes</h4>
-
 <blockquote>
 <p><b>Math Operations</b><br>
 When automatic conversion is allowed and two Money's with different
@@ -323,63 +262,44 @@ each individually converted amount by calling Money.round() on
 each. For example, using the examples above, the illustration below
 outlines the steps taken for conversion and rounding:<br>
 Automatic Conversion Case<br>
-Money1[sourceCcy] + Money2[targetCcy] = Money3[targetCcy]<br>
-</p>
-
+Money1[sourceCcy] + Money2[targetCcy] = Money3[targetCcy]<br></p>
 <ol>
 <li>convert Money1[sourceCcy] -&gt; Money1[targetCcy]</li>
-
 <li>Money1[targetCcy].round() - using the same Rounding object as
 Money2[targetCcy]</li>
-
 <li>add Money1 + Money2</li>
 </ol>
-
 Base Currency Conversion Case<br>
 Money1[oneCcy] + Money2[anotherCcy] = Money[BaseCurrency]<br>
 <ol>
 <li>convert Money1[oneCcy] -&gt; Money1[baseCcy]</li>
-
 <li>Money1[baseCcy].round() - using the default Rounding object for
 BaseCurrency</li>
-
 <li>Money2[baseCcy].round() - using the default Rounding object for
 BaseCurrency</li>
-
 <li>add Money1 + Money2</li>
 </ol>
-
 <p>Whether or not an attempt to add/subtract two Moneys with
 different Currencies will succeed is determined by the
 following:</p>
-
 <ol>
 <li>Money must contain a reference to an ExchangeRateManager object
 that is able to furnish all the exchange rates necessary to perform
 a conversion.</li>
-
 <li>The CurrencyParams.ConversionType must be
 "BASE_CURRENCY_CONVERSION" or "AUTOMATED_CONVERSION"</li>
 </ol>
 </blockquote>
-
 <p><b>Comparison Operators</b><br>
 In addition to the math operators, the following logical operators
-are overloaded as well:<br>
-</p>
-
+are overloaded as well:<br></p>
 <ul>
 <li>&lt;</li>
-
 <li>&gt;</li>
-
 <li>==</li>
-
 <li>&lt;=</li>
-
 <li>&gt;=</li>
 </ul>
-
 <p><b>Money::round()/rounding()</b><br>
 If the Currency specifies a rounding preference (for example
 EURCurrency), rounding will be turned on (<b>isRounding</b> will
@@ -389,11 +309,9 @@ precision is of course determined by the Rounding implementation
 used. If the Currency does not specify a rounding type, rounding
 will remain off, calling <b>rounding()</b> will return 0, and
 calling <b>round()</b> will have no effect on <b>value</b>.</p>
-
 <!-- END MONEY -->
 <!-- BEGIN Exchange Rates -->
 <h3>Exchange Rate and Exchange Rate Managers</h3>
-
 <p>The exchange rate abstraction contains references to source
 currency, target currency, the conversion factor, and a rate type
 identifier. It provides operations for exchanging Money between the
@@ -401,7 +319,6 @@ source and target currencies. Using a MarketElement member to
 represent the conversion factor makes the exchange rate observable
 thought a common interface. A specialized type of Exchange Rate
 provides date bounded exchange rates.</p>
-
 <p>The Exchange Rate manager abstraction contains a collection of
 exchange rates and operations for adding, removing, and querying.
 The look ups are base on source currency, target currency, and rate
@@ -411,12 +328,9 @@ account triangulated exchange requirements if present in the source
 and/or target currencies (Euroland currencies, for example). The
 related abstraction, DExchangeRateManager, performs serves the same
 purpose, but for date bounded exchange rates.</p>
-
 <h4>Exchange Rate and Exchange Rate Managers Static Model</h4>
-
 <img src="quep_6_files/quep_6_static_diagram_Exchange.png" alt=
-"Exchange Rates static diagram"> 
-
+"Exchange Rates static diagram">
 <p>ExchangeRate is a concrete class that may be constructed with a
 Currency source, a Currency target, a MarketElement conversion
 factor, and optionally a string Type. If no string type is
@@ -429,22 +343,18 @@ setters. All changes to the conversion factor should be performed
 through the MarketElement. The main function, <b>exchange</b>,
 takes in Money of either source or target Currency and returns a
 new Money object reference of the target or source Currency.</p>
-
 <p>DExchangeRate extends ExchangeRate to add
 <b>startDate/endDate</b> operations. It also provides constructors
 for including DateTime startDate/endDate.</p>
-
 <p>RateManager is a template providing functions for storage and
 lookup of ExchangeRates. A subclass RateManager adds the
 <b>lookup</b> operation that also takes in a DateTime as a search
 parameter. The type ExchangeRateManager and DExchangeRateManager
 are a typedef's to RateManager&lt;ExchangeRate&gt; and to
 DRateManager&lt;DExchangeRate&gt;, respectively.</p>
-
 <p>The ExchangeRates are held in a RateMap for efficient lookup.
 For Now, RateMap is a typedef to a Map, but if the need arises
 could be a typedef to an appropriate HashMap.</p>
-
 <p>ExchangeRateManager and DExchangeRateManager are concrete class
 that maintain and perform lookups on ExchangeRateList and
 DExchangeRateList members, respectively. They were designed as
@@ -454,32 +364,24 @@ and in some cases take in the same parameters (the
 not valid polymorphic behavior so can not be expressed in a class
 hierarchy. The functionality they do share (although not publicly)
 is inherited from the superclass ExchangeRateManager base.</p>
-
 <h4>Exchange Rate and Exchange Rate Manager Implementation
 Notes</h4>
-
 <blockquote>
 <p><b>typedef Vector&lt;ExchangeRate&gt; ExchangeRateList</b><br>
 <b>typedef Vector&lt;DExchangeRate&gt; DExchangeRateList</b></p>
-
 <b>typedef RateManager&lt;DExchangeRate&gt; RateMap</b> <b>typedef
-RateManager&lt;DExchangeRate&gt; DRateMap</b> 
-
+RateManager&lt;DExchangeRate&gt; DRateMap</b>
 <p><b>ExchangeRateManager::lookupRate()</b> At a minimum, this
 function needs a target and a source currency. The
 ExchangeRateManager will attempt to find an ExchangeRate with the
 same source/target currencies first, followed by an ExchangeRate
 with the source/target currencies in the inverse order. If no type
 is specified, the type of "any" will be assumed. The following type
-prioritization is used:<br>
-</p>
-
+prioritization is used:<br></p>
 <ul>
 <li>"direct" type</li>
-
 <li>"derived" type</li>
 </ul>
-
 If a specific type is passed in, only an exchange rate of that type
 will be returned. Because ExchangeRate.type is defined as a string
 it could be client defined however they choose. However the
@@ -488,15 +390,12 @@ ExchangeRateManager recognize the following types as special:<br>
 <li>"any": if "any" is passed in, the lookup acts as outlined
 above. This is the same as calling <b>lookupRate</b> without
 passing the type parameter</li>
-
 <li>"direct": the default type for client defined ExchangeRates. If
 passed in, then no derived types may be returned.</li>
-
 <li>"derived": when ExchangeRateManager creates an ExchangeRate by
 triangulation it returns a "derived" type rate. These may be added
 to the ExchangeRate manager for efficiency.</li>
 </ul>
-
 <p><b>lookupRate</b> handles the cases where specific rules have
 been given for exchanging through an intermediary currency. For
 example, all currency exchanges between Euro currencies and any
@@ -507,13 +406,11 @@ ExchangeRateManager uses the
 <b>Currency.nextCurrency/lastCurrency</b> information to construct
 a "derived" type ExchangeRate that follows the exchange
 triangulation conventions.</p>
-
 <p>
 <b>ExchangeRateManager::isAutoAddDerived/setAutoAddDerived</b><br>
 Options are available to automatically add derived exchange rates
 to the internal map so that subsequent lookups are more
 efficient.</p>
-
 <p><b>ExchangeRate::Exchange()</b><br>
 The conversion implementation allows for bi-directional exchange
 based on the Money.currency passed in. For example, if the
@@ -525,8 +422,8 @@ result would be returned. Conversely, passing in a Money[USD] would
 cause Money[USD].value() to be multiplied by the conversionFactor's
 value. A new instance of Money[EUR] with the result would be
 returned.<br>
- Note that <b>exchange</b> does not round before returning the
-Money instance. If the client wants a rounded value, call the
+Note that <b>exchange</b> does not round before returning the Money
+instance. If the client wants a rounded value, call the
 <b>Money.round</b> operation. If conversion is happening due to
 arithmetic on differently denominated Money's, the any rounding is
 left up to the Money object. It does not happen here.<br>
@@ -536,24 +433,17 @@ this case, rather than use the conversionFactor, <b>exchange</b>
 iterates through the list from top to bottom calling
 <b>exchange</b> on each. For example, if the ExchangeRate is
 "derived" for converting FRF into JPY, and the rateChain contains
-the following:<br>
-</p>
-
+the following:<br></p>
 <ol>
 <li>ExchangeRate[FRF to EUR]</li>
-
 <li>ExchangeRate[JPY to EUR]</li>
 </ol>
-
 Calling exchange(Money[FRF]) would do the following::<br>
 <ol>
 <li>Money[EUR] = ExchangeRate[FRF2EUR].exchange( Money[FRF] )</li>
-
 <li>Money[JPY] = ExchangeRate[EUR2JPY].exchange( Money[EUR] )</li>
-
 <li>return Money[JPY]</li>
 </ol>
-
 <p><b>ExchangeRate::type()</b><br>
 Types used by the ExchangeRateManager's are "Direct" and "Derived"
 although clients creating new ExchangeRate instances can input any
@@ -564,47 +454,36 @@ instantiated instances because the conversion factor represents an
 explicit mapping from the source to target currency. "Derived" is
 used by the ExchangeRateManager to indicate that it constructed the
 ExchangeRate from a chain of "Direct" and/or "Derived" rates.</p>
-
 <p>Note that the == (equals) operator is also overloaded.</p>
 </blockquote>
-
 <!-- END EXCHANGE RATES --><!-- BEGIN ROUNDING/TRUNCATION -->
 <h3>Rounding/Truncation</h3>
-
 <p>A simple set of classes have is created for the purposes of
 rounding money after it has been exchanged and after money
 arithmetic. It is outside of the Currency namespace so can be used
 wherever rounding/truncation is needed.</p>
-
 <h4>Rounding/Truncation Static Model</h4>
-
 <img src="quep_6_files/quep_6_static_diagram_rounding.png" alt=
-"Rounding static diagram"> 
-
+"Rounding static diagram">
 <p>Rounding is the abstract base class defining the basic operation
 for rounding. The subclasses provide the implementation for their
 specific types of rounding (strategy pattern).</p>
-
 <h4>Rounding/Truncation Implementation Notes</h4>
-
 <p>The Ceiling/FloorTruncation classes are concrete subclasses
 implementing the two basic types of truncation at with arbitrary
 precision. The precision is specified by the client by passing an
 int representing the decimal precision of the truncated number.</p>
-
 <p>ComputersRuleRounding rounds just as VB/Excel does for
 currencies: when the 1st digit dropped is 5 with no following
 digits or 5 with following digits, then add 1 to the rounding place
 if current digit is odd, leave it as is if even. As with the
 truncation classes, the client only specifies the internal
 precision.</p>
-
 <p>EuroRounding rounds as specified in "Euro Paper 22" ( find it at
 <a href="http://europa.eu.it">europa.eu.it</a> ): Round to 2
 digits. If the 3rd significant digit is less than 5, then round
 down, else round up. Because the precision is already set by the
 specification, only the default constructor is available.</p>
-
 <p>CustomRounding is implemented to follow the OMG guidelines for
 rounding (at least in the Currency specification). The client
 passes in both the precision and the rounding digit upon
@@ -617,40 +496,32 @@ number 458.563 would round to 458.56.<br>
 Note that this could be also used to construct a
 "LooseEuroRounding" object by using 5 as the rounding digit and
 selecting a precision greater than 2.</p>
-
 <!--END ROUNDING/TRUNCATION -->
 <!-- BEGIN DATE-TIME AND AMOUNTOFTIME -->
 <h3>Date-Time and Amount of Time</h3>
-
 <p>DateTime extends the concept of Date in QuantLib to include a
 time component as well as enhancing the interface to be more OMG
 DTime like. It has been designed to be backwards compatible with
 the current QuantLib usage of Date. This does not guarantee
 compatibility with all <b>client</b> usage of QuantLib::Date,
 however.</p>
-
 <p>AmountOfTime is used with the DateTime class for flexible
 date-time addition and to represent a difference between two
 DateTime's.</p>
-
 <h4>DateTime Static Model</h4>
-
 <img src="quep_6_files/quep_6_static_diagram_DateTime.png" alt=
-"DateTime static diagram"> 
-
+"DateTime static diagram">
 <p>DateTime is an abstract class that declares the operations for
 basic date time functionality. It is more or less a union between
 the operations on QuantLib::Date and the OMG DTime value interface
 definition. It also contains static members defining the minimum,
 maximum, and default date-time's.</p>
-
 <p>The first concrete implementation of DateTime is ExcelDateTime.
 Because the Excel serial number can hold precision down to the
 second (in the fractional part), the ExcelDateTime class leverages
 the existing Quantlib::Date class to represent DateTime. In the
 near future, other more efficient concrete DateTime classes will be
 created. This will be the subject of a QuEP yet to come.</p>
-
 <p>You will note that the pimpl idiom was not used for the DateTime
 class hierarchy. For the pimpl idiom to be most beneficial, the
 concrete implementing classes should not define new operations
@@ -666,20 +537,16 @@ operations will be added (e.g. formatDate/formatTime). Because
 these new operations can not be defined in terms of those existing
 in the superclass, it is not appropriate to use the pimpl idiom
 here.</p>
-
 <p>The QuantLib::Date class is still intended to be used via its
 static operations. There is no corresponding <b>isLeapYear</b>
 operation on the new DateTime interface.</p>
-
 <p>AmountOfTime (not in the model) is not an extension of the
 Quantlib::Period class. Instead it is a new class implemented more
 or less exactly along the lines of the OMG spec DAmountOfTime
 interface. If needed, the Period class could be enhanced to return
 an AmountOfTime representation of itself, but that is not the focus
 of this enhancement.</p>
-
 <h4>DateTime Implementation Notes</h4>
-
 <blockquote>In addition to the operations shown in the static
 model, there are overloaded operators to provide DateTime
 comparisons (&lt;, &lt;=, &gt;, &gt;=, ==), to subtract one date
@@ -692,27 +559,19 @@ DateTime. Here are examples of the arithmetic operators:<br>
 <br>
 <b>DateTime - DateTime = AmountOfTime</b><br>
 <br>
- Hours, Minutes, Seconds types shown in the model are typedef'd to
+Hours, Minutes, Seconds types shown in the model are typedef'd to
 int's. This is inline with QuantLib's current Day
 type.</blockquote>
-
 <!-- END DATE-TIME AND AMOUNTOFTIME -->
 <h3>Todo</h3>
-
 Should I include more about the Exceptions or just leave it for the
 technical documentation (i.e. doxygen)?<br>
 Formatting: I will be taking a look at this in the mean time.<br>
- 
-
 <h2>Conclusion</h2>
-
 <p>Try currency out. You will see it can be fun.</p>
-
 <h2>Feedback</h2>
-
 <p>Feedback on the above proposal should be posted to the <a href=
 "mailto:quantlib-users@lists.sourceforge.net">QuantLib users</a>
 mailing list.</p>
 </body>
 </html>
-

@@ -4,30 +4,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 1st March 2004), see www.w3.org">
 <title>QuEP 8: fixing copy behavior in the Observer class</title>
 <link rel="stylesheet" href="../styles/quantlib.css" type=
 "text/css">
 </head>
 <body>
 <h1>QuEP 8: fixing copy behavior in the Observer class</h1>
-
 <div class="center">Luigi Ballabio</div>
-
 <h2>Abstract</h2>
-
 <p>The copy constructor and assignment operators of the
 <tt>Patterns::Observer</tt> class are currently the default ones
 provided by the compiler. However, this can lead to incomplete
 state in the copied object and it therefore inadequate for
 <tt>Observer</tt> functionality.</p>
-
 <p>An implementation of such methods is proposed which fixes the
 problem and leads to increased security against
 <tt>Observer</tt>/<tt>Observable</tt> lifetime issues.</p>
-
 <h2>Current implementation</h2>
-
 <pre>
 class Observer {
   public:
@@ -52,16 +47,13 @@ class Observable {
     std::set&lt;Observer*&gt; theObservers;
 };
 </pre>
-
 <p>It can be seen from a number of glitches in the above interfaces
 that I was young and not very wise when I implemented this classes.
 Such glitches will be outlined later together with proposed
 fixes.</p>
-
 <p>However, the most important problem here is the lack of a copy
 constructor and an assignment operator for <tt>Observer</tt>. The
 problem is evident in the following code snippet:</p>
-
 <pre>
 class SampleObserver : public Observer {
   public:
@@ -81,31 +73,25 @@ SampleObserver clone = obiwan;      // clone is not registered with theForce
 obiwan = SampleObserver();          // obiwan is still registered so it
                                     // is not a newly initialized instance
 </pre>
-
 <p>This problem did not present itself yet because of the fact that
 classes derived from <tt>Observer</tt> such as <tt>Instrument</tt>
 or <tt>TermStructure</tt> are usually contained into
 <tt>Handle</tt>s. This implies that observers are passed by
 reference rather than by value, so that copy constructors and
 assignment operators are never invoked.</p>
-
 <p>However, implementations of the latter should be written which
 provide the right behavior. Such implementations are proposed in
 the following section.</p>
-
 <h3>Other glitches</h3>
-
 <p>Public methods are provided which pass an <tt>Observable</tt>
 raw pointers to <tt>Observer</tt> for storing. This can lead to
 crashes should an <tt>Observer</tt> be deleted before the
 <tt>Observables</tt> it registered with.</p>
-
 <p>The <tt>Observable::notifyObservers</tt> has public visibility.
 However, notification should be managed by the observables
 themselves. Therefore, protected visibility would be a better
 choice. The same is true for the <tt>Observable::observers</tt>
 method.</p>
-
 <p>Registration and unregistration of observers must be both
 performed manually. It is left to the programmer to synchronize the
 two operations, most often by remembering to unregister an
@@ -113,25 +99,20 @@ two operations, most often by remembering to unregister an
 must keep track of the <tt>Observable</tt>s with which the
 registration was done. Automatic unregistration would be safer
 besides relieving the programmer from the outlined tasks.</p>
-
 <p>A <tt>std::set</tt> is used for storing <tt>Observer</tt>s. This
 was chosen so that an observer which registered twice with the same
 observable would receive only one notification. However,
 registering twice and unregistering once would result in being
 unregistered altogether. Often, this is not the desired
 behavior.</p>
-
 <h2>Proposed implementation</h2>
-
 <p>Registration and unregistration should be driven from the
 <tt>Observer</tt> class. This would allow <tt>Observer</tt>
 instances to keep track of the <tt>Observable</tt>s they registered
 with, automatically unregister with them before being destroyed,
 and implement correct copy behavior.</p>
-
 <p>The new implementation is outlined in the following
 pseudo-code:</p>
-
 <pre>
 class Observable {
     friend class Observer;      // this allows Observer to drive the process
@@ -187,15 +168,12 @@ class Observer {
     std::list&lt;Handle&lt;Observable&gt; &gt; observables_;
 };
 </pre>
-
 <p>This implementation solves all the outlined problems,
 namely:</p>
-
 <ul>
 <li>copy behavior is correct. Copies of an <tt>Observer</tt> are
 registered to the <tt>Observables</tt> the original one registered
 with.</li>
-
 <li><tt>Observable</tt> methods still take raw <tt>Observer</tt>
 pointers. However, such methods are now private and registration is
 handled by means of the <tt>Observer</tt>s which will unregister
@@ -205,27 +183,21 @@ be noted that storing raw pointers is necessary because storing
 handles would lead to a circular reference preventing both
 <tt>Observer</tt> and <tt>Observable</tt> from ever being
 destroyed.</li>
-
 <li><tt>Observable::notifyObservers</tt> is now protected and
 accessible by derived classes only.</li>
-
 <li>Unregistration of an <tt>Observer</tt> being destroyed is now
 automatic. It is no longer necessary for the programmer to
 unregister with <tt>Observable</tt>s in classes derived from
 <tt>Observer</tt>. This will often result in removing the need for
 a destructor altogether, i.e., in less code to maintain.</li>
-
 <li>A <tt>std::list</tt> is now used for storing
 <tt>Observer</tt>s. This will cause an observer which registered
 twice and unregistered once with the same observer to be still
 registered.</li>
 </ul>
-
 <h2>Feedback</h2>
-
 <p>Feedback on the above proposal should be posted to the <a href=
 "mailto:quantlib-users@lists.sourceforge.net">QuantLib users</a>
 mailing list.</p>
 </body>
 </html>
-

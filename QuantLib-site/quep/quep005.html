@@ -4,7 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 1st March 2004), see www.w3.org">
 <title>QuEP 5: using replaceable pricing engines in option
 implementations</title>
 <link rel="stylesheet" href="../styles/quantlib.css" type=
@@ -13,11 +14,8 @@ implementations</title>
 <body>
 <h1>QuEP 5: using replaceable pricing engines in option
 implementations</h1>
-
 <div class="center">Luigi Ballabio</div>
-
 <h2>Abstract</h2>
-
 <p>A number of pricers are currently implemented in QuantLib which
 provide option evaluation services. However, they all inhabit a
 sort of middle abstraction layer between high-level objects such as
@@ -27,7 +25,6 @@ leads to mixing of concerns, loss of abstraction, and a number of
 unrelated class hierarchies. In turn, this leads me to fear that
 such hierarchies would be difficult to maintain. Fear leads to
 Anger. Anger leads to Hate. Hate leads to Suffering.</p>
-
 <p>An implementation of Option classes is proposed which tries to
 address the above problems (well, except for the Jedi part). In
 particular, an <tt>Option</tt> class is introduced in the
@@ -36,15 +33,11 @@ option instruments. In turn, the latter are decoupled from their
 actual pricing model by means of an abstract
 <tt>OptionPricingEngine</tt> class whose child classes encapsulate
 the different available choices for option calculation.</p>
-
 <h2>Current implementation</h2>
-
 <p>The figure below shows a partial sketch of the current QuantLib
 architecture.</p>
-
 <div class="center"><img src="quep005a.png" width="823" height=
 "349" alt="UML diagram"></div>
-
 <p>The abstract <tt>Instrument</tt> class serves as base class for
 actual financial instruments. It uses the
 <em>Observer/Observable</em> pattern to determine whether its value
@@ -53,7 +46,6 @@ it uses the <em>Framework</em> pattern to hide such caching logic
 from derived classes---the latter only need to provide a
 <tt>performCalculation</tt> method which implements the actual
 calculations.</p>
-
 <p>However, the currently available option pricers do not take
 advantage of such machinery. Instead, distinct hierarchies of
 pricers are implemented among which are the two shown above,
@@ -61,33 +53,27 @@ namely, one derived from <tt>SingleAssetOption</tt> which includes
 analytical and finite-difference option pricers, and one derived
 from <tt>McPricer</tt> which includes Monte Carlo option
 pricers.</p>
-
 <h3>Disadvantages:</h3>
-
 <p>Option classes are tightly coupled with their calculation model.
 For instance, three unrelated European option classes are shown in
 the above diagram which are dependent on the used model (analytic,
 finite-difference, or Monte Carlo) and do not share any common
 "European option" abstraction.</p>
-
 <p>Separate hierarchies are implemented which are not related and
 would not be easily integrated with the <tt>Instrument</tt>
 hierarchy.</p>
-
 <p>Housekeeping code had to be implemented again in
 <tt>SingleAssetOption</tt> for the caching of calculated results
 instead of reusing the code already available in
 <tt>Instrument</tt>. Also, separating the class hierarchies led to
 the duplication of data members in <tt>SingleAssetOption</tt> and
 <tt>McEuropean</tt>.</p>
-
 <p>Option pricers take their parameters (e.g., the underlying
 price, the risk-free rate, etc.) as <tt>double</tt>s even though
 such values will be obtained from more complex classes such as
 <tt>MarketElement</tt>s or <tt>TermStructure</tt>s. Using the
 pricers requires to repeatedly write the code for obtaining the
 required scalar values.</p>
-
 <p>The inner status of a given pricer should not be modified by an
 implied volatility calculation. Therefore, a temporary copy of the
 pricer must be obtained whose parameters (namely, the volatility of
@@ -95,24 +81,18 @@ the underlying price) can be modified. This requires every pricer
 class to implement both a <tt>clone()</tt> method which returns a
 copy of itself of the right type and a <tt>setVolatility()</tt>
 method for manually changing the parameters of the copy.</p>
-
 <h2>Proposed implementation</h2>
-
 <p>The proposed implementation of the option pricing framework is
 shown in the following diagram.</p>
-
 <div class="center"><img src="quep005b.png" width="819" height=
 "422" alt="UML diagram"></div>
-
 <p>An <tt>Option</tt> class is introduced which inherits from
 <tt>Instrument</tt>. Such class contains a pricing engine to which
 calculations are delegated.</p>
-
 <p>An abstract <tt>OptionPricingEngine</tt> class acts as a base
 class for calculation engines. Such class provides abstract methods
 for setting the calculation parameters, validating the latter, and
 getting calculation results.</p>
-
 <p>Two abstract classes <tt>Arguments</tt> and <tt>Results</tt> are
 introduced. Such classes are empty and have the purpose of defining
 a single base type for calculation parameters and results,
@@ -122,13 +102,11 @@ Such classes have no methods and are simple structures which allow
 unrestricted access to their data members. No other interface is
 needed since their only purpose is to pack together data to be
 passed to and returned from the engine.</p>
-
 <p>Concrete engines contain the appropriate structures containing
 their required parameters and provided results. Such structures are
 assembled by multiply inheriting from the available Arguments and
 Results subclasses. For instance, parameters and results for an
 European option engine could be declared as:</p>
-
 <pre>
 class EuropeanOptionParameters : public OptionParameters,
                                  public UnderlyingParameters,
@@ -147,12 +125,10 @@ class EuropeanEngine : public OptionPricingEngine {
     ...
 };
 </pre>
-
 <p><tt>Option</tt> implements the <tt>Instrument</tt> interface by
 delegating the parameter passing to its subclasses and the
 calculation to the contained engine. Its
 <tt>performCalculations</tt> method can be implemented as:</p>
-
 <pre>
 void Option::performCalculations() const {
 
@@ -180,14 +156,12 @@ void Option::performCalculations() const {
 
 }
 </pre>
-
 <p>Concrete options will contain objects such as
 <tt>MarketElement</tt>s, <tt>TermStructure</tt>s, and
 <tt>Date</tt>s. It will be their job to deduce from such objects
 the appropriate value for the engine parameters. Such logic will be
 implemented in the <tt>setupEngine</tt> methods. For instance, an
 European option could implement the latter as:</p>
-
 <pre>
 class EuropeanOption : public Option {
   private:
@@ -217,10 +191,8 @@ void EuropeanOption::setupEngine() const {
     ...
 }
 </pre>
-
 <p>Also, additional results can be read from the engine by
 extending the base <tt>performCalculation</tt> method:</p>
-
 <pre>
 void EuropeanOption::performCalculations() const {
 
@@ -236,7 +208,6 @@ void EuropeanOption::performCalculations() const {
     ...
 }
 </pre>
-
 <p>Finally, it can be noted that implied volatility calculations
 can be performed by feeding the engine different volatility values
 and analyzing the returned option value. This does not modify the
@@ -244,18 +215,14 @@ inner state of the option, since previous results were already
 stored in its own variables and will not be recalculated until the
 <tt>Instrument</tt> machinery assesses the need to do so. This
 eliminates the need for cloning the option.</p>
-
 <h2>Conclusion</h2>
-
 <p>A new implementation of the option pricing framework was
 proposed which addresses the disadvantages of the current
 implementation, namely:</p>
-
 <p>decoupling of option classes from calculation is achieved by
 encapsulating the latter into a pricing engine; an option class can
 be abstracted from its calculation model and instantiated by
 passing the latter, as in:</p>
-
 <pre>
 Handle&lt;OptionPricingEngine&gt; engine1(new AnalyticEuropeanEngine()),
                             engine2(new FDEuropeanEngine(timeSteps)),
@@ -265,53 +232,37 @@ EuropeanOption opt1(..., engine1);
 EuropeanOption opt2(..., engine2);
 EuropeanOption opt3(..., engine3);
 </pre>
-
 <p>integration of options into the <tt>Instrument</tt> hierarchy is
 achieved;</p>
-
 <p>separation of concerns is achieved by delegating housekeeping
 and result caching to <tt>Instrument</tt>, market data storage and
 interpretation to concrete options, and calculation to pricing
 engines; this also eliminates code duplication;</p>
-
 <p>passing of high-level abstractions such as
 <tt>MarketElement</tt>s and <tt>TermStructure</tt>s is achieved;
 their interpretation is performed independently of the calculation
 model;</p>
-
 <p>implied volatility calculation is performed internally by the
 option, independently of the calculation model and partly of the
 option class; no cloning of the option is required.</p>
-
 <h2>Proof of concept</h2>
-
 A rough proof of concept is available in the library. The base
 classes are implemented, as well as an analytic European engine and
 a concrete option class by the unsatisfactory name of
 <tt>PlainOption</tt>. The implementation can be found in the
-following files: 
-
+following files:
 <ul>
 <li>ql/argsandresults.hpp</li>
-
 <li>ql/option.hpp</li>
-
 <li>ql/option.cpp</li>
-
 <li>ql/Pricers/europeanengine.hpp</li>
-
 <li>ql/Pricers/europeanengine.cpp</li>
-
 <li>ql/Instruments/vanillaoption.hpp</li>
-
 <li>ql/Instruments/vanillaoption.cpp</li>
 </ul>
-
 <h2>Feedback</h2>
-
 <p>Feedback on the above proposal should be posted to the <a href=
 "mailto:quantlib-users@lists.sourceforge.net">QuantLib users</a>
 mailing list.</p>
 </body>
 </html>
-

@@ -4,7 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 1st March 2004), see www.w3.org">
 <title>QuEP 2: reimplementing boundary conditions for
 finite-difference models</title>
 <link rel="stylesheet" href="../styles/quantlib.css" type=
@@ -12,27 +13,20 @@ finite-difference models</title>
 </head>
 <body>
 <h1>QuEP 2: reimplementing boundary conditions for FD models</h1>
-
 <div class="center">Luigi Ballabio</div>
-
 <h2>Abstract</h2>
-
 <p>Boundary conditions (BC) are an essential part of a
 finite-difference model.</p>
-
 <p>In the current implementation, BC:s are implemented as a simple
 structure with a enumerated type tag and a value. The logic of the
 boundary condition itself is implemented in the TridiagonalOperator
 class. This has drawbacks in terms of both model logic and
 extensibility.</p>
-
 <p>A new implementation is proposed which encapsulates the logic of
 the BC into a polymorphic BoundaryCondition class which is part of
 the finite-difference model as much as the differential operator
 and the time scheme.</p>
-
 <h2>Current implementation</h2>
-
 <p>The present implementation of FiniteDifferenceMethod contains an
 Evolver, which in turn contains an Operator. BC:s are set to the
 operator before the latter is passed to the model which in turn
@@ -40,23 +34,18 @@ passes it to the evolver. Setting a BC immediately modifies an
 operator; also, BC:s are stored in the operator and applied to the
 input and/or output array when the applyTo() or solveFor() methods
 are invoked.</p>
-
 <div class="center"><img src="quep002a.png" width="683" height=
 "319" alt="UML diagram"></div>
-
 <h3>Disadvantages:</h3>
-
 <p>There is no clean encapsulation of the BC logic. The operator
 and the input/output arrays are modified at different times and
 different places in the code. Also, there is no clear separation
 between the BC logic and the linear algebra calculations which form
 the core of the applyTo() and solveFor() methods.</p>
-
 <p>The code which applies the BC:s is a switch construct which
 executes different code depending on the enumerated BC type tag.
 This seriously compromises the extensibility of the code, e.g., the
 addition of new BC types to the framework.</p>
-
 <p>Another logic flaw is present, namely, BC:s are set and
 modifications are applied to the operator D which is passed to the
 model. Instead, they should only be applied to the operator which
@@ -65,9 +54,7 @@ next step. Such operator is not D itself but rather I+dt*D or a
 similar one depending on the chosen time scheme. For this same
 reason, care must be taken that the implementation of the operator
 algebra propagates the BC:s from D to (dt*D) to (I+(dt*D)).</p>
-
 <h2>Proposed implementation</h2>
-
 <p>A polymorphic BoundaryCondition class is defined which
 encapsulates the BC logic. Its interface is defined so that it
 should be able to manage different kind of required modifications,
@@ -76,22 +63,17 @@ application of the operator or its inverse. Such methods act
 simultaneously on the operator and the right-hand side of the
 equation. Also, a setTime() interface is provided which allows to
 manage time-dependent BC:s.</p>
-
 <div class="center"><img src="quep002b.png" width="674" height=
 "446" alt="UML diagram"></div>
-
 <p>The BC:s are passed to the model together with the operator and
 are stored into the evolver. It is the responsibility of the
 evolver to call the appropriate BC methods inside its step()
 method.</p>
-
 <p>Finally, the TridiagonalOperator would not be concerned with
 BC:s. Its applyTo() and solveFor() methods would only implement the
 corresponding linear algebra calculations.</p>
-
 <p>The framework would be implemented as in the following
 pseudo-code:</p>
-
 <pre>
 class FiniteDifferenceMethod {
   public:
@@ -157,16 +139,13 @@ class CrankNicolson {
     }
 };
 </pre>
-
 <p>The missing piece in the above code concerns the way to pass the
 BC:s to a model. This must take into account that we do not know in
 advance their number even in 1-D models, much less in 2-D or
 higher.</p>
-
 <p>One possibility would be to pass a container of BC:s, e.g., a
 std::vector or a std::list. In this case, the constructor of a
 model would be implemented as</p>
-
 <pre>
 class FiniteDifferenceMethod {
   public:
@@ -176,11 +155,9 @@ class FiniteDifferenceMethod {
     ...
 };
 </pre>
-
 <p>Another would be to pass to the model one BC which represents
 the set of all BC:s which are local to a part of the solution. The
 Composite pattern could be used to define such set as</p>
-
 <pre>
 class CompositeBC : public BoundaryCondition {
   public:
@@ -201,10 +178,8 @@ class CompositeBC : public BoundaryCondition {
     ...
 };
 </pre>
-
 <p>In this case, the constructor of a model would be implemented
 as:</p>
-
 <pre>
 class FiniteDifferenceMethod {
   public:
@@ -214,17 +189,12 @@ class FiniteDifferenceMethod {
     ...
 };
 </pre>
-
 <h2>Acknowledgements</h2>
-
 <p>Many thanks to Nicolas Di C&eacute;sar&eacute; for the fruitful
 discussion---which is in fact still ongoing and still fruitful.</p>
-
 <h2>Feedback</h2>
-
 <p>Feedback on the above proposal should be posted to the <a href=
 "mailto:quantlib-users@lists.sourceforge.net">QuantLib users</a>
 mailing list.</p>
 </body>
 </html>
-
