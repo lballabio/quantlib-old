@@ -1,5 +1,7 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+<meta name="generator" content="HTML Tidy, see www.w3.org">
 <title>QuEP 9: generic disposable objects</title>
 <link rel="stylesheet" href="../styles/quantlib.css" type=
 "text/css">
@@ -11,24 +13,31 @@
 
 <h2>Abstract</h2>
 
-<p>A generalization of <a href="quep004.html">QuEP 4</a> is proposed which 
-allows one to create temporary objects with small return-by-copy 
-footprint.</p>
+<p>A generalization of <a href="quep004.html">QuEP 4</a> is
+proposed which allows one to create temporary objects with small
+return-by-copy footprint.</p>
 
 <h2>Proposed implementation</h2>
 
-<p>A temporary array class was proposed in <a href="quep004.html">QuEP 4</a> 
-which reduced the abstraction penalty related to returning temporary objects 
-by copy. The analysis of such penalty and the mechanism used by the temporary 
-array are not repeated here.</p>
+<p>A temporary array class was proposed in <a href=
+"quep004.html">QuEP 4</a> which reduced the abstraction penalty
+related to returning temporary objects by copy. The analysis of
+such penalty and the mechanism used by the temporary array are not
+repeated here.</p>
 
-<p>Rather, a generalization of such mechanism is introduced which allows it to 
-be used with predefined types such as <tt>std::vector</tt>, albeit not to its 
-full extent. Also, user-defined types can easily be modified so that they can 
-take full advantage of this facility. Such modifications are purely additive, 
-so that existing code would continue to work unaffected.</p>
+<p>Rather, a generalization of such mechanism is introduced which
+allows it to be used with predefined types such as
+<tt>std::vector</tt>, albeit not to its full extent. Also,
+user-defined types can easily be modified so that they can take
+full advantage of this facility. Such modifications are purely
+additive, so that existing code would continue to work
+unaffected.</p>
 
-<p>Such generalization is encapsulated in a template <tt>Temporary</tt> class which inherits from its template argument and redefines its copy constructor and assignment operator so that the instance contents are swapped rather than copied, as shown in the following implementation: </p>
+<p>Such generalization is encapsulated in a template
+<tt>Temporary</tt> class which inherits from its template argument
+and redefines its copy constructor and assignment operator so that
+the instance contents are swapped rather than copied, as shown in
+the following implementation:</p>
 
 <pre>
 template &lt;class T&gt;
@@ -39,24 +48,26 @@ class Temporary : public T {                // Temporary is-a T
     Temporary(const T&amp; t) : T(t) {}         // deep copy as usual
     Temporary(Temporary&amp; t) { swap(t); }    // swap this with t
     // assignment operators
-    Temporary& operator=(const T&amp; t) {
+    Temporary&amp; operator=(const T&amp; t) {
         T::operator=(t);                    // deep copy as usual
         return *this;
     }
-    Temporary& operator=(Temporary&amp; t) {
+    Temporary&amp; operator=(Temporary&amp; t) {
         swap(t);                            // swap this with t
         return *this;
     }
 };
 </pre>
 
-<p>The above implementation relies on <tt>T</tt> exposing a method 
-<tt>swap(T&amp;)</tt> which swaps the contents of <tt>this</tt> and of the 
-passed instance. Also, <tt>T</tt> must be assignable and have a default 
-constructor. All such requirements are satisfied by all STL containers (see 
-section 23.1 of the ANSI/ISO C++ standard) so that functions returning such 
-types by value can benefit from the use of <tt>Temporary</tt>. For instance, a 
-function implemented and called as:
+<p>The above implementation relies on <tt>T</tt> exposing a method
+<tt>swap(T&amp;)</tt> which swaps the contents of <tt>this</tt> and
+of the passed instance. Also, <tt>T</tt> must be assignable and
+have a default constructor. All such requirements are satisfied by
+all STL containers (see section 23.1 of the ANSI/ISO C++ standard)
+so that functions returning such types by value can benefit from
+the use of <tt>Temporary</tt>. For instance, a function implemented
+and called as:</p>
+
 <pre>
 std::vector&lt;double&gt; f(...) {
     std::vector&lt;double&gt; result;
@@ -66,7 +77,10 @@ std::vector&lt;double&gt; f(...) {
 
 std::vector&lt;double&gt; v = f(...);
 </pre>
-implicitly performs three memory allocations and two copies of the vector elements (see QuEP 4 for details). Simply rewriting it as:
+
+implicitly performs three memory allocations and two copies of the
+vector elements (see QuEP 4 for details). Simply rewriting it as: 
+
 <pre>
 Temporary&lt;std::vector&lt;double&gt; &gt; f(...) {
     Temporary&lt;std::vector&lt;double&gt; &gt; result;
@@ -76,10 +90,17 @@ Temporary&lt;std::vector&lt;double&gt; &gt; f(...) {
 
 std::vector&lt;double&gt; v = f(...);
 </pre>
-reduces the count to two allocations and one copy. In this case, we cannot do better since we cannot add to <tt>std::vector</tt> a new copy constructor taking a temporary.
-</p>
 
-<p>For user-defined classes, this technique can be fully exploited by adding to such classes a <tt>swap</tt> method and by overloading copy constructor and assignment operator, as in:
+reduces the count to two allocations and one copy. In this case, we
+cannot do better since we cannot add to <tt>std::vector</tt> a new
+copy constructor taking a temporary. <br>
+<br>
+ 
+
+<p>For user-defined classes, this technique can be fully exploited
+by adding to such classes a <tt>swap</tt> method and by overloading
+copy constructor and assignment operator, as in:</p>
+
 <pre>
 class MyClass {
   public:
@@ -92,8 +113,10 @@ class MyClass {
     ...
 };
 </pre>
-This addition does not affect existing code and allows one to write and invoke 
-functions as:
+
+This addition does not affect existing code and allows one to write
+and invoke functions as: 
+
 <pre>
 Temporary&lt;MyClass&gt; f(...) {
     Temporary&lt;MyClass&gt; result;
@@ -103,40 +126,52 @@ Temporary&lt;MyClass&gt; f(...) {
 
 MyClass x = f(...);
 </pre>
-Due to the overloading of <tt>MyClass::operator=</tt>, the cost of the above 
-reduces to the allocation implied in the construction of the result. No 
-further allocation or copy is performed.
-</p>
+
+Due to the overloading of <tt>MyClass::operator=</tt>, the cost of
+the above reduces to the allocation implied in the construction of
+the result. No further allocation or copy is performed. <br>
+<br>
+ 
 
 <h3>A note on constructors</h3>
 
-<p>It must be noted that since constructors are not inherited, 
-<tt>Temporary&lt;T&gt;</tt> does not have any particular constructor which 
-<tt>T</tt> might implement besides the default one.</p>
+<p>It must be noted that since constructors are not inherited,
+<tt>Temporary&lt;T&gt;</tt> does not have any particular
+constructor which <tt>T</tt> might implement besides the default
+one.</p>
 
-<p>For instance, it would not be possible to write:
+<p>For instance, it would not be possible to write:</p>
+
 <pre>
 size_t size = 10;
 Temporary&lt;std::vector&lt;double&gt; &gt; a(size);
 </pre>
-since such constructor is not available. The above should instead be written:
+
+since such constructor is not available. The above should instead
+be written: 
+
 <pre>
 size_t size = 10;
 Temporary&lt;std::vector&lt;double&gt; &gt; a;
 a.resize(size);
 </pre>
-This also means that for <tt>Temporary&lt;T&gt;</tt> to be used, <tt>T</tt> 
-must provide the means to incrementally construct a default-initialized 
-<tt>T</tt> instance. E.g., for <tt>Temporary&lt;Array&gt;</tt> to be used, a 
-<tt>resize</tt> method should be added to <tt>Array</tt>'s public interface 
-which is not currently available.</p>
+
+This also means that for <tt>Temporary&lt;T&gt;</tt> to be used,
+<tt>T</tt> must provide the means to incrementally construct a
+default-initialized <tt>T</tt> instance. E.g., for
+<tt>Temporary&lt;Array&gt;</tt> to be used, a <tt>resize</tt>
+method should be added to <tt>Array</tt>'s public interface which
+is not currently available.<br>
+<br>
+ 
 
 <h2>Conclusion</h2>
 
-<p>An implementation of generic disposable objects was proposed which reduces 
-the abstraction penalty related to return-by-copy semantics. The presented 
-technique can be successfully applied to both STL classes and used-defined 
-types, the latter taking the most advantage of this penalty reduction.</p>
+<p>An implementation of generic disposable objects was proposed
+which reduces the abstraction penalty related to return-by-copy
+semantics. The presented technique can be successfully applied to
+both STL classes and used-defined types, the latter taking the most
+advantage of this penalty reduction.</p>
 
 <h2>Feedback</h2>
 
