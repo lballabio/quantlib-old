@@ -21,26 +21,6 @@
 (require (lib "file.ss" "dynext"))
 (load-relative-extension (append-extension-suffix "QuantLibc"))
 
-; macros for making it easier to free memory
-; careful: they prevent tail-recursion!
-
-(define-syntax deleting-let
-  (syntax-rules ()
-    ((deleting-let ((name val dtor) ...) body1 body2 ...)
-     (let ((name val) ...)
-       (let ((result (begin body1 body2 ...)))
-         (dtor name) ...
-         result)))))
-
-(define-syntax deleting-let*
-  (syntax-rules ()
-    ((deleting-let* ((name val dtor) ...) body1 body2 ...)
-     (let* ((name val) ...)
-       (let ((result (begin body1 body2 ...)))
-         (dtor name) ...
-         result)))))
-
-
 ; added functionality
 (define History-old-init new-History)
 (define (new-History dates values)

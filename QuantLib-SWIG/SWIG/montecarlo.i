@@ -170,8 +170,8 @@ class MultiPath {
         #elif defined(SWIGMZSCHEME)
         void for_each_path(Scheme_Object* proc) {
             for (Size i=0; i<self->assetNumber(); i++) {
-                Scheme_Object* x = SWIG_MakePtr(&((*self)[i]), 
-                                                $descriptor(Path *));
+                Scheme_Object* x = 
+                    SWIG_NewPointerObj(&((*self)[i]), $descriptor(Path *), 0);
                 scheme_apply(proc,1,&x);
             }
         }

@@ -457,7 +457,7 @@ bool extractArray(PyObject* source, Array* target) {
         }
     } else {
         $1 = *(($&1_type)
-               SWIG_MustGetPtr($input,$&1_descriptor,$argnum));
+               SWIG_MustGetPtr($input,$&1_descriptor,$argnum,0));
     }
 }
 %typemap(in) const Array& (Array temp),
@@ -476,7 +476,7 @@ bool extractArray(PyObject* source, Array* target) {
                                   $argnum, argc, argv);
         }
     } else {
-        $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum);
+        $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum,0);
     }
 }
 %typecheck(QL_TYPECHECK_ARRAY) Array {
@@ -486,7 +486,8 @@ bool extractArray(PyObject* source, Array* target) {
     /* wrapped Array? */
     } else {
         Array* v;
-        $1 = (SWIG_GetPtr($input,(void **) &v,$&1_descriptor) != -1) ? 1 : 0;
+        $1 = (SWIG_ConvertPtr($input,(void **) &v,$&1_descriptor,0) != -1) ? 
+            1 : 0;
     }
 }
 %typecheck(QL_TYPECHECK_ARRAY) const Array & {
@@ -496,7 +497,8 @@ bool extractArray(PyObject* source, Array* target) {
     /* wrapped Array? */
     } else {
         Array* v;
-        $1 = (SWIG_GetPtr($input,(void **) &v,$1_descriptor) != -1) ? 1 : 0;
+        $1 = (SWIG_ConvertPtr($input,(void **) &v,$1_descriptor,0) != -1) ? 
+            1 : 0;
     }
 }
 
@@ -537,7 +539,7 @@ bool extractArray(PyObject* source, Array* target) {
         }
     } else {
         $1 = *(($&1_type)
-               SWIG_MustGetPtr($input,$&1_descriptor,$argnum));
+               SWIG_MustGetPtr($input,$&1_descriptor,$argnum,0));
     }
 }
 %typemap(in) const Matrix& (Matrix temp),
@@ -577,7 +579,7 @@ bool extractArray(PyObject* source, Array* target) {
             }
         }
     } else {
-        $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum);
+        $1 = ($1_ltype) SWIG_MustGetPtr($input,$1_descriptor,$argnum,0);
     }
 }
 %typecheck(QL_TYPECHECK_MATRIX) Matrix {
@@ -587,7 +589,8 @@ bool extractArray(PyObject* source, Array* target) {
     /* wrapped Matrix? */
     } else {
         Matrix* m;
-        $1 = (SWIG_GetPtr($input,(void **) &m,$&1_descriptor) != -1) ? 1 : 0;
+        $1 = (SWIG_ConvertPtr($input,(void **) &m,$&1_descriptor,0) != -1) ? 
+            1 : 0;
     }
 }
 %typecheck(QL_TYPECHECK_MATRIX) const Matrix & {
@@ -597,7 +600,8 @@ bool extractArray(PyObject* source, Array* target) {
     /* wrapped Matrix? */
     } else {
         Matrix* m;
-        $1 = (SWIG_GetPtr($input,(void **) &m,$1_descriptor) != -1) ? 1 : 0;
+        $1 = (SWIG_ConvertPtr($input,(void **) &m,$1_descriptor,0) != -1) ? 
+            1 : 0;
     }
 }
 #elif defined(SWIGGUILE)

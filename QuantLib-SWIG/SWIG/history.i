@@ -65,7 +65,8 @@ class HistoryEntry {
         $result = scheme_false;
     } else {
         Date* d = new Date($1.date());
-        Scheme_Object* car = SWIG_MakePtr(d, $descriptor(Date *));
+        Scheme_Object* car = 
+            SWIG_NewPointerObj(d, $descriptor(Date *), 1);
         Scheme_Object* cdr = scheme_make_double($1.value());
         $result = scheme_make_pair(car,cdr);
     }
@@ -116,7 +117,7 @@ struct HistoryValidIterator {
         return NULL;
     }
 }
-        
+
 %exception HistoryValidIterator::next {
     try {
         $action
@@ -129,7 +130,7 @@ struct HistoryValidIterator {
         return NULL;
     }
 }
-        
+
 class HistoryIterator {
   private:
     HistoryIterator();
@@ -254,7 +255,8 @@ class History {
                     entry = scheme_false;
                 } else {
                     Date* d = new Date(i->date());
-                    Scheme_Object* car = SWIG_MakePtr(d, $descriptor(Date *));
+                    Scheme_Object* car = 
+                        SWIG_NewPointerObj(d, $descriptor(Date *), 1);
                     Scheme_Object* cdr = scheme_make_double(v);
                     entry = scheme_make_pair(car,cdr);
                 }
@@ -266,7 +268,8 @@ class History {
             for ( ; i!=end; ++i) {
                 double v = i->value();
                 Date* d = new Date(i->date());
-                Scheme_Object* car = SWIG_MakePtr(d, $descriptor(Date *));
+                Scheme_Object* car = 
+                    SWIG_NewPointerObj(d, $descriptor(Date *), 1);
                 Scheme_Object* cdr = scheme_make_double(v);
                 Scheme_Object* cons = scheme_make_pair(car,cdr);
                 scheme_apply(proc,1,&cons);

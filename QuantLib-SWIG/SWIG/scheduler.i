@@ -78,7 +78,8 @@ class Schedule {
         void for_each(Scheme_Object* proc) {
             for (Size i=0; i<self->size(); i++) {
                 Date* d = new Date(self->date(i));
-                Scheme_Object* x = SWIG_MakePtr(d, $descriptor(Date *));
+                Scheme_Object* x = 
+                    SWIG_NewPointerObj(d, $descriptor(Date *), 1);
                 scheme_apply(proc,1,&x);
             }
         }

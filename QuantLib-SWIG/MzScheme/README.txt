@@ -3,7 +3,7 @@ The C++ wrappers for the QuantLib-MzScheme extension module are created
 by means of SWIG (Simplified Wrapper and Interface Generator) available
 from <http://www.swig.org/>.  Features used in the QuantLib-MzScheme
 interface files require version 2.0 or later of MzScheme and version
-1.3.18 or later of SWIG.
+1.3.20 or later of SWIG.
 
 The wrappers are generated on all supported platforms by issuing the command
     mzscheme -r setup.scm wrap
