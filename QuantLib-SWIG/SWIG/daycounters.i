@@ -26,11 +26,11 @@
 
 %{
 using QuantLib::DayCounter;
-using QuantLib::DayCounters::Actual360;
-using QuantLib::DayCounters::Actual365;
-using QuantLib::DayCounters::Thirty360;
-using QuantLib::DayCounters::ActualActual;
-using QuantLib::DayCounters::SimpleDayCounter;
+using QuantLib::Actual360;
+using QuantLib::Actual365;
+using QuantLib::Thirty360;
+using QuantLib::ActualActual;
+using QuantLib::SimpleDayCounter;
 %}
 
 class DayCounter {

@@ -45,9 +45,9 @@ IsObservable(Handle<CashFlow>);
 // implementations
 
 %{
-using QuantLib::CashFlows::SimpleCashFlow;
-using QuantLib::CashFlows::FixedRateCoupon;
-using QuantLib::CashFlows::ParCoupon;
+using QuantLib::SimpleCashFlow;
+using QuantLib::FixedRateCoupon;
+using QuantLib::ParCoupon;
 typedef Handle<CashFlow> SimpleCashFlowHandle;
 typedef Handle<CashFlow> FixedRateCouponHandle;
 typedef Handle<CashFlow> ParCouponHandle;
@@ -121,8 +121,8 @@ namespace std {
 // cash flow vector builders
 
 %{
-using QuantLib::CashFlows::FixedRateCouponVector;
-using QuantLib::CashFlows::FloatingRateCouponVector;
+using QuantLib::FixedRateCouponVector;
+using QuantLib::FloatingRateCouponVector;
 %}
 
 std::vector<Handle<CashFlow> > 

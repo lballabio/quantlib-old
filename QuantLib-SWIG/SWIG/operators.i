@@ -22,8 +22,7 @@
 %include linearalgebra.i
 
 %{
-typedef QuantLib::FiniteDifferences::BoundaryCondition<
-	QuantLib::FiniteDifferences::TridiagonalOperator>
+typedef QuantLib::BoundaryCondition<QuantLib::TridiagonalOperator>
 		BoundaryCondition;
 typedef BoundaryCondition::Side BoundaryConditionSide;
 
@@ -60,8 +59,8 @@ class BoundaryCondition {};
 %template(BoundaryCondition) Handle<BoundaryCondition>;
 
 %{
-using QuantLib::FiniteDifferences::NeumannBC;
-using QuantLib::FiniteDifferences::DirichletBC;
+using QuantLib::NeumannBC;
+using QuantLib::DirichletBC;
 typedef Handle<BoundaryCondition> NeumannBCHandle;
 typedef Handle<BoundaryCondition> DirichletBCHandle;
 %}
@@ -89,7 +88,7 @@ class DirichletBCHandle: public Handle<BoundaryCondition> {
 
 
 %{
-using QuantLib::FiniteDifferences::TridiagonalOperator;
+using QuantLib::TridiagonalOperator;
 %}
 
 class TridiagonalOperator {
@@ -183,10 +182,10 @@ class TridiagonalOperator {
 
 
 %{
-using QuantLib::FiniteDifferences::DPlus;
-using QuantLib::FiniteDifferences::DMinus;
-using QuantLib::FiniteDifferences::DZero;
-using QuantLib::FiniteDifferences::DPlusDMinus;
+using QuantLib::DPlus;
+using QuantLib::DMinus;
+using QuantLib::DZero;
+using QuantLib::DPlusDMinus;
 %}
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -232,9 +231,9 @@ class DPlusDMinus : public TridiagonalOperator {
 
 
 %{
-using QuantLib::FiniteDifferences::valueAtCenter;
-using QuantLib::FiniteDifferences::firstDerivativeAtCenter;
-using QuantLib::FiniteDifferences::secondDerivativeAtCenter;
+using QuantLib::valueAtCenter;
+using QuantLib::firstDerivativeAtCenter;
+using QuantLib::secondDerivativeAtCenter;
 %}
 
 double valueAtCenter(const Array& a);

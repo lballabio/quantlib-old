@@ -25,7 +25,7 @@
 %include date.i
 
 %{
-using QuantLib::CashFlows::TimeBasket;
+using QuantLib::TimeBasket;
 %}
 
 class TimeBasket {
