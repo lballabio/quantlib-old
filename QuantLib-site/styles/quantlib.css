@@ -59,7 +59,7 @@ OL.navlinklist{
 }
 
 pre {
-	margin-left: 10%;
+	margin-left: 1%;
 	color: green;
 	background: white;
 	font-family: monospace;
@@ -90,7 +90,7 @@ DIV.ah {
     margin-top: 3em
     }
 DIV.fragment {
-	margin-left: 10%;
+	margin-left: 1%;
 	color: green;
 	background: white;
 	font-family: monospace;
