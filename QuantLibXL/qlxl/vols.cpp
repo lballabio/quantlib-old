@@ -39,7 +39,7 @@ extern "C"
                                      XlfOper xlallowExtrapolation) {
         EXCEL_BEGIN;
         Date refDate = QlXlfOper(xlrefDate).AsDate();
-        QuantLib::Handle<QuantLib::BlackVolTermStructure>
+        QuantLib::RelinkableHandle<QuantLib::BlackVolTermStructure>
             volSurface =
             QlXlfOper(xlblackVolSurface).AsBlackVolTermStructure(refDate);
         Date date1 = QlXlfOper(xldate1).AsDate();

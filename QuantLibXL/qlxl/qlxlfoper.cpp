@@ -181,7 +181,6 @@ RelinkableHandle<QuantLib::BlackVolTermStructure> QlXlfOper::AsBlackVolTermStruc
 }
 
 
-// -- begin -- Can anybody check this part?
 RelinkableHandle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
     const Date& referenceDate) const {
 
@@ -196,13 +195,12 @@ RelinkableHandle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
         double forwardRate = range(0,0).AsDouble();
         return Handle<QuantLib::TermStructure>(new
             TermStructures::FlatForward(today,
-                                        referenceDate, 
+                                        referenceDate,
                                         forwardRate,
                                         DayCounters::Actual365()));
     } else if (rowNo>1 && colNo==2 && range(0,1).AsDouble()==1.0) {
         // discount grid
 
-        Date today=QlXlfOper(range(0, 0)).AsDate();
 
         std::vector<Date> dates(rowNo);
         std::vector<DiscountFactor> discounts(rowNo);
@@ -210,9 +208,11 @@ RelinkableHandle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
             dates[j] = QlXlfOper(range(j, 0)).AsDate();
             discounts[j] = range(j, 1).AsDouble();
         }
+        Date today=dates[0];
+
         return Handle<QuantLib::TermStructure>(new
             TermStructures::DiscountCurve(today,
-                                          dates, 
+                                          dates,
                                           discounts,
                                           DayCounters::Actual365()));
     } else if (rowNo>2 && colNo>=1) {
@@ -223,13 +223,14 @@ RelinkableHandle<QuantLib::TermStructure> QlXlfOper::AsTermStructure(
             dates[j] = QlXlfOper(range(j, 0)).AsDate();
             forwards[j] = range(j, 1).AsDouble();
         }
+        Date today=dates[0];
+
         return Handle<QuantLib::TermStructure>(new
             TermStructures::PiecewiseFlatForward(today,
-                                                 dates, 
+                                                 dates,
                                                  forwards,
                                                  DayCounters::Actual365()));
     } else
         throw Error("Not a yield term structure range");
 
 }
-// -- end -- Can anybody check this part?
