@@ -22,16 +22,6 @@
 #ifndef qlxl_h
 #define qlxl_h
 
-#ifdef max
-#  undef max
-#endif
-#ifdef min
-#  undef min
-#endif
-#ifndef NOMINMAX
-#  define NOMINMAX
-#endif
-
 #include <xlw/xlw.h>
 #include <ql/qldefines.hpp>
 
