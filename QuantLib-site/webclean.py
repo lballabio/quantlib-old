@@ -38,13 +38,13 @@ def webclean():
   sourcedir = os.curdir
   targetdir = os.curdir
   sitename="QL"
-  donotpublish = ['common', 'template', 'tidy', 'quep\quep03']
+  donotpublish = ['common', 'template', 'tidy', os.path.join('quep', 'quep3')]
 
   print 'sourcedir', sourcedir
 
   skip = []
   for z in donotpublish:
-    skip.append('"' + targetdir+'\\'+z+'"')
+    skip.append(os.path.join(targetdir, z))
 
   os.path.walk(targetdir, walking, skip)
 
