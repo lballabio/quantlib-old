@@ -298,7 +298,22 @@ int main() {
 <div class="center"><img src="quep011/quep011b.png"></div>
 <a name="tag_3"></a><h2>3. <a href="#tag_contents">Notes</a></h2>
 <ul>
-<li><b>ObjectHandler process</b> could be separate from the end user application.  Presently the client links (statically or dynamically) to ObjectHandler such that each client implements a standalone copy of ObjectHandler.  In practice there will be situations where it is preferable to implement ObjectHandler as a single process shared by multiple client applications.</li>
+<li><b>separation of processes:</b> Presently the client links (statically or dynamically) to ObjectHandler such that each client implements a standalone copy of ObjectHandler.  In practice there will be situations where it is preferable to implement ObjectHandler as a single process shared by multiple client applications.</li>
+<li><b>XML support:</b> An important enhancement is be to XML-enable ObjectHandler.  The Object class is extended to support:
+<ul>
+<li><b>Serialize:</b> Write the Object as XML to a file or other stream</li>
+<li><b>Derialize:</b> Take as input the XML definition of an Object from a file or other stream, and construct the Object</li>
+<li><b>Compress/Decompress:</b> Algorithms applied to the Object's XML definition</li>
+</ul>
+This allows the user to call, for example, ObjectHandler.Load("path/to/object_definition.xml") to construct the appropriate Object in ObjectHandler.  The goal is distributed computing: a spreadsheet instantiates an object, but instead of being priced locally, the Object is serialized, transmitted to the grid, priced there, and the result sent back to the client.</li>
+<li><b>logging framework:</b> At present ObjectHandler uses a bespoke framework for logging, third-party solutions should be considered:
+<ul>
+<li><a href="http://logging.apache.org/log4cxx">http://logging.apache.org/log4cxx</a></li>
+<li><a href="http://sourceforge.net/projects/log4cpp">http://sourceforge.net/projects/log4cpp</a></li>
+<li><a href="http://sourceforge.net/projects/log4cplus">http://sourceforge.net/projects/log4cplus</a></li>
+</ul>
+</li>
+<li><b>reduce mutability of Object/Property classes from within client application:</b> With the present design there are situations where the Client application can bypass an Object's interface and modify its internals directly, possibly leaving it in an inconsistent state.  The classes in ObjectHandler need to be reorganized to prevent this.</li>
 </ul>
 <a name="tag_4"></a><h2>4. <a href="#tag_contents">Feedback</a></h2>
 <p>Feedback on this proposal should be posted to the <a href="
