@@ -438,7 +438,8 @@ class McBasket {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McBasket(OptionType type, const Array& underlying, double strike,
+    McBasket(OptionType type, const std::vector<double>& underlying,
+             double strike,
    		     const Array& dividendYield, const Matrix& covariance,
 		     Rate riskFreeRate, double residualTime,
 		     bool antitheticVariance, long seed = 0);
@@ -454,7 +455,7 @@ class McMaxBasket {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McMaxBasket(const Array& underlying, const Array& dividendYield,
+    McMaxBasket(const std::vector<double>& underlying, const Array& dividendYield,
                 const Matrix& covariance, Rate riskFreeRate,
                 double residualTime, bool antitheticVariance,
                 long seed = 0);
@@ -470,7 +471,7 @@ class McHimalaya {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McHimalaya(const Array& underlying, const Array& dividendYield,
+    McHimalaya(const std::vector<double>& underlying, const Array& dividendYield,
                const Matrix& covariance, Rate riskFreeRate,
 			   double strike, const std::vector<double>& timeDelays,
 		       bool antitheticVariance, long seed = 0);
@@ -501,7 +502,7 @@ class McPagoda {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McPagoda(const Array& portfolio, double fraction, double roof,
+    McPagoda(const std::vector<double>& portfolio, double fraction, double roof,
 		     const Array& dividendYield, const Matrix& covariance,
 		     Rate riskFreeRate, const std::vector<double>& timeDelays,
 		     bool antithetic, long seed = 0);
