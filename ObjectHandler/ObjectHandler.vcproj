@@ -507,9 +507,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\ObjectHandler\property.cpp">
-			</File>
-			<File
 				RelativePath="ObjectHandler\utilities.cpp">
 				<FileConfiguration
 					Name="Release|Win32">

@@ -17,16 +17,19 @@ namespace ObjHandler {
 	    // Constructors and destructor
     //	Property();
     //	Property(const Name& name);
-	    Property(const Name& name, const Type& t);
+	    Property(const Name& name, const Type& t) {
+	        nam = name;
+	        con = t;
+        }
     //	Property(const Property<Name, Type>& source);
 
     //	virtual ~Property{};
 
 	    // Accessing function operators (use operator overloading)
-	    virtual Type operator() () const;
-	    virtual void operator() (const Type& t);
+        virtual Type operator() () const { return con; }
+	    virtual void operator() (const Type& t) { con = t; }
 
-	    virtual Name name() const;
+	    virtual Name name() const { return nam; }
 
     //	Property<Name, Type>& operator = (const Property<Name, Type>& source);
 
