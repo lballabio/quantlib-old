@@ -1,3 +1,106 @@
+2003-03-10 13:28  lballabio
+
+	* setup.rb (1.34): Cleaned up installation
+
+2003-03-10 12:06  lballabio
+
+	* test/europeanoption.rb (1.13): Synch with C++
+
+2003-02-25 13:17  lballabio
+
+	* test/europeanoption.rb (1.12): [no log message]
+
+2003-02-25 10:24  lballabio
+
+	* test/instruments.rb (1.7): Test for frozen instrument
+
+2003-02-17 08:16  lballabio
+
+	* test/: capfloor.rb (1.7), piecewiseflatforward.rb (1.11),
+	termstructures.rb (1.13): Had tests work on Sundays
+
+2003-02-16 12:44  lballabio
+
+	* test/europeanoption.rb (1.11): Synch with C++
+
+2003-02-13 16:28  lballabio
+
+	* README.txt (1.10), test/QuantLibTestSuite.rb (1.16),
+	test/calendars.rb (1.2), test/capfloor.rb (1.6), test/covariance.rb
+	(1.4), test/dates.rb (1.8), test/daycounters.rb (1.6),
+	test/distributions.rb (1.7), test/europeanoption.rb (1.10),
+	test/instruments.rb (1.6), test/marketelements.rb (1.6),
+	test/old_pricers.rb (1.5), test/operators.rb (1.5),
+	test/piecewiseflatforward.rb (1.10), test/riskstatistics.rb (1.6),
+	test/segmentintegral.rb (1.4), test/simpleswap.rb (1.7),
+	test/solvers1d.rb (1.6), test/statistics.rb (1.6), test/swaption.rb
+	(1.5), test/termstructures.rb (1.12): Updated for Test::Unit 0.1.8
+
+2003-02-06 16:35  lballabio
+
+	* test/europeanoption.rb (1.9): Synch with C++
+
+2003-02-04 17:48  lballabio
+
+	* test/dates.rb (1.7): [no log message]
+
+2003-02-03 14:22  nando
+
+	* News.txt (1.4), README.txt (1.9): improved documentation details
+
+2003-02-03 11:47  nando
+
+	* News.txt (1.3): adding news.txt details Luigi: fill in other
+	details if you like, and I'll publish them for the 0.3.1 release
+
+2003-02-03 11:43  nando
+
+	* History.txt (1.2), News.txt (1.2): date of release 0.3.1
+
+2003-01-28 17:23  lballabio
+
+	* ChangeLog.txt (1.11), LICENSE.TXT (1.2), QuantLib.rb (1.18),
+	setup.rb (1.33), test/QuantLibTestSuite.rb (1.15), test/capfloor.rb
+	(1.5), test/covariance.rb (1.3), test/dates.rb (1.6),
+	test/daycounters.rb (1.5), test/distributions.rb (1.6),
+	test/europeanoption.rb (1.8), test/instruments.rb (1.5),
+	test/marketelements.rb (1.5), test/old_pricers.rb (1.4),
+	test/operators.rb (1.4), test/piecewiseflatforward.rb (1.9),
+	test/riskstatistics.rb (1.5), test/segmentintegral.rb (1.3),
+	test/simpleswap.rb (1.6), test/solvers1d.rb (1.5),
+	test/statistics.rb (1.5), test/swaption.rb (1.4),
+	test/termstructures.rb (1.11): Merged changes made on 0.3.1 branch
+
+2003-01-28 08:29  lballabio
+
+	* setup.rb (1.32), test/QuantLibTestSuite.rb (1.14),
+	test/calendars.rb (1.1): Joint calendars and stuff
+
+2003-01-24 16:31  lballabio
+
+	* setup.rb (1.31): [no log message]
+
+2003-01-17 11:10  lballabio
+
+	* README.txt (1.8), setup.rb (1.30), test/QuantLibTestSuite.rb
+	(1.13), test/capfloor.rb (1.4), test/covariance.rb (1.2),
+	test/dates.rb (1.5), test/daycounters.rb (1.4),
+	test/distributions.rb (1.5), test/europeanoption.rb (1.7),
+	test/instruments.rb (1.4), test/marketelements.rb (1.4),
+	test/old_pricers.rb (1.3), test/operators.rb (1.3),
+	test/piecewiseflatforward.rb (1.8), test/riskstatistics.rb (1.4),
+	test/segmentintegral.rb (1.2), test/simpleswap.rb (1.5),
+	test/solvers1d.rb (1.4), test/statistics.rb (1.4), test/swaption.rb
+	(1.3), test/termstructures.rb (1.10): Migrated to Test::Unit
+
+2003-01-13 14:43  lballabio
+
+	* test/simpleswap.rb (1.4.4.2): Hidden some dust under the carpet
+
+2003-01-01 12:22  nando
+
+	* ChangeLog.txt (1.10.2.1): updated
+
 2002-12-31 18:49  nando
 
 	* LICENSE.TXT (1.1.1.1.8.1), QuantLib.rb (1.17.4.1), setup.rb

@@ -1,3 +1,89 @@
+2003-03-11 17:34  lballabio
+
+	* history.i (1.13), montecarlo.i (1.8), scheduler.i (1.4): [no log
+	message]
+
+2003-03-11 12:01  lballabio
+
+	* interpolation.i (1.6): Bicubic interpolation
+
+2003-03-10 12:06  lballabio
+
+	* options.i (1.12), volatilities.i (1.5): Synch with C++
+
+2003-02-25 10:24  lballabio
+
+	* instruments.i (1.9): Test for frozen instrument
+
+2003-02-20 12:12  lballabio
+
+	* options.i (1.11): Synch with C++
+
+2003-02-20 11:01  lballabio
+
+	* calendars.i (1.24), cashflows.i (1.8), common.i (1.20), date.i
+	(1.24), daycounters.i (1.18), linearalgebra.i (1.11), montecarlo.i
+	(1.7), operators.i (1.9), piecewiseflatforward.i (1.10),
+	randomnumbers.i (1.11): Workarounds no longer needed
+
+2003-02-18 15:58  lballabio
+
+	* piecewiseflatforward.i (1.9): [no log message]
+
+2003-02-16 12:44  lballabio
+
+	* options.i (1.10): Synch with C++
+
+2003-02-14 16:47  lballabio
+
+	* cashflows.i (1.7): Par coupon named as such (so sue me)
+
+2003-02-13 13:51  lballabio
+
+	* common.i (1.19): Handle conversions throw on failure
+
+2003-02-06 16:35  lballabio
+
+	* options.i (1.9): Synch with C++
+
+2003-02-04 17:48  lballabio
+
+	* date.i (1.23): [no log message]
+
+2003-01-31 10:45  sadrejeb
+
+	* daycounters.i (1.17): Fixed 'act/act (Bond)' --> 'act/act (bond)'
+	(reference must be lowercase)
+
+2003-01-28 17:23  lballabio
+
+	* ChangeLog.txt (1.8), blackmodel.i (1.2), calendars.i (1.23),
+	capfloor.i (1.2), cashflows.i (1.6), common.i (1.18), currencies.i
+	(1.5), date.i (1.22), daycounters.i (1.16), discountcurve.i (1.2),
+	distributions.i (1.6), functions.i (1.5), history.i (1.12),
+	indexes.i (1.5), instruments.i (1.8), interpolation.i (1.5),
+	linearalgebra.i (1.10), marketelements.i (1.9), montecarlo.i (1.6),
+	null.i (1.7), observer.i (1.12), old_pricers.i (1.3),
+	old_volatility.i (1.3), operators.i (1.8), optimizers.i (1.2),
+	options.i (1.8), piecewiseflatforward.i (1.8), ql.i (1.24),
+	quantlib.i (1.5), randomnumbers.i (1.10), riskstatistics.i (1.9),
+	scheduler.i (1.3), segmentintegral.i (1.3), statistics.i (1.9),
+	swap.i (1.4), swaption.i (1.2), termstructures.i (1.11), types.i
+	(1.3), vectors.i (1.4), volatilities.i (1.4): Merged changes made
+	on 0.3.1 branch
+
+2003-01-28 08:29  lballabio
+
+	* calendars.i (1.22): Joint calendars and stuff
+
+2003-01-24 16:32  lballabio
+
+	* history.i (1.11), ql.i (1.23): [no log message]
+
+2003-01-01 12:24  nando
+
+	* ChangeLog.txt (1.7.2.1): updated
+
 2002-12-31 18:49  nando
 
 	* blackmodel.i (1.1.4.1), calendars.i (1.21.4.1), capfloor.i

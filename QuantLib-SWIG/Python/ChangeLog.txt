@@ -1,3 +1,102 @@
+2003-03-10 13:28  lballabio
+
+	* setup.py (1.33): Cleaned up installation
+
+2003-03-10 12:06  lballabio
+
+	* QuantLib/test/europeanoption.py (1.12): Synch with C++
+
+2003-02-25 13:17  lballabio
+
+	* QuantLib/test/europeanoption.py (1.11): [no log message]
+
+2003-02-25 10:24  lballabio
+
+	* QuantLib/test/instruments.py (1.5): Test for frozen instrument
+
+2003-02-17 08:16  lballabio
+
+	* QuantLib/test/: capfloor.py (1.5), piecewiseflatforward.py (1.8),
+	termstructures.py (1.12): Had tests work on Sundays
+
+2003-02-16 12:44  lballabio
+
+	* QuantLib/test/europeanoption.py (1.10): Synch with C++
+
+2003-02-13 09:32  nando
+
+	* .cvsignore (1.3): updated
+
+2003-02-11 18:22  nando
+
+	* QuantLibPython.mak (1.6): updated
+
+2003-02-06 16:35  lballabio
+
+	* QuantLib/test/europeanoption.py (1.9): Synch with C++
+
+2003-02-04 17:48  lballabio
+
+	* QuantLib/test/date.py (1.6): [no log message]
+
+2003-02-03 14:22  nando
+
+	* News.txt (1.4), README.txt (1.8): improved documentation details
+
+2003-02-03 11:47  nando
+
+	* News.txt (1.3): adding news.txt details Luigi: fill in other
+	details if you like, and I'll publish them for the 0.3.1 release
+
+2003-02-03 11:43  nando
+
+	* History.txt (1.2), News.txt (1.2): date of release 0.3.1
+
+2003-01-28 17:23  lballabio
+
+	* ChangeLog.txt (1.9), LICENSE.TXT (1.2), setup.py (1.32),
+	QuantLib/LICENSE.TXT (1.2), QuantLib/__init__.py (1.4),
+	QuantLib/test/QuantLibTestSuite.py (1.12),
+	QuantLib/test/capfloor.py (1.4), QuantLib/test/covariance.py (1.2),
+	QuantLib/test/date.py (1.5), QuantLib/test/daycounters.py (1.3),
+	QuantLib/test/distributions.py (1.5),
+	QuantLib/test/europeanoption.py (1.8), QuantLib/test/instruments.py
+	(1.4), QuantLib/test/marketelements.py (1.4),
+	QuantLib/test/old_pricers.py (1.4), QuantLib/test/operators.py
+	(1.3), QuantLib/test/piecewiseflatforward.py (1.7),
+	QuantLib/test/riskstatistics.py (1.4),
+	QuantLib/test/segmentintegral.py (1.3), QuantLib/test/simpleswap.py
+	(1.5), QuantLib/test/solvers1d.py (1.4),
+	QuantLib/test/statistics.py (1.5), QuantLib/test/swaption.py (1.3),
+	QuantLib/test/termstructures.py (1.11): Merged changes made on
+	0.3.1 branch
+
+2003-01-28 08:29  lballabio
+
+	* setup.py (1.31), QuantLib/test/QuantLibTestSuite.py (1.11),
+	QuantLib/test/calendars.py (1.1): Joint calendars and stuff
+
+2003-01-24 16:31  lballabio
+
+	* setup.py (1.30): [no log message]
+
+2003-01-13 14:43  lballabio
+
+	* QuantLib/test/simpleswap.py (1.4.4.2): Hidden some dust under the
+	carpet
+
+2003-01-03 12:08  lballabio
+
+	* QuantLib/__init__.py (1.3.4.2): [no log message]
+
+2003-01-03 11:22  lballabio
+
+	* setup.py (1.29): [no log message]
+
+2003-01-01 12:22  nando
+
+	* ChangeLog.txt (1.8.2.1): updated
+
 2002-12-31 18:49  nando
 
 	* LICENSE.TXT (1.1.1.1.8.1), setup.py (1.27.4.2),

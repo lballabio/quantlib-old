@@ -1,3 +1,42 @@
+2003-03-11 17:34  lballabio
+
+	* quantlib/ql-init.ss (1.7): [no log message]
+
+2003-02-03 14:22  nando
+
+	* README.txt (1.6): improved documentation details
+
+2003-02-03 11:43  nando
+
+	* History.txt (1.2), News.txt (1.1): date of release 0.3.1
+
+2003-01-28 17:23  lballabio
+
+	* ChangeLog.txt (1.3), LICENSE.TXT (1.2), setup.scm (1.17),
+	quantlib/ql-init.ss (1.6), quantlib/quantlib.ss (1.9),
+	test/quantlib-test-suite.scm (1.11), test/unittest.scm (1.6),
+	test/utilities.scm (1.3): Merged changes made on 0.3.1 branch
+
+2003-01-28 08:29  lballabio
+
+	* setup.scm (1.16), test/quantlib-test-suite.scm (1.10): Joint
+	calendars and stuff
+
+2003-01-24 16:32  lballabio
+
+	* setup.scm (1.15): [no log message]
+
+2003-01-03 12:05  lballabio
+
+	* test/quantlib-test-suite.scm (1.9.4.1), test/unittest.scm
+	(1.5.4.1), test/utilities.scm (1.2.4.1), quantlib/ql-init.ss
+	(1.5.4.1), quantlib/quantlib.ss (1.8.4.1), setup.scm (1.13.2.2):
+	[no log message]
+
+2003-01-01 12:23  nando
+
+	* ChangeLog.txt (1.2.2.1): updated
+
 2002-12-31 18:49  nando
 
 	* LICENSE.TXT (1.1.4.1): updated copyright years

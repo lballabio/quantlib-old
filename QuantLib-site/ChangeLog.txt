@@ -1,3 +1,91 @@
+2003-02-20 17:39  nando
+
+	* extensions.html (1.27), index.html (1.49): updated
+
+2003-02-16 08:47  nando
+
+	* index.html (1.48): not early stage anymore
+
+2003-02-16 08:25  nando
+
+	* mailinglists.html (1.29): no message
+
+2003-02-13 17:11  lballabio
+
+	* quep.html (1.35): [no log message]
+
+2003-02-13 10:34  nando
+
+	* FAQ.html (1.41), books.html (1.2), cvs.html (1.44), download.html
+	(1.38), extensions.html (1.26), index.html (1.47), license.html
+	(1.48), lists.html (1.34), mailinglists.html (1.28),
+	marketconventions.html (1.26), nextrelease.html (1.24),
+	qltablefoot.inc (1.11), quep.html (1.34), snapshot.html (1.21),
+	style.html (1.33), styles/quantlib.css (1.8): added Google search
+
+2003-02-13 09:59  nando
+
+	* qltablefoot.inc (1.10): added Google search
+
+2003-02-07 09:42  nando
+
+	* webchecker.py (1.2): removed since it is in the Python
+	distribution
+
+2003-02-04 11:00  nando
+
+	* download.html (1.37): dvi removed
+
+2003-02-03 14:55  nando
+
+	* download.html (1.36), nextrelease.html (1.23): 0.3.1 man pages
+	added
+
+2003-02-03 11:27  nando
+
+	* download.html (1.35), nextrelease.html (1.22), webdocupdate.bat
+	(1.4): getting ready for 0.3.1
+
+2003-02-03 10:08  nando
+
+	* index.html (1.46), nextrelease.html (1.21), quep.html (1.33),
+	quep/quep006/quep6.html~ (1.2), webdocupdate.bat (1.3): getting
+	ready for 0.3.1
+
+2003-02-02 23:22  nando
+
+	* FAQ.html (1.40), TODO.txt (1.13), books.html (1.1), books.txt
+	(1.7), cvs.html (1.43), download.html (1.34), extensions.html
+	(1.25), index.html (1.45), license.html (1.47), lists.html (1.33),
+	mailinglists.html (1.27), marketconventions.html (1.25),
+	nextrelease.html (1.20), qltablehead.inc (1.22), quep.html (1.32),
+	snapshot.html (1.20), style.html (1.32), images/QL.NET.gif (1.1),
+	images/QLNET-small.gif (1.1), quep/quep001.html (1.6),
+	quep/quep002.html (1.9), quep/quep004.html (1.5), quep/quep005.html
+	(1.6), quep/quep006.html (1.4), quep/quep007.html (1.4),
+	quep/quep008.html (1.4), quep/quep009.html (1.5), quep/quep010.html
+	(1.4), quep/quep006/quep006.html (1.2): getting ready for 0.3.1
+
+2003-02-02 14:35  nando
+
+	* guidedtour.txt (1.1): should become a web page
+
+2003-01-30 11:06  lballabio
+
+	* mailinglists.html (1.26): [no log message]
+
+2003-01-30 09:59  nando
+
+	* mailinglists.html (1.25): updated descriptions
+
+2003-01-30 09:08  lballabio
+
+	* mailinglists.html (1.24): [no log message]
+
+2003-01-01 12:21  nando
+
+	* ChangeLog.txt (1.23): updated
+
 2002-12-31 19:12  nando
 
 	* license.html (1.46): updated copyright years
