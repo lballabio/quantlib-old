@@ -198,7 +198,7 @@ Build = Command.new {
 	# File.safe_unlink "./Makefile"
 }
 
-Test = Command.new {
+RunTests = Command.new {
 	Build.execute
 	puts "Testing QuantLib-Ruby..."
 	$LOAD_PATH.unshift Dir.pwd
@@ -263,7 +263,7 @@ Install = Command.new {
 availableCommands = {
     "wrap"    => Wrap,
 	"build"   => Build,
-	"test"    => Test,
+	"test"    => RunTests,
   	"install" => Install,
   	"sdist"   => SDist,
   	"bdist"   => BDist }

@@ -17,14 +17,16 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit'
+require 'test/unit/ui/console/testrunner'
 
-class DateTest < RUNIT::TestCase
-  def name
-    "Testing dates..."
+class DateTest < Test::Unit::TestCase
+  def setup
+    puts
+    print "Testing dates.."
+    STDOUT.flush
   end
-  def test
+  def testAllDates
     minDate = QuantLib::Date.minDate.serialNumber
     maxDate = QuantLib::Date.maxDate.serialNumber
     
@@ -38,15 +40,15 @@ class DateTest < RUNIT::TestCase
       t = QuantLib::Date.new(i)
       # check serial number consistency
       unless t.serialNumber == i
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
                     
     inconsistent serial number:
         original:      #{i}
         date:          #{t}
         serial number: #{t.serialNumber}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
 
       dy  = t.dayOfYear
@@ -61,15 +63,15 @@ class DateTest < RUNIT::TestCase
       unless dy==dyold+1 \
         or (dy==1 and dyold==365 and not QuantLib::Date.isLeap(yold)) \
         or (dy==1 and dyold==366 and QuantLib::Date.isLeap(yold))
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     wrong day of year increment:
         date: #{t}
         day of year: #{dy}
         previous:    #{dyold}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
       dyold = dy
 
@@ -77,15 +79,15 @@ class DateTest < RUNIT::TestCase
       unless (d==dold+1 and m==mold   and y==yold  ) \
         or (d==1      and m==mold+1 and y==yold  ) \
         or (d==1      and m==1      and y==yold+1)
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     wrong day, month, year increment
         date: #{t}
         day, month, year: #{d}, #{m}, #{y}
         previous:         #{dold}, #{mold}, #yold}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
       dold = d
       mold = m
@@ -93,26 +95,26 @@ class DateTest < RUNIT::TestCase
 
       # check month definition
       unless m>=1 and m<=12
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     invalid month
         date: #{t}
         month: #{m}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
 
       # check day definition
       unless d >= 1
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     invalid day of month
         date: #{t}
         day: #{d}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
 
       unless (m==1  and d<=31) \
@@ -128,28 +130,28 @@ class DateTest < RUNIT::TestCase
         or (m==10 and d<=31) \
         or (m==11 and d<=30) \
         or (m==12 and d<=31)
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     invalid day of month
         date: #{t}
         day: #{d}
         month: #{mm}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
 
       # check weekdayNumber definition
       unless wdn==wdnold+1 or (wdn==1 and wdnold==7)
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     wrong weekday number increment
         date: #{t}
         weekday number: #{wdn}
         previous:       #{wdnold}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
       wdnold=wdn
 
@@ -157,7 +159,7 @@ class DateTest < RUNIT::TestCase
       s = QuantLib::Date.new(d,m,y)
       # check serial number consistency
       unless s.serialNumber == i
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     inconsistent serial number
         date: #{t}
@@ -165,15 +167,15 @@ class DateTest < RUNIT::TestCase
         cloned date: #{s}
         serial number: #{s.serialNumber}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
 
       # create the same date with yet another constructor
       s = QuantLib::Date.new(d,mm,y)
       # check serial number consistency
       unless s.serialNumber == i
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     inconsistent serial number
         date: #{t}
@@ -181,14 +183,14 @@ class DateTest < RUNIT::TestCase
         cloned date: #{s}
         serial number: #{s.serialNumber}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
     end
   end
 end
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(DateTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(DateTest)
 end
 

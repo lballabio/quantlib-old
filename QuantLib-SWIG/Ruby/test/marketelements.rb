@@ -17,30 +17,34 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit/testcase'
+require 'test/unit/ui/console/testrunner'
 
-class MarketElementTest < RUNIT::TestCase
-  def name
-    "Testing observability of market elements..."
+class MarketElementTest < Test::Unit::TestCase
+  def setup
+    puts
+    print "Testing observability of market elements.."
+    STDOUT.flush
   end
-  def test
+  def testObservability
     flag = false
     me = QuantLib::SimpleMarketElement.new(0.0)
     obs = QuantLib::Observer.new { flag = true }
     obs.registerWith(me)
     me.value = 3.14
     unless flag
-        assert_fail("Observer was not notified of market element change")
+        flunk("Observer was not notified of market element change")
     end
   end
 end
 
-class MarketElementHandleTest < RUNIT::TestCase
-  def name
-    "Testing observability of market element handles..."
+class MarketElementHandleTest < Test::Unit::TestCase
+  def setup
+    puts
+    print "Testing observability of market element handles.."
+    STDOUT.flush
   end
-  def test
+  def testObservability
     flag = false
     me1 = QuantLib::SimpleMarketElement.new(0.0)
     h = QuantLib::MarketElementHandle.new(me1)
@@ -48,20 +52,20 @@ class MarketElementHandleTest < RUNIT::TestCase
     obs.registerWith(h)
     me1.value = 3.14
     unless flag
-        assert_fail("Observer was not notified of market element change")
+        flunk("Observer was not notified of market element change")
     end
     flag = false
     me2 = QuantLib::SimpleMarketElement.new(0.0)
     h.linkTo!(me2)
     unless flag
-        assert_fail("Observer was not notified of market element change")
+        flunk("Observer was not notified of market element change")
     end
   end
 end
 
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(MarketElementTest.suite)
-  RUNIT::CUI::TestRunner.run(MarketElementHandleTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(MarketElementTest)
+  Test::Unit::UI::Console::TestRunner.run(MarketElementHandleTest)
 end
 

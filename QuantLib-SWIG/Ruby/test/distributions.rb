@@ -17,8 +17,8 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit'
+require 'test/unit/ui/console/testrunner'
 
 # define a Gaussian
 def gaussian(x,average,sigma)
@@ -58,11 +58,13 @@ end
 
 # Test
 
-class DistributionTest < RUNIT::TestCase
-  def name
-    "Testing distributions..."
+class DistributionTest < Test::Unit::TestCase
+  def setup
+    puts
+    print "Testing distributions.."
+    STDOUT.flush
   end
-  def test
+  def testConsistence
     average = 0.0
     sigma = 1.0
 
@@ -91,34 +93,34 @@ class DistributionTest < RUNIT::TestCase
     # check norm=gaussian
     e = yTemp.diff(y).norm(h)
     unless e <= 1.0e-16
-      assert_fail("\nnorm of C++ NormalDistribution " + \
-                  "minus analytic gaussian: #{e}\n")
+      flunk("\nnorm of C++ NormalDistribution " + \
+            "minus analytic gaussian: #{e}\n")
     end
 
     # check invCum(cum) = Identity
     e = xTemp.diff(x).norm(h)
     unless e <= 1.0e-3
-      assert_fail("\nnorm of C++ invCum(cum(.)) minus identity: #{e}\n")
+      flunk("\nnorm of C++ invCum(cum(.)) minus identity: #{e}\n")
     end
 
     # check cum.derivative=normal
     e = y2Temp.diff(y).norm(h)
     unless e <= 1.0e-16
-      assert_fail("\nnorm of C++ Cumulative.derivative " + \
-                  "minus analytic gaussian: #{e}\n")
+      flunk("\nnorm of C++ Cumulative.derivative " + \
+            "minus analytic gaussian: #{e}\n")
     end
 
     # check normal.derivative=gaussianDerivative
     e = ydTemp.diff(yd).norm(h)
     unless e <= 1.0e-16
-      assert_fail("\nnorm of C++ NormalDist.derivative " + \
-                  "minus analytic gaussian derivative: #{e}\n")
+      flunk("\nnorm of C++ NormalDist.derivative " + \
+            "minus analytic gaussian derivative: #{e}\n")
     end
 
   end
 end
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(DistributionTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(DistributionTest)
 end
 

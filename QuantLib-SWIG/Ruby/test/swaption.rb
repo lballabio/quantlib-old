@@ -17,24 +17,25 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit/testcase'
+require 'test/unit/ui/console/testrunner'
 
-class SwaptionTest < RUNIT::TestCase
+class SwaptionTest < Test::Unit::TestCase
   include QuantLib
-  def name
-    case @method
-      when 'testStrikeDependency'
-        "Testing swaption dependency on strike..."
-      when 'testSpreadDependency'
-        "Testing swaption dependency on spread..."
-      when 'testSpreadTreatment'
-        "Testing swaption treatment of spread..."
-      when 'testCachedValue'
-        "Testing swaption value against cached value..."
-    end
-  end
   def setup
+    puts
+    case @method_name
+      when 'testStrikeDependency'
+        print "Testing swaption dependency on strike.."
+      when 'testSpreadDependency'
+        print "Testing swaption dependency on spread.."
+      when 'testSpreadTreatment'
+        print "Testing swaption treatment of spread.."
+      when 'testCachedValue'
+        print "Testing swaption value against cached value.."
+    end
+    STDOUT.flush
+
     @today = Date.todaysDate
     @termStructure = TermStructureHandle.new
     @nominal = 100.0
@@ -91,7 +92,7 @@ class SwaptionTest < RUNIT::TestCase
         # NPV must decrease with strike
         (1...values.length).each do |i|
           unless values[i] < values[i-1]
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     NPV is increasing with the strike in a payer swaption:
         exercise date: #{exercise}
@@ -99,15 +100,15 @@ class SwaptionTest < RUNIT::TestCase
         value: #{values[i-1]} at strike: #{strikes[i-1]*100}%
         value: #{values[i]  } at strike: #{strikes[i]*100  }%
 
-                        MESSAGE
-                        )
+                  MESSAGE
+                  )
           end
         end
       else
         # NPV must increase with strike
         (1...values.length).each do |i|
           unless values[i] > values[i-1]
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     NPV is decreasing with the strike in a receiver swaption:
         exercise date: #{exercise}
@@ -115,8 +116,8 @@ class SwaptionTest < RUNIT::TestCase
         value: #{values[i-1]} at strike: #{strikes[i-1]*100}%
         value: #{values[i]  } at strike: #{strikes[i]*100  }%
 
-                        MESSAGE
-                        )
+                  MESSAGE
+                  )
           end
         end
       end
@@ -137,7 +138,7 @@ class SwaptionTest < RUNIT::TestCase
         # NPV must increase with spread
         (1...values.length).each do |i|
           unless values[i] > values[i-1]
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     NPV is decreasing with the spread in a payer swaption:
         exercise date: #{exercise}
@@ -145,15 +146,15 @@ class SwaptionTest < RUNIT::TestCase
         value: #{values[i-1]} for spread: #{spreads[i-1]*100}%
         value: #{values[i]  } for spread: #{spreads[i]*100  }%
 
-                        MESSAGE
-                        )
+                  MESSAGE
+                  )
           end
         end
       else
         # NPV must decrease with spread
         (1...values.length).each do |i|
           unless values[i] < values[i-1]
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     NPV is increasing with the spread in a receiver swaption:
         exercise date: #{exercise}
@@ -161,8 +162,8 @@ class SwaptionTest < RUNIT::TestCase
         value: #{values[i-1]} for spread: #{spreads[i-1]*100}%
         value: #{values[i]  } for spread: #{spreads[i]*100  }%
 
-                        MESSAGE
-                        )
+                  MESSAGE
+                  )
           end
         end
       end
@@ -182,7 +183,7 @@ class SwaptionTest < RUNIT::TestCase
         swaption1 = makeSwaption(swap, exerciseDate, 0.20)
         swaption2 = makeSwaption(equivalentSwap, exerciseDate, 0.20)
         unless (swaption1.NPV-swaption2.NPV).abs <= 1.0e-10
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     wrong spread treatment:
         exercise date: #{exercise}
@@ -192,8 +193,8 @@ class SwaptionTest < RUNIT::TestCase
         value:                        #{swaption1.NPV}
         value of equivalent swaption: #{swaption2.NPV}
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
       end
     end
@@ -210,19 +211,19 @@ class SwaptionTest < RUNIT::TestCase
     swaption = makeSwaption(swap,exerciseDate,0.20)
     cachedNPV = 3.645305998559
     unless (swaption.NPV-cachedNPV).abs <= 1.0e-11
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     failed to reproduce cached value:
         calculated: #{swaption.NPV}
         expected:   #{cachedNPV}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
   end
 end
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(SwaptionTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(SwaptionTest)
 end
 

@@ -17,14 +17,16 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit/testcase'
+require 'test/unit/ui/console/testrunner'
 
-class Solver1DTest < RUNIT::TestCase
-  def name
-    "Testing 1-D solvers..."
+class Solver1DTest < Test::Unit::TestCase
+  def setup
+    puts
+    print "Testing 1-D solvers.."
+    STDOUT.flush
   end
-  def test
+  def testCalculation
     [QuantLib::Brent,
      QuantLib::Bisection, 
      QuantLib::FalsePosition, 
@@ -34,7 +36,7 @@ class Solver1DTest < RUNIT::TestCase
       [1.0e-4, 1.0e-6, 1.0e-8].each do |accuracy|
         root = solver.solve(accuracy,1.5,0.1) { |x| x*x-1.0 }
         unless (root-1.0).abs <= accuracy
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
 #{factory}
     solve():
@@ -42,13 +44,13 @@ class Solver1DTest < RUNIT::TestCase
     calculated root:  #{root}
     accuracy:         #{accuracy}
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
 
         root = solver.bracketedSolve(accuracy,1.5,0.0,1.0) { |x| x*x-1.0 }
         unless (root-1.0).abs <= accuracy
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
 #{factory}
     bracketedSolve():
@@ -56,8 +58,8 @@ class Solver1DTest < RUNIT::TestCase
     calculated root:  #{root}
     accuracy:         #{accuracy}
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
       end
     end
@@ -65,6 +67,6 @@ class Solver1DTest < RUNIT::TestCase
 end
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(Solver1DTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(Solver1DTest)
 end
 

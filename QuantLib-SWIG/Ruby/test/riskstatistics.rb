@@ -17,8 +17,8 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit/testcase'
+require 'test/unit/ui/console/testrunner'
 
 # define a Gaussian
 def gaussian(x, average, sigma)
@@ -27,11 +27,13 @@ def gaussian(x, average, sigma)
   Math.exp(-dx*dx/(2.0*sigma*sigma))/normFact
 end
 
-class RiskStatisticsTest < RUNIT::TestCase
-  def name
-    "Testing risk statistics..."
+class RiskStatisticsTest < Test::Unit::TestCase
+  def setup
+    puts
+    print "Testing risk statistics.."
+    STDOUT.flush
   end
-  def test
+  def testCalculation
     s = QuantLib::RiskStatistics.new
     [-100.0, 0.0, 100.0].each do |average|
     [0.1, 1.0, 10].each       do |sigma|
@@ -56,48 +58,48 @@ class RiskStatisticsTest < RUNIT::TestCase
         s.add(data, weights)
 
         unless s.samples == n
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     wrong number of samples
         calculated: #{s.samples}
         expected  : #{n}
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
 
         rightWeightSum = 0.0
         weights.each { |w| rightWeightSum = rightWeightSum + w }
         unless s.weightSum == rightWeightSum
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     wrong sum of weights
         calculated: #{s.weightSum}
         expected  : #{rightWeightSum}
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
 
         unless s.min == dataMin
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     wrong minimum value
         calculated: #{s.min}
         expected  : #{dataMin}
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
         unless (s.max-dataMax).abs <= 1e-13
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     wrong maximum value
         calculated: #{s.max}
         expected  : #{dataMax}
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
 
         check = (s.mean-average).abs
@@ -105,58 +107,59 @@ class RiskStatisticsTest < RUNIT::TestCase
           check = check/average.abs
         end
         unless check <= 1e-13
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     wrong mean value
         calculated: #{s.mean}
         expected  : #{average}
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
 
         sigma2 = sigma*sigma
         unless (s.variance-sigma2).abs/sigma2 <= 1e-4
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     wrong variance
         calculated: #{s.variance}
         expected  : #{sigma2}
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
 
         unless (s.standardDeviation-sigma).abs/sigma <= 1e-4
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     wrong standard deviation
         calculated: #{s.standardDeviation}
         expected  : #{sigma}
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
 
         unless s.skewness.abs <= 1e-4
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     wrong skewness
         calculated: #{s.skewness}
         expected  : 0.0
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
 
         unless s.kurtosis.abs <= 1e-1
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
                       
     wrong kurtosis
         calculated: #{kurtosis}
         expected  : 0.0
-                      MESSAGE
-                      )
+
+                MESSAGE
+                )
         end
 
         cum = QuantLib::CumulativeNormalDistribution.new(average, sigma)
@@ -168,14 +171,14 @@ class RiskStatisticsTest < RUNIT::TestCase
           check = check/rightPotentialUpside
         end
         unless check <= 1e-3
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     wrong potential upside
         calculated: #{potentialUpside}
         expected:   #{rightPotentialUpside}
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
 
         rightVar = -[average-2.0*sigma, 0.0].min
@@ -185,14 +188,14 @@ class RiskStatisticsTest < RUNIT::TestCase
             check = check/rightVar
         end
         unless check <= 1e-3
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     wrong value at risk
         calculated: #{var}
         expected:   #{rightVar}
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
 
         tempVar = average-2.0*sigma
@@ -205,41 +208,41 @@ class RiskStatisticsTest < RUNIT::TestCase
             check = check/rightExShortfall
         end
         unless check <= 1e-4
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     wrong expected shortfall
         calculated: #{exShortfall}
         expected:   #{rightExShortfall}
         
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
 
         rightShortfall = 0.5
         shortfall = s.shortfall(target)
         unless (shortfall-rightShortfall).abs/rightShortfall <= 1e-8
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     wrong shortfall
         calculated: #{shortFall}
         expected:   #{rightShortfall}
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
           end
 
         rightAvgShortfall = sigma/Math.sqrt(2*Math::PI)
         avgShortfall = s.averageShortfall(target)
         check = (avgShortfall-rightAvgShortfall).abs/rightAvgShortfall
         unless check <= 1e-4
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     wrong average shortfall
         calculated: #{avgShortFall}
         expected:   #{rightAvgShortfall}
         
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
 
         s.reset!
@@ -249,6 +252,6 @@ class RiskStatisticsTest < RUNIT::TestCase
 end
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(RiskStatisticsTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(RiskStatisticsTest)
 end
 

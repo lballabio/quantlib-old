@@ -17,14 +17,16 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit/testcase'
+require 'test/unit/ui/console/testrunner'
 
-class InstrumentTest < RUNIT::TestCase
-  def name
-    "Testing observability of stocks..."
+class InstrumentTest < Test::Unit::TestCase
+  def setup
+    puts
+    print "Testing observability of stocks.."
+    STDOUT.flush
   end
-  def test
+  def testStock
     flag = false
     me = QuantLib::SimpleMarketElement.new(0.0)
     h = QuantLib::MarketElementHandle.new(me)
@@ -33,13 +35,13 @@ class InstrumentTest < RUNIT::TestCase
     obs.registerWith(s)
     me.value = 3.14
     unless flag
-        assert_fail("Observer was not notified of stock value change")
+        flunk("Observer was not notified of stock value change")
     end
   end
 end
 
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(InstrumentTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(InstrumentTest)
 end
 

@@ -17,28 +17,29 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit/testcase'
+require 'test/unit/ui/console/testrunner'
 
-class TermStructureTest < RUNIT::TestCase
+class TermStructureTest < Test::Unit::TestCase
   include QuantLib
-  def name
-    case @method
-      when 'testImplied'
-        "Testing consistency of implied term structure..."
-      when 'testImpliedObs'
-        "Testing observability of implied term structure..."
-      when 'testFSpreaded'
-        "Testing consistency of forward-spreaded term structure..."
-      when 'testFSpreadedObs'
-        "Testing observability of forward-spreaded term structure..."
-      when 'testZSpreaded'
-        "Testing consistency of zero-spreaded term structure..."
-      when 'testZSpreadedObs'
-        "Testing observability of zero-spreaded term structure..."
-    end
-  end
   def setup
+    puts
+    case @method_name
+      when 'testImplied'
+        print "Testing consistency of implied term structure.."
+      when 'testImpliedObs'
+        print "Testing observability of implied term structure.."
+      when 'testFSpreaded'
+        print "Testing consistency of forward-spreaded term structure.."
+      when 'testFSpreadedObs'
+        print "Testing observability of forward-spreaded term structure.."
+      when 'testZSpreaded'
+        print "Testing consistency of zero-spreaded term structure.."
+      when 'testZSpreadedObs'
+        print "Testing observability of zero-spreaded term structure.."
+    end
+    STDOUT.flush
+
     today = Date::todaysDate()
     @calendar = Calendar.new('TARGET')
     @settlementDays = 2
@@ -83,14 +84,14 @@ class TermStructureTest < RUNIT::TestCase
     discount = @termStructure.discount(test_date)
     implied_discount = implied.discount(test_date)
     unless (discount - base_discount*implied_discount).abs <= tolerance
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
 unable to reproduce discount from implied curve
     calculated: #{base_discount*implied_discount}
     expected:   #{discount}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
   end
   def testImpliedObs
@@ -103,7 +104,7 @@ unable to reproduce discount from implied curve
     obs.registerWith(implied)
     h.linkTo!(@termStructure)
     unless flag
-      assert_fail("Observer was not notified of term structure change")
+      flunk("Observer was not notified of term structure change")
     end
   end
   def testFSpreaded
@@ -116,14 +117,14 @@ unable to reproduce discount from implied curve
     forward = @termStructure.instantaneousForward(test_date)
     spreaded_forward = spreaded.instantaneousForward(test_date)
     unless ((forward+me.value)-spreaded_forward).abs <= tolerance
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
 unable to reproduce forward from spreaded curve
     calculated: #{spreaded_forward-me.value}
     expected:   #{forward}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
   end
   def testFSpreadedObs
@@ -136,12 +137,12 @@ unable to reproduce forward from spreaded curve
     obs.registerWith(spreaded)
     h.linkTo!(@termStructure)
     unless flag
-      assert_fail("Observer was not notified of term structure change")
+      flunk("Observer was not notified of term structure change")
     end
     flag = false
     me.value = 0.005
     unless flag
-      assert_fail("Observer was not notified of spread change")
+      flunk("Observer was not notified of spread change")
     end
   end
   def testZSpreaded
@@ -154,14 +155,14 @@ unable to reproduce forward from spreaded curve
     zero = @termStructure.zeroYield(test_date)
     spreaded_zero = spreaded.zeroYield(test_date)
     unless ((zero+me.value)-spreaded_zero).abs <= tolerance
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
 unable to reproduce zero yield from spreaded curve
     calculated: #{spreaded_zero-me.value}
     expected:   #{zero}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
   end
   def testZSpreadedObs
@@ -174,17 +175,17 @@ unable to reproduce zero yield from spreaded curve
     obs.registerWith(spreaded)
     h.linkTo!(@termStructure)
     unless flag
-      assert_fail("Observer was not notified of term structure change")
+      flunk("Observer was not notified of term structure change")
     end
     flag = false
     me.value = 0.005
     unless flag
-      assert_fail("Observer was not notified of spread change")
+      flunk("Observer was not notified of spread change")
     end
   end
 end
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(TermStructureTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(TermStructureTest)
 end
 

@@ -17,14 +17,16 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit'
+require 'test/unit/ui/console/testrunner'
 
-class CovarianceTest < RUNIT::TestCase
-  def name
-    "Testing covariance calculation..."
+class CovarianceTest < Test::Unit::TestCase
+  def setup
+    puts
+    print "Testing covariance calculation.."
+    STDOUT.flush
   end
-  def test
+  def testCalculation
     vol = [0.1, 0.5, 1.0]
     corr = [[1.0, 0.2, 0.5],
             [0.2, 1.0, 0.8],
@@ -45,13 +47,13 @@ class CovarianceTest < RUNIT::TestCase
     0.upto(n-1) do |i|
       0.upto(n-1) do |j|
         unless (calcCov[i][j] - expCov[i][j]).abs <= 1e-10
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
                       
     cov[#{i}][#{j}]: #{calcCov[i][j]}
     expected : #{expCov[i][j]}
                         
-                      MESSAGE
-                      )
+                  MESSAGE
+                  )
         end
       end
     end
@@ -59,6 +61,6 @@ class CovarianceTest < RUNIT::TestCase
 end
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(CovarianceTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(CovarianceTest)
 end
 

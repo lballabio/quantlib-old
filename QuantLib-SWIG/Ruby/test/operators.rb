@@ -17,8 +17,8 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit/testcase'
+require 'test/unit/ui/console/testrunner'
 
 # define the norm of a discretized function and the difference between two
 module Discretized
@@ -45,11 +45,13 @@ end
 
 # Test
 
-class OperatorTest < RUNIT::TestCase
-  def name
-    "Testing differential operators..."
+class OperatorTest < Test::Unit::TestCase
+  def setup
+    puts
+    print "Testing differential operators.."
+    STDOUT.flush
   end
-  def test
+  def testOperators
     average = 0.0
     sigma = 1.0
 
@@ -79,21 +81,21 @@ class OperatorTest < RUNIT::TestCase
     # check that first order derivative operator = gaussian
     e = y.diff(yTemp).norm(h)
     unless e <= 1.0e-6
-      assert_fail("\nnorm of FD 1st deriv. of cum " + \
-                  "minus analytic gaussian: #{e}\n")
+      flunk("\nnorm of FD 1st deriv. of cum " + \
+            "minus analytic gaussian: #{e}\n")
     end
 
     # check that second order derivative operator = normal.derivative
     e = yDerivative.diff(ydTemp).norm(h)
     unless e <= 1.0e-4
-      assert_fail("\nnorm of FD 2nd deriv. of cum " + \
-                  "minus analytic gaussian derivative: #{e}\n")
+      flunk("\nnorm of FD 2nd deriv. of cum " + \
+            "minus analytic gaussian derivative: #{e}\n")
     end
 
   end
 end
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(OperatorTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(OperatorTest)
 end
 

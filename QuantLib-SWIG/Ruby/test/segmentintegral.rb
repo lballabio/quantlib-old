@@ -17,103 +17,105 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit/testcase'
+require 'test/unit/ui/console/testrunner'
 
 def Gauss(x)
   Math.exp(-x*x/2.0)/Math.sqrt(2*Math::PI)
 end
 
-class SegmentIntegralTest < RUNIT::TestCase
-  def name
-    "Testing segment integral..."
+class SegmentIntegralTest < Test::Unit::TestCase
+  def setup
+    puts
+    print "Testing segment integral.."
+    STDOUT.flush
   end
-  def test
+  def testCalculation
     tolerance = 1e-4
     integrate = QuantLib::SegmentIntegral.new(10000)
 
     calculated = integrate.call(0.0,1.0) { |x| 1.0 }
     expected   = 1.0
     unless (calculated-expected).abs <= tolerance
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     integrating f(x) = 1.0
         calculated: #{calculated}
         expected  : #{expected}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     
     calculated = integrate.call(0.0,1.0) { |x| x }
     expected   = 0.5
     unless (calculated-expected).abs <= tolerance
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     integrating f(x) = x
         calculated: #{calculated}
         expected  : #{expected}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     
     calculated = integrate.call(0.0,1.0) { |x| x*x }
     expected   = 1.0/3.0
     unless (calculated-expected).abs <= tolerance
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     integrating f(x) = x^2
         calculated: #{calculated}
         expected  : #{expected}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     
     calculated = integrate.call(0.0,Math::PI) { |x| Math.sin(x) }
     expected   = 2.0
     unless (calculated-expected).abs <= tolerance
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     integrating f(x) = sin(x)
         calculated: #{calculated}
         expected  : #{expected}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     
     calculated = integrate.call(0.0,Math::PI) { |x| Math.cos(x) }
     expected   = 0.0
     unless (calculated-expected).abs <= tolerance
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     integrating f(x) = cos(x)
         calculated: #{calculated}
         expected  : #{expected}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
 
     calculated = integrate.call(-10.0,10.0) { |x| Gauss(x) }
     expected   = 1.0
     unless (calculated-expected).abs <= tolerance
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     integrating f(x) = Gauss(x)
         calculated: #{calculated}
         expected  : #{expected}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     
   end
 end
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(SegmentIntegralTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(SegmentIntegralTest)
 end
 

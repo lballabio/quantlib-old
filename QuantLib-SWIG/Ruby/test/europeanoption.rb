@@ -17,21 +17,22 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit'
+require 'test/unit/ui/console/testrunner'
 
-class EuropeanOptionTest < RUNIT::TestCase
+class EuropeanOptionTest < Test::Unit::TestCase
   include QuantLib
-  def name
-    #"Testing European options..."
-    case @method
+  def setup
+    puts
+    case @method_name
       when 'testGreeks'
-        "Testing European option greeks..."
+        print "Testing European option greeks.."
       when 'testImpliedVol'
-        "Testing European option implied volatility..."
+        print "Testing European option implied volatility.."
       when 'testBinomialEngines'
-        "Testing binomial European engines against analytic results..."
+        print "Testing binomial European engines against analytic results.."
     end
+    STDOUT.flush
   end
   def relativeError(x1,x2,reference)
     if reference != 0.0
@@ -167,14 +168,14 @@ class EuropeanOptionTest < RUNIT::TestCase
             unless relativeError(opt.send(greek),results[greek],u) <= \
                    error[greek]
 
-              assert_fail(<<-MESSAGE
+              flunk(<<-MESSAGE
 
     Option details: #{type} #{u} #{strike} #{q} #{r} #{exDate} #{v}
         value  = #{value}
         #{greek} = #{opt.send(greek)}, #{greek}Num = #{results[greek]}
 
-                          MESSAGE
-                          )
+                    MESSAGE
+                    )
             end
           end
         end
@@ -228,20 +229,20 @@ class EuropeanOptionTest < RUNIT::TestCase
           begin
             implVol = opt.impliedVolatility(value,tolerance,maxEvaluations)
           rescue Exception => e
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
                         
     Option details: #{type} #{u} #{strike} #{q} #{r} #{exDate} #{v}
         #{e}
         trying to calculate implied vol from value #{value}
           
-                        MESSAGE
-                        )
+                  MESSAGE
+                  )
           end
           if (implVol-v).abs > tolerance
             # the difference might not matter
             volatility.value = implVol
             unless (opt.NPV-value).abs/u <= 1.0e-6
-              assert_fail(<<-MESSAGE
+              flunk(<<-MESSAGE
                         
     Option details: #{type} #{u} #{strike} #{q} #{r} #{exDate} #{v}
         original volatility: #{v}
@@ -249,8 +250,8 @@ class EuropeanOptionTest < RUNIT::TestCase
         implied volatility:  #{implVol}
         corresponding price: #{opt.NPV}
 
-                          MESSAGE
-                          )
+                    MESSAGE
+                    )
             end
           end
         end
@@ -301,24 +302,24 @@ class EuropeanOptionTest < RUNIT::TestCase
         rRate.value = r
 
         unless (opt1.NPV-opt2.NPV).abs/u <= tolerance
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
                       
     Option details: #{type} #{u} #{strike} #{q} #{r} #{exDate} #{v}
         analytic value: #{opt1.NPV}
         binomial (JR):  #{opt2.NPV}
 
-                          MESSAGE
-                      )
+                MESSAGE
+                )
         end
         unless (opt1.NPV-opt3.NPV).abs/u <= tolerance
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
                       
     Option details: #{type} #{u} #{strike} #{q} #{r} #{exDate} #{v}
         analytic value: #{opt1.NPV}
         binomial (CRR): #{opt3.NPV}
 
-                          MESSAGE
-                      )
+                MESSAGE
+                )
         end
       end
     end
@@ -327,6 +328,6 @@ end
 
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(EuropeanOptionTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(EuropeanOptionTest)
 end
 

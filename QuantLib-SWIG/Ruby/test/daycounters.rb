@@ -17,14 +17,16 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit'
+require 'test/unit/ui/console/testrunner'
 
-class DayCounterTest < RUNIT::TestCase
-  def name
-    "Testing actual/actual day counters..."
+class DayCounterTest < Test::Unit::TestCase
+  def setup
+    puts
+    print "Testing actual/actual day counters.."
+    STDOUT.flush
   end
-  def test
+  def testActualActual
     # each case lists startDate, endDate, refStartDate, refEndDate, and
     # the results for ISDA, ISMA and AFB, respectively
     cases = [
@@ -67,7 +69,7 @@ class DayCounterTest < RUNIT::TestCase
 
       value = isda.yearFraction(d1,d2)
       unless (value-isdaValue).abs <= 1.0e-10
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     ISDA day counter:
         first date        #{d1}
@@ -75,13 +77,13 @@ class DayCounterTest < RUNIT::TestCase
         expected value:   #{isdaValue}
         calculated value: #{value}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
 
       value = isma.yearFraction(d1,d2,refStart,refEnd)
       unless (value-ismaValue).abs <= 1.0e-10
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     ISMA day counter:
         first date        #{d1}
@@ -91,13 +93,13 @@ class DayCounterTest < RUNIT::TestCase
         expected value:   #{ismaValue}
         calculated value: #{value}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
 
       value = afb.yearFraction(d1,d2)
       unless (value-afbValue).abs <= 1.0e-10
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     AFB day counter:
         first date        #{d1}
@@ -105,14 +107,14 @@ class DayCounterTest < RUNIT::TestCase
         expected value:   #{afbValue}
         calculated value: #{value}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
     end
   end
 end
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(DayCounterTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(DayCounterTest)
 end
 

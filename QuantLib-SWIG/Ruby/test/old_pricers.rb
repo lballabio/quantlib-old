@@ -17,30 +17,32 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit/testcase'
+require 'test/unit/ui/console/testrunner'
 
-class OldPricerTest < RUNIT::TestCase
+class OldPricerTest < Test::Unit::TestCase
   include QuantLib
-  def name
-    case @method
+  def setup
+    puts
+    case @method_name
       when 'testBarrierPricer'
-        "Testing old-style barrier option pricer..."
+        print "Testing old-style barrier option pricer.."
       when 'testBinaryPricer'
-        "Testing old-style binary option pricer..."
+        print "Testing old-style binary option pricer.."
       when 'testCliquetPricer'
-        "Testing old-style cliquet option pricer..."
+        print "Testing old-style cliquet option pricer.."
       when 'testDividendEuropeanPricer'
-        "Testing old-style European option pricer with dividends..."
+        print "Testing old-style European option pricer with dividends.."
       when 'testFdEuropeanPricer'
-        "Testing old-style finite-difference European option pricer..."
+        print "Testing old-style finite-difference European option pricer.."
       when 'testAmericanPricers'
-        "Testing old-style American-type pricers..."
+        print "Testing old-style American-type pricers.."
       when 'testMcSingleFactorPricers'
-        "Testing old-style Monte Carlo single-factor pricers..."
+        print "Testing old-style Monte Carlo single-factor pricers.."
       when 'testMcMultiFactorPricers'
-        "Testing old-style Monte Carlo multi-factor pricers..."
+        print "Testing old-style Monte Carlo multi-factor pricers.."
     end
+    STDOUT.flush
   end
   def relativeError(x1,x2,reference)
     if reference != 0.0
@@ -111,15 +113,15 @@ class OldPricerTest < RUNIT::TestCase
       expected   = results[0]
       error = (calculated - expected).abs
       unless error <= maxErrorAllowed
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     #{barrType} Call #{strike} #{barrier}
         value:    #{calculated}
         expected: #{expected}
         error:    #{error}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
       opPut = BarrierOption.new(barrType, "Put", underPrice,
                                 strike, divRate, rRate, resTime,
@@ -128,15 +130,15 @@ class OldPricerTest < RUNIT::TestCase
       expected   = results[1]
       error = (calculated - expected).abs
       unless error <= maxErrorAllowed
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     #{barrType} Put #{strike} #{barrier}
         value:    #{calculated}
         expected: #{expected}
         error:    #{error}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
       opStraddle = BarrierOption.new(barrType, "Straddle",
                                      underPrice, strike, divRate, rRate,
@@ -145,15 +147,15 @@ class OldPricerTest < RUNIT::TestCase
       expected   = results[0] + results[1]
       error = (calculated - expected).abs
       unless error <= maxStraddleErrorAllowed
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     #{barrType} Straddle #{strike} #{barrier}
         value:    #{calculated}
         expected: #{expected}
         error:    #{error}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
     end
   end
@@ -220,14 +222,14 @@ class OldPricerTest < RUNIT::TestCase
           expct = expected[greek]
           calcl = calculated[greek]
           unless relativeError(expct,calcl,u) <= tolerance[greek]
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     Option details: #{type} #{u} #{k} #{q} #{r} #{t} #{v}
         calculated #{greek} : #{calcl}
         expected   #{greek} : #{expct}
 
-                        MESSAGE
-                        )
+                  MESSAGE
+                  )
           end
         end
       end
@@ -248,13 +250,13 @@ class OldPricerTest < RUNIT::TestCase
     pvalue = cliquet.value
 
     unless (pvalue-storedValue).abs <= 1e-4
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     calculated value: #{pvalue}
     stored value:     #{storedValue}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
   end
   def testDividendEuropeanPricer
@@ -322,14 +324,14 @@ class OldPricerTest < RUNIT::TestCase
           expct = expected[greek]
           calcl = calculated[greek]
           unless relativeError(expct,calcl,u) <= tolerance[greek]
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     Option details: #{type} #{u} #{k} #{q} #{r} #{t} #{v}
         calculated #{greek} : #{calcl}
         expected   #{greek} : #{expct}
 
-                        MESSAGE
-                        )
+                  MESSAGE
+                  )
           end
         end
       end
@@ -360,14 +362,14 @@ class OldPricerTest < RUNIT::TestCase
         anValue = EuropeanOption.new(type,u,k,q,r,t,v).value()
         numValue = FdEuropean.new(type,u,k,q,r,t,v,100,400).value()
         unless (anValue - numValue).abs <= tolerance
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     Option details: #{type} #{u} #{k} #{q} #{r} #{t} #{v}
         calculated: #{numValue}
         expected:   #{anValue}
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
       end
     end
@@ -438,14 +440,14 @@ class OldPricerTest < RUNIT::TestCase
           expct = expected[greek]
           calcl = calculated[greek]
           unless relativeError(expct,calcl,u) <= tolerance[greek]
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     Option details: #{type} #{u} #{k} #{q} #{r} #{t} #{v}
         calculated #{greek} : #{calcl}
         expected   #{greek} : #{expct}
 
-                        MESSAGE
-                        )
+                  MESSAGE
+                  )
           end
         end
       end
@@ -470,14 +472,14 @@ class OldPricerTest < RUNIT::TestCase
                      riskFreeRate, timeIncrements, volatility)
       pvalue = p.value
       unless (pvalue-storedValue).abs <= 1e-10
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     in batch 1:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
     end
     
@@ -496,14 +498,14 @@ class OldPricerTest < RUNIT::TestCase
                      riskFreeRate, residualTime, volatility)
       pvalue = p.value
       unless (pvalue-storedValue).abs <= 1e-10
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     in batch 2:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
     end
 
@@ -522,14 +524,14 @@ class OldPricerTest < RUNIT::TestCase
                      riskFreeRate, timeIncrements, volatility)
       pvalue = p.value
       unless (pvalue-storedValue).abs <= 1e-10
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     in batch 3:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
     end
 
@@ -555,28 +557,28 @@ class OldPricerTest < RUNIT::TestCase
                      antithetic, seed)
       pvalue = p.valueWithSamples(fixedSamples)
       unless (pvalue-storedValue).abs <= 1e-10
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     in batch 4:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
       tol = p.errorEstimate/pvalue
       tol = [tol/2.0, minimumTol].min
       pvalue = p.value(tol)
       accuracy = p.errorEstimate/pvalue
       unless accuracy <= tol
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     in batch 4:
         accuracy reached    : #{accuracy}
         tolerance requested : #{tol}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
     end
     
@@ -655,28 +657,28 @@ class OldPricerTest < RUNIT::TestCase
                      antithetic, controlVariate, seed)
       pvalue = p.valueWithSamples(fixedSamples)
       unless (pvalue-storedValue).abs <= 1e-10
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     in batch 5:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
       tol = p.errorEstimate/pvalue
       tol = [tol/2.0, minimumTol].min
       pvalue = p.value(tol)
       accuracy = p.errorEstimate/pvalue
       unless accuracy <= tol
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     in batch 5:
         accuracy reached    : #{accuracy}
         tolerance requested : #{tol}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
     end
 
@@ -755,28 +757,28 @@ class OldPricerTest < RUNIT::TestCase
                      antithetic, controlVariate, seed)
       pvalue = p.valueWithSamples(fixedSamples)
       unless (pvalue-storedValue).abs <= 1e-10
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     in batch 6:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
       tol = p.errorEstimate/pvalue
       tol = [tol/2.0, minimumTol].min
       pvalue = p.value(tol)
       accuracy = p.errorEstimate/pvalue
       unless accuracy <= tol
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     in batch 6:
         accuracy reached    : #{accuracy}
         tolerance requested : #{tol}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
     end
   end
@@ -808,55 +810,55 @@ class OldPricerTest < RUNIT::TestCase
     storedValue = 0.743448
     pvalue = p.valueWithSamples(fixedSamples)
     unless (pvalue-storedValue).abs <= 1e-5
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McEverest:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     tol = p.errorEstimate/pvalue
     tol = [tol/2.0, minimumTol].min
     pvalue = p.value(tol)
     accuracy = p.errorEstimate/pvalue
     unless accuracy <= tol
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McEverest:
         accuracy reached    : #{accuracy}
         tolerance requested : #{tol}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     p = McEverest.new(dividendYields, cov, riskFreeRate, resTime, true, seed)
     storedValue = 0.756979
     pvalue = p.valueWithSamples(fixedSamples)
     unless (pvalue-storedValue).abs <= 1e-5
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McEverest:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     tol = p.errorEstimate/pvalue
     tol = [tol/2.0, minimumTol].min
     pvalue = p.value(tol)
     accuracy = p.errorEstimate/pvalue
     unless accuracy <= tol
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McEverest:
         accuracy reached    : #{accuracy}
         tolerance requested : #{tol}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
 
     # McBasket
@@ -869,28 +871,28 @@ class OldPricerTest < RUNIT::TestCase
     storedValue = 10.448445
     pvalue = p.valueWithSamples(fixedSamples)
     unless (pvalue-storedValue).abs <= 1e-5
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McBasket:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     tol = p.errorEstimate/pvalue
     tol = [tol/2.0, minimumTol].min
     pvalue = p.value(tol)
     accuracy = p.errorEstimate/pvalue
     unless accuracy <= tol
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McBasket:
         accuracy reached    : #{accuracy}
         tolerance requested : #{tol}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     p = McBasket.new(type, sameAssetValues, strike, sameAssetDividend,
                      sameAssetCovariance, riskFreeRate, resTime, true, seed)
@@ -898,28 +900,28 @@ class OldPricerTest < RUNIT::TestCase
     storedValue = 12.294677
     pvalue = p.valueWithSamples(fixedSamples)
     unless (pvalue-storedValue).abs <= 1e-5
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McBasket:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     tol = p.errorEstimate/pvalue
     tol = [tol/2.0, minimumTol].min
     pvalue = p.value(tol)
     accuracy = p.errorEstimate/pvalue
     unless accuracy <= tol
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McBasket:
         accuracy reached    : #{accuracy}
         tolerance requested : #{tol}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
 
     # McMaxBasket
@@ -929,56 +931,56 @@ class OldPricerTest < RUNIT::TestCase
     storedValue = 120.733780
     pvalue = p.valueWithSamples(fixedSamples)
     unless (pvalue-storedValue).abs <= 1e-5
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McMaxBasket:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     tol = p.errorEstimate/pvalue
     tol = [tol/2.0, minimumTol].min
     pvalue = p.value(tol)
     accuracy = p.errorEstimate/pvalue
     unless accuracy <= tol
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McMaxBasket:
         accuracy reached    : #{accuracy}
         tolerance requested : #{tol}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     p = McMaxBasket.new(assetValues, dividendYields, cov, 
                         riskFreeRate, resTime, true, seed)
     storedValue = 123.520909
     pvalue = p.valueWithSamples(fixedSamples)
     unless (pvalue-storedValue).abs <= 1e-5
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McMaxBasket:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     tol = p.errorEstimate/pvalue
     tol = [tol/2.0, minimumTol].min
     pvalue = p.value(tol)
     accuracy = p.errorEstimate/pvalue
     unless accuracy <= tol
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McMaxBasket:
         accuracy reached    : #{accuracy}
         tolerance requested : #{tol}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
 
     # McPagoda
@@ -991,56 +993,56 @@ class OldPricerTest < RUNIT::TestCase
     storedValue =  0.0343898
     pvalue = p.valueWithSamples(fixedSamples)
     unless (pvalue-storedValue).abs <= 1e-5
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McPagoda:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     tol = p.errorEstimate/pvalue
     tol = [tol/2.0, minimumTol].min
     pvalue = p.value(tol)
     accuracy = p.errorEstimate/pvalue
     unless accuracy <= tol
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McPagoda:
         accuracy reached    : #{accuracy}
         tolerance requested : #{tol}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     p = McPagoda.new(portfolio, fraction, roof, dividendYields, cov, 
                      riskFreeRate, timeIncrements, true, seed);
     storedValue = 0.0386095
     pvalue = p.valueWithSamples(fixedSamples)
     unless (pvalue-storedValue).abs <= 1e-5
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McPagoda:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     tol = p.errorEstimate/pvalue
     tol = [tol/2.0, minimumTol].min
     pvalue = p.value(tol)
     accuracy = p.errorEstimate/pvalue
     unless accuracy <= tol
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McPagoda:
         accuracy reached    : #{accuracy}
         tolerance requested : #{tol}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
 
     # McHimalaya
@@ -1050,61 +1052,61 @@ class OldPricerTest < RUNIT::TestCase
     storedValue = 5.0768499
     pvalue = p.valueWithSamples(fixedSamples)
     unless (pvalue-storedValue).abs <= 1e-5
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McHimalaya:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     tol = p.errorEstimate/pvalue
     tol = [tol/2.0, minimumTol].min
     pvalue = p.value(tol)
     accuracy = p.errorEstimate/pvalue
     unless accuracy <= tol
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McHimalaya:
         accuracy reached    : #{accuracy}
         tolerance requested : #{tol}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     p = McHimalaya.new(assetValues, dividendYields, cov, riskFreeRate, 
                        strike, timeIncrements, true, seed)
     storedValue = 6.2478050
     pvalue = p.valueWithSamples(fixedSamples)
     unless (pvalue-storedValue).abs <= 1e-5
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McHimalaya:
         calculated : #{pvalue}
         expected   : #{storedValue}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     tol = p.errorEstimate/pvalue
     tol = [tol/2.0, minimumTol].min
     pvalue = p.value(tol)
     accuracy = p.errorEstimate/pvalue
     unless accuracy <= tol
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     McHimalaya:
         accuracy reached    : #{accuracy}
         tolerance requested : #{tol}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
   end
 end
 
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(OldPricerTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(OldPricerTest)
 end

@@ -17,15 +17,17 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit/testcase'
+require 'test/unit/ui/console/testrunner'
 
-class PiecewiseFlatForwardTest < RUNIT::TestCase
+class PiecewiseFlatForwardTest < Test::Unit::TestCase
   include QuantLib
-  def name
-    "Testing piecewise flat forward curve..."
+  def setup
+    puts
+    print "Testing piecewise flat forward curve.."
+    STDOUT.flush
   end
-  def test
+  def testRates
     euriborHandle = TermStructureHandle.new
     calendar = Calendar.new('TARGET')
     today = Date.todaysDate()
@@ -92,14 +94,14 @@ class PiecewiseFlatForwardTest < RUNIT::TestCase
       index = Xibor.new("Euribor",n,units, euriborHandle)
       estimatedRate = index.fixing(today)
       unless (estimatedRate - expectedRate).abs <= 1.0e-9
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     #{n} #{units} deposit:
         estimated rate: #{estimatedRate}
         input rate:     #{expectedRate}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
     end
     # check swaps
@@ -113,20 +115,20 @@ class PiecewiseFlatForwardTest < RUNIT::TestCase
                             fixingDays,0.0,euriborHandle)
       estimatedRate = swap.fairRate()
       unless (estimatedRate - expectedRate).abs <= 1.0e-9
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     #{years} years swap:
         estimated rate: #{estimatedRate}
         input rate:     #{expectedRate}
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
     end
   end
 end
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(PiecewiseFlatForwardTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(PiecewiseFlatForwardTest)
 end
 

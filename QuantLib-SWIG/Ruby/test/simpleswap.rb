@@ -17,26 +17,27 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit/testcase'
+require 'test/unit/ui/console/testrunner'
 
-class SimpleSwapTest < RUNIT::TestCase
+class SimpleSwapTest < Test::Unit::TestCase
   include QuantLib
-  def name
-    case @method
-      when 'testFairRate'
-        "Testing simple swap calculation of fair fixed rate..."
-      when 'testFairSpread'
-        "Testing simple swap calculation of fair floating spread..."
-      when 'testRateDependency'
-        "Testing simple swap dependency on fixed rate..."
-      when 'testSpreadDependency'
-        "Testing simple swap dependency on floating spread..."
-      when 'testCachedValue'
-        "Testing simple swap calculation against cached value..."
-    end
-  end
   def setup
+    puts
+    case @method_name
+      when 'testFairRate'
+        print "Testing simple swap calculation of fair fixed rate.."
+      when 'testFairSpread'
+        print "Testing simple swap calculation of fair floating spread.."
+      when 'testRateDependency'
+        print "Testing simple swap dependency on fixed rate.."
+      when 'testSpreadDependency'
+        print "Testing simple swap dependency on floating spread.."
+      when 'testCachedValue'
+        print "Testing simple swap calculation against cached value.."
+    end
+    STDOUT.flush
+
     @payFixed = true
     @settlementDays = 2
     @fixingDays = 2
@@ -79,14 +80,14 @@ class SimpleSwapTest < RUNIT::TestCase
       swap = makeSwap(length, fixedRate, spread)
       swap = makeSwap(length, swap.fairRate, spread)
       unless swap.NPV.abs <= 1e-10
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     recalculating with implied rate:
         calculated value: #{swap.NPV}
         expected value:   0.0
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
     end
   end
@@ -102,14 +103,14 @@ class SimpleSwapTest < RUNIT::TestCase
       swap = makeSwap(length, rate, spread)
       swap = makeSwap(length, rate, swap.fairSpread)
       unless swap.NPV.abs <= 1e-10
-        assert_fail(<<-MESSAGE
+        flunk(<<-MESSAGE
 
     recalculating with implied spread:
         calculated value: #{swap.NPV}
         expected value:   0.0
 
-                    MESSAGE
-                    )
+              MESSAGE
+              )
       end
     end
   end
@@ -129,15 +130,15 @@ class SimpleSwapTest < RUNIT::TestCase
       # We're paying fixed - NPV must decrease with rate
       (1...values.length).each do |i|
         unless values[i] < values[i-1]
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     NPV is increasing with the fixed rate in a simple swap paying fixed:
         length: #{length} years
         value: #{values[i-1]} paying rate: #{rates[i-1]*100}%
         value: #{values[i]  } paying rate: #{rates[i]*100  }%
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
       end
     end
@@ -158,15 +159,15 @@ class SimpleSwapTest < RUNIT::TestCase
       # We're paying fixed - NPV must increase with spread
       (1...values.length).each do |i|
         unless values[i] > values[i-1]
-          assert_fail(<<-MESSAGE
+          flunk(<<-MESSAGE
 
     NPV is decreasing with the spread in a simple swap paying fixed:
         length: #{length} years
         value: #{values[i-1]} receiving spread: #{spreads[i-1]*100}%
         value: #{values[i]  } receiving spread: #{spreads[i]*100  }%
 
-                      MESSAGE
-                      )
+                MESSAGE
+                )
         end
       end
     end
@@ -183,19 +184,19 @@ class SimpleSwapTest < RUNIT::TestCase
     swap = makeSwap(10,0.06,0.001)
     cachedNPV = -5.883663676727
     unless (swap.NPV-cachedNPV).abs <= 1.0e-11
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     failed to reproduce cached simple swap value:
         calculated: #{swap.NPV}
         expected:   #{cachedNPV}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
   end
 end
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(SimpleSwapTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(SimpleSwapTest)
 end
 

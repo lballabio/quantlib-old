@@ -17,8 +17,8 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit/testcase'
+require 'test/unit/ui/console/testrunner'
 
 module Enumerable
     def sum
@@ -36,11 +36,13 @@ class Array
     end
 end
 
-class StatisticsTest < RUNIT::TestCase
-    def name
-        "Testing statistics..."
+class StatisticsTest < Test::Unit::TestCase
+    def setup
+      puts
+      print "Testing statistics.."
+      STDOUT.flush
     end
-    def test
+    def testCalculation
         tolerance = 1.0e-9
         data      = [3.0, 4.0, 5.0, 2.0, 3.0, 4.0, 5.0, 6.0, 4.0, 7.0]
         weights   = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
@@ -49,120 +51,120 @@ class StatisticsTest < RUNIT::TestCase
         s.add(data, weights)
 
         unless s.samples == data.length
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     wrong number of samples
         calculated: #{s.samples}
         expected:   #{data.length}
 
-                MESSAGE
-            )
+                  MESSAGE
+                  )
         end
 
         unless s.weightSum == weights.sum
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     wrong sum of weights
         calculated: #{s.weightSum}
         expected:   #{weights.sum}
 
-                MESSAGE
-            )
+                  MESSAGE
+                  )
         end
 
         unless s.min == data.min
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     wrong minimum value
         calculated: #{s.min}
         expected:   #{data.min}
 
-                MESSAGE
-            )
+                  MESSAGE
+                  )
         end
 
         unless s.max == data.max
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     wrong maximum value
         calculated: #{s.max}
         expected:   #{data.max}
 
-                MESSAGE
-            )
+                  MESSAGE
+                  )
         end
 
         unless (s.mean-data.times(weights).sum/weights.sum).abs <= tolerance
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     wrong mean value
         calculated: #{s.mean}
         expected:   #{data.times(weights).sum/weights.sum}
 
-                MESSAGE
-            )
+                  MESSAGE
+                  )
         end
 
         unless (s.variance-2.23333333333).abs <= tolerance
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     wrong variance
         calculated: #{s.variance}
         expected:   2.23333333333
 
-                MESSAGE
-            )
+                  MESSAGE
+                  )
         end
 
         unless (s.standardDeviation-1.4944341181).abs <= tolerance
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     wrong std. deviation
         calculated: #{s.standardDeviation}
         expected:   1.4944341181
 
-                MESSAGE
-            )
+                  MESSAGE
+                  )
         end
 
         unless (s.skewness-0.359543071407).abs <= tolerance
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     wrong skewness
         calculated: #{s.skewness}
         expected:   0.359543071407
 
-                MESSAGE
-            )
+                  MESSAGE
+                  )
         end
 
         unless (s.kurtosis+0.151799637209).abs <= tolerance
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     wrong kurtosis
         calculated: #{s.kurtosis}
         expected:   -0.151799637209
 
-                MESSAGE
-            )
+                  MESSAGE
+                  )
         end
 
         s.reset!
         s.add(data.map { |x| x-3 },weights)
         unless (s.downsideDeviation-0.333333333).abs <= tolerance
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     wrong downside deviation
         calculated: #{s.downsideDeviation}
         expected:   -0.333333333
 
-                MESSAGE
-            )
+                  MESSAGE
+                  )
         end
     end
 end
 
 if $0 == __FILE__
-    RUNIT::CUI::TestRunner.run(StatisticsTest.suite)
+    Test::Unit::UI::Console::TestRunner.run(StatisticsTest)
 end
 

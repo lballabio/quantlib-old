@@ -17,24 +17,25 @@
 # $Id$
 
 require 'QuantLib'
-require 'runit/testcase'
-require 'runit/cui/testrunner'
+require 'test/unit'
+require 'test/unit/ui/console/testrunner'
 
-class CapFloorTest < RUNIT::TestCase
+class CapFloorTest < Test::Unit::TestCase
   include QuantLib
-  def name
-    case @method
-      when 'testStrikeDependency'
-        "Testing cap/floor dependency on strike..."
-      when 'testConsistency'
-        "Testing consistency between cap, floor and collar..."
-      when 'testParity'
-        "Testing put/call parity for cap and floor..."
-      when 'testCachedValue'
-        "Testing cap/floor value against cached values..."
-    end
-  end
   def setup
+    puts
+    case @method_name
+      when 'testStrikeDependency'
+        print "Testing cap/floor dependency on strike.."
+      when 'testConsistency'
+        print "Testing consistency between cap, floor and collar.."
+      when 'testParity'
+        print "Testing put/call parity for cap and floor.."
+      when 'testCachedValue'
+        print "Testing cap/floor value against cached values.."
+    end
+    STDOUT.flush
+
     @today = Date.todaysDate
     @termStructure = TermStructureHandle.new
     @nominals = [100.0]
@@ -83,7 +84,7 @@ class CapFloorTest < RUNIT::TestCase
             # NPV must decrease with strike
             (1...values.length).each do |i|
               unless values[i] <= values[i-1]
-                assert_fail(<<-MESSAGE
+                flunk(<<-MESSAGE
 
     NPV is increasing with the strike in a cap:
         length: #{length} years
@@ -91,15 +92,15 @@ class CapFloorTest < RUNIT::TestCase
         value: #{values[i-1]} at strike: #{strikes[i-1]*100}%
         value: #{values[i]  } at strike: #{strikes[i]*100}%
 
-                            MESSAGE
-                            )
+                      MESSAGE
+                      )
               end
             end
           else
             # NPV must increase with strike
             (1...values.length).each do |i|
               unless values[i] >= values[i-1]
-                assert_fail(<<-MESSAGE
+                flunk(<<-MESSAGE
 
     NPV is decreasing with the strike in a cap:
         length: #{length} years
@@ -107,8 +108,8 @@ class CapFloorTest < RUNIT::TestCase
         value: #{values[i-1]} at strike: #{strikes[i-1]*100}%
         value: #{values[i]  } at strike: #{strikes[i]*100}%
 
-                            MESSAGE
-                            )
+                      MESSAGE
+                      )
               end
             end
           end
@@ -130,7 +131,7 @@ class CapFloorTest < RUNIT::TestCase
                                 @termStructure,makeEngine(vol))
 
             unless ((cap.NPV-floor.NPV) - collar.NPV).abs <= 1.0e-10
-              assert_fail(<<-MESSAGE
+              flunk(<<-MESSAGE
 
     inconsistency between cap, floor and collar:
         length      : #{length} years
@@ -139,8 +140,8 @@ class CapFloorTest < RUNIT::TestCase
         floor value : #{floor.NPV} at strike: #{floorRate*100}%
         collar value: #{collar.NPV}
 
-                          MESSAGE
-                          )
+                    MESSAGE
+                    )
             end
           end
         end
@@ -162,7 +163,7 @@ class CapFloorTest < RUNIT::TestCase
                                 @index.dayCounter,@frequency,
                                 @index,@fixingDays,0.0,@termStructure)
           unless ((cap.NPV-floor.NPV) - swap.NPV).abs <= 1.0e-10
-            assert_fail(<<-MESSAGE
+            flunk(<<-MESSAGE
 
     put/call parity violated:
         length     : #{length} years
@@ -172,8 +173,8 @@ class CapFloorTest < RUNIT::TestCase
         floor value: #{floor.NPV}
         swap value : #{swap.NPV}
 
-                        MESSAGE
-                        )
+                  MESSAGE
+                  )
           end
         end
       end
@@ -192,29 +193,29 @@ class CapFloorTest < RUNIT::TestCase
     cachedFloorNPV = 2.700476857631
 
     unless (cap.NPV-cachedCapNPV).abs <= 1.0e-11
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     failed to reproduce cached cap value:
         calculated: #{cap.NPV}
         expected:   #{cachedCapNPV}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
     unless (floor.NPV-cachedFloorNPV).abs <= 1.0e-11
-      assert_fail(<<-MESSAGE
+      flunk(<<-MESSAGE
 
     failed to reproduce cached floor value:
         calculated: #{floor.NPV}
         expected:   #{cachedFloorNPV}
 
-                  MESSAGE
-                  )
+            MESSAGE
+            )
     end
   end
 end
 
 if $0 == __FILE__
-  RUNIT::CUI::TestRunner.run(CapFloorTest.suite)
+  Test::Unit::UI::Console::TestRunner.run(CapFloorTest)
 end
 

@@ -16,9 +16,9 @@
 
 # $Id$
 
-require 'runit/testcase'
-require 'runit/testsuite'
-require 'runit/cui/testrunner'
+require 'test/unit'
+require 'test/unit/testsuite'
+require 'test/unit/ui/console/testrunner'
 
 require 'capfloor'
 require 'covariance'
@@ -40,44 +40,31 @@ require 'termstructures'
 # to be removed
 require 'old_pricers'
 
-suite = RUNIT::TestSuite.new
-suite.add_test(CapFloorTest.suite)
-suite.add_test(CovarianceTest.suite)
-suite.add_test(DateTest.suite)
-suite.add_test(DayCounterTest.suite)
-suite.add_test(DistributionTest.suite)
-suite.add_test(EuropeanOptionTest.suite)
-suite.add_test(InstrumentTest.suite)
-suite.add_test(MarketElementTest.suite)
-suite.add_test(MarketElementHandleTest.suite)
-suite.add_test(OperatorTest.suite)
-suite.add_test(PiecewiseFlatForwardTest.suite)
-suite.add_test(RiskStatisticsTest.suite)
-suite.add_test(SegmentIntegralTest.suite)
-suite.add_test(SimpleSwapTest.suite)
-suite.add_test(Solver1DTest.suite)
-suite.add_test(StatisticsTest.suite)
-suite.add_test(SwaptionTest.suite)
-suite.add_test(TermStructureTest.suite)
-suite.add_test(OldPricerTest.suite)
+suite = Test::Unit::TestSuite.new('QuantLib test suite')
+suite << CapFloorTest.suite
+suite << CovarianceTest.suite
+suite << DateTest.suite
+suite << DayCounterTest.suite
+suite << DistributionTest.suite
+suite << EuropeanOptionTest.suite
+suite << InstrumentTest.suite
+suite << MarketElementTest.suite
+suite << MarketElementHandleTest.suite
+suite << OperatorTest.suite
+suite << PiecewiseFlatForwardTest.suite
+suite << RiskStatisticsTest.suite
+suite << SegmentIntegralTest.suite
+suite << SimpleSwapTest.suite
+suite << Solver1DTest.suite
+suite << StatisticsTest.suite
+suite << SwaptionTest.suite
+suite << TermStructureTest.suite
+suite << OldPricerTest.suite
 
-module RUNIT
-  module CUI
-    class TestRunner
-      def add_failure(at, err)
-        @io.print("failed")
-      end
-      def add_error(at, err)
-        @io.print("error")
-      end
-      def end_test(t)
-      end
-    end
-  end
-end
 
-result = RUNIT::CUI::TestRunner.run(suite)
-unless result.succeed?
+runner = Test::Unit::UI::Console::TestRunner.new(suite,true,STDOUT)
+result = runner.start
+unless result.passed?
   exit(1)
 end
 
