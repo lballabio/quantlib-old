@@ -1,61 +1,125 @@
-2003-08-18 10:41  lballabio
+2003-10-31 08:25  lballabio
+
+	* README.txt (1.10): Typos and other small stuff
+
+2003-10-24 15:37  lballabio
+
+	* setup.py (1.59), QuantLib/test/QuantLibTestSuite.py (1.19),
+	QuantLib/test/integrals.py (1.1), QuantLib/test/segmentintegral.py
+	(1.5): Sync with C++
+
+2003-10-23 16:18  lballabio
+
+	* setup.py (1.58): [no log message]
+
+2003-10-23 16:16  lballabio
+
+	* setup.py (1.57): Allow compiling with either Multithreaded or
+	Multithreaded-DLL code generation
+
+2003-10-17 14:18  lballabio
+
+	* setup.py (1.56), QuantLib/test/QuantLibTestSuite.py (1.18),
+	QuantLib/test/calendars.py (1.3), QuantLib/test/capfloor.py (1.9),
+	QuantLib/test/covariance.py (1.5), QuantLib/test/date.py (1.8),
+	QuantLib/test/daycounters.py (1.5), QuantLib/test/distributions.py
+	(1.10), QuantLib/test/europeanoption.py (1.14),
+	QuantLib/test/marketelements.py (1.6), QuantLib/test/old_pricers.py
+	(1.9), QuantLib/test/operators.py (1.5),
+	QuantLib/test/piecewiseflatforward.py (1.10),
+	QuantLib/test/riskstatistics.py (1.10), QuantLib/test/simpleswap.py
+	(1.7), QuantLib/test/statistics.py (1.12),
+	QuantLib/test/swaption.py (1.7), QuantLib/test/termstructures.py
+	(1.14): Removed tests duplicating C++ tests. The Python test-suite
+	now tests Python-specific features only.
+
+2003-10-17 13:45  lballabio
+
+	* .cvsignore (1.4): [no log message]
+
+2003-10-10 08:14  lballabio
+
+	* QuantLib/test/swaption.py (1.6): [no log message]
+
+2003-09-26 16:27  lballabio
+
+	* QuantLib/test/capfloor.py (1.8): [no log message]
+
+2003-09-09 10:48  lballabio
+
+	* setup.py (1.55): Added PyPI metadata
+
+2003-08-28 15:56  lballabio
+
+	* ChangeLog.txt (1.15), History.txt (1.3), News.txt (1.5), setup.py
+	(1.54), QuantLib/__init__.py (1.6): Merged 0.3.3 branch
+
+2003-08-27 09:11  lballabio
+
+	* History.txt (1.2.8.1), News.txt (1.4.8.1): [no log message]
+
+2003-08-27 08:51  lballabio
+
+	* ChangeLog.txt (1.14.2.1): [no log message]
+
+2003-08-18 08:41  lballabio
 
 	* setup.py (1.52.2.1), QuantLib/__init__.py (1.5.8.1): Removed
 	Python 2.3 warnings
 
-2003-07-25 13:05  lballabio
+2003-07-25 11:05  lballabio
 
 	* setup.py (1.53): Bumped version number after branching
 
-2003-07-25 12:51  lballabio
+2003-07-25 10:51  lballabio
 
 	* setup.py (1.52): Bumped version number
 
-2003-07-24 09:43  lballabio
+2003-07-24 07:43  lballabio
 
 	* setup.py (1.51): Added new files to setup
 
-2003-07-22 17:34  nando
+2003-07-22 15:34  nando
 
 	* ChangeLog.txt (1.14): updated
 
-2003-07-16 15:17  marmar
+2003-07-16 13:17  marmar
 
 	* setup.py (1.50): 'QL_DEBUG' problem fixed
 
-2003-07-14 13:36  lballabio
+2003-07-14 11:36  lballabio
 
 	* setup.py (1.49): Don't ask---I don't know
 
-2003-06-26 11:22  lballabio
+2003-06-26 09:22  lballabio
 
 	* setup.py (1.48): [no log message]
 
-2003-06-13 15:35  lballabio
+2003-06-13 13:35  lballabio
 
 	* setup.py (1.46.2.2): [no log message]
 
-2003-06-11 17:06  lballabio
+2003-06-11 15:06  lballabio
 
 	* setup.py (1.47): Bumped version number
 
-2003-06-11 14:33  lballabio
+2003-06-11 12:33  lballabio
 
 	* setup.py (1.46.2.1): Preparing for release
 
-2003-05-30 11:52  lballabio
+2003-05-30 09:52  lballabio
 
 	* setup.py (1.46): Short rate models exported
 
-2003-05-22 17:30  lballabio
+2003-05-22 15:30  lballabio
 
 	* QuantLib/test/solvers1d.py (1.6): Synch with C++
 
-2003-05-20 10:07  lballabio
+2003-05-20 08:07  lballabio
 
 	* setup.py (1.45): [no log message]
 
-2003-05-16 18:16  lballabio
+2003-05-16 16:16  lballabio
 
 	* setup.py (1.44), QuantLib/__init__.py (1.5),
 	QuantLib/test/QuantLibTestSuite.py (1.17),
@@ -74,196 +138,196 @@
 	(1.5), QuantLib/test/termstructures.py (1.13): First tag-free
 	commit. Drink and be merry.
 
-2003-05-09 13:24  lballabio
+2003-05-09 11:24  lballabio
 
 	* setup.py (1.43): Synch with C++
 
-2003-05-06 18:57  nando
+2003-05-06 16:57  nando
 
 	* QuantLibPython.dsp (1.11), QuantLibPython.mak (1.13): VC project
 	catching up
 
-2003-05-06 16:52  lballabio
+2003-05-06 14:52  lballabio
 
 	* setup.py (1.42): Fixed Win installation paths
 
-2003-05-06 13:37  lballabio
+2003-05-06 11:37  lballabio
 
 	* setup.py (1.41), QuantLib/test/riskstatistics.py (1.8),
 	QuantLib/test/statistics.py (1.10): Synch with C++ needed
 
-2003-04-22 16:54  nando
+2003-04-22 14:54  nando
 
 	* ChangeLog.txt (1.13): updated
 
-2003-04-22 16:37  nando
+2003-04-22 14:37  nando
 
 	* ChangeLog.txt (1.12): updated
 
-2003-04-22 16:07  nando
+2003-04-22 14:07  nando
 
 	* QuantLibPython.dsp (1.10), QuantLibPython.mak (1.12): removed
 	'which' which is not supposed to be available on all Win32/VC++
 	machines
 
-2003-04-22 15:17  lballabio
+2003-04-22 13:17  lballabio
 
 	* QuantLib/test/: covariance.py (1.3), old_pricers.py (1.7): Synch
 	with C++
 
-2003-04-17 12:12  lballabio
+2003-04-17 10:12  lballabio
 
 	* setup.py (1.40), QuantLib/test/QuantLibTestSuite.py (1.16),
 	QuantLib/test/statistics.py (1.9): More indiscriminated greps :)
 
-2003-04-15 17:31  nando
+2003-04-15 15:31  nando
 
 	* setup.py (1.39), QuantLib/test/QuantLibTestSuite.py (1.15),
 	QuantLib/test/riskstatistics.py (1.7), QuantLib/test/statistics.py
 	(1.8): Statistics renamed GaussianStatistics and replaced by the
 	former HStatistics
 
-2003-04-13 10:31  nando
+2003-04-13 08:31  nando
 
 	* QuantLibPython.dsp (1.9), QuantLibPython.mak (1.11): it does work
 	with Visual Studio, Python 2.2 and swig 1.3.19
 
-2003-04-13 10:14  nando
+2003-04-13 08:14  nando
 
 	* QuantLibPython.dsp (1.8), QuantLibPython.mak (1.10): it should
 	now work with Visual Studio, Python 2.2 and swig 1.3.19
 
-2003-04-12 20:35  nando
+2003-04-12 18:35  nando
 
 	* QuantLibPython.dsp (1.7), QuantLibPython.mak (1.9): more verbose
 	wrapping generation (to help detect problems)
 
-2003-04-10 18:39  lballabio
+2003-04-10 16:39  lballabio
 
 	* setup.py (1.38), QuantLib/test/riskstatistics.py (1.6),
 	QuantLib/test/statistics.py (1.7): GRUMPF
 
-2003-04-10 18:34  lballabio
+2003-04-10 16:34  lballabio
 
 	* QuantLib/test/QuantLibTestSuite.py (1.14): Grumpf
 
-2003-04-10 13:47  nando
+2003-04-10 11:47  nando
 
 	* ChangeLog.txt (1.11), setup.py (1.37),
 	QuantLib/test/QuantLibTestSuite.py (1.13),
 	QuantLib/test/riskstatistics.py (1.5), QuantLib/test/statistics.py
 	(1.6): grammar rules: back to Statistics, with the final s
 
-2003-04-08 12:34  nando
+2003-04-08 10:34  nando
 
 	* setup.py (1.36): switched from Multithread DLL to Multithread
 
-2003-04-04 19:16  nando
+2003-04-04 17:16  nando
 
 	* QuantLibPython.dsp (1.6), QuantLibPython.mak (1.8): VC++ moved
 	from (Debug) Multithread DLL to (Debug) Multithread
 
-2003-03-28 18:33  lballabio
+2003-03-28 17:33  lballabio
 
 	* README.txt (1.9), QuantLib/test/old_pricers.py (1.6): [no log
 	message]
 
-2003-03-28 18:32  lballabio
+2003-03-28 17:32  lballabio
 
 	* setup.py (1.35): Reduced the signal/noise ratio
 
-2003-03-25 00:39  nando
+2003-03-24 23:39  nando
 
 	* QuantLib/test/.cvsignore (1.1): no message
 
-2003-03-19 18:37  nando
+2003-03-19 17:37  nando
 
 	* QuantLibPython.dsp (1.5), QuantLibPython.mak (1.7): updated
 
-2003-03-18 17:59  nando
+2003-03-18 16:59  nando
 
 	* setup.py (1.34): verbose wrapper generation
 
-2003-03-17 11:09  lballabio
+2003-03-17 10:09  lballabio
 
 	* QuantLib/test/: capfloor.py (1.6), old_pricers.py (1.5),
 	swaption.py (1.4): Works on gcc + errorEstimate() and misc
 
-2003-03-16 03:01  nando
+2003-03-16 02:01  nando
 
 	* QuantLib/test/distributions.py (1.8): improved Cumulative and
 	Inverse Cumulative Normal Distribution functions
 
-2003-03-16 00:01  nando
+2003-03-15 23:01  nando
 
 	* QuantLib/test/distributions.py (1.7): old bug fixed
 
-2003-03-15 21:24  nando
+2003-03-15 20:24  nando
 
 	* QuantLib/test/distributions.py (1.6): 1)
 	InvCumulativeNormalDistribution renamed to InverseCumulativeNormal.
 	 2) Acklam's approximation for inverse cumulative normal
 	distribution function replaced Moro's algorithm.
 
-2003-03-14 10:27  nando
+2003-03-14 09:27  nando
 
 	* ChangeLog.txt (1.10): updated
 
-2003-03-10 14:28  lballabio
+2003-03-10 13:28  lballabio
 
 	* setup.py (1.33): Cleaned up installation
 
-2003-03-10 13:06  lballabio
+2003-03-10 12:06  lballabio
 
 	* QuantLib/test/europeanoption.py (1.12): Synch with C++
 
-2003-02-25 14:17  lballabio
+2003-02-25 13:17  lballabio
 
 	* QuantLib/test/europeanoption.py (1.11): [no log message]
 
-2003-02-25 11:24  lballabio
+2003-02-25 10:24  lballabio
 
 	* QuantLib/test/instruments.py (1.5): Test for frozen instrument
 
-2003-02-17 09:16  lballabio
+2003-02-17 08:16  lballabio
 
 	* QuantLib/test/: capfloor.py (1.5), piecewiseflatforward.py (1.8),
 	termstructures.py (1.12): Had tests work on Sundays
 
-2003-02-16 13:44  lballabio
+2003-02-16 12:44  lballabio
 
 	* QuantLib/test/europeanoption.py (1.10): Synch with C++
 
-2003-02-13 10:32  nando
+2003-02-13 09:32  nando
 
 	* .cvsignore (1.3): updated
 
-2003-02-11 19:22  nando
+2003-02-11 18:22  nando
 
 	* QuantLibPython.mak (1.6): updated
 
-2003-02-06 17:35  lballabio
+2003-02-06 16:35  lballabio
 
 	* QuantLib/test/europeanoption.py (1.9): Synch with C++
 
-2003-02-04 18:48  lballabio
+2003-02-04 17:48  lballabio
 
 	* QuantLib/test/date.py (1.6): [no log message]
 
-2003-02-03 15:22  nando
+2003-02-03 14:22  nando
 
 	* News.txt (1.4), README.txt (1.8): improved documentation details
 
-2003-02-03 12:47  nando
+2003-02-03 11:47  nando
 
 	* News.txt (1.3): adding news.txt details Luigi: fill in other
 	details if you like, and I'll publish them for the 0.3.1 release
 
-2003-02-03 12:43  nando
+2003-02-03 11:43  nando
 
 	* History.txt (1.2), News.txt (1.2): date of release 0.3.1
 
-2003-01-28 18:23  lballabio
+2003-01-28 17:23  lballabio
 
 	* ChangeLog.txt (1.9), LICENSE.TXT (1.2), setup.py (1.32),
 	QuantLib/LICENSE.TXT (1.2), QuantLib/__init__.py (1.4),
@@ -282,33 +346,33 @@
 	QuantLib/test/termstructures.py (1.11): Merged changes made on
 	0.3.1 branch
 
-2003-01-28 09:29  lballabio
+2003-01-28 08:29  lballabio
 
 	* setup.py (1.31), QuantLib/test/QuantLibTestSuite.py (1.11),
 	QuantLib/test/calendars.py (1.1): Joint calendars and stuff
 
-2003-01-24 17:31  lballabio
+2003-01-24 16:31  lballabio
 
 	* setup.py (1.30): [no log message]
 
-2003-01-13 15:43  lballabio
+2003-01-13 14:43  lballabio
 
 	* QuantLib/test/simpleswap.py (1.4.4.2): Hidden some dust under the
 	carpet
 
-2003-01-03 13:08  lballabio
+2003-01-03 12:08  lballabio
 
 	* QuantLib/__init__.py (1.3.4.2): [no log message]
 
-2003-01-03 12:22  lballabio
+2003-01-03 11:22  lballabio
 
 	* setup.py (1.29): [no log message]
 
-2003-01-01 13:22  nando
+2003-01-01 12:22  nando
 
 	* ChangeLog.txt (1.8.2.1): updated
 
-2002-12-31 19:49  nando
+2002-12-31 18:49  nando
 
 	* LICENSE.TXT (1.1.1.1.8.1), setup.py (1.27.4.2),
 	QuantLib/LICENSE.TXT (1.1.1.1.8.1), QuantLib/__init__.py (1.3.4.1),
@@ -329,89 +393,89 @@
 	QuantLib/test/swaption.py (1.2.4.1),
 	QuantLib/test/termstructures.py (1.10.2.1): updated copyright years
 
-2002-12-19 18:18  lballabio
+2002-12-19 17:18  lballabio
 
 	* setup.py (1.28): Updated version
 
-2002-12-19 18:06  lballabio
+2002-12-19 17:06  lballabio
 
 	* setup.py (1.27.4.1): Updated version
 
-2002-12-19 13:51  lballabio
+2002-12-19 12:51  lballabio
 
 	* QuantLib/test/QuantLibTestSuite.py (1.10): [no log message]
 
-2002-12-16 12:33  nando
+2002-12-16 11:33  nando
 
 	* ChangeLog.txt (1.7), ChangeLog.txt (1.8): updated
 
-2002-12-11 14:46  lballabio
+2002-12-11 13:46  lballabio
 
 	* QuantLib/test/: capfloor.py (1.3), piecewiseflatforward.py (1.6),
 	termstructures.py (1.10): Term structure and index fixing cleanup
 
-2002-12-06 15:37  lballabio
+2002-12-06 14:37  lballabio
 
 	* .cvsignore (1.2): [no log message]
 
-2002-11-27 13:35  marmar
+2002-11-27 12:35  marmar
 
 	* QuantLibPython.mak (1.5): no message
 
-2002-11-20 14:59  lballabio
+2002-11-20 13:59  lballabio
 
 	* setup.py (1.27): Exported DiscountCurve
 
-2002-11-12 14:21  marmar
+2002-11-12 13:21  marmar
 
 	* QuantLibPython.dsp (1.4), QuantLibPython.mak (1.4): Using
 	_QuantLib instead of QuantLibc
 
-2002-11-12 11:59  marmar
+2002-11-12 10:59  marmar
 
 	* QuantLibPython.dsp (1.3), QuantLibPython.mak (1.3): The
 	includepath and libpath for python should be specified in the
 	options of VC++
 
-2002-11-12 09:33  lballabio
+2002-11-12 08:33  lballabio
 
 	* wrap.bat (1.2): [no log message]
 
-2002-11-11 12:02  marmar
+2002-11-11 11:02  marmar
 
 	* QuantLibPython.dsp (1.2), QuantLibPython.mak (1.2), wrap.bat
 	(1.1): VC++ compiles
 
-2002-11-08 16:09  enri
+2002-11-08 15:09  enri
 
 	* setup.py (1.26): os.environ['CC'] --> os.environ['CXX']
 	(unix-like OSes)
 
-2002-11-08 13:57  lballabio
+2002-11-08 12:57  lballabio
 
 	* QuantLib/test/old_pricers.py (1.3): [no log message]
 
-2002-11-05 17:07  lballabio
+2002-11-05 16:07  lballabio
 
 	* setup.py (1.25): [no log message]
 
-2002-11-05 16:43  lballabio
+2002-11-05 15:43  lballabio
 
 	* setup.py (1.24): [no log message]
 
-2002-11-05 15:58  lballabio
+2002-11-05 14:58  lballabio
 
 	* QuantLib/test/old_pricers.py (1.2): Almost there
 
-2002-10-03 18:46  lballabio
+2002-10-03 16:46  lballabio
 
 	* setup.py (1.23): A few new-style vol term structures
 
-2002-09-24 16:25  lballabio
+2002-09-24 14:25  lballabio
 
 	* setup.py (1.22): A look at the optimizers (nothing major)
 
-2002-09-12 14:50  lballabio
+2002-09-12 12:50  lballabio
 
 	* README.txt (1.7), QuantLib/test/capfloor.py (1.2),
 	QuantLib/test/europeanoption.py (1.7),
@@ -419,32 +483,32 @@
 	QuantLib/test/simpleswap.py (1.4), QuantLib/test/swaption.py (1.2),
 	QuantLib/test/termstructures.py (1.9): Synch with QuantLib
 
-2002-09-01 17:15  lballabio
+2002-09-01 15:15  lballabio
 
 	* setup.py (1.21), QuantLib/test/QuantLibTestSuite.py (1.9),
 	QuantLib/test/capfloor.py (1.1), QuantLib/test/old_pricers.py
 	(1.1), QuantLib/test/swaption.py (1.1): Almost there
 
-2002-08-07 18:46  lballabio
+2002-08-07 16:46  lballabio
 
 	* README.txt (1.6), QuantLib/test/date.py (1.4): Catching up with
 	SWIG
 
-2002-08-06 19:12  lballabio
+2002-08-06 17:12  lballabio
 
 	* QuantLib/test/: piecewiseflatforward.py (1.4), termstructures.py
 	(1.8): Catching up with QuantLib
 
-2002-08-06 15:37  lballabio
+2002-08-06 13:37  lballabio
 
 	* setup.py (1.20), QuantLib/__init__.py (1.3), QuantLib/defaults.py
 	(1.13): Catching up with SWIG
 
-2002-08-05 19:32  lballabio
+2002-08-05 17:32  lballabio
 
 	* QuantLib/defaults.py (1.12): Catching up with SWIG
 
-2002-08-03 18:16  lballabio
+2002-08-03 16:16  lballabio
 
 	* README.txt (1.5), setup.py (1.19), QuantLib/__init__.py (1.2),
 	QuantLib/defaults.py (1.11), QuantLib/test/europeanoption.py (1.6),
@@ -452,27 +516,27 @@
 	QuantLib/test/simpleswap.py (1.3), QuantLib/test/termstructures.py
 	(1.7): Keeping up with SWIG
 
-2002-07-22 12:05  lballabio
+2002-07-22 10:05  lballabio
 
 	* QuantLib/: defaults.py (1.10), test/instruments.py (1.3),
 	test/marketelements.py (1.3), test/termstructures.py (1.6): Last
 	couple of weeks
 
-2002-07-11 17:27  lballabio
+2002-07-11 15:27  lballabio
 
 	* QuantLib/test/: riskstatistics.py (1.3), statistics.py (1.4):
 	Last couple of weeks
 
-2002-07-11 17:18  lballabio
+2002-07-11 15:18  lballabio
 
 	* .cvsignore (1.1), QuantLib/.cvsignore (1.1): Some more .cvsignore
 
-2002-06-28 15:34  lballabio
+2002-06-28 13:34  lballabio
 
 	* QuantLib/test/termstructures.py (1.5): Improved term structure
 	test
 
-2002-06-27 19:28  lballabio
+2002-06-27 17:28  lballabio
 
 	* setup.py (1.18), QuantLib/defaults.py (1.9),
 	QuantLib/test/distributions.py (1.4),
@@ -481,7 +545,7 @@
 	QuantLib/test/simpleswap.py (1.2), QuantLib/test/termstructures.py
 	(1.4): Saved from laptop crash (phew...)
 
-2002-06-24 09:29  lballabio
+2002-06-24 07:29  lballabio
 
 	* setup.py (1.17), QuantLib/defaults.py (1.8),
 	QuantLib/test/QuantLibTestSuite.py (1.8),
@@ -495,21 +559,21 @@
 	(1.1), QuantLib/test/solvers1d.py (1.3),
 	QuantLib/test/statistics.py (1.3): a couple of weeks' worth
 
-2002-06-11 17:40  lballabio
+2002-06-11 15:40  lballabio
 
 	* README.txt (1.4), QuantLib/test/europeanoption.py (1.3): Synch
 	with QuantLib
 
-2002-06-03 12:29  lballabio
+2002-06-03 10:29  lballabio
 
 	* QuantLib/test/europeanoption.py (1.2): Synch with ql
 
-2002-05-31 17:23  lballabio
+2002-05-31 15:23  lballabio
 
 	* QuantLib/test/termstructures.py (1.3): Compacting MzScheme and
 	Guile
 
-2002-05-30 10:20  lballabio
+2002-05-30 08:20  lballabio
 
 	* setup.py (1.16), QuantLib/defaults.py (1.7),
 	QuantLib/test/QuantLibTestSuite.py (1.7),
@@ -517,49 +581,49 @@
 	(1.2), QuantLib/test/statistics.py (1.2),
 	QuantLib/test/termstructures.py (1.2): Biweekly commit
 
-2002-05-17 18:07  lballabio
+2002-05-17 16:07  lballabio
 
 	* setup.py (1.15), QuantLib/defaults.py (1.6),
 	QuantLib/test/QuantLibTestSuite.py (1.6),
 	QuantLib/test/operators.py (1.1), QuantLib/test/termstructures.py
 	(1.1): Weekly payload
 
-2002-05-13 18:04  lballabio
+2002-05-13 16:04  lballabio
 
 	* setup.py (1.14): Allow passing CXXFLAGS
 
-2002-05-13 10:38  lballabio
+2002-05-13 08:38  lballabio
 
 	* README.txt (1.3), QuantLib/test/QuantLibTestSuite.py (1.5),
 	QuantLib/test/segmentintegral.py (1.1), QuantLib/test/statistics.py
 	(1.1): Weekly payload
 
-2002-05-03 14:46  lballabio
+2002-05-03 12:46  lballabio
 
 	* makewrappers.py (1.4), setup.py (1.13): More fixes in setup
 	scripts
 
-2002-05-03 13:30  lballabio
+2002-05-03 11:30  lballabio
 
 	* makewrappers.py (1.3): More fixes in setup scripts
 
-2002-05-03 13:06  lballabio
+2002-05-03 11:06  lballabio
 
 	* makewrappers.py (1.2), setup.py (1.12): Fixed setup files
 
-2002-05-02 09:50  lballabio
+2002-05-02 07:50  lballabio
 
 	* QuantLib/: defaults.py (1.5), test/instruments.py (1.2),
 	test/marketelements.py (1.2): Handles to base classes are
 	templates, not typedefs
 
-2002-04-29 17:24  lballabio
+2002-04-29 15:24  lballabio
 
 	* setup.py (1.11), QuantLib/defaults.py (1.4),
 	QuantLib/test/QuantLibTestSuite.py (1.4),
 	QuantLib/test/instruments.py (1.1): Migrated instruments.i
 
-2002-04-26 09:57  lballabio
+2002-04-26 07:57  lballabio
 
 	* setup.py (1.10), QuantLib/defaults.py (1.3),
 	QuantLib/test/QuantLibTestSuite.py (1.3), QuantLib/test/date.py
@@ -568,74 +632,74 @@
 	QuantLib/test/riskstatistics.py (1.1): Migrated risk statistics and
 	market elements
 
-2002-04-22 16:35  lballabio
+2002-04-22 14:35  lballabio
 
 	* setup.py (1.9), QuantLib/test/QuantLibTestSuite.py (1.2),
 	QuantLib/test/solvers1d.py (1.1): Renamed Solver1D::lowBound and
 	hiBound
 
-2002-04-21 23:21  nando
+2002-04-21 21:21  nando
 
 	* setup.py (1.7.2.2): version number up
 
-2002-04-21 22:38  nando
+2002-04-21 20:38  nando
 
 	* setup.py (1.7.2.1): version number up
 
-2002-04-21 22:32  nando
+2002-04-21 20:32  nando
 
 	* setup.py (1.8): version number up
 
-2002-04-21 21:27  nando
+2002-04-21 19:27  nando
 
 	* ChangeLog.txt (1.6): updated
 
-2002-04-18 13:37  lballabio
+2002-04-18 11:37  lballabio
 
 	* setup.py (1.7), QuantLib/defaults.py (1.2): History.i migrated
 
-2002-04-16 23:58  nando
+2002-04-16 21:58  nando
 
 	* ChangeLog.txt (1.5): updated
 
-2002-04-10 17:37  lballabio
+2002-04-10 15:37  lballabio
 
 	* setup.py (1.6): Towards SWIG 1.3.12
 
-2002-04-10 11:54  nando
+2002-04-10 09:54  nando
 
 	* setup.py (1.5): version number up
 
-2002-04-09 11:15  nando
+2002-04-09 09:15  nando
 
 	* ChangeLog.txt (1.4): updated
 
-2002-04-08 10:10  nando
+2002-04-08 08:10  nando
 
 	* ChangeLog.txt (1.3): updated
 
-2002-04-08 10:01  nando
+2002-04-08 08:01  nando
 
 	* ChangeLog.txt (1.2): updated
 
-2002-04-05 16:34  lballabio
+2002-04-05 14:34  lballabio
 
 	* README.txt (1.2): engaged the time machine and switched to SWIG
 	1.3.12
 
-2002-04-04 17:01  lballabio
+2002-04-04 15:01  lballabio
 
 	* setup.py (1.4): vector.i half migrated
 
-2002-04-04 12:14  lballabio
+2002-04-04 10:14  lballabio
 
 	* setup.py (1.3): observer.i migrated
 
-2002-04-03 15:57  lballabio
+2002-04-03 13:57  lballabio
 
 	* setup.py (1.2): Array migrated
 
-2002-04-02 17:30  lballabio
+2002-04-02 15:30  lballabio
 
 	* Authors.txt (1.1), ChangeLog.txt (1.1), Contributors.txt (1.1),
 	History.txt (1.1), LICENSE.TXT (1.1), MANIFEST.in (1.1), News.txt
@@ -646,7 +710,7 @@
 	(1.1), QuantLib/test/date.py (1.1), QuantLib/test/daycounters.py
 	(1.1), QuantLib/test/distributions.py (1.1): Initial revision
 
-2002-04-02 17:30  lballabio
+2002-04-02 15:30  lballabio
 
 	* Authors.txt (1.1.1.1), ChangeLog.txt (1.1.1.1), Contributors.txt
 	(1.1.1.1), History.txt (1.1.1.1), LICENSE.TXT (1.1.1.1),
