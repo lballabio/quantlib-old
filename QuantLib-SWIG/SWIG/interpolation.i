@@ -104,6 +104,20 @@ class BilinearInterpolation : public Interpolation2D {
                 x_.begin(),x_.end(),y_.begin(),y_.end(),m_));
     }
 };
+
+class BicubicSplineInterpolation : public Interpolation2D {
+  public:
+    BicubicSplineInterpolation(const Array& x, const Array& y, const Matrix& m)
+    : Interpolation2D(x,y,m) {
+        f_ = Handle<QuantLib::Math::Interpolation2D<Array::const_iterator,
+                                                    Array::const_iterator,
+                                                    Matrix> >(
+          new QuantLib::Math::BicubicSplineInterpolation<Array::const_iterator,
+                                                         Array::const_iterator,
+                                                         Matrix>(
+                x_.begin(),x_.end(),y_.begin(),y_.end(),m_));
+    }
+};
 %}
 
 
@@ -150,6 +164,12 @@ class Interpolation2D {
 class BilinearInterpolation : public Interpolation2D {
   public:
     BilinearInterpolation(const Array& x, const Array& y, const Matrix& m);
+};
+
+class BicubicSplineInterpolation : public Interpolation2D {
+  public:
+    BicubicSplineInterpolation(const Array& x, const Array& y, 
+                               const Matrix& m);
 };
 
 
