@@ -48,9 +48,6 @@ class SwapHandle : public Handle<Instrument> {
 	double secondLegBPS() {
 	   return Handle<Swap>(*self)->secondLegBPS();
 	}
-	double fairRate() {
-	   return Handle<Swap>(*self)->fairRate();
-	}
 	TimeBasketHandle sensitivity() {
 	   return Handle<Swap>(*self)->sensitivity();
 	}
@@ -135,31 +132,23 @@ class SimpleSwapHandle : public SwapHandle {
                                floatingFrequency, index, indexFixingDays, 
                                spread, termStructure, isinCode, description));
         }
-        SimpleSwapHandle(bool payFixedRate, const Date& startDate,
-			 const Date& maturity, const Calendar& calendar,
-			 RollingConvention rollingConvention, double nominal,
-			 int fixedFrequency, Rate fixedRate,
-			 bool fixedIsAdjusted, const DayCounter& fixedDayCount,
-			 int floatingFrequency, const XiborHandle& index,
+        SimpleSwapHandle(bool payFixedRate,const Date& maturity,
+			 double nominal, Rate fixedRate,
+			 const DayCounter& fixedDayCount,
+			 const XiborHandle& index,
 			 int indexFixingDays, Spread spread,
 			 const RelinkableHandle<TermStructure>& termStructure,
-			 const Date& fixedStubDate = Date(),
-			 bool fixedFromEnd = 0, bool fixedLongFinal = 0,
-			 const Date& floatStubDate = Date(),
-			 bool floatFromEnd = 0, bool floatLongFinal = 0,
+			 Scheduler& fixedSched,
+			 Scheduler& floatSched,
 			 const std::string& isinCode = "unknown",
                          const std::string& description = 
                                                     "interest rate swap") {
 	   return new SimpleSwapHandle(
-	      new SimpleSwap(payFixedRate, startDate, maturity, calendar,
-			     rollingConvention, nominal,
-			     fixedFrequency,
-			     fixedRate, fixedIsAdjusted,fixedDayCount,
-			     floatingFrequency,
-			     index, indexFixingDays, spread, termStructure, 
-			     fixedStubDate, fixedFromEnd, fixedLongFinal,
-			     floatStubDate, floatFromEnd, floatLongFinal,
-			     isinCode, description));
+	      new SimpleSwap(payFixedRate,maturity,
+			     nominal,fixedRate,fixedDayCount,index,
+			     indexFixingDays,spread,termStructure,
+			     fixedSched,floatSched,
+			     isinCode,description));
 	}
     #endif
         Rate fairRate() {

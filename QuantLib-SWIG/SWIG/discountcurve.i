@@ -23,30 +23,43 @@
 
 %{
 using QuantLib::TermStructures::DiscountCurve;
+using QuantLib::TermStructures::ExtendedDiscountCurve;
 typedef Handle<TermStructure> DiscountCurveHandle;
+typedef Handle<TermStructure> ExtendedDiscountCurveHandle;
 %}
 
 %rename(DiscountCurve) DiscountCurveHandle;
 class DiscountCurveHandle : public Handle<TermStructure> {
   public:
     %extend {
-        DiscountCurveHandle(const Date& todaysDate, 
-                            const std::vector<Date>& dates,
-                            const std::vector<double>& discounts,
-			    Calendar calendar,
-			    RollingConvention roll,
-                            const DayCounter& dayCounter = Actual365()) {
-	        return new DiscountCurveHandle(
-		   new DiscountCurve(todaysDate,
-				     dates,
-				     discounts,
-				     calendar,
-				     roll,
-				     dayCounter));
-        }
-        const std::vector<Date>& dates() {
-	   return Handle<DiscountCurve>(*self)->dates();
-	}
+      DiscountCurveHandle(const Date& todaysDate, 
+                          const std::vector<Date>& dates,
+                          const std::vector<double>& discounts,
+                          const DayCounter& dayCounter = Actual365()) {
+          return new DiscountCurveHandle(
+              new DiscountCurve(todaysDate, dates, discounts, dayCounter));
+      }
+      const std::vector<Date>& dates() {
+          return Handle<DiscountCurve>(*self)->dates();
+      }
+    }
+};
+
+
+%rename(ExtendedDiscountCurve) ExtendedDiscountCurveHandle;
+class ExtendedDiscountCurveHandle : public DiscountCurveHandle {
+  public:
+    %extend {
+      ExtendedDiscountCurveHandle(const Date& todaysDate, 
+                                  const std::vector<Date>& dates,
+                                  const std::vector<double>& discounts,
+                                  const Calendar& calendar,
+                                  RollingConvention roll,
+                                  const DayCounter& dayCounter = Actual365()) {
+          return new ExtendedDiscountCurveHandle(
+              new ExtendedDiscountCurve(todaysDate, dates, discounts, 
+                                        calendar, roll, dayCounter));
+      }
     }
 };
 

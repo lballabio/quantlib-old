@@ -119,6 +119,7 @@ MapToString(TimeUnit,timeunitFromString,stringFromTimeunit);
 
 %{
 using QuantLib::Period;
+using QuantLib::PeriodParser; 
 %}
 
 class Period {
@@ -127,10 +128,12 @@ class Period {
     #endif
   public:
     Period(int n, TimeUnit units);
-    Period(const std::string&);
     int length() const;
     TimeUnit units() const;
     %extend {
+	Period(const std::string& str) {
+	    return new Period(PeriodParser::parse(str));
+	}
         std::string __str__() {
             std::string s = IntegerFormatter::toString(self->length());
             switch (self->units()) {
@@ -182,6 +185,7 @@ namespace std {
 %{
 using QuantLib::Date;
 using QuantLib::DateFormatter;
+using QuantLib::DateParser; 
 %}
 
 #if defined(SWIGRUBY)
@@ -206,13 +210,12 @@ class Date {
   public:
     Date();
     Date(Day d, Month m, Year y);
-    Date(const std::string& str, const std::string& fmt);
     Date(long serialNumber);
     // access functions
     Weekday weekday() const;
     Day dayOfMonth() const;
     Day dayOfYear() const;        // one-based
-    bool isLastDayOfMonth() const;
+    bool isEndOfMonth() const;
     Day lastDayOfMonth() const;
     Month month() const;
     Year year() const;
@@ -235,6 +238,9 @@ class Date {
     Date operator-(int days) const;
     #endif
     %extend {
+	Date(const std::string& str, const std::string& fmt) {
+	    return new Date(DateParser::parse(str,fmt));
+	}
         int weekdayNumber() {
             return int(self->weekday());
         }

@@ -349,7 +349,7 @@ bool extractArray(PyObject* source, Array* target) {
         for (Size i=0; i<rows; i++) {
             VALUE o = RARRAY($input)->ptr[i];
             if (rb_obj_is_kind_of(o,rb_cArray)) {
-                if (RARRAY(o)->len != cols) {
+                if (Size(RARRAY(o)->len) != cols) {
                     rb_raise(rb_eTypeError,
                              "Matrix must have equal-length rows");
                 }
@@ -392,7 +392,7 @@ bool extractArray(PyObject* source, Array* target) {
         for (Size i=0; i<rows; i++) {
             VALUE o = RARRAY($input)->ptr[i];
             if (rb_obj_is_kind_of(o,rb_cArray)) {
-                if (RARRAY(o)->len != cols) {
+                if (Size(RARRAY(o)->len) != cols) {
                     rb_raise(rb_eTypeError,
                              "Matrix must have equal-length rows");
                 }

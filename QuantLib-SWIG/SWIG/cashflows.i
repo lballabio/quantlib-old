@@ -24,6 +24,7 @@
 %include daycounters.i
 %include indexes.i
 %include termstructures.i
+%include scheduler.i
 %include vectors.i
 
 %{
@@ -131,9 +132,13 @@ std::vector<Handle<CashFlow> > FixedRateCouponVector(
     const Calendar& calendar, RollingConvention convention,
     bool isAdjusted, const DayCounter& dayCount,
     const DayCounter& firstPeriodDayCount, 
-    const Date& stubDate = Date(),
-    bool startFromEnd = 0,
-    bool longFinal = 0);
+    const Date& stubDate = Date());
+
+std::vector<Handle<CashFlow> > FixedRateCouponVector(
+    const std::vector<double>& nominals,
+    const std::vector<Rate>& couponRates,
+    const DayCounter& dayCount, const DayCounter& firstPeriodDayCount,
+    const Scheduler& scheduler);
 
 std::vector<Handle<CashFlow> > FloatingRateCouponVector(
     const std::vector<double>& nominals,
@@ -142,9 +147,12 @@ std::vector<Handle<CashFlow> > FloatingRateCouponVector(
     RollingConvention convention,
     const XiborHandle& index, int indexFixingDays, 
     const std::vector<double>& spreads = std::vector<double>(), 
-    const Date& stubDate = Date(),
-    bool startFromEnd = 0,
-    bool longFinal = 0);
+    const Date& stubDate = Date());
 
+std::vector<Handle<CashFlow> > FloatingRateCouponVector(
+    const std::vector<double>& nominals,
+    const XiborHandle& index, int fixingDays,
+    const std::vector<Spread>& spreads,
+    const Scheduler& scheduler);
 
 #endif

@@ -1,175 +1,191 @@
-2003-06-11 15:06  lballabio
+2003-07-25 13:05  lballabio
+
+	* setup.scm (1.23): Bumped version number after branching
+
+2003-07-25 12:51  lballabio
+
+	* setup.scm (1.22): Bumped version number
+
+2003-07-24 09:43  lballabio
+
+	* setup.scm (1.21): Added new files to setup
+
+2003-07-22 17:34  nando
+
+	* ChangeLog.txt (1.7): updated
+
+2003-06-11 17:06  lballabio
 
 	* setup.scm (1.20): Bumped version number
 
-2003-06-11 12:33  lballabio
+2003-06-11 14:33  lballabio
 
 	* setup.scm (1.19.2.1): Preparing for release
 
-2003-05-30 09:52  lballabio
+2003-05-30 11:52  lballabio
 
 	* setup.scm (1.19): Short rate models exported
 
-2003-05-20 08:07  lballabio
+2003-05-20 10:07  lballabio
 
 	* setup.scm (1.18): [no log message]
 
-2003-05-16 16:16  lballabio
+2003-05-16 18:16  lballabio
 
 	* setup.scm (1.17), test/quantlib-test-suite.scm (1.12),
 	test/unittest.scm (1.8), test/utilities.scm (1.4): First tag-free
 	commit. Drink and be merry.
 
-2003-05-09 11:24  lballabio
+2003-05-09 13:24  lballabio
 
 	* setup.scm (1.16): Synch with C++
 
-2003-04-22 14:55  nando
+2003-04-22 16:55  nando
 
 	* ChangeLog.txt (1.6): updated
 
-2003-04-22 14:38  nando
+2003-04-22 16:38  nando
 
 	* ChangeLog.txt (1.5): updated
 
-2003-03-28 17:33  lballabio
+2003-03-28 18:33  lballabio
 
 	* README.txt (1.6): [no log message]
 
-2003-03-14 09:28  nando
+2003-03-14 10:28  nando
 
 	* ChangeLog.txt (1.4): updated
 
-2003-02-03 14:22  nando
+2003-02-03 15:22  nando
 
 	* README.txt (1.5): improved documentation details
 
-2003-02-03 11:43  nando
+2003-02-03 12:43  nando
 
 	* History.txt (1.2), News.txt (1.1): date of release 0.3.1
 
-2003-01-28 17:23  lballabio
+2003-01-28 18:23  lballabio
 
 	* ChangeLog.txt (1.3), LICENSE.TXT (1.2), setup.scm (1.15),
 	test/quantlib-test-suite.scm (1.11), test/unittest.scm (1.7),
 	test/utilities.scm (1.3): Merged changes made on 0.3.1 branch
 
-2003-01-28 08:29  lballabio
+2003-01-28 09:29  lballabio
 
 	* setup.scm (1.14), test/quantlib-test-suite.scm (1.10): Joint
 	calendars and stuff
 
-2003-01-24 16:32  lballabio
+2003-01-24 17:32  lballabio
 
 	* setup.scm (1.13): [no log message]
 
-2003-01-03 12:08  lballabio
+2003-01-03 13:08  lballabio
 
 	* setup.scm (1.11.2.2), test/quantlib-test-suite.scm (1.9.4.1),
 	test/unittest.scm (1.6.4.1), test/utilities.scm (1.2.4.1): [no log
 	message]
 
-2003-01-01 12:23  nando
+2003-01-01 13:23  nando
 
 	* ChangeLog.txt (1.2.2.1): updated
 
-2002-12-31 18:49  nando
+2002-12-31 19:49  nando
 
 	* LICENSE.TXT (1.1.4.1): updated copyright years
 
-2002-12-19 17:18  lballabio
+2002-12-19 18:18  lballabio
 
 	* setup.scm (1.12): Updated version
 
-2002-12-19 17:06  lballabio
+2002-12-19 18:06  lballabio
 
 	* setup.scm (1.11.2.1): Updated version
 
-2002-12-16 11:36  nando
+2002-12-16 12:36  nando
 
 	* ChangeLog.txt (1.2): updated
 
-2002-12-16 10:38  lballabio
+2002-12-16 11:38  lballabio
 
 	* setup.scm (1.11): [no log message]
 
-2002-12-06 14:37  lballabio
+2002-12-06 15:37  lballabio
 
 	* setup.scm (1.10): [no log message]
 
-2002-11-20 13:59  lballabio
+2002-11-20 14:59  lballabio
 
 	* setup.scm (1.9): Exported DiscountCurve
 
-2002-11-08 15:38  lballabio
+2002-11-08 16:38  lballabio
 
 	* setup.scm (1.8): s/CC/CXX/
 
-2002-11-05 14:58  lballabio
+2002-11-05 15:58  lballabio
 
 	* test/quantlib-test-suite.scm (1.9): Almost there
 
-2002-10-03 16:46  lballabio
+2002-10-03 18:46  lballabio
 
 	* setup.scm (1.7): A few new-style vol term structures
 
-2002-09-24 14:25  lballabio
+2002-09-24 16:25  lballabio
 
 	* setup.scm (1.6): A look at the optimizers (nothing major)
 
-2002-09-12 12:50  lballabio
+2002-09-12 14:50  lballabio
 
 	* README.txt (1.4): Synch with QuantLib
 
-2002-09-01 15:15  lballabio
+2002-09-01 17:15  lballabio
 
 	* setup.scm (1.5), test/quantlib-test-suite.scm (1.8),
 	test/unittest.scm (1.6), test/utilities.scm (1.2): Almost there
 
-2002-08-07 14:01  lballabio
+2002-08-07 16:01  lballabio
 
 	* setup.scm (1.4), test/quantlib-test-suite.scm (1.7),
 	test/unittest.scm (1.5), test/utilities.scm (1.1): Catching up with
 	MzScheme
 
-2002-08-03 16:16  lballabio
+2002-08-03 18:16  lballabio
 
 	* README.txt (1.3): Keeping up with SWIG
 
-2002-07-22 10:05  lballabio
+2002-07-22 12:05  lballabio
 
 	* test/: quantlib-test-suite.scm (1.6), unittest.scm (1.4): Last
 	couple of weeks
 
-2002-07-11 15:18  lballabio
+2002-07-11 17:18  lballabio
 
 	* .cvsignore (1.1): Some more .cvsignore
 
-2002-06-27 17:28  lballabio
+2002-06-27 19:28  lballabio
 
 	* test/unittest.scm (1.3): Saved from laptop crash (phew...)
 
-2002-06-24 07:29  lballabio
+2002-06-24 09:29  lballabio
 
 	* setup.scm (1.3), test/quantlib-test-suite.scm (1.5): a couple of
 	weeks' worth
 
-2002-06-11 15:40  lballabio
+2002-06-11 17:40  lballabio
 
 	* README.txt (1.2), test/quantlib-test-suite.scm (1.4): Synch with
 	QuantLib
 
-2002-06-03 08:24  lballabio
+2002-06-03 10:24  lballabio
 
 	* test/: quantlib-test-suite.scm (1.3), unittest.scm (1.2): unified
 	tests for MzScheme and Guile
 
-2002-05-31 15:21  lballabio
+2002-05-31 17:21  lballabio
 
 	* setup.scm (1.2), test/quantlib-test-suite.scm (1.2): Compacting
 	MzScheme and Guile
 
-2002-05-31 15:16  lballabio
+2002-05-31 17:16  lballabio
 
 	* Authors.txt (1.1), ChangeLog.txt (1.1), Contributors.txt (1.1),
 	History.txt (1.1), LICENSE.TXT (1.1), README.txt (1.1), setup.scm

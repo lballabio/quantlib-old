@@ -1,32 +1,53 @@
-2003-06-26 09:22  lballabio
+2003-08-19 15:12  lballabio
+
+	* setup.rb (1.45.2.1): Removed warning and made compatible with
+	Ruby 1.8
+
+2003-07-25 13:05  lballabio
+
+	* setup.rb (1.46): Bumped version number after branching
+
+2003-07-25 12:51  lballabio
+
+	* setup.rb (1.45): Bumped version number
+
+2003-07-24 09:43  lballabio
+
+	* setup.rb (1.44): Added new files to setup
+
+2003-07-22 17:34  nando
+
+	* ChangeLog.txt (1.16): updated
+
+2003-06-26 11:22  lballabio
 
 	* setup.rb (1.43): [no log message]
 
-2003-06-13 13:36  lballabio
+2003-06-13 15:36  lballabio
 
 	* setup.rb (1.41.2.2): [no log message]
 
-2003-06-11 15:06  lballabio
+2003-06-11 17:06  lballabio
 
 	* setup.rb (1.42): Bumped version number
 
-2003-06-11 12:33  lballabio
+2003-06-11 14:33  lballabio
 
 	* setup.rb (1.41.2.1): Preparing for release
 
-2003-05-30 09:52  lballabio
+2003-05-30 11:52  lballabio
 
 	* setup.rb (1.41): Short rate models exported
 
-2003-05-22 15:30  lballabio
+2003-05-22 17:30  lballabio
 
 	* test/solvers1d.rb (1.8): Synch with C++
 
-2003-05-20 08:07  lballabio
+2003-05-20 10:07  lballabio
 
 	* setup.rb (1.40): [no log message]
 
-2003-05-16 16:16  lballabio
+2003-05-16 18:16  lballabio
 
 	* QuantLib.rb (1.19), setup.rb (1.39), test/QuantLibTestSuite.rb
 	(1.21), test/calendars.rb (1.3), test/capfloor.rb (1.9),
@@ -40,104 +61,104 @@
 	test/swaption.rb (1.7), test/termstructures.rb (1.14): First
 	tag-free commit. Drink and be merry.
 
-2003-05-09 11:24  lballabio
+2003-05-09 13:24  lballabio
 
 	* setup.rb (1.38): Synch with C++
 
-2003-05-06 11:37  lballabio
+2003-05-06 13:37  lballabio
 
 	* test/: covariance.rb (1.6), riskstatistics.rb (1.10),
 	statistics.rb (1.11): Synch with C++ needed
 
-2003-04-22 14:55  nando
+2003-04-22 16:55  nando
 
 	* ChangeLog.txt (1.15): updated
 
-2003-04-22 14:37  nando
+2003-04-22 16:37  nando
 
 	* ChangeLog.txt (1.14): updated
 
-2003-04-22 13:17  lballabio
+2003-04-22 15:17  lballabio
 
 	* test/: covariance.rb (1.5), old_pricers.rb (1.8): Synch with C++
 
-2003-04-17 10:12  lballabio
+2003-04-17 12:12  lballabio
 
 	* test/: QuantLibTestSuite.rb (1.20), statistics.rb (1.10): More
 	indiscriminated greps :)
 
-2003-04-15 15:31  nando
+2003-04-15 17:31  nando
 
 	* setup.rb (1.37), test/QuantLibTestSuite.rb (1.19),
 	test/riskstatistics.rb (1.9), test/statistics.rb (1.9): Statistics
 	renamed GaussianStatistics and replaced by the former HStatistics
 
-2003-04-10 16:39  lballabio
+2003-04-10 18:39  lballabio
 
 	* setup.rb (1.36), test/QuantLibTestSuite.rb (1.18),
 	test/riskstatistics.rb (1.8), test/statistics.rb (1.8): GRUMPF
 
-2003-04-10 11:47  nando
+2003-04-10 13:47  nando
 
 	* ChangeLog.txt (1.13), setup.rb (1.35), test/QuantLibTestSuite.rb
 	(1.17), test/riskstatistics.rb (1.7), test/statistics.rb (1.7):
 	grammar rules: back to Statistics, with the final s
 
-2003-03-28 17:33  lballabio
+2003-03-28 18:33  lballabio
 
 	* README.txt (1.11), test/old_pricers.rb (1.7): [no log message]
 
-2003-03-17 10:10  lballabio
+2003-03-17 11:10  lballabio
 
 	* test/: capfloor.rb (1.8), old_pricers.rb (1.6), swaption.rb
 	(1.6): Works on gcc + errorEstimate() and misc
 
-2003-03-16 02:01  nando
+2003-03-16 03:01  nando
 
 	* test/distributions.rb (1.10): improved Cumulative and Inverse
 	Cumulative Normal Distribution functions
 
-2003-03-15 23:00  nando
+2003-03-16 00:00  nando
 
 	* test/distributions.rb (1.9): old bug fixed
 
-2003-03-15 20:24  nando
+2003-03-15 21:24  nando
 
 	* test/distributions.rb (1.8): 1) InvCumulativeNormalDistribution
 	renamed to InverseCumulativeNormal.  2) Acklam's approximation for
 	inverse cumulative normal distribution function replaced Moro's
 	algorithm.
 
-2003-03-14 09:27  nando
+2003-03-14 10:27  nando
 
 	* ChangeLog.txt (1.12): updated
 
-2003-03-10 13:28  lballabio
+2003-03-10 14:28  lballabio
 
 	* setup.rb (1.34): Cleaned up installation
 
-2003-03-10 12:06  lballabio
+2003-03-10 13:06  lballabio
 
 	* test/europeanoption.rb (1.13): Synch with C++
 
-2003-02-25 13:17  lballabio
+2003-02-25 14:17  lballabio
 
 	* test/europeanoption.rb (1.12): [no log message]
 
-2003-02-25 10:24  lballabio
+2003-02-25 11:24  lballabio
 
 	* test/instruments.rb (1.7): Test for frozen instrument
 
-2003-02-17 08:16  lballabio
+2003-02-17 09:16  lballabio
 
 	* test/: capfloor.rb (1.7), piecewiseflatforward.rb (1.11),
 	termstructures.rb (1.13): Had tests work on Sundays
 
-2003-02-16 12:44  lballabio
+2003-02-16 13:44  lballabio
 
 	* test/europeanoption.rb (1.11): Synch with C++
 
-2003-02-13 16:28  lballabio
+2003-02-13 17:28  lballabio
 
 	* README.txt (1.10), test/QuantLibTestSuite.rb (1.16),
 	test/calendars.rb (1.2), test/capfloor.rb (1.6), test/covariance.rb
@@ -150,28 +171,28 @@
 	test/solvers1d.rb (1.6), test/statistics.rb (1.6), test/swaption.rb
 	(1.5), test/termstructures.rb (1.12): Updated for Test::Unit 0.1.8
 
-2003-02-06 16:35  lballabio
+2003-02-06 17:35  lballabio
 
 	* test/europeanoption.rb (1.9): Synch with C++
 
-2003-02-04 17:48  lballabio
+2003-02-04 18:48  lballabio
 
 	* test/dates.rb (1.7): [no log message]
 
-2003-02-03 14:22  nando
+2003-02-03 15:22  nando
 
 	* News.txt (1.4), README.txt (1.9): improved documentation details
 
-2003-02-03 11:47  nando
+2003-02-03 12:47  nando
 
 	* News.txt (1.3): adding news.txt details Luigi: fill in other
 	details if you like, and I'll publish them for the 0.3.1 release
 
-2003-02-03 11:43  nando
+2003-02-03 12:43  nando
 
 	* History.txt (1.2), News.txt (1.2): date of release 0.3.1
 
-2003-01-28 17:23  lballabio
+2003-01-28 18:23  lballabio
 
 	* ChangeLog.txt (1.11), LICENSE.TXT (1.2), QuantLib.rb (1.18),
 	setup.rb (1.33), test/QuantLibTestSuite.rb (1.15), test/capfloor.rb
@@ -185,16 +206,16 @@
 	test/statistics.rb (1.5), test/swaption.rb (1.4),
 	test/termstructures.rb (1.11): Merged changes made on 0.3.1 branch
 
-2003-01-28 08:29  lballabio
+2003-01-28 09:29  lballabio
 
 	* setup.rb (1.32), test/QuantLibTestSuite.rb (1.14),
 	test/calendars.rb (1.1): Joint calendars and stuff
 
-2003-01-24 16:31  lballabio
+2003-01-24 17:31  lballabio
 
 	* setup.rb (1.31): [no log message]
 
-2003-01-17 11:10  lballabio
+2003-01-17 12:10  lballabio
 
 	* README.txt (1.8), setup.rb (1.30), test/QuantLibTestSuite.rb
 	(1.13), test/capfloor.rb (1.4), test/covariance.rb (1.2),
@@ -207,15 +228,15 @@
 	test/solvers1d.rb (1.4), test/statistics.rb (1.4), test/swaption.rb
 	(1.3), test/termstructures.rb (1.10): Migrated to Test::Unit
 
-2003-01-13 14:43  lballabio
+2003-01-13 15:43  lballabio
 
 	* test/simpleswap.rb (1.4.4.2): Hidden some dust under the carpet
 
-2003-01-01 12:22  nando
+2003-01-01 13:22  nando
 
 	* ChangeLog.txt (1.10.2.1): updated
 
-2002-12-31 18:49  nando
+2002-12-31 19:49  nando
 
 	* LICENSE.TXT (1.1.1.1.8.1), QuantLib.rb (1.17.4.1), setup.rb
 	(1.28.2.2), test/QuantLibTestSuite.rb (1.12.4.1), test/capfloor.rb
@@ -230,132 +251,132 @@
 	test/swaption.rb (1.2.4.1), test/termstructures.rb (1.9.2.1):
 	updated copyright years
 
-2002-12-19 17:18  lballabio
+2002-12-19 18:18  lballabio
 
 	* setup.rb (1.29): Updated version
 
-2002-12-19 17:06  lballabio
+2002-12-19 18:06  lballabio
 
 	* setup.rb (1.28.2.1): Updated version
 
-2002-12-16 11:33  nando
+2002-12-16 12:33  nando
 
 	* ChangeLog.txt (1.7), ChangeLog.txt (1.8), ChangeLog.txt (1.9),
 	ChangeLog.txt (1.10): updated
 
-2002-12-11 13:46  lballabio
+2002-12-11 14:46  lballabio
 
 	* test/: capfloor.rb (1.3), piecewiseflatforward.rb (1.7),
 	termstructures.rb (1.9): Term structure and index fixing cleanup
 
-2002-12-06 14:37  lballabio
+2002-12-06 15:37  lballabio
 
 	* setup.rb (1.28): [no log message]
 
-2002-11-20 13:59  lballabio
+2002-11-20 14:59  lballabio
 
 	* setup.rb (1.27): Exported DiscountCurve
 
-2002-11-08 15:38  lballabio
+2002-11-08 16:38  lballabio
 
 	* setup.rb (1.26): s/CC/CXX/
 
-2002-11-05 14:58  lballabio
+2002-11-05 15:58  lballabio
 
 	* test/old_pricers.rb (1.2): Almost there
 
-2002-10-03 16:46  lballabio
+2002-10-03 18:46  lballabio
 
 	* setup.rb (1.25): A few new-style vol term structures
 
-2002-09-24 14:25  lballabio
+2002-09-24 16:25  lballabio
 
 	* setup.rb (1.24): A look at the optimizers (nothing major)
 
-2002-09-12 12:50  lballabio
+2002-09-12 14:50  lballabio
 
 	* QuantLib.rb (1.17), README.txt (1.7), test/capfloor.rb (1.2),
 	test/europeanoption.rb (1.6), test/piecewiseflatforward.rb (1.6),
 	test/simpleswap.rb (1.4), test/swaption.rb (1.2),
 	test/termstructures.rb (1.8): Synch with QuantLib
 
-2002-09-01 15:15  lballabio
+2002-09-01 17:15  lballabio
 
 	* QuantLib.rb (1.16), setup.rb (1.23), test/QuantLibTestSuite.rb
 	(1.12), test/capfloor.rb (1.1), test/old_pricers.rb (1.1),
 	test/swaption.rb (1.1): Almost there
 
-2002-08-07 16:46  lballabio
+2002-08-07 18:46  lballabio
 
 	* test/dates.rb (1.4): Catching up with SWIG
 
-2002-08-06 17:12  lballabio
+2002-08-06 19:12  lballabio
 
 	* test/: piecewiseflatforward.rb (1.5), termstructures.rb (1.7):
 	Catching up with QuantLib
 
-2002-08-06 13:37  lballabio
+2002-08-06 15:37  lballabio
 
 	* QuantLib.rb (1.15): Catching up with SWIG
 
-2002-08-05 17:32  lballabio
+2002-08-05 19:32  lballabio
 
 	* QuantLib.rb (1.14): Catching up with SWIG
 
-2002-08-03 16:16  lballabio
+2002-08-03 18:16  lballabio
 
 	* QuantLib.rb (1.13), README.txt (1.6), test/QuantLibTestSuite.rb
 	(1.11), test/europeanoption.rb (1.5), test/piecewiseflatforward.rb
 	(1.4), test/simpleswap.rb (1.3), test/termstructures.rb (1.6):
 	Keeping up with SWIG
 
-2002-07-22 10:05  lballabio
+2002-07-22 12:05  lballabio
 
 	* QuantLib.rb (1.12), test/instruments.rb (1.3),
 	test/marketelements.rb (1.3), test/termstructures.rb (1.5): Last
 	couple of weeks
 
-2002-07-11 15:27  lballabio
+2002-07-11 17:27  lballabio
 
 	* QuantLib.rb (1.11), test/riskstatistics.rb (1.3),
 	test/statistics.rb (1.3): Last couple of weeks
 
-2002-07-11 15:18  lballabio
+2002-07-11 17:18  lballabio
 
 	* .cvsignore (1.1): Some more .cvsignore
 
-2002-06-28 13:34  lballabio
+2002-06-28 15:34  lballabio
 
 	* test/: piecewiseflatforward.rb (1.3), termstructures.rb (1.4):
 	Improved term structure test
 
-2002-06-27 17:28  lballabio
+2002-06-27 19:28  lballabio
 
 	* QuantLib.rb (1.10), test/QuantLibTestSuite.rb (1.10),
 	test/distributions.rb (1.4), test/europeanoption.rb (1.4),
 	test/piecewiseflatforward.rb (1.2), test/simpleswap.rb (1.2),
 	test/termstructures.rb (1.3): Saved from laptop crash (phew...)
 
-2002-06-24 07:29  lballabio
+2002-06-24 09:29  lballabio
 
 	* QuantLib.rb (1.9), setup.rb (1.22), test/QuantLibTestSuite.rb
 	(1.9), test/covariance.rb (1.1), test/piecewiseflatforward.rb
 	(1.1), test/simpleswap.rb (1.1): a couple of weeks' worth
 
-2002-06-11 15:40  lballabio
+2002-06-11 17:40  lballabio
 
 	* README.txt (1.5), test/europeanoption.rb (1.3): Synch with
 	QuantLib
 
-2002-06-03 10:29  lballabio
+2002-06-03 12:29  lballabio
 
 	* test/europeanoption.rb (1.2): Synch with ql
 
-2002-05-31 15:23  lballabio
+2002-05-31 17:23  lballabio
 
 	* test/termstructures.rb (1.2): Compacting MzScheme and Guile
 
-2002-05-30 08:20  lballabio
+2002-05-30 10:20  lballabio
 
 	* QuantLib.rb (1.8), setup.rb (1.21), test/QuantLibTestSuite.rb
 	(1.8), test/dates.rb (1.3), test/daycounters.rb (1.3),
@@ -363,46 +384,46 @@
 	test/operators.rb (1.2), test/riskstatistics.rb (1.2),
 	test/solvers1d.rb (1.3), test/statistics.rb (1.2): Biweekly commit
 
-2002-05-17 16:07  lballabio
+2002-05-17 18:07  lballabio
 
 	* QuantLib.rb (1.7), setup.rb (1.20), test/QuantLibTestSuite.rb
 	(1.7), test/operators.rb (1.1), test/termstructures.rb (1.1):
 	Weekly payload
 
-2002-05-13 16:04  lballabio
+2002-05-13 18:04  lballabio
 
 	* setup.rb (1.19): Allow passing CXXFLAGS
 
-2002-05-13 08:38  lballabio
+2002-05-13 10:38  lballabio
 
 	* README.txt (1.4), setup.rb (1.18), test/QuantLibTestSuite.rb
 	(1.6), test/segmentintegral.rb (1.1), test/statistics.rb (1.1):
 	Weekly payload
 
-2002-05-03 12:46  lballabio
+2002-05-03 14:46  lballabio
 
 	* setup.rb (1.17): More fixes in setup scripts
 
-2002-05-03 11:30  lballabio
+2002-05-03 13:30  lballabio
 
 	* setup.rb (1.16): More fixes in setup scripts
 
-2002-05-03 11:06  lballabio
+2002-05-03 13:06  lballabio
 
 	* setup.rb (1.15): Fixed setup files
 
-2002-05-02 07:50  lballabio
+2002-05-02 09:50  lballabio
 
 	* QuantLib.rb (1.6), test/QuantLibTestSuite.rb (1.5),
 	test/instruments.rb (1.2), test/marketelements.rb (1.2): Handles to
 	base classes are templates, not typedefs
 
-2002-04-29 15:24  lballabio
+2002-04-29 17:24  lballabio
 
 	* QuantLib.rb (1.5), setup.rb (1.14), test/QuantLibTestSuite.rb
 	(1.4), test/instruments.rb (1.1): Migrated instruments.i
 
-2002-04-26 07:57  lballabio
+2002-04-26 09:57  lballabio
 
 	* QuantLib.rb (1.4), setup.rb (1.13), test/QuantLibTestSuite.rb
 	(1.3), test/dates.rb (1.2), test/daycounters.rb (1.2),
@@ -410,86 +431,86 @@
 	test/riskstatistics.rb (1.1), test/solvers1d.rb (1.2): Migrated
 	risk statistics and market elements
 
-2002-04-22 14:35  lballabio
+2002-04-22 16:35  lballabio
 
 	* setup.rb (1.12), test/QuantLibTestSuite.rb (1.2),
 	test/solvers1d.rb (1.1): Renamed Solver1D::lowBound and hiBound
 
-2002-04-21 21:21  nando
+2002-04-21 23:21  nando
 
 	* setup.rb (1.10.2.2): version number up
 
-2002-04-21 20:38  nando
+2002-04-21 22:38  nando
 
 	* setup.rb (1.10.2.1): version number up
 
-2002-04-21 20:32  nando
+2002-04-21 22:32  nando
 
 	* setup.rb (1.11): version number up
 
-2002-04-21 19:28  nando
+2002-04-21 21:28  nando
 
 	* ChangeLog.txt (1.6): updated
 
-2002-04-18 11:37  lballabio
+2002-04-18 13:37  lballabio
 
 	* QuantLib.rb (1.3), setup.rb (1.10): History.i migrated
 
-2002-04-16 21:59  nando
+2002-04-16 23:59  nando
 
 	* ChangeLog.txt (1.5): updated
 
-2002-04-10 15:38  lballabio
+2002-04-10 17:38  lballabio
 
 	* setup.rb (1.9): Towards SWIG 1.3.12
 
-2002-04-10 09:54  nando
+2002-04-10 11:54  nando
 
 	* setup.rb (1.8): version number up
 
-2002-04-09 12:30  nando
+2002-04-09 14:30  nando
 
 	* setup.rb (1.7): supporting also zip distribution for Win32
 
-2002-04-09 11:05  nando
+2002-04-09 13:05  nando
 
 	* setup.rb (1.6): supporting also zip distribution for Win32
 
-2002-04-09 09:15  nando
+2002-04-09 11:15  nando
 
 	* ChangeLog.txt (1.4): updated
 
-2002-04-08 08:10  nando
+2002-04-08 10:10  nando
 
 	* ChangeLog.txt (1.3): updated
 
-2002-04-08 08:02  nando
+2002-04-08 10:02  nando
 
 	* ChangeLog.txt (1.2): updated
 
-2002-04-05 14:34  lballabio
+2002-04-05 16:34  lballabio
 
 	* README.txt (1.3): engaged the time machine and switched to SWIG
 	1.3.12
 
-2002-04-05 12:32  lballabio
+2002-04-05 14:32  lballabio
 
 	* setup.rb (1.5), README.txt (1.2): QuantLib-Ruby now works on
 	Win32
 
-2002-04-04 15:01  lballabio
+2002-04-04 17:01  lballabio
 
 	* QuantLib.rb (1.2), setup.rb (1.4): vector.i half migrated
 
-2002-04-04 10:14  lballabio
+2002-04-04 12:14  lballabio
 
 	* setup.rb (1.3): observer.i migrated
 
-2002-04-03 13:57  lballabio
+2002-04-03 15:57  lballabio
 
 	* setup.rb (1.2): Array migrated
 
-2002-04-02 15:30  lballabio
+2002-04-02 17:30  lballabio
 
 	* Authors.txt (1.1), ChangeLog.txt (1.1), Contributors.txt (1.1),
 	History.txt (1.1), LICENSE.TXT (1.1), News.txt (1.1), QuantLib.rb
@@ -497,7 +518,7 @@
 	(1.1), test/dates.rb (1.1), test/daycounters.rb (1.1),
 	test/distributions.rb (1.1): Initial revision
 
-2002-04-02 15:30  lballabio
+2002-04-02 17:30  lballabio
 
 	* Authors.txt (1.1.1.1), ChangeLog.txt (1.1.1.1), Contributors.txt
 	(1.1.1.1), History.txt (1.1.1.1), LICENSE.TXT (1.1.1.1), News.txt

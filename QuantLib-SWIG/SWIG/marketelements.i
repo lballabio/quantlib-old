@@ -122,5 +122,9 @@ class CompositeMarketElementHandle : public Handle<MarketElement> {
 };
 #endif
 
+namespace std {
+    %template(MarketElementVector) vector<Handle<MarketElement> >;
+    %template(MarketElementHandleVector) vector<RelinkableHandle<MarketElement> >;
+}
 
 #endif
