@@ -55,4 +55,11 @@ class BlackScholesProcessPtr
 };
 
 
+// allow use of diffusion process vectors
+namespace std {
+    %template(DiffusionProcessVector) 
+        vector<boost::shared_ptr<DiffusionProcess> >;
+}
+
+
 #endif

@@ -383,10 +383,17 @@ class McBasket {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McBasket(OptionType type, const std::vector<double>& underlying, 
-             double strike, const Array& dividendYield, 
-             const Matrix& covariance, Rate riskFreeRate, 
-             double residualTime, long seed = 0);
+    McBasket(OptionType type, 
+             const std::vector<double>& underlying, 
+             double strike, 
+             const std::vector<RelinkableHandle<TermStructure> >& 
+                                                             dividendYields,
+             const RelinkableHandle<TermStructure>& riskFreeRate,
+             const std::vector<RelinkableHandle<BlackVolTermStructure> >& 
+                                                             volatilities,
+             const Matrix& correlation,
+             double residualTime, 
+             long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;
     double valueWithSamples(Size samples) const;
@@ -400,9 +407,14 @@ class McMaxBasket {
     #endif
   public:
     McMaxBasket(const std::vector<double>& underlying, 
-                const Array& dividendYield,
-                const Matrix& covariance, Rate riskFreeRate,
-                double residualTime, long seed = 0);
+                const std::vector<RelinkableHandle<TermStructure> >& 
+                                                             dividendYields,
+                const RelinkableHandle<TermStructure>& riskFreeRate,
+                const std::vector<RelinkableHandle<BlackVolTermStructure> >& 
+                                                             volatilities,
+                const Matrix& correlation,
+                double residualTime, 
+                long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;
     double valueWithSamples(Size samples) const;
@@ -416,9 +428,14 @@ class McHimalaya {
     #endif
   public:
     McHimalaya(const std::vector<double>& underlying, 
-               const Array& dividendYield,
-               const Matrix& covariance, Rate riskFreeRate,
-			   double strike, const std::vector<double>& timeDelays,
+               const std::vector<RelinkableHandle<TermStructure> >& 
+                                                             dividendYields,
+               const RelinkableHandle<TermStructure>& riskFreeRate,
+               const std::vector<RelinkableHandle<BlackVolTermStructure> >& 
+                                                             volatilities,
+               const Matrix& correlation,
+			   double strike, 
+               const std::vector<Time>& timeDelays,
 		       long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;
@@ -432,8 +449,13 @@ class McEverest {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-    McEverest(const Array& dividendYield, const Matrix& covariance,
-              Rate riskFreeRate, Time residualTime,
+    McEverest(const std::vector<RelinkableHandle<TermStructure> >& 
+                                                             dividendYield,
+              const RelinkableHandle<TermStructure>& riskFreeRate,
+              const std::vector<RelinkableHandle<BlackVolTermStructure> >& 
+                                                             volatilities,
+              const Matrix& correlation,
+              Time residualTime,
 			  long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;
@@ -448,9 +470,15 @@ class McPagoda {
     #endif
   public:
     McPagoda(const std::vector<double>& portfolio, 
-             double fraction, double roof,
-		     const Array& dividendYield, const Matrix& covariance,
-		     Rate riskFreeRate, const std::vector<double>& timeDelays,
+             double fraction, 
+             double roof,
+             const std::vector<RelinkableHandle<TermStructure> >& 
+                                                             dividendYields,
+             const RelinkableHandle<TermStructure>& riskFreeRate,
+             const std::vector<RelinkableHandle<BlackVolTermStructure> >& 
+                                                             volatilities,
+             const Matrix& correlation,
+		     const std::vector<Time>& timeDelays,
 		     long seed = 0);
     double value(double tolerance,
                  Size maxSample = QL_MAX_INT) const;

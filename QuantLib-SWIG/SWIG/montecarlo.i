@@ -216,16 +216,20 @@ using QuantLib::GaussianMultiPathGenerator;
 class GaussianMultiPathGenerator {
   public:
     %extend {
-      GaussianMultiPathGenerator(const Array& drifts,
-                                 const Matrix& covariance,
-                                 const std::vector<double>& timeDelays,
-                                 long seed=0) {
-          return new GaussianMultiPathGenerator(drifts,
-                                                covariance,
+      GaussianMultiPathGenerator(
+                     const std::vector<boost::shared_ptr<DiffusionProcess> >& 
+                                                               diffusionProcs,
+                     const Matrix& correlation,
+                     const std::vector<double>& times,
+                     const GaussianRandomSequenceGenerator& generator,
+                     bool brownianBridge = false) {
+          return new GaussianMultiPathGenerator(diffusionProcs,
+                                                correlation,
                                                 QuantLib::TimeGrid(
-                                                    timeDelays.begin(),
-                                                    timeDelays.end()),
-                                                seed);
+                                                    times.begin(),
+                                                    times.end()),
+                                                generator,
+                                                brownianBridge);
       }
     }
 	Sample<MultiPath> next() const;
