@@ -27,8 +27,6 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile=".\build\Release/ClientCPP.pch"
@@ -42,11 +40,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="bin\QuantLibAddinClientCPP-vc71-0_3_8.exe"
+				OutputFile="build\Release\QLADemo.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,..\..\Addins\C++\lib"
-				ProgramDatabaseFile=".\build\Release/QuantLibAddinClientCPP.pdb"
+				ProgramDatabaseFile=".\build\Release/QLADemo.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
@@ -89,8 +87,6 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile=".\build\Debug/ClientCPP.pch"
@@ -106,12 +102,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="bin\QuantLibAddinClientCPP-vc71-gd-0_3_8.exe"
+				OutputFile="build\Debug\QLADemo.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,..\..\Addins\C++\lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\build\Debug/QuantLibAddinClientCPP_d.pdb"
+				ProgramDatabaseFile=".\build\Debug/QLADemo.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
@@ -144,7 +140,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="qldemo.cpp">
+			RelativePath="qlademo.cpp">
 			<FileConfiguration
 				Name="Release|Win32">
 				<Tool

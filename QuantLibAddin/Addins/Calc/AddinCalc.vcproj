@@ -20,9 +20,9 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="WINDOWS SUPPORT PENDING"
-				ReBuildCommandLine="WINDOWS SUPPORT PENDING /a"
-				Output="Addin.lib"/>
+				BuildCommandLine="nmake /f Makefile.win32"
+				ReBuildCommandLine="nmake /f Makefile.win32 /a"
+				Output="QuantLibAddin.dll"/>
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
@@ -33,46 +33,73 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="WINDOWS SUPPORT PENDING"
-				ReBuildCommandLine="WINDOWS SUPPORT PENDING /a"
-				Output="Addin.lib"/>
+				BuildCommandLine="nmake /f Makefile.win32.debug"
+				ReBuildCommandLine="nmake /f Makefile.win32.debug /a"
+				Output="QuantLibAddin.dll"/>
 		</Configuration>
 	</Configurations>
 	<References>
 	</References>
 	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
+			<File
+				RelativePath="funcdef.cpp">
+			</File>
+			<File
+				RelativePath="functions.cpp">
+			</File>
+			<File
+				RelativePath="options.cpp">
+			</File>
+			<File
+				RelativePath="qladdin.cpp">
+			</File>
+			<File
+				RelativePath="QuantLibAddin.def">
+			</File>
+			<File
+				RelativePath="utilities.cpp">
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl">
+			<File
+				RelativePath="autogen.hpp">
+			</File>
+			<File
+				RelativePath="functions.hpp">
+			</File>
+			<File
+				RelativePath="options.hpp">
+			</File>
+			<File
+				RelativePath="qladdin.hpp">
+			</File>
+			<File
+				RelativePath="qldefs.hpp">
+			</File>
+			<File
+				RelativePath="utilities.hpp">
+			</File>
+		</Filter>
+		<Filter
+			Name="Make"
+			Filter="">
+			<File
+				RelativePath="Makefile.win32">
+			</File>
+			<File
+				RelativePath="Makefile.win32.debug">
+			</File>
+		</Filter>
 		<File
-			RelativePath="Addin.idl">
-		</File>
-		<File
-			RelativePath="AddinCalc.dsp">
-		</File>
-		<File
-			RelativePath="functions.cpp">
-		</File>
-		<File
-			RelativePath="Makefile">
-		</File>
-		<File
-			RelativePath="options.cpp">
-		</File>
-		<File
-			RelativePath="qladdin.cpp">
-		</File>
-		<File
-			RelativePath="qladdin.hpp">
-		</File>
-		<File
-			RelativePath="qldefs.hpp">
+			RelativePath="QuantLibAddin.idl">
 		</File>
 		<File
 			RelativePath="readme.txt">
-		</File>
-		<File
-			RelativePath="utilities.cpp">
-		</File>
-		<File
-			RelativePath="utilities.hpp">
 		</File>
 	</Files>
 	<Globals>

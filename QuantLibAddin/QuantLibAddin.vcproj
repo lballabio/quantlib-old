@@ -27,8 +27,6 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile=".\build\ReleaseMTDLL/QuantLibAddin.pch"
@@ -82,14 +80,13 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile=".\build\Release/QuantLibAddin.pch"
 				AssemblerListingLocation=".\build\Release/"
 				ObjectFile=".\build\Release/"
 				ProgramDataBaseFileName=".\build\Release/"
+				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -132,11 +129,9 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="$(OBJECT_HANDLER_DIR),$(QL_DIR),./"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;NOMINMAX"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile=".\build\Debug/QuantLibAddin.pch"
@@ -176,8 +171,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release SingleThread|Win32"
-			OutputDirectory=".\build\ReleaseSingleThread"
-			IntermediateDirectory=".\build\ReleaseSingleThread"
+			OutputDirectory=".\build\ReleaseST"
+			IntermediateDirectory=".\build\ReleaseST"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -191,14 +186,12 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\ReleaseSingleThread/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\ReleaseSingleThread/"
-				ObjectFile=".\build\ReleaseSingleThread/"
-				ProgramDataBaseFileName=".\build\ReleaseSingleThread/"
+				PrecompiledHeaderFile=".\build\ReleaseST/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\ReleaseST/"
+				ObjectFile=".\build\ReleaseST/"
+				ProgramDataBaseFileName=".\build\ReleaseST/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -231,8 +224,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug SingleThread|Win32"
-			OutputDirectory=".\build\DebugSingleThread"
-			IntermediateDirectory=".\build\DebugSingleThread"
+			OutputDirectory=".\build\DebugST"
+			IntermediateDirectory=".\build\DebugST"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -244,14 +237,12 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\DebugSingleThread/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\DebugSingleThread/"
-				ObjectFile=".\build\DebugSingleThread/"
-				ProgramDataBaseFileName=".\build\DebugSingleThread/"
+				PrecompiledHeaderFile=".\build\DebugST/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\DebugST/"
+				ObjectFile=".\build\DebugST/"
+				ProgramDataBaseFileName=".\build\DebugST/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -298,8 +289,6 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile=".\build\DebugMTDLL/QuantLibAddin.pch"
@@ -342,10 +331,10 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Source Files"
-			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
+			Name="objects"
+			Filter="">
 			<File
-				RelativePath="QuantLibAddin\objectoption.cpp">
+				RelativePath="QuantLibAddin\objects\objectoption.cpp">
 				<FileConfiguration
 					Name="Release MTDLL|Win32">
 					<Tool
@@ -360,7 +349,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -399,7 +389,10 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="QuantLibAddin\objectstochastic.cpp">
+				RelativePath="QuantLibAddin\objects\objectoption.hpp">
+			</File>
+			<File
+				RelativePath="QuantLibAddin\objects\objectstochastic.cpp">
 				<FileConfiguration
 					Name="Release MTDLL|Win32">
 					<Tool
@@ -414,7 +407,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -451,24 +445,143 @@
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="QuantLibAddin\objects\objectstochastic.hpp">
 			</File>
 		</Filter>
 		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl">
+			Name="functions"
+			Filter="">
 			<File
-				RelativePath="QuantLibAddin\autolink.hpp">
+				RelativePath="QuantLibAddin\functions\options.cpp">
+				<FileConfiguration
+					Name="Release MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="QuantLibAddin\objectoption.hpp">
+				RelativePath="QuantLibAddin\functions\options.hpp">
 			</File>
 			<File
-				RelativePath="QuantLibAddin\objectstochastic.hpp">
+				RelativePath="QuantLibAddin\functions\utilities.cpp">
+				<FileConfiguration
+					Name="Release MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="QuantLibAddin\qladdindefines.hpp">
+				RelativePath="QuantLibAddin\functions\utilities.hpp">
 			</File>
 		</Filter>
+		<File
+			RelativePath="QuantLibAddin\autolink.hpp">
+		</File>
+		<File
+			RelativePath="QuantLibAddin\qladdin.h">
+		</File>
+		<File
+			RelativePath="QuantLibAddin\qladdin.hpp">
+		</File>
+		<File
+			RelativePath="QuantLibAddin\qladdindefines.hpp">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
