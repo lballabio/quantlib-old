@@ -49,10 +49,10 @@ ReturnByValue(Handle<CashFlow>);
 %{
 using QuantLib::CashFlows::SimpleCashFlow;
 using QuantLib::CashFlows::FixedRateCoupon;
-using QuantLib::CashFlows::FloatingRateCoupon;
+using QuantLib::CashFlows::ParCoupon;
 typedef Handle<CashFlow> SimpleCashFlowHandle;
 typedef Handle<CashFlow> FixedRateCouponHandle;
-typedef Handle<CashFlow> FloatingRateCouponHandle;
+typedef Handle<CashFlow> ParCouponHandle;
 %}
 
 %rename(SimpleCashFlow) SimpleCashFlowHandle;
@@ -83,20 +83,20 @@ class FixedRateCouponHandle : public Handle<CashFlow> {
     }
 };
 
-%rename(FloatingRateCoupon) FloatingRateCouponHandle;
-class FloatingRateCouponHandle : public Handle<CashFlow> {
+%rename(ParCoupon) ParCouponHandle;
+class ParCouponHandle : public Handle<CashFlow> {
   public:
     %extend {
-        FloatingRateCouponHandle(double nominal, const Date& paymentDate, 
-                                 const XiborHandle& index, 
-                                 const Date& startDate, const Date& endDate, 
-                                 int fixingDays, Spread spread = 0.0, 
-                                 const Date& refPeriodStart = Date(), 
-                                 const Date& refPeriodEnd = Date()) {
-            return new FloatingRateCouponHandle(
-                new FloatingRateCoupon(nominal, paymentDate, index,
-                                       startDate, endDate, fixingDays, spread,
-                                       refPeriodStart, refPeriodEnd));
+        ParCouponHandle(double nominal, const Date& paymentDate, 
+                        const XiborHandle& index, 
+                        const Date& startDate, const Date& endDate, 
+                        int fixingDays, Spread spread = 0.0, 
+                        const Date& refPeriodStart = Date(), 
+                        const Date& refPeriodEnd = Date()) {
+            return new ParCouponHandle(
+                new ParCoupon(nominal, paymentDate, index,
+                              startDate, endDate, fixingDays, spread,
+                              refPeriodStart, refPeriodEnd));
         }
     }
 };
