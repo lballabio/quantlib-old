@@ -136,7 +136,7 @@ namespace QuantLibAddin {
             return boost::shared_ptr<QuantLib::PricingEngine> (
                 new QuantLib::StulzEngine);
         else
-            QL_FAIL("IDtoEnginee: unrecognized typeEngine: " + typeEngine);
+            QL_FAIL("IDtoEngine: unrecognized typeEngine: " + typeEngine);
     }
 
 }
