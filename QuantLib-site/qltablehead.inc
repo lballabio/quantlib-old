@@ -57,6 +57,8 @@
 <ul>
 <li><a class="navlink" href="lists.html">Lists of interest</a></li>
 
+<li><a class="navlink" href="marketconventions.html">Market Conventions</a></li>
+
 <li><a class="navlink" href="http://www.wilmott.com">Wilmott&nbsp;(exits)</a></li>
 
 <li><a class="navlink" href="http://www.quantnotes.com/">QuantNotes&nbsp;(exits)</a></li>
