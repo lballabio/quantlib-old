@@ -25,7 +25,7 @@ template < typename T >
 class Conversion {
 public:
 
-    static std::vector < T > convertVector(const T* &a, const long &sz) {
+    static std::vector < T > convertVector(T* &a, const long &sz) {
         std::vector < T > ret;
         for (int i=0; i<sz; i++)
             ret.push_back(a[i]);
