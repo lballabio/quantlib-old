@@ -1,11 +1,11 @@
-sources := $(wildcard *.cpp)
-objects := $(patsubst %.cpp,%.o,$(sources))
-includes = -I..
-
-all : $(objects)
+all:
+	cd QuantLibAddin && $(MAKE)
+	cd Addins/C++ && $(MAKE)
+	cd Addins/Calc && $(MAKE)
+	cd Clients/C++ && $(MAKE)
 
 clean:
-	rm -f $(objects)
-
-$(objects) : %.o : %.cpp
-	g++ -DHAVE_CONFIG_H $(includes) -g -c -o $@ $<
+	cd QuantLibAddin && $(MAKE) clean
+	cd Addins/C++ && $(MAKE) clean
+	cd Addins/Calc && $(MAKE) clean
+	cd Clients/C++ && $(MAKE) clean
