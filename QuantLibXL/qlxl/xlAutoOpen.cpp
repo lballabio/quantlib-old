@@ -90,13 +90,17 @@ extern "C" {
 
             XlfArgDesc          accr(     "dayCount", "accrual convention");
 
-            XlfArgDesc    optionType(         "type", "option type");
-            XlfArgDesc    underlying(   "underlying", "spot value of the underlying");
-            XlfArgDesc        strike(       "strike", "option's strike");
-            XlfArgDesc dividendYield("dividendYield", "dividend yield");
-            XlfArgDesc  riskFreeRate( "riskFreeRate", "risk free rate");
-            XlfArgDesc      maturity(     "maturity", "option's maturity");
-            XlfArgDesc    volatility(   "volatility", "underlying's volatility");
+            XlfArgDesc    optionType(          "type", "is the option type");
+            XlfArgDesc    underlying(    "underlying", "is the value of the underlying");
+            XlfArgDesc        strike(        "strike", "is the strike");
+            XlfArgDesc dividendYield("dividend yield", "is the dividend yield");
+            XlfArgDesc  riskFreeRate("risk-free rate", "is the risk free rate");
+            XlfArgDesc      maturity(      "maturity", "is the option's maturity");
+            XlfArgDesc    volatility(    "volatility", "is the underlying's volatility");
+            XlfArgDesc     timeSteps(    "time steps", "is the number of time steps");
+            XlfArgDesc    gridPoints(   "grid points", "is the number of grid points");
+            XlfArgDesc       samples(       "samples", "is the number of simulated samples");
+            XlfArgDesc anthiteticVariance("anthitetic variance", "is the anthitetic variance boolean");
 
             XlfArgDesc x_array("x_array", "x data array");
             XlfArgDesc y_array("y_array", "y data array");
@@ -122,11 +126,25 @@ extern "C" {
             accrualFactorDesc.Register();
 
             // Registers Black-Scholes
-            XlfFuncDesc blackscholes("xlBlackScholes","qlBlackScholes",
-                "Black Scholes formula","QuantLibXL Finance");
-            blackscholes.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility);
-            blackscholes.Register();
+            XlfFuncDesc europeanOption("xlEuropeanOption","qlEuropeanOption",
+                "Black Scholes formula for european option","QuantLibXL Finance");
+            europeanOption.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility);
+            europeanOption.Register();
 
+            XlfFuncDesc europeanOption_fd("xlEuropeanOption_FD","qlEuropeanOption_FD",
+                "european option computed with finite differences","QuantLibXL Finance");
+            europeanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility+timeSteps+gridPoints);
+            europeanOption_fd.Register();
+
+            XlfFuncDesc europeanOption_mc("xlEuropeanOption_MC","qlEuropeanOption_MC",
+                "european option computed with Monte Carlo simulation","QuantLibXL Finance");
+            europeanOption_mc.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility+anthiteticVariance+samples);
+            europeanOption_mc.Register();
+
+            XlfFuncDesc americanOption_fd("xlAmericanOption_FD","qlAmericanOption_FD",
+                "american option computed with finite differences","QuantLibXL Finance");
+            americanOption_fd.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility+timeSteps+gridPoints);
+            americanOption_fd.Register();
 
             // Registers interpolation
             XlfFuncDesc interpolateDesc("xlinterpolate","qlInterpolate",
@@ -165,7 +183,6 @@ extern "C" {
             normSInvDesc.Register();
 
 
-/*            
             XlfFuncDesc normDistDesc("xlnormDist","qlNormDist",
                 "Return the normal cumulative distribution for the specified "
                 "mean and standard deviation","QuantLibXL Math");
@@ -211,7 +228,6 @@ extern "C" {
             QLXLhexversion.Register();
 
     
-*/        
         
             // Clears the status bar.
             XlfExcel::Instance().SendMessage();
