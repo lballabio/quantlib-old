@@ -80,7 +80,7 @@ extern "C" {
 
             XlfArgDesc optionType("type", "is the option type");
             XlfArgDesc underlying("underlying", "is the value of the underlying");
-            XlfArgDesc moneyness("moneyness", "is the moneyness measured as percentage of the ATM");
+            XlfArgDesc moneyness("moneyness", "is the moneyness measured as percentage of the ATM level");
             XlfArgDesc strike("strike", "is the strike");
             XlfArgDesc strikes("strikes", "strikes");
             XlfArgDesc dividendYield("dividend yield", "is the dividend yield");
@@ -199,6 +199,16 @@ extern "C" {
                 "Quanto european option","QuantLibXL Finance");
             quantoEuropeanOption.SetArguments(optionType+underlying+strike+dividendYield+riskFreeRate+maturity+volatility+foreignRiskFreeRate+exchangeVolatility+correlation);
             quantoEuropeanOption.Register();
+
+            XlfFuncDesc forwardEuropeanOption("xlForwardEuropeanOption","qlForwardEuropeanOption",
+                "Forward european option","QuantLibXL Finance");
+            forwardEuropeanOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+resetTime+maturity+volatility);
+            forwardEuropeanOption.Register();
+
+            XlfFuncDesc performanceEuropeanOption("xlPerformanceEuropeanOption","qlPerformanceEuropeanOption",
+                "Performance european option","QuantLibXL Finance");
+            performanceEuropeanOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+resetTime+maturity+volatility);
+            performanceEuropeanOption.Register();
 
 
             // Registers PathGenerator
