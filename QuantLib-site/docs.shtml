@@ -15,18 +15,23 @@
 </head>
 <body>
 <!--#include virtual="qlheader.inc"-->
-<h1 class="center">QuantLib Documentation</h1>
+<h1 class="center">Official QuantLib Documentation</h1>
+<ul>
+<li><strong>QuantLib reference manual</strong> [<a href=
+"reference/index.html">HTML</a>]
+</ul>
+The reference manual is also available in a number of different
+formats from the SourceForge <a href=
+"http://sourceforge.net/project/showfiles.php?group_id=12740">download
+page</a>.
+
+<h1 class="center">Other information</h1>
 <h2 class="center">Papers</h2>
 <ul>
 <li><strong>Why Use QuantLib?</strong> [<a href=
 "http://www.maths.ox.ac.uk/~firth/research/quantlib.pdf">PDF</a>]<br>
 
 Firth, N.P. (2004)</li>
-</ul>
-<h2 class="center">Manuals</h2>
-<ul>
-<li><strong>QuantLib reference manual</strong> [<a href=
-"reference/index.html">HTML</a>]</li>
 </ul>
 <h2 class="center">Talks</h2>
 <ul>
