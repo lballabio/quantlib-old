@@ -256,9 +256,18 @@ connections.
 <h3>Developer CVS Access via SSH</h3>
 
 <p>If you are a SourceForge.net-recognized QuantLib developer you
-can access the CVS tree via SSH. SSH1 must be installed on your
-client machine. Substitute modulename and developername with the
-proper values. Enter your site password when prompted.</p>
+can access the CVS tree via SSH (SSH must be installed on your
+client machine). To check if this is the case try the shell login.
+Substitute developername with the proper value:</p>
+
+<pre>
+ssh -l developername quantlib.org
+</pre>
+
+<p>If the shell login is OK (type <em>exit</em> to log off), you
+can check out modules from the QuantLib CVS. Substitute modulename
+and developername with the proper values, enter your site password
+when prompted:</p>
 
 <p>Unix:</p>
 
