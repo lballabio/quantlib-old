@@ -1,3 +1,23 @@
+2002-03-12 12:26  nando
+
+	* FAQ.html (1.31), cvs.html (1.31), download.html (1.24),
+	extensions.html (1.16), index.html (1.37), license.html (1.39),
+	mailinglists.html (1.17), nextrelease.html (1.10), snapshot.html
+	(1.12): updated
+
+2002-03-11 13:12  nando
+
+	* cvs.html (1.30), download.html (1.23): better packages' info
+
+2002-03-11 12:22  nando
+
+	* mailinglists.html (1.16), qltablefoot.inc (1.7): quantlib-jobs
+	added
+
+2002-03-05 17:30  nando
+
+	* ChangeLog.txt (1.12): updated
+
 2002-03-05 17:03  lballabio
 
 	* quep.html (1.23): Implemented QuEP 8 and 10
