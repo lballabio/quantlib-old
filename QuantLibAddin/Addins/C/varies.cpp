@@ -53,34 +53,21 @@ using namespace ObjHandler;
         }
     }
 
-//    const char *variesToString(const Varies *v) {
-//        std::ostringstream s;
-//        if (v->type == INT)
-//            s << v->data.AsInt;
-//        else if (v->type == LONG)
-//            s << v->data.AsLong;
-//        else if (v->type == DOUBLE)
-//            s << v->data.AsDouble;
-//        else if (v->type == CHARP)
-//            s << v->data.AsCharP;
-//        else
-//            throw Exception("variesToString: unrecognized type");
-//        return s.str().c_str();
-//    }
-
     const char *variesToString(const Varies *v) {
-        static char s[100];
+        static std::string ret;
+        std::ostringstream s;
         if (v->type == INT)
-            sprintf(s, "%d", v->data.AsInt);
+            s << v->data.AsInt;
         else if (v->type == LONG)
-            sprintf(s, "%d", v->data.AsLong);
+            s << v->data.AsLong;
         else if (v->type == DOUBLE)
-            sprintf(s, "%f", v->data.AsDouble);
+            s << v->data.AsDouble;
         else if (v->type == CHARP)
-            sprintf(s, "%s", v->data.AsCharP);
+            s << v->data.AsCharP;
         else
             throw Exception("variesToString: unrecognized type");
-        return s;
+        ret = s.str();
+        return ret.c_str();
     }
 
     void freeVariesList(VariesList *vl) {
