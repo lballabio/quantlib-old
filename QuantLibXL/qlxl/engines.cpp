@@ -44,8 +44,8 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        Handle<AnalyticalVanillaEngine> engine(new
-            AnalyticalVanillaEngine);
+        Handle<AnalyticalEuropeanEngine> engine(new
+            AnalyticalEuropeanEngine);
 
         VanillaOptionArguments* arguments =
             dynamic_cast<VanillaOptionArguments*>(
@@ -103,8 +103,8 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        Handle<AnalyticalVanillaEngine> baseEngine(new
-            AnalyticalVanillaEngine);
+        Handle<AnalyticalEuropeanEngine> baseEngine(new
+            AnalyticalEuropeanEngine);
 
         Handle<QuantoEngine<VanillaOptionArguments,
                             VanillaOptionResults> >
@@ -177,8 +177,8 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        Handle<AnalyticalVanillaEngine> baseEngine(new
-            AnalyticalVanillaEngine);
+        Handle<AnalyticalEuropeanEngine> baseEngine(new
+            AnalyticalEuropeanEngine);
         Handle<ForwardEngine<VanillaOptionArguments,
                              VanillaOptionResults> >
             forwardEngine(new ForwardEngine<VanillaOptionArguments,
@@ -243,8 +243,8 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        Handle<AnalyticalVanillaEngine> baseEngine(new
-            AnalyticalVanillaEngine);
+        Handle<AnalyticalEuropeanEngine> baseEngine(new
+            AnalyticalEuropeanEngine);
 
         Handle<ForwardPerformanceEngine<VanillaOptionArguments,
                                         VanillaOptionResults> >
