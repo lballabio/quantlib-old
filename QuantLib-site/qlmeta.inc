@@ -20,3 +20,12 @@
 "http://www.quantlib.org/styles/main.css" type="text/css">
 <link rev="made" href="mailto:ferdinando@ametrano.net">
 
+<script type="text/javascript">
+<!-- hiding
+
+if (self != window.top) {
+window.open(location.href);
+}
+
+// done hiding -->
+</script>
