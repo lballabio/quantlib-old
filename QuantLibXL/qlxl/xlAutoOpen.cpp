@@ -383,7 +383,7 @@ extern "C" {
             XlfFuncDesc cliquetOption("xlCliquetOption",
                 "qlCliquetOption",
                 "european cliquet option","QuantLibXL Finance");
-            cliquetOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+expiryDate+volatility);
+            cliquetOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+fixingDates+blackVolSurface+interpolationType);
             cliquetOption.Register();
 
 
@@ -398,7 +398,7 @@ extern "C" {
                 "qlPerformanceOption",
                 "european performance option",
                 "QuantLibXL Finance");
-            performanceOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+expiryDate+volatility);
+            performanceOption.SetArguments(optionType+underlying+moneyness+dividendYield+riskFreeRate+refDate+fixingDates+blackVolSurface+interpolationType);
             performanceOption.Register();
 
             XlfFuncDesc performanceOption_mc("xlPerformanceOption_MC",

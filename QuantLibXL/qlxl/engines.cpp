@@ -24,6 +24,7 @@
 #include <ql/PricingEngines/Vanilla/all.hpp>
 #include <ql/PricingEngines/Quanto/all.hpp>
 #include <ql/PricingEngines/Forward/all.hpp>
+#include <ql/PricingEngines/Cliquet/all.hpp>
 #include <ql/Instruments/quantovanillaoption.hpp>
 #include <ql/Instruments/forwardvanillaoption.hpp>
 #include <boost/shared_ptr.hpp>
@@ -362,5 +363,121 @@ extern "C"
         return XlfOper(1,7,results);
         EXCEL_END;
     }
+
+
+
+    LPXLOPER EXCEL_EXPORT xlCliquetOption(
+                        XlfOper xltype,
+                        XlfOper xlunderlying,
+                        XlfOper xlmoneyness,
+                        XlfOper xldividend,
+                        XlfOper xlriskFree,
+                        XlfOper xlrefDate,
+                        XlfOper xlresetDates,
+                        XlfOper xlvolatility,
+                        XlfOper xlinterpolationType)
+    {
+        EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
+        Date refDate = QlXlfOper(xlrefDate).AsDate();
+
+        boost::shared_ptr<SimpleQuote> spot(new
+            SimpleQuote(xlunderlying.AsDouble()));
+
+        boost::shared_ptr<BlackScholesProcess> stochProcess(new
+            BlackScholesProcess(
+                RelinkableHandle<Quote>(spot),
+                QlXlfOper(xldividend).AsTermStructure(refDate),
+                QlXlfOper(xlriskFree).AsTermStructure(refDate),
+                QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+                                                xlinterpolationType.AsInt())));
+
+        boost::shared_ptr<PercentageStrikePayoff> payoff(new
+            PercentageStrikePayoff(QlXlfOper(xltype).AsOptionType(),
+                                   xlmoneyness.AsDouble()));
+
+        std::vector<Date> tempDates = QlXlfOper(xlresetDates).AsDateVector();
+        std::vector<Date> resetDates(tempDates.size()-1);
+        std::copy(tempDates.begin(), tempDates.end()-1, resetDates.begin());
+
+        boost::shared_ptr<EuropeanExercise> exercise(new
+            EuropeanExercise(tempDates.back()));
+
+        boost::shared_ptr<PricingEngine> engine(new AnalyticCliquetEngine);
+
+        CliquetOption cliquet(stochProcess, payoff, exercise, resetDates, engine);
+
+        double results[7];
+        results[0] = cliquet.NPV();
+        results[1] = cliquet.delta();
+        results[2] = cliquet.gamma();
+        results[3] = cliquet.theta();
+        results[4] = cliquet.vega();
+        results[5] = cliquet.rho();
+        results[6] = cliquet.dividendRho();
+
+        return XlfOper(1,7,results);
+        EXCEL_END;
+    }
+
+    LPXLOPER EXCEL_EXPORT xlPerformanceOption(
+                        XlfOper xltype,
+                        XlfOper xlunderlying,
+                        XlfOper xlmoneyness,
+                        XlfOper xldividend,
+                        XlfOper xlriskFree,
+                        XlfOper xlrefDate,
+                        XlfOper xlresetDates,
+                        XlfOper xlvolatility,
+                        XlfOper xlinterpolationType)
+
+    {
+        EXCEL_BEGIN;
+
+        WIZARD_NO_CALC;
+
+        Date refDate = QlXlfOper(xlrefDate).AsDate();
+
+        boost::shared_ptr<SimpleQuote> spot(new
+            SimpleQuote(xlunderlying.AsDouble()));
+
+        boost::shared_ptr<BlackScholesProcess> stochProcess(new
+            BlackScholesProcess(
+                RelinkableHandle<Quote>(spot),
+                QlXlfOper(xldividend).AsTermStructure(refDate),
+                QlXlfOper(xlriskFree).AsTermStructure(refDate),
+                QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+                                                xlinterpolationType.AsInt())));
+
+        boost::shared_ptr<PercentageStrikePayoff> payoff(new
+            PercentageStrikePayoff(QlXlfOper(xltype).AsOptionType(),
+                                   xlmoneyness.AsDouble()));
+
+        std::vector<Date> tempDates = QlXlfOper(xlresetDates).AsDateVector();
+        std::vector<Date> resetDates(tempDates.size()-1);
+        std::copy(tempDates.begin(), tempDates.end()-1, resetDates.begin());
+
+        boost::shared_ptr<EuropeanExercise> exercise(new
+            EuropeanExercise(tempDates.back()));
+
+        boost::shared_ptr<PricingEngine> engine(new AnalyticPerformanceEngine);
+
+        CliquetOption perfCliquet(stochProcess, payoff, exercise, resetDates, engine);
+
+        double results[7];
+        results[0] = perfCliquet.NPV();
+        results[1] = perfCliquet.delta();
+        results[2] = perfCliquet.gamma();
+        results[3] = perfCliquet.theta();
+        results[4] = perfCliquet.vega();
+        results[5] = perfCliquet.rho();
+        results[6] = perfCliquet.dividendRho();
+
+        return XlfOper(1,7,results);
+        EXCEL_END;
+    }
+
 
 }
