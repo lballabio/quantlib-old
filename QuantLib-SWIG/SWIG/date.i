@@ -184,6 +184,7 @@ class Date {
     %rename(">string")        __str__;
     #endif
   public:
+    Date();
     Date(Day d, Month m, Year y);
     Date(int serialNumber);
     // access functions
