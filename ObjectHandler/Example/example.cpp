@@ -70,7 +70,7 @@ int main() {
         OH_LOGMESSAGE("low-level interrogation - after FOO_UPDATE");
         boost::shared_ptr<ObjectFoo> const objectFoo =
             boost::dynamic_pointer_cast<ObjectFoo>
-            (ObjectHandler::instance().retrieveObject("foo2"));
+            (OH_OBJECT_GET("foo2"));
         boost::shared_ptr<Foo> foo =
             boost::static_pointer_cast<Foo>
             (objectFoo->getReference());
