@@ -46,7 +46,7 @@ class StatisticsTest < RUNIT::TestCase
         weights   = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 
         s = QuantLib::Statistics.new
-        s.addWeightedSequence(data, weights)
+        s.add(data, weights)
 
         unless s.samples == data.length
             assert_fail(<<-MESSAGE
@@ -148,7 +148,7 @@ class StatisticsTest < RUNIT::TestCase
         end
 
         s.reset!
-        s.addWeightedSequence(data.map { |x| x-3 },weights)
+        s.add(data.map { |x| x-3 },weights)
         unless (s.downsideDeviation-0.333333333).abs <= tolerance
             assert_fail(<<-MESSAGE
 

@@ -28,11 +28,13 @@ using QuantLib::RiskStatistics;
 using QuantLib::Math::RiskMeasures;
 %}
 
+%rename("add_single")   RiskStatistics::add(double,double);
+%rename("add_sequence") RiskStatistics::add(const std::vector<double>&);
+%rename("add_weighted_sequence") 
+RiskStatistics::add(const std::vector<double>&, const std::vector<double>&);
 #if defined(SWIGRUBY)
 %rename("reset!")                RiskStatistics::reset;
 #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename("add-sequence")          RiskStatistics::addSequence;
-%rename("add-weighted-sequence") RiskStatistics::addWeightedSequence;
 %rename("standard-deviation")    RiskStatistics::standardDeviation;
 %rename("error-estimate")        RiskStatistics::errorEstimate;
 %rename("potential-upside")      RiskStatistics::potentialUpside;
@@ -43,6 +45,26 @@ using QuantLib::Math::RiskMeasures;
 %rename("reset!")                RiskStatistics::reset;
 #endif
 
+#if defined(SWIGPYTHON)
+%feature("shadow") RiskStatistics::add() %{
+    def add(self,*args):
+        if type(args[0]) == type(0) or type(args[0]) == type(0.0):
+            return apply(self.add_single,args)
+        elif len(args) == 1:
+            return apply(self.add_sequence,args)
+        else:
+            return apply(self.add_weighted_sequence,args)
+%}
+#elif defined(SWIGGUILE)
+%scheme %{
+    (define (RiskStatistics-add stats value . weight)
+      (let ((method (cond ((number? value) RiskStatistics-add-single)
+                          ((null? weight) RiskStatistics-add-sequence)
+                          (else RiskStatistics-add-weighted-sequence))))
+        (apply method stats value weight)))
+    (export RiskStatistics-add)
+%}
+#endif
 
 class RiskMeasures {
   public:
@@ -79,13 +101,17 @@ class RiskStatistics {
 };
 
 %extend RiskStatistics {
-    void addSequence(const std::vector<double>& values) {
+    void add(const std::vector<double>& values) {
         self->addSequence(values.begin(), values.end());
     }
-    void addWeightedSequence(const std::vector<double>& values, 
-                             const std::vector<double>& weights) {
+    void add(const std::vector<double>& values, 
+             const std::vector<double>& weights) {
         self->addSequence(values.begin(), values.end(), weights.begin());
     }
+    #if defined(SWIGPYTHON)
+    // hook for shadow method redefinition
+    void add() {};
+    #endif
 }
 
 

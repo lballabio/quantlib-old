@@ -47,6 +47,14 @@ module QuantLibc
   class DateVector
     include Enumerable
   end
+
+  class CashFlowVector
+    include Enumerable
+  end
+
+  class Path
+    include Enumerable
+  end
   
   # interface enhancements
   class Array
@@ -96,6 +104,30 @@ module QuantLibc
       cpp_initialize()
       unless marketElement.nil?
         linkTo! marketElement
+      end
+    end
+  end
+
+  class RiskStatistics
+    def add(x,weight=nil)
+      if (x.is_a? Float) || (x.is_a? Integer)
+        add_single(x,weight||1.0)
+      elsif weight
+        add_weighted_sequence(x,weight)
+      else
+        add_sequence(x)
+      end
+    end
+  end
+
+  class Statistics
+    def add(x,weight=nil)
+      if (x.is_a? Float) || (x.is_a? Integer)
+        add_single(x,weight||1.0)
+      elsif weight
+        add_weighted_sequence(x,weight)
+      else
+        add_sequence(x)
       end
     end
   end

@@ -43,7 +43,7 @@
          (h (grid-step data-min data-max N))
          (data (grid data-min data-max N))
          (weights (map gaussian data)))
-    (RiskStatistics-add-weighted-sequence stats data weights)
+    (RiskStatistics-add stats data weights)
     (check-expected (RiskStatistics-samples stats) N 0
                     "number of samples")
     (check-expected (RiskStatistics-weight-sum stats) (apply + weights) 0.0 

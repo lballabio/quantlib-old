@@ -27,7 +27,7 @@
     (let ((tolerance 1.0e-9)
           (data    '(  3   4   5   2   3   4   5   6   4   7))
           (weights '(1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0)))
-      (Statistics-add-weighted-sequence stats data weights)
+      (Statistics-add stats data weights)
       (check-expected (Statistics-samples stats) (length data) 0
                       "number of samples")
       (check-expected (Statistics-weight-sum stats) (apply + weights) 0.0
@@ -51,9 +51,7 @@
                       "kurtosis")
       (Statistics-reset! stats)
 
-      (Statistics-add-weighted-sequence stats
-                                        (map (lambda (x) (- x 3)) data)
-                                        weights)
+      (Statistics-add stats (map (lambda (x) (- x 3)) data) weights)
       (check-expected (Statistics-downside-deviation stats) 0.333333333 
                       tolerance
                       "downside deviation"))))

@@ -31,7 +31,6 @@ using QuantLib::RandomNumbers::BoxMullerGaussianRng;
 using QuantLib::RandomNumbers::CLGaussianRng;
 using QuantLib::RandomNumbers::ICGaussianRng;
 using QuantLib::MonteCarlo::Sample;
-// typedef QuantLib::MonteCarlo::Sample<double> SampleNumber;
 %}
 
 template <class T>
@@ -40,29 +39,13 @@ class Sample {
   private:
     Sample();
   public:
-    %immutable;
-    T value;
-    double weight;
-    %mutable;
+    %extend {
+        T value() { return self->value; }
+        double weight() { return self->weight; }
+    }
 };
 
 %template(SampleNumber) Sample<double>;
-#if defined(SWIGMZSCHEME)
-// more convenient than redefining methods everywhere
-//%typemap(out) SampleNumber {
-//    $result = SWIG_MakePtr(new SampleNumber($1),$&1_descriptor);
-//}
-#elif defined(SWIGGUILE)
-//%typemap(out) SampleNumber {
-//    $result = SWIG_Guile_MakePtr(new SampleNumber($1),$&1_descriptor);
-//}
-%scheme%{
-    (define SampleNumber-value  SampleNumber-value-get)
-    (define SampleNumber-weight SampleNumber-weight-get)
-    (export SampleNumber-value
-            SampleNumber-weight)
-%}
-#endif
 
 
 class UniformRandomGenerator {

@@ -29,7 +29,7 @@ class StatisticsTest(unittest.TestCase):
         weights = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 
         s = QuantLib.Statistics()
-        s.addWeightedSequence(data, weights)
+        s.add(data, weights)
 
         samples = s.samples()
         N = len(data)
@@ -111,8 +111,8 @@ wrong kurtosis
 
         s.reset()
 
-        data = map(lambda x: x-3,data)
-        s.addWeightedSequence(data, weights)
+        data = [ x-3 for x in data ]
+        s.add(data, weights)
         downDev = s.downsideDeviation()
         if not (abs(downDev-0.333333333) <= tol):
             self.fail("""

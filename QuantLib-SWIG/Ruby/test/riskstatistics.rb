@@ -53,7 +53,7 @@ class RiskStatisticsTest < RUNIT::TestCase
         0.upto(n-1) { |i| data[i] = dataMin+h*i }
         
         weights = data.map { |x| gaussian(x,average,sigma) }
-        s.addWeightedSequence(data, weights)
+        s.add(data, weights)
 
         unless s.samples == n
           assert_fail(<<-MESSAGE

@@ -37,9 +37,6 @@
 
 (define DayCounter=? DayCounter-equal)
 
-(define SampleNumber-value  SampleNumber-value-get)
-(define SampleNumber-weight SampleNumber-weight-get)
-
 (define Array+ Array-add)
 (define Array- Array-sub)
 (define (Array* a x)
@@ -89,6 +86,18 @@
     (if (not (null? args))
         (MarketElementHandle-link-to! h (car args)))
     h))
+
+(define (RiskStatistics-add stats value . weight)
+  (let ((method (cond ((number? value) RiskStatistics-add-single)
+                      ((null? weight) RiskStatistics-add-sequence)
+                      (else RiskStatistics-add-weighted-sequence))))
+    (apply method stats value weight)))
+
+(define (Statistics-add stats value . weight)
+  (let ((method (cond ((number? value) Statistics-add-single)
+                      ((null? weight) Statistics-add-sequence)
+                      (else Statistics-add-weighted-sequence))))
+    (apply method stats value weight)))
 
 (define (TermStructure-discount self x . extrapolate)
   (let ((method #f))

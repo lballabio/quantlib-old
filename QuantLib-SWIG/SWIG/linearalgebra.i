@@ -797,10 +797,11 @@ class MatrixRow {
 %rename("sub")      Matrix::__sub__;
 %rename("mul")      Matrix::__mul__;
 %rename("div")      Matrix::__div__;
-%rename("Matrix-transpose")    Matrix::transpose;
-%rename("Array-outer-product") Matrix::outerProduct;
-%rename("Matrix-product")      Matrix::matrixProduct;
-%rename("Matrix-sqrt")         Matrix::matrixSqrt;
+%rename("Matrix-transpose")    transpose;
+%rename("Array-outer-product") outerProduct;
+%rename("Array-inner-product") innerProduct;
+%rename("Matrix-product")      matrixProduct;
+%rename("Matrix-sqrt")         matrixSqrt;
 // aliases
 #if defined(SWIGGUILE)
 %scheme %{
@@ -876,6 +877,9 @@ Matrix outerProduct(const Array& v1, const Array& v2);
 %inline %{
     Matrix matrixProduct(const Matrix& m1, const Matrix& m2) {
         return m1*m2;
+    }
+    Array innerProduct(const Array& a, const Matrix& m) {
+        return a*m;
     }
 %}
 Matrix matrixSqrt(const Matrix& m);

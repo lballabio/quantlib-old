@@ -51,8 +51,8 @@ class RiskStatisticsTest(unittest.TestCase):
 
             data = [ dataMin+h*i for i in range(N)]
 
-            weights = map(lambda x:gaussian(x,average,sigma), data)
-            s.addWeightedSequence(data, weights)
+            weights = [ gaussian(x,average,sigma) for x in data ]
+            s.add(data, weights)
 
             samples = s.samples()
             if not (samples == N):
