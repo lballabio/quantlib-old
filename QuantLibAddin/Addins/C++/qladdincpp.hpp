@@ -3,32 +3,31 @@
 
 #include <QuantLibAddin/qladdindefines.hpp>
 #include <string>
-using std::string;
 
 // options
 
-Properties QL_BLACKSCHOLES(
-	const string &handleStochastic, 
-	const Spread &dividendYield,
-	const Rate &riskFreeRate,
-	const Volatility &volatility,
-	const Real &underlying,
-	const Date &todaysDate,
-	const Date &settlementDate);
+ObjHandler::Properties QL_BLACKSCHOLES(
+	const std::string &handleStochastic, 
+	const QuantLib::Spread &dividendYield,
+	const QuantLib::Rate &riskFreeRate,
+	const QuantLib::Volatility &volatility,
+	const QuantLib::Real &underlying,
+	const QuantLib::Date &todaysDate,
+	const QuantLib::Date &settlementDate);
 
-Properties QL_OPTION(
-	const string &handleOption, 
-	const string &handleStochastic,
-	const string &type,
-	const Real &strike,
-	const Size &timeSteps,
-	const Date &exerciseDate,
-	const Date &settlementDate);
+ObjHandler::Properties QL_OPTION(
+	const std::string &handleOption, 
+	const std::string &handleStochastic,
+	const std::string &type,
+	const QuantLib::Real &strike,
+	const QuantLib::Size &timeSteps,
+	const QuantLib::Date &exerciseDate,
+	const QuantLib::Date &settlementDate);
 
-Properties QL_OPTION_SETENGINE(
-	const string &handleOption, 
-	const string &engineName,
-	const Size &timeSteps);
+ObjHandler::Properties QL_OPTION_SETENGINE(
+	const std::string &handleOption, 
+	const std::string &engineName,
+	const QuantLib::Size &timeSteps);
 
 // utilities
 

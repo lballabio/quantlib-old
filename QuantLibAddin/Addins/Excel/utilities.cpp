@@ -2,6 +2,7 @@
 #include "framewrk.hpp"
 #include <exception>
 using std::string;
+using namespace ObjHandler;
 
 void anyToXLOPER(const any_ptr &any, XLOPER &xOp) {
 	if (any->type() == typeid(int)) {

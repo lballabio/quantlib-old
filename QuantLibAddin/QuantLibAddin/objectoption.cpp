@@ -16,6 +16,8 @@
 */
 
 #include <QuantLibAddin/objectoption.hpp>
+using namespace ObjHandler;
+using namespace QuantLib;
 
 ObjectOption::ObjectOption(boost::shared_ptr<ObjectStochastic> objectStochastic,
 		const string &typeString,
@@ -44,7 +46,7 @@ ObjectOption::ObjectOption(boost::shared_ptr<ObjectStochastic> objectStochastic,
 		new VanillaOption(stochasticProcess, payoff, 
 			amExercise, pricingEngine));
 	vanillaOption_ = temp;
-	any_ptr any_npv(new boost::any(vanillaOption_->NPV()));
+    any_ptr any_npv(new boost::any(vanillaOption_->NPV()));
 	any_ptr any_engine(new boost::any(string(BINOMIAL_JARROW_RUDD)));
 	ObjectProperty prop_npv(FIELD_NPV, any_npv);
 	ObjectProperty prop_engine(FIELD_ENGINE, any_engine);

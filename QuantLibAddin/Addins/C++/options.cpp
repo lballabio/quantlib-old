@@ -1,4 +1,6 @@
 #include "qladdincpp.hpp"
+using namespace ObjHandler;
+using namespace QuantLib;
 
 extern ObjectHandler objectHandler;
 

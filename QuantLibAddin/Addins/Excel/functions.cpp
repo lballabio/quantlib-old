@@ -3,6 +3,8 @@
 #include <ql/quantlib.hpp>	// QL_FAIL
 
 using std::ostringstream;
+using namespace ObjHandler;
+using namespace QuantLib;
 
 extern ObjectHandler objectHandler;
 

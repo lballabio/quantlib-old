@@ -16,6 +16,8 @@
 */
 
 #include "objectstochastic.hpp"
+using namespace QuantLib;
+using namespace ObjHandler;
 
 ObjectStochastic::ObjectStochastic(
 		const Spread &dividendYield,
@@ -24,17 +26,18 @@ ObjectStochastic::ObjectStochastic(
 		const Real &underlying,
 		const Date &todaysDate,
 		const Date &settlementDate) {
-    DayCounter rateDayCounter = Actual365Fixed();
-	Handle<Quote> underlyingH( boost::shared_ptr<Quote>(new SimpleQuote(underlying)));
+    DayCounter dayCounter = Actual365Fixed();
+	Handle<Quote> underlyingH( boost::shared_ptr<Quote>(new
+        SimpleQuote(underlying)));
     Handle<YieldTermStructure> flatTermStructure(
     	boost::shared_ptr<YieldTermStructure>(
-    	new FlatForward(settlementDate, riskFreeRate, rateDayCounter)));
+    	new FlatForward(settlementDate, riskFreeRate, dayCounter)));
 	Handle<YieldTermStructure> flatDividendTS(
     	boost::shared_ptr<YieldTermStructure>(
-    	new FlatForward(settlementDate, dividendYield, rateDayCounter)));
+    	new FlatForward(settlementDate, dividendYield, dayCounter)));
     Handle<BlackVolTermStructure> flatVolTS(
-    	boost::shared_ptr<BlackVolTermStructure>( 
-		new BlackConstantVol(settlementDate, volatility, rateDayCounter)));
+    	boost::shared_ptr<BlackVolTermStructure>(new
+        BlackConstantVol(settlementDate, volatility, dayCounter)));
     boost::shared_ptr<BlackScholesProcess> temp(new
         BlackScholesProcess(
             underlyingH,

@@ -19,7 +19,6 @@
 #define objectoption_h
 
 #include "objectstochastic.hpp"
-#include <ObjectHandler/objecthandler.hpp>
 
 // FIXME
 #define FIELD_NPV 						"NPV"
@@ -30,20 +29,20 @@
 #define BINOMIAL_COX_ROSS_RUBINSTEIN	"BINOMIAL COX-ROSS-RUBINSTEIN"
 #define ADDITIVE_EQUIPROBABILITIES		"ADDITIVE EQUIPROBABILITIES"
 
-class ObjectOption : public Object {
+class ObjectOption : public ObjHandler::Object {
 public:
 	ObjectOption(boost::shared_ptr<ObjectStochastic>,
-		const string &typestr,
-		const Real &strike,
-		const Size &timeSteps,
-		const Date &exerciseDate,
-		const Date &settlementDate);
+        const std::string &typestr,
+		const QuantLib::Real &strike,
+		const QuantLib::Size &timeSteps,
+		const QuantLib::Date &exerciseDate,
+		const QuantLib::Date &settlementDate);
 	~ObjectOption();
 	void setEngine(const std::string &engineName,
-		const Size &timeSteps);
+		const QuantLib::Size &timeSteps);
 	virtual boost::shared_ptr<void> getReference() const;
 private:
-	boost::shared_ptr<VanillaOption> vanillaOption_;
+    boost::shared_ptr<QuantLib::VanillaOption> vanillaOption_;
 };
 
 #endif

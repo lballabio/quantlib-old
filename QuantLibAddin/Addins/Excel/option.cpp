@@ -1,9 +1,11 @@
 #include "utilities.hpp"
 #include <string>
 #include <sstream>
+#include "QuantLibAddin/ObjectOption.hpp"
 using std::ostringstream;
 using std::string;
-#include "QuantLibAddin/ObjectOption.hpp"
+using namespace ObjHandler;
+using namespace QuantLib;
 
 extern ObjectHandler objectHandler;
 

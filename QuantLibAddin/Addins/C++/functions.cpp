@@ -1,4 +1,5 @@
 #include "qladdincpp.hpp"
+using namespace ObjHandler;
 
 void QL_LOGFILE(
 	const string &logFileName) {

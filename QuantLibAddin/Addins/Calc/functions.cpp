@@ -1,6 +1,7 @@
 #include "qladdin.hpp"
 #include "QuantLibAddin/objectoption.hpp"
 #include "utilities.hpp"
+using namespace ObjHandler;
 
 extern ObjectHandler objectHandler;
 

@@ -20,21 +20,20 @@
 
 #include <ObjectHandler/objecthandler.hpp>
 #include <ql/quantlib.hpp>
-using namespace QuantLib;
 
-class ObjectStochastic : public Object {
+class ObjectStochastic : public ObjHandler::Object {
 public:
 	ObjectStochastic(
-		const Spread &dividendYield,
-		const Rate &riskFreeRate,
-		const Volatility &volatility,
-		const Real &underlying,
-		const Date &todaysDate,
-		const Date &settlementDate);
+        const QuantLib::Spread &dividendYield,
+		const QuantLib::Rate &riskFreeRate,
+		const QuantLib::Volatility &volatility,
+		const QuantLib::Real &underlying,
+		const QuantLib::Date &todaysDate,
+		const QuantLib::Date &settlementDate);
 	~ObjectStochastic();
 	virtual boost::shared_ptr<void> getReference() const;
 private:
-	boost::shared_ptr<BlackScholesProcess> stochasticProcess_;
+    boost::shared_ptr<QuantLib::BlackScholesProcess> stochasticProcess_;
 };
 
 #endif

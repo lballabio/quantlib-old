@@ -6,6 +6,8 @@
 #include "Addins/C++/qladdincpp.hpp"
 #include <iostream>
 using namespace std;
+using namespace ObjHandler;
+using namespace QuantLib;
 
 extern ObjectHandler objectHandler;
 
