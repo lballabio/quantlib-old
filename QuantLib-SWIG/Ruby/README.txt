@@ -1,4 +1,3 @@
-The Ruby module is currently supported on Linux only.
 
 The C++ wrappers for the QuantLib-Ruby extension module are created 
 by means of SWIG (Simple Wrapper Interface Generator) available from 

@@ -131,13 +131,31 @@ Build = Command.new {
 	Wrap.execute
 	puts "Building extension..."
 	cfg = Config::MAKEFILE_CONFIG
-	$CFLAGS   += ' -DHAVE_CONFIG_H'
-	$CPPFLAGS += ' -I/usr/local/include'
-	$libs     += ' -lQuantLib'
-	cfg['LDSHARED'] = cfg['LDSHARED'].sub('gcc','g++')
+	case cfg['host_os']
+	  when 'mswin32'
+	    QL_DIR = ENV['QL_DIR']
+	    $CPPFLAGS += " /MD"
+	    $CPPFLAGS += " /GR"
+	    $CPPFLAGS += " /GX"
+	    $CPPFLAGS += " /DNOMINMAX"
+	    $CPPFLAGS += " /I#{QL_DIR}"
+	    $LIBPATH  += ["#{QL_DIR}\\lib\\Win32\\VisualStudio"]
+	  when 'linux'
+    	$CFLAGS   += " -DHAVE_CONFIG_H"
+    	$CPPFLAGS += " -I/usr/local/include"
+    	$libs     += " -lQuantLib"
+    	cfg['LDSHARED'] = cfg['LDSHARED'].sub('gcc','g++')
+      else
+        puts "Unknown host: " + cfg['host_os']
+    end
 	create_makefile("QuantLibc")
-	system("make")
-	File.safe_unlink "./Makefile"
+	case cfg['host_os']
+	  when 'mswin32'
+	    system("nmake")
+	  else
+	    system("make")
+	end
+	# File.safe_unlink "./Makefile"
 }
 
 Test = Command.new {

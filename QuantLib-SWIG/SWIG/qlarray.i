@@ -167,6 +167,7 @@ class Array {
             rb_raise(rb_eTypeError,
                      "wrong argument type (expected array)");
         }
+        QL_DUMMY_RETURN((Array*)0);
     }
     void each() {
         for (int i=0; i<self->size(); i++)
