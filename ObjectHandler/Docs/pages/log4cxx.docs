@@ -30,13 +30,25 @@
     Before building ObjectHandler you'll need to install and build
     log4cxx.  ObjectHandler has been tested against log4cxx version 0.9.7.
 
-    Under Linux, log4cxx should build as documented.  Below are some additional notes for building log4cxx under Windows, using a debug build as an example:
+    Under Linux, log4cxx should build as documented.  Below are some additional notes for
+    building log4cxx under Windows, using a debug build as an example:
     <ul>
-    <li>log4cxx should be unzipped to a path containing no spaces as the library seems to complain otherwise</li>
+    <li>log4cxx should be unzipped to a path containing no spaces as the library 
+    seems to complain otherwise</li>
     <li>please build log4cxx, project "static", configuration "Win32 Debug".</li>
-    <li>you need to manually set environment variable LOG4CXX_DIR to the top level log4cxx directory e.g. C:\\log4cxx-0.9.7</li>
-    <li>if MSDEV is running you need to restart it to pick up the new environment variable.</li>
+    <li>you need to manually set environment variable LOG4CXX_DIR to the top level 
+    log4cxx directory e.g. C:\\log4cxx-0.9.7</li>
+    <li>if MSDEV is running you need to restart it to pick up the new environment 
+    variable.</li>
     <li>build ObjectHandler and Example, configuration "Win32 Debug"</li>
     </ul>
+
+    <b>NB</b> log4cxx includes configurations <b>Release</b> (runtime library
+    <b>Mutithreaded</b>) and <b>Debug</b> (runtime library <b>Debug Multithreaded</b>).
+    ObjectHandler includes additional configurations e.g. <b>Release MTDLL</b> 
+    (runtime library <b>Multithreaded DLL</b>) for which there is no corresponding 
+    log4cxx configuration.  In order to use these additional ObjectHandler configurations 
+    you would need to add the corresponding configurations to the log4cxx project 
+    workspace - these combinations have not been tested.
 
 */
