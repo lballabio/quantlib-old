@@ -7,3 +7,6 @@
     http://logging.apache.org/log4cxx/
     http://sourceforge.net/projects/log4cpp/
     http://sourceforge.net/projects/log4cplus/
+
+- reduce mutability of Object/Property classes
+  from within client application
