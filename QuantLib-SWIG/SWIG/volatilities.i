@@ -53,21 +53,21 @@ class BlackVolTermStructure : public Extrapolator {
     Time maxTime() const;
     Real minStrike() const;
     Real maxStrike() const;
-    Volatility blackVol(const Date&, Real strike, 
+    Volatility blackVol(const Date&, Real strike,
                         bool extrapolate = false) const;
-    Volatility blackVol(Time, Real strike, 
+    Volatility blackVol(Time, Real strike,
                         bool extrapolate = false) const;
-    Real blackVariance(const Date&, Real strike, 
+    Real blackVariance(const Date&, Real strike,
                        bool extrapolate = false) const;
-    Real blackVariance(Time, Real strike, 
+    Real blackVariance(Time, Real strike,
                        bool extrapolate = false) const;
-    Volatility blackForwardVol(const Date&, const Date&, 
+    Volatility blackForwardVol(const Date&, const Date&,
                                Real strike, bool extrapolate = false) const;
-    Volatility blackForwardVol(Time, Time, Real strike, 
+    Volatility blackForwardVol(Time, Time, Real strike,
                                bool extrapolate = false) const;
-    Real blackForwardVariance(const Date&, const Date&, 
+    Real blackForwardVariance(const Date&, const Date&,
                               Real strike, bool extrapolate = false) const;
-    Real blackForwardVariance(Time, Time, Real strike, 
+    Real blackForwardVariance(Time, Time, Real strike,
                               bool extrapolate = false) const;
 };
 
@@ -123,14 +123,14 @@ class BlackConstantVolPtr : public boost::shared_ptr<BlackVolTermStructure> {
     %extend {
         BlackConstantVolPtr(
                 const Date& referenceDate, Volatility volatility,
-                const DayCounter& dayCounter = Actual365()) {
+                const DayCounter& dayCounter = QuantLib::Actual365()) {
             return new BlackConstantVolPtr(
                 new BlackConstantVol(referenceDate, volatility, dayCounter));
         }
         BlackConstantVolPtr(
                 const Date& referenceDate,
                 const RelinkableHandle<Quote>& volatility,
-                const DayCounter& dayCounter = Actual365()) {
+                const DayCounter& dayCounter = QuantLib::Actual365()) {
             return new BlackConstantVolPtr(
                 new BlackConstantVol(referenceDate, volatility, dayCounter));
         }
@@ -168,20 +168,20 @@ std::string volExTypeToString(VolExtrapolationType t) {
 MapToString(VolExtrapolationType,volExTypeFromString,volExTypeToString);
 
 %rename(BlackVarianceSurface) BlackVarianceSurfacePtr;
-class BlackVarianceSurfacePtr 
+class BlackVarianceSurfacePtr
     : public boost::shared_ptr<BlackVolTermStructure> {
   public:
     %extend {
         BlackVarianceSurfacePtr(
-                const Date& referenceDate, 
+                const Date& referenceDate,
                 const std::vector<Date>& dates,
                 const std::vector<Real>& strikes,
                 const Matrix& blackVols,
-                VolExtrapolationType lower = 
+                VolExtrapolationType lower =
                     BlackVarianceSurface::InterpolatorDefaultExtrapolation,
-                VolExtrapolationType upper = 
+                VolExtrapolationType upper =
                     BlackVarianceSurface::InterpolatorDefaultExtrapolation,
-                const DayCounter& dayCounter = Actual365()) {
+                const DayCounter& dayCounter = QuantLib::Actual365()) {
             return new BlackVarianceSurfacePtr(
                 new BlackVarianceSurface(referenceDate,dates,strikes,
                                          blackVols,lower,upper,dayCounter));
@@ -203,14 +203,14 @@ class LocalConstantVolPtr : public boost::shared_ptr<LocalVolTermStructure> {
     %extend {
         LocalConstantVolPtr(
                 const Date& referenceDate, Volatility volatility,
-                const DayCounter& dayCounter = Actual365()) {
+                const DayCounter& dayCounter = QuantLib::Actual365()) {
             return new LocalConstantVolPtr(
                 new LocalConstantVol(referenceDate, volatility, dayCounter));
         }
         LocalConstantVolPtr(
                 const Date& referenceDate,
                 const RelinkableHandle<Quote>& volatility,
-                const DayCounter& dayCounter = Actual365()) {
+                const DayCounter& dayCounter = QuantLib::Actual365()) {
             return new LocalConstantVolPtr(
                 new LocalConstantVol(referenceDate, volatility, dayCounter));
         }

@@ -32,10 +32,11 @@ typedef boost::shared_ptr<TermStructure> ExtendedDiscountCurvePtr;
 class DiscountCurvePtr : public boost::shared_ptr<TermStructure> {
   public:
     %extend {
-        DiscountCurvePtr(const Date& todaysDate, 
+        DiscountCurvePtr(const Date& todaysDate,
                          const std::vector<Date>& dates,
                          const std::vector<DiscountFactor>& discounts,
-                         const DayCounter& dayCounter = Actual365()) {
+                         const DayCounter& dayCounter =
+                             QuantLib::Actual365()) {
             return new DiscountCurvePtr(
                 new DiscountCurve(todaysDate, dates, discounts, dayCounter));
         }
@@ -50,14 +51,15 @@ class DiscountCurvePtr : public boost::shared_ptr<TermStructure> {
 class ExtendedDiscountCurvePtr : public DiscountCurvePtr {
   public:
     %extend {
-        ExtendedDiscountCurvePtr(const Date& todaysDate, 
+        ExtendedDiscountCurvePtr(const Date& todaysDate,
                                  const std::vector<Date>& dates,
                                  const std::vector<DiscountFactor>& discounts,
                                  const Calendar& calendar,
                                  BusinessDayConvention roll,
-                                 const DayCounter& dayCounter=Actual365()) {
+                                 const DayCounter& dayCounter =
+                                     QuantLib::Actual365()) {
             return new ExtendedDiscountCurvePtr(
-                new ExtendedDiscountCurve(todaysDate, dates, discounts, 
+                new ExtendedDiscountCurve(todaysDate, dates, discounts,
                                           calendar, roll, dayCounter));
         }
     }

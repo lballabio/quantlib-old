@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2004 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,11 +26,6 @@
 
 %{
 using QuantLib::DayCounter;
-using QuantLib::Actual360;
-using QuantLib::Actual365;
-using QuantLib::Thirty360;
-using QuantLib::ActualActual;
-using QuantLib::SimpleDayCounter;
 %}
 
 class DayCounter {
@@ -44,36 +39,9 @@ class DayCounter {
   public:
     BigInteger dayCount(const Date& d1, const Date& d2);
     Time yearFraction(const Date& d1, const Date& d2,
-                      const Date& startRef = Date(), 
+                      const Date& startRef = Date(),
                       const Date& endRef = Date());
     %extend {
-        DayCounter(std::string s) {
-            s = StringFormatter::toLowercase(s);
-            if (s == "act365" || s == "act/365")
-                return new DayCounter(Actual365());
-            else if (s == "act360" || s == "act/360")
-                return new DayCounter(Actual360());
-            else if (s == "30/360" || s == "30/360us")
-                return new DayCounter(Thirty360(Thirty360::USA));
-            else if (s == "30e/360" || s == "30/360e" || s == "30/360eu")
-                return new DayCounter(Thirty360(Thirty360::European));
-            else if (s == "30/360i" || s == "30/360it")
-                return new DayCounter(Thirty360(Thirty360::Italian));
-            else if (s == "actact" || s == "act/act" || 
-                     s == "act/act(b)" || s == "act/act (bond)")
-                return new DayCounter(ActualActual(ActualActual::Bond));
-            else if (s == "actacte" || s == "act/act(e)" 
-                     || s == "act/act(Euro)")
-                return new DayCounter(ActualActual(ActualActual::Euro));
-            else if (s == "actacth" || s == "act/act(h)" 
-                     || s == "act/act (ISDA)")
-                return new DayCounter(ActualActual(ActualActual::Historical));
-            else if (s == "simple")
-                return new DayCounter(SimpleDayCounter());
-            else
-                QL_FAIL("Unknown day counter: " + s);
-            QL_DUMMY_RETURN((DayCounter*)(0));
-        }
         std::string __str__() {
             return self->name()+" day counter";
         }
@@ -89,6 +57,33 @@ class DayCounter {
         #endif
     }
 };
+
+namespace QuantLib {
+
+    class Actual360 : public DayCounter {
+      public:
+        Actual360();
+    };
+    class Actual365 : public DayCounter {
+      public:
+        Actual365();
+    };
+    class Thirty360 : public DayCounter {
+      public:
+        enum Convention { USA, European, Italian };
+        Thirty360(Convention c = USA);
+    };
+    class ActualActual : public DayCounter {
+      public:
+        enum Convention { ISMA, Bond, ISDA, Historical, AFB, Euro };
+        ActualActual(Convention c = ISMA);
+    };
+    class SimpleDayCounter : public DayCounter {
+      public:
+        SimpleDayCounter();
+    };
+
+}
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename("DayCounter=?") DayCounter_equal;

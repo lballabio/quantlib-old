@@ -49,7 +49,7 @@ class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
         DepositRateHelperPtr(
                 const RelinkableHandle<Quote>& rate,
                 Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar, BusinessDayConvention convention, 
+                const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter) {
             return new DepositRateHelperPtr(
                 new DepositRateHelper(rate,n,units,settlementDays,
@@ -57,7 +57,7 @@ class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
         }
         DepositRateHelperPtr(
                 Rate rate, Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar, BusinessDayConvention convention, 
+                const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter) {
             return new DepositRateHelperPtr(
                 new DepositRateHelper(rate,n,units,settlementDays,
@@ -72,7 +72,7 @@ class FraRateHelperPtr : public boost::shared_ptr<RateHelper> {
     %extend {
         FraRateHelperPtr(
                 const RelinkableHandle<Quote>& rate,
-                Integer monthsToStart, Integer monthsToEnd, 
+                Integer monthsToStart, Integer monthsToEnd,
                 Integer settlementDays,
                 const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter) {
@@ -83,7 +83,7 @@ class FraRateHelperPtr : public boost::shared_ptr<RateHelper> {
         }
         FraRateHelperPtr(
                 Rate rate,
-                Integer monthsToStart, Integer monthsToEnd, 
+                Integer monthsToStart, Integer monthsToEnd,
                 Integer settlementDays,
                 const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter) {
@@ -183,13 +183,13 @@ class PiecewiseFlatForwardPtr : public boost::shared_ptr<TermStructure> {
   public:
     %extend {
         PiecewiseFlatForwardPtr(
-                const Date& todaysDate, 
-                const Date& referenceDate, 
+                const Date& todaysDate,
+                const Date& referenceDate,
                 const std::vector<boost::shared_ptr<RateHelper> >& instruments,
-                const DayCounter& dayCounter, 
+                const DayCounter& dayCounter,
                 Real accuracy = 1.0e-12) {
 	        return new PiecewiseFlatForwardPtr(
-	            new PiecewiseFlatForward(todaysDate, referenceDate, 
+	            new PiecewiseFlatForward(todaysDate, referenceDate,
                                          instruments, dayCounter, accuracy));
         }
         PiecewiseFlatForwardPtr(

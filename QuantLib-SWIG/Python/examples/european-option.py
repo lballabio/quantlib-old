@@ -21,7 +21,7 @@ from QuantLib import *
 todaysDate = Date(15,5,1998)
 settlementDate = Date(17,5,1998)
 riskFreeRate = FlatForward(todaysDate,settlementDate,
-                           0.05, DayCounter('act/365'))
+                           0.05, Actual365())
 
 # option parameters
 exercise = EuropeanExercise(Date(17,5,1999))
@@ -31,7 +31,7 @@ payoff = PlainVanillaPayoff('call', 8.0)
 underlying = SimpleQuote(7.0)
 volatility = BlackConstantVol(todaysDate, 0.10)
 dividendYield = FlatForward(todaysDate,settlementDate,
-                            0.05, DayCounter('act/365'))
+                            0.05, Actual365())
 
 # report
 header = ' |'.join(['%17s' % tag for tag in ['method','value',

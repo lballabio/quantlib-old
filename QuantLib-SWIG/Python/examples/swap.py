@@ -59,7 +59,7 @@ for n,unit in swaps.keys():
 
 # build rate helpers
 
-dayCounter = DayCounter('act/360')
+dayCounter = Actual360()
 settlementDays = 2
 depositHelpers = [ DepositRateHelper(QuoteHandle(deposits[(n,unit)]),
                                      n, unit, settlementDays,
@@ -67,14 +67,14 @@ depositHelpers = [ DepositRateHelper(QuoteHandle(deposits[(n,unit)]),
                    for n, unit in [(1,'week'),(1,'month'),(3,'months'),
                                    (6,'months'),(9,'months'),(1,'year')] ]
 
-dayCounter = DayCounter('act/360')
+dayCounter = Actual360()
 settlementDays = 2
 fraHelpers = [ FraRateHelper(QuoteHandle(FRAs[(n,m)]),
                              n, m, settlementDays,
                              calendar, 'mf', dayCounter)
                for n, m in FRAs.keys() ]
 
-dayCounter = DayCounter('act/360')
+dayCounter = Actual360()
 months = 3
 futuresHelpers = [ FuturesRateHelper(QuoteHandle(futures[d]),
                                      d, months,
@@ -84,7 +84,7 @@ futuresHelpers = [ FuturesRateHelper(QuoteHandle(futures[d]),
 settlementDays = 2
 fixedLegFrequency = 1
 fixedLegAdjustment = 'unadjusted'
-fixedLegDayCounter = DayCounter('30/360')
+fixedLegDayCounter = Thirty360()
 floatingLegFrequency = 2
 floatingLegAdjustment = 'modifiedfollowing'
 swapHelpers = [ SwapRateHelper(QuoteHandle(swaps[(n,unit)]),
@@ -103,11 +103,11 @@ forecastTermStructure = TermStructureHandle()
 
 helpers = depositHelpers[:2] + futuresHelpers + swapHelpers[1:]
 depoFuturesSwapCurve = PiecewiseFlatForward(todaysDate, settlementDate,
-                                            helpers, DayCounter('act/360'))
+                                            helpers, Actual360())
 
 helpers = depositHelpers[:3] + fraHelpers + swapHelpers
 depoFraSwapCurve = PiecewiseFlatForward(todaysDate, settlementDate,
-                                        helpers, DayCounter('act/360'))
+                                        helpers, Actual360())
 
 # swaps to be priced
 
@@ -118,7 +118,7 @@ payFixed = 1
 
 fixedLegFrequency = 1
 fixedLegAdjustment = 'unadjusted'
-fixedLegDayCounter = DayCounter('30/360')
+fixedLegDayCounter = Thirty360()
 fixedRate = 0.04
 
 floatingLegFrequency = 2

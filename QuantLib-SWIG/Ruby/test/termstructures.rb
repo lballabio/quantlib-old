@@ -45,7 +45,7 @@ class TermStructureTest < Test::Unit::TestCase
     deposits = depositData.map { |n,units,rate|
       DepositRateHelper.new(
         QuoteHandle.new(SimpleQuote.new(rate/100)),
-        n, units, @settlementDays, @calendar, 'mf', DayCounter.new('act/360'))
+        n, units, @settlementDays, @calendar, 'mf', Actual360.new)
     }    
     swapData = [
         [ 1, 4.54],
@@ -58,12 +58,12 @@ class TermStructureTest < Test::Unit::TestCase
       SwapRateHelper.new(
         QuoteHandle.new(SimpleQuote.new(rate/100)),
         years, "years", @settlementDays, 
-        @calendar, 1, 'unadjusted', DayCounter.new('30/360'),
+        @calendar, 1, 'unadjusted', Thirty360.new,
         2, 'mf')
     }
     @termStructure = PiecewiseFlatForward.new(today,settlement,
                                               deposits+swaps,
-                                              DayCounter.new('Act/360'))
+                                              Actual360.new)
   end
   def testImpliedObs
     flag = false

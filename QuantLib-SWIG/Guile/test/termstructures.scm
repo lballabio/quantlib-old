@@ -40,8 +40,8 @@
              (today (Calendar-adjust calendar real-today))
              (settlement (Calendar-advance calendar today
                                            settlement-days "days"))
-             (day-counter (new-DayCounter "act/360"))
-             (day-counter-2 (new-DayCounter "30/360"))
+             (day-counter (new-Actual360))
+             (day-counter-2 (new-Thirty360))
              (deposits (map
                         (lambda (datum)
                           (let-at-once ((n units rate) datum)
@@ -50,7 +50,7 @@
                              n units settlement-days
                              calendar "mf" day-counter)))
                         deposit-data))
-             (swaps (map 
+             (swaps (map
                      (lambda (datum)
                        (let-at-once ((years rate) datum)
                          (new-SwapRateHelper
@@ -60,7 +60,7 @@
                           2 "mf")))
                      swap-data))
              (term-structure (new-PiecewiseFlatForward
-                              today settlement 
+                              today settlement
                               (append deposits swaps)
                               day-counter)))
         (new-TermStructureHandle term-structure))))
@@ -70,16 +70,16 @@
            ; check implied term structure observability
            (let ((flag #f))
              (let* ((calendar (new-Calendar "TARGET"))
-                    (today (TermStructureHandle-todays-date 
+                    (today (TermStructureHandle-todays-date
                             term-structure))
-                    (settlement (TermStructureHandle-reference-date 
+                    (settlement (TermStructureHandle-reference-date
                                  term-structure))
                     (new-today (Date-plus-years today 3))
                     (new-settlement (Calendar-advance
                                      calendar new-today 2 "days"))
                     (day-counter (TermStructureHandle-day-counter
                                   term-structure))
-                    (implied (new-ImpliedTermStructure term-structure 
+                    (implied (new-ImpliedTermStructure term-structure
                                                        new-today
                                                        new-settlement))
                     (obs (new-Observer (lambda () (set! flag #t)))))
@@ -87,9 +87,9 @@
                  (Observer-register-with obs temp))
                (let ((new-term-structure (new-FlatForward today
                                                           settlement
-                                                          0.05 
+                                                          0.05
                                                           day-counter)))
-                 (TermStructureHandle-link-to! term-structure 
+                 (TermStructureHandle-link-to! term-structure
                                                new-term-structure))
                (check flag
                       "Observer was not notified of term structure change"))))
@@ -97,24 +97,24 @@
            ; check forward-spreaded term structure observability
            (let ((flag #f)
                  (tolerance 1.0e-10))
-             (let* ((today (TermStructureHandle-todays-date 
+             (let* ((today (TermStructureHandle-todays-date
                             term-structure))
-                    (settlement (TermStructureHandle-reference-date 
+                    (settlement (TermStructureHandle-reference-date
                                  term-structure))
                     (day-counter (TermStructureHandle-day-counter
                                   term-structure))
                     (me (new-SimpleQuote 0.01))
                     (h (new-QuoteHandle me))
-                    (spreaded (new-ForwardSpreadedTermStructure 
+                    (spreaded (new-ForwardSpreadedTermStructure
                                term-structure h))
                     (obs (new-Observer (lambda () (set! flag #t)))))
                (let ((temp (TermStructure->Observable spreaded)))
                  (Observer-register-with obs temp))
                (let ((new-term-structure (new-FlatForward today
-                                                          settlement 
-                                                          0.05 
+                                                          settlement
+                                                          0.05
                                                           day-counter)))
-                 (TermStructureHandle-link-to! term-structure 
+                 (TermStructureHandle-link-to! term-structure
                                                new-term-structure))
                (and
                 (check flag
@@ -128,24 +128,24 @@
            ; check zero-spreaded term structure observability
            (let ((flag #f)
                  (tolerance 1.0e-10))
-             (let* ((today (TermStructureHandle-todays-date 
+             (let* ((today (TermStructureHandle-todays-date
                             term-structure))
-                    (settlement (TermStructureHandle-reference-date 
+                    (settlement (TermStructureHandle-reference-date
                                  term-structure))
                     (day-counter (TermStructureHandle-day-counter
                                   term-structure))
                     (me (new-SimpleQuote 0.01))
                     (h (new-QuoteHandle me))
-                    (spreaded (new-ZeroSpreadedTermStructure 
+                    (spreaded (new-ZeroSpreadedTermStructure
                                term-structure h))
                     (obs (new-Observer (lambda () (set! flag #t)))))
                (let ((temp (TermStructure->Observable spreaded)))
                  (Observer-register-with obs temp))
                (let ((new-term-structure (new-FlatForward today
-                                                          settlement 
-                                                          0.05 
+                                                          settlement
+                                                          0.05
                                                           day-counter)))
-                 (TermStructureHandle-link-to! term-structure 
+                 (TermStructureHandle-link-to! term-structure
                                                new-term-structure))
                (and
                 (check flag

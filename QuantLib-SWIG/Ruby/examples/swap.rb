@@ -50,7 +50,7 @@ swaps = { [2,'years']  => SimpleQuote.new(0.037125),
 
 # build rate helpers
 
-dayCounter = DayCounter.new('act/360')
+dayCounter = Actual360.new
 settlementDays = 2
 depositHelpers = deposits.map { |n,unit,v|
   DepositRateHelper.new(QuoteHandle.new(v),
@@ -58,7 +58,7 @@ depositHelpers = deposits.map { |n,unit,v|
                         calendar, 'mf', dayCounter)
 }
 
-dayCounter = DayCounter.new('act/360')
+dayCounter = Actual360.new
 settlementDays = 2
 fraHelpers = fras.map { |(n,m),v|
   FraRateHelper.new(QuoteHandle.new(v),
@@ -66,7 +66,7 @@ fraHelpers = fras.map { |(n,m),v|
                     calendar, 'mf', dayCounter)
 }
 
-dayCounter = DayCounter.new('act/360')
+dayCounter = Actual360.new
 months = 3
 futuresHelpers = futures.map { |d,v|
   FuturesRateHelper.new(QuoteHandle.new(v),
@@ -77,7 +77,7 @@ futuresHelpers = futures.map { |d,v|
 settlementDays = 2
 fixedLegFrequency = 1
 fixedLegAdjustment = 'unadjusted'
-fixedLegDayCounter = DayCounter.new('30/360')
+fixedLegDayCounter = Thirty360.new
 floatingLegFrequency = 2
 floatingLegAdjustment = 'modifiedfollowing'
 swapHelpers = swaps.map {|(n,unit),v|
@@ -98,11 +98,11 @@ forecastTermStructure = TermStructureHandle.new
 helpers = depositHelpers[0..1] + futuresHelpers + swapHelpers[1..-1]
 depoFuturesSwapCurve = PiecewiseFlatForward.new(todaysDate, settlementDate,
                                                 helpers, 
-                                                DayCounter.new('act/360'))
+                                                Actual360.new)
 
 helpers = depositHelpers[0..2] + fraHelpers + swapHelpers
 depoFraSwapCurve = PiecewiseFlatForward.new(todaysDate, settlementDate,
-                                            helpers, DayCounter.new('act/360'))
+                                            helpers, Actual360.new)
 
 # swaps to be priced
 
@@ -113,7 +113,7 @@ payFixed = true
 
 fixedLegFrequency = 1
 fixedLegAdjustment = 'unadjusted'
-fixedLegDayCounter = DayCounter.new('30/360')
+fixedLegDayCounter = Thirty360.new
 fixedRate = 0.04
 
 floatingLegFrequency = 2

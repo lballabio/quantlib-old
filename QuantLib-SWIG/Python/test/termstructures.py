@@ -32,7 +32,7 @@ class TermStructureTest(unittest.TestCase):
             DepositRateHelper(
                 QuoteHandle(SimpleQuote(rate/100)),
                 n, units, self.settlementDays,
-                self.calendar, 'mf', DayCounter('act/360'))
+                self.calendar, 'mf', Actual360())
             for (n,units,rate) in [ (1,  'month', 4.581),
                                     (2, 'months', 4.573),
                                     (3, 'months', 4.557),
@@ -43,18 +43,18 @@ class TermStructureTest(unittest.TestCase):
             SwapRateHelper(
                 QuoteHandle(SimpleQuote(rate/100)),
                 years, "years", self.settlementDays,
-                self.calendar, 1, 'unadjusted', DayCounter('30/360'),
+                self.calendar, 1, 'unadjusted', Thirty360(),
                 2, 'mf')
             for (years,rate) in [ ( 1, 4.54),
                                   ( 5, 4.99),
                                   (10, 5.47),
                                   (20, 5.89),
                                   (30, 5.96) ]
-        ]        
-        
+        ]
+
         self.termStructure = PiecewiseFlatForward(today,settlement,
                                                   deposits+swaps,
-                                                  DayCounter('Act/360'))
+                                                  Actual360())
     def testImpliedObs(self):
         "Testing observability of implied term structure"
         global flag

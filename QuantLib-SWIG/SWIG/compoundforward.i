@@ -38,7 +38,8 @@ class CompoundForwardPtr : public boost::shared_ptr<TermStructure> {
                            Calendar calendar,
                            BusinessDayConvention roll,
                            Integer compounding,
-                           const DayCounter& dayCounter = Actual365()) {
+                           const DayCounter& dayCounter
+                               = QuantLib::Actual365()) {
 	        return new CompoundForwardPtr(
                 new CompoundForward(todaysDate, settlementDate,
                                     dates, rates, calendar, roll,

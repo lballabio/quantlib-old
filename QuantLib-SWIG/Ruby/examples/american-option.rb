@@ -20,7 +20,7 @@ include QuantLib
 todaysDate = Date.new(15,5,1998)
 settlementDate = Date.new(17,5,1998)
 riskFreeRate = FlatForward.new(todaysDate,settlementDate,
-                               0.06, DayCounter.new('act/365'))
+                               0.06, Actual365.new)
 
 # option parameters
 exercise = AmericanExercise.new(settlementDate, Date.new(17,5,1999))
@@ -30,7 +30,7 @@ payoff = PlainVanillaPayoff.new('put', 40.0)
 underlying = SimpleQuote.new(36.0)
 volatility = BlackConstantVol.new(todaysDate, 0.20)
 dividendYield = FlatForward.new(todaysDate,settlementDate,
-                                0.00, DayCounter.new('act/365'))
+                                0.00, Actual365.new)
 
 # report
 Format = '%19s |%17s |%17s |%17s'

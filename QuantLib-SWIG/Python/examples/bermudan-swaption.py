@@ -84,7 +84,7 @@ calendar = Calendar('TARGET')
 settlementDate = Date(19,2,2002);
 
 settlementDays = 2
-dayCounter = DayCounter('30/360')
+dayCounter = Thirty360()
 depositHelpers = [ DepositRateHelper(QuoteHandle(SimpleQuote(rate)),
                                      n, unit, settlementDays,
                                      calendar, 'mf', dayCounter)
@@ -97,7 +97,7 @@ depositHelpers = [ DepositRateHelper(QuoteHandle(SimpleQuote(rate)),
 
 fixedLegFrequency = 1
 fixedLegAdjustment = 'unadjusted'
-fixedLegDayCounter = DayCounter('30/360')
+fixedLegDayCounter = Thirty360()
 floatingLegFrequency = 2
 floatingLegAdjustment = 'modifiedfollowing'
 swapHelpers = [ SwapRateHelper(QuoteHandle(SimpleQuote(rate)),
@@ -114,7 +114,7 @@ swapHelpers = [ SwapRateHelper(QuoteHandle(SimpleQuote(rate)),
 termStructure = TermStructureHandle()
 termStructure.linkTo(PiecewiseFlatForward(todaysDate, settlementDate,
                                           depositHelpers+swapHelpers,
-                                          DayCounter('30/360')))
+                                          Thirty360()))
 
 
 # define the ATM/OTM/ITM swaps

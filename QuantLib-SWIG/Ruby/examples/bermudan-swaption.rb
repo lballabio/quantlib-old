@@ -94,7 +94,7 @@ calendar = Calendar.new('TARGET')
 settlementDate = Date.new(19,2,2002);
 
 settlementDays = 2
-dayCounter = DayCounter.new('30/360')
+dayCounter = Thirty360.new
 depositRates = [[1, 'week',   0.03295],
                 [1, 'month',  0.0331],
                 [3, 'months', 0.0329],
@@ -109,7 +109,7 @@ depositHelpers = depositRates.map { |n,unit,rate|
 
 fixedLegFrequency = 1
 fixedLegAdjustment = 'unadjusted'
-fixedLegDayCounter = DayCounter.new('30/360')
+fixedLegDayCounter = Thirty360.new
 floatingLegFrequency = 2
 floatingLegAdjustment = 'modifiedfollowing'
 swapRates = [[2,  'years', 0.04875],
@@ -128,7 +128,7 @@ swapHelpers = swapRates.map { |n,unit,rate|
 termStructure = TermStructureHandle.new
 termStructure.linkTo!(PiecewiseFlatForward.new(todaysDate, settlementDate,
                                                depositHelpers+swapHelpers,
-                                               DayCounter.new('30/360')))
+                                               Thirty360.new))
 
 
 # define the ATM/OTM/ITM swaps

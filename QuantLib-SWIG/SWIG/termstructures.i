@@ -85,7 +85,7 @@ class ImpliedTermStructurePtr: public boost::shared_ptr<TermStructure> {
                 const RelinkableHandle<TermStructure>& curveHandle,
                 const Date& todaysDate, const Date& referenceDate) {
             return new ImpliedTermStructurePtr(
-                new ImpliedTermStructure(curveHandle, todaysDate, 
+                new ImpliedTermStructure(curveHandle, todaysDate,
                                          referenceDate));
         }
     }
@@ -115,7 +115,7 @@ class ZeroSpreadedTermStructurePtr : public boost::shared_ptr<TermStructure> {
 };
 
 %rename(ForwardSpreadedTermStructure) ForwardSpreadedTermStructurePtr;
-class ForwardSpreadedTermStructurePtr 
+class ForwardSpreadedTermStructurePtr
     : public boost::shared_ptr<TermStructure> {
   public:
     %extend {
@@ -140,15 +140,15 @@ typedef boost::shared_ptr<TermStructure> FlatForwardPtr;
 class FlatForwardPtr : public boost::shared_ptr<TermStructure> {
   public:
     %extend {
-        FlatForwardPtr(const Date& todaysDate, 
-                       const Date& referenceDate, 
+        FlatForwardPtr(const Date& todaysDate,
+                       const Date& referenceDate,
                        const RelinkableHandle<Quote>& forward,
                        const DayCounter& dayCounter) {
             return new FlatForwardPtr(
                 new FlatForward(todaysDate,referenceDate,forward,dayCounter));
         }
-        FlatForwardPtr(const Date& todaysDate, 
-                       const Date& referenceDate, 
+        FlatForwardPtr(const Date& todaysDate,
+                       const Date& referenceDate,
                        Rate forward,
                        const DayCounter& dayCounter) {
             return new FlatForwardPtr(
