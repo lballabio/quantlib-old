@@ -25,6 +25,8 @@
 #include <ql/Math/statistics.hpp>
 #include <ql/Math/riskstatistics.hpp>
 #include <ql/Math/symmetricschurdecomposition.hpp>
+#include <ql/Math/pseudosqrt.hpp>
+#include <ql/Math/choleskydecomposition.hpp>
 #include <ql/Math/poissondistribution.hpp>
 #include <ql/Math/binomialdistribution.hpp>
 
