@@ -57,6 +57,8 @@ RollingConvention rollconvFromString(std::string s) {
         return QuantLib::Preceding;
     else if (s == "mp" ||s == "modpre" || s == "modifiedpreceding")
         return QuantLib::ModifiedPreceding;
+    else if (s == "mer" ||s == "mendref" || s == "monthendreference")
+        return QuantLib::MonthEndReference;
     else 
         throw Error("unknown rolling convention");
 }
@@ -71,6 +73,8 @@ std::string rollconvToString(RollingConvention rc) {
         return "Preceding";
       case QuantLib::ModifiedPreceding:
         return "ModifiedPreceding";
+      case QuantLib::MonthEndReference:
+        return "MonthEndReference";
       default:
         throw Error("unknown rolling convention");
     }
@@ -128,7 +132,8 @@ class Calendar {
     bool isBusinessDay(const Date& d);
     bool isHoliday(const Date& d);
     Date roll(const Date& d, 
-              RollingConvention convention = QuantLib::Following);
+              RollingConvention convention = QuantLib::Following,
+	      const Date& origin = Date());
     Date advance(const Date& d, int n, TimeUnit unit,
                  RollingConvention convention = QuantLib::Following);
     Date advance(const Date& d, const Period& period,
@@ -150,7 +155,7 @@ class Calendar {
                 return new Calendar(Zurich());
             else if (s == "helsinki")
                 return new Calendar(Helsinki());
-            else if (s == "johannesburg")
+            else if (s == "johannesburg" || s == "jhb")
                 return new Calendar(Johannesburg());
             else if (s == "wellington")
                 return new Calendar(Wellington());
