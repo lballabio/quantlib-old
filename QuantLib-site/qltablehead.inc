@@ -43,6 +43,8 @@
 <li><a class="navlink" href=
 "http://sourceforge.net/projects/quantlib">Project&nbsp;page (exits)</a></li>
 
+<li><a class="navlink" href="quep.html">Enhancement Proposals</a></li>
+
 <li><a class="navlink" href="cvs.html">CVS</a></li>
 
 <li><a class="navlink" href="snapshot.html">Nightly Build</a></li>
