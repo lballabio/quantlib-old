@@ -31,11 +31,11 @@ from instruments import InstrumentTest
 from marketelements import MarketElementTest
 from operators import OperatorTest
 from piecewiseflatforward import PiecewiseFlatForwardTest
-from riskstatistics import RiskStatisticsTest
+from riskstatisticss import RiskStatisticsTest
 from segmentintegral import SegmentIntegralTest
 from simpleswap import SimpleSwapTest
 from solvers1d import Solver1DTest
-from statistics import StatisticsTest
+from statisticss import StatisticsTest
 from swaption import SwaptionTest
 from termstructures import TermStructureTest
 # the ones below test deprecated features

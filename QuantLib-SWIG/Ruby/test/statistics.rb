@@ -38,7 +38,7 @@ end
 
 class StatisticsTest < Test::Unit::TestCase
     def name
-      "Testing statistics"
+      "Testing statisticss"
     end
     def testCalculation
         tolerance = 1.0e-9

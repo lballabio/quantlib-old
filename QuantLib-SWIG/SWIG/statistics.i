@@ -17,8 +17,8 @@
 
 // $Id$
 
-#ifndef quantlib_statistics_i
-#define quantlib_statistics_i
+#ifndef quantlib_statisticss_i
+#define quantlib_statisticss_i
 
 %include types.i
 %include linearalgebra.i

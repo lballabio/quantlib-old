@@ -64,10 +64,10 @@
 	(1.4), QuantLib/test/marketelements.py (1.4),
 	QuantLib/test/old_pricers.py (1.4), QuantLib/test/operators.py
 	(1.3), QuantLib/test/piecewiseflatforward.py (1.7),
-	QuantLib/test/riskstatistics.py (1.4),
+	QuantLib/test/riskstatisticss.py (1.4),
 	QuantLib/test/segmentintegral.py (1.3), QuantLib/test/simpleswap.py
 	(1.5), QuantLib/test/solvers1d.py (1.4),
-	QuantLib/test/statistics.py (1.5), QuantLib/test/swaption.py (1.3),
+	QuantLib/test/statisticss.py (1.5), QuantLib/test/swaption.py (1.3),
 	QuantLib/test/termstructures.py (1.11): Merged changes made on
 	0.3.1 branch
 
@@ -111,10 +111,10 @@
 	QuantLib/test/marketelements.py (1.3.4.1),
 	QuantLib/test/old_pricers.py (1.3.4.1), QuantLib/test/operators.py
 	(1.2.4.1), QuantLib/test/piecewiseflatforward.py (1.6.2.1),
-	QuantLib/test/riskstatistics.py (1.3.4.1),
+	QuantLib/test/riskstatisticss.py (1.3.4.1),
 	QuantLib/test/segmentintegral.py (1.2.4.1),
 	QuantLib/test/simpleswap.py (1.4.4.1), QuantLib/test/solvers1d.py
-	(1.3.4.1), QuantLib/test/statistics.py (1.4.4.1),
+	(1.3.4.1), QuantLib/test/statisticss.py (1.4.4.1),
 	QuantLib/test/swaption.py (1.2.4.1),
 	QuantLib/test/termstructures.py (1.10.2.1): updated copyright years
 
@@ -249,7 +249,7 @@
 
 2002-07-11 15:27  lballabio
 
-	* QuantLib/test/: riskstatistics.py (1.3), statistics.py (1.4):
+	* QuantLib/test/: riskstatisticss.py (1.3), statisticss.py (1.4):
 	Last couple of weeks
 
 2002-07-11 15:18  lballabio
@@ -279,10 +279,10 @@
 	(1.3), QuantLib/test/europeanoption.py (1.4),
 	QuantLib/test/operators.py (1.2),
 	QuantLib/test/piecewiseflatforward.py (1.1),
-	QuantLib/test/riskstatistics.py (1.2),
+	QuantLib/test/riskstatisticss.py (1.2),
 	QuantLib/test/segmentintegral.py (1.2), QuantLib/test/simpleswap.py
 	(1.1), QuantLib/test/solvers1d.py (1.3),
-	QuantLib/test/statistics.py (1.3): a couple of weeks' worth
+	QuantLib/test/statisticss.py (1.3): a couple of weeks' worth
 
 2002-06-11 15:40  lballabio
 
@@ -303,7 +303,7 @@
 	* setup.py (1.16), QuantLib/defaults.py (1.7),
 	QuantLib/test/QuantLibTestSuite.py (1.7),
 	QuantLib/test/europeanoption.py (1.1), QuantLib/test/solvers1d.py
-	(1.2), QuantLib/test/statistics.py (1.2),
+	(1.2), QuantLib/test/statisticss.py (1.2),
 	QuantLib/test/termstructures.py (1.2): Biweekly commit
 
 2002-05-17 16:07  lballabio
@@ -320,7 +320,7 @@
 2002-05-13 08:38  lballabio
 
 	* README.txt (1.3), QuantLib/test/QuantLibTestSuite.py (1.5),
-	QuantLib/test/segmentintegral.py (1.1), QuantLib/test/statistics.py
+	QuantLib/test/segmentintegral.py (1.1), QuantLib/test/statisticss.py
 	(1.1): Weekly payload
 
 2002-05-03 12:46  lballabio
@@ -354,7 +354,7 @@
 	QuantLib/test/QuantLibTestSuite.py (1.3), QuantLib/test/date.py
 	(1.2), QuantLib/test/distributions.py (1.2),
 	QuantLib/test/marketelements.py (1.1),
-	QuantLib/test/riskstatistics.py (1.1): Migrated risk statistics and
+	QuantLib/test/riskstatisticss.py (1.1): Migrated risk statisticss and
 	market elements
 
 2002-04-22 14:35  lballabio

@@ -29,7 +29,7 @@ end
 
 class RiskStatisticsTest < Test::Unit::TestCase
   def name
-    "Testing risk statistics"
+    "Testing risk statisticss"
   end
   def testCalculation
     s = QuantLib::RiskStatistics.new

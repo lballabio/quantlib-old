@@ -66,8 +66,8 @@
 	null.i (1.7), observer.i (1.12), old_pricers.i (1.3),
 	old_volatility.i (1.3), operators.i (1.8), optimizers.i (1.2),
 	options.i (1.8), piecewiseflatforward.i (1.8), ql.i (1.24),
-	quantlib.i (1.5), randomnumbers.i (1.10), riskstatistics.i (1.9),
-	scheduler.i (1.3), segmentintegral.i (1.3), statistics.i (1.9),
+	quantlib.i (1.5), randomnumbers.i (1.10), riskstatisticss.i (1.9),
+	scheduler.i (1.3), segmentintegral.i (1.3), statisticss.i (1.9),
 	swap.i (1.4), swaption.i (1.2), termstructures.i (1.11), types.i
 	(1.3), vectors.i (1.4), volatilities.i (1.4): Merged changes made
 	on 0.3.1 branch
@@ -97,8 +97,8 @@
 	old_volatility.i (1.2.4.1), operators.i (1.7.4.1), optimizers.i
 	(1.1.4.1), options.i (1.7.4.1), piecewiseflatforward.i (1.7.2.1),
 	ql.i (1.22.4.1), quantlib.i (1.4.6.1), randomnumbers.i (1.9.4.1),
-	riskstatistics.i (1.8.4.1), scheduler.i (1.2.4.1),
-	segmentintegral.i (1.2.4.1), statistics.i (1.8.4.1), swap.i
+	riskstatisticss.i (1.8.4.1), scheduler.i (1.2.4.1),
+	segmentintegral.i (1.2.4.1), statisticss.i (1.8.4.1), swap.i
 	(1.3.4.1), swaption.i (1.1.4.1), termstructures.i (1.10.2.1),
 	types.i (1.2.8.1), vectors.i (1.3.4.1), volatilities.i (1.3.2.1):
 	updated copyright years
@@ -181,7 +181,7 @@
 	(1.18), history.i (1.10), indexes.i (1.4), instruments.i (1.7),
 	linearalgebra.i (1.9), montecarlo.i (1.5), null.i (1.6),
 	old_volatility.i (1.2), piecewiseflatforward.i (1.6),
-	riskstatistics.i (1.8), scheduler.i (1.2), statistics.i (1.8),
+	riskstatisticss.i (1.8), scheduler.i (1.2), statisticss.i (1.8),
 	termstructures.i (1.9): Synch with QuantLib
 
 2002-09-01 15:15  lballabio
@@ -200,7 +200,7 @@
 
 	* calendars.i (1.17), common.i (1.15), date.i (1.15),
 	linearalgebra.i (1.7), null.i (1.5), operators.i (1.5),
-	riskstatistics.i (1.7), statistics.i (1.7), termstructures.i (1.8):
+	riskstatisticss.i (1.7), statisticss.i (1.7), termstructures.i (1.8):
 	Catching up with SWIG
 
 2002-08-07 14:01  lballabio
@@ -229,14 +229,14 @@
 	(1.7), indexes.i (1.3), instruments.i (1.6), interpolation.i (1.4),
 	linearalgebra.i (1.5), marketelements.i (1.7), montecarlo.i (1.3),
 	observer.i (1.9), operators.i (1.4), options.i (1.6),
-	piecewiseflatforward.i (1.4), riskstatistics.i (1.6),
-	segmentintegral.i (1.2), solvers1d.i (1.4), statistics.i (1.6),
+	piecewiseflatforward.i (1.4), riskstatisticss.i (1.6),
+	segmentintegral.i (1.2), solvers1d.i (1.4), statisticss.i (1.6),
 	swap.i (1.3), termstructures.i (1.6): Catching up with SWIG
 
 2002-08-03 16:16  lballabio
 
 	* calendars.i (1.15), common.i (1.12), piecewiseflatforward.i
-	(1.3), riskstatistics.i (1.5), statistics.i (1.5), termstructures.i
+	(1.3), riskstatisticss.i (1.5), statisticss.i (1.5), termstructures.i
 	(1.5), vectors.i (1.2): Keeping up with SWIG
 
 2002-07-22 10:05  lballabio
@@ -246,7 +246,7 @@
 2002-07-11 15:27  lballabio
 
 	* linearalgebra.i (1.3), montecarlo.i (1.2), randomnumbers.i (1.9),
-	riskstatistics.i (1.4), statistics.i (1.4): Last couple of weeks
+	riskstatisticss.i (1.4), statisticss.i (1.4): Last couple of weeks
 
 2002-06-28 13:34  lballabio
 
@@ -259,7 +259,7 @@
 	instruments.i (1.5), interpolation.i (1.3), linearalgebra.i (1.2),
 	marketelements.i (1.6), observer.i (1.8), operators.i (1.3),
 	options.i (1.5), piecewiseflatforward.i (1.2), randomnumbers.i
-	(1.8), riskstatistics.i (1.3), solvers1d.i (1.3), statistics.i
+	(1.8), riskstatisticss.i (1.3), solvers1d.i (1.3), statisticss.i
 	(1.3), swap.i (1.2), termstructures.i (1.3): Saved from laptop
 	crash (phew...)
 
@@ -269,7 +269,7 @@
 	(1.11), instruments.i (1.4), interpolation.i (1.2), linearalgebra.i
 	(1.1), matrix.i (1.2), montecarlo.i (1.1), operators.i (1.2),
 	options.i (1.4), piecewiseflatforward.i (1.1), ql.i (1.16),
-	qlarray.i (1.11), statistics.i (1.2), swap.i (1.1): a couple of
+	qlarray.i (1.11), statisticss.i (1.2), swap.i (1.1): a couple of
 	weeks' worth
 
 2002-06-11 15:40  lballabio
@@ -302,8 +302,8 @@
 	* calendars.i (1.11), common.i (1.9), date.i (1.10), daycounters.i
 	(1.9), functions.i (1.3), history.i (1.4), instruments.i (1.3),
 	interpolation.i (1.1), marketelements.i (1.4), matrix.i (1.1),
-	observer.i (1.7), ql.i (1.12), qlarray.i (1.9), riskstatistics.i
-	(1.2), segmentintegral.i (1.1), solvers1d.i (1.2), statistics.i
+	observer.i (1.7), ql.i (1.12), qlarray.i (1.9), riskstatisticss.i
+	(1.2), segmentintegral.i (1.1), solvers1d.i (1.2), statisticss.i
 	(1.1): Weekly payload
 
 2002-05-03 11:06  lballabio
@@ -326,8 +326,8 @@
 
 	* calendars.i (1.8), common.i (1.7), date.i (1.8), functions.i
 	(1.2), history.i (1.3), marketelements.i (1.1), observer.i (1.5),
-	ql.i (1.10), riskstatistics.i (1.1), vectors.i (1.1): Migrated risk
-	statistics and market elements
+	ql.i (1.10), riskstatisticss.i (1.1), vectors.i (1.1): Migrated risk
+	statisticss and market elements
 
 2002-04-22 14:35  lballabio
 
