@@ -4,3 +4,6 @@ libFunctions.la
 *.lo
 Makefile
 Makefile.in
+
+options.cpp
+options.hpp

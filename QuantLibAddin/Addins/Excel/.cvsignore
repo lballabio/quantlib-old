@@ -10,3 +10,6 @@ Makefile.win
 *.plg
 *_private.*
 xll
+
+options.cpp
+qladdin.cpp
