@@ -43,7 +43,8 @@ class Scheduler {
     Scheduler(const Calendar& calendar, 
               const Date& startDate, const Date& endDate,
               int frequency, RollingConvention rollingConvention, 
-              bool isAdjusted, const Date& stubDate = Date());
+              bool isAdjusted, const Date& stubDate = Date(),
+	      bool startFromEnd = 0, bool longFinal = 0);
     Size size() const;
     Date date(Size i) const;
     bool isRegular(Size i) const;
