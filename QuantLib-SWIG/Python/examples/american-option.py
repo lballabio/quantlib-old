@@ -1,6 +1,5 @@
 
-# Copyright (C) 2003 Neil Firth
-# Adapted from EuropeanOption.cpp
+# Copyright (C) 2004 StatPro Italia srl
 #
 # This file is part of QuantLib, a free-software/open-source library
 # for financial quantitative analysts and developers - http://quantlib.org/
@@ -70,8 +69,8 @@ refValue = 4.48667344
 option.setPricingEngine(BaroneAdesiWhaleyEngine())
 report('Barone-Adesi-Whaley',option.NPV())
 
-#option.setPricingEngine(BjerksundStenslandEngine())
-#report('Bjerksund-Stensland',option.NPV())
+option.setPricingEngine(BjerksundStenslandEngine())
+report('Bjerksund-Stensland',option.NPV())
 
 # method: binomial
 timeSteps = 801

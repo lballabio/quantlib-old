@@ -53,9 +53,11 @@ class Safe##T {
 
 make_safe_interpolation(LinearInterpolation,LinearInterpolation);
 make_safe_interpolation(NaturalCubicSpline,CubicSpline);
+make_safe_interpolation(NaturalMonotonicCubicSpline,MonotonicCubicSpline);
 make_safe_interpolation(LogLinearInterpolation,LogLinearInterpolation);
 
-%extend SafeNaturalCubicSpline {
+%define extend_spline(T)
+%extend Safe##T {
     double derivative(double x, bool extrapolate = false) {
         return self->f_.derivative(x,extrapolate);
     }
@@ -63,7 +65,10 @@ make_safe_interpolation(LogLinearInterpolation,LogLinearInterpolation);
         return self->f_.secondDerivative(x,extrapolate);
     }
 }
+%enddef
 
+extend_spline(NaturalCubicSpline);
+extend_spline(NaturalMonotonicCubicSpline);
 
 %{
 // safe versions which copy their arguments
