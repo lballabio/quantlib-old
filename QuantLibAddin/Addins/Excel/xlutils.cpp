@@ -23,8 +23,6 @@
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
-#define XL_MAX_STR_LEN 255
-
 void anyToXLOPER(const any_ptr &any, 
                  XLOPER &xOp, 
                  const bool &expandVectors) {

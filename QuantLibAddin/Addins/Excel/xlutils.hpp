@@ -24,6 +24,7 @@
 #include <string>
 
 #define DLLEXPORT extern "C" __declspec(dllexport)
+#define XL_MAX_STR_LEN 255
 
 std::string XLOPERtoString(const XLOPER &xOp);
 void stringToXLOPER(XLOPER &xStr, const char *s);

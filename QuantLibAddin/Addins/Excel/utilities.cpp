@@ -19,16 +19,16 @@
 #include <Addins/Excel/xlutils.hpp>
 #include <sstream>
 
-#define XL_MAX_STR 255
-
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
 DLLEXPORT char* qlVer() {
     try {
-        static char ret[XL_MAX_STR];
+        static char ret[XL_MAX_STR_LEN];
         std::string ver = QL_VER();
-        strncpy(ret, ver.c_str(), XL_MAX_STR);
+        int len = __min(XL_MAX_STR_LEN - 1, ver.length());
+        strncpy(ret, ver.c_str(), len);
+        ret[len] = 0;
         return ret;
     } catch (const exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_VER: ") + e.what(), 2);
@@ -38,9 +38,11 @@ DLLEXPORT char* qlVer() {
 
 DLLEXPORT char* qlOhVer() {
     try {
-        static char ret[XL_MAX_STR];
+        static char ret[XL_MAX_STR_LEN];
         std::string ver = QL_OH_VER();
-        strncpy(ret, ver.c_str(), XL_MAX_STR);
+        int len = __min(XL_MAX_STR_LEN - 1, ver.length());
+        strncpy(ret, ver.c_str(), len);
+        ret[len] = 0;
         return ret;
     } catch (const exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_OH_VER: ") + e.what(), 2);
@@ -96,10 +98,12 @@ DLLEXPORT LPXLOPER qlValue(char *handleObject, char *fieldName) {
 
 DLLEXPORT char* qlLogfile(char *logFileName, long *logLevel) {
     try {
-        static char ret[XL_MAX_STR];
+        static char ret[XL_MAX_STR_LEN];
         int lvl = *logLevel ? *logLevel : 4;
         std::string log = QL_LOGFILE(std::string(logFileName), lvl);
-        strncpy(ret, log.c_str(), XL_MAX_STR);
+        int len = __min(XL_MAX_STR_LEN - 1, log.length());
+        strncpy(ret, log.c_str(), len);
+        ret[len] = 0;
         return ret;
     } catch (...) {
         return 0;
@@ -108,10 +112,12 @@ DLLEXPORT char* qlLogfile(char *logFileName, long *logLevel) {
 
 DLLEXPORT char* qlLogMessage(char *logMessage, long *logLevel) {
     try {
-        static char ret[XL_MAX_STR];
+        static char ret[XL_MAX_STR_LEN];
         int lvl = *logLevel ? *logLevel : 4;
         std::string msg = QL_LOGMESSAGE(std::string(logMessage), lvl);
-        strncpy(ret, msg.c_str(), XL_MAX_STR);
+        int len = __min(XL_MAX_STR_LEN - 1, msg.length());
+        strncpy(ret, msg.c_str(), len);
+        ret[len] = 0;
         return ret;
     } catch (...) {
         return 0;
