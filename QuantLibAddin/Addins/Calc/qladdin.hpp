@@ -77,6 +77,7 @@ public:
     virtual CSS::lang::Locale SAL_CALL getLocale(  ) THROWDEF_RTE;
     // XQlUno
     QLAddin() throw ();
+    virtual ~QLAddin() {};
 
 #include <Addins/Calc/autogen.hpp>
 

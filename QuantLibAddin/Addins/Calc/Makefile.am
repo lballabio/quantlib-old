@@ -1,11 +1,6 @@
 
-#includedir = $(prefix)/include/qla
 AM_CPPFLAGS = -I${top_srcdir} -I$(OFFICE_SDK_PATH)/include \
 -DUNX -DGCC -DLINUX -DCPPU_ENV=gcc3
-AM_LDFLAGS = -L$(OFFICE_PROGRAM_PATH) \
-    -lcppuhelpergcc3 -lcppu -lsal \
-    -lQuantLib -lObjectHandler \
-    -release $(PACKAGE_VERSION)
 
 COMPONENT_NAME=QuantLibAddin
 IDL_DIR=$(OFFICE_SDK_PATH)/idl
@@ -36,10 +31,7 @@ $(COMPONENT_NAME).flag2 : $(COMPONENT_NAME).flag1
 	cppumaker -BUCR $(TYPESLIST) $(DKREGISTRYNAME) $(COMPONENT_NAME).rdb
 	echo flagged > $@
 
-#FIXME execute as hook after build
-#$(COMPONENT_NAME).flag3 : $(COMPONENT_NAME).flag1 $(COMPONENT_NAME).so
-#	regcomp -register -r $(COMPONENT_NAME).rdb -c $(COMPONENT_NAME).so
-#	echo flagged > $@
+BUILT_SOURCES = $(COMPONENT_NAME).flag2
 
 EXTRA_DIST = \
     AddinCalc.dsp \
@@ -50,15 +42,6 @@ EXTRA_DIST = \
     QuantLibAddin.idl \
     readme.txt
 
-# for now we do not install the Calc addin
-noinst_LTLIBRARIES = libQuantLibAddinCalc.la
-
-# FIXME need a better way to force this dependency
-funcdef.cpp : $(COMPONENT_NAME).flag2
-#libQuantLibAddinCalc_la_DEPENDENCIES = $(COMPONENT_NAME).flag2
-
-libQuantLibAddinCalc_la_LIBADD = ../../qla/libQuantLibAddin.la
-
 noinst_HEADERS = \
     autogen.hpp \
     options.hpp \
@@ -67,6 +50,8 @@ noinst_HEADERS = \
     qldefs.hpp \
     utilities.hpp
 
+lib_LTLIBRARIES = libQuantLibAddinCalc.la
+
 libQuantLibAddinCalc_la_SOURCES = \
     funcdef.cpp \
     functions.cpp \
@@ -74,9 +59,30 @@ libQuantLibAddinCalc_la_SOURCES = \
     qladdin.cpp \
     utilities.cpp
 
+libQuantLibAddinCalc_la_LIBADD = ../../qla/libQuantLibAddin.la
+
+libQuantLibAddinCalc_la_LDFLAGS = \
+    -L$(OFFICE_PROGRAM_PATH) \
+    -lcppuhelpergcc3 -lcppu -lsal \
+    -lQuantLib -lObjectHandler \
+    -release $(PACKAGE_VERSION)
+
+noinst_DATA = $(COMPONENT_NAME).flag3
+$(COMPONENT_NAME).flag3 : libQuantLibAddinCalc.la
+	cp -f $(COMPONENT_NAME).rdb .libs
+	cd .libs && \
+	regcomp -register -r $(COMPONENT_NAME).rdb -c libQuantLibAddinCalc.so
+	echo flagged > $@
+
+install-exec-hook:
+	cp -f .libs/$(COMPONENT_NAME).rdb $(OFFICE_PROGRAM_PATH)
+	cp -f .libs/libQuantLibAddinCalc.so $(OFFICE_PROGRAM_PATH)
+
 CLEANFILES = \
-	com \
 	$(COMPONENT_NAME).urd \
 	$(COMPONENT_NAME).rdb \
 	$(COMPONENT_NAME).flag*
+
+clean-local :
+	rm -rf com
 

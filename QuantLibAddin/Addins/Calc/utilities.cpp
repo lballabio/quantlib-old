@@ -48,7 +48,7 @@ SEQSEQ( ANY ) getArray(Properties properties, STRING handle) {
     SEQSEQ( ANY ) rows(1);
     SEQ( ANY ) row(properties.size() + 1);
     row[0] = CSS::uno::makeAny(handle);
-    for (int i = 0; i < properties.size(); i++) {
+    for (unsigned int i = 0; i < properties.size(); i++) {
         ObjectProperty property = properties[i];
         any_ptr a = property();
         row[i + 1] = anyToANY(a);

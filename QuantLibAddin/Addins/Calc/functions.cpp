@@ -27,7 +27,7 @@ SEQSEQ(ANY) SAL_CALL QLAddin::qlQuery(
     try {
         Properties properties = QL_QUERY(OUStringToString(handleObject));
         SEQSEQ( ANY ) rows(properties.size());
-        for (int i = 0; i < properties.size(); i++) {
+        for (unsigned int i = 0; i < properties.size(); i++) {
             SEQ( ANY ) row(2);
             ObjectProperty property = properties[i];
             any_ptr a = property();
