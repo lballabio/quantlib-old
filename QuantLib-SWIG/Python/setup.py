@@ -199,14 +199,16 @@ class install_swigfiles(install_data):
         install_data.finalize_options(self)
         predir = get_paths(self.distribution)
         if sys.platform == 'win32':
-            moduledir = string.split(self.distribution.get_name(), '-')[0]
+            swig_install_dir = os.path.join(
+                string.split(self.distribution.get_name(), '-')[0],
+                'SWIG')
         else:
-            moduledir = self.distribution.get_name()
+            swig_install_dir = self.distribution.get_name()
         swig_dir = os.path.join(".","QuantLib","SWIG")
         if not os.path.exists(swig_dir):
             swig_dir = os.path.join("..","SWIG")
         self.data_files = [
-            [os.path.join(predir, moduledir),
+            [os.path.join(predir, swig_install_dir),
              [os.path.join(swig_dir,f) for f in swig_files]]]
 
 class my_install(install):
