@@ -8,7 +8,7 @@ QuantLib is OSI Certified Open Source Software.
 OSI Certified is a certification mark of the Open Source Initiative.
 
 ObjectHandler depends on Boost <http://www.boost.org>. You will need to
-download, Boost before compiling and using QuantLib.
+download Boost before compiling and using ObjectHandler.
 
 Please report bugs using the Bug Tracker at
 <http://sourceforge.net/tracker/?group_id=12740&atid=112740>,
