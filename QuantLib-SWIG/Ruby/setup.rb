@@ -124,8 +124,14 @@ SDist = Command.new {
 	Scripts.each    { |file| File.syscopy file, distDir }
 	Interfaces.each { |file| File.syscopy '../SWIG/'+file, swigDir }
 	Tests.each      { |file| File.syscopy 'test/'+file, testDir }
-	system "tar cfz #{distDir}.tar.gz #{distDir}/"
-	system "zip -q -r #{distDir}.zip #{distDir}/"
+	case cfg['host_os']
+	  when 'mswin32'
+    	system "zip -q -r #{distDir}.zip #{distDir}/"
+	  when 'linux'
+    	system "tar cfz #{distDir}.tar.gz #{distDir}/"
+      else
+        puts "Unknown host: " + cfg['host_os']
+    end
 }
 
 Build = Command.new {
