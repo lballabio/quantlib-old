@@ -1,5 +1,4 @@
-$ID:$
-
+$Id$
 * CROSS PLATFORM
 		OS/compilers
 * C++
@@ -9,9 +8,11 @@ $ID:$
 * SWIG
 * PYTHON
 		DB, SOAP, COM, CORBA
-		DB/independent
+		DB independent
 * OGGETI DISTRIBUITI
 
+* QUANTLIB
+	open source, collaborazioni
 
 * CONVENZIONI DI MERCATO
 		calendari
@@ -20,6 +21,8 @@ $ID:$
 		bootstrapping
 * CASH FLOW
 * STRUCTURED PRODUCTS
+* ANALYTICAL MODELS
+		europee, asiatiche, barriere
 * MONTE CARLO
 		monodimensionale/multidimensionale
 		variance reduction techniques
@@ -35,7 +38,7 @@ $ID:$
 		Models/Engine pattern
 * PASSPORT OPTION
 		gestione di strategie ottimali
-		
+
 * FINITE DIFFERENCE
 		veloce rispetto agli alberi
 		modelli a bassa dimensionalita'
