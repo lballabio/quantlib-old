@@ -56,7 +56,9 @@ def generateHeader(fileHeader, function, suffix):
         '', 'const STRING &', 'sal_Int32', 
         convertVec = 'const SEQSEQ(%s)& ',
         convertMat = 'const SEQSEQ(%s)& ', convertString2 = "STRING")
-    fileHeader.write(paramList)
+    if paramList != '':
+        fileHeader.write('\n')
+        fileHeader.write(paramList)
     fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)
 
 def getReturnTypeCalc(function):
@@ -81,7 +83,7 @@ def generateHeaders(functionGroups):
         fileHeader.write('#define qla_calc_%s_hpp\n\n' % groupName)
         for function in functionGroup[common.FUNCLIST]:
             returnTypeCalc = getReturnTypeCalc(function)
-            fileHeader.write('    virtual %s SAL_CALL %s(\n'
+            fileHeader.write('    virtual %s SAL_CALL %s('
                 % (returnTypeCalc, function[common.CODENAME]))
             generateHeader(fileHeader, function, ';')
             fileHeader.write('\n')

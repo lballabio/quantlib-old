@@ -59,14 +59,17 @@ def getFunction(functionNode):
     descNode = functionNode.getElementsByTagName(common.DESC)[0]
     qlfNode = functionNode.getElementsByTagName(common.QLFUNC)[0]
     handleNode = functionNode.getElementsByTagName(common.CTOR)[0]
-    paramsNode = functionNode.getElementsByTagName(common.PARAMS)[0]
+    paramsNode = functionNode.getElementsByTagName(common.PARAMS)
+    if paramsNode:
+        function[common.PARAMS] = getParameters(paramsNode[0])
+    else:
+        function[common.PARAMS] = ''
     retvalNode = functionNode.getElementsByTagName(common.RETVAL)[0]
     function[common.NAME] = getText(nameNode)
     function[common.CODENAME] = getText(codeNameNode)
     function[common.DESC] = getText(descNode)
     function[common.QLFUNC] = getText(qlfNode)
     function[common.CTOR] = getBoolean(handleNode)
-    function[common.PARAMS] = getParameters(paramsNode)
     function[common.RETVAL] = getReturnVal(retvalNode)
     return function
 

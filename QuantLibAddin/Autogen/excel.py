@@ -10,6 +10,7 @@ ADDIN = 'qladdin.cpp'
 BODY_BUF = ''
 INCLUDES = 'stub.Excel.includes'
 BODY     = 'stub.Excel.body'
+REGLINE = '        TempStr(" %s"),\n'
 REGHEAD  = 'stub.Excel.regheader'
 REGFOOT  = 'stub.Excel.regfooter'
 MAXPARAM  = 30                      # max #/params to an Excel function
@@ -61,27 +62,29 @@ def generateFuncRegister(fileHeader, function):
         paramList = "handle," + paramList
     if len(paramList) >= MAXLEN:
         raise ValueError, MAXLENERR % (MAXLEN, paramList)
-    regLine = '        TempStr(" %s"),\n'
     fileHeader.write('    Excel(xlfRegister, 0, %d, &xDll,\n' % numParamsTotal)
-    fileHeader.write(regLine % function[common.CODENAME])
-    fileHeader.write(regLine % paramStr)
-    fileHeader.write(regLine % function[common.NAME])
-    fileHeader.write(regLine % paramList)
-    fileHeader.write(regLine % '1')
-    fileHeader.write(regLine % 'QuantLib')
-    fileHeader.write(regLine % '')
-    fileHeader.write(regLine % '')
-    fileHeader.write(regLine % function[common.DESC])
-    fileHeader.write(regLine % function[common.CODENAME])
-    if function[common.CTOR]:
-        fileHeader.write('        TempStr(" handle of new object"),\n')
-    i = 0
-    for param in params:
-        fileHeader.write('        TempStr(" ' + param[common.DESC] + '")')
-        i += 1
-        if i < numParams:
-            fileHeader.write(',\n')
-    fileHeader.write(');\n\n')
+    fileHeader.write(REGLINE % function[common.CODENAME])
+    fileHeader.write(REGLINE % paramStr)
+    fileHeader.write(REGLINE % function[common.NAME])
+    fileHeader.write(REGLINE % paramList)
+    fileHeader.write(REGLINE % '1')
+    fileHeader.write(REGLINE % 'QuantLib')
+    fileHeader.write(REGLINE % '')
+    fileHeader.write(REGLINE % '')
+    fileHeader.write(REGLINE % function[common.DESC])
+    if params == '':
+        fileHeader.write('        TempStr(" %s"));\n\n' % function[common.CODENAME])
+    else:
+        fileHeader.write(REGLINE % function[common.CODENAME])
+        if function[common.CTOR]:
+            fileHeader.write('        TempStr(" handle of new object"),\n')
+        i = 0
+        for param in params:
+            fileHeader.write('        TempStr(" ' + param[common.DESC] + '")')
+            i += 1
+            if i < numParams:
+                fileHeader.write(',\n')
+        fileHeader.write(');\n\n')
 
 def generateFuncRegisters(functionDefs):
     'generate source code to register functions'
