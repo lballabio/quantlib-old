@@ -17,7 +17,7 @@ EXTRA_DIST = \
 QLADemo_SOURCES = qlademo.cpp
 Options_SOURCES = options.cpp
 Instruments_SOURCES = instruments.cpp
-CapFloors_SOURCES = capfloors.cpp
+CapFloor_SOURCES = capfloor.cpp
 
-noinst_PROGRAMS = QLADemo Options Instruments CapFloors
+noinst_PROGRAMS = QLADemo Options Instruments CapFloor
 
