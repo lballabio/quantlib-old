@@ -45,7 +45,7 @@
     #error using an old version of QuantLib, please update
 #endif
 
-#if XLW_HEX_VERSION < 0x010100f0
+#if XLW_HEX_VERSION < 0x010201a0
     #error using an old version of xlw, please update
 #endif
 
