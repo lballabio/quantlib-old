@@ -52,6 +52,7 @@ def test():
     suite.addTest(DayCounterTest())
     suite.addTest(DistributionTest())
     suite.addTest(unittest.makeSuite(EuropeanOptionTest,'test'))
+    suite.addTest(unittest.makeSuite(OldPricerTest,'test')) # to be removed
     suite.addTest(unittest.makeSuite(InstrumentTest,'test'))
     suite.addTest(unittest.makeSuite(MarketElementTest,'test'))
     suite.addTest(OperatorTest())
@@ -63,8 +64,6 @@ def test():
     suite.addTest(StatisticsTest())
     suite.addTest(unittest.makeSuite(SwaptionTest,'test'))
     suite.addTest(unittest.makeSuite(TermStructureTest,'test'))
-    # to be removed
-    suite.addTest(unittest.makeSuite(OldPricerTest,'test'))
     
     result = unittest.TextTestRunner(verbosity=2).run(suite)
 
