@@ -339,4 +339,4 @@ setup(name             = "QuantLib-Python",
                           'install': my_install,
                           'sdist': my_sdist,
                           'wrap': my_wrap},
-      version          = "0.3.3a1-cvs")
+      version          = "0.3.3")
