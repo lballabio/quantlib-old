@@ -4,17 +4,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
-<meta name="generator" content=
-"HTML Tidy for Linux/x86 (vers 1st March 2004), see www.w3.org">
+<!--#include virtual="qlmeta.inc"-->
 <meta name="author" content=
 "Geotechnical Software Services, Ferdinando Ametrano">
 <meta name="copyright" content=
 "Geotechnical Software Services (c) 1996-2001, Ferdinando Ametrano (c) 2001">
-<meta name="doc-class" content="Draft">
+<meta name="description" content="QuantLib Programming Style Guidelines">
 <title>QuantLib Programming Style Guidelines</title>
-<meta name="description" content=
-"QuantLib Programming Style Guidelines">
-<!--#include virtual="qlmeta.inc"-->
 </head>
 <body>
 <!--#include virtual="qlheader.inc"-->
@@ -94,7 +90,7 @@ Guidelines</em></a> by Geotechnical Software Services. Please refer
 to the original document for a more general introduction and
 references.</p>
 <h3><a name="Layout of the Recommendations" id=
-"Layout of the Recommendations"></a>1.1 Layout of the
+"LayoutOfTheRecommendations"></a>1.1 Layout of the
 Recommendations.</h3>
 <p>The recommendations are grouped by topic and each recommendation
 is numbered to make it easier to refer to during reviews.</p>
@@ -122,7 +118,7 @@ Recommendation Importance</h3>
 strong recommendation, and a <em>can</em> is a general
 guideline.</p>
 <h2><a name="General Recommendations" id=
-"General Recommendations"></a>2 General Recommendations</h2>
+"GeneralRecommendations"></a>2 General Recommendations</h2>
 <!--
 ****************************************************************************
    Rule
@@ -190,7 +186,7 @@ jargon more easily.</p>
 <br>
 <br>
 <br>
-<h2><a name="Naming Conventions" id="Naming Conventions"></a>3
+<h2><a name="Naming Conventions" id="NamingConventions"></a>3
 Naming Conventions</h2>
 <h3><a name="General" id="General"></a>3.1 General Naming
 Conventions</h3>
@@ -921,7 +917,7 @@ effects.</td>
 <br>
 <br>
 <h2><a name="Files" id="Files"></a>4 Files</h2>
-<h3><a name="Source Files" id="Source Files"></a>4.1 Source
+<h3><a name="Source Files" id="SourceFiles"></a>4.1 Source
 Files</h3>
 <!--
 ****************************************************************************
@@ -1067,7 +1063,7 @@ previous line.</li>
 </td>
 </tr>
 </table>
-<h3><a name="Include Files" id="Include Files"></a>4.2 Include
+<h3><a name="Include Files" id="IncludeFiles"></a>4.2 Include
 Files and Include Statements</h3>
 <!--
 ****************************************************************************
@@ -1725,7 +1721,7 @@ library, but is made obsolete in C++.</td>
 <br>
 <br>
 <br>
-<h2><a name="Layout and Comments" id="Layout and Comments"></a>6
+<h2><a name="Layout and Comments" id="LayoutAndComments"></a>6
 Layout and Comments</h2>
 <h3><a name="Layout" id="Layout"></a>6.1 Layout</h3>
 <!--
@@ -2075,7 +2071,7 @@ within a file since one can assume that they all start in the first
 column.</td>
 </tr>
 </table>
-<h3><a name="White Space" id="White Space"></a>6.2 White Space</h3>
+<h3><a name="White Space" id="WhiteSpace"></a>6.2 White Space</h3>
 <!--
 ****************************************************************************
    Rule

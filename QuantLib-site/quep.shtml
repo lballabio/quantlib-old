@@ -4,11 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
-<meta name="generator" content=
-"HTML Tidy for Linux/x86 (vers 1st March 2004), see www.w3.org">
 <!--#include virtual="qlmeta.inc"-->
-<meta http-equiv="Content-Language" content="en">
-<meta name="doc-class" content="Draft">
 <meta name="description" content="QuantLib Enhancement Proposals">
 <title>QuantLib Enhancement Proposals</title>
 

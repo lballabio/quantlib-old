@@ -4,16 +4,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
-<meta name="generator" content=
-"HTML Tidy for Linux/x86 (vers 1st March 2004), see www.w3.org">
+<!--#include virtual="qlmeta.inc"-->
 <meta name="author" content="Ferdinando Ametrano">
 <meta name="copyright" content=
 "Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
-<meta name="doc-class" content="Draft">
-<title>QuantLib - Developer FAQ</title>
 <meta name="description" content=
 "QuantLib Developer Frequently Asked Questions">
-<!--#include virtual="qlmeta.inc"-->
+<title>QuantLib - Developer FAQ</title>
 </head>
 <body>
 <!--#include virtual="qlheader.inc"-->
@@ -128,12 +125,12 @@ for new developers</a></li>
 suggestions</li>
 <li>the <a href=
 "http://www.quantlib.org/reference/faq.html">FAQ</a></li>
-<li>The Programming Style Guidelines
-      <http://www.quantlib.org/style.shtml></li>
-<li>the detailed low-level to-do list
-      <http://www.quantlib.org/reference/todo.html></li>
+<li>The <a href=
+"http://www.quantlib.org/style.shtml">Programming Style Guidelines</a></li>
+<li>the detailed low-level <a href=
+"http://www.quantlib.org/reference/todo.html">to-do list</a>
+</li>
 </ul>
-</p>
 <h3><a name="g6" id="g6"></a>1.6.:</h3>
 <p><strong>Q: Which book do you suggest for ...?<br>
 A:</strong>Please see this <a href="books.shtml">list of

@@ -4,15 +4,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
-<meta name="generator" content=
-"HTML Tidy for Linux/x86 (vers 1st March 2004), see www.w3.org">
+<!--#include virtual="qlmeta.inc"-->
 <meta name="author" content="Ferdinando Ametrano">
 <meta name="copyright" content=
 "Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
-<meta name="doc-class" content="Draft">
-<title>QuantLib Mailing Lists</title>
 <meta name="description" content="QuantLib Mailing Lists">
-<!--#include virtual="qlmeta.inc"-->
+<title>QuantLib Mailing Lists</title>
 </head>
 <body>
 <!--#include virtual="qlheader.inc"-->
@@ -66,11 +63,11 @@ Suggested for developers only. Please do not directly post to this
 list.<br>
 (not archived yet, <a href=
 "http://lists.sourceforge.net/mailman/listinfo/quantlib-cvs">Subscribe/Unsubscribe/Preferences</a>)</li>
-</ul>
-</li>
+</ol>
 <li>Check out the threads available in the <a href=
 "http://sourceforge.net/forum/?group_id=12740">Forums</a>, or start a new
 thread</li>
+</ul>
 <!--#include virtual="qlfooter.inc"-->
 </body>
 </html>

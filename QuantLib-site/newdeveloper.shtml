@@ -1,20 +1,15 @@
 <!--
  $Id$
 -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
 <head>
-<meta name="generator" content=
-"HTML Tidy for Linux/x86 (vers 1st August 2004), see www.w3.org" />
-<meta name="author" content="Ferdinando Ametrano" />
-<meta name="copyright" content=
-"Ferdinando Ametrano (c) 2000, 2001, 2002, 2003" />
-<meta name="doc-class" content="Draft" />
-<title>QuantLib - Developer intro</title>
-<meta name="description" content=
-"QuantLib Developer Introduction" />
 <!--#include virtual="qlmeta.inc"-->
+<meta name="author" content="Ferdinando Ametrano">
+<meta name="copyright" content=
+"Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
+<meta name="description" content="QuantLib Developer Introduction">
+<title>QuantLib - Developer intro</title>
 </head>
 <body>
 <!--#include virtual="qlheader.inc"-->
