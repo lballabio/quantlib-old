@@ -59,7 +59,7 @@ def webclean():
   #if bobbyCheck=='y':
   #  pass
 
-  cmd = 'del ..\\' + sitename + '.zip .'
+  cmd = 'del ..\\' + sitename + '.tar.bz2'
   print '\nplease wait while performing:',
   print cmd
   cmd = 'tar cjf ..\\' + sitename + '.tar.bz2 .'
