@@ -38,7 +38,7 @@ int main() {
     VariesList voc;                 // cliquet
     VariesList vod;                 // dividend
     VariesList vof;                 // forward
-    int i, j;                       // iterators
+    int i;                          // iterators
     // inputs for various functions:
     double dividendYield = 0.00;
     double riskFreeRate = 0.06;

@@ -4,7 +4,7 @@ ClientCPP.dep
 ClientCPP.mak
 ClientCPP.ncb
 ClientCPP.opt
-ClientCPP.plg
+*.plg
 ClientCPP_private.*
 .deps
 .libs

@@ -48,7 +48,37 @@ Package=<4>
 
 ###############################################################################
 
-Project: "ClientC"=".\Clients\C\ClientC.dsp" - Package Owner=<4>
+Project: "ClientCDemo"=".\CLIENTS\C\ClientCDemo.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name AddinC
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "ClientCOptions"=".\CLIENTS\C\ClientCOptions.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name AddinC
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "ClientCPPDemo"=".\CLIENTS\C++\ClientCPPDemo.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -59,14 +89,11 @@ Package=<4>
     Begin Project Dependency
     Project_Dep_Name QuantLibAddin
     End Project Dependency
-    Begin Project Dependency
-    Project_Dep_Name AddinC
-    End Project Dependency
 }}}
 
 ###############################################################################
 
-Project: "ClientCPP"=".\Clients\C++\ClientCPP.dsp" - Package Owner=<4>
+Project: "ClientCPPOptions"=".\CLIENTS\C++\ClientCPPOptions.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{

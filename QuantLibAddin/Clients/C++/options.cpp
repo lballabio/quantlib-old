@@ -141,8 +141,8 @@ int main() {
                 v.push_back(0.9);
             correlations.push_back(v);
         }
-        for (int i2=0;i2<2;i2++)
-            correlations[i2][i2] = 1.0;
+        for (int i3=0;i3<2;i3++)
+            correlations[i3][i3] = 1.0;
         Properties p6 = QL_OPTION_BASKET(
             "opt_basket",                   // option handle
             v,                              // vector of stochastic process handles
