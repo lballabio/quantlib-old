@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile=".\bin\QLADemo-vc71-mt-sgd-0_3_9.exe"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib"
 				GenerateDebugInformation="TRUE"
