@@ -23,10 +23,10 @@
 %include functions.i
 
 %{
-using QuantLib::Math::SegmentIntegral;
-using QuantLib::Math::TrapezoidIntegral;
-using QuantLib::Math::SimpsonIntegral;
-using QuantLib::Math::KronrodIntegral;
+using QuantLib::SegmentIntegral;
+using QuantLib::TrapezoidIntegral;
+using QuantLib::SimpsonIntegral;
+using QuantLib::KronrodIntegral;
 %}
 
 %define INTEGRATION_METHODS

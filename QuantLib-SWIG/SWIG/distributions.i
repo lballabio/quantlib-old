@@ -19,10 +19,10 @@
 #define quantlib_distributions_i
 
 %{
-using QuantLib::Math::NormalDistribution;
-using QuantLib::Math::CumulativeNormalDistribution;
-using QuantLib::Math::MoroInverseCumulativeNormal;
-using QuantLib::Math::InverseCumulativeNormal;
+using QuantLib::NormalDistribution;
+using QuantLib::CumulativeNormalDistribution;
+using QuantLib::MoroInverseCumulativeNormal;
+using QuantLib::InverseCumulativeNormal;
 %}
 
 class NormalDistribution {

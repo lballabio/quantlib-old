@@ -39,8 +39,8 @@ class SafeInterpolation {
 %define make_safe_interpolation(T)
 %{
 typedef SafeInterpolation<
-            QuantLib::Math::T<Array::const_iterator,
-                              Array::const_iterator> >
+            QuantLib::T<Array::const_iterator,
+                        Array::const_iterator> >
     Safe##T;
 %}
 %rename(T) Safe##T;
@@ -88,9 +88,9 @@ class SafeInterpolation2D {
 %define make_safe_interpolation2d(T)
 %{
 typedef SafeInterpolation2D<
-            QuantLib::Math::T<Array::const_iterator,
-                              Array::const_iterator,
-                              Matrix> >
+            QuantLib::T<Array::const_iterator,
+                        Array::const_iterator,
+                        Matrix> >
     Safe##T;
 %}
 %rename(Safe##T) T;

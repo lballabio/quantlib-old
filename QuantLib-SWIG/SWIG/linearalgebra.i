@@ -24,7 +24,7 @@
 
 %{
 using QuantLib::Array;
-using QuantLib::Math::Matrix;
+using QuantLib::Matrix;
 using QuantLib::ArrayFormatter;
 using QuantLib::IndexError;
 %}
@@ -886,9 +886,9 @@ class Array {
 // 2-D view
 
 %{
-typedef QuantLib::Math::LexicographicalView<Array::iterator>  
+typedef QuantLib::LexicographicalView<Array::iterator>  
     LexicographicalView;
-typedef QuantLib::Math::LexicographicalView<Array::iterator>::y_iterator 
+typedef QuantLib::LexicographicalView<Array::iterator>::y_iterator 
     LexicographicalViewColumn;
 %}
 
@@ -953,10 +953,10 @@ class LexicographicalView {
 
 // matrix class
 %{
-typedef QuantLib::Math::Matrix::row_iterator MatrixRow;
-using QuantLib::Math::outerProduct;
-using QuantLib::Math::transpose;
-using QuantLib::Math::matrixSqrt;
+typedef QuantLib::Matrix::row_iterator MatrixRow;
+using QuantLib::outerProduct;
+using QuantLib::transpose;
+using QuantLib::matrixSqrt;
 %}
 
 #if defined(SWIGPYTHON) || defined(SWIGRUBY)

@@ -241,8 +241,8 @@ double firstDerivativeAtCenter(const Array& a, const Array& g);
 double secondDerivativeAtCenter(const Array& a, const Array& g);
 
 %{
-using QuantLib::Math::SymmetricEigenvalues;
-using QuantLib::Math::SymmetricEigenvectors;
+using QuantLib::SymmetricEigenvalues;
+using QuantLib::SymmetricEigenvectors;
 %}
 
 Array SymmetricEigenvalues(Matrix &s);

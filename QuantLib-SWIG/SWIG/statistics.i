@@ -24,9 +24,9 @@
 %include stl.i
 
 %{
-using QuantLib::Math::Statistics;
-using QuantLib::Math::RiskStatistics;
-using QuantLib::Math::SequenceStatistics;
+using QuantLib::Statistics;
+using QuantLib::RiskStatistics;
+using QuantLib::SequenceStatistics;
 %}
 
 class Statistics {
@@ -118,7 +118,7 @@ class SequenceStatistics {
 %template(MultipleStatistics) SequenceStatistics<Statistics>;
 
 %{
-using QuantLib::Math::MultivariateAccumulator;
+using QuantLib::MultivariateAccumulator;
 %}
 
 class MultivariateAccumulator {
@@ -128,7 +128,7 @@ class MultivariateAccumulator {
     double weightSum() const;
     Array mean() const;
     Matrix covariance() const;
-	Matrix correlation() const;
+    Matrix correlation() const;
     void add(const Array& a, double weight = 1.0);
     void reset();
 };
