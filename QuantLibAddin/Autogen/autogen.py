@@ -1,14 +1,16 @@
 #!/usr/bin/python
 
+#import pprint
 import common
 import utils
 import parse
-import excel
 import c
-#import pprint
+import calc
+import excel
 
 utils.init()
 functionDefs = parse.getFunctionDefs()
 #pprint.pprint(functionDefs)
+c.generate(functionDefs)
+calc.generate(functionDefs)
 excel.generate(functionDefs)
-c.generate(functionDefs[common.FUNCGROUPS])

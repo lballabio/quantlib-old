@@ -50,6 +50,7 @@ def generateFuncHeaders(functionDefs):
 
 def generateFuncDef(fileFunc, function):
 	fileFunc.write('LPXLOPER %s(' % function[common.CODENAME])
+# FIXME call utils.generateParamList
 	i = 0
 	for param in function[common.PARAMS]:
 		if param[common.TYPE] == 'string':

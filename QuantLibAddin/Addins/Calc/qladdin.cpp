@@ -235,3 +235,4 @@ void SAL_CALL QLAddin::setLocale(
 lang::Locale SAL_CALL QLAddin::getLocale() THROWDEF_RTE {
 	return aFuncLoc;
 }
+

@@ -18,29 +18,9 @@
 // this file generated automatically by autogen.py on Sun Dec 12 10:34:49 2004
 // editing this file manually is not recommended
 
-#ifdef WIN32
-#pragma warning(disable: 4786)
-#pragma warning(disable: 4503)
-#endif
+	virtual SEQSEQ(ANY) SAL_CALL qlQuery(
+		const STRING &handleObject) THROWDEF_RTE_IAE;
 
-#include <Addins/Calc/qladdin.hpp>
+	virtual STRING SAL_CALL qlLogfile(
+		const STRING &logFileName) THROWDEF_RTE_IAE;
 
-QLAddin::QLAddin() throw () : m_refcount( 0 ) {
-
-	//functions
-
-	funcMap[ STRFROMANSI( "qlQuery" ) ]
-		=  STRFROMANSI( "QL_QUERY" );
-	funcMap[ STRFROMANSI( "qlLogfile" ) ]
-		=  STRFROMANSI( "QL_LOGFILE" );
-
-	//options
-
-	funcMap[ STRFROMANSI( "qlBlackScholes" ) ]
-		=  STRFROMANSI( "QL_BLACKSCHOLES" );
-	funcMap[ STRFROMANSI( "qlOption" ) ]
-		=  STRFROMANSI( "QL_OPTION" );
-	funcMap[ STRFROMANSI( "qlOptionSetEngine" ) ]
-		=  STRFROMANSI( "QL_OPTION_SETENGINE" );
-
-}

@@ -7,6 +7,7 @@ def generateFuncHeader(fileHeader, function, suffix):
 	fileHeader.write('int %s_C(\n' % function[common.NAME])
 	if function[common.HANDLE]:
 		fileHeader.write('\t\tconst char *handle,\n')
+# FIXME call utils.generateParamList
 	for param in function[common.PARAMS]:
 		if param[common.TYPE] == 'string':
 			type = 'char *'
@@ -44,7 +45,8 @@ def generateFuncDefs(groupName, functionGroup):
 	fileFunc.close()
 	return
 
-def generate(functionGroups):
+def generate(functionDefs):
+	functionGroups = functionDefs[common.FUNCGROUPS]
 	for groupName in functionGroups.keys():
 		functionGroup = functionGroups[groupName]
 		if functionGroup[common.HDRONLY]:

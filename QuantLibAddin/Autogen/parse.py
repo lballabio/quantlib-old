@@ -39,6 +39,14 @@ def getParameters(paramsNode):
 		paramList.append(param)
 	return paramList
 
+def getReturnVal(retvalNode):
+	returnVal = {}
+	typeNode = retvalNode.getElementsByTagName(common.TYPE)[0]
+	descNode = retvalNode.getElementsByTagName(common.DESC)[0]
+	returnVal[common.TYPE] = getText(typeNode)
+	returnVal[common.DESC] = getText(descNode)
+	return returnVal
+
 def getFunction(functionNode):
 	function = {}
 	nameNode = functionNode.getElementsByTagName(common.NAME)[0]
@@ -46,11 +54,13 @@ def getFunction(functionNode):
 	descNode = functionNode.getElementsByTagName(common.DESC)[0]
 	handleNode = functionNode.getElementsByTagName(common.HANDLE)[0]
 	paramsNode = functionNode.getElementsByTagName(common.PARAMS)[0]
+	retvalNode = functionNode.getElementsByTagName(common.RETVAL)[0]
 	function[common.NAME] = getText(nameNode)
 	function[common.CODENAME] = getText(codeNameNode)
 	function[common.DESC] = getText(descNode)
 	function[common.HANDLE] = getBoolean(handleNode)
 	function[common.PARAMS] = getParameters(paramsNode)
+	function[common.RETVAL] = getReturnVal(retvalNode)
 	return function
 
 def getFunctionGroup(doc):

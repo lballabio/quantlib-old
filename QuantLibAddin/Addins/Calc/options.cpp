@@ -15,6 +15,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+// this file generated automatically by autogen.py on Sun Dec 12 10:34:49 2004
+// editing this file manually is not recommended
+
 #include <QuantLibAddin/qladdin.hpp>
 #include <Addins/Calc/qladdin.hpp>
 #include <Addins/Calc/utilities.hpp>
@@ -22,23 +25,23 @@
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
-// FIXME these in QuantLibAddin header file that we can't see from here
-#define BINOMIAL_JARROW_RUDD            "BINOMIAL JARROW-RUDD"
-#define BINOMIAL_COX_ROSS_RUBINSTEIN    "BINOMIAL COX-ROSS-RUBINSTEIN"
-#define ADDITIVE_EQUIPROBABILITIES      "ADDITIVE EQUIPROBABILITIES"
-
-SEQSEQ( ANY ) SAL_CALL QLAddin::qlBlackScholes( 
-			const STRING& handle,
-			double dividendYield,
-			double riskFreeRate,
-			double volatility,
-			double underlying,
-			sal_Int32 todaysDateNum,
-			sal_Int32 settlementDateNum) THROWDEF_RTE_IAE {
+SEQSEQ( ANY ) SAL_CALL QLAddin::qlBlackScholes(
+		const STRING& handle,
+		double dividendYield,
+		double riskFreeRate,
+		double volatility,
+		double underlying,
+		sal_Int32 todaysDate,
+		sal_Int32 settlementDate) THROWDEF_RTE_IAE {
 	try {
-		Properties properties = QL_BLACKSCHOLES(OUStringToString(handle),
-			dividendYield, riskFreeRate, volatility, underlying,
-			todaysDateNum, settlementDateNum);
+		Properties properties = QL_BLACKSCHOLES(
+			OUStringToString(handle),
+			dividendYield,
+			riskFreeRate,
+			volatility,
+			underlying,
+			todaysDate,
+			settlementDate);
 		return getArray(properties, handle);
 	} catch (const std::exception &e) {
 		QL_LOGMESSAGE(std::string("ERROR: QL_BLACKSCHOLES: ") + e.what());
@@ -46,18 +49,23 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlBlackScholes(
 	}
 }
 
-SEQSEQ( ANY ) SAL_CALL QLAddin::qlOption( 
-			const STRING& handle,
-			const STRING& handleStochastic,
-			const STRING& typeOption,
-			double strike,
-			sal_Int32 timeSteps,
-			sal_Int32 exerciseDate,
-			sal_Int32 settlementDate) THROWDEF_RTE_IAE {
+SEQSEQ( ANY ) SAL_CALL QLAddin::qlOption(
+		const STRING& handle,
+		const STRING &handleStochastic,
+		const STRING &typeOption,
+		double strike,
+		sal_Int32 timeSteps,
+		sal_Int32 exerciseDate,
+		sal_Int32 settlementDate) THROWDEF_RTE_IAE {
 	try {
-		Properties properties = QL_OPTION(OUStringToString(handle),
-			OUStringToString(handleStochastic), OUStringToString(typeOption),
-			strike, timeSteps, exerciseDate, settlementDate);
+		Properties properties = QL_OPTION(
+			OUStringToString(handle),
+			OUStringToString(handleStochastic),
+			OUStringToString(typeOption),
+			strike,
+			timeSteps,
+			exerciseDate,
+			settlementDate);
 		return getArray(properties, handle);
 	} catch (const std::exception &e) {
 		QL_LOGMESSAGE(std::string("ERROR: QL_OPTION: ") + e.what());
@@ -65,13 +73,15 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOption(
 	}
 }
 
-SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionSetEngine( 
-			const STRING& handle,
-			const STRING& engineName,
-			sal_Int32 timeSteps) THROWDEF_RTE_IAE {
+SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionSetEngine(
+		const STRING &handle,
+		const STRING &engineName,
+		sal_Int32 timeSteps) THROWDEF_RTE_IAE {
 	try {
-		Properties properties = QL_OPTION_SETENGINE(OUStringToString(handle),
-			OUStringToString(engineName), timeSteps);
+		Properties properties = QL_OPTION_SETENGINE(
+			OUStringToString(handle),
+			OUStringToString(engineName),
+			timeSteps);
 		return getArray(properties, handle);
 	} catch (const std::exception &e) {
 		QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_SETENGINE: ") + e.what());

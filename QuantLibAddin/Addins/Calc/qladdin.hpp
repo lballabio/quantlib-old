@@ -78,36 +78,6 @@ public:
     // XQlUno
     QLAddin() throw ();
 
-	// options
-	virtual SEQSEQ(ANY) SAL_CALL qlBlackScholes( 
-		const STRING& handle,
-		double dividendYield,
-		double riskFreeRate,
-		double volatility,
-		double underlying,
-		sal_Int32 todaysDateNum,
-		sal_Int32 settlementDateNum) THROWDEF_RTE_IAE;
-
-	virtual SEQSEQ(ANY) SAL_CALL qlOption( 
-		const STRING& handle,
-		const STRING& handleStochastic,
-		const STRING& typeOption,
-		double strike,
-		sal_Int32 timeSteps,
-		sal_Int32 exerciseDateNum,
-		sal_Int32 settlementDateNum) THROWDEF_RTE_IAE;
-
-	virtual SEQSEQ(ANY) SAL_CALL qlOptionSetEngine( 
-		const STRING& handle,
-		const STRING& engineName,
-		sal_Int32 timeSteps) THROWDEF_RTE_IAE;
-
-	// utilities
-
-	virtual SEQSEQ(ANY) SAL_CALL qlQuery(
-		const STRING& handleObject) THROWDEF_RTE_IAE;
-
-	virtual STRING SAL_CALL qlLogfile(
-		const STRING& logFileName) THROWDEF_RTE_IAE;
+#include <Addins/Calc/autogen.hpp>
 
 };

@@ -5,7 +5,7 @@
 
 <function>
 <name>QL_BLACKSCHOLES</name>
-<codename>qlBlackscholes</codename>
+<codename>qlBlackScholes</codename>
 <description>construct and return a handle to a Black Scholes object</description>
 <handle>true</handle>
 <parameters>
@@ -40,6 +40,10 @@
 		<desc>settlement date</desc>
 	</param>
 </parameters>
+<returnval>
+	<type>propertyvector</type>
+	<desc>vector of properties describing Black Scholes object</desc>
+</returnval>
 </function>
 
 <function>
@@ -54,9 +58,9 @@
 		<desc>handle of the Black Scholes object</desc>
 	</param>
 	<param>
-		<name>type</name>
+		<name>typeOption</name>
 		<type>string</type>
-		<desc>type</desc>
+		<desc>option type</desc>
 	</param>
 	<param>
 		<name>strike</name>
@@ -79,6 +83,10 @@
 		<desc>settlement date</desc>
 	</param>
 </parameters>
+<returnval>
+	<type>propertyvector</type>
+	<desc>vector of properties describing Option</desc>
+</returnval>
 </function>
 
 <function>
@@ -103,6 +111,10 @@
 		<desc>time steps</desc>
 	</param>
 </parameters>
+<returnval>
+	<type>propertyvector</type>
+	<desc>vector of properties reflecting revised Option</desc>
+</returnval>
 </function>
 
 </functionlist>

@@ -1,3 +1,6 @@
+// this file generated automatically by autogen.py on Sun Dec 12 10:34:49 2004
+// editing this file manually is not recommended
+
 #include <com/sun/star/uno/XInterface.idl>
 #include <com/sun/star/beans/XPropertySet.idl>
 
@@ -6,47 +9,47 @@ module com {
     module star {
       module sheet {
         module addin {
-            interface XQL: com::sun::star::uno::XInterface {
+          interface XQL: com::sun::star::uno::XInterface {
 
-				// pricers
-
-				sequence < sequence < any > > qlBlackScholes(
-                        [in] string handle,
-                        [in] double dividendYield,
-                        [in] double riskFreeRate,
-                        [in] double volatility,
-                        [in] double underlying,
-                        [in] long todaysDateNum,
-                        [in] long settlementDateNum)
-					raises( com::sun::star::lang::IllegalArgumentException );
-
-				sequence < sequence < any > > qlOption(
-                        [in] string handle,
-                        [in] string handleStochastic,
-                        [in] string typeOption,
-						[in] double strike,
-                        [in] long timeSteps,
-                        [in] long exerciseDateNum,
-                        [in] long settlementDateNum)
-					raises( com::sun::star::lang::IllegalArgumentException );
-
-				sequence < sequence < any > > qlOptionSetEngine(
-                        [in] string handle,
-                        [in] string engineName,
-                        [in] long timeSteps)
-					raises( com::sun::star::lang::IllegalArgumentException );
-
-				// utilities
+				// functions
 
 				sequence < sequence < any > > qlQuery(
-                        [in] string handleObject)
+						[in] string handleObject)
 					raises( com::sun::star::lang::IllegalArgumentException );
 
 				string qlLogfile(
-                        [in] string logFileName)
+						[in] string logFileName)
 					raises( com::sun::star::lang::IllegalArgumentException );
 
-            };
+				// options
+
+				sequence < sequence < any > > qlBlackScholes(
+						[in] string handle,
+						[in] double dividendYield,
+						[in] double riskFreeRate,
+						[in] double volatility,
+						[in] double underlying,
+						[in] long todaysDate,
+						[in] long settlementDate)
+					raises( com::sun::star::lang::IllegalArgumentException );
+
+				sequence < sequence < any > > qlOption(
+						[in] string handle,
+						[in] string handleStochastic,
+						[in] string typeOption,
+						[in] double strike,
+						[in] long timeSteps,
+						[in] long exerciseDate,
+						[in] long settlementDate)
+					raises( com::sun::star::lang::IllegalArgumentException );
+
+				sequence < sequence < any > > qlOptionSetEngine(
+						[in] string handle,
+						[in] string engineName,
+						[in] long timeSteps)
+					raises( com::sun::star::lang::IllegalArgumentException );
+
+          };
         };
       };
     };
