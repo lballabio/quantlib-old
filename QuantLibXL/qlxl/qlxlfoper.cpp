@@ -140,17 +140,18 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
             dates[j] = QlXlfOper(range(0, j)).AsDate();
             vols[j] = range(1, j).AsDouble();
         }
-        Handle<BlackVolTermStructure> ts = Handle<BlackVolTermStructure>(new
+        Handle<BlackVarianceCurve> ts(new
             BlackVarianceCurve(referenceDate,dates,vols));
         switch (interpolationType) {
             case 1:
                 return ts;
                 break;
             case 2:
-/*
-                dynamic_cast<BlackVarianceCurve*>(ts)->setInterpolation(
-                    CubicSpline());
-*/
+                #if defined(QL_PATCH_MICROSOFT)
+                ts->setInterpolation(CubicSpline());
+                #else
+                ts->setInterpolation<CubicSpline>();
+                #endif
                 return ts;
                 break;
             default:
@@ -174,14 +175,18 @@ RelinkableHandle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 vols[i-1][j-1] = range(i, j).AsDouble();
             }
         }
-        Handle<BlackVolTermStructure> ts = Handle<BlackVolTermStructure>(new
+        Handle<BlackVarianceSurface> ts(new
             BlackVarianceSurface(referenceDate, dates, strikes, vols));
         switch (interpolationType) {
             case 1:
                 return ts;
                 break;
             case 2:
-//                ts->setInterpolation();
+                #if defined(QL_PATCH_MICROSOFT)
+                ts->setInterpolation(CubicSpline());
+                #else
+                ts->setInterpolation<CubicSpline>();
+                #endif
                 return ts;
                 break;
             default:
