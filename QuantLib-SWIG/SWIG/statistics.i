@@ -27,6 +27,7 @@
 
 %{
 using QuantLib::Math::Statistics;
+using QuantLib::Math::SequenceStatistics;
 %}
 
 class Statistics {
@@ -67,7 +68,39 @@ class Statistics {
     }
 };
 
+template <class S>
+class SequenceStatistics {
+    #if defined(SWIGRUBY)
+    %rename("reset!")                reset;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("weight-sum")            weightSum;
+    %rename("standard-deviation")    standardDeviation;
+    %rename("downside-variance")     downsideVariance;
+    %rename("downside-deviation")    downsideDeviation;
+    %rename("error-estimate")        errorEstimate;
+    %rename("reset!")                reset;
+    #endif
+  public:
+    SequenceStatistics(Size dimension);
+    Size samples() const;
+    double weightSum() const;
+    std::vector<double> mean() const;
+    std::vector<double> variance() const;
+    std::vector<double> standardDeviation() const;
+    std::vector<double> downsideVariance() const;
+    std::vector<double> downsideDeviation() const;
+    std::vector<double> errorEstimate() const;
+    std::vector<double> skewness() const;
+    std::vector<double> kurtosis() const;
+    std::vector<double> min() const;
+    std::vector<double> max() const;
+    // Modifiers
+    void reset();
+    void add(const std::vector<double>& value, double weight = 1.0);
+    void add(const Array& value, double weight = 1.0);
+};
 
+%template(MultipleStatistics) SequenceStatistics<Statistics>;
 
 %{
 using QuantLib::Math::MultivariateAccumulator;
