@@ -25,10 +25,8 @@ def Gauss(x)
 end
 
 class SegmentIntegralTest < Test::Unit::TestCase
-  def setup
-    puts
-    print "Testing segment integral.."
-    STDOUT.flush
+  def name
+    "Testing segment integral"
   end
   def testCalculation
     tolerance = 1e-4

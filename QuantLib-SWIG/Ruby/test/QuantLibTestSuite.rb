@@ -63,8 +63,8 @@ suite << SwaptionTest.suite
 suite << TermStructureTest.suite
 suite << OldPricerTest.suite
 
-
-runner = Test::Unit::UI::Console::TestRunner.new(suite,true,STDOUT)
+verbosity = Test::Unit::UI::Console::TestRunner::VERBOSE
+runner = Test::Unit::UI::Console::TestRunner.new(suite,verbosity,STDOUT)
 result = runner.start
 unless result.passed?
   exit(1)

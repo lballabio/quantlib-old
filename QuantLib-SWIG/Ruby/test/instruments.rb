@@ -21,10 +21,8 @@ require 'test/unit/testcase'
 require 'test/unit/ui/console/testrunner'
 
 class InstrumentTest < Test::Unit::TestCase
-  def setup
-    puts
-    print "Testing observability of stocks.."
-    STDOUT.flush
+  def name
+    "Testing observability of stocks"
   end
   def testStock
     flag = false

@@ -21,10 +21,8 @@ require 'test/unit'
 require 'test/unit/ui/console/testrunner'
 
 class CalendarTest < Test::Unit::TestCase
-  def setup
-    puts
-    print "Testing joint calendars.."
-    STDOUT.flush
+  def name
+    "Testing joint calendars"
   end
   def testJointCalendars
     c1 = QuantLib::Calendar.new("TARGET")

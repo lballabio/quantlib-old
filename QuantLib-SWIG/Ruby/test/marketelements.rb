@@ -21,10 +21,8 @@ require 'test/unit/testcase'
 require 'test/unit/ui/console/testrunner'
 
 class MarketElementTest < Test::Unit::TestCase
-  def setup
-    puts
-    print "Testing observability of market elements.."
-    STDOUT.flush
+  def name
+    "Testing observability of market elements"
   end
   def testObservability
     flag = false
@@ -39,10 +37,8 @@ class MarketElementTest < Test::Unit::TestCase
 end
 
 class MarketElementHandleTest < Test::Unit::TestCase
-  def setup
-    puts
-    print "Testing observability of market element handles.."
-    STDOUT.flush
+  def name
+    "Testing observability of market element handles"
   end
   def testObservability
     flag = false

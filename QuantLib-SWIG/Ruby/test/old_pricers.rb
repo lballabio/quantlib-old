@@ -22,27 +22,25 @@ require 'test/unit/ui/console/testrunner'
 
 class OldPricerTest < Test::Unit::TestCase
   include QuantLib
-  def setup
-    puts
+  def name
     case @method_name
       when 'testBarrierPricer'
-        print "Testing old-style barrier option pricer.."
+        "Testing old-style barrier option pricer"
       when 'testBinaryPricer'
-        print "Testing old-style binary option pricer.."
+        "Testing old-style binary option pricer"
       when 'testCliquetPricer'
-        print "Testing old-style cliquet option pricer.."
+        "Testing old-style cliquet option pricer"
       when 'testDividendEuropeanPricer'
-        print "Testing old-style European option pricer with dividends.."
+        "Testing old-style European option pricer with dividends"
       when 'testFdEuropeanPricer'
-        print "Testing old-style finite-difference European option pricer.."
+        "Testing old-style finite-difference European option pricer"
       when 'testAmericanPricers'
-        print "Testing old-style American-type pricers.."
+        "Testing old-style American-type pricers"
       when 'testMcSingleFactorPricers'
-        print "Testing old-style Monte Carlo single-factor pricers.."
+        "Testing old-style Monte Carlo single-factor pricers"
       when 'testMcMultiFactorPricers'
-        print "Testing old-style Monte Carlo multi-factor pricers.."
+        "Testing old-style Monte Carlo multi-factor pricers"
     end
-    STDOUT.flush
   end
   def relativeError(x1,x2,reference)
     if reference != 0.0

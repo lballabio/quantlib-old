@@ -22,22 +22,21 @@ require 'test/unit/ui/console/testrunner'
 
 class SimpleSwapTest < Test::Unit::TestCase
   include QuantLib
-  def setup
-    puts
+  def name
     case @method_name
       when 'testFairRate'
-        print "Testing simple swap calculation of fair fixed rate.."
+        "Testing simple swap calculation of fair fixed rate"
       when 'testFairSpread'
-        print "Testing simple swap calculation of fair floating spread.."
+        "Testing simple swap calculation of fair floating spread"
       when 'testRateDependency'
-        print "Testing simple swap dependency on fixed rate.."
+        "Testing simple swap dependency on fixed rate"
       when 'testSpreadDependency'
-        print "Testing simple swap dependency on floating spread.."
+        "Testing simple swap dependency on floating spread"
       when 'testCachedValue'
-        print "Testing simple swap calculation against cached value.."
+        "Testing simple swap calculation against cached value"
     end
-    STDOUT.flush
-
+  end
+  def setup
     @payFixed = true
     @settlementDays = 2
     @fixingDays = 2

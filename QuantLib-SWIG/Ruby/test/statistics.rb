@@ -37,10 +37,8 @@ class Array
 end
 
 class StatisticsTest < Test::Unit::TestCase
-    def setup
-      puts
-      print "Testing statistics.."
-      STDOUT.flush
+    def name
+      "Testing statistics"
     end
     def testCalculation
         tolerance = 1.0e-9

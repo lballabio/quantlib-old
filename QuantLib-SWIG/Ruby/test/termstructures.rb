@@ -22,24 +22,23 @@ require 'test/unit/ui/console/testrunner'
 
 class TermStructureTest < Test::Unit::TestCase
   include QuantLib
-  def setup
-    puts
+  def name
     case @method_name
       when 'testImplied'
-        print "Testing consistency of implied term structure.."
+        "Testing consistency of implied term structure"
       when 'testImpliedObs'
-        print "Testing observability of implied term structure.."
+        "Testing observability of implied term structure"
       when 'testFSpreaded'
-        print "Testing consistency of forward-spreaded term structure.."
+        "Testing consistency of forward-spreaded term structure"
       when 'testFSpreadedObs'
-        print "Testing observability of forward-spreaded term structure.."
+        "Testing observability of forward-spreaded term structure"
       when 'testZSpreaded'
-        print "Testing consistency of zero-spreaded term structure.."
+        "Testing consistency of zero-spreaded term structure"
       when 'testZSpreadedObs'
-        print "Testing observability of zero-spreaded term structure.."
+        "Testing observability of zero-spreaded term structure"
     end
-    STDOUT.flush
-
+  end
+  def setup
     today = Date::todaysDate()
     @calendar = Calendar.new('TARGET')
     @settlementDays = 2

@@ -21,10 +21,8 @@ require 'test/unit'
 require 'test/unit/ui/console/testrunner'
 
 class DateTest < Test::Unit::TestCase
-  def setup
-    puts
-    print "Testing dates.."
-    STDOUT.flush
+  def name
+    "Testing dates"
   end
   def testAllDates
     minDate = QuantLib::Date.minDate.serialNumber+1

@@ -22,20 +22,19 @@ require 'test/unit/ui/console/testrunner'
 
 class CapFloorTest < Test::Unit::TestCase
   include QuantLib
-  def setup
-    puts
+  def name
     case @method_name
       when 'testStrikeDependency'
-        print "Testing cap/floor dependency on strike.."
+        "Testing cap/floor dependency on strike"
       when 'testConsistency'
-        print "Testing consistency between cap, floor and collar.."
+        "Testing consistency between cap, floor and collar"
       when 'testParity'
-        print "Testing put/call parity for cap and floor.."
+        "Testing put/call parity for cap and floor"
       when 'testCachedValue'
-        print "Testing cap/floor value against cached values.."
+        "Testing cap/floor value against cached values"
     end
-    STDOUT.flush
-
+  end
+  def setup
     @today = Date.todaysDate
     @termStructure = TermStructureHandle.new
     @nominals = [100.0]

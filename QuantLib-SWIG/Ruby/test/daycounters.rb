@@ -21,10 +21,8 @@ require 'test/unit'
 require 'test/unit/ui/console/testrunner'
 
 class DayCounterTest < Test::Unit::TestCase
-  def setup
-    puts
-    print "Testing actual/actual day counters.."
-    STDOUT.flush
+  def name
+    "Testing actual/actual day counters"
   end
   def testActualActual
     # each case lists startDate, endDate, refStartDate, refEndDate, and

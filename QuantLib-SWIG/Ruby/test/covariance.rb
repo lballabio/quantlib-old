@@ -21,10 +21,8 @@ require 'test/unit'
 require 'test/unit/ui/console/testrunner'
 
 class CovarianceTest < Test::Unit::TestCase
-  def setup
-    puts
-    print "Testing covariance calculation.."
-    STDOUT.flush
+  def name
+    "Testing covariance calculation"
   end
   def testCalculation
     vol = [0.1, 0.5, 1.0]

@@ -22,10 +22,8 @@ require 'test/unit/ui/console/testrunner'
 
 class PiecewiseFlatForwardTest < Test::Unit::TestCase
   include QuantLib
-  def setup
-    puts
-    print "Testing piecewise flat forward curve.."
-    STDOUT.flush
+  def name
+    "Testing piecewise flat forward curve"
   end
   def testRates
     euriborHandle = TermStructureHandle.new

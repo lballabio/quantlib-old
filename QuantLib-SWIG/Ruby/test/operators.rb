@@ -46,10 +46,8 @@ end
 # Test
 
 class OperatorTest < Test::Unit::TestCase
-  def setup
-    puts
-    print "Testing differential operators.."
-    STDOUT.flush
+  def name
+    "Testing differential operators"
   end
   def testOperators
     average = 0.0

@@ -21,10 +21,8 @@ require 'test/unit/testcase'
 require 'test/unit/ui/console/testrunner'
 
 class Solver1DTest < Test::Unit::TestCase
-  def setup
-    puts
-    print "Testing 1-D solvers.."
-    STDOUT.flush
+  def name
+    "Testing 1-D solvers"
   end
   def testCalculation
     [QuantLib::Brent,

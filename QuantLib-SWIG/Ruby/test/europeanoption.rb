@@ -22,17 +22,15 @@ require 'test/unit/ui/console/testrunner'
 
 class EuropeanOptionTest < Test::Unit::TestCase
   include QuantLib
-  def setup
-    puts
+  def name
     case @method_name
       when 'testGreeks'
-        print "Testing European option greeks.."
+        "Testing European option greeks"
       when 'testImpliedVol'
-        print "Testing European option implied volatility.."
+        "Testing European option implied volatility"
       when 'testBinomialEngines'
-        print "Testing binomial European engines against analytic results.."
+        "Testing binomial European engines against analytic results"
     end
-    STDOUT.flush
   end
   def relativeError(x1,x2,reference)
     if reference != 0.0

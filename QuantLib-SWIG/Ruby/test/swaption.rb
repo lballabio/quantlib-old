@@ -22,20 +22,19 @@ require 'test/unit/ui/console/testrunner'
 
 class SwaptionTest < Test::Unit::TestCase
   include QuantLib
-  def setup
-    puts
+  def name
     case @method_name
       when 'testStrikeDependency'
-        print "Testing swaption dependency on strike.."
+        "Testing swaption dependency on strike"
       when 'testSpreadDependency'
-        print "Testing swaption dependency on spread.."
+        "Testing swaption dependency on spread"
       when 'testSpreadTreatment'
-        print "Testing swaption treatment of spread.."
+        "Testing swaption treatment of spread"
       when 'testCachedValue'
-        print "Testing swaption value against cached value.."
+        "Testing swaption value against cached value"
     end
-    STDOUT.flush
-
+  end
+  def setup
     @today = Date.todaysDate
     @termStructure = TermStructureHandle.new
     @nominal = 100.0

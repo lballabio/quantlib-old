@@ -28,10 +28,8 @@ def gaussian(x, average, sigma)
 end
 
 class RiskStatisticsTest < Test::Unit::TestCase
-  def setup
-    puts
-    print "Testing risk statistics.."
-    STDOUT.flush
+  def name
+    "Testing risk statistics"
   end
   def testCalculation
     s = QuantLib::RiskStatistics.new

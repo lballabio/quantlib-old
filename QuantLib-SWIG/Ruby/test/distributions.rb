@@ -59,10 +59,8 @@ end
 # Test
 
 class DistributionTest < Test::Unit::TestCase
-  def setup
-    puts
-    print "Testing distributions.."
-    STDOUT.flush
+  def name
+    "Testing distributions"
   end
   def testConsistence
     average = 0.0
