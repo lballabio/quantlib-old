@@ -43,32 +43,6 @@
          result)))))
 
 
-; more scheme-like names which couldn't be set from SWIG
-(define Calendar=? Calendar-equal)
-
-(define Date=?  Date-equal)
-(define Date<?  Date-less)
-(define Date>?  Date-greater)
-(define Date<=? Date-less-equal)
-(define Date>=? Date-greater-equal)
-
-(define DayCounter=? DayCounter-equal)
-
-(define Array+ Array-add)
-(define Array- Array-sub)
-(define Array* Array-mul)
-(define Array/ Array-div)
-
-(define Matrix+ Matrix-add)
-(define Matrix- Matrix-sub)
-(define Matrix* Matrix-mul)
-(define Matrix/ Matrix-div)
-
-(define TridiagonalOperator+ TridiagonalOperator-add)
-(define TridiagonalOperator- TridiagonalOperator-sub)
-(define TridiagonalOperator* TridiagonalOperator-mul)
-(define TridiagonalOperator/ TridiagonalOperator-div)
-
 ; added functionality
 (define History-old-init new-History)
 (define (new-History dates values)

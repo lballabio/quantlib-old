@@ -179,7 +179,7 @@ using QuantLib::DateFormatter;
 %}
 
 class Date {
-    #if defined(SWIGRUBY)
+    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
     %rename(__add__)          operator+;
     %rename(__sub__)          operator-;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -196,20 +196,6 @@ class Date {
     %rename("max-date")       maxDate;
     %rename("todays-date")    todaysDate;
     %rename(">string")        __str__;
-    #if defined(SWIGGUILE)
-    %scheme%{
-        (define Date=?  Date-equal)
-        (define Date<?  Date-less)
-        (define Date>?  Date-greater)
-        (define Date<=? Date-less-equal)
-        (define Date>=? Date-greater-equal)
-        (export Date=?
-                Date<?
-                Date>?
-                Date<=?
-                Date>=?)
-    %}
-    #endif
     #endif
   public:
     Date(Day d, Month m, Year y);
@@ -267,32 +253,39 @@ class Date {
             return self->plusDays(1);
         }
         #endif
-        #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-        // difference - comparison
-        int days_between(const Date& other) {
-            return other-(*self);
-        }
-        bool equal(const Date& other) {
-            return (*self == other);
-        }
-        bool less(const Date& other) {
-            return (*self < other);
-        }
-        bool less_equal(const Date& other) {
-            return (*self <= other);
-        }
-        bool greater(const Date& other) {
-            return (*self > other);
-        }
-        bool greater_equal(const Date& other) {
-            return (*self >= other);
-        }
-        #endif
     }
 };
 PassByValue(Date);
 ReturnByValue(Date);
 
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("Date=?")  Date_equal;
+%rename("Date<?")  Date_less;
+%rename("Date<=?") Date_less_equal;
+%rename("Date>?")  Date_greater;
+%rename("Date>=?") Date_greater_equal;
+%inline %{
+    // difference - comparison
+    int Date_days_between(const Date& d1, const Date& d2) {
+        return d2-d1;
+    }
+    bool Date_equal(const Date& d1, const Date& d2) {
+        return d1 == d2;
+    }
+    bool Date_less(const Date& d1, const Date& d2) {
+        return d1 < d2;
+    }
+    bool Date_less_equal(const Date& d1, const Date& d2) {
+        return d1 <= d2;
+    }
+    bool Date_greater(const Date& d1, const Date& d2) {
+        return d1 > d2;
+    }
+    bool Date_greater_equal(const Date& d1, const Date& d2) {
+        return d1 >= d2;
+    }
+%}
+#endif
 #if defined(SWIGGUILE)
 %inline %{
     Date Date_from_serial_number(int serialNumber) {

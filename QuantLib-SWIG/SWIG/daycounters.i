@@ -39,13 +39,6 @@ class DayCounter {
     %rename("day-count")     dayCount;
     %rename("year-fraction") yearFraction;
     %rename(">string")       __str__;
-    %rename("equal")         __eq__;
-    #if defined(SWIGGUILE)
-    %scheme%{ 
-        (define DayCounter=? DayCounter-equal) 
-        (export DayCounter=?)
-    %}
-    #endif
     #endif
   private:
     DayCounter();
@@ -83,6 +76,7 @@ class DayCounter {
         std::string __str__() {
             return self->name()+" day counter";
         }
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         bool __eq__(const DayCounter& other) {
             return (*self) == other;
         }
@@ -91,9 +85,19 @@ class DayCounter {
             return (*self) != other;
         }
         #endif
+        #endif
     }
 };
 ReturnByValue(DayCounter);
+
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("DayCounter=?") DayCounter_equal;
+%inline %{
+    bool DayCounter_equal(const DayCounter& d1, const DayCounter& d2) {
+        return d1 == d2;
+    }
+%}
+#endif
 
 
 #endif

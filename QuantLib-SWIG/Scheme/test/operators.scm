@@ -59,10 +59,10 @@
           
           (deleting-let ((D0 (new-D0 N h) delete-TridiagonalOperator)
                          (D+D- (new-D+D- N h) delete-TridiagonalOperator))
-            (deleting-let ((y-temp (TridiagonalOperator-applyTo
+            (deleting-let ((y-temp (TridiagonalOperator-apply-to
                                     D0 (list->vector y-int))
                                    delete-Array)
-                           (yd-temp (TridiagonalOperator-applyTo 
+                           (yd-temp (TridiagonalOperator-apply-to 
                                      D+D- (list->vector y-int))
                                     delete-Array))
 

@@ -92,7 +92,6 @@ class Calendar {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("is-business-day?") isBusinessDay;
     %rename("is-holiday?")      isHoliday;
-    %rename("equal")            __eq__;
     %rename(">string")          __str__;
     #if defined(SWIGGUILE)
     // resolve overloading
@@ -101,15 +100,12 @@ class Calendar {
     %rename(advance_units)      advance(const Date&,int,TimeUnit,
                                         RollingConvention);
     %scheme %{
-        (define (Calendar-advance . args)
-         (if (integer? (caddr args))
+    (define (Calendar-advance . args)
+      (if (integer? (caddr args))
           (apply Calendar-advance-units args)
           (apply Calendar-advance-period args)))
-            (export Calendar-advance)
-            
-            (define Calendar=? Calendar-equal)
-            (export Calendar=?)
-            %}
+    (export Calendar-advance)
+    %}
     #endif
     #endif
   private:
@@ -158,6 +154,7 @@ class Calendar {
         std::string __str__() {
             return self->name()+" calendar";
         }
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         bool __eq__(const Calendar& other) {
             return (*self) == other;
         }
@@ -166,9 +163,19 @@ class Calendar {
             return (*self) != other;
         }
         #endif
+        #endif
     }
 };
 ReturnByValue(Calendar);
+
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("Calendar=?") Calendar_equal;
+%inline %{
+    bool Calendar_equal(const Calendar& c1, const Calendar& c2) {
+        return c1 == c2;
+    }
+%}
+#endif
 
 
 #endif

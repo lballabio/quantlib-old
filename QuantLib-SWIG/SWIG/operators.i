@@ -76,28 +76,14 @@ class TridiagonalOperator {
     %rename("midRows=")       setMidRows;
     %rename("lastRow=")       setLastRow;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("add")            __add__;
-    %rename("sub")            __sub__;
-    %rename("mul")            __mul__;
-    %rename("div")            __div__;
+    %rename("solve-for")      solveFor;
+    %rename("apply-to")       applyTo;
     %rename("lower-bc-set!")  setLowerBC;
     %rename("upper-bc-set!")  setUpperBC;
     %rename("first-row-set!") setFirstRow;
     %rename("mid-row-set!")   setMidRow;
     %rename("mid-rows-set!")  setMidRows;
     %rename("last-row-set!")  setLastRow;
-    #if defined(SWIGGUILE)
-    %scheme %{
-        (define TridiagonalOperator+ TridiagonalOperator-add)
-        (define TridiagonalOperator- TridiagonalOperator-sub)
-        (define TridiagonalOperator* TridiagonalOperator-mul)
-        (define TridiagonalOperator/ TridiagonalOperator-div)
-        (export TridiagonalOperator+
-                TridiagonalOperator-
-                TridiagonalOperator*
-                TridiagonalOperator/)
-    %}
-    #endif
     #endif
   public:
     // constructors
@@ -116,6 +102,7 @@ class TridiagonalOperator {
     void setLastRow(double, double);
     // identity
     static TridiagonalOperator identity(Size size);
+    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
     %extend {
         TridiagonalOperator __add__(const TridiagonalOperator& O) {
             return *self+O;
@@ -147,8 +134,34 @@ class TridiagonalOperator {
         }
         #endif
     }
+    #endif
 };
 ReturnByValue(TridiagonalOperator);
+
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("TridiagonalOperator+") TridiagonalOperator_add;
+%rename("TridiagonalOperator-") TridiagonalOperator_sub;
+%rename("TridiagonalOperator*") TridiagonalOperator_mul;
+%rename("TridiagonalOperator/") TridiagonalOperator_div;
+%inline %{
+    TridiagonalOperator TridiagonalOperator_add(const TridiagonalOperator& p,
+                                                const TridiagonalOperator& q) {
+        return p+q;
+    }
+    TridiagonalOperator TridiagonalOperator_sub(const TridiagonalOperator& p,
+                                                const TridiagonalOperator& q) {
+        return p-q;
+    }
+    TridiagonalOperator TridiagonalOperator_mul(const TridiagonalOperator& p,
+                                                double x) {
+        return p*x;
+    }
+    TridiagonalOperator TridiagonalOperator_div(const TridiagonalOperator& p,
+                                                double x) {
+        return p/x;
+    }
+%}
+#endif
 
 
 %{

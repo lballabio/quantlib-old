@@ -815,9 +815,15 @@ class Array {
 ReturnByValue(Array);
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-#if defined(SWIGGUILE)
-%rename(Array_mul_d) Array_mul(const Array&,double);
-%rename(Array_mul_a) Array_mul(const Array&,const Array&);
+%rename("Array+")  Array_add;
+%rename("Array-")  Array_sub;
+%rename("Array/")  Array_div;
+#if defined(SWIGMZSCHEME)
+%rename("Array*")  Array_mul;
+#elif defined(SWIGGUILE)
+%rename("Array*d")      Array_mul(const Array&,double);
+%rename("Array*a")      Array_mul(const Array&,const Array&);
+%rename("Array*Matrix") Array_mul(const Array&,const Matrix&);
 #endif
 %inline %{
     Array Array_add(const Array& a, const Array& b) {
@@ -835,23 +841,17 @@ ReturnByValue(Array);
     double Array_mul(const Array& a, const Array& b) {
         return QuantLib::DotProduct(a,b);;
     }
-    Array Array_Matrix_product(const Array& a, const Matrix& m) {
+    Array Array_mul(const Array& a, const Matrix& m) {
         return a*m;
     }
 %}
 #if defined(SWIGGUILE)
 %scheme %{
-    (define Array+ Array-add)
-    (define Array- Array-sub)
     (define (Array* a x)
       (if (number? x)
-          (Array-mul-d a x)
-          (Array-mul-a a x)))
-    (define Array/ Array-div)
-    (export Array+
-            Array-
-            Array*
-            Array/)
+          (Array*-d a x)
+          (Array*a a x)))
+    (export Array*)
 %}
 #endif
 #endif
@@ -1017,9 +1017,15 @@ class Matrix {
 ReturnByValue(Matrix);
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-#if defined(SWIGGUILE)
-%rename(Matrix_mul_d) Matrix_mul(const Matrix&,double);
-%rename(Matrix_mul_m) Matrix_mul(const Matrix&,const Matrix&);
+%rename("Matrix+")  Matrix_add;
+%rename("Matrix-")  Matrix_sub;
+%rename("Matrix/")  Matrix_div;
+#if defined(SWIGMZSCHEME)
+%rename("Matrix*")  Matrix_mul;
+#elif defined(SWIGGUILE)
+%rename("Matrix*d") Matrix_mul(const Matrix&,double);
+%rename("Matrix*m") Matrix_mul(const Matrix&,const Matrix&);
+%rename("Matrix*Array") Matrix_mul(const Matrix&,const Array&);
 #endif
 %inline %{
     Matrix Matrix_add(const Matrix& m, const Matrix& n) {
@@ -1034,7 +1040,7 @@ ReturnByValue(Matrix);
     Matrix Matrix_mul(const Matrix& m, double x) {
         return m*x;
     }
-    Array Matrix_Array_product(const Matrix& m, const Array& a) {
+    Array Matrix_mul(const Matrix& m, const Array& a) {
         return m*a;
     }
     Matrix Matrix_mul(const Matrix& m, const Matrix& n) {
@@ -1043,17 +1049,11 @@ ReturnByValue(Matrix);
 %}
 #if defined(SWIGGUILE)
 %scheme %{
-    (define Matrix+ Matrix-add)
-    (define Matrix- Matrix-sub)
     (define (Matrix* m x)
       (if (number? x)
           (Matrix-mul-d m x)
           (Matrix-mul-m m x)))
-    (define Matrix/ Matrix-div)
-    (export Matrix+
-            Matrix-
-            Matrix*
-            Matrix/)
+    (export Matrix*)
 %}
 #endif
 #endif
