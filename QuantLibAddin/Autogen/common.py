@@ -120,3 +120,18 @@ XL_SOURCE = 'LPXLOPER %s(\n\
 \t\treturn 0;\n\
 \t}\n\
 }\n\n'
+FUNCDEC='\t{\t%-30s// function name (code)\n\
+\t\t%-30s// parameter types\n\
+\t\t%-30s// function name (Excel)\n\
+\t\t// parameter names:\n\
+\t\t%s\n\
+\t\t" 1",                         // macro type\n\
+\t\t" QuantLib",                  // category\n\
+\t\t" ",                          // shortcut text\n\
+\t\t" ",                          // help topic\n\
+\t\t// function help:\n\
+\t\t%s\n'
+# maximum number of parameters to be passed to an Excel function -
+# if you change this number you must also change the call to xlfRegister
+# in QuantLibAddin\Addins\Excel\qladdin.cpp
+XLMAXPARAM=7

@@ -6,7 +6,7 @@
 <function>
 <name>QL_QUERY</name>
 <codename>qlQuery</codename>
-<description>retrieve the properties of a given object</description>
+<desc>retrieve the properties of a given object</desc>
 <handle>false</handle>
 <parameters>
 	<param>
@@ -24,7 +24,7 @@
 <function>
 <name>QL_LOGFILE</name>
 <codename>qlLogfile</codename>
-<description>begin logging to named file</description>
+<desc>begin logging to named file</desc>
 <handle>false</handle>
 <parameters>
 	<param>

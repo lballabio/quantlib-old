@@ -20,31 +20,47 @@ def generateParamString(function):
 	paramStr += '",'
 	return paramStr
 
-def generateFuncDec(function):
+def generateFuncDec(fileHeader, function):
+	# FIXME validation below to be moved into parse.py
+	if len(function[common.PARAMS]) > common.XLMAXPARAM:
+		raise ValueError, \
+			'number of parameters exceeds Excel max of %d' % common.XLMAXPARAM
 	paramStr = generateParamString(function)
 	paramList = utils.generateParamList(function[common.PARAMS], \
 		0, False, '', '', '', '', '')
 	if len(paramList) >= 255:
 		raise ValueError, 'list of parameter names exceeds max Excel length of 255:\n' \
 			+ paramList
-	paramList = '" ' + paramList + '",'
-	codeName = '" %s",' % function[common.CODENAME]
-	funcName = '" %s",' % function[common.NAME]
-	ret = '\t{ %-21s %-12s %s \n\t\t%s " 1", " QuantLib"},\n' \
-		% (codeName, paramStr, funcName, paramList)
-	return ret
+	paramList =    '" ' + paramList                 + '",'
+	funcCodeName = '" ' + function[common.CODENAME] + '",'
+	funcName =     '" ' + function[common.NAME]     + '",'
+	funcDesc =     '" ' + function[common.DESC]     + '",'
+	fileHeader.write(common.FUNCDEC % (\
+		funcCodeName, paramStr, funcName, paramList, funcDesc))
+	i = 0
+	for param in function[common.PARAMS]:
+		paramDesc = '" ' + param[common.DESC] + '",'
+		fileHeader.write('\t\t%-30s// param %d\n' % (paramDesc, i))
+		i+=1
+	fileHeader.write('\t\t// unused params:\n\t\t')
+	while i < common.XLMAXPARAM:
+		fileHeader.write('" "')
+		if i < common.XLMAXPARAM - 1:
+			fileHeader.write(', ')
+		i+=1
+	fileHeader.write('\n\t},\n\n')
 
 def generateFuncHeaders(functionDefs):
 	fileHeader = file(common.XL_ROOT + common.XL_FUNC, 'w')
 	utils.printHeader(fileHeader)
 	fileHeader.write('#define NUM_FUNCS %d\n' % functionDefs[common.NUMFUNC])
-	fileHeader.write('#define NUM_ATTS 6\n\n')
+	fileHeader.write('#define NUM_ATTS %d\n\n' % (common.XLMAXPARAM + 9))
 	fileHeader.write('static LPSTR func[NUM_FUNCS][NUM_ATTS] = {\n')
 	functionGroups = functionDefs[common.FUNCGROUPS]
 	for groupName in functionGroups.keys():
 		fileHeader.write('\t// %s\n' % groupName)
 		for function in functionGroups[groupName][common.FUNCLIST]:
-			fileHeader.write(generateFuncDec(function))
+			generateFuncDec(fileHeader, function)
 	fileHeader.write('};\n')
 	fileHeader.close()
 

@@ -79,7 +79,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib XLCALL32.LIB /nologo /dll /debug /machine:I386 /out:"build\Debug\QuantLibAddin.xll" /pdbtype:sept /libpath:"$(OBJECT_HANDLER_DIR)\lib" /libpath:"$(QL_DIR)\lib" /libpath:"..\..\lib" /libpath:".\lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib XLCALL32.LIB /nologo /dll /debug /machine:I386 /out:"build\Debug\QuantLibAddin.xll" /pdbtype:sept /libpath:"$(OBJECT_HANDLER_DIR)\lib" /libpath:"C:\Program Files\QuantLibCVS\QuantLib\lib" /libpath:"..\..\lib" /libpath:".\lib"
 
 !ENDIF 
 

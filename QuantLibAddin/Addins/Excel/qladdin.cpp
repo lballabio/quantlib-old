@@ -30,7 +30,17 @@ int xlAutoOpen() {
 			TempStr(func[i][2]),
 			TempStr(func[i][3]),
 			TempStr(func[i][4]),
-			TempStr(func[i][5]));
+			TempStr(func[i][5]),
+			TempStr(func[i][6]),
+			TempStr(func[i][7]),
+			TempStr(func[i][8]),
+			TempStr(func[i][9]),
+			TempStr(func[i][10]),
+			TempStr(func[i][11]),
+			TempStr(func[i][12]),
+			TempStr(func[i][13]),
+			TempStr(func[i][14]),
+			TempStr(func[i][15]));
 	Excel(xlFree, 0, 1, &xDll);
 	return 1;
 }
