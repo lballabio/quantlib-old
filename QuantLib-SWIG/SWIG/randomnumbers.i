@@ -28,21 +28,24 @@ using QuantLib::MonteCarlo::Sample;
 
 using QuantLib::RandomNumbers::LecuyerUniformRng;
 using QuantLib::RandomNumbers::KnuthUniformRng;
+using QuantLib::RandomNumbers::MersenneTwisterUniformRng;
 using QuantLib::RandomNumbers::UniformRandomGenerator;
 
-using QuantLib::RandomNumbers::BoxMullerGaussianRng;
 using QuantLib::RandomNumbers::CLGaussianRng;
+using QuantLib::RandomNumbers::BoxMullerGaussianRng;
 using QuantLib::RandomNumbers::ICGaussianRng;
 using QuantLib::RandomNumbers::GaussianRandomGenerator;
 
 using QuantLib::RandomNumbers::RandomSequenceGenerator;
-using QuantLib::RandomNumbers::HaltonRsg;
 
-using QuantLib::RandomNumbers::ICGaussianRsg;
 using QuantLib::RandomNumbers::LecuyerUniformRsg;
 using QuantLib::RandomNumbers::KnuthUniformRsg;
+using QuantLib::RandomNumbers::MersenneTwisterUniformRsg;
 using QuantLib::RandomNumbers::UniformRandomSequenceGenerator;
+using QuantLib::RandomNumbers::HaltonRsg;
 using QuantLib::RandomNumbers::UniformLowDiscrepancySequenceGenerator;
+
+using QuantLib::RandomNumbers::ICGaussianRsg;
 using QuantLib::RandomNumbers::GaussianRandomSequenceGenerator;
 using QuantLib::RandomNumbers::GaussianLowDiscrepancySequenceGenerator;
 %}
@@ -61,7 +64,6 @@ class Sample {
 %template(SampleNumber) Sample<double>;
 %template(SampleArray) Sample<Array>;
 
-
 /************* Uniform number generators *************/
 
 class LecuyerUniformRng {
@@ -71,8 +73,12 @@ class LecuyerUniformRng {
 };
 
 class KnuthUniformRng {
-  public:
     KnuthUniformRng(long seed=0);
+    Sample<double> next() const;
+};
+
+class MersenneTwisterUniformRng {
+    MersenneTwisterUniformRng(long seed=0);
     Sample<double> next() const;
 };
 
@@ -82,17 +88,8 @@ class UniformRandomGenerator {
     Sample<double> next() const;
 };
 
+
 /************* Gaussian number generators *************/
-
-template<class RNG> class BoxMullerGaussianRng {
-  public:
-    BoxMullerGaussianRng(const RNG& rng);
-    BoxMullerGaussianRng(long seed = 0);
-    Sample<double> next() const;
-};
-
-%template(BoxMullerLecuyerGaussianRng) BoxMullerGaussianRng<LecuyerUniformRng>;
-%template(BoxMullerKnuthGaussianRng)   BoxMullerGaussianRng<KnuthUniformRng>;
 
 template<class RNG> class CLGaussianRng {
   public:
@@ -103,6 +100,18 @@ template<class RNG> class CLGaussianRng {
 
 %template(CentralLimitLecuyerGaussianRng) CLGaussianRng<LecuyerUniformRng>;
 %template(CentralLimitKnuthGaussianRng)   CLGaussianRng<KnuthUniformRng>;
+%template(CentralLimitMersenneTwisterGaussianRng)   CLGaussianRng<MersenneTwisterUniformRng>;
+
+template<class RNG> class BoxMullerGaussianRng {
+  public:
+    BoxMullerGaussianRng(const RNG& rng);
+    BoxMullerGaussianRng(long seed = 0);
+    Sample<double> next() const;
+};
+
+%template(BoxMullerLecuyerGaussianRng) BoxMullerGaussianRng<LecuyerUniformRng>;
+%template(BoxMullerKnuthGaussianRng)   BoxMullerGaussianRng<KnuthUniformRng>;
+%template(BoxMullerMersenneTwisterGaussianRng)   BoxMullerGaussianRng<MersenneTwisterUniformRng>;
 
 template<class RNG, class F> class ICGaussianRng {
   public:
@@ -111,14 +120,19 @@ template<class RNG, class F> class ICGaussianRng {
     Sample<double> next() const;
 };
 
-%template(InvCumulativeLecuyerGaussianRng)
-    ICGaussianRng<LecuyerUniformRng,InverseCumulativeNormal>;
-%template(InvCumulativeKnuthGaussianRng)
-    ICGaussianRng<KnuthUniformRng,InverseCumulativeNormal>;
 %template(MoroInvCumulativeLecuyerGaussianRng)
     ICGaussianRng<LecuyerUniformRng,MoroInverseCumulativeNormal>;
 %template(MoroInvCumulativeKnuthGaussianRng)
     ICGaussianRng<KnuthUniformRng,MoroInverseCumulativeNormal>;
+%template(MoroInvCumulativeMersenneTwisterGaussianRng)
+    ICGaussianRng<MersenneTwisterUniformRng,MoroInverseCumulativeNormal>;
+
+%template(InvCumulativeLecuyerGaussianRng)
+    ICGaussianRng<LecuyerUniformRng,InverseCumulativeNormal>;
+%template(InvCumulativeKnuthGaussianRng)
+    ICGaussianRng<KnuthUniformRng,InverseCumulativeNormal>;
+%template(InvCumulativeMersenneTwisterGaussianRng)
+    ICGaussianRng<MersenneTwisterUniformRng,InverseCumulativeNormal>;
 
 class GaussianRandomGenerator {
   public:
@@ -128,6 +142,7 @@ class GaussianRandomGenerator {
 };
 
 /************* Uniform sequence generators *************/
+
 
 class HaltonRsg {
   public:
@@ -148,6 +163,8 @@ template<class RNG> class RandomSequenceGenerator {
     RandomSequenceGenerator<LecuyerUniformRng>;
 %template(KnuthUniformRsg)
     RandomSequenceGenerator<KnuthUniformRng>;
+%template(MersenneTwisterUniformRsg)
+    RandomSequenceGenerator<MersenneTwisterUniformRng>;
 
 class UniformRandomSequenceGenerator {
   public:
@@ -176,14 +193,19 @@ class ICGaussianRsg {
 
 %template(MoroInvCumulativeLecuyerGaussianRsg)
     ICGaussianRsg<LecuyerUniformRsg,MoroInverseCumulativeNormal>;
-%template(InvCumulativeLecuyerGaussianRsg)
-    ICGaussianRsg<LecuyerUniformRsg,InverseCumulativeNormal>;
 %template(MoroInvCumulativeKnuthGaussianRsg)
     ICGaussianRsg<KnuthUniformRsg,MoroInverseCumulativeNormal>;
-%template(InvCumulativeKnuthGaussianRsg)
-    ICGaussianRsg<KnuthUniformRsg,InverseCumulativeNormal>;
+%template(MoroInvCumulativeMersenneTwisterGaussianRsg)
+    ICGaussianRsg<MersenneTwisterUniformRsg,MoroInverseCumulativeNormal>;
 %template(MoroInvCumulativeHaltonGaussianRsg)
     ICGaussianRsg<HaltonRsg,MoroInverseCumulativeNormal>;
+
+%template(InvCumulativeLecuyerGaussianRsg)
+    ICGaussianRsg<LecuyerUniformRsg,InverseCumulativeNormal>;
+%template(InvCumulativeKnuthGaussianRsg)
+    ICGaussianRsg<KnuthUniformRsg,InverseCumulativeNormal>;
+%template(InvCumulativeMersenneTwisterGaussianRsg)
+    ICGaussianRsg<MersenneTwisterUniformRsg,InverseCumulativeNormal>;
 %template(InvCumulativeHaltonGaussianRsg)
     ICGaussianRsg<HaltonRsg,InverseCumulativeNormal>;
 
