@@ -10,7 +10,7 @@
 
 Summary: The Ruby wrapper for the QuantLib library.
 Name: QuantLib-Ruby
-Version: 0.3.5a1
+Version: 0.3.6
 Epoch: 0
 Release: 0
 License: BSD License
@@ -22,7 +22,7 @@ URL: http://quantlib.org/
 Buildroot: %{_tmppath}/%{name}-%{version}-root
 AutoReq: no
 Requires: QuantLib-devel == %{version}, ruby
-BuildRequires: swig >= 1.3.18, textutils, bash, ruby, ruby-libs, QuantLib-devel == %{version}
+BuildRequires: textutils, bash, ruby, ruby-libs, QuantLib-devel == %{version}
 
 %description
 QuantLib-Ruby is the Ruby wrapper for the QuantLib library.
@@ -39,9 +39,6 @@ QuantLib-Ruby is the Ruby wrapper for the QuantLib library.
 
 
 %build
-# This is not necessary as the SWIG-generated file is already included. -- Luigi Ballabio
-#%{ruby} setup.rb wrap
-
 %{ruby} setup.rb build
 %if %{test}
   %{ruby} setup.rb test

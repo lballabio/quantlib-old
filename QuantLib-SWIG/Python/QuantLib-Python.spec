@@ -1,6 +1,6 @@
 Summary: The Python wrapper for the QuantLib library.
 Name: QuantLib-Python
-Version: 0.3.5a1
+Version: 0.3.6
 Epoch: 0
 Release: 0
 License: BSD License
@@ -10,7 +10,7 @@ Vendor: QuantLib.org
 Source0: http://prdownloads.sourceforge.net/quantlib/QuantLib-Python-%{version}.tar.gz
 URL: http://quantlib.org/
 Buildroot: %{_tmppath}/%{name}-%{version}-root
-BuildRequires: QuantLib-devel == %{version}, python >= 2.1, swig >= 1.3.18
+BuildRequires: QuantLib-devel == %{version}, python >= 2.1
 
 %description
 QuantLib-Python is the Python wrapper for the QuantLib library.
@@ -21,7 +21,6 @@ QuantLib-Python is the Python wrapper for the QuantLib library.
 
 
 %build
-python setup.py wrap
 python setup.py build
 python setup.py test
 
