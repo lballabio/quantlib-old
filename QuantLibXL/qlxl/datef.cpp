@@ -20,9 +20,8 @@
     qlxl/%datef.cpp
 */
 
-// $Id$
-
 #include <qlxl/qlxlfoper.hpp>
+#include <ql/functions/daycounters.hpp>
 
 extern "C"
 {
@@ -40,7 +39,7 @@ extern "C"
 		Date d1 = QlXlfOper(xlDate1).AsDate();
 		Date d2 = QlXlfOper(xlDate2).AsDate();
         DayCounter dc = QlXlfOper(xlDayCountType).AsDayCounter();
-		double result = Functions::accrualDays(dc, d1, d2);
+		double result = accrualDays(dc, d1, d2);
         return XlfOper(result);
 
         EXCEL_END;
@@ -61,7 +60,7 @@ extern "C"
 		Date d3 = QlXlfOper(xlDate3).AsDate();
 		Date d4 = QlXlfOper(xlDate4).AsDate();
 
-        double result = Functions::accrualFactor(dc, d1, d2, d3, d4);
+        double result = accrualFactor(dc, d1, d2, d3, d4);
         return XlfOper(result);
 
         EXCEL_END;

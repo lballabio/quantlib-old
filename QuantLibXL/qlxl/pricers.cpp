@@ -20,9 +20,14 @@
     qlxl/%pricers.cpp
 */
 
-// $Id$
-
 #include <qlxl/qlxlfoper.hpp>
+#include <ql/DayCounters/actual365.hpp>
+#include <ql/Pricers/fdeuropean.hpp>
+#include <ql/Pricers/fdamericanoption.hpp>
+#include <ql/Pricers/cliquetoption.hpp>
+#include <ql/Pricers/mccliquetoption.hpp>
+#include <ql/Pricers/performanceoption.hpp>
+#include <ql/Pricers/mcperformanceoption.hpp>
 
 extern "C"
 {

@@ -20,12 +20,15 @@
     qlxl/%qlxlfoper.hpp
 */
 
-// $Id$
-
 #ifndef qlxl_qlxlfoper_h
 #define qlxl_qlxlfoper_h
 
 #include <qlxl/qlxl.hpp>
+#include <ql/date.hpp>
+#include <ql/daycounter.hpp>
+#include <ql/termstructure.hpp>
+#include <ql/option.hpp>
+#include <ql/voltermstructure.hpp>
 
 class QlXlfOper {
 public:
@@ -33,7 +36,7 @@ public:
     QuantLib::DayCounter AsDayCounter() const;
     QuantLib::Date AsDate() const;
     std::vector<QuantLib::Date> AsDateVector() const;
-    QuantLib::Math::Matrix AsMatrix() const;
+    QuantLib::Matrix AsMatrix() const;
     QuantLib::Option::Type AsOptionType() const;
     QuantLib::RelinkableHandle<QuantLib::BlackVolTermStructure> AsBlackVolTermStructure(
         const QuantLib::Date& referenceDate, int interpolationType) const;

@@ -21,13 +21,11 @@
     qlxl/%qlxl.hpp
 */
 
-// $Id$
-
 #ifndef qlxl_h
 #define qlxl_h
 
 #include <xlw/xlw.h>
-#include <ql/quantlib.hpp>
+#include <ql/qldefines.hpp>
 
 
 //! version hexadecimal number

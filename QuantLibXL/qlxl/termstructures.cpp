@@ -20,8 +20,6 @@
     qlxl/%termstructures.cpp
 */
 
-// $Id$
-
 #include <qlxl/qlxlfoper.hpp>
 
 extern "C"

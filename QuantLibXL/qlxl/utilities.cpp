@@ -20,8 +20,6 @@
     qlxl/%utilities.cpp
 */
 
-// $Id$
-
 #include <qlxl/qlxl.hpp>
 
 extern "C"

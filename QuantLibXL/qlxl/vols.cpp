@@ -20,9 +20,8 @@
     qlxl/%vols.cpp
 */
 
-// $Id$
-
 #include <qlxl/qlxlfoper.hpp>
+#include <ql/Volatilities/localvolsurface.hpp>
 
 extern "C"
 {

@@ -20,9 +20,8 @@
     qlxl/%montecarlo.cpp
 */
 
-// $Id$
-
 #include <qlxl/qlxlfoper.hpp>
+#include <ql/MonteCarlo/mctypedefs.hpp>
 
 extern "C"
 {

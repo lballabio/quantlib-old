@@ -21,8 +21,6 @@
     qlxl/%qlxl.cpp
 */
 
-// $Id$
-
 #include <qlxl/qlxl.hpp>
 #include <qlxl/qlxlfoper.hpp>
 

@@ -21,9 +21,18 @@
     qlxl/%qlxlfoper.hpp
 */
 
-// $Id$
-
 #include <qlxl/qlxlfoper.hpp>
+#include <ql/DayCounters/actual365.hpp>
+#include <ql/DayCounters/actual360.hpp>
+#include <ql/DayCounters/actualactual.hpp>
+#include <ql/DayCounters/thirty360.hpp>
+#include <ql/Volatilities/blackconstantvol.hpp>
+#include <ql/Volatilities/blackvariancecurve.hpp>
+#include <ql/Volatilities/blackvariancesurface.hpp>
+#include <ql/Math/interpolationtraits.hpp>
+#include <ql/TermStructures/flatforward.hpp>
+#include <ql/TermStructures/discountcurve.hpp>
+#include <ql/TermStructures/piecewiseflatforward.hpp>
 
 using namespace QuantLib;
 
@@ -78,7 +87,7 @@ std::vector<Date> QlXlfOper::AsDateVector() const {
     return dates;
 }
 
-Math::Matrix QlXlfOper::AsMatrix() const {
+Matrix QlXlfOper::AsMatrix() const {
 
     XlfRef matrix_range = xlfOper_.AsRef();
     Size rowNo = matrix_range.GetNbRows();
@@ -232,10 +241,8 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         // constant rate continuos compounding act/365
         double forwardRate = range(0,0).AsDouble();
         return Handle<TermStructure>(new
-            TermStructures::FlatForward(today,
-                                        referenceDate,
-                                        forwardRate,
-                                        DayCounters::Actual365()));
+            FlatForward(today, referenceDate, forwardRate,
+                               DayCounters::Actual365()));
     } else if (rowNo>1 && colNo==2 && range(0,1).AsDouble()==1.0) {
         // vertical discount grid
 
@@ -266,10 +273,8 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         Date today=dates[0];
 
         return Handle<TermStructure>(new
-            TermStructures::DiscountCurve(today,
-                                          dates,
-                                          discounts,
-                                          DayCounters::Actual365()));
+            DiscountCurve(today, dates, discounts,
+                                  DayCounters::Actual365()));
     } else if (rowNo>1 && colNo==2) {
         // vertical piecewise forward (annual continuos compounding act/365) grid
         std::vector<Date> dates(rowNo);
@@ -296,10 +301,8 @@ RelinkableHandle<TermStructure> QlXlfOper::AsTermStructure(
         Date today=dates[0];
 
         return Handle<TermStructure>(new
-            TermStructures::PiecewiseFlatForward(today,
-                                                 dates,
-                                                 forwards,
-                                                 DayCounters::Actual365()));
+            PiecewiseFlatForward(today, dates, forwards,
+                             DayCounters::Actual365()));
     } else
         throw Error("Not a yield term structure range");
 

@@ -20,9 +20,11 @@
     qlxl/%mathf.cpp
 */
 
-// $Id$
-
 #include <qlxl/qlxlfoper.hpp>
+#include <ql/functions/mathf.hpp>
+#include <ql/Math/statistics.hpp>
+#include <ql/Math/symmetricschurdecomposition.hpp>
+
 
 extern "C"
 {
@@ -42,7 +44,7 @@ extern "C"
         QL_REQUIRE(x_value.size()==y_value.size(),
             "interpolate: array mismatch");
 
-        double result = Functions::interpolate(x_value, y_value,
+        double result = interpolate(x_value, y_value,
             xlx.AsDouble(),
             xlinterpolationType.AsInt(), xlallowExtrapolation.AsBool());
         return XlfOper(result);
@@ -65,7 +67,7 @@ extern "C"
         QL_REQUIRE(data_matrix.rows()==y_value.size(),
             "the matrix range must be NxM");
 
-        double result = Functions::interpolate2D(x_value, y_value, data_matrix,
+        double result = interpolate2D(x_value, y_value, data_matrix,
             xlx.AsDouble(), xly.AsDouble(), xlinterpolation2DType.AsInt(),
             xlallowExtrapolation.AsBool());
         return XlfOper(result);
@@ -81,7 +83,7 @@ extern "C"
                                      XlfOper xlstd_dev,
                                      XlfOper xlcumulative) {
         EXCEL_BEGIN;
-        double result = Functions::normDist(xlx.AsDouble(), xlmean.AsDouble(),
+        double result = normDist(xlx.AsDouble(), xlmean.AsDouble(),
             xlstd_dev.AsDouble(), xlcumulative.AsBool());
         return XlfOper(result);
         EXCEL_END;
@@ -89,7 +91,7 @@ extern "C"
 
     LPXLOPER EXCEL_EXPORT xlnormSDist(XlfOper xlx) {
         EXCEL_BEGIN;
-        double result = Functions::normDist(xlx.AsDouble(), 0.0,
+        double result = normDist(xlx.AsDouble(), 0.0,
             1.0, true);
         return XlfOper(result);
         EXCEL_END;
@@ -99,7 +101,7 @@ extern "C"
                                     XlfOper xlmean,
                                     XlfOper xlstd_dev) {
         EXCEL_BEGIN;
-        double result = Functions::normInv(xlprobability.AsDouble(),
+        double result = normInv(xlprobability.AsDouble(),
             xlmean.AsDouble(),
             xlstd_dev.AsDouble());
         return XlfOper(result);
@@ -108,7 +110,7 @@ extern "C"
 
     LPXLOPER EXCEL_EXPORT xlnormSInv(XlfOper xlprobability) {
         EXCEL_BEGIN;
-        double result = Functions::normInv(xlprobability.AsDouble(), 0.0, 1.0);
+        double result = normInv(xlprobability.AsDouble(), 0.0, 1.0);
         return XlfOper(result);
         EXCEL_END;
     }
@@ -244,8 +246,8 @@ extern "C"
         double std = xlstd_dev.AsDouble();
         double target = xltarget.AsDouble();
         double variance = std*std;
-        Math::CumulativeNormalDistribution gIntegral(m, std);
-        Math::NormalDistribution g(m, std);
+        CumulativeNormalDistribution gIntegral(m, std);
+        NormalDistribution g(m, std);
         double firstTerm = variance + m*m - 2.0*target*m + target*target;
         double alfa = gIntegral(target);
         double secondTerm = m - target;
@@ -274,8 +276,8 @@ extern "C"
         double m = xlmean.AsDouble();
         double std = xlstd_dev.AsDouble();
         double variance = std*std;
-        Math::CumulativeNormalDistribution gIntegral(m, std);
-        Math::NormalDistribution g(m, std);
+        CumulativeNormalDistribution gIntegral(m, std);
+        NormalDistribution g(m, std);
         double firstTerm = variance + m*m;
         double alfa = gIntegral(0.0);
         double secondTerm = m;
@@ -292,7 +294,7 @@ extern "C"
 
     LPXLOPER EXCEL_EXPORT xlprimeNumbers(XlfOper xlabsoluteIndex) {
         EXCEL_BEGIN;
-        return XlfOper(short(Functions::primeNumbers(xlabsoluteIndex.AsInt())));
+        return XlfOper(short(primeNumbers(xlabsoluteIndex.AsInt())));
         EXCEL_END;
     }
 
@@ -343,7 +345,7 @@ extern "C"
 
     LPXLOPER EXCEL_EXPORT xlrandomize(XlfOper xlseed) {
         EXCEL_BEGIN;
-        Functions::randomize(xlseed.AsInt());
+        randomize(xlseed.AsInt());
         return XlfOper(std::string("done with " + 
             IntegerFormatter::toString(xlseed.AsInt())).c_str());
         EXCEL_END;
@@ -351,7 +353,7 @@ extern "C"
 
     LPXLOPER EXCEL_EXPORT xlrand() {
         EXCEL_BEGIN;
-        return XlfOper(Functions::rand());
+        return XlfOper(QuantLib::rand());
         EXCEL_END;
     }
 
