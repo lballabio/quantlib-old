@@ -1,14 +1,23 @@
-
 for 0.3.9:
-- document how autogeneration works
-- doxygen documentation for QuantLibAddin only (not needed for platform specific
-  libraries)
-- include QuEP 12 in the doxygen documentation
+
+Autogeneration
+- document how it works
+- only update files if they change (need to exclude timestamp from diff)
+
+Doxygen
+- now that the interface layer has been replaced by the factory function,
+there are no header files to feed to Doxygen - autogenerate a dummy header
+from function metadata?
+
+Calc
+- allow null inputs where appropriate
+- parameter help info in function wizard
+- document all the steps and dependencies required to compile
+
+QuantLibAddin core
 - improve existing options functionality
-- document if and how Calc add-in can be genereated using VC6
 - autoconf for Excel?
 
 for a later release:
-- extend functionalities
-- add more Excel/Calc spreadsheets (port the QunatLibXl spreadsheets)
-- add function manager help for inputs to Calc functions
+- extend functionality & provide example spreadsheets & clients
+

@@ -1,6 +1,8 @@
 config.hpp*
 libQuantLibAddin.la
 .libs
+.deps
+*.lo
 Makefile
 Makefile.in
 stamp-h1
