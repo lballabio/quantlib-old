@@ -61,7 +61,7 @@ docs-online: .time-stamp-online
 	touch .time-stamp-online
 
 docs-clean:
-	rm -Rf html-online html
+	rm -Rf html-online html man
 	rm -f .time-stamp*
 
 .time-stamp: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
