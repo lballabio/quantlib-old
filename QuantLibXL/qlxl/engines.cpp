@@ -24,6 +24,7 @@
 #include <ql/PricingEngines/Vanilla/mceuropeanengine.hpp>
 #include <ql/PricingEngines/Quanto/all.hpp>
 #include <ql/PricingEngines/Forward/all.hpp>
+#include <boost/shared_ptr.hpp>
 
 extern "C"
 {

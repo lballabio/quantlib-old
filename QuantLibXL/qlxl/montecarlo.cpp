@@ -21,6 +21,7 @@
 #include <qlxl/qlxlfoper.hpp>
 #include <ql/MonteCarlo/mctypedefs.hpp>
 #include <ql/MonteCarlo/getcovariance.hpp>
+#include <boost/shared_ptr.hpp>
 
 extern "C"
 {

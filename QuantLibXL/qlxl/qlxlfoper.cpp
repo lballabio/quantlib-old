@@ -32,6 +32,7 @@
 #include <ql/TermStructures/flatforward.hpp>
 #include <ql/TermStructures/discountcurve.hpp>
 #include <ql/TermStructures/piecewiseflatforward.hpp>
+#include <boost/shared_ptr.hpp>
 
 using namespace QuantLib;
 
