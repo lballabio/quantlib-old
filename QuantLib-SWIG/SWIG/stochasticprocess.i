@@ -65,8 +65,9 @@ class Merton76StochasticProcessHandle : public Handle<StochasticProcess> {
                        const RelinkableHandle<TermStructure>& dividendTS,
                        const RelinkableHandle<TermStructure>& riskFreeTS,
                        const RelinkableHandle<BlackVolTermStructure>& volTS,
-                       double jumpIntensity, double meanLogJump,
-                       double jumpVolatility) {
+                       const RelinkableHandle<Quote>& jumpIntensity, 
+                       const RelinkableHandle<Quote>& meanLogJump,
+                       const RelinkableHandle<Quote>& jumpVolatility) {
             return new Merton76StochasticProcessHandle(
                               new Merton76StochasticProcess(stateVariable,
                                                             dividendTS,
