@@ -37,7 +37,7 @@ class TermStructure {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("day-counter")     dayCounter;
     %rename("todays-date")     todaysDate;
-    %rename("settlement-date") settlementDate;
+    %rename("reference-date")  referenceDate;
     %rename("max-date")        maxDate;
     %rename("max-time")        maxTime;
     %rename("zero-yield")      zeroYield;
@@ -46,7 +46,7 @@ class TermStructure {
   public:
     DayCounter dayCounter() const;
 	Date todaysDate() const;
-	Date settlementDate() const;
+	Date referenceDate() const;
 	Date maxDate() const;
 	Time maxTime() const;
 	DiscountFactor discount(const Date&, bool extrapolate = false);
@@ -81,10 +81,10 @@ class ImpliedTermStructureHandle: public Handle<TermStructure> {
     %extend {
         ImpliedTermStructureHandle(
                 const RelinkableHandle<TermStructure>& curveHandle,
-                const Date& todaysDate, const Date& settlementDate) {
+                const Date& todaysDate, const Date& referenceDate) {
             return new ImpliedTermStructureHandle(
                 new ImpliedTermStructure(curveHandle, todaysDate, 
-                                         settlementDate));
+                                         referenceDate));
         }
     }
 };
@@ -138,20 +138,18 @@ class FlatForwardHandle : public Handle<TermStructure> {
   public:
     %extend {
         FlatForwardHandle(const Date& todaysDate, 
-                          const Date& settlementDate, 
+                          const Date& referenceDate, 
                           const RelinkableHandle<MarketElement>& forward,
                           const DayCounter& dayCounter) {
             return new FlatForwardHandle(
-                new FlatForward(todaysDate,settlementDate,forward,dayCounter));
+                new FlatForward(todaysDate,referenceDate,forward,dayCounter));
         }
         FlatForwardHandle(const Date& todaysDate, 
-                          const Date& settlementDate, 
+                          const Date& referenceDate, 
                           double forward,
                           const DayCounter& dayCounter) {
-            RelinkableHandle<MarketElement> h;
-            h.linkTo(Handle<MarketElement>(new SimpleMarketElement(forward)));
             return new FlatForwardHandle(
-                new FlatForward(todaysDate,settlementDate,h,dayCounter));
+                new FlatForward(todaysDate,referenceDate,forward,dayCounter));
         }
     }
 };

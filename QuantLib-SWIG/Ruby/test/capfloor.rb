@@ -67,7 +67,7 @@ class CapFloorTest < RUNIT::TestCase
         @termStructure))
   end
   def testStrikeDependency
-    startDate = @termStructure.settlementDate
+    startDate = @termStructure.referenceDate
     [1, 2, 3, 5, 7, 10, 15, 20].each do |length|
       [0.01, 0.05, 0.10, 0.15, 0.20].each do |vol|
         [Cap,Floor].each do |kind|
@@ -117,7 +117,7 @@ class CapFloorTest < RUNIT::TestCase
     end
   end
   def testConsistency
-    startDate = @termStructure.settlementDate
+    startDate = @termStructure.referenceDate
     [1, 2, 3, 5, 7, 10, 15, 20].each do |length|
       [0.03, 0.04, 0.05, 0.06, 0.07].each do |capRate|
         [0.03, 0.04, 0.05, 0.06, 0.07].each do |floorRate|
@@ -148,7 +148,7 @@ class CapFloorTest < RUNIT::TestCase
     end
   end
   def testParity
-    startDate = @termStructure.settlementDate
+    startDate = @termStructure.referenceDate
     [1, 2, 3, 5, 7, 10, 15, 20].each do |length|
       [0.03, 0.04, 0.05, 0.06, 0.07].each do |strike|
         [0.01, 0.05, 0.10, 0.15, 0.20].each do |vol|
@@ -180,11 +180,11 @@ class CapFloorTest < RUNIT::TestCase
     end
   end
   def testCachedValue
-    cachedToday = Date.new(16,3,2002)
+    cachedToday = Date.new(14,3,2002)
     cachedSettlement = Date.new(18,3,2002)
     @termStructure.linkTo!(FlatForward.new(cachedToday,cachedSettlement,
                                            0.05, DayCounter.new('Act/360')))
-    startDate = @termStructure.settlementDate
+    startDate = @termStructure.referenceDate
     leg = makeLeg(startDate,20)
     cap = makeCapFloor(Cap,leg,0.07,0.20)
     floor = makeCapFloor(Floor,leg,0.03,0.20)

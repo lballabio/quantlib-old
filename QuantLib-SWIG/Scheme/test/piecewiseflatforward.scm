@@ -74,7 +74,8 @@
                                    (new-DepositRateHelper
                                     (new-MarketElementHandle
                                      (new-SimpleMarketElement (/ rate 100)))
-                                    n units calendar rolling-convention 
+                                    n units settlement-days
+                                    calendar rolling-convention 
                                     day-counter)))
                                deposit-data)
                           ; add swaps
@@ -83,7 +84,8 @@
                                    (new-SwapRateHelper
                                     (new-MarketElementHandle
                                      (new-SimpleMarketElement (/ rate 100)))
-                                    years calendar swap-rolling-convention 
+                                    years "years" settlement-days
+                                    calendar swap-rolling-convention 
                                     fixed-frequency fixed-is-adjusted 
                                     fixed-day-count floating-frequency)))
                                swap-data))
@@ -101,7 +103,7 @@
                                              euribor-handle)
                                   delete-Index))
               (let ((expected-rate (/ rate 100))
-                    (estimated-rate (Index-fixing index settlement)))
+                    (estimated-rate (Index-fixing index today)))
                 (check-expected estimated-rate expected-rate 1.0e-9
                                 n "-" units " deposit"))))
           ; check swaps

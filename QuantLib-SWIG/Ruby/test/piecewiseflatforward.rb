@@ -48,7 +48,7 @@ class PiecewiseFlatForwardTest < RUNIT::TestCase
     deposits = depositData.map { |n,units,rate|
       DepositRateHelper.new(
         MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
-        n, units, calendar, rollingConvention, dayCounter)
+        n, units, settlementDays, calendar, rollingConvention, dayCounter)
     }
     # swaps
     swapRollingConvention = 'modifiedFollowing'
@@ -76,7 +76,8 @@ class PiecewiseFlatForwardTest < RUNIT::TestCase
     swaps = swapData.map { |years,rate|
       SwapRateHelper.new(
         MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
-        years, calendar, swapRollingConvention, fixedFrequency, 
+        years, "years", settlementDays, 
+        calendar, swapRollingConvention, fixedFrequency, 
         fixedIsAdjusted, fixedDayCount, floatingFrequency)
     }
     # all instruments
@@ -89,7 +90,7 @@ class PiecewiseFlatForwardTest < RUNIT::TestCase
     depositData.each do |n,units,expectedRate|
       expectedRate = expectedRate/100
       index = Xibor.new("Euribor",n,units, euriborHandle)
-      estimatedRate = index.fixing(settlement)
+      estimatedRate = index.fixing(today)
       unless (estimatedRate - expectedRate).abs <= 1.0e-9
         assert_fail(<<-MESSAGE
 

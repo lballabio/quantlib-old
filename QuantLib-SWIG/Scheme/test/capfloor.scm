@@ -72,7 +72,7 @@
           (cond ((equal? tag 'strike-dep)
                  ; check dependency on strike
                  (deleting-let ((start-date 
-                                 (TermStructureHandle-settlement-date
+                                 (TermStructureHandle-reference-date
                                   term-structure)
                                  delete-Date))
                    (for-each-combination ((length '(1 2 3 5 7 10 15 20))
@@ -104,7 +104,7 @@
                 ((equal? tag 'collar)
                  ; check consistency between cap, floor and collar
                  (deleting-let ((start-date 
-                                 (TermStructureHandle-settlement-date
+                                 (TermStructureHandle-reference-date
                                   term-structure)
                                  delete-Date))
                    (for-each-combination 
@@ -139,7 +139,7 @@
                 ((equal? tag 'parity)
                  ; check put/call parity
                  (deleting-let ((start-date 
-                                 (TermStructureHandle-settlement-date
+                                 (TermStructureHandle-reference-date
                                   term-structure)
                                  delete-Date))
                    (for-each-combination 
@@ -175,7 +175,7 @@
                         "swap value: " (Instrument-NPV swap))))))
                 ((equal? tag 'cached)
                  ; check calculations against cached values
-                 (deleting-let* ((cached-today (new-Date 16 3 2002)
+                 (deleting-let* ((cached-today (new-Date 14 3 2002)
                                                     delete-Date)
                                  (cached-settlement (new-Date 18 3 2002)
                                                     delete-Date)
@@ -188,7 +188,7 @@
                                              delete-TermStructure))
                    (TermStructureHandle-link-to! term-structure flat-curve)
                    (deleting-let* ((start-date 
-                                    (TermStructureHandle-settlement-date
+                                    (TermStructureHandle-reference-date
                                      term-structure)
                                     delete-Date)
                                    (leg (make-leg start-date 20) delete-leg)

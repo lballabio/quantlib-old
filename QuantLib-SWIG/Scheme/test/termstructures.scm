@@ -50,7 +50,8 @@
                                      (new-DepositRateHelper
                                       (new-MarketElementHandle
                                        (new-SimpleMarketElement (/ rate 100)))
-                                      n units calendar "mf" day-counter)))
+                                      n units settlement-days
+                                      calendar "mf" day-counter)))
                                  deposit-data)
                                 (lambda (l)
                                   (for-each delete-RateHelper l)))
@@ -60,7 +61,8 @@
                                   (new-SwapRateHelper
                                    (new-MarketElementHandle
                                     (new-SimpleMarketElement (/ rate 100)))
-                                   years calendar "mf" 1 #f day-counter-2 2)))
+                                   years "years" settlement-days
+                                   calendar "mf" 1 #f day-counter-2 2)))
                               swap-data)
                              (lambda (l)
                                (for-each delete-RateHelper l)))
@@ -111,7 +113,7 @@
                              (today (TermStructureHandle-todays-date 
                                      term-structure)
                                     delete-Date)
-                             (settlement (TermStructureHandle-settlement-date 
+                             (settlement (TermStructureHandle-reference-date 
                                           term-structure)
                                          delete-Date)
                              (new-today (Date-plus-years today 3)
@@ -149,7 +151,7 @@
                            (h (new-MarketElementHandle me)
                               delete-MarketElementHandle)
                            (test-date (Date-plus-years 
-                                       (TermStructureHandle-settlement-date
+                                       (TermStructureHandle-reference-date
                                         term-structure) 
                                        5)
                                       delete-Date)
@@ -171,7 +173,7 @@
              (deleting-let* ((today (TermStructureHandle-todays-date 
                                      term-structure)
                                     delete-Date)
-                             (settlement (TermStructureHandle-settlement-date 
+                             (settlement (TermStructureHandle-reference-date 
                                           term-structure)
                                          delete-Date)
                              (day-counter (TermStructureHandle-day-counter
@@ -210,7 +212,7 @@
                            (h (new-MarketElementHandle me)
                               delete-MarketElementHandle)
                            (test-date (Date-plus-years 
-                                       (TermStructureHandle-settlement-date
+                                       (TermStructureHandle-reference-date
                                         term-structure) 
                                        5)
                                       delete-Date)
@@ -232,7 +234,7 @@
              (deleting-let* ((today (TermStructureHandle-todays-date 
                                      term-structure)
                                     delete-Date)
-                             (settlement (TermStructureHandle-settlement-date 
+                             (settlement (TermStructureHandle-reference-date 
                                           term-structure)
                                          delete-Date)
                              (day-counter (TermStructureHandle-day-counter

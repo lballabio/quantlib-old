@@ -34,7 +34,8 @@ class TermStructureTest(unittest.TestCase):
         deposits = [
             DepositRateHelper(
                 MarketElementHandle(SimpleMarketElement(rate/100)),
-                n, units, self.calendar, 'mf', DayCounter('act/360'))
+                n, units, self.settlementDays,
+                self.calendar, 'mf', DayCounter('act/360'))
             for (n,units,rate) in [ (1,  'month', 4.581),
                                     (2, 'months', 4.573),
                                     (3, 'months', 4.557),
@@ -44,7 +45,8 @@ class TermStructureTest(unittest.TestCase):
         swaps = [
             SwapRateHelper(
                 MarketElementHandle(SimpleMarketElement(rate/100)),
-                years, self.calendar, 'mf', 1, 0, DayCounter('30/360'), 2)
+                years, "years", self.settlementDays,
+                self.calendar, 'mf', 1, 0, DayCounter('30/360'), 2)
             for (years,rate) in [ ( 1, 4.54),
                                   ( 5, 4.99),
                                   (10, 5.47),
@@ -94,7 +96,7 @@ unable to reproduce discount from implied curve
         mh = MarketElementHandle(me)
         h = TermStructureHandle(self.termStructure)
         spreaded = ForwardSpreadedTermStructure(h,mh)
-        test_date = self.termStructure.settlementDate().plusYears(5)
+        test_date = self.termStructure.referenceDate().plusYears(5)
         forward = self.termStructure.instantaneousForward(test_date)
         spreaded_forward = spreaded.instantaneousForward(test_date)
         if abs((forward+me.value())-spreaded_forward) > tolerance:
@@ -127,7 +129,7 @@ unable to reproduce forward from spreaded curve
         mh = MarketElementHandle(me)
         h = TermStructureHandle(self.termStructure)
         spreaded = ZeroSpreadedTermStructure(h,mh)
-        test_date = self.termStructure.settlementDate().plusYears(5)
+        test_date = self.termStructure.referenceDate().plusYears(5)
         zero = self.termStructure.zeroYield(test_date)
         spreaded_zero = spreaded.zeroYield(test_date)
         if abs((zero+me.value())-spreaded_zero) > tolerance:

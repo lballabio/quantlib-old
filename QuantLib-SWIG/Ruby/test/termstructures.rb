@@ -53,7 +53,7 @@ class TermStructureTest < RUNIT::TestCase
     deposits = depositData.map { |n,units,rate|
       DepositRateHelper.new(
         MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
-        n, units, @calendar, 'mf', DayCounter.new('act/360'))
+        n, units, @settlementDays, @calendar, 'mf', DayCounter.new('act/360'))
     }    
     swapData = [
         [ 1, 4.54],
@@ -65,7 +65,8 @@ class TermStructureTest < RUNIT::TestCase
     swaps = swapData.map { |years,rate|
       SwapRateHelper.new(
         MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
-        years, @calendar, 'mf', 1, false, DayCounter.new('30/360'), 2)
+        years, "years", @settlementDays, 
+        @calendar, 'mf', 1, false, DayCounter.new('30/360'), 2)
     }
     @termStructure = PiecewiseFlatForward.new(today,settlement,
                                               deposits+swaps,
@@ -111,7 +112,7 @@ unable to reproduce discount from implied curve
     mh = MarketElementHandle.new(me)
     h = TermStructureHandle.new(@termStructure)
     spreaded = ForwardSpreadedTermStructure.new(h,mh)
-    test_date = @termStructure.settlementDate.plusYears(5)
+    test_date = @termStructure.referenceDate.plusYears(5)
     forward = @termStructure.instantaneousForward(test_date)
     spreaded_forward = spreaded.instantaneousForward(test_date)
     unless ((forward+me.value)-spreaded_forward).abs <= tolerance
@@ -149,7 +150,7 @@ unable to reproduce forward from spreaded curve
     mh = MarketElementHandle.new(me)
     h = TermStructureHandle.new(@termStructure)
     spreaded = ZeroSpreadedTermStructure.new(h,mh)
-    test_date = @termStructure.settlementDate.plusYears(5)
+    test_date = @termStructure.referenceDate.plusYears(5)
     zero = @termStructure.zeroYield(test_date)
     spreaded_zero = spreaded.zeroYield(test_date)
     unless ((zero+me.value)-spreaded_zero).abs <= tolerance

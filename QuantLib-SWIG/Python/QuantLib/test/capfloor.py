@@ -60,7 +60,7 @@ class CapFloorTest(unittest.TestCase):
                    for length in [1, 2, 3, 5, 7, 10, 15, 20]
                    for vol in [0.01, 0.05, 0.10, 0.15, 0.20]
                    for kind in [Cap,Floor] ]
-        startDate = self.termStructure.settlementDate()
+        startDate = self.termStructure.referenceDate()
         for (length,vol,kind) in cases:
             strikes = [0.03, 0.04, 0.05, 0.06, 0.07]
             values = []
@@ -103,7 +103,7 @@ NPV is decreasing with the strike in a floor:
                    for capRate in [0.03, 0.04, 0.05, 0.06, 0.07]
                    for floorRate in [0.03, 0.04, 0.05, 0.06, 0.07]
                    for vol in [0.01, 0.05, 0.10, 0.15, 0.20] ]
-        startDate = self.termStructure.settlementDate()
+        startDate = self.termStructure.referenceDate()
         for (length,capRate,floorRate,vol) in cases:
             leg = self.makeLeg(startDate,length)
             cap = self.makeCapFloor(Cap,leg,capRate,vol)
@@ -130,7 +130,7 @@ inconsistency between cap, floor and collar:
                    for length in [1, 2, 3, 5, 7, 10, 15, 20]
                    for strike in [0.03, 0.04, 0.05, 0.06, 0.07]
                    for vol in [0.01, 0.05, 0.10, 0.15, 0.20] ]
-        startDate = self.termStructure.settlementDate()
+        startDate = self.termStructure.referenceDate()
         for (length,strike,vol) in cases:
             leg = self.makeLeg(startDate,length)
             cap = self.makeCapFloor(Cap,leg,strike,vol)
@@ -156,11 +156,11 @@ put/call parity violated:
     # check 4
     def testCachedValue(self):
         "Testing cap/floor value against cached values"
-        cachedToday = Date(16,3,2002)
+        cachedToday = Date(14,3,2002)
         cachedSettlement = Date(18,3,2002)
         self.termStructure.linkTo(FlatForward(cachedToday, cachedSettlement,
                                               0.05, DayCounter('Act/360')))
-        startDate = self.termStructure.settlementDate()
+        startDate = self.termStructure.referenceDate()
         leg = self.makeLeg(startDate,20)
         cap = self.makeCapFloor(Cap,leg,0.07,0.20)
         floor = self.makeCapFloor(Floor,leg,0.03,0.20)
