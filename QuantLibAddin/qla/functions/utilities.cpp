@@ -53,13 +53,19 @@ namespace QuantLibAddin {
         return logFileName;
     }
 
+    void QL_CONSOLE(const int &console,
+            const int &logLevel){
+        setConsole(console, logLevel);
+    }
+
     void QL_LOGLEVEL(const int &logLevel) {
         setLogLevel(logLevel);
     }
 
-    void QL_LOGMESSAGE(const std::string &message,
+    std::string QL_LOGMESSAGE(const std::string &message,
             const int &level) {
         logMessage(message, level);
+        return message;
     }
 
 }

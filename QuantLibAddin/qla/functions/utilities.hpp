@@ -61,6 +61,16 @@ namespace QuantLibAddin {
     */
     std::string QL_LOGFILE(const std::string &logFileName,
             const int &logLevel = 4);
+    //! Direct logging to the console (stdout)
+    /*! Logging to the console is disabled by default.
+        Call this function with a parameter of 1 to enable
+        logging to the console or 0 (the default) to disable it.
+        This function accepts an additional optional argument
+        logLevel which is passed as an argument to setLogLevel 
+        (see below). logLevel defaults to 4 (info).
+    */
+    void QL_CONSOLE(const int &console = 0,
+            const int &logLevel = 4);
     //! Specify threshold for logging messages.
     /*! Accepts one parameter int with the following values:
         0 - logging disabled
@@ -79,7 +89,7 @@ namespace QuantLibAddin {
     /*! The optional level parameter specifies the logging level
         for the message, if omitted this defaults to 4 (info).
     */
-    void QL_LOGMESSAGE(const std::string &message,
+    std::string QL_LOGMESSAGE(const std::string &message,
             const int &level = 4);
     //@}
 

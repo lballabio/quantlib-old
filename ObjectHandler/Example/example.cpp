@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <iostream>
+#include <sstream>
 #include <exception>
 #include <interface.hpp>
 #include <objectfoo.hpp>    // only required for low-level interrogation
@@ -24,55 +24,59 @@ using namespace std;
 
 int main() {
     try {
-        cout << "hi" << endl;
 
-        // start ObjectHandler standard logging
+        // specify log file
         QL_LOGFILE("example.log");
-        QL_LOGMESSAGE("hi");
+        // also direct log messages to stdout
+        QL_CONSOLE(1);
+        QL_LOGMESSAGE("begin example program");
 
         // construct some objects and store them in the object handler
         Properties f1Properties = FOO_MAKE("foo1", "abc", 123);
         Properties f2Properties = FOO_MAKE("foo2", "def", 456);
 
         // high level interrogation
-        cout << endl << "high level interrogation - after constructor" << endl;
+        QL_LOGMESSAGE("high level interrogation - after constructor");
         Properties::const_iterator i;
-        for (i = f2Properties.begin();
-            i != f2Properties.end(); i++) {
+        for (i = f2Properties.begin(); i != f2Properties.end(); i++) {
             ObjectProperty property = *i;
-            cout << "property = " << property.name() << "\tvalue = " <<
-                property() << endl;
+            ostringstream s;
+            s << "property = " << property.name() << "\tvalue = " <<
+                property();
+            QL_LOGMESSAGE(s.str());
         }
 
         // update an object
         FOO_UPDATE("foo2", "ghi", 789);
 
         // high level interrogation
-        cout << endl << "high level interrogation - after update" << endl;
+        QL_LOGMESSAGE("high level interrogation - after update");
         for (i = f2Properties.begin();
             i != f2Properties.end(); i++) {
             ObjectProperty property = *i;
-            cout << "property = " << property.name() << "\tvalue = " <<
-                property() << endl;
+            ostringstream s;
+            s << "property = " << property.name() << "\tvalue = " <<
+                property();
+            QL_LOGMESSAGE(s.str());
         }
 
         // low-level interrogation
-        cout << endl << "low-level interrogation - after FOO_UPDATE" << endl;
+        QL_LOGMESSAGE("low-level interrogation - after FOO_UPDATE");
         boost::shared_ptr<ObjectFoo> const objectFoo =
             boost::dynamic_pointer_cast<ObjectFoo>
             (ObjectHandler::instance().retrieveObject("foo2"));
         boost::shared_ptr<Foo> foo =
             boost::static_pointer_cast<Foo>
             (objectFoo->getReference());
-        cout << "value of property s() of underlying foo = "
-            << foo->s() << endl;
+        QL_LOGMESSAGE("value of property s() of underlying foo = "
+            + foo->s());
 
-        QL_LOGMESSAGE("bye");
-        cout << endl << "bye" << endl;
+        QL_LOGMESSAGE("end example program");
         return 0;
     } catch (const exception &e) {
-        cout << "Error: " << e.what() << endl;
-        QL_LOGMESSAGE("Error: " + string(e.what()));
+        ostringstream s;
+        s << "Error: " << e.what();
+        QL_LOGMESSAGE(s.str(), 1);
         return 1;
     }
 }

@@ -61,10 +61,42 @@
 		<tensorrank>scalar</tensorrank>
 		<desc>path and name of log file</desc>
 	</param>
+	<param>
+		<name>logLevel</name>
+		<type>long</type>
+		<tensorrank>scalar</tensorrank>
+		<desc>threshold for log messages</desc>
+	</param>
 </parameters>
 <returnval>
 	<type>string</type>
 	<desc>name of logfile</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_LOGMESSAGE</name>
+<codename>qlLogMessage</codename>
+<qlfunction></qlfunction>
+<desc>log a message</desc>
+<constructor>false</constructor>
+<parameters>
+	<param>
+		<name>logMessage</name>
+		<type>string</type>
+		<tensorrank>scalar</tensorrank>
+		<desc>message to be logged</desc>
+	</param>
+	<param>
+		<name>logLevel</name>
+		<type>long</type>
+		<tensorrank>scalar</tensorrank>
+		<desc>threshold for log messages</desc>
+	</param>
+</parameters>
+<returnval>
+	<type>string</type>
+	<desc>message logged</desc>
 </returnval>
 </function>
 

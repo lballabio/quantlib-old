@@ -57,6 +57,16 @@ namespace ObjHandler {
         */
         void setLogFile(const std::string &logFileName,
                 const int &logLevel = 4);
+        //! Direct logging to the console (stdout)
+        /*! Logging to the console is disabled by default.
+            Call this function with a parameter of 1 to enable
+            logging to the console or 0 (the default) to disable it.
+            This function accepts an additional optional argument
+            logLevel which is passed as an argument to setLogLevel 
+            (see below). logLevel defaults to 4 (info).
+        */
+        void setConsole(const int &console = 0,
+                const int &logLevel = 4);
         //! Specify threshold for logging messages.
         /*! Accepts one parameter logLevel with the following values:
             \li 0 - logging disabled

@@ -35,8 +35,12 @@ Properties FOO_UPDATE(
 void QL_LOGFILE(
     const std::string &logFileName);
 
+void QL_CONSOLE(
+    const int &console);
+
 void QL_LOGMESSAGE(
-    const std::string &msg);
+    const std::string &msg,
+    const int &level = 4);
 
 #endif
 

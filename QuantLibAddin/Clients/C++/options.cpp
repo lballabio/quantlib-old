@@ -18,7 +18,8 @@
 // test program for options
 
 #include <qla/qladdin.hpp>
-#include <iostream>
+#include <sstream>
+#include <iomanip>
 
 using namespace std;
 using namespace QuantLib;
@@ -26,20 +27,21 @@ using namespace ObjHandler;
 using namespace QuantLibAddin;
     
 void printObject(const string &s, const Properties &p) {
+    QL_LOGMESSAGE("Object properties:");
     Properties::const_iterator it;
-    cout << endl << s << endl;
     for (it = p.begin(); it != p.end(); it++) {
         ObjectProperty property = *it;
-        cout << "property = " << property.name() 
-            << "\tvalue = " << property() << endl;
+        ostringstream s;
+        s << left << "property = " << setw(10) << property.name() <<
+            "value = " << property();
+        QL_LOGMESSAGE(s.str());
     } 
 }
 
 int main() {
     try {
-        cout << "begin options test" << endl;
-
         QL_LOGFILE("quantlib.log");
+        QL_CONSOLE(1);
         QL_LOGMESSAGE("begin options test");
 
         double dividendYield = 0.00;
@@ -211,15 +213,14 @@ int main() {
         printObject("QL_OPTION_FORWARDVANILLA", p9);
 
         QL_LOGMESSAGE("end options test");
-        cout << endl << "end options test" << endl;
         return 0;
     } catch (const exception &e) {
-        cout << "Error: " << e.what() << endl;
-        QL_LOGMESSAGE(e.what(), 2);
+        ostringstream s;
+        s << "Error: " << e.what();
+        QL_LOGMESSAGE(s.str(), 1);
         return 1;
     } catch (...) {
-        cout << "unknown error" << endl;
-        QL_LOGMESSAGE("unknown error", 2);
+        QL_LOGMESSAGE("unknown error", 1);
         return 1;
     }
 }

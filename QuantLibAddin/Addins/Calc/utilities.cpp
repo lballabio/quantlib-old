@@ -63,9 +63,24 @@ SEQSEQ(ANY) SAL_CALL QLAddin::qlQuery(
 }
 
 STRING SAL_CALL QLAddin::qlLogfile(
-            const STRING& logFileName) THROWDEF_RTE_IAE {
+            const STRING& logFileName,
+            sal_Int32 logLevel) THROWDEF_RTE_IAE {
     try {
-        std::string ret =  QL_LOGFILE(OUStringToString(logFileName));
+        int lvl = logLevel ? logLevel : 4;
+        std::string ret =  QL_LOGFILE(OUStringToString(logFileName), lvl);
+        return STRFROMANSI(ret.c_str());
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what());
+        THROW_RTE;
+    }
+}
+
+STRING SAL_CALL QLAddin::qlLogMessage(
+            const STRING& logMessage,
+            sal_Int32 logLevel) THROWDEF_RTE_IAE {
+    try {
+        int lvl = logLevel ? logLevel : 4;
+        std::string ret =  QL_LOGMESSAGE(OUStringToString(logMessage), lvl);
         return STRFROMANSI(ret.c_str());
     } catch (const std::exception &e) {
         QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what());

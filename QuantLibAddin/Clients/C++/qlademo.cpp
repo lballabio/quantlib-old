@@ -17,7 +17,7 @@
 
 #include <qla/qladdin.hpp>
 #include <qla/objects/vanillaoption.hpp>
-#include <iostream>
+#include <sstream>
 
 using namespace std;
 using namespace QuantLib;
@@ -26,13 +26,12 @@ using namespace QuantLibAddin;
 
 int main() {
     try {
-        cout << "hi" << endl;
-
         QL_LOGFILE("quantlib.log");
+        QL_CONSOLE(1);
         QL_LOGMESSAGE("begin example program");
 
-        cout << QL_VER() << endl;
-        cout << QL_OH_VER() << endl;
+        QL_LOGMESSAGE(QL_VER());
+        QL_LOGMESSAGE(QL_OH_VER());
 
         double dividendYield = 0.00;
         double riskFreeRate = 0.06;
@@ -65,13 +64,15 @@ int main() {
             "JR",                           // engine type (jarrow rudd)
             timeSteps);                     // time steps
     
-        cout << endl << "High-level interrogation: after QL_OPTION_VANILLA" << endl;
+        QL_LOGMESSAGE("High-level interrogation: after QL_OPTION_VANILLA");
         Properties::const_iterator it;
         for (it = opProperties.begin();
             it != opProperties.end(); it++) {
             ObjectProperty property = *it;
-            cout << "property = " << property.name() 
-                << "\tvalue = " << property() << endl;
+            ostringstream s;
+            s << "property = " << property.name() 
+                << "\tvalue = " << property();
+            QL_LOGMESSAGE(s.str());
         } 
 
         QL_OPTION_SETENGINE(
@@ -79,22 +80,26 @@ int main() {
             "AEQPB",    // AdditiveEQPBinomialTree
             timeSteps);
 
-        cout << endl << "High-level interrogation: after QL_OPTION_SETENGINE" << endl;
+        QL_LOGMESSAGE("High-level interrogation: after QL_OPTION_SETENGINE");
         for (it = opProperties.begin();
             it != opProperties.end(); it++) {
             ObjectProperty property = *it;
-            cout << "property = " << property.name() 
-                << "\tvalue = " << property() << endl;
+            ostringstream s;
+            s << "property = " << property.name() 
+                << "\tvalue = " << property();
+            QL_LOGMESSAGE(s.str());
         } 
 
-        cout << endl << "Low-level interrogation: NPV of underlying option object" << endl;
+        QL_LOGMESSAGE("Low-level interrogation: NPV of underlying option object");
         boost::shared_ptr<QuantLibAddin::VanillaOption> vanillaOptionQLA = 
             boost::dynamic_pointer_cast<QuantLibAddin::VanillaOption> 
             (ObjectHandler::instance().retrieveObject("my_option"));
         boost::shared_ptr<QuantLib::VanillaOption> const vanillaOptionQL =
             boost::static_pointer_cast<QuantLib::VanillaOption>
             (vanillaOptionQLA->getReference());
-        cout << "underlying option NPV() = " << vanillaOptionQL->NPV() << endl;
+        ostringstream s;
+        s << "underlying option NPV() = " << vanillaOptionQL->NPV();
+        QL_LOGMESSAGE(s.str());
 
         // example that takes a vector as input
         std::vector<long> fixingDates(exerciseDate - todaysDate + 1);
@@ -116,24 +121,25 @@ int main() {
             "ADGAPA",                       // engine type (AnalyticDiscreteGeometricAveragePriceAsianEngine)
             timeSteps);                     // time steps
 
-        cout << endl << "High-level interrogation: after QL_OPTION_ASIAN_D" << endl;
+        QL_LOGMESSAGE("High-level interrogation: after QL_OPTION_ASIAN_D");
         for (it = asProperties.begin();
             it != asProperties.end(); it++) {
             ObjectProperty property = *it;
-            cout << "property = " << property.name() 
-                << "\tvalue = " << property() << endl;
+            ostringstream s;
+            s << "property = " << property.name() 
+                << "\tvalue = " << property();
+            QL_LOGMESSAGE(s.str());
         } 
 
         QL_LOGMESSAGE("end example program");
-        cout << endl << "bye" << endl;
         return 0;
     } catch (const exception &e) {
-        cout << "Error: " << e.what() << endl;
-        QL_LOGMESSAGE(e.what(), 2);
+        ostringstream s;
+        s << "Error: " << e.what();
+        QL_LOGMESSAGE(s.str(), 1);
         return 1;
     } catch (...) {
-        cout << "unknown error" << endl;
-        QL_LOGMESSAGE("unknown error", 2);
+        QL_LOGMESSAGE("unknown error", 1);
         return 1;
     }
 }

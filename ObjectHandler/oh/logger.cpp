@@ -50,6 +50,20 @@ namespace ObjHandler {
         }
     }
 
+    void Logger::setConsole(const int &console,
+            const int &logLevel) {
+        try {
+            _logger->removeAppender(_consoleAppender);
+            if (console) {
+                _consoleAppender = AppenderPtr(new ConsoleAppender(_layout));
+                _logger->addAppender(_consoleAppender);
+            }
+            setLogLevel(logLevel);
+        } catch (helpers::Exception &e) {
+            throw Exception("Logger::setLogFile: unable to set logfile: " + e.getMessage());
+        }
+    }
+
     void Logger::setLogLevel(const int &logLevel) {
         try {
             switch (logLevel) {
