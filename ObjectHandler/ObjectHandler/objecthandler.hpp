@@ -22,7 +22,6 @@
 #ifndef objecthandler_hpp
 #define objecthandler_hpp
 
-#include <ObjectHandler/object.hpp>
 #include <ObjectHandler/utilities.hpp>
 #include <ObjectHandler/singleton.hpp>
 #include <map>
