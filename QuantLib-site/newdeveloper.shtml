@@ -1,0 +1,74 @@
+<!--
+ $Id$
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Linux/x86 (vers 1st August 2004), see www.w3.org" />
+<meta name="author" content="Ferdinando Ametrano" />
+<meta name="copyright" content=
+"Ferdinando Ametrano (c) 2000, 2001, 2002, 2003" />
+<meta name="doc-class" content="Draft" />
+<title>QuantLib - Developer intro</title>
+<meta name="description" content=
+"QuantLib Developer Introduction" />
+<!--#include virtual="qlmeta.inc"-->
+</head>
+<body>
+<!--#include virtual="qlheader.inc"-->
+<h1 class="center">Developer introduction</h1>
+<p>Developers willing to contribute to the QuantLib project may
+contact either project administrators (Nando &lt;nando at
+users.sourceforge.net&gt; or Luigi &lt;luigi.ballabio at
+gmail.com&gt;) and describe their experience and interests. You
+might want to specify an area of the library you are particularly
+interested to, or which would be most useful to you. Asking the
+administrators to choose a task for you is ok, but it might take
+time to get an answer and it increases the odds that the chosen
+task will bore you or otherwise discourage you from completing
+it.</p>
+<p>Should you want to review a list of needed tasks, the project
+overview (<a href=
+"http://quantlib.org/reference/overview.html">http://quantlib.org/reference/overview.html</a>)
+contains a list of generic to-do items; a more low-level list is
+available at <a href=
+"http://quantlib.org/reference/todo.html">http://quantlib.org/reference/todo.html</a>.
+We also suggest that you take a look at our QuantLib Enhancement
+Proposals (<a href=
+"http://quantlib.org/quep.shtml">http://quantlib.org/quep.shtml</a>):
+if you plan some large contribution you may want to write one
+before you start coding. It will be a very useful effort since it
+will be re-cycled as documentation when you actually implement your
+ideas.</p>
+<p>Feel free to post to quantlib-dev@lists.sourceforge.net your
+development ideas, contribution and sample code (you will need to
+subscribe to the list first; see <a href=
+"http://quantlib.org/mailinglists.shtml">&lt;http://quantlib.org/mailinglists.shtml&gt;</a>.)
+Submitting a patch would be the easiest way to get your
+contribution into the QuantLib code tree; see the FAQ (<a href=
+"http://quantlib.org/reference/faq.html">http://quantlib.org/reference/faq.html</a>)
+for details.</p>
+<p>To keep up with the QuantLib development - so that your
+contribution will apply to the latest source code tree - you will
+need to familiarize with CVS: see <a href=
+"http://quantlib.org/cvs.shtml">&lt;http://quantlib.org/cvs.shtml&gt;</a>
+for an introduction.</p>
+<p>After having established yourself as a trusted contributor, you
+might be granted write access to the CVS tree. In that case, you
+will need a SourceForge account; see <a href=
+"http://sourceforge.net">&lt;http://sourceforge.net&gt;</a>. You
+might also need a few developer tools besides CVS: please read the
+Developer FAQ (<a href=
+"http://quantlib.org/developerFAQ.shtml">http://quantlib.org/developerFAQ.shtml</a>.)</p>
+<p>We might need to ask for a disclaimer from your employer stating
+that your contribution can be released under the QuantLib license;
+such disclaimer shouldn't be necessary if you own the copyright of
+the code.</p>
+<p>Finally, note that the above is a list of suggestion, not
+requirements. The QuantLib team can help you on any issue; don't
+let details stop you.</p>
+<!--#include virtual="qlfooter.inc"-->
+</body>
+</html>

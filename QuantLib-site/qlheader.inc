@@ -64,6 +64,8 @@ Statistics</a></li>
 
 <li><a class="navlink" href="developerFAQ.shtml">Developer&nbsp;FAQ</a></li>
 
+<li><a class="navlink" href="newdeveloper.shtml">Developer&nbsp;Intro</a></li>
+
 <li><a class="navlink" href="style.shtml">Programming Style Guidelines</a></li>
 </ul>
 
