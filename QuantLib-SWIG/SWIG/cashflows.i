@@ -133,48 +133,12 @@ FixedRateCouponVector(const Schedule& schedule,
                       const DayCounter& firstPeriodDayCount
                         = DayCounter());
 
-// deprecated
-std::vector<Handle<CashFlow> > FixedRateCouponVector(
-    const std::vector<double>& nominals, 
-    const std::vector<double>& couponRates,
-    const Date& startDate, const Date& endDate, int frequency,
-    const Calendar& calendar, RollingConvention convention,
-    bool isAdjusted, const DayCounter& dayCount,
-    const DayCounter& firstPeriodDayCount, 
-    const Date& stubDate = Date());
-
-// deprecated
-std::vector<Handle<CashFlow> > FixedRateCouponVector(
-    const std::vector<double>& nominals,
-    const std::vector<Rate>& couponRates,
-    const DayCounter& dayCount, const DayCounter& firstPeriodDayCount,
-    const Schedule& schedule);
-
-
-
 std::vector<Handle<CashFlow> > 
 FloatingRateCouponVector(const Schedule& schedule,
                          const std::vector<double>& nominals,
                          const XiborHandle& index, int fixingDays,
                          const std::vector<Spread>& spreads = 
                              std::vector<Spread>());
-
-// deprecated
-std::vector<Handle<CashFlow> > FloatingRateCouponVector(
-    const std::vector<double>& nominals,
-    const Date& startDate, const Date& endDate,
-    int frequency, const Calendar& calendar,
-    RollingConvention convention,
-    const XiborHandle& index, int indexFixingDays, 
-    const std::vector<double>& spreads = std::vector<double>(), 
-    const Date& stubDate = Date());
-
-// deprecated
-std::vector<Handle<CashFlow> > FloatingRateCouponVector(
-    const std::vector<double>& nominals,
-    const XiborHandle& index, int fixingDays,
-    const std::vector<Spread>& spreads,
-    const Schedule& schedule);
 
 
 #endif
