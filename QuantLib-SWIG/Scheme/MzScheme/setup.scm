@@ -110,7 +110,7 @@
   (display "Generating MzScheme bindings for QuantLib...") (newline)
   (let ((swig-dir "./SWIG"))
     (if (not (directory-exists? swig-dir))
-        (set! swig-dir "../SWIG"))
+        (set! swig-dir "../../SWIG"))
     (system (string-append 
              "swig -mzscheme -c++ "
              (format "-I~a " swig-dir)
