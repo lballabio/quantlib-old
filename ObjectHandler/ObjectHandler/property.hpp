@@ -1,5 +1,5 @@
 /*
- Original code from "Financial Instrucment Pricing Using C++" by Daniel Duffy
+ Original code from "Financial Instrument Pricing Using C++" by Daniel Duffy
 
  Copyright notice pending
 */
