@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>QuEP 12: QuantLibAddin</title>
-<link rel="stylesheet" href="http://www.quantlib.org/styles/quantlib.css" type="text/css">
+<link rel="stylesheet" href="../styles/quantlib.css" type="text/css">
 <!-- override quantlib.css to make code black and comments green -->
 <style type="text/css">
 pre {
@@ -48,7 +48,7 @@ Eric Ehlers
 <dt>6. <a href="#tag_6">Feedback</a></dt>
 </dl></div>
 <a name="tag_1"></a><h2>1. <a href="#tag_contents">Design</a></h2>
-<div class="center"><img src="qep012a.png"></div>
+<div class="center"><img src="quep012a.png"></div>
 <p>QuantLibAddin uses the Object Handler to allow the user to build up a repository of QuantLib objects.  Each QuantLib class to be available in QuantLibAddin is wrapped in a class descended from Object.  All calls to QuantLibAddin - constructors and member functions of the Objects - are wrapped in a function layer.</p>
 <p>The core QuantLibAddin library can be loaded directly into standalone C++ programs.  For other platforms, QuantLibAddin is wrapped in an additional layer providing platform-specific functionality.  QuantLibAddin has the same interface on all platforms.</p>
 <a name="tag_1_1"></a><h3>1.1 <a href="#tag_contents">Classes</a></h3>
@@ -321,11 +321,11 @@ int main() {
 }
 </pre>
 <p>Output of the above program:</p>
-<div class="center"><img src="qep012d.png"></div>
+<div class="center"><img src="quep012d.png"></div>
 <a name="tag_2_4_2"></a><h3>2.4.2 <a href="#tag_contents">Excel</a></h3>
-<div class="center"><img src="qep012b.png"></div>
+<div class="center"><img src="quep012b.png"></div>
 <p>Same again with cell formulas instead of values:</p>
-<div class="center"><img src="qep012c.png"></div>
+<div class="center"><img src="quep012c.png"></div>
 <ul>
 <p>A description of each section of the spreadsheet:</p>
 <li><b>Construct an object from native datatypes:</b> Cell formula QL_BLACKSCHOLES is called to construct a BlackScholes object from numeric values.  The Addin automatically sets the <tt>Handle</tt> of the object equal to  the address of the calling cell.</li>
