@@ -1,7 +1,6 @@
 # QuantLibAddin\Addins\Calc\Makefile.win32 - currently identical to debug version
 
 COMPONENT_NAME=QuantLibAddin
-
 IDL_DIR=$(OFFICE_SDK_PATH)\idl
 DKREGISTRYNAME="$(OFFICE_PROGRAM_PATH)\types.rdb"
 MSVC_DIR=C:\Program Files\Microsoft Visual Studio\VC98
@@ -40,17 +39,18 @@ TYPES = -Tcom.sun.star.sheet.XAddIn \
 		-Tcom.sun.star.registry.XRegistryKey \
 		-Tcom.sun.star.sheet.addin.XQL
 
-ALL : $(COMPONENT_NAME).flag2
+ALL : $(COMPONENT_NAME).flag3
 
 $(COMPONENT_NAME).urd : $(COMPONENT_NAME).idl
 # this copy gets around problems with spaces in pathnames
 	copy $(COMPONENT_NAME).idl $(TEMP) 
 	idlc -I$(IDL_DIR) "$(TEMP)\$(COMPONENT_NAME).idl"
 
-"$(INTDIR)\$(COMPONENT_NAME).rdb" : $(COMPONENT_NAME).urd
+$(COMPONENT_NAME).flag1 : $(COMPONENT_NAME).urd
 	regmerge "$(INTDIR)\$(COMPONENT_NAME).rdb" /UCR $(COMPONENT_NAME).urd
+	echo flagged > $@
 
-$(COMPONENT_NAME).flag1 : "$(INTDIR)\$(COMPONENT_NAME).rdb"
+$(COMPONENT_NAME).flag2 : $(COMPONENT_NAME).flag1
 	cppumaker -BUCR $(TYPES) $(DKREGISTRYNAME) "$(INTDIR)\$(COMPONENT_NAME).rdb"
 	echo flagged > $@
 
@@ -58,15 +58,18 @@ $(COMPONENT_NAME).flag1 : "$(INTDIR)\$(COMPONENT_NAME).rdb"
    $(CC) $(CPP_PROJ) $< 
 
 $(COMPONENT_NAME).dll : $(COMPONENT_NAME).flag1 $(OBJECTS)
+#$(COMPONENT_NAME).dll : $(OBJECTS)
 	$(LINK) $(LFLAGS) $(OBJECTS)
 
-$(COMPONENT_NAME).flag2 : "$(INTDIR)\$(COMPONENT_NAME).rdb" $(COMPONENT_NAME).dll
+$(COMPONENT_NAME).flag3 : $(COMPONENT_NAME).flag1 $(COMPONENT_NAME).dll
 	regcomp -register -r "$(INTDIR)\$(COMPONENT_NAME).rdb" -c $(COMPONENT_NAME).dll
 	echo flagged > $@
 
 CLEAN :
-	del *.flag*
-	del /Q $(INTDIR)\*
 	del /Q com
-	del $(COMPONENT_NAME).urd "$(INTDIR)\$(COMPONENT_NAME).rdb" 
-	del $(COMPONENT_NAME).lib $(COMPONENT_NAME).dll
+	del $(COMPONENT_NAME).urd 
+	del "$(INTDIR)\$(COMPONENT_NAME).rdb" 
+	del $(COMPONENT_NAME).flag*
+	del /Q "$(INTDIR)\*"
+	del $(COMPONENT_NAME).lib 
+	del $(COMPONENT_NAME).dll
