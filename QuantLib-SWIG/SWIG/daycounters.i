@@ -53,8 +53,8 @@ class DayCounter {
   public:
     int dayCount(const Date& d1, const Date& d2);
     Time yearFraction(const Date& d1, const Date& d2,
-                      const Date& startRef = NullDate, 
-                      const Date& endRef = NullDate);
+                      const Date& startRef = Date(), 
+                      const Date& endRef = Date());
 };
 
 // replicate the DayCounter interface

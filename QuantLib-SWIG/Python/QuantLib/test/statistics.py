@@ -1,4 +1,3 @@
-
 """
  Copyright (C) 2000, 2001, 2002 RiskMap srl
 
@@ -16,7 +15,7 @@
 """
 
 __version__ = "$Revision$"
-# $Source$
+# $Id$
 
 import QuantLib
 import unittest

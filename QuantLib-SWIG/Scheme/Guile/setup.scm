@@ -42,7 +42,9 @@
 (define scripts
   (list "setup.scm"))
 (define SWIG-interfaces
-  (list "common.i"
+  (list "quantlib.i"
+        "ql.i"
+        "common.i"
         "calendars.i"
         "currencies.i"
         "date.i"
@@ -53,33 +55,37 @@
         "indexes.i"
         "instruments.i"
         "interpolation.i"
+        "linearalgebra.i"
         "marketelements.i"
-        "matrix.i"
+        "montecarlo.i"
         "null.i"
         "observer.i"
         "operators.i"
         "options.i"
-        "quantlib.i"
-        "ql.i"
-        "qlarray.i"
+        "piecewiseflatforward.i"
         "randomnumbers.i"
         "riskstatistics.i"
         "segmentintegral.i"
         "solvers1d.i"
         "statistics.i"
+        "swap.i"
         "termstructures.i"
         "types.i"
         "vectors.i"))
 (define test-files
-  (list "date.scm"
+  (list "common.scm"
+        "covariance.scm"
+        "date.scm"
         "daycounters.scm"
         "distributions.scm"
         "europeanoption.scm"
         "instruments.scm"
         "marketelements.scm"
         "operators.scm"
+        "piecewiseflatforward.scm"
         "riskstatistics.scm"
         "segmentintegral.scm"
+        "simpleswap.scm"
         "solvers1d.scm"
         "statistics.scm"
         "termstructures.scm"
@@ -100,15 +106,43 @@
                            "quantlib.i"))))
 
 (define (build)
+  (define (string-split s)
+    (let ((n (string-length s))
+          (spcs '()))
+      (do ((i 0 (+ i 1)))
+          ((= i n))
+        (if (char=? (string-ref s i) #\space)
+            (set! spcs (cons i spcs))))
+      (let ((begins (cons 0 (map (lambda (i) (+ i 1)) 
+                                 (reverse spcs))))
+            (ends (reverse (cons n spcs))))
+        (map (lambda (b e) (substring s b e)) begins ends))))
   (display "Building QuantLib-Guile...") (newline)
-  (system (string-append "g++ -DHAVE_CONFIG_H -c -fpic "
-                         "-I/usr/include -I/usr/local/include "
-                         "quantlib_wrap.cpp"))
-  (system (string-append "g++ -shared "
+  (let ((c++-compiler (getenv "CC"))
+        (c-flags (getenv "CFLAGS"))
+        (c++-flags (getenv "CXXFLAGS")))
+    (if (not c++-compiler) (set! c++-compiler "g++"))
+    (let ((flags '("-DHAVE_CONFIG_H" "-c" "-fpic"
+                   "-I/usr/include" "-I/usr/local/include")))
+      (if c-flags
+          (set! flags (append flags (string-split c-flags))))
+      (if c++-flags
+          (set! flags (append flags (string-split c++-flags))))
+      (let ((command (apply string-append 
+                            (map
+                             (lambda (s) (string-append s " "))
+                             (append (list c++-compiler)
+                                     flags
+                                     (list "quantlib_wrap.cpp"))))))
+        (display command) (newline)
+        (system command)))
+    (let ((command (string-append c++-compiler " -shared "
                          "quantlib_wrap.o "
                          "-L/usr/local/lib "
                          "-lQuantLib "
                          "-o QuantLibc.so")))
+      (display command) (newline)
+      (system command))))
 
 (define (test)
   (format #t "Testing QuantLib-Guile ~A\n" version)

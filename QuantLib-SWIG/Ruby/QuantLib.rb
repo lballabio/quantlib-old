@@ -49,6 +49,16 @@ module QuantLibc
   end
   
   # interface enhancements
+  class Array
+    def *(x)
+      if (x.is_a? Float) || (x.is_a? Integer)
+        mul_d(x)
+      else
+        mul_a(x)
+      end
+    end
+  end
+
   class Calendar
     def advance(*args)
       if args[1].is_a? Integer
@@ -136,6 +146,23 @@ module QuantLibc
         cpp_initialize(currency,dayCounter,todaysDate,\
                        settlementDate,forward)
       end
+    end
+  end
+
+  class SimpleSwap
+    alias cpp_initialize initialize
+    def initialize(payFixedRate, startDate, n, unit, calendar,\
+                   rollingConvention, nominal, fixedFrequency, fixedRate,\
+                   fixedIsAdjusted, fixedDayCount, floatingFrequency,\
+                   index, indexFixingDays, spread, termStructure,\
+                   isinCode = "unknown", description = "interest rate swap")
+      fixedLeg = FixedSwapLeg.new(fixedFrequency, fixedRate,\
+                                  fixedIsAdjusted, fixedDayCount)
+      floatingLeg = FloatingSwapLeg.new(floatingFrequency, index,\
+                                        indexFixingDays, spread)
+      cpp_initialize(payFixedRate, startDate, n, unit, calendar, 
+                     rollingConvention, nominal, fixedLeg, floatingLeg,
+                     termStructure, isinCode, description)
     end
   end
 

@@ -71,8 +71,8 @@ class FixedRateCouponHandle : public Handle<CashFlow> {};
     FixedRateCouponHandle(double nominal, const Date& paymentDate, 
                           Rate rate, const DayCounter& dayCounter, 
                           const Date& startDate, const Date& endDate,
-                          const Date& refPeriodStart = NullDate, 
-                          const Date& refPeriodEnd = NullDate) {
+                          const Date& refPeriodStart = Date(), 
+                          const Date& refPeriodEnd = Date()) {
         return new FixedRateCouponHandle(
             new FixedRateCoupon(nominal, paymentDate, rate, 
                 dayCounter, startDate, endDate, refPeriodStart,
@@ -87,8 +87,8 @@ class FloatingRateCouponHandle : public Handle<CashFlow> {};
                              const XiborHandle& index, const Date& startDate, 
                              const Date& endDate, int fixingDays, 
                              Spread spread = 0.0, 
-                             const Date& refPeriodStart = NullDate, 
-                             const Date& refPeriodEnd = NullDate) {
+                             const Date& refPeriodStart = Date(), 
+                             const Date& refPeriodEnd = Date()) {
         return new FloatingRateCouponHandle(
             new FloatingRateCoupon(nominal, paymentDate, index,
                 startDate, endDate, fixingDays, spread,
@@ -114,7 +114,7 @@ std::vector<Handle<CashFlow> > FixedRateCouponVector(
     const Calendar& calendar, RollingConvention convention,
     bool isAdjusted, const DayCounter& dayCount,
     const DayCounter& firstPeriodDayCount, 
-    const Date& stubDate = NullDate);
+    const Date& stubDate = Date());
 
 std::vector<Handle<CashFlow> > FloatingRateCouponVector(
     const std::vector<double>& nominals,
@@ -123,7 +123,7 @@ std::vector<Handle<CashFlow> > FloatingRateCouponVector(
     RollingConvention convention,
     const XiborHandle& index, int indexFixingDays, 
     const std::vector<double>& spreads, 
-    const Date& stubDate = NullDate);
+    const Date& stubDate = Date());
 
 
 #endif

@@ -29,23 +29,36 @@
 
 ; more scheme-like names which couldn't be set from SWIG
 
-(define calendar=? calendar-equal)
+(define Calendar=? Calendar-equal)
 
-(define date=?  date-equal)
-(define date<?  date-less)
-(define date>?  date-greater)
-(define date<=? date-less-equal)
-(define date>=? date-greater-equal)
+(define Date=?  Date-equal)
+(define Date<?  Date-less)
+(define Date>?  Date-greater)
+(define Date<=? Date-less-equal)
+(define Date>=? Date-greater-equal)
 
-(define daycounter=? daycounter-equal)
+(define DayCounter=? DayCounter-equal)
 
-(define samplenumber-value  samplenumber-value-get)
-(define samplenumber-weight samplenumber-weight-get)
+(define SampleNumber-value  SampleNumber-value-get)
+(define SampleNumber-weight SampleNumber-weight-get)
 
-(define tridiagonaloperator+ tridiagonaloperator-add)
-(define tridiagonaloperator- tridiagonaloperator-sub)
-(define tridiagonaloperator* tridiagonaloperator-mul)
-(define tridiagonaloperator/ tridiagonaloperator-div)
+(define Array+ Array-add)
+(define Array- Array-sub)
+(define (Array* a x)
+  (if (number? x)
+      (Array-mul-d a x)
+      (Array-mul-a a x)))
+(define Array/ Array-div)
+
+(define Matrix+ Matrix-add)
+(define Matrix- Matrix-sub)
+(define Matrix* Matrix-mul)
+(define Matrix/ Matrix-div)
+
+(define TridiagonalOperator+ TridiagonalOperator-add)
+(define TridiagonalOperator- TridiagonalOperator-sub)
+(define TridiagonalOperator* TridiagonalOperator-mul)
+(define TridiagonalOperator/ TridiagonalOperator-div)
 
 ; added functionality
 (define (Calendar-advance . args)
@@ -108,10 +121,10 @@
 (define FlatForward-old-init new-FlatForward)
 (define (new-FlatForward currency dayCounter today settlement forward)
   (if (number? forward)
-      (letrec ((m (new-SimpleMarketElement forward))
-               (h (new-MarketElementHandle m))
-               (ff (FlatForward-old-init currency dayCounter 
-                                         today settlement h)))
+      (let* ((m (new-SimpleMarketElement forward))
+             (h (new-MarketElementHandle m))
+             (ff (FlatForward-old-init currency dayCounter 
+                                       today settlement h)))
         (delete-MarketElementHandle h)
         (delete-MarketElement m)
         ff)

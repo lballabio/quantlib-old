@@ -38,6 +38,8 @@ using QuantLib::StringFormatter;
 #endif
 template <class T>
 class Handle {
+  private:
+    Handle();
   public:
     #if defined(SWIGRUBY) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     bool isNull();

@@ -76,8 +76,6 @@ IsObservable(Handle<Instrument>);
 %{
 using QuantLib::Instruments::Stock;
 typedef Handle<Instrument> StockHandle;
-std::string StockDefaultIsinCode = "unknown";
-std::string StockDefaultDescription = "stock";
 %}
 
 // Fake inheritance between Handles
@@ -86,8 +84,8 @@ std::string StockDefaultDescription = "stock";
 class StockHandle : public Handle<Instrument> {};
 %extend StockHandle {
     StockHandle(const RelinkableHandle<MarketElement>& quote,
-                const std::string& isinCode = StockDefaultIsinCode, 
-                const std::string& description = StockDefaultDescription) {
+                const std::string& isinCode = "unknown", 
+                const std::string& description = "stock") {
         return new StockHandle(new Stock(quote,isinCode,description));
     }
 }

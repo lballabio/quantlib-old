@@ -27,6 +27,7 @@
   (if (file-exists? test-dir)
       (chdir test-dir)))
 
+(load "covariance.scm")
 (load "date.scm")
 (load "daycounters.scm")
 (load "distributions.scm")
@@ -34,13 +35,17 @@
 (load "instruments.scm")
 (load "marketelements.scm")
 (load "operators.scm")
+(load "piecewiseflatforward.scm")
 (load "riskstatistics.scm")
 (load "segmentintegral.scm")
+(load "simpleswap.scm")
 (load "solvers1d.scm")
 (load "statistics.scm")
 (load "termstructures.scm")
 
 (let ((suite (make-suite)))
+  (suite-add-test suite Covariance-test
+                  "Testing covariance calculation")
   (suite-add-test suite Date-test
                   "Testing dates")
   (suite-add-test suite Day-counter-test
@@ -61,10 +66,22 @@
                   "Testing observability of market element handles")
   (suite-add-test suite Operator-test
                   "Testing differential operators")
+  (suite-add-test suite PiecewiseFlatForward-test
+                  "Testing piecewise flat forward curve")
   (suite-add-test suite Risk-statistics-test
                   "Testing risk statistics")
   (suite-add-test suite Segment-integral-test
                   "Testing segment integral")
+  (suite-add-test suite SimpleSwap-fair-rate-test
+                  "Testing simple swap calculation of fair fixed rate")
+  (suite-add-test suite SimpleSwap-fair-spread-test
+                  "Testing simple swap calculation of fair floating spread")
+  (suite-add-test suite SimpleSwap-rate-dependency-test
+                  "Testing simple swap dependency on fixed rate")
+  (suite-add-test suite SimpleSwap-spread-dependency-test
+                  "Testing simple swap dependency on floating spread")
+  (suite-add-test suite SimpleSwap-cached-value-test
+                  "Testing simple swap calculation against cached value")
   (suite-add-test suite Solver-1D-test
                   "Testing 1D solvers")
   (suite-add-test suite Statistics-test

@@ -22,6 +22,10 @@
 
 
 ; common utility functions
+(define (range i j)
+  (if (= i j)
+      '()
+      (cons i (range (+ i 1) j))))
 (define (flatmap proc seq)
   (foldr append '() (map proc seq)))
 (define (foldr op initial sequence)
@@ -29,6 +33,18 @@
       initial
       (op (car sequence)
           (foldr op initial (cdr sequence)))))
+(define (sorted? l less-than?)
+  (if (null? l)
+      #t
+      (let ((first (car l))
+            (rest (cdr l)))
+        (if (null? rest)
+            #t
+            (let ((second (car rest)))
+              (if (less-than? first second)
+                  (sorted? rest less-than?)
+                  #f))))))
+
 
 ; make a grid
 (define (grid-step xmin xmax N)

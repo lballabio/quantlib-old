@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 """
  Copyright (C) 2000, 2001, 2002 RiskMap srl
 
@@ -167,7 +165,7 @@ Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s %(v)f
                                   """ % locals())
 
     def testImpliedVol(self):
-        "testing European option implied volatility"
+        "Testing European option implied volatility"
 
         maxEvaluations = 100
         tolerance = 1.0e-6

@@ -36,6 +36,13 @@ if sys.hexversion >= 0x020200a0:
 
 
 #interface enhancements
+def Array_new___mul__(self,x):
+    if type(x) == type(0) or type(x) == type(0.0):
+        return self.mul_d(x)
+    else:
+        return self.mul_a(x)
+Array.__mul__ = Array_new___mul__
+
 History._old___init__ = History.__init__
 def History_new___init__(self,dates,values):
     values = values[:]

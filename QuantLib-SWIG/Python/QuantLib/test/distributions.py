@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 """
  Copyright (C) 2000, 2001, 2002 RiskMap srl
 

@@ -21,8 +21,7 @@
 #define quantlib_operators_i
 
 %include common.i
-%include qlarray.i
-%include matrix.i
+%include linearalgebra.i
 
 %{
 using QuantLib::FiniteDifferences::BoundaryCondition;

@@ -1,4 +1,3 @@
-
 """
  Copyright (C) 2000, 2001, 2002 RiskMap srl
 
@@ -21,6 +20,7 @@ __version__ = "$Revision$"
 import sys
 import unittest
 
+from covariance import CovarianceTest
 from date import DateTest
 from daycounters import DayCounterTest
 from distributions import DistributionTest
@@ -28,8 +28,10 @@ from europeanoption import EuropeanOptionTest
 from instruments import InstrumentTest
 from marketelements import MarketElementTest
 from operators import OperatorTest
+from piecewiseflatforward import PiecewiseFlatForwardTest
 from riskstatistics import RiskStatisticsTest
 from segmentintegral import SegmentIntegralTest
+from simpleswap import SimpleSwapTest
 from solvers1d import Solver1DTest
 from statistics import StatisticsTest
 from termstructures import TermStructureTest
@@ -40,6 +42,7 @@ def test():
 
     suite = unittest.TestSuite()
 
+    suite.addTest(CovarianceTest())
     suite.addTest(DateTest())
     suite.addTest(DayCounterTest())
     suite.addTest(DistributionTest())
@@ -47,8 +50,10 @@ def test():
     suite.addTest(unittest.makeSuite(InstrumentTest,'test'))
     suite.addTest(unittest.makeSuite(MarketElementTest,'test'))
     suite.addTest(OperatorTest())
+    suite.addTest(PiecewiseFlatForwardTest())
     suite.addTest(RiskStatisticsTest())
     suite.addTest(SegmentIntegralTest())
+    suite.addTest(unittest.makeSuite(SimpleSwapTest,'test'))
     suite.addTest(Solver1DTest())
     suite.addTest(StatisticsTest())
     suite.addTest(unittest.makeSuite(TermStructureTest,'test'))

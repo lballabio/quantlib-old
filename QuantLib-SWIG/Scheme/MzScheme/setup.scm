@@ -49,7 +49,9 @@
 (define scripts
   (list "setup.scm"))
 (define SWIG-interfaces
-  (list "common.i"
+  (list "quantlib.i"
+        "ql.i"
+        "common.i"
         "calendars.i"
         "currencies.i"
         "date.i"
@@ -60,25 +62,26 @@
         "indexes.i"
         "instruments.i"
         "interpolation.i"
+        "linearalgebra.i"
         "marketelements.i"
-        "matrix.i"
+        "montecarlo.i"
         "null.i"
         "observer.i"
         "operators.i"
         "options.i"
-        "quantlib.i"
-        "ql.i"
-        "qlarray.i"
+        "piecewiseflatforward.i"
         "randomnumbers.i"
         "riskstatistics.i"
         "segmentintegral.i"
         "solvers1d.i"
         "statistics.i"
+        "swap.i"
         "termstructures.i"
         "types.i"
         "vectors.i"))
 (define test-files
   (list "common.scm"
+        "covariance.scm"
         "date.scm"
         "daycounters.scm"
         "distributions.scm"
@@ -86,8 +89,10 @@
         "instruments.scm"
         "marketelements.scm"
         "operators.scm"
+        "piecewiseflatforward.scm"
         "riskstatistics.scm"
         "segmentintegral.scm"
+        "simpleswap.scm"
         "solvers1d.scm"
         "statistics.scm"
         "termstructures.scm"))
@@ -118,16 +123,42 @@
              "-o quantlib_wrap.cpp quantlib.i"))))
 
 (define (build)
+  (define (string-split s)
+    (let ((n (string-length s))
+          (spcs '()))
+      (do ((i 0 (+ i 1)))
+          ((= i n))
+        (if (char=? (string-ref s i) #\space)
+            (set! spcs (cons i spcs))))
+      (let ((begins (cons 0 (map (lambda (i) (+ i 1)) 
+                                 (reverse spcs))))
+            (ends (reverse (cons n spcs))))
+        (map (lambda (b e) (substring s b e)) begins ends))))
   (display "Building QuantLib-MzScheme...") (newline)
   (let ((platform (system-type))
         (include-dirs '()))
     (cond ((eqv? platform 'unix)
-           (current-extension-compiler "/usr/bin/g++")
-           (current-extension-linker "/usr/bin/g++")
+           (let ((c++-compiler (getenv "CC"))
+                 (c-flags (getenv "CFLAGS"))
+                 (c++-flags (getenv "CXXFLAGS")))
+             (if (not c++-compiler)
+                 (set! c++-compiler "/usr/bin/g++"))
+             (current-extension-compiler c++-compiler)
+             (current-extension-linker c++-compiler)
+             (if c-flags
+                 (current-extension-compiler-flags
+                  (append
+                   (current-extension-compiler-flags)
+                   (string-split c-flags))))
+             (if c++-flags
+                 (current-extension-compiler-flags
+                  (append
+                   (current-extension-compiler-flags)
+                   (string-split c++-flags))))
            (current-extension-linker-flags
             (append
              (current-extension-linker-flags)
-             (list "-L/usr/local/lib" "-lstdc++" "-lgcc" "-lQuantLib"))))
+             (list "-L/usr/local/lib" "-lstdc++" "-lgcc" "-lQuantLib")))))
           ((eqv? platform 'windows)
            (set! include-dirs (cons (getenv "QL_DIR") include-dirs))
            (current-extension-compiler-flags

@@ -75,8 +75,6 @@ using QuantLib::PricingEngine;
 %{
 using QuantLib::Instruments::VanillaOption;
 typedef Handle<Instrument> VanillaOptionHandle;
-std::string OptionDefaultIsinCode = "unknown";
-std::string OptionDefaultDescription = "option";
 %}
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -96,8 +94,8 @@ class VanillaOptionHandle : public Handle<Instrument> {};
                         const Date& exerciseDate,
                         const RelinkableHandle<MarketElement>& volatility,
                         const Handle<PricingEngine>& engine,
-                        const std::string& isinCode = OptionDefaultIsinCode, 
-                        const std::string& desc = OptionDefaultDescription) {
+                        const std::string& isinCode = "unknown", 
+                        const std::string& desc = "option") {
         return new VanillaOptionHandle(
             new VanillaOption(type,underlying,strike,dividendYield,
                               riskFreeRate,exerciseDate,volatility,

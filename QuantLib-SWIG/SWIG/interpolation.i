@@ -21,8 +21,7 @@
 #ifndef quantlib_interpolation_i
 #define quantlib_interpolation_i
 
-%include qlarray.i
-%include matrix.i
+%include linearalgebra.i
 
 %{
 // safe versions which copy their arguments

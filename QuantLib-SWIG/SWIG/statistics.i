@@ -21,8 +21,7 @@
 #define quantlib_statistics_i
 
 %include types.i
-%include qlarray.i
-%include matrix.i
+%include linearalgebra.i
 %include vectors.i
 %include stl.i
 

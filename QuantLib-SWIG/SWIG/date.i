@@ -169,7 +169,6 @@ ReturnByValue(Period);
 %{
 using QuantLib::Date;
 using QuantLib::DateFormatter;
-Date NullDate = Date();
 %}
 
 #if defined(SWIGRUBY)
