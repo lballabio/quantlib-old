@@ -1,7 +1,6 @@
 
 Autogeneration
 - document how it works
-- autogenerate Doxygen function documentation (direct to Docs/pages)
 - accept make labels as command line input to control behavior e.g. 'make calc' >> 'autogen.py calc'
 
 Calc
@@ -12,6 +11,4 @@ Excel
 - autoconf?
 - add version number to XLL name
 
-QuantLibAddin core
-- extend support for bonds
 

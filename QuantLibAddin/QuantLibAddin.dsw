@@ -114,6 +114,21 @@ Package=<4>
 
 ###############################################################################
 
+Project: "ClientCPPCapFloor"=".\Clients\C++\ClientCPPCapFloor.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name QuantLibAddin
+    End Project Dependency
+}}}
+
+###############################################################################
+
 Project: "ClientCPPDemo"=".\CLIENTS\C++\ClientCPPDemo.dsp" - Package Owner=<4>
 
 Package=<5>

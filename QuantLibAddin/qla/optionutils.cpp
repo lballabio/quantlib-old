@@ -156,26 +156,5 @@ namespace QuantLibAddin {
             QL_FAIL("IDtoEngine: unrecognized engineID: " + engineID);
     }
 
-    QuantLib::Matrix vectorVectorToMatrix(
-        const std::vector < std::vector < double > > &vv) {
-        if (vv.size() == 0) {
-            QuantLib::Matrix m(0, 0);
-            return m;
-        } else {
-            const std::vector < double > v = vv[0];
-            if (v.size() == 0) {
-                QuantLib::Matrix m(0, 0);
-                return m;
-            }
-            QuantLib::Matrix m(vv.size(), v.size());
-            for (unsigned int i = 0; i < vv.size(); i++) {
-                const std::vector < double > v = vv[i];
-                for (unsigned int j = 0; j < v.size(); j++)
-                    m[i][j] = v[j];
-            }
-            return m;
-        }
-    }
-
 }
 

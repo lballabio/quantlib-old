@@ -186,11 +186,23 @@ SOURCE=.\stub.Excel.regheader
 # PROP Default_Filter "*.xml"
 # Begin Source File
 
+SOURCE=.\capfloor.xml
+# End Source File
+# Begin Source File
+
 SOURCE=.\instruments.xml
 # End Source File
 # Begin Source File
 
 SOURCE=.\options.xml
+# End Source File
+# Begin Source File
+
+SOURCE=.\shortratemodels.xml
+# End Source File
+# Begin Source File
+
+SOURCE=.\termstructures.xml
 # End Source File
 # Begin Source File
 

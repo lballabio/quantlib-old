@@ -47,11 +47,14 @@ EXTRA_DIST = \
 noinst_HEADERS = \
     autogen.hpp \
     calcutils.hpp \
+    capfloor.hpp \
     instruments.hpp \
     options.hpp \
     qladdin.hpp \
     qldefs.hpp \
-    utilities.hpp
+    utilities.hpp \
+    shortratemodels.hpp \
+    termstructures.hpp
 
 if BUILD_CALC
 lib_LTLIBRARIES = libQuantLibAddinCalc.la
@@ -61,11 +64,14 @@ endif
 
 libQuantLibAddinCalc_la_SOURCES = \
     calcutils.cpp \
+    capfloor.cpp \
     funcdef.cpp \
     instruments.cpp \
     options.cpp \
     qladdin.cpp \
-    utilities.cpp
+    utilities.cpp \
+    shortratemodels.cpp \
+    termstructures.cpp
 
 libQuantLibAddinCalc_la_LIBADD = ../../qla/libQuantLibAddin.la
 

@@ -1,3 +1,6 @@
 utilities.docs
 instruments.docs
 options.docs
+termstructures.docs
+capfloor.docs
+shortratemodels.docs

@@ -19,8 +19,11 @@
 #define qladdin_hpp
 
 #include <qla/qladdindefines.hpp>
-#include <qla/options.hpp>
+#include <qla/capfloor.hpp>
 #include <qla/instruments.hpp>
+#include <qla/options.hpp>
+#include <qla/shortratemodels.hpp>
+#include <qla/termstructures.hpp>
 #include <qla/utilities.hpp>
 
 #endif

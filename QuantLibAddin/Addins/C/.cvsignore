@@ -17,3 +17,9 @@ xll
 
 options.*
 instruments.*
+termstructures.cpp
+termstructures.h
+capfloor.cpp
+capfloor.h
+shortratemodels.cpp
+shortratemodels.h

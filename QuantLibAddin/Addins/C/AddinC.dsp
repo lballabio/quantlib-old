@@ -85,11 +85,23 @@ LIB32=link.exe -lib
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=.\capfloor.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\instruments.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\options.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\shortratemodels.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\termstructures.cpp
 # End Source File
 # Begin Source File
 
@@ -105,6 +117,10 @@ SOURCE=.\varies.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
+SOURCE=.\capfloor.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\defines.h
 # End Source File
 # Begin Source File
@@ -118,6 +134,14 @@ SOURCE=.\options.h
 # Begin Source File
 
 SOURCE=.\qladdin.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\shortratemodels.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\termstructures.h
 # End Source File
 # Begin Source File
 

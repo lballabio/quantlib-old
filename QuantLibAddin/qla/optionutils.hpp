@@ -50,9 +50,6 @@ namespace QuantLibAddin {
         const std::string &engineID,
         const long &timeSteps);
 
-    QuantLib::Matrix vectorVectorToMatrix(
-        const std::vector < std::vector < double > > &vv);
-
 }
 
 #endif

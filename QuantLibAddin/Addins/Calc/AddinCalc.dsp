@@ -90,6 +90,10 @@ SOURCE=.\calcutils.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\capfloor.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\funcdef.cpp
 # End Source File
 # Begin Source File
@@ -113,6 +117,14 @@ SOURCE=.\QuantLibAddin.def
 # End Source File
 # Begin Source File
 
+SOURCE=.\shortratemodels.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\termstructures.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\utilities.cpp
 # End Source File
 # End Group
@@ -126,6 +138,10 @@ SOURCE=.\autogen.hpp
 # Begin Source File
 
 SOURCE=.\calcutils.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\capfloor.hpp
 # End Source File
 # Begin Source File
 
@@ -144,6 +160,14 @@ SOURCE=.\qladdin.hpp
 
 SOURCE=.\qldefs.hpp
 # PROP Intermediate_Dir "."
+# End Source File
+# Begin Source File
+
+SOURCE=.\shortratemodels.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\termstructures.hpp
 # End Source File
 # Begin Source File
 

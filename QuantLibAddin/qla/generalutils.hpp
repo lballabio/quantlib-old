@@ -20,6 +20,8 @@
 
 #include <ql/DayCounters/all.hpp>
 #include <ql/basicdataformatters.hpp>
+#include <ql/calendar.hpp>
+#include <ql/Math/matrix.hpp>
 
 #define QL_OBJECT_GET(X) ObjHandler::ObjectHandler::instance().retrieveObject(X)
 
@@ -27,12 +29,27 @@ namespace QuantLibAddin {
 
     QuantLib::DayCounter IDtoDayCounter(
         const std::string &dayCounterID);
+    
+    QuantLib::Calendar IDtoCalendar(
+        const std::string &calendarID);
+    
+    QuantLib::TimeUnit IDtoTimeUnit(
+        const std::string &timeUnitID);
+    
+    QuantLib::BusinessDayConvention IDtoConvention(
+        const std::string &conventionID);
+
+    QuantLib::Frequency IDtoFrequency(
+        const std::string &frequencyID);
 
     std::vector<QuantLib::Rate> doubleVectorToRateVector(
         const std::vector < double > &v);
 
     std::vector<QuantLib::Date> longVectorToDateVector(
         const std::vector < long > &v);
+
+    QuantLib::Matrix vectorVectorToMatrix(
+        const std::vector < std::vector < double > > &vv);
 
 }
 

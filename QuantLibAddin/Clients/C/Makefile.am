@@ -6,7 +6,9 @@ LDFLAGS = -lObjectHandler -lQuantLib
 #    makefile.mak
 EXTRA_DIST = \
     ClientC.dev \
-    ClientC.dsp \
+    ClientCDemo.dsp \
+    ClientCInstruments.dsp \
+    ClientCOptions.dsp \
     ClientC_vc8.vcproj \
     ClientC.vcproj
 

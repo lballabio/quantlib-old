@@ -139,7 +139,7 @@ std::string getHandleFull(const std::string &handle) {
         s1 << "getHandleFull: " << e.what();
         throw exception(s1.str().c_str());
     }
-    std::string ret(handle + '#' + XLOPERtoString(xStr));
+    std::string ret(handle + '@' + XLOPERtoString(xStr));
     Excel(xlFree, 0, 2, &xCaller, &xStr);
     return ret;
 }

@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
+<functionlist>
+<headeronly>false</headeronly>
+<desc>functions to construct QuantLib short-rate model objects</desc>
+<displayname>Short Rate Models</displayname>
+
+<function>
+<name>QL_VASICEK</name>
+<codename>qlVasicek</codename>
+<desc>construct and return a Vasicek short-rate model object</desc>
+<constructor>true</constructor>
+<qlfunction>Vasicek</qlfunction>
+<parameters>
+    <param>
+        <name>a</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>mean reverting speed</desc>
+    </param>
+    <param>
+        <name>b</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>short-rate limit value</desc>
+    </param>
+    <param>
+        <name>lambda</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>risk premium</desc>
+    </param>
+    <param>
+        <name>sigma</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>volatility</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
+    <desc>vector of properties describing short-rate model</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_HULLWHITE</name>
+<codename>qlHullWhite</codename>
+<desc>construct and return a handle to a Hull-White short-rate model object</desc>
+<constructor>true</constructor>
+<qlfunction>HullWhite</qlfunction>
+<parameters>
+    <param>
+        <name>handleTermStructure</name>
+        <type class="YieldTermStructure">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle to a term structure object</desc>
+    </param>
+    <param>
+        <name>a</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>a</desc>
+    </param>
+    <param>
+        <name>sigma</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>volatility</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
+    <desc>vector of properties describing Option</desc>
+</returnval>
+</function>
+
+</functionlist>

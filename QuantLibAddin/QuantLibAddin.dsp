@@ -197,6 +197,10 @@ SOURCE=.\qla\basketoption.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\capfloor.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\cliquetoption.cpp
 # End Source File
 # Begin Source File
@@ -217,15 +221,19 @@ SOURCE=.\qla\generalutils.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\instrumentutils.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\qla\optionutils.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\shortratemodels.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\stochasticprocess.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\termstructures.cpp
 # End Source File
 # Begin Source File
 
@@ -265,6 +273,10 @@ SOURCE=.\qla\basketoption.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\capfloor.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\cliquetoption.hpp
 # End Source File
 # Begin Source File
@@ -289,10 +301,6 @@ SOURCE=.\qla\instruments.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\instrumentutils.hpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\qla\options.hpp
 # End Source File
 # Begin Source File
@@ -309,7 +317,15 @@ SOURCE=.\qla\qladdindefines.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\shortratemodels.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\stochasticprocess.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\termstructures.hpp
 # End Source File
 # Begin Source File
 

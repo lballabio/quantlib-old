@@ -62,7 +62,9 @@ def generateHeader(fileHeader, function, suffix):
     paramList = utils.generateParamList(function[common.PARAMS], 2, True,
         '', 'const STRING &', CALC_LONG,
         convertVec = 'const SEQSEQ(%s)& ',
-        convertMat = 'const SEQSEQ(%s)& ', convertMatStr = CALC_STRING)
+        convertMat = 'const SEQSEQ(%s)& ', 
+		convertMatStr = 'ANY')
+#		convertMatStr = CALC_STRING)
     if paramList != '':
         fileHeader.write('\n')
         fileHeader.write(paramList)
@@ -145,7 +147,9 @@ def generateFuncSource(fileFunc, function, bufBody):
         fName = 'QuantLibAddin::' + function[common.NAME]
         args = ''
         paramList = utils.generateParamList(function[common.PARAMS], 3,
-            reformatString = STR_FMT, arrayCount = True, appendTensor = True)
+            reformatString = STR_FMT, arrayCount = True, 
+			appendTensor = True,
+            convertMatStr = 'ANY')
     conversions = generateConversions(function[common.PARAMS])
     fileFunc.write(bufBody % (conversions, args, fName, handle,
         paramList, function[common.NAME]))
@@ -202,9 +206,10 @@ def generateIDLSource(functionGroups):
                 handle = ''
             returnTypeIDL = getReturnTypeCalcIDL(function[common.RETVAL])
             paramList = utils.generateParamList(function[common.PARAMS],
-                 6, True, '[in] ', 
+                 6, True, '[in] ', 'string',
                 convertVec = 'sequence < sequence < %s > > ',
-                convertMat = 'sequence < sequence < %s > > ')
+                convertMat = 'sequence < sequence < %s > > ',
+                convertMatStr = 'any')
             if paramList == '':
                 carriageReturn = ''
             else:

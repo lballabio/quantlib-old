@@ -4,11 +4,14 @@ EXTRA_DIST = \
     AddinExcel.dsp \
     AddinExcel_vc8.vcproj \
     AddinExcel.vcproj \
+    capfloor.cpp \
     framewrk.cpp \
     framewrk.hpp \
     instruments.cpp \
     options.cpp \
     qladdin.cpp \
+    shortratemodels.cpp \
+    termstructures.cpp \
     utilities.cpp \
     xlcall.h \
     xlutils.cpp \

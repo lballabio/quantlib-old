@@ -22,7 +22,6 @@
 #include <qla/zerocouponbond.hpp>
 #include <qla/zerocurve.hpp>
 #include <qla/generalutils.hpp>
-#include <qla/instrumentutils.hpp>
 
 namespace QuantLibAddin {
 

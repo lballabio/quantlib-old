@@ -12,18 +12,20 @@ include_HEADERS = \
     autolink.hpp \
     barrieroption.hpp \
     basketoption.hpp \
+    capfloor.hpp \
     cliquetoption.hpp \
     dividendvanillaoption.hpp \
     fixedcouponbond.hpp \
     forwardvanillaoption.hpp \
     generalutils.hpp \
     instruments.hpp \
-    instrumentutils.hpp \
     options.hpp \
     optionutils.hpp \
     qladdindefines.hpp \
     qladdin.hpp \
+    shortratemodels.hpp \
     stochasticprocess.hpp \
+    termstructures.hpp \
     utilities.hpp \
     vanillaoption.hpp \
     zerocouponbond.hpp \
@@ -35,14 +37,16 @@ libQuantLibAddin_la_SOURCES = \
     asianoption.cpp \
     barrieroption.cpp \
     basketoption.cpp \
+    capfloor.cpp \
     cliquetoption.cpp \
     dividendvanillaoption.cpp \
     fixedcouponbond.cpp \
     forwardvanillaoption.cpp \
     generalutils.cpp \
-    instrumentutils.cpp \
     optionutils.cpp \
+    shortratemodels.cpp \
     stochasticprocess.cpp \
+    termstructures.cpp \
     utilities.cpp \
     vanillaoption.cpp \
     zerocouponbond.cpp \

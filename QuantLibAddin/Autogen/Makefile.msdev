@@ -24,8 +24,12 @@ SCRIPTS=autogen.py \
 	excel.py \
 	parse.py \
 	utils.py
-METADATA=options.xml \
+METADATA= \
+	capfloor.xml \
 	instruments.xml \
+	options.xml \
+	shortratemodels.xml \
+	termstructures.xml \
 	utilities.xml
 
 !IF "$(OS)" == "Windows_NT"

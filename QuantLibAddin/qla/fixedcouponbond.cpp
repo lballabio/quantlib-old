@@ -20,7 +20,14 @@
 #endif
 
 #include <qla/fixedcouponbond.hpp>
-#include <qla/instrumentutils.hpp>
+#include <qla/generalutils.hpp>
+
+// indexes to the Property vector
+// FIXME - need a cleaner way to achieve this
+#define CLEAN_PRICE                     "CLEAN_PRICE"
+#define DIRTY_PRICE                     "DIRTY_PRICE"
+#define IDX_CLEAN_PRICE                 0
+#define IDX_DIRTY_PRICE                 1
 
 namespace QuantLibAddin {
 

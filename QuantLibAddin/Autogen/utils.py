@@ -61,16 +61,20 @@ def generateParamList(
             else:
                 type = param[common.TYPE] + ' '
             if param[common.TENSOR] == common.VECTOR:
-                if convertVec != '':
+                if replaceTensor:
+                    type = replaceTensor
+                if convertVec:
                     type = convertVec % type
                 else:
-                    type = replaceTensor + ' '
+                    type = type + ' '
                     deref = ''
             elif param[common.TENSOR] == common.MATRIX:
-                if convertMat != '':
+                if replaceTensor:
+                    type = replaceTensor
+                if convertMat:
                     type = convertMat % type
                 else:
-                    type = replaceTensor + ' '
+                    type = type + ' '
                     deref = ''
         if arrayCount == True:
             if datatypes == True:

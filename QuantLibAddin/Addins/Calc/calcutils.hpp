@@ -30,34 +30,25 @@ public:
 
     static std::vector < T >convertVector(const SEQSEQ(T)& s) {
         std::vector < T >ret;
-        if (!s.getLength())
-            return ret;
-        if (!s[0].getLength())
-            return ret;
         for (int i=0; i<s.getLength(); i++)
             for (int j=0; j<s[i].getLength(); j++)
                 ret.push_back(s[i][j]);
         return ret;
     }
 
-    static std::vector < std::string >convertStrVector(const SEQSEQ(STRING)& s) {
+    static std::vector < std::string >convertStrVector(const SEQSEQ(ANY)& s) {
         std::vector < std::string > ret;
-        if (!s.getLength())
-            return ret;
-        if (!s[0].getLength())
-            return ret;
         for (int i=0; i<s.getLength(); i++)
-            for (int j=0; j<s[i].getLength(); j++)
-                ret.push_back(OUStringToString(s[i][j]));
+            for (int j=0; j<s[i].getLength(); j++) {
+                STRING str;
+                s[i][j] >>= str;
+                ret.push_back(OUStringToString(str));
+            }
         return ret;
     }
 
     static std::vector < std::vector < T > >convertMatrix(const SEQSEQ(double)& s) {
         std::vector < std::vector < T > >ret;
-        if (!s.getLength())
-            return ret;
-        if (!s[0].getLength())
-            return ret;
         for (int i=0; i<s.getLength(); i++) {
             std::vector < T >row;
             for (int j=0; j<s[i].getLength(); j++)

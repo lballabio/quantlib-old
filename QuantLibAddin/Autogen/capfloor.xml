@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
+<functionlist>
+<headeronly>false</headeronly>
+<desc>functions to construct QuantLib cap/floor objects</desc>
+<displayname>Caps/Floors</displayname>
+
+<function>
+<name>QL_CAPFLOOR</name>
+<codename>qlCapFloor</codename>
+<desc>construct and return a handle to a cap/floor object</desc>
+<constructor>true</constructor>
+<qlfunction>CapFloor</qlfunction>
+<parameters>
+    <param>
+        <name>startDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>start date of capping period</desc>
+    </param>
+    <param>
+        <name>length</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>length of capping period</desc>
+    </param>
+    <param>
+        <name>timeUnits</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>time units applying to above length</desc>
+    </param>
+    <param>
+        <name>convention</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>business day convention</desc>
+    </param>
+    <param>
+        <name>frequency</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>underlying reset frequency</desc>
+    </param>
+    <param>
+        <name>fixingDays</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>fixing days</desc>
+    </param>
+    <param>
+        <name>handleTermStructure</name>
+        <type class="YieldTermStructure">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle to term structure</desc>
+    </param>
+    <param>
+        <name>nominal</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>nominal of cap</desc>
+    </param>
+    <param>
+        <name>strike</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>strike</desc>
+    </param>
+    <param>
+        <name>handleEngine</name>
+        <type class="AnalyticCapFloorEngine">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle to pricing engine</desc>
+    </param>
+    <param>
+        <name>optionType</name>
+        <type class="YieldTermStructure">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>option type (cap or floor)</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
+    <desc>vector of properties describing cap/floor instrument</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_ANALYTIC_CAPFLOOR_ENGINE</name>
+<codename>qlAnalyticCapFloorEngine</codename>
+<desc>construct and return a pricing engine for cap/foors</desc>
+<constructor>true</constructor>
+<qlfunction>AnalyticCapFloorEngine</qlfunction>
+<parameters>
+    <param>
+        <name>handleModel</name>
+        <type class="AffineModel">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>affine model (providing a discount bond option pricing formula)</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
+    <desc>vector of properties describing engine</desc>
+</returnval>
+</function>
+
+</functionlist>

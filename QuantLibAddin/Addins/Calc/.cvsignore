@@ -19,3 +19,9 @@ funcdef.cpp
 options.*
 instruments.*
 utilities.hpp
+shortratemodels.hpp
+termstructures.cpp
+termstructures.hpp
+capfloor.cpp
+capfloor.hpp
+shortratemodels.cpp
