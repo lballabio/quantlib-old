@@ -1,10 +1,10 @@
     try {
-%s%s        ObjHandler::Properties properties = 
+%s%s        Properties properties = 
             %s(%s%s);
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        QuantLibAddin::QL_LOGMESSAGE("%s Error: "
+        OH_LOGMESSAGE("%s Error: "
             + std::string(e.what()));
         result = 0;
         return FAIL;

@@ -20,6 +20,7 @@
     #include <oh/config.hpp>
 #endif
 #include <oh/objecthandler.hpp>
+#include <ostream>
 
 namespace ObjHandler {
 
@@ -50,6 +51,15 @@ namespace ObjHandler {
                 i!=objectList_.end(); i++)
             ret.push_back(i->first);
         return ret;
+    }
+
+    void ObjectHandler::dump(std::ostream& out) {
+        out << "dump of all objects in ObjectHandler:" << std::endl;
+        for (ObjectList::const_iterator i=objectList_.begin();
+            i!=objectList_.end(); i++) {
+            obj_ptr object = i->second;
+            out << "Object with handle = " << i->first << ":" << std::endl << *object.get();
+        }
     }
 
 }

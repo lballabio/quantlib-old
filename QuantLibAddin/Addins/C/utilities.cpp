@@ -22,33 +22,37 @@ extern "C" {
 #include <Addins/C/utilities.h>
 }
 
-    const char *QL_VER() {
-        static std::string ret = QuantLibAddin::QL_VER();
-        return ret.c_str();
-    }
+using namespace ObjHandler;
+using namespace QuantLibAddin;
 
-    const char *QL_OH_VER() {
-        static std::string ret = QuantLibAddin::QL_OH_VER();
-        return ret.c_str();
-    }
+const char *QL_VER() {
+    static std::string ret = QuantLibAddin::QL_VER();
+    return ret.c_str();
+}
 
-    const char *QL_LOGFILE(const char *logFileName) {
-        std::string ret = QuantLibAddin::QL_LOGFILE(logFileName);
-        return ret.c_str();
-    }
+const char *QL_OH_VER() {
+    static std::string ret = QuantLibAddin::QL_OH_VER();
+    return ret.c_str();
+}
 
-    void QL_CONSOLE(const int console) {
-        QuantLibAddin::QL_CONSOLE(console);
-    }
+const char *QL_LOGFILE(const char *logFileName) {
+    OH_LOGFILE(logFileName);
+    static std::string ret(logFileName);
+    return ret.c_str();
+}
 
-    void QL_LOGMESSAGE(
-            const char *fmt,
-            ...) {
-        char buf[1000]; // FIXME
-        va_list list;
-        va_start(list, fmt);
-        vsprintf(buf, fmt, list);
-        va_end(list);
-        QuantLibAddin::QL_LOGMESSAGE(buf);
-    }
+void QL_CONSOLE(const int console) {
+    OH_CONSOLE(console);
+}
+
+void QL_LOGMESSAGE(
+        const char *fmt,
+        ...) {
+    char buf[1000]; // FIXME
+    va_list list;
+    va_start(list, fmt);
+    vsprintf(buf, fmt, list);
+    va_end(list);
+    OH_LOGMESSAGE(buf);
+}
 

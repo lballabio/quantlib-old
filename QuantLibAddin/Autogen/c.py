@@ -73,7 +73,7 @@ def generateFuncDefs(groupName, functionGroup):
         conversions = generateConversions(function[common.PARAMS])
         if function[common.CTOR]:
             args = utils.generateArgList(function[common.PARAMS])
-            fName = 'QL_OBJECT_MAKE(%s)' % function[common.QLFUNC]
+            fName = 'OH_OBJECT_MAKE(QuantLibAddin::%s)' % function[common.QLFUNC]
             handle = 'handle, args'
             paramList = ''
         else:

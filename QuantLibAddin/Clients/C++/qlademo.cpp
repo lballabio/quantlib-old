@@ -25,12 +25,12 @@ using namespace QuantLibAddin;
 
 int main() {
     try {
-        QL_LOGFILE("quantlib.log");         // specify log file
-        QL_CONSOLE(1);                      // log messages to stdout
-        QL_LOGMESSAGE("begin example program");
+        OH_LOGFILE("quantlib.log");         // specify log file
+        OH_CONSOLE(1);                      // log messages to stdout
+        OH_LOGMESSAGE("begin example program");
 
-        QL_LOGMESSAGE(QL_VER());
-        QL_LOGMESSAGE(QL_OH_VER());
+        OH_LOGMESSAGE(QL_VER());
+        OH_LOGMESSAGE(QL_OH_VER());
 
         double dividendYield = 0.00;
         double riskFreeRate = 0.06;
@@ -46,7 +46,7 @@ int main() {
         bcArgs.push(volatility);            // volatility
         bcArgs.push(string("ACT360"));      // daycount convention
         Properties bcProperties =
-            QL_OBJECT_MAKE(BlackConstantVol)("my_blackconstantvol", bcArgs);
+            OH_OBJECT_MAKE(QuantLibAddin::BlackConstantVol)("my_blackconstantvol", bcArgs);
 
         ArgStack bsArgs;
         bsArgs.push(string("my_blackconstantvol")); // black constant vol handle
@@ -56,7 +56,7 @@ int main() {
         bsArgs.push(riskFreeRate);          // risk free rate
         bsArgs.push(dividendYield);         // dividend yield
         Properties bsProperties =
-            QL_OBJECT_MAKE(BlackScholesProcess)("my_stochastic", bsArgs);
+            OH_OBJECT_MAKE(QuantLibAddin::BlackScholesProcess)("my_stochastic", bsArgs);
 
         ArgStack opArgs;
         opArgs.push(string("my_stochastic")); // stochastic process handle
@@ -68,20 +68,20 @@ int main() {
         opArgs.push(settlementDate.serialNumber()); // settlement date
         opArgs.push(string("JR"));          // engine type (jarrow rudd)
         opArgs.push(timeSteps);             // time steps
-        QL_OBJECT_MAKE(VanillaOption)("my_option", opArgs);
+        OH_OBJECT_MAKE(QuantLibAddin::VanillaOption)("my_option", opArgs);
     
-        QL_LOGMESSAGE("High-level interrogation: after QL_OPTION_VANILLA");
-        QL_LOG_OBJECT("my_option");
+        OH_LOGMESSAGE("High-level interrogation: after QL_OPTION_VANILLA");
+        OH_LOG_OBJECT("my_option");
 
         QL_OPTION_SETENGINE(
             "my_option", 
             "AEQPB",    // AdditiveEQPBinomialTree
             timeSteps);
 
-        QL_LOGMESSAGE("High-level interrogation: after QL_OPTION_SETENGINE");
-        QL_LOG_OBJECT("my_option");
+        OH_LOGMESSAGE("High-level interrogation: after QL_OPTION_SETENGINE");
+        OH_LOG_OBJECT("my_option");
 
-        QL_LOGMESSAGE("Low-level interrogation: NPV of underlying option object");
+        OH_LOGMESSAGE("Low-level interrogation: NPV of underlying option object");
         boost::shared_ptr<QuantLibAddin::VanillaOption> vanillaOptionQLA = 
             boost::dynamic_pointer_cast<QuantLibAddin::VanillaOption> 
             (ObjectHandler::instance().retrieveObject("my_option"));
@@ -90,17 +90,17 @@ int main() {
             (vanillaOptionQLA->getReference());
         ostringstream s;
         s << "underlying option NPV() = " << vanillaOptionQL->NPV();
-        QL_LOGMESSAGE(s.str());
+        OH_LOGMESSAGE(s.str());
 
-        QL_LOGMESSAGE("end example program");
+        OH_LOGMESSAGE("end example program");
         return 0;
     } catch (const exception &e) {
         ostringstream s;
         s << "Error: " << e.what();
-        QL_LOGMESSAGE(s.str(), 1);
+        OH_LOGMESSAGE(s.str(), 1);
         return 1;
     } catch (...) {
-        QL_LOGMESSAGE("unknown error", 1);
+        OH_LOGMESSAGE("unknown error", 1);
         return 1;
     }
 }

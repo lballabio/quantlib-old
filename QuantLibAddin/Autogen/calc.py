@@ -64,7 +64,6 @@ def generateHeader(fileHeader, function, suffix):
         convertVec = 'const SEQSEQ(%s)& ',
         convertMat = 'const SEQSEQ(%s)& ', 
 		convertMatStr = 'ANY')
-#		convertMatStr = CALC_STRING)
     if paramList != '':
         fileHeader.write('\n')
         fileHeader.write(paramList)
@@ -138,7 +137,7 @@ def generateFuncSource(fileFunc, function, bufBody):
     generateHeader(fileFunc, function, ' {')
     if function[common.CTOR]:
         handle = 12 * ' ' + 'OUStringToString(handle), args'
-        fName = 'QL_OBJECT_MAKE(%s)' % function[common.QLFUNC]
+        fName = 'OH_OBJECT_MAKE(QuantLibAddin::%s)' % function[common.QLFUNC]
         args = utils.generateArgList(function[common.PARAMS], 
             reformatString = STR_FMT)
         paramList = ''

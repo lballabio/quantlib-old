@@ -19,7 +19,7 @@
 #define objhandler_hpp
 
 #include <oh/objhandlerdefines.hpp>
-#include <oh/objecthandler.hpp>
+#include <oh/utilities.hpp>
 #include <oh/exception.hpp>
 #include <oh/factory.hpp>
 

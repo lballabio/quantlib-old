@@ -93,10 +93,6 @@ SOURCE=.\example.cpp
 
 SOURCE=.\objectfoo.cpp
 # End Source File
-# Begin Source File
-
-SOURCE=.\utilities.cpp
-# End Source File
 # End Group
 # Begin Group "Header Files"
 
@@ -108,10 +104,6 @@ SOURCE=.\foo.hpp
 # Begin Source File
 
 SOURCE=.\objectfoo.hpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\utilities.hpp
 # End Source File
 # End Group
 # End Target

@@ -28,9 +28,9 @@ using namespace QuantLibAddin;
 
 int main() {
     try {
-        QL_LOGFILE("quantlib.log");
-        QL_CONSOLE(1);
-        QL_LOGMESSAGE("begin instruments test");
+        OH_LOGFILE("quantlib.log");
+        OH_CONSOLE(1);
+        OH_LOGMESSAGE("begin instruments test");
 
         // Fixed Coupon Bond
 
@@ -54,8 +54,8 @@ int main() {
         a1.push(frequencyID);                   // frequency ID
         a1.push(dayCounterID);                  // day counter ID
         a1.push(calendarID);                    // calendar ID
-        QL_OBJECT_MAKE(FixedCouponBond)("fixedCouponBond", a1);
-        QL_LOG_OBJECT("fixedCouponBond");
+        OH_OBJECT_MAKE(QuantLibAddin::FixedCouponBond)("fixedCouponBond", a1);
+        OH_LOG_OBJECT("fixedCouponBond");
 
         // ZeroCurve
 
@@ -81,8 +81,8 @@ int main() {
         zeroCurveArgs.push(yieldsAsDouble);
         zeroCurveArgs.push(string("ACTACT"));
 
-        QL_OBJECT_MAKE(ZeroCurve)("myZeroCurve", zeroCurveArgs);
-        QL_LOG_OBJECT("myZeroCurve");
+        OH_OBJECT_MAKE(QuantLibAddin::ZeroCurve)("myZeroCurve", zeroCurveArgs);
+        OH_LOG_OBJECT("myZeroCurve");
 
         // ZeroBond
 
@@ -105,18 +105,18 @@ int main() {
         zeroCouponBondArgs.push((double)redemption);
         zeroCouponBondArgs.push(zeroCurveHandle);
 
-        QL_OBJECT_MAKE(ZeroCouponBond)("myZeroCouponBond", zeroCouponBondArgs);
-        QL_LOG_OBJECT("myZeroCouponBond");
+        OH_OBJECT_MAKE(QuantLibAddin::ZeroCouponBond)("myZeroCouponBond", zeroCouponBondArgs);
+        OH_LOG_OBJECT("myZeroCouponBond");
 
-        QL_LOGMESSAGE("end instruments test");
+        OH_LOGMESSAGE("end instruments test");
         return 0;
     } catch (const exception &e) {
         ostringstream s;
         s << "Error: " << e.what();
-        QL_LOGMESSAGE(s.str(), 1);
+        OH_LOGMESSAGE(s.str(), 1);
         return 1;
     } catch (...) {
-        QL_LOGMESSAGE("unknown error", 1);
+        OH_LOGMESSAGE("unknown error", 1);
         return 1;
     }
 }

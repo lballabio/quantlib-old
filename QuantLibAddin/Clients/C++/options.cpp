@@ -28,9 +28,9 @@ using namespace QuantLibAddin;
 
 int main() {
     try {
-        QL_LOGFILE("quantlib.log");
-        QL_CONSOLE(1);
-        QL_LOGMESSAGE("begin options test");
+        OH_LOGFILE("quantlib.log");
+        OH_CONSOLE(1);
+        OH_LOGMESSAGE("begin options test");
 
         double dividendYield = 0.00;
         double riskFreeRate = 0.06;
@@ -46,7 +46,7 @@ int main() {
         a0.push(settlementDate.serialNumber()); // settlement date as long
         a0.push(volatility);            // volatility
         a0.push(string("ACT360"));      // daycount convention
-        QL_OBJECT_MAKE(BlackConstantVol)("blackConstantVol", a0);
+        OH_OBJECT_MAKE(QuantLibAddin::BlackConstantVol)("blackConstantVol", a0);
 
         ArgStack a1;
         a1.push(string("blackConstantVol"));// black constant vol handle
@@ -55,8 +55,8 @@ int main() {
         a1.push(settlementDate.serialNumber()); // settlement date as long
         a1.push(riskFreeRate);              // risk free rate
         a1.push(dividendYield);             // dividend yield
-        QL_OBJECT_MAKE(BlackScholesProcess)("stochasticProcess", a1);
-        QL_LOG_OBJECT("stochasticProcess");
+        OH_OBJECT_MAKE(QuantLibAddin::BlackScholesProcess)("stochasticProcess", a1);
+        OH_LOG_OBJECT("stochasticProcess");
 
         ArgStack a2;
         a2.push(string("stochasticProcess"));// stochastic process handle
@@ -68,8 +68,8 @@ int main() {
         a2.push(settlementDate.serialNumber()); // settlement date
         a2.push(string("JR"));              // engine type (jarrow rudd)
         a2.push(timeSteps);                 // time steps
-        QL_OBJECT_MAKE(VanillaOption)("vanillaOption", a2);
-        QL_LOG_OBJECT("vanillaOption");
+        OH_OBJECT_MAKE(QuantLibAddin::VanillaOption)("vanillaOption", a2);
+        OH_LOG_OBJECT("vanillaOption");
 
         ArgStack a3;
         a3.push(string("stochasticProcess"));// stochastic process handle
@@ -82,8 +82,8 @@ int main() {
         a3.push(0l);                        // settlement date ignored when exercise = European
         a3.push(string("ACGAPA"));          // engine type
         a3.push(timeSteps);                 // time steps
-        QL_OBJECT_MAKE(ContinuousAveragingAsianOption)("continuous", a3);
-        QL_LOG_OBJECT("continuous");
+        OH_OBJECT_MAKE(QuantLibAddin::ContinuousAveragingAsianOption)("continuous", a3);
+        OH_LOG_OBJECT("continuous");
 
         vector < long > fixingDates;
         for (int i = 0; i < exerciseDate - todaysDate + 1; i++)
@@ -102,8 +102,8 @@ int main() {
         a4.push(0l);                        // settlement date ignored when exercise = European
         a4.push(string("ADGAPA"));          // engine type
         a4.push(timeSteps);                 // time steps
-        QL_OBJECT_MAKE(DiscreteAveragingAsianOption)("discrete", a4);
-        QL_LOG_OBJECT("discrete");
+        OH_OBJECT_MAKE(QuantLibAddin::DiscreteAveragingAsianOption)("discrete", a4);
+        OH_LOG_OBJECT("discrete");
 
         ArgStack a5;
         a5.push(string("stochasticProcess"));// stochastic process handle
@@ -118,8 +118,8 @@ int main() {
         a5.push(0l);                        // settlement date ignored when exercise = European
         a5.push(string("AB"));              // engine type
         a5.push(timeSteps);                 // time steps
-        QL_OBJECT_MAKE(BarrierOption)("barrierOption", a5);
-        QL_LOG_OBJECT("barrierOption");
+        OH_OBJECT_MAKE(QuantLibAddin::BarrierOption)("barrierOption", a5);
+        OH_LOG_OBJECT("barrierOption");
 
         vector < string > stochHandles;
         stochHandles.push_back("stochasticProcess");
@@ -144,8 +144,8 @@ int main() {
         a6.push(0l);                        // settlement date ignored when exercise = European
         a6.push(string("SE"));              // engine type
         a6.push(timeSteps);                 // time steps
-        QL_OBJECT_MAKE(BasketOption)("basketOption", a6);
-        QL_LOG_OBJECT("basketOption");
+        OH_OBJECT_MAKE(QuantLibAddin::BasketOption)("basketOption", a6);
+        OH_LOG_OBJECT("basketOption");
 
         vector < long > resetDates;
         resetDates.push_back(Date(12, March, 2020).serialNumber());
@@ -157,8 +157,8 @@ int main() {
         a7.push(exerciseDate.serialNumber()); // exercise date
         a7.push(string("AC"));              // engine type
         a7.push(timeSteps);                 // time steps
-        QL_OBJECT_MAKE(CliquetOption)("cliquetOption", a7);
-        QL_LOG_OBJECT("cliquetOption");
+        OH_OBJECT_MAKE(QuantLibAddin::CliquetOption)("cliquetOption", a7);
+        OH_LOG_OBJECT("cliquetOption");
 
         vector < long > dividendDates;
         dividendDates.push_back(Date(13, September, 2019).serialNumber());
@@ -179,8 +179,8 @@ int main() {
         a8.push(0l);                        // settlement date ignored when exercise = European
         a8.push(string("ADE"));             // engine type (jarrow rudd)
         a8.push(timeSteps);                 // time steps
-        QL_OBJECT_MAKE(DividendVanillaOption)("dividendVanillaOption", a8);
-        QL_LOG_OBJECT("dividendVanillaOption");
+        OH_OBJECT_MAKE(QuantLibAddin::DividendVanillaOption)("dividendVanillaOption", a8);
+        OH_LOG_OBJECT("dividendVanillaOption");
 
         long resetDate = exerciseDate.serialNumber() - 90;
 
@@ -196,18 +196,18 @@ int main() {
         a9.push(0l);                        // settlement date ignored when exercise = European
         a9.push(string("FE"));              // engine type (jarrow rudd)
         a9.push(timeSteps);                 // time steps
-        QL_OBJECT_MAKE(ForwardVanillaOption)("forwardVanillaOption", a9);
-        QL_LOG_OBJECT("forwardVanillaOption");
+        OH_OBJECT_MAKE(QuantLibAddin::ForwardVanillaOption)("forwardVanillaOption", a9);
+        OH_LOG_OBJECT("forwardVanillaOption");
 
-        QL_LOGMESSAGE("end options test");
+        OH_LOGMESSAGE("end options test");
         return 0;
     } catch (const exception &e) {
         ostringstream s;
         s << "Error: " << e.what();
-        QL_LOGMESSAGE(s.str(), 1);
+        OH_LOGMESSAGE(s.str(), 1);
         return 1;
     } catch (...) {
-        QL_LOGMESSAGE("unknown error", 1);
+        OH_LOGMESSAGE("unknown error", 1);
         return 1;
     }
 }

@@ -31,7 +31,7 @@ DLLEXPORT char* qlVer() {
         ret[len] = 0;
         return ret;
     } catch (const exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_VER: ") + e.what(), 2);
+        OH_LOGMESSAGE(std::string("ERROR: QL_VER: ") + e.what(), 2);
         return 0;
     }
 }
@@ -45,7 +45,7 @@ DLLEXPORT char* qlOhVer() {
         ret[len] = 0;
         return ret;
     } catch (const exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_OH_VER: ") + e.what(), 2);
+        OH_LOGMESSAGE(std::string("ERROR: QL_OH_VER: ") + e.what(), 2);
         return 0;
     }
 }
@@ -69,7 +69,7 @@ DLLEXPORT LPXLOPER qlFieldNames(char *handleObject) {
         }
         return &xRet;
     } catch (const exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what(), 2);
+        OH_LOGMESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what(), 2);
         if (xRet.val.array.lparray)
             delete [] xRet.val.array.lparray;
         return 0;
@@ -91,7 +91,7 @@ DLLEXPORT LPXLOPER qlValue(char *handleObject, char *fieldName) {
         }
         throw Exception(std::string("no field with name ") + fieldNameUpper);
     } catch (const exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_VALUE: ") + e.what(), 2);
+        OH_LOGMESSAGE(std::string("ERROR: QL_VALUE: ") + e.what(), 2);
         return 0;
     }
 }
@@ -100,9 +100,9 @@ DLLEXPORT char* qlLogfile(char *logFileName, long *logLevel) {
     try {
         static char ret[XL_MAX_STR_LEN];
         int lvl = *logLevel ? *logLevel : 4;
-        std::string log = QL_LOGFILE(std::string(logFileName), lvl);
-        int len = __min(XL_MAX_STR_LEN - 1, log.length());
-        strncpy(ret, log.c_str(), len);
+        OH_LOGFILE(std::string(logFileName), lvl);
+        int len = __min(XL_MAX_STR_LEN - 1, strlen(logFileName));
+        strncpy(ret, logFileName, len);
         ret[len] = 0;
         return ret;
     } catch (...) {
@@ -114,9 +114,9 @@ DLLEXPORT char* qlLogMessage(char *logMessage, long *logLevel) {
     try {
         static char ret[XL_MAX_STR_LEN];
         int lvl = *logLevel ? *logLevel : 4;
-        std::string msg = QL_LOGMESSAGE(std::string(logMessage), lvl);
-        int len = __min(XL_MAX_STR_LEN - 1, msg.length());
-        strncpy(ret, msg.c_str(), len);
+        OH_LOGMESSAGE(std::string(logMessage), lvl);
+        int len = __min(XL_MAX_STR_LEN - 1, strlen(logMessage));
+        strncpy(ret, logMessage, len);
         ret[len] = 0;
         return ret;
     } catch (...) {
@@ -127,7 +127,7 @@ DLLEXPORT char* qlLogMessage(char *logMessage, long *logLevel) {
 DLLEXPORT long* qlLogLevel(long *logLevel) {
     try {
         static long ret;
-        QL_LOGLEVEL(*logLevel);
+        OH_LOGLEVEL(*logLevel);
         ret = *logLevel;
         return &ret;
     } catch (...) {
@@ -138,10 +138,10 @@ DLLEXPORT long* qlLogLevel(long *logLevel) {
 DLLEXPORT short int* qlLogObject(char *handleObject) {
     try {
         static short int ret = FALSE;
-        QL_LOG_OBJECT(handleObject);
+        OH_LOG_OBJECT(handleObject);
         return &ret;
     } catch (const exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_LOG_OBJECT: ") + e.what(), 2);
+        OH_LOGMESSAGE(std::string("ERROR: QL_LOG_OBJECT: ") + e.what(), 2);
         return 0;
     }
 }
@@ -149,10 +149,10 @@ DLLEXPORT short int* qlLogObject(char *handleObject) {
 DLLEXPORT short int* qlLogAllObjects() {
     try {
         static short int ret = FALSE;
-        QL_LOG_ALL_OBJECTS();
+        OH_LOG_ALL_OBJECTS();
         return &ret;
     } catch (const exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_LOG_ALL_OBJECTS: ") + e.what(), 2);
+        OH_LOGMESSAGE(std::string("ERROR: QL_LOG_ALL_OBJECTS: ") + e.what(), 2);
         return 0;
     }
 }
@@ -160,10 +160,10 @@ DLLEXPORT short int* qlLogAllObjects() {
 DLLEXPORT short int* qlObjectDelete(char *handleObject) {
     try {
         static short int ret = FALSE;
-        QL_OBJECT_DELETE(handleObject);
+        OH_OBJECT_DELETE(handleObject);
         return &ret;
     } catch (const exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_OBJECT_DELETE: ") + e.what(), 2);
+        OH_LOGMESSAGE(std::string("ERROR: QL_OBJECT_DELETE: ") + e.what(), 2);
         return 0;
     }
 }
@@ -171,10 +171,10 @@ DLLEXPORT short int* qlObjectDelete(char *handleObject) {
 DLLEXPORT short int* qlObjectDeleteAll() {
     try {
         static short int ret = FALSE;
-        QL_OBJECT_DELETE_ALL();
+        OH_OBJECT_DELETE_ALL();
         return &ret;
     } catch (const exception &e) {
-        QL_LOGMESSAGE(std::string("ERROR: QL_OBJECT_DELETE_ALL: ") + e.what(), 2);
+        OH_LOGMESSAGE(std::string("ERROR: QL_OBJECT_DELETE_ALL: ") + e.what(), 2);
         return 0;
     }
 }

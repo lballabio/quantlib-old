@@ -72,6 +72,7 @@ namespace ObjHandler {
             in the ObjectHandler, call
                 ObjectHandler::instance().storeObject(handle, object);
         */
+
         Object() {};
         //! Default destructor.
         virtual ~Object() {};
@@ -90,6 +91,8 @@ namespace ObjHandler {
             describing the underlying Object.
         */
         const Properties& getProperties() const;
+
+        friend std::ostream &operator<<(std::ostream&, const Object &object);
         //@}
     protected:
         Properties properties_;
@@ -97,6 +100,20 @@ namespace ObjHandler {
         Object& operator= (const Object&);
         Object(const Object&);
     };
+
+    /*! \relates Object */
+    //! any_ptr ostream operator.
+    /*! Write contents of boost::any
+        to output stream.
+    */
+    std::ostream& operator<<(std::ostream& out, const any_ptr& any);
+
+    //! obj_ptr ostream operator.
+    /*! Write contents of Object Property vector
+        to output stream.
+    */
+    std::ostream& operator<<(std::ostream& out, const Object &object);
+
 }
 
 #endif

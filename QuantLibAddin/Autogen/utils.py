@@ -124,7 +124,7 @@ def generateArgList(
         dereference = '',       # dereference arguments
         reformatString = 'std::string(%s)') : # string reformatting
     indent = 8 * ' ';
-    ret = indent + 'ObjHandler::ArgStack args;\n'
+    ret = indent + 'ArgStack args;\n'
     for param in paramList:
         if param[common.TENSOR] == common.SCALAR:
             if param[common.TYPE] == common.STRING:

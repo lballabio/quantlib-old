@@ -18,10 +18,10 @@
 #include <sstream>
 #include <iostream>
 #include <exception>
-#include <utilities.hpp>
-#include <objectfoo.hpp>    // only required for low-level interrogation
+#include <objectfoo.hpp>
 
 using namespace std;
+using namespace ObjHandler;
 
 int main() {
     try {

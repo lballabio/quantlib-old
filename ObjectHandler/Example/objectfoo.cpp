@@ -16,8 +16,8 @@
 */
 
 #include <objectfoo.hpp>
-
 #include <iostream>
+
 using namespace std;
 
 ObjectFoo::ObjectFoo(ArgStack &args) {
@@ -45,3 +45,16 @@ boost::shared_ptr<void> ObjectFoo::getReference() const {
     return boost::static_pointer_cast<void>(foo_);
 }
 
+// utility function for updating object of class Foo
+const Properties& FOO_UPDATE(
+        const std::string &handle,
+        const std::string &s,
+        const int &i) {
+    boost::shared_ptr<ObjectFoo> object =
+        boost::dynamic_pointer_cast<ObjectFoo>        
+        (OH_OBJECT_GET(handle));
+    if (!object)
+        throw Exception("FOO_UPDATE: unable to retrieve object " + handle);
+    object->update(s, i);
+    return object->getProperties();
+}

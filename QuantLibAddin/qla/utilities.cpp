@@ -20,9 +20,7 @@
 #endif
 #include <qla/utilities.hpp>
 #include <ql/qldefines.hpp>
-#include <oh/logger.hpp>
 #include <sstream>
-#include <qla/vanillaoption.hpp> // to be moved
 
 using namespace ObjHandler;
 
@@ -48,48 +46,6 @@ namespace QuantLibAddin {
                 throw Exception("error retrieving object " + handle);
         return object->getProperties();
     }
-
-    std::string QL_LOGFILE(const std::string &logFileName,
-            const int &logLevel) {
-        Logger::instance().setLogFile(logFileName, logLevel);
-        return logFileName;
-    }
-
-    void QL_CONSOLE(const int &console,
-            const int &logLevel){
-        Logger::instance().setConsole(console, logLevel);
-    }
-
-    void QL_LOGLEVEL(const int &logLevel) {
-        Logger::instance().setLogLevel(logLevel);
-    }
-
-    std::string QL_LOGMESSAGE(const std::string &message,
-            const int &level) {
-        Logger::instance().logMessage(message, level);
-        return message;
-    }
-
-// fixme this function may be deleted
-    const ObjHandler::Properties& QL_OPTION_SETENGINE(
-            const std::string &handle,
-            const std::string &engineName,
-            const long &timeSteps) {
-
-        boost::shared_ptr<VanillaOption> objectPointer =
-            boost::dynamic_pointer_cast<VanillaOption>
-            (ObjHandler::ObjectHandler::instance().retrieveObject(handle));
-        if (!objectPointer)
-            QL_FAIL("QL_OPTION_SETENGINE: error retrieving object " + handle);
-
-        objectPointer->setEngine(engineName, timeSteps);
-        return objectPointer->getProperties();
-
-    }
-
-//    void QL_LOG_OBJECT(const std::string &handle) {
-//        ObjHandler::logObject(handle);
-//    }
 
 }
 

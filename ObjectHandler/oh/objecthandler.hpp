@@ -22,8 +22,8 @@
 #ifndef objecthandler_hpp
 #define objecthandler_hpp
 
-#include <oh/utilities.hpp>
 #include <oh/singleton.hpp>
+#include <oh/object.hpp>
 #include <map>
 #include <cstdarg>
 
@@ -35,6 +35,7 @@ namespace ObjHandler {
     /*! A boost shared pointer to an Object.
     */
     typedef boost::shared_ptr<Object> obj_ptr;
+
     //! Object list
     /*! A map of string/obj_ptr pairs
         representing all of the Objects
@@ -78,12 +79,19 @@ namespace ObjHandler {
             the repository is empty.
         */
         std::vector < std::string >getHandles();
+        //! Log dump of ObjectHandler.
+        /*! Write all objects in ObjectHandler 
+            to output stream.
+        */
+        void dump(std::ostream&);
         //@}
     private:
         ObjectHandler() {}
         // ~ObjectHandler() {}
         ObjectList objectList_;
     };
+
+    std::ostream& operator<<(std::ostream& out, const ObjectHandler &objectHandler);
 
 }
 

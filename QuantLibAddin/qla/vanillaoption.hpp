@@ -37,6 +37,11 @@ namespace QuantLibAddin {
         boost::shared_ptr<QuantLib::VanillaOption> vanillaOption_;
     };
 
+    const ObjHandler::Properties& QL_OPTION_SETENGINE(
+            const std::string &handle,
+            const std::string &engineName,
+            const long &timeSteps);
+
 }
 
 #endif

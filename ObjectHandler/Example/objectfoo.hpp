@@ -23,7 +23,6 @@
 
 using namespace ObjHandler;
 
-//! FIXME not sure if this is the correct approach
 #define PROPERTY_STR    "PROPERTY_STR"
 #define PROPERTY_INT    "PROPERTY_INT"
 #define IDX_STR            0
@@ -37,6 +36,12 @@ public:
 private:
     boost::shared_ptr<Foo> foo_;
 };
+
+// utility function for updating object of class Foo                                                                       
+const ObjHandler::Properties& FOO_UPDATE(
+    const std::string &handle,
+    const std::string &s,
+    const int &i);
 
 #endif
 

@@ -6,3 +6,6 @@ extern "C" {
 }
 #include <Addins/C/varies.hpp>
 
+using namespace ObjHandler;
+using namespace QuantLibAddin;
+
