@@ -1,11 +1,10 @@
-target = QLDemo
+target = QLADemo
 
 sources := $(wildcard *.cpp)
 objects := $(patsubst %.cpp,%.o,$(sources))
 includes = -I../.. -I../../../ObjectHandler
-libs = 	../../Addins/C++/QuantLibAddin.a \
-		../../../ObjectHandler/ObjectHandler/ObjectHandler.a
-sharedlibs = -lQuantLib -lboost_regex
+libdirs = 	-L../../Addins/C++
+libs = -lQuantLib -lQuantLibAddin -lboost_regex
 
 all : $(target)
 
@@ -15,5 +14,5 @@ clean:
 $(objects) : %.o : %.cpp
 	g++ -DHAVE_CONFIG_H $(includes) -g -c -o $@ $<
 
-$(target) : $(objects) $(libs)
-	g++ -g -O2 -o $@ $^ $(sharedlibs)
+$(target) : $(objects)
+	g++ -g -O2 -o $@ $^ $(libdirs) $(libs)

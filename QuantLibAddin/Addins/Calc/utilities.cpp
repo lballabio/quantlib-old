@@ -42,9 +42,8 @@ ANY stringToANY(const std::string &s) {
 	return CSS::uno::makeAny(s2);
 }
 
-SEQSEQ( ANY ) getArray(obj_ptr object, STRING handle) {
+SEQSEQ( ANY ) getArray(Properties properties, STRING handle) {
     SEQSEQ( ANY ) rows(1);
-	Properties properties = object->getProperties();
 	SEQ( ANY ) row(properties.size() + 1);
 	row[0] = CSS::uno::makeAny(handle);
     for (int i = 0; i < properties.size(); i++) {

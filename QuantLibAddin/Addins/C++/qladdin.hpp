@@ -14,25 +14,41 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef interface_h
-#define interface_h
+#ifndef qladdin_h
+#define qladdin_h
 
 #include <ObjectHandler/propertyvector.hpp>
-
-using namespace ObjHandler;
+using ObjHandler::Properties;
 using std::string;
 
-Properties WIDGET_MAKE(
-	const string &handle,
-	const string &s,
-	const int &i);
-                                                                                
-Properties WIDGET_UPDATE(
-	const string &handle,
-	const string &s,
-	const int &i);
+// options
 
-void QL_LOGFILE(
+Properties QL_BLACKSCHOLES(
+	const string &handleStochastic, 
+	const double &dividendYield,
+	const double &riskFreeRate,
+	const double &volatility,
+	const double &underlying,
+	const long &todaysDate,
+	const long &settlementDate);
+
+Properties QL_OPTION(
+	const string &handleOption, 
+	const string &handleStochastic,
+	const string &type,
+	const double &strike,
+	const long &timeSteps,
+	const long &exerciseDate,
+	const long &settlementDate);
+
+Properties QL_OPTION_SETENGINE(
+	const string &handleOption, 
+	const string &engineName,
+	const long &timeSteps);
+
+// functions
+
+string QL_LOGFILE(
 	const string &logFileName);
 
 void QL_LOGMESSAGE(
@@ -40,5 +56,8 @@ void QL_LOGMESSAGE(
 
 string QL_ANY2STRING(
 	const ObjHandler::any_ptr &a);
+
+Properties QL_QUERY(
+	const string &handle);
 
 #endif

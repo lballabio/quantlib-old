@@ -14,12 +14,16 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#include <Addins/C++/qladdin.hpp>
 #include <Addins/Calc/qladdin.hpp>
-#include <QuantLibAddin/objectoption.hpp>
 #include <Addins/Calc/utilities.hpp>
 
-using namespace QuantLib;
 using namespace ObjHandler;
+
+// FIXME these in QuantLibAddin header file that we can't see from here
+#define BINOMIAL_JARROW_RUDD            "BINOMIAL JARROW-RUDD"
+#define BINOMIAL_COX_ROSS_RUBINSTEIN    "BINOMIAL COX-ROSS-RUBINSTEIN"
+#define ADDITIVE_EQUIPROBABILITIES      "ADDITIVE EQUIPROBABILITIES"
 
 SEQSEQ( ANY ) SAL_CALL QLAddin::qlBlackScholes( 
 			const STRING& handle,
@@ -30,16 +34,12 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlBlackScholes(
 			sal_Int32 todaysDateNum,
 			sal_Int32 settlementDateNum) THROWDEF_RTE_IAE {
 	try {
-		std::string handle2 = OUStringToString(handle);
-		Date todaysDate(todaysDateNum);
-		Date settlementDate(settlementDateNum);
-		obj_ptr objectStochastic(
-			new ObjectStochastic(dividendYield, riskFreeRate, volatility, 
-				underlying, todaysDate, settlementDate));
-		ObjectHandler::instance().storeObject(handle2, objectStochastic);
-		return getArray(objectStochastic, handle);
+		Properties properties = QL_BLACKSCHOLES(OUStringToString(handle),
+			dividendYield, riskFreeRate, volatility, underlying,
+			todaysDateNum, settlementDateNum);
+		return getArray(properties, handle);
 	} catch (const std::exception &e) {
-		logMessage(std::string("ERROR: QL_BLACKSCHOLES: ") + e.what());
+		QL_LOGMESSAGE(std::string("ERROR: QL_BLACKSCHOLES: ") + e.what());
 		THROW_RTE;
 	}
 }
@@ -50,26 +50,15 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOption(
 			const STRING& typeOption,
 			double strike,
 			sal_Int32 timeSteps,
-			sal_Int32 exerciseDateNum,
-			sal_Int32 settlementDateNum) THROWDEF_RTE_IAE {
+			sal_Int32 exerciseDate,
+			sal_Int32 settlementDate) THROWDEF_RTE_IAE {
 	try {
-		std::string handle2 = OUStringToString(handle);
-		std::string handleStochastic2 = OUStringToString(handleStochastic);
-		std::string type2 = OUStringToString(typeOption);
-		boost::shared_ptr<ObjectStochastic> objectStochastic = 
-			boost::dynamic_pointer_cast<ObjectStochastic>
-			(ObjectHandler::instance().retrieveObject(handleStochastic2));
-		if (!objectStochastic)
-			QL_FAIL("error retrieving object " + handleStochastic2);
-		Date exerciseDate(exerciseDateNum);
-		Date settlementDate(settlementDateNum);
-		obj_ptr objectOption(
-			new ObjectOption(objectStochastic, type2, strike, timeSteps,
-			exerciseDate, settlementDate));
-		ObjectHandler::instance().storeObject(handle2, objectOption);
-		return getArray(objectOption, handle);
+		Properties properties = QL_OPTION(OUStringToString(handle),
+			OUStringToString(handleStochastic), OUStringToString(typeOption),
+			strike, timeSteps, exerciseDate, settlementDate);
+		return getArray(properties, handle);
 	} catch (const std::exception &e) {
-		logMessage(std::string("ERROR: QL_OPTION: ") + e.what());
+		QL_LOGMESSAGE(std::string("ERROR: QL_OPTION: ") + e.what());
 		THROW_RTE;
 	}
 }
@@ -79,7 +68,6 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionSetEngine(
 			sal_Int32 engineID,
 			sal_Int32 timeSteps) THROWDEF_RTE_IAE {
 	try {
-		std::string handle2 = OUStringToString(handle);
 		std::string engineName;
 		if (engineID == 1)
 			engineName = BINOMIAL_JARROW_RUDD;
@@ -88,16 +76,13 @@ SEQSEQ( ANY ) SAL_CALL QLAddin::qlOptionSetEngine(
 		else if (engineID == 3)
 			engineName = ADDITIVE_EQUIPROBABILITIES;
 		else
-			QL_FAIL("invalid engine ID");
-		boost::shared_ptr<ObjectOption> objectOption = 
-			boost::dynamic_pointer_cast<ObjectOption>
-			(ObjectHandler::instance().retrieveObject(handle2));
-		if (!objectOption)
-			QL_FAIL("error retrieving object " + handle2);
-		objectOption->setEngine(engineName, timeSteps);
-		return getArray(objectOption, handle);
+			; // FIXME error handling temporarily un-#included from here
+//			throw Exception("invalid engine ID");
+		Properties properties = QL_OPTION_SETENGINE(OUStringToString(handle),
+			engineName, timeSteps);
+		return getArray(properties, handle);
 	} catch (const std::exception &e) {
-		logMessage(std::string("ERROR: QL_OPTION_SETENGINE: ") + e.what());
+		QL_LOGMESSAGE(std::string("ERROR: QL_OPTION_SETENGINE: ") + e.what());
 		THROW_RTE;
 	}
 }

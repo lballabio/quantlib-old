@@ -1,4 +1,3 @@
-
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -18,17 +17,9 @@
 #ifndef object_h
 #define object_h
 
-#include <boost/shared_ptr.hpp>
-#include <boost/any.hpp>
-#include <ObjectHandler/property.hpp>
-#include <vector>
-#include <string>
+#include <ObjectHandler/propertyvector.hpp>
 
 namespace ObjHandler {
-
-    typedef boost::shared_ptr<boost::any> any_ptr;
-    typedef Property<std::string, any_ptr> ObjectProperty;
-    typedef std::vector<ObjectProperty> Properties;
 
     class Object {
     public:

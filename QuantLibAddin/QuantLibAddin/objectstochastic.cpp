@@ -16,8 +16,6 @@
 */
 
 #include "objectstochastic.hpp"
-using namespace QuantLib;
-using namespace ObjHandler;
 
 ObjectStochastic::ObjectStochastic(
 		const Spread &dividendYield,

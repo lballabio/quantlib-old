@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) 2004 Eric Ehlers
 
@@ -14,13 +15,26 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef utilitiesxx_h
-#define utilitiesxx_h
+/*
+	definition of Object Property vector
+	this is in a separate header file because it's all an addin needs to know
+*/
 
-ANY anyToANY(const ObjHandler::any_ptr &a); // convert boost::any to Calc Any
-SEQSEQ( ANY ) getArray(ObjHandler::Properties properties,
-                       STRING handle);
-std::string OUStringToString(const STRING& s1);
-ANY stringToANY(const std::string &s);
+#ifndef propertyvector_h
+#define propertyvector_h
+
+#include <boost/shared_ptr.hpp>
+#include <boost/any.hpp>
+#include <ObjectHandler/property.hpp>
+#include <vector>
+#include <string>
+
+namespace ObjHandler {
+
+    typedef boost::shared_ptr<boost::any> any_ptr;
+    typedef Property<std::string, any_ptr> ObjectProperty;
+    typedef std::vector<ObjectProperty> Properties;
+
+}
 
 #endif

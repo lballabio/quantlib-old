@@ -16,8 +16,6 @@
 */
 
 #include <QuantLibAddin/objectoption.hpp>
-using namespace ObjHandler;
-using namespace QuantLib;
 
 ObjectOption::ObjectOption(boost::shared_ptr<ObjectStochastic> objectStochastic,
 		const std::string &typeString,

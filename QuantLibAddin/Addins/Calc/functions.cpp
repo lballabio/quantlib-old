@@ -14,8 +14,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#include <Addins/C++/qladdin.hpp>
 #include <Addins/Calc/qladdin.hpp>
-#include <QuantLibAddin/objectoption.hpp>
 #include <Addins/Calc/utilities.hpp>
 
 using namespace ObjHandler;
@@ -23,12 +23,7 @@ using namespace ObjHandler;
 SEQSEQ(ANY) SAL_CALL QLAddin::qlQuery(
 			const STRING& handleObject) THROWDEF_RTE_IAE {
 	try {
-		std::string handleObject2 = OUStringToString(handleObject);
-		boost::shared_ptr<Object> object = 
-			ObjectHandler::instance().retrieveObject(handleObject2);
-		if (!object)
-			QL_FAIL("error retrieving object " + handleObject2);
-		Properties properties = object->getProperties();
+		Properties properties = QL_QUERY(OUStringToString(handleObject));
 		SEQSEQ( ANY ) rows(properties.size());
 		for (int i = 0; i < properties.size(); i++) {
 			SEQ( ANY ) row(2);
@@ -40,7 +35,7 @@ SEQSEQ(ANY) SAL_CALL QLAddin::qlQuery(
 		}
 		return rows;
 	} catch (const std::exception &e) {
-		logMessage(std::string("ERROR: QL_FIELDNAMES: ") + e.what());
+		QL_LOGMESSAGE(std::string("ERROR: QL_FIELDNAMES: ") + e.what());
 		THROW_RTE;
 	}
 }
@@ -48,13 +43,10 @@ SEQSEQ(ANY) SAL_CALL QLAddin::qlQuery(
 STRING SAL_CALL QLAddin::qlLogfile(
 			const STRING& logFileName) THROWDEF_RTE_IAE {
 	try {
-		std::string logFileName2 = OUStringToString(logFileName);
-		if (setLogFile(std::string(logFileName2)))
-			return logFileName;
-		else
-			return STRFROMASCII("logging disabled");
+		string ret =  QL_LOGFILE(OUStringToString(logFileName));
+		return STRFROMANSI(ret.c_str());
 	} catch (const std::exception &e) {
-		logMessage(std::string("ERROR: QL_LOGFILE: ") + e.what());
+		QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what());
 		THROW_RTE;
 	}
 }

@@ -29,20 +29,20 @@
 #define BINOMIAL_COX_ROSS_RUBINSTEIN	"BINOMIAL COX-ROSS-RUBINSTEIN"
 #define ADDITIVE_EQUIPROBABILITIES		"ADDITIVE EQUIPROBABILITIES"
 
-class ObjectOption : public ObjHandler::Object {
+class ObjectOption : public Object {
 public:
 	ObjectOption(boost::shared_ptr<ObjectStochastic>,
         const std::string &typestr,
-		const QuantLib::Real &strike,
-		const QuantLib::Size &timeSteps,
-		const QuantLib::Date &exerciseDate,
-		const QuantLib::Date &settlementDate);
+		const Real &strike,
+		const Size &timeSteps,
+		const Date &exerciseDate,
+		const Date &settlementDate);
 	~ObjectOption();
 	void setEngine(const std::string &engineName,
-		const QuantLib::Size &timeSteps);
+		const Size &timeSteps);
 	virtual boost::shared_ptr<void> getReference() const;
 private:
-    boost::shared_ptr<QuantLib::VanillaOption> vanillaOption_;
+    boost::shared_ptr<VanillaOption> vanillaOption_;
 };
 
 #endif

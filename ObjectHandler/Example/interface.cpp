@@ -15,7 +15,12 @@
 */
 
 #include <interface.hpp>
+#include <ObjectHandler/objecthandler.hpp>
 #include <ObjectHandler/exception.hpp>
+#include <ObjectHandler/utilities.hpp>
+#include <objectwidget.hpp>
+
+using namespace ObjHandler;
 
 Properties WIDGET_MAKE(
 		const std::string &handle,
@@ -25,7 +30,7 @@ Properties WIDGET_MAKE(
 	ObjectHandler::instance().storeObject(handle, object);
 	return object->getProperties();
 }
-                                                                                                 
+
 Properties WIDGET_UPDATE(
 		const std::string &handle,
 		const std::string &s,
@@ -47,4 +52,9 @@ void QL_LOGFILE(
 void QL_LOGMESSAGE(
 		const std::string &msg) {
 	logMessage(msg);
+}
+
+string QL_ANY2STRING(
+		const any_ptr &a) {
+	return AnyToString(a);
 }
