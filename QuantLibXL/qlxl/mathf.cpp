@@ -53,7 +53,10 @@ extern "C"
         QL_REQUIRE(x_value.size()==y_value.size(),
             "interpolate: array mismatch");
 
-        double x = xlx.AsDouble();
+        std::vector<double> x = xlx.AsDoubleVector();
+        XlfRef range = xlx.AsRef();
+        Size rowNo = range.GetNbRows();
+        Size colNo = range.GetNbCols();
 
         int interpolationType = xlinterpolationType.AsInt();
         bool allowExtrapolation = xlallowExtrapolation.AsBool();
@@ -67,14 +70,15 @@ extern "C"
 
         int derivativeOrder = xlderivativeOrder.AsInt();
 
-        double result = interpolate(x_value, y_value, x,
+        std::vector<double> result = interpolate(x_value.begin(), x_value.end(),
+            y_value.begin(), x.begin(), x.end(),
             interpolationType,
             allowExtrapolation,
             leftConditionType, xlleftConditionValue.AsDouble(),
             rightConditionType, xlrightConditionValue.AsDouble(),
             monotonicityConstraint,
             derivativeOrder);
-        return XlfOper(result);
+        return XlfOper(rowNo, colNo, result.begin());
         EXCEL_END;
     }
 
