@@ -26,7 +26,7 @@ namespace ObjHandler {
         class Factory {
         public:
         static const Properties& makeObject(
-                char *handle,
+                const char *handle,
                 ...) {
             va_list list;
             va_start(list, handle);
