@@ -66,8 +66,8 @@ SectionIn 1 2 3
 
     SetOutPath $INSTDIR\xll\Win32\VisualStudio
     File "xll\Win32\VisualStudio\QuantLibXL.xll"
-    SetOutPath $INSTDIR\xll\Win32\Borland
-    File "xll\Win32\Borland\QuantLibXL.xll"
+#    SetOutPath $INSTDIR\xll\Win32\Borland
+#    File "xll\Win32\Borland\QuantLibXL.xll"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
@@ -130,10 +130,12 @@ Section "Workbooks"
 SectionIn 1 2
     SetOutPath $INSTDIR\Workbooks
 #    File /r "test\*.txt"
-    File /r "Workbooks\quantlib.xls"
+    File /r "Workbooks\*.xls"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibXL\Test workbook.lnk" \
-                   "$INSTDIR\Workbooks\quantlib.xls"
+    CreateShortCut "$SMPROGRAMS\QuantLibXL\QuantLibXL Directory.lnk" \
+                   "$INSTDIR"
+    CreateShortCut "$SMPROGRAMS\QuantLibXL\Test workbooks.lnk" \
+                   "$INSTDIR\Workbooks"
 
 SectionEnd
 
