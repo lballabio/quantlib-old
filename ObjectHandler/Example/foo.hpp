@@ -15,14 +15,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef widget_hpp
-#define widget_hpp
+#ifndef foo_hpp
+#define foo_hpp
 
 #include <string>
 
-class Widget {
+class Foo {
 public:
-    Widget(const std::string &s, const int &i) : s_(s), i_(i) {};
+    Foo(const std::string &s, const int &i) : s_(s), i_(i) {};
     void update(const std::string &s, const int &i) {
        s_ = s;
        i_ = i;

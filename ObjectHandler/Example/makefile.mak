@@ -29,7 +29,7 @@ EXE_DIR                    = .\bin
 OBJHANDLER_EXAMPLE_FILES = \
     "example.obj$(_mt)$(_D)" \
     "interface.obj$(_mt)$(_D)" \
-    "objectwidget.obj$(_mt)$(_D)"
+    "objectfoo.obj$(_mt)$(_D)"
 
 # Tools to be used
 CC        = bcc32

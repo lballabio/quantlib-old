@@ -50,7 +50,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=objectwidget.cpp
+FileName=objectfoo.cpp
 Folder="Source Files"
 Compile=1
 CompileCpp=1
@@ -70,7 +70,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=objectwidget.hpp
+FileName=objectfoo.hpp
 Folder="Header Files"
 Compile=1
 CompileCpp=1
@@ -80,7 +80,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=widget.hpp
+FileName=foo.hpp
 Folder="Header Files"
 Compile=1
 CompileCpp=1

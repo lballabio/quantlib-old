@@ -183,7 +183,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="objectwidget.cpp">
+				RelativePath="objectfoo.cpp">
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
@@ -210,10 +210,10 @@
 				RelativePath="interface.hpp">
 			</File>
 			<File
-				RelativePath="objectwidget.hpp">
+				RelativePath="objectfoo.hpp">
 			</File>
 			<File
-				RelativePath="widget.hpp">
+				RelativePath="foo.hpp">
 			</File>
 		</Filter>
 	</Files>

@@ -15,11 +15,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef objectwidget_hpp
-#define objectwidget_hpp
+#ifndef objectfoo_hpp
+#define objectfoo_hpp
 
 #include <oh/objhandler.hpp>
-#include <widget.hpp>
+#include <foo.hpp>
 
 using namespace ObjHandler;
 
@@ -29,13 +29,13 @@ using namespace ObjHandler;
 #define IDX_STR            0
 #define IDX_INT            1
 
-class ObjectWidget : public Object {
+class ObjectFoo : public Object {
 public:
-    ObjectWidget(const std::string &s, const int &i);
+    ObjectFoo(const std::string &s, const int &i);
     virtual boost::shared_ptr<void> getReference() const;
     void update(const std::string &s, const int &i);
 private:
-    boost::shared_ptr<Widget> widget_;
+    boost::shared_ptr<Foo> foo_;
 };
 
 #endif

@@ -95,7 +95,7 @@ SOURCE=.\interface.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\objectwidget.cpp
+SOURCE=.\objectfoo.cpp
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -107,11 +107,11 @@ SOURCE=.\interface.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\objectwidget.hpp
+SOURCE=.\objectfoo.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\widget.hpp
+SOURCE=.\foo.hpp
 # End Source File
 # End Group
 # End Target

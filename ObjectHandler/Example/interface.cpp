@@ -16,27 +16,28 @@
 */
 
 #include <interface.hpp>
+#include <objectfoo.hpp>
 
 using namespace ObjHandler;
 
-Properties WIDGET_MAKE(
+Properties FOO_MAKE(
         const std::string &handle,
         const std::string &s,
         const int &i) {
-    obj_ptr object(new ObjectWidget(s, i));
+    obj_ptr object(new ObjectFoo(s, i));
     ObjectHandler::instance().storeObject(handle, object);
     return object->getProperties();
 }
 
-Properties WIDGET_UPDATE(
+Properties FOO_UPDATE(
         const std::string &handle,
         const std::string &s,
         const int &i) {
-    boost::shared_ptr<ObjectWidget> object =
-        boost::dynamic_pointer_cast<ObjectWidget>
+    boost::shared_ptr<ObjectFoo> object =
+        boost::dynamic_pointer_cast<ObjectFoo>
         (ObjectHandler::instance().retrieveObject(handle));
     if (!object)
-        throw Exception("WIDGET_UPDATE: unable to retrieve object " + handle);
+        throw Exception("FOO_UPDATE: unable to retrieve object " + handle);
     object->update(s, i);
     return object->getProperties();
 }

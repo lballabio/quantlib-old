@@ -18,6 +18,7 @@
 #include <iostream>
 #include <exception>
 #include <interface.hpp>
+#include <objectfoo.hpp>    // only required for low-level interrogation
 
 using namespace std;
 
@@ -30,41 +31,41 @@ int main() {
         QL_LOGMESSAGE("hi");
 
         // construct some objects and store them in the object handler
-        Properties w1Properties = WIDGET_MAKE("widget1", "abc", 123);
-        Properties w2Properties = WIDGET_MAKE("widget2", "def", 456);
+        Properties f1Properties = FOO_MAKE("foo1", "abc", 123);
+        Properties f2Properties = FOO_MAKE("foo2", "def", 456);
 
         // high level interrogation
         cout << endl << "high level interrogation - after constructor" << endl;
         Properties::const_iterator i;
-        for (i = w2Properties.begin();
-            i != w2Properties.end(); i++) {
+        for (i = f2Properties.begin();
+            i != f2Properties.end(); i++) {
             ObjectProperty property = *i;
             cout << "property = " << property.name() << "\tvalue = " <<
                 property() << endl;
         }
 
         // update an object
-        WIDGET_UPDATE("widget2", "ghi", 789);
+        FOO_UPDATE("foo2", "ghi", 789);
 
         // high level interrogation
         cout << endl << "high level interrogation - after update" << endl;
-        for (i = w2Properties.begin();
-            i != w2Properties.end(); i++) {
+        for (i = f2Properties.begin();
+            i != f2Properties.end(); i++) {
             ObjectProperty property = *i;
             cout << "property = " << property.name() << "\tvalue = " <<
                 property() << endl;
         }
 
         // low-level interrogation
-        cout << endl << "low-level interrogation - after WIDGET_UPDATE" << endl;
-        boost::shared_ptr<ObjectWidget> const objectWidget =
-            boost::dynamic_pointer_cast<ObjectWidget>
-            (ObjectHandler::instance().retrieveObject("widget2"));
-        boost::shared_ptr<Widget> widget =
-            boost::static_pointer_cast<Widget>
-            (objectWidget->getReference());
-        cout << "value of property s() of underlying widget = "
-            << widget->s() << endl;
+        cout << endl << "low-level interrogation - after FOO_UPDATE" << endl;
+        boost::shared_ptr<ObjectFoo> const objectFoo =
+            boost::dynamic_pointer_cast<ObjectFoo>
+            (ObjectHandler::instance().retrieveObject("foo2"));
+        boost::shared_ptr<Foo> foo =
+            boost::static_pointer_cast<Foo>
+            (objectFoo->getReference());
+        cout << "value of property s() of underlying foo = "
+            << foo->s() << endl;
 
         QL_LOGMESSAGE("bye");
         cout << endl << "bye" << endl;

@@ -15,13 +15,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <objectwidget.hpp>
+#include <objectfoo.hpp>
 
-ObjectWidget::ObjectWidget(const std::string &s, const int &i) {
-    widget_ = boost::shared_ptr<Widget>(new Widget(s, i));
+ObjectFoo::ObjectFoo(const std::string &s, const int &i) {
+    foo_ = boost::shared_ptr<Foo>(new Foo(s, i));
     // populate base class Property vector
-    any_ptr anyString(new boost::any(widget_->s()));
-    any_ptr anyInt(new boost::any(widget_->i()));
+    any_ptr anyString(new boost::any(foo_->s()));
+    any_ptr anyInt(new boost::any(foo_->i()));
     ObjectProperty propString(PROPERTY_STR, anyString);
     ObjectProperty propInt(PROPERTY_INT, anyInt);
     properties_.push_back(propString);
@@ -29,14 +29,14 @@ ObjectWidget::ObjectWidget(const std::string &s, const int &i) {
 }
                                                                                 
 // wrapper for underlying member function
-void ObjectWidget::update(const std::string &s, const int &i) {
-    widget_->update(s, i);
+void ObjectFoo::update(const std::string &s, const int &i) {
+    foo_->update(s, i);
     // update Property vector
     *properties_[IDX_STR]() = s;
     *properties_[IDX_INT]() = i;    
 }
 
-boost::shared_ptr<void> ObjectWidget::getReference() const {
-    return boost::static_pointer_cast<void>(widget_);
+boost::shared_ptr<void> ObjectFoo::getReference() const {
+    return boost::static_pointer_cast<void>(foo_);
 }
 

@@ -8,13 +8,13 @@ EXTRA_DIST = \
     Example_vc8.vcproj \
     makefile.mak \
     interface.hpp \
-    objectwidget.hpp \
-    widget.hpp
+    objectfoo.hpp \
+    foo.hpp
 
 Example_SOURCES = \
     example.cpp  \
     interface.cpp  \
-    objectwidget.cpp
+    objectfoo.cpp
 
 noinst_PROGRAMS = Example
 

@@ -18,17 +18,17 @@
 #ifndef interface_hpp
 #define interface_hpp
 
-#include <objectwidget.hpp>
+#include <oh/objhandler.hpp>
 
 using namespace ObjHandler;
 using std::string;
 
-Properties WIDGET_MAKE(
+Properties FOO_MAKE(
     const string &handle,
     const string &s,
     const int &i);
                                                                                 
-Properties WIDGET_UPDATE(
+Properties FOO_UPDATE(
     const string &handle,
     const string &s,
     const int &i);

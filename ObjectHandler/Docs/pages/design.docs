@@ -182,11 +182,11 @@ obj_ptr ObjectHandler::retrieveObject(const Handle &handle) {
 \section sec_2_2 2.2 Client
 \par
 The native client object which is to be stored in ObjectHandler:
-\par widget.hpp
+\par foo.hpp
 \code
-class Widget {
+class Foo {
 public:
-   Widget(const string &s, const int &i) : s_(s), i_(i) {};
+   Foo(const string &s, const int &i) : s_(s), i_(i) {};
    void update(const string &s, const int &i) {
       s_ = s;
       i_ = i;
@@ -200,26 +200,26 @@ private:
 \endcode
 \section sec_2_2_1 2.2.1 Object
 \par
-Implementation of the <tt>Object</tt> corresponding to the Widget class:
-\par objectwidget.hpp
+Implementation of the <tt>Object</tt> corresponding to the Foo class:
+\par objectfoo.hpp
 \code
-class ObjectWidget : public Object {
+class ObjectFoo : public Object {
 public:
-   ObjectWidget(const string &s, const int &i);
+   ObjectFoo(const string &s, const int &i);
    virtual boost::shared_ptr<void> getReference() const;
    void update(const string &s, const int &i);
 private:
-   boost::shared_ptr<Widget> widget_;
+   boost::shared_ptr<Foo> foo_;
 };
 \endcode
-\par objectwidget.cpp
+\par objectfoo.cpp
 \code
-ObjectWidget::ObjectWidget(const string &s, const int &i) {
-   // construct widget object
-   widget_ = boost::shared_ptr<Widget>(new Widget(s, i));
+ObjectFoo::ObjectFoo(const string &s, const int &i) {
+   // construct foo object
+   foo_ = boost::shared_ptr<Foo>(new Foo(s, i));
    // populate base class Property vector
-   any_ptr anyString(new boost::any(widget_->s()));
-   any_ptr anyInt(new boost::any(widget_->i()));
+   any_ptr anyString(new boost::any(foo_->s()));
+   any_ptr anyInt(new boost::any(foo_->i()));
    ObjectProperty propString(PROPERTY_STR, anyString);
    ObjectProperty propInt(PROPERTY_INT, anyInt);
    properties_.push_back(propString);
@@ -227,15 +227,15 @@ ObjectWidget::ObjectWidget(const string &s, const int &i) {
 }
 
 // wrapper for underlying member function
-void ObjectWidget::update(const string &s, const int &i) {
-   widget_->update(s, i);
+void ObjectFoo::update(const string &s, const int &i) {
+   foo_->update(s, i);
    // update Property vector
    *properties_[IDX_STR]() = s;
    *properties_[IDX_INT]() = i;
 }
 
-boost::shared_ptr<void> ObjectWidget::getReference() const {
-   return boost::static_pointer_cast<void>(widget_);
+boost::shared_ptr<void> ObjectFoo::getReference() const {
+   return boost::static_pointer_cast<void>(foo_);
 }
 \endcode
 \section sec_2_2_2 2.2.2 Interface
@@ -243,36 +243,36 @@ boost::shared_ptr<void> ObjectWidget::getReference() const {
 Wrapper for client calls to ObjectHandler:
 \par interface.hpp
 \code
-Properties WIDGET_MAKE(
+Properties FOO_MAKE(
    const Handle &handle,
    const string &s,
    const int &i);
 
-Properties WIDGET_UPDATE(
+Properties FOO_UPDATE(
    const Handle &handle,
    const string &s,
    const int &i);
 \endcode
 \par interface.cpp
 \code
-Properties WIDGET_MAKE(
+Properties FOO_MAKE(
       const string &handle,
       const string &s,
       const int &i) {
-   obj_ptr object(new ObjectWidget(s, i));
+   obj_ptr object(new ObjectFoo(s, i));
    objectHandler.storeObject(handle, object);
    return object->getProperties();
 }
 
-Properties WIDGET_UPDATE(
+Properties FOO_UPDATE(
    const string &handle,
    const string &s,
    const int &i) {
-   boost::shared_ptr<ObjectWidget> object =
-      boost::dynamic_pointer_cast<ObjectWidget>
+   boost::shared_ptr<ObjectFoo> object =
+      boost::dynamic_pointer_cast<ObjectFoo>
       (objectHandler.retrieveObject(handle));
    if (!object)
-      throw Exception("WIDGET_UPDATE: unable to retrieve object " + handle);
+      throw Exception("FOO_UPDATE: unable to retrieve object " + handle);
    object->update(s, i);
    return object->getProperties();
 }
@@ -285,14 +285,14 @@ int main() {
         cout << "hi" << endl;
 
         // construct some objects and store them in the object handler
-        WIDGET_MAKE("widget1", "abc", 123);
-        WIDGET_MAKE("widget2", "def", 456);
+        FOO_MAKE("foo1", "abc", 123);
+        FOO_MAKE("foo2", "def", 456);
 
         // high level interrogation
         cout << endl << "high level interrogation - after constructor" << endl;
         // get object from handler and retrieve its properties -
-        // (properties also returned by WIDGET_MAKE)
-        obj_ptr object = objectHandler.retrieveObject("widget1");
+        // (properties also returned by FOO_MAKE)
+        obj_ptr object = objectHandler.retrieveObject("foo1");
         Properties properties = object->getProperties();
         Properties::const_iterator i;
         for (i = properties.begin();
@@ -304,18 +304,18 @@ int main() {
         }
 
         // update an object
-        WIDGET_UPDATE("widget2", "ghi", 789);
+        FOO_UPDATE("foo2", "ghi", 789);
 
         // low-level interrogation
-        cout << endl << "low-level interrogation - after WIDGET_UPDATE" << endl;
-        boost::shared_ptr<ObjectWidget> const objectWidget =
-            boost::dynamic_pointer_cast<ObjectWidget>
-            (objectHandler.retrieveObject("widget2"));
-        boost::shared_ptr<Widget> widget =
-            boost::static_pointer_cast<Widget>
-            (objectWidget->getReference());
-        cout << "value of property s() of underlying widget = "
-            << widget->s() << endl;
+        cout << endl << "low-level interrogation - after FOO_UPDATE" << endl;
+        boost::shared_ptr<ObjectFoo> const objectFoo =
+            boost::dynamic_pointer_cast<ObjectFoo>
+            (objectHandler.retrieveObject("foo2"));
+        boost::shared_ptr<Foo> foo =
+            boost::static_pointer_cast<Foo>
+            (objectFoo->getReference());
+        cout << "value of property s() of underlying foo = "
+            << foo->s() << endl;
 
         cout << endl << "bye" << endl;
     } catch (const exception &e) {
