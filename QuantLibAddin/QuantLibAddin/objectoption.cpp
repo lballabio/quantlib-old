@@ -20,13 +20,13 @@ using namespace ObjHandler;
 using namespace QuantLib;
 
 ObjectOption::ObjectOption(boost::shared_ptr<ObjectStochastic> objectStochastic,
-		const string &typeString,
+		const std::string &typeString,
 		const Real &strike,
 		const Size &timeSteps,
 		const Date &exerciseDate,
 		const Date &settlementDate) {
 	Option::Type type;
-	string typeUpper = toUpper(typeString);
+	std::string typeUpper = toUpper(typeString);
 	if ((typeUpper.compare("P") == 0) || (typeUpper.compare("PUT") == 0))
 		type = Option::Put;
 	else if ((typeUpper.compare("C") == 0) || (typeUpper.compare("CALL") == 0))
@@ -47,7 +47,7 @@ ObjectOption::ObjectOption(boost::shared_ptr<ObjectStochastic> objectStochastic,
 			amExercise, pricingEngine));
 	vanillaOption_ = temp;
     any_ptr any_npv(new boost::any(vanillaOption_->NPV()));
-	any_ptr any_engine(new boost::any(string(BINOMIAL_JARROW_RUDD)));
+	any_ptr any_engine(new boost::any(std::string(BINOMIAL_JARROW_RUDD)));
 	ObjectProperty prop_npv(FIELD_NPV, any_npv);
 	ObjectProperty prop_engine(FIELD_ENGINE, any_engine);
 	properties_.push_back(prop_npv);
@@ -60,7 +60,7 @@ ObjectOption::~ObjectOption() {
 void ObjectOption::setEngine(
 		const std::string &engineName,
 		const Size &timeSteps) {
-	string engineUpper = toUpper(engineName);
+	std::string engineUpper = toUpper(engineName);
 	if (engineUpper.compare(BINOMIAL_JARROW_RUDD) == 0) 	{
 		boost::shared_ptr<PricingEngine> pricingEngine( 
 			new BinomialVanillaEngine<JarrowRudd>(timeSteps));

@@ -30,9 +30,9 @@
 #include <iostream>
 #include <sstream>
 
-namespace ObjHandler {
+ObjHandler::ObjectHandler objectHandler; // FIXME
 
-    ObjectHandler objectHandler; // FIXME
+namespace ObjHandler {
 
     void ObjectHandler::storeObject(const std::string &handle,
                                     const obj_ptr &object) {
