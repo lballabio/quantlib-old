@@ -86,7 +86,7 @@ deep copy of <tt>result</tt> into the latter;</li>
 adding up to two allocations and two deep copies of an N-sized
 array. <br>
 <br>
-
+ 
 
 <p>Before implementing the proposal in this QuEP, the above can be
 already improved by making the <tt>result</tt> array a mutable data
@@ -105,7 +105,7 @@ returned;</li>
 
 adding up to a single deep copy of an N-sized array. <br>
 <br>
-
+ 
 
 <h2>Proposed implementation</h2>
 
@@ -200,7 +200,7 @@ upon return;</li>
 
 adding up to a single allocation of an N-sized array. <br>
 <br>
-
+ 
 
 <p>Moreover, the use of the disposable array can be combined with
 the previously introduced technique of storing the result array as
@@ -249,7 +249,7 @@ reference;</li>
 adding up to no allocations and no deep copies. How about that?
 <br>
 <br>
-
+ 
 
 <h2>Sobering thoughts and a question</h2>
 

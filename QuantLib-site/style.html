@@ -14,7 +14,9 @@
 "QuantLib Programming Style Guidelines">
 <meta name="keywords" content=
 "QuantLib, C++, library, finance, quantitative finance, quant, quants, analysts, developers, Programming, Style, Guidelines">
-<!--includeHTML file="qlmeta.inc"-->
+<!--includeHTML file="qlmeta.inc"--><!--
+ $Id$
+-->
 <meta name="resource-type" content="document">
 <meta name="generator" content="HTML Tidy, see www.w3.org">
 <meta name="generator" content="HTML-Kit">
@@ -46,7 +48,9 @@ window.open(location.href);
 <!--/includeHTML-->
 </head>
 <body>
-<!--includeHTML file="qltablehead.inc"-->
+<!--includeHTML file="qltablehead.inc"--><!--
+ $Id$
+-->
 <table summary=
 "Layout table: navigation bar in the first cell, contents in the second cell"
  class="layout">
@@ -160,7 +164,7 @@ height="31" border="0" alt="SourceForge.net Logo"></a></div>
 
 <br>
  <a href="http://sourceforge.net/docman/?group_id=1">About
-SourceForge.net, Open Source, CVS, etc.</a>
+SourceForge.net, Open Source, CVS, etc.</a> 
 
 <hr>
 <div class="center">
@@ -181,13 +185,13 @@ Guidelines</em> by <em>Geotechnical Software Services</em></h6>
 <h6 class="right">the original version is available at <a href=
 "http://www.geosoft.no/style.html">http://www.geosoft.no/style.html</a></h6>
 
-&nbsp;
+&nbsp; 
 
 <hr width="100%">
 <h2>Table of Content</h2>
 
 <ul>
-<li><a href="#introduction">1 Introduction</a>
+<li><a href="#introduction">1 Introduction</a> 
 
 <ul>
 <li><a href="#Layout of the Recommendations">1.1 Layout of the
@@ -201,7 +205,7 @@ Importance</a></li>
 <li><a href="#General Recommendations">2 General
 Recommendations</a></li>
 
-<li><a href="#Naming Conventions">3 Naming Conventions</a>
+<li><a href="#Naming Conventions">3 Naming Conventions</a> 
 
 <ul>
 <li><a href="#General">3.1 General</a></li>
@@ -210,7 +214,7 @@ Recommendations</a></li>
 </ul>
 </li>
 
-<li><a href="#Files">4 Files</a>
+<li><a href="#Files">4 Files</a> 
 
 <ul>
 <li><a href="#Source Files">4.1 Source Files</a></li>
@@ -220,7 +224,7 @@ Statements</a></li>
 </ul>
 </li>
 
-<li><a href="#Statements">5 Statements</a>
+<li><a href="#Statements">5 Statements</a> 
 
 <ul>
 <li><a href="#Types">5.1 Types</a></li>
@@ -235,7 +239,7 @@ Statements</a></li>
 </ul>
 </li>
 
-<li><a href="#Layout and Comments">6 Layout and Comments</a>
+<li><a href="#Layout and Comments">6 Layout and Comments</a> 
 
 <ul>
 <li><a href="#Layout">6.1 Layout</a></li>
@@ -362,7 +366,7 @@ force a particular coding style onto individuals. Experienced
 programmers normally want adopt a style like this anyway, but
 having one, and at least requiring everyone to get familiar with
 it, usually makes people start <em>thinking</em> about programming
-style and evaluate their own habits in this area.
+style and evaluate their own habits in this area. 
 
 <p>On the other hand, new and inexperienced programmers normally
 use a style guide as a convenience of getting into the programming
@@ -445,7 +449,7 @@ community. In general, the use of such constants should be
 minimized. In many cases implementing the value as a method is a
 better choice:<br>
 <br>
-
+ 
 
 <p><tt>int getMaxIterations() &nbsp; &nbsp; // NOT: MAX_ITERATIONS
 = 25<br>
@@ -604,7 +608,7 @@ Indicating class scope by using underscore makes it easy to
 distinguish class variables from local scratch variables. This is
 important because class variables are considered to have higher
 significance than method variables, and should be treated with
-special care by the programmer.
+special care by the programmer. 
 
 <p>A side effect of the underscore naming convention is that it
 nicely resolves the problem of finding reasonable variable names
@@ -660,7 +664,7 @@ connect (Database oracleDB)</tt> </td>
 <tr>
 <td class="rationale">Reduce complexity by reducing the number of
 terms and names used. Also makes it easy to deduce the type given a
-variable name only.
+variable name only. 
 
 <p>If for some reason this convention doesn't seem to <em>fit</em>
 it is a strong indication that the type name is badly chosen.</p>
@@ -885,7 +889,7 @@ names representing a list of objects.</td>
 <tr>
 <td class="rationale">Enhances readability since the name gives the
 user an immediate clue of the type of the variable and the
-operations that can be performed on the object.
+operations that can be performed on the object. 
 
 <p>Simply using the plural form of the base class name for a list
 (<tt>matrixElement</tt> (one matrix element),
@@ -941,7 +945,7 @@ number.</td>
 
 <tr>
 <td class="rationale">The notation is taken from mathematics where
-it is an established convention for indicating an entity number.
+it is an established convention for indicating an entity number. 
 
 <p>An alternative approach is to prefix such variables with an
 <em>i</em>: <tt>iTable, iEmployee</tt>. This is more elegant, but
@@ -999,7 +1003,7 @@ boolean variables and methods.</td>
 
 <tr>
 <td class="rationale">Common practice in the C++ development
-community and partially enforced in Java.
+community and partially enforced in Java. 
 
 <p>Using the <em>is</em> prefix solves a common problem of choosing
 bad boolean names like <tt>status</tt> or <tt>flag</tt>.
@@ -1060,7 +1064,7 @@ compAvg();</tt> </td>
 <tr>
 <td class="rationale">There are two types of words to consider.
 First are the common words listed in a language dictionary. These
-must never be abbreviated. Never write:
+must never be abbreviated. Never write: 
 
 <p><tt>cmd&nbsp;&nbsp;</tt> instead of <tt>&nbsp; command</tt><br>
 <tt>cp &nbsp;&nbsp;</tt> instead of <tt>&nbsp; copy</tt><br>
@@ -1159,7 +1163,7 @@ common type name.</td>
 <tr>
 <td class="rationale">This gives additional information of where
 the declaration can be found, which constants belongs together, and
-what concept the constants represent.
+what concept the constants represent. 
 
 <p>An alternative approach is to always refer to the constants
 through their common type: <tt>Color::RED</tt>,
@@ -1377,7 +1381,7 @@ parts.");<br>
 <td class="rationale">Split lines occurs when a statement exceed
 the 80 column limit given above. It is difficult to give rigid
 rules for how lines should be split, but the examples above should
-give a general hint.
+give a general hint. 
 
 <p>In general:</p>
 
@@ -1575,7 +1579,7 @@ are declared.</td>
 <tr>
 <td class="rationale">This ensures that variables are valid at any
 time. Sometimes it is impossible to initialize a variable to a
-valid value where it is declared:
+valid value where it is declared: 
 
 <p><tt>int x, y, z;<br>
  getCenter (&amp;x, &amp;y, &amp;z);<br>
@@ -1652,7 +1656,7 @@ encapsulation is violated by public variables. Use private
 variables and access functions instead. One exception to this rule
 is when the class is essentially a data structure, with no behavior
 (equivalent to a C <tt>struct</tt>). In this case it is appropriate
-to make the class' instance variables public [2].
+to make the class' instance variables public [2]. 
 
 <p>Note that <em>struct</em>s are kept in C++ for compatibility
 with C only, and avoiding them increases the readability of the
@@ -1866,7 +1870,7 @@ isDone = false;<br>
 <td class="rationale"><tt>do-while</tt> loops are less readable
 than ordinary <tt>while</tt> loops and <tt>for</tt> loops since the
 conditional is at the bottom of the loop. The reader must scan the
-entire loop in order to understand the scope of the loop.
+entire loop in order to understand the scope of the loop. 
 
 <p>In addition, <tt>do-while</tt> loops are not needed. Any
 <tt>do-while</tt> loop can easily be rewritten into a
@@ -1948,7 +1952,7 @@ avoided. Introduce temporary boolean variables instead [1].</td>
 <td><tt>if ((elementNo &lt; 0) || (elementNo &gt; maxElement)||<br>
  &nbsp;&nbsp;&nbsp; elementNo == lastElement) {<br>
  &nbsp; :<br>
- }</tt>
+ }</tt> 
 
 <p>should be replaced by:</p>
 
@@ -2847,7 +2851,9 @@ hypertext documentation from it.</td>
 </tr>
 </table>
 
-<!--includeHTML file="qltablefoot.inc"-->
+<!--includeHTML file="qltablefoot.inc"--><!--
+ $Id$
+-->
 <div class="endmatter">
 <hr>
 <div class="center">

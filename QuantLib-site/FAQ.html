@@ -13,7 +13,9 @@
 "QuantLib Frequently Asked Questions">
 <meta name="keywords" content=
 "QuantLib, C++, library, finance, quantitative finance, quant, quants, analysts, developers, free software, opensource, FAQ">
-<!--includeHTML file="qlmeta.inc"-->
+<!--includeHTML file="qlmeta.inc"--><!--
+ $Id$
+-->
 <meta name="resource-type" content="document">
 <meta name="generator" content="HTML Tidy, see www.w3.org">
 <meta name="generator" content="HTML-Kit">
@@ -45,7 +47,9 @@ window.open(location.href);
 <!--/includeHTML-->
 </head>
 <body>
-<!--includeHTML file="qltablehead.inc"-->
+<!--includeHTML file="qltablehead.inc"--><!--
+ $Id$
+-->
 <table summary=
 "Layout table: navigation bar in the first cell, contents in the second cell"
  class="layout">
@@ -159,7 +163,7 @@ height="31" border="0" alt="SourceForge.net Logo"></a></div>
 
 <br>
  <a href="http://sourceforge.net/docman/?group_id=1">About
-SourceForge.net, Open Source, CVS, etc.</a>
+SourceForge.net, Open Source, CVS, etc.</a> 
 
 <hr>
 <div class="center">
@@ -177,7 +181,7 @@ height="31" width="88"></a></p>
 <h6 class="right">Thanks to the Python guys!!</h6>
 
 <br>
-
+ 
 
 <h1>0. Contents</h1>
 
@@ -279,7 +283,7 @@ Documentation and help files about SourceForge.net can be found at
 
 <br>
 <br>
-
+ 
 
 <h3><a name="g2" id="g2"></a>1.2.:</h3>
 
@@ -300,7 +304,7 @@ files using SCP:</p>
 <blockquote><tt>SCP mylocalfile.html
 sf_username@shell.sourceforge.net:/home/groups/quantlib/htdocs/</tt></blockquote>
 
-If you want to edit or remove files, you can use SSH:
+If you want to edit or remove files, you can use SSH: 
 
 <blockquote><tt>ssh -l sf_username shell.sourceforge.net</tt><br>
  <tt>cd /home/groups/quantlib/htdocs</tt><br>
@@ -350,7 +354,7 @@ CVSROOT=:pserver:anonymous@cvs.quantlib.org:/cvsroot/quantlib</tt><br>
  <tt>cvs -z3 co -P QuantLib</tt></blockquote>
 
 If you are indeed a developer you can check out a read/write
-version with ssh:
+version with ssh: 
 
 <blockquote><tt>export CVS_RSH=ssh</tt><br>
  <tt>export
@@ -369,7 +373,7 @@ CVSROOT=sf_username@cvs.quantlib.org:/cvsroot/quantlib</tt><br>
 <li>QuantLib-site (the HTML sources of these pages)</li>
 </ul>
 
-Please note that the module's name has capital Q and capital L.
+Please note that the module's name has capital Q and capital L. 
 
 <h3><a name="c2" id="c2"></a>2.2.:</h3>
 
@@ -382,7 +386,7 @@ directories (update -P -d).</p>
 
 <h3><a name="c3" id="c3"></a>2.3.:</h3>
 
-<strong>Q: I get the following error message:</strong>
+<strong>Q: I get the following error message:</strong> 
 
 <blockquote><tt>Sorry, you don't have read/write access to the
 history file /cvsroot/quantlib/CVSROOT/history</tt><br>
@@ -393,14 +397,14 @@ history file /cvsroot/quantlib/CVSROOT/history</tt><br>
 read/write access. You have to check out an anonymous copy. If you
 are a developer you have to be in the SourceForge.net group
 "<tt>QuantLib</tt>". You can check this with the following
-commands:
+commands: 
 
 <blockquote><tt>ssh -l sf_username shell.sourceforge.net</tt><br>
  <tt>groups</tt></blockquote>
 
 If you have just recently (&lt; 6 hours) been added to the QuantLib
 project, you probably have to wait for the SourceForge.net servers
-to synch up. This can take up to 6 hours.
+to synch up. This can take up to 6 hours. 
 
 <h3><a name="c4" id="c4"></a>2.4.:</h3>
 
@@ -420,7 +424,7 @@ Docs at www.loria.fr</a></p>
  A:</strong> Simple answer: You cannot!<br>
  More complicated answer: Remove all files from the directory,
 delete the directory, use the -P (prune) option of the update
-command:
+command: 
 
 <blockquote><tt>cd the_directory</tt><br>
  <tt>rm file1 file2 file3</tt><br>
@@ -444,7 +448,7 @@ back out to with the second flag. Example given:</p>
 </blockquote>
 
 This example would create and apply a reverse patch from revision
-1.17 to revision 1.16 of <tt>ceval.c</tt>.
+1.17 to revision 1.16 of <tt>ceval.c</tt>. 
 
 <h3><a name="c7" id="c7"></a>2.7.:</h3>
 
@@ -470,7 +474,7 @@ tag should be and <tt>file</tt> is the file. Note that -F means
 <tt>force</tt> (otherwise you get a complaint because the tag is
 already defined) and -b means <tt>branch</tt> which makes the tag a
 branch tag. <!-- section 3 Patches -->
-
+ 
 
 <h1><a name="patches" id="patches"></a>3. Patches</h1>
 
@@ -487,7 +491,7 @@ enter the following command:</p>
 Else you can use the diff util which comes with most operating
 systems (a Windows version is available as part of the cygwin
 tools).<br>
-
+ 
 
 <h3><a name="p2" id="p2"></a>3.2.:</h3>
 
@@ -562,7 +566,7 @@ SWIG.</p>
 <ol>
 <li>Download and install Cygwin setup.exe from <a href=
 "http://cygwin.com/">http://cygwin.com/</a> or any mirrors. A brief
-installation guide can be found there.
+installation guide can be found there. 
 
 <ul>
 <li>run setup.exe</li>
@@ -611,7 +615,7 @@ href=
 control of Cygwin (e.g. your home dir C:\cygwin\home\"your
 username")</li>
 
-<li>Open a Cygwin shell and type the following commands:
+<li>Open a Cygwin shell and type the following commands: 
 
 <pre>
 $ cd "the directory where swig-1.3.6.tar.gz is"
@@ -625,7 +629,7 @@ $ make install
 
 <li>Include "C:\cygwin\usr\local\bin" and "C:\cygwin\bin" in your
 system variable $PATH. On Win9x, this can be done in a batch file
-or autoexec.bat; e.g.,
+or autoexec.bat; e.g., 
 
 <pre>
     set PATH=%PATH%;C:\cygwin\usr\local\bin;C:\cygwin\bin
@@ -646,7 +650,7 @@ already installed on your machine.</li>
 <br>
 <br>
  <!-- section 5 Macintosh -->
-
+ 
 
 <h1><a name="macintosh" id="macintosh"></a>5. Macintosh</h1>
 
@@ -836,7 +840,9 @@ as much <strong>documentation</strong> as you can and possibly a
 subdirectory).</li>
 </ul>
 
-<!--includeHTML file="qltablefoot.inc"-->
+<!--includeHTML file="qltablefoot.inc"--><!--
+ $Id$
+-->
 <div class="endmatter">
 <hr>
 <div class="center">
