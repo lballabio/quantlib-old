@@ -2,7 +2,9 @@ QuantLib addin for OpenOffice.org Calc - linux and windows
 
 Prerequisites: OpenOffice, OpenOffice SDK
 
-- Build the quantlib Calc project, this outputs the registry database and library, e.g. on Windows
+- Build the quantlib Calc project, this outputs the 
+registry database and library, e.g. on Windows
+
 QuantLibAddin-vc6-mt-sgd.rdb
 QuantLibAddin-vc6-mt-sgd.dll
 
@@ -11,18 +13,26 @@ QuantLibAddin-vc6-mt-sgd.dll
 (linux)   /usr/lib/openoffice/program
 (windows) C:\Program Files\OpenOffice.org1.1.3\program
 
-- edit file unorc, and add instructions for Openoffice to find the new libraries:
+- edit file unorc, and add instructions for Openoffice 
+to find the new libraries:
 
 UNO_SHARED_PACKAGES=...
 UNO_SHARED_PACKAGES_CACHE=...
 UNO_USER_PACKAGES=...
 UNO_USER_PACKAGES_CACHE=...
-UNO_TYPES=$SYSBINDIR/types.rdb ... $SYSBINDIR/QuantLibAddin-vc6-mt-sgd.rdb
-UNO_SERVICES=?$UNO_USER_PACKAGES_CACHE/services.rdb ... $SYSBINDIR/QuantLibAddin-vc6-mt-sgd.rdb
+UNO_TYPES=$SYSBINDIR/types.rdb ... 
+	$SYSBINDIR/QuantLibAddin-vc6-mt-sgd.rdb
+UNO_SERVICES=?$UNO_USER_PACKAGES_CACHE/services.rdb ... 
+	$SYSBINDIR/QuantLibAddin-vc6-mt-sgd.rdb
 
-- copy the registry database and shared library to the program directory.  on linux you may prefer to just create symbolic links, e.g:
+- copy the registry database and shared library 
+to the program directory.  
 
-ln -s /path_to_SDK/OpenOffice.org1.1_SDK/examples/cpp/demo/QuantLibAddin.rdb
-ln -s /path_to_SDK/OpenOffice.org1.1_SDK/examples/cpp/demo/QuantLibAddin.so
+on linux you may prefer to just create symbolic links, e.g:
 
-- start Calc, and do Control-F2 to bring up the "Insert Function" menu, if all has gone well the new QUantLibAddin functions should appear in the list of available functions
+ln -s /path_to_SDK/OpenOffice.org1.1_SDK/QuantLibAddin.rdb
+ln -s /path_to_SDK/OpenOffice.org1.1_SDK/QuantLibAddin.so
+
+- start Calc, and do Control-F2 to bring up the "Insert Function" 
+menu, if all has gone well the new QUantLibAddin functions should 
+appear in the list of available functions

@@ -6,6 +6,7 @@ for 0.3.9:
 - include QuEP 12 in the doxygen documentation
 - improve existing options functionality
 - document if and how Calc add-in can be genereated using VC6
+(this is in QuantLibAddin\Addins\Calc\readme.txt - is it adequate?)
 
 for a later release:
 - extend functionalities

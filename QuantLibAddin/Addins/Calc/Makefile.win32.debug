@@ -11,8 +11,9 @@ FLAG1=$(INT_DIR)\$(COMPONENT_NAME).flag1
 FLAG2=$(INT_DIR)\$(COMPONENT_NAME).flag2
 FLAG3=$(INT_DIR)\$(COMPONENT_NAME).flag3
 FLAG4=$(INT_DIR)\$(COMPONENT_NAME).flag4
+FLAG5=$(INT_DIR)\$(COMPONENT_NAME).flag5
 URD_FILE=$(COMPONENT_NAME).urd
-RDB_FILE=$(DLL_DIR)\$(DLL_NAME).rdb
+RDB_FILE=$(DLL_NAME).rdb
 CC="$(MSVC_DIR)\BIN\CL"
 CC_FLAGS=/nologo /MTd /W3 /Gm /GR /GX /Zi /Od /GZ
 CC_INCLUDES=-I. -I..\.. -I"$(QL_DIR)" -I"$(OBJECT_HANDLER_DIR)" \
@@ -30,7 +31,7 @@ LFLAGS=libcmtd.lib libcpmtd.lib kernel32.lib wsock32.lib oldnames.lib user32.lib
 	netapi32.lib advapi32.lib gdi32.lib comdlg32.lib comctl32.lib \
 	icppu.lib icppuhelper.lib isal.lib \
 	/nologo /dll /pdb:$(INT_DIR)\$(COMPONENT_NAME).pdb /debug /machine:I386 \
-	/def:.\$(COMPONENT_NAME).def /out:"$(DLL_DIR)\$(DLL_NAME).dll" \
+	/def:.\$(COMPONENT_NAME).def /out:$(DLL_NAME).dll \
 	/pdbtype:sept /libpath:. /libpath:..\..\lib /libpath:"$(OFFICE_SDK_PATH)\windows\lib" \
 	/libpath:"$(QL_DIR)\lib" /libpath:"$(OBJECT_HANDLER_DIR)\lib" 
 
@@ -47,7 +48,7 @@ TYPES = -Tcom.sun.star.sheet.XAddIn \
 		-Tcom.sun.star.registry.XRegistryKey \
 		-Tcom.sun.star.sheet.addin.XQL
 
-ALL : $(FLAG4)
+ALL : $(FLAG5)
 
 # this copy gets around problems with spaces in pathnames
 $(URD_FILE) : $(COMPONENT_NAME).idl
@@ -60,7 +61,7 @@ $(INT_DIR) :
 $(DLL_DIR) :
 	MKDIR $(DLL_DIR)
 
-$(FLAG1) : $(URD_FILE) $(INT_DIR) $(DLL_DIR)
+$(FLAG1) : $(URD_FILE) $(INT_DIR)
 	regmerge $(RDB_FILE) /UCR $(URD_FILE)
 	echo flagged > $@
 
@@ -78,14 +79,15 @@ $(FLAG3) : $(FLAG1) $(OBJECTS)
 	echo flagged > $@
 
 $(FLAG4) : $(FLAG3)
-	regcomp -register -r $(RDB_FILE) -c "$(DLL_DIR)/$(DLL_NAME).dll"
+	regcomp -register -r $(RDB_FILE) -c $(DLL_NAME).dll
+	echo flagged > $@
+
+$(FLAG5) : $(FLAG4) $(DLL_DIR)
+	move $(DLL_NAME).* $(DLL_DIR)
 	echo flagged > $@
 
 CLEAN :
 	-@ if EXIST com						rmdir /q /s com
 	-@ if EXIST "$(INT_DIR)\*"			del /f /q "$(INT_DIR)\*"
 	-@ if EXIST "$(DLL_DIR)\*"			del /f /q "$(DLL_DIR)\*"
-#	-@ if EXIST $(COMPONENT_NAME).urd	del /f /q $(COMPONENT_NAME).urd
-#	-@ if EXIST $(COMPONENT_NAME).flag*	del /f /q $(COMPONENT_NAME).flag*
-#	-@ if EXIST $(COMPONENT_NAME).lib	del /f /q $(COMPONENT_NAME).lib
-#	-@ if EXIST $(COMPONENT_NAME).dll	del /f /q $(COMPONENT_NAME).dll
+	-@ if EXIST $(URD_FILE)				del /f /q $(URD_FILE)
