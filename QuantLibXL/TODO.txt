@@ -1,3 +1,7 @@
+rivedere paths
+n dim normal sample
+integrare spreadsheets corsi
+daycount in quantlib.xls
 
 ********************************************
 ** PORT TO JENS THIEL'S LIB-XLL FRAMEWORK **
