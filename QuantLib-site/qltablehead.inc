@@ -15,8 +15,6 @@ summary="Layout table: the first cell contains the body of the page, the second 
 
           <li><a class="navlink" href="docs.html">Documentation</a></li>
 
-          <li><a class="navlink" href="goals.html">Goals</a></li>
-
           <li><a class="navlink" href="license.html">License</a></li>
 
           <li><a class="navlink" href="group.html">QuantLib Group</a></li>
@@ -24,9 +22,9 @@ summary="Layout table: the first cell contains the body of the page, the second 
         </ul>
         <hr />
 
-        <h3 class="navbartitle">Development</h1>
+        <h3 class="navbartitle">Development</h3>
         <ul>
-          <li><a class="navlink" 
+          <li><a class="navlink"
 					href="http://sourceforge.net/projects/quantlib">Project&nbsp;page</a></li>
 
           <li><a class="navlink"
@@ -54,7 +52,7 @@ summary="Layout table: the first cell contains the body of the page, the second 
 					Guidelines</a></li>
         </ul>
         <hr />
-        <h3 class="navbartitle">General Resources</h1>
+        <h3 class="navbartitle">General Resources</h3>
         <ul>
           <li><a class="navlink" href="lists.html">Lists of interest</a></li>
         </ul>

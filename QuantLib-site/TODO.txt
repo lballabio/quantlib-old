@@ -1,12 +1,16 @@
 
-add references to ISDA and OMG documets
+update status page and insert that into DoxyGen documentation
+insert into DoxyGen docs.txt in QuantLib-site
+
+add references to ISDA and OMG documents
+
+mailing lists page
+expand general resource section
 
 FAQ entry about books
-mailing lists page
 FAQ entry about swig
 FAQ entry about doxygen
 FAQ entry about GPL compatibility
-expand general resource section
 
 anonymous ftp site
 quantlib-job mailing list

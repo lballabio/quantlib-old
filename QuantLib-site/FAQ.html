@@ -29,9 +29,18 @@
 <meta http-equiv="Content-Style-Type" content="text/ccs">
 <meta http-equiv="Window-target" content="_top">
 <meta http-equiv="Content-Language" content="en">
-<link rel="stylesheet" href=
-"http://www.quantlib.org/styles/main.css" type="text/css">
+<link rel="stylesheet" href="styles/main.css" type="text/css">
 <link rev="made" href="mailto:ferdinando@ametrano.net">
+<script type="text/javascript">
+<!-- hiding
+
+if (self != window.top) {
+window.open(location.href);
+}
+
+// done hiding -->
+</script>
+
 <!--/includeHTML-->
 </head>
 <body>
@@ -46,13 +55,11 @@
 "QuantLib Logo"></div>
 
 <ul class="navlinklist">
-<li><a class="navlink" href="index.html">Home page</a></li>
+<li><a class="navlink" href="index.html">Home&nbsp;page</a></li>
 
 <li><a class="navlink" href="status.html">Project Status</a></li>
 
 <li><a class="navlink" href="docs.html">Documentation</a></li>
-
-<li><a class="navlink" href="goals.html">Goals</a></li>
 
 <li><a class="navlink" href="license.html">License</a></li>
 
@@ -64,7 +71,7 @@
 
 <ul>
 <li><a class="navlink" href=
-"http://sourceforge.net/projects/quantlib">Project page</a></li>
+"http://sourceforge.net/projects/quantlib">Project&nbsp;page</a></li>
 
 <li><a class="navlink" href=
 "http://sourceforge.net/mail/?group_id=12740">Mailing
@@ -79,7 +86,7 @@ lists</a></li>
 <li><a class="navlink" href="cvs.html">CVS</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/bugs/?group_id=12740">Bug Report</a></li>
+"http://sourceforge.net/bugs/?group_id=12740">Bug&nbsp;Report</a></li>
 
 <li><a class="navlink" href=
 "http://sourceforge.net/patch/?group_id=12740">Patches</a></li>
@@ -94,8 +101,7 @@ Guidelines</a></li>
 <h3 class="navbartitle">General Resources</h3>
 
 <ul>
-<li><a class="navlink" href="lists.html">Lists of
-interest</a></li>
+<li><a class="navlink" href="lists.html">Lists of interest</a></li>
 </ul>
 
 <hr>
@@ -208,8 +214,8 @@ manager?</a></li>
 <h3><a name="g1" id="g1"></a>1.1.:</h3>
 
 <p><strong>Q: What is SourceForge?<br>
- A:</strong> <a href="http://sourceforge.net">SourceForge</a> is
-a free hosting service for <a href="http://opensource.org">Open
+ A:</strong> <a href="http://sourceforge.net">SourceForge</a> is a
+free hosting service for <a href="http://opensource.org">Open
 source</a> projects. The main web site is found at <a href=
 "http://sourceforge.net">http://sourceforge.net</a><br>
 Documentation and help files about SourceForge can be found at <a
@@ -232,8 +238,8 @@ page</a> can be found at <a href=
 
 <p><strong>Q: How can I change the pages at www.quantlib.org?<br>
  A:</strong> First you have to be in the SourceForge group
-"<tt>QuantLib</tt>" (true for all developers). Then you can
-upload files using SCP:</p>
+"<tt>QuantLib</tt>" (true for all developers). Then you can upload
+files using SCP:</p>
 
 <blockquote><tt>SCP mylocalfile.html
 sf_username@shell.sourceforge.net:/home/groups/quantlib/htdocs/</tt></blockquote>
@@ -248,8 +254,8 @@ If you want to edit or remove files, you can use SSH:
 <h3><a name="g4" id="g4"></a>1.4.:</h3>
 
 <p><strong>Q: Who is who?<br>
- A:</strong> To get the developer name from the user name, go to
-<a href=
+ A:</strong> To get the developer name from the user name, go to <a
+href=
 "http://sourceforge.net/project/memberlist.php?group_id=12740">http://sourceforge.net/project/memberlist.php?group_id=12740</a></p>
 
 <!-- section 2 CVS -->
@@ -307,23 +313,23 @@ history file /cvsroot/quantlib/CVSROOT/history</tt><br>
 
 <br>
  <strong>A:</strong> If you are not a developer, you don't have
-read/write access. You have to check out an anonymous copy. If
-you are a developer you have to be in the SourceForge group
+read/write access. You have to check out an anonymous copy. If you
+are a developer you have to be in the SourceForge group
 "<tt>QuantLib</tt>". You can check this with the following
 commands: 
 
 <blockquote><tt>ssh -l sf_username shell.sourceforge.net</tt><br>
  <tt>groups</tt></blockquote>
 
-If you have just recently (&lt; 6 hours) been added to the
-QuantLib project, you probably have to wait for the SourceForge
-servers to synch up. This can take up to 6 hours. 
+If you have just recently (&lt; 6 hours) been added to the QuantLib
+project, you probably have to wait for the SourceForge servers to
+synch up. This can take up to 6 hours. 
 
 <h3><a name="c4" id="c4"></a>2.4.:</h3>
 
 <p><strong>Q: Where can I learn more about CVS?<br>
- A:</strong> For SourceForge specific information consult their
-<a href="http://sourceforge.net/docman/?group_id=1">SourceForgeVS
+ A:</strong> For SourceForge specific information consult their <a
+href="http://sourceforge.net/docman/?group_id=1">SourceForgeVS
 documentation</a> For general (and more advanced) information
 consult the the <a href=
 "http://cvsbook.red-bean.com/cvsbook.html#Introduction">free CVS
@@ -347,11 +353,11 @@ command:
 <h3><a name="c6" id="c6"></a>2.6.:</h3>
 
 <p><strong>Q: How to revert changes?<br>
- A:</strong> The fast (and history-friendly) method for backing
-out a CVS commit is the use of the <tt>join</tt> flag of the
-<tt>update</tt> command. You supply the last version you
-committed (and probably messed up) with the first and the version
-you want to back out to with the second flag. Example given:</p>
+ A:</strong> The fast (and history-friendly) method for backing out
+a CVS commit is the use of the <tt>join</tt> flag of the
+<tt>update</tt> command. You supply the last version you committed
+(and probably messed up) with the first and the version you want to
+back out to with the second flag. Example given:</p>
 
 <blockquote><tt>cvs update -j 1.17 -j 1.16 ceval.c</tt><br>
  <tt>cvs update</tt><br>
@@ -377,15 +383,14 @@ line-ending conversion:</p>
  A:</strong> The quickest way to force a branch tag
 <tt>branch_tag</tt> on a file is to issue the command</p>
 
-<blockquote><tt>cvs tag -F -b -r revision branch_tag
-file</tt><br>
+<blockquote><tt>cvs tag -F -b -r revision branch_tag file</tt><br>
 </blockquote>
 
 for each file, where <tt>revision</tt> is the revision where the
 tag should be and <tt>file</tt> is the file. Note that -F means
 <tt>force</tt> (otherwise you get a complaint because the tag is
-already defined) and -b means <tt>branch</tt> which makes the tag
-a branch tag. <!-- section 3 Patches -->
+already defined) and -b means <tt>branch</tt> which makes the tag a
+branch tag. <!-- section 3 Patches -->
  
 
 <h1><a name="patches" id="patches"></a>3. Patches</h1>
@@ -393,9 +398,9 @@ a branch tag. <!-- section 3 Patches -->
 <h3><a name="p1" id="p1"></a>3.1.:</h3>
 
 <p><strong>Q: How to make a patch?<br>
- A:</strong> If you are using CVS (anonymous or developer) you
-can use CVS to make the patches for you. Just edit your local
-copy and enter the following command:</p>
+ A:</strong> If you are using CVS (anonymous or developer) you can
+use CVS to make the patches for you. Just edit your local copy and
+enter the following command:</p>
 
 <blockquote><tt>cvs diff | tee
 ~/name_of_the_patch.diff</tt></blockquote>
@@ -422,20 +427,20 @@ SourceForge default for developers is not to be patch
 administrators. Contact one of the project administrators if the
 following does not work for you.</p>
 
-<p>Click on the patch itself. In the screen that comes up, there
-is a drop-box for "Assigned To:" and a drop-box for "Status:"
-where you can select a new responsible developer or a new status
+<p>Click on the patch itself. In the screen that comes up, there is
+a drop-box for "Assigned To:" and a drop-box for "Status:" where
+you can select a new responsible developer or a new status
 respectively. After selecting the appropriate victim and status,
 hit the "Submit Changes" button at the bottom of the page.</p>
 
-<p>Note: If you are sure that you have the right permissions and
-a drop-box does not appear, check that you are actually logged in
-to SourceForge!</p>
+<p>Note: If you are sure that you have the right permissions and a
+drop-box does not appear, check that you are actually logged in to
+SourceForge!</p>
 
 <p>For more information about the use of the "Status:" and
 "Assigned To:" fields consult the <a href="#a1">Patch Manager
-Guidelines</a>. A recent copy can be found in the Appendix of
-this FAQ.<br>
+Guidelines</a>. A recent copy can be found in the Appendix of this
+FAQ.<br>
 </p>
 
 <!-- section 4 Windows -->
@@ -446,13 +451,12 @@ this FAQ.<br>
 <p><strong>Q: How to install cvs and ssh<br>
  A:</strong> <a href=
 "http://python.sourceforge.net/winssh.txt">Here's a link</a> to
-text instructions for setting up a command-line CVS using SSH
-under Windows, originally developed by Andy Robinson. All the
-Windows folks at Reportlab and PythonLabs swear by this
-scheme.<br>
+text instructions for setting up a command-line CVS using SSH under
+Windows, originally developed by Andy Robinson. All the Windows
+folks at Reportlab and PythonLabs swear by this scheme.<br>
 <strong><em>Afterwards</em></strong> you can download and install
-WinCVS, the visual window version of CVS. WinCVS can be found at
-<a href="http://www.wincvs.org">http://www.wincvs.org</a></p>
+WinCVS, the visual window version of CVS. WinCVS can be found at <a
+href="http://www.wincvs.org">http://www.wincvs.org</a></p>
 
 <h3><a name="w2" id="w2"></a>4.2.:</h3>
 
@@ -460,12 +464,10 @@ WinCVS, the visual window version of CVS. WinCVS can be found at
  A:</strong></p>
 
 <ul>
-<li>The Free Borland C++Builder Compiler (download it from <a
-href=
+<li>The Free Borland C++Builder Compiler (download it from <a href=
 "http://www.borland.com/bcppbuilder/freecompiler/">http://www.borland.com/bcppbuilder/freecompiler/</a>).<br>
 
- Please feel free to supply Borland project files if you
-can.</li>
+ Please feel free to supply Borland project files if you can.</li>
 
 <li>Visual C++ 6.0 (projects files are supplied).</li>
 </ul>
@@ -473,15 +475,15 @@ can.</li>
 <h3><a name="w3" id="w3"></a>4.3.:</h3>
 
 <p><strong>Q: How can I use SWIG?<br>
- A:</strong>Please note that we're using Swig latest release
-(1.3.6 at the time of this writing). Since the NT port might be
-not available yet you have to use CygWin to compile and install
+ A:</strong>Please note that we're using Swig latest release (1.3.6
+at the time of this writing). Since the NT port might be not
+available yet you have to use CygWin to compile and install
 SWIG.</p>
 
 <ol>
 <li>Download and install Cygwin setup.exe from <a href=
-"http://cygwin.com/">http://cygwin.com/</a> or any mirrors. A
-brief installation guide can be found there. 
+"http://cygwin.com/">http://cygwin.com/</a> or any mirrors. A brief
+installation guide can be found there. 
 
 <ul>
 <li>run setup.exe</li>
@@ -536,16 +538,16 @@ $ make install
 
 <li>Include "C:\cygwin\usr\local\bin" and the path where you have
 the cygwin1.dll file ("C:\cygwin\bin") in your system variable
-$PATH. On Win9x, this can be done in a batch file or
-autoexec.bat; e.g., 
+$PATH. On Win9x, this can be done in a batch file or autoexec.bat;
+e.g., 
 
 <pre>
     set PATH=C:\cygwin\usr\local\bin;C:\cygwin\bin;$PATH
 </pre>
 
 Run the batch file, or reboot if you're using autoexec.bat. On NT
-or 2000, go to Control Panel | System | Environment and set them
-at either user or machine level.</li>
+or 2000, go to Control Panel | System | Environment and set them at
+either user or machine level.</li>
 </ol>
 
 <p>Now you're ready to use Swig.</p>
@@ -594,28 +596,28 @@ the page.</p>
 fields</h4>
 
 <p>In general, the status field should be close to
-self-explanatory, and the "Assigned to:" field should be the
-person responsible for taking the next step in the patch process.
-Both fields are expected to change value over the life of a
-patch; the normal work flow is detailed below.</p>
+self-explanatory, and the "Assigned to:" field should be the person
+responsible for taking the next step in the patch process. Both
+fields are expected to change value over the life of a patch; the
+normal work flow is detailed below.</p>
 
-<p>When you've got the time and the ability, feel free to move
-any patch that catches your eye along, whether or not it's been
-assigned to you. And if you're assigned to a patch but aren't
-going to take reasonably quick action (for whatever reason),
-please assign it to someone else ASAP: at those times you can't
-actively help, actively get out of the way.</p>
+<p>When you've got the time and the ability, feel free to move any
+patch that catches your eye along, whether or not it's been
+assigned to you. And if you're assigned to a patch but aren't going
+to take reasonably quick action (for whatever reason), please
+assign it to someone else ASAP: at those times you can't actively
+help, actively get out of the way.</p>
 
 <p>If you're an expert in some area and know that a patch in that
-area is both needed and non-controversial, just commit your
-changes directly -- no need then to get the patch mechanism
-involved in it.</p>
+area is both needed and non-controversial, just commit your changes
+directly -- no need then to get the patch mechanism involved in
+it.</p>
 
-<p>You should add a comment to every patch assigned to you at
-least once a week, if only to say that you realize it's still on
-your plate. This rule is meant to force your attention
-periodically: patches get harder &amp; harder to deal with the
-longer they sit.<br>
+<p>You should add a comment to every patch assigned to you at least
+once a week, if only to say that you realize it's still on your
+plate. This rule is meant to force your attention periodically:
+patches get harder &amp; harder to deal with the longer they
+sit.<br>
 </p>
 
 <h4>Open</h4>
@@ -623,26 +625,25 @@ longer they sit.<br>
 <blockquote>The initial status of all patches.<br>
  The patch is under consideration, but has not been reviewed yet,
 or is under review but not yet Accepted or Rejected.<br>
- The status will normally change to Accepted or Rejected
-next.<br>
- The person submitting the patch should (if they can) assign it
-to the person they most want to review it.<br>
+ The status will normally change to Accepted or Rejected next.<br>
+ The person submitting the patch should (if they can) assign it to
+the person they most want to review it.<br>
  Else the patch will be random assigned to a QuantLib
 developer.<br>
- Discussion of major patches is carried out on the QuantLib
-mailing list. For simple patches, the SourceForge comment
-mechanism should be sufficient.<br>
+ Discussion of major patches is carried out on the QuantLib mailing
+list. For simple patches, the SourceForge comment mechanism should
+be sufficient.<br>
  For the reviewer: If you're certain the patch should be applied,
 change the status to Accepted and assign it back to the submitter
-(if possible) for checkin. If you're certain the patch should
-never be accepted, change the status to Rejected and assign it to
-None. If you have specific complaints that would cause you to
-change your mind, explain them clearly in a comment, leave the
-status Open, and reassign back to the submitter. If you're
-uncertain, leave the status Open, explain your uncertainties in a
-comment, and reassign the patch to someone you believe can
-address your remaining questions; or leave the status Open and
-bring it up on QuantLib.</blockquote>
+(if possible) for checkin. If you're certain the patch should never
+be accepted, change the status to Rejected and assign it to None.
+If you have specific complaints that would cause you to change your
+mind, explain them clearly in a comment, leave the status Open, and
+reassign back to the submitter. If you're uncertain, leave the
+status Open, explain your uncertainties in a comment, and reassign
+the patch to someone you believe can address your remaining
+questions; or leave the status Open and bring it up on
+QuantLib.</blockquote>
 
 <h4>Accepted</h4>
 
@@ -650,8 +651,8 @@ bring it up on QuantLib.</blockquote>
 been applied yet.<br>
  The status will normally change to Closed next.<br>
  The person changing the status to Accepted should, at the same
-time, assign the patch to whoever they believe is most likely to
-be able &amp; willing to apply it (the submitter if
+time, assign the patch to whoever they believe is most likely to be
+able &amp; willing to apply it (the submitter if
 possible).</blockquote>
 
 <h4>Closed</h4>
@@ -662,34 +663,33 @@ possible).</blockquote>
 <h4>Rejected</h4>
 
 <blockquote>The patch has been reviewed and rejected.<br>
- There are generally no transitions out of this state: the patch
-is dead.<br>
+ There are generally no transitions out of this state: the patch is
+dead.<br>
  The person changing the status to Rejected should assign it to
 None.<br>
 </blockquote>
 
 <h4>Out of date</h4>
 
-<blockquote>Previous status was Open or Accepted or Postponed,
-but the patch no longer works.<br>
- Please enter a comment when changing the status to "Out of
-date", to record the nature of the problem and the previous
-status.<br>
- Also assign it back to the submitter, as they need to upload a
-new version (note that SourceForge will not allow anyone other
-than the original submitter to update the patch).</blockquote>
+<blockquote>Previous status was Open or Accepted or Postponed, but
+the patch no longer works.<br>
+ Please enter a comment when changing the status to "Out of date",
+to record the nature of the problem and the previous status.<br>
+ Also assign it back to the submitter, as they need to upload a new
+version (note that SourceForge will not allow anyone other than the
+original submitter to update the patch).</blockquote>
 
 <h4>Postponed</h4>
 
-<blockquote>The previous status was Open or Accepted, but for
-some reason (e.g., pending release) the patch should not be
-reviewed or applied until further notice.<br>
+<blockquote>The previous status was Open or Accepted, but for some
+reason (e.g., pending release) the patch should not be reviewed or
+applied until further notice.<br>
  The status will normally change to Open or Accepted next.<br>
  Please enter a comment when changing the status to Postponed, to
 record the reason, the previous status, and the conditions under
-which the patch should revert to Open or Accepted. Also assign
-the patch to whoever is most likely able and willing to decide
-when the status should change again.</blockquote>
+which the patch should revert to Open or Accepted. Also assign the
+patch to whoever is most likely able and willing to decide when the
+status should change again.</blockquote>
 
 <h4>Deleted</h4>
 
@@ -712,26 +712,26 @@ interface at <a href=
 "http://sourceforge.net/project/?group_id=12740">SourceForge</a>.</strong>
 We strongly recommend that you <a href=
 "http://sourceforge.net/account/register.php">register with
-SourceForge</a> before submitting a patch. The patch manager is
-for <strong>patches</strong> only; if you have a problem or
-suggestion but don't know how to write the code for it, use the
-<a href="#b1">bug reporting mechanism</a> instead. The bugs list
-is searchable; if you have a problem and you're not sure if it
-has been reported or fixed already, this is the first place to
+SourceForge</a> before submitting a patch. The patch manager is for
+<strong>patches</strong> only; if you have a problem or suggestion
+but don't know how to write the code for it, use the <a href=
+"#b1">bug reporting mechanism</a> instead. The bugs list is
+searchable; if you have a problem and you're not sure if it has
+been reported or fixed already, this is the first place to
 look.</li>
 
 <li><strong>Submit documentation patches the same way.</strong>
 When adding the patch, be sure to set the
 "<strong>Category</strong>" field to
-"<strong>documentation</strong>". For documentation errors
-without patches, please use the <a href="#b1">bug reporting
+"<strong>documentation</strong>". For documentation errors without
+patches, please use the <a href="#b1">bug reporting
 mechanism</a>.</li>
 
 <li>We prefer context diffs. PLEASE use context diffs.</li>
 
 <li>We appreciate it if you send patches relative to the <a href=
-"http://sourceforge.net/cvs/?group_id=12740">current CVS
-tree</a>. These are our latest sources.</li>
+"http://sourceforge.net/cvs/?group_id=12740">current CVS tree</a>.
+These are our latest sources.</li>
 
 <li>Please try to conform as much as possible to our <a href=
 "goals.html#codingguidelines">Coding Guidelines</a>.</li>
@@ -758,10 +758,10 @@ directed to<br>
 mailing list<br>
  or<br>
 the QuantLib administrator <a href=
-"mailto:ferdinando.ametrano@riskmap.it">Ferdinando Ametrano</a>.</p>
+"mailto:ferdinando.ametrano@riskmap.it">Ferdinando&nbsp;Ametrano</a>.</p>
 
 <script type="text/javascript" language="javascript" src=
-"http://ss.webring.yahoo.com/navbar?f=j&y=ametrano&u=98033809110220824">
+"http://ss.webring.yahoo.com/navbar?f=j&amp;y=ametrano&amp;u=98033809110220824">
 
 </script>
 </div>

@@ -30,9 +30,18 @@
 <meta http-equiv="Content-Style-Type" content="text/ccs">
 <meta http-equiv="Window-target" content="_top">
 <meta http-equiv="Content-Language" content="en">
-<link rel="stylesheet" href=
-"http://www.quantlib.org/styles/main.css" type="text/css">
+<link rel="stylesheet" href="styles/main.css" type="text/css">
 <link rev="made" href="mailto:ferdinando@ametrano.net">
+<script type="text/javascript">
+<!-- hiding
+
+if (self != window.top) {
+window.open(location.href);
+}
+
+// done hiding -->
+</script>
+
 <!--/includeHTML-->
 </head>
 <body>
@@ -47,13 +56,11 @@
 "QuantLib Logo"></div>
 
 <ul class="navlinklist">
-<li><a class="navlink" href="index.html">Home page</a></li>
+<li><a class="navlink" href="index.html">Home&nbsp;page</a></li>
 
 <li><a class="navlink" href="status.html">Project Status</a></li>
 
 <li><a class="navlink" href="docs.html">Documentation</a></li>
-
-<li><a class="navlink" href="goals.html">Goals</a></li>
 
 <li><a class="navlink" href="license.html">License</a></li>
 
@@ -65,7 +72,7 @@
 
 <ul>
 <li><a class="navlink" href=
-"http://sourceforge.net/projects/quantlib">Project page</a></li>
+"http://sourceforge.net/projects/quantlib">Project&nbsp;page</a></li>
 
 <li><a class="navlink" href=
 "http://sourceforge.net/mail/?group_id=12740">Mailing
@@ -80,7 +87,7 @@ lists</a></li>
 <li><a class="navlink" href="cvs.html">CVS</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/bugs/?group_id=12740">Bug Report</a></li>
+"http://sourceforge.net/bugs/?group_id=12740">Bug&nbsp;Report</a></li>
 
 <li><a class="navlink" href=
 "http://sourceforge.net/patch/?group_id=12740">Patches</a></li>
@@ -95,8 +102,7 @@ Guidelines</a></li>
 <h3 class="navbartitle">General Resources</h3>
 
 <ul>
-<li><a class="navlink" href="lists.html">Lists of
-interest</a></li>
+<li><a class="navlink" href="lists.html">Lists of interest</a></li>
 </ul>
 
 <hr>
@@ -120,7 +126,7 @@ Guidelines</em> by <em>Geotechnical Software Services</em></h6>
 <h6 class="right">the original version is available at <a href=
 "http://www.geosoft.no/style.html">http://www.geosoft.no/style.html</a></h6>
 
-  
+&nbsp; 
 
 <hr width="100%">
 <h2>Table of Content</h2>
@@ -137,7 +143,7 @@ Importance</a></li>
 </ul>
 </li>
 
-<li><a href="#General Recomendations">2 General
+<li><a href="#General Recommendations">2 General
 Recommendations</a></li>
 
 <li><a href="#Naming Conventions">3 Naming Conventions</a> 
@@ -191,25 +197,24 @@ Statements</a></li>
 <hr width="100%">
 <h2><a name="introduction"></a>1 Introduction</h2>
 
-<p>This document lists C++ coding recommendations for the
-QuantLib project.</p>
+<p>This document lists C++ coding recommendations for the QuantLib
+project.</p>
 
 <p>These recommendations are heavily based on <a href=
 "http://www.geosoft.no/style.html"><em>C++ Programming Style
-Guidelines</em></a> by Geotechnical Software Services. Please
-refer to the original document for a more general introduction
-and references.</p>
+Guidelines</em></a> by Geotechnical Software Services. Please refer
+to the original document for a more general introduction and
+references.</p>
 
 <h3><a name="Layout of the Recommendations"></a>1.1 Layout of the
 Recommendations.</h3>
 
-<p>The recommendations are grouped by topic and each
-recommendation is numbered to make it easier to refer to during
-reviews.</p>
+<p>The recommendations are grouped by topic and each recommendation
+is numbered to make it easier to refer to during reviews.</p>
 
 <p>Layout of the recommendations is as follows:</p>
 
-<table border width="100%">
+<table summary="" border width="100%">
 <tr>
 <td class="recom">Guideline short description</td>
 </tr>
@@ -228,15 +233,14 @@ information.</td>
 guidelines tend to start "religious wars", and it is important to
 state the background for the recommendation.</p>
 
-<h3><a name="Recommendation"></a>1.2 Recommendation
-Importance</h3>
+<h3><a name="Recommendation"></a>1.2 Recommendation Importance</h3>
 
 <p>In the guideline sections the terms <i>must</i>, <i>should</i>
-and <i>can</i> have special meaning. A <i>must</i> requirement
-must be followed, a <i>should</i> is a strong recommendation, and
-a <i>can</i> is a general guideline.</p>
+and <i>can</i> have special meaning. A <i>must</i> requirement must
+be followed, a <i>should</i> is a strong recommendation, and a
+<i>can</i> is a general guideline.</p>
 
-<h2><a name="General Recomendations"></a>2 General
+<h2><a name="General Recommendations"></a>2 General
 Recommendations</h2>
 
 <!--
@@ -244,7 +248,27 @@ Recommendations</h2>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
+<tr>
+<td class="recom">0. ANSI/ISO Standard C++ must be used.</td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+
+<tr>
+<td class="rationale">Any proprietary extension would compromise
+the portability of the code.</td>
+</tr>
+</table>
+
+<!--
+****************************************************************************
+   Rule
+****************************************************************************
+-->
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">1. Any violation to the guide is allowed if it
 enhances readability.</td>
@@ -268,10 +292,10 @@ programmer should be flexible.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">2. The rules can be violated if there are
-strong personal objections against them.</td>
+<td class="recom">2. The rules can be violated if there are strong
+personal objections against them.</td>
 </tr>
 
 <tr>
@@ -283,12 +307,12 @@ strong personal objections against them.</td>
 force a particular coding style onto individuals. Experienced
 programmers normally want adopt a style like this anyway, but
 having one, and at least requiring everyone to get familiar with
-it, usually makes people start <em>thinking</em> about
-programming style and evaluate their own habits in this area. 
+it, usually makes people start <em>thinking</em> about programming
+style and evaluate their own habits in this area. 
 
 <p>On the other hand, new and inexperienced programmers normally
-use a style guide as a convenience of getting into the
-programming jargon more easily.</p>
+use a style guide as a convenience of getting into the programming
+jargon more easily.</p>
 </td>
 </tr>
 </table>
@@ -305,10 +329,10 @@ programming jargon more easily.</p>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">3. Names representing types must be in mixed
-case starting with upper case.</td>
+<td class="recom">3. Names representing types must be in mixed case
+starting with upper case.</td>
 </tr>
 
 <tr>
@@ -326,10 +350,10 @@ community.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">4. Variable names must be in mixed case
-starting with lower case.</td>
+<td class="recom">4. Variable names must be in mixed case starting
+with lower case.</td>
 </tr>
 
 <tr>
@@ -349,10 +373,10 @@ declaration Line line;</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">5. Named constants (including enumeration
-values) must be all uppercase using underscore to separate words.
+<td class="recom">5. Named constants (including enumeration values)
+must be all uppercase using underscore to separate words.
 Enumerations inside classes and static const class variables must
 be in mixed case starting with lower case.</td>
 </tr>
@@ -369,9 +393,10 @@ better choice:<br>
 <br>
  
 
-<p><tt>int getMaxIterations()     // NOT: MAX_ITERATIONS = 25<br>
+<p><tt>int getMaxIterations() &nbsp; &nbsp; // NOT: MAX_ITERATIONS
+= 25<br>
  {<br>
-  return 25;<br>
+&nbsp; return 25;<br>
 }</tt></p>
 
 <p>This form is both easier to read, and it ensures a unified
@@ -385,7 +410,7 @@ interface towards class values.</p>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">6. Names representing methods or functions must
 be verbs and written in mixed case starting with lower case.</td>
@@ -408,14 +433,15 @@ form.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">7. Names representing namespaces should be all
-lowercase.</td>
+<td class="recom">7. Names representing namespaces must be in mixed
+case starting with upper case.</td>
 </tr>
 
 <tr>
-<td><tt>analyzer, iomanager, mainwindow</tt> </td>
+<td><tt>QuantLib::DayCounters, QuantLib::FiniteDifferences,
+QuantLib::Solvers1D</tt> </td>
 </tr>
 
 <tr>
@@ -429,10 +455,10 @@ community.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">8. Names representing template types should be
-a single uppercase letter.</td>
+<td class="recom">8. Names representing template types should be a
+single uppercase letter.</td>
 </tr>
 
 <tr>
@@ -453,25 +479,27 @@ other names used.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">9. Abbreviations and acronyms must not be
 uppercase when used as name [4].</td>
 </tr>
 
 <tr>
-<td><tt>exportHtmlSource();    // NOT: exportHTMLSource();<br>
-openDvdPlayer();       // NOT: openDVDPlayer();</tt></td>
+<td><tt>exportHtmlSource(); &nbsp;&nbsp; // NOT:
+exportHTMLSource();<br>
+openDvdPlayer(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // NOT:
+openDVDPlayer();</tt></td>
 </tr>
 
 <tr>
 <td class="rationale">Using all uppercase for the base name will
-give conflicts with the naming conventions given above. A
-variable of this type whould have to be named dVD, hTML etc.
-which obviously is not very readable. Another problem is
-illustrated in the examples above; When the name is connected to
-another, the readbility is seriously reduced; the word following
-the abbreviation does not stand out as it should.</td>
+give conflicts with the naming conventions given above. A variable
+of this type whould have to be named dVD, hTML etc. which obviously
+is not very readable. Another problem is illustrated in the
+examples above; When the name is connected to another, the
+readbility is seriously reduced; the word following the
+abbreviation does not stand out as it should.</td>
 </tr>
 </table>
 
@@ -480,10 +508,10 @@ the abbreviation does not stand out as it should.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">10. Global variables should always be referred
-to using the :: operator.</td>
+<td class="recom">10. Global variables should always be referred to
+using the :: operator.</td>
 </tr>
 
 <tr>
@@ -502,7 +530,7 @@ should be avoided. Consider using singleton objects instead.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">11. Private class variables should have
 underscore suffix.</td>
@@ -510,8 +538,8 @@ underscore suffix.</td>
 
 <tr>
 <td><tt>class SomeClass {<br>
-  private:<br>
-    int  length_;<br>
+&nbsp; private:<br>
+&nbsp;&nbsp;&nbsp; int&nbsp; length_;<br>
 }</tt> </td>
 </tr>
 
@@ -530,13 +558,13 @@ for setter methods and constructors:</p>
 
 <p><tt>void setDepth (int depth)<br>
 {<br>
-  depth_ = depth;<br>
+&nbsp; depth_ = depth;<br>
 }</tt></p>
 
 <p>An issue is whether the underscore should be added as a prefix
-or as a suffix. Both practices are commonly used, but the latter
-is recommended because it seem to best preserve the readability
-of the name.</p>
+or as a suffix. Both practices are commonly used, but the latter is
+recommended because it seem to best preserve the readability of the
+name.</p>
 
 <p>It should be noted that scope identification in variables has
 been a controversial issue for quite some time. It seems, though,
@@ -552,40 +580,42 @@ development community.</p>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">12. Generic variables should have the same name
 as their type.</td>
 </tr>
 
 <tr>
-<td><tt>void setTopic (Topic topic)      // NOT: void setTopic
-(Topic value)<br>
-                                  // NOT: void setTopic (Topic
-aTopic)<br>
-                                  // NOT: void setTopic (Topic
-x)<br>
+<td><tt>void setTopic (Topic topic) &nbsp; &nbsp;&nbsp; // NOT:
+void setTopic (Topic value)<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// NOT: void
+setTopic (Topic aTopic)<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// NOT: void
+setTopic (Topic x)<br>
 <br>
  void connect (Database database) // NOT: void connect (Database
 db)<br>
-                                  // NOT: void connect (Database
-oracleDB)</tt> </td>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// NOT: void
+connect (Database oracleDB)</tt> </td>
 </tr>
 
 <tr>
 <td class="rationale">Reduce complexity by reducing the number of
-terms and names used. Also makes it easy to deduce the type given
-a variable name only. 
+terms and names used. Also makes it easy to deduce the type given a
+variable name only. 
 
-<p>If for some reason this convention doesn't seem to
-<em>fit</em> it is a strong indication that the type name is
-badly chosen.</p>
+<p>If for some reason this convention doesn't seem to <em>fit</em>
+it is a strong indication that the type name is badly chosen.</p>
 
-<p>Non-generic variables have a <em>role</em>. These variables
-can often be named by combining role and type:</p>
+<p>Non-generic variables have a <em>role</em>. These variables can
+often be named by combining role and type:</p>
 
 <p><tt>Point startingPoint, centerPoint;<br>
-Name  loginName;<br>
+Name&nbsp; loginName;<br>
 </tt></p>
 </td>
 </tr>
@@ -596,14 +626,14 @@ Name  loginName;<br>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">13. All names should be written in
-english.</td>
+<td class="recom">13. All names should be written in english.</td>
 </tr>
 
 <tr>
-<td><tt>fileName;    // NOT:   filNavn</tt> </td>
+<td><tt>fileName;&nbsp;&nbsp;&nbsp; // NOT:&nbsp;&nbsp;
+filNavn</tt> </td>
 </tr>
 
 <tr>
@@ -617,11 +647,10 @@ international development.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">14. Variables with a large scope should have
-long names, variables with a small scope can have short names
-[1].</td>
+<td class="recom">14. Variables with a large scope should have long
+names, variables with a small scope can have short names [1].</td>
 </tr>
 
 <tr>
@@ -629,12 +658,12 @@ long names, variables with a small scope can have short names
 </tr>
 
 <tr>
-<td class="rationale">Scratch variables used for temporary
-storage or indices are best kept short. A programmer reading such
-variables should be able to assume that its value is not used
-outside a few lines of code. Common scratch variables for
-integers are <em>i</em>, <em>j</em>, <em>k</em>, <em>m</em>,
-<em>n</em> and for characters <em>c</em> and <em>d</em>.</td>
+<td class="rationale">Scratch variables used for temporary storage
+or indices are best kept short. A programmer reading such variables
+should be able to assume that its value is not used outside a few
+lines of code. Common scratch variables for integers are
+<em>i</em>, <em>j</em>, <em>k</em>, <em>m</em>, <em>n</em> and for
+characters <em>c</em> and <em>d</em>.</td>
 </tr>
 </table>
 
@@ -643,15 +672,15 @@ integers are <em>i</em>, <em>j</em>, <em>k</em>, <em>m</em>,
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">15. The name of the object is implicit, and
 should be avoided in a method name.</td>
 </tr>
 
 <tr>
-<td><tt>line.getLength();    // NOT:  line.getLineLength();</tt>
-</td>
+<td><tt>line.getLength();&nbsp;&nbsp;&nbsp; // NOT:&nbsp;
+line.getLineLength();</tt> </td>
 </tr>
 
 <tr>
@@ -668,16 +697,19 @@ example.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">17. The terms <i>get/set</i> must be used where
-an attribute is accessed directly.</td>
+<td class="recom">17. The term <i>set</i> must be used to set the
+value of an attribute. The term <i>get</i> could be used when an
+attribute is accessed directly.</td>
 </tr>
 
 <tr>
-<td><tt>employee.getName();       matrix.getElement (2, 4);<br>
-employee.setName (name);  matrix.setElement (2, 4, value);</tt>
-</td>
+<td>
+<tt>employee.name();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+matrix.getElement(2, 4);<br>
+employee.setName(name);&nbsp;&nbsp; matrix.setElement(2, 4,
+value);</tt> </td>
 </tr>
 
 <tr>
@@ -692,22 +724,22 @@ standard.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">18. The term <i>compute</i> can be used in
 methods where something is computed.</td>
 </tr>
 
 <tr>
-<td><tt>valueSet-&gt;computeAverage(); 
+<td><tt>valueSet-&gt;computeAverage();&nbsp;
 matrix-&gt;computeInverse()</tt> </td>
 </tr>
 
 <tr>
-<td class="rationale">Give the reader the immediate clue that
-this is a potential time consuming operation, and if used
-repeatedly, he might consider caching the result. Consistent use
-of the term enhances readability.</td>
+<td class="rationale">Give the reader the immediate clue that this
+is a potential time consuming operation, and if used repeatedly, he
+might consider caching the result. Consistent use of the term
+enhances readability.</td>
 </tr>
 </table>
 
@@ -716,21 +748,21 @@ of the term enhances readability.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">19. The term <i>find</i> can be used in methods
 where something is looked up.</td>
 </tr>
 
 <tr>
-<td><tt>vertex.findNearestVertex();  
-matrix.findMinElement(); </tt> </td>
+<td><tt>vertex.findNearestVertex();&nbsp;&nbsp;
+matrix.findMinElement();&nbsp;</tt> </td>
 </tr>
 
 <tr>
-<td class="rationale">Give the reader the immediate clue that
-this is a simple look up method with a minimum of computations
-involved. Consistent use of the term enhances readability.</td>
+<td class="rationale">Give the reader the immediate clue that this
+is a simple look up method with a minimum of computations involved.
+Consistent use of the term enhances readability.</td>
 </tr>
 </table>
 
@@ -739,10 +771,10 @@ involved. Consistent use of the term enhances readability.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">20. The term <i>initialize</i> can be used
-where an object or a concept is established.</td>
+<td class="recom">20. The term <i>initialize</i> can be used where
+an object or a concept is established.</td>
 </tr>
 
 <tr>
@@ -761,22 +793,22 @@ preferred over the english <i>initialise</i>. Abbreviation
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">21. Variables representing GUI components
-should be suffixed by the component type name.</td>
+<td class="recom">21. Variables representing GUI components should
+be suffixed by the component type name.</td>
 </tr>
 
 <tr>
 <td><tt>mainWindow, propertiesDialog, widthScale, loginText,
-leftScrollbar, mainForm, fileMenu, minLabel, exitButton,
-yesToggle etc.</tt> </td>
+leftScrollbar, mainForm, fileMenu, minLabel, exitButton, yesToggle
+etc.</tt> </td>
 </tr>
 
 <tr>
-<td class="rationale">Enhances readability since the name gives
-the user an immediate clue of the type of the variable and
-thereby the objects resources.</td>
+<td class="rationale">Enhances readability since the name gives the
+user an immediate clue of the type of the variable and thereby the
+objects resources.</td>
 </tr>
 </table>
 
@@ -785,32 +817,32 @@ thereby the objects resources.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">22. The suffix <i>List</i> should be used on
 names representing a list of objects.</td>
 </tr>
 
 <tr>
-<td><tt>vertex</tt> (one vertex),   <tt>vertexList</tt> (a list
-of vertices)</td>
+<td><tt>vertex</tt> (one vertex),&nbsp;&nbsp; <tt>vertexList</tt>
+(a list of vertices)</td>
 </tr>
 
 <tr>
-<td class="rationale">Enhances readability since the name gives
-the user an immediate clue of the type of the variable and the
+<td class="rationale">Enhances readability since the name gives the
+user an immediate clue of the type of the variable and the
 operations that can be performed on the object. 
 
 <p>Simply using the plural form of the base class name for a list
 (<tt>matrixElement</tt> (one matrix element),
-<tt>matrixElements</tt> (list of matrix elements)) must be
-avoided since the two only differ in a single character and are
-thereby difficult to distinguish.</p>
+<tt>matrixElements</tt> (list of matrix elements)) must be avoided
+since the two only differ in a single character and are thereby
+difficult to distinguish.</p>
 
-<p>A <i>list</i> in this context is the compound data type that
-can be traversed backwards, forwards, etc. (typically an STL
-<tt>vector</tt>). A plain array is simpler. The suffix
-<i>Array</i> can be used to denote an array of objects.</p>
+<p>A <i>list</i> in this context is the compound data type that can
+be traversed backwards, forwards, etc. (typically an STL
+<tt>vector</tt>). A plain array is simpler. The suffix <i>Array</i>
+can be used to denote an array of objects.</p>
 </td>
 </tr>
 </table>
@@ -820,7 +852,7 @@ can be traversed backwards, forwards, etc. (typically an STL
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">23. The prefix <i>n</i> should be used for
 variables representing a number of objects.</td>
@@ -831,8 +863,8 @@ variables representing a number of objects.</td>
 </tr>
 
 <tr>
-<td class="rationale">The notation is taken from mathematics
-where it is an established convention for indicating a number of
+<td class="rationale">The notation is taken from mathematics where
+it is an established convention for indicating a number of
 objects.</td>
 </tr>
 </table>
@@ -842,11 +874,11 @@ objects.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">24.The suffix <i>No</i>, <em>Num</em> or
-<em>Number</em> should be used for variables representing an
-entity number.</td>
+<em>Number</em> should be used for variables representing an entity
+number.</td>
 </tr>
 
 <tr>
@@ -854,9 +886,8 @@ entity number.</td>
 </tr>
 
 <tr>
-<td class="rationale">The notation is taken from mathematics
-where it is an established convention for indicating an entity
-number. 
+<td class="rationale">The notation is taken from mathematics where
+it is an established convention for indicating an entity number. 
 
 <p>An alternative approach is to prefix such variables with an
 <em>i</em>: <tt>iTable, iEmployee</tt>. This is more elegant, but
@@ -870,7 +901,7 @@ less common.</p>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">25. Iterator variables should be called
 <em>i</em>, <em>j</em>, <em>k</em> etc.</td>
@@ -878,21 +909,20 @@ less common.</p>
 
 <tr>
 <td><tt>for (int i = 0; i &lt; nTables); i++) {<br>
-   :<br>
+ &nbsp; :<br>
 }<br>
 <br>
 vector&lt;MyClass&gt;::iterator i;<br>
 for (i = list.begin(); i != list.end(); i++) {<br>
-   Element element = *i;<br>
-  ...<br>
+ &nbsp; Element element = *i;<br>
+&nbsp; ...<br>
  }<br>
 </tt> </td>
 </tr>
 
 <tr>
-<td class="rationale">The notation is taken from mathematics
-where it is an established convention for indicating
-iterators.<br>
+<td class="rationale">The notation is taken from mathematics where
+it is an established convention for indicating iterators.<br>
 <br>
  </td>
 </tr>
@@ -903,7 +933,7 @@ iterators.<br>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">26. The prefix <i>is</i> should be used for
 boolean variables and methods.</td>
@@ -922,9 +952,9 @@ bad boolean names like <tt>status</tt> or <tt>flag</tt>.
 <tt>isStatus</tt> or <tt>isFlag</tt> simply doesn't fit, and the
 programmer is forced to choose more meaningful names.</p>
 
-<p>There are a few alternatives to the <em>is</em> prefix that
-fits better in some situations. These are the <em>has</em>,
-<em>can</em> and <em>should</em> prefixes:</p>
+<p>There are a few alternatives to the <em>is</em> prefix that fits
+better in some situations. These are the <em>has</em>, <em>can</em>
+and <em>should</em> prefixes:</p>
 
 <p><tt>bool hasLicense();</tt><br>
 <tt>bool canEvaluate();</tt><br>
@@ -939,17 +969,17 @@ fits better in some situations. These are the <em>has</em>,
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">27. Complement names must be used for
-complement operations [1].</td>
+<td class="recom">27. Complement names must be used for complement
+operations [1].</td>
 </tr>
 
 <tr>
 <td><tt>get/set, add/remove, create/destroy, start/stop,
-insert/delete, increment/decrement, old/new, begin/end,
-first/last, up/down, min/max, next/previous, old/new, open/close,
-show/hide, suspend/resume, etc.</tt> </td>
+insert/delete, increment/decrement, old/new, begin/end, first/last,
+up/down, min/max, next/previous, old/new, open/close, show/hide,
+suspend/resume, etc.</tt> </td>
 </tr>
 
 <tr>
@@ -962,14 +992,15 @@ show/hide, suspend/resume, etc.</tt> </td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">28. Abbreviations in names should be
 avoided.</td>
 </tr>
 
 <tr>
-<td><tt>computeAverage();     // NOT:  compAvg();</tt> </td>
+<td><tt>computeAverage();&nbsp;&nbsp;&nbsp;&nbsp; // NOT:&nbsp;
+compAvg();</tt> </td>
 </tr>
 
 <tr>
@@ -977,22 +1008,24 @@ avoided.</td>
 First are the common words listed in a language dictionary. These
 must never be abbreviated. Never write: 
 
-<p><tt>cmd  </tt> instead of <tt>  command</tt><br>
-<tt>cp   </tt> instead of <tt>  copy</tt><br>
-<tt>pt   </tt> instead of <tt>  point</tt><br>
-<tt>comp </tt> instead of <tt>  compute</tt><br>
-<tt>init </tt> instead of <tt>  initialize</tt><br>
+<p><tt>cmd&nbsp;&nbsp;</tt> instead of <tt>&nbsp; command</tt><br>
+<tt>cp &nbsp;&nbsp;</tt> instead of <tt>&nbsp; copy</tt><br>
+<tt>pt &nbsp;&nbsp;</tt> instead of <tt>&nbsp; point</tt><br>
+<tt>comp&nbsp;</tt> instead of <tt>&nbsp; compute</tt><br>
+<tt>init&nbsp;</tt> instead of <tt>&nbsp; initialize</tt><br>
 etc.<br>
 </p>
 
 <p>Then there are domain specific phrases that are more naturally
-known through their abbreviations/acronym. These phrases should
-be kept abbreviated. Never write:</p>
+known through their abbreviations/acronym. These phrases should be
+kept abbreviated. Never write:</p>
 
-<p><tt>HypertextMarkupLanguage </tt> instead of <tt> 
+<p><tt>HypertextMarkupLanguage&nbsp;</tt> instead of <tt>&nbsp;
 html</tt><br>
-<tt>CentralProcessingUnit   </tt> instead of <tt>  cpu</tt><br>
-<tt>PriceEarningRatio       </tt> instead of <tt>  pe</tt><br>
+<tt>CentralProcessingUnit &nbsp;&nbsp;</tt> instead of <tt>&nbsp;
+cpu</tt><br>
+<tt>PriceEarningRatio &nbsp;&nbsp; &nbsp; &nbsp;</tt> instead of
+<tt>&nbsp; pe</tt><br>
 etc.</p>
 </td>
 </tr>
@@ -1003,24 +1036,24 @@ etc.</p>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">29. Naming pointers specifically should be
 avoided.</td>
 </tr>
 
 <tr>
-<td><tt>Line *line;   // NOT:  Line *pLine;  or Line *linePtr; 
-etc.</tt> </td>
+<td><tt>Line *line;&nbsp;&nbsp; // NOT:&nbsp; Line *pLine;&nbsp; or
+Line *linePtr;&nbsp; etc.</tt> </td>
 </tr>
 
 <tr>
 <td class="rationale">Many variables in a C/C++ environment are
-pointers, so a convention like this is almost impossible to
-follow. Also objects in C++ are often oblique types where the
-specific implementation should be ignored by the programmer. Only
-when the actual type of an object is of special significance, the
-name should empahsize the type.</td>
+pointers, so a convention like this is almost impossible to follow.
+Also objects in C++ are often oblique types where the specific
+implementation should be ignored by the programmer. Only when the
+actual type of an object is of special significance, the name
+should empahsize the type.</td>
 </tr>
 </table>
 
@@ -1029,15 +1062,17 @@ name should empahsize the type.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">30. Negated boolean variable names must be
 avoided.</td>
 </tr>
 
 <tr>
-<td><tt>bool isError;    // NOT:   isNoError <br>
- bool isFound;    // NOT:   isNotFound</tt> </td>
+<td><tt>bool isError;&nbsp;&nbsp;&nbsp; // NOT:&nbsp;&nbsp;
+isNoError&nbsp;<br>
+ bool isFound;&nbsp;&nbsp;&nbsp; // NOT:&nbsp;&nbsp;
+isNotFound</tt> </td>
 </tr>
 
 <tr>
@@ -1053,7 +1088,7 @@ in a double negative. It is not immediately apparent what
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">31. Enumeration constants can be prefixed by a
 common type name.</td>
@@ -1061,16 +1096,16 @@ common type name.</td>
 
 <tr>
 <td><tt>enum Color {<br>
-  COLOR_RED,<br>
-  COLOR_GREEN,<br>
-  COLOR_BLUE<br>
+&nbsp; COLOR_RED,<br>
+&nbsp; COLOR_GREEN,<br>
+&nbsp; COLOR_BLUE<br>
 };</tt> </td>
 </tr>
 
 <tr>
 <td class="rationale">This gives additional information of where
-the declaration can be found, which constants belongs together,
-and what concept the constants represent. 
+the declaration can be found, which constants belongs together, and
+what concept the constants represent. 
 
 <p>An alternative approach is to always refer to the constants
 through their common type: <tt>Color::RED</tt>,
@@ -1084,7 +1119,7 @@ through their common type: <tt>Color::RED</tt>,
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">32. Exception classes should be suffixed with
 <em>Exception</em>.</td>
@@ -1093,15 +1128,15 @@ through their common type: <tt>Color::RED</tt>,
 <tr>
 <td><tt>class AccessException<br>
 {<br>
-  :<br>
+&nbsp; :<br>
 }<br>
 </tt></td>
 </tr>
 
 <tr>
-<td class="rationale">Exception classes are really not part of
-the main design of the program, and naming them like this makes
-them stand out relative to the other classes.</td>
+<td class="rationale">Exception classes are really not part of the
+main design of the program, and naming them like this makes them
+stand out relative to the other classes.</td>
 </tr>
 </table>
 
@@ -1110,11 +1145,11 @@ them stand out relative to the other classes.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">33. Functions (methods returning something)
-should be named after what they return and procedures
-(<i>void</i> methods) after what they do.</td>
+should be named after what they return and procedures (<i>void</i>
+methods) after what they do.</td>
 </tr>
 
 <tr>
@@ -1122,10 +1157,10 @@ should be named after what they return and procedures
 </tr>
 
 <tr>
-<td class="rationale">Increase readability. Makes it clear what
-the unit should do and especially all the things it is not
-supposed to do. This again makes it easier to keep the code clean
-of side effects.</td>
+<td class="rationale">Increase readability. Makes it clear what the
+unit should do and especially all the things it is not supposed to
+do. This again makes it easier to keep the code clean of side
+effects.</td>
 </tr>
 </table>
 
@@ -1141,20 +1176,20 @@ of side effects.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">34. C++ header files should have the extension
-<i>.h</i>. Source files can have the extension <i>.c++</i>
-(recommended), <i>.C</i>, <i>.cc</i> or <i>.cpp</i>.</td>
+<i>.hpp</i>. Source files should have the extension
+<i>.cpp</i>.</td>
 </tr>
 
 <tr>
-<td><tt>MyClass.c++, MyClass.h</tt> </td>
+<td><tt>MyClass.cpp, MyClass.hpp</tt> </td>
 </tr>
 
 <tr>
-<td class="rationale">These are all accepted C++ standards for
-file extension.</td>
+<td class="rationale">These are all accepted C++ standards for file
+extension.</td>
 </tr>
 </table>
 
@@ -1163,21 +1198,21 @@ file extension.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">35. A class should be declared in a header file
-and defined in a source file where the name of the files match
-the name of the class.</td>
+and defined in a source file where the name of the files match the
+name of the class.</td>
 </tr>
 
 <tr>
-<td><tt>MyClass.h, MyClass.c++</tt> </td>
+<td><tt>MyClass.hpp, MyClass.cpp</tt> </td>
 </tr>
 
 <tr>
-<td class="rationale">Makes it easy to find the associated files
-of a given class. This convention is enforced in Java and has
-become very successful as such.</td>
+<td class="rationale">Makes it easy to find the associated files of
+a given class. This convention is enforced in Java and has become
+very successful as such.</td>
 </tr>
 </table>
 
@@ -1186,7 +1221,7 @@ become very successful as such.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">36. All definitions should reside in source
 files.</td>
@@ -1195,22 +1230,21 @@ files.</td>
 <tr>
 <td><tt>class MyClass<br>
  {<br>
-   public:<br>
-     int getValue () {return value_;} // NO!<br>
-     ...<br>
-   private:<br>
-     int value_;<br>
+ &nbsp; public:<br>
+ &nbsp; &nbsp; int getValue () {return value_;} // NO!<br>
+ &nbsp; &nbsp; ...<br>
+ &nbsp; private:<br>
+ &nbsp; &nbsp; int value_;<br>
  }<br>
 </tt> </td>
 </tr>
 
 <tr>
-<td class="rationale">The header files should declare an
-interface, the source file should implement it. When looking for
-an implementation, the programmer should always know that it is
-found in the source file. The obvious exception to this rule is
-of course inline functions that must be defined in the header
-file.</td>
+<td class="rationale">The header files should declare an interface,
+the source file should implement it. When looking for an
+implementation, the programmer should always know that it is found
+in the source file. The obvious exception to this rule is of course
+inline functions that must be defined in the header file.</td>
 </tr>
 </table>
 
@@ -1219,7 +1253,7 @@ file.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">37. File content must be kept within 80
 columns.</td>
@@ -1230,11 +1264,11 @@ columns.</td>
 </tr>
 
 <tr>
-<td class="rationale">80 columns is a common dimension for
-editors, terminal emulators, printers and debuggers, and files
-that are shared between several people should keep within these
-constraints. It improves readability when unintentional line
-breaks are avoided when passing a file between programmers.</td>
+<td class="rationale">80 columns is a common dimension for editors,
+terminal emulators, printers and debuggers, and files that are
+shared between several people should keep within these constraints.
+It improves readability when unintentional line breaks are avoided
+when passing a file between programmers.</td>
 </tr>
 </table>
 
@@ -1243,7 +1277,7 @@ breaks are avoided when passing a file between programmers.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">38. Special characters like TAB and page break
 must be avoided.</td>
@@ -1255,8 +1289,8 @@ must be avoided.</td>
 
 <tr>
 <td class="rationale">These characters are bound to cause problem
-for editors, printers, terminal emulators or debuggers when used
-in a multi-programmer, multi-platform environment.</td>
+for editors, printers, terminal emulators or debuggers when used in
+a multi-programmer, multi-platform environment.</td>
 </tr>
 </table>
 
@@ -1265,7 +1299,7 @@ in a multi-programmer, multi-platform environment.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">39. The incompleteness of split lines must be
 made obvious [1].</td>
@@ -1273,20 +1307,22 @@ made obvious [1].</td>
 
 <tr>
 <td><tt>totalSum = a + b + c +<br>
-           d + e;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d +
+e;<br>
 function (param1, param2,<br>
-          param3);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; param3);<br>
 setText ("Long line split"<br>
-         "into two parts.");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "into two
+parts.");<br>
 for (tableNo = 0; tableNo &lt; nTables;<br>
-     tableNo += tableStep)</tt> </td>
+&nbsp;&nbsp;&nbsp;&nbsp; tableNo += tableStep)</tt> </td>
 </tr>
 
 <tr>
 <td class="rationale">Split lines occurs when a statement exceed
 the 80 column limit given above. It is difficult to give rigid
-rules for how lines should be split, but the examples above
-should give a general hint. 
+rules for how lines should be split, but the examples above should
+give a general hint. 
 
 <p>In general:</p>
 
@@ -1295,8 +1331,8 @@ should give a general hint.
 
 <li>Break after an operator.</li>
 
-<li>Align the new line with the beginning of the expression on
-the previous line.</li>
+<li>Align the new line with the beginning of the expression on the
+previous line.</li>
 </ul>
 </td>
 </tr>
@@ -1310,18 +1346,18 @@ Statements</h3>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">40. Header files must include a construction
-that prevents multiple inclusion. The convention is an all
-uppercase construction of the module name, the file name and the
-h suffix.</td>
+<td class="recom">40. Header files must include a construction that
+prevents multiple inclusion. The convention is an all uppercase
+construction of the module name, the file name and the h
+suffix.</td>
 </tr>
 
 <tr>
 <td><tt>#ifndef MOD_FILENAME_H<br>
 #define MOD_FILENAME_H<br>
- :<br>
+&nbsp;:<br>
 #endif</tt> </td>
 </tr>
 
@@ -1339,12 +1375,12 @@ reduced.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">41. Include statements should be sorted and
 grouped. Sorted by their hierarchical position in the system with
-low level files included first. Leave an empty line between
-groups of include statements.</td>
+low level files included first. Leave an empty line between groups
+of include statements.</td>
 </tr>
 
 <tr>
@@ -1359,9 +1395,9 @@ groups of include statements.</td>
 </tr>
 
 <tr>
-<td class="rationale">In addition to show the reader the
-individual include files, it also give an immediate clue about
-the modules that are involved.</td>
+<td class="rationale">In addition to show the reader the individual
+include files, it also give an immediate clue about the modules
+that are involved.</td>
 </tr>
 </table>
 
@@ -1370,10 +1406,10 @@ the modules that are involved.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">42. Include statements must be located at the
-top of a file only.</td>
+<td class="recom">42. Include statements must be located at the top
+of a file only.</td>
 </tr>
 
 <tr>
@@ -1399,10 +1435,10 @@ file.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">43. Types that are local to one file only can
-be declared inside that file.</td>
+<td class="recom">43. Types that are local to one file only can be
+declared inside that file.</td>
 </tr>
 
 <tr>
@@ -1419,7 +1455,7 @@ be declared inside that file.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">44. The parts of a class must be sorted
 <i>public</i>, <i>protected</i> and <i>private</i> [2][3]. All
@@ -1432,9 +1468,9 @@ should be left out.</td>
 </tr>
 
 <tr>
-<td class="rationale">The ordering is <i>"most public first"</i>
-so people who only wish to use the class can stop reading when
-they reach the <tt>protected/private</tt> sections.</td>
+<td class="rationale">The ordering is <i>"most public first"</i> so
+people who only wish to use the class can stop reading when they
+reach the <tt>protected/private</tt> sections.</td>
 </tr>
 </table>
 
@@ -1443,22 +1479,23 @@ they reach the <tt>protected/private</tt> sections.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">45. Type conversions must always be done
 explicitly. Never rely on implicit type conversion.</td>
 </tr>
 
 <tr>
-<td><tt>floatValue = static_cast&lt;float&gt; (intValue);    //
-YES!<br>
- floatValue = intValue;                         // NO!<br>
+<td><tt>floatValue = static_cast&lt;float&gt; (intValue);&nbsp;
+&nbsp; // YES!<br>
+ floatValue = intValue; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // NO!<br>
 </tt> </td>
 </tr>
 
 <tr>
-<td class="rationale">By this, the programmer indicates that he
-is aware of the different types involved and that the mix is
+<td class="rationale">By this, the programmer indicates that he is
+aware of the different types involved and that the mix is
 intentional.</td>
 </tr>
 </table>
@@ -1470,7 +1507,7 @@ intentional.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">46. Variables should be initialized where they
 are declared.</td>
@@ -1481,9 +1518,9 @@ are declared.</td>
 </tr>
 
 <tr>
-<td class="rationale">This ensures that variables are valid at
-any time. Sometimes it is impossible to initialize a variable to
-a valid value where it is declared: 
+<td class="rationale">This ensures that variables are valid at any
+time. Sometimes it is impossible to initialize a variable to a
+valid value where it is declared: 
 
 <p><tt>int x, y, z;<br>
  getCenter (&amp;x, &amp;y, &amp;z);<br>
@@ -1500,10 +1537,9 @@ initialized to some phony value.</p>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">47. Variables must never have dual
-meaning.</td>
+<td class="recom">47. Variables must never have dual meaning.</td>
 </tr>
 
 <tr>
@@ -1511,8 +1547,8 @@ meaning.</td>
 </tr>
 
 <tr>
-<td class="rationale">Enhance readability by ensuring all
-concepts are represented uniquely. Reduce chance of error by side
+<td class="rationale">Enhance readability by ensuring all concepts
+are represented uniquely. Reduce chance of error by side
 effects.</td>
 </tr>
 </table>
@@ -1522,7 +1558,7 @@ effects.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">48. Use of global variables should be
 minimized.</td>
@@ -1544,7 +1580,7 @@ file scope (static) variables.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">49. Class variables should never be declared
 public, except static const variables, for which we see no reason
@@ -1558,15 +1594,14 @@ for access through a get() method.</td>
 <tr>
 <td class="rationale">The concept of C++ information hiding and
 encapsulation is violated by public variables. Use private
-variables and access functions instead. One exception to this
-rule is when the class is essentially a data structure, with no
-behavior (equivalent to a C <tt>struct</tt>). In this case it is
-appropriate to make the class' instance variables public [2]. 
+variables and access functions instead. One exception to this rule
+is when the class is essentially a data structure, with no behavior
+(equivalent to a C <tt>struct</tt>). In this case it is appropriate
+to make the class' instance variables public [2]. 
 
-<p>Note that <i>struct</i>s are kept in C++ for compatibility
-with C only, and avoiding them increases the readability of the
-code by reducing the number of constructs used. Use a class
-instead.</p>
+<p>Note that <i>struct</i>s are kept in C++ for compatibility with
+C only, and avoiding them increases the readability of the code by
+reducing the number of constructs used. Use a class instead.</p>
 </td>
 </tr>
 </table>
@@ -1576,7 +1611,7 @@ instead.</p>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">50. Related variables of the same type can be
 declared in a common statement [3].<br>
@@ -1585,15 +1620,15 @@ statement.</td>
 </tr>
 
 <tr>
-<td><tt>float  x, y, z;<br>
-float  revenueJanuary, revenueFebruary, revenueMarch;</tt> </td>
+<td><tt>float&nbsp; x, y, z;<br>
+float&nbsp; revenueJanuary, revenueFebruary, revenueMarch;</tt>
+</td>
 </tr>
 
 <tr>
-<td class="rationale">The common requirement of having
-declarations on separate lines is not useful in the situations
-like the ones above. It enhances readability to group variables
-like this.</td>
+<td class="rationale">The common requirement of having declarations
+on separate lines is not useful in the situations like the ones
+above. It enhances readability to group variables like this.</td>
 </tr>
 </table>
 
@@ -1602,27 +1637,28 @@ like this.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">51. C++ pointers and references should have
-their reference symbol next to the variable name rather than to
-the type name [3].</td>
+<td class="recom">51. C++ pointers and references should have their
+reference symbol next to the variable name rather than to the type
+name [3].</td>
 </tr>
 
 <tr>
-<td><tt>float *x;    // NOT:  float* x;<br>
-int   &amp;y;    // NOT:  int&amp;   y;<br>
+<td><tt>float *x;&nbsp;&nbsp;&nbsp; // NOT:&nbsp; float* x;<br>
+int &nbsp; &amp;y;&nbsp;&nbsp;&nbsp; // NOT:&nbsp; int&amp; &nbsp;
+y;<br>
 </tt></td>
 </tr>
 
 <tr>
 <td class="rationale">It is debatable whether a pointer is a
-variable of a pointer type (float*  x) or a pointer to a given
-type (float  *x). Important in the recommendation given though is
-the fact that it is impossible to declare more than one pointer
-in a given statement using the first approach. I.e. float* x, y,
-z; is equivalent with float *x; float y; float z; The same goes
-for references.</td>
+variable of a pointer type (float*&nbsp; x) or a pointer to a given
+type (float&nbsp; *x). Important in the recommendation given though
+is the fact that it is impossible to declare more than one pointer
+in a given statement using the first approach. I.e. float* x, y, z;
+is equivalent with float *x; float y; float z; The same goes for
+references.</td>
 </tr>
 </table>
 
@@ -1631,15 +1667,15 @@ for references.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">52. The <tt>const</tt> keyword should be listed
 before the type name.</td>
 </tr>
 
 <tr>
-<td><tt>void f1 (const Widget *v)     // NOT: void f1 (Widget
-const *v)</tt> </td>
+<td><tt>void f1 (const Widget *v) &nbsp; &nbsp; // NOT: void f1
+(Widget const *v)</tt> </td>
 </tr>
 
 <tr>
@@ -1653,25 +1689,27 @@ former is more commonly used that should be the convention.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">53. Implicit test for <i>0</i> should not be
-used other than for boolean variables and pointers.</td>
+<td class="recom">53. Implicit test for <i>0</i> should not be used
+other than for boolean variables and pointers.</td>
 </tr>
 
 <tr>
-<td><tt>if (nLines != 0)    // NOT:   if (nLines)<br>
-if (value != 0.0)   // NOT:   if (value)</tt> </td>
+<td><tt>if (nLines != 0)&nbsp;&nbsp;&nbsp; // NOT:&nbsp;&nbsp; if
+(nLines)<br>
+if (value != 0.0)&nbsp;&nbsp; // NOT:&nbsp;&nbsp; if (value)</tt>
+</td>
 </tr>
 
 <tr>
-<td class="rationale">It is not necessarily defined by the
-compiler that ints and floats 0 are implemented as binary 0.
-Also, by using explicit test the statement give immediate clue of
-the type being tested. It is common also to suggest that pointers
-shouldn't test implicit for 0 either, i.e. <tt>if (line ==
-0)</tt> instead of <tt>if (line)</tt>. The latter is regarded as
-such a common practice in C/C++ however that it can be used.</td>
+<td class="rationale">It is not necessarily defined by the compiler
+that ints and floats 0 are implemented as binary 0. Also, by using
+explicit test the statement give immediate clue of the type being
+tested. It is common also to suggest that pointers shouldn't test
+implicit for 0 either, i.e. <tt>if (line == 0)</tt> instead of
+<tt>if (line)</tt>. The latter is regarded as such a common
+practice in C/C++ however that it can be used.</td>
 </tr>
 </table>
 
@@ -1680,10 +1718,10 @@ such a common practice in C/C++ however that it can be used.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">54. Variables should be declared in the
-smallest scope possible.</td>
+<td class="recom">54. Variables should be declared in the smallest
+scope possible.</td>
 </tr>
 
 <tr>
@@ -1691,9 +1729,9 @@ smallest scope possible.</td>
 </tr>
 
 <tr>
-<td class="rationale">Keeping the operations on a variable within
-a small scope, it is easier to control the effects and side
-effects of the variable.</td>
+<td class="rationale">Keeping the operations on a variable within a
+small scope, it is easier to control the effects and side effects
+of the variable.</td>
 </tr>
 </table>
 
@@ -1704,17 +1742,18 @@ effects of the variable.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">55. Only loop control statements must be
-included in the <tt>for()</tt> construction.</td>
+<td class="recom">55. Only loop control statements must be included
+in the <tt>for()</tt> construction.</td>
 </tr>
 
 <tr>
-<td><tt>sum = 0;                   // NOT: for (i = 0, sum = 0; i
-&lt; 100; i++)<br>
- for (i = 0; i &lt; 100; i++)  //        sum += value[i];<br>
-  sum += value[i];</tt> </td>
+<td><tt>sum = 0; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; // NOT: for (i = 0, sum = 0; i &lt; 100; i++)<br>
+ for (i = 0; i &lt; 100; i++) &nbsp;// &nbsp; &nbsp; &nbsp;
+&nbsp;sum += value[i];<br>
+&nbsp; sum += value[i];</tt> </td>
 </tr>
 
 <tr>
@@ -1729,18 +1768,23 @@ contains.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">56. Loop variables should be initialized
 immediately before the loop.</td>
 </tr>
 
 <tr>
-<td><tt>isDone = false;       // NOT:   bool isDone = false;<br>
-while (!isDone) {     //          :<br>
-  :                   //        while (!isDone) {<br>
-}                     //          :<br>
-                                 }</tt> </td>
+<td><tt>isDone = false; &nbsp; &nbsp; &nbsp; // NOT: &nbsp; bool
+isDone = false;<br>
+while (!isDone) { &nbsp; &nbsp; // &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;:<br>
+&nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; // &nbsp; &nbsp; &nbsp;&nbsp; while (!isDone) {<br>
+} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; // &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; :<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</tt> </td>
 </tr>
 
 <tr>
@@ -1753,10 +1797,9 @@ while (!isDone) {     //          :<br>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">57. <tt>do-while</tt> loops can be
-avoided.</td>
+<td class="recom">57. <tt>do-while</tt> loops can be avoided.</td>
 </tr>
 
 <tr>
@@ -1765,15 +1808,14 @@ avoided.</td>
 
 <tr>
 <td class="rationale"><tt>do-while</tt> loops are less readable
-than ordinary <tt>while</tt> loops and <tt>for</tt> loops since
-the conditional is at the bottom of the loop. The reader must
-scan the entire loop in order to understand the scope of the
-loop. 
+than ordinary <tt>while</tt> loops and <tt>for</tt> loops since the
+conditional is at the bottom of the loop. The reader must scan the
+entire loop in order to understand the scope of the loop. 
 
 <p>In addition, <tt>do-while</tt> loops are not needed. Any
 <tt>do-while</tt> loop can easily be rewritten into a
-<tt>while</tt> loop or a <tt>for</tt> loop. Reducing the number
-of constructs used enhance readbility.</p>
+<tt>while</tt> loop or a <tt>for</tt> loop. Reducing the number of
+constructs used enhance readbility.</p>
 </td>
 </tr>
 </table>
@@ -1783,7 +1825,7 @@ of constructs used enhance readbility.</p>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">58. The use of <tt>break</tt> and
 <tt>continue</tt> in loops should be avoided.</td>
@@ -1794,9 +1836,9 @@ of constructs used enhance readbility.</p>
 </tr>
 
 <tr>
-<td class="rationale">These constructs can be compared to goto
-and they should only be used if they prove to have higher
-readability than their structured counterpart.</td>
+<td class="rationale">These constructs can be compared to goto and
+they should only be used if they prove to have higher readability
+than their structured counterpart.</td>
 </tr>
 </table>
 
@@ -1805,31 +1847,31 @@ readability than their structured counterpart.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">60. The form <tt>while(true)</tt> should be
-used for infinite loops.</td>
+<td class="recom">60. The form <tt>while(true)</tt> should be used
+for infinite loops.</td>
 </tr>
 
 <tr>
 <td><tt>while (true) {<br>
-  :<br>
+&nbsp; :<br>
  }<br>
 <br>
 for (;;) { // NO!<br>
-  :<br>
+&nbsp; :<br>
 }<br>
 <br>
 while (1) { // NO!<br>
-  :<br>
+&nbsp; :<br>
 }<br>
 </tt></td>
 </tr>
 
 <tr>
 <td class="rationale">Testing against 1 is neither necessary nor
-meaningful. The form <tt>for (;;)</tt> is not very readable, and
-it is not apparent that this actually is an infinite loop.</td>
+meaningful. The form <tt>for (;;)</tt> is not very readable, and it
+is not apparent that this actually is an infinite loop.</td>
 </tr>
 </table>
 
@@ -1840,26 +1882,25 @@ it is not apparent that this actually is an infinite loop.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">61. Complex conditional expressions must be
 avoided. Introduce temporary boolean variables instead [1].</td>
 </tr>
 
 <tr>
-<td><tt>if ((elementNo &lt; 0) || (elementNo &gt;
-maxElement)||<br>
-    elementNo == lastElement) {<br>
-  :<br>
+<td><tt>if ((elementNo &lt; 0) || (elementNo &gt; maxElement)||<br>
+&nbsp;&nbsp;&nbsp; elementNo == lastElement) {<br>
+&nbsp; :<br>
 }</tt> 
 
 <p>should be replaced by:</p>
 
-<p><tt>isFinished      = (elementNo &lt; 0) || (elementNo &gt;
-maxElement);<br>
+<p><tt>isFinished&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = (elementNo &lt;
+0) || (elementNo &gt; maxElement);<br>
 isRepeatedEntry = elementNo == lastElement;<br>
 if (isFinished || isRepeatedEntry) {<br>
-  :<br>
+&nbsp; :<br>
 }</tt></p>
 </td>
 </tr>
@@ -1876,7 +1917,7 @@ construction will be easier to read and to debug.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">62. The nominal case should be put in the
 <i>if</i>-part and the exception in the <i>else</i>-part of an if
@@ -1886,17 +1927,17 @@ statement [1].</td>
 <tr>
 <td><tt>isError = readFile (fileName);<br>
 if (!isError) {<br>
-  :<br>
+&nbsp; :<br>
 }<br>
 else {<br>
-  :<br>
+&nbsp; :<br>
 }</tt> </td>
 </tr>
 
 <tr>
-<td class="rationale">Makes sure that the exceptions don't
-obscure the normal path of execution. This is important for both
-the readability and performance.</td>
+<td class="rationale">Makes sure that the exceptions don't obscure
+the normal path of execution. This is important for both the
+readability and performance.</td>
 </tr>
 </table>
 
@@ -1905,22 +1946,23 @@ the readability and performance.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">63. The conditional should be put on a separate
 line.</td>
 </tr>
 
 <tr>
-<td><tt>if (isDone)              // NOT:  if (isDone)
-doCleanup();<br>
-  doCleanup();</tt> </td>
+<td><tt>if
+(isDone)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; // NOT:&nbsp; if (isDone) doCleanup();<br>
+&nbsp; doCleanup();</tt> </td>
 </tr>
 
 <tr>
-<td class="rationale">This is for debugging purposes. When
-writing on a single line, it is not apparent whether the test is
-really true or not.</td>
+<td class="rationale">This is for debugging purposes. When writing
+on a single line, it is not apparent whether the test is really
+true or not.</td>
 </tr>
 </table>
 
@@ -1929,22 +1971,22 @@ really true or not.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">64. Executable statements in conditionals must
-be avoided.</td>
+<td class="recom">64. Executable statements in conditionals must be
+avoided.</td>
 </tr>
 
 <tr>
 <td><tt>// Bad!<br>
 if (!(fileHandle = open (fileName, "w"))) {<br>
-   :<br>
+ &nbsp; :<br>
  }<br>
 <br>
  // Better!<br>
 fileHandle = open (fileName, "w");<br>
 if (!fileHandle) {<br>
-  :<br>
+&nbsp; :<br>
 }<br>
 </tt></td>
 </tr>
@@ -1963,7 +2005,7 @@ programmers new to C/C++.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">65. The use of magic numbers in the code should
 be avoided. Numbers other than <i>0</i> and <i>1</i> should be
@@ -1987,16 +2029,16 @@ method from which the constant can be accessed.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">66. Functions must always have the return value
 explicitly listed.</td>
 </tr>
 
 <tr>
-<td><tt>int getValue()     // NOT: getValue()<br>
+<td><tt>int getValue() &nbsp; &nbsp; // NOT: getValue()<br>
 {<br>
-  :<br>
+&nbsp; :<br>
 }<br>
 </tt> </td>
 </tr>
@@ -2004,8 +2046,8 @@ explicitly listed.</td>
 <tr>
 <td class="rationale">If not exlicitly listed, C++ implies
 <tt>int</tt> return value for functions. A programmer must never
-rely on this feature, since this might be confusing for
-programmers not aware of this artifact.</td>
+rely on this feature, since this might be confusing for programmers
+not aware of this artifact.</td>
 </tr>
 </table>
 
@@ -2014,7 +2056,7 @@ programmers not aware of this artifact.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">67. <tt>goto</tt> should not be used.</td>
 </tr>
@@ -2025,10 +2067,10 @@ programmers not aware of this artifact.</td>
 
 <tr>
 <td class="rationale">Goto statements violates the idea of
-structured code. Only in some very few cases (for instance
-breaking out of deeply nested structures) should goto be
-considered, and only if the alternative structured counterpart is
-proven to be less readable.</td>
+structured code. Only in some very few cases (for instance breaking
+out of deeply nested structures) should goto be considered, and
+only if the alternative structured counterpart is proven to be less
+readable.</td>
 </tr>
 </table>
 
@@ -2037,7 +2079,7 @@ proven to be less readable.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">68. "0" should be used instead of "NULL".</td>
 </tr>
@@ -2064,7 +2106,7 @@ library, but is made obsolete in C++.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">69. Basic indentation should be 4, can be 2 or
 3.</td>
@@ -2072,15 +2114,15 @@ library, but is made obsolete in C++.</td>
 
 <tr>
 <td><tt>for (i = 0; i &lt; nElements; i++)<br>
-  a[i] = 0;</tt> </td>
+&nbsp; a[i] = 0;</tt> </td>
 </tr>
 
 <tr>
-<td class="rationale">Indentation of 1 is to small to emphasize
-the logical layout of the code. Indentation larger than 4 makes
-deeply nested code difficult to read and increase the chance that
-the lines must be split. Choosing between indentation of 2, 3 and
-4,  2 and 4 are the more common, and 2 chosen to reduce the
+<td class="rationale">Indentation of 1 is to small to emphasize the
+logical layout of the code. Indentation larger than 4 makes deeply
+nested code difficult to read and increase the chance that the
+lines must be split. Choosing between indentation of 2, 3 and
+4,&nbsp; 2 and 4 are the more common, and 2 chosen to reduce the
 chance of splitting code lines.</td>
 </tr>
 </table>
@@ -2090,37 +2132,37 @@ chance of splitting code lines.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom" colspan="3">70. Block layout should be as
-illustrated in example 1 below (recommended) or example 2, and
-must not be as shown in example 3.</td>
+illustrated in example 1 below (recommended) or example 2, and must
+not be as shown in example 3.</td>
 </tr>
 
 <tr>
 <td width="33%"><tt>while (!done) {<br>
-  doSomething();<br>
-  done = moreToDo();<br>
+&nbsp; doSomething();<br>
+&nbsp; done = moreToDo();<br>
 }<br>
 </tt></td>
 <td width="33%"><tt>while (!done)<br>
 {<br>
-  doSomething();<br>
-  done = moreToDo();<br>
+&nbsp; doSomething();<br>
+&nbsp; done = moreToDo();<br>
 }<br>
 </tt></td>
 <td><tt>while (!done)<br>
-  {<br>
-    doSomething();<br>
-    done = moreToDo();<br>
-  }<br>
+&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; doSomething();<br>
+&nbsp;&nbsp;&nbsp; done = moreToDo();<br>
+&nbsp; }<br>
 </tt></td>
 </tr>
 
 <tr>
 <td colspan="3" class="rationale">Example 3 introduce an extra
-indentation level which doesn't emphasize the logical structure
-of the code as clearly as example 1 and 2. </td>
+indentation level which doesn't emphasize the logical structure of
+the code as clearly as example 1 and 2.&nbsp;</td>
 </tr>
 </table>
 
@@ -2129,7 +2171,7 @@ of the code as clearly as example 1 and 2. </td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">71. The <tt>class</tt> declarations should have
 the following form:</td>
@@ -2138,12 +2180,12 @@ the following form:</td>
 <tr>
 <td><tt>class SomeClass : public BaseClass<br>
 {<br>
-  public:<br>
-     ...<br>
-   protected:<br>
-     ...<br>
-   private:<br>
-     ...<br>
+&nbsp; public:<br>
+ &nbsp; &nbsp; ...<br>
+ &nbsp; protected:<br>
+ &nbsp; &nbsp; ...<br>
+ &nbsp; private:<br>
+ &nbsp; &nbsp; ...<br>
  }<br>
 </tt></td>
 </tr>
@@ -2159,7 +2201,7 @@ rule above.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">72. The function declarations should have the
 following form:</td>
@@ -2168,7 +2210,7 @@ following form:</td>
 <tr>
 <td><tt>void someMethod()<br>
  {<br>
-  ...<br>
+&nbsp; ...<br>
 }<br>
 </tt></td>
 </tr>
@@ -2184,7 +2226,7 @@ above.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">73. The <tt>if-else</tt> class of statements
 should have the following form:</td>
@@ -2192,30 +2234,30 @@ should have the following form:</td>
 
 <tr>
 <td><tt>if (condition) {<br>
-  statements;<br>
+&nbsp; statements;<br>
 } else {<br>
-   statements;<br>
+ &nbsp; statements;<br>
 }<br>
 <br>
 if (condition) {<br>
-  statements;<br>
+&nbsp; statements;<br>
 }<br>
 <br>
 if (condition) {<br>
-  statements;<br>
+&nbsp; statements;<br>
 }<br>
 else {<br>
-  statements;<br>
+&nbsp; statements;<br>
 }<br>
 <br>
 if (condition) {<br>
-  statements;<br>
+&nbsp; statements;<br>
 }<br>
 else if (condition) {<br>
-  statements;<br>
+&nbsp; statements;<br>
 }<br>
 else {<br>
-  statements;<br>
+&nbsp; statements;<br>
 }<br>
 </tt></td>
 </tr>
@@ -2234,7 +2276,7 @@ around.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">74. A <tt>for</tt> statement should have the
 following form:</td>
@@ -2242,7 +2284,7 @@ following form:</td>
 
 <tr>
 <td><tt>for (initialization; condition; update) {<br>
-  statements;<br>
+&nbsp; statements;<br>
 }<br>
 </tt></td>
 </tr>
@@ -2258,7 +2300,7 @@ above.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">75. An empty <tt>for</tt> statement should have
 the following form:</td>
@@ -2266,13 +2308,13 @@ the following form:</td>
 
 <tr>
 <td><tt>for (initialization; condition; update)<br>
-  ;</tt> </td>
+&nbsp; ;</tt> </td>
 </tr>
 
 <tr>
 <td class="rationale">This emphasize the fact that the for
-statement is empty and it makes it obvious for the reader that
-this is intentional. Empty loops should be avoided however.</td>
+statement is empty and it makes it obvious for the reader that this
+is intentional. Empty loops should be avoided however.</td>
 </tr>
 </table>
 
@@ -2281,7 +2323,7 @@ this is intentional. Empty loops should be avoided however.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">76. A <tt>while</tt> statement should have the
 following form:</td>
@@ -2289,7 +2331,7 @@ following form:</td>
 
 <tr>
 <td><tt>while (condition) {<br>
-  statements;<br>
+&nbsp; statements;<br>
 }<br>
 </tt></td>
 </tr>
@@ -2305,15 +2347,15 @@ above.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">77. A <tt>do-while</tt> statement should have
-the following form:</td>
+<td class="recom">77. A <tt>do-while</tt> statement should have the
+following form:</td>
 </tr>
 
 <tr>
 <td><tt>do {<br>
-  statements;<br>
+&nbsp; statements;<br>
 } while (condition);<br>
 </tt></td>
 </tr>
@@ -2329,7 +2371,7 @@ above.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">78. A <tt>switch</tt> statement should have the
 following form:</td>
@@ -2337,21 +2379,21 @@ following form:</td>
 
 <tr>
 <td><tt>switch (condition) {<br>
-  case ABC :<br>
-     statements;<br>
-    // Fallthrough<br>
+&nbsp; case ABC :<br>
+ &nbsp; &nbsp; statements;<br>
+&nbsp; &nbsp; // Fallthrough<br>
 <br>
-  case DEF :<br>
-     statements;<br>
-    break;<br>
+&nbsp; case DEF :<br>
+ &nbsp; &nbsp; statements;<br>
+&nbsp; &nbsp; break;<br>
 <br>
-  case XYZ :<br>
-     statements;<br>
-    break;<br>
+&nbsp; case XYZ :<br>
+ &nbsp; &nbsp; statements;<br>
+&nbsp; &nbsp; break;<br>
 <br>
-  default :<br>
-     statements;<br>
-    break;<br>
+&nbsp; default :<br>
+ &nbsp; &nbsp; statements;<br>
+&nbsp; &nbsp; break;<br>
 }<br>
 </tt></td>
 </tr>
@@ -2362,9 +2404,9 @@ indented relative to the switch statement as a whole. This makes
 the entire switch statement stand out. Note also the extra space
 before the <i>:</i> character. The explicit <i>Fallthrough</i>
 comment should be included whenever there is a case statement
-without a <tt>break</tt> statement. Leaving the <tt>break</tt>
-out is a common error, and it must be made clear that it is
-intentional when it is not there.</td>
+without a <tt>break</tt> statement. Leaving the <tt>break</tt> out
+is a common error, and it must be made clear that it is intentional
+when it is not there.</td>
 </tr>
 </table>
 
@@ -2373,7 +2415,7 @@ intentional when it is not there.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">79. A <tt>try-catch</tt> statement should have
 the following form:</td>
@@ -2381,10 +2423,10 @@ the following form:</td>
 
 <tr>
 <td><tt>try {<br>
-  statements;<br>
+&nbsp; statements;<br>
 }<br>
 catch (Exception exception) {<br>
-  statements;<br>
+&nbsp; statements;<br>
 }<br>
 </tt> </td>
 </tr>
@@ -2402,7 +2444,7 @@ statments.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">80. Single statement <tt>if-else</tt>,
 <tt>for</tt> or <tt>while</tt> statements can be written without
@@ -2411,23 +2453,23 @@ brackets.</td>
 
 <tr>
 <td><tt>if (condition)<br>
-   statement;<br>
+ &nbsp; statement;<br>
 <br>
 while (condition)<br>
-   statement;<br>
+ &nbsp; statement;<br>
 <br>
 for (initialization; condition; update)<br>
-   statement;<br>
+ &nbsp; statement;<br>
 <br>
 </tt></td>
 </tr>
 
 <tr>
 <td class="rationale">It is a common recommendation (Sun Java
-recommendation included) that brackets should always be used in
-all these cases. However, brackets are in general a language
-construct that groups several statements. Brackets are per
-definition superfluous on a single statement.</td>
+recommendation included) that brackets should always be used in all
+these cases. However, brackets are in general a language construct
+that groups several statements. Brackets are per definition
+superfluous on a single statement.</td>
 </tr>
 </table>
 
@@ -2436,7 +2478,7 @@ definition superfluous on a single statement.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">81. The function return type can be put in the
 left column immediately above the function name.</td>
@@ -2446,14 +2488,14 @@ left column immediately above the function name.</td>
 <td><tt>void<br>
 MyClass::myMethod (void)<br>
 {<br>
-  :<br>
+&nbsp; :<br>
 }</tt> </td>
 </tr>
 
 <tr>
 <td class="rationale">This makes it easier to spot function names
-within a file since one can assume that they all start in the
-first column.</td>
+within a file since one can assume that they all start in the first
+column.</td>
 </tr>
 </table>
 
@@ -2464,7 +2506,7 @@ first column.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">82.<br>
 - Conventional operators should be surrounded by a space
@@ -2477,20 +2519,27 @@ character.</td>
 </tr>
 
 <tr>
-<td><tt>a = (b + c) * d;            // NOT:   a=(b+c)*d<br>
-while (true) {              // NOT:   while(true) ...<br>
-doSomething (a, b, c, d);   // NOT:   doSomething (a,b,c,d);<br>
-case 100 :                  // NOT:   case 100:<br>
-for (i = 0; i &lt; 10; i++) {  // NOT:   for
+<td><tt>a = (b + c) *
+d;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// NOT:&nbsp;&nbsp; a=(b+c)*d<br>
+while (true)
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// NOT:&nbsp;&nbsp; while(true) ...<br>
+doSomething (a, b, c, d);&nbsp;&nbsp; // NOT:&nbsp;&nbsp;
+doSomething (a,b,c,d);<br>
+case 100
+:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; // NOT:&nbsp;&nbsp; case 100:<br>
+for (i = 0; i &lt; 10; i++) {&nbsp; // NOT:&nbsp;&nbsp; for
 (i=0;i&lt;10;i++){</tt> </td>
 </tr>
 
 <tr>
 <td class="rationale">Makes the individual components of the
-statements stand out. Enhances readability. It is difficult to
-give a complete list of the suggested use of whitespace in C++
-code. The examples above however should give a general idea of
-the intentions.</td>
+statements stand out. Enhances readability. It is difficult to give
+a complete list of the suggested use of whitespace in C++ code. The
+examples above however should give a general idea of the
+intentions.</td>
 </tr>
 </table>
 
@@ -2499,15 +2548,15 @@ the intentions.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">83. Method names should not be followed by a
 white space when it is followed by another name.</td>
 </tr>
 
 <tr>
-<td><tt>doSomething(currentFile);    // NOT:   doSomething
-(currentFile);</tt> </td>
+<td><tt>doSomething(currentFile);&nbsp;&nbsp;&nbsp; //
+NOT:&nbsp;&nbsp; doSomething (currentFile);</tt> </td>
 </tr>
 
 <tr>
@@ -2522,7 +2571,7 @@ white space when it is followed by another name.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">84. Logical units within a block should be
 separated by one blank line.</td>
@@ -2543,7 +2592,7 @@ space between logical units of a block.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">85. Methods should be separated by three blank
 lines.</td>
@@ -2554,8 +2603,8 @@ lines.</td>
 </tr>
 
 <tr>
-<td class="rationale">By making the space larger than space
-within a method, the methods will stand out within the file.</td>
+<td class="rationale">By making the space larger than space within
+a method, the methods will stand out within the file.</td>
 </tr>
 </table>
 
@@ -2564,21 +2613,21 @@ within a method, the methods will stand out within the file.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">86. Variables in declarations should be left
 aligned.</td>
 </tr>
 
 <tr>
-<td><tt>AsciiFile  *file;<br>
-int        nPoints;<br>
-float      x, y;</tt> </td>
+<td><tt>AsciiFile&nbsp; *file;<br>
+int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nPoints;<br>
+float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x, y;</tt> </td>
 </tr>
 
 <tr>
-<td class="rationale">Enhance readability. The variables are
-easier to spot from the types by alignment.</td>
+<td class="rationale">Enhance readability. The variables are easier
+to spot from the types by alignment.</td>
 </tr>
 </table>
 
@@ -2587,16 +2636,17 @@ easier to spot from the types by alignment.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">87. Use alignment wherever it enhances
 readability. Argument lists should have stacked arguments.</td>
 </tr>
 
 <tr>
-<td><tt>if      (a == lowValue)    compueSomething();<br>
+<td><tt>if&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (a ==
+lowValue)&nbsp;&nbsp;&nbsp; compueSomething();<br>
 else if (a == mediumValue) computeSomethingElse();<br>
-else if (a == highValue)   computeSomethingElseYet();<br>
+else if (a == highValue)&nbsp;&nbsp; computeSomethingElseYet();<br>
 <br>
 <br>
  runThisRoutine(int numNodes,<br>
@@ -2607,19 +2657,26 @@ else if (a == highValue)   computeSomethingElseYet();<br>
 }<br>
 <br>
 <br>
- value = (potential        * oilDensity)   / constant1 +<br>
-        (depth            * waterDensity) / constant2 +<br>
-        (zCoordinateValue * gasDensity)   / constant3;<br>
+ value = (potential&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *
+oilDensity)&nbsp;&nbsp; / constant1 +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(depth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+* waterDensity) / constant2 +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (zCoordinateValue *
+gasDensity)&nbsp;&nbsp; / constant3;<br>
 <br>
 <br>
- minPosition     = computeDistance (min,     x, y, z);<br>
+ minPosition&nbsp;&nbsp;&nbsp;&nbsp; = computeDistance
+(min,&nbsp;&nbsp;&nbsp;&nbsp; x, y, z);<br>
 averagePosition = computeDistance (average, x, y, z);<br>
 <br>
 <br>
  switch (value) {<br>
-  case PHASE_OIL   : strcpy (string, "Oil");   break;<br>
-  case PHASE_WATER : strcpy (string, "Water"); break;<br>
-  case PHASE_GAS   : strcpy (string, "Gas");   break;<br>
+&nbsp; case PHASE_OIL&nbsp;&nbsp; : strcpy (string,
+"Oil");&nbsp;&nbsp; break;<br>
+&nbsp; case PHASE_WATER : strcpy (string, "Water"); break;<br>
+&nbsp; case PHASE_GAS&nbsp;&nbsp; : strcpy (string,
+"Gas");&nbsp;&nbsp; break;<br>
 }</tt> </td>
 </tr>
 
@@ -2640,7 +2697,7 @@ clue.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">88. Tricky code should not be commented but
 rewritten!</td>
@@ -2662,7 +2719,7 @@ choices and an explicit logical structure.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">89. All comments should be written in
 english.</td>
@@ -2683,22 +2740,31 @@ the preferred language.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
-<td class="recom">90. Comments should be included relative to
-their position in the code.</td>
+<td class="recom">90. Comments should be included relative to their
+position in the code.</td>
 </tr>
 
 <tr>
-<td><tt>while (true) {          // NOT:    while (true) {<br>
-  // Do something       //         // Do something<br>
-  something();          //             something();<br>
-}                       //         }</tt> </td>
+<td><tt>while (true)
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+NOT:&nbsp;&nbsp;&nbsp; while (true) {<br>
+&nbsp; // Do something&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Do
+something<br>
+&nbsp;
+something();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+something();<br>
+}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</tt> </td>
 </tr>
 
 <tr>
-<td class="rationale">This is to avoid that the comments break
-the logical structure of the program.</td>
+<td class="rationale">This is to avoid that the comments break the
+logical structure of the program.</td>
 </tr>
 </table>
 
@@ -2707,7 +2773,7 @@ the logical structure of the program.</td>
    Rule
 ****************************************************************************
 -->
-<table class="rule" border width="100%">
+<table summary="" class="rule" border width="100%">
 <tr>
 <td class="recom">91. Add DoxyGen documentation comments.</td>
 </tr>
@@ -2735,10 +2801,10 @@ directed to<br>
 mailing list<br>
  or<br>
 the QuantLib administrator <a href=
-"mailto:ferdinando.ametrano@riskmap.it">Ferdinando Ametrano</a>.</p>
+"mailto:ferdinando.ametrano@riskmap.it">Ferdinando&nbsp;Ametrano</a>.</p>
 
 <script type="text/javascript" language="javascript" src=
-"http://ss.webring.yahoo.com/navbar?f=j&y=ametrano&u=98033809110220824">
+"http://ss.webring.yahoo.com/navbar?f=j&amp;y=ametrano&amp;u=98033809110220824">
 
 </script>
 </div>

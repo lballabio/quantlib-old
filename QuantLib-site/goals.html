@@ -28,9 +28,18 @@
 <meta http-equiv="Content-Style-Type" content="text/ccs">
 <meta http-equiv="Window-target" content="_top">
 <meta http-equiv="Content-Language" content="en">
-<link rel="stylesheet" href=
-"http://www.quantlib.org/styles/main.css" type="text/css">
+<link rel="stylesheet" href="styles/main.css" type="text/css">
 <link rev="made" href="mailto:ferdinando@ametrano.net">
+<script type="text/javascript">
+<!-- hiding
+
+if (self != window.top) {
+window.open(location.href);
+}
+
+// done hiding -->
+</script>
+
 <!--/includeHTML-->
 </head>
 <!--includeHTML file="qltablehead.inc"-->
@@ -45,13 +54,11 @@
 "QuantLib Logo"></div>
 
 <ul class="navlinklist">
-<li><a class="navlink" href="index.html">Home page</a></li>
+<li><a class="navlink" href="index.html">Home&nbsp;page</a></li>
 
 <li><a class="navlink" href="status.html">Project Status</a></li>
 
 <li><a class="navlink" href="docs.html">Documentation</a></li>
-
-<li><a class="navlink" href="goals.html">Goals</a></li>
 
 <li><a class="navlink" href="license.html">License</a></li>
 
@@ -63,7 +70,7 @@
 
 <ul>
 <li><a class="navlink" href=
-"http://sourceforge.net/projects/quantlib">Project page</a></li>
+"http://sourceforge.net/projects/quantlib">Project&nbsp;page</a></li>
 
 <li><a class="navlink" href=
 "http://sourceforge.net/mail/?group_id=12740">Mailing
@@ -78,7 +85,7 @@ lists</a></li>
 <li><a class="navlink" href="cvs.html">CVS</a></li>
 
 <li><a class="navlink" href=
-"http://sourceforge.net/bugs/?group_id=12740">Bug Report</a></li>
+"http://sourceforge.net/bugs/?group_id=12740">Bug&nbsp;Report</a></li>
 
 <li><a class="navlink" href=
 "http://sourceforge.net/patch/?group_id=12740">Patches</a></li>
@@ -93,8 +100,7 @@ Guidelines</a></li>
 <h3 class="navbartitle">General Resources</h3>
 
 <ul>
-<li><a class="navlink" href="lists.html">Lists of
-interest</a></li>
+<li><a class="navlink" href="lists.html">Lists of interest</a></li>
 </ul>
 
 <hr>
@@ -109,30 +115,13 @@ SourceForge, Open Source, CVS, etc.</a> </td>
 <td class="main"><!--/includeHTML-->
 <h2 class="center">Goals for release 1.0</h2>
 
-<p>The following targets are open for suggestions, corrections,
-and additions. Please consider using the QuantLib <a href=
+<p>The following targets are open for suggestions, corrections, and
+additions. Please consider using the QuantLib <a href=
 "http://lists.sourceforge.net/mailman/listinfo/quantlib-users">user</a>
 mailing list for proposal. Every proposal will be seriously
 considered, especially if volunteers show up to implement it.</p>
 
 <ol>
-<li>
-<h3>Platforms to be supported (OS and C++ compilers)</h3>
-
-<ul>
-<li>Windows32, Visual Studio 6 and Borland 5.5 (done)</li>
-
-<li>GNU/Linux, gcc (done)</li>
-
-<li>MacOS (PowerPC processors), Metrowerks CodeWarrior (currently
-broken)</li>
-
-<li>SUN Solaris (to do)</li>
-</ul>
-
-<p>Additional platform porting is welcomed.</p>
-</li>
-
 <li>
 <h3>The library core</h3>
 
@@ -238,8 +227,8 @@ function interface as bare minimum.</p>
 <li>
 <h3>Open interests</h3>
 
-<p>If enough work force is available, the following items could
-be considered for inclusion in the goals for the 1.0 release.</p>
+<p>If enough work force is available, the following items could be
+considered for inclusion in the goals for the 1.0 release.</p>
 
 <ul>
 <li>Historical quote database
@@ -253,29 +242,7 @@ be considered for inclusion in the goals for the 1.0 release.</p>
 etc.</li>
 </ul>
 
-<p> </p>
-</li>
-
-<li>
-<h3><a name="codingguidelines" id="codingguidelines">Coding
-guidelines</a></h3>
-
-<ul>
-<li><a href="style.html">QuantLib Programming Style
-Guidelines</a></li>
-
-<li>ISO Standard C++</li>
-
-<li>Lazy evaluation, that is avoid any computation unless
-necessary (e.g. for Black-Scholes options do not force greeks
-computation with value calculation)</li>
-
-<li>Special attention to hedge/scenario analysis computational
-requirements (e.g. avoid re-calculating what doesn't change as
-date schedules, etc.)</li>
-</ul>
-
-<p> </p>
+<p>&nbsp;</p>
 </li>
 </ol>
 
@@ -290,10 +257,10 @@ directed to<br>
 mailing list<br>
  or<br>
 the QuantLib administrator <a href=
-"mailto:ferdinando.ametrano@riskmap.it">Ferdinando Ametrano</a>.</p>
+"mailto:ferdinando.ametrano@riskmap.it">Ferdinando&nbsp;Ametrano</a>.</p>
 
 <script type="text/javascript" language="javascript" src=
-"http://ss.webring.yahoo.com/navbar?f=j&y=ametrano&u=98033809110220824">
+"http://ss.webring.yahoo.com/navbar?f=j&amp;y=ametrano&amp;u=98033809110220824">
 
 </script>
 </div>
