@@ -1,3 +1,7 @@
+2002-04-08 08:11  nando
+
+	* ChangeLog.txt (1.2): updated
+
 2002-04-08 07:51  nando
 
 	* ChangeLog.txt (1.1): added ChangeLog
