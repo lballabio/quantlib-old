@@ -153,10 +153,10 @@ extern "C"
         GaussianLowDiscrepancySequenceGenerator gldsg(ldsg);
 
         PathGenerator<GaussianRandomSequenceGenerator>
-            PseudoRandomPathGenerator(bs, timeGrid, grsg);
+            PseudoRandomPathGenerator(bs, timeGrid, grsg, false);
 
         PathGenerator<GaussianLowDiscrepancySequenceGenerator>
-            QuasiRandomPathGenerator(bs, timeGrid, gldsg);
+            QuasiRandomPathGenerator(bs, timeGrid, gldsg, true);
 
         Size j;
         Path myPath(timeGrid);
@@ -184,6 +184,81 @@ extern "C"
         EXCEL_END;
     }
 
+/*
+    LPXLOPER EXCEL_EXPORT xlBrownianBridge(XlfOper xlunderlying,
+                                          XlfOper xldividendYield,
+                                          XlfOper xlriskFree,
+                                          XlfOper xlrefDate,
+                                          XlfOper xltimes,
+                                          XlfOper xlvolatility,
+                                          XlfOper xlinterpolationType,
+                                          XlfOper xlsamples,
+                                          XlfOper xlgeneratorType,
+                                          XlfOper xlseed)
+    {
+        EXCEL_BEGIN;
+
+        double underlying = xlunderlying.AsDouble();
+        Date refDate = QlXlfOper(xlrefDate).AsDate();
+        Size samples = xlsamples.AsInt();
+
+        std::vector<Time> times = xltimes.AsDoubleVector();
+        TimeGrid timeGrid(times.begin(), times.end());
+        Size timeSteps = times.size();
+
+
+        RelinkableHandle<TermStructure> riskFreeTS =
+            QlXlfOper(xlriskFree).AsTermStructure(refDate);
+        RelinkableHandle<TermStructure> dividendTS =
+            QlXlfOper(xldividendYield).AsTermStructure(refDate);
+        RelinkableHandle<BlackVolTermStructure> blackVolTS =
+            QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+                                              xlinterpolationType.AsInt());
+
+        Handle<BlackScholesProcess> bs(new
+            BlackScholesProcess(riskFreeTS, dividendTS, blackVolTS,
+                                                        underlying));
+
+        int generatorType = xlgeneratorType.AsInt();
+        unsigned long mcSeed = xlseed.AsInt();
+        switch (generatorType) {
+            case 1:
+                UniformRandomSequenceGenerator rsg(timeSteps, mcSeed);
+                GaussianRandomSequenceGenerator grsg(rsg);
+                BrownianBridge<GaussianRandomSequenceGenerator>
+                    PseudoRandomBrownianBridge(bs, timeGrid, grsg);
+                BrownianBridge<GaussianRandomSequenceGenerator>::sample_type myPath;
+                Matrix result(timeSteps, samples);
+                for (Size j = 0; j < samples; j++) {
+                    myPath = PseudoRandomBrownianBridge.next().value;
+                    result[0][j] = underlying * QL_EXP(myPath[0]);
+                    for (Size i = 1; i < timeSteps; i++) {
+                        result[i][j] = result[i-1][j] * QL_EXP(myPath[i]);
+                    }
+                }
+                return XlfOper(timeSteps, samples, result.begin());
+                break;
+            case 2:
+                UniformLowDiscrepancySequenceGenerator ldsg(timeSteps);
+                GaussianLowDiscrepancySequenceGenerator gldsg(ldsg);
+                BrownianBridge<GaussianLowDiscrepancySequenceGenerator>
+                    QuasiRandomBrownianBridge(bs, timeGrid, gldsg);
+                BrownianBridge<GaussianLowDiscrepancySequenceGenerator>::sample_type myPath;
+                for (Size j = 0; j < samples; j++) {
+                    myPath = QuasiRandomBrownianBridge.next().value;
+                    result[0][j] = underlying * QL_EXP(myPath[0]);
+                    for (Size i = 1; i < timeSteps; i++) {
+                        result[i][j] = result[i-1][j] * QL_EXP(myPath[i]);
+                    }
+                return XlfOper(timeSteps, samples, result.begin());
+                break;
+            default:
+                throw Error("Unknown generator");
+            }
+
+        EXCEL_END;
+    }
+*/
     LPXLOPER EXCEL_EXPORT xlCovFromCorr(XlfOper xlmatrix,
                                         XlfOper xlvolatilities) {
         EXCEL_BEGIN;

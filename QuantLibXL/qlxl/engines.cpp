@@ -46,43 +46,38 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        Handle<AnalyticEuropeanEngine> engine(new
-            AnalyticEuropeanEngine);
-
-        VanillaOption::arguments* arguments =
-            dynamic_cast<VanillaOption::arguments*>(
-                engine->arguments());
-
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        arguments->payoff = Handle<Payoff>(
-            new PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
-                                   xlstrike.AsDouble()));
-        arguments->underlying = xlunderlying.AsDouble();
-        arguments->dividendTS = QlXlfOper(xldividendYield).AsTermStructure(refDate);
-        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
-        arguments->exerciseType = Exercise::European;
-        Date maturityDate = QlXlfOper(xlmaturityDate).AsDate();
-        arguments->maturity = arguments->riskFreeTS->dayCounter().yearFraction(
-            refDate, maturityDate);
-        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
-            xlinterpolationType.AsInt());
+        Handle<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
 
-        arguments->validate();
-        engine->calculate();
+        Handle<BlackScholesStochasticProcess> stochProcess(new
+            BlackScholesStochasticProcess(
+                RelinkableHandle<Quote>(spot),
+                QlXlfOper(xldividendYield).AsTermStructure(refDate),
+                QlXlfOper(xlriskFree).AsTermStructure(refDate),
+                QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+                                                xlinterpolationType.AsInt())));
 
-        const VanillaOption::results* vResults =
-            dynamic_cast<const VanillaOption::results*>(
-                engine->results());
+        Handle<StrikedTypePayoff> payoff(new
+            PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
+                               xlstrike.AsDouble()));
+
+        Handle<Exercise> exercise(new
+            EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate()));
+
+        Handle<PricingEngine> engine(new AnalyticEuropeanEngine);
+
+        VanillaOption option(stochProcess, payoff, exercise, engine);
+
         double results[8];
-        results[0] = vResults->value;
-        results[1] = vResults->delta;
-        results[2] = vResults->gamma;
-        results[3] = vResults->theta;
-        results[4] = vResults->vega;
-        results[5] = vResults->rho;
-        results[6] = vResults->dividendRho;
-        results[7] = vResults->strikeSensitivity;
+        results[0] = option.NPV();
+        results[1] = option.delta();
+        results[2] = option.gamma();
+        results[3] = option.theta();
+        results[4] = option.vega();
+        results[5] = option.rho();
+        results[6] = option.dividendRho();
+        results[7] = option.strikeSensitivity();
 
         return XlfOper(1,8,results);
         EXCEL_END;
@@ -121,36 +116,33 @@ extern "C"
                                            nSamples, tolerance, 
                                            maxSamples, mcSeed));
 
-        VanillaOption::arguments* arguments =
-            dynamic_cast<VanillaOption::arguments*>(
-                engine->arguments());
+        // hard coded for the time being
+        int interpolationType = 2;
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        arguments->payoff = Handle<Payoff>(
-            new PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
-                                   xlstrike.AsDouble()));
-        arguments->underlying = xlunderlying.AsDouble();
-        arguments->dividendTS = QlXlfOper(xldividendYield).AsTermStructure(refDate);
-        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
-        arguments->exerciseType = Exercise::European;
-        Date maturityDate = QlXlfOper(xlmaturityDate).AsDate();
-        arguments->maturity = arguments->riskFreeTS->dayCounter().yearFraction(
-            refDate, maturityDate);
-        // hard coded for the time being
-        int interpolationType = 2;
-        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
-            interpolationType);
+        Handle<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
 
-        arguments->validate();
-        engine->calculate();
+        Handle<BlackScholesStochasticProcess> stochProcess(new
+            BlackScholesStochasticProcess(
+                RelinkableHandle<Quote>(spot),
+                QlXlfOper(xldividendYield).AsTermStructure(refDate),
+                QlXlfOper(xlriskFree).AsTermStructure(refDate),
+                QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+                                                interpolationType)));
 
-        const VanillaOption::results* vResults =
-            dynamic_cast<const VanillaOption::results*>(
-                engine->results());
+        Handle<StrikedTypePayoff> payoff(new
+            PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
+                               xlstrike.AsDouble()));
+
+        Handle<Exercise> exercise(new
+            EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate()));
+
+        VanillaOption option(stochProcess, payoff, exercise, engine);
+
         double results[2];
-        results[0] = vResults->value;
-        results[1] = vResults->errorEstimate;
+        results[0] = option.NPV();
+        results[1] = option.errorEstimate();
 
         return XlfOper(2, 1, results);
         EXCEL_END;
@@ -173,62 +165,54 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        Handle<AnalyticEuropeanEngine> baseEngine(new
-            AnalyticEuropeanEngine);
+        Handle<PricingEngine> baseEngine(new AnalyticEuropeanEngine);
 
         Handle<QuantoEngine<VanillaOption::arguments,
-                            VanillaOption::results> >
-            quantoEngine(new QuantoEngine<VanillaOption::arguments,
-                                          VanillaOption::results>(baseEngine));
-
-        QuantoOptionArguments<VanillaOption::arguments>* arguments =
-            dynamic_cast
-            <QuantoOptionArguments<VanillaOption::arguments>*>(
-            quantoEngine->arguments());
+                            VanillaOption::results> > quantoEngine(new
+               QuantoEngine<VanillaOption::arguments,
+                            VanillaOption::results>(baseEngine));
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        arguments->payoff = Handle<Payoff>(
-            new PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
-                                   xlstrike.AsDouble()));
-        arguments->underlying = xlunderlying.AsDouble();
-        arguments->dividendTS = QlXlfOper(xldividendYield).AsTermStructure(refDate);
-        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
-        arguments->stoppingTimes = std::vector<Time>();
-        arguments->exerciseType = Exercise::European;
-        Date maturityDate = QlXlfOper(xlmaturityDate).AsDate();
-        arguments->maturity = arguments->riskFreeTS->dayCounter().yearFraction(
-            refDate, maturityDate);
-        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
-            xlinterpolationType.AsInt());
-        arguments->foreignRiskFreeTS =
-            QlXlfOper(xlforeignRiskFreeRate).AsTermStructure(refDate);
-        arguments->exchRateVolTS =
+        Handle<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
+
+        Handle<BlackScholesStochasticProcess> stochProcess(new
+            BlackScholesStochasticProcess(
+                RelinkableHandle<Quote>(spot),
+                QlXlfOper(xldividendYield).AsTermStructure(refDate),
+                QlXlfOper(xlriskFree).AsTermStructure(refDate),
+                QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+                                                xlinterpolationType.AsInt())));
+
+        Handle<StrikedTypePayoff> payoff(new
+            PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
+                               xlstrike.AsDouble()));
+
+        Handle<Exercise> exercise(new
+            EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate()));
+
+        QuantoVanillaOption quantoOption(
+            QlXlfOper(xlforeignRiskFreeRate).AsTermStructure(refDate),
             QlXlfOper(xlexchangeVolatility).AsBlackVolTermStructure(refDate,
-            xlinterpolationType.AsInt());
-        arguments->correlation = xlcorrelation.AsDouble();
+                                                  xlinterpolationType.AsInt()),
+            RelinkableHandle<Quote>(Handle<Quote>(new
+                SimpleQuote(xlcorrelation.AsDouble()))),
+            stochProcess,
+            payoff,
+            exercise,
+            quantoEngine);
 
-        arguments->validate();
-        quantoEngine->calculate();
-
-        const VanillaOption::results* vResults =
-            dynamic_cast<const VanillaOption::results*>(
-                quantoEngine->results());
         double results[10];
-        results[0] = vResults->value;
-        results[1] = vResults->delta;
-        results[2] = vResults->gamma;
-        results[3] = vResults->theta;
-        results[4] = vResults->vega;
-        results[5] = vResults->rho;
-        results[6] = vResults->dividendRho;
-
-        const QuantoOptionResults<VanillaOption::results>* qResults =
-            dynamic_cast<const QuantoOptionResults<VanillaOption::results>*>(
-                quantoEngine->results());
-        results[7] = qResults->qvega;
-        results[8] = qResults->qrho;
-        results[9] = qResults->qlambda;
+        results[0] = quantoOption.NPV();
+        results[1] = quantoOption.delta();
+        results[2] = quantoOption.gamma();
+        results[3] = quantoOption.theta();
+        results[4] = quantoOption.vega();
+        results[5] = quantoOption.rho();
+        results[6] = quantoOption.dividendRho();
+        results[7] = quantoOption.qvega();
+        results[8] = quantoOption.qrho();
+        results[9] = quantoOption.qlambda();
 
         return XlfOper(1,10,results);
         EXCEL_END;
@@ -248,52 +232,49 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        Handle<AnalyticEuropeanEngine> baseEngine(new
-            AnalyticEuropeanEngine);
-        Handle<ForwardEngine<VanillaOption::arguments,
-                             VanillaOption::results> >
-            forwardEngine(new ForwardEngine<VanillaOption::arguments,
-                                            VanillaOption::results>(baseEngine));
+        Handle<PricingEngine> baseEngine(new AnalyticEuropeanEngine);
 
-        ForwardOptionArguments<VanillaOption::arguments>*
-            arguments = dynamic_cast
-            <ForwardOptionArguments<VanillaOption::arguments>*>(
-            forwardEngine->arguments());
+        Handle<ForwardEngine<VanillaOption::arguments,
+                             VanillaOption::results> > forwardEngine(new
+               ForwardEngine<VanillaOption::arguments,
+                             VanillaOption::results>(baseEngine));
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
-        arguments->underlying = xlunderlying.AsDouble();
+        Handle<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
+
+        Handle<BlackScholesStochasticProcess> stochProcess(new
+            BlackScholesStochasticProcess(
+                RelinkableHandle<Quote>(spot),
+                QlXlfOper(xldividendYield).AsTermStructure(refDate),
+                QlXlfOper(xlriskFree).AsTermStructure(refDate),
+                QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+                                                xlinterpolationType.AsInt())));
+
         // dummy strike
         // ForwardOptionParameter should not include strike
-        arguments->payoff = Handle<Payoff>(
-            new PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
-                                   arguments->underlying));
-        arguments->moneyness = xlmoneyness.AsDouble();
-        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(refDate);
-        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
-        arguments->resetDate = QlXlfOper(xlresetDate).AsDate();
-        arguments->stoppingTimes = std::vector<Time>();
-        arguments->exerciseType = Exercise::European;
-        Date maturityDate = QlXlfOper(xlmaturityDate).AsDate();
-        arguments->maturity = arguments->riskFreeTS->dayCounter().yearFraction(
-            refDate, maturityDate);
-        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
-            xlinterpolationType.AsInt());
+        Handle<StrikedTypePayoff> payoff(new
+            PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
+                               xlunderlying.AsDouble()));
 
-        arguments->validate();
-        forwardEngine->calculate();
+        Handle<Exercise> exercise(new
+            EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate()));
 
-        const VanillaOption::results* vResults =
-            dynamic_cast<const VanillaOption::results*>(
-                forwardEngine->results());
+        ForwardVanillaOption option(xlmoneyness.AsDouble(),
+                                    QlXlfOper(xlresetDate).AsDate(),
+                                    stochProcess,
+                                    payoff,
+                                    exercise,
+                                    forwardEngine);
+
         double results[7];
-        results[0] = vResults->value;
-        results[1] = vResults->delta;
-        results[2] = vResults->gamma;
-        results[3] = vResults->theta;
-        results[4] = vResults->vega;
-        results[5] = vResults->rho;
-        results[6] = vResults->dividendRho;
+        results[0] = option.NPV();
+        results[1] = option.delta();
+        results[2] = option.gamma();
+        results[3] = option.theta();
+        results[4] = option.vega();
+        results[5] = option.rho();
+        results[6] = option.dividendRho();
 
         return XlfOper(1,7,results);
         EXCEL_END;
@@ -315,56 +296,50 @@ extern "C"
     {
         EXCEL_BEGIN;
 
-        Handle<AnalyticEuropeanEngine> baseEngine(new
-            AnalyticEuropeanEngine);
+        Handle<PricingEngine> baseEngine(new AnalyticEuropeanEngine);
 
         Handle<ForwardPerformanceEngine<VanillaOption::arguments,
-                                        VanillaOption::results> >
-            forwardPerformanceEngine(
-                new ForwardPerformanceEngine<VanillaOption::arguments,
-                                             VanillaOption::results>(
-                    baseEngine));
-
-        ForwardOptionArguments<VanillaOption::arguments>*
-            arguments = dynamic_cast
-            <ForwardOptionArguments<VanillaOption::arguments>*>(
-            forwardPerformanceEngine->arguments());
+                                        VanillaOption::results> > engine(new
+               ForwardPerformanceEngine<VanillaOption::arguments,
+                                        VanillaOption::results>(baseEngine));
 
         Date refDate = QlXlfOper(xlrefDate).AsDate();
 
         // underlying is needed to interpolate on the vol surface
-        arguments->underlying = xlunderlying.AsDouble();
+        Handle<SimpleQuote> spot(new SimpleQuote(xlunderlying.AsDouble()));
+
+        Handle<BlackScholesStochasticProcess> stochProcess(new
+            BlackScholesStochasticProcess(
+                RelinkableHandle<Quote>(spot),
+                QlXlfOper(xldividendYield).AsTermStructure(refDate),
+                QlXlfOper(xlriskFree).AsTermStructure(refDate),
+                QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
+                                                xlinterpolationType.AsInt())));
+
         // dummy strike
-        // ForwardPerformanceOptionParameter should not include strike
-        arguments->payoff = Handle<Payoff>(
-            new PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
-                                   arguments->underlying));
-        arguments->moneyness = xlmoneyness.AsDouble();
-        arguments->dividendTS = QlXlfOper(xldividendYield) .AsTermStructure(refDate);
-        arguments->riskFreeTS = QlXlfOper(xlriskFree).AsTermStructure(refDate);
-        arguments->resetDate = QlXlfOper(xlresetDate).AsDate();
-        arguments->stoppingTimes = std::vector<Time>();
-        arguments->exerciseType = Exercise::European;
-        Date maturityDate = QlXlfOper(xlmaturityDate).AsDate();
-        arguments->maturity = arguments->riskFreeTS->dayCounter().yearFraction(
-            refDate, maturityDate);
-        arguments->volTS = QlXlfOper(xlvolatility).AsBlackVolTermStructure(refDate,
-            xlinterpolationType.AsInt());
+        // ForwardOptionParameter should not include strike
+        Handle<StrikedTypePayoff> payoff(new
+            PlainVanillaPayoff(QlXlfOper(xltype).AsOptionType(),
+                               xlunderlying.AsDouble()));
 
-        arguments->validate();
-        forwardPerformanceEngine->calculate();
+        Handle<Exercise> exercise(new
+            EuropeanExercise(QlXlfOper(xlmaturityDate).AsDate()));
 
-        const VanillaOption::results* vResults =
-            dynamic_cast<const VanillaOption::results*>(
-                forwardPerformanceEngine->results());
+        ForwardVanillaOption option(xlmoneyness.AsDouble(),
+                                    QlXlfOper(xlresetDate).AsDate(),
+                                    stochProcess,
+                                    payoff,
+                                    exercise,
+                                    engine);
+
         double results[7];
-        results[0] = vResults->value;
-        results[1] = vResults->delta;
-        results[2] = vResults->gamma;
-        results[3] = vResults->theta;
-        results[4] = vResults->vega;
-        results[5] = vResults->rho;
-        results[6] = vResults->dividendRho;
+        results[0] = option.NPV();
+        results[1] = option.delta();
+        results[2] = option.gamma();
+        results[3] = option.theta();
+        results[4] = option.vega();
+        results[5] = option.rho();
+        results[6] = option.dividendRho();
 
         return XlfOper(1,7,results);
         EXCEL_END;
