@@ -1,20 +1,20 @@
 
-update status page and insert that into DoxyGen documentation
-update coding standards (including file&classes DoxyGen requirements)
-insert QuantLib-site\tobeincludedindoxygen.txt into DoxyGen documentation
+revise mailing list welcome messages
+mailing lists custom page
+create quantlib-job mailing list
+create quantlib-papers mailing list
+create quantlib-finance mailing list
 
+update coding standards (including file&classes DoxyGen requirements)
+
+expand general resource section
 add references to ISDA and OMG documents
 
-mailing lists custom page
-expand general resource section
-
-FAQ entry about books
-FAQ entry about swig
-FAQ entry about doxygen
-FAQ entry about GPL compatibility
+add FAQ entry about books
+add FAQ entry about swig
+add FAQ entry about doxygen
+add FAQ entry about GPL compatibility
 
 anonymous ftp site
-quantlib-job mailing list
-quantlib-papers mailing list
-quantlib-finance mailing list
+
 quantlib.org mx server
