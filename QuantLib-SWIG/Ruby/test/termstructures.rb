@@ -33,7 +33,7 @@ class TermStructureTest < Test::Unit::TestCase
   def setup
     @calendar = Calendar.new('TARGET')
     @settlementDays = 2
-    today = @calendar.roll(Date::todaysDate)
+    today = @calendar.adjust(Date::todaysDate)
     settlement = @calendar.advance(today,@settlementDays,'days')
     depositData = [
       [1,  'month', 4.581],
@@ -58,7 +58,8 @@ class TermStructureTest < Test::Unit::TestCase
       SwapRateHelper.new(
         MarketElementHandle.new(SimpleMarketElement.new(rate/100)),
         years, "years", @settlementDays, 
-        @calendar, 'mf', 1, false, DayCounter.new('30/360'), 2)
+        @calendar, 1, 'unadjusted', DayCounter.new('30/360'),
+        2, 'mf')
     }
     @termStructure = PiecewiseFlatForward.new(today,settlement,
                                               deposits+swaps,

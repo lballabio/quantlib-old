@@ -91,11 +91,11 @@ typedef boost::shared_ptr<Index> XiborPtr;
 %rename(Xibor) XiborPtr;
 class XiborPtr : public boost::shared_ptr<Index> {
     #if defined(SWIGRUBY)
-    %rename("isAdjusted?")        isAdjusted;
+    %rename("isAdjusted?") isAdjusted;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("is-adjusted?")       isAdjusted;
-    %rename("rolling-convention") rollingConvention;
-    %rename("day-counter")        dayCounter;
+    %rename("is-adjusted?")            isAdjusted;
+    %rename("business-day-convention") businessDayConvention;
+    %rename("day-counter")             dayCounter;
     #endif
   public:
     %extend {
@@ -134,9 +134,9 @@ class XiborPtr : public boost::shared_ptr<Index> {
         bool isAdjusted() {
             return boost::dynamic_pointer_cast<Xibor>(*self)->isAdjusted();
         }
-        BusinessDayConvention rollingConvention() {
+        BusinessDayConvention businessDayConvention() {
             return boost::dynamic_pointer_cast<Xibor>(*self)
-                 ->rollingConvention();
+                 ->businessDayConvention();
         }
         DayCounter dayCounter() {
             return boost::dynamic_pointer_cast<Xibor>(*self)->dayCounter();

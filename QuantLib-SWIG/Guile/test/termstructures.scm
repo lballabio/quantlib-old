@@ -37,7 +37,7 @@
                        (30 5.96))))
       (let* ((real-today (Date-todays-date))
              (calendar (new-Calendar "TARGET"))
-             (today (Calendar-roll calendar real-today))
+             (today (Calendar-adjust calendar real-today))
              (settlement (Calendar-advance calendar today
                                            settlement-days "days"))
              (day-counter (new-DayCounter "act/360"))
@@ -56,7 +56,8 @@
                          (new-SwapRateHelper
                           (new-QuoteHandle (new-SimpleQuote (/ rate 100)))
                           years "years" settlement-days
-                          calendar "mf" 1 #f day-counter-2 2)))
+                          calendar 1 "unadjusted" day-counter-2
+                          2 "mf")))
                      swap-data))
              (term-structure (new-PiecewiseFlatForward
                               today settlement 

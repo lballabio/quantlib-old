@@ -126,6 +126,7 @@ using QuantLib::FixedRateCouponVector;
 
 std::vector<boost::shared_ptr<CashFlow> > 
 FixedRateCouponVector(const Schedule& schedule, 
+                      BusinessDayConvention paymentAdjustment,
                       const std::vector<Real>& nominals,
                       const std::vector<Rate>& couponRates,
                       const DayCounter& dayCount, 
@@ -135,13 +136,15 @@ FixedRateCouponVector(const Schedule& schedule,
 %inline %{
 std::vector<boost::shared_ptr<CashFlow> > 
 FloatingRateCouponVector(const Schedule& schedule,
+                         BusinessDayConvention paymentAdjustment,
                          const std::vector<Real>& nominals,
                          const XiborPtr& index, Integer fixingDays,
                          const std::vector<Spread>& spreads = 
                              std::vector<Spread>()) {
     boost::shared_ptr<Xibor> libor = 
         boost::dynamic_pointer_cast<Xibor>(index);
-    return QuantLib::FloatingRateCouponVector(schedule,nominals,libor,
+    return QuantLib::FloatingRateCouponVector(schedule,paymentAdjustment,
+                                              nominals,libor,
                                               fixingDays,spreads);
 }
 %}

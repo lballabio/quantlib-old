@@ -67,43 +67,9 @@ MapToString(BarrierType,barrierTypeFromString,barrierTypeToString);
 
 
 %{
-using QuantLib::CliquetOptionPricer;
-%}
-
-%rename(CliquetOption) CliquetOptionPricer;
-class CliquetOptionPricer {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("dividend-rho") dividendRho;
-    #endif
-  public:
-	CliquetOptionPricer(OptionType type, Real underlying, Real moneyness,
-                        const std::vector<Spread>& dividendYield,
-                        const std::vector<Rate>& riskFreeRate,
-                        const std::vector<Time>& times,
-                        const std::vector<Volatility>& volatility);
-	Real value() const;
-	Real delta() const;
-	Real gamma() const;
-	Real theta() const;
-	Real vega() const;
-	Real rho() const;
-	Real dividendRho() const;
-};
-
-
-%{
-using QuantLib::ContinuousGeometricAPO;
 using QuantLib::DiscreteGeometricAPO;
 using QuantLib::DiscreteGeometricASO;
 %}
-
-class ContinuousGeometricAPO {
-  public:
-	ContinuousGeometricAPO(OptionType type, Real underlying, Real strike,
-                           Spread dividendYield, Rate riskFreeRate, 
-                           Time residualTime, Volatility volatility);
-	Real value() const;
-};
 
 class DiscreteGeometricAPO {
   public:
@@ -121,27 +87,6 @@ class DiscreteGeometricASO {
                          const std::vector<Time>& timeDelays,
                          Volatility volatility);
 	Real value() const;
-};
-
-
-
-%{
-using QuantLib::DividendEuropeanOption;
-%}
-
-class DividendEuropeanOption {
-  public:
-	DividendEuropeanOption(OptionType type, Real underlying, Real strike,
-                           Spread dividendYield, Rate riskFreeRate, 
-                           Time residualTime, Volatility volatility,
-                           const std::vector<Spread>& dividends,
-                           const std::vector<Time>& times);
-	Real value() const;
-	Real delta() const;
-	Real gamma() const;
-	Real theta() const;
-	Real vega() const;
-	Real rho() const;
 };
 
 
@@ -304,7 +249,6 @@ using QuantLib::McDiscreteArithmeticAPO;
 using QuantLib::McDiscreteArithmeticASO;
 
 // multi asset
-using QuantLib::McBasket;
 using QuantLib::McMaxBasket;
 using QuantLib::McEverest;
 using QuantLib::McHimalaya;
@@ -343,29 +287,6 @@ class McDiscreteArithmeticASO {
                     const RelinkableHandle<BlackVolTermStructure>& volatility,
                     const std::vector<Time>& timeDelays,
                     bool controlVariate, BigInteger seed = 0);
-    Real value(Real tolerance,
-               Size maxSample = QL_MAX_INTEGER) const;
-    Real valueWithSamples(Size samples) const;
-    Real errorEstimate() const;
-};
-
-class McBasket {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("value-with-samples") valueWithSamples;
-    %rename("error-estimate")     errorEstimate;
-    #endif
-  public:
-    McBasket(OptionType type, 
-             const std::vector<Real>& underlying, 
-             Real strike, 
-             const std::vector<RelinkableHandle<TermStructure> >& 
-                                                             dividendYields,
-             const RelinkableHandle<TermStructure>& riskFreeRate,
-             const std::vector<RelinkableHandle<BlackVolTermStructure> >& 
-                                                             volatilities,
-             const Matrix& correlation,
-             Time residualTime, 
-             BigInteger seed = 0);
     Real value(Real tolerance,
                Size maxSample = QL_MAX_INTEGER) const;
     Real valueWithSamples(Size samples) const;

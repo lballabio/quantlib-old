@@ -69,23 +69,6 @@ class SimpleSwapPtr : public SwapPtr {
     #endif
   public:
     %extend {
-        SimpleSwapPtr(bool payFixedRate, const Date& startDate, 
-                      Integer n, TimeUnit unit, const Calendar& calendar, 
-                      BusinessDayConvention rollingConvention, Real nominal, 
-                      Frequency fixedFrequency, Rate fixedRate,
-                      bool fixedIsAdjusted, const DayCounter& fixedDayCount,
-                      Frequency floatingFrequency, const XiborPtr& index, 
-                      Integer indexFixingDays, Spread spread, 
-                      const RelinkableHandle<TermStructure>& termStructure) {
-            boost::shared_ptr<Xibor> libor = 
-                boost::dynamic_pointer_cast<Xibor>(index);
-            return new SimpleSwapPtr(
-                new SimpleSwap(payFixedRate, startDate, n, unit, calendar,
-                               rollingConvention, nominal, fixedFrequency, 
-                               fixedRate, fixedIsAdjusted, fixedDayCount, 
-                               floatingFrequency, libor, indexFixingDays, 
-                               spread, termStructure));
-        }
         SimpleSwapPtr(bool payFixedRate, Real nominal, 
                       const Schedule& fixedSchedule, Rate fixedRate,
                       const DayCounter& fixedDayCount,

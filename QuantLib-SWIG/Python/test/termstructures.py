@@ -25,7 +25,7 @@ def raiseFlag():
 class TermStructureTest(unittest.TestCase):
     def setUp(self):
         self.calendar = Calendar('TARGET')
-        today = self.calendar.roll(Date_todaysDate())
+        today = self.calendar.adjust(Date_todaysDate())
         self.settlementDays = 2
         settlement = self.calendar.advance(today,self.settlementDays,'days')
         deposits = [
@@ -43,7 +43,8 @@ class TermStructureTest(unittest.TestCase):
             SwapRateHelper(
                 QuoteHandle(SimpleQuote(rate/100)),
                 years, "years", self.settlementDays,
-                self.calendar, 'mf', 1, 0, DayCounter('30/360'), 2)
+                self.calendar, 1, 'unadjusted', DayCounter('30/360'),
+                2, 'mf')
             for (years,rate) in [ ( 1, 4.54),
                                   ( 5, 4.99),
                                   (10, 5.47),

@@ -35,8 +35,6 @@ Option::Type optionTypeFromString(std::string s) {
         return Option::Call;
     else if (s == "p" || s == "put")
         return Option::Put;
-    else if (s == "s" || s == "straddle")
-        return Option::Straddle;
     else
         QL_FAIL("unknown option type: "+s);
 }
@@ -47,8 +45,6 @@ std::string optionTypeToString(Option::Type t) {
         return "Call";
       case Option::Put:
         return "Put";
-      case Option::Straddle:
-        return "Straddle";
       default:
         QL_FAIL("unknown option type");
     }

@@ -43,12 +43,11 @@ class Schedule {
     Schedule(const Calendar& calendar, 
              const Date& startDate, const Date& endDate,
              Frequency frequency, BusinessDayConvention rollingConvention, 
-             bool isAdjusted, const Date& stubDate = Date(),
+             const Date& stubDate = Date(),
              bool startFromEnd = false, bool longFinal = false);
     Schedule(const std::vector<Date>&,
              const Calendar& calendar, 
-             BusinessDayConvention rollingConvention,
-             bool isAdjusted);
+             BusinessDayConvention rollingConvention);
     Size size() const;
     Date date(Size i) const;
     bool isRegular(Size i) const;

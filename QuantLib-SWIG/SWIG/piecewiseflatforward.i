@@ -135,27 +135,31 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
         SwapRateHelperPtr(
                 const RelinkableHandle<Quote>& rate,
                 Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar, 
-                BusinessDayConvention rollingConvention,
-                Frequency fixedFrequency, bool fixedIsAdjusted,
-                const DayCounter& fixedDayCount, Frequency floatingFrequency) {
+                const Calendar& calendar,
+                Frequency fixedFrequency,
+                BusinessDayConvention fixedConvention,
+                const DayCounter& fixedDayCount,
+                Frequency floatingFrequency,
+                BusinessDayConvention floatingConvention) {
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, n, units, settlementDays,
-                                   calendar, rollingConvention, 
-                                   fixedFrequency, fixedIsAdjusted, 
-                                   fixedDayCount, floatingFrequency));
+                                   calendar, fixedFrequency, fixedConvention,
+                                   fixedDayCount, floatingFrequency,
+                                   floatingConvention));
         }
         SwapRateHelperPtr(
                 Rate rate, Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar, 
-                BusinessDayConvention rollingConvention,
-                Frequency fixedFrequency, bool fixedIsAdjusted,
-                const DayCounter& fixedDayCount, Frequency floatingFrequency) {
+                const Calendar& calendar,
+                Frequency fixedFrequency,
+                BusinessDayConvention fixedConvention,
+                const DayCounter& fixedDayCount,
+                Frequency floatingFrequency,
+                BusinessDayConvention floatingConvention) {
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, n, units, settlementDays,
-                                   calendar, rollingConvention, 
-                                   fixedFrequency, fixedIsAdjusted, 
-                                   fixedDayCount, floatingFrequency));
+                                   calendar, fixedFrequency, fixedConvention,
+                                   fixedDayCount, floatingFrequency,
+                                   floatingConvention));
         }
     }
 };

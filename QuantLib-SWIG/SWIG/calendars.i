@@ -27,16 +27,12 @@ using QuantLib::Calendar;
 using QuantLib::Beijing;
 using QuantLib::Budapest;
 using QuantLib::Copenhagen;
-using QuantLib::Frankfurt;
 using QuantLib::Germany;
 using QuantLib::Helsinki;
 using QuantLib::HongKong;
 using QuantLib::Johannesburg;
 using QuantLib::JointCalendar;
 using QuantLib::Italy;
-using QuantLib::London;
-using QuantLib::Milan;
-using QuantLib::NewYork;
 using QuantLib::NullCalendar;
 using QuantLib::Oslo;
 using QuantLib::Riyadh;
@@ -159,9 +155,6 @@ class Calendar {
     Date adjust(const Date& d, 
                 BusinessDayConvention convention = QuantLib::Following,
                 const Date& origin = Date());
-    Date roll(const Date& d, 
-              BusinessDayConvention convention = QuantLib::Following,
-              const Date& origin = Date());
     Date advance(const Date& d, Integer n, TimeUnit unit,
                  BusinessDayConvention convention = QuantLib::Following);
     Date advance(const Date& d, const Period& period,
@@ -171,8 +164,6 @@ class Calendar {
             std::string s = StringFormatter::toLowercase(name);
             if (s == "target" || s == "euro" || s == "eur")
                 return new Calendar(TARGET());
-            else if (s == "newyork" || s == "ny" || s == "nyc")
-                return new Calendar(NewYork());
             else if (s == "unitedstates" || s == "us")
                 return new Calendar(UnitedStates(UnitedStates::Settlement));
             else if (s == "usexchange" || s == "nyexchange" || s == "nyse")
@@ -180,8 +171,6 @@ class Calendar {
             else if (s == "usbonds" || s == "usbond")
                 return new Calendar(
                                 UnitedStates(UnitedStates::GovernmentBond));
-            else if (s == "london" || s == "lon")
-                return new Calendar(London());
             else if (s == "unitedkingdom" || s == "uk")
                 return new Calendar(UnitedKingdom(UnitedKingdom::Settlement));
             else if (s == "ukexchange" || s == "londonexchange")
@@ -194,8 +183,6 @@ class Calendar {
                 return new Calendar(Budapest());
             else if (s == "copenhagen")
                 return new Calendar(Copenhagen());
-            else if (s == "frankfurt" || s == "fft")
-                return new Calendar(Frankfurt());
             else if (s == "germany")
                 return new Calendar(Germany(Germany::Settlement));
             else if (s == "germanyexchange")
@@ -214,8 +201,6 @@ class Calendar {
                 return new Calendar(Italy(Italy::Exchange));
             else if (s == "johannesburg" || s == "jhb")
                 return new Calendar(Johannesburg());
-            else if (s == "milan" || s == "mil")
-                return new Calendar(Milan());
             else if (s == "oslo")
                 return new Calendar(Oslo());
             else if (s == "riyadh")
