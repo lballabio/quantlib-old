@@ -24,8 +24,6 @@
 %include string.i
 
 %{
-#include <cstdlib>
-#include <string>
 using QuantLib::Date;
 using QuantLib::Day;
 using QuantLib::Year;
@@ -52,7 +50,7 @@ using QuantLib::IntegerFormatter;
 %}
 
 %{
-Weekday weekdayFromString(string s) {
+Weekday weekdayFromString(std::string s) {
     s = StringFormatter::toLowercase(s);
     if (s == "sun" || s == "sunday")
         return Sunday;
@@ -72,7 +70,7 @@ Weekday weekdayFromString(string s) {
         throw Error("unknown weekday");
 }
 
-string stringFromWeekday(Weekday w) {
+std::string stringFromWeekday(Weekday w) {
     switch (w) {
       case Sunday:    return "Sunday";
       case Monday:    return "Monday";
@@ -109,7 +107,7 @@ using QuantLib::Years;
 %}
 
 %{
-TimeUnit timeunitFromString(string s) {
+TimeUnit timeunitFromString(std::string s) {
     s = StringFormatter::toLowercase(s);
     if (s == "d" || s == "day" || s == "days")
         return Days;
@@ -123,7 +121,7 @@ TimeUnit timeunitFromString(string s) {
         throw Error("unknown time unit");
 }
 
-string stringFromTimeunit(TimeUnit u) {
+std::string stringFromTimeunit(TimeUnit u) {
     switch (u) {
       case Days:   return "days";
       case Weeks:  return "weeks";
@@ -151,8 +149,8 @@ class Period {
 };
 
 %addmethods Period {
-    string __str__() {
-        string s = IntegerFormatter::toString(self->length());
+    std::string __str__() {
+        std::string s = IntegerFormatter::toString(self->length());
         switch (self->units()) {
           case Days:
             return s + " day(s)";
@@ -165,7 +163,7 @@ class Period {
           default:
             return "Unknown period";
         }
-        QL_DUMMY_RETURN(string());
+        QL_DUMMY_RETURN(std::string());
     }
 }
 
@@ -216,7 +214,7 @@ class Date {
     int weekdayNumber() {
         return int(self->weekday());
     }
-    string __str__() {
+    std::string __str__() {
         return DateFormatter::toString(*self);
     }
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
@@ -231,7 +229,7 @@ class Date {
     #endif
     
     #if defined(SWIGPYTHON)
-    string __repr__() {
+    std::string __repr__() {
         return DateFormatter::toString(*self);
     }
     bool __nonzero__() {

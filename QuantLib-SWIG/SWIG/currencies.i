@@ -59,7 +59,7 @@ using QuantLib::KRW;
 using QuantLib::StringFormatter;
 using QuantLib::CurrencyFormatter;
 
-Currency currencyFromString(string s) {
+Currency currencyFromString(std::string s) {
     s = StringFormatter::toUppercase(s);
     if (s == "AUD")      return AUD;
     else if (s == "BGL") return BGL;
@@ -96,7 +96,7 @@ Currency currencyFromString(string s) {
     else throw Error("unknown currency");
 }
 
-string currencyToString(Currency c) {
+std::string currencyToString(Currency c) {
     return CurrencyFormatter::toString(c);
 }
 %}

@@ -21,12 +21,12 @@
 #define quantlib_string_i
 
 %{
-using std::string;
+#include <string>
 %}
 
 #if defined(SWIGPYTHON)
 
-%typemap(in) string {
+%typemap(in) std::string {
     if (PyString_Check($input)) {
         $1 = std::string(PyString_AsString($input));
     } else {
@@ -35,7 +35,7 @@ using std::string;
     }
 };
 
-%typemap(in) const string & (string temp) {
+%typemap(in) const std::string & (std::string temp) {
     if (PyString_Check($input)) {
         temp = std::string(PyString_AsString($input));
         $1 = &temp;
@@ -45,17 +45,17 @@ using std::string;
     }
 };
 
-%typemap(out) string {
+%typemap(out) std::string {
     $result = PyString_FromString($1.c_str());
 };
 
-%typemap(out) const string & {
+%typemap(out) const std::string & {
     $result = PyString_FromString($1->c_str());
 };
 
 #elif defined(SWIGRUBY)
 
-%typemap(in) string {
+%typemap(in) std::string {
     if (TYPE($input) == T_STRING) {
         $1 = std::string(STR2CSTR($input));
     } else {
@@ -63,7 +63,7 @@ using std::string;
     }
 };
 
-%typemap(in) const string & (string temp) {
+%typemap(in) const std::string & (std::string temp) {
     if (TYPE($input) == T_STRING) {
         temp = std::string(STR2CSTR($input));
         $1 = &temp;
@@ -72,17 +72,17 @@ using std::string;
     }
 };
 
-%typemap(out) string {
+%typemap(out) std::string {
     $result = rb_str_new2($1.c_str());
 };
 
-%typemap(out) const string & {
+%typemap(out) const std::string & {
     $result = rb_str_new2($1->c_str());
 };
 
 #elif defined(SWIGMZSCHEME)
 
-%typemap(in) string {
+%typemap(in) std::string {
     if (SCHEME_STRINGP($input)) {
         $1 = std::string(SCHEME_STR_VAL($input));
     } else {
@@ -90,7 +90,7 @@ using std::string;
     }
 };
 
-%typemap(in) const string & (string temp) {
+%typemap(in) const std::string & (std::string temp) {
     if (SCHEME_STRINGP($input)) {
         temp = std::string(SCHEME_STR_VAL($input));
         $1 = &temp;
@@ -99,11 +99,11 @@ using std::string;
     }
 };
 
-%typemap(out) string {
+%typemap(out) std::string {
     $result = scheme_make_string($1.c_str());
 };
 
-%typemap(out) const string & {
+%typemap(out) const std::string & {
     $result = scheme_make_string($1->c_str());
 };
 #endif

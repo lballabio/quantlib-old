@@ -21,17 +21,15 @@
 #define quantlib_vector_i
 
 %include types.i
-%include string.i
 
 %{
 #include <vector>
-using std::vector;
 using QuantLib::Null;
 %}
 
 #if defined(SWIGPYTHON)
 
-%typemap(in) vector<double> {
+%typemap(in) std::vector<double> {
     if (PyTuple_Check($input) || PyList_Check($input)) {
         Size size = (PyTuple_Check($input) ?
                      PyTuple_Size($input) :
@@ -60,7 +58,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(in) const vector<double>& (vector<double> temp) {
+%typemap(in) const std::vector<double>& (std::vector<double> temp) {
     if (PyTuple_Check($input) || PyList_Check($input)) {
         Size size = (PyTuple_Check($input) ?
                      PyTuple_Size($input) :
@@ -90,7 +88,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(out) vector<double> {
+%typemap(out) std::vector<double> {
     $result = PyTuple_New($1.size());
     for (Size i=0; i<$1.size(); i++)
         PyTuple_SetItem($result,i,PyFloat_FromDouble($1[i]));
@@ -98,7 +96,7 @@ using QuantLib::Null;
 
 
 
-%typemap(in) vector<int> {
+%typemap(in) std::vector<int> {
     if (PyTuple_Check($input) || PyList_Check($input)) {
         Size size = (PyTuple_Check($input) ?
                      PyTuple_Size($input) :
@@ -124,7 +122,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(in) const vector<int>& (vector<int> temp) {
+%typemap(in) const std::vector<int>& (std::vector<int> temp) {
     if (PyTuple_Check($input) || PyList_Check($input)) {
         Size size = (PyTuple_Check($input) ?
                      PyTuple_Size($input) :
@@ -151,16 +149,16 @@ using QuantLib::Null;
     }
 }
 
-%typemap(out) vector<int> {
+%typemap(out) std::vector<int> {
     $result = PyTuple_New($1.size());
     for (Size i=0; i<$1.size(); i++)
         PyTuple_SetItem($result,i,PyInt_FromLong(long($1[i])));
 }
 
 
-%define TypemapVector(T)
+%define TypemapStdVector(T)
 
-%typemap(in) vector<T> {
+%typemap(in) std::vector<T> {
     if (PyTuple_Check($input) || PyList_Check($input)) {
         Size size = (PyTuple_Check($input) ?
                      PyTuple_Size($input) :
@@ -185,7 +183,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(in) const vector<T>& (vector<T> temp) {
+%typemap(in) const std::vector<T>& (std::vector<T> temp) {
     if (PyTuple_Check($input) || PyList_Check($input)) {
         Size size = (PyTuple_Check($input) ?
                      PyTuple_Size($input) :
@@ -211,7 +209,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(out) vector<T> {
+%typemap(out) std::vector<T> {
     $result = PyTuple_New($1.size());
     for (Size i=0; i<$1.size(); i++) {
         T* ptr = new T($1[i]);
@@ -223,7 +221,7 @@ using QuantLib::Null;
 
 #elif defined(SWIGRUBY)
 
-%typemap(in) vector<double> {
+%typemap(in) std::vector<double> {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
         Size size = RARRAY($input)->len;
         $1.resize(size);
@@ -245,7 +243,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(in) const vector<double>& (vector<double> temp) {
+%typemap(in) const std::vector<double>& (std::vector<double> temp) {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
         Size size = RARRAY($input)->len;
         temp.resize(size);
@@ -268,14 +266,14 @@ using QuantLib::Null;
     }
 }
 
-%typemap(out) vector<double> {
+%typemap(out) std::vector<double> {
     $result = rb_ary_new2($1.size());
     for (Size i=0; i<$1.size(); i++)
         rb_ary_store($result,i,rb_float_new($1[i]));
 }
 
 
-%typemap(in) vector<int> {
+%typemap(in) std::vector<int> {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
         Size size = RARRAY($input)->len;
         $1.resize(size);
@@ -295,7 +293,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(in) const vector<int>& (vector<int> temp) {
+%typemap(in) const std::vector<int>& (std::vector<int> temp) {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
         Size size = RARRAY($input)->len;
         temp.resize(size);
@@ -316,16 +314,16 @@ using QuantLib::Null;
     }
 }
 
-%typemap(out) vector<int> {
+%typemap(out) std::vector<int> {
     $result = rb_ary_new2($1.size());
     for (Size i=0; i<$1.size(); i++)
         rb_ary_store($result,i,INT2NUM($1[i]));
 }
 
 
-%define TypemapVector(T)
+%define TypemapStdVector(T)
 
-%typemap(in) vector<T> {
+%typemap(in) std::vector<T> {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
         Size size = RARRAY($input)->len;
         $1.resize(size);
@@ -340,7 +338,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(in) const vector<T>& (vector<T> temp) {
+%typemap(in) const std::vector<T>& (std::vector<T> temp) {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
         Size size = RARRAY($input)->len;
         temp.resize(size);
@@ -356,7 +354,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(out) vector<T> {
+%typemap(out) std::vector<T> {
     $result = rb_ary_new2($1.size());
     for (Size i=0; i<$1.size(); i++) {
         T* x = new T($1[i]);
@@ -369,7 +367,7 @@ using QuantLib::Null;
 
 #elif defined(SWIGMZSCHEME)
 
-%typemap(in) vector<double> {
+%typemap(in) std::vector<double> {
     if (SCHEME_VECTORP($input)) {
         Size size = SCHEME_VEC_SIZE($input);
         $1.resize(size);
@@ -410,7 +408,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(in) const vector<double>& (vector<double> temp) {
+%typemap(in) const std::vector<double>& (std::vector<double> temp) {
     $1 = &temp;
     if (SCHEME_VECTORP($input)) {
         Size size = SCHEME_VEC_SIZE($input);
@@ -452,7 +450,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(out) vector<double> {
+%typemap(out) std::vector<double> {
     $result = scheme_make_vector($1.size(),scheme_undefined);
     Scheme_Object** els = SCHEME_VEC_ELS($result);
     for (Size i=0; i<$1.size(); i++)
@@ -460,7 +458,7 @@ using QuantLib::Null;
 }
 
 
-%typemap(in) vector<int> {
+%typemap(in) std::vector<int> {
     if (SCHEME_VECTORP($input)) {
         Size size = SCHEME_VEC_SIZE($input);
         $1.resize(size);
@@ -493,7 +491,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(in) const vector<int>& (vector<int> temp) {
+%typemap(in) const std::vector<int>& (std::vector<int> temp) {
     $1 = &temp;
     if (SCHEME_VECTORP($input)) {
         Size size = SCHEME_VEC_SIZE($input);
@@ -527,7 +525,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(out) vector<int> {
+%typemap(out) std::vector<int> {
     $result = scheme_make_vector($1.size(),scheme_undefined);
     Scheme_Object** els = SCHEME_VEC_ELS($result);
     for (Size i=0; i<$1.size(); i++)
@@ -535,8 +533,9 @@ using QuantLib::Null;
 }
 
 
-%define TypemapVector(T)
-%typemap(in) vector<T> {
+%define TypemapStdVector(T)
+
+%typemap(in) std::vector<T> {
     if (SCHEME_VECTORP($input)) {
         Size size = SCHEME_VEC_SIZE($input);
         $1.resize(size);
@@ -561,7 +560,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(in) const vector<T>& (vector<T> temp) {
+%typemap(in) const std::vector<T>& (std::vector<T> temp) {
     $1 = &temp;
     if (SCHEME_VECTORP($input)) {
         Size size = SCHEME_VEC_SIZE($input);
@@ -588,7 +587,7 @@ using QuantLib::Null;
     }
 }
 
-%typemap(out) vector<T> {
+%typemap(out) std::vector<T> {
     $result = scheme_make_vector($1.size(),scheme_undefined);
     Scheme_Object** els = SCHEME_VEC_ELS($result);
     for (Size i=0; i<$1.size(); i++) {

@@ -50,8 +50,8 @@ class DayCounter {
 
 // replicate the DayCounter interface
 %addmethods DayCounter {
-    DayCounter(const string& name) {
-        string s = StringFormatter::toLowercase(name);
+    DayCounter(const std::string& name) {
+        std::string s = StringFormatter::toLowercase(name);
         if (s == "act365" || s == "act/365")
             return new Actual365;
         else if (s == "act360" || s == "act/360")
@@ -73,12 +73,12 @@ class DayCounter {
             throw Error("Unknown day counter: " + name);
         QL_DUMMY_RETURN((DayCounter*)(0));
     }
-    string __str__() {
+    std::string __str__() {
         return self->name()+" day counter";
     }
 
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-    string __repr__() {
+    std::string __repr__() {
         return "DayCounter('"+self->name()+"')";
     }
     int __cmp__(const DayCounter& other) {

@@ -110,7 +110,7 @@ class Array {
 };
 
 %addmethods Array {
-    string __str__() {
+    std::string __str__() {
         return ArrayFormatter::toString(*self);
     }
 
@@ -252,8 +252,8 @@ class LexicographicalView {
     LexicographicalView(Array& a, Size xSize) {
         return new LexicographicalView(a.begin(),a.end(),xSize);
     }
-    string __str__() {
-        string s;
+    std::string __str__() {
+        std::string s;
         for (int j=0; j<static_cast<int>(self->ySize()); j++) {
     	    s += "\n";
             for (int i=0; i<static_cast<int>(self->xSize()); i++) {

@@ -35,7 +35,7 @@ using QuantLib::ModifiedFollowing;
 // typemap rolling conventions to corresponding strings
 
 %{
-RollingConvention rollconvFromString(string s) {
+RollingConvention rollconvFromString(std::string s) {
     s = StringFormatter::toLowercase(s);
     if (s == "f" || s == "fol" || s == "following")
         return Following;
@@ -49,7 +49,7 @@ RollingConvention rollconvFromString(string s) {
         throw Error("unknown rolling convention");
 }
 
-string rollconvToString(RollingConvention rc) {
+std::string rollconvToString(RollingConvention rc) {
     switch (rc) {
       case Following:
         return "Following";
@@ -110,8 +110,8 @@ class Calendar {
 
 
 %addmethods Calendar {
-    Calendar(const string& name) {
-        string s = StringFormatter::toLowercase(name);
+    Calendar(const std::string& name) {
+        std::string s = StringFormatter::toLowercase(name);
         if (s == "target" || s == "euro" || s == "eur")
             return new TARGET;
         else if (s == "newyork" || s == "ny" || s == "nyc")
@@ -140,12 +140,12 @@ class Calendar {
             throw Error("Unknown calendar: " + name);
         QL_DUMMY_RETURN((Calendar*)(0));
     }
-    string __str__() {
+    std::string __str__() {
         return self->name()+" calendar";
     }
 
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-    string __repr__() {
+    std::string __repr__() {
         return "Calendar('" + self->name() + "')";
     }
     int __cmp__(const Calendar& other) {

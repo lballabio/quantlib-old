@@ -1,7 +1,8 @@
+
 The C++ wrappers for the QuantLib-Python extension module are created
 by means of SWIG (Simple Wrapper Interface Generator) available from
 <http://www.swig.org/>. Features used in the QuantLib-Python
-interface files require version 1.3.11 or later of SWIG.
+interface files require version 1.3.12 or later of SWIG.
 
 The wrappers are generated on all supported platforms by running the
 makewrappers.py script. The script assumes that the SWIG executable
