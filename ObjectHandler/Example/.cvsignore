@@ -1,4 +1,6 @@
+bin
 build
 Example.plg
-example.log
-Example
+Example.dep
+Example.mak
+Makefile.win

@@ -1,0 +1,6 @@
+
+- consider a complete logging framework:
+    http://logging.apache.org/log4cxx/
+    http://sourceforge.net/projects/log4cpp/
+    http://sourceforge.net/projects/log4cplus/
+

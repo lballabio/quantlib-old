@@ -5,6 +5,7 @@
 #.silent
 
 # MAKE Options
+    MAKE = $(MAKE) -fmakefile.mak
 !ifdef __MT__
     MAKE = $(MAKE) -D__MT__
 !endif
@@ -25,11 +26,24 @@ objecthandler::
     $(MAKE)
     cd ..
 
-# the installation directive requires the OBJECT_HANDLER_DIR environment variable to
-# point to the installed version of ObjectHandler
+# Example
+example:: objecthandler
+    cd Example
+    $(MAKE) -DOBJECT_HANDLER_DIR=".."
+    cd ..
+
+# check
+check: example
+    cd Example
+    $(MAKE) -DOBJECT_HANDLER_DIR=".." check
+    cd ..
+
+# the installation directive requires the OBJECT_HANDLER_DIR environment
+# variable to point to the installed version of ObjectHandler
 install : inst
 inst:: objecthandler
-    if exist "$(OBJECT_HANDLER_DIR)\ObjectHandler" rmdir /S /Q "$(OBJECT_HANDLER_DIR)\ObjectHandler"
+    if exist "$(OBJECT_HANDLER_DIR)\ObjectHandler" \
+            rmdir /S /Q "$(OBJECT_HANDLER_DIR)\ObjectHandler"
     xcopy ObjectHandler\*.hpp "$(OBJECT_HANDLER_DIR)\ObjectHandler" /S /I
 
     if exist "$(OBJECT_HANDLER_DIR)\lib" rmdir /S /Q "$(OBJECT_HANDLER_DIR)\lib"
@@ -67,5 +81,8 @@ docs-ps:
 # Clean up
 clean::
     cd ObjectHandler
+    $(MAKE) clean
+    cd ..
+    cd Example
     $(MAKE) clean
     cd ..

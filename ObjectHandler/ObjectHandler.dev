@@ -9,17 +9,17 @@ CppCompiler=-D__GNUWIN32__ -W -fexceptions -DWIN32 -DNDEBUG -D_MBCS -D_LIB_@@_
 Includes=.
 Linker=
 Libs=
-UnitCount=11
+UnitCount=13
 Folders="Header Files","Source Files"
 ObjFiles=
 PrivateResource=ObjectHandler_private.rc
 ResourceIncludes=
 MakeIncludes=
 Icon=
-ExeOutput=lib
-ObjectOutput=build\MinGW
+ExeOutput=.\lib
+ObjectOutput=.\build\mingw
 OverrideOutput=1
-OverrideOutputName=ObjectHandler-mgw-0_0_1.a
+OverrideOutputName=libObjectHandler-mgw-0_0_1.a
 HostApplication=
 CommandLine=
 UseCustomMakefile=0
@@ -27,11 +27,11 @@ CustomMakefile=
 IncludeVersionInfo=1
 SupportXPThemes=0
 CompilerSet=0
-CompilerSettings=0000000000000000000000
+CompilerSettings=1000000000000000000000
 
 [Unit1]
 FileName=ObjectHandler\exception.cpp
-Folder=Source Files
+Folder="Source Files"
 Compile=1
 CompileCpp=1
 Link=1
@@ -41,7 +41,7 @@ BuildCmd=
 
 [Unit2]
 FileName=ObjectHandler\object.cpp
-Folder=Source Files
+Folder="Source Files"
 Compile=1
 CompileCpp=1
 Link=1
@@ -51,7 +51,7 @@ BuildCmd=
 
 [Unit3]
 FileName=ObjectHandler\objecthandler.cpp
-Folder=Source Files
+Folder="Source Files"
 Compile=1
 CompileCpp=1
 Link=1
@@ -61,7 +61,7 @@ BuildCmd=
 
 [Unit4]
 FileName=ObjectHandler\utilities.cpp
-Folder=Source Files
+Folder="Source Files"
 Compile=1
 CompileCpp=1
 Link=1
@@ -71,7 +71,7 @@ BuildCmd=
 
 [Unit5]
 FileName=ObjectHandler\autolink.hpp
-Folder=Header Files
+Folder="Header Files"
 Compile=1
 CompileCpp=1
 Link=1
@@ -81,7 +81,7 @@ BuildCmd=
 
 [Unit6]
 FileName=ObjectHandler\exception.hpp
-Folder=Header Files
+Folder="Header Files"
 Compile=1
 CompileCpp=1
 Link=1
@@ -91,7 +91,7 @@ BuildCmd=
 
 [Unit7]
 FileName=ObjectHandler\object.hpp
-Folder=Header Files
+Folder="Header Files"
 Compile=1
 CompileCpp=1
 Link=1
@@ -101,7 +101,7 @@ BuildCmd=
 
 [Unit8]
 FileName=ObjectHandler\objecthandler.hpp
-Folder=Header Files
+Folder="Header Files"
 Compile=1
 CompileCpp=1
 Link=1
@@ -110,8 +110,8 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
-FileName=ObjectHandler\objecthandlerversion.hpp
-Folder=Header Files
+FileName=ObjectHandler\objhandler.hpp
+Folder="Header Files"
 Compile=1
 CompileCpp=1
 Link=1
@@ -120,8 +120,38 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit10]
+FileName=ObjectHandler\objhandlerdefines.hpp
+Folder="Header Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit11]
+FileName=ObjectHandler\property.hpp
+Folder="Header Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit12]
+FileName=ObjectHandler\singleton.hpp
+Folder="Header Files"
+Compile=1
+CompileCpp=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit13]
 FileName=ObjectHandler\utilities.hpp
-Folder=Header Files
+Folder="Header Files"
 Compile=1
 CompileCpp=1
 Link=1
@@ -133,7 +163,7 @@ BuildCmd=
 Major=0
 Minor=0
 Release=1
-Build=1
+Build=0
 LanguageID=1033
 CharsetID=1252
 CompanyName=
@@ -146,24 +176,4 @@ OriginalFilename=ObjectHandler.a
 ProductName=ObjectHandler
 ProductVersion=0.1
 AutoIncBuildNr=0
-
-[Unit11]
-FileName=ObjectHandler\property.hpp
-CompileCpp=1
-Folder=Header Files
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit12]
-FileName=ObjectHandler\property.cpp
-CompileCpp=1
-Folder=Source Files
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
 
