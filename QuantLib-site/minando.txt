@@ -1,3 +1,5 @@
+$ID:$
+
 * CROSS PLATFORM
 		OS/compilers
 * C++
@@ -8,33 +10,37 @@
 * PYTHON
 		DB, SOAP, COM, CORBA
 		DB/independent
-* OGEETI DISTRIBUITI
-* FIXED INCOME
-		Caps, Floors, Swaptions	
-		single-factor models
-* GENERAL INSTRUMENT	
-		Bonds, Options, Exotics (Observers)
-		Market data (Observable)
-		Models/Engine pattern
-* PASSPORT
-* FINITE DIFFERENCE
-		Veloce rispetto agli alberi
-		Allows for 
-		Explicit, Implicit, Mixed, Control variate
-* MONTE CARLO
-		monodimensionale/multidimensionale
-		variance reduction techniques
-				antitetica
-				control variate
-				low-descrepancy sequences
-* ASSET ALLOCATION
-		ottimizzatori, linear complementarity
+* OGGETI DISTRIBUITI
+
+
 * CONVENZIONI DI MERCATO
 		calendari
 * INDEXES
 * TERM STRUCTURE
 		bootstrapping
 * CASH FLOW
-* ITERATORS
 * STRUCTURED PRODUCTS
-   
+* MONTE CARLO
+		monodimensionale/multidimensionale
+		variance reduction techniques
+				antitetica
+				control variate
+				low-descrepancy sequences
+* FIXED INCOME
+		Caps, Floors, Swaptions	
+		single-factor models
+* GENERAL INSTRUMENT	
+		Bonds, Options, Exotics (Observers)
+		Market data, database, network (Observable)
+		Models/Engine pattern
+* PASSPORT OPTION
+		gestione di strategie ottimali
+		
+* FINITE DIFFERENCE
+		veloce rispetto agli alberi
+		modelli a bassa dimensionalita'
+		esplicito, implicito, misto, control variate
+* ASSET ALLOCATION
+		ottimizzatori, 
+				linear complementarity
+				algoritmi genetici
