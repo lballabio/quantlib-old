@@ -86,6 +86,13 @@ UNO_SERVICES=?$UNO_USER_PACKAGES_CACHE/services.rdb
 
 <p>Please see also the standard gcc installation notes: <a href="http://gcc.gnu.org/install">Installing GCC</a></p>
 
+<p>NB: GCC's default configuration includes support for numerous platforms (such as Ada) which 1) are not required for QuantLibAddin and 2) may not build correctly, depending on your environment.  You can run configure with the --enable-languages option to restrict the build to only those platforms you require, e.g.</p>
+<pre>
+./configure \
+    --prefix=<installation directory> \
+    --enable-languages=c++
+</pre>
+
 <h2>Building QuantLibAddin for OOo Calc on Linux</h2>
 
 <p>All of the binaries to be linked into the QuantLib Calc Addin must be compiled with gcc 3.2.2:</p>
