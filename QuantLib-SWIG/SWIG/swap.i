@@ -36,11 +36,9 @@ class SwapHandle : public Handle<Instrument> {
     %extend {
         SwapHandle(const std::vector<Handle<CashFlow> >& firstLeg,
                    const std::vector<Handle<CashFlow> >& secondLeg,
-                   const RelinkableHandle<TermStructure>& termStructure,
-                   const std::string& isinCode = "unknown", 
-                   const std::string& description = "interest rate swap") {
-            return new SwapHandle(new Swap(firstLeg, secondLeg, termStructure,
-                                           isinCode, description));
+                   const RelinkableHandle<TermStructure>& termStructure) {
+            return new SwapHandle(new Swap(firstLeg, secondLeg, 
+                                           termStructure));
         }
         Date startDate() {
             %#if defined(HAVE_BOOST)
@@ -126,9 +124,8 @@ class SimpleSwapHandle : public SwapHandle {
                          RollingConvention rollingConvention, double nominal,
                          const FixedSwapLeg& fixedLeg,
                          const FloatingSwapLeg& floatingLeg,
-                         const RelinkableHandle<TermStructure>& termStructure, 
-                         const std::string& isinCode, 
-                         const std::string& description) {
+                         const RelinkableHandle<TermStructure>& 
+                                                             termStructure) {
             %#if defined(HAVE_BOOST)
             Handle<Xibor> libor = 
                  boost::dynamic_pointer_cast<Xibor>(floatingLeg.index);
@@ -143,7 +140,7 @@ class SimpleSwapHandle : public SwapHandle {
                     fixedLeg.fixedIsAdjusted, fixedLeg.fixedDayCount, 
                     floatingLeg.floatingFrequency, libor, 
                     floatingLeg.indexFixingDays, floatingLeg.spread, 
-                    termStructure, isinCode, description));
+                    termStructure));
         }
     #else
         SimpleSwapHandle(bool payFixedRate, const Date& startDate, 
@@ -153,10 +150,8 @@ class SimpleSwapHandle : public SwapHandle {
                          bool fixedIsAdjusted, const DayCounter& fixedDayCount,
                          int floatingFrequency, const XiborHandle& index, 
                          int indexFixingDays, Spread spread, 
-                         const RelinkableHandle<TermStructure>& termStructure, 
-                         const std::string& isinCode = "unknown", 
-                         const std::string& description = 
-                                                    "interest rate swap") {
+                         const RelinkableHandle<TermStructure>& 
+                                                            termStructure) {
             %#if defined(HAVE_BOOST)
             Handle<Xibor> libor = boost::dynamic_pointer_cast<Xibor>(index);
             %#else
@@ -167,7 +162,7 @@ class SimpleSwapHandle : public SwapHandle {
                                rollingConvention, nominal, fixedFrequency, 
                                fixedRate, fixedIsAdjusted, fixedDayCount, 
                                floatingFrequency, libor, indexFixingDays, 
-                               spread, termStructure, isinCode, description));
+                               spread, termStructure));
         }
         SimpleSwapHandle(bool payFixedRate, double nominal, 
                          const Schedule& fixedSchedule, Rate fixedRate,
@@ -175,10 +170,8 @@ class SimpleSwapHandle : public SwapHandle {
                          const Schedule& floatSchedule,
                          const XiborHandle& index,
                          int indexFixingDays, Spread spread,
-                         const RelinkableHandle<TermStructure>& termStructure,
-                         const std::string& isinCode = "unknown",
-                         const std::string& description = 
-                            "interest rate swap") {
+                         const RelinkableHandle<TermStructure>& 
+                                                          termStructure) {
             %#if defined(HAVE_BOOST)
             Handle<Xibor> libor = boost::dynamic_pointer_cast<Xibor>(index);
             %#else
@@ -187,8 +180,7 @@ class SimpleSwapHandle : public SwapHandle {
             return new SimpleSwapHandle(
                 new SimpleSwap(payFixedRate,nominal,fixedSchedule,fixedRate,
                                fixedDayCount,floatSchedule,libor,
-                               indexFixingDays,spread,termStructure,
-                               isinCode,description));
+                               indexFixingDays,spread,termStructure));
         }
     #endif
         Rate fairRate() {

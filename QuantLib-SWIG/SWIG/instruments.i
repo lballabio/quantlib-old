@@ -36,15 +36,12 @@ class Instrument {
     %rename("freeze!")      freeze;
     %rename("unfreeze!")    unfreeze;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("isin-code")    isinCode;
     %rename("expired?")     isExpired;
     %rename("recalculate!") recalculate;
     %rename("freeze!")      freeze;
     %rename("unfreeze!")    unfreeze;
     #endif
   public:
-    std::string isinCode() const;
-    std::string description() const;
     double NPV() const;
     bool isExpired() const;
     void recalculate();
@@ -53,24 +50,7 @@ class Instrument {
 };
 
 %template(Instrument) Handle<Instrument>;
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(">string")      Handle<Instrument>::__str__;
-#endif
 IsObservable(Handle<Instrument>);
-%extend Handle<Instrument> {
-	std::string __str__() {
-	    if (IsNull(*self))
-	        return "Null instrument";
-    	std::string isin = (*self)->isinCode();
-    	if (isin == "")
-    		isin = "unknown";
-    	std::string desc = (*self)->description();
-    	if (desc == "")
-    		desc = "no description available";
-    	return ("Instrument: "+isin+" ("+desc+")");
-	}
-}
-
 
 // pricing engine
 
@@ -94,10 +74,8 @@ typedef Handle<Instrument> StockHandle;
 class StockHandle : public Handle<Instrument> {
   public:
     %extend {
-        StockHandle(const RelinkableHandle<Quote>& quote,
-                    const std::string& isinCode = "unknown", 
-                    const std::string& description = "stock") {
-            return new StockHandle(new Stock(quote,isinCode,description));
+        StockHandle(const RelinkableHandle<Quote>& quote) {
+            return new StockHandle(new Stock(quote));
         }
     }
 };
