@@ -22,6 +22,26 @@
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
+STRING SAL_CALL QLAddin::qlVer() THROWDEF_RTE_IAE {
+    try {
+        std::string ret =  QL_VER();
+        return STRFROMANSI(ret.c_str());
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what());
+        THROW_RTE;
+    }
+}
+
+STRING SAL_CALL QLAddin::qlOhVer() THROWDEF_RTE_IAE {
+    try {
+        std::string ret =  QL_OH_VER();
+        return STRFROMANSI(ret.c_str());
+    } catch (const std::exception &e) {
+        QL_LOGMESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what());
+        THROW_RTE;
+    }
+}
+
 SEQSEQ(ANY) SAL_CALL QLAddin::qlQuery(
             const STRING& handleObject) THROWDEF_RTE_IAE {
     try {

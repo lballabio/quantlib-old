@@ -22,6 +22,20 @@
 using namespace ObjHandler;
 using namespace QuantLibAddin;
 
+DLLEXPORT LPXLOPER qlVer() {
+    static XLOPER xRet;
+    std::string ret = QL_VER();
+    setXLOPERString(xRet, ret.c_str());
+    return &xRet;
+}
+
+DLLEXPORT LPXLOPER qlOhVer() {
+    static XLOPER xRet;
+    std::string ret = QL_OH_VER();
+    setXLOPERString(xRet, ret.c_str());
+    return &xRet;
+}
+
 DLLEXPORT LPXLOPER qlQuery(char *handleObject) {
     try {
         Properties properties = QL_QUERY(std::string(handleObject));

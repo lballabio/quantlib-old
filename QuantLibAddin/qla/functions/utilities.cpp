@@ -16,10 +16,24 @@
 */
 
 #include <qla/functions/utilities.hpp>
+#include <ql/qldefines.hpp>
+#include <sstream>
 
 using namespace ObjHandler;
 
 namespace QuantLibAddin {
+
+    std::string QL_VER() {
+        std::ostringstream s;
+        s << "QuantLib version " << QL_VERSION;
+        return s.str();
+    }
+
+    std::string QL_OH_VER() {
+        std::ostringstream s;
+        s << "ObjectHandler version " << OBJHANDLER_VERSION;
+        return s.str();
+    }
 
     std::string QL_LOGFILE(
             const std::string &logFileName) {

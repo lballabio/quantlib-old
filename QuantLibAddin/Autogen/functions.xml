@@ -4,6 +4,30 @@
 <headeronly>true</headeronly>
 
 <function>
+<name>QL_VER</name>
+<codename>qlVer</codename>
+<desc>returns the version number of QuantLib</desc>
+<qlfunction></qlfunction>
+<constructor>false</constructor>
+<returnval>
+	<type>string</type>
+	<desc>QuantLib version number</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_OH_VER</name>
+<codename>qlOhVer</codename>
+<desc>returns the version number of ObjectHandler</desc>
+<qlfunction></qlfunction>
+<constructor>false</constructor>
+<returnval>
+	<type>string</type>
+	<desc>ObjectHandler version number</desc>
+</returnval>
+</function>
+
+<function>
 <name>QL_QUERY</name>
 <codename>qlQuery</codename>
 <desc>retrieve the properties of a given object</desc>

@@ -22,6 +22,10 @@
 
 namespace QuantLibAddin {
 
+    std::string QL_VER();
+
+    std::string QL_OH_VER();
+
     std::string QL_LOGFILE(
         const std::string &logFileName);
 

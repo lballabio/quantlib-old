@@ -32,6 +32,9 @@ int main() {
         QL_LOGFILE("quantlib.log");
         QL_LOGMESSAGE("begin example program");
 
+        cout << QL_VER() << endl;
+        cout << QL_OH_VER() << endl;
+
         double dividendYield = 0.00;
         double riskFreeRate = 0.06;
         double volatility = 0.20;

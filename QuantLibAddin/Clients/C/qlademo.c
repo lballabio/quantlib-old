@@ -38,6 +38,9 @@ int main() {
     QL_LOGFILE("quantlib.log");
     QL_LOGMESSAGE("begin example program");
 
+    printf("%s\n", QL_VER());
+    printf("%s\n", QL_OH_VER());
+
     if (QL_STOCHASTIC_PROCESS(
             "my_stochastic", 
             underlying, 

@@ -16,9 +16,20 @@
 */
 
 #include <qla/qladdin.hpp>
+
 extern "C" {
 #include <Addins/C/utilities.h>
 }
+
+    const char *QL_VER() {
+        static std::string ret = QuantLibAddin::QL_VER();
+        return ret.c_str();
+    }
+
+    const char *QL_OH_VER() {
+        static std::string ret = QuantLibAddin::QL_OH_VER();
+        return ret.c_str();
+    }
 
     const char *QL_LOGFILE(const char *logFileName) {
         std::string ret = QuantLibAddin::QL_LOGFILE(logFileName);
