@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<meta name="author" content="Ferdinando Ametrano">
+<meta name="copyright" content=
+"Ferdinando Ametrano (c) 2000, 2001">
+<meta name="doc-class" content="Draft">
+<title>Project Status</title>
+<meta name="description" content="QuantLib status">
+<meta name="keywords" content=
+"QuantLib, C++, library, finance, quantitative finance, quant, quants, analysts, developers">
+<!--includeHTML file="qlmeta.inc"-->
+<meta name="resource-type" content="document">
+<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta name="generator" content="HTML-Kit">
+<meta name="revisit-after" content="15 days">
+<meta name="classification" content="Personal">
+<meta name="robots" content="ALL">
+<meta name="distribution" content="Global">
+<meta name="rating" content="Safe For Kids">
+<meta name="doc-type" content="Web Page">
+<meta name="doc-rights" content="Public">
+<meta http-equiv="PICS-Label" content=
+'(PICS-1.1 "http://www.rsac.org/ratingsv01.html" l gen true comment "RSACi North America Server" for "http://www.ametrano.net/" on "2000.08.21T16:43-0800" r (n 0 s 0 v 0 l 0))'>
+<meta http-equiv="reply-to" content="ferdinando@ametrano.net">
+<meta http-equiv="Content-Type" content=
+"text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Style-Type" content="text/ccs">
+<meta http-equiv="Window-target" content="_top">
+<meta http-equiv="Content-Language" content="en">
+<link rel="stylesheet" href=
+"http://www.quantlib.org/styles/main.css" type="text/css">
+<link rev="made" href="mailto:ferdinando@ametrano.net">
+<!--/includeHTML-->
+</head>
+<body>
+<!--includeHTML file="qltablehead.inc"-->
+<table summary=
+"Layout table: the first cell contains the body of the page, the second a navigation bar."
+ class="layout">
+<tbody>
+<tr>
+<td class="navbar">
+<div class="center"><img src="images/QL-small.jpg" alt=
+"QuantLib Logo"></div>
+
+<ul class="navlinklist">
+<li><a class="navlink" href="index.html">Home page</a></li>
+
+<li><a class="navlink" href="status.html">Project Status</a></li>
+
+<li><a class="navlink" href="docs.html">Documentation</a></li>
+
+<li><a class="navlink" href="goals.html">Goals</a></li>
+
+<li><a class="navlink" href="license.html">License</a></li>
+
+<li><a class="navlink" href="group.html">QuantLib Group</a></li>
+</ul>
+
+<hr>
+<h3 class="navbartitle">Development</h3>
+
+<ul>
+<li><a class="navlink" href=
+"http://sourceforge.net/projects/quantlib">Project page</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/mail/?group_id=12740">Mailing
+lists</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/news/?group_id=12740">News</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/project/showfiles.php?group_id=12740">Download</a></li>
+
+<li><a class="navlink" href="cvs.html">CVS</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/bugs/?group_id=12740">Bug Report</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/patch/?group_id=12740">Patches</a></li>
+
+<li><a class="navlink" href="FAQ.html">Developer FAQ</a></li>
+
+<li><a class="navlink" href="style.html">Programming Style
+Guidelines</a></li>
+</ul>
+
+<hr>
+<h3 class="navbartitle">General Resources</h3>
+
+<ul>
+<li><a class="navlink" href="lists.html">Lists of
+interest</a></li>
+</ul>
+
+<hr>
+<div class="center"><strong>Hosted by</strong><br>
+ <a href="http://sourceforge.net"><img src=
+"http://sourceforge.net/sflogo.php?group_id=12740" width="88"
+height="31" border="0" alt="SourceForge Logo"></a></div>
+
+<br>
+ <a href="http://sourceforge.net/docman/?group_id=1">About
+SourceForge, Open Source, CVS, etc.</a> </td>
+<td class="main"><!--/includeHTML-->
+<h1 class="center">Project Status</h1>
+
+<p>The QuantLib project is at this time in <em>alpha</em> status
+(release 0.1.9). The next release (0.2) will mark the upgrade to
+<em>beta</em> status.</p>
+
+<p>A number of C++ classes and functions are currently available.
+They form a library which can be linked to any external project.
+Also, such classes are made available as a <a href=
+"http://www.python.org">Python</a> module by means of <a href=
+"http://swig.sourceforge.net">SWIG</a>. We welcome any
+contribution aimed to export the library towards other
+programming languages; however, the use of SWIG is to be
+preferred to hand-made approaches since it allows us to maintain
+a single set of SWIG interfaces. SWIG supports Java, Tcl, Perl5,
+Guile, MZScheme and Ruby besides Python. SWIG can be downloaded
+from <a href=
+"http://swig.sourceforge.net/download.html">http://swig.sourceforge.net/download.html</a>.</p>
+
+<h2 class="center">Operating Systems and compilers</h2>
+
+<p>QuantLib is implemented on the Linux platform using "gcc".</p>
+
+<p>On the Windows platforms using:</p>
+
+<ul>
+<li>Borland bcc compiler (version 5.5, command-line compiler and
+make tool, freely available from <a href=
+"http://www.borland.com/bcppbuilder/freecompiler/">http://www.borland.com/bcppbuilder/freecompiler/</a>);</li>
+
+<li>Microsoft Visual C++.</li>
+</ul>
+
+<p>On the MacOS platform QuantLib is compiled with MetroWerks
+CodeWarrior (available at <a href=
+"http://www.metrowerks.com/">http://www.metrowerks.com/</a>). The
+CodeWarrior project may work also on Windows and Linux, since
+CodeWarrior is available for those platform too. [The release
+0.1.9 is not available for MacOS/CodeWarrior]</p>
+
+<h2 class="center">QuantLib Overview</h2>
+
+<p>The folder structure of the sources reflects the organization
+of classes and functions into namespaces. These are in turn
+chosen to represent definite <em>packages</em> or <em>class
+families</em>: the former being groups of classes forming a
+framework for particular applications, e.g., the PDE package for
+partial differential equations; and the latter being sets of
+classes which inherit from a common base class or otherwise share
+a common functionality and interface, e.g., the TermStructures or
+Operators families, respectively.</p>
+
+<h3 class="center">The QuantLib foundation</h3>
+
+<p>The root namespace <tt>QuantLib</tt> contains what can be
+considered the <strong>QuantLib foundation</strong>, i.e., the
+core of abstract classes upon which the rest of the library is
+built. Among the available features, the following are of
+particular interest for the programmer who intends to use the
+library, or to extend it at any level.</p>
+
+<h4>Financial types</h4>
+
+<p>A number of types is provided, such as <tt>Rate</tt>,
+<tt>Spread</tt>, or <tt>DiscountFactor</tt>. All these types act
+as, and indeed are, <tt>double</tt>s.</p>
+
+<h4>Dates, day counting, and market holidays</h4>
+
+<p>The concrete class <tt>Date</tt> implements the concept of
+date. Its functionalities include:</p>
+
+<ul>
+<li>providing basic information such as weekday, day of the
+month, day of the year, month, and year;</li>
+
+<li>comparing two dates to determine whether they are equal, or
+which one is the earlier or later, or the difference between them
+expressed in days;</li>
+
+<li>incrementing or decrementing a date of a given number of
+days, or of a period expressed in weeks, months, or years.</li>
+</ul>
+
+<p>The abstract class <tt>DayCounter</tt> provides the interface
+to more advanced means of measuring the distance between two
+dates according to a given market convention, both as number of
+days of fraction of year. A number of such conventions is
+contained in the <tt>DayCounters</tt> namespace.</p>
+
+<p>Finally, the abstract class <tt>Calendar</tt> provides the
+interface for determining whether a date is a business day or a
+holiday for a given market, or incrementing/decrementing a date
+of a given number of business days. Again, a number of calendars
+is contained in the <tt>Calendars</tt> namespace.</p>
+
+<h4>Currencies</h4>
+
+<p>The abstract class <tt>Currency</tt> provides the interface to
+market conventions depending on the currency, such as the
+calendar used or the number of settlement days. A number of such
+currencies is contained in the <tt>Currencies</tt> namespace.</p>
+
+<h4>Instruments, Term Structures, and Volatility Surfaces</h4>
+
+<p>The abstract class <tt>Instrument</tt> provides the common
+interface through which concrete implementations of different
+financial instruments can be used. Also, two abstract classes are
+provided which are derived from <tt>Instrument</tt> and implement
+part of the interface, namely, <tt>PricedInstrument</tt> and
+<tt>OTCInstrument</tt> (where OTC stands for over-the-counter).
+Methods are declared for accessing the codes and value of the
+instrument, and for setting the term structure and volatility
+surface (see below) which will be used while pricing the
+instrument. The <tt>Stock</tt> class is provided as an example in
+the <tt>Instruments</tt> namespace, where concrete instrument
+classes will be stored.</p>
+
+<p>The abstract class <tt>TermStructure</tt> provides the common
+interface to concrete term structure models. Among others,
+methods are declared which return instantaneous forward rate,
+discount factor, and zero rate at a given date. Adapter classes
+are provided which already implement part of the required
+methods, thus allowing the programmer to define only the
+non-redundant part. The <tt>PiecewiseConstantForwards</tt> class
+is provided as an example in the <tt>TermStructures</tt>
+namespace.</p>
+
+<p>Finally, the abstract classes
+<tt>ForwardVolatilitySurface</tt> and
+<tt>SwaptionVolatilitySurface</tt> provide the common interface
+to concrete volatility models. No examples are available at this
+time.</p>
+
+<h4>1-Dimensional Solvers</h4>
+
+<p>The abstract class <tt>Solver1D</tt> provides the interface to
+a 1-dimensional solver which can find the zeroes of a given
+function. A number of such solvers is contained in the
+<tt>Solvers1D</tt> namespace.</p>
+
+<h3 class="center">The Finite Difference package</h3>
+
+<p>A framework for the resolution of partial differential
+equations, for the time being a very basic one, which have a
+finite-difference approach is included in the library (see the
+documentation for details.) This package is currently used to
+obtain the numerical solution for the the Black-Scholes equation
+in the case of american option.</p>
+
+<p>This framework is aimed to evolve into the first example of a
+general model interface. This interface will permit to price code
+with homogeneity among different theoretical models, e.g.
+Black-Scholes, interest-rate single-factor models, and numerical
+techniques such as trinomial tree, finite difference, etc.</p>
+
+<!--includeHTML file="qltablefoot.inc"-->
+<div class="endmatter">
+<hr>
+<div class="center">
+<p>Feedback and questions concerning this site and project can be
+directed to<br>
+ the <a href=
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-users">QuantLib-users</a>
+mailing list<br>
+ or<br>
+the QuantLib administrator <a href=
+"mailto:ferdinando.ametrano@riskmap.it">Ferdinando Ametrano</a>.</p>
+
+<script type="text/javascript" language="javascript" src=
+"http://ss.webring.yahoo.com/navbar?f=j&y=ametrano&u=98033809110220824">
+
+</script>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+<!--/includeHTML-->
+</body>
+</html>
+

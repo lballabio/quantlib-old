@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<meta name="author" content="Ferdinando Ametrano">
+<meta name="copyright" content=
+"Ferdinando Ametrano (c) 2000, 2001">
+<meta name="doc-class" content="Draft">
+<title>QuantLib: a C++ open source library for quantitative
+finance</title>
+<meta name="description" content=
+"QuantLib: a C++ library for financial quantitative analysts and developers">
+<meta name="keywords" content=
+"QuantLib, C++, library, finance, quantitative finance, quant, quants, analysts, developers, free software, opensource">
+<!--includeHTML file="qlmeta.inc"-->
+<meta name="resource-type" content="document">
+<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta name="generator" content="HTML-Kit">
+<meta name="revisit-after" content="15 days">
+<meta name="classification" content="Personal">
+<meta name="robots" content="ALL">
+<meta name="distribution" content="Global">
+<meta name="rating" content="Safe For Kids">
+<meta name="doc-type" content="Web Page">
+<meta name="doc-rights" content="Public">
+<meta http-equiv="PICS-Label" content=
+'(PICS-1.1 "http://www.rsac.org/ratingsv01.html" l gen true comment "RSACi North America Server" for "http://www.ametrano.net/" on "2000.08.21T16:43-0800" r (n 0 s 0 v 0 l 0))'>
+<meta http-equiv="reply-to" content="ferdinando@ametrano.net">
+<meta http-equiv="Content-Type" content=
+"text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Style-Type" content="text/ccs">
+<meta http-equiv="Window-target" content="_top">
+<meta http-equiv="Content-Language" content="en">
+<link rel="stylesheet" href=
+"http://www.quantlib.org/styles/main.css" type="text/css">
+<link rev="made" href="mailto:ferdinando@ametrano.net">
+<!--/includeHTML-->
+</head>
+<!--includeHTML file="qltablehead.inc"-->
+<body>
+<table summary=
+"Layout table: the first cell contains the body of the page, the second a navigation bar."
+ class="layout">
+<tbody>
+<tr>
+<td class="navbar">
+<div class="center"><img src="images/QL-small.jpg" alt=
+"QuantLib Logo"></div>
+
+<ul class="navlinklist">
+<li><a class="navlink" href="index.html">Home page</a></li>
+
+<li><a class="navlink" href="status.html">Project Status</a></li>
+
+<li><a class="navlink" href="docs.html">Documentation</a></li>
+
+<li><a class="navlink" href="goals.html">Goals</a></li>
+
+<li><a class="navlink" href="license.html">License</a></li>
+
+<li><a class="navlink" href="group.html">QuantLib Group</a></li>
+</ul>
+
+<hr>
+<h3 class="navbartitle">Development</h3>
+
+<ul>
+<li><a class="navlink" href=
+"http://sourceforge.net/projects/quantlib">Project page</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/mail/?group_id=12740">Mailing
+lists</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/news/?group_id=12740">News</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/project/showfiles.php?group_id=12740">Download</a></li>
+
+<li><a class="navlink" href="cvs.html">CVS</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/bugs/?group_id=12740">Bug Report</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/patch/?group_id=12740">Patches</a></li>
+
+<li><a class="navlink" href="FAQ.html">Developer FAQ</a></li>
+
+<li><a class="navlink" href="style.html">Programming Style
+Guidelines</a></li>
+</ul>
+
+<hr>
+<h3 class="navbartitle">General Resources</h3>
+
+<ul>
+<li><a class="navlink" href="lists.html">Lists of
+interest</a></li>
+</ul>
+
+<hr>
+<div class="center"><strong>Hosted by</strong><br>
+ <a href="http://sourceforge.net"><img src=
+"http://sourceforge.net/sflogo.php?group_id=12740" width="88"
+height="31" border="0" alt="SourceForge Logo"></a></div>
+
+<br>
+ <a href="http://sourceforge.net/docman/?group_id=1">About
+SourceForge, Open Source, CVS, etc.</a> </td>
+<td class="main"><!--/includeHTML-->
+<div class="center"><img src="images/QL.jpg" alt=
+"QuantLib Logo"></div>
+
+<h2 class="center">A C++ open source library for quantitative
+finance</h2>
+
+<p>The QuantLib project is aimed to provide a comprehensive
+software framework for quantitative finance. The goal is to
+provide a standard <em><a href=
+"http://www.gnu.org/philosophy/free-sw.html">free</a>/<a href=
+"http://www.opensource.org/">open source</a></em> library to
+quantitative analysts and developers for modeling, trading, and
+risk management in real-life.</p>
+
+<p>The core library is written in C++. It is also exported as a
+Python module. More extension modules are planned for other
+scripting languages, Excel, MatLab, etc.</p>
+
+<p>QuantLib plans to offer tools that are useful for both
+practical implementation, with features such as market
+conventions, solvers, PDEs, etc., and advanced modeling, e.g.,
+exotic options and interest rate models.</p>
+
+<p>QuantLib is meant to be used by academics and practitioners
+alike, eventually promoting a stronger interaction between the
+two.</p>
+
+<p>Finance is one area where well-written open-source projects
+could make a tremendous difference. Almost every financial
+institution needs a solid, time-effective, operative
+implementation of leading-edge pricing models and hedging tools.
+However, to get there, currently one is forced to re-invent the
+wheel every time. Even decade-old models with no market value,
+such as Black-Scholes formula (1973), still lack a standard
+implementation. As a consequences many good quants are wasting
+their time writing C++ classes which have been already written
+thousands of times.</p>
+
+<p>What would be the impact of an open-source standard financial
+library?</p>
+
+<ul>
+<li>The library could be exploited across different research
+institutions, banks, software companies, and so on. Being an
+open-source project, quants contributing to the library would not
+need to start from the beginning every time he/she moves on to
+another institution.</li>
+
+<li>Students could master a library that is actually used in the
+real world and contribute to it in a meaningful way. This would
+potentially place them in a privileged position on the job
+market.</li>
+
+<li>Researchers would have available at hand a framework which
+vastly reduces the amount of low-level work necessary to build
+models, so that they could focus on more complex and interesting
+problems.</li>
+
+<li>Small financial firms would not be forced to buy expensive
+software that can sometimes be more burdensome than liberating,
+but rather be able to engage in creating more innovative
+solutions that would make them more competitive on the
+market.</li>
+</ul>
+
+<p>The library would be appealing to quants in any organization:
+academia, consulting firms, software companies, and corporate
+institutions. The QuantLib <a href="license.html">license</a>
+grants the maximum degree of freedom in the use of the
+library.</p>
+
+<p><a href="http://www.riskmap.net">RiskMap</a>, a leading
+risk-management consulting firm in Italy, has agreed to commit a
+significant part of its resources to the development of this
+open-source library.</p>
+
+<p>As the project is in its very early stage, the time is right
+to help deciding the target goals and to start contributing to
+the library. The <a href="status.html">project-status</a> page
+gives a quick overview of the work in progress, while a complete
+<a href="docs.html">documentation</a> is also available. There is
+even a description of the <a href="goals.html">goals</a> for the
+release 1.0.</p>
+
+<p>A few resources have been setup with the help from QuantLib's
+generous host <a href=
+"http://sourceforge.net">SourceForge</a>:</p>
+
+<ul>
+<li>The <a href=
+"http://sourceforge.net/projects/quantlib">QuantLib project
+page</a> is the main gathering point for the activities.</li>
+
+<li>Anyone interested is invited to join one of the <a href=
+"http://sourceforge.net/mail/?group_id=12740">mailing
+lists</a>.</li>
+
+<li>Check the <a href=
+"http://sourceforge.net/news/?group_id=12740">latest news</a> for
+the most recent updates on the project.</li>
+
+<li>The released files (source code, binaries, documentation,
+etc.) are available at the <a href=
+"http://sourceforge.net/project/showfiles.php?group_id=12740">download
+page</a>.</li>
+
+<li>The QuantLib CVS, providing all the snapshots of the
+development, can be accessed directly (look at the <a href=
+"http://sourceforge.net/cvs/?group_id=12740">CVS page</a>; the
+module name is QuantLib), or through the <a href=
+"http://cvs.sourceforge.net/cgi-bin/cvsweb.cgi/?cvsroot=quantlib">
+CVS web interface</a>.</li>
+
+<li>To submit a bug report, please use the <a href=
+"http://sourceforge.net/bugs/?group_id=12740">Bug
+Tracker</a>.</li>
+
+<li>If you have patches you'd like to submit, the best way is to
+use the <a href=
+"http://sourceforge.net/patch/?group_id=12740">Patch
+Manager</a>.</li>
+</ul>
+
+<!--includeHTML file="qltablefoot.inc"-->
+<div class="endmatter">
+<hr>
+<div class="center">
+<p>Feedback and questions concerning this site and project can be
+directed to<br>
+ the <a href=
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-users">QuantLib-users</a>
+mailing list<br>
+ or<br>
+the QuantLib administrator <a href=
+"mailto:ferdinando.ametrano@riskmap.it">Ferdinando Ametrano</a>.</p>
+
+<script type="text/javascript" language="javascript" src=
+"http://ss.webring.yahoo.com/navbar?f=j&y=ametrano&u=98033809110220824">
+
+</script>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+<!--/includeHTML-->
+</body>
+</html>
+

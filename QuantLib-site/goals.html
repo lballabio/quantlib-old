@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<title>QuantLib goals</title>
+<meta name="author" content="Ferdinando Ametrano">
+<meta name="copyright" content=
+"Ferdinando Ametrano (c) 2000, 2001">
+<meta name="doc-class" content="Draft">
+<meta name="description" content="QuantLib documentation">
+<meta name="keywords" content=
+"QuantLib, C++, finance, quantitative finance, quant, quants, analysts, developers, free software, opensource, documentation">
+<!--includeHTML file="qlmeta.inc"-->
+<meta name="resource-type" content="document">
+<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta name="generator" content="HTML-Kit">
+<meta name="revisit-after" content="15 days">
+<meta name="classification" content="Personal">
+<meta name="robots" content="ALL">
+<meta name="distribution" content="Global">
+<meta name="rating" content="Safe For Kids">
+<meta name="doc-type" content="Web Page">
+<meta name="doc-rights" content="Public">
+<meta http-equiv="PICS-Label" content=
+'(PICS-1.1 "http://www.rsac.org/ratingsv01.html" l gen true comment "RSACi North America Server" for "http://www.ametrano.net/" on "2000.08.21T16:43-0800" r (n 0 s 0 v 0 l 0))'>
+<meta http-equiv="reply-to" content="ferdinando@ametrano.net">
+<meta http-equiv="Content-Type" content=
+"text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Style-Type" content="text/ccs">
+<meta http-equiv="Window-target" content="_top">
+<meta http-equiv="Content-Language" content="en">
+<link rel="stylesheet" href=
+"http://www.quantlib.org/styles/main.css" type="text/css">
+<link rev="made" href="mailto:ferdinando@ametrano.net">
+<!--/includeHTML-->
+</head>
+<!--includeHTML file="qltablehead.inc"-->
+<body>
+<table summary=
+"Layout table: the first cell contains the body of the page, the second a navigation bar."
+ class="layout">
+<tbody>
+<tr>
+<td class="navbar">
+<div class="center"><img src="images/QL-small.jpg" alt=
+"QuantLib Logo"></div>
+
+<ul class="navlinklist">
+<li><a class="navlink" href="index.html">Home page</a></li>
+
+<li><a class="navlink" href="status.html">Project Status</a></li>
+
+<li><a class="navlink" href="docs.html">Documentation</a></li>
+
+<li><a class="navlink" href="goals.html">Goals</a></li>
+
+<li><a class="navlink" href="license.html">License</a></li>
+
+<li><a class="navlink" href="group.html">QuantLib Group</a></li>
+</ul>
+
+<hr>
+<h3 class="navbartitle">Development</h3>
+
+<ul>
+<li><a class="navlink" href=
+"http://sourceforge.net/projects/quantlib">Project page</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/mail/?group_id=12740">Mailing
+lists</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/news/?group_id=12740">News</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/project/showfiles.php?group_id=12740">Download</a></li>
+
+<li><a class="navlink" href="cvs.html">CVS</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/bugs/?group_id=12740">Bug Report</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/patch/?group_id=12740">Patches</a></li>
+
+<li><a class="navlink" href="FAQ.html">Developer FAQ</a></li>
+
+<li><a class="navlink" href="style.html">Programming Style
+Guidelines</a></li>
+</ul>
+
+<hr>
+<h3 class="navbartitle">General Resources</h3>
+
+<ul>
+<li><a class="navlink" href="lists.html">Lists of
+interest</a></li>
+</ul>
+
+<hr>
+<div class="center"><strong>Hosted by</strong><br>
+ <a href="http://sourceforge.net"><img src=
+"http://sourceforge.net/sflogo.php?group_id=12740" width="88"
+height="31" border="0" alt="SourceForge Logo"></a></div>
+
+<br>
+ <a href="http://sourceforge.net/docman/?group_id=1">About
+SourceForge, Open Source, CVS, etc.</a> </td>
+<td class="main"><!--/includeHTML-->
+<h2 class="center">Goals for release 1.0</h2>
+
+<p>The following targets are open for suggestions, corrections,
+and additions. Please consider using the QuantLib <a href=
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-users">user</a>
+mailing list for proposal. Every proposal will be seriously
+considered, especially if volunteers show up to implement it.</p>
+
+<ol>
+<li>
+<h3>Platforms to be supported (OS and C++ compilers)</h3>
+
+<ul>
+<li>Windows32, Visual Studio 6 and Borland 5.5 (done)</li>
+
+<li>GNU/Linux, gcc (done)</li>
+
+<li>MacOS (PowerPC processors), Metrowerks CodeWarrior (currently
+broken)</li>
+
+<li>SUN Solaris (to do)</li>
+</ul>
+
+<p>Additional platform porting is welcomed.</p>
+</li>
+
+<li>
+<h3>The library core</h3>
+
+<h5>Interfaces</h5>
+
+<ul>
+<li>yield term structure</li>
+
+<li>financial instruments</li>
+
+<li>deals</li>
+
+<li>folder/portfolio/book levels of deal aggregation (strictly
+vertical inclusion)</li>
+
+<li>trade-group deal aggregation (horizontal cross section)</li>
+
+<li>volatility term structure for cap/floor and swaption</li>
+</ul>
+
+<h5>Generic Tools</h5>
+
+<ul>
+<li>date/time module</li>
+
+<li>one-dimensional solver</li>
+
+<li>one-dimensional optimizer</li>
+
+<li>multi-dimensional solver</li>
+
+<li>multi-dimensional optimizer</li>
+
+<li>linear algebra module</li>
+
+<li>PDE module</li>
+
+<li>statistical module</li>
+
+<li>Montecarlo module</li>
+</ul>
+
+<h5>Financial Tools</h5>
+
+<ul>
+<li>Black-Scholes analytic implementation</li>
+
+<li>Black-Scholes PDE implementation (for American and exotic
+options)</li>
+
+<li>Deposit, FRA, futures, swaps</li>
+
+<li>Deposit/FRA/futures/swap yield term structure</li>
+
+<li>Swaption</li>
+
+<li>Cap/floor</li>
+
+<li>Bond (IRR/duration)</li>
+
+<li>Treasury yield term structure
+(Nelson-Siegel/Vasichek-Fong)</li>
+
+<li>Short-rate models (BDT, BK, HW, etc.)</li>
+</ul>
+
+<p>As you may notice this list has a fixed-income bias, so please
+feel free to suggest additional FX and equity targets.</p>
+
+<p>The library is object-oriented, but an additional function
+interface will be designed.</p>
+</li>
+
+<li>
+<h3>Library documentation</h3>
+
+<p>Documentation of classes and interfaces should be included in
+the code, automatically extracted, in multiple formats (HTML,
+LaTeX, PDF). As of now we're using <a href=
+"http://www.stack.nl/~dimitri/doxygen/">Doxygen</a>.</p>
+</li>
+
+<li>
+<h3>Executable implementations</h3>
+
+<ul>
+<li>COM for porting to the Microsoft world (VB and Excel)</li>
+
+<li>Matlab/Octave extension</li>
+
+<li>Python module</li>
+</ul>
+
+<p>For porting to Python we're using <a href=
+"http://www.swig.org">SWIG</a>. This approach may easily help
+porting QuantLib to Perl, Tcl, etc,</p>
+
+<p>The library should be exported to the maximum possible degree,
+allowing for object manipulation when possible, providing the
+function interface as bare minimum.</p>
+</li>
+
+<li>
+<h3>Open interests</h3>
+
+<p>If enough work force is available, the following items could
+be considered for inclusion in the goals for the 1.0 release.</p>
+
+<ul>
+<li>Historical quote database
+(libors/swaps/equities/indexes/volatilities)</li>
+
+<li>Simple Object Access Protocol (SOAP)</li>
+
+<li>XML financial instrument definition (FpML?)</li>
+
+<li>High-level documentation explaining models, assumptions,
+etc.</li>
+</ul>
+
+<p> </p>
+</li>
+
+<li>
+<h3><a name="codingguidelines" id="codingguidelines">Coding
+guidelines</a></h3>
+
+<ul>
+<li><a href="style.html">QuantLib Programming Style
+Guidelines</a></li>
+
+<li>ISO Standard C++</li>
+
+<li>Lazy evaluation, that is avoid any computation unless
+necessary (e.g. for Black-Scholes options do not force greeks
+computation with value calculation)</li>
+
+<li>Special attention to hedge/scenario analysis computational
+requirements (e.g. avoid re-calculating what doesn't change as
+date schedules, etc.)</li>
+</ul>
+
+<p> </p>
+</li>
+</ol>
+
+<!--includeHTML file="qltablefoot.inc"-->
+<div class="endmatter">
+<hr>
+<div class="center">
+<p>Feedback and questions concerning this site and project can be
+directed to<br>
+ the <a href=
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-users">QuantLib-users</a>
+mailing list<br>
+ or<br>
+the QuantLib administrator <a href=
+"mailto:ferdinando.ametrano@riskmap.it">Ferdinando Ametrano</a>.</p>
+
+<script type="text/javascript" language="javascript" src=
+"http://ss.webring.yahoo.com/navbar?f=j&y=ametrano&u=98033809110220824">
+
+</script>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+<!--/includeHTML-->
+</body>
+</html>
+

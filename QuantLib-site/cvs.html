@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<meta name="author" content="Ferdinando Ametrano">
+<meta name="copyright" content=
+"Ferdinando Ametrano (c) 2000, 2001">
+<meta name="doc-class" content="Draft">
+<title>QuantLib's CVS Repository</title>
+<meta name="description" content="QuantLib status">
+<meta name="keywords" content=
+"QuantLib, CVS, C++, library, finance, quantitative finance, quant, quants, analysts, developers">
+<!--includeHTML file="qlmeta.inc"-->
+<meta name="resource-type" content="document">
+<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta name="generator" content="HTML-Kit">
+<meta name="revisit-after" content="15 days">
+<meta name="classification" content="Personal">
+<meta name="robots" content="ALL">
+<meta name="distribution" content="Global">
+<meta name="rating" content="Safe For Kids">
+<meta name="doc-type" content="Web Page">
+<meta name="doc-rights" content="Public">
+<meta http-equiv="PICS-Label" content=
+'(PICS-1.1 "http://www.rsac.org/ratingsv01.html" l gen true comment "RSACi North America Server" for "http://www.ametrano.net/" on "2000.08.21T16:43-0800" r (n 0 s 0 v 0 l 0))'>
+<meta http-equiv="reply-to" content="ferdinando@ametrano.net">
+<meta http-equiv="Content-Type" content=
+"text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Style-Type" content="text/ccs">
+<meta http-equiv="Window-target" content="_top">
+<meta http-equiv="Content-Language" content="en">
+<link rel="stylesheet" href=
+"http://www.quantlib.org/styles/main.css" type="text/css">
+<link rev="made" href="mailto:ferdinando@ametrano.net">
+<!--/includeHTML-->
+</head>
+<body>
+<!--includeHTML file="qltablehead.inc"-->
+<table summary=
+"Layout table: the first cell contains the body of the page, the second a navigation bar."
+ class="layout">
+<tbody>
+<tr>
+<td class="navbar">
+<div class="center"><img src="images/QL-small.jpg" alt=
+"QuantLib Logo"></div>
+
+<ul class="navlinklist">
+<li><a class="navlink" href="index.html">Home page</a></li>
+
+<li><a class="navlink" href="status.html">Project Status</a></li>
+
+<li><a class="navlink" href="docs.html">Documentation</a></li>
+
+<li><a class="navlink" href="goals.html">Goals</a></li>
+
+<li><a class="navlink" href="license.html">License</a></li>
+
+<li><a class="navlink" href="group.html">QuantLib Group</a></li>
+</ul>
+
+<hr>
+<h3 class="navbartitle">Development</h3>
+
+<ul>
+<li><a class="navlink" href=
+"http://sourceforge.net/projects/quantlib">Project page</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/mail/?group_id=12740">Mailing
+lists</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/news/?group_id=12740">News</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/project/showfiles.php?group_id=12740">Download</a></li>
+
+<li><a class="navlink" href="cvs.html">CVS</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/bugs/?group_id=12740">Bug Report</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/patch/?group_id=12740">Patches</a></li>
+
+<li><a class="navlink" href="FAQ.html">Developer FAQ</a></li>
+
+<li><a class="navlink" href="style.html">Programming Style
+Guidelines</a></li>
+</ul>
+
+<hr>
+<h3 class="navbartitle">General Resources</h3>
+
+<ul>
+<li><a class="navlink" href="lists.html">Lists of
+interest</a></li>
+</ul>
+
+<hr>
+<div class="center"><strong>Hosted by</strong><br>
+ <a href="http://sourceforge.net"><img src=
+"http://sourceforge.net/sflogo.php?group_id=12740" width="88"
+height="31" border="0" alt="SourceForge Logo"></a></div>
+
+<br>
+ <a href="http://sourceforge.net/docman/?group_id=1">About
+SourceForge, Open Source, CVS, etc.</a> </td>
+<td class="main"><!--/includeHTML-->
+<h1 class="center">QuantLib's CVS Repository</h1>
+
+<p>If you're new to CVS please check <a href=
+"http://sourceforge.net/docman/?group_id=1">SourceForge
+documentation</a> and our <a href="FAQ.html#cvs">FAQ</a>. For
+general (and more advanced) information consult the <a href=
+"http://cvsbook.red-bean.com/cvsbook.html#Introduction">free CVS
+Book</a>.</p>
+
+<p>Quantlib's CVS repository includes four modules:</p>
+
+<ul>
+<li>QuantLib (the library itself)</li>
+
+<li>QuantLib-Python (the Python extension)</li>
+
+<li>QuantLib-Ruby (the Ruby extension)</li>
+
+<li>QuantLib-site (this site HTML pages)</li>
+</ul>
+
+<p>Please note that QuantLib modules have capital Q and capital
+L.</p>
+
+<p>You can <a href=
+"http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/quantlib">browse
+the CVS tree</a>: this gives you a great view into the current
+status of the project's code. You may also view the complete
+histories of any file in the repository.</p>
+
+<h3>Anonymous CVS Access</h3>
+
+<p>The modules can be checked out through anonymous (pserver) CVS
+with the following instruction set. The module you wish to check
+out must be specified as the modulename. When prompted for a
+password for anonymous, simply press the Enter key.</p>
+
+<p>Unix:</p>
+
+<pre>
+export CVSROOT=:pserver:anonymous@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
+cvs login 
+cvs -z9 co -P modulename 
+</pre>
+
+<p>Win32:</p>
+
+<pre>
+SET CVSROOT=:pserver:anonymous@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
+cvs login 
+cvs -z9 co -P modulename 
+</pre>
+
+<p>Updates from within the module's directory do not need the
+CVSROOT exporting/setting.</p>
+
+<br>
+<h3>Developer CVS Access via SSH</h3>
+
+<p>If you are a SourceForge-recognized QuantLib developer you can
+access the CVS tree via SSH. SSH1 must be installed on your
+client machine. Substitute modulename and developername with the
+proper values. Enter your site password when prompted.</p>
+
+<p>Unix:</p>
+
+<pre>
+export CVSROOT=developername@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
+export CVS_RSH=ssh 
+cvs -z9 co -P modulename 
+</pre>
+
+<p>Win32:</p>
+
+<pre>
+SET CVSROOT=developername@cvs.quantlib.sourceforge.net:/cvsroot/quantlib
+SET CVS_RSH=ssh 
+cvs -z9 co -P modulename 
+</pre>
+
+<p>Updates from within the module's directory do not need the
+CVSROOT exporting/setting.</p>
+
+<!--includeHTML file="qltablefoot.inc"-->
+<div class="endmatter">
+<hr>
+<div class="center">
+<p>Feedback and questions concerning this site and project can be
+directed to<br>
+ the <a href=
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-users">QuantLib-users</a>
+mailing list<br>
+ or<br>
+the QuantLib administrator <a href=
+"mailto:ferdinando.ametrano@riskmap.it">Ferdinando Ametrano</a>.</p>
+
+<script type="text/javascript" language="javascript" src=
+"http://ss.webring.yahoo.com/navbar?f=j&y=ametrano&u=98033809110220824">
+
+</script>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+<!--/includeHTML-->
+</body>
+</html>
+

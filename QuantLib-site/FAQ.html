@@ -1,0 +1,777 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<meta name="author" content="Ferdinando Ametrano">
+<meta name="copyright" content=
+"Ferdinando Ametrano (c) 2000, 2001">
+<meta name="doc-class" content="Draft">
+<title>QuantLib at SourceForge - Developer FAQ</title>
+<meta name="description" content=
+"QuantLib Frequently Asked Questions">
+<meta name="keywords" content=
+"QuantLib, C++, library, finance, quantitative finance, quant, quants, analysts, developers, free software, opensource, FAQ">
+<!--includeHTML file="qlmeta.inc"-->
+<meta name="resource-type" content="document">
+<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta name="generator" content="HTML-Kit">
+<meta name="revisit-after" content="15 days">
+<meta name="classification" content="Personal">
+<meta name="robots" content="ALL">
+<meta name="distribution" content="Global">
+<meta name="rating" content="Safe For Kids">
+<meta name="doc-type" content="Web Page">
+<meta name="doc-rights" content="Public">
+<meta http-equiv="PICS-Label" content=
+'(PICS-1.1 "http://www.rsac.org/ratingsv01.html" l gen true comment "RSACi North America Server" for "http://www.ametrano.net/" on "2000.08.21T16:43-0800" r (n 0 s 0 v 0 l 0))'>
+<meta http-equiv="reply-to" content="ferdinando@ametrano.net">
+<meta http-equiv="Content-Type" content=
+"text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Style-Type" content="text/ccs">
+<meta http-equiv="Window-target" content="_top">
+<meta http-equiv="Content-Language" content="en">
+<link rel="stylesheet" href=
+"http://www.quantlib.org/styles/main.css" type="text/css">
+<link rev="made" href="mailto:ferdinando@ametrano.net">
+<!--/includeHTML-->
+</head>
+<body>
+<!--includeHTML file="qltablehead.inc"-->
+<table summary=
+"Layout table: the first cell contains the body of the page, the second a navigation bar."
+ class="layout">
+<tbody>
+<tr>
+<td class="navbar">
+<div class="center"><img src="images/QL-small.jpg" alt=
+"QuantLib Logo"></div>
+
+<ul class="navlinklist">
+<li><a class="navlink" href="index.html">Home page</a></li>
+
+<li><a class="navlink" href="status.html">Project Status</a></li>
+
+<li><a class="navlink" href="docs.html">Documentation</a></li>
+
+<li><a class="navlink" href="goals.html">Goals</a></li>
+
+<li><a class="navlink" href="license.html">License</a></li>
+
+<li><a class="navlink" href="group.html">QuantLib Group</a></li>
+</ul>
+
+<hr>
+<h3 class="navbartitle">Development</h3>
+
+<ul>
+<li><a class="navlink" href=
+"http://sourceforge.net/projects/quantlib">Project page</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/mail/?group_id=12740">Mailing
+lists</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/news/?group_id=12740">News</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/project/showfiles.php?group_id=12740">Download</a></li>
+
+<li><a class="navlink" href="cvs.html">CVS</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/bugs/?group_id=12740">Bug Report</a></li>
+
+<li><a class="navlink" href=
+"http://sourceforge.net/patch/?group_id=12740">Patches</a></li>
+
+<li><a class="navlink" href="FAQ.html">Developer FAQ</a></li>
+
+<li><a class="navlink" href="style.html">Programming Style
+Guidelines</a></li>
+</ul>
+
+<hr>
+<h3 class="navbartitle">General Resources</h3>
+
+<ul>
+<li><a class="navlink" href="lists.html">Lists of
+interest</a></li>
+</ul>
+
+<hr>
+<div class="center"><strong>Hosted by</strong><br>
+ <a href="http://sourceforge.net"><img src=
+"http://sourceforge.net/sflogo.php?group_id=12740" width="88"
+height="31" border="0" alt="SourceForge Logo"></a></div>
+
+<br>
+ <a href="http://sourceforge.net/docman/?group_id=1">About
+SourceForge, Open Source, CVS, etc.</a> </td>
+<td class="main"><!--/includeHTML-->
+<h1 class="center">QuantLib at SourceForge</h1>
+
+<h1 class="center">Developer Frequently Asked Questions</h1>
+
+<h6 class="right">slightly modified from <a href=
+"http://python.sourceforge.net/sf-faq.html">http://python.sourceforge.net/sf-faq.html</a></h6>
+
+<h6 class="right">Thanks to the Python guys!!</h6>
+
+<br>
+ 
+
+<h1>0. Contents</h1>
+
+<h2><a href="#general">1. General</a></h2>
+
+<ol>
+<li><a href="#g1">What is SourceForge?</a></li>
+
+<li><a href="#g2">Where do I find QuantLib there?</a></li>
+
+<li><a href="#g3">How can I change the pages at
+www.quantlib.org?</a></li>
+
+<li><a href="#g4">Who is who?</a></li>
+</ol>
+
+<h2><a href="#cvs">2. CVS</a></h2>
+
+<ol>
+<li><a href="#c1">How do I check out a CVS version of
+QuantLib?</a></li>
+
+<li><a href="#c2">What settings should I use?</a></li>
+
+<li><a href="#c3">Troubleshooting: "Permission Denied"</a></li>
+
+<li><a href="#c4">Where can I learn more about CVS?</a></li>
+
+<li><a href="#c5">How can I remove a directory from the CVS
+tree?</a></li>
+
+<li><a href="#c6">How to revert changes?</a></li>
+
+<li><a href="#c7">How to add binary files?</a></li>
+
+<li><a href="#c8">How to force a branch tag on a file?</a></li>
+</ol>
+
+<h2><a href="#patches">3. Patches</a></h2>
+
+<ol>
+<li><a href="#p1">How to make a patch?</a></li>
+
+<li><a href="#p2">How to submit patches?</a></li>
+
+<li><a href="#p3">How to change the status of a patch?</a></li>
+</ol>
+
+<h2><a href="#windows">4. Windows</a></h2>
+
+<ol>
+<li><a href="#w1">How to install CVS and SSH?</a></li>
+
+<li><a href="#w2">Which compiler is supported under
+Windows?</a></li>
+
+<li><a href="#w3">How can I use SWIG?</a></li>
+</ol>
+
+<h2><a href="#macintosh">5. Macintosh</a></h2>
+
+<ol>
+<li><a href="#m1">How to use CVS over SSH?</a></li>
+</ol>
+
+<h2><a href="#bugs">6. Bug Reporting</a></h2>
+
+<ol>
+<li><a href="#b1">Where can I submit/view bugs for
+QuantLib?</a></li>
+
+<li><a href="#b2">How do I use the sourceforge bug
+manager?</a></li>
+</ol>
+
+<h2><a href="#appendix">A. Appendix</a></h2>
+
+<ol>
+<li><a href="#a1">Patch Manager Guidelines</a></li>
+
+<li><a href="#a2">QuantLib Patch Submission Guidelines</a></li>
+</ol>
+
+<!-- section 1 General -->
+<h1><a name="general" id="general"></a>1. General</h1>
+
+<h3><a name="g1" id="g1"></a>1.1.:</h3>
+
+<p><strong>Q: What is SourceForge?<br>
+ A:</strong> <a href="http://sourceforge.net">SourceForge</a> is
+a free hosting service for <a href="http://opensource.org">Open
+source</a> projects. The main web site is found at <a href=
+"http://sourceforge.net">http://sourceforge.net</a><br>
+Documentation and help files about SourceForge can be found at <a
+href=
+"http://sourceforge.net/docman/?group_id=1">http://sourceforge.net/docman/?group_id=1</a></p>
+
+<br>
+ <br>
+ 
+
+<h3><a name="g2" id="g2"></a>1.2.:</h3>
+
+<p><strong>Q: Where can I find QuantLib on SourceForge?<br>
+ A:</strong> The <a href=
+"http://sourceforge.net/projects/quantlib">QuantLib project
+page</a> can be found at <a href=
+"http://sourceforge.net/projects/quantlib">http://sourceforge.net/projects/quantlib</a></p>
+
+<h3><a name="g3" id="g3"></a>1.3.:</h3>
+
+<p><strong>Q: How can I change the pages at www.quantlib.org?<br>
+ A:</strong> First you have to be in the SourceForge group
+"<tt>QuantLib</tt>" (true for all developers). Then you can
+upload files using SCP:</p>
+
+<blockquote><tt>SCP mylocalfile.html
+sf_username@shell.sourceforge.net:/home/groups/quantlib/htdocs/</tt></blockquote>
+
+If you want to edit or remove files, you can use SSH: 
+
+<blockquote><tt>ssh -l sf_username shell.sourceforge.net</tt><br>
+ <tt>cd /home/groups/quantlib/htdocs</tt><br>
+ <tt>rm garbage.html</tt><br>
+ <tt>vi changeme.html</tt></blockquote>
+
+<h3><a name="g4" id="g4"></a>1.4.:</h3>
+
+<p><strong>Q: Who is who?<br>
+ A:</strong> To get the developer name from the user name, go to
+<a href=
+"http://sourceforge.net/project/memberlist.php?group_id=12740">http://sourceforge.net/project/memberlist.php?group_id=12740</a></p>
+
+<!-- section 2 CVS -->
+<h1><a name="cvs" id="cvs"></a>2. CVS</h1>
+
+<h3><a name="c1" id="c1"></a>2.1.:</h3>
+
+<p><strong>How do I check out a CVS version of QuantLib?<br>
+ A:</strong> If you are not a SourceForge-recognized QuantLib
+developer you can still check out an anonymous CVS version
+(read-only) of QuantLib:</p>
+
+<blockquote><tt>export
+CVSROOT=:pserver:anonymous@cvs.quantlib.org:/cvsroot/quantlib</tt><br>
+
+ <tt>cvs login</tt><br>
+ <tt>cvs -z3 co -P QuantLib</tt></blockquote>
+
+If you are indeed a developer you can check out a read/write
+version with ssh: 
+
+<blockquote><tt>export CVS_RSH=ssh</tt><br>
+ <tt>export
+CVSROOT=sf_username@cvs.quantlib.org:/cvsroot/quantlib</tt><br>
+ <tt>cvs -z3 co -P QuantLib</tt></blockquote>
+
+<p>Quantlib's CVS repository includes three modules:</p>
+
+<ul>
+<li>QuantLib (the library itself)</li>
+
+<li>QuantLib-Python (the Python extension)</li>
+
+<li>QuantLib-site (this site HTML pages)</li>
+</ul>
+
+Please note that the module's name has capital Q and capital L. 
+
+<h3><a name="c2" id="c2"></a>2.2.:</h3>
+
+<p><strong>Q: What setting should I use?<br>
+ A:</strong> That is, of course, hard to answer in the general
+case. Context diffs (diff -c) are preferred as everything else is
+harder to read and I usually have the update command to
+automatically checkout new subdirectories and prune empty
+directories (update -P -d).</p>
+
+<h3><a name="c3" id="c3"></a>2.3.:</h3>
+
+<strong>Q: I get the following error message:</strong> 
+
+<blockquote><tt>Sorry, you don't have read/write access to the
+history file /cvsroot/quantlib/CVSROOT/history</tt><br>
+ <tt>Permission denied</tt></blockquote>
+
+<br>
+ <strong>A:</strong> If you are not a developer, you don't have
+read/write access. You have to check out an anonymous copy. If
+you are a developer you have to be in the SourceForge group
+"<tt>QuantLib</tt>". You can check this with the following
+commands: 
+
+<blockquote><tt>ssh -l sf_username shell.sourceforge.net</tt><br>
+ <tt>groups</tt></blockquote>
+
+If you have just recently (&lt; 6 hours) been added to the
+QuantLib project, you probably have to wait for the SourceForge
+servers to synch up. This can take up to 6 hours. 
+
+<h3><a name="c4" id="c4"></a>2.4.:</h3>
+
+<p><strong>Q: Where can I learn more about CVS?<br>
+ A:</strong> For SourceForge specific information consult their
+<a href="http://sourceforge.net/docman/?group_id=1">SourceForgeVS
+documentation</a> For general (and more advanced) information
+consult the the <a href=
+"http://cvsbook.red-bean.com/cvsbook.html#Introduction">free CVS
+Book</a></p>
+
+<h3><a name="c5" id="c5"></a>2.5.:</h3>
+
+<strong>Q: How can I remove a directory from the CVS tree?<br>
+ A:</strong> Simple answer: You cannot!<br>
+ More complicated answer: Remove all files from the directory,
+delete the directory, use the -P (prune) option of the update
+command: 
+
+<blockquote><tt>cd the_directory</tt><br>
+ <tt>rm file1 file2 file3</tt><br>
+ <tt>cvs remove file1 file2 file3</tt><br>
+ <tt>cvs ci -m "removed all files" file1 file2 file3</tt><br>
+ <tt>cd ..</tt><br>
+ <tt>cvs update -P</tt></blockquote>
+
+<h3><a name="c6" id="c6"></a>2.6.:</h3>
+
+<p><strong>Q: How to revert changes?<br>
+ A:</strong> The fast (and history-friendly) method for backing
+out a CVS commit is the use of the <tt>join</tt> flag of the
+<tt>update</tt> command. You supply the last version you
+committed (and probably messed up) with the first and the version
+you want to back out to with the second flag. Example given:</p>
+
+<blockquote><tt>cvs update -j 1.17 -j 1.16 ceval.c</tt><br>
+ <tt>cvs update</tt><br>
+ <tt>cvs commit ceval.c</tt><br>
+</blockquote>
+
+This example would create and apply a reverse patch from revision
+1.17 to revision 1.16 of <tt>ceval.c</tt>. 
+
+<h3><a name="c7" id="c7"></a>2.7.:</h3>
+
+<p><strong>Q: How to add binary files?<br>
+ A:</strong> You probably want to turn of keyword expansion and
+line-ending conversion:</p>
+
+<blockquote><tt>cvs add -kb newfile.bin</tt><br>
+ <tt>cvs commit newfile.bin</tt><br>
+</blockquote>
+
+<h3><a name="c8" id="c8"></a>2.8.:</h3>
+
+<p><strong>Q: How to force a branch tag on a file?<br>
+ A:</strong> The quickest way to force a branch tag
+<tt>branch_tag</tt> on a file is to issue the command</p>
+
+<blockquote><tt>cvs tag -F -b -r revision branch_tag
+file</tt><br>
+</blockquote>
+
+for each file, where <tt>revision</tt> is the revision where the
+tag should be and <tt>file</tt> is the file. Note that -F means
+<tt>force</tt> (otherwise you get a complaint because the tag is
+already defined) and -b means <tt>branch</tt> which makes the tag
+a branch tag. <!-- section 3 Patches -->
+ 
+
+<h1><a name="patches" id="patches"></a>3. Patches</h1>
+
+<h3><a name="p1" id="p1"></a>3.1.:</h3>
+
+<p><strong>Q: How to make a patch?<br>
+ A:</strong> If you are using CVS (anonymous or developer) you
+can use CVS to make the patches for you. Just edit your local
+copy and enter the following command:</p>
+
+<blockquote><tt>cvs diff | tee
+~/name_of_the_patch.diff</tt></blockquote>
+
+Else you can use the diff util which comes with most operating
+systems (a Windows version is available as part of the cygwin
+tools).<br>
+ 
+
+<h3><a name="p2" id="p2"></a>3.2.:</h3>
+
+<p><strong>Q: How to submit a patch?<br>
+ A:</strong> Please read the <a href="#a2">Appendix</a> of this
+FAQ.<br>
+</p>
+
+<h3><a name="p3" id="p3"></a>3.3.:</h3>
+
+<p><strong>Q: How to change the status of a patch?<br>
+ A:</strong> To change the status of a patch or assign it to
+somebody else you have to be a) a SourceForge-recognized QuantLib
+developer and b) a patch administrator. Unfortunately the
+SourceForge default for developers is not to be patch
+administrators. Contact one of the project administrators if the
+following does not work for you.</p>
+
+<p>Click on the patch itself. In the screen that comes up, there
+is a drop-box for "Assigned To:" and a drop-box for "Status:"
+where you can select a new responsible developer or a new status
+respectively. After selecting the appropriate victim and status,
+hit the "Submit Changes" button at the bottom of the page.</p>
+
+<p>Note: If you are sure that you have the right permissions and
+a drop-box does not appear, check that you are actually logged in
+to SourceForge!</p>
+
+<p>For more information about the use of the "Status:" and
+"Assigned To:" fields consult the <a href="#a1">Patch Manager
+Guidelines</a>. A recent copy can be found in the Appendix of
+this FAQ.<br>
+</p>
+
+<!-- section 4 Windows -->
+<h1><a name="windows" id="windows"></a>4. Windows</h1>
+
+<h3><a name="w1" id="w1"></a>4.1.:</h3>
+
+<p><strong>Q: How to install cvs and ssh<br>
+ A:</strong> <a href=
+"http://python.sourceforge.net/winssh.txt">Here's a link</a> to
+text instructions for setting up a command-line CVS using SSH
+under Windows, originally developed by Andy Robinson. All the
+Windows folks at Reportlab and PythonLabs swear by this
+scheme.<br>
+<strong><em>Afterwards</em></strong> you can download and install
+WinCVS, the visual window version of CVS. WinCVS can be found at
+<a href="http://www.wincvs.org">http://www.wincvs.org</a></p>
+
+<h3><a name="w2" id="w2"></a>4.2.:</h3>
+
+<p><strong>Q: Which compiler is supported under Windows?<br>
+ A:</strong></p>
+
+<ul>
+<li>The Free Borland C++Builder Compiler (download it from <a
+href=
+"http://www.borland.com/bcppbuilder/freecompiler/">http://www.borland.com/bcppbuilder/freecompiler/</a>).<br>
+
+ Please feel free to supply Borland project files if you
+can.</li>
+
+<li>Visual C++ 6.0 (projects files are supplied).</li>
+</ul>
+
+<h3><a name="w3" id="w3"></a>4.3.:</h3>
+
+<p><strong>Q: How can I use SWIG?<br>
+ A:</strong>Please note that we're using Swig latest release
+(1.3.6 at the time of this writing). Since the NT port might be
+not available yet you have to use CygWin to compile and install
+SWIG.</p>
+
+<ol>
+<li>Download and install Cygwin setup.exe from <a href=
+"http://cygwin.com/">http://cygwin.com/</a> or any mirrors. A
+brief installation guide can be found there. 
+
+<ul>
+<li>run setup.exe</li>
+
+<li>select "download from internet"</li>
+
+<li>select local package directory (for example
+C:\sources\cygwin)</li>
+
+<li>select the type of connection you prefer</li>
+
+<li>wait for the mirror list to be downloaded</li>
+
+<li>select a site near you and click next</li>
+
+<li>now it presents you the list of all the packages that will be
+installed. Choose them as you like (typically install all)</li>
+
+<li>the packages will be downloaded</li>
+
+<li>select root directory for installation</li>
+
+<li>click install and wait for all the packages to be
+installed</li>
+
+<li>check "create icon on desktop" or "add to start menu" if you
+like</li>
+</ul>
+
+Take note of your CygWin root (we assume it is C:\cygwin from now
+on)</li>
+
+<li>Download swig-1.3.6.tar.gz (or any latest release) from <a
+href=
+"http://download.sourceforge.net/swig/">http://download.sourceforge.net/swig/</a></li>
+
+<li>Copy the file swig-1.3.6.tar.gz in a directory under the
+control of Cygwin (e.g. your home dir C:\cygwin\home\"your
+username")</li>
+
+<li>Open a Cygwin shell and type the following commands: 
+
+<pre>
+$ cd "the directory where swig-1.3.6.tar.gz is"
+$ tar xzvf swig-1.3.6.tar.gz
+$ cd SWIG-1.3.6
+$ ./configure
+$ make
+$ make install
+</pre>
+</li>
+
+<li>Include "C:\cygwin\usr\local\bin" and the path where you have
+the cygwin1.dll file ("C:\cygwin\bin") in your system variable
+$PATH. On Win9x, this can be done in a batch file or
+autoexec.bat; e.g., 
+
+<pre>
+    set PATH=C:\cygwin\usr\local\bin;C:\cygwin\bin;$PATH
+</pre>
+
+Run the batch file, or reboot if you're using autoexec.bat. On NT
+or 2000, go to Control Panel | System | Environment and set them
+at either user or machine level.</li>
+</ol>
+
+<p>Now you're ready to use Swig.</p>
+
+<p>Please check the QuantLib-Python\README.txt file.</p>
+
+<br>
+<br>
+ <!-- section 5 Macintosh -->
+ 
+
+<h1><a name="macintosh" id="macintosh"></a>5. Macintosh</h1>
+
+<h3><a name="m1" id="m1"></a>5.1.:</h3>
+
+<p><strong>Q: How to use cvs over ssh?<br>
+ A:</strong> Take a look at <a href=
+"http://sourceforge.net/docman/display_doc.php?docid=2973&amp;group_id=1">
+http://sourceforge.net/docman/display_doc.php?docid=2973&amp;group_id=1</a>.</p>
+
+<h1><a name="bugs" id="bugs"></a>6. Bugs</h1>
+
+<h3><a name="b1" id="b1"></a>6.1.:</h3>
+
+<p><strong>Q: Where can I submit/view bugs for QuantLib?<br>
+ A:</strong> The QuantLib project uses SourceForge's bug tracking
+facility. Go to <a href=
+"http://sourceforge.net/bugs/?group_id=12740">http://sourceforge.net/bugs/?group_id=12740</a>
+for all bug management needs.</p>
+
+<h3><a name="b1" id="b1"></a>6.1.:</h3>
+
+<p><strong>Q: How do I use the sourceforge bug manager?<br>
+ A:</strong> By default, you will see the list of all Open bugs.
+You can change which bugs you're viewing by selecting the
+assigned_to/status/area/type select boxes.</p>
+
+<p>To submit a bug, use the "Submit a Bug" link, near the top of
+the page.</p>
+
+<h1><a name="appendix" id="appendix"></a>A. Appendix</h1>
+
+<h3><a name="a1" id="a1"></a>A.1.: Patch Manager Guidelines</h3>
+
+<h4>Intended use of SourceForge patch status &amp; "assigned to"
+fields</h4>
+
+<p>In general, the status field should be close to
+self-explanatory, and the "Assigned to:" field should be the
+person responsible for taking the next step in the patch process.
+Both fields are expected to change value over the life of a
+patch; the normal work flow is detailed below.</p>
+
+<p>When you've got the time and the ability, feel free to move
+any patch that catches your eye along, whether or not it's been
+assigned to you. And if you're assigned to a patch but aren't
+going to take reasonably quick action (for whatever reason),
+please assign it to someone else ASAP: at those times you can't
+actively help, actively get out of the way.</p>
+
+<p>If you're an expert in some area and know that a patch in that
+area is both needed and non-controversial, just commit your
+changes directly -- no need then to get the patch mechanism
+involved in it.</p>
+
+<p>You should add a comment to every patch assigned to you at
+least once a week, if only to say that you realize it's still on
+your plate. This rule is meant to force your attention
+periodically: patches get harder &amp; harder to deal with the
+longer they sit.<br>
+</p>
+
+<h4>Open</h4>
+
+<blockquote>The initial status of all patches.<br>
+ The patch is under consideration, but has not been reviewed yet,
+or is under review but not yet Accepted or Rejected.<br>
+ The status will normally change to Accepted or Rejected
+next.<br>
+ The person submitting the patch should (if they can) assign it
+to the person they most want to review it.<br>
+ Else the patch will be random assigned to a QuantLib
+developer.<br>
+ Discussion of major patches is carried out on the QuantLib
+mailing list. For simple patches, the SourceForge comment
+mechanism should be sufficient.<br>
+ For the reviewer: If you're certain the patch should be applied,
+change the status to Accepted and assign it back to the submitter
+(if possible) for checkin. If you're certain the patch should
+never be accepted, change the status to Rejected and assign it to
+None. If you have specific complaints that would cause you to
+change your mind, explain them clearly in a comment, leave the
+status Open, and reassign back to the submitter. If you're
+uncertain, leave the status Open, explain your uncertainties in a
+comment, and reassign the patch to someone you believe can
+address your remaining questions; or leave the status Open and
+bring it up on QuantLib.</blockquote>
+
+<h4>Accepted</h4>
+
+<blockquote>The powers that be accepted the patch, but it hasn't
+been applied yet.<br>
+ The status will normally change to Closed next.<br>
+ The person changing the status to Accepted should, at the same
+time, assign the patch to whoever they believe is most likely to
+be able &amp; willing to apply it (the submitter if
+possible).</blockquote>
+
+<h4>Closed</h4>
+
+<blockquote>The patch has been accepted and applied.<br>
+ The previous status was Accepted.</blockquote>
+
+<h4>Rejected</h4>
+
+<blockquote>The patch has been reviewed and rejected.<br>
+ There are generally no transitions out of this state: the patch
+is dead.<br>
+ The person changing the status to Rejected should assign it to
+None.<br>
+</blockquote>
+
+<h4>Out of date</h4>
+
+<blockquote>Previous status was Open or Accepted or Postponed,
+but the patch no longer works.<br>
+ Please enter a comment when changing the status to "Out of
+date", to record the nature of the problem and the previous
+status.<br>
+ Also assign it back to the submitter, as they need to upload a
+new version (note that SourceForge will not allow anyone other
+than the original submitter to update the patch).</blockquote>
+
+<h4>Postponed</h4>
+
+<blockquote>The previous status was Open or Accepted, but for
+some reason (e.g., pending release) the patch should not be
+reviewed or applied until further notice.<br>
+ The status will normally change to Open or Accepted next.<br>
+ Please enter a comment when changing the status to Postponed, to
+record the reason, the previous status, and the conditions under
+which the patch should revert to Open or Accepted. Also assign
+the patch to whoever is most likely able and willing to decide
+when the status should change again.</blockquote>
+
+<h4>Deleted</h4>
+
+<blockquote>Bit bucket.<br>
+ Use only if it's OK for the patch and its SourceForge history to
+disappear.<br>
+ As of 09-July-2000, SF does not actually throw away Deleted
+patches, but that may change.</blockquote>
+
+<h3><a name="a2" id="a2"></a>A.2.: QuantLib Patch Submission
+Guidelines</h3>
+
+<p>We use the SourceForge Patch Manager. Here are the main
+guidelines:</p>
+
+<ul>
+<li><strong>Submit your patch to the <a href=
+"http://sourceforge.net/patch/?group_id=12740">patch manager</a>
+interface at <a href=
+"http://sourceforge.net/project/?group_id=12740">SourceForge</a>.</strong>
+We strongly recommend that you <a href=
+"http://sourceforge.net/account/register.php">register with
+SourceForge</a> before submitting a patch. The patch manager is
+for <strong>patches</strong> only; if you have a problem or
+suggestion but don't know how to write the code for it, use the
+<a href="#b1">bug reporting mechanism</a> instead. The bugs list
+is searchable; if you have a problem and you're not sure if it
+has been reported or fixed already, this is the first place to
+look.</li>
+
+<li><strong>Submit documentation patches the same way.</strong>
+When adding the patch, be sure to set the
+"<strong>Category</strong>" field to
+"<strong>documentation</strong>". For documentation errors
+without patches, please use the <a href="#b1">bug reporting
+mechanism</a>.</li>
+
+<li>We prefer context diffs. PLEASE use context diffs.</li>
+
+<li>We appreciate it if you send patches relative to the <a href=
+"http://sourceforge.net/cvs/?group_id=12740">current CVS
+tree</a>. These are our latest sources.</li>
+
+<li>Please try to conform as much as possible to our <a href=
+"goals.html#codingguidelines">Coding Guidelines</a>.</li>
+
+<li>Please add a succinct message to your SourceForge entry that
+explains what the patch is about that we can use directly as a
+checkin message. Ideally, such a message explains the problem and
+describes the fix in a few lines.</li>
+
+<li>For patches that add or change functionality: please also add
+as much <strong>documentation</strong> as you can and possibly a
+<strong>testcase</strong> in C++ or Python (see the Python/Tests
+subdirectory).</li>
+</ul>
+
+<!--includeHTML file="qltablefoot.inc"-->
+<div class="endmatter">
+<hr>
+<div class="center">
+<p>Feedback and questions concerning this site and project can be
+directed to<br>
+ the <a href=
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-users">QuantLib-users</a>
+mailing list<br>
+ or<br>
+the QuantLib administrator <a href=
+"mailto:ferdinando.ametrano@riskmap.it">Ferdinando Ametrano</a>.</p>
+
+<script type="text/javascript" language="javascript" src=
+"http://ss.webring.yahoo.com/navbar?f=j&y=ametrano&u=98033809110220824">
+
+</script>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+<!--/includeHTML-->
+</body>
+</html>
+
