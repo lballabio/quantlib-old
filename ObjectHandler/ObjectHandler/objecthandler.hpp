@@ -19,7 +19,13 @@
 #define objecthandler_h
 
 #include <ObjectHandler/objecthandlerversion.hpp>
-#include <ObjectHandler/autolink.hpp>
+/* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
+   for example) also #define _MSC_VER
+
+*/
+#ifdef BOOST_MSVC
+#  include <ObjectHandler/autolink.hpp>
+#endif
 
 #include <ObjectHandler/utilities.hpp>
 
