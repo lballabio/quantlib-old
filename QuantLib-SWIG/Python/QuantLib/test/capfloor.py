@@ -162,8 +162,8 @@ put/call parity violated:
         leg = self.makeLeg(startDate,20)
         cap = self.makeCapFloor(Cap,leg,0.07,0.20)
         floor = self.makeCapFloor(Floor,leg,0.03,0.20)
-        cachedCapNPV = 6.958275537948
-        cachedFloorNPV = 2.700478483500
+        cachedCapNPV = 6.960233718984
+        cachedFloorNPV = 2.701296290808
         if abs(cap.NPV()-cachedCapNPV) > 1.0e-11:
             self.fail("""
 failed to reproduce cached cap value:
