@@ -15,9 +15,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include "QuantLibAddin/qladdin.hpp"
-#include "utilities.hpp"
-#include "framewrk.hpp"
+#include <QuantLibAddin/qladdin.hpp>
+#include <Addins/Excel/utilities.hpp>
+#include <Addins/Excel/framewrk.hpp>
 #include <exception>
 
 using namespace ObjHandler;

@@ -16,21 +16,9 @@
 */
 
 #include <windows.h>
-#include "xlcall.h"
-#include "framewrk.hpp"
-
-#define NUM_FUNCS 5
-#define NUM_ATTS 6
-
-static LPSTR func[NUM_FUNCS][NUM_ATTS] = {
-	// utils
-	{" qlQuery",			" RC",		" QL_QUERY",			" ", " 1", " QuantLib"},
-	{" qlLogfile",			" RC",		" QL_LOGFILE",			" ", " 1", " QuantLib"},
-	// options
-	{" qlBlackscholes",		" REEEENN#"," QL_BLACKSCHOLES",		" ", " 1", " QuantLib"},
-	{" qlOption",			" RCCENNN#"," QL_OPTION",			" ", " 1", " QuantLib"},
-	{" qlOptionSetEngine",	" RCCN",	" QL_OPTION_SETENGINE",	" ", " 1", " QuantLib"},
-};
+#include <Addins/Excel/xlcall.h>
+#include <Addins/Excel/framewrk.hpp>
+#include <Addins/Excel/funcdef.hpp>
 
 int xlAutoOpen() {
 	static XLOPER xDll;

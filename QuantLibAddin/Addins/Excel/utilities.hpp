@@ -19,8 +19,8 @@
 #define xl_utilities_hpp
 
 #include <windows.h>
-#include "xlcall.h"
 #include <string>
+#include <Addins/Excel/xlcall.h>
 
 void setXLOPERString(XLOPER &xStr,
                      const char *s);

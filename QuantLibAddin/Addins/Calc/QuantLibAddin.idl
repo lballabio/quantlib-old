@@ -8,9 +8,6 @@ module com {
         module addin {
             interface XQL: com::sun::star::uno::XInterface {
 
-				long incrementNum( [in] long nValue )
-					raises( com::sun::star::lang::IllegalArgumentException );
-
 				// pricers
 
 				sequence < sequence < any > > qlBlackScholes(

@@ -1,6 +1,6 @@
 #include <windows.h>
-#include "xlcall.h"
-#include "framewrk.hpp"
+#include <Addins/Excel/xlcall.h>
+#include <Addins/Excel/framewrk.hpp>
 
 char vMemBlock[MEMORYSIZE]; // Memory for temporary XLOPERs
 int vOffsetMemBlock=0;      // Offset of next memory block to allocate

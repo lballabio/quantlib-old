@@ -77,8 +77,6 @@ public:
     virtual CSS::lang::Locale SAL_CALL getLocale(  ) THROWDEF_RTE;
     // XQlUno
     QLAddin() throw ();
-	virtual sal_Int32 SAL_CALL incrementNum(
-		sal_Int32 nVal ) THROWDEF_RTE_IAE;
 
 	// options
 	virtual SEQSEQ(ANY) SAL_CALL qlBlackScholes( 

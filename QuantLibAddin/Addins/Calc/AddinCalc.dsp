@@ -86,6 +86,10 @@ CFG=AddinCalc - Win32 Debug
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=.\funcdef.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\functions.cpp
 # PROP Intermediate_Dir "."
 # End Source File

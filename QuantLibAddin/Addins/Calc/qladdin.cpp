@@ -122,24 +122,6 @@ void QLAddin::release() throw () {
     }
 }
 
-QLAddin::QLAddin() throw () : m_refcount( 0 ) { 
-//	qladdin
-	funcMap[ STRFROMANSI( "incrementNum" ) ]
-		=  STRFROMANSI( "QL_TEST1" );
-//	options
-	funcMap[ STRFROMANSI( "qlBlackScholes" ) ]
-		=  STRFROMANSI( "QL_BLACKSCHOLES" );
-	funcMap[ STRFROMANSI( "qlOption" ) ]
-		=  STRFROMANSI( "QL_OPTION" );
-	funcMap[ STRFROMANSI( "qlOptionSetEngine" ) ]
-		=  STRFROMANSI( "QL_OPTION_SETENGINE" );
-//	functions
-	funcMap[ STRFROMANSI( "qlQuery" ) ]
-		=  STRFROMANSI( "QL_QUERY" );
-	funcMap[ STRFROMANSI( "qlLogfile" ) ]
-		=  STRFROMANSI( "QL_LOGFILE" );
-}
-
 // XTypeProvider
 
 SEQ ( CSS::uno::Type ) QLAddin::getTypes() THROWDEF_RTE {
@@ -252,9 +234,4 @@ void SAL_CALL QLAddin::setLocale(
 
 lang::Locale SAL_CALL QLAddin::getLocale() THROWDEF_RTE {
 	return aFuncLoc;
-}
-
-sal_Int32 SAL_CALL QLAddin::incrementNum(
-		sal_Int32 nVal) THROWDEF_RTE_IAE {
-	return nVal + 1;
 }
