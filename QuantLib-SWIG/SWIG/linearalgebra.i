@@ -77,9 +77,19 @@ bool extractArray(PyObject* source, Array* target) {
 %typecheck(QL_TYPECHECK_ARRAY) Array {
     /* native sequence? */
     if (PyTuple_Check($input) || PyList_Check($input)) {
-        $1 = 1;
-    /* wrapped Array? */
+        unsigned int size = PySequence_Size($input);
+        if (size == 0) {
+            $1 = 1;
+        } else {
+            PyObject* o = PySequence_GetItem($input,0);
+            if (PyNumber_Check(o))
+                $1 = 1;
+            else
+                $1 = 0;
+            Py_DECREF(o);
+        }
     } else {
+        /* wrapped Array? */
         Array* v;
         if (SWIG_ConvertPtr($input,(void **) &v, 
                             $&1_descriptor,0) != -1)
@@ -91,9 +101,19 @@ bool extractArray(PyObject* source, Array* target) {
 %typecheck(QL_TYPECHECK_ARRAY) const Array & {
     /* native sequence? */
     if (PyTuple_Check($input) || PyList_Check($input)) {
-        $1 = 1;
-    /* wrapped Array? */
+        unsigned int size = PySequence_Size($input);
+        if (size == 0) {
+            $1 = 1;
+        } else {
+            PyObject* o = PySequence_GetItem($input,0);
+            if (PyNumber_Check(o))
+                $1 = 1;
+            else
+                $1 = 0;
+            Py_DECREF(o);
+        }
     } else {
+        /* wrapped Array? */
         Array* v;
         if (SWIG_ConvertPtr($input,(void **) &v, 
                             $1_descriptor,0) != -1)
@@ -890,7 +910,7 @@ class Array {
 // 2-D view
 
 %{
-typedef QuantLib::LexicographicalView<Array::iterator>  
+typedef QuantLib::LexicographicalView<Array::iterator>
     LexicographicalView;
 typedef QuantLib::LexicographicalView<Array::iterator>::y_iterator 
     LexicographicalViewColumn;
@@ -961,6 +981,7 @@ typedef QuantLib::Matrix::row_iterator MatrixRow;
 using QuantLib::outerProduct;
 using QuantLib::transpose;
 using QuantLib::matrixSqrt;
+using QuantLib::SVD;
 %}
 
 #if defined(SWIGPYTHON) || defined(SWIGRUBY)
@@ -1038,7 +1059,13 @@ class Matrix {
         #endif
         #if defined(SWIGPYTHON)
         Matrix __rmul__(double x) {
-            return *self*x;
+            return x*(*self);
+        }
+        Array __rmul__(const Array& x) {
+            return x*(*self);
+        }
+        Matrix __rmul__(const Matrix& x) {
+            return x*(*self);
         }
         #endif
     }
@@ -1081,6 +1108,32 @@ Matrix transpose(const Matrix& m);
 Matrix outerProduct(const Array& v1, const Array& v2);
 Matrix matrixSqrt(const Matrix& m);
 
+class SVD {
+  public:
+    SVD(const Matrix&);
+    %extend {
+        Matrix getU() {
+            Matrix U;
+            self->getU(U);
+            return U;
+        }
+        Matrix getV() {
+            Matrix V;
+            self->getV(V);
+            return V;
+        }
+        Matrix getS() {
+            Matrix S;
+            self->getS(S);
+            return S;
+        }
+        Array getSingularValues() {
+            Array s;
+            self->getSingularValues(s);
+            return s;
+        }
+    }
+};
 
 
 #endif
