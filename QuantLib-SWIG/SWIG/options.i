@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2004 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -142,6 +142,36 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)
                  ->impliedVolatility(targetValue,accuracy,maxEvaluations,
                                      minVol,maxVol);
+        }
+    }
+};
+
+
+%{
+using QuantLib::EuropeanOption;
+typedef boost::shared_ptr<Instrument> EuropeanOptionPtr;
+%}
+
+
+%rename(EuropeanOption) EuropeanOptionPtr;
+class EuropeanOptionPtr : public VanillaOptionPtr {
+  public:
+    %extend {
+        EuropeanOptionPtr(
+                const boost::shared_ptr<StochasticProcess>& process,
+                const boost::shared_ptr<Payoff>& payoff,
+                const boost::shared_ptr<Exercise>& exercise,
+                const boost::shared_ptr<PricingEngine>& engine
+                   = boost::shared_ptr<PricingEngine>()) {
+            boost::shared_ptr<StrikedTypePayoff> stPayoff =
+                 boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
+            QL_REQUIRE(stPayoff, "Wrong payoff given");
+            boost::shared_ptr<BlackScholesStochasticProcess> bsProcess =
+                boost::dynamic_pointer_cast<BlackScholesStochasticProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Wrong stochastic process given");
+            return new EuropeanOptionPtr(
+                new EuropeanOption(bsProcess,stPayoff,exercise,engine));
         }
     }
 };
