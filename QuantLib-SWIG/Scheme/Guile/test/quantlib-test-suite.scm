@@ -51,6 +51,8 @@
                   "Testing European option greeks")
   (suite-add-test suite European-option-implied-vol-test
                   "Testing European option implied volatility")
+  (suite-add-test suite European-option-binomial-engine-test
+                  "Testing binomial European engines against analytic results")
   (suite-add-test suite Instrument-test
                   "Testing observability of stocks")
   (suite-add-test suite Market-element-observability-test

@@ -129,19 +129,69 @@ class VanillaOptionHandle : public Handle<Instrument> {};
     }
 }
 
+
+// European engines
+
 %{
-using QuantLib::Pricers::EuropeanEngine;
-typedef Handle<PricingEngine> EuropeanEngineHandle;
+using QuantLib::PricingEngines::EuropeanAnalyticalEngine;
+typedef Handle<PricingEngine> EuropeanAnalyticEngineHandle;
 %}
 
-%rename(EuropeanEngine) EuropeanEngineHandle;
-class EuropeanEngineHandle : public Handle<PricingEngine> {};
+%rename(EuropeanAnalyticEngine) EuropeanAnalyticEngineHandle;
+class EuropeanAnalyticEngineHandle : public Handle<PricingEngine> {};
 
-%extend EuropeanEngineHandle {
-    EuropeanEngineHandle() {
-        return new EuropeanEngineHandle(new EuropeanEngine);
+%extend EuropeanAnalyticEngineHandle {
+    EuropeanAnalyticEngineHandle() {
+        return new EuropeanAnalyticEngineHandle(new EuropeanAnalyticalEngine);
     }
 }
+
+
+%{
+using QuantLib::PricingEngines::EuropeanBinomialEngine;
+typedef EuropeanBinomialEngine::Type BinomialEngineType;
+typedef Handle<PricingEngine> EuropeanBinomialEngineHandle;
+
+EuropeanBinomialEngine::Type binomialEngineTypeFromString(std::string s) {
+    s = StringFormatter::toLowercase(s);
+    if (s == "crr" || s == "coxrossrubinstein")
+        return EuropeanBinomialEngine::CoxRossRubinstein;
+    else if (s == "jr" || s == "jarrowrudd")
+        return EuropeanBinomialEngine::JarrowRudd;
+    else if (s == "lr" || s == "leisenreimer")
+        return EuropeanBinomialEngine::LeisenReimer;
+    else
+        throw Error("unknown binomial engine type: "+s);
+}
+
+std::string binomialEngineTypeToString(EuropeanBinomialEngine::Type t) {
+    switch (t) {
+      case EuropeanBinomialEngine::CoxRossRubinstein:
+        return "CoxRossRubinstein";
+      case EuropeanBinomialEngine::JarrowRudd:
+        return "JarrowRudd";
+      case EuropeanBinomialEngine::LeisenReimer:
+        return "LeisenReimer";
+      default:
+        throw Error("unknown binomial engine type");
+    }
+}
+%}
+
+MapToString(BinomialEngineType,binomialEngineTypeFromString,
+            binomialEngineTypeToString);
+
+%rename(EuropeanBinomialEngine) EuropeanBinomialEngineHandle;
+class EuropeanBinomialEngineHandle : public Handle<PricingEngine> {};
+
+%extend EuropeanBinomialEngineHandle {
+    EuropeanBinomialEngineHandle(BinomialEngineType type,
+                                 Size steps) {
+        return new EuropeanBinomialEngineHandle
+            (new EuropeanBinomialEngine(type,steps));
+    }
+}
+
 
 
 #endif

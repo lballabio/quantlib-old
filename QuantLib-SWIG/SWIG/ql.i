@@ -81,6 +81,7 @@
 
 %include common.i
 %include calendars.i
+%include cashflows.i
 %include currencies.i
 %include date.i
 %include daycounters.i

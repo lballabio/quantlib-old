@@ -28,10 +28,17 @@ def relErr(x1, x2, reference):
     else:
         return 10e+10
 
-def EuropeanOption(type,underlying,strike,divCurve,rfCurve,exDate,volatility):
+def EuropeanOption(type,underlying,strike,divCurve,rfCurve,
+                   exDate,volatility,engineType='analytic'):
+    if engineType == 'analytic':
+        engine = EuropeanAnalyticEngine()
+    elif engineType == 'jr':
+        engine = EuropeanBinomialEngine('jr',800)
+    elif engineType == 'crr':
+        engine = EuropeanBinomialEngine('crr',800)
     return VanillaOption(type,MarketElementHandle(underlying),strike,
                          divCurve,rfCurve, exDate,
-                         MarketElementHandle(volatility),EuropeanEngine())
+                         MarketElementHandle(volatility),engine)
 
 def flatCurve(forward):
     today = Date_todaysDate()
@@ -152,12 +159,13 @@ class EuropeanOptionTest(unittest.TestCase):
                                   'divRho','theta','vega']:
                         expct = expected[greek]
                         calcl = calculated[greek]
-                        if not relErr(expct,calcl,under) <= tolerance[greek]:
+                        if not relErr(expct,calcl,u) <= tolerance[greek]:
                             self.fail("""
 Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s %(v)f
     calculated %(greek)s : %(calcl)+9.5f
     expected   %(greek)s : %(expct)+9.5f
                                   """ % locals())
+
     def testImpliedVol(self):
         "testing European option implied volatility"
 
@@ -222,6 +230,63 @@ Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s
     implied volatility:  %(implVol)12.10f
     corresponding price: %(value2)f
                                   """ % locals()
+
+    def testBinomialEngine(self):
+        "Testing binomial European engines against analytic results"
+
+        tolerance = 0.1
+
+        test_options = [(type,strike,exDate)
+                        for type in ['Call','Put','Straddle']
+                        for strike in [50, 100, 150]
+                        for exDate in [Calendar("TARGET").roll(
+                                       Date_todaysDate().plusYears(1))]]
+                      
+        test_data = [(under,qRate,rRate,vol)
+                     for under in [100]
+                     for qRate in [0.0, 0.05]
+                     for rRate in [0.01, 0.05, 0.15]
+                     for vol in [0.11, 0.5, 1.2]]
+
+        underlying = SimpleMarketElement(0.0)
+        volatility = SimpleMarketElement(0.0)
+        qRate = SimpleMarketElement(0.0)
+        divCurve = flatCurve(qRate)
+        rRate = SimpleMarketElement(0.0)
+        rfCurve = flatCurve(rRate)
+        
+        for (type,strike,exDate) in test_options:
+            opt1 = EuropeanOption(type,underlying,strike,
+                                  divCurve,rfCurve,exDate,volatility)
+            opt2 = EuropeanOption(type,underlying,strike,
+                                  divCurve,rfCurve,exDate,volatility,'jr')
+            opt3 = EuropeanOption(type,underlying,strike,
+                                  divCurve,rfCurve,exDate,volatility,'crr')
+
+            for (u,q,r,v) in test_data:
+            
+                underlying.setValue(u)
+                volatility.setValue(v)
+                qRate.setValue(q)
+                rRate.setValue(r)
+        
+                value = opt1.NPV()
+                value_jr = opt2.NPV()
+                value_crr = opt3.NPV()
+
+                if not relErr(value,value_jr,u) <= tolerance:
+                    self.fail("""
+Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s %(v)f
+    analytic:      %(value)9.5f
+    binomial (JR): %(value_jr)9.5f
+                              """ % locals())
+                    
+                if not relErr(value,value_crr,u) <= tolerance:
+                    self.fail("""
+Option details: %(type)s %(u)f %(strike)f %(q)f %(r)f %(exDate)s %(v)f
+    analytic:       %(value)9.5f
+    binomial (CRR): %(value_crr)9.5f
+                              """ % locals())
 
 
 if __name__ == '__main__':

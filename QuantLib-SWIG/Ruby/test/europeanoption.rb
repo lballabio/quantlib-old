@@ -32,10 +32,19 @@ class EuropeanOptionTest < RUNIT::TestCase
       10e+10
     end
   end
-  def makeOption(type,underlying,strike,divCurve,rfCurve,exDate,volatility)
+  def makeOption(type,underlying,strike,divCurve,rfCurve,
+                 exDate,volatility,engineType='analytic')
+    case engineType
+      when 'analytic'
+        engine = EuropeanAnalyticEngine.new
+      when 'jr'
+        engine = EuropeanBinomialEngine.new('jr',800)
+      when 'crr'
+        engine = EuropeanBinomialEngine.new('crr',800)
+    end
     VanillaOption.new(type,MarketElementHandle.new(underlying),strike,
                       divCurve,rfCurve, exDate,
-                      MarketElementHandle.new(volatility),EuropeanEngine.new)
+                      MarketElementHandle.new(volatility),engine)
   end
   def makeFlatCurve(forward)
     today = Date.todaysDate
@@ -236,6 +245,72 @@ class EuropeanOptionTest < RUNIT::TestCase
                           )
             end
           end
+        end
+      end
+    end
+  end
+  def testBinomialEngines
+    calendar = Calendar.new('TARGET')
+
+    tolerance = 0.1
+
+    test_options = []
+    ['Call','Put','Straddle'].each { |type|
+    [50, 100, 150].each { |strike|
+    [calendar.roll(Date.todaysDate.plusYears(1))].each { |exDate|
+        test_options.push [type,strike,exDate]
+    }}}
+    
+    test_data = []
+    [100].each { |under|
+    [0.00, 0.05].each { |qRate|
+    [0.01, 0.05, 0.15].each { |rRate|
+    [0.11, 0.5, 1.2].each { |vol|
+        test_data.push [under,qRate,rRate,vol]
+    }}}}
+
+    underlying = SimpleMarketElement.new(0.0)
+    volatility = SimpleMarketElement.new(0.0)
+    qRate = SimpleMarketElement.new(0.0)
+    divCurve = makeFlatCurve(qRate)
+    rRate = SimpleMarketElement.new(0.0)
+    rfCurve = makeFlatCurve(rRate)
+        
+    test_options.each do |type,strike,exDate|
+
+      opt1 = makeOption(type,underlying,strike,
+                        divCurve,rfCurve,exDate,volatility)
+      opt2 = makeOption(type,underlying,strike,
+                        divCurve,rfCurve,exDate,volatility,'jr')
+      opt3 = makeOption(type,underlying,strike,
+                        divCurve,rfCurve,exDate,volatility,'crr')
+
+      test_data.each do |u,q,r,v|
+        
+        underlying.value = u
+        volatility.value = v
+        qRate.value = q
+        rRate.value = r
+
+        unless (opt1.NPV-opt2.NPV).abs/u <= tolerance
+          assert_fail(<<-MESSAGE
+                      
+    Option details: #{type} #{u} #{strike} #{q} #{r} #{exDate} #{v}
+        analytic value: #{opt1.NPV}
+        binomial (JR):  #{opt2.NPV}
+
+                          MESSAGE
+                      )
+        end
+        unless (opt1.NPV-opt3.NPV).abs/u <= tolerance
+          assert_fail(<<-MESSAGE
+                      
+    Option details: #{type} #{u} #{strike} #{q} #{r} #{exDate} #{v}
+        analytic value: #{opt1.NPV}
+        binomial (CRR): #{opt3.NPV}
+
+                          MESSAGE
+                      )
         end
       end
     end

@@ -22,7 +22,7 @@
 
 (load "common.scm")
 
-(define (European-option-Greek-test)     ; check Greeks
+(define (European-option-Greek-test)
   (define (derivative f obj datum)
     (let* ((x (MarketElement-value datum))
            (dx (/ x 10000))
@@ -125,7 +125,7 @@
                             '("delta" "gamma" "theta" "rho"
                               "dividend-rho" "vega")))))))))))
 
-(define (European-option-implied-vol-test)     ; implied volatility
+(define (European-option-implied-vol-test)
   (deleting-let* ((underlying (new-SimpleMarketElement 0.0)
                               delete-MarketElement)
                   (volatility (new-SimpleMarketElement 0.0)
@@ -176,21 +176,90 @@
                                             value 1.0e-4
                                             "Option parameters: "
                                             type ", " u ", " strike ", " q ", "
-                                            r ", " ex-date ", " v eol
+                                            r ", " ex-days ", " v eol
                                             "recalculated NPV:")))))))))))))
+
+(define (European-option-binomial-engine-test)
+  (deleting-let* ((underlying (new-SimpleMarketElement 0.0)
+                              delete-MarketElement)
+                  (volatility (new-SimpleMarketElement 0.0)
+                              delete-MarketElement)
+                  (q-rate (new-SimpleMarketElement 0.0)
+                          delete-MarketElement)
+                  (div-curve (eu-test-make-flat-curve q-rate)
+                             delete-TermStructureHandle)
+                  (r-rate (new-SimpleMarketElement 0.0)
+                          delete-MarketElement)
+                  (rf-curve (eu-test-make-flat-curve r-rate)
+                            delete-TermStructureHandle))
+    (let ((tolerance 0.1))
+      (for-each-combination ((type '("Call" "Put" "Straddle"))
+                             (strike '(50 100 150))
+                             (ex-days '(365)))
+        (deleting-let* ((option-1 (eu-test-make-option type underlying strike 
+                                                       div-curve rf-curve 
+                                                       ex-days volatility)
+                                  delete-Instrument)
+                        (option-2 (eu-test-make-option type underlying strike 
+                                                       div-curve rf-curve 
+                                                       ex-days volatility 
+                                                       "jr")
+                                  delete-Instrument)
+                        (option-3 (eu-test-make-option type underlying strike 
+                                                       div-curve rf-curve 
+                                                       ex-days volatility 
+                                                       "crr")
+                                  delete-Instrument))
+          (for-each-combination ((u '(100))
+                                 (q '(0.0 0.05))
+                                 (r '(0.01 0.05 0.15))
+                                 (v '(0.11 0.5 1.2)))
+
+            (SimpleMarketElement-value-set! underlying u)
+            (SimpleMarketElement-value-set! volatility v)
+            (SimpleMarketElement-value-set! q-rate q)
+            (SimpleMarketElement-value-set! r-rate r)
+
+            (let ((value-1 (Instrument-NPV option-1))
+                  (value-2 (Instrument-NPV option-2))
+                  (value-3 (Instrument-NPV option-3)))
+              (assert-equal value-1 value-2 (* u tolerance)
+                            "Option parameters: "
+                            type ", " u ", " strike ", " q ", "
+                            r ", " ex-days ", " v eol
+                            "    analytic value: " value-1 eol
+                            "    binomial (JR):  " value-2 eol)
+              (assert-equal value-1 value-3 (* u tolerance)
+                            "Option parameters: "
+                            type ", " u ", " strike ", " q ", "
+                            r ", " ex-days ", " v eol
+                            "    analytic value: " value-1 eol
+                            "    binomial (CRR): " value-3 eol))))))))
 
 
 (define (eu-test-make-option type underlying strike div-curve 
-                             rf-curve ex-days volatility)
+                             rf-curve ex-days volatility . engine-type)
   (deleting-let* ((today (Date-todays-date) delete-Date)
                   (ex-date (Date-plus-days today ex-days) delete-Date)
                   (uh (new-MarketElementHandle underlying)
                       delete-MarketElementHandle)
                   (vh (new-MarketElementHandle volatility)
                       delete-MarketElementHandle)
-                  (engine (new-EuropeanEngine) delete-PricingEngine))
+                  (engine (eu-test-make-engine engine-type) 
+                          delete-PricingEngine))
     (new-VanillaOption type uh strike div-curve
                        rf-curve ex-date vh engine)))
+(define (eu-test-make-engine engine-type)
+  (if (null? engine-type) 
+      (new-EuropeanAnalyticEngine)
+      (let ((engine-type (car engine-type)))
+        (cond ((string=? engine-type "analytic") 
+               (new-EuropeanAnalyticEngine))
+              ((string=? engine-type "jr") 
+               (new-EuropeanBinomialEngine "jr" 800))
+              ((string=? engine-type "crr") 
+               (new-EuropeanBinomialEngine "crr" 800))))))
+
 (define (eu-test-make-flat-curve forward)
   (deleting-let* ((today (Date-todays-date) delete-Date)
                   (calendar (new-Calendar "TARGET") delete-Calendar)
