@@ -26,7 +26,7 @@ from distutils.core import setup, Extension
 docs = ['LICENSE.TXT',
         'Authors.txt',
         'Contributors.txt',
-        'History.txt',
+        'News.txt',
         'README.txt']
 
 swig_files = ['quantlib.i',

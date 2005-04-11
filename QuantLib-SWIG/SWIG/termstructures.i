@@ -37,12 +37,11 @@ using QuantLib::YieldTermStructure;
 class YieldTermStructure : public Extrapolator {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("day-counter")     dayCounter;
-    %rename("todays-date")     todaysDate;
     %rename("reference-date")  referenceDate;
     %rename("max-date")        maxDate;
     %rename("max-time")        maxTime;
-    %rename("zero-yield")      zeroYield;
-    %rename("instantaneous-forward") instantaneousForward;
+    %rename("zero-rate")       zeroRate;
+    %rename("forward-rate")    forwardRate;
     #endif
   public:
     DayCounter dayCounter() const;
@@ -58,12 +57,13 @@ class YieldTermStructure : public Extrapolator {
     InterestRate zeroRate(Time t,
                           Compounding, Frequency f = Annual,
                           bool extrapolate = false) const;
-    Rate forwardRate(const Date& d1, const Date& d2,
-                     const DayCounter&, Compounding, Frequency f = Annual,
-                     bool extrapolate = false) const;
-    Rate forwardRate(Time t1, Time t2,
-                     Compounding, Frequency f = Annual,
-                     bool extrapolate = false) const;
+    InterestRate forwardRate(const Date& d1, const Date& d2,
+                             const DayCounter&, Compounding,
+                             Frequency f = Annual,
+                             bool extrapolate = false) const;
+    InterestRate forwardRate(Time t1, Time t2,
+                             Compounding, Frequency f = Annual,
+                             bool extrapolate = false) const;
 };
 
 %template(YieldTermStructure) boost::shared_ptr<YieldTermStructure>;

@@ -32,7 +32,7 @@
 ; files
 (define info-files
   (list "Authors.txt" "ChangeLog.txt" "Contributors.txt"
-        "LICENSE.TXT" "History.txt" "News.txt" "README.txt"))
+        "LICENSE.TXT" "News.txt" "README.txt"))
 (define source-files
   (list "QuantLib.scm" "quantlib_wrap.cpp"))
 (define binary-files

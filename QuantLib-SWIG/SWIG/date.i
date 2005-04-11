@@ -177,7 +177,10 @@ using QuantLib::DateParser;
 %mixin Date "Comparable";
 #endif
 class Date {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    #if defined(SWIGRUBY)
+    %rename("isLeap?")        isLeap;
+    %rename("isEOM?")         isEOM;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("day-of-month")   dayOfMonth;
     %rename("day-of-year")    dayOfYear;
     %rename("weekday-number") weekdayNumber;
@@ -186,6 +189,8 @@ class Date {
     %rename("min-date")       minDate;
     %rename("max-date")       maxDate;
     %rename("todays-date")    todaysDate;
+    %rename("end-of-month")   endOfMonth;
+    %rename("is-eom?")        isEOM;
     %rename(">string")        __str__;
     #endif
   public:
@@ -204,7 +209,7 @@ class Date {
     static Date minDate();
     static Date maxDate();
     static Date todaysDate();
-    Date endOfMonth(const Date&);
+    static Date endOfMonth(const Date&);
     static bool isEOM(const Date&);
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
     Date operator+(BigInteger days) const;

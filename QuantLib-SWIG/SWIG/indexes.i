@@ -135,14 +135,18 @@ class Name##Ptr : public XiborPtr {
 };
 %enddef
 
-export_xibor_instance(AUDLibor, Actual365Fixed);
-export_xibor_instance(CADLibor, Actual365Fixed);
+export_xibor_instance(AUDLibor, Actual360);
+export_xibor_instance(CADLibor, Actual360);
+export_xibor_instance(Cdor, Actual360);
 export_xibor_instance(CHFLibor, Actual360);
 export_xibor_instance(Euribor, Actual360);
 export_xibor_instance(GBPLibor, Actual365Fixed);
+export_xibor_instance(Jibar, Actual365Fixed);
 export_xibor_instance(JPYLibor, Actual360);
+export_xibor_instance(Tibor, Actual365Fixed);
 export_xibor_instance(USDLibor, Actual360);
 export_xibor_instance(ZARLibor, Actual365Fixed);
+export_xibor_instance(Zibor, Actual360);
 
 
 #endif

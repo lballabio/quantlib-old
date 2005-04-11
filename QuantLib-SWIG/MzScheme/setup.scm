@@ -39,7 +39,7 @@
 ; files
 (define info-files
   (list "Authors.txt" "ChangeLog.txt" "Contributors.txt"
-        "LICENSE.TXT" "News.txt" "History.txt" "README.txt"))
+        "LICENSE.TXT" "News.txt" "README.txt"))
 (define source-files
   (list (build-path "quantlib" "quantlib.ss")
         (build-path "quantlib" "ql-init.ss")

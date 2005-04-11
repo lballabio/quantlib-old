@@ -60,7 +60,7 @@ Version = "0.3.10"
 # Files
 cfg = Config::MAKEFILE_CONFIG
 Info     =    [ 'Authors.txt', 'ChangeLog.txt', 'Contributors.txt',
-                'LICENSE.TXT', 'README.txt', 'History.txt', 'News.txt',
+                'LICENSE.TXT', 'README.txt', 'News.txt',
                 'QuantLib-Ruby.spec' ]
 Sources  =    [ 'QuantLib.rb', 'quantlib_wrap.cpp' ]
 case cfg['host_os']
