@@ -177,7 +177,7 @@ if sys.platform == 'win32':
         define_macros = [('__WIN32__', None), ('MSC_CORE_BC_EXT', None)]
         extra_link_args = None
     else:
-        extra_compile_args = ['/GR', '/FD', '/Zm150']
+        extra_compile_args = ['/GR', '/FD', '/Zm250']
         define_macros = [('__WIN32__', None), ('WIN32', None),
                          ('NDEBUG', None), ('_WINDOWS', None),
                          ('NOMINMAX', None)]
