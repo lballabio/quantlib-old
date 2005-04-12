@@ -74,7 +74,7 @@
     </param>
     <param>
         <name>optionType</name>
-        <type class="YieldTermStructure">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>option type (cap or floor)</desc>
     </param>
