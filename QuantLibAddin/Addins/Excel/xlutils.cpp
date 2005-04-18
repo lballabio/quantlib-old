@@ -96,7 +96,8 @@ std::string XLOPERtoString(const XLOPER &xOp) {
     if (xlretSuccess != Excel(xlCoerce, &xStr, 2, &xOp, TempInt(xltypeStr))) 
         throw exception("XLOPERtoString: error on call to xlCoerce");
     std::string s;
-    s.assign(xStr.val.str + 1, xStr.val.str[0]);
+    if (xStr.val.str[0])
+        s.assign(xStr.val.str + 1, xStr.val.str[0]);
     Excel(xlFree, 0, 1, &xStr);
     return s;
 }
@@ -108,7 +109,8 @@ void stringToXLOPER(XLOPER &xStr, const char *s) {
     xStr.val.str = new char[ len + 1 ];
     if (!xStr.val.str) 
         throw exception("error calling new in function stringToXLOPER");
-    strncpy(xStr.val.str + 1, s, len);
+    if (len)
+        strncpy(xStr.val.str + 1, s, len);
     xStr.val.str[0] = len;
 }
 
