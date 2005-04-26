@@ -20,7 +20,6 @@
 #pragma warning(disable: 4503)
 #endif
 
-#include <string.h>
 #include <Addins/Calc/qladdin.hpp>
 #include <qla/qladdin.hpp>
 #include <cppuhelper/factory.hxx>
@@ -30,8 +29,8 @@
 #include <rtl/uuid.h>
 
 #define ADDIN_SERVICE    "com.sun.star.sheet.AddIn"
-#define MY_SERVICE        "com.sun.star.sheet.addin.QL"
-#define MY_IMPLNAME        "com.sun.star.sheet.addin.QLImpl"
+#define MY_SERVICE       "com.sun.star.sheet.addin.QL"
+#define MY_IMPLNAME      "com.sun.star.sheet.addin.QLImpl"
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -121,9 +120,8 @@ void QLAddin::acquire() throw () {
 }
 
 void QLAddin::release() throw () {
-    if (0 == ::osl_decrementInterlockedCount( &m_refcount )) {
+    if (0 == ::osl_decrementInterlockedCount( &m_refcount ))
         delete this;
-    }
 }
 
 // XTypeProvider
@@ -140,15 +138,13 @@ SEQ ( CSS::uno::Type ) QLAddin::getTypes() THROWDEF_RTE {
 
 SEQ ( sal_Int8 ) QLAddin::getImplementationId() THROWDEF_RTE {
     static SEQ ( sal_Int8 ) * s_pId = 0;
-    if (! s_pId)
-    {
+    if (! s_pId) {
         // create unique id
         SEQ ( sal_Int8 ) id( 16 );
         ::rtl_createUuid( (sal_uInt8 *)id.getArray(), 0, sal_True );
         // guard initialization with some mutex
         ::osl::MutexGuard guard( ::osl::Mutex::getGlobalMutex() );
-        if (! s_pId)
-        {
+        if (! s_pId) {
             static SEQ ( sal_Int8 ) s_id( id );
             s_pId = &s_id;
         }
@@ -164,7 +160,7 @@ STRING QLAddin::getImplementationName_Static() {
 
 SEQ( STRING ) QLAddin::getSupportedServiceNames_Static() {
     SEQ( STRING )    aRet(2);
-    STRING*            pArray = aRet.getArray();
+    STRING*          pArray = aRet.getArray();
     pArray[0] = STRFROMASCII( ADDIN_SERVICE );
     pArray[1] = STRFROMASCII( MY_SERVICE );
     return aRet;
@@ -189,18 +185,26 @@ STRING SAL_CALL QLAddin::getFunctionDescription(
 
 STRING SAL_CALL QLAddin::getDisplayArgumentName( 
         const STRING& aName, sal_Int32 nArg) THROWDEF_RTE {
-    if (argName[ aName ].empty())
-        return STRFROMASCII( "no help available");
-    else
-        return argName[ aName ][ nArg ];
+    std::map< STRING, std::vector < STRING > >::const_iterator i =
+        argName.find(aName);
+    if (i == argName.end())
+        return STRFROMASCII("no help available");
+    else {
+        std::vector < STRING >v = i->second;
+        return v[nArg];
+    }
 }
 
 STRING SAL_CALL QLAddin::getArgumentDescription( 
         const STRING& aName, sal_Int32 nArg ) THROWDEF_RTE {
-    if (argDesc[ aName ].empty())
-        return STRFROMASCII( "no help available");
-    else
-        return argDesc[ aName ][ nArg ];
+    std::map< STRING, std::vector < STRING > >::const_iterator i =
+        argDesc.find(aName);
+    if (i == argDesc.end())
+        return STRFROMASCII("no help available");
+    else {
+        std::vector < STRING >v = i->second;
+        return v[nArg];
+    }
 }
 
 STRING SAL_CALL QLAddin::getProgrammaticCategoryName(
@@ -215,20 +219,20 @@ STRING SAL_CALL QLAddin::getDisplayCategoryName(
 
 // XServiceName
 
-STRING SAL_CALL    QLAddin::getServiceName() THROWDEF_RTE {
+STRING SAL_CALL QLAddin::getServiceName() THROWDEF_RTE {
     return STRFROMASCII( MY_SERVICE );
 }
 
 // XServiceInfo
 
-STRING SAL_CALL    QLAddin::getImplementationName() THROWDEF_RTE {
+STRING SAL_CALL QLAddin::getImplementationName() THROWDEF_RTE {
     return getImplementationName_Static();
 }
 
 sal_Bool SAL_CALL QLAddin::supportsService(
         const STRING& aName) THROWDEF_RTE {
     return aName.compareToAscii( ADDIN_SERVICE ) == 0 || 
-        aName.compareToAscii( MY_SERVICE ) == 0;
+           aName.compareToAscii( MY_SERVICE ) == 0;
 }
 
 SEQ(STRING) SAL_CALL QLAddin::getSupportedServiceNames() THROWDEF_RTE {

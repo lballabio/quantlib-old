@@ -38,16 +38,17 @@ class QLAddin :     public CSS::sheet::addin::XQL,
                     public CSS::lang::XServiceName,
                     public CSS::lang::XServiceInfo,
                     public CSS::lang::XTypeProvider {
-    std::map< STRING, STRING, OUSTRCOMP > funcMap;
-    std::map< STRING, STRING, OUSTRCOMP > funcDesc;
-    std::map< STRING, std::vector < STRING >, OUSTRCOMP > argName;
-    std::map< STRING, std::vector < STRING >, OUSTRCOMP > argDesc;
+    // structures to store strings for help in the Function Wizard
+    std::map< STRING, STRING > funcMap;                 // function names
+    std::map< STRING, STRING > funcDesc;                // function descriptions
+    std::map< STRING, std::vector < STRING > > argName; // parameter names
+    std::map< STRING, std::vector < STRING > > argDesc; // parameter descriptions
     // XInterface
     oslInterlockedCount m_refcount;
 public:
-    CSS::lang::Locale            aFuncLoc;
-    static STRING                getImplementationName_Static();
-    static SEQ( STRING )        getSupportedServiceNames_Static();
+    CSS::lang::Locale              aFuncLoc;
+    static STRING                  getImplementationName_Static();
+    static SEQ( STRING )           getSupportedServiceNames_Static();
     // XInterface
     virtual CSS::uno::Any SAL_CALL queryInterface(
         CSS::uno::Type const & type) THROWDEF_RTE;
@@ -74,7 +75,7 @@ public:
     virtual STRING SAL_CALL        getImplementationName(  ) THROWDEF_RTE;
     virtual sal_Bool SAL_CALL    supportsService(
         const STRING& ServiceName ) THROWDEF_RTE;
-    virtual SEQ( STRING ) SAL_CALL    getSupportedServiceNames(  ) THROWDEF_RTE;
+    virtual SEQ( STRING ) SAL_CALL getSupportedServiceNames(  ) THROWDEF_RTE;
     // XTypeProvider
     virtual SEQ( CSS::uno::Type ) SAL_CALL getTypes() THROWDEF_RTE;
     virtual SEQ( sal_Int8 ) SAL_CALL getImplementationId() THROWDEF_RTE;

@@ -46,7 +46,8 @@ def generateFuncMap(functionGroups):
                 fileMap.write(PARMLINE
                     % ('argName', function[common.CODENAME], 'handle'))
                 fileMap.write(PARMLINE
-                    % ('argDesc', function[common.CODENAME], 'handle of newly constructed object'))
+                    % ('argDesc', function[common.CODENAME], 
+                       'handle of newly constructed ' + function[common.QLFUNC] + ' object'))
             for param in function[common.PARAMS]:
                 fileMap.write(PARMLINE
                     % ('argName', function[common.CODENAME], param[common.NAME]))
