@@ -6,3 +6,4 @@
 #include <Addins/Calc/qladdin.hpp>
 
 QLAddin::QLAddin() throw () : m_refcount( 0 ) {
+

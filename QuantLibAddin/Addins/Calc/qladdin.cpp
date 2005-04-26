@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -76,37 +76,41 @@ void * SAL_CALL component_getFactory(
 
 CSS::uno::Any QLAddin::queryInterface(
         CSS::uno::Type const & type) THROWDEF_RTE {
-//    if (type.equals( ::getCppuType( (REF ( XInterface ) const *)0 ) )) {
     if (type.equals( ::getCppuType( (REF ( CSS::uno::XInterface ) const *)0 ) )) {
         // return XInterface interface (resolve ambiguity by casting to lang::XTypeProvider)
-        REF ( CSS::uno::XInterface ) x( static_cast< CSS::lang::XTypeProvider * >( this ) );
-        return CSS::uno::makeAny( x );
+        REF ( CSS::uno::XInterface ) interface
+            ( static_cast< CSS::lang::XTypeProvider * >( this ) );
+        return CSS::uno::makeAny( interface );
     }
     if (type.equals( ::getCppuType( (REF ( CSS::lang::XTypeProvider ) const *)0 ) )) {
         // return XInterface interface
-//        REF ( XInterface ) x( static_cast< CSS::lang::XTypeProvider * >( this ) );
-        REF ( CSS::uno::XInterface ) x( static_cast< CSS::lang::XTypeProvider * >( this ) );
-        return CSS::uno::makeAny( x );
+        REF ( CSS::uno::XInterface ) interface
+            ( static_cast< CSS::lang::XTypeProvider * >( this ) );
+        return CSS::uno::makeAny( interface );
     }
     if (type.equals( ::getCppuType( (REF ( CSS::lang::XServiceName ) const *)0 ) )) {
         // return XServiceName interface
-        REF ( CSS::lang::XServiceName ) x( static_cast< CSS::lang::XServiceName * >( this ) );
-        return CSS::uno::makeAny( x );
+        REF ( CSS::lang::XServiceName ) interface
+            ( static_cast< CSS::lang::XServiceName * >( this ) );
+        return CSS::uno::makeAny( interface );
     }
     if (type.equals( ::getCppuType( (REF ( CSS::lang::XServiceInfo ) const *)0 ) )) {
         // return XServiceInfo interface
-        REF ( CSS::lang::XServiceInfo ) x( static_cast< CSS::lang::XServiceInfo * >( this ) );
-        return CSS::uno::makeAny( x );
+        REF ( CSS::lang::XServiceInfo ) interface
+            ( static_cast< CSS::lang::XServiceInfo * >( this ) );
+        return CSS::uno::makeAny( interface );
     }
     if (type.equals( ::getCppuType( (REF ( CSS::sheet::XAddIn ) const *)0 ) )) {
         // return XAddIn interface
-        REF ( CSS::sheet::XAddIn ) x( static_cast< CSS::sheet::XAddIn * >( this ) );
-        return CSS::uno::makeAny( x );
+        REF ( CSS::sheet::XAddIn ) interface
+            ( static_cast< CSS::sheet::XAddIn * >( this ) );
+        return CSS::uno::makeAny( interface );
     }
     if (type.equals( ::getCppuType( (REF ( CSS::sheet::addin::XQL ) const *)0 ) )) {
         // return sample interface
-        REF ( CSS::sheet::addin::XQL ) x( static_cast< CSS::sheet::addin::XQL * >( this ) );
-        return CSS::uno::makeAny( x );
+        REF ( CSS::sheet::addin::XQL ) interface
+            ( static_cast< CSS::sheet::addin::XQL * >( this ) );
+        return CSS::uno::makeAny( interface );
     }
     // querying for unsupported type
     return CSS::uno::Any();
@@ -180,17 +184,23 @@ STRING SAL_CALL QLAddin::getDisplayFunctionName(
 
 STRING SAL_CALL QLAddin::getFunctionDescription( 
         const STRING& aProgrammaticName) THROWDEF_RTE {
-    return STRFROMANSI( "This function accepts as input a single integer, the return value is one plus the input value" );
+    return funcDesc[ aProgrammaticName ];
 }
 
 STRING SAL_CALL QLAddin::getDisplayArgumentName( 
         const STRING& aName, sal_Int32 nArg) THROWDEF_RTE {
-    return STRFROMANSI( "argument 1" );
+    if (argName[ aName ].empty())
+        return STRFROMASCII( "no help available");
+    else
+        return argName[ aName ][ nArg ];
 }
 
 STRING SAL_CALL QLAddin::getArgumentDescription( 
         const STRING& aName, sal_Int32 nArg ) THROWDEF_RTE {
-    return STRFROMANSI( "Number to increment" );
+    if (argDesc[ aName ].empty())
+        return STRFROMASCII( "no help available");
+    else
+        return argDesc[ aName ][ nArg ];
 }
 
 STRING SAL_CALL QLAddin::getProgrammaticCategoryName(

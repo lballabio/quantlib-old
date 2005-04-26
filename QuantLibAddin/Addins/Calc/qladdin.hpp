@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,6 +26,7 @@
 #include <Addins/Calc/qldefs.hpp>
 #include <functional>
 #include <map>
+#include <vector>
 #include <string>
 
 struct OUSTRCOMP : public std::binary_function< STRING, STRING, bool > {
@@ -38,6 +39,9 @@ class QLAddin :     public CSS::sheet::addin::XQL,
                     public CSS::lang::XServiceInfo,
                     public CSS::lang::XTypeProvider {
     std::map< STRING, STRING, OUSTRCOMP > funcMap;
+    std::map< STRING, STRING, OUSTRCOMP > funcDesc;
+    std::map< STRING, std::vector < STRING >, OUSTRCOMP > argName;
+    std::map< STRING, std::vector < STRING >, OUSTRCOMP > argDesc;
     // XInterface
     oslInterlockedCount m_refcount;
 public:

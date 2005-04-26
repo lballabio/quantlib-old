@@ -7,8 +7,9 @@ import utils
 
 ROOT            = common.ADDIN_ROOT + 'Calc/'
 MAPFILE         = 'funcdef.cpp'
-MAPLINE         ='    funcMap[ STRFROMANSI( "%s" ) ]\n\
-        =  STRFROMANSI( "%s" );\n'
+MAPLINE         = '    %s[ STRFROMANSI( "%s" ) ]\n\
+        =  STRFROMANSI( "%s" );\n\n'
+PARMLINE        = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
 AUTOHDR         = 'autogen.hpp'
 IDL             = 'QuantLibAddin.idl'
 MAP             = 'stub.Calc.map'
@@ -26,19 +27,34 @@ CALC_STRING     = 'STRING'
 STR_FMT         = 'OUStringToString(%s)'
 
 def generateFuncMap(functionGroups):
-    'generate array that lists all functions in the addin'
+    'generate help text for function wizard'
     fileName = ROOT + MAPFILE + common.TEMPFILE
     fileMap = file(fileName, 'w')
     utils.printHeader(fileMap)
     bufCalcMap = utils.loadBuffer(MAP)
     fileMap.write(bufCalcMap)
     for groupName in functionGroups.keys():
-        fileMap.write('\n    //%s\n\n' % groupName)
         functionGroup = functionGroups[groupName]
+        fileMap.write('    // %s\n\n' % functionGroup[common.DISPLAYNAME])
         for function in functionGroup[common.FUNCLIST]:
+            fileMap.write('    // %s\n\n' % function[common.NAME])
             fileMap.write(MAPLINE
-                % (function[common.CODENAME], function[common.NAME]))
-    fileMap.write('\n}\n\n')
+                % ('funcMap', function[common.CODENAME], function[common.NAME]))
+            fileMap.write(MAPLINE
+                % ('funcDesc', function[common.CODENAME], function[common.DESC]))
+            if function[common.CTOR]:
+                fileMap.write(PARMLINE
+                    % ('argName', function[common.CODENAME], 'handle'))
+                fileMap.write(PARMLINE
+                    % ('argDesc', function[common.CODENAME], 'handle of newly constructed object'))
+            for param in function[common.PARAMS]:
+                fileMap.write(PARMLINE
+                    % ('argName', function[common.CODENAME], param[common.NAME]))
+                fileMap.write(PARMLINE
+                    % ('argDesc', function[common.CODENAME], param[common.DESC]))
+            if function[common.PARAMS]:
+                fileMap.write('\n')
+    fileMap.write('}\n\n')
     fileMap.close()
     utils.updateIfChanged(fileName)
 
