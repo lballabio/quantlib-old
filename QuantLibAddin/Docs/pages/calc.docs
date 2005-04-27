@@ -109,6 +109,7 @@ CC=/usr/local/gcc/3.2.2/bin/gcc \
 CXX=/usr/local/gcc/3.2.2/bin/g++ \
 CPP=/usr/local/gcc/3.2.2/bin/cpp
 </pre>
+<p><b>NB</b> If you also intend to debug QuantLibAddin with the gdb command line debugger, then you should also use the compile flag <b>-gdwarf-2</b> as described in document \ref troubleshooting.</p>
 <p>And each application must be recompiled and installed.</p>
 
 <h2>Shared Libraries</h2>
