@@ -193,7 +193,8 @@
            (current-extension-linker-flags
             (append
              (current-extension-linker-flags)
-             (list "-L/usr/local/lib" "-lstdc++" "-lgcc" "-lQuantLib")))))
+             (list "-L/usr/local/lib" "-lstdc++" "-lgcc"
+                   (string-append "-lQuantLib-" version))))))
           ((eqv? platform 'windows)
            (set! include-dirs (cons (getenv "QL_DIR") include-dirs))
            (current-extension-compiler-flags

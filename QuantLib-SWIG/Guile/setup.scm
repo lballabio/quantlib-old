@@ -182,7 +182,7 @@
     (let ((command (string-append c++-compiler " -shared "
                          "quantlib_wrap.o "
                          "-L/usr/local/lib "
-                         "-lQuantLib "
+                         "-lQuantLib-" version " "
                          "-o QuantLibc.so")))
       (display command) (newline)
       (system command))))
