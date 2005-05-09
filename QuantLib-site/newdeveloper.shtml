@@ -58,8 +58,11 @@ Developer FAQ (<a href=
 "http://quantlib.org/developerFAQ.shtml">http://quantlib.org/developerFAQ.shtml</a>.)</p>
 <p>We might need to ask for a disclaimer from your employer stating
 that your contribution can be released under the QuantLib license;
-such disclaimer shouldn't be necessary if you own the copyright of
-the code.</p>
+such disclaimer shouldn't be necessary if you own the copyright of the
+code. An example of such disclaimer can be found at <a href=
+"http://quantlib.org/templates/disclaimer.rtf">&lt;http://quantlib.org/templates/disclaimer.rtf&gt;</a>,
+but you can write your own along the same lines if the wording doesn't
+suit your employer.</p>
 <p>Finally, note that the above is a list of suggestion, not
 requirements. The QuantLib team can help you on any issue; don't
 let details stop you.</p>
