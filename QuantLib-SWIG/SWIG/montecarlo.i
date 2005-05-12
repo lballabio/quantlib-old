@@ -106,7 +106,7 @@ typedef QuantLib::SingleAsset<PseudoRandom>::path_generator_type
 %template(SamplePath) Sample<Path>;
 class GaussianPathGenerator {
   public:
-    GaussianPathGenerator(const boost::shared_ptr<StochasticProcess>&,
+    GaussianPathGenerator(const StochasticProcess1DPtr&,
                           Time length, Size steps,
                           const GaussianRandomSequenceGenerator&,
                           bool brownianBridge);
@@ -216,13 +216,24 @@ class GaussianMultiPathGenerator {
   public:
     %extend {
       GaussianMultiPathGenerator(
-                     const std::vector<boost::shared_ptr<StochasticProcess> >&
-                                                               diffusionProcs,
+                   const boost::shared_ptr<GenericStochasticProcess>& process,
+                   const std::vector<Time>& times,
+                   const GaussianRandomSequenceGenerator& generator,
+                   bool brownianBridge = false) {
+          return new GaussianMultiPathGenerator(process,
+                                                QuantLib::TimeGrid(
+                                                    times.begin(),
+                                                    times.end()),
+                                                generator,
+                                                brownianBridge);
+      }
+      GaussianMultiPathGenerator(
+                     const std::vector<StochasticProcess1DPtr>& processes,
                      const Matrix& correlation,
                      const std::vector<Time>& times,
                      const GaussianRandomSequenceGenerator& generator,
                      bool brownianBridge = false) {
-          return new GaussianMultiPathGenerator(diffusionProcs,
+          return new GaussianMultiPathGenerator(processes,
                                                 correlation,
                                                 QuantLib::TimeGrid(
                                                     times.begin(),

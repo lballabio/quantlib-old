@@ -122,7 +122,7 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
         VanillaOptionPtr(
-                const boost::shared_ptr<StochasticProcess>& process,
+                const boost::shared_ptr<GenericStochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
                 const boost::shared_ptr<Exercise>& exercise,
                 const boost::shared_ptr<PricingEngine>& engine
@@ -130,11 +130,8 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
-            boost::shared_ptr<BlackScholesProcess> bsProcess =
-                boost::dynamic_pointer_cast<BlackScholesProcess>(process);
-            QL_REQUIRE(bsProcess, "wrong stochastic process given");
             return new VanillaOptionPtr(
-                new VanillaOption(bsProcess,stPayoff,exercise,engine));
+                         new VanillaOption(process,stPayoff,exercise,engine));
         }
         Real delta() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)->delta();
@@ -183,7 +180,7 @@ class EuropeanOptionPtr : public VanillaOptionPtr {
   public:
     %extend {
         EuropeanOptionPtr(
-                const boost::shared_ptr<StochasticProcess>& process,
+                const boost::shared_ptr<GenericStochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
                 const boost::shared_ptr<Exercise>& exercise,
                 const boost::shared_ptr<PricingEngine>& engine
@@ -191,11 +188,8 @@ class EuropeanOptionPtr : public VanillaOptionPtr {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
-            boost::shared_ptr<BlackScholesProcess> bsProcess =
-                boost::dynamic_pointer_cast<BlackScholesProcess>(process);
-            QL_REQUIRE(bsProcess, "wrong stochastic process given");
             return new EuropeanOptionPtr(
-                new EuropeanOption(bsProcess,stPayoff,exercise,engine));
+                        new EuropeanOption(process,stPayoff,exercise,engine));
         }
     }
 };
@@ -309,7 +303,8 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
         MCEuropeanEnginePtr(const std::string& traits,
-                            Size timeSteps,
+                            Size timeSteps = Null<Size>(),
+                            Size timeStepsPerYear = Null<Size>(),
                             bool brownianBridge = false,
                             bool antitheticVariate = false,
                             bool controlVariate = false,
@@ -318,9 +313,13 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
                             intOrNull maxSamples = Null<Integer>(),
                             BigInteger seed = 0) {
             std::string s = QuantLib::lowercase(traits);
+            QL_REQUIRE(timeSteps != Null<Size>() ||
+                       timeStepsPerYear != Null<Size>(),
+                       "number of steps not specified");
             if (s == "pseudorandom" || s == "pr")
                 return new MCEuropeanEnginePtr(
                          new MCEuropeanEngine<PseudoRandom>(timeSteps,
+                                                            timeStepsPerYear,
                                                             brownianBridge,
                                                             antitheticVariate,
                                                             controlVariate,
@@ -331,6 +330,7 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
             else if (s == "lowdiscrepancy" || s == "ld")
                 return new MCEuropeanEnginePtr(
                        new MCEuropeanEngine<LowDiscrepancy>(timeSteps,
+                                                            timeStepsPerYear,
                                                             brownianBridge,
                                                             antitheticVariate,
                                                             controlVariate,
@@ -451,7 +451,7 @@ class DividendVanillaOptionPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
         DividendVanillaOptionPtr(
-                const boost::shared_ptr<StochasticProcess>& process,
+                const boost::shared_ptr<GenericStochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
                 const boost::shared_ptr<Exercise>& exercise,
                 const std::vector<Date>& dividendDates,
@@ -461,12 +461,9 @@ class DividendVanillaOptionPtr : public boost::shared_ptr<Instrument> {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
-            boost::shared_ptr<BlackScholesProcess> bsProcess =
-                boost::dynamic_pointer_cast<BlackScholesProcess>(process);
-            QL_REQUIRE(bsProcess, "wrong stochastic process given");
             return new DividendVanillaOptionPtr(
-                new DividendVanillaOption(bsProcess,stPayoff,exercise,
-                                          dividendDates,dividends,engine));
+                   new DividendVanillaOption(process,stPayoff,exercise,
+                                             dividendDates,dividends,engine));
         }
         Real delta() {
             return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
@@ -578,23 +575,21 @@ class BarrierOptionPtr : public boost::shared_ptr<Instrument> {
     #endif
   public:
     %extend {
-        BarrierOptionPtr(BarrierType barrierType,
-                         Real barrier,
-                         Real rebate,
-                         const boost::shared_ptr<StochasticProcess>& process,
-                         const boost::shared_ptr<Payoff>& payoff,
-                         const boost::shared_ptr<Exercise>& exercise,
-                         const boost::shared_ptr<PricingEngine>& engine
+        BarrierOptionPtr(
+                   BarrierType barrierType,
+                   Real barrier,
+                   Real rebate,
+                   const boost::shared_ptr<GenericStochasticProcess>& process,
+                   const boost::shared_ptr<Payoff>& payoff,
+                   const boost::shared_ptr<Exercise>& exercise,
+                   const boost::shared_ptr<PricingEngine>& engine
                                      = boost::shared_ptr<PricingEngine>()) {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
-            boost::shared_ptr<BlackScholesProcess> bsProcess =
-                boost::dynamic_pointer_cast<BlackScholesProcess>(process);
-            QL_REQUIRE(bsProcess, "wrong stochastic process given");
             return new BarrierOptionPtr(
-                new BarrierOption(barrierType, barrier, rebate,
-                                  bsProcess,stPayoff,exercise,engine));
+                         new BarrierOption(barrierType, barrier, rebate,
+                                           process,stPayoff,exercise,engine));
         }
         Real errorEstimate() {
             return boost::dynamic_pointer_cast<BarrierOption>(*self)
