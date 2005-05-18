@@ -190,7 +190,7 @@ LPXLOPER TempNum(double d)
 //
 ///***************************************************************************
 
-LPXLOPER TempStr(LPSTR lpstr)
+/*LPXLOPER TempStr(LPSTR lpstr)
 {
     LPXLOPER lpx;
 
@@ -204,6 +204,28 @@ LPXLOPER TempStr(LPSTR lpstr)
     lpstr[0] = (BYTE) lstrlen (lpstr+1);
     lpx->xltype = xltypeStr;
 //    lpx->val.str = (PUCHAR) lpstr;
+    lpx->val.str = lpstr;
+
+    return lpx;
+}*/
+
+/*
+    Function TempStrNoSize used in place of the standard
+    TempStr function which is broken under VC7's altered
+    handling of string literals
+*/
+LPXLOPER TempStrNoSize(LPSTR lpstr)
+{
+    LPXLOPER lpx;
+
+    lpx = (LPXLOPER) GetTempMemory(sizeof(XLOPER));
+
+    if (!lpx)
+    {
+        return 0;
+    }
+
+    lpx->xltype = xltypeStr;
     lpx->val.str = lpstr;
 
     return lpx;
@@ -504,4 +526,5 @@ LPXLOPER TempMissing(void)
 
     return lpx;
 }
+
 

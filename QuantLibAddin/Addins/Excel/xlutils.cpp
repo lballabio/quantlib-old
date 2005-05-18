@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2004 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -133,7 +134,7 @@ std::string getHandleFull(const std::string &handle) {
     try {
         if (xlretSuccess != Excel(xlfCaller, &xCaller, 0))
             throw exception("error on call to xlfCaller");
-        if (xlretSuccess != Excel(xlUDF, &xStr, 2, TempStr(" GetAddress"), &xCaller))
+        if (xlretSuccess != Excel(xlUDF, &xStr, 2, TempStrNoSize("\x0A""GetAddress"), &xCaller))
             throw exception("error on call to GetAddress");
     } catch(const exception &e) {
         Excel(xlFree, 0, 2, &xCaller, &xStr);
@@ -145,4 +146,5 @@ std::string getHandleFull(const std::string &handle) {
     Excel(xlFree, 0, 2, &xCaller, &xStr);
     return ret;
 }
+
 

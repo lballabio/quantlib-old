@@ -10,13 +10,15 @@ ADDIN      = 'qladdin.cpp'
 BODY_BUF   = ''
 INCLUDES   = 'stub.Excel.includes'
 BODY       = 'stub.Excel.body'
-REGLINE    = '        TempStr(" %s")%s'
+REGLINE    = '        TempStrNoSize("%s")%s'
 REGHEAD    = 'stub.Excel.regheader'
 REGFOOT    = 'stub.Excel.regfooter'
 MAXPARAM   = 30                      # max #/params to an Excel function
 MAXLEN     = 255                     # max length of excel string
 MAXPARMERR = 'number of function parameters exceeds max of %d'
 MAXLENERR  = 'list of parameter names exceeds max Excel length of %d:\n%s'
+
+def generateExcelStringLiteral(str): return '\\x%02X""%s'%(len(str),str)
 
 def generateParamChar(param):
     'derive the Excel char code corresponding to parameter datatype'
@@ -51,7 +53,7 @@ def formatLine(text, comment, lastParameter = False):
         suffix = ');'
     else:
         suffix = ','
-    str1 = REGLINE % (text, suffix)
+    str1 = REGLINE % (generateExcelStringLiteral(text), suffix)
     return '%-40s // %s\n' % (str1, comment)
 
 def generateFuncRegister(fileHeader, function):
@@ -193,4 +195,5 @@ def generate(functionDefs):
     generateFuncRegisters(functionDefs)
     generateFuncDefs(functionDefs[common.FUNCGROUPS])
     utils.logMessage('  done generating Excel.')
+
 
