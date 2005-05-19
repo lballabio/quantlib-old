@@ -13,12 +13,15 @@ BODY       = 'stub.Excel.body'
 REGLINE    = '        TempStrNoSize("%s")%s'
 REGHEAD    = 'stub.Excel.regheader'
 REGFOOT    = 'stub.Excel.regfooter'
+NUMDESC    = 10                      # #/params to describe a function
 MAXPARAM   = 30                      # max #/params to an Excel function
 MAXLEN     = 255                     # max length of excel string
 MAXPARMERR = 'number of function parameters exceeds max of %d'
 MAXLENERR  = 'list of parameter names exceeds max Excel length of %d:\n%s'
 
-def generateExcelStringLiteral(str): return '\\x%02X""%s'%(len(str),str)
+def generateExcelStringLiteral(str): 
+    'prepend hexadecimal byte count to Excel string'
+    return '\\x%02X""%s' % (len(str), str)
 
 def generateParamChar(param):
     'derive the Excel char code corresponding to parameter datatype'
@@ -60,10 +63,14 @@ def generateFuncRegister(fileHeader, function):
     'generate call to xlfRegister for given function'
     params = function[common.PARAMS]
     numParams = len(params)
-    numParamsTotal = numParams + 10    # 10 extra params to register the function
+    # We call xlfRegister with NUMDESC parameters to describe the function
+    # +1 additional parm to describe each parm in function being registered.
+    # NB if a function ever exceeds the MAXPARAM limit then the code below
+    # could be rewritten to dispense with the parameter descriptions
+    numParamsTotal = NUMDESC + numParams
     if function[common.CTOR]:
         numParamsTotal += 1            # extra parameter for object handle
-    # FIXME validation below to be moved into parse.py
+    # FIXME validation below to be moved into parse.py?
     if numParamsTotal > MAXPARAM:
         raise ValueError, MAXPARMERR % MAXPARAM
     paramStr = generateParamString(function)
