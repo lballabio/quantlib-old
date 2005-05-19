@@ -31,6 +31,7 @@ This document provides support on diagnosing and resolving problems with QuantLi
 \ref bugfixes\n
 \ref wizard\n
 \ref removeexcel\n
+\ref crashes\n
 \ref debugexcel\n
 \ref debuglinux\n
 
@@ -111,12 +112,13 @@ The program we want to debug is QLADemo.  File \b QuantLibAddin/Clients/C++/QLAD
 Now you can debug the program in the usual way e.g.
 
 \li <tt>gdb lt-QLADemo</tt> - to start the debugger
-\li <tt>br(eak) main</tt> - to set a breakpoint in function <tt>main</tt>
+\li <tt>b(reak) main</tt> - to set a breakpoint in function <tt>main</tt>
 \li <tt>r(un)</tt> - to start the program
 \li <tt>l(ist)</tt> - to list lines of code surrounding the breakpoint
 \li <tt>n(ext)</tt> - to advance to the next line
 \li <tt>s(tep)</tt> - to step into a function
-\li <tt>c</tt> - to continue to another breakpoint
+\li <tt>c(ontinue)</tt> - to continue to another breakpoint
+\li <tt>p(rint)</tt> - to display a variable's value
 
  etc.
 
