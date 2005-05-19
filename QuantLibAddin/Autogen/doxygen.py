@@ -29,7 +29,7 @@ def generateFuncDoc(fileFunc, function):
         convertVec = 'vector < %s >',
         convertMat = 'vector < vector < %s > >')
     retCode = deriveRetCode(function[common.RETVAL])
-    fileFunc.write('\\anchor %s\n' % function[common.NAME])
+    fileFunc.write('\\anchor %s \\b %s\n' % (function[common.NAME], function[common.NAME]))
     fileFunc.write('\\code\n')
     fileFunc.write(retCode + '\n')
     fileFunc.write('%s(' % function[common.NAME])
@@ -38,6 +38,7 @@ def generateFuncDoc(fileFunc, function):
         fileFunc.write(paramList)
     fileFunc.write(')\n')
     fileFunc.write('\\endcode\n')
+    fileFunc.write('\\par Description:\n')
     fileFunc.write(function[common.DESC])
     for param in function[common.PARAMS]:
         fileFunc.write('\\param %s %s\n' % (param[common.NAME], param[common.DESC]))
