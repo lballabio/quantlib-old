@@ -41,6 +41,9 @@ namespace QuantLibAddin {
             const std::string &handle,
             const std::string &engineName,
             const long &timeSteps);
+    
+    const ObjHandler::Properties& QL_OPTION_SETENGINE(
+            ObjHandler::ArgumentStack& arguments);
 
 }
 
