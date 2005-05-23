@@ -42,10 +42,6 @@ namespace QuantLibAddin {
     */
     std::string QL_OH_VERSION();
 
-    /*! return the vector of Properties
-        describing an Object in the ObjectHandler
-    */
-
 }
 
 #endif
