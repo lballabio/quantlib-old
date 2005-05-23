@@ -2,6 +2,7 @@ To do list:
 
 QuantLibAddin
 - additional QuantLib functionality
+- improve formatting of log messages
 
 Calc
 - allow null inputs where appropriate (e.g. arguments to QL_LOGFILE)
