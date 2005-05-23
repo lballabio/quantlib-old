@@ -43,20 +43,38 @@ AC_LANG([C++])
 AC_PATH_PROG([DOXYGEN], [doxygen])
 AC_PATH_PROG([SED], [sed])
 
-# possibly disable features
-AC_ARG_ENABLE([calc],
-              AC_HELP_STRING([--enable-calc],
-                             [If enabled (the default) the Calc addin is
-                              built by make.]),
+# possibly enable features
+AC_ARG_ENABLE([addin-c],
+              AC_HELP_STRING([--enable-addin-c],
+                             [build C addin and clients [[default=no]]]),
+              [qla_build_c=$enableval],
+              [qla_build_c=omitted])
+AC_ARG_ENABLE([addin-calc],
+              AC_HELP_STRING([--enable-addin-calc],
+                             [build Calc addin [[default=no]]]),
               [qla_build_calc=$enableval],
-              [qla_build_calc=yes])
-AM_CONDITIONAL(BUILD_CALC, test "$qla_build_calc" != "no")
+              [qla_build_calc=omitted])
+AC_ARG_ENABLE([addin-excel],
+              AC_HELP_STRING([--enable-addin-excel],
+                             [generate source for Excel addin [[default=no]]]),
+              [qla_build_excel=$enableval],
+              [qla_build_excel=omitted])
+AC_ARG_ENABLE([addin-all],
+              AC_HELP_STRING([--enable-addin-all],
+                             [build all addins and clients [[default=no]]]),
+              [qla_build_all=$enableval])
+AM_CONDITIONAL(BUILD_C, [test "$qla_build_c" = "omitted" \
+    && test "$qla_build_all" = "yes" || test "$qla_build_c" = "yes"])
+AM_CONDITIONAL(BUILD_CALC, [test "$qla_build_calc" = "omitted" \
+    && test "$qla_build_all" = "yes" || test "$qla_build_calc" = "yes"])
+AM_CONDITIONAL(BUILD_EXCEL, [test "$qla_build_excel" = "omitted" \
+    && test "$qla_build_all" = "yes" || test "$qla_build_excel" = "yes"])
 
 # done, output the configured files
 AC_CONFIG_FILES([
     Makefile
-    Autogen/Makefile
     qla/Makefile
+    Autogen/Makefile
     Addins/C/Makefile
     Addins/Calc/Makefile
     Addins/Excel/Makefile

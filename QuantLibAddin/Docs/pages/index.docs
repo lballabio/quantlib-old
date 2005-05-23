@@ -39,28 +39,19 @@
 
     \section gettingstarted Getting Started
 
-    QuantLibAddin supports Microsoft Excel, C/C++ (standalone programs),
-    and OpenOffice.Org Calc (Windows and Linux).
+    QuantLibAddin supports the following platforms
+    \li Microsoft Excel
+    \li C/C++ (standalone programs),
+    \li OpenOffice.Org Calc (Windows and Linux).
 
-    To use QuantLibAddin for Excel, please:
-    \li build QuantLib
-    \li build ObjectHandler
-    \li in the QuantLibAddin workspace, build AddinExcel
-    \li start Excel
-    \li load the Addin.  The name of the Addin will depend upon
-        the compiler version and configuration, e.g. if compiled
-        under MSDEV6 debug the Addin is called 
-        QuantLibAddin/Addins/Excel/xll/QuantLibAddin-vc6-mt-sgd.xll.
-    \li load a sample spreadsheet e.g.
-        QuantLibAddin/Clients/Excel/QLADemo.xls
-
-    To build QuantLibAddin for Calc please refer to the document 
-    \ref calc.
+    Please refer to document \ref installation for instructions on
+    building QuantLibAddin.
 
     The document \ref functionsoverview provides platform-independent,
-    end-user documentation of QuantLibAddin functionality.  Additional
-    information is available from the links at the left, if you have
-    a question which is not answered here please send a message to
-    quantlib-dev@lists.sf.net.
+    end-user documentation of QuantLibAddin functionality.  
+
+    Additional information is available from the links at the left, 
+    if you have a question which is not answered here please send a 
+    message to quantlib-dev@lists.sf.net.
 
 */

@@ -24,7 +24,7 @@
 /*! \page design QuantLibAddin Design
 
 <h2>Abstract</h2>
-<p>There is a requirement to supplement QuantLib's existing C++ API with a high-level API, <b>QuantLibAddin</b>, which implements a procedural interface that can be deployed on any platform capable of linking C++ libraries.  QuantLibAddin is less flexible than the native API but allows QuantLib functionality to be loaded directly to end-user environments such as spreadsheets.</p>
+<p>QuantLibAddin supplements QuantLib's existing C++ API with an additional, higher-level API, implemented as a procedural interface that can be deployed on any platform capable of linking C++ libraries. QuantLibAddin is less flexible than the native API but allows QuantLib functionality to be loaded directly to end-user environments such as spreadsheets.</p>
 <a name="tag_contents"><h2>Contents</h2>
 <div CLASS="TOC"><dl>
 <dt>\ref sec_1</dt>

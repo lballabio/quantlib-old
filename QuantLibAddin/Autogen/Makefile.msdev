@@ -44,7 +44,7 @@ ALL : $(FLAG1)
     if not exist "$(INT_DIR)/$(NULL)" mkdir "$(INT_DIR)"
 
 $(FLAG1) : $(STUBS) $(SCRIPTS) $(METADATA) $(INT_DIR)
-	autogen.py
+	autogen.py -a
 	echo flagged > $@
 
 CLEAN :

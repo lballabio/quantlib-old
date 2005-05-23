@@ -16,9 +16,21 @@ AUTOGEN_STUBS := stub.C.body stub.C.includes \
                  stub.Excel.regfooter stub.Excel.regheader \
                  stub.copyright
 
+# command line arguments
+AUTOGEN_ARGS = -d
+if BUILD_C
+    AUTOGEN_ARGS += -c
+endif
+if BUILD_CALC
+    AUTOGEN_ARGS += -o
+endif
+if BUILD_EXCEL
+    AUTOGEN_ARGS += -e
+endif
+
 all-local: .time-stamp
 
 .time-stamp: $(AUTOGEN_INPUT) $(AUTOGEN_PYS) $(AUTOGEN_STUBS)
-	python autogen.py
+	python autogen.py $(AUTOGEN_ARGS)
 	touch .time-stamp
 

@@ -16,5 +16,9 @@ QLADemo_SOURCES = qlademo.c
 Options_SOURCES = options.c
 Instruments_SOURCES = instruments.c
 
+if BUILD_C
 noinst_PROGRAMS = QLADemo Options Instruments
+else
+EXTRA_PROGRAMS = QLADemo Options Instruments
+endif
 

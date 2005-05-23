@@ -7,8 +7,11 @@ EXTRA_DIST = \
     AddinC.vcproj \
     AddinC_vc8.vcproj
 
-# for now we do not install the C addin
+if BUILD_C
 noinst_LTLIBRARIES = libQuantLibAddinC.la
+else
+EXTRA_LTLIBRARIES = libQuantLibAddinC.la
+endif
 
 libQuantLibAddinC_la_LIBADD = ../../qla/libQuantLibAddin.la
 

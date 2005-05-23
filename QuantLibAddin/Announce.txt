@@ -1,10 +1,10 @@
 
-There is a requirement to supplement QuantLib's existing C++ API with a
-high-level API, QuantLibAddin, which implements a procedural interface that
-can be deployed on any platform capable of linking C++ libraries.
-QuantLibAddin is less flexible than the native API but allows QuantLib
-functionality to be loaded directly to end-user environments such as
-spreadsheets.
+QuantLibAddin supplements QuantLib's existing C++ API
+with an additional, higher-level API, implemented as
+a procedural interface that can be deployed on any platform capable
+of linking C++ libraries. QuantLibAddin is less flexible than the
+native API but allows QuantLib functionality to be loaded directly
+to end-user environments such as spreadsheets.
 
 QuantLibAddin shares the QuantLib project structure with regard to distribution, 
 licensing, etc., all of which is documented on the main QuantLib website:

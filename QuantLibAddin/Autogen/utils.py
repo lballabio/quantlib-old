@@ -12,7 +12,7 @@ CR_FILENAME = 'stub.copyright'
 CR_BUFFER = ''
 HEADER = '%s this file generated automatically by %s\n\
 %s editing this file manually is not recommended\n\n'
-UPDATE_MSG = '        file %s - %s'
+UPDATE_MSG = '        file %-35s - %s'
 
 def generateParamList(
         paramList,              # list of dicts describing parameters

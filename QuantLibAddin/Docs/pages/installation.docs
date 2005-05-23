@@ -1,0 +1,126 @@
+
+/*
+ Copyright (C) 2005 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page installation Installation
+
+    \section installation_overview Overview
+
+    This document provides general instructions for building and installing  QuantLibAddin under Windows, and on platforms which use Autoconf e.g. Linux.
+    For additional notes regarding the installation of the Calc addin
+    please refer to the document \ref calc.
+
+    \ref prerequisites\n
+    \ref windows_installation\n
+    \ref autoconf_installation\n
+
+    \section prerequisites Prerequisites
+
+    \li QuantLib version 0.3.9
+    \li ObjectHandler version 0.1.1
+
+    \section windows_installation Installing under Windows
+
+    Please build the prerequisite projects using the same configuration you
+    intend to use for QuantLibAddin e.g. Debug or Release.
+
+    To build QuantLibAddin for Excel:
+    \li build project \b AddinExcel
+    \li start Excel
+    \li load the Addin.  The name of the Addin will depend on
+        the compiler version and configuration, e.g. if compiled
+        under MSDEV6 debug the Addin is called 
+        <strong>QuantLibAddin\\Addins\\Excel\\xll\\QuantLibAddin-vc6-mt-sgd.xll.</strong>
+    \li load a sample spreadsheet e.g.
+        <strong>QuantLibAddin\\Clients\\Excel\\QLADemo.xls</strong>
+
+    For other platforms please build the appropriate project, e.g. workspace ClientCDemo creates standalone C client executable <strong>Clients\\C\\bin\\QLADemo-vc6-mt-sgd.exe</strong>.
+
+    \section autoconf_installation Installing with Autoconf
+
+    \subsection autoconf_brief In Brief
+
+    \verbatim
+    tar zxfv QuantLibAddin-0.3.9.tar.gz
+    cd QuantLibAddin-0.3.9
+    ./configure
+    make
+    Clients/C++/QLADemo
+    \endverbatim
+
+    \subsection autoconf_detail In Detail
+
+    \par configure
+
+    Under the default configuration only the core QuantLibAddin C++ library is built, plus the standalone C++ client applications.  To build additional components, run configure with the corresponding arguments:
+
+    <table>
+    <tr>
+    <td><strong>Argument</strong></td><td><strong>Meaning</strong></td><td><strong>Directory</strong></td>
+    </tr>
+    <tr>
+    <td>--enable-addin-c</td><td>Build the C Addin and Clients</td><td>Addins/C<br>Clients/C</td>
+    </tr>
+    <tr>
+    <td>--enable-addin-calc</td><td>Build the Calc Addin</td><td>Addins/Calc</td>
+    </tr>
+    <tr>
+    <td>--enable-addin-excel</td><td>Autogenerate source code for the Excel Addin.  The Excel Addin is not compiled under Autoconf and this option is used by developers to package distributions.</td><td>Addins/Excel</td>
+    </tr>
+    <tr>
+    <td>--enable-addin-all</td><td>Build all of the above</td><td>Addins/*<br>Clients/*</td>
+    </tr>
+    </table>
+
+    The flags for the individual Addins override the \c --enable-addin-all flag, so for example to build all Addins except Calc you would do
+
+    \verbatim
+    ./configure --enable-addin-all --disable-addin-calc
+    \endverbatim
+
+    Under the default configuration the subsequent <tt>make install</tt> command installs libs to <tt>/usr/local/lib</tt> and header files to <tt>/usr/local/include</tt>, to override this behavior specify a different installation prefix using <tt>--prefix</tt> e.g.
+    \verbatim
+    ./configure --prefix=$HOME/QuantLibAddin
+    \endverbatim
+
+    \par make
+
+    To build the chosen configuration:
+    \verbatim
+    make
+    \endverbatim
+
+    To install QuantLibAddin:
+    \verbatim
+    make install
+    \endverbatim
+
+    This installs the core QuantLibAddin libs and headers to the configured location, in addition if the Calc build is enabled then <tt>make install</tt> installs the Calc Addin to the OpenOffice.org program directory.  Neither the C Addin nor any Client code is installed.
+
+    To build the documentation that you're reading now, do ...
+    \verbatim
+    make docs
+    \endverbatim
+    ... then point your browser at file <strong>QuantLibAddin/Docs/html/index.html</strong>.
+
+
+*/
