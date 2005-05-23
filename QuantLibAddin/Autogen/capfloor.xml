@@ -61,10 +61,16 @@
         <desc>nominal of cap</desc>
     </param>
     <param>
-        <name>strike</name>
+        <name>capStrike</name>
         <type>double</type>
         <tensorrank>scalar</tensorrank>
-        <desc>strike</desc>
+        <desc>cap strike</desc>
+    </param>
+    <param>
+        <name>floorStrike</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>floor strike</desc>
     </param>
     <param>
         <name>handleEngine</name>
@@ -76,7 +82,13 @@
         <name>optionType</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>option type (cap or floor)</desc>
+        <desc>option type (cap, floor or collar)</desc>
+    </param>
+    <param>
+        <name>amortization</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>1 = linear amortization, 0 = no amortization</desc>
     </param>
 </parameters>
 <returnval>

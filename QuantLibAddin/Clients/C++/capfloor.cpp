@@ -100,19 +100,21 @@ int main()
         (void) OH_MAKE_OBJECT(QuantLibAddin::AnalyticCapFloorEngine, "my_closedForm", engineArgs);
         
         Date startDate(25, March, 2006);
-        
+
         ArgumentStack capArgs;
-        capArgs.push(startDate.serialNumber());
-        capArgs.push(5l);
-        capArgs.push(string("Years"));
-        capArgs.push(string("ModifiedFollowing"));
-        capArgs.push(string("Semiannual"));
-        capArgs.push(2l);
-        capArgs.push(string("my_termStructure"));
-        capArgs.push(100000.0);
-        capArgs.push(0.04);
-        capArgs.push(string("my_closedForm"));
-        capArgs.push(string("Cap"));
+        capArgs.push(startDate.serialNumber());     // start of capping period
+        capArgs.push(5l);                           // capping period length
+        capArgs.push(string("Years"));              // time units
+        capArgs.push(string("ModifiedFollowing"));  // business day convention
+        capArgs.push(string("Semiannual"));         // capping frequency (semiannual)
+        capArgs.push(2l);                           // fixing days
+        capArgs.push(string("my_termStructure"));   // term structure
+        capArgs.push(100000.0);                     // nominal
+        capArgs.push(0.04);                         // cap srike
+        capArgs.push(0.02);                         // floor strike
+        capArgs.push(string("my_closedForm"));      // pricer
+        capArgs.push(string("Cap"));                // option type
+        capArgs.push(0l);                           // no amortisation
         Properties opProperties = OH_MAKE_OBJECT(QuantLibAddin::CapFloor, "my_cap", capArgs);
         
         OH_LOG_OBJECT("my_cap");
