@@ -59,6 +59,11 @@ AC_ARG_ENABLE([addin-excel],
                              [generate source for Excel addin [[default=no]]]),
               [qla_build_excel=$enableval],
               [qla_build_excel=omitted])
+AC_ARG_ENABLE([addin-guile],
+              AC_HELP_STRING([--enable-addin-guile],
+                             [build Guile addin [[default=no]]]),
+              [qla_build_guile=$enableval],
+              [qla_build_guile=omitted])
 AC_ARG_ENABLE([addin-all],
               AC_HELP_STRING([--enable-addin-all],
                              [build all addins and clients [[default=no]]]),
@@ -69,6 +74,8 @@ AM_CONDITIONAL(BUILD_CALC, [test "$qla_build_calc" = "omitted" \
     && test "$qla_build_all" = "yes" || test "$qla_build_calc" = "yes"])
 AM_CONDITIONAL(BUILD_EXCEL, [test "$qla_build_excel" = "omitted" \
     && test "$qla_build_all" = "yes" || test "$qla_build_excel" = "yes"])
+AM_CONDITIONAL(BUILD_GUILE, [test "$qla_build_guile" = "omitted" \
+    && test "$qla_build_all" = "yes" || test "$qla_build_guile" = "yes"])
 
 # done, output the configured files
 AC_CONFIG_FILES([
@@ -78,10 +85,12 @@ AC_CONFIG_FILES([
     Addins/C/Makefile
     Addins/Calc/Makefile
     Addins/Excel/Makefile
+    Addins/Guile/Makefile
     Clients/C/Makefile
     Clients/C++/Makefile
     Clients/Calc/Makefile
     Clients/Excel/Makefile
+    Clients/Guile/Makefile
     Docs/Makefile])
 AC_OUTPUT
 

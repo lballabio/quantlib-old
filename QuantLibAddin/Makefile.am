@@ -5,6 +5,7 @@ SUBDIRS = \
     Addins/C \
     Addins/Calc \
     Addins/Excel \
+    Addins/Guile \
     Clients/C \
     Clients/C++ \
     Clients/Calc \

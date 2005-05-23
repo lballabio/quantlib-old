@@ -1,0 +1,10 @@
+%s#include <extra.h>
+#include <guile/gh.h>
+
+void init_qladdin() {
+
+%s
+    /* Utilities extra */
+    gh_new_procedure("qlConsole", qlConsole, 1, 0, 0);
+
+}

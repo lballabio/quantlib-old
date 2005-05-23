@@ -8,6 +8,7 @@ import parse
 import c
 import calc
 import excel
+import guile
 import doxygen
 
 def usage():
@@ -32,6 +33,7 @@ buildExcel = False
 buildCalc  = False
 buildC     = False
 buildDocs  = False
+buildGuile = False
 
 for o, a in opts:
     if o in ('-h', '--help'):
@@ -42,15 +44,19 @@ for o, a in opts:
         buildCalc  = True
     if o == '-c':
         buildC     = True
+    if o == '-g':
+        buildGuile = True
     if o == '-d':
         buildDocs  = True
     if o == '-a':
         buildExcel = True
         buildCalc  = True
         buildC     = True
+        buildGuile = True
         buildDocs  = True
 
-if not buildExcel and not buildCalc and not buildC and not buildDocs:
+if not buildExcel and not buildCalc and not buildC \
+   and not buildGuile and not buildDocs:
     usage()
 
 # generate source code for chosen target projects
@@ -65,6 +71,8 @@ if buildCalc:
     calc.generate(functionDefs)
 if buildExcel:
     excel.generate(functionDefs)
+if buildGuile:
+    guile.generate(functionDefs)
 if buildDocs:
     doxygen.generate(functionDefs)
 

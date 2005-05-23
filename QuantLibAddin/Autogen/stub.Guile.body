@@ -1,0 +1,11 @@
+    try {
+%s        Properties properties = 
+            %s;
+        SCM rtn = propertiesToAList(properties);
+        return rtn;
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("%s Error: ") + e.what(), 2);
+        return SCM_EOL;
+    }
+}
+

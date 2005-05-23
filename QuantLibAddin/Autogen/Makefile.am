@@ -27,6 +27,9 @@ endif
 if BUILD_EXCEL
     AUTOGEN_ARGS += -e
 endif
+if BUILD_GUILE
+    AUTOGEN_ARGS += -g
+endif
 
 all-local: .time-stamp
 
