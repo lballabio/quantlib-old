@@ -10,6 +10,7 @@ SUBDIRS = \
     Clients/C++ \
     Clients/Calc \
     Clients/Excel \
+    Clients/Guile \
     Docs
 
 #   makefile.mak
