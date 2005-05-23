@@ -154,4 +154,64 @@ FloatingRateCouponVector(const Schedule& schedule,
 %}
 
 
+// cash-flow analysis
+
+%{
+using QuantLib::Cashflows;
+typedef QuantLib::Duration::Type DurationType;
+
+DurationType durationFromString(std::string s) {
+    s = QuantLib::lowercase(s);
+    if (s == "simple")
+        return QuantLib::Duration::Simple;
+    else if (s == "macaulay")
+        return QuantLib::Duration::Macaulay;
+    else if (s == "modified")
+        return QuantLib::Duration::Modified;
+    else
+        QL_FAIL("unknown duration type");
+}
+
+std::string stringFromDuration(DurationType d) {
+    switch (d) {
+      case QuantLib::Duration::Simple:      return "simple";
+      case QuantLib::Duration::Macaulay:    return "Macaulay";
+      case QuantLib::Duration::Modified:    return "modified";
+      default:                              QL_FAIL("unknown duration type");
+    }
+}
+%}
+
+MapToString(DurationType,durationFromString,stringFromDuration);
+
+class Cashflows {
+  private:
+    Cashflows();
+    Cashflows(const Cashflows&);
+  public:
+    static Real npv(const std::vector<boost::shared_ptr<CashFlow> >&,
+                    const Handle<YieldTermStructure>&);
+    static Real npv(const std::vector<boost::shared_ptr<CashFlow> >&,
+                    const InterestRate&,
+                    Date settlementDate = Date());
+    static Rate irr(const std::vector<boost::shared_ptr<CashFlow> >&,
+                    Real marketPrice,
+                    const DayCounter& dayCounter,
+                    Compounding compounding,
+                    Frequency frequency = QuantLib::NoFrequency,
+                    Date settlementDate = Date(),
+                    Real tolerance = 1.0e-10,
+                    Size maxIterations = 10000,
+                    Rate guess = 0.05);
+    static Real convexity(const std::vector<boost::shared_ptr<CashFlow> >&,
+                          const InterestRate&,
+                          Date settlementDate = Date());
+    static Time duration(const std::vector<boost::shared_ptr<CashFlow> >&,
+                         Real marketPrice,
+                         const InterestRate&,
+                         DurationType type = QuantLib::Duration::Simple,
+                         Date settlementDate = Date());
+};
+
+
 #endif
