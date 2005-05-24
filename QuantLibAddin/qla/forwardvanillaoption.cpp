@@ -65,15 +65,5 @@ namespace QuantLibAddin {
         properties_.push_back(prop_engine);
     }
 
-    void ForwardVanillaOption::setEngine(
-            const std::string &engineID,
-            const long &timeSteps) {
-        boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
-            IDtoEngine(engineID, timeSteps);
-        forwardVanillaOption_->setPricingEngine(pricingEngine);
-        *properties_[IDX_NPV]() = forwardVanillaOption_->NPV();
-        *properties_[IDX_ENGINE]() = engineID;
-    }
-
 }
 

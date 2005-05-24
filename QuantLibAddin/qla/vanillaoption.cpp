@@ -61,7 +61,7 @@ namespace QuantLibAddin {
         properties_.push_back(prop_engine);
     }
 
-    void VanillaOption::setEngine(
+    const ObjHandler::Properties& VanillaOption::setEngine(
             const std::string &engineID,
             const long &timeSteps) {
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
@@ -69,31 +69,7 @@ namespace QuantLibAddin {
         vanillaOption_->setPricingEngine(pricingEngine);
         *properties_[IDX_NPV]() = vanillaOption_->NPV();
         *properties_[IDX_ENGINE]() = engineID;
-    }
-
-    const ObjHandler::Properties& QL_OPTION_SETENGINE(
-            const std::string &handle,
-            const std::string &engineName,
-            const long &timeSteps) {
-
-        boost::shared_ptr<VanillaOption> objectPointer =
-            OH_GET_OBJECT(VanillaOption, handle);
-        if (!objectPointer)
-            QL_FAIL("QL_OPTION_SETENGINE: error retrieving object " + handle);
-
-        objectPointer->setEngine(engineName, timeSteps);
-        return objectPointer->getProperties();
-
-    }
-
-    const ObjHandler::Properties& QL_OPTION_SETENGINE(
-            ObjHandler::ArgumentStack& arguments) {
-        
-        long timeSteps         = OH_POP_ARGUMENT(long, arguments);
-        std::string engineName = OH_POP_ARGUMENT(std::string, arguments);
-        std::string handle     = OH_POP_ARGUMENT(std::string, arguments);
-        
-        return QL_OPTION_SETENGINE(handle, engineName, timeSteps);
+        return properties_;
     }
 
 }

@@ -174,10 +174,6 @@ SOURCE=.\stub.Excel.includes
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.Excel.regfooter
-# End Source File
-# Begin Source File
-
 SOURCE=.\stub.Excel.regheader
 # End Source File
 # End Group

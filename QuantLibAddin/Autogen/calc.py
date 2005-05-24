@@ -5,25 +5,34 @@ import utils
 
 # constants
 
-ROOT            = common.ADDIN_ROOT + 'Calc/'
-MAPFILE         = 'funcdef.cpp'
-MAPLINE         = '    %s[ STRFROMANSI( "%s" ) ]\n\
-        =  STRFROMANSI( "%s" );\n\n'
-PARMLINE        = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
 AUTOHDR         = 'autogen.hpp'
-IDL             = 'QuantLibAddin.idl'
-MAP             = 'stub.Calc.map'
-INCLUDES        = 'stub.Calc.includes'
 BODY            = 'stub.Calc.body'
-IDL_HEAD        = 'stub.Calc.idlhead'
-IDL_FOOT        = 'stub.Calc.idlfoot'
-IDL_FUNC        = 'stub.Calc.idlfunc'
 CALC_BOOL       = 'sal_Bool'
 CALC_BOOL_IDL   = 'boolean'
 CALC_LONG       = 'sal_Int32'
 CALC_MATRIX     = 'SEQSEQ(ANY)'
 CALC_MATRIX_IDL = 'sequence < sequence < any > >'
 CALC_STRING     = 'STRING'
+FUNC_BODY       = '\
+        boost::shared_ptr<QuantLibAddin::%s> objectPointer =\n\
+            OH_GET_OBJECT(QuantLibAddin::%s, OUStringToString(handle));\n\
+        if (!objectPointer)\n\
+            QL_FAIL("%s: error retrieving object " + OUStringToString(handle));\n'
+IDL             = 'QuantLibAddin.idl'
+IDL_FOOT        = 'stub.Calc.idlfoot'
+IDL_FUNC        = 'stub.Calc.idlfunc'
+IDL_HEAD        = 'stub.Calc.idlhead'
+INCLUDES        = 'stub.Calc.includes'
+MAKE_ARGS       = '\
+            QuantLibAddin::%s,\n\
+            OUStringToString(handle),\n\
+            args'
+MAP             = 'stub.Calc.map'
+MAPFILE         = 'funcdef.cpp'
+MAPLINE         = '    %s[ STRFROMANSI( "%s" ) ]\n\
+        =  STRFROMANSI( "%s" );\n\n'
+PARMLINE        = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
+ROOT            = common.ADDIN_ROOT + 'Calc/'
 STR_FMT         = 'OUStringToString(%s)'
 
 def generateFuncMap(functionGroups):
@@ -153,21 +162,20 @@ def generateFuncSource(fileFunc, function, bufBody):
         % function[common.CODENAME])
     generateHeader(fileFunc, function, ' {')
     if function[common.CTOR]:
-        handle = 12 * ' ' + 'OUStringToString(handle), args'
-        fName = common.MAKE_COMMAND % function[common.QLFUNC]
-        args = utils.generateArgList(function[common.PARAMS], 
+        functionBody = utils.generateArgList(function[common.PARAMS], 
             reformatString = STR_FMT)
-        paramList = ''
+        functionName = common.MAKE_FUNCTION
+        paramList = MAKE_ARGS % function[common.QLFUNC]
     else:
-        handle = ''
-        fName = 'QuantLibAddin::' + function[common.NAME] + '('
-        args = ''
+        className = function[common.PARAMS][0][common.CLASS]
+        functionBody = FUNC_BODY % (className, className, function[common.NAME])
+        functionName = 'objectPointer->' + function[common.QLFUNC]
         paramList = utils.generateParamList(function[common.PARAMS], 3,
             reformatString = STR_FMT, arrayCount = True, 
-			appendTensor = True,
+			appendTensor = True, skipFirst = True,
             convertMatStr = 'ANY')
     conversions = generateConversions(function[common.PARAMS])
-    fileFunc.write(bufBody % (conversions, args, fName, handle,
+    fileFunc.write(bufBody % (conversions, functionBody, functionName,
         paramList, function[common.NAME]))
 
 def generateFuncSources(functionGroups):

@@ -27,7 +27,7 @@ namespace QuantLibAddin {
     public:
         VanillaOption(ObjHandler::ArgumentStack &args);
     //    ~VanillaOption();
-        void setEngine(
+        const ObjHandler::Properties& setEngine(
             const std::string &engineName,
             const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
@@ -36,14 +36,6 @@ namespace QuantLibAddin {
     private:
         boost::shared_ptr<QuantLib::VanillaOption> vanillaOption_;
     };
-
-    const ObjHandler::Properties& QL_OPTION_SETENGINE(
-            const std::string &handle,
-            const std::string &engineName,
-            const long &timeSteps);
-    
-    const ObjHandler::Properties& QL_OPTION_SETENGINE(
-            ObjHandler::ArgumentStack& arguments);
 
 }
 

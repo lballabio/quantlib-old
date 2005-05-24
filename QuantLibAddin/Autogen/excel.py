@@ -12,12 +12,24 @@ INCLUDES   = 'stub.Excel.includes'
 BODY       = 'stub.Excel.body'
 REGLINE    = '        TempStrNoSize("%s")%s'
 REGHEAD    = 'stub.Excel.regheader'
-REGFOOT    = 'stub.Excel.regfooter'
+REGFOOT    = '\
+    Excel(xlFree, 0, 1, &xDll);\n\
+    return 1;\n\
+}\n\n'
 NUMDESC    = 10                      # #/params to describe a function
 MAXPARAM   = 30                      # max #/params to an Excel function
 MAXLEN     = 255                     # max length of excel string
 MAXPARMERR = 'number of function parameters exceeds max of %d'
 MAXLENERR  = 'list of parameter names exceeds max Excel length of %d:\n%s'
+MAKE_ARGS       = '\
+            QuantLibAddin::%s,\n\
+            handle,\n\
+            args'
+FUNC_BODY       = '\
+        boost::shared_ptr<QuantLibAddin::%s> objectPointer =\n\
+            OH_GET_OBJECT(QuantLibAddin::%s, handle);\n\
+        if (!objectPointer)\n\
+            QL_FAIL("%s: error retrieving object " + std::string(handle));\n'
 
 def generateExcelStringLiteral(str): 
     'prepend hexadecimal byte count to Excel string'
@@ -119,13 +131,12 @@ def generateFuncRegisters(functionDefs):
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
     bufHead = utils.loadBuffer(REGHEAD)
-    bufFoot = utils.loadBuffer(REGFOOT)
     fileHeader.write(bufHead)
     for group in functionDefs[common.FUNCGROUPS].itervalues():
         fileHeader.write('    // %s\n\n' % group[common.DISPLAYNAME])
         for function in group[common.FUNCLIST]:
             generateFuncRegister(fileHeader, function)
-    fileHeader.write(bufFoot)
+    fileHeader.write(REGFOOT)
     fileHeader.close()
     utils.updateIfChanged(fileName)
 
@@ -159,25 +170,24 @@ def generateFuncDef(fileFunc, function, bufBody):
     paramList1 = utils.generateParamList(function[common.PARAMS], 2,
         True, '', 'char', dereference = '*', replaceTensor = 'LPXLOPER')
     if function[common.CTOR]:
-        handle1 = 8 * ' ' + 'char *handleStub,\n'
-        handle2 = 8 * ' ' + 'std::string handle = getHandleFull(handleStub);\n'
-        handle3 = 12 * ' ' + 'handle, args'
-        fName = common.MAKE_COMMAND % function[common.QLFUNC]
+        handle = 8 * ' ' + 'char *handleStub,\n'
         args = utils.generateArgList(function[common.PARAMS], '*')
-        paramList2 = ''
+        functionBody = 8 * ' ' + 'std::string handle = getHandleFull(handleStub);\n'
+        functionName = common.MAKE_FUNCTION
+        paramList2 = MAKE_ARGS % function[common.QLFUNC]
     else:
-        handle1 = ''
-        handle2 = ''
-        handle3 = ''
-        fName = 'QuantLibAddin::' + function[common.NAME] + '('
+        className = function[common.PARAMS][0][common.CLASS]
+        handle = ''
         args = ''
+        functionBody = FUNC_BODY % (className, className, function[common.NAME])
+        functionName = 'objectPointer->' + function[common.QLFUNC]
         paramList2 = utils.generateParamList(function[common.PARAMS], 3,
-            reformatString = '%s', 
+            reformatString = '%s', skipFirst = True,
             arrayCount = True, dereference = '*', appendTensor = True)
     conversions = generateConversions(function[common.PARAMS])
     fileFunc.write(bufBody %
-        (function[common.CODENAME], handle1, paramList1, conversions, args,
-            handle2, fName, handle3, paramList2, function[common.NAME]))
+        (function[common.CODENAME], handle, paramList1, conversions, args,
+            functionBody, functionName, paramList2, function[common.NAME]))
 
 def generateFuncDefs(functionGroups):
     'generate source code for function bodies'

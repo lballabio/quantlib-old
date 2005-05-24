@@ -1,8 +1,8 @@
 DLLEXPORT LPXLOPER %s(
 %s%s) {
     try {
-%s%s%s        Properties properties = %s
-%s%s);
+%s%s%s        Properties properties = %s(
+%s);
         static XLOPER xRet;
         setArray(&xRet, properties, handle);
         return &xRet;

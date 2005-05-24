@@ -1,6 +1,6 @@
     try {
-%s%s        Properties properties = 
-            %s%s%s);
+%s%s        Properties properties = %s(
+%s);
         propertiesToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {

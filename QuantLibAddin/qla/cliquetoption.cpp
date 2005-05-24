@@ -64,15 +64,5 @@ namespace QuantLibAddin {
         properties_.push_back(prop_engine);
     }
 
-    void CliquetOption::setEngine(
-            const std::string &engineID,
-            const long &timeSteps) {
-        boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
-            IDtoEngine(engineID, timeSteps);
-        cliquetOption_->setPricingEngine(pricingEngine);
-        *properties_[IDX_NPV]() = cliquetOption_->NPV();
-        *properties_[IDX_ENGINE]() = engineID;
-    }
-
 }
 

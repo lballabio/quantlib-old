@@ -17,6 +17,7 @@ def usage():
     print '        e - generate source for Excel addin'
     print '        o - generate source for OpenOffice.org Calc addin'
     print '        c - generate source for C addin'
+    print '        g - generate source for Guile addin'
     print '        d - generate doxygen documentation files'
     print '    or'
     print '        a - all of the above'
@@ -25,7 +26,7 @@ def usage():
 # parse command line arguments
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'eocdah', 'help' )
+    opts, args = getopt.getopt(sys.argv[1:], 'eocgdah', 'help' )
 except getopt.GetoptError:
     usage()
 

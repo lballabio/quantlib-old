@@ -27,9 +27,6 @@ namespace QuantLibAddin {
     public:
         DividendVanillaOption(ObjHandler::ArgumentStack &args);
     //    ~DividendVanillaOption();
-        void setEngine(
-            const std::string &engineName,
-            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(dividendVanillaOption_);
         }

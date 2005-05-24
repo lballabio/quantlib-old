@@ -27,9 +27,6 @@ namespace QuantLibAddin {
     public:
         ForwardVanillaOption(ObjHandler::ArgumentStack &args);
     //    ~ForwardVanillaOption();
-        void setEngine(
-            const std::string &engineName,
-            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(forwardVanillaOption_);
         }

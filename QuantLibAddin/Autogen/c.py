@@ -5,9 +5,18 @@ import utils
 
 # constants
 
-ROOT = common.ADDIN_ROOT + 'C/'
-INCLUDES = 'stub.C.includes'
 BODY = 'stub.C.body'
+FUNC_BODY       = '\
+        boost::shared_ptr<QuantLibAddin::%s> objectPointer =\n\
+            OH_GET_OBJECT(QuantLibAddin::%s, handle);\n\
+        if (!objectPointer)\n\
+            QL_FAIL("%s: error retrieving object " + std::string(handle));\n'
+MAKE_ARGS       = '\
+            QuantLibAddin::%s,\n\
+            handle,\n\
+            args'
+INCLUDES = 'stub.C.includes'
+ROOT = common.ADDIN_ROOT + 'C/'
 
 def generateFuncHeader(fileHeader, function, suffix):
     'generate source for prototype of given function'
@@ -72,17 +81,17 @@ def generateFuncDefs(groupName, functionGroup):
         generateFuncHeader(fileFunc, function, ' {')
         conversions = generateConversions(function[common.PARAMS])
         if function[common.CTOR]:
-            args = utils.generateArgList(function[common.PARAMS])
-            fName = common.MAKE_COMMAND % function[common.QLFUNC]
-            handle = 'handle, args'
-            paramList = ''
+            functionBody = utils.generateArgList(function[common.PARAMS])
+            functionName = common.MAKE_FUNCTION
+            paramList = MAKE_ARGS % function[common.QLFUNC]
         else:
-            args = ''
-            fName = 'QuantLibAddin::' + function[common.NAME] + '('
-            handle = '\n'
+            className = function[common.PARAMS][0][common.CLASS]
+            functionBody = FUNC_BODY % (className, className, function[common.NAME])
+            functionName = 'objectPointer->' + function[common.QLFUNC]
             paramList = utils.generateParamList(function[common.PARAMS], 
-                3, convertString = 'char*', arrayCount = True, convertMatStr = 'char*')
-        fileFunc.write(bufBody % (conversions, args, fName, handle,
+                3, convertString = 'char*', arrayCount = True, 
+                convertMatStr = 'char*', skipFirst = True)
+        fileFunc.write(bufBody % (conversions, functionBody, functionName,
             paramList, function[common.NAME]))
     fileFunc.close()
     utils.updateIfChanged(fileName)

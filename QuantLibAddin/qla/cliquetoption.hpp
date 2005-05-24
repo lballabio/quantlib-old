@@ -27,9 +27,6 @@ namespace QuantLibAddin {
     public:
         CliquetOption::CliquetOption(ObjHandler::ArgumentStack &args);
     //    ~CliquetOption();
-        void setEngine(
-            const std::string &engineName,
-            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(cliquetOption_);
         }

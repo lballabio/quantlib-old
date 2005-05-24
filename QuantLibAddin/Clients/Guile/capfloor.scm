@@ -119,3 +119,4 @@
 (make-collar "myCollar" "myPricer")
 
 (call-func qlLogObject "myCollar")
+

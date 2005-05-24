@@ -4,6 +4,17 @@
 
 #define DLLEXPORT extern "C" __declspec(dllexport)
 
+DLLEXPORT void xlAutoFree(LPXLOPER px) {
+    if (px->xltype == xltypeMulti && px->val.array.lparray) {
+        unsigned short size = px->val.array.rows * px->val.array.columns;
+        for (unsigned short i = 0; i < size; i++)
+            if (px->val.array.lparray[i].xltype == xltypeStr
+            &&  px->val.array.lparray[i].val.str)
+                delete [] px->val.array.lparray[i].val.str;
+        delete [] px->val.array.lparray;
+    }
+}
+
 DLLEXPORT int xlAutoOpen() {
     static XLOPER xDll;
     Excel(xlGetName, &xDll, 0);
@@ -14,5 +25,4 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x0A""GetAddress"),
         TempMissing(),
         TempInt(0));
-
 

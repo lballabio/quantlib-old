@@ -82,21 +82,21 @@ int main() {
         OH_LOG_MESSAGE("High-level interrogation: after QL_OPTION_VANILLA");
         OH_LOG_OBJECT("my_option");
 
-        QL_OPTION_SETENGINE(
-            "my_option", 
+        boost::shared_ptr<QuantLibAddin::VanillaOption> vanillaOptionQLA =
+            OH_GET_OBJECT(QuantLibAddin::VanillaOption, "my_option");
+        if (!vanillaOptionQLA)
+            QL_FAIL("Error retrieving object my_option");
+
+        vanillaOptionQLA->setEngine(
             "AEQPB",    // AdditiveEQPBinomialTree
             timeSteps);
 
-        OH_LOG_MESSAGE("High-level interrogation: after QL_OPTION_SETENGINE");
+        OH_LOG_MESSAGE("High-level interrogation: after setting engine");
         OH_LOG_OBJECT("my_option");
 
         OH_LOG_MESSAGE("Low-level interrogation: NPV of underlying option object");
-        boost::shared_ptr<QuantLibAddin::VanillaOption> vanillaOptionQLA = 
-            boost::dynamic_pointer_cast<QuantLibAddin::VanillaOption> 
-            (ObjectHandler::instance().retrieveObject("my_option"));
-        boost::shared_ptr<QuantLib::VanillaOption> const vanillaOptionQL =
-            boost::static_pointer_cast<QuantLib::VanillaOption>
-            (vanillaOptionQLA->getReference());
+        boost::shared_ptr<QuantLib::VanillaOption> vanillaOptionQL = 
+            OH_GET_REFERENCE(QuantLib::VanillaOption, vanillaOptionQLA);
         ostringstream s;
         s << "underlying option NPV() = " << vanillaOptionQL->NPV();
         OH_LOG_MESSAGE(s.str());

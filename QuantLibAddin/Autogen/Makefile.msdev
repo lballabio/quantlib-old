@@ -14,7 +14,6 @@ STUBS=stub.C.body \
 	stub.copyright \
 	stub.Excel.body \
 	stub.Excel.includes \
-	stub.Excel.regfooter \
 	stub.Excel.regheader
 SCRIPTS=autogen.py \
 	c.py \
@@ -49,3 +48,4 @@ $(FLAG1) : $(STUBS) $(SCRIPTS) $(METADATA) $(INT_DIR)
 
 CLEAN :
 	-@ if EXIST "$(INT_DIR)\*"			del /f /q "$(INT_DIR)\*"
+

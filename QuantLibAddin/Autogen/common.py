@@ -33,6 +33,6 @@ XMLSUFFIX   = r'(.*).xml\Z'
 # General
 
 ADDIN_ROOT      = '../Addins/'
-MAKE_COMMAND    = 'OH_MAKE_OBJECT(QuantLibAddin::%s,'
+MAKE_FUNCTION   = 'OH_MAKE_OBJECT'
 TEMPFILE        = '.new'
 

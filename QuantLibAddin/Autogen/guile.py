@@ -9,6 +9,11 @@ ROOT = common.ADDIN_ROOT + 'Guile/'
 INCLUDES = 'stub.Guile.includes'
 BODY = 'stub.Guile.body'
 INITFUNC = 'stub.Guile.initfunc'
+FUNC_BODY       = '\
+        boost::shared_ptr<QuantLibAddin::%s> objectPointer =\n\
+            OH_GET_OBJECT(QuantLibAddin::%s, handle);\n\
+        if (!objectPointer)\n\
+            QL_FAIL("%s: error retrieving object " + handle);\n'
 
 def generateFuncHeader(fileHeader, function, suffix):
     'generate source for prototype of given function'
@@ -25,6 +30,8 @@ def generateFuncHeaders(groupName, functionGroup):
     fileHeader.write('#define qla_%s_h\n\n' % groupName)
     fileHeader.write('#include <guile/gh.h>\n\n')
     for function in functionGroup[common.FUNCLIST]:
+        # member functions not supported for now
+#        if function[common.CTOR]:
         generateFuncHeader(fileHeader, function, ';\n')
     fileHeader.write('#endif\n\n')
     fileHeader.close()
@@ -94,6 +101,23 @@ def generateArgList(paramList, indent):
         ret += indent + name + ' // ' + param[common.NAME] + '\n'
     return ret
 
+def getConversions(paramList):
+    ret = ''
+    firstItem = True
+    for param in paramList:
+        if param[common.TYPE] == common.STRING:
+            type = 'std::string'
+        else:
+            type = param[common.TYPE]
+        if firstItem:
+            func = 'gh_car'
+            firstItem = False
+        else:
+            func = 'gh_cadr'
+        ret += 8 * ' ' + '%s %s = Convert<%s>::scalar(%s(x));\n' % (
+            type, param[common.NAME], type, func)
+    return ret
+
 def generateFuncDefs(groupName, functionGroup):
     'generate source for function implementations'
     fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
@@ -105,14 +129,20 @@ def generateFuncDefs(groupName, functionGroup):
     for function in functionGroup[common.FUNCLIST]:
         generateFuncHeader(fileFunc, function, ' {')
         indent = 8 * ' ';
-        args = indent + 'ArgumentStack args;\n'
-        args += generateArgList(function[common.PARAMS], indent);
         if function[common.CTOR]:
+            args = indent + 'ArgumentStack args;\n'
+            args += generateArgList(function[common.PARAMS], indent);
             args += indent + 'x = GET_ARGUMENT(x, args, scalar, std::string); // handleObject \n'
             args += indent + 'std::string handle = OH_POP_ARGUMENT(std::string, args);\n'
             fName = 'OH_MAKE_OBJECT(QuantLibAddin::%s, handle, args)' % function[common.QLFUNC]
         else:
-            fName = 'QuantLibAddin::%s(args)' % function[common.NAME]
+            args = getConversions(function[common.PARAMS])
+            className = function[common.PARAMS][0][common.CLASS]
+            args += FUNC_BODY % (className, className, function[common.NAME])
+            paramList = utils.generateParamList(function[common.PARAMS], 3,
+                arrayCount = True, appendTensor = True, skipFirst = True)
+            fName = 'objectPointer->%s(\n%s)' % (function[common.QLFUNC], 
+                paramList)
         fileFunc.write(bufBody % (args, fName, function[common.CODENAME]))
     fileFunc.close()
     utils.updateIfChanged(fileName)
@@ -129,3 +159,4 @@ def generate(functionDefs):
         generateFuncDefs(groupName, functionGroup)
     generateInitFunc(functionDefs)
     utils.logMessage('  done generation Guile.')
+
