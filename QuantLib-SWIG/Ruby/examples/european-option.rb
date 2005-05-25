@@ -104,11 +104,11 @@ report('binomial (LR)',option.NPV)
 # not yet implemented
 
 # method: Monte Carlo
-option.pricingEngine = MCEuropeanEngine.new('pseudorandom', 1, false,
+option.pricingEngine = MCEuropeanEngine.new('pseudorandom', 1, nil, false,
                                             false, false, nil, 0.02, nil, 42)
 report('MC (crude)', option.NPV, option.errorEstimate)
 
 option.pricingEngine = MCEuropeanEngine.new('lowdiscrepancy', 
-                                            1, false, false, false, 32768)
+                                            1, nil, false, false, false, 32768)
 report('MC (Sobol)', option.NPV)
 

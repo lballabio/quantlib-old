@@ -200,7 +200,7 @@
            (current-extension-compiler-flags
             (append
              (current-extension-compiler-flags)
-             (list "-DNOMINMAX" "/MT" "/GR" "/GX" "/Zm150")))
+             (list "-DNOMINMAX" "/MT" "/GR" "/GX" "/Zm250")))
            (putenv "LIB"
                    (string-append
                     (build-path (getenv "QL_DIR") "lib")

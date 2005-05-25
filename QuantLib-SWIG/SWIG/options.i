@@ -303,8 +303,8 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
         MCEuropeanEnginePtr(const std::string& traits,
-                            Size timeSteps = Null<Size>(),
-                            Size timeStepsPerYear = Null<Size>(),
+                            intOrNull timeSteps = Null<Size>(),
+                            intOrNull timeStepsPerYear = Null<Size>(),
                             bool brownianBridge = false,
                             bool antitheticVariate = false,
                             bool controlVariate = false,
