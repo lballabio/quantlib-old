@@ -176,8 +176,8 @@ def generateFuncDef(fileFunc, function, bufBody):
         className = function[common.PARAMS][0][common.CLASS]
         handle = ''
         args = ''
-        functionBody = common.FUNC_BODY % (className, className, 'handle',
-            function[common.NAME], 'handle')
+        functionBody = common.FUNC_BODY % (className, className, 'std::string(handle)',
+            function[common.NAME], 'std::string(handle)')
         functionName = 'objectPointer->' + function[common.QLFUNC]
         paramList2 = plMember.generateCode(function[common.PARAMS])
     conversions = generateConversions(function[common.PARAMS])
@@ -193,7 +193,7 @@ def generateFuncDefs(functionGroups):
     plHeader = params.ParameterDeclare(2, replaceString = 'char',
         replaceTensor = 'LPXLOPER', derefString = '*',
         derefOther = '*')
-    plMember = params.ParameterPass(3, skipFirst = True)
+    plMember = params.ParameterPass(3, skipFirst = True, derefOther = '*')
     plCtor = params.ParameterPass(2, convertString = 'std::string(%s)',
         delimiter = ';\n', appendTensor = True, derefOther = '*',
         wrapFormat = 'args.push(%s)', delimitLast = True)

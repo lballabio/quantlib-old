@@ -118,6 +118,10 @@ SOURCE=.\excel.py
 # End Source File
 # Begin Source File
 
+SOURCE=.\params.py
+# End Source File
+# Begin Source File
+
 SOURCE=.\parse.py
 # End Source File
 # Begin Source File

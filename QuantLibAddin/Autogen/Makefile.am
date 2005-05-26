@@ -8,7 +8,7 @@ EXTRA_DIST = .time-stamp \
 AUTOGEN_INPUT := capfloor.xml instruments.xml options.xml processes.xml shortratemodels.xml \
                  termstructures.xml utilities.xml volatilities.xml
 AUTOGEN_PYS := autogen.py c.py calc.py common.py excel.py \
-               parse.py utils.py doxygen.py
+               params.py parse.py utils.py doxygen.py
 AUTOGEN_STUBS := stub.C.body stub.C.includes \
                  stub.Calc.body stub.Calc.idlfoot stub.Calc.idlfunc \
                  stub.Calc.idlhead stub.Calc.includes stub.Calc.map \

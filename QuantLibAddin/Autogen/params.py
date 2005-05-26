@@ -204,7 +204,8 @@ class ParameterPass(ParameterList):
 
     def convertValue(self):
         'apply any conversion strings to parameter name'
-        if self.param[common.TYPE] == common.STRING:
+        if self.param[common.TYPE] == common.STRING \
+        or self.param[common.TENSOR] != common.SCALAR:
             name = ''
         else:
             name = self.derefOther

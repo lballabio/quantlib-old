@@ -21,6 +21,7 @@ SCRIPTS=autogen.py \
 	common.py \
 	doxygen.py \
 	excel.py \
+	params.py \
 	parse.py \
 	utils.py
 METADATA= \
