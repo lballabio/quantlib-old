@@ -2,6 +2,7 @@
 
 import common
 import utils
+import params
 
 # constants
 
@@ -16,20 +17,19 @@ REGFOOT    = '\
     Excel(xlFree, 0, 1, &xDll);\n\
     return 1;\n\
 }\n\n'
-NUMDESC    = 10                      # #/params to describe a function
-MAXPARAM   = 30                      # max #/params to an Excel function
-MAXLEN     = 255                     # max length of excel string
+NUMDESC    = 10     # #/params to describe a function
+MAXPARAM   = 30     # max #/params to an Excel function
+MAXLEN     = 255    # max length of excel string
 MAXPARMERR = 'number of function parameters exceeds max of %d'
 MAXLENERR  = 'list of parameter names exceeds max Excel length of %d:\n%s'
-MAKE_ARGS       = '\
-            QuantLibAddin::%s,\n\
-            handle,\n\
-            args'
-FUNC_BODY       = '\
-        boost::shared_ptr<QuantLibAddin::%s> objectPointer =\n\
-            OH_GET_OBJECT(QuantLibAddin::%s, handle);\n\
-        if (!objectPointer)\n\
-            QL_FAIL("%s: error retrieving object " + std::string(handle));\n'
+
+# global variables
+
+# parameter list objects
+plHeader    = ''    # function prototypes
+plCtor      = ''    # constructors
+plMember    = ''    # member functions
+plExcel     = ''    # Excel registration
 
 def generateExcelStringLiteral(str): 
     'prepend hexadecimal byte count to Excel string'
@@ -73,8 +73,9 @@ def formatLine(text, comment, lastParameter = False):
 
 def generateFuncRegister(fileHeader, function):
     'generate call to xlfRegister for given function'
-    params = function[common.PARAMS]
-    numParams = len(params)
+    global plExcel
+    funcParams = function[common.PARAMS]
+    numParams = len(funcParams)
     # We call xlfRegister with NUMDESC parameters to describe the function
     # +1 additional parm to describe each parm in function being registered.
     # NB if a function ever exceeds the MAXPARAM limit then the code below
@@ -86,13 +87,7 @@ def generateFuncRegister(fileHeader, function):
     if numParamsTotal > MAXPARAM:
         raise ValueError, MAXPARMERR % MAXPARAM
     paramStr = generateParamString(function)
-    paramList = ''
-    i = 0
-    for param in params:
-        paramList += param[common.NAME]
-        i += 1
-        if i < numParams:
-            paramList += ','
+    paramList = plExcel.generateCode(funcParams)
     if function[common.CTOR]:
         paramList = "handle," + paramList
     if len(paramList) >= MAXLEN:
@@ -106,14 +101,14 @@ def generateFuncRegister(fileHeader, function):
     fileHeader.write(formatLine('QuantLib', 'function category'))
     fileHeader.write(formatLine('', 'shortcut text (command macros only)'))
     fileHeader.write(formatLine('', 'path to help file'))
-    if params:
+    if funcParams:
         fileHeader.write(formatLine(function[common.DESC], 'function description'))
         i = 0
         if function[common.CTOR]:
             fileHeader.write(formatLine('handle of new object', 'description param 0'))
             i = i + 1
         j = 1
-        for param in params:
+        for param in funcParams:
             if j < numParams:
                 lastParameter = False
             else:
@@ -127,6 +122,8 @@ def generateFuncRegister(fileHeader, function):
 
 def generateFuncRegisters(functionDefs):
     'generate source code to register functions'
+    global plExcel
+    plExcel = params.ParameterPass(0, delimiter = ',')
     fileName = ROOT + ADDIN + common.TEMPFILE
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
@@ -167,23 +164,22 @@ def generateConversions(paramList):
 
 def generateFuncDef(fileFunc, function, bufBody):
     'generate source code for body of given function'
-    paramList1 = utils.generateParamList(function[common.PARAMS], 2,
-        True, '', 'char', dereference = '*', replaceTensor = 'LPXLOPER')
+    global plHeader, plCtor, plMember
+    paramList1 = plHeader.generateCode(function[common.PARAMS])
     if function[common.CTOR]:
         handle = 8 * ' ' + 'char *handleStub,\n'
-        args = utils.generateArgList(function[common.PARAMS], '*')
+        args = common.ARGLINE + plCtor.generateCode(function[common.PARAMS])
         functionBody = 8 * ' ' + 'std::string handle = getHandleFull(handleStub);\n'
         functionName = common.MAKE_FUNCTION
-        paramList2 = MAKE_ARGS % function[common.QLFUNC]
+        paramList2 = common.MAKE_ARGS % (function[common.QLFUNC], 'handle')
     else:
         className = function[common.PARAMS][0][common.CLASS]
         handle = ''
         args = ''
-        functionBody = FUNC_BODY % (className, className, function[common.NAME])
+        functionBody = common.FUNC_BODY % (className, className, 'handle',
+            function[common.NAME], 'handle')
         functionName = 'objectPointer->' + function[common.QLFUNC]
-        paramList2 = utils.generateParamList(function[common.PARAMS], 3,
-            reformatString = '%s', skipFirst = True,
-            arrayCount = True, dereference = '*', appendTensor = True)
+        paramList2 = plMember.generateCode(function[common.PARAMS])
     conversions = generateConversions(function[common.PARAMS])
     fileFunc.write(bufBody %
         (function[common.CODENAME], handle, paramList1, conversions, args,
@@ -191,8 +187,16 @@ def generateFuncDef(fileFunc, function, bufBody):
 
 def generateFuncDefs(functionGroups):
     'generate source code for function bodies'
+    global plHeader, plCtor, plMember
     bufBody = utils.loadBuffer(BODY)
     bufIncludes = utils.loadBuffer(INCLUDES)
+    plHeader = params.ParameterDeclare(2, replaceString = 'char',
+        replaceTensor = 'LPXLOPER', derefString = '*',
+        derefOther = '*')
+    plMember = params.ParameterPass(3, skipFirst = True)
+    plCtor = params.ParameterPass(2, convertString = 'std::string(%s)',
+        delimiter = ';\n', appendTensor = True, derefOther = '*',
+        wrapFormat = 'args.push(%s)', delimitLast = True)
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
         if functionGroup[common.HDRONLY]:
@@ -212,5 +216,4 @@ def generate(functionDefs):
     generateFuncRegisters(functionDefs)
     generateFuncDefs(functionDefs[common.FUNCGROUPS])
     utils.logMessage('  done generating Excel.')
-
 

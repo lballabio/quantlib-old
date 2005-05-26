@@ -2,6 +2,7 @@
 
 import common
 import utils
+import params
 
 # constants
 
@@ -10,23 +11,18 @@ BODY            = 'stub.Calc.body'
 CALC_BOOL       = 'sal_Bool'
 CALC_BOOL_IDL   = 'boolean'
 CALC_LONG       = 'sal_Int32'
-CALC_MATRIX     = 'SEQSEQ(ANY)'
+CALC_MATRIX     = 'SEQSEQ( ANY )'
 CALC_MATRIX_IDL = 'sequence < sequence < any > >'
 CALC_STRING     = 'STRING'
-FUNC_BODY       = '\
-        boost::shared_ptr<QuantLibAddin::%s> objectPointer =\n\
-            OH_GET_OBJECT(QuantLibAddin::%s, OUStringToString(handle));\n\
-        if (!objectPointer)\n\
-            QL_FAIL("%s: error retrieving object " + OUStringToString(handle));\n'
+CONV_HANDLE     = 'OUStringToString(handle)'
+FORMAT_TENSOR   = 'const SEQSEQ( %s )'
+FORMAT_TENSOR_IDL = 'sequence < sequence < %s > > '
+FUNC_PROTOTYPE  = 'SEQSEQ( ANY ) SAL_CALL QLAddin::%s(' 
 IDL             = 'QuantLibAddin.idl'
 IDL_FOOT        = 'stub.Calc.idlfoot'
 IDL_FUNC        = 'stub.Calc.idlfunc'
 IDL_HEAD        = 'stub.Calc.idlhead'
 INCLUDES        = 'stub.Calc.includes'
-MAKE_ARGS       = '\
-            QuantLibAddin::%s,\n\
-            OUStringToString(handle),\n\
-            args'
 MAP             = 'stub.Calc.map'
 MAPFILE         = 'funcdef.cpp'
 MAPLINE         = '    %s[ STRFROMANSI( "%s" ) ]\n\
@@ -34,6 +30,13 @@ MAPLINE         = '    %s[ STRFROMANSI( "%s" ) ]\n\
 PARMLINE        = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
 ROOT            = common.ADDIN_ROOT + 'Calc/'
 STR_FMT         = 'OUStringToString(%s)'
+
+# global variables
+
+# parameter list objects
+plHeader    = ''    # function prototypes
+plCtor      = ''    # constructors
+plMember    = ''    # member functions
 
 def generateFuncMap(functionGroups):
     'generate help text for function wizard'
@@ -82,15 +85,12 @@ def generateAutoHeader(functionGroups):
     utils.updateIfChanged(fileName)
 
 def generateHeader(fileHeader, function, suffix):
+    global plHeader
     'generate implementation for given function'
     if function[common.CTOR]:
-        fileHeader.write('\n        const STRING & handle,')
-    paramList = utils.generateParamList(function[common.PARAMS], 2, True,
-        '', 'const STRING &', CALC_LONG,
-        convertVec = 'const SEQSEQ(%s)& ',
-        convertMat = 'const SEQSEQ(%s)& ', 
-		convertMatStr = 'ANY')
-    if paramList != '':
+        fileHeader.write('\n        const STRING &handle,')
+    if function[common.PARAMS]:
+        paramList = plHeader.generateCode(function[common.PARAMS])
         fileHeader.write('\n')
         fileHeader.write(paramList)
     fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)
@@ -158,28 +158,26 @@ def generateConversions(paramList):
 
 def generateFuncSource(fileFunc, function, bufBody):
     'generate source for given function'
-    fileFunc.write('SEQSEQ( ANY ) SAL_CALL QLAddin::%s(' 
-        % function[common.CODENAME])
+    global plCtor, plMember
+    fileFunc.write(FUNC_PROTOTYPE % function[common.CODENAME])
     generateHeader(fileFunc, function, ' {')
     if function[common.CTOR]:
-        functionBody = utils.generateArgList(function[common.PARAMS], 
-            reformatString = STR_FMT)
+        functionBody = common.ARGLINE + plCtor.generateCode(function[common.PARAMS])
         functionName = common.MAKE_FUNCTION
-        paramList = MAKE_ARGS % function[common.QLFUNC]
+        paramList = common.MAKE_ARGS % (function[common.QLFUNC], CONV_HANDLE)
     else:
         className = function[common.PARAMS][0][common.CLASS]
-        functionBody = FUNC_BODY % (className, className, function[common.NAME])
+        functionBody = common.FUNC_BODY % (className, className, CONV_HANDLE,
+            function[common.NAME], CONV_HANDLE)
         functionName = 'objectPointer->' + function[common.QLFUNC]
-        paramList = utils.generateParamList(function[common.PARAMS], 3,
-            reformatString = STR_FMT, arrayCount = True, 
-			appendTensor = True, skipFirst = True,
-            convertMatStr = 'ANY')
+        paramList = plMember.generateCode(function[common.PARAMS])
     conversions = generateConversions(function[common.PARAMS])
     fileFunc.write(bufBody % (conversions, functionBody, functionName,
         paramList, function[common.NAME]))
 
 def generateFuncSources(functionGroups):
     'generate source for function implementations'
+    global plCtor, plMember
     bufInclude = utils.loadBuffer(INCLUDES)
     bufBody = utils.loadBuffer(BODY)
     for groupName in functionGroups.keys():
@@ -190,6 +188,11 @@ def generateFuncSources(functionGroups):
         fileFunc = file(fileName, 'w')
         utils.printHeader(fileFunc)
         fileFunc.write(bufInclude)
+        plCtor = params.ParameterPass(2, convertString = STR_FMT,
+            delimiter = ';\n', appendTensor = True,
+            wrapFormat = 'args.push(%s)', delimitLast = True)
+        plMember = params.ParameterPass(3, convertString = STR_FMT,
+            skipFirst = True)
         for function in functionGroup[common.FUNCLIST]:
             generateFuncSource(fileFunc, function, bufBody)
         fileFunc.close()
@@ -216,24 +219,24 @@ def generateIDLSource(functionGroups):
     'generate the IDL file for the addin'
     fileName = ROOT + IDL + common.TEMPFILE
     fileIDL = file(fileName, 'w')
-    utils.printTimeStamp(fileIDL, '//')
+    utils.printTimeStamp(fileIDL)
     bufIDLHead = utils.loadBuffer(IDL_HEAD)
     fileIDL.write(bufIDLHead)
     bufIDLFunc = utils.loadBuffer(IDL_FUNC)
     for groupName in functionGroups.keys():
         fileIDL.write('                // %s\n\n' % groupName)
         functionGroup = functionGroups[groupName]
+        plIdl = params.ParameterDeclare(6, prefix = '[in] ',
+            replaceTensorStr = 'any',
+            formatVector = FORMAT_TENSOR_IDL, 
+            formatMatrix = FORMAT_TENSOR_IDL)
         for function in functionGroup[common.FUNCLIST]:
             if function[common.CTOR]:
                 handle = 24 * ' ' + '[in] string handle,\n'
             else:
                 handle = ''
             returnTypeIDL = getReturnTypeCalcIDL(function[common.RETVAL])
-            paramList = utils.generateParamList(function[common.PARAMS],
-                 6, True, '[in] ', 'string',
-                convertVec = 'sequence < sequence < %s > > ',
-                convertMat = 'sequence < sequence < %s > > ',
-                convertMatStr = 'any')
+            paramList = plIdl.generateCode(function[common.PARAMS])
             if paramList == '':
                 carriageReturn = ''
             else:
@@ -246,8 +249,13 @@ def generateIDLSource(functionGroups):
     utils.updateIfChanged(fileName)
 
 def generate(functionDefs):
+    global plHeader
     'generate source code for Calc addin'
     utils.logMessage('  begin generating Calc ...')
+    plHeader = params.ParameterDeclare(2, replaceString = 'const STRING',
+        replaceLong = CALC_LONG, replaceTensorStr = 'ANY', derefString = '&',
+        formatVector = FORMAT_TENSOR, formatMatrix = FORMAT_TENSOR,
+        derefTensor = '&')
     functionGroups = functionDefs[common.FUNCGROUPS]
     generateFuncMap(functionGroups)
     generateAutoHeader(functionGroups)

@@ -32,7 +32,17 @@ XMLSUFFIX   = r'(.*).xml\Z'
 
 # General
 
+ARGLINE         = 8 * ' ' + 'ArgumentStack args;\n'
 ADDIN_ROOT      = '../Addins/'
 MAKE_FUNCTION   = 'OH_MAKE_OBJECT'
 TEMPFILE        = '.new'
+MAKE_ARGS       = '\
+            QuantLibAddin::%s,\n\
+            %s,\n\
+            args'
+FUNC_BODY       = '\
+        boost::shared_ptr<QuantLibAddin::%s> objectPointer =\n\
+            OH_GET_OBJECT(QuantLibAddin::%s, %s);\n\
+        if (!objectPointer)\n\
+            QL_FAIL("%s: error retrieving object " + %s);\n'
 

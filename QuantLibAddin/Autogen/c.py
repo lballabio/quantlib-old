@@ -2,31 +2,29 @@
 
 import common
 import utils
+import params
 
 # constants
 
 BODY = 'stub.C.body'
-FUNC_BODY       = '\
-        boost::shared_ptr<QuantLibAddin::%s> objectPointer =\n\
-            OH_GET_OBJECT(QuantLibAddin::%s, handle);\n\
-        if (!objectPointer)\n\
-            QL_FAIL("%s: error retrieving object " + std::string(handle));\n'
-MAKE_ARGS       = '\
-            QuantLibAddin::%s,\n\
-            handle,\n\
-            args'
+CONV_HANDLE = 'std::string(handle)'
+CONV_STR = 'std::string(%s)'
 INCLUDES = 'stub.C.includes'
 ROOT = common.ADDIN_ROOT + 'C/'
 
+# global variables
+
+# parameter list objects
+plHeader    = ''    # function prototypes
+
 def generateFuncHeader(fileHeader, function, suffix):
+    global plHeader
     'generate source for prototype of given function'
     fileHeader.write('int %s(\n' % function[common.NAME])
     if function[common.CTOR]:
-        fileHeader.write('        char* handle,\n')
-    fileHeader.write(utils.generateParamList(function[common.PARAMS],
-        2, True, convertString = 'char*', arrayCount = True,
-        convertMatStr = 'char*'))
-    fileHeader.write(',\n        VariesList *result)%s\n' % suffix)
+        fileHeader.write('        char *handle,\n')
+    fileHeader.write(plHeader.generateCode(function[common.PARAMS]))
+    fileHeader.write(',\n        VariesList *result)' + suffix)
 
 def generateFuncHeaders(groupName, functionGroup):
     'generate source for function prototypes'
@@ -36,7 +34,7 @@ def generateFuncHeaders(groupName, functionGroup):
     fileHeader.write('#ifndef qla_%s_h\n' % groupName)
     fileHeader.write('#define qla_%s_h\n\n' % groupName)
     for function in functionGroup[common.FUNCLIST]:
-        generateFuncHeader(fileHeader, function, ';\n')
+        generateFuncHeader(fileHeader, function, ';\n\n')
     fileHeader.write('#endif\n\n')
     fileHeader.close()
     utils.updateIfChanged(fileName)
@@ -71,6 +69,10 @@ def generateConversions(paramList):
 
 def generateFuncDefs(groupName, functionGroup):
     'generate source for function implementations'
+    plCtor = params.ParameterPass(2, convertString = CONV_STR,
+        delimiter = ';\n', appendTensor = True,
+        wrapFormat = 'args.push(%s)', delimitLast = True)
+    plMember = params.ParameterPass(3, convertString = CONV_STR, skipFirst = True)
     fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
     fileFunc = file(fileName, 'w')
     utils.printHeader(fileFunc)
@@ -78,19 +80,18 @@ def generateFuncDefs(groupName, functionGroup):
     bufBody = utils.loadBuffer(BODY)
     fileFunc.write(bufInclude % groupName)
     for function in functionGroup[common.FUNCLIST]:
-        generateFuncHeader(fileFunc, function, ' {')
+        generateFuncHeader(fileFunc, function, ' {\n')
         conversions = generateConversions(function[common.PARAMS])
         if function[common.CTOR]:
-            functionBody = utils.generateArgList(function[common.PARAMS])
+            functionBody = common.ARGLINE + plCtor.generateCode(function[common.PARAMS])
             functionName = common.MAKE_FUNCTION
-            paramList = MAKE_ARGS % function[common.QLFUNC]
+            paramList = common.MAKE_ARGS % (function[common.QLFUNC], common.HANDLE)
         else:
             className = function[common.PARAMS][0][common.CLASS]
-            functionBody = FUNC_BODY % (className, className, function[common.NAME])
+            functionBody = common.FUNC_BODY % (className, className, CONV_HANDLE,
+                function[common.NAME], CONV_HANDLE)
             functionName = 'objectPointer->' + function[common.QLFUNC]
-            paramList = utils.generateParamList(function[common.PARAMS], 
-                3, convertString = 'char*', arrayCount = True, 
-                convertMatStr = 'char*', skipFirst = True)
+            paramList = plMember.generateCode(function[common.PARAMS])
         fileFunc.write(bufBody % (conversions, functionBody, functionName,
             paramList, function[common.NAME]))
     fileFunc.close()
@@ -98,6 +99,10 @@ def generateFuncDefs(groupName, functionGroup):
 
 def generate(functionDefs):
     'generate source code for C addin'
+    global plHeader
+    plHeader = params.ParameterDeclare(2, replaceString = 'char',
+        replaceTensorStr = 'char', arrayCount = True, derefString = '*',
+        derefTensorString = '*')
     utils.logMessage('  begin generating C ...')
     functionGroups = functionDefs[common.FUNCGROUPS]
     for groupName in functionGroups.keys():

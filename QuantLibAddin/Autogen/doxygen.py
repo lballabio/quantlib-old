@@ -2,6 +2,7 @@
 
 import common
 import utils
+import params
 
 # constants
 
@@ -14,6 +15,11 @@ all functions in QuantLibAddin.\n\
 \section functions Function List\n\
 \n'
 
+# global variables
+
+# parameter list objects
+plDoc    = ''    # function prototypes
+
 def deriveRetCode(retVal):
     'format function return value'
     if retVal[common.TENSOR] == common.SCALAR:
@@ -25,9 +31,8 @@ def deriveRetCode(retVal):
 
 def generateFuncDoc(fileFunc, function):
     'generate documentation for given function'
-    paramList = utils.generateParamList(function[common.PARAMS], 2, True,
-        convertVec = 'vector < %s >',
-        convertMat = 'vector < vector < %s > >')
+    global plDoc
+    paramList = plDoc.generateCode(function[common.PARAMS])
     retCode = deriveRetCode(function[common.RETVAL])
     fileFunc.write('\\anchor %s \\b %s\n' % (function[common.NAME], function[common.NAME]))
     fileFunc.write('\\code\n')
@@ -59,7 +64,11 @@ def generateAllDoc(allFuncs):
 
 def generateDocs(functionGroups):
     'generate doxygen documentation files'
+    global plDoc
     allFuncs = []
+    plDoc = params.ParameterDeclare(2,
+        formatVector = 'vector < %s >',
+        formatMatrix = 'vector < vector < %s > >')
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
         fileName = ROOT + groupName + '.docs' + common.TEMPFILE
