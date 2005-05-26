@@ -48,7 +48,7 @@
     \li start Excel
     \li load the Addin.  The name of the Addin will depend on
         the compiler version and configuration, e.g. if compiled
-        under MSDEV6 debug the Addin is called 
+        under VC6 debug the Addin is called 
         <strong>QuantLibAddin\\Addins\\Excel\\xll\\QuantLibAddin-vc6-mt-sgd.xll.</strong>
     \li load a sample spreadsheet e.g.
         <strong>QuantLibAddin\\Clients\\Excel\\QLADemo.xls</strong>
@@ -65,6 +65,7 @@
     ./configure
     make
     Clients/C++/QLADemo
+    make install
     \endverbatim
 
     \subsection autoconf_detail In Detail
@@ -84,6 +85,9 @@
     <td>--enable-addin-calc</td><td>Build the Calc Addin</td><td>Addins/Calc</td>
     </tr>
     <tr>
+    <td>--enable-addin-guile</td><td>Build the Guile Addin</td><td>Addins/Guile</td>
+    </tr>
+    <tr>
     <td>--enable-addin-excel</td><td>Autogenerate source code for the Excel Addin.  The Excel Addin is not compiled under Autoconf and this option is used by developers to package distributions.</td><td>Addins/Excel</td>
     </tr>
     <tr>
@@ -97,7 +101,7 @@
     ./configure --enable-addin-all --disable-addin-calc
     \endverbatim
 
-    Under the default configuration the subsequent <tt>make install</tt> command installs libs to <tt>/usr/local/lib</tt> and header files to <tt>/usr/local/include</tt>, to override this behavior specify a different installation prefix using <tt>--prefix</tt> e.g.
+    Under the default configuration the subsequent <tt>make install</tt> command installs libs to \c /usr/local/lib and header files to \c /usr/local/include, to override this behavior specify a different installation prefix using \c --prefix e.g.
     \verbatim
     ./configure --prefix=$HOME/QuantLibAddin
     \endverbatim
@@ -109,12 +113,35 @@
     make
     \endverbatim
 
+    There is no <tt>make test</tt> at the moment but you can try launching the standalone C++ client program:
+
+    \verbatim
+    Clients/C++/QLADemo
+    \endverbatim
+
     To install QuantLibAddin:
     \verbatim
     make install
     \endverbatim
 
-    This installs the core QuantLibAddin libs and headers to the configured location, in addition if the Calc build is enabled then <tt>make install</tt> installs the Calc Addin to the OpenOffice.org program directory.  Neither the C Addin nor any Client code is installed.
+    The behavior of <tt>make install</tt> depends on your configuration:
+
+    <table>
+    <tr>
+    <td><strong>Configuration</strong></td><td><strong>Component</strong></td><td><strong>Installation</strong></td>
+    </tr>
+    <tr>
+    <td>all</td><td>QuantLibAddin core library</td><td>headers and libraries installed (by default to /usr/local)</td>
+    </tr>
+    <tr>
+    <td>--enable-addin-calc</td><td>Calc Addin</td><td>library installed to OpenOffice.org program directory</td>
+    </tr>
+    <tr>
+    <td>--enable-addin-guile</td><td>Guile Addin</td><td>library installed (by default to /usr/local)</td>
+    </tr>
+    </table>
+
+    \b NB There is no installation for the C/Excel Addins nor for any Client code.
 
     To build the documentation that you're reading now, do ...
     \verbatim
@@ -122,5 +149,5 @@
     \endverbatim
     ... then point your browser at file <strong>QuantLibAddin/Docs/html/index.html</strong>.
 
-
 */
+

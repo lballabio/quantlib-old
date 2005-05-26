@@ -25,11 +25,6 @@
 
     <strong>Release 0.3.9 - April 2005</strong>
 
-    REQUIRED PACKAGES
-    - Boost version 1.31.0 or later
-    - QuantLib version 0.3.9
-    - ObjectHandler version 0.1.1
-
     OVERVIEW
 
     Initial release consisting of prototype framework:
@@ -38,12 +33,24 @@
     - script to autogenerate source for target platforms
     - sample client applications and spreadsheets
 
+    REQUIRED PACKAGES
+    - Boost version 1.31.0 or later
+    - QuantLib version 0.3.9
+    - ObjectHandler version 0.1.1
+
     FUNCTIONALITY
 
     - bonds & zero curves (Walter Penschke)
     - caps & floors, term structures (Aurelien Chanudet)
     - options, volatilities, processes
     - diagnostic and utility functions
+
+    PLATFORMS
+
+    - Microsoft Excel
+    - OpenOffice.org Calc
+    - C/C++
+    - Guile (Aurelien Chanudet)
 
 */
 

@@ -93,11 +93,11 @@ This section describes how to debug a standalone C++ QuantLibAddin client linux 
 
 \subsection compiling Compiling for Debug
 
-By default QuantLibAddin compiles with debug flag \b -g.  This flag does not give ideal results in gdb:
+By default QuantLibAddin compiles with flags <strong>-g -O2</strong> which is good for general purpose use but does not give ideal results in gdb:
 \li certain variables get optimized away - so you're looking at a line in the source code, but it's invisible to the debugger
-\li the debugger trundles through the source code of the Standard Template Library, even if you try to tell it not to
+\li the debugger may step into the source code of the Standard Template Library, even if you try to tell it not to
 
-gdb performs better when run against programs which are compiled with flag \b -gdwarf-2.  So before debugging the QuantLibAddin executable, it's best to first reconfigure and recompile all relevant binaries - QuantLib, log4cxx, ObjectHandler, and QuantLibAddin - using flag \b -gdwarf-2.  cd to the top level directory for each project, and run configure with the appropriate flags:
+gdb performs better when run against programs which are compiled with flag \b -gdwarf-2.  So before debugging the QuantLibAddin executable, it's best to first reconfigure and recompile all relevant binaries - QuantLib, log4cxx, ObjectHandler, and QuantLibAddin.  cd to the top level directory for each project, and run configure with the appropriate flags:
 \verbatim
 ./configure CXXFLAGS="-gdwarf-2 -Wall"
 \endverbatim
