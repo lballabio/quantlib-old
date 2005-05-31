@@ -27,7 +27,7 @@
 
 
 ; current QuantLib version
-(define version "0.3.10")
+(define version "0.3.11")
 
 ; files
 (define info-files

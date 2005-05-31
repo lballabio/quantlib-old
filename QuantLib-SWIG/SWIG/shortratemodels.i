@@ -69,12 +69,15 @@ class SwaptionHelperPtr : public boost::shared_ptr<CalibrationHelper> {
         SwaptionHelperPtr(const Period& maturity, const Period& length,
                           const Handle<Quote>& volatility,
                           const XiborPtr& index,
+                          Frequency fixedLegFrequency,
+                          const DayCounter& fixedLegDayCounter,
                           const Handle<YieldTermStructure>& termStructure) {
             boost::shared_ptr<Xibor> libor =
                 boost::dynamic_pointer_cast<Xibor>(index);
             return new SwaptionHelperPtr(
                 new SwaptionHelper(maturity,length,volatility,
-                                   libor,termStructure));
+                                   libor,fixedLegFrequency,
+                                   fixedLegDayCounter,termStructure));
         }
         std::vector<Time> times() {
             std::list<Time> l;
@@ -93,11 +96,16 @@ class CapHelperPtr : public boost::shared_ptr<CalibrationHelper> {
         CapHelperPtr(const Period& length,
                      const Handle<Quote>& volatility,
                      const XiborPtr& index,
+                     Frequency fixedLegFrequency,
+                     const DayCounter& fixedLegDayCounter,
+                     bool includeFirstSwaplet,
                      const Handle<YieldTermStructure>& termStructure) {
             boost::shared_ptr<Xibor> libor =
                 boost::dynamic_pointer_cast<Xibor>(index);
             return new CapHelperPtr(
-                new CapHelper(length,volatility,libor,termStructure));
+                new CapHelper(length,volatility,libor,fixedLegFrequency,
+                              fixedLegDayCounter,includeFirstSwaplet,
+                              termStructure));
         }
         std::vector<Time> times() {
             std::list<Time> l;
@@ -142,8 +150,10 @@ IsObservable(boost::shared_ptr<ShortRateModel>);
 %{
 using QuantLib::HullWhite;
 using QuantLib::BlackKarasinski;
+using QuantLib::G2;
 typedef boost::shared_ptr<ShortRateModel> HullWhitePtr;
 typedef boost::shared_ptr<ShortRateModel> BlackKarasinskiPtr;
+typedef boost::shared_ptr<ShortRateModel> G2Ptr;
 %}
 
 %rename(HullWhite) HullWhitePtr;
@@ -170,6 +180,18 @@ class BlackKarasinskiPtr : public boost::shared_ptr<ShortRateModel> {
     }
 };
 
+%rename(G2) G2Ptr;
+class G2Ptr : public boost::shared_ptr<ShortRateModel> {
+  public:
+    %extend {
+        G2Ptr(const Handle<YieldTermStructure>& termStructure,
+              Real a = 0.1, Real sigma = 0.01, Real b = 0.1,
+              Real eta = 0.01, Real rho = -0.75) {
+	        return new G2Ptr(new G2(termStructure, a, sigma, b, eta, rho));
+        }
+    }
+};
+
 
 // pricing engines for calibration helpers
 %{
@@ -177,10 +199,12 @@ using QuantLib::JamshidianSwaptionEngine;
 using QuantLib::TreeSwaptionEngine;
 using QuantLib::AnalyticCapFloorEngine;
 using QuantLib::TreeCapFloorEngine;
+using QuantLib::G2SwaptionEngine;
 typedef boost::shared_ptr<PricingEngine> JamshidianSwaptionEnginePtr;
 typedef boost::shared_ptr<PricingEngine> TreeSwaptionEnginePtr;
 typedef boost::shared_ptr<PricingEngine> AnalyticCapFloorEnginePtr;
 typedef boost::shared_ptr<PricingEngine> TreeCapFloorEnginePtr;
+typedef boost::shared_ptr<PricingEngine> G2SwaptionEnginePtr;
 %}
 
 %rename(JamshidianSwaptionEngine) JamshidianSwaptionEnginePtr;
@@ -245,6 +269,20 @@ class TreeCapFloorEnginePtr : public boost::shared_ptr<PricingEngine> {
                               const TimeGrid& grid) {
             return new TreeCapFloorEnginePtr(
                                      new TreeCapFloorEngine(model,grid));
+        }
+    }
+};
+
+%rename(G2SwaptionEngine) G2SwaptionEnginePtr;
+class G2SwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        G2SwaptionEnginePtr(const boost::shared_ptr<ShortRateModel>& model,
+                            Real range, Size intervals) {
+            boost::shared_ptr<G2> g2 =
+                boost::dynamic_pointer_cast<G2>(model);
+            return new G2SwaptionEnginePtr(
+                                    new G2SwaptionEngine(g2,range,intervals));
         }
     }
 };

@@ -43,20 +43,18 @@ using QuantLib::Path;
 #endif
 class Path {
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
-    %rename(__len__) size;
-    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename(length)  size;
+    %rename(__len__) length;
     #endif
   private:
     Path();
   public:
-    Size size() const;
-    const Array& drift() const;
-    const Array& diffusion() const;
+    Size length() const;
+    Real value(Size i) const;
+    Time time(Size i) const;
     %extend {
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         Real __getitem__(Integer i) {
-            Integer size_ = Integer(self->size());
+            Integer size_ = Integer(self->length());
             if (i>=0 && i<size_) {
                 return (*self)[i];
             } else if (i<0 && -i<=size_) {
@@ -68,7 +66,7 @@ class Path {
         }
         #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
         Real ref(Size i) {
-            if (i<self->size()) {
+            if (i<self->length()) {
                 return (*self)[i];
             } else {
                 throw std::out_of_range("path index out of range");
@@ -78,19 +76,19 @@ class Path {
         #endif
         #if defined(SWIGRUBY)
         void each() {
-            for (Size i=0; i<self->size(); i++)
+            for (Size i=0; i<self->length(); i++)
                 rb_yield(rb_float_new((*self)[i]));
         }
         #elif defined(SWIGMZSCHEME)
         void for_each(Scheme_Object* proc) {
-            for (Size i=0; i<self->size(); ++i) {
+            for (Size i=0; i<self->length(); ++i) {
                 Scheme_Object* x = scheme_make_double((*self)[i]);
                 scheme_apply(proc,1,&x);
             }
         }
         #elif defined(SWIGGUILE)
         void for_each(SCM proc) {
-            for (Size i=0; i<self->size(); ++i) {
+            for (Size i=0; i<self->length(); ++i) {
                 SCM x = gh_double2scm((*self)[i]);
                 gh_call1(proc,x);
             }
@@ -221,20 +219,6 @@ class GaussianMultiPathGenerator {
                    const GaussianRandomSequenceGenerator& generator,
                    bool brownianBridge = false) {
           return new GaussianMultiPathGenerator(process,
-                                                QuantLib::TimeGrid(
-                                                    times.begin(),
-                                                    times.end()),
-                                                generator,
-                                                brownianBridge);
-      }
-      GaussianMultiPathGenerator(
-                     const std::vector<StochasticProcess1DPtr>& processes,
-                     const Matrix& correlation,
-                     const std::vector<Time>& times,
-                     const GaussianRandomSequenceGenerator& generator,
-                     bool brownianBridge = false) {
-          return new GaussianMultiPathGenerator(processes,
-                                                correlation,
                                                 QuantLib::TimeGrid(
                                                     times.begin(),
                                                     times.end()),

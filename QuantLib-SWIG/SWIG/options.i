@@ -313,8 +313,8 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
                             intOrNull maxSamples = Null<Integer>(),
                             BigInteger seed = 0) {
             std::string s = QuantLib::lowercase(traits);
-            QL_REQUIRE(timeSteps != Null<Size>() ||
-                       timeStepsPerYear != Null<Size>(),
+            QL_REQUIRE(Size(timeSteps) != Null<Size>() ||
+                       Size(timeStepsPerYear) != Null<Size>(),
                        "number of steps not specified");
             if (s == "pseudorandom" || s == "pr")
                 return new MCEuropeanEnginePtr(

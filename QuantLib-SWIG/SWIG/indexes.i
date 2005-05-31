@@ -98,6 +98,9 @@ class XiborPtr : public boost::shared_ptr<Index> {
         Period tenor() {
             return boost::dynamic_pointer_cast<Xibor>(*self)->tenor();
         }
+        Frequency frequency() {
+            return boost::dynamic_pointer_cast<Xibor>(*self)->frequency();
+        }
         Currency currency() {
             return boost::dynamic_pointer_cast<Xibor>(*self)->currency();
         }
@@ -145,7 +148,6 @@ export_xibor_instance(Jibar, Actual365Fixed);
 export_xibor_instance(JPYLibor, Actual360);
 export_xibor_instance(Tibor, Actual365Fixed);
 export_xibor_instance(USDLibor, Actual360);
-export_xibor_instance(ZARLibor, Actual365Fixed);
 export_xibor_instance(Zibor, Actual360);
 
 

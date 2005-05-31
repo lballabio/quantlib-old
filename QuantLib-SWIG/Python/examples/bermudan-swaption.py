@@ -16,28 +16,18 @@
 from QuantLib import *
 
 swaptionVols = [ # maturity,          length,             volatility
-                 (Period(1, 'Year'),  Period(1,'Years'),  0.1810),
-                 (Period(1, 'Year'),  Period(3,'Years'),  0.1590),
-                 (Period(1, 'Year'),  Period(5,'Years'),  0.1400),
-                 (Period(1, 'Year'),  Period(10,'Years'), 0.1220),
-                 (Period(2, 'Years'), Period(5, 'Years'), 0.1290),
-                 (Period(2, 'Years'), Period(7, 'Years'), 0.1230),
-                 (Period(3, 'Years'), Period(5, 'Years'), 0.1201),
-                 (Period(4, 'Years'), Period(4, 'Years'), 0.1189),
-                 (Period(4, 'Years'), Period(5, 'Years'), 0.1146),
-                 (Period(5, 'Years'), Period(3, 'Years'), 0.1183),
-                 (Period(5, 'Years'), Period(5, 'Years'), 0.1108),
-                 (Period(7, 'Years'), Period(2, 'Years'), 0.1110),
-                 (Period(7, 'Years'), Period(5, 'Years'), 0.1040),
-                 (Period(10,'Years'), Period(1, 'Year'),  0.1109),
-                 (Period(10,'Years'), Period(5, 'Year'),  0.0977) ]
+                 (Period(1, 'Year'),  Period(5,'Years'),  0.1148),
+                 (Period(2, 'Years'), Period(4, 'Years'), 0.1108),
+                 (Period(3, 'Years'), Period(3, 'Years'), 0.1070),
+                 (Period(4, 'Years'), Period(2, 'Years'), 0.1021),
+                 (Period(5, 'Years'), Period(1, 'Years'), 0.1000) ]
 
 def formatVol(v, digits = 2):
     format = '%%.%df %%%%' % digits
     return format % (v * 100)
 
 def formatPrice(p, digits = 2):
-    format = '%%.%df %%%%' % digits
+    format = '%%.%df' % digits
     return format % p
 
 def calibrate(model, helpers, l, name):
@@ -84,75 +74,54 @@ Settings.instance().evaluationDate = todaysDate
 calendar = TARGET()
 settlementDate = Date(19,2,2002);
 
-settlementDays = 2
-dayCounter = Thirty360()
-depositHelpers = [ DepositRateHelper(QuoteHandle(SimpleQuote(rate)),
-                                     n, unit, settlementDays,
-                                     calendar, 'mf', dayCounter)
-                   for n, unit, rate in [(1, 'week',   0.03295),
-                                         (1, 'month',  0.0331),
-                                         (3, 'months', 0.0329),
-                                         (6, 'months', 0.0333),
-                                         (9, 'months', 0.0341),
-                                         (1, 'year',   0.0353)] ]
-
-fixedLegFrequency = 1
-fixedLegAdjustment = 'unadjusted'
-fixedLegDayCounter = Thirty360()
-floatingLegFrequency = 2
-floatingLegAdjustment = 'modifiedfollowing'
-swapHelpers = [ SwapRateHelper(QuoteHandle(SimpleQuote(rate)),
-                               n, unit, settlementDays, calendar,
-                               fixedLegFrequency, fixedLegAdjustment,
-                               fixedLegDayCounter, floatingLegFrequency,
-                               floatingLegAdjustment)
-                for n, unit, rate in [(2,  'years', 0.04875),
-                                      (3,  'years', 0.0438),
-                                      (5,  'years', 0.0474325),
-                                      (10, 'years', 0.051825),
-                                      (20, 'years', 0.0545125)] ]
-
+# flat yield term structure impling 1x5 swap at 5%
+rate = QuoteHandle(SimpleQuote(0.04875825))
 termStructure = YieldTermStructureHandle()
-termStructure.linkTo(PiecewiseFlatForward(settlementDate,
-                                          depositHelpers+swapHelpers,
-                                          Actual360()))
+termStructure.linkTo(FlatForward(settlementDate,rate,Actual365Fixed()))
 
 
 # define the ATM/OTM/ITM swaps
 
+fixedLegFrequency = 1;
+fixedLegConvention = 'Unadjusted';
+floatingLegConvention = 'ModifiedFollowing';
+fixedLegDayCounter = Thirty360(Thirty360.European);
+floatingLegFrequency = 2;
+
 payFixed = 1
 fixingDays = 2
-swapStart = settlementDate + (1,'years')
 index = Euribor(6, 'months', termStructure)
-swapLength = 5
-swapEnd = swapStart + (swapLength,'years')
+
+swapStart = calendar.advance(settlementDate,1,'years',floatingLegConvention)
+swapEnd = calendar.advance(swapStart,5,'years',floatingLegConvention)
 
 fixedSchedule = Schedule(calendar, swapStart, swapEnd,
-                         fixedLegFrequency, fixedLegAdjustment)
+                         fixedLegFrequency, fixedLegConvention)
 floatingSchedule = Schedule(calendar, swapStart, swapEnd,
-                            floatingLegFrequency, floatingLegAdjustment)
+                            floatingLegFrequency, floatingLegConvention)
 
 atmRate = SimpleSwap(payFixed, 100.0,
                      fixedSchedule, 0.0, fixedLegDayCounter,
                      floatingSchedule, index, fixingDays, 0.0,
                      termStructure).fairRate()
 
-atmSwap = SimpleSwap(payFixed, 100.0,
+atmSwap = SimpleSwap(payFixed, 1000.0,
                      fixedSchedule, atmRate, fixedLegDayCounter,
                      floatingSchedule, index, fixingDays, 0.0,
                      termStructure)
-otmSwap = SimpleSwap(payFixed, 100.0,
+otmSwap = SimpleSwap(payFixed, 1000.0,
                      fixedSchedule, atmRate*1.2, fixedLegDayCounter,
                      floatingSchedule, index, fixingDays, 0.0,
                      termStructure)
-itmSwap = SimpleSwap(payFixed, 100.0,
+itmSwap = SimpleSwap(payFixed, 1000.0,
                      fixedSchedule, atmRate*0.8, fixedLegDayCounter,
                      floatingSchedule, index, fixingDays, 0.0,
                      termStructure)
 
 helpers = [ SwaptionHelper(maturity, length,
                            QuoteHandle(SimpleQuote(vol)),
-                           index, termStructure)
+                           index, index.frequency(), index.dayCounter(),
+                           termStructure)
             for maturity, length, vol in swaptionVols ]
 
 times = {}
@@ -162,32 +131,36 @@ for h in helpers:
 times = times.keys()
 times.sort()
 
-grid = TimeGrid(times)
+grid = TimeGrid(times, 30)
 
-HW = HullWhite(termStructure)
-HW2 = HullWhite(termStructure)
-BK = BlackKarasinski(termStructure)
+G2model = G2(termStructure)
+HWmodel = HullWhite(termStructure)
+HWmodel2 = HullWhite(termStructure)
+BKmodel = BlackKarasinski(termStructure)
 
 print "Calibrating..."
 
 for h in helpers:
-    h.setPricingEngine(JamshidianSwaptionEngine(HW))
-calibrate(HW, helpers, 0.05, "Hull-White (analytic formulae)")
+    h.setPricingEngine(G2SwaptionEngine(G2model,6.0,16))
+calibrate(G2model, helpers, 0.05, "G2 (analytic formulae)")
 
 for h in helpers:
-    h.setPricingEngine(TreeSwaptionEngine(HW2,grid))
-calibrate(HW2, helpers, 0.05, "Hull-White (numerical calibration)")
+    h.setPricingEngine(JamshidianSwaptionEngine(HWmodel))
+calibrate(HWmodel, helpers, 0.05, "Hull-White (analytic formulae)")
 
 for h in helpers:
-    h.setPricingEngine(TreeSwaptionEngine(BK,grid))
-calibrate(BK, helpers, 0.05, "Black-Karasinski (numerical calibration)")
+    h.setPricingEngine(TreeSwaptionEngine(HWmodel2,grid))
+calibrate(HWmodel2, helpers, 0.05, "Hull-White (numerical calibration)")
+
+for h in helpers:
+    h.setPricingEngine(TreeSwaptionEngine(BKmodel,grid))
+calibrate(BKmodel, helpers, 0.05, "Black-Karasinski (numerical calibration)")
 
 
 # price Bermudan swaptions on defined swaps
 
-schedule = Schedule(calendar, swapStart, swapEnd, 1, 'mf')
-bermudanDates = [ d for d in schedule ]
-exercise = BermudanExercise(bermudanDates[:-1])
+bermudanDates = [ d for d in fixedSchedule ][:-1]
+exercise = BermudanExercise(bermudanDates)
 
 format = '%17s |%17s |%17s |%17s'
 header = format % ('model', 'in-the-money', 'at-the-money', 'out-of-the-money')
@@ -202,25 +175,32 @@ print header
 print rule
 
 atmSwaption = Swaption(atmSwap, exercise, termStructure,
-                       TreeSwaptionEngine(HW, 100))
+                       TreeSwaptionEngine(G2model, 50))
 otmSwaption = Swaption(otmSwap, exercise, termStructure,
-                       TreeSwaptionEngine(HW, 100))
+                       TreeSwaptionEngine(G2model, 50))
 itmSwaption = Swaption(itmSwap, exercise, termStructure,
-                       TreeSwaptionEngine(HW, 100))
+                       TreeSwaptionEngine(G2model, 50))
+
+print format % ('G2 analytic', formatPrice(itmSwaption.NPV()),
+                formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV()))
+
+atmSwaption.setPricingEngine(TreeSwaptionEngine(HWmodel, 50))
+otmSwaption.setPricingEngine(TreeSwaptionEngine(HWmodel, 50))
+itmSwaption.setPricingEngine(TreeSwaptionEngine(HWmodel, 50))
 
 print format % ('HW analytic', formatPrice(itmSwaption.NPV()),
                 formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV()))
 
-atmSwaption.setPricingEngine(TreeSwaptionEngine(HW2, 100))
-otmSwaption.setPricingEngine(TreeSwaptionEngine(HW2, 100))
-itmSwaption.setPricingEngine(TreeSwaptionEngine(HW2, 100))
+atmSwaption.setPricingEngine(TreeSwaptionEngine(HWmodel2, 50))
+otmSwaption.setPricingEngine(TreeSwaptionEngine(HWmodel2, 50))
+itmSwaption.setPricingEngine(TreeSwaptionEngine(HWmodel2, 50))
 
 print format % ('HW numerical', formatPrice(itmSwaption.NPV()),
                 formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV()))
 
-atmSwaption.setPricingEngine(TreeSwaptionEngine(BK, 100))
-otmSwaption.setPricingEngine(TreeSwaptionEngine(BK, 100))
-itmSwaption.setPricingEngine(TreeSwaptionEngine(BK, 100))
+atmSwaption.setPricingEngine(TreeSwaptionEngine(BKmodel, 50))
+otmSwaption.setPricingEngine(TreeSwaptionEngine(BKmodel, 50))
+itmSwaption.setPricingEngine(TreeSwaptionEngine(BKmodel, 50))
 
 print format % ('BK numerical', formatPrice(itmSwaption.NPV()),
                 formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV()))

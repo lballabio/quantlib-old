@@ -17,21 +17,11 @@ require 'QuantLib'
 include QuantLib
 
 SwaptionVols = [ # maturity,          length,             volatility
-                 [Period.new(1, 'Year'),  Period.new(1,'Years'),  0.1810],
-                 [Period.new(1, 'Year'),  Period.new(3,'Years'),  0.1590],
-                 [Period.new(1, 'Year'),  Period.new(5,'Years'),  0.1400],
-                 [Period.new(1, 'Year'),  Period.new(10,'Years'), 0.1220],
-                 [Period.new(2, 'Years'), Period.new(5, 'Years'), 0.1290],
-                 [Period.new(2, 'Years'), Period.new(7, 'Years'), 0.1230],
-                 [Period.new(3, 'Years'), Period.new(5, 'Years'), 0.1201],
-                 [Period.new(4, 'Years'), Period.new(4, 'Years'), 0.1189],
-                 [Period.new(4, 'Years'), Period.new(5, 'Years'), 0.1146],
-                 [Period.new(5, 'Years'), Period.new(3, 'Years'), 0.1183],
-                 [Period.new(5, 'Years'), Period.new(5, 'Years'), 0.1108],
-                 [Period.new(7, 'Years'), Period.new(2, 'Years'), 0.1110],
-                 [Period.new(7, 'Years'), Period.new(5, 'Years'), 0.1040],
-                 [Period.new(10,'Years'), Period.new(1, 'Year'),  0.1109],
-                 [Period.new(10,'Years'), Period.new(5, 'Year'),  0.0977] ]
+                 [Period.new(1, 'Year'),  Period.new(5,'Years'),  0.1148],
+                 [Period.new(2, 'Years'), Period.new(4, 'Years'), 0.1108],
+                 [Period.new(3, 'Years'), Period.new(3, 'Years'), 0.1070],
+                 [Period.new(4, 'Years'), Period.new(2, 'Years'), 0.1021],
+                 [Period.new(5, 'Years'), Period.new(1, 'Years'), 0.1000] ]
 
 def formatVol(v, digits = 2)
   format = "%.#{digits}f %%"
@@ -87,79 +77,50 @@ def calibrate(model, helpers, l, name)
   puts dblrule
 end
 
-
-
 todaysDate = Date.new(15,2,2002)
 Settings.instance.evaluationDate = todaysDate
 calendar = TARGET.new
 settlementDate = Date.new(19,2,2002);
 
-settlementDays = 2
-dayCounter = Thirty360.new
-depositRates = [[1, 'week',   0.03295],
-                [1, 'month',  0.0331],
-                [3, 'months', 0.0329],
-                [6, 'months', 0.0333],
-                [9, 'months', 0.0341],
-                [1, 'year',   0.0353]]
-depositHelpers = depositRates.map { |n,unit,rate|
-  DepositRateHelper.new(QuoteHandle.new(SimpleQuote.new(rate)),
-                        n, unit, settlementDays,
-                        calendar, 'mf', dayCounter)
-}
-
-fixedLegFrequency = 1
-fixedLegAdjustment = 'unadjusted'
-fixedLegDayCounter = Thirty360.new
-floatingLegFrequency = 2
-floatingLegAdjustment = 'modifiedfollowing'
-swapRates = [[2,  'years', 0.04875],
-             [3,  'years', 0.0438],
-             [5,  'years', 0.0474325],
-             [10, 'years', 0.051825],
-             [20, 'years', 0.0545125]]
-swapHelpers = swapRates.map { |n,unit,rate|
-  SwapRateHelper.new(QuoteHandle.new(SimpleQuote.new(rate)),
-                     n, unit, settlementDays,
-                     calendar,  fixedLegFrequency, fixedLegAdjustment,
-                     fixedLegDayCounter, floatingLegFrequency,
-                     floatingLegAdjustment)
-}
-
+# flat yield term structure impling 1x5 swap at 5%
+rate = QuoteHandle.new(SimpleQuote.new(0.04875825))
 termStructure = YieldTermStructureHandle.new
-termStructure.linkTo!(PiecewiseFlatForward.new(settlementDate,
-                                               depositHelpers+swapHelpers,
-                                               Actual360.new))
+termStructure.linkTo!(FlatForward.new(settlementDate,rate,Actual365Fixed.new))
 
 
 # define the ATM/OTM/ITM swaps
+fixedLegFrequency = 1;
+fixedLegConvention = 'Unadjusted';
+floatingLegConvention = 'ModifiedFollowing';
+fixedLegDayCounter = Thirty360.new(Thirty360::European);
+floatingLegFrequency = 2;
 
 payFixed = true
 fixingDays = 2
-swapStart = settlementDate + Period.new(1,'years')
 index = Euribor.new(6, 'months', termStructure)
-swapLength = 5
-swapEnd = swapStart + Period.new(swapLength,'years')
+
+swapStart = calendar.advance(settlementDate,1,'years',floatingLegConvention)
+swapEnd = calendar.advance(swapStart,5,'years',floatingLegConvention)
 
 fixedSchedule = Schedule.new(calendar, swapStart, swapEnd,
-                             fixedLegFrequency, fixedLegAdjustment)
+                             fixedLegFrequency, fixedLegConvention)
 floatingSchedule = Schedule.new(calendar, swapStart, swapEnd,
-                                floatingLegFrequency, floatingLegAdjustment)
+                                floatingLegFrequency, floatingLegConvention)
 
 atmRate = SimpleSwap.new(payFixed, 100.0,
                          fixedSchedule, 0.0, fixedLegDayCounter,
                          floatingSchedule, index, fixingDays, 0.0,
                          termStructure).fairRate
 
-atmSwap = SimpleSwap.new(payFixed, 100.0,
+atmSwap = SimpleSwap.new(payFixed, 1000.0,
                          fixedSchedule, atmRate, fixedLegDayCounter,
                          floatingSchedule, index, fixingDays, 0.0,
                          termStructure)
-otmSwap = SimpleSwap.new(payFixed, 100.0,
+otmSwap = SimpleSwap.new(payFixed, 1000.0,
                          fixedSchedule, atmRate*1.2, fixedLegDayCounter,
                          floatingSchedule, index, fixingDays, 0.0,
                          termStructure)
-itmSwap = SimpleSwap.new(payFixed, 100.0,
+itmSwap = SimpleSwap.new(payFixed, 1000.0,
                          fixedSchedule, atmRate*0.8, fixedLegDayCounter,
                          floatingSchedule, index, fixingDays, 0.0,
                          termStructure)
@@ -167,7 +128,8 @@ itmSwap = SimpleSwap.new(payFixed, 100.0,
 helpers = SwaptionVols.map { |maturity, length, vol|
   SwaptionHelper.new(maturity, length,
                      QuoteHandle.new(SimpleQuote.new(vol)),
-                     index, termStructure)
+                     index, index.frequency, index.dayCounter,
+                     termStructure)
 }
 
 times = []
@@ -176,34 +138,39 @@ helpers.each { |h|
 }
 times.sort!.uniq!
 
-grid = TimeGrid.new(times)
+grid = TimeGrid.new(times, 30)
 
-HW = HullWhite.new(termStructure)
-HW2 = HullWhite.new(termStructure)
-BK = BlackKarasinski.new(termStructure)
+G2model = G2.new(termStructure)
+HWmodel = HullWhite.new(termStructure)
+HWmodel2 = HullWhite.new(termStructure)
+BKmodel = BlackKarasinski.new(termStructure)
 
 puts "Calibrating..."
 
 helpers.each { |h|
-  h.pricingEngine = JamshidianSwaptionEngine.new(HW)
+  h.pricingEngine = G2SwaptionEngine.new(G2model,6.0,16)
 }
-calibrate(HW, helpers, 0.05, "Hull-White (analytic formulae)")
+calibrate(G2model, helpers, 0.05, "G2 (analytic formulae)")
 
 helpers.each { |h|
-  h.pricingEngine = TreeSwaptionEngine.new(HW2,grid)
+  h.pricingEngine = JamshidianSwaptionEngine.new(HWmodel)
 }
-calibrate(HW2, helpers, 0.05, "Hull-White (numerical calibration)")
+calibrate(HWmodel, helpers, 0.05, "Hull-White (analytic formulae)")
 
 helpers.each { |h|
-  h.pricingEngine = TreeSwaptionEngine.new(BK,grid)
+  h.pricingEngine = TreeSwaptionEngine.new(HWmodel2,grid)
 }
-calibrate(BK, helpers, 0.05, "Black-Karasinski (numerical calibration)")
+calibrate(HWmodel2, helpers, 0.05, "Hull-White (numerical calibration)")
+
+helpers.each { |h|
+  h.pricingEngine = TreeSwaptionEngine.new(BKmodel,grid)
+}
+calibrate(BKmodel, helpers, 0.05, "Black-Karasinski (numerical calibration)")
 
 
 # price Bermudan swaptions on defined swaps
 
-schedule = Schedule.new(calendar, swapStart, swapEnd, 1, 'mf')
-bermudanDates = schedule.map { |d| d }
+bermudanDates = fixedSchedule.map { |d| d }
 exercise = BermudanExercise.new(bermudanDates[0...-1])
 
 format = '%17s |%17s |%17s |%17s'
@@ -220,25 +187,32 @@ puts header
 puts rule
 
 atmSwaption = Swaption.new(atmSwap, exercise, termStructure,
-                           TreeSwaptionEngine.new(HW, 100))
+                           TreeSwaptionEngine.new(G2model, 50))
 otmSwaption = Swaption.new(otmSwap, exercise, termStructure,
-                           TreeSwaptionEngine.new(HW, 100))
+                           TreeSwaptionEngine.new(G2model, 50))
 itmSwaption = Swaption.new(itmSwap, exercise, termStructure,
-                           TreeSwaptionEngine.new(HW, 100))
+                           TreeSwaptionEngine.new(G2model, 50))
+
+puts sprintf(format,'G2 analytic', formatPrice(itmSwaption.NPV),
+             formatPrice(atmSwaption.NPV), formatPrice(otmSwaption.NPV))
+
+atmSwaption.pricingEngine = TreeSwaptionEngine.new(HWmodel, 50)
+otmSwaption.pricingEngine = TreeSwaptionEngine.new(HWmodel, 50)
+itmSwaption.pricingEngine = TreeSwaptionEngine.new(HWmodel, 50)
 
 puts sprintf(format,'HW analytic', formatPrice(itmSwaption.NPV),
              formatPrice(atmSwaption.NPV), formatPrice(otmSwaption.NPV))
 
-atmSwaption.pricingEngine = TreeSwaptionEngine.new(HW2, 100)
-otmSwaption.pricingEngine = TreeSwaptionEngine.new(HW2, 100)
-itmSwaption.pricingEngine = TreeSwaptionEngine.new(HW2, 100)
+atmSwaption.pricingEngine = TreeSwaptionEngine.new(HWmodel2, 50)
+otmSwaption.pricingEngine = TreeSwaptionEngine.new(HWmodel2, 50)
+itmSwaption.pricingEngine = TreeSwaptionEngine.new(HWmodel2, 50)
 
 puts sprintf(format,'HW numerical', formatPrice(itmSwaption.NPV),
              formatPrice(atmSwaption.NPV), formatPrice(otmSwaption.NPV))
 
-atmSwaption.pricingEngine = TreeSwaptionEngine.new(BK, 100)
-otmSwaption.pricingEngine = TreeSwaptionEngine.new(BK, 100)
-itmSwaption.pricingEngine = TreeSwaptionEngine.new(BK, 100)
+atmSwaption.pricingEngine = TreeSwaptionEngine.new(BKmodel, 50)
+otmSwaption.pricingEngine = TreeSwaptionEngine.new(BKmodel, 50)
+itmSwaption.pricingEngine = TreeSwaptionEngine.new(BKmodel, 50)
 
 puts sprintf(format,'BK numerical', formatPrice(itmSwaption.NPV),
              formatPrice(atmSwaption.NPV), formatPrice(otmSwaption.NPV))
