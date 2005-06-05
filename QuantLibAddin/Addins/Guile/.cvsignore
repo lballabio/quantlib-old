@@ -12,7 +12,9 @@ processes.*
 qladdin.c
 qlatest.*
 shortratemodels.*
+simpleswap.*
 termstructures.*
 utilities.h
 volatilities.*
+xibor.*
 

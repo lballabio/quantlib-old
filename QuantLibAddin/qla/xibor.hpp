@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Walter Penschke
+ Copyright (C) 2005 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,12 +15,25 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_instruments_hpp
-#define qla_instruments_hpp
+#ifndef qla_xibor_hpp
+#define qla_xibor_hpp
 
-#include <qla/fixedcouponbond.hpp>
-//#include <qla/zerocurve.hpp>
-#include <qla/zerocouponbond.hpp>
-#include <qla/simpleswap.hpp>
+#include <oh/objhandler.hpp>
+#include <ql/Indexes/xibor.hpp>
+
+namespace QuantLibAddin {
+    class Xibor : public ObjHandler::Object {
+    public:
+        Xibor(ObjHandler::ArgumentStack& args);
+
+        virtual boost::shared_ptr<void> getReference() const {
+            return boost::static_pointer_cast<void>(index_);
+        }
+
+    private:
+        boost::shared_ptr<QuantLib::Xibor> index_;
+    };
+}
+
 #endif
 

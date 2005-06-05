@@ -27,10 +27,12 @@ include_HEADERS = \
     qladdindefines.hpp \
     qlatest.hpp \
     shortratemodels.hpp \
+    simpleswap.hpp \
     termstructures.hpp \
     utilities.hpp \
     vanillaoption.hpp \
     volatilities.hpp \
+    xibor.hpp \
     zerocouponbond.hpp \
     zerocurve.hpp
 
@@ -48,10 +50,12 @@ libQuantLibAddin_la_SOURCES = \
     processes.cpp \
     qlatest.cpp \
     shortratemodels.cpp \
+    simpleswap.cpp \
     termstructures.cpp \
     utilities.cpp \
     vanillaoption.cpp \
     volatilities.cpp \
+    xibor.cpp \
     zerocouponbond.cpp \
     zerocurve.cpp
 

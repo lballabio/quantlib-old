@@ -22,7 +22,9 @@ processes.*pp
 qlatest.*pp
 QuantLibAddin.idl
 shortratemodels.*pp
+simpleswap.*pp
 termstructures.*pp
 utilities.hpp
 volatilities.*pp
+xibor.*pp
 

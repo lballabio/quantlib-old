@@ -237,6 +237,10 @@ SOURCE=.\qla\shortratemodels.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\simpleswap.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\termstructures.cpp
 # End Source File
 # Begin Source File
@@ -250,6 +254,10 @@ SOURCE=.\qla\vanillaoption.cpp
 # Begin Source File
 
 SOURCE=.\qla\volatilities.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\xibor.cpp
 # End Source File
 # Begin Source File
 
@@ -337,6 +345,10 @@ SOURCE=.\qla\shortratemodels.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\simpleswap.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\termstructures.hpp
 # End Source File
 # Begin Source File
@@ -350,6 +362,10 @@ SOURCE=.\qla\vanillaoption.hpp
 # Begin Source File
 
 SOURCE=.\qla\volatilities.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\xibor.hpp
 # End Source File
 # Begin Source File
 

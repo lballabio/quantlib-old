@@ -210,6 +210,10 @@ SOURCE=.\shortratemodels.xml
 # End Source File
 # Begin Source File
 
+SOURCE=.\simpleswap.xml
+# End Source File
+# Begin Source File
+
 SOURCE=.\termstructures.xml
 # End Source File
 # Begin Source File
@@ -219,6 +223,10 @@ SOURCE=.\utilities.xml
 # Begin Source File
 
 SOURCE=.\volatilities.xml
+# End Source File
+# Begin Source File
+
+SOURCE=.\xibor.xml
 # End Source File
 # End Group
 # Begin Source File

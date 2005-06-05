@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
+<functionlist>
+<headeronly>false</headeronly>
+<desc>construct and return a handle to a simple swap object</desc>
+<displayname>Simple Swap</displayname>
+
+<function>
+<name>QL_SIMPLE_SWAP</name>
+<codename>qlSimpleSwap</codename>
+<desc>construct and return a handle to a SimpleSwap object</desc>
+<constructor>true</constructor>
+<qlfunction>SimpleSwap</qlfunction>
+<parameters>
+    <param>
+        <name>StartDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>start date</desc>
+    </param>
+    <param>
+        <name>maturityDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>maturity date</desc>
+    </param>
+    <param>
+        <name>Nominal</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Notional Amount</desc>
+    </param>
+    <param>
+        <name>PayFixed</name>
+        <type>bool</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>pay or receive the fixed rate</desc>
+    </param>
+    <param>
+        <name>FixRate</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>the fixed rate</desc>
+    </param>
+    <param>
+        <name>calendarID</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>calendar ID</desc>
+    </param>
+    <param>
+        <name>FixFrq</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Fixed Leg Frequency</desc>
+    </param>
+    <param>
+        <name>FixBDayConvention</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Fixed Leg Business Day Convention</desc>
+    </param>
+    <param>
+        <name>FixDayCounter</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Fixed Leg Day Count</desc>
+    </param>
+    <param>
+        <name>fixStartFromEnd</name>
+        <type>bool</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>build fixed leg schedule backwards (start from maturity)</desc>
+    </param>
+    <param>
+        <name>fixLongFinal</name>
+        <type>bool</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>fixed leg schedule long first/last period</desc>
+    </param>
+    <param>
+        <name>FltFrq</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Floating Leg Frequency</desc>
+    </param>
+    <param>
+        <name>IndexHandle</name>
+        <type class="Xibor">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Index for the float leg</desc>
+    </param>
+    <param>
+        <name>fltStartFromEnd</name>
+        <type>bool</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>build floating leg schedule backwards (start from maturity)</desc>
+    </param>
+    <param>
+        <name>fltLongFinal</name>
+        <type>bool</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>floating leg schedule long first/last period</desc>
+    </param>
+    <param>
+        <name>FloatSpread</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Index Spread</desc>
+    </param>
+    <param>
+        <name>DiscountCurve</name>
+        <type class="YieldTermStructure">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Yield Curve used for discounting</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>property</type>
+    <tensorrank>vector</tensorrank>
+    <desc>vector of properties describing the SimpleSwap</desc>
+</returnval>
+</function>
+
+</functionlist>
+

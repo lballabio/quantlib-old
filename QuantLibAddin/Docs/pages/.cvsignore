@@ -5,7 +5,9 @@ options.docs
 processes.docs
 qlatest.docs
 shortratemodels.docs
+simpleswap.docs
 termstructures.docs
 utilities.docs
 volatilities.docs
+xibor.docs
 

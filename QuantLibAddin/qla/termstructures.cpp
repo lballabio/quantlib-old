@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -25,6 +26,13 @@
 
 namespace QuantLibAddin {
 
+	double 
+	RateHelper::setQuote(double quote) {
+		double diff = quote - quote_->value();
+		quote_->setValue(quote);
+		return diff;
+	}
+
     DepositRateHelper::DepositRateHelper(ObjHandler::ArgumentStack& arguments) {
         std::string dayCounterID    = OH_POP_ARGUMENT(std::string, arguments);
         std::string conventionID    = OH_POP_ARGUMENT(std::string, arguments);
@@ -34,8 +42,8 @@ namespace QuantLibAddin {
         long maturity               = OH_POP_ARGUMENT(long, arguments);
         double quote                = OH_POP_ARGUMENT(double, arguments);
         
-        boost::shared_ptr<QuantLib::Quote> quoteP(new QuantLib::SimpleQuote(quote));
-        QuantLib::Handle<QuantLib::Quote> quoteH(quoteP);
+        quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
+        QuantLib::Handle<QuantLib::Quote> quoteH(quote_);
         QuantLib::TimeUnit timeUnits = IDtoTimeUnit(timeUnitsID);
         QuantLib::Calendar calendar = IDtoCalendar(calendarID);
         QuantLib::BusinessDayConvention convention = IDtoConvention(conventionID);
@@ -63,8 +71,8 @@ namespace QuantLibAddin {
         long maturity                       = OH_POP_ARGUMENT(long, arguments);
         double quote                        = OH_POP_ARGUMENT(double, arguments);
         
-        boost::shared_ptr<QuantLib::Quote> quoteP(new QuantLib::SimpleQuote(quote));
-        QuantLib::Handle<QuantLib::Quote> quoteH(quoteP);
+        quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
+        QuantLib::Handle<QuantLib::Quote> quoteH(quote_);
         QuantLib::TimeUnit timeUnits = IDtoTimeUnit(timeUnitsID);
         QuantLib::Calendar calendar = IDtoCalendar(calendarID);
         QuantLib::Frequency fixedFrequency = IDtoFrequency(fixedFrequencyID);
@@ -87,6 +95,37 @@ namespace QuantLibAddin {
                                          floatingFrequency,
                                          floatingConvention));
     }
+
+	FutureRateHelper::FutureRateHelper(ObjHandler::ArgumentStack& arguments) {
+		QuantLib::Integer decade     = OH_POP_ARGUMENT(long, arguments);	
+        std::string calendarID       = OH_POP_ARGUMENT(std::string, arguments);
+		std::string bDayConventionID = OH_POP_ARGUMENT(std::string, arguments);
+		std::string dayCounterID     = OH_POP_ARGUMENT(std::string, arguments);
+		QuantLib::Integer months     = OH_POP_ARGUMENT(long, arguments);	
+		std::string immDateID        = OH_POP_ARGUMENT(std::string, arguments);
+        double price                 = OH_POP_ARGUMENT(double, arguments);
+
+		QuantLib::DayCounter dayCounter = IDtoDayCounter(dayCounterID);
+		QuantLib::BusinessDayConvention bDayConvention = IDtoConvention(bDayConventionID);
+        QuantLib::Calendar calendar = IDtoCalendar(calendarID);
+		QuantLib::Date expiry = FutIDtoExpiryDate(immDateID, calendar, bDayConvention, decade);
+
+		quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(price));
+		rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
+			new QuantLib::FuturesRateHelper(
+				QuantLib::Handle<QuantLib::Quote>(quote_),
+				expiry,
+				months,
+				calendar,
+				bDayConvention,
+				dayCounter));
+	}
+	
+	double 
+	YieldTermStructure::getDf(long ldt, bool ipol, double) const {
+		QuantLib::Date date(ldt);
+		return termStructure_->discount(date, ipol);
+	}
     
     PiecewiseFlatForward::PiecewiseFlatForward(ObjHandler::ArgumentStack& arguments) {
         std::string dayCounterID    = OH_POP_ARGUMENT(std::string, arguments);
@@ -118,6 +157,5 @@ namespace QuantLibAddin {
                                                rateHelpersQL,
                                                dayCounter));
     }
-    
 }
 

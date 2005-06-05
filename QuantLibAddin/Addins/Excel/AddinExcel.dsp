@@ -124,6 +124,10 @@ SOURCE=.\shortratemodels.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\simpleswap.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\termstructures.cpp
 # End Source File
 # Begin Source File
@@ -133,6 +137,10 @@ SOURCE=.\utilities.cpp
 # Begin Source File
 
 SOURCE=.\volatilities.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\xibor.cpp
 # End Source File
 # Begin Source File
 

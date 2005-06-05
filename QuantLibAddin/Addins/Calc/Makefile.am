@@ -70,9 +70,11 @@ noinst_HEADERS = \
     qlatest.hpp \
     qldefs.hpp \
     shortratemodels.hpp \
+    simpleswap.hpp \
     termstructures.hpp \
     utilities.hpp \
-    volatilities.hpp
+    volatilities.hpp \
+    xibor.hpp
 
 libQuantLibAddinCalc_la_SOURCES = \
     calcutils.cpp \
@@ -84,9 +86,11 @@ libQuantLibAddinCalc_la_SOURCES = \
     qladdin.cpp \
     qlatest.cpp \
     shortratemodels.cpp \
+    simpleswap.cpp \
     termstructures.cpp \
     utilities.cpp \
-    volatilities.cpp
+    volatilities.cpp \
+    xibor.cpp
 
 if BUILD_CALC
 

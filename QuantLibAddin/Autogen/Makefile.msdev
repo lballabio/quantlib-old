@@ -31,9 +31,11 @@ METADATA= \
 	processes.xml \
 	qlatest.xml \
 	shortratemodels.xml \
+	simpleswap.xml \
 	termstructures.xml \
 	utilities.xml \
-	volatilities.xml
+	volatilities.xml \
+	xibor.xml
 
 !IF "$(OS)" == "Windows_NT"
 NULL=

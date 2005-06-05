@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -19,6 +20,7 @@
 #define qla_generalutils_hpp
 
 #include <ql/DayCounters/all.hpp>
+#include <ql/currency.hpp>
 #include <ql/basicdataformatters.hpp>
 #include <ql/calendar.hpp>
 #include <ql/Math/matrix.hpp>
@@ -48,6 +50,13 @@ namespace QuantLibAddin {
     QuantLib::Matrix vectorVectorToMatrix(
         const std::vector < std::vector < double > > &vv);
 
+	QuantLib::Date FutIDtoExpiryDate(
+		const std::string& immID,
+		const QuantLib::Calendar& calendar, 
+		QuantLib::BusinessDayConvention bdc,
+		QuantLib::Integer decade);
+
+	QuantLib::Currency IDtoCurrency(std::string& currencyID);
 }
 
 #endif

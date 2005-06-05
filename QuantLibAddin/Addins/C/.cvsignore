@@ -21,6 +21,8 @@ options.*
 processes.*
 qlatest.*
 shortratemodels.*
+simpleswap.*
 termstructures.*
 volatilities.*
+xibor.*
 

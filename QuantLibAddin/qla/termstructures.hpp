@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -32,7 +33,9 @@ namespace QuantLibAddin {
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(rateHelper_);
         }
+		double setQuote(double quote);
       protected:
+        boost::shared_ptr<QuantLib::SimpleQuote> quote_;
         boost::shared_ptr<QuantLib::RateHelper> rateHelper_;
     };
     
@@ -40,17 +43,23 @@ namespace QuantLibAddin {
       public:
         DepositRateHelper(ObjHandler::ArgumentStack& args);
     };
-    
+
     class SwapRateHelper : public RateHelper {
       public:
         SwapRateHelper(ObjHandler::ArgumentStack& args);
     };
-    
+
+	class FutureRateHelper : public RateHelper {
+      public:
+        FutureRateHelper(ObjHandler::ArgumentStack& args);
+    };
+
     class YieldTermStructure : public ObjHandler::Object {
       public:
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(termStructure_);
-        }    
+        }
+		double getDf(long d, bool ipol, double) const;
       protected:
         boost::shared_ptr<QuantLib::YieldTermStructure> termStructure_;
     };
@@ -59,7 +68,6 @@ namespace QuantLibAddin {
       public:
         PiecewiseFlatForward(ObjHandler::ArgumentStack& args);
     };
-    
 }
 
 #endif

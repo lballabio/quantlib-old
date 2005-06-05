@@ -18,6 +18,8 @@ processes.cpp
 qladdin.cpp
 qlatest.cpp
 shortratemodels.cpp
+simpleswap.cpp
 termstructures.cpp
 volatilities.cpp
+xibor.cpp
 

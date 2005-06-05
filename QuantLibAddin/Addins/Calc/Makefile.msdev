@@ -34,9 +34,11 @@ OBJECTS= \
 	"$(INT_DIR)\qladdin.obj" \
 	"$(INT_DIR)\qlatest.obj" \
 	"$(INT_DIR)\shortratemodels.obj" \
+	"$(INT_DIR)\simpleswap.obj" \
 	"$(INT_DIR)\termstructures.obj" \
     "$(INT_DIR)\utilities.obj" \
-	"$(INT_DIR)\volatilities.obj"
+	"$(INT_DIR)\volatilities.obj" \
+	"$(INT_DIR)\xibor.obj"
 
 LINK="$(MSVC_DIR)\BIN\LINK" /nologo
 LFLAGS=libcmtd.lib libcpmtd.lib kernel32.lib wsock32.lib \

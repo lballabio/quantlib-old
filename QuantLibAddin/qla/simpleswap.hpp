@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2005 Walter Penschke
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,12 +16,26 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_instruments_hpp
-#define qla_instruments_hpp
+#ifndef qla_simpleswap_hpp
+#define qla_simpleswap_hpp
 
-#include <qla/fixedcouponbond.hpp>
-//#include <qla/zerocurve.hpp>
-#include <qla/zerocouponbond.hpp>
-#include <qla/simpleswap.hpp>
+#include <oh/objhandler.hpp>
+#include <ql/Instruments/simpleswap.hpp>
+
+namespace QuantLibAddin {
+
+    class SimpleSwap : public ObjHandler::Object {
+    public:
+        SimpleSwap(ObjHandler::ArgumentStack& args);
+
+        virtual boost::shared_ptr<void> getReference() const {
+            return boost::static_pointer_cast<void>(swap_);
+        }
+
+    private:
+        boost::shared_ptr<QuantLib::SimpleSwap> swap_;
+    };
+}
+
 #endif
 

@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -28,6 +29,7 @@
 #include <qla/shortratemodels.hpp>
 #include <qla/termstructures.hpp>
 #include <qla/volatilities.hpp>
+#include <qla/xibor.hpp>
 
 #endif
 

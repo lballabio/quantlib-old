@@ -138,6 +138,63 @@
 </function>
 
 <function>
+<name>QL_FUTURE_RATE_HELPER</name>
+<codename>qlFutureRateHelper</codename>
+<desc>construct and return a handle to a future rate-helper object</desc>
+<constructor>true</constructor>
+<qlfunction>FutureRateHelper</qlfunction>
+<parameters>
+    <param>
+        <name>price</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>future price</desc>
+    </param>
+    <param>
+        <name>IMM</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>IMM expiry shortcut</desc>
+    </param>
+    <param>
+        <name>months</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>future contract lenght in months</desc>
+    </param>
+    <param>
+        <name>DayCounter</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>day counter (e.g. Thirty360)</desc>
+    </param>
+    <param>
+        <name>bDayConvention</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>business day convention (e.g. ModifiedFollowing)</desc>
+    </param>
+	<param>
+        <name>calendar</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>calendar (e.g. TARGET)</desc>
+    </param>
+    <param>
+        <name>decade</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>base decade for the IMM shortcut (e.g. 2000 for H4 -> March 2004)</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>property</type>
+    <tensorrank>vector</tensorrank>
+    <desc>vector of properties describing rate-helper object</desc>
+</returnval>
+</function>
+
+<function>
 <name>QL_PIECEWISE_FLAT_FORWARD</name>
 <codename>qlPiecewiseFlatForward</codename>
 <desc>construct and return a handle to a piecewise flat forward term structure</desc>
@@ -206,6 +263,73 @@
     <type>property</type>
     <tensorrank>vector</tensorrank>
     <desc>vector of properties describing the Zero Curve</desc>
+</returnval>
+</function>
+
+
+<function>
+<name>QL_GET_DF</name>
+<codename>qlGetDf</codename>
+<desc>retrieve a discount factor at specified date</desc>
+<constructor>false</constructor>
+<qlfunction>getDf</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="YieldTermStructure">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Option object</desc>
+    </param>
+    <param>
+        <name>DfDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>date</desc>
+    </param>
+    <param>
+        <name>iPol</name>
+        <type>bool</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Interpolate Flag</desc>
+    </param>
+    <param>
+        <name>trigger</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Interpolate Flag</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the discount factor</desc>
+</returnval>
+</function>
+<function>
+
+<name>QL_SET_QUOTE</name>
+<codename>qlSetQuote</codename>
+<desc>retrieve a discount factor at specified date</desc>
+<constructor>false</constructor>
+<qlfunction>setQuote</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="RateHelper">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Option object</desc>
+    </param>
+    <param>
+        <name>Quote</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>the new qoute</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>diff new quote - old quote</desc>
 </returnval>
 </function>
 
