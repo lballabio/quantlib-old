@@ -54,4 +54,3 @@ $(FLAG1) : $(STUBS) $(SCRIPTS) $(METADATA) $(INT_DIR)
 
 CLEAN :
 	-@ if EXIST "$(INT_DIR)\*"			del /f /q "$(INT_DIR)\*"
-
