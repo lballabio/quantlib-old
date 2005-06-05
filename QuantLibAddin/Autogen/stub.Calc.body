@@ -1,7 +1,7 @@
     try {
-%s%s        Properties properties = %s(
+%s%s        %s returnValue = %s(
 %s);
-        return getArray(properties, handle);
+        return %s;
     } catch (const std::exception &e) {
         OH_LOG_MESSAGE(std::string("ERROR: %s: ") + e.what(), 2);
         THROW_RTE;

@@ -23,6 +23,8 @@
 #include <ql/calendar.hpp>
 #include <ql/Math/matrix.hpp>
 
+#include <vector>
+
 namespace QuantLibAddin {
 
     QuantLib::DayCounter IDtoDayCounter(

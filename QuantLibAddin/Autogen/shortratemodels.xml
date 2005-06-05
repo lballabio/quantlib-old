@@ -38,7 +38,7 @@
     </param>
 </parameters>
 <returnval>
-    <type>any</type>
+    <type>property</type>
     <tensorrank>vector</tensorrank>
     <desc>vector of properties describing short-rate model</desc>
 </returnval>
@@ -71,10 +71,11 @@
     </param>
 </parameters>
 <returnval>
-    <type>any</type>
+    <type>property</type>
     <tensorrank>vector</tensorrank>
     <desc>vector of properties describing short-rate model</desc>
 </returnval>
 </function>
 
 </functionlist>
+

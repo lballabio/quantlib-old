@@ -1,7 +1,7 @@
     try {
 %s%s        Properties properties = %s(
 %s);
-        propertiesToVaries(properties, result);
+        propertyVectorToVaries(properties, result);
         return SUCCESS;
     } catch (const std::exception &e) {
         OH_LOG_MESSAGE("%s Error: "

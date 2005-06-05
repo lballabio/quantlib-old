@@ -116,6 +116,10 @@ SOURCE=.\qladdin.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qlatest.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\shortratemodels.cpp
 # End Source File
 # Begin Source File

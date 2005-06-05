@@ -6,6 +6,21 @@ COMPONENT_NAME=QuantLibAddin
 IDL_DIR=$(OFFICE_SDK_PATH)/idl
 DKREGISTRYNAME=$(OFFICE_PROGRAM_PATH)/types.rdb
 
+if BUILD_CALC
+lib_LTLIBRARIES = libQuantLibAddinCalc.la
+else
+EXTRA_LTLIBRARIES = libQuantLibAddinCalc.la
+endif
+
+libQuantLibAddinCalc_la_LIBADD = ../../qla/libQuantLibAddin.la
+
+libQuantLibAddinCalc_la_LDFLAGS = \
+    -Wl,--rpath,/usr/lib/ooo-1.1/program \
+    -L$(OFFICE_PROGRAM_PATH) \
+    -lcppuhelpergcc3 -lcppu -lsal \
+    -lQuantLib -lObjectHandler \
+    -release $(PACKAGE_VERSION)
+
 TYPES = com.sun.star.sheet.XAddIn \
 	com.sun.star.lang.XServiceName \
 	com.sun.star.lang.XServiceInfo \
@@ -52,17 +67,12 @@ noinst_HEADERS = \
     options.hpp \
     processes.hpp \
     qladdin.hpp \
+    qlatest.hpp \
     qldefs.hpp \
     shortratemodels.hpp \
     termstructures.hpp \
     utilities.hpp \
     volatilities.hpp
-
-if BUILD_CALC
-lib_LTLIBRARIES = libQuantLibAddinCalc.la
-else
-EXTRA_LTLIBRARIES = libQuantLibAddinCalc.la
-endif
 
 libQuantLibAddinCalc_la_SOURCES = \
     calcutils.cpp \
@@ -72,19 +82,11 @@ libQuantLibAddinCalc_la_SOURCES = \
     options.cpp \
     processes.cpp \
     qladdin.cpp \
+    qlatest.cpp \
     shortratemodels.cpp \
     termstructures.cpp \
     utilities.cpp \
     volatilities.cpp
-
-libQuantLibAddinCalc_la_LIBADD = ../../qla/libQuantLibAddin.la
-
-libQuantLibAddinCalc_la_LDFLAGS = \
-    -Wl,--rpath,/usr/lib/ooo-1.1/program \
-    -L$(OFFICE_PROGRAM_PATH) \
-    -lcppuhelpergcc3 -lcppu -lsal \
-    -lQuantLib -lObjectHandler \
-    -release $(PACKAGE_VERSION)
 
 if BUILD_CALC
 

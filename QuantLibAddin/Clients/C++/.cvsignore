@@ -15,4 +15,6 @@ Makefile.win
 Options
 Instruments
 QLADemo
+QLATest
 quantlib.log
+

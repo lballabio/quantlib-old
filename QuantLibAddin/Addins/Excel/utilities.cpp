@@ -65,7 +65,7 @@ DLLEXPORT LPXLOPER qlFieldNames(char *handleObject) {
         for (unsigned int i=0; i<properties.size(); i++) {
             ObjectProperty property = properties[i];
             any_ptr a = property();
-            stringToXLOPER(xRet.val.array.lparray[i], property.name().c_str());
+            stringToXloper(xRet.val.array.lparray[i], property.name().c_str());
         }
         return &xRet;
     } catch (const exception &e) {
@@ -85,7 +85,7 @@ DLLEXPORT LPXLOPER qlValue(char *handleObject, char *fieldName) {
             ObjectProperty property = properties[i];
             any_ptr a = property();
             if (property.name().compare(fieldNameUpper) == 0) {
-                anyToXLOPER(a, xRet, true);
+                scalarAnyToXloper(xRet, *a, true);
                 return &xRet;
             }
         }

@@ -21,13 +21,6 @@
 #include <oh/objhandler.hpp>
 #include <ql/TermStructures/zerocurve.hpp>
 
-// indexes to the Property vector
-// FIXME - need a cleaner way to achieve this
-#define FIELD_RATES                     "RATES"
-#define FIELD_DATES                     "DATES"
-#define IDX_RATES                       0
-#define IDX_DATES                       1
-
 namespace QuantLibAddin {
 
     class ZeroCurve : public ObjHandler::Object {
@@ -44,6 +37,4 @@ namespace QuantLibAddin {
 }
 
 #endif
-
-
 

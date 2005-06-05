@@ -202,6 +202,10 @@ SOURCE=.\processes.xml
 # End Source File
 # Begin Source File
 
+SOURCE=.\qlatest.xml
+# End Source File
+# Begin Source File
+
 SOURCE=.\shortratemodels.xml
 # End Source File
 # Begin Source File

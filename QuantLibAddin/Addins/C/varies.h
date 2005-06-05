@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,12 +18,12 @@
 #ifndef qla_varies_h
 #define qla_varies_h
 
-typedef enum { INT, LONG, DOUBLE, CHARP } Type;
+typedef enum { LONG, DOUBLE, BOOL, CHARP } Type;
 
 typedef union {
-    int AsInt;
     long AsLong;
     double AsDouble;
+    bool AsBool;
     char* AsCharP;
 } DataUnion;
 

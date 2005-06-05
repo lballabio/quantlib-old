@@ -76,11 +76,16 @@ class ParameterDeclare(ParameterList):
             delimitLast = False,
             arrayCount = False,     # calculate array sizes (for C code)
             derefString = '',       # character to dereference strings e.g. *
+            derefAny = '',          # character to dereference type any
             derefTensor = '',       # character to dereference vectors/matrices
             derefTensorString = '', # character to dereference string vectors/matrices
             derefOther = '',        # character to dereference other datatypes
-            replaceString = '',     # text to overwrite string datatype e.g. 'char *'
+            prefixString = '',      # text to prefix string datatype e.g. 'const'
+            prefixAny = '',         # text to prefix any datatype
             replaceLong = '',       # text to overwrite long datatype
+            replaceBool = '',       # text to overwrite bool datatype
+            replaceString = '',     # text to overwrite string datatype e.g. 'char *'
+            replaceAny = '',        # text to overwrite any datatype
             replaceTensor = '',     # text to overwrite vector/matrix datatype
             replaceTensorStr = '',  # text to overwrite string vector/matrix datatype
             formatString = '',      # text to reformat datatype for string params
@@ -94,11 +99,16 @@ class ParameterDeclare(ParameterList):
             delimitLast)
         self.arrayCount = arrayCount
         self.derefString = derefString
+        self.derefAny = derefAny
         self.derefTensor = derefTensor
         self.derefTensorString = derefTensorString
         self.derefOther = derefOther
+        self.prefixString = prefixString
+        self.prefixAny = prefixAny
         self.replaceString = replaceString
         self.replaceLong = replaceLong
+        self.replaceBool = replaceBool
+        self.replaceAny = replaceAny
         self.replaceTensor = replaceTensor
         self.replaceTensorStr = replaceTensorStr
         self.formatString = formatString
@@ -122,10 +132,15 @@ class ParameterDeclare(ParameterList):
         self.line[DEREF] = ''
         # derive a value for the dereference character
         if self.param[common.TENSOR] == common.SCALAR:
-            if self.derefString and self.line[TYPE] == common.STRING:
-                self.line[DEREF] = self.derefString
-            elif self.derefOther:
-                self.line[DEREF] = self.derefOther
+            if self.line[TYPE] == common.STRING:
+                if self.derefString:
+                    self.line[DEREF] = self.derefString
+            elif self.line[TYPE] == common.ANY:
+                if self.derefAny:
+                    self.line[DEREF] = self.derefAny
+            else:
+                if self.derefOther:
+                    self.line[DEREF] = self.derefOther
         else:
             if self.derefTensorString and self.line[TYPE] == common.STRING:
                 self.line[DEREF] = self.derefTensorString
@@ -140,10 +155,19 @@ class ParameterDeclare(ParameterList):
             self.line[TYPE] = self.replaceTensorStr
         elif self.replaceTensor and self.param[common.TENSOR] != common.SCALAR:
             self.line[TYPE] = self.replaceTensor
-        elif self.replaceString and self.param[common.TYPE] == common.STRING:
-            self.line[TYPE] = self.replaceString
         elif self.replaceLong and self.param[common.TYPE] == common.LONG:
             self.line[TYPE] = self.replaceLong
+        elif self.replaceBool and self.param[common.TYPE] == common.BOOL:
+            self.line[TYPE] = self.replaceBool
+        elif self.replaceString and self.param[common.TYPE] == common.STRING:
+            self.line[TYPE] = self.replaceString
+        elif self.replaceAny and self.param[common.TYPE] == common.ANY:
+            self.line[TYPE] = self.replaceAny
+        if self.param[common.TENSOR] == common.SCALAR:
+            if self.param[common.TYPE] == common.STRING and self.prefixString:
+                self.line[TYPE] = self.prefixString + ' ' + self.line[TYPE]
+            elif self.param[common.TYPE] == common.ANY and self.prefixAny:
+                self.line[TYPE] = self.prefixAny + ' ' + self.line[TYPE]
 
     def formatType(self):
         'reformat datatype of parameter if indicated'
@@ -184,7 +208,9 @@ class ParameterPass(ParameterList):
             delimitLast = False,
             derefOther = '',        # dereference for non-string datatypes
             convertString = '',     # text to convert string datatype
+            convertBool = '',       # text to convert bool datatype
             wrapFormat = '',        # text to reformat entire parameter line
+            appendScalar = False,   # append string 'Scalar' to names of scalar variables
             appendTensor = False):  # append tensor rank (Vector/Matrix) to variable names
         super(ParameterPass, self).__init__(
             indent,
@@ -194,7 +220,9 @@ class ParameterPass(ParameterList):
             delimitLast)
         self.derefOther = derefOther
         self.convertString = convertString
+        self.convertBool = convertBool
         self.wrapFormat = wrapFormat
+        self.appendScalar = appendScalar
         self.appendTensor = appendTensor
 
     def process(self):
@@ -205,11 +233,15 @@ class ParameterPass(ParameterList):
     def convertValue(self):
         'apply any conversion strings to parameter name'
         if self.param[common.TYPE] == common.STRING \
+        or self.param[common.TYPE] == common.ANY \
         or self.param[common.TENSOR] != common.SCALAR:
             name = ''
         else:
             name = self.derefOther
         name += self.param[common.NAME]
+        if self.appendScalar and self.param[common.TENSOR] == common.SCALAR \
+        and self.param[common.TYPE] == common.ANY:
+            name += 'Scalar'
         if self.appendTensor:
             if self.param[common.TENSOR] == common.VECTOR:
                 name += 'Vector'
@@ -218,6 +250,9 @@ class ParameterPass(ParameterList):
         if self.convertString and self.param[common.TYPE] == common.STRING \
                 and self.param[common.TENSOR] == common.SCALAR:
             self.item = self.convertString % name
+        elif self.convertBool and self.param[common.TYPE] == common.BOOL \
+                and self.param[common.TENSOR] == common.SCALAR:
+            self.item = self.convertBool % name
         else:
             self.item = self.item + name
 

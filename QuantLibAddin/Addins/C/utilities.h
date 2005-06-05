@@ -26,7 +26,7 @@ const char *QL_LOGFILE(
     const char *logFileName);
 
 void QL_CONSOLE(
-    const int console);
+    const long console);
 
 void QL_LOG_MESSAGE(
     const char *fmt,

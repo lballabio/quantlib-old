@@ -21,11 +21,6 @@
 #include <oh/objhandler.hpp>
 #include <ql/Instruments/zerocouponbond.hpp>
 
-// indexes to the Property vector
-// FIXME - need a cleaner way to achieve this
-#define FIELD_NPV                       "NPV"
-#define IDX_NPV                         0
-
 namespace QuantLibAddin {
 
     class ZeroCouponBond : public ObjHandler::Object {
@@ -42,6 +37,4 @@ namespace QuantLibAddin {
 }
 
 #endif
-
-
 

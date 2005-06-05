@@ -1,4 +1,6 @@
-#include <qla/qladdin.hpp>
+#include <qla/qladdindefines.hpp>
+#include <qla/utilities.hpp>
+#include <qla/%s.hpp>
 #include <Addins/Calc/qladdin.hpp>
 #include <Addins/Calc/calcutils.hpp>
 

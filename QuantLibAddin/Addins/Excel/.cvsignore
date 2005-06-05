@@ -11,11 +11,13 @@ Makefile.win
 *_private.*
 xll
 
-options.cpp
-qladdin.cpp
-instruments.cpp
-termstructures.cpp
 capfloor.cpp
-shortratemodels.cpp
-volatilities.cpp
+instruments.cpp
+options.cpp
 processes.cpp
+qladdin.cpp
+qlatest.cpp
+shortratemodels.cpp
+termstructures.cpp
+volatilities.cpp
+

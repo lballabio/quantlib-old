@@ -45,7 +45,7 @@ STRING SAL_CALL QLAddin::qlOhVersion() THROWDEF_RTE_IAE {
 SEQSEQ(ANY) SAL_CALL QLAddin::qlFieldNames(
         const STRING& handleObject) THROWDEF_RTE_IAE {
     try {
-        Properties properties = OH_QUERY_OBJECT(OUStringToString(handleObject));
+        Properties properties = OH_QUERY_OBJECT(OUStringToStlString(handleObject));
         SEQSEQ( ANY ) rows(properties.size());
         for (unsigned int i=0; i<properties.size(); i++) {
             SEQ( ANY ) row(1);
@@ -61,66 +61,164 @@ SEQSEQ(ANY) SAL_CALL QLAddin::qlFieldNames(
     }
 }
 
-// convert boost::any to Calc SEQSEQ(ANY)
-SEQSEQ(ANY) anyToSEQANY(const any_ptr &a) {
-    if (a->type() == typeid(int)) {
-        int i1 = boost::any_cast<int>(*a);
-        sal_Int32 i2 = static_cast< sal_Int32 >(i1);
-        SEQSEQ( ANY ) rows(1);
-        SEQ( ANY ) row(1);
-        row[0] = CSS::uno::makeAny(i2);
-        rows[0] = row;
-        return rows;
+SEQSEQ(ANY) boostAnyToSeqSeq(const any_ptr &a) {
+    if (a->type() == typeid(long)) {
+        long l = boost::any_cast< long >(*a);
+        sal_Int32 l2 = static_cast< sal_Int32 >(l);
+        SEQSEQ( ANY ) ss(1);
+        SEQ( ANY ) s(1);
+        s[0] = CSS::uno::makeAny(l2);
+        ss[0] = s;
+        return ss;
     } else if (a->type() == typeid(double)) {
-        double d = boost::any_cast<double>(*a);
-        SEQSEQ( ANY ) rows(1);
-        SEQ( ANY ) row(1);
-        row[0] = CSS::uno::makeAny(d);
-        rows[0] = row;
-        return rows;
+        double d = boost::any_cast< double >(*a);
+        SEQSEQ( ANY ) ss(1);
+        SEQ( ANY ) s(1);
+        s[0] = CSS::uno::makeAny(d);
+        ss[0] = s;
+        return ss;
+    } else if (a->type() == typeid(bool)) {
+        bool b = boost::any_cast< bool >(*a);
+        SEQSEQ( ANY ) ss(1);
+        SEQ( ANY ) s(1);
+        sal_Int32 b2 = static_cast< sal_Int32 >(b);
+        s[0] = CSS::uno::makeAny(b2);
+        ss[0] = s;
+        return ss;
     } else if (a->type() == typeid(std::string)) {
-        std::string s1 = boost::any_cast<std::string>(*a);
-        STRING s2 = STRFROMASCII( s1.c_str() );
-        SEQSEQ( ANY ) rows(1);
-        SEQ( ANY ) row(1);
-        row[0] = CSS::uno::makeAny(s2);
-        rows[0] = row;
-        return rows;
-    } else if (a->type() == typeid(std::vector<long>)) {
-        std::vector<long> v= boost::any_cast< std::vector<long> >(*a);
-        SEQSEQ( ANY ) rows(v.size());
+        std::string str = boost::any_cast<std::string>(*a);
+        SEQSEQ( ANY ) ss(1);
+        SEQ( ANY ) s(1);
+        s[0] = CSS::uno::makeAny(STRFROMASCII(str.c_str()));
+        ss[0] = s;
+        return ss;
+    } else if (a->type() == typeid( boost::any )) {
+        boost::any a2 = boost::any_cast< boost::any >(*a);
+        SEQSEQ( ANY ) ss(1);
+        SEQ( ANY ) s(1);
+        s[0] = boostAnyToCalcAny(a2);
+        ss[0] = s;
+        return ss;
+    } else if (a->type() == typeid(std::vector< long >)) {
+        std::vector< long > v= boost::any_cast< std::vector< long > >(*a);
+        SEQSEQ( ANY ) ss(v.size());
         for (unsigned int i=0; i<v.size(); i++) {
-            SEQ( ANY ) row(1);
-            row[0] = CSS::uno::makeAny(v[i]);
-            rows[i] = row;
+            SEQ( ANY ) s(1);
+            s[0] = CSS::uno::makeAny(v[i]);
+            ss[i] = s;
         }
-        return rows;
-    } else if (a->type() == typeid(std::vector<double>)) {
-        std::vector<double> v= boost::any_cast< std::vector<double> >(*a);
-        SEQSEQ( ANY ) rows(v.size());
+        return ss;
+    } else if (a->type() == typeid(std::vector< double >)) {
+        std::vector< double > v= boost::any_cast< std::vector< double > >(*a);
+        SEQSEQ( ANY ) ss(v.size());
         for (unsigned int i=0; i<v.size(); i++) {
-            SEQ( ANY ) row(1);
-            row[0] = CSS::uno::makeAny(v[i]);
-            rows[i] = row;
+            SEQ( ANY ) s(1);
+            s[0] = CSS::uno::makeAny(v[i]);
+            ss[i] = s;
         }
-        return rows;
+        return ss;
+    } else if (a->type() == typeid(std::vector< bool >)) {
+        std::vector< bool > v= boost::any_cast< std::vector< bool > >(*a);
+        SEQSEQ( ANY ) ss(v.size());
+        for (unsigned int i=0; i<v.size(); i++) {
+            SEQ( ANY ) s(1);
+            sal_Int32 b = static_cast< sal_Int32 >(v[i]);
+            s[0] = CSS::uno::makeAny(b);
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector<std::string>)) {
+        std::vector<std::string> v= boost::any_cast< std::vector<std::string> >(*a);
+        SEQSEQ( ANY ) ss(v.size());
+        for (unsigned int i=0; i<v.size(); i++) {
+            SEQ( ANY ) s(1);
+            s[0] = CSS::uno::makeAny(STRFROMASCII(v[i].c_str()));
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector< boost::any >)) {
+        std::vector< boost::any > v= boost::any_cast< std::vector< boost::any > >(*a);
+        SEQSEQ( ANY ) ss(v.size());
+        for (unsigned int i=0; i<v.size(); i++) {
+            SEQ( ANY ) s(1);
+            s[0] = boostAnyToCalcAny(v[i]);
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector< std::vector< long > >)) {
+        std::vector< std::vector< long > > vv= boost::any_cast< std::vector< std::vector< long > > >(*a);
+        SEQSEQ( ANY ) ss(vv.size());
+        for (unsigned int i=0; i<vv.size(); i++) {
+            std::vector< long > v = vv[i];
+            SEQ( ANY ) s(v.size());
+            for (unsigned int j=0; j<v.size(); j++)
+                s[j] = CSS::uno::makeAny(v[j]);
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector< std::vector< double > >)) {
+        std::vector< std::vector< double > > vv= boost::any_cast< std::vector< std::vector< double > > >(*a);
+        SEQSEQ( ANY ) ss(vv.size());
+        for (unsigned int i=0; i<vv.size(); i++) {
+            std::vector< double > v = vv[i];
+            SEQ( ANY ) s(v.size());
+            for (unsigned int j=0; j<v.size(); j++)
+                s[j] = CSS::uno::makeAny(v[j]);
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector< std::vector< bool > >)) {
+        std::vector< std::vector< bool > > vv= boost::any_cast< std::vector< std::vector< bool > > >(*a);
+        SEQSEQ( ANY ) ss(vv.size());
+        for (unsigned int i=0; i<vv.size(); i++) {
+            std::vector< bool > v = vv[i];
+            SEQ( ANY ) s(v.size());
+            for (unsigned int j=0; j<v.size(); j++) {
+                sal_Int32 b = static_cast< sal_Int32 >(v[j]);
+                s[j] = CSS::uno::makeAny(b);
+            }
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector< std::vector< std::string > >)) {
+        std::vector< std::vector< std::string > > vv= boost::any_cast< std::vector< std::vector< std::string > > >(*a);
+        SEQSEQ( ANY ) ss(vv.size());
+        for (unsigned int i=0; i<vv.size(); i++) {
+            std::vector< std::string > v = vv[i];
+            SEQ( ANY ) s(v.size());
+            for (unsigned int j=0; j<v.size(); j++)
+                s[j] = CSS::uno::makeAny(STRFROMASCII(v[j].c_str()));
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector< std::vector< boost::any > >)) {
+        std::vector< std::vector< boost::any > > vv= boost::any_cast< std::vector< std::vector< boost::any > > >(*a);
+        SEQSEQ( ANY ) ss(vv.size());
+        for (unsigned int i=0; i<vv.size(); i++) {
+            std::vector< boost::any > v = vv[i];
+            SEQ( ANY ) s(v.size());
+            for (unsigned int j=0; j<v.size(); j++)
+                s[j] = boostAnyToCalcAny(v[j]);
+            ss[i] = s;
+        }
+        return ss;
     } else
-        throw Exception("anyToSEQANY: unable to interpret value");
+        throw Exception("boostAnyToSeqSeq: unable to interpret value");
 }
 
 SEQSEQ(ANY) SAL_CALL QLAddin::qlValue(
         const STRING& handleObject,
         const STRING& fieldName) THROWDEF_RTE_IAE {
     try {
-        Properties properties = OH_QUERY_OBJECT(OUStringToString(handleObject));
+        Properties properties = OH_QUERY_OBJECT(OUStringToStlString(handleObject));
         for (unsigned int i=0; i<properties.size(); i++) {
             ObjectProperty property = properties[i];
             any_ptr a = property();
             STRING propertyName = STRFROMANSI(property.name().c_str());
             if (fieldName.equalsIgnoreAsciiCase(propertyName))
-                return anyToSEQANY(a);
+                return boostAnyToSeqSeq(a);
         }
-        throw Exception(std::string("no field with name ") + OUStringToString(fieldName));
+        throw Exception(std::string("no field with name ") + OUStringToStlString(fieldName));
     } catch (const std::exception &e) {
         OH_LOG_MESSAGE(std::string("ERROR: QL_VALUE: ") + e.what(), 2);
         THROW_RTE;
@@ -132,7 +230,7 @@ STRING SAL_CALL QLAddin::qlLogfile(
         sal_Int32 logLevel) THROWDEF_RTE_IAE {
     try {
         int lvl = logLevel ? logLevel : 4;
-        OH_LOGFILE(OUStringToString(logFileName), lvl);
+        OH_LOGFILE(OUStringToStlString(logFileName), lvl);
         return logFileName;
     } catch (const std::exception &e) {
         OH_LOG_MESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what(), 2);
@@ -145,7 +243,7 @@ STRING SAL_CALL QLAddin::qlLogMessage(
         sal_Int32 logLevel) THROWDEF_RTE_IAE {
     try {
         int lvl = logLevel ? logLevel : 4;
-        OH_LOG_MESSAGE(OUStringToString(logMessage), lvl);
+        OH_LOG_MESSAGE(OUStringToStlString(logMessage), lvl);
         return logMessage;
     } catch (...) {
         THROW_RTE;
@@ -163,10 +261,10 @@ sal_Int32 SAL_CALL QLAddin::qlLogLevel(
     }
 }
 
-sal_Bool SAL_CALL QLAddin::qlLogObject(
+sal_Int32 SAL_CALL QLAddin::qlLogObject(
         const STRING & handleObject) THROWDEF_RTE_IAE {
     try {
-        OH_LOG_OBJECT(OUStringToString(handleObject));
+        OH_LOG_OBJECT(OUStringToStlString(handleObject));
         return sal_False;
     } catch (const std::exception &e) {
         OH_LOG_MESSAGE(std::string("ERROR: QL_LOG_OBJECT: ") + e.what(), 2);
@@ -174,7 +272,7 @@ sal_Bool SAL_CALL QLAddin::qlLogObject(
     }
 }
 
-sal_Bool SAL_CALL QLAddin::qlLogAllObjects() THROWDEF_RTE_IAE {
+sal_Int32 SAL_CALL QLAddin::qlLogAllObjects() THROWDEF_RTE_IAE {
     try {
         OH_LOG_ALL_OBJECTS();
         return sal_False;
@@ -184,10 +282,10 @@ sal_Bool SAL_CALL QLAddin::qlLogAllObjects() THROWDEF_RTE_IAE {
     }
 }
 
-sal_Bool SAL_CALL QLAddin::qlDeleteObject(
+sal_Int32 SAL_CALL QLAddin::qlDeleteObject(
         const STRING & handleObject) THROWDEF_RTE_IAE {
     try {
-        OH_DELETE_OBJECT(OUStringToString(handleObject));
+        OH_DELETE_OBJECT(OUStringToStlString(handleObject));
         return sal_False;
     } catch (const std::exception &e) {
         OH_LOG_MESSAGE(std::string("ERROR: QL_DELETE_OBJECT: ") + e.what(), 2);
@@ -195,7 +293,7 @@ sal_Bool SAL_CALL QLAddin::qlDeleteObject(
     }
 }
 
-sal_Bool SAL_CALL QLAddin::qlDeleteAllObjects() THROWDEF_RTE_IAE {
+sal_Int32 SAL_CALL QLAddin::qlDeleteAllObjects() THROWDEF_RTE_IAE {
     try {
         OH_DELETE_ALL_OBJECTS();
         return sal_False;

@@ -18,47 +18,37 @@
 #ifndef qla_calc_calcutils_hpp
 #define qla_calc_calcutils_hpp
 
-// convert boost::any to Calc Any
-ANY anyToANY(const ObjHandler::any_ptr &a);
-SEQSEQ( ANY ) getArray(ObjHandler::Properties properties, STRING handle);
-std::string OUStringToString(const STRING& s1);
+ANY boostAnyToCalcAny(const boost::any &a);
+boost::any calcAnyToBoostAny(const ANY &a);
+SEQSEQ( ANY ) propertyVectorToSeqSeq(ObjHandler::Properties properties, const STRING &handle);
+std::string OUStringToStlString(const STRING& s);
+STRING stlStringToOuString(const std::string &s);
 ANY stringToANY(const std::string &s);
+std::string calcAnyToStlString(const ANY& s);
 
-template < typename T >
-class Conversion {
-public:
+std::vector < long >SeqSeqToVectorLong(const SEQSEQ( sal_Int32 )& ss);
+std::vector < double >SeqSeqToVectorDouble(const SEQSEQ( double )& ss);
+std::vector < bool >SeqSeqToVectorBool(const SEQSEQ( sal_Int32 )& ss);
+std::vector < std::string >SeqSeqToVectorString(const SEQSEQ( ANY )& ss);
+std::vector < boost::any >SeqSeqToVectorAny(const SEQSEQ( ANY )& ss);
 
-    static std::vector < T >convertVector(const SEQSEQ(T)& s) {
-        std::vector < T >ret;
-        for (int i=0; i<s.getLength(); i++)
-            for (int j=0; j<s[i].getLength(); j++)
-                ret.push_back(s[i][j]);
-        return ret;
-    }
+std::vector < std::vector < long > >SeqSeqToMatrixLong(const SEQSEQ( sal_Int32 )& ss);
+std::vector < std::vector < double > >SeqSeqToMatrixDouble(const SEQSEQ( double )& ss);
+std::vector < std::vector < bool > >SeqSeqToMatrixBool(const SEQSEQ( sal_Int32 )& ss);
+std::vector < std::vector < std::string > >SeqSeqToMatrixString(const SEQSEQ( ANY )& ss);
+std::vector < std::vector < boost::any > >SeqSeqToMatrixAny(const SEQSEQ( ANY )& ss);
 
-    static std::vector < std::string >convertStrVector(const SEQSEQ(ANY)& s) {
-        std::vector < std::string > ret;
-        for (int i=0; i<s.getLength(); i++)
-            for (int j=0; j<s[i].getLength(); j++) {
-                STRING str;
-                s[i][j] >>= str;
-                ret.push_back(OUStringToString(str));
-            }
-        return ret;
-    }
+SEQSEQ( sal_Int32 ) VectorLongToSeqSeq(const std::vector < long > &v);
+SEQSEQ( double ) VectorDoubleToSeqSeq(const std::vector < double > &v);
+SEQSEQ( sal_Int32 ) VectorBoolToSeqSeq(const std::vector < bool > &v);
+SEQSEQ( STRING ) VectorStringToSeqSeq(const std::vector < std::string > &v);
+SEQSEQ( ANY ) VectorAnyToSeqSeq(const std::vector < boost::any > &v);
 
-    static std::vector < std::vector < T > >convertMatrix(const SEQSEQ(double)& s) {
-        std::vector < std::vector < T > >ret;
-        for (int i=0; i<s.getLength(); i++) {
-            std::vector < T >row;
-            for (int j=0; j<s[i].getLength(); j++)
-                row.push_back(s[i][j]);
-            ret.push_back(row);
-        }
-        return ret;
-    }
-
-};
+SEQSEQ( sal_Int32 ) MatrixLongToSeqSeq(const std::vector < std::vector < long > >&v);
+SEQSEQ( double ) MatrixDoubleToSeqSeq(const std::vector < std::vector < double > >&v);
+SEQSEQ( sal_Int32 ) MatrixBoolToSeqSeq(const std::vector < std::vector < bool > >&v);
+SEQSEQ( STRING ) MatrixStringToSeqSeq(const std::vector < std::vector < std::string > >&v);
+SEQSEQ( ANY ) MatrixAnyToSeqSeq(const std::vector < std::vector < boost::any > >&v);
 
 #endif
 

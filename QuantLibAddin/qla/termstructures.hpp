@@ -18,6 +18,7 @@
 #ifndef qla_termstructures_hpp
 #define qla_termstructures_hpp
 
+#include <qla/zerocurve.hpp>
 #include <ql/termstructure.hpp>
 #include <ql/TermStructures/piecewiseflatforward.hpp>
 #include <ql/TermStructures/ratehelpers.hpp>

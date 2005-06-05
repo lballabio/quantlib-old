@@ -74,7 +74,7 @@
 </parameters>
 <returnval>
     <type>any</type>
-    <tensorrank>scalar</tensorrank>
+    <tensorrank>matrix</tensorrank>
     <desc>value of named field</desc>
 </returnval>
 </function>
@@ -223,3 +223,4 @@
 </function>
 
 </functionlist>
+

@@ -20,9 +20,9 @@ DLLEXPORT int xlAutoOpen() {
     Excel(xlGetName, &xDll, 0);
 
     Excel(xlfRegister, 0, 6, &xDll,
-        TempStrNoSize("\x0A""GetAddress"),
+        TempStrNoSize("\x0A""getAddress"),
         TempStrNoSize("\x03""PR#"),
-        TempStrNoSize("\x0A""GetAddress"),
+        TempStrNoSize("\x0A""getAddress"),
         TempMissing(),
         TempInt(0));
 

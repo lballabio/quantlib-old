@@ -3,13 +3,14 @@ AM_CPPFLAGS = -I${top_srcdir}
 AM_LDFLAGS = -release $(PACKAGE_VERSION)
 includedir = $(prefix)/include/qla
 
+lib_LTLIBRARIES = libQuantLibAddin.la
+
 #makefile.mak
 EXTRA_DIST = \
     autolink.hpp
 
 include_HEADERS = \
     asianoption.hpp \
-    autolink.hpp \
     barrieroption.hpp \
     basketoption.hpp \
     capfloor.hpp \
@@ -24,6 +25,7 @@ include_HEADERS = \
     processes.hpp \
     qladdin.hpp \
     qladdindefines.hpp \
+    qlatest.hpp \
     shortratemodels.hpp \
     termstructures.hpp \
     utilities.hpp \
@@ -31,8 +33,6 @@ include_HEADERS = \
     volatilities.hpp \
     zerocouponbond.hpp \
     zerocurve.hpp
-
-lib_LTLIBRARIES = libQuantLibAddin.la
 
 libQuantLibAddin_la_SOURCES = \
     asianoption.cpp \
@@ -46,6 +46,7 @@ libQuantLibAddin_la_SOURCES = \
     generalutils.cpp \
     optionutils.cpp \
     processes.cpp \
+    qlatest.cpp \
     shortratemodels.cpp \
     termstructures.cpp \
     utilities.cpp \

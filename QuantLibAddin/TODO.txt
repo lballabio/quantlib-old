@@ -7,6 +7,7 @@ QuantLibAddin
 
 Calc
 - allow null inputs where appropriate (e.g. arguments to QL_LOGFILE)
+- remove compilation dependency of calcutils on functions
 
 Excel
 - autoconf?

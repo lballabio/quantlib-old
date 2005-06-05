@@ -32,7 +32,7 @@
     </param>
 </parameters>
 <returnval>
-    <type>any</type>
+    <type>property</type>
     <tensorrank>vector</tensorrank>
     <desc>vector of properties describing Stochastic Process object</desc>
 </returnval>
@@ -77,10 +77,11 @@
     </param>
 </parameters>
 <returnval>
-    <type>any</type>
+    <type>property</type>
     <tensorrank>vector</tensorrank>
     <desc>vector of properties describing Stochastic Process object</desc>
 </returnval>
 </function>
 
 </functionlist>
+

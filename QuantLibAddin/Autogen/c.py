@@ -20,11 +20,14 @@ plHeader    = ''    # function prototypes
 def generateFuncHeader(fileHeader, function, suffix):
     global plHeader
     'generate source for prototype of given function'
-    fileHeader.write('int %s(\n' % function[common.NAME])
+    returnType = utils.getFunctionReturnType(function[common.RETVAL], 
+        replaceString = 'char', replaceAny = 'Varies',
+        replaceVector = 'VariesList', replaceMatrix = 'VariesList')
+    fileHeader.write('bool %s(\n' % function[common.NAME])
     if function[common.CTOR]:
         fileHeader.write('        char *handle,\n')
     fileHeader.write(plHeader.generateCode(function[common.PARAMS]))
-    fileHeader.write(',\n        VariesList *result)' + suffix)
+    fileHeader.write(',\n        %s *result)%s' % (returnType, suffix))
 
 def generateFuncHeaders(groupName, functionGroup):
     'generate source for function prototypes'
@@ -67,7 +70,7 @@ def generateConversions(paramList):
                 + ', ' + nmRows + ', ' + nmCols + ');\n'            
     return ret
 
-def generateFuncDefs(groupName, functionGroup):
+def generateFuncSources(groupName, functionGroup):
     'generate source for function implementations'
     plCtor = params.ParameterPass(2, convertString = CONV_STR,
         delimiter = ';\n', appendTensor = True,
@@ -78,7 +81,7 @@ def generateFuncDefs(groupName, functionGroup):
     utils.printHeader(fileFunc)
     bufInclude = utils.loadBuffer(INCLUDES)
     bufBody = utils.loadBuffer(BODY)
-    fileFunc.write(bufInclude % groupName)
+    fileFunc.write(bufInclude % (groupName, groupName))
     for function in functionGroup[common.FUNCLIST]:
         generateFuncHeader(fileFunc, function, ' {\n')
         conversions = generateConversions(function[common.PARAMS])
@@ -102,7 +105,7 @@ def generate(functionDefs):
     global plHeader
     plHeader = params.ParameterDeclare(2, replaceString = 'char',
         replaceTensorStr = 'char', arrayCount = True, derefString = '*',
-        derefTensorString = '*')
+        derefTensorString = '*', replaceAny = 'Varies', replaceTensor = 'VariesList')
     utils.logMessage('  begin generating C ...')
     functionGroups = functionDefs[common.FUNCGROUPS]
     for groupName in functionGroups.keys():
@@ -110,6 +113,6 @@ def generate(functionDefs):
         if functionGroup[common.HDRONLY]:
             continue
         generateFuncHeaders(groupName, functionGroup)
-        generateFuncDefs(groupName, functionGroup)
+        generateFuncSources(groupName, functionGroup)
     utils.logMessage('  done generating C.')
 

@@ -1,0 +1,520 @@
+<?xml version="1.0"?>
+<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
+<functionlist>
+<headeronly>false</headeronly>
+<desc>functions to perform tests of internal QuantLibAddin functionality</desc>
+<displayname>QuantLibAddin Tests</displayname>
+
+<function>
+<name>QL_TEST</name>
+<codename>qlTest</codename>
+<desc>construct and return a handle to a QlaTest object</desc>
+<constructor>true</constructor>
+<qlfunction>QlaTest</qlfunction>
+<parameters>
+    <param>
+        <name>scalarLong</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>scalar long</desc>
+    </param>
+    <param>
+        <name>vectorLong</name>
+        <type>long</type>
+        <tensorrank>vector</tensorrank>
+        <desc>vector long</desc>
+    </param>
+    <param>
+        <name>matrixLong</name>
+        <type>long</type>
+        <tensorrank>matrix</tensorrank>
+        <desc>matrix long</desc>
+    </param>
+    <param>
+        <name>scalarDouble</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>scalar double</desc>
+    </param>
+    <param>
+        <name>vectorDouble</name>
+        <type>double</type>
+        <tensorrank>vector</tensorrank>
+        <desc>vector double</desc>
+    </param>
+    <param>
+        <name>matrixDouble</name>
+        <type>double</type>
+        <tensorrank>matrix</tensorrank>
+        <desc>matrix double</desc>
+    </param>
+    <param>
+        <name>scalarBool</name>
+        <type>bool</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>scalar bool</desc>
+    </param>
+    <param>
+        <name>vectorBool</name>
+        <type>bool</type>
+        <tensorrank>vector</tensorrank>
+        <desc>vector bool</desc>
+    </param>
+    <param>
+        <name>matrixBool</name>
+        <type>bool</type>
+        <tensorrank>matrix</tensorrank>
+        <desc>matrix bool</desc>
+    </param>
+    <param>
+        <name>scalarString</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>scalar string</desc>
+    </param>
+    <param>
+        <name>vectorString</name>
+        <type>string</type>
+        <tensorrank>vector</tensorrank>
+        <desc>vector string</desc>
+    </param>
+    <param>
+        <name>matrixString</name>
+        <type>string</type>
+        <tensorrank>matrix</tensorrank>
+        <desc>matrix string</desc>
+    </param>
+    <param>
+        <name>scalarAny</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>scalar any</desc>
+    </param>
+    <param>
+        <name>vectorAny</name>
+        <type>any</type>
+        <tensorrank>vector</tensorrank>
+        <desc>vector any</desc>
+    </param>
+    <param>
+        <name>matrixAny</name>
+        <type>any</type>
+        <tensorrank>matrix</tensorrank>
+        <desc>matrix any</desc>
+    </param>
+</parameters>
+
+<returnval>
+    <type>property</type>
+    <tensorrank>vector</tensorrank>
+    <desc>vector of properties describing QlaTest object</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_SCALAR_LONG</name>
+<codename>qlTestScalarLong</codename>
+<desc>test processing of scalar long values</desc>
+<constructor>false</constructor>
+<qlfunction>echoScalarLong</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>scalarLong</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>scalar long</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>long</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_VECTOR_LONG</name>
+<codename>qlTestVectorLong</codename>
+<desc>test processing of vector long values</desc>
+<constructor>false</constructor>
+<qlfunction>echoVectorLong</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>vectorLong</name>
+        <type>long</type>
+        <tensorrank>vector</tensorrank>
+        <desc>vector long</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>long</type>
+    <tensorrank>vector</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_MATRIX_LONG</name>
+<codename>qlTestMatrixLong</codename>
+<desc>test processing of matrix long values</desc>
+<constructor>false</constructor>
+<qlfunction>echoMatrixLong</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>matrixLong</name>
+        <type>long</type>
+        <tensorrank>matrix</tensorrank>
+        <desc>matrix long</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>long</type>
+    <tensorrank>matrix</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_SCALAR_DOUBLE</name>
+<codename>qlTestScalarDouble</codename>
+<desc>test processing of scalar double values</desc>
+<constructor>false</constructor>
+<qlfunction>echoScalarDouble</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>scalarDouble</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>scalar double</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_VECTOR_DOUBLE</name>
+<codename>qlTestVectorDouble</codename>
+<desc>test processing of vector double values</desc>
+<constructor>false</constructor>
+<qlfunction>echoVectorDouble</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>vectorDouble</name>
+        <type>double</type>
+        <tensorrank>vector</tensorrank>
+        <desc>vector double</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>vector</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_MATRIX_DOUBLE</name>
+<codename>qlTestMatrixDouble</codename>
+<desc>test processing of matrix double values</desc>
+<constructor>false</constructor>
+<qlfunction>echoMatrixDouble</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>matrixDouble</name>
+        <type>double</type>
+        <tensorrank>matrix</tensorrank>
+        <desc>matrix double</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>matrix</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_SCALAR_BOOL</name>
+<codename>qlTestScalarBool</codename>
+<desc>test processing of scalar bool values</desc>
+<constructor>false</constructor>
+<qlfunction>echoScalarBool</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>scalarBool</name>
+        <type>bool</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>scalar bool</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>bool</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_VECTOR_BOOL</name>
+<codename>qlTestVectorBool</codename>
+<desc>test processing of vector bool values</desc>
+<constructor>false</constructor>
+<qlfunction>echoVectorBool</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>vectorBool</name>
+        <type>bool</type>
+        <tensorrank>vector</tensorrank>
+        <desc>vector bool</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>bool</type>
+    <tensorrank>vector</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_MATRIX_BOOL</name>
+<codename>qlTestMatrixBool</codename>
+<desc>test processing of matrix bool values</desc>
+<constructor>false</constructor>
+<qlfunction>echoMatrixBool</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>matrixBool</name>
+        <type>bool</type>
+        <tensorrank>matrix</tensorrank>
+        <desc>matrix bool</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>bool</type>
+    <tensorrank>matrix</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_SCALAR_STRING</name>
+<codename>qlTestScalarString</codename>
+<desc>test processing of scalar string values</desc>
+<constructor>false</constructor>
+<qlfunction>echoScalarString</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>scalarString</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>scalar string</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_VECTOR_STRING</name>
+<codename>qlTestVectorString</codename>
+<desc>test processing of vector string values</desc>
+<constructor>false</constructor>
+<qlfunction>echoVectorString</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>vectorString</name>
+        <type>string</type>
+        <tensorrank>vector</tensorrank>
+        <desc>vector string</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>string</type>
+    <tensorrank>vector</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_MATRIX_STRING</name>
+<codename>qlTestMatrixString</codename>
+<desc>test processing of matrix string values</desc>
+<constructor>false</constructor>
+<qlfunction>echoMatrixString</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>matrixString</name>
+        <type>string</type>
+        <tensorrank>matrix</tensorrank>
+        <desc>matrix string</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>string</type>
+    <tensorrank>matrix</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_SCALAR_ANY</name>
+<codename>qlTestScalarAny</codename>
+<desc>test processing of scalar any values</desc>
+<constructor>false</constructor>
+<qlfunction>echoScalarAny</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>scalarAny</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>scalar any</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>any</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_VECTOR_ANY</name>
+<codename>qlTestVectorAny</codename>
+<desc>test processing of vector any values</desc>
+<constructor>false</constructor>
+<qlfunction>echoVectorAny</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>vectorAny</name>
+        <type>any</type>
+        <tensorrank>vector</tensorrank>
+        <desc>vector any</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_TEST_MATRIX_ANY</name>
+<codename>qlTestMatrixAny</codename>
+<desc>test processing of matrix any values</desc>
+<constructor>false</constructor>
+<qlfunction>echoMatrixAny</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>matrixAny</name>
+        <type>any</type>
+        <tensorrank>matrix</tensorrank>
+        <desc>matrix any</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>any</type>
+    <tensorrank>matrix</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+</functionlist>
+

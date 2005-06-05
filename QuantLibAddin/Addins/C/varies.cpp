@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 Eric Ehlers
+ Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,7 +23,7 @@ extern "C" {
 
 using namespace ObjHandler;
 
-    void propertiesToVaries(const Properties &properties,
+    void propertyVectorToVaries(const Properties &properties,
             VariesList *variesList) {
         variesList->count = properties.size();
         variesList->varies = new Varies[properties.size()];
@@ -32,15 +32,15 @@ using namespace ObjHandler;
             variesList->varies[i].Label = new char[property.name().size() + 1];
             sprintf(variesList->varies[i].Label, property.name().c_str());
             any_ptr a = property();
-            if (a->type() == typeid(int)) {
-                variesList->varies[i].type = INT;
-                variesList->varies[i].data.AsInt = boost::any_cast<int>(*a);
-            } else if (a->type() == typeid(long)) {
+            if (a->type() == typeid(long)) {
                 variesList->varies[i].type = LONG;
                 variesList->varies[i].data.AsLong = boost::any_cast<long>(*a);
             } else if (a->type() == typeid(double)) {
                 variesList->varies[i].type = DOUBLE;
                 variesList->varies[i].data.AsDouble = boost::any_cast<double>(*a);
+            } else if (a->type() == typeid(bool)) {
+                variesList->varies[i].type = BOOL;
+                variesList->varies[i].data.AsBool = boost::any_cast<bool>(*a);
             } else if (a->type() == typeid(std::string)) {
                 variesList->varies[i].type = CHARP;
                 const char *c = boost::any_cast<std::string>(*a).c_str();
@@ -56,12 +56,12 @@ using namespace ObjHandler;
     const char *variesToString(const Varies *v) {
         static std::string ret;
         std::ostringstream s;
-        if (v->type == INT)
-            s << v->data.AsInt;
-        else if (v->type == LONG)
+        if (v->type == LONG)
             s << v->data.AsLong;
         else if (v->type == DOUBLE)
             s << v->data.AsDouble;
+        else if (v->type == BOOL)
+            s << v->data.AsBool;
         else if (v->type == CHARP)
             s << v->data.AsCharP;
         else

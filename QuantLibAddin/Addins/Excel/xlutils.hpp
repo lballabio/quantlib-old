@@ -26,64 +26,46 @@
 #define DLLEXPORT extern "C" __declspec(dllexport)
 #define XL_MAX_STR_LEN 255
 
-void setArray(LPXLOPER xArray,
-               ObjHandler::Properties properties,
-               const std::string &handle);
-std::string XLOPERtoString(const XLOPER &xOp);
-void stringToXLOPER(XLOPER &xStr, const char *s);
-void anyToXLOPER(const ObjHandler::any_ptr &any, 
-                 XLOPER &xOp, 
-                 const bool &expandVectors = false);
+std::string xloperToString(const XLOPER &xOp);
+void stringToXloper(XLOPER &xStr, const std::string &s);
 std::string getHandleFull(const std::string &handle);
+void stringToChar(char *c, const std::string &s);
 
-template < typename T >
-class Conversion {
-public:
+void propertyVectorToXloper(
+    LPXLOPER xArray,
+    ObjHandler::Properties properties,
+    const std::string &handle);
 
-    static std::vector < T >convertVector(const LPXLOPER xVec) {
-        XLOPER xVal;
-        if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
-            throw exception("convertArray: error on call to xlCoerce");
-        std::vector < T >ret;
-        for (int i=0; i<xVal.val.array.rows * xVal.val.array.columns; i++) {
-            XLOPER xOp;
-            if (xlretSuccess != Excel(xlCoerce, &xOp, 2, &xVal.val.array.lparray[i], TempInt(xltypeNum)))
-                throw exception("convertArray: error on call to xlCoerce");
-            ret.push_back(xOp.val.num);
-        }
-        Excel(xlFree, 0, 1, &xVal);
-        return ret;
-    }
+void scalarAnyToXloper(
+    XLOPER &xScalar, 
+    const boost::any &any, 
+    const bool &expandVectors = false);
 
-    static std::vector < std::string >convertStrVector(const LPXLOPER xVec) {
-        XLOPER xVal;
-        if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xVec, TempInt(xltypeMulti)))
-            throw exception("convertArray: error on call to xlCoerce");
-        std::vector < std::string >ret;
-        for (int i=0; i<xVal.val.array.rows * xVal.val.array.columns; i++)
-            ret.push_back(XLOPERtoString(xVal.val.array.lparray[i]));
-        Excel(xlFree, 0, 1, &xVal);
-        return ret;
-    }
+void vectorLongToXloper(XLOPER &xVector, std::vector < long > &v);
+void vectorDoubleToXloper(XLOPER &xVector, std::vector < double > &v);
+void vectorBoolToXloper(XLOPER &xVector, std::vector < bool > &v);
+void vectorStringToXloper(XLOPER &xVector, std::vector < std::string > &v);
+void vectorAnyToXloper(XLOPER &xVector, std::vector < boost::any > &v);
 
-    static std::vector < std::vector < T > >convertMatrix(const LPXLOPER xMat) {
-        XLOPER xVal;
-        if (xlretSuccess != Excel(xlCoerce, &xVal, 2, xMat, TempInt(xltypeMulti)))
-            throw exception("convertMatrix: error on call to xlCoerce");
-        std::vector < std::vector < T > >ret;
-        for (int i=0; i<xVal.val.array.rows; i++) {
-            std::vector < T >row;
-            for (int j=0; j<xVal.val.array.columns; j++) {
-                XLOPER xOp;
-                if (xlretSuccess != Excel(xlCoerce, &xOp, 2, &xVal.val.array.lparray[i * xVal.val.array.columns + j], TempInt(xltypeNum)))
-                    throw exception("convertMatrix: error on call to xlCoerce");
-                row.push_back(xOp.val.num);
-            }
-            ret.push_back(row);
-        }
-        return ret;
-    }
+void matrixLongToXloper(XLOPER &xMatrix, std::vector < std::vector < long > > &vv);
+void matrixDoubleToXloper(XLOPER &xMatrix, std::vector < std::vector < double > > &vv);
+void matrixBoolToXloper(XLOPER &xMatrix, std::vector < std::vector < bool > > &vv);
+void matrixStringToXloper(XLOPER &xMatrix, std::vector < std::vector < std::string > > &vv);
+void matrixAnyToXloper(XLOPER &xMatrix, std::vector < std::vector < boost::any > > &vv);
 
-};
+boost::any xloperToScalarAny(const LPXLOPER xScalar);
+
+std::vector < long > xloperToVectorLong(const LPXLOPER xVec);
+std::vector < double > xloperToVectorDouble(const LPXLOPER xVec);
+std::vector < bool > xloperToVectorBool(const LPXLOPER xVec);
+std::vector < std::string > xloperToVectorString(const LPXLOPER xVec);
+std::vector < boost::any > xloperToVectorAny(const LPXLOPER xVec);
+
+std::vector < std::vector < long > >xloperToMatrixLong(const LPXLOPER xVec);
+std::vector < std::vector < double > >xloperToMatrixDouble(const LPXLOPER xVec);
+std::vector < std::vector < bool > >xloperToMatrixBool(const LPXLOPER xVec);
+std::vector < std::vector < std::string > >xloperToMatrixString(const LPXLOPER xVec);
+std::vector < std::vector < boost::any > >xloperToMatrixAny(const LPXLOPER xVec);
 
 #endif
+

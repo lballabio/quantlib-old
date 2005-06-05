@@ -19,9 +19,7 @@
 #define qla_instruments_hpp
 
 #include <qla/fixedcouponbond.hpp>
-#include <qla/zerocurve.hpp>
 #include <qla/zerocouponbond.hpp>
 
 #endif
-
 

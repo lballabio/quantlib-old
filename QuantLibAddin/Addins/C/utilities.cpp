@@ -41,7 +41,7 @@ const char *QL_LOGFILE(const char *logFileName) {
     return ret.c_str();
 }
 
-void QL_CONSOLE(const int console) {
+void QL_CONSOLE(const long console) {
     OH_CONSOLE(console);
 }
 

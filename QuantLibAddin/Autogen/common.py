@@ -21,6 +21,7 @@ NAME        = 'name'
 NUMFUNC     = 'numfunc'
 PARAM       = 'param'
 PARAMS      = 'parameters'
+PROPERTY    = 'property'
 QLFUNC      = 'qlfunction'
 RETVAL      = 'returnval'
 SCALAR      = 'scalar'
@@ -28,7 +29,6 @@ STRING      = 'string'
 TENSOR      = 'tensorrank'
 TYPE        = 'type'
 VECTOR      = 'vector'
-XMLSUFFIX   = r'(.*).xml\Z'
 
 # General
 

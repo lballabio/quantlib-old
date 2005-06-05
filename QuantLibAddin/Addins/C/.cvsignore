@@ -15,15 +15,12 @@ Makefile.win
 *_private.*
 xll
 
-options.*
+capfloor.*
 instruments.*
-termstructures.cpp
-termstructures.h
-capfloor.cpp
-capfloor.h
-shortratemodels.cpp
-shortratemodels.h
-volatilities.cpp
-volatilities.h
-processes.cpp
-processes.h
+options.*
+processes.*
+qlatest.*
+shortratemodels.*
+termstructures.*
+volatilities.*
+

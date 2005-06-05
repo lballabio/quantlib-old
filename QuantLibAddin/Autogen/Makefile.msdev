@@ -28,9 +28,12 @@ METADATA= \
 	capfloor.xml \
 	instruments.xml \
 	options.xml \
+	processes.xml \
+	qlatest.xml \
 	shortratemodels.xml \
 	termstructures.xml \
-	utilities.xml
+	utilities.xml \
+	volatilities.xml
 
 !IF "$(OS)" == "Windows_NT"
 NULL=

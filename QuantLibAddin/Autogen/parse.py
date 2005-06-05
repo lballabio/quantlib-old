@@ -5,6 +5,10 @@ import xml.dom.minidom
 import re
 import os
 
+# global constants
+
+XMLSUFFIX = r'(.*).xml\Z'
+
 def getText(parentNode):
     'convert a node to a string'
     t = ''
@@ -105,7 +109,7 @@ def getFunctionDefs():
     fileNames = os.listdir('.')
     functionDefs[common.NUMFUNC] = 0
     for fileName in fileNames:
-        matchName = re.match(common.XMLSUFFIX, fileName)
+        matchName = re.match(XMLSUFFIX, fileName)
         if not matchName: continue
         groupName = matchName.group(1)
         fileObj = file(fileName)
