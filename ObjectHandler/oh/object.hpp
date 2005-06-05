@@ -113,14 +113,37 @@ namespace ObjHandler {
     /*! Write contents of boost::any
         to output stream.
     */
-    std::ostream& operator<<(std::ostream& out, const any_ptr& any);
+    std::ostream& operator<<(std::ostream& out, const boost::any& any);
 
     /*! \relates Object */
     //! obj_ptr ostream operator.
     /*! Write contents of Object Property vector
         to output stream.
     */
+
     std::ostream& operator<<(std::ostream& out, const Object &object);
+
+    template < typename T >
+    std::ostream& operator<<(std::ostream& out, std::vector < T > &v) {
+        out << std::endl;
+        for (typename std::vector< T >::const_iterator i = v.begin(); i != v.end(); i++)
+            out << *i << std::endl;
+        return out;       
+    }
+
+/*
+    template < typename T >
+    std::ostream& operator<<(std::ostream& out, 
+            std::vector < std::vector < T > > &vv) {
+        out << std::endl;
+        for (typename std::vector < std::vector< T > >::const_iterator i = vv.begin();
+                i != vv.end(); i++) {
+            std::vector< T > v = *i;
+            out << v << std::endl;
+        }
+        return out;       
+    }
+*/
 
 }
 
