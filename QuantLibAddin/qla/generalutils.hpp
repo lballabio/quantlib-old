@@ -29,22 +29,7 @@
 
 namespace QuantLibAddin {
 
-    QuantLib::DayCounter IDtoDayCounter(
-        const std::string &dayCounterID);
-    
-    QuantLib::Calendar IDtoCalendar(
-        const std::string &calendarID);
-    
-    QuantLib::TimeUnit IDtoTimeUnit(
-        const std::string &timeUnitID);
-    
-    QuantLib::BusinessDayConvention IDtoConvention(
-        const std::string &conventionID);
-
-    QuantLib::Frequency IDtoFrequency(
-        const std::string &frequencyID);
-
-    std::vector<QuantLib::Date> longVectorToDateVector(
+	std::vector<QuantLib::Date> longVectorToDateVector(
         const std::vector < long > &v);
 
     QuantLib::Matrix vectorVectorToMatrix(
@@ -55,8 +40,6 @@ namespace QuantLibAddin {
 		const QuantLib::Calendar& calendar, 
 		QuantLib::BusinessDayConvention bdc,
 		QuantLib::Integer decade);
-
-	QuantLib::Currency IDtoCurrency(std::string& currencyID);
 }
 
 #endif

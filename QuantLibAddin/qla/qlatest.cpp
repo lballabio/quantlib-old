@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -19,6 +20,7 @@
     #include <qla/config.hpp>
 #endif
 #include <qla/qlatest.hpp>
+#include <qla/enumfactory.hpp>
 
 #define FIELD_SCALAR_LONG       "SCALAR_LONG"
 #define FIELD_VECTOR_LONG       "VECTOR_LONG"
@@ -150,7 +152,9 @@ namespace QuantLibAddin {
         properties_.push_back(propertyScalarAny);
         properties_.push_back(propertyVectorAny);
         properties_.push_back(propertyMatrixAny);
-
+		
+		// Enums
+		registeredEnums = EnumTypeFactory::instance().getAllRegisteredEnums();
     }
 
     // long
@@ -243,5 +247,16 @@ namespace QuantLibAddin {
         return input;
     }
 
+	const std::vector<std::string>& QlaTest::getRegisteredEnums() const {
+		return registeredEnums;
+	}
+
+	const std::vector<std::string>& QlaTest::getEnumMembers(const std::string& id) const {
+		static std::vector<std::string> ret;
+		ret = EnumTypeFactory::instance().getEnumElements(id);
+		return ret;
+	}
+
 }
+
 

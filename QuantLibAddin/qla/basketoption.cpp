@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -20,18 +21,9 @@
 #endif
 #include <qla/basketoption.hpp>
 #include <qla/optionutils.hpp>
+#include <qla/enumfactory.hpp>
 
 namespace QuantLibAddin {
-
-    QuantLib::BasketOption::BasketType IDtoBasketType(const std::string &basketID) {
-        std::string idUpper = QuantLib::StringFormatter::toUppercase(basketID);
-        if (idUpper.compare("MIN") ==0)
-            return QuantLib::BasketOption::Min;
-        else if (idUpper.compare("MAX") == 0)
-            return QuantLib::BasketOption::Max;
-        else
-            QL_FAIL("IDtoBasketType: unrecognized typeID: " + basketID);
-    }
 
     BasketOption::BasketOption(ObjHandler::ArgumentStack &arguments) {
         long timeSteps              = OH_POP_ARGUMENT(long, arguments);
@@ -47,11 +39,13 @@ namespace QuantLibAddin {
         std::vector < std::string > handleBlackScholesVector 
             = OH_POP_ARGUMENT(std::vector < std::string >, arguments);
 
-        QuantLib::BasketOption::BasketType basketType = 
-            IDtoBasketType(basketID);
+		QuantLib::BasketOption::BasketType basketType = 
+			CreateEnum<QuantLib::BasketOption::BasketType>::create(basketID);
         QuantLib::Matrix correlation =
             vectorVectorToMatrix(correlations);
-        QuantLib::Option::Type type = IDtoOptionType(optionTypeID);
+		QuantLib::Option::Type type = 
+			CreateEnum<QuantLib::Option::Type>::create(optionTypeID);
+
         boost::shared_ptr<QuantLib::PlainVanillaPayoff> payoff(
             new QuantLib::PlainVanillaPayoff(type, strike));
         boost::shared_ptr<QuantLib::Exercise> exercise = 
@@ -93,4 +87,5 @@ namespace QuantLibAddin {
     }
 
 }
+
 

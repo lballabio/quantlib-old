@@ -23,6 +23,7 @@
 #include <qla/xibor.hpp>
 #include <qla/generalutils.hpp>
 #include <qla/termstructures.hpp>
+#include <qla/enumfactory.hpp>
 
 namespace QuantLibAddin {
 	QuantLib::Date make_date(long d) { return QuantLib::Date(d); }
@@ -40,11 +41,12 @@ namespace QuantLibAddin {
 		std::string crrID = OH_POP_ARGUMENT(std::string, arguments);
 		std::string indexName = OH_POP_ARGUMENT(std::string, arguments);
 
-		QuantLib::DayCounter fltDayCounter = IDtoDayCounter(fltDayCounterID);
-		QuantLib::BusinessDayConvention fltBDC = IDtoConvention(fltBDCID);
-		QuantLib::Calendar calendar = IDtoCalendar(calendarID);
-        QuantLib::TimeUnit timeUnits = IDtoTimeUnit(timeUnitsID);
-		QuantLib::Currency crr = IDtoCurrency(crrID);
+		QuantLib::DayCounter fltDayCounter = CreateEnum<QuantLib::DayCounter>::create(fltDayCounterID);
+		QuantLib::BusinessDayConvention fltBDC = 
+			CreateEnum<QuantLib::BusinessDayConvention>::create(fltBDCID);
+		QuantLib::Calendar calendar = CreateEnum<QuantLib::Calendar>::create(calendarID);
+		QuantLib::TimeUnit timeUnits = CreateEnum<QuantLib::TimeUnit>::create(timeUnitsID);
+		QuantLib::Currency crr = CreateEnum<QuantLib::Currency>::create(crrID);
 
 		boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpFwdYC =
 			OH_GET_OBJECT(YieldTermStructure, fwdCurveId);
@@ -68,4 +70,5 @@ namespace QuantLibAddin {
 		}
 	}
 }
+
 

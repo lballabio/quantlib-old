@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -21,6 +22,7 @@
 #include <qla/processes.hpp>
 #include <qla/volatilities.hpp>
 #include <qla/generalutils.hpp>
+#include <qla/enumfactory.hpp>
 #include <ql/quote.hpp>
 #include <ql/TermStructures/flatforward.hpp>
 #include <ql/voltermstructure.hpp>
@@ -36,7 +38,7 @@ namespace QuantLibAddin {
         std::string handleBlackVol  = OH_POP_ARGUMENT(std::string, arguments);
 
         QuantLib::Date settlementDate(settlementDateLong);
-        QuantLib::DayCounter dayCounter = IDtoDayCounter(dayCounterID);
+		QuantLib::DayCounter dayCounter = CreateEnum<QuantLib::DayCounter>::create(dayCounterID);
         QuantLib::Handle<QuantLib::Quote> underlyingH( 
             boost::shared_ptr<QuantLib::Quote>(
             new QuantLib::SimpleQuote(underlying)));
@@ -65,4 +67,5 @@ namespace QuantLibAddin {
     }
 
 }
+
 

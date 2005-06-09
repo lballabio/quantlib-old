@@ -516,5 +516,56 @@
 </returnval>
 </function>
 
+
+<function>
+<name>QL_LIST_REGISTERED_ENUMS</name>
+<codename>qlListRegisteredEnums</codename>
+<desc>return the names of all registered enums</desc>
+<constructor>false</constructor>
+<qlfunction>getRegisteredEnums</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>string</type>
+    <tensorrank>vector</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+<function>
+
+<name>QL_LIST_ENUM</name>
+<codename>qlListEnum</codename>
+<desc>return the names of all registered enums</desc>
+<constructor>false</constructor>
+<qlfunction>getEnumMembers</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="QlaTest">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a QlaTest object</desc>
+    </param>
+    <param>
+        <name>enumId</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>name of the enum to list</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>string</type>
+    <tensorrank>vector</tensorrank>
+    <desc>echo back the input value</desc>
+</returnval>
+</function>
+
+
 </functionlist>
+
 

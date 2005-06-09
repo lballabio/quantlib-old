@@ -23,6 +23,7 @@
 namespace QuantLibAddin {
 
     class QlaTest : public ObjHandler::Object {
+		std::vector < std::string > registeredEnums;
     public:
         QlaTest(ObjHandler::ArgumentStack &args);
 
@@ -54,9 +55,13 @@ namespace QuantLibAddin {
         virtual boost::shared_ptr<void> getReference() const {
             return boost::shared_ptr<void>();
         }
+		//Enum factory introspection
+		const std::vector<std::string>& getRegisteredEnums() const;
+		const std::vector<std::string>& getEnumMembers(const std::string&) const;
     };
 
 }
 
 #endif
+
 

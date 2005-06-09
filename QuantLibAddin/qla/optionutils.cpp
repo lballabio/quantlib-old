@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -20,26 +21,18 @@
 #endif
 #include <oh/objhandler.hpp>
 #include <qla/optionutils.hpp>
+#include <qla/enumfactory.hpp>
 #include <ql/PricingEngines/all.hpp>
 
 namespace QuantLibAddin {
 
-    QuantLib::Option::Type IDtoOptionType(const std::string &optionTypeID) {
-        std::string idUpper = QuantLib::StringFormatter::toUppercase(optionTypeID);
-        if (idUpper.compare("PUT") ==0)
-            return QuantLib::Option::Put;
-        else if (idUpper.compare("CALL") == 0)
-            return QuantLib::Option::Call;
-        else
-            QL_FAIL("IDtoOptionType: unrecognized optionTypeID: " + optionTypeID);
-    }
-
     boost::shared_ptr<QuantLib::StrikedTypePayoff> IDtoPayoff(
-            const std::string &optionTypeID,
+            std::string &optionTypeID,
             const std::string &payoffID,
             const double &input1,
             const double &input2) {
-        QuantLib::Option::Type type = IDtoOptionType(optionTypeID);
+		QuantLib::Option::Type type = 
+			CreateEnum<QuantLib::Option::Type>::create(optionTypeID);
         std::string idUpper = QuantLib::StringFormatter::toUppercase(payoffID);
         if (idUpper.compare("ASSETORNOTHING") == 0)
             return boost::shared_ptr<QuantLib::StrikedTypePayoff> (
@@ -157,4 +150,5 @@ namespace QuantLibAddin {
     }
 
 }
+
 

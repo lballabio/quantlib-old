@@ -23,6 +23,7 @@
 #include <qla/simpleswap.hpp>
 #include <qla/generalutils.hpp>
 #include <qla/termstructures.hpp>
+#include <qla/enumfactory.hpp>
 #include <qla/xibor.hpp>
 
 namespace QuantLibAddin {
@@ -45,18 +46,17 @@ namespace QuantLibAddin {
 		long lMaturity              = OH_POP_ARGUMENT(long, arguments);
 		long lStartDate             = OH_POP_ARGUMENT(long, arguments);
 
-//		QuantLib::Frequency fltFrq = IDtoFrequency(fltFrqID);
-		QuantLib::DayCounter fixDayCounter = IDtoDayCounter(fixDayCounterID);
-		QuantLib::BusinessDayConvention fixBDC = IDtoConvention(fixBDCID);
-		QuantLib::Frequency fixFrq = IDtoFrequency(fixFrqID);
-		QuantLib::Calendar calendar = IDtoCalendar(calendarID);
+		QuantLib::DayCounter fixDayCounter = CreateEnum<QuantLib::DayCounter>::create(fixDayCounterID);
+		QuantLib::BusinessDayConvention fixBDC = 
+			CreateEnum<QuantLib::BusinessDayConvention>::create(fixBDCID);
+		QuantLib::Frequency fixFrq = CreateEnum<QuantLib::Frequency>::create(fixFrqID);
+		QuantLib::Calendar calendar = CreateEnum<QuantLib::Calendar>::create(calendarID);
 		QuantLib::Date maturity = QuantLib::Date(lMaturity);
 		QuantLib::Date startDate = QuantLib::Date(lStartDate);
 
 		boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpDiscYC =
 			OH_GET_OBJECT(QuantLibAddin::YieldTermStructure, discCurveId);
-		if (!tmpDiscYC)
-			QL_FAIL("SimpleSwap::SimpleSwap Discounting Curve not found: " + discCurveId);
+		QL_REQUIRE(tmpDiscYC, "SimpleSwap::SimpleSwap Discounting Curve not found: " + discCurveId);
 		boost::shared_ptr<QuantLib::YieldTermStructure> discYC = 
 			OH_GET_REFERENCE(QuantLib::YieldTermStructure, tmpDiscYC);
 		QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;
@@ -64,8 +64,7 @@ namespace QuantLibAddin {
 
 		boost::shared_ptr<QuantLibAddin::Xibor> tmpIndex =
 			OH_GET_OBJECT(QuantLibAddin::Xibor, indexHandle);
-		if (!tmpIndex)
-			QL_FAIL("SimpleSwap::SimpleSwap Index not found: " + indexHandle);
+		QL_REQUIRE(tmpIndex, "SimpleSwap::SimpleSwap Index not found: " + indexHandle);
 		boost::shared_ptr<QuantLib::Xibor> index = OH_GET_REFERENCE(QuantLib::Xibor, tmpIndex);
 
 		QuantLib::Schedule fixedSchedule(calendar, startDate, maturity, fixFrq, fixBDC, 
@@ -93,4 +92,5 @@ namespace QuantLibAddin {
 			ObjHandler::any_ptr(new boost::any(swap_->floatingLegBPS()))));
 	}
 }
+
 

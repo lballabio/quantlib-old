@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -20,6 +21,7 @@
 #endif
 #include <qla/cliquetoption.hpp>
 #include <qla/optionutils.hpp>
+#include <qla/enumfactory.hpp>
 
 namespace QuantLibAddin {
 
@@ -40,7 +42,9 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
-        QuantLib::Option::Type type = IDtoOptionType(optionTypeID);
+		QuantLib::Option::Type type = 
+			CreateEnum<QuantLib::Option::Type>::create(optionTypeID);
+
         boost::shared_ptr<QuantLib::PercentageStrikePayoff> payoff(
             new QuantLib::PercentageStrikePayoff(type, strike));
         boost::shared_ptr<QuantLib::EuropeanExercise> exercise(
@@ -65,4 +69,5 @@ namespace QuantLibAddin {
     }
 
 }
+
 

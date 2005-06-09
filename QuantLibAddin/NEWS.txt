@@ -19,7 +19,7 @@ FUNCTIONALITY
 
 - bonds & zero curves (Walter Penschke)
 - caps & floors, term structures (Aurelien Chanudet)
-- swaps, xibor (Plamen Neykov)
+- swaps, xibor, enumeration type factory (Plamen Neykov)
 - options, volatilities, processes
 - diagnostic and utility functions
 

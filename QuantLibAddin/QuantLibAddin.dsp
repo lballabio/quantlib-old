@@ -209,6 +209,10 @@ SOURCE=.\qla\dividendvanillaoption.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\enumfactory.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\fixedcouponbond.cpp
 # End Source File
 # Begin Source File
@@ -298,6 +302,10 @@ SOURCE=.\qla\cliquetoption.hpp
 # Begin Source File
 
 SOURCE=.\qla\dividendvanillaoption.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\enumfactory.hpp
 # End Source File
 # Begin Source File
 

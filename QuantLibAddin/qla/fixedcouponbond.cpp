@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
 
  This file is part of QuantLib, a free-software/open-source library
@@ -21,6 +22,8 @@
 
 #include <qla/fixedcouponbond.hpp>
 #include <qla/generalutils.hpp>
+#include <qla/termstructures.hpp>
+#include <qla/enumfactory.hpp>
 
 // indexes to the Property vector
 // FIXME - need a cleaner way to achieve this
@@ -50,9 +53,9 @@ namespace QuantLibAddin {
         // Date stub = Date();
         // bool fromEnd = true;
 
-        QuantLib::Frequency couponFrequency = IDtoFrequency(frequencyID);
-        QuantLib::DayCounter dayCounter     = IDtoDayCounter(dayCounterID);
-        QuantLib::Calendar calendar         = IDtoCalendar(calendarID);
+		QuantLib::Frequency couponFrequency = CreateEnum<QuantLib::Frequency>::create(frequencyID);
+		QuantLib::DayCounter dayCounter = CreateEnum<QuantLib::DayCounter>::create(dayCounterID);
+		QuantLib::Calendar calendar = CreateEnum<QuantLib::Calendar>::create(calendarID);
 //        const std::vector<QuantLib::Rate> couponsQL = 
 //            doubleVectorToRateVector(coupons);
 
@@ -82,4 +85,5 @@ namespace QuantLibAddin {
         properties_.push_back(propDirtyPrice);
     }
 }
+
 

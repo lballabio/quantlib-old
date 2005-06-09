@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -22,6 +23,7 @@
 #include <qla/optionutils.hpp>
 #include <qla/shortratemodels.hpp>
 #include <qla/termstructures.hpp>
+#include <qla/enumfactory.hpp>
 
 #include <ql/date.hpp>
 #include <ql/index.hpp>
@@ -46,9 +48,10 @@ namespace QuantLibAddin {
         long length                         = OH_POP_ARGUMENT(long, arguments);
         long start                          = OH_POP_ARGUMENT(long, arguments);
 
-        QuantLib::BusinessDayConvention convention = IDtoConvention(conventionID);
-        QuantLib::Frequency frequency = IDtoFrequency(frequencyID);
-        QuantLib::TimeUnit timeUnits = IDtoTimeUnit(timeUnitsID);
+		QuantLib::BusinessDayConvention convention = 
+			CreateEnum<QuantLib::BusinessDayConvention>::create(conventionID);
+		QuantLib::Frequency frequency = CreateEnum<QuantLib::Frequency>::create(frequencyID);
+		QuantLib::TimeUnit timeUnits = CreateEnum<QuantLib::TimeUnit>::create(timeUnitsID);
 
         boost::shared_ptr<AnalyticCapFloorEngine> engine =
             OH_GET_OBJECT(AnalyticCapFloorEngine, handleEngine);
@@ -131,4 +134,5 @@ namespace QuantLibAddin {
     }
 
 }
+
 

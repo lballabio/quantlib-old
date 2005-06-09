@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -20,18 +21,9 @@
 #endif
 #include <qla/asianoption.hpp>
 #include <qla/optionutils.hpp>
+#include <qla/enumfactory.hpp>
 
 namespace QuantLibAddin {
-
-    QuantLib::Average::Type IDtoAverageType(const std::string &averageID) {
-        std::string idUpper = QuantLib::StringFormatter::toUppercase(averageID);
-        if (idUpper.compare("ARITHMETIC") ==0)
-            return QuantLib::Average::Arithmetic;
-        else if (idUpper.compare("GEOMETRIC") == 0)
-            return QuantLib::Average::Geometric;
-        else
-            QL_FAIL("IDtoAverageType: unrecognized averageID: " + averageID);
-    }
 
     ContinuousAveragingAsianOption::ContinuousAveragingAsianOption(
             ObjHandler::ArgumentStack &arguments) {
@@ -53,8 +45,9 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
-        QuantLib::Average::Type averageType =
-            IDtoAverageType(averageID);
+		QuantLib::Average::Type averageType = 
+            CreateEnum<QuantLib::Average::Type>::create(averageID);
+
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             IDtoPayoff(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::Exercise> exercise = 
@@ -103,8 +96,8 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
-        QuantLib::Average::Type averageType =
-            IDtoAverageType(averageID);
+		QuantLib::Average::Type averageType = 
+            CreateEnum<QuantLib::Average::Type>::create(averageID);
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             IDtoPayoff(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::Exercise> exercise = 
@@ -137,4 +130,5 @@ namespace QuantLibAddin {
     }
 
 }
+
 

@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
 
  This file is part of QuantLib, a free-software/open-source library
@@ -22,6 +23,7 @@
 #include <qla/zerocouponbond.hpp>
 #include <qla/zerocurve.hpp>
 #include <qla/generalutils.hpp>
+#include <qla/enumfactory.hpp>
 
 // indexes to the Property vector
 // FIXME - need a cleaner way to achieve this
@@ -51,9 +53,10 @@ namespace QuantLibAddin {
         long maturityDate           = OH_POP_ARGUMENT(long, arguments);
         long issueDate              = OH_POP_ARGUMENT(long, arguments);
 
-        QuantLib::BusinessDayConvention convention = IDtoConvention(conventionID);
-        QuantLib::Calendar calendar = IDtoCalendar(calendarID);
-        QuantLib::DayCounter dayCounter = IDtoDayCounter(dayCounterID);
+		QuantLib::BusinessDayConvention convention = 
+			CreateEnum<QuantLib::BusinessDayConvention>::create(conventionID);
+		QuantLib::Calendar calendar = CreateEnum<QuantLib::Calendar>::create(calendarID);
+		QuantLib::DayCounter dayCounter = CreateEnum<QuantLib::DayCounter>::create(dayCounterID);
         
         zeroCouponBond_ = 
             boost::shared_ptr<QuantLib::ZeroCouponBond>(
@@ -75,4 +78,5 @@ namespace QuantLibAddin {
         properties_.push_back(propNpv);
     }
 }
+
 

@@ -16,6 +16,7 @@ include_HEADERS = \
     capfloor.hpp \
     cliquetoption.hpp \
     dividendvanillaoption.hpp \
+    enumfactory.hpp \
     fixedcouponbond.hpp \
     forwardvanillaoption.hpp \
     generalutils.hpp \
@@ -43,6 +44,7 @@ libQuantLibAddin_la_SOURCES = \
     capfloor.cpp \
     cliquetoption.cpp \
     dividendvanillaoption.cpp \
+    enumfactory.cpp \
     fixedcouponbond.cpp \
     forwardvanillaoption.cpp \
     generalutils.cpp \

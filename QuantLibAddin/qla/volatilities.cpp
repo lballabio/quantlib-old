@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -20,6 +21,7 @@
 #endif
 #include <qla/volatilities.hpp>
 #include <qla/generalutils.hpp>
+#include <qla/enumfactory.hpp>
 
 namespace QuantLibAddin {
 
@@ -29,7 +31,7 @@ namespace QuantLibAddin {
         long settlementDateLong     = OH_POP_ARGUMENT(long, arguments);
 
         QuantLib::Date settlementDate(settlementDateLong);
-        QuantLib::DayCounter dayCounter = IDtoDayCounter(dayCounterID);
+		QuantLib::DayCounter dayCounter = CreateEnum<QuantLib::DayCounter>::create(dayCounterID);
         blackVolTermStructure_ = boost::shared_ptr<QuantLib::BlackVolTermStructure> (
             new QuantLib::BlackConstantVol(
                 settlementDate,
@@ -52,7 +54,7 @@ namespace QuantLibAddin {
             longVectorToDateVector(dates);
         QuantLib::Matrix volsQL =
             vectorVectorToMatrix(vols);
-        QuantLib::DayCounter dayCounter = IDtoDayCounter(dayCounterID);
+		QuantLib::DayCounter dayCounter = CreateEnum<QuantLib::DayCounter>::create(dayCounterID);
 
         blackVolTermStructure_ = boost::shared_ptr<QuantLib::BlackVolTermStructure> (
             new QuantLib::BlackVarianceSurface(
@@ -65,4 +67,5 @@ namespace QuantLibAddin {
 
 
 }
+
 

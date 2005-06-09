@@ -32,11 +32,11 @@
 
 namespace QuantLibAddin {
 
-    QuantLib::Option::Type IDtoOptionType(
-        const std::string &optionTypeID);
+    //QuantLib::Option::Type IDtoOptionType(
+    //    const std::string &optionTypeID);
 
     boost::shared_ptr<QuantLib::StrikedTypePayoff> IDtoPayoff(
-        const std::string &optionTypeID,
+        std::string &optionTypeID,
         const std::string &payoffID,
         const double &input1,
         const double &input2 = 0.);
@@ -53,4 +53,5 @@ namespace QuantLibAddin {
 }
 
 #endif
+
 
