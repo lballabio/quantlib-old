@@ -19,6 +19,7 @@
 #define qla_enumfactory_hpp
 
 #include <ql/Patterns/singleton.hpp>
+#include <ql/basicdataformatters.hpp>
 #include <map>
 #include <vector>
 
