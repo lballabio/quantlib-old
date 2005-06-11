@@ -94,7 +94,6 @@ def generateHeader(fileHeader, function, suffix):
             fileHeader.write(',')
     if function[common.PARAMS]:
         paramList = plHeader.generateCode(function[common.PARAMS])
-        fileHeader.write('\n')
         fileHeader.write(paramList)
     fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)
 
@@ -198,7 +197,7 @@ def generateFuncSources(functionGroups):
         plCtor = params.ParameterPass(2, convertString = CONV_STRING,
             delimiter = ';\n', appendTensor = True, appendScalar = True,
             wrapFormat = 'args.push(%s)', delimitLast = True,
-            convertBool = CONV_BOOL)
+            convertBool = CONV_BOOL, prependEol = False)
         plMember = params.ParameterPass(3, convertString = CONV_STRING,
             skipFirst = True, appendTensor = True)
         for function in functionGroup[common.FUNCLIST]:
@@ -225,12 +224,9 @@ def generateIDLSource(functionGroups):
             if function[common.CTOR]:
                 handle = '\n' + 24 * ' ' + '[in] string handle'
                 if paramList:
-                    handle += ',\n'
+                    handle += ','
             else:
-                if paramList:
-                    handle = '\n'
-                else:
-                    handle = ''
+                handle = ''
             returnTypeIDL = utils.getFunctionReturnType(function[common.RETVAL], 
                 formatVector = CALC_MATRIX_IDL, formatMatrix = CALC_MATRIX_IDL, 
                 replaceBool = 'long')

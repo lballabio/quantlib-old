@@ -22,13 +22,15 @@ class ParameterList(object):
             prefix,             # text to prefix to each parameter
             skipFirst,          # ignore 1st param (e.g. if it's an object handle)
             delimiter,          # delimiter between arguments in the list
-            delimitLast):       # whether or not to append delimiter to last arg
+            delimitLast,        # whether or not to append delimiter to last arg
+            prependEol):        # whether or not to prefix carriage return to first arg
         'initialize the object'
         self.indent = indent * 4 * ' '
         self.prefix = prefix
         self.skipFirst = skipFirst
         self.delimiter = delimiter
         self.delimitLast = delimitLast
+        self.prependEol = prependEol
         self.outList = []       # list of output items
         self.item = ''          # current item in list
         self.param = ''         # current function parameter
@@ -52,7 +54,10 @@ class ParameterList(object):
 
     def generateOutput(self):
         'concatenate list of output items into a string'
-        ret = ''
+        if self.outList and self.prependEol:
+            ret = '\n'
+        else:
+            ret = ''
         i = 0
         for item in self.outList:
             i += 1
@@ -74,6 +79,7 @@ class ParameterDeclare(ParameterList):
             skipFirst = False,
             delimiter = ',\n',
             delimitLast = False,
+            prependEol = True,
             arrayCount = False,     # calculate array sizes (for C code)
             derefString = '',       # character to dereference strings e.g. *
             derefAny = '',          # character to dereference type any
@@ -96,7 +102,8 @@ class ParameterDeclare(ParameterList):
             prefix,
             skipFirst,
             delimiter,
-            delimitLast)
+            delimitLast,
+            prependEol)
         self.arrayCount = arrayCount
         self.derefString = derefString
         self.derefAny = derefAny
@@ -206,6 +213,7 @@ class ParameterPass(ParameterList):
             skipFirst = False,
             delimiter = ',\n',
             delimitLast = False,
+            prependEol = True,
             derefOther = '',        # dereference for non-string datatypes
             convertString = '',     # text to convert string datatype
             convertBool = '',       # text to convert bool datatype
@@ -217,7 +225,8 @@ class ParameterPass(ParameterList):
             prefix,
             skipFirst,
             delimiter,
-            delimitLast)
+            delimitLast,
+            prependEol)
         self.derefOther = derefOther
         self.convertString = convertString
         self.convertBool = convertBool

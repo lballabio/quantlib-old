@@ -136,7 +136,7 @@ def generateFuncRegister(fileHeader, function):
 def generateFuncRegisters(functionDefs):
     'generate source code to register functions'
     global plExcel
-    plExcel = params.ParameterPass(0, delimiter = ',')
+    plExcel = params.ParameterPass(0, delimiter = ',', prependEol = False)
     fileName = ROOT + ADDIN + common.TEMPFILE
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
@@ -197,7 +197,7 @@ def generateFuncDef(fileFunc, function, bufBody):
         prefixScalar = 'static', replaceString = 'std::string', replaceAny = 'boost::any')
     returnCall = getReturnCall(function[common.RETVAL])
     if function[common.CTOR]:
-        handle = 8 * ' ' + 'char *handleStub,\n'
+        handle = '\n' + 8 * ' ' + 'char *handleStub,'
         args = common.ARGLINE + plCtor.generateCode(function[common.PARAMS])
         functionBody = 8 * ' ' + 'std::string handle = getHandleFull(handleStub);\n'
         functionName = common.MAKE_FUNCTION
@@ -227,10 +227,12 @@ def generateFuncDefs(functionGroups):
     plHeader = params.ParameterDeclare(2, replaceString = 'char',
         replaceTensor = LPXLOPER, derefString = '*',
         derefOther = '*', replaceAny = LPXLOPER)
-    plMember = params.ParameterPass(3, skipFirst = True, derefOther = '*', appendTensor = True)
+    plMember = params.ParameterPass(3, skipFirst = True, derefOther = '*', 
+        appendTensor = True)
     plCtor = params.ParameterPass(2, convertString = 'std::string(%s)',
         delimiter = ';\n', appendTensor = True, derefOther = '*',
-        wrapFormat = 'args.push(%s)', delimitLast = True, appendScalar = True)
+        wrapFormat = 'args.push(%s)', delimitLast = True, appendScalar = True,
+        prependEol = False)
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
         if functionGroup[common.HDRONLY]:

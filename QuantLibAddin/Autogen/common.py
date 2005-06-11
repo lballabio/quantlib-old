@@ -36,7 +36,7 @@ ARGLINE         = 8 * ' ' + 'ArgumentStack args;\n'
 ADDIN_ROOT      = '../Addins/'
 MAKE_FUNCTION   = 'OH_MAKE_OBJECT'
 TEMPFILE        = '.new'
-MAKE_ARGS       = '\
+MAKE_ARGS       = '\n\
             QuantLibAddin::%s,\n\
             %s,\n\
             args'

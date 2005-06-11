@@ -1,9 +1,7 @@
-DLLEXPORT %s %s(
-%s%s) {
+DLLEXPORT %s %s(%s%s) {
     try {
 %s%s%s        %s returnValue;
-        returnValue = %s(
-%s);
+        returnValue = %s(%s);
 %s
     } catch (const exception &e) {
         OH_LOG_MESSAGE(std::string("ERROR: %s: ") + e.what(), 2);
