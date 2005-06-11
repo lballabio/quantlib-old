@@ -52,6 +52,7 @@ endif
 
 EXTRA_DIST = \
     AddinCalc.dsp \
+    AddinCalc_vc8.vcproj \
     AddinCalc.vcproj \
     Makefile.msdev \
     Makefile.msdev.debug \

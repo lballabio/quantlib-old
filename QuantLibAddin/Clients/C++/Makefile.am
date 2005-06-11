@@ -7,14 +7,15 @@ noinst_PROGRAMS = QLADemo Options Instruments CapFloor QLATest
 
 #    makefile.mak
 EXTRA_DIST = \
-    ClientCPP.dev \
-    ClientCPP.dsp \
-    ClientCPP_vc8.vcproj \
-    ClientCPP.vcproj \
     ClientCPPCapFloor.dsp \
+    ClientCPPCapFloor_vc8.vcproj \
     ClientCPPDemo.dsp \
+    ClientCPPDemo_vc8.vcproj \
+    ClientCPP.dev \
     ClientCPPInstruments.dsp \
-    ClientCPPOptions.dsp
+    ClientCPPInstruments_vc8.vcproj \
+    ClientCPPOptions.dsp \
+    ClientCPPOptions_vc8.vcproj
 
 QLADemo_SOURCES = qlademo.cpp
 Options_SOURCES = options.cpp

@@ -2,7 +2,8 @@
 # this should prevent running from a distributed tarball
 EXTRA_DIST = .time-stamp \
              Makefile.msdev \
-             Autogen.dsp
+             Autogen.dsp \
+             Autogen_vc8.vcproj
 
 # autogen.py probably needs to be re-executed if any of these change
 AUTOGEN_INPUT := capfloor.xml instruments.xml options.xml processes.xml qlatest.xml \
