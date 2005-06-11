@@ -1,7 +1,8 @@
 DLLEXPORT %s %s(
 %s%s) {
     try {
-%s%s%s        %s returnValue = %s(
+%s%s%s        %s returnValue;
+        returnValue = %s(
 %s);
 %s
     } catch (const exception &e) {
