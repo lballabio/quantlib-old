@@ -40,7 +40,8 @@ namespace QuantLibAddin {
         std::vector < long > dates 
             = OH_POP_ARGUMENT(std::vector < long >, arguments);
 
-		QuantLib::DayCounter dayCounter = CreateEnum<QuantLib::DayCounter>::create(dayCounterID);
+		QuantLib::DayCounter dayCounter =
+            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
         const std::vector<QuantLib::Date> datesQL = 
             longVectorToDateVector(dates);
 

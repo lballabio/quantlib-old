@@ -45,11 +45,14 @@ namespace QuantLibAddin {
         
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
         QuantLib::Handle<QuantLib::Quote> quoteH(quote_);
-		QuantLib::TimeUnit timeUnits = CreateEnum<QuantLib::TimeUnit>::create(timeUnitsID);
-		QuantLib::Calendar calendar = CreateEnum<QuantLib::Calendar>::create(calendarID);
+		QuantLib::TimeUnit timeUnits =
+            CREATE_ENUM(QuantLib::TimeUnit, timeUnitsID);
+		QuantLib::Calendar calendar =
+            CREATE_ENUM(QuantLib::Calendar, calendarID);
 		QuantLib::BusinessDayConvention convention = 
-			CreateEnum<QuantLib::BusinessDayConvention>::create(conventionID);
-		QuantLib::DayCounter dayCounter = CreateEnum<QuantLib::DayCounter>::create(dayCounterID);
+            CREATE_ENUM(QuantLib::BusinessDayConvention, conventionID);
+		QuantLib::DayCounter dayCounter =
+            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
         
         rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
             new QuantLib::DepositRateHelper(quoteH,
@@ -75,15 +78,20 @@ namespace QuantLibAddin {
         
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
         QuantLib::Handle<QuantLib::Quote> quoteH(quote_);
-		QuantLib::TimeUnit timeUnits = CreateEnum<QuantLib::TimeUnit>::create(timeUnitsID);
-		QuantLib::Calendar calendar = CreateEnum<QuantLib::Calendar>::create(calendarID);
-		QuantLib::Frequency fixedFrequency = CreateEnum<QuantLib::Frequency>::create(fixedFrequencyID);
+		QuantLib::TimeUnit timeUnits =
+            CREATE_ENUM(QuantLib::TimeUnit, timeUnitsID);
+		QuantLib::Calendar calendar =
+            CREATE_ENUM(QuantLib::Calendar, calendarID);
+		QuantLib::Frequency fixedFrequency =
+            CREATE_ENUM(QuantLib::Frequency, fixedFrequencyID);
 		QuantLib::BusinessDayConvention fixedConvention = 
-			CreateEnum<QuantLib::BusinessDayConvention>::create(fixedConventionID);
-		QuantLib::DayCounter fixedDayCounter = CreateEnum<QuantLib::DayCounter>::create(fixedDayCounterID);
-		QuantLib::Frequency floatingFrequency = CreateEnum<QuantLib::Frequency>::create(floatingFrequencyID);
+            CREATE_ENUM(QuantLib::BusinessDayConvention, fixedConventionID);
+		QuantLib::DayCounter fixedDayCounter =
+            CREATE_ENUM(QuantLib::DayCounter, fixedDayCounterID);
+		QuantLib::Frequency floatingFrequency =
+            CREATE_ENUM(QuantLib::Frequency, floatingFrequencyID);
 		QuantLib::BusinessDayConvention floatingConvention = 
-			CreateEnum<QuantLib::BusinessDayConvention>::create(floatingConventionID);
+            CREATE_ENUM(QuantLib::BusinessDayConvention, floatingConventionID);
         
         rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
             new QuantLib::SwapRateHelper(quoteH,
@@ -107,10 +115,12 @@ namespace QuantLibAddin {
 		std::string immDateID        = OH_POP_ARGUMENT(std::string, arguments);
         double price                 = OH_POP_ARGUMENT(double, arguments);
 
-		QuantLib::DayCounter dayCounter = CreateEnum<QuantLib::DayCounter>::create(dayCounterID);
+		QuantLib::DayCounter dayCounter =
+            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
 		QuantLib::BusinessDayConvention bDayConvention = 
-			CreateEnum<QuantLib::BusinessDayConvention>::create(bDayConventionID);
-		QuantLib::Calendar calendar = CreateEnum<QuantLib::Calendar>::create(calendarID);
+            CREATE_ENUM(QuantLib::BusinessDayConvention, bDayConventionID);
+		QuantLib::Calendar calendar =
+            CREATE_ENUM(QuantLib::Calendar, calendarID);
 		QuantLib::Date expiry = FutIDtoExpiryDate(immDateID, calendar, bDayConvention, decade);
 
 		quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(price));
@@ -153,7 +163,8 @@ namespace QuantLibAddin {
             rateHelpersQL.push_back(rateHelperQL);
         }
         
-		QuantLib::DayCounter dayCounter = CreateEnum<QuantLib::DayCounter>::create(dayCounterID);
+		QuantLib::DayCounter dayCounter =
+            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
         
         termStructure_ = boost::shared_ptr<QuantLib::YieldTermStructure>(
             new QuantLib::PiecewiseFlatForward(settlementDate,

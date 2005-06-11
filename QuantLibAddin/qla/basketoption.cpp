@@ -40,11 +40,11 @@ namespace QuantLibAddin {
             = OH_POP_ARGUMENT(std::vector < std::string >, arguments);
 
 		QuantLib::BasketOption::BasketType basketType = 
-			CreateEnum<QuantLib::BasketOption::BasketType>::create(basketID);
+            CREATE_ENUM(QuantLib::BasketOption::BasketType, basketID);
         QuantLib::Matrix correlation =
             vectorVectorToMatrix(correlations);
 		QuantLib::Option::Type type = 
-			CreateEnum<QuantLib::Option::Type>::create(optionTypeID);
+            CREATE_ENUM(QuantLib::Option::Type, optionTypeID);
 
         boost::shared_ptr<QuantLib::PlainVanillaPayoff> payoff(
             new QuantLib::PlainVanillaPayoff(type, strike));

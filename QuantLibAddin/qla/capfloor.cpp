@@ -48,10 +48,12 @@ namespace QuantLibAddin {
         long length                         = OH_POP_ARGUMENT(long, arguments);
         long start                          = OH_POP_ARGUMENT(long, arguments);
 
-		QuantLib::BusinessDayConvention convention = 
-			CreateEnum<QuantLib::BusinessDayConvention>::create(conventionID);
-		QuantLib::Frequency frequency = CreateEnum<QuantLib::Frequency>::create(frequencyID);
-		QuantLib::TimeUnit timeUnits = CreateEnum<QuantLib::TimeUnit>::create(timeUnitsID);
+		QuantLib::BusinessDayConvention convention =
+            CREATE_ENUM(QuantLib::BusinessDayConvention, conventionID);
+		QuantLib::Frequency frequency =
+            CREATE_ENUM(QuantLib::Frequency, frequencyID);
+		QuantLib::TimeUnit timeUnits =
+            CREATE_ENUM(QuantLib::TimeUnit, timeUnitsID);
 
         boost::shared_ptr<AnalyticCapFloorEngine> engine =
             OH_GET_OBJECT(AnalyticCapFloorEngine, handleEngine);

@@ -32,7 +32,7 @@ namespace QuantLibAddin {
             const double &input1,
             const double &input2) {
 		QuantLib::Option::Type type = 
-			CreateEnum<QuantLib::Option::Type>::create(optionTypeID);
+            CREATE_ENUM(QuantLib::Option::Type, optionTypeID);
         std::string idUpper = QuantLib::StringFormatter::toUppercase(payoffID);
         if (idUpper.compare("ASSETORNOTHING") == 0)
             return boost::shared_ptr<QuantLib::StrikedTypePayoff> (

@@ -38,7 +38,8 @@ namespace QuantLibAddin {
         std::string handleBlackVol  = OH_POP_ARGUMENT(std::string, arguments);
 
         QuantLib::Date settlementDate(settlementDateLong);
-		QuantLib::DayCounter dayCounter = CreateEnum<QuantLib::DayCounter>::create(dayCounterID);
+		QuantLib::DayCounter dayCounter =
+            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
         QuantLib::Handle<QuantLib::Quote> underlyingH( 
             boost::shared_ptr<QuantLib::Quote>(
             new QuantLib::SimpleQuote(underlying)));

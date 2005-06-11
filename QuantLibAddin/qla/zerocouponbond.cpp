@@ -54,9 +54,11 @@ namespace QuantLibAddin {
         long issueDate              = OH_POP_ARGUMENT(long, arguments);
 
 		QuantLib::BusinessDayConvention convention = 
-			CreateEnum<QuantLib::BusinessDayConvention>::create(conventionID);
-		QuantLib::Calendar calendar = CreateEnum<QuantLib::Calendar>::create(calendarID);
-		QuantLib::DayCounter dayCounter = CreateEnum<QuantLib::DayCounter>::create(dayCounterID);
+            CREATE_ENUM(QuantLib::BusinessDayConvention, conventionID);
+		QuantLib::Calendar calendar =
+            CREATE_ENUM(QuantLib::Calendar, calendarID);
+		QuantLib::DayCounter dayCounter =
+            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
         
         zeroCouponBond_ = 
             boost::shared_ptr<QuantLib::ZeroCouponBond>(

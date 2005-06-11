@@ -43,7 +43,7 @@ namespace QuantLibAddin {
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
 		QuantLib::Option::Type type = 
-			CreateEnum<QuantLib::Option::Type>::create(optionTypeID);
+            CREATE_ENUM(QuantLib::Option::Type, optionTypeID);
 
         boost::shared_ptr<QuantLib::PercentageStrikePayoff> payoff(
             new QuantLib::PercentageStrikePayoff(type, strike));

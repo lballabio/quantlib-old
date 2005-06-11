@@ -25,39 +25,59 @@
 
 namespace QuantLibAddin {
 
-    typedef std::map<std::string, void*> TypeMap;
-	typedef boost::shared_ptr<TypeMap> TypeMapPtr;
-
 	class EnumTypeFactory : public QuantLib::Singleton<EnumTypeFactory> {
 		friend class QuantLib::Singleton<EnumTypeFactory>;
 	public:
+        typedef std::map<std::string, void*> TypeMap;
+	    typedef boost::shared_ptr<TypeMap> TypeMapPtr;
+
 		std::vector<std::string> getAllRegisteredEnums() const;
 		std::vector<std::string> getEnumElements(const std::string&) const;
 
+        template<typename T>
+#ifdef QL_PATCH_MSVC6
+    #define ALL_TYPES_MAP instance().allTypesMap
+        class CreateEnum {
+        public:
+	        static 
+#else
+    #define ALL_TYPES_MAP allTypesMap
+#endif
+            T create(std::string& id) {
+		        static TypeMapPtr type_map;
+		        if(!type_map) {
+			        QL_REQUIRE(
+                        ALL_TYPES_MAP.find(typeid(T).name()) != 
+                        ALL_TYPES_MAP.end(), 
+                        "Type not registered!");
+			        type_map = 
+                        ALL_TYPES_MAP.find(typeid(T).name())->second;
+		        }
+                std::string idUpper = QuantLib::StringFormatter::toUppercase(id);
+		        TypeMap::iterator type = type_map->find(idUpper);
+		        QL_REQUIRE(type != type_map->end(), "Unknown id for Type: " + id);
+		        return *(static_cast<T*>(type->second));
+	        }
+#ifdef QL_PATCH_MSVC6
+        };
+
 		std::map<std::string, TypeMapPtr> allTypesMap;
 	private:
+#else
+	private:
+		std::map<std::string, TypeMapPtr> allTypesMap;
+#endif
+
 		EnumTypeFactory();
 	};
 
-    template<typename T>
-    class CreateEnum {
-    public:
-	    static T create(std::string& id) {
-		    static TypeMapPtr type_map;
-		    if(!type_map) {
-			    QL_REQUIRE(
-                    EnumTypeFactory::instance().allTypesMap.find(typeid(T).name()) != 
-                    EnumTypeFactory::instance().allTypesMap.end(), 
-                    "Type not registered!");
-			    type_map = 
-                    EnumTypeFactory::instance().allTypesMap.find(typeid(T).name())->second;
-		    }
-            std::string idUpper = QuantLib::StringFormatter::toUppercase(id);
-		    TypeMap::iterator type = type_map->find(idUpper);
-		    QL_REQUIRE(type != type_map->end(), "Unknown id for Type: " + id);
-		    return *(static_cast<T*>(type->second));
-	    }
-    };
+#ifdef QL_PATCH_MSVC6
+    #define CREATE_ENUM( CLASS, VARIABLE ) \
+    EnumTypeFactory::CreateEnum< CLASS >::create( VARIABLE )
+#else
+    #define CREATE_ENUM( CLASS, VARIABLE ) \
+    EnumTypeFactory::instance().create< CLASS >( VARIABLE )
+#endif
 
 }
 

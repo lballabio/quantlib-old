@@ -41,12 +41,16 @@ namespace QuantLibAddin {
 		std::string crrID = OH_POP_ARGUMENT(std::string, arguments);
 		std::string indexName = OH_POP_ARGUMENT(std::string, arguments);
 
-		QuantLib::DayCounter fltDayCounter = CreateEnum<QuantLib::DayCounter>::create(fltDayCounterID);
+		QuantLib::DayCounter fltDayCounter =
+            CREATE_ENUM(QuantLib::DayCounter, fltDayCounterID);
 		QuantLib::BusinessDayConvention fltBDC = 
-			CreateEnum<QuantLib::BusinessDayConvention>::create(fltBDCID);
-		QuantLib::Calendar calendar = CreateEnum<QuantLib::Calendar>::create(calendarID);
-		QuantLib::TimeUnit timeUnits = CreateEnum<QuantLib::TimeUnit>::create(timeUnitsID);
-		QuantLib::Currency crr = CreateEnum<QuantLib::Currency>::create(crrID);
+            CREATE_ENUM(QuantLib::BusinessDayConvention, fltBDCID);
+		QuantLib::Calendar calendar =
+            CREATE_ENUM(QuantLib::Calendar, calendarID);
+		QuantLib::TimeUnit timeUnits =
+            CREATE_ENUM(QuantLib::TimeUnit, timeUnitsID);
+		QuantLib::Currency crr =
+            CREATE_ENUM(QuantLib::Currency, crrID);
 
 		boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpFwdYC =
 			OH_GET_OBJECT(YieldTermStructure, fwdCurveId);

@@ -31,7 +31,8 @@ namespace QuantLibAddin {
         long settlementDateLong     = OH_POP_ARGUMENT(long, arguments);
 
         QuantLib::Date settlementDate(settlementDateLong);
-		QuantLib::DayCounter dayCounter = CreateEnum<QuantLib::DayCounter>::create(dayCounterID);
+		QuantLib::DayCounter dayCounter =
+            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
         blackVolTermStructure_ = boost::shared_ptr<QuantLib::BlackVolTermStructure> (
             new QuantLib::BlackConstantVol(
                 settlementDate,
@@ -54,7 +55,8 @@ namespace QuantLibAddin {
             longVectorToDateVector(dates);
         QuantLib::Matrix volsQL =
             vectorVectorToMatrix(vols);
-		QuantLib::DayCounter dayCounter = CreateEnum<QuantLib::DayCounter>::create(dayCounterID);
+		QuantLib::DayCounter dayCounter =
+            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
 
         blackVolTermStructure_ = boost::shared_ptr<QuantLib::BlackVolTermStructure> (
             new QuantLib::BlackVarianceSurface(

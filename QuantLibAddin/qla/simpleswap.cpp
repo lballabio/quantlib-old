@@ -46,11 +46,14 @@ namespace QuantLibAddin {
 		long lMaturity              = OH_POP_ARGUMENT(long, arguments);
 		long lStartDate             = OH_POP_ARGUMENT(long, arguments);
 
-		QuantLib::DayCounter fixDayCounter = CreateEnum<QuantLib::DayCounter>::create(fixDayCounterID);
+		QuantLib::DayCounter fixDayCounter =
+            CREATE_ENUM(QuantLib::DayCounter, fixDayCounterID);
 		QuantLib::BusinessDayConvention fixBDC = 
-			CreateEnum<QuantLib::BusinessDayConvention>::create(fixBDCID);
-		QuantLib::Frequency fixFrq = CreateEnum<QuantLib::Frequency>::create(fixFrqID);
-		QuantLib::Calendar calendar = CreateEnum<QuantLib::Calendar>::create(calendarID);
+            CREATE_ENUM(QuantLib::BusinessDayConvention, fixBDCID);
+		QuantLib::Frequency fixFrq =
+            CREATE_ENUM(QuantLib::Frequency, fixFrqID);
+		QuantLib::Calendar calendar =
+            CREATE_ENUM(QuantLib::Calendar, calendarID);
 		QuantLib::Date maturity = QuantLib::Date(lMaturity);
 		QuantLib::Date startDate = QuantLib::Date(lStartDate);
 

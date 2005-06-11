@@ -53,9 +53,12 @@ namespace QuantLibAddin {
         // Date stub = Date();
         // bool fromEnd = true;
 
-		QuantLib::Frequency couponFrequency = CreateEnum<QuantLib::Frequency>::create(frequencyID);
-		QuantLib::DayCounter dayCounter = CreateEnum<QuantLib::DayCounter>::create(dayCounterID);
-		QuantLib::Calendar calendar = CreateEnum<QuantLib::Calendar>::create(calendarID);
+		QuantLib::Frequency couponFrequency =
+            CREATE_ENUM(QuantLib::Frequency, frequencyID);
+		QuantLib::DayCounter dayCounter =
+            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
+		QuantLib::Calendar calendar =
+            CREATE_ENUM(QuantLib::Calendar, calendarID);
 //        const std::vector<QuantLib::Rate> couponsQL = 
 //            doubleVectorToRateVector(coupons);
 

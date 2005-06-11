@@ -46,7 +46,7 @@ namespace QuantLibAddin {
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
 		QuantLib::Average::Type averageType = 
-            CreateEnum<QuantLib::Average::Type>::create(averageID);
+            CREATE_ENUM(QuantLib::Average::Type, averageID);
 
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             IDtoPayoff(optionTypeID, payoffID, strike);
@@ -97,7 +97,7 @@ namespace QuantLibAddin {
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
 		QuantLib::Average::Type averageType = 
-            CreateEnum<QuantLib::Average::Type>::create(averageID);
+            CREATE_ENUM(QuantLib::Average::Type, averageID);
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             IDtoPayoff(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::Exercise> exercise = 
