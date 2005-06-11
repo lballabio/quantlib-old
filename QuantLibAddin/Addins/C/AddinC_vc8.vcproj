@@ -3,7 +3,8 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="AddinC"
-	ProjectGUID="{F0C8EBAB-6DF3-42E4-A06D-605748341496}"
+	ProjectGUID="{6E24B379-7769-454F-AFA8-2AC2BB3AAEA8}"
+	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -15,11 +16,12 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\build\vc80\Debug"
-			IntermediateDirectory=".\build\vc80\Debug"
+			OutputDirectory=".\build\vc6\Debug"
+			IntermediateDirectory=".\build\vc6\Debug"
 			ConfigurationType="4"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
 			>
 			<Tool
@@ -42,19 +44,18 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
+				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\Debug/AddinC.pch"
-				AssemblerListingLocation=".\build\Debug/"
-				ObjectFile=".\build\Debug/"
-				ProgramDataBaseFileName=".\build\Debug/"
+				PrecompiledHeaderFile=".\build\vc6\Debug/AddinC.pch"
+				AssemblerListingLocation=".\build\vc6\Debug/"
+				ObjectFile=".\build\vc6\Debug/"
+				ProgramDataBaseFileName=".\build\vc6\Debug/"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
+				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -69,8 +70,8 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinC-vc80-mt-sgd-0_3_9.lib"
-				SuppressStartupBanner="TRUE"
+				OutputFile="lib\AddinC-vc6-mt-sgd.lib"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -80,12 +81,11 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\build\vc6\Debug/AddinC.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -93,11 +93,12 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\build\vc80\Release"
-			IntermediateDirectory=".\build\vc80\Release"
+			OutputDirectory=".\build\vc6\Release"
+			IntermediateDirectory=".\build\vc6\Release"
 			ConfigurationType="4"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
 			>
 			<Tool
@@ -119,22 +120,19 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
-				StringPooling="TRUE"
+				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
+				EnableFunctionLevelLinking="true"
+				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\Release/AddinC.pch"
-				AssemblerListingLocation=".\build\Release/"
-				ObjectFile=".\build\Release/"
-				ProgramDataBaseFileName=".\build\Release/"
+				PrecompiledHeaderFile=".\build\vc6\Release/AddinC.pch"
+				AssemblerListingLocation=".\build\vc6\Release/"
+				ObjectFile=".\build\vc6\Release/"
+				ProgramDataBaseFileName=".\build\vc6\Release/"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -149,8 +147,8 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinC-vc80-mt-s-0_3_9.lib"
-				SuppressStartupBanner="TRUE"
+				OutputFile="lib\AddinC-vc6-mt-s.lib"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -160,12 +158,11 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\build\vc6\Release/AddinC.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -180,17 +177,16 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="options.cpp"
+				RelativePath="capfloor.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -198,9 +194,129 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="instruments.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="options.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="processes.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="shortratemodels.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="termstructures.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
@@ -212,10 +328,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -223,9 +338,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
@@ -237,10 +352,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -248,9 +362,33 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="volatilities.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
@@ -260,7 +398,15 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="capfloor.h"
+				>
+			</File>
+			<File
 				RelativePath="defines.h"
+				>
+			</File>
+			<File
+				RelativePath="instruments.h"
 				>
 			</File>
 			<File
@@ -268,7 +414,19 @@
 				>
 			</File>
 			<File
+				RelativePath="processes.h"
+				>
+			</File>
+			<File
 				RelativePath="qladdin.h"
+				>
+			</File>
+			<File
+				RelativePath="shortratemodels.h"
+				>
+			</File>
+			<File
+				RelativePath="termstructures.h"
 				>
 			</File>
 			<File
@@ -281,6 +439,10 @@
 			</File>
 			<File
 				RelativePath="varies.hpp"
+				>
+			</File>
+			<File
+				RelativePath="volatilities.h"
 				>
 			</File>
 		</Filter>

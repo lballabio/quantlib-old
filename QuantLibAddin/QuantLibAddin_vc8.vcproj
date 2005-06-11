@@ -3,7 +3,8 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="QuantLibAddin"
-	ProjectGUID="{F8D61E5A-AC10-4A54-B86C-14E0AC5F9316}"
+	ProjectGUID="{C090BCA5-498C-4D1E-B2E8-A601F9CCFCC6}"
+	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -15,11 +16,12 @@
 	<Configurations>
 		<Configuration
 			Name="Release MTDLL|Win32"
-			OutputDirectory=".\build\vc80\ReleaseMTDLL"
-			IntermediateDirectory=".\build\vc80\ReleaseMTDLL"
+			OutputDirectory=".\build\vc6\ReleaseMTDLL"
+			IntermediateDirectory=".\build\vc6\ReleaseMTDLL"
 			ConfigurationType="4"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
 			>
 			<Tool
@@ -41,23 +43,19 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="$(OBJECT_HANDLER_DIR),$(QL_DIR),./"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(LOG4CXX_DIR)/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
-				StringPooling="TRUE"
+				StringPooling="true"
 				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
-				RuntimeTypeInfo="TRUE"
+				EnableFunctionLevelLinking="true"
+				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc80\ReleaseMTDLL/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc80\ReleaseMTDLL/"
-				ObjectFile=".\build\vc80\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\build\vc80\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\build\vc6\ReleaseMTDLL/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc6\ReleaseMTDLL/"
+				ObjectFile=".\build\vc6\ReleaseMTDLL/"
+				ProgramDataBaseFileName=".\build\vc6\ReleaseMTDLL/"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -72,8 +70,8 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc80-mt-0_3_9.lib"
-				SuppressStartupBanner="TRUE"
+				OutputFile="lib\QuantLibAddin-vc6-mt-0_3_9.lib"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -83,12 +81,11 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\build\vc6\ReleaseMTDLL/QuantLibAddin.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -96,11 +93,12 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\build\vc80\Release"
-			IntermediateDirectory=".\build\vc80\Release"
+			OutputDirectory=".\build\vc6\Release"
+			IntermediateDirectory=".\build\vc6\Release"
 			ConfigurationType="4"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
 			>
 			<Tool
@@ -122,25 +120,20 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="$(OBJECT_HANDLER_DIR),$(QL_DIR),./"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(LOG4CXX_DIR)/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
-				StringPooling="TRUE"
+				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
-				RuntimeTypeInfo="TRUE"
+				EnableFunctionLevelLinking="true"
+				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc80\Release/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc80\Release/"
-				ObjectFile=".\build\vc80\Release/"
-				ProgramDataBaseFileName=".\build\vc80\Release/"
+				PrecompiledHeaderFile=".\build\vc6\Release/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc6\Release/"
+				ObjectFile=".\build\vc6\Release/"
+				ProgramDataBaseFileName=".\build\vc6\Release/"
 				BrowseInformation="1"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				Detect64BitPortabilityProblems="FALSE"
-				CompileAs="0"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -155,8 +148,8 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc80-mt-s-0_3_9.lib"
-				SuppressStartupBanner="TRUE"
+				OutputFile="lib\QuantLibAddin-vc6-mt-s-0_3_9.lib"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -166,12 +159,11 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\build\vc6\Release/QuantLibAddin.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -179,11 +171,12 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\build\vc80\Debug"
-			IntermediateDirectory=".\build\vc80\Debug"
+			OutputDirectory=".\build\vc6\Debug"
+			IntermediateDirectory=".\build\vc6\Debug"
 			ConfigurationType="4"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
 			>
 			<Tool
@@ -204,22 +197,21 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(OBJECT_HANDLER_DIR),$(QL_DIR),./"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(LOG4CXX_DIR)/include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
-				RuntimeTypeInfo="TRUE"
+				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc80\Debug/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc80\Debug/"
-				ObjectFile=".\build\vc80\Debug/"
-				ProgramDataBaseFileName=".\build\vc80\Debug/"
+				PrecompiledHeaderFile=".\build\vc6\Debug/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc6\Debug/"
+				ObjectFile=".\build\vc6\Debug/"
+				ProgramDataBaseFileName=".\build\vc6\Debug/"
+				BrowseInformation="1"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
+				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -234,8 +226,8 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc80-mt-sgd-0_3_9.lib"
-				SuppressStartupBanner="TRUE"
+				OutputFile="lib\QuantLibAddin-vc6-mt-sgd-0_3_9.lib"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -245,12 +237,11 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\build\vc6\Debug/QuantLibAddin.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -258,11 +249,12 @@
 		</Configuration>
 		<Configuration
 			Name="Release SingleThread|Win32"
-			OutputDirectory=".\build\vc80\ReleaseST"
-			IntermediateDirectory=".\build\vc80\ReleaseST"
+			OutputDirectory=".\build\vc6\ReleaseST"
+			IntermediateDirectory=".\build\vc6\ReleaseST"
 			ConfigurationType="4"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
 			>
 			<Tool
@@ -284,23 +276,19 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="$(OBJECT_HANDLER_DIR),$(QL_DIR),./"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(LOG4CXX_DIR)/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
-				StringPooling="TRUE"
+				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
-				RuntimeTypeInfo="TRUE"
+				EnableFunctionLevelLinking="true"
+				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc80\ReleaseST/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc80\ReleaseST/"
-				ObjectFile=".\build\vc80\ReleaseST/"
-				ProgramDataBaseFileName=".\build\vc80\ReleaseST/"
+				PrecompiledHeaderFile=".\build\vc6\ReleaseST/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc6\ReleaseST/"
+				ObjectFile=".\build\vc6\ReleaseST/"
+				ProgramDataBaseFileName=".\build\vc6\ReleaseST/"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -315,8 +303,8 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc80-s-0_3_9.lib"
-				SuppressStartupBanner="TRUE"
+				OutputFile="lib\QuantLibAddin-vc6-s-0_3_9.lib"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -326,12 +314,11 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\build\vc6\ReleaseST/QuantLibAddin.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -339,11 +326,12 @@
 		</Configuration>
 		<Configuration
 			Name="Debug SingleThread|Win32"
-			OutputDirectory=".\build\vc80\DebugST"
-			IntermediateDirectory=".\build\vc80\DebugST"
+			OutputDirectory=".\build\vc6\DebugST"
+			IntermediateDirectory=".\build\vc6\DebugST"
 			ConfigurationType="4"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
 			>
 			<Tool
@@ -364,22 +352,20 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(OBJECT_HANDLER_DIR),$(QL_DIR),./"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(LOG4CXX_DIR)/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
-				RuntimeTypeInfo="TRUE"
+				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc80\DebugST/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc80\DebugST/"
-				ObjectFile=".\build\vc80\DebugST/"
-				ProgramDataBaseFileName=".\build\vc80\DebugST/"
+				PrecompiledHeaderFile=".\build\vc6\DebugST/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc6\DebugST/"
+				ObjectFile=".\build\vc6\DebugST/"
+				ProgramDataBaseFileName=".\build\vc6\DebugST/"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
+				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -394,8 +380,8 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc80-sgd-0_3_9.lib"
-				SuppressStartupBanner="TRUE"
+				OutputFile="lib\QuantLibAddin-vc6-sgd-0_3_9.lib"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -405,12 +391,11 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\build\vc6\DebugST/QuantLibAddin.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -418,11 +403,12 @@
 		</Configuration>
 		<Configuration
 			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc80\DebugMTDLL"
-			IntermediateDirectory=".\build\vc80\DebugMTDLL"
+			OutputDirectory=".\build\vc6\DebugMTDLL"
+			IntermediateDirectory=".\build\vc6\DebugMTDLL"
 			ConfigurationType="4"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
 			>
 			<Tool
@@ -443,22 +429,20 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(OBJECT_HANDLER_DIR),$(QL_DIR),./"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(LOG4CXX_DIR)/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				DisableLanguageExtensions="TRUE"
-				ForceConformanceInForLoopScope="TRUE"
-				RuntimeTypeInfo="TRUE"
+				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc80\DebugMTDLL/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc80\DebugMTDLL/"
-				ObjectFile=".\build\vc80\DebugMTDLL/"
-				ProgramDataBaseFileName=".\build\vc80\DebugMTDLL/"
+				PrecompiledHeaderFile=".\build\vc6\DebugMTDLL/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc6\DebugMTDLL/"
+				ObjectFile=".\build\vc6\DebugMTDLL/"
+				ProgramDataBaseFileName=".\build\vc6\DebugMTDLL/"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
+				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -473,8 +457,8 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc80-mt-gd-0_3_9.lib"
-				SuppressStartupBanner="TRUE"
+				OutputFile="lib\QuantLibAddin-vc6-mt-gd-0_3_9.lib"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -484,12 +468,11 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\build\vc6\DebugMTDLL/QuantLibAddin.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -500,19 +483,20 @@
 	</References>
 	<Files>
 		<Filter
-			Name="objects"
+			Name="Source Files"
+			Filter="*.cpp"
 			>
 			<File
-				RelativePath="qla\objects\asianoption.cpp"
+				RelativePath="qla\asianoption.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -520,9 +504,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -531,10 +515,10 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -542,9 +526,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -552,10 +536,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -563,28 +546,23 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\objects\asianoption.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qla\objects\barrieroption.cpp"
+				RelativePath="qla\barrieroption.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -592,9 +570,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -603,10 +581,10 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -614,9 +592,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -624,10 +602,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -635,28 +612,23 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\objects\barrieroption.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qla\objects\basketoption.cpp"
+				RelativePath="qla\basketoption.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -664,9 +636,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -675,10 +647,10 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -686,9 +658,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -696,10 +668,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -707,28 +678,23 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\objects\basketoption.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qla\objects\cliquetoption.cpp"
+				RelativePath="qla\capfloor.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -736,9 +702,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -747,10 +713,10 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -758,9 +724,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -768,10 +734,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -779,28 +744,23 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\objects\cliquetoption.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qla\objects\dividendvanillaoption.cpp"
+				RelativePath="qla\cliquetoption.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -808,9 +768,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -819,10 +779,10 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -830,9 +790,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -840,10 +800,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -851,28 +810,23 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\objects\dividendvanillaoption.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qla\objects\forwardvanillaoption.cpp"
+				RelativePath="qla\dividendvanillaoption.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -880,9 +834,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -891,10 +845,10 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -902,9 +856,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -912,10 +866,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -923,32 +876,23 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\objects\forwardvanillaoption.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qla\objects\options.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qla\objects\optionutils.cpp"
+				RelativePath="qla\enumfactory.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -956,9 +900,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -967,10 +911,10 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -978,9 +922,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -988,10 +932,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -999,28 +942,23 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\objects\optionutils.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qla\objects\stochasticprocess.cpp"
+				RelativePath="qla\fixedcouponbond.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1028,9 +966,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -1039,10 +977,10 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1050,9 +988,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1060,10 +998,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1071,28 +1008,23 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\objects\stochasticprocess.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qla\objects\vanillaoption.cpp"
+				RelativePath="qla\forwardvanillaoption.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1100,9 +1032,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -1111,10 +1043,10 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1122,9 +1054,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1132,10 +1064,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1143,176 +1074,1010 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\objects\vanillaoption.hpp"
+				RelativePath="qla\generalutils.cpp"
 				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\optionutils.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\processes.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\qlatest.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\shortratemodels.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\simpleswap.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\termstructures.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\utilities.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\vanillaoption.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\volatilities.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\xibor.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\zerocouponbond.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\zerocurve.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug SingleThread|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
-			Name="functions"
+			Name="Header files"
+			Filter="*.hpp"
 			>
 			<File
-				RelativePath="qla\functions\options.cpp"
-				>
-				<FileConfiguration
-					Name="Release MTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release SingleThread|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug SingleThread|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug MTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="qla\functions\options.hpp"
+				RelativePath="qla\asianoption.hpp"
 				>
 			</File>
 			<File
-				RelativePath="qla\functions\utilities.cpp"
+				RelativePath="qla\autolink.hpp"
 				>
-				<FileConfiguration
-					Name="Release MTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release SingleThread|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug SingleThread|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug MTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\functions\utilities.hpp"
+				RelativePath="qla\barrieroption.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\basketoption.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\capfloor.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\cliquetoption.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\dividendvanillaoption.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\enumfactory.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\fixedcouponbond.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\forwardvanillaoption.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\generalutils.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\instruments.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\options.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\optionutils.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\processes.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\qladdin.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\qladdindefines.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\qlatest.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\shortratemodels.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\simpleswap.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\termstructures.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\utilities.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\vanillaoption.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\volatilities.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\xibor.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\zerocouponbond.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\zerocurve.hpp"
 				>
 			</File>
 		</Filter>
 		<File
-			RelativePath="qla\autolink.hpp"
+			RelativePath="Announce.txt"
 			>
 		</File>
 		<File
-			RelativePath="qla\qladdin.hpp"
+			RelativePath="Authors.txt"
 			>
 		</File>
 		<File
-			RelativePath="qla\qladdindefines.hpp"
+			RelativePath="Contributors.txt"
+			>
+		</File>
+		<File
+			RelativePath="LICENSE.TXT"
+			>
+		</File>
+		<File
+			RelativePath="NEWS.txt"
+			>
+		</File>
+		<File
+			RelativePath="README.txt"
+			>
+		</File>
+		<File
+			RelativePath="TODO.txt"
 			>
 		</File>
 	</Files>

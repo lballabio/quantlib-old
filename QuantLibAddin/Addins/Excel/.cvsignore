@@ -10,6 +10,7 @@ Makefile.win
 *.plg
 *_private.*
 xll
+*.user
 
 capfloor.cpp
 instruments.cpp

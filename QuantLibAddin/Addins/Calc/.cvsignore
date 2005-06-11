@@ -12,6 +12,7 @@ Makefile
 Makefile.in
 *.rdb
 *.urd
+*.user
 
 autogen.hpp
 capfloor.*pp

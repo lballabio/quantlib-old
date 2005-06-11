@@ -110,7 +110,7 @@ int Excel(int xlfn, LPXLOPER pxResult, int count, ...) {
         if (xlret & xlretStackOvfl) msg << " Stack Overflow ";
         if (xlret & xlretFailed)    msg << " Command failed ";
         if (xlret & xlretUncalced)  msg << " Uncalced cell ";
-        throw exception(msg.str().c_str());
+        throw std::exception(msg.str().c_str());
     }
 
     return xlret;

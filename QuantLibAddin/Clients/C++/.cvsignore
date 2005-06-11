@@ -17,4 +17,4 @@ Instruments
 QLADemo
 QLATest
 quantlib.log
-
+*.user

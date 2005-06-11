@@ -30,7 +30,7 @@ using namespace QuantLibAddin;
 std::string xloperToString(const XLOPER &xOp) {
     XLOPER xStr;
     if (xlretSuccess != Excel(xlCoerce, &xStr, 2, &xOp, TempInt(xltypeStr))) 
-        throw exception("xloperToString: error on call to xlCoerce");
+        throw std::exception("xloperToString: error on call to xlCoerce");
     std::string s;
     if (xStr.val.str[0])
         s.assign(xStr.val.str + 1, xStr.val.str[0]);
@@ -44,7 +44,7 @@ void stringToXloper(XLOPER &xStr, const std::string &s) {
     int len = __min(XL_MAX_STR_LEN, s.length());
     xStr.val.str = new char[ len + 1 ];
     if (!xStr.val.str) 
-        throw exception("error calling new in function stringToXloper");
+        throw std::exception("error calling new in function stringToXloper");
     if (len)
         strncpy(xStr.val.str + 1, s.c_str(), len);
     xStr.val.str[0] = len;
@@ -54,11 +54,11 @@ DLLEXPORT LPXLOPER getAddress(LPXLOPER xCaller) {
     XLOPER xRef;
     static XLOPER xStr;
     if (xlretSuccess != Excel(xlfVolatile, 0, 1, TempBool(0)))
-        throw exception("error on call to xlfVolatile");
+        throw std::exception("error on call to xlfVolatile");
     if (xlretSuccess != Excel(xlfGetCell, &xRef, 2, TempInt(1), xCaller))
-        throw exception("error on call to xlfGetCell");
+        throw std::exception("error on call to xlfGetCell");
     if (xlretSuccess != Excel(xlCoerce, &xStr, 2, &xRef, TempInt(xltypeStr))) 
-        throw exception("error on call to xlCoerce");
+        throw std::exception("error on call to xlCoerce");
     Excel(xlFree, 0, 1, &xRef);
     xStr.xltype |= xlbitXLFree;
     return &xStr;
@@ -68,14 +68,14 @@ std::string getHandleFull(const std::string &handle) {
     XLOPER xCaller, xStr;
     try {
         if (xlretSuccess != Excel(xlfCaller, &xCaller, 0))
-            throw exception("error on call to xlfCaller");
+            throw std::exception("error on call to xlfCaller");
         if (xlretSuccess != Excel(xlUDF, &xStr, 2, TempStrNoSize("\x0A""getAddress"), &xCaller))
-            throw exception("error on call to getAddress");
-    } catch(const exception &e) {
+            throw std::exception("error on call to getAddress");
+    } catch(const std::exception &e) {
         Excel(xlFree, 0, 2, &xCaller, &xStr);
         std::ostringstream s1;
         s1 << "getHandleFull: " << e.what();
-        throw exception(s1.str().c_str());
+        throw std::exception(s1.str().c_str());
     }
     std::string ret(handle + '#' + xloperToString(xStr));
     Excel(xlFree, 0, 2, &xCaller, &xStr);
@@ -414,15 +414,15 @@ boost::any xloperToScalarAny(const LPXLOPER xScalar) {
 std::vector < long >xloperToVectorLong(const LPXLOPER xMulti) {
     XLOPER xVector;
     if (xlretSuccess != Excel(xlCoerce, &xVector, 2, xMulti, TempInt(xltypeMulti)))
-        throw exception("convertArray: error on call to xlCoerce");
+        throw std::exception("convertArray: error on call to xlCoerce");
     std::vector < long > v;
     XLOPER xScalar;
     for (int i=0; i<xVector.val.array.rows * xVector.val.array.columns; i++) {
 //        if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xVector.val.array.lparray[i], TempInt(xltypeInt)))
-//            throw exception("convertArray: error on call to xlCoerce");
+//            throw std::exception("convertArray: error on call to xlCoerce");
 //        v.push_back(xScalar.val.w);
         if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xVector.val.array.lparray[i], TempInt(xltypeNum)))
-            throw exception("convertArray: error on call to xlCoerce");
+            throw std::exception("convertArray: error on call to xlCoerce");
         v.push_back(xScalar.val.num);
     }
     Excel(xlFree, 0, 1, &xVector);
@@ -432,12 +432,12 @@ std::vector < long >xloperToVectorLong(const LPXLOPER xMulti) {
 std::vector < double >xloperToVectorDouble(const LPXLOPER xMulti) {
     XLOPER xVector;
     if (xlretSuccess != Excel(xlCoerce, &xVector, 2, xMulti, TempInt(xltypeMulti)))
-        throw exception("convertArray: error on call to xlCoerce");
+        throw std::exception("convertArray: error on call to xlCoerce");
     std::vector < double > v;
     XLOPER xScalar;
     for (int i=0; i<xVector.val.array.rows * xVector.val.array.columns; i++) {
         if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xVector.val.array.lparray[i], TempInt(xltypeNum)))
-            throw exception("convertArray: error on call to xlCoerce");
+            throw std::exception("convertArray: error on call to xlCoerce");
         v.push_back(xScalar.val.num);
     }
     Excel(xlFree, 0, 1, &xVector);
@@ -447,12 +447,12 @@ std::vector < double >xloperToVectorDouble(const LPXLOPER xMulti) {
 std::vector < bool >xloperToVectorBool(const LPXLOPER xMulti) {
     XLOPER xVector;
     if (xlretSuccess != Excel(xlCoerce, &xVector, 2, xMulti, TempInt(xltypeMulti)))
-        throw exception("convertArray: error on call to xlCoerce");
+        throw std::exception("convertArray: error on call to xlCoerce");
     std::vector < bool > v;
     XLOPER xScalar;
     for (int i=0; i<xVector.val.array.rows * xVector.val.array.columns; i++) {
         if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xVector.val.array.lparray[i], TempInt(xltypeBool)))
-            throw exception("convertArray: error on call to xlCoerce");
+            throw std::exception("convertArray: error on call to xlCoerce");
         v.push_back(xScalar.val.boolean != 0);
     }
     Excel(xlFree, 0, 1, &xVector);
@@ -462,7 +462,7 @@ std::vector < bool >xloperToVectorBool(const LPXLOPER xMulti) {
 std::vector < std::string >xloperToVectorString(const LPXLOPER xMulti) {
     XLOPER xVector;
     if (xlretSuccess != Excel(xlCoerce, &xVector, 2, xMulti, TempInt(xltypeMulti)))
-        throw exception("convertArray: error on call to xlCoerce");
+        throw std::exception("convertArray: error on call to xlCoerce");
     std::vector < std::string > v;
     for (int i=0; i<xVector.val.array.rows * xVector.val.array.columns; i++)
         v.push_back(xloperToString(xVector.val.array.lparray[i]));
@@ -473,7 +473,7 @@ std::vector < std::string >xloperToVectorString(const LPXLOPER xMulti) {
 std::vector < boost::any > xloperToVectorAny(const LPXLOPER xMulti) {
     XLOPER xVector;
     if (xlretSuccess != Excel(xlCoerce, &xVector, 2, xMulti, TempInt(xltypeMulti)))
-        throw exception("convertArray: error on call to xlCoerce");
+        throw std::exception("convertArray: error on call to xlCoerce");
     std::vector < boost::any > v;
     for (int i=0; i<xVector.val.array.rows * xVector.val.array.columns; i++)
         v.push_back(xloperToScalarAny(&xVector.val.array.lparray[i]));
@@ -484,7 +484,7 @@ std::vector < boost::any > xloperToVectorAny(const LPXLOPER xMulti) {
 std::vector < std::vector < long > > xloperToMatrixLong(const LPXLOPER xMulti) {
     XLOPER xMatrix;
     if (xlretSuccess != Excel(xlCoerce, &xMatrix, 2, xMulti, TempInt(xltypeMulti)))
-        throw exception("convertArray: error on call to xlCoerce");
+        throw std::exception("convertArray: error on call to xlCoerce");
     std::vector < std::vector < long > > vv;
     XLOPER xScalar;
     for (int i=0; i<xMatrix.val.array.rows; i++) {
@@ -493,7 +493,7 @@ std::vector < std::vector < long > > xloperToMatrixLong(const LPXLOPER xMulti) {
             if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, 
                     &xMatrix.val.array.lparray[i * xMatrix.val.array.columns + j], 
                     TempInt(xltypeNum)))
-                throw exception("xloperToMatrixLong: error on call to xlCoerce");
+                throw std::exception("xloperToMatrixLong: error on call to xlCoerce");
             v.push_back(xScalar.val.num);
         }
         vv.push_back(v);
@@ -505,7 +505,7 @@ std::vector < std::vector < long > > xloperToMatrixLong(const LPXLOPER xMulti) {
 std::vector < std::vector < double > > xloperToMatrixDouble(const LPXLOPER xMulti) {
     XLOPER xMatrix;
     if (xlretSuccess != Excel(xlCoerce, &xMatrix, 2, xMulti, TempInt(xltypeMulti)))
-        throw exception("convertArray: error on call to xlCoerce");
+        throw std::exception("convertArray: error on call to xlCoerce");
     std::vector < std::vector < double > > vv;
     XLOPER xScalar;
     for (int i=0; i<xMatrix.val.array.rows; i++) {
@@ -514,7 +514,7 @@ std::vector < std::vector < double > > xloperToMatrixDouble(const LPXLOPER xMult
             if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, 
                     &xMatrix.val.array.lparray[i * xMatrix.val.array.columns + j], 
                     TempInt(xltypeNum)))
-                throw exception("xloperToMatrixLong: error on call to xlCoerce");
+                throw std::exception("xloperToMatrixLong: error on call to xlCoerce");
             v.push_back(xScalar.val.num);
         }
         vv.push_back(v);
@@ -526,7 +526,7 @@ std::vector < std::vector < double > > xloperToMatrixDouble(const LPXLOPER xMult
 std::vector < std::vector < bool > > xloperToMatrixBool(const LPXLOPER xMulti) {
     XLOPER xMatrix;
     if (xlretSuccess != Excel(xlCoerce, &xMatrix, 2, xMulti, TempInt(xltypeMulti)))
-        throw exception("convertArray: error on call to xlCoerce");
+        throw std::exception("convertArray: error on call to xlCoerce");
     std::vector < std::vector < bool > > vv;
     XLOPER xScalar;
     for (int i=0; i<xMatrix.val.array.rows; i++) {
@@ -535,7 +535,7 @@ std::vector < std::vector < bool > > xloperToMatrixBool(const LPXLOPER xMulti) {
             if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, 
                     &xMatrix.val.array.lparray[i * xMatrix.val.array.columns + j], 
                     TempInt(xltypeBool)))
-                throw exception("xloperToMatrixLong: error on call to xlCoerce");
+                throw std::exception("xloperToMatrixLong: error on call to xlCoerce");
             v.push_back(xScalar.val.boolean != 0);
         }
         vv.push_back(v);
@@ -547,7 +547,7 @@ std::vector < std::vector < bool > > xloperToMatrixBool(const LPXLOPER xMulti) {
 std::vector < std::vector < std::string > > xloperToMatrixString(const LPXLOPER xMulti) {
     XLOPER xMatrix;
     if (xlretSuccess != Excel(xlCoerce, &xMatrix, 2, xMulti, TempInt(xltypeMulti)))
-        throw exception("convertArray: error on call to xlCoerce");
+        throw std::exception("convertArray: error on call to xlCoerce");
     std::vector < std::vector < std::string > > vv;
     for (int i=0; i<xMatrix.val.array.rows; i++) {
         std::vector < std::string > v;
@@ -562,7 +562,7 @@ std::vector < std::vector < std::string > > xloperToMatrixString(const LPXLOPER 
 std::vector < std::vector < boost::any > > xloperToMatrixAny(const LPXLOPER xMulti) {
     XLOPER xMatrix;
     if (xlretSuccess != Excel(xlCoerce, &xMatrix, 2, xMulti, TempInt(xltypeMulti)))
-        throw exception("convertArray: error on call to xlCoerce");
+        throw std::exception("convertArray: error on call to xlCoerce");
     std::vector < std::vector < boost::any > > vv;
     for (int i=0; i<xMatrix.val.array.rows; i++) {
         std::vector < boost::any > v;

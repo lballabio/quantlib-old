@@ -3,7 +3,7 @@ DLLEXPORT %s %s(%s%s) {
 %s%s%s        %s returnValue;
         returnValue = %s(%s);
 %s
-    } catch (const exception &e) {
+    } catch (const std::exception &e) {
         OH_LOG_MESSAGE(std::string("ERROR: %s: ") + e.what(), 2);
         return 0;
     }

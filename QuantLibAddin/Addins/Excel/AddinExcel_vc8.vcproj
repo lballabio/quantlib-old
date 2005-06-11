@@ -3,7 +3,8 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="AddinExcel"
-	ProjectGUID="{E55E1562-FA37-4FAB-962C-C0FB861F0B2F}"
+	ProjectGUID="{A7BB1D71-8BE8-4A2F-BB1E-1EDF12A06F02}"
+	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -15,11 +16,12 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\build\vc80\Debug"
-			IntermediateDirectory=".\build\vc80\Debug"
+			OutputDirectory=".\build\vc6\Debug"
+			IntermediateDirectory=".\build\vc6\Debug"
 			ConfigurationType="2"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
 			>
 			<Tool
@@ -37,10 +39,10 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="_DEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\build\vc80\Debug/AddinExcel.tlb"
+				TypeLibraryName=".\build\vc6\Debug/AddinExcel.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -48,21 +50,19 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;ADDINEXCEL_EXPORTS"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				DisableLanguageExtensions="FALSE"
-				ForceConformanceInForLoopScope="TRUE"
-				RuntimeTypeInfo="TRUE"
+				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc80\Debug/AddinExcel.pch"
-				AssemblerListingLocation=".\build\vc80\Debug/"
-				ObjectFile=".\build\vc80\Debug/"
-				ProgramDataBaseFileName=".\build\vc80\Debug/"
+				PrecompiledHeaderFile=".\build\vc6\Debug/AddinExcel.pch"
+				AssemblerListingLocation=".\build\vc6\Debug/"
+				ObjectFile=".\build\vc6\Debug/"
+				ProgramDataBaseFileName=".\build\vc6\Debug/"
 				BrowseInformation="1"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="3"
-				CompileAs="0"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="4"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -77,15 +77,14 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib XLCALL32.LIB"
-				OutputFile=".\xll\QuantLibAddin-vc80-mt-sgd-0_3_9.xll"
+				AdditionalDependencies="odbc32.lib odbccp32.lib XLCALL32.LIB log4cxxs.lib Ws2_32.lib"
+				OutputFile="xll\QuantLibAddin-vc6-mt-sgd.xll"
 				LinkIncremental="2"
-				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,.\lib"
-				ModuleDefinitionFile=".\qladdin.def"
-				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\build\vc80\Debug/QuantLibAddin.pdb"
-				ImportLibrary=".\build\vc80\Debug/QuantLibAddin.lib"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,.\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile=".\build\vc6\Debug/QuantLibAddin-vc6-mt-sgd.pdb"
+				ImportLibrary=".\build\vc6\Debug/QuantLibAddin-vc6-mt-sgd.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -99,6 +98,8 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\build\vc6\Debug/AddinExcel.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -115,11 +116,12 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\build\vc80\Release"
-			IntermediateDirectory=".\build\vc80\Release"
+			OutputDirectory=".\build\vc6\Release"
+			IntermediateDirectory=".\build\vc6\Release"
 			ConfigurationType="2"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
 			>
 			<Tool
@@ -137,33 +139,29 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="NDEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\build\vc80\Release/AddinExcel.tlb"
+				TypeLibraryName=".\build\vc6\Release/AddinExcel.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;ADDINEXCEL_EXPORTS"
-				StringPooling="TRUE"
+				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="FALSE"
-				ForceConformanceInForLoopScope="TRUE"
-				RuntimeTypeInfo="TRUE"
+				EnableFunctionLevelLinking="true"
+				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc80\Release/AddinExcel.pch"
-				AssemblerListingLocation=".\build\vc80\Release/"
-				ObjectFile=".\build\vc80\Release/"
-				ProgramDataBaseFileName=".\build\vc80\Release/"
+				PrecompiledHeaderFile=".\build\vc6\Release/AddinExcel.pch"
+				AssemblerListingLocation=".\build\vc6\Release/"
+				ObjectFile=".\build\vc6\Release/"
+				ProgramDataBaseFileName=".\build\vc6\Release/"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"
+				SuppressStartupBanner="true"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -178,14 +176,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib XLCALL32.LIB"
-				OutputFile=".\xll\QuantLibAddin.xll"
+				AdditionalDependencies="odbc32.lib odbccp32.lib XLCALL32.LIB log4cxxs.lib Ws2_32.lib"
+				OutputFile="xll\QuantLibAddin-vc6-mt-s.xll"
 				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,.\lib"
-				ModuleDefinitionFile=".\qladdin.def"
-				ProgramDatabaseFile=".\build\vc80\Release/QuantLibAddin.pdb"
-				ImportLibrary=".\build\vc80\Release/QuantLibAddin.lib"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,.\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				ProgramDatabaseFile=".\build\vc6\Release/QuantLibAddin-vc6-mt-s.pdb"
+				ImportLibrary=".\build\vc6\Release/QuantLibAddin-vc6-mt-s.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -199,6 +196,8 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\build\vc6\Release/AddinExcel.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -222,6 +221,31 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath="capfloor.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="framewrk.cpp"
 				>
 				<FileConfiguration
@@ -229,10 +253,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -241,24 +264,23 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="functions.cpp"
+				RelativePath="instruments.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -267,9 +289,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
@@ -281,10 +303,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -293,9 +314,34 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="processes.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
@@ -307,10 +353,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -319,15 +364,111 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qladdin.def"
+				RelativePath="qlatest.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="shortratemodels.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="simpleswap.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="termstructures.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="utilities.cpp"
@@ -337,10 +478,9 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -349,9 +489,84 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="volatilities.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="xibor.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="xlutils.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
@@ -365,15 +580,11 @@
 				>
 			</File>
 			<File
-				RelativePath="funcdef.hpp"
-				>
-			</File>
-			<File
-				RelativePath="utilities.hpp"
-				>
-			</File>
-			<File
 				RelativePath="XLCALL.H"
+				>
+			</File>
+			<File
+				RelativePath="xlutils.hpp"
 				>
 			</File>
 		</Filter>
