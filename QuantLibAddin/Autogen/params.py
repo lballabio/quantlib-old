@@ -94,6 +94,7 @@ class ParameterDeclare(ParameterList):
             replaceAny = '',        # text to overwrite any datatype
             replaceTensor = '',     # text to overwrite vector/matrix datatype
             replaceTensorStr = '',  # text to overwrite string vector/matrix datatype
+            replaceTensorAny = '',  # text to overwrite any vector/matrix datatype
             formatString = '',      # text to reformat datatype for string params
             formatVector = '',      # text to reformat datatype for vector params
             formatMatrix = ''):     # text to reformat datatype for matrix params
@@ -118,6 +119,7 @@ class ParameterDeclare(ParameterList):
         self.replaceAny = replaceAny
         self.replaceTensor = replaceTensor
         self.replaceTensorStr = replaceTensorStr
+        self.replaceTensorAny = replaceTensorAny
         self.formatString = formatString
         self.formatVector = formatVector
         self.formatMatrix = formatMatrix
@@ -157,9 +159,13 @@ class ParameterDeclare(ParameterList):
     def replaceType(self):
         'overwrite datatype of parameter if indicated by class state variables'
         if self.replaceTensorStr \
-                and self.param[common.TENSOR] != common.SCALAR \
-                and self.param[common.TYPE] == common.STRING:
+        and self.param[common.TENSOR] != common.SCALAR \
+        and self.param[common.TYPE] == common.STRING:
             self.line[TYPE] = self.replaceTensorStr
+        elif self.replaceTensorAny \
+        and self.param[common.TENSOR] != common.SCALAR \
+        and self.param[common.TYPE] == common.ANY:
+            self.line[TYPE] = self.replaceTensorAny
         elif self.replaceTensor and self.param[common.TENSOR] != common.SCALAR:
             self.line[TYPE] = self.replaceTensor
         elif self.replaceLong and self.param[common.TYPE] == common.LONG:
@@ -191,7 +197,8 @@ class ParameterDeclare(ParameterList):
             numRows = 'long ' + self.param[common.NAME] + 'Size'
             self.outList.insert(self.idx, numRows)
             self.idx += 1
-            self.line[DEREF] += '*'
+            if self.param[common.TYPE] != common.ANY:
+                self.line[DEREF] += '*'
         elif self.param[common.TENSOR] == common.MATRIX:
             numRows = 'long ' + self.param[common.NAME] + 'Rows'
             self.outList.insert(self.idx, numRows)
@@ -199,7 +206,10 @@ class ParameterDeclare(ParameterList):
             numCols = 'long ' + self.param[common.NAME] + 'Cols'
             self.outList.insert(self.idx, numCols)
             self.idx += 1
-            self.line[DEREF] += '**'
+            if self.param[common.TYPE] == common.STRING:
+                self.line[DEREF] += '*'
+            elif self.param[common.TYPE] != common.ANY:
+                self.line[DEREF] += '**'
 
 # class to format parameters for passing to another function e.g.
 #   f(param0, std::string(param1), ...)

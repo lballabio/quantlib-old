@@ -53,25 +53,37 @@ def logMessage(msg):
     'print a message to stdout'
     print time.asctime() + ' ' + msg
 
-def getFunctionReturnType(
+def getReturnType(
         returnDef,
         formatAny = '',
         formatScalar = '%s',
         formatVector = 'std::vector < %s >',
         formatMatrix = 'std::vector < std::vector < %s > >',
-        replaceVector = '',
-        replaceMatrix = '',
         replaceLong = '',
         replaceDouble = '',
         replaceBool = '',
         replaceString = '',
-        replaceAny = 'any'):
+        replaceAny = '',
+        replaceProperty = '',
+        replaceVector = '',
+        replaceMatrix = '',
+        replaceTensorAny = '',
+        prefixScalar = '',
+        replacePropertyVector = ''):
     'derive return type for function'
+
+    if returnDef[common.TYPE] == common.PROPERTY \
+    and returnDef[common.TENSOR] == common.VECTOR \
+    and replacePropertyVector:
+            return replacePropertyVector
 
     if returnDef[common.TENSOR] == common.VECTOR and replaceVector:
         return replaceVector
     elif returnDef[common.TENSOR] == common.MATRIX and replaceMatrix:
         return replaceMatrix
+    elif returnDef[common.TYPE] == common.ANY \
+    and returnDef[common.TENSOR] != common.SCALAR and replaceTensorAny:
+        return replaceTensorAny
 
     if returnDef[common.TYPE] == common.ANY and formatAny:
         format = formatAny
@@ -92,43 +104,15 @@ def getFunctionReturnType(
         type = replaceString
     elif returnDef[common.TYPE] == common.ANY and replaceAny:
         type = replaceAny
-    elif returnDef[common.TYPE] == common.PROPERTY and replaceAny:
-        type = replaceAny
+    elif returnDef[common.TYPE] == common.PROPERTY and replaceProperty:
+        type = replaceProperty
     else:
         type = returnDef[common.TYPE]
 
-    return format % type
-
-def getReturnType(
-        returnDef,
-        replaceLong = '',
-        replaceString = '',
-        replaceAny = '',
-        prefixScalar = ''):
-    'derive return type for function'
-    if returnDef[common.TYPE] == common.PROPERTY:
-        if returnDef[common.TENSOR] == common.VECTOR:
-            return 'Properties'
-        else:
-            raise ValueError, 'type property can only be combined with tensorrank vector'
-    if returnDef[common.TENSOR] == common.SCALAR:
-        format = '%s'
-    elif returnDef[common.TENSOR] == common.VECTOR:
-        format = 'std::vector < %s >'
-    elif returnDef[common.TENSOR] == common.MATRIX:
-        format = 'std::vector < std::vector < %s > >'
-    if returnDef[common.TYPE] == common.LONG and replaceLong:
-        type = replaceLong
-    elif returnDef[common.TYPE] == common.STRING and replaceString:
-        type = replaceString
-    elif returnDef[common.TYPE] == common.ANY and replaceAny:
-        type = replaceAny
-    else:
-        type = returnDef[common.TYPE]
     if returnDef[common.TENSOR] == common.SCALAR and prefixScalar \
-    and returnDef[common.TYPE] != common.STRING \
-    and returnDef[common.TYPE] != common.ANY:
+    and returnDef[common.TYPE] != common.STRING and returnDef[common.TYPE] != common.ANY:
         type = prefixScalar + ' ' + type
+
     return format % type
 
 def generateConversions(

@@ -189,12 +189,13 @@ def generateFuncDef(fileFunc, function, bufBody):
     'generate source code for body of given function'
     global plHeader, plCtor, plMember
     paramList1 = plHeader.generateCode(function[common.PARAMS])
-    functionReturnType = utils.getFunctionReturnType(function[common.RETVAL],
+    functionReturnType = utils.getReturnType(function[common.RETVAL],
         replaceVector = LPXLOPER, replaceMatrix = LPXLOPER, replaceAny = LPXLOPER,
         replaceLong = 'long*', replaceDouble = 'double*', replaceBool = 'bool*',
         replaceString = 'char*')
     returnType = utils.getReturnType(function[common.RETVAL], replaceLong = 'long',
-        prefixScalar = 'static', replaceString = 'std::string', replaceAny = 'boost::any')
+        prefixScalar = 'static', replaceString = 'std::string', replaceAny = 'boost::any',
+        replacePropertyVector = 'Properties')
     returnCall = getReturnCall(function[common.RETVAL])
     if function[common.CTOR]:
         handle = '\n' + 8 * ' ' + 'char *handleStub,'

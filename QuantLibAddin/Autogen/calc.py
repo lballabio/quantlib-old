@@ -107,10 +107,11 @@ def generateHeaders(functionGroups):
         fileHeader.write('#ifndef qla_calc_%s_hpp\n' % groupName)
         fileHeader.write('#define qla_calc_%s_hpp\n\n' % groupName)
         for function in functionGroup[common.FUNCLIST]:
-            returnTypeCalc = utils.getFunctionReturnType(function[common.RETVAL], 
+            returnTypeCalc = utils.getReturnType(function[common.RETVAL], 
                 formatVector = CALC_MATRIX, formatMatrix = CALC_MATRIX, 
                 replaceLong = CALC_LONG, replaceString = CALC_STRING, 
-                replaceBool = CALC_LONG, replaceAny = CALC_ANY) 
+                replaceBool = CALC_LONG, replaceAny = CALC_ANY,
+                replaceProperty = CALC_ANY) 
             fileHeader.write('    virtual %s SAL_CALL %s('
                 % (returnTypeCalc, function[common.CODENAME]))
             generateHeader(fileHeader, function, ';')
@@ -120,6 +121,7 @@ def generateHeaders(functionGroups):
         utils.updateIfChanged(fileName)
 
 def getReturnCall(returnDef):
+    'generate code to convert datatype of return value'
     if returnDef[common.TYPE] == common.PROPERTY:
         if returnDef[common.TENSOR] == common.VECTOR:
             return 'propertyVectorToSeqSeq(returnValue, handle)'
@@ -152,16 +154,15 @@ def getReturnCall(returnDef):
 def generateFuncSource(fileFunc, function, bufBody):
     'generate source for given function'
     global plCtor, plMember
-    returnTypeCalc = utils.getFunctionReturnType(function[common.RETVAL], 
+    returnTypeCalc = utils.getReturnType(function[common.RETVAL], 
         formatVector = CALC_MATRIX, formatMatrix = CALC_MATRIX, 
         replaceLong = CALC_LONG, replaceString = CALC_STRING, 
-        replaceBool = CALC_LONG, replaceAny = CALC_ANY)
+        replaceBool = CALC_LONG, replaceAny = CALC_ANY,
+        replaceProperty = CALC_ANY)
     fileFunc.write(FUNC_PROTOTYPE % (returnTypeCalc, function[common.CODENAME]))
     generateHeader(fileFunc, function, ' {')
-    returnType = utils.getReturnType(
-        function[common.RETVAL], 
-        replaceAny = 'boost::any',
-        replaceString = 'std::string')
+    returnType = utils.getReturnType(function[common.RETVAL], replacePropertyVector = 'Properties',
+        replaceAny = 'boost::any', replaceString = 'std::string')
     returnCall = getReturnCall(function[common.RETVAL])
     if function[common.CTOR]:
         functionBody = common.ARGLINE + plCtor.generateCode(function[common.PARAMS])
@@ -216,7 +217,7 @@ def generateIDLSource(functionGroups):
     for groupName in functionGroups.keys():
         fileIDL.write('                // %s\n\n' % groupName)
         functionGroup = functionGroups[groupName]
-        plIdl = params.ParameterDeclare(6, prefix = '[in] ', replaceBool = 'long',
+        plIdl = params.ParameterDeclare(6, prefix = '[in] ', replaceBool = common.LONG,
             formatVector = FORMAT_TENSOR_IDL, formatMatrix = FORMAT_TENSOR_IDL,
             replaceTensorStr = common.ANY)
         for function in functionGroup[common.FUNCLIST]:
@@ -227,9 +228,9 @@ def generateIDLSource(functionGroups):
                     handle += ','
             else:
                 handle = ''
-            returnTypeIDL = utils.getFunctionReturnType(function[common.RETVAL], 
+            returnTypeIDL = utils.getReturnType(function[common.RETVAL], 
                 formatVector = CALC_MATRIX_IDL, formatMatrix = CALC_MATRIX_IDL, 
-                replaceBool = 'long')
+                replaceBool = common.LONG, replaceProperty = common.ANY)
             fileIDL.write(bufIDLFunc % (returnTypeIDL, 
                 function[common.CODENAME], handle, paramList))
     bufIDLFoot = utils.loadBuffer(IDL_FOOT)

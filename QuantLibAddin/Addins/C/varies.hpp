@@ -18,36 +18,86 @@
 #ifndef qla_varies_hpp
 #define qla_varies_hpp
 
-void propertyVectorToVaries(const ObjHandler::Properties &properties, 
+void propertyVectorToVariesList(const ObjHandler::Properties &properties, 
         VariesList *variesList);
+boost::any variesToBoostAny(const Varies &v);
+void boostAnyToVaries(const boost::any &a, Varies *v);
+void boostAnyVectorToVaries(const std::vector < boost::any >&a, Varies *v);
+void boostAnyMatrixToVaries(const std::vector < std::vector < boost::any > >&a, Varies *v);
 
 template < typename T >
 class Conversion {
 public:
 
     static std::vector < T > convertVector(T* &a, const long &sz) {
-        std::vector < T > ret;
+        std::vector < T > v;
         for (int i=0; i<sz; i++)
-            ret.push_back(a[i]);
-        return ret;
+            v.push_back(a[i]);
+        return v;
     }
 
     static std::vector < std::string > convertVector(char** &a, const long &sz) {
-        std::vector < std::string > ret;
+        std::vector < std::string > v;
         for (int i=0; i<sz; i++)
-            ret.push_back(std::string(a[i]));
-        return ret;
+            v.push_back(std::string(a[i]));
+        return v;
     }
 
-    static std::vector < std::vector < T > >convertMatrix(T** &a, const long &r, const long &c) {
-        std::vector < std::vector < T > > ret;
+    static std::vector < boost::any > convertVector(VariesList &a, const long &sz) {
+        std::vector < boost::any > v;
+        for (int i=0; i<a.count; i++)
+            v.push_back(variesToBoostAny(a.varies[i]));
+        return v;
+    }
+
+    static std::vector < std::vector < T > >convertMatrix(
+            T** &a, const long &r, const long &c) {
+        std::vector < std::vector < T > > vv;
         for (int i=0; i<r; i++) {
-            std::vector < T > row;
+            std::vector < T > v;
             for (int j=0; j<c; j++)
-                row.push_back(a[i][j]);
-            ret.push_back(row);
+                v.push_back(a[i][j]);
+            vv.push_back(v);
         }
-        return ret;
+        return vv;
+    }
+
+    static std::vector < std::vector < std::string > >convertMatrix(
+            char** &a, const long &r, const long &c) {
+        std::vector < std::vector < std::string > >vv;
+        for (int i=0; i<r; i++) {
+            std::vector < std::string >v;
+            for (int j=0; j<c; j++)
+                ret.push_back(std::string(a[i * c + j]));
+            vv.push_back(v);
+        }
+        return vv;
+    }
+
+    static std::vector < std::vector < boost::any > >convertMatrix(
+            const VariesList &v, const long &r, const long &c) {
+        QL_REQUIRE(v.count == r * c, "invalid size");
+        std::vector < std::vector < boost::any > >vv;
+        for (int i=0; i<r; i++) {
+            std::vector < boost::any >v;
+            for (int j=0; j<c; j++)
+                v.push_back(variesToBoostAny(v.varies[i * c + j]));
+            vv.push_back(v);
+        }
+        return vv;
+    }
+
+    // FIXME functions below not yet implemented
+    static void convertArray(const std::vector < T > &, T**) {
+    }
+
+    static void convertArray(const std::vector < T > &, char**) {
+    }
+
+    static void convertArrayArray(const std::vector < std::vector < T > >&, T**) {
+    }
+
+    static void convertArrayArray(const std::vector < std::vector < T > >&, char**) {
     }
 
 };

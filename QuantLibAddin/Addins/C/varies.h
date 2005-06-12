@@ -23,7 +23,7 @@ typedef enum { LONG, DOUBLE, BOOL, CHARP } Type;
 typedef union {
     long AsLong;
     double AsDouble;
-    bool AsBool;
+    unsigned char AsBool;
     char* AsCharP;
 } DataUnion;
 

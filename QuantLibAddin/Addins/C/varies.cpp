@@ -23,60 +23,86 @@ extern "C" {
 
 using namespace ObjHandler;
 
-    void propertyVectorToVaries(const Properties &properties,
-            VariesList *variesList) {
-        variesList->count = properties.size();
-        variesList->varies = new Varies[properties.size()];
-        for (size_t i = 0; i < properties.size(); i++) {
-            ObjectProperty property = properties[i];
-            variesList->varies[i].Label = new char[property.name().size() + 1];
-            sprintf(variesList->varies[i].Label, property.name().c_str());
-            any_ptr a = property();
-            if (a->type() == typeid(long)) {
-                variesList->varies[i].type = LONG;
-                variesList->varies[i].data.AsLong = boost::any_cast<long>(*a);
-            } else if (a->type() == typeid(double)) {
-                variesList->varies[i].type = DOUBLE;
-                variesList->varies[i].data.AsDouble = boost::any_cast<double>(*a);
-            } else if (a->type() == typeid(bool)) {
-                variesList->varies[i].type = BOOL;
-                variesList->varies[i].data.AsBool = boost::any_cast<bool>(*a);
-            } else if (a->type() == typeid(std::string)) {
-                variesList->varies[i].type = CHARP;
-                const char *c = boost::any_cast<std::string>(*a).c_str();
-                variesList->varies[i].data.AsCharP = new char[strlen(c) + 1];
-                sprintf(variesList->varies[i].data.AsCharP, c);
-            } else {
-                freeVariesList(variesList);
-                throw Exception("propertiesToVaries: unrecognized type");
-            }
+void propertyVectorToVariesList(
+        const Properties &properties,
+        VariesList *variesList) {
+    variesList->count = properties.size();
+    variesList->varies = new Varies[properties.size()];
+    for (size_t i = 0; i < properties.size(); i++) {
+        ObjectProperty property = properties[i];
+        variesList->varies[i].Label = new char[property.name().size() + 1];
+        sprintf(variesList->varies[i].Label, property.name().c_str());
+        any_ptr a = property();
+        if (a->type() == typeid(long)) {
+            variesList->varies[i].type = LONG;
+            variesList->varies[i].data.AsLong = boost::any_cast<long>(*a);
+        } else if (a->type() == typeid(double)) {
+            variesList->varies[i].type = DOUBLE;
+            variesList->varies[i].data.AsDouble = boost::any_cast<double>(*a);
+        } else if (a->type() == typeid(bool)) {
+            variesList->varies[i].type = BOOL;
+            variesList->varies[i].data.AsBool = boost::any_cast<bool>(*a);
+        } else if (a->type() == typeid(std::string)) {
+            variesList->varies[i].type = CHARP;
+            const char *c = boost::any_cast<std::string>(*a).c_str();
+            variesList->varies[i].data.AsCharP = new char[strlen(c) + 1];
+            sprintf(variesList->varies[i].data.AsCharP, c);
+        } else {
+            freeVariesList(variesList);
+            throw Exception("propertiesToVaries: unrecognized type");
         }
     }
+}
 
-    const char *variesToString(const Varies *v) {
-        static std::string ret;
-        std::ostringstream s;
-        if (v->type == LONG)
-            s << v->data.AsLong;
-        else if (v->type == DOUBLE)
-            s << v->data.AsDouble;
-        else if (v->type == BOOL)
-            s << v->data.AsBool;
-        else if (v->type == CHARP)
-            s << v->data.AsCharP;
-        else
-            throw Exception("variesToString: unrecognized type");
-        ret = s.str();
-        return ret.c_str();
-    }
+const char *variesToString(const Varies *v) {
+    static std::string ret;
+    std::ostringstream s;
+    if (v->type == LONG)
+        s << v->data.AsLong;
+    else if (v->type == DOUBLE)
+        s << v->data.AsDouble;
+    else if (v->type == BOOL)
+        s << v->data.AsBool;
+    else if (v->type == CHARP)
+        s << v->data.AsCharP;
+    else
+        throw Exception("variesToString: unrecognized type");
+    ret = s.str();
+    return ret.c_str();
+}
 
-    void freeVariesList(VariesList *vl) {
-        for (int i = 0; i < vl->count; i++) {
-            if (vl->varies[i].type == CHARP && vl->varies[i].data.AsCharP)
-                delete [] vl->varies[i].data.AsCharP;
-            if (vl->varies[i].Label)
-                delete [] vl->varies[i].Label;
-        }
-        delete [] vl->varies;
+void freeVariesList(VariesList *vl) {
+    for (int i = 0; i < vl->count; i++) {
+        if (vl->varies[i].type == CHARP && vl->varies[i].data.AsCharP)
+            delete [] vl->varies[i].data.AsCharP;
+        if (vl->varies[i].Label)
+            delete [] vl->varies[i].Label;
     }
+    delete [] vl->varies;
+}
+
+boost::any variesToBoostAny(const Varies &v) {
+    if (v.type == LONG)
+        return boost::any(v.data.AsLong);
+    else if (v.type == DOUBLE)
+        return boost::any(v.data.AsDouble);
+    else if (v.type == BOOL)
+        return boost::any(v.data.AsBool);
+    else if (v.type == CHARP)
+        return boost::any(v.data.AsCharP);
+    else
+        throw Exception("variesToBoostAny: unrecognized type");
+}
+
+// FIXME functions below not yet implemented
+
+void boostAnyToVaries(const boost::any &a, Varies *v) {
+}
+
+void boostAnyVectorToVaries(const std::vector < boost::any >&a, Varies *v) {
+}
+
+void boostAnyMatrixToVaries(
+        const std::vector < std::vector < boost::any > >&a, Varies *v) {
+}
 
