@@ -20,7 +20,6 @@ CONV_HANDLE     = 'OUStringToStlString(handle)'
 CONV_STRING     = 'OUStringToStlString(%s)'
 FORMAT_TENSOR   = 'const SEQSEQ( %s )'
 FORMAT_TENSOR_IDL = 'sequence < sequence < %s > > '
-FUNC_PROTOTYPE  = '%s SAL_CALL QLAddin::%s(' 
 IDL             = 'QuantLibAddin.idl'
 IDL_FOOT        = 'stub.Calc.idlfoot'
 IDL_FUNC        = 'stub.Calc.idlfunc'
@@ -36,9 +35,9 @@ ROOT            = common.ADDIN_ROOT + 'Calc/'
 # global variables
 
 # parameter list objects
-plHeader    = ''    # function prototypes
-plCtor      = ''    # constructors
-plMember    = ''    # member functions
+plHeader = ''  # function prototypes
+plCtor   = ''  # constructors
+plMember = ''  # member functions
 
 def generateFuncMap(functionGroups):
     'generate help text for function wizard'
@@ -85,9 +84,21 @@ def generateAutoHeader(functionGroups):
     fileHeader.close()
     utils.updateIfChanged(fileName)
 
-def generateHeader(fileHeader, function, suffix):
-    global plHeader
+def generateHeader(fileHeader, function, declararion = True):
     'generate implementation for given function'
+    global plHeader
+    if declararion:
+        prototype = '    virtual %s SAL_CALL %s('
+        suffix = ';\n'
+    else:
+        prototype = '%s SAL_CALL QLAddin::%s(' 
+        suffix = ' {'
+    returnType = utils.getReturnType(function[common.RETVAL], 
+        formatVector = CALC_MATRIX, formatMatrix = CALC_MATRIX, 
+        replaceLong = CALC_LONG, replaceString = CALC_STRING, 
+        replaceBool = CALC_LONG, replaceAny = CALC_ANY,
+        replaceProperty = CALC_ANY)
+    fileHeader.write(prototype % (returnType, function[common.CODENAME]))
     if function[common.CTOR]:
         fileHeader.write('\n        const STRING &handle')
         if function[common.PARAMS]:
@@ -107,15 +118,7 @@ def generateHeaders(functionGroups):
         fileHeader.write('#ifndef qla_calc_%s_hpp\n' % groupName)
         fileHeader.write('#define qla_calc_%s_hpp\n\n' % groupName)
         for function in functionGroup[common.FUNCLIST]:
-            returnTypeCalc = utils.getReturnType(function[common.RETVAL], 
-                formatVector = CALC_MATRIX, formatMatrix = CALC_MATRIX, 
-                replaceLong = CALC_LONG, replaceString = CALC_STRING, 
-                replaceBool = CALC_LONG, replaceAny = CALC_ANY,
-                replaceProperty = CALC_ANY) 
-            fileHeader.write('    virtual %s SAL_CALL %s('
-                % (returnTypeCalc, function[common.CODENAME]))
-            generateHeader(fileHeader, function, ';')
-            fileHeader.write('\n')
+            generateHeader(fileHeader, function)
         fileHeader.write('#endif\n\n')
         fileHeader.close()
         utils.updateIfChanged(fileName)
@@ -154,13 +157,7 @@ def getReturnCall(returnDef):
 def generateFuncSource(fileFunc, function, bufBody):
     'generate source for given function'
     global plCtor, plMember
-    returnTypeCalc = utils.getReturnType(function[common.RETVAL], 
-        formatVector = CALC_MATRIX, formatMatrix = CALC_MATRIX, 
-        replaceLong = CALC_LONG, replaceString = CALC_STRING, 
-        replaceBool = CALC_LONG, replaceAny = CALC_ANY,
-        replaceProperty = CALC_ANY)
-    fileFunc.write(FUNC_PROTOTYPE % (returnTypeCalc, function[common.CODENAME]))
-    generateHeader(fileFunc, function, ' {')
+    generateHeader(fileFunc, function, False)
     returnType = utils.getReturnType(function[common.RETVAL], replacePropertyVector = 'Properties',
         replaceAny = 'boost::any', replaceString = 'std::string')
     returnCall = getReturnCall(function[common.RETVAL])
@@ -239,8 +236,8 @@ def generateIDLSource(functionGroups):
     utils.updateIfChanged(fileName)
 
 def generate(functionDefs):
-    global plHeader
     'generate source code for Calc addin'
+    global plHeader
     utils.logMessage('  begin generating Calc ...')
     plHeader = params.ParameterDeclare(2, replaceString = CALC_STRING,
         replaceLong = CALC_LONG, derefString = '&', replaceTensorStr = CALC_ANY,
