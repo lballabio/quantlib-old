@@ -15,6 +15,7 @@ endif
 
 libQuantLibAddinC_la_LIBADD = ../../qla/libQuantLibAddin.la
 
+if BUILD_C
 # for now we do not install the C addin headers
 noinst_HEADERS = \
     capfloor.h \
@@ -31,6 +32,7 @@ noinst_HEADERS = \
     varies.hpp \
     volatilities.h \
     xibor.h
+endif
 
 libQuantLibAddinC_la_SOURCES = \
     capfloor.cpp \

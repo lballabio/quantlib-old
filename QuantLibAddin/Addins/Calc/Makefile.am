@@ -60,6 +60,7 @@ EXTRA_DIST = \
     QuantLibAddin.idl \
     readme.txt
 
+if BUILD_CALC
 noinst_HEADERS = \
     autogen.hpp \
     calcutils.hpp \
@@ -76,6 +77,7 @@ noinst_HEADERS = \
     utilities.hpp \
     volatilities.hpp \
     xibor.hpp
+endif
 
 libQuantLibAddinCalc_la_SOURCES = \
     calcutils.cpp \
