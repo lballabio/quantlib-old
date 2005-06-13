@@ -6,5 +6,7 @@ void init_qladdin() {
 %s
     /* Utilities extra */
     gh_new_procedure("qlConsole", qlConsole, 1, 0, 0);
+    gh_new_procedure("qlDate", qlDate, 1, 0, 0);
 
 }
+
