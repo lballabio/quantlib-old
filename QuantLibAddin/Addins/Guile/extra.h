@@ -21,6 +21,7 @@
 #include <guile/gh.h>
 
 SCM qlConsole(SCM x);
+SCM qlDate(SCM x);
 
 #endif
 

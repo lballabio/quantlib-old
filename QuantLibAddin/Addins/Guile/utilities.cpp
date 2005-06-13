@@ -15,6 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#include <ql/date.hpp>
 #include <qla/qladdin.hpp>
 #include <Addins/Guile/guileutils.hpp>
 extern "C" {
@@ -30,7 +31,7 @@ SCM qlVersion(SCM x) {
         std::string ver = QL_VERSION();
         return gh_str02scm(ver.c_str());
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlVer Error: " + std::string(e.what()), 2);
+        OH_LOG_MESSAGE("qlVersion Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -40,14 +41,14 @@ SCM qlOhVersion(SCM x) {
         std::string ver = QL_OH_VERSION();
         return gh_str02scm(ver.c_str());
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlOhVer Error: " + std::string(e.what()), 2);
+        OH_LOG_MESSAGE("qlOhVersion Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
 
 SCM qlFieldNames(SCM x) {
     try {
-        std::string handle = Convert<std::string>::scalar(gh_car(x));
+        std::string handle = GetChop<std::string>::scalar(x);
         Properties properties = OH_QUERY_OBJECT(handle);
         SCM rtn = SCM_EOL;
         for (std::size_t i=properties.size() ; --i != std::size_t(-1) ; ) {
@@ -65,15 +66,15 @@ SCM qlFieldNames(SCM x) {
 
 SCM qlValue(SCM x) {
     try {
-        std::string handle = Convert<std::string>::scalar(gh_car(x));
+        std::string handle = GetChop<std::string>::scalar(x);
         Properties properties = OH_QUERY_OBJECT(handle);
-        std::string fieldName = Convert<std::string>::scalar(gh_cadr(x));
+        std::string fieldName = GetChop<std::string>::scalar(x);
         std::string fieldNameUpper = QuantLib::StringFormatter::toUppercase(fieldName);
         for (std::size_t i=properties.size() ; --i != std::size_t(-1) ; ) {
             ObjectProperty property = properties[i];
             any_ptr a = property();
             if (property.name().compare(fieldNameUpper) == 0)
-                return anyToPairValue(property);
+                return anyToPairValue(*property());
         }
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
@@ -84,8 +85,8 @@ SCM qlValue(SCM x) {
 
 SCM qlLogfile(SCM x) {
     try {
-        std::string logFile = Convert<std::string>::scalar(gh_car(x));
-        int logLevel = Convert<int>::scalar(gh_cadr(x));
+        std::string logFile = GetChop<std::string>::scalar(x);
+        int logLevel = GetChop<int>::scalar(x);
         OH_LOGFILE(logFile, logLevel);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
@@ -96,9 +97,9 @@ SCM qlLogfile(SCM x) {
 
 SCM qlConsole(SCM x) {
     try {
-        long consoleEnabled = Convert<long>::scalar(gh_car(x));
-        int logLevel = Convert<int>::scalar(gh_cadr(x));
-        OH_CONSOLE(consoleEnabled, logLevel);
+        int enabled = GetChop<int>::scalar(x);
+        int logLevel = GetChop<int>::scalar(x);
+        OH_CONSOLE(enabled, logLevel);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
         OH_LOG_MESSAGE("qlConsole Error: " + std::string(e.what()), 2);
@@ -108,8 +109,8 @@ SCM qlConsole(SCM x) {
 
 SCM qlLogMessage(SCM x) {
     try {
-        std::string logMessage = Convert<std::string>::scalar(gh_car(x));
-        int logLevel = Convert<int>::scalar(gh_cadr(x));
+        std::string logMessage = GetChop<std::string>::scalar(x);
+        int logLevel = GetChop<int>::scalar(x);
         OH_LOG_MESSAGE(logMessage, logLevel);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
@@ -120,7 +121,7 @@ SCM qlLogMessage(SCM x) {
 
 SCM qlLogLevel(SCM x) {
     try {
-        long logLevel = Convert<long>::scalar(gh_car(x));
+        long logLevel = GetChop<long>::scalar(x);
         OH_LOG_LEVEL(logLevel);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
@@ -131,7 +132,7 @@ SCM qlLogLevel(SCM x) {
 
 SCM qlLogObject(SCM x) {
     try {
-        std::string handle = Convert<std::string>::scalar(gh_car(x));
+        std::string handle = GetChop<std::string>::scalar(x);
         OH_LOG_OBJECT(handle);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
@@ -152,7 +153,7 @@ SCM qlLogAllObjects(SCM x) {
 
 SCM qlDeleteObject(SCM x) {
     try {
-        std::string handle = Convert<std::string>::scalar(gh_car(x));
+        std::string handle = GetChop<std::string>::scalar(x);
         OH_DELETE_OBJECT(handle);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
@@ -167,6 +168,48 @@ SCM qlDeleteAllObjects(SCM x) {
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
         OH_LOG_MESSAGE("qlLogAllObjects Error: " + std::string(e.what()), 2);
+        return SCM_UNSPECIFIED;
+    }
+}
+
+SCM qlDate(SCM x) {
+    try {
+        int day                 = GetChop<int>::scalar(x);
+        std::string month       = GetChop<std::string>::scalar(x);
+        int year                = GetChop<int>::scalar(x);
+        std::string monthUpper  = QuantLib::StringFormatter::toUppercase(month);
+        QuantLib::Month monthQL;
+        if (monthUpper.compare(0, 3, "JAN") == 0) {
+            monthQL = QuantLib::January;
+        } else if (monthUpper.compare(0, 3, "FEB") == 0) {
+            monthQL = QuantLib::February;
+        } else if (monthUpper.compare(0, 3, "MAR") == 0) {
+            monthQL = QuantLib::March;
+        } else if (monthUpper.compare(0, 3, "APR") == 0) {
+            monthQL = QuantLib::April;
+        } else if (monthUpper.compare(0, 3, "MAY") == 0) {
+            monthQL = QuantLib::May;
+        } else if (monthUpper.compare(0, 3, "JUN") == 0) {
+            monthQL = QuantLib::June;
+        } else if (monthUpper.compare(0, 3, "JUL") == 0) {
+            monthQL = QuantLib::July;
+        } else if (monthUpper.compare(0, 3, "AUG") == 0) {
+            monthQL = QuantLib::August;
+        } else if (monthUpper.compare(0, 3, "SEP") == 0) {
+            monthQL = QuantLib::September;
+        } else if (monthUpper.compare(0, 3, "OCT") == 0) {
+            monthQL = QuantLib::October;
+        } else if (monthUpper.compare(0, 3, "NOV") == 0) {
+            monthQL = QuantLib::November;
+        } else if (monthUpper.compare(0, 3, "DEC") == 0) {
+            monthQL = QuantLib::December;
+        } else {
+            QL_FAIL("unrecognised month");
+        }
+        QuantLib::Date date(day, monthQL, year);
+        return gh_long2scm(date.serialNumber());
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE("qlDate Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }

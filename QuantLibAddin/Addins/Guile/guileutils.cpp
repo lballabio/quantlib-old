@@ -17,37 +17,36 @@
 
 #include <Addins/Guile/guileutils.hpp>
 
-SCM anyToPairValue(const ObjHandler::ObjectProperty& property)
+SCM anyToPairValue(const boost::any& a)
 {
     SCM value;
-    ObjHandler::any_ptr a = property();
-    if (a->type() == typeid(int)) {
-        value = gh_int2scm(boost::any_cast<int>(*a));
-    } else if (a->type() == typeid(long)) {
-        value = gh_long2scm(boost::any_cast<long>(*a));
-    } else if (a->type() == typeid(double)) {
-        value = gh_double2scm(boost::any_cast<double>(*a));
-    } else if (a->type() == typeid(std::string)) {
-        value = gh_str02scm(boost::any_cast<std::string>(*a).c_str());
-    } else if (a->type() == typeid(std::vector<long>)) {
-        std::vector<long> v = boost::any_cast< std::vector<long> >(*a);
+    if (a.type() == typeid(int)) {
+        value = gh_int2scm(boost::any_cast<int>(a));
+    } else if (a.type() == typeid(long)) {
+        value = gh_long2scm(boost::any_cast<long>(a));
+    } else if (a.type() == typeid(double)) {
+        value = gh_double2scm(boost::any_cast<double>(a));
+    } else if (a.type() == typeid(std::string)) {
+        value = gh_str02scm(boost::any_cast<std::string>(a).c_str());
+    } else if (a.type() == typeid(std::vector<long>)) {
+        std::vector<long> v = boost::any_cast< std::vector<long> >(a);
         value = SCM_EOL;
         for (std::size_t i=v.size() ; --i != std::size_t(-1) ; )
             value = gh_cons(gh_long2scm(v[i]), value);
-    } else if (a->type() == typeid(std::vector<double>)) {
-        std::vector<double> v = boost::any_cast< std::vector<double> >(*a);
+    } else if (a.type() == typeid(std::vector<double>)) {
+        std::vector<double> v = boost::any_cast< std::vector<double> >(a);
         value = SCM_EOL;
         for (std::size_t i=v.size() ; --i != std::size_t(-1) ; )
             value = gh_cons(gh_double2scm(v[i]), value);
     } else {
-        throw ObjHandler::Exception("anyToDottedPair: unrecognized type");
+        throw ObjHandler::Exception("anyToPairValue: unrecognized type");
     }
     return value;
 }
 
 SCM anyToDottedPair(const ObjHandler::ObjectProperty& property)
 {
-    SCM value = anyToPairValue(property);
+    SCM value = anyToPairValue(*property());
     SCM label = gh_str02scm(property.name().c_str());
     return gh_cons(label, value);
 }

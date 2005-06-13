@@ -64,35 +64,14 @@ def generateInitFunc(functionDefs):
 def generateArgList(paramList, indent):
     ret = ''
     for param in paramList:
-        name = ''
-        if param[common.TENSOR] == common.SCALAR:
-            if param[common.TYPE] == common.BOOL:
-                name = 'x = GET_ARGUMENT(x, args, scalar, bool);       '
-            elif param[common.TYPE] == common.DOUBLE:
-                name = 'x = GET_ARGUMENT(x, args, scalar, double);     '
-            elif param[common.TYPE] == common.LONG:
-                name = 'x = GET_ARGUMENT(x, args, scalar, long);       '
-            elif param[common.TYPE] == common.STRING:
-                name = 'x = GET_ARGUMENT(x, args, scalar, std::string);'
-        elif param[common.TENSOR] == common.VECTOR:
-            if param[common.TYPE] == common.BOOL:
-                name = 'x = GET_ARGUMENT(x, args, vector, bool);       '
-            elif param[common.TYPE] == common.DOUBLE:
-                name = 'x = GET_ARGUMENT(x, args, vector, double);     '
-            elif param[common.TYPE] == common.LONG:
-                name = 'x = GET_ARGUMENT(x, args, vector, long);       '
-            elif param[common.TYPE] == common.STRING:
-                name = 'x = GET_ARGUMENT(x, args, vector, std::string);'
-        elif param[common.TENSOR] == common.MATRIX:
-            if param[common.TYPE] == common.BOOL:
-                name = 'x = GET_ARGUMENT(x, args, matrix, bool);       '
-            elif param[common.TYPE] == common.DOUBLE:
-                name = 'x = GET_ARGUMENT(x, args, matrix, double);     '
-            elif param[common.TYPE] == common.LONG:
-                name = 'x = GET_ARGUMENT(x, args, matrix, long);       '
-            elif param[common.TYPE] == common.STRING:
-                name = 'x = GET_ARGUMENT(x, args, matrix, std::string);'
-        ret += indent + name + ' // ' + param[common.NAME] + '\n'
+        tensor = param[common.TENSOR]
+        type = param[common.TYPE]
+        if param[common.TYPE] == common.STRING:
+            type = 'std::string'
+        elif param[common.TYPE] == common.ANY:
+            type = 'boost::any'
+        stub = 'args.push(GetChop<%s>::%s(x)); // %s\n'
+        ret += indent + (stub % (type, tensor, param[common.NAME]))
     return ret
 
 def getConversions(paramList):
@@ -100,17 +79,37 @@ def getConversions(paramList):
     firstItem = True
     for param in paramList:
         if param[common.TYPE] == common.STRING:
-            type = 'std::string'
+            type1 = 'std::string'
+        elif param[common.TYPE] == common.ANY:
+            type1 = 'boost::any'
         else:
-            type = param[common.TYPE]
-        if firstItem:
-            func = 'gh_car'
-            firstItem = False
-        else:
-            func = 'gh_cadr'
-        ret += 8 * ' ' + '%s %s = Convert<%s>::scalar(%s(x));\n' % (
-            type, param[common.NAME], type, func)
+            type1 = param[common.TYPE]
+        type2 = type1
+        if param[common.TENSOR] == common.VECTOR:
+            type2 = 'std::vector<%s>' % type1
+        elif param[common.TENSOR] == common.MATRIX:
+            type2 = 'std::vector<std::vector<%s> >' % type1
+        ret += 8 * ' ' + '%s %s = GetChop<%s>::%s(x);\n' % (
+            type2, param[common.NAME], type1, param[common.TENSOR])
     return ret
+
+def generateReturnCall(returnDef):
+    if returnDef[common.TYPE] == common.PROPERTY:
+        if returnDef[common.TENSOR] == common.VECTOR:
+            return 'propertiesToAList(returnValue)'
+        else:
+            raise ValueError, 'type property can only be combined with tensorrank vector'
+    arg = 'returnValue'
+    if returnDef[common.TENSOR] == common.SCALAR:
+        arg = 'boost::any(returnValue)'
+    tensor = returnDef[common.TENSOR]
+    if returnDef[common.TYPE] == common.STRING:
+        type = 'std::string'
+    elif returnDef[common.TYPE] == common.ANY:
+        type = 'boost::any'
+    else:
+        type = returnDef[common.TYPE]
+    return ('Nat2Scm<%s>::%s(%s)' % (type, tensor, arg))
 
 def generateFuncDefs(groupName, functionGroup):
     'generate source for function implementations'
@@ -125,20 +124,22 @@ def generateFuncDefs(groupName, functionGroup):
         generateFuncHeader(fileFunc, function, ' {')
         indent = 8 * ' ';
         if function[common.CTOR]:
-            args = indent + 'ArgumentStack args;\n'
+            args  = indent + 'std::string handle = GetChop<std::string>::scalar(x);\n'
+            args += indent + 'ArgumentStack args;\n'
             args += generateArgList(function[common.PARAMS], indent);
-            args += indent + 'x = GET_ARGUMENT(x, args, scalar, std::string); // handleObject \n'
-            args += indent + 'std::string handle = OH_POP_ARGUMENT(std::string, args);\n'
             fName = 'OH_MAKE_OBJECT(%s, handle, args)' % function[common.QLFUNC]
         else:
             args = getConversions(function[common.PARAMS])
             className = function[common.PARAMS][0][common.CLASS]
             args += common.FUNC_BODY % (className, className, 'handle',
-                function[common.NAME], 'handle')
+                function[common.CODENAME], 'handle')
             paramList = plMember.generateCode(function[common.PARAMS])
             fName = 'objectPointer->%s(\n%s)' % (function[common.QLFUNC], 
                 paramList)
-        fileFunc.write(bufBody % (args, fName, function[common.CODENAME]))
+        retType = utils.getReturnType(function[common.RETVAL], replacePropertyVector = 'Properties',
+            replaceString = 'std::string', replaceAny = 'boost::any')
+        retCall = generateReturnCall(function[common.RETVAL])
+        fileFunc.write(bufBody % (args, retType, fName, retCall, function[common.CODENAME]))
     fileFunc.close()
     utils.updateIfChanged(fileName)
 

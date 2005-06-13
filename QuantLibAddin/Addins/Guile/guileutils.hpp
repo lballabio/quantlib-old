@@ -24,7 +24,7 @@
 #include <ql/errors.hpp>
 #include <oh/objhandler.hpp>
 
-SCM anyToPairValue(const ObjHandler::ObjectProperty& property);
+SCM anyToPairValue(const boost::any& a);
 SCM anyToDottedPair(const ObjHandler::ObjectProperty& property);
 SCM propertiesToAList(const ObjHandler::Properties& properties);
 
@@ -71,37 +71,63 @@ class Convert {
 };
 
 template <typename T>
-class Push {
+class GetChop {
   public:
-    static SCM scalar(ObjHandler::ArgumentStack& stack, SCM argList) {
+    static T scalar(SCM& argList) {
         if (gh_list_p(argList) && !gh_null_p(argList)) {
-            stack.push(Convert<T>::scalar(gh_car(argList)));
-            return gh_cdr(argList);
+            T rtn = Convert<T>::scalar(gh_car(argList));
+            argList = gh_cdr(argList);
+            return rtn;
         } else {
             QL_FAIL("Error: not enough arguments");
         }
     }
     
-    static SCM vector(ObjHandler::ArgumentStack& stack, SCM argList) {
+    static std::vector<T> vector(SCM& argList) {
         if (gh_list_p(argList) && !gh_null_p(argList)) {
-            stack.push(Convert<T>::vector(gh_car(argList)));
-            return gh_cdr(argList);
+            std::vector<T> rtn = Convert<T>::vector(gh_car(argList));
+            argList = gh_cdr(argList);
+            return rtn;
         } else {
             QL_FAIL("Error: not enough arguments");
         }
     }
     
-    static SCM matrix(ObjHandler::ArgumentStack& stack, SCM argList) {
+    static std::vector<std::vector<T> > matrix(SCM& argList) {
         if (gh_list_p(argList) && !gh_null_p(argList)) {
-            stack.push(Convert<T>::matrix(gh_car(argList)));
-            return gh_cdr(argList);
+            std::vector<std::vector<T> > rtn = Convert<T>::matrix(gh_car(argList));
+            argList = gh_cdr(argList);
+            return rtn;
         } else {
-            QL_FAIL("Error: not enough arguments");            
+            QL_FAIL("Error: not enough arguments");
         }
     }
 };
 
-#define GET_ARGUMENT(x, args, tensor, type) Push<type>::tensor(args, x)
+template <typename T>
+class Nat2Scm {
+  public:
+    static SCM scalar(const boost::any& a) {
+        return anyToPairValue(a);
+    }
     
+    static SCM vector(const std::vector<T>& x) {
+        SCM rtn = SCM_EOL;
+        for (std::size_t i = x.size() ; --i != std::size_t(-1) ; ) {
+            boost::any a(x[i]);
+            rtn = gh_cons(Nat2Scm<T>::scalar(a), rtn);
+        }
+        return rtn;
+    }
+    
+    static SCM matrix(const std::vector< std::vector<T> >& x) {
+        SCM rtn = SCM_EOL;
+        for (std::size_t i = x.size() ; --i != std::size_t(-1) ; ) {
+            rtn = gh_cons(Nat2Scm<T>::vector(x[i]), rtn);
+        }
+        return rtn;
+    }
+};
+
 #endif
 
