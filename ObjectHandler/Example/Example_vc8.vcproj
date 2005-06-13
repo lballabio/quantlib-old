@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="Example"
-	ProjectGUID="{1024DB4F-C585-4FDA-8DE0-C166F480DDDD}"
+	ProjectGUID="{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}"
 	>
 	<Platforms>
 		<Platform
@@ -15,11 +15,12 @@
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\build\vc80\Release"
-			IntermediateDirectory=".\build\vc80\Release"
+			OutputDirectory=".\build\vc6\Release"
+			IntermediateDirectory=".\build\vc6\Release"
 			ConfigurationType="1"
+			InheritedPropertySheets="UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
 			>
 			<Tool
@@ -36,26 +37,26 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc80\Release/Example.tlb"
+				TypeLibraryName=".\build\vc6\Release/Example.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,.."
+				AdditionalIncludeDirectories=".,..,$(LOG4CXX_DIR)/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
-				StringPooling="TRUE"
+				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="TRUE"
-				RuntimeTypeInfo="TRUE"
+				EnableFunctionLevelLinking="true"
+				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc80\Release/Example.pch"
-				AssemblerListingLocation=".\build\vc80\Release/"
-				ObjectFile=".\build\vc80\Release/"
-				ProgramDataBaseFileName=".\build\vc80\Release/"
+				PrecompiledHeaderFile=".\build\vc6\Release/Example.pch"
+				AssemblerListingLocation=".\build\vc6\Release/"
+				ObjectFile=".\build\vc6\Release/"
+				ProgramDataBaseFileName=".\build\vc6\Release/"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
+				SuppressStartupBanner="true"
 				CompileAs="0"
 			/>
 			<Tool
@@ -71,11 +72,12 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\bin/Example-vc80-mt-s.exe"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib Advapi32.lib"
+				OutputFile="bin/Example-vc6-mt-s.exe"
 				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\lib"
-				ProgramDatabaseFile=".\build\vc80\Release/Example.pdb"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="..\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				ProgramDatabaseFile=".\build\vc6\Release/Example-vc6-mt-s.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -84,7 +86,6 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
-				EmbedManifest="FALSE"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -107,11 +108,12 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\build\vc80\Debug"
-			IntermediateDirectory=".\build\vc80\Debug"
+			OutputDirectory=".\build\vc6\Debug"
+			IntermediateDirectory=".\build\vc6\Debug"
 			ConfigurationType="1"
+			InheritedPropertySheets="UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
 			>
 			<Tool
@@ -128,24 +130,24 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc80\Debug/Example.tlb"
+				TypeLibraryName=".\build\vc6\Debug/Example.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,.."
+				AdditionalIncludeDirectories=".,..,$(LOG4CXX_DIR)/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				RuntimeTypeInfo="TRUE"
+				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc80\Debug/Example.pch"
-				AssemblerListingLocation=".\build\vc80\Debug/"
-				ObjectFile=".\build\vc80\Debug/"
-				ProgramDataBaseFileName=".\build\vc80\Debug/"
+				PrecompiledHeaderFile=".\build\vc6\Debug/Example.pch"
+				AssemblerListingLocation=".\build\vc6\Debug/"
+				ObjectFile=".\build\vc6\Debug/"
+				ProgramDataBaseFileName=".\build\vc6\Debug/"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
+				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
 				CompileAs="0"
 			/>
@@ -162,12 +164,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\bin/Example-vc80-mt-sgd.exe"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib Advapi32.lib"
+				OutputFile="bin/Example-vc6-mt-sgd.exe"
 				LinkIncremental="2"
-				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\lib"
-				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\build\vc80\Debug/Example.pdb"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="..\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile=".\build\vc6\Debug/Example-vc6-mt-sgd.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -176,7 +179,6 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
-				EmbedManifest="FALSE"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -231,7 +233,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="interface.cpp"
+				RelativePath="objectfoo.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -256,7 +258,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="objectfoo.cpp"
+				RelativePath="utilities.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -286,7 +288,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="interface.hpp"
+				RelativePath="foo.hpp"
 				>
 			</File>
 			<File
@@ -294,7 +296,7 @@
 				>
 			</File>
 			<File
-				RelativePath="foo.hpp"
+				RelativePath="utilities.hpp"
 				>
 			</File>
 		</Filter>
