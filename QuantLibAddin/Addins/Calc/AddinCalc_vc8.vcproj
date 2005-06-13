@@ -5,7 +5,6 @@
 	Name="AddinCalc"
 	ProjectGUID="{FB336C42-0179-4679-A95D-ACEA52CC0DC8}"
 	Keyword="MakeFileProj"
-	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -110,6 +109,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\simpleswap.cpp"
+				>
+			</File>
+			<File
 				RelativePath="termstructures.cpp"
 				>
 			</File>
@@ -119,6 +122,10 @@
 			</File>
 			<File
 				RelativePath="volatilities.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\xibor.cpp"
 				>
 			</File>
 		</Filter>
@@ -167,6 +174,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\simpleswap.hpp"
+				>
+			</File>
+			<File
 				RelativePath="termstructures.hpp"
 				>
 			</File>
@@ -176,6 +187,10 @@
 			</File>
 			<File
 				RelativePath="volatilities.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\xibor.hpp"
 				>
 			</File>
 		</Filter>

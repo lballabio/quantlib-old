@@ -129,6 +129,10 @@ SOURCE=.\shortratemodels.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\simpleswap.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\termstructures.cpp
 # End Source File
 # Begin Source File
@@ -138,6 +142,10 @@ SOURCE=.\utilities.cpp
 # Begin Source File
 
 SOURCE=.\volatilities.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\xibor.cpp
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -187,6 +195,10 @@ SOURCE=.\shortratemodels.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\simpleswap.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\termstructures.hpp
 # End Source File
 # Begin Source File
@@ -196,6 +208,10 @@ SOURCE=.\utilities.hpp
 # Begin Source File
 
 SOURCE=.\volatilities.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\xibor.hpp
 # End Source File
 # End Group
 # Begin Group "Make"

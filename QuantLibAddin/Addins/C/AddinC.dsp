@@ -101,7 +101,15 @@ SOURCE=.\processes.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qlatest.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\shortratemodels.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\simpleswap.cpp
 # End Source File
 # Begin Source File
 
@@ -118,6 +126,10 @@ SOURCE=.\varies.cpp
 # Begin Source File
 
 SOURCE=.\volatilities.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\xibor.cpp
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -149,7 +161,15 @@ SOURCE=.\qladdin.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\qlatest.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\shortratemodels.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\simpleswap.h
 # End Source File
 # Begin Source File
 
@@ -170,6 +190,10 @@ SOURCE=.\varies.hpp
 # Begin Source File
 
 SOURCE=.\volatilities.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\xibor.h
 # End Source File
 # End Group
 # End Target

@@ -23,12 +23,14 @@ noinst_HEADERS = \
     options.h \
     processes.h \
     shortratemodels.h \
+    simpleswap.h \
     termstructures.h \
     qladdin.h \
     utilities.h \
     varies.h \
     varies.hpp \
-    volatilities.h
+    volatilities.h \
+    xibor.h
 
 libQuantLibAddinC_la_SOURCES = \
     capfloor.cpp \
@@ -36,8 +38,10 @@ libQuantLibAddinC_la_SOURCES = \
     options.cpp \
     processes.cpp \
     shortratemodels.cpp \
+    simpleswap.cpp \
     termstructures.cpp \
     utilities.cpp \
     varies.cpp \
-    volatilities.cpp
+    volatilities.cpp \
+    xibor.cpp
 

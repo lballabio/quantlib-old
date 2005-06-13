@@ -18,9 +18,11 @@ noinst_HEADERS = \
     options.h \
     processes.h \
     shortratemodels.h \
+    simpleswap.h \
     termstructures.h \
     utilities.h \
-    volatilities.h
+    volatilities.h \
+    xibor.h
 
 libQuantLibAddinGuile_la_SOURCES = \
     capfloor.cpp \
@@ -30,9 +32,11 @@ libQuantLibAddinGuile_la_SOURCES = \
     processes.cpp \
     qladdin.c \
     shortratemodels.cpp \
+    simpleswap.cpp \
     termstructures.cpp \
     utilities.cpp \
-    volatilities.cpp
+    volatilities.cpp \
+    xibor.cpp
 
 libQuantLibAddinGuile_la_LDFLAGS = \
     -lQuantLib -lObjectHandler -lguile

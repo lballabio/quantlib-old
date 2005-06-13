@@ -4,7 +4,6 @@
 	Version="8.00"
 	Name="AddinC"
 	ProjectGUID="{6E24B379-7769-454F-AFA8-2AC2BB3AAEA8}"
-	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -273,6 +272,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\qlatest.cpp"
+				>
+			</File>
+			<File
 				RelativePath="shortratemodels.cpp"
 				>
 				<FileConfiguration
@@ -295,6 +298,10 @@
 						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\simpleswap.cpp"
+				>
 			</File>
 			<File
 				RelativePath="termstructures.cpp"
@@ -392,6 +399,10 @@
 					/>
 				</FileConfiguration>
 			</File>
+			<File
+				RelativePath=".\xibor.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -422,7 +433,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlatest.h"
+				>
+			</File>
+			<File
 				RelativePath="shortratemodels.h"
+				>
+			</File>
+			<File
+				RelativePath=".\simpleswap.h"
 				>
 			</File>
 			<File
@@ -443,6 +462,10 @@
 			</File>
 			<File
 				RelativePath="volatilities.h"
+				>
+			</File>
+			<File
+				RelativePath=".\xibor.h"
 				>
 			</File>
 		</Filter>
