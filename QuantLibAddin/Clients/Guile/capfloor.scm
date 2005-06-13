@@ -19,9 +19,6 @@
 
 (define false #f)
 
-(define (call-ctor ctor handle . args)
-    (ctor (append args (list handle))))
-
 (define (call-func func . args)
     (func args))
 
@@ -48,7 +45,7 @@
 
 (define (make-deposit-rate-helper q maturity)
     (let ((handle (format false "handleDeposit~d" maturity)))
-        (call-ctor qlDepositRateHelper
+        (call-func qlDepositRateHelper
                    handle
                    q
                    maturity
@@ -61,7 +58,7 @@
 
 (define (make-swap-rate-helper q maturity)
     (let ((handle (format false "swapDeposit~d" maturity)))
-        (call-ctor qlSwapRateHelper
+        (call-func qlSwapRateHelper
                    handle
                    q
                    maturity
@@ -87,20 +84,20 @@
 (define rate-helpers (append (make-rate-helpers make-deposit-rate-helper deposit-quotes)
                              (make-rate-helpers make-swap-rate-helper swap-quotes)))
 
-(call-ctor qlPiecewiseFlatForward "myTermStructure"
+(call-func qlPiecewiseFlatForward "myTermStructure"
                                   evaluation
                                   settlement
                                   rate-helpers
                                   "Actual360")
 
-(call-ctor qlHullWhite "myShortRateModel" "myTermStructure" 0.1 0.001)
+(call-func qlHullWhite "myShortRateModel" "myTermStructure" 0.1 0.001)
 
-(call-ctor qlAnalyticCapFloorEngine "myPricer" "myShortRateModel")
+(call-func qlAnalyticCapFloorEngine "myPricer" "myShortRateModel")
 
 (define start 38600)
 
 (define (make-collar handle pricer)
-    (call-ctor qlCapFloor          ; constructor
+    (call-func qlCapFloor          ; constructor
                handle              ; object handle
                start               ; start of capping period
                5                   ; capping period length

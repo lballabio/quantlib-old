@@ -16,9 +16,6 @@
 
 (dynamic-call "init_qladdin" (dynamic-link "libQuantLibAddinGuile"))
 
-(define (call-ctor ctor handle . args)
-    (ctor (cons handle args)))
-
 (define (call-func func . args)
     (func args))
 
@@ -117,7 +114,7 @@
 
 (define rh (append (map car deposits) (map car futures) (map car swaps)))
 
-(call-ctor qlPiecewiseFlatForward "testYC" evaluation settlement rh "Actual360")
+(call-func qlPiecewiseFlatForward "testYC" evaluation settlement rh "Actual360")
 
 
 ; -- Interrogate Object
@@ -153,7 +150,7 @@
 (define dates   (map car historic))
 (define fixings (map cdr historic))
 
-(call-ctor qlXibor              ; constructor
+(call-func qlXibor              ; constructor
            "idx"                ; handle
            "Euribor"            ; index name
            "EUR"                ; currency
@@ -167,7 +164,7 @@
            dates                ; past dates
            fixings)             ; past fixings
 
-(call-ctor qlSimpleSwap         ; constructor
+(call-func qlSimpleSwap         ; constructor
            "swp"                ; handle
            (date 11 "Apr" 2005) ; start date
            (date 11 "Apr" 2015) ; maturity date
