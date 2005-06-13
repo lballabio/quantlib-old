@@ -134,7 +134,7 @@ def generateFuncDefs(groupName, functionGroup):
             args += common.FUNC_BODY % (className, className, 'handle',
                 function[common.CODENAME], 'handle')
             paramList = plMember.generateCode(function[common.PARAMS])
-            fName = 'objectPointer->%s(\n%s)' % (function[common.QLFUNC], 
+            fName = 'objectPointer->%s(%s)' % (function[common.QLFUNC], 
                 paramList)
         retType = utils.getReturnType(function[common.RETVAL], replacePropertyVector = 'Properties',
             replaceString = 'std::string', replaceAny = 'boost::any')
