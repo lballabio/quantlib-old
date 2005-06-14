@@ -43,7 +43,7 @@ namespace QuantLibAddin {
 #else
     #define ALL_TYPES_MAP allTypesMap
 #endif
-            T create(std::string& id) {
+            T create(const std::string& id) {
 		        static TypeMapPtr type_map;
 		        if(!type_map) {
 			        QL_REQUIRE(
@@ -82,3 +82,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

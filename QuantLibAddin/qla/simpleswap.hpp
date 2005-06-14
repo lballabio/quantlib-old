@@ -31,6 +31,7 @@ namespace QuantLibAddin {
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(swap_);
         }
+		const QuantLib::SimpleSwap& getObject() const {return *swap_;}
 
     private:
         boost::shared_ptr<QuantLib::SimpleSwap> swap_;

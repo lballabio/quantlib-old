@@ -15,6 +15,7 @@ FUNCGROUPS  = 'funcgroups'
 FUNCLIST    = 'functionlist'
 HANDLE      = 'handle'
 HDRONLY     = 'headeronly'
+IGNORE      = 'ignore'
 LONG        = 'long'
 MATRIX      = 'matrix'
 NAME        = 'name'
@@ -45,4 +46,5 @@ FUNC_BODY       = '\
             OH_GET_OBJECT(QuantLibAddin::%s, %s);\n\
         if (!objectPointer)\n\
             QL_FAIL("%s: error retrieving object " + %s);\n'
+
 

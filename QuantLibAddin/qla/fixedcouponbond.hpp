@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
 
  This file is part of QuantLib, a free-software/open-source library
@@ -20,6 +21,7 @@
 
 #include <oh/objhandler.hpp>
 #include <ql/Instruments/fixedcouponbond.hpp>
+#include <qla/enumfactory.hpp>
 
 namespace QuantLibAddin {
 
@@ -30,6 +32,16 @@ namespace QuantLibAddin {
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(myFixedCouponBond);
         }
+        const QuantLib::FixedCouponBond& getObject() const {return *myFixedCouponBond;}
+
+        double theoreticalYield(const std::string &compounding) const { 
+            return myFixedCouponBond->yield(CREATE_ENUM(QuantLib::Compounding, compounding));
+        }
+        double cleanPrice(double yield, const std::string &compounding, long settlementDate) const;
+        double dirtyPrice(double yield, const std::string &compounding, long settlementDate) const;
+        double yield(double cleanPrice, const std::string &compounding, long settlementDate) const;
+
+        double accruedAmount(long  d) const;
 
     private:
         boost::shared_ptr<QuantLib::FixedCouponBond> myFixedCouponBond;
@@ -37,5 +49,6 @@ namespace QuantLibAddin {
 }
 
 #endif
+
 
 

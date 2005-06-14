@@ -135,7 +135,7 @@ namespace QuantLibAddin {
 	}
 	
 	double 
-	YieldTermStructure::getDf(long ldt, bool ipol, double) const {
+	YieldTermStructure::getDf(long ldt, bool ipol) const {
 		QuantLib::Date date(ldt);
 		return termStructure_->discount(date, ipol);
 	}
@@ -172,5 +172,6 @@ namespace QuantLibAddin {
                                                dayCounter));
     }
 }
+
 
 

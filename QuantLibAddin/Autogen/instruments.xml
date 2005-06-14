@@ -19,10 +19,10 @@
         <desc>issue date</desc>
     </param>
     <param>
-        <name>datedDate</name>
+        <name>firstCouponDate</name>
         <type>long</type>
         <tensorrank>scalar</tensorrank>
-        <desc>dated date</desc>
+        <desc>first coupon date</desc>
     </param>
     <param>
         <name>maturityDate</name>
@@ -40,13 +40,19 @@
         <name>coupon</name>
         <type>double</type>
         <tensorrank>vector</tensorrank>
-        <desc>coupon</desc>
+        <desc>coupons</desc>
     </param>
     <param>
-        <name>yield</name>
+        <name>nominal</name>
+        <type>double</type>
+        <tensorrank>vector</tensorrank>
+        <desc>nominals</desc>
+    </param>
+    <param>
+        <name>Redemption</name>
         <type>double</type>
         <tensorrank>scalar</tensorrank>
-        <desc>yield</desc>
+        <desc>Redemption</desc>
     </param>
     <param>
         <name>frequencyID</name>
@@ -61,10 +67,34 @@
         <desc>day counter ID</desc>
     </param>
     <param>
+        <name>BDayConv</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>business day convention</desc>
+    </param>
+    <param>
         <name>calendarID</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>calendar ID</desc>
+    </param>
+        <param>
+        <name>startFromEnd</name>
+        <type>bool</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>build schedule backwards (start from maturity)</desc>
+    </param>
+    <param>
+        <name>longFinal</name>
+        <type>bool</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>long first/last period</desc>
+    </param>
+    <param>
+        <name>DiscountCurve</name>
+        <type class="YieldTermStructure">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Yield Curve used for discounting</desc>
     </param>
 </parameters>
 <returnval>
@@ -137,5 +167,237 @@
 </returnval>
 </function>
 
+<function>
+<name>QL_BOND_TH_CLEAN_PRICE</name>
+<codename>qlThCleanPrice</codename>
+<desc>theoretical clean price: The default bond settlement is used for calculation.</desc>
+<constructor>false</constructor>
+<qlfunction>getObject().cleanPrice</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="FixedCouponBond">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Option object</desc>
+    </param>
+    <param>
+        <name ignore='yes'>trigger</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dep tracking trigger</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the theoretical clean price</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_BOND_TH_DIRTY_PRICE</name>
+<codename>qlThDirtyPrice</codename>
+<desc>theoretical dirty price: The default bond settlement is used for calculation.</desc>
+<constructor>false</constructor>
+<qlfunction>getObject().dirtyPrice</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="FixedCouponBond">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Option object</desc>
+    </param>
+    <param>
+        <name ignore='yes'>trigger</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dep tracking trigger</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the theoretical dirty price</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_BOND_TH_YIELD</name>
+<codename>qlThBondYield</codename>
+<desc>theoretical bond yield: The default bond settlement and theoretical price are used for calculation.</desc>
+<constructor>false</constructor>
+<qlfunction>theoreticalYield</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="FixedCouponBond">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Option object</desc>
+    </param>
+    <param>
+        <name>Compounding</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
+    </param>
+    <param>
+        <name ignore='yes'>trigger</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dep tracking trigger</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the theoretical yield</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_BOND_CLEAN_PRICE</name>
+<codename>qlCleanPrice</codename>
+<desc>If no settlement is given the default bond settlement is used for calculation.</desc>
+<constructor>false</constructor>
+<qlfunction>cleanPrice</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="FixedCouponBond">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Option object</desc>
+    </param>
+    <param>
+        <name>yield</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>bond yield</desc>
+    </param>
+    <param>
+        <name>compounding</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the clean price</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_BOND_DIRTY_PRICE</name>
+<codename>qlDirtyPrice</codename>
+<desc>dirty price: If no settlement is given the default bond settlement is used for calculation.</desc>
+<constructor>false</constructor>
+<qlfunction>dirtyPrice</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="FixedCouponBond">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Option object</desc>
+    </param>
+    <param>
+        <name>yield</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>bond yield</desc>
+    </param>
+    <param>
+        <name>compounding</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the dirty price</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_BOND_YIELD</name>
+<codename>qlYield</codename>
+<desc>Yield: If no settlement is given the default bond settlement is used for calculation.</desc>
+<constructor>false</constructor>
+<qlfunction>yield</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="FixedCouponBond">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Option object</desc>
+    </param>
+    <param>
+        <name>cleanPrice</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Clean Price</desc>
+    </param>
+    <param>
+        <name>compounding</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the dirty price</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_BOND_ACCRUED</name>
+<codename>qlAccrued</codename>
+<desc>Accrued: If no settlement is given the default bond settlement is used for calculation.</desc>
+<constructor>false</constructor>
+<qlfunction>accruedAmount</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="FixedCouponBond">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Option object</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the accrual</desc>
+</returnval>
+</function>
+
 </functionlist>
+
 

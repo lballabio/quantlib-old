@@ -25,68 +25,89 @@
 #include <qla/termstructures.hpp>
 #include <qla/enumfactory.hpp>
 
-// indexes to the Property vector
-// FIXME - need a cleaner way to achieve this
-#define CLEAN_PRICE                     "CLEAN_PRICE"
-#define DIRTY_PRICE                     "DIRTY_PRICE"
-#define IDX_CLEAN_PRICE                 0
-#define IDX_DIRTY_PRICE                 1
-
 namespace QuantLibAddin {
 
     FixedCouponBond::FixedCouponBond(ObjHandler::ArgumentStack& arguments) {
-        std::string calendarID    = OH_POP_ARGUMENT(std::string, arguments);
-        std::string dayCounterID  = OH_POP_ARGUMENT(std::string, arguments);
-        std::string frequencyID   = OH_POP_ARGUMENT(std::string, arguments);
-        double yield              = OH_POP_ARGUMENT(double, arguments);
-        std::vector < double > coupons 
-            = OH_POP_ARGUMENT(std::vector < double >, arguments);
-        long settlementDays       = OH_POP_ARGUMENT(long, arguments);
-        long maturityDate         = OH_POP_ARGUMENT(long, arguments);
-        long datedDate            = OH_POP_ARGUMENT(long, arguments);
-        long issueDate            = OH_POP_ARGUMENT(long, arguments);
+        std::string discCurveId      = OH_POP_ARGUMENT(std::string, arguments);
+        bool longFinal               = OH_POP_ARGUMENT(bool, arguments);
+        bool startFromEnd            = OH_POP_ARGUMENT(bool, arguments);
+        std::string calendarID       = OH_POP_ARGUMENT(std::string, arguments);
+        std::string bDayConvID       = OH_POP_ARGUMENT(std::string, arguments);
+        std::string dayCounterID     = OH_POP_ARGUMENT(std::string, arguments);
+        std::string frequencyID      = OH_POP_ARGUMENT(std::string, arguments);
+        double redemption            = OH_POP_ARGUMENT(double, arguments);
+        std::vector<double> nominals = OH_POP_ARGUMENT(std::vector<double>, arguments);
+        std::vector<double> coupons  = OH_POP_ARGUMENT(std::vector<double>, arguments);
+        long settlementDays          = OH_POP_ARGUMENT(long, arguments);
+        long maturityDate            = OH_POP_ARGUMENT(long, arguments);
+        long datedDate               = OH_POP_ARGUMENT(long, arguments);
+        long issueDate               = OH_POP_ARGUMENT(long, arguments);
 
-        // BusinessDayConvention convention = Following;
-        // Real redemption = 100.0;
-        // Handle<YieldTermStructure> discountCurve
-        //                       = Handle<YieldTermStructure>();
-        // Date stub = Date();
-        // bool fromEnd = true;
+        QuantLib::Frequency couponFrequency = CREATE_ENUM(QuantLib::Frequency, frequencyID);
+        QuantLib::DayCounter dayCounter     = CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
+        QuantLib::Calendar calendar         = CREATE_ENUM(QuantLib::Calendar, calendarID);
+        QuantLib::BusinessDayConvention bDayConv = 
+            CREATE_ENUM(QuantLib::BusinessDayConvention, bDayConvID);
 
-		QuantLib::Frequency couponFrequency =
-            CREATE_ENUM(QuantLib::Frequency, frequencyID);
-		QuantLib::DayCounter dayCounter =
-            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
-		QuantLib::Calendar calendar =
-            CREATE_ENUM(QuantLib::Calendar, calendarID);
-//        const std::vector<QuantLib::Rate> couponsQL = 
-//            doubleVectorToRateVector(coupons);
+        boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpDiscYC =
+            OH_GET_OBJECT(QuantLibAddin::YieldTermStructure, discCurveId);
+        QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;
+        if(tmpDiscYC) {
+            boost::shared_ptr<QuantLib::YieldTermStructure> discYC = 
+                OH_GET_REFERENCE(QuantLib::YieldTermStructure, tmpDiscYC);
+            discountingTermStructure.linkTo(discYC);
+        }
 
-        myFixedCouponBond = 
-            boost::shared_ptr<QuantLib::FixedCouponBond>(
-                new QuantLib::FixedCouponBond(QuantLib::Date(issueDate),
-                                              QuantLib::Date(datedDate),
-                                              QuantLib::Date(maturityDate),
-                                              settlementDays,
-                                              coupons,
-                                              couponFrequency,
-                                              dayCounter,
-                                              calendar));
+        myFixedCouponBond = boost::shared_ptr<QuantLib::FixedCouponBond>(
+            new QuantLib::FixedCouponBond(QuantLib::Date(issueDate),
+                                            QuantLib::Date(datedDate),
+                                            QuantLib::Date(maturityDate),
+                                            settlementDays,
+                                            coupons,
+                                            couponFrequency,
+                                            dayCounter,
+                                            calendar,
+                                            bDayConv,
+                                            redemption,
+                                            discountingTermStructure,
+                                            QuantLib::Date(),
+                                            startFromEnd
+#ifdef LOCAL_QL_PATCH
+                                            ,
+                                            longFinal, // Not yet implemented in QL
+                                            nominals // Not yet implemented in QL
+#endif
+                                            ));
+    }
 
-        // Perform pricing
-        double cleanPrice = myFixedCouponBond->cleanPrice(yield);
-        double dirtyPrice = myFixedCouponBond->dirtyPrice(yield);
-
-        // Setup object properties
-        ObjHandler::any_ptr anyCleanPrice(new boost::any(cleanPrice));
-        ObjHandler::any_ptr anyDirtyPrice(new boost::any(dirtyPrice));
-
-        ObjHandler::ObjectProperty propCleanPrice(CLEAN_PRICE, anyCleanPrice);
-        ObjHandler::ObjectProperty propDirtyPrice(DIRTY_PRICE, anyDirtyPrice);
-
-        properties_.push_back(propCleanPrice);
-        properties_.push_back(propDirtyPrice);
+    double 
+    FixedCouponBond::cleanPrice(double yield, const std::string &compounding, long settlementDate) const {
+        QuantLib::Compounding comp = CREATE_ENUM(QuantLib::Compounding, compounding);
+        QuantLib::Date sett;
+        if(settlementDate) sett = QuantLib::Date(settlementDate);
+        return myFixedCouponBond->cleanPrice(yield, comp, sett);
+    }
+    double 
+    FixedCouponBond::dirtyPrice(double yield, const std::string &compounding, long settlementDate) const {
+        QuantLib::Compounding comp = CREATE_ENUM(QuantLib::Compounding, compounding);
+        QuantLib::Date sett;
+        if(settlementDate) sett = QuantLib::Date(settlementDate);
+        return myFixedCouponBond->dirtyPrice(yield, comp, sett);
+    }
+    double 
+    FixedCouponBond::yield(double cleanPrice, const std::string &compounding, long settlementDate) const {
+        QuantLib::Compounding comp = CREATE_ENUM(QuantLib::Compounding, compounding);
+        QuantLib::Date sett;
+        if(settlementDate) sett = QuantLib::Date(settlementDate);
+        return myFixedCouponBond->yield(cleanPrice, comp, sett);
+    }
+    double 
+    FixedCouponBond::accruedAmount(long  d) const {
+        QuantLib::Date sett;
+        if(d) sett = QuantLib::Date(d);
+        return myFixedCouponBond->accruedAmount(sett);
     }
 }
+
 
 

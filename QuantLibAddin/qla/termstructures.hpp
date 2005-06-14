@@ -59,7 +59,7 @@ namespace QuantLibAddin {
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(termStructure_);
         }
-		double getDf(long d, bool ipol, double) const;
+		double getDf(long d, bool ipol) const;
       protected:
         boost::shared_ptr<QuantLib::YieldTermStructure> termStructure_;
     };
@@ -71,4 +71,5 @@ namespace QuantLibAddin {
 }
 
 #endif
+
 

@@ -35,12 +35,14 @@ def getParameter(paramNode):
     typeNode   = paramNode.getElementsByTagName(common.TYPE)[0]
     tensorNode = paramNode.getElementsByTagName(common.TENSOR)[0]
     classNode  = typeNode.getAttributeNode(common.CLASS)
+    ignoreNode = nameNode.getAttributeNode(common.IGNORE)
     descNode   = paramNode.getElementsByTagName(common.DESC)[0]
     param[common.NAME]   = getText(nameNode)
     param[common.TYPE]   = getText(typeNode)
     param[common.TENSOR] = getText(tensorNode)
     param[common.DESC]   = getText(descNode)
     param[common.CLASS]  = getText(classNode)
+    param[common.IGNORE] = getText(ignoreNode)
     return param
 
 def getParameters(paramsNode):
@@ -118,4 +120,5 @@ def getFunctionDefs():
         functionDefs[common.NUMFUNC] += len(functionGroups[groupName][common.FUNCLIST])
     functionDefs[common.FUNCGROUPS] = functionGroups
     return functionDefs
+
 

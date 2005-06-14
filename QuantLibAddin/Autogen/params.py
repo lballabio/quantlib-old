@@ -46,6 +46,7 @@ class ParameterList(object):
                 firstItem = False
                 if self.skipFirst:
                     continue
+            if self.param[common.IGNORE] == 'yes' and self.skipFirst: continue
             self.item = ''
             self.process()      # defined in derived class
             self.outList.append(self.item)
@@ -279,4 +280,5 @@ class ParameterPass(ParameterList):
         'wrap entire parameter definition in a conversion string if provided'
         if self.wrapFormat:
             self.item = self.wrapFormat % self.item
+
 

@@ -122,5 +122,141 @@
 </returnval>
 </function>
 
+<function>
+<name>QL_SWAP_NPV</name>
+<codename>qlSwapNPV</codename>
+<desc>the NPV of a swap</desc>
+<constructor>false</constructor>
+<qlfunction>getObject().NPV</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="SimpleSwap">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the swap object</desc>
+    </param>
+    <param>
+        <name ignore="yes">trigger</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dep tracking trigger</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the NPV</desc>
+</returnval>
+</function>
+
+
+<function>
+<name>QL_SWAP_FAIR_RATE</name>
+<codename>qlSwapFairRate</codename>
+<desc>the fair rate of a swap</desc>
+<constructor>false</constructor>
+<qlfunction>getObject().fairRate</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="SimpleSwap">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the swap object</desc>
+    </param>
+    <param>
+        <name ignore="yes">trigger</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dep tracking trigger</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the fair rate</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_SWAP_FAIR_SPREAD</name>
+<codename>qlSwapFairSpread</codename>
+<desc>the fair rate of a swap</desc>
+<constructor>false</constructor>
+<qlfunction>getObject().fairSpread</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="SimpleSwap">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the swap object</desc>
+    </param>
+    <param>
+        <name ignore="yes">trigger</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dep tracking trigger</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the fair spread</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_SWAP_FIXED_LEG_BPS</name>
+<codename>qlFixedLegBPS</codename>
+<desc>the BPS of the fixed leg</desc>
+<constructor>false</constructor>
+<qlfunction>getObject().fixedLegBPS</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="SimpleSwap">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the swap object</desc>
+    </param>
+    <param>
+        <name ignore="yes">trigger</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dep tracking trigger</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the fix leg BPS</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_SWAP_FLOATING_LEG_BPS</name>
+<codename>qlFloatingLegBPS</codename>
+<desc>the BPS of the floating leg</desc>
+<constructor>false</constructor>
+<qlfunction>getObject().floatingLegBPS</qlfunction>
+<parameters>
+    <param>
+        <name>handle</name>
+        <type class="SimpleSwap">string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the swap object</desc>
+    </param>
+    <param>
+        <name ignore="yes">trigger</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dep tracking trigger</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the float leg BPS</desc>
+</returnval>
+</function>
+
 </functionlist>
 

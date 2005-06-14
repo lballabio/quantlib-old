@@ -293,7 +293,7 @@
         <desc>Interpolate Flag</desc>
     </param>
     <param>
-        <name>trigger</name>
+        <name ignore='yes'>trigger</name>
         <type>double</type>
         <tensorrank>scalar</tensorrank>
         <desc>Interpolate Flag</desc>
@@ -334,4 +334,5 @@
 </function>
 
 </functionlist>
+
 
