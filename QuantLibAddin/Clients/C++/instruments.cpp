@@ -39,9 +39,11 @@ int main() {
         Date maturityDate(13, March, 2015);     // maturity date
         long settlementDays         = 3;        // settlement days
         vector < double > coupons(1, 0.04);     // coupons
-        double yield                = 0.06;     // yield
+        vector < double > nominals(1, 100.0);   // nominals
+        double redemption           = 100.0;    // redemption
         string frequencyID          = "Annual"; // frequency
         string dayCounterID         = "Thirty360"; // day count
+        string businessDayConvention= "Following"; // business day convention
         string calendarID           = "Germany";// calendar
 
         ArgumentStack a1;
@@ -50,10 +52,15 @@ int main() {
         a1.push(maturityDate.serialNumber());   // maturity date as long
         a1.push(settlementDays);                // settlement days
         a1.push(coupons);                       // coupons
-        a1.push(yield);                         // yield
+        a1.push(nominals);                      // nominals
+        a1.push(redemption);                    // redemption
         a1.push(frequencyID);                   // frequency ID
         a1.push(dayCounterID);                  // day counter ID
+        a1.push(businessDayConvention);         // business day convention
         a1.push(calendarID);                    // calendar ID
+        a1.push(true);                          // startFromEnd
+        a1.push(true);                          // longFinal
+        a1.push(std::string());                 // discCurveId
         OH_MAKE_OBJECT(QuantLibAddin::FixedCouponBond, "fixedCouponBond", a1);
         OH_LOG_OBJECT("fixedCouponBond");
 
@@ -92,7 +99,7 @@ int main() {
         std::string dayCounterId = "ActualActual";
         std::string calendarId = "Germany";
         std::string conventionId = "Following";
-        double redemption = 100.0;
+        double redemption2 = 100.0;
         std::string zeroCurveHandle = "myZeroCurve";
 
         ArgumentStack zeroCouponBondArgs;
@@ -102,7 +109,7 @@ int main() {
         zeroCouponBondArgs.push(dayCounterId);
         zeroCouponBondArgs.push(calendarId);
         zeroCouponBondArgs.push(conventionId);
-        zeroCouponBondArgs.push((double)redemption);
+        zeroCouponBondArgs.push((double)redemption2);
         zeroCouponBondArgs.push(zeroCurveHandle);
 
         OH_MAKE_OBJECT(QuantLibAddin::ZeroCouponBond, "myZeroCouponBond", zeroCouponBondArgs);

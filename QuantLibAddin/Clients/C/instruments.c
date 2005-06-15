@@ -35,9 +35,11 @@ int main() {
     long maturityDate           = 42076;    // maturity date (1 January 2010)
     long settlementDays         = 3;        // settlement days
     double coupons[] = { 0.04 };            // coupons
-    double yield                = 0.06;     // yield
+    double yields[] = { 0.05 };             // yields
+    double redemption          = 0.05;      // redemption
     char *frequencyID          = "Annual";  // frequency
     char *dayCounterID         = "Thirty360";// day count
+    char *businessDayConvention= "Following";// business day convention
     char *calendarID           = "Germany"; // calendar
 
     QL_LOGFILE("quantlib.log");
@@ -52,10 +54,16 @@ int main() {
             settlementDays, 
             1,                      // #/coupons
             coupons, 
-            yield, 
+            1,                      // #/yields
+            yields, 
+            redemption, 
             frequencyID, 
             dayCounterID, 
+            businessDayConvention,
             calendarID, 
+            1,                      // startFromEnd
+            1,                      // longFinal
+            "",                     // discCurveId
             &vfcb) != SUCCESS) {
         QL_LOG_MESSAGE("Error on call to QL_FIXED_COUPON_BOND");
         goto fail;
