@@ -8,6 +8,7 @@ import params
 
 BODY = 'stub.C.body'
 CONV_HANDLE = 'std::string(handle)'
+CONV_BOOL = 'bool(%s)'
 CONV_STR = 'std::string(%s)'
 INCLUDES = 'stub.C.includes'
 ROOT = common.ADDIN_ROOT + 'C/'
@@ -93,7 +94,10 @@ def getReturnCall(returnDef):
             return 'boostAnyMatrixToVaries(returnValue, result)'
 
     if returnDef[common.TYPE] == common.STRING:
-        type = 'std::string'
+        if returnDef[common.TENSOR] == common.SCALAR:
+            return 'strcpy(result, returnValue.c_str());'
+        else:
+            type = 'std::string'
     else:
         type = returnDef[common.TYPE]
 
@@ -106,7 +110,7 @@ def getReturnCall(returnDef):
 
 def generateFuncSources(groupName, functionGroup):
     'generate source for function implementations'
-    plCtor = params.ParameterPass(2, convertString = CONV_STR,
+    plCtor = params.ParameterPass(2, convertString = CONV_STR, convertBool = CONV_BOOL,
         delimiter = ';\n', appendTensor = True, appendScalar = True,
         wrapFormat = 'args.push(%s)', delimitLast = True, prependEol = False)
     plMember = params.ParameterPass(3, convertString = CONV_STR, skipFirst = True,

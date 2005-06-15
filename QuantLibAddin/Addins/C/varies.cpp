@@ -99,10 +99,10 @@ boost::any variesToBoostAny(const Varies &v) {
 void boostAnyToVaries(const boost::any &a, Varies *v) {
 }
 
-void boostAnyVectorToVaries(const std::vector < boost::any >&a, Varies *v) {
+void boostAnyVectorToVaries(const std::vector < boost::any >&a, VariesList *v) {
 }
 
 void boostAnyMatrixToVaries(
-        const std::vector < std::vector < boost::any > >&a, Varies *v) {
+        const std::vector < std::vector < boost::any > >&a, VariesList *v) {
 }
 
