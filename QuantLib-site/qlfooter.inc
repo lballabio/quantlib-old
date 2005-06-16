@@ -6,10 +6,7 @@
 directed to
  the <a href=
 "http://lists.sourceforge.net/lists/listinfo/quantlib-users">QuantLib-users</a>
-mailing list or
-the QuantLib administrator <a href=
-"mailto:ferdinando.ametrano@NOSPAMquantlib.org">Ferdinando&nbsp;Ametrano</a>
-(remove NOSPAM from the email address).</p>
+mailing list.</p>
 
 </div>
 </div>
