@@ -11,16 +11,17 @@ EXTRA_DIST = \
     options.cpp \
     processes.cpp \
     qladdin.cpp \
+    qlatest.cpp \
     shortratemodels.cpp \
     simpleswap.cpp \
     termstructures.cpp \
     utilities.cpp \
     volatilities.cpp \
+    xibor.cpp \
+    xibor.hpp \
     xlcall.h \
     xlutils.cpp \
-    xlutils.hpp \
-    xibor.cpp \
-    xibor.hpp
+    xlutils.hpp
 
 dist-hook:
 	mkdir $(distdir)/lib
