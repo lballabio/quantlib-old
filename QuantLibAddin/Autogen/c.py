@@ -96,7 +96,7 @@ def getReturnCall(returnDef):
 
     if returnDef[common.TYPE] == common.BOOL \
     and returnDef[common.TENSOR] == common.SCALAR:
-        return '*result = static_cast < Boolean > (returnValue)'
+        return '*result = (Boolean) returnValue'
 
     if returnDef[common.TYPE] == common.STRING:
         if returnDef[common.TENSOR] == common.SCALAR:

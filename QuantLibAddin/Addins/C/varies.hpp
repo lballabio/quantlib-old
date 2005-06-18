@@ -29,7 +29,7 @@ template < typename T >
 class Conversion {
 public:
 
-    static std::vector < T > convertVector(const T* &a, const long &sz) {
+    static std::vector < T > convertVector(T* &a, const long &sz) {
         std::vector < T > v;
         for (int i=0; i<sz; i++)
             v.push_back(a[i]);
@@ -50,7 +50,7 @@ public:
         return v;
     }
 
-    static std::vector < bool > convertVector(const Boolean* &a, const long &sz) {
+    static std::vector < bool > convertVector(Boolean* &a, const long &sz) {
         std::vector < bool > v;
         for (int i=0; i<sz; i++)
             v.push_back(a[i] == TRUE);
