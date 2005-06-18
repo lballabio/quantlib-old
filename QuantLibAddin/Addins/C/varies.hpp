@@ -29,7 +29,7 @@ template < typename T >
 class Conversion {
 public:
 
-    static std::vector < T > convertVector(T* &a, const long &sz) {
+    static std::vector < T > convertVector(const T* &a, const long &sz) {
         std::vector < T > v;
         for (int i=0; i<sz; i++)
             v.push_back(a[i]);
@@ -43,17 +43,17 @@ public:
         return v;
     }
 
-    static std::vector < boost::any > convertVector(VariesList &a, const long &sz) {
+    static std::vector < boost::any > convertVector(const VariesList &a, const long &sz) {
         std::vector < boost::any > v;
         for (int i=0; i<a.count; i++)
             v.push_back(variesToBoostAny(a.varies[i]));
         return v;
     }
 
-    static std::vector < bool > convertVector(unsigned char *a, const long &sz) {
+    static std::vector < bool > convertVector(const Boolean* &a, const long &sz) {
         std::vector < bool > v;
         for (int i=0; i<sz; i++)
-            v.push_back(a[i] != 0);
+            v.push_back(a[i] == TRUE);
         return v;
     }
 
@@ -70,12 +70,12 @@ public:
     }
 
     static std::vector < std::vector < bool > >convertMatrix(
-            unsigned char **a, const long &r, const long &c) {
+            Boolean **a, const long &r, const long &c) {
         std::vector < std::vector < bool > > vv;
         for (int i=0; i<r; i++) {
             std::vector < bool > v;
             for (int j=0; j<c; j++)
-                v.push_back(a[i][j] != 0);
+                v.push_back(a[i][j] == TRUE);
             vv.push_back(v);
         }
         return vv;
@@ -110,7 +110,7 @@ public:
     static void convertArray(const std::vector < T > &, T**) {
     }
 
-    static void convertArray(const std::vector < bool > &, unsigned char**) {
+    static void convertArray(const std::vector < bool > &, Boolean**) {
     }
 
     static void convertArray(const std::vector < T > &, char**) {
@@ -119,7 +119,7 @@ public:
     static void convertArrayArray(const std::vector < std::vector < T > >&, T**) {
     }
 
-    static void convertArrayArray(const std::vector < std::vector < bool > >&, unsigned char**) {
+    static void convertArrayArray(const std::vector < std::vector < bool > >&, Boolean**) {
     }
 
     static void convertArrayArray(const std::vector < std::vector < T > >&, char**) {

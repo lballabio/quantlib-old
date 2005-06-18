@@ -18,12 +18,13 @@
 #ifndef qla_varies_h
 #define qla_varies_h
 
+typedef enum {FALSE=0, TRUE} Boolean;
 typedef enum { LONG, DOUBLE, BOOL, CHARP } Type;
 
 typedef union {
     long AsLong;
     double AsDouble;
-    unsigned char AsBool;
+    Boolean AsBool;
     char* AsCharP;
 } DataUnion;
 

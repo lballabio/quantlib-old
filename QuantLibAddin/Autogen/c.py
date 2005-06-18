@@ -8,7 +8,7 @@ import params
 
 BODY = 'stub.C.body'
 CONV_HANDLE = 'std::string(handle)'
-CONV_BOOL = 'bool(%s != 0)'
+CONV_BOOL = '%s == TRUE'
 CONV_STR = 'std::string(%s)'
 INCLUDES = 'stub.C.includes'
 ROOT = common.ADDIN_ROOT + 'C/'
@@ -22,7 +22,7 @@ def generateFuncHeader(fileHeader, function, suffix):
     global plHeader
     'generate source for prototype of given function'
     returnType = utils.getReturnType(function[common.RETVAL], 
-        replaceString = 'char', replaceAny = 'Varies', replaceBool = 'unsigned char',
+        replaceString = 'char', replaceAny = 'Varies', replaceBool = 'Boolean',
         replaceTensorAny = 'VariesList *', replacePropertyVector = 'VariesList *',
         formatScalar = '%s *', formatVector = '%s **', formatMatrix = '%s **')
     fileHeader.write('int %s(' % function[common.NAME])
@@ -85,6 +85,7 @@ def getReturnCall(returnDef):
             return 'propertyVectorToVariesList(returnValue, result)'
         else:
             raise ValueError, 'type property can only be combined with tensorrank vector'
+
     if returnDef[common.TYPE] == common.ANY:
         if returnDef[common.TENSOR] == common.SCALAR:
             return 'boostAnyToVaries(returnValue, result)'
@@ -92,6 +93,10 @@ def getReturnCall(returnDef):
             return 'boostAnyVectorToVaries(returnValue, result)'
         else:
             return 'boostAnyMatrixToVaries(returnValue, result)'
+
+    if returnDef[common.TYPE] == common.BOOL \
+    and returnDef[common.TENSOR] == common.SCALAR:
+        return '*result = static_cast < Boolean > (returnValue)'
 
     if returnDef[common.TYPE] == common.STRING:
         if returnDef[common.TENSOR] == common.SCALAR:
@@ -149,7 +154,7 @@ def generate(functionDefs):
     plHeader = params.ParameterDeclare(2, replaceString = 'char',
         replaceTensorStr = 'char', arrayCount = True, derefString = '*',
         derefTensorString = '*', replaceAny = 'Varies', delimitLast = True,
-        replaceTensorAny = 'VariesList', replaceBool = 'unsigned char')
+        replaceTensorAny = 'VariesList', replaceBool = 'Boolean')
     utils.logMessage('  begin generating C ...')
     functionGroups = functionDefs[common.FUNCGROUPS]
     for groupName in functionGroups.keys():

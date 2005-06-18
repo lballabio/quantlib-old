@@ -41,7 +41,7 @@ void propertyVectorToVariesList(
             variesList->varies[i].data.AsDouble = boost::any_cast<double>(*a);
         } else if (a->type() == typeid(bool)) {
             variesList->varies[i].type = BOOL;
-            variesList->varies[i].data.AsBool = boost::any_cast<bool>(*a);
+            variesList->varies[i].data.AsBool = static_cast < Boolean > (boost::any_cast<bool>(*a));
         } else if (a->type() == typeid(std::string)) {
             variesList->varies[i].type = CHARP;
             const char *c = boost::any_cast<std::string>(*a).c_str();
@@ -87,7 +87,7 @@ boost::any variesToBoostAny(const Varies &v) {
     else if (v.type == DOUBLE)
         return boost::any(v.data.AsDouble);
     else if (v.type == BOOL)
-        return boost::any(v.data.AsBool);
+        return boost::any(static_cast < bool > (v.data.AsBool == TRUE));
     else if (v.type == CHARP)
         return boost::any(v.data.AsCharP);
     else
