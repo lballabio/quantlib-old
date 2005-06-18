@@ -32,5 +32,12 @@ void QL_LOG_MESSAGE(
     const char *fmt,
     ...);
 
+int QL_LIST_REGISTERED_ENUMS(
+    char **result);
+
+int QL_LIST_ENUM(
+    char *enumId,
+    char **result);
+
 #endif
 

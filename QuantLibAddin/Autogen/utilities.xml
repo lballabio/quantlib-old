@@ -297,5 +297,38 @@
 </returnval>
 </function>
 
-</functionlist>
+<function>
+<name>QL_LIST_REGISTERED_ENUMS</name>
+<codename>qlListRegisteredEnums</codename>
+<desc>return the names of all registered enums</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<returnval>
+    <type>string</type>
+    <tensorrank>vector</tensorrank>
+    <desc>list of names of registered enums</desc>
+</returnval>
+</function>
+<function>
 
+<name>QL_LIST_ENUM</name>
+<codename>qlListEnum</codename>
+<desc>return the members of a given enumeration</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<parameters>
+    <param>
+        <name>enumId</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>name of the enum to list</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>string</type>
+    <tensorrank>vector</tensorrank>
+    <desc>list of the members of the specified enumeration</desc>
+</returnval>
+</function>
+
+</functionlist>

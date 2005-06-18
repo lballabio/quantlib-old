@@ -198,3 +198,31 @@ DLLEXPORT short int* qlDependsOn(
         return 0;
     }
 }
+
+DLLEXPORT LPXLOPER qlListRegisteredEnums() {
+    try {
+        std::vector < std::string > returnValue;
+        returnValue = getRegisteredEnums();
+        static XLOPER xRet;
+        vectorStringToXloper(xRet, returnValue);
+        return &xRet;
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("ERROR: QL_LIST_REGISTERED_ENUMS: ") + e.what(), 2);
+        return 0;
+    }
+}
+
+DLLEXPORT LPXLOPER qlListEnum(
+        char *enumId) {
+    try {
+        std::vector < std::string > returnValue;
+        returnValue = getEnumMembers(
+            enumId);
+        static XLOPER xRet;
+        vectorStringToXloper(xRet, returnValue);
+        return &xRet;
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("ERROR: QL_LIST_ENUM: ") + e.what(), 2);
+        return 0;
+    }
+}

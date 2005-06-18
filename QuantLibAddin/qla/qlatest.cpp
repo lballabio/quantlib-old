@@ -152,9 +152,6 @@ namespace QuantLibAddin {
         properties_.push_back(propertyScalarAny);
         properties_.push_back(propertyVectorAny);
         properties_.push_back(propertyMatrixAny);
-		
-		// Enums
-		registeredEnums = EnumTypeFactory::instance().getAllRegisteredEnums();
     }
 
     // long
@@ -246,16 +243,6 @@ namespace QuantLibAddin {
         *properties_[IDX_MATRIX_ANY]() = input;
         return input;
     }
-
-	const std::vector<std::string>& QlaTest::getRegisteredEnums() const {
-		return registeredEnums;
-	}
-
-	const std::vector<std::string>& QlaTest::getEnumMembers(const std::string& id) const {
-		static std::vector<std::string> ret;
-		ret = EnumTypeFactory::instance().getEnumElements(id);
-		return ret;
-	}
 
 }
 

@@ -23,6 +23,7 @@
 // capture value of QL_VERSION before utilities.hpp #undefs it
 const std::string QL_VERSION_KEEP = QL_VERSION;
 #include <qla/utilities.hpp>
+#include <qla/enumfactory.hpp>
 #include <sstream>
 
 using namespace ObjHandler;
@@ -41,5 +42,16 @@ namespace QuantLibAddin {
         return s.str();
     }
 
+	const std::vector<std::string>& getRegisteredEnums() {
+		static std::vector<std::string> ret
+		    = EnumTypeFactory::instance().getAllRegisteredEnums();
+		return ret;
+	}
+
+	const std::vector<std::string>& getEnumMembers(const std::string& id) {
+		static std::vector<std::string> ret;
+		ret = EnumTypeFactory::instance().getEnumElements(id);
+		return ret;
+	}
 }
 

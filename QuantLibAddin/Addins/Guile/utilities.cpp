@@ -223,3 +223,25 @@ SCM qlDependsOn(SCM x) {
         return SCM_UNSPECIFIED;
     }
 }
+
+SCM qlListRegisteredEnums(SCM x) {
+    try {
+        std::vector < std::string > returnValue = getRegisteredEnums();
+        return Nat2Scm<std::string>::vector(returnValue);
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("qlListRegisteredEnums Error: ") + e.what(), 2);
+        return SCM_EOL;
+    }
+}
+
+SCM qlListEnum(SCM x) {
+    try {
+        std::string enumId = GetChop<std::string>::scalar(x);
+        std::vector < std::string > returnValue = getEnumMembers(
+            enumId);
+        return Nat2Scm<std::string>::vector(returnValue);
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("qlListEnum Error: ") + e.what(), 2);
+        return SCM_EOL;
+    }
+}

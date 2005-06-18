@@ -42,6 +42,14 @@ namespace QuantLibAddin {
     */
     std::string QL_OH_VERSION();
 
+    /*! list all available Enumerations
+    */
+	const std::vector<std::string>& getRegisteredEnums();
+
+    /*! list the members of a given Enumeration
+    */
+	const std::vector<std::string>& getEnumMembers(const std::string&);
+
 }
 
 #endif

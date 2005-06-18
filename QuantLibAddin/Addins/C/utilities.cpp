@@ -20,7 +20,10 @@
 
 extern "C" {
 #include <Addins/C/utilities.h>
+#include <Addins/C/varies.h>
+#include <Addins/C/defines.h>
 }
+#include <Addins/C/varies.hpp>
 
 using namespace ObjHandler;
 using namespace QuantLibAddin;
@@ -56,3 +59,30 @@ void QL_LOG_MESSAGE(
     OH_LOG_MESSAGE(buf);
 }
 
+int QL_LIST_REGISTERED_ENUMS(
+        char **result) {
+    try {
+        std::vector < std::string > returnValue = getRegisteredEnums();
+        Conversion< std::string >::convertArray(returnValue, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE("QL_LIST_REGISTERED_ENUMS Error: " + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+
+int QL_LIST_ENUM(
+        char *enumId,
+        char **result) {
+    try {
+        std::vector < std::string > returnValue = getEnumMembers(
+            std::string(enumId));
+        Conversion< std::string >::convertArray(returnValue, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE("QL_LIST_ENUM Error: " + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}

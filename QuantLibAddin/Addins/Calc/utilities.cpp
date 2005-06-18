@@ -322,3 +322,25 @@ sal_Int32 SAL_CALL QLAddin::qlDependsOn(
         THROW_RTE;
     }
 }
+
+SEQSEQ( STRING ) SAL_CALL QLAddin::qlListRegisteredEnums() THROWDEF_RTE_IAE {
+    try {
+        std::vector < std::string > returnValue = getRegisteredEnums();
+        return VectorStringToSeqSeq(returnValue);
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("ERROR: QL_LIST_REGISTERED_ENUMS: ") + e.what(), 2);
+        THROW_RTE;
+    }
+}
+
+SEQSEQ( STRING ) SAL_CALL QLAddin::qlListEnum(
+        const STRING &enumId) THROWDEF_RTE_IAE {
+    try {
+        std::vector < std::string > returnValue = getEnumMembers(
+            OUStringToStlString(enumId));
+        return VectorStringToSeqSeq(returnValue);
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("ERROR: QL_LIST_ENUM: ") + e.what(), 2);
+        THROW_RTE;
+    }
+}
