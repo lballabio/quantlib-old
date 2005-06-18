@@ -8,7 +8,7 @@ import params
 
 BODY = 'stub.C.body'
 CONV_HANDLE = 'std::string(handle)'
-CONV_BOOL = 'bool(%s)'
+CONV_BOOL = 'bool(%s != 0)'
 CONV_STR = 'std::string(%s)'
 INCLUDES = 'stub.C.includes'
 ROOT = common.ADDIN_ROOT + 'C/'
@@ -113,8 +113,8 @@ def generateFuncSources(groupName, functionGroup):
     plCtor = params.ParameterPass(2, convertString = CONV_STR, convertBool = CONV_BOOL,
         delimiter = ';\n', appendTensor = True, appendScalar = True,
         wrapFormat = 'args.push(%s)', delimitLast = True, prependEol = False)
-    plMember = params.ParameterPass(3, convertString = CONV_STR, skipFirst = True,
-        appendTensor = True, appendScalar = True)
+    plMember = params.ParameterPass(3, convertString = CONV_STR, convertBool = CONV_BOOL,
+        skipFirst = True, appendTensor = True, appendScalar = True)
     fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
     fileFunc = file(fileName, 'w')
     utils.printHeader(fileFunc)

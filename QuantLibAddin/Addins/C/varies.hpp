@@ -53,7 +53,7 @@ public:
     static std::vector < bool > convertVector(unsigned char *a, const long &sz) {
         std::vector < bool > v;
         for (int i=0; i<sz; i++)
-            v.push_back(a[i]);
+            v.push_back(a[i] != 0);
         return v;
     }
 
@@ -75,7 +75,7 @@ public:
         for (int i=0; i<r; i++) {
             std::vector < bool > v;
             for (int j=0; j<c; j++)
-                v.push_back(a[i][j]);
+                v.push_back(a[i][j] != 0);
             vv.push_back(v);
         }
         return vv;
