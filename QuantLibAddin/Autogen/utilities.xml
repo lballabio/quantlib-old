@@ -222,5 +222,80 @@
 </returnval>
 </function>
 
+<function>
+<name>QL_DEPENDS_ON</name>
+<codename>qlDependsOn</codename>
+<desc>force a dependency between two QuantLibAddin functions</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<parameters>
+    <param>
+        <name>dummy0</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dummy parameter (ignored)</desc>
+    </param>
+    <param>
+        <name>dummy1</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dummy parameter (ignored)</desc>
+    </param>
+    <param>
+        <name>dummy2</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dummy parameter (ignored)</desc>
+    </param>
+    <param>
+        <name>dummy3</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dummy parameter (ignored)</desc>
+    </param>
+    <param>
+        <name>dummy4</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dummy parameter (ignored)</desc>
+    </param>
+    <param>
+        <name>dummy5</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dummy parameter (ignored)</desc>
+    </param>
+    <param>
+        <name>dummy6</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dummy parameter (ignored)</desc>
+    </param>
+    <param>
+        <name>dummy7</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dummy parameter (ignored)</desc>
+    </param>
+    <param>
+        <name>dummy8</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dummy parameter (ignored)</desc>
+    </param>
+    <param>
+        <name>dummy9</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dummy parameter (ignored)</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>bool</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>success/failure</desc>
+</returnval>
+</function>
+
 </functionlist>
 

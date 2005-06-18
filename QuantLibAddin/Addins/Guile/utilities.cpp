@@ -214,3 +214,12 @@ SCM qlDate(SCM x) {
     }
 }
 
+
+SCM qlDependsOn(SCM x) {
+    try {
+        return SCM_UNSPECIFIED;
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE("qlDependsOn Error: " + std::string(e.what()), 2);
+        return SCM_UNSPECIFIED;
+    }
+}

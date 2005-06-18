@@ -179,3 +179,22 @@ DLLEXPORT short int* qlDeleteAllObjects() {
     }
 }
 
+DLLEXPORT short int* qlDependsOn(
+        LPXLOPER dummy0,
+        LPXLOPER dummy1,
+        LPXLOPER dummy2,
+        LPXLOPER dummy3,
+        LPXLOPER dummy4,
+        LPXLOPER dummy5,
+        LPXLOPER dummy6,
+        LPXLOPER dummy7,
+        LPXLOPER dummy8,
+        LPXLOPER dummy9) {
+    try {
+        static short int ret = FALSE;
+        return &ret;
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("ERROR: QL_DEPENDS_ON: ") + e.what(), 2);
+        return 0;
+    }
+}

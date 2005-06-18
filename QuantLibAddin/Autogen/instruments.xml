@@ -182,7 +182,7 @@
     </param>
     <param>
         <name ignore='yes'>trigger</name>
-        <type>double</type>
+        <type>any</type>
         <tensorrank>scalar</tensorrank>
         <desc>dep tracking trigger</desc>
     </param>
@@ -209,7 +209,7 @@
     </param>
     <param>
         <name ignore='yes'>trigger</name>
-        <type>double</type>
+        <type>any</type>
         <tensorrank>scalar</tensorrank>
         <desc>dep tracking trigger</desc>
     </param>
@@ -242,7 +242,7 @@
     </param>
     <param>
         <name ignore='yes'>trigger</name>
-        <type>double</type>
+        <type>any</type>
         <tensorrank>scalar</tensorrank>
         <desc>dep tracking trigger</desc>
     </param>

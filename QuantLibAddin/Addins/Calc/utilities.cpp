@@ -303,3 +303,22 @@ sal_Int32 SAL_CALL QLAddin::qlDeleteAllObjects() THROWDEF_RTE_IAE {
     }
 }
 
+
+sal_Int32 SAL_CALL QLAddin::qlDependsOn(
+        const ANY &dummy0,
+        const ANY &dummy1,
+        const ANY &dummy2,
+        const ANY &dummy3,
+        const ANY &dummy4,
+        const ANY &dummy5,
+        const ANY &dummy6,
+        const ANY &dummy7,
+        const ANY &dummy8,
+        const ANY &dummy9) THROWDEF_RTE_IAE {
+    try {
+        return sal_False;
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("ERROR: QL_DEPENDS_ON: ") + e.what(), 2);
+        THROW_RTE;
+    }
+}

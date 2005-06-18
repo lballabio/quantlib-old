@@ -294,9 +294,9 @@
     </param>
     <param>
         <name ignore='yes'>trigger</name>
-        <type>double</type>
+        <type>any</type>
         <tensorrank>scalar</tensorrank>
-        <desc>Interpolate Flag</desc>
+        <desc>dep tracking trigger</desc>
     </param>
 </parameters>
 <returnval>
