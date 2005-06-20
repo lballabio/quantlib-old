@@ -20,11 +20,14 @@
     #include <qla/config.hpp>
 #endif
 
-#include <qla/simpleswap.hpp>
-#include <qla/generalutils.hpp>
-#include <qla/termstructures.hpp>
-#include <qla/enumfactory.hpp>
-#include <qla/xibor.hpp>
+#include "qla/simpleswap.hpp"
+#include "qla/generalutils.hpp"
+#include "qla/termstructures.hpp"
+#include "qla/enumfactory.hpp"
+#include "qla/xibor.hpp"
+#include <ql/CashFlows/fixedratecoupon.hpp>
+#include <ql/CashFlows/parcoupon.hpp>
+#include <vector>
 
 namespace QuantLibAddin {
 	SimpleSwap::SimpleSwap(ObjHandler::ArgumentStack& arguments) {
@@ -82,18 +85,44 @@ namespace QuantLibAddin {
 			fixedSchedule, fixRate, fixDayCounter, floatSchedule, 
 			index, index->settlementDays(), floatSpread,
 			discountingTermStructure));
+	}
 
-		properties_.push_back(ObjHandler::ObjectProperty("NPV", 
-			ObjHandler::any_ptr(new boost::any(swap_->NPV()))));
-		properties_.push_back(ObjHandler::ObjectProperty("FAIR_RATE", 
-			ObjHandler::any_ptr(new boost::any(swap_->fairRate()))));
-		properties_.push_back(ObjHandler::ObjectProperty("FAIR_SPREAD", 
-			ObjHandler::any_ptr(new boost::any(swap_->fairSpread()))));
-		properties_.push_back(ObjHandler::ObjectProperty("FIXED_LEG_BPS", 
-			ObjHandler::any_ptr(new boost::any(swap_->fixedLegBPS()))));
-		properties_.push_back(ObjHandler::ObjectProperty("FLOATING_LEG_BPS", 
-			ObjHandler::any_ptr(new boost::any(swap_->floatingLegBPS()))));
+	const std::vector<std::vector<double> >&
+	SimpleSwap::getFixLeg() {
+		const std::vector<boost::shared_ptr<QuantLib::CashFlow> >& flows = swap_->fixedLeg();
+		fixLeg.clear();
+		for(size_t i = 0; i < flows.size(); i++) {
+			std::vector<double> cf;
+			QuantLib::FixedRateCoupon& c = (QuantLib::FixedRateCoupon&) *(flows[i]);
+			cf.push_back(c.accrualStartDate().serialNumber());
+			cf.push_back(c.accrualEndDate().serialNumber());
+			cf.push_back(c.date().serialNumber());
+			cf.push_back(c.accrualPeriod());
+			cf.push_back(c.accrualDays());
+			cf.push_back(c.amount());
+			fixLeg.push_back(cf);
+		}
+		return fixLeg;
+	}
+
+	const std::vector<std::vector<double> >&
+	SimpleSwap::getFloatLeg() {
+		const std::vector<boost::shared_ptr<QuantLib::CashFlow> >& flows = swap_->floatingLeg();
+		floatLeg.clear();
+		for(size_t i = 0; i < flows.size(); i++) {
+			std::vector<double> cf;
+			QuantLib::ParCoupon& c = (QuantLib::ParCoupon&)*(flows[i]);
+			cf.push_back(c.accrualStartDate().serialNumber());
+			cf.push_back(c.accrualEndDate().serialNumber());
+			cf.push_back(c.date().serialNumber());
+			cf.push_back(c.fixingDate().serialNumber());
+			cf.push_back(c.accrualPeriod());
+			cf.push_back(c.accrualDays());
+			cf.push_back(c.amount());
+			cf.push_back(c.indexFixing());
+			floatLeg.push_back(cf);
+		}
+		return floatLeg;
 	}
 }
-
 

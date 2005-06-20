@@ -33,10 +33,16 @@ namespace QuantLibAddin {
         }
 		const QuantLib::SimpleSwap& getObject() const {return *swap_;}
 
+		const std::vector<std::vector<double> >& getFixLeg();
+		const std::vector<std::vector<double> >& getFloatLeg();
+
     private:
         boost::shared_ptr<QuantLib::SimpleSwap> swap_;
+		std::vector<std::vector<double> > fixLeg;
+		std::vector<std::vector<double> > floatLeg;
     };
 }
 
 #endif
+
 
