@@ -1,9 +1,10 @@
-<?xml version="1.0"?>
-<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
-<functionlist>
+<?xml version='1.0'?>
+<!-- DOCTYPE functiongroup SYSTEM 'functiongroup.dtd' -->
+<functiongroup>
 <headeronly>false</headeronly>
 <desc>functions to construct QuantLib volatility objects</desc>
 <displayname>Volatilities</displayname>
+<functions>
 
 <function>
 <name>QL_BLACK_CONSTANT_VOL</name>
@@ -83,5 +84,6 @@
 </returnval>
 </function>
 
-</functionlist>
+</functions>
+</functiongroup>
 

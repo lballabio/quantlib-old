@@ -1,9 +1,10 @@
-<?xml version="1.0"?>
-<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
-<functionlist>
+<?xml version='1.0'?>
+<!-- DOCTYPE functiongroup SYSTEM 'functiongroup.dtd' -->
+<functiongroup>
 <headeronly>false</headeronly>
 <desc>functions to construct QuantLib Xibor objects</desc>
 <displayname>Indices</displayname>
+<functions>
 
 <function>
 <name>QL_XIBOR</name>
@@ -60,9 +61,9 @@
         <tensorrank>scalar</tensorrank>
         <desc>fixing days (e.g. 2)</desc>
     </param>
-    <param>
+    <param class='YieldTermStructure'>
         <name>ForwardCurve</name>
-        <type class="YieldTermStructure">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of the Yield Curve used for forecasting</desc>
     </param>
@@ -86,5 +87,6 @@
 </returnval>
 </function>
 
-</functionlist>
+</functions>
+</functiongroup>
 

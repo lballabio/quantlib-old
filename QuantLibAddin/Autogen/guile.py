@@ -1,3 +1,21 @@
+"""
+ Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005 Aurelien Chanudet
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
 'output Guile source files'
 
 import common
@@ -25,7 +43,7 @@ def generateFuncHeaders(groupName, functionGroup):
     fileHeader.write('#ifndef qla_%s_h\n' % groupName)
     fileHeader.write('#define qla_%s_h\n\n' % groupName)
     fileHeader.write('#include <guile/gh.h>\n\n')
-    for function in functionGroup[common.FUNCLIST]:
+    for function in functionGroup[common.FUNCS]:
         generateFuncHeader(fileHeader, function, ';\n')
     fileHeader.write('#endif\n\n')
     fileHeader.close()
@@ -34,13 +52,13 @@ def generateFuncHeaders(groupName, functionGroup):
 def generateRegistrations(functionGroup):
     ret = '    /* ' + functionGroup[common.DISPLAYNAME] + ' */\n'
     stub = '    gh_new_procedure("%s", %s, 1, 0, 0);\n'
-    funcList = functionGroup[common.FUNCLIST]
+    funcList = functionGroup[common.FUNCS]
     for function in funcList:
         name = function[common.CODENAME]
         ret += stub % (name, name)
     return ret
 
-def generateInitFunc(functionDefs):
+def generateInitFunc(functionGroups):
     'generate initialisation function'
     fileName = ROOT + 'qladdin.c' + common.TEMPFILE
     fileInit = file(fileName, 'w')
@@ -49,7 +67,6 @@ def generateInitFunc(functionDefs):
     headers = ''
     registrations = ''
     i = 0
-    functionGroups = functionDefs[common.FUNCGROUPS]
     for groupName in functionGroups.keys():
         i += 1
         functionGroup = functionGroups[groupName]
@@ -120,17 +137,17 @@ def generateFuncDefs(groupName, functionGroup):
     bufBody = utils.loadBuffer(BODY)
     fileFunc.write(bufInclude % groupName)
     plMember = params.ParameterPass(3, skipFirst = True)
-    for function in functionGroup[common.FUNCLIST]:
+    for function in functionGroup[common.FUNCS]:
         generateFuncHeader(fileFunc, function, ' {')
         indent = 8 * ' ';
-        if function[common.CTOR]:
+        if function[common.CTOR] == common.TRUE:
             args  = indent + 'std::string handle = GetChop<std::string>::scalar(x);\n'
             args += indent + 'ArgumentStack args;\n'
             args += generateArgList(function[common.PARAMS], indent);
             fName = 'OH_MAKE_OBJECT(%s, handle, args)' % function[common.QLFUNC]
         else:
             args = getConversions(function[common.PARAMS])
-            className = function[common.PARAMS][0][common.CLASS]
+            className = function[common.PARAMS][0][common.ATTS][common.CLASS]
             args += common.FUNC_BODY % (className, className, 'handle',
                 function[common.CODENAME], 'handle')
             paramList = plMember.generateCode(function[common.PARAMS])
@@ -142,17 +159,15 @@ def generateFuncDefs(groupName, functionGroup):
     fileFunc.close()
     utils.updateIfChanged(fileName)
 
-def generate(functionDefs):
+def generate(functionGroups):
     'generate source code for Guile addin'
     utils.logMessage('  begin generating Guile ...')
-    functionGroups = functionDefs[common.FUNCGROUPS]
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
         generateFuncHeaders(groupName, functionGroup)
-        if functionGroup[common.HDRONLY]:
+        if functionGroup[common.HDRONLY] == common.TRUE:
             continue
         generateFuncDefs(groupName, functionGroup)
-    generateInitFunc(functionDefs)
+    generateInitFunc(functionGroups)
     utils.logMessage('  done generation Guile.')
-
 

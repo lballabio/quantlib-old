@@ -1,9 +1,10 @@
-<?xml version="1.0"?>
-<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
-<functionlist>
+<?xml version='1.0'?>
+<!-- DOCTYPE functiongroup SYSTEM 'functiongroup.dtd' -->
+<functiongroup>
 <headeronly>false</headeronly>
 <desc>functions to perform tests of internal QuantLibAddin functionality</desc>
 <displayname>QuantLibAddin Tests</displayname>
+<functions>
 
 <function>
 <name>QL_TEST</name>
@@ -118,9 +119,9 @@
 <constructor>false</constructor>
 <qlfunction>echoScalarLong</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -145,9 +146,9 @@
 <constructor>false</constructor>
 <qlfunction>echoVectorLong</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -172,9 +173,9 @@
 <constructor>false</constructor>
 <qlfunction>echoMatrixLong</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -199,9 +200,9 @@
 <constructor>false</constructor>
 <qlfunction>echoScalarDouble</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -226,9 +227,9 @@
 <constructor>false</constructor>
 <qlfunction>echoVectorDouble</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -253,9 +254,9 @@
 <constructor>false</constructor>
 <qlfunction>echoMatrixDouble</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -280,9 +281,9 @@
 <constructor>false</constructor>
 <qlfunction>echoScalarBool</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -307,9 +308,9 @@
 <constructor>false</constructor>
 <qlfunction>echoVectorBool</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -334,9 +335,9 @@
 <constructor>false</constructor>
 <qlfunction>echoMatrixBool</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -361,9 +362,9 @@
 <constructor>false</constructor>
 <qlfunction>echoScalarString</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -388,9 +389,9 @@
 <constructor>false</constructor>
 <qlfunction>echoVectorString</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -415,9 +416,9 @@
 <constructor>false</constructor>
 <qlfunction>echoMatrixString</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -442,9 +443,9 @@
 <constructor>false</constructor>
 <qlfunction>echoScalarAny</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -469,9 +470,9 @@
 <constructor>false</constructor>
 <qlfunction>echoVectorAny</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -496,9 +497,9 @@
 <constructor>false</constructor>
 <qlfunction>echoMatrixAny</qlfunction>
 <parameters>
-    <param>
+    <param class='QlaTest'>
         <name>handle</name>
-        <type class="QlaTest">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a QlaTest object</desc>
     </param>
@@ -516,6 +517,6 @@
 </returnval>
 </function>
 
-</functionlist>
-
+</functions>
+</functiongroup>
 

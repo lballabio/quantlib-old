@@ -1,3 +1,21 @@
+"""
+ Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005 Aurelien Chanudet
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
 'output C source files'
 
 import common
@@ -26,7 +44,7 @@ def generateFuncHeader(fileHeader, function, suffix):
         replaceTensorAny = 'VariesList *', replacePropertyVector = 'VariesList *',
         formatScalar = '%s *', formatVector = '%s **', formatMatrix = '%s **')
     fileHeader.write('int %s(' % function[common.NAME])
-    if function[common.CTOR]:
+    if function[common.CTOR] == common.TRUE:
         fileHeader.write('\n        char *handle,')
     fileHeader.write(plHeader.generateCode(function[common.PARAMS]))
     fileHeader.write('        %sresult)%s' % (returnType, suffix))
@@ -38,7 +56,7 @@ def generateFuncHeaders(groupName, functionGroup):
     utils.printHeader(fileHeader)
     fileHeader.write('#ifndef qla_%s_h\n' % groupName)
     fileHeader.write('#define qla_%s_h\n\n' % groupName)
-    for function in functionGroup[common.FUNCLIST]:
+    for function in functionGroup[common.FUNCS]:
         generateFuncHeader(fileHeader, function, ';\n\n')
     fileHeader.write('#endif\n\n')
     fileHeader.close()
@@ -126,19 +144,19 @@ def generateFuncSources(groupName, functionGroup):
     bufInclude = utils.loadBuffer(INCLUDES)
     bufBody = utils.loadBuffer(BODY)
     fileFunc.write(bufInclude % (groupName, groupName))
-    for function in functionGroup[common.FUNCLIST]:
+    for function in functionGroup[common.FUNCS]:
         generateFuncHeader(fileFunc, function, ' {\n')
         conversions = generateConversions(function[common.PARAMS])
         returnType = utils.getReturnType(function[common.RETVAL],
             replacePropertyVector = 'Properties', replaceString = 'std::string',
             replaceAny = 'boost::any')
         returnCall = getReturnCall(function[common.RETVAL])
-        if function[common.CTOR]:
+        if function[common.CTOR] == common.TRUE:
             functionBody = common.ARGLINE + plCtor.generateCode(function[common.PARAMS])
             functionName = common.MAKE_FUNCTION
             paramList = common.MAKE_ARGS % (function[common.QLFUNC], common.HANDLE)
         else:
-            className = function[common.PARAMS][0][common.CLASS]
+            className = function[common.PARAMS][0][common.ATTS][common.CLASS]
             functionBody = common.FUNC_BODY % (className, className, CONV_HANDLE,
                 function[common.NAME], CONV_HANDLE)
             functionName = utils.generateFuncCall(function)
@@ -148,7 +166,7 @@ def generateFuncSources(groupName, functionGroup):
     fileFunc.close()
     utils.updateIfChanged(fileName)
 
-def generate(functionDefs):
+def generate(functionGroups):
     'generate source code for C addin'
     global plHeader
     plHeader = params.ParameterDeclare(2, replaceString = 'char',
@@ -156,13 +174,11 @@ def generate(functionDefs):
         derefTensorString = '*', replaceAny = 'Varies', delimitLast = True,
         replaceTensorAny = 'VariesList', replaceBool = 'Boolean')
     utils.logMessage('  begin generating C ...')
-    functionGroups = functionDefs[common.FUNCGROUPS]
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
-        if functionGroup[common.HDRONLY]:
+        if functionGroup[common.HDRONLY] == common.TRUE:
             continue
         generateFuncHeaders(groupName, functionGroup)
         generateFuncSources(groupName, functionGroup)
     utils.logMessage('  done generating C.')
-
 

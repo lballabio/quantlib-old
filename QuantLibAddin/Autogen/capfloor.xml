@@ -1,9 +1,10 @@
-<?xml version="1.0"?>
-<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
-<functionlist>
+<?xml version='1.0'?>
+<!-- DOCTYPE functiongroup SYSTEM 'functiongroup.dtd' -->
+<functiongroup>
 <headeronly>false</headeronly>
 <desc>functions to construct QuantLib cap/floor objects</desc>
 <displayname>Caps/Floors</displayname>
+<functions>
 
 <function>
 <name>QL_CAPFLOOR</name>
@@ -48,9 +49,9 @@
         <tensorrank>scalar</tensorrank>
         <desc>fixing days</desc>
     </param>
-    <param>
+    <param class='YieldTermStructure'>
         <name>handleTermStructure</name>
-        <type class="YieldTermStructure">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle to term structure</desc>
     </param>
@@ -72,9 +73,9 @@
         <tensorrank>scalar</tensorrank>
         <desc>floor strike</desc>
     </param>
-    <param>
+    <param class='AnalyticCapFloorEngine'>
         <name>handleEngine</name>
-        <type class="AnalyticCapFloorEngine">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle to pricing engine</desc>
     </param>
@@ -105,9 +106,9 @@
 <constructor>true</constructor>
 <qlfunction>AnalyticCapFloorEngine</qlfunction>
 <parameters>
-    <param>
+    <param class='AffineModel'>
         <name>handleModel</name>
-        <type class="AffineModel">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>affine model (providing a discount bond option pricing formula)</desc>
     </param>
@@ -119,5 +120,6 @@
 </returnval>
 </function>
 
-</functionlist>
+</functions>
+</functiongroup>
 

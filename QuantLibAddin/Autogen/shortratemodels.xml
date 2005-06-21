@@ -1,9 +1,10 @@
-<?xml version="1.0"?>
-<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
-<functionlist>
+<?xml version='1.0'?>
+<!-- DOCTYPE functiongroup SYSTEM 'functiongroup.dtd' -->
+<functiongroup>
 <headeronly>false</headeronly>
 <desc>functions to construct QuantLib short-rate model objects</desc>
 <displayname>Short Rate Models</displayname>
+<functions>
 
 <function>
 <name>QL_VASICEK</name>
@@ -51,9 +52,9 @@
 <constructor>true</constructor>
 <qlfunction>HullWhite</qlfunction>
 <parameters>
-    <param>
+    <param class='YieldTermStructure'>
         <name>handleTermStructure</name>
-        <type class="YieldTermStructure">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle to a term structure object</desc>
     </param>
@@ -77,5 +78,6 @@
 </returnval>
 </function>
 
-</functionlist>
+</functions>
+</functiongroup>
 

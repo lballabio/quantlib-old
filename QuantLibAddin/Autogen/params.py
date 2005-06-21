@@ -1,3 +1,21 @@
+"""
+ Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005 Aurelien Chanudet
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
 'parameters'
 
 # this module defines a hierarchy of classes
@@ -5,6 +23,7 @@
 # into the corresponding Addin source code
 
 import common
+import utils
 
 # constants
 
@@ -46,7 +65,8 @@ class ParameterList(object):
                 firstItem = False
                 if self.skipFirst:
                     continue
-            if self.param[common.IGNORE] == 'yes' and self.skipFirst: continue
+            if utils.testAttribute(self.param, common.IGNORE, 'yes') \
+                and self.skipFirst: continue
             self.item = ''
             self.process()      # defined in derived class
             self.outList.append(self.item)
@@ -278,16 +298,15 @@ class ParameterPass(ParameterList):
             self.item = self.convertBool % name
         else:
             self.item = self.item + name
-        if self.param[common.TYPE_CNV] != '' and self.skipFirst:
-            if ParameterPass.convExceptionsMap.has_key(self.param[common.TYPE_CNV]):
-                self.item = ParameterPass.convExceptionsMap[self.param[common.TYPE_CNV]](self.item)
+        if utils.testAttribute(self.param, common.TYPE_CNV) and self.skipFirst:
+            typeConversion = self.param[common.ATTS][common.TYPE_CNV]
+            if ParameterPass.convExceptionsMap.has_key(typeConversion):
+                self.item = ParameterPass.convExceptionsMap[typeConversion](self.item)
             else:
-                self.item = 'CREATE_ENUM(%s, %s)' % (self.param[common.TYPE_CNV], self.item)
+                self.item = 'CREATE_ENUM(%s, %s)' % (typeConversion, self.item)
 
     def wrapArgument(self):
         'wrap entire parameter definition in a conversion string if provided'
         if self.wrapFormat:
             self.item = self.wrapFormat % self.item
-
-
 

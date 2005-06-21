@@ -1,9 +1,10 @@
-<?xml version="1.0"?>
-<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
-<functionlist>
+<?xml version='1.0'?>
+<!-- DOCTYPE functiongroup SYSTEM 'functiongroup.dtd' -->
+<functiongroup>
 <headeronly>false</headeronly>
 <desc>functions to construct QuantLib process objects</desc>
 <displayname>Processes</displayname>
+<functions>
 
 <function>
 <name>QL_BLACK_SCHOLES_PROCESS</name>
@@ -12,9 +13,9 @@
 <constructor>true</constructor>
 <qlfunction>BlackScholesProcess</qlfunction>
 <parameters>
-    <param>
+    <param class='BlackVolTermStructure'>
         <name>handleBlackVol</name>
-        <type class="BlackVolTermStructure">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle to a Black Vol Term Structure object</desc>
     </param>
@@ -56,5 +57,6 @@
 </returnval>
 </function>
 
-</functionlist>
+</functions>
+</functiongroup>
 

@@ -1,3 +1,21 @@
+"""
+ Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005 Aurelien Chanudet
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
 'output calc source files'
 
 import common
@@ -49,23 +67,24 @@ def generateFuncMap(functionGroups):
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
         fileMap.write('    // %s\n\n' % functionGroup[common.DISPLAYNAME])
-        for function in functionGroup[common.FUNCLIST]:
+        for function in functionGroup[common.FUNCS]:
             fileMap.write('    // %s\n\n' % function[common.NAME])
             fileMap.write(MAPLINE
                 % ('funcMap', function[common.CODENAME], function[common.NAME]))
             fileMap.write(MAPLINE
                 % ('funcDesc', function[common.CODENAME], function[common.DESC]))
-            if function[common.CTOR]:
+            if function[common.CTOR] == common.TRUE:
                 fileMap.write(PARMLINE
                     % ('argName', function[common.CODENAME], 'handle'))
                 fileMap.write(PARMLINE
                     % ('argDesc', function[common.CODENAME], 
                        'handle of newly constructed ' + function[common.QLFUNC] + ' object'))
-            for param in function[common.PARAMS]:
-                fileMap.write(PARMLINE
-                    % ('argName', function[common.CODENAME], param[common.NAME]))
-                fileMap.write(PARMLINE
-                    % ('argDesc', function[common.CODENAME], param[common.DESC]))
+            if function.has_key(common.PARAMS):
+                for param in function[common.PARAMS]:
+                    fileMap.write(PARMLINE
+                        % ('argName', function[common.CODENAME], param[common.NAME]))
+                    fileMap.write(PARMLINE
+                        % ('argDesc', function[common.CODENAME], param[common.DESC]))
             fileMap.write('\n')
     fileMap.write('}\n\n')
     fileMap.close()
@@ -99,11 +118,11 @@ def generateHeader(fileHeader, function, declararion = True):
         replaceBool = CALC_LONG, replaceAny = CALC_ANY,
         replaceProperty = CALC_ANY)
     fileHeader.write(prototype % (returnType, function[common.CODENAME]))
-    if function[common.CTOR]:
+    if function[common.CTOR] == common.TRUE:
         fileHeader.write('\n        const STRING &handle')
-        if function[common.PARAMS]:
+        if function.has_key(common.PARAMS):
             fileHeader.write(',')
-    if function[common.PARAMS]:
+    if function.has_key(common.PARAMS):
         paramList = plHeader.generateCode(function[common.PARAMS])
         fileHeader.write(paramList)
     fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)
@@ -117,7 +136,7 @@ def generateHeaders(functionGroups):
         utils.printHeader(fileHeader)
         fileHeader.write('#ifndef qla_calc_%s_hpp\n' % groupName)
         fileHeader.write('#define qla_calc_%s_hpp\n\n' % groupName)
-        for function in functionGroup[common.FUNCLIST]:
+        for function in functionGroup[common.FUNCS]:
             generateHeader(fileHeader, function)
         fileHeader.write('#endif\n\n')
         fileHeader.close()
@@ -161,12 +180,12 @@ def generateFuncSource(fileFunc, function, bufBody):
     returnType = utils.getReturnType(function[common.RETVAL], replacePropertyVector = 'Properties',
         replaceAny = 'boost::any', replaceString = 'std::string')
     returnCall = getReturnCall(function[common.RETVAL])
-    if function[common.CTOR]:
+    if function[common.CTOR] == common.TRUE:
         functionBody = common.ARGLINE + plCtor.generateCode(function[common.PARAMS])
         functionName = common.MAKE_FUNCTION
         paramList = common.MAKE_ARGS % (function[common.QLFUNC], CONV_HANDLE)
     else:
-        className = function[common.PARAMS][0][common.CLASS]
+        className = function[common.PARAMS][0][common.ATTS][common.CLASS]
         functionBody = common.FUNC_BODY % (className, className, CONV_HANDLE,
             function[common.NAME], CONV_HANDLE)
         functionName = utils.generateFuncCall(function)
@@ -185,7 +204,7 @@ def generateFuncSources(functionGroups):
     bufBody = utils.loadBuffer(BODY)
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
-        if functionGroup[common.HDRONLY]:
+        if functionGroup[common.HDRONLY] == common.TRUE:
             continue
         fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
         fileFunc = file(fileName, 'w')
@@ -198,7 +217,7 @@ def generateFuncSources(functionGroups):
             convertBool = CONV_BOOL, prependEol = False)
         plMember = params.ParameterPass(3, convertString = CONV_STRING,
             skipFirst = True, appendTensor = True)
-        for function in functionGroup[common.FUNCLIST]:
+        for function in functionGroup[common.FUNCS]:
             generateFuncSource(fileFunc, function, bufBody)
         fileFunc.close()
         utils.updateIfChanged(fileName)
@@ -217,9 +236,12 @@ def generateIDLSource(functionGroups):
         plIdl = params.ParameterDeclare(6, prefix = '[in] ', replaceBool = common.LONG,
             formatVector = FORMAT_TENSOR_IDL, formatMatrix = FORMAT_TENSOR_IDL,
             replaceTensorStr = common.ANY)
-        for function in functionGroup[common.FUNCLIST]:
-            paramList = plIdl.generateCode(function[common.PARAMS])
-            if function[common.CTOR]:
+        for function in functionGroup[common.FUNCS]:
+            if function.has_key(common.PARAMS):
+                paramList = plIdl.generateCode(function[common.PARAMS])
+            else:
+                paramList = ''
+            if function[common.CTOR] == common.TRUE:
                 handle = '\n' + 24 * ' ' + '[in] string handle'
                 if paramList:
                     handle += ','
@@ -235,7 +257,7 @@ def generateIDLSource(functionGroups):
     fileIDL.close()
     utils.updateIfChanged(fileName)
 
-def generate(functionDefs):
+def generate(functionGroups):
     'generate source code for Calc addin'
     global plHeader
     utils.logMessage('  begin generating Calc ...')
@@ -244,12 +266,10 @@ def generate(functionDefs):
         formatVector = FORMAT_TENSOR, formatMatrix = FORMAT_TENSOR,
         derefTensor = '&', replaceAny = CALC_ANY, derefAny = '&',
         prefixString = 'const', prefixAny = 'const', replaceBool = CALC_LONG)
-    functionGroups = functionDefs[common.FUNCGROUPS]
     generateFuncMap(functionGroups)
     generateAutoHeader(functionGroups)
     generateHeaders(functionGroups)
     generateFuncSources(functionGroups)
     generateIDLSource(functionGroups)
     utils.logMessage('  done generating Calc.')
-
 

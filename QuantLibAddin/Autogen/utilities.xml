@@ -1,9 +1,10 @@
-<?xml version="1.0"?>
-<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
-<functionlist>
+<?xml version='1.0'?>
+<!-- DOCTYPE functiongroup SYSTEM 'functiongroup.dtd' -->
+<functiongroup>
 <headeronly>true</headeronly>
 <desc>diagnostic and utility functions</desc>
 <displayname>Utilities</displayname>
+<functions>
 
 <function>
 <name>QL_VERSION</name>
@@ -331,4 +332,6 @@
 </returnval>
 </function>
 
-</functionlist>
+</functions>
+</functiongroup>
+

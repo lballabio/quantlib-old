@@ -1,3 +1,21 @@
+"""
+ Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005 Aurelien Chanudet
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
 'output excel source files'
 
 import common
@@ -69,10 +87,11 @@ def generateParamChar(param):
 def generateParamString(function):
     'generate string to register function parameters'
     paramStr = generateParamChar(function[common.RETVAL])
-    if function[common.CTOR]:
+    if function[common.CTOR] == common.TRUE:
         paramStr += 'C'
-    for param in function[common.PARAMS]:
-        paramStr += generateParamChar(param)
+    if function.has_key(common.PARAMS):
+        for param in function[common.PARAMS]:
+            paramStr += generateParamChar(param)
     return paramStr
 
 def formatLine(text, comment, lastParameter = False):
@@ -87,21 +106,24 @@ def formatLine(text, comment, lastParameter = False):
 def generateFuncRegister(fileHeader, function):
     'generate call to xlfRegister for given function'
     global plExcel
-    funcParams = function[common.PARAMS]
+    if function.has_key(common.PARAMS):
+        funcParams = function[common.PARAMS]
+    else:
+        funcParams = []
     numParams = len(funcParams)
     # We call xlfRegister with NUMDESC parameters to describe the function
     # +1 additional parm to describe each parm in function being registered.
     # NB if a function ever exceeds the MAXPARAM limit then the code below
     # could be rewritten to dispense with the parameter descriptions
     numParamsTotal = NUMDESC + numParams
-    if function[common.CTOR]:
+    if function[common.CTOR] == common.TRUE:
         numParamsTotal += 1            # extra parameter for object handle
     # FIXME validation below to be moved into parse.py?
     if numParamsTotal > MAXPARAM:
         raise ValueError, MAXPARMERR % MAXPARAM
     paramStr = generateParamString(function)
     paramList = plExcel.generateCode(funcParams)
-    if function[common.CTOR]:
+    if function[common.CTOR] == common.TRUE:
         paramList = "handle," + paramList
     if len(paramList) >= MAXLEN:
         raise ValueError, MAXLENERR % (MAXLEN, paramList)
@@ -117,7 +139,7 @@ def generateFuncRegister(fileHeader, function):
     if funcParams:
         fileHeader.write(formatLine(function[common.DESC], 'function description'))
         i = 0
-        if function[common.CTOR]:
+        if function[common.CTOR] == common.TRUE:
             fileHeader.write(formatLine('handle of new object', 'description param 0'))
             i = i + 1
         j = 1
@@ -142,9 +164,9 @@ def generateFuncRegisters(functionDefs):
     utils.printHeader(fileHeader)
     bufHead = utils.loadBuffer(REGHEAD)
     fileHeader.write(bufHead)
-    for group in functionDefs[common.FUNCGROUPS].itervalues():
+    for group in functionDefs.itervalues():
         fileHeader.write('    // %s\n\n' % group[common.DISPLAYNAME])
-        for function in group[common.FUNCLIST]:
+        for function in group[common.FUNCS]:
             generateFuncRegister(fileHeader, function)
     fileHeader.write(REGFOOT)
     fileHeader.close()
@@ -197,14 +219,14 @@ def generateFuncDef(fileFunc, function, bufBody):
         prefixScalar = 'static', replaceString = 'std::string', replaceAny = 'boost::any',
         replacePropertyVector = 'Properties')
     returnCall = getReturnCall(function[common.RETVAL])
-    if function[common.CTOR]:
+    if function[common.CTOR] == common.TRUE:
         handle = '\n' + 8 * ' ' + 'char *handleStub,'
         args = common.ARGLINE + plCtor.generateCode(function[common.PARAMS])
         functionBody = 8 * ' ' + 'std::string handle = getHandleFull(handleStub);\n'
         functionName = common.MAKE_FUNCTION
         paramList2 = common.MAKE_ARGS % (function[common.QLFUNC], 'handle')
     else:
-        className = function[common.PARAMS][0][common.CLASS]
+        className = function[common.PARAMS][0][common.ATTS][common.CLASS]
         handle = ''
         args = ''
         functionBody = common.FUNC_BODY % (className, className, 'std::string(handle)',
@@ -236,14 +258,14 @@ def generateFuncDefs(functionGroups):
         prependEol = False)
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
-        if functionGroup[common.HDRONLY]:
+        if functionGroup[common.HDRONLY] == common.TRUE:
             continue
         fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
         fileFunc = file(fileName, 'w')
         utils.printHeader(fileFunc)
         bufIncludeFull = bufInclude % groupName
         fileFunc.write(bufIncludeFull)
-        for function in functionGroup[common.FUNCLIST]:
+        for function in functionGroup[common.FUNCS]:
             generateFuncDef(fileFunc, function, bufBody)
         fileFunc.close()
         utils.updateIfChanged(fileName)
@@ -252,7 +274,6 @@ def generate(functionDefs):
     'generate source code for Excel addin'
     utils.logMessage('  begin generating Excel ...')
     generateFuncRegisters(functionDefs)
-    generateFuncDefs(functionDefs[common.FUNCGROUPS])
+    generateFuncDefs(functionDefs)
     utils.logMessage('  done generating Excel.')
-
 

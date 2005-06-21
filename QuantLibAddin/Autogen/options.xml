@@ -1,9 +1,10 @@
-<?xml version="1.0"?>
-<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
-<functionlist>
+<?xml version='1.0'?>
+<!-- DOCTYPE functionlist SYSTEM 'functionlist.dtd' -->
+<functiongroup>
 <headeronly>false</headeronly>
 <desc>functions to construct QuantLib option objects</desc>
 <displayname>Options</displayname>
+<functions>
 
 <function>
 <name>QL_CA_ASIAN_OPTION</name>
@@ -12,9 +13,9 @@
 <constructor>true</constructor>
 <qlfunction>ContinuousAveragingAsianOption</qlfunction>
 <parameters>
-    <param>
+    <param class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
-        <type class="BlackScholesProcess">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a Black Scholes Process object</desc>
     </param>
@@ -87,9 +88,9 @@
 <constructor>true</constructor>
 <qlfunction>DiscreteAveragingAsianOption</qlfunction>
 <parameters>
-    <param>
+    <param class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
-        <type class="BlackScholesProcess">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a Black Scholes Process object</desc>
     </param>
@@ -180,9 +181,9 @@
 <constructor>true</constructor>
 <qlfunction>BarrierOption</qlfunction>
 <parameters>
-    <param>
+    <param class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
-        <type class="BlackScholesProcess">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a Black Scholes Process object</desc>
     </param>
@@ -267,9 +268,9 @@
 <constructor>true</constructor>
 <qlfunction>BasketOption</qlfunction>
 <parameters>
-    <param>
+    <param class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
-        <type class="BlackScholesProcess">string</type>
+        <type>string</type>
         <tensorrank>vector</tensorrank>
         <desc>vector of Black Scholes Process object handles</desc>
     </param>
@@ -342,9 +343,9 @@
 <constructor>true</constructor>
 <qlfunction>CliquetOption</qlfunction>
 <parameters>
-    <param>
+    <param class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
-        <type class="BlackScholesProcess">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a Black Scholes Process object</desc>
     </param>
@@ -399,9 +400,9 @@
 <constructor>true</constructor>
 <qlfunction>DividendVanillaOption</qlfunction>
 <parameters>
-    <param>
+    <param class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
-        <type class="BlackScholesProcess">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a Black Scholes Process object</desc>
     </param>
@@ -480,9 +481,9 @@
 <constructor>true</constructor>
 <qlfunction>ForwardVanillaOption</qlfunction>
 <parameters>
-    <param>
+    <param class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
-        <type class="BlackScholesProcess">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a Black Scholes Process object</desc>
     </param>
@@ -561,9 +562,9 @@
 <constructor>false</constructor>
 <qlfunction>setEngine</qlfunction>
 <parameters>
-    <param>
+    <param class='VanillaOption'>
         <name>handle</name>
-        <type class="VanillaOption">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of the Option object</desc>
     </param>
@@ -594,9 +595,9 @@
 <constructor>true</constructor>
 <qlfunction>VanillaOption</qlfunction>
 <parameters>
-    <param>
+    <param class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
-        <type class="BlackScholesProcess">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a Black Scholes Process object</desc>
     </param>
@@ -656,5 +657,6 @@
 </returnval>
 </function>
 
-</functionlist>
+</functions>
+</functiongroup>
 

@@ -1,9 +1,10 @@
-<?xml version="1.0"?>
-<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
-<functionlist>
+<?xml version='1.0'?>
+<!-- DOCTYPE functiongroup SYSTEM 'functiongroup.dtd' -->
+<functiongroup>
 <headeronly>false</headeronly>
 <desc>construct and return a handle to a simple swap object</desc>
 <displayname>Simple Swap</displayname>
+<functions>
 
 <function>
 <name>QL_SIMPLE_SWAP</name>
@@ -84,9 +85,9 @@
         <tensorrank>scalar</tensorrank>
         <desc>Floating Leg Frequency</desc>
     </param>
-    <param>
+    <param class='Xibor'>
         <name>IndexHandle</name>
-        <type class="Xibor">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of the Index for the float leg</desc>
     </param>
@@ -108,9 +109,9 @@
         <tensorrank>scalar</tensorrank>
         <desc>Index Spread</desc>
     </param>
-    <param>
+    <param class='YieldTermStructure'>
         <name>DiscountCurve</name>
-        <type class="YieldTermStructure">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of the Yield Curve used for discounting</desc>
     </param>
@@ -122,21 +123,21 @@
 </returnval>
 </function>
 
-<function>
+<function call_type='QL_OBJECT'>
 <name>QL_SWAP_NPV</name>
 <codename>qlSwapNPV</codename>
 <desc>the NPV of a swap</desc>
 <constructor>false</constructor>
-<qlfunction call_type="QL_OBJECT">NPV</qlfunction>
+<qlfunction>NPV</qlfunction>
 <parameters>
-    <param>
+    <param class='SimpleSwap'>
         <name>handle</name>
-        <type class="SimpleSwap">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of the swap object</desc>
     </param>
-    <param>
-        <name ignore="yes">trigger</name>
+    <param ignore='yes'>
+        <name>trigger</name>
         <type>any</type>
         <tensorrank>scalar</tensorrank>
         <desc>dep tracking trigger</desc>
@@ -150,21 +151,21 @@
 </function>
 
 
-<function>
+<function call_type='QL_OBJECT'>
 <name>QL_SWAP_FAIR_RATE</name>
 <codename>qlSwapFairRate</codename>
 <desc>the fair rate of a swap</desc>
 <constructor>false</constructor>
-<qlfunction call_type="QL_OBJECT">fairRate</qlfunction>
+<qlfunction>fairRate</qlfunction>
 <parameters>
-    <param>
+    <param class='SimpleSwap'>
         <name>handle</name>
-        <type class="SimpleSwap">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of the swap object</desc>
     </param>
-    <param>
-        <name ignore="yes">trigger</name>
+    <param ignore='yes'>
+        <name>trigger</name>
         <type>any</type>
         <tensorrank>scalar</tensorrank>
         <desc>dep tracking trigger</desc>
@@ -177,21 +178,21 @@
 </returnval>
 </function>
 
-<function>
+<function call_type='QL_OBJECT'>
 <name>QL_SWAP_FAIR_SPREAD</name>
 <codename>qlSwapFairSpread</codename>
 <desc>the fair rate of a swap</desc>
 <constructor>false</constructor>
-<qlfunction call_type="QL_OBJECT">fairSpread</qlfunction>
+<qlfunction>fairSpread</qlfunction>
 <parameters>
-    <param>
+    <param class='SimpleSwap'>
         <name>handle</name>
-        <type class="SimpleSwap">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of the swap object</desc>
     </param>
-    <param>
-        <name ignore="yes">trigger</name>
+    <param ignore='yes'>
+        <name>trigger</name>
         <type>any</type>
         <tensorrank>scalar</tensorrank>
         <desc>dep tracking trigger</desc>
@@ -204,21 +205,21 @@
 </returnval>
 </function>
 
-<function>
+<function call_type='QL_OBJECT'>
 <name>QL_SWAP_FIXED_LEG_BPS</name>
 <codename>qlFixedLegBPS</codename>
 <desc>the BPS of the fixed leg</desc>
 <constructor>false</constructor>
-<qlfunction call_type="QL_OBJECT">fixedLegBPS</qlfunction>
+<qlfunction>fixedLegBPS</qlfunction>
 <parameters>
-    <param>
+    <param class='SimpleSwap'>
         <name>handle</name>
-        <type class="SimpleSwap">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of the swap object</desc>
     </param>
-    <param>
-        <name ignore="yes">trigger</name>
+    <param ignore='yes'>
+        <name>trigger</name>
         <type>any</type>
         <tensorrank>scalar</tensorrank>
         <desc>dep tracking trigger</desc>
@@ -231,21 +232,21 @@
 </returnval>
 </function>
 
-<function>
+<function call_type='QL_OBJECT'>
 <name>QL_SWAP_FLOATING_LEG_BPS</name>
 <codename>qlFloatingLegBPS</codename>
 <desc>the BPS of the floating leg</desc>
 <constructor>false</constructor>
-<qlfunction call_type="QL_OBJECT">floatingLegBPS</qlfunction>
+<qlfunction>floatingLegBPS</qlfunction>
 <parameters>
-    <param>
+    <param class='SimpleSwap'>
         <name>handle</name>
-        <type class="SimpleSwap">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of the swap object</desc>
     </param>
-    <param>
-        <name ignore="yes">trigger</name>
+    <param ignore='yes'>
+        <name>trigger</name>
         <type>any</type>
         <tensorrank>scalar</tensorrank>
         <desc>dep tracking trigger</desc>
@@ -265,9 +266,9 @@
 <constructor>false</constructor>
 <qlfunction>getFixLeg</qlfunction>
 <parameters>
-    <param>
+    <param class='SimpleSwap'>
         <name>handle</name>
-        <type class="SimpleSwap">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a SimpleSwap object</desc>
     </param>
@@ -286,14 +287,14 @@
 <constructor>false</constructor>
 <qlfunction>getFloatLeg</qlfunction>
 <parameters>
-    <param>
+    <param class='SimpleSwap'>
         <name>handle</name>
-        <type class="SimpleSwap">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of a SimpleSwap object</desc>
     </param>
-    <param>
-        <name ignore="yes">trigger</name>
+    <param ignore='yes'>
+        <name>trigger</name>
         <type>double</type>
         <tensorrank>scalar</tensorrank>
         <desc>dep tracking trigger</desc>
@@ -306,6 +307,6 @@
 </returnval>
 </function>
 
-</functionlist>
-
+</functions>
+</functiongroup>
 

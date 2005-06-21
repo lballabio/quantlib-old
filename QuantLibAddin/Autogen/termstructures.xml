@@ -1,9 +1,10 @@
-<?xml version="1.0"?>
-<!-- DOCTYPE functionlist SYSTEM "functionlist.dtd" -->
-<functionlist>
+<?xml version='1.0'?>
+<!-- DOCTYPE functiongroup SYSTEM 'functiongroup.dtd' -->
+<functiongroup>
 <headeronly>false</headeronly>
 <desc>functions to construct QuantLib term structure objects</desc>
 <displayname>Term Structures</displayname>
+<functions>
 
 <function>
 <name>QL_DEPOSIT_RATE_HELPER</name>
@@ -267,22 +268,22 @@
 </function>
 
 
-<function>
+<function call_type='QL_OBJECT'>
 <name>QL_GET_DF</name>
 <codename>qlGetDf</codename>
 <desc>retrieve a discount factor at specified date</desc>
 <constructor>false</constructor>
-<qlfunction call_type="QL_OBJECT">discount</qlfunction>
+<qlfunction>discount</qlfunction>
 <parameters>
-    <param>
+    <param class='YieldTermStructure'>
         <name>handle</name>
-        <type class="YieldTermStructure">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of the Option object</desc>
     </param>
-    <param>
+    <param ql_type='QuantLib::Date'>
         <name>DfDate</name>
-        <type ql_type="QuantLib::Date">long</type>
+        <type>long</type>
         <tensorrank>scalar</tensorrank>
         <desc>date</desc>
     </param>
@@ -292,8 +293,8 @@
         <tensorrank>scalar</tensorrank>
         <desc>Interpolate Flag</desc>
     </param>
-    <param>
-        <name ignore='yes'>trigger</name>
+    <param ignore='yes'>
+        <name>trigger</name>
         <type>any</type>
         <tensorrank>scalar</tensorrank>
         <desc>dep tracking trigger</desc>
@@ -313,9 +314,9 @@
 <constructor>false</constructor>
 <qlfunction>setQuote</qlfunction>
 <parameters>
-    <param>
+    <param class='RateHelper'>
         <name>handle</name>
-        <type class="RateHelper">string</type>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle of the Option object</desc>
     </param>
@@ -333,7 +334,6 @@
 </returnval>
 </function>
 
-</functionlist>
-
-
+</functions>
+</functiongroup>
 
