@@ -272,7 +272,7 @@
 <codename>qlGetDf</codename>
 <desc>retrieve a discount factor at specified date</desc>
 <constructor>false</constructor>
-<qlfunction>getDf</qlfunction>
+<qlfunction call_type="QL_OBJECT">discount</qlfunction>
 <parameters>
     <param>
         <name>handle</name>
@@ -282,7 +282,7 @@
     </param>
     <param>
         <name>DfDate</name>
-        <type>long</type>
+        <type ql_type="QuantLib::Date">long</type>
         <tensorrank>scalar</tensorrank>
         <desc>date</desc>
     </param>
@@ -334,5 +334,6 @@
 </function>
 
 </functionlist>
+
 
 

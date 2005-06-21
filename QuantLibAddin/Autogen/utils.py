@@ -156,3 +156,9 @@ def generateConversions(
 
     return ret
 
+def generateFuncCall(function):
+    if function[common.CALL_TYPE] != 'QL_OBJECT':
+        return 'objectPointer->' + function[common.QLFUNC]
+    else:
+        return 'objectPointer->getObject().' + function[common.QLFUNC]
+

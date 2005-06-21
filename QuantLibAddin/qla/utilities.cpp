@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -42,16 +43,24 @@ namespace QuantLibAddin {
         return s.str();
     }
 
-	const std::vector<std::string>& getRegisteredEnums() {
-		static std::vector<std::string> ret
-		    = EnumTypeFactory::instance().getAllRegisteredEnums();
-		return ret;
-	}
+    const std::vector<std::string>& getRegisteredEnums() {
+        static std::vector<std::string> ret
+            = EnumTypeFactory::instance().getAllRegisteredEnums();
+        return ret;
+    }
 
-	const std::vector<std::string>& getEnumMembers(const std::string& id) {
-		static std::vector<std::string> ret;
-		ret = EnumTypeFactory::instance().getEnumElements(id);
-		return ret;
-	}
+    const std::vector<std::string>& getEnumMembers(const std::string& id) {
+        static std::vector<std::string> ret;
+        ret = EnumTypeFactory::instance().getEnumElements(id);
+        return ret;
+    }
+
+    QuantLib::Date createQLDate(long date) {
+        if(date) 
+            return QuantLib::Date(date);
+        else 
+            return QuantLib::Date();
+    }
 }
+
 

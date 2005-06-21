@@ -127,7 +127,7 @@
 <codename>qlSwapNPV</codename>
 <desc>the NPV of a swap</desc>
 <constructor>false</constructor>
-<qlfunction>getObject().NPV</qlfunction>
+<qlfunction call_type="QL_OBJECT">NPV</qlfunction>
 <parameters>
     <param>
         <name>handle</name>
@@ -155,7 +155,7 @@
 <codename>qlSwapFairRate</codename>
 <desc>the fair rate of a swap</desc>
 <constructor>false</constructor>
-<qlfunction>getObject().fairRate</qlfunction>
+<qlfunction call_type="QL_OBJECT">fairRate</qlfunction>
 <parameters>
     <param>
         <name>handle</name>
@@ -182,7 +182,7 @@
 <codename>qlSwapFairSpread</codename>
 <desc>the fair rate of a swap</desc>
 <constructor>false</constructor>
-<qlfunction>getObject().fairSpread</qlfunction>
+<qlfunction call_type="QL_OBJECT">fairSpread</qlfunction>
 <parameters>
     <param>
         <name>handle</name>
@@ -209,7 +209,7 @@
 <codename>qlFixedLegBPS</codename>
 <desc>the BPS of the fixed leg</desc>
 <constructor>false</constructor>
-<qlfunction>getObject().fixedLegBPS</qlfunction>
+<qlfunction call_type="QL_OBJECT">fixedLegBPS</qlfunction>
 <parameters>
     <param>
         <name>handle</name>
@@ -236,7 +236,7 @@
 <codename>qlFloatingLegBPS</codename>
 <desc>the BPS of the floating leg</desc>
 <constructor>false</constructor>
-<qlfunction>getObject().floatingLegBPS</qlfunction>
+<qlfunction call_type="QL_OBJECT">floatingLegBPS</qlfunction>
 <parameters>
     <param>
         <name>handle</name>

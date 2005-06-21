@@ -33,6 +33,7 @@ def getParameter(paramNode):
     param = {}
     nameNode   = paramNode.getElementsByTagName(common.NAME)[0]
     typeNode   = paramNode.getElementsByTagName(common.TYPE)[0]
+    typeCnvNode= typeNode.getAttributeNode(common.TYPE_CNV)
     tensorNode = paramNode.getElementsByTagName(common.TENSOR)[0]
     classNode  = typeNode.getAttributeNode(common.CLASS)
     ignoreNode = nameNode.getAttributeNode(common.IGNORE)
@@ -43,6 +44,7 @@ def getParameter(paramNode):
     param[common.DESC]   = getText(descNode)
     param[common.CLASS]  = getText(classNode)
     param[common.IGNORE] = getText(ignoreNode)
+    param[common.TYPE_CNV]=getText(typeCnvNode)
     return param
 
 def getParameters(paramsNode):
@@ -74,6 +76,7 @@ def getFunction(functionNode):
     handleNode   = functionNode.getElementsByTagName(common.CTOR)[0]
     qlfNode      = functionNode.getElementsByTagName(common.QLFUNC)[0]
     paramsNode   = functionNode.getElementsByTagName(common.PARAMS)
+    call_t       = qlfNode.getAttributeNode(common.CALL_TYPE)
     if paramsNode:
         function[common.PARAMS] = getParameters(paramsNode[0])
     else:
@@ -85,6 +88,7 @@ def getFunction(functionNode):
     function[common.QLFUNC]   = getText(qlfNode)
     function[common.CTOR]     = getBoolean(handleNode)
     function[common.RETVAL]   = getReturnVal(retvalNode)
+    function[common.CALL_TYPE]= getText(call_t)
     return function
 
 def getFunctionGroup(doc):
@@ -120,5 +124,6 @@ def getFunctionDefs():
         functionDefs[common.NUMFUNC] += len(functionGroups[groupName][common.FUNCLIST])
     functionDefs[common.FUNCGROUPS] = functionGroups
     return functionDefs
+
 
 

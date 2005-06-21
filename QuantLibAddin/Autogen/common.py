@@ -4,6 +4,7 @@
 
 ANY         = 'any'
 BOOL        = 'bool'
+CALL_TYPE   = 'call_type'
 CLASS       = 'class'
 CODENAME    = 'codename'
 CTOR        = 'constructor'
@@ -29,6 +30,7 @@ SCALAR      = 'scalar'
 STRING      = 'string'
 TENSOR      = 'tensorrank'
 TYPE        = 'type'
+TYPE_CNV    = 'ql_type'
 VECTOR      = 'vector'
 
 # General
@@ -46,5 +48,6 @@ FUNC_BODY       = '\
             OH_GET_OBJECT(QuantLibAddin::%s, %s);\n\
         if (!objectPointer)\n\
             QL_FAIL("%s: error retrieving object " + %s);\n'
+
 
 

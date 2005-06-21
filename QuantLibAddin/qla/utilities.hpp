@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2004, 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -23,7 +24,7 @@
 #define qla_utilities_hpp
 
 #include <oh/objhandler.hpp>
-
+#include <ql/date.hpp>
 // we want a QuantLibAddin function called QL_VERSION
 // but QuantLib has already #defined that symbol
 #undef QL_VERSION
@@ -44,13 +45,15 @@ namespace QuantLibAddin {
 
     /*! list all available Enumerations
     */
-	const std::vector<std::string>& getRegisteredEnums();
+    const std::vector<std::string>& getRegisteredEnums();
 
     /*! list the members of a given Enumeration
     */
-	const std::vector<std::string>& getEnumMembers(const std::string&);
+    const std::vector<std::string>& getEnumMembers(const std::string&);
 
+    QuantLib::Date createQLDate(long date);
 }
 
 #endif
+
 

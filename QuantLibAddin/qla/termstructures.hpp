@@ -33,7 +33,7 @@ namespace QuantLibAddin {
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(rateHelper_);
         }
-		double setQuote(double quote);
+        double setQuote(double quote);
       protected:
         boost::shared_ptr<QuantLib::SimpleQuote> quote_;
         boost::shared_ptr<QuantLib::RateHelper> rateHelper_;
@@ -49,7 +49,7 @@ namespace QuantLibAddin {
         SwapRateHelper(ObjHandler::ArgumentStack& args);
     };
 
-	class FutureRateHelper : public RateHelper {
+    class FutureRateHelper : public RateHelper {
       public:
         FutureRateHelper(ObjHandler::ArgumentStack& args);
     };
@@ -59,7 +59,7 @@ namespace QuantLibAddin {
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(termStructure_);
         }
-		double getDf(long d, bool ipol) const;
+        const QuantLib::YieldTermStructure& getObject() const {return *termStructure_;}
       protected:
         boost::shared_ptr<QuantLib::YieldTermStructure> termStructure_;
     };
@@ -71,5 +71,6 @@ namespace QuantLibAddin {
 }
 
 #endif
+
 
 

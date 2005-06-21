@@ -209,7 +209,7 @@ def generateFuncDef(fileFunc, function, bufBody):
         args = ''
         functionBody = common.FUNC_BODY % (className, className, 'std::string(handle)',
             function[common.NAME], 'std::string(handle)')
-        functionName = 'objectPointer->' + function[common.QLFUNC]
+        functionName = utils.generateFuncCall(function)
         paramList2 = plMember.generateCode(function[common.PARAMS])
     conversions = utils.generateConversions(
         function[common.PARAMS], 
@@ -254,4 +254,5 @@ def generate(functionDefs):
     generateFuncRegisters(functionDefs)
     generateFuncDefs(functionDefs[common.FUNCGROUPS])
     utils.logMessage('  done generating Excel.')
+
 

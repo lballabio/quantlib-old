@@ -34,21 +34,13 @@ namespace QuantLibAddin {
         }
         const QuantLib::FixedCouponBond& getObject() const {return *myFixedCouponBond;}
 
-        double theoreticalYield(const std::string &compounding) const { 
-            return myFixedCouponBond->yield(CREATE_ENUM(QuantLib::Compounding, compounding));
-        }
-        double cleanPrice(double yield, const std::string &compounding, long settlementDate) const;
-        double dirtyPrice(double yield, const std::string &compounding, long settlementDate) const;
-        double yield(double cleanPrice, const std::string &compounding, long settlementDate) const;
-
-        double accruedAmount(long  d) const;
-
     private:
         boost::shared_ptr<QuantLib::FixedCouponBond> myFixedCouponBond;
     };
 }
 
 #endif
+
 
 
 

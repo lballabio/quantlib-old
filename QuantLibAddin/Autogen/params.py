@@ -216,7 +216,10 @@ class ParameterDeclare(ParameterList):
 #   f(param0, std::string(param1), ...)
 
 class ParameterPass(ParameterList):
-
+    convExceptionsMap = { 
+        'QuantLib::Date': lambda x: 'createQLDate(%s)' % x,
+        'Date': lambda x: 'createQLDate(%s)' % x
+    }
     def __init__(self,
             # base class parameters
             indent = 0,
@@ -275,10 +278,16 @@ class ParameterPass(ParameterList):
             self.item = self.convertBool % name
         else:
             self.item = self.item + name
+        if self.param[common.TYPE_CNV] != '' and self.skipFirst:
+            if ParameterPass.convExceptionsMap.has_key(self.param[common.TYPE_CNV]):
+                self.item = ParameterPass.convExceptionsMap[self.param[common.TYPE_CNV]](self.item)
+            else:
+                self.item = 'CREATE_ENUM(%s, %s)' % (self.param[common.TYPE_CNV], self.item)
 
     def wrapArgument(self):
         'wrap entire parameter definition in a conversion string if provided'
         if self.wrapFormat:
             self.item = self.wrapFormat % self.item
+
 
 

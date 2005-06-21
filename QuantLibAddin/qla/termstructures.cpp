@@ -27,12 +27,12 @@
 
 namespace QuantLibAddin {
 
-	double 
-	RateHelper::setQuote(double quote) {
-		double diff = quote - quote_->value();
-		quote_->setValue(quote);
-		return diff;
-	}
+    double 
+    RateHelper::setQuote(double quote) {
+        double diff = quote - quote_->value();
+        quote_->setValue(quote);
+        return diff;
+    }
 
     DepositRateHelper::DepositRateHelper(ObjHandler::ArgumentStack& arguments) {
         std::string dayCounterID    = OH_POP_ARGUMENT(std::string, arguments);
@@ -45,13 +45,13 @@ namespace QuantLibAddin {
         
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
         QuantLib::Handle<QuantLib::Quote> quoteH(quote_);
-		QuantLib::TimeUnit timeUnits =
+        QuantLib::TimeUnit timeUnits =
             CREATE_ENUM(QuantLib::TimeUnit, timeUnitsID);
-		QuantLib::Calendar calendar =
+        QuantLib::Calendar calendar =
             CREATE_ENUM(QuantLib::Calendar, calendarID);
-		QuantLib::BusinessDayConvention convention = 
+        QuantLib::BusinessDayConvention convention = 
             CREATE_ENUM(QuantLib::BusinessDayConvention, conventionID);
-		QuantLib::DayCounter dayCounter =
+        QuantLib::DayCounter dayCounter =
             CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
         
         rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
@@ -78,19 +78,19 @@ namespace QuantLibAddin {
         
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
         QuantLib::Handle<QuantLib::Quote> quoteH(quote_);
-		QuantLib::TimeUnit timeUnits =
+        QuantLib::TimeUnit timeUnits =
             CREATE_ENUM(QuantLib::TimeUnit, timeUnitsID);
-		QuantLib::Calendar calendar =
+        QuantLib::Calendar calendar =
             CREATE_ENUM(QuantLib::Calendar, calendarID);
-		QuantLib::Frequency fixedFrequency =
+        QuantLib::Frequency fixedFrequency =
             CREATE_ENUM(QuantLib::Frequency, fixedFrequencyID);
-		QuantLib::BusinessDayConvention fixedConvention = 
+        QuantLib::BusinessDayConvention fixedConvention = 
             CREATE_ENUM(QuantLib::BusinessDayConvention, fixedConventionID);
-		QuantLib::DayCounter fixedDayCounter =
+        QuantLib::DayCounter fixedDayCounter =
             CREATE_ENUM(QuantLib::DayCounter, fixedDayCounterID);
-		QuantLib::Frequency floatingFrequency =
+        QuantLib::Frequency floatingFrequency =
             CREATE_ENUM(QuantLib::Frequency, floatingFrequencyID);
-		QuantLib::BusinessDayConvention floatingConvention = 
+        QuantLib::BusinessDayConvention floatingConvention = 
             CREATE_ENUM(QuantLib::BusinessDayConvention, floatingConventionID);
         
         rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
@@ -106,40 +106,34 @@ namespace QuantLibAddin {
                                          floatingConvention));
     }
 
-	FutureRateHelper::FutureRateHelper(ObjHandler::ArgumentStack& arguments) {
-		QuantLib::Integer decade     = OH_POP_ARGUMENT(long, arguments);	
+    FutureRateHelper::FutureRateHelper(ObjHandler::ArgumentStack& arguments) {
+        QuantLib::Integer decade     = OH_POP_ARGUMENT(long, arguments);    
         std::string calendarID       = OH_POP_ARGUMENT(std::string, arguments);
-		std::string bDayConventionID = OH_POP_ARGUMENT(std::string, arguments);
-		std::string dayCounterID     = OH_POP_ARGUMENT(std::string, arguments);
-		QuantLib::Integer months     = OH_POP_ARGUMENT(long, arguments);	
-		std::string immDateID        = OH_POP_ARGUMENT(std::string, arguments);
+        std::string bDayConventionID = OH_POP_ARGUMENT(std::string, arguments);
+        std::string dayCounterID     = OH_POP_ARGUMENT(std::string, arguments);
+        QuantLib::Integer months     = OH_POP_ARGUMENT(long, arguments);    
+        std::string immDateID        = OH_POP_ARGUMENT(std::string, arguments);
         double price                 = OH_POP_ARGUMENT(double, arguments);
 
-		QuantLib::DayCounter dayCounter =
+        QuantLib::DayCounter dayCounter =
             CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
-		QuantLib::BusinessDayConvention bDayConvention = 
+        QuantLib::BusinessDayConvention bDayConvention = 
             CREATE_ENUM(QuantLib::BusinessDayConvention, bDayConventionID);
-		QuantLib::Calendar calendar =
+        QuantLib::Calendar calendar =
             CREATE_ENUM(QuantLib::Calendar, calendarID);
-		QuantLib::Date expiry = FutIDtoExpiryDate(immDateID, calendar, bDayConvention, decade);
+        QuantLib::Date expiry = FutIDtoExpiryDate(immDateID, calendar, bDayConvention, decade);
 
-		quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(price));
-		rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
-			new QuantLib::FuturesRateHelper(
-				QuantLib::Handle<QuantLib::Quote>(quote_),
-				expiry,
-				months,
-				calendar,
-				bDayConvention,
-				dayCounter));
-	}
-	
-	double 
-	YieldTermStructure::getDf(long ldt, bool ipol) const {
-		QuantLib::Date date(ldt);
-		return termStructure_->discount(date, ipol);
-	}
-    
+        quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(price));
+        rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
+            new QuantLib::FuturesRateHelper(
+                QuantLib::Handle<QuantLib::Quote>(quote_),
+                expiry,
+                months,
+                calendar,
+                bDayConvention,
+                dayCounter));
+    }
+
     PiecewiseFlatForward::PiecewiseFlatForward(ObjHandler::ArgumentStack& arguments) {
         std::string dayCounterID    = OH_POP_ARGUMENT(std::string, arguments);
         std::vector<std::string> handlesRateHelper =
@@ -163,7 +157,7 @@ namespace QuantLibAddin {
             rateHelpersQL.push_back(rateHelperQL);
         }
         
-		QuantLib::DayCounter dayCounter =
+        QuantLib::DayCounter dayCounter =
             CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
         
         termStructure_ = boost::shared_ptr<QuantLib::YieldTermStructure>(
@@ -172,6 +166,7 @@ namespace QuantLibAddin {
                                                dayCounter));
     }
 }
+
 
 
 

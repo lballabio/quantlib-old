@@ -134,8 +134,7 @@ def generateFuncDefs(groupName, functionGroup):
             args += common.FUNC_BODY % (className, className, 'handle',
                 function[common.CODENAME], 'handle')
             paramList = plMember.generateCode(function[common.PARAMS])
-            fName = 'objectPointer->%s(%s)' % (function[common.QLFUNC], 
-                paramList)
+            fName = '%s(%s)' % (utils.generateFuncCall(function), paramList)
         retType = utils.getReturnType(function[common.RETVAL], replacePropertyVector = 'Properties',
             replaceString = 'std::string', replaceAny = 'boost::any')
         retCall = generateReturnCall(function[common.RETVAL])
@@ -155,4 +154,5 @@ def generate(functionDefs):
         generateFuncDefs(groupName, functionGroup)
     generateInitFunc(functionDefs)
     utils.logMessage('  done generation Guile.')
+
 

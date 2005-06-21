@@ -172,7 +172,7 @@
 <codename>qlThCleanPrice</codename>
 <desc>theoretical clean price: The default bond settlement is used for calculation.</desc>
 <constructor>false</constructor>
-<qlfunction>getObject().cleanPrice</qlfunction>
+<qlfunction call_type="QL_OBJECT">cleanPrice</qlfunction>
 <parameters>
     <param>
         <name>handle</name>
@@ -199,7 +199,7 @@
 <codename>qlThDirtyPrice</codename>
 <desc>theoretical dirty price: The default bond settlement is used for calculation.</desc>
 <constructor>false</constructor>
-<qlfunction>getObject().dirtyPrice</qlfunction>
+<qlfunction call_type="QL_OBJECT">dirtyPrice</qlfunction>
 <parameters>
     <param>
         <name>handle</name>
@@ -226,7 +226,7 @@
 <codename>qlThBondYield</codename>
 <desc>theoretical bond yield: The default bond settlement and theoretical price are used for calculation.</desc>
 <constructor>false</constructor>
-<qlfunction>theoreticalYield</qlfunction>
+<qlfunction call_type="QL_OBJECT">yield</qlfunction>
 <parameters>
     <param>
         <name>handle</name>
@@ -236,7 +236,7 @@
     </param>
     <param>
         <name>Compounding</name>
-        <type>string</type>
+        <type ql_type="QuantLib::Compounding">string</type>
         <tensorrank>scalar</tensorrank>
         <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
     </param>
@@ -259,7 +259,7 @@
 <codename>qlCleanPrice</codename>
 <desc>If no settlement is given the default bond settlement is used for calculation.</desc>
 <constructor>false</constructor>
-<qlfunction>cleanPrice</qlfunction>
+<qlfunction call_type="QL_OBJECT">cleanPrice</qlfunction>
 <parameters>
     <param>
         <name>handle</name>
@@ -275,13 +275,13 @@
     </param>
     <param>
         <name>compounding</name>
-        <type>string</type>
+        <type ql_type="QuantLib::Compounding">string</type>
         <tensorrank>scalar</tensorrank>
         <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
     </param>
     <param>
         <name>settlementDate</name>
-        <type>long</type>
+        <type ql_type="QuantLib::Date">long</type>
         <tensorrank>scalar</tensorrank>
         <desc>settlement date</desc>
     </param>
@@ -298,7 +298,7 @@
 <codename>qlDirtyPrice</codename>
 <desc>dirty price: If no settlement is given the default bond settlement is used for calculation.</desc>
 <constructor>false</constructor>
-<qlfunction>dirtyPrice</qlfunction>
+<qlfunction call_type="QL_OBJECT">dirtyPrice</qlfunction>
 <parameters>
     <param>
         <name>handle</name>
@@ -314,13 +314,13 @@
     </param>
     <param>
         <name>compounding</name>
-        <type>string</type>
+        <type ql_type="QuantLib::Compounding">string</type>
         <tensorrank>scalar</tensorrank>
         <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
     </param>
     <param>
         <name>settlementDate</name>
-        <type>long</type>
+        <type ql_type="QuantLib::Date">long</type>
         <tensorrank>scalar</tensorrank>
         <desc>settlement date</desc>
     </param>
@@ -337,7 +337,7 @@
 <codename>qlYield</codename>
 <desc>Yield: If no settlement is given the default bond settlement is used for calculation.</desc>
 <constructor>false</constructor>
-<qlfunction>yield</qlfunction>
+<qlfunction call_type="QL_OBJECT">yield</qlfunction>
 <parameters>
     <param>
         <name>handle</name>
@@ -353,13 +353,13 @@
     </param>
     <param>
         <name>compounding</name>
-        <type>string</type>
+        <type ql_type="QuantLib::Compounding">string</type>
         <tensorrank>scalar</tensorrank>
         <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
     </param>
     <param>
         <name>settlementDate</name>
-        <type>long</type>
+        <type ql_type="QuantLib::Date">long</type>
         <tensorrank>scalar</tensorrank>
         <desc>settlement date</desc>
     </param>
@@ -376,7 +376,7 @@
 <codename>qlAccrued</codename>
 <desc>Accrued: If no settlement is given the default bond settlement is used for calculation.</desc>
 <constructor>false</constructor>
-<qlfunction>accruedAmount</qlfunction>
+<qlfunction call_type="QL_OBJECT">accruedAmount</qlfunction>
 <parameters>
     <param>
         <name>handle</name>
@@ -386,7 +386,7 @@
     </param>
     <param>
         <name>settlementDate</name>
-        <type>long</type>
+        <type ql_type="QuantLib::Date">long</type>
         <tensorrank>scalar</tensorrank>
         <desc>settlement date</desc>
     </param>
@@ -399,5 +399,4 @@
 </function>
 
 </functionlist>
-
 

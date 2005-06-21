@@ -141,7 +141,7 @@ def generateFuncSources(groupName, functionGroup):
             className = function[common.PARAMS][0][common.CLASS]
             functionBody = common.FUNC_BODY % (className, className, CONV_HANDLE,
                 function[common.NAME], CONV_HANDLE)
-            functionName = 'objectPointer->' + function[common.QLFUNC]
+            functionName = utils.generateFuncCall(function)
             paramList = plMember.generateCode(function[common.PARAMS])
         fileFunc.write(bufBody % (conversions, functionBody, returnType,
             functionName, paramList, returnCall, function[common.NAME]))
@@ -164,4 +164,5 @@ def generate(functionDefs):
         generateFuncHeaders(groupName, functionGroup)
         generateFuncSources(groupName, functionGroup)
     utils.logMessage('  done generating C.')
+
 

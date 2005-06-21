@@ -80,34 +80,8 @@ namespace QuantLibAddin {
                                             ));
     }
 
-    double 
-    FixedCouponBond::cleanPrice(double yield, const std::string &compounding, long settlementDate) const {
-        QuantLib::Compounding comp = CREATE_ENUM(QuantLib::Compounding, compounding);
-        QuantLib::Date sett;
-        if(settlementDate) sett = QuantLib::Date(settlementDate);
-        return myFixedCouponBond->cleanPrice(yield, comp, sett);
-    }
-    double 
-    FixedCouponBond::dirtyPrice(double yield, const std::string &compounding, long settlementDate) const {
-        QuantLib::Compounding comp = CREATE_ENUM(QuantLib::Compounding, compounding);
-        QuantLib::Date sett;
-        if(settlementDate) sett = QuantLib::Date(settlementDate);
-        return myFixedCouponBond->dirtyPrice(yield, comp, sett);
-    }
-    double 
-    FixedCouponBond::yield(double cleanPrice, const std::string &compounding, long settlementDate) const {
-        QuantLib::Compounding comp = CREATE_ENUM(QuantLib::Compounding, compounding);
-        QuantLib::Date sett;
-        if(settlementDate) sett = QuantLib::Date(settlementDate);
-        return myFixedCouponBond->yield(cleanPrice, comp, sett);
-    }
-    double 
-    FixedCouponBond::accruedAmount(long  d) const {
-        QuantLib::Date sett;
-        if(d) sett = QuantLib::Date(d);
-        return myFixedCouponBond->accruedAmount(sett);
-    }
 }
+
 
 
 
