@@ -89,9 +89,8 @@ def generateParamString(function):
     paramStr = generateParamChar(function[common.RETVAL])
     if function[common.CTOR] == common.TRUE:
         paramStr += 'C'
-    if function.has_key(common.PARAMS):
-        for param in function[common.PARAMS]:
-            paramStr += generateParamChar(param)
+    for param in function[common.PARAMS]:
+        paramStr += generateParamChar(param)
     return paramStr
 
 def formatLine(text, comment, lastParameter = False):
@@ -106,10 +105,7 @@ def formatLine(text, comment, lastParameter = False):
 def generateFuncRegister(fileHeader, function):
     'generate call to xlfRegister for given function'
     global plExcel
-    if function.has_key(common.PARAMS):
-        funcParams = function[common.PARAMS]
-    else:
-        funcParams = []
+    funcParams = function[common.PARAMS]
     numParams = len(funcParams)
     # We call xlfRegister with NUMDESC parameters to describe the function
     # +1 additional parm to describe each parm in function being registered.

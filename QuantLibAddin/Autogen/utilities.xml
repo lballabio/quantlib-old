@@ -12,6 +12,7 @@
 <desc>returns the version number of QuantLib</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
+<parameters></parameters>
 <returnval>
     <type>string</type>
     <tensorrank>scalar</tensorrank>
@@ -25,6 +26,7 @@
 <desc>returns the version number of ObjectHandler</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
+<parameters></parameters>
 <returnval>
     <type>string</type>
     <tensorrank>scalar</tensorrank>
@@ -182,6 +184,7 @@
 <desc>write all object descriptions to log file</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
+<parameters></parameters>
 <returnval>
     <type>bool</type>
     <tensorrank>scalar</tensorrank>
@@ -216,6 +219,7 @@
 <desc>delete all objects from repository</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
+<parameters></parameters>
 <returnval>
     <type>bool</type>
     <tensorrank>scalar</tensorrank>
@@ -304,6 +308,7 @@
 <desc>return the names of all registered enums</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
+<parameters></parameters>
 <returnval>
     <type>string</type>
     <tensorrank>vector</tensorrank>

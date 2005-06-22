@@ -79,12 +79,11 @@ def generateFuncMap(functionGroups):
                 fileMap.write(PARMLINE
                     % ('argDesc', function[common.CODENAME], 
                        'handle of newly constructed ' + function[common.QLFUNC] + ' object'))
-            if function.has_key(common.PARAMS):
-                for param in function[common.PARAMS]:
-                    fileMap.write(PARMLINE
-                        % ('argName', function[common.CODENAME], param[common.NAME]))
-                    fileMap.write(PARMLINE
-                        % ('argDesc', function[common.CODENAME], param[common.DESC]))
+            for param in function[common.PARAMS]:
+                fileMap.write(PARMLINE
+                    % ('argName', function[common.CODENAME], param[common.NAME]))
+                fileMap.write(PARMLINE
+                    % ('argDesc', function[common.CODENAME], param[common.DESC]))
             fileMap.write('\n')
     fileMap.write('}\n\n')
     fileMap.close()
@@ -120,11 +119,9 @@ def generateHeader(fileHeader, function, declararion = True):
     fileHeader.write(prototype % (returnType, function[common.CODENAME]))
     if function[common.CTOR] == common.TRUE:
         fileHeader.write('\n        const STRING &handle')
-        if function.has_key(common.PARAMS):
-            fileHeader.write(',')
-    if function.has_key(common.PARAMS):
-        paramList = plHeader.generateCode(function[common.PARAMS])
-        fileHeader.write(paramList)
+        fileHeader.write(',')
+    paramList = plHeader.generateCode(function[common.PARAMS])
+    fileHeader.write(paramList)
     fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)
 
 def generateHeaders(functionGroups):
@@ -237,10 +234,7 @@ def generateIDLSource(functionGroups):
             formatVector = FORMAT_TENSOR_IDL, formatMatrix = FORMAT_TENSOR_IDL,
             replaceTensorStr = common.ANY)
         for function in functionGroup[common.FUNCS]:
-            if function.has_key(common.PARAMS):
-                paramList = plIdl.generateCode(function[common.PARAMS])
-            else:
-                paramList = ''
+            paramList = plIdl.generateCode(function[common.PARAMS])
             if function[common.CTOR] == common.TRUE:
                 handle = '\n' + 24 * ' ' + '[in] string handle'
                 if paramList:

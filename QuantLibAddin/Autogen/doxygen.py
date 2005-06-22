@@ -50,10 +50,7 @@ def deriveRetCode(retVal):
 def generateFuncDoc(fileFunc, function):
     'generate documentation for given function'
     global plDoc
-    if function.has_key(common.PARAMS):
-        paramList = plDoc.generateCode(function[common.PARAMS])
-    else:
-        paramList = ''
+    paramList = plDoc.generateCode(function[common.PARAMS])
     retCode = deriveRetCode(function[common.RETVAL])
     fileFunc.write('\\anchor %s \\b %s\n' % (function[common.NAME], function[common.NAME]))
     fileFunc.write('\\code\n')
@@ -66,9 +63,8 @@ def generateFuncDoc(fileFunc, function):
     fileFunc.write('\\endcode\n')
     fileFunc.write('\\par Description:\n')
     fileFunc.write(function[common.DESC])
-    if function.has_key(common.PARAMS):
-        for param in function[common.PARAMS]:
-            fileFunc.write('\\param %s %s\n' % (param[common.NAME], param[common.DESC]))
+    for param in function[common.PARAMS]:
+        fileFunc.write('\\param %s %s\n' % (param[common.NAME], param[common.DESC]))
     fileFunc.write('\\return %s\n\n' % function[common.RETVAL][common.DESC])
 
 def generateAllDoc(allFuncs):
