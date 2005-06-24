@@ -21,19 +21,22 @@ import getopt
 import common
 import utils
 import parse
-import c
-import calc
+import qla
 import excel
+import calc
+import c
 import guile
 import doxygen
 
 # global constants
 
-PATTERN_FUNCTIONS = r'(.*).xml\Z'
+PATTERN_FUNCTIONS = r'.*.xml\Z'
+PATTERN_ENUMS     = r'enums.xml\Z'
 
 def usage():
     print 'usage: ' + sys.argv[0] + ' -[targets]'
     print '    where [targets] is any of:'
+    print '        q - generate source for QuantLibAddin'
     print '        e - generate source for Excel addin'
     print '        o - generate source for OpenOffice.org Calc addin'
     print '        c - generate source for C addin'
@@ -46,10 +49,11 @@ def usage():
 # parse command line arguments
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'eocgdah', 'help' )
+    opts, args = getopt.getopt(sys.argv[1:], 'qeocgdah', 'help' )
 except getopt.GetoptError:
     usage()
 
+buildQla   = False
 buildExcel = False
 buildCalc  = False
 buildC     = False
@@ -59,6 +63,8 @@ buildGuile = False
 for o, a in opts:
     if o in ('-h', '--help'):
         usage()
+    if o == '-q':
+        buildQla   = True
     if o == '-e':
         buildExcel = True
     if o == '-o':
@@ -70,28 +76,32 @@ for o, a in opts:
     if o == '-d':
         buildDocs  = True
     if o == '-a':
+        buildQla   = True
         buildExcel = True
         buildCalc  = True
         buildC     = True
         buildGuile = True
         buildDocs  = True
 
-if not buildExcel and not buildCalc and not buildC \
-   and not buildGuile and not buildDocs:
+if not buildQla and not buildExcel and not buildCalc \
+    and not buildC and not buildGuile and not buildDocs:
     usage()
 
 # generate source code for chosen target projects
 
 utils.logMessage('begin ...')
 utils.init()
-functionDefs = parse.parseFiles(PATTERN_FUNCTIONS)
+functionDefs = parse.parseFiles(PATTERN_FUNCTIONS, PATTERN_ENUMS)
+enumDefs     = parse.parseFiles(PATTERN_ENUMS)
 
-if buildC:
-    c.generate(functionDefs)
-if buildCalc:
-    calc.generate(functionDefs)
+if buildQla:
+    qla.generate(enumDefs)
 if buildExcel:
     excel.generate(functionDefs)
+if buildCalc:
+    calc.generate(functionDefs)
+if buildC:
+    c.generate(functionDefs)
 if buildGuile:
     guile.generate(functionDefs)
 if buildDocs:

@@ -23,6 +23,10 @@ import xml.dom.minidom
 import re
 import os
 
+# constants
+
+PATTERN_XMLFILES = '(.*).xml'
+
 def isEmptyNode(n):
     return n.nodeType == xml.dom.Node.TEXT_NODE \
     and not n.hasChildNodes() \
@@ -65,12 +69,14 @@ def convertNode(n):
                     ret[c.nodeName].append(convertNode(cc))
     return ret
 
-def parseFiles(pattern):
+def parseFiles(patternMatch, patternExclude = ''):
     'parse list of xml files into nested data structure'
     ret = {}
     fileNames = os.listdir('.')
     for fileName in fileNames:
-        matchName = re.match(pattern, fileName)
+        if not re.match(patternMatch, fileName): continue
+        if patternExclude and re.match(patternExclude, fileName): continue
+        matchName = re.match(PATTERN_XMLFILES, fileName)
         if not matchName: continue
         groupName = matchName.group(1)
         dom = xml.dom.minidom.parse(fileName)

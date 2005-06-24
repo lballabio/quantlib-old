@@ -1,7 +1,7 @@
 
 SUBDIRS = \
-    qla \
     Autogen \
+    qla \
     Addins/C \
     Addins/Calc \
     Addins/Excel \
