@@ -126,6 +126,10 @@ SOURCE=.\parse.py
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla.py
+# End Source File
+# Begin Source File
+
 SOURCE=.\utils.py
 # End Source File
 # End Group
@@ -180,6 +184,10 @@ SOURCE=.\stub.Excel.includes
 
 SOURCE=.\stub.Excel.regheader
 # End Source File
+# Begin Source File
+
+SOURCE=.\stub.Qla.includes
+# End Source File
 # End Group
 # Begin Group "metadata"
 
@@ -187,6 +195,10 @@ SOURCE=.\stub.Excel.regheader
 # Begin Source File
 
 SOURCE=.\capfloor.xml
+# End Source File
+# Begin Source File
+
+SOURCE=.\enums.xml
 # End Source File
 # Begin Source File
 
