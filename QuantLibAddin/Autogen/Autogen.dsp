@@ -174,6 +174,10 @@ SOURCE=.\stub.copyright
 # End Source File
 # Begin Source File
 
+SOURCE=.\stub.Doxygen.enums
+# End Source File
+# Begin Source File
+
 SOURCE=.\stub.Excel.body
 # End Source File
 # Begin Source File

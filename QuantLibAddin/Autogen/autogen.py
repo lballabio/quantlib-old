@@ -105,7 +105,7 @@ if buildC:
 if buildGuile:
     guile.generate(functionDefs)
 if buildDocs:
-    doxygen.generate(functionDefs)
+    doxygen.generate(functionDefs, enumDefs)
 
 utils.logMessage('end')
 

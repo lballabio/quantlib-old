@@ -1,0 +1,18 @@
+/*! \page enums Enumerations
+
+    \section enum_overview Overview
+    QuantLibAddin uses an enumeration factory to translate text strings
+    into classes of minor or transient QuantLib objects which must be 
+    constructed as part of larger operations.  For example the constructor for
+    an option accepts string \c PUT to indicate an option type of class
+    \c QuantLib::Option::Put.  This document defines all enumerations recognized 
+    by QuantLibAddin.  Input strings are case insensitive.
+
+    QuantLibAddin supports two functions for querying supported enumerations
+    interactively at run time:
+
+        \ref QL_LIST_REGISTERED_ENUMS ()\n
+        \ref QL_LIST_ENUM ()\n
+
+    Documentation of supported enumerations:
+

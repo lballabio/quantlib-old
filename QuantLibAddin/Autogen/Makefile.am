@@ -15,7 +15,7 @@ AUTOGEN_STUBS := stub.Qla.includes stub.C.body stub.C.includes \
                  stub.Calc.body stub.Calc.idlfoot stub.Calc.idlfunc \
                  stub.Calc.idlhead stub.Calc.includes stub.Calc.map \
                  stub.Excel.body stub.Excel.includes stub.Excel.regheader \
-                 stub.copyright
+                 stub.Doxygen.enums stub.copyright
 
 # command line arguments
 AUTOGEN_ARGS = -dq

@@ -32,7 +32,11 @@ INCLUDES   = 'stub.Qla.includes'
 def generateEnum(fileEnum, enumDef):
     fileEnum.write(ENUM_START % enumDef[common.CLASS])
     for enum in enumDef[common.DEFS]:
-        fileEnum.write(ENUM_LINE % (enum[common.STRING], enum[common.ENUM]))
+        if enumDef[common.CTOR] == common.TRUE:
+            enumVal = enumDef[common.CLASS] + '(' + enum[common.ENUM] + ')'
+        else:
+            enumVal = enum[common.ENUM]
+        fileEnum.write(ENUM_LINE % (enum[common.STRING], enumVal))
     fileEnum.write(ENUM_END)
 
 def generateEnumSource(enumDefs):

@@ -24,7 +24,6 @@ import params
 
 # constants
 
-ROOT = '../Docs/pages/'
 ALL_HEADER = \
 '/*! \page all All\n\
 \section overview Overview\n\
@@ -32,11 +31,41 @@ Below is an alphabetical list of links to documentation for\n\
 all functions in QuantLibAddin.\n\
 \section functions Function List\n\
 \n'
+LINE_ENUM    = '    <tr><td>%s</td><td>%s</td></tr>\n'
+LINE_REF     = '        \\ref enum_%d\\n\n'
+LINE_SECTION = '    \\section enum_%d %s\n'
+LINE_TABLE   = '    <table>\n\
+    <tr><td><b>String</b></td><td><b>Enumeration</b></td></tr>\n'
+ROOT         = '../Docs/pages/'
+STUB_ENUMS   = 'stub.Doxygen.enums'
 
 # global variables
 
 # parameter list objects
 plDoc    = ''    # function prototypes
+
+def generateEnums(enumDefs):
+    'generate documentation for enumerations'
+    enumList = enumDefs[common.ENUMS][common.ENUMDEFS]
+    fileName = ROOT + 'enums.docs' + common.TEMPFILE
+    fileDoc = file(fileName, 'w')
+    utils.printHeader(fileDoc)
+    bufEnums = utils.loadBuffer(STUB_ENUMS)
+    fileDoc.write(bufEnums)
+    for i in xrange(len(enumList)):
+        fileDoc.write(LINE_REF % i)
+    fileDoc.write('\n')
+    i = 0
+    for enumDef in enumList:
+        fileDoc.write(LINE_SECTION % (i, enumDef[common.CLASS]))
+        i += 1
+        fileDoc.write(LINE_TABLE)
+        for enum in enumDef[common.DEFS]:
+            fileDoc.write(LINE_ENUM % (enum[common.STRING], enum[common.ENUM]))
+        fileDoc.write('    </table>\n\n')
+    fileDoc.write('*/\n\n')
+    fileDoc.close()
+    utils.updateIfChanged(fileName)
 
 def deriveRetCode(retVal):
     'format function return value'
@@ -80,15 +109,15 @@ def generateAllDoc(allFuncs):
     fileDoc.close()
     utils.updateIfChanged(fileName)
 
-def generateDocs(functionGroups):
+def generateDocs(functionDefs):
     'generate doxygen documentation files'
     global plDoc
     allFuncs = []
     plDoc = params.ParameterDeclare(2,
         formatVector = 'vector < %s >',
         formatMatrix = 'vector < vector < %s > >')
-    for groupName in functionGroups.keys():
-        functionGroup = functionGroups[groupName]
+    for groupName in functionDefs.keys():
+        functionGroup = functionDefs[groupName]
         fileName = ROOT + groupName + '.docs' + common.TEMPFILE
         fileDoc = file(fileName, 'w')
         utils.printHeader(fileDoc)
@@ -107,9 +136,10 @@ def generateDocs(functionGroups):
         utils.updateIfChanged(fileName)
     generateAllDoc(allFuncs)
 
-def generate(functionGroups):
+def generate(functionDefs, enumDefs):
     'generate doxygen documentation files'
     utils.logMessage('  begin generating Doxygen ...')
-    generateDocs(functionGroups)
+    generateDocs(functionDefs)
+    generateEnums(enumDefs)
     utils.logMessage('  done generating Doxygen.')
 

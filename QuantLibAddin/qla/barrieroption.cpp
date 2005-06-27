@@ -20,22 +20,9 @@
 #endif
 #include <qla/barrieroption.hpp>
 #include <qla/optionutils.hpp>
+#include <qla/enumfactory.hpp>
 
 namespace QuantLibAddin {
-
-    QuantLib::Barrier::Type IDtoBarrierType(const std::string &typeBarrier) {
-        std::string idUpper = QuantLib::StringFormatter::toUppercase(typeBarrier);
-        if (idUpper.compare("DOWNIN") ==0)
-            return QuantLib::Barrier::DownIn;
-        else if (idUpper.compare("UPIN") == 0)
-            return QuantLib::Barrier::UpIn;
-        else if (idUpper.compare("DOWNOUT") == 0)
-            return QuantLib::Barrier::DownOut;
-        else if (idUpper.compare("UPOUT") == 0)
-            return QuantLib::Barrier::UpOut;
-        else
-            QL_FAIL("IDtoBarrierType: unrecognized typeID: " + typeBarrier);
-    }
 
     BarrierOption::BarrierOption(ObjHandler::ArgumentStack &arguments) {
         long timeSteps                  = OH_POP_ARGUMENT(long, arguments);
@@ -48,7 +35,7 @@ namespace QuantLibAddin {
         std::string optionTypeID        = OH_POP_ARGUMENT(std::string, arguments);
         double rebate                   = OH_POP_ARGUMENT(double, arguments);
         double barrier                  = OH_POP_ARGUMENT(double, arguments);
-        std::string typeBarrier         = OH_POP_ARGUMENT(std::string, arguments);
+        std::string barrierTypeID       = OH_POP_ARGUMENT(std::string, arguments);
         std::string handleBlackScholes  = OH_POP_ARGUMENT(std::string, arguments);
 
         boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
@@ -59,7 +46,7 @@ namespace QuantLibAddin {
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
         QuantLib::Barrier::Type barrierType = 
-            IDtoBarrierType(typeBarrier);
+            CREATE_ENUM(QuantLib::Barrier::Type, barrierTypeID);
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             IDtoPayoff(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::Exercise> exercise = 

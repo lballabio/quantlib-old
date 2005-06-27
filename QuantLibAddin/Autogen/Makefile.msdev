@@ -12,6 +12,7 @@ STUBS=stub.C.body \
 	stub.Calc.includes \
 	stub.Calc.map \
 	stub.copyright \
+    stub.Doxygen.enums \
 	stub.Excel.body \
 	stub.Excel.includes \
 	stub.Excel.regheader \

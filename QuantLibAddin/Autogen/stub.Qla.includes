@@ -8,6 +8,7 @@
 #include <ql/Calendars/all.hpp>
 #include <ql/Instruments/asianoption.hpp>
 #include <ql/Instruments/basketoption.hpp>
+#include <ql/Instruments/barrieroption.hpp>
 
 #define REG_ENUM(Type, Body) \
     { \
