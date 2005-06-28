@@ -39,11 +39,6 @@ LINE_TABLE   = '    <table>\n\
 ROOT         = '../Docs/pages/'
 STUB_ENUMS   = 'stub.Doxygen.enums'
 
-# global variables
-
-# parameter list objects
-plDoc    = ''    # function prototypes
-
 def generateEnums(enumDefs):
     'generate documentation for enumerations'
     enumList = enumDefs[common.ENUMS][common.ENUMDEFS]
@@ -76,9 +71,8 @@ def deriveRetCode(retVal):
     elif retVal[common.TENSOR] == common.MATRIX:
         return 'vector < vector < %s > > ' % retVal[common.TYPE]
 
-def generateFuncDoc(fileFunc, function):
+def generateFuncDoc(fileFunc, function, plDoc):
     'generate documentation for given function'
-    global plDoc
     paramList = plDoc.generateCode(function[common.PARAMS])
     retCode = deriveRetCode(function[common.RETVAL])
     fileFunc.write('\\anchor %s \\b %s\n' % (function[common.NAME], function[common.NAME]))
@@ -111,10 +105,8 @@ def generateAllDoc(allFuncs):
 
 def generateDocs(functionDefs):
     'generate doxygen documentation files'
-    global plDoc
     allFuncs = []
-    plDoc = params.ParameterDeclare(2,
-        formatVector = 'vector < %s >',
+    plDoc = params.ParameterDeclare(2, formatVector = 'vector < %s >',
         formatMatrix = 'vector < vector < %s > >')
     for groupName in functionDefs.keys():
         functionGroup = functionDefs[groupName]
@@ -130,7 +122,7 @@ def generateDocs(functionDefs):
             allFuncs.append(function[common.NAME])
         fileDoc.write('\\section documentation Function Documentation\n')
         for function in functionGroup[common.FUNCS]:
-            generateFuncDoc(fileDoc, function)
+            generateFuncDoc(fileDoc, function, plDoc)
         fileDoc.write('*/\n')
         fileDoc.close()
         utils.updateIfChanged(fileName)

@@ -128,7 +128,7 @@ def generateReturnCall(returnDef):
         type = returnDef[common.TYPE]
     return ('Nat2Scm<%s>::%s(%s)' % (type, tensor, arg))
 
-def generateFuncDefs(groupName, functionGroup):
+def generateFuncDefs(groupName, functionGroup, plMember):
     'generate source for function implementations'
     fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
     fileFunc = file(fileName, 'w')
@@ -136,7 +136,6 @@ def generateFuncDefs(groupName, functionGroup):
     bufInclude = utils.loadBuffer(INCLUDES)
     bufBody = utils.loadBuffer(BODY)
     fileFunc.write(bufInclude % groupName)
-    plMember = params.ParameterPass(3, skipFirst = True)
     for function in functionGroup[common.FUNCS]:
         generateFuncHeader(fileFunc, function, ' {')
         indent = 8 * ' ';
@@ -161,13 +160,14 @@ def generateFuncDefs(groupName, functionGroup):
 
 def generate(functionGroups):
     'generate source code for Guile addin'
+    plMember = params.ParameterPass(3, skipFirst = True)
     utils.logMessage('  begin generating Guile ...')
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
         generateFuncHeaders(groupName, functionGroup)
         if functionGroup[common.HDRONLY] == common.TRUE:
             continue
-        generateFuncDefs(groupName, functionGroup)
+        generateFuncDefs(groupName, functionGroup, plMember)
     generateInitFunc(functionGroups)
     utils.logMessage('  done generation Guile.')
 

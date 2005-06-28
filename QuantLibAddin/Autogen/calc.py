@@ -50,12 +50,13 @@ MAPLINE         = '    %s[ STRFROMANSI( "%s" ) ]\n\
 PARMLINE        = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
 ROOT            = common.ADDIN_ROOT + 'Calc/'
 
-# global variables
+# global parameter list objects
 
-# parameter list objects
-plHeader = ''  # function prototypes
-plCtor   = ''  # constructors
-plMember = ''  # member functions
+plHeader = params.ParameterDeclare(2, replaceString = CALC_STRING,
+    replaceLong = CALC_LONG, derefString = '&', replaceTensorStr = CALC_ANY,
+    formatVector = FORMAT_TENSOR, formatMatrix = FORMAT_TENSOR,
+    derefTensor = '&', replaceAny = CALC_ANY, derefAny = '&',
+    prefixString = 'const', prefixAny = 'const', replaceBool = CALC_LONG)
 
 def generateFuncMap(functionGroups):
     'generate help text for function wizard'
@@ -104,7 +105,6 @@ def generateAutoHeader(functionGroups):
 
 def generateHeader(fileHeader, function, declararion = True):
     'generate implementation for given function'
-    global plHeader
     if declararion:
         prototype = '    virtual %s SAL_CALL %s('
         suffix = ';\n'
@@ -170,12 +170,11 @@ def getReturnCall(returnDef):
     elif returnDef[common.TENSOR] == common.MATRIX:
         return 'Matrix' + type + 'ToSeqSeq(returnValue)'
 
-def generateFuncSource(fileFunc, function, bufBody):
+def generateFuncSource(fileFunc, function, bufBody, plCtor, plMember):
     'generate source for given function'
-    global plCtor, plMember
     generateHeader(fileFunc, function, False)
-    returnType = utils.getReturnType(function[common.RETVAL], replacePropertyVector = 'Properties',
-        replaceAny = 'boost::any', replaceString = 'std::string')
+    returnType = utils.getReturnType(function[common.RETVAL], replaceAny = 'boost::any', 
+        replacePropertyVector = 'Properties', replaceString = 'std::string')
     returnCall = getReturnCall(function[common.RETVAL])
     if function[common.CTOR] == common.TRUE:
         functionBody = common.ARGLINE + plCtor.generateCode(function[common.PARAMS])
@@ -196,7 +195,12 @@ def generateFuncSource(fileFunc, function, bufBody):
 
 def generateFuncSources(functionGroups):
     'generate source for function implementations'
-    global plCtor, plMember
+    plCtor = params.ParameterPass(2, convertString = CONV_STRING,
+        delimiter = ';\n', appendTensor = True, appendScalar = True,
+        wrapFormat = 'args.push(%s)', delimitLast = True,
+        convertBool = CONV_BOOL, prependEol = False)
+    plMember = params.ParameterPass(3, convertString = CONV_STRING,
+        skipFirst = True, appendTensor = True)
     bufInclude = utils.loadBuffer(INCLUDES)
     bufBody = utils.loadBuffer(BODY)
     for groupName in functionGroups.keys():
@@ -208,14 +212,8 @@ def generateFuncSources(functionGroups):
         utils.printHeader(fileFunc)
         bufIncludeFull = bufInclude % groupName
         fileFunc.write(bufIncludeFull)
-        plCtor = params.ParameterPass(2, convertString = CONV_STRING,
-            delimiter = ';\n', appendTensor = True, appendScalar = True,
-            wrapFormat = 'args.push(%s)', delimitLast = True,
-            convertBool = CONV_BOOL, prependEol = False)
-        plMember = params.ParameterPass(3, convertString = CONV_STRING,
-            skipFirst = True, appendTensor = True)
         for function in functionGroup[common.FUNCS]:
-            generateFuncSource(fileFunc, function, bufBody)
+            generateFuncSource(fileFunc, function, bufBody, plCtor, plMember)
         fileFunc.close()
         utils.updateIfChanged(fileName)
 
@@ -253,13 +251,7 @@ def generateIDLSource(functionGroups):
 
 def generate(functionGroups):
     'generate source code for Calc addin'
-    global plHeader
     utils.logMessage('  begin generating Calc ...')
-    plHeader = params.ParameterDeclare(2, replaceString = CALC_STRING,
-        replaceLong = CALC_LONG, derefString = '&', replaceTensorStr = CALC_ANY,
-        formatVector = FORMAT_TENSOR, formatMatrix = FORMAT_TENSOR,
-        derefTensor = '&', replaceAny = CALC_ANY, derefAny = '&',
-        prefixString = 'const', prefixAny = 'const', replaceBool = CALC_LONG)
     generateFuncMap(functionGroups)
     generateAutoHeader(functionGroups)
     generateHeaders(functionGroups)

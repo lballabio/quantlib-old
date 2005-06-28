@@ -54,14 +54,6 @@ REGHEAD    = 'stub.Excel.regheader'
 REGLINE    = '        TempStrNoSize("%s")%s'
 ROOT       = common.ADDIN_ROOT + 'Excel/'
 
-# global variables
-
-# parameter list objects
-plHeader    = ''    # function prototypes
-plCtor      = ''    # constructors
-plMember    = ''    # member functions
-plExcel     = ''    # Excel registration
-
 def generateExcelStringLiteral(str): 
     'prepend hexadecimal byte count to Excel string'
     return '\\x%02X""%s' % (len(str), str)
@@ -102,9 +94,8 @@ def formatLine(text, comment, lastParameter = False):
     str1 = REGLINE % (generateExcelStringLiteral(text), suffix)
     return '%-40s // %s\n' % (str1, comment)
 
-def generateFuncRegister(fileHeader, function):
+def generateFuncRegister(fileHeader, function, plExcel):
     'generate call to xlfRegister for given function'
-    global plExcel
     funcParams = function[common.PARAMS]
     numParams = len(funcParams)
     # We call xlfRegister with NUMDESC parameters to describe the function
@@ -153,7 +144,6 @@ def generateFuncRegister(fileHeader, function):
 
 def generateFuncRegisters(functionDefs):
     'generate source code to register functions'
-    global plExcel
     plExcel = params.ParameterPass(0, delimiter = ',', prependEol = False)
     fileName = ROOT + ADDIN + common.TEMPFILE
     fileHeader = file(fileName, 'w')
@@ -163,7 +153,7 @@ def generateFuncRegisters(functionDefs):
     for group in functionDefs.itervalues():
         fileHeader.write('    // %s\n\n' % group[common.DISPLAYNAME])
         for function in group[common.FUNCS]:
-            generateFuncRegister(fileHeader, function)
+            generateFuncRegister(fileHeader, function, plExcel)
     fileHeader.write(REGFOOT)
     fileHeader.close()
     utils.updateIfChanged(fileName)
@@ -203,9 +193,8 @@ def getReturnCall(returnDef):
     elif returnDef[common.TENSOR] == common.MATRIX:
         return RET_XLOPER % ('matrix' + type)
 
-def generateFuncDef(fileFunc, function, bufBody):
+def generateFuncDef(fileFunc, function, bufBody, plHeader, plMember, plCtor):
     'generate source code for body of given function'
-    global plHeader, plCtor, plMember
     paramList1 = plHeader.generateCode(function[common.PARAMS])
     functionReturnType = utils.getReturnType(function[common.RETVAL],
         replaceVector = LPXLOPER, replaceMatrix = LPXLOPER, replaceAny = LPXLOPER,
@@ -240,7 +229,6 @@ def generateFuncDef(fileFunc, function, bufBody):
 
 def generateFuncDefs(functionGroups):
     'generate source code for function bodies'
-    global plHeader, plCtor, plMember
     bufBody = utils.loadBuffer(BODY)
     bufInclude = utils.loadBuffer(INCLUDES)
     plHeader = params.ParameterDeclare(2, replaceString = 'char',
@@ -262,7 +250,7 @@ def generateFuncDefs(functionGroups):
         bufIncludeFull = bufInclude % groupName
         fileFunc.write(bufIncludeFull)
         for function in functionGroup[common.FUNCS]:
-            generateFuncDef(fileFunc, function, bufBody)
+            generateFuncDef(fileFunc, function, bufBody, plHeader, plMember, plCtor)
         fileFunc.close()
         utils.updateIfChanged(fileName)
 

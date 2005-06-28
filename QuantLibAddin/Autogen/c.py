@@ -31,13 +31,14 @@ CONV_STR = 'std::string(%s)'
 INCLUDES = 'stub.C.includes'
 ROOT = common.ADDIN_ROOT + 'C/'
 
-# global variables
+# global parameter list objects
 
-# parameter list objects
-plHeader    = ''    # function prototypes
+plHeader = params.ParameterDeclare(2, replaceString = 'char',
+    replaceTensorStr = 'char', arrayCount = True, derefString = '*',
+    derefTensorString = '*', replaceAny = 'Varies', delimitLast = True,
+    replaceTensorAny = 'VariesList', replaceBool = 'Boolean')
 
 def generateFuncHeader(fileHeader, function, suffix):
-    global plHeader
     'generate source for prototype of given function'
     returnType = utils.getReturnType(function[common.RETVAL], 
         replaceString = 'char', replaceAny = 'Varies', replaceBool = 'Boolean',
@@ -131,13 +132,8 @@ def getReturnCall(returnDef):
     else:
         return 'Conversion< %s >::convertArrayArray(returnValue, result)' % type
 
-def generateFuncSources(groupName, functionGroup):
+def generateFuncSources(groupName, functionGroup, plCtor, plMember):
     'generate source for function implementations'
-    plCtor = params.ParameterPass(2, convertString = CONV_STR, convertBool = CONV_BOOL,
-        delimiter = ';\n', appendTensor = True, appendScalar = True,
-        wrapFormat = 'args.push(%s)', delimitLast = True, prependEol = False)
-    plMember = params.ParameterPass(3, convertString = CONV_STR, convertBool = CONV_BOOL,
-        skipFirst = True, appendTensor = True, appendScalar = True)
     fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
     fileFunc = file(fileName, 'w')
     utils.printHeader(fileFunc)
@@ -168,17 +164,17 @@ def generateFuncSources(groupName, functionGroup):
 
 def generate(functionGroups):
     'generate source code for C addin'
-    global plHeader
-    plHeader = params.ParameterDeclare(2, replaceString = 'char',
-        replaceTensorStr = 'char', arrayCount = True, derefString = '*',
-        derefTensorString = '*', replaceAny = 'Varies', delimitLast = True,
-        replaceTensorAny = 'VariesList', replaceBool = 'Boolean')
+    plCtor = params.ParameterPass(2, convertString = CONV_STR, convertBool = CONV_BOOL,
+        delimiter = ';\n', appendTensor = True, appendScalar = True,
+        wrapFormat = 'args.push(%s)', delimitLast = True, prependEol = False)
+    plMember = params.ParameterPass(3, convertString = CONV_STR, convertBool = CONV_BOOL,
+        skipFirst = True, appendTensor = True, appendScalar = True)
     utils.logMessage('  begin generating C ...')
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
         if functionGroup[common.HDRONLY] == common.TRUE:
             continue
         generateFuncHeaders(groupName, functionGroup)
-        generateFuncSources(groupName, functionGroup)
+        generateFuncSources(groupName, functionGroup, plCtor, plMember)
     utils.logMessage('  done generating C.')
 
