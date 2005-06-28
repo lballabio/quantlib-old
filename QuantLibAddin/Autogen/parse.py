@@ -28,16 +28,19 @@ import os
 PATTERN_XMLFILES = '(.*).xml'
 
 def isEmptyNode(n):
+    'return True for text node with neither children nor data'
     return n.nodeType == xml.dom.Node.TEXT_NODE \
     and not n.hasChildNodes() \
     and n.nodeValue.strip() == ''
 
 def isTextNode(n):
+    'return True for element node with single child text node'
     return n.nodeType == xml.dom.Node.ELEMENT_NODE \
     and len(n.childNodes) == 1 \
     and n.firstChild.nodeType == xml.dom.Node.TEXT_NODE
 
 def isDictNode(n):
+    'return True for node whose children are all key/value pairs'
     if n.nodeType != xml.dom.Node.ELEMENT_NODE:
         return False
     for c in n.childNodes:
@@ -45,10 +48,18 @@ def isDictNode(n):
             return False
     return True
 
-# FIXME should do more elaborate check here
-# i.e. 0..n children all with same tag
-def isArrayNode(n):
-    return n.nodeType == xml.dom.Node.ELEMENT_NODE
+def isListNode(n):
+    'return True for node containing 0..n children with same name'
+    if n.nodeType != xml.dom.Node.ELEMENT_NODE:
+        return False
+    nodeName = ''
+    for c in n.childNodes:
+        if isEmptyNode(c): continue
+        if nodeName:
+            if nodeName != c.nodeName: return False
+        else:
+            nodeName = c.nodeName
+    return True
 
 def convertNode(n):
     'convert XML node into dict of strings/lists/dicts'
@@ -62,7 +73,7 @@ def convertNode(n):
             ret[c.nodeName] = c.firstChild.nodeValue
         elif isDictNode(c):
             ret[c.nodeName] = convertNode(c)
-        elif isArrayNode(c):
+        elif isListNode(c):
             ret[c.nodeName] = []
             for cc in c.childNodes:
                 if not isEmptyNode(cc):
