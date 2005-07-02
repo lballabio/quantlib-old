@@ -15,7 +15,7 @@ endif
 libQuantLibAddinCalc_la_LIBADD = ../../qla/libQuantLibAddin.la
 
 libQuantLibAddinCalc_la_LDFLAGS = \
-    -Wl,--rpath,/usr/lib/ooo-1.1/program \
+    -Wl,--rpath,$(OFFICE_PROGRAM_PATH) \
     -L$(OFFICE_PROGRAM_PATH) \
     -lcppuhelpergcc3 -lcppu -lsal \
     -lQuantLib -lObjectHandler \
