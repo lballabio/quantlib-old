@@ -118,8 +118,7 @@ def generateHeader(fileHeader, function, declararion = True):
         replaceProperty = CALC_ANY)
     fileHeader.write(prototype % (returnType, function[common.CODENAME]))
     if function[common.CTOR] == common.TRUE:
-        fileHeader.write('\n        const STRING &handle')
-        fileHeader.write(',')
+        fileHeader.write('\n        const STRING &handle,')
     paramList = plHeader.generateCode(function[common.PARAMS])
     fileHeader.write(paramList)
     fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)

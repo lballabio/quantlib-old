@@ -31,7 +31,7 @@ def isEmptyNode(n):
     'return True for text node with neither children nor data'
     return n.nodeType == xml.dom.Node.TEXT_NODE \
     and not n.hasChildNodes() \
-    and n.nodeValue.strip() == ''
+    and not n.nodeValue.strip()
 
 def isTextNode(n):
     'return True for element node with single child text node'

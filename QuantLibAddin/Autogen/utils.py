@@ -181,6 +181,7 @@ def generateFuncCall(function):
         return 'objectPointer->' + function[common.QLFUNC]
 
 def testAttribute(node, attribute, value = ''):
+    'test for existence of attribute & for equality to value (if supplied)'
     if not node.has_key(common.ATTS): return False
     if not node[common.ATTS].has_key(attribute): return False
     if value:
