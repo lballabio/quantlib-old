@@ -78,11 +78,7 @@ def generateFuncDoc(fileFunc, function, plDoc):
     fileFunc.write('\\anchor %s \\b %s\n' % (function[common.NAME], function[common.NAME]))
     fileFunc.write('\\code\n')
     fileFunc.write(retCode + '\n')
-    fileFunc.write('%s(' % function[common.NAME])
-    if paramList != '':
-        fileFunc.write('\n')
-        fileFunc.write(paramList)
-    fileFunc.write(')\n')
+    fileFunc.write('%s(%s)\n' % (function[common.NAME], paramList))
     fileFunc.write('\\endcode\n')
     fileFunc.write('\\par Description:\n')
     fileFunc.write(function[common.DESC])
