@@ -245,3 +245,25 @@ SCM qlListEnum(SCM x) {
         return SCM_EOL;
     }
 }
+
+SCM qlListRegisteredTypes(SCM x) {
+    try {
+        std::vector < std::string > returnValue = getRegisteredComplexTypes();
+        return Nat2Scm<std::string>::vector(returnValue);
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("qlListRegisteredTypes Error: ") + e.what(), 2);
+        return SCM_EOL;
+    }
+}
+
+SCM qlListType(SCM x) {
+    try {
+        std::string enumId = GetChop<std::string>::scalar(x);
+        std::vector < std::string > returnValue = getComplexTypeMembers(
+            enumId);
+        return Nat2Scm<std::string>::vector(returnValue);
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("qlListType Error: ") + e.what(), 2);
+        return SCM_EOL;
+    }
+}

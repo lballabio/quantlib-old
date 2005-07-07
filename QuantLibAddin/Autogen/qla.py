@@ -42,7 +42,7 @@ def generateEnum(fileEnum, enumDef):
 def generateEnumSource(enumDefs):
     'generate source file for enumerations'
     bufInclude = utils.loadBuffer(INCLUDES)
-    fileName = '../qla/enumfactory.cpp' + common.TEMPFILE
+    fileName = '../qla/enumregistry.cpp' + common.TEMPFILE
     fileEnum = file(fileName, 'w')
     utils.printHeader(fileEnum)
     fileEnum.write(bufInclude)

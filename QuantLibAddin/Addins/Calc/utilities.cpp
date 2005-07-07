@@ -344,3 +344,25 @@ SEQSEQ( STRING ) SAL_CALL QLAddin::qlListEnum(
         THROW_RTE;
     }
 }
+
+SEQSEQ( STRING ) SAL_CALL QLAddin::qlListRegisteredTypes() THROWDEF_RTE_IAE {
+    try {
+        std::vector < std::string > returnValue = getRegisteredComplexTypes();
+        return VectorStringToSeqSeq(returnValue);
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("ERROR: QL_LIST_REGISTERED_TYPES: ") + e.what(), 2);
+        THROW_RTE;
+    }
+}
+
+SEQSEQ( STRING ) SAL_CALL QLAddin::qlListType(
+        const STRING &enumId) THROWDEF_RTE_IAE {
+    try {
+        std::vector < std::string > returnValue = getComplexTypeMembers(
+            OUStringToStlString(enumId));
+        return VectorStringToSeqSeq(returnValue);
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("ERROR: QL_LIST_TYPE: ") + e.what(), 2);
+        THROW_RTE;
+    }
+}

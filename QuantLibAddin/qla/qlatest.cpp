@@ -20,7 +20,7 @@
     #include <qla/config.hpp>
 #endif
 #include <qla/qlatest.hpp>
-#include <qla/enumfactory.hpp>
+//#include <qla/enumfactory.hpp>
 
 #define FIELD_SCALAR_LONG       "SCALAR_LONG"
 #define FIELD_VECTOR_LONG       "VECTOR_LONG"
@@ -245,5 +245,3 @@ namespace QuantLibAddin {
     }
 
 }
-
-

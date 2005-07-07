@@ -51,6 +51,14 @@ namespace QuantLibAddin {
     */
     const std::vector<std::string>& getEnumMembers(const std::string&);
 
+	/*! list all available Complex Types
+    */
+    const std::vector<std::string>& getRegisteredComplexTypes();
+
+    /*! list the members of a given Complex Type
+    */
+    const std::vector<std::string>& getComplexTypeMembers(const std::string&);
+
     QuantLib::Date createQLDate(long date);
 }
 

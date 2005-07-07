@@ -21,7 +21,7 @@
 #endif
 #include <qla/volatilities.hpp>
 #include <qla/generalutils.hpp>
-#include <qla/enumfactory.hpp>
+#include <qla/typefactory.hpp>
 
 namespace QuantLibAddin {
 
@@ -32,7 +32,7 @@ namespace QuantLibAddin {
 
         QuantLib::Date settlementDate(settlementDateLong);
 		QuantLib::DayCounter dayCounter =
-            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
+            Create<QuantLib::DayCounter>()(dayCounterID);
         blackVolTermStructure_ = boost::shared_ptr<QuantLib::BlackVolTermStructure> (
             new QuantLib::BlackConstantVol(
                 settlementDate,
@@ -56,7 +56,7 @@ namespace QuantLibAddin {
         QuantLib::Matrix volsQL =
             vectorVectorToMatrix(vols);
 		QuantLib::DayCounter dayCounter =
-            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
+            Create<QuantLib::DayCounter>()(dayCounterID);
 
         blackVolTermStructure_ = boost::shared_ptr<QuantLib::BlackVolTermStructure> (
             new QuantLib::BlackVarianceSurface(
@@ -69,5 +69,3 @@ namespace QuantLibAddin {
 
 
 }
-
-

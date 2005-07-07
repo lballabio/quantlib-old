@@ -23,7 +23,7 @@
 #include <qla/fixedcouponbond.hpp>
 #include <qla/generalutils.hpp>
 #include <qla/termstructures.hpp>
-#include <qla/enumfactory.hpp>
+#include <qla/typefactory.hpp>
 
 namespace QuantLibAddin {
 
@@ -43,11 +43,11 @@ namespace QuantLibAddin {
         long datedDate               = OH_POP_ARGUMENT(long, arguments);
         long issueDate               = OH_POP_ARGUMENT(long, arguments);
 
-        QuantLib::Frequency couponFrequency = CREATE_ENUM(QuantLib::Frequency, frequencyID);
-        QuantLib::DayCounter dayCounter     = CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
-        QuantLib::Calendar calendar         = CREATE_ENUM(QuantLib::Calendar, calendarID);
+        QuantLib::Frequency couponFrequency = Create<QuantLib::Frequency>()(frequencyID);
+        QuantLib::DayCounter dayCounter     = Create<QuantLib::DayCounter>()(dayCounterID);
+        QuantLib::Calendar calendar         = Create<QuantLib::Calendar>()(calendarID);
         QuantLib::BusinessDayConvention bDayConv = 
-            CREATE_ENUM(QuantLib::BusinessDayConvention, bDayConvID);
+            Create<QuantLib::BusinessDayConvention>()(bDayConvID);
 
         boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpDiscYC =
             OH_GET_OBJECT(QuantLibAddin::YieldTermStructure, discCurveId);
@@ -81,7 +81,3 @@ namespace QuantLibAddin {
     }
 
 }
-
-
-
-

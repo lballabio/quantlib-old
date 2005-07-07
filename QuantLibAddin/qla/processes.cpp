@@ -22,7 +22,7 @@
 #include <qla/processes.hpp>
 #include <qla/volatilities.hpp>
 #include <qla/generalutils.hpp>
-#include <qla/enumfactory.hpp>
+#include <qla/typefactory.hpp>
 #include <ql/quote.hpp>
 #include <ql/TermStructures/flatforward.hpp>
 #include <ql/voltermstructure.hpp>
@@ -39,7 +39,7 @@ namespace QuantLibAddin {
 
         QuantLib::Date settlementDate(settlementDateLong);
 		QuantLib::DayCounter dayCounter =
-            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
+            Create<QuantLib::DayCounter>()(dayCounterID);
         QuantLib::Handle<QuantLib::Quote> underlyingH( 
             boost::shared_ptr<QuantLib::Quote>(
             new QuantLib::SimpleQuote(underlying)));
@@ -68,5 +68,3 @@ namespace QuantLibAddin {
     }
 
 }
-
-

@@ -16,7 +16,6 @@ include_HEADERS = \
     capfloor.hpp \
     cliquetoption.hpp \
     dividendvanillaoption.hpp \
-    enumfactory.hpp \
     fixedcouponbond.hpp \
     forwardvanillaoption.hpp \
     generalutils.hpp \
@@ -30,6 +29,8 @@ include_HEADERS = \
     shortratemodels.hpp \
     simpleswap.hpp \
     termstructures.hpp \
+    typefactory.hpp \
+    typeregistry.hpp \
     utilities.hpp \
     vanillaoption.hpp \
     volatilities.hpp \
@@ -43,8 +44,9 @@ libQuantLibAddin_la_SOURCES = \
     basketoption.cpp \
     capfloor.cpp \
     cliquetoption.cpp \
+    complextyperegistry.cpp \
     dividendvanillaoption.cpp \
-    enumfactory.cpp \
+    enumregistry.cpp \
     fixedcouponbond.cpp \
     forwardvanillaoption.cpp \
     generalutils.cpp \

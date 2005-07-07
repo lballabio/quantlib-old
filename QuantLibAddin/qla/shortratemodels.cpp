@@ -18,10 +18,8 @@
 #ifdef HAVE_CONFIG_H
 #include <qla/config.hpp>
 #endif
-#include <qla/optionutils.hpp>
 #include <qla/shortratemodels.hpp>
 #include <qla/termstructures.hpp>
-
 #include <ql/termstructure.hpp>
 
 namespace QuantLibAddin {

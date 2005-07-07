@@ -24,7 +24,7 @@
 // capture value of QL_VERSION before utilities.hpp #undefs it
 const std::string QL_VERSION_KEEP = QL_VERSION;
 #include <qla/utilities.hpp>
-#include <qla/enumfactory.hpp>
+#include <qla/typeregistry.hpp>
 #include <sstream>
 
 using namespace ObjHandler;
@@ -45,13 +45,25 @@ namespace QuantLibAddin {
 
     const std::vector<std::string>& getRegisteredEnums() {
         static std::vector<std::string> ret
-            = EnumTypeFactory::instance().getAllRegisteredEnums();
+            = EnumRegistry::instance().getAllRegisteredTypes();
         return ret;
     }
 
     const std::vector<std::string>& getEnumMembers(const std::string& id) {
         static std::vector<std::string> ret;
-        ret = EnumTypeFactory::instance().getEnumElements(id);
+        ret = EnumRegistry::instance().getTypeElements(id);
+        return ret;
+    }
+
+	const std::vector<std::string>& getRegisteredComplexTypes() {
+        static std::vector<std::string> ret
+            = ComplexTypeRegistry::instance().getAllRegisteredTypes();
+        return ret;
+    }
+
+    const std::vector<std::string>& getComplexTypeMembers(const std::string& id) {
+        static std::vector<std::string> ret;
+        ret = ComplexTypeRegistry::instance().getTypeElements(id);
         return ret;
     }
 

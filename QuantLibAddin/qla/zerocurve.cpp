@@ -22,7 +22,7 @@
 
 #include <qla/zerocurve.hpp>
 #include <qla/generalutils.hpp>
-#include <qla/enumfactory.hpp>
+#include <qla/typefactory.hpp>
 
 // indexes to the Property vector
 // FIXME - need a cleaner way to achieve this
@@ -41,7 +41,7 @@ namespace QuantLibAddin {
             = OH_POP_ARGUMENT(std::vector < long >, arguments);
 
 		QuantLib::DayCounter dayCounter =
-            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
+            Create<QuantLib::DayCounter>()(dayCounterID);
         const std::vector<QuantLib::Date> datesQL = 
             longVectorToDateVector(dates);
 

@@ -337,6 +337,41 @@
 </returnval>
 </function>
 
+<function>
+<name>QL_LIST_REGISTERED_TYPES</name>
+<codename>qlListRegisteredTypes</codename>
+<desc>return the names of all registered complex types</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<parameters></parameters>
+<returnval>
+    <type>string</type>
+    <tensorrank>vector</tensorrank>
+    <desc>list of names of registered enums</desc>
+</returnval>
+</function>
+<function>
+
+<name>QL_LIST_TYPE</name>
+<codename>qlListType</codename>
+<desc>return the members of a given complex type</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<parameters>
+    <param>
+        <name>typeId</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>name of the complex type to list</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>string</type>
+    <tensorrank>vector</tensorrank>
+    <desc>list of the members of the specified enumeration</desc>
+</returnval>
+</function>
+
 </functions>
 </functiongroup>
 

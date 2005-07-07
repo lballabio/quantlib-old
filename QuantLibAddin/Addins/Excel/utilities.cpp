@@ -226,3 +226,31 @@ DLLEXPORT LPXLOPER qlListEnum(
         return 0;
     }
 }
+
+DLLEXPORT LPXLOPER qlListRegisteredTypes() {
+    try {
+        std::vector < std::string > returnValue;
+        returnValue = getRegisteredComplexTypes();
+        static XLOPER xRet;
+        vectorStringToXloper(xRet, returnValue);
+        return &xRet;
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("ERROR: QL_LIST_REGISTERED_TYPES: ") + e.what(), 2);
+        return 0;
+    }
+}
+
+DLLEXPORT LPXLOPER qlListType(
+        char *typeId) {
+    try {
+        std::vector < std::string > returnValue;
+        returnValue = getComplexTypeMembers(
+            typeId);
+        static XLOPER xRet;
+        vectorStringToXloper(xRet, returnValue);
+        return &xRet;
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE(std::string("ERROR: QL_LIST_TYPE: ") + e.what(), 2);
+        return 0;
+    }
+}

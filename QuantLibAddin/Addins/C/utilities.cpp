@@ -86,3 +86,31 @@ int QL_LIST_ENUM(
         return FAIL;
     }
 }
+
+int QL_LIST_REGISTERED_TYPES(
+        char **result) {
+    try {
+        std::vector < std::string > returnValue = getRegisteredComplexTypes();
+        Conversion< std::string >::convertArray(returnValue, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE("QL_LIST_REGISTERED_TYPES Error: " + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+
+int QL_LIST_TYPE(
+        char *enumId,
+        char **result) {
+    try {
+        std::vector < std::string > returnValue = getComplexTypeMembers(
+            std::string(enumId));
+        Conversion< std::string >::convertArray(returnValue, result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE("QL_LIST_TYPE Error: " + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}

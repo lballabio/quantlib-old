@@ -20,8 +20,13 @@
     #include <qla/config.hpp>
 #endif
 #include <qla/asianoption.hpp>
-#include <qla/optionutils.hpp>
-#include <qla/enumfactory.hpp>
+#include <qla/typefactory.hpp>
+// indexes to the Property vector
+// FIXME - need a cleaner way to achieve this
+#define FIELD_NPV                       "NPV"
+#define FIELD_ENGINE                    "ENGINE"
+#define IDX_NPV                         0
+#define IDX_ENGINE                      1
 
 namespace QuantLibAddin {
 
@@ -46,14 +51,14 @@ namespace QuantLibAddin {
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
 		QuantLib::Average::Type averageType = 
-            CREATE_ENUM(QuantLib::Average::Type, averageID);
+            Create<QuantLib::Average::Type>()(averageID);
 
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
-            IDtoPayoff(optionTypeID, payoffID, strike);
+            Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> >()(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::Exercise> exercise = 
-            IDtoExercise(exerciseID, exerciseDate, settlementDate);
+            Create<boost::shared_ptr<QuantLib::Exercise> >()(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
-            IDtoEngine(engineID, timeSteps);
+            Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
         continuousAveragingAsianOption_ = 
             boost::shared_ptr<QuantLib::ContinuousAveragingAsianOption>(
                 new QuantLib::ContinuousAveragingAsianOption(
@@ -97,13 +102,13 @@ namespace QuantLibAddin {
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
 		QuantLib::Average::Type averageType = 
-            CREATE_ENUM(QuantLib::Average::Type, averageID);
+            Create<QuantLib::Average::Type>()(averageID);
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
-            IDtoPayoff(optionTypeID, payoffID, strike);
+            Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> >()(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::Exercise> exercise = 
-            IDtoExercise(exerciseID, exerciseDate, settlementDate);
+            Create<boost::shared_ptr<QuantLib::Exercise> >()(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
-            IDtoEngine(engineID, timeSteps);
+            Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
         std::vector<QuantLib::Date> fixingDatesQL;
         std::vector<long>::const_iterator i;
         for (i = fixingDates.begin(); i != fixingDates.end(); i++)

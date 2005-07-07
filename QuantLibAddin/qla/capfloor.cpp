@@ -20,16 +20,21 @@
 #include <qla/config.hpp>
 #endif
 #include <qla/capfloor.hpp>
-#include <qla/optionutils.hpp>
 #include <qla/shortratemodels.hpp>
 #include <qla/termstructures.hpp>
-#include <qla/enumfactory.hpp>
+#include <qla/typefactory.hpp>
 
 #include <ql/date.hpp>
 #include <ql/index.hpp>
 #include <ql/schedule.hpp>
 #include <ql/CashFlows/cashflowvectors.hpp>
 #include <ql/Indexes/all.hpp>
+// indexes to the Property vector
+// FIXME - need a cleaner way to achieve this
+#define FIELD_NPV                       "NPV"
+#define FIELD_ENGINE                    "ENGINE"
+#define IDX_NPV                         0
+#define IDX_ENGINE                      1
 
 namespace QuantLibAddin {
 
@@ -49,11 +54,11 @@ namespace QuantLibAddin {
         long start                          = OH_POP_ARGUMENT(long, arguments);
 
 		QuantLib::BusinessDayConvention convention =
-            CREATE_ENUM(QuantLib::BusinessDayConvention, conventionID);
+            Create<QuantLib::BusinessDayConvention>()(conventionID);
 		QuantLib::Frequency frequency =
-            CREATE_ENUM(QuantLib::Frequency, frequencyID);
+            Create<QuantLib::Frequency>()(frequencyID);
 		QuantLib::TimeUnit timeUnits =
-            CREATE_ENUM(QuantLib::TimeUnit, timeUnitsID);
+            Create<QuantLib::TimeUnit>()(timeUnitsID);
 
         boost::shared_ptr<AnalyticCapFloorEngine> engine =
             OH_GET_OBJECT(AnalyticCapFloorEngine, handleEngine);

@@ -19,7 +19,14 @@
     #include <qla/config.hpp>
 #endif
 #include <qla/vanillaoption.hpp>
-#include <qla/optionutils.hpp>
+#include <qla/typefactory.hpp>
+
+// indexes to the Property vector
+// FIXME - need a cleaner way to achieve this
+#define FIELD_NPV                       "NPV"
+#define FIELD_ENGINE                    "ENGINE"
+#define IDX_NPV                         0
+#define IDX_ENGINE                      1
 
 namespace QuantLibAddin {
 
@@ -42,11 +49,11 @@ namespace QuantLibAddin {
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
-            IDtoPayoff(optionTypeID, payoffID, strike);
+            Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> >()(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::Exercise> exercise = 
-            IDtoExercise(exerciseID, exerciseDate, settlementDate);
+            Create<boost::shared_ptr<QuantLib::Exercise> >()(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
-            IDtoEngine(engineID, timeSteps);
+            Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
         vanillaOption_ = boost::shared_ptr<QuantLib::VanillaOption>(
             new QuantLib::VanillaOption(
                 blackScholesProcessQL, 
@@ -65,7 +72,7 @@ namespace QuantLibAddin {
             const std::string &engineID,
             const long &timeSteps) {
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
-            IDtoEngine(engineID, timeSteps);
+            Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
         vanillaOption_->setPricingEngine(pricingEngine);
         *properties_[IDX_NPV]() = vanillaOption_->NPV();
         *properties_[IDX_ENGINE]() = engineID;

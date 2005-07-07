@@ -20,8 +20,15 @@
     #include <qla/config.hpp>
 #endif
 #include <qla/cliquetoption.hpp>
-#include <qla/optionutils.hpp>
-#include <qla/enumfactory.hpp>
+#include <qla/typefactory.hpp>
+#include <qla/generalutils.hpp>
+
+// indexes to the Property vector
+// FIXME - need a cleaner way to achieve this
+#define FIELD_NPV                       "NPV"
+#define FIELD_ENGINE                    "ENGINE"
+#define IDX_NPV                         0
+#define IDX_ENGINE                      1
 
 namespace QuantLibAddin {
 
@@ -43,14 +50,14 @@ namespace QuantLibAddin {
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
 		QuantLib::Option::Type type = 
-            CREATE_ENUM(QuantLib::Option::Type, optionTypeID);
+            Create<QuantLib::Option::Type>()(optionTypeID);
 
         boost::shared_ptr<QuantLib::PercentageStrikePayoff> payoff(
             new QuantLib::PercentageStrikePayoff(type, strike));
         boost::shared_ptr<QuantLib::EuropeanExercise> exercise(
             new QuantLib::EuropeanExercise(QuantLib::Date(exerciseDate)));
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
-            IDtoEngine(engineID, timeSteps);
+            Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
         std::vector<QuantLib::Date> resetDatesQL =
             longVectorToDateVector(resetDates);
         cliquetOption_ = boost::shared_ptr<QuantLib::CliquetOption>(
@@ -69,5 +76,3 @@ namespace QuantLibAddin {
     }
 
 }
-
-

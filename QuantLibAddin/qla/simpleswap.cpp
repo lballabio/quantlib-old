@@ -3,18 +3,22 @@
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
+
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
+
 
  QuantLib is free software: you can redistribute it and/or modify it under the
  terms of the QuantLib license.  You should have received a copy of the
  license along with this program; if not, please email quantlib-dev@lists.sf.net
  The license is also available online at http://quantlib.org/html/license.html
 
+
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
+
 
 #if defined(HAVE_CONFIG_H)
     #include <qla/config.hpp>
@@ -23,7 +27,7 @@
 #include "qla/simpleswap.hpp"
 #include "qla/generalutils.hpp"
 #include "qla/termstructures.hpp"
-#include "qla/enumfactory.hpp"
+#include "qla/typefactory.hpp"
 #include "qla/xibor.hpp"
 #include <ql/CashFlows/fixedratecoupon.hpp>
 #include <ql/CashFlows/parcoupon.hpp>
@@ -50,13 +54,13 @@ namespace QuantLibAddin {
 		long lStartDate             = OH_POP_ARGUMENT(long, arguments);
 
 		QuantLib::DayCounter fixDayCounter =
-            CREATE_ENUM(QuantLib::DayCounter, fixDayCounterID);
+            Create<QuantLib::DayCounter>()(fixDayCounterID);
 		QuantLib::BusinessDayConvention fixBDC = 
-            CREATE_ENUM(QuantLib::BusinessDayConvention, fixBDCID);
+            Create<QuantLib::BusinessDayConvention>()(fixBDCID);
 		QuantLib::Frequency fixFrq =
-            CREATE_ENUM(QuantLib::Frequency, fixFrqID);
+            Create<QuantLib::Frequency>()(fixFrqID);
 		QuantLib::Calendar calendar =
-            CREATE_ENUM(QuantLib::Calendar, calendarID);
+            Create<QuantLib::Calendar>()(calendarID);
 		QuantLib::Date maturity = QuantLib::Date(lMaturity);
 		QuantLib::Date startDate = QuantLib::Date(lStartDate);
 
@@ -125,4 +129,3 @@ namespace QuantLibAddin {
 		return floatLeg;
 	}
 }
-

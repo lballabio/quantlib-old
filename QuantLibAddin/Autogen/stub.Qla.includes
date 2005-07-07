@@ -1,7 +1,8 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qla/config.hpp>
 #endif
-#include <qla/enumfactory.hpp>
+
+#include <qla/typeregistry.hpp>
 #include <ql/Currencies/all.hpp>
 #include <ql/interestrate.hpp>
 #include <ql/DayCounters/all.hpp>
@@ -22,14 +23,14 @@
 
 namespace QuantLibAddin {
 
-    std::vector<std::string> EnumTypeFactory::getAllRegisteredEnums() const {
+    std::vector<std::string> Registry::getAllRegisteredTypes() const {
         std::vector<std::string> ret;
         for(std::map<std::string, TypeMapPtr>::const_iterator i = allTypesMap.begin(); i != allTypesMap.end();++i)
             ret.push_back(i->first);
         return ret;
     }
 
-    std::vector<std::string> EnumTypeFactory::getEnumElements(const std::string& id) const {
+    std::vector<std::string> Registry::getTypeElements(const std::string& id) const {
         std::map<std::string, TypeMapPtr>::const_iterator map = allTypesMap.find(id);
         QL_REQUIRE(map != allTypesMap.end(), "EnumTypeFactory::getEnumElements: invalid enum id: " + id);
         std::vector<std::string> ret;
@@ -38,5 +39,5 @@ namespace QuantLibAddin {
         return ret;
     }
 
-    EnumTypeFactory::EnumTypeFactory() {
+    EnumRegistry::EnumRegistry() {
 

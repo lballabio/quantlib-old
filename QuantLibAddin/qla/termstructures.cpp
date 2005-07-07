@@ -19,9 +19,9 @@
 #ifdef HAVE_CONFIG_H
 #include <qla/config.hpp>
 #endif
-#include <qla/optionutils.hpp>
 #include <qla/termstructures.hpp>
-#include <qla/enumfactory.hpp>
+#include <qla/typefactory.hpp>
+#include <qla/generalutils.hpp>
 
 #include <ql/date.hpp>
 
@@ -46,13 +46,13 @@ namespace QuantLibAddin {
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
         QuantLib::Handle<QuantLib::Quote> quoteH(quote_);
         QuantLib::TimeUnit timeUnits =
-            CREATE_ENUM(QuantLib::TimeUnit, timeUnitsID);
+            Create<QuantLib::TimeUnit>()(timeUnitsID);
         QuantLib::Calendar calendar =
-            CREATE_ENUM(QuantLib::Calendar, calendarID);
+            Create<QuantLib::Calendar>()(calendarID);
         QuantLib::BusinessDayConvention convention = 
-            CREATE_ENUM(QuantLib::BusinessDayConvention, conventionID);
+            Create<QuantLib::BusinessDayConvention>()(conventionID);
         QuantLib::DayCounter dayCounter =
-            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
+            Create<QuantLib::DayCounter>()(dayCounterID);
         
         rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
             new QuantLib::DepositRateHelper(quoteH,
@@ -79,19 +79,19 @@ namespace QuantLibAddin {
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
         QuantLib::Handle<QuantLib::Quote> quoteH(quote_);
         QuantLib::TimeUnit timeUnits =
-            CREATE_ENUM(QuantLib::TimeUnit, timeUnitsID);
+            Create<QuantLib::TimeUnit>()(timeUnitsID);
         QuantLib::Calendar calendar =
-            CREATE_ENUM(QuantLib::Calendar, calendarID);
+            Create<QuantLib::Calendar>()(calendarID);
         QuantLib::Frequency fixedFrequency =
-            CREATE_ENUM(QuantLib::Frequency, fixedFrequencyID);
+            Create<QuantLib::Frequency>()(fixedFrequencyID);
         QuantLib::BusinessDayConvention fixedConvention = 
-            CREATE_ENUM(QuantLib::BusinessDayConvention, fixedConventionID);
+            Create<QuantLib::BusinessDayConvention>()(fixedConventionID);
         QuantLib::DayCounter fixedDayCounter =
-            CREATE_ENUM(QuantLib::DayCounter, fixedDayCounterID);
+            Create<QuantLib::DayCounter>()(fixedDayCounterID);
         QuantLib::Frequency floatingFrequency =
-            CREATE_ENUM(QuantLib::Frequency, floatingFrequencyID);
+            Create<QuantLib::Frequency>()(floatingFrequencyID);
         QuantLib::BusinessDayConvention floatingConvention = 
-            CREATE_ENUM(QuantLib::BusinessDayConvention, floatingConventionID);
+            Create<QuantLib::BusinessDayConvention>()(floatingConventionID);
         
         rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
             new QuantLib::SwapRateHelper(quoteH,
@@ -116,11 +116,11 @@ namespace QuantLibAddin {
         double price                 = OH_POP_ARGUMENT(double, arguments);
 
         QuantLib::DayCounter dayCounter =
-            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
+            Create<QuantLib::DayCounter>()(dayCounterID);
         QuantLib::BusinessDayConvention bDayConvention = 
-            CREATE_ENUM(QuantLib::BusinessDayConvention, bDayConventionID);
+            Create<QuantLib::BusinessDayConvention>()(bDayConventionID);
         QuantLib::Calendar calendar =
-            CREATE_ENUM(QuantLib::Calendar, calendarID);
+            Create<QuantLib::Calendar>()(calendarID);
         QuantLib::Date expiry = FutIDtoExpiryDate(immDateID, calendar, bDayConvention, decade);
 
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(price));
@@ -158,7 +158,7 @@ namespace QuantLibAddin {
         }
         
         QuantLib::DayCounter dayCounter =
-            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
+            Create<QuantLib::DayCounter>()(dayCounterID);
         
         termStructure_ = boost::shared_ptr<QuantLib::YieldTermStructure>(
             new QuantLib::PiecewiseFlatForward(settlementDate,
@@ -166,7 +166,3 @@ namespace QuantLibAddin {
                                                dayCounter));
     }
 }
-
-
-
-

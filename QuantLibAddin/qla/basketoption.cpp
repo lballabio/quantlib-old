@@ -20,8 +20,15 @@
     #include <qla/config.hpp>
 #endif
 #include <qla/basketoption.hpp>
-#include <qla/optionutils.hpp>
-#include <qla/enumfactory.hpp>
+#include <qla/typefactory.hpp>
+#include <qla/generalutils.hpp>
+
+// indexes to the Property vector
+// FIXME - need a cleaner way to achieve this
+#define FIELD_NPV                       "NPV"
+#define FIELD_ENGINE                    "ENGINE"
+#define IDX_NPV                         0
+#define IDX_ENGINE                      1
 
 namespace QuantLibAddin {
 
@@ -40,18 +47,18 @@ namespace QuantLibAddin {
             = OH_POP_ARGUMENT(std::vector < std::string >, arguments);
 
 		QuantLib::BasketOption::BasketType basketType = 
-            CREATE_ENUM(QuantLib::BasketOption::BasketType, basketID);
+            Create<QuantLib::BasketOption::BasketType>()(basketID);
         QuantLib::Matrix correlation =
             vectorVectorToMatrix(correlations);
 		QuantLib::Option::Type type = 
-            CREATE_ENUM(QuantLib::Option::Type, optionTypeID);
+            Create<QuantLib::Option::Type>()(optionTypeID);
 
         boost::shared_ptr<QuantLib::PlainVanillaPayoff> payoff(
             new QuantLib::PlainVanillaPayoff(type, strike));
         boost::shared_ptr<QuantLib::Exercise> exercise = 
-            IDtoExercise(exerciseID, exerciseDate, settlementDate);
+            Create<boost::shared_ptr<QuantLib::Exercise> >()(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
-            IDtoEngine(engineID, timeSteps);
+            Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
 
         std::vector < boost::shared_ptr<QuantLib::StochasticProcess> >
             stochasticProcessesQL;
@@ -87,5 +94,3 @@ namespace QuantLibAddin {
     }
 
 }
-
-

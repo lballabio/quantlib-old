@@ -21,7 +21,7 @@
 
 #include <oh/objhandler.hpp>
 #include <ql/Instruments/fixedcouponbond.hpp>
-#include <qla/enumfactory.hpp>
+#include <qla/typefactory.hpp>
 
 namespace QuantLibAddin {
 
@@ -40,7 +40,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-
-
-
-

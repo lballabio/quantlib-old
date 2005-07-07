@@ -23,7 +23,7 @@
 #include <qla/zerocouponbond.hpp>
 #include <qla/zerocurve.hpp>
 #include <qla/generalutils.hpp>
-#include <qla/enumfactory.hpp>
+#include <qla/typefactory.hpp>
 
 // indexes to the Property vector
 // FIXME - need a cleaner way to achieve this
@@ -54,11 +54,11 @@ namespace QuantLibAddin {
         long issueDate              = OH_POP_ARGUMENT(long, arguments);
 
 		QuantLib::BusinessDayConvention convention = 
-            CREATE_ENUM(QuantLib::BusinessDayConvention, conventionID);
+            Create<QuantLib::BusinessDayConvention>()(conventionID);
 		QuantLib::Calendar calendar =
-            CREATE_ENUM(QuantLib::Calendar, calendarID);
+            Create<QuantLib::Calendar>()(calendarID);
 		QuantLib::DayCounter dayCounter =
-            CREATE_ENUM(QuantLib::DayCounter, dayCounterID);
+            Create<QuantLib::DayCounter>()(dayCounterID);
         
         zeroCouponBond_ = 
             boost::shared_ptr<QuantLib::ZeroCouponBond>(
@@ -80,5 +80,3 @@ namespace QuantLibAddin {
         properties_.push_back(propNpv);
     }
 }
-
-

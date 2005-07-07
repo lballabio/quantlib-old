@@ -20,8 +20,8 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f Makefile.win32"
-				ReBuildCommandLine="nmake /f Makefile.win32 /a"
+				BuildCommandLine="nmake /f Makefile.msdev"
+				ReBuildCommandLine="nmake /f Makefile.msdev /a"
 				Output="QuantLibAddin.dll"/>
 		</Configuration>
 		<Configuration
@@ -33,8 +33,8 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f Makefile.win32.debug"
-				ReBuildCommandLine="nmake /f Makefile.win32.debug /a"
+				BuildCommandLine="nmake /f Makefile.msdev.debug"
+				ReBuildCommandLine="nmake /f Makefile.msdev.debug /a"
 				Output="QuantLibAddin.dll"/>
 		</Configuration>
 	</Configurations>
@@ -45,22 +45,49 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
+				RelativePath="calcutils.cpp">
+			</File>
+			<File
+				RelativePath="capfloor.cpp">
+			</File>
+			<File
 				RelativePath="funcdef.cpp">
 			</File>
 			<File
-				RelativePath="functions.cpp">
+				RelativePath="instruments.cpp">
 			</File>
 			<File
 				RelativePath="options.cpp">
 			</File>
 			<File
+				RelativePath="processes.cpp">
+			</File>
+			<File
 				RelativePath="qladdin.cpp">
+			</File>
+			<File
+				RelativePath="qlatest.cpp">
 			</File>
 			<File
 				RelativePath="QuantLibAddin.def">
 			</File>
 			<File
+				RelativePath="shortratemodels.cpp">
+			</File>
+			<File
+				RelativePath="simpleswap.cpp">
+			</File>
+			<File
+				RelativePath="termstructures.cpp">
+			</File>
+			<File
 				RelativePath="utilities.cpp">
+			</File>
+			<File
+				RelativePath="volatilities.cpp">
+			</File>
+			<File
+				RelativePath="xibor.cpp">
 			</File>
 		</Filter>
 		<Filter
@@ -70,29 +97,56 @@
 				RelativePath="autogen.hpp">
 			</File>
 			<File
-				RelativePath="functions.hpp">
+				RelativePath="calcutils.hpp">
+			</File>
+			<File
+				RelativePath="capfloor.hpp">
+			</File>
+			<File
+				RelativePath="instruments.hpp">
 			</File>
 			<File
 				RelativePath="options.hpp">
 			</File>
 			<File
+				RelativePath="processes.hpp">
+			</File>
+			<File
 				RelativePath="qladdin.hpp">
+			</File>
+			<File
+				RelativePath="qlatest.hpp">
 			</File>
 			<File
 				RelativePath="qldefs.hpp">
 			</File>
 			<File
+				RelativePath="shortratemodels.hpp">
+			</File>
+			<File
+				RelativePath="simpleswap.hpp">
+			</File>
+			<File
+				RelativePath="termstructures.hpp">
+			</File>
+			<File
 				RelativePath="utilities.hpp">
+			</File>
+			<File
+				RelativePath="volatilities.hpp">
+			</File>
+			<File
+				RelativePath="xibor.hpp">
 			</File>
 		</Filter>
 		<Filter
 			Name="Make"
 			Filter="">
 			<File
-				RelativePath="Makefile.win32">
+				RelativePath="Makefile.msdev">
 			</File>
 			<File
-				RelativePath="Makefile.win32.debug">
+				RelativePath="Makefile.msdev.debug">
 			</File>
 		</Filter>
 		<File
