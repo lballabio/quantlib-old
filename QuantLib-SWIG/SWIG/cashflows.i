@@ -158,31 +158,12 @@ FloatingRateCouponVector(const Schedule& schedule,
 
 %{
 using QuantLib::Cashflows;
-typedef QuantLib::Duration::Type DurationType;
-
-DurationType durationFromString(std::string s) {
-    s = QuantLib::lowercase(s);
-    if (s == "simple")
-        return QuantLib::Duration::Simple;
-    else if (s == "macaulay")
-        return QuantLib::Duration::Macaulay;
-    else if (s == "modified")
-        return QuantLib::Duration::Modified;
-    else
-        QL_FAIL("unknown duration type");
-}
-
-std::string stringFromDuration(DurationType d) {
-    switch (d) {
-      case QuantLib::Duration::Simple:      return "simple";
-      case QuantLib::Duration::Macaulay:    return "Macaulay";
-      case QuantLib::Duration::Modified:    return "modified";
-      default:                              QL_FAIL("unknown duration type");
-    }
-}
+using QuantLib::Duration;
 %}
 
-MapToString(DurationType,durationFromString,stringFromDuration);
+struct Duration {
+    enum Type { Simple, Macaulay, Modified };
+};
 
 class Cashflows {
   private:
@@ -198,7 +179,7 @@ class Cashflows {
                     Real marketPrice,
                     const DayCounter& dayCounter,
                     Compounding compounding,
-                    Frequency frequency = QuantLib::NoFrequency,
+                    Frequency frequency = NoFrequency,
                     Date settlementDate = Date(),
                     Real tolerance = 1.0e-10,
                     Size maxIterations = 10000,
@@ -209,7 +190,7 @@ class Cashflows {
     static Time duration(const std::vector<boost::shared_ptr<CashFlow> >&,
                          Real marketPrice,
                          const InterestRate&,
-                         DurationType type = QuantLib::Duration::Simple,
+                         Duration::Type type = Duration::Simple,
                          Date settlementDate = Date());
 };
 

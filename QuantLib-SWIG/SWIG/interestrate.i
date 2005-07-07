@@ -24,37 +24,22 @@
 
 %{
 using QuantLib::Compounding;
-
-Compounding compoundingFromString(std::string s) {
-    s = QuantLib::lowercase(s);
-    if (s == "simple")
-        return QuantLib::Simple;
-    else if (s == "compounded")
-        return QuantLib::Compounded;
-    else if (s == "continuous")
-        return QuantLib::Continuous;
-    else if (s == "simplethencompounded")
-        return QuantLib::SimpleThenCompounded;
-    else
-        QL_FAIL("unknown compounding");
-}
-
-std::string stringFromCompounding(Compounding c) {
-    switch (c) {
-      case QuantLib::Simple:                return "simple";
-      case QuantLib::Compounded:            return "compounded";
-      case QuantLib::Continuous:            return "continuous";
-      case QuantLib::SimpleThenCompounded:  return "simplethencompounded";
-      default:                              QL_FAIL("unknown compounding");
-    }
-}
+using QuantLib::Simple;
+using QuantLib::Compounded;
+using QuantLib::Continuous;
+using QuantLib::SimpleThenCompounded;
 %}
 
-MapToString(Compounding,compoundingFromString,stringFromCompounding);
+enum Compounding {
+    Simple,
+    Compounded,
+    Continuous,
+    SimpleThenCompounded
+};
+
 
 %{
 using QuantLib::InterestRate;
-using QuantLib::Annual;
 %}
 
 class InterestRate {

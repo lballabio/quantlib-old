@@ -17,14 +17,14 @@ require 'QuantLib'
 include QuantLib
 
 # global data
-todaysDate = Date.new(15,5,1998)
+todaysDate = Date.new(15,May,1998)
 Settings.instance.evaluationDate = todaysDate
-settlementDate = Date.new(17,5,1998)
+settlementDate = Date.new(17,May,1998)
 riskFreeRate = FlatForward.new(settlementDate, 0.06, Actual365Fixed.new)
 
 # option parameters
 exercise = AmericanExercise.new(settlementDate, Date.new(17,5,1999))
-payoff = PlainVanillaPayoff.new('put', 40.0)
+payoff = PlainVanillaPayoff.new(Option::Put, 40.0)
 
 # market data
 underlying = SimpleQuote.new(36.0)

@@ -34,18 +34,19 @@ class TermStructureTest < Test::Unit::TestCase
     @calendar = TARGET.new
     @settlementDays = 2
     today = @calendar.adjust(Date::todaysDate)
-    settlement = @calendar.advance(today,@settlementDays,'days')
+    settlement = @calendar.advance(today,@settlementDays,Days)
     depositData = [
-      [1,  'month', 4.581],
-      [2, 'months', 4.573],
-      [3, 'months', 4.557],
-      [6, 'months', 4.496],
-      [9, 'months', 4.490]
+      [1, Months, 4.581],
+      [2, Months, 4.573],
+      [3, Months, 4.557],
+      [6, Months, 4.496],
+      [9, Months, 4.490]
     ]
     deposits = depositData.map { |n,units,rate|
       DepositRateHelper.new(
         QuoteHandle.new(SimpleQuote.new(rate/100)),
-        n, units, @settlementDays, @calendar, 'mf', Actual360.new)
+        n, units, @settlementDays, @calendar, ModifiedFollowing,
+        Actual360.new)
     }    
     swapData = [
         [ 1, 4.54],
@@ -57,9 +58,9 @@ class TermStructureTest < Test::Unit::TestCase
     swaps = swapData.map { |years,rate|
       SwapRateHelper.new(
         QuoteHandle.new(SimpleQuote.new(rate/100)),
-        years, "years", @settlementDays, 
-        @calendar, 1, 'unadjusted', Thirty360.new,
-        2, 'mf')
+        years, Years, @settlementDays, 
+        @calendar, 1, Unadjusted, Thirty360.new,
+        2, ModifiedFollowing)
     }
     @termStructure = PiecewiseFlatForward.new(settlement,
                                               deposits+swaps,
@@ -69,7 +70,7 @@ class TermStructureTest < Test::Unit::TestCase
     flag = false
     h = YieldTermStructureHandle.new
     settlement = @termStructure.referenceDate
-    new_settlement = @calendar.advance(settlement,3,'years')
+    new_settlement = @calendar.advance(settlement,3,Years)
     implied = ImpliedTermStructure.new(h,new_settlement)
     obs = Observer.new { flag = true }
     obs.registerWith(implied)

@@ -18,17 +18,17 @@ include QuantLib
 
 # global data
 calendar = TARGET.new
-todaysDate = Date.new(6,11,2001);
+todaysDate = Date.new(6,November,2001);
 Settings.instance.evaluationDate = todaysDate
-settlementDate = Date.new(8,11,2001);
+settlementDate = Date.new(8,November,2001);
 
 # market quotes
-deposits = [ [1,'week',   SimpleQuote.new(0.0382)],
-             [1,'month',  SimpleQuote.new(0.0372)],
-             [3,'months', SimpleQuote.new(0.0363)],
-             [6,'months', SimpleQuote.new(0.0353)],
-             [9,'months', SimpleQuote.new(0.0348)],
-             [1,'year',   SimpleQuote.new(0.0345)] ]
+deposits = [ [1, Weeks,  SimpleQuote.new(0.0382)],
+             [1, Months, SimpleQuote.new(0.0372)],
+             [3, Months, SimpleQuote.new(0.0363)],
+             [6, Months, SimpleQuote.new(0.0353)],
+             [9, Months, SimpleQuote.new(0.0348)],
+             [1, Years,  SimpleQuote.new(0.0345)] ]
 
 fras = { [3,6]  => SimpleQuote.new(0.037125),
          [6,9]  => SimpleQuote.new(0.037125),
@@ -43,11 +43,11 @@ futures = { Date.new(19,12,2001) => SimpleQuote.new(96.2875),
             Date.new(18,6,2003)  => SimpleQuote.new(96.2875),
             Date.new(17,9,2003)  => SimpleQuote.new(96.0875) }
 
-swaps = { [2,'years']  => SimpleQuote.new(0.037125),
-          [3,'years']  => SimpleQuote.new(0.0398),
-          [5,'years']  => SimpleQuote.new(0.0443),
-          [10,'years'] => SimpleQuote.new(0.05165),
-          [15,'years'] => SimpleQuote.new(0.055175) }
+swaps = { [ 2,Years] => SimpleQuote.new(0.037125),
+          [ 3,Years] => SimpleQuote.new(0.0398),
+          [ 5,Years] => SimpleQuote.new(0.0443),
+          [10,Years] => SimpleQuote.new(0.05165),
+          [15,Years] => SimpleQuote.new(0.055175) }
 
 # build rate helpers
 
@@ -56,7 +56,7 @@ settlementDays = 2
 depositHelpers = deposits.map { |n,unit,v|
   DepositRateHelper.new(QuoteHandle.new(v),
                         n, unit, settlementDays,
-                        calendar, 'mf', dayCounter)
+                        calendar, ModifiedFollowing, dayCounter)
 }
 
 dayCounter = Actual360.new
@@ -64,7 +64,7 @@ settlementDays = 2
 fraHelpers = fras.map { |(n,m),v|
   FraRateHelper.new(QuoteHandle.new(v),
                     n, m, settlementDays,
-                    calendar, 'mf', dayCounter)
+                    calendar, ModifiedFollowing, dayCounter)
 }
 
 dayCounter = Actual360.new
@@ -72,15 +72,15 @@ months = 3
 futuresHelpers = futures.map { |d,v|
   FuturesRateHelper.new(QuoteHandle.new(v),
                         d, months,
-                        calendar, 'mf', dayCounter)
+                        calendar, ModifiedFollowing, dayCounter)
 }
 
 settlementDays = 2
-fixedLegFrequency = 1
-fixedLegAdjustment = 'unadjusted'
+fixedLegFrequency = Annual
+fixedLegAdjustment = Unadjusted
 fixedLegDayCounter = Thirty360.new
-floatingLegFrequency = 2
-floatingLegAdjustment = 'modifiedfollowing'
+floatingLegFrequency = Semiannual
+floatingLegAdjustment = ModifiedFollowing
 swapHelpers = swaps.map {|(n,unit),v|
   SwapRateHelper.new(QuoteHandle.new(v),
                      n, unit, settlementDays,
@@ -108,19 +108,19 @@ depoFraSwapCurve = PiecewiseFlatForward.new(settlementDate,
 
 nominal = 1000000
 length = 5
-maturity = calendar.advance(settlementDate,length,'years')
+maturity = calendar.advance(settlementDate,length,Years)
 payFixed = true
 
-fixedLegFrequency = 1
-fixedLegAdjustment = 'unadjusted'
+fixedLegFrequency = Annual
+fixedLegAdjustment = Unadjusted
 fixedLegDayCounter = Thirty360.new
 fixedRate = 0.04
 
-floatingLegFrequency = 2
+floatingLegFrequency = Semiannual
 spread = 0.0
 fixingDays = 2
-index = Euribor.new(6, 'months', forecastTermStructure)
-floatingLegAdjustment = 'modifiedfollowing'
+index = Euribor.new(6, Months, forecastTermStructure)
+floatingLegAdjustment = ModifiedFollowing
 
 fixedSchedule = Schedule.new(calendar, settlementDate, maturity,
                              fixedLegFrequency, fixedLegAdjustment)
@@ -132,8 +132,8 @@ spot = SimpleSwap.new(payFixed, nominal,
                       floatingSchedule, index, fixingDays, spread,
                       discountTermStructure)
 
-forwardStart = calendar.advance(settlementDate,1,'year')
-forwardEnd = calendar.advance(forwardStart,length,'years')
+forwardStart = calendar.advance(settlementDate,1,Years)
+forwardEnd = calendar.advance(forwardStart,length,Years)
 fixedSchedule = Schedule.new(calendar, forwardStart, forwardEnd,
                              fixedLegFrequency, fixedLegAdjustment)
 floatingSchedule = Schedule.new(calendar, forwardStart, forwardEnd,
@@ -173,7 +173,7 @@ end
 
 puts dblrule
 
-puts "5-year market swap-rate = #{formatRate(swaps[[5,'years']].value)}"
+puts "5-year market swap-rate = #{formatRate(swaps[[5,Years]].value)}"
 puts dblrule
 
 # price on two different term structures
@@ -207,10 +207,10 @@ report(forward,'depo-FRA-swap')
 
 # modify the 5-years swap rate and reprice
 
-swaps[[5,'years']].value = 0.046
+swaps[[5,Years]].value = 0.046
 
 puts dblrule
-puts "5-year market swap-rate = #{formatRate(swaps[[5,'years']].value)}"
+puts "5-year market swap-rate = #{formatRate(swaps[[5,Years]].value)}"
 puts dblrule
 
 puts "#{tab}5-years swap paying #{formatRate(fixedRate)}"

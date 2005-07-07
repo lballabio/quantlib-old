@@ -1098,40 +1098,19 @@ class Matrix {
 
 %{
 using QuantLib::pseudoSqrt;
-typedef QuantLib::SalvagingAlgorithm::Type SalvagingAlgorithm;
-
-SalvagingAlgorithm salvagingAlgorithmFromString(std::string s) {
-    s = QuantLib::lowercase(s);
-    if (s == "none")
-        return QuantLib::SalvagingAlgorithm::None;
-    else if (s == "spectral")
-        return QuantLib::SalvagingAlgorithm::Spectral;
-    else if (s == "hypersphere")
-        return QuantLib::SalvagingAlgorithm::Hypersphere;
-    else
-        QL_FAIL("unknown salvaging algorithm: "+s);
-}
-
-std::string salvagingAlgorithmToString(SalvagingAlgorithm a) {
-    switch (a) {
-      case QuantLib::SalvagingAlgorithm::None:
-        return "None";
-      case QuantLib::SalvagingAlgorithm::Spectral:
-        return "Spectral";
-      case QuantLib::SalvagingAlgorithm::Hypersphere:
-        return "Hypersphere";
-      default:
-        QL_FAIL("unknown salvaging algorithm");
-    }
-}
+using QuantLib::SalvagingAlgorithm;
 %}
 
-MapToString(SalvagingAlgorithm,salvagingAlgorithmFromString,
-            salvagingAlgorithmToString);
+struct SalvagingAlgorithm {
+    #if defined(SWIGPYTHON)
+    %rename(NoAlgorithm) None;
+    #endif
+    enum Type { None, Spectral, Hypersphere };
+};
 
 Matrix transpose(const Matrix& m);
 Matrix outerProduct(const Array& v1, const Array& v2);
-Matrix pseudoSqrt(const Matrix& m, SalvagingAlgorithm a);
+Matrix pseudoSqrt(const Matrix& m, SalvagingAlgorithm::Type a);
 
 class SVD {
   public:

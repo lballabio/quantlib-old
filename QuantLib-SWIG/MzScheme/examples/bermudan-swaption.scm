@@ -17,12 +17,12 @@
 (load "tabulate.scm")
 
 (define swaption-vols
-  (list ; maturity,          length,             volatility
-   (list (new-Period 1 "Year")  (new-Period 5 "Years")  0.1148)
-   (list (new-Period 2 "Years") (new-Period 4 "Years") 0.1108)
-   (list (new-Period 3 "Years") (new-Period 3 "Years") 0.1070)
-   (list (new-Period 4 "Years") (new-Period 2 "Years") 0.1021)
-   (list (new-Period 5 "Years") (new-Period 1 "Years") 0.1000)))
+  (list ; maturity,              length,               volatility
+   (list (new-Period 1 (Years)) (new-Period 5 (Years)) 0.1148)
+   (list (new-Period 2 (Years)) (new-Period 4 (Years)) 0.1108)
+   (list (new-Period 3 (Years)) (new-Period 3 (Years)) 0.1070)
+   (list (new-Period 4 (Years)) (new-Period 2 (Years)) 0.1021)
+   (list (new-Period 5 (Years)) (new-Period 1 (Years)) 0.1000)))
 
 (define (format-vol v digits)
   (format "~a %" (round-with-digits (* v 100) digits)))
@@ -121,19 +121,19 @@
 
 ; define the ATM/OTM/ITM swaps
 
-(define fixed-leg-frequency 1)
-(define fixed-leg-convention "unadjusted")
-(define floating-leg-convention "modifiedFollowing")
+(define fixed-leg-frequency (Annual))
+(define fixed-leg-convention (Unadjusted))
+(define floating-leg-convention (ModifiedFollowing))
 (define fixed-leg-day-counter (new-Thirty360 (Thirty360-European)))
-(define floating-leg-frequency 2)
+(define floating-leg-frequency (Semiannual))
 
 (define pay-fixed #t)
 (define fixing-days 2)
-(define index (new-Euribor 6 "months" term-structure))
+(define index (new-Euribor 6 (Months) term-structure))
 
-(define swap-start (Calendar-advance calendar settlement-date 1 "year"
+(define swap-start (Calendar-advance calendar settlement-date 1 (Years)
                                      floating-leg-convention))
-(define swap-end (Calendar-advance calendar swap-start 5 "years"
+(define swap-end (Calendar-advance calendar swap-start 5 (Years)
                                    floating-leg-convention))
 
 (define fixed-schedule (new-Schedule calendar swap-start swap-end

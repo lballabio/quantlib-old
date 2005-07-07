@@ -19,6 +19,7 @@
 #define quantlib_types_i
 
 %include common.i
+%include std_common.i
 
 %{
 using QuantLib::Integer;
@@ -48,8 +49,13 @@ typedef Real Spread;
 typedef Real DiscountFactor;
 typedef Real Volatility;
 
-MapToInteger(Size);
+#if defined(SWIGMZSCHEME)
+%typecheck(SWIG_TYPECHECK_INTEGER) std::size_t {
+    $1 = (SCHEME_INTP($input)) ? 1 : 0;
+}
+#endif
 
+typedef std::size_t Size;
 
 
 #endif

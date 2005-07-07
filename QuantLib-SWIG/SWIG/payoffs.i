@@ -39,7 +39,7 @@ typedef boost::shared_ptr<Payoff> SuperSharePayoffPtr;
 class PlainVanillaPayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
-        PlainVanillaPayoffPtr(OptionType type,
+        PlainVanillaPayoffPtr(Option::Type type,
                               Real strike) {
             return new PlainVanillaPayoffPtr(
                                         new PlainVanillaPayoff(type, strike));
@@ -51,7 +51,7 @@ class PlainVanillaPayoffPtr : public boost::shared_ptr<Payoff> {
 class PercentageStrikePayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
-        PercentageStrikePayoffPtr(OptionType type,
+        PercentageStrikePayoffPtr(Option::Type type,
                                   Real moneyness) {
             return new PercentageStrikePayoffPtr(
                                  new PercentageStrikePayoff(type, moneyness));
@@ -63,7 +63,7 @@ class PercentageStrikePayoffPtr : public boost::shared_ptr<Payoff> {
 class CashOrNothingPayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
-        CashOrNothingPayoffPtr(OptionType type,
+        CashOrNothingPayoffPtr(Option::Type type,
                                Real strike,
                                Real payoff) {
             return new CashOrNothingPayoffPtr(
@@ -76,7 +76,7 @@ class CashOrNothingPayoffPtr : public boost::shared_ptr<Payoff> {
 class AssetOrNothingPayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
-        AssetOrNothingPayoffPtr(OptionType type,
+        AssetOrNothingPayoffPtr(Option::Type type,
                                 Real strike) {
             return new AssetOrNothingPayoffPtr(
                                       new AssetOrNothingPayoff(type, strike));
@@ -88,7 +88,7 @@ class AssetOrNothingPayoffPtr : public boost::shared_ptr<Payoff> {
 class SuperSharePayoffPtr : public boost::shared_ptr<Payoff> {
   public:
     %extend {
-        SuperSharePayoffPtr(OptionType type,
+        SuperSharePayoffPtr(Option::Type type,
                             Real strike,
                             Real increment) {
             return new SuperSharePayoffPtr(

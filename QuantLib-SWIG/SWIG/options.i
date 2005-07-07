@@ -27,64 +27,20 @@
 // option and barrier types
 %{
 using QuantLib::Option;
-typedef Option::Type OptionType;
 using QuantLib::Barrier;
-typedef Barrier::Type BarrierType;
-
-Option::Type optionTypeFromString(std::string s) {
-    s = QuantLib::lowercase(s);
-    if (s == "c" || s == "call")
-        return Option::Call;
-    else if (s == "p" || s == "put")
-        return Option::Put;
-    else
-        QL_FAIL("unknown option type: "+s);
-}
-
-std::string optionTypeToString(Option::Type t) {
-    switch (t) {
-      case Option::Call:
-        return "Call";
-      case Option::Put:
-        return "Put";
-      default:
-        QL_FAIL("unknown option type");
-    }
-}
-
-BarrierType barrierTypeFromString(std::string s) {
-    s = QuantLib::lowercase(s);
-    if (s == "downin")
-        return Barrier::DownIn;
-    else if (s == "downout")
-        return Barrier::DownOut;
-    else if (s == "upin")
-        return Barrier::UpIn;
-    else if (s == "upout")
-        return Barrier::UpOut;
-    else
-        QL_FAIL("unknown barrier type: "+s);
-}
-
-std::string barrierTypeToString(BarrierType t) {
-    switch (t) {
-      case Barrier::DownIn:
-        return "DownIn";
-      case Barrier::DownOut:
-        return "DownOut";
-      case Barrier::UpIn:
-        return "UpIn";
-      case Barrier::UpOut:
-        return "UpOut";
-      default:
-        QL_FAIL("unknown barrier type");
-    }
-}
 %}
 
-MapToString(OptionType,optionTypeFromString,optionTypeToString);
-MapToString(BarrierType,barrierTypeFromString,barrierTypeToString);
+// declared out of its hierarchy just to export the inner enumeration
+class Option {
+  public:
+    enum Type { Call, Put };
+  private:
+    Option();
+};
 
+struct Barrier {
+    enum Type { DownIn, UpIn, DownOut, UpOut };
+};
 
 // payoff
 
@@ -576,7 +532,7 @@ class BarrierOptionPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
         BarrierOptionPtr(
-                   BarrierType barrierType,
+                   Barrier::Type barrierType,
                    Real barrier,
                    Real rebate,
                    const boost::shared_ptr<GenericStochasticProcess>& process,

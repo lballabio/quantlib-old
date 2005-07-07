@@ -25,11 +25,11 @@
 (define (TermStructure-test tag)
   (define (make-test-structure-handle)
     (let ((settlement-days 2)
-          (deposit-data '((1  "month" 4.581)
-                          (2 "months" 4.573)
-                          (3 "months" 4.557)
-                          (6 "months" 4.496)
-                          (9 "months" 4.490)))
+          (deposit-data (list (list 1 (Months) 4.581)
+                              (list 2 (Months) 4.573)
+                              (list 3 (Months) 4.557)
+                              (list 6 (Months) 4.496)
+                              (list 9 (Months) 4.490)))
           (swap-data '((1 4.54)
                        (5 4.99)
                        (10 5.47)
@@ -39,7 +39,7 @@
              (calendar (new-TARGET))
              (today (Calendar-adjust calendar real-today))
              (settlement (Calendar-advance calendar today
-                                           settlement-days "days"))
+                                           settlement-days (Days)))
              (day-counter (new-Actual360))
              (day-counter-2 (new-Thirty360))
              (deposits (map
@@ -48,16 +48,16 @@
                             (new-DepositRateHelper
                              (new-QuoteHandle (new-SimpleQuote (/ rate 100)))
                              n units settlement-days
-                             calendar "mf" day-counter)))
+                             calendar (ModifiedFollowing) day-counter)))
                         deposit-data))
              (swaps (map
                      (lambda (datum)
-                       (let-at-once ((years rate) datum)
+                       (let-at-once ((length rate) datum)
                          (new-SwapRateHelper
                           (new-QuoteHandle (new-SimpleQuote (/ rate 100)))
-                          years "years" settlement-days
-                          calendar 1 "unadjusted" day-counter-2
-                          2 "mf")))
+                          length (Years) settlement-days
+                          calendar 1 (Unadjusted) day-counter-2
+                          2 (ModifiedFollowing))))
                      swap-data))
              (term-structure (new-PiecewiseFlatForward
                               settlement
@@ -73,7 +73,7 @@
                     (settlement (YieldTermStructureHandle-reference-date
                                  term-structure))
                     (new-settlement (Calendar-advance
-                                     calendar settlement 3 "years"))
+                                     calendar settlement 3 (Years)))
                     (day-counter (YieldTermStructureHandle-day-counter
                                   term-structure))
                     (implied (new-ImpliedTermStructure term-structure

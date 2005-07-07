@@ -34,7 +34,7 @@
 
 ; option parameters
 (define exercise (new-AmericanExercise settlement-date (new-Date 17 5 1999)))
-(define payoff (new-PlainVanillaPayoff "put" 40.0))
+(define payoff (new-PlainVanillaPayoff (Option-Put) 40.0))
 
 ; market data
 (define underlying (new-SimpleQuote 36.0))

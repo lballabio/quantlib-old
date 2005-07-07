@@ -81,65 +81,6 @@ class Handle {
 };
 
 
-// typemap a C++ type to integers in the scripting language
-
-%define MapToInteger(Type)
-
-%typemap(typecheck) Type = int;
-
-#if defined(SWIGPYTHON)
-
-%typemap(in) Type {
-    if (PyInt_Check($input))
-        $1 = Type(PyInt_AsLong($input));
-    else
-        SWIG_exception(SWIG_TypeError,"int expected");
-};
-
-%typemap(out) Type {
-    $result = PyInt_FromLong(long($1));
-};
-
-#elif defined(SWIGRUBY)
-
-%typemap(in) Type {
-    if (FIXNUM_P($input))
-        $1 = Type(FIX2INT($input));
-    else
-        SWIG_exception(SWIG_TypeError,"not an integer");
-};
-
-%typemap(out) Type {
-    $result = INT2NUM(int($1));
-};
-
-#elif defined(SWIGMZSCHEME)
-
-%typemap(in) Type {
-    if (SCHEME_INTP($input))
-        $1 = Type(SCHEME_INT_VAL($input));
-    else
-        SWIG_exception(SWIG_TypeError,"int expected");
-};
-
-%typemap(out) Type {
-    $result = scheme_make_integer_value(int($1));
-};
-
-#elif defined(SWIGGUILE)
-
-%typemap(in) Type {
-    $1 = Type(gh_scm2int($input));
-};
-
-%typemap(out) Type {
-    $result = gh_int2scm(int($1));
-};
-
-#endif
-%enddef
-
-
 // typemap a C++ type to strings in the scripting language
 
 %define MapToString(Type,TypeFromString,TypeToString)

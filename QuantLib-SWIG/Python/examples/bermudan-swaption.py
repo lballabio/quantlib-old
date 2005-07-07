@@ -16,11 +16,11 @@
 from QuantLib import *
 
 swaptionVols = [ # maturity,          length,             volatility
-                 (Period(1, 'Year'),  Period(5,'Years'),  0.1148),
-                 (Period(2, 'Years'), Period(4, 'Years'), 0.1108),
-                 (Period(3, 'Years'), Period(3, 'Years'), 0.1070),
-                 (Period(4, 'Years'), Period(2, 'Years'), 0.1021),
-                 (Period(5, 'Years'), Period(1, 'Years'), 0.1000) ]
+                 (Period(1, Years), Period(5, Years), 0.1148),
+                 (Period(2, Years), Period(4, Years), 0.1108),
+                 (Period(3, Years), Period(3, Years), 0.1070),
+                 (Period(4, Years), Period(2, Years), 0.1021),
+                 (Period(5, Years), Period(1, Years), 0.1000) ]
 
 def formatVol(v, digits = 2):
     format = '%%.%df %%%%' % digits
@@ -69,10 +69,10 @@ def calibrate(model, helpers, l, name):
     print format % ('Average error: ' + formatVol(averageError,4))
     print dblrule
 
-todaysDate = Date(15,2,2002)
+todaysDate = Date(15,February,2002)
 Settings.instance().evaluationDate = todaysDate
 calendar = TARGET()
-settlementDate = Date(19,2,2002);
+settlementDate = Date(19,February,2002);
 
 # flat yield term structure impling 1x5 swap at 5%
 rate = QuoteHandle(SimpleQuote(0.04875825))
@@ -82,18 +82,18 @@ termStructure.linkTo(FlatForward(settlementDate,rate,Actual365Fixed()))
 
 # define the ATM/OTM/ITM swaps
 
-fixedLegFrequency = 1;
-fixedLegConvention = 'Unadjusted';
-floatingLegConvention = 'ModifiedFollowing';
+fixedLegFrequency = Annual
+fixedLegConvention = Unadjusted
+floatingLegConvention = ModifiedFollowing
 fixedLegDayCounter = Thirty360(Thirty360.European);
-floatingLegFrequency = 2;
+floatingLegFrequency = Semiannual
 
-payFixed = 1
+payFixed = True
 fixingDays = 2
-index = Euribor(6, 'months', termStructure)
+index = Euribor(6, Months, termStructure)
 
-swapStart = calendar.advance(settlementDate,1,'years',floatingLegConvention)
-swapEnd = calendar.advance(swapStart,5,'years',floatingLegConvention)
+swapStart = calendar.advance(settlementDate,1,Years,floatingLegConvention)
+swapEnd = calendar.advance(swapStart,5,Years,floatingLegConvention)
 
 fixedSchedule = Schedule(calendar, swapStart, swapEnd,
                          fixedLegFrequency, fixedLegConvention)

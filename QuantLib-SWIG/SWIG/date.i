@@ -31,97 +31,93 @@ typedef Integer Day;
 typedef Integer Year;
 
 
-// typemap weekdays to corresponding strings
-
 %{
 using QuantLib::Weekday;
-
-Weekday weekdayFromString(std::string s) {
-    s = QuantLib::lowercase(s);
-    if (s == "sun" || s == "sunday")
-        return QuantLib::Sunday;
-    else if (s == "mon" || s == "monday")
-        return QuantLib::Monday;
-    else if (s == "tue" || s == "tuesday")
-        return QuantLib::Tuesday;
-    else if (s == "wed" || s == "wednesday")
-        return QuantLib::Wednesday;
-    else if (s == "thu" || s == "thursday")
-        return QuantLib::Thursday;
-    else if (s == "fri" || s == "friday")
-        return QuantLib::Friday;
-    else if (s == "sat" || s == "saturday")
-        return QuantLib::Saturday;
-    else
-        QL_FAIL("unknown weekday");
-}
-
-std::string stringFromWeekday(Weekday w) {
-    switch (w) {
-      case QuantLib::Sunday:    return "Sunday";
-      case QuantLib::Monday:    return "Monday";
-      case QuantLib::Tuesday:   return "Tuesday";
-      case QuantLib::Wednesday: return "Wednesday";
-      case QuantLib::Thursday:  return "Thursday";
-      case QuantLib::Friday:    return "Friday";
-      case QuantLib::Saturday:  return "Saturday";
-      default:                  QL_FAIL("unknown weekday");
-    }
-}
+using QuantLib::Sunday;
+using QuantLib::Monday;
+using QuantLib::Tuesday;
+using QuantLib::Wednesday;
+using QuantLib::Thursday;
+using QuantLib::Friday;
+using QuantLib::Saturday;
 %}
 
-MapToString(Weekday,weekdayFromString,stringFromWeekday);
+enum Weekday {
+    Sunday    = 1,
+    Monday    = 2,
+    Tuesday   = 3,
+    Wednesday = 4,
+    Thursday  = 5,
+    Friday    = 6,
+    Saturday  = 7
+};
 
-
-// typemap months to corresponding numbers
 
 %{
 using QuantLib::Month;
+using QuantLib::January;
+using QuantLib::February;
+using QuantLib::March;
+using QuantLib::April;
+using QuantLib::May;
+using QuantLib::June;
+using QuantLib::July;
+using QuantLib::August;
+using QuantLib::September;
+using QuantLib::October;
+using QuantLib::November;
+using QuantLib::December;
 %}
 
-MapToInteger(Month);
+enum Month {
+    January   = 1,
+    February  = 2,
+    March     = 3,
+    April     = 4,
+    May       = 5,
+    June      = 6,
+    July      = 7,
+    August    = 8,
+    September = 9,
+    October   = 10,
+    November  = 11,
+    December  = 12
+};
 
-
-// typemap time units to corresponding strings
 
 %{
 using QuantLib::TimeUnit;
-
-TimeUnit timeunitFromString(std::string s) {
-    s = QuantLib::lowercase(s);
-    if (s == "d" || s == "day" || s == "days")
-        return QuantLib::Days;
-    else if (s == "w" || s == "week" || s == "weeks")
-        return QuantLib::Weeks;
-    else if (s == "m" || s == "month" || s == "months")
-        return QuantLib::Months;
-    else if (s == "y" || s == "year" || s == "years")
-        return QuantLib::Years;
-    else
-        QL_FAIL("unknown time unit");
-}
-
-std::string stringFromTimeunit(TimeUnit u) {
-    switch (u) {
-      case QuantLib::Days:   return "days";
-      case QuantLib::Weeks:  return "weeks";
-      case QuantLib::Months: return "months";
-      case QuantLib::Years:  return "years";
-      default:               QL_FAIL("unknown time unit");
-    }
-}
+using QuantLib::Days;
+using QuantLib::Weeks;
+using QuantLib::Months;
+using QuantLib::Years;
 %}
 
-MapToString(TimeUnit,timeunitFromString,stringFromTimeunit);
+enum TimeUnit { Days, Weeks, Months, Years };
 
-
-// typemap frequencies to corresponding numbers
 
 %{
 using QuantLib::Frequency;
+using QuantLib::NoFrequency;
+using QuantLib::Once;
+using QuantLib::Annual;
+using QuantLib::Semiannual;
+using QuantLib::EveryFourthMonth;
+using QuantLib::Quarterly;
+using QuantLib::Bimonthly;
+using QuantLib::Monthly;
 %}
 
-MapToInteger(Frequency);
+enum Frequency {
+    NoFrequency = -1,
+    Once = 0,
+    Annual = 1,
+    Semiannual = 2,
+    EveryFourthMonth = 3,
+    Quarterly = 4,
+    Bimonthly = 6,
+    Monthly = 12
+};
 
 // time period
 

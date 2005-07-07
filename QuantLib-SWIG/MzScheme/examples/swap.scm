@@ -50,12 +50,12 @@
 ; market values
 
 (define deposit-data
-  (list (list 1 "week" (new-SimpleQuote 0.0382))
-        (list 1 "month" (new-SimpleQuote 0.0372))
-        (list 3 "months" (new-SimpleQuote 0.0363))
-        (list 6 "months" (new-SimpleQuote 0.0353))
-        (list 9 "months" (new-SimpleQuote 0.0348))
-        (list 1 "year" (new-SimpleQuote 0.0345))))
+  (list (list 1 (Weeks)  (new-SimpleQuote 0.0382))
+        (list 1 (Months) (new-SimpleQuote 0.0372))
+        (list 3 (Months) (new-SimpleQuote 0.0363))
+        (list 6 (Months) (new-SimpleQuote 0.0353))
+        (list 9 (Months) (new-SimpleQuote 0.0348))
+        (list 1 (Years)  (new-SimpleQuote 0.0345))))
 
 (define fra-data
   (list (list 3 6 (new-SimpleQuote 0.037125))
@@ -74,11 +74,11 @@
 
 (define 5-years-swap (new-SimpleQuote 0.0443))
 (define swap-data
-  (list (list 2 "years" (new-SimpleQuote 0.037125))
-        (list 3 "years" (new-SimpleQuote 0.0398))
-        (list 5 "years" 5-years-swap)
-        (list 10 "years" (new-SimpleQuote 0.05165))
-        (list 15 "years" (new-SimpleQuote 0.055175))))
+  (list (list  2 (Years) (new-SimpleQuote 0.037125))
+        (list  3 (Years) (new-SimpleQuote 0.0398))
+        (list  5 (Years) 5-years-swap)
+        (list 10 (Years) (new-SimpleQuote 0.05165))
+        (list 15 (Years) (new-SimpleQuote 0.055175))))
 
 ; build rate helpers
 
@@ -89,7 +89,8 @@
          (apply (lambda (n units quote)
                   (new-DepositRateHelper (new-QuoteHandle quote)
                                          n units depo-settlement-days
-                                         calendar "mf" depo-day-counter))
+                                         calendar (ModifiedFollowing)
+                                         depo-day-counter))
                 datum))
        deposit-data))
 
@@ -100,7 +101,8 @@
          (apply (lambda (n m quote)
                   (new-FraRateHelper (new-QuoteHandle quote)
                                      n m fra-settlement-days
-                                     calendar "mf" fra-day-counter))
+                                     calendar (ModifiedFollowing)
+                                     fra-day-counter))
                 datum))
        fra-data))
 
@@ -111,16 +113,17 @@
          (apply (lambda (date quote)
                   (new-FuturesRateHelper (new-QuoteHandle quote)
                                          date futures-months
-                                         calendar "mf" futures-day-counter))
+                                         calendar (ModifiedFollowing)
+                                         futures-day-counter))
                 datum))
        futures-data))
 
 (define swap-settlement-days 2)
-(define fixed-leg-frequency 1)
-(define fixed-leg-adjustment "unadjusted")
+(define fixed-leg-frequency (Annual))
+(define fixed-leg-adjustment (Unadjusted))
 (define fixed-leg-day-counter (new-Thirty360))
-(define floating-leg-frequency 2)
-(define floating-leg-adjustment "modifiedfollowing")
+(define floating-leg-frequency (Semiannual))
+(define floating-leg-adjustment (ModifiedFollowing))
 (define swap-helpers
   (map (lambda (datum)
          (apply (lambda (n units quote)
@@ -160,13 +163,13 @@
 
 (define nominal 1000000)
 (define length 5)
-(define maturity (Calendar-advance calendar settlement-date length "years"))
+(define maturity (Calendar-advance calendar settlement-date length (Years)))
 (define pay-fixed #t)
 
 (define fixed-rate 0.04)
 (define spread 0.0)
 (define index-fixing-days 2)
-(define index (new-Euribor 6 "months" forecast-term-structure))
+(define index (new-Euribor 6 (Months) forecast-term-structure))
 
 (define fixed-schedule (new-Schedule calendar settlement-date maturity
                                      fixed-leg-frequency fixed-leg-adjustment))
@@ -179,8 +182,8 @@
                              floating-schedule index index-fixing-days spread
                              discount-term-structure))
 
-(define forward-start (Calendar-advance calendar settlement-date 1 "year"))
-(define forward-end (Calendar-advance calendar forward-start length "years"))
+(define forward-start (Calendar-advance calendar settlement-date 1 (Years)))
+(define forward-end (Calendar-advance calendar forward-start length (Years)))
 (define fixed-fwd-schedule (new-Schedule calendar forward-start forward-end
                                          fixed-leg-frequency
                                          fixed-leg-adjustment))

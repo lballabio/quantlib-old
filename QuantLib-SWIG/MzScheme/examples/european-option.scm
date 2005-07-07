@@ -34,7 +34,7 @@
 
 ; option parameters
 (define exercise (new-EuropeanExercise (new-Date 17 5 1999)))
-(define payoff (new-PlainVanillaPayoff "call" 8.0))
+(define payoff (new-PlainVanillaPayoff (Option-Call) 8.0))
 
 ; market data
 (define underlying (new-SimpleQuote 7.0))

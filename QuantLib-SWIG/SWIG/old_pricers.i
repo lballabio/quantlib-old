@@ -35,7 +35,7 @@ using QuantLib::DiscreteGeometricASO;
 
 class DiscreteGeometricASO {
   public:
-	DiscreteGeometricASO(OptionType type, Real underlying,
+	DiscreteGeometricASO(Option::Type type, Real underlying,
                          Spread dividendYield, Rate riskFreeRate,
                          const std::vector<Time>& timeDelays,
                          Volatility volatility);
@@ -62,7 +62,7 @@ class McDiscreteArithmeticASO {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-	McDiscreteArithmeticASO(OptionType type, Real underlying,
+	McDiscreteArithmeticASO(Option::Type type, Real underlying,
                             const Handle<YieldTermStructure>& dividendYield,
                             const Handle<YieldTermStructure>& riskFreeRate,
                             const Handle<BlackVolTermStructure>& volatility,

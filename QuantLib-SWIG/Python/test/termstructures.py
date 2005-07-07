@@ -25,26 +25,26 @@ def raiseFlag():
 class TermStructureTest(unittest.TestCase):
     def setUp(self):
         self.calendar = TARGET()
-        today = self.calendar.adjust(Date_todaysDate())
+        today = self.calendar.adjust(Date.todaysDate())
         self.settlementDays = 2
-        settlement = self.calendar.advance(today,self.settlementDays,'days')
+        settlement = self.calendar.advance(today,self.settlementDays,Days)
         deposits = [
             DepositRateHelper(
                 QuoteHandle(SimpleQuote(rate/100)),
                 n, units, self.settlementDays,
-                self.calendar, 'mf', Actual360())
-            for (n,units,rate) in [ (1,  'month', 4.581),
-                                    (2, 'months', 4.573),
-                                    (3, 'months', 4.557),
-                                    (6, 'months', 4.496),
-                                    (9, 'months', 4.490) ]
+                self.calendar, ModifiedFollowing, Actual360())
+            for (n,units,rate) in [ (1, Months, 4.581),
+                                    (2, Months, 4.573),
+                                    (3, Months, 4.557),
+                                    (6, Months, 4.496),
+                                    (9, Months, 4.490) ]
         ]
         swaps = [
             SwapRateHelper(
                 QuoteHandle(SimpleQuote(rate/100)),
-                years, "years", self.settlementDays,
-                self.calendar, 1, 'unadjusted', Thirty360(),
-                2, 'mf')
+                years, Years, self.settlementDays,
+                self.calendar, Annual, Unadjusted, Thirty360(),
+                Semiannual, ModifiedFollowing)
             for (years,rate) in [ ( 1, 4.54),
                                   ( 5, 4.99),
                                   (10, 5.47),
@@ -62,7 +62,7 @@ class TermStructureTest(unittest.TestCase):
         flag = None
         h = YieldTermStructureHandle()
         settlement = self.termStructure.referenceDate()
-        new_settlement = self.calendar.advance(settlement,3,'years')
+        new_settlement = self.calendar.advance(settlement,3,Years)
         implied = ImpliedTermStructure(h,new_settlement)
         obs = Observer(raiseFlag)
         obs.registerWith(implied)

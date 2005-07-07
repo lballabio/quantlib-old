@@ -26,78 +26,32 @@
 using QuantLib::Calendar;
 %}
 
-// typemap rolling conventions to corresponding strings
 %{
 using QuantLib::BusinessDayConvention;
-
-BusinessDayConvention bdconvFromString(std::string s) {
-    s = QuantLib::lowercase(s);
-    if (s == "" || s == "none" || s == "unadjusted")
-        return QuantLib::Unadjusted;
-    else if (s == "f" || s == "fol" || s == "following")
-        return QuantLib::Following;
-    else if (s == "mf" ||s == "modfol" || s == "modifiedfollowing")
-        return QuantLib::ModifiedFollowing;
-    else if (s == "p" || s == "pre" || s == "preceding")
-        return QuantLib::Preceding;
-    else if (s == "mp" ||s == "modpre" || s == "modifiedpreceding")
-        return QuantLib::ModifiedPreceding;
-    else if (s == "mer" ||s == "mendref" || s == "monthendreference")
-        return QuantLib::MonthEndReference;
-    else
-        QL_FAIL("unknown business day convention");
-}
-
-std::string bdconvToString(BusinessDayConvention rc) {
-    switch (rc) {
-      case QuantLib::Unadjusted:
-        return "Unadjusted";
-      case QuantLib::Following:
-        return "Following";
-      case QuantLib::ModifiedFollowing:
-        return "ModifiedFollowing";
-      case QuantLib::Preceding:
-        return "Preceding";
-      case QuantLib::ModifiedPreceding:
-        return "ModifiedPreceding";
-      case QuantLib::MonthEndReference:
-        return "MonthEndReference";
-      default:
-        QL_FAIL("unknown business day convention");
-    }
-}
+using QuantLib::Unadjusted;
+using QuantLib::Preceding;
+using QuantLib::ModifiedPreceding;
+using QuantLib::Following;
+using QuantLib::ModifiedFollowing;
+using QuantLib::MonthEndReference;
 %}
 
-MapToString(BusinessDayConvention,bdconvFromString,bdconvToString);
+enum BusinessDayConvention {
+    Unadjusted,
+    Preceding,
+    ModifiedPreceding,
+    Following,
+    ModifiedFollowing,
+    MonthEndReference
+};
 
-// typemap joint calendar rules to corresponding strings
 %{
 using QuantLib::JointCalendarRule;
+using QuantLib::JoinHolidays;
 using QuantLib::JoinBusinessDays;
-
-JointCalendarRule joinRuleFromString(std::string s) {
-    s = QuantLib::lowercase(s);
-    if (s == "h" || s == "holidays" || s == "joinholidays")
-        return QuantLib::JoinHolidays;
-    else if (s == "b" ||s == "businessdays" || s == "joinbusinessdays")
-        return QuantLib::JoinBusinessDays;
-    else
-        QL_FAIL("unknown joint calendar rule");
-}
-
-std::string joinRuleToString(JointCalendarRule jr) {
-    switch (jr) {
-      case QuantLib::JoinHolidays:
-        return "JoinHolidays";
-      case QuantLib::JoinBusinessDays:
-        return "JoinBusinessDays";
-      default:
-        QL_FAIL("unknown joint calendar rule");
-    }
-}
 %}
 
-MapToString(JointCalendarRule,joinRuleFromString,joinRuleToString);
+enum JointCalendarRule { JoinHolidays, JoinBusinessDays };
 
 
 #if defined(SWIGRUBY)

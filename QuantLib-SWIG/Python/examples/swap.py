@@ -17,17 +17,17 @@ from QuantLib import *
 
 # global data
 calendar = TARGET()
-todaysDate = Date(6,11,2001);
+todaysDate = Date(6,November,2001);
 Settings.instance().evaluationDate = todaysDate
-settlementDate = Date(8,11,2001);
+settlementDate = Date(8,November,2001);
 
 # market quotes
-deposits = { (1,'week'): 0.0382,
-             (1,'month'): 0.0372,
-             (3,'months'): 0.0363,
-             (6,'months'): 0.0353,
-             (9,'months'): 0.0348,
-             (1,'year'): 0.0345 }
+deposits = { (1,Weeks): 0.0382,
+             (1,Months): 0.0372,
+             (3,Months): 0.0363,
+             (6,Months): 0.0353,
+             (9,Months): 0.0348,
+             (1,Years): 0.0345 }
 
 FRAs = { (3,6): 0.037125,
          (6,9): 0.037125,
@@ -42,11 +42,11 @@ futures = { Date(19,12,2001): 96.2875,
             Date(18,6,2003): 96.2875,
             Date(17,9,2003): 96.0875 }
 
-swaps = { (2,'years'): 0.037125,
-          (3,'years'): 0.0398,
-          (5,'years'): 0.0443,
-          (10,'years'): 0.05165,
-          (15,'years'): 0.055175 }
+swaps = { (2,Years): 0.037125,
+          (3,Years): 0.0398,
+          (5,Years): 0.0443,
+          (10,Years): 0.05165,
+          (15,Years): 0.055175 }
 
 # convert them to Quote objects
 for n,unit in deposits.keys():
@@ -64,30 +64,30 @@ dayCounter = Actual360()
 settlementDays = 2
 depositHelpers = [ DepositRateHelper(QuoteHandle(deposits[(n,unit)]),
                                      n, unit, settlementDays,
-                                     calendar, 'mf', dayCounter)
-                   for n, unit in [(1,'week'),(1,'month'),(3,'months'),
-                                   (6,'months'),(9,'months'),(1,'year')] ]
+                                     calendar, ModifiedFollowing, dayCounter)
+                   for n, unit in [(1,Weeks),(1,Months),(3,Months),
+                                   (6,Months),(9,Months),(1,Years)] ]
 
 dayCounter = Actual360()
 settlementDays = 2
 fraHelpers = [ FraRateHelper(QuoteHandle(FRAs[(n,m)]),
                              n, m, settlementDays,
-                             calendar, 'mf', dayCounter)
+                             calendar, ModifiedFollowing, dayCounter)
                for n, m in FRAs.keys() ]
 
 dayCounter = Actual360()
 months = 3
 futuresHelpers = [ FuturesRateHelper(QuoteHandle(futures[d]),
                                      d, months,
-                                     calendar, 'mf', dayCounter)
+                                     calendar, ModifiedFollowing, dayCounter)
                    for d in futures.keys() ]
 
 settlementDays = 2
-fixedLegFrequency = 1
-fixedLegAdjustment = 'unadjusted'
+fixedLegFrequency = Annual
+fixedLegAdjustment = Unadjusted
 fixedLegDayCounter = Thirty360()
-floatingLegFrequency = 2
-floatingLegAdjustment = 'modifiedfollowing'
+floatingLegFrequency = Semiannual
+floatingLegAdjustment = ModifiedFollowing
 swapHelpers = [ SwapRateHelper(QuoteHandle(swaps[(n,unit)]),
                                n, unit, settlementDays, calendar,
                                fixedLegFrequency, fixedLegAdjustment,
@@ -113,19 +113,19 @@ depoFraSwapCurve = PiecewiseFlatForward(settlementDate, helpers, Actual360())
 
 nominal = 1000000
 length = 5
-maturity = calendar.advance(settlementDate,length,'years')
-payFixed = 1
+maturity = calendar.advance(settlementDate,length,Years)
+payFixed = True
 
-fixedLegFrequency = 1
-fixedLegAdjustment = 'unadjusted'
+fixedLegFrequency = Annual
+fixedLegAdjustment = Unadjusted
 fixedLegDayCounter = Thirty360()
 fixedRate = 0.04
 
-floatingLegFrequency = 2
+floatingLegFrequency = Semiannual
 spread = 0.0
 fixingDays = 2
-index = Euribor(6, 'months', forecastTermStructure)
-floatingLegAdjustment = 'modifiedfollowing'
+index = Euribor(6, Months, forecastTermStructure)
+floatingLegAdjustment = ModifiedFollowing
 
 fixedSchedule = Schedule(calendar, settlementDate, maturity,
                          fixedLegFrequency, fixedLegAdjustment)
@@ -137,8 +137,8 @@ spot = SimpleSwap(payFixed, nominal,
                   floatingSchedule, index, fixingDays, spread,
                   discountTermStructure)
 
-forwardStart = calendar.advance(settlementDate,1,'year')
-forwardEnd = calendar.advance(forwardStart,length,'years')
+forwardStart = calendar.advance(settlementDate,1,Years)
+forwardEnd = calendar.advance(forwardStart,length,Years)
 fixedSchedule = Schedule(calendar, forwardStart, forwardEnd,
                          fixedLegFrequency, fixedLegAdjustment)
 floatingSchedule = Schedule(calendar, forwardStart, forwardEnd,
@@ -182,7 +182,7 @@ def report(swap, name):
                     formatRate(swap.fairRate(),4))
 
 print dblrule
-print "5-year market swap-rate = %s" % formatRate(swaps[(5,'years')].value())
+print "5-year market swap-rate = %s" % formatRate(swaps[(5,Years)].value())
 print dblrule
 
 # price on two different term structures
@@ -216,10 +216,10 @@ report(forward,'depo-FRA-swap')
 
 # modify the 5-years swap rate and reprice
 
-swaps[(5,'years')].setValue(0.046)
+swaps[(5,Years)].setValue(0.046)
 
 print dblrule
-print "5-year market swap-rate = %s" % formatRate(swaps[(5,'years')].value())
+print "5-year market swap-rate = %s" % formatRate(swaps[(5,Years)].value())
 print dblrule
 
 print tab + "5-years swap paying %s" % formatRate(fixedRate)
