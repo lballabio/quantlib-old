@@ -308,9 +308,9 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
                             bool brownianBridge = false,
                             bool antitheticVariate = false,
                             bool controlVariate = false,
-                            intOrNull requiredSamples = Null<Integer>(),
+                            intOrNull requiredSamples = Null<Size>(),
                             doubleOrNull requiredTolerance = Null<Real>(),
-                            intOrNull maxSamples = Null<Integer>(),
+                            intOrNull maxSamples = Null<Size>(),
                             BigInteger seed = 0) {
             std::string s = QuantLib::lowercase(traits);
             QL_REQUIRE(Size(timeSteps) != Null<Size>() ||
@@ -349,7 +349,7 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
 
 %{
 using QuantLib::FDAmericanEngine;
- using QuantLib::FDShoutEngine;
+using QuantLib::FDShoutEngine;
 typedef boost::shared_ptr<PricingEngine> FDAmericanEnginePtr;
 typedef boost::shared_ptr<PricingEngine> FDShoutEnginePtr;
 %}

@@ -56,7 +56,7 @@ class HistoryEntry {
                  SWIG_NewPointerObj(d, $descriptor(Date *), 1));
     if ($1.value() == Null<Real>())
         rb_ary_store($result,1,Qnil);
-    else 
+    else
         rb_ary_store($result,1,rb_float_new($1.value()));
 }
 #elif defined(SWIGMZSCHEME)
@@ -65,7 +65,7 @@ class HistoryEntry {
         $result = scheme_false;
     } else {
         Date* d = new Date($1.date());
-        Scheme_Object* car = 
+        Scheme_Object* car =
             SWIG_NewPointerObj(d, $descriptor(Date *), 1);
         Scheme_Object* cdr = scheme_make_double($1.value());
         $result = scheme_make_pair(car,cdr);
@@ -77,7 +77,7 @@ class HistoryEntry {
         $result = SCM_BOOL_F;
     } else {
         Date* d = new Date($1.date());
-        SCM car = SWIG_Guile_MakePtr(d, $descriptor(Date *));
+        SCM car = SWIG_NewPointerObj(d, $descriptor(Date *), 1);
         SCM cdr = gh_double2scm($1.value());
         $result = gh_cons(car,cdr);
     }
@@ -95,7 +95,7 @@ struct HistoryIterator {
     History::const_iterator i;
     History::const_iterator end;
 };
- 
+
 struct HistoryValidIterator {
     HistoryValidIterator(History::const_valid_iterator i,
                          History::const_valid_iterator end)
@@ -189,7 +189,7 @@ class History {
     #endif
     #endif
   public:
-    History(const std::vector<Date>& dates, 
+    History(const std::vector<Date>& dates,
             const std::vector<Real>& values);
     Date firstDate() const;
     Date lastDate() const;
@@ -255,7 +255,7 @@ class History {
                     entry = scheme_false;
                 } else {
                     Date* d = new Date(i->date());
-                    Scheme_Object* car = 
+                    Scheme_Object* car =
                         SWIG_NewPointerObj(d, $descriptor(Date *), 1);
                     Scheme_Object* cdr = scheme_make_double(v);
                     entry = scheme_make_pair(car,cdr);
@@ -268,7 +268,7 @@ class History {
             for ( ; i!=end; ++i) {
                 Real v = i->value();
                 Date* d = new Date(i->date());
-                Scheme_Object* car = 
+                Scheme_Object* car =
                     SWIG_NewPointerObj(d, $descriptor(Date *), 1);
                 Scheme_Object* cdr = scheme_make_double(v);
                 Scheme_Object* cons = scheme_make_pair(car,cdr);
@@ -285,7 +285,7 @@ class History {
                     entry = SCM_BOOL_F;
                 } else {
                     Date* d = new Date(i->date());
-                    SCM car = SWIG_Guile_MakePtr(d, $descriptor(Date *));
+                    SCM car = SWIG_NewPointerObj(d, $descriptor(Date *), 1);
                     SCM cdr = gh_double2scm(v);
                     entry = gh_cons(car,cdr);
                 }
@@ -297,7 +297,7 @@ class History {
             for ( ; i!=end; ++i) {
                 Real v = i->value();
                 Date* d = new Date(i->date());
-                SCM car = SWIG_Guile_MakePtr(d, $descriptor(Date *));
+                SCM car = SWIG_NewPointerObj(d, $descriptor(Date *), 1);
                 SCM cdr = gh_double2scm(v);
                 SCM cons = gh_cons(car,cdr);
                 gh_call1(proc,cons);
@@ -314,7 +314,7 @@ class History {
             (define (History-map-valid h f)
               (let ((results '()))
                 (History-for-each-valid h (lambda (e)
-                                            (set! results 
+                                            (set! results
                                               (cons (f e) results))))
                 (reverse results)))
             (export History-map

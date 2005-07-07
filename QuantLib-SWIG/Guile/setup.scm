@@ -142,7 +142,7 @@
   (let ((swig-dir "./SWIG"))
     (if (not (file-exists? swig-dir))
         (set! swig-dir "../SWIG"))
-    (system (string-append "swig -guile -c++ -Linkage simple "
+    (system (string-append "swig -guile -c++ -Linkage passive "
                            "-scmstub -gh "
                            (format #f "-I~A " swig-dir)
                            "-o quantlib_wrap.cpp "

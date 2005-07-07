@@ -40,13 +40,13 @@ class Schedule {
     %rename("is-regular?") isRegular;
     #endif
   public:
-    Schedule(const Calendar& calendar, 
+    Schedule(const Calendar& calendar,
              const Date& startDate, const Date& endDate,
-             Frequency frequency, BusinessDayConvention rollingConvention, 
+             Frequency frequency, BusinessDayConvention rollingConvention,
              const Date& stubDate = Date(),
              bool startFromEnd = false, bool longFinal = false);
     Schedule(const std::vector<Date>&,
-             const Calendar& calendar, 
+             const Calendar& calendar,
              BusinessDayConvention rollingConvention);
     Size size() const;
     Date date(Size i) const;
@@ -69,7 +69,7 @@ class Schedule {
         void each() {
             for (Size i=0; i<self->size(); i++) {
                 Date* d = new Date(self->date(i));
-                rb_yield(SWIG_NewPointerObj((void *) d, 
+                rb_yield(SWIG_NewPointerObj((void *) d,
                                             $descriptor(Date *), 1));
             }
         }
@@ -77,7 +77,7 @@ class Schedule {
         void for_each(Scheme_Object* proc) {
             for (Size i=0; i<self->size(); i++) {
                 Date* d = new Date(self->date(i));
-                Scheme_Object* x = 
+                Scheme_Object* x =
                     SWIG_NewPointerObj(d, $descriptor(Date *), 1);
                 scheme_apply(proc,1,&x);
             }
@@ -86,7 +86,7 @@ class Schedule {
         void for_each(SCM proc) {
             for (Size i=0; i<self->size(); i++) {
                 Date* d = new Date(self->date(i));
-                SCM x = SWIG_Guile_MakePtr(d, $descriptor(Date *));
+                SCM x = SWIG_NewPointerObj(d, $descriptor(Date *), 1);
                 gh_call1(proc,x);
             }
         }

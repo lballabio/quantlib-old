@@ -1,8 +1,7 @@
 
 The C++ wrappers for the QuantLib-Ruby extension module are created
 by means of SWIG (Simplified Wrapper and Interface Generator) available
-from <http://swig.sourceforge.net/>. Features used in the QuantLib-Ruby
-interface files require version 1.3.18 or later of SWIG.
+from <http://swig.sourceforge.net/>. Version 1.3.25 of SWIG is recommended.
 
 The wrappers are generated on all supported platforms by issuing the command
     ruby setup.rb wrap

@@ -73,7 +73,9 @@ const char* __version__;
           (error "QuantLibc.so not found")
           (let ((so-name (string-append (car path) "/QuantLibc.so")))
             (if (file-exists? so-name)
-                (dynamic-call "SWIG_init" (dynamic-link so-name))
+                (dynamic-call
+                 "scm_init_QuantLib_module"
+                 (dynamic-link so-name))
                 (load-quantlibc-in (cdr path))))))
     (load-quantlibc-in %load-path)
 %}

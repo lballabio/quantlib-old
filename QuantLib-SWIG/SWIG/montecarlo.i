@@ -153,9 +153,9 @@ class MultiPath {
         #endif
         #if defined(SWIGRUBY)
         void each_path() {
-            swig_type_info* type = SWIG_TypeQuery("Path *");
             for (Size i=0; i<self->assetNumber(); i++)
-                rb_yield(SWIG_NewPointerObj((void *) &((*self)[i]), type, 0));
+                rb_yield(SWIG_NewPointerObj(&((*self)[i]),
+                                            $descriptor(Path *), 0));
         }
         void each_step() {
             for (Size j=0; j<self->pathSize(); j++) {
@@ -186,7 +186,8 @@ class MultiPath {
         #elif defined(SWIGGUILE)
         void for_each_path(SCM proc) {
             for (Size i=0; i<self->assetNumber(); ++i) {
-                SCM x = SWIG_Guile_MakePtr(&((*self)[i]), $descriptor(Path *));
+                SCM x =
+                    SWIG_NewPointerObj(&((*self)[i]), $descriptor(Path *), 0);
                 gh_call1(proc,x);
             }
         }

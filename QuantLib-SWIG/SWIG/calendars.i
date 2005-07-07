@@ -183,6 +183,7 @@ namespace QuantLib {
         Italy(Market m = Settlement);
     };
 
+    class Istanbul : public Calendar {};
     class Johannesburg : public Calendar {};
     class NullCalendar : public Calendar {};
     class Oslo : public Calendar {};
