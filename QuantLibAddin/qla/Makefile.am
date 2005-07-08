@@ -21,7 +21,6 @@ include_HEADERS = \
     generalutils.hpp \
     instruments.hpp \
     options.hpp \
-    optionutils.hpp \
     processes.hpp \
     qladdin.hpp \
     qladdindefines.hpp \
@@ -50,7 +49,6 @@ libQuantLibAddin_la_SOURCES = \
     fixedcouponbond.cpp \
     forwardvanillaoption.cpp \
     generalutils.cpp \
-    optionutils.cpp \
     processes.cpp \
     qlatest.cpp \
     shortratemodels.cpp \
