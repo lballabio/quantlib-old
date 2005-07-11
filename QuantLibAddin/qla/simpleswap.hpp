@@ -45,4 +45,3 @@ namespace QuantLibAddin {
 
 #endif
 
-

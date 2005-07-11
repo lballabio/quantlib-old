@@ -6,4 +6,4 @@ libQuantLibAddin.la
 Makefile
 Makefile.in
 stamp-h1
-enumfactory.cpp
+enumregistry.cpp
