@@ -52,7 +52,7 @@ Initial releases of certain versions of  Microsoft Excel suffer from bugs which 
 
 The Excel Function Wizard can exacerbate a bug in an Addin, so if an Addin is malfunctioning, avoiding the Function Wizard may make it easier to troubleshoot the problem.
 
-The Function Wizard (launched by clicking the "fx" button next to the Formula Bar) allows the user to specify function inputs by clicking in selected cell ranges.  The Function Wizard calls the underlying cell formula repeatedly every time the inputs change - so the formula will get invoked repeatedly with incomplete or nonsensical inputs.  Any bug in the validation of the inputs may cause the formula to malfunction or crash.  Try calling the function without using the Function Wizard - for example, format the call to the function in Notepad, and paste it directly into a cell.
+The Function Wizard (launched by clicking the "fx" button next to the Formula Bar) allows the user to specify function inputs by clicking in selected cell ranges.  The Function Wizard calls the underlying cell formula repeatedly every time the inputs change - so the formula will get invoked repeatedly with incomplete or nonsensical inputs.  Any bug in the validation of the inputs may cause the formula to malfunction or crash.  Try calling the function without using the Function Wizard - for example, format the call to the function in Notepad, and paste the formula directly into a cell.
 
 A well written Addin anticipates the use of the Function Wizard in one of two ways:
 1) It is possible for the Addin to determine when it's being invoked from the Function Wizard, possibly changing its behavior accordingly, e.g. by returning a default value.  This topic is discussed in more detail at <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/office97/html/SF822.asp">this link on the Microsoft web site.</a>\n
@@ -77,11 +77,11 @@ One way to troubleshoot such problems is to add rudimentary logging to your Addi
 \li following the instructions under section \ref loaded - start Excel and load the QuantLib Excel Addin and the client worksheet QLADemo.xls.  (If you can't get this far without crashing Excel, please refer to section \ref crashes).
 \li Go into Microsoft Visual Studio and close any workspace which may be open
 \li do <strong>Build/Debug/Attach to Process</strong>
-\li Select Excel from the list of processes.  [ If the list of processes is empty: early releases of Microsoft Visual Studio Version 6 suffered from a bug which caused "Attach to Process" to malfunction - go to the Microsoft website to pick up all available bug fixes for your copy of MSVS ]
-\li From MSVS, open up a file containing the source code you'd like to debug - for example file <strong>QuantLibAddin\\Addins\\Excel\\volatilities.cpp</strong>
+\li Select Excel from the list of processes.  [ If the list of processes is empty: early releases of Microsoft Visual C++ Version 6 suffered from a bug which caused "Attach to Process" to malfunction - go to the Microsoft website to pick up all available bug fixes for your copy of VC6 ]
+\li From VC, open up a file containing the source code you'd like to debug - for example file <strong>QuantLibAddin\\Addins\\Excel\\volatilities.cpp</strong>
 \li Identify a function you'd like to debug, for example \b qlBlackConstantVol.  Put the cursor on a line in the function and hit F9 to set a breakpoint on the line
 \li Back in Excel, trigger the breakpoint - select the cell containing the relevant formula, e.g. \b QL_BLACK_SCHOLES_PROCESS, hit F2 to force the cell to recalc
-\li Back in MSVS, execution should now be stopped on the breakpoint and you can debug from there, e.g.\n
+\li Back in VC, execution should now be stopped on the breakpoint and you can debug from there, e.g.\n
 F10 - advance a line\n
 F11 - step into a function\n
 F5  - run until the next breakpoint or until completion\n
