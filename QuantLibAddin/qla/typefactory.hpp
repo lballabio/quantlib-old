@@ -24,18 +24,18 @@
 
 namespace QuantLibAddin {
 
-	template<typename T, typename Registry>
+	template<typename T, typename RegistryClass>
 	class RegistryManager {
 	protected:
 		void* getType(const std::string& id) {
 			static TypeMapPtr type_map;
 			if(!type_map) {
-				QL_REQUIRE(
-					Registry::instance().getAllTypesMap().find(typeid(T).name()) != 
-					Registry::instance().getAllTypesMap().end(), 
+				QL_REQUIRE(                    
+					RegistryClass::instance().getAllTypesMap().find(typeid(T).name()) != 
+					RegistryClass::instance().getAllTypesMap().end(), 
 					"Type not registered!");
 				type_map = 
-					Registry::instance().getAllTypesMap().find(typeid(T).name())->second;
+					RegistryClass::instance().getAllTypesMap().find(typeid(T).name())->second;
 			}
 			std::string idUpper = QuantLib::StringFormatter::toUppercase(id);
 			TypeMap::iterator type = type_map->find(idUpper);

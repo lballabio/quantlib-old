@@ -205,11 +205,15 @@ SOURCE=.\qla\cliquetoption.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\complextyperegistry.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\dividendvanillaoption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\enumfactory.cpp
+SOURCE=.\qla\enumregistry.cpp
 # End Source File
 # Begin Source File
 
@@ -222,10 +226,6 @@ SOURCE=.\qla\forwardvanillaoption.cpp
 # Begin Source File
 
 SOURCE=.\qla\generalutils.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\qla\optionutils.cpp
 # End Source File
 # Begin Source File
 
@@ -305,10 +305,6 @@ SOURCE=.\qla\dividendvanillaoption.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\enumfactory.hpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\qla\fixedcouponbond.hpp
 # End Source File
 # Begin Source File
@@ -326,10 +322,6 @@ SOURCE=.\qla\instruments.hpp
 # Begin Source File
 
 SOURCE=.\qla\options.hpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\qla\optionutils.hpp
 # End Source File
 # Begin Source File
 
@@ -358,6 +350,14 @@ SOURCE=.\qla\simpleswap.hpp
 # Begin Source File
 
 SOURCE=.\qla\termstructures.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\typefactory.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\typeregistry.hpp
 # End Source File
 # Begin Source File
 
