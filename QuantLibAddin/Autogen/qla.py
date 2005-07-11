@@ -47,7 +47,8 @@ def generateEnumSource(enumDefs):
     utils.printHeader(fileEnum)
     fileEnum.write(bufInclude)
     for enumDef in enumDefs[common.ENUMS][common.ENUMDEFS]:
-        generateEnum(fileEnum, enumDef)
+        if not utils.testAttribute(enumDef, 'documentation_only', 'true'):
+            generateEnum(fileEnum, enumDef)
     fileEnum.write('    }\n\n}\n\n')
     fileEnum.close()
     utils.updateIfChanged(fileName)
