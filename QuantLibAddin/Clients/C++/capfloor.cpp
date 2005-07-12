@@ -54,10 +54,10 @@ int main()
             stack.push(string("Target"));
             stack.push(string("ModifiedFollowing"));
             stack.push(string("Actual360"));
-            std::string handle = "handleDeposit"
-                               + IntegerFormatter::toString(dMaturities[i]);
-            Properties prop = OH_MAKE_OBJECT(QuantLibAddin::DepositRateHelper, handle, stack);            
-            rateHelpers.push_back(handle);
+            std::ostringstream handle;
+            handle << "handleDeposit" << dMaturities[i];
+            Properties prop = OH_MAKE_OBJECT(QuantLibAddin::DepositRateHelper, handle.str(), stack);            
+            rateHelpers.push_back(handle.str());
         }
         
         for (std::size_t i2=0 ; i2 < LENGTH(dMaturities) ; i2++)
@@ -73,10 +73,10 @@ int main()
             stack.push(string("Thirty360"));            // fixed day counter
             stack.push(string("Semiannual"));           // floating frequency
             stack.push(string("ModifiedFollowing"));    // floating convention
-            std::string handle = "handleSwap"
-                                 + IntegerFormatter::toString(sMaturities[i2]);
-            (void) OH_MAKE_OBJECT(QuantLibAddin::SwapRateHelper, handle, stack);            
-            rateHelpers.push_back(handle);        
+            std::ostringstream handle;
+            handle << "handleSwap" << sMaturities[i2];
+            (void) OH_MAKE_OBJECT(QuantLibAddin::SwapRateHelper, handle.str(), stack);
+            rateHelpers.push_back(handle.str());
         }
         
         Date evaluationDate(23, March, 2005);

@@ -29,6 +29,7 @@
 #include <ql/schedule.hpp>
 #include <ql/CashFlows/cashflowvectors.hpp>
 #include <ql/Indexes/all.hpp>
+#include <ql/Utilities/strings.hpp>
 // indexes to the Property vector
 // FIXME - need a cleaner way to achieve this
 #define FIELD_NPV                       "NPV"
@@ -53,11 +54,11 @@ namespace QuantLibAddin {
         long length                         = OH_POP_ARGUMENT(long, arguments);
         long start                          = OH_POP_ARGUMENT(long, arguments);
 
-		QuantLib::BusinessDayConvention convention =
+        QuantLib::BusinessDayConvention convention =
             Create<QuantLib::BusinessDayConvention>()(conventionID);
-		QuantLib::Frequency frequency =
+        QuantLib::Frequency frequency =
             Create<QuantLib::Frequency>()(frequencyID);
-		QuantLib::TimeUnit timeUnits =
+        QuantLib::TimeUnit timeUnits =
             Create<QuantLib::TimeUnit>()(timeUnitsID);
 
         boost::shared_ptr<AnalyticCapFloorEngine> engine =
@@ -106,7 +107,7 @@ namespace QuantLibAddin {
                                                std::vector<QuantLib::Spread>(),
                                                index->dayCounter());
 
-        std::string idUpper = QuantLib::StringFormatter::toUppercase(optionID);
+        std::string idUpper = QuantLib::uppercase(optionID);
         if (idUpper.compare("CAP") == 0) {
             capfloor_ = boost::shared_ptr<QuantLib::CapFloor>(
                 new QuantLib::Cap(leg, capStrikes, termStructureH, engineQL));
@@ -141,5 +142,4 @@ namespace QuantLibAddin {
     }
 
 }
-
 
