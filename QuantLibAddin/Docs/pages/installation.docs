@@ -25,9 +25,10 @@
 
     \section installation_overview Overview
 
-    This document provides general instructions for building and installing  QuantLibAddin under Windows, and on platforms which use Autoconf e.g. Linux.
-    For additional notes regarding the installation of the Calc addin
-    please refer to the document \ref calc.
+    This document provides general instructions for building and installing
+    QuantLibAddin 0.3.10 under Windows, and on platforms which use Autoconf 
+    e.g. Linux.  For additional notes regarding the installation of the Calc 
+    addin please refer to the document \ref calc.
 
     \ref prerequisites\n
     \ref windows_installation\n
@@ -35,7 +36,7 @@
 
     \section prerequisites Prerequisites
 
-    \li QuantLib version 0.3.9
+    \li QuantLib version 0.3.10
     \li ObjectHandler version 0.1.1
 
     \section windows_installation Installing under Windows
@@ -60,8 +61,8 @@
     \subsection autoconf_brief In Brief
 
     \verbatim
-    tar zxfv QuantLibAddin-0.3.9.tar.gz
-    cd QuantLibAddin-0.3.9
+    tar zxfv QuantLibAddin-0.3.10.tar.gz
+    cd QuantLibAddin-0.3.10
     ./configure
     make
     Clients/C++/QLADemo

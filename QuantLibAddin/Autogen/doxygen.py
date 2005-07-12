@@ -95,7 +95,7 @@ def generateAllDoc(allFuncs):
     allFuncs.sort()
     for func in allFuncs:
         fileDoc.write('\\ref %s ()\\n\n' % func)
-    fileDoc.write('*/\n')
+    fileDoc.write('*/\n\n')
     fileDoc.close()
     utils.updateIfChanged(fileName)
 
@@ -119,7 +119,7 @@ def generateDocs(functionDefs):
         fileDoc.write('\\section documentation Function Documentation\n')
         for function in functionGroup[common.FUNCS]:
             generateFuncDoc(fileDoc, function, plDoc)
-        fileDoc.write('*/\n')
+        fileDoc.write('*/\n\n')
         fileDoc.close()
         utils.updateIfChanged(fileName)
     generateAllDoc(allFuncs)

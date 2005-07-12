@@ -1,3 +1,20 @@
+
+/*
+ Copyright (C) 2004, 2005 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
 /*! \page calc QuantLib Calc Addin
 
 <p>This document summarizes special considerations for compiling QuantLibAddin for OpenOffice.org Calc.  The first section gives a general overview relevant to Windows and Linux, this is followed by additional notes specific to compiling on Linux.  For further help or to offer feedback on this document please send a message to the <a href="mailto:quantlib-dev@lists.sourceforge.net">QuantLib-dev</a>
@@ -48,7 +65,7 @@ PATH=$PATH:$OFFICE_SDK_PATH/linux/bin
 <li><b>idlc</b> - Run OOo utility <b>idlc</b> to compile the idl (interface definition language) file QuantLibAddin.idl into urd (UNO reflection data) file QuantLibAddin.urd.  The urd file comprises binary descriptions of the types in the Addin.</li>
 <li><b>regmerge</b> - Run OOo utility <b>regmerge</b> to merge the urd file into rdb (registry database) file QuantLibAddin.rdb.  The rdb is used by OOo at runtime to infer the functionality available in the Addin.</li>
 <li><b>cppumaker</b> - Run OOo utility <b>cppumaker</b> to generate the source code corresponding to the definitions in the rdb.</li>
-<li><b>compile</b> - Compile the Addin, including the source generated above, plus the function implementation source code supplied for the Addin.  The Addin is compiled into a shared library, i.e. <b>QuantLibAddin.dll</b> (Windows) or <b>libQuantLibAddinCalc-0.3.9.so</b> (Linux).</li>
+<li><b>compile</b> - Compile the Addin, including the source generated above, plus the function implementation source code supplied for the Addin.  The Addin is compiled into a shared library, i.e. <b>QuantLibAddin.dll</b> (Windows) or <b>libQuantLibAddinCalc-0.3.10.so</b> (Linux).</li>
 <li><b>install</b> - Copy the Addin's shared library and registry database to the OOo program directory.</li>
 </ul>
 
@@ -129,3 +146,4 @@ CPP=/usr/local/gcc/3.2.2/bin/cpp
 </ul>
 
 */
+

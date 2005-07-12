@@ -39,11 +39,7 @@ In directory QuantLibAddin/qla, add a new class, descended from Object, wrapping
 \endverbatim
 ... and implement new class \c QuantLibAddin::FixedCouponBond, which wraps \c QuantLib::FixedCouponBond.  Workspaces for the core QuantLibAddin project must be updated to pick up the new files.
 
-Below is a list of header files in the qla directory which can be \c #included to pick up additional utility functions:
-\li \c <tt>%optionutils.hpp</tt>
-\li \c <tt>%generalutils.hpp</tt>
-
-Utility functions are documented manually (unlike all other QuantLibAddin functions where documentation is generated automatically from metadata) so if you change the utility functions please update the documentation in file <tt>QuantLibAddin/Docs/pages/codes.docs</tt>.
+File <tt>%generalutils.hpp</tt> in the qla directory can be \c #included to pick up additional utility functions.
 
 \subsection clientscpp Clients/C++
 As QuantLibAddin is itself a C++ Addin which can be loaded directly to standalone C++ client applications, it's best to test the new functionality in a standalone program before autogenerating the source for the spreadsheets. Edit the file
