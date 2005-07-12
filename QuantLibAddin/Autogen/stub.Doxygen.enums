@@ -8,7 +8,7 @@
     \c QuantLib::Option::Put.  
 
     Stateless objects are represented as enumerations.  Stateful objects
-    are represented as complex types.  This document documents all enumerations 
+    are represented as complex types.  This page documents all enumerations 
     and complex types recognized by QuantLibAddin.  Input strings are case 
     insensitive.
 
