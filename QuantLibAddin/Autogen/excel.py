@@ -26,37 +26,43 @@ import params
 
 ADDIN      = 'qladdin.cpp'
 BODY       = 'stub.Excel.body'
-BODY_BUF   = ''
 INCLUDES   = 'stub.Excel.includes'
 LPXLOPER   = 'LPXLOPER'
 MAXLEN     = 255    # max length of excel string
-MAXLENERR  = 'list of parameter names exceeds max Excel length of %d:\n%s'
+MAXLENERR  = 'string length exceeds Excel maximum of %d:\n' % MAXLEN
 MAXPARAM   = 30     # max #/params to an Excel function
-MAXPARMERR = 'number of function parameters exceeds max of %d'
+MAXPARMERR = 'number of function parameters exceeds max of %d' % MAXPARAM
 NUMDESC    = 10     # #/params to describe a function
-RET_PROP   = '\
-        static XLOPER xRet;\n\
-        propertyVectorToXloper(&xRet, returnValue, handle);\n\
-        return &xRet;'
-RET_XLOPER = '\
-        static XLOPER xRet;\n\
-        %sToXloper(xRet, returnValue);\n\
-        return &xRet;'
-RET_STRING = '\
-        static char c[XL_MAX_STR_LEN];\n\
-        stringToChar(c, returnValue);\n\
-        return c;'
 REGFOOT    = '\
     Excel(xlFree, 0, 1, &xDll);\n\
     return 1;\n\
 }\n\n'
 REGHEAD    = 'stub.Excel.regheader'
-REGLINE    = '        TempStrNoSize("%s")%s'
+REGLINE    = '        TempStrNoSize("\\x%02X""%s")%s'
+RET_PROP   = '\
+        static XLOPER xRet;\n\
+        propertyVectorToXloper(&xRet, returnValue, handle);\n\
+        return &xRet;'
+RET_STRING = '\
+        static char c[XL_MAX_STR_LEN];\n\
+        stringToChar(c, returnValue);\n\
+        return c;'
+RET_XLOPER = '\
+        static XLOPER xRet;\n\
+        %sToXloper(xRet, returnValue);\n\
+        return &xRet;'
 ROOT       = common.ADDIN_ROOT + 'Excel/'
 
-def generateExcelStringLiteral(str): 
-    'prepend hexadecimal byte count to Excel string'
-    return '\\x%02X""%s' % (len(str), str)
+def formatLine(text, comment, lastParameter = False):
+    'format a line of text for the function register code'
+    if len(text) >= MAXLEN:
+        raise ValueError, MAXLENERR + text
+    if lastParameter:
+        suffix = ');'
+    else:
+        suffix = ','
+    str1 = REGLINE % (len(text), text, suffix)
+    return '%-40s// %s\n' % (str1, comment)
 
 def generateParamChar(param):
     'derive the Excel char code corresponding to parameter datatype'
@@ -85,15 +91,6 @@ def generateParamString(function):
         paramStr += generateParamChar(param)
     return paramStr
 
-def formatLine(text, comment, lastParameter = False):
-    'format a line of text for the function register code'
-    if lastParameter:
-        suffix = ');'
-    else:
-        suffix = ','
-    str1 = REGLINE % (generateExcelStringLiteral(text), suffix)
-    return '%-40s // %s\n' % (str1, comment)
-
 def generateFuncRegister(fileHeader, function, plExcel):
     'generate call to xlfRegister for given function'
     funcParams = function[common.PARAMS]
@@ -107,13 +104,11 @@ def generateFuncRegister(fileHeader, function, plExcel):
         numParamsTotal += 1            # extra parameter for object handle
     # FIXME validation below to be moved into parse.py?
     if numParamsTotal > MAXPARAM:
-        raise ValueError, MAXPARMERR % MAXPARAM
+        raise ValueError, MAXPARMERR
     paramStr = generateParamString(function)
     paramList = plExcel.generateCode(funcParams)
     if function[common.CTOR] == common.TRUE:
         paramList = "handle," + paramList
-    if len(paramList) >= MAXLEN:
-        raise ValueError, MAXLENERR % (MAXLEN, paramList)
     fileHeader.write('    Excel(xlfRegister, 0, %d, &xDll,\n' % numParamsTotal)
     fileHeader.write(formatLine(function[common.CODENAME], 'function code name'))
     fileHeader.write(formatLine(paramStr, 'parameter codes'))
@@ -128,7 +123,7 @@ def generateFuncRegister(fileHeader, function, plExcel):
         i = 0
         if function[common.CTOR] == common.TRUE:
             fileHeader.write(formatLine('handle of new object', 'description param 0'))
-            i = i + 1
+            i += 1
         j = 1
         for param in funcParams:
             if j < numParams:
@@ -136,8 +131,8 @@ def generateFuncRegister(fileHeader, function, plExcel):
             else:
                 lastParameter = True
             fileHeader.write(formatLine(param[common.DESC], 'description param %d' % i, lastParameter))
-            i = i + 1
-            j = j + 1
+            i += 1
+            j += 1
     else:
         fileHeader.write(formatLine(function[common.DESC], 'function description', True))
     fileHeader.write('\n')
@@ -260,4 +255,3 @@ def generate(functionDefs):
     generateFuncRegisters(functionDefs)
     generateFuncDefs(functionDefs)
     utils.logMessage('  done generating Excel.')
-
