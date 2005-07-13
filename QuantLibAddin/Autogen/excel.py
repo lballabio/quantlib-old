@@ -1,3 +1,4 @@
+
 """
  Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
@@ -255,3 +256,4 @@ def generate(functionDefs):
     generateFuncRegisters(functionDefs)
     generateFuncDefs(functionDefs)
     utils.logMessage('  done generating Excel.')
+
