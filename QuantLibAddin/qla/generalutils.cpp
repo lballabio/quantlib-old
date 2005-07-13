@@ -21,7 +21,6 @@
 #endif
 #include <oh/objhandler.hpp>
 #include <qla/generalutils.hpp>
-#include <ql/basicdataformatters.hpp>
 #include <ql/Calendars/all.hpp>
 #include <boost/lexical_cast.hpp>
 #include <ql/Currencies/all.hpp>

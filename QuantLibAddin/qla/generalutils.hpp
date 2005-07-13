@@ -21,7 +21,6 @@
 
 #include <ql/DayCounters/all.hpp>
 #include <ql/currency.hpp>
-#include <ql/basicdataformatters.hpp>
 #include <ql/calendar.hpp>
 #include <ql/Math/matrix.hpp>
 

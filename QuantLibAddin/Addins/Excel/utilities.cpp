@@ -80,7 +80,7 @@ DLLEXPORT LPXLOPER qlValue(char *handleObject, char *fieldName) {
     try {
         Properties properties = OH_QUERY_OBJECT(std::string(handleObject));
         static XLOPER xRet;
-        std::string fieldNameUpper = QuantLib::StringFormatter::toUppercase(fieldName);
+        std::string fieldNameUpper = QuantLib::uppercase(fieldName);
         for (unsigned int i=0; i<properties.size(); i++) {
             ObjectProperty property = properties[i];
             any_ptr a = property();
