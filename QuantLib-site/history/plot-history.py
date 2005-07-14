@@ -45,7 +45,7 @@ def offset(maxValue):
     return int(cap * 0.042)
     
 gplot('set terminal postscript eps enhanced 18')
-gplot('set size 2,1')
+gplot('set size 3,1')
 gplot('set output "lines.eps"')
 gplot('set ylabel "Lines of code"')
 addTags(maxLines)
