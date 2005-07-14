@@ -14,8 +14,8 @@
 <body>
 <!--#include virtual="qlheader.inc"-->
 <h1 class="center">Download Page</h1>
-<p>The latest QuantLib release is the 0.3.9 version (May 2005.)</p>
-<p><b>Debian users</b> will find version 0.3.9 of the different
+<p>The latest QuantLib release is the 0.3.10 version (July 2005.)</p>
+<p><b>Debian users</b> will find version 0.3.10 of the different
 QuantLib packages in the "unstable" (a.k.a. "Sid") distribution;
 see the <a href=
 "http://packages.debian.org/cgi-bin/search_packages.pl?keywords=quantlib&amp;searchon=names&amp;subword=1&amp;version=unstable&amp;release=all">
