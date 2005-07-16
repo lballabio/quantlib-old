@@ -267,7 +267,6 @@
 </returnval>
 </function>
 
-
 <function call_type='QL_OBJECT'>
 <name>QL_GET_DF</name>
 <codename>qlGetDf</codename>
@@ -279,7 +278,7 @@
         <name>handle</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Option object</desc>
+        <desc>handle of the Yield Term Structure object</desc>
     </param>
     <param ql_type='QuantLib::Date'>
         <name>DfDate</name>
@@ -318,7 +317,7 @@
         <name>handle</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Option object</desc>
+        <desc>handle of the Rate Helper object</desc>
     </param>
     <param>
         <name>Quote</name>

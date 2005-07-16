@@ -12,8 +12,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\build\vc6\Debug"
-			IntermediateDirectory=".\build\vc6\Debug"
+			OutputDirectory=".\build\vc71\Debug"
+			IntermediateDirectory=".\build\vc71\Debug"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -27,10 +27,10 @@
 				RuntimeLibrary="1"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc6\Debug/AddinC.pch"
-				AssemblerListingLocation=".\build\vc6\Debug/"
-				ObjectFile=".\build\vc6\Debug/"
-				ProgramDataBaseFileName=".\build\vc6\Debug/"
+				PrecompiledHeaderFile=".\build\vc71\Debug/AddinC.pch"
+				AssemblerListingLocation=".\build\vc71\Debug/"
+				ObjectFile=".\build\vc71\Debug/"
+				ProgramDataBaseFileName=".\build\vc71\Debug/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -39,7 +39,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\AddinC-vc6-mt-sgd.lib"
+				OutputFile="lib\AddinC-vc71-mt-sgd.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -64,8 +64,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\build\vc6\Release"
-			IntermediateDirectory=".\build\vc6\Release"
+			OutputDirectory=".\build\vc71\Release"
+			IntermediateDirectory=".\build\vc71\Release"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -81,10 +81,10 @@
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc6\Release/AddinC.pch"
-				AssemblerListingLocation=".\build\vc6\Release/"
-				ObjectFile=".\build\vc6\Release/"
-				ProgramDataBaseFileName=".\build\vc6\Release/"
+				PrecompiledHeaderFile=".\build\vc71\Release/AddinC.pch"
+				AssemblerListingLocation=".\build\vc71\Release/"
+				ObjectFile=".\build\vc71\Release/"
+				ProgramDataBaseFileName=".\build\vc71\Release/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -92,7 +92,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\AddinC-vc6-mt-s.lib"
+				OutputFile="lib\AddinC-vc71-mt-s.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>

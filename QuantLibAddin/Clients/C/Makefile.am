@@ -3,7 +3,6 @@ AM_CPPFLAGS = -I${top_srcdir}
 LDADD = ../../Addins/C/libQuantLibAddinC.la
 LDFLAGS = -lObjectHandler -lQuantLib
 
-#    makefile.mak
 EXTRA_DIST = \
     ClientCDemo.dsp \
     ClientCDemo_vc8.vcproj \

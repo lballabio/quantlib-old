@@ -69,7 +69,7 @@ SCM qlValue(SCM x) {
         std::string handle = GetChop<std::string>::scalar(x);
         Properties properties = OH_QUERY_OBJECT(handle);
         std::string fieldName = GetChop<std::string>::scalar(x);
-        std::string fieldNameUpper = QuantLib::StringFormatter::toUppercase(fieldName);
+        std::string fieldNameUpper = QuantLib::uppercase(fieldName);
         for (std::size_t i=properties.size() ; --i != std::size_t(-1) ; ) {
             ObjectProperty property = properties[i];
             any_ptr a = property();
@@ -177,7 +177,7 @@ SCM qlDate(SCM x) {
         int day                 = GetChop<int>::scalar(x);
         std::string month       = GetChop<std::string>::scalar(x);
         int year                = GetChop<int>::scalar(x);
-        std::string monthUpper  = QuantLib::StringFormatter::toUppercase(month);
+        std::string monthUpper  = QuantLib::uppercase(month);
         QuantLib::Month monthQL;
         if (monthUpper.compare(0, 3, "JAN") == 0) {
             monthQL = QuantLib::January;

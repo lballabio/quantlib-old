@@ -4,11 +4,11 @@ LDADD = ../oh/libObjectHandler.la
 EXTRA_DIST = \
     Example.dev \
     Example.dsp \
-    Example.vcproj \
     Example_vc8.vcproj \
+    Example.vcproj \
+    foo.hpp
     makefile.mak \
     objectfoo.hpp \
-    foo.hpp
 
 Example_SOURCES = \
     example.cpp  \

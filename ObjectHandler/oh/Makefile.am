@@ -2,6 +2,7 @@ AM_CPPFLAGS = -I${top_srcdir}
 includedir = $(prefix)/include/oh
 
 include_HEADERS = \
+    config.hpp \
     exception.hpp \
     factory.hpp \
     logger.hpp \
@@ -15,7 +16,7 @@ include_HEADERS = \
 
 EXTRA_DIST = \
     autolink.hpp \
-	makefile.mak
+    makefile.mak
 
 lib_LTLIBRARIES = libObjectHandler.la
 LDFLAGS = -llog4cxx -release $(PACKAGE_VERSION)

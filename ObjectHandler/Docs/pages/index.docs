@@ -24,7 +24,8 @@
 /*! \page index Introduction
 
     \section overview Overview
-    QuantLib integration into spreadsheets and other end user tools 
+    Integration of a generic C++ library such as Quantlib
+    into spreadsheets and other end user tools 
     requires a standalone <strong>ObjectHandler</strong> component, 
     a repository allowing objects to be stored, shared, updated, 
     interrogated, and destroyed.
@@ -42,3 +43,4 @@
     <a href="log4cxx.html">notes</a> for installing log4cxx for ObjectHandler.
 
 */
+

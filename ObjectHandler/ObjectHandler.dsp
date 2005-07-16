@@ -266,10 +266,6 @@ SOURCE=.\autogen.sh
 # End Source File
 # Begin Source File
 
-SOURCE=.\configure.ac
-# End Source File
-# Begin Source File
-
 SOURCE=.\Contributors.txt
 # End Source File
 # Begin Source File

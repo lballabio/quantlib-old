@@ -74,7 +74,7 @@
 <returnval>
     <type>property</type>
     <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing short-rate model</desc>
+    <desc>vector of properties describing hull white model</desc>
 </returnval>
 </function>
 

@@ -12,8 +12,8 @@
 	<Configurations>
 		<Configuration
 			Name="Release MTDLL|Win32"
-			OutputDirectory=".\build\vc6\ReleaseMTDLL"
-			IntermediateDirectory=".\build\vc6\ReleaseMTDLL"
+			OutputDirectory=".\build\vc71\ReleaseMTDLL"
+			IntermediateDirectory=".\build\vc71\ReleaseMTDLL"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -29,10 +29,10 @@
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc6\ReleaseMTDLL/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc6\ReleaseMTDLL/"
-				ObjectFile=".\build\vc6\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\build\vc6\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\build\vc71\ReleaseMTDLL/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc71\ReleaseMTDLL/"
+				ObjectFile=".\build\vc71\ReleaseMTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\ReleaseMTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -40,7 +40,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc6-mt-0_3_9.lib"
+				OutputFile="lib\QuantLibAddin-vc71-mt-0_3_10.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -65,8 +65,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\build\vc6\Release"
-			IntermediateDirectory=".\build\vc6\Release"
+			OutputDirectory=".\build\vc71\Release"
+			IntermediateDirectory=".\build\vc71\Release"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -82,10 +82,10 @@
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc6\Release/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc6\Release/"
-				ObjectFile=".\build\vc6\Release/"
-				ProgramDataBaseFileName=".\build\vc6\Release/"
+				PrecompiledHeaderFile=".\build\vc71\Release/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc71\Release/"
+				ObjectFile=".\build\vc71\Release/"
+				ProgramDataBaseFileName=".\build\vc71\Release/"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
@@ -94,7 +94,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc71-mt-s-0_3_9.lib"
+				OutputFile="lib\QuantLibAddin-vc71-mt-s-0_3_10.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -119,8 +119,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\build\vc6\Debug"
-			IntermediateDirectory=".\build\vc6\Debug"
+			OutputDirectory=".\build\vc71\Debug"
+			IntermediateDirectory=".\build\vc71\Debug"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -134,10 +134,10 @@
 				RuntimeLibrary="1"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc6\Debug/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc6\Debug/"
-				ObjectFile=".\build\vc6\Debug/"
-				ProgramDataBaseFileName=".\build\vc6\Debug/"
+				PrecompiledHeaderFile=".\build\vc71\Debug/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc71\Debug/"
+				ObjectFile=".\build\vc71\Debug/"
+				ProgramDataBaseFileName=".\build\vc71\Debug/"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
@@ -147,7 +147,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc71-mt-sgd-0_3_9.lib"
+				OutputFile="lib\QuantLibAddin-vc71-mt-sgd-0_3_10.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -172,8 +172,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release SingleThread|Win32"
-			OutputDirectory=".\build\vc6\ReleaseST"
-			IntermediateDirectory=".\build\vc6\ReleaseST"
+			OutputDirectory=".\build\vc71\ReleaseST"
+			IntermediateDirectory=".\build\vc71\ReleaseST"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -189,10 +189,10 @@
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc6\ReleaseST/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc6\ReleaseST/"
-				ObjectFile=".\build\vc6\ReleaseST/"
-				ProgramDataBaseFileName=".\build\vc6\ReleaseST/"
+				PrecompiledHeaderFile=".\build\vc71\ReleaseST/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc71\ReleaseST/"
+				ObjectFile=".\build\vc71\ReleaseST/"
+				ProgramDataBaseFileName=".\build\vc71\ReleaseST/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -200,7 +200,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc6-s-0_3_9.lib"
+				OutputFile="lib\QuantLibAddin-vc71-s-0_3_10.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -225,8 +225,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug SingleThread|Win32"
-			OutputDirectory=".\build\vc6\DebugST"
-			IntermediateDirectory=".\build\vc6\DebugST"
+			OutputDirectory=".\build\vc71\DebugST"
+			IntermediateDirectory=".\build\vc71\DebugST"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -240,10 +240,10 @@
 				RuntimeLibrary="5"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc6\DebugST/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc6\DebugST/"
-				ObjectFile=".\build\vc6\DebugST/"
-				ProgramDataBaseFileName=".\build\vc6\DebugST/"
+				PrecompiledHeaderFile=".\build\vc71\DebugST/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc71\DebugST/"
+				ObjectFile=".\build\vc71\DebugST/"
+				ProgramDataBaseFileName=".\build\vc71\DebugST/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -252,7 +252,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc6-sgd-0_3_9.lib"
+				OutputFile="lib\QuantLibAddin-vc71-sgd-0_3_10.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -277,8 +277,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc6\DebugMTDLL"
-			IntermediateDirectory=".\build\vc6\DebugMTDLL"
+			OutputDirectory=".\build\vc71\DebugMTDLL"
+			IntermediateDirectory=".\build\vc71\DebugMTDLL"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -292,10 +292,10 @@
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc6\DebugMTDLL/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc6\DebugMTDLL/"
-				ObjectFile=".\build\vc6\DebugMTDLL/"
-				ProgramDataBaseFileName=".\build\vc6\DebugMTDLL/"
+				PrecompiledHeaderFile=".\build\vc71\DebugMTDLL/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc71\DebugMTDLL/"
+				ObjectFile=".\build\vc71\DebugMTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\DebugMTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -304,7 +304,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc6-mt-gd-0_3_9.lib"
+				OutputFile="lib\QuantLibAddin-vc71-mt-gd-0_3_10.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>

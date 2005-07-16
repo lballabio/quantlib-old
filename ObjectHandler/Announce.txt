@@ -1,7 +1,8 @@
 
-QuantLib integration into spreadsheets and other end user tools requires a
-standalone ObjectHandler component, a repository allowing objects to be stored,
-shared, updated, interrogated, and destroyed.
+Integration of a generic C++ library such as Quantlib into spreadsheets 
+and other end user tools requires a standalone ObjectHandler component, 
+a repository allowing objects to be stored, shared, updated, 
+interrogated, and destroyed.
 
 ObjectHandler shares the QuantLib project structure with regard to distribution, 
 licensing, etc., all of which is documented on the main QuantLib website:

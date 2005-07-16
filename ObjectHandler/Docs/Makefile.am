@@ -2,10 +2,10 @@
 EXTRA_DIST = \
     makefile.mak \
     objecthandler.doxy \
-    quantlib.css \
     oh_footer.html \
     oh_footeronline.html \
-    oh_header.html
+    oh_header.html \
+    quantlib.css
 
 DOXYGEN_CONFIG := objecthandler.doxy
 DOXYGEN_CUSTOM := quantlib.css oh_header.html oh_footer.html

@@ -1,11 +1,10 @@
 
 EXTRA_DIST = \
-    makefile.mak \
     qladdin.doxy \
-    quantlib.css \
     qla_footer.html \
     qla_footeronline.html \
-    qla_header.html
+    qla_header.html \
+    quantlib.css
 
 DOXYGEN_CONFIG := qladdin.doxy
 DOXYGEN_CUSTOM := quantlib.css qla_header.html qla_footer.html

@@ -179,7 +179,7 @@
         <name>handle</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Option object</desc>
+        <desc>handle of the Fixed Coupon Bond object</desc>
     </param>
     <param ignore='yes'>
         <name>trigger</name>
@@ -206,7 +206,7 @@
         <name>handle</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Option object</desc>
+        <desc>handle of the Fixed Coupon Bond object</desc>
     </param>
     <param ignore='yes'>
         <name>trigger</name>
@@ -233,7 +233,7 @@
         <name>handle</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Option object</desc>
+        <desc>handle of the Fixed Coupon Bond object</desc>
     </param>
     <param ql_type='QuantLib::Compounding'>
         <name>Compounding</name>
@@ -266,7 +266,7 @@
         <name>handle</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Option object</desc>
+        <desc>handle of the Fixed Coupon Bond object</desc>
     </param>
     <param>
         <name>yield</name>
@@ -305,7 +305,7 @@
         <name>handle</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Option object</desc>
+        <desc>handle of the Fixed Coupon Bond object</desc>
     </param>
     <param>
         <name>yield</name>
@@ -344,7 +344,7 @@
         <name>handle</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Option object</desc>
+        <desc>handle of the Fixed Coupon Bond object</desc>
     </param>
     <param>
         <name>cleanPrice</name>
@@ -383,7 +383,7 @@
         <name>handle</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of the Option object</desc>
+        <desc>handle of the Fixed Coupon Bond object</desc>
     </param>
     <param ql_type='QuantLib::Date'>
         <name>settlementDate</name>

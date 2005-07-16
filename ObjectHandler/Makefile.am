@@ -2,23 +2,23 @@
 SUBDIRS = oh Example Docs
 
 EXTRA_DIST = \
-	Announce.txt \
-	Authors.txt \
-	Contributors.txt \
-	LICENSE.TXT \
-	NEWS.txt \
-	ObjectHandler.dev \
-	ObjectHandler.dsp \
-	ObjectHandler.dsw \
-	ObjectHandler.nsi \
-	ObjectHandler.sln \
-	ObjectHandler.vcproj \
-	ObjectHandler_vc8.sln \
-	ObjectHandler_vc8.vcproj \
-	README.txt \
-	TODO.txt \
-	autogen.sh \
-	makefile.mak
+    Announce.txt \
+    Authors.txt \
+    autogen.sh \
+    Contributors.txt \
+    LICENSE.TXT \
+    makefile.mak \
+    NEWS.txt \
+    ObjectHandler.dev \
+    ObjectHandler.dsp \
+    ObjectHandler.dsw \
+    ObjectHandler.nsi \
+    ObjectHandler.sln \
+    ObjectHandler_vc8.sln \
+    ObjectHandler_vc8.vcproj \
+    ObjectHandler.vcproj \
+    README.txt \
+    TODO.txt
 
 .PHONY: docs docs-online docs-dist docs-clean
 BASEPATH = @abs_top_srcdir@

@@ -83,7 +83,7 @@
 <returnval>
     <type>property</type>
     <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing piecewise flat forward term structure</desc>
+    <desc>vector of properties describing xibor index</desc>
 </returnval>
 </function>
 

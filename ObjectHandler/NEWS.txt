@@ -1,4 +1,4 @@
-April 2005 - Release 0.1.1
+July 2005 - Release 0.1.1
 Changes since Release 0.1.0:
 
 - interface layer replaced with factory function (thanks to Walter Penschke)

@@ -13,7 +13,6 @@ SUBDIRS = \
     Clients/Guile \
     Docs
 
-#   makefile.mak
 EXTRA_DIST = \
     Announce.txt \
     Authors.txt \

@@ -4,8 +4,8 @@ AM_CPPFLAGS = -I${top_srcdir}
 EXTRA_DIST = \
     AddinC.dev \
     AddinC.dsp \
-    AddinC.vcproj \
-    AddinC_vc8.vcproj
+    AddinC_vc8.vcproj \
+    AddinC.vcproj
 
 if BUILD_C
 noinst_LTLIBRARIES = libQuantLibAddinC.la
