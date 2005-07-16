@@ -7,11 +7,7 @@ LDFLAGS = -lObjectHandler -lQuantLib
 EXTRA_DIST = \
     ClientCDemo.dsp \
     ClientCDemo_vc8.vcproj \
-    ClientC.dev \
-    ClientCInstruments.dsp \
-    ClientCInstruments_vc8.vcproj \
-    ClientCOptions.dsp \
-    ClientCOptions_vc8.vcproj
+    ClientC.dev
 
 QLADemo_SOURCES = qlademo.c
 Options_SOURCES = options.c

@@ -84,36 +84,6 @@ Package=<4>
 
 ###############################################################################
 
-Project: "ClientCInstruments"=".\CLIENTS\C\ClientCInstruments.dsp" - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name AddinC
-    End Project Dependency
-}}}
-
-###############################################################################
-
-Project: "ClientCOptions"=".\CLIENTS\C\ClientCOptions.dsp" - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name AddinC
-    End Project Dependency
-}}}
-
-###############################################################################
-
 Project: "ClientCPPCapFloor"=".\Clients\C++\ClientCPPCapFloor.dsp" - Package Owner=<4>
 
 Package=<5>
