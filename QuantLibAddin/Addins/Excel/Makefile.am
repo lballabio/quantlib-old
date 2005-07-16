@@ -18,7 +18,6 @@ EXTRA_DIST = \
     utilities.cpp \
     volatilities.cpp \
     xibor.cpp \
-    xibor.hpp \
     xlcall.h \
     xlutils.cpp \
     xlutils.hpp

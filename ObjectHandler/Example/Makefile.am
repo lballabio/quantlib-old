@@ -6,9 +6,9 @@ EXTRA_DIST = \
     Example.dsp \
     Example_vc8.vcproj \
     Example.vcproj \
-    foo.hpp
+    foo.hpp \
     makefile.mak \
-    objectfoo.hpp \
+    objectfoo.hpp
 
 Example_SOURCES = \
     example.cpp  \
