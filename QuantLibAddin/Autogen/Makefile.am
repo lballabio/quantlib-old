@@ -1,10 +1,4 @@
 
-# this should prevent running from a distributed tarball
-EXTRA_DIST = .time-stamp \
-             Makefile.msdev \
-             Autogen.dsp \
-             Autogen_vc8.vcproj
-
 # autogen.py probably needs to be re-executed if any of these change
 AUTOGEN_INPUT := capfloor.xml enums.xml instruments.xml options.xml processes.xml \
                  qlatest.xml shortratemodels.xml termstructures.xml utilities.xml \
@@ -16,6 +10,15 @@ AUTOGEN_STUBS := stub.Qla.includes stub.C.body stub.C.includes \
                  stub.Calc.idlhead stub.Calc.includes stub.Calc.map \
                  stub.Excel.body stub.Excel.includes stub.Excel.regheader \
                  stub.Doxygen.enums stub.copyright
+
+# this should prevent running from a distributed tarball
+EXTRA_DIST = .time-stamp \
+             Makefile.msdev \
+             Autogen.dsp \
+             Autogen_vc8.vcproj \
+             $(AUTOGEN_INPUT) \
+             $(AUTOGEN_PYS) \
+             $(AUTOGEN_STUBS)
 
 # command line arguments
 AUTOGEN_ARGS = -dq
