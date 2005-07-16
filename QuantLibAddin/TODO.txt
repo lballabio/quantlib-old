@@ -1,7 +1,7 @@
 To do list:
 
 QuantLibAddin
-- additional QuantLib functionality
+- conditional compilation of qlatest code
 - improve formatting of log messages
 - #include fewer headers to speed compilation
 
@@ -10,6 +10,7 @@ Calc
 - remove compilation dependency of calcutils on functions
 
 Excel
+- address issues with volatile functions
 - autoconf?
 - add version number to XLL name?
 

@@ -1,5 +1,5 @@
 
-Release 0.3.9 - ??? 2005
+Release 0.3.10 - July 2005
 
 OVERVIEW
 
@@ -12,7 +12,7 @@ Initial release consisting of prototype framework:
 REQUIRED PACKAGES
 
 - Boost version 1.31.0 or later
-- QuantLib version 0.3.9
+- QuantLib version 0.3.10
 - ObjectHandler version 0.1.1
 
 FUNCTIONALITY
