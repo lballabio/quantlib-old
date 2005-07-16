@@ -16,10 +16,10 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\build\vc6\Debug"
-			IntermediateDirectory=".\build\vc6\Debug"
+			OutputDirectory=".\build\vc80\Debug"
+			IntermediateDirectory=".\build\vc80\Debug"
 			ConfigurationType="2"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="UpgradeFromvc71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -42,7 +42,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\build\vc6\Debug/AddinExcel.tlb"
+				TypeLibraryName=".\build\vc80\Debug/AddinExcel.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -55,10 +55,10 @@
 				RuntimeLibrary="1"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc6\Debug/AddinExcel.pch"
-				AssemblerListingLocation=".\build\vc6\Debug/"
-				ObjectFile=".\build\vc6\Debug/"
-				ProgramDataBaseFileName=".\build\vc6\Debug/"
+				PrecompiledHeaderFile=".\build\vc80\Debug/AddinExcel.pch"
+				AssemblerListingLocation=".\build\vc80\Debug/"
+				ObjectFile=".\build\vc80\Debug/"
+				ProgramDataBaseFileName=".\build\vc80\Debug/"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
@@ -78,13 +78,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib XLCALL32.LIB log4cxxs.lib Ws2_32.lib"
-				OutputFile="xll\QuantLibAddin-vc6-mt-sgd.xll"
+				OutputFile="xll\QuantLibAddin-vc80-mt-sgd.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,.\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\build\vc6\Debug/QuantLibAddin-vc6-mt-sgd.pdb"
-				ImportLibrary=".\build\vc6\Debug/QuantLibAddin-vc6-mt-sgd.lib"
+				ProgramDatabaseFile=".\build\vc80\Debug/QuantLibAddin-vc80-mt-sgd.pdb"
+				ImportLibrary=".\build\vc80\Debug/QuantLibAddin-vc80-mt-sgd.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -99,7 +99,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc6\Debug/AddinExcel.bsc"
+				OutputFile=".\build\vc80\Debug/AddinExcel.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -116,10 +116,10 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\build\vc6\Release"
-			IntermediateDirectory=".\build\vc6\Release"
+			OutputDirectory=".\build\vc80\Release"
+			IntermediateDirectory=".\build\vc80\Release"
 			ConfigurationType="2"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="UpgradeFromvc71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -142,7 +142,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\build\vc6\Release/AddinExcel.tlb"
+				TypeLibraryName=".\build\vc80\Release/AddinExcel.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -156,10 +156,10 @@
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc6\Release/AddinExcel.pch"
-				AssemblerListingLocation=".\build\vc6\Release/"
-				ObjectFile=".\build\vc6\Release/"
-				ProgramDataBaseFileName=".\build\vc6\Release/"
+				PrecompiledHeaderFile=".\build\vc80\Release/AddinExcel.pch"
+				AssemblerListingLocation=".\build\vc80\Release/"
+				ObjectFile=".\build\vc80\Release/"
+				ProgramDataBaseFileName=".\build\vc80\Release/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -177,12 +177,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib XLCALL32.LIB log4cxxs.lib Ws2_32.lib"
-				OutputFile="xll\QuantLibAddin-vc6-mt-s.xll"
+				OutputFile="xll\QuantLibAddin-vc80-mt-s.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,.\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
-				ProgramDatabaseFile=".\build\vc6\Release/QuantLibAddin-vc6-mt-s.pdb"
-				ImportLibrary=".\build\vc6\Release/QuantLibAddin-vc6-mt-s.lib"
+				ProgramDatabaseFile=".\build\vc80\Release/QuantLibAddin-vc80-mt-s.pdb"
+				ImportLibrary=".\build\vc80\Release/QuantLibAddin-vc80-mt-s.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -197,7 +197,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc6\Release/AddinExcel.bsc"
+				OutputFile=".\build\vc80\Release/AddinExcel.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"

@@ -12,4 +12,4 @@ example.log
 Makefile
 Makefile.in
 .libs
-Example.vcproj.*.user
+Example*.vcproj.*.user

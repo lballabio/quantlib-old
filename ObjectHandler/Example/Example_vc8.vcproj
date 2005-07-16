@@ -4,6 +4,7 @@
 	Version="8.00"
 	Name="Example"
 	ProjectGUID="{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}"
+	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -15,8 +16,8 @@
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\build\vc6\Release"
-			IntermediateDirectory=".\build\vc6\Release"
+			OutputDirectory=".\build\vc80\Release"
+			IntermediateDirectory=".\build\vc80\Release"
 			ConfigurationType="1"
 			InheritedPropertySheets="UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -37,7 +38,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc6\Release/Example.tlb"
+				TypeLibraryName=".\build\vc80\Release/Example.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -51,10 +52,10 @@
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc6\Release/Example.pch"
-				AssemblerListingLocation=".\build\vc6\Release/"
-				ObjectFile=".\build\vc6\Release/"
-				ProgramDataBaseFileName=".\build\vc6\Release/"
+				PrecompiledHeaderFile=".\build\vc80\Release/Example.pch"
+				AssemblerListingLocation=".\build\vc80\Release/"
+				ObjectFile=".\build\vc80\Release/"
+				ProgramDataBaseFileName=".\build\vc80\Release/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				CompileAs="0"
@@ -73,11 +74,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib Advapi32.lib"
-				OutputFile="bin/Example-vc6-mt-s.exe"
+				OutputFile="bin/Example-vc80-mt-s.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
-				ProgramDatabaseFile=".\build\vc6\Release/Example-vc6-mt-s.pdb"
+				ProgramDatabaseFile=".\build\vc80\Release/Example-vc80-mt-s.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -108,8 +109,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\build\vc6\Debug"
-			IntermediateDirectory=".\build\vc6\Debug"
+			OutputDirectory=".\build\vc80\Debug"
+			IntermediateDirectory=".\build\vc80\Debug"
 			ConfigurationType="1"
 			InheritedPropertySheets="UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -130,7 +131,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc6\Debug/Example.tlb"
+				TypeLibraryName=".\build\vc80\Debug/Example.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -142,10 +143,10 @@
 				RuntimeLibrary="1"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc6\Debug/Example.pch"
-				AssemblerListingLocation=".\build\vc6\Debug/"
-				ObjectFile=".\build\vc6\Debug/"
-				ProgramDataBaseFileName=".\build\vc6\Debug/"
+				PrecompiledHeaderFile=".\build\vc80\Debug/Example.pch"
+				AssemblerListingLocation=".\build\vc80\Debug/"
+				ObjectFile=".\build\vc80\Debug/"
+				ProgramDataBaseFileName=".\build\vc80\Debug/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -165,12 +166,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib Advapi32.lib"
-				OutputFile="bin/Example-vc6-mt-sgd.exe"
+				OutputFile="bin/Example-vc80-mt-sgd.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\build\vc6\Debug/Example-vc6-mt-sgd.pdb"
+				ProgramDatabaseFile=".\build\vc80\Debug/Example-vc80-mt-sgd.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -257,31 +258,6 @@
 					/>
 				</FileConfiguration>
 			</File>
-			<File
-				RelativePath="utilities.cpp"
-				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -293,10 +269,6 @@
 			</File>
 			<File
 				RelativePath="objectfoo.hpp"
-				>
-			</File>
-			<File
-				RelativePath="utilities.hpp"
 				>
 			</File>
 		</Filter>

@@ -4,7 +4,6 @@
 	Version="8.00"
 	Name="QuantLibAddin"
 	ProjectGUID="{C090BCA5-498C-4D1E-B2E8-A601F9CCFCC6}"
-	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -16,10 +15,10 @@
 	<Configurations>
 		<Configuration
 			Name="Release MTDLL|Win32"
-			OutputDirectory=".\build\vc6\ReleaseMTDLL"
-			IntermediateDirectory=".\build\vc6\ReleaseMTDLL"
+			OutputDirectory=".\build\vc80\ReleaseMTDLL"
+			IntermediateDirectory=".\build\vc80\ReleaseMTDLL"
 			ConfigurationType="4"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="UpgradeFromvc71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -50,10 +49,10 @@
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc6\ReleaseMTDLL/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc6\ReleaseMTDLL/"
-				ObjectFile=".\build\vc6\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\build\vc6\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\build\vc80\ReleaseMTDLL/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc80\ReleaseMTDLL/"
+				ObjectFile=".\build\vc80\ReleaseMTDLL/"
+				ProgramDataBaseFileName=".\build\vc80\ReleaseMTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -70,7 +69,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc6-mt-0_3_9.lib"
+				OutputFile="lib\QuantLibAddin-vc80-mt-0_3_10.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -82,7 +81,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc6\ReleaseMTDLL/QuantLibAddin.bsc"
+				OutputFile=".\build\vc80\ReleaseMTDLL/QuantLibAddin.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -93,10 +92,10 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\build\vc6\Release"
-			IntermediateDirectory=".\build\vc6\Release"
+			OutputDirectory=".\build\vc80\Release"
+			IntermediateDirectory=".\build\vc80\Release"
 			ConfigurationType="4"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="UpgradeFromvc71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -127,10 +126,10 @@
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc6\Release/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc6\Release/"
-				ObjectFile=".\build\vc6\Release/"
-				ProgramDataBaseFileName=".\build\vc6\Release/"
+				PrecompiledHeaderFile=".\build\vc80\Release/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc80\Release/"
+				ObjectFile=".\build\vc80\Release/"
+				ProgramDataBaseFileName=".\build\vc80\Release/"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
@@ -148,7 +147,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc6-mt-s-0_3_9.lib"
+				OutputFile="lib\QuantLibAddin-vc80-mt-s-0_3_10.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -160,7 +159,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc6\Release/QuantLibAddin.bsc"
+				OutputFile=".\build\vc80\Release/QuantLibAddin.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -171,10 +170,10 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\build\vc6\Debug"
-			IntermediateDirectory=".\build\vc6\Debug"
+			OutputDirectory=".\build\vc80\Debug"
+			IntermediateDirectory=".\build\vc80\Debug"
 			ConfigurationType="4"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="UpgradeFromvc71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -204,10 +203,10 @@
 				RuntimeLibrary="1"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc6\Debug/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc6\Debug/"
-				ObjectFile=".\build\vc6\Debug/"
-				ProgramDataBaseFileName=".\build\vc6\Debug/"
+				PrecompiledHeaderFile=".\build\vc80\Debug/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc80\Debug/"
+				ObjectFile=".\build\vc80\Debug/"
+				ProgramDataBaseFileName=".\build\vc80\Debug/"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
@@ -226,7 +225,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc6-mt-sgd-0_3_9.lib"
+				OutputFile="lib\QuantLibAddin-vc80-mt-sgd-0_3_10.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -238,7 +237,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc6\Debug/QuantLibAddin.bsc"
+				OutputFile=".\build\vc80\Debug/QuantLibAddin.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -249,10 +248,10 @@
 		</Configuration>
 		<Configuration
 			Name="Release SingleThread|Win32"
-			OutputDirectory=".\build\vc6\ReleaseST"
-			IntermediateDirectory=".\build\vc6\ReleaseST"
+			OutputDirectory=".\build\vc80\ReleaseST"
+			IntermediateDirectory=".\build\vc80\ReleaseST"
 			ConfigurationType="4"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="UpgradeFromvc71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -283,10 +282,10 @@
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc6\ReleaseST/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc6\ReleaseST/"
-				ObjectFile=".\build\vc6\ReleaseST/"
-				ProgramDataBaseFileName=".\build\vc6\ReleaseST/"
+				PrecompiledHeaderFile=".\build\vc80\ReleaseST/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc80\ReleaseST/"
+				ObjectFile=".\build\vc80\ReleaseST/"
+				ProgramDataBaseFileName=".\build\vc80\ReleaseST/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -303,7 +302,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc6-s-0_3_9.lib"
+				OutputFile="lib\QuantLibAddin-vc80-s-0_3_10.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -315,7 +314,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc6\ReleaseST/QuantLibAddin.bsc"
+				OutputFile=".\build\vc80\ReleaseST/QuantLibAddin.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -326,10 +325,10 @@
 		</Configuration>
 		<Configuration
 			Name="Debug SingleThread|Win32"
-			OutputDirectory=".\build\vc6\DebugST"
-			IntermediateDirectory=".\build\vc6\DebugST"
+			OutputDirectory=".\build\vc80\DebugST"
+			IntermediateDirectory=".\build\vc80\DebugST"
 			ConfigurationType="4"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="UpgradeFromvc71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -359,10 +358,10 @@
 				RuntimeLibrary="1"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc6\DebugST/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc6\DebugST/"
-				ObjectFile=".\build\vc6\DebugST/"
-				ProgramDataBaseFileName=".\build\vc6\DebugST/"
+				PrecompiledHeaderFile=".\build\vc80\DebugST/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc80\DebugST/"
+				ObjectFile=".\build\vc80\DebugST/"
+				ProgramDataBaseFileName=".\build\vc80\DebugST/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -380,7 +379,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc6-sgd-0_3_9.lib"
+				OutputFile="lib\QuantLibAddin-vc80-sgd-0_3_10.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -392,7 +391,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc6\DebugST/QuantLibAddin.bsc"
+				OutputFile=".\build\vc80\DebugST/QuantLibAddin.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -403,10 +402,10 @@
 		</Configuration>
 		<Configuration
 			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc6\DebugMTDLL"
-			IntermediateDirectory=".\build\vc6\DebugMTDLL"
+			OutputDirectory=".\build\vc80\DebugMTDLL"
+			IntermediateDirectory=".\build\vc80\DebugMTDLL"
 			ConfigurationType="4"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="UpgradeFromvc71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -436,10 +435,10 @@
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc6\DebugMTDLL/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc6\DebugMTDLL/"
-				ObjectFile=".\build\vc6\DebugMTDLL/"
-				ProgramDataBaseFileName=".\build\vc6\DebugMTDLL/"
+				PrecompiledHeaderFile=".\build\vc80\DebugMTDLL/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc80\DebugMTDLL/"
+				ObjectFile=".\build\vc80\DebugMTDLL/"
+				ProgramDataBaseFileName=".\build\vc80\DebugMTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -457,7 +456,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc6-mt-gd-0_3_9.lib"
+				OutputFile="lib\QuantLibAddin-vc80-mt-gd-0_3_10.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -469,7 +468,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc6\DebugMTDLL/QuantLibAddin.bsc"
+				OutputFile=".\build\vc80\DebugMTDLL/QuantLibAddin.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -817,6 +816,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\qla\complextyperegistry.cpp"
+				>
+			</File>
+			<File
 				RelativePath="qla\dividendvanillaoption.cpp"
 				>
 				<FileConfiguration
@@ -883,70 +886,8 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\enumfactory.cpp"
+				RelativePath=".\qla\enumregistry.cpp"
 				>
-				<FileConfiguration
-					Name="Release MTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
-						UsePrecompiledHeader="0"
-						BrowseInformation="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
-						UsePrecompiledHeader="0"
-						BrowseInformation="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release SingleThread|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug SingleThread|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug MTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="qla\fixedcouponbond.cpp"
@@ -1082,72 +1023,6 @@
 			</File>
 			<File
 				RelativePath="qla\generalutils.cpp"
-				>
-				<FileConfiguration
-					Name="Release MTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
-						UsePrecompiledHeader="0"
-						BrowseInformation="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
-						UsePrecompiledHeader="0"
-						BrowseInformation="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release SingleThread|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug SingleThread|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug MTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="qla\optionutils.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
@@ -1972,10 +1847,6 @@
 				>
 			</File>
 			<File
-				RelativePath="qla\enumfactory.hpp"
-				>
-			</File>
-			<File
 				RelativePath="qla\fixedcouponbond.hpp"
 				>
 			</File>
@@ -1993,10 +1864,6 @@
 			</File>
 			<File
 				RelativePath="qla\options.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qla\optionutils.hpp"
 				>
 			</File>
 			<File
@@ -2025,6 +1892,14 @@
 			</File>
 			<File
 				RelativePath="qla\termstructures.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qla\typefactory.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qla\typeregistry.hpp"
 				>
 			</File>
 			<File
