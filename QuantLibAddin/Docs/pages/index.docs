@@ -41,8 +41,8 @@
 
     QuantLibAddin supports the following platforms
     \li Microsoft Excel
-    \li C/C++ (standalone programs),
-    \li OpenOffice.Org Calc (Windows and Linux).
+    \li C/C++ (standalone programs)
+    \li OpenOffice.Org Calc (Windows and Linux)
     \li Guile
 
     Please refer to document \ref installation for instructions on
