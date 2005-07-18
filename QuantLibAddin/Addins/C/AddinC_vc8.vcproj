@@ -272,10 +272,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\qlatest.cpp"
-				>
-			</File>
-			<File
 				RelativePath="shortratemodels.cpp"
 				>
 				<FileConfiguration
@@ -430,10 +426,6 @@
 			</File>
 			<File
 				RelativePath="qladdin.h"
-				>
-			</File>
-			<File
-				RelativePath=".\qlatest.h"
 				>
 			</File>
 			<File

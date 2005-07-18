@@ -233,10 +233,6 @@ SOURCE=.\qla\processes.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\qlatest.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\qla\shortratemodels.cpp
 # End Source File
 # Begin Source File
@@ -334,10 +330,6 @@ SOURCE=.\qla\qladdin.hpp
 # Begin Source File
 
 SOURCE=.\qla\qladdindefines.hpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\qla\qlatest.hpp
 # End Source File
 # Begin Source File
 

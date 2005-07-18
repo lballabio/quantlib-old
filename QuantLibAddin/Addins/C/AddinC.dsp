@@ -101,10 +101,6 @@ SOURCE=.\processes.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qlatest.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\shortratemodels.cpp
 # End Source File
 # Begin Source File
@@ -158,10 +154,6 @@ SOURCE=.\processes.h
 # Begin Source File
 
 SOURCE=.\qladdin.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\qlatest.h
 # End Source File
 # Begin Source File
 

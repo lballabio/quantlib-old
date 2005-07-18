@@ -97,10 +97,6 @@
 				>
 			</File>
 			<File
-				RelativePath="qlatest.cpp"
-				>
-			</File>
-			<File
 				RelativePath="QuantLibAddin.def"
 				>
 			</File>
@@ -159,10 +155,6 @@
 			</File>
 			<File
 				RelativePath="qladdin.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qlatest.hpp"
 				>
 			</File>
 			<File

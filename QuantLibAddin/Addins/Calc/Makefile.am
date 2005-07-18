@@ -69,7 +69,6 @@ noinst_HEADERS = \
     options.hpp \
     processes.hpp \
     qladdin.hpp \
-    qlatest.hpp \
     qldefs.hpp \
     shortratemodels.hpp \
     simpleswap.hpp \
@@ -87,7 +86,6 @@ libQuantLibAddinCalc_la_SOURCES = \
     options.cpp \
     processes.cpp \
     qladdin.cpp \
-    qlatest.cpp \
     shortratemodels.cpp \
     simpleswap.cpp \
     termstructures.cpp \

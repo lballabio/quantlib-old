@@ -12,13 +12,13 @@ STUBS=stub.C.body \
 	stub.Calc.includes \
 	stub.Calc.map \
 	stub.copyright \
-    stub.Doxygen.enums \
+	stub.Doxygen.enums \
 	stub.Excel.body \
 	stub.Excel.includes \
 	stub.Excel.regheader \
-    stub.Qla.includes
+	stub.Qla.includes
 SCRIPTS=autogen.py \
-    qla.py \
+	qla.py \
 	c.py \
 	calc.py \
 	common.py \
@@ -29,11 +29,10 @@ SCRIPTS=autogen.py \
 	utils.py
 METADATA= \
 	capfloor.xml \
-    enums.xml \
+	enums.xml \
 	instruments.xml \
 	options.xml \
 	processes.xml \
-	qlatest.xml \
 	shortratemodels.xml \
 	simpleswap.xml \
 	termstructures.xml \

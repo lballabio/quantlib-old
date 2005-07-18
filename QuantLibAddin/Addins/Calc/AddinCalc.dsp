@@ -116,10 +116,6 @@ SOURCE=.\qladdin.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qlatest.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\QuantLibAddin.def
 # PROP Intermediate_Dir "."
 # End Source File
@@ -179,10 +175,6 @@ SOURCE=.\processes.hpp
 
 SOURCE=.\qladdin.hpp
 # PROP Intermediate_Dir "."
-# End Source File
-# Begin Source File
-
-SOURCE=.\qlatest.hpp
 # End Source File
 # Begin Source File
 

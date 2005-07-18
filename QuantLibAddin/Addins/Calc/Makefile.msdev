@@ -32,7 +32,6 @@ OBJECTS= \
 	"$(INT_DIR)\options.obj" \
 	"$(INT_DIR)\processes.obj" \
 	"$(INT_DIR)\qladdin.obj" \
-	"$(INT_DIR)\qlatest.obj" \
 	"$(INT_DIR)\shortratemodels.obj" \
 	"$(INT_DIR)\simpleswap.obj" \
 	"$(INT_DIR)\termstructures.obj" \
