@@ -3,7 +3,7 @@ AM_CPPFLAGS = -I${top_srcdir}
 LDADD = ../../qla/libQuantLibAddin.la
 LDFLAGS = -lObjectHandler -lQuantLib
 
-noinst_PROGRAMS = QLADemo Options Instruments CapFloor QLATest
+noinst_PROGRAMS = QLADemo Options Instruments CapFloor
 
 #    makefile.mak
 EXTRA_DIST = \
@@ -21,5 +21,4 @@ QLADemo_SOURCES = qlademo.cpp
 Options_SOURCES = options.cpp
 Instruments_SOURCES = instruments.cpp
 CapFloor_SOURCES = capfloor.cpp
-QLATest_SOURCES = qlatest.cpp
 

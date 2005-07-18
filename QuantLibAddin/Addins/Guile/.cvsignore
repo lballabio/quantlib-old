@@ -10,7 +10,6 @@ instruments.*
 options.*
 processes.*
 qladdin.c
-qlatest.*
 shortratemodels.*
 simpleswap.*
 termstructures.*

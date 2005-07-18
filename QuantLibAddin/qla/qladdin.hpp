@@ -26,7 +26,6 @@
 #include <qla/instruments.hpp>
 #include <qla/options.hpp>
 #include <qla/processes.hpp>
-#include <qla/qlatest.hpp>
 #include <qla/shortratemodels.hpp>
 #include <qla/simpleswap.hpp>
 #include <qla/termstructures.hpp>

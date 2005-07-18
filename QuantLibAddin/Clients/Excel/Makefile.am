@@ -4,6 +4,5 @@ EXTRA_DIST = \
     instruments.xls \
     options.xls \
     QLADemo.xls \
-    QLATest.xls \
     YC_SwapDemo.xls
 

@@ -24,7 +24,6 @@ noinst_HEADERS = \
     options.h \
     processes.h \
     qladdin.h \
-    qlatest.h \
     shortratemodels.h \
     simpleswap.h \
     termstructures.h \
@@ -40,7 +39,6 @@ libQuantLibAddinC_la_SOURCES = \
     instruments.cpp \
     options.cpp \
     processes.cpp \
-    qlatest.cpp \
     shortratemodels.cpp \
     simpleswap.cpp \
     termstructures.cpp \

@@ -1,7 +1,6 @@
 To do list:
 
 QuantLibAddin
-- conditional compilation of qlatest code
 - improve formatting of log messages
 - #include fewer headers to speed compilation
 

@@ -147,9 +147,6 @@
 				RelativePath="processes.xml">
 			</File>
 			<File
-				RelativePath="qlatest.xml">
-			</File>
-			<File
 				RelativePath="shortratemodels.xml">
 			</File>
 			<File

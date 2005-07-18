@@ -24,7 +24,6 @@ include_HEADERS = \
     processes.hpp \
     qladdin.hpp \
     qladdindefines.hpp \
-    qlatest.hpp \
     shortratemodels.hpp \
     simpleswap.hpp \
     termstructures.hpp \
@@ -50,7 +49,6 @@ libQuantLibAddin_la_SOURCES = \
     forwardvanillaoption.cpp \
     generalutils.cpp \
     processes.cpp \
-    qlatest.cpp \
     shortratemodels.cpp \
     simpleswap.cpp \
     termstructures.cpp \

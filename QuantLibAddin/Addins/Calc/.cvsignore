@@ -20,7 +20,6 @@ funcdef.cpp
 instruments.*
 options.*
 processes.*pp
-qlatest.*pp
 QuantLibAddin.idl
 shortratemodels.*pp
 simpleswap.*pp

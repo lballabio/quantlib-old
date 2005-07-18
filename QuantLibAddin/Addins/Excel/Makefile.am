@@ -11,7 +11,6 @@ EXTRA_DIST = \
     options.cpp \
     processes.cpp \
     qladdin.cpp \
-    qlatest.cpp \
     shortratemodels.cpp \
     simpleswap.cpp \
     termstructures.cpp \
