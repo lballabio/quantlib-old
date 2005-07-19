@@ -124,34 +124,6 @@
 </function>
 
 <function call_type='QL_OBJECT'>
-<name>QL_SWAP_NPV</name>
-<codename>qlSwapNPV</codename>
-<desc>the NPV of a swap</desc>
-<constructor>false</constructor>
-<qlfunction>NPV</qlfunction>
-<parameters>
-    <param class='SimpleSwap'>
-        <name>handle</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of the swap object</desc>
-    </param>
-    <param ignore='yes'>
-        <name>trigger</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dep tracking trigger</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>double</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>the NPV</desc>
-</returnval>
-</function>
-
-
-<function call_type='QL_OBJECT'>
 <name>QL_SWAP_FAIR_RATE</name>
 <codename>qlSwapFairRate</codename>
 <desc>the fair rate of a swap</desc>
@@ -205,6 +177,27 @@
 </returnval>
 </function>
 
+<function>
+<name>QL_SWAP_FIXED_LEG</name>
+<codename>qlSwapFixLeg</codename>
+<desc>The Fixed Leg Details</desc>
+<constructor>false</constructor>
+<qlfunction>getFixLeg</qlfunction>
+<parameters>
+    <param class='SimpleSwap'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a SimpleSwap object</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>matrix</tensorrank>
+    <desc>The Fixed Leg Details</desc>
+</returnval>
+</function>
+
 <function call_type='QL_OBJECT'>
 <name>QL_SWAP_FIXED_LEG_BPS</name>
 <codename>qlFixedLegBPS</codename>
@@ -229,6 +222,33 @@
     <type>double</type>
     <tensorrank>scalar</tensorrank>
     <desc>the fix leg BPS</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_SWAP_FLOAT_LEG</name>
+<codename>qlSwapFloatLeg</codename>
+<desc>The Float Leg Details</desc>
+<constructor>false</constructor>
+<qlfunction>getFloatLeg</qlfunction>
+<parameters>
+    <param class='SimpleSwap'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a SimpleSwap object</desc>
+    </param>
+    <param ignore='yes'>
+        <name>trigger</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dep tracking trigger</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>matrix</tensorrank>
+    <desc>The Float Leg Details</desc>
 </returnval>
 </function>
 
@@ -259,51 +279,30 @@
 </returnval>
 </function>
 
-<function>
-<name>QL_SWAP_FIXED_LEG</name>
-<codename>qlSwapFixLeg</codename>
-<desc>The Fixed Leg Details</desc>
+<function call_type='QL_OBJECT'>
+<name>QL_SWAP_NPV</name>
+<codename>qlSwapNPV</codename>
+<desc>the NPV of a swap</desc>
 <constructor>false</constructor>
-<qlfunction>getFixLeg</qlfunction>
+<qlfunction>NPV</qlfunction>
 <parameters>
     <param class='SimpleSwap'>
         <name>handle</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>handle of a SimpleSwap object</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>double</type>
-    <tensorrank>matrix</tensorrank>
-    <desc>The Fixed Leg Details</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_SWAP_FLOAT_LEG</name>
-<codename>qlSwapFloatLeg</codename>
-<desc>The Float Leg Details</desc>
-<constructor>false</constructor>
-<qlfunction>getFloatLeg</qlfunction>
-<parameters>
-    <param class='SimpleSwap'>
-        <name>handle</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of a SimpleSwap object</desc>
+        <desc>handle of the swap object</desc>
     </param>
     <param ignore='yes'>
         <name>trigger</name>
-        <type>double</type>
+        <type>any</type>
         <tensorrank>scalar</tensorrank>
         <desc>dep tracking trigger</desc>
     </param>
 </parameters>
 <returnval>
     <type>double</type>
-    <tensorrank>matrix</tensorrank>
-    <desc>The Float Leg Details</desc>
+    <tensorrank>scalar</tensorrank>
+    <desc>the NPV</desc>
 </returnval>
 </function>
 

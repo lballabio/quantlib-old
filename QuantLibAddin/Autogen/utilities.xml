@@ -7,181 +7,9 @@
 <functions>
 
 <function>
-<name>QL_VERSION</name>
-<codename>qlVersion</codename>
-<desc>returns the version number of QuantLib</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<parameters></parameters>
-<returnval>
-    <type>string</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>QuantLib version number</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_OH_VERSION</name>
-<codename>qlOhVersion</codename>
-<desc>returns the version number of ObjectHandler</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<parameters></parameters>
-<returnval>
-    <type>string</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>ObjectHandler version number</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_FIELD_NAMES</name>
-<codename>qlFieldNames</codename>
-<desc>retrieve the field names of a given object</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<parameters>
-    <param>
-        <name>handleObject</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of object to be queried</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>any</type>
-    <tensorrank>vector</tensorrank>
-    <desc>list of fieldnames for queried object</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_VALUE</name>
-<codename>qlValue</codename>
-<desc>retrieve the value of a named field</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<parameters>
-    <param>
-        <name>handleObject</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of object to be queried</desc>
-    </param>
-    <param>
-        <name>fieldName</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>name of field</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>any</type>
-    <tensorrank>matrix</tensorrank>
-    <desc>value of named field</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_LOGFILE</name>
-<codename>qlLogfile</codename>
-<desc>begin logging to named file</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<parameters>
-    <param>
-        <name>logFileName</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>path and name of log file</desc>
-    </param>
-    <param>
-        <name>logLevel</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>threshold for log messages</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>string</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>name of logfile</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_LOG_MESSAGE</name>
-<codename>qlLogMessage</codename>
-<desc>log a message</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<parameters>
-    <param>
-        <name>logMessage</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>message to be logged</desc>
-    </param>
-    <param>
-        <name>logLevel</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>threshold for log messages</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>string</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>message logged</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_LOGLEVEL</name>
-<codename>qlLogLevel</codename>
-<desc>set threshold for log messages</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<parameters>
-    <param>
-        <name>logLevel</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>threshold for log messages</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>long</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>returns new logging threshold</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_LOG_OBJECT</name>
-<codename>qlLogObject</codename>
-<desc>write object description to log file</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<parameters>
-    <param>
-        <name>handleObject</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of object to be logged</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>bool</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>success/failure</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_LOG_ALL_OBJECTS</name>
-<codename>qlLogAllObjects</codename>
-<desc>write all object descriptions to log file</desc>
+<name>QL_DELETE_ALL_OBJECTS</name>
+<codename>qlDeleteAllObjects</codename>
+<desc>delete all objects from repository</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
 <parameters></parameters>
@@ -206,20 +34,6 @@
         <desc>handle of object to be deleted</desc>
     </param>
 </parameters>
-<returnval>
-    <type>bool</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>success/failure</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_DELETE_ALL_OBJECTS</name>
-<codename>qlDeleteAllObjects</codename>
-<desc>delete all objects from repository</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<parameters></parameters>
 <returnval>
     <type>bool</type>
     <tensorrank>scalar</tensorrank>
@@ -303,20 +117,27 @@
 </function>
 
 <function>
-<name>QL_LIST_REGISTERED_ENUMS</name>
-<codename>qlListRegisteredEnums</codename>
-<desc>return the names of all registered enums</desc>
+<name>QL_FIELD_NAMES</name>
+<codename>qlFieldNames</codename>
+<desc>retrieve the field names of a given object</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
-<parameters></parameters>
+<parameters>
+    <param>
+        <name>handleObject</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of object to be queried</desc>
+    </param>
+</parameters>
 <returnval>
-    <type>string</type>
+    <type>any</type>
     <tensorrank>vector</tensorrank>
-    <desc>list of names of registered enums</desc>
+    <desc>list of fieldnames for queried object</desc>
 </returnval>
 </function>
-<function>
 
+<function>
 <name>QL_LIST_ENUM</name>
 <codename>qlListEnum</codename>
 <desc>return the members of a given enumeration</desc>
@@ -338,6 +159,20 @@
 </function>
 
 <function>
+<name>QL_LIST_REGISTERED_ENUMS</name>
+<codename>qlListRegisteredEnums</codename>
+<desc>return the names of all registered enums</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<parameters></parameters>
+<returnval>
+    <type>string</type>
+    <tensorrank>vector</tensorrank>
+    <desc>list of names of registered enums</desc>
+</returnval>
+</function>
+
+<function>
 <name>QL_LIST_REGISTERED_TYPES</name>
 <codename>qlListRegisteredTypes</codename>
 <desc>return the names of all registered complex types</desc>
@@ -350,8 +185,8 @@
     <desc>list of names of registered enums</desc>
 </returnval>
 </function>
-<function>
 
+<function>
 <name>QL_LIST_TYPE</name>
 <codename>qlListType</codename>
 <desc>return the members of a given complex type</desc>
@@ -369,6 +204,171 @@
     <type>string</type>
     <tensorrank>vector</tensorrank>
     <desc>list of the members of the specified enumeration</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_LOG_ALL_OBJECTS</name>
+<codename>qlLogAllObjects</codename>
+<desc>write all object descriptions to log file</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<parameters></parameters>
+<returnval>
+    <type>bool</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>success/failure</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_LOG_MESSAGE</name>
+<codename>qlLogMessage</codename>
+<desc>log a message</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<parameters>
+    <param>
+        <name>logMessage</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>message to be logged</desc>
+    </param>
+    <param>
+        <name>logLevel</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>threshold for log messages</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>message logged</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_LOG_OBJECT</name>
+<codename>qlLogObject</codename>
+<desc>write object description to log file</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<parameters>
+    <param>
+        <name>handleObject</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of object to be logged</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>bool</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>success/failure</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_LOGFILE</name>
+<codename>qlLogfile</codename>
+<desc>begin logging to named file</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<parameters>
+    <param>
+        <name>logFileName</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>path and name of log file</desc>
+    </param>
+    <param>
+        <name>logLevel</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>threshold for log messages</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>name of logfile</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_LOGLEVEL</name>
+<codename>qlLogLevel</codename>
+<desc>set threshold for log messages</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<parameters>
+    <param>
+        <name>logLevel</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>threshold for log messages</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>long</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>returns new logging threshold</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_OH_VERSION</name>
+<codename>qlOhVersion</codename>
+<desc>returns the version number of ObjectHandler</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<parameters></parameters>
+<returnval>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>ObjectHandler version number</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_VALUE</name>
+<codename>qlValue</codename>
+<desc>retrieve the value of a named field</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<parameters>
+    <param>
+        <name>handleObject</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of object to be queried</desc>
+    </param>
+    <param>
+        <name>fieldName</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>name of field</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>any</type>
+    <tensorrank>matrix</tensorrank>
+    <desc>value of named field</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_VERSION</name>
+<codename>qlVersion</codename>
+<desc>returns the version number of QuantLib</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<parameters></parameters>
+<returnval>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>QuantLib version number</desc>
 </returnval>
 </function>
 

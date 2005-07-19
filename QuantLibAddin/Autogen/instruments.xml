@@ -6,6 +6,238 @@
 <displayname>Instruments</displayname>
 
 <functions>
+
+<function call_type='QL_OBJECT'>
+<name>QL_BOND_ACCRUED</name>
+<codename>qlAccrued</codename>
+<desc>Accrued: If no settlement is given the default bond settlement is used for calculation.</desc>
+<constructor>false</constructor>
+<qlfunction>accruedAmount</qlfunction>
+<parameters>
+    <param class='FixedCouponBond'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Fixed Coupon Bond object</desc>
+    </param>
+    <param ql_type='QuantLib::Date'>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the accrual</desc>
+</returnval>
+</function>
+
+<function call_type='QL_OBJECT'>
+<name>QL_BOND_CLEAN_PRICE</name>
+<codename>qlCleanPrice</codename>
+<desc>If no settlement is given the default bond settlement is used for calculation.</desc>
+<constructor>false</constructor>
+<qlfunction>cleanPrice</qlfunction>
+<parameters>
+    <param class='FixedCouponBond'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Fixed Coupon Bond object</desc>
+    </param>
+    <param>
+        <name>yield</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>bond yield</desc>
+    </param>
+    <param ql_type='QuantLib::Compounding'>
+        <name>compounding</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
+    </param>
+    <param ql_type='QuantLib::Date'>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the clean price</desc>
+</returnval>
+</function>
+
+<function call_type='QL_OBJECT'>
+<name>QL_BOND_DIRTY_PRICE</name>
+<codename>qlDirtyPrice</codename>
+<desc>dirty price: If no settlement is given the default bond settlement is used for calculation.</desc>
+<constructor>false</constructor>
+<qlfunction>dirtyPrice</qlfunction>
+<parameters>
+    <param class='FixedCouponBond'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Fixed Coupon Bond object</desc>
+    </param>
+    <param>
+        <name>yield</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>bond yield</desc>
+    </param>
+    <param ql_type='QuantLib::Compounding'>
+        <name>compounding</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
+    </param>
+    <param ql_type='QuantLib::Date'>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the dirty price</desc>
+</returnval>
+</function>
+
+<function call_type='QL_OBJECT'>
+<name>QL_BOND_TH_CLEAN_PRICE</name>
+<codename>qlThCleanPrice</codename>
+<desc>theoretical clean price: The default bond settlement is used for calculation.</desc>
+<constructor>false</constructor>
+<qlfunction>cleanPrice</qlfunction>
+<parameters>
+    <param class='FixedCouponBond'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Fixed Coupon Bond object</desc>
+    </param>
+    <param ignore='yes'>
+        <name>trigger</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dep tracking trigger</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the theoretical clean price</desc>
+</returnval>
+</function>
+
+<function call_type='QL_OBJECT'>
+<name>QL_BOND_TH_DIRTY_PRICE</name>
+<codename>qlThDirtyPrice</codename>
+<desc>theoretical dirty price: The default bond settlement is used for calculation.</desc>
+<constructor>false</constructor>
+<qlfunction>dirtyPrice</qlfunction>
+<parameters>
+    <param class='FixedCouponBond'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Fixed Coupon Bond object</desc>
+    </param>
+    <param ignore='yes'>
+        <name>trigger</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dep tracking trigger</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the theoretical dirty price</desc>
+</returnval>
+</function>
+
+<function call_type='QL_OBJECT'>
+<name>QL_BOND_TH_YIELD</name>
+<codename>qlThBondYield</codename>
+<desc>theoretical bond yield: The default bond settlement and theoretical price are used for calculation.</desc>
+<constructor>false</constructor>
+<qlfunction>yield</qlfunction>
+<parameters>
+    <param class='FixedCouponBond'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Fixed Coupon Bond object</desc>
+    </param>
+    <param ql_type='QuantLib::Compounding'>
+        <name>Compounding</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
+    </param>
+    <param ignore='yes'>
+        <name>trigger</name>
+        <type>any</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dep tracking trigger</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the theoretical yield</desc>
+</returnval>
+</function>
+
+<function call_type='QL_OBJECT'>
+<name>QL_BOND_YIELD</name>
+<codename>qlYield</codename>
+<desc>Yield: If no settlement is given the default bond settlement is used for calculation.</desc>
+<constructor>false</constructor>
+<qlfunction>yield</qlfunction>
+<parameters>
+    <param class='FixedCouponBond'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of the Fixed Coupon Bond object</desc>
+    </param>
+    <param>
+        <name>cleanPrice</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Clean Price</desc>
+    </param>
+    <param ql_type='QuantLib::Compounding'>
+        <name>compounding</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
+    </param>
+    <param ql_type='QuantLib::Date'>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>the dirty price</desc>
+</returnval>
+</function>
+
 <function>
 <name>QL_FIXED_COUPON_BOND</name>
 <codename>qlFixedCouponBond</codename>
@@ -165,237 +397,6 @@
     <type>property</type>
     <tensorrank>vector</tensorrank>
     <desc>vector of properties describing Instrument</desc>
-</returnval>
-</function>
-
-<function call_type='QL_OBJECT'>
-<name>QL_BOND_TH_CLEAN_PRICE</name>
-<codename>qlThCleanPrice</codename>
-<desc>theoretical clean price: The default bond settlement is used for calculation.</desc>
-<constructor>false</constructor>
-<qlfunction>cleanPrice</qlfunction>
-<parameters>
-    <param class='FixedCouponBond'>
-        <name>handle</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of the Fixed Coupon Bond object</desc>
-    </param>
-    <param ignore='yes'>
-        <name>trigger</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dep tracking trigger</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>double</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>the theoretical clean price</desc>
-</returnval>
-</function>
-
-<function call_type='QL_OBJECT'>
-<name>QL_BOND_TH_DIRTY_PRICE</name>
-<codename>qlThDirtyPrice</codename>
-<desc>theoretical dirty price: The default bond settlement is used for calculation.</desc>
-<constructor>false</constructor>
-<qlfunction>dirtyPrice</qlfunction>
-<parameters>
-    <param class='FixedCouponBond'>
-        <name>handle</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of the Fixed Coupon Bond object</desc>
-    </param>
-    <param ignore='yes'>
-        <name>trigger</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dep tracking trigger</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>double</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>the theoretical dirty price</desc>
-</returnval>
-</function>
-
-<function call_type='QL_OBJECT'>
-<name>QL_BOND_TH_YIELD</name>
-<codename>qlThBondYield</codename>
-<desc>theoretical bond yield: The default bond settlement and theoretical price are used for calculation.</desc>
-<constructor>false</constructor>
-<qlfunction>yield</qlfunction>
-<parameters>
-    <param class='FixedCouponBond'>
-        <name>handle</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of the Fixed Coupon Bond object</desc>
-    </param>
-    <param ql_type='QuantLib::Compounding'>
-        <name>Compounding</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
-    </param>
-    <param ignore='yes'>
-        <name>trigger</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dep tracking trigger</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>double</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>the theoretical yield</desc>
-</returnval>
-</function>
-
-<function call_type='QL_OBJECT'>
-<name>QL_BOND_CLEAN_PRICE</name>
-<codename>qlCleanPrice</codename>
-<desc>If no settlement is given the default bond settlement is used for calculation.</desc>
-<constructor>false</constructor>
-<qlfunction>cleanPrice</qlfunction>
-<parameters>
-    <param class='FixedCouponBond'>
-        <name>handle</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of the Fixed Coupon Bond object</desc>
-    </param>
-    <param>
-        <name>yield</name>
-        <type>double</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>bond yield</desc>
-    </param>
-    <param ql_type='QuantLib::Compounding'>
-        <name>compounding</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
-    </param>
-    <param ql_type='QuantLib::Date'>
-        <name>settlementDate</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>settlement date</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>double</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>the clean price</desc>
-</returnval>
-</function>
-
-<function call_type='QL_OBJECT'>
-<name>QL_BOND_DIRTY_PRICE</name>
-<codename>qlDirtyPrice</codename>
-<desc>dirty price: If no settlement is given the default bond settlement is used for calculation.</desc>
-<constructor>false</constructor>
-<qlfunction>dirtyPrice</qlfunction>
-<parameters>
-    <param class='FixedCouponBond'>
-        <name>handle</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of the Fixed Coupon Bond object</desc>
-    </param>
-    <param>
-        <name>yield</name>
-        <type>double</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>bond yield</desc>
-    </param>
-    <param ql_type='QuantLib::Compounding'>
-        <name>compounding</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
-    </param>
-    <param ql_type='QuantLib::Date'>
-        <name>settlementDate</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>settlement date</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>double</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>the dirty price</desc>
-</returnval>
-</function>
-
-<function call_type='QL_OBJECT'>
-<name>QL_BOND_YIELD</name>
-<codename>qlYield</codename>
-<desc>Yield: If no settlement is given the default bond settlement is used for calculation.</desc>
-<constructor>false</constructor>
-<qlfunction>yield</qlfunction>
-<parameters>
-    <param class='FixedCouponBond'>
-        <name>handle</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of the Fixed Coupon Bond object</desc>
-    </param>
-    <param>
-        <name>cleanPrice</name>
-        <type>double</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>Clean Price</desc>
-    </param>
-    <param ql_type='QuantLib::Compounding'>
-        <name>compounding</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</desc>
-    </param>
-    <param ql_type='QuantLib::Date'>
-        <name>settlementDate</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>settlement date</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>double</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>the dirty price</desc>
-</returnval>
-</function>
-
-<function call_type='QL_OBJECT'>
-<name>QL_BOND_ACCRUED</name>
-<codename>qlAccrued</codename>
-<desc>Accrued: If no settlement is given the default bond settlement is used for calculation.</desc>
-<constructor>false</constructor>
-<qlfunction>accruedAmount</qlfunction>
-<parameters>
-    <param class='FixedCouponBond'>
-        <name>handle</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of the Fixed Coupon Bond object</desc>
-    </param>
-    <param ql_type='QuantLib::Date'>
-        <name>settlementDate</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>settlement date</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>double</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>the accrual</desc>
 </returnval>
 </function>
 

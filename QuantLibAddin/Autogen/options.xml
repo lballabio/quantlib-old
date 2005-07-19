@@ -7,174 +7,6 @@
 <functions>
 
 <function>
-<name>QL_CA_ASIAN_OPTION</name>
-<codename>qlCAAsianOption</codename>
-<desc>construct and return a handle to a Continuous Averaging Asian Option object</desc>
-<constructor>true</constructor>
-<qlfunction>ContinuousAveragingAsianOption</qlfunction>
-<parameters>
-    <param class='BlackScholesProcess'>
-        <name>handleBlackScholes</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of a Black Scholes Process object</desc>
-    </param>
-    <param>
-        <name>average</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>average type</desc>
-    </param>
-    <param>
-        <name>optionType</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>option type</desc>
-    </param>
-    <param>
-        <name>payoff</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>payoff type</desc>
-    </param>
-    <param>
-        <name>strike</name>
-        <type>double</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>strike</desc>
-    </param>
-    <param>
-        <name>exercise</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>exercise type</desc>
-    </param>
-    <param>
-        <name>exerciseDate</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>exercise date</desc>
-    </param>
-    <param>
-        <name>settlementDate</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>settlement date</desc>
-    </param>
-    <param>
-        <name>engine</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>engine type</desc>
-    </param>
-    <param>
-        <name>timeSteps</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>time steps</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing Option</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_DA_ASIAN_OPTION</name>
-<codename>qlDAAsianOption</codename>
-<desc>construct and return a handle to a Discrete Averaging Asian Option object</desc>
-<constructor>true</constructor>
-<qlfunction>DiscreteAveragingAsianOption</qlfunction>
-<parameters>
-    <param class='BlackScholesProcess'>
-        <name>handleBlackScholes</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of a Black Scholes Process object</desc>
-    </param>
-    <param>
-        <name>average</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>average type</desc>
-    </param>
-    <param>
-        <name>runningAccumulator</name>
-        <type>double</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>running accumulator</desc>
-    </param>
-    <param>
-        <name>pastFixings</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>past fixings</desc>
-    </param>
-    <param>
-        <name>fixingDates</name>
-        <type>long</type>
-        <tensorrank>vector</tensorrank>
-        <desc>fixing dates</desc>
-    </param>
-    <param>
-        <name>optionType</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>option type</desc>
-    </param>
-    <param>
-        <name>payoff</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>payoff type</desc>
-    </param>
-    <param>
-        <name>strike</name>
-        <type>double</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>strike</desc>
-    </param>
-    <param>
-        <name>exercise</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>exercise type</desc>
-    </param>
-    <param>
-        <name>exerciseDate</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>exercise date</desc>
-    </param>
-    <param>
-        <name>settlementDate</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>settlement date</desc>
-    </param>
-    <param>
-        <name>engine</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>engine type</desc>
-    </param>
-    <param>
-        <name>timeSteps</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>time steps</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing Option</desc>
-</returnval>
-</function>
-
-<function>
 <name>QL_BARRIER_OPTION</name>
 <codename>qlBarrierOption</codename>
 <desc>construct and return a handle to a Barrier Option object</desc>
@@ -337,6 +169,81 @@
 </function>
 
 <function>
+<name>QL_CA_ASIAN_OPTION</name>
+<codename>qlCAAsianOption</codename>
+<desc>construct and return a handle to a Continuous Averaging Asian Option object</desc>
+<constructor>true</constructor>
+<qlfunction>ContinuousAveragingAsianOption</qlfunction>
+<parameters>
+    <param class='BlackScholesProcess'>
+        <name>handleBlackScholes</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a Black Scholes Process object</desc>
+    </param>
+    <param>
+        <name>average</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>average type</desc>
+    </param>
+    <param>
+        <name>optionType</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>option type</desc>
+    </param>
+    <param>
+        <name>payoff</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>payoff type</desc>
+    </param>
+    <param>
+        <name>strike</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>strike</desc>
+    </param>
+    <param>
+        <name>exercise</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise type</desc>
+    </param>
+    <param>
+        <name>exerciseDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise date</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
+    </param>
+    <param>
+        <name>engine</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>engine type</desc>
+    </param>
+    <param>
+        <name>timeSteps</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>time steps</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>property</type>
+    <tensorrank>vector</tensorrank>
+    <desc>vector of properties describing Option</desc>
+</returnval>
+</function>
+
+<function>
 <name>QL_CLIQUET_OPTION</name>
 <codename>qlCliquetOption</codename>
 <desc>construct and return a handle to a Cliquet Option object</desc>
@@ -372,6 +279,99 @@
         <type>long</type>
         <tensorrank>scalar</tensorrank>
         <desc>exercise date</desc>
+    </param>
+    <param>
+        <name>engine</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>engine type</desc>
+    </param>
+    <param>
+        <name>timeSteps</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>time steps</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>property</type>
+    <tensorrank>vector</tensorrank>
+    <desc>vector of properties describing Option</desc>
+</returnval>
+</function>
+
+<function>
+<name>QL_DA_ASIAN_OPTION</name>
+<codename>qlDAAsianOption</codename>
+<desc>construct and return a handle to a Discrete Averaging Asian Option object</desc>
+<constructor>true</constructor>
+<qlfunction>DiscreteAveragingAsianOption</qlfunction>
+<parameters>
+    <param class='BlackScholesProcess'>
+        <name>handleBlackScholes</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of a Black Scholes Process object</desc>
+    </param>
+    <param>
+        <name>average</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>average type</desc>
+    </param>
+    <param>
+        <name>runningAccumulator</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>running accumulator</desc>
+    </param>
+    <param>
+        <name>pastFixings</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>past fixings</desc>
+    </param>
+    <param>
+        <name>fixingDates</name>
+        <type>long</type>
+        <tensorrank>vector</tensorrank>
+        <desc>fixing dates</desc>
+    </param>
+    <param>
+        <name>optionType</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>option type</desc>
+    </param>
+    <param>
+        <name>payoff</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>payoff type</desc>
+    </param>
+    <param>
+        <name>strike</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>strike</desc>
+    </param>
+    <param>
+        <name>exercise</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise type</desc>
+    </param>
+    <param>
+        <name>exerciseDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>exercise date</desc>
+    </param>
+    <param>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>settlement date</desc>
     </param>
     <param>
         <name>engine</name>

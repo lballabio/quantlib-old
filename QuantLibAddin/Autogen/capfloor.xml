@@ -7,6 +7,27 @@
 <functions>
 
 <function>
+<name>QL_ANALYTIC_CAPFLOOR_ENGINE</name>
+<codename>qlAnalyticCapFloorEngine</codename>
+<desc>construct and return a pricing engine for cap/foors</desc>
+<constructor>true</constructor>
+<qlfunction>AnalyticCapFloorEngine</qlfunction>
+<parameters>
+    <param class='AffineModel'>
+        <name>handleModel</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>affine model (providing a discount bond option pricing formula)</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>property</type>
+    <tensorrank>vector</tensorrank>
+    <desc>vector of properties describing engine</desc>
+</returnval>
+</function>
+
+<function>
 <name>QL_CAPFLOOR</name>
 <codename>qlCapFloor</codename>
 <desc>construct and return a handle to a cap/floor object</desc>
@@ -96,27 +117,6 @@
     <type>property</type>
     <tensorrank>vector</tensorrank>
     <desc>vector of properties describing cap/floor instrument</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_ANALYTIC_CAPFLOOR_ENGINE</name>
-<codename>qlAnalyticCapFloorEngine</codename>
-<desc>construct and return a pricing engine for cap/foors</desc>
-<constructor>true</constructor>
-<qlfunction>AnalyticCapFloorEngine</qlfunction>
-<parameters>
-    <param class='AffineModel'>
-        <name>handleModel</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>affine model (providing a discount bond option pricing formula)</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing engine</desc>
 </returnval>
 </function>
 
