@@ -42,9 +42,11 @@
     \ref options\n
     \ref processes\n
     \ref shortratemodels\n
+    \ref simpleswap\n
     \ref termstructures\n
     \ref utilities\n
     \ref volatilities\n
+    \ref xibor\n
 
 */
 
