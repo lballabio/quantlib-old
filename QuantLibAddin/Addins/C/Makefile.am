@@ -1,7 +1,7 @@
 
 AM_CPPFLAGS = -I${top_srcdir}
 
-#    AddinC.dev \
+#    AddinC.dev
 EXTRA_DIST = \
     AddinC.dsp \
     AddinC_vc8.vcproj \

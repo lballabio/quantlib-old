@@ -1,5 +1,5 @@
 
-#    AddinExcel.dev \
+#    AddinExcel.dev
 EXTRA_DIST = \
     AddinExcel.dsp \
     AddinExcel_vc8.vcproj \

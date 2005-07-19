@@ -5,7 +5,7 @@ LDFLAGS = -lObjectHandler -lQuantLib
 
 noinst_PROGRAMS = QLADemo Options Instruments CapFloor
 
-#    ClientCPP.dev \
+#    ClientCPP.dev
 EXTRA_DIST = \
     ClientCPPCapFloor.dsp \
     ClientCPPCapFloor_vc8.vcproj \

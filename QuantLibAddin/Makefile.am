@@ -13,7 +13,7 @@ SUBDIRS = \
     Clients/Guile \
     Docs
 
-#    QuantLibAddin.dev \
+#    QuantLibAddin.dev
 EXTRA_DIST = \
     Announce.txt \
     Authors.txt \

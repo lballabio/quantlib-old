@@ -1,8 +1,8 @@
 
 SUBDIRS = oh Example Docs
 
-#    makefile.mak \
-#    ObjectHandler.dev \
+#    makefile.mak
+#    ObjectHandler.dev
 EXTRA_DIST = \
     Announce.txt \
     Authors.txt \
