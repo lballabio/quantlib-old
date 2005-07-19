@@ -6,7 +6,9 @@ LDADD = ../oh/libObjectHandler.la
 EXTRA_DIST = \
     Example.dsp \
     Example_vc8.vcproj \
-    Example.vcproj \
+    Example.vcproj
+
+noinst_HEADERS = \
     foo.hpp \
     objectfoo.hpp
 
