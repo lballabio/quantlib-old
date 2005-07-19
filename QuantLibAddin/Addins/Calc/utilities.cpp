@@ -366,3 +366,4 @@ SEQSEQ( STRING ) SAL_CALL QLAddin::qlListType(
         THROW_RTE;
     }
 }
+
