@@ -42,8 +42,8 @@ SectionIn 1 2
     File "LICENSE.txt"
     File "NEWS.txt"
     File "QuantLibAddin.dsw"
-    File "QuantLibAddin.sln"
-    File "QuantLibAddin.dev"
+    File "QuantLibAddin*.sln"
+#    File "QuantLibAddin.dev"
 
     File "*.txt"
     File "*.TXT"
@@ -58,12 +58,13 @@ SectionIn 1 2
     File /r "qla\Makefile.am"
 
     SetOutPath $INSTDIR\Addins\C
-    File /r "Addins\C\AddinC.dev"
+#    File /r "Addins\C\AddinC.dev"
     File /r "Addins\C\AddinC.dsp"
     File /r "Addins\C\AddinC*.vcproj"
     File /r "Addins\C\Makefile.am"
     File /r "Addins\C\*.cpp"
     File /r "Addins\C\*.h"
+    File /r "Addins\C\*.hpp"
 
     SetOutPath $INSTDIR\Addins\Calc
     File /r "Addins\Calc\AddinCalc.dsp"
@@ -71,17 +72,18 @@ SectionIn 1 2
     File /r "Addins\Calc\Makefile.am"
     File /r "Addins\Calc\Makefile.msdev*"
     File /r "Addins\Calc\QuantLibAddin.def"
+    File /r "Addins\Calc\QuantLibAddin.idl"
     File /r "Addins\Calc\readme.txt"
     File /r "Addins\Calc\*.cpp"
     File /r "Addins\Calc\*.hpp"
 
     SetOutPath $INSTDIR\Addins\Excel
-    File /r "Addins\Excel\AddinExcel.dev"
+#    File /r "Addins\Excel\AddinExcel.dev"
     File /r "Addins\Excel\AddinExcel.dsp"
     File /r "Addins\Excel\AddinExcel*.vcproj"
     File /r "Addins\Excel\Makefile.am"
     File /r "Addins\Excel\*.cpp"
-    File /r "Addins\Excel\*.h"
+    File /r "Addins\Excel\xlcall.h"
     File /r "Addins\Excel\*.hpp"
     File /r "Addins\Excel\lib\XLCALL32.LIB"
 
@@ -99,6 +101,7 @@ SectionIn 1 2
     File /r "Autogen\*.vcproj"
     File /r "Autogen\*.xml"
     File /r "Autogen\stub.*"
+    File /r "Autogen\README.txt"
 
     SetOutPath $INSTDIR\Clients\C
     File /r "Clients\C\ClientCDemo.dsp"
