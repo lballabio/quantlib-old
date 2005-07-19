@@ -42,7 +42,7 @@ SectionIn 1 2
     File "LICENSE.txt"
     File "NEWS.txt"
     File "ObjectHandler.dsw"
-    File "ObjectHandler.sln"
+    File "ObjectHandler*.sln"
 #    File "ObjectHandler.dev"
 #    File "makefile.mak"
 
