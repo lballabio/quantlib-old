@@ -140,6 +140,10 @@
 <enum>QuantLib::Italy(QuantLib::Italy::Exchange)</enum>
 </def>
 <def>
+<string>INSTANBUL</string>
+<enum>QuantLib::Istanbul()</enum>
+</def>
+<def>
 <string>ITALY</string>
 <enum>QuantLib::Italy()</enum>
 </def>
