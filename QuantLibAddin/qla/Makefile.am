@@ -5,7 +5,6 @@ includedir = $(prefix)/include/qla
 
 lib_LTLIBRARIES = libQuantLibAddin.la
 
-#makefile.mak
 EXTRA_DIST = \
     autolink.hpp
 

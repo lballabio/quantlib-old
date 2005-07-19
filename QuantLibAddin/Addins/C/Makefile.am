@@ -1,8 +1,8 @@
 
 AM_CPPFLAGS = -I${top_srcdir}
 
+#    AddinC.dev \
 EXTRA_DIST = \
-    AddinC.dev \
     AddinC.dsp \
     AddinC_vc8.vcproj \
     AddinC.vcproj
@@ -16,7 +16,6 @@ endif
 libQuantLibAddinC_la_LIBADD = ../../qla/libQuantLibAddin.la
 
 if BUILD_C
-# for now we do not install the C addin headers
 noinst_HEADERS = \
     capfloor.h \
     defines.h \

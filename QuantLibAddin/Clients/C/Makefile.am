@@ -3,10 +3,10 @@ AM_CPPFLAGS = -I${top_srcdir}
 LDADD = ../../Addins/C/libQuantLibAddinC.la
 LDFLAGS = -lObjectHandler -lQuantLib
 
+#    ClientC.dev
 EXTRA_DIST = \
     ClientCDemo.dsp \
-    ClientCDemo_vc8.vcproj \
-    ClientC.dev
+    ClientCDemo_vc8.vcproj
 
 QLADemo_SOURCES = qlademo.c
 Options_SOURCES = options.c

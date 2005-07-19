@@ -13,6 +13,7 @@ SUBDIRS = \
     Clients/Guile \
     Docs
 
+#    QuantLibAddin.dev \
 EXTRA_DIST = \
     Announce.txt \
     Authors.txt \
@@ -21,7 +22,6 @@ EXTRA_DIST = \
     Contributors.txt \
     LICENSE.TXT \
     NEWS.txt \
-    QuantLibAddin.dev \
     QuantLibAddin.dsp \
     QuantLibAddin.dsw \
     QuantLibAddin.nsi \

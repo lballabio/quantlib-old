@@ -5,13 +5,12 @@ LDFLAGS = -lObjectHandler -lQuantLib
 
 noinst_PROGRAMS = QLADemo Options Instruments CapFloor
 
-#    makefile.mak
+#    ClientCPP.dev \
 EXTRA_DIST = \
     ClientCPPCapFloor.dsp \
     ClientCPPCapFloor_vc8.vcproj \
     ClientCPPDemo.dsp \
     ClientCPPDemo_vc8.vcproj \
-    ClientCPP.dev \
     ClientCPPInstruments.dsp \
     ClientCPPInstruments_vc8.vcproj \
     ClientCPPOptions.dsp \
