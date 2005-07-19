@@ -27,7 +27,7 @@
 
 This document explains how to add new functionality to QuantLibAddin.  QuantLibAddin functions are categorized into groups. Section \ref newfunc describes the most common case where a new function is added to an existing group.  Section \ref newgroup describes the less common task of creating a new group.  As an example the text discusses new function \b QL_FIXED_COUPON_BOND in group \b Instruments.
 
-The steps below call for creating new files in the library, when the instructions then say "add new file xxx to project workspaces", this means to update all project workspaces supported by QuantLibAddin - currently VC 6/7/8, Borland, and Mingw - to reflect the existence of the new file.  For autoconf, the Makefile.am file in the current directory must also be updated.
+The steps below call for creating new files in the library, when the instructions then say "add new file xxx to project workspaces", this means to update all project workspaces supported by QuantLibAddin - currently VC 6/7/8 - to reflect the existence of the new file.  For autoconf, the Makefile.am file in the current directory must also be updated.
 
 \section newfunc Creating New Functions
 
