@@ -1,15 +1,15 @@
 
 SUBDIRS = oh Example Docs
 
+#    makefile.mak \
+#    ObjectHandler.dev \
 EXTRA_DIST = \
     Announce.txt \
     Authors.txt \
     autogen.sh \
     Contributors.txt \
     LICENSE.TXT \
-    makefile.mak \
     NEWS.txt \
-    ObjectHandler.dev \
     ObjectHandler.dsp \
     ObjectHandler.dsw \
     ObjectHandler.nsi \

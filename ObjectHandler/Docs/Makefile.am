@@ -1,6 +1,6 @@
 
+#    makefile.mak \
 EXTRA_DIST = \
-    makefile.mak \
     objecthandler.doxy \
     oh_footer.html \
     oh_footeronline.html \

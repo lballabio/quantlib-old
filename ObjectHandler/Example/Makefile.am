@@ -1,13 +1,13 @@
 AM_CPPFLAGS = -I${top_srcdir}
 LDADD = ../oh/libObjectHandler.la
 
+#    Example.dev \
+#    makefile.mak \
 EXTRA_DIST = \
-    Example.dev \
     Example.dsp \
     Example_vc8.vcproj \
     Example.vcproj \
     foo.hpp \
-    makefile.mak \
     objectfoo.hpp
 
 Example_SOURCES = \

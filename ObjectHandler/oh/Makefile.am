@@ -14,9 +14,9 @@ include_HEADERS = \
     singleton.hpp \
     utilities.hpp
 
+#    makefile.mak
 EXTRA_DIST = \
     autolink.hpp \
-    makefile.mak
 
 lib_LTLIBRARIES = libObjectHandler.la
 LDFLAGS = -llog4cxx -release $(PACKAGE_VERSION)

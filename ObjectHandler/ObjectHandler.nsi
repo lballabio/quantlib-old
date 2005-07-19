@@ -43,8 +43,8 @@ SectionIn 1 2
     File "NEWS.txt"
     File "ObjectHandler.dsw"
     File "ObjectHandler.sln"
-    File "ObjectHandler.dev"
-    File "makefile.mak"
+#    File "ObjectHandler.dev"
+#    File "makefile.mak"
 
     File "*.txt"
     File "*.TXT"
@@ -56,15 +56,15 @@ SectionIn 1 2
     SetOutPath  $INSTDIR\oh
     File /r "oh\*.hpp"
     File /r "oh\*.cpp"
-    File /r "oh\makefile.mak"
+#    File /r "oh\makefile.mak"
     File /r "oh\*.am"
 
     SetOutPath $INSTDIR\Example
     File /r "Example\*.hpp"
     File /r "Example\*.cpp"
     File /r "Example\*.dsp"
-    File /r "Example\*.dev"
-    File /r "Example\makefile.mak"
+#    File /r "Example\*.dev"
+#    File /r "Example\makefile.mak"
     File /r "Example\*.am"
     File /r "Example\*.vcproj"
 
@@ -79,7 +79,7 @@ SectionIn 1 2
     File /r "Docs\*.jpg"
     File /r "Docs\*.pdf"
     File /r "Docs\*.png"
-    File /r "Docs\makefile.mak"
+#    File /r "Docs\makefile.mak"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\ObjectHandler" \
