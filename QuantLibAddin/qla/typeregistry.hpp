@@ -21,6 +21,7 @@
 #include <ql/Patterns/singleton.hpp>
 #include <map>
 #include <vector>
+#include <string>
 
 namespace QuantLibAddin {
 
