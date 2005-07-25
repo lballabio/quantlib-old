@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 StatPro Italia srl
+ Copyright (C) 2004, 2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -34,7 +34,7 @@ class GenericStochasticProcess {};
 
 %{
 using QuantLib::StochasticProcess1D;
-typedef boost::shared_ptr<StochasticProcess1D> StochasticProcess1DPtr;
+typedef boost::shared_ptr<GenericStochasticProcess> StochasticProcess1DPtr;
 %}
 
 %rename(StochasticProcess1D) StochasticProcess1DPtr;
@@ -95,7 +95,7 @@ class Merton76ProcessPtr : public StochasticProcess1DPtr {
 
 // allow use of diffusion process vectors
 namespace std {
-    %template(StochasticProcessVector) vector<StochasticProcess1DPtr>;
+    %template(StochasticProcess1DVector) vector<StochasticProcess1DPtr>;
 }
 
 

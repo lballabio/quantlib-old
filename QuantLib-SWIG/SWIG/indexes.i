@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -64,9 +64,6 @@ class Index {
 };
 
 %template(Index) boost::shared_ptr<Index>;
-#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%rename(">string") boost::shared_ptr<Index>::__str__;
-#endif
 %extend boost::shared_ptr<Index> {
     std::string __str__() {
         if (*self)

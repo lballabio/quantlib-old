@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000-2004 StatPro Italia srl
+ Copyright (C) 2000-2005 StatPro Italia srl
+ Copyright (C) 2005 Johan Witters
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -32,7 +33,6 @@ class DayCounter {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("day-count")     dayCount;
     %rename("year-fraction") yearFraction;
-    %rename(">string")       __str__;
     #endif
   protected:
     DayCounter();
@@ -45,11 +45,11 @@ class DayCounter {
         std::string __str__() {
             return self->name()+" day counter";
         }
-        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA)
         bool __eq__(const DayCounter& other) {
             return (*self) == other;
         }
-        #if defined(SWIGPYTHON)
+        #if defined(SWIGPYTHON) || defined(SWIGJAVA)
         bool __ne__(const DayCounter& other) {
             return (*self) != other;
         }

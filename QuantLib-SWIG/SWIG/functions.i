@@ -40,7 +40,7 @@ class UnaryFunction {
         if ((this != &f) && (function_ != f.function_)) {
             Py_XDECREF(function_);
             function_ = f.function_;
-    	    Py_XINCREF(function_);
+            Py_XINCREF(function_);
         }
         return *this;
     }
@@ -80,7 +80,7 @@ class BinaryFunction {
         if ((this != &f) && (function_ != f.function_)) {
             Py_XDECREF(function_);
             function_ = f.function_;
-    	    Py_XINCREF(function_);
+            Py_XINCREF(function_);
         }
         return *this;
     }
@@ -111,7 +111,7 @@ class PyCostFunction : public CostFunction {
         if ((this != &f) && (function_ != f.function_)) {
             Py_XDECREF(function_);
             function_ = f.function_;
-    	    Py_XINCREF(function_);
+            Py_XINCREF(function_);
         }
         return *this;
     }
@@ -171,7 +171,7 @@ class UnaryFunction {
         if ((this != &f) && (function_ != f.function_)) {
             scheme_gc_ptr_ok(function_);
             function_ = f.function_;
-    	    scheme_dont_gc_ptr(function_);
+            scheme_dont_gc_ptr(function_);
         }
         return *this;
     }
@@ -203,7 +203,7 @@ class BinaryFunction {
         if ((this != &f) && (function_ != f.function_)) {
             scheme_gc_ptr_ok(function_);
             function_ = f.function_;
-    	    scheme_dont_gc_ptr(function_);
+            scheme_dont_gc_ptr(function_);
         }
         return *this;
     }
@@ -232,7 +232,7 @@ class MzCostFunction : public CostFunction {
         QL_REQUIRE(SCHEME_PROCP(function), "procedure expected");
 	    scheme_dont_gc_ptr(function_);
     }
-    MzCostFunction(const MzCostFunction& f) 
+    MzCostFunction(const MzCostFunction& f)
     : function_(f.function_) {
 	    scheme_dont_gc_ptr(function_);
     }
@@ -240,7 +240,7 @@ class MzCostFunction : public CostFunction {
         if ((this != &f) && (function_ != f.function_)) {
             scheme_gc_ptr_ok(function_);
             function_ = f.function_;
-    	    scheme_dont_gc_ptr(function_);
+            scheme_dont_gc_ptr(function_);
         }
         return *this;
     }

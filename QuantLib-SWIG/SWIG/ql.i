@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -45,6 +45,28 @@
     #error Python version 2.1.0 or later is required
 #endif
 %}
+#endif
+
+#ifdef SWIGJAVA
+%include "enumtypesafe.swg"
+#endif
+
+// common name mappings
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename(">string")       __str__;
+#elif defined(SWIGJAVA)
+%rename(add)           operator+;
+%rename(add)           __add__;
+%rename(subtract)      operator-;
+%rename(subtract)      __sub__;
+%rename(multiply)      operator*;
+%rename(multiply)      __mul__;
+%rename(divide)        operator/;
+%rename(divide)        __div__;
+%rename(getValue)      operator();
+%rename(equals)        __eq__;
+%rename(unEquals)      __ne__;
+%rename(toString)      __str__;
 #endif
 
 

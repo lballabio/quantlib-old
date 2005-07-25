@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000-2004 StatPro Italia srl
+ Copyright (C) 2000-2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -29,9 +29,10 @@ class Money {
     %rename("conversionType=") setConversionType;
     %rename("baseCurrency=")   setBaseCurrency;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename(">string")              __str__;
     %rename("conversion-type-set!") setConversionType;
     %rename("base-currency-set!")   setBaseCurrency;
+    #elif defined(SWIGJAVA)
+    %rename("compare") __cmp__;
     #endif
   public:
     Money(const Currency& currency, Decimal value);
@@ -40,7 +41,7 @@ class Money {
     Decimal value() const;
     Money rounded() const;
 
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+    #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA)
     Money operator+() const;
     Money operator-() const;
     %extend {

@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000-2004 StatPro Italia srl
+ Copyright (C) 2000-2005 StatPro Italia srl
+ Copyright (C) 2005 Johan Witters
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -39,7 +40,6 @@ class Currency {
     %rename("fractions-per-unit")     fractionsPerUnit;
     %rename("is-valid?")              isValid;
     %rename("triangulation-currency") triangulationCurrency;
-    %rename(">string")                __str__;
     #endif
   public:
     const std::string& name() const;
@@ -55,11 +55,11 @@ class Currency {
         std::string __str__() {
             return self->name();
         }
-        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA)
         bool __eq__(const Currency& other) {
             return (*self) == other;
         }
-        #if defined(SWIGPYTHON)
+        #if defined(SWIGPYTHON) || defined(SWIGJAVA)
         bool __ne__(const Currency& other) {
             return (*self) != other;
         }

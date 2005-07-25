@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000-2004 StatPro Italia srl
+ Copyright (C) 2000-2005 StatPro Italia srl
+ Copyright (C) 2005 Johan Witters
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -70,7 +71,6 @@ class Calendar {
     %rename("is-end-of-month?") isEndOfMonth;
     %rename("add-holiday")      addHoliday;
     %rename("remove-holiday")   removeHoliday;
-    %rename(">string")          __str__;
     #endif
   protected:
     Calendar();
@@ -92,11 +92,11 @@ class Calendar {
         std::string __str__() {
             return self->name()+" calendar";
         }
-        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA)
         bool __eq__(const Calendar& other) {
             return (*self) == other;
         }
-        #if defined(SWIGPYTHON)
+        #if defined(SWIGPYTHON) || defined(SWIGJAVA)
         bool __ne__(const Calendar& other) {
             return (*self) != other;
         }

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -767,7 +767,6 @@ class Array {
     %rename(__len__)   size;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("length")  size;
-    %rename(">string") __str__;
     %rename("set!")    set;
     #endif
   public:
@@ -935,7 +934,6 @@ class LexicographicalViewColumn {
 
 class LexicographicalView {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename(">string") __str__;
     %rename("set!")    set;
     #endif
   public:
@@ -1002,7 +1000,6 @@ class MatrixRow {
 class Matrix {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("set!")     setitem;
-    %rename(">string")  __str__;
     #endif
   public:
     Matrix();

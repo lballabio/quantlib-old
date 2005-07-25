@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -104,11 +104,18 @@ typedef QuantLib::SingleAsset<PseudoRandom>::path_generator_type
 %template(SamplePath) Sample<Path>;
 class GaussianPathGenerator {
   public:
-    GaussianPathGenerator(const StochasticProcess1DPtr&,
-                          Time length, Size steps,
-                          const GaussianRandomSequenceGenerator&,
-                          bool brownianBridge);
-	Sample<Path> next() const;
+    %extend {
+        GaussianPathGenerator(const StochasticProcess1DPtr& process,
+                              Time length, Size steps,
+                              const GaussianRandomSequenceGenerator& rsg,
+                              bool brownianBridge) {
+            boost::shared_ptr<StochasticProcess1D> process1d =
+                boost::dynamic_pointer_cast<StochasticProcess1D>(process);
+            return new GaussianPathGenerator(process1d,length,steps,
+                                             rsg,brownianBridge);
+        }
+    }
+    Sample<Path> next() const;
 };
 
 

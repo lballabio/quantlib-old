@@ -45,7 +45,7 @@ using QuantLib::Observable;
 }
 %enddef
 
-        
+
 #if defined(SWIGPYTHON)
 
 %{
@@ -68,7 +68,7 @@ class PyObserver : public Observer {
         if ((this != &o) && (callback_ != o.callback_)) {
             Py_XDECREF(callback_);
             callback_ = o.callback_;
-    	    Py_XINCREF(callback_);
+            Py_XINCREF(callback_);
         }
         return *this;
     }
@@ -164,7 +164,7 @@ class MzObserver : public Observer {
         if ((this != &o) && (callback_ != o.callback_)) {
             scheme_gc_ptr_ok(callback_);
             callback_ = o.callback_;
-    	    scheme_dont_gc_ptr(callback_);
+            scheme_dont_gc_ptr(callback_);
         }
         return *this;
     }

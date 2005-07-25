@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2004 StatPro Italia srl
+ Copyright (C) 2004, 2005 StatPro Italia srl
+ Copyright (C) 2005 Johan Witters
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,11 +27,14 @@
 using QuantLib::TimeGrid;
 %}
 
-class TimeGrid : public std::vector<Time> {
+class TimeGrid {
     #if defined(SWIGPYTHON) || defined(SWIGRUBY)
     %rename(__len__)   size;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("length")  size;
+    #elif defined(SWIGJAVA)
+    %rename("getSize")   size;
+    %rename("elementAt") ref;
     #endif
   public:
     // empty time-grid
@@ -72,7 +76,7 @@ class TimeGrid : public std::vector<Time> {
             }
             QL_DUMMY_RETURN(0.0)
         }
-        #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGJAVA)
         Time ref(Size i) {
             if (i<self->size())
                 return (*self)[i];

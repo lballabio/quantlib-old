@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000-2004 StatPro Italia srl
+ Copyright (C) 2000-2005 StatPro Italia srl
+ Copyright (C) 2005 Johan Witters
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -30,6 +31,9 @@ using QuantLib::Year;
 typedef Integer Day;
 typedef Integer Year;
 
+#if defined(SWIGJAVA)
+%javaconst(1);
+#endif
 
 %{
 using QuantLib::Weekday;
@@ -119,6 +123,10 @@ enum Frequency {
     Monthly = 12
 };
 
+#if defined(SWIGJAVA)
+%javaconst(0);
+#endif
+
 // time period
 
 %{
@@ -127,8 +135,9 @@ using QuantLib::PeriodParser;
 %}
 
 class Period {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename(">string")        __str__;
+    #if defined(SWIGJAVA)
+    %rename("repr")           __repr__;
+    %rename("compare")        __cmp__;
     #endif
   public:
     Period(Integer n, TimeUnit units);
@@ -176,6 +185,7 @@ class Date {
     #if defined(SWIGRUBY)
     %rename("isLeap?")        isLeap;
     %rename("isEOM?")         isEOM;
+    %rename("isIMMdate?")     isIMMdate;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("day-of-month")   dayOfMonth;
     %rename("day-of-year")    dayOfYear;
@@ -187,7 +197,10 @@ class Date {
     %rename("todays-date")    todaysDate;
     %rename("end-of-month")   endOfMonth;
     %rename("is-eom?")        isEOM;
-    %rename(">string")        __str__;
+    %rename("next-weekday")   nextWeekday;
+    %rename("nth-weekday")    nthWeekday;
+    %rename("is-imm-date?")   isIMMdate;
+    %rename("next-imm-date")  nextIMMdate;
     #endif
   public:
     Date();
@@ -207,7 +220,11 @@ class Date {
     static Date todaysDate();
     static Date endOfMonth(const Date&);
     static bool isEOM(const Date&);
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+    static Date nextWeekday(const Date&, Weekday);
+    static Date nthWeekday(Size n, Weekday, Month m, Year y);
+    static bool isIMMdate(const Date&);
+    static Date nextIMMdate(const Date&);
+    #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA)
     Date operator+(BigInteger days) const;
     Date operator-(BigInteger days) const;
     Date operator+(const Period&) const;
