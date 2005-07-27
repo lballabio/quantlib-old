@@ -13,6 +13,7 @@ STUBS=stub.C.body \
 	stub.Calc.map \
 	stub.copyright \
 	stub.Doxygen.enums \
+	stub.Doxygen.functions \
 	stub.Excel.body \
 	stub.Excel.includes \
 	stub.Excel.regheader \

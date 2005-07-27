@@ -39,6 +39,7 @@ LINE_TABLE   = '    <table>\n\
     <tr><td><b>String</b></td><td><b>Enumeration</b></td></tr>\n'
 ROOT         = '../Docs/pages/'
 STUB_ENUMS   = 'stub.Doxygen.enums'
+STUB_FUNCS   = 'stub.Doxygen.functions'
 
 def generateEnums(enumDefs):
     'generate documentation for enumerations'
@@ -87,6 +88,26 @@ def generateFuncDoc(fileFunc, function, plDoc):
         fileFunc.write('\\param %s %s\n' % (param[common.NAME], param[common.DESC]))
     fileFunc.write('\\return %s\n\n' % function[common.RETVAL][common.DESC])
 
+def generateOverviewDoc(functionDefs):
+    'generate page summarizing functions'
+    fileName = ROOT + 'functionsoverview.docs' + common.TEMPFILE
+    fileDoc = file(fileName, 'w')
+    utils.printHeader(fileDoc)
+    bufEnums = utils.loadBuffer(STUB_FUNCS)
+    fileDoc.write(bufEnums)
+    # ensure list sorted alphabetically by display name
+    displayToGroup = {}
+    listDisplay = []
+    for groupName in functionDefs.keys():
+        displayToGroup[functionDefs[groupName][common.DISPLAYNAME]] = groupName
+        listDisplay.append(functionDefs[groupName][common.DISPLAYNAME])
+    listDisplay.sort()
+    for displayKey in listDisplay:
+        fileDoc.write('    \\ref %s\\n\n' % displayToGroup[displayKey])
+    fileDoc.write('\n*/\n\n')
+    fileDoc.close()
+    utils.updateIfChanged(fileName)
+
 def generateAllDoc(allFuncs):
     'generate alphabetical list of links to all functions'
     fileName = ROOT + 'all.docs' + common.TEMPFILE
@@ -130,5 +151,6 @@ def generate(functionDefs, enumDefs):
     utils.logMessage('  begin generating Doxygen ...')
     generateDocs(functionDefs)
     generateEnums(enumDefs)
+    generateOverviewDoc(functionDefs)
     utils.logMessage('  done generating Doxygen.')
 

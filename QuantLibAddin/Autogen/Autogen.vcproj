@@ -116,6 +116,9 @@
 				RelativePath="stub.Doxygen.enums">
 			</File>
 			<File
+				RelativePath="stub.Doxygen.functions">
+			</File>
+			<File
 				RelativePath="stub.Excel.body">
 			</File>
 			<File

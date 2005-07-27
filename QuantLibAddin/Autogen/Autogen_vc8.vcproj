@@ -155,6 +155,14 @@
 				>
 			</File>
 			<File
+				RelativePath="stub.Doxygen.enums"
+				>
+			</File>
+			<File
+				RelativePath="stub.Doxygen.functions"
+				>
+			</File>
+			<File
 				RelativePath="stub.Excel.body"
 				>
 			</File>
@@ -164,6 +172,10 @@
 			</File>
 			<File
 				RelativePath="stub.Excel.regheader"
+				>
+			</File>
+			<File
+				RelativePath="stub.Qla.includes"
 				>
 			</File>
 		</Filter>
