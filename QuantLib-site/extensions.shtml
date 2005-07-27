@@ -25,12 +25,11 @@ QuantLib-SWIG. We welcome any contribution aimed at exporting the
 library towards other programming languages; however, the use of
 SWIG is to be preferred to hand-made approaches since it leads to
 more maintainable code.</p>
+<a href="http://quantlib.org/quantlibaddin/">QuantLibAddin</a>
+exports a procedural interface to a number of platforms including
+Microsoft Excel and OpenOffice.org Calc.
 <p><strong>QuantLibXL</strong> is an initial Excel add-in built
 using <a href="http://xlw.sf.net">xlw</a>.</p>
-<p>QuantLib has been ported to the .NET framework in C#. See
-<a href="http://www.quantlib.net">http://www.quantlib.net</a> and
-<a href="http://www.capetools.net">http://www.capetools.net</a> for
-more details.</p>
 <p>Initial GNU R support is provided with <a href=
 "http://dirk.eddelbuettel.com/code/rquantlib.html">RQuantLib</a> by
 Dirk Eddelbuettel.</p>
