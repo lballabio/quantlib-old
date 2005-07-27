@@ -27,12 +27,12 @@ software framework for quantitative finance. QuantLib is a
 modeling, trading, and risk management in real-life.</p>
 <p>QuantLib is written in C++ with a clean object model, and is
 then exported to different languages such as Python, Ruby, and
-Scheme. An initial Excel add-in is also available. There are ports
-to the .NET framework in C# (see <a href=
-"http://www.quantlib.net">[1]</a> and <a href=
-"http://www.capetools.net/">[2]</a>). Bindings to other languages
-(including Java), and porting to Gnumeric, Matlab/Octave,
-S-PLUS/<a href=
+Scheme. <a href= "http://quantlib.org/quantlibaddin/">
+QuantLibAddin</a> exports a procedural interface to a number of
+platforms including Microsoft Excel and OpenOffice.org Calc.
+QuantLibXL also offers an Excel add-in.  Bindings to other 
+languages (including Java), and porting to Gnumeric, 
+Matlab/Octave, S-PLUS/<a href=
 "http://dirk.eddelbuettel.com/code/rquantlib.html">R</a>, <a href=
 "http://www.nielses.dk/quantlib/mma/">Mathematica</a>,
 COM/CORBA/SOAP architectures, FpML, are under consideration. See
