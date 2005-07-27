@@ -201,7 +201,7 @@
 <function>
 <name>QL_SET_QUOTE</name>
 <codename>qlSetQuote</codename>
-<desc>retrieve a discount factor at specified date</desc>
+<desc>update quote of existing Rate Helper object</desc>
 <constructor>false</constructor>
 <qlfunction>setQuote</qlfunction>
 <parameters>

@@ -48,7 +48,7 @@ namespace QuantLibAddin {
     class Create : private RegistryManager<T, EnumRegistry> {
     public:
         T operator()(const std::string& id) {
-            return *(static_cast<T*>(getType(id)));
+            return *(static_cast<T*>(this->getType(id)));
         }
     };
 

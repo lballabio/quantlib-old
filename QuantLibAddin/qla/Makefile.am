@@ -14,6 +14,7 @@ include_HEADERS = \
     basketoption.hpp \
     capfloor.hpp \
     cliquetoption.hpp \
+    config.hpp \
     dividendvanillaoption.hpp \
     fixedcouponbond.hpp \
     forwardvanillaoption.hpp \
