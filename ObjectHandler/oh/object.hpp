@@ -28,6 +28,7 @@
 #include <vector>
 #include <stack>
 #include <string>
+#include <iostream>
 
 namespace ObjHandler {
     //! A \c stack of values of class \c any.
