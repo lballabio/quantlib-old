@@ -11,6 +11,9 @@ AM_INIT_AUTOMAKE([foreign])
 AC_COPYRIGHT([    Copyright (C) 2004, 2005 Eric Ehlers
 
     Copyright (C) 2004, 2005 Ferdinando Ametrano
+    Copyright (C) 2005 Aurelien Chanudet
+    Copyright (C) 2005 Plamen Neykov
+    Copyright (C) 2005 Walter Penschke
     Copyright (C) 2004, 2005 StatPro Italia srl
 
 This file is part of QuantLib, a free-software/open-source library
