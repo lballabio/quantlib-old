@@ -14,9 +14,8 @@
 <body>
 <!--#include virtual="qlheader.inc"-->
 <h1>QuantLib-based Extension</h1>
-<p>QuantLib is already <a href="download.shtml">available</a> as a
-<strong>Guile</strong>, <strong>MzScheme</strong>,
-<strong>Python</strong>, and <strong>Ruby</strong> modules by means
+<p>QuantLib is <a href="download.shtml">available</a> as a
+Guile, MzScheme, Python, and Ruby module by means
 of <a href="http://swig.sourceforge.net">SWIG</a>.<br>
 SWIG also supports Java, Tcl/Tk, Perl, and PHP, so this approach
 may easily help porting QuantLib to these languages. SWIG modules
@@ -25,10 +24,10 @@ QuantLib-SWIG. We welcome any contribution aimed at exporting the
 library towards other programming languages; however, the use of
 SWIG is to be preferred to hand-made approaches since it leads to
 more maintainable code.</p>
-<a href="http://quantlib.org/quantlibaddin/">QuantLibAddin</a>
+<p><a href="http://quantlib.org/quantlibaddin/">QuantLibAddin</a>
 exports a procedural interface to a number of platforms including
-Microsoft Excel and OpenOffice.org Calc.
-<p><strong>QuantLibXL</strong> is an initial Excel add-in built
+Microsoft Excel and OpenOffice.org Calc.</p>
+<p>QuantLibXL is an initial Excel add-in built
 using <a href="http://xlw.sf.net">xlw</a>.</p>
 <p>Initial GNU R support is provided with <a href=
 "http://dirk.eddelbuettel.com/code/rquantlib.html">RQuantLib</a> by
