@@ -13,17 +13,20 @@
 </head>
 <body>
 <!--#include virtual="qlheader.inc"-->
-<h1>QuantLib-based Extension</h1>
+<h1>QuantLib Extensions</h1>
 <p>QuantLib is <a href="download.shtml">available</a> as a
 Guile, MzScheme, Python, and Ruby module by means
 of <a href="http://swig.sourceforge.net">SWIG</a>.<br>
-SWIG also supports Java, Tcl/Tk, Perl, and PHP, so this approach
-may easily help porting QuantLib to these languages. SWIG modules
-are available in the QuantLib <a href="cvs.shtml">CVS</a> under
-QuantLib-SWIG. We welcome any contribution aimed at exporting the
-library towards other programming languages; however, the use of
-SWIG is to be preferred to hand-made approaches since it leads to
-more maintainable code.</p>
+SWIG interfaces are available in the QuantLib <a
+href="cvs.shtml">CVS</a> in the QuantLib-SWIG module and can be used
+as a starting point for exporting QuantLib towards other
+languages.</p>
+<p>
+Johan Witters reported success in modifying the SWIG interfaces to
+export QuantLib to Java through <a
+href="http://www.skwash.com/">sKWash</a>. A guide to the process can
+be found <a href="http://users.telenet.be/johan.witters/website/skwash.com/get/get3.html">here</a>.
+</p>
 <p><a href="http://quantlib.org/quantlibaddin/">QuantLibAddin</a>
 exports a procedural interface to a number of platforms including
 Microsoft Excel and OpenOffice.org Calc.</p>
@@ -35,9 +38,7 @@ Dirk Eddelbuettel.</p>
 <p>Niels Elken S&oslash;nderby has a page for the tentative
 Mathematica project <a href=
 "http://www.nielses.dk/quantlib/mma/">QuantLibMma</a>.</p>
-<p>In general the library should be exported to the maximum
-possible degree, allowing for object manipulation when possible,
-providing a function interface as bare minimum.</p>
+
 <p>There is a strong interest in having QuantLib available as
 extension for different platforms. We're looking for volunteers to
 help with:</p>
