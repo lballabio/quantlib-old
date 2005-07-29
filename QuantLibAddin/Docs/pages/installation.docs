@@ -114,11 +114,15 @@
     make
     \endverbatim
 
+    \par make test
+
     There is no <tt>make test</tt> at the moment but you can try launching the standalone C++ client program:
 
     \verbatim
     Clients/C++/QLADemo
     \endverbatim
+
+    \par make install
 
     To install QuantLibAddin:
     \verbatim
@@ -143,6 +147,8 @@
     </table>
 
     \b NB There is no installation for the C/Excel Addins nor for any Client code.
+
+    \par make docs
 
     To build the documentation that you're reading now, do ...
     \verbatim
