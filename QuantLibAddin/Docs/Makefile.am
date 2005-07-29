@@ -4,6 +4,7 @@ EXTRA_DIST = \
     qla_footer.html \
     qla_footeronline.html \
     qla_header.html \
+    QuantLibAddin-docs.hhp \
     quantlib.css
 
 DOXYGEN_CONFIG := qladdin.doxy
