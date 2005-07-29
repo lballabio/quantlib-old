@@ -10,7 +10,7 @@ AM_INIT_AUTOMAKE([foreign])
 
 AC_COPYRIGHT([    Copyright (C) 2004, 2005 Eric Ehlers
 
-    Copyright (C) 2004 Ferdinando Ametrano
+    Copyright (C) 2004, 2005 Ferdinando Ametrano
     Copyright (C) 2004 Daniel Duffy - Datasim
     Copyright (C) 2004 StatPro Italia srl
 

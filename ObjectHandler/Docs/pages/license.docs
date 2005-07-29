@@ -1,6 +1,41 @@
 
-/*! \page license QuantLib License
+/*
+ Copyright (C) 2005 Eric Ehlers
 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page license Copyright and License
+
+\section copyright Copyright
+\verbatim
+ObjectHandler is
+    Copyright (C) 2004, 2005 Eric Ehlers
+
+    Copyright (C) 2004, 2005 Ferdinando Ametrano
+    Copyright (C) 2004 Daniel Duffy - Datasim
+    Copyright (C) 2004 StatPro Italia srl
+\endverbatim
+
+\section license2 License
+ObjectHandler is released under the QuantLib license:
+\verbatim
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
 
@@ -25,6 +60,7 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+\endverbatim
 
 <hr>
 \section licensecomments Comments on Copyright and License
