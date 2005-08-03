@@ -30,8 +30,8 @@
     Before building ObjectHandler you'll need to install and build
     log4cxx.  ObjectHandler has been tested against log4cxx version 0.9.7.
 
-    Under Linux, log4cxx should build as documented.  Below are some additional notes for
-    building log4cxx under Windows, using a debug build as an example:
+    \section windows Windows
+    These instructions assume a debug build.
     <ul>
     <li>log4cxx should be unzipped to a path containing no spaces as the library 
     seems to complain otherwise</li>
@@ -50,5 +50,13 @@
     log4cxx configuration.  In order to use these additional ObjectHandler configurations 
     you would need to add the corresponding configurations to the log4cxx project 
     workspace - these combinations have not been tested.
+
+    \section linux Linux
+    A glitch in the log4cxx header files may cause the linux compilation
+    to generate hundreds of warnings, these can be ignored, alternatively
+    you can apply the fix described 
+    <a href="http://nagoya.apache.org/eyebrowse/ReadMsg?listName=log4cxx-user@logging.apache.org&msgId=1649232">here</a>. 
+
+    Otherwise log4cxx should build as documented under Linux.  
 
 */
