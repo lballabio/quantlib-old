@@ -24,6 +24,7 @@
 #include <qla/zerocurve.hpp>
 #include <qla/generalutils.hpp>
 #include <qla/typefactory.hpp>
+#include <ql/Instruments/zerocouponbond.hpp>
 
 // indexes to the Property vector
 // FIXME - need a cleaner way to achieve this
@@ -60,8 +61,8 @@ namespace QuantLibAddin {
 		QuantLib::DayCounter dayCounter =
             Create<QuantLib::DayCounter>()(dayCounterID);
         
-        zeroCouponBond_ = 
-            boost::shared_ptr<QuantLib::ZeroCouponBond>(
+        mInstrument = 
+            boost::shared_ptr<QuantLib::Instrument>(
                 new QuantLib::ZeroCouponBond(QuantLib::Date(issueDate),
                                              QuantLib::Date(maturityDate),
                                              settlementDays,
@@ -72,7 +73,7 @@ namespace QuantLibAddin {
                                              QuantLib::Handle<QuantLib::YieldTermStructure>(zeroCurveQl)));
 
         // Perform pricing
-        double npv = zeroCouponBond_->NPV();
+		double npv = mInstrument->NPV();
 
         // Setup object properties
         ObjHandler::any_ptr anyNpv(new boost::any(npv));

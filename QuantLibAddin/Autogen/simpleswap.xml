@@ -280,13 +280,13 @@
 </function>
 
 <function call_type='QL_OBJECT'>
-<name>QL_SWAP_NPV</name>
-<codename>qlSwapNPV</codename>
+<name>QL_NPV</name>
+<codename>qlNPV</codename>
 <desc>the NPV of a swap</desc>
 <constructor>false</constructor>
 <qlfunction>NPV</qlfunction>
 <parameters>
-    <param class='SimpleSwap'>
+    <param class='Instrument'>
         <name>handle</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>

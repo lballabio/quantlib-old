@@ -18,21 +18,13 @@
 #ifndef qla_zerocouponbond_hpp
 #define qla_zerocouponbond_hpp
 
-#include <oh/objhandler.hpp>
-#include <ql/Instruments/zerocouponbond.hpp>
+#include <qla/baseinstruments.hpp>
 
 namespace QuantLibAddin {
 
-    class ZeroCouponBond : public ObjHandler::Object {
+    class ZeroCouponBond : public Bond {
     public:
         ZeroCouponBond(ObjHandler::ArgumentStack& args);
-
-        virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(zeroCouponBond_);
-        }
-
-    private:
-        boost::shared_ptr<QuantLib::ZeroCouponBond> zeroCouponBond_;
     };
 }
 

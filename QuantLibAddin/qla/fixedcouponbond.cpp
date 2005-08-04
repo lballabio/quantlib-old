@@ -23,6 +23,7 @@
 #include <qla/fixedcouponbond.hpp>
 #include <qla/generalutils.hpp>
 #include <qla/termstructures.hpp>
+#include <ql/Instruments/fixedcouponbond.hpp>
 #include <qla/typefactory.hpp>
 
 namespace QuantLibAddin {
@@ -58,7 +59,7 @@ namespace QuantLibAddin {
             discountingTermStructure.linkTo(discYC);
         }
 
-        myFixedCouponBond = boost::shared_ptr<QuantLib::FixedCouponBond>(
+        mInstrument = boost::shared_ptr<QuantLib::Instrument>(
             new QuantLib::FixedCouponBond(QuantLib::Date(issueDate),
                                             QuantLib::Date(datedDate),
                                             QuantLib::Date(maturityDate),
@@ -78,6 +79,6 @@ namespace QuantLibAddin {
                                             nominals // Not yet implemented in QL
 #endif
                                             ));
-    }
+	}
 
 }

@@ -10,6 +10,7 @@ EXTRA_DIST = \
 
 include_HEADERS = \
     asianoption.hpp \
+    baseinstruments.hpp \
     barrieroption.hpp \
     basketoption.hpp \
     capfloor.hpp \

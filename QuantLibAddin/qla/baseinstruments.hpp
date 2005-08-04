@@ -1,7 +1,6 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,28 +15,37 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_simpleswap_hpp
-#define qla_simpleswap_hpp
+#ifndef qla_baseinstruments_hpp
+#define qla_baseinstruments_hpp
 
-#include <qla/baseinstruments.hpp>
-#include <ql/Instruments/simpleswap.hpp>
+#include <oh/objhandler.hpp>
+#include <ql/instrument.hpp>
+#include <ql/Instruments/bond.hpp>
+
+#define EXPORT_QL_OBJECT(CLASS) \
+	const CLASS& getObject() const { \
+		return *boost::dynamic_pointer_cast<CLASS>(mInstrument); \
+	}
 
 namespace QuantLibAddin {
+	class Instrument : public ObjHandler::Object {
+	public:
+		virtual boost::shared_ptr<void> getReference() const {
+			return boost::static_pointer_cast<void>(mInstrument);
+		}
 
-    class SimpleSwap : public Instrument {
-    public:
-        SimpleSwap(ObjHandler::ArgumentStack& args);
+		const QuantLib::Instrument& getObject() const { 
+			return *mInstrument; 
+		}
 
-		EXPORT_QL_OBJECT(QuantLib::SimpleSwap)
+	protected:
+		boost::shared_ptr<QuantLib::Instrument> mInstrument;
+	};
 
-		const std::vector<std::vector<double> >& getFixLeg();
-		const std::vector<std::vector<double> >& getFloatLeg();
-
-    private:
-		std::vector<std::vector<double> > fixLeg;
-		std::vector<std::vector<double> > floatLeg;
-    };
+	class Bond : public Instrument {
+	public:
+		EXPORT_QL_OBJECT(QuantLib::Bond)
+	};
 }
 
 #endif
-

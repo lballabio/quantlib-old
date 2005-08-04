@@ -19,23 +19,13 @@
 #ifndef qla_fixedcouponbond_hpp
 #define qla_fixedcouponbond_hpp
 
-#include <oh/objhandler.hpp>
-#include <ql/Instruments/fixedcouponbond.hpp>
-#include <qla/typefactory.hpp>
+#include <qla/baseinstruments.hpp>
 
 namespace QuantLibAddin {
 
-    class FixedCouponBond : public ObjHandler::Object {
+	class FixedCouponBond : public Bond {
     public:
         FixedCouponBond(ObjHandler::ArgumentStack& args);
-
-        virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(myFixedCouponBond);
-        }
-        const QuantLib::FixedCouponBond& getObject() const {return *myFixedCouponBond;}
-
-    private:
-        boost::shared_ptr<QuantLib::FixedCouponBond> myFixedCouponBond;
     };
 }
 
