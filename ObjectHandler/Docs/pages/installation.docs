@@ -87,17 +87,17 @@
     \endverbatim
 
     \section usage Usage
-    Below are instructions on integrating ObjectHandler into your own
+    Below are instructions for integrating ObjectHandler into your own
     application. Please see also the Example application shipped with
     ObjectHandler.
 
     \subsection windows3 Windows
     <ul>
-    <li>add <tt>\$(OBJECT_HANDLER_DIR)</tt> to the list of additional include 
-    directories for the preprocessor</li>
+    <li>add <tt>\$(LOG4CXX_DIR)\\include</tt> and <tt>\$(OBJECT_HANDLER_DIR)</tt>
+    to the list of additional include directories for the preprocessor</li>
     <li><tt>#include <oh/objhandler.hpp></tt></li>
-    <li>add <tt>\$(OBJECT_HANDLER_DIR)\\lib</tt> to the list of paths for the 
-    linker</li>
+    <li>add <tt>\$(LOG4CXX_DIR)\\msvc\\lib\\Debug</tt> and
+    <tt>\$(OBJECT_HANDLER_DIR)\\lib</tt> to the list of paths for the linker</li>
     <li>add \c log4cxxs.lib and \c ws2_32.lib to libs to be linked</li>
     <li>you're also linking to the ObjectHandler lib but you don't need 
     to specify this explicitly as that's handled by the statement
