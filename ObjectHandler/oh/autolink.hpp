@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2004 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
@@ -23,7 +24,6 @@
 #  error "unsupported Microsoft compiler"
 #elif (_MSC_VER == 1200)
 #  define OBJHANDLER_LIB_TOOLSET "vc6"
-#  define OBJHANDLER_PATCH_MSVC6
 #elif (_MSC_VER == 1300)
 #  define OBJHANDLER_LIB_TOOLSET "vc7"
 #elif (_MSC_VER == 1310)
@@ -33,7 +33,6 @@
 #else
 #  error "unknown Microsoft compiler"
 #endif
-
 
 /*** libraries to be linked ***/
 

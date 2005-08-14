@@ -25,10 +25,10 @@
 
 namespace QuantLibAddin {
 
-    BlackConstantVol::BlackConstantVol(ObjHandler::ArgumentStack &arguments) {
-        std::string dayCounterID    = OH_POP_ARGUMENT(std::string, arguments);
-        double volatility           = OH_POP_ARGUMENT(double, arguments);
-        long settlementDateLong     = OH_POP_ARGUMENT(long, arguments);
+    BlackConstantVol::BlackConstantVol(
+            const long &settlementDateLong,
+            const double &volatility,
+            const std::string &dayCounterID) {
 
         QuantLib::Date settlementDate(settlementDateLong);
 		QuantLib::DayCounter dayCounter =
@@ -40,15 +40,12 @@ namespace QuantLibAddin {
                 dayCounter));
     }
 
-    BlackVarianceSurface::BlackVarianceSurface(ObjHandler::ArgumentStack &arguments) {
-        std::string dayCounterID    = OH_POP_ARGUMENT(std::string, arguments);
-        std::vector < std::vector < double > > vols 
-            = OH_POP_ARGUMENT(std::vector < std::vector < double > >, arguments);
-        std::vector < double > strikes 
-            = OH_POP_ARGUMENT(std::vector < double >, arguments);
-        std::vector < long > dates 
-            = OH_POP_ARGUMENT(std::vector < long >, arguments);
-        long settlementDate         = OH_POP_ARGUMENT(long, arguments);
+    BlackVarianceSurface::BlackVarianceSurface(
+            const long &settlementDate,
+            const std::vector < long > &dates,
+            const std::vector < double > &strikes,
+            const std::vector < std::vector < double > > &vols,
+            const std::string &dayCounterID) {
 
         QuantLib::Date settlementDateQL(settlementDate);
         const std::vector<QuantLib::Date> datesQL = 

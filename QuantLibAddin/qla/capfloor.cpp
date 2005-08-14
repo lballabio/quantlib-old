@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -39,20 +40,20 @@
 
 namespace QuantLibAddin {
 
-    CapFloor::CapFloor(ObjHandler::ArgumentStack& arguments) {
-        long boolAmortization               = OH_POP_ARGUMENT(long, arguments);
-        std::string optionID                = OH_POP_ARGUMENT(std::string, arguments);
-        std::string handleEngine            = OH_POP_ARGUMENT(std::string, arguments);
-        double floorStrike                  = OH_POP_ARGUMENT(double, arguments);
-        double capStrike                    = OH_POP_ARGUMENT(double, arguments);
-        double nominal                      = OH_POP_ARGUMENT(double, arguments);
-        std::string handleTermStructure     = OH_POP_ARGUMENT(std::string, arguments);
-        long fixingDays                     = OH_POP_ARGUMENT(long, arguments);
-        std::string frequencyID             = OH_POP_ARGUMENT(std::string, arguments);
-        std::string conventionID            = OH_POP_ARGUMENT(std::string, arguments);
-        std::string timeUnitsID             = OH_POP_ARGUMENT(std::string, arguments);
-        long length                         = OH_POP_ARGUMENT(long, arguments);
-        long start                          = OH_POP_ARGUMENT(long, arguments);
+    CapFloor::CapFloor(
+            const long &start,
+            const long &length,
+            const std::string &timeUnitsID,
+            const std::string &conventionID,
+            const std::string &frequencyID,
+            const long &fixingDays,
+            const std::string &handleTermStructure,
+            const double &nominal,
+            const double &capStrike,
+            const double &floorStrike,
+            const std::string &handleEngine,
+            const std::string &optionID,
+            const long &boolAmortization) {
 
         QuantLib::BusinessDayConvention convention =
             Create<QuantLib::BusinessDayConvention>()(conventionID);
@@ -126,8 +127,8 @@ namespace QuantLibAddin {
         properties_.push_back(prop_npv);
     }
 
-    AnalyticCapFloorEngine::AnalyticCapFloorEngine(ObjHandler::ArgumentStack& arguments) {
-        std::string handleModel = OH_POP_ARGUMENT(std::string, arguments);
+    AnalyticCapFloorEngine::AnalyticCapFloorEngine(
+            const std::string &handleModel) {
 
         boost::shared_ptr<AffineModel> model = 
             OH_GET_OBJECT(AffineModel, handleModel);

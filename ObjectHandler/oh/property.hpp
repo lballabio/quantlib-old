@@ -12,6 +12,8 @@
 #ifndef oh_property_hpp
 #define oh_property_hpp
 
+#include <oh/objhandlerdefines.hpp>
+
 namespace ObjHandler {
 
     //! Template class representing an Object attribute.

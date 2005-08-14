@@ -25,8 +25,18 @@ namespace QuantLibAddin {
 
     class ForwardVanillaOption : public ObjHandler::Object {
     public:
-        ForwardVanillaOption(ObjHandler::ArgumentStack &args);
-    //    ~ForwardVanillaOption();
+        ForwardVanillaOption(
+            const std::string &handleBlackScholes,
+            const double &moneyness,
+            const long &resetDate,
+            const std::string &optionTypeID,
+            const std::string &payoffID,
+            const double &strike,
+            const std::string &exerciseID,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engineID,
+            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(forwardVanillaOption_);
         }

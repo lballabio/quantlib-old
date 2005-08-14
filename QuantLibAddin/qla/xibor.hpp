@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
@@ -24,7 +25,18 @@
 namespace QuantLibAddin {
     class Xibor : public ObjHandler::Object {
     public:
-        Xibor(ObjHandler::ArgumentStack& args);
+        Xibor(
+            const std::string &indexName,
+		    const std::string &crrID,
+            const long &tenor,
+            const std::string &timeUnitsID,
+		    const std::string &calendarID,
+		    const std::string &fltBDCID,
+		    const std::string &fltDayCounterID,
+		    const long &fixingDays,
+		    const std::string &fwdCurveId,
+            const std::vector<long> &lDates,
+            const std::vector<double> &fixings);
 
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(index_);

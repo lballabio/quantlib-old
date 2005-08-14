@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
 
@@ -33,9 +34,15 @@
 
 namespace QuantLibAddin {
 
-    ZeroCouponBond::ZeroCouponBond(ObjHandler::ArgumentStack& arguments) {
-        
-        std::string handleZeroCurve = OH_POP_ARGUMENT(std::string, arguments);
+    ZeroCouponBond::ZeroCouponBond(
+            const long &issueDate,
+            const long &maturityDate,
+            const long &settlementDays,
+            const std::string &dayCounterID,
+            const std::string &calendarID,
+            const std::string &conventionID,
+            const double &redemption,
+            const std::string &handleZeroCurve) {
 
         boost::shared_ptr<ZeroCurve> zeroCurve =
             OH_GET_OBJECT(ZeroCurve, handleZeroCurve);
@@ -45,14 +52,6 @@ namespace QuantLibAddin {
 
         boost::shared_ptr<QuantLib::YieldTermStructure> zeroCurveQl =
             OH_GET_REFERENCE(QuantLib::YieldTermStructure, zeroCurve);
-
-        double redemption           = OH_POP_ARGUMENT(double, arguments);
-        std::string conventionID    = OH_POP_ARGUMENT(std::string, arguments);
-        std::string calendarID      = OH_POP_ARGUMENT(std::string, arguments);
-        std::string dayCounterID    = OH_POP_ARGUMENT(std::string, arguments);
-        long settlementDays         = OH_POP_ARGUMENT(long, arguments);
-        long maturityDate           = OH_POP_ARGUMENT(long, arguments);
-        long issueDate              = OH_POP_ARGUMENT(long, arguments);
 
 		QuantLib::BusinessDayConvention convention = 
             Create<QuantLib::BusinessDayConvention>()(conventionID);

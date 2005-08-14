@@ -28,9 +28,9 @@ using namespace QuantLibAddin;
 
 int main() {
     try {
-        OH_LOGFILE("quantlib.log");
-        OH_CONSOLE(1);
-        OH_LOG_MESSAGE("begin instruments test");
+        setLogFile("quantlib.log");
+        setConsole(1);
+        logMessage("begin instruments test");
 
         // Fixed Coupon Bond
 
@@ -46,23 +46,23 @@ int main() {
         string businessDayConvention= "Following"; // business day convention
         string calendarID           = "Germany";// calendar
 
-        ArgumentStack a1;
-        a1.push(issueDate.serialNumber());      // issue date as long
-        a1.push(datedDate.serialNumber());      // dated date as long
-        a1.push(maturityDate.serialNumber());   // maturity date as long
-        a1.push(settlementDays);                // settlement days
-        a1.push(coupons);                       // coupons
-        a1.push(nominals);                      // nominals
-        a1.push(redemption);                    // redemption
-        a1.push(frequencyID);                   // frequency ID
-        a1.push(dayCounterID);                  // day counter ID
-        a1.push(businessDayConvention);         // business day convention
-        a1.push(calendarID);                    // calendar ID
-        a1.push(true);                          // startFromEnd
-        a1.push(true);                          // longFinal
-        a1.push(std::string());                 // discCurveId
-        OH_MAKE_OBJECT(QuantLibAddin::FixedCouponBond, "fixedCouponBond", a1);
-        OH_LOG_OBJECT("fixedCouponBond");
+        obj_ptr fixedCouponBond(new QuantLibAddin::FixedCouponBond(
+            issueDate.serialNumber(),           // issue date as long
+            datedDate.serialNumber(),           // dated date as long
+            maturityDate.serialNumber(),        // maturity date as long
+            settlementDays,                     // settlement days
+            coupons,                            // coupons
+            nominals,                           // nominals
+            redemption,                         // redemption
+            frequencyID,                        // frequency ID
+            dayCounterID,                       // day counter ID
+            businessDayConvention,              // business day convention
+            calendarID,                         // calendar ID
+            true,                               // startFromEnd
+            true,                               // longFinal
+            ""));                               // discCurveId
+        storeObject("myFixedCouponBond", fixedCouponBond);
+        logObject("myFixedCouponBond");
 
         // ZeroCurve
 
@@ -83,13 +83,12 @@ int main() {
         datesAsLong.push_back(todayAsLong + 1826); yieldsAsDouble.push_back(0.047);
         datesAsLong.push_back(todayAsLong + 3652); yieldsAsDouble.push_back(0.048);
 
-        ArgumentStack zeroCurveArgs;
-        zeroCurveArgs.push(datesAsLong);
-        zeroCurveArgs.push(yieldsAsDouble);
-        zeroCurveArgs.push(string("ActualActual"));
-
-        OH_MAKE_OBJECT(QuantLibAddin::ZeroCurve, "myZeroCurve", zeroCurveArgs);
-        OH_LOG_OBJECT("myZeroCurve");
+        obj_ptr zeroCurve(new QuantLibAddin::ZeroCurve(
+            datesAsLong,
+            yieldsAsDouble,
+            "ActualActual"));
+        storeObject("myZeroCurve", zeroCurve);
+        logObject("myZeroCurve");
 
         // ZeroBond
 
@@ -102,28 +101,27 @@ int main() {
         double redemption2 = 100.0;
         std::string zeroCurveHandle = "myZeroCurve";
 
-        ArgumentStack zeroCouponBondArgs;
-        zeroCouponBondArgs.push(issueDateAsLong);
-        zeroCouponBondArgs.push(maturityDateAsLong);
-        zeroCouponBondArgs.push((long)settlementDays);
-        zeroCouponBondArgs.push(dayCounterId);
-        zeroCouponBondArgs.push(calendarId);
-        zeroCouponBondArgs.push(conventionId);
-        zeroCouponBondArgs.push((double)redemption2);
-        zeroCouponBondArgs.push(zeroCurveHandle);
+        obj_ptr zeroCouponBond(new QuantLibAddin::ZeroCouponBond(
+            issueDateAsLong,
+            maturityDateAsLong,
+            settlementDays,
+            dayCounterId,
+            calendarId,
+            conventionId,
+            redemption2,
+            zeroCurveHandle));
+        storeObject("myZeroCouponBond", zeroCouponBond);
+        logObject("myZeroCouponBond");
 
-        OH_MAKE_OBJECT(QuantLibAddin::ZeroCouponBond, "myZeroCouponBond", zeroCouponBondArgs);
-        OH_LOG_OBJECT("myZeroCouponBond");
-
-        OH_LOG_MESSAGE("end instruments test");
+        logMessage("end instruments test");
         return 0;
     } catch (const exception &e) {
         ostringstream s;
         s << "Error: " << e.what();
-        OH_LOG_MESSAGE(s.str(), 1);
+        logMessage(s.str(), 1);
         return 1;
     } catch (...) {
-        OH_LOG_MESSAGE("unknown error", 1);
+        logMessage("unknown error", 1);
         return 1;
     }
 }

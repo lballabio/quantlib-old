@@ -53,6 +53,6 @@ AC_PATH_PROG([SED], [sed])
 AC_CONFIG_FILES([
     Makefile
     oh/Makefile
-    Example/Makefile
+    Examples/C++/Makefile
     Docs/Makefile])
 AC_OUTPUT

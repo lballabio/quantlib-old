@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
 
@@ -33,12 +34,10 @@
 
 namespace QuantLibAddin {
 
-    ZeroCurve::ZeroCurve(ObjHandler::ArgumentStack& arguments) {
-        std::string dayCounterID  = OH_POP_ARGUMENT(std::string, arguments);
-        std::vector < double > yields 
-            = OH_POP_ARGUMENT(std::vector < double >, arguments);
-        std::vector < long > dates 
-            = OH_POP_ARGUMENT(std::vector < long >, arguments);
+    ZeroCurve::ZeroCurve(
+            const std::vector < long > &dates,
+            const std::vector < double > &yields,
+            const std::string &dayCounterID) {
 
 		QuantLib::DayCounter dayCounter =
             Create<QuantLib::DayCounter>()(dayCounterID);

@@ -1,0 +1,12 @@
+    try {
+%s        ObjHandler::obj_ptr objectPointer(new QuantLibAddin::%s(%s));
+        ObjHandler::storeObject(handle, objectPointer);
+        propertyVectorToVariesList(objectPointer->getProperties(), result);
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        ObjHandler::logMessage("%s Error: " + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+

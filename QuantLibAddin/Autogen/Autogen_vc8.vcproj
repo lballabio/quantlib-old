@@ -3,9 +3,8 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="Autogen"
-	ProjectGUID="{D4849831-613C-4D73-AAE6-01DA42B93C73}"
+	ProjectGUID="{C93A2717-1B63-4742-8CBB-456CA7A7BF6E}"
 	Keyword="MakeFileProj"
-	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -16,43 +15,20 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug|Win32"
-			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug"
+			Name="All|Win32"
+			OutputDirectory=".\All"
+			IntermediateDirectory=".\All"
 			ConfigurationType="0"
-			InheritedPropertySheets="UpgradeFromvc71.vsprops"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="NMAKE /f Makefile.msdev"
-				ReBuildCommandLine="NMAKE /f Makefile.msdev /a"
+				BuildCommandLine="NMAKE /f &quot;Makefile.vc&quot;"
+				ReBuildCommandLine="NMAKE /f &quot;Makefile.vc&quot; /a"
 				CleanCommandLine=""
-				Output="build\vc80\Autogen.flag1"
-				PreprocessorDefinitions=""
-				IncludeSearchPath=""
-				ForcedIncludes=""
-				AssemblySearchPath=""
-				ForcedUsingAssemblies=""
-				CompileAsManaged=""
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release|Win32"
-			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release"
-			ConfigurationType="0"
-			InheritedPropertySheets="UpgradeFromvc71.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
-			>
-			<Tool
-				Name="VCNMakeTool"
-				BuildCommandLine="NMAKE /f Makefile.msdev"
-				ReBuildCommandLine="NMAKE /f Makefile.msdev /a"
-				CleanCommandLine=""
-				Output="build\vc80\Autogen.flag1"
+				Output="build\vc8\Autogen.flag1"
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""
 				ForcedIncludes=""
@@ -66,16 +42,8 @@
 	</References>
 	<Files>
 		<Filter
-			Name="make"
-			>
-			<File
-				RelativePath="Makefile.msdev"
-				>
-			</File>
-		</Filter>
-		<Filter
 			Name="scripts"
-			Filter="*.py"
+			Filter="py"
 			>
 			<File
 				RelativePath="autogen.py"
@@ -102,11 +70,19 @@
 				>
 			</File>
 			<File
+				RelativePath="guile.py"
+				>
+			</File>
+			<File
 				RelativePath="params.py"
 				>
 			</File>
 			<File
 				RelativePath="parse.py"
+				>
+			</File>
+			<File
+				RelativePath="qla.py"
 				>
 			</File>
 			<File
@@ -116,38 +92,49 @@
 		</Filter>
 		<Filter
 			Name="stubs"
-			Filter="stub.*"
 			>
 			<File
-				RelativePath="stub.C.body"
+				RelativePath="stub.c.constructor"
 				>
 			</File>
 			<File
-				RelativePath="stub.C.includes"
+				RelativePath="stub.c.includes"
 				>
 			</File>
 			<File
-				RelativePath="stub.Calc.body"
+				RelativePath="stub.c.member"
 				>
 			</File>
 			<File
-				RelativePath="stub.Calc.idlfoot"
+				RelativePath="stub.calc.body"
 				>
 			</File>
 			<File
-				RelativePath="stub.Calc.idlfunc"
+				RelativePath="stub.calc.constructor"
 				>
 			</File>
 			<File
-				RelativePath="stub.Calc.idlhead"
+				RelativePath="stub.calc.idlfoot"
 				>
 			</File>
 			<File
-				RelativePath="stub.Calc.includes"
+				RelativePath="stub.calc.idlfunc"
 				>
 			</File>
 			<File
-				RelativePath="stub.Calc.map"
+				RelativePath="stub.calc.idlhead"
+				>
+			</File>
+			<File
+				RelativePath="stub.calc.includes"
+				>
+			</File>
+			<File
+				RelativePath="stub.calc.map"
+				>
+			</File>
+			<File
+				RelativePath="stub.calc.member"
 				>
 			</File>
 			<File
@@ -155,36 +142,44 @@
 				>
 			</File>
 			<File
-				RelativePath="stub.Doxygen.enums"
+				RelativePath="stub.doxygen.enums"
 				>
 			</File>
 			<File
-				RelativePath="stub.Doxygen.functions"
+				RelativePath="stub.doxygen.functions"
 				>
 			</File>
 			<File
-				RelativePath="stub.Excel.body"
+				RelativePath="stub.excel.constructor"
 				>
 			</File>
 			<File
-				RelativePath="stub.Excel.includes"
+				RelativePath="stub.excel.includes"
 				>
 			</File>
 			<File
-				RelativePath="stub.Excel.regheader"
+				RelativePath="stub.excel.member"
 				>
 			</File>
 			<File
-				RelativePath="stub.Qla.includes"
+				RelativePath="stub.excel.regheader"
+				>
+			</File>
+			<File
+				RelativePath="stub.qla.includes"
 				>
 			</File>
 		</Filter>
 		<Filter
 			Name="metadata"
-			Filter="*.xml"
+			Filter="xml"
 			>
 			<File
 				RelativePath="capfloor.xml"
+				>
+			</File>
+			<File
+				RelativePath="enums.xml"
 				>
 			</File>
 			<File
@@ -225,7 +220,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="README.txt"
+			RelativePath="Makefile.vc"
 			>
 		</File>
 	</Files>

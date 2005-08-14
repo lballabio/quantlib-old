@@ -29,19 +29,19 @@
 
 namespace QuantLibAddin {
 
-    BarrierOption::BarrierOption(ObjHandler::ArgumentStack &arguments) {
-        long timeSteps                  = OH_POP_ARGUMENT(long, arguments);
-        std::string engineID            = OH_POP_ARGUMENT(std::string, arguments);
-        long settlementDate             = OH_POP_ARGUMENT(long, arguments);
-        long exerciseDate               = OH_POP_ARGUMENT(long, arguments);
-        std::string exerciseID          = OH_POP_ARGUMENT(std::string, arguments);
-        double strike                   = OH_POP_ARGUMENT(double, arguments);
-        std::string payoffID            = OH_POP_ARGUMENT(std::string, arguments);
-        std::string optionTypeID        = OH_POP_ARGUMENT(std::string, arguments);
-        double rebate                   = OH_POP_ARGUMENT(double, arguments);
-        double barrier                  = OH_POP_ARGUMENT(double, arguments);
-        std::string barrierTypeID       = OH_POP_ARGUMENT(std::string, arguments);
-        std::string handleBlackScholes  = OH_POP_ARGUMENT(std::string, arguments);
+    BarrierOption::BarrierOption(
+            const std::string &handleBlackScholes,
+            const std::string &barrierTypeID,
+            const double &barrier,
+            const double &rebate,
+            const std::string &optionTypeID,
+            const std::string &payoffID,
+            const double &strike,
+            const std::string &exerciseID,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engineID,
+            const long &timeSteps) {
 
         boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
             OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);

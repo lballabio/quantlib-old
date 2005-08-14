@@ -19,13 +19,12 @@
     \brief ObjectHandler class
 */
 
-#ifndef objecthandler_hpp
-#define objecthandler_hpp
+#ifndef oh_objecthandler_hpp
+#define oh_objecthandler_hpp
 
 #include <oh/singleton.hpp>
 #include <oh/object.hpp>
 #include <map>
-#include <cstdarg>
 
 //! ObjHandler
 /*! name space for the Object Handler
@@ -81,7 +80,7 @@ namespace ObjHandler {
         /*! Returns a null vector if
             the repository is empty.
         */
-        std::vector < std::string >getHandles();
+//        std::vector < std::string >getHandles();
         //! Log dump of ObjectHandler.
         /*! Write all objects in ObjectHandler 
             to output stream.

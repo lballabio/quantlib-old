@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -41,17 +42,41 @@ namespace QuantLibAddin {
     
     class DepositRateHelper : public RateHelper {
       public:
-        DepositRateHelper(ObjHandler::ArgumentStack& args);
+        DepositRateHelper(
+            const double &quote,
+            const long &maturity,
+            const std::string &timeUnitsID,
+            const long &fixingDays,
+            const std::string &calendarID,
+            const std::string &conventionID,
+            const std::string &dayCounterID);
     };
 
     class SwapRateHelper : public RateHelper {
       public:
-        SwapRateHelper(ObjHandler::ArgumentStack& args);
+        SwapRateHelper(
+            const double &quote,
+            const long &maturity,
+            const std::string &timeUnitsID,
+            const long &fixingDays,
+            const std::string &calendarID,
+            const std::string &fixedFrequencyID,
+            const std::string &fixedConventionID,
+            const std::string &fixedDayCounterID,
+            const std::string &floatingFrequencyID,
+            const std::string &floatingConventionID);
     };
 
     class FutureRateHelper : public RateHelper {
       public:
-        FutureRateHelper(ObjHandler::ArgumentStack& args);
+        FutureRateHelper(
+            const double &price,
+            const std::string &immDateID,
+            const QuantLib::Integer &months,
+            const std::string &dayCounterID,
+            const std::string &bDayConventionID,
+            const std::string &calendarID,
+            const QuantLib::Integer &decade);
     };
 
     class YieldTermStructure : public ObjHandler::Object {
@@ -66,7 +91,11 @@ namespace QuantLibAddin {
     
     class PiecewiseFlatForward : public YieldTermStructure {
       public:
-        PiecewiseFlatForward(ObjHandler::ArgumentStack& args);
+        PiecewiseFlatForward(
+            const long &evaluation,
+            const long &settlement,
+            const std::vector<std::string> &handlesRateHelper,
+            const std::string &dayCounterID);
     };
 }
 

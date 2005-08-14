@@ -24,10 +24,11 @@ import params
 
 # constants
 
-ROOT = common.ADDIN_ROOT + 'Guile/'
-INCLUDES = 'stub.Guile.includes'
-BODY = 'stub.Guile.body'
-INITFUNC = 'stub.Guile.initfunc'
+BUF_CTOR    = 'stub.guile.constructor'
+BUF_MEMBER  = 'stub.guile.member'
+INCLUDES    = 'stub.guile.includes'
+INITFUNC    = 'stub.guile.initfunc'
+ROOT        = common.ADDIN_ROOT + 'Guile/'
 
 def generateFuncHeader(fileHeader, function, suffix):
     'generate source for prototype of given function'
@@ -44,6 +45,8 @@ def generateFuncHeaders(groupName, functionGroup):
     fileHeader.write('#define qla_%s_h\n\n' % groupName)
     fileHeader.write('#include <guile/gh.h>\n\n')
     for function in functionGroup[common.FUNCS]:
+        if not utils.checkFunctionPlatform(function, common.PLATFORM_GUILE):
+            continue
         generateFuncHeader(fileHeader, function, ';\n')
     fileHeader.write('#endif\n\n')
     fileHeader.close()
@@ -54,6 +57,8 @@ def generateRegistrations(functionGroup):
     stub = '    gh_new_procedure("%s", %s, 1, 0, 0);\n'
     funcList = functionGroup[common.FUNCS]
     for function in funcList:
+        if not utils.checkFunctionPlatform(function, common.PLATFORM_GUILE):
+            continue
         name = function[common.CODENAME]
         ret += stub % (name, name)
     return ret
@@ -77,19 +82,6 @@ def generateInitFunc(functionGroups):
     fileInit.write(fileStub % (headers, registrations))
     fileInit.close()
     utils.updateIfChanged(fileName)
-
-def generateArgList(paramList, indent):
-    ret = ''
-    for param in paramList:
-        tensor = param[common.TENSOR]
-        type = param[common.TYPE]
-        if param[common.TYPE] == common.STRING:
-            type = 'std::string'
-        elif param[common.TYPE] == common.ANY:
-            type = 'boost::any'
-        stub = 'args.push(GetChop<%s>::%s(x)); // %s\n'
-        ret += indent + (stub % (type, tensor, param[common.NAME]))
-    return ret
 
 def getConversions(paramList):
     ret = ''
@@ -128,46 +120,54 @@ def generateReturnCall(returnDef):
         type = returnDef[common.TYPE]
     return ('Nat2Scm<%s>::%s(%s)' % (type, tensor, arg))
 
-def generateFuncDefs(groupName, functionGroup, plMember):
-    'generate source for function implementations'
-    fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
-    fileFunc = file(fileName, 'w')
-    utils.printHeader(fileFunc)
-    bufInclude = utils.loadBuffer(INCLUDES)
-    bufBody = utils.loadBuffer(BODY)
-    fileFunc.write(bufInclude % groupName)
-    for function in functionGroup[common.FUNCS]:
-        generateFuncHeader(fileFunc, function, ' {')
-        indent = 8 * ' ';
-        if function[common.CTOR] == common.TRUE:
-            args  = indent + 'std::string handle = GetChop<std::string>::scalar(x);\n'
-            args += indent + 'ArgumentStack args;\n'
-            args += generateArgList(function[common.PARAMS], indent);
-            fName = 'OH_MAKE_OBJECT(%s, handle, args)' % function[common.QLFUNC]
-        else:
-            args = getConversions(function[common.PARAMS])
-            className = function[common.PARAMS][0][common.ATTS][common.CLASS]
-            args += common.FUNC_BODY % (className, className, 'handle',
-                function[common.CODENAME], 'handle')
-            paramList = plMember.generateCode(function[common.PARAMS])
-            fName = '%s(%s)' % (utils.generateFuncCall(function), paramList)
-        retType = utils.getReturnType(function[common.RETVAL], replacePropertyVector = 'Properties',
-            replaceString = 'std::string', replaceAny = 'boost::any')
-        retCall = generateReturnCall(function[common.RETVAL])
-        fileFunc.write(bufBody % (args, retType, fName, retCall, function[common.CODENAME]))
-    fileFunc.close()
-    utils.updateIfChanged(fileName)
+def generateConstructor(fileFunc, function, bufCtor, plCtor):
+    conversions = getConversions(function[common.PARAMS])
+    paramList = plCtor.generateCode(function[common.PARAMS])
+    fileFunc.write(bufCtor % (conversions, function[common.QLFUNC], 
+        paramList, function[common.NAME]))
 
-def generate(functionGroups):
-    'generate source code for Guile addin'
+def generateMember(fileFunc, function, bufMember, plMember):
+    conversions = getConversions(function[common.PARAMS])
+    className = function[common.PARAMS][0][common.ATTS][common.CLASS]
+    returnType = utils.getReturnType(function[common.RETVAL], replacePropertyVector = 'ObjHandler::Properties',
+        replaceString = 'std::string', replaceAny = 'boost::any')
+    functionName = utils.generateFuncCall(function)
+    paramList = plMember.generateCode(function[common.PARAMS])
+    returnCall = generateReturnCall(function[common.RETVAL])
+    fileFunc.write(bufMember % (conversions, className, className, returnType, 
+        functionName, paramList, returnCall, function[common.NAME]))
+
+def generateFuncDefs(functionGroups):
+    'generate source for function implementations'
+    bufInclude = utils.loadBuffer(INCLUDES)
+    bufCtor = utils.loadBuffer(BUF_CTOR)
+    bufMember = utils.loadBuffer(BUF_MEMBER)
+    plCtor = params.ParameterPass(3)
     plMember = params.ParameterPass(3, skipFirst = True)
-    utils.logMessage('  begin generating Guile ...')
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
         generateFuncHeaders(groupName, functionGroup)
         if functionGroup[common.HDRONLY] == common.TRUE:
             continue
-        generateFuncDefs(groupName, functionGroup, plMember)
-    generateInitFunc(functionGroups)
+        fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
+        fileFunc = file(fileName, 'w')
+        utils.printHeader(fileFunc)
+        fileFunc.write(bufInclude % (groupName, groupName))
+        for function in functionGroup[common.FUNCS]:
+            if not utils.checkFunctionPlatform(function, common.PLATFORM_GUILE):
+                continue
+            generateFuncHeader(fileFunc, function, ' {')
+            if function[common.CTOR] == common.TRUE:
+                generateConstructor(fileFunc, function, bufCtor, plCtor)
+            else:
+                generateMember(fileFunc, function, bufMember, plMember)
+        fileFunc.close()
+        utils.updateIfChanged(fileName)
+
+def generate(functionDefs):
+    'generate source code for Guile addin'
+    utils.logMessage('  begin generating Guile ...')
+    generateInitFunc(functionDefs)
+    generateFuncDefs(functionDefs)
     utils.logMessage('  done generation Guile.')
 

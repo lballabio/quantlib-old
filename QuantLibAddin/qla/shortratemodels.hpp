@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -36,12 +37,19 @@ namespace QuantLibAddin {
     
     class Vasicek : public AffineModel {
       public:
-        Vasicek(ObjHandler::ArgumentStack& args);
+        Vasicek(
+            const double &a,
+            const double &b,
+            const double &lambda,
+            const double &sigma);
     };
     
     class HullWhite : public AffineModel {
       public:
-        HullWhite(ObjHandler::ArgumentStack& args);
+        HullWhite(
+            const std::string &handleTermStructure,
+            const double &a,
+            const double &sigma);
     };
     
 }

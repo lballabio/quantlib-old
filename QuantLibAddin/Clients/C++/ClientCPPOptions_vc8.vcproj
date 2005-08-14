@@ -2,9 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="ClientCPPOptions"
-	ProjectGUID="{673ED3F4-FD2B-480C-8A21-23AA221773AC}"
-	SignManifests="true"
+	Name="ClientCppOptions"
+	ProjectGUID="{1A854A3F-733A-46C0-9313-7B078288D395}"
 	>
 	<Platforms>
 		<Platform
@@ -15,11 +14,11 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Release|Win32"
-			OutputDirectory=".\build\vc80\Release"
-			IntermediateDirectory=".\build\vc80\Release"
+			Name="Release MTDLL|Win32"
+			OutputDirectory=".\build\vc8\ReleaseMTDLL"
+			IntermediateDirectory=".\build\vc8\ReleaseMTDLL"
 			ConfigurationType="1"
-			InheritedPropertySheets="UpgradeFromvc71.vsprops"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -38,7 +37,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc80\Release/ClientCPPOptions.tlb"
+				TypeLibraryName=".\build\vc8\ReleaseMTDLL/ClientCppOptions.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -48,14 +47,14 @@
 				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				StringPooling="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc80\Release/ClientCPPOptions.pch"
-				AssemblerListingLocation=".\build\vc80\Release/"
-				ObjectFile=".\build\vc80\Release/"
-				ProgramDataBaseFileName=".\build\vc80\Release/"
+				PrecompiledHeaderFile=".\build\vc8\ReleaseMTDLL/ClientCppOptions.pch"
+				AssemblerListingLocation=".\build\vc8\ReleaseMTDLL/"
+				ObjectFile=".\build\vc8\ReleaseMTDLL/"
+				ProgramDataBaseFileName=".\build\vc8\ReleaseMTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -72,12 +71,12 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
-				OutputFile="bin\QLAOptions-vc80-mt-s.exe"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
+				OutputFile="bin\Options-vc80-mt.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
-				ProgramDatabaseFile=".\build\vc80\Release/QLAOptions-vc80-mt-s.pdb"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				ProgramDatabaseFile=".\build\vc8\ReleaseMTDLL/Options-vc80-mt.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -93,7 +92,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc80\Release/ClientCPPOptions.bsc"
+				OutputFile=".\build\vc8\ReleaseMTDLL/ClientCppOptions.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -109,11 +108,11 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug|Win32"
-			OutputDirectory=".\build\vc80\Debug"
-			IntermediateDirectory=".\build\vc80\Debug"
+			Name="Debug MTDLL|Win32"
+			OutputDirectory=".\build\vc8\DebugMTDLL"
+			IntermediateDirectory=".\build\vc8\DebugMTDLL"
 			ConfigurationType="1"
-			InheritedPropertySheets="UpgradeFromvc71.vsprops"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -132,7 +131,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc80\Debug/ClientCPPOptions.tlb"
+				TypeLibraryName=".\build\vc8\DebugMTDLL/ClientCppOptions.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -142,13 +141,13 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc80\Debug/ClientCPPOptions.pch"
-				AssemblerListingLocation=".\build\vc80\Debug/"
-				ObjectFile=".\build\vc80\Debug/"
-				ProgramDataBaseFileName=".\build\vc80\Debug/"
+				PrecompiledHeaderFile=".\build\vc8\DebugMTDLL/ClientCppOptions.pch"
+				AssemblerListingLocation=".\build\vc8\DebugMTDLL/"
+				ObjectFile=".\build\vc8\DebugMTDLL/"
+				ProgramDataBaseFileName=".\build\vc8\DebugMTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -166,13 +165,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
-				OutputFile="bin\QLAOptions-vc80-mt-sgd.exe"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
+				OutputFile="bin\Options-vc80-mt-gd.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\build\vc80\Debug/QLAOptions-vc80-mt-sgd.pdb"
+				ProgramDatabaseFile=".\build\vc8\DebugMTDLL/Options-vc80-mt-gd.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -188,7 +187,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc80\Debug/ClientCPPOptions.bsc"
+				OutputFile=".\build\vc8\DebugMTDLL/ClientCppOptions.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -211,7 +210,7 @@
 			RelativePath="options.cpp"
 			>
 			<FileConfiguration
-				Name="Release|Win32"
+				Name="Release MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -221,7 +220,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug|Win32"
+				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"

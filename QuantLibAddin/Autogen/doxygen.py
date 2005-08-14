@@ -38,8 +38,8 @@ LINE_SECTION = '    \\section enum_%d %s\n'
 LINE_TABLE   = '    <table>\n\
     <tr><td><b>String</b></td><td><b>Enumeration</b></td></tr>\n'
 ROOT         = '../Docs/pages/'
-STUB_ENUMS   = 'stub.Doxygen.enums'
-STUB_FUNCS   = 'stub.Doxygen.functions'
+STUB_ENUMS   = 'stub.doxygen.enums'
+STUB_FUNCS   = 'stub.doxygen.functions'
 
 def generateEnums(enumDefs):
     'generate documentation for enumerations'

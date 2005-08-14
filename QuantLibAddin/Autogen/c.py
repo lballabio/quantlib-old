@@ -25,12 +25,13 @@ import params
 
 # constants
 
-BODY = 'stub.C.body'
+BUF_CTOR    = 'stub.c.constructor'
+BUF_MEMBER  = 'stub.c.member'
+CONV_BOOL   = '%s == TRUE'
 CONV_HANDLE = 'std::string(handle)'
-CONV_BOOL = '%s == TRUE'
-CONV_STR = 'std::string(%s)'
-INCLUDES = 'stub.C.includes'
-ROOT = common.ADDIN_ROOT + 'C/'
+CONV_STR    = 'std::string(%s)'
+INCLUDES    = 'stub.c.includes'
+ROOT        = common.ADDIN_ROOT + 'C/'
 
 # global parameter list objects
 
@@ -133,41 +134,48 @@ def getReturnCall(returnDef):
     else:
         return 'Conversion< %s >::convertArrayArray(returnValue, result)' % type
 
+def generateConstructor(fileFunc, function, bufCtor, plCtor):
+    conversions = generateConversions(function[common.PARAMS])
+    paramList = plCtor.generateCode(function[common.PARAMS])
+    fileFunc.write(bufCtor % (conversions, function[common.QLFUNC], 
+        paramList, function[common.NAME]))
+
+def generateMember(fileFunc, function, bufMember, plMember):
+    conversions = generateConversions(function[common.PARAMS])
+    className = function[common.PARAMS][0][common.ATTS][common.CLASS]
+    returnType = utils.getReturnType(function[common.RETVAL],
+        replacePropertyVector = 'ObjHandler::Properties', replaceString = 'std::string',
+        replaceAny = 'boost::any')
+    functionName = utils.generateFuncCall(function)
+    paramList = plMember.generateCode(function[common.PARAMS])
+    returnCall = getReturnCall(function[common.RETVAL])
+    fileFunc.write(bufMember % (conversions, className, className, returnType, 
+        functionName, paramList, returnCall, function[common.NAME]))
+
 def generateFuncSources(groupName, functionGroup, plCtor, plMember):
     'generate source for function implementations'
     fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
     fileFunc = file(fileName, 'w')
     utils.printHeader(fileFunc)
     bufInclude = utils.loadBuffer(INCLUDES)
-    bufBody = utils.loadBuffer(BODY)
+    bufCtor = utils.loadBuffer(BUF_CTOR)
+    bufMember = utils.loadBuffer(BUF_MEMBER)
     fileFunc.write(bufInclude % (groupName, groupName))
     for function in functionGroup[common.FUNCS]:
+        if not utils.checkFunctionPlatform(function, common.PLATFORM_C):
+            continue
         generateFuncHeader(fileFunc, function, ' {\n')
-        conversions = generateConversions(function[common.PARAMS])
-        returnType = utils.getReturnType(function[common.RETVAL],
-            replacePropertyVector = 'Properties', replaceString = 'std::string',
-            replaceAny = 'boost::any')
-        returnCall = getReturnCall(function[common.RETVAL])
         if function[common.CTOR] == common.TRUE:
-            functionBody = common.ARGLINE + plCtor.generateCode(function[common.PARAMS])
-            functionName = common.MAKE_FUNCTION
-            paramList = common.MAKE_ARGS % (function[common.QLFUNC], common.HANDLE)
+            generateConstructor(fileFunc, function, bufCtor, plCtor)
         else:
-            className = function[common.PARAMS][0][common.ATTS][common.CLASS]
-            functionBody = common.FUNC_BODY % (className, className, CONV_HANDLE,
-                function[common.NAME], CONV_HANDLE)
-            functionName = utils.generateFuncCall(function)
-            paramList = plMember.generateCode(function[common.PARAMS])
-        fileFunc.write(bufBody % (conversions, functionBody, returnType,
-            functionName, paramList, returnCall, function[common.NAME]))
+            generateMember(fileFunc, function, bufMember, plMember)
     fileFunc.close()
     utils.updateIfChanged(fileName)
 
 def generate(functionGroups):
     'generate source code for C addin'
-    plCtor = params.ParameterPass(2, convertString = CONV_STR, convertBool = CONV_BOOL,
-        delimiter = ';\n', appendTensor = True, appendScalar = True,
-        wrapFormat = 'args.push(%s)', delimitLast = True, prependEol = False)
+    plCtor = params.ParameterPass(3, appendTensor = True, appendScalar = True,
+        convertString = CONV_STR, convertBool = CONV_BOOL)
     plMember = params.ParameterPass(3, convertString = CONV_STR, convertBool = CONV_BOOL,
         skipFirst = True, appendTensor = True, appendScalar = True)
     utils.logMessage('  begin generating C ...')

@@ -25,8 +25,18 @@ namespace QuantLibAddin {
 
     class DividendVanillaOption : public ObjHandler::Object {
     public:
-        DividendVanillaOption(ObjHandler::ArgumentStack &args);
-    //    ~DividendVanillaOption();
+        DividendVanillaOption(
+            const std::string &handleBlackScholes,
+            const std::vector < long > &dividendDates,
+            const std::vector < double > &dividends,
+            const std::string &optionTypeID,
+            const std::string &payoffID,
+            const double &strike,
+            const std::string &exerciseID,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engineID,
+            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(dividendVanillaOption_);
         }

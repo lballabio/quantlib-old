@@ -30,25 +30,14 @@
 #include <string>
 #include <iostream>
 
+/* Use BOOST_MSVC instead of _MSC_VER since some other vendors 
+   (Metrowerks, for example) also #define _MSC_VER
+*/
+#if defined BOOST_MSVC       // Microsoft Visual C++
+#pragma warning(disable:4231)
+#endif
+
 namespace ObjHandler {
-    //! A \c stack of values of class \c any.
-    /*! Argument stack passed from Factory::makeObject
-        to Object constructor.
-    */
-    typedef std::stack<boost::any> ArgumentStack;
-    //! Template class to represent a stack of arguments.
-    /*! Pop an Object of class T
-        from the argument stack.
-    */
-    template < class T >
-    class Arguments {
-        public:
-        static T popArgument(ArgumentStack &arguments) {
-            boost::any a = arguments.top();
-            arguments.pop();
-            return boost::any_cast<T>(a);
-        }
-    };
     //! Shared pointer to any.
     /*! Used to hold the value for
         each of the Object's properties.
@@ -66,11 +55,15 @@ namespace ObjHandler {
     */
     typedef std::vector<ObjectProperty> Properties;
 
+#ifdef COMPILING_XLL
+    extern template class __declspec(dllexport) std::vector < Property < std::string, boost::shared_ptr < boost::any > > >;
+#endif
+
     //! ABC implementing interface for Objects to be stored in the ObjectHandler.
     /*! Objects are constructed via the Factory function makeObject
         and stored in the global ObjectHandler repository.
     */
-    class Object {
+    class DLL_API Object {        
     public:
         //! \name Constructors & Destructors
         //@{
@@ -80,7 +73,6 @@ namespace ObjHandler {
             in the ObjectHandler, call
                 ObjectHandler::instance().storeObject(handle, object);
         */
-
         Object() {};
         //! Default destructor.
         virtual ~Object() {};
@@ -94,6 +86,7 @@ namespace ObjHandler {
             must be recast appropriately.
         */
         virtual boost::shared_ptr<void> getReference() const = 0;
+        virtual void foo() {}
         //! Return the Object's property vector.
         /*! Returns the property vector
             describing the underlying Object.

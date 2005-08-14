@@ -33,12 +33,12 @@ int main() {
     VariesList vo;                  // attributes of vanilla option object
     int i;                          // iterator
 
-    QL_LOGFILE("quantlib.log");     // specify log file
-    QL_CONSOLE(1);                  // log messages to stdout
-    QL_LOG_MESSAGE("begin example program");
+    OH_SET_LOGFILE("quantlib.log"); // specify log file
+    OH_CONSOLE(1);                  // log messages to stdout
+    OH_LOG_MESSAGE("begin example program");
 
-    QL_LOG_MESSAGE(QL_VERSION());
-    QL_LOG_MESSAGE(QL_OH_VERSION());
+    OH_LOG_MESSAGE(QL_VERSION());
+    OH_LOG_MESSAGE(OH_VERSION());
 
     if (QL_BLACK_CONSTANT_VOL(
             "my_blackconstantvol", 
@@ -46,7 +46,7 @@ int main() {
             volatility, 
             "Actual360",
             &vbc) != SUCCESS) {
-        QL_LOG_MESSAGE("Error on call to QL_BLACK_CONSTANT_VOL");
+        OH_LOG_MESSAGE("Error on call to QL_BLACK_CONSTANT_VOL");
         goto fail;
     }
 
@@ -59,7 +59,7 @@ int main() {
             riskFreeRate, 
             dividendYield, 
             &vbs) != SUCCESS) {
-        QL_LOG_MESSAGE("Error on call to QL_BLACK_SCHOLES_PROCESS");
+        OH_LOG_MESSAGE("Error on call to QL_BLACK_SCHOLES_PROCESS");
         goto fail;
     }
 
@@ -75,13 +75,13 @@ int main() {
             "JR",                           // engine type (jarrow rudd)
             timeSteps,                      // time steps
             &vo) != SUCCESS) {
-        QL_LOG_MESSAGE("Error on call to QL_VANILLA_OPTION");
+        OH_LOG_MESSAGE("Error on call to QL_VANILLA_OPTION");
         goto fail;
     }
 
-    QL_LOG_MESSAGE("high-level interrogation - after QL_VANILLA_OPTION");
+    OH_LOG_MESSAGE("high-level interrogation - after QL_VANILLA_OPTION");
     for (i=0; i<vo.count; i++)
-        QL_LOG_MESSAGE("field = %s, value = %s", vo.varies[i].Label, 
+        OH_LOG_MESSAGE("field = %s, value = %s", vo.varies[i].Label, 
             variesToString(&vo.varies[i]));
 
     if (QL_OPTION_SETENGINE(
@@ -89,20 +89,20 @@ int main() {
             "AEQPB",   // AdditiveEQPBinomialTree
             801, 
             &vo) != SUCCESS) {
-        QL_LOG_MESSAGE("Error on call to QL_OPTION_SETENGINE");
+        OH_LOG_MESSAGE("Error on call to QL_OPTION_SETENGINE");
         goto fail;
     }
 
-    QL_LOG_MESSAGE("high-level interrogation - after QL_OPTION_SETENGINE");
+    OH_LOG_MESSAGE("high-level interrogation - after QL_OPTION_SETENGINE");
     for (i=0; i<vo.count; i++)
-        QL_LOG_MESSAGE("field = %s, value = %s", vo.varies[i].Label, 
+        OH_LOG_MESSAGE("field = %s, value = %s", vo.varies[i].Label, 
             variesToString(&vo.varies[i]));
 
     freeVariesList(&vbc);
     freeVariesList(&vbs);
     freeVariesList(&vo);
 
-    QL_LOG_MESSAGE("end example program");
+    OH_LOG_MESSAGE("end example program");
 
     return 0;
 

@@ -32,19 +32,17 @@
 
 namespace QuantLibAddin {
 
-    BasketOption::BasketOption(ObjHandler::ArgumentStack &arguments) {
-        long timeSteps              = OH_POP_ARGUMENT(long, arguments);
-        std::string engineID        = OH_POP_ARGUMENT(std::string, arguments);
-        long settlementDate         = OH_POP_ARGUMENT(long, arguments);
-        long exerciseDate           = OH_POP_ARGUMENT(long, arguments);
-        std::string exerciseID      = OH_POP_ARGUMENT(std::string, arguments);
-        double strike               = OH_POP_ARGUMENT(double, arguments);
-        std::string optionTypeID    = OH_POP_ARGUMENT(std::string, arguments);
-        std::vector < std::vector < double > > correlations 
-            = OH_POP_ARGUMENT(std::vector < std::vector < double > >, arguments);
-        std::string basketID        = OH_POP_ARGUMENT(std::string, arguments);
-        std::vector < std::string > handleBlackScholesVector 
-            = OH_POP_ARGUMENT(std::vector < std::string >, arguments);
+    BasketOption::BasketOption(
+            const std::vector < std::string > &handleBlackScholesVector,
+            const std::string &basketID,
+            const std::vector < std::vector < double > > &correlations,
+            const std::string &optionTypeID,
+            const double &strike,
+            const std::string &exerciseID,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engineID,
+            const long &timeSteps) {
 
 		QuantLib::BasketOption::BasketType basketType = 
             Create<QuantLib::BasketOption::BasketType>()(basketID);

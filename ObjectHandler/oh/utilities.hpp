@@ -24,41 +24,39 @@
 
 #include <oh/objecthandler.hpp>
 
-//! ObjectHandler factory function makeObject
-/*! Construct an object of class \a CLASS with handle \a HANDLE
-    and argument stack \a ARGUMENTS
-*/
-#define OH_MAKE_OBJECT( CLASS, HANDLE, ARGUMENTS ) \
-    ObjHandler::Factory< CLASS >::makeObject( HANDLE, ARGUMENTS )
-//! ObjectHandler function retrieveObject
-/*! Retrieve Object of class \a CLASS with handle \a HANDLE.
-*/
-#define OH_GET_OBJECT( CLASS, HANDLE ) \
-    boost::dynamic_pointer_cast< CLASS > \
-    (ObjHandler::ObjectHandler::instance().retrieveObject( HANDLE ))
-//! ObjectHandler function deleteObject
-/*! delete Object with handle \a HANDLE.
-*/
-#define OH_DELETE_OBJECT( HANDLE ) \
-    ObjHandler::ObjectHandler::instance().deleteObject( HANDLE )
-//! ObjectHandler function deleteAllObjects
-/*! delete all Objects in the repository.
-*/
-#define OH_DELETE_ALL_OBJECTS() \
-    ObjHandler::ObjectHandler::instance().deleteAllObjects()
-//! Object function popArgument
-/*! Pop an argument of type \a CLASS from argument stack \a ARGUMENTS.
-*/
-#define OH_POP_ARGUMENT( CLASS, ARGUMENTS ) \
-    ObjHandler::Arguments< CLASS >::popArgument( ARGUMENTS )
 //! Object function getReference
 /*! Retrieve a reference to underlying Object of class \a CLASS
     with handle \a HANDLE.
 */
 #define OH_GET_REFERENCE( CLASS, OBJECT ) \
     boost::static_pointer_cast< CLASS > ( OBJECT->getReference() )
+//! ObjectHandler function retrieveObject
+/*! Retrieve Object of class \a CLASS with handle \a HANDLE.
+*/
+#define OH_GET_OBJECT( CLASS, HANDLE ) \
+    boost::dynamic_pointer_cast< CLASS > \
+    (ObjHandler::retrieveObject( HANDLE ))
+//! ObjectHandler function deleteObject
+/*! delete Object with handle \a HANDLE.
+*/
+//#define OH_DELETE_OBJECT( HANDLE )
+//    ObjHandler::ObjectHandler::instance().deleteObject( HANDLE )
+//! ObjectHandler function deleteAllObjects
+/*! delete all Objects in the repository.
+*/
+//#define OH_DELETE_ALL_OBJECTS()
+//    ObjHandler::ObjectHandler::instance().deleteAllObjects()
 
 namespace ObjHandler {
+
+    std::string ohVersion();
+
+    DLL_API void storeObject(
+            const std::string &handle,
+            const ObjHandler::obj_ptr &object);
+
+    DLL_API ObjHandler::obj_ptr retrieveObject(
+            const std::string &handle);
 
     /** \name Logging framework
      *  These functions wrap calls to the Logger class
@@ -70,39 +68,41 @@ namespace ObjHandler {
     //! Wrapper for function Logger::instance().setLogFile().
     /*! Specify name of log file.
     */
-    void OH_LOGFILE(const std::string &logFileName,
-                const int &logLevel = 4);
+    void setLogFile(
+        const std::string &logFileName,
+        const int &logLevel = 4);
     //! Wrapper for function Logger::instance().logMessage()
     /*! Write a message to the log file.
     */
-    void OH_LOG_MESSAGE(
-            const std::string &message,
-            const int &level = 4);
+    void DLL_API logMessage(
+        const std::string &message,
+        const int &level = 4);
     //! Wrapper for function Logger::instance().setLogLevel().
     /*! Set logging threshold.
     */
-    void OH_LOG_LEVEL(const int &logLevel);
+    void setLogLevel(const int &logLevel);
     //! Wrapper for function Logger::instance().setConsole().
     /*! Fork log messages to stdout.
     */
-    void OH_CONSOLE(const int &console = 0,
-                const int &logLevel = 4);
+    void setConsole(
+        const int &console = 0,
+        const int &logLevel = 4);
     //! Write Object with given handle to log file.
     /*! Writes a warning message to log file
         if no object is found with given handle.
     */
-    void OH_LOG_OBJECT(const std::string &handle);
+    void logObject(const std::string &handle);
     //! Write all Objects to log file.
     /*! Takes no action if ObjectHandler
         repository is empty.
     */
-    void OH_LOG_ALL_OBJECTS();
+    void logAllObjects();
     //@}
     //! Return Property vector for given Object.
     /*! Throws an exception if no Object exists
         with given handle.
     */
-    const Properties& OH_QUERY_OBJECT(const std::string &handle);
+    const Properties& queryObject(const std::string &handle);
 }
 
 #endif

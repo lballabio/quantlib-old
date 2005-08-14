@@ -4,7 +4,6 @@ includedir = $(prefix)/include/oh
 include_HEADERS = \
     config.hpp \
     exception.hpp \
-    factory.hpp \
     logger.hpp \
     objecthandler.hpp \
     object.hpp \
@@ -14,7 +13,6 @@ include_HEADERS = \
     singleton.hpp \
     utilities.hpp
 
-#    makefile.mak
 EXTRA_DIST = \
     autolink.hpp
 

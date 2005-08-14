@@ -21,8 +21,6 @@
 #endif
 #include <ql/qldefines.hpp>
 #include <string>
-// capture value of QL_VERSION before utilities.hpp #undefs it
-const std::string QL_VERSION_KEEP = QL_VERSION;
 #include <qla/utilities.hpp>
 #include <qla/typeregistry.hpp>
 #include <sstream>
@@ -31,16 +29,8 @@ using namespace ObjHandler;
 
 namespace QuantLibAddin {
 
-    std::string QL_VERSION() {
-        std::ostringstream s;
-        s << "QuantLib version " << QL_VERSION_KEEP;
-        return s.str();
-    }
-
-    std::string QL_OH_VERSION() {
-        std::ostringstream s;
-        s << "ObjectHandler version " << OBJHANDLER_VERSION;
-        return s.str();
+    std::string qlVersion() {
+        return QL_VERSION;
     }
 
     const std::vector<std::string>& getRegisteredEnums() {

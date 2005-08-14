@@ -25,7 +25,17 @@ namespace QuantLibAddin {
 
     class ContinuousAveragingAsianOption : public ObjHandler::Object {
     public:
-        ContinuousAveragingAsianOption(ObjHandler::ArgumentStack &args);
+        ContinuousAveragingAsianOption(
+            const std::string &handleBlackScholes,
+            const std::string &averageID,
+            const std::string &optionTypeID,
+            const std::string &payoffID,
+            const double &strike,
+            const std::string &exerciseID,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engineID,
+            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(
                 continuousAveragingAsianOption_);
@@ -37,7 +47,20 @@ namespace QuantLibAddin {
 
     class DiscreteAveragingAsianOption : public ObjHandler::Object {
     public:
-        DiscreteAveragingAsianOption(ObjHandler::ArgumentStack &args);
+        DiscreteAveragingAsianOption(
+            const std::string &handleBlackScholes,
+            const std::string &averageID,
+            const double &runningAccumulator,
+            const long &pastFixings,
+            const std::vector < long > &fixingDates,
+            const std::string &optionTypeID,
+            const std::string &payoffID,
+            const double &strike,
+            const std::string &exerciseID,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engineID,
+            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(
                 discreteAveragingAsianOption_);

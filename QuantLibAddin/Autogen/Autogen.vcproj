@@ -86,49 +86,58 @@
 			Name="stubs"
 			Filter="stub.*">
 			<File
-				RelativePath="stub.C.body">
+				RelativePath="stub.c.constructor">
 			</File>
 			<File
-				RelativePath="stub.C.includes">
+				RelativePath="stub.c.member">
 			</File>
 			<File
-				RelativePath="stub.Calc.body">
+				RelativePath="stub.c.includes">
 			</File>
 			<File
-				RelativePath="stub.Calc.idlfoot">
+				RelativePath="stub.calc.constructor">
 			</File>
 			<File
-				RelativePath="stub.Calc.idlfunc">
+				RelativePath="stub.calc.member">
 			</File>
 			<File
-				RelativePath="stub.Calc.idlhead">
+				RelativePath="stub.calc.idlfoot">
 			</File>
 			<File
-				RelativePath="stub.Calc.includes">
+				RelativePath="stub.calc.idlfunc">
 			</File>
 			<File
-				RelativePath="stub.Calc.map">
+				RelativePath="stub.calc.idlhead">
+			</File>
+			<File
+				RelativePath="stub.calc.includes">
+			</File>
+			<File
+				RelativePath="stub.calc.map">
 			</File>
 			<File
 				RelativePath="stub.copyright">
 			</File>
 			<File
-				RelativePath="stub.Doxygen.enums">
+				RelativePath="stub.doxygen.enums">
 			</File>
 			<File
-				RelativePath="stub.Doxygen.functions">
+				RelativePath="stub.doxygen.functions">
 			</File>
 			<File
-				RelativePath="stub.Excel.body">
+				RelativePath="stub.excel.constructor">
 			</File>
 			<File
-				RelativePath="stub.Excel.includes">
+				RelativePath="stub.excel.member">
 			</File>
 			<File
-				RelativePath="stub.Excel.regheader">
+				RelativePath="stub.excel.includes">
 			</File>
 			<File
-				RelativePath="stub.Qla.includes">
+				RelativePath="stub.excel.regheader">
+			</File>
+			<File
+				RelativePath="stub.qla.includes">
 			</File>
 		</Filter>
 		<Filter

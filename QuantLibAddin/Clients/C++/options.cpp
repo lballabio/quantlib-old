@@ -28,9 +28,9 @@ using namespace QuantLibAddin;
 
 int main() {
     try {
-        OH_LOGFILE("quantlib.log");
-        OH_CONSOLE(1);
-        OH_LOG_MESSAGE("begin options test");
+        setLogFile("quantlib.log");
+        setConsole(1);
+        logMessage("begin options test");
 
         double dividendYield = 0.00;
         double riskFreeRate = 0.06;
@@ -42,88 +42,88 @@ int main() {
         Date settlementDate(13, March, 2019);
         Date todaysDate(13, March, 2005);
 
-        ArgumentStack a0;
-        a0.push(settlementDate.serialNumber()); // settlement date as long
-        a0.push(volatility);                    // volatility
-        a0.push(string("Actual360"));           // daycount convention
-        OH_MAKE_OBJECT(QuantLibAddin::BlackConstantVol, "blackConstantVol", a0);
+        obj_ptr blackConstantVol(new QuantLibAddin::BlackConstantVol(
+            settlementDate.serialNumber(),      // settlement date as long
+            volatility,                         // volatility
+            "Actual360"));                      // daycount convention
+        storeObject("my_blackconstantvol", blackConstantVol);
 
-        ArgumentStack a1;
-        a1.push(string("blackConstantVol"));// black constant vol handle
-        a1.push(underlying);                // underlying
-        a1.push(string("Actual360"));       // daycount convention
-        a1.push(settlementDate.serialNumber()); // settlement date as long
-        a1.push(riskFreeRate);              // risk free rate
-        a1.push(dividendYield);             // dividend yield
-        OH_MAKE_OBJECT(QuantLibAddin::BlackScholesProcess, "stochasticProcess", a1);
-        OH_LOG_OBJECT("stochasticProcess");
+        obj_ptr blackScholesProcess(new QuantLibAddin::BlackScholesProcess(
+            "my_blackconstantvol",              // black constant vol handle
+            underlying,                         // underlying
+            "Actual360",                        // daycount convention
+            settlementDate.serialNumber(),      // settlement date as long
+            riskFreeRate,                       // risk free rate
+            dividendYield));                    // dividend yield
+        storeObject("my_blackscholesprocess", blackScholesProcess);
+        logObject("my_blackscholesprocess");
 
-        ArgumentStack a2;
-        a2.push(string("stochasticProcess"));// stochastic process handle
-        a2.push(string("Put"));             // option type
-        a2.push(string("Vanilla"));         // payoff type
-        a2.push(strike);                    // strike price
-        a2.push(string("American"));        // exercise type
-        a2.push(exerciseDate.serialNumber()); // exercise date
-        a2.push(settlementDate.serialNumber()); // settlement date
-        a2.push(string("JR"));              // engine type (jarrow rudd)
-        a2.push(timeSteps);                 // time steps
-        OH_MAKE_OBJECT(QuantLibAddin::VanillaOption, "vanillaOption", a2);
-        OH_LOG_OBJECT("vanillaOption");
+        obj_ptr vanillaOption(new QuantLibAddin::VanillaOption(
+            "my_blackscholesprocess",           // stochastic process handle
+            "Put",                              // option type
+            "Vanilla",                          // payoff type
+            strike,                             // strike price
+            "American",                         // exercise type
+            exerciseDate.serialNumber(),        // exercise date
+            settlementDate.serialNumber(),      // settlement date
+            "JR",                               // engine type (jarrow rudd)
+            timeSteps));                        // time steps
+        storeObject("my_vanillaOption", vanillaOption);
+        logObject("my_vanillaOption");
 
-        ArgumentStack a3;
-        a3.push(string("stochasticProcess"));// stochastic process handle
-        a3.push(string("Geometric"));       // average type
-        a3.push(string("Put"));             // option type
-        a3.push(string("Vanilla"));         // payoff type
-        a3.push(strike);                    // strike price
-        a3.push(string("European"));        // exercise type
-        a3.push(exerciseDate.serialNumber()); // exercise date
-        a3.push(0l);                        // settlement date ignored when exercise = European
-        a3.push(string("ACGAPA"));          // engine type (AnalyticContinuousGeometricAveragePriceAsianEngine)
-        a3.push(timeSteps);                 // time steps
-        OH_MAKE_OBJECT(QuantLibAddin::ContinuousAveragingAsianOption, "continuous", a3);
-        OH_LOG_OBJECT("continuous");
+        obj_ptr continuousAveragingAsianOption(new QuantLibAddin::ContinuousAveragingAsianOption(
+            "my_blackscholesprocess",           // stochastic process handle
+            "Geometric",                        // average type
+            "Put",                              // option type
+            "Vanilla",                          // payoff type
+            strike,                             // strike price
+            "European",                         // exercise type
+            exerciseDate.serialNumber(),        // exercise date
+            0,                                  // settlement date ignored when exercise = European
+            "ACGAPA",                           // engine type (AnalyticContinuousGeometricAveragePriceAsianEngine)
+            timeSteps));                        // time steps
+        storeObject("my_continuous", continuousAveragingAsianOption);
+        logObject("my_continuous");
 
         vector < long > fixingDates;
         for (int i = 0; i < exerciseDate - todaysDate + 1; i++)
             fixingDates.push_back(todaysDate.serialNumber() + i);
-        ArgumentStack a4;
-        a4.push(string("stochasticProcess"));// stochastic process handle
-        a4.push(string("Geometric"));       // average type
-        a4.push(1.0);                       // running accumulator
-        a4.push(0l);                        // past fixings
-        a4.push(fixingDates);               // fixingDates
-        a4.push(string("Put"));             // option type
-        a4.push(string("Vanilla"));         // payoff type
-        a4.push(strike);                    // strike price
-        a4.push(string("European"));        // exercise type
-        a4.push(exerciseDate.serialNumber()); // exercise date
-        a4.push(0l);                        // settlement date ignored when exercise = European
-        a4.push(string("ADGAPA"));          // engine type (AnalyticDiscreteGeometricAveragePriceAsianEngine)
-        a4.push(timeSteps);                 // time steps
-        OH_MAKE_OBJECT(QuantLibAddin::DiscreteAveragingAsianOption, "discrete", a4);
-        OH_LOG_OBJECT("discrete");
+        obj_ptr discreteAveragingAsianOption(new QuantLibAddin::DiscreteAveragingAsianOption(
+            "my_blackscholesprocess",           // stochastic process handle
+            "Geometric",                        // average type
+            1.0,                                // running accumulator
+            0,                                  // past fixings
+            fixingDates,                        // fixingDates
+            "Put",                              // option type
+            "Vanilla",                          // payoff type
+            strike,                             // strike price
+            "European",                         // exercise type
+            exerciseDate.serialNumber(),        // exercise date
+            0,                                  // settlement date ignored when exercise = European
+            "ADGAPA",                           // engine type (AnalyticDiscreteGeometricAveragePriceAsianEngine)
+            timeSteps));                        // time steps
+        storeObject("my_discrete", discreteAveragingAsianOption);
+        logObject("my_discrete");
 
-        ArgumentStack a5;
-        a5.push(string("stochasticProcess"));// stochastic process handle
-        a5.push(string("DownIn"));          // barrier type
-        a5.push(35.0);                      // barrier
-        a5.push(3.0);                       // rebate
-        a5.push(string("Put"));             // option type
-        a5.push(string("Vanilla"));         // payoff type
-        a5.push(strike);                    // strike price
-        a5.push(string("European"));        // exercise type
-        a5.push(exerciseDate.serialNumber()); // exercise date
-        a5.push(0l);                        // settlement date ignored when exercise = European
-        a5.push(string("AB"));              // engine type (AnalyticBarrierEngine)
-        a5.push(timeSteps);                 // time steps
-        OH_MAKE_OBJECT(QuantLibAddin::BarrierOption, "barrierOption", a5);
-        OH_LOG_OBJECT("barrierOption");
+        obj_ptr barrierOption(new QuantLibAddin::BarrierOption(
+            "my_blackscholesprocess",           // stochastic process handle
+            "DownIn",                           // barrier type
+            35.0,                               // barrier
+            3.0,                                // rebate
+            "Put",                              // option type
+            "Vanilla",                          // payoff type
+            strike,                             // strike price
+            "European",                         // exercise type
+            exerciseDate.serialNumber(),        // exercise date
+            0,                                  // settlement date ignored when exercise = European
+            "AB",                               // engine type (AnalyticBarrierEngine)
+            timeSteps));                        // time steps
+        storeObject("my_barrierOption", barrierOption);
+        logObject("my_barrierOption");
 
         vector < string > stochHandles;
-        stochHandles.push_back("stochasticProcess");
-        stochHandles.push_back("stochasticProcess");
+        stochHandles.push_back("my_blackscholesprocess");
+        stochHandles.push_back("my_blackscholesprocess");
         vector < vector < double > >correlations;
         vector < double > row1, row2;
         row1.push_back(1.0);
@@ -132,33 +132,32 @@ int main() {
         row2.push_back(1.0);
         correlations.push_back(row1);
         correlations.push_back(row2);
-
-        ArgumentStack a6;
-        a6.push(stochHandles);              // vector of stochastic process handles
-        a6.push(string("Min"));             // basket type
-        a6.push(correlations);              // correlations matrix
-        a6.push(string("Call"));            // option type
-        a6.push(strike);                    // strike price
-        a6.push(string("European"));        // exercise type
-        a6.push(exerciseDate.serialNumber()); // exercise date
-        a6.push(0l);                        // settlement date ignored when exercise = European
-        a6.push(string("SE"));              // engine type (StulzEngine)
-        a6.push(timeSteps);                 // time steps
-        OH_MAKE_OBJECT(QuantLibAddin::BasketOption, "basketOption", a6);
-        OH_LOG_OBJECT("basketOption");
+        obj_ptr basketOption(new QuantLibAddin::BasketOption(
+            stochHandles,                       // vector of stochastic process handles
+            "Min",                              // basket type
+            correlations,                       // correlations matrix
+            "Call",                             // option type
+            strike,                             // strike price
+            "European",                         // exercise type
+            exerciseDate.serialNumber(),        // exercise date
+            0,                                  // settlement date ignored when exercise = European
+            "SE",                               // engine type (StulzEngine)
+            timeSteps));                        // time steps
+        storeObject("my_basketOption", basketOption);
+        logObject("my_basketOption");
 
         vector < long > resetDates;
         resetDates.push_back(Date(12, March, 2020).serialNumber());
-        ArgumentStack a7;
-        a7.push(string("stochasticProcess"));// stochastic process handle
-        a7.push(resetDates);                // reset dates
-        a7.push(string("Put"));             // option type
-        a7.push(strike);                    // strike price
-        a7.push(exerciseDate.serialNumber()); // exercise date
-        a7.push(string("AC"));              // engine type (AnalyticCliquetEngine)
-        a7.push(timeSteps);                 // time steps
-        OH_MAKE_OBJECT(QuantLibAddin::CliquetOption, "cliquetOption", a7);
-        OH_LOG_OBJECT("cliquetOption");
+        obj_ptr cliquetOption(new QuantLibAddin::CliquetOption(
+            "my_blackscholesprocess",           // stochastic process handle
+            resetDates,                         // reset dates
+            "Put",                              // option type
+            strike,                             // strike price
+            exerciseDate.serialNumber(),        // exercise date
+            "AC",                               // engine type (AnalyticCliquetEngine)
+            timeSteps));                        // time steps
+        storeObject("my_cliquetOption", cliquetOption);
+        logObject("my_cliquetOption");
 
         vector < long > dividendDates;
         dividendDates.push_back(Date(13, September, 2019).serialNumber());
@@ -167,47 +166,47 @@ int main() {
         dividends.push_back(5.);
         dividends.push_back(5.);
 
-        ArgumentStack a8;
-        a8.push(string("stochasticProcess"));          // stochastic process handle
-        a8.push(dividendDates);             // dividend dates
-        a8.push(dividends);                 // dividends
-        a8.push(string("Call"));            // option type
-        a8.push(string("Vanilla"));         // payoff type
-        a8.push(10.0);                      // strike price
-        a8.push(string("European"));        // exercise type
-        a8.push(exerciseDate.serialNumber()); // exercise date
-        a8.push(0l);                        // settlement date ignored when exercise = European
-        a8.push(string("ADE"));             // engine type (AnalyticDividendEuropeanEngine)
-        a8.push(timeSteps);                 // time steps
-        OH_MAKE_OBJECT(QuantLibAddin::DividendVanillaOption, "dividendVanillaOption", a8);
-        OH_LOG_OBJECT("dividendVanillaOption");
+        obj_ptr dividendVanillaOption(new QuantLibAddin::DividendVanillaOption(
+            "my_blackscholesprocess",           // stochastic process handle
+            dividendDates,                      // dividend dates
+            dividends,                          // dividends
+            "Call",                             // option type
+            "Vanilla",                          // payoff type
+            10.0,                               // strike price
+            "European",                         // exercise type
+            exerciseDate.serialNumber(),        // exercise date
+            0,                                  // settlement date ignored when exercise = European
+            "ADE",                              // engine type (AnalyticDividendEuropeanEngine)
+            timeSteps));                        // time steps
+        storeObject("my_dividendVanillaOption", dividendVanillaOption);
+        logObject("my_dividendVanillaOption");
 
         long resetDate = exerciseDate.serialNumber() - 90;
 
-        ArgumentStack a9;
-        a9.push(string("stochasticProcess"));          // stochastic process handle
-        a9.push(12.);                       // moneyness
-        a9.push(resetDate);                 // reset date
-        a9.push(string("Put"));             // option type
-        a9.push(string("Vanilla"));         // payoff type (plain vanilla)
-        a9.push(strike);                    // strike price
-        a9.push(string("European"));        // exercise type
-        a9.push(exerciseDate.serialNumber()); // exercise date
-        a9.push(0l);                        // settlement date ignored when exercise = European
-        a9.push(string("FE"));              // engine type (ForwardEngine)
-        a9.push(timeSteps);                 // time steps
-        OH_MAKE_OBJECT(QuantLibAddin::ForwardVanillaOption, "forwardVanillaOption", a9);
-        OH_LOG_OBJECT("forwardVanillaOption");
+        obj_ptr forwardVanillaOption(new QuantLibAddin::ForwardVanillaOption(
+            "my_blackscholesprocess",           // stochastic process handle
+            12,                                 // moneyness
+            resetDate,                          // reset date
+            "Put",                              // option type
+            "Vanilla",                          // payoff type (plain vanilla)
+            strike,                             // strike price
+            "European",                         // exercise type
+            exerciseDate.serialNumber(),        // exercise date
+            0,                                  // settlement date ignored when exercise = European
+            "FE",                               // engine type (ForwardEngine)
+            timeSteps));                        // time steps
+        storeObject("my_forwardVanillaOption", forwardVanillaOption);
+        logObject("my_forwardVanillaOption");
 
-        OH_LOG_MESSAGE("end options test");
+        logMessage("end options test");
         return 0;
     } catch (const exception &e) {
         ostringstream s;
         s << "Error: " << e.what();
-        OH_LOG_MESSAGE(s.str(), 1);
+        logMessage(s.str(), 1);
         return 1;
     } catch (...) {
-        OH_LOG_MESSAGE("unknown error", 1);
+        logMessage("unknown error", 1);
         return 1;
     }
 }

@@ -1,5 +1,5 @@
 
-SUBDIRS = oh Example Docs
+SUBDIRS = oh Examples/C++ Docs
 
 #    makefile.mak
 #    ObjectHandler.dev
@@ -10,13 +10,13 @@ EXTRA_DIST = \
     Contributors.txt \
     LICENSE.TXT \
     NEWS.txt \
-    ObjectHandler.dsp \
     ObjectHandler.dsw \
     ObjectHandler.nsi \
     ObjectHandler.sln \
     ObjectHandler_vc8.sln \
-    ObjectHandler_vc8.vcproj \
-    ObjectHandler.vcproj \
+    lib.dsp \
+    lib.vcproj \
+    lib_vc8.vcproj \
     README.txt \
     TODO.txt
 

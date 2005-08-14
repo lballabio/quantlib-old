@@ -18,17 +18,19 @@
 #ifndef qla_utilities_h
 #define qla_utilities_h
 
+#undef QL_VERSION
+
 const char *QL_VERSION();
 
-const char *QL_OH_VERSION();
+const char *OH_VERSION();
 
-const char *QL_LOGFILE(
+const char *OH_SET_LOGFILE(
     const char *logFileName);
 
-void QL_CONSOLE(
+void OH_CONSOLE(
     const long console);
 
-void QL_LOG_MESSAGE(
+void OH_LOG_MESSAGE(
     const char *fmt,
     ...);
 
@@ -36,6 +38,13 @@ int QL_LIST_REGISTERED_ENUMS(
     char **result);
 
 int QL_LIST_ENUM(
+    char *enumId,
+    char **result);
+
+int QL_LIST_REGISTERED_TYPES(
+    char **result);
+
+int QL_LIST_TYPE(
     char *enumId,
     char **result);
 

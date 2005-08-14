@@ -25,11 +25,55 @@ namespace QuantLibAddin {
 
     class VanillaOption : public ObjHandler::Object {
     public:
-        VanillaOption(ObjHandler::ArgumentStack &args);
-    //    ~VanillaOption();
+        VanillaOption(
+            const std::string &handleBlackScholes,
+            const std::string &optionTypeID,
+            const std::string &payoffID,
+            const double &strike,
+            const std::string &exerciseID,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engineID,
+            const long &timeSteps);
         const ObjHandler::Properties& setEngine(
             const std::string &engineName,
             const long &timeSteps);
+        virtual boost::shared_ptr<void> getReference() const {
+            return boost::static_pointer_cast<void>(vanillaOption_);
+        }
+    private:
+        boost::shared_ptr<QuantLib::VanillaOption> vanillaOption_;
+    };
+
+    class VanillaOption2 : public ObjHandler::Object {
+    public:
+        VanillaOption2(
+        const double &underlying,
+        const long &settlementDateLong,
+        const long &exerciseDateLong,
+        const double &riskFreeRate,
+        const double &dividendYield,
+        const double &volatility,
+        const double &strike,
+        const long &timeSteps);
+        virtual boost::shared_ptr<void> getReference() const {
+            return boost::static_pointer_cast<void>(vanillaOption_);
+        }
+    private:
+        boost::shared_ptr<QuantLib::VanillaOption> vanillaOption_;
+    };
+
+    class VanillaOption3 : public ObjHandler::Object {
+    public:
+        VanillaOption3(
+        const double &underlying,
+        const long &settlementDateLong,
+        const long &exerciseDateLong,
+        const double &riskFreeRate,
+        const double &dividendYield,
+        const double &volatility,
+        const double &strike,
+        const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(vanillaOption_);
         }

@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
@@ -28,18 +29,18 @@
 namespace QuantLibAddin {
 	QuantLib::Date make_date(long d) { return QuantLib::Date(d); }
 
-	Xibor::Xibor(ObjHandler::ArgumentStack& arguments) {
-        std::vector<double> fixings = OH_POP_ARGUMENT(std::vector<double>, arguments);
-        std::vector<long> lDates = OH_POP_ARGUMENT(std::vector<long>, arguments);
-		std::string fwdCurveId = OH_POP_ARGUMENT(std::string, arguments);
-		long fixingDays = OH_POP_ARGUMENT(long, arguments);
-		std::string fltDayCounterID = OH_POP_ARGUMENT(std::string, arguments);
-		std::string fltBDCID = OH_POP_ARGUMENT(std::string, arguments);
-		std::string calendarID = OH_POP_ARGUMENT(std::string, arguments);
-        std::string timeUnitsID = OH_POP_ARGUMENT(std::string, arguments);
-        long tenor = OH_POP_ARGUMENT(long, arguments);
-		std::string crrID = OH_POP_ARGUMENT(std::string, arguments);
-		std::string indexName = OH_POP_ARGUMENT(std::string, arguments);
+	Xibor::Xibor(
+            const std::string &indexName,
+		    const std::string &crrID,
+            const long &tenor,
+            const std::string &timeUnitsID,
+		    const std::string &calendarID,
+		    const std::string &fltBDCID,
+		    const std::string &fltDayCounterID,
+		    const long &fixingDays,
+		    const std::string &fwdCurveId,
+            const std::vector<long> &lDates,
+            const std::vector<double> &fixings) {
 
 		QuantLib::DayCounter fltDayCounter = Create<QuantLib::DayCounter>()(fltDayCounterID);
 		QuantLib::BusinessDayConvention fltBDC = 

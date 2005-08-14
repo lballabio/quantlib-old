@@ -238,7 +238,7 @@ class ParameterDeclare(ParameterList):
 
 class ParameterPass(ParameterList):
     convExceptionsMap = { 
-        'QuantLib::Date': lambda x: 'createQLDate(%s)' % x,
+        'QuantLib::Date': lambda x: 'QuantLibAddin::createQLDate(%s)' % x,
         'Date': lambda x: 'createQLDate(%s)' % x
     }
     def __init__(self,
@@ -304,7 +304,7 @@ class ParameterPass(ParameterList):
             if ParameterPass.convExceptionsMap.has_key(typeConversion):
                 self.item = ParameterPass.convExceptionsMap[typeConversion](self.item)
             else:
-                self.item = 'Create<%s>()(%s)' % (typeConversion, self.item)
+                self.item = 'QuantLibAddin::Create<%s>()(%s)' % (typeConversion, self.item)
 
     def wrapArgument(self):
         'wrap entire parameter definition in a conversion string if provided'

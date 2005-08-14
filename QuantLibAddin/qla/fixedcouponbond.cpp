@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
 
@@ -28,21 +29,21 @@
 
 namespace QuantLibAddin {
 
-    FixedCouponBond::FixedCouponBond(ObjHandler::ArgumentStack& arguments) {
-        std::string discCurveId      = OH_POP_ARGUMENT(std::string, arguments);
-        bool longFinal               = OH_POP_ARGUMENT(bool, arguments);
-        bool startFromEnd            = OH_POP_ARGUMENT(bool, arguments);
-        std::string calendarID       = OH_POP_ARGUMENT(std::string, arguments);
-        std::string bDayConvID       = OH_POP_ARGUMENT(std::string, arguments);
-        std::string dayCounterID     = OH_POP_ARGUMENT(std::string, arguments);
-        std::string frequencyID      = OH_POP_ARGUMENT(std::string, arguments);
-        double redemption            = OH_POP_ARGUMENT(double, arguments);
-        std::vector<double> nominals = OH_POP_ARGUMENT(std::vector<double>, arguments);
-        std::vector<double> coupons  = OH_POP_ARGUMENT(std::vector<double>, arguments);
-        long settlementDays          = OH_POP_ARGUMENT(long, arguments);
-        long maturityDate            = OH_POP_ARGUMENT(long, arguments);
-        long datedDate               = OH_POP_ARGUMENT(long, arguments);
-        long issueDate               = OH_POP_ARGUMENT(long, arguments);
+    FixedCouponBond::FixedCouponBond(
+            const long &issueDate,
+            const long &datedDate,
+            const long &maturityDate,
+            const long &settlementDays,
+            const std::vector<double> &coupons,
+            const std::vector<double> &nominals,
+            const double &redemption,
+            const std::string &frequencyID,
+            const std::string &dayCounterID,
+            const std::string &bDayConvID,
+            const std::string &calendarID,
+            const bool &startFromEnd,
+            const bool &longFinal,
+            const std::string &discCurveId) {
 
         QuantLib::Frequency couponFrequency = Create<QuantLib::Frequency>()(frequencyID);
         QuantLib::DayCounter dayCounter     = Create<QuantLib::DayCounter>()(dayCounterID);

@@ -7,46 +7,12 @@
 <functions>
 
 <function>
-<name>QL_DELETE_ALL_OBJECTS</name>
-<codename>qlDeleteAllObjects</codename>
-<desc>delete all objects from repository</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<parameters></parameters>
-<returnval>
-    <type>bool</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>success/failure</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_DELETE_OBJECT</name>
-<codename>qlDeleteObject</codename>
-<desc>delete object from repository</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<parameters>
-    <param>
-        <name>handleObject</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of object to be deleted</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>bool</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>success/failure</desc>
-</returnval>
-</function>
-
-<function>
 <name>QL_DEPENDS_ON</name>
 <codename>qlDependsOn</codename>
 <desc>force a dependency between two QuantLibAddin functions</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
+<platforms>EO</platforms>
 <parameters>
     <param>
         <name>dummy0</name>
@@ -113,27 +79,6 @@
     <type>bool</type>
     <tensorrank>scalar</tensorrank>
     <desc>success/failure</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_FIELD_NAMES</name>
-<codename>qlFieldNames</codename>
-<desc>retrieve the field names of a given object</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<parameters>
-    <param>
-        <name>handleObject</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of object to be queried</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>any</type>
-    <tensorrank>vector</tensorrank>
-    <desc>list of fieldnames for queried object</desc>
 </returnval>
 </function>
 
@@ -208,11 +153,26 @@
 </function>
 
 <function>
-<name>QL_LOG_ALL_OBJECTS</name>
-<codename>qlLogAllObjects</codename>
-<desc>write all object descriptions to log file</desc>
+<name>QL_VERSION</name>
+<codename>qlVersion</codename>
+<desc>returns the version number of QuantLib</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
+<parameters></parameters>
+<returnval>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>QuantLib version number</desc>
+</returnval>
+</function>
+
+<function>
+<name>OH_DELETE_ALL_OBJECTS</name>
+<codename>qlDeleteAllObjects</codename>
+<desc>delete all objects from repository</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<platforms>GO</platforms>
 <parameters></parameters>
 <returnval>
     <type>bool</type>
@@ -222,11 +182,71 @@
 </function>
 
 <function>
-<name>QL_LOG_MESSAGE</name>
+<name>OH_DELETE_OBJECT</name>
+<codename>qlDeleteObject</codename>
+<desc>delete object from repository</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<platforms>GO</platforms>
+<parameters>
+    <param>
+        <name>handleObject</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of object to be deleted</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>bool</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>success/failure</desc>
+</returnval>
+</function>
+
+<function>
+<name>OH_FIELD_NAMES</name>
+<codename>qlFieldNames</codename>
+<desc>retrieve the field names of a given object</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<platforms>GO</platforms>
+<parameters>
+    <param>
+        <name>handleObject</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of object to be queried</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>any</type>
+    <tensorrank>vector</tensorrank>
+    <desc>list of fieldnames for queried object</desc>
+</returnval>
+</function>
+
+<function>
+<name>OH_LOG_ALL_OBJECTS</name>
+<codename>qlLogAllObjects</codename>
+<desc>write all object descriptions to log file</desc>
+<constructor>false</constructor>
+<qlfunction></qlfunction>
+<platforms>GO</platforms>
+<parameters></parameters>
+<returnval>
+    <type>bool</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>success/failure</desc>
+</returnval>
+</function>
+
+<function>
+<name>OH_LOG_MESSAGE</name>
 <codename>qlLogMessage</codename>
 <desc>log a message</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
+<platforms>GO</platforms>
 <parameters>
     <param>
         <name>logMessage</name>
@@ -249,11 +269,12 @@
 </function>
 
 <function>
-<name>QL_LOG_OBJECT</name>
+<name>OH_LOG_OBJECT</name>
 <codename>qlLogObject</codename>
 <desc>write object description to log file</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
+<platforms>GO</platforms>
 <parameters>
     <param>
         <name>handleObject</name>
@@ -270,11 +291,12 @@
 </function>
 
 <function>
-<name>QL_LOGFILE</name>
-<codename>qlLogfile</codename>
+<name>OH_SET_LOGFILE</name>
+<codename>qlSetLogfile</codename>
 <desc>begin logging to named file</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
+<platforms>GO</platforms>
 <parameters>
     <param>
         <name>logFileName</name>
@@ -297,11 +319,12 @@
 </function>
 
 <function>
-<name>QL_LOGLEVEL</name>
-<codename>qlLogLevel</codename>
+<name>OH_SET_LOGLEVEL</name>
+<codename>qlSetLogLevel</codename>
 <desc>set threshold for log messages</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
+<platforms>GO</platforms>
 <parameters>
     <param>
         <name>logLevel</name>
@@ -318,11 +341,12 @@
 </function>
 
 <function>
-<name>QL_OH_VERSION</name>
+<name>OH_VERSION</name>
 <codename>qlOhVersion</codename>
 <desc>returns the version number of ObjectHandler</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
+<platforms>GO</platforms>
 <parameters></parameters>
 <returnval>
     <type>string</type>
@@ -332,11 +356,12 @@
 </function>
 
 <function>
-<name>QL_VALUE</name>
-<codename>qlValue</codename>
+<name>OH_FIELD_VALUE</name>
+<codename>qlFieldValue</codename>
 <desc>retrieve the value of a named field</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
+<platforms>GO</platforms>
 <parameters>
     <param>
         <name>handleObject</name>
@@ -355,20 +380,6 @@
     <type>any</type>
     <tensorrank>matrix</tensorrank>
     <desc>value of named field</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_VERSION</name>
-<codename>qlVersion</codename>
-<desc>returns the version number of QuantLib</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<parameters></parameters>
-<returnval>
-    <type>string</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>QuantLib version number</desc>
 </returnval>
 </function>
 

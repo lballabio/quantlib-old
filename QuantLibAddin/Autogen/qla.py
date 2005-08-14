@@ -28,7 +28,7 @@ import params
 ENUM_END   = '        );\n\n'
 ENUM_LINE  = '            MAP("%s", %s);\n'
 ENUM_START = '        REG_ENUM(%s,\n'
-INCLUDES   = 'stub.Qla.includes'
+INCLUDES   = 'stub.qla.includes'
 
 def generateEnum(fileEnum, enumDef):
     fileEnum.write(ENUM_START % enumDef[common.CLASS])

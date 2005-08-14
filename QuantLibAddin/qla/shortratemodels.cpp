@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -24,20 +25,20 @@
 
 namespace QuantLibAddin {
     
-    Vasicek::Vasicek(ObjHandler::ArgumentStack& arguments) {
-        double sigma    = OH_POP_ARGUMENT(double, arguments);
-        double lambda   = OH_POP_ARGUMENT(double, arguments);
-        double b        = OH_POP_ARGUMENT(double, arguments);
-        double a        = OH_POP_ARGUMENT(double, arguments);
+    Vasicek::Vasicek(
+            const double &a,
+            const double &b,
+            const double &lambda,
+            const double &sigma) {
         
         model_ = boost::shared_ptr<QuantLib::Vasicek>(
             new QuantLib::Vasicek(a, b, lambda, sigma));
     }
     
-    HullWhite::HullWhite(ObjHandler::ArgumentStack& arguments) {
-        double sigma                        = OH_POP_ARGUMENT(double, arguments);
-        double a                            = OH_POP_ARGUMENT(double, arguments);
-        std::string handleTermStructure     = OH_POP_ARGUMENT(std::string, arguments);
+    HullWhite::HullWhite(
+            const std::string &handleTermStructure,
+            const double &a,
+            const double &sigma) {
         
         boost::shared_ptr<YieldTermStructure> termStructure =
             OH_GET_OBJECT(YieldTermStructure, handleTermStructure);

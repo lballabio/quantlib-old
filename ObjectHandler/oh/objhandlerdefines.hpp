@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2004 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
@@ -15,13 +16,27 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef objhandler_defines_h
-#define objhandler_defines_h
+#ifndef oh_objhandlerdefines_hpp
+#define oh_objhandlerdefines_hpp
+
+#ifdef XLL_EXPORTS
+#define DLL_API __declspec(dllexport)
+#define COMPILING_XLL
+#elif XLL_IMPORTS
+#define DLL_API __declspec(dllimport)
+#define COMPILING_XLL
+#else
+#define DLL_API
+#endif
 
 #include <boost/config.hpp>
 #include <boost/version.hpp>
 #if BOOST_VERSION < 103100
     #error using an old version of Boost, please update.
+#endif
+
+#if (_MSC_VER == 1200)
+#  define OBJHANDLER_PATCH_MSVC6
 #endif
 
 //! version string
@@ -35,13 +50,6 @@
 #define OBJHANDLER_HEX_VERSION 0x000101f0
 //! version string for output lib name
 #define OBJHANDLER_LIB_VERSION "0_1_1"
-
-/* Use BOOST_MSVC instead of _MSC_VER since some other vendors 
-   (Metrowerks, for example) also #define _MSC_VER
-*/
-#if defined BOOST_MSVC       // Microsoft Visual C++
-#  include <oh/autolink.hpp>
-#endif
 
 #include <cctype>
 #if defined(BOOST_NO_STDC_NAMESPACE)

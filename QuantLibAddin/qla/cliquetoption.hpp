@@ -25,8 +25,14 @@ namespace QuantLibAddin {
 
     class CliquetOption : public ObjHandler::Object {
     public:
-        CliquetOption::CliquetOption(ObjHandler::ArgumentStack &args);
-    //    ~CliquetOption();
+        CliquetOption::CliquetOption(
+            const std::string &handleBlackScholes,
+            const std::vector < long > &resetDates,
+            const std::string &optionTypeID,
+            const double &strike,
+            const long &exerciseDate,
+            const std::string &engineID,
+            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(cliquetOption_);
         }

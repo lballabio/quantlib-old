@@ -10,6 +10,7 @@ endif
 
 libQuantLibAddinGuile_la_LIBADD = ../../qla/libQuantLibAddin.la
 
+if BUILD_GUILE
 noinst_HEADERS = \
     capfloor.h \
     extra.h \
@@ -23,6 +24,7 @@ noinst_HEADERS = \
     utilities.h \
     volatilities.h \
     xibor.h
+endif
 
 if BUILD_GUILE
 libQuantLibAddinGuile_la_SOURCES = \

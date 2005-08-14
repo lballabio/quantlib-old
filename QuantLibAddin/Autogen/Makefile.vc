@@ -1,0 +1,63 @@
+# QuantLibAddin\Autogen\Makefile.msdev
+
+COMPONENT_NAME=Autogen
+INT_DIR=build\vc6
+FLAG1=$(INT_DIR)\$(COMPONENT_NAME).flag1
+STUBS=stub.c.constructor \
+    stub.c.member \
+	stub.c.includes \
+	stub.calc.constructor \
+	stub.calc.member \
+	stub.calc.idlfoot \
+	stub.calc.idlfunc \
+	stub.calc.idlhead \
+	stub.calc.includes \
+	stub.calc.map \
+	stub.copyright \
+	stub.doxygen.enums \
+	stub.doxygen.functions \
+	stub.excel.constructor \
+	stub.excel.member \
+	stub.excel.includes \
+	stub.excel.regheader \
+	stub.qla.includes
+SCRIPTS=autogen.py \
+	qla.py \
+	c.py \
+	calc.py \
+	common.py \
+	doxygen.py \
+	excel.py \
+	params.py \
+	parse.py \
+	utils.py
+METADATA= \
+	capfloor.xml \
+	enums.xml \
+	instruments.xml \
+	options.xml \
+	processes.xml \
+	shortratemodels.xml \
+	simpleswap.xml \
+	termstructures.xml \
+	utilities.xml \
+	volatilities.xml \
+	xibor.xml
+
+!IF "$(OS)" == "Windows_NT"
+NULL=
+!ELSE 
+NULL=nul
+!ENDIF
+
+ALL : $(FLAG1)
+
+"$(INT_DIR)" :
+    if not exist "$(INT_DIR)/$(NULL)" mkdir "$(INT_DIR)"
+
+$(FLAG1) : $(STUBS) $(SCRIPTS) $(METADATA) $(INT_DIR)
+	autogen.py -a
+	echo flagged > $@
+
+CLEAN :
+	-@ if EXIST "$(INT_DIR)\*"			del /f /q "$(INT_DIR)\*"

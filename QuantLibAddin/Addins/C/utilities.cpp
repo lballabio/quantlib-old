@@ -25,30 +25,27 @@ extern "C" {
 }
 #include <Addins/C/varies.hpp>
 
-using namespace ObjHandler;
-using namespace QuantLibAddin;
-
 const char *QL_VERSION() {
-    static std::string ret = QuantLibAddin::QL_VERSION();
+    static std::string ret = QuantLibAddin::qlVersion();
     return ret.c_str();
 }
 
-const char *QL_OH_VERSION() {
-    static std::string ret = QuantLibAddin::QL_OH_VERSION();
+const char *OH_VERSION() {
+    static std::string ret = ObjHandler::ohVersion();
     return ret.c_str();
 }
 
-const char *QL_LOGFILE(const char *logFileName) {
-    OH_LOGFILE(logFileName);
+const char *OH_SET_LOGFILE(const char *logFileName) {
+    ObjHandler::setLogFile(logFileName);
     static std::string ret(logFileName);
     return ret.c_str();
 }
 
-void QL_CONSOLE(const long console) {
-    OH_CONSOLE(console);
+void OH_CONSOLE(const long console) {
+    ObjHandler::setConsole(console);
 }
 
-void QL_LOG_MESSAGE(
+void OH_LOG_MESSAGE(
         const char *fmt,
         ...) {
     char buf[1000]; // FIXME
@@ -56,17 +53,17 @@ void QL_LOG_MESSAGE(
     va_start(list, fmt);
     vsprintf(buf, fmt, list);
     va_end(list);
-    OH_LOG_MESSAGE(buf);
+    ObjHandler::logMessage(buf);
 }
 
 int QL_LIST_REGISTERED_ENUMS(
         char **result) {
     try {
-        std::vector < std::string > returnValue = getRegisteredEnums();
+        std::vector < std::string > returnValue = QuantLibAddin::getRegisteredEnums();
         Conversion< std::string >::convertArray(returnValue, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("QL_LIST_REGISTERED_ENUMS Error: " + std::string(e.what()));
+        ObjHandler::logMessage("QL_LIST_REGISTERED_ENUMS Error: " + std::string(e.what()));
         result = 0;
         return FAIL;
     }
@@ -76,12 +73,12 @@ int QL_LIST_ENUM(
         char *enumId,
         char **result) {
     try {
-        std::vector < std::string > returnValue = getEnumMembers(
+        std::vector < std::string > returnValue = QuantLibAddin::getEnumMembers(
             std::string(enumId));
         Conversion< std::string >::convertArray(returnValue, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("QL_LIST_ENUM Error: " + std::string(e.what()));
+        ObjHandler::logMessage("QL_LIST_ENUM Error: " + std::string(e.what()));
         result = 0;
         return FAIL;
     }
@@ -90,11 +87,11 @@ int QL_LIST_ENUM(
 int QL_LIST_REGISTERED_TYPES(
         char **result) {
     try {
-        std::vector < std::string > returnValue = getRegisteredComplexTypes();
+        std::vector < std::string > returnValue = QuantLibAddin::getRegisteredComplexTypes();
         Conversion< std::string >::convertArray(returnValue, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("QL_LIST_REGISTERED_TYPES Error: " + std::string(e.what()));
+        ObjHandler::logMessage("QL_LIST_REGISTERED_TYPES Error: " + std::string(e.what()));
         result = 0;
         return FAIL;
     }
@@ -104,13 +101,14 @@ int QL_LIST_TYPE(
         char *enumId,
         char **result) {
     try {
-        std::vector < std::string > returnValue = getComplexTypeMembers(
+        std::vector < std::string > returnValue = QuantLibAddin::getComplexTypeMembers(
             std::string(enumId));
         Conversion< std::string >::convertArray(returnValue, result);
         return SUCCESS;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("QL_LIST_TYPE Error: " + std::string(e.what()));
+        ObjHandler::logMessage("QL_LIST_TYPE Error: " + std::string(e.what()));
         result = 0;
         return FAIL;
     }
 }
+

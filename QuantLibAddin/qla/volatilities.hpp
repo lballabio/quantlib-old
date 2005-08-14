@@ -35,12 +35,20 @@ namespace QuantLibAddin {
 
     class BlackConstantVol : public BlackVolTermStructure {
     public:
-        BlackConstantVol(ObjHandler::ArgumentStack &args);
+        BlackConstantVol(
+            const long &settlementDateLong,
+            const double &volatility,
+            const std::string &dayCounterID);
     };
 
     class BlackVarianceSurface : public BlackVolTermStructure {
     public:
-        BlackVarianceSurface(ObjHandler::ArgumentStack &args);
+        BlackVarianceSurface(
+            const long &settlementDate,
+            const std::vector < long > &dates,
+            const std::vector < double > &strikes,
+            const std::vector < std::vector < double > > &vols,
+            const std::string &dayCounterID);
     };
 
 }

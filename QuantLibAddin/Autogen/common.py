@@ -43,6 +43,7 @@ LONG        = 'long'
 MATRIX      = 'matrix'
 NAME        = 'name'
 PARAMS      = 'parameters'
+PLATFORMS   = 'platforms'
 PROPERTY    = 'property'
 QLFUNC      = 'qlfunction'
 RETVAL      = 'returnval'
@@ -50,23 +51,18 @@ SCALAR      = 'scalar'
 STRING      = 'string'
 TENSOR      = 'tensorrank'
 TRUE        = 'true'
-TYPE        = 'type'
 TYPE_CNV    = 'ql_type'
+TYPE        = 'type'
 VECTOR      = 'vector'
 
 # General
 
-ARGLINE         = 8 * ' ' + 'ArgumentStack args;\n'
-ADDIN_ROOT      = '../Addins/'
-MAKE_FUNCTION   = 'OH_MAKE_OBJECT'
-TEMPFILE        = '.new'
-MAKE_ARGS       = '\n\
-            QuantLibAddin::%s,\n\
-            %s,\n\
-            args'
-FUNC_BODY       = '\
-        boost::shared_ptr<QuantLibAddin::%s> objectPointer =\n\
-            OH_GET_OBJECT(QuantLibAddin::%s, %s);\n\
-        if (!objectPointer)\n\
-            QL_FAIL("%s: error retrieving object " + %s);\n'
+ADDIN_ROOT              = '../Addins/'
+PLATFORM_CALC           = 'O'
+PLATFORM_C              = 'C'
+PLATFORM_DOXYGEN        = 'D'
+PLATFORM_EXCEL          = 'E'
+PLATFORM_GUILE          = 'G'
+PLATFORM_QUANTLIBADDIN  = 'Q'
+TEMPFILE                = '.new'
 

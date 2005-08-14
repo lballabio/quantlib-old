@@ -22,11 +22,7 @@
 #ifndef oh_singleton_hpp
 #define oh_singleton_hpp
 
-// This header file depends on symbols defined in objhandlerdefines.hpp/autolink.hpp
-// - files normally intended only for external clients linking to ObjectHandler
-// - need to reorganize headers.
 #include <oh/objhandlerdefines.hpp>
-
 #include <boost/shared_ptr.hpp>
 
 namespace ObjHandler {

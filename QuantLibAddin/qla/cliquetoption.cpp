@@ -32,15 +32,14 @@
 
 namespace QuantLibAddin {
 
-    CliquetOption::CliquetOption(ObjHandler::ArgumentStack &arguments) {
-        long timeSteps                  = OH_POP_ARGUMENT(long, arguments);
-        std::string engineID            = OH_POP_ARGUMENT(std::string, arguments);
-        long exerciseDate               = OH_POP_ARGUMENT(long, arguments);
-        double strike                   = OH_POP_ARGUMENT(double, arguments);
-        std::string optionTypeID        = OH_POP_ARGUMENT(std::string, arguments);
-        std::vector < long > resetDates 
-            = OH_POP_ARGUMENT(std::vector < long >, arguments);
-        std::string handleBlackScholes  = OH_POP_ARGUMENT(std::string, arguments);
+    CliquetOption::CliquetOption(
+            const std::string &handleBlackScholes,
+            const std::vector < long > &resetDates,
+            const std::string &optionTypeID,
+            const double &strike,
+            const long &exerciseDate,
+            const std::string &engineID,
+            const long &timeSteps) {
 
         boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
             OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);

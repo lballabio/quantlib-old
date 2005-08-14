@@ -3,7 +3,7 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "Example"=".\Example\Example.dsp" - Package Owner=<4>
+Project: "ExampleCpp"=".\Examples\C++\ExampleCpp.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -12,13 +12,40 @@ Package=<5>
 Package=<4>
 {{{
     Begin Project Dependency
-    Project_Dep_Name ObjectHandler
+    Project_Dep_Name lib
     End Project Dependency
 }}}
 
 ###############################################################################
 
-Project: "ObjectHandler"=".\ObjectHandler.dsp" - Package Owner=<4>
+Project: "ExampleXLL"=".\Examples\xl\ExampleXLL.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name xll
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "lib"=".\lib.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "xll"=".\xl\xll.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{

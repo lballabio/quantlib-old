@@ -4,7 +4,7 @@
 
 # TARGTYPE "Win32 (x86) External Target" 0x0106
 
-CFG=Autogen - Win32 Debug
+CFG=Autogen - Win32 All
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
@@ -13,85 +13,46 @@ CFG=Autogen - Win32 Debug
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "Autogen.mak" CFG="Autogen - Win32 Debug"
+!MESSAGE NMAKE /f "Autogen.mak" CFG="Autogen - Win32 All"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "Autogen - Win32 Release" (based on "Win32 (x86) External Target")
-!MESSAGE "Autogen - Win32 Debug" (based on "Win32 (x86) External Target")
+!MESSAGE "Autogen - Win32 All" (based on "Win32 (x86) External Target")
 !MESSAGE 
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
 # PROP Scc_ProjName ""
 # PROP Scc_LocalPath ""
-
-!IF  "$(CFG)" == "Autogen - Win32 Release"
-
-# PROP BASE Use_MFC 0
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "Release"
-# PROP BASE Intermediate_Dir "Release"
-# PROP BASE Cmd_Line "NMAKE /f Autogen.mak"
-# PROP BASE Rebuild_Opt "/a"
-# PROP BASE Target_File "Autogen.exe"
-# PROP BASE Bsc_Name "Autogen.bsc"
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 0
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "Release"
-# PROP Intermediate_Dir "Release"
-# PROP Cmd_Line "NMAKE /f Makefile.msdev"
-# PROP Rebuild_Opt "/a"
-# PROP Target_File "build\vc6\Autogen.flag1"
-# PROP Bsc_Name ""
-# PROP Target_Dir ""
-
-!ELSEIF  "$(CFG)" == "Autogen - Win32 Debug"
-
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "Debug"
-# PROP BASE Intermediate_Dir "Debug"
-# PROP BASE Cmd_Line "NMAKE /f Autogen.mak"
+# PROP BASE Output_Dir "All"
+# PROP BASE Intermediate_Dir "All"
+# PROP BASE Cmd_Line "nmake /f "Autogen.mak""
 # PROP BASE Rebuild_Opt "/a"
 # PROP BASE Target_File "Autogen.exe"
-# PROP BASE Bsc_Name "Autogen.bsc"
+# PROP BASE Bsc_Name ""
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "Debug"
-# PROP Intermediate_Dir "Debug"
-# PROP Cmd_Line "NMAKE /f Makefile.msdev"
+# PROP Output_Dir "All"
+# PROP Intermediate_Dir "All"
+# PROP Cmd_Line "NMAKE /f "Makefile.vc""
 # PROP Rebuild_Opt "/a"
 # PROP Target_File "build\vc6\Autogen.flag1"
 # PROP Bsc_Name ""
 # PROP Target_Dir ""
-
-!ENDIF 
-
 # Begin Target
 
-# Name "Autogen - Win32 Release"
-# Name "Autogen - Win32 Debug"
+# Name "Autogen - Win32 All"
 
-!IF  "$(CFG)" == "Autogen - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "Autogen - Win32 Debug"
+!IF  "$(CFG)" == "Autogen - Win32 All"
 
 !ENDIF 
 
-# Begin Group "make"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\Makefile.msdev
-# End Source File
-# End Group
 # Begin Group "scripts"
 
-# PROP Default_Filter "*.py"
+# PROP Default_Filter "py"
 # Begin Source File
 
 SOURCE=.\autogen.py
@@ -118,6 +79,10 @@ SOURCE=.\excel.py
 # End Source File
 # Begin Source File
 
+SOURCE=.\guile.py
+# End Source File
+# Begin Source File
+
 SOURCE=.\params.py
 # End Source File
 # Begin Source File
@@ -135,38 +100,50 @@ SOURCE=.\utils.py
 # End Group
 # Begin Group "stubs"
 
-# PROP Default_Filter "stub.*"
+# PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\stub.C.body
+SOURCE=.\stub.c.constructor
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.C.includes
+SOURCE=.\stub.c.includes
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.Calc.body
+SOURCE=.\stub.c.member
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.Calc.idlfoot
+SOURCE=.\stub.calc.body
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.Calc.idlfunc
+SOURCE=.\stub.calc.constructor
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.Calc.idlhead
+SOURCE=.\stub.calc.idlfoot
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.Calc.includes
+SOURCE=.\stub.calc.idlfunc
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.Calc.map
+SOURCE=.\stub.calc.idlhead
+# End Source File
+# Begin Source File
+
+SOURCE=.\stub.calc.includes
+# End Source File
+# Begin Source File
+
+SOURCE=.\stub.calc.map
+# End Source File
+# Begin Source File
+
+SOURCE=.\stub.calc.member
 # End Source File
 # Begin Source File
 
@@ -174,32 +151,36 @@ SOURCE=.\stub.copyright
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.Doxygen.enums
+SOURCE=.\stub.doxygen.enums
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.Doxygen.functions
+SOURCE=.\stub.doxygen.functions
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.Excel.body
+SOURCE=.\stub.excel.constructor
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.Excel.includes
+SOURCE=.\stub.excel.includes
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.Excel.regheader
+SOURCE=.\stub.excel.member
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.Qla.includes
+SOURCE=.\stub.excel.regheader
+# End Source File
+# Begin Source File
+
+SOURCE=.\stub.qla.includes
 # End Source File
 # End Group
 # Begin Group "metadata"
 
-# PROP Default_Filter "*.xml"
+# PROP Default_Filter "xml"
 # Begin Source File
 
 SOURCE=.\capfloor.xml
@@ -247,7 +228,7 @@ SOURCE=.\xibor.xml
 # End Group
 # Begin Source File
 
-SOURCE=.\README.txt
+SOURCE=.\Makefile.vc
 # End Source File
 # End Target
 # End Project

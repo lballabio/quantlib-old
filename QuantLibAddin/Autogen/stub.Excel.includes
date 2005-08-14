@@ -1,9 +1,0 @@
-#include <qla/qladdindefines.hpp>
-#include <qla/utilities.hpp>
-#include <qla/typefactory.hpp>
-#include <qla/%s.hpp>
-#include <Addins/Excel/xlutils.hpp>
-
-using namespace ObjHandler;
-using namespace QuantLibAddin;
-

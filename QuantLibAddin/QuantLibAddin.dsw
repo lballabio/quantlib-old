@@ -60,7 +60,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "ClientCDemo"=".\CLIENTS\C\ClientCDemo.dsp" - Package Owner=<4>
+Project: "ClientCDemo"=".\Clients\C\ClientCDemo.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -75,7 +75,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "ClientCPPCapFloor"=".\Clients\C++\ClientCPPCapFloor.dsp" - Package Owner=<4>
+Project: "ClientCppCapFloors"=".\Clients\C++\ClientCppCapFloors.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -90,7 +90,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "ClientCPPDemo"=".\CLIENTS\C++\ClientCPPDemo.dsp" - Package Owner=<4>
+Project: "ClientCppDemo"=".\Clients\C++\ClientCppDemo.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -105,7 +105,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "ClientCPPInstruments"=".\Clients\C++\ClientCPPInstruments.dsp" - Package Owner=<4>
+Project: "ClientCppInstruments"=".\Clients\C++\ClientCppInstruments.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -120,7 +120,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "ClientCPPOptions"=".\CLIENTS\C++\ClientCPPOptions.dsp" - Package Owner=<4>
+Project: "ClientCppOptions"=".\Clients\C++\ClientCppOptions.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{

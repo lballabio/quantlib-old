@@ -30,18 +30,18 @@
 
 namespace QuantLibAddin {
 
-    ForwardVanillaOption::ForwardVanillaOption(ObjHandler::ArgumentStack &arguments) {
-        long timeSteps                  = OH_POP_ARGUMENT(long, arguments);
-        std::string engineID            = OH_POP_ARGUMENT(std::string, arguments);
-        long settlementDate             = OH_POP_ARGUMENT(long, arguments);
-        long exerciseDate               = OH_POP_ARGUMENT(long, arguments);
-        std::string exerciseID          = OH_POP_ARGUMENT(std::string, arguments);
-        double strike                   = OH_POP_ARGUMENT(double, arguments);
-        std::string payoffID            = OH_POP_ARGUMENT(std::string, arguments);
-        std::string optionTypeID        = OH_POP_ARGUMENT(std::string, arguments);
-        long resetDate                  = OH_POP_ARGUMENT(long, arguments);
-        double moneyness                = OH_POP_ARGUMENT(double, arguments);
-        std::string handleBlackScholes  = OH_POP_ARGUMENT(std::string, arguments);
+    ForwardVanillaOption::ForwardVanillaOption(
+            const std::string &handleBlackScholes,
+            const double &moneyness,
+            const long &resetDate,
+            const std::string &optionTypeID,
+            const std::string &payoffID,
+            const double &strike,
+            const std::string &exerciseID,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engineID,
+            const long &timeSteps) {
 
         boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
             OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);

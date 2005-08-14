@@ -29,13 +29,13 @@
 
 namespace QuantLibAddin {
 
-    BlackScholesProcess::BlackScholesProcess(ObjHandler::ArgumentStack &arguments) {
-        double dividendYield        = OH_POP_ARGUMENT(double, arguments);
-        double riskFreeRate         = OH_POP_ARGUMENT(double, arguments);
-        long settlementDateLong     = OH_POP_ARGUMENT(long, arguments);
-        std::string dayCounterID    = OH_POP_ARGUMENT(std::string, arguments);
-        double underlying           = OH_POP_ARGUMENT(double, arguments);
-        std::string handleBlackVol  = OH_POP_ARGUMENT(std::string, arguments);
+    BlackScholesProcess::BlackScholesProcess(
+            const std::string &handleBlackVol,
+            const double &underlying,
+            const std::string &dayCounterID,
+            const long &settlementDateLong,
+            const double &riskFreeRate,
+            const double &dividendYield) {
 
         QuantLib::Date settlementDate(settlementDateLong);
 		QuantLib::DayCounter dayCounter =

@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
 
@@ -25,7 +26,21 @@ namespace QuantLibAddin {
 
 	class FixedCouponBond : public Bond {
     public:
-        FixedCouponBond(ObjHandler::ArgumentStack& args);
+        FixedCouponBond(
+            const long &issueDate,
+            const long &datedDate,
+            const long &maturityDate,
+            const long &settlementDays,
+            const std::vector<double> &coupons,
+            const std::vector<double> &nominals,
+            const double &redemption,
+            const std::string &frequencyID,
+            const std::string &dayCounterID,
+            const std::string &bDayConvID,
+            const std::string &calendarID,
+            const bool &startFromEnd,
+            const bool &longFinal,
+            const std::string &discCurveId);
     };
 }
 

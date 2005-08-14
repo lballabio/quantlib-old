@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Walter Penschke
 
  This file is part of QuantLib, a free-software/open-source library
@@ -25,8 +26,10 @@ namespace QuantLibAddin {
 
     class ZeroCurve : public ObjHandler::Object {
     public:
-        ZeroCurve(ObjHandler::ArgumentStack& args);
-
+        ZeroCurve(
+            const std::vector < long > &dates,
+            const std::vector < double > &yields,
+            const std::string &dayCounterID);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(zeroCurve_);
         }

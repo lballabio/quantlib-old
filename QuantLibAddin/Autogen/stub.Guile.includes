@@ -1,9 +1,0 @@
-#include <qla/qladdin.hpp>
-#include <Addins/Guile/guileutils.hpp>
-extern "C" {
-#include <Addins/Guile/%s.h>
-}
-
-using namespace ObjHandler;
-using namespace QuantLibAddin;
-

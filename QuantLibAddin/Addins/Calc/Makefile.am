@@ -54,8 +54,7 @@ EXTRA_DIST = \
     AddinCalc.dsp \
     AddinCalc_vc8.vcproj \
     AddinCalc.vcproj \
-    Makefile.msdev \
-    Makefile.msdev.debug \
+    Makefile.vc.debug.mtdll \
     QuantLibAddin.def \
     QuantLibAddin.idl \
     readme.txt

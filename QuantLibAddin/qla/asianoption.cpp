@@ -31,17 +31,16 @@
 namespace QuantLibAddin {
 
     ContinuousAveragingAsianOption::ContinuousAveragingAsianOption(
-            ObjHandler::ArgumentStack &arguments) {
-        long timeSteps                  = OH_POP_ARGUMENT(long, arguments);
-        std::string engineID            = OH_POP_ARGUMENT(std::string, arguments);
-        long settlementDate             = OH_POP_ARGUMENT(long, arguments);
-        long exerciseDate               = OH_POP_ARGUMENT(long, arguments);
-        std::string exerciseID          = OH_POP_ARGUMENT(std::string, arguments);
-        double strike                   = OH_POP_ARGUMENT(double, arguments);
-        std::string payoffID            = OH_POP_ARGUMENT(std::string, arguments);
-        std::string optionTypeID        = OH_POP_ARGUMENT(std::string, arguments);
-        std::string averageID           = OH_POP_ARGUMENT(std::string, arguments);
-        std::string handleBlackScholes  = OH_POP_ARGUMENT(std::string, arguments);
+            const std::string &handleBlackScholes,
+            const std::string &averageID,
+            const std::string &optionTypeID,
+            const std::string &payoffID,
+            const double &strike,
+            const std::string &exerciseID,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engineID,
+            const long &timeSteps) {
 
         boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
             OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);
@@ -78,21 +77,19 @@ namespace QuantLibAddin {
     }
 
     DiscreteAveragingAsianOption::DiscreteAveragingAsianOption(
-            ObjHandler::ArgumentStack &arguments) {
-        long timeSteps                  = OH_POP_ARGUMENT(long, arguments);
-        std::string engineID            = OH_POP_ARGUMENT(std::string, arguments);
-        long settlementDate             = OH_POP_ARGUMENT(long, arguments);
-        long exerciseDate               = OH_POP_ARGUMENT(long, arguments);
-        std::string exerciseID          = OH_POP_ARGUMENT(std::string, arguments);
-        double strike                   = OH_POP_ARGUMENT(double, arguments);
-        std::string payoffID            = OH_POP_ARGUMENT(std::string, arguments);
-        std::string optionTypeID        = OH_POP_ARGUMENT(std::string, arguments);
-        std::vector < long > fixingDates 
-            = OH_POP_ARGUMENT(std::vector < long >, arguments);
-        long pastFixings                = OH_POP_ARGUMENT(long, arguments);
-        double runningAccumulator       = OH_POP_ARGUMENT(double, arguments);
-        std::string averageID           = OH_POP_ARGUMENT(std::string, arguments);
-        std::string handleBlackScholes  = OH_POP_ARGUMENT(std::string, arguments);
+            const std::string &handleBlackScholes,
+            const std::string &averageID,
+            const double &runningAccumulator,
+            const long &pastFixings,
+            const std::vector < long > &fixingDates,
+            const std::string &optionTypeID,
+            const std::string &payoffID,
+            const double &strike,
+            const std::string &exerciseID,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engineID,
+            const long &timeSteps) {
 
         boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
             OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);

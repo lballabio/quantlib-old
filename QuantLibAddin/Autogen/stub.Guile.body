@@ -1,9 +1,0 @@
-    try {
-%s        %s returnValue = %s;
-        return %s;
-    } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("%s Error: ") + e.what(), 2);
-        return SCM_EOL;
-    }
-}
-

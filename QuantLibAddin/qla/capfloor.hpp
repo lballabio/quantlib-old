@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -28,7 +29,20 @@ namespace QuantLibAddin {
 
     class CapFloor : public ObjHandler::Object {
       public:
-        CapFloor(ObjHandler::ArgumentStack& args);
+        CapFloor(
+            const long &start,
+            const long &length,
+            const std::string &timeUnitsID,
+            const std::string &conventionID,
+            const std::string &frequencyID,
+            const long &fixingDays,
+            const std::string &handleTermStructure,
+            const double &nominal,
+            const double &capStrike,
+            const double &floorStrike,
+            const std::string &handleEngine,
+            const std::string &optionID,
+            const long &boolAmortization);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(capfloor_);
         }
@@ -38,7 +52,8 @@ namespace QuantLibAddin {
     
     class AnalyticCapFloorEngine : public ObjHandler::Object {
       public:
-        AnalyticCapFloorEngine(ObjHandler::ArgumentStack& args);
+        AnalyticCapFloorEngine(
+            const std::string &handleModel);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(engine_);
         }

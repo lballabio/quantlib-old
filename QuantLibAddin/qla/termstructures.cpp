@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -34,14 +35,14 @@ namespace QuantLibAddin {
         return diff;
     }
 
-    DepositRateHelper::DepositRateHelper(ObjHandler::ArgumentStack& arguments) {
-        std::string dayCounterID    = OH_POP_ARGUMENT(std::string, arguments);
-        std::string conventionID    = OH_POP_ARGUMENT(std::string, arguments);
-        std::string calendarID      = OH_POP_ARGUMENT(std::string, arguments);
-        long fixingDays             = OH_POP_ARGUMENT(long, arguments);
-        std::string timeUnitsID     = OH_POP_ARGUMENT(std::string, arguments);
-        long maturity               = OH_POP_ARGUMENT(long, arguments);
-        double quote                = OH_POP_ARGUMENT(double, arguments);
+    DepositRateHelper::DepositRateHelper(
+            const double &quote,
+            const long &maturity,
+            const std::string &timeUnitsID,
+            const long &fixingDays,
+            const std::string &calendarID,
+            const std::string &conventionID,
+            const std::string &dayCounterID) {
         
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
         QuantLib::Handle<QuantLib::Quote> quoteH(quote_);
@@ -64,17 +65,17 @@ namespace QuantLibAddin {
                                             dayCounter));
     }
     
-    SwapRateHelper::SwapRateHelper(ObjHandler::ArgumentStack& arguments) {
-        std::string floatingConventionID    = OH_POP_ARGUMENT(std::string, arguments);
-        std::string floatingFrequencyID     = OH_POP_ARGUMENT(std::string, arguments);
-        std::string fixedDayCounterID       = OH_POP_ARGUMENT(std::string, arguments);
-        std::string fixedConventionID       = OH_POP_ARGUMENT(std::string, arguments);
-        std::string fixedFrequencyID        = OH_POP_ARGUMENT(std::string, arguments);
-        std::string calendarID              = OH_POP_ARGUMENT(std::string, arguments);
-        long fixingDays                     = OH_POP_ARGUMENT(long, arguments);
-        std::string timeUnitsID             = OH_POP_ARGUMENT(std::string, arguments);
-        long maturity                       = OH_POP_ARGUMENT(long, arguments);
-        double quote                        = OH_POP_ARGUMENT(double, arguments);
+    SwapRateHelper::SwapRateHelper(
+            const double &quote,
+            const long &maturity,
+            const std::string &timeUnitsID,
+            const long &fixingDays,
+            const std::string &calendarID,
+            const std::string &fixedFrequencyID,
+            const std::string &fixedConventionID,
+            const std::string &fixedDayCounterID,
+            const std::string &floatingFrequencyID,
+            const std::string &floatingConventionID) {
         
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
         QuantLib::Handle<QuantLib::Quote> quoteH(quote_);
@@ -106,14 +107,14 @@ namespace QuantLibAddin {
                                          floatingConvention));
     }
 
-    FutureRateHelper::FutureRateHelper(ObjHandler::ArgumentStack& arguments) {
-        QuantLib::Integer decade     = OH_POP_ARGUMENT(long, arguments);    
-        std::string calendarID       = OH_POP_ARGUMENT(std::string, arguments);
-        std::string bDayConventionID = OH_POP_ARGUMENT(std::string, arguments);
-        std::string dayCounterID     = OH_POP_ARGUMENT(std::string, arguments);
-        QuantLib::Integer months     = OH_POP_ARGUMENT(long, arguments);    
-        std::string immDateID        = OH_POP_ARGUMENT(std::string, arguments);
-        double price                 = OH_POP_ARGUMENT(double, arguments);
+    FutureRateHelper::FutureRateHelper(
+            const double &price,
+            const std::string &immDateID,
+            const QuantLib::Integer &months,
+            const std::string &dayCounterID,
+            const std::string &bDayConventionID,
+            const std::string &calendarID,
+            const QuantLib::Integer &decade) {
 
         QuantLib::DayCounter dayCounter =
             Create<QuantLib::DayCounter>()(dayCounterID);
@@ -134,12 +135,11 @@ namespace QuantLibAddin {
                 dayCounter));
     }
 
-    PiecewiseFlatForward::PiecewiseFlatForward(ObjHandler::ArgumentStack& arguments) {
-        std::string dayCounterID    = OH_POP_ARGUMENT(std::string, arguments);
-        std::vector<std::string> handlesRateHelper =
-            OH_POP_ARGUMENT(std::vector<std::string>, arguments);
-        long settlement             = OH_POP_ARGUMENT(long, arguments);
-        long evaluation             = OH_POP_ARGUMENT(long, arguments);
+    PiecewiseFlatForward::PiecewiseFlatForward(
+            const long &evaluation,
+            const long &settlement,
+            const std::vector<std::string> &handlesRateHelper,
+            const std::string &dayCounterID) {
         
         QuantLib::Date settlementDate(settlement);
         QuantLib::Date evaluationDate(evaluation);

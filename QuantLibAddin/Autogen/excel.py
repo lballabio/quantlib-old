@@ -25,34 +25,35 @@ import params
 
 # constants
 
-ADDIN      = 'qladdin.cpp'
-BODY       = 'stub.Excel.body'
-INCLUDES   = 'stub.Excel.includes'
-LPXLOPER   = 'LPXLOPER'
-MAXLEN     = 255    # max length of excel string
-MAXLENERR  = 'string length exceeds Excel maximum of %d:\n' % MAXLEN
-MAXPARAM   = 30     # max #/params to an Excel function
-MAXPARMERR = 'number of function parameters exceeds max of %d' % MAXPARAM
-NUMDESC    = 10     # #/params to describe a function
-REGFOOT    = '\
+ADDIN           = 'qladdin.cpp'
+BUF_CTOR        = 'stub.excel.constructor'
+BUF_INCLUDES    = 'stub.excel.includes'
+BUF_MEMBER      = 'stub.excel.member'
+BUF_REGISTER    = 'stub.excel.regheader'
+LPXLOPER        = 'LPXLOPER'
+MAXLEN          = 255    # max length of excel string
+MAXLENERR       = 'string length exceeds Excel maximum of %d:\n' % MAXLEN
+MAXPARAM        = 30     # max #/params to an Excel function
+MAXPARMERR      = 'number of function parameters exceeds max of %d' % MAXPARAM
+NUMDESC         = 10     # #/params to describe a function
+REGFOOT         = '\
     Excel(xlFree, 0, 1, &xDll);\n\
     return 1;\n\
 }\n\n'
-REGHEAD    = 'stub.Excel.regheader'
-REGLINE    = '        TempStrNoSize("\\x%02X""%s")%s'
-RET_PROP   = '\
+REGLINE         = '        TempStrNoSize("\\x%02X""%s")%s'
+RET_PROP        = '\
         static XLOPER xRet;\n\
         propertyVectorToXloper(&xRet, returnValue, handle);\n\
         return &xRet;'
-RET_STRING = '\
+RET_STRING      = '\
         static char c[XL_MAX_STR_LEN];\n\
         stringToChar(c, returnValue);\n\
         return c;'
-RET_XLOPER = '\
+RET_XLOPER      = '\
         static XLOPER xRet;\n\
         %sToXloper(xRet, returnValue);\n\
         return &xRet;'
-ROOT       = common.ADDIN_ROOT + 'Excel/'
+ROOT            = common.ADDIN_ROOT + 'Excel/'
 
 def formatLine(text, comment, lastParameter = False):
     'format a line of text for the function register code'
@@ -144,11 +145,13 @@ def generateFuncRegisters(functionDefs):
     fileName = ROOT + ADDIN + common.TEMPFILE
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
-    bufHead = utils.loadBuffer(REGHEAD)
+    bufHead = utils.loadBuffer(BUF_REGISTER)
     fileHeader.write(bufHead)
     for group in functionDefs.itervalues():
         fileHeader.write('    // %s\n\n' % group[common.DISPLAYNAME])
         for function in group[common.FUNCS]:
+            if not utils.checkFunctionPlatform(function, common.PLATFORM_EXCEL):
+                continue
             generateFuncRegister(fileHeader, function, plExcel)
     fileHeader.write(REGFOOT)
     fileHeader.close()
@@ -189,53 +192,47 @@ def getReturnCall(returnDef):
     elif returnDef[common.TENSOR] == common.MATRIX:
         return RET_XLOPER % ('matrix' + type)
 
-def generateFuncDef(fileFunc, function, bufBody, plHeader, plMember, plCtor):
+def generateConstructor(fileFunc, function, bufCtor, plHeader, plCtor):
+    paramList1 = plHeader.generateCode(function[common.PARAMS])
+    paramList2 = plCtor.generateCode(function[common.PARAMS])
+    conversions = utils.generateConversions(function[common.PARAMS], 
+        nativeDataType = 'xloper', anyConversion = 'xloperToScalarAny')
+    fileFunc.write(bufCtor % (function[common.CODENAME], paramList1, conversions, 
+        function[common.QLFUNC], paramList2, function[common.NAME]))
+
+def generateMember(fileFunc, function, bufMember, plHeader, plMember):
     'generate source code for body of given function'
     paramList1 = plHeader.generateCode(function[common.PARAMS])
+    paramList2 = plMember.generateCode(function[common.PARAMS])
     functionReturnType = utils.getReturnType(function[common.RETVAL],
         replaceVector = LPXLOPER, replaceMatrix = LPXLOPER, replaceAny = LPXLOPER,
         replaceLong = 'long*', replaceDouble = 'double*', replaceBool = 'bool*',
         replaceString = 'char*')
     returnType = utils.getReturnType(function[common.RETVAL], replaceLong = 'long',
         prefixScalar = 'static', replaceString = 'std::string', replaceAny = 'boost::any',
-        replacePropertyVector = 'Properties')
+        replacePropertyVector = 'ObjHandler::Properties')
     returnCall = getReturnCall(function[common.RETVAL])
-    if function[common.CTOR] == common.TRUE:
-        handle = '\n' + 8 * ' ' + 'char *handleStub,'
-        args = common.ARGLINE + plCtor.generateCode(function[common.PARAMS])
-        functionBody = 8 * ' ' + 'std::string handle = getHandleFull(handleStub);\n'
-        functionName = common.MAKE_FUNCTION
-        paramList2 = common.MAKE_ARGS % (function[common.QLFUNC], 'handle')
-    else:
-        className = function[common.PARAMS][0][common.ATTS][common.CLASS]
-        handle = ''
-        args = ''
-        functionBody = common.FUNC_BODY % (className, className, 'std::string(handle)',
-            function[common.NAME], 'std::string(handle)')
-        functionName = utils.generateFuncCall(function)
-        paramList2 = plMember.generateCode(function[common.PARAMS])
-    conversions = utils.generateConversions(
-        function[common.PARAMS], 
-        nativeDataType = 'xloper',
-        anyConversion = 'xloperToScalarAny')
-    fileFunc.write(bufBody %
-        (functionReturnType, function[common.CODENAME], handle, paramList1, 
-            conversions, args, functionBody, returnType, functionName, 
-            paramList2, returnCall, function[common.NAME]))
+    className = function[common.PARAMS][0][common.ATTS][common.CLASS]
+    functionName = utils.generateFuncCall(function)
+    conversions = utils.generateConversions(function[common.PARAMS], 
+        nativeDataType = 'xloper', anyConversion = 'xloperToScalarAny')
+    fileFunc.write(bufMember %
+        (functionReturnType, function[common.CODENAME], paramList1, conversions, 
+        className, className, returnType, functionName, 
+        paramList2, returnCall, function[common.NAME]))
 
 def generateFuncDefs(functionGroups):
     'generate source code for function bodies'
-    bufBody = utils.loadBuffer(BODY)
-    bufInclude = utils.loadBuffer(INCLUDES)
+    bufCtor = utils.loadBuffer(BUF_CTOR)
+    bufMember = utils.loadBuffer(BUF_MEMBER)
+    bufInclude = utils.loadBuffer(BUF_INCLUDES)
     plHeader = params.ParameterDeclare(2, replaceString = 'char',
         replaceTensor = LPXLOPER, derefString = '*',
         derefOther = '*', replaceAny = LPXLOPER)
     plMember = params.ParameterPass(3, skipFirst = True, derefOther = '*', 
         appendTensor = True)
-    plCtor = params.ParameterPass(2, convertString = 'std::string(%s)',
-        delimiter = ';\n', appendTensor = True, derefOther = '*',
-        wrapFormat = 'args.push(%s)', delimitLast = True, appendScalar = True,
-        prependEol = False)
+    plCtor = params.ParameterPass(3, appendTensor = True,
+        derefOther = '*', appendScalar = True)
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
         if functionGroup[common.HDRONLY] == common.TRUE:
@@ -243,10 +240,14 @@ def generateFuncDefs(functionGroups):
         fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
         fileFunc = file(fileName, 'w')
         utils.printHeader(fileFunc)
-        bufIncludeFull = bufInclude % groupName
-        fileFunc.write(bufIncludeFull)
+        fileFunc.write(bufInclude % groupName)
         for function in functionGroup[common.FUNCS]:
-            generateFuncDef(fileFunc, function, bufBody, plHeader, plMember, plCtor)
+            if not utils.checkFunctionPlatform(function, common.PLATFORM_EXCEL):
+                continue
+            if function[common.CTOR] == common.TRUE:
+                generateConstructor(fileFunc, function, bufCtor, plHeader, plCtor)
+            else:
+                generateMember(fileFunc, function, bufMember, plHeader, plMember)
         fileFunc.close()
         utils.updateIfChanged(fileName)
 

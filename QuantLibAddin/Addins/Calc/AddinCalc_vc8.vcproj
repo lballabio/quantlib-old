@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="AddinCalc"
-	ProjectGUID="{FB336C42-0179-4679-A95D-ACEA52CC0DC8}"
+	ProjectGUID="{1E732D85-F5C5-4052-8946-04F37E916C20}"
 	Keyword="MakeFileProj"
 	>
 	<Platforms>
@@ -15,9 +15,9 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Release|Win32"
-			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release"
+			Name="Debug MTDLL|Win32"
+			OutputDirectory=".\build\vc8\DebugMTDLL"
+			IntermediateDirectory=".\build\vc8\DebugMTDLL"
 			ConfigurationType="0"
 			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -25,33 +25,10 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f Makefile.msdev"
-				ReBuildCommandLine="nmake /f Makefile.msdev /a"
+				BuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot;"
+				ReBuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot; /a"
 				CleanCommandLine=""
-				Output="QuantLibAddin.dll"
-				PreprocessorDefinitions=""
-				IncludeSearchPath=""
-				ForcedIncludes=""
-				AssemblySearchPath=""
-				ForcedUsingAssemblies=""
-				CompileAsManaged=""
-			/>
-		</Configuration>
-		<Configuration
-			Name="Debug|Win32"
-			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug"
-			ConfigurationType="0"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
-			>
-			<Tool
-				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f Makefile.msdev.debug"
-				ReBuildCommandLine="nmake /f Makefile.msdev.debug /a"
-				CleanCommandLine=""
-				Output="QuantLibAddin.dll"
+				Output="QuantLibAddin-vc80-mt-gd-0_3_10.dll"
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""
 				ForcedIncludes=""
@@ -97,7 +74,7 @@
 				>
 			</File>
 			<File
-				RelativePath="QuantLibAddin.def"
+				RelativePath="QuantLibAddin.idl"
 				>
 			</File>
 			<File
@@ -105,7 +82,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\simpleswap.cpp"
+				RelativePath="simpleswap.cpp"
 				>
 			</File>
 			<File
@@ -121,7 +98,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\xibor.cpp"
+				RelativePath="xibor.cpp"
 				>
 			</File>
 		</Filter>
@@ -166,7 +143,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\simpleswap.hpp"
+				RelativePath="simpleswap.hpp"
 				>
 			</File>
 			<File
@@ -182,28 +159,12 @@
 				>
 			</File>
 			<File
-				RelativePath=".\xibor.hpp"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Make"
-			>
-			<File
-				RelativePath="Makefile.msdev"
-				>
-			</File>
-			<File
-				RelativePath="Makefile.msdev.debug"
+				RelativePath="xibor.hpp"
 				>
 			</File>
 		</Filter>
 		<File
-			RelativePath="QuantLibAddin.idl"
-			>
-		</File>
-		<File
-			RelativePath="readme.txt"
+			RelativePath="Makefile.vc.debug.mtdll"
 			>
 		</File>
 	</Files>

@@ -1,0 +1,15 @@
+DLLEXPORT LPXLOPER %s(
+        char *handleStub,%s) {
+    try {
+%s        ObjHandler::obj_ptr objectPointer(new QuantLibAddin::%s(%s));
+        std::string handleFull = getHandleFull(handleStub);
+        ObjHandler::storeObject(handleFull, objectPointer);
+        static XLOPER xRet;
+        propertyVectorToXloper(&xRet, objectPointer->getProperties(), handleFull);
+        return &xRet;
+    } catch (const std::exception &e) {
+        ObjHandler::logMessage(std::string("ERROR: %s: ") + e.what(), 2);
+        return 0;
+    }
+}
+

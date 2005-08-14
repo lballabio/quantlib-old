@@ -25,29 +25,44 @@
 
 namespace ObjHandler {
 
-    void OH_LOGFILE(
+    std::string ohVersion() {
+        return OBJHANDLER_VERSION;
+    }
+
+    DLL_API void storeObject(
+            const std::string &handle,
+            const obj_ptr &object) {
+        ObjectHandler::instance().storeObject(handle, object);
+    }
+
+    DLL_API ObjHandler::obj_ptr retrieveObject(
+            const std::string &handle) {
+        return ObjectHandler::instance().retrieveObject(handle);
+    }
+
+    void setLogFile(
             const std::string &logFileName,
             const int &logLevel) {
         Logger::instance().setLogFile(logFileName, logLevel);
     }
 
-    void OH_LOG_MESSAGE(
+    void DLL_API logMessage(
             const std::string &message,
             const int &level) {
         Logger::instance().logMessage(message, level);
     }
 
-    void OH_LOG_LEVEL(const int &logLevel) {
+    void setLogLevel(const int &logLevel) {
         Logger::instance().setLogLevel(logLevel);
     }
 
-    void OH_CONSOLE(
+    void setConsole(
             const int &console,
             const int &logLevel) {
         Logger::instance().setConsole(console, logLevel);
     }
 
-    void OH_LOG_OBJECT(const std::string &handle) {
+    void logObject(const std::string &handle) {
         std::ostringstream msg;
         obj_ptr object = 
             ObjectHandler::instance().retrieveObject(handle);
@@ -60,13 +75,13 @@ namespace ObjHandler {
         Logger::instance().logMessage(msg.str());
     }
 
-    void OH_LOG_ALL_OBJECTS() {
+    void logAllObjects() {
         std::ostringstream msg;
         ObjectHandler::instance().dump(msg);
         Logger::instance().logMessage(msg.str());
     }
 
-    const Properties& OH_QUERY_OBJECT(
+    const Properties& queryObject(
             const std::string &handle) {
         boost::shared_ptr<Object> object =
                 ObjectHandler::instance().retrieveObject(handle);

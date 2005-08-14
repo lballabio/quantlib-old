@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -29,9 +30,9 @@ int main()
 {
     try {
         
-        OH_LOGFILE("quantlib.log");
-        OH_CONSOLE(1);
-        OH_LOG_MESSAGE("begin capfloor test");
+        setLogFile("quantlib.log");
+        setConsole(1);
+        logMessage("begin capfloor test");
         
         double dQuotes[] = { 0.020800, 0.020960, 0.021500, 0.021700, 0.021860, 0.022120,
                              0.022420, 0.022720, 0.023020, 0.023330, 0.023620, 0.023920 };
@@ -46,89 +47,90 @@ int main()
         
         for (std::size_t i=0 ; i < LENGTH(dQuotes) ; i++)
         {
-            ArgumentStack stack;
-            stack.push(dQuotes[i]);
-            stack.push(dMaturities[i]);
-            stack.push(string("Months"));
-            stack.push(2l);
-            stack.push(string("Target"));
-            stack.push(string("ModifiedFollowing"));
-            stack.push(string("Actual360"));
+            obj_ptr depositRateHelper(new QuantLibAddin::DepositRateHelper(
+                dQuotes[i],
+                dMaturities[i],
+                "Months",
+                2,
+                "Target",
+                "ModifiedFollowing",
+                "Actual360"));
             std::ostringstream handle;
             handle << "handleDeposit" << dMaturities[i];
-            Properties prop = OH_MAKE_OBJECT(QuantLibAddin::DepositRateHelper, handle.str(), stack);            
-            rateHelpers.push_back(handle.str());
+            storeObject(handle.str(), depositRateHelper);
         }
         
         for (std::size_t i2=0 ; i2 < LENGTH(dMaturities) ; i2++)
         {
-            ArgumentStack stack;
-            stack.push(sQuotes[i2]);
-            stack.push(sMaturities[i2]);
-            stack.push(string("Years"));
-            stack.push(2l);
-            stack.push(string("Target"));
-            stack.push(string("Annual"));               // fixed frequency
-            stack.push(string("Unadjusted"));           // fixed convention
-            stack.push(string("Thirty360"));            // fixed day counter
-            stack.push(string("Semiannual"));           // floating frequency
-            stack.push(string("ModifiedFollowing"));    // floating convention
+            obj_ptr swapRateHelper(new QuantLibAddin::SwapRateHelper(
+                sQuotes[i2],
+                sMaturities[i2],
+                "Years",
+                2,
+                "Target",
+                "Annual",                 // fixed frequency
+                "Unadjusted",             // fixed convention
+                "Thirty360",              // fixed day counter
+                "Semiannual",             // floating frequency
+                "ModifiedFollowing"));    // floating convention
+
             std::ostringstream handle;
             handle << "handleSwap" << sMaturities[i2];
-            (void) OH_MAKE_OBJECT(QuantLibAddin::SwapRateHelper, handle.str(), stack);
+            storeObject(handle.str(), swapRateHelper);
             rateHelpers.push_back(handle.str());
+
         }
         
         Date evaluationDate(23, March, 2005);
         Date settlementDate(25, March, 2005);
         
-        ArgumentStack tsArgs;
-        tsArgs.push(evaluationDate.serialNumber());
-        tsArgs.push(settlementDate.serialNumber());
-        tsArgs.push(rateHelpers);
-        tsArgs.push(string("Actual360"));
-        (void) OH_MAKE_OBJECT(QuantLibAddin::PiecewiseFlatForward, "my_termStructure", tsArgs);
+        obj_ptr piecewiseFlatForward(new QuantLibAddin::PiecewiseFlatForward(
+            evaluationDate.serialNumber(),
+            settlementDate.serialNumber(),
+            rateHelpers,
+            "Actual360"));
+        storeObject("my_termStructure", piecewiseFlatForward);
+
+        obj_ptr hullWhite(new QuantLibAddin::HullWhite(
+            "my_termStructure",
+            0.1,
+            0.01));
+        storeObject("my_hullwhite", hullWhite);
         
-        ArgumentStack hwArgs;
-        hwArgs.push(string("my_termStructure"));
-        hwArgs.push(0.1);
-        hwArgs.push(0.01);
-        (void) OH_MAKE_OBJECT(QuantLibAddin::HullWhite, "my_hullwhite", hwArgs);
-        
-        ArgumentStack engineArgs;
-        engineArgs.push(string("my_hullwhite"));
-        (void) OH_MAKE_OBJECT(QuantLibAddin::AnalyticCapFloorEngine, "my_closedForm", engineArgs);
-        
+        obj_ptr analyticCapFloorEngine(new QuantLibAddin::AnalyticCapFloorEngine(
+            "my_hullwhite"));
+        storeObject("my_closedForm", analyticCapFloorEngine);
+
         Date startDate(25, March, 2006);
 
-        ArgumentStack capArgs;
-        capArgs.push(startDate.serialNumber());     // start of capping period
-        capArgs.push(5l);                           // capping period length
-        capArgs.push(string("Years"));              // time units
-        capArgs.push(string("ModifiedFollowing"));  // business day convention
-        capArgs.push(string("Semiannual"));         // capping frequency (semiannual)
-        capArgs.push(2l);                           // fixing days
-        capArgs.push(string("my_termStructure"));   // term structure
-        capArgs.push(100000.0);                     // nominal
-        capArgs.push(0.04);                         // cap srike
-        capArgs.push(0.02);                         // floor strike
-        capArgs.push(string("my_closedForm"));      // pricer
-        capArgs.push(string("Cap"));                // option type
-        capArgs.push(0l);                           // no amortisation
-        Properties opProperties = OH_MAKE_OBJECT(QuantLibAddin::CapFloor, "my_cap", capArgs);
+        obj_ptr capFloor(new QuantLibAddin::CapFloor(
+            startDate.serialNumber(),   // start of capping period
+            5,                          // capping period length
+            "Years",                    // time units
+            "ModifiedFollowing",        // business day convention
+            "Semiannual",               // capping frequency (semiannual)
+            2,                          // fixing days
+            "my_termStructure",         // term structure
+            100000.0,                   // nominal
+            0.04,                       // cap srike
+            0.02,                       // floor strike
+            "my_closedForm",            // pricer
+            "Cap",                      // option type
+            0));                        // no amortisation
+        storeObject("my_cap", capFloor);
         
-        OH_LOG_OBJECT("my_cap");
-        OH_LOG_MESSAGE("end capfloor test");
+        logObject("my_cap");
+        logMessage("end capfloor test");
         
         return 0;
     
     } catch (const exception &e) {
         ostringstream s;
         s << "Error: " << e.what();
-        OH_LOG_MESSAGE(s.str(), 1);
+        logMessage(s.str(), 1);
         return 1;
     } catch (...) {
-        OH_LOG_MESSAGE("unknown error", 1);
+        logMessage("unknown error", 1);
         return 1;
     }
 }

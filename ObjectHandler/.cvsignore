@@ -23,3 +23,5 @@ stamp-h1
 ObjectHandler-*.tar.gz
 ObjectHandler_vc8.suo
 ObjectHandler*.vcproj.*.user
+lib.plg
+lib*.vcproj.*

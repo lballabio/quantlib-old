@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -30,24 +31,24 @@
 #include <vector>
 
 namespace QuantLibAddin {
-	SimpleSwap::SimpleSwap(ObjHandler::ArgumentStack& arguments) {
-		std::string discCurveId     = OH_POP_ARGUMENT(std::string, arguments);
-		QuantLib::Rate floatSpread  = OH_POP_ARGUMENT(QuantLib::Rate, arguments);
-		bool floatLongFinal         = OH_POP_ARGUMENT(bool, arguments);
-		bool floatStartFromEnd      = OH_POP_ARGUMENT(bool, arguments);
-		std::string indexHandle     = OH_POP_ARGUMENT(std::string, arguments);
- 		std::string fltFrqID        = OH_POP_ARGUMENT(std::string, arguments);
-		bool fixLongFinal           = OH_POP_ARGUMENT(bool, arguments);
-		bool fixStartFromEnd        = OH_POP_ARGUMENT(bool, arguments);
-		std::string fixDayCounterID = OH_POP_ARGUMENT(std::string, arguments);
-		std::string fixBDCID        = OH_POP_ARGUMENT(std::string, arguments);
- 		std::string fixFrqID        = OH_POP_ARGUMENT(std::string, arguments);
-		std::string calendarID      = OH_POP_ARGUMENT(std::string, arguments);
-		QuantLib::Rate fixRate      = OH_POP_ARGUMENT(QuantLib::Rate, arguments);
-		bool payFixed               = OH_POP_ARGUMENT(bool, arguments);
-		QuantLib::Real nominal      = OH_POP_ARGUMENT(QuantLib::Real, arguments);
-		long lMaturity              = OH_POP_ARGUMENT(long, arguments);
-		long lStartDate             = OH_POP_ARGUMENT(long, arguments);
+	SimpleSwap::SimpleSwap(
+            const long &lStartDate,
+		    const long &lMaturity,
+		    const QuantLib::Real &nominal,
+		    const bool &payFixed,
+		    const QuantLib::Rate &fixRate,
+		    const std::string &calendarID,
+ 		    const std::string &fixFrqID,
+		    const std::string &fixBDCID,
+		    const std::string &fixDayCounterID,
+		    const bool &fixStartFromEnd,
+		    const bool &fixLongFinal,
+ 		    const std::string &fltFrqID,
+		    const std::string &indexHandle,
+		    const bool &floatStartFromEnd,
+		    const bool &floatLongFinal,
+		    const QuantLib::Rate &floatSpread,
+		    const std::string &discCurveId) {
 
 		QuantLib::DayCounter fixDayCounter =
             Create<QuantLib::DayCounter>()(fixDayCounterID);

@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -23,25 +24,22 @@ extern "C" {
 #include <Addins/Guile/utilities.h>
 }
 
-using namespace ObjHandler;
-using namespace QuantLibAddin;
-
 SCM qlVersion(SCM x) {
     try {
-        std::string ver = QL_VERSION();
+        std::string ver =  QuantLibAddin::qlVersion();
         return gh_str02scm(ver.c_str());
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlVersion Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("qlVersion Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
 
 SCM qlOhVersion(SCM x) {
     try {
-        std::string ver = QL_OH_VERSION();
+        std::string ver = ObjHandler::ohVersion();
         return gh_str02scm(ver.c_str());
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlOhVersion Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("qlOhVersion Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -49,48 +47,50 @@ SCM qlOhVersion(SCM x) {
 SCM qlFieldNames(SCM x) {
     try {
         std::string handle = GetChop<std::string>::scalar(x);
-        Properties properties = OH_QUERY_OBJECT(handle);
+        ObjHandler::obj_ptr objectPointer = ObjHandler::retrieveObject(handle);
+        ObjHandler::Properties properties = objectPointer->getProperties();
         SCM rtn = SCM_EOL;
         for (std::size_t i=properties.size() ; --i != std::size_t(-1) ; ) {
-            ObjectProperty property = properties[i];
-            any_ptr a = property();
+            ObjHandler::ObjectProperty property = properties[i];
+            ObjHandler::any_ptr a = property();
             SCM label = gh_str02scm(property.name().c_str());
             rtn = gh_cons(label, rtn);
         }
         return rtn;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlFieldNames Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("qlFieldNames Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
 
-SCM qlValue(SCM x) {
+SCM qlFieldValue(SCM x) {
     try {
         std::string handle = GetChop<std::string>::scalar(x);
-        Properties properties = OH_QUERY_OBJECT(handle);
+        ObjHandler::obj_ptr objectPointer = ObjHandler::retrieveObject(handle);
+        ObjHandler::Properties properties = objectPointer->getProperties();
         std::string fieldName = GetChop<std::string>::scalar(x);
         std::string fieldNameUpper = QuantLib::uppercase(fieldName);
         for (std::size_t i=properties.size() ; --i != std::size_t(-1) ; ) {
-            ObjectProperty property = properties[i];
-            any_ptr a = property();
+            ObjHandler::ObjectProperty property = properties[i];
+            ObjHandler::any_ptr a = property();
             if (property.name().compare(fieldNameUpper) == 0)
                 return anyToPairValue(*property());
         }
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlValue Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("qlValue Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
 
-SCM qlLogfile(SCM x) {
+SCM qlSetLogfile(SCM x) {
     try {
         std::string logFile = GetChop<std::string>::scalar(x);
         int logLevel = GetChop<int>::scalar(x);
-        OH_LOGFILE(logFile, logLevel);
+        ObjHandler::setLogFile(logFile, logLevel);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlLogfile Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("qlLogfile Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -99,10 +99,10 @@ SCM qlConsole(SCM x) {
     try {
         int enabled = GetChop<int>::scalar(x);
         int logLevel = GetChop<int>::scalar(x);
-        OH_CONSOLE(enabled, logLevel);
+        ObjHandler::setConsole(enabled, logLevel);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlConsole Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("qlConsole Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -111,21 +111,21 @@ SCM qlLogMessage(SCM x) {
     try {
         std::string logMessage = GetChop<std::string>::scalar(x);
         int logLevel = GetChop<int>::scalar(x);
-        OH_LOG_MESSAGE(logMessage, logLevel);
+        ObjHandler::logMessage(logMessage, logLevel);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlLogMessage Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("qlLogMessage Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
 
-SCM qlLogLevel(SCM x) {
+SCM qlSetLogLevel(SCM x) {
     try {
         long logLevel = GetChop<long>::scalar(x);
-        OH_LOG_LEVEL(logLevel);
+        ObjHandler::setLogLevel(logLevel);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlLogLevel Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("qlLogLevel Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -133,20 +133,20 @@ SCM qlLogLevel(SCM x) {
 SCM qlLogObject(SCM x) {
     try {
         std::string handle = GetChop<std::string>::scalar(x);
-        OH_LOG_OBJECT(handle);
+        ObjHandler::logObject(handle);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlLogObject Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("qlLogObject Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
 
 SCM qlLogAllObjects(SCM x) {
     try {
-        OH_LOG_ALL_OBJECTS();
+        ObjHandler::logAllObjects();
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlLogAllObjects Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("qlLogAllObjects Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -154,20 +154,20 @@ SCM qlLogAllObjects(SCM x) {
 SCM qlDeleteObject(SCM x) {
     try {
         std::string handle = GetChop<std::string>::scalar(x);
-        OH_DELETE_OBJECT(handle);
+        ObjHandler::ObjectHandler::instance().deleteObject(handle);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlDeleteObject Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("qlDeleteObject Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
 
 SCM qlDeleteAllObjects(SCM x) {
     try {
-        OH_DELETE_ALL_OBJECTS();
+        ObjHandler::ObjectHandler::instance().deleteAllObjects();
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlLogAllObjects Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("qlLogAllObjects Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -209,27 +209,17 @@ SCM qlDate(SCM x) {
         QuantLib::Date date(day, monthQL, year);
         return gh_long2scm(date.serialNumber());
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlDate Error: " + std::string(e.what()), 2);
-        return SCM_UNSPECIFIED;
-    }
-}
-
-
-SCM qlDependsOn(SCM x) {
-    try {
-        return SCM_UNSPECIFIED;
-    } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("qlDependsOn Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("qlDate Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
 
 SCM qlListRegisteredEnums(SCM x) {
     try {
-        std::vector < std::string > returnValue = getRegisteredEnums();
+        std::vector < std::string > returnValue = QuantLibAddin::getRegisteredEnums();
         return Nat2Scm<std::string>::vector(returnValue);
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("qlListRegisteredEnums Error: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("qlListRegisteredEnums Error: ") + e.what(), 2);
         return SCM_EOL;
     }
 }
@@ -237,21 +227,21 @@ SCM qlListRegisteredEnums(SCM x) {
 SCM qlListEnum(SCM x) {
     try {
         std::string enumId = GetChop<std::string>::scalar(x);
-        std::vector < std::string > returnValue = getEnumMembers(
+        std::vector < std::string > returnValue = QuantLibAddin::getEnumMembers(
             enumId);
         return Nat2Scm<std::string>::vector(returnValue);
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("qlListEnum Error: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("qlListEnum Error: ") + e.what(), 2);
         return SCM_EOL;
     }
 }
 
 SCM qlListRegisteredTypes(SCM x) {
     try {
-        std::vector < std::string > returnValue = getRegisteredComplexTypes();
+        std::vector < std::string > returnValue = QuantLibAddin::getRegisteredComplexTypes();
         return Nat2Scm<std::string>::vector(returnValue);
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("qlListRegisteredTypes Error: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("qlListRegisteredTypes Error: ") + e.what(), 2);
         return SCM_EOL;
     }
 }
@@ -259,11 +249,12 @@ SCM qlListRegisteredTypes(SCM x) {
 SCM qlListType(SCM x) {
     try {
         std::string enumId = GetChop<std::string>::scalar(x);
-        std::vector < std::string > returnValue = getComplexTypeMembers(
+        std::vector < std::string > returnValue = QuantLibAddin::getComplexTypeMembers(
             enumId);
         return Nat2Scm<std::string>::vector(returnValue);
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("qlListType Error: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("qlListType Error: ") + e.what(), 2);
         return SCM_EOL;
     }
 }
+

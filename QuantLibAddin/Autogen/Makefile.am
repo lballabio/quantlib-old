@@ -5,16 +5,20 @@ AUTOGEN_INPUT := capfloor.xml enums.xml instruments.xml options.xml processes.xm
                  volatilities.xml simpleswap.xml xibor.xml
 AUTOGEN_PYS := autogen.py c.py calc.py common.py doxygen.py excel.py \
                guile.py params.py parse.py qla.py utils.py
-AUTOGEN_STUBS := stub.Qla.includes stub.C.body stub.C.includes \
-                 stub.Calc.body stub.Calc.idlfoot stub.Calc.idlfunc \
-                 stub.Calc.idlhead stub.Calc.includes stub.Calc.map \
-                 stub.Excel.body stub.Excel.includes stub.Excel.regheader \
-                 stub.Doxygen.enums stub.Doxygen.functions stub.copyright
-
+AUTOGEN_STUBS := stub.qla.includes stub.c.constructor stub.c.member stub.c.includes \
+                 stub.calc.constructor stub.calc.member \
+                 stub.calc.idlfoot stub.calc.idlfunc \
+                 stub.calc.idlhead stub.calc.includes stub.calc.map \
+                 stub.excel.constructor stub.excel.member \
+                 stub.excel.includes stub.excel.regheader \
+                 stub.guile.constructor stub.guile.member \
+                 stub.guile.initfunc stub.guile.includes \
+                 stub.doxygen.enums stub.doxygen.functions stub.copyright
 # this should prevent running from a distributed tarball
 EXTRA_DIST = .time-stamp \
-             Makefile.msdev \
+             Makefile.vc \
              Autogen.dsp \
+             Autogen.vcproj \
              Autogen_vc8.vcproj \
              $(AUTOGEN_INPUT) \
              $(AUTOGEN_PYS) \

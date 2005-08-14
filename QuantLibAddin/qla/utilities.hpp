@@ -25,9 +25,6 @@
 
 #include <oh/objhandler.hpp>
 #include <ql/date.hpp>
-// we want a QuantLibAddin function called QL_VERSION
-// but QuantLib has already #defined that symbol
-#undef QL_VERSION
 
 namespace QuantLibAddin {
 
@@ -37,11 +34,7 @@ namespace QuantLibAddin {
 
     /*! return the version of QuantLib
     */
-    std::string QL_VERSION();
-
-    /*! return the version of ObjectHandler
-    */
-    std::string QL_OH_VERSION();
+    std::string qlVersion();
 
     /*! list all available Enumerations
     */

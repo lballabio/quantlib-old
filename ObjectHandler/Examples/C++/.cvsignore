@@ -1,0 +1,10 @@
+example.log
+bin
+build
+ExampleCpp.plg
+.deps
+.libs
+Makefile
+Makefile.in
+ExampleCpp
+ExampleCpp*.vcproj.*

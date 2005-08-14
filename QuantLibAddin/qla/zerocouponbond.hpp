@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Walter Penschke
 
  This file is part of QuantLib, a free-software/open-source library
@@ -24,7 +25,15 @@ namespace QuantLibAddin {
 
     class ZeroCouponBond : public Bond {
     public:
-        ZeroCouponBond(ObjHandler::ArgumentStack& args);
+        ZeroCouponBond(
+            const long &issueDate,
+            const long &maturityDate,
+            const long &settlementDays,
+            const std::string &dayCounterID,
+            const std::string &calendarID,
+            const std::string &conventionID,
+            const double &redemption,
+            const std::string &handleZeroCurve);
     };
 }
 

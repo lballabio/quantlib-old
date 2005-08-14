@@ -26,7 +26,13 @@ namespace QuantLibAddin {
     class BlackScholesProcess : public ObjHandler::Object {
     public:
 
-        BlackScholesProcess(ObjHandler::ArgumentStack &args);
+        BlackScholesProcess(
+            const std::string &handleBlackVol,
+            const double &underlying,
+            const std::string &dayCounterID,
+            const long &settlementDateLong,
+            const double &riskFreeRate,
+            const double &dividendYield);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(blackScholesProcess_);
         }

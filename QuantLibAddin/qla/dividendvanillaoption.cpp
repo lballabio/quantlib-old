@@ -30,20 +30,18 @@
 
 namespace QuantLibAddin {
 
-    DividendVanillaOption::DividendVanillaOption(ObjHandler::ArgumentStack &arguments) {
-        long timeSteps                  = OH_POP_ARGUMENT(long, arguments);
-        std::string engineID            = OH_POP_ARGUMENT(std::string, arguments);
-        long settlementDate             = OH_POP_ARGUMENT(long, arguments);
-        long exerciseDate               = OH_POP_ARGUMENT(long, arguments);
-        std::string exerciseID          = OH_POP_ARGUMENT(std::string, arguments);
-        double strike                   = OH_POP_ARGUMENT(double, arguments);
-        std::string payoffID            = OH_POP_ARGUMENT(std::string, arguments);
-        std::string optionTypeID        = OH_POP_ARGUMENT(std::string, arguments);
-        std::vector < double > dividends 
-            = OH_POP_ARGUMENT(std::vector < double >, arguments);
-        std::vector < long > dividendDates 
-            = OH_POP_ARGUMENT(std::vector < long >, arguments);
-        std::string handleBlackScholes  = OH_POP_ARGUMENT(std::string, arguments);
+    DividendVanillaOption::DividendVanillaOption(
+            const std::string &handleBlackScholes,
+            const std::vector < long > &dividendDates,
+            const std::vector < double > &dividends,
+            const std::string &optionTypeID,
+            const std::string &payoffID,
+            const double &strike,
+            const std::string &exerciseID,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engineID,
+            const long &timeSteps) {
 
         boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
             OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);

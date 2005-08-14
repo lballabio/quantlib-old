@@ -15,13 +15,20 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef objhandler_hpp
-#define objhandler_hpp
+#ifndef oh_objhandler_hpp
+#define oh_objhandler_hpp
 
 #include <oh/objhandlerdefines.hpp>
+
+/* Use BOOST_MSVC instead of _MSC_VER since some other vendors 
+   (Metrowerks, for example) also #define _MSC_VER
+*/
+#if defined BOOST_MSVC       // Microsoft Visual C++
+#  include <oh/autolink.hpp>
+#endif
+
 #include <oh/utilities.hpp>
 #include <oh/exception.hpp>
-#include <oh/factory.hpp>
 
 #endif
 

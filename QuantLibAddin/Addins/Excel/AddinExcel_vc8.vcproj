@@ -3,8 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="AddinExcel"
-	ProjectGUID="{A7BB1D71-8BE8-4A2F-BB1E-1EDF12A06F02}"
-	SignManifests="true"
+	ProjectGUID="{0C5EDD07-2A85-4279-A7C6-A39400C22606}"
 	>
 	<Platforms>
 		<Platform
@@ -15,11 +14,11 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug|Win32"
-			OutputDirectory=".\build\vc80\Debug"
-			IntermediateDirectory=".\build\vc80\Debug"
+			Name="Debug MTDLL|Win32"
+			OutputDirectory=".\build\vc8\DebugMTDLL"
+			IntermediateDirectory=".\build\vc8\DebugMTDLL"
 			ConfigurationType="2"
-			InheritedPropertySheets="UpgradeFromvc71.vsprops"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -42,7 +41,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\build\vc80\Debug/AddinExcel.tlb"
+				TypeLibraryName=".\build\vc8\DebugMTDLL/AddinExcel.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -52,14 +51,13 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;ADDINEXCEL_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc80\Debug/AddinExcel.pch"
-				AssemblerListingLocation=".\build\vc80\Debug/"
-				ObjectFile=".\build\vc80\Debug/"
-				ProgramDataBaseFileName=".\build\vc80\Debug/"
-				BrowseInformation="1"
+				PrecompiledHeaderFile=".\build\vc8\DebugMTDLL/AddinExcel.pch"
+				AssemblerListingLocation=".\build\vc8\DebugMTDLL/"
+				ObjectFile=".\build\vc8\DebugMTDLL/"
+				ProgramDataBaseFileName=".\build\vc8\DebugMTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -77,14 +75,14 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib XLCALL32.LIB log4cxxs.lib Ws2_32.lib"
-				OutputFile="xll\QuantLibAddin-vc80-mt-sgd.xll"
+				AdditionalDependencies="odbc32.lib odbccp32.lib xlcall32.lib log4cxx.lib"
+				OutputFile="xll\QuantLibAddin-vc80-mt-gd-0_3_10.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,.\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				AdditionalLibraryDirectories=".\lib,$(OBJECT_HANDLER_DIR)\xl\xll,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\build\vc80\Debug/QuantLibAddin-vc80-mt-sgd.pdb"
-				ImportLibrary=".\build\vc80\Debug/QuantLibAddin-vc80-mt-sgd.lib"
+				ProgramDatabaseFile=".\build\vc8\DebugMTDLL/QuantLibAddin-vc80-mt-gd-0_3_10.pdb"
+				ImportLibrary=".\build\vc8\DebugMTDLL/QuantLibAddin-vc80-mt-gd-0_3_10.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -99,7 +97,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc80\Debug/AddinExcel.bsc"
+				OutputFile=".\build\vc8\DebugMTDLL/AddinExcel.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -115,11 +113,11 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release|Win32"
-			OutputDirectory=".\build\vc80\Release"
-			IntermediateDirectory=".\build\vc80\Release"
+			Name="Release MTDLL|Win32"
+			OutputDirectory=".\build\vc8\ReleaseMTDLL"
+			IntermediateDirectory=".\build\vc8\ReleaseMTDLL"
 			ConfigurationType="2"
-			InheritedPropertySheets="UpgradeFromvc71.vsprops"
+			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -142,7 +140,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\build\vc80\Release/AddinExcel.tlb"
+				TypeLibraryName=".\build\vc8\ReleaseMTDLL/AddinExcel.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -152,14 +150,14 @@
 				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;ADDINEXCEL_EXPORTS"
 				StringPooling="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc80\Release/AddinExcel.pch"
-				AssemblerListingLocation=".\build\vc80\Release/"
-				ObjectFile=".\build\vc80\Release/"
-				ProgramDataBaseFileName=".\build\vc80\Release/"
+				PrecompiledHeaderFile=".\build\vc8\ReleaseMTDLL/AddinExcel.pch"
+				AssemblerListingLocation=".\build\vc8\ReleaseMTDLL/"
+				ObjectFile=".\build\vc8\ReleaseMTDLL/"
+				ProgramDataBaseFileName=".\build\vc8\ReleaseMTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -176,13 +174,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib XLCALL32.LIB log4cxxs.lib Ws2_32.lib"
-				OutputFile="xll\QuantLibAddin-vc80-mt-s.xll"
+				AdditionalDependencies="odbc32.lib odbccp32.lib xlcall32.lib log4cxx.lib"
+				OutputFile="xll\QuantLibAddin-vc80-mt-0_3_10.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,.\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
-				ProgramDatabaseFile=".\build\vc80\Release/QuantLibAddin-vc80-mt-s.pdb"
-				ImportLibrary=".\build\vc80\Release/QuantLibAddin-vc80-mt-s.lib"
+				AdditionalLibraryDirectories=".\lib,$(OBJECT_HANDLER_DIR)\xl\xll,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				ProgramDatabaseFile=".\build\vc8\ReleaseMTDLL/QuantLibAddin-vc80-mt-0_3_10.pdb"
+				ImportLibrary=".\build\vc8\ReleaseMTDLL/QuantLibAddin-vc80-mt-0_3_10.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -197,7 +195,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc80\Release/AddinExcel.bsc"
+				OutputFile=".\build\vc8\ReleaseMTDLL/AddinExcel.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -224,18 +222,17 @@
 				RelativePath="capfloor.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
 						UsePrecompiledHeader="0"
-						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -249,18 +246,17 @@
 				RelativePath="framewrk.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
 						UsePrecompiledHeader="0"
-						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -274,18 +270,17 @@
 				RelativePath="instruments.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
 						UsePrecompiledHeader="0"
-						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -299,18 +294,17 @@
 				RelativePath="options.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
 						UsePrecompiledHeader="0"
-						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -324,18 +318,17 @@
 				RelativePath="processes.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
 						UsePrecompiledHeader="0"
-						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -349,18 +342,17 @@
 				RelativePath="qladdin.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
 						UsePrecompiledHeader="0"
-						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -374,18 +366,17 @@
 				RelativePath="shortratemodels.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
 						UsePrecompiledHeader="0"
-						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -399,18 +390,17 @@
 				RelativePath="simpleswap.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
 						UsePrecompiledHeader="0"
-						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -424,18 +414,17 @@
 				RelativePath="termstructures.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
 						UsePrecompiledHeader="0"
-						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -449,18 +438,17 @@
 				RelativePath="utilities.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
 						UsePrecompiledHeader="0"
-						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -474,18 +462,17 @@
 				RelativePath="volatilities.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
 						UsePrecompiledHeader="0"
-						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -499,18 +486,17 @@
 				RelativePath="xibor.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
 						UsePrecompiledHeader="0"
-						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -524,18 +510,17 @@
 				RelativePath="xlutils.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;ADDINEXCEL_EXPORTS;$(NoInherit)"
 						UsePrecompiledHeader="0"
-						BrowseInformation="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release MTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -555,7 +540,7 @@
 				>
 			</File>
 			<File
-				RelativePath="XLCALL.H"
+				RelativePath="xlcall.h"
 				>
 			</File>
 			<File

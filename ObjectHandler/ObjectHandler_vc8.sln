@@ -1,46 +1,42 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual C++ Express 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Example", "Example\Example_vc8.vcproj", "{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExampleCpp", "Examples\C++\ExampleCpp_vc8.vcproj", "{D29BB9CB-5ADD-44F5-8329-47DDB509E6B0}"
 	ProjectSection(ProjectDependencies) = postProject
-		{931B87C5-CFD8-44F5-AA93-CA2143FC1BF5} = {931B87C5-CFD8-44F5-AA93-CA2143FC1BF5}
+		{E7A6B95E-41B0-48CD-9EC9-BF738741517B} = {E7A6B95E-41B0-48CD-9EC9-BF738741517B}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ObjectHandler", "ObjectHandler_vc8.vcproj", "{931B87C5-CFD8-44F5-AA93-CA2143FC1BF5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExampleXLL", "Examples\xl\ExampleXLL_vc8.vcproj", "{F5DC74EC-CF8A-4180-A41B-F61D9C349230}"
+	ProjectSection(ProjectDependencies) = postProject
+		{70DBC183-223E-4757-84D4-04B6FDC7B293} = {70DBC183-223E-4757-84D4-04B6FDC7B293}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib", "lib_vc8.vcproj", "{E7A6B95E-41B0-48CD-9EC9-BF738741517B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xll", "xl\xll_vc8.vcproj", "{70DBC183-223E-4757-84D4-04B6FDC7B293}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug MTDLL|Win32 = Debug MTDLL|Win32
-		Debug SingleThread|Win32 = Debug SingleThread|Win32
-		Debug|Win32 = Debug|Win32
 		Release MTDLL|Win32 = Release MTDLL|Win32
-		Release SingleThread|Win32 = Release SingleThread|Win32
-		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}.Debug MTDLL|Win32.ActiveCfg = Debug|Win32
-		{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}.Debug MTDLL|Win32.Build.0 = Debug|Win32
-		{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}.Debug SingleThread|Win32.ActiveCfg = Debug|Win32
-		{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}.Debug SingleThread|Win32.Build.0 = Debug|Win32
-		{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}.Debug|Win32.ActiveCfg = Debug|Win32
-		{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}.Debug|Win32.Build.0 = Debug|Win32
-		{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}.Release MTDLL|Win32.ActiveCfg = Release|Win32
-		{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}.Release MTDLL|Win32.Build.0 = Release|Win32
-		{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}.Release SingleThread|Win32.ActiveCfg = Release|Win32
-		{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}.Release SingleThread|Win32.Build.0 = Release|Win32
-		{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}.Release|Win32.ActiveCfg = Release|Win32
-		{E5B96DC1-BD5D-42F5-A70B-6D0ACF781D8F}.Release|Win32.Build.0 = Release|Win32
-		{931B87C5-CFD8-44F5-AA93-CA2143FC1BF5}.Debug MTDLL|Win32.ActiveCfg = Debug MTDLL|Win32
-		{931B87C5-CFD8-44F5-AA93-CA2143FC1BF5}.Debug MTDLL|Win32.Build.0 = Debug MTDLL|Win32
-		{931B87C5-CFD8-44F5-AA93-CA2143FC1BF5}.Debug SingleThread|Win32.ActiveCfg = Debug SingleThread|Win32
-		{931B87C5-CFD8-44F5-AA93-CA2143FC1BF5}.Debug SingleThread|Win32.Build.0 = Debug SingleThread|Win32
-		{931B87C5-CFD8-44F5-AA93-CA2143FC1BF5}.Debug|Win32.ActiveCfg = Debug|Win32
-		{931B87C5-CFD8-44F5-AA93-CA2143FC1BF5}.Debug|Win32.Build.0 = Debug|Win32
-		{931B87C5-CFD8-44F5-AA93-CA2143FC1BF5}.Release MTDLL|Win32.ActiveCfg = Release MTDLL|Win32
-		{931B87C5-CFD8-44F5-AA93-CA2143FC1BF5}.Release MTDLL|Win32.Build.0 = Release MTDLL|Win32
-		{931B87C5-CFD8-44F5-AA93-CA2143FC1BF5}.Release SingleThread|Win32.ActiveCfg = Release SingleThread|Win32
-		{931B87C5-CFD8-44F5-AA93-CA2143FC1BF5}.Release SingleThread|Win32.Build.0 = Release SingleThread|Win32
-		{931B87C5-CFD8-44F5-AA93-CA2143FC1BF5}.Release|Win32.ActiveCfg = Release|Win32
-		{931B87C5-CFD8-44F5-AA93-CA2143FC1BF5}.Release|Win32.Build.0 = Release|Win32
+		{D29BB9CB-5ADD-44F5-8329-47DDB509E6B0}.Debug MTDLL|Win32.ActiveCfg = Debug MTDLL|Win32
+		{D29BB9CB-5ADD-44F5-8329-47DDB509E6B0}.Debug MTDLL|Win32.Build.0 = Debug MTDLL|Win32
+		{D29BB9CB-5ADD-44F5-8329-47DDB509E6B0}.Release MTDLL|Win32.ActiveCfg = Release MTDLL|Win32
+		{D29BB9CB-5ADD-44F5-8329-47DDB509E6B0}.Release MTDLL|Win32.Build.0 = Release MTDLL|Win32
+		{F5DC74EC-CF8A-4180-A41B-F61D9C349230}.Debug MTDLL|Win32.ActiveCfg = Debug MTDLL|Win32
+		{F5DC74EC-CF8A-4180-A41B-F61D9C349230}.Debug MTDLL|Win32.Build.0 = Debug MTDLL|Win32
+		{F5DC74EC-CF8A-4180-A41B-F61D9C349230}.Release MTDLL|Win32.ActiveCfg = Release MTDLL|Win32
+		{F5DC74EC-CF8A-4180-A41B-F61D9C349230}.Release MTDLL|Win32.Build.0 = Release MTDLL|Win32
+		{E7A6B95E-41B0-48CD-9EC9-BF738741517B}.Debug MTDLL|Win32.ActiveCfg = Debug MTDLL|Win32
+		{E7A6B95E-41B0-48CD-9EC9-BF738741517B}.Debug MTDLL|Win32.Build.0 = Debug MTDLL|Win32
+		{E7A6B95E-41B0-48CD-9EC9-BF738741517B}.Release MTDLL|Win32.ActiveCfg = Release MTDLL|Win32
+		{E7A6B95E-41B0-48CD-9EC9-BF738741517B}.Release MTDLL|Win32.Build.0 = Release MTDLL|Win32
+		{70DBC183-223E-4757-84D4-04B6FDC7B293}.Debug MTDLL|Win32.ActiveCfg = Debug MTDLL|Win32
+		{70DBC183-223E-4757-84D4-04B6FDC7B293}.Debug MTDLL|Win32.Build.0 = Debug MTDLL|Win32
+		{70DBC183-223E-4757-84D4-04B6FDC7B293}.Release MTDLL|Win32.ActiveCfg = Release MTDLL|Win32
+		{70DBC183-223E-4757-84D4-04B6FDC7B293}.Release MTDLL|Win32.Build.0 = Release MTDLL|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

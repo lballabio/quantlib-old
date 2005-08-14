@@ -25,7 +25,19 @@ namespace QuantLibAddin {
 
     class BarrierOption : public ObjHandler::Object {
     public:
-        BarrierOption(ObjHandler::ArgumentStack &args);
+        BarrierOption(
+            const std::string &handleBlackScholes,
+            const std::string &barrierTypeID,
+            const double &barrier,
+            const double &rebate,
+            const std::string &optionTypeID,
+            const std::string &payoffID,
+            const double &strike,
+            const std::string &exerciseID,
+            const long &exerciseDate,
+            const long &settlementDate,
+            const std::string &engineID,
+            const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(barrierOption_);
         }

@@ -19,25 +19,20 @@
 #include <Addins/Calc/qladdin.hpp>
 #include <Addins/Calc/calcutils.hpp>
 
-using namespace ObjHandler;
-using namespace QuantLibAddin;
-
 STRING SAL_CALL QLAddin::qlVersion() THROWDEF_RTE_IAE {
     try {
-        std::string ret =  QL_VERSION();
-        return STRFROMANSI(ret.c_str());
+        return STRFROMANSI(QuantLibAddin::qlVersion().c_str());
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_VERSION: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: QL_VERSION: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
 STRING SAL_CALL QLAddin::qlOhVersion() THROWDEF_RTE_IAE {
     try {
-        std::string ret =  QL_OH_VERSION();
-        return STRFROMANSI(ret.c_str());
+        return STRFROMANSI(ObjHandler::ohVersion().c_str());
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_OH_VERSION: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: OH_VERSION: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -45,23 +40,24 @@ STRING SAL_CALL QLAddin::qlOhVersion() THROWDEF_RTE_IAE {
 SEQSEQ(ANY) SAL_CALL QLAddin::qlFieldNames(
         const STRING& handleObject) THROWDEF_RTE_IAE {
     try {
-        Properties properties = OH_QUERY_OBJECT(OUStringToStlString(handleObject));
+        ObjHandler::obj_ptr objectPointer = ObjHandler::retrieveObject(OUStringToStlString(handleObject));
+        ObjHandler::Properties properties = objectPointer->getProperties();
         SEQSEQ( ANY ) rows(properties.size());
         for (unsigned int i=0; i<properties.size(); i++) {
             SEQ( ANY ) row(1);
-            ObjectProperty property = properties[i];
-            any_ptr a = property();
+            ObjHandler::ObjectProperty property = properties[i];
+            ObjHandler::any_ptr a = property();
             row[0] = stringToANY(property.name());
             rows[i] = row;
         }
         return rows;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_FIELD_NAMES: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: OH_FIELD_NAMES: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
-SEQSEQ(ANY) boostAnyToSeqSeq(const any_ptr &a) {
+SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
     if (a->type() == typeid(long)) {
         long l = boost::any_cast< long >(*a);
         sal_Int32 l2 = static_cast< sal_Int32 >(l);
@@ -203,37 +199,38 @@ SEQSEQ(ANY) boostAnyToSeqSeq(const any_ptr &a) {
         }
         return ss;
     } else
-        throw Exception("boostAnyToSeqSeq: unable to interpret value");
+        throw ObjHandler::Exception("boostAnyToSeqSeq: unable to interpret value");
 }
 
-SEQSEQ(ANY) SAL_CALL QLAddin::qlValue(
+SEQSEQ(ANY) SAL_CALL QLAddin::qlFieldValue(
         const STRING& handleObject,
         const STRING& fieldName) THROWDEF_RTE_IAE {
     try {
-        Properties properties = OH_QUERY_OBJECT(OUStringToStlString(handleObject));
+        ObjHandler::obj_ptr objectPointer = ObjHandler::retrieveObject(OUStringToStlString(handleObject));
+        ObjHandler::Properties properties = objectPointer->getProperties();
         for (unsigned int i=0; i<properties.size(); i++) {
-            ObjectProperty property = properties[i];
-            any_ptr a = property();
+            ObjHandler::ObjectProperty property = properties[i];
+            ObjHandler::any_ptr a = property();
             STRING propertyName = STRFROMANSI(property.name().c_str());
             if (fieldName.equalsIgnoreAsciiCase(propertyName))
                 return boostAnyToSeqSeq(a);
         }
-        throw Exception(std::string("no field with name ") + OUStringToStlString(fieldName));
+        throw ObjHandler::Exception(std::string("no field with name ") + OUStringToStlString(fieldName));
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_VALUE: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: OH_FIELD_VALUE: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
-STRING SAL_CALL QLAddin::qlLogfile(
+STRING SAL_CALL QLAddin::qlSetLogfile(
         const STRING& logFileName,
         sal_Int32 logLevel) THROWDEF_RTE_IAE {
     try {
         int lvl = logLevel ? logLevel : 4;
-        OH_LOGFILE(OUStringToStlString(logFileName), lvl);
+        ObjHandler::setLogFile(OUStringToStlString(logFileName), lvl);
         return logFileName;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_LOGFILE: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: OH_SET_LOGFILE: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -243,20 +240,20 @@ STRING SAL_CALL QLAddin::qlLogMessage(
         sal_Int32 logLevel) THROWDEF_RTE_IAE {
     try {
         int lvl = logLevel ? logLevel : 4;
-        OH_LOG_MESSAGE(OUStringToStlString(logMessage), lvl);
+        ObjHandler::logMessage(OUStringToStlString(logMessage), lvl);
         return logMessage;
     } catch (...) {
         THROW_RTE;
     }
 }
 
-sal_Int32 SAL_CALL QLAddin::qlLogLevel(
+sal_Int32 SAL_CALL QLAddin::qlSetLogLevel(
         sal_Int32 logLevel) THROWDEF_RTE_IAE {
     try {
-        OH_LOG_LEVEL(logLevel);
+        ObjHandler::setLogLevel(logLevel);
         return logLevel;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_LOGLEVEL: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: OH_SET_LOGLEVEL: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -264,20 +261,20 @@ sal_Int32 SAL_CALL QLAddin::qlLogLevel(
 sal_Int32 SAL_CALL QLAddin::qlLogObject(
         const STRING & handleObject) THROWDEF_RTE_IAE {
     try {
-        OH_LOG_OBJECT(OUStringToStlString(handleObject));
-        return sal_False;
+        ObjHandler::logObject(OUStringToStlString(handleObject));
+        return sal_True;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_LOG_OBJECT: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: OH_LOG_OBJECT: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
 sal_Int32 SAL_CALL QLAddin::qlLogAllObjects() THROWDEF_RTE_IAE {
     try {
-        OH_LOG_ALL_OBJECTS();
-        return sal_False;
+        ObjHandler::logAllObjects();
+        return sal_True;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_LOG_ALL_OBJECTS: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: OH_LOG_ALL_OBJECTS: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -285,24 +282,23 @@ sal_Int32 SAL_CALL QLAddin::qlLogAllObjects() THROWDEF_RTE_IAE {
 sal_Int32 SAL_CALL QLAddin::qlDeleteObject(
         const STRING & handleObject) THROWDEF_RTE_IAE {
     try {
-        OH_DELETE_OBJECT(OUStringToStlString(handleObject));
-        return sal_False;
+        ObjHandler::ObjectHandler::instance().deleteObject(OUStringToStlString(handleObject));
+        return sal_True;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_DELETE_OBJECT: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: OH_DELETE_OBJECT: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
 sal_Int32 SAL_CALL QLAddin::qlDeleteAllObjects() THROWDEF_RTE_IAE {
     try {
-        OH_DELETE_ALL_OBJECTS();
-        return sal_False;
+        ObjHandler::ObjectHandler::instance().deleteAllObjects();
+        return sal_True;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_DELETE_ALL_OBJECTS: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: OH_DELETE_ALL_OBJECTS: ") + e.what(), 2);
         THROW_RTE;
     }
 }
-
 
 sal_Int32 SAL_CALL QLAddin::qlDependsOn(
         const ANY &dummy0,
@@ -316,19 +312,19 @@ sal_Int32 SAL_CALL QLAddin::qlDependsOn(
         const ANY &dummy8,
         const ANY &dummy9) THROWDEF_RTE_IAE {
     try {
-        return sal_False;
+        return sal_True;
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_DEPENDS_ON: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: QL_DEPENDS_ON: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
 SEQSEQ( STRING ) SAL_CALL QLAddin::qlListRegisteredEnums() THROWDEF_RTE_IAE {
     try {
-        std::vector < std::string > returnValue = getRegisteredEnums();
+        std::vector < std::string > returnValue = QuantLibAddin::getRegisteredEnums();
         return VectorStringToSeqSeq(returnValue);
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_LIST_REGISTERED_ENUMS: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: QL_LIST_REGISTERED_ENUMS: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -336,21 +332,21 @@ SEQSEQ( STRING ) SAL_CALL QLAddin::qlListRegisteredEnums() THROWDEF_RTE_IAE {
 SEQSEQ( STRING ) SAL_CALL QLAddin::qlListEnum(
         const STRING &enumId) THROWDEF_RTE_IAE {
     try {
-        std::vector < std::string > returnValue = getEnumMembers(
+        std::vector < std::string > returnValue = QuantLibAddin::getEnumMembers(
             OUStringToStlString(enumId));
         return VectorStringToSeqSeq(returnValue);
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_LIST_ENUM: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: QL_LIST_ENUM: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
 SEQSEQ( STRING ) SAL_CALL QLAddin::qlListRegisteredTypes() THROWDEF_RTE_IAE {
     try {
-        std::vector < std::string > returnValue = getRegisteredComplexTypes();
+        std::vector < std::string > returnValue = QuantLibAddin::getRegisteredComplexTypes();
         return VectorStringToSeqSeq(returnValue);
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_LIST_REGISTERED_TYPES: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: QL_LIST_REGISTERED_TYPES: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -358,11 +354,11 @@ SEQSEQ( STRING ) SAL_CALL QLAddin::qlListRegisteredTypes() THROWDEF_RTE_IAE {
 SEQSEQ( STRING ) SAL_CALL QLAddin::qlListType(
         const STRING &enumId) THROWDEF_RTE_IAE {
     try {
-        std::vector < std::string > returnValue = getComplexTypeMembers(
+        std::vector < std::string > returnValue = QuantLibAddin::getComplexTypeMembers(
             OUStringToStlString(enumId));
         return VectorStringToSeqSeq(returnValue);
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: QL_LIST_TYPE: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("ERROR: QL_LIST_TYPE: ") + e.what(), 2);
         THROW_RTE;
     }
 }

@@ -190,3 +190,8 @@ def testAttribute(node, attribute, value = ''):
     else:
         return True
 
+def checkFunctionPlatform(function, platform):
+    'test whether given function is required on given platform'
+    if not function.has_key(common.PLATFORMS): return True
+    return function[common.PLATFORMS].find(platform) != -1
+
