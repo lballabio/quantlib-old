@@ -23,10 +23,20 @@
 #define oh_logger_hpp
 
 #include <oh/singleton.hpp>
+
+#if defined BOOST_MSVC       // Microsoft Visual C++
+#pragma warning( push )
+#pragma warning(disable : 4996)
+#endif
+
 #include <log4cxx/logger.h>
 #include <log4cxx/simplelayout.h>
 #include <log4cxx/fileappender.h>
 #include <log4cxx/consoleappender.h>
+
+#if defined BOOST_MSVC       // Microsoft Visual C++
+#pragma warning( pop )
+#endif
 
 namespace ObjHandler {
 
