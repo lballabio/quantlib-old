@@ -36,16 +36,6 @@
 #define OH_GET_OBJECT( CLASS, HANDLE ) \
     boost::dynamic_pointer_cast< CLASS > \
     (ObjHandler::retrieveObject( HANDLE ))
-//! ObjectHandler function deleteObject
-/*! delete Object with handle \a HANDLE.
-*/
-//#define OH_DELETE_OBJECT( HANDLE )
-//    ObjHandler::ObjectHandler::instance().deleteObject( HANDLE )
-//! ObjectHandler function deleteAllObjects
-/*! delete all Objects in the repository.
-*/
-//#define OH_DELETE_ALL_OBJECTS()
-//    ObjHandler::ObjectHandler::instance().deleteAllObjects()
 
 namespace ObjHandler {
 
