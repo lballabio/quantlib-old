@@ -86,7 +86,6 @@ namespace ObjHandler {
             must be recast appropriately.
         */
         virtual boost::shared_ptr<void> getReference() const = 0;
-        virtual void foo() {}
         //! Return the Object's property vector.
         /*! Returns the property vector
             describing the underlying Object.
