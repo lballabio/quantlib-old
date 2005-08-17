@@ -4,6 +4,7 @@
 	Version="8.00"
 	Name="ClientCDemo"
 	ProjectGUID="{DE0C2031-6CBD-4135-B2F5-AFC1D17945BB}"
+	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -75,7 +76,7 @@
 				OutputFile="bin\QLADemo-vc80-mt.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				AdditionalLibraryDirectories="..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
 				ProgramDatabaseFile=".\build\vc8\ReleaseMTDLL/QLADemo-vc80-mt.pdb"
 				SubSystem="1"
 				TargetMachine="1"
@@ -169,7 +170,7 @@
 				OutputFile="bin\QLADemo-vc80-mt-gd.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				AdditionalLibraryDirectories="..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\build\vc8\DebugMTDLL/QLADemo-vc80-mt-gd.pdb"
 				SubSystem="1"
