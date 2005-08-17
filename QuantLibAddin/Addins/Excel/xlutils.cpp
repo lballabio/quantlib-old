@@ -85,6 +85,7 @@ std::string getHandleFull(const std::string &handle) {
 void stringToChar(char *c, const std::string &s) {
     int len = __min(XL_MAX_STR_LEN, s.length());
     strncpy(c, s.c_str(), len);
+    c[len] = 0;
 }
 
 void scalarAnyToXloper(
