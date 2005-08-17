@@ -87,9 +87,9 @@
     </param>
 </parameters>
 <returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing Option</desc>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>handle of newly created object</desc>
 </returnval>
 </function>
 
@@ -162,9 +162,9 @@
     </param>
 </parameters>
 <returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing Option</desc>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>handle of newly created object</desc>
 </returnval>
 </function>
 
@@ -237,9 +237,9 @@
     </param>
 </parameters>
 <returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing Option</desc>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>handle of newly created object</desc>
 </returnval>
 </function>
 
@@ -294,9 +294,9 @@
     </param>
 </parameters>
 <returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing Option</desc>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>handle of newly created object</desc>
 </returnval>
 </function>
 
@@ -387,9 +387,9 @@
     </param>
 </parameters>
 <returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing Option</desc>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>handle of newly created object</desc>
 </returnval>
 </function>
 
@@ -468,9 +468,9 @@
     </param>
 </parameters>
 <returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing Option</desc>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>handle of newly created object</desc>
 </returnval>
 </function>
 
@@ -549,9 +549,9 @@
     </param>
 </parameters>
 <returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing Option</desc>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>handle of newly created object</desc>
 </returnval>
 </function>
 
@@ -582,9 +582,9 @@
     </param>
 </parameters>
 <returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties reflecting revised Option</desc>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>new engine name</desc>
 </returnval>
 </function>
 
@@ -651,9 +651,9 @@
     </param>
 </parameters>
 <returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing Option</desc>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>handle of newly created object</desc>
 </returnval>
 </function>
 

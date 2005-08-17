@@ -17,6 +17,7 @@
 
 #include <objectfoo.hpp>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -25,20 +26,24 @@ ObjectFoo::ObjectFoo(
         const int &i) {
     foo_        = boost::shared_ptr<Foo>(new Foo(s, i));
     // populate base class Property vector
-    any_ptr anyString(new boost::any(foo_->s()));
-    any_ptr anyInt(new boost::any(foo_->i()));
-    ObjectProperty propString(PROPERTY_STR, anyString);
-    ObjectProperty propInt(PROPERTY_INT, anyInt);
-    properties_.push_back(propString);
-    properties_.push_back(propInt);    
+    //any_ptr anyString(new boost::any(foo_->s()));
+    //any_ptr anyInt(new boost::any(foo_->i()));
+    //ObjectProperty propString(PROPERTY_STR, anyString);
+    //ObjectProperty propInt(PROPERTY_INT, anyInt);
+    //properties_.push_back(propString);
+    //properties_.push_back(propInt);    
+	createProperty(PROPERTY_STR, foo_->s());
+	createProperty(PROPERTY_INT, foo_->i());
 }
 
 // wrapper for underlying member function
 void ObjectFoo::update(const string &s, const int &i) {
     foo_->update(s, i);
     // update Property vector
-    *properties_[IDX_STR]() = s;
-    *properties_[IDX_INT]() = i;    
+    //*properties_[IDX_STR]() = s;
+    //*properties_[IDX_INT]() = i;    
+	updateProperty(IDX_STR, s);
+	updateProperty(IDX_INT, i);
 }
 
 boost::shared_ptr<void> ObjectFoo::getReference() const {
@@ -46,15 +51,17 @@ boost::shared_ptr<void> ObjectFoo::getReference() const {
 }
 
 // utility function for updating object of class Foo
-const Properties& updateFoo(
+void updateFoo(
         const string &handle,
         const string &s,
         const int &i) {
     boost::shared_ptr<ObjectFoo> object =
         OH_GET_OBJECT(ObjectFoo, handle);
-    if (!object)
-        throw Exception("FOO_UPDATE: unable to retrieve object " + handle);
+    if (!object) {
+        ostringstream msg;
+        msg << "FOO_UPDATE: unable to retrieve object " << handle;
+        throw exception(msg.str().c_str());
+    }
     object->update(s, i);
-    return object->getProperties();
 }
 

@@ -33,9 +33,9 @@
     </param>
 </parameters>
 <returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing Black Constant Vol object</desc>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>handle of newly created object</desc>
 </returnval>
 </function>
 
@@ -78,9 +78,9 @@
     </param>
 </parameters>
 <returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing Black Variance Surface object</desc>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>handle of newly created object</desc>
 </returnval>
 </function>
 

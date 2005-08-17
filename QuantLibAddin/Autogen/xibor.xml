@@ -81,9 +81,9 @@
     </param>
 </parameters>
 <returnval>
-    <type>property</type>
-    <tensorrank>vector</tensorrank>
-    <desc>vector of properties describing xibor index</desc>
+    <type>string</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>handle of newly created object</desc>
 </returnval>
 </function>
 

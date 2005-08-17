@@ -34,6 +34,9 @@ void OH_LOG_MESSAGE(
     const char *fmt,
     ...);
 
+void OH_LOG_OBJECT(
+    const char *handle);
+
 int QL_LIST_REGISTERED_ENUMS(
     char **result);
 

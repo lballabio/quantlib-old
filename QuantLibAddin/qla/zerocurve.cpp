@@ -64,14 +64,8 @@ namespace QuantLibAddin {
         }
 
         // Setup object properties
-        ObjHandler::any_ptr anyDates(new boost::any(derivedDates));
-        ObjHandler::any_ptr anyRates(new boost::any(derivedRates));
-
-        ObjHandler::ObjectProperty propDates(FIELD_DATES, anyDates);
-        ObjHandler::ObjectProperty propRates(FIELD_RATES, anyRates);
-
-        properties_.push_back(propDates);
-        properties_.push_back(propRates);
+		createProperty(FIELD_DATES, derivedDates);
+		createProperty(FIELD_RATES, derivedRates);
 
     }
 }

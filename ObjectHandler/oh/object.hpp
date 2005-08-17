@@ -55,15 +55,11 @@ namespace ObjHandler {
     */
     typedef std::vector<ObjectProperty> Properties;
 
-#ifdef COMPILING_XLL
-    extern template class __declspec(dllexport) std::vector < Property < std::string, boost::shared_ptr < boost::any > > >;
-#endif
-
     //! ABC implementing interface for Objects to be stored in the ObjectHandler.
     /*! Objects are constructed via the Factory function makeObject
         and stored in the global ObjectHandler repository.
     */
-    class DLL_API Object {        
+    class Object {        
     public:
         //! \name Constructors & Destructors
         //@{
@@ -95,8 +91,20 @@ namespace ObjHandler {
         friend std::ostream &operator<<(std::ostream&, const Object &object);
         //@}
     protected:
-        Properties properties_;
+		template < class T >
+		void createProperty(const std::string &name, const T &value) {
+			any_ptr anyValue(new boost::any(value));
+			ObjectProperty objectProperty(name, anyValue);
+			properties_.push_back(objectProperty);
+		}
+
+		template < class T >
+		void updateProperty(const int &index, const T &value) {
+			*properties_[index]() = value;
+		}
+
     private:
+        Properties properties_;
         Object& operator= (const Object&);
         Object(const Object&);
     };

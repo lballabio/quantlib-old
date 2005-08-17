@@ -122,9 +122,7 @@ namespace QuantLibAddin {
             QL_FAIL("CapFloor: unknown option type " + optionID);
         }
 
-        ObjHandler::any_ptr any_npv(new boost::any(capfloor_->NPV()));
-        ObjHandler::ObjectProperty prop_npv(FIELD_NPV, any_npv);
-        properties_.push_back(prop_npv);
+		createProperty(FIELD_NPV, capfloor_->NPV());
     }
 
     AnalyticCapFloorEngine::AnalyticCapFloorEngine(

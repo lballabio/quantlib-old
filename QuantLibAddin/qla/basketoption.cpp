@@ -83,12 +83,8 @@ namespace QuantLibAddin {
                 exercise, 
                 correlation,
                 pricingEngine));
-        ObjHandler::any_ptr any_npv(new boost::any(basketOption_->NPV()));
-        ObjHandler::any_ptr any_engine(new boost::any(std::string(engineID)));
-        ObjHandler::ObjectProperty prop_npv(FIELD_NPV, any_npv);
-        ObjHandler::ObjectProperty prop_engine(FIELD_ENGINE, any_engine);
-        properties_.push_back(prop_npv);
-        properties_.push_back(prop_engine);
+		createProperty(FIELD_NPV, basketOption_->NPV());
+		createProperty(FIELD_ENGINE, engineID);
     }
 
 }

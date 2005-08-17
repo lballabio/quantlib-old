@@ -65,23 +65,19 @@ namespace QuantLibAddin {
                 payoff, 
                 exercise, 
                 pricingEngine));
-        ObjHandler::any_ptr any_npv(new boost::any(vanillaOption_->NPV()));
-        ObjHandler::any_ptr any_engine(new boost::any(std::string(engineID)));
-        ObjHandler::ObjectProperty prop_npv(FIELD_NPV, any_npv);
-        ObjHandler::ObjectProperty prop_engine(FIELD_ENGINE, any_engine);
-        properties_.push_back(prop_npv);
-        properties_.push_back(prop_engine);
+		createProperty(FIELD_NPV, vanillaOption_->NPV());
+		createProperty(FIELD_ENGINE, engineID);
     }
 
-    const ObjHandler::Properties& VanillaOption::setEngine(
+    std::string VanillaOption::setEngine(
             const std::string &engineID,
             const long &timeSteps) {
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
         vanillaOption_->setPricingEngine(pricingEngine);
-        *properties_[IDX_NPV]() = vanillaOption_->NPV();
-        *properties_[IDX_ENGINE]() = engineID;
-        return properties_;
+		updateProperty(IDX_NPV, vanillaOption_->NPV());
+		updateProperty(IDX_ENGINE, engineID);
+		return engineID;
     }
 
 }

@@ -38,7 +38,7 @@ private:
 };
 
 // utility function for updating object of class Foo                                                                       
-const ObjHandler::Properties& updateFoo(
+void updateFoo(
     const std::string &handle,
     const std::string &s,
     const int &i);

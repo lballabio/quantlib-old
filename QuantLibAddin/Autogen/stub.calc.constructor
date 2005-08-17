@@ -1,7 +1,7 @@
     try {
 %s        ObjHandler::obj_ptr objectPointer(new QuantLibAddin::%s(%s));
         ObjHandler::storeObject(OUStringToStlString(handle), objectPointer);
-        return propertyVectorToSeqSeq(objectPointer->getProperties(), handle);
+        return handle;
     } catch (const std::exception &e) {
         ObjHandler::logMessage(std::string("ERROR: %s: ") + e.what(), 2);
         THROW_RTE;

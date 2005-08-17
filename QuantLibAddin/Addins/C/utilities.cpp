@@ -56,6 +56,11 @@ void OH_LOG_MESSAGE(
     ObjHandler::logMessage(buf);
 }
 
+void OH_LOG_OBJECT(
+        const char *handle) {
+    ObjHandler::logObject(handle);
+}
+
 int QL_LIST_REGISTERED_ENUMS(
         char **result) {
     try {

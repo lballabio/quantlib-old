@@ -41,6 +41,8 @@ SEQSEQ(ANY) SAL_CALL QLAddin::qlFieldNames(
         const STRING& handleObject) THROWDEF_RTE_IAE {
     try {
         ObjHandler::obj_ptr objectPointer = ObjHandler::retrieveObject(OUStringToStlString(handleObject));
+        if (!objectPointer)
+            throw ObjHandler::Exception(std::string("no object with handle ") + OUStringToStlString(handleObject));
         ObjHandler::Properties properties = objectPointer->getProperties();
         SEQSEQ( ANY ) rows(properties.size());
         for (unsigned int i=0; i<properties.size(); i++) {
@@ -207,6 +209,8 @@ SEQSEQ(ANY) SAL_CALL QLAddin::qlFieldValue(
         const STRING& fieldName) THROWDEF_RTE_IAE {
     try {
         ObjHandler::obj_ptr objectPointer = ObjHandler::retrieveObject(OUStringToStlString(handleObject));
+        if (!objectPointer)
+            throw ObjHandler::Exception(std::string("no object with handle ") + OUStringToStlString(handleObject));
         ObjHandler::Properties properties = objectPointer->getProperties();
         for (unsigned int i=0; i<properties.size(); i++) {
             ObjHandler::ObjectProperty property = properties[i];

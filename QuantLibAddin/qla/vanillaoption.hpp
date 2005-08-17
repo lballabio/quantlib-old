@@ -1,4 +1,4 @@
-
+ 
 /*
  Copyright (C) 2004, 2005 Eric Ehlers
 
@@ -35,7 +35,7 @@ namespace QuantLibAddin {
             const long &settlementDate,
             const std::string &engineID,
             const long &timeSteps);
-        const ObjHandler::Properties& setEngine(
+        std::string setEngine(
             const std::string &engineName,
             const long &timeSteps);
         virtual boost::shared_ptr<void> getReference() const {

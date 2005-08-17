@@ -28,10 +28,7 @@ int main() {
     long timeSteps = 801;
     long exerciseDate = 43903;      // (13, March, 2020);
     long settlementDate = 43537;    // (13, March, 2019);
-    VariesList vbc;                 // attributes of black constant vols
-    VariesList vbs;                 // attributes of black scholes object
-    VariesList vo;                  // attributes of vanilla option object
-    int i;                          // iterator
+    char result[100];               // presently a dummy value
 
     OH_SET_LOGFILE("quantlib.log"); // specify log file
     OH_CONSOLE(1);                  // log messages to stdout
@@ -45,7 +42,7 @@ int main() {
             settlementDate, 
             volatility, 
             "Actual360",
-            &vbc) != SUCCESS) {
+            result) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_BLACK_CONSTANT_VOL");
         goto fail;
     }
@@ -58,7 +55,7 @@ int main() {
             settlementDate, 
             riskFreeRate, 
             dividendYield, 
-            &vbs) != SUCCESS) {
+            result) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_BLACK_SCHOLES_PROCESS");
         goto fail;
     }
@@ -74,33 +71,25 @@ int main() {
             settlementDate,                 // settlement date
             "JR",                           // engine type (jarrow rudd)
             timeSteps,                      // time steps
-            &vo) != SUCCESS) {
+            result) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_VANILLA_OPTION");
         goto fail;
     }
 
     OH_LOG_MESSAGE("high-level interrogation - after QL_VANILLA_OPTION");
-    for (i=0; i<vo.count; i++)
-        OH_LOG_MESSAGE("field = %s, value = %s", vo.varies[i].Label, 
-            variesToString(&vo.varies[i]));
+    OH_LOG_OBJECT("my_option");
 
     if (QL_OPTION_SETENGINE(
             "my_option", 
             "AEQPB",   // AdditiveEQPBinomialTree
             801, 
-            &vo) != SUCCESS) {
+            result) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_OPTION_SETENGINE");
         goto fail;
     }
 
     OH_LOG_MESSAGE("high-level interrogation - after QL_OPTION_SETENGINE");
-    for (i=0; i<vo.count; i++)
-        OH_LOG_MESSAGE("field = %s, value = %s", vo.varies[i].Label, 
-            variesToString(&vo.varies[i]));
-
-    freeVariesList(&vbc);
-    freeVariesList(&vbs);
-    freeVariesList(&vo);
+    OH_LOG_OBJECT("my_option");
 
     OH_LOG_MESSAGE("end example program");
 

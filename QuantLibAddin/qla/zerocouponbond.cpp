@@ -75,8 +75,6 @@ namespace QuantLibAddin {
 		double npv = mInstrument->NPV();
 
         // Setup object properties
-        ObjHandler::any_ptr anyNpv(new boost::any(npv));
-        ObjHandler::ObjectProperty propNpv(FIELD_NPV, anyNpv);
-        properties_.push_back(propNpv);
+		createProperty(FIELD_NPV, npv);
     }
 }
