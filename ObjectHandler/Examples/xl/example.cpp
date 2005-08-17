@@ -13,6 +13,11 @@ using namespace ObjHandler;
 #define DLLEXPORT extern "C" __declspec(dllexport)
 #define XL_MAX_STR_LEN 255
 
+// suppress VC8 'strncpy deprecated' warning
+#if defined BOOST_MSVC
+#pragma warning(disable : 4996)
+#endif
+
 DLLEXPORT int xlAutoOpen() {
     static XLOPER xDll;
     Excel(xlGetName, &xDll, 0);
@@ -62,7 +67,3 @@ DLLEXPORT short int *updateFoo(char *handle, char *s, long *i) {
         return 0;
     }
 }
-
-//DLLEXPORT int WINAPI xlAutoClose(void){
-//    return 1;
-//}

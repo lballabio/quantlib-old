@@ -30,6 +30,11 @@ using namespace ObjHandler;
 #define MATRIX "<MATRIX>"
 #define XL_MAX_STR_LEN 255
 
+// suppress VC8 'strncpy deprecated' warning
+#if defined BOOST_MSVC
+#pragma warning(disable : 4996)
+#endif
+
 void stringToXloper(XLOPER &xStr, const std::string &s);
 
 void scalarAnyToXloper(
