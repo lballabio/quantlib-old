@@ -4,6 +4,7 @@
 	Version="8.00"
 	Name="QuantLibAddin"
 	ProjectGUID="{AD3A01F8-B7D1-4293-9D05-B4629A9C301B}"
+	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -69,7 +70,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="build\vc8\ReleaseMTDLL\QuantLibAddin-vc80-mt-0_3_10.lib"
+				OutputFile="lib\QuantLibAddin-vc80-mt-0_3_10.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -146,7 +147,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="build\vc8\DebugMTDLL\QuantLibAddin-vc80-mt-gd-0_3_10.lib"
+				OutputFile="lib\QuantLibAddin-vc80-mt-gd-0_3_10.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool

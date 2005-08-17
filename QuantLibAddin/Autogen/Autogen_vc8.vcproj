@@ -16,8 +16,8 @@
 	<Configurations>
 		<Configuration
 			Name="All|Win32"
-			OutputDirectory=".\All"
-			IntermediateDirectory=".\All"
+			OutputDirectory="build\vc8"
+			IntermediateDirectory="build\vc8"
 			ConfigurationType="0"
 			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
