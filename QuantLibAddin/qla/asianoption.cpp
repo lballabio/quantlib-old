@@ -16,8 +16,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#pragma warning(disable : 4996)
-
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qla/config.hpp>
 #endif

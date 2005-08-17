@@ -19,16 +19,7 @@
 #include <stdio.h>
 #include <malloc.h>
 
-void printVariesList(const char *s, const VariesList vo) {
-    int i;
-    OH_LOG_MESSAGE(s);
-    for (i=0; i<vo.count; i++)
-        OH_LOG_MESSAGE("field = %s, value = %s", vo.varies[i].Label, 
-            variesToString(&vo.varies[i]));
-}
-
 int main() {
-    VariesList vfcb;                        // fixed coupon bond
     // inputs
     long issueDate              = 38424;    // issue date (1 January 2000)
     long datedDate              = 38424;    // dated date (15 July 2001)
@@ -41,6 +32,7 @@ int main() {
     char *dayCounterID         = "Thirty360";// day count
     char *businessDayConvention= "Following";// business day convention
     char *calendarID           = "Germany"; // calendar
+    char *ret = 0;                          // dummy value
 
     OH_SET_LOGFILE("quantlib.log");
     OH_CONSOLE(1);
@@ -64,14 +56,12 @@ int main() {
             1,                      // startFromEnd
             1,                      // longFinal
             "",                     // discCurveId
-            &vfcb) != SUCCESS) {
+            ret) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_FIXED_COUPON_BOND");
         goto fail;
     }
 
-    printVariesList("QL_FIXED_COUPON_BOND", vfcb);
-
-    freeVariesList(&vfcb);
+    OH_LOG_OBJECT("bond1");
 
     OH_LOG_MESSAGE("end instruments test");
 

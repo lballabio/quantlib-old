@@ -19,26 +19,7 @@
 #include <stdio.h>
 #include <malloc.h>
 
-void printVariesList(const char *s, const VariesList vo) {
-    int i;
-    OH_LOG_MESSAGE(s);
-    for (i=0; i<vo.count; i++)
-        OH_LOG_MESSAGE("field = %s, value = %s", vo.varies[i].Label, 
-            variesToString(&vo.varies[i]));
-}
-
 int main() {
-    VariesList vbc;                 // black constant vols
-    VariesList vbs;                 // black scholes
-    VariesList vo;                  // vanilla option
-    VariesList voac;                // asian continuous
-    VariesList voad;                // asian discrete
-    VariesList voba;                // barrier
-    VariesList vobs;                // basket
-    VariesList voc;                 // cliquet
-    VariesList vod;                 // dividend
-    VariesList vof;                 // forward
-    int i;                          // iterators
     // inputs for various functions:
     double dividendYield = 0.00;
     double riskFreeRate = 0.06;
@@ -57,6 +38,8 @@ int main() {
     long dividendDates[] = { 43721, 43903 };
     double dividends[] = { 5., 5. };
     long resetDate = 43813;
+    char *ret = 0;                  // dummy value
+    int i;                          // iterator
 
     OH_SET_LOGFILE("quantlib.log");
     OH_CONSOLE(1);
@@ -67,7 +50,7 @@ int main() {
             settlementDate, 
             volatility, 
             "Actual360",
-            &vbc) != SUCCESS) {
+            ret) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_BLACK_CONSTANT_VOL");
         goto fail;
     }
@@ -80,12 +63,12 @@ int main() {
             settlementDate, 
             riskFreeRate, 
             dividendYield, 
-            &vbs) != SUCCESS) {
+            ret) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_BLACK_SCHOLES_PROCESS");
         goto fail;
     }
 
-    printVariesList("QL_BLACK_SCHOLES_PROCESS", vbs);
+    OH_LOG_OBJECT("stoch1");
 
     if (QL_VANILLA_OPTION(
             "opt_van",                      // option handle
@@ -98,12 +81,12 @@ int main() {
             settlementDate,                 // settlement date
             "JR",                           // engine type (jarrow rudd)
             timeSteps,                      // time steps
-            &vo) != SUCCESS) {
+            ret) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_VANILLA_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_VANILLA_OPTION", vo);
+    OH_LOG_OBJECT("opt_van");
 
     if (QL_CA_ASIAN_OPTION(
             "opt_asian_cont",               // option handle
@@ -117,12 +100,12 @@ int main() {
             0,                              // settlement date ignored when exercise = European
             "ACGAPA",                       // engine type (AnalyticContinuousGeometricAveragePriceAsianEngine)
             timeSteps,                      // time steps
-            &voac) != SUCCESS) {
+            ret) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_CA_ASIAN_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_CA_ASIAN_OPTION", voac);
+    OH_LOG_OBJECT("opt_asian_cont");
 
     fixingDatesCount = exerciseDate - todaysDate + 1;
     fixingDates = (long *) malloc(sizeof(long) * fixingDatesCount);
@@ -144,12 +127,12 @@ int main() {
             0,                              // settlement date ignored when exercise = European
             "ADGAPA",                       // engine type (AnalyticDiscreteGeometricAveragePriceAsianEngine)
             timeSteps,                      // time steps
-            &voad) != SUCCESS) {
+            ret) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_DA_ASIAN_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_DA_ASIAN_OPTION", voad);
+    OH_LOG_OBJECT("opt_asian_disc");
 
     if (QL_BARRIER_OPTION(
             "opt_barrier",                  // option handle
@@ -165,12 +148,12 @@ int main() {
             0,                              // settlement date ignored when exercise = European
             "AB",                           // engine type (AnalyticBarrierEngine)
             timeSteps,                      // time steps
-            &voba) != SUCCESS) {
+            ret) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_BARRIER_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_BARRIER_OPTION", voba);
+    OH_LOG_OBJECT("opt_barrier");
 
     correlations = (double**)malloc(sizeof(double*)*2);
     correlations[0] = (double*)malloc(sizeof(double)*2);
@@ -194,12 +177,12 @@ int main() {
             0,                              // settlement date ignored when exercise = European
             "SE",                           // engine type (StulzEngine)
             timeSteps,                      // time steps
-            &vobs) != SUCCESS) {
+            ret) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_BASKET_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_BASKET_OPTION", vobs);
+    OH_LOG_OBJECT("opt_basket");
 
     if (QL_CLIQUET_OPTION(
             "opt_cliquet",                  // option handle
@@ -211,12 +194,12 @@ int main() {
             exerciseDate,                   // exercise date
             "AC",                           // engine type (AnalyticCliquetEngine)
             timeSteps,                      // time steps
-            &voc) != SUCCESS) {
+            ret) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_CLIQUET_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_CLIQUET_OPTION", voc);
+    OH_LOG_OBJECT("opt_cliquet");
 
     if (QL_DIVIDEND_VANILLA_OPTION(
             "opt_divvan",                   // option handle
@@ -233,12 +216,12 @@ int main() {
             0,                              // settlement date ignored when exercise = European
             "ADE",                          // engine type (AnalyticDividendEuropeanEngine)
             timeSteps,                      // time steps
-            &vod) != SUCCESS) {
+            ret) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_DIVIDEND_VANILLA_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_DIVIDEND_VANILLA_OPTION", vod);
+    OH_LOG_OBJECT("opt_divvan");
 
     if (QL_FORWARD_VANILLA_OPTION(
             "opt_fwdvan",                   // option handle
@@ -253,27 +236,17 @@ int main() {
             0,                              // settlement date ignored when exercise = European
             "FE",                           // engine type (ForwardEngine)
             timeSteps,                      // time steps
-            &vof) != SUCCESS) {
+            ret) != SUCCESS) {
         OH_LOG_MESSAGE("Error on call to QL_FORWARD_VANILLA_OPTION");
         goto fail;
     }
 
-    printVariesList("QL_FORWARD_VANILLA_OPTION", vof);
+    OH_LOG_OBJECT("opt_fwdvan");
 
     free(fixingDates);
     for (i=0;i<2;i++)
         free(correlations[i]);
     free(correlations);
-    freeVariesList(&vbc);
-    freeVariesList(&vbs);
-    freeVariesList(&vo);
-    freeVariesList(&voac);
-    freeVariesList(&voad);
-    freeVariesList(&voba);
-    freeVariesList(&vobs);
-    freeVariesList(&voc);
-    freeVariesList(&vod);
-    freeVariesList(&vof);
 
     OH_LOG_MESSAGE("end options test");
 
