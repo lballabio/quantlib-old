@@ -40,8 +40,8 @@ RSC=rc.exe
 # PROP Output_Dir "build\vc6\DebugMTDLL"
 # PROP Intermediate_Dir "build\vc6\DebugMTDLL"
 # PROP Target_Dir ""
-# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ  /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "./" /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "$(LOG4CXX_DIR)/include" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ  /c
+# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "./" /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "$(LOG4CXX_DIR)/include" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
 # ADD BASE RSC /l 0x809 /d "_DEBUG"
 # ADD RSC /l 0x809 /d "_DEBUG"
 BSC32=bscmake.exe
@@ -49,7 +49,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"build\vc6\DebugMTDLL\QuantLibAddin-vc6-mt-gd-0_3_10.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-gd-0_3_10.lib"
 
 !ELSEIF  "$(CFG)" == "QuantLibAddin - Win32 Release MTDLL"
 
@@ -72,7 +72,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"build\vc6\ReleaseMTDLL\QuantLibAddin-vc6-mt-0_3_10.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-0_3_10.lib"
 
 !ENDIF 
 
