@@ -25,10 +25,7 @@ using namespace QuantLibAddin;
 DLLEXPORT char* qlVersion() {
     try {
         static char ret[XL_MAX_STR_LEN];
-        std::string ver = QuantLibAddin::qlVersion();
-        int len = __min(XL_MAX_STR_LEN - 1, ver.length());
-        strncpy(ret, ver.c_str(), len);
-        ret[len] = 0;
+		stringToChar(ret, QuantLibAddin::qlVersion());
         return ret;
 	} catch (const std::exception &e) {
         logMessage(std::string("ERROR: QL_VERSION: ") + e.what(), 2);
