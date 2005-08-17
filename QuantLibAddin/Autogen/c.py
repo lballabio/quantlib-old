@@ -121,7 +121,7 @@ def getReturnCall(returnDef):
 
     if returnDef[common.TYPE] == common.STRING:
         if returnDef[common.TENSOR] == common.SCALAR:
-            return 'strcpy(result, returnValue.c_str());'
+            return 'strcpy(result, returnValue.c_str())'
         else:
             type = 'std::string'
     else:
