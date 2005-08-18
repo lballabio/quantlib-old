@@ -4,6 +4,7 @@
 	Version="8.00"
 	Name="ExampleCpp"
 	ProjectGUID="{D29BB9CB-5ADD-44F5-8329-47DDB509E6B0}"
+	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -44,7 +45,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..\..,$(LOG4CXX_DIR)\include"
+				AdditionalIncludeDirectories=".,..\.."
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -137,7 +138,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..\..,$(LOG4CXX_DIR)\include"
+				AdditionalIncludeDirectories=".,..\.."
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"

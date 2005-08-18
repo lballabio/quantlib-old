@@ -22,6 +22,7 @@
 #ifndef oh_exception_hpp
 #define oh_exception_hpp
 
+#include <oh/objhandlerdefines.hpp>
 #include <exception>
 #include <string>
 
@@ -31,7 +32,7 @@ namespace ObjHandler {
     /*! Descended from std::exception,
         supports an error message string.
     */
-    class Exception : public std::exception {
+    class DLL_API Exception : public std::exception {
         public:
             Exception(const std::string& message);
             ~Exception() throw() {}

@@ -90,18 +90,23 @@ namespace ObjHandler {
 
         friend std::ostream &operator<<(std::ostream&, const Object &object);
         //@}
-    protected:
-		template < class T >
-		void createProperty(const std::string &name, const T &value) {
-			any_ptr anyValue(new boost::any(value));
-			ObjectProperty objectProperty(name, anyValue);
-			properties_.push_back(objectProperty);
-		}
 
-		template < class T >
-		void updateProperty(const int &index, const T &value) {
-			*properties_[index]() = value;
-		}
+        template < class T >
+        T getProperty(const int &index, const T &dummy) {
+            return boost::any_cast<T>(*properties_[index]());
+        }
+    protected:
+        template < class T >
+        void createProperty(const std::string &name, const T &value) {
+            any_ptr anyValue(new boost::any(value));
+            ObjectProperty objectProperty(name, anyValue);
+            properties_.push_back(objectProperty);
+        }
+
+        template < class T >
+        void updateProperty(const int &index, const T &value) {
+            *properties_[index]() = value;
+        }
 
     private:
         Properties properties_;

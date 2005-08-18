@@ -158,3 +158,8 @@ DLLEXPORT int xlAutoOpen() {
     return 1;
 }
 
+DLLEXPORT int xlAutoClose() {
+    Excel(xlUDF, 0, 1, TempStrNoSize("\x15""OH_DELETE_ALL_OBJECTS"));
+    return 1;
+}
+

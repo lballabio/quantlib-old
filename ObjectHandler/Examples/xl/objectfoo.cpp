@@ -52,7 +52,7 @@ void updateFoo(
     if (!object) {
         ostringstream msg;
         msg << "FOO_UPDATE: unable to retrieve object " << handle;
-        throw exception(msg.str().c_str());
+        throw Exception(msg.str().c_str());
     }
     object->update(s, i);
 }

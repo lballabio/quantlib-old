@@ -4,6 +4,7 @@
 	Version="8.00"
 	Name="ExampleXLL"
 	ProjectGUID="{F5DC74EC-CF8A-4180-A41B-F61D9C349230}"
+	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -47,7 +48,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..\..,$(LOG4CXX_DIR)\include"
+				AdditionalIncludeDirectories=".,..\.."
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;EXAMPLEXLL_EXPORTS;XLL_IMPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -76,7 +77,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib xlcall32.lib"
-				OutputFile="xll\ExampleCpp-vc80-mt-gd-0_1_1.xll"
+				OutputFile="xll\ExampleXLL-vc80-mt-gd-0_1_1.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\xl\xll"
@@ -147,7 +148,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..\..,$(LOG4CXX_DIR)\include"
+				AdditionalIncludeDirectories=".,..\.."
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;EXAMPLEXLL_EXPORTS;XLL_IMPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -175,7 +176,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib xlcall32.lib"
-				OutputFile="xll\ExampleCpp-vc80-mt-0_1_1.xll"
+				OutputFile="xll\ExampleXLL-vc80-mt-0_1_1.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\xl\xll"

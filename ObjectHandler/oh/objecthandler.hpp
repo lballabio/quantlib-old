@@ -76,11 +76,6 @@ namespace ObjHandler {
         //@}
         //! \name utilities
         //@{
-        //! Return a vector of handles for all objects.
-        /*! Returns a null vector if
-            the repository is empty.
-        */
-//        std::vector < std::string >getHandles();
         //! Log dump of ObjectHandler.
         /*! Write all objects in ObjectHandler 
             to output stream.
