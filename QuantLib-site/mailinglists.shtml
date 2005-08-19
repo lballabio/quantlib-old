@@ -24,14 +24,19 @@ quantitative finance in general are also accepted.<br>
 (go to <a href=
 "http://sourceforge.net/mailarchive/forum.php?forum=quantlib-users">
 Archives</a>, <a href=
-"http://lists.sourceforge.net/mailman/listinfo/quantlib-users">Subscribe/Unsubscribe/Preferences</a>)</li>
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-users">Subscribe/Unsubscribe/Preferences</a>)<br>
+For those more comfortable with a newsreader, the mailing list is also
+available through <a href="http://gmane.org">Gmane.org</a> as <a
+href="news://news.gmane.org/gmane.comp.finance.quantlib.user">gmane.comp.finance.quantlib.user</a>.</li>
 <li><strong>quantlib-dev</strong>:<br>
 QuantLib developers general discussion list. This list is for everything
 related to the QuantLib development.<br>
 (go to <a href=
 "http://sourceforge.net/mailarchive/forum.php?forum=quantlib-dev">
 Archives</a>, <a href=
-"http://lists.sourceforge.net/mailman/listinfo/quantlib-dev">Subscribe/Unsubscribe/Preferences</a>)</li>
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-dev">Subscribe/Unsubscribe/Preferences</a>)<br>
+Also available at <a href="http://gmane.org">Gmane.org</a> as <a
+href="news://news.gmane.org/gmane.comp.finance.quantlib.devel">gmane.comp.finance.quantlib.devel</a>.</li>
 <li><strong>quantlib-announce</strong>:<br>
 QuantLib announcement list (very low traffic). All major
 announcements about QuantLib will be posted here.<br>
