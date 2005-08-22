@@ -36,8 +36,8 @@
 
     \section prerequisites Prerequisites
 
-    \li QuantLib version 0.3.10
-    \li ObjectHandler version 0.1.1
+    \li <a href="http://quantlib.org/">QuantLib</a> version 0.3.10
+    \li <a href="http://quantlib.org/objecthandler/">ObjectHandler</a> version 0.1.1
 
     \section windows_installation Installing under Windows
 

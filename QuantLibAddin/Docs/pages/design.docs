@@ -440,6 +440,7 @@ int QL_OPTION_C(
 \section sec_5 5. Notes
 <ul>
 <li><b>separation of processes:</b> At present all QuantLibAddin functionality is bundled together with ObjectHandler into a single process.  As QuantLibAddin grows it will be preferable to divide it into multiple processes - for example one Addin for each product line, all sharing a single global instance of ObjectHandler.  This reduces the footprint of QuantLibAddin for a given user, who can load only the product lines needed.</li>
+<li><b>generic addins:</b> At present QuantLibAddin is loosely coupled with QuantLib, this binding could be made abstract, so that QuantLibAddin becomes a generic addin builder capable of exporting any C++ library to the supported platforms.</li>
 </ul>
 \section sec_6 6. Feedback
 <p>Feedback on this proposal should be posted to the <a href="

@@ -66,11 +66,23 @@ A QuantLibAddin problem that is unrelated to Excel can be diagnosed more easily 
 
 \section crashes Excel Crashes when the Addin is Loaded
 
-There are various bugs which can cause an Addin to crash Excel at startup, and the problem can be difficult to diagnose.  Some examples:
+There are various bugs which can cause an Addin to crash Excel at startup, for example:
 \li Any bug in the Addin code which causes an access violation as the Addin is loaded
 \li Addins compiled with configuration Debug, option "Program Database for Edit and Continue", can crash when opened as described in <a href="http://support.microsoft.com/kb/198477">Microsoft Knowledge Base Article ID 198477</a>
 
-One way to troubleshoot such problems is to add rudimentary logging to your Addin.  At the beginning of function xlAutoOpen, open a logfile, and add logging messages to help you work out where and why the addin is crashing.
+Because the addin crashes when loading the only way to debug this problem is to set an unresolved breakpoint, the VC debugger doesn't support this feature, you can use WinDbg.  Ensure that WinDbg's sympath includes the PDB file that was created when you compiled the addin e.g.
+
+\verbatim
+C:\Program Files\QuantLibAddin\Addins\Excel\build\vc6\DebugMTDLL;
+SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols
+\endverbatim
+
+Start Excel and WinDbg, before loading the addin, attach WinDbg to Excel and set the breakpoint e.g.
+\verbatim
+bu QuantLibAddin_vc6_mt_gd_0_3_10!xlAutoOpen
+\endverbatim
+
+You can then debug as the addin loads.
 
 \section debugexcel Debugging QuantLibAddin under Excel
 
