@@ -70,7 +70,7 @@ There are various bugs which can cause an Addin to crash Excel at startup, for e
 \li Any bug in the Addin code which causes an access violation as the Addin is loaded
 \li Addins compiled with configuration Debug, option "Program Database for Edit and Continue", can crash when opened as described in <a href="http://support.microsoft.com/kb/198477">Microsoft Knowledge Base Article ID 198477</a>
 
-Because the addin crashes when loading the only way to debug this problem is to set an unresolved breakpoint, the VC debugger doesn't support this feature, you can use WinDbg.  Ensure that WinDbg's sympath includes the PDB file that was created when you compiled the addin e.g.
+Because the addin crashes when loading the only way to debug this problem is to set an unresolved breakpoint, the VC debugger doesn't support this feature, you can use WinDbg.  Ensure that WinDbg's sympath includes the path containing the PDB file that was created when you compiled the addin e.g.
 
 \verbatim
 C:\Program Files\QuantLibAddin\Addins\Excel\build\vc6\DebugMTDLL;
