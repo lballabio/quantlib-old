@@ -46,7 +46,7 @@ namespace ObjHandler {
         Logger::instance().setLogFile(logFileName, logLevel);
     }
 
-    void DLL_API logMessage(
+    DLL_API void logMessage(
             const std::string &message,
             const int &level) {
         Logger::instance().logMessage(message, level);
