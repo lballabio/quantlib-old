@@ -45,16 +45,6 @@ namespace ObjHandler {
         objectList_.clear();
     }
 
-/*
-    std::vector < std::string >ObjectHandler::getHandles() {
-        std::vector < std::string >ret;
-        for (ObjectList::const_iterator i=objectList_.begin();
-                i!=objectList_.end(); i++)
-            ret.push_back(i->first);
-        return ret;
-    }
-*/
-
     void ObjectHandler::dump(std::ostream& out) {
         out << "dump of all objects in ObjectHandler:" << std::endl;
         for (ObjectList::const_iterator i=objectList_.begin();
