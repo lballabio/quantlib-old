@@ -400,6 +400,33 @@
 </returnval>
 </function>
 
+<function call_type='QL_OBJECT'>
+<name>QL_NPV</name>
+<codename>qlNPV</codename>
+<desc>NPV</desc>
+<constructor>false</constructor>
+<qlfunction>NPV</qlfunction>
+<parameters>
+    <param class='Instrument'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>handle of instrument object</desc>
+    </param>
+    <param ignore='yes'>
+        <name>trigger</name>
+        <type>double</type>
+        <tensorrank>scalar</tensorrank>
+        <desc>dependency tracking trigger</desc>
+    </param>
+</parameters>
+<returnval>
+    <type>double</type>
+    <tensorrank>scalar</tensorrank>
+    <desc>NPV</desc>
+</returnval>
+</function>
+
 </functions>
 </functiongroup>
 

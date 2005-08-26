@@ -19,118 +19,173 @@
 #include <qla/qladdin.hpp>
 #include <sstream>
 
-using namespace std;
 using namespace QuantLib;
-using namespace ObjHandler;
 using namespace QuantLibAddin;
 
 #define LENGTH(a) ((sizeof(a))/(sizeof(a[0])))
+
+struct RateHelperDatum {
+    Integer n;
+    std::string units;
+    Rate rate;
+};
+
+struct RateHelperDatum depositData [] = {
+    { 1, "Months", 0.0210 },
+    { 3, "Months", 0.0212 },
+    { 6, "Months", 0.0214 }
+};
+
+struct RateHelperDatum swapData [] = {
+    {  1, "Years", 0.02199 },
+    {  2, "Years", 0.02320 },
+    {  3, "Years", 0.02468 },
+    {  4, "Years", 0.02618 },
+    {  5, "Years", 0.02759 },
+    {  6, "Years", 0.02892 },
+    {  7, "Years", 0.03015 },
+    {  8, "Years", 0.03129 },
+    {  9, "Years", 0.03229 },
+    { 10, "Years", 0.03317 },
+    { 11, "Years", 0.03393 },
+    { 12, "Years", 0.03459 },
+    { 13, "Years", 0.03516 },
+    { 14, "Years", 0.03566 },
+    { 15, "Years", 0.03611 },
+    { 16, "Years", 0.03652 },
+    { 17, "Years", 0.03688 },
+    { 18, "Years", 0.03719 },
+    { 19, "Years", 0.03745 },
+    { 20, "Years", 0.03767 }
+};
 
 int main()
 {
     try {
         
-        setLogFile("quantlib.log");
-        setConsole(1);
-        logMessage("begin capfloor test");
+        ObjHandler::setLogFile("quantlib.log");
+        ObjHandler::setConsole(1);
+        ObjHandler::logMessage("begin capfloor test");
         
-        double dQuotes[] = { 0.020800, 0.020960, 0.021500, 0.021700, 0.021860, 0.022120,
-                             0.022420, 0.022720, 0.023020, 0.023330, 0.023620, 0.023920 };
-        long dMaturities[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-    
-        double sQuotes[] = { 0.027310, 0.030005, 0.032365, 0.034385, 0.036165, 0.037750,
-                             0.039100, 0.040230, 0.041170, 0.042670, 0.044365, 0.046145,
-                             0.047280 };
-        long sMaturities[] = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20, 30 };
+        // -- Bootstrap term structure --
         
-        std::vector< std::string > rateHelpers;
+        std::vector<std::string> rateHelpers;
         
-        for (std::size_t i=0 ; i < LENGTH(dQuotes) ; i++)
-        {
-            obj_ptr depositRateHelper(new QuantLibAddin::DepositRateHelper(
-                dQuotes[i],
-                dMaturities[i],
-                "Months",
-                2,
-                "Target",
-                "ModifiedFollowing",
-                "Actual360"));
+        for (std::size_t i=0 ; i < LENGTH(depositData) ; i++) {
+            const struct RateHelperDatum& datum = depositData[i];
+            
+            ObjHandler::obj_ptr depositRateHelper(
+                new QuantLibAddin::DepositRateHelper(datum.rate,
+                                                     datum.n,
+                                                     datum.units,
+                                                     2,
+                                                     "NullCalendar",
+                                                     "Unadjusted",
+                                                     "Simple"));
             std::ostringstream handle;
-            handle << "handleDeposit" << dMaturities[i];
-            storeObject(handle.str(), depositRateHelper);
+            handle << datum.n << "M";
+            ObjHandler::storeObject(handle.str(), depositRateHelper);
+            
+            rateHelpers.push_back(handle.str());
         }
         
-        for (std::size_t i2=0 ; i2 < LENGTH(dMaturities) ; i2++)
-        {
-            obj_ptr swapRateHelper(new QuantLibAddin::SwapRateHelper(
-                sQuotes[i2],
-                sMaturities[i2],
-                "Years",
-                2,
-                "Target",
-                "Annual",                 // fixed frequency
-                "Unadjusted",             // fixed convention
-                "Thirty360",              // fixed day counter
-                "Semiannual",             // floating frequency
-                "ModifiedFollowing"));    // floating convention
+        for (std::size_t j=0 ; j < LENGTH(swapData) ; j++) {
+            const struct RateHelperDatum& datum = swapData[j];
+            
+            ObjHandler::obj_ptr swapRateHelper(
+                new QuantLibAddin::SwapRateHelper(datum.rate,
+                                                  datum.n,
+                                                  datum.units,
+                                                  2,
+                                                  "NullCalendar",
+                                                  "Annual",          // fixed frequency
+                                                  "Unadjusted",      // fixed convention
+                                                  "Simple",          // fixed day counter
+                                                  "Annual",          // floating frequency
+                                                  "Unadjusted"));    // floating convention
 
             std::ostringstream handle;
-            handle << "handleSwap" << sMaturities[i2];
-            storeObject(handle.str(), swapRateHelper);
+            handle << datum.n << "Y"; 
+            ObjHandler::storeObject(handle.str(), swapRateHelper);
+            
             rateHelpers.push_back(handle.str());
-
         }
         
         Date evaluationDate(23, March, 2005);
         Date settlementDate(25, March, 2005);
+                
+        ObjHandler::obj_ptr piecewiseFlatForward(
+            new QuantLibAddin::PiecewiseFlatForward(evaluationDate.serialNumber(),
+                                                    settlementDate.serialNumber(),
+                                                    rateHelpers,
+                                                    "Simple"));
+        ObjHandler::storeObject("YC", piecewiseFlatForward);
         
-        obj_ptr piecewiseFlatForward(new QuantLibAddin::PiecewiseFlatForward(
-            evaluationDate.serialNumber(),
-            settlementDate.serialNumber(),
-            rateHelpers,
-            "Actual360"));
-        storeObject("my_termStructure", piecewiseFlatForward);
-
-        obj_ptr hullWhite(new QuantLibAddin::HullWhite(
-            "my_termStructure",
-            0.1,
-            0.01));
-        storeObject("my_hullwhite", hullWhite);
+        // -- Index --
         
-        obj_ptr analyticCapFloorEngine(new QuantLibAddin::AnalyticCapFloorEngine(
-            "my_hullwhite"));
-        storeObject("my_closedForm", analyticCapFloorEngine);
-
-        Date startDate(25, March, 2006);
-
-        obj_ptr capFloor(new QuantLibAddin::CapFloor(
-            startDate.serialNumber(),   // start of capping period
-            5,                          // capping period length
-            "Years",                    // time units
-            "ModifiedFollowing",        // business day convention
-            "Semiannual",               // capping frequency (semiannual)
-            2,                          // fixing days
-            "my_termStructure",         // term structure
-            100000.0,                   // nominal
-            0.04,                       // cap srike
-            0.02,                       // floor strike
-            "my_closedForm",            // pricer
-            "Cap",                      // option type
-            0));                        // no amortisation
-        storeObject("my_cap", capFloor);
+        std::vector<long> dates(0);
+        std::vector<double> fixings(0);
+        long tenor = 12;
+        long fixingDays = 2;
         
-        logObject("my_cap");
-        logMessage("end capfloor test");
+        ObjHandler::obj_ptr index(
+            new QuantLibAddin::Xibor("Euribor",
+                                     "EUR",
+                                     tenor,
+                                     "Months",
+                                     "NullCalendar",
+                                     "Unadjusted",
+                                     "Simple",
+                                     fixingDays,
+                                     "YC",
+                                     dates,
+                                     fixings));
+        ObjHandler::storeObject("IDX", index);
+        
+        // -- Make cap/floor --
+        
+        ObjHandler::obj_ptr hullWhite(
+            new QuantLibAddin::HullWhite("YC", 0.1, 0.0079));
+        ObjHandler::storeObject("HW", hullWhite);
+        
+        ObjHandler::obj_ptr analyticCapFloorEngine(
+            new QuantLibAddin::AnalyticCapFloorEngine("HW"));
+        ObjHandler::storeObject("ENGINE", analyticCapFloorEngine);
+        
+        Date startDate (29, July, 2005);
+        Date endDate   (29, July, 2011);
+        
+        std::vector<double> nominals(6, 1.0);
+        std::vector<double> cStrikes(6, 0.04);
+        std::vector<double> fStrikes(6, 0.04);
+        
+        ObjHandler::obj_ptr capFloor(
+            new QuantLibAddin::CapFloor(startDate.serialNumber(),
+                                        endDate.serialNumber(),
+                                        "YC",
+                                        "IDX",
+                                        nominals,
+                                        cStrikes,
+                                        fStrikes,
+                                        "ENGINE",
+                                        "CAP"));
+        ObjHandler::storeObject("CAP", capFloor);
+        
+        std::ostringstream msg;
+        msg << "NPV: "
+            << boost::dynamic_pointer_cast<QuantLibAddin::CapFloor>(capFloor)->getObject().NPV();
+        ObjHandler::logMessage(msg.str());
+        
+        ObjHandler::logMessage("end capfloor test");
         
         return 0;
     
-    } catch (const exception &e) {
-        ostringstream s;
-        s << "Error: " << e.what();
-        logMessage(s.str(), 1);
+    } catch (const std::exception &e) {
+        std::ostringstream msg; msg << "Error: " << e.what();
+        ObjHandler::logMessage(msg.str(), 1);
         return 1;
     } catch (...) {
-        logMessage("unknown error", 1);
+        ObjHandler::logMessage("unknown error", 1);
         return 1;
     }
 }

@@ -279,33 +279,6 @@
 </returnval>
 </function>
 
-<function call_type='QL_OBJECT'>
-<name>QL_NPV</name>
-<codename>qlNPV</codename>
-<desc>the NPV of a swap</desc>
-<constructor>false</constructor>
-<qlfunction>NPV</qlfunction>
-<parameters>
-    <param class='Instrument'>
-        <name>handle</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of the swap object</desc>
-    </param>
-    <param ignore='yes'>
-        <name>trigger</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dep tracking trigger</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>double</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>the NPV</desc>
-</returnval>
-</function>
-
 </functions>
 </functiongroup>
 

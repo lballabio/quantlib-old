@@ -1,6 +1,5 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -19,41 +18,37 @@
 #ifndef qla_capfloor_hpp
 #define qla_capfloor_hpp
 
-#include <ql/pricingengine.hpp>
 #include <ql/Instruments/capfloor.hpp>
 #include <ql/PricingEngines/CapFloor/analyticcapfloorengine.hpp>
-
-#include <oh/objhandler.hpp>
+#include <qla/baseinstruments.hpp>
 
 namespace QuantLibAddin {
-
-    class CapFloor : public ObjHandler::Object {
+    
+    class CapFloor : public Instrument {
       public:
         CapFloor(
-            const long &start,
-            const long &length,
-            const std::string &timeUnitsID,
-            const std::string &conventionID,
-            const std::string &frequencyID,
-            const long &fixingDays,
-            const std::string &handleTermStructure,
-            const double &nominal,
-            const double &capStrike,
-            const double &floorStrike,
-            const std::string &handleEngine,
-            const std::string &optionID,
-            const long &boolAmortization);
-        virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(capfloor_);
-        }
+            const long& start,
+            const long& maturity,
+            const std::string& handleTermStructure,
+            const std::string& handleIndex,
+            const std::vector<double>& nominals,
+            const std::vector<double>& capStrikes,
+            const std::vector<double>& floorStrikes,
+            const std::string& handleEngine,
+            const std::string& optionID);
+        
+        EXPORT_QL_OBJECT(QuantLib::CapFloor);
+        
+        const std::vector<std::vector<double> >& cashFlows();
+        
       private:
-        boost::shared_ptr<QuantLib::CapFloor> capfloor_;
+        std::vector<std::vector<double> > cashFlows_;
     };
     
     class AnalyticCapFloorEngine : public ObjHandler::Object {
       public:
         AnalyticCapFloorEngine(
-            const std::string &handleModel);
+            const std::string& handleModel);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(engine_);
         }
