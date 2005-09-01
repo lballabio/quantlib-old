@@ -250,17 +250,17 @@
 </defs>
 </enumdef>
 
-<enumdef documentation_only='true'>
-<class>QuantLib::CapFloor</class>
+<enumdef>
+<class>QuantLib::CapFloor::Type</class>
 <constructor>true</constructor>
 <defs>
 <def>
 <string>CAP</string>
-<enum>QuantLib::Cap</enum>
+<enum>QuantLib::CapFloor::Cap</enum>
 </def>
 <def>
 <string>FLOOR</string>
-<enum>QuantLib::Floor</enum>
+<enum>QuantLib::CapFloor::Floor</enum>
 </def>
 </defs>
 </enumdef>
