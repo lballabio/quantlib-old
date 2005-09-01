@@ -24,35 +24,35 @@
 #include <ql/termstructure.hpp>
 
 namespace QuantLibAddin {
-    
+
     Vasicek::Vasicek(
             const double &a,
             const double &b,
             const double &lambda,
             const double &sigma) {
-        
+
         model_ = boost::shared_ptr<QuantLib::Vasicek>(
             new QuantLib::Vasicek(a, b, lambda, sigma));
     }
-    
+
     HullWhite::HullWhite(
             const std::string &handleTermStructure,
             const double &a,
             const double &sigma) {
-        
+
         boost::shared_ptr<YieldTermStructure> termStructure =
             OH_GET_OBJECT(YieldTermStructure, handleTermStructure);
         if (!termStructure)
             QL_FAIL("HullWhite: error retrieving object " + handleTermStructure);
-        
+
         boost::shared_ptr<QuantLib::YieldTermStructure> termStructureP =
             OH_GET_REFERENCE(QuantLib::YieldTermStructure, termStructure);
-        
+
         QuantLib::Handle<QuantLib::YieldTermStructure> termStructureH(termStructureP);
-                
+
         model_ = boost::shared_ptr<QuantLib::HullWhite>(
             new QuantLib::HullWhite(termStructureH, a, sigma));
     }
-    
+
 }
 

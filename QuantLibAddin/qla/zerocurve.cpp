@@ -39,7 +39,7 @@ namespace QuantLibAddin {
             const std::vector < double > &yields,
             const std::string &dayCounterID) {
 
-		QuantLib::DayCounter dayCounter =
+        QuantLib::DayCounter dayCounter =
             Create<QuantLib::DayCounter>()(dayCounterID);
         const std::vector<QuantLib::Date> datesQL = 
             longVectorToDateVector(dates);
@@ -64,10 +64,9 @@ namespace QuantLibAddin {
         }
 
         // Setup object properties
-		createProperty(FIELD_DATES, derivedDates);
-		createProperty(FIELD_RATES, derivedRates);
+        createProperty(FIELD_DATES, derivedDates);
+        createProperty(FIELD_RATES, derivedRates);
 
     }
 }
-
 

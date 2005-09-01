@@ -25,32 +25,33 @@
 
 namespace QuantLibAddin {
 
-	typedef std::map<std::string, void*> TypeMap;
-	typedef boost::shared_ptr<TypeMap> TypeMapPtr;
-	typedef std::map<std::string, TypeMapPtr> AllTypeMap;
+    typedef std::map<std::string, void*> TypeMap;
+    typedef boost::shared_ptr<TypeMap> TypeMapPtr;
+    typedef std::map<std::string, TypeMapPtr> AllTypeMap;
 
-	class Registry {
-	public:
-		std::vector<std::string> getAllRegisteredTypes() const;
-		std::vector<std::string> getTypeElements(const std::string&) const;
-		const AllTypeMap& getAllTypesMap() const { return allTypesMap; }
+    class Registry {
+    public:
+        std::vector<std::string> getAllRegisteredTypes() const;
+        std::vector<std::string> getTypeElements(const std::string&) const;
+        const AllTypeMap& getAllTypesMap() const { return allTypesMap; }
 
-	protected:
-		AllTypeMap allTypesMap;
-		Registry() {}
-	};
+    protected:
+        AllTypeMap allTypesMap;
+        Registry() {}
+    };
 
-	class EnumRegistry : public Registry, public QuantLib::Singleton<EnumRegistry> {
-		friend class QuantLib::Singleton<EnumRegistry>;
-	private:
-		EnumRegistry();
-	};
+    class EnumRegistry : public Registry, public QuantLib::Singleton<EnumRegistry> {
+        friend class QuantLib::Singleton<EnumRegistry>;
+    private:
+        EnumRegistry();
+    };
 
-	class ComplexTypeRegistry : public Registry, public QuantLib::Singleton<ComplexTypeRegistry> {
-		friend class QuantLib::Singleton<ComplexTypeRegistry>;
-	private:
-		ComplexTypeRegistry();
-	};
+    class ComplexTypeRegistry : public Registry, public QuantLib::Singleton<ComplexTypeRegistry> {
+        friend class QuantLib::Singleton<ComplexTypeRegistry>;
+    private:
+        ComplexTypeRegistry();
+    };
 }
 
 #endif
+

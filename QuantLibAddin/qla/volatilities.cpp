@@ -31,7 +31,7 @@ namespace QuantLibAddin {
             const std::string &dayCounterID) {
 
         QuantLib::Date settlementDate(settlementDateLong);
-		QuantLib::DayCounter dayCounter =
+        QuantLib::DayCounter dayCounter =
             Create<QuantLib::DayCounter>()(dayCounterID);
         blackVolTermStructure_ = boost::shared_ptr<QuantLib::BlackVolTermStructure> (
             new QuantLib::BlackConstantVol(
@@ -52,7 +52,7 @@ namespace QuantLibAddin {
             longVectorToDateVector(dates);
         QuantLib::Matrix volsQL =
             vectorVectorToMatrix(vols);
-		QuantLib::DayCounter dayCounter =
+        QuantLib::DayCounter dayCounter =
             Create<QuantLib::DayCounter>()(dayCounterID);
 
         blackVolTermStructure_ = boost::shared_ptr<QuantLib::BlackVolTermStructure> (
@@ -66,3 +66,4 @@ namespace QuantLibAddin {
 
 
 }
+

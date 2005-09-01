@@ -28,17 +28,17 @@
 
 namespace QuantLibAddin {
 
-	std::vector<QuantLib::Date> longVectorToDateVector(
+    std::vector<QuantLib::Date> longVectorToDateVector(
         const std::vector < long > &v);
 
     QuantLib::Matrix vectorVectorToMatrix(
         const std::vector < std::vector < double > > &vv);
 
-	QuantLib::Date FutIDtoExpiryDate(
-		const std::string& immID,
-		const QuantLib::Calendar& calendar, 
-		QuantLib::BusinessDayConvention bdc,
-		QuantLib::Integer decade);
+    QuantLib::Date FutIDtoExpiryDate(
+        const std::string& immID,
+        const QuantLib::Calendar& calendar, 
+        QuantLib::BusinessDayConvention bdc,
+        QuantLib::Integer decade);
 }
 
 #endif

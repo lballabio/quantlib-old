@@ -18,12 +18,13 @@
 #ifndef qla_asianoption_hpp
 #define qla_asianoption_hpp
 
+#include <qla/baseinstruments.hpp>
 #include <qla/processes.hpp>
 #include <ql/Instruments/asianoption.hpp>
 
 namespace QuantLibAddin {
 
-    class ContinuousAveragingAsianOption : public ObjHandler::Object {
+    class ContinuousAveragingAsianOption : public Instrument {
     public:
         ContinuousAveragingAsianOption(
             const std::string &handleBlackScholes,
@@ -36,16 +37,11 @@ namespace QuantLibAddin {
             const long &settlementDate,
             const std::string &engineID,
             const long &timeSteps);
-        virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(
-                continuousAveragingAsianOption_);
-        }
-    private:
-        boost::shared_ptr<QuantLib::ContinuousAveragingAsianOption> 
-            continuousAveragingAsianOption_;
+
+        EXPORT_QL_OBJECT(QuantLib::ContinuousAveragingAsianOption);
     };
 
-    class DiscreteAveragingAsianOption : public ObjHandler::Object {
+    class DiscreteAveragingAsianOption : public Instrument {
     public:
         DiscreteAveragingAsianOption(
             const std::string &handleBlackScholes,
@@ -61,13 +57,8 @@ namespace QuantLibAddin {
             const long &settlementDate,
             const std::string &engineID,
             const long &timeSteps);
-        virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(
-                discreteAveragingAsianOption_);
-        }
-    private:
-        boost::shared_ptr<QuantLib::DiscreteAveragingAsianOption> 
-            discreteAveragingAsianOption_;
+
+        EXPORT_QL_OBJECT(QuantLib::DiscreteAveragingAsianOption);
     };
 
 }

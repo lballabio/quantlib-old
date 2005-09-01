@@ -44,7 +44,7 @@ namespace QuantLibAddin {
     */
     const std::vector<std::string>& getEnumMembers(const std::string&);
 
-	/*! list all available Complex Types
+    /*! list all available Complex Types
     */
     const std::vector<std::string>& getRegisteredComplexTypes();
 
@@ -56,5 +56,4 @@ namespace QuantLibAddin {
 }
 
 #endif
-
 

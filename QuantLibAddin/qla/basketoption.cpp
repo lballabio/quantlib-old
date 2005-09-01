@@ -44,11 +44,11 @@ namespace QuantLibAddin {
             const std::string &engineID,
             const long &timeSteps) {
 
-		QuantLib::BasketOption::BasketType basketType = 
+        QuantLib::BasketOption::BasketType basketType = 
             Create<QuantLib::BasketOption::BasketType>()(basketID);
         QuantLib::Matrix correlation =
             vectorVectorToMatrix(correlations);
-		QuantLib::Option::Type type = 
+        QuantLib::Option::Type type = 
             Create<QuantLib::Option::Type>()(optionTypeID);
 
         boost::shared_ptr<QuantLib::PlainVanillaPayoff> payoff(
@@ -75,7 +75,7 @@ namespace QuantLibAddin {
             stochasticProcessesQL.push_back(stochasticProcessQL);
         }
 
-        basketOption_ = boost::shared_ptr<QuantLib::BasketOption>(
+        mInstrument = boost::shared_ptr<QuantLib::BasketOption>(
             new QuantLib::BasketOption(
                 basketType,
                 stochasticProcessesQL, 
@@ -83,8 +83,9 @@ namespace QuantLibAddin {
                 exercise, 
                 correlation,
                 pricingEngine));
-		createProperty(FIELD_NPV, basketOption_->NPV());
-		createProperty(FIELD_ENGINE, engineID);
+        createProperty(FIELD_NPV, mInstrument->NPV());
+        createProperty(FIELD_ENGINE, engineID);
     }
 
 }
+

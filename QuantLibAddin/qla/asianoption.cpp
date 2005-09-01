@@ -49,7 +49,7 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
-		QuantLib::Average::Type averageType = 
+        QuantLib::Average::Type averageType = 
             Create<QuantLib::Average::Type>()(averageID);
 
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
@@ -58,7 +58,7 @@ namespace QuantLibAddin {
             Create<boost::shared_ptr<QuantLib::Exercise> >()(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
-        continuousAveragingAsianOption_ = 
+        mInstrument = 
             boost::shared_ptr<QuantLib::ContinuousAveragingAsianOption>(
                 new QuantLib::ContinuousAveragingAsianOption(
                     averageType,
@@ -66,8 +66,8 @@ namespace QuantLibAddin {
                     payoff, 
                     exercise, 
                     pricingEngine));
-		createProperty(FIELD_NPV, continuousAveragingAsianOption_->NPV());
-		createProperty(FIELD_ENGINE, engineID);
+        createProperty(FIELD_NPV, mInstrument->NPV());
+        createProperty(FIELD_ENGINE, engineID);
     }
 
     DiscreteAveragingAsianOption::DiscreteAveragingAsianOption(
@@ -92,7 +92,7 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
-		QuantLib::Average::Type averageType = 
+        QuantLib::Average::Type averageType = 
             Create<QuantLib::Average::Type>()(averageID);
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> >()(optionTypeID, payoffID, strike);
@@ -104,7 +104,7 @@ namespace QuantLibAddin {
         std::vector<long>::const_iterator i;
         for (i = fixingDates.begin(); i != fixingDates.end(); i++)
             fixingDatesQL.push_back(QuantLib::Date(*i));
-        discreteAveragingAsianOption_ = 
+        mInstrument = 
             boost::shared_ptr<QuantLib::DiscreteAveragingAsianOption>(
                 new QuantLib::DiscreteAveragingAsianOption(
                     averageType,
@@ -115,10 +115,9 @@ namespace QuantLibAddin {
                     payoff, 
                     exercise, 
                     pricingEngine));
-		createProperty(FIELD_NPV, discreteAveragingAsianOption_->NPV());
-		createProperty(FIELD_ENGINE, engineID);
+        createProperty(FIELD_NPV, mInstrument->NPV());
+        createProperty(FIELD_ENGINE, engineID);
     }
 
 }
-
 

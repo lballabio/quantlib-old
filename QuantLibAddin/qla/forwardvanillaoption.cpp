@@ -56,7 +56,7 @@ namespace QuantLibAddin {
             Create<boost::shared_ptr<QuantLib::Exercise> >()(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
-        forwardVanillaOption_ = boost::shared_ptr<QuantLib::ForwardVanillaOption>(
+        mInstrument = boost::shared_ptr<QuantLib::ForwardVanillaOption>(
             new QuantLib::ForwardVanillaOption(
                 moneyness,
                 QuantLib::Date(resetDate),
@@ -64,8 +64,8 @@ namespace QuantLibAddin {
                 payoff, 
                 exercise, 
                 pricingEngine));
-		createProperty(FIELD_NPV, forwardVanillaOption_->NPV());
-		createProperty(FIELD_ENGINE, engineID);
+        createProperty(FIELD_NPV, mInstrument->NPV());
+        createProperty(FIELD_ENGINE, engineID);
     }
 
 }

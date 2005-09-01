@@ -34,7 +34,7 @@ namespace QuantLibAddin {
       protected:
         boost::shared_ptr<QuantLib::AffineModel> model_;
     };
-    
+
     class Vasicek : public AffineModel {
       public:
         Vasicek(
@@ -43,7 +43,7 @@ namespace QuantLibAddin {
             const double &lambda,
             const double &sigma);
     };
-    
+
     class HullWhite : public AffineModel {
       public:
         HullWhite(
@@ -51,7 +51,7 @@ namespace QuantLibAddin {
             const double &a,
             const double &sigma);
     };
-    
+
 }
 
 #endif

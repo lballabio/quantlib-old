@@ -80,6 +80,7 @@ namespace QuantLibAddin {
                                             nominals // Not yet implemented in QL
 #endif
                                             ));
-	}
+    }
 
 }
+

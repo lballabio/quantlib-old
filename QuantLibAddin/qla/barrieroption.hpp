@@ -18,12 +18,13 @@
 #ifndef qla_barrieroption_hpp
 #define qla_barrieroption_hpp
 
+#include <qla/baseinstruments.hpp>
 #include <qla/processes.hpp>
 #include <ql/Instruments/barrieroption.hpp>
 
 namespace QuantLibAddin {
 
-    class BarrierOption : public ObjHandler::Object {
+    class BarrierOption : public Instrument {
     public:
         BarrierOption(
             const std::string &handleBlackScholes,
@@ -38,11 +39,8 @@ namespace QuantLibAddin {
             const long &settlementDate,
             const std::string &engineID,
             const long &timeSteps);
-        virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(barrierOption_);
-        }
-    private:
-        boost::shared_ptr<QuantLib::BarrierOption> barrierOption_;
+
+        EXPORT_QL_OBJECT(QuantLib::BarrierOption);
     };
 
 }

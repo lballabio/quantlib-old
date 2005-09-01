@@ -27,14 +27,14 @@ namespace QuantLibAddin {
     public:
         Xibor(
             const std::string &indexName,
-		    const std::string &crrID,
+            const std::string &crrID,
             const long &tenor,
             const std::string &timeUnitsID,
-		    const std::string &calendarID,
-		    const std::string &fltBDCID,
-		    const std::string &fltDayCounterID,
-		    const long &fixingDays,
-		    const std::string &fwdCurveId,
+            const std::string &calendarID,
+            const std::string &fltBDCID,
+            const std::string &fltDayCounterID,
+            const long &fixingDays,
+            const std::string &fwdCurveId,
             const std::vector<long> &lDates,
             const std::vector<double> &fixings);
 

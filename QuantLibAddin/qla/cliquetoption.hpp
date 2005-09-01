@@ -18,12 +18,13 @@
 #ifndef qla_cliquetoption_hpp
 #define qla_cliquetoption_hpp
 
+#include <qla/baseinstruments.hpp>
 #include <qla/processes.hpp>
 #include <ql/Instruments/cliquetoption.hpp>
 
 namespace QuantLibAddin {
 
-    class CliquetOption : public ObjHandler::Object {
+    class CliquetOption : public Instrument {
     public:
         CliquetOption::CliquetOption(
             const std::string &handleBlackScholes,
@@ -33,11 +34,8 @@ namespace QuantLibAddin {
             const long &exerciseDate,
             const std::string &engineID,
             const long &timeSteps);
-        virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(cliquetOption_);
-        }
-    private:
-        boost::shared_ptr<QuantLib::CliquetOption> cliquetOption_;
+
+        EXPORT_QL_OBJECT(QuantLib::CliquetOption);
     };
 
 }

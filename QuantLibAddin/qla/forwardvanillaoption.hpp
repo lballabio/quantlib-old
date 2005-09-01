@@ -18,12 +18,13 @@
 #ifndef qla_forwardvanillaoption_hpp
 #define qla_forwardvanillaoption_hpp
 
+#include <qla/baseinstruments.hpp>
 #include <qla/processes.hpp>
 #include <ql/Instruments/forwardvanillaoption.hpp>
 
 namespace QuantLibAddin {
 
-    class ForwardVanillaOption : public ObjHandler::Object {
+    class ForwardVanillaOption : public Instrument {
     public:
         ForwardVanillaOption(
             const std::string &handleBlackScholes,
@@ -37,11 +38,8 @@ namespace QuantLibAddin {
             const long &settlementDate,
             const std::string &engineID,
             const long &timeSteps);
-        virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(forwardVanillaOption_);
-        }
-    private:
-        boost::shared_ptr<QuantLib::ForwardVanillaOption> forwardVanillaOption_;
+
+        EXPORT_QL_OBJECT(QuantLib::ForwardVanillaOption);
     };
 
 }

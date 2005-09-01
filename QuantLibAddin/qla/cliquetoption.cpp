@@ -48,7 +48,7 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 
-		QuantLib::Option::Type type = 
+        QuantLib::Option::Type type = 
             Create<QuantLib::Option::Type>()(optionTypeID);
 
         boost::shared_ptr<QuantLib::PercentageStrikePayoff> payoff(
@@ -59,15 +59,16 @@ namespace QuantLibAddin {
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
         std::vector<QuantLib::Date> resetDatesQL =
             longVectorToDateVector(resetDates);
-        cliquetOption_ = boost::shared_ptr<QuantLib::CliquetOption>(
+        mInstrument = boost::shared_ptr<QuantLib::CliquetOption>(
             new QuantLib::CliquetOption(
                 blackScholesProcessQL, 
                 payoff, 
                 exercise, 
                 resetDatesQL,
                 pricingEngine));
-		createProperty(FIELD_NPV, cliquetOption_->NPV());
-		createProperty(FIELD_ENGINE, engineID);
+        createProperty(FIELD_NPV, mInstrument->NPV());
+        createProperty(FIELD_ENGINE, engineID);
     }
 
 }
+

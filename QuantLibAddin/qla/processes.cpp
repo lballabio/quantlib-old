@@ -38,7 +38,7 @@ namespace QuantLibAddin {
             const double &dividendYield) {
 
         QuantLib::Date settlementDate(settlementDateLong);
-		QuantLib::DayCounter dayCounter =
+        QuantLib::DayCounter dayCounter =
             Create<QuantLib::DayCounter>()(dayCounterID);
         QuantLib::Handle<QuantLib::Quote> underlyingH( 
             boost::shared_ptr<QuantLib::Quote>(
@@ -68,3 +68,4 @@ namespace QuantLibAddin {
     }
 
 }
+

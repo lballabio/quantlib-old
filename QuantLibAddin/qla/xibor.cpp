@@ -27,52 +27,51 @@
 #include <qla/typefactory.hpp>
 
 namespace QuantLibAddin {
-	QuantLib::Date make_date(long d) { return QuantLib::Date(d); }
+    QuantLib::Date make_date(long d) { return QuantLib::Date(d); }
 
-	Xibor::Xibor(
+    Xibor::Xibor(
             const std::string &indexName,
-		    const std::string &crrID,
+            const std::string &crrID,
             const long &tenor,
             const std::string &timeUnitsID,
-		    const std::string &calendarID,
-		    const std::string &fltBDCID,
-		    const std::string &fltDayCounterID,
-		    const long &fixingDays,
-		    const std::string &fwdCurveId,
+            const std::string &calendarID,
+            const std::string &fltBDCID,
+            const std::string &fltDayCounterID,
+            const long &fixingDays,
+            const std::string &fwdCurveId,
             const std::vector<long> &lDates,
             const std::vector<double> &fixings) {
 
-		QuantLib::DayCounter fltDayCounter = Create<QuantLib::DayCounter>()(fltDayCounterID);
-		QuantLib::BusinessDayConvention fltBDC = 
+        QuantLib::DayCounter fltDayCounter = Create<QuantLib::DayCounter>()(fltDayCounterID);
+        QuantLib::BusinessDayConvention fltBDC = 
             Create<QuantLib::BusinessDayConvention>()(fltBDCID);
-		QuantLib::Calendar calendar =
+        QuantLib::Calendar calendar =
             Create<QuantLib::Calendar>()(calendarID);
-		QuantLib::TimeUnit timeUnits =
+        QuantLib::TimeUnit timeUnits =
             Create<QuantLib::TimeUnit>()(timeUnitsID);
-		QuantLib::Currency crr =
+        QuantLib::Currency crr =
             Create<QuantLib::Currency>()(crrID);
 
-		boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpFwdYC =
-			OH_GET_OBJECT(YieldTermStructure, fwdCurveId);
-		if (!tmpFwdYC)
-			QL_FAIL("Xibor::Xibor Forecasting Curve not found: " + fwdCurveId);
-		boost::shared_ptr<QuantLib::YieldTermStructure> fwdYC = 
-			OH_GET_REFERENCE(QuantLib::YieldTermStructure, tmpFwdYC);
-		QuantLib::Handle<QuantLib::YieldTermStructure> forecastingTermStructure; 
-		forecastingTermStructure.linkTo(fwdYC);
+        boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpFwdYC =
+            OH_GET_OBJECT(YieldTermStructure, fwdCurveId);
+        if (!tmpFwdYC)
+            QL_FAIL("Xibor::Xibor Forecasting Curve not found: " + fwdCurveId);
+        boost::shared_ptr<QuantLib::YieldTermStructure> fwdYC = 
+            OH_GET_REFERENCE(QuantLib::YieldTermStructure, tmpFwdYC);
+        QuantLib::Handle<QuantLib::YieldTermStructure> forecastingTermStructure; 
+        forecastingTermStructure.linkTo(fwdYC);
 
-		index_ = boost::shared_ptr<QuantLib::Xibor>(new QuantLib::Xibor(indexName, 
-			tenor, timeUnits,
-			fixingDays, crr, calendar, 
-			fltBDC, fltDayCounter, forecastingTermStructure));
-		QL_REQUIRE(fixings.size() == lDates.size(), "Xibor::Xibor the nuber of given dates does not match the number of fixings!");
-		if(lDates.size() > 0 && !(lDates.size() == 1 && lDates[0] == 0)) {
-			std::vector<QuantLib::Date> dates(lDates.size());
-			std::transform(lDates.begin(), lDates.end(), dates.begin(), make_date);
-			QuantLib::History history(dates, fixings);
-			QuantLib::IndexManager::instance().setHistory(index_->name(), history);
-		}
-	}
+        index_ = boost::shared_ptr<QuantLib::Xibor>(new QuantLib::Xibor(indexName, 
+            tenor, timeUnits,
+            fixingDays, crr, calendar, 
+            fltBDC, fltDayCounter, forecastingTermStructure));
+        QL_REQUIRE(fixings.size() == lDates.size(), "Xibor::Xibor the nuber of given dates does not match the number of fixings!");
+        if(lDates.size() > 0 && !(lDates.size() == 1 && lDates[0] == 0)) {
+            std::vector<QuantLib::Date> dates(lDates.size());
+            std::transform(lDates.begin(), lDates.end(), dates.begin(), make_date);
+            QuantLib::History history(dates, fixings);
+            QuantLib::IndexManager::instance().setHistory(index_->name(), history);
+        }
+    }
 }
-
 

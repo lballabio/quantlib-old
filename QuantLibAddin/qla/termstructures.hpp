@@ -39,7 +39,7 @@ namespace QuantLibAddin {
         boost::shared_ptr<QuantLib::SimpleQuote> quote_;
         boost::shared_ptr<QuantLib::RateHelper> rateHelper_;
     };
-    
+
     class DepositRateHelper : public RateHelper {
       public:
         DepositRateHelper(
@@ -88,7 +88,7 @@ namespace QuantLibAddin {
       protected:
         boost::shared_ptr<QuantLib::YieldTermStructure> termStructure_;
     };
-    
+
     class PiecewiseFlatForward : public YieldTermStructure {
       public:
         PiecewiseFlatForward(
@@ -100,6 +100,4 @@ namespace QuantLibAddin {
 }
 
 #endif
-
-
 

@@ -24,7 +24,7 @@
 
 namespace QuantLibAddin {
 
-	class FixedCouponBond : public Bond {
+    class FixedCouponBond : public Bond {
     public:
         FixedCouponBond(
             const long &issueDate,
@@ -45,3 +45,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

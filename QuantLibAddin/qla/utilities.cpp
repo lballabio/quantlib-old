@@ -45,7 +45,7 @@ namespace QuantLibAddin {
         return ret;
     }
 
-	const std::vector<std::string>& getRegisteredComplexTypes() {
+    const std::vector<std::string>& getRegisteredComplexTypes() {
         static std::vector<std::string> ret
             = ComplexTypeRegistry::instance().getAllRegisteredTypes();
         return ret;
@@ -64,5 +64,4 @@ namespace QuantLibAddin {
             return QuantLib::Date();
     }
 }
-
 

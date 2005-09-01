@@ -59,14 +59,14 @@ namespace QuantLibAddin {
             Create<boost::shared_ptr<QuantLib::Exercise> >()(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
-        vanillaOption_ = boost::shared_ptr<QuantLib::VanillaOption>(
+        mInstrument = boost::shared_ptr<QuantLib::VanillaOption>(
             new QuantLib::VanillaOption(
                 blackScholesProcessQL, 
                 payoff, 
                 exercise, 
                 pricingEngine));
-		createProperty(FIELD_NPV, vanillaOption_->NPV());
-		createProperty(FIELD_ENGINE, engineID);
+        createProperty(FIELD_NPV, mInstrument->NPV());
+        createProperty(FIELD_ENGINE, engineID);
     }
 
     std::string VanillaOption::setEngine(
@@ -74,10 +74,10 @@ namespace QuantLibAddin {
             const long &timeSteps) {
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
-        vanillaOption_->setPricingEngine(pricingEngine);
-		updateProperty(IDX_NPV, vanillaOption_->NPV());
-		updateProperty(IDX_ENGINE, engineID);
-		return engineID;
+        mInstrument->setPricingEngine(pricingEngine);
+        updateProperty(IDX_NPV, mInstrument->NPV());
+        updateProperty(IDX_ENGINE, engineID);
+        return engineID;
     }
 
 }

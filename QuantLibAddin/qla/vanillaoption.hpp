@@ -1,4 +1,4 @@
- 
+
 /*
  Copyright (C) 2004, 2005 Eric Ehlers
 
@@ -18,12 +18,13 @@
 #ifndef qla_vanillaoption_hpp
 #define qla_vanillaoption_hpp
 
+#include <qla/baseinstruments.hpp>
 #include <qla/processes.hpp>
 #include <ql/Instruments/vanillaoption.hpp>
 
 namespace QuantLibAddin {
 
-    class VanillaOption : public ObjHandler::Object {
+    class VanillaOption : public Instrument {
     public:
         VanillaOption(
             const std::string &handleBlackScholes,
@@ -38,11 +39,9 @@ namespace QuantLibAddin {
         std::string setEngine(
             const std::string &engineName,
             const long &timeSteps);
-        virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(vanillaOption_);
-        }
-    private:
-        boost::shared_ptr<QuantLib::VanillaOption> vanillaOption_;
+
+        EXPORT_QL_OBJECT(QuantLib::VanillaOption);
+
     };
 
 }

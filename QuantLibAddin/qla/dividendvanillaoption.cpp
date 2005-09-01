@@ -58,7 +58,7 @@ namespace QuantLibAddin {
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
         const std::vector<QuantLib::Date> dividendDatesQL = 
             longVectorToDateVector(dividendDates);
-        dividendVanillaOption_ = boost::shared_ptr<QuantLib::DividendVanillaOption>(
+        mInstrument = boost::shared_ptr<QuantLib::DividendVanillaOption>(
             new QuantLib::DividendVanillaOption(
                 blackScholesProcessQL, 
                 payoff, 
@@ -66,8 +66,8 @@ namespace QuantLibAddin {
                 dividendDatesQL,
                 dividends,
                 pricingEngine));
-		createProperty(FIELD_NPV, dividendVanillaOption_->NPV());
-		createProperty(FIELD_ENGINE, engineID);
+        createProperty(FIELD_NPV, mInstrument->NPV());
+        createProperty(FIELD_ENGINE, engineID);
     }
 
 }

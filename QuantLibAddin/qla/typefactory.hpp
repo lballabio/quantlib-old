@@ -64,7 +64,7 @@ namespace QuantLibAddin {
             return ctor(exerciseDate, settlementDate);
         }
     };
-    
+
     template<>
     class Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> > :
         private RegistryManager<QuantLib::StrikedTypePayoff, ComplexTypeRegistry> {

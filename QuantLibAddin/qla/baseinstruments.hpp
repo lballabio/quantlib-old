@@ -23,29 +23,30 @@
 #include <ql/Instruments/bond.hpp>
 
 #define EXPORT_QL_OBJECT(CLASS) \
-	const CLASS& getObject() const { \
-		return *boost::dynamic_pointer_cast<CLASS>(mInstrument); \
-	}
+    const CLASS& getObject() const { \
+        return *boost::dynamic_pointer_cast<CLASS>(mInstrument); \
+    }
 
 namespace QuantLibAddin {
-	class Instrument : public ObjHandler::Object {
-	public:
-		virtual boost::shared_ptr<void> getReference() const {
-			return boost::static_pointer_cast<void>(mInstrument);
-		}
+    class Instrument : public ObjHandler::Object {
+    public:
+        virtual boost::shared_ptr<void> getReference() const {
+            return boost::static_pointer_cast<void>(mInstrument);
+        }
 
-		const QuantLib::Instrument& getObject() const { 
-			return *mInstrument; 
-		}
+        const QuantLib::Instrument& getObject() const { 
+            return *mInstrument; 
+        }
 
-	protected:
-		boost::shared_ptr<QuantLib::Instrument> mInstrument;
-	};
+    protected:
+        boost::shared_ptr<QuantLib::Instrument> mInstrument;
+    };
 
-	class Bond : public Instrument {
-	public:
-		EXPORT_QL_OBJECT(QuantLib::Bond)
-	};
+    class Bond : public Instrument {
+    public:
+        EXPORT_QL_OBJECT(QuantLib::Bond)
+    };
 }
 
 #endif
+

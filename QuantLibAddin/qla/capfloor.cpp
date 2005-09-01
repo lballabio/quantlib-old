@@ -32,7 +32,7 @@
 #include <ql/CashFlows/floatingratecoupon.hpp>
 
 namespace QuantLibAddin {
-    
+
     CapFloor::CapFloor(
             const long& start,
             const long& maturity,
@@ -43,45 +43,45 @@ namespace QuantLibAddin {
             const std::vector<double>& floorStrikes,
             const std::string& handleEngine,
             const std::string& optionID) {
-        
+
         boost::shared_ptr<AnalyticCapFloorEngine> engine =
             OH_GET_OBJECT(AnalyticCapFloorEngine, handleEngine);
         if (!engine)
             QL_FAIL("CapFloor: error retrieving pricing engine " + handleEngine);
-        
+
         boost::shared_ptr<QuantLib::PricingEngine> engineQL =
             OH_GET_REFERENCE(QuantLib::PricingEngine, engine);
-        
+
         boost::shared_ptr<YieldTermStructure> termStructure =
             OH_GET_OBJECT(YieldTermStructure, handleTermStructure);
         if (!termStructure)
             QL_FAIL("CapFloor: error retrieving term structure " + handleTermStructure);
-        
+
         boost::shared_ptr<QuantLib::YieldTermStructure> termStructureP =
             OH_GET_REFERENCE(QuantLib::YieldTermStructure, termStructure);
-        
+
         QuantLib::Handle<QuantLib::YieldTermStructure> termStructureH(termStructureP);
-        
-		boost::shared_ptr<QuantLibAddin::Xibor> indexWrapper =
-			OH_GET_OBJECT(QuantLibAddin::Xibor, handleIndex);
-		if (!indexWrapper)
+
+        boost::shared_ptr<QuantLibAddin::Xibor> indexWrapper =
+            OH_GET_OBJECT(QuantLibAddin::Xibor, handleIndex);
+        if (!indexWrapper)
             QL_FAIL("CapFloor: error retrieving index  " + handleIndex);
-		boost::shared_ptr<QuantLib::Xibor> index =
+        boost::shared_ptr<QuantLib::Xibor> index =
             OH_GET_REFERENCE(QuantLib::Xibor, indexWrapper);
-                
+
         QuantLib::Calendar              calendar    = index->calendar();
         QuantLib::Frequency             frequency   = index->frequency();
         QuantLib::BusinessDayConvention convention  = index->businessDayConvention();
-        
+
         QuantLib::Date startDate(start);
         QuantLib::Date maturityDate(maturity);
-        
+
         QuantLib::Schedule schedule(calendar,
                                     startDate,
                                     maturityDate,
                                     frequency,
                                     convention);
-        
+
         std::vector<boost::shared_ptr<QuantLib::CashFlow> > leg =
             QuantLib::FloatingRateCouponVector(schedule,
                                                convention,
@@ -90,10 +90,10 @@ namespace QuantLibAddin {
                                                index->settlementDays(),
                                                std::vector<QuantLib::Spread>(),
                                                index->dayCounter());
-        
+
         QuantLib::CapFloor::Type option =
             Create<QuantLib::CapFloor::Type>()(optionID);
-        
+
         mInstrument = boost::shared_ptr<QuantLib::CapFloor>(
             new QuantLib::CapFloor(option,
                                    leg,
@@ -102,40 +102,40 @@ namespace QuantLibAddin {
                                    termStructureH,
                                    engineQL));
     }
-    
+
     const std::vector<std::vector<double> >& CapFloor::cashFlows() {
         const std::vector<boost::shared_ptr<QuantLib::CashFlow> >& leg = getObject().leg();
         cashFlows_.clear();
         for (std::size_t i=0 ; i < leg.size() ; i++) {
             std::vector<double> cf;
             QuantLib::FloatingRateCoupon& c = (QuantLib::FloatingRateCoupon&) *(leg[i]);
-			cf.push_back(c.accrualStartDate().serialNumber());
-			cf.push_back(c.accrualEndDate().serialNumber());
-			cf.push_back(c.date().serialNumber());
-			cf.push_back(c.fixingDate().serialNumber());
-			cf.push_back(c.accrualPeriod());
-			cf.push_back(c.accrualDays());
-			cf.push_back(c.amount());
-			cf.push_back(c.indexFixing());
-			cashFlows_.push_back(cf);
+            cf.push_back(c.accrualStartDate().serialNumber());
+            cf.push_back(c.accrualEndDate().serialNumber());
+            cf.push_back(c.date().serialNumber());
+            cf.push_back(c.fixingDate().serialNumber());
+            cf.push_back(c.accrualPeriod());
+            cf.push_back(c.accrualDays());
+            cf.push_back(c.amount());
+            cf.push_back(c.indexFixing());
+            cashFlows_.push_back(cf);
         }
         return cashFlows_;
     }
-    
+
     AnalyticCapFloorEngine::AnalyticCapFloorEngine(
             const std::string& handleModel) {
-        
+
         boost::shared_ptr<AffineModel> model = 
             OH_GET_OBJECT(AffineModel, handleModel);
         if (!model)
             QL_FAIL("AnalyticCapFloorEngine: error retrieving object " + handleModel);
-        
+
         const boost::shared_ptr<QuantLib::AffineModel> modelQL =
             OH_GET_REFERENCE(QuantLib::AffineModel, model);
-        
+
         engine_ = boost::shared_ptr<QuantLib::AnalyticCapFloorEngine>(
             new QuantLib::AnalyticCapFloorEngine(modelQL));
     }
-    
+
 }
 

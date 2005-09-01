@@ -58,7 +58,7 @@ namespace QuantLibAddin {
             Create<boost::shared_ptr<QuantLib::Exercise> >()(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
-        barrierOption_ = boost::shared_ptr<QuantLib::BarrierOption>(
+        mInstrument = boost::shared_ptr<QuantLib::BarrierOption>(
             new QuantLib::BarrierOption(
                 barrierType,
                 barrier,
@@ -67,8 +67,8 @@ namespace QuantLibAddin {
                 payoff, 
                 exercise, 
                 pricingEngine));
-		createProperty(FIELD_NPV, barrierOption_->NPV());
-		createProperty(FIELD_ENGINE, engineID);
+        createProperty(FIELD_NPV, mInstrument->NPV());
+        createProperty(FIELD_ENGINE, engineID);
     }
 
 }

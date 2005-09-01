@@ -18,12 +18,13 @@
 #ifndef qla_dividendvanillaoption_hpp
 #define qla_dividendvanillaoption_hpp
 
+#include <qla/baseinstruments.hpp>
 #include <qla/processes.hpp>
 #include <ql/Instruments/dividendvanillaoption.hpp>
 
 namespace QuantLibAddin {
 
-    class DividendVanillaOption : public ObjHandler::Object {
+    class DividendVanillaOption : public Instrument {
     public:
         DividendVanillaOption(
             const std::string &handleBlackScholes,
@@ -37,11 +38,8 @@ namespace QuantLibAddin {
             const long &settlementDate,
             const std::string &engineID,
             const long &timeSteps);
-        virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(dividendVanillaOption_);
-        }
-    private:
-        boost::shared_ptr<QuantLib::DividendVanillaOption> dividendVanillaOption_;
+
+        EXPORT_QL_OBJECT(QuantLib::DividendVanillaOption);
     };
 
 }

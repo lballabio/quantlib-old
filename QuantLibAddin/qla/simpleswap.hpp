@@ -29,31 +29,31 @@ namespace QuantLibAddin {
     public:
         SimpleSwap(
             const long &lStartDate,
-		    const long &lMaturity,
-		    const QuantLib::Real &nominal,
-		    const bool &payFixed,
-		    const QuantLib::Rate &fixRate,
-		    const std::string &calendarID,
- 		    const std::string &fixFrqID,
-		    const std::string &fixBDCID,
-		    const std::string &fixDayCounterID,
-		    const bool &fixStartFromEnd,
-		    const bool &fixLongFinal,
- 		    const std::string &fltFrqID,
-		    const std::string &indexHandle,
-		    const bool &floatStartFromEnd,
-		    const bool &floatLongFinal,
-		    const QuantLib::Rate &floatSpread,
-		    const std::string &discCurveId);
+            const long &lMaturity,
+            const QuantLib::Real &nominal,
+            const bool &payFixed,
+            const QuantLib::Rate &fixRate,
+            const std::string &calendarID,
+             const std::string &fixFrqID,
+            const std::string &fixBDCID,
+            const std::string &fixDayCounterID,
+            const bool &fixStartFromEnd,
+            const bool &fixLongFinal,
+             const std::string &fltFrqID,
+            const std::string &indexHandle,
+            const bool &floatStartFromEnd,
+            const bool &floatLongFinal,
+            const QuantLib::Rate &floatSpread,
+            const std::string &discCurveId);
 
-		EXPORT_QL_OBJECT(QuantLib::SimpleSwap)
+        EXPORT_QL_OBJECT(QuantLib::SimpleSwap)
 
-		const std::vector<std::vector<double> >& getFixLeg();
-		const std::vector<std::vector<double> >& getFloatLeg();
+        const std::vector<std::vector<double> >& getFixLeg();
+        const std::vector<std::vector<double> >& getFloatLeg();
 
     private:
-		std::vector<std::vector<double> > fixLeg;
-		std::vector<std::vector<double> > floatLeg;
+        std::vector<std::vector<double> > fixLeg;
+        std::vector<std::vector<double> > floatLeg;
     };
 }
 

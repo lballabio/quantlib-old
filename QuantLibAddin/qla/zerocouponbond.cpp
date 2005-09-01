@@ -46,20 +46,20 @@ namespace QuantLibAddin {
 
         boost::shared_ptr<ZeroCurve> zeroCurve =
             OH_GET_OBJECT(ZeroCurve, handleZeroCurve);
-        
+
         if (!zeroCurve)
             QL_FAIL("ZeroCouponBond: error retrieving object " + handleZeroCurve);
 
         boost::shared_ptr<QuantLib::YieldTermStructure> zeroCurveQl =
             OH_GET_REFERENCE(QuantLib::YieldTermStructure, zeroCurve);
 
-		QuantLib::BusinessDayConvention convention = 
+        QuantLib::BusinessDayConvention convention = 
             Create<QuantLib::BusinessDayConvention>()(conventionID);
-		QuantLib::Calendar calendar =
+        QuantLib::Calendar calendar =
             Create<QuantLib::Calendar>()(calendarID);
-		QuantLib::DayCounter dayCounter =
+        QuantLib::DayCounter dayCounter =
             Create<QuantLib::DayCounter>()(dayCounterID);
-        
+
         mInstrument = 
             boost::shared_ptr<QuantLib::Instrument>(
                 new QuantLib::ZeroCouponBond(QuantLib::Date(issueDate),
@@ -72,9 +72,10 @@ namespace QuantLibAddin {
                                              QuantLib::Handle<QuantLib::YieldTermStructure>(zeroCurveQl)));
 
         // Perform pricing
-		double npv = mInstrument->NPV();
+        double npv = mInstrument->NPV();
 
         // Setup object properties
-		createProperty(FIELD_NPV, npv);
+        createProperty(FIELD_NPV, npv);
     }
 }
+

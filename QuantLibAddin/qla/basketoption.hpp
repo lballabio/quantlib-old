@@ -18,12 +18,13 @@
 #ifndef qla_basketoption_hpp
 #define qla_basketoption_hpp
 
+#include <qla/baseinstruments.hpp>
 #include <qla/processes.hpp>
 #include <ql/Instruments/basketoption.hpp>
 
 namespace QuantLibAddin {
 
-    class BasketOption : public ObjHandler::Object {
+    class BasketOption : public Instrument {
     public:
         BasketOption(
             const std::vector < std::string > &handleBlackScholesVector,
@@ -36,11 +37,8 @@ namespace QuantLibAddin {
             const long &settlementDate,
             const std::string &engineID,
             const long &timeSteps);
-        virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(basketOption_);
-        }
-    private:
-        boost::shared_ptr<QuantLib::BasketOption> basketOption_;
+
+        EXPORT_QL_OBJECT(QuantLib::BasketOption);
     };
 
 }

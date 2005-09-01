@@ -23,7 +23,7 @@
 #include <qla/baseinstruments.hpp>
 
 namespace QuantLibAddin {
-    
+
     class CapFloor : public Instrument {
       public:
         CapFloor(
@@ -36,15 +36,15 @@ namespace QuantLibAddin {
             const std::vector<double>& floorStrikes,
             const std::string& handleEngine,
             const std::string& optionID);
-        
+
         EXPORT_QL_OBJECT(QuantLib::CapFloor);
-        
+
         const std::vector<std::vector<double> >& cashFlows();
-        
+
       private:
         std::vector<std::vector<double> > cashFlows_;
     };
-    
+
     class AnalyticCapFloorEngine : public ObjHandler::Object {
       public:
         AnalyticCapFloorEngine(
@@ -55,7 +55,7 @@ namespace QuantLibAddin {
       private:
         boost::shared_ptr<QuantLib::PricingEngine> engine_;
     };
-    
+
 }
 
 #endif
