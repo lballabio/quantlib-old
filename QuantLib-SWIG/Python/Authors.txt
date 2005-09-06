@@ -1,3 +1,0 @@
-Ferdinando Ametrano (nando AT ametrano DOT net) - admin
-Luigi Ballabio (luigi.ballabio@riskmap.net) - library designer
-Marco Marchioro (marco.marchioro@riskmap.net)

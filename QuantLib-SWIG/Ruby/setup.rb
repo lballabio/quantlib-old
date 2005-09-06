@@ -1,5 +1,5 @@
 =begin
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -57,86 +57,7 @@ end
 # Current QuantLib version
 Version = "0.3.11"
 
-# Files
 cfg = Config::MAKEFILE_CONFIG
-Info     =    [ 'Authors.txt', 'ChangeLog.txt', 'Contributors.txt',
-                'LICENSE.TXT', 'README.txt', 'News.txt',
-                'QuantLib-Ruby.spec' ]
-Sources  =    [ 'QuantLib.rb', 'quantlib_wrap.cpp' ]
-case cfg['host_os']
-  when 'darwin'
-    Binary = 'QuantLibc.bundle'
-  else
-    Binary = 'QuantLibc.so'
-end
-
-Scripts  =    [ 'setup.rb' ]
-
-Interfaces =  [ 'quantlib.i',
-                'ql.i',
-                'common.i',
-                'blackmodel.i',
-                'bonds.i',
-                'calendars.i',
-                'capfloor.i',
-                'cashflows.i',
-                'compoundforward.i',
-                'currencies.i',
-                'date.i',
-                'daycounters.i',
-                'stochasticprocess.i',
-                'discountcurve.i',
-                'distributions.i',
-                'exchangerates.i',
-                'exercise.i',
-                'functions.i',
-                'grid.i',
-                'history.i',
-                'indexes.i',
-                'instruments.i',
-                'integrals.i',
-                'interestrate.i',
-                'interpolation.i',
-                'linearalgebra.i',
-                'marketelements.i',
-                'money.i',
-                'montecarlo.i',
-                'null.i',
-                'observer.i',
-                'operators.i',
-                'optimizers.i',
-                'options.i',
-                'payoffs.i',
-                'piecewiseflatforward.i',
-                'randomnumbers.i',
-                'rounding.i',
-                'scheduler.i',
-                'settings.i',
-                'shortratemodels.i',
-                'statistics.i',
-                'swap.i',
-                'swaption.i',
-                'termstructures.i',
-                'timebasket.i',
-                'types.i',
-                'vectors.i',
-                'volatilities.i',
-                # to be removed
-                'old_pricers.i',
-                'old_volatility.i' ]
-
-Tests =       [ 'QuantLibTestSuite.rb',
-                'dates.rb',
-                'instruments.rb',
-                'integrals.rb',
-                'marketelements.rb',
-                'solvers1d.rb',
-                'termstructures.rb' ]
-
-Examples =    [ 'american-option.rb',
-                'bermudan-swaption.rb',
-                'european-option.rb',
-                'swap.rb' ]
 
 # commands
 class Command
@@ -149,39 +70,13 @@ class Command
 end
 
 Wrap = Command.new {
-    swigDir = "./SWIG"
-    swigDir = "../SWIG" if not File.exists? swigDir
-    puts "Generating Ruby bindings for QuantLib..."
-    system "swig -ruby -c++ -I#{swigDir} -o ./quantlib_wrap.cpp quantlib.i"
-}
-
-SDist = Command.new {
-    puts "Packing source distribution..."
-    distDir = "QuantLib-Ruby-#{Version}"
-    raise "Directory #{distDir} already exist" if File.exists? distDir
-    swigDir = distDir+"/SWIG"
-    testDir = distDir+"/test"
-    exampleDir = distDir+"/examples"
-    [distDir,swigDir,testDir,exampleDir].each { |path| File.makedirs path }
-    Info.each       { |file| File.syscopy file, distDir }
-    Sources.each    { |file| File.syscopy file, distDir }
-    Scripts.each    { |file| File.syscopy file, distDir }
-    Interfaces.each { |file| File.syscopy '../SWIG/'+file, swigDir }
-    Tests.each      { |file| File.syscopy 'test/'+file, testDir }
-    Examples.each   { |file| File.syscopy 'examples/'+file, exampleDir }
-    cfg = Config::MAKEFILE_CONFIG
-    case cfg['host_os']
-      when 'mswin32'
-        system "zip -q -r #{distDir}.zip #{distDir}/"
-      when 'linux','linux-gnu','darwin'
-        system "tar cfz #{distDir}.tar.gz #{distDir}/"
-      else
-        puts "Unknown host: " + cfg['host_os']
-    end
+    swigDir = "../SWIG"
+    cmd = "swig -ruby -c++ -I#{swigDir} -o ./quantlib_wrap.cpp quantlib.i"
+    puts cmd
+    system cmd
 }
 
 Build = Command.new {
-    puts "Building extension..."
     cfg = Config::MAKEFILE_CONFIG
     case cfg['host_os']
       when 'mswin32'
@@ -211,19 +106,22 @@ Build = Command.new {
       else
         puts "Unknown host: " + cfg['host_os']
     end
+    # we have to juggle files as create_makefile is stubborn about file names
+    File.rename("Makefile","Makefile.old")
     create_makefile("QuantLibc")
+    File.rename("Makefile","extension.mak")
+    File.rename("Makefile.old", "Makefile")
     case cfg['host_os']
       when 'mswin32'
-        system("nmake")
+        system("nmake /f extension.mak")
       else
-        system("make")
+        system("make -f extension.mak")
     end
-    # File.safe_unlink "./Makefile"
 }
 
 RunTests = Command.new {
     Build.execute
-    puts "Testing QuantLib-Ruby..."
+    puts "Testing QuantLib-Ruby #{Version}..."
     $LOAD_PATH.unshift Dir.pwd
     Dir.chdir 'test'
     load 'QuantLibTestSuite.rb'
@@ -231,26 +129,8 @@ RunTests = Command.new {
     $LOAD_PATH.shift
 }
 
-BDist = Command.new {
-    Build.execute
-    puts "Packing binary distribution..."
-    distDir = "QuantLib-Ruby-#{Version}"
-    raise "Directory #{distDir} already exist" if File.exists? distDir
-    swigDir = distDir+"/SWIG"
-    testDir = distDir+"/test"
-    [distDir,swigDir,testDir].each { |path| File.makedirs path }
-    File.syscopy Binary, distDir
-    Info.each       { |file| File.syscopy file, distDir }
-    Sources.each    { |file| File.syscopy file, distDir }
-    Scripts.each    { |file| File.syscopy file, distDir }
-    Interfaces.each { |file| File.syscopy '../SWIG/'+file, swigDir }
-    Tests.each      { |file| File.syscopy 'test/'+file, testDir }
-    system "tar cfz #{distDir}.#{Config::CONFIG['arch']}.tar.gz #{distDir}/"
-}
-
 Install = Command.new {
     Build.execute
-    puts "Installing QuantLib-Ruby..."
     if defined? Prefix
         # strip old prefix and add the new one
         oldPrefix = Config::CONFIG["prefix"]
@@ -268,25 +148,21 @@ Install = Command.new {
         libDir     = Config::CONFIG["sitelibdir"]
     end
     [archDir,libDir].each { |path| File.makedirs path }
-    File.install "./"+Binary, archDir+"/"+Binary, 0555, true 
+    case cfg['host_os']
+    when 'darwin'
+      binary = 'QuantLibc.bundle'
+    else
+      binary = 'QuantLibc.so'
+    end
+    File.install "./"+binary, archDir+"/"+binary, 0555, true 
     File.install "./QuantLib.rb", libDir+"/QuantLib.rb", 0555, true
-}
-
-Clean = Command.new {
-    [Binary,'quantlib_wrap.cpp','quantlib_wrap.o',
-     'Makefile','mkmf.log'].each { |file|
-      File.safe_unlink file if File.exists? file
-    }
 }
 
 availableCommands = {
     "wrap"    => Wrap,
     "build"   => Build,
     "test"    => RunTests,
-    "install" => Install,
-    "sdist"   => SDist,
-    "bdist"   => BDist,
-    "clean"   => Clean }
+    "install" => Install }
 
 availableCommands[cmd].execute
 

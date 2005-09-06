@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 """
- Copyright (C) 2000-2004 StatPro Italia srl
+ Copyright (C) 2000-2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,76 +19,8 @@ import os, sys, string
 from distutils.cmd import Command
 from distutils.command.install_data import install_data
 from distutils.command.install import install
-from distutils.command.sdist import sdist
 from distutils.file_util import copy_file
 from distutils.core import setup, Extension
-
-docs = ['LICENSE.TXT',
-        'Authors.txt',
-        'Contributors.txt',
-        'News.txt',
-        'README.txt']
-
-swig_files = ['quantlib.i',
-              'ql.i',
-              'common.i',
-              'blackmodel.i',
-              'bonds.i',
-              'calendars.i',
-              'capfloor.i',
-              'cashflows.i',
-              'compoundforward.i',
-              'currencies.i',
-              'date.i',
-              'daycounters.i',
-              'stochasticprocess.i',
-              'discountcurve.i',
-              'distributions.i',
-              'exchangerates.i',
-              'exercise.i',
-              'functions.i',
-              'grid.i',
-              'history.i',
-              'indexes.i',
-              'instruments.i',
-              'integrals.i',
-              'interestrate.i',
-              'interpolation.i',
-              'linearalgebra.i',
-              'marketelements.i',
-              'money.i',
-              'montecarlo.i',
-              'null.i',
-              'observer.i',
-              'operators.i',
-              'optimizers.i',
-              'options.i',
-              'payoffs.i',
-              'piecewiseflatforward.i',
-              'randomnumbers.i',
-              'rounding.i',
-              'scheduler.i',
-              'settings.i',
-              'shortratemodels.i',
-              'statistics.i',
-              'swap.i',
-              'swaption.i',
-              'termstructures.i',
-              'timebasket.i',
-              'types.i',
-              'vectors.i',
-              'volatilities.i',
-              # to be removed
-              'old_pricers.i',
-              'old_volatility.i']
-
-test_files = ['QuantLibTestSuite.py',
-              'date.py',
-              'instruments.py',
-              'integrals.py',
-              'marketelements.py',
-              'solvers1d.py',
-              'termstructures.py']
 
 class test(Command):
     # Original version of this class posted
@@ -127,26 +59,6 @@ class test(Command):
         # restore sys.path
         sys.path = old_path[:]
 
-
-# This gathers the SWIG interface files before running sdist
-class my_sdist(sdist):
-    description = "build source distribution including SWIG interfaces"
-    def run(self):
-        swig_dir = os.path.join(".","SWIG")
-        cleanup = 0
-        if not os.path.exists(swig_dir):
-            os.makedirs(swig_dir)
-            for f in swig_files:
-                copy_file(os.path.join("..","SWIG",f),swig_dir)
-            cleanup = 1
-        # now do what you do
-        sdist.run(self)
-        # clean up
-        if cleanup:
-            for f in os.listdir(swig_dir):
-                os.remove(os.path.join(swig_dir,f))
-            os.rmdir(swig_dir)
-
 class my_wrap(Command):
     description = "generate Python wrappers"
     user_options = []
@@ -154,9 +66,7 @@ class my_wrap(Command):
     def finalize_options(self): pass
     def run(self):
         print 'Generating Python bindings for QuantLib...'
-        swig_dir = os.path.join(".","SWIG")
-        if not os.path.exists(swig_dir):
-            swig_dir = os.path.join("..","SWIG")
+        swig_dir = os.path.join("..","SWIG")
         os.system('swig -python -c++ -modern ' +
                   '-I%s ' % swig_dir +
                   '-outdir QuantLib -o QuantLib/quantlib_wrap.cpp ' +
@@ -273,7 +183,7 @@ framework for quantitative finance.
       author           = "QuantLib Team",
       author_email     = "quantlib-users@lists.sourceforge.net",
       url              = "http://quantlib.org",
-      license          = open('LICENSE.TXT','r+').read(),
+      license          = open('../LICENSE.TXT','r+').read(),
       classifiers      = classifiers,
       py_modules       = ['QuantLib.__init__','QuantLib.QuantLib'],
       ext_modules      = [Extension("QuantLib._QuantLib",
@@ -287,6 +197,5 @@ framework for quantitative finance.
                          ],
       data_files       = datafiles,
       cmdclass         = {'test': test,
-                          'sdist': my_sdist,
                           'wrap': my_wrap}
       )

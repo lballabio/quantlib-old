@@ -1,6 +1,0 @@
-
-Currently known bugs in QuantLib-Ruby:
-
-- class Observer:
-    Scripts have been reported to hang when using this class.
-

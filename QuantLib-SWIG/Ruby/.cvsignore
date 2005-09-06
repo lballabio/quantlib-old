@@ -1,5 +1,10 @@
 quantlib_wrap.cpp
-Makefile
+quantlib_wrap.o
+QuantLibc.so
+.build-stamp
+Makefile*
+extension.mak
+QuantLib-Ruby.spec
 *.pdb
 *.def
 *.exp

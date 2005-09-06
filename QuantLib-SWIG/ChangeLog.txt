@@ -1,3 +1,218 @@
+2005-07-25 16:45  Luigi Ballabio
+
+	* SWIG/: calendars.i (1.48), currencies.i (1.14), date.i (1.38),
+	daycounters.i (1.30), functions.i (1.12), grid.i (1.3), indexes.i
+	(1.23), interestrate.i (1.6), linearalgebra.i (1.30), money.i
+	(1.4), montecarlo.i (1.27), observer.i (1.18), ql.i (1.57),
+	stochasticprocess.i (1.13):
+
+	Added (untested) mods for Java (thanks to Johan Witters)
+
+2005-07-07 14:48  Luigi Ballabio
+
+	* Guile/examples/american-option.scm (1.4),
+	Guile/examples/bermudan-swaption.scm (1.6),
+	Guile/examples/european-option.scm (1.6), Guile/examples/swap.scm
+	(1.3), Guile/test/termstructures.scm (1.14),
+	MzScheme/examples/american-option.scm (1.4),
+	MzScheme/examples/bermudan-swaption.scm (1.6),
+	MzScheme/examples/european-option.scm (1.6),
+	MzScheme/examples/swap.scm (1.3), MzScheme/test/termstructures.scm
+	(1.13), Python/examples/american-option.py (1.9),
+	Python/examples/bermudan-swaption.py (1.11),
+	Python/examples/european-option.py (1.7), Python/examples/swap.py
+	(1.13), Python/test/termstructures.py (1.7),
+	Ruby/examples/american-option.rb (1.6),
+	Ruby/examples/bermudan-swaption.rb (1.11),
+	Ruby/examples/european-option.rb (1.7), Ruby/examples/swap.rb
+	(1.10), Ruby/test/termstructures.rb (1.22), SWIG/calendars.i
+	(1.47), SWIG/cashflows.i (1.24), SWIG/common.i (1.33), SWIG/date.i
+	(1.37), SWIG/interestrate.i (1.5), SWIG/linearalgebra.i (1.29),
+	SWIG/old_pricers.i (1.24), SWIG/options.i (1.46), SWIG/payoffs.i
+	(1.4), SWIG/types.i (1.8):
+
+	Exported a few enumerations as such
+
+2005-07-07 11:44  Luigi Ballabio
+
+	* Guile/News.txt (1.9), Guile/README.txt (1.7), Guile/setup.scm
+	(1.35), MzScheme/News.txt (1.9), MzScheme/README.txt (1.7),
+	Python/News.txt (1.13), Python/README.txt (1.14), Ruby/News.txt
+	(1.13), Ruby/README.txt (1.14), SWIG/calendars.i (1.46),
+	SWIG/history.i (1.19), SWIG/linearalgebra.i (1.28),
+	SWIG/montecarlo.i (1.26), SWIG/options.i (1.45), SWIG/quantlib.i
+	(1.11), SWIG/scheduler.i (1.15):
+
+	Merged 0.3.10 branch
+
+2005-06-24 09:53  Luigi Ballabio
+
+	* SWIG/calendars.i (1.45):
+
+	Bombay and Taipei calendars added
+
+2005-06-14 13:20  Luigi Ballabio
+
+	* Guile/README.txt (1.6.12.1), Guile/setup.scm (1.33.2.1),
+	MzScheme/README.txt (1.6.12.1), Python/README.txt (1.13.4.1),
+	Ruby/README.txt (1.13.12.1), SWIG/history.i (1.18.10.1),
+	SWIG/linearalgebra.i (1.27.4.1), SWIG/montecarlo.i (1.24.2.1),
+	SWIG/quantlib.i (1.10.4.1), SWIG/scheduler.i (1.14.6.1):
+
+	Upgraded to SWIG 1.3.25
+
+2005-05-31 14:21  Luigi Ballabio
+
+	* Guile/setup.scm (1.34), Guile/examples/bermudan-swaption.scm
+	(1.5), Guile/examples/european-option.scm (1.5), MzScheme/setup.scm
+	(1.36), MzScheme/examples/bermudan-swaption.scm (1.5),
+	Python/QuantLib-Python.spec (1.7), Python/setup.py (1.87),
+	Python/examples/bermudan-swaption.py (1.10),
+	Ruby/QuantLib-Ruby.spec (1.7), Ruby/setup.rb (1.78),
+	Ruby/examples/bermudan-swaption.rb (1.10), SWIG/indexes.i (1.22),
+	SWIG/montecarlo.i (1.25), SWIG/options.i (1.44), SWIG/ql.i (1.56),
+	SWIG/shortratemodels.i (1.18):
+
+	Sync with C++
+
+2005-05-12 15:04  Luigi Ballabio
+
+	* SWIG/: montecarlo.i (1.24), options.i (1.42), stochasticprocess.i
+	(1.12):
+
+	Sync with C++
+
+2005-05-02 17:28  Luigi Ballabio
+
+	* Guile/News.txt (1.8), Guile/setup.scm (1.33), MzScheme/News.txt
+	(1.8), MzScheme/setup.scm (1.34), Python/News.txt (1.12),
+	Ruby/News.txt (1.12):
+
+	Merged latest changes from 0.3.9
+
+2005-04-11 16:59  Luigi Ballabio
+
+	* Guile/History.txt (1.7), Guile/News.txt (1.7), Guile/setup.scm
+	(1.32), MzScheme/History.txt (1.7), MzScheme/News.txt (1.7),
+	MzScheme/setup.scm (1.33), Python/History.txt (1.7),
+	Python/News.txt (1.11), Python/setup.py (1.85), Ruby/History.txt
+	(1.7), Ruby/News.txt (1.11), Ruby/setup.rb (1.77), SWIG/date.i
+	(1.36), SWIG/indexes.i (1.21), SWIG/termstructures.i (1.27):
+
+	Merged 0.3.9 branch
+
+2005-03-09 15:42  Luigi Ballabio
+
+	* Guile/setup.scm (1.31), MzScheme/setup.scm (1.32),
+	Python/QuantLib-Python.spec (1.6), Python/setup.py (1.84),
+	Ruby/QuantLib-Ruby.spec (1.6), Ruby/setup.rb (1.76), SWIG/bonds.i
+	(1.4), SWIG/old_pricers.i (1.23), SWIG/piecewiseflatforward.i
+	(1.28), SWIG/ql.i (1.55):
+
+	Updated version number; removed deprecated features
+
+2005-02-23 17:18  Luigi Ballabio
+
+	* Guile/examples/american-option.scm (1.3),
+	Guile/examples/european-option.scm (1.4),
+	MzScheme/examples/american-option.scm (1.3),
+	MzScheme/examples/european-option.scm (1.4),
+	Python/examples/american-option.py (1.8),
+	Python/examples/european-option.py (1.6),
+	Ruby/examples/american-option.rb (1.5),
+	Ruby/examples/european-option.rb (1.5), SWIG/options.i (1.40):
+
+	Exported FD engines
+
+2005-02-14 18:33  Luigi Ballabio
+
+	* Guile/setup.scm (1.30), MzScheme/setup.scm (1.31),
+	Python/setup.py (1.83):
+
+	Added missing files to distribution
+
+2005-02-14 18:33  Luigi Ballabio
+
+	* Ruby/setup.rb (1.75):
+
+	Fixed freeze with Ruby 1.8
+
+2005-02-04 14:08  Luigi Ballabio
+
+	* SWIG/: calendars.i (1.43), common.i (1.32), date.i (1.35),
+	exercise.i (1.4), interestrate.i (1.4), linearalgebra.i (1.27),
+	money.i (1.3), operators.i (1.17), options.i (1.39), volatilities.i
+	(1.19):
+
+	Using manipulators instead of formatters
+
+2004-12-09 12:14  Luigi Ballabio
+
+	* Guile/ChangeLog.txt (1.10), Guile/News.txt (1.6), Guile/setup.scm
+	(1.29), Guile/examples/american-option.scm (1.2),
+	Guile/examples/bermudan-swaption.scm (1.4),
+	Guile/examples/european-option.scm (1.3),
+	Guile/test/termstructures.scm (1.12), MzScheme/ChangeLog.txt
+	(1.12), MzScheme/News.txt (1.6), MzScheme/setup.scm (1.30),
+	MzScheme/examples/american-option.scm (1.2),
+	MzScheme/examples/bermudan-swaption.scm (1.4),
+	MzScheme/examples/european-option.scm (1.3),
+	MzScheme/quantlib/.cvsignore (1.2),
+	MzScheme/test/termstructures.scm (1.12), Python/.cvsignore (1.5),
+	Python/ChangeLog.txt (1.18), Python/News.txt (1.10),
+	Python/README.txt (1.13), Python/setup.py (1.82),
+	Python/examples/american-option.py (1.7),
+	Python/examples/bermudan-swaption.py (1.9),
+	Python/examples/european-option.py (1.5),
+	Python/test/termstructures.py (1.5), Ruby/.cvsignore (1.3),
+	Ruby/ChangeLog.txt (1.21), Ruby/News.txt (1.10), Ruby/QuantLib.rb
+	(1.26), Ruby/setup.rb (1.74), Ruby/examples/american-option.rb
+	(1.4), Ruby/examples/bermudan-swaption.rb (1.9),
+	Ruby/examples/european-option.rb (1.4), Ruby/examples/swap.rb
+	(1.9), Ruby/test/termstructures.rb (1.21), SWIG/bonds.i (1.2),
+	SWIG/cashflows.i (1.22), SWIG/common.i (1.31),
+	SWIG/compoundforward.i (1.13), SWIG/currencies.i (1.13),
+	SWIG/date.i (1.34), SWIG/daycounters.i (1.29), SWIG/discountcurve.i
+	(1.17), SWIG/indexes.i (1.20), SWIG/interestrate.i (1.3),
+	SWIG/linearalgebra.i (1.25), SWIG/montecarlo.i (1.23),
+	SWIG/old_pricers.i (1.22), SWIG/old_volatility.i (1.13),
+	SWIG/options.i (1.38), SWIG/piecewiseflatforward.i (1.27),
+	SWIG/ql.i (1.54), SWIG/quantlib.i (1.10), SWIG/randomnumbers.i
+	(1.26), SWIG/termstructures.i (1.25), SWIG/volatilities.i (1.18),
+	dev_tools/windistmzscheme.bat (1.2), dev_tools/windistpython.bat
+	(1.2), dev_tools/windistruby.bat (1.2), dev_tools/windistswig
+	(1.2):
+
+	Merged 0.3.8 branch
+
+2004-12-02 13:42  Ferdinando Ametrano
+
+	* dev_tools/: windistmzscheme.bat (1.1.2.1), windistpython.bat
+	(1.1.2.1), windistruby.bat (1.1.2.1), windistswig (1.1.2.1):
+
+	script files for automated win32 packaging
+
+2004-12-01 16:26  Ferdinando Ametrano
+
+	* Python/setup.py (1.80.2.4):
+
+	nothing relevant for 0.3.8
+
+2004-11-24 16:05  Luigi Ballabio
+
+	* Guile/News.txt (1.5.6.3), MzScheme/News.txt (1.5.6.3),
+	Python/News.txt (1.9.6.3), Ruby/News.txt (1.9.6.3):
+
+	Reality check
+
+2004-11-22 15:44  Luigi Ballabio
+
+	* SWIG/quantlib.i (1.9.2.2), Guile/News.txt (1.5.6.2),
+	MzScheme/News.txt (1.5.6.2), Python/News.txt (1.9.6.2),
+	Ruby/News.txt (1.9.6.2):
+
+	back to SWIG 1.3.21
+
 2004-11-09 14:21  Luigi Ballabio
 
 	* Python/README.txt (1.12.2.1), SWIG/quantlib.i (1.9.2.1):
@@ -2521,45 +2736,4 @@
 
 	Module for migration to SWIG 1.3.11 and reunification of SWIG
 	extensions
-
-1970-01-01 01:00  
-
-	* Guile/ChangeLog.txt (), Guile/History.txt (), Guile/News.txt (),
-	Guile/setup.scm (), MzScheme/ChangeLog.txt (), MzScheme/History.txt
-	(), MzScheme/News.txt (), MzScheme/README.txt (),
-	MzScheme/setup.scm (), MzScheme/quantlib/.cvsignore (),
-	MzScheme/quantlib/ql-init.ss (), MzScheme/quantlib/quantlib.ss (),
-	MzScheme/test/date.scm (), MzScheme/test/quantlib-test-suite.scm
-	(), MzScheme/test/utilities.scm (), Python/.cvsignore (),
-	Python/BUGS.txt (), Python/ChangeLog.txt (), Python/History.txt (),
-	Python/MANIFEST.in (), Python/News.txt (),
-	Python/QuantLib-Python.spec (), Python/QuantLibPython.dsp (),
-	Python/QuantLibPython.mak (), Python/README.txt (), Python/setup.py
-	(), Python/wrap.bat (), Python/QuantLib/__init__.py (),
-	Python/examples/american-option.py (),
-	Python/examples/bermudan-swaption.py (),
-	Python/examples/european-option.py (), Python/examples/swap.py (),
-	Ruby/BUGS.txt (), Ruby/ChangeLog.txt (), Ruby/History.txt (),
-	Ruby/News.txt (), Ruby/QuantLib-Ruby.spec (), Ruby/QuantLib.rb (),
-	Ruby/README.txt (), Ruby/setup.rb (),
-	Ruby/examples/bermudan-swaption.rb (), Ruby/examples/swap.rb (),
-	Ruby/test/QuantLibTestSuite.rb (), Ruby/test/dates.rb (),
-	Ruby/test/europeanoption.rb (), Ruby/test/old_pricers.rb (),
-	Ruby/test/swaption.rb (), Ruby/test/termstructures.rb (),
-	SWIG/calendars.i (), SWIG/capfloor.i (), SWIG/cashflows.i (),
-	SWIG/compoundforward.i (), SWIG/date.i (), SWIG/daycounters.i (),
-	SWIG/discountcurve.i (), SWIG/distributions.i (), SWIG/functions.i
-	(), SWIG/history.i (), SWIG/indexes.i (), SWIG/instruments.i (),
-	SWIG/integrals.i (), SWIG/interpolation.i (), SWIG/linearalgebra.i
-	(), SWIG/marketelements.i (), SWIG/montecarlo.i (), SWIG/observer.i
-	(), SWIG/old_pricers.i (), SWIG/old_volatility.i (),
-	SWIG/operators.i (), SWIG/optimizers.i (), SWIG/options.i (),
-	SWIG/piecewiseflatforward.i (), SWIG/ql.i (), SWIG/qlarray.i (),
-	SWIG/quantlib.i (), SWIG/randomnumbers.i (), SWIG/scheduler.i (),
-	SWIG/shortratemodels.i (), SWIG/statistics.i (),
-	SWIG/stochasticprocess.i (), SWIG/swap.i (), SWIG/swaption.i (),
-	SWIG/termstructures.i (), SWIG/timebasket.i (), SWIG/types.i (),
-	SWIG/volatilities.i ():
-
-	[no log message]
 

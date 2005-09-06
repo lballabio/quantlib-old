@@ -1,6 +1,8 @@
 build
 dist
-MANIFEST
+Makefile*
+QuantLib-Python.spec
+.build-stamp
 *.dep
 *.plg
 vc60.idb

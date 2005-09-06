@@ -1,1 +1,4 @@
 quantlib_wrap.cpp
+quantlib_wrap.o
+Makefile*
+.build-stamp

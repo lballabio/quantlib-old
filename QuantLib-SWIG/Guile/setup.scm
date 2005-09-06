@@ -1,5 +1,5 @@
 
-; Copyright (C) 2002, 2003 RiskMap srl
+; Copyright (C) 2002, 2003, 2004, 2005 StatPro Italia srl
 ;
 ; This file is part of QuantLib, a free-software/open-source library
 ; for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,132 +21,22 @@
   (format #t "    build            build QuantLib-Guile\n")
   (format #t "    test             test QuantLib-Guile\n")
   (format #t "    install          install QuantLib-Guile\n")
-  (format #t "    sdist            create source distribution\n")
-  (format #t "    clean            clean up\n")
   (exit))
-
 
 ; current QuantLib version
 (define version "0.3.11")
 
-; files
-(define info-files
-  (list "Authors.txt" "ChangeLog.txt" "Contributors.txt"
-        "LICENSE.TXT" "News.txt" "README.txt"))
-(define source-files
-  (list "QuantLib.scm" "quantlib_wrap.cpp"))
-(define binary-files
-  (list "QuantLibc.so"))
-(define scripts
-  (list "setup.scm"))
-(define SWIG-interfaces
-  (list "quantlib.i"
-        "ql.i"
-        "common.i"
-        "blackmodel.i"
-        "bonds.i"
-        "calendars.i"
-        "capfloor.i"
-        "cashflows.i"
-        "compoundforward.i"
-        "currencies.i"
-        "date.i"
-        "daycounters.i"
-        "stochasticprocess.i"
-        "discountcurve.i"
-        "distributions.i"
-        "exchangerates.i"
-        "exercise.i"
-        "functions.i"
-        "grid.i"
-        "history.i"
-        "indexes.i"
-        "instruments.i"
-        "integrals.i"
-        "interestrate.i"
-        "interpolation.i"
-        "linearalgebra.i"
-        "marketelements.i"
-        "money.i"
-        "montecarlo.i"
-        "null.i"
-        "observer.i"
-        "operators.i"
-        "optimizers.i"
-        "options.i"
-        "payoffs.i"
-        "piecewiseflatforward.i"
-        "randomnumbers.i"
-        "rounding.i"
-        "scheduler.i"
-        "settings.i"
-        "shortratemodels.i"
-        "statistics.i"
-        "swap.i"
-        "swaption.i"
-        "termstructures.i"
-        "timebasket.i"
-        "types.i"
-        "vectors.i"
-        "volatilities.i"
-        ; to be removed
-        "old_pricers.i"
-        "old_volatility.i"))
-(define test-files
-  (list "quantlib-test-suite.scm"
-        "instruments.scm"
-        "integrals.scm"
-        "marketelements.scm"
-        "solvers1d.scm"
-        "termstructures.scm"
-        ; support files
-        "common.scm"
-        "unittest.scm"
-        "utilities.scm"))
-(define example-files
-  (list "american-option.scm"
-        "bermudan-swaption.scm"
-        "european-option.scm"
-        "swap.scm"
-        ; support
-        "tabulate.scm"))
-
-(define (ls path)
-  (define (read-one s acc)
-    (let ((x (readdir s)))
-      (cond ((eof-object? x)
-             acc)
-            ((or (string=? x ".") (string=? x ".."))
-             (read-one s acc))
-            (else
-             (read-one s (cons x acc))))))
-  (let ((s (opendir path)))
-    (let ((l (read-one s '())))
-      (closedir s)
-      l)))
-
-(define (rec-delete-directory dir)
-  (define (delete-item item)
-    (if (file-is-directory? item)
-        (rec-delete-directory item)
-        (delete-file item)))
-  (chdir dir)
-  (for-each delete-item (ls "."))
-  (chdir "..")
-  (rmdir dir))
-
 ; commands
 
 (define (wrap)
-  (display "Generating Guile bindings for QuantLib...") (newline)
-  (let ((swig-dir "./SWIG"))
-    (if (not (file-exists? swig-dir))
-        (set! swig-dir "../SWIG"))
-    (system (string-append "swig -guile -c++ -Linkage passive "
-                           "-scmstub -gh "
-                           (format #f "-I~A " swig-dir)
-                           "-o quantlib_wrap.cpp "
-                           "quantlib.i"))))
+  (let ((swig-dir "../SWIG"))
+    (let ((command (string-append "swig -guile -c++ -Linkage passive "
+                                  "-scmstub -gh "
+                                  (format #f "-I~A " swig-dir)
+                                  "-o quantlib_wrap.cpp "
+                                  "quantlib.i")))
+      (display command) (newline)
+      (system command))))
 
 (define (build)
   (define (string-split s)
@@ -160,11 +50,11 @@
                                  (reverse spcs))))
             (ends (reverse (cons n spcs))))
         (map (lambda (b e) (substring s b e)) begins ends))))
-  (display "Building QuantLib-Guile...") (newline)
   (let ((c++-compiler (getenv "CXX"))
         (c-flags (getenv "CFLAGS"))
         (c++-flags (getenv "CXXFLAGS")))
     (if (not c++-compiler) (set! c++-compiler "g++"))
+    (if (not c++-flags) (set! c++-flags "-g -O2"))
     (let ((flags '("-DHAVE_CONFIG_H" "-c" "-fpic"
                    "-I/usr/include" "-I/usr/local/include")))
       (if c-flags
@@ -209,7 +99,6 @@
                    (not (string=? dir cwd)))
               dir
               (find-install-path (cdr path))))))
-  (display "Installing QuantLib-Guile...") (newline)
   (let ((install-path (find-install-path %load-path)))
     (for-each (lambda (file)
                 (let ((destination-file (string-append install-path
@@ -225,56 +114,12 @@
                                   destination-file))))
               '("QuantLib.scm" "QuantLibc.so"))))
 
-(define (sdist)
-  (display "Packing source distribution...") (newline)
-  (let ((distribution-dir (string-append "QuantLib-Guile-" version)))
-    (if (file-exists? distribution-dir)
-        (if (file-is-directory? distribution-dir)
-            (rec-delete-directory distribution-dir)
-            (delete-file distribution-dir)))
-    (let ((swig-dir (string-append distribution-dir "/SWIG"))
-          (example-dir (string-append distribution-dir "/examples"))
-          (test-dir (string-append distribution-dir "/test")))
-      (define (install-files files source-dir target-dir)
-        (for-each
-         (lambda (f)
-           (let ((source-file (string-append source-dir "/" f))
-                 (destination-file (string-append distribution-dir "/"
-                                                  target-dir "/" f)))
-             (copy-file source-file destination-file)))
-         files))
-      (mkdir distribution-dir)
-      (for-each mkdir (list swig-dir test-dir example-dir))
-      (install-files info-files "." ".")
-      (install-files source-files "." ".")
-      (install-files scripts "." ".")
-      (let ((i-dir "SWIG"))
-        (if (not (file-exists? i-dir))
-            (set! i-dir "../SWIG"))
-        (install-files SWIG-interfaces i-dir "SWIG"))
-      (install-files test-files "test" "test")
-      (install-files example-files "examples" "examples")
-      (system (string-append "tar cfz "
-                             distribution-dir ".tar.gz "
-                             distribution-dir))
-      (rec-delete-directory distribution-dir))))
-
-(define (clean)
-  (define (clean-file file)
-    (if (file-exists? file)
-        (delete-file file)))
-  (for-each clean-file
-            '("QuantLib.scm" "QuantLibc.so" "quantlib_wrap.cpp"
-              "quantlib_wrap.o")))
-
 
 (define available-commands
   (list (cons "wrap"    wrap)
         (cons "build"   build)
         (cons "test"    test)
-        (cons "install" install)
-        (cons "sdist"   sdist)
-        (cons "clean"   clean)))
+        (cons "install" install)))
 
 ; parse command line
 (let ((argv (command-line)))
