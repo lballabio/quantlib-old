@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004 StatPro Italia srl
+ Copyright (C) 2004, 2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,6 +21,7 @@
 %include instruments.i
 %include calendars.i
 %include daycounters.i
+%include cashflows.i
 %include interestrate.i
 %include indexes.i
 
@@ -49,9 +50,30 @@ class BondPtr : public boost::shared_ptr<Instrument> {
     BondPtr();
   public:
     %extend {
+        // inspectors
         Date settlementDate() {
             return boost::dynamic_pointer_cast<Bond>(*self)->settlementDate();
         }
+        std::vector<boost::shared_ptr<CashFlow> > cashflows() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)->cashflows();
+        }
+        boost::shared_ptr<CashFlow> redemption() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)->redemption();
+        }
+        Calendar calendar() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)->calendar();
+        }
+        BusinessDayConvention businessDayConvention() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)
+                ->businessDayConvention();
+        }
+        DayCounter dayCounter() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)->dayCounter();
+        }
+        Frequency frequency() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)->frequency();
+        }
+        // calculations
         Real cleanPrice() {
             return boost::dynamic_pointer_cast<Bond>(*self)->cleanPrice();
         }
