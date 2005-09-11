@@ -74,7 +74,7 @@
 (define fixings '())
 
 (call-func qlXibor              ; constructor
-           "idx"                ; handle
+           "IDX"                ; handle
            "Euribor"            ; index name
            "EUR"                ; currency
            12                   ; tenor
@@ -101,24 +101,30 @@
     (h start steps '()))
 
 (define nominals (arith-sequence    1 0 6))
-(define cStrikes (arith-sequence 0.04 0 6))
-(define fStrikes (arith-sequence 0.04 0 6))
+(define spreads  (arith-sequence    0 0 6))
+(define strikes  (arith-sequence 0.04 0 6))
 
 (define start (date 29 "July" 2005))
 (define end   (date 29 "July" 2011))
 
+(call-func qlSchedule
+    "schedule" "NullCalendar" start end "Annual" "Unadjusted" false false)
+
+(call-func qlFixedRateCouponVector
+    "fixedLeg" "schedule" "Unadjusted" nominals strikes "Simple")
+
+(call-func qlFloatingRateCouponVector
+    "floatLeg" "schedule" nominals "IDX" spreads)
+
 (define (make-option handle option)
-    (call-func qlCapFloor  ; constructor
-               handle      ; object handle
-               start       ; start of capping period
-               end         ; end of capping period
-               "YC"        ; term structure
-               "idx"       ; underlying
-               nominals    ; nominals
-               cStrikes    ; cap strikes
-               fStrikes    ; floor strikes
-               "engine"    ; pricing engine
-               option))    ; option type
+    (call-func qlCapFloor
+               handle
+               "floatLeg"
+               "YC"
+               strikes
+               strikes
+               "engine"
+               option))
 
 (make-option "CAP"   "CAP")
 (make-option "FLOOR" "FLOOR")
@@ -131,25 +137,6 @@
        "floor       : " fPremium "\n"
        "floor - cap : " sPremium "\n")
 
-(call-func qlSimpleSwap    ; constructor
-           "SWP"           ; handle
-           start           ; start date
-           end             ; maturity date
-           1               ; nominal
-           false           ; pay fixed rate
-           0.04            ; fixed rate
-           "NullCalendar"  ; calendar
-           "Annual"        ; fixed leg frequency
-           "Unadjusted"    ; fixed leg business day convention
-           "Simple"        ; fixed leg day counting convention
-           false           ; don't build fixed leg schedule backward         
-           false           ; long last
-           "Annual"        ; floating leg frequency
-           "idx"           ; underlying index
-           false           ; don't build floating leg schedule backward
-           false           ; long last
-           0.0             ; floating leg additive spread
-           "YC")           ; discounting term structure
+(call-func qlSwap "SWP" "floatLeg" "fixedLeg" "YC")
 
 (print "swap        : " (call-func qlNPV "SWP" 1) "\n")
-

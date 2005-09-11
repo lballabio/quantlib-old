@@ -141,6 +141,7 @@ int main()
                                      dates,
                                      fixings));
         ObjHandler::storeObject("IDX", index);
+                                                
         
         // -- Make cap/floor --
         
@@ -154,17 +155,32 @@ int main()
         
         Date startDate (29, July, 2005);
         Date endDate   (29, July, 2011);
+                
+        std::vector<double> nominals (6, 1.0);
+        std::vector<double> spreads  (6, 0.0);
+        std::vector<double> cStrikes (6, 0.04);
+        std::vector<double> fStrikes (6, 0.04);
         
-        std::vector<double> nominals(6, 1.0);
-        std::vector<double> cStrikes(6, 0.04);
-        std::vector<double> fStrikes(6, 0.04);
+        ObjHandler::obj_ptr schedule(
+            new QuantLibAddin::Schedule("NullCalendar",
+                                        startDate.serialNumber(),
+                                        endDate.serialNumber(),
+                                        "Annual",
+                                        "Unadjusted",
+                                        false,
+                                        false));
+        ObjHandler::storeObject("SCHEDULE", schedule);
+        
+        ObjHandler::obj_ptr leg(
+            new QuantLibAddin::FloatingRateCouponVector("SCHEDULE",
+                                                        nominals,
+                                                        "IDX",
+                                                        spreads));
+        ObjHandler::storeObject("LEG", leg);
         
         ObjHandler::obj_ptr capFloor(
-            new QuantLibAddin::CapFloor(startDate.serialNumber(),
-                                        endDate.serialNumber(),
+            new QuantLibAddin::CapFloor("LEG",
                                         "YC",
-                                        "IDX",
-                                        nominals,
                                         cStrikes,
                                         fStrikes,
                                         "ENGINE",

@@ -1,7 +1,8 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,32 +17,25 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qladdin_hpp
-#define qladdin_hpp
+#ifndef qla_swap_hpp
+#define qla_swap_cpp
 
-#include <qla/qladdindefines.hpp>
+#include <qla/baseinstruments.hpp>
+#include <ql/Instruments/swap.hpp>
 
-/* Use BOOST_MSVC instead of _MSC_VER since some other vendors 
-   (Metrowerks, for example) also #define _MSC_VER
-*/
-#if defined BOOST_MSVC       // Microsoft Visual C++
-#  include <qla/autolink.hpp>
-#endif
-
-#include <qla/utilities.hpp>
-
-#include <qla/capfloor.hpp>
-#include <qla/couponvectors.hpp>
-#include <qla/instruments.hpp>
-#include <qla/options.hpp>
-#include <qla/processes.hpp>
-#include <qla/schedule.hpp>
-#include <qla/shortratemodels.hpp>
-#include <qla/simpleswap.hpp>
-#include <qla/swap.hpp>
-#include <qla/termstructures.hpp>
-#include <qla/volatilities.hpp>
-#include <qla/xibor.hpp>
+namespace QuantLibAddin {
+    
+    class Swap : public Instrument {
+      public:
+        Swap(
+            const std::string &paidLegID,
+            const std::string &recvLegID,
+            const std::string &termStructureID);
+        
+        EXPORT_QL_OBJECT(QuantLib::Swap)
+    };
+    
+}
 
 #endif
 

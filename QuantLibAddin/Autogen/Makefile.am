@@ -1,8 +1,19 @@
 
 # autogen.py probably needs to be re-executed if any of these change
-AUTOGEN_INPUT := capfloor.xml enums.xml instruments.xml options.xml processes.xml \
-                 shortratemodels.xml termstructures.xml utilities.xml \
-                 volatilities.xml simpleswap.xml xibor.xml
+AUTOGEN_INPUT := capfloor.xml \
+                 couponvectors.xml \
+                 enums.xml \
+                 instruments.xml \
+                 options.xml \
+                 processes.xml \
+                 shortratemodels.xml \
+                 termstructures.xml \
+                 utilities.xml \
+                 volatilities.xml \
+                 schedule.xml \ 
+                 simpleswap.xml \
+                 swap.xml \
+                 xibor.xml
 AUTOGEN_PYS := autogen.py c.py calc.py common.py doxygen.py excel.py \
                guile.py params.py parse.py qla.py utils.py
 AUTOGEN_STUBS := stub.qla.includes stub.c.constructor stub.c.member stub.c.includes \

@@ -34,35 +34,17 @@
 <constructor>true</constructor>
 <qlfunction>CapFloor</qlfunction>
 <parameters>
-    <param>
-        <name>startDate</name>
-        <type>long</type>
+    <param class='CouponVector'>
+        <name>couponVectorID</name>
+        <type>string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>start date of capping period</desc>
-    </param>
-    <param>
-        <name>endDate</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>end of capping period</desc>
+        <desc>coupon vector</desc>
     </param>
     <param class='YieldTermStructure'>
-        <name>handleTermStructure</name>
+        <name>termStructyreID</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle to term structure</desc>
-    </param>
-    <param class='Xibor'>
-        <name>handleIndex</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle to underlying index</desc>
-    </param>
-    <param>
-        <name>nominals</name>
-        <type>double</type>
-        <tensorrank>vector</tensorrank>
-        <desc>nominals</desc>
     </param>
     <param>
         <name>capStrikes</name>
@@ -93,33 +75,6 @@
     <type>string</type>
     <tensorrank>scalar</tensorrank>
     <desc>handle of newly created object</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_CAPFLOOR_LEG</name>
-<codename>qlCapFloorLeg</codename>
-<desc>Cash-flows</desc>
-<constructor>false</constructor>
-<qlfunction>cashFlows</qlfunction>
-<parameters>
-    <param class='CapFloor'>
-        <name>handle</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of cap/floor object</desc>
-    </param>
-    <param ignore='yes'>
-        <name>trigger</name>
-        <type>double</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dependency tracking trigger</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>double</type>
-    <tensorrank>matrix</tensorrank>
-    <desc>cash-flows</desc>
 </returnval>
 </function>
 

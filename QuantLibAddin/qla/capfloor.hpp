@@ -27,24 +27,17 @@ namespace QuantLibAddin {
     class CapFloor : public Instrument {
       public:
         CapFloor(
-            const long& start,
-            const long& maturity,
-            const std::string& handleTermStructure,
-            const std::string& handleIndex,
-            const std::vector<double>& nominals,
+            const std::string&         couponVectorID,
+            const std::string&         termStructureID,
             const std::vector<double>& capStrikes,
             const std::vector<double>& floorStrikes,
-            const std::string& handleEngine,
-            const std::string& optionID);
-
+            const std::string&         engineID,
+            const std::string&         optionID);
+        
         EXPORT_QL_OBJECT(QuantLib::CapFloor);
-
-        const std::vector<std::vector<double> >& cashFlows();
-
-      private:
-        std::vector<std::vector<double> > cashFlows_;
+        
     };
-
+    
     class AnalyticCapFloorEngine : public ObjHandler::Object {
       public:
         AnalyticCapFloorEngine(
