@@ -143,7 +143,7 @@ namespace QuantLibAddin {
 
         QuantLib::Date settlementDate(settlement);
         QuantLib::Date evaluationDate(evaluation);
-        QuantLib::Settings::instance().setEvaluationDate(evaluationDate);
+        QuantLib::Settings::instance().evaluationDate() = evaluationDate;
 
         std::vector<boost::shared_ptr<QuantLib::RateHelper> > rateHelpersQL;
         std::vector<std::string>::const_iterator i;
