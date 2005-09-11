@@ -16,6 +16,7 @@ include_HEADERS = \
     capfloor.hpp \
     cliquetoption.hpp \
     config.hpp \
+    couponvectors.hpp \
     dividendvanillaoption.hpp \
     fixedcouponbond.hpp \
     forwardvanillaoption.hpp \
@@ -25,8 +26,10 @@ include_HEADERS = \
     processes.hpp \
     qladdin.hpp \
     qladdindefines.hpp \
+    schedule.hpp \
     shortratemodels.hpp \
     simpleswap.hpp \
+    swap.hpp \
     termstructures.hpp \
     typefactory.hpp \
     typeregistry.hpp \
@@ -44,14 +47,17 @@ libQuantLibAddin_la_SOURCES = \
     capfloor.cpp \
     cliquetoption.cpp \
     complextyperegistry.cpp \
+    couponvectors.cpp \
     dividendvanillaoption.cpp \
     enumregistry.cpp \
     fixedcouponbond.cpp \
     forwardvanillaoption.cpp \
     generalutils.cpp \
     processes.cpp \
+    schedule.cpp \
     shortratemodels.cpp \
     simpleswap.cpp \
+    swap.cpp \
     termstructures.cpp \
     utilities.cpp \
     vanillaoption.cpp \
