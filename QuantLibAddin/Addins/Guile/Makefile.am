@@ -1,6 +1,7 @@
 
 AM_CPPFLAGS = -I${top_srcdir}
 AM_LDFLAGS = -release $(PACKAGE_VERSION)
+includedir = $(prefix)/include/qla/Addins/Guile
 
 if BUILD_GUILE
 lib_LTLIBRARIES = libQuantLibAddinGuile.la
@@ -15,8 +16,8 @@ noinst_HEADERS = \
     capfloor.h \
     couponvectors.h \
     extra.h \
-    guileutils.hpp \
     instruments.h \
+    interpolation.h \
     options.h \
     processes.h \
     shortratemodels.h \
@@ -27,6 +28,9 @@ noinst_HEADERS = \
     utilities.h \
     volatilities.h \
     xibor.h
+
+include_HEADERS = \
+    guileutils.hpp
 endif
 
 if BUILD_GUILE
@@ -35,6 +39,7 @@ libQuantLibAddinGuile_la_SOURCES = \
     couponvectors.cpp \
     guileutils.cpp \
     instruments.cpp \
+    interpolation.cpp \
     options.cpp \
     processes.cpp \
     qladdin.c \

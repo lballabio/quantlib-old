@@ -4,13 +4,14 @@ AUTOGEN_INPUT := capfloor.xml \
                  couponvectors.xml \
                  enums.xml \
                  instruments.xml \
+                 interpolation.xml \
                  options.xml \
                  processes.xml \
                  shortratemodels.xml \
                  termstructures.xml \
                  utilities.xml \
                  volatilities.xml \
-                 schedule.xml \ 
+                 schedule.xml \
                  simpleswap.xml \
                  swap.xml \
                  xibor.xml
