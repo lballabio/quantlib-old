@@ -35,11 +35,15 @@ namespace QuantLibAddin {
             return boost::static_pointer_cast<void>(rateHelper_);
         }
         double setQuote(double quote);
+        QuantLib::Handle<QuantLib::Quote> quoteHandle() const {
+            return quoteHandle_;
+        }
       protected:
         boost::shared_ptr<QuantLib::SimpleQuote> quote_;
         boost::shared_ptr<QuantLib::RateHelper> rateHelper_;
+        QuantLib::Handle<QuantLib::Quote> quoteHandle_;
     };
-
+    
     class DepositRateHelper : public RateHelper {
       public:
         DepositRateHelper(

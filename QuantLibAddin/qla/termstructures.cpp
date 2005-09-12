@@ -45,7 +45,8 @@ namespace QuantLibAddin {
             const std::string &dayCounterID) {
 
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
-        QuantLib::Handle<QuantLib::Quote> quoteH(quote_);
+        quoteHandle_.linkTo(quote_);
+
         QuantLib::TimeUnit timeUnits =
             Create<QuantLib::TimeUnit>()(timeUnitsID);
         QuantLib::Calendar calendar =
@@ -56,7 +57,7 @@ namespace QuantLibAddin {
             Create<QuantLib::DayCounter>()(dayCounterID);
 
         rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
-            new QuantLib::DepositRateHelper(quoteH,
+            new QuantLib::DepositRateHelper(quoteHandle_,
                                             maturity,
                                             timeUnits,
                                             fixingDays,
@@ -78,7 +79,8 @@ namespace QuantLibAddin {
             const std::string &floatingConventionID) {
 
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
-        QuantLib::Handle<QuantLib::Quote> quoteH(quote_);
+        quoteHandle_.linkTo(quote_);
+        
         QuantLib::TimeUnit timeUnits =
             Create<QuantLib::TimeUnit>()(timeUnitsID);
         QuantLib::Calendar calendar =
@@ -95,7 +97,7 @@ namespace QuantLibAddin {
             Create<QuantLib::BusinessDayConvention>()(floatingConventionID);
 
         rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
-            new QuantLib::SwapRateHelper(quoteH,
+            new QuantLib::SwapRateHelper(quoteHandle_,
                                          maturity,
                                          timeUnits,
                                          fixingDays,
@@ -125,9 +127,11 @@ namespace QuantLibAddin {
         QuantLib::Date expiry = FutIDtoExpiryDate(immDateID, calendar, bDayConvention, decade);
 
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(price));
+        quoteHandle_.linkTo(quote_);
+        
         rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
             new QuantLib::FuturesRateHelper(
-                QuantLib::Handle<QuantLib::Quote>(quote_),
+                quoteHandle_,
                 expiry,
                 months,
                 calendar,
