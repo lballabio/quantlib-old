@@ -33,12 +33,15 @@ SCRIPTS=autogen.py \
 	utils.py
 METADATA= \
 	capfloor.xml \
+	couponvectors.xml \
 	enums.xml \
 	instruments.xml \
 	options.xml \
 	processes.xml \
+	schedule.xml \
 	shortratemodels.xml \
 	simpleswap.xml \
+	swap.xml \
 	termstructures.xml \
 	utilities.xml \
 	volatilities.xml \

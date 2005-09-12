@@ -109,6 +109,10 @@ SOURCE=.\qla\complextyperegistry.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\couponvectors.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\dividendvanillaoption.cpp
 # End Source File
 # Begin Source File
@@ -133,11 +137,19 @@ SOURCE=.\qla\processes.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\schedule.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\shortratemodels.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\qla\simpleswap.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\swap.cpp
 # End Source File
 # Begin Source File
 
@@ -205,6 +217,10 @@ SOURCE=.\qla\config.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\couponvectors.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\dividendvanillaoption.hpp
 # End Source File
 # Begin Source File
@@ -241,11 +257,19 @@ SOURCE=.\qla\qladdindefines.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\schedule.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\shortratemodels.hpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\qla\simpleswap.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\swap.hpp
 # End Source File
 # Begin Source File
 

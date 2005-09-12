@@ -187,6 +187,10 @@ SOURCE=.\capfloor.xml
 # End Source File
 # Begin Source File
 
+SOURCE=.\couponvectors.xml
+# End Source File
+# Begin Source File
+
 SOURCE=.\enums.xml
 # End Source File
 # Begin Source File
@@ -203,11 +207,19 @@ SOURCE=.\processes.xml
 # End Source File
 # Begin Source File
 
+SOURCE=.\schedule.xml
+# End Source File
+# Begin Source File
+
 SOURCE=.\shortratemodels.xml
 # End Source File
 # Begin Source File
 
 SOURCE=.\simpleswap.xml
+# End Source File
+# Begin Source File
+
+SOURCE=.\swap.xml
 # End Source File
 # Begin Source File
 
