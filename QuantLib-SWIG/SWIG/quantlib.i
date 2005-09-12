@@ -15,10 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#if defined(SWIGPYTHON) || defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-%module QuantLib
-#elif defined(SWIGRUBY)
+#if defined(SWIGRUBY)
 %module QuantLibc
+#else
+%module QuantLib
 #endif
 
 %include exception.i
