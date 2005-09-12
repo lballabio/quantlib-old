@@ -33,6 +33,7 @@
 #include <qla/capfloor.hpp>
 #include <qla/couponvectors.hpp>
 #include <qla/instruments.hpp>
+#include <qla/interpolation.hpp>
 #include <qla/options.hpp>
 #include <qla/processes.hpp>
 #include <qla/schedule.hpp>
