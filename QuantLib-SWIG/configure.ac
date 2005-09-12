@@ -39,6 +39,7 @@ AM_CONDITIONAL(HAVE_GUILE, test "x${GUILE}" != "x")
 # done, output the configured files
 AC_CONFIG_FILES([
     Makefile
+    CSharp/Makefile
     Guile/Makefile
     Java/Makefile
     MzScheme/Makefile

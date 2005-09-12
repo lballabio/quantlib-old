@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2003 StatPro Italia srl
+ Copyright (C) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -118,6 +119,10 @@ class CompositeQuotePtr : public boost::shared_ptr<Quote> {
 
 #endif
 
+#if defined(SWIGCSHARP)
+SWIG_STD_VECTOR_SPECIALIZE( Quote, boost::shared_ptr<Quote> )
+SWIG_STD_VECTOR_SPECIALIZE( QuoteHandle, Handle<Quote> )
+#endif
 namespace std {
     %template(QuoteVector) vector<boost::shared_ptr<Quote> >;
     %template(QuoteHandleVector) vector<Handle<Quote> >;

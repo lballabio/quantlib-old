@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2003 StatPro Italia srl
+ Copyright (c) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -119,6 +120,10 @@ class CapHelperPtr : public boost::shared_ptr<CalibrationHelper> {
 
 
 // allow use of CalibrationHelper vectors
+#if defined(SWIGCSHARP)
+SWIG_STD_VECTOR_SPECIALIZE( CalibrationHelper,
+                            boost::shared_ptr<CalibrationHelper> )
+#endif
 namespace std {
     %template(CalibrationHelperVector)
         vector<boost::shared_ptr<CalibrationHelper> >;
@@ -134,6 +139,8 @@ using QuantLib::ShortRateModel;
 class ShortRateModel {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGRUBY)
     %rename("calibrate!") calibrate;
+    #elif defined(SWIGCSHARP)
+    %rename("parameters") params;
     #endif
   public:
     Array params() const;

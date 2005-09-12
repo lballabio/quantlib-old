@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2003 StatPro Italia srl
+ Copyright (C) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -118,6 +119,9 @@ class ParCouponPtr : public boost::shared_ptr<CashFlow> {
     }
 };
 
+#if defined(SWIGCSHARP)
+SWIG_STD_VECTOR_SPECIALIZE( CashFlow, boost::shared_ptr<CashFlow> )
+#endif
 namespace std {
     %template(CashFlowVector) vector<boost::shared_ptr<CashFlow> >;
 }
