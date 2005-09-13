@@ -63,9 +63,9 @@ namespace QuantLibAddin {
         CubicSplineInterpolation(
             const bool&        allowExtrapolation,
             const std::string& leftConditionType,
-            const bool&        leftConditionValue,
+            const double&      leftConditionValue,
             const std::string& rightConditionType,
-            const bool&        rightConditionValue,
+            const double&      rightConditionValue,
             const bool&        monotonicityConstraint);
         
         virtual boost::shared_ptr<QuantLib::Interpolation>

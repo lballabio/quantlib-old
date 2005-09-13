@@ -104,6 +104,10 @@ SOURCE=.\instruments.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\interpolation.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\options.cpp
 # End Source File
 # Begin Source File

@@ -199,6 +199,10 @@ SOURCE=.\instruments.xml
 # End Source File
 # Begin Source File
 
+SOURCE=.\interpolation.xml
+# End Source File
+# Begin Source File
+
 SOURCE=.\options.xml
 # End Source File
 # Begin Source File

@@ -59,7 +59,7 @@
         <desc>right boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</desc>
     </param>
     <param>
-        <name>rightCondition</name>
+        <name>rightConditionValue</name>
         <type>double</type>
         <tensorrank>scalar</tensorrank>
         <desc>right condition value</desc>

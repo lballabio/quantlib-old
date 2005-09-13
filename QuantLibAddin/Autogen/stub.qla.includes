@@ -11,6 +11,7 @@
 #include <ql/Instruments/basketoption.hpp>
 #include <ql/Instruments/barrieroption.hpp>
 #include <ql/Instruments/capfloor.hpp>
+#include <ql/Math/cubicspline.hpp>
 
 #define REG_ENUM(Type, Body) \
     { \

@@ -74,9 +74,9 @@ namespace QuantLibAddin {
     CubicSplineInterpolation::CubicSplineInterpolation(
             const bool&        allowExtrapolation,
             const std::string& leftConditionTypeID,
-            const bool&        leftConditionValue,
+            const double&      leftConditionValue,
             const std::string& rightConditionTypeID,
-            const bool&        rightConditionValue,
+            const double&      rightConditionValue,
             const bool&        monotonicityConstraint)
     : Interpolation(allowExtrapolation),
       leftConditionValue_(leftConditionValue), rightConditionValue_(rightConditionValue),

@@ -133,6 +133,10 @@ SOURCE=.\qla\generalutils.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\interpolation.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\processes.cpp
 # End Source File
 # Begin Source File
@@ -238,6 +242,10 @@ SOURCE=.\qla\generalutils.hpp
 # Begin Source File
 
 SOURCE=.\qla\instruments.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\interpolation.hpp
 # End Source File
 # Begin Source File
 

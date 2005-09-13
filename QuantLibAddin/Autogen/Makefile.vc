@@ -36,6 +36,7 @@ METADATA= \
 	couponvectors.xml \
 	enums.xml \
 	instruments.xml \
+	interpolation.xml \
 	options.xml \
 	processes.xml \
 	schedule.xml \
