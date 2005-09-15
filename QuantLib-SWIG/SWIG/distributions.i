@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000, 2001, 2002, 2003 StatPro Italia srl
+ Copyright (C) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,7 +27,7 @@ using QuantLib::InverseCumulativeNormal;
 %}
 
 class NormalDistribution {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGCSHARP)
     %rename(call) operator();
     #endif
   public:
@@ -36,7 +37,7 @@ class NormalDistribution {
 };
 
 class CumulativeNormalDistribution {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGCSHARP)
     %rename(call) operator();
     #endif
   public:
@@ -46,7 +47,7 @@ class CumulativeNormalDistribution {
 };
 
 class InverseCumulativeNormal {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGCSHARP)
     %rename(call) operator();
     #endif
   public:
@@ -55,7 +56,7 @@ class InverseCumulativeNormal {
 };
 
 class MoroInverseCumulativeNormal {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGCSHARP)
     %rename(call) operator();
     #endif
   public:

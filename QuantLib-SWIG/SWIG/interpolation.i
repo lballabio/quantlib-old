@@ -2,6 +2,7 @@
 /*
  Copyright (C) 2002, 2003 Ferdinando Ametrano
  Copyright (C) 2000-2004 StatPro Italia srl
+ Copyright (C) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -65,7 +66,7 @@ typedef SafeInterpolation<QuantLib::T> Safe##T;
 %}
 %rename(Alias) Safe##T;
 class Safe##T {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGCSHARP)
     %rename(call)     operator();
     #endif
   public:
@@ -118,7 +119,7 @@ typedef SafeInterpolation2D<QuantLib::T> Safe##T;
 %}
 %rename(Alias) Safe##T;
 class Safe##T {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGCSHARP)
     %rename(call)     operator();
     #endif
   public:

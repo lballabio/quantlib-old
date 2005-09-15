@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000, 2001, 2002, 2003 StatPro Italia srl
+ Copyright (C) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -59,7 +60,7 @@ class SolverName {
     void setUpperBound(Real upperBound);
     %extend {
         #if defined(SWIGPYTHON)
-        Real solve(PyObject* function, Real xAccuracy, 
+        Real solve(PyObject* function, Real xAccuracy,
                    Real guess, Real step) {
             UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, step);
@@ -80,7 +81,7 @@ class SolverName {
             return self->solve(f, xAccuracy, guess, xMin, xMax);
         }
         #elif defined(SWIGMZSCHEME)
-        Real solve(Scheme_Object* function, Real xAccuracy, 
+        Real solve(Scheme_Object* function, Real xAccuracy,
                    Real guess, Real step) {
             UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, step);
@@ -91,7 +92,7 @@ class SolverName {
             return self->solve(f, xAccuracy, guess, xMin, xMax);
         }
         #elif defined(SWIGGUILE)
-        Real solve(SCM function, Real xAccuracy, 
+        Real solve(SCM function, Real xAccuracy,
                    Real guess, Real step) {
             UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, step);
@@ -161,6 +162,8 @@ class EndCriteria {
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename(call) operator();
     %rename("positive-optimization-set!") setPositiveOptimization;
+    #elif defined(SWIGCSHARP) || defined(SWIGGUILE)
+    %rename(call) operator();
     #endif
   public:
     EndCriteria();
