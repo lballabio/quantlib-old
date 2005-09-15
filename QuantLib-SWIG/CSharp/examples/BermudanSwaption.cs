@@ -151,6 +151,8 @@ namespace BermudanSwaption
                                new Period(swapLenghts[j], TimeUnit.Years),
                                new QuoteHandle(vol),
                                indexSixMonths,
+                               indexSixMonths.frequency(),
+                               indexSixMonths.dayCounter(),
                                rhTermStructure );
 				swaptions.Add( helper );
 				times.AddRange( helper.times() );
@@ -222,7 +224,7 @@ namespace BermudanSwaption
 			Schedule schedule = new Schedule(calendar,startDate,maturity,
 				Frequency.Quarterly,BusinessDayConvention.Following);
 
-			for (int i=0; i<schedule.size(); i++)
+			for (uint i=0; i<schedule.size(); i++)
 				bermudanDates.Add( schedule.date( i ) );
 			Exercise bermudaExercise = new BermudanExercise( bermudanDates );
 
@@ -235,6 +237,7 @@ namespace BermudanSwaption
                                        new TreeSwaptionEngine(modelHW2, 50));
 			Console.WriteLine( "HW (num): " + bermudanSwaption.NPV() );
 
+			Console.WriteLine( "Press return to exit" );
 			Console.ReadLine();
 		}
 	}

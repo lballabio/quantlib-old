@@ -1,7 +1,22 @@
 
-CLEANFILES = quantlib_wrap.cpp
+CLEANFILES = quantlib_wrap.* libQuantLibc.so QuantLib.Net.dll
 
 BUILT_SOURCES = quantlib_wrap.cpp
+
+if HAVE_MCS
+
+all-local: libQuantLibc.so QuantLib.Net.dll
+
+libQuantLibc.so: quantlib_wrap.o
+	g++ -shared quantlib_wrap.o -o libQuantLibc.so -lQuantLib
+
+quantlib_wrap.o: quantlib_wrap.cpp
+	g++ -c -fpic quantlib_wrap.cpp
+
+QuantLib.Net.dll: quantlib_wrap.cpp
+	$(MCS) -nologo -target:library -out:QuantLib.Net.dll csharp/*.cs
+
+endif
 
 clean-local:
 	rm -rf csharp

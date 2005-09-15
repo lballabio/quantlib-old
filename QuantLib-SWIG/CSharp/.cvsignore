@@ -1,3 +1,5 @@
 quantlib_wrap.cpp
+*.so
+*.dll
 Makefile*
 csharp

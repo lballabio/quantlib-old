@@ -94,6 +94,9 @@ class Merton76ProcessPtr : public StochasticProcess1DPtr {
 
 
 // allow use of diffusion process vectors
+#if defined(SWIGCSHARP)
+SWIG_STD_VECTOR_SPECIALIZE( StochasticProcess1D, StochasticProcess1DPtr )
+#endif
 namespace std {
     %template(StochasticProcess1DVector) vector<StochasticProcess1DPtr>;
 }

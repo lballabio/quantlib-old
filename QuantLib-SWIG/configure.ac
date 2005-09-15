@@ -36,6 +36,9 @@ AM_CONDITIONAL(HAVE_MZSCHEME, test "x${MZSCHEME}" != "x")
 AC_PATH_PROG([GUILE], [guile])
 AM_CONDITIONAL(HAVE_GUILE, test "x${GUILE}" != "x")
 
+AC_PATH_PROG([MCS], [mcs])
+AM_CONDITIONAL(HAVE_MCS, test "x${MCS}" != "x")
+
 # done, output the configured files
 AC_CONFIG_FILES([
     Makefile
