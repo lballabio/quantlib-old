@@ -1,4 +1,4 @@
-quantlib_wrap.cpp
+quantlib_wrap.*
 *.so
 *.dll
 Makefile*

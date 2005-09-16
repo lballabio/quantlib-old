@@ -16,8 +16,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#if defined(SWIGRUBY) || defined(SWIGCSHARP)
+#if defined(SWIGRUBY)
 %module QuantLibc
+#elif defined(SWIGCSHARP)
+%module NQuantLibc
 #else
 %module QuantLib
 #endif
