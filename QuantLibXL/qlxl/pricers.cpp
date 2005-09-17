@@ -19,17 +19,20 @@
 */
 
 #include <qlxl/qlxlfoper.hpp>
-#include <ql/Pricers/fdeuropean.hpp>
-#include <ql/Pricers/fdamericanoption.hpp>
+#include <ql/Instruments/europeanoption.hpp>
+#include <ql/Instruments/payoffs.hpp>
 #include <ql/Pricers/mccliquetoption.hpp>
 #include <ql/Pricers/mcperformanceoption.hpp>
+#include <ql/PricingEngines/Vanilla/fdeuropeanengine.hpp>
+#include <ql/PricingEngines/Vanilla/fdamericanengine.hpp>
+#include <ql/Processes/blackscholesprocess.hpp>
 
 extern "C"
 {
-
+    
     using namespace QuantLib;
-
-        
+    
+    
     LPXLOPER EXCEL_EXPORT xlEuropeanOption_FD(
                         XlfOper xltype,
                         XlfOper xlunderlying,
@@ -43,36 +46,58 @@ extern "C"
                         XlfOper xlgridPoints)
     {
         EXCEL_BEGIN;
-
+        
     	WIZARD_NO_CALC;
-
-        Option::Type type = QlXlfOper(xltype).AsOptionType();
+        
+        Option::Type type    = QlXlfOper(xltype).AsOptionType();
         double underlying    = xlunderlying.AsDouble();
         double strike        = xlstrike.AsDouble();
-        double dividendYield = xldividendYield.AsDouble();
-        double riskFreeRate  = xlriskFreeRate.AsDouble();
         Date valueDate       = QlXlfOper(xlvalueDate).AsDate();
         Date maturityDate    = QlXlfOper(xlmaturityDate).AsDate();
         double maturity      = Actual365Fixed().yearFraction(valueDate, maturityDate);
-        double volatility    = xlvolatility.AsDouble();
         Size timeSteps       = xltimeSteps.AsInt();
         Size gridPoints      = xlgridPoints.AsInt();
-
-
-
-
-        FdEuropean eur(type, underlying, strike, dividendYield,
-           riskFreeRate, maturity, volatility, timeSteps, gridPoints);
-        double results[7];
-        results[0] = eur.value();
-        results[1] = eur.delta();
-        results[2] = eur.gamma();
-        results[3] = eur.theta();
-        results[4] = eur.vega();
-        results[5] = eur.rho();
-        results[6] = eur.dividendRho();
-
-        return XlfOper(1,7,results);
+        
+        DayCounter dc = Actual365Fixed();
+        
+        boost::shared_ptr<Quote> spot(new SimpleQuote(underlying));
+        
+        Handle<YieldTermStructure> dividendYieldTS =
+            QlXlfOper(xldividendYield).AsTermStructure(valueDate);
+        Handle<YieldTermStructure> riskFreeRateTS  =
+            QlXlfOper(xlriskFreeRate).AsTermStructure(valueDate);
+        Handle<BlackVolTermStructure> volTS =
+            QlXlfOper(xlvolatility).AsBlackVolTermStructure(valueDate,1);
+        
+        boost::shared_ptr<GenericStochasticProcess> stochProcess(
+            new BlackScholesProcess(Handle<Quote>(spot),
+                                    dividendYieldTS,
+                                    riskFreeRateTS,
+                                    volTS));
+        
+        boost::shared_ptr<StrikedTypePayoff> payoff(
+            new PlainVanillaPayoff(type, strike));
+        
+        boost::shared_ptr<Exercise> exercise(
+            new EuropeanExercise(maturityDate));
+        
+        boost::shared_ptr<PricingEngine> engine(
+            new FDEuropeanEngine(timeSteps, gridPoints));
+        
+        EuropeanOption option(stochProcess, payoff, exercise, engine);
+        
+        double results[4];
+        results[0] = option.NPV();
+        results[1] = option.delta();
+        results[2] = option.gamma();
+        results[3] = option.theta();
+	// it looks like the following greeks are not provided
+        // results[4] = option.vega();
+        // results[5] = option.rho();
+        // results[6] = option.dividendRho();
+        
+        return XlfOper(1,sizeof(results)/sizeof(results[0]),results);
+        
         EXCEL_END;
     }
 
@@ -249,39 +274,57 @@ extern "C"
         EXCEL_BEGIN;
 
     	WIZARD_NO_CALC;
-
-        Option::Type type = QlXlfOper(xltype).AsOptionType();
+        
+        Option::Type type    = QlXlfOper(xltype).AsOptionType();
         double underlying    = xlunderlying.AsDouble();
         double strike        = xlstrike.AsDouble();
-        double dividendYield = xldividendYield.AsDouble();
-        double riskFreeRate  = xlriskFreeRate.AsDouble();
         Date valueDate       = QlXlfOper(xlvalueDate).AsDate();
         Date maturityDate    = QlXlfOper(xlmaturityDate).AsDate();
         double maturity      = Actual365Fixed().yearFraction(valueDate, maturityDate);
-        double volatility    = xlvolatility.AsDouble();
         Size timeSteps       = xltimeSteps.AsInt();
         Size gridPoints      = xlgridPoints.AsInt();
-
-
-
-
-        FdAmericanOption eur(type, underlying, strike, dividendYield,
-           riskFreeRate, maturity, volatility, timeSteps, gridPoints);
-        double results[7];
-        results[0] = eur.value();
-        results[1] = eur.delta();
-        results[2] = eur.gamma();
-        results[3] = eur.theta();
-        results[4] = eur.vega();
-        results[5] = eur.rho();
-        results[6] = eur.dividendRho();
-
-        return XlfOper(1,7,results);
+        
+        DayCounter dc = Actual365Fixed();
+        
+        boost::shared_ptr<Quote> spot(new SimpleQuote(underlying));
+        
+        Handle<YieldTermStructure> dividendYieldTS =
+            QlXlfOper(xldividendYield).AsTermStructure(valueDate);
+        Handle<YieldTermStructure> riskFreeRateTS  =
+            QlXlfOper(xlriskFreeRate).AsTermStructure(valueDate);
+        Handle<BlackVolTermStructure> volTS =
+            QlXlfOper(xlvolatility).AsBlackVolTermStructure(valueDate,1);
+        
+        boost::shared_ptr<GenericStochasticProcess> stochProcess(
+            new BlackScholesProcess(Handle<Quote>(spot),
+                                    dividendYieldTS,
+                                    riskFreeRateTS,
+                                    volTS));
+        
+        boost::shared_ptr<StrikedTypePayoff> payoff(
+            new PlainVanillaPayoff(type, strike));
+        
+        boost::shared_ptr<Exercise> exercise(
+            new AmericanExercise(valueDate, maturityDate));
+        
+        boost::shared_ptr<PricingEngine> engine(
+            new FDEuropeanEngine(timeSteps, gridPoints));
+        
+        VanillaOption option(stochProcess, payoff, exercise, engine);
+        
+        double results[4];
+        results[0] = option.NPV();
+        results[1] = option.delta();
+        results[2] = option.gamma();
+        results[3] = option.theta();
+	// it looks like the following greeks are not provided
+        // results[4] = option.vega();
+        // results[5] = option.rho();
+        // results[6] = option.dividendRho();
+        
+        return XlfOper(1,sizeof(results)/sizeof(results[0]),results);
+        
         EXCEL_END;
     }
-
-
-
-
-
+    
 }

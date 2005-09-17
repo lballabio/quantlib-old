@@ -440,8 +440,8 @@ extern "C"
         WIZARD_NO_CALC;
 
         randomize(xlseed.AsInt());
-        return XlfOper(std::string("done with " + 
-            IntegerFormatter::toString(xlseed.AsInt())).c_str());
+		std::ostringstream msg; msg << io::ordinal(xlseed.AsInt());
+        return XlfOper(std::string("done with ") + msg.str());
         EXCEL_END;
     }
 

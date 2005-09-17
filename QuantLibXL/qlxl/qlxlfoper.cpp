@@ -26,10 +26,12 @@
 #include <ql/Volatilities/blackconstantvol.hpp>
 #include <ql/Volatilities/blackvariancecurve.hpp>
 #include <ql/Volatilities/blackvariancesurface.hpp>
-#include <ql/Math/interpolationtraits.hpp>
+#include <ql/Math/bicubicsplineinterpolation.hpp>
+#include <ql/Math/bilinearinterpolation.hpp>
 #include <ql/TermStructures/flatforward.hpp>
 #include <ql/TermStructures/discountcurve.hpp>
 #include <ql/TermStructures/piecewiseflatforward.hpp>
+#include <ql/Utilities/strings.hpp>
 #include <boost/shared_ptr.hpp>
 
 using namespace QuantLib;
@@ -40,7 +42,7 @@ QlXlfOper::QlXlfOper(const XlfOper& xlfOper)
 Calendar QlXlfOper::AsCalendar() const {
 
     std::string inputString(xlfOper_.AsString());
-    std::string s = StringFormatter::toLowercase(inputString);
+    std::string s = QuantLib::lowercase(inputString);
     Calendar cal = TARGET();
 
     if (s == "target" || s == "euro" || s == "eur")
@@ -153,7 +155,7 @@ Matrix QlXlfOper::AsMatrix() const {
 Option::Type QlXlfOper::AsOptionType() const {
 
     std::string inputString(xlfOper_.AsString());
-    std::string s = StringFormatter::toLowercase(inputString);
+    std::string s = QuantLib::lowercase(inputString);
     Option::Type type;
     if (s == "c" || s == "call") {
         type = Option::Call;
@@ -256,9 +258,9 @@ Handle<BlackVolTermStructure> QlXlfOper::AsBlackVolTermStructure(
                 break;
             case 2:
                 #if defined(QL_PATCH_MSVC6)
-                ts->setInterpolation(Cubic());
+                ts->setInterpolation(Bicubic());
                 #else
-                ts->setInterpolation<Cubic>();
+                ts->setInterpolation<Bicubic>();
                 #endif
                 return Handle<BlackVolTermStructure>(ts);
                 break;
