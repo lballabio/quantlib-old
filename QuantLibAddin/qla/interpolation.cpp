@@ -39,8 +39,8 @@ namespace QuantLibAddin {
             }
         }
 
-        for (std::size_t iy=0 ; iy < xArray.size() ; iy++) {
-            for (std::size_t jy=0 ; jy < xArray[iy].size() ; jy++) {
+        for (std::size_t iy=0 ; iy < yArray.size() ; iy++) {
+            for (std::size_t jy=0 ; jy < yArray[iy].size() ; jy++) {
                 y.push_back(yArray[iy][jy]);
             }
         }
