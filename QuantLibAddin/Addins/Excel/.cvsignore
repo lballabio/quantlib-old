@@ -23,3 +23,7 @@ termstructures.cpp
 volatilities.cpp
 xibor.cpp
 
+couponvectors.cpp
+interpolation.cpp
+schedule.cpp
+swap.cpp
