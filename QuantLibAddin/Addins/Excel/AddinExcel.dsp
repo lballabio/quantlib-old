@@ -96,6 +96,10 @@ SOURCE=.\capfloor.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\couponvectors.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\framewrk.cpp
 # End Source File
 # Begin Source File
@@ -120,11 +124,19 @@ SOURCE=.\qladdin.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\schedule.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\shortratemodels.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\simpleswap.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\swap.cpp
 # End Source File
 # Begin Source File
 
