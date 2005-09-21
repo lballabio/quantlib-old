@@ -63,11 +63,19 @@ SOURCE=.\capfloor.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\couponvectors.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\funcdef.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\instruments.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\interpolation.cpp
 # End Source File
 # Begin Source File
 
@@ -87,11 +95,19 @@ SOURCE=.\QuantLibAddin.idl
 # End Source File
 # Begin Source File
 
+SOURCE=.\schedule.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\shortratemodels.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\simpleswap.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\swap.cpp
 # End Source File
 # Begin Source File
 
@@ -127,7 +143,15 @@ SOURCE=.\capfloor.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\couponvectors.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\instruments.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\interpolation.hpp
 # End Source File
 # Begin Source File
 
@@ -147,11 +171,19 @@ SOURCE=.\qldefs.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\schedule.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\shortratemodels.hpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\simpleswap.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\swap.hpp
 # End Source File
 # Begin Source File
 
