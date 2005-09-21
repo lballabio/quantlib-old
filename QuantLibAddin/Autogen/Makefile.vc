@@ -1,4 +1,4 @@
-# QuantLibAddin\Autogen\Makefile.msdev
+# QuantLibAddin\Autogen\Makefile.vc
 
 COMPONENT_NAME=Autogen
 INT_DIR=build\vc6
@@ -21,6 +21,7 @@ STUBS=stub.c.constructor \
 	stub.excel.includes \
 	stub.excel.regheader \
 	stub.qla.includes
+
 SCRIPTS=autogen.py \
 	qla.py \
 	c.py \
@@ -31,6 +32,7 @@ SCRIPTS=autogen.py \
 	params.py \
 	parse.py \
 	utils.py
+
 METADATA= \
 	capfloor.xml \
 	couponvectors.xml \
@@ -47,6 +49,7 @@ METADATA= \
 	utilities.xml \
 	volatilities.xml \
 	xibor.xml
+
 
 !IF "$(OS)" == "Windows_NT"
 NULL=
