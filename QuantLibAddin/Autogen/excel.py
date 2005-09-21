@@ -130,9 +130,13 @@ def generateFuncRegister(fileHeader, function, plExcel):
         for param in funcParams:
             if j < numParams:
                 lastParameter = False
+                desc = param[common.DESC]
             else:
                 lastParameter = True
-            fileHeader.write(formatLine(param[common.DESC], 'description param %d' % i, lastParameter))
+                # append 2 spaces to description of last parameter to work around bug in Excel
+                # which causes description to be currupted when displayed in the Function Wizard
+                desc = param[common.DESC] + '  '
+            fileHeader.write(formatLine(desc, 'description param %d' % i, lastParameter))
             i += 1
             j += 1
     else:
