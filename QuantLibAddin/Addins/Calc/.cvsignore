@@ -28,3 +28,11 @@ utilities.hpp
 volatilities.*pp
 xibor.*pp
 
+couponvectors.cpp
+couponvectors.hpp
+interpolation.cpp
+interpolation.hpp
+schedule.cpp
+schedule.hpp
+swap.cpp
+swap.hpp
