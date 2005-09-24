@@ -12,3 +12,6 @@ utilities.docs
 volatilities.docs
 xibor.docs
 
+couponvectors.docs
+schedule.docs
+swap.docs

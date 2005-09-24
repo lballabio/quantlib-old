@@ -17,3 +17,11 @@ utilities.h
 volatilities.*
 xibor.*
 
+couponvectors.cpp
+couponvectors.h
+interpolation.cpp
+interpolation.h
+schedule.cpp
+schedule.h
+swap.cpp
+swap.h
