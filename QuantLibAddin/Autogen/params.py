@@ -108,6 +108,7 @@ class ParameterDeclare(ParameterList):
             derefTensor = '',       # character to dereference vectors/matrices
             derefTensorString = '', # character to dereference string vectors/matrices
             derefOther = '',        # character to dereference other datatypes
+            derefAll = '',          # character to dereference all datatypes
             prefixString = '',      # text to prefix string datatype e.g. 'const'
             prefixAny = '',         # text to prefix any datatype
             replaceLong = '',       # text to overwrite long datatype
@@ -115,8 +116,10 @@ class ParameterDeclare(ParameterList):
             replaceString = '',     # text to overwrite string datatype e.g. 'char *'
             replaceAny = '',        # text to overwrite any datatype
             replaceTensor = '',     # text to overwrite vector/matrix datatype
+            replaceTensorNum = '',  # text to overwrite long/double vector/matrix datatype
             replaceTensorStr = '',  # text to overwrite string vector/matrix datatype
             replaceTensorAny = '',  # text to overwrite any vector/matrix datatype
+            replaceOptional = '',   # text to overwrite datatype of optional parameters
             formatString = '',      # text to reformat datatype for string params
             formatVector = '',      # text to reformat datatype for vector params
             formatMatrix = ''):     # text to reformat datatype for matrix params
@@ -133,6 +136,7 @@ class ParameterDeclare(ParameterList):
         self.derefTensor = derefTensor
         self.derefTensorString = derefTensorString
         self.derefOther = derefOther
+        self.derefAll = derefAll
         self.prefixString = prefixString
         self.prefixAny = prefixAny
         self.replaceString = replaceString
@@ -140,8 +144,10 @@ class ParameterDeclare(ParameterList):
         self.replaceBool = replaceBool
         self.replaceAny = replaceAny
         self.replaceTensor = replaceTensor
+        self.replaceTensorNum = replaceTensorNum
         self.replaceTensorStr = replaceTensorStr
         self.replaceTensorAny = replaceTensorAny
+        self.replaceOptional = replaceOptional        
         self.formatString = formatString
         self.formatVector = formatVector
         self.formatMatrix = formatMatrix
@@ -162,7 +168,9 @@ class ParameterDeclare(ParameterList):
         self.line[TYPE] = self.param[common.TYPE]
         self.line[DEREF] = ''
         # derive a value for the dereference character
-        if self.param[common.TENSOR] == common.SCALAR:
+        if self.derefAll:
+            self.line[DEREF] = self.derefAll
+        elif self.param[common.TENSOR] == common.SCALAR:
             if self.line[TYPE] == common.STRING:
                 if self.derefString:
                     self.line[DEREF] = self.derefString
@@ -180,7 +188,15 @@ class ParameterDeclare(ParameterList):
 
     def replaceType(self):
         'overwrite datatype of parameter if indicated by class state variables'
-        if self.replaceTensorStr \
+        if self.replaceOptional \
+        and utils.paramIsOptional(self.param):
+            self.line[TYPE] = self.replaceOptional            
+        elif self.replaceTensorNum \
+        and self.param[common.TENSOR] != common.SCALAR \
+        and (self.param[common.TYPE] == common.LONG \
+        or self.param[common.TYPE] == common.DOUBLE):
+            self.line[TYPE] = self.replaceTensorNum
+        elif self.replaceTensorStr \
         and self.param[common.TENSOR] != common.SCALAR \
         and self.param[common.TYPE] == common.STRING:
             self.line[TYPE] = self.replaceTensorStr
@@ -253,7 +269,8 @@ class ParameterPass(ParameterList):
             convertString = '',     # text to convert string datatype
             convertBool = '',       # text to convert bool datatype
             wrapFormat = '',        # text to reformat entire parameter line
-            appendScalar = False,   # append string 'Scalar' to names of scalar variables
+            appendScalar = False,   # append string 'Scalar' to names of scalar any variables
+            appendOptional = False, # append string 'Scalar' to names of optional scalar variables
             appendTensor = False):  # append tensor rank (Vector/Matrix) to variable names
         super(ParameterPass, self).__init__(
             indent,
@@ -267,6 +284,7 @@ class ParameterPass(ParameterList):
         self.convertBool = convertBool
         self.wrapFormat = wrapFormat
         self.appendScalar = appendScalar
+        self.appendOptional = appendOptional        
         self.appendTensor = appendTensor
 
     def process(self):
@@ -276,21 +294,31 @@ class ParameterPass(ParameterList):
 
     def convertValue(self):
         'apply any conversion strings to parameter name'
+
         if self.param[common.TYPE] == common.STRING \
         or self.param[common.TYPE] == common.ANY \
-        or self.param[common.TENSOR] != common.SCALAR:
+        or self.param[common.TENSOR] != common.SCALAR \
+        or utils.paramIsOptional(self.param):
             name = ''
         else:
             name = self.derefOther
+
         name += self.param[common.NAME]
-        if self.appendScalar and self.param[common.TENSOR] == common.SCALAR \
+
+        if  self.appendScalar \
+        and self.param[common.TENSOR] == common.SCALAR \
         and self.param[common.TYPE] == common.ANY:
             name += 'Scalar'
-        if self.appendTensor:
+        elif self.appendOptional \
+        and self.param[common.TENSOR] == common.SCALAR \
+        and utils.paramIsOptional(self.param):
+            name += 'Scalar'
+        elif self.appendTensor:
             if self.param[common.TENSOR] == common.VECTOR:
                 name += 'Vector'
             elif self.param[common.TENSOR] == common.MATRIX:
                 name += 'Matrix'
+
         if self.convertString and self.param[common.TYPE] == common.STRING \
                 and self.param[common.TENSOR] == common.SCALAR:
             self.item = self.convertString % name
@@ -299,6 +327,7 @@ class ParameterPass(ParameterList):
             self.item = self.convertBool % name
         else:
             self.item = self.item + name
+
         if utils.testAttribute(self.param, common.TYPE_CNV) and self.skipFirst:
             typeConversion = self.param[common.ATTS][common.TYPE_CNV]
             if ParameterPass.convExceptionsMap.has_key(typeConversion):

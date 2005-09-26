@@ -16,13 +16,12 @@ DLLEXPORT void xlAutoFree(LPXLOPER px) {
 }
 
 DLLEXPORT int xlAutoOpen() {
+
     static XLOPER xDll;
     Excel(xlGetName, &xDll, 0);
 
-    Excel(xlfRegister, 0, 6, &xDll,
+    Excel(xlfRegister, 0, 4, &xDll,
         TempStrNoSize("\x0A""getAddress"),
         TempStrNoSize("\x03""PR#"),
-        TempStrNoSize("\x0A""getAddress"),
-        TempMissing(),
-        TempInt(0));
+        TempStrNoSize("\x0A""getAddress"));
 

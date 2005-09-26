@@ -44,8 +44,8 @@ def generateFuncHeader(fileHeader, function, suffix):
     'generate source for prototype of given function'
     returnType = utils.getReturnType(function[common.RETVAL], 
         replaceString = 'char', replaceAny = 'Varies', replaceBool = 'Boolean',
-        replaceTensorAny = 'VariesList *', replacePropertyVector = 'VariesList *',
-        formatScalar = '%s *', formatVector = '%s **', formatMatrix = '%s **')
+        replaceTensorAny = 'VariesList *', formatScalar = '%s *',
+        formatVector = '%s **', formatMatrix = '%s **')
     fileHeader.write('int %s(' % function[common.NAME])
     if function[common.CTOR] == common.TRUE:
         fileHeader.write('\n        char *handle,')
@@ -101,11 +101,6 @@ def generateConversions(paramList):
 
 def getReturnCall(returnDef):
     'generate code to convert datatype of return value'
-    if returnDef[common.TYPE] == common.PROPERTY:
-        if returnDef[common.TENSOR] == common.VECTOR:
-            return 'propertyVectorToVariesList(returnValue, result)'
-        else:
-            raise ValueError, 'type property can only be combined with tensorrank vector'
 
     if returnDef[common.TYPE] == common.ANY:
         if returnDef[common.TENSOR] == common.SCALAR:
@@ -144,8 +139,7 @@ def generateMember(fileFunc, function, bufMember, plMember):
     conversions = generateConversions(function[common.PARAMS])
     className = function[common.PARAMS][0][common.ATTS][common.CLASS]
     returnType = utils.getReturnType(function[common.RETVAL],
-        replacePropertyVector = 'ObjHandler::Properties', replaceString = 'std::string',
-        replaceAny = 'boost::any')
+        replaceString = 'std::string', replaceAny = 'boost::any')
     functionName = utils.generateFuncCall(function)
     paramList = plMember.generateCode(function[common.PARAMS])
     returnCall = getReturnCall(function[common.RETVAL])

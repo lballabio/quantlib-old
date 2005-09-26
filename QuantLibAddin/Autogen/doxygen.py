@@ -25,18 +25,18 @@ import params
 
 # constants
 
-ALL_HEADER = \
-'/*! \page all All\n\
-\section overview Overview\n\
-Below is an alphabetical list of links to documentation for\n\
-all functions in QuantLibAddin.\n\
-\section functions Function List\n\
-\n'
+ALL_HEADER = """
+'/*! \page all All\n
+\section overview Overview\n
+Below is an alphabetical list of links to documentation for\n
+all functions in QuantLibAddin.\n
+\section functions Function List\n
+\n"""
 LINE_ENUM    = '    <tr><td>%s</td><td>%s</td></tr>\n'
 LINE_REF     = '        \\ref enum_%d\\n\n'
 LINE_SECTION = '    \\section enum_%d %s\n'
-LINE_TABLE   = '    <table>\n\
-    <tr><td><b>String</b></td><td><b>Enumeration</b></td></tr>\n'
+LINE_TABLE   = """    <table>\n
+    <tr><td><b>String</b></td><td><b>Enumeration</b></td></tr>\n"""
 ROOT         = '../Docs/pages/'
 STUB_ENUMS   = 'stub.doxygen.enums'
 STUB_FUNCS   = 'stub.doxygen.functions'

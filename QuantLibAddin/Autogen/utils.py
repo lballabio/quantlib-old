@@ -29,8 +29,8 @@ import filecmp
 
 CR_FILENAME = 'stub.copyright'
 CR_BUFFER = ''
-HEADER = '// this file generated automatically by %s\n\
-// editing this file manually is not recommended\n\n'
+HEADER = """// this file generated automatically by %s
+// editing this file manually is not recommended\n\n"""
 UPDATE_MSG = '        file %-35s - %s'
 
 def updateIfChanged(fileNew):
@@ -83,18 +83,11 @@ def getReturnType(
         replaceBool = '',
         replaceString = '',
         replaceAny = '',
-        replaceProperty = '',
         replaceVector = '',
         replaceMatrix = '',
         replaceTensorAny = '',
-        prefixScalar = '',
-        replacePropertyVector = ''):
+        prefixScalar = ''):
     'derive return type for function'
-
-    if returnDef[common.TYPE] == common.PROPERTY \
-    and returnDef[common.TENSOR] == common.VECTOR \
-    and replacePropertyVector:
-            return replacePropertyVector
 
     if returnDef[common.TENSOR] == common.VECTOR and replaceVector:
         return replaceVector
@@ -123,8 +116,6 @@ def getReturnType(
         type = replaceString
     elif returnDef[common.TYPE] == common.ANY and replaceAny:
         type = replaceAny
-    elif returnDef[common.TYPE] == common.PROPERTY and replaceProperty:
-        type = replaceProperty
     else:
         type = returnDef[common.TYPE]
 
@@ -136,18 +127,26 @@ def getReturnType(
 
 def generateConversions(
         paramList, 
-        nativeDataType, 
-        anyConversion):
+        anyConversion,
+        sourceTypeOther, 
+        sourceTypeNum = '',
+        sourceTypeOptional = ''):
     'generate code to convert arrays to vectors/matrices'
     ret = ''
     indent = 8 * ' ';
     bigIndent = 12 * ' ';
     for param in paramList:
-        if param[common.TENSOR] == common.SCALAR \
-        and param[common.TYPE] != common.ANY:
+        if testAttribute(param, common.IGNORE, 'yes'): 
             continue
 
-        type = param[common.TYPE]
+        optional = paramIsOptional(param)
+
+        if param[common.TENSOR] == common.SCALAR \
+        and param[common.TYPE] != common.ANY \
+        and not optional:
+            continue
+
+        targetType = param[common.TYPE]
         if param[common.TYPE] == common.LONG:
             suffix = 'Long'
         elif param[common.TYPE] == common.DOUBLE:
@@ -155,23 +154,41 @@ def generateConversions(
         elif param[common.TYPE] == common.BOOL:
             suffix = 'Bool'
         elif param[common.TYPE] == common.STRING:
-            type = 'std::string'
+            targetType = 'std::string'
             suffix = 'String'
         elif param[common.TYPE] == common.ANY:
-            type = 'boost::any'
+            targetType = 'boost::any'
             suffix = 'Any'
 
-        if param[common.TENSOR] == common.SCALAR \
-        and param[common.TYPE] == common.ANY: 
-            ret += indent + 'boost::any ' + param[common.NAME] + 'Scalar = ' + '\n' \
-                + bigIndent + anyConversion + '(' + param[common.NAME] + ');\n'
+        if sourceTypeOptional and optional:
+            sourceType = sourceTypeOptional
+        elif sourceTypeNum \
+        and (param[common.TYPE] == common.LONG \
+        or   param[common.TYPE] == common.DOUBLE):
+            sourceType = sourceTypeNum
+        else:
+            sourceType = sourceTypeOther
+
+        if optional \
+        and param[common.TENSOR] == common.SCALAR:
+            defaultValue = ', ' + param[common.ATTS][common.DEFAULT]
+        else:
+            defaultValue = ''
+
+        if param[common.TENSOR] == common.SCALAR:
+            if param[common.TYPE] == common.ANY: 
+                ret += indent + 'boost::any ' + param[common.NAME] + 'Scalar = ' + '\n' \
+                    + bigIndent + anyConversion + '(' + param[common.NAME] + ');\n'
+            else:
+                ret += indent + targetType + ' ' + param[common.NAME] + 'Scalar = ' + '\n' \
+                    + bigIndent + sourceType + 'ToScalar' + suffix + '(' + param[common.NAME] + defaultValue + ');\n'
         elif param[common.TENSOR] == common.VECTOR: 
-            ret += indent + 'std::vector < ' + type + ' >' + param[common.NAME] + 'Vector = ' + '\n' \
-                + bigIndent + nativeDataType + 'ToVector' + suffix + '(' + param[common.NAME] + ');\n'
+            ret += indent + 'std::vector < ' + targetType + ' >' + param[common.NAME] + 'Vector = ' + '\n' \
+                + bigIndent + sourceType + 'ToVector' + suffix + '(' + param[common.NAME] + ');\n'
         elif param[common.TENSOR] == common.MATRIX: 
-            ret += indent + 'std::vector < std::vector < ' + type + ' > >' \
+            ret += indent + 'std::vector < std::vector < ' + targetType + ' > >' \
                 + param[common.NAME] + 'Matrix = ' + '\n' \
-                + bigIndent + nativeDataType + 'ToMatrix' + suffix + '(' + param[common.NAME] + ');\n'
+                + bigIndent + sourceType + 'ToMatrix' + suffix + '(' + param[common.NAME] + ');\n'
 
     return ret
 
@@ -194,4 +211,8 @@ def checkFunctionPlatform(function, platform):
     'test whether given function is required on given platform'
     if not function.has_key(common.PLATFORMS): return True
     return function[common.PLATFORMS].find(platform) != -1
+
+def paramIsOptional(param):
+    'indicate whether parameter can be omitted'
+    return testAttribute(param, common.DEFAULT)
 

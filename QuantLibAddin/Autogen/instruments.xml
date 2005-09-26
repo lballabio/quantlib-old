@@ -415,7 +415,7 @@
     </param>
     <param ignore='yes'>
         <name>trigger</name>
-        <type>double</type>
+        <type>any</type>
         <tensorrank>scalar</tensorrank>
         <desc>dependency tracking trigger</desc>
     </param>

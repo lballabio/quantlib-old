@@ -25,35 +25,27 @@ import params
 
 # constants
 
-ADDIN           = 'qladdin.cpp'
-BUF_CTOR        = 'stub.excel.constructor'
-BUF_INCLUDES    = 'stub.excel.includes'
-BUF_MEMBER      = 'stub.excel.member'
-BUF_REGISTER    = 'stub.excel.regheader'
-LPXLOPER        = 'LPXLOPER'
-MAXLEN          = 255    # max length of excel string
-MAXLENERR       = 'string length exceeds Excel maximum of %d:\n' % MAXLEN
-MAXPARAM        = 30     # max #/params to an Excel function
-MAXPARMERR      = 'number of function parameters exceeds max of %d' % MAXPARAM
-NUMDESC         = 10     # #/params to describe a function
-REGFOOT         = '\
-    Excel(xlFree, 0, 1, &xDll);\n\
-    return 1;\n\
-}\n\n'
-REGLINE         = '        TempStrNoSize("\\x%02X""%s")%s'
-RET_PROP        = '\
-        static XLOPER xRet;\n\
-        propertyVectorToXloper(&xRet, returnValue, handle);\n\
-        return &xRet;'
-RET_STRING      = '\
-        static char c[XL_MAX_STR_LEN];\n\
-        stringToChar(c, returnValue);\n\
-        return c;'
-RET_XLOPER      = '\
-        static XLOPER xRet;\n\
-        %sToXloper(xRet, returnValue);\n\
-        return &xRet;'
-ROOT            = common.ADDIN_ROOT + 'Excel/'
+ADDIN        = 'qladdin.cpp'
+BUF_CTOR     = 'stub.excel.constructor'
+BUF_INCLUDES = 'stub.excel.includes'
+BUF_MEMBER   = 'stub.excel.member'
+BUF_REGISTER = 'stub.excel.regheader'
+MAXLEN       = 255    # max length of excel string
+MAXLENERR    = 'string length exceeds Excel maximum of %d:\n' % MAXLEN
+MAXPARAM     = 30     # max #/params to an Excel function
+MAXPARAMERR  = 'number of function parameters exceeds max of %d' % MAXPARAM
+NUMDESC      = 10     # #/params to describe a function
+REGFOOT      = """    Excel(xlFree, 0, 1, &xDll);\n
+    return 1;
+}\n"""
+REGLINE      = '        TempStrNoSize("\\x%02X""%s")%s'
+RET_STRING   = """        static char ret[XL_MAX_STR_LEN];
+        stringToChar(ret, returnValue);
+        return ret;"""
+RET_XLOPER   = """        static XLOPER xRet;
+        %sToXloper(xRet, returnValue);
+        return &xRet;"""
+ROOT         = common.ADDIN_ROOT + 'Excel/'
 
 def formatLine(text, comment, lastParameter = False):
     'format a line of text for the function register code'
@@ -66,27 +58,38 @@ def formatLine(text, comment, lastParameter = False):
     str1 = REGLINE % (len(text), text, suffix)
     return '%-40s// %s\n' % (str1, comment)
 
-def generateParamChar(param):
+def generateParamChar(param, returnVal = False):
     'derive the Excel char code corresponding to parameter datatype'
-    if param[common.TENSOR] == common.VECTOR or \
-       param[common.TENSOR] == common.MATRIX or \
-       param[common.TYPE]   == common.ANY:
+    if returnVal \
+    and (param[common.TYPE]   == common.ANY
+    or   param[common.TENSOR] == common.VECTOR
+    or   param[common.TENSOR] == common.MATRIX):
         return 'R'
-    else:
-        if param[common.TYPE]   == common.STRING:
-            return 'C'
+    elif utils.paramIsOptional(param):
+        return 'P'
+    elif param[common.TENSOR] == common.SCALAR:
+        if param[common.TYPE] == common.LONG:
+            return 'N'
         elif param[common.TYPE] == common.DOUBLE:
             return 'E'
-        elif param[common.TYPE] == common.LONG:
-            return 'N'
         elif param[common.TYPE] == common.BOOL:
             return 'L'
+        elif param[common.TYPE] == common.STRING:
+            return 'C'
+        elif param[common.TYPE] == common.ANY:
+            return 'P'
         else:
-            raise ValueError, 'unknown datatype: ' + type
+            raise ValueError, 'unknown datatype: ' + param[common.TYPE]
+    else:   # vector or matrix
+        if param[common.TYPE] == common.LONG \
+        or param[common.TYPE] == common.DOUBLE:
+            return 'K'
+        else:
+            return 'P'
 
 def generateParamString(function):
     'generate string to register function parameters'
-    paramStr = generateParamChar(function[common.RETVAL])
+    paramStr = generateParamChar(function[common.RETVAL], True)
     if function[common.CTOR] == common.TRUE:
         paramStr += 'C'
     for param in function[common.PARAMS]:
@@ -99,19 +102,17 @@ def generateFuncRegister(fileHeader, function, plExcel):
     numParams = len(funcParams)
     # We call xlfRegister with NUMDESC parameters to describe the function
     # +1 additional parm to describe each parm in function being registered.
-    # NB if a function ever exceeds the MAXPARAM limit then the code below
-    # could be rewritten to dispense with the parameter descriptions
-    numParamsTotal = NUMDESC + numParams
+    numRegisterParams = NUMDESC + numParams
     if function[common.CTOR] == common.TRUE:
-        numParamsTotal += 1            # extra parameter for object handle
+        numRegisterParams += 1      # extra parameter for object handle
     # FIXME validation below to be moved into parse.py?
-    if numParamsTotal > MAXPARAM:
-        raise ValueError, MAXPARMERR
+    if numRegisterParams > MAXPARAM:
+        raise ValueError, MAXPARAMERR
     paramStr = generateParamString(function)
     paramList = plExcel.generateCode(funcParams)
     if function[common.CTOR] == common.TRUE:
         paramList = "handle," + paramList
-    fileHeader.write('    Excel(xlfRegister, 0, %d, &xDll,\n' % numParamsTotal)
+    fileHeader.write('    Excel(xlfRegister, 0, %d, &xDll,\n' % numRegisterParams)
     fileHeader.write(formatLine(function[common.CODENAME], 'function code name'))
     fileHeader.write(formatLine(paramStr, 'parameter codes'))
     fileHeader.write(formatLine(function[common.NAME], 'function display name'))
@@ -127,14 +128,14 @@ def generateFuncRegister(fileHeader, function, plExcel):
             fileHeader.write(formatLine('handle of new object', 'description param 0'))
             i += 1
         j = 1
+        lastParameter = False
         for param in funcParams:
-            if j < numParams:
-                lastParameter = False
+            if j < numParams:                
                 desc = param[common.DESC]
             else:
                 lastParameter = True
                 # append 2 spaces to description of last parameter to work around bug in Excel
-                # which causes description to be currupted when displayed in the Function Wizard
+                # which causes description to be corrupted when displayed in the Function Wizard
                 desc = param[common.DESC] + '  '
             fileHeader.write(formatLine(desc, 'description param %d' % i, lastParameter))
             i += 1
@@ -162,12 +163,6 @@ def generateFuncRegisters(functionDefs):
     utils.updateIfChanged(fileName)
 
 def getReturnCall(returnDef):
-    if returnDef[common.TYPE] == common.PROPERTY:
-        if returnDef[common.TENSOR] == common.VECTOR:
-            return RET_PROP
-        else:
-            raise ValueError, 'type property can only be combined with tensorrank vector'
-
     if returnDef[common.TENSOR] == common.SCALAR:
         if returnDef[common.TYPE] == common.STRING:
             return RET_STRING
@@ -175,51 +170,32 @@ def getReturnCall(returnDef):
             pass
         else:
             return '        return &returnValue;'
-
-    if returnDef[common.TYPE] == common.LONG:
-        type = 'Long'
-    elif returnDef[common.TYPE] == common.DOUBLE:
-        type = 'Double'
-    elif returnDef[common.TYPE] == common.BOOL:
-        type = 'Bool'
-    elif returnDef[common.TYPE] == common.STRING:
-        type = 'String'
-    elif returnDef[common.TYPE] == common.ANY:
-        type = 'Any'
-    else:
-        raise ValueError, 'unsupported type'
-
-    if returnDef[common.TENSOR] == common.SCALAR:
-        return RET_XLOPER % ('scalar' + type)
-    elif returnDef[common.TENSOR] == common.VECTOR:
-        return RET_XLOPER % ('vector' + type)
-    elif returnDef[common.TENSOR] == common.MATRIX:
-        return RET_XLOPER % ('matrix' + type)
+    return RET_XLOPER % (returnDef[common.TENSOR] + returnDef[common.TYPE].capitalize())
 
 def generateConstructor(fileFunc, function, bufCtor, plHeader, plCtor):
+    'generate source code for body of constructor function'
     paramList1 = plHeader.generateCode(function[common.PARAMS])
     paramList2 = plCtor.generateCode(function[common.PARAMS])
     conversions = utils.generateConversions(function[common.PARAMS], 
-        nativeDataType = 'xloper', anyConversion = 'xloperToScalarAny')
+        'xloperToScalarAny', 'xloper', 'fp', 'xloper')
     fileFunc.write(bufCtor % (function[common.CODENAME], paramList1, conversions, 
         function[common.QLFUNC], paramList2, function[common.NAME]))
 
 def generateMember(fileFunc, function, bufMember, plHeader, plMember):
-    'generate source code for body of given function'
+    'generate source code for body of member function'
     paramList1 = plHeader.generateCode(function[common.PARAMS])
     paramList2 = plMember.generateCode(function[common.PARAMS])
     functionReturnType = utils.getReturnType(function[common.RETVAL],
-        replaceVector = LPXLOPER, replaceMatrix = LPXLOPER, replaceAny = LPXLOPER,
+        replaceVector = 'XLOPER*', replaceMatrix = 'XLOPER*', replaceAny = 'XLOPER*',
         replaceLong = 'long*', replaceDouble = 'double*', replaceBool = 'bool*',
         replaceString = 'char*')
-    returnType = utils.getReturnType(function[common.RETVAL], replaceLong = 'long',
-        prefixScalar = 'static', replaceString = 'std::string', replaceAny = 'boost::any',
-        replacePropertyVector = 'ObjHandler::Properties')
+    returnType = utils.getReturnType(function[common.RETVAL], prefixScalar = 'static',
+        replaceString = 'std::string', replaceAny = 'boost::any')
     returnCall = getReturnCall(function[common.RETVAL])
     className = function[common.PARAMS][0][common.ATTS][common.CLASS]
     functionName = utils.generateFuncCall(function)
     conversions = utils.generateConversions(function[common.PARAMS], 
-        nativeDataType = 'xloper', anyConversion = 'xloperToScalarAny')
+        'xloperToScalarAny', 'xloper', 'fp', 'xloper')
     fileFunc.write(bufMember %
         (functionReturnType, function[common.CODENAME], paramList1, conversions, 
         className, className, returnType, functionName, 
@@ -230,13 +206,14 @@ def generateFuncDefs(functionGroups):
     bufCtor = utils.loadBuffer(BUF_CTOR)
     bufMember = utils.loadBuffer(BUF_MEMBER)
     bufInclude = utils.loadBuffer(BUF_INCLUDES)
-    plHeader = params.ParameterDeclare(2, replaceString = 'char',
-        replaceTensor = LPXLOPER, derefString = '*',
-        derefOther = '*', replaceAny = LPXLOPER)
-    plMember = params.ParameterPass(3, skipFirst = True, derefOther = '*', 
-        appendTensor = True)
-    plCtor = params.ParameterPass(3, appendTensor = True,
-        derefOther = '*', appendScalar = True)
+    plHeader = params.ParameterDeclare(2, derefAll = '*',
+        replaceString = 'char', replaceTensorNum = 'FP',
+        replaceTensor = 'XLOPER', replaceAny = 'XLOPER', 
+        replaceOptional = 'XLOPER')
+    plMember = params.ParameterPass(3, derefOther = '*', skipFirst = True,
+        appendTensor = True, appendScalar = True, appendOptional = True)
+    plCtor = params.ParameterPass(3, derefOther = '*',
+        appendTensor = True, appendScalar = True, appendOptional = True)
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
         if functionGroup[common.HDRONLY] == common.TRUE:

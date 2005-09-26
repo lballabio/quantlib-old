@@ -41,7 +41,7 @@
         <desc>coupon vector</desc>
     </param>
     <param class='YieldTermStructure'>
-        <name>termStructyreID</name>
+        <name>termStructureID</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
         <desc>handle to term structure</desc>

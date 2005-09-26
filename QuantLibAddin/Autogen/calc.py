@@ -47,8 +47,8 @@ IDL_HEAD        = 'stub.calc.idlhead'
 INCLUDES        = 'stub.calc.includes'
 MAP             = 'stub.calc.map'
 MAPFILE         = 'funcdef.cpp'
-MAPLINE         = '    %s[ STRFROMANSI( "%s" ) ]\n\
-        =  STRFROMANSI( "%s" );\n\n'
+MAPLINE         = """    %s[ STRFROMANSI( "%s" ) ]\n
+        =  STRFROMANSI( "%s" );\n\n"""
 PARMLINE        = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
 ROOT            = common.ADDIN_ROOT + 'Calc/'
 
@@ -118,8 +118,7 @@ def generateHeader(fileHeader, function, declararion = True):
     returnType = utils.getReturnType(function[common.RETVAL], 
         formatVector = CALC_MATRIX, formatMatrix = CALC_MATRIX, 
         replaceLong = CALC_LONG, replaceString = CALC_STRING, 
-        replaceBool = CALC_LONG, replaceAny = CALC_ANY,
-        replaceProperty = CALC_ANY)
+        replaceBool = CALC_LONG, replaceAny = CALC_ANY)
     fileHeader.write(prototype % (returnType, function[common.CODENAME]))
     if function[common.CTOR] == common.TRUE:
         fileHeader.write('\n        const STRING &handle,')
@@ -146,11 +145,6 @@ def generateHeaders(functionGroups):
 
 def getReturnCall(returnDef):
     'generate code to convert datatype of return value'
-    if returnDef[common.TYPE] == common.PROPERTY:
-        if returnDef[common.TENSOR] == common.VECTOR:
-            return 'propertyVectorToSeqSeq(returnValue, handle)'
-        else:
-            raise ValueError, 'type property can only be combined with tensorrank vector'
 
     if returnDef[common.TYPE] == common.LONG:
         type = 'Long'
@@ -175,36 +169,14 @@ def getReturnCall(returnDef):
     elif returnDef[common.TENSOR] == common.MATRIX:
         return 'Matrix' + type + 'ToSeqSeq(returnValue)'
 
-def generateMember(fileFunc, function, bufMember, plHeader, plMember):
-    'generate source code for body of given function'
-    paramList1 = plHeader.generateCode(function[common.PARAMS])
-    paramList2 = plMember.generateCode(function[common.PARAMS])
-    functionReturnType = utils.getReturnType(function[common.RETVAL],
-        replaceVector = LPXLOPER, replaceMatrix = LPXLOPER, replaceAny = LPXLOPER,
-        replaceLong = 'long*', replaceDouble = 'double*', replaceBool = 'bool*',
-        replaceString = 'char*')
-    returnType = utils.getReturnType(function[common.RETVAL], replaceLong = 'long',
-        prefixScalar = 'static', replaceString = 'std::string', replaceAny = 'boost::any',
-        replacePropertyVector = 'ObjHandler::Properties')
-    returnCall = getReturnCall(function[common.RETVAL])
-    className = function[common.PARAMS][0][common.ATTS][common.CLASS]
-    functionName = utils.generateFuncCall(function)
-    conversions = utils.generateConversions(
-        function[common.PARAMS], 
-        nativeDataType = 'xloper',
-        anyConversion = 'xloperToScalarAny')
-    fileFunc.write(bufMember %
-        (functionReturnType, function[common.CODENAME], paramList1, conversions, 
-        className, className, returnType, functionName, paramList2, returnCall, function[common.NAME]))
-
 def generateMember(fileFunc, function, bufMember, plMember):
     'generate source for given function'
     generateHeader(fileFunc, function, False)
     conversions = utils.generateConversions(function[common.PARAMS], 
-        nativeDataType = 'SeqSeq', anyConversion = 'calcAnyToBoostAny')
+        'calcAnyToBoostAny', 'SeqSeq')
     className = function[common.PARAMS][0][common.ATTS][common.CLASS]
-    returnType = utils.getReturnType(function[common.RETVAL], replaceAny = 'boost::any', 
-        replacePropertyVector = 'ObjHandler::Properties', replaceString = 'std::string')
+    returnType = utils.getReturnType(function[common.RETVAL], 
+        replaceAny = 'boost::any', replaceString = 'std::string')
     functionName = utils.generateFuncCall(function)
     paramList = plMember.generateCode(function[common.PARAMS])
     returnCall = getReturnCall(function[common.RETVAL])
@@ -215,7 +187,7 @@ def generateConstructor(fileFunc, function, bufCtor, plCtor):
     generateHeader(fileFunc, function, False)
     paramList = plCtor.generateCode(function[common.PARAMS])
     conversions = utils.generateConversions(function[common.PARAMS], 
-        nativeDataType = 'SeqSeq', anyConversion = 'calcAnyToBoostAny')
+        sourceTypeOther = 'SeqSeq', anyConversion = 'calcAnyToBoostAny')
     fileFunc.write(bufCtor % (conversions, function[common.QLFUNC], 
         paramList, function[common.NAME]))
 
@@ -274,7 +246,7 @@ def generateIDLSource(functionGroups):
                 handle = ''
             returnTypeIDL = utils.getReturnType(function[common.RETVAL], 
                 formatVector = CALC_MATRIX_IDL, formatMatrix = CALC_MATRIX_IDL, 
-                replaceBool = common.LONG, replaceProperty = common.ANY)
+                replaceBool = common.LONG)
             fileIDL.write(bufIDLFunc % (returnTypeIDL, 
                 function[common.CODENAME], handle, paramList))
     bufIDLFoot = utils.loadBuffer(IDL_FOOT)

@@ -103,11 +103,6 @@ def getConversions(paramList):
     return ret
 
 def generateReturnCall(returnDef):
-    if returnDef[common.TYPE] == common.PROPERTY:
-        if returnDef[common.TENSOR] == common.VECTOR:
-            return 'propertiesToAList(returnValue)'
-        else:
-            raise ValueError, 'type property can only be combined with tensorrank vector'
     arg = 'returnValue'
     if returnDef[common.TENSOR] == common.SCALAR:
         arg = 'boost::any(returnValue)'
@@ -129,7 +124,7 @@ def generateConstructor(fileFunc, function, bufCtor, plCtor):
 def generateMember(fileFunc, function, bufMember, plMember):
     conversions = getConversions(function[common.PARAMS])
     className = function[common.PARAMS][0][common.ATTS][common.CLASS]
-    returnType = utils.getReturnType(function[common.RETVAL], replacePropertyVector = 'ObjHandler::Properties',
+    returnType = utils.getReturnType(function[common.RETVAL],
         replaceString = 'std::string', replaceAny = 'boost::any')
     functionName = utils.generateFuncCall(function)
     paramList = plMember.generateCode(function[common.PARAMS])
