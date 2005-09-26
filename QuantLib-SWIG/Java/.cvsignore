@@ -1,3 +1,4 @@
 quantlib_wrap.cpp
-Makefile*
+Makefile
+Makefile.in
 org

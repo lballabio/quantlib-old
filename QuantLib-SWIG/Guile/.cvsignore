@@ -2,7 +2,8 @@ QuantLib.scm
 quantlib_wrap.cpp
 quantlib_wrap.o
 QuantLibc.so
-Makefile*
+Makefile
+Makefile.in
 .build-stamp
 *.log
 *.dbg

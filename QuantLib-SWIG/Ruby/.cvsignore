@@ -2,7 +2,8 @@ quantlib_wrap.cpp
 quantlib_wrap.o
 QuantLibc.so
 .build-stamp
-Makefile*
+Makefile
+Makefile.in
 extension.mak
 QuantLib-Ruby.spec
 *.pdb

@@ -1,6 +1,7 @@
 build
 dist
-Makefile*
+Makefile
+Makefile.in
 QuantLib-Python.spec
 .build-stamp
 *.dep
