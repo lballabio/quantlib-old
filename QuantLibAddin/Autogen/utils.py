@@ -86,16 +86,17 @@ def getReturnType(
         replaceVector = '',
         replaceMatrix = '',
         replaceTensorAny = '',
-        prefixScalar = ''):
+        prefixScalar = '',
+        deref = ''):
     'derive return type for function'
 
     if returnDef[common.TENSOR] == common.VECTOR and replaceVector:
-        return replaceVector
+        return replaceVector + deref
     elif returnDef[common.TENSOR] == common.MATRIX and replaceMatrix:
-        return replaceMatrix
+        return replaceMatrix + deref
     elif returnDef[common.TYPE] == common.ANY \
     and returnDef[common.TENSOR] != common.SCALAR and replaceTensorAny:
-        return replaceTensorAny
+        return replaceTensorAny + deref
 
     if returnDef[common.TYPE] == common.ANY and formatAny:
         format = formatAny
@@ -123,14 +124,14 @@ def getReturnType(
     and returnDef[common.TYPE] != common.STRING and returnDef[common.TYPE] != common.ANY:
         type = prefixScalar + ' ' + type
 
-    return format % type
+    return format % type + deref
 
 def generateConversions(
         paramList, 
-        anyConversion,
         sourceTypeOther, 
         sourceTypeNum = '',
-        sourceTypeOptional = ''):
+        sourceTypeOptional = '',
+        sourceTypeAny = ''):
     'generate code to convert arrays to vectors/matrices'
     ret = ''
     indent = 8 * ' ';
@@ -146,26 +147,29 @@ def generateConversions(
         and not optional:
             continue
 
-        targetType = param[common.TYPE]
-        if param[common.TYPE] == common.LONG:
-            suffix = 'Long'
-        elif param[common.TYPE] == common.DOUBLE:
-            suffix = 'Double'
-        elif param[common.TYPE] == common.BOOL:
-            suffix = 'Bool'
-        elif param[common.TYPE] == common.STRING:
+        suffix = param[common.TYPE].capitalize()
+
+        if param[common.TYPE] == common.STRING:
             targetType = 'std::string'
-            suffix = 'String'
         elif param[common.TYPE] == common.ANY:
             targetType = 'boost::any'
-            suffix = 'Any'
+        else:
+            targetType = param[common.TYPE]
+
+        if param[common.TENSOR] == common.VECTOR: 
+            targetType = 'std::vector < ' + targetType + ' >'
+        elif param[common.TENSOR] == common.MATRIX: 
+            targetType = 'std::vector < std::vector < ' + targetType + ' > >'
 
         if sourceTypeOptional and optional:
             sourceType = sourceTypeOptional
         elif sourceTypeNum \
-        and (param[common.TYPE] == common.LONG \
+        and (param[common.TYPE] == common.LONG
         or   param[common.TYPE] == common.DOUBLE):
             sourceType = sourceTypeNum
+        elif sourceTypeAny \
+        and  param[common.TYPE] == common.ANY:
+            sourceAny = sourceTypeAny
         else:
             sourceType = sourceTypeOther
 
@@ -175,20 +179,10 @@ def generateConversions(
         else:
             defaultValue = ''
 
-        if param[common.TENSOR] == common.SCALAR:
-            if param[common.TYPE] == common.ANY: 
-                ret += indent + 'boost::any ' + param[common.NAME] + 'Scalar = ' + '\n' \
-                    + bigIndent + anyConversion + '(' + param[common.NAME] + ');\n'
-            else:
-                ret += indent + targetType + ' ' + param[common.NAME] + 'Scalar = ' + '\n' \
-                    + bigIndent + sourceType + 'ToScalar' + suffix + '(' + param[common.NAME] + defaultValue + ');\n'
-        elif param[common.TENSOR] == common.VECTOR: 
-            ret += indent + 'std::vector < ' + targetType + ' >' + param[common.NAME] + 'Vector = ' + '\n' \
-                + bigIndent + sourceType + 'ToVector' + suffix + '(' + param[common.NAME] + ');\n'
-        elif param[common.TENSOR] == common.MATRIX: 
-            ret += indent + 'std::vector < std::vector < ' + targetType + ' > >' \
-                + param[common.NAME] + 'Matrix = ' + '\n' \
-                + bigIndent + sourceType + 'ToMatrix' + suffix + '(' + param[common.NAME] + ');\n'
+        tensor = param[common.TENSOR].capitalize()
+
+        ret += indent + targetType + ' ' + param[common.NAME] + tensor + ' = ' + '\n' \
+            + bigIndent + sourceType + 'To' + tensor + suffix + '(' + param[common.NAME] + defaultValue + ');\n'
 
     return ret
 

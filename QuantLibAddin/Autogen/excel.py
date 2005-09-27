@@ -37,7 +37,7 @@ MAXPARAMERR  = 'number of function parameters exceeds max of %d' % MAXPARAM
 NUMDESC      = 10     # #/params to describe a function
 REGFOOT      = """    Excel(xlFree, 0, 1, &xDll);\n
     return 1;
-}\n"""
+}\n\n"""
 REGLINE      = '        TempStrNoSize("\\x%02X""%s")%s'
 RET_STRING   = """        static char ret[XL_MAX_STR_LEN];
         stringToChar(ret, returnValue);
@@ -177,7 +177,7 @@ def generateConstructor(fileFunc, function, bufCtor, plHeader, plCtor):
     paramList1 = plHeader.generateCode(function[common.PARAMS])
     paramList2 = plCtor.generateCode(function[common.PARAMS])
     conversions = utils.generateConversions(function[common.PARAMS], 
-        'xloperToScalarAny', 'xloper', 'fp', 'xloper')
+        'oper', 'fp', 'oper')
     fileFunc.write(bufCtor % (function[common.CODENAME], paramList1, conversions, 
         function[common.QLFUNC], paramList2, function[common.NAME]))
 
@@ -186,16 +186,15 @@ def generateMember(fileFunc, function, bufMember, plHeader, plMember):
     paramList1 = plHeader.generateCode(function[common.PARAMS])
     paramList2 = plMember.generateCode(function[common.PARAMS])
     functionReturnType = utils.getReturnType(function[common.RETVAL],
-        replaceVector = 'XLOPER*', replaceMatrix = 'XLOPER*', replaceAny = 'XLOPER*',
-        replaceLong = 'long*', replaceDouble = 'double*', replaceBool = 'bool*',
-        replaceString = 'char*')
+        replaceVector = 'XLOPER', replaceMatrix = 'XLOPER', replaceAny = 'XLOPER',
+        replaceString = 'char', deref = '*')
     returnType = utils.getReturnType(function[common.RETVAL], prefixScalar = 'static',
         replaceString = 'std::string', replaceAny = 'boost::any')
     returnCall = getReturnCall(function[common.RETVAL])
     className = function[common.PARAMS][0][common.ATTS][common.CLASS]
     functionName = utils.generateFuncCall(function)
     conversions = utils.generateConversions(function[common.PARAMS], 
-        'xloperToScalarAny', 'xloper', 'fp', 'xloper')
+        'oper', 'fp', 'oper')
     fileFunc.write(bufMember %
         (functionReturnType, function[common.CODENAME], paramList1, conversions, 
         className, className, returnType, functionName, 
@@ -208,8 +207,8 @@ def generateFuncDefs(functionGroups):
     bufInclude = utils.loadBuffer(BUF_INCLUDES)
     plHeader = params.ParameterDeclare(2, derefAll = '*',
         replaceString = 'char', replaceTensorNum = 'FP',
-        replaceTensor = 'XLOPER', replaceAny = 'XLOPER', 
-        replaceOptional = 'XLOPER')
+        replaceTensor = 'OPER', replaceAny = 'OPER', 
+        replaceOptional = 'OPER')
     plMember = params.ParameterPass(3, derefOther = '*', skipFirst = True,
         appendTensor = True, appendScalar = True, appendOptional = True)
     plCtor = params.ParameterPass(3, derefOther = '*',

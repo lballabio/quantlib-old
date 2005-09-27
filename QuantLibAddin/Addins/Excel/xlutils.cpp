@@ -45,7 +45,7 @@ void stringToXloper(XLOPER &xStr, const std::string &s) {
     xStr.val.str[0] = len;
 }
 
-DLLEXPORT LPXLOPER getAddress(LPXLOPER xCaller) {
+DLLEXPORT XLOPER* getAddress(XLOPER *xCaller) {
     XLOPER xRef;
     static XLOPER xStr;
     if (xlretSuccess != Excel(xlfVolatile, 0, 1, TempBool(0)))
@@ -72,7 +72,7 @@ std::string getHandleFull(const std::string &handle) {
         s1 << "getHandleFull: " << e.what();
         throw std::exception(s1.str().c_str());
     }
-    std::string ret(handle + '#' + xloperToScalarString(&xStr));
+    std::string ret(handle + '#' + operToScalarString(&xStr));
     Excel(xlFree, 0, 2, &xCaller, &xStr);
     return ret;
 }
@@ -91,8 +91,8 @@ void scalarAnyToXloper(
         XLOPER xTemp = boost::any_cast<XLOPER>(any);
         if (xlretSuccess != Excel(xlCoerce, &xScalar, 1, &xTemp)) 
             xScalar.xltype = xltypeErr;
-    } else if (any.type() == typeid(LPXLOPER)) {
-        LPXLOPER xTemp = boost::any_cast<LPXLOPER>(any);
+    } else if (any.type() == typeid(XLOPER*)) {
+        XLOPER *xTemp = boost::any_cast<XLOPER*>(any);
         if (xlretSuccess != Excel(xlCoerce, &xScalar, 1, xTemp)) 
             xScalar.xltype = xltypeErr;
     } else if (any.type() == typeid(int)) {
@@ -360,51 +360,51 @@ void matrixAnyToXloper(XLOPER &xMatrix, std::vector < std::vector < boost::any >
     }
 }
 
-long xloperToScalarLong(const XLOPER *xScalar, const long &defaultValue) {
-    if (xScalar->xltype == xltypeMissing)
+long operToScalarLong(const OPER *xScalar, const long &defaultValue) {
+    if (xScalar->xltype & (xltypeMissing | xltypeNil))
         return defaultValue;
     else if (xScalar->xltype == xltypeNum)
         return xScalar->val.num;
     else {
-        XLOPER xLong;
+        OPER xLong;
         if (xlretSuccess != Excel(xlCoerce, &xLong, 2, xScalar, TempInt(xltypeInt)))
-            throw std::exception("xloperToScalarLong: error on call to xlCoerce");
+            throw std::exception("operToScalarLong: error on call to xlCoerce");
         return xLong.val.w;
     }
 }
 
-double xloperToScalarDouble(const XLOPER *xScalar, const double &defaultValue) {
-    if (xScalar->xltype == xltypeMissing)
+double operToScalarDouble(const OPER *xScalar, const double &defaultValue) {
+    if (xScalar->xltype & (xltypeMissing | xltypeNil))
         return defaultValue;
     else if (xScalar->xltype == xltypeNum)
         return xScalar->val.num;
     else {
-        XLOPER xDouble;
+        OPER xDouble;
         if (xlretSuccess != Excel(xlCoerce, &xDouble, 2, xScalar, TempInt(xltypeNum)))
-            throw std::exception("xloperToScalarDouble: error on call to xlCoerce");
+            throw std::exception("operToScalarDouble: error on call to xlCoerce");
         return xDouble.val.num;
     }
 }
 
-bool xloperToScalarBool(const XLOPER *xScalar, const bool &defaultValue) {
-    if (xScalar->xltype == xltypeMissing)
+bool operToScalarBool(const OPER *xScalar, const bool &defaultValue) {
+    if (xScalar->xltype & (xltypeMissing | xltypeNil))
         return defaultValue;
     else if (xScalar->xltype == xltypeBool)
         return xScalar->val.boolean != 0;
     else {
-        XLOPER xBool;
+        OPER xBool;
         if (xlretSuccess != Excel(xlCoerce, &xBool, 2, xScalar, TempInt(xltypeBool)))
-            throw std::exception("xloperToScalarBool: error on call to xlCoerce");
+            throw std::exception("operToScalarBool: error on call to xlCoerce");
         return xBool.val.boolean != 0;
     }
 }
 
-std::string xloperToScalarString(const XLOPER *xScalar, const std::string &defaultValue) {
-    if (xScalar->xltype == xltypeMissing)
+std::string operToScalarString(const OPER *xScalar, const std::string &defaultValue) {
+    if (xScalar->xltype & (xltypeMissing | xltypeNil))
         return defaultValue;
 
-    XLOPER xTemp;
-    const XLOPER *xString;
+    OPER xTemp;
+    const OPER *xString;
     bool needToFree = false;
     std::string ret;
 
@@ -412,7 +412,7 @@ std::string xloperToScalarString(const XLOPER *xScalar, const std::string &defau
         xString = xScalar;
     else {
         if (xlretSuccess != Excel(xlCoerce, &xTemp, 2, xScalar, TempInt(xltypeStr)))
-            throw std::exception("xloperToScalarString: error on call to xlCoerce");
+            throw std::exception("operToScalarString: error on call to xlCoerce");
         xString = &xTemp;
         needToFree = true;
     }
@@ -426,17 +426,17 @@ std::string xloperToScalarString(const XLOPER *xScalar, const std::string &defau
     return ret;
 }
 
-boost::any xloperToScalarAny(const XLOPER *xScalar) {
-    if (xScalar->xltype == xltypeNum)
+boost::any operToScalarAny(const OPER *xScalar) {
+    if (xScalar->xltype & (xltypeMissing | xltypeNil))
+        return boost::any();
+    else if (xScalar->xltype == xltypeNum)
         return xScalar->val.num;
     else if (xScalar->xltype == xltypeBool)
         return xScalar->val.boolean != 0;
     else if (xScalar->xltype == xltypeStr)
-        return xloperToScalarString(xScalar);
-    else if (xScalar->xltype == xltypeMissing)
-        return boost::any();
+        return operToScalarString(xScalar);
     else
-        throw std::exception("xloperToScalarAny: unexpected datatype");
+        throw std::exception("operToScalarAny: unexpected datatype");
 }
 
 std::vector < long >fpToVectorLong(const FP *fpVector) {
@@ -453,21 +453,21 @@ std::vector < double >fpToVectorDouble(const FP *fpVector) {
     return ret;
 }
 
-std::vector < long > xloperToVectorLong(const XLOPER *xVector) {
+std::vector < long > operToVectorLong(const OPER *xVector) {
     std::vector < long > ret;
 
-    if (xVector->xltype == xltypeMissing)
+    if (xVector->xltype & (xltypeMissing | xltypeNil))
         return ret;
 
-    XLOPER xTemp, xScalar;
-    const XLOPER *xMulti;
+    OPER xTemp, xScalar;
+    const OPER *xMulti;
     bool needToFree = false;
 
     if (xVector->xltype == xltypeMulti)
         xMulti = xVector;
     else {
         if (xlretSuccess != Excel(xlCoerce, &xTemp, 2, xVector, TempInt(xltypeMulti)))
-            throw std::exception("xloperToVectorLong: error on call to xlCoerce");
+            throw std::exception("operToVectorLong: error on call to xlCoerce");
         xMulti = &xTemp;
         needToFree = true;
     }
@@ -477,7 +477,7 @@ std::vector < long > xloperToVectorLong(const XLOPER *xVector) {
             ret.push_back(xMulti->val.array.lparray[i].val.num);
         else {
             if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeInt)))
-                throw std::exception("xloperToVectorLong: error on call to xlCoerce");
+                throw std::exception("operToVectorLong: error on call to xlCoerce");
             ret.push_back(xScalar.val.w);
         }
     }
@@ -488,21 +488,21 @@ std::vector < long > xloperToVectorLong(const XLOPER *xVector) {
     return ret;
 }
 
-std::vector < double > xloperToVectorDouble(const XLOPER *xVector) {
+std::vector < double > operToVectorDouble(const OPER *xVector) {
     std::vector < double > ret;
 
-    if (xVector->xltype == xltypeMissing)
+    if (xVector->xltype & (xltypeMissing | xltypeNil))
         return ret;
 
-    XLOPER xTemp, xScalar;
-    const XLOPER *xMulti;
+    OPER xTemp, xScalar;
+    const OPER *xMulti;
     bool needToFree = false;
 
     if (xVector->xltype == xltypeMulti)
         xMulti = xVector;
     else {
         if (xlretSuccess != Excel(xlCoerce, &xTemp, 2, xVector, TempInt(xltypeMulti)))
-            throw std::exception("xloperToVectorDouble: error on call to xlCoerce");
+            throw std::exception("operToVectorDouble: error on call to xlCoerce");
         xMulti = &xTemp;
         needToFree = true;
     }
@@ -512,7 +512,7 @@ std::vector < double > xloperToVectorDouble(const XLOPER *xVector) {
             ret.push_back(xMulti->val.array.lparray[i].val.num);
         else {
             if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeNum)))
-                throw std::exception("xloperToVectorDouble: error on call to xlCoerce");
+                throw std::exception("operToVectorDouble: error on call to xlCoerce");
             ret.push_back(xScalar.val.num);
         }
     }
@@ -523,21 +523,21 @@ std::vector < double > xloperToVectorDouble(const XLOPER *xVector) {
     return ret;
 }
 
-std::vector < bool > xloperToVectorBool(const XLOPER *xVector) {
+std::vector < bool > operToVectorBool(const OPER *xVector) {
     std::vector < bool > ret;
 
-    if (xVector->xltype == xltypeMissing)
+    if (xVector->xltype & (xltypeMissing | xltypeNil))
         return ret;
 
-    XLOPER xTemp, xScalar;
-    const XLOPER *xMulti;
+    OPER xTemp, xScalar;
+    const OPER *xMulti;
     bool needToFree = false;
 
     if (xVector->xltype == xltypeMulti)
         xMulti = xVector;
     else {
         if (xlretSuccess != Excel(xlCoerce, &xTemp, 2, xVector, TempInt(xltypeMulti)))
-            throw std::exception("xloperToVectorBool: error on call to xlCoerce");
+            throw std::exception("operToVectorBool: error on call to xlCoerce");
         xMulti = &xTemp;
         needToFree = true;
     }
@@ -547,7 +547,7 @@ std::vector < bool > xloperToVectorBool(const XLOPER *xVector) {
             ret.push_back(xMulti->val.array.lparray[i].val.boolean != 0);
         else {
             if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeBool)))
-                throw std::exception("xloperToVectorBool: error on call to xlCoerce");
+                throw std::exception("operToVectorBool: error on call to xlCoerce");
             ret.push_back(xScalar.val.boolean != 0);
         }
     }
@@ -558,27 +558,27 @@ std::vector < bool > xloperToVectorBool(const XLOPER *xVector) {
     return ret;
 }
 
-std::vector < std::string > xloperToVectorString(const XLOPER *xVector) {
+std::vector < std::string > operToVectorString(const OPER *xVector) {
     std::vector < std::string > ret;
 
-    if (xVector->xltype == xltypeMissing)
+    if (xVector->xltype & (xltypeMissing | xltypeNil))
         return ret;
 
-    XLOPER xTemp;
-    const XLOPER *xMulti;
+    OPER xTemp;
+    const OPER *xMulti;
     bool needToFree = false;
 
     if (xVector->xltype == xltypeMulti)
         xMulti = xVector;
     else {
         if (xlretSuccess != Excel(xlCoerce, &xTemp, 2, xVector, TempInt(xltypeMulti)))
-            throw std::exception("xloperToVectorString: error on call to xlCoerce");
+            throw std::exception("operToVectorString: error on call to xlCoerce");
         xMulti = &xTemp;
         needToFree = true;
     }
 
     for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; i++)
-        ret.push_back(xloperToScalarString(&xMulti->val.array.lparray[i]));
+        ret.push_back(operToScalarString(&xMulti->val.array.lparray[i]));
 
     if (needToFree)
         Excel(xlFree, 0, 1, &xTemp);
@@ -586,27 +586,27 @@ std::vector < std::string > xloperToVectorString(const XLOPER *xVector) {
     return ret;
 }
 
-std::vector < boost::any > xloperToVectorAny(const XLOPER *xVector) {
+std::vector < boost::any > operToVectorAny(const OPER *xVector) {
     std::vector < boost::any > ret;
 
-    if (xVector->xltype == xltypeMissing)
+    if (xVector->xltype & (xltypeMissing | xltypeNil))
         return ret;
 
-    XLOPER xTemp;
-    const XLOPER *xMulti;
+    OPER xTemp;
+    const OPER *xMulti;
     bool needToFree = false;
 
     if (xVector->xltype == xltypeMulti)
         xMulti = xVector;
     else {
         if (xlretSuccess != Excel(xlCoerce, &xTemp, 2, xVector, TempInt(xltypeMulti)))
-            throw std::exception("xloperToVectorAny: error on call to xlCoerce");
+            throw std::exception("operToVectorAny: error on call to xlCoerce");
         xMulti = &xTemp;
         needToFree = true;
     }
 
     for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; i++)
-        ret.push_back(xloperToScalarAny(&xMulti->val.array.lparray[i]));
+        ret.push_back(operToScalarAny(&xMulti->val.array.lparray[i]));
 
     if (needToFree)
         Excel(xlFree, 0, 1, &xTemp);
@@ -636,21 +636,21 @@ std::vector < std::vector < double > > fpToMatrixDouble(const FP *fpMatrix) {
     return ret;
 }
 
-std::vector < std::vector < long > > xloperToMatrixLong(const XLOPER *xMatrix) {
+std::vector < std::vector < long > > operToMatrixLong(const OPER *xMatrix) {
     std::vector < std::vector < long > > ret;
 
-    if (xMatrix->xltype == xltypeMissing)
+    if (xMatrix->xltype & (xltypeMissing | xltypeNil))
         return ret;
 
-    XLOPER xTemp, xScalar;
-    const XLOPER *xMulti;
+    OPER xTemp, xScalar;
+    const OPER *xMulti;
     bool needToFree = false;
 
     if (xMatrix->xltype == xltypeMulti)
         xMulti = xMatrix;
     else {
         if (xlretSuccess != Excel(xlCoerce, &xTemp, 2, xMatrix, TempInt(xltypeMulti)))
-            throw std::exception("xloperToMatrixLong: error on call to xlCoerce");
+            throw std::exception("operToMatrixLong: error on call to xlCoerce");
         xMulti = &xTemp;
         needToFree = true;
     }
@@ -662,7 +662,7 @@ std::vector < std::vector < long > > xloperToMatrixLong(const XLOPER *xMatrix) {
                 row.push_back(xMulti->val.array.lparray[i].val.num);
             else {
                 if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeInt)))
-                    throw std::exception("xloperToMatrixLong: error on call to xlCoerce");
+                    throw std::exception("operToMatrixLong: error on call to xlCoerce");
                 row.push_back(xScalar.val.w);
             }
         }
@@ -675,21 +675,21 @@ std::vector < std::vector < long > > xloperToMatrixLong(const XLOPER *xMatrix) {
     return ret;
 }
 
-std::vector < std::vector < double > > xloperToMatrixDouble(const XLOPER *xMatrix) {
+std::vector < std::vector < double > > operToMatrixDouble(const OPER *xMatrix) {
     std::vector < std::vector < double > > ret;
 
-    if (xMatrix->xltype == xltypeMissing)
+    if (xMatrix->xltype & (xltypeMissing | xltypeNil))
         return ret;
 
-    XLOPER xTemp, xScalar;
-    const XLOPER *xMulti;
+    OPER xTemp, xScalar;
+    const OPER *xMulti;
     bool needToFree = false;
 
     if (xMatrix->xltype == xltypeMulti)
         xMulti = xMatrix;
     else {
         if (xlretSuccess != Excel(xlCoerce, &xTemp, 2, xMatrix, TempInt(xltypeMulti)))
-            throw std::exception("xloperToMatrixDouble: error on call to xlCoerce");
+            throw std::exception("operToMatrixDouble: error on call to xlCoerce");
         xMulti = &xTemp;
         needToFree = true;
     }
@@ -701,7 +701,7 @@ std::vector < std::vector < double > > xloperToMatrixDouble(const XLOPER *xMatri
                 row.push_back(xMulti->val.array.lparray[i].val.num);
             else {
                 if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeNum)))
-                    throw std::exception("xloperToMatrixDouble: error on call to xlCoerce");
+                    throw std::exception("operToMatrixDouble: error on call to xlCoerce");
                 row.push_back(xScalar.val.num);
             }
         }
@@ -714,21 +714,21 @@ std::vector < std::vector < double > > xloperToMatrixDouble(const XLOPER *xMatri
     return ret;
 }
 
-std::vector < std::vector < bool > > xloperToMatrixBool(const XLOPER *xMatrix) {
+std::vector < std::vector < bool > > operToMatrixBool(const OPER *xMatrix) {
     std::vector < std::vector < bool > > ret;
 
-    if (xMatrix->xltype == xltypeMissing)
+    if (xMatrix->xltype & (xltypeMissing | xltypeNil))
         return ret;
 
-    XLOPER xTemp, xScalar;
-    const XLOPER *xMulti;
+    OPER xTemp, xScalar;
+    const OPER *xMulti;
     bool needToFree = false;
 
     if (xMatrix->xltype == xltypeMulti)
         xMulti = xMatrix;
     else {
         if (xlretSuccess != Excel(xlCoerce, &xTemp, 2, xMatrix, TempInt(xltypeMulti)))
-            throw std::exception("xloperToMatrixBool: error on call to xlCoerce");
+            throw std::exception("operToMatrixBool: error on call to xlCoerce");
         xMulti = &xTemp;
         needToFree = true;
     }
@@ -740,7 +740,7 @@ std::vector < std::vector < bool > > xloperToMatrixBool(const XLOPER *xMatrix) {
                 row.push_back(xMulti->val.array.lparray[i].val.boolean != 0);
             else {
                 if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeBool)))
-                    throw std::exception("xloperToMatrixBool: error on call to xlCoerce");
+                    throw std::exception("operToMatrixBool: error on call to xlCoerce");
                 row.push_back(xScalar.val.boolean != 0);
             }
         }
@@ -753,21 +753,21 @@ std::vector < std::vector < bool > > xloperToMatrixBool(const XLOPER *xMatrix) {
     return ret;
 }
 
-std::vector < std::vector < std::string > > xloperToMatrixString(const XLOPER *xMatrix) {
+std::vector < std::vector < std::string > > operToMatrixString(const OPER *xMatrix) {
     std::vector < std::vector < std::string > > ret;
 
-    if (xMatrix->xltype == xltypeMissing)
+    if (xMatrix->xltype & (xltypeMissing | xltypeNil))
         return ret;
 
-    XLOPER xTemp;
-    const XLOPER *xMulti;
+    OPER xTemp;
+    const OPER *xMulti;
     bool needToFree = false;
 
     if (xMatrix->xltype == xltypeMulti)
         xMulti = xMatrix;
     else {
         if (xlretSuccess != Excel(xlCoerce, &xTemp, 2, xMatrix, TempInt(xltypeMulti)))
-            throw std::exception("xloperToMatrixString: error on call to xlCoerce");
+            throw std::exception("operToMatrixString: error on call to xlCoerce");
         xMulti = &xTemp;
         needToFree = true;
     }
@@ -775,7 +775,7 @@ std::vector < std::vector < std::string > > xloperToMatrixString(const XLOPER *x
     for (int i=0; i<xMulti->val.array.rows; i++) {
         std::vector < std::string > row;
         for (int j=0; j<xMulti->val.array.columns; j++)
-            row.push_back(xloperToScalarString(&xMulti->val.array.lparray[i * xMulti->val.array.columns + j]));
+            row.push_back(operToScalarString(&xMulti->val.array.lparray[i * xMulti->val.array.columns + j]));
         ret.push_back(row);
     }
 
@@ -785,21 +785,21 @@ std::vector < std::vector < std::string > > xloperToMatrixString(const XLOPER *x
     return ret;
 }
 
-std::vector < std::vector < boost::any > > xloperToMatrixAny(const XLOPER *xMatrix) {
+std::vector < std::vector < boost::any > > operToMatrixAny(const OPER *xMatrix) {
     std::vector < std::vector < boost::any > > ret;
 
-    if (xMatrix->xltype == xltypeMissing)
+    if (xMatrix->xltype & (xltypeMissing | xltypeNil))
         return ret;
 
-    XLOPER xTemp;
-    const XLOPER *xMulti;
+    OPER xTemp;
+    const OPER *xMulti;
     bool needToFree = false;
 
     if (xMatrix->xltype == xltypeMulti)
         xMulti = xMatrix;
     else {
         if (xlretSuccess != Excel(xlCoerce, &xTemp, 2, xMatrix, TempInt(xltypeMulti)))
-            throw std::exception("xloperToMatrixAny: error on call to xlCoerce");
+            throw std::exception("operToMatrixAny: error on call to xlCoerce");
         xMulti = &xTemp;
         needToFree = true;
     }
@@ -807,7 +807,7 @@ std::vector < std::vector < boost::any > > xloperToMatrixAny(const XLOPER *xMatr
     for (int i=0; i<xMulti->val.array.rows; i++) {
         std::vector < boost::any > row;
         for (int j=0; j<xMulti->val.array.columns; j++)
-           row.push_back(xloperToScalarAny(&xMulti->val.array.lparray[i * xMulti->val.array.columns + j]));
+           row.push_back(operToScalarAny(&xMulti->val.array.lparray[i * xMulti->val.array.columns + j]));
         ret.push_back(row);
     }
 

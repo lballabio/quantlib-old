@@ -26,6 +26,9 @@
 #define DLLEXPORT extern "C" __declspec(dllexport)
 #define XL_MAX_STR_LEN 255
 
+// parameters registered with Excel as OPER (P) are declared as XLOPER
+#define OPER XLOPER
+
 typedef struct {
     WORD rows;
     WORD columns;
@@ -47,26 +50,26 @@ void matrixBoolToXloper(XLOPER &xMatrix, std::vector < std::vector < bool > > &v
 void matrixStringToXloper(XLOPER &xMatrix, std::vector < std::vector < std::string > > &vv);
 void matrixAnyToXloper(XLOPER &xMatrix, std::vector < std::vector < boost::any > > &vv);
 
-long xloperToScalarLong(const XLOPER *xScalar, const long &defaultValue);
-double xloperToScalarDouble(const XLOPER *xScalar, const double &defaultValue);
-bool xloperToScalarBool(const XLOPER *xScalar, const bool &defaultValue);
-std::string xloperToScalarString(const XLOPER *xScalar, const std::string &defaultValue = "");
-boost::any xloperToScalarAny(const XLOPER *xScalar);
+long operToScalarLong(const OPER *xScalar, const long &defaultValue);
+double operToScalarDouble(const OPER *xScalar, const double &defaultValue);
+bool operToScalarBool(const OPER *xScalar, const bool &defaultValue);
+std::string operToScalarString(const OPER *xScalar, const std::string &defaultValue = "");
+boost::any operToScalarAny(const OPER *xScalar);
 
 std::vector < long > fpToVectorLong(const FP *fpVector);
 std::vector < double > fpToVectorDouble(const FP *fpVector);
-std::vector < long > xloperToVectorLong(const XLOPER *xVector);
-std::vector < double > xloperToVectorDouble(const XLOPER *xVector);
-std::vector < bool > xloperToVectorBool(const XLOPER *xVector);
-std::vector < std::string > xloperToVectorString(const XLOPER *xVector);
-std::vector < boost::any > xloperToVectorAny(const XLOPER *xVector);
+std::vector < long > operToVectorLong(const OPER *xVector);
+std::vector < double > operToVectorDouble(const OPER *xVector);
+std::vector < bool > operToVectorBool(const OPER *xVector);
+std::vector < std::string > operToVectorString(const OPER *xVector);
+std::vector < boost::any > operToVectorAny(const OPER *xVector);
 
 std::vector < std::vector < long > >fpToMatrixLong(const FP *fpMatrix);
 std::vector < std::vector < double > >fpToMatrixDouble(const FP *fpMatrix);
-std::vector < std::vector < long > >xloperToMatrixLong(const XLOPER *xMatrix);
-std::vector < std::vector < double > >xloperToMatrixDouble(const XLOPER *xMatrix);
-std::vector < std::vector < bool > >xloperToMatrixBool(const XLOPER *xMatrix);
-std::vector < std::vector < std::string > >xloperToMatrixString(const XLOPER *xMatrix);
-std::vector < std::vector < boost::any > >xloperToMatrixAny(const XLOPER *xMatrix);
+std::vector < std::vector < long > >operToMatrixLong(const OPER *xMatrix);
+std::vector < std::vector < double > >operToMatrixDouble(const OPER *xMatrix);
+std::vector < std::vector < bool > >operToMatrixBool(const OPER *xMatrix);
+std::vector < std::vector < std::string > >operToMatrixString(const OPER *xMatrix);
+std::vector < std::vector < boost::any > >operToMatrixAny(const OPER *xMatrix);
 
 #endif

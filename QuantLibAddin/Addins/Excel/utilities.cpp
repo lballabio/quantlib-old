@@ -34,16 +34,16 @@ DLLEXPORT char* qlVersion() {
 }
 
 DLLEXPORT short int* qlDependsOn(
-        LPXLOPER dummy0,
-        LPXLOPER dummy1,
-        LPXLOPER dummy2,
-        LPXLOPER dummy3,
-        LPXLOPER dummy4,
-        LPXLOPER dummy5,
-        LPXLOPER dummy6,
-        LPXLOPER dummy7,
-        LPXLOPER dummy8,
-        LPXLOPER dummy9) {
+        OPER *dummy0,
+        OPER *dummy1,
+        OPER *dummy2,
+        OPER *dummy3,
+        OPER *dummy4,
+        OPER *dummy5,
+        OPER *dummy6,
+        OPER *dummy7,
+        OPER *dummy8,
+        OPER *dummy9) {
     try {
         static short int ret = FALSE;
         return &ret;
@@ -53,10 +53,10 @@ DLLEXPORT short int* qlDependsOn(
     }
 }
 
-DLLEXPORT LPXLOPER qlListRegisteredEnums() {
+DLLEXPORT XLOPER* qlListRegisteredEnums() {
     try {
-        std::vector < std::string > returnValue;
-        returnValue = getRegisteredEnums();
+        std::vector < std::string > returnValue = 
+            getRegisteredEnums();
         static XLOPER xRet;
         vectorStringToXloper(xRet, returnValue);
         return &xRet;
@@ -66,12 +66,11 @@ DLLEXPORT LPXLOPER qlListRegisteredEnums() {
     }
 }
 
-DLLEXPORT LPXLOPER qlListEnum(
+DLLEXPORT XLOPER* qlListEnum(
         char *enumId) {
     try {
-        std::vector < std::string > returnValue;
-        returnValue = getEnumMembers(
-            enumId);
+        std::vector < std::string > returnValue = 
+            getEnumMembers(enumId);
         static XLOPER xRet;
         vectorStringToXloper(xRet, returnValue);
         return &xRet;
@@ -81,10 +80,10 @@ DLLEXPORT LPXLOPER qlListEnum(
     }
 }
 
-DLLEXPORT LPXLOPER qlListRegisteredTypes() {
+DLLEXPORT XLOPER* qlListRegisteredTypes() {
     try {
-        std::vector < std::string > returnValue;
-        returnValue = getRegisteredComplexTypes();
+        std::vector < std::string > returnValue = 
+            getRegisteredComplexTypes();
         static XLOPER xRet;
         vectorStringToXloper(xRet, returnValue);
         return &xRet;
@@ -94,12 +93,11 @@ DLLEXPORT LPXLOPER qlListRegisteredTypes() {
     }
 }
 
-DLLEXPORT LPXLOPER qlListType(
+DLLEXPORT XLOPER* qlListType(
         char *typeId) {
     try {
-        std::vector < std::string > returnValue;
-        returnValue = getComplexTypeMembers(
-            typeId);
+        std::vector < std::string > returnValue = 
+            getComplexTypeMembers(typeId);
         static XLOPER xRet;
         vectorStringToXloper(xRet, returnValue);
         return &xRet;

@@ -145,18 +145,6 @@ def generateHeaders(functionGroups):
 
 def getReturnCall(returnDef):
     'generate code to convert datatype of return value'
-
-    if returnDef[common.TYPE] == common.LONG:
-        type = 'Long'
-    elif returnDef[common.TYPE] == common.DOUBLE:
-        type = 'Double'
-    elif returnDef[common.TYPE] == common.BOOL:
-        type = 'Bool'
-    elif returnDef[common.TYPE] == common.STRING:
-        type = 'String'
-    elif returnDef[common.TYPE] == common.ANY:
-        type = 'Any'
-
     if returnDef[common.TENSOR] == common.SCALAR:
         if returnDef[common.TYPE] == common.STRING:
             return 'stlStringToOuString(returnValue)'
@@ -164,16 +152,16 @@ def getReturnCall(returnDef):
             return 'boostAnyToCalcAny(returnValue)'
         else:
             return 'returnValue'
-    elif returnDef[common.TENSOR] == common.VECTOR:
-        return 'Vector' + type + 'ToSeqSeq(returnValue)'
-    elif returnDef[common.TENSOR] == common.MATRIX:
-        return 'Matrix' + type + 'ToSeqSeq(returnValue)'
+    else:
+        return returnDef[common.TENSOR].capitalize() \
+            + returnDef[common.TYPE].capitalize() \
+            + 'ToSeqSeq(returnValue)'
 
 def generateMember(fileFunc, function, bufMember, plMember):
     'generate source for given function'
     generateHeader(fileFunc, function, False)
     conversions = utils.generateConversions(function[common.PARAMS], 
-        'calcAnyToBoostAny', 'SeqSeq')
+        'SeqSeq', sourceTypeAny = 'calcAny')
     className = function[common.PARAMS][0][common.ATTS][common.CLASS]
     returnType = utils.getReturnType(function[common.RETVAL], 
         replaceAny = 'boost::any', replaceString = 'std::string')
@@ -187,7 +175,7 @@ def generateConstructor(fileFunc, function, bufCtor, plCtor):
     generateHeader(fileFunc, function, False)
     paramList = plCtor.generateCode(function[common.PARAMS])
     conversions = utils.generateConversions(function[common.PARAMS], 
-        sourceTypeOther = 'SeqSeq', anyConversion = 'calcAnyToBoostAny')
+        sourceTypeOther = 'SeqSeq', sourceTypeAny = 'calcAny')
     fileFunc.write(bufCtor % (conversions, function[common.QLFUNC], 
         paramList, function[common.NAME]))
 
