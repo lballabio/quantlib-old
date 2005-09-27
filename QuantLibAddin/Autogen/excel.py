@@ -103,15 +103,14 @@ def generateFuncRegister(fileHeader, function, plExcel):
     # We call xlfRegister with NUMDESC parameters to describe the function
     # +1 additional parm to describe each parm in function being registered.
     numRegisterParams = NUMDESC + numParams
-    if function[common.CTOR] == common.TRUE:
-        numRegisterParams += 1      # extra parameter for object handle
+    paramStr = generateParamString(function)
+    paramList = plExcel.generateCode(funcParams)
+    if function[common.CTOR] == common.TRUE:    # extra parameter for object handle
+        paramList = "handle," + paramList
+        numRegisterParams += 1
     # FIXME validation below to be moved into parse.py?
     if numRegisterParams > MAXPARAM:
         raise ValueError, MAXPARAMERR
-    paramStr = generateParamString(function)
-    paramList = plExcel.generateCode(funcParams)
-    if function[common.CTOR] == common.TRUE:
-        paramList = "handle," + paramList
     fileHeader.write('    Excel(xlfRegister, 0, %d, &xDll,\n' % numRegisterParams)
     fileHeader.write(formatLine(function[common.CODENAME], 'function code name'))
     fileHeader.write(formatLine(paramStr, 'parameter codes'))
@@ -130,13 +129,12 @@ def generateFuncRegister(fileHeader, function, plExcel):
         j = 1
         lastParameter = False
         for param in funcParams:
-            if j < numParams:                
-                desc = param[common.DESC]
-            else:
+            desc = param[common.DESC]
+            if j >= numParams:                
                 lastParameter = True
                 # append 2 spaces to description of last parameter to work around bug in Excel
                 # which causes description to be corrupted when displayed in the Function Wizard
-                desc = param[common.DESC] + '  '
+                desc += '  '
             fileHeader.write(formatLine(desc, 'description param %d' % i, lastParameter))
             i += 1
             j += 1

@@ -38,17 +38,17 @@ typedef struct {
 std::string getHandleFull(const std::string &handle);
 void stringToChar(char *c, const std::string &s);
 
-void vectorLongToXloper(XLOPER &xVector, std::vector < long > &v);
-void vectorDoubleToXloper(XLOPER &xVector, std::vector < double > &v);
-void vectorBoolToXloper(XLOPER &xVector, std::vector < bool > &v);
-void vectorStringToXloper(XLOPER &xVector, std::vector < std::string > &v);
-void vectorAnyToXloper(XLOPER &xVector, std::vector < boost::any > &v);
+void vectorLongToXloper(XLOPER &xVector, const std::vector < long > &v);
+void vectorDoubleToXloper(XLOPER &xVector, const std::vector < double > &v);
+void vectorBoolToXloper(XLOPER &xVector, const std::vector < bool > &v);
+void vectorStringToXloper(XLOPER &xVector, const std::vector < std::string > &v);
+void vectorAnyToXloper(XLOPER &xVector, const std::vector < boost::any > &v);
 
-void matrixLongToXloper(XLOPER &xMatrix, std::vector < std::vector < long > > &vv);
-void matrixDoubleToXloper(XLOPER &xMatrix, std::vector < std::vector < double > > &vv);
-void matrixBoolToXloper(XLOPER &xMatrix, std::vector < std::vector < bool > > &vv);
-void matrixStringToXloper(XLOPER &xMatrix, std::vector < std::vector < std::string > > &vv);
-void matrixAnyToXloper(XLOPER &xMatrix, std::vector < std::vector < boost::any > > &vv);
+void matrixLongToXloper(XLOPER &xMatrix, const std::vector < std::vector < long > > &vv);
+void matrixDoubleToXloper(XLOPER &xMatrix, const std::vector < std::vector < double > > &vv);
+void matrixBoolToXloper(XLOPER &xMatrix, const std::vector < std::vector < bool > > &vv);
+void matrixStringToXloper(XLOPER &xMatrix, const std::vector < std::vector < std::string > > &vv);
+void matrixAnyToXloper(XLOPER &xMatrix, const std::vector < std::vector < boost::any > > &vv);
 
 long operToScalarLong(const OPER *xScalar, const long &defaultValue);
 double operToScalarDouble(const OPER *xScalar, const double &defaultValue);
