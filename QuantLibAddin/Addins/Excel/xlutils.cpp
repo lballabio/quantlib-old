@@ -189,16 +189,14 @@ void scalarAnyToXloper(
 }
 
 void vectorLongToXloper(XLOPER &xVector, const std::vector < long > &v) {
-    xVector.xltype = xltypeMulti | xlbitDLLFree;
-    if (v.size()) {
-        xVector.val.array.rows    = v.size();
-        xVector.val.array.columns = 1;
-    } else {
-        xVector.val.array.rows    = 0;
-        xVector.val.array.columns = 0;
-        xVector.val.array.lparray = 0;
+    if (v.empty()) {
+        xVector.xltype = xltypeNum;
+        xVector.val.num = 0;
         return;
     }
+    xVector.xltype = xltypeMulti | xlbitDLLFree;
+    xVector.val.array.rows    = v.size();
+    xVector.val.array.columns = 1;
     xVector.val.array.lparray = new XLOPER[v.size()]; 
     if (!xVector.val.array.lparray)
         throw std::exception("vectorLongToXloper: error on call to new");
@@ -209,16 +207,14 @@ void vectorLongToXloper(XLOPER &xVector, const std::vector < long > &v) {
 }
 
 void vectorDoubleToXloper(XLOPER &xVector, const std::vector < double > &v) {
-    xVector.xltype = xltypeMulti | xlbitDLLFree;
-    if (v.size()) {
-        xVector.val.array.rows    = v.size();
-        xVector.val.array.columns = 1;
-    } else {
-        xVector.val.array.rows    = 0;
-        xVector.val.array.columns = 0;
-        xVector.val.array.lparray = 0;
+    if (v.empty()) {
+        xVector.xltype = xltypeNum;
+        xVector.val.num = 0;
         return;
     }
+    xVector.xltype = xltypeMulti | xlbitDLLFree;
+    xVector.val.array.rows    = v.size();
+    xVector.val.array.columns = 1;
     xVector.val.array.lparray = new XLOPER[v.size()]; 
     if (!xVector.val.array.lparray)
         throw std::exception("vectorDoubleToXloper: error on call to new");
@@ -229,16 +225,14 @@ void vectorDoubleToXloper(XLOPER &xVector, const std::vector < double > &v) {
 }
 
 void vectorBoolToXloper(XLOPER &xVector, const std::vector < bool > &v) {
-    xVector.xltype = xltypeMulti | xlbitDLLFree;
-    if (v.size()) {
-        xVector.val.array.rows    = v.size();
-        xVector.val.array.columns = 1;
-    } else {
-        xVector.val.array.rows    = 0;
-        xVector.val.array.columns = 0;
-        xVector.val.array.lparray = 0;
+    if (v.empty()) {
+        xVector.xltype = xltypeNum;
+        xVector.val.num = 0;
         return;
     }
+    xVector.xltype = xltypeMulti | xlbitDLLFree;
+    xVector.val.array.rows    = v.size();
+    xVector.val.array.columns = 1;
     xVector.val.array.lparray = new XLOPER[v.size()]; 
     if (!xVector.val.array.lparray)
         throw std::exception("vectorBoolToXloper: error on call to new");
@@ -249,16 +243,14 @@ void vectorBoolToXloper(XLOPER &xVector, const std::vector < bool > &v) {
 }
 
 void vectorStringToXloper(XLOPER &xVector, const std::vector < std::string > &v) {
-    xVector.xltype = xltypeMulti | xlbitDLLFree;
-    if (v.size()) {
-        xVector.val.array.rows    = v.size();
-        xVector.val.array.columns = 1;
-    } else {
-        xVector.val.array.rows    = 0;
-        xVector.val.array.columns = 0;
-        xVector.val.array.lparray = 0;
+    if (v.empty()) {
+        xVector.xltype = xltypeNum;
+        xVector.val.num = 0;
         return;
     }
+    xVector.xltype = xltypeMulti | xlbitDLLFree;
+    xVector.val.array.rows    = v.size();
+    xVector.val.array.columns = 1;
     xVector.val.array.lparray = new XLOPER[v.size()]; 
     if (!xVector.val.array.lparray)
         throw std::exception("vectorStringToXloper: error on call to new");
@@ -267,16 +259,14 @@ void vectorStringToXloper(XLOPER &xVector, const std::vector < std::string > &v)
 }
 
 void vectorAnyToXloper(XLOPER &xVector, const std::vector < boost::any > &v) {
-    xVector.xltype = xltypeMulti | xlbitDLLFree;
-    if (v.size()) {
-        xVector.val.array.rows    = v.size();
-        xVector.val.array.columns = 1;
-    } else {
-        xVector.val.array.rows    = 0;
-        xVector.val.array.columns = 0;
-        xVector.val.array.lparray = 0;
+    if (v.empty()) {
+        xVector.xltype = xltypeNum;
+        xVector.val.num = 0;
         return;
     }
+    xVector.xltype = xltypeMulti | xlbitDLLFree;
+    xVector.val.array.rows    = v.size();
+    xVector.val.array.columns = 1;
     xVector.val.array.lparray = new XLOPER[v.size()]; 
     if (!xVector.val.array.lparray)
         throw std::exception("vectorAnyToXloper: error on call to new");
@@ -285,16 +275,14 @@ void vectorAnyToXloper(XLOPER &xVector, const std::vector < boost::any > &v) {
 }
 
 void matrixLongToXloper(XLOPER &xMatrix, const std::vector < std::vector < long > > &vv) {
-    xMatrix.xltype = xltypeMulti | xlbitDLLFree;
-    if (vv.size() && vv[0].size()) {
-        xMatrix.val.array.rows    = vv.size();
-        xMatrix.val.array.columns = vv[0].size();
-    } else {
-        xMatrix.val.array.rows    = 0;
-        xMatrix.val.array.columns = 0;
-        xMatrix.val.array.lparray = 0;
+    if (vv.empty() || vv[0].empty()) {
+        xMatrix.xltype = xltypeNum;
+        xMatrix.val.num = 0;
         return;
     }
+    xMatrix.xltype = xltypeMulti | xlbitDLLFree;
+    xMatrix.val.array.rows    = vv.size();
+    xMatrix.val.array.columns = vv[0].size();
     xMatrix.val.array.lparray = new XLOPER[xMatrix.val.array.rows * xMatrix.val.array.columns]; 
     if (!xMatrix.val.array.lparray)
         throw std::exception("matrixLongToXloper: error on call to new");
@@ -311,16 +299,14 @@ void matrixLongToXloper(XLOPER &xMatrix, const std::vector < std::vector < long 
 }
 
 void matrixDoubleToXloper(XLOPER &xMatrix, const std::vector < std::vector < double > > &vv) {
-    xMatrix.xltype = xltypeMulti | xlbitDLLFree;
-    if (vv.size() && vv[0].size()) {
-        xMatrix.val.array.rows    = vv.size();
-        xMatrix.val.array.columns = vv[0].size();
-    } else {
-        xMatrix.val.array.rows    = 0;
-        xMatrix.val.array.columns = 0;
-        xMatrix.val.array.lparray = 0;
+    if (vv.empty() || vv[0].empty()) {
+        xMatrix.xltype = xltypeNum;
+        xMatrix.val.num = 0;
         return;
     }
+    xMatrix.xltype = xltypeMulti | xlbitDLLFree;
+    xMatrix.val.array.rows    = vv.size();
+    xMatrix.val.array.columns = vv[0].size();
     xMatrix.val.array.lparray = new XLOPER[xMatrix.val.array.rows * xMatrix.val.array.columns]; 
     if (!xMatrix.val.array.lparray)
         throw std::exception("matrixDoubleToXloper: error on call to new");
@@ -335,16 +321,14 @@ void matrixDoubleToXloper(XLOPER &xMatrix, const std::vector < std::vector < dou
 }
 
 void matrixBoolToXloper(XLOPER &xMatrix, const std::vector < std::vector < bool > > &vv) {
-    xMatrix.xltype = xltypeMulti | xlbitDLLFree;
-    if (vv.size() && (vv[0]).size()) {
-        xMatrix.val.array.rows    = vv.size();
-        xMatrix.val.array.columns = vv[0].size();
-    } else {
-        xMatrix.val.array.rows    = 0;
-        xMatrix.val.array.columns = 0;
-        xMatrix.val.array.lparray = 0;
+    if (vv.empty() || vv[0].empty()) {
+        xMatrix.xltype = xltypeNum;
+        xMatrix.val.num = 0;
         return;
     }
+    xMatrix.xltype = xltypeMulti | xlbitDLLFree;
+    xMatrix.val.array.rows    = vv.size();
+    xMatrix.val.array.columns = vv[0].size();
     xMatrix.val.array.lparray = new XLOPER[xMatrix.val.array.rows * xMatrix.val.array.columns]; 
     if (!xMatrix.val.array.lparray)
         throw std::exception("matrixBoolToXloper: error on call to new");
@@ -359,16 +343,14 @@ void matrixBoolToXloper(XLOPER &xMatrix, const std::vector < std::vector < bool 
 }
 
 void matrixStringToXloper(XLOPER &xMatrix, const std::vector < std::vector < std::string > > &vv) {
-    xMatrix.xltype = xltypeMulti | xlbitDLLFree;
-    if (vv.size() && vv[0].size()) {
-        xMatrix.val.array.rows    = vv.size();
-        xMatrix.val.array.columns = vv[0].size();
-    } else {
-        xMatrix.val.array.rows    = 0;
-        xMatrix.val.array.columns = 0;
-        xMatrix.val.array.lparray = 0;
+    if (vv.empty() || vv[0].empty()) {
+        xMatrix.xltype = xltypeNum;
+        xMatrix.val.num = 0;
         return;
     }
+    xMatrix.xltype = xltypeMulti | xlbitDLLFree;
+    xMatrix.val.array.rows    = vv.size();
+    xMatrix.val.array.columns = vv[0].size();
     xMatrix.val.array.lparray = new XLOPER[xMatrix.val.array.rows * xMatrix.val.array.columns]; 
     if (!xMatrix.val.array.lparray)
         throw std::exception("matrixStringToXloper: error on call to new");
@@ -380,16 +362,14 @@ void matrixStringToXloper(XLOPER &xMatrix, const std::vector < std::vector < std
 }
 
 void matrixAnyToXloper(XLOPER &xMatrix, const std::vector < std::vector < boost::any > > &vv) {
-    xMatrix.xltype = xltypeMulti | xlbitDLLFree;
-    if (vv.size() && vv[0].size()) {
-        xMatrix.val.array.rows    = vv.size();
-        xMatrix.val.array.columns = vv[0].size();
-    } else {
-        xMatrix.val.array.rows    = 0;
-        xMatrix.val.array.columns = 0;
-        xMatrix.val.array.lparray = 0;
+    if (vv.empty() || vv[0].empty()) {
+        xMatrix.xltype = xltypeNum;
+        xMatrix.val.num = 0;
         return;
     }
+    xMatrix.xltype = xltypeMulti | xlbitDLLFree;
+    xMatrix.val.array.rows    = vv.size();
+    xMatrix.val.array.columns = vv[0].size();
     xMatrix.val.array.lparray = new XLOPER[xMatrix.val.array.rows * xMatrix.val.array.columns]; 
     if (!xMatrix.val.array.lparray)
         throw std::exception("matrixAnyToXloper: error on call to new");
