@@ -15,6 +15,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#ifdef SWIGPERL
+%{
+// Undefine perl symbols that are also used in quantlib
+#undef Null
+#undef Stat
+%}
+#endif
+
 %{
 #include <ql/quantlib.hpp>
 
@@ -38,6 +46,14 @@
 #pragma warning(disable: 4786)
 #endif
 %}
+
+#ifdef SWIGPERL
+%{
+// Redefine the symbol Null which was undefined so that we can load in 
+// perl headers
+#define Null(s) ((s) NULL)
+%}
+#endif
 
 #ifdef SWIGPYTHON
 %{
