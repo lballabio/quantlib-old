@@ -27,6 +27,9 @@ AC_PATH_PROG([SWIG], [swig])
 AC_PATH_PROG([PYTHON], [python])
 AM_CONDITIONAL(HAVE_PYTHON, test "x${PYTHON}" != "x")
 
+AC_PATH_PROG([PERL], [perl])
+AM_CONDITIONAL(HAVE_PERL, test "x${PERL}" != "x")
+
 AC_PATH_PROG([RUBY], [ruby])
 AM_CONDITIONAL(HAVE_RUBY, test "x${RUBY}" != "x")
 
@@ -46,6 +49,7 @@ AC_CONFIG_FILES([
     Guile/Makefile
     Java/Makefile
     MzScheme/Makefile
+    Perl/Makefile
     Python/Makefile
     Ruby/Makefile])
 AC_CONFIG_FILES([Python/QuantLib-Python.spec])

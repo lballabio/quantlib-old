@@ -1,5 +1,5 @@
 
-SUBDIRS = CSharp Guile Java MzScheme Python Ruby
+SUBDIRS = CSharp Guile Java MzScheme Perl Python Ruby
 
 EXTRA_DIST = \
 	ChangeLog.txt \
