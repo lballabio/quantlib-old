@@ -1,0 +1,7 @@
+Makefile
+Makefile.in
+Makefile.quantlib
+quantlib_wrap.*
+QuantLib.pm
+blib
+pm_to_blib

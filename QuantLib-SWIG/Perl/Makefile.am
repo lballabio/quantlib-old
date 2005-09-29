@@ -5,7 +5,7 @@ Makefile.quantlib
 
 BUILT_SOURCES = quantlib_wrap.cpp QuantLib.pm
 
-if HAVE_PYTHON
+if HAVE_PERL
 
 all-local: .build-stamp
 
