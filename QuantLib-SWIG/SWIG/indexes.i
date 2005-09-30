@@ -88,10 +88,20 @@ class XiborPtr : public boost::shared_ptr<Index> {
     %rename("business-day-convention") businessDayConvention;
     %rename("day-counter")             dayCounter;
     #endif
-  protected:
-    XiborPtr();
   public:
     %extend {
+        XiborPtr(const std::string& familyName,
+                 Integer n, TimeUnit units,
+                 Integer settlementDays,
+                 const Currency& currency,
+                 const Calendar& calendar,
+                 BusinessDayConvention convention,
+                 const DayCounter& dayCounter,
+                 const Handle<YieldTermStructure>& h) {
+            return new XiborPtr(new Xibor(familyName, n, units, settlementDays,
+                                          currency, calendar, convention,
+                                          dayCounter, h));
+        }
         Period tenor() {
             return boost::dynamic_pointer_cast<Xibor>(*self)->tenor();
         }
