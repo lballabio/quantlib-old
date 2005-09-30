@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2004 Ferdinando Ametrano
- Copyright (C) 2004 StatPro Italia srl
+ Copyright (C) 2004, 2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,7 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/qldefines.hpp>
+#include <ql/types.hpp>
 #include <boost/test/unit_test.hpp>
 #include <boost/timer.hpp>
 
@@ -34,6 +34,7 @@
 #endif
 
 #include "americanoption.hpp"
+#include "array.hpp"
 #include "asianoptions.hpp"
 #include "barrieroption.hpp"
 #include "basketoption.hpp"
@@ -60,6 +61,7 @@
 #include "integrals.hpp"
 #include "interestrates.hpp"
 #include "interpolations.hpp"
+#include "libormarketmodelprocess.hpp"
 #include "jumpdiffusion.hpp"
 #include "lowdiscrepancysequences.hpp"
 #include "matrices.hpp"
@@ -112,6 +114,14 @@ namespace {
 
 }
 
+#if defined(QL_ENABLE_SESSIONS)
+namespace QuantLib {
+
+    Integer sessionId() { return 0; }
+
+}
+#endif
+
 test_suite* init_unit_test_suite(int, char* []) {
 
     std::string header = "Testing "
@@ -134,6 +144,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(BOOST_TEST_CASE(startTimer));
 
     test->add(AmericanOptionTest::suite());
+    test->add(ArrayTest::suite());
     test->add(AsianOptionTest::suite());
     test->add(BarrierOptionTest::suite());
     test->add(BasketOptionTest::suite());
@@ -160,6 +171,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(IntegralTest::suite());
     test->add(InterestRateTest::suite());
     test->add(InterpolationTest::suite());
+    test->add(LiborMarketModelProcessTest::suite());
     test->add(JumpDiffusionTest::suite());
     test->add(LowDiscrepancyTest::suite());
     test->add(MatricesTest::suite());
@@ -182,7 +194,6 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(TermStructureTest::suite());
     test->add(TqrEigenDecompositionTest::suite());
     test->add(TracingTest::suite());
-
     // tests for deprecated (or generally old-style) classes
     test->add(OldPricerTest::suite());
 

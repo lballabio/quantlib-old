@@ -23,6 +23,7 @@
 #include <ql/qldefines.hpp>
 
 #include <ql/Processes/blackscholesprocess.hpp>
+#include <ql/Processes/capletlmmprocess.hpp>
 #include <ql/Processes/eulerdiscretization.hpp>
 #include <ql/Processes/geometricbrownianprocess.hpp>
 #include <ql/Processes/merton76process.hpp>

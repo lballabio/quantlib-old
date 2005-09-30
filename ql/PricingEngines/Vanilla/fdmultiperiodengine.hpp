@@ -27,18 +27,26 @@
 #include <ql/Instruments/dividendvanillaoption.hpp>
 #include <ql/PricingEngines/Vanilla/fdvanillaengine.hpp>
 #include <ql/FiniteDifferences/fdtypedefs.hpp>
+#include <ql/Instruments/dividendschedule.hpp>
 
 namespace QuantLib {
-
     class FDMultiPeriodEngine : public FDVanillaEngine {
       protected:
-        FDMultiPeriodEngine(const OneAssetOption::arguments* option_args,
-                            const DividendSchedule* schedule,
-                            Size gridPoints=100, Size timeSteps=100,
+        FDMultiPeriodEngine(Size gridPoints=100, Size timeSteps=100,
                             bool timeDependent = false);
-        const DividendSchedule* schedule_;
+        mutable const DividendSchedule* schedule_;
         Size timeStepPerPeriod_;
         mutable Array prices_;
+        void setupArguments(const OneAssetOption::arguments* args,
+                            const DividendSchedule *schedule) const {
+            FDVanillaEngine::setupArguments(args);
+            schedule_ = schedule;
+        };
+        void setupArguments(const OneAssetOption::arguments* args) {
+            FDVanillaEngine::setupArguments(args);
+            schedule_ = &emptySchedule;
+        };
+
         void calculate(OneAssetOption::results* result) const;
         mutable boost::shared_ptr<StandardStepCondition > stepCondition_;
         mutable boost::shared_ptr<StandardFiniteDifferenceModel> model_;
@@ -46,8 +54,10 @@ namespace QuantLib {
         virtual void initializeStepCondition() const;
         virtual void initializeModel() const;
         Time getDividendTime(int i) const {
-            return getYearFraction(schedule_->dividendDates[i]);
+            return process_->time(schedule_->dividendDates[i]);
         }
+    private:
+        static DividendSchedule emptySchedule;
     };
 
 }

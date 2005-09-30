@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2004 StatPro Italia srl
+ Copyright (C) 2004, 2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,6 +26,8 @@
 
 #include <ql/qldefines.hpp>
 #include <boost/shared_ptr.hpp>
+#include <boost/noncopyable.hpp>
+#include <map>
 
 namespace QuantLib {
 
@@ -48,37 +50,44 @@ namespace QuantLib {
         \ingroup patterns
     */
     template <class T>
-    class Singleton {
+    class Singleton : private boost::noncopyable {
       public:
         //! access to the unique instance
         static T& instance();
       protected:
         Singleton() {}
+    #ifdef QL_PATCH_MSVC6
       private:
-        #ifdef QL_PATCH_MSVC6
-        static boost::shared_ptr<T> instance_;
-        #endif
-        Singleton(const Singleton&) {}
-        void operator=(const Singleton&) {}
+        static std::map<Integer, boost::shared_ptr<T> > instances_;
+    #endif
     };
 
+    #if defined(QL_ENABLE_SESSIONS)
+    // definition must be provided by the user
+    Integer sessionId();
+    #endif
 
     // template definitions
 
     #ifdef QL_PATCH_MSVC6
     template <class T>
-    boost::shared_ptr<T> Singleton<T>::instance_;
+    std::map<Integer, boost::shared_ptr<T> > Settings::instances_;
     #endif
 
     template <class T>
     T& Singleton<T>::instance() {
         #ifndef QL_PATCH_MSVC6
-        static boost::shared_ptr<T> instance_(new T);
-        #else
-        if (!instance_)
-            instance_ = boost::shared_ptr<T>(new T);
+        static std::map<Integer, boost::shared_ptr<T> > instances_;
         #endif
-        return *instance_;
+        #if defined(QL_ENABLE_SESSIONS)
+        Integer id = sessionId();
+        #else
+        Integer id = 0;
+        #endif
+        boost::shared_ptr<T>& instance = instances_[id];
+        if (!instance)
+            instance = boost::shared_ptr<T>(new T);
+        return *instance;
     }
 
 }

@@ -4,7 +4,6 @@
 	Version="8.00"
 	Name="testsuite"
 	ProjectGUID="{A613045C-34AF-4706-AA3C-730C92524F74}"
-	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -110,7 +109,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Auto run test"
-				CommandLine="&quot;$(TargetDir)$(TargetName).exe&quot; --log_level=messages --build_info=yes --result_code=no --report_level=short --catch_system_errors=no"
+				CommandLine="&quot;$(TargetDir)$(TargetName).exe&quot; --log_level=message --build_info=yes --result_code=no --report_level=short --catch_system_errors=no"
 			/>
 		</Configuration>
 		<Configuration
@@ -210,7 +209,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Auto run test"
-				CommandLine="&quot;$(TargetDir)$(TargetName).exe&quot; --log_level=messages --build_info=yes --result_code=no --report_level=short"
+				CommandLine="&quot;$(TargetDir)$(TargetName).exe&quot; --log_level=message --build_info=yes --result_code=no --report_level=short"
 			/>
 		</Configuration>
 		<Configuration
@@ -310,7 +309,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Auto run test"
-				CommandLine="&quot;$(TargetDir)$(TargetName).exe&quot; --log_level=messages --build_info=yes --result_code=no --report_level=short"
+				CommandLine="&quot;$(TargetDir)$(TargetName).exe&quot; --log_level=message --build_info=yes --result_code=no --report_level=short"
 			/>
 		</Configuration>
 		<Configuration
@@ -409,7 +408,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Auto run test"
-				CommandLine="&quot;$(TargetDir)$(TargetName).exe&quot; --log_level=messages --build_info=yes --result_code=no --report_level=short --catch_system_errors=no"
+				CommandLine="&quot;$(TargetDir)$(TargetName).exe&quot; --log_level=message --build_info=yes --result_code=no --report_level=short --catch_system_errors=no"
 			/>
 		</Configuration>
 		<Configuration
@@ -510,7 +509,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Auto run test"
-				CommandLine="&quot;$(TargetDir)$(TargetName).exe&quot; --log_level=messages --build_info=yes --result_code=no --report_level=short"
+				CommandLine="&quot;$(TargetDir)$(TargetName).exe&quot; --log_level=message --build_info=yes --result_code=no --report_level=short"
 			/>
 		</Configuration>
 		<Configuration
@@ -609,7 +608,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Auto run test"
-				CommandLine="&quot;$(TargetDir)$(TargetName).exe&quot; --log_level=messages --build_info=yes --result_code=no --report_level=short --catch_system_errors=no"
+				CommandLine="&quot;$(TargetDir)$(TargetName).exe&quot; --log_level=message --build_info=yes --result_code=no --report_level=short --catch_system_errors=no"
 			/>
 		</Configuration>
 	</Configurations>
@@ -692,6 +691,10 @@
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\array.cpp"
+				>
 			</File>
 			<File
 				RelativePath="asianoptions.cpp"
@@ -911,6 +914,10 @@
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\batesmodel.cpp"
+				>
 			</File>
 			<File
 				RelativePath=".\bermudanswaption.cpp"
@@ -3111,6 +3118,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\array.hpp"
+				>
+			</File>
+			<File
 				RelativePath="asianoptions.hpp"
 				>
 			</File>
@@ -3120,6 +3131,10 @@
 			</File>
 			<File
 				RelativePath="basketoption.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\batesmodel.hpp"
 				>
 			</File>
 			<File

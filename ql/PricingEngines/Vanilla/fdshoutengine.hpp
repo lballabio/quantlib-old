@@ -41,15 +41,15 @@ namespace QuantLib {
       public:
         FDShoutEngine(Size timeSteps=100, Size gridPoints=100,
                       bool timeDependent = false)
-        : FDStepConditionEngine(&arguments_,
-                                timeSteps, gridPoints, timeDependent) {}
+        : FDStepConditionEngine(timeSteps, gridPoints, timeDependent) {}
       private:
         void calculate() const {
+            setupArguments(&arguments_);
             FDStepConditionEngine::calculate(&results_);
         }
         void initializeStepCondition() const {
             Time residualTime = getResidualTime();
-            Rate riskFreeRate = getProcess()->riskFreeRate()
+            Rate riskFreeRate = process_->riskFreeRate()
                 ->zeroRate(residualTime, Continuous);
 
             stepCondition_ = boost::shared_ptr<StandardStepCondition>(

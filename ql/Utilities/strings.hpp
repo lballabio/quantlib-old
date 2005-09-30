@@ -32,23 +32,6 @@ namespace QuantLib {
 
     std::string uppercase(const std::string&);
 
-
-    // inline definitions
-
-    inline std::string lowercase(const std::string& s) {
-        std::string output = s;
-        for (std::string::iterator i=output.begin(); i!=output.end(); i++)
-            *i = std::tolower(*i);
-        return output;
-    }
-
-    inline std::string uppercase(const std::string& s) {
-        std::string output = s;
-        for (std::string::iterator i=output.begin(); i!=output.end(); i++)
-            *i = std::toupper(*i);
-        return output;
-    }
-
 }
 
 

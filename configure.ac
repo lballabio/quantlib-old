@@ -36,7 +36,7 @@ AC_SUBST([CXXFLAGS],[${CXXFLAGS='-g -O2 -Wall'}])
 AC_ARG_WITH([boost-include],
             AC_HELP_STRING([--with-boost-include=INCLUDE_PATH],
                            [Supply the location of Boost header files]),
-            [ql_boost_include_path=$withval],
+            [ql_boost_include_path="`cd ${withval} 2>/dev/null && pwd`"],
             [ql_boost_include_path=""])
 if test [ -n "$ql_boost_include_path" ] ; then
    AC_SUBST([CPPFLAGS],["${CPPFLAGS} -I${ql_boost_include_path}"])
@@ -44,12 +44,11 @@ fi
 AC_ARG_WITH([boost-lib],
             AC_HELP_STRING([--with-boost-lib=LIB_PATH],
                            [Supply the location of Boost libraries]),
-            [ql_boost_lib_path=$withval],
+            [ql_boost_lib_path="`cd ${withval} 2>/dev/null && pwd`"],
             [ql_boost_lib_path=""])
 if test [ -n "$ql_boost_lib_path" ] ; then
    AC_SUBST([LDFLAGS],["${LDFLAGS} -L${ql_boost_lib_path}"])
 fi
-
 
 
 # Continue setup
@@ -61,24 +60,16 @@ AC_PROG_LIBTOOL
 
 AC_LANG([C++])
 
-# Check for mandatory features and header files
+# Check for mandatory features
 
-QL_CHECK_NAMESPACES
-
-QL_CHECK_HEADER([stdlib])
-
-QL_CHECK_HEADER([math])
-QL_CHECK_CONSTANT([M_PI],[double],[$ql_math],
+QL_CHECK_CONSTANT([M_PI],[double],[cmath],
                   [3.141592653589793238462643383280],[pi])
-QL_CHECK_CONSTANT([M_SQRT_2],[double],[$ql_math],
+QL_CHECK_CONSTANT([M_SQRT_2],[double],[cmath],
                   [0.7071067811865475244008443621048],[1/sqrt(2)])
-QL_CHECK_CONSTANT([M_SQRTPI],[double],[$ql_math],
+QL_CHECK_CONSTANT([M_SQRTPI],[double],[cmath],
                   [1.77245385090551602792981],[sqrt(pi)])
-QL_CHECK_CONSTANT([M_1_SQRTPI],[double],[$ql_math],
+QL_CHECK_CONSTANT([M_1_SQRTPI],[double],[cmath],
                   [0.564189583547756286948],[1/sqrt(pi)])
-
-QL_CHECK_HEADER([ctype])
-QL_CHECK_HEADER([time])
 
 # Check for Boost components
 QL_CHECK_BOOST
@@ -251,6 +242,21 @@ AC_ARG_ENABLE([deprecated-code],
 if test "$ql_use_deprecated_code" = "no" ; then
    AC_DEFINE([QL_DISABLE_DEPRECATED],[1],
              [Define this if you want to disable deprecated code.])
+fi
+
+AC_ARG_ENABLE([sessions],
+              AC_HELP_STRING([--enable-sessions],
+                             [If enabled, singletons will return different
+                              instances for different sessions. You will
+                              have to provide and link with the library
+                              a sessionId() function in namespace QuantLib,
+                              returning a different session id for each
+                              session.]),
+              [ql_use_sessions=$enableval],
+              [ql_use_sessions=no])
+if test "$ql_use_sessions" = "yes" ; then
+   AC_DEFINE([QL_ENABLE_SESSIONS],[1],
+             [Define this if you want to enable sessions.])
 fi
 
 AC_ARG_ENABLE([examples],

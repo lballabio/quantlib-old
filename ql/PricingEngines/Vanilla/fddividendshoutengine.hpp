@@ -36,16 +36,17 @@ namespace QuantLib {
       public:
         FDDividendShoutEngine(Size timeSteps = 100, Size gridPoints = 100,
                               bool timeDependent = false)
-            : FDDividendEngine(&arguments_, &arguments_,
+            : FDDividendEngine(
                                timeSteps, gridPoints,
                                timeDependent) {}
         void calculate() const {
+            setupArguments(&arguments_, &arguments_);
             FDDividendEngine::calculate(&results_);
         }
       protected:
         void initializeStepCondition() const {
             Time residualTime = getResidualTime();
-            Rate riskFreeRate = getProcess()->riskFreeRate()
+            Rate riskFreeRate = process_->riskFreeRate()
                 ->zeroRate(residualTime, Continuous);
 
             stepCondition_ = boost::shared_ptr<StandardStepCondition>(

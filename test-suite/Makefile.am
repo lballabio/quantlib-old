@@ -2,6 +2,7 @@
 QL_TESTS = \
 	quantlibtestsuite.cpp \
 	americanoption.hpp americanoption.cpp \
+	array.hpp array.cpp \
 	asianoptions.hpp asianoptions.cpp \
 	barrieroption.hpp barrieroption.cpp \
 	basketoption.hpp basketoption.cpp \
@@ -29,6 +30,7 @@ QL_TESTS = \
 	interestrates.hpp interestrates.cpp \
 	interpolations.hpp interpolations.cpp \
 	jumpdiffusion.hpp jumpdiffusion.cpp \
+	libormarketmodelprocess.hpp libormarketmodelprocess.cpp \
 	lowdiscrepancysequences.hpp lowdiscrepancysequences.cpp \
 	matrices.hpp matrices.cpp \
 	mersennetwister.hpp mersennetwister.cpp \
@@ -74,7 +76,7 @@ quantlib_test_suite_LDFLAGS = -l${BOOST_UNIT_TEST_LIB}
 
 TESTS = quantlib-test-suite
 
-TESTS_ENVIRONMENT = BOOST_TEST_LOG_LEVEL=messages
+TESTS_ENVIRONMENT = BOOST_TEST_LOG_LEVEL=message
 
 EXTRA_DIST = \
 	README.txt \
