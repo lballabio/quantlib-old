@@ -1,27 +1,30 @@
-
-CLEANFILES = quantlib_wrap.cpp QuantLib.pm .build-stamp \
-QuantLib.bs pm_to_blib \
-Makefile.quantlib
+PERL_MAKEFILE = Makefile.quantlib
 
 BUILT_SOURCES = quantlib_wrap.cpp QuantLib.pm
+
+CLEANFILES = $(BUILT_SOURCES) $(PERL_MAKEFILE) .build-stamp
 
 if HAVE_PERL
 
 all-local: .build-stamp
 
-.build-stamp: $(BUILT_SOURCES)
-	$(PERL) Makefile.PL
-	make -f Makefile.quantlib
+.build-stamp: $(BUILT_SOURCES) $(PERL_MAKEFILE)
+	make -f $(PERL_MAKEFILE)
 	touch .build-stamp
 
 check-local: .build-stamp
-#	$(PERL) setup.pl test
+	make -f $(PERL_MAKEFILE) test
 
-install-exec-local: .build-stamp
-#	$(PERL) setup.pl install
+install-exec-local: .build-stamp 
+	make -f $(PERL_MAKEFILE) install
 
-clean-local:
+clean-local: $(PERL_MAKEFILE)
+	make -f $(PERL_MAKEFILE) clean
+	rm -f $(PERL_MAKEFILE).old
 	rm -rf build
+
+$(PERL_MAKEFILE):
+	$(PERL) Makefile.PL
 
 endif
 
@@ -35,5 +38,5 @@ dist-hook:
 	mkdir -p $(distdir)/test
 	cp ./test/*.pl $(distdir)/test
 
-EXTRA_DIST = README.txt setup.pl $(BUILT_SOURCES)
+EXTRA_DIST = README.txt $(BUILT_SOURCES)
 
