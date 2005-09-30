@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -109,7 +109,7 @@ double nullDouble() { return Null<double>(); }
         SWIG_exception(SWIG_TypeError,"not a double");
 }
 %typecheck(SWIG_TYPECHECK_DOUBLE) doubleOrNull {
-    $1 = ($input == Qnil || TYPE($input) == T_FLOAT || 
+    $1 = ($input == Qnil || TYPE($input) == T_FLOAT ||
           FIXNUM_P($input)) ? 1 : 0;
 }
 %typemap(out) doubleOrNull {
@@ -190,6 +190,16 @@ double nullDouble() { return Null<double>(); }
     else
         $result = gh_double2scm($1);
 }
+
+#elif defined(SWIGJAVA)
+
+typedef int intOrNull;
+typedef double doubleOrNull;
+
+#elif defined(SWIGCSHARP)
+
+typedef int intOrNull;
+typedef double doubleOrNull;
 
 #endif
 
