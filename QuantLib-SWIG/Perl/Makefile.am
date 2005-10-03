@@ -35,8 +35,6 @@ quantlib_wrap.cpp QuantLib.pm: ../SWIG/*.i
 dist-hook:
 	mkdir -p $(distdir)/examples
 	cp ./examples/*.pl $(distdir)/examples
-	mkdir -p $(distdir)/test
-	cp ./test/*.pl $(distdir)/test
 
 EXTRA_DIST = README.txt $(BUILT_SOURCES)
 
