@@ -37,7 +37,7 @@ def generateEnum(fileEnum, enumDef):
             enumVal = enumDef[common.CLASS] + '(' + enum[common.ENUM] + ')'
         else:
             enumVal = enum[common.ENUM]
-        fileEnum.write(ENUM_LINE % (enum[common.STRING], enumVal))
+        fileEnum.write(ENUM_LINE % (enum[common.STRING].upper(), enumVal))
     fileEnum.write(ENUM_END)
 
 def generateEnumSource(enumDefs):
