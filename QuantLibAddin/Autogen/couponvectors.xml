@@ -3,7 +3,7 @@
 <functiongroup>
 <headeronly>false</headeronly>
 <desc>functions to construct QuantLib coupon vector objects</desc>
-<displayname>Indices</displayname>
+<displayname>Coupon Vectors</displayname>
 <functions>
 
 <function>
@@ -23,7 +23,7 @@
         <name>conventionID</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
-        <desc>payment adjustement</desc>
+        <desc>payment adjustment</desc>
     </param>
     <param>
         <name>nominals</name>
