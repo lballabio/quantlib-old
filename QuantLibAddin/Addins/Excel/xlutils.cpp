@@ -639,7 +639,7 @@ std::vector < std::vector < long > > fpToMatrixLong(const FP *fpMatrix) {
     for (int i=0; i<fpMatrix->rows; i++) {
         std::vector < long > row;
         for (int j=0; j<fpMatrix->columns; j++)
-            row.push_back(fpMatrix->array[i * fpMatrix->rows + j]);
+            row.push_back(fpMatrix->array[i * fpMatrix->columns + j]);
         ret.push_back(row);
     }
     return ret;
@@ -650,7 +650,7 @@ std::vector < std::vector < double > > fpToMatrixDouble(const FP *fpMatrix) {
     for (int i=0; i<fpMatrix->rows; i++) {
         std::vector < double > row;
         for (int j=0; j<fpMatrix->columns; j++)
-            row.push_back(fpMatrix->array[i * fpMatrix->rows + j]);
+            row.push_back(fpMatrix->array[i * fpMatrix->columns + j]);
         ret.push_back(row);
     }
     return ret;
@@ -678,10 +678,11 @@ std::vector < std::vector < long > > operToMatrixLong(const OPER *xMatrix) {
     for (int i=0; i<xMulti->val.array.rows; i++) {
         std::vector < long > row;
         for (int j=0; j<xMulti->val.array.columns; j++) {
-            if (xMulti->val.array.lparray[i].xltype == xltypeNum)
-                row.push_back(xMulti->val.array.lparray[i].val.num);
+            int idx = i * xMulti->val.array.columns + j;
+            if (xMulti->val.array.lparray[idx].xltype == xltypeNum)
+                row.push_back(xMulti->val.array.lparray[idx].val.num);
             else {
-                if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeInt)))
+                if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[idx], TempInt(xltypeInt)))
                     throw std::exception("operToMatrixLong: error on call to xlCoerce");
                 row.push_back(xScalar.val.w);
             }
@@ -717,10 +718,11 @@ std::vector < std::vector < double > > operToMatrixDouble(const OPER *xMatrix) {
     for (int i=0; i<xMulti->val.array.rows; i++) {
         std::vector < double > row;
         for (int j=0; j<xMulti->val.array.columns; j++) {
-            if (xMulti->val.array.lparray[i].xltype == xltypeNum)
-                row.push_back(xMulti->val.array.lparray[i].val.num);
+            int idx = i * xMulti->val.array.columns + j;
+            if (xMulti->val.array.lparray[idx].xltype == xltypeNum)
+                row.push_back(xMulti->val.array.lparray[idx].val.num);
             else {
-                if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeNum)))
+                if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[idx], TempInt(xltypeNum)))
                     throw std::exception("operToMatrixDouble: error on call to xlCoerce");
                 row.push_back(xScalar.val.num);
             }
@@ -756,10 +758,11 @@ std::vector < std::vector < bool > > operToMatrixBool(const OPER *xMatrix) {
     for (int i=0; i<xMulti->val.array.rows; i++) {
         std::vector < bool > row;
         for (int j=0; j<xMulti->val.array.columns; j++) {
-            if (xMulti->val.array.lparray[i].xltype == xltypeBool)
-                row.push_back(xMulti->val.array.lparray[i].val.boolean != 0);
+            int idx = i * xMulti->val.array.columns + j;
+            if (xMulti->val.array.lparray[idx].xltype == xltypeBool)
+                row.push_back(xMulti->val.array.lparray[idx].val.boolean != 0);
             else {
-                if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeBool)))
+                if (xlretSuccess != Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[idx], TempInt(xltypeBool)))
                     throw std::exception("operToMatrixBool: error on call to xlCoerce");
                 row.push_back(xScalar.val.boolean != 0);
             }
