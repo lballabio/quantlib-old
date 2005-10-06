@@ -41,5 +41,6 @@ namespace ObjHandler {
             std::string message_;
     };
 }
+
 #endif
 
