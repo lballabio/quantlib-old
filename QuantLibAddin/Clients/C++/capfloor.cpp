@@ -26,7 +26,7 @@ using namespace QuantLibAddin;
 
 struct RateHelperDatum {
     Integer n;
-    std::string units;
+    char* units;
     Rate rate;
 };
 
