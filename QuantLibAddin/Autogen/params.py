@@ -108,9 +108,11 @@ class ParameterDeclare(ParameterList):
             derefTensor = '',       # character to dereference vectors/matrices
             derefTensorString = '', # character to dereference string vectors/matrices
             derefOther = '',        # character to dereference other datatypes
+            derefOptional = '',     # character to dereference optional datatypes
             derefAll = '',          # character to dereference all datatypes
             prefixString = '',      # text to prefix string datatype e.g. 'const'
             prefixAny = '',         # text to prefix any datatype
+            prefixOptional = '',         # text to prefix any datatype
             replaceLong = '',       # text to overwrite long datatype
             replaceBool = '',       # text to overwrite bool datatype
             replaceString = '',     # text to overwrite string datatype e.g. 'char *'
@@ -136,9 +138,11 @@ class ParameterDeclare(ParameterList):
         self.derefTensor = derefTensor
         self.derefTensorString = derefTensorString
         self.derefOther = derefOther
+        self.derefOptional = derefOptional
         self.derefAll = derefAll
         self.prefixString = prefixString
         self.prefixAny = prefixAny
+        self.prefixOptional = prefixOptional
         self.replaceString = replaceString
         self.replaceLong = replaceLong
         self.replaceBool = replaceBool
@@ -170,6 +174,8 @@ class ParameterDeclare(ParameterList):
         # derive a value for the dereference character
         if self.derefAll:
             self.line[DEREF] = self.derefAll
+        elif self.derefOptional and utils.paramIsOptional(self.param):
+            self.line[DEREF] = self.derefOptional
         elif self.param[common.TENSOR] == common.SCALAR:
             if self.line[TYPE] == common.STRING:
                 if self.derefString:
@@ -214,7 +220,9 @@ class ParameterDeclare(ParameterList):
             self.line[TYPE] = self.replaceString
         elif self.replaceAny and self.param[common.TYPE] == common.ANY:
             self.line[TYPE] = self.replaceAny
-        if self.param[common.TENSOR] == common.SCALAR:
+        if self.prefixOptional and utils.paramIsOptional(self.param):
+            self.line[TYPE] = self.prefixOptional + ' ' + self.line[TYPE]
+        elif self.param[common.TENSOR] == common.SCALAR:
             if self.param[common.TYPE] == common.STRING and self.prefixString:
                 self.line[TYPE] = self.prefixString + ' ' + self.line[TYPE]
             elif self.param[common.TYPE] == common.ANY and self.prefixAny:
@@ -222,6 +230,8 @@ class ParameterDeclare(ParameterList):
 
     def formatType(self):
         'reformat datatype of parameter if indicated'
+        if utils.paramIsOptional(self.param):
+            return
         if self.formatString and self.param[common.TYPE] == common.STRING:
             self.line[TYPE] = self.formatString % self.line[TYPE]
         elif self.formatVector and self.param[common.TENSOR] == common.VECTOR:
@@ -320,10 +330,12 @@ class ParameterPass(ParameterList):
                 name += 'Matrix'
 
         if self.convertString and self.param[common.TYPE] == common.STRING \
-                and self.param[common.TENSOR] == common.SCALAR:
+                and self.param[common.TENSOR] == common.SCALAR \
+                and not utils.paramIsOptional(self.param):
             self.item = self.convertString % name
         elif self.convertBool and self.param[common.TYPE] == common.BOOL \
-                and self.param[common.TENSOR] == common.SCALAR:
+                and self.param[common.TENSOR] == common.SCALAR \
+                and not utils.paramIsOptional(self.param):
             self.item = self.convertBool % name
         else:
             self.item = self.item + name
