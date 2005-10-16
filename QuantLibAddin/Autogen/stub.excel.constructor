@@ -2,10 +2,9 @@ DLLEXPORT char* %s(
         char *handleStub,%s) {
     try {
 %s        ObjHandler::obj_ptr objectPointer(new QuantLibAddin::%s(%s));
-        std::string handleFull = getHandleFull(handleStub);
-        ObjHandler::storeObject(handleFull, objectPointer);
+        std::string handleFull = ObjHandler::storeObject(handleStub, objectPointer);
         static char ret[XL_MAX_STR_LEN];
-		stringToChar(ret, handleFull);
+		ObjHandler::stringToChar(ret, handleFull);
         return ret;
     } catch (const std::exception &e) {
         ObjHandler::logMessage(std::string("ERROR: %s: ") + e.what(), 2);

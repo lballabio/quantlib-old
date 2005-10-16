@@ -7,8 +7,7 @@
 <functions>
 
 <function>
-<name>QL_FIXED_RATE_COUPON_VECTOR</name>
-<codename>qlFixedRateCouponVector</codename>
+<name>qlFixedRateCouponVector</name>
 <desc>construct and return a handle to a fixed rate coupon vector</desc>
 <constructor>true</constructor>
 <qlfunction>FixedRateCouponVector</qlfunction>
@@ -52,8 +51,7 @@
 </function>
 
 <function>
-<name>QL_FLOATING_RATE_COUPON_VECTOR</name>
-<codename>qlFloatingRateCouponVector</codename>
+<name>qlFloatingRateCouponVector</name>
 <desc>construct and return a handle to a floating rate coupon vector</desc>
 <constructor>true</constructor>
 <qlfunction>FloatingRateCouponVector</qlfunction>
@@ -91,8 +89,7 @@
 </function>
 
 <function>
-<name>QL_GET_LEG</name>
-<codename>qlGetLeg</codename>
+<name>qlGetLeg</name>
 <desc>return coupon details</desc>
 <constructor>false</constructor>
 <qlfunction>getLeg</qlfunction>
@@ -118,8 +115,7 @@
 </function>
 
 <function>
-<name>QL_GET_BPS</name>
-<codename>qlGetBPS</codename>
+<name>qlGetBPS</name>
 <desc>basis point sensitivity</desc>
 <constructor>false</constructor>
 <qlfunction>getBPS</qlfunction>

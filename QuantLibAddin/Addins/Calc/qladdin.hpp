@@ -18,11 +18,6 @@
 #ifndef qla_calc_hpp
 #define qla_calc_hpp
 
-#include <com/sun/star/sheet/addin/XQL.hpp>
-#include <com/sun/star/sheet/XAddIn.hpp>
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#include <com/sun/star/lang/XServiceName.hpp>
-#include <com/sun/star/lang/XTypeProvider.hpp>
 #include <Addins/Calc/qldefs.hpp>
 #include <functional>
 #include <map>

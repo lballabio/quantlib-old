@@ -5,10 +5,11 @@ include_HEADERS = \
     config.hpp \
     exception.hpp \
     logger.hpp \
-    objecthandler.hpp \
     object.hpp \
-    objhandlerdefines.hpp \
+    objecthandler.hpp \
+    objecthandlerbase.hpp \
     objhandler.hpp \
+    objhandlerdefines.hpp \
     property.hpp \
     singleton.hpp \
     utilities.hpp
@@ -23,6 +24,6 @@ libObjectHandler_la_SOURCES = \
     exception.cpp  \
     logger.cpp  \
     object.cpp  \
-    objecthandler.cpp  \
+    objecthandlerbase.cpp  \
     utilities.cpp
 

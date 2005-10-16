@@ -7,8 +7,7 @@
 <functions>
 
 <function>
-<name>QL_XIBOR</name>
-<codename>qlXibor</codename>
+<name>qlXibor</name>
 <desc>construct and return a handle to a Xibor Index</desc>
 <constructor>true</constructor>
 <qlfunction>Xibor</qlfunction>

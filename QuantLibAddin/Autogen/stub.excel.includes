@@ -2,5 +2,7 @@
 #include <qla/utilities.hpp>
 #include <qla/typefactory.hpp>
 #include <qla/%s.hpp>
-#include <Addins/Excel/xlutils.hpp>
+#include <xlsdk/xlsdk.hpp>
+#include <oh/objhandler.hpp>
+#include <ohxl/conversions.hpp>
 

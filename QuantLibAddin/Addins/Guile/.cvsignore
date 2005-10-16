@@ -25,3 +25,4 @@ schedule.cpp
 schedule.h
 swap.cpp
 swap.h
+objecthandler.h

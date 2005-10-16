@@ -4,7 +4,8 @@ SUBDIRS = \
     qla \
     Addins/C \
     Addins/Calc \
-    Addins/Excel \
+    Addins/ExcelDynamic \
+    Addins/ExcelStatic \
     Addins/Guile \
     Clients/C \
     Clients/C++ \

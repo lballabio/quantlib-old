@@ -7,8 +7,7 @@
 <functions>
 
 <function>
-<name>QL_BLACK_CONSTANT_VOL</name>
-<codename>qlBlackConstantVol</codename>
+<name>qlBlackConstantVol</name>
 <desc>construct and return a handle to a Black Constant Vol object</desc>
 <constructor>true</constructor>
 <qlfunction>BlackConstantVol</qlfunction>
@@ -40,8 +39,7 @@
 </function>
 
 <function>
-<name>QL_BLACK_VARIANCE_SURFACE</name>
-<codename>qlBlackVarianceSurface</codename>
+<name>qlBlackVarianceSurface</name>
 <desc>construct and return a handle to a Black Variance Surface object</desc>
 <constructor>true</constructor>
 <qlfunction>BlackVarianceSurface</qlfunction>

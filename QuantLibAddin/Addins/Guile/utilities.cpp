@@ -34,67 +34,6 @@ SCM qlVersion(SCM x) {
     }
 }
 
-SCM qlOhVersion(SCM x) {
-    try {
-        std::string ver = ObjHandler::ohVersion();
-        return gh_str02scm(ver.c_str());
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlOhVersion Error: " + std::string(e.what()), 2);
-        return SCM_UNSPECIFIED;
-    }
-}
-
-SCM qlFieldNames(SCM x) {
-    try {
-        std::string handle = GetChop<std::string>::scalar(x);
-        ObjHandler::obj_ptr objectPointer = ObjHandler::retrieveObject(handle);
-        ObjHandler::Properties properties = objectPointer->getProperties();
-        SCM rtn = SCM_EOL;
-        for (std::size_t i=properties.size() ; --i != std::size_t(-1) ; ) {
-            ObjHandler::ObjectProperty property = properties[i];
-            ObjHandler::any_ptr a = property();
-            SCM label = gh_str02scm(property.name().c_str());
-            rtn = gh_cons(label, rtn);
-        }
-        return rtn;
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlFieldNames Error: " + std::string(e.what()), 2);
-        return SCM_UNSPECIFIED;
-    }
-}
-
-SCM qlFieldValue(SCM x) {
-    try {
-        std::string handle = GetChop<std::string>::scalar(x);
-        ObjHandler::obj_ptr objectPointer = ObjHandler::retrieveObject(handle);
-        ObjHandler::Properties properties = objectPointer->getProperties();
-        std::string fieldName = GetChop<std::string>::scalar(x);
-        std::string fieldNameUpper = QuantLib::uppercase(fieldName);
-        for (std::size_t i=properties.size() ; --i != std::size_t(-1) ; ) {
-            ObjHandler::ObjectProperty property = properties[i];
-            ObjHandler::any_ptr a = property();
-            if (property.name().compare(fieldNameUpper) == 0)
-                return anyToPairValue(*property());
-        }
-        return SCM_UNSPECIFIED;
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlValue Error: " + std::string(e.what()), 2);
-        return SCM_UNSPECIFIED;
-    }
-}
-
-SCM qlSetLogfile(SCM x) {
-    try {
-        std::string logFile = GetChop<std::string>::scalar(x);
-        int logLevel = GetChop<int>::scalar(x);
-        ObjHandler::setLogFile(logFile, logLevel);
-        return SCM_UNSPECIFIED;
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLogfile Error: " + std::string(e.what()), 2);
-        return SCM_UNSPECIFIED;
-    }
-}
-
 SCM qlConsole(SCM x) {
     try {
         int enabled = GetChop<int>::scalar(x);
@@ -103,71 +42,6 @@ SCM qlConsole(SCM x) {
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
         ObjHandler::logMessage("qlConsole Error: " + std::string(e.what()), 2);
-        return SCM_UNSPECIFIED;
-    }
-}
-
-SCM qlLogMessage(SCM x) {
-    try {
-        std::string logMessage = GetChop<std::string>::scalar(x);
-        int logLevel = GetChop<int>::scalar(x);
-        ObjHandler::logMessage(logMessage, logLevel);
-        return SCM_UNSPECIFIED;
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLogMessage Error: " + std::string(e.what()), 2);
-        return SCM_UNSPECIFIED;
-    }
-}
-
-SCM qlSetLogLevel(SCM x) {
-    try {
-        long logLevel = GetChop<long>::scalar(x);
-        ObjHandler::setLogLevel(logLevel);
-        return SCM_UNSPECIFIED;
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLogLevel Error: " + std::string(e.what()), 2);
-        return SCM_UNSPECIFIED;
-    }
-}
-
-SCM qlLogObject(SCM x) {
-    try {
-        std::string handle = GetChop<std::string>::scalar(x);
-        ObjHandler::logObject(handle);
-        return SCM_UNSPECIFIED;
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLogObject Error: " + std::string(e.what()), 2);
-        return SCM_UNSPECIFIED;
-    }
-}
-
-SCM qlLogAllObjects(SCM x) {
-    try {
-        ObjHandler::logAllObjects();
-        return SCM_UNSPECIFIED;
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLogAllObjects Error: " + std::string(e.what()), 2);
-        return SCM_UNSPECIFIED;
-    }
-}
-
-SCM qlDeleteObject(SCM x) {
-    try {
-        std::string handle = GetChop<std::string>::scalar(x);
-        ObjHandler::ObjectHandler::instance().deleteObject(handle);
-        return SCM_UNSPECIFIED;
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlDeleteObject Error: " + std::string(e.what()), 2);
-        return SCM_UNSPECIFIED;
-    }
-}
-
-SCM qlDeleteAllObjects(SCM x) {
-    try {
-        ObjHandler::ObjectHandler::instance().deleteAllObjects();
-        return SCM_UNSPECIFIED;
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLogAllObjects Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }

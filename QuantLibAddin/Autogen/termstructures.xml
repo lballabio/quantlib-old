@@ -7,8 +7,7 @@
 <functions>
 
 <function>
-<name>QL_DEPOSIT_RATE_HELPER</name>
-<codename>qlDepositRateHelper</codename>
+<name>qlDepositRateHelper</name>
 <desc>construct and return a handle to a deposit rate-helper object</desc>
 <constructor>true</constructor>
 <qlfunction>DepositRateHelper</qlfunction>
@@ -64,8 +63,7 @@
 </function>
 
 <function>
-<name>QL_FUTURE_RATE_HELPER</name>
-<codename>qlFutureRateHelper</codename>
+<name>qlFutureRateHelper</name>
 <desc>construct and return a handle to a future rate-helper object</desc>
 <constructor>true</constructor>
 <qlfunction>FutureRateHelper</qlfunction>
@@ -121,8 +119,7 @@
 </function>
 
 <function call_type='QL_OBJECT'>
-<name>QL_GET_DF</name>
-<codename>qlGetDf</codename>
+<name>qlGetDf</name>
 <desc>retrieve a discount factor at specified date</desc>
 <constructor>false</constructor>
 <qlfunction>discount</qlfunction>
@@ -160,8 +157,7 @@
 </function>
 
 <function>
-<name>QL_PIECEWISE_FLAT_FORWARD</name>
-<codename>qlPiecewiseFlatForward</codename>
+<name>qlPiecewiseFlatForward</name>
 <desc>construct and return a handle to a piecewise flat forward term structure</desc>
 <constructor>true</constructor>
 <qlfunction>PiecewiseFlatForward</qlfunction>
@@ -199,8 +195,7 @@
 </function>
 
 <function>
-<name>QL_SET_QUOTE</name>
-<codename>qlSetQuote</codename>
+<name>qlSetQuote</name>
 <desc>update quote of existing Rate Helper object</desc>
 <constructor>false</constructor>
 <qlfunction>setQuote</qlfunction>
@@ -226,8 +221,7 @@
 </function>
 
 <function>
-<name>QL_SWAP_RATE_HELPER</name>
-<codename>qlSwapRateHelper</codename>
+<name>qlSwapRateHelper</name>
 <desc>construct and return a handle to a swap rate-helper object</desc>
 <constructor>true</constructor>
 <qlfunction>SwapRateHelper</qlfunction>
@@ -301,8 +295,7 @@
 </function>
 
 <function>
-<name>QL_ZERO_CURVE</name>
-<codename>qlZeroCurve</codename>
+<name>qlZeroCurve</name>
 <desc>construct and return a handle to a ZeroCurve object</desc>
 <constructor>true</constructor>
 <qlfunction>ZeroCurve</qlfunction>

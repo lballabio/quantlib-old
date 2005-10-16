@@ -1,3 +1,4 @@
+- revise exception handling
 
 - copyright notice for oh/property.hpp
 

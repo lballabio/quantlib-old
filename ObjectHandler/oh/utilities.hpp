@@ -39,15 +39,17 @@
 
 namespace ObjHandler {
 
-    std::string ohVersion();
-
-    DLL_API void storeObject(
-            const std::string &handle,
+    DLL_API const std::string storeObject(
+            const std::string &handleStub,
             const ObjHandler::obj_ptr &object);
 
     DLL_API ObjHandler::obj_ptr retrieveObject(
             const std::string &handle);
-
+    //! Return Property vector for given Object.
+    /*! Throws an exception if no Object exists
+        with given handle.
+    */
+    const Properties& queryObject(const std::string &handle);
     /** \name Logging framework
      *  These functions wrap calls to the Logger class
         simplifying the syntax for the client application
@@ -88,11 +90,6 @@ namespace ObjHandler {
     */
     void logAllObjects();
     //@}
-    //! Return Property vector for given Object.
-    /*! Throws an exception if no Object exists
-        with given handle.
-    */
-    const Properties& queryObject(const std::string &handle);
 }
 
 #endif

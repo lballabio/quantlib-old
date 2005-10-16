@@ -36,8 +36,9 @@ CALC_MATRIX     = 'SEQSEQ( %s )'
 CALC_MATRIX_IDL = 'sequence < sequence < %s > >'
 CALC_STRING     = 'STRING'
 CONV_BOOL       = 'static_cast < bool > ( %s )'
-CONV_HANDLE     = 'OUStringToStlString(handle)'
-CONV_STRING     = 'OUStringToStlString(%s)'
+CONV_HANDLE     = 'ouStringToStlString(handle)'
+CONV_STRING     = 'ouStringToStlString(%s)'
+FORMAT_OPTIONAL = 'const %s'
 FORMAT_TENSOR   = 'const SEQSEQ( %s )'
 FORMAT_TENSOR_IDL = 'sequence < sequence < %s > > '
 IDL             = 'QuantLibAddin.idl'
@@ -47,8 +48,8 @@ IDL_HEAD        = 'stub.calc.idlhead'
 INCLUDES        = 'stub.calc.includes'
 MAP             = 'stub.calc.map'
 MAPFILE         = 'funcdef.cpp'
-MAPLINE         = """    %s[ STRFROMANSI( "%s" ) ]\n
-        =  STRFROMANSI( "%s" );\n\n"""
+MAPLINE         = """    %s[ STRFROMANSI( "%s" ) ]
+        =  STRFROMANSI( "%s" );\n"""
 PARMLINE        = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
 ROOT            = common.ADDIN_ROOT + 'Calc/'
 
@@ -57,8 +58,9 @@ ROOT            = common.ADDIN_ROOT + 'Calc/'
 plHeader = params.ParameterDeclare(2, replaceString = CALC_STRING,
     replaceLong = CALC_LONG, derefString = '&', replaceTensorStr = CALC_ANY,
     formatVector = FORMAT_TENSOR, formatMatrix = FORMAT_TENSOR,
-    derefTensor = '&', replaceAny = CALC_ANY, derefAny = '&',
-    prefixString = 'const', prefixAny = 'const', replaceBool = CALC_LONG)
+    derefTensor = '&', replaceAny = CALC_ANY, derefAny = '&', derefOptional = '&',
+    prefixString = 'const', prefixAny = 'const', prefixOptional = 'const',
+    replaceBool = CALC_LONG, replaceOptional = CALC_ANY)
 
 def generateFuncMap(functionGroups):
     'generate help text for function wizard'
@@ -69,26 +71,27 @@ def generateFuncMap(functionGroups):
     fileMap.write(bufCalcMap)
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
+        if not functionGroup.has_key(common.FUNCS): continue
         fileMap.write('    // %s\n\n' % functionGroup[common.DISPLAYNAME])
         for function in functionGroup[common.FUNCS]:
             if not utils.checkFunctionPlatform(function, common.PLATFORM_CALC):
                 continue
             fileMap.write('    // %s\n\n' % function[common.NAME])
             fileMap.write(MAPLINE
-                % ('funcMap', function[common.CODENAME], function[common.NAME]))
+                % ('funcMap', function[common.NAME], function[common.NAME]))
             fileMap.write(MAPLINE
-                % ('funcDesc', function[common.CODENAME], function[common.DESC]))
+                % ('funcDesc', function[common.NAME], function[common.DESC]))
             if function[common.CTOR] == common.TRUE:
                 fileMap.write(PARMLINE
-                    % ('argName', function[common.CODENAME], 'handle'))
+                    % ('argName', function[common.NAME], 'handle'))
                 fileMap.write(PARMLINE
-                    % ('argDesc', function[common.CODENAME], 
+                    % ('argDesc', function[common.NAME], 
                        'handle of newly constructed ' + function[common.QLFUNC] + ' object'))
             for param in function[common.PARAMS]:
                 fileMap.write(PARMLINE
-                    % ('argName', function[common.CODENAME], param[common.NAME]))
+                    % ('argName', function[common.NAME], param[common.NAME]))
                 fileMap.write(PARMLINE
-                    % ('argDesc', function[common.CODENAME], param[common.DESC]))
+                    % ('argDesc', function[common.NAME], param[common.DESC]))
             fileMap.write('\n')
     fileMap.write('}\n\n')
     fileMap.close()
@@ -119,7 +122,7 @@ def generateHeader(fileHeader, function, declararion = True):
         formatVector = CALC_MATRIX, formatMatrix = CALC_MATRIX, 
         replaceLong = CALC_LONG, replaceString = CALC_STRING, 
         replaceBool = CALC_LONG, replaceAny = CALC_ANY)
-    fileHeader.write(prototype % (returnType, function[common.CODENAME]))
+    fileHeader.write(prototype % (returnType, function[common.NAME]))
     if function[common.CTOR] == common.TRUE:
         fileHeader.write('\n        const STRING &handle,')
     paramList = plHeader.generateCode(function[common.PARAMS])
@@ -130,6 +133,7 @@ def generateHeaders(functionGroups):
     'generate source for function prototypes'
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
+        if not functionGroup.has_key(common.FUNCS): continue
         fileName = ROOT + groupName + '.hpp' + common.TEMPFILE
         fileHeader = file(fileName, 'w')
         utils.printHeader(fileHeader)
@@ -153,7 +157,7 @@ def getReturnCall(returnDef):
         else:
             return 'returnValue'
     else:
-        return returnDef[common.TENSOR].capitalize() \
+        return returnDef[common.TENSOR] \
             + returnDef[common.TYPE].capitalize() \
             + 'ToSeqSeq(returnValue)'
 
@@ -161,7 +165,7 @@ def generateMember(fileFunc, function, bufMember, plMember):
     'generate source for given function'
     generateHeader(fileFunc, function, False)
     conversions = utils.generateConversions(function[common.PARAMS], 
-        'SeqSeq', sourceTypeAny = 'calcAny')
+        'seqSeq', sourceTypeOptional = 'any')
     className = function[common.PARAMS][0][common.ATTS][common.CLASS]
     returnType = utils.getReturnType(function[common.RETVAL], 
         replaceAny = 'boost::any', replaceString = 'std::string')
@@ -175,7 +179,7 @@ def generateConstructor(fileFunc, function, bufCtor, plCtor):
     generateHeader(fileFunc, function, False)
     paramList = plCtor.generateCode(function[common.PARAMS])
     conversions = utils.generateConversions(function[common.PARAMS], 
-        sourceTypeOther = 'SeqSeq', sourceTypeAny = 'calcAny')
+        sourceTypeOther = 'seqSeq', sourceTypeOptional = 'any')
     fileFunc.write(bufCtor % (conversions, function[common.QLFUNC], 
         paramList, function[common.NAME]))
 
@@ -183,9 +187,9 @@ def generateFuncSources(functionGroups):
     'generate source for function implementations'
     plCtor = params.ParameterPass(3, convertString = CONV_STRING,
         appendTensor = True, appendScalar = True,
-        convertBool = CONV_BOOL)
+        convertBool = CONV_BOOL, appendOptional = True)
     plMember = params.ParameterPass(3, convertString = CONV_STRING,
-        skipFirst = True, appendTensor = True)
+        skipFirst = True, appendTensor = True, appendOptional = True)
     bufInclude = utils.loadBuffer(INCLUDES)
     bufCtor = utils.loadBuffer(BUF_CTOR)
     bufMember = utils.loadBuffer(BUF_MEMBER)
@@ -217,11 +221,12 @@ def generateIDLSource(functionGroups):
     fileIDL.write(bufIDLHead)
     bufIDLFunc = utils.loadBuffer(IDL_FUNC)
     for groupName in functionGroups.keys():
-        fileIDL.write('                // %s\n\n' % groupName)
         functionGroup = functionGroups[groupName]
+        if not functionGroup.has_key(common.FUNCS): continue
+        fileIDL.write('                // %s\n\n' % groupName)
         plIdl = params.ParameterDeclare(6, prefix = '[in] ', replaceBool = common.LONG,
             formatVector = FORMAT_TENSOR_IDL, formatMatrix = FORMAT_TENSOR_IDL,
-            replaceTensorStr = common.ANY)
+            replaceTensorStr = common.ANY, replaceOptional = common.ANY)
         for function in functionGroup[common.FUNCS]:
             if not utils.checkFunctionPlatform(function, common.PLATFORM_CALC):
                 continue
@@ -236,7 +241,7 @@ def generateIDLSource(functionGroups):
                 formatVector = CALC_MATRIX_IDL, formatMatrix = CALC_MATRIX_IDL, 
                 replaceBool = common.LONG)
             fileIDL.write(bufIDLFunc % (returnTypeIDL, 
-                function[common.CODENAME], handle, paramList))
+                function[common.NAME], handle, paramList))
     bufIDLFoot = utils.loadBuffer(IDL_FOOT)
     fileIDL.write(bufIDLFoot)
     fileIDL.close()

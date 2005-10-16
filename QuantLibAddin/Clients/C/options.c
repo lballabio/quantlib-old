@@ -41,21 +41,21 @@ int main() {
     char *ret = 0;                  // dummy value
     int i;                          // iterator
 
-    OH_SET_LOGFILE("quantlib.log");
-    OH_CONSOLE(1);
-    OH_LOG_MESSAGE("begin options test");
+    ohSetLogfile("quantlib.log");
+    ohConsole(1);
+    ohLogMessage("begin options test");
 
-    if (QL_BLACK_CONSTANT_VOL(
+    if (qlBlackConstantVol(
             "blackconstantvol", 
             settlementDate, 
             volatility, 
             "Actual360",
             ret) != SUCCESS) {
-        OH_LOG_MESSAGE("Error on call to QL_BLACK_CONSTANT_VOL");
+        ohLogMessage("Error on call to qlBlackConstantVol");
         goto fail;
     }
 
-    if (QL_BLACK_SCHOLES_PROCESS(
+    if (qlBlackScholesProcess(
             "stoch1", 
             "blackconstantvol", 
             underlying, 
@@ -64,13 +64,13 @@ int main() {
             riskFreeRate, 
             dividendYield, 
             ret) != SUCCESS) {
-        OH_LOG_MESSAGE("Error on call to QL_BLACK_SCHOLES_PROCESS");
+        ohLogMessage("Error on call to qlBlackScholesProcess");
         goto fail;
     }
 
-    OH_LOG_OBJECT("stoch1");
+    ohLogObject("stoch1");
 
-    if (QL_VANILLA_OPTION(
+    if (qlVanillaOption(
             "opt_van",                      // option handle
             "stoch1",                       // stochastic process handle
             "Put",                          // option type
@@ -82,13 +82,13 @@ int main() {
             "JR",                           // engine type (jarrow rudd)
             timeSteps,                      // time steps
             ret) != SUCCESS) {
-        OH_LOG_MESSAGE("Error on call to QL_VANILLA_OPTION");
+        ohLogMessage("Error on call to qlVanillaOption");
         goto fail;
     }
 
-    OH_LOG_OBJECT("opt_van");
+    ohLogObject("opt_van");
 
-    if (QL_CA_ASIAN_OPTION(
+    if (qlCaAsianOption(
             "opt_asian_cont",               // option handle
             "stoch1",                       // stochastic process handle
             "Geometric",                    // average type
@@ -101,17 +101,17 @@ int main() {
             "ACGAPA",                       // engine type (AnalyticContinuousGeometricAveragePriceAsianEngine)
             timeSteps,                      // time steps
             ret) != SUCCESS) {
-        OH_LOG_MESSAGE("Error on call to QL_CA_ASIAN_OPTION");
+        ohLogMessage("Error on call to qlCaAsianOption");
         goto fail;
     }
 
-    OH_LOG_OBJECT("opt_asian_cont");
+    ohLogObject("opt_asian_cont");
 
     fixingDatesCount = exerciseDate - todaysDate + 1;
     fixingDates = (long *) malloc(sizeof(long) * fixingDatesCount);
     for (i = 0; i < fixingDatesCount; i++)
         fixingDates[i] = todaysDate + i;
-    if (QL_DA_ASIAN_OPTION(
+    if (qlDaAsianOption(
             "opt_asian_disc",               // option handle
             "stoch1",                       // stochastic process handle
             "Geometric",                    // average type
@@ -128,13 +128,13 @@ int main() {
             "ADGAPA",                       // engine type (AnalyticDiscreteGeometricAveragePriceAsianEngine)
             timeSteps,                      // time steps
             ret) != SUCCESS) {
-        OH_LOG_MESSAGE("Error on call to QL_DA_ASIAN_OPTION");
+        ohLogMessage("Error on call to qlDaAsianOption");
         goto fail;
     }
 
-    OH_LOG_OBJECT("opt_asian_disc");
+    ohLogObject("opt_asian_disc");
 
-    if (QL_BARRIER_OPTION(
+    if (qlBarrierOption(
             "opt_barrier",                  // option handle
             "stoch1",                       // stochastic process handle
             "DownIn",                       // barrier type
@@ -149,11 +149,11 @@ int main() {
             "AB",                           // engine type (AnalyticBarrierEngine)
             timeSteps,                      // time steps
             ret) != SUCCESS) {
-        OH_LOG_MESSAGE("Error on call to QL_BARRIER_OPTION");
+        ohLogMessage("Error on call to qlBarrierOption");
         goto fail;
     }
 
-    OH_LOG_OBJECT("opt_barrier");
+    ohLogObject("opt_barrier");
 
     correlations = (double**)malloc(sizeof(double*)*2);
     correlations[0] = (double*)malloc(sizeof(double)*2);
@@ -162,7 +162,7 @@ int main() {
     correlations[0][1] = 0.9;
     correlations[1][0] = 0.9;
     correlations[1][1] = 1.0;
-    if (QL_BASKET_OPTION(
+    if (qlBasketOption(
             "opt_basket",                   // option handle
             2,                              // #/stochastic processes
             stochHandles,                   // array of stoch process handles
@@ -178,13 +178,13 @@ int main() {
             "SE",                           // engine type (StulzEngine)
             timeSteps,                      // time steps
             ret) != SUCCESS) {
-        OH_LOG_MESSAGE("Error on call to QL_BASKET_OPTION");
+        ohLogMessage("Error on call to qlBasketOption");
         goto fail;
     }
 
-    OH_LOG_OBJECT("opt_basket");
+    ohLogObject("opt_basket");
 
-    if (QL_CLIQUET_OPTION(
+    if (qlCliquetOption(
             "opt_cliquet",                  // option handle
             "stoch1",                       // stochastic process handle
             1,                              // #/reset dates
@@ -195,13 +195,13 @@ int main() {
             "AC",                           // engine type (AnalyticCliquetEngine)
             timeSteps,                      // time steps
             ret) != SUCCESS) {
-        OH_LOG_MESSAGE("Error on call to QL_CLIQUET_OPTION");
+        ohLogMessage("Error on call to qlCliquetOption");
         goto fail;
     }
 
-    OH_LOG_OBJECT("opt_cliquet");
+    ohLogObject("opt_cliquet");
 
-    if (QL_DIVIDEND_VANILLA_OPTION(
+    if (qlDividendVanillaOption(
             "opt_divvan",                   // option handle
             "stoch1",                       // stochastic process handle
             2,                              // #/dividend dates
@@ -217,13 +217,13 @@ int main() {
             "ADE",                          // engine type (AnalyticDividendEuropeanEngine)
             timeSteps,                      // time steps
             ret) != SUCCESS) {
-        OH_LOG_MESSAGE("Error on call to QL_DIVIDEND_VANILLA_OPTION");
+        ohLogMessage("Error on call to qlDividendVanillaOption");
         goto fail;
     }
 
-    OH_LOG_OBJECT("opt_divvan");
+    ohLogObject("opt_divvan");
 
-    if (QL_FORWARD_VANILLA_OPTION(
+    if (qlForwardVanillaOption(
             "opt_fwdvan",                   // option handle
             "stoch1",                       // stochastic process handle
             12.,                            // moneyness
@@ -237,18 +237,18 @@ int main() {
             "FE",                           // engine type (ForwardEngine)
             timeSteps,                      // time steps
             ret) != SUCCESS) {
-        OH_LOG_MESSAGE("Error on call to QL_FORWARD_VANILLA_OPTION");
+        ohLogMessage("Error on call to qlForwardVanillaOption");
         goto fail;
     }
 
-    OH_LOG_OBJECT("opt_fwdvan");
+    ohLogObject("opt_fwdvan");
 
     free(fixingDates);
     for (i=0;i<2;i++)
         free(correlations[i]);
     free(correlations);
 
-    OH_LOG_MESSAGE("end options test");
+    ohLogMessage("end options test");
 
     return 0;
 

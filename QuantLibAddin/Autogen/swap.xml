@@ -7,8 +7,7 @@
 <functions>
 
 <function>
-<name>QL_SWAP</name>
-<codename>qlSwap</codename>
+<name>qlSwap</name>
 <desc>construct and return a handle to a swap object</desc>
 <constructor>true</constructor>
 <qlfunction>Swap</qlfunction>

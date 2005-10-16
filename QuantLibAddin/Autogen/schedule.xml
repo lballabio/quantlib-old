@@ -7,8 +7,7 @@
 <functions>
 
 <function>
-<name>QL_SCHEDULE</name>
-<codename>qlSchedule</codename>
+<name>qlSchedule</name>
 <desc>construct and return a handle to a schedule object</desc>
 <constructor>true</constructor>
 <qlfunction>Schedule</qlfunction>
@@ -43,13 +42,13 @@
         <tensorrank>scalar</tensorrank>
         <desc>business day convention</desc>
     </param>
-    <param>
+    <param default='0'>
         <name>startFromEnd</name>
         <type>bool</type>
         <tensorrank>scalar</tensorrank>
         <desc>start from end</desc>
     </param>
-    <param>
+    <param default='0'>
         <name>longFinal</name>
         <type>bool</type>
         <tensorrank>scalar</tensorrank>

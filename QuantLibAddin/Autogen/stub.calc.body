@@ -1,9 +1,0 @@
-    try {
-%s%s        %s returnValue = %s(%s);
-        return %s;
-    } catch (const std::exception &e) {
-        OH_LOG_MESSAGE(std::string("ERROR: %s: ") + e.what(), 2);
-        THROW_RTE;
-    }
-}
-

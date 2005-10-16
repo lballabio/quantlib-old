@@ -99,8 +99,10 @@ def generateOverviewDoc(functionDefs):
     displayToGroup = {}
     listDisplay = []
     for groupName in functionDefs.keys():
-        displayToGroup[functionDefs[groupName][common.DISPLAYNAME]] = groupName
-        listDisplay.append(functionDefs[groupName][common.DISPLAYNAME])
+        functionGroup = functionDefs[groupName]
+        if not functionGroup.has_key(common.FUNCS): continue
+        displayToGroup[functionGroup[common.DISPLAYNAME]] = groupName
+        listDisplay.append(functionGroup[common.DISPLAYNAME])
     listDisplay.sort()
     for displayKey in listDisplay:
         fileDoc.write('    \\ref %s\\n\n' % displayToGroup[displayKey])
@@ -128,6 +130,7 @@ def generateDocs(functionDefs):
         formatMatrix = 'vector < vector < %s > >')
     for groupName in functionDefs.keys():
         functionGroup = functionDefs[groupName]
+        if not functionGroup.has_key(common.FUNCS): continue
         fileName = ROOT + groupName + '.docs' + common.TEMPFILE
         fileDoc = file(fileName, 'w')
         utils.printHeader(fileDoc)

@@ -7,8 +7,7 @@
 <functions>
 
 <function>
-<name>QL_BLACK_SCHOLES_PROCESS</name>
-<codename>qlBlackScholesProcess</codename>
+<name>qlBlackScholesProcess</name>
 <desc>construct and return a handle to a Black Scholes Process object</desc>
 <constructor>true</constructor>
 <qlfunction>BlackScholesProcess</qlfunction>

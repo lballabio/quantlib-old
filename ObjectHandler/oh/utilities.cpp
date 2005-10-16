@@ -25,19 +25,26 @@
 
 namespace ObjHandler {
 
-    std::string ohVersion() {
-        return OBJHANDLER_VERSION;
-    }
-
-    DLL_API void storeObject(
+    DLL_API const std::string storeObject(
             const std::string &handle,
             const obj_ptr &object) {
-        ObjectHandler::instance().storeObject(handle, object);
+        const std::string ret = 
+            ObjectHandler::instance().storeObject(handle, object);
+        return ret;
     }
 
     DLL_API ObjHandler::obj_ptr retrieveObject(
             const std::string &handle) {
         return ObjectHandler::instance().retrieveObject(handle);
+    }
+
+    const Properties& queryObject(
+            const std::string &handle) {
+        boost::shared_ptr<Object> object =
+                ObjectHandler::instance().retrieveObject(handle);
+        if (!object)
+                throw Exception("error retrieving object " + handle);
+        return object->getProperties();
     }
 
     void setLogFile(
@@ -79,15 +86,6 @@ namespace ObjHandler {
         std::ostringstream msg;
         ObjectHandler::instance().dump(msg);
         Logger::instance().logMessage(msg.str());
-    }
-
-    const Properties& queryObject(
-            const std::string &handle) {
-        boost::shared_ptr<Object> object =
-                ObjectHandler::instance().retrieveObject(handle);
-        if (!object)
-                throw Exception("error retrieving object " + handle);
-        return object->getProperties();
     }
 
 }

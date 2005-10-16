@@ -57,11 +57,16 @@ AC_ARG_ENABLE([addin-calc],
                              [build Calc addin [[default=no]]]),
               [qla_build_calc=$enableval],
               [qla_build_calc=omitted])
-AC_ARG_ENABLE([addin-excel],
-              AC_HELP_STRING([--enable-addin-excel],
-                             [generate source for Excel addin [[default=no]]]),
-              [qla_build_excel=$enableval],
-              [qla_build_excel=omitted])
+AC_ARG_ENABLE([addin-excel-dynamic],
+              AC_HELP_STRING([--enable-addin-excel-dynamic],
+                             [generate source for Excel dynamic addin [[default=no]]]),
+              [qla_build_excel_dynamic=$enableval],
+              [qla_build_excel_dynamic=omitted])
+AC_ARG_ENABLE([addin-excel-static],
+              AC_HELP_STRING([--enable-addin-excel-static],
+                             [generate source for Excel static addin [[default=no]]]),
+              [qla_build_excel_static=$enableval],
+              [qla_build_excel_static=omitted])
 AC_ARG_ENABLE([addin-guile],
               AC_HELP_STRING([--enable-addin-guile],
                              [build Guile addin [[default=no]]]),
@@ -75,8 +80,10 @@ AM_CONDITIONAL(BUILD_C, [test "$qla_build_c" = "omitted" \
     && test "$qla_build_all" = "yes" || test "$qla_build_c" = "yes"])
 AM_CONDITIONAL(BUILD_CALC, [test "$qla_build_calc" = "omitted" \
     && test "$qla_build_all" = "yes" || test "$qla_build_calc" = "yes"])
-AM_CONDITIONAL(BUILD_EXCEL, [test "$qla_build_excel" = "omitted" \
-    && test "$qla_build_all" = "yes" || test "$qla_build_excel" = "yes"])
+AM_CONDITIONAL(BUILD_EXCEL_DYNAMIC, [test "$qla_build_excel_dynamic" = "omitted" \
+    && test "$qla_build_all" = "yes" || test "$qla_build_excel_dynamic" = "yes"])
+AM_CONDITIONAL(BUILD_EXCEL_STATIC, [test "$qla_build_excel_static" = "omitted" \
+    && test "$qla_build_all" = "yes" || test "$qla_build_excel_static" = "yes"])
 AM_CONDITIONAL(BUILD_GUILE, [test "$qla_build_guile" = "omitted" \
     && test "$qla_build_all" = "yes" || test "$qla_build_guile" = "yes"])
 
@@ -87,7 +94,8 @@ AC_CONFIG_FILES([
     qla/Makefile
     Addins/C/Makefile
     Addins/Calc/Makefile
-    Addins/Excel/Makefile
+    Addins/ExcelDynamic/Makefile
+    Addins/ExcelStatic/Makefile
     Addins/Guile/Makefile
     Clients/C/Makefile
     Clients/C++/Makefile

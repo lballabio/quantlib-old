@@ -1,55 +1,59 @@
-#include <windows.h>
-#define bool boolean
-#include <xlcall.h>
-#undef bool
-#include <framewrk.hpp>
-#include <fstream>
+
+/*
+ Copyright (C) 2005 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
 #include <oh/objhandler.hpp>
 #include <objectfoo.hpp>
+#include <xlsdk/xlsdk.hpp>
+#include <ohxl/conversions.hpp>
 
 using namespace std;
 using namespace ObjHandler;
 
-#define DLLEXPORT extern "C" __declspec(dllexport)
-#define XL_MAX_STR_LEN 255
-
-// suppress VC8 'strncpy deprecated' warning
-#if defined BOOST_MSVC
-#pragma warning(disable : 4996)
-#endif
-
 DLLEXPORT int xlAutoOpen() {
+
     static XLOPER xDll;
     Excel(xlGetName, &xDll, 0);
 
     Excel(xlfRegister, 0, 7, &xDll,
-        TempStrNoSize("\x07""makeFoo"),          // function code name
-        TempStrNoSize("\x04""CCCN"),             // parameter codes
-        TempStrNoSize("\x10""EXAMPLE_MAKE_FOO"), // function display name
-        TempStrNoSize("\x0A""handle,s,i"),       // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),                // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
-        TempStrNoSize("\x07""Example"));         // function category
+        TempStrNoSize("\x07""makeFoo"),         // function code name
+        TempStrNoSize("\x05""CCCN#"),           // parameter codes
+        TempStrNoSize("\x07""makeFoo"),         // function display name
+        TempStrNoSize("\x0A""handle,s,i"),      // comma-delimited list of parameters
+        TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+        TempStrNoSize("\x07""Example"));        // function category
 
     Excel(xlfRegister, 0, 7, &xDll,
-        TempStrNoSize("\x09""updateFoo"),        // function code name
-        TempStrNoSize("\x04""LCCN"),             // parameter codes
-        TempStrNoSize("\x12""EXAMPLE_UPDATE_FOO"),// function display name
-        TempStrNoSize("\x0A""handle,s,i"),       // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),                // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
-        TempStrNoSize("\x07""Example"));         // function category
+        TempStrNoSize("\x09""updateFoo"),       // function code name
+        TempStrNoSize("\x04""LCCN"),            // parameter codes
+        TempStrNoSize("\x09""updateFoo"),       // function display name
+        TempStrNoSize("\x0A""handle,s,i"),      // comma-delimited list of parameters
+        TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+        TempStrNoSize("\x07""Example"));        // function category
 
     Excel(xlFree, 0, 1, &xDll);
     return 1;
 }
 
-DLLEXPORT char* makeFoo(char *handle, char *s, long *i) {
+DLLEXPORT char* makeFoo(char *handleStub, char *s, long *i) {
     try {
         obj_ptr objectPointer(new ObjectFoo(s, *i));
-        storeObject(handle, objectPointer);
+        const std::string handle = storeObject(handleStub, objectPointer);
         static char ret[XL_MAX_STR_LEN];
-        int len = __min(XL_MAX_STR_LEN - 1, strlen(handle));
-        strncpy(ret, handle, len);
-        ret[len] = 0;
+        ObjHandler::stringToChar(ret, handle);
         return ret;
     } catch (const std::exception &e) {
         logMessage(std::string("Error: EXAMPLE_MAKE_FOO: ") + e.what(), 2);
@@ -67,3 +71,4 @@ DLLEXPORT short int *updateFoo(char *handle, char *s, long *i) {
         return 0;
     }
 }
+

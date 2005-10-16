@@ -7,8 +7,7 @@
 <functions>
 
 <function>
-<name>QL_BARRIER_OPTION</name>
-<codename>qlBarrierOption</codename>
+<name>qlBarrierOption</name>
 <desc>construct and return a handle to a Barrier Option object</desc>
 <constructor>true</constructor>
 <qlfunction>BarrierOption</qlfunction>
@@ -94,8 +93,7 @@
 </function>
 
 <function>
-<name>QL_BASKET_OPTION</name>
-<codename>qlBasketOption</codename>
+<name>qlBasketOption</name>
 <desc>construct and return a handle to a Basket Option object</desc>
 <constructor>true</constructor>
 <qlfunction>BasketOption</qlfunction>
@@ -169,8 +167,7 @@
 </function>
 
 <function>
-<name>QL_CA_ASIAN_OPTION</name>
-<codename>qlCAAsianOption</codename>
+<name>qlCaAsianOption</name>
 <desc>construct and return a handle to a Continuous Averaging Asian Option object</desc>
 <constructor>true</constructor>
 <qlfunction>ContinuousAveragingAsianOption</qlfunction>
@@ -244,8 +241,7 @@
 </function>
 
 <function>
-<name>QL_CLIQUET_OPTION</name>
-<codename>qlCliquetOption</codename>
+<name>qlCliquetOption</name>
 <desc>construct and return a handle to a Cliquet Option object</desc>
 <constructor>true</constructor>
 <qlfunction>CliquetOption</qlfunction>
@@ -301,8 +297,7 @@
 </function>
 
 <function>
-<name>QL_DA_ASIAN_OPTION</name>
-<codename>qlDAAsianOption</codename>
+<name>qlDaAsianOption</name>
 <desc>construct and return a handle to a Discrete Averaging Asian Option object</desc>
 <constructor>true</constructor>
 <qlfunction>DiscreteAveragingAsianOption</qlfunction>
@@ -394,8 +389,7 @@
 </function>
 
 <function>
-<name>QL_DIVIDEND_VANILLA_OPTION</name>
-<codename>qlDividendVanillaOption</codename>
+<name>qlDividendVanillaOption</name>
 <desc>construct and return a handle to a Dividend Vanilla Option object</desc>
 <constructor>true</constructor>
 <qlfunction>DividendVanillaOption</qlfunction>
@@ -475,8 +469,7 @@
 </function>
 
 <function>
-<name>QL_FORWARD_VANILLA_OPTION</name>
-<codename>qlForwardVanillaOption</codename>
+<name>qlForwardVanillaOption</name>
 <desc>construct and return a handle to a Forward Vanilla Option object</desc>
 <constructor>true</constructor>
 <qlfunction>ForwardVanillaOption</qlfunction>
@@ -556,8 +549,7 @@
 </function>
 
 <function>
-<name>QL_OPTION_SETENGINE</name>
-<codename>qlOptionSetEngine</codename>
+<name>qlOptionSetEngine</name>
 <desc>change the pricing engine of an existing Option object</desc>
 <constructor>false</constructor>
 <qlfunction>setEngine</qlfunction>
@@ -589,8 +581,7 @@
 </function>
 
 <function>
-<name>QL_VANILLA_OPTION</name>
-<codename>qlVanillaOption</codename>
+<name>qlVanillaOption</name>
 <desc>construct and return a handle to a Vanilla Option object</desc>
 <constructor>true</constructor>
 <qlfunction>VanillaOption</qlfunction>

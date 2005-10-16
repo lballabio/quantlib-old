@@ -64,13 +64,18 @@ noinst_HEADERS = \
     autogen.hpp \
     calcutils.hpp \
     capfloor.hpp \
+    couponvectors.hpp \
     instruments.hpp \
+    interpolation.hpp \
+    objecthandler.hpp \
     options.hpp \
     processes.hpp \
     qladdin.hpp \
     qldefs.hpp \
+    schedule.hpp \
     shortratemodels.hpp \
     simpleswap.hpp \
+    swap.hpp \
     termstructures.hpp \
     utilities.hpp \
     volatilities.hpp \
@@ -80,13 +85,18 @@ endif
 libQuantLibAddinCalc_la_SOURCES = \
     calcutils.cpp \
     capfloor.cpp \
+    couponvectors.cpp \
     funcdef.cpp \
     instruments.cpp \
+    interpolation.cpp \
+    objecthandler.cpp \
     options.cpp \
     processes.cpp \
     qladdin.cpp \
+    schedule.cpp \
     shortratemodels.cpp \
     simpleswap.cpp \
+    swap.cpp \
     termstructures.cpp \
     utilities.cpp \
     volatilities.cpp \

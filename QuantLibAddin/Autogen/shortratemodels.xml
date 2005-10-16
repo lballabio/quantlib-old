@@ -7,8 +7,7 @@
 <functions>
 
 <function>
-<name>QL_HULLWHITE</name>
-<codename>qlHullWhite</codename>
+<name>qlHullWhite</name>
 <desc>construct and return a handle to a Hull-White short-rate model object</desc>
 <constructor>true</constructor>
 <qlfunction>HullWhite</qlfunction>
@@ -40,8 +39,7 @@
 </function>
 
 <function>
-<name>QL_VASICEK</name>
-<codename>qlVasicek</codename>
+<name>qlVasicek</name>
 <desc>construct and return a Vasicek short-rate model object</desc>
 <constructor>true</constructor>
 <qlfunction>Vasicek</qlfunction>

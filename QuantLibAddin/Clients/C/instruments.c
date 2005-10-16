@@ -34,11 +34,11 @@ int main() {
     char *calendarID           = "Germany"; // calendar
     char *ret = 0;                          // dummy value
 
-    OH_SET_LOGFILE("quantlib.log");
-    OH_CONSOLE(1);
-    OH_LOG_MESSAGE("begin options test");
+    ohSetLogfile("quantlib.log");
+    ohConsole(1);
+    ohLogMessage("begin options test");
 
-    if (QL_FIXED_COUPON_BOND(
+    if (qlFixedCouponBond(
             "bond1", 
             issueDate, 
             datedDate,
@@ -57,13 +57,13 @@ int main() {
             1,                      // longFinal
             "",                     // discCurveId
             ret) != SUCCESS) {
-        OH_LOG_MESSAGE("Error on call to QL_FIXED_COUPON_BOND");
+        ohLogMessage("Error on call to qlFixedCouponBond");
         goto fail;
     }
 
-    OH_LOG_OBJECT("bond1");
+    ohLogObject("bond1");
 
-    OH_LOG_MESSAGE("end instruments test");
+    ohLogMessage("end instruments test");
 
     return 0;
 

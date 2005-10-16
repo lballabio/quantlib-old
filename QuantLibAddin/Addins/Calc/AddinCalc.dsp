@@ -79,6 +79,10 @@ SOURCE=.\interpolation.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\objecthandler.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\options.cpp
 # End Source File
 # Begin Source File
@@ -152,6 +156,10 @@ SOURCE=.\instruments.hpp
 # Begin Source File
 
 SOURCE=.\interpolation.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\objecthandler.hpp
 # End Source File
 # Begin Source File
 

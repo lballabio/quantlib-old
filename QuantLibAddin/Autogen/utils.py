@@ -131,7 +131,7 @@ def generateConversions(
         sourceTypeOther, 
         sourceTypeNum = '',
         sourceTypeOptional = '',
-        sourceTypeAny = ''):
+        prefix = ''):
     'generate code to convert arrays to vectors/matrices'
     ret = ''
     indent = 8 * ' ';
@@ -167,9 +167,6 @@ def generateConversions(
         and (param[common.TYPE] == common.LONG
         or   param[common.TYPE] == common.DOUBLE):
             sourceType = sourceTypeNum
-        elif sourceTypeAny \
-        and  param[common.TYPE] == common.ANY:
-            sourceAny = sourceTypeAny
         else:
             sourceType = sourceTypeOther
 
@@ -182,7 +179,7 @@ def generateConversions(
         tensor = param[common.TENSOR].capitalize()
 
         ret += indent + targetType + ' ' + param[common.NAME] + tensor + ' = ' + '\n' \
-            + bigIndent + sourceType + 'To' + tensor + suffix + '(' + param[common.NAME] + defaultValue + ');\n'
+            + bigIndent + prefix + sourceType + 'To' + tensor + suffix + '(' + param[common.NAME] + defaultValue + ');\n'
 
     return ret
 

@@ -19,36 +19,55 @@
 #define qla_calc_calcutils_hpp
 
 ANY boostAnyToCalcAny(const boost::any &a);
-boost::any calcAnyToBoostAny(const ANY &a);
-SEQSEQ( ANY ) propertyVectorToSeqSeq(ObjHandler::Properties properties, const STRING &handle);
-std::string OUStringToStlString(const STRING& s);
+SEQSEQ( ANY ) propertyVectorToSeqSeq(
+    ObjHandler::Properties properties, 
+    const STRING &handle);
+std::string ouStringToStlString(const STRING& s);
 STRING stlStringToOuString(const std::string &s);
-ANY stringToANY(const std::string &s);
-std::string calcAnyToStlString(const ANY& s);
+ANY stlStringToCalcAny(const std::string &s);
+SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a);
 
-std::vector < long >SeqSeqToVectorLong(const SEQSEQ( sal_Int32 )& ss);
-std::vector < double >SeqSeqToVectorDouble(const SEQSEQ( double )& ss);
-std::vector < bool >SeqSeqToVectorBool(const SEQSEQ( sal_Int32 )& ss);
-std::vector < std::string >SeqSeqToVectorString(const SEQSEQ( ANY )& ss);
-std::vector < boost::any >SeqSeqToVectorAny(const SEQSEQ( ANY )& ss);
+std::vector < long > seqSeqToVectorLong(const SEQSEQ( sal_Int32 )& ss);
+std::vector < double > seqSeqToVectorDouble(const SEQSEQ( double )& ss);
+std::vector < bool > seqSeqToVectorBool(const SEQSEQ( sal_Int32 )& ss);
+std::vector < std::string > seqSeqToVectorString(const SEQSEQ( ANY )& ss);
+std::vector < boost::any > seqSeqToVectorAny(const SEQSEQ( ANY )& ss);
 
-std::vector < std::vector < long > >SeqSeqToMatrixLong(const SEQSEQ( sal_Int32 )& ss);
-std::vector < std::vector < double > >SeqSeqToMatrixDouble(const SEQSEQ( double )& ss);
-std::vector < std::vector < bool > >SeqSeqToMatrixBool(const SEQSEQ( sal_Int32 )& ss);
-std::vector < std::vector < std::string > >SeqSeqToMatrixString(const SEQSEQ( ANY )& ss);
-std::vector < std::vector < boost::any > >SeqSeqToMatrixAny(const SEQSEQ( ANY )& ss);
+std::vector < std::vector < long > > seqSeqToMatrixLong(const SEQSEQ( sal_Int32 )& ss);
+std::vector < std::vector < double > > seqSeqToMatrixDouble(const SEQSEQ( double )& ss);
+std::vector < std::vector < bool > > seqSeqToMatrixBool(const SEQSEQ( sal_Int32 )& ss);
+std::vector < std::vector < std::string > > seqSeqToMatrixString(const SEQSEQ( ANY )& ss);
+std::vector < std::vector < boost::any > > seqSeqToMatrixAny(const SEQSEQ( ANY )& ss);
 
-SEQSEQ( sal_Int32 ) VectorLongToSeqSeq(const std::vector < long > &v);
-SEQSEQ( double ) VectorDoubleToSeqSeq(const std::vector < double > &v);
-SEQSEQ( sal_Int32 ) VectorBoolToSeqSeq(const std::vector < bool > &v);
-SEQSEQ( STRING ) VectorStringToSeqSeq(const std::vector < std::string > &v);
-SEQSEQ( ANY ) VectorAnyToSeqSeq(const std::vector < boost::any > &v);
+SEQSEQ( sal_Int32 ) vectorLongToSeqSeq(const std::vector < long > &v);
+SEQSEQ( double ) vectorDoubleToSeqSeq(const std::vector < double > &v);
+SEQSEQ( sal_Int32 ) vectorBoolToSeqSeq(const std::vector < bool > &v);
+SEQSEQ( STRING ) vectorStringToSeqSeq(const std::vector < std::string > &v);
+SEQSEQ( ANY ) vectorAnyToSeqSeq(const std::vector < boost::any > &v);
 
-SEQSEQ( sal_Int32 ) MatrixLongToSeqSeq(const std::vector < std::vector < long > >&v);
-SEQSEQ( double ) MatrixDoubleToSeqSeq(const std::vector < std::vector < double > >&v);
-SEQSEQ( sal_Int32 ) MatrixBoolToSeqSeq(const std::vector < std::vector < bool > >&v);
-SEQSEQ( STRING ) MatrixStringToSeqSeq(const std::vector < std::vector < std::string > >&v);
-SEQSEQ( ANY ) MatrixAnyToSeqSeq(const std::vector < std::vector < boost::any > >&v);
+SEQSEQ( sal_Int32 ) matrixLongToSeqSeq(const std::vector < std::vector < long > >&v);
+SEQSEQ( double ) matrixDoubleToSeqSeq(const std::vector < std::vector < double > >&v);
+SEQSEQ( sal_Int32 ) matrixBoolToSeqSeq(const std::vector < std::vector < bool > >&v);
+SEQSEQ( STRING ) matrixStringToSeqSeq(const std::vector < std::vector < std::string > >&v);
+SEQSEQ( ANY ) matrixAnyToSeqSeq(const std::vector < std::vector < boost::any > >&v);
+
+long anyToScalarLong(const ANY &a, const long &defaultValue = 0);
+double anyToScalarDouble(const ANY &a, const double &defaultValue = 0);
+bool anyToScalarBool(const ANY &a, const bool &defaultValue = false);
+std::string anyToScalarString(const ANY &s, const std::string &defaultValue = "");
+boost::any anyToScalarAny(const ANY &a);
+
+std::vector < long > anyToVectorLong(const ANY &a);
+std::vector < double > anyToVectorDouble(const ANY &a);
+std::vector < bool > anyToVectorBool(const ANY &a);
+std::vector < std::string > anyToVectorString(const ANY& s);
+std::vector < boost::any > anyToVectorAny(const ANY &a);
+
+std::vector < std::vector < long > > anyToMatrixLong(const ANY &a);
+std::vector < std::vector < double > > anyToMatrixDouble(const ANY &a);
+std::vector < std::vector < bool > > anyToMatrixBool(const ANY &a);
+std::vector < std::vector < std::string > > anyToMatrixString(const ANY& s);
+std::vector < std::vector < boost::any > > anyToMatrixAny(const ANY &a);
 
 #endif
 

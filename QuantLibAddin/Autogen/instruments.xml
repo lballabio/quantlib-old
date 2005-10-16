@@ -8,8 +8,7 @@
 <functions>
 
 <function call_type='QL_OBJECT'>
-<name>QL_BOND_ACCRUED</name>
-<codename>qlAccrued</codename>
+<name>qlBondAccrued</name>
 <desc>Accrued: If no settlement is given the default bond settlement is used for calculation.</desc>
 <constructor>false</constructor>
 <qlfunction>accruedAmount</qlfunction>
@@ -35,8 +34,7 @@
 </function>
 
 <function call_type='QL_OBJECT'>
-<name>QL_BOND_CLEAN_PRICE</name>
-<codename>qlCleanPrice</codename>
+<name>qlBondCleanPrice</name>
 <desc>If no settlement is given the default bond settlement is used for calculation.</desc>
 <constructor>false</constructor>
 <qlfunction>cleanPrice</qlfunction>
@@ -74,8 +72,7 @@
 </function>
 
 <function call_type='QL_OBJECT'>
-<name>QL_BOND_DIRTY_PRICE</name>
-<codename>qlDirtyPrice</codename>
+<name>qlBondDirtyPrice</name>
 <desc>dirty price: If no settlement is given the default bond settlement is used for calculation.</desc>
 <constructor>false</constructor>
 <qlfunction>dirtyPrice</qlfunction>
@@ -113,8 +110,7 @@
 </function>
 
 <function call_type='QL_OBJECT'>
-<name>QL_BOND_TH_CLEAN_PRICE</name>
-<codename>qlThCleanPrice</codename>
+<name>qlBondThCleanPrice</name>
 <desc>theoretical clean price: The default bond settlement is used for calculation.</desc>
 <constructor>false</constructor>
 <qlfunction>cleanPrice</qlfunction>
@@ -140,8 +136,7 @@
 </function>
 
 <function call_type='QL_OBJECT'>
-<name>QL_BOND_TH_DIRTY_PRICE</name>
-<codename>qlThDirtyPrice</codename>
+<name>qlBondThDirtyPrice</name>
 <desc>theoretical dirty price: The default bond settlement is used for calculation.</desc>
 <constructor>false</constructor>
 <qlfunction>dirtyPrice</qlfunction>
@@ -167,8 +162,7 @@
 </function>
 
 <function call_type='QL_OBJECT'>
-<name>QL_BOND_TH_YIELD</name>
-<codename>qlThBondYield</codename>
+<name>qlBondThYield</name>
 <desc>theoretical bond yield: The default bond settlement and theoretical price are used for calculation.</desc>
 <constructor>false</constructor>
 <qlfunction>yield</qlfunction>
@@ -200,8 +194,7 @@
 </function>
 
 <function call_type='QL_OBJECT'>
-<name>QL_BOND_YIELD</name>
-<codename>qlYield</codename>
+<name>qlBondYield</name>
 <desc>Yield: If no settlement is given the default bond settlement is used for calculation.</desc>
 <constructor>false</constructor>
 <qlfunction>yield</qlfunction>
@@ -239,8 +232,7 @@
 </function>
 
 <function>
-<name>QL_FIXED_COUPON_BOND</name>
-<codename>qlFixedCouponBond</codename>
+<name>qlFixedCouponBond</name>
 <desc>construct and return a handle to a Fixed Coupon Bond object</desc>
 <constructor>true</constructor>
 <qlfunction>FixedCouponBond</qlfunction>
@@ -323,7 +315,7 @@
         <tensorrank>scalar</tensorrank>
         <desc>long first/last period</desc>
     </param>
-    <param class='YieldTermStructure'>
+    <param class='YieldTermStructure' default='""'>
         <name>DiscountCurve</name>
         <type>string</type>
         <tensorrank>scalar</tensorrank>
@@ -338,8 +330,7 @@
 </function>
 
 <function>
-<name>QL_ZERO_COUPON_BOND</name>
-<codename>qlZeroCouponBond</codename>
+<name>qlZeroCouponBond</name>
 <desc>construct and return a handle to a ZeroCouponBond object</desc>
 <constructor>true</constructor>
 <qlfunction>ZeroCouponBond</qlfunction>
@@ -401,8 +392,7 @@
 </function>
 
 <function call_type='QL_OBJECT'>
-<name>QL_NPV</name>
-<codename>qlNPV</codename>
+<name>qlNPV</name>
 <desc>NPV</desc>
 <constructor>false</constructor>
 <qlfunction>NPV</qlfunction>

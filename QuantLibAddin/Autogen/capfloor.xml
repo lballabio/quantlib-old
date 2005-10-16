@@ -7,8 +7,7 @@
 <functions>
 
 <function>
-<name>QL_ANALYTIC_CAPFLOOR_ENGINE</name>
-<codename>qlAnalyticCapFloorEngine</codename>
+<name>qlAnalyticCapFloorEngine</name>
 <desc>construct and return a pricing engine for cap/foors</desc>
 <constructor>true</constructor>
 <qlfunction>AnalyticCapFloorEngine</qlfunction>
@@ -28,8 +27,7 @@
 </function>
 
 <function>
-<name>QL_CAPFLOOR</name>
-<codename>qlCapFloor</codename>
+<name>qlCapFloor</name>
 <desc>construct and return a handle to a cap/floor object</desc>
 <constructor>true</constructor>
 <qlfunction>CapFloor</qlfunction>

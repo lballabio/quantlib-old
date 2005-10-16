@@ -39,7 +39,7 @@ int main() {
 
     try {
         logMessage(qlVersion());
-        logMessage(ohVersion());
+        logMessage(OBJHANDLER_VERSION);
 
         double dividendYield = 0.00;
         double riskFreeRate = 0.06;

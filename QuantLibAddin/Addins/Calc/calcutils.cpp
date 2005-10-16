@@ -15,12 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <qla/qladdin.hpp>
-#include <Addins/Calc/qladdin.hpp>
+#include <oh/objhandler.hpp>
+#include <Addins/Calc/qldefs.hpp>
 #include <Addins/Calc/calcutils.hpp>
-
-using namespace ObjHandler;
-using namespace QuantLibAddin;
+#include <sstream>
 
 ANY boostAnyToCalcAny(const boost::any &a) {
     if (a.type() == typeid(int)) {
@@ -40,7 +38,7 @@ ANY boostAnyToCalcAny(const boost::any &a) {
         return CSS::uno::makeAny(b2);
     } else if (a.type() == typeid(std::string)) {
         std::string s = boost::any_cast<std::string>(a);
-        return stringToANY(s);
+        return stlStringToCalcAny(s);
     } else if (a.type() == typeid(boost::any)) {
 //        boost::any a2 = boost::any_cast< boost::any >(a);
 //        return boostAnyToCalcAny(a2);
@@ -61,68 +59,41 @@ ANY boostAnyToCalcAny(const boost::any &a) {
         return CSS::uno::makeAny(STRFROMASCII("<MATRIX>"));
     } else
         return CSS::uno::makeAny(STRFROMASCII("unknown type"));
-//        throw Exception("boostAnyToCalcAny: unable to interpret value");
+//        throw ObjHandler::Exception("boostAnyToCalcAny: unable to interpret value");
 }
 
-boost::any calcAnyToBoostAny(const ANY &a) {
-    STRING t = a.getValueTypeName();
-    if (t.equalsIgnoreAsciiCase(STRFROMANSI("LONG"))) {
-        long l;
-        a >>= l;
-        return boost::any(l);
-    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
-        double d;
-        a >>= d;
-        return boost::any(d);
-    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("STRING"))) {
-        STRING s;
-        a >>= s;
-        return boost::any(OUStringToStlString(s));
-    } else {
-        std::ostringstream msg;
-        msg << "unrecognized type: " << OUStringToStlString(t);
-        return (boost::any(msg.str()));
-    }
-}
-
-ANY stringToANY(const std::string &s) {
-    STRING s2 = STRFROMASCII( s.c_str() );
-    return CSS::uno::makeAny(s2);
-}
-
-SEQSEQ( ANY ) propertyVectorToSeqSeq(Properties properties, const STRING &handle) {
+SEQSEQ( ANY ) propertyVectorToSeqSeq(ObjHandler::Properties properties, const STRING &handle) {
     SEQSEQ( ANY ) rows(1);
     SEQ( ANY ) row(properties.size() + 1);
     row[0] = CSS::uno::makeAny(handle);
     for (unsigned int i=0; i<properties.size(); i++) {
-        ObjectProperty property = properties[i];
-        any_ptr a = property();
+        ObjHandler::ObjectProperty property = properties[i];
+        ObjHandler::any_ptr a = property();
         row[i + 1] = boostAnyToCalcAny(*a);
     }
     rows[0] = row;
     return rows;
 }
 
-std::string OUStringToStlString(const STRING& s1) {
+std::string ouStringToStlString(const STRING& s1) {
     ::rtl::OString s2;
     if (s1.convertToString(&s2, RTL_TEXTENCODING_ASCII_US, 
         OUSTRING_TO_OSTRING_CVTFLAGS))
         return s2.getStr();
     else
-        throw Exception("OUStringToStlString: unable to convert string");
+        throw ObjHandler::Exception("ouStringToStlString: unable to convert string");
 }
 
 STRING stlStringToOuString(const std::string &s) {
     return STRFROMANSI(s.c_str());
 }
 
-std::string calcAnyToStlString(const ANY& s) {
-    STRING str;
-    s >>= str;
-    return OUStringToStlString(str);
+ANY stlStringToCalcAny(const std::string &s) {
+    STRING s2 = STRFROMASCII( s.c_str() );
+    return CSS::uno::makeAny(s2);
 }
 
-std::vector < long >SeqSeqToVectorLong(const SEQSEQ( sal_Int32 )& ss) {
+std::vector < long > seqSeqToVectorLong(const SEQSEQ( sal_Int32 )& ss) {
     std::vector < long >v;
     for (int i=0; i<ss.getLength(); i++)
         for (int j=0; j<ss[i].getLength(); j++)
@@ -130,7 +101,7 @@ std::vector < long >SeqSeqToVectorLong(const SEQSEQ( sal_Int32 )& ss) {
     return v;
 }
 
-std::vector < double >SeqSeqToVectorDouble(const SEQSEQ( double )& ss) {
+std::vector < double > seqSeqToVectorDouble(const SEQSEQ( double )& ss) {
     std::vector < double >v;
     for (int i=0; i<ss.getLength(); i++)
         for (int j=0; j<ss[i].getLength(); j++)
@@ -138,7 +109,7 @@ std::vector < double >SeqSeqToVectorDouble(const SEQSEQ( double )& ss) {
     return v;
 }
 
-std::vector < bool >SeqSeqToVectorBool(const SEQSEQ( sal_Int32 )& ss) {
+std::vector < bool > seqSeqToVectorBool(const SEQSEQ( sal_Int32 )& ss) {
     std::vector < bool >v;
     for (int i=0; i<ss.getLength(); i++)
         for (int j=0; j<ss[i].getLength(); j++)
@@ -146,23 +117,23 @@ std::vector < bool >SeqSeqToVectorBool(const SEQSEQ( sal_Int32 )& ss) {
     return v;
 }
 
-std::vector < std::string >SeqSeqToVectorString(const SEQSEQ( ANY )& ss) {
+std::vector < std::string > seqSeqToVectorString(const SEQSEQ( ANY )& ss) {
     std::vector < std::string >v;
     for (int i=0; i<ss.getLength(); i++)
         for (int j=0; j<ss[i].getLength(); j++)
-            v.push_back(calcAnyToStlString(ss[i][j]));
+            v.push_back(anyToScalarString(ss[i][j]));
     return v;
 }
 
-std::vector < boost::any >SeqSeqToVectorAny(const SEQSEQ( ANY )& ss) {
+std::vector < boost::any > seqSeqToVectorAny(const SEQSEQ( ANY )& ss) {
     std::vector < boost::any >v;
     for (int i=0; i<ss.getLength(); i++)
         for (int j=0; j<ss[i].getLength(); j++)
-            v.push_back(calcAnyToBoostAny(ss[i][j]));
+            v.push_back(anyToScalarAny(ss[i][j]));
     return v;
 }
 
-std::vector < std::vector < long > >SeqSeqToMatrixLong(const SEQSEQ( sal_Int32 )& ss) {
+std::vector < std::vector < long > > seqSeqToMatrixLong(const SEQSEQ( sal_Int32 )& ss) {
     std::vector < std::vector < long > >vv;
     for (int i=0; i<ss.getLength(); i++) {
         std::vector < long >v;
@@ -173,7 +144,7 @@ std::vector < std::vector < long > >SeqSeqToMatrixLong(const SEQSEQ( sal_Int32 )
     return vv;
 }
 
-std::vector < std::vector < double > >SeqSeqToMatrixDouble(const SEQSEQ( double )& ss) {
+std::vector < std::vector < double > > seqSeqToMatrixDouble(const SEQSEQ( double )& ss) {
     std::vector < std::vector < double > >vv;
     for (int i=0; i<ss.getLength(); i++) {
         std::vector < double >v;
@@ -184,7 +155,7 @@ std::vector < std::vector < double > >SeqSeqToMatrixDouble(const SEQSEQ( double 
     return vv;
 }
 
-std::vector < std::vector < bool > >SeqSeqToMatrixBool(const SEQSEQ( sal_Int32 )& ss) {
+std::vector < std::vector < bool > > seqSeqToMatrixBool(const SEQSEQ( sal_Int32 )& ss) {
     std::vector < std::vector < bool > >vv;
     for (int i=0; i<ss.getLength(); i++) {
         std::vector < bool >v;
@@ -195,29 +166,29 @@ std::vector < std::vector < bool > >SeqSeqToMatrixBool(const SEQSEQ( sal_Int32 )
     return vv;
 }
 
-std::vector < std::vector < std::string > >SeqSeqToMatrixString(const SEQSEQ( ANY )& ss) {
+std::vector < std::vector < std::string > > seqSeqToMatrixString(const SEQSEQ( ANY )& ss) {
     std::vector < std::vector < std::string > >vv;
     for (int i=0; i<ss.getLength(); i++) {
         std::vector < std::string >v;
         for (int j=0; j<ss[i].getLength(); j++)
-            v.push_back(calcAnyToStlString(ss[i][j]));
+            v.push_back(anyToScalarString(ss[i][j]));
         vv.push_back(v);
     }
     return vv;
 }
 
-std::vector < std::vector < boost::any > >SeqSeqToMatrixAny(const SEQSEQ( ANY )& ss) {
+std::vector < std::vector < boost::any > > seqSeqToMatrixAny(const SEQSEQ( ANY )& ss) {
     std::vector < std::vector < boost::any > >vv;
     for (int i=0; i<ss.getLength(); i++) {
         std::vector < boost::any >v;
         for (int j=0; j<ss[i].getLength(); j++)
-            v.push_back(calcAnyToBoostAny(ss[i][j]));
+            v.push_back(anyToScalarAny(ss[i][j]));
         vv.push_back(v);
     }
     return vv;
 }
 
-SEQSEQ( sal_Int32 ) VectorLongToSeqSeq(const std::vector < long > &v) {
+SEQSEQ( sal_Int32 ) vectorLongToSeqSeq(const std::vector < long > &v) {
     SEQSEQ( sal_Int32 ) ss(v.size());
     for (unsigned int i=0; i<v.size(); i++) {
         SEQ( sal_Int32 ) s(1);
@@ -227,7 +198,7 @@ SEQSEQ( sal_Int32 ) VectorLongToSeqSeq(const std::vector < long > &v) {
     return ss;
 }
 
-SEQSEQ( double ) VectorDoubleToSeqSeq(const std::vector < double > &v) {
+SEQSEQ( double ) vectorDoubleToSeqSeq(const std::vector < double > &v) {
     SEQSEQ( double ) ss(v.size());
     for (unsigned int i=0; i<v.size(); i++) {
         SEQ( double ) s(1);
@@ -237,7 +208,7 @@ SEQSEQ( double ) VectorDoubleToSeqSeq(const std::vector < double > &v) {
     return ss;
 }
 
-SEQSEQ( sal_Int32 ) VectorBoolToSeqSeq(const std::vector < bool > &v) {
+SEQSEQ( sal_Int32 ) vectorBoolToSeqSeq(const std::vector < bool > &v) {
     SEQSEQ( sal_Int32 ) ss(v.size());
     for (unsigned int i=0; i<v.size(); i++) {
         SEQ( sal_Int32 ) s(1);
@@ -247,7 +218,7 @@ SEQSEQ( sal_Int32 ) VectorBoolToSeqSeq(const std::vector < bool > &v) {
     return ss;
 }
 
-SEQSEQ( STRING ) VectorStringToSeqSeq(const std::vector < std::string > &v) {
+SEQSEQ( STRING ) vectorStringToSeqSeq(const std::vector < std::string > &v) {
     SEQSEQ( STRING ) ss(v.size());
     for (unsigned int i=0; i<v.size(); i++) {
         SEQ( STRING ) s(1);
@@ -257,7 +228,7 @@ SEQSEQ( STRING ) VectorStringToSeqSeq(const std::vector < std::string > &v) {
     return ss;
 }
 
-SEQSEQ( ANY ) VectorAnyToSeqSeq(const std::vector < boost::any > &v) {
+SEQSEQ( ANY ) vectorAnyToSeqSeq(const std::vector < boost::any > &v) {
     SEQSEQ( ANY ) ss(v.size());
     for (unsigned int i=0; i<v.size(); i++) {
         SEQ( ANY ) s(1);
@@ -267,7 +238,7 @@ SEQSEQ( ANY ) VectorAnyToSeqSeq(const std::vector < boost::any > &v) {
     return ss;
 }
 
-SEQSEQ( sal_Int32 ) MatrixLongToSeqSeq(const std::vector < std::vector < long > >&vv) {
+SEQSEQ( sal_Int32 ) matrixLongToSeqSeq(const std::vector < std::vector < long > >&vv) {
     SEQSEQ( sal_Int32 ) ss(vv.size());
     for (unsigned int i=0; i<vv.size(); i++) {
         std::vector < long > v = vv[i];
@@ -279,7 +250,7 @@ SEQSEQ( sal_Int32 ) MatrixLongToSeqSeq(const std::vector < std::vector < long > 
     return ss;
 }
 
-SEQSEQ( double ) MatrixDoubleToSeqSeq(const std::vector < std::vector < double > >&vv) {
+SEQSEQ( double ) matrixDoubleToSeqSeq(const std::vector < std::vector < double > >&vv) {
     SEQSEQ( double ) ss(vv.size());
     for (unsigned int i=0; i<vv.size(); i++) {
         std::vector < double > v = vv[i];
@@ -291,7 +262,7 @@ SEQSEQ( double ) MatrixDoubleToSeqSeq(const std::vector < std::vector < double >
     return ss;
 }
 
-SEQSEQ( sal_Int32 ) MatrixBoolToSeqSeq(const std::vector < std::vector < bool > >&vv) {
+SEQSEQ( sal_Int32 ) matrixBoolToSeqSeq(const std::vector < std::vector < bool > >&vv) {
     SEQSEQ( sal_Int32 ) ss(vv.size());
     for (unsigned int i=0; i<vv.size(); i++) {
         std::vector < bool > v = vv[i];
@@ -303,7 +274,7 @@ SEQSEQ( sal_Int32 ) MatrixBoolToSeqSeq(const std::vector < std::vector < bool > 
     return ss;
 }
 
-SEQSEQ( STRING ) MatrixStringToSeqSeq(const std::vector < std::vector < std::string > >&vv) {
+SEQSEQ( STRING ) matrixStringToSeqSeq(const std::vector < std::vector < std::string > >&vv) {
     SEQSEQ( STRING ) ss(vv.size());
     for (unsigned int i=0; i<vv.size(); i++) {
         std::vector < std::string > v = vv[i];
@@ -315,7 +286,7 @@ SEQSEQ( STRING ) MatrixStringToSeqSeq(const std::vector < std::vector < std::str
     return ss;
 }
 
-SEQSEQ( ANY ) MatrixAnyToSeqSeq(const std::vector < std::vector < boost::any > >&vv) {
+SEQSEQ( ANY ) matrixAnyToSeqSeq(const std::vector < std::vector < boost::any > >&vv) {
     SEQSEQ( ANY ) ss(vv.size());
     for (unsigned int i=0; i<vv.size(); i++) {
         std::vector < boost::any > v = vv[i];
@@ -326,4 +297,323 @@ SEQSEQ( ANY ) MatrixAnyToSeqSeq(const std::vector < std::vector < boost::any > >
     }
     return ss;
 }
+
+long anyToScalarLong(const ANY &a, const long &defaultValue) {
+    STRING t = a.getValueTypeName();
+    if (t.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
+        double ret;
+        a >>= ret;
+        return static_cast < long > (ret);
+    } else
+        return defaultValue;
+}
+
+double anyToScalarDouble(const ANY &a, const double &defaultValue) {
+    STRING t = a.getValueTypeName();
+    if (t.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
+        double ret;
+        a >>= ret;
+        return ret;
+    } else
+        return defaultValue;
+}
+
+bool anyToScalarBool(const ANY &a, const bool &defaultValue) {
+    STRING t = a.getValueTypeName();
+    if (t.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
+        double ret;
+        a >>= ret;
+        return (ret != 0);
+    } else
+        return defaultValue;
+}
+
+std::string anyToScalarString(const ANY &a, const std::string &defaultValue) {
+    STRING t = a.getValueTypeName();
+    if (t.equalsIgnoreAsciiCase(STRFROMANSI("VOID")))
+        return defaultValue;
+    else {
+        STRING ret;
+        a >>= ret;
+        return ouStringToStlString(ret);
+    }
+}
+
+boost::any anyToScalarAny(const ANY &a) {
+    STRING t = a.getValueTypeName();
+    if (t.equalsIgnoreAsciiCase(STRFROMANSI("VOID"))) {
+        return boost::any();
+    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("LONG"))) {
+        long l;
+        a >>= l;
+        return boost::any(l);
+    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
+        double d;
+        a >>= d;
+        return boost::any(d);
+    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("STRING"))) {
+        STRING s;
+        a >>= s;
+        return boost::any(ouStringToStlString(s));
+    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("[][]ANY"))) {
+        return boost::any(std::string("<MATRIX>"));
+    } else {
+        std::ostringstream msg;
+        msg << "unrecognized type: " << ouStringToStlString(t);
+        return (boost::any(msg.str()));
+    }
+}
+
+std::vector < long > anyToVectorLong(const ANY &a) {
+    std::vector < long > ret;
+    STRING t = a.getValueTypeName();
+    if (t.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
+        double d;
+        a >>= d;
+        ret.push_back(static_cast < long > (d));
+    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("[][]ANY"))) {
+        SEQSEQ( ANY ) ss;
+        a >>= ss;
+        for (int i=0; i<ss.getLength(); i++)
+            for (int j=0; j<ss[i].getLength(); j++)
+                ret.push_back(anyToScalarLong(ss[i][j]));
+    }
+    return ret;
+}
+
+std::vector < double > anyToVectorDouble(const ANY &a) {
+    std::vector < double > ret;
+    STRING t = a.getValueTypeName();
+    if (t.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
+        double d;
+        a >>= d;
+        ret.push_back(d);
+    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("[][]ANY"))) {
+        SEQSEQ( ANY ) ss;
+        a >>= ss;
+        for (int i=0; i<ss.getLength(); i++)
+            for (int j=0; j<ss[i].getLength(); j++)
+                ret.push_back(anyToScalarDouble(ss[i][j]));
+    }
+    return ret;
+}
+
+std::vector < bool > anyToVectorBool(const ANY &a) {
+    std::vector < bool > ret;
+    STRING t = a.getValueTypeName();
+    if (t.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
+        double d;
+        a >>= d;
+        ret.push_back(d != 0);
+    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("[][]ANY"))) {
+        SEQSEQ( ANY ) ss;
+        a >>= ss;
+        for (int i=0; i<ss.getLength(); i++)
+            for (int j=0; j<ss[i].getLength(); j++)
+                ret.push_back(anyToScalarBool(ss[i][j]));
+    }
+    return ret;
+}
+
+std::vector < std::string > anyToVectorString(const ANY& a) {
+    std::vector < std::string > ret;
+    STRING t = a.getValueTypeName();
+    if (t.equalsIgnoreAsciiCase(STRFROMANSI("STRING"))) {
+        STRING s;
+        a >>= s;
+        ret.push_back(ouStringToStlString(s));
+    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("[][]ANY"))) {
+        SEQSEQ( ANY ) ss;
+        a >>= ss;
+        for (int i=0; i<ss.getLength(); i++)
+            for (int j=0; j<ss[i].getLength(); j++)
+                ret.push_back(anyToScalarString(ss[i][j]));
+    }
+    return ret;
+}
+
+std::vector < boost::any > anyToVectorAny(const ANY &a) {
+    std::vector < boost::any > ret;
+    STRING t = a.getValueTypeName();
+    if (t.equalsIgnoreAsciiCase(STRFROMANSI("[][]ANY"))) {
+        SEQSEQ( ANY ) ss;
+        a >>= ss;
+        for (int i=0; i<ss.getLength(); i++)
+            for (int j=0; j<ss[i].getLength(); j++)
+                ret.push_back(anyToScalarAny(ss[i][j]));
+    } else
+        ret.push_back(anyToScalarAny(a));
+    return ret;
+}
+
+std::vector < std::vector < long > > anyToMatrixLong(const ANY &a) {
+    std::vector < std::vector < long > > ret;
+    return ret;
+}
+
+std::vector < std::vector < double > > anyToMatrixDouble(const ANY &a) {
+    std::vector < std::vector < double > > ret;
+    return ret;
+}
+
+std::vector < std::vector < bool > > anyToMatrixBool(const ANY &a) {
+    std::vector < std::vector < bool > > ret;
+    return ret;
+}
+
+std::vector < std::vector < std::string > > anyToMatrixString(const ANY& s) {
+    std::vector < std::vector < std::string > > ret;
+    return ret;
+}
+
+std::vector < std::vector < boost::any > > anyToMatrixAny(const ANY &a) {
+    std::vector < std::vector < boost::any > > ret;
+    return ret;
+}
+
+SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
+    if (a->type() == typeid(long)) {
+        long l = boost::any_cast< long >(*a);
+        sal_Int32 l2 = static_cast< sal_Int32 >(l);
+        SEQSEQ( ANY ) ss(1);
+        SEQ( ANY ) s(1);
+        s[0] = CSS::uno::makeAny(l2);
+        ss[0] = s;
+        return ss;
+    } else if (a->type() == typeid(double)) {
+        double d = boost::any_cast< double >(*a);
+        SEQSEQ( ANY ) ss(1);
+        SEQ( ANY ) s(1);
+        s[0] = CSS::uno::makeAny(d);
+        ss[0] = s;
+        return ss;
+    } else if (a->type() == typeid(bool)) {
+        bool b = boost::any_cast< bool >(*a);
+        SEQSEQ( ANY ) ss(1);
+        SEQ( ANY ) s(1);
+        sal_Int32 b2 = static_cast< sal_Int32 >(b);
+        s[0] = CSS::uno::makeAny(b2);
+        ss[0] = s;
+        return ss;
+    } else if (a->type() == typeid(std::string)) {
+        std::string str = boost::any_cast<std::string>(*a);
+        SEQSEQ( ANY ) ss(1);
+        SEQ( ANY ) s(1);
+        s[0] = CSS::uno::makeAny(STRFROMASCII(str.c_str()));
+        ss[0] = s;
+        return ss;
+    } else if (a->type() == typeid( boost::any )) {
+        boost::any a2 = boost::any_cast< boost::any >(*a);
+        SEQSEQ( ANY ) ss(1);
+        SEQ( ANY ) s(1);
+        s[0] = boostAnyToCalcAny(a2);
+        ss[0] = s;
+        return ss;
+    } else if (a->type() == typeid(std::vector< long >)) {
+        std::vector< long > v= boost::any_cast< std::vector< long > >(*a);
+        SEQSEQ( ANY ) ss(v.size());
+        for (unsigned int i=0; i<v.size(); i++) {
+            SEQ( ANY ) s(1);
+            s[0] = CSS::uno::makeAny(v[i]);
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector< double >)) {
+        std::vector< double > v= boost::any_cast< std::vector< double > >(*a);
+        SEQSEQ( ANY ) ss(v.size());
+        for (unsigned int i=0; i<v.size(); i++) {
+            SEQ( ANY ) s(1);
+            s[0] = CSS::uno::makeAny(v[i]);
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector< bool >)) {
+        std::vector< bool > v= boost::any_cast< std::vector< bool > >(*a);
+        SEQSEQ( ANY ) ss(v.size());
+        for (unsigned int i=0; i<v.size(); i++) {
+            SEQ( ANY ) s(1);
+            sal_Int32 b = static_cast< sal_Int32 >(v[i]);
+            s[0] = CSS::uno::makeAny(b);
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector<std::string>)) {
+        std::vector<std::string> v= boost::any_cast< std::vector<std::string> >(*a);
+        SEQSEQ( ANY ) ss(v.size());
+        for (unsigned int i=0; i<v.size(); i++) {
+            SEQ( ANY ) s(1);
+            s[0] = CSS::uno::makeAny(STRFROMASCII(v[i].c_str()));
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector< boost::any >)) {
+        std::vector< boost::any > v= boost::any_cast< std::vector< boost::any > >(*a);
+        SEQSEQ( ANY ) ss(v.size());
+        for (unsigned int i=0; i<v.size(); i++) {
+            SEQ( ANY ) s(1);
+            s[0] = boostAnyToCalcAny(v[i]);
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector< std::vector< long > >)) {
+        std::vector< std::vector< long > > vv= boost::any_cast< std::vector< std::vector< long > > >(*a);
+        SEQSEQ( ANY ) ss(vv.size());
+        for (unsigned int i=0; i<vv.size(); i++) {
+            std::vector< long > v = vv[i];
+            SEQ( ANY ) s(v.size());
+            for (unsigned int j=0; j<v.size(); j++)
+                s[j] = CSS::uno::makeAny(v[j]);
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector< std::vector< double > >)) {
+        std::vector< std::vector< double > > vv= boost::any_cast< std::vector< std::vector< double > > >(*a);
+        SEQSEQ( ANY ) ss(vv.size());
+        for (unsigned int i=0; i<vv.size(); i++) {
+            std::vector< double > v = vv[i];
+            SEQ( ANY ) s(v.size());
+            for (unsigned int j=0; j<v.size(); j++)
+                s[j] = CSS::uno::makeAny(v[j]);
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector< std::vector< bool > >)) {
+        std::vector< std::vector< bool > > vv= boost::any_cast< std::vector< std::vector< bool > > >(*a);
+        SEQSEQ( ANY ) ss(vv.size());
+        for (unsigned int i=0; i<vv.size(); i++) {
+            std::vector< bool > v = vv[i];
+            SEQ( ANY ) s(v.size());
+            for (unsigned int j=0; j<v.size(); j++) {
+                sal_Int32 b = static_cast< sal_Int32 >(v[j]);
+                s[j] = CSS::uno::makeAny(b);
+            }
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector< std::vector< std::string > >)) {
+        std::vector< std::vector< std::string > > vv= boost::any_cast< std::vector< std::vector< std::string > > >(*a);
+        SEQSEQ( ANY ) ss(vv.size());
+        for (unsigned int i=0; i<vv.size(); i++) {
+            std::vector< std::string > v = vv[i];
+            SEQ( ANY ) s(v.size());
+            for (unsigned int j=0; j<v.size(); j++)
+                s[j] = CSS::uno::makeAny(STRFROMASCII(v[j].c_str()));
+            ss[i] = s;
+        }
+        return ss;
+    } else if (a->type() == typeid(std::vector< std::vector< boost::any > >)) {
+        std::vector< std::vector< boost::any > > vv= boost::any_cast< std::vector< std::vector< boost::any > > >(*a);
+        SEQSEQ( ANY ) ss(vv.size());
+        for (unsigned int i=0; i<vv.size(); i++) {
+            std::vector< boost::any > v = vv[i];
+            SEQ( ANY ) s(v.size());
+            for (unsigned int j=0; j<v.size(); j++)
+                s[j] = boostAnyToCalcAny(v[j]);
+            ss[i] = s;
+        }
+        return ss;
+    } else
+        throw ObjHandler::Exception("boostAnyToSeqSeq: unable to interpret value");
+}
+
 

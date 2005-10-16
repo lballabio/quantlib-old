@@ -5,6 +5,7 @@ AUTOGEN_INPUT := capfloor.xml \
                  enums.xml \
                  instruments.xml \
                  interpolation.xml \
+                 objecthandler.xml \
                  options.xml \
                  processes.xml \
                  shortratemodels.xml \
@@ -44,8 +45,11 @@ endif
 if BUILD_CALC
     AUTOGEN_ARGS += -o
 endif
-if BUILD_EXCEL
+if BUILD_EXCEL_DYNAMIC
     AUTOGEN_ARGS += -e
+endif
+if BUILD_EXCEL_STATIC
+    AUTOGEN_ARGS += -s
 endif
 if BUILD_GUILE
     AUTOGEN_ARGS += -g

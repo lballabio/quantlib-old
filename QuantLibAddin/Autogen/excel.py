@@ -40,12 +40,12 @@ REGFOOT      = """    Excel(xlFree, 0, 1, &xDll);\n
 }\n\n"""
 REGLINE      = '        TempStrNoSize("\\x%02X""%s")%s'
 RET_STRING   = """        static char ret[XL_MAX_STR_LEN];
-        stringToChar(ret, returnValue);
+        ObjHandler::stringToChar(ret, returnValue);
         return ret;"""
 RET_XLOPER   = """        static XLOPER xRet;
-        %sToXloper(xRet, returnValue);
+        ObjHandler::%sToXloper(xRet, returnValue);
         return &xRet;"""
-ROOT         = common.ADDIN_ROOT + 'Excel/'
+XLMACRO      = 'xlmacro'
 
 def formatLine(text, comment, lastParameter = False):
     'format a line of text for the function register code'
@@ -94,6 +94,9 @@ def generateParamString(function):
         paramStr += 'C'
     for param in function[common.PARAMS]:
         paramStr += generateParamChar(param)
+    if function[common.CTOR] == common.TRUE \
+    or utils.testAttribute(function, XLMACRO, common.TRUE):
+        paramStr += '#'
     return paramStr
 
 def generateFuncRegister(fileHeader, function, plExcel):
@@ -112,7 +115,7 @@ def generateFuncRegister(fileHeader, function, plExcel):
     if numRegisterParams > MAXPARAM:
         raise ValueError, MAXPARAMERR
     fileHeader.write('    Excel(xlfRegister, 0, %d, &xDll,\n' % numRegisterParams)
-    fileHeader.write(formatLine(function[common.CODENAME], 'function code name'))
+    fileHeader.write(formatLine(function[common.NAME], 'function code name'))
     fileHeader.write(formatLine(paramStr, 'parameter codes'))
     fileHeader.write(formatLine(function[common.NAME], 'function display name'))
     fileHeader.write(formatLine(paramList, 'comma-delimited list of parameters'))    
@@ -142,18 +145,19 @@ def generateFuncRegister(fileHeader, function, plExcel):
         fileHeader.write(formatLine(function[common.DESC], 'function description', True))
     fileHeader.write('\n')
 
-def generateFuncRegisters(functionDefs):
+def generateFuncRegisters(functionDefs, rootDir, platform):
     'generate source code to register functions'
     plExcel = params.ParameterPass(0, delimiter = ',', prependEol = False)
-    fileName = ROOT + ADDIN + common.TEMPFILE
+    fileName = rootDir + ADDIN + common.TEMPFILE
     fileHeader = file(fileName, 'w')
     utils.printHeader(fileHeader)
     bufHead = utils.loadBuffer(BUF_REGISTER)
     fileHeader.write(bufHead)
     for group in functionDefs.itervalues():
+        if not group.has_key(common.FUNCS): continue
         fileHeader.write('    // %s\n\n' % group[common.DISPLAYNAME])
         for function in group[common.FUNCS]:
-            if not utils.checkFunctionPlatform(function, common.PLATFORM_EXCEL):
+            if not utils.checkFunctionPlatform(function, platform):
                 continue
             generateFuncRegister(fileHeader, function, plExcel)
     fileHeader.write(REGFOOT)
@@ -175,8 +179,8 @@ def generateConstructor(fileFunc, function, bufCtor, plHeader, plCtor):
     paramList1 = plHeader.generateCode(function[common.PARAMS])
     paramList2 = plCtor.generateCode(function[common.PARAMS])
     conversions = utils.generateConversions(function[common.PARAMS], 
-        'oper', 'fp', 'oper')
-    fileFunc.write(bufCtor % (function[common.CODENAME], paramList1, conversions, 
+        'oper', 'fp', 'oper', prefix = 'ObjHandler::')
+    fileFunc.write(bufCtor % (function[common.NAME], paramList1, conversions, 
         function[common.QLFUNC], paramList2, function[common.NAME]))
 
 def generateMember(fileFunc, function, bufMember, plHeader, plMember):
@@ -192,13 +196,13 @@ def generateMember(fileFunc, function, bufMember, plHeader, plMember):
     className = function[common.PARAMS][0][common.ATTS][common.CLASS]
     functionName = utils.generateFuncCall(function)
     conversions = utils.generateConversions(function[common.PARAMS], 
-        'oper', 'fp', 'oper')
+        'oper', 'fp', 'oper', prefix = 'ObjHandler::')
     fileFunc.write(bufMember %
-        (functionReturnType, function[common.CODENAME], paramList1, conversions, 
+        (functionReturnType, function[common.NAME], paramList1, conversions, 
         className, className, returnType, functionName, 
         paramList2, returnCall, function[common.NAME]))
 
-def generateFuncDefs(functionGroups):
+def generateFuncDefs(functionGroups, rootDir, platform):
     'generate source code for function bodies'
     bufCtor = utils.loadBuffer(BUF_CTOR)
     bufMember = utils.loadBuffer(BUF_MEMBER)
@@ -215,12 +219,12 @@ def generateFuncDefs(functionGroups):
         functionGroup = functionGroups[groupName]
         if functionGroup[common.HDRONLY] == common.TRUE:
             continue
-        fileName = ROOT + groupName + '.cpp' + common.TEMPFILE
+        fileName = rootDir + groupName + '.cpp' + common.TEMPFILE
         fileFunc = file(fileName, 'w')
         utils.printHeader(fileFunc)
         fileFunc.write(bufInclude % groupName)
         for function in functionGroup[common.FUNCS]:
-            if not utils.checkFunctionPlatform(function, common.PLATFORM_EXCEL):
+            if not utils.checkFunctionPlatform(function, platform):
                 continue
             if function[common.CTOR] == common.TRUE:
                 generateConstructor(fileFunc, function, bufCtor, plHeader, plCtor)
@@ -229,10 +233,18 @@ def generateFuncDefs(functionGroups):
         fileFunc.close()
         utils.updateIfChanged(fileName)
 
-def generate(functionDefs):
+def generate(functionDefs, dynamic):
     'generate source code for Excel addin'
-    utils.logMessage('  begin generating Excel ...')
-    generateFuncRegisters(functionDefs)
-    generateFuncDefs(functionDefs)
-    utils.logMessage('  done generating Excel.')
+    if dynamic:
+        env = 'dynamic'
+        rootDir = common.ADDIN_ROOT + 'ExcelDynamic/'
+        platform = common.PLATFORM_EXCEL_DYNAMIC
+    else:
+        env = 'static'
+        rootDir = common.ADDIN_ROOT + 'ExcelStatic/'
+        platform = common.PLATFORM_EXCEL_STATIC
+    utils.logMessage('  begin generating Excel %s...' % env)
+    generateFuncRegisters(functionDefs, rootDir, platform)
+    generateFuncDefs(functionDefs, rootDir, platform)
+    utils.logMessage('  done generating Excel %s.' % env)
 

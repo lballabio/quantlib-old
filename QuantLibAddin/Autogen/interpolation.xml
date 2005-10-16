@@ -7,8 +7,7 @@
 <functions>
 
 <function>
-<name>QL_LINEAR_INTERPOLATION</name>
-<codename>qlLinearInterpolation</codename>
+<name>qlLinearInterpolation</name>
 <desc>construct and return a handle to a linear interpolator</desc>
 <constructor>true</constructor>
 <qlfunction>LinearInterpolation</qlfunction>
@@ -28,8 +27,7 @@
 </function>
 
 <function>
-<name>QL_CUBIC_SPLINE_INTERPOLATION</name>
-<codename>qlCubicSplineInterpolation</codename>
+<name>qlCubicSplineInterpolation</name>
 <desc>construct and return a handle to a cubic spline interpolator</desc>
 <constructor>true</constructor>
 <qlfunction>CubicSplineInterpolation</qlfunction>
@@ -79,8 +77,7 @@
 </function>
 
 <function>
-<name>QL_INTERPOLATE</name>
-<codename>qlInterpolate</codename>
+<name>qlInterpolate</name>
 <desc>carry out interpolation</desc>
 <constructor>false</constructor>
 <qlfunction>interpolate</qlfunction>

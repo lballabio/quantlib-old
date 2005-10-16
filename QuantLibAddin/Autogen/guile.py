@@ -32,7 +32,7 @@ ROOT        = common.ADDIN_ROOT + 'Guile/'
 
 def generateFuncHeader(fileHeader, function, suffix):
     'generate source for prototype of given function'
-    fileHeader.write('SCM %s(' % function[common.CODENAME])
+    fileHeader.write('SCM %s(' % function[common.NAME])
     fileHeader.write('SCM x')
     fileHeader.write(')%s\n' % suffix)
 
@@ -59,7 +59,7 @@ def generateRegistrations(functionGroup):
     for function in funcList:
         if not utils.checkFunctionPlatform(function, common.PLATFORM_GUILE):
             continue
-        name = function[common.CODENAME]
+        name = function[common.NAME]
         ret += stub % (name, name)
     return ret
 
@@ -73,8 +73,9 @@ def generateInitFunc(functionGroups):
     registrations = ''
     i = 0
     for groupName in functionGroups.keys():
-        i += 1
         functionGroup = functionGroups[groupName]
+        if not functionGroup.has_key(common.FUNCS): continue
+        i += 1
         headers += '#include <' + groupName + '.h>\n'
         registrations += generateRegistrations(functionGroup)
         if i < len(functionGroups):
@@ -141,6 +142,7 @@ def generateFuncDefs(functionGroups):
     plMember = params.ParameterPass(3, skipFirst = True)
     for groupName in functionGroups.keys():
         functionGroup = functionGroups[groupName]
+        if not functionGroup.has_key(common.FUNCS): continue
         generateFuncHeaders(groupName, functionGroup)
         if functionGroup[common.HDRONLY] == common.TRUE:
             continue

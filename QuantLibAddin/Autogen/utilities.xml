@@ -7,84 +7,7 @@
 <functions>
 
 <function>
-<name>QL_DEPENDS_ON</name>
-<codename>qlDependsOn</codename>
-<desc>force a dependency between two QuantLibAddin functions</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<platforms>EO</platforms>
-<parameters>
-    <param>
-        <name>dummy0</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dummy parameter (ignored)</desc>
-    </param>
-    <param>
-        <name>dummy1</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dummy parameter (ignored)</desc>
-    </param>
-    <param>
-        <name>dummy2</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dummy parameter (ignored)</desc>
-    </param>
-    <param>
-        <name>dummy3</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dummy parameter (ignored)</desc>
-    </param>
-    <param>
-        <name>dummy4</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dummy parameter (ignored)</desc>
-    </param>
-    <param>
-        <name>dummy5</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dummy parameter (ignored)</desc>
-    </param>
-    <param>
-        <name>dummy6</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dummy parameter (ignored)</desc>
-    </param>
-    <param>
-        <name>dummy7</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dummy parameter (ignored)</desc>
-    </param>
-    <param>
-        <name>dummy8</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dummy parameter (ignored)</desc>
-    </param>
-    <param>
-        <name>dummy9</name>
-        <type>any</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>dummy parameter (ignored)</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>bool</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>success/failure</desc>
-</returnval>
-</function>
-
-<function>
-<name>QL_LIST_ENUM</name>
-<codename>qlListEnum</codename>
+<name>qlListEnum</name>
 <desc>return the members of a given enumeration</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
@@ -104,8 +27,7 @@
 </function>
 
 <function>
-<name>QL_LIST_REGISTERED_ENUMS</name>
-<codename>qlListRegisteredEnums</codename>
+<name>qlListRegisteredEnums</name>
 <desc>return the names of all registered enums</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
@@ -118,8 +40,7 @@
 </function>
 
 <function>
-<name>QL_LIST_REGISTERED_TYPES</name>
-<codename>qlListRegisteredTypes</codename>
+<name>qlListRegisteredTypes</name>
 <desc>return the names of all registered complex types</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
@@ -132,8 +53,7 @@
 </function>
 
 <function>
-<name>QL_LIST_TYPE</name>
-<codename>qlListType</codename>
+<name>qlListType</name>
 <desc>return the members of a given complex type</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
@@ -153,8 +73,7 @@
 </function>
 
 <function>
-<name>QL_VERSION</name>
-<codename>qlVersion</codename>
+<name>qlVersion</name>
 <desc>returns the version number of QuantLib</desc>
 <constructor>false</constructor>
 <qlfunction></qlfunction>
@@ -163,223 +82,6 @@
     <type>string</type>
     <tensorrank>scalar</tensorrank>
     <desc>QuantLib version number</desc>
-</returnval>
-</function>
-
-<function>
-<name>OH_DELETE_ALL_OBJECTS</name>
-<codename>qlDeleteAllObjects</codename>
-<desc>delete all objects from repository</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<platforms>GO</platforms>
-<parameters></parameters>
-<returnval>
-    <type>bool</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>success/failure</desc>
-</returnval>
-</function>
-
-<function>
-<name>OH_DELETE_OBJECT</name>
-<codename>qlDeleteObject</codename>
-<desc>delete object from repository</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<platforms>GO</platforms>
-<parameters>
-    <param>
-        <name>handleObject</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of object to be deleted</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>bool</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>success/failure</desc>
-</returnval>
-</function>
-
-<function>
-<name>OH_FIELD_NAMES</name>
-<codename>qlFieldNames</codename>
-<desc>retrieve the field names of a given object</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<platforms>GO</platforms>
-<parameters>
-    <param>
-        <name>handleObject</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of object to be queried</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>any</type>
-    <tensorrank>vector</tensorrank>
-    <desc>list of fieldnames for queried object</desc>
-</returnval>
-</function>
-
-<function>
-<name>OH_LOG_ALL_OBJECTS</name>
-<codename>qlLogAllObjects</codename>
-<desc>write all object descriptions to log file</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<platforms>GO</platforms>
-<parameters></parameters>
-<returnval>
-    <type>bool</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>success/failure</desc>
-</returnval>
-</function>
-
-<function>
-<name>OH_LOG_MESSAGE</name>
-<codename>qlLogMessage</codename>
-<desc>log a message</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<platforms>GO</platforms>
-<parameters>
-    <param>
-        <name>logMessage</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>message to be logged</desc>
-    </param>
-    <param>
-        <name>logLevel</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>threshold for log messages</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>string</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>message logged</desc>
-</returnval>
-</function>
-
-<function>
-<name>OH_LOG_OBJECT</name>
-<codename>qlLogObject</codename>
-<desc>write object description to log file</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<platforms>GO</platforms>
-<parameters>
-    <param>
-        <name>handleObject</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of object to be logged</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>bool</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>success/failure</desc>
-</returnval>
-</function>
-
-<function>
-<name>OH_SET_LOGFILE</name>
-<codename>qlSetLogfile</codename>
-<desc>begin logging to named file</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<platforms>GO</platforms>
-<parameters>
-    <param>
-        <name>logFileName</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>path and name of log file</desc>
-    </param>
-    <param>
-        <name>logLevel</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>threshold for log messages</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>string</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>name of logfile</desc>
-</returnval>
-</function>
-
-<function>
-<name>OH_SET_LOGLEVEL</name>
-<codename>qlSetLogLevel</codename>
-<desc>set threshold for log messages</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<platforms>GO</platforms>
-<parameters>
-    <param>
-        <name>logLevel</name>
-        <type>long</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>threshold for log messages</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>long</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>returns new logging threshold</desc>
-</returnval>
-</function>
-
-<function>
-<name>OH_VERSION</name>
-<codename>qlOhVersion</codename>
-<desc>returns the version number of ObjectHandler</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<platforms>GO</platforms>
-<parameters></parameters>
-<returnval>
-    <type>string</type>
-    <tensorrank>scalar</tensorrank>
-    <desc>ObjectHandler version number</desc>
-</returnval>
-</function>
-
-<function>
-<name>OH_FIELD_VALUE</name>
-<codename>qlFieldValue</codename>
-<desc>retrieve the value of a named field</desc>
-<constructor>false</constructor>
-<qlfunction></qlfunction>
-<platforms>GO</platforms>
-<parameters>
-    <param>
-        <name>handleObject</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>handle of object to be queried</desc>
-    </param>
-    <param>
-        <name>fieldName</name>
-        <type>string</type>
-        <tensorrank>scalar</tensorrank>
-        <desc>name of field</desc>
-    </param>
-</parameters>
-<returnval>
-    <type>any</type>
-    <tensorrank>matrix</tensorrank>
-    <desc>value of named field</desc>
 </returnval>
 </function>
 

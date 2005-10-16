@@ -115,10 +115,6 @@ SOURCE=.\stub.c.member
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.calc.body
-# End Source File
-# Begin Source File
-
 SOURCE=.\stub.calc.constructor
 # End Source File
 # Begin Source File
@@ -200,6 +196,10 @@ SOURCE=.\instruments.xml
 # Begin Source File
 
 SOURCE=.\interpolation.xml
+# End Source File
+# Begin Source File
+
+SOURCE=.\objecthandler.xml
 # End Source File
 # Begin Source File
 

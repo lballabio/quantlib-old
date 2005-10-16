@@ -16,18 +16,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef oh_objhandlerdefines_hpp
-#define oh_objhandlerdefines_hpp
-
-#ifdef XLL_EXPORTS
-#define DLL_API __declspec(dllexport)
-#define COMPILING_XLL
-#elif XLL_IMPORTS
-#define DLL_API __declspec(dllimport)
-#define COMPILING_XLL
-#else
-#define DLL_API
-#endif
+#ifndef oh_defines_hpp
+#define oh_defines_hpp
 
 #include <boost/config.hpp>
 #include <boost/version.hpp>
@@ -54,6 +44,19 @@
 #include <cctype>
 #if defined(BOOST_NO_STDC_NAMESPACE)
     namespace std { using ::tolower; using ::toupper; }
+#endif
+
+#ifdef XLL_EXPORTS
+    #define DLL_API __declspec(dllexport)
+    #define COMPILING_XLL
+#elif XLL_IMPORTS
+    #define DLL_API __declspec(dllimport)
+    #define COMPILING_XLL
+#elif XLL_STATIC
+    #define DLL_API
+    #define COMPILING_XLL
+#else
+    #define DLL_API
 #endif
 
 #endif

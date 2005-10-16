@@ -1,8 +1,7 @@
 #include <windows.h>
-#include <Addins/Excel/xlcall.h>
-#include <Addins/Excel/framewrk.hpp>
-
-#define DLLEXPORT extern "C" __declspec(dllexport)
+#include <xlsdk/xlcall.h>
+#include <xlsdk/framewrk.hpp>
+#include <xlsdk/xlsdkdefines.hpp>
 
 DLLEXPORT void xlAutoFree(XLOPER *px) {
     if (px->xltype & xltypeStr && px->val.str)
@@ -21,9 +20,4 @@ DLLEXPORT int xlAutoOpen() {
 
     XLOPER xDll;
     Excel(xlGetName, &xDll, 0);
-
-    Excel(xlfRegister, 0, 4, &xDll,
-        TempStrNoSize("\x0A""getAddress"),
-        TempStrNoSize("\x03""PR#"),
-        TempStrNoSize("\x0A""getAddress"));
 

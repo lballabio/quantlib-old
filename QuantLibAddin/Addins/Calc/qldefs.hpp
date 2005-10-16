@@ -18,6 +18,12 @@
 #ifndef qla_calc_defs_hpp
 #define qla_calc_defs_hpp
 
+#include <com/sun/star/sheet/addin/XQL.hpp>
+#include <com/sun/star/sheet/XAddIn.hpp>
+#include <com/sun/star/lang/XServiceInfo.hpp>
+#include <com/sun/star/lang/XServiceName.hpp>
+#include <com/sun/star/lang/XTypeProvider.hpp>
+
 #define CSS                 ::com::sun::star
 #define SEQ(c)              CSS::uno::Sequence< c >
 #define SEQSEQ(c)           CSS::uno::Sequence< CSS::uno::Sequence< c > >

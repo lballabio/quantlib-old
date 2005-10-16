@@ -7,8 +7,7 @@
 <functions>
 
 <function>
-<name>QL_SIMPLE_SWAP</name>
-<codename>qlSimpleSwap</codename>
+<name>qlSimpleSwap</name>
 <desc>construct and return a handle to a SimpleSwap object</desc>
 <constructor>true</constructor>
 <qlfunction>SimpleSwap</qlfunction>
@@ -124,8 +123,7 @@
 </function>
 
 <function call_type='QL_OBJECT'>
-<name>QL_SWAP_FAIR_RATE</name>
-<codename>qlSwapFairRate</codename>
+<name>qlSwapFairRate</name>
 <desc>the fair rate of a swap</desc>
 <constructor>false</constructor>
 <qlfunction>fairRate</qlfunction>
@@ -151,8 +149,7 @@
 </function>
 
 <function call_type='QL_OBJECT'>
-<name>QL_SWAP_FAIR_SPREAD</name>
-<codename>qlSwapFairSpread</codename>
+<name>qlSwapFairSpread</name>
 <desc>the fair rate of a swap</desc>
 <constructor>false</constructor>
 <qlfunction>fairSpread</qlfunction>
@@ -178,8 +175,7 @@
 </function>
 
 <function>
-<name>QL_SWAP_FIXED_LEG</name>
-<codename>qlSwapFixLeg</codename>
+<name>qlSwapFixedLeg</name>
 <desc>The Fixed Leg Details</desc>
 <constructor>false</constructor>
 <qlfunction>getFixLeg</qlfunction>
@@ -199,8 +195,7 @@
 </function>
 
 <function call_type='QL_OBJECT'>
-<name>QL_SWAP_FIXED_LEG_BPS</name>
-<codename>qlFixedLegBPS</codename>
+<name>qlSwapFixedLegBPS</name>
 <desc>the BPS of the fixed leg</desc>
 <constructor>false</constructor>
 <qlfunction>fixedLegBPS</qlfunction>
@@ -226,8 +221,7 @@
 </function>
 
 <function>
-<name>QL_SWAP_FLOAT_LEG</name>
-<codename>qlSwapFloatLeg</codename>
+<name>qlSwapFloatLeg</name>
 <desc>The Float Leg Details</desc>
 <constructor>false</constructor>
 <qlfunction>getFloatLeg</qlfunction>
@@ -253,8 +247,7 @@
 </function>
 
 <function call_type='QL_OBJECT'>
-<name>QL_SWAP_FLOATING_LEG_BPS</name>
-<codename>qlFloatingLegBPS</codename>
+<name>qlSwapFloatingLegBPS</name>
 <desc>the BPS of the floating leg</desc>
 <constructor>false</constructor>
 <qlfunction>floatingLegBPS</qlfunction>
