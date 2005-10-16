@@ -184,5 +184,5 @@
            0.0                  ; floating leg additive spread
            "testYC")            ; discounting term structure
 
-(call-func qlLogObject "swp")
+(call-func ohLogObject "swp")
 

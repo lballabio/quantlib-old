@@ -90,7 +90,7 @@ AM_CONDITIONAL(BUILD_GUILE, [test "$qla_build_guile" = "omitted" \
 # done, output the configured files
 AC_CONFIG_FILES([
     Makefile
-    Autogen/Makefile
+    srcgen/Makefile
     qla/Makefile
     Addins/C/Makefile
     Addins/Calc/Makefile

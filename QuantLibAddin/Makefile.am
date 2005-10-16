@@ -1,6 +1,6 @@
 
 SUBDIRS = \
-    Autogen \
+    srcgen \
     qla \
     Addins/C \
     Addins/Calc \
@@ -14,7 +14,6 @@ SUBDIRS = \
     Clients/Guile \
     Docs
 
-#    QuantLibAddin.dev
 EXTRA_DIST = \
     Announce.txt \
     Authors.txt \

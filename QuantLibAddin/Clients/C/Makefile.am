@@ -10,12 +10,10 @@ EXTRA_DIST = \
     ClientCDemo_vc8.vcproj
 
 QLADemo_SOURCES = qlademo.c
-Options_SOURCES = options.c
-Instruments_SOURCES = instruments.c
 
 if BUILD_C
-noinst_PROGRAMS = QLADemo Options Instruments
+noinst_PROGRAMS = QLADemo
 else
-EXTRA_PROGRAMS = QLADemo Options Instruments
+EXTRA_PROGRAMS = QLADemo
 endif
 

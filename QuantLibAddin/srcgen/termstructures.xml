@@ -1,0 +1,329 @@
+<category>
+<headerOnly>false</headerOnly>
+<description>functions to construct QuantLib term structure objects</description>
+<displayName>Term Structures</displayName>
+<functions>
+
+<function>
+<name>qlDepositRateHelper</name>
+<description>construct and return a handle to a deposit rate-helper object</description>
+<constructor>true</constructor>
+<libraryFunction>DepositRateHelper</libraryFunction>
+<parameters>
+    <parameter>
+        <name>quote</name>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>quote</description>
+    </parameter>
+    <parameter>
+        <name>maturity</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>maturity</description>
+    </parameter>
+    <parameter>
+        <name>timeUnits</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>time units applying to above maturity</description>
+    </parameter>
+    <parameter>
+        <name>fixingDays</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>fixing days (e.g. 2)</description>
+    </parameter>
+    <parameter>
+        <name>calendar</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>calendar (e.g. TARGET)</description>
+    </parameter>
+    <parameter>
+        <name>convention</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>business day convention (e.g. ModifiedFollowing)</description>
+    </parameter>
+    <parameter>
+        <name>dayCounter</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day counter (e.g. Actual360)</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>handle of newly created object</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlFutureRateHelper</name>
+<description>construct and return a handle to a future rate-helper object</description>
+<constructor>true</constructor>
+<libraryFunction>FutureRateHelper</libraryFunction>
+<parameters>
+    <parameter>
+        <name>price</name>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>future price</description>
+    </parameter>
+    <parameter>
+        <name>IMM</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>IMM expiry shortcut</description>
+    </parameter>
+    <parameter>
+        <name>months</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>future contract lenght in months</description>
+    </parameter>
+    <parameter>
+        <name>DayCounter</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day counter (e.g. Thirty360)</description>
+    </parameter>
+    <parameter>
+        <name>bDayConvention</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>business day convention (e.g. ModifiedFollowing)</description>
+    </parameter>
+	<parameter>
+        <name>calendar</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>calendar (e.g. TARGET)</description>
+    </parameter>
+    <parameter>
+        <name>decade</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>base decade for the IMM shortcut (e.g. 2000 for H4 -> March 2004)</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>handle of newly created object</description>
+</returnValue>
+</function>
+
+<function getObject='true'>
+<name>qlGetDf</name>
+<description>retrieve a discount factor at specified date</description>
+<constructor>false</constructor>
+<libraryFunction>discount</libraryFunction>
+<parameters>
+    <parameter class='YieldTermStructure'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the Yield Term Structure object</description>
+    </parameter>
+    <parameter ql_type='QuantLib::Date'>
+        <name>DfDate</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>date</description>
+    </parameter>
+    <parameter>
+        <name>iPol</name>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Interpolate Flag</description>
+    </parameter>
+    <parameter ignore='true'>
+        <name>trigger</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dep tracking trigger</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>the discount factor</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlPiecewiseFlatForward</name>
+<description>construct and return a handle to a piecewise flat forward term structure</description>
+<constructor>true</constructor>
+<libraryFunction>PiecewiseFlatForward</libraryFunction>
+<parameters>
+    <parameter>
+        <name>evaluationDate</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>evaluation date</description>
+    </parameter>
+    <parameter>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>settlement date (e.g. evaluationDate + 2)</description>
+    </parameter>
+    <parameter>
+        <name>rateHelpers</name>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+        <description>vector of rate-helper handles</description>
+    </parameter>
+    <parameter>
+        <name>dayCounter</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day counter (e.g. Actual360)</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>handle of newly created object</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlSetQuote</name>
+<description>update quote of existing Rate Helper object</description>
+<constructor>false</constructor>
+<libraryFunction>setQuote</libraryFunction>
+<parameters>
+    <parameter class='RateHelper'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the Rate Helper object</description>
+    </parameter>
+    <parameter>
+        <name>Quote</name>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>the new qoute</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>diff new quote - old quote</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlSwapRateHelper</name>
+<description>construct and return a handle to a swap rate-helper object</description>
+<constructor>true</constructor>
+<libraryFunction>SwapRateHelper</libraryFunction>
+<parameters>
+    <parameter>
+        <name>quote</name>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>quote</description>
+    </parameter>
+    <parameter>
+        <name>maturity</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>maturity</description>
+    </parameter>
+    <parameter>
+        <name>timeUnits</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>time units applying to above maturity</description>
+    </parameter>
+    <parameter>
+        <name>fixingDays</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>fixing days (e.g. 2)</description>
+    </parameter>
+	<parameter>
+        <name>calendar</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>calendar (e.g. TARGET)</description>
+    </parameter>
+    <parameter>
+        <name>fixedLegFrequency</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>fixed leg frequency (e.g. Annual)</description>
+    </parameter>
+    <parameter>
+        <name>fixedLegConvention</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>fixed leg convention (e.g. Unadjusted)</description>
+    </parameter>
+    <parameter>
+        <name>fixedLegDayCounter</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>fixed leg day counter (e.g. Thirty360)</description>
+    </parameter>
+    <parameter>
+        <name>floatingLegFrequency</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>floating leg frequency (e.g. Quarterly, Semiannual, etc.)</description>
+    </parameter>
+    <parameter>
+        <name>floatingLegConvention</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>floating leg convention (e.g. ModifiedFollowing)</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>handle of newly created object</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlZeroCurve</name>
+<description>construct and return a handle to a ZeroCurve object</description>
+<constructor>true</constructor>
+<libraryFunction>ZeroCurve</libraryFunction>
+<parameters>
+    <parameter>
+        <name>curveDates</name>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+        <description>dates of the zero curve</description>
+    </parameter>
+    <parameter>
+        <name>curveYields</name>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+        <description>yields of the zero curve</description>
+    </parameter>
+    <parameter>
+        <name>dayCounterID</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day counter ID</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>handle of newly created object</description>
+</returnValue>
+</function>
+
+</functions>
+</category>
+

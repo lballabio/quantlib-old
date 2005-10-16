@@ -1,0 +1,275 @@
+<category>
+<headerOnly>false</headerOnly>
+<description>construct and return a handle to a simple swap object</description>
+<displayName>Simple Swap</displayName>
+<functions>
+
+<function>
+<name>qlSimpleSwap</name>
+<description>construct and return a handle to a SimpleSwap object</description>
+<constructor>true</constructor>
+<libraryFunction>SimpleSwap</libraryFunction>
+<parameters>
+    <parameter>
+        <name>StartDate</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>start date</description>
+    </parameter>
+    <parameter>
+        <name>maturityDate</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>maturity date</description>
+    </parameter>
+    <parameter>
+        <name>Nominal</name>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Notional Amount</description>
+    </parameter>
+    <parameter>
+        <name>PayFixed</name>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>pay or receive the fixed rate</description>
+    </parameter>
+    <parameter>
+        <name>FixRate</name>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>the fixed rate</description>
+    </parameter>
+    <parameter>
+        <name>calendarID</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>calendar ID</description>
+    </parameter>
+    <parameter>
+        <name>FixFrq</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Fixed Leg Frequency</description>
+    </parameter>
+    <parameter>
+        <name>FixBDayConvention</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Fixed Leg Business Day Convention</description>
+    </parameter>
+    <parameter>
+        <name>FixDayCounter</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Fixed Leg Day Count</description>
+    </parameter>
+    <parameter>
+        <name>fixStartFromEnd</name>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>build fixed leg schedule backwards (start from maturity)</description>
+    </parameter>
+    <parameter>
+        <name>fixLongFinal</name>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>fixed leg schedule long first/last period</description>
+    </parameter>
+    <parameter>
+        <name>FltFrq</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Floating Leg Frequency</description>
+    </parameter>
+    <parameter class='Xibor'>
+        <name>IndexHandle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the Index for the float leg</description>
+    </parameter>
+    <parameter>
+        <name>fltStartFromEnd</name>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>build floating leg schedule backwards (start from maturity)</description>
+    </parameter>
+    <parameter>
+        <name>fltLongFinal</name>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>floating leg schedule long first/last period</description>
+    </parameter>
+    <parameter>
+        <name>FloatSpread</name>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Index Spread</description>
+    </parameter>
+    <parameter class='YieldTermStructure'>
+        <name>DiscountCurve</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the Yield Curve used for discounting</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>handle of newly created object</description>
+</returnValue>
+</function>
+
+<function getObject='true'>
+<name>qlSwapFairRate</name>
+<description>the fair rate of a swap</description>
+<constructor>false</constructor>
+<libraryFunction>fairRate</libraryFunction>
+<parameters>
+    <parameter class='SimpleSwap'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the swap object</description>
+    </parameter>
+    <parameter ignore='true'>
+        <name>trigger</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dep tracking trigger</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>the fair rate</description>
+</returnValue>
+</function>
+
+<function getObject='true'>
+<name>qlSwapFairSpread</name>
+<description>the fair rate of a swap</description>
+<constructor>false</constructor>
+<libraryFunction>fairSpread</libraryFunction>
+<parameters>
+    <parameter class='SimpleSwap'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the swap object</description>
+    </parameter>
+    <parameter ignore='true'>
+        <name>trigger</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dep tracking trigger</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>the fair spread</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlSwapFixedLeg</name>
+<description>The Fixed Leg Details</description>
+<constructor>false</constructor>
+<libraryFunction>getFixLeg</libraryFunction>
+<parameters>
+    <parameter class='SimpleSwap'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of a SimpleSwap object</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>matrix</tensorRank>
+    <description>The Fixed Leg Details</description>
+</returnValue>
+</function>
+
+<function getObject='true'>
+<name>qlSwapFixedLegBPS</name>
+<description>the BPS of the fixed leg</description>
+<constructor>false</constructor>
+<libraryFunction>fixedLegBPS</libraryFunction>
+<parameters>
+    <parameter class='SimpleSwap'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the swap object</description>
+    </parameter>
+    <parameter ignore='true'>
+        <name>trigger</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dep tracking trigger</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>the fix leg BPS</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlSwapFloatLeg</name>
+<description>The Float Leg Details</description>
+<constructor>false</constructor>
+<libraryFunction>getFloatLeg</libraryFunction>
+<parameters>
+    <parameter class='SimpleSwap'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of a SimpleSwap object</description>
+    </parameter>
+    <parameter ignore='true'>
+        <name>trigger</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dep tracking trigger</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>matrix</tensorRank>
+    <description>The Float Leg Details</description>
+</returnValue>
+</function>
+
+<function getObject='true'>
+<name>qlSwapFloatingLegBPS</name>
+<description>the BPS of the floating leg</description>
+<constructor>false</constructor>
+<libraryFunction>floatingLegBPS</libraryFunction>
+<parameters>
+    <parameter class='SimpleSwap'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the swap object</description>
+    </parameter>
+    <parameter ignore='true'>
+        <name>trigger</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dep tracking trigger</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>the float leg BPS</description>
+</returnValue>
+</function>
+
+</functions>
+</category>
+

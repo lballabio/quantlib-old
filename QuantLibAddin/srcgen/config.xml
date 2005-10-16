@@ -1,0 +1,22 @@
+<config>
+
+<categories>
+    <category>capfloor</category>
+    <category>couponvectors</category>
+    <category>instruments</category>
+    <category>interpolation</category>
+    <category>objecthandler</category>
+    <category>options</category>
+    <category>processes</category>
+    <category>schedule</category>
+    <category>shortratemodels</category>
+    <category>simpleswap</category>
+    <category>swap</category>
+    <category>termstructures</category>
+    <category>utilities</category>
+    <category>volatilities</category>
+    <category>xibor</category>
+</categories>
+
+</config>
+

@@ -1,0 +1,29 @@
+<addin loadAllAsDict = 'true'>
+
+<displayName>Guile</displayName>
+<platformId>G</platformId>
+
+<functionDocs indent='2'>
+    <reformatType>
+        <vector>
+            <default>vector &lt; %s &gt;</default>
+        </vector>
+        <matrix>
+            <default>vector &lt; vector &lt; %s &gt; &gt;</default>
+        </matrix>
+    </reformatType>
+</functionDocs>
+
+<functionReturnCode>
+    <reformatType>
+        <vector>
+            <default>vector &lt; %s &gt;</default>
+        </vector>
+        <matrix>
+            <default>vector &lt; vector &lt; %s &gt; &gt;</default>
+        </matrix>
+    </reformatType>
+</functionReturnCode>
+
+</addin>
+

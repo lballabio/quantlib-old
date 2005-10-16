@@ -1,0 +1,88 @@
+<category>
+<headerOnly>true</headerOnly>
+<description>diagnostic and utility functions</description>
+<displayName>Utilities</displayName>
+<functions>
+
+<function>
+<name>qlListEnum</name>
+<description>return the members of a given enumeration</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<parameters>
+    <parameter>
+        <name>enumId</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>name of the enum to list</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>vector</tensorRank>
+    <description>list of the members of the specified enumeration</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlListRegisteredEnums</name>
+<description>return the names of all registered enums</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<parameters></parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>vector</tensorRank>
+    <description>list of names of registered enums</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlListRegisteredTypes</name>
+<description>return the names of all registered complex types</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<parameters></parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>vector</tensorRank>
+    <description>list of names of registered enums</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlListType</name>
+<description>return the members of a given complex type</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<parameters>
+    <parameter>
+        <name>typeId</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>name of the complex type to list</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>vector</tensorRank>
+    <description>list of the members of the specified enumeration</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlVersion</name>
+<description>returns the version number of QuantLib</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<parameters></parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>QuantLib version number</description>
+</returnValue>
+</function>
+
+</functions>
+</category>
+

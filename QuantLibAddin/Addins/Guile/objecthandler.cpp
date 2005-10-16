@@ -21,15 +21,16 @@
 #include <Addins/Guile/guileutils.hpp>
 extern "C" {
 #include <Addins/Guile/extra.h>
-#include <Addins/Guile/utilities.h>
+#include <Addins/Guile/objecthandler.h>
 }
+
 
 SCM ohVersion(SCM x) {
     try {
         std::string ver = OBJHANDLER_VERSION;
         return gh_str02scm(ver.c_str());
     } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlOhVersion Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("ohVersion Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -48,7 +49,7 @@ SCM ohFieldNames(SCM x) {
         }
         return rtn;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlFieldNames Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("ohFieldNames Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -68,19 +69,19 @@ SCM ohFieldValue(SCM x) {
         }
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlValue Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("ohFieldValue Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
 
-SCM ohSetLogfile(SCM x) {
+SCM ohSetLogFile(SCM x) {
     try {
         std::string logFile = GetChop<std::string>::scalar(x);
         int logLevel = GetChop<int>::scalar(x);
         ObjHandler::setLogFile(logFile, logLevel);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLogfile Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("ohSetLogFile Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -92,7 +93,6 @@ SCM ohLogMessage(SCM x) {
         ObjHandler::logMessage(logMessage, logLevel);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLogMessage Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -103,7 +103,7 @@ SCM ohSetLogLevel(SCM x) {
         ObjHandler::setLogLevel(logLevel);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLogLevel Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("ohSetLogLevel Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -114,7 +114,7 @@ SCM ohLogObject(SCM x) {
         ObjHandler::logObject(handle);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLogObject Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("ohLogObject Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -124,7 +124,7 @@ SCM ohLogAllObjects(SCM x) {
         ObjHandler::logAllObjects();
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLogAllObjects Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("ohLogAllObjects Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -135,7 +135,7 @@ SCM ohDeleteObject(SCM x) {
         ObjHandler::ObjectHandler::instance().deleteObject(handle);
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlDeleteObject Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("ohDeleteObject Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
@@ -145,8 +145,27 @@ SCM ohDeleteAllObjects(SCM x) {
         ObjHandler::ObjectHandler::instance().deleteAllObjects();
         return SCM_UNSPECIFIED;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLogAllObjects Error: " + std::string(e.what()), 2);
+        ObjHandler::logMessage("ohDeleteAllObjects Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
     }
 }
+
+SCM ohObjectCount(SCM x) {
+    try {
+        return SCM_UNSPECIFIED;
+    } catch (const std::exception &e) {
+        ObjHandler::logMessage("ohObjectCount Error: " + std::string(e.what()), 2);
+        return SCM_UNSPECIFIED;
+    }
+}
+
+SCM ohHandleList(SCM x) {
+    try {
+        return SCM_UNSPECIFIED;
+    } catch (const std::exception &e) {
+        ObjHandler::logMessage("ohHandleList Error: " + std::string(e.what()), 2);
+        return SCM_UNSPECIFIED;
+    }
+}
+
 

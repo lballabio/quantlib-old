@@ -1,0 +1,120 @@
+
+"""
+ Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005 Aurelien Chanudet
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
+'C addin'
+
+import addin
+import common
+import utils
+import category
+import rule
+
+# constants
+
+BUF_CTOR    = 'stub.c.constructor'
+BUF_MEMBER  = 'stub.c.member'
+BUF_INCLUDES = 'stub.c.includes'
+
+class AddinC(addin.Addin):
+
+    def __init__(self,
+            categories):
+        super(AddinC, self).__init__('c', categories)
+        self.bufCtor = utils.loadBuffer(BUF_CTOR)
+        self.bufMember = utils.loadBuffer(BUF_MEMBER)
+        self.bufInclude = utils.loadBuffer(BUF_INCLUDES)
+
+    def setRules(self, config):
+        self.ruleFunctionDeclare = rule.Rule(config[common.FUNC_DEC])
+        self.ruleFunctionReturnType = rule.Rule(config[common.FUNC_RET_TYPE])
+        self.ruleLibraryCall = rule.Rule(config[common.LIB_CALL])
+        self.ruleLibraryReturnType = rule.Rule(config[common.LIB_RET])
+        self.ruleConversions = rule.Rule(config[common.CONVERSIONS])
+
+    def generate(self):
+        'generate source code for C addin'
+        utils.logMessage('  begin generating C ...')
+        for category in self.categories:
+            if category.headerOnly:
+                continue
+            self.generateHeaders(category)
+            self.generateFuncSources(category)
+        utils.logMessage('  done generating C.')
+
+    def generateHeader(self, fileHeader, function, suffix):
+        'generate source for prototype of given function'
+        functionReturnType = self.ruleFunctionReturnType.apply(function.returnValue)
+        fileHeader.write('int %s(' % function.name)
+        if function.isConstructor:
+            fileHeader.write('\n        char *handle,')
+        functionDeclaration = self.generateCode(self.ruleFunctionDeclare, function.parameters)
+        if functionDeclaration:
+            functionDeclaration += ',\n'
+        fileHeader.write(functionDeclaration)
+        fileHeader.write('        %sresult)%s' % (functionReturnType, suffix))
+
+    def generateHeaders(self, category):
+        'generate source for function prototypes'
+        fileName = self.rootDir + category.name + '.h' + common.TEMPFILE
+        fileHeader = file(fileName, 'w')
+        utils.printHeader(fileHeader)
+        fileHeader.write('#ifndef qla_%s_h\n' % category.name)
+        fileHeader.write('#define qla_%s_h\n\n' % category.name)
+        for function in category.functions:
+            self.generateHeader(fileHeader, function, ';\n\n')
+        fileHeader.write('#endif\n\n')
+        fileHeader.close()
+        utils.updateIfChanged(fileName)
+
+    def getReturnCommand(self, returnDef):
+        'generate code to convert datatype of return value'
+        return '/* convert return value */'
+
+    def generateConstructor(self, fileFunc, function):
+        conversions = self.generateConversions(function.parameters)
+        libraryCall = self.generateCode(self.ruleLibraryCall, function.parameters)
+        fileFunc.write(self.bufCtor % (conversions, function.libFunction, 
+            libraryCall, function.name))
+
+    def generateMember(self, fileFunc, function):
+        conversions = self.generateConversions(function.parameters)
+        libraryFunctionName = utils.getLibFuncName(function)
+        libraryCall = self.generateCode(self.ruleLibraryCall, function.parameters, True, True)
+        libraryReturnType = self.ruleLibraryReturnType.apply(function.returnValue)
+        functionReturnCommand = self.getReturnCommand(function.returnValue)
+        fileFunc.write(self.bufMember % (conversions, function.className, function.className, 
+            libraryReturnType, libraryFunctionName, libraryCall, functionReturnCommand, function.name))
+
+    def generateFuncSources(self, category):
+        'generate source for function implementations'
+        fileName = self.rootDir + category.name + '.cpp' + common.TEMPFILE
+        fileFunc = file(fileName, 'w')
+        utils.printHeader(fileFunc)
+        fileFunc.write(self.bufInclude % (category.name, category.name))
+        for function in category.functions:
+            if not function.platformSupported(self.platformId):
+                continue
+            self.generateHeader(fileFunc, function, ' {\n')
+            if function.isConstructor:
+                self.generateConstructor(fileFunc, function)
+            else:
+                self.generateMember(fileFunc, function)
+        fileFunc.close()
+        utils.updateIfChanged(fileName)
+

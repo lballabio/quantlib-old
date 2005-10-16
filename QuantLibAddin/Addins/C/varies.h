@@ -19,28 +19,39 @@
 #define qla_varies_h
 
 typedef enum {FALSE=0, TRUE} Boolean;
-typedef enum { LONG, DOUBLE, BOOL, CHARP } Type;
+typedef enum { LONG, DOUBLE, BOOL, CHARP, 
+    /* not yet implemented
+    LONG_ARRAY, DOUBLE_ARRAY, BOOL_ARRAY, CHARP_ARRAY,
+    LONG_MATRIX, DOUBLE_MATRIX, BOOL_MATRIX, CHARP_MATRIX 
+    */ } Type;
 
 typedef union {
     long AsLong;
     double AsDouble;
     Boolean AsBool;
     char* AsCharP;
+/* not yet implemented
+    long* AsLongArray;
+    double* AsDoubleArray;
+    Boolean* AsBoolArray;
+    char** AsCharPArray;
+    long** AsLongMatrix;
+    double** AsDoubleMatrix;
+    Boolean** AsBoolMatrix;
+    char*** AsCharPMatrix;
+*/
 } DataUnion;
 
 typedef struct {
     DataUnion data;
     Type type;
-    char* Label;
+    int numRows;
+    int numCols;
+//    char* Label;
 } Varies;
 
-typedef struct {
-    int count;
-    Varies *varies;
-} VariesList;
-
 const char *variesToString(const Varies *v);
-void freeVariesList(VariesList *vl);
+void freeVaries(Varies *vl);
 
 #endif
 

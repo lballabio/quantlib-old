@@ -62,58 +62,28 @@ void ohLogObject(
 }
 
 int qlListRegisteredEnums(
-        char **result) {
-    try {
-        std::vector < std::string > returnValue = QuantLibAddin::getRegisteredEnums();
-        Conversion< std::string >::convertArray(returnValue, result);
-        return SUCCESS;
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLIST_REGISTERED_ENUMS Error: " + std::string(e.what()));
-        result = 0;
-        return FAIL;
-    }
+    char **result) {
+    /* not yet implemented */
+    return 0;
 }
 
 int qlListEnum(
-        char *enumId,
-        char **result) {
-    try {
-        std::vector < std::string > returnValue = QuantLibAddin::getEnumMembers(
-            std::string(enumId));
-        Conversion< std::string >::convertArray(returnValue, result);
-        return SUCCESS;
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLIST_ENUM Error: " + std::string(e.what()));
-        result = 0;
-        return FAIL;
-    }
+    char *enumId,
+    char **result) {
+    /* not yet implemented */
+    return 0;
 }
 
 int qlListRegisteredTypes(
-        char **result) {
-    try {
-        std::vector < std::string > returnValue = QuantLibAddin::getRegisteredComplexTypes();
-        Conversion< std::string >::convertArray(returnValue, result);
-        return SUCCESS;
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLIST_REGISTERED_TYPES Error: " + std::string(e.what()));
-        result = 0;
-        return FAIL;
-    }
+    char **result) {
+    /* not yet implemented */
+    return 0;
 }
 
 int qlListType(
-        char *enumId,
-        char **result) {
-    try {
-        std::vector < std::string > returnValue = QuantLibAddin::getComplexTypeMembers(
-            std::string(enumId));
-        Conversion< std::string >::convertArray(returnValue, result);
-        return SUCCESS;
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlLIST_TYPE Error: " + std::string(e.what()));
-        result = 0;
-        return FAIL;
-    }
+    char *enumId,
+    char **result) {
+    /* not yet implemented */
+    return 0;
 }
 

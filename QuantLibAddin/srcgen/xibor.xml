@@ -1,0 +1,89 @@
+<category>
+<headerOnly>false</headerOnly>
+<description>functions to construct QuantLib Xibor objects</description>
+<displayName>Indices</displayName>
+<functions>
+
+<function>
+<name>qlXibor</name>
+<description>construct and return a handle to a Xibor Index</description>
+<constructor>true</constructor>
+<libraryFunction>Xibor</libraryFunction>
+<parameters>
+    <parameter>
+        <name>IndexName</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>evaluation date</description>
+    </parameter>
+    <parameter>
+        <name>Currency</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Index Currency</description>
+    </parameter>
+    <parameter>
+        <name>tenor</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>the tenor of this index</description>
+    </parameter>
+    <parameter>
+        <name>timeUnits</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>time units applying to above tenor</description>
+    </parameter>
+	<parameter>
+        <name>calendar</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>calendar (e.g. TARGET)</description>
+    </parameter>
+    <parameter>
+        <name>BDayConvention</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>business day convention (e.g. ModifiedFollowing)</description>
+    </parameter>
+    <parameter>
+        <name>dayCounter</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day counter (e.g. Actual360)</description>
+    </parameter>
+    <parameter>
+        <name>fixingDays</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>fixing days (e.g. 2)</description>
+    </parameter>
+    <parameter class='YieldTermStructure'>
+        <name>ForwardCurve</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the Yield Curve used for forecasting</description>
+    </parameter>
+    <parameter default='0'>
+        <name>dates</name>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+        <description>dates</description>
+    </parameter>
+    <parameter default='0'>
+        <name>fixings</name>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+        <description>fixings</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>handle of newly created object</description>
+</returnValue>
+</function>
+
+</functions>
+</category>
+

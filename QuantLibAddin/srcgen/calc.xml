@@ -1,0 +1,165 @@
+<addin loadAllAsDict = 'true'>
+
+<displayName>Calc</displayName>
+<platformId>O</platformId>
+
+<functionDeclaration indent='2'>
+    <setType>
+        <scalar>
+            <optional>ANY</optional>
+            <long>sal_Int32</long>
+            <bool>sal_Int32</bool>
+            <string>STRING</string>
+            <any>ANY</any>
+        </scalar>
+        <vector-matrix>
+            <optional>ANY</optional>
+            <long>sal_Int32</long>
+            <bool>sal_Int32</bool>
+            <string>ANY</string>
+            <any>ANY</any>
+        </vector-matrix>
+    </setType>
+    <dereferenceName>
+        <scalar>
+            <optional>&amp;</optional>
+            <string>&amp;</string>
+            <any>&amp;</any>
+        </scalar>
+        <vector-matrix>
+            <default>&amp;</default>
+        </vector-matrix>
+    </dereferenceName>
+    <reformatType>
+        <vector-matrix>
+            <optional>%s</optional>
+            <default>SEQSEQ( %s )</default>
+        </vector-matrix>
+    </reformatType>
+    <setPrefix>
+        <scalar>
+            <optional>const</optional>
+            <string>const</string>
+            <any>const</any>
+        </scalar>
+        <vector-matrix>
+            <default>const</default>
+        </vector-matrix>
+    </setPrefix>
+</functionDeclaration>
+
+<returnTypeIDL>
+    <setType>
+        <scalar-vector-matrix>
+            <bool>long</bool>
+        </scalar-vector-matrix>
+    </setType>
+    <reformatType>
+        <vector-matrix>
+            <default>sequence &lt; sequence &lt; %s &gt; &gt; </default>
+        </vector-matrix>
+    </reformatType>
+</returnTypeIDL>
+
+<ruleIDL indent='6'>
+    <setPrefix>
+        <scalar-vector-matrix>
+            <default>[in]</default>
+        </scalar-vector-matrix>
+    </setPrefix>
+    <setType>
+        <scalar>
+            <optional>any</optional>
+            <bool>long</bool>
+        </scalar>
+        <vector-matrix>
+            <optional>any</optional>
+            <bool>long</bool>
+            <string>any</string>
+        </vector-matrix>
+    </setType>
+    <reformatType>
+        <vector-matrix>
+            <optional>%s</optional>
+            <default>sequence &lt; sequence &lt; %s &gt; &gt; </default>
+        </vector-matrix>
+    </reformatType>
+</ruleIDL>
+
+<conversions appendTensorRank='true' indent='2'>
+    <setType>
+        <scalar>
+            <string>std::string</string>
+            <any>boost::any</any>
+        </scalar>
+        <vector-matrix>
+            <string>std::string</string>
+            <any>boost::any</any>
+        </vector-matrix>
+    </setType>
+    <reformatType>
+        <vector>
+            <default>std::vector &lt; %s &gt;</default>
+        </vector>
+        <matrix>
+            <default>std::vector &lt; std::vector &lt; %s &gt; &gt;</default>
+        </matrix>
+    </reformatType>
+    <setTypeConversion>
+        <scalar-vector-matrix>
+            <optional>any</optional>
+            <default>seqSeq</default>
+        </scalar-vector-matrix>
+    </setTypeConversion>
+</conversions>
+
+<libraryCall ql_type='true' appendTensorRank='true' indent='3'>
+    <setType>
+        <scalar-vector-matrix>
+            <default>null</default>
+        </scalar-vector-matrix>
+    </setType>
+    <reformatName>
+        <scalar>
+            <optional>%s</optional>
+            <bool>static_cast &lt; bool &gt; ( %s )</bool>
+            <string>ouStringToStlString(%s)</string>
+        </scalar>
+    </reformatName>
+</libraryCall>
+
+<functionReturnType>
+    <setType>
+        <scalar-vector-matrix>
+            <long>sal_Int32</long>
+            <bool>sal_Int32</bool>
+            <string>STRING</string>
+            <any>ANY</any>
+        </scalar-vector-matrix>
+    </setType>
+    <reformatType>
+        <vector-matrix>
+            <default>SEQSEQ( %s )</default>
+        </vector-matrix>
+    </reformatType>
+</functionReturnType>
+
+<libraryReturn>
+    <setType>
+        <scalar-vector-matrix>
+            <string>std::string</string>
+            <any>boost::any</any>
+        </scalar-vector-matrix>
+    </setType>
+    <reformatType>
+        <vector>
+            <default>std::vector &lt; %s &gt;</default>
+        </vector>
+        <matrix>
+            <default>std::vector &lt; std::vector &lt; %s &gt; &gt;</default>
+        </matrix>
+    </reformatType>
+</libraryReturn>
+
+</addin>
+

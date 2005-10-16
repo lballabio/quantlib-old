@@ -23,86 +23,147 @@ extern "C" {
 
 using namespace ObjHandler;
 
-void propertyVectorToVariesList(
-        const Properties &properties,
-        VariesList *variesList) {
-    variesList->count = properties.size();
-    variesList->varies = new Varies[properties.size()];
-    for (size_t i = 0; i < properties.size(); i++) {
-        ObjectProperty property = properties[i];
-        variesList->varies[i].Label = new char[property.name().size() + 1];
-        sprintf(variesList->varies[i].Label, property.name().c_str());
-        any_ptr a = property();
-        if (a->type() == typeid(long)) {
-            variesList->varies[i].type = LONG;
-            variesList->varies[i].data.AsLong = boost::any_cast<long>(*a);
-        } else if (a->type() == typeid(double)) {
-            variesList->varies[i].type = DOUBLE;
-            variesList->varies[i].data.AsDouble = boost::any_cast<double>(*a);
-        } else if (a->type() == typeid(bool)) {
-            variesList->varies[i].type = BOOL;
-            variesList->varies[i].data.AsBool = (Boolean) boost::any_cast<bool>(*a);
-        } else if (a->type() == typeid(std::string)) {
-            variesList->varies[i].type = CHARP;
-            const char *c = boost::any_cast<std::string>(*a).c_str();
-            variesList->varies[i].data.AsCharP = new char[strlen(c) + 1];
-            sprintf(variesList->varies[i].data.AsCharP, c);
-        } else {
-            freeVariesList(variesList);
-            throw Exception("propertiesToVaries: unrecognized type");
-        }
-    }
+long variesToScalarLong(const Varies &v, const long &defaultValue) {
+    long ret;
+    return ret;
 }
 
-const char *variesToString(const Varies *v) {
-    static std::string ret;
-    std::ostringstream s;
-    if (v->type == LONG)
-        s << v->data.AsLong;
-    else if (v->type == DOUBLE)
-        s << v->data.AsDouble;
-    else if (v->type == BOOL)
-        s << v->data.AsBool;
-    else if (v->type == CHARP)
-        s << v->data.AsCharP;
-    else
-        throw Exception("variesToString: unrecognized type");
-    ret = s.str();
-    return ret.c_str();
+double variesToScalarDouble(const Varies &v, const double &defaultValue){
+    double ret;
+    return ret;
 }
 
-void freeVariesList(VariesList *vl) {
-    for (int i = 0; i < vl->count; i++) {
-        if (vl->varies[i].type == CHARP && vl->varies[i].data.AsCharP)
-            delete [] vl->varies[i].data.AsCharP;
-        if (vl->varies[i].Label)
-            delete [] vl->varies[i].Label;
-    }
-    delete [] vl->varies;
+bool variesToScalarBool(const Varies &v, const bool &defaultValue){
+    bool ret;
+    return ret;
 }
 
-boost::any variesToBoostAny(const Varies &v) {
-    if (v.type == LONG)
-        return boost::any(v.data.AsLong);
-    else if (v.type == DOUBLE)
-        return boost::any(v.data.AsDouble);
-    else if (v.type == BOOL)
-        return boost::any(static_cast < bool > (v.data.AsBool == TRUE));
-    else if (v.type == CHARP)
-        return boost::any(v.data.AsCharP);
-    else
-        throw Exception("variesToBoostAny: unrecognized type");
+std::string variesToScalarString(const Varies &v, const std::string &defaultValue){
+    std::string ret;
+    return ret;
 }
 
-// FIXME functions below not yet implemented
 
-void boostAnyToVaries(const boost::any &a, Varies *v) {
+std::vector < long > variesToVectorLong(const Varies &v){
+    std::vector < long > ret;
+    return ret;
 }
 
-void boostAnyVectorToVaries(const std::vector < boost::any >&a, VariesList *v) {
+std::vector < double > variesToVectorDouble(const Varies &v){
+    std::vector < double > ret;
+    return ret;
 }
 
-void boostAnyMatrixToVaries(
-        const std::vector < std::vector < boost::any > >&a, VariesList *v) {
+std::vector < bool > variesToVectorBool(const Varies &v){
+    std::vector < bool > ret;
+    return ret;
 }
 
+std::vector < std::string > variesToVectorString(const Varies &v){
+    std::vector < std::string > ret;
+    return ret;
+}
+
+std::vector < boost::any > variesToVectorAny(const Varies &v){
+    std::vector < boost::any > ret;
+    return ret;
+}
+
+
+std::vector < std::vector < long > > variesToMatrixLong(const Varies &v){
+    std::vector < std::vector < long > > ret;
+    return ret;
+}
+
+std::vector < std::vector < double > > variesToMatrixDouble(const Varies &v){
+    std::vector < std::vector < double > > ret;
+    return ret;
+}
+
+std::vector < std::vector < bool > > variesToMatrixBool(const Varies &v){
+    std::vector < std::vector < bool > > ret;
+    return ret;
+}
+
+std::vector < std::vector < std::string > > variesToMatrixString(const Varies &v){
+    std::vector < std::vector < std::string > > ret;
+    return ret;
+}
+
+std::vector < std::vector < boost::any > > variesToMatrixAny(const Varies &v){
+    std::vector < std::vector < boost::any > > ret;
+    return ret;
+}
+
+
+//void propertyVectorToVariesList(
+//        const Properties &properties,
+//        VariesList *variesList) {
+//    variesList->count = properties.size();
+//    variesList->varies = new Varies[properties.size()];
+//    for (size_t i = 0; i < properties.size(); i++) {
+//        ObjectProperty property = properties[i];
+//        variesList->varies[i].Label = new char[property.name().size() + 1];
+//        sprintf(variesList->varies[i].Label, property.name().c_str());
+//        any_ptr a = property();
+//        if (a->type() == typeid(long)) {
+//            variesList->varies[i].type = LONG;
+//            variesList->varies[i].data.AsLong = boost::any_cast<long>(*a);
+//        } else if (a->type() == typeid(double)) {
+//            variesList->varies[i].type = DOUBLE;
+//            variesList->varies[i].data.AsDouble = boost::any_cast<double>(*a);
+//        } else if (a->type() == typeid(bool)) {
+//            variesList->varies[i].type = BOOL;
+//            variesList->varies[i].data.AsBool = (Boolean) boost::any_cast<bool>(*a);
+//        } else if (a->type() == typeid(std::string)) {
+//            variesList->varies[i].type = CHARP;
+//            const char *c = boost::any_cast<std::string>(*a).c_str();
+//            variesList->varies[i].data.AsCharP = new char[strlen(c) + 1];
+//            sprintf(variesList->varies[i].data.AsCharP, c);
+//        } else {
+//            freeVariesList(variesList);
+//            throw Exception("propertiesToVaries: unrecognized type");
+//        }
+//    }
+//}
+//
+//const char *variesToString(const Varies *v) {
+//    static std::string ret;
+//    std::ostringstream s;
+//    if (v->type == LONG)
+//        s << v->data.AsLong;
+//    else if (v->type == DOUBLE)
+//        s << v->data.AsDouble;
+//    else if (v->type == BOOL)
+//        s << v->data.AsBool;
+//    else if (v->type == CHARP)
+//        s << v->data.AsCharP;
+//    else
+//        throw Exception("variesToString: unrecognized type");
+//    ret = s.str();
+//    return ret.c_str();
+//}
+//
+//void freeVariesList(VariesList *vl) {
+//    for (int i = 0; i < vl->count; i++) {
+//        if (vl->varies[i].type == CHARP && vl->varies[i].data.AsCharP)
+//            delete [] vl->varies[i].data.AsCharP;
+//        if (vl->varies[i].Label)
+//            delete [] vl->varies[i].Label;
+//    }
+//    delete [] vl->varies;
+//}
+//
+//boost::any variesToBoostAny(const Varies &v) {
+//    if (v.type == LONG)
+//        return boost::any(v.data.AsLong);
+//    else if (v.type == DOUBLE)
+//        return boost::any(v.data.AsDouble);
+//    else if (v.type == BOOL)
+//        return boost::any(static_cast < bool > (v.data.AsBool == TRUE));
+//    else if (v.type == CHARP)
+//        return boost::any(v.data.AsCharP);
+//    else
+//        throw Exception("variesToBoostAny: unrecognized type");
+//}
+//

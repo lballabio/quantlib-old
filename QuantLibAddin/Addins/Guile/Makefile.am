@@ -21,8 +21,8 @@ noinst_HEADERS = \
     objecthandler.h \
     options.h \
     processes.h \
-    shortratemodels.h \
     schedule.h \
+    shortratemodels.h \
     simpleswap.h \
     swap.h \
     termstructures.h \

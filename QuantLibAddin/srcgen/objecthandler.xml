@@ -1,0 +1,368 @@
+<category>
+<headerOnly>true</headerOnly>
+<description>ObjectHandler functions</description>
+<displayName>ObjectHandler</displayName>
+<functions>
+
+<function>
+<name>ohVersion</name>
+<description>returns the version number of ObjectHandler</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>SGO</platforms>
+<parameters></parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>ObjectHandler version number</description>
+</returnValue>
+</function>
+
+<function>
+<name>ohObjectCount</name>
+<description>#/objects in repository</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>SGO</platforms>
+<parameters></parameters>
+<returnValue>
+    <type>long</type>
+    <tensorRank>scalar</tensorRank>
+    <description>object count</description>
+</returnValue>
+</function>
+
+<function>
+<name>ohHandleList</name>
+<description>list of handles in repository</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>SGO</platforms>
+<parameters></parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>vector</tensorRank>
+    <description>handle list</description>
+</returnValue>
+</function>
+
+<function>
+<name>ohFieldNames</name>
+<description>retrieve the field names of a given object</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>SGO</platforms>
+<parameters>
+    <parameter>
+        <name>handleObject</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of object to be queried</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>any</type>
+    <tensorRank>vector</tensorRank>
+    <description>list of fieldnames for queried object</description>
+</returnValue>
+</function>
+
+<function>
+<name>ohFieldValue</name>
+<description>retrieve the value of a named field</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>SGO</platforms>
+<parameters>
+    <parameter>
+        <name>handleObject</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of object to be queried</description>
+    </parameter>
+    <parameter>
+        <name>fieldName</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>name of field</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>any</type>
+    <tensorRank>matrix</tensorRank>
+    <description>value of named field</description>
+</returnValue>
+</function>
+
+<function xlmacro='true'>
+<name>ohDeleteObject</name>
+<description>delete object from repository</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>SGO</platforms>
+<parameters>
+    <parameter>
+        <name>handleObject</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of object to be deleted</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>bool</type>
+    <tensorRank>scalar</tensorRank>
+    <description>success/failure</description>
+</returnValue>
+</function>
+
+<function xlmacro='true'>
+<name>ohDeleteAllObjects</name>
+<description>delete all objects from repository</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>SGO</platforms>
+<parameters></parameters>
+<returnValue>
+    <type>bool</type>
+    <tensorRank>scalar</tensorRank>
+    <description>success/failure</description>
+</returnValue>
+</function>
+
+<function>
+<name>ohDependsOn</name>
+<description>force a dependency between two functions</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>SO</platforms>
+<parameters>
+    <parameter>
+        <name>dummy0</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dummy parameter (ignored)</description>
+    </parameter>
+    <parameter>
+        <name>dummy1</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dummy parameter (ignored)</description>
+    </parameter>
+    <parameter>
+        <name>dummy2</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dummy parameter (ignored)</description>
+    </parameter>
+    <parameter>
+        <name>dummy3</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dummy parameter (ignored)</description>
+    </parameter>
+    <parameter>
+        <name>dummy4</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dummy parameter (ignored)</description>
+    </parameter>
+    <parameter>
+        <name>dummy5</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dummy parameter (ignored)</description>
+    </parameter>
+    <parameter>
+        <name>dummy6</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dummy parameter (ignored)</description>
+    </parameter>
+    <parameter>
+        <name>dummy7</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dummy parameter (ignored)</description>
+    </parameter>
+    <parameter>
+        <name>dummy8</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dummy parameter (ignored)</description>
+    </parameter>
+    <parameter>
+        <name>dummy9</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dummy parameter (ignored)</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>bool</type>
+    <tensorRank>scalar</tensorRank>
+    <description>success/failure</description>
+</returnValue>
+</function>
+
+<function>
+<name>ohGetGcEnabled</name>
+<description>get value of ObjectHandler garbage collection flag</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>S</platforms>
+<parameters></parameters>
+<returnValue>
+    <type>bool</type>
+    <tensorRank>scalar</tensorRank>
+    <description>success/failure</description>
+</returnValue>
+</function>
+
+<function xlmacro='true'>
+<name>ohSetGcEnabled</name>
+<description>set value of ObjectHandler garbage collection flag</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>S</platforms>
+<parameters>
+    <parameter>
+        <name>enableGarbageCollection</name>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>true (enable) / false (disable)</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>bool</type>
+    <tensorRank>scalar</tensorRank>
+    <description>success/failure</description>
+</returnValue>
+</function>
+
+<function xlmacro='true'>
+<name>ohCallGC</name>
+<description>delete orphaned objects from repository</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>S</platforms>
+<parameters></parameters>
+<returnValue>
+    <type>bool</type>
+    <tensorRank>scalar</tensorRank>
+    <description>success/failure</description>
+</returnValue>
+</function>
+
+<function>
+<name>ohSetLogFile</name>
+<description>begin logging to named file</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>SGO</platforms>
+<parameters>
+    <parameter>
+        <name>logFileName</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>path and name of log file</description>
+    </parameter>
+    <parameter default='4'>
+        <name>logLevel</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>threshold for log messages</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>name of logfile</description>
+</returnValue>
+</function>
+
+<function>
+<name>ohSetLogLevel</name>
+<description>set threshold for log messages</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>SGO</platforms>
+<parameters>
+    <parameter>
+        <name>logLevel</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>threshold for log messages</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>long</type>
+    <tensorRank>scalar</tensorRank>
+    <description>returns new logging threshold</description>
+</returnValue>
+</function>
+
+<function>
+<name>ohLogMessage</name>
+<description>log a message</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>SGO</platforms>
+<parameters>
+    <parameter>
+        <name>logMessage</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>message to be logged</description>
+    </parameter>
+    <parameter default='4'>
+        <name>logLevel</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>threshold for log messages</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>message logged</description>
+</returnValue>
+</function>
+
+<function>
+<name>ohLogObject</name>
+<description>write object description to log file</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>SGO</platforms>
+<parameters>
+    <parameter>
+        <name>handleObject</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of object to be logged</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>bool</type>
+    <tensorRank>scalar</tensorRank>
+    <description>success/failure</description>
+</returnValue>
+</function>
+
+<function>
+<name>ohLogAllObjects</name>
+<description>write all object descriptions to log file</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>SGO</platforms>
+<parameters></parameters>
+<returnValue>
+    <type>bool</type>
+    <tensorRank>scalar</tensorRank>
+    <description>success/failure</description>
+</returnValue>
+</function>
+
+</functions>
+</category>
+

@@ -63,18 +63,6 @@ Package=<4>
 
 ###############################################################################
 
-Project: "Autogen"=".\Autogen\Autogen.dsp" - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
 Project: "ClientCDemo"=".\Clients\C\ClientCDemo.dsp" - Package Owner=<4>
 
 Package=<5>

@@ -4,7 +4,7 @@ QuantLibAddin
 - improve formatting of log messages
 - #include fewer headers to speed compilation
 
-Autogen
+srcgen
 - alphabetize function names which are output to doxygen
 
 Excel

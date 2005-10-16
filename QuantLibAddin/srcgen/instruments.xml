@@ -1,0 +1,420 @@
+<category>
+<headerOnly>false</headerOnly>
+<description>functions to construct QuantLib instrument objects</description>
+<displayName>Instruments</displayName>
+
+<functions>
+
+<function getObject='true'>
+<name>qlBondAccrued</name>
+<description>Accrued: If no settlement is given the default bond settlement is used for calculation.</description>
+<constructor>false</constructor>
+<libraryFunction>accruedAmount</libraryFunction>
+<parameters>
+    <parameter class='FixedCouponBond'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the Fixed Coupon Bond object</description>
+    </parameter>
+    <parameter ql_type='QuantLib::Date'>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>settlement date</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>the accrual</description>
+</returnValue>
+</function>
+
+<function getObject='true'>
+<name>qlBondCleanPrice</name>
+<description>If no settlement is given the default bond settlement is used for calculation.</description>
+<constructor>false</constructor>
+<libraryFunction>cleanPrice</libraryFunction>
+<parameters>
+    <parameter class='FixedCouponBond'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the Fixed Coupon Bond object</description>
+    </parameter>
+    <parameter>
+        <name>yield</name>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>bond yield</description>
+    </parameter>
+    <parameter ql_type='QuantLib::Compounding'>
+        <name>compounding</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+    </parameter>
+    <parameter ql_type='QuantLib::Date'>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>settlement date</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>the clean price</description>
+</returnValue>
+</function>
+
+<function getObject='true'>
+<name>qlBondDirtyPrice</name>
+<description>dirty price: If no settlement is given the default bond settlement is used for calculation.</description>
+<constructor>false</constructor>
+<libraryFunction>dirtyPrice</libraryFunction>
+<parameters>
+    <parameter class='FixedCouponBond'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the Fixed Coupon Bond object</description>
+    </parameter>
+    <parameter>
+        <name>yield</name>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>bond yield</description>
+    </parameter>
+    <parameter ql_type='QuantLib::Compounding'>
+        <name>compounding</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+    </parameter>
+    <parameter ql_type='QuantLib::Date'>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>settlement date</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>the dirty price</description>
+</returnValue>
+</function>
+
+<function getObject='true'>
+<name>qlBondThCleanPrice</name>
+<description>theoretical clean price: The default bond settlement is used for calculation.</description>
+<constructor>false</constructor>
+<libraryFunction>cleanPrice</libraryFunction>
+<parameters>
+    <parameter class='FixedCouponBond'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the Fixed Coupon Bond object</description>
+    </parameter>
+    <parameter ignore='true'>
+        <name>trigger</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dep tracking trigger</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>the theoretical clean price</description>
+</returnValue>
+</function>
+
+<function getObject='true'>
+<name>qlBondThDirtyPrice</name>
+<description>theoretical dirty price: The default bond settlement is used for calculation.</description>
+<constructor>false</constructor>
+<libraryFunction>dirtyPrice</libraryFunction>
+<parameters>
+    <parameter class='FixedCouponBond'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the Fixed Coupon Bond object</description>
+    </parameter>
+    <parameter ignore='true'>
+        <name>trigger</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dep tracking trigger</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>the theoretical dirty price</description>
+</returnValue>
+</function>
+
+<function getObject='true'>
+<name>qlBondThYield</name>
+<description>theoretical bond yield: The default bond settlement and theoretical price are used for calculation.</description>
+<constructor>false</constructor>
+<libraryFunction>yield</libraryFunction>
+<parameters>
+    <parameter class='FixedCouponBond'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the Fixed Coupon Bond object</description>
+    </parameter>
+    <parameter ql_type='QuantLib::Compounding'>
+        <name>Compounding</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+    </parameter>
+    <parameter ignore='true'>
+        <name>trigger</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dep tracking trigger</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>the theoretical yield</description>
+</returnValue>
+</function>
+
+<function getObject='true'>
+<name>qlBondYield</name>
+<description>Yield: If no settlement is given the default bond settlement is used for calculation.</description>
+<constructor>false</constructor>
+<libraryFunction>yield</libraryFunction>
+<parameters>
+    <parameter class='FixedCouponBond'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the Fixed Coupon Bond object</description>
+    </parameter>
+    <parameter>
+        <name>cleanPrice</name>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Clean Price</description>
+    </parameter>
+    <parameter ql_type='QuantLib::Compounding'>
+        <name>compounding</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+    </parameter>
+    <parameter ql_type='QuantLib::Date'>
+        <name>settlementDate</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>settlement date</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>the dirty price</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlFixedCouponBond</name>
+<description>construct and return a handle to a Fixed Coupon Bond object</description>
+<constructor>true</constructor>
+<libraryFunction>FixedCouponBond</libraryFunction>
+<parameters>
+    <parameter>
+        <name>issueDate</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>issue date</description>
+    </parameter>
+    <parameter>
+        <name>firstCouponDate</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>first coupon date</description>
+    </parameter>
+    <parameter>
+        <name>maturityDate</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>maturity date</description>
+    </parameter>
+    <parameter>
+        <name>settlementDays</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>settlement days</description>
+    </parameter>
+    <parameter>
+        <name>coupon</name>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+        <description>coupons</description>
+    </parameter>
+    <parameter>
+        <name>nominal</name>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+        <description>nominals</description>
+    </parameter>
+    <parameter>
+        <name>Redemption</name>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Redemption</description>
+    </parameter>
+    <parameter>
+        <name>frequencyID</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>frequency ID</description>
+    </parameter>
+    <parameter>
+        <name>dayCounterID</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day counter ID</description>
+    </parameter>
+    <parameter>
+        <name>BDayConv</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>business day convention</description>
+    </parameter>
+    <parameter>
+        <name>calendarID</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>calendar ID</description>
+    </parameter>
+        <parameter>
+        <name>startFromEnd</name>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>build schedule backwards (start from maturity)</description>
+    </parameter>
+    <parameter>
+        <name>longFinal</name>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>long first/last period</description>
+    </parameter>
+    <parameter class='YieldTermStructure' default='""'>
+        <name>DiscountCurve</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the Yield Curve used for discounting</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>handle of newly created object</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlZeroCouponBond</name>
+<description>construct and return a handle to a ZeroCouponBond object</description>
+<constructor>true</constructor>
+<libraryFunction>ZeroCouponBond</libraryFunction>
+<parameters>
+    <parameter>
+        <name>issueDate</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>issue date</description>
+    </parameter>
+    <parameter>
+        <name>maturityDate</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>maturity date</description>
+    </parameter>
+    <parameter>
+        <name>settlementDays</name>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>settlement days</description>
+    </parameter>
+    <parameter>
+        <name>dayCounterID</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day counter ID</description>
+    </parameter>
+    <parameter>
+        <name>calendarID</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>calendar ID</description>
+    </parameter>
+    <parameter>
+        <name>conventionID</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>convention ID</description>
+    </parameter>
+    <parameter>
+        <name>redemption</name>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>redemption</description>
+    </parameter>
+    <parameter class='ZeroCurve'>
+        <name>handleZeroCurve</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of the Zero Curve object</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>handle of newly created object</description>
+</returnValue>
+</function>
+
+<function getObject='true'>
+<name>qlNPV</name>
+<description>NPV</description>
+<constructor>false</constructor>
+<libraryFunction>NPV</libraryFunction>
+<parameters>
+    <parameter class='Instrument'>
+        <name>handle</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of instrument object</description>
+    </parameter>
+    <parameter ignore='true'>
+        <name>trigger</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>NPV</description>
+</returnValue>
+</function>
+
+</functions>
+</category>
+

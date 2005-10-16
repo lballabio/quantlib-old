@@ -1,0 +1,79 @@
+<category>
+<headerOnly>false</headerOnly>
+<description>functions to construct QuantLib cap/floor objects</description>
+<displayName>Caps/Floors</displayName>
+<functions>
+
+<function>
+<name>qlAnalyticCapFloorEngine</name>
+<description>construct and return a pricing engine for cap/foors</description>
+<constructor>true</constructor>
+<libraryFunction>AnalyticCapFloorEngine</libraryFunction>
+<parameters>
+    <parameter class='AffineModel'>
+        <name>handleModel</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>affine model (providing a discount bond option pricing formula)</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>handle of newly created object</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlCapFloor</name>
+<description>construct and return a handle to a cap/floor object</description>
+<constructor>true</constructor>
+<libraryFunction>CapFloor</libraryFunction>
+<parameters>
+    <parameter class='CouponVector'>
+        <name>couponVectorID</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>coupon vector</description>
+    </parameter>
+    <parameter class='YieldTermStructure'>
+        <name>termStructureID</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle to term structure</description>
+    </parameter>
+    <parameter>
+        <name>capStrikes</name>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+        <description>cap strikes</description>
+    </parameter>
+    <parameter>
+        <name>floorStrikes</name>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+        <description>floor strikes</description>
+    </parameter>
+    <parameter class='AnalyticCapFloorEngine'>
+        <name>handleEngine</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle to pricing engine</description>
+    </parameter>
+    <parameter>
+        <name>optionType</name>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>option type (cap, floor or collar)</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>handle of newly created object</description>
+</returnValue>
+</function>
+
+</functions>
+</category>
+

@@ -1,0 +1,116 @@
+<addin loadAllAsDict = 'true'>
+
+<displayName>C</displayName>
+<platformId>C</platformId>
+
+<functionDeclaration indent='2'>
+    <setType>
+        <scalar>
+            <bool>Boolean</bool>
+            <string>char</string>
+            <optional>Varies</optional>
+            <any>Varies</any>
+        </scalar>
+        <vector-matrix>
+            <default>Varies</default>
+        </vector-matrix>
+    </setType>
+    <dereferenceName>
+        <scalar>
+            <optional>null</optional>
+            <string>*</string>
+        </scalar>
+    </dereferenceName>
+</functionDeclaration>
+
+<functionReturnType>
+    <setType>
+        <scalar>
+            <bool>Boolean</bool>
+            <string>char</string>
+            <any>Varies</any>
+        </scalar>
+        <vector-matrix>
+            <default>Varies</default>
+        </vector-matrix>
+    </setType>
+    <dereferenceName>
+        <scalar-vector-matrix>
+            <default>*</default>
+        </scalar-vector-matrix>
+    </dereferenceName>
+</functionReturnType>
+
+<functionReturnType2>
+    <setType>
+        <scalar>
+            <bool>Boolean</bool>
+            <string>char</string>
+            <any>Varies</any>
+        </scalar>
+        <vector-matrix>
+            <default>Varies</default>
+        </vector-matrix>
+    </setType>
+</functionReturnType2>
+
+<libraryReturn>
+    <setType>
+        <scalar-vector-matrix>
+            <string>std::string</string>
+            <any>boost::any</any>
+        </scalar-vector-matrix>
+    </setType>
+    <reformatType>
+        <vector>
+            <default>std::vector &lt; %s &gt;</default>
+        </vector>
+        <matrix>
+            <default>std::vector &lt; std::vector &lt; %s &gt; &gt;</default>
+        </matrix>
+    </reformatType>
+</libraryReturn>
+
+<libraryCall ql_type='true' appendTensorRank='true' indent='3'>
+    <setType>
+        <scalar-vector-matrix>
+            <default>null</default>
+        </scalar-vector-matrix>
+    </setType>
+    <reformatName>
+        <scalar>
+            <optional>%s</optional>
+            <bool>%s == TRUE</bool>
+            <string>std::string(%s)</string>
+        </scalar>
+    </reformatName>
+</libraryCall>
+
+<conversions appendTensorRank='true' indent='2'>
+    <setType>
+        <scalar>
+            <string>std::string</string>
+            <any>boost::any</any>
+        </scalar>
+        <vector-matrix>
+            <string>std::string</string>
+            <any>boost::any</any>
+        </vector-matrix>
+    </setType>
+    <reformatType>
+        <vector>
+            <default>std::vector &lt; %s &gt;</default>
+        </vector>
+        <matrix>
+            <default>std::vector &lt; std::vector &lt; %s &gt; &gt;</default>
+        </matrix>
+    </reformatType>
+    <setTypeConversion>
+        <scalar-vector-matrix>
+            <default>varies</default>
+        </scalar-vector-matrix>
+    </setTypeConversion>
+</conversions>
+
+</addin>
+
