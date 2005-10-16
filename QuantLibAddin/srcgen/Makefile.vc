@@ -1,0 +1,81 @@
+# QuantLibAddin\srcgen\Makefile.vc
+
+COMPONENT_NAME=srcgen
+INT_DIR=build\vc6
+FLAG1=$(INT_DIR)\$(COMPONENT_NAME).flag1
+STUBS=stub.c.constructor \
+	stub.c.includes \
+    stub.c.member \
+	stub.calc.constructor \
+	stub.calc.idlfoot \
+	stub.calc.idlfunc \
+	stub.calc.idlhead \
+	stub.calc.includes \
+	stub.calc.map \
+	stub.calc.member \
+	stub.copyright \
+	stub.doxygen.enums \
+	stub.doxygen.functions \
+	stub.excel.constructor \
+	stub.excel.includes \
+	stub.excel.member \
+	stub.excel.regheader \
+	stub.qla.includes
+
+SCRIPTS=addin.py \
+    addinC.py \
+    addinCalc.py \
+    addinDoxygen.py \
+    addinExcel.py \
+    addinGuile.py \
+    addinQla.py \
+    category.py \
+    common.py \
+    config.py \
+    function.py \
+    parameter.py \
+    parse.py \
+    rule.py \
+    srcgen.py \
+    utils.py
+
+METADATA=c.xml \
+    calc.xml \
+    capfloor.xml \
+    config.xml \
+    couponvectors.xml \
+    doxygen.xml \
+    enums.xml \
+    excel.xml \
+    guile.xml \
+    instruments.xml \
+    interpolation.xml \
+    objecthandler.xml \
+    options.xml \
+    processes.xml \
+    schedule.xml \
+    shortratemodels.xml \
+    simpleswap.xml \
+    swap.xml \
+    termstructures.xml \
+    utilities.xml \
+    volatilities.xml \
+    xibor.xml
+
+!IF "$(OS)" == "Windows_NT"
+NULL=
+!ELSE 
+NULL=nul
+!ENDIF
+
+ALL : $(FLAG1)
+
+"$(INT_DIR)" :
+    if not exist "$(INT_DIR)/$(NULL)" mkdir "$(INT_DIR)"
+
+$(FLAG1) : $(STUBS) $(SCRIPTS) $(METADATA) $(INT_DIR)
+	srcgen.py -a
+	echo flagged > $@
+
+CLEAN :
+	-@ if EXIST "$(INT_DIR)\*"			del /f /q "$(INT_DIR)\*"

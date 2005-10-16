@@ -20,21 +20,23 @@
         </vector-matrix>
     </setType>
     <dereferenceName>
-        <scalar>
+        <scalar-vector-matrix>
             <default>*</default>
-        </scalar>
-        <vector-matrix>
-            <default>*</default>
-        </vector-matrix>
+        </scalar-vector-matrix>
     </dereferenceName>
 </functionDeclaration>
+
 
 <functionReturnType>
     <setType>
         <scalar>
-            <string>std::string</string>
-            <any>boost::any</any>
+            <optional>XLOPER</optional>
+            <string>char</string>
+            <any>XLOPER</any>
         </scalar>
+        <vector-matrix>
+            <default>XLOPER</default>
+        </vector-matrix>
     </setType>
     <dereferenceName>
         <scalar-vector-matrix>
@@ -51,6 +53,7 @@
     </setType>
     <dereferenceName>
         <scalar>
+            <optional>null</optional>
             <long>*</long>
             <double>*</double>
             <bool>*</bool>
@@ -70,6 +73,14 @@
             <any>boost::any</any>
         </scalar-vector-matrix>
     </setType>
+    <reformatType>
+        <vector>
+            <default>std::vector &lt; %s &gt;</default>
+        </vector>
+        <matrix>
+            <default>std::vector &lt; std::vector &lt; %s &gt; &gt;</default>
+        </matrix>
+    </reformatType>
 </libraryReturn>
 
 <conversions appendTensorRank='true' indent='2'>
