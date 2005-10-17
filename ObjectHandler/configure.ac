@@ -53,6 +53,12 @@ AC_PATH_PROG([SED], [sed])
 AC_CONFIG_FILES([
     Makefile
     oh/Makefile
+    ohxl/Makefile
+    ohxl/ohxllib/Makefile
+    ohxl/ohxll/Makefile
+    xlsdk/Makefile
     Examples/C++/Makefile
+    Examples/xl/Makefile
     Docs/Makefile])
 AC_OUTPUT
+

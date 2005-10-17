@@ -1,8 +1,16 @@
 
-SUBDIRS = oh Examples/C++ Docs
+SUBDIRS = \
+    oh \
+    ohxl \
+    ohxl/ohxll \
+    ohxl/ohxllib \
+    xlsdk \
+    Examples/C++ \
+    Examples/xl \
+    Docs
 
-#    makefile.mak
-#    ObjectHandler.dev
+#    ObjectHandler.sln
+#    ohlib.vcproj
 EXTRA_DIST = \
     Announce.txt \
     Authors.txt \
@@ -12,11 +20,9 @@ EXTRA_DIST = \
     NEWS.txt \
     ObjectHandler.dsw \
     ObjectHandler.nsi \
-    ObjectHandler.sln \
     ObjectHandler_vc8.sln \
-    lib.dsp \
-    lib.vcproj \
-    lib_vc8.vcproj \
+    ohlib.dsp \
+    ohlib_vc8.vcproj \
     README.txt \
     TODO.txt
 

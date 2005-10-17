@@ -2,3 +2,5 @@ xll
 build
 ohxll.plg
 *.user
+Makefile
+Makefile.in

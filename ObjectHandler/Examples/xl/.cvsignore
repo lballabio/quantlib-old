@@ -2,3 +2,5 @@
 build
 xll
 ExampleXLL*.vcproj.*
+Makefile
+Makefile.in

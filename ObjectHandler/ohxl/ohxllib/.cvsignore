@@ -2,3 +2,5 @@ ohxllib.plg
 build
 lib
 *.user
+Makefile
+Makefile.in

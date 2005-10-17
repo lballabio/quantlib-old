@@ -5,11 +5,11 @@ include_HEADERS = \
     config.hpp \
     exception.hpp \
     logger.hpp \
-    object.hpp \
-    objecthandler.hpp \
     objecthandlerbase.hpp \
-    objhandler.hpp \
+    objecthandler.hpp \
+    object.hpp \
     objhandlerdefines.hpp \
+    objhandler.hpp \
     property.hpp \
     singleton.hpp \
     utilities.hpp
