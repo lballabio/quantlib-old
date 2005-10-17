@@ -99,20 +99,14 @@
     <parameter class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
         <type>string</type>
-        <tensorRank>vector</tensorRank>
-        <description>vector of Black Scholes Process object handles</description>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of Black Scholes Process object</description>
     </parameter>
     <parameter>
         <name>basket</name>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>basket ID</description>
-    </parameter>
-    <parameter>
-        <name>correlations</name>
-        <type>double</type>
-        <tensorRank>matrix</tensorRank>
-        <description>correlations matrix</description>
     </parameter>
     <parameter>
         <name>optionType</name>

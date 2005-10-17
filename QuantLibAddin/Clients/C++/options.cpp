@@ -121,31 +121,6 @@ int main() {
         storeObject("my_barrierOption", barrierOption);
         logObject("my_barrierOption");
 
-        vector < string > stochHandles;
-        stochHandles.push_back("my_blackscholesprocess");
-        stochHandles.push_back("my_blackscholesprocess");
-        vector < vector < double > >correlations;
-        vector < double > row1, row2;
-        row1.push_back(1.0);
-        row1.push_back(0.9);
-        row2.push_back(0.9);
-        row2.push_back(1.0);
-        correlations.push_back(row1);
-        correlations.push_back(row2);
-        obj_ptr basketOption(new QuantLibAddin::BasketOption(
-            stochHandles,                       // vector of stochastic process handles
-            "Min",                              // basket type
-            correlations,                       // correlations matrix
-            "Call",                             // option type
-            strike,                             // strike price
-            "European",                         // exercise type
-            exerciseDate.serialNumber(),        // exercise date
-            0,                                  // settlement date ignored when exercise = European
-            "SE",                               // engine type (StulzEngine)
-            timeSteps));                        // time steps
-        storeObject("my_basketOption", basketOption);
-        logObject("my_basketOption");
-
         vector < long > resetDates;
         resetDates.push_back(Date(12, March, 2020).serialNumber());
         obj_ptr cliquetOption(new QuantLibAddin::CliquetOption(

@@ -27,9 +27,8 @@ namespace QuantLibAddin {
     class BasketOption : public Instrument {
     public:
         BasketOption(
-            const std::vector < std::string > &handleBlackScholesVector,
+            const std::string &handleBlackScholes,
             const std::string &basketID,
-            const std::vector < std::vector < double > > &correlations,
             const std::string &optionTypeID,
             const double &strike,
             const std::string &exerciseID,
