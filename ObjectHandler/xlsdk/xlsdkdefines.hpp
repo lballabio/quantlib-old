@@ -38,10 +38,10 @@ typedef struct {
     double array[1];
 } FP;
 
-// suppress VC8 'strncpy deprecated' warning
-//#if defined BOOST_MSVC
-//#pragma warning(disable : 4996)
-//#endif
+#if defined BOOST_MSVC
+#pragma warning(disable : 4996)
+#pragma warning(disable : 4244)
+#endif
 
 #endif
 

@@ -66,6 +66,7 @@ LINK32=link.exe
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "build\vc6\ReleaseMTDLL"
 # PROP Intermediate_Dir "build\vc6\ReleaseMTDLL"
+# PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "ADDINEXCELDYNAMIC_EXPORTS" /YX /FD /c
 # ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "XLL_IMPORTS" /YX /FD /c
@@ -78,7 +79,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /libpath:"$(OBJECT_HANDLER_DIR)\xlsdk\lib" /libpath:"$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll" /libpath:"$(QL_DIR)\lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"xll\QuantLibAddin-vc6-mt-0_3_10.xll" /libpath:"$(OBJECT_HANDLER_DIR)\xlsdk\lib" /libpath:"$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll" /libpath:"$(QL_DIR)\lib"
 
 !ENDIF 
 

@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="QuantLibAddin"
-	ProjectGUID="{AD3A01F8-B7D1-4293-9D05-B4629A9C301B}"
+	ProjectGUID="{20315B78-B4E3-42C3-B1D3-F55D73E7FD86}"
 	SignManifests="true"
 	>
 	<Platforms>
@@ -321,6 +321,30 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="qla\couponvectors.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="qla\dividendvanillaoption.cpp"
 				>
 				<FileConfiguration
@@ -441,7 +465,55 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="qla\interpolation.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="qla\processes.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\schedule.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
@@ -490,6 +562,30 @@
 			</File>
 			<File
 				RelativePath="qla\simpleswap.cpp"
+				>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_MBCS;_LIB;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\swap.cpp"
 				>
 				<FileConfiguration
 					Name="Release MTDLL|Win32"
@@ -718,6 +814,10 @@
 				>
 			</File>
 			<File
+				RelativePath="qla\couponvectors.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qla\dividendvanillaoption.hpp"
 				>
 			</File>
@@ -738,6 +838,10 @@
 				>
 			</File>
 			<File
+				RelativePath="qla\interpolation.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qla\options.hpp"
 				>
 			</File>
@@ -754,11 +858,19 @@
 				>
 			</File>
 			<File
+				RelativePath="qla\schedule.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qla\shortratemodels.hpp"
 				>
 			</File>
 			<File
 				RelativePath="qla\simpleswap.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\swap.hpp"
 				>
 			</File>
 			<File

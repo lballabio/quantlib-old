@@ -3,7 +3,8 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="ClientCppInstruments"
-	ProjectGUID="{4D2085ED-C3C2-4EB8-9A26-AA1DB830DDD0}"
+	ProjectGUID="{001FED2E-11DE-43D6-B9A2-CDCA04DEF726}"
+	SignManifests="true"
 	>
 	<Platforms>
 		<Platform

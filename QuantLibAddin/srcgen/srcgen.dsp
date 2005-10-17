@@ -26,8 +26,8 @@ CFG=srcgen - Win32 All
 # PROP Scc_LocalPath ""
 # PROP BASE Use_MFC
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "All"
-# PROP BASE Intermediate_Dir "All"
+# PROP BASE Output_Dir "build\vc6"
+# PROP BASE Intermediate_Dir "build\vc6"
 # PROP BASE Cmd_Line "nmake /f "srcgen.mak""
 # PROP BASE Rebuild_Opt "/a"
 # PROP BASE Target_File "srcgen.exe"
@@ -35,8 +35,8 @@ CFG=srcgen - Win32 All
 # PROP BASE Target_Dir ""
 # PROP Use_MFC
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "All"
-# PROP Intermediate_Dir "All"
+# PROP Output_Dir "build\vc6"
+# PROP Intermediate_Dir "build\vc6"
 # PROP Cmd_Line "NMAKE /f "Makefile.vc""
 # PROP Rebuild_Opt "/a"
 # PROP Target_File "build\vc6\Autogen.flag1"

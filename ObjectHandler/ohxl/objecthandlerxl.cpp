@@ -23,9 +23,10 @@
 #include <sstream>
 #include <cmath>
 
+#pragma
 const int KEY_WIDTH = 5;
 const int KEY_BASE = 16;
-const int KEY_MAX = pow(KEY_BASE, KEY_WIDTH);
+const int KEY_MAX = pow((double)KEY_BASE, KEY_WIDTH);
 const char KEY_DELIMITER = '~';
 
 namespace ObjHandler {

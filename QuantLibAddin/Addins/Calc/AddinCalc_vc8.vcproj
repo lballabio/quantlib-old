@@ -3,8 +3,9 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="AddinCalc"
-	ProjectGUID="{1E732D85-F5C5-4052-8946-04F37E916C20}"
+	ProjectGUID="{9237395B-3FC1-421E-9384-EE97B98ABA3B}"
 	Keyword="MakeFileProj"
+	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -54,11 +55,23 @@
 				>
 			</File>
 			<File
+				RelativePath="couponvectors.cpp"
+				>
+			</File>
+			<File
 				RelativePath="funcdef.cpp"
 				>
 			</File>
 			<File
 				RelativePath="instruments.cpp"
+				>
+			</File>
+			<File
+				RelativePath="interpolation.cpp"
+				>
+			</File>
+			<File
+				RelativePath="objecthandler.cpp"
 				>
 			</File>
 			<File
@@ -78,11 +91,19 @@
 				>
 			</File>
 			<File
+				RelativePath="schedule.cpp"
+				>
+			</File>
+			<File
 				RelativePath="shortratemodels.cpp"
 				>
 			</File>
 			<File
 				RelativePath="simpleswap.cpp"
+				>
+			</File>
+			<File
+				RelativePath="swap.cpp"
 				>
 			</File>
 			<File
@@ -119,7 +140,19 @@
 				>
 			</File>
 			<File
+				RelativePath="couponvectors.hpp"
+				>
+			</File>
+			<File
 				RelativePath="instruments.hpp"
+				>
+			</File>
+			<File
+				RelativePath="interpolation.hpp"
+				>
+			</File>
+			<File
+				RelativePath="objecthandler.hpp"
 				>
 			</File>
 			<File
@@ -139,11 +172,19 @@
 				>
 			</File>
 			<File
+				RelativePath="schedule.hpp"
+				>
+			</File>
+			<File
 				RelativePath="shortratemodels.hpp"
 				>
 			</File>
 			<File
 				RelativePath="simpleswap.hpp"
+				>
+			</File>
+			<File
+				RelativePath="swap.hpp"
 				>
 			</File>
 			<File

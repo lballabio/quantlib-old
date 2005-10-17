@@ -17,3 +17,4 @@ AddinExcelStatic.plg
 capfloor.cpp
 couponvectors.cpp
 instruments.cpp
+*.user

@@ -2,9 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="ClientCppOptions"
-	ProjectGUID="{4382C2F2-D7D2-4B72-BFA0-B51C6CF60A15}"
-	SignManifests="true"
+	Name="ExampleXllStatic"
+	ProjectGUID="{2A4829EC-4874-4762-98F8-57B3E3308FF5}"
 	>
 	<Platforms>
 		<Platform
@@ -18,7 +17,7 @@
 			Name="Release MTDLL|Win32"
 			OutputDirectory=".\build\vc8\ReleaseMTDLL"
 			IntermediateDirectory=".\build\vc8\ReleaseMTDLL"
-			ConfigurationType="1"
+			ConfigurationType="2"
 			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -38,21 +37,25 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc8\ReleaseMTDLL/ClientCppOptions.tlb"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\build\vc8\ReleaseMTDLL/ExampleXllStatic.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
+				AdditionalIncludeDirectories=".,..\.."
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc8\ReleaseMTDLL/ClientCppOptions.pch"
+				PrecompiledHeaderFile=".\build\vc8\ReleaseMTDLL/ExampleXllStatic.pch"
 				AssemblerListingLocation=".\build\vc8\ReleaseMTDLL/"
 				ObjectFile=".\build\vc8\ReleaseMTDLL/"
 				ProgramDataBaseFileName=".\build\vc8\ReleaseMTDLL/"
@@ -73,12 +76,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
-				OutputFile="bin\Options-vc80-mt.exe"
+				OutputFile="xll\ExampleXLLStatic-vc80-mt-0_1_1.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
-				ProgramDatabaseFile=".\build\vc8\ReleaseMTDLL/Options-vc80-mt.pdb"
-				SubSystem="1"
+				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxllib\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				ProgramDatabaseFile=".\build\vc8\ReleaseMTDLL/ExampleXLLStatic-vc80-mt-0_1_1.pdb"
+				ImportLibrary=".\build\vc8\ReleaseMTDLL/ExampleXLLStatic-vc80-mt-0_1_1.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -93,7 +96,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc8\ReleaseMTDLL/ClientCppOptions.bsc"
+				OutputFile=".\build\vc8\ReleaseMTDLL/ExampleXllStatic.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -112,7 +115,7 @@
 			Name="Debug MTDLL|Win32"
 			OutputDirectory=".\build\vc8\DebugMTDLL"
 			IntermediateDirectory=".\build\vc8\DebugMTDLL"
-			ConfigurationType="1"
+			ConfigurationType="2"
 			InheritedPropertySheets="UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -132,20 +135,24 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc8\DebugMTDLL/ClientCppOptions.tlb"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\build\vc8\DebugMTDLL/ExampleXllStatic.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
+				AdditionalIncludeDirectories=".,..\.."
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc8\DebugMTDLL/ClientCppOptions.pch"
+				PrecompiledHeaderFile=".\build\vc8\DebugMTDLL/ExampleXllStatic.pch"
 				AssemblerListingLocation=".\build\vc8\DebugMTDLL/"
 				ObjectFile=".\build\vc8\DebugMTDLL/"
 				ProgramDataBaseFileName=".\build\vc8\DebugMTDLL/"
@@ -167,13 +174,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
-				OutputFile="bin\Options-vc80-mt-gd.exe"
+				OutputFile="xll\ExampleXLLStatic-vc80-mt-gd-0_1_1.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxllib\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\build\vc8\DebugMTDLL/Options-vc80-mt-gd.pdb"
-				SubSystem="1"
+				ProgramDatabaseFile=".\build\vc8\DebugMTDLL/ExampleXLLStatic-vc80-mt-gd-0_1_1.pdb"
+				ImportLibrary=".\build\vc8\DebugMTDLL/ExampleXLLStatic-vc80-mt-gd-0_1_1.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -188,7 +195,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc8\DebugMTDLL/ClientCppOptions.bsc"
+				OutputFile=".\build\vc8\DebugMTDLL/ExampleXllStatic.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -208,7 +215,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="options.cpp"
+			RelativePath="addinstatic.cpp"
 			>
 			<FileConfiguration
 				Name="Release MTDLL|Win32"
@@ -216,7 +223,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;_MBCS;$(NoInherit)"
+					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
 					UsePrecompiledHeader="0"
 				/>
 			</FileConfiguration>
@@ -226,7 +233,63 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;_MBCS;$(NoInherit)"
+					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="foo.hpp"
+			>
+		</File>
+		<File
+			RelativePath="objectfoo.cpp"
+			>
+			<FileConfiguration
+				Name="Release MTDLL|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug MTDLL|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="objectfoo.hpp"
+			>
+		</File>
+		<File
+			RelativePath="objecthandler.cpp"
+			>
+			<FileConfiguration
+				Name="Release MTDLL|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug MTDLL|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
 					UsePrecompiledHeader="0"
 				/>
 			</FileConfiguration>

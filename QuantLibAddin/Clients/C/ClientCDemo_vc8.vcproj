@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="ClientCDemo"
-	ProjectGUID="{DE0C2031-6CBD-4135-B2F5-AFC1D17945BB}"
+	ProjectGUID="{DD48F012-2795-4EB9-A8B3-CE31A031700C}"
 	SignManifests="true"
 	>
 	<Platforms>
@@ -76,7 +76,7 @@
 				OutputFile="bin\QLADemo-vc80-mt.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
 				ProgramDatabaseFile=".\build\vc8\ReleaseMTDLL/QLADemo-vc80-mt.pdb"
 				SubSystem="1"
 				TargetMachine="1"

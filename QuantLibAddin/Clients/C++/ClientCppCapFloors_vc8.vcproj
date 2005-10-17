@@ -3,7 +3,8 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="ClientCppCapFloors"
-	ProjectGUID="{1D6880D3-453D-4557-91DC-561129ED39E7}"
+	ProjectGUID="{F8294844-2A5A-4B9E-8728-CA498D1F2940}"
+	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
