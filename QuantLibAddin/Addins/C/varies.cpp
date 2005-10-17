@@ -43,6 +43,11 @@ std::string variesToScalarString(const Varies &v, const std::string &defaultValu
     return ret;
 }
 
+boost::any variesToScalarAny(const Varies &v, const boost::any &defaultValue){
+    boost::any ret;
+    return ret;
+}
+
 
 std::vector < long > variesToVectorLong(const Varies &v){
     std::vector < long > ret;
@@ -94,6 +99,52 @@ std::vector < std::vector < boost::any > > variesToMatrixAny(const Varies &v){
     std::vector < std::vector < boost::any > > ret;
     return ret;
 }
+
+
+void scalarLongToVaries(const long &in, Varies *v) {
+}
+
+void scalarDoubleToVaries(const double &in, Varies *v) {
+}
+
+void scalarBoolToVaries(const bool &in, Varies *v) {
+}
+
+void scalarStringToVaries(const std::string &in, Varies *v) {
+}
+
+
+void vectorLongToVaries(const std::vector < long > &in, Varies *v) {
+}
+
+void vectorDoubleToVaries(const std::vector < double > &in, Varies *v) {
+}
+
+void vectorBoolToVaries(const std::vector < bool > &in, Varies *v) {
+}
+
+void vectorStringToVaries(const std::vector < std::string > &in, Varies *v) {
+}
+
+void vectorAnyToVaries(const std::vector < boost::any > &in, Varies *v) {
+}
+
+
+void matrixLongToVaries(const std::vector < std::vector < long > > &in, Varies *v) {
+}
+
+void matrixDoubleToVaries(const std::vector < std::vector < double > > &in, Varies *v) {
+}
+
+void matrixBoolToVaries(const std::vector < std::vector < bool > > &in, Varies *v) {
+}
+
+void matrixStringToVaries(const std::vector < std::vector < std::string > > &in, Varies *v) {
+}
+
+void matrixAnyToVaries(const std::vector < std::vector < boost::any > > &in, Varies *v) {
+}
+
 
 
 //void propertyVectorToVariesList(
@@ -166,4 +217,4 @@ std::vector < std::vector < boost::any > > variesToMatrixAny(const Varies &v){
 //    else
 //        throw Exception("variesToBoostAny: unrecognized type");
 //}
-//
+

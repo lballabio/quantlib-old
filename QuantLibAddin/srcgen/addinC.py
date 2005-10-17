@@ -82,9 +82,18 @@ class AddinC(addin.Addin):
         fileHeader.close()
         utils.updateIfChanged(fileName)
 
-    def getReturnCommand(self, returnDef):
+    def getReturnCommand(self, returnValue):
         'generate code to convert datatype of return value'
-        return '/* convert return value */'
+        if returnValue.tensorRank == common.VECTOR \
+        or returnValue.tensorRank == common.MATRIX \
+        or returnValue.type == common.ANY:
+            return returnValue.tensorRank + \
+                returnValue.type.capitalize() + \
+                'ToVaries(returnValue, result)'
+        if returnValue.type == common.STRING:
+            return 'strcpy(result, returnValue.c_str())'
+        else:
+            return '*result = returnValue'
 
     def generateConstructor(self, fileFunc, function):
         conversions = self.generateConversions(function.parameters)
