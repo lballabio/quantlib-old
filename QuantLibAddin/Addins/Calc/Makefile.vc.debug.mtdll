@@ -1,7 +1,7 @@
 # QuantLibAddin\Addins\Calc\Makefile.msdev.debug
 
 COMPONENT_NAME=QuantLibAddin
-DLL_NAME=$(COMPONENT_NAME)-vc6-mt-gd-0_3_10
+DLL_NAME=$(COMPONENT_NAME)-vc6-mt-gd-0_3_11
 DLL_DIR=dll
 IDL_DIR=$(OFFICE_SDK_PATH)\idl
 BOOST_DIR="C:\boost_1_31_0"

@@ -36,6 +36,6 @@ schedule.cpp
 schedule.hpp
 swap.cpp
 swap.hpp
-QuantLibAddin-vc6-mt-gd-0_3_10.lib
-QuantLibAddin-vc6-mt-gd-0_3_10.exp
+QuantLibAddin-vc6-mt-gd-0_3_11.lib
+QuantLibAddin-vc6-mt-gd-0_3_11.exp
 objecthandler.hpp

@@ -70,7 +70,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\AddinC-vc80-mt-gd-0_3_10.lib"
+				OutputFile="lib\AddinC-vc80-mt-gd-0_3_11.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -147,7 +147,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\AddinC-vc80-mt-0_3_10.lib"
+				OutputFile="lib\AddinC-vc80-mt-0_3_11.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
