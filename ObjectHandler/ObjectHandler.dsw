@@ -18,7 +18,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "ExampleXLL"=".\Examples\xl\ExampleXLL.dsp" - Package Owner=<4>
+Project: "ExampleXllDynamic1"=".\Examples\xl\ExampleXllDynamic1.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -28,6 +28,36 @@ Package=<4>
 {{{
     Begin Project Dependency
     Project_Dep_Name ohxll
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "ExampleXllDynamic2"=".\Examples\xl\ExampleXllDynamic2.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ohxll
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "ExampleXllStatic"=".\Examples\xl\ExampleXllStatic.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ohxllib
     End Project Dependency
 }}}
 

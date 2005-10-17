@@ -1,4 +1,4 @@
-ExampleXLL.plg
+*.plg
 build
 xll
 ExampleXLL*.vcproj.*

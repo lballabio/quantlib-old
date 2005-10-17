@@ -208,6 +208,7 @@ namespace ObjHandler {
                     iter != objectList_.end(); iter++)
                 deleteName(iter->first);
         objectList_.clear();
+        key_ = 0;
     }
 
     bool ObjectHandlerXL::nameIsValid(const std::string &handle) {

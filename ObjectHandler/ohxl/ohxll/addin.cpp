@@ -80,18 +80,19 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x1A""display object field names"), // function description
         TempStrNoSize("\x20""handle of object to be queried  "));// description param 0
 
-    Excel(xlfRegister, 0, 12, &xDll,
-        TempStrNoSize("\x0C""ohFieldValue"),    // function code name
-        TempStrNoSize("\x03""RCC"),             // parameter codes
-        TempStrNoSize("\x0C""ohFieldValue"),    // function display name
-        TempStrNoSize("\x10""handle,fieldName"),// comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
-        TempStrNoSize("\x0D""ObjectHandler"),   // function category
-        TempStrNoSize("\x00"""),                // shortcut text (command macros only)
-        TempStrNoSize("\x00"""),                // path to help file
-        TempStrNoSize("\x16""display value of field"),// function description
+    Excel(xlfRegister, 0, 13, &xDll,
+        TempStrNoSize("\x0C""ohFieldValue"),// function code name
+        TempStrNoSize("\x04""RCCP"),    // parameter codes
+        TempStrNoSize("\x0C""ohFieldValue"),// function display name
+        TempStrNoSize("\x1E""handleObject,fieldName,trigger"),// comma-delimited list of parameters
+        TempStrNoSize("\x01""1"),       // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+        TempStrNoSize("\x08""QuantLib"),// function category
+        TempStrNoSize("\x00"""),        // shortcut text (command macros only)
+        TempStrNoSize("\x00"""),        // path to help file
+        TempStrNoSize("\x23""retrieve the value of a named field"),// function description
         TempStrNoSize("\x1E""handle of object to be queried"),// description param 0
-        TempStrNoSize("\x0F""name of field  "));// description param 0
+        TempStrNoSize("\x0D""name of field"),// description param 1
+        TempStrNoSize("\x1D""dependency tracking trigger  "));// description param 2
 
     Excel(xlfRegister, 0, 11, &xDll,
         TempStrNoSize("\x0E""ohDeleteObject"),  // function code name
