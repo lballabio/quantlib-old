@@ -86,6 +86,12 @@
         <tensorRank>scalar</tensorRank>
         <description>name of field</description>
     </parameter>
+    <parameter ignore='true'>
+        <name>trigger</name>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+    </parameter>
 </parameters>
 <returnValue>
     <type>any</type>

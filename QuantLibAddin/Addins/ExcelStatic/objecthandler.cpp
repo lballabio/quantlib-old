@@ -81,7 +81,9 @@ DLLEXPORT XLOPER *ohFieldNames(char *handleObject) {
     }
 }
 
-DLLEXPORT XLOPER *ohFieldValue(char *handleObject, char *fieldName) {
+DLLEXPORT XLOPER *ohFieldValue(char *handleObject,
+        char *fieldName,
+        OPER *trigger) {
     try {
         Properties properties = queryObject(std::string(handleObject));
         static XLOPER xRet;
