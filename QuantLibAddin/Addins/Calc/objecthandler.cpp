@@ -149,7 +149,8 @@ STRING SAL_CALL QLAddin::ohVersion() THROWDEF_RTE_IAE {
 
 SEQSEQ(ANY) SAL_CALL QLAddin::ohFieldValue(
         const STRING& handleObject,
-        const STRING& fieldName) THROWDEF_RTE_IAE {
+        const STRING& fieldName,
+        const ANY &trigger) THROWDEF_RTE_IAE {
     try {
         ObjHandler::obj_ptr objectPointer = ObjHandler::retrieveObject(ouStringToStlString(handleObject));
         if (!objectPointer)
