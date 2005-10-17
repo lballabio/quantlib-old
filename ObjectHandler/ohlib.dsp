@@ -49,7 +49,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-gd-0_1_1.lib"
+# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-gd-0_1_2.lib"
 
 !ELSEIF  "$(CFG)" == "ohlib - Win32 Release MTDLL"
 
@@ -72,7 +72,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-0_1_1.lib"
+# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-0_1_2.lib"
 
 !ENDIF 
 

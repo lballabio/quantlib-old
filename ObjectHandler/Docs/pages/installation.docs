@@ -113,8 +113,8 @@
     ObjectHandler is built in the standard way:
 
     \verbatim
-    tar zxfv ObjectHandler-0.1.1.tar.gz
-    cd ObjectHandler-0.1.1
+    tar zxfv ObjectHandler-0.1.2.tar.gz
+    cd ObjectHandler-0.1.2
     ./configure
     make
     make install

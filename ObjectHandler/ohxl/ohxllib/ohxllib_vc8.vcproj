@@ -70,7 +70,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc80-mt-gd-0_1_1.lib"
+				OutputFile="lib\ObjectHandler-vc80-mt-gd-0_1_2.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -147,7 +147,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc80-mt-0_1_1.lib"
+				OutputFile="lib\ObjectHandler-vc80-mt-0_1_2.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
