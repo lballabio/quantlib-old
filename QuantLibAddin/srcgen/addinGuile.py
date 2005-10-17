@@ -104,6 +104,8 @@ class AddinGuile(addin.Addin):
         ret = ''
         firstItem = True
         for param in paramList:
+            if param.ignore:
+                continue
             if param.type == common.STRING:
                 type1 = 'std::string'
             elif param.type == common.ANY:

@@ -17,6 +17,9 @@
 
 (define false #f)
 
+(define (print . args)
+    (for-each (lambda (item) (display item)) args))
+
 (define (call-func func . args)
     (func args))
 
@@ -129,8 +132,8 @@
 (make-option "CAP"   "CAP")
 (make-option "FLOOR" "FLOOR")
 
-(define cPremium (call-func qlNPV "CAP"   1))
-(define fPremium (call-func qlNPV "FLOOR" 1))
+(define cPremium (call-func qlNPV "CAP"))
+(define fPremium (call-func qlNPV "FLOOR"))
 (define sPremium (- fPremium cPremium))
 
 (print "cap         : " cPremium "\n"
@@ -139,4 +142,5 @@
 
 (call-func qlSwap "SWP" "floatLeg" "fixedLeg" "YC")
 
-(print "swap        : " (call-func qlNPV "SWP" 1) "\n")
+(print "swap        : " (call-func qlNPV "SWP") "\n")
+
