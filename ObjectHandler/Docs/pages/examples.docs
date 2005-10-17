@@ -21,15 +21,38 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! \example objectfoo.hpp
-    Sample interface of an object to be stored in ObjectHandler.
+/*!
+\example addindynamic1.cpp
+XLL which links dynamically to ObjectHandler
 */
 
-/*! \example objectfoo.cpp
-    Sample implementation of an object to be stored in ObjectHandler.
+/*!
+\example addindynamic2.cpp
+XLL which links dynamically to ObjectHandler
 */
 
-/*! \example example.cpp
-    Sample client application using the ObjectHandler.
+/*!
+\example addinstatic.cpp
+XLL which links statically to ObjectHandler
+*/
+
+/*!
+\example example.cpp
+Standalone C++ client application
+*/
+
+/*!
+\example foo.hpp
+An object to be stored in the repository
+*/
+
+/*!
+\example objectfoo.cpp
+Class descended from Object and wrapping Foo
+*/
+
+/*!
+\example objectfoo.hpp
+Class descended from Object and wrapping Foo
 */
 

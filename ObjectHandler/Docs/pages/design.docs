@@ -249,7 +249,7 @@ boost::shared_ptr<void> ObjectFoo::getReference() const {
 \section sec_2_2_2 2.2.2 Application
 \par example.cpp
 The syntax of certain calls to ObjectHandler has been simplified 
-with \c #defines as documented in file \ref utilities.hpp.
+with <tt>defines</tt> as documented in file \ref utilities.hpp.
 \code
 int main() {
     try {

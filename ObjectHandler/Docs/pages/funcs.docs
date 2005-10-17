@@ -1,0 +1,218 @@
+
+
+/*
+ Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005 Ferdinando Ametrano
+ Copyright (C) 2004, 2005 StatPro Italia srl
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// this file generated automatically by srcgen.py
+// editing this file manually is not recommended
+
+/*! \page ohfuncs Functions
+\section overview Overview
+ObjectHandler functions
+\section functions Function List
+\ref ohVersion ()\n
+\ref ohObjectCount ()\n
+\ref ohHandleList ()\n
+\ref ohFieldNames ()\n
+\ref ohFieldValue ()\n
+\ref ohDeleteObject ()\n
+\ref ohDeleteAllObjects ()\n
+\ref ohDependsOn ()\n
+\ref ohGetGcEnabled ()\n
+\ref ohSetGcEnabled ()\n
+\ref ohCallGC ()\n
+\ref ohSetLogFile ()\n
+\ref ohSetLogLevel ()\n
+\ref ohLogMessage ()\n
+\ref ohLogObject ()\n
+\ref ohLogAllObjects ()\n
+\section documentation Function Documentation
+\anchor ohVersion \b ohVersion
+\code
+string
+ohVersion()
+\endcode
+\par Description:
+returns the version number of ObjectHandler\return ObjectHandler version number
+
+\anchor ohObjectCount \b ohObjectCount
+\code
+long
+ohObjectCount()
+\endcode
+\par Description:
+#/objects in repository\return object count
+
+\anchor ohHandleList \b ohHandleList
+\code
+vector < string >
+ohHandleList()
+\endcode
+\par Description:
+list of handles in repository\return handle list
+
+\anchor ohFieldNames \b ohFieldNames
+\code
+vector < any >
+ohFieldNames(
+        string handleObject)
+\endcode
+\par Description:
+retrieve the field names of a given object\param handleObject handle of object to be queried
+\return list of fieldnames for queried object
+
+\anchor ohFieldValue \b ohFieldValue
+\code
+vector < vector < any > >
+ohFieldValue(
+        string handleObject,
+        string fieldName,
+        any trigger)
+\endcode
+\par Description:
+retrieve the value of a named field\param handleObject handle of object to be queried
+\param fieldName name of field
+\param trigger dependency tracking trigger
+\return value of named field
+
+\anchor ohDeleteObject \b ohDeleteObject
+\code
+bool
+ohDeleteObject(
+        string handleObject)
+\endcode
+\par Description:
+delete object from repository\param handleObject handle of object to be deleted
+\return success/failure
+
+\anchor ohDeleteAllObjects \b ohDeleteAllObjects
+\code
+bool
+ohDeleteAllObjects()
+\endcode
+\par Description:
+delete all objects from repository\return success/failure
+
+\anchor ohDependsOn \b ohDependsOn
+\code
+bool
+ohDependsOn(
+        any dummy0,
+        any dummy1,
+        any dummy2,
+        any dummy3,
+        any dummy4,
+        any dummy5,
+        any dummy6,
+        any dummy7,
+        any dummy8,
+        any dummy9)
+\endcode
+\par Description:
+force a dependency between two functions\param dummy0 dummy parameter (ignored)
+\param dummy1 dummy parameter (ignored)
+\param dummy2 dummy parameter (ignored)
+\param dummy3 dummy parameter (ignored)
+\param dummy4 dummy parameter (ignored)
+\param dummy5 dummy parameter (ignored)
+\param dummy6 dummy parameter (ignored)
+\param dummy7 dummy parameter (ignored)
+\param dummy8 dummy parameter (ignored)
+\param dummy9 dummy parameter (ignored)
+\return success/failure
+
+\anchor ohGetGcEnabled \b ohGetGcEnabled
+\code
+bool
+ohGetGcEnabled()
+\endcode
+\par Description:
+get value of ObjectHandler garbage collection flag\return success/failure
+
+\anchor ohSetGcEnabled \b ohSetGcEnabled
+\code
+bool
+ohSetGcEnabled(
+        bool enableGarbageCollection)
+\endcode
+\par Description:
+set value of ObjectHandler garbage collection flag\param enableGarbageCollection true (enable) / false (disable)
+\return success/failure
+
+\anchor ohCallGC \b ohCallGC
+\code
+bool
+ohCallGC()
+\endcode
+\par Description:
+delete orphaned objects from repository\return success/failure
+
+\anchor ohSetLogFile \b ohSetLogFile
+\code
+string
+ohSetLogFile(
+        string logFileName,
+        long logLevel)
+\endcode
+\par Description:
+begin logging to named file\param logFileName path and name of log file
+\param logLevel threshold for log messages
+\return name of logfile
+
+\anchor ohSetLogLevel \b ohSetLogLevel
+\code
+long
+ohSetLogLevel(
+        long logLevel)
+\endcode
+\par Description:
+set threshold for log messages\param logLevel threshold for log messages
+\return returns new logging threshold
+
+\anchor ohLogMessage \b ohLogMessage
+\code
+string
+ohLogMessage(
+        string logMessage,
+        long logLevel)
+\endcode
+\par Description:
+log a message\param logMessage message to be logged
+\param logLevel threshold for log messages
+\return message logged
+
+\anchor ohLogObject \b ohLogObject
+\code
+bool
+ohLogObject(
+        string handleObject)
+\endcode
+\par Description:
+write object description to log file\param handleObject handle of object to be logged
+\return success/failure
+
+\anchor ohLogAllObjects \b ohLogAllObjects
+\code
+bool
+ohLogAllObjects()
+\endcode
+\par Description:
+write all object descriptions to log file\return success/failure
+
+*/
+
