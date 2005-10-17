@@ -43,5 +43,8 @@ void updateFoo(
     const std::string &s,
     const int &i);
 
+// utility function for querying object of class Foo                                                                       
+int queryFoo(const std::string &handle);
+
 #endif
 

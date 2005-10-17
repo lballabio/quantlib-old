@@ -24,7 +24,7 @@ using namespace std;
 ObjectFoo::ObjectFoo(
         const string &s,
         const int &i) {
-    foo_        = boost::shared_ptr<Foo>(new Foo(s, i));
+    foo_ = boost::shared_ptr<Foo>(new Foo(s, i));
     // populate base class Property vector
 	createProperty(PROPERTY_STR, foo_->s());
 	createProperty(PROPERTY_INT, foo_->i());
@@ -57,3 +57,15 @@ void updateFoo(
     object->update(s, i);
 }
 
+int queryFoo(const std::string &handle) {
+    boost::shared_ptr<ObjectFoo> object =
+        OH_GET_OBJECT(ObjectFoo, handle);
+    if (!object) {
+        ostringstream msg;
+        msg << "FOO_UPDATE: unable to retrieve object " << handle;
+        throw Exception(msg.str().c_str());
+    }
+    boost::shared_ptr<Foo> foo =
+        OH_GET_REFERENCE(Foo, object);
+    return foo->i();
+}

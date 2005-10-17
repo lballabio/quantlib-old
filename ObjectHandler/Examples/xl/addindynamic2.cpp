@@ -36,10 +36,17 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
         TempStrNoSize("\x07""Example"));        // function category
 
+    Excel(xlfRegister, 0, 7, &xDll,
+        TempStrNoSize("\x0E""addin2QueryFoo"),  // function code name
+        TempStrNoSize("\x02""NC"),              // parameter codes
+        TempStrNoSize("\x0E""addin2QueryFoo"),  // function display name
+        TempStrNoSize("\x06""handle"),          // comma-delimited list of parameters
+        TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+        TempStrNoSize("\x07""Example"));        // function category
+
     Excel(xlFree, 0, 1, &xDll);
     return 1;
 }
-
 
 DLLEXPORT short int *addin2UpdateFoo(char *handle, char *s, long *i) {
     try {
@@ -52,3 +59,13 @@ DLLEXPORT short int *addin2UpdateFoo(char *handle, char *s, long *i) {
     }
 }
 
+DLLEXPORT long *addin2QueryFoo(char *handle) {
+    try {
+        static long int ret;
+        ret = queryFoo(handle);
+        return &ret;
+    } catch (const std::exception &e) {
+        logMessage(std::string("Error: ADDIN2_QUERY_FOO: ") + e.what(), 2);
+        return 0;
+    }
+}
