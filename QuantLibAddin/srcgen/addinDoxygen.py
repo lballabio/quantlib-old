@@ -30,7 +30,7 @@ import rule
 ALL_HEADER = """
 '/*! \page all All\n
 \section overview Overview\n
-Below is an alphabetical list of links to documentation for\n
+Below is an alphabetical list of links to documentation for
 all functions in QuantLibAddin.\n
 \section functions Function List\n
 \n"""

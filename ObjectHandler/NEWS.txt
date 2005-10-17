@@ -1,5 +1,27 @@
-July 2005 - Release 0.1.1
-Changes since Release 0.1.0:
+Release 0.1.2 - October 2005
+
+REQUIRED PACKAGES
+
+- Boost version 1.31.0 or later
+- log4cxx version 0.9.7 or later
+
+CHANGES SINCE RELEASE 0.1.1
+
+- binding to Excel, can be linked statically into a single client XLL,
+  or compiled as a standalone XLL comprising a global repository that
+  can be shared by other XLLs in the Excel session
+- garbage collection of objects orphaned by the deletion of the
+  calling cell
+- link to log4cxx dynamically rather than statically
+
+Release 0.1.1 - July 2005
+
+REQUIRED PACKAGES
+
+- Boost version 1.31.0 or later
+- log4cxx version 0.9.7 or later
+
+CHANGES SINCE RELEASE 0.1.0
 
 - interface layer replaced with factory function (thanks to Walter Penschke)
 - logging implemented with log4cxx framework from Apache project
@@ -7,5 +29,17 @@ Changes since Release 0.1.0:
 - output manipulators for Object and ObjectHandler classes
 - utility functions consolidated
 
-Feb-2005 - Release 0.1.0
+Release 0.1.0 - February 2005
+
+REQUIRED PACKAGES
+
+- Boost version 1.31.0 or later
+
+OVERVIEW
+
+Initial release consisting of prototype framework:
+
+- Instantiate an Object in the ObjectHandler, from where it
+  can be interrogated, altered, and destroyed.
+
 

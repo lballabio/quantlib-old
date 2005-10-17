@@ -15,10 +15,10 @@
     QuantLibAddin supports functions for querying supported enumerations
     and types interactively at run time:
 
-        \ref QL_LIST_REGISTERED_ENUMS ()\n
-        \ref QL_LIST_ENUM ()\n
-        \ref QL_LIST_REGISTERED_TYPES ()\n
-        \ref QL_LIST_TYPE ()\n
+        \ref qlListRegisteredEnums ()\n
+        \ref qlListEnum ()\n
+        \ref qlListRegisteredTypes ()\n
+        \ref qlListType ()\n
 
     Documentation of supported enumerations and complex types:
 
