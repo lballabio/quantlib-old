@@ -12,30 +12,17 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Release|Win32"
-			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release"
+			Name="Debug MTDLL|Win32"
+			OutputDirectory=".\build\vc71\DebugMTDLL"
+			IntermediateDirectory=".\build\vc71\DebugMTDLL"
 			ConfigurationType="0"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f Makefile.msdev"
-				ReBuildCommandLine="nmake /f Makefile.msdev /a"
-				Output="QuantLibAddin.dll"/>
-		</Configuration>
-		<Configuration
-			Name="Debug|Win32"
-			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug"
-			ConfigurationType="0"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE">
-			<Tool
-				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f Makefile.msdev.debug"
-				ReBuildCommandLine="nmake /f Makefile.msdev.debug /a"
-				Output="QuantLibAddin.dll"/>
+				BuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot; CLVER=71"
+				ReBuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot; /a CLVER=71"
+				Output="QuantLibAddin-vc71-mt-gd-0_3_11.dll"/>
 		</Configuration>
 	</Configurations>
 	<References>
@@ -51,10 +38,19 @@
 				RelativePath="capfloor.cpp">
 			</File>
 			<File
+				RelativePath="couponvectors.cpp">
+			</File>
+			<File
 				RelativePath="funcdef.cpp">
 			</File>
 			<File
 				RelativePath="instruments.cpp">
+			</File>
+			<File
+				RelativePath="interpolation.cpp">
+			</File>
+			<File
+				RelativePath="objecthandler.cpp">
 			</File>
 			<File
 				RelativePath="options.cpp">
@@ -66,13 +62,19 @@
 				RelativePath="qladdin.cpp">
 			</File>
 			<File
-				RelativePath="QuantLibAddin.def">
+				RelativePath="QuantLibAddin.idl">
+			</File>
+			<File
+				RelativePath="schedule.cpp">
 			</File>
 			<File
 				RelativePath="shortratemodels.cpp">
 			</File>
 			<File
 				RelativePath="simpleswap.cpp">
+			</File>
+			<File
+				RelativePath="swap.cpp">
 			</File>
 			<File
 				RelativePath="termstructures.cpp">
@@ -100,7 +102,16 @@
 				RelativePath="capfloor.hpp">
 			</File>
 			<File
+				RelativePath="couponvectors.hpp">
+			</File>
+			<File
 				RelativePath="instruments.hpp">
+			</File>
+			<File
+				RelativePath="interpolation.hpp">
+			</File>
+			<File
+				RelativePath="objecthandler.hpp">
 			</File>
 			<File
 				RelativePath="options.hpp">
@@ -115,10 +126,16 @@
 				RelativePath="qldefs.hpp">
 			</File>
 			<File
+				RelativePath="schedule.hpp">
+			</File>
+			<File
 				RelativePath="shortratemodels.hpp">
 			</File>
 			<File
 				RelativePath="simpleswap.hpp">
+			</File>
+			<File
+				RelativePath="swap.hpp">
 			</File>
 			<File
 				RelativePath="termstructures.hpp">
@@ -133,21 +150,8 @@
 				RelativePath="xibor.hpp">
 			</File>
 		</Filter>
-		<Filter
-			Name="Make"
-			Filter="">
-			<File
-				RelativePath="Makefile.msdev">
-			</File>
-			<File
-				RelativePath="Makefile.msdev.debug">
-			</File>
-		</Filter>
 		<File
-			RelativePath="QuantLibAddin.idl">
-		</File>
-		<File
-			RelativePath="readme.txt">
+			RelativePath="Makefile.vc.debug.mtdll">
 		</File>
 	</Files>
 	<Globals>

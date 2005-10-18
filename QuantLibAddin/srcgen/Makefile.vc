@@ -1,7 +1,13 @@
 # QuantLibAddin\srcgen\Makefile.vc
 
 COMPONENT_NAME=srcgen
+
+!IF "$(TargetDir)" == ""
 INT_DIR=build\vc6
+!ELSE 
+INT_DIR=$(TargetDir)
+!ENDIF
+
 FLAG1=$(INT_DIR)\$(COMPONENT_NAME).flag1
 STUBS=stub.c.constructor \
 	stub.c.includes \

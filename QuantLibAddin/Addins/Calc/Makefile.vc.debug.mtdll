@@ -1,13 +1,33 @@
 # QuantLibAddin\Addins\Calc\Makefile.msdev.debug
 
 COMPONENT_NAME=QuantLibAddin
+!IF "$(CLVER)" == ""
 DLL_NAME=$(COMPONENT_NAME)-vc6-mt-gd-0_3_11
+!ELSE 
+DLL_NAME=$(COMPONENT_NAME)-vc$(CLVER)-mt-gd-0_3_11
+!ENDIF
+
 DLL_DIR=dll
 IDL_DIR=$(OFFICE_SDK_PATH)\idl
+
+!IF "$(BOOST_DIR)" == ""
 BOOST_DIR="C:\boost_1_31_0"
+!ENDIF
+
 DKREGISTRYNAME="$(OFFICE_PROGRAM_PATH)\types.rdb"
+
+!IF "$(MSVCDir)" == ""
 MSVC_DIR=C:\Program Files\Microsoft Visual Studio\VC98
+!ELSE
+MSVC_DIR=$(MSVCDir)
+!ENDIF
+
+!IF "$(CLVER)" == ""
 INT_DIR=build\vc6\DebugMTDLL
+!ELSE 
+INT_DIR=build\vc$(CLVER)\DebugMTDLL
+!ENDIF
+
 FLAG1=$(INT_DIR)\$(COMPONENT_NAME).flag1
 FLAG2=$(INT_DIR)\$(COMPONENT_NAME).flag2
 FLAG3=$(INT_DIR)\$(COMPONENT_NAME).flag3

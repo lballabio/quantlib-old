@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
-	Name="ClientCPPOptions"
+	Name="ClientCppOptions"
 	SccProjectName=""
 	SccLocalPath="">
 	<Platforms>
@@ -11,9 +11,9 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Release|Win32"
-			OutputDirectory=".\build\vc6\Release"
-			IntermediateDirectory=".\build\vc6\Release"
+			Name="Release MTDLL|Win32"
+			OutputDirectory=".\build\vc71\ReleaseMTDLL"
+			IntermediateDirectory=".\build\vc71\ReleaseMTDLL"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -25,14 +25,14 @@
 				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				StringPooling="TRUE"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc6\Release/ClientCPPOptions.pch"
-				AssemblerListingLocation=".\build\vc6\Release/"
-				ObjectFile=".\build\vc6\Release/"
-				ProgramDataBaseFileName=".\build\vc6\Release/"
+				PrecompiledHeaderFile=".\build\vc71\ReleaseMTDLL/ClientCppOptions.pch"
+				AssemblerListingLocation=".\build\vc71\ReleaseMTDLL/"
+				ObjectFile=".\build\vc71\ReleaseMTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\ReleaseMTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -40,17 +40,17 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
-				OutputFile="bin\QLAOptions-vc6-mt-s.exe"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
+				OutputFile="bin\Options-vc71-mt.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
-				ProgramDatabaseFile=".\build\vc6\Release/QLAOptions-vc6-mt-s.pdb"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				ProgramDatabaseFile=".\build\vc71\ReleaseMTDLL/Options-vc71-mt.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc6\Release/ClientCPPOptions.tlb"
+				TypeLibraryName=".\build\vc71\ReleaseMTDLL/ClientCppOptions.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -74,9 +74,9 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Debug|Win32"
-			OutputDirectory=".\build\vc6\Debug"
-			IntermediateDirectory=".\build\vc6\Debug"
+			Name="Debug MTDLL|Win32"
+			OutputDirectory=".\build\vc71\DebugMTDLL"
+			IntermediateDirectory=".\build\vc71\DebugMTDLL"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -87,13 +87,13 @@
 				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc6\Debug/ClientCPPOptions.pch"
-				AssemblerListingLocation=".\build\vc6\Debug/"
-				ObjectFile=".\build\vc6\Debug/"
-				ProgramDataBaseFileName=".\build\vc6\Debug/"
+				PrecompiledHeaderFile=".\build\vc71\DebugMTDLL/ClientCppOptions.pch"
+				AssemblerListingLocation=".\build\vc71\DebugMTDLL/"
+				ObjectFile=".\build\vc71\DebugMTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\DebugMTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -102,18 +102,18 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
-				OutputFile="bin\QLAOptions-vc6-mt-sgd.exe"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
+				OutputFile="bin\Options-vc71-mt-gd.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,..\..\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\build\vc6\Debug/QLAOptions-vc6-mt-sgd.pdb"
+				ProgramDatabaseFile=".\build\vc71\DebugMTDLL/Options-vc71-mt-gd.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc6\Debug/ClientCPPOptions.tlb"
+				TypeLibraryName=".\build\vc71\DebugMTDLL/ClientCppOptions.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -143,7 +143,7 @@
 		<File
 			RelativePath="options.cpp">
 			<FileConfiguration
-				Name="Release|Win32">
+				Name="Release MTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -151,7 +151,7 @@
 					PreprocessorDefinitions=""/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug|Win32">
+				Name="Debug MTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"

@@ -11,9 +11,9 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Debug|Win32"
-			OutputDirectory=".\build\vc71\Debug"
-			IntermediateDirectory=".\build\vc71\Debug"
+			Name="Debug MTDLL|Win32"
+			OutputDirectory=".\build\vc71\DebugMTDLL"
+			IntermediateDirectory=".\build\vc71\DebugMTDLL"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -24,13 +24,13 @@
 				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc71\Debug/AddinC.pch"
-				AssemblerListingLocation=".\build\vc71\Debug/"
-				ObjectFile=".\build\vc71\Debug/"
-				ProgramDataBaseFileName=".\build\vc71\Debug/"
+				PrecompiledHeaderFile=".\build\vc71\DebugMTDLL/AddinC.pch"
+				AssemblerListingLocation=".\build\vc71\DebugMTDLL/"
+				ObjectFile=".\build\vc71\DebugMTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\DebugMTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -39,7 +39,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\AddinC-vc71-mt-sgd.lib"
+				OutputFile="lib\AddinC-vc71-mt-gd-0_3_11.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -63,9 +63,9 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Release|Win32"
-			OutputDirectory=".\build\vc71\Release"
-			IntermediateDirectory=".\build\vc71\Release"
+			Name="Release MTDLL|Win32"
+			OutputDirectory=".\build\vc71\ReleaseMTDLL"
+			IntermediateDirectory=".\build\vc71\ReleaseMTDLL"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -77,14 +77,14 @@
 				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				StringPooling="TRUE"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc71\Release/AddinC.pch"
-				AssemblerListingLocation=".\build\vc71\Release/"
-				ObjectFile=".\build\vc71\Release/"
-				ProgramDataBaseFileName=".\build\vc71\Release/"
+				PrecompiledHeaderFile=".\build\vc71\ReleaseMTDLL/AddinC.pch"
+				AssemblerListingLocation=".\build\vc71\ReleaseMTDLL/"
+				ObjectFile=".\build\vc71\ReleaseMTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\ReleaseMTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -92,7 +92,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\AddinC-vc71-mt-s.lib"
+				OutputFile="lib\AddinC-vc71-mt-0_3_11.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -125,7 +125,7 @@
 			<File
 				RelativePath="capfloor.cpp">
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -134,7 +134,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -145,7 +145,7 @@
 			<File
 				RelativePath="instruments.cpp">
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -154,7 +154,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -165,7 +165,7 @@
 			<File
 				RelativePath="options.cpp">
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -174,7 +174,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -185,7 +185,7 @@
 			<File
 				RelativePath="processes.cpp">
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -194,7 +194,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -205,7 +205,7 @@
 			<File
 				RelativePath="shortratemodels.cpp">
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -214,7 +214,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -225,7 +225,7 @@
 			<File
 				RelativePath="simpleswap.cpp">
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -234,7 +234,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -245,7 +245,7 @@
 			<File
 				RelativePath="termstructures.cpp">
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -254,7 +254,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -265,7 +265,7 @@
 			<File
 				RelativePath="utilities.cpp">
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -274,7 +274,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -285,7 +285,7 @@
 			<File
 				RelativePath="varies.cpp">
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -294,7 +294,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -305,7 +305,7 @@
 			<File
 				RelativePath="volatilities.cpp">
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -314,7 +314,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -325,7 +325,7 @@
 			<File
 				RelativePath="xibor.cpp">
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -334,7 +334,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release MTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
