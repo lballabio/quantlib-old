@@ -50,6 +50,7 @@ if BUILD_CALC
 BUILT_SOURCES = $(COMPONENT_NAME).flag2
 endif
 
+#    AddinCalc.vcproj
 EXTRA_DIST = \
     AddinCalc.dsp \
     AddinCalc.vcproj

@@ -65,10 +65,10 @@ SRCGEN_STUBS := stub.calc.constructor \
                 stub.qla.includes
 
 # this should prevent running from a distributed tarball
+#             srcgen.vcproj
 EXTRA_DIST = .time-stamp \
              Makefile.vc \
              srcgen.dsp \
-             srcgen.vcproj \
              srcgen_vc8.vcproj \
              $(SRCGEN_INPUT) \
              $(SRCGEN_PYS) \
