@@ -152,7 +152,7 @@ Amend the client files ...
 \li create new workspaces for standalone client programs.  For example, for the new \c Instruments group, the new VC 6 project workspaces are
 \verbatim
 	QuantLibAddin/Clients/C/ClientCInstruments.dsp
-	QuantLibAddin/Clients/C++/ClientCPPInstruments.dsp
+	QuantLibAddin/Clients/C++/ClientCppInstruments.dsp
 \endverbatim
 \li Create the new standalone programs, e.g.
 \verbatim

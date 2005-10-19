@@ -9,15 +9,15 @@ EXTRA_DIST = \
     ClientCppCapFloors.dsp \
     ClientCppCapFloors.vcproj \
     ClientCppCapFloors_vc8.vcproj \
-    ClientCPPDemo.dsp \
-    ClientCPPDemo.vcproj \
-    ClientCPPDemo_vc8.vcproj \
-    ClientCPPInstruments.dsp \
-    ClientCPPInstruments.vcproj
-    ClientCPPInstruments_vc8.vcproj \
-    ClientCPPOptions.dsp \
-    ClientCPPOptions.vcproj \
-    ClientCPPOptions_vc8.vcproj
+    ClientCppDemo.dsp \
+    ClientCppDemo.vcproj \
+    ClientCppDemo_vc8.vcproj \
+    ClientCppInstruments.dsp \
+    ClientCppInstruments.vcproj
+    ClientCppInstruments_vc8.vcproj \
+    ClientCppOptions.dsp \
+    ClientCppOptions.vcproj \
+    ClientCppOptions_vc8.vcproj
 
 QLADemo_SOURCES = qlademo.cpp
 Options_SOURCES = options.cpp
