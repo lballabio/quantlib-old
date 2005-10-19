@@ -71,7 +71,7 @@ SectionIn 1 2
 
     SetOutPath  $INSTDIR\ohxl\ohxllib
     File /r "ohxl\ohxllib\ohxllib.dsp"
-    File /r "ohxl\ohxllib\ohxll.vcproj"
+    File /r "ohxl\ohxllib\ohxllib.vcproj"
     File /r "ohxl\ohxllib\ohxllib_vc8.vcproj"
 
     SetOutPath  $INSTDIR\xlsdk
