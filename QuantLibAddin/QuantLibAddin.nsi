@@ -42,15 +42,26 @@ SectionIn 1 2
     File "LICENSE.txt"
     File "NEWS.txt"
     File "QuantLibAddin.dsw"
-    File "QuantLibAddin*.sln"
-#    File "QuantLibAddin.dev"
+    File "QuantLibAddin.sln"
+    File "QuantLibAddin_vc8.sln"
 
     File "*.txt"
     File "*.TXT"
     File "Makefile.am"
     File "QuantLibAddin.dsp"
-    File "QuantLibAddin*.vcproj"
+    File "QuantLibAddin.vcproj"
+    File "QuantLibAddin_vc8.vcproj"
     File "QuantLibAddin.nsi"
+
+    SetOutPath $INSTDIR\srcgen
+    File /r "srcgen\srcgen.dsp"
+    File /r "srcgen\srcgen.vcproj"
+    File /r "srcgen\srcgen_vc8.vcproj"
+    File /r "srcgen\Makefile.am"
+    File /r "srcgen\Makefile.vc"
+    File /r "srcgen\*.py"
+    File /r "srcgen\*.xml"
+    File /r "srcgen\stub.*"
 
     SetOutPath  $INSTDIR\qla
     File /r "qla\*.hpp"
@@ -58,9 +69,9 @@ SectionIn 1 2
     File /r "qla\Makefile.am"
 
     SetOutPath $INSTDIR\Addins\C
-#    File /r "Addins\C\AddinC.dev"
     File /r "Addins\C\AddinC.dsp"
-    File /r "Addins\C\AddinC*.vcproj"
+    File /r "Addins\C\AddinC.vcproj"
+    File /r "Addins\C\AddinC_vc8.vcproj"
     File /r "Addins\C\Makefile.am"
     File /r "Addins\C\*.cpp"
     File /r "Addins\C\*.h"
@@ -68,24 +79,29 @@ SectionIn 1 2
 
     SetOutPath $INSTDIR\Addins\Calc
     File /r "Addins\Calc\AddinCalc.dsp"
-    File /r "Addins\Calc\AddinCalc*.vcproj"
+    File /r "Addins\Calc\AddinCalc.vcproj"
+    File /r "Addins\Calc\AddinCalc_vc8.vcproj"
     File /r "Addins\Calc\Makefile.am"
-    File /r "Addins\Calc\Makefile.msdev*"
+    File /r "Addins\Calc\Makefile.vc.debug.mtdll"
     File /r "Addins\Calc\QuantLibAddin.def"
     File /r "Addins\Calc\QuantLibAddin.idl"
     File /r "Addins\Calc\readme.txt"
     File /r "Addins\Calc\*.cpp"
     File /r "Addins\Calc\*.hpp"
 
-    SetOutPath $INSTDIR\Addins\Excel
-#    File /r "Addins\Excel\AddinExcel.dev"
-    File /r "Addins\Excel\AddinExcel.dsp"
-    File /r "Addins\Excel\AddinExcel*.vcproj"
-    File /r "Addins\Excel\Makefile.am"
-    File /r "Addins\Excel\*.cpp"
-    File /r "Addins\Excel\xlcall.h"
-    File /r "Addins\Excel\*.hpp"
-    File /r "Addins\Excel\lib\XLCALL32.LIB"
+    SetOutPath $INSTDIR\Addins\ExcelDynamic
+    File /r "Addins\ExcelDynamic\AddinExcelDynamic.dsp"
+    File /r "Addins\ExcelDynamic\AddinExcelDynamic.vcproj"
+    File /r "Addins\ExcelDynamic\AddinExcelDynamic_vc8.vcproj"
+    File /r "Addins\ExcelDynamic\Makefile.am"
+    File /r "Addins\ExcelDynamic\*.cpp"
+
+    SetOutPath $INSTDIR\Addins\ExcelStatic
+    File /r "Addins\ExcelStatic\AddinExcelStatic.dsp"
+    File /r "Addins\ExcelStatic\AddinExcelStatic.vcproj"
+    File /r "Addins\ExcelStatic\AddinExcelStatic_vc8.vcproj"
+    File /r "Addins\ExcelStatic\Makefile.am"
+    File /r "Addins\ExcelStatic\*.cpp"
 
     SetOutPath $INSTDIR\Addins\Guile
     File /r "Addins\Guile\Makefile.am"
@@ -93,19 +109,10 @@ SectionIn 1 2
     File /r "Addins\Guile\*.hpp"
     File /r "Addins\Guile\*.h"
 
-    SetOutPath $INSTDIR\Autogen
-    File /r "Autogen\Autogen.dsp"
-    File /r "Autogen\Makefile.am"
-    File /r "Autogen\Makefile.msdev"
-    File /r "Autogen\*.py"
-    File /r "Autogen\*.vcproj"
-    File /r "Autogen\*.xml"
-    File /r "Autogen\stub.*"
-    File /r "Autogen\README.txt"
-
     SetOutPath $INSTDIR\Clients\C
     File /r "Clients\C\ClientCDemo.dsp"
-    File /r "Clients\C\ClientCDemo*.vcproj"
+    File /r "Clients\C\ClientCDemo.vcproj"
+    File /r "Clients\C\ClientCDemo_vc8.vcproj"
     File /r "Clients\C\Makefile.am"
     File /r "Clients\C\*.c"
 
@@ -127,17 +134,7 @@ SectionIn 1 2
     File /r "Clients\Guile\Makefile.am"
     File /r "Clients\Guile\*.scm"
 
-    SetOutPath $INSTDIR\Docs
-    File /r "Docs\Makefile.am"
-    File /r "Docs\*.bmp"
-    File /r "Docs\*.css"
-    File /r "Docs\*.docs"
-    File /r "Docs\*.doxy"
-    File /r "Docs\*.eps"
-    File /r "Docs\*.html"
-    File /r "Docs\*.jpg"
-    File /r "Docs\*.pdf"
-    File /r "Docs\*.png"
+    SetOutPath $INSTDIR\Docs\pages
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibAddin" \

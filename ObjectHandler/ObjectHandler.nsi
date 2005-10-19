@@ -28,7 +28,6 @@ ShowInstDetails hide
 SetDateSave on
 
 
-
 # INSTALLATION EXECUTION COMMANDS
 
 Section "-ObjectHandler"
@@ -42,9 +41,11 @@ SectionIn 1 2
     File "LICENSE.txt"
     File "NEWS.txt"
     File "ObjectHandler.dsw"
-    File "ObjectHandler*.sln"
-#    File "ObjectHandler.dev"
-#    File "makefile.mak"
+    File "ObjectHandler.sln"
+    File "ObjectHandler_vc8.sln"
+    File ohlib.dsp
+    File ohlib.vcproj
+    File ohlib_vc8.vcproj
 
     File "*.txt"
     File "*.TXT"
@@ -56,30 +57,44 @@ SectionIn 1 2
     SetOutPath  $INSTDIR\oh
     File /r "oh\*.hpp"
     File /r "oh\*.cpp"
-#    File /r "oh\makefile.mak"
     File /r "oh\*.am"
 
-    SetOutPath $INSTDIR\Example
-    File /r "Example\*.hpp"
-    File /r "Example\*.cpp"
-    File /r "Example\*.dsp"
-#    File /r "Example\*.dev"
-#    File /r "Example\makefile.mak"
-    File /r "Example\*.am"
-    File /r "Example\*.vcproj"
+    SetOutPath  $INSTDIR\ohxl
+    File /r "ohxl\*.hpp"
+    File /r "ohxl\*.cpp"
 
-    SetOutPath $INSTDIR\Docs
-    File /r "Docs\*.am"
-    File /r "Docs\*.bmp"
-    File /r "Docs\*.css"
-    File /r "Docs\*.docs"
-    File /r "Docs\*.doxy"
-    File /r "Docs\*.eps"
-    File /r "Docs\*.html"
-    File /r "Docs\*.jpg"
-    File /r "Docs\*.pdf"
-    File /r "Docs\*.png"
-#    File /r "Docs\makefile.mak"
+    SetOutPath  $INSTDIR\ohxl\ohxll
+    File /r "ohxl\ohxll\ohxll.dsp"
+    File /r "ohxl\ohxll\ohxll.vcproj"
+    File /r "ohxl\ohxll\ohxll_vc8.vcproj"
+    File /r "ohxl\ohxll\*.cpp"
+
+    SetOutPath  $INSTDIR\ohxl\ohxllib
+    File /r "ohxl\ohxllib\ohxllib.dsp"
+    File /r "ohxl\ohxllib\ohxll.vcproj"
+    File /r "ohxl\ohxllib\ohxllib_vc8.vcproj"
+
+    SetOutPath  $INSTDIR\xlsdk
+    File /r "xlsdk\xlsdk.dsp"
+    File /r "xlsdk\xlsdk.vcproj"
+    File /r "xlsdk\xlsdk_vc8.vcproj"
+    File /r "xlsdk\xlcall32.lib"
+    File /r "xlsdk\xlcall.h"
+    File /r "xlsdk\*.hpp"
+    File /r "xlsdk\*.cpp"
+
+    SetOutPath $INSTDIR\Examples\C++
+    File /r "Examples\C++\*.hpp"
+    File /r "Examples\C++\*.cpp"
+    File /r "Examples\C++\ExampleCpp.dsp"
+    File /r "Examples\C++\ExampleCpp.vcproj"
+    File /r "Examples\C++\ExampleCpp_vc8.vcproj"
+
+    SetOutPath $INSTDIR\Examples\xl
+    File /r "Examples\xl\*.hpp"
+    File /r "Examples\xl\*.cpp"
+    File /r "Examples\xl\*.dsp"
+    File /r "Examples\xl\*.vcproj"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\ObjectHandler" \
@@ -162,8 +177,12 @@ Section "Uninstall"
     DeleteRegValue HKEY_CURRENT_USER  "Environment" "OBJECT_HANDLER_DIR"
     Delete "$SMPROGRAMS\ObjectHandler\*.*"
     RMDir "$SMPROGRAMS\ObjectHandler"
+    RMDir /r "$INSTDIR\Examples\C++"
+    RMDir /r "$INSTDIR\Examples\xl"
     RMDir /r "$INSTDIR\Examples"
-    RMDir /r "$INSTDIR\Docs"
+    RMDir /r "$INSTDIR\ohxl\xllib"
+    RMDir /r "$INSTDIR\ohxl\xll"
+    RMDir /r "$INSTDIR\ohxl"
     RMDir /r "$INSTDIR\oh"
     RMDir /r "$INSTDIR\lib"
     RMDir /r "$INSTDIR"

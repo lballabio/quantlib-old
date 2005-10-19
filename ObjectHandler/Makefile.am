@@ -9,8 +9,6 @@ SUBDIRS = \
     Examples/xl \
     Docs
 
-#    ObjectHandler.sln
-#    ohlib.vcproj
 EXTRA_DIST = \
     Announce.txt \
     Authors.txt \
@@ -20,8 +18,10 @@ EXTRA_DIST = \
     NEWS.txt \
     ObjectHandler.dsw \
     ObjectHandler.nsi \
+    ObjectHandler.sln \
     ObjectHandler_vc8.sln \
     ohlib.dsp \
+    ohlib.vcproj \
     ohlib_vc8.vcproj \
     README.txt \
     TODO.txt

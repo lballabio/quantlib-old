@@ -54,7 +54,7 @@
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\build\vc6\ReleaseMTDLL/ExampleXllStatic.tlb"
+				TypeLibraryName=".\build\vc71\ReleaseMTDLL/ExampleXllStatic.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -121,7 +121,7 @@
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\build\vc6\DebugMTDLL/ExampleXllStatic.tlb"
+				TypeLibraryName=".\build\vc71\DebugMTDLL/ExampleXllStatic.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>

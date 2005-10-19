@@ -50,7 +50,7 @@
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc6\ReleaseMTDLL/ExampleCpp.tlb"
+				TypeLibraryName=".\build\vc71\ReleaseMTDLL/ExampleCpp.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -113,7 +113,7 @@
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc6\DebugMTDLL/ExampleCpp.tlb"
+				TypeLibraryName=".\build\vc71\DebugMTDLL/ExampleCpp.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>

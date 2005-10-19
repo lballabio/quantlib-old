@@ -26,9 +26,9 @@ EXTRA_DIST = \
     QuantLibAddin.dsw \
     QuantLibAddin.nsi \
     QuantLibAddin.sln \
+    QuantLibAddin.vcproj \
     QuantLibAddin_vc8.sln \
     QuantLibAddin_vc8.vcproj \
-    QuantLibAddin.vcproj \
     README.txt \
     TODO.txt
 

@@ -1,27 +1,21 @@
 
-#    AddinExcel.dev
 EXTRA_DIST = \
-    AddinExcel.dsp \
-    AddinExcel_vc8.vcproj \
-    AddinExcel.vcproj \
+    AddinExcelDynamic.dsp \
+    AddinExcelDynamic.vcproj
+    AddinExcelDynamic_vc8.vcproj \
     capfloor.cpp \
-    framewrk.cpp \
-    framewrk.hpp \
+    couponvectors.cpp \
     instruments.cpp \
+    interpolation.cpp \
     options.cpp \
     processes.cpp \
     qladdin.cpp \
+    schedule.cpp \
     shortratemodels.cpp \
     simpleswap.cpp \
+    swap.cpp \
     termstructures.cpp \
     utilities.cpp \
     volatilities.cpp \
-    xibor.cpp \
-    xlcall.h \
-    xlutils.cpp \
-    xlutils.hpp
-
-#dist-hook:
-#	mkdir $(distdir)/lib
-#	cp -p $(srcdir)/lib/XLCALL32.LIB $(distdir)/lib
+    xibor.cpp
 
