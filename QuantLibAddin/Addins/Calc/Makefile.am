@@ -50,10 +50,10 @@ if BUILD_CALC
 BUILT_SOURCES = $(COMPONENT_NAME).flag2
 endif
 
+#    AddinCalc.vcproj
 EXTRA_DIST = \
     AddinCalc.dsp \
     AddinCalc_vc8.vcproj \
-    AddinCalc.vcproj \
     Makefile.vc.debug.mtdll \
     QuantLibAddin.def \
     QuantLibAddin.idl \
