@@ -13,7 +13,7 @@ EXTRA_DIST = \
     ClientCppDemo.vcproj \
     ClientCppDemo_vc8.vcproj \
     ClientCppInstruments.dsp \
-    ClientCppInstruments.vcproj
+    ClientCppInstruments.vcproj \
     ClientCppInstruments_vc8.vcproj \
     ClientCppOptions.dsp \
     ClientCppOptions.vcproj \
