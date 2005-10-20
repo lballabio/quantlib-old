@@ -66,17 +66,19 @@ class AddinGuile(addin.Addin):
         fileHeader.write('#ifndef qla_%s_h\n' % category.name)
         fileHeader.write('#define qla_%s_h\n\n' % category.name)
         fileHeader.write('#include <guile/gh.h>\n\n')
-        for function in category.functions:
+        for functionKey in category.functions[common.KEYS]:
+            function = category.functions[common.DICT][functionKey]
             if function.platformSupported(self.platformId):
                 self.generateFuncHeader(fileHeader, function, ';\n')
         fileHeader.write('#endif\n\n')
         fileHeader.close()
         utils.updateIfChanged(fileName)
 
-    def generateRegistrations(self, category):
-        ret = '    /* ' + category.displayName + ' */\n'
+    def generateRegistrations(self, cat):
+        ret = '    /* ' + cat.displayName + ' */\n'
         stub = '    gh_new_procedure("%s", %s, 1, 0, 0);\n'
-        for function in category.functions:
+        for functionKey in cat.functions[common.KEYS]:
+            function = cat.functions[common.DICT][functionKey]
             if function.platformSupported(self.platformId):
                 ret += stub % (function.name, function.name)
         return ret
@@ -90,11 +92,12 @@ class AddinGuile(addin.Addin):
         headers = ''
         registrations = ''
         i = 0
-        for category in self.categories:
+        for categoryKey in self.categories[common.KEYS]:
+            category = self.categories[common.DICT][categoryKey]
             i += 1
             headers += '#include <' + category.name + '.h>\n'
             registrations += self.generateRegistrations(category)
-            if i < len(self.categories):
+            if i < len(self.categories[common.KEYS]):
                 registrations += '\n'
         fileInit.write(fileStub % (headers, registrations))
         fileInit.close()
@@ -153,7 +156,8 @@ class AddinGuile(addin.Addin):
 
     def generateFuncDefs(self):
         'generate source for function implementations'
-        for category in self.categories:
+        for categoryKey in self.categories[common.KEYS]:
+            category = self.categories[common.DICT][categoryKey]
             self.generateFuncHeaders(category)
             if category.headerOnly:
                 continue
@@ -161,7 +165,8 @@ class AddinGuile(addin.Addin):
             fileFunc = file(fileName, 'w')
             utils.printHeader(fileFunc)
             fileFunc.write(self.bufInclude % (category.name, category.name))
-            for function in category.functions:
+            for functionKey in category.functions[common.KEYS]:
+                function = category.functions[common.DICT][functionKey]
                 if not function.platformSupported(self.platformId):
                     continue
                 self.generateFuncHeader(fileFunc, function, ' {')

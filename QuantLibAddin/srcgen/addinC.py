@@ -50,7 +50,8 @@ class AddinC(addin.Addin):
     def generate(self):
         'generate source code for C addin'
         utils.logMessage('  begin generating C ...')
-        for category in self.categories:
+        for categoryKey in self.categories[common.KEYS]:
+            category = self.categories[common.DICT][categoryKey]
             if category.headerOnly:
                 continue
             self.generateHeaders(category)
@@ -76,7 +77,8 @@ class AddinC(addin.Addin):
         utils.printHeader(fileHeader)
         fileHeader.write('#ifndef qla_%s_h\n' % category.name)
         fileHeader.write('#define qla_%s_h\n\n' % category.name)
-        for function in category.functions:
+        for functionKey in category.functions[common.KEYS]:
+            function = category.functions[common.DICT][functionKey]
             self.generateHeader(fileHeader, function, ';\n\n')
         fileHeader.write('#endif\n\n')
         fileHeader.close()
@@ -116,7 +118,8 @@ class AddinC(addin.Addin):
         fileFunc = file(fileName, 'w')
         utils.printHeader(fileFunc)
         fileFunc.write(self.bufInclude % (category.name, category.name))
-        for function in category.functions:
+        for functionKey in category.functions[common.KEYS]:
+            function = category.functions[common.DICT][functionKey]
             if not function.platformSupported(self.platformId):
                 continue
             self.generateHeader(fileFunc, function, ' {\n')

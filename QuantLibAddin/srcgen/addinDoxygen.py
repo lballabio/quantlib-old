@@ -110,15 +110,16 @@ class AddinDoxygen(addin.Addin):
         fileDoc = file(fileName, 'w')
         utils.printHeader(fileDoc)
         fileDoc.write(self.bufFuncs)
-        # ensure list sorted alphabetically by display name
-        displayToGroup = {}
-        listDisplay = []
-        for category in self.categories:
-            displayToGroup[category.displayName] = category
-            listDisplay.append(category.displayName)
-        listDisplay.sort()
-        for displayKey in listDisplay:
-            fileDoc.write('    \\ref %s\\n\n' % displayToGroup[displayKey].name)
+        # ensure list of links is sorted alphabetically by display name
+        dispNmToCatNm = {}
+        displayNames = []
+        for categoryKey in self.categories[common.KEYS]:
+            category = self.categories[common.DICT][categoryKey]
+            dispNmToCatNm[category.displayName] = category.name
+            displayNames.append(category.displayName)
+        displayNames.sort()
+        for displayKey in displayNames:
+            fileDoc.write('    \\ref %s\\n\n' % dispNmToCatNm[displayKey])
         fileDoc.write('\n*/\n\n')
         fileDoc.close()
         utils.updateIfChanged(fileName)
@@ -139,7 +140,8 @@ class AddinDoxygen(addin.Addin):
     def generateDocs(self):
         'generate doxygen documentation files'
         allFuncs = []
-        for category in self.categories:
+        for categoryKey in self.categories[common.KEYS]:
+            category = self.categories[common.DICT][categoryKey]
             fileName = self.rootDir + category.name + '.docs' + common.TEMPFILE
             fileDoc = file(fileName, 'w')
             utils.printHeader(fileDoc)
@@ -147,11 +149,13 @@ class AddinDoxygen(addin.Addin):
             fileDoc.write('\\section overview Overview\n')
             fileDoc.write('%s\n' % category.description)
             fileDoc.write('\\section functions Function List\n')
-            for function in category.functions:
+            for functionKey in category.functions[common.KEYS]:
+                function = category.functions[common.DICT][functionKey]
                 fileDoc.write('\\ref %s ()\\n\n' % function.name)
                 allFuncs.append(function.name)
             fileDoc.write('\\section documentation Function Documentation\n')
-            for function in category.functions:
+            for functionKey in category.functions[common.KEYS]:
+                function = category.functions[common.DICT][functionKey]
                 self.generateFuncDoc(fileDoc, function)
             fileDoc.write('*/\n\n')
             fileDoc.close()

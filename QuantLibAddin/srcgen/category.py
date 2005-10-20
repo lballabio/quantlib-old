@@ -34,8 +34,13 @@ class Category(object):
         self.headerOnly = utils.stringToBool(categoryDef[common.HDRONLY])
         self.displayName = categoryDef[common.DISPLAY_NAME]
         self.description = categoryDef[common.DESC]
-        self.functions = []
+        self.functions = {}
+        self.functions[common.DICT] = {}
+        self.functions[common.KEYS] = []
         for functionDef in categoryDef[common.FUNCS]:
-            self.functions.append(function.Function(functionDef))
+            func = function.Function(functionDef)
+            self.functions[common.DICT][func.name] = func
+            self.functions[common.KEYS].append(func.name)
+        self.functions[common.KEYS].sort()
         self.functionCount = len(self.functions)
 

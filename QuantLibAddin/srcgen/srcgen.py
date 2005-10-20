@@ -33,17 +33,18 @@ import addinDoxygen
 import category
 
 def usage():
-    print 'usage: ' + sys.argv[0] + ' -[targets]'
-    print '    where [targets] is any of:'
-    print '        q - generate source for QuantLibAddin'
-    print '        e - generate source for Excel addin (dynamic)'
-    print '        s - generate source for Excel addin (static)'
-    print '        o - generate source for OpenOffice.org Calc addin'
-    print '        c - generate source for C addin'
-    print '        g - generate source for Guile addin'
-    print '        d - generate doxygen documentation files'
-    print '    or'
-    print '        a - all of the above'
+    print 'usage: ' + sys.argv[0] + ''' -[targets]
+    where [targets] is any of:
+        q - generate source for QuantLibAddin
+        e - generate source for Excel addin (dynamic)
+        s - generate source for Excel addin (static)
+        o - generate source for OpenOffice.org Calc addin
+        c - generate source for C addin
+        g - generate source for Guile addin
+        d - generate doxygen documentation files
+    or
+        a - all of the above'''
+
     sys.exit(2)
 
 # parse command line arguments
@@ -54,9 +55,14 @@ except getopt.GetoptError:
     usage()
 
 conf = config.Config()
-categories = []
+categories = {}
+categories[common.DICT] = {}
+categories[common.KEYS] = []
 for categoryName in conf.config[common.CATEGORIES]:
-    categories.append(category.Category(categoryName))
+    cat = category.Category(categoryName)
+    categories[common.DICT][categoryName] = cat
+    categories[common.KEYS].append(categoryName)
+categories[common.KEYS].sort()
 
 enumerations = parse.parseFile(common.ENUMS)
 

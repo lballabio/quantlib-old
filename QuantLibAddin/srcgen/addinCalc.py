@@ -78,9 +78,11 @@ class AddinCalc(addin.Addin):
         utils.printHeader(fileMap)
         bufCalcMap = utils.loadBuffer(MAP)
         fileMap.write(bufCalcMap)
-        for category in self.categories:
+        for categoryKey in self.categories[common.KEYS]:
+            category = self.categories[common.DICT][categoryKey]
             fileMap.write('    // %s\n\n' % category.displayName)
-            for function in category.functions:
+            for functionKey in category.functions[common.KEYS]:
+                function = category.functions[common.DICT][functionKey]
                 if not function.platformSupported(self.platformId):
                     continue
                 fileMap.write('    // %s\n\n' % function.name)
@@ -105,8 +107,8 @@ class AddinCalc(addin.Addin):
         utils.printHeader(fileHeader)
         fileHeader.write('#ifndef qla_calc_auto_hpp\n')
         fileHeader.write('#define qla_calc_auto_hpp\n\n')
-        for category in self.categories:
-            fileHeader.write('#include <Addins/Calc/%s.hpp>\n' % category.name)
+        for categoryKey in self.categories[common.KEYS]:
+            fileHeader.write('#include <Addins/Calc/%s.hpp>\n' % categoryKey)
         fileHeader.write('\n#endif\n\n')
         fileHeader.close()
         utils.updateIfChanged(fileName)
@@ -129,13 +131,15 @@ class AddinCalc(addin.Addin):
 
     def generateHeaders(self):
         'generate source for function prototypes'
-        for category in self.categories:
+        for categoryKey in self.categories[common.KEYS]:
+            category = self.categories[common.DICT][categoryKey]
             fileName = self.rootDir + category.name + '.hpp' + common.TEMPFILE
             fileHeader = file(fileName, 'w')
             utils.printHeader(fileHeader)
             fileHeader.write('#ifndef qla_calc_%s_hpp\n' % category.name)
             fileHeader.write('#define qla_calc_%s_hpp\n\n' % category.name)
-            for function in category.functions:
+            for functionKey in category.functions[common.KEYS]:
+                function = category.functions[common.DICT][functionKey]
                 if not function.platformSupported(self.platformId):
                     continue
                 self.generateHeader(fileHeader, function)
@@ -178,7 +182,8 @@ class AddinCalc(addin.Addin):
     def generateFuncSources(self):
         'generate source for function implementations'
         bufInclude = utils.loadBuffer(INCLUDES)
-        for category in self.categories:
+        for categoryKey in self.categories[common.KEYS]:
+            category = self.categories[common.DICT][categoryKey]
             if category.headerOnly:
                 continue
             fileName = self.rootDir + category.name + '.cpp' + common.TEMPFILE
@@ -186,7 +191,8 @@ class AddinCalc(addin.Addin):
             utils.printHeader(fileFunc)
             bufIncludeFull = bufInclude % category.name
             fileFunc.write(bufIncludeFull)
-            for function in category.functions:
+            for functionKey in category.functions[common.KEYS]:
+                function = category.functions[common.DICT][functionKey]
                 if not function.platformSupported(self.platformId):
                     continue
                 if function.isConstructor:
@@ -204,9 +210,11 @@ class AddinCalc(addin.Addin):
         bufIDLHead = utils.loadBuffer(IDL_HEAD)
         fileIDL.write(bufIDLHead)
         bufIDLFunc = utils.loadBuffer(IDL_FUNC)
-        for category in self.categories:
+        for categoryKey in self.categories[common.KEYS]:
+            category = self.categories[common.DICT][categoryKey]
             fileIDL.write('                // %s\n\n' % category.name)
-            for function in category.functions:
+            for functionKey in category.functions[common.KEYS]:
+                function = category.functions[common.DICT][functionKey]
                 if not function.platformSupported(self.platformId):
                     continue
                 paramList = self.generateCode(self.ruleIDL, function.parameters)

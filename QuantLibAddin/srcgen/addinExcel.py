@@ -81,14 +81,16 @@ class AddinExcel(addin.Addin):
 
     def generateFuncDefs(self):
         'generate source code for function bodies'
-        for category in self.categories:
+        for categoryKey in self.categories[common.KEYS]:
+            category = self.categories[common.DICT][categoryKey]
             if category.headerOnly:
                 continue
             fileName = self.rootDir + category.name + '.cpp' + common.TEMPFILE
             fileFunc = file(fileName, 'w')
             utils.printHeader(fileFunc)
             fileFunc.write(self.bufInclude % category.name)
-            for function in category.functions:
+            for functionKey in category.functions[common.KEYS]:
+                function = category.functions[common.DICT][functionKey]
                 if not function.platformSupported(self.platformId):
                     continue
                 if function.isConstructor:
@@ -210,9 +212,11 @@ class AddinExcel(addin.Addin):
         utils.printHeader(fileHeader)
         bufHead = utils.loadBuffer(BUF_REGISTER)
         fileHeader.write(bufHead)
-        for category in self.categories:
+        for categoryKey in self.categories[common.KEYS]:
+            category = self.categories[common.DICT][categoryKey]
             fileHeader.write('    // %s\n\n' % category.displayName)
-            for function in category.functions:
+            for functionKey in category.functions[common.KEYS]:
+                function = category.functions[common.DICT][functionKey]
                 if not function.platformSupported(self.platformId):
                     continue
                 self.generateFuncRegister(fileHeader, function)
