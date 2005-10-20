@@ -1,7 +1,7 @@
 
 EXTRA_DIST = \
     AddinExcelStatic.dsp \
-    AddinExcelStatic.vcproj
+    AddinExcelStatic.vcproj \
     AddinExcelStatic_vc8.vcproj \
     capfloor.cpp \
     couponvectors.cpp \
