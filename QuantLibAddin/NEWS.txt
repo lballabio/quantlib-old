@@ -6,13 +6,14 @@ REQUIRED PACKAGES
 - QuantLib version 0.3.11
 - ObjectHandler version 0.1.2
 
-CHANGES SINCE RELEASE 0.3.10
+FUNCTIONALITY
 
 - 13 new functions / 70 in total
-- Coupon Vectors, Interpolation, Schedules, Swaps
-- Polymorphic functions
-- source code generation refactored for improved OO
-
+- Coupon Vectors, Interpolation, Schedules, Swaps (Aurelien Chanudet)
+- Polymorphic behavior in exported QuantLibAddin functions (Plamen Neykov)
+- support for direct calls to underlying QuantLib functions (Plamen Neykov)
+- optional function parameters (Plamen Neykov), default values
+- source code generation refactored for improved OO/maintainability
 
 Release 0.3.10 - July 2005
 

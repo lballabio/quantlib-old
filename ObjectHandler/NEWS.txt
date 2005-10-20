@@ -1,17 +1,20 @@
 Release 0.1.2 - October 2005
 
-REQUIRED PACKAGES
+EXCEL
 
-- Boost version 1.31.0 or later
-- log4cxx version 0.9.7 or later
+Excel binding ported from QuantLibAddin to ObjectHandler
+and enhanced:
 
-CHANGES SINCE RELEASE 0.1.1
-
-- binding to Excel, can be linked statically into a single client XLL,
-  or compiled as a standalone XLL comprising a global repository that
-  can be shared by other XLLs in the Excel session
+- ObjectHandler core functionality and the Excel binding can be
+  linked statically into a single client XLL, or built as a standalone
+  XLL comprising a global repository shared by multiple client XLLs
 - garbage collection of objects orphaned by the deletion of the
   calling cell
+- conversion to/from all Excel types and native C++ types
+- greater granularity of datatypes - XLOPER replaced by OPER, FP
+
+LOG4CXX
+
 - link to log4cxx dynamically rather than statically
 
 Release 0.1.1 - July 2005
@@ -41,5 +44,4 @@ Initial release consisting of prototype framework:
 
 - Instantiate an Object in the ObjectHandler, from where it
   can be interrogated, altered, and destroyed.
-
 
