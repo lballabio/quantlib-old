@@ -24,19 +24,21 @@
 /*! \page history Version history
 
     <strong>Release 0.3.11 - October 2005</strong>
-
+    
     REQUIRED PACKAGES
-
+    
     - Boost version 1.31.0 or later
     - QuantLib version 0.3.11
     - ObjectHandler version 0.1.2
-
-    CHANGES SINCE RELEASE 0.3.10
-
+    
+    FUNCTIONALITY
+    
     - 13 new functions / 70 in total
-    - Coupon Vectors, Interpolation, Schedules, Swaps
-    - Polymorphic functions
-    - source code generation refactored for improved OO
+    - Coupon Vectors, Interpolation, Schedules, Swaps (Aurelien Chanudet)
+    - Polymorphic behavior in exported QuantLibAddin functions (Plamen Neykov)
+    - support for direct calls to underlying QuantLib functions (Plamen Neykov)
+    - optional function parameters (Plamen Neykov), default values
+    - source code generation refactored for improved OO/maintainability
 
     <strong>Release 0.3.10 - July 2005</strong>
 
