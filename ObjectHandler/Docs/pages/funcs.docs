@@ -1,6 +1,7 @@
 
-
 /*
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2004, 2005 Eric Ehlers
  Copyright (C) 2004, 2005 Ferdinando Ametrano
  Copyright (C) 2004, 2005 StatPro Italia srl
@@ -25,70 +26,38 @@
 \section overview Overview
 ObjectHandler functions
 \section functions Function List
-\ref ohVersion ()\n
-\ref ohObjectCount ()\n
-\ref ohHandleList ()\n
+\ref ohCallGC ()\n
+\ref ohDeleteAllObjects ()\n
+\ref ohDeleteObject ()\n
+\ref ohDependsOn ()\n
 \ref ohFieldNames ()\n
 \ref ohFieldValue ()\n
-\ref ohDeleteObject ()\n
-\ref ohDeleteAllObjects ()\n
-\ref ohDependsOn ()\n
 \ref ohGetGcEnabled ()\n
-\ref ohSetGcEnabled ()\n
-\ref ohCallGC ()\n
-\ref ohSetLogFile ()\n
-\ref ohSetLogLevel ()\n
+\ref ohHandleList ()\n
+\ref ohLogAllObjects ()\n
 \ref ohLogMessage ()\n
 \ref ohLogObject ()\n
-\ref ohLogAllObjects ()\n
+\ref ohObjectCount ()\n
+\ref ohSetGcEnabled ()\n
+\ref ohSetLogFile ()\n
+\ref ohSetLogLevel ()\n
+\ref ohVersion ()\n
 \section documentation Function Documentation
-\anchor ohVersion \b ohVersion
+\anchor ohCallGC \b ohCallGC
 \code
-string
-ohVersion()
+bool
+ohCallGC()
 \endcode
 \par Description:
-returns the version number of ObjectHandler\return ObjectHandler version number
+delete orphaned objects from repository\return success/failure
 
-\anchor ohObjectCount \b ohObjectCount
+\anchor ohDeleteAllObjects \b ohDeleteAllObjects
 \code
-long
-ohObjectCount()
+bool
+ohDeleteAllObjects()
 \endcode
 \par Description:
-#/objects in repository\return object count
-
-\anchor ohHandleList \b ohHandleList
-\code
-vector < string >
-ohHandleList()
-\endcode
-\par Description:
-list of handles in repository\return handle list
-
-\anchor ohFieldNames \b ohFieldNames
-\code
-vector < any >
-ohFieldNames(
-        string handleObject)
-\endcode
-\par Description:
-retrieve the field names of a given object\param handleObject handle of object to be queried
-\return list of fieldnames for queried object
-
-\anchor ohFieldValue \b ohFieldValue
-\code
-vector < vector < any > >
-ohFieldValue(
-        string handleObject,
-        string fieldName,
-        any trigger)
-\endcode
-\par Description:
-retrieve the value of a named field\param handleObject handle of object to be queried
-\param fieldName name of field
-\param trigger dependency tracking trigger
-\return value of named field
+delete all objects from repository\return success/failure
 
 \anchor ohDeleteObject \b ohDeleteObject
 \code
@@ -99,14 +68,6 @@ ohDeleteObject(
 \par Description:
 delete object from repository\param handleObject handle of object to be deleted
 \return success/failure
-
-\anchor ohDeleteAllObjects \b ohDeleteAllObjects
-\code
-bool
-ohDeleteAllObjects()
-\endcode
-\par Description:
-delete all objects from repository\return success/failure
 
 \anchor ohDependsOn \b ohDependsOn
 \code
@@ -136,6 +97,30 @@ force a dependency between two functions\param dummy0 dummy parameter (ignored)
 \param dummy9 dummy parameter (ignored)
 \return success/failure
 
+\anchor ohFieldNames \b ohFieldNames
+\code
+vector < any >
+ohFieldNames(
+        string handleObject)
+\endcode
+\par Description:
+retrieve the field names of a given object\param handleObject handle of object to be queried
+\return list of fieldnames for queried object
+
+\anchor ohFieldValue \b ohFieldValue
+\code
+vector < vector < any > >
+ohFieldValue(
+        string handleObject,
+        string fieldName,
+        any trigger)
+\endcode
+\par Description:
+retrieve the value of a named field\param handleObject handle of object to be queried
+\param fieldName name of field
+\param trigger dependency tracking trigger
+\return value of named field
+
 \anchor ohGetGcEnabled \b ohGetGcEnabled
 \code
 bool
@@ -144,45 +129,21 @@ ohGetGcEnabled()
 \par Description:
 get value of ObjectHandler garbage collection flag\return success/failure
 
-\anchor ohSetGcEnabled \b ohSetGcEnabled
+\anchor ohHandleList \b ohHandleList
+\code
+vector < string >
+ohHandleList()
+\endcode
+\par Description:
+list of handles in repository\return handle list
+
+\anchor ohLogAllObjects \b ohLogAllObjects
 \code
 bool
-ohSetGcEnabled(
-        bool enableGarbageCollection)
+ohLogAllObjects()
 \endcode
 \par Description:
-set value of ObjectHandler garbage collection flag\param enableGarbageCollection true (enable) / false (disable)
-\return success/failure
-
-\anchor ohCallGC \b ohCallGC
-\code
-bool
-ohCallGC()
-\endcode
-\par Description:
-delete orphaned objects from repository\return success/failure
-
-\anchor ohSetLogFile \b ohSetLogFile
-\code
-string
-ohSetLogFile(
-        string logFileName,
-        long logLevel)
-\endcode
-\par Description:
-begin logging to named file\param logFileName path and name of log file
-\param logLevel threshold for log messages
-\return name of logfile
-
-\anchor ohSetLogLevel \b ohSetLogLevel
-\code
-long
-ohSetLogLevel(
-        long logLevel)
-\endcode
-\par Description:
-set threshold for log messages\param logLevel threshold for log messages
-\return returns new logging threshold
+write all object descriptions to log file\return success/failure
 
 \anchor ohLogMessage \b ohLogMessage
 \code
@@ -206,13 +167,53 @@ ohLogObject(
 write object description to log file\param handleObject handle of object to be logged
 \return success/failure
 
-\anchor ohLogAllObjects \b ohLogAllObjects
+\anchor ohObjectCount \b ohObjectCount
 \code
-bool
-ohLogAllObjects()
+long
+ohObjectCount()
 \endcode
 \par Description:
-write all object descriptions to log file\return success/failure
+#/objects in repository\return object count
+
+\anchor ohSetGcEnabled \b ohSetGcEnabled
+\code
+bool
+ohSetGcEnabled(
+        bool enableGarbageCollection)
+\endcode
+\par Description:
+set value of ObjectHandler garbage collection flag\param enableGarbageCollection true (enable) / false (disable)
+\return success/failure
+
+\anchor ohSetLogFile \b ohSetLogFile
+\code
+string
+ohSetLogFile(
+        string logFileName,
+        long logLevel)
+\endcode
+\par Description:
+begin logging to named file\param logFileName path and name of log file
+\param logLevel threshold for log messages
+\return name of logfile
+
+\anchor ohSetLogLevel \b ohSetLogLevel
+\code
+long
+ohSetLogLevel(
+        long logLevel)
+\endcode
+\par Description:
+set threshold for log messages\param logLevel threshold for log messages
+\return returns new logging threshold
+
+\anchor ohVersion \b ohVersion
+\code
+string
+ohVersion()
+\endcode
+\par Description:
+returns the version number of ObjectHandler\return ObjectHandler version number
 
 */
 
