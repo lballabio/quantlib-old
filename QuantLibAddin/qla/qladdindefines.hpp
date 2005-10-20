@@ -25,12 +25,12 @@
 #endif
 
 #include <oh/objhandler.hpp>
-#if OBJHANDLER_HEX_VERSION < 0x000101f0
+#if OBJHANDLER_HEX_VERSION < 0x000102f0
     #error using an old version of ObjectHandler, please update.
 #endif
 
 #include <ql/quantlib.hpp>
-#if QL_HEX_VERSION < 0x000310f0
+#if QL_HEX_VERSION < 0x000311f0
     #error using an old version of QuantLib, please update.
 #endif
 
