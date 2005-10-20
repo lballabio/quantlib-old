@@ -14,8 +14,8 @@
 <body>
 <!--#include virtual="qlheader.inc"-->
 <h1 class="center">Download Page</h1>
-<p>The latest QuantLib release is the 0.3.10 version (July 2005.)</p>
-<p><b>Debian users</b> will find version 0.3.10 of the different
+<p>The latest QuantLib release is the 0.3.11 version (October 2005.)</p>
+<p><b>Debian users</b> will find version 0.3.11 of the different
 QuantLib packages in the "unstable" (a.k.a. "Sid") distribution;
 see the <a href=
 "http://packages.debian.org/cgi-bin/search_packages.pl?keywords=quantlib&amp;searchon=names&amp;subword=1&amp;version=unstable&amp;release=all">
@@ -23,7 +23,7 @@ Debian site</a> for a list of available packages.</p>
 <p>For <b>Mac OS X users</b>, Fink packages will be available in the
 "10.3/unstable" tree; for a list of available QuantLib-related files
 see the <a href=
-"http://fink.sourceforge.net/pdb/search.php?s=quantlib">Package
+"http://fink.sourceforge.net/pdb/search.php?summary=quantlib">Package
 Database</a>. To enable the "unstable" tree, please read the <a href=
 "http://fink.sourceforge.net/faq/usage-fink.php#unstable">Fink
 faq</a>. Be sure to run "fink selfupdate" to obtain the latest package
@@ -38,7 +38,7 @@ packaged, or to advanced users wanting to <a
 href="reference/config.html">configure the library</a> with
 non-default settings.  Compiling QuantLib requires a working <a
 href="http://www.boost.org">Boost</a> installation; Boost 1.31 or
-later is needed.</p>
+later is needed, while Boost 1.33 is suggested.</p>
 <!--#include virtual="qlfooter.inc"-->
 </body>
 </html>
