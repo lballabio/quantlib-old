@@ -42,18 +42,4 @@ boost::shared_ptr<void> ObjectFoo::getReference() const {
     return boost::static_pointer_cast<void>(foo_);
 }
 
-// utility function for updating object of class Foo
-void updateFoo(
-        const string &handle,
-        const string &s,
-        const int &i) {
-    boost::shared_ptr<ObjectFoo> object =
-        OH_GET_OBJECT(ObjectFoo, handle);
-    if (!object) {
-        ostringstream msg;
-        msg << "FOO_UPDATE: unable to retrieve object " << handle;
-        throw Exception(msg.str().c_str());
-    }
-    object->update(s, i);
-}
 

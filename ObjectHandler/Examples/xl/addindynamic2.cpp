@@ -19,6 +19,7 @@
 #include <objectfoo.hpp>
 #include <xlsdk/xlsdk.hpp>
 #include <ohxl/conversions.hpp>
+#include <sstream>
 
 using namespace std;
 using namespace ObjHandler;
@@ -50,11 +51,18 @@ DLLEXPORT int xlAutoOpen() {
 
 DLLEXPORT short int *addin2UpdateFoo(char *handle, char *s, long *i) {
     try {
-        updateFoo(handle, s, *i);
+        objFoo_ptr objectFoo =
+            OH_GET_OBJECT(ObjectFoo, handle);
+        if (!objectFoo) {
+            ostringstream msg;
+            msg << "unable to retrieve object " << handle;
+            throw Exception(msg.str().c_str());
+        }
+        objectFoo->update(s, *i);
         static short int ret = TRUE;
         return &ret;
     } catch (const std::exception &e) {
-        logMessage(std::string("Error: ADDIN2_UPDATE_FOO: ") + e.what(), 2);
+        logMessage(std::string("Error: addin2UpdateFoo: ") + e.what(), 2);
         return 0;
     }
 }
@@ -62,10 +70,19 @@ DLLEXPORT short int *addin2UpdateFoo(char *handle, char *s, long *i) {
 DLLEXPORT long *addin2QueryFoo(char *handle) {
     try {
         static long int ret;
-        ret = queryFoo(handle);
+        objFoo_ptr objectFoo =
+            OH_GET_OBJECT(ObjectFoo, handle);
+        if (!objectFoo) {
+            ostringstream msg;
+            msg << "unable to retrieve object " << handle;
+            throw Exception(msg.str().c_str());
+        }
+        boost::shared_ptr<Foo> foo =
+            OH_GET_REFERENCE(Foo, objectFoo);
+        ret =  foo->i();
         return &ret;
     } catch (const std::exception &e) {
-        logMessage(std::string("Error: ADDIN2_QUERY_FOO: ") + e.what(), 2);
+        logMessage(std::string("Error: addin2QueryFoo: ") + e.what(), 2);
         return 0;
     }
 }

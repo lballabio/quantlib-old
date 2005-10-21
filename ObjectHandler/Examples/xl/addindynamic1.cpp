@@ -48,7 +48,7 @@ DLLEXPORT char* addin1MakeFoo(char *handleStub, char *s, long *i) {
         ObjHandler::stringToChar(ret, handle);
         return ret;
     } catch (const std::exception &e) {
-        logMessage(std::string("Error: ADDIN1_MAKE_FOO: ") + e.what(), 2);
+        logMessage(std::string("Error: addin1MakeFoo: ") + e.what(), 2);
         return 0;
     }
 }

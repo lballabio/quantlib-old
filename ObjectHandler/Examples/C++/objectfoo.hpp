@@ -37,11 +37,7 @@ private:
     boost::shared_ptr<Foo> foo_;
 };
 
-// utility function for updating object of class Foo                                                                       
-void updateFoo(
-    const std::string &handle,
-    const std::string &s,
-    const int &i);
+typedef boost::shared_ptr<ObjectFoo> objFoo_ptr;
 
 #endif
 

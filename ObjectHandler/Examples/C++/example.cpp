@@ -50,8 +50,12 @@ int main() {
         logMessage("high level interrogation - after constructor");
         logObject("foo2");
 
-        // update an object
-        updateFoo("foo2", "ghi", 789);
+        // retrieve an object and update it
+        objFoo_ptr objectFoo2_retrieve =
+            OH_GET_OBJECT(ObjectFoo, "foo2");
+        if (!objectFoo2_retrieve)
+            throw Exception("unable to retrieve object foo2");
+        objectFoo2_retrieve->update("ghi", 789);
 
         // high level interrogation
         logMessage("high level interrogation - after update");
@@ -59,12 +63,12 @@ int main() {
 
         // low-level interrogation
         logMessage("low-level interrogation - after updateFoo");
-        boost::shared_ptr<ObjectFoo> const objectFoo =
+        objFoo_ptr const objectFoo2_lowlevel =
             OH_GET_OBJECT(ObjectFoo, "foo2");
-        boost::shared_ptr<Foo> foo = 
-            OH_GET_REFERENCE(Foo, objectFoo);
+        boost::shared_ptr<Foo> objectFooUnderlying = 
+            OH_GET_REFERENCE(Foo, objectFoo2_lowlevel);
         logMessage("value of property s() of underlying foo = "
-            + foo->s());
+            + objectFooUnderlying->s());
 
         ObjectHandler::instance().deleteObject("foo2");
         logMessage("log all objects after deleting foo2:");

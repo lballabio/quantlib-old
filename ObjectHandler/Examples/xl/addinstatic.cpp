@@ -19,6 +19,7 @@
 #include <objectfoo.hpp>
 #include <xlsdk/xlsdk.hpp>
 #include <ohxl/conversions.hpp>
+#include <sstream>
 
 using namespace std;
 using namespace ObjHandler;
@@ -256,18 +257,25 @@ DLLEXPORT char* makeFoo(char *handleStub, char *s, long *i) {
         ObjHandler::stringToChar(ret, handle);
         return ret;
     } catch (const std::exception &e) {
-        logMessage(std::string("Error: EXAMPLE_MAKE_FOO: ") + e.what(), 2);
+        logMessage(std::string("Error: makeFoo: ") + e.what(), 2);
         return 0;
     }
 }
 
 DLLEXPORT short int *updateFoo(char *handle, char *s, long *i) {
     try {
-        updateFoo(handle, s, *i);
+        objFoo_ptr objectFoo =
+            OH_GET_OBJECT(ObjectFoo, handle);
+        if (!objectFoo) {
+            ostringstream msg;
+            msg << "unable to retrieve object " << handle;
+            throw Exception(msg.str().c_str());
+        }
+        objectFoo->update(s, *i);
         static short int ret = TRUE;
         return &ret;
     } catch (const std::exception &e) {
-        logMessage(std::string("Error: EXAMPLE_UPDATE_FOO: ") + e.what(), 2);
+        logMessage(std::string("Error: updateFoo: ") + e.what(), 2);
         return 0;
     }
 }
