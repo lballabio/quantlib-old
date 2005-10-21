@@ -16,6 +16,7 @@ org/quantlib:
 dist-hook:
 	mkdir -p $(distdir)/org/quantlib
 	cp ./org/quantlib/*.java $(distdir)/org/quantlib
+	touch $(distdir)/quantlib_wrap.cpp
 
 EXTRA_DIST = README.txt $(BUILT_SOURCES)
 

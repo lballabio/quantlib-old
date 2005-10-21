@@ -162,7 +162,7 @@ class EndCriteria {
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename(call) operator();
     %rename("positive-optimization-set!") setPositiveOptimization;
-    #elif defined(SWIGCSHARP) || defined(SWIGGUILE)
+    #elif defined(SWIGCSHARP) || defined(SWIGPERL)
     %rename(call) operator();
     #endif
   public:

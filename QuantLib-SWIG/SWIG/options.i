@@ -52,7 +52,8 @@ using QuantLib::StrikedTypePayoff;
 
 %ignore Payoff;
 class Payoff {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGCSHARP)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) \
+     || defined(SWIGCSHARP) || defined(SWIGPERL)
     %rename(call) operator();
     #endif
   public:

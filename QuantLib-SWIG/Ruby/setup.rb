@@ -78,44 +78,44 @@ Wrap = Command.new {
 
 Build = Command.new {
     cfg = Config::MAKEFILE_CONFIG
-    case cfg['host_os']
-      when 'mswin32'
-        QL_DIR = ENV['QL_DIR']
-        $CPPFLAGS += " /MT"
-        $CPPFLAGS += " /GR"
-        $CPPFLAGS += " /GX"
-        $CPPFLAGS += " /Zm250"
-        $CPPFLAGS += " /DNOMINMAX"
-        $CPPFLAGS += " /I#{QL_DIR}"
-        $LIBPATH  += ["#{QL_DIR}\\lib"]
-      when 'linux','linux-gnu','darwin'
-        $CFLAGS   += " " + (ENV['CFLAGS'] || "")
-        $CPPFLAGS += " " + IO.popen("quantlib-config --cflags").gets.strip
-        $CPPFLAGS += " -Wno-uninitialized -Wno-unused"
-        $CPPFLAGS += " " + (ENV['CXXFLAGS'] || "")
-        $CPPFLAGS += " -DBOOST_DISABLE_THREADS"
-        $libs     += " " + IO.popen("quantlib-config --libs").gets.strip
-        old_cc = cfg['CC']
-        cfg['CC'] = ENV['CXX'] || "g++"
-        cfg['CPP'].sub!(old_cc,cfg['CC'])
-        cfg['LDSHARED'].sub!(old_cc,cfg['CC'])
-        if cfg['host_os']=='darwin'
-          cfg['LDSHARED'].sub!('cc',cfg['CC'])
-          cfg['LDSHARED'] += " -flat_namespace -undefined suppress"
-        end
-      else
-        puts "Unknown host: " + cfg['host_os']
+    if cfg['host_os'] == 'mswin32'
+      QL_DIR = ENV['QL_DIR']
+      $CPPFLAGS += " /MT"
+      $CPPFLAGS += " /GR"
+      $CPPFLAGS += " /GX"
+      $CPPFLAGS += " /Zm250"
+      $CPPFLAGS += " /DNOMINMAX"
+      $CPPFLAGS += " /I#{QL_DIR}"
+      $LIBPATH  += ["#{QL_DIR}\\lib"]
+    else
+      $CFLAGS   += " " + (ENV['CFLAGS'] || "")
+      $CPPFLAGS += " " + IO.popen("quantlib-config --cflags").gets.strip
+      $CPPFLAGS += " -Wno-uninitialized -Wno-unused"
+      $CPPFLAGS += " " + (ENV['CXXFLAGS'] || "")
+      $CPPFLAGS += " -DBOOST_DISABLE_THREADS"
+      $libs     += " " + IO.popen("quantlib-config --libs").gets.strip
+      old_cc = cfg['CC']
+      cfg['CC'] = ENV['CXX'] || "g++"
+      cfg['CPP'].sub!(old_cc,cfg['CC'])
+      cfg['LDSHARED'].sub!(old_cc,cfg['CC'])
+      if cfg['host_os'][0..5] =='darwin'
+        cfg['LDSHARED'].sub!('cc',cfg['CC'])
+        cfg['LDSHARED'] += " -flat_namespace -undefined suppress"
+      end
     end
     # we have to juggle files as create_makefile is stubborn about file names
-    File.rename("Makefile","Makefile.old")
+    if File.exists?("Makefile")
+      File.rename("Makefile","Makefile.old")
+    end
     create_makefile("QuantLibc")
     File.rename("Makefile","extension.mak")
-    File.rename("Makefile.old", "Makefile")
-    case cfg['host_os']
-      when 'mswin32'
-        system("nmake /f extension.mak")
-      else
-        system("make -f extension.mak")
+    if File.exists?("Makefile.old")
+      File.rename("Makefile.old", "Makefile")
+    end
+    if cfg['host_os'] == 'mswin32'
+      system("nmake /f extension.mak")
+    else
+      system("make -f extension.mak")
     end
 }
 
@@ -148,8 +148,7 @@ Install = Command.new {
         libDir     = Config::CONFIG["sitelibdir"]
     end
     [archDir,libDir].each { |path| File.makedirs path }
-    case cfg['host_os']
-    when 'darwin'
+    if cfg['host_os'][0..5] == 'darwin'
       binary = 'QuantLibc.bundle'
     else
       binary = 'QuantLibc.so'

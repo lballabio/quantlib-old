@@ -154,6 +154,7 @@ export_xibor_instance(GBPLibor, Actual365Fixed);
 export_xibor_instance(Jibar, Actual365Fixed);
 export_xibor_instance(JPYLibor, Actual360);
 export_xibor_instance(Tibor, Actual365Fixed);
+export_xibor_instance(TRLibor, Actual360);
 export_xibor_instance(USDLibor, Actual360);
 export_xibor_instance(Zibor, Actual360);
 

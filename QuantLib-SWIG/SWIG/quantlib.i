@@ -40,6 +40,10 @@
 
 #if defined(SWIGPYTHON)
 %{
+#ifdef barrier
+#undef barrier
+#endif
+
 #include <ql/qldefines.hpp>
 const int    __hexversion__ = QL_HEX_VERSION;
 const char* __version__    = QL_VERSION;

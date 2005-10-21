@@ -66,8 +66,9 @@ typedef SafeInterpolation<QuantLib::T> Safe##T;
 %}
 %rename(Alias) Safe##T;
 class Safe##T {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGCSHARP)
-    %rename(call)     operator();
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) \
+     || defined(SWIGCSHARP) || defined(SWIGPERL)
+    %rename(call) operator();
     #endif
   public:
     Safe##T(const Array& x, const Array& y);
@@ -119,8 +120,9 @@ typedef SafeInterpolation2D<QuantLib::T> Safe##T;
 %}
 %rename(Alias) Safe##T;
 class Safe##T {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGCSHARP)
-    %rename(call)     operator();
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) \
+     || defined(SWIGCSHARP) || defined(SWIGPERL)
+    %rename(call) operator();
     #endif
   public:
     Safe##T(const Array& x, const Array& y, const Matrix& m);

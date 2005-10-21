@@ -49,7 +49,12 @@ typedef Real Spread;
 typedef Real DiscountFactor;
 typedef Real Volatility;
 
-#if defined(SWIGMZSCHEME)
+#if defined(SWIGPYTHON)
+// needed for those using SWIG 1.3.21 in order to compile with VC++6
+%typecheck(SWIG_TYPECHECK_INTEGER) std::size_t {
+    $1 = (PyInt_Check($input) || PyLong_Check($input)) ? 1 : 0;
+}
+#elif defined(SWIGMZSCHEME)
 %typecheck(SWIG_TYPECHECK_INTEGER) std::size_t {
     $1 = (SCHEME_INTP($input)) ? 1 : 0;
 }

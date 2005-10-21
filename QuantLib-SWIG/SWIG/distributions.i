@@ -27,7 +27,8 @@ using QuantLib::InverseCumulativeNormal;
 %}
 
 class NormalDistribution {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGCSHARP)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) \
+     || defined(SWIGCSHARP) || defined(SWIGPERL)
     %rename(call) operator();
     #endif
   public:
@@ -37,7 +38,8 @@ class NormalDistribution {
 };
 
 class CumulativeNormalDistribution {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGCSHARP)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) \
+     || defined(SWIGCSHARP) || defined(SWIGPERL)
     %rename(call) operator();
     #endif
   public:
@@ -47,7 +49,8 @@ class CumulativeNormalDistribution {
 };
 
 class InverseCumulativeNormal {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGCSHARP)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) \
+     || defined(SWIGCSHARP) || defined(SWIGPERL)
     %rename(call) operator();
     #endif
   public:
@@ -56,7 +59,8 @@ class InverseCumulativeNormal {
 };
 
 class MoroInverseCumulativeNormal {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGCSHARP)
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) \
+     || defined(SWIGCSHARP) || defined(SWIGPERL)
     %rename(call) operator();
     #endif
   public:

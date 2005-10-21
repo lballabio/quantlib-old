@@ -1,38 +1,39 @@
 
-CLEANFILES = quantlib_wrap.* libNQuantLibc.so QuantLib.dll
+CLEANFILES = cpp/quantlib_wrap.* csharp/*.cs libNQuantLibc.so NQuantLib.dll
 
-BUILT_SOURCES = quantlib_wrap.cpp
+BUILT_SOURCES = cpp/quantlib_wrap.cpp
 
 if HAVE_MCS
 
-all-local: libNQuantLibc.so QuantLib.dll
+all-local: libNQuantLibc.so NQuantLib.dll
 
-libNQuantLibc.so: quantlib_wrap.o
-	g++ -shared quantlib_wrap.o -o libNQuantLibc.so -lQuantLib
+libNQuantLibc.so: cpp/quantlib_wrap.o
+	g++ -shared cpp/quantlib_wrap.o -o libNQuantLibc.so -lQuantLib
 
-quantlib_wrap.o: quantlib_wrap.cpp
-	g++ -c -fpic quantlib_wrap.cpp
+cpp/quantlib_wrap.o: $(BUILT_SOURCES)
+	g++ -c -fpic cpp/quantlib_wrap.cpp -o cpp/quantlib_wrap.o
 
-QuantLib.dll: quantlib_wrap.cpp
-	$(MCS) -nologo -target:library -out:QuantLib.dll csharp/*.cs
+NQuantLib.dll: $(BUILT_SOURCES)
+	$(MCS) -nologo -target:library -out:NQuantLib.dll csharp/*.cs
 
 endif
 
-clean-local:
-	rm -rf csharp
-
-quantlib_wrap.cpp: csharp ../SWIG/*.i
+cpp/quantlib_wrap.cpp: ../SWIG/*.i
 	$(SWIG) -csharp -c++ -I../SWIG -outdir csharp \
-            -namespace QuantLib -o quantlib_wrap.cpp quantlib.i
+            -namespace QuantLib -o cpp/quantlib_wrap.cpp quantlib.i
 
-csharp:
-	mkdir -p csharp
-
-dist-hook:
+dist-hook: cpp/quantlib_wrap.cpp
+	mkdir -p $(distdir)/cpp
+	cp ./cpp/QuantlibWrapper.vcproj $(distdir)/cpp
+	cp ./cpp/quantlib_wrap.cpp $(distdir)/cpp
+	cp ./cpp/QuantlibWrapper.h ./cpp/QuantlibWrapper.cpp $(distdir)/cpp
+	cp ./cpp/stdafx.h $(distdir)/cpp
 	mkdir -p $(distdir)/csharp
+	cp ./csharp/NQuantLib.csproj $(distdir)/csharp
 	cp ./csharp/*.cs $(distdir)/csharp
 	mkdir -p $(distdir)/examples
+	cp ./examples/*.csproj $(distdir)/examples
 	cp ./examples/*.cs $(distdir)/examples
 
-EXTRA_DIST = README.txt $(BUILT_SOURCES)
+EXTRA_DIST = QuantLib.sln swig.cmd README.txt
 

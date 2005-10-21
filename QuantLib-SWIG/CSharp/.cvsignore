@@ -3,4 +3,5 @@ quantlib_wrap.*
 *.dll
 Makefile
 Makefile.in
-csharp
+QuantLib.ncb
+QuantLib.suo

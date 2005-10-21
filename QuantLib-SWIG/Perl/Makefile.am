@@ -15,7 +15,7 @@ all-local: .build-stamp
 check-local: .build-stamp
 	make -f $(PERL_MAKEFILE) test
 
-install-exec-local: .build-stamp 
+install-exec-local: .build-stamp
 	make -f $(PERL_MAKEFILE) install
 
 clean-local: $(PERL_MAKEFILE)
@@ -36,5 +36,5 @@ dist-hook:
 	mkdir -p $(distdir)/examples
 	cp ./examples/*.pl $(distdir)/examples
 
-EXTRA_DIST = README.txt $(BUILT_SOURCES)
+EXTRA_DIST = README.txt Makefile.PL $(BUILT_SOURCES)
 
