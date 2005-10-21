@@ -25,26 +25,26 @@
 #endif
 
 #include <oh/objhandler.hpp>
-#if OBJHANDLER_HEX_VERSION < 0x000102f0
+#if OBJHANDLER_HEX_VERSION < 0x000103f0
     #error using an old version of ObjectHandler, please update.
 #endif
 
 #include <ql/quantlib.hpp>
-#if QL_HEX_VERSION < 0x000311f0
+#if QL_HEX_VERSION < 0x000312f0
     #error using an old version of QuantLib, please update.
 #endif
 
 //! version string
 #ifdef _DEBUG
-    #define QLADDIN_VERSION "0.3.11-debug"
+    #define QLADDIN_VERSION "0.3.12-debug"
 #else
-    #define QLADDIN_VERSION "0.3.11"
+    #define QLADDIN_VERSION "0.3.12"
 #endif
 
 //! version hexadecimal number
-#define QLADDIN_HEX_VERSION 0x000311f0
+#define QLADDIN_HEX_VERSION 0x000312f0
 //! version string for output lib name
-#define QLADDIN_LIB_VERSION "0_3_11"
+#define QLADDIN_LIB_VERSION "0_3_12"
 
 #if defined BOOST_MSVC
 #pragma warning(disable : 4996)

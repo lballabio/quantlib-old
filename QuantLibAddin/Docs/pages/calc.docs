@@ -65,7 +65,7 @@ PATH=$PATH:$OFFICE_SDK_PATH/linux/bin
 <li><b>idlc</b> - Run OOo utility <b>idlc</b> to compile the idl (interface definition language) file QuantLibAddin.idl into urd (UNO reflection data) file QuantLibAddin.urd.  The urd file comprises binary descriptions of the types in the Addin.</li>
 <li><b>regmerge</b> - Run OOo utility <b>regmerge</b> to merge the urd file into rdb (registry database) file QuantLibAddin.rdb.  The rdb is used by OOo at runtime to infer the functionality available in the Addin.</li>
 <li><b>cppumaker</b> - Run OOo utility <b>cppumaker</b> to generate the source code corresponding to the definitions in the rdb.</li>
-<li><b>compile</b> - Compile the Addin, including the source generated above, plus the function implementation source code supplied for the Addin.  The Addin is compiled into a shared library, i.e. <b>QuantLibAddin.dll</b> (Windows) or <b>libQuantLibAddinCalc-0.3.11.so</b> (Linux).</li>
+<li><b>compile</b> - Compile the Addin, including the source generated above, plus the function implementation source code supplied for the Addin.  The Addin is compiled into a shared library, i.e. <b>QuantLibAddin.dll</b> (Windows) or <b>libQuantLibAddinCalc-0.3.12.so</b> (Linux).</li>
 <li><b>install</b> - Copy the Addin's shared library and registry database to the OOo program directory.</li>
 </ul>
 

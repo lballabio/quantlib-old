@@ -40,13 +40,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
-				OutputFile="xll\QuantLibAddin-vc71-mt-gd-0_3_11.xll"
+				OutputFile="xll\QuantLibAddin-vc71-mt-gd-0_3_12.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\build\vc71\DebugMTDLL/QuantLibAddin-vc71-mt-gd-0_3_11.pdb"
-				ImportLibrary=".\build\vc71\DebugMTDLL/QuantLibAddin-vc71-mt-gd-0_3_11.lib"
+				ProgramDatabaseFile=".\build\vc71\DebugMTDLL/QuantLibAddin-vc71-mt-gd-0_3_12.pdb"
+				ImportLibrary=".\build\vc71\DebugMTDLL/QuantLibAddin-vc71-mt-gd-0_3_12.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -108,12 +108,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
-				OutputFile="xll\QuantLibAddin-vc71-mt-0_3_11.xll"
+				OutputFile="xll\QuantLibAddin-vc71-mt-0_3_12.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
-				ProgramDatabaseFile=".\build\vc71\ReleaseMTDLL/QuantLibAddin-vc71-mt-0_3_11.pdb"
-				ImportLibrary=".\build\vc71\ReleaseMTDLL/QuantLibAddin-vc71-mt-0_3_11.lib"
+				ProgramDatabaseFile=".\build\vc71\ReleaseMTDLL/QuantLibAddin-vc71-mt-0_3_12.pdb"
+				ImportLibrary=".\build\vc71\ReleaseMTDLL/QuantLibAddin-vc71-mt-0_3_12.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"

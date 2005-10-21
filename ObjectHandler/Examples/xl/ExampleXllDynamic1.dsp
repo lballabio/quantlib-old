@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:"xll\ExampleXLLDynamic1-vc6-mt-gd-0_1_2.xll" /pdbtype:sept /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxll\xll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:"xll\ExampleXLLDynamic1-vc6-mt-gd-0_1_3.xll" /pdbtype:sept /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxll\xll"
 
 !ELSEIF  "$(CFG)" == "ExampleXllDynamic1 - Win32 Release MTDLL"
 
@@ -79,7 +79,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"xll\ExampleXLLDynamic1-vc6-mt-0_1_2.xll" /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxll\xll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"xll\ExampleXLLDynamic1-vc6-mt-0_1_3.xll" /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxll\xll"
 
 !ENDIF 
 

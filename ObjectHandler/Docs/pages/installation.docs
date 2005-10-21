@@ -138,8 +138,8 @@ Otherwise log4cxx should build as documented.
 ObjectHandler is built in the standard way:
 
 \verbatim
-tar zxfv ObjectHandler-0.1.2.tar.gz
-cd ObjectHandler-0.1.2
+tar zxfv ObjectHandler-0.1.3.tar.gz
+cd ObjectHandler-0.1.3
 ./configure
 make
 make install

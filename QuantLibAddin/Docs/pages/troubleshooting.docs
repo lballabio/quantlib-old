@@ -89,7 +89,7 @@ SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols
 
 Start Excel and WinDbg, before loading the addin, attach WinDbg to Excel and set the breakpoint e.g.
 \verbatim
-bu QuantLibAddin_vc6_mt_gd_0_3_11!xlAutoOpen
+bu QuantLibAddin_vc6_mt_gd_0_3_12!xlAutoOpen
 \endverbatim
 
 You can then debug as the addin loads.

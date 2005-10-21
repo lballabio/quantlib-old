@@ -76,12 +76,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
-				OutputFile="xll\ExampleXLLStatic-vc80-mt-0_1_2.xll"
+				OutputFile="xll\ExampleXLLStatic-vc80-mt-0_1_3.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxllib\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
-				ProgramDatabaseFile=".\build\vc8\ReleaseMTDLL/ExampleXLLStatic-vc80-mt-0_1_2.pdb"
-				ImportLibrary=".\build\vc8\ReleaseMTDLL/ExampleXLLStatic-vc80-mt-0_1_2.lib"
+				ProgramDatabaseFile=".\build\vc8\ReleaseMTDLL/ExampleXLLStatic-vc80-mt-0_1_3.pdb"
+				ImportLibrary=".\build\vc8\ReleaseMTDLL/ExampleXLLStatic-vc80-mt-0_1_3.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -174,13 +174,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
-				OutputFile="xll\ExampleXLLStatic-vc80-mt-gd-0_1_2.xll"
+				OutputFile="xll\ExampleXLLStatic-vc80-mt-gd-0_1_3.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxllib\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\build\vc8\DebugMTDLL/ExampleXLLStatic-vc80-mt-gd-0_1_2.pdb"
-				ImportLibrary=".\build\vc8\DebugMTDLL/ExampleXLLStatic-vc80-mt-gd-0_1_2.lib"
+				ProgramDatabaseFile=".\build\vc8\DebugMTDLL/ExampleXLLStatic-vc80-mt-gd-0_1_3.pdb"
+				ImportLibrary=".\build\vc8\DebugMTDLL/ExampleXLLStatic-vc80-mt-gd-0_1_3.lib"
 				TargetMachine="1"
 			/>
 			<Tool

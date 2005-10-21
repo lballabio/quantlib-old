@@ -29,7 +29,7 @@
 				BuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot;"
 				ReBuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot; /a"
 				CleanCommandLine=""
-				Output="QuantLibAddin-vc80-mt-gd-0_3_11.dll"
+				Output="QuantLibAddin-vc80-mt-gd-0_3_12.dll"
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""
 				ForcedIncludes=""

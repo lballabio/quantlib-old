@@ -40,12 +40,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="xll\ExampleXLLDynamic1-vc71-mt-0_1_2.xll"
+				OutputFile="xll\ExampleXLLDynamic1-vc71-mt-0_1_3.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxll\xll"
-				ProgramDatabaseFile=".\build\vc71\ReleaseMTDLL/ExampleXLLDynamic1-vc71-mt-0_1_2.pdb"
-				ImportLibrary=".\build\vc71\ReleaseMTDLL/ExampleXLLDynamic1-vc71-mt-0_1_2.lib"
+				ProgramDatabaseFile=".\build\vc71\ReleaseMTDLL/ExampleXLLDynamic1-vc71-mt-0_1_3.pdb"
+				ImportLibrary=".\build\vc71\ReleaseMTDLL/ExampleXLLDynamic1-vc71-mt-0_1_3.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -105,13 +105,13 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="xll\ExampleXLLDynamic1-vc71-mt-gd-0_1_2.xll"
+				OutputFile="xll\ExampleXLLDynamic1-vc71-mt-gd-0_1_3.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxll\xll"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\build\vc71\DebugMTDLL/ExampleXLLDynamic1-vc71-mt-gd-0_1_2.pdb"
-				ImportLibrary=".\build\vc71\DebugMTDLL/ExampleXLLDynamic1-vc71-mt-gd-0_1_2.lib"
+				ProgramDatabaseFile=".\build\vc71\DebugMTDLL/ExampleXLLDynamic1-vc71-mt-gd-0_1_3.pdb"
+				ImportLibrary=".\build\vc71\DebugMTDLL/ExampleXLLDynamic1-vc71-mt-gd-0_1_3.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"

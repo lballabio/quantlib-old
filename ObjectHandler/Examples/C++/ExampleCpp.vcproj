@@ -41,11 +41,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
-				OutputFile="bin\ExampleCpp-vc71-mt-0_1_2.exe"
+				OutputFile="bin\ExampleCpp-vc71-mt-0_1_3.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib\Release"
-				ProgramDatabaseFile=".\build\vc71\ReleaseMTDLL/ExampleCpp-vc71-mt-0_1_2.pdb"
+				ProgramDatabaseFile=".\build\vc71\ReleaseMTDLL/ExampleCpp-vc71-mt-0_1_3.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
@@ -103,12 +103,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
-				OutputFile="bin\ExampleCpp-vc71-mt-gd-0_1_2.exe"
+				OutputFile="bin\ExampleCpp-vc71-mt-gd-0_1_3.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib\Debug"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\build\vc71\DebugMTDLL/ExampleCpp-vc71-mt-gd-0_1_2.pdb"
+				ProgramDatabaseFile=".\build\vc71\DebugMTDLL/ExampleCpp-vc71-mt-gd-0_1_3.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool

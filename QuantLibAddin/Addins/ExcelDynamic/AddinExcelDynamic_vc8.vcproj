@@ -76,13 +76,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="xll\QuantLibAddin-vc80-mt-gd-0_3_11.xll"
+				OutputFile="xll\QuantLibAddin-vc80-mt-gd-0_3_12.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll,$(QL_DIR)\lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\build\vc8\DebugMTDLL/QuantLibAddin-vc80-mt-gd-0_3_11.pdb"
-				ImportLibrary=".\build\vc8\DebugMTDLL/QuantLibAddin-vc80-mt-gd-0_3_11.lib"
+				ProgramDatabaseFile=".\build\vc8\DebugMTDLL/QuantLibAddin-vc80-mt-gd-0_3_12.pdb"
+				ImportLibrary=".\build\vc8\DebugMTDLL/QuantLibAddin-vc80-mt-gd-0_3_12.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -175,7 +175,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="xll\QuantLibAddin-vc80-mt-0_3_11.xll"
+				OutputFile="xll\QuantLibAddin-vc80-mt-0_3_12.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll,$(QL_DIR)\lib"

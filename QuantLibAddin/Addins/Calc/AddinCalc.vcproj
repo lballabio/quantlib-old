@@ -22,7 +22,7 @@
 				Name="VCNMakeTool"
 				BuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot; CLVER=71"
 				ReBuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot; /a CLVER=71"
-				Output="QuantLibAddin-vc71-mt-gd-0_3_11.dll"/>
+				Output="QuantLibAddin-vc71-mt-gd-0_3_12.dll"/>
 		</Configuration>
 	</Configurations>
 	<References>

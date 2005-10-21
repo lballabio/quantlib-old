@@ -1,6 +1,6 @@
 [OPTIONS]
 Compatibility=1.1 or later
-Compiled file=ObjectHandler-docs-0.1.2.chm
+Compiled file=ObjectHandler-docs-0.1.3.chm
 Default topic=html\index.html
 Display compile progress=No
 Language=0x809 English (United Kingdom)

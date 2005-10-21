@@ -39,7 +39,7 @@ CFG=AddinCalc - Win32 Debug MTDLL
 # PROP Intermediate_Dir "build\vc6\DebugMTDLL"
 # PROP Cmd_Line "nmake /f "Makefile.vc.debug.mtdll""
 # PROP Rebuild_Opt "/a"
-# PROP Target_File "QuantLibAddin-vc6-mt-gd-0_3_11.dll"
+# PROP Target_File "QuantLibAddin-vc6-mt-gd-0_3_12.dll"
 # PROP Bsc_Name ""
 # PROP Target_Dir ""
 # Begin Target

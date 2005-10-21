@@ -77,13 +77,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
-				OutputFile="xll\ObjectHandler-vc80-mt-gd-0_1_2.xll"
+				OutputFile="xll\ObjectHandler-vc80-mt-gd-0_1_3.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(LOG4CXX_DIR)\msvc\Lib\Debug,..\xlsdk\lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\xll/ObjectHandler-vc80-mt-gd-0_1_2.pdb"
-				ImportLibrary=".\xll/ObjectHandler-vc80-mt-gd-0_1_2.lib"
+				ProgramDatabaseFile=".\xll/ObjectHandler-vc80-mt-gd-0_1_3.pdb"
+				ImportLibrary=".\xll/ObjectHandler-vc80-mt-gd-0_1_3.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -176,12 +176,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
-				OutputFile="xll\ObjectHandler-vc80-mt-0_1_2.xll"
+				OutputFile="xll\ObjectHandler-vc80-mt-0_1_3.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(LOG4CXX_DIR)\msvc\Lib\Release"
-				ProgramDatabaseFile=".\xll/ObjectHandler-vc80-mt-0_1_2.pdb"
-				ImportLibrary=".\xll/ObjectHandler-vc80-mt-0_1_2.lib"
+				ProgramDatabaseFile=".\xll/ObjectHandler-vc80-mt-0_1_3.pdb"
+				ImportLibrary=".\xll/ObjectHandler-vc80-mt-0_1_3.lib"
 				TargetMachine="1"
 			/>
 			<Tool

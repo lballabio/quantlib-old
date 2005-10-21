@@ -40,13 +40,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
-				OutputFile="xll\ObjectHandler-vc71-mt-gd-0_1_2.xll"
+				OutputFile="xll\ObjectHandler-vc71-mt-gd-0_1_3.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(LOG4CXX_DIR)\msvc\Lib\Debug,..\xlsdk\lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\xll/ObjectHandler-vc71-mt-gd-0_1_2.pdb"
-				ImportLibrary=".\xll/ObjectHandler-vc71-mt-gd-0_1_2.lib"
+				ProgramDatabaseFile=".\xll/ObjectHandler-vc71-mt-gd-0_1_3.pdb"
+				ImportLibrary=".\xll/ObjectHandler-vc71-mt-gd-0_1_3.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -108,12 +108,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
-				OutputFile="xll\ObjectHandler-vc71-mt-0_1_2.xll"
+				OutputFile="xll\ObjectHandler-vc71-mt-0_1_3.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(LOG4CXX_DIR)\msvc\Lib\Release"
-				ProgramDatabaseFile=".\xll/ObjectHandler-vc71-mt-0_1_2.pdb"
-				ImportLibrary=".\xll/ObjectHandler-vc71-mt-0_1_2.lib"
+				ProgramDatabaseFile=".\xll/ObjectHandler-vc71-mt-0_1_3.pdb"
+				ImportLibrary=".\xll/ObjectHandler-vc71-mt-0_1_3.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
