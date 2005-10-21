@@ -38,10 +38,9 @@ the logging framework for the Apache project.
 Before building ObjectHandler you'll need to install and build
 log4cxx.  ObjectHandler has been tested against log4cxx version 0.9.7.
 
-ObjectHandler is available for download from the QuantLib downloads
-page on sourceforge:
-
-<a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=141162">http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=141162</a>
+ObjectHandler is available for download from the 
+<a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=141162">
+QuantLib downloads page on sourceforge.</a>
 
 <ul>
   <li>\ref inst_windows

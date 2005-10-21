@@ -51,14 +51,13 @@ of a workbook.
 In Excel, a cell formula invokes the constructor of an object, causing that
 object to be added to the repository.  The object is assigned a handle which
 is returned to the calling cell, allowing the object to be accessed, e.g. the
-handle of a one object could be passed as an input to the constructor
-of a another.
+handle of one object could be passed as an input to the constructor of another.
 
-An object continues to persist in the repostory even after the formula which 
-instantiated the object is deleted - this happens, for example, when a 
-workbook is closed.  The object is not lost, its handle can still be retrieved
-and used to access the object.  However the object is likely redundant and a
-mechanism for cleaning it up is desirable.
+An object persists in the repository even after the formula which instantiated 
+the object is deleted - this happens, for example, when a workbook is closed.  
+The object is not lost, its handle can still be retrieved and used to access 
+the object.  However the object is likely redundant and a mechanism for cleaning 
+it up is desirable.
 
 A rudimentary form of garbage collection would be to perform the following
 steps after such events as workbook close:
