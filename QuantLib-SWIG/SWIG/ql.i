@@ -26,7 +26,7 @@
 %{
 #include <ql/quantlib.hpp>
 
-#if QL_HEX_VERSION < 0x000311f0
+#if QL_HEX_VERSION < 0x000312f0
     #error using an old version of QuantLib, please update
 #endif
 
@@ -49,7 +49,7 @@
 
 #ifdef SWIGPERL
 %{
-// Redefine the symbol Null which was undefined so that we can load in 
+// Redefine the symbol Null which was undefined so that we can load in
 // perl headers
 #define Null(s) ((s) NULL)
 %}
