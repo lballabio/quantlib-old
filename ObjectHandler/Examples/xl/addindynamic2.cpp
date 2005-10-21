@@ -26,10 +26,11 @@ using namespace ObjHandler;
 
 DLLEXPORT int xlAutoOpen() {
 
+    std::string xlErrorMessage;
     static XLOPER xDll;
-    Excel(xlGetName, &xDll, 0);
+    Excel(xlGetName, xlErrorMessage, &xDll, 0);
 
-    Excel(xlfRegister, 0, 7, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 7, &xDll,
         TempStrNoSize("\x0F""addin2UpdateFoo"), // function code name
         TempStrNoSize("\x04""LCCN"),            // parameter codes
         TempStrNoSize("\x0F""addin2UpdateFoo"), // function display name
@@ -37,7 +38,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
         TempStrNoSize("\x07""Example"));        // function category
 
-    Excel(xlfRegister, 0, 7, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 7, &xDll,
         TempStrNoSize("\x0E""addin2QueryFoo"),  // function code name
         TempStrNoSize("\x02""NC"),              // parameter codes
         TempStrNoSize("\x0E""addin2QueryFoo"),  // function display name
@@ -45,7 +46,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
         TempStrNoSize("\x07""Example"));        // function category
 
-    Excel(xlFree, 0, 1, &xDll);
+    Excel(xlFree, xlErrorMessage, 0, 1, &xDll);
     return 1;
 }
 

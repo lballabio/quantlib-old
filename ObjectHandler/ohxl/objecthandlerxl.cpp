@@ -79,6 +79,9 @@ namespace ObjHandler {
         XLOPER xName;
         xName.xltype = xltypeNil;
 
+
+        std::string xlErrorMessage;
+
         try {
 
             // validate stub
@@ -88,19 +91,28 @@ namespace ObjHandler {
 
             // obtain reference to calling cell
 
-            if (xlretSuccess != Excel(xlfCaller, &xCaller, 0))
-                throw std::exception("error on call to xlfCaller");
+            if (xlretSuccess != Excel(xlfCaller, xlErrorMessage, &xCaller, 0)) {
+                std::ostringstream msg;
+                msg << "error on call to xlfCaller: " << xlErrorMessage;
+                throw std::exception(msg.str().c_str());
+            }
 
             // convert reference to full address
 
-            if (xlretSuccess != Excel(xlfReftext, &xReftext, 1, &xCaller))
-                throw std::exception("error on call to xlfReftext");
+            if (xlretSuccess != Excel(xlfReftext, xlErrorMessage, &xReftext, 1, &xCaller)) {
+                std::ostringstream msg;
+                msg << "error on call to xlfReftext: " << xlErrorMessage;
+                throw std::exception(msg.str().c_str());
+            }
 
             // get name if any
 
-            if (xlretSuccess != Excel(xlfGetDef, &xOldName, 1, &xReftext))
-                throw std::exception("error on call to xlfGetDef");
-            Excel(xlFree, 0, 1, &xReftext);
+            if (xlretSuccess != Excel(xlfGetDef, xlErrorMessage, &xOldName, 1, &xReftext)) {
+                std::ostringstream msg;
+                msg << "error on call to xlfGetDef: " << xlErrorMessage;
+                throw std::exception(msg.str().c_str());
+            }
+            Excel(xlFree, xlErrorMessage, 0, 1, &xReftext);
 
             // if name - delete old name, old object
 
@@ -108,13 +120,16 @@ namespace ObjHandler {
 
                 // delete name
 
-                if (xlretSuccess != Excel(xlfSetName, 0, 1, &xOldName))
-                    throw std::exception("error on call to xlfSetName");
+                if (xlretSuccess != Excel(xlfSetName, xlErrorMessage, 0, 1, &xOldName)) {
+                    std::ostringstream msg;
+                    msg << "error on call to xlfSetName: " << xlErrorMessage;
+                    throw std::exception(msg.str().c_str());
+                }
 
                 // delete object
 
                 std::string oldKey = operToScalarString(&xOldName);
-                Excel(xlFree, 0, 1, &xOldName);
+                Excel(xlFree, xlErrorMessage, 0, 1, &xOldName);
                 for (ObjectList::iterator iter = objectList_.begin();
                         iter != objectList_.end(); iter++) {
                     std::string handle = iter->first;
@@ -135,11 +150,14 @@ namespace ObjHandler {
 
             XLOPER xRet;
             stringToXloper(xName, key, false);
-            if (xlretSuccess != Excel(xlfSetName, &xRet, 2, &xName, &xCaller))
-                throw std::exception("error on call to xlfSetName");
+            if (xlretSuccess != Excel(xlfSetName, xlErrorMessage, &xRet, 2, &xName, &xCaller)) {
+                std::ostringstream msg;
+                msg << "error on call to xlfSetName: " << xlErrorMessage;
+                throw std::exception(msg.str().c_str());
+            }
             xName.xltype = xltypeNil;
             delete [] xName.val.str;
-            Excel(xlFree, 0, 1, &xCaller);
+            Excel(xlFree, xlErrorMessage, 0, 1, &xCaller);
             if (xRet.xltype != xltypeBool || !xRet.val.boolean)
                 throw std::exception("error on call to xlfSetName");
 
@@ -155,7 +173,7 @@ namespace ObjHandler {
 
             // free any memory that may have been allocated
 
-            Excel(xlFree, 0, 3, &xCaller, &xReftext, &xOldName);
+            Excel(xlFree, xlErrorMessage, 0, 3, &xCaller, &xReftext, &xOldName);
             if (xName.xltype == xltypeStr)
                 delete [] xName.val.str;
 
@@ -174,11 +192,15 @@ namespace ObjHandler {
         xName.xltype = xltypeNil;
 
         try {
+            std::string xlErrorMessage;
 
             const std::string key = parseHandle(handle);
             stringToXloper(xName, key, false);
-            if (xlretSuccess != Excel(xlfSetName, 0, 1, &xName))
-                throw std::exception("error on call to xlfSetName");
+            if (xlretSuccess != Excel(xlfSetName, xlErrorMessage, 0, 1, &xName)) {
+                std::ostringstream msg;
+                msg << "error on call to xlfSetName: " << xlErrorMessage;
+                throw std::exception(msg.str().c_str());
+            }
             xName.xltype = xltypeNil;
             delete [] xName.val.str;
 
@@ -225,31 +247,38 @@ namespace ObjHandler {
         XLOPER xText;
         xName.xltype = xText.xltype = xltypeNil;
 
+        std::string xlErrorMessage;
         try {
         
             std::string key = handle.substr(handle.length() - KEY_WIDTH - 1);
             stringToXloper(xName, key, false);
-            if (xlretSuccess != Excel(xlfGetName, &xDef, 1, &xName))
-                throw std::exception("error on call to xlfGetName");
+            if (xlretSuccess != Excel(xlfGetName, xlErrorMessage, &xDef, 1, &xName)) {
+                std::ostringstream msg;
+                msg << "error on call to xlfGetName: " << xlErrorMessage;
+                throw std::exception(msg.str().c_str());
+            }
             xName.xltype = xltypeNil;
             delete [] xName.val.str;
 
             std::string address = operToScalarString(&xDef);
             stringToXloper(xText, address.substr(1), false);
-            if (xlretSuccess != Excel(xlfTextref, &xRef, 1, &xText))
-                throw std::exception("error on call to xlfGetName");
+            if (xlretSuccess != Excel(xlfTextref, xlErrorMessage, &xRef, 1, &xText)) {
+                std::ostringstream msg;
+                msg << "error on call to xlfTextref: " << xlErrorMessage;
+                throw std::exception(msg.str().c_str());
+            }
             xText.xltype = xltypeNil;
             delete [] xText.val.str;
 
             bool ret = (xRef.xltype & (xltypeRef | xltypeSRef)) != 0;
-            Excel(xlFree, 0, 2, &xDef, &xRef);
+            Excel(xlFree, xlErrorMessage, 0, 2, &xDef, &xRef);
             return ret;
 
         } catch (const std::exception &e) {
 
             // free any memory that may have been allocated
 
-            Excel(xlFree, 0, 2, &xDef, &xRef);
+            Excel(xlFree, xlErrorMessage, 0, 2, &xDef, &xRef);
             if (xName.xltype == xltypeStr)
                 delete [] xName.val.str;
             if (xText.xltype == xltypeStr)

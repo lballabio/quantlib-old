@@ -15,6 +15,7 @@
 #ifndef xlsdk_framewrk_hpp
 #define xlsdk_framewrk_hpp
 
+#include <string>
 //
 // Total amount of memory to allocate for all temporary XLOPERs
 //
@@ -29,7 +30,7 @@
 void far __cdecl debugPrintf(LPSTR lpFormat, ...);
 LPSTR GetTempMemory(int cBytes);
 void FreeAllTempMemory(void);
-int __cdecl Excel(int xlfn, LPXLOPER pxResult, int count, ...);
+int __cdecl Excel(int xlfn, std::string &errorMessage, LPXLOPER pxResult, int count, ...);
 LPXLOPER TempNum(double d);
 //LPXLOPER TempStr(LPSTR lpstr);
 LPXLOPER TempStrNoSize(LPSTR lpstr);

@@ -2,6 +2,7 @@
 #include <xlsdk/xlcall.h>
 #include <xlsdk/framewrk.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
+#include <string>
 
 DLLEXPORT void xlAutoFree(XLOPER *px) {
     if (px->xltype & xltypeStr && px->val.str)
@@ -18,6 +19,7 @@ DLLEXPORT void xlAutoFree(XLOPER *px) {
 
 DLLEXPORT int xlAutoOpen() {
 
+    std::string xlErrorMessage;
     XLOPER xDll;
-    Excel(xlGetName, &xDll, 0);
+    Excel(xlGetName, xlErrorMessage, &xDll, 0);
 

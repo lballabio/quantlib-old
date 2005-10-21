@@ -25,11 +25,12 @@ using namespace std;
 using namespace ObjHandler;
 
 DLLEXPORT int xlAutoOpen() {
+    std::string xlErrorMessage;
 
     static XLOPER xDll;
-    Excel(xlGetName, &xDll, 0);
+    Excel(xlGetName, xlErrorMessage, &xDll, 0);
 
-    Excel(xlfRegister, 0, 7, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 7, &xDll,
         TempStrNoSize("\x07""makeFoo"),         // function code name
         TempStrNoSize("\x05""CCCN#"),           // parameter codes
         TempStrNoSize("\x07""makeFoo"),         // function display name
@@ -37,7 +38,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
         TempStrNoSize("\x07""Example"));        // function category
 
-    Excel(xlfRegister, 0, 7, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 7, &xDll,
         TempStrNoSize("\x09""updateFoo"),       // function code name
         TempStrNoSize("\x04""LCCN"),            // parameter codes
         TempStrNoSize("\x09""updateFoo"),       // function display name
@@ -47,7 +48,7 @@ DLLEXPORT int xlAutoOpen() {
 
     // ObjectHandler
 
-    Excel(xlfRegister, 0, 10, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 10, &xDll,
         TempStrNoSize("\x09""ohVersion"),// function code name
         TempStrNoSize("\x01""C"),       // parameter codes
         TempStrNoSize("\x09""ohVersion"),// function display name
@@ -58,7 +59,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x00"""),        // path to help file
         TempStrNoSize("\x2B""returns the version number of ObjectHandler"));// function description
 
-    Excel(xlfRegister, 0, 10, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 10, &xDll,
         TempStrNoSize("\x0D""ohObjectCount"),// function code name
         TempStrNoSize("\x01""N"),       // parameter codes
         TempStrNoSize("\x0D""ohObjectCount"),// function display name
@@ -69,7 +70,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x00"""),        // path to help file
         TempStrNoSize("\x17""#/objects in repository"));// function description
 
-    Excel(xlfRegister, 0, 10, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 10, &xDll,
         TempStrNoSize("\x0C""ohHandleList"),// function code name
         TempStrNoSize("\x01""R"),       // parameter codes
         TempStrNoSize("\x0C""ohHandleList"),// function display name
@@ -80,7 +81,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x00"""),        // path to help file
         TempStrNoSize("\x1D""list of handles in repository"));// function description
 
-    Excel(xlfRegister, 0, 11, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 11, &xDll,
         TempStrNoSize("\x0C""ohFieldNames"),// function code name
         TempStrNoSize("\x02""RC"),      // parameter codes
         TempStrNoSize("\x0C""ohFieldNames"),// function display name
@@ -92,7 +93,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x2A""retrieve the field names of a given object"),// function description
         TempStrNoSize("\x20""handle of object to be queried  "));// description param 0
 
-    Excel(xlfRegister, 0, 13, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 13, &xDll,
         TempStrNoSize("\x0C""ohFieldValue"),// function code name
         TempStrNoSize("\x04""RCCP"),    // parameter codes
         TempStrNoSize("\x0C""ohFieldValue"),// function display name
@@ -106,7 +107,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x0D""name of field"),// description param 1
         TempStrNoSize("\x1D""dependency tracking trigger  "));// description param 2
 
-    Excel(xlfRegister, 0, 11, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 11, &xDll,
         TempStrNoSize("\x0E""ohDeleteObject"),// function code name
         TempStrNoSize("\x03""LC#"),     // parameter codes
         TempStrNoSize("\x0E""ohDeleteObject"),// function display name
@@ -118,7 +119,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x1D""delete object from repository"),// function description
         TempStrNoSize("\x20""handle of object to be deleted  "));// description param 0
 
-    Excel(xlfRegister, 0, 10, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 10, &xDll,
         TempStrNoSize("\x12""ohDeleteAllObjects"),// function code name
         TempStrNoSize("\x02""L#"),      // parameter codes
         TempStrNoSize("\x12""ohDeleteAllObjects"),// function display name
@@ -129,7 +130,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x00"""),        // path to help file
         TempStrNoSize("\x22""delete all objects from repository"));// function description
 
-    Excel(xlfRegister, 0, 20, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 20, &xDll,
         TempStrNoSize("\x0B""ohDependsOn"),// function code name
         TempStrNoSize("\x0B""LPPPPPPPPPP"),// parameter codes
         TempStrNoSize("\x0B""ohDependsOn"),// function display name
@@ -150,7 +151,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x19""dummy parameter (ignored)"),// description param 8
         TempStrNoSize("\x1B""dummy parameter (ignored)  "));// description param 9
 
-    Excel(xlfRegister, 0, 10, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 10, &xDll,
         TempStrNoSize("\x0E""ohGetGcEnabled"),// function code name
         TempStrNoSize("\x01""L"),       // parameter codes
         TempStrNoSize("\x0E""ohGetGcEnabled"),// function display name
@@ -161,7 +162,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x00"""),        // path to help file
         TempStrNoSize("\x32""get value of ObjectHandler garbage collection flag"));// function description
 
-    Excel(xlfRegister, 0, 11, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 11, &xDll,
         TempStrNoSize("\x0E""ohSetGcEnabled"),// function code name
         TempStrNoSize("\x03""LL#"),     // parameter codes
         TempStrNoSize("\x0E""ohSetGcEnabled"),// function display name
@@ -173,7 +174,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x32""set value of ObjectHandler garbage collection flag"),// function description
         TempStrNoSize("\x21""true (enable) / false (disable)  "));// description param 0
 
-    Excel(xlfRegister, 0, 10, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 10, &xDll,
         TempStrNoSize("\x08""ohCallGC"),// function code name
         TempStrNoSize("\x02""L#"),      // parameter codes
         TempStrNoSize("\x08""ohCallGC"),// function display name
@@ -184,7 +185,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x00"""),        // path to help file
         TempStrNoSize("\x27""delete orphaned objects from repository"));// function description
 
-    Excel(xlfRegister, 0, 12, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 12, &xDll,
         TempStrNoSize("\x0C""ohSetLogFile"),// function code name
         TempStrNoSize("\x03""CCP"),     // parameter codes
         TempStrNoSize("\x0C""ohSetLogFile"),// function display name
@@ -197,7 +198,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x19""path and name of log file"),// description param 0
         TempStrNoSize("\x1C""threshold for log messages  "));// description param 1
 
-    Excel(xlfRegister, 0, 11, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 11, &xDll,
         TempStrNoSize("\x0D""ohSetLogLevel"),// function code name
         TempStrNoSize("\x02""NN"),      // parameter codes
         TempStrNoSize("\x0D""ohSetLogLevel"),// function display name
@@ -209,7 +210,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x1E""set threshold for log messages"),// function description
         TempStrNoSize("\x1C""threshold for log messages  "));// description param 0
 
-    Excel(xlfRegister, 0, 12, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 12, &xDll,
         TempStrNoSize("\x0C""ohLogMessage"),// function code name
         TempStrNoSize("\x03""CCP"),     // parameter codes
         TempStrNoSize("\x0C""ohLogMessage"),// function display name
@@ -222,7 +223,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x14""message to be logged"),// description param 0
         TempStrNoSize("\x1C""threshold for log messages  "));// description param 1
 
-    Excel(xlfRegister, 0, 11, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 11, &xDll,
         TempStrNoSize("\x0B""ohLogObject"),// function code name
         TempStrNoSize("\x02""LC"),      // parameter codes
         TempStrNoSize("\x0B""ohLogObject"),// function display name
@@ -234,7 +235,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x24""write object description to log file"),// function description
         TempStrNoSize("\x1F""handle of object to be logged  "));// description param 0
 
-    Excel(xlfRegister, 0, 10, &xDll,
+    Excel(xlfRegister, xlErrorMessage, 0, 10, &xDll,
         TempStrNoSize("\x0F""ohLogAllObjects"),// function code name
         TempStrNoSize("\x01""L"),       // parameter codes
         TempStrNoSize("\x0F""ohLogAllObjects"),// function display name
@@ -245,7 +246,7 @@ DLLEXPORT int xlAutoOpen() {
         TempStrNoSize("\x00"""),        // path to help file
         TempStrNoSize("\x29""write all object descriptions to log file"));// function description
 
-    Excel(xlFree, 0, 1, &xDll);
+    Excel(xlFree, xlErrorMessage, 0, 1, &xDll);
     return 1;
 }
 

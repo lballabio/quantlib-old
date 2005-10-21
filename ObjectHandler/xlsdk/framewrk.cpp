@@ -91,16 +91,16 @@ void FreeAllTempMemory(void)
     vOffsetMemBlock = 0;
 }
 
-int Excel(int xlfn, LPXLOPER pxResult, int count, ...) {
+int Excel(int xlfn, std::string &errorMessage, LPXLOPER pxResult, int count, ...) {
     int xlret = Excel4v(xlfn, pxResult, count, (LPXLOPER FAR *)(&count+1));
     FreeAllTempMemory();
 
     if (xlret != xlretSuccess) {
         std::ostringstream msg;
         msg << "Error in call to Excel: (";
-        if (xlfn & xlCommand)        msg << "xlCommand | ";
-        if (xlfn & xlSpecial)        msg << "xlSpecial | ";
-        if (xlfn & xlIntl)            msg << "xlIntl | ";
+        if (xlfn & xlCommand)       msg << "xlCommand | ";
+        if (xlfn & xlSpecial)       msg << "xlSpecial | ";
+        if (xlfn & xlIntl)          msg << "xlIntl | ";
         if (xlfn & xlPrompt)        msg << "xlPrompt | ";
         msg << (xlfn & 0x0FFF) << ") callback failed: ";
         if (xlret & xlretAbort)     msg << " Macro Halted ";
@@ -110,7 +110,7 @@ int Excel(int xlfn, LPXLOPER pxResult, int count, ...) {
         if (xlret & xlretStackOvfl) msg << " Stack Overflow ";
         if (xlret & xlretFailed)    msg << " Command failed ";
         if (xlret & xlretUncalced)  msg << " Uncalced cell ";
-        throw std::exception(msg.str().c_str());
+        errorMessage = msg.str();
     }
 
     return xlret;
