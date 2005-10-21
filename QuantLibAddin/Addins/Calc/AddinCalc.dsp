@@ -79,7 +79,7 @@ SOURCE=.\interpolation.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\objecthandler.cpp
+SOURCE=.\ohfunctions.cpp
 # End Source File
 # Begin Source File
 
@@ -159,7 +159,7 @@ SOURCE=.\interpolation.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\objecthandler.hpp
+SOURCE=.\ohfunctions.hpp
 # End Source File
 # Begin Source File
 

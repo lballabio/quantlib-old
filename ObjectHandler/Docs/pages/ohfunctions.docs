@@ -22,7 +22,7 @@
 // this file generated automatically by srcgen.py
 // editing this file manually is not recommended
 
-/*! \page ohfuncs Functions
+/*! \page ohfunctions ObjectHandler functions
 \section overview Overview
 ObjectHandler functions
 \section functions Function List

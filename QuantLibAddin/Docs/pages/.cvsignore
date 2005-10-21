@@ -1,19 +1,19 @@
 all.docs
 capfloor.docs
+couponvectors.docs
 enums.docs
 functionsoverview.docs
 instruments.docs
+interpolation.docs
+ohfunctions.docs
 options.docs
 processes.docs
+schedule.docs
 shortratemodels.docs
 simpleswap.docs
+swap.docs
 termstructures.docs
 utilities.docs
 volatilities.docs
 xibor.docs
 
-couponvectors.docs
-schedule.docs
-swap.docs
-interpolation.docs
-objecthandler.docs

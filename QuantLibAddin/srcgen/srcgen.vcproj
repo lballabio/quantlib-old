@@ -188,7 +188,7 @@
 				RelativePath="interpolation.xml">
 			</File>
 			<File
-				RelativePath="objecthandler.xml">
+				RelativePath="ohfunctions.xml">
 			</File>
 			<File
 				RelativePath="options.xml">

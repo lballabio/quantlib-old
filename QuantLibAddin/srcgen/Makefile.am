@@ -12,7 +12,7 @@ SRCGEN_INPUT := calc.xml \
                 guile.xml \
                 instruments.xml \
                 interpolation.xml \
-                objecthandler.xml \
+                ohfunctions.xml \
                 options.xml \
                 processes.xml \
                 schedule.xml \

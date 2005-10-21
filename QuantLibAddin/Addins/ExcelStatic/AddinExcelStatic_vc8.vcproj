@@ -311,7 +311,7 @@
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath="objecthandler.cpp"
+			RelativePath="ohfunctions.cpp"
 			>
 			<FileConfiguration
 				Name="Debug MTDLL|Win32"

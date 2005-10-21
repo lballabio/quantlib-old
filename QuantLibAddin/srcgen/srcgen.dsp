@@ -259,7 +259,7 @@ SOURCE=.\interpolation.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\objecthandler.xml
+SOURCE=.\ohfunctions.xml
 # End Source File
 # Begin Source File
 

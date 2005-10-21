@@ -67,7 +67,7 @@ noinst_HEADERS = \
     couponvectors.hpp \
     instruments.hpp \
     interpolation.hpp \
-    objecthandler.hpp \
+    ohfunctions.hpp \
     options.hpp \
     processes.hpp \
     qladdin.hpp \
@@ -89,7 +89,7 @@ libQuantLibAddinCalc_la_SOURCES = \
     funcdef.cpp \
     instruments.cpp \
     interpolation.cpp \
-    objecthandler.cpp \
+    ohfunctions.cpp \
     options.cpp \
     processes.cpp \
     qladdin.cpp \

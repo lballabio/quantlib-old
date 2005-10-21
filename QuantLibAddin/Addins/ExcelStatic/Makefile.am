@@ -7,7 +7,7 @@ EXTRA_DIST = \
     couponvectors.cpp \
     instruments.cpp \
     interpolation.cpp \
-    objecthandler.cpp \
+    ohfunctions.cpp \
     options.cpp \
     processes.cpp \
     qladdin.cpp \

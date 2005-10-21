@@ -105,7 +105,7 @@ SOURCE=.\interpolation.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\objecthandler.cpp
+SOURCE=.\ohfunctions.cpp
 # End Source File
 # Begin Source File
 

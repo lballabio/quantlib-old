@@ -18,7 +18,7 @@ noinst_HEADERS = \
     extra.h \
     instruments.h \
     interpolation.h \
-    objecthandler.h \
+    ohfunctions.h \
     options.h \
     processes.h \
     schedule.h \
@@ -41,7 +41,7 @@ libQuantLibAddinGuile_la_SOURCES = \
     guileutils.cpp \
     instruments.cpp \
     interpolation.cpp \
-    objecthandler.cpp \
+    ohfunctions.cpp \
     options.cpp \
     processes.cpp \
     qladdin.c \

@@ -71,7 +71,7 @@
 				>
 			</File>
 			<File
-				RelativePath="objecthandler.cpp"
+				RelativePath="ohfunctions.cpp"
 				>
 			</File>
 			<File
@@ -152,7 +152,7 @@
 				>
 			</File>
 			<File
-				RelativePath="objecthandler.hpp"
+				RelativePath="ohfunctions.hpp"
 				>
 			</File>
 			<File

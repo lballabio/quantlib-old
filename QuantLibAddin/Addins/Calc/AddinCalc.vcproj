@@ -50,7 +50,7 @@
 				RelativePath="interpolation.cpp">
 			</File>
 			<File
-				RelativePath="objecthandler.cpp">
+				RelativePath="ohfunctions.cpp">
 			</File>
 			<File
 				RelativePath="options.cpp">
@@ -111,7 +111,7 @@
 				RelativePath="interpolation.hpp">
 			</File>
 			<File
-				RelativePath="objecthandler.hpp">
+				RelativePath="ohfunctions.hpp">
 			</File>
 			<File
 				RelativePath="options.hpp">
