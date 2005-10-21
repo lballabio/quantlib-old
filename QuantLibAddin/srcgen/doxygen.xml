@@ -1,8 +1,5 @@
 <addin loadAllAsDict = 'true'>
 
-<displayName>Guile</displayName>
-<platformId>G</platformId>
-
 <functionDocs indent='2'>
     <reformatType>
         <vector>

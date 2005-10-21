@@ -162,3 +162,15 @@ def attributeToBool(node, attributeName):
     else:
         return False
 
+def getVal(dict, key, default = None):
+    if dict.has_key(key):
+        return dict[key]
+    else:
+        return default
+
+def getAttribute(node, attribute, default = None):
+    if testAttribute(node, attribute):
+        return node[common.ATTS][attribute]
+    else:
+        return default
+

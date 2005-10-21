@@ -27,18 +27,9 @@ class Parameter(object):
     def __init__(self,
             paramDef):
         'initialize the object'
-        if paramDef.has_key(common.NAME):
-            self.name = paramDef[common.NAME]
-        else:
-            self.name = ''
-        if utils.testAttribute(paramDef, common.CLASS):
-            self.className = paramDef[common.ATTS][common.CLASS]
-        else:
-            self.className = None
-        if utils.testAttribute(paramDef, common.TYPE_CNV):
-            self.typeConversion = paramDef[common.ATTS][common.TYPE_CNV]
-        else:
-            self.typeConversion = None
+        self.name = utils.getVal(paramDef, common.NAME, '')
+        self.className = utils.getAttribute(paramDef, common.CLASS)
+        self.typeConversion = utils.getAttribute(paramDef, common.TYPE_CNV)
         self.type = paramDef[common.TYPE]
         self.tensorRank = paramDef[common.TENSORRANK]
         self.description = paramDef[common.DESC]

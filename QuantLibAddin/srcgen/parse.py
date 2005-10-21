@@ -38,20 +38,18 @@ loadAllAsDict = False   # override default behavior of isListNode
 # so the default can be overridden as follows:
 #   loaded as list:
 #       <node></node>
-#   loaded as string:
-#       <node>''</node>
 #   loaded as dict:
-#       <node loadasdict='true'></node>
+#       <node loadAsDict='true'></node>
 #   loaded as list:
 #       <node>
 #           <item>val</item>
 #       </node>
 #   loaded as dict:
-#       <node loadasdict='true'>
+#       <node loadAsDict='true'>
 #           <item>val</item>
 #       </node>
 # or the attribute
-#   loadallasdict='true'
+#   loadAllAsDict='true'
 # may appear anywhere in the doc to always override default behavior
 
 def isEmptyNode(n):

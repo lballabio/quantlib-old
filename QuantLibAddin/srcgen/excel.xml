@@ -1,8 +1,5 @@
 <addin loadAllAsDict = 'true'>
 
-<displayName>ExcelDynamic</displayName>
-<platformId>E</platformId>
-
 <functionDeclaration indent='2'>
     <setType>
         <scalar>

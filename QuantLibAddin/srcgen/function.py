@@ -40,10 +40,7 @@ class Function(object):
         and len(self.parameters):
             self.className = self.parameters[0].className
         self.returnValue = parameter.Parameter(functionDef[common.RETURNVALUE])
-        if functionDef.has_key(common.PLATFORMS):
-            self.supportedPlatforms = functionDef[common.PLATFORMS]
-        else:
-            self.supportedPlatforms = '*'
+        self.supportedPlatforms = utils.getVal(functionDef, common.PLATFORMS, '*')
         self.getObject = utils.attributeToBool(functionDef, common.GET_OBJECT)
         self.xlMacro = utils.attributeToBool(functionDef, common.XL_MACRO)
 

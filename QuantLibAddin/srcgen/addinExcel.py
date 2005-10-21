@@ -55,8 +55,9 @@ class AddinExcel(addin.Addin):
 
     def __init__(self,
             name, 
+            platformId,
             categories):
-        super(AddinExcel, self).__init__(name, categories)
+        super(AddinExcel, self).__init__(name, platformId, 'excel', categories)
         self.bufCtor = utils.loadBuffer(BUF_CTOR)
         self.bufMember = utils.loadBuffer(BUF_MEMBER)
         self.bufInclude = utils.loadBuffer(BUF_INCLUDES)
@@ -74,10 +75,10 @@ class AddinExcel(addin.Addin):
     def generate(self):
         'generate source code for Excel addin'
         print self.name
-        utils.logMessage('  begin generating %s...' % self.displayName)
+        utils.logMessage('  begin generating %s...' % self.name)
         self.generateFuncRegisters()
         self.generateFuncDefs()
-        utils.logMessage('  done generating %s.' % self.displayName)
+        utils.logMessage('  done generating %s.' % self.name)
 
     def generateFuncDefs(self):
         'generate source code for function bodies'
@@ -228,14 +229,11 @@ class AddinExcelDynamic(AddinExcel):
 
     def __init__(self,
             categories):
-        super(AddinExcelDynamic, self).__init__('excel', categories)
+        super(AddinExcelDynamic, self).__init__('ExcelDynamic', 'E',  categories)
 
 class AddinExcelStatic(AddinExcel):
 
     def __init__(self,
             categories):
-        super(AddinExcelStatic, self).__init__('excel', categories)
-        self.platformId = 'S'
-        self.displayName = 'ExcelStatic'
-        self.rootDir = common.ADDIN_ROOT + self.displayName + '/'
+        super(AddinExcelStatic, self).__init__('ExcelStatic', 'S', categories)
 

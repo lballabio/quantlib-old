@@ -45,11 +45,7 @@ class Rule(object):
         self.definition = ruleDef
         self.appendTensorRank = utils.attributeToBool(ruleDef, common.APPEND_TENSORRANK)
         self.typeConversion = utils.attributeToBool(ruleDef, common.TYPE_CNV)
-
-        if utils.testAttribute(ruleDef, common.INDENT):
-            self.indent = int(ruleDef[common.ATTS][common.INDENT]) * 4 * ' '
-        else:
-            self.indent = ''
+        self.indent = int(utils.getAttribute(ruleDef, common.INDENT, '0')) * 4 * ' '
 
     def apply(self, param):
         self.param = param

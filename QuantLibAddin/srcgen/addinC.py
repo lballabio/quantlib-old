@@ -35,7 +35,7 @@ class AddinC(addin.Addin):
 
     def __init__(self,
             categories):
-        super(AddinC, self).__init__('c', categories)
+        super(AddinC, self).__init__('C', 'c', 'c', categories)
         self.bufCtor = utils.loadBuffer(BUF_CTOR)
         self.bufMember = utils.loadBuffer(BUF_MEMBER)
         self.bufInclude = utils.loadBuffer(BUF_INCLUDES)
