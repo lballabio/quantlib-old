@@ -1,5 +1,4 @@
 
-#    makefile.mak
 EXTRA_DIST = \
     ObjectHandler-docs.hhp \
     objecthandler.doxy \
