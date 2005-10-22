@@ -21,7 +21,7 @@
 #include <Addins/Guile/guileutils.hpp>
 extern "C" {
 #include <Addins/Guile/extra.h>
-#include <Addins/Guile/objecthandler.h>
+#include <Addins/Guile/ohfunctions.h>
 }
 
 
