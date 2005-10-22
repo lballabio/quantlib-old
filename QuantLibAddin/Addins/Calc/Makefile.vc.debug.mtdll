@@ -51,7 +51,7 @@ OBJECTS= \
 	"$(INT_DIR)\funcdef.obj" \
 	"$(INT_DIR)\instruments.obj" \
 	"$(INT_DIR)\interpolation.obj" \
-	"$(INT_DIR)\objecthandler.obj" \
+	"$(INT_DIR)\ohfunctions.obj" \
 	"$(INT_DIR)\options.obj" \
 	"$(INT_DIR)\processes.obj" \
 	"$(INT_DIR)\qladdin.obj" \
