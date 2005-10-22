@@ -30,7 +30,7 @@ import rule
 
 BUF_CTOR = 'stub.calc.constructor'
 BUF_MEMBER = 'stub.calc.member'
-AUTOHDR = 'autogen.hpp'
+QLA_HEADER = 'qla_all.hpp'
 IDL = 'QuantLibAddin.idl'
 IDL_FOOT = 'stub.calc.idlfoot'
 IDL_FUNC = 'stub.calc.idlfunc'
@@ -102,7 +102,7 @@ class AddinCalc(addin.Addin):
 
     def generateAutoHeader(self):
         'generate header file that lists all other headers'
-        fileName = self.rootDir + AUTOHDR + common.TEMPFILE
+        fileName = self.rootDir + QLA_HEADER + common.TEMPFILE
         fileHeader = file(fileName, 'w')
         utils.printHeader(fileHeader)
         fileHeader.write('#ifndef qla_calc_auto_hpp\n')

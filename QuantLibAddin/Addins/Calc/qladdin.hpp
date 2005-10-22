@@ -82,7 +82,7 @@ public:
     QLAddin() throw ();
     virtual ~QLAddin() {};
 
-#include <Addins/Calc/autogen.hpp>
+#include <Addins/Calc/qla_all.hpp>
 
 };
 

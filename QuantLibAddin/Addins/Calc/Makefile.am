@@ -61,7 +61,7 @@ EXTRA_DIST = \
 
 if BUILD_CALC
 noinst_HEADERS = \
-    autogen.hpp \
+    qla_all.hpp \
     calcutils.hpp \
     capfloor.hpp \
     couponvectors.hpp \

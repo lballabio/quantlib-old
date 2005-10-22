@@ -135,7 +135,7 @@ SOURCE=.\xibor.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=.\autogen.hpp
+SOURCE=.\qla_all.hpp
 # End Source File
 # Begin Source File
 

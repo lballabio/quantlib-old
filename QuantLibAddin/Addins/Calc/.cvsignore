@@ -1,5 +1,5 @@
 AddinCalc.plg
-autogen.hpp
+qla_all.hpp
 build
 capfloor.*pp
 com
@@ -19,8 +19,8 @@ Makefile.in
 ohfunctions.hpp
 options.*
 processes.*pp
-QuantLibAddin.idl
 QuantLibAddin*.exp
+QuantLibAddin.idl
 QuantLibAddin*.lib
 *.rdb
 schedule.*pp

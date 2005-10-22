@@ -93,7 +93,7 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
-				RelativePath="autogen.hpp">
+				RelativePath="qla_all.hpp">
 			</File>
 			<File
 				RelativePath="calcutils.hpp">
