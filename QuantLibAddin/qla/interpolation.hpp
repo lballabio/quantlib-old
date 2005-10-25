@@ -46,6 +46,28 @@ namespace QuantLibAddin {
       protected:
         bool allowExtrapolation_;
     };
+
+    class BackwardFlatInterpolation : public Interpolation {
+      public:
+        BackwardFlatInterpolation(const bool& allowExtrapolation)
+        : Interpolation(allowExtrapolation) { }
+        
+        virtual boost::shared_ptr<QuantLib::Interpolation>
+        interpolationFactory(std::vector<double>::const_iterator xBegin,
+                             std::vector<double>::const_iterator xEnd,
+                             std::vector<double>::const_iterator yBegin) const;
+    };
+
+    class ForwardFlatInterpolation : public Interpolation {
+      public:
+        ForwardFlatInterpolation(const bool& allowExtrapolation)
+        : Interpolation(allowExtrapolation) { }
+        
+        virtual boost::shared_ptr<QuantLib::Interpolation>
+        interpolationFactory(std::vector<double>::const_iterator xBegin,
+                             std::vector<double>::const_iterator xEnd,
+                             std::vector<double>::const_iterator yBegin) const;
+    };
     
     class LinearInterpolation : public Interpolation {
       public:

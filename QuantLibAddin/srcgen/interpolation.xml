@@ -5,6 +5,46 @@
 <functions>
 
 <function>
+<name>qlBackwardFlatInterpolation</name>
+<description>construct and return a handle to a backward flat interpolator</description>
+<constructor>true</constructor>
+<libraryFunction>BackwardFlatInterpolation</libraryFunction>
+<parameters>
+    <parameter>
+        <name>allowExtrapolation</name>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>allow extrapolation flag</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>handle of newly created object</description>
+</returnValue>
+</function>
+
+<function>
+<name>qlForwardFlatInterpolation</name>
+<description>construct and return a handle to a forward flat interpolator</description>
+<constructor>true</constructor>
+<libraryFunction>ForwardFlatInterpolation</libraryFunction>
+<parameters>
+    <parameter>
+        <name>allowExtrapolation</name>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>allow extrapolation flag</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>handle of newly created object</description>
+</returnValue>
+</function>
+
+<function>
 <name>qlLinearInterpolation</name>
 <description>construct and return a handle to a linear interpolator</description>
 <constructor>true</constructor>

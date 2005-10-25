@@ -21,6 +21,8 @@
 #include <qla/interpolation.hpp>
 #include <qla/typefactory.hpp>
 
+#include <ql/Math/backwardflatinterpolation.hpp>
+#include <ql/Math/forwardflatinterpolation.hpp>
 #include <ql/Math/linearinterpolation.hpp>
 
 namespace QuantLibAddin {
@@ -70,6 +72,26 @@ namespace QuantLibAddin {
         return boost::shared_ptr<QuantLib::Interpolation>(
             new QuantLib::LinearInterpolation(xBegin, xEnd, yBegin));
     }
+    
+    boost::shared_ptr<QuantLib::Interpolation>
+    BackwardFlatInterpolation::interpolationFactory(
+            std::vector<double>::const_iterator xBegin,
+            std::vector<double>::const_iterator xEnd,
+            std::vector<double>::const_iterator yBegin) const {
+        
+        return boost::shared_ptr<QuantLib::Interpolation>(
+            new QuantLib::BackwardFlatInterpolation(xBegin, xEnd, yBegin));
+    };
+    
+    boost::shared_ptr<QuantLib::Interpolation>
+    ForwardFlatInterpolation::interpolationFactory(
+            std::vector<double>::const_iterator xBegin,
+            std::vector<double>::const_iterator xEnd,
+            std::vector<double>::const_iterator yBegin) const {
+        
+        return boost::shared_ptr<QuantLib::Interpolation>(
+            new QuantLib::ForwardFlatInterpolation(xBegin, xEnd, yBegin));
+    };
     
     CubicSplineInterpolation::CubicSplineInterpolation(
             const bool&        allowExtrapolation,
