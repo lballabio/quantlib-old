@@ -95,6 +95,7 @@ SectionIn 1 2
     File /r "Examples\xl\*.cpp"
     File /r "Examples\xl\*.dsp"
     File /r "Examples\xl\*.vcproj"
+    File /r "Examples\xl\*.xls"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\ObjectHandler" \
