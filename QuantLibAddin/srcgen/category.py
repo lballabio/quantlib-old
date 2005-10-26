@@ -44,3 +44,8 @@ class Category(object):
         self.functions[common.KEYS].sort()
         self.functionCount = len(self.functions)
 
+    def platformSupported(self, platform):
+        for function in self.functions[common.DICT].values():
+            if function.platformSupported(platform):
+                return True
+

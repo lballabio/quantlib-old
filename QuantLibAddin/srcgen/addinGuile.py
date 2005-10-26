@@ -94,6 +94,8 @@ class AddinGuile(addin.Addin):
         i = 0
         for categoryKey in self.categories[common.KEYS]:
             category = self.categories[common.DICT][categoryKey]
+            if not category.platformSupported(self.platformId):
+                continue
             i += 1
             headers += '#include <' + category.name + '.h>\n'
             registrations += self.generateRegistrations(category)
@@ -158,6 +160,8 @@ class AddinGuile(addin.Addin):
         'generate source for function implementations'
         for categoryKey in self.categories[common.KEYS]:
             category = self.categories[common.DICT][categoryKey]
+            if not category.platformSupported(self.platformId):
+                continue
             self.generateFuncHeaders(category)
             if category.headerOnly:
                 continue

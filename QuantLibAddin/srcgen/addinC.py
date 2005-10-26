@@ -52,6 +52,8 @@ class AddinC(addin.Addin):
         utils.logMessage('  begin generating C ...')
         for categoryKey in self.categories[common.KEYS]:
             category = self.categories[common.DICT][categoryKey]
+            if not category.platformSupported(self.platformId):
+                continue
             if category.headerOnly:
                 continue
             self.generateHeaders(category)

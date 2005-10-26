@@ -80,6 +80,8 @@ class AddinCalc(addin.Addin):
         fileMap.write(bufCalcMap)
         for categoryKey in self.categories[common.KEYS]:
             category = self.categories[common.DICT][categoryKey]
+            if not category.platformSupported(self.platformId):
+                continue
             fileMap.write('    // %s\n\n' % category.displayName)
             for functionKey in category.functions[common.KEYS]:
                 function = category.functions[common.DICT][functionKey]
@@ -108,6 +110,9 @@ class AddinCalc(addin.Addin):
         fileHeader.write('#ifndef qla_calc_auto_hpp\n')
         fileHeader.write('#define qla_calc_auto_hpp\n\n')
         for categoryKey in self.categories[common.KEYS]:
+            category = self.categories[common.DICT][categoryKey]
+            if not category.platformSupported(self.platformId):
+                continue
             fileHeader.write('#include <Addins/Calc/%s.hpp>\n' % categoryKey)
         fileHeader.write('\n#endif\n\n')
         fileHeader.close()
@@ -133,6 +138,8 @@ class AddinCalc(addin.Addin):
         'generate source for function prototypes'
         for categoryKey in self.categories[common.KEYS]:
             category = self.categories[common.DICT][categoryKey]
+            if not category.platformSupported(self.platformId):
+                continue
             fileName = self.rootDir + category.name + '.hpp' + common.TEMPFILE
             fileHeader = file(fileName, 'w')
             utils.printHeader(fileHeader)
@@ -184,6 +191,8 @@ class AddinCalc(addin.Addin):
         bufInclude = utils.loadBuffer(INCLUDES)
         for categoryKey in self.categories[common.KEYS]:
             category = self.categories[common.DICT][categoryKey]
+            if not category.platformSupported(self.platformId):
+                continue
             if category.headerOnly:
                 continue
             fileName = self.rootDir + category.name + '.cpp' + common.TEMPFILE
@@ -212,6 +221,8 @@ class AddinCalc(addin.Addin):
         bufIDLFunc = utils.loadBuffer(IDL_FUNC)
         for categoryKey in self.categories[common.KEYS]:
             category = self.categories[common.DICT][categoryKey]
+            if not category.platformSupported(self.platformId):
+                continue
             fileIDL.write('                // %s\n\n' % category.name)
             for functionKey in category.functions[common.KEYS]:
                 function = category.functions[common.DICT][functionKey]

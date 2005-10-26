@@ -115,6 +115,8 @@ class AddinDoxygen(addin.Addin):
         displayNames = []
         for categoryKey in self.categories[common.KEYS]:
             category = self.categories[common.DICT][categoryKey]
+            if not category.platformSupported(self.platformId):
+                continue
             dispNmToCatNm[category.displayName] = category.name
             displayNames.append(category.displayName)
         displayNames.sort()
@@ -142,6 +144,8 @@ class AddinDoxygen(addin.Addin):
         allFuncs = []
         for categoryKey in self.categories[common.KEYS]:
             category = self.categories[common.DICT][categoryKey]
+            if not category.platformSupported(self.platformId):
+                continue
             fileName = self.rootDir + category.name + '.docs' + common.TEMPFILE
             fileDoc = file(fileName, 'w')
             utils.printHeader(fileDoc)

@@ -84,6 +84,8 @@ class AddinExcel(addin.Addin):
         'generate source code for function bodies'
         for categoryKey in self.categories[common.KEYS]:
             category = self.categories[common.DICT][categoryKey]
+            if not category.platformSupported(self.platformId):
+                continue
             if category.headerOnly:
                 continue
             fileName = self.rootDir + category.name + '.cpp' + common.TEMPFILE
@@ -215,6 +217,8 @@ class AddinExcel(addin.Addin):
         fileHeader.write(bufHead)
         for categoryKey in self.categories[common.KEYS]:
             category = self.categories[common.DICT][categoryKey]
+            if not category.platformSupported(self.platformId):
+                continue
             fileHeader.write('    // %s\n\n' % category.displayName)
             for functionKey in category.functions[common.KEYS]:
                 function = category.functions[common.DICT][functionKey]
