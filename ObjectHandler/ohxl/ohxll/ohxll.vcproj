@@ -334,12 +334,8 @@
 			<File
 				RelativePath="..\objecthandlerxl.hpp">
 			</File>
-		</Filter>
-		<Filter
-			Name="xll"
-			Filter="">
 			<File
-				RelativePath="addin.cpp">
+				RelativePath="..\functions.cpp">
 				<FileConfiguration
 					Name="Debug MTDLL|Win32">
 					<Tool
@@ -359,7 +355,37 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="functions.cpp">
+				RelativePath="..\export.hpp">
+			</File>
+			<File
+				RelativePath="..\register.cpp">
+				<FileConfiguration
+					Name="Debug MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\register.hpp">
+			</File>
+		</Filter>
+		<Filter
+			Name="xll"
+			Filter="">
+			<File
+				RelativePath="addin.cpp">
 				<FileConfiguration
 					Name="Debug MTDLL|Win32">
 					<Tool

@@ -16,6 +16,5 @@ EXTRA_DIST = \
     ExampleXllStatic_vc8.vcproj \
     foo.hpp \
     objectfoo.cpp \
-    objectfoo.hpp \
-    objecthandler.cpp
+    objectfoo.hpp
 

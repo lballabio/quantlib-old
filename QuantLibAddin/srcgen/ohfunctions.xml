@@ -9,7 +9,7 @@
 <description>returns the version number of ObjectHandler</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
-<platforms>SGO</platforms>
+<platforms>GO</platforms>
 <parameters></parameters>
 <returnValue>
     <type>string</type>
@@ -23,7 +23,7 @@
 <description>#/objects in repository</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
-<platforms>SGO</platforms>
+<platforms>GO</platforms>
 <parameters></parameters>
 <returnValue>
     <type>long</type>
@@ -37,7 +37,7 @@
 <description>list of handles in repository</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
-<platforms>SGO</platforms>
+<platforms>GO</platforms>
 <parameters></parameters>
 <returnValue>
     <type>string</type>
@@ -51,7 +51,7 @@
 <description>retrieve the field names of a given object</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
-<platforms>SGO</platforms>
+<platforms>GO</platforms>
 <parameters>
     <parameter>
         <name>handleObject</name>
@@ -72,7 +72,7 @@
 <description>retrieve the value of a named field</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
-<platforms>SGO</platforms>
+<platforms>GO</platforms>
 <parameters>
     <parameter>
         <name>handleObject</name>
@@ -105,7 +105,7 @@
 <description>delete object from repository</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
-<platforms>SGO</platforms>
+<platforms>GO</platforms>
 <parameters>
     <parameter>
         <name>handleObject</name>
@@ -126,7 +126,7 @@
 <description>delete all objects from repository</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
-<platforms>SGO</platforms>
+<platforms>GO</platforms>
 <parameters></parameters>
 <returnValue>
     <type>bool</type>
@@ -140,7 +140,7 @@
 <description>force a dependency between two functions</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
-<platforms>SO</platforms>
+<platforms>O</platforms>
 <parameters>
     <parameter>
         <name>dummy0</name>
@@ -211,60 +211,11 @@
 </function>
 
 <function>
-<name>ohGetGcEnabled</name>
-<description>get value of ObjectHandler garbage collection flag</description>
-<constructor>false</constructor>
-<libraryFunction></libraryFunction>
-<platforms>S</platforms>
-<parameters></parameters>
-<returnValue>
-    <type>bool</type>
-    <tensorRank>scalar</tensorRank>
-    <description>success/failure</description>
-</returnValue>
-</function>
-
-<function xlMacro='true'>
-<name>ohSetGcEnabled</name>
-<description>set value of ObjectHandler garbage collection flag</description>
-<constructor>false</constructor>
-<libraryFunction></libraryFunction>
-<platforms>S</platforms>
-<parameters>
-    <parameter>
-        <name>enableGarbageCollection</name>
-        <type>bool</type>
-        <tensorRank>scalar</tensorRank>
-        <description>true (enable) / false (disable)</description>
-    </parameter>
-</parameters>
-<returnValue>
-    <type>bool</type>
-    <tensorRank>scalar</tensorRank>
-    <description>success/failure</description>
-</returnValue>
-</function>
-
-<function xlMacro='true'>
-<name>ohCallGC</name>
-<description>delete orphaned objects from repository</description>
-<constructor>false</constructor>
-<libraryFunction></libraryFunction>
-<platforms>S</platforms>
-<parameters></parameters>
-<returnValue>
-    <type>bool</type>
-    <tensorRank>scalar</tensorRank>
-    <description>success/failure</description>
-</returnValue>
-</function>
-
-<function>
 <name>ohSetLogFile</name>
 <description>begin logging to named file</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
-<platforms>SGO</platforms>
+<platforms>GO</platforms>
 <parameters>
     <parameter>
         <name>logFileName</name>
@@ -291,7 +242,7 @@
 <description>set threshold for log messages</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
-<platforms>SGO</platforms>
+<platforms>GO</platforms>
 <parameters>
     <parameter>
         <name>logLevel</name>
@@ -312,7 +263,7 @@
 <description>log a message</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
-<platforms>SGO</platforms>
+<platforms>GO</platforms>
 <parameters>
     <parameter>
         <name>logMessage</name>
@@ -339,7 +290,7 @@
 <description>write object description to log file</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
-<platforms>SGO</platforms>
+<platforms>GO</platforms>
 <parameters>
     <parameter>
         <name>handleObject</name>
@@ -360,7 +311,7 @@
 <description>write all object descriptions to log file</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
-<platforms>SGO</platforms>
+<platforms>GO</platforms>
 <parameters></parameters>
 <returnValue>
     <type>bool</type>

@@ -161,11 +161,27 @@ SOURCE=..\conversions.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\export.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\functions.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\objecthandlerxl.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\objecthandlerxl.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\register.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\register.hpp
 # End Source File
 # End Group
 # End Target

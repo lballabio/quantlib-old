@@ -2,6 +2,10 @@
 #include <xlsdk/xlcall.h>
 #include <xlsdk/framewrk.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
+#ifdef XLL_STATIC
+    #include <ohxl/register.hpp>
+    #include <ohxl/export.hpp>
+#endif
 #include <string>
 
 DLLEXPORT void xlAutoFree(XLOPER *px) {
@@ -22,4 +26,8 @@ DLLEXPORT int xlAutoOpen() {
     std::string xlErrorMessage;
     XLOPER xDll;
     Excel(xlGetName, xlErrorMessage, &xDll, 0);
+
+#ifdef XLL_STATIC
+    ohRegisterFunctions(xDll);
+#endif
 

@@ -194,26 +194,6 @@
 		<File
 			RelativePath="objectfoo.hpp">
 		</File>
-		<File
-			RelativePath="objecthandler.cpp">
-			<FileConfiguration
-				Name="Release MTDLL|Win32">
-				<Tool
-					Name="VCCLCompilerTool"
-					Optimization="2"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Debug MTDLL|Win32">
-				<Tool
-					Name="VCCLCompilerTool"
-					Optimization="0"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					BasicRuntimeChecks="3"/>
-			</FileConfiguration>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

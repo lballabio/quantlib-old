@@ -442,12 +442,8 @@
 				RelativePath="..\objecthandlerxl.hpp"
 				>
 			</File>
-		</Filter>
-		<Filter
-			Name="xll"
-			>
 			<File
-				RelativePath="addin.cpp"
+				RelativePath="..\functions.cpp"
 				>
 				<FileConfiguration
 					Name="Debug MTDLL|Win32"
@@ -471,7 +467,43 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="functions.cpp"
+				RelativePath="..\export.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\register.cpp"
+				>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\register.hpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="xll"
+			>
+			<File
+				RelativePath="addin.cpp"
 				>
 				<FileConfiguration
 					Name="Debug MTDLL|Win32"

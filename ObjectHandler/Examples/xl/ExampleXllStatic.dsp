@@ -103,9 +103,5 @@ SOURCE=.\objectfoo.cpp
 
 SOURCE=.\objectfoo.hpp
 # End Source File
-# Begin Source File
-
-SOURCE=.\objecthandler.cpp
-# End Source File
 # End Target
 # End Project

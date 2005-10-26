@@ -22,7 +22,7 @@
 
 using namespace ObjHandler;
 
-DLLEXPORT char* ohVersion() {
+extern "C" char* ohVersion() {
     try {
         static char ret[XL_MAX_STR_LEN];
 		stringToChar(ret, OBJHANDLER_VERSION);
@@ -33,7 +33,7 @@ DLLEXPORT char* ohVersion() {
     }
 }
 
-DLLEXPORT long* ohObjectCount() {
+extern "C" long* ohObjectCount() {
     try {
         static long ret;
         ret = ObjectHandler::instance().objectCount();
@@ -44,7 +44,7 @@ DLLEXPORT long* ohObjectCount() {
     }
 }
 
-DLLEXPORT XLOPER* ohHandleList() {
+extern "C" XLOPER* ohHandleList() {
     try {
         static XLOPER ret;
         std::vector < std::string > handleList = ObjectHandler::instance().handleList();
@@ -56,7 +56,7 @@ DLLEXPORT XLOPER* ohHandleList() {
     }
 }
 
-DLLEXPORT XLOPER *ohFieldNames(char *handleObject) {
+extern "C" XLOPER *ohFieldNames(char *handleObject) {
     static XLOPER xRet;
     xRet.val.array.lparray = 0;
     try {
@@ -81,7 +81,7 @@ DLLEXPORT XLOPER *ohFieldNames(char *handleObject) {
     }
 }
 
-DLLEXPORT XLOPER *ohFieldValue(char *handleObject,
+extern "C" XLOPER *ohFieldValue(char *handleObject,
         char *fieldName,
         OPER *trigger) {
     try {
@@ -107,7 +107,7 @@ DLLEXPORT XLOPER *ohFieldValue(char *handleObject,
     }
 }
 
-DLLEXPORT short int* ohDeleteObject(char *handleObject) {
+extern "C" short int* ohDeleteObject(char *handleObject) {
     try {
         static short int ret = TRUE;
         ObjectHandler::instance().deleteObject(handleObject);
@@ -118,7 +118,7 @@ DLLEXPORT short int* ohDeleteObject(char *handleObject) {
     }
 }
 
-DLLEXPORT short int* ohDeleteAllObjects() {
+extern "C" short int* ohDeleteAllObjects() {
     try {
         static short int ret = TRUE;
         ObjectHandler::instance().deleteAllObjects();
@@ -129,7 +129,7 @@ DLLEXPORT short int* ohDeleteAllObjects() {
     }
 }
 
-DLLEXPORT short int* ohDependsOn(
+extern "C" short int* ohDependsOn(
         OPER *dummy0,
         OPER *dummy1,
         OPER *dummy2,
@@ -149,7 +149,7 @@ DLLEXPORT short int* ohDependsOn(
     }
 }
 
-DLLEXPORT short int* ohGetGcEnabled() {
+extern "C" short int* ohGetGcEnabled() {
     try {
         static short int ret;
         ret = ObjectHandler::instance().getGcEnabled();
@@ -160,7 +160,7 @@ DLLEXPORT short int* ohGetGcEnabled() {
     }
 }
 
-DLLEXPORT short int* ohSetGcEnabled(short int *newValue) {
+extern "C" short int* ohSetGcEnabled(short int *newValue) {
     try {
         static short int ret = TRUE;
         ObjectHandler::instance().setGcEnabled(*newValue != 0);
@@ -171,7 +171,7 @@ DLLEXPORT short int* ohSetGcEnabled(short int *newValue) {
     }
 }
 
-DLLEXPORT short int* ohCallGC() {
+extern "C" short int* ohCallGC() {
     try {
         static short int ret = TRUE;
         ObjectHandler::instance().collectGarbage();
@@ -182,7 +182,7 @@ DLLEXPORT short int* ohCallGC() {
     }
 }
 
-DLLEXPORT char* ohSetLogFile(char *logFileName, OPER *logLevel) {
+extern "C" char* ohSetLogFile(char *logFileName, OPER *logLevel) {
     try {
         static char ret[XL_MAX_STR_LEN];
         long logLevelScalar = operToScalarLong(logLevel, 4);
@@ -194,7 +194,7 @@ DLLEXPORT char* ohSetLogFile(char *logFileName, OPER *logLevel) {
     }
 }
 
-DLLEXPORT long* ohSetLogLevel(long *logLevel) {
+extern "C" long* ohSetLogLevel(long *logLevel) {
     try {
         static long ret;
         setLogLevel(*logLevel);
@@ -206,7 +206,7 @@ DLLEXPORT long* ohSetLogLevel(long *logLevel) {
     }
 }
 
-DLLEXPORT char* ohLogMessage(char *message, OPER *logLevel) {
+extern "C" char* ohLogMessage(char *message, OPER *logLevel) {
     try {
         static char ret[XL_MAX_STR_LEN];
         long logLevelScalar = operToScalarLong(logLevel, 4);
@@ -218,7 +218,7 @@ DLLEXPORT char* ohLogMessage(char *message, OPER *logLevel) {
     }
 }
 
-DLLEXPORT short int* ohLogObject(char *handleObject) {
+extern "C" short int* ohLogObject(char *handleObject) {
     try {
         static short int ret = TRUE;
         logObject(handleObject);
@@ -229,7 +229,7 @@ DLLEXPORT short int* ohLogObject(char *handleObject) {
     }
 }
 
-DLLEXPORT short int* ohLogAllObjects() {
+extern "C" short int* ohLogAllObjects() {
     try {
         static short int ret = TRUE;
         logAllObjects();
