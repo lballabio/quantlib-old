@@ -50,7 +50,7 @@ def usage():
 # parse command line arguments
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'qesocgdah', 'help' )
+    opts, args = getopt.getopt(sys.argv[1:], 'qeocgdah', 'help' )
 except getopt.GetoptError:
     usage()
 
@@ -74,9 +74,7 @@ for o, a in opts:
     if o == '-q':
         addins.append(addinQla.AddinQla(enumerations))
     if o == '-e':
-        addins.append(addinExcel.AddinExcelDynamic(categories))
-    if o == '-s':
-        addins.append(addinExcel.AddinExcelStatic(categories))
+        addins.append(addinExcel.AddinExcel(categories))
     if o == '-o':
         addins.append(addinCalc.AddinCalc(categories))
     if o == '-c':
@@ -87,8 +85,7 @@ for o, a in opts:
         addins.append(addinDoxygen.AddinDoxygen(categories, enumerations))
     if o == '-a':
         addins.append(addinQla.AddinQla(enumerations))
-        addins.append(addinExcel.AddinExcelStatic(categories))
-        addins.append(addinExcel.AddinExcelDynamic(categories))
+        addins.append(addinExcel.AddinExcel(categories))
         addins.append(addinCalc.AddinCalc(categories))
         addins.append(addinC.AddinC(categories))
         addins.append(addinGuile.AddinGuile(categories))

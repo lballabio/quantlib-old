@@ -1,5 +1,8 @@
 <addin loadAllAsDict = 'true'>
 
+<name>C</name>
+<platformId>C</platformId>
+
 <functionDeclaration indent='2'>
     <setType>
         <scalar>

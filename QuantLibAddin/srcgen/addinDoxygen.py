@@ -49,7 +49,7 @@ class AddinDoxygen(addin.Addin):
     def __init__(self,
             categories,
             enumerations):
-        super(AddinDoxygen, self).__init__('Doxygen', 'd', 'doxygen', categories)
+        super(AddinDoxygen, self).__init__(common.CONFIG_DOXYGEN, categories)
         self.enumerations = enumerations
         self.bufEnums = utils.loadBuffer(STUB_ENUMS)
         self.bufFuncs = utils.loadBuffer(STUB_FUNCS)

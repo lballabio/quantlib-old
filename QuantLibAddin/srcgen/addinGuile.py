@@ -36,7 +36,7 @@ class AddinGuile(addin.Addin):
 
     def __init__(self,
             categories):
-        super(AddinGuile, self).__init__('Guile', 'G', 'guile', categories)
+        super(AddinGuile, self).__init__(common.CONFIG_GUILE, categories)
         self.bufInclude = utils.loadBuffer(INCLUDES)
         self.bufCtor = utils.loadBuffer(BUF_CTOR)
         self.bufMember = utils.loadBuffer(BUF_MEMBER)

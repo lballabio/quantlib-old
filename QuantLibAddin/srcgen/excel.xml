@@ -1,5 +1,8 @@
 <addin loadAllAsDict = 'true'>
 
+<name>Excel</name>
+<platformId>E</platformId>
+
 <functionDeclaration indent='2'>
     <setType>
         <scalar>

@@ -27,17 +27,14 @@ import rule
 class Addin(object):
 
     def __init__(self,
-            name,
-            platformId,
             configFileName,
             categories):
         'initialize the object'
-        self.name = name
-        self.platformId = platformId
-        self.rootDir = common.ADDIN_ROOT + self.name + '/'
-        self.categories = categories
-
         config = parse.parseFile(configFileName)
+        self.categories = categories
+        self.name = config[common.NAME]
+        self.platformId = config[common.PLATFORMID]
+        self.rootDir = common.ADDIN_ROOT + self.name + '/'
         self.setRules(config)
 
     def generateCode(self, rule, params, skipFirst = False, skipIgnore = False):

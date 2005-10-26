@@ -48,7 +48,7 @@ class AddinCalc(addin.Addin):
 
     def __init__(self,
             categories):
-        super(AddinCalc, self).__init__('Calc', 'O', 'calc', categories)
+        super(AddinCalc, self).__init__(common.CONFIG_CALC, categories)
         self.bufCtor = utils.loadBuffer(BUF_CTOR)
         self.bufMember = utils.loadBuffer(BUF_MEMBER)
 

@@ -3,6 +3,9 @@ EXTRA_DIST = \
     AddinExcelDynamic.dsp \
     AddinExcelDynamic.vcproj \
     AddinExcelDynamic_vc8.vcproj \
+    AddinExcelStatic.dsp \
+    AddinExcelStatic.vcproj \
+    AddinExcelStatic_vc8.vcproj \
     capfloor.cpp \
     couponvectors.cpp \
     instruments.cpp \

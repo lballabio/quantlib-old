@@ -38,8 +38,8 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "build\vc6\DebugMTDLL"
-# PROP Intermediate_Dir "build\vc6\DebugMTDLL"
+# PROP Output_Dir "buildDynamic\vc6\DebugMTDLL"
+# PROP Intermediate_Dir "buildDynamic\vc6\DebugMTDLL"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "ADDINEXCELDYNAMIC_EXPORTS" /YX /FD /GZ /c
@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:"xll\QuantLibAddin-vc6-mt-gd-0_3_12.xll" /pdbtype:sept /libpath:"$(OBJECT_HANDLER_DIR)\xlsdk\lib" /libpath:"$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll" /libpath:"$(QL_DIR)\lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /out:"xll\QuantLibAddinDynamic-vc6-mt-gd-0_3_12.xll" /pdbtype:sept /libpath:"$(OBJECT_HANDLER_DIR)\xlsdk\lib" /libpath:"$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll" /libpath:"$(QL_DIR)\lib"
 
 !ELSEIF  "$(CFG)" == "AddinExcelDynamic - Win32 Release MTDLL"
 
@@ -64,8 +64,8 @@ LINK32=link.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "build\vc6\ReleaseMTDLL"
-# PROP Intermediate_Dir "build\vc6\ReleaseMTDLL"
+# PROP Output_Dir "buildDynamic\vc6\ReleaseMTDLL"
+# PROP Intermediate_Dir "buildDynamic\vc6\ReleaseMTDLL"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "ADDINEXCELDYNAMIC_EXPORTS" /YX /FD /c
@@ -79,7 +79,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"xll\QuantLibAddin-vc6-mt-0_3_12.xll" /libpath:"$(OBJECT_HANDLER_DIR)\xlsdk\lib" /libpath:"$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll" /libpath:"$(QL_DIR)\lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"xll\QuantLibAddinDynamic-vc6-mt-0_3_12.xll" /libpath:"$(OBJECT_HANDLER_DIR)\xlsdk\lib" /libpath:"$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll" /libpath:"$(QL_DIR)\lib"
 
 !ENDIF 
 

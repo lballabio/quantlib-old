@@ -54,10 +54,8 @@ XL_LIST_PARAMS = 'xlListParams'
 class AddinExcel(addin.Addin):
 
     def __init__(self,
-            name, 
-            platformId,
             categories):
-        super(AddinExcel, self).__init__(name, platformId, 'excel', categories)
+        super(AddinExcel, self).__init__(common.CONFIG_EXCEL, categories)
         self.bufCtor = utils.loadBuffer(BUF_CTOR)
         self.bufMember = utils.loadBuffer(BUF_MEMBER)
         self.bufInclude = utils.loadBuffer(BUF_INCLUDES)
@@ -228,16 +226,4 @@ class AddinExcel(addin.Addin):
         fileHeader.write(REGFOOT)
         fileHeader.close()
         utils.updateIfChanged(fileName)
-
-class AddinExcelDynamic(AddinExcel):
-
-    def __init__(self,
-            categories):
-        super(AddinExcelDynamic, self).__init__('ExcelDynamic', 'E',  categories)
-
-class AddinExcelStatic(AddinExcel):
-
-    def __init__(self,
-            categories):
-        super(AddinExcelStatic, self).__init__('ExcelStatic', 'S', categories)
 

@@ -82,11 +82,8 @@ endif
 if BUILD_CALC
     SRCGEN_ARGS += -o
 endif
-if BUILD_EXCEL_DYNAMIC
+if BUILD_EXCEL
     SRCGEN_ARGS += -e
-endif
-if BUILD_EXCEL_STATIC
-    SRCGEN_ARGS += -s
 endif
 if BUILD_GUILE
     SRCGEN_ARGS += -g

@@ -1,5 +1,8 @@
 <addin loadAllAsDict = 'true'>
 
+<name>Calc</name>
+<platformId>O</platformId>
+
 <functionDeclaration indent='2'>
     <setType>
         <scalar>

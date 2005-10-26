@@ -11,12 +11,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinCalc", "Addins\Calc\Ad
 		{20315B78-B4E3-42C3-B1D3-F55D73E7FD86} = {20315B78-B4E3-42C3-B1D3-F55D73E7FD86}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinExcelDynamic", "Addins\ExcelDynamic\AddinExcelDynamic_vc8.vcproj", "{4061BEEA-E85D-428E-ADF3-92D4859F0848}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinExcelDynamic", "Addins\Excel\AddinExcelDynamic_vc8.vcproj", "{4061BEEA-E85D-428E-ADF3-92D4859F0848}"
 	ProjectSection(ProjectDependencies) = postProject
 		{20315B78-B4E3-42C3-B1D3-F55D73E7FD86} = {20315B78-B4E3-42C3-B1D3-F55D73E7FD86}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinExcelStatic", "Addins\ExcelStatic\AddinExcelStatic_vc8.vcproj", "{6A4E645B-184D-458A-8442-B0AE5541B681}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinExcelStatic", "Addins\Excel\AddinExcelStatic_vc8.vcproj", "{6A4E645B-184D-458A-8442-B0AE5541B681}"
 	ProjectSection(ProjectDependencies) = postProject
 		{20315B78-B4E3-42C3-B1D3-F55D73E7FD86} = {20315B78-B4E3-42C3-B1D3-F55D73E7FD86}
 	EndProjectSection

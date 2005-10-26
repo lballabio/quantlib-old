@@ -1,5 +1,8 @@
 <addin loadAllAsDict = 'true'>
 
+<name>Guile</name>
+<platformId>G</platformId>
+
 <libraryCall ql_type='true' indent='3'>
     <setType>
         <scalar-vector-matrix>

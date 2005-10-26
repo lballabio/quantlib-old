@@ -33,7 +33,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "AddinExcelDynamic"=".\Addins\ExcelDynamic\AddinExcelDynamic.dsp" - Package Owner=<4>
+Project: "AddinExcelDynamic"=".\Addins\Excel\AddinExcelDynamic.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -48,7 +48,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "AddinExcelStatic"=".\Addins\ExcelStatic\AddinExcelStatic.dsp" - Package Owner=<4>
+Project: "AddinExcelStatic"=".\Addins\Excel\AddinExcelStatic.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
