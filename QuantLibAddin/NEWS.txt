@@ -1,3 +1,10 @@
+Release 0.3.12 - ??? 200?
+
+FUNCTIONALITY
+
+- backward & forward flat interpolators
+
+
 Release 0.3.11 - October 2005
 
 REQUIRED PACKAGES
@@ -14,6 +21,7 @@ FUNCTIONALITY
 - support for direct calls to underlying QuantLib functions (Plamen Neykov)
 - optional function parameters (Plamen Neykov), default values
 - source code generation refactored for improved OO/maintainability
+
 
 Release 0.3.10 - July 2005
 

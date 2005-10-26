@@ -23,53 +23,61 @@
 
 /*! \page history Version history
 
-    <strong>Release 0.3.11 - October 2005</strong>
-    
-    REQUIRED PACKAGES
-    
-    - Boost version 1.31.0 or later
-    - QuantLib version 0.3.11
-    - ObjectHandler version 0.1.2
-    
-    FUNCTIONALITY
-    
-    - 13 new functions / 70 in total
-    - Coupon Vectors, Interpolation, Schedules, Swaps (Aurelien Chanudet)
-    - Polymorphic behavior in exported QuantLibAddin functions (Plamen Neykov)
-    - support for direct calls to underlying QuantLib functions (Plamen Neykov)
-    - optional function parameters (Plamen Neykov), default values
-    - source code generation refactored for improved OO/maintainability
+<strong>Release 0.3.12 - ??? 200?</strong>
 
-    <strong>Release 0.3.10 - July 2005</strong>
+FUNCTIONALITY
 
-    OVERVIEW
+- backward & forward flat interpolators
 
-    Initial release consisting of prototype framework:
-    - core library of supported classes
-    - function metadata
-    - script to autogenerate source for target platforms
-    - sample client applications and spreadsheets
 
-    REQUIRED PACKAGES
+<strong>Release 0.3.11 - October 2005</strong>
 
-    - Boost version 1.31.0 or later
-    - QuantLib version 0.3.10
-    - ObjectHandler version 0.1.1
+REQUIRED PACKAGES
 
-    FUNCTIONALITY
+- Boost version 1.31.0 or later
+- QuantLib version 0.3.11
+- ObjectHandler version 0.1.2
 
-    - bonds & zero curves (Walter Penschke)
-    - caps & floors, term structures (Aurelien Chanudet)
-    - swaps, xibor, enumeration type factory (Plamen Neykov)
-    - options, volatilities, processes
-    - diagnostic and utility functions
+FUNCTIONALITY
 
-    PLATFORMS
+- 13 new functions / 70 in total
+- Coupon Vectors, Interpolation, Schedules, Swaps (Aurelien Chanudet)
+- Polymorphic behavior in exported QuantLibAddin functions (Plamen Neykov)
+- support for direct calls to underlying QuantLib functions (Plamen Neykov)
+- optional function parameters (Plamen Neykov), default values
+- source code generation refactored for improved OO/maintainability
 
-    - Microsoft Excel
-    - OpenOffice.org Calc
-    - C/C++
-    - Guile (Aurelien Chanudet)
+
+<strong>Release 0.3.10 - July 2005</strong>
+
+OVERVIEW
+
+Initial release consisting of prototype framework:
+- core library of supported classes
+- function metadata
+- script to autogenerate source for target platforms
+- sample client applications and spreadsheets
+
+REQUIRED PACKAGES
+
+- Boost version 1.31.0 or later
+- QuantLib version 0.3.10
+- ObjectHandler version 0.1.1
+
+FUNCTIONALITY
+
+- bonds & zero curves (Walter Penschke)
+- caps & floors, term structures (Aurelien Chanudet)
+- swaps, xibor, enumeration type factory (Plamen Neykov)
+- options, volatilities, processes
+- diagnostic and utility functions
+
+PLATFORMS
+
+- Microsoft Excel
+- OpenOffice.org Calc
+- C/C++
+- Guile (Aurelien Chanudet)
 
 */
 
