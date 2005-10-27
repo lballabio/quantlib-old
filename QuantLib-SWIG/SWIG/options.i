@@ -80,7 +80,7 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
         VanillaOptionPtr(
-                const boost::shared_ptr<GenericStochasticProcess>& process,
+                const boost::shared_ptr<StochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
                 const boost::shared_ptr<Exercise>& exercise,
                 const boost::shared_ptr<PricingEngine>& engine
@@ -138,7 +138,7 @@ class EuropeanOptionPtr : public VanillaOptionPtr {
   public:
     %extend {
         EuropeanOptionPtr(
-                const boost::shared_ptr<GenericStochasticProcess>& process,
+                const boost::shared_ptr<StochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
                 const boost::shared_ptr<Exercise>& exercise,
                 const boost::shared_ptr<PricingEngine>& engine
@@ -409,7 +409,7 @@ class DividendVanillaOptionPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
         DividendVanillaOptionPtr(
-                const boost::shared_ptr<GenericStochasticProcess>& process,
+                const boost::shared_ptr<StochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
                 const boost::shared_ptr<Exercise>& exercise,
                 const std::vector<Date>& dividendDates,
@@ -537,7 +537,7 @@ class BarrierOptionPtr : public boost::shared_ptr<Instrument> {
                    Barrier::Type barrierType,
                    Real barrier,
                    Real rebate,
-                   const boost::shared_ptr<GenericStochasticProcess>& process,
+                   const boost::shared_ptr<StochasticProcess>& process,
                    const boost::shared_ptr<Payoff>& payoff,
                    const boost::shared_ptr<Exercise>& exercise,
                    const boost::shared_ptr<PricingEngine>& engine

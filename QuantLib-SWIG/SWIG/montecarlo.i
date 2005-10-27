@@ -98,8 +98,8 @@ class Path {
 };
 
 %{
-typedef QuantLib::SingleAsset<PseudoRandom>::path_generator_type
-    GaussianPathGenerator;
+typedef QuantLib::PathGenerator<GaussianRandomSequenceGenerator> 
+	GaussianPathGenerator;
 %}
 %template(SamplePath) Sample<Path>;
 class GaussianPathGenerator {
@@ -214,7 +214,7 @@ class MultiPath {
 };
 
 %{
-typedef QuantLib::MultiAsset<PseudoRandom>::path_generator_type
+typedef QuantLib::MultiPathGenerator<GaussianRandomSequenceGenerator>
     GaussianMultiPathGenerator;
 %}
 %template(SampleMultiPath) Sample<MultiPath>;
@@ -222,7 +222,7 @@ class GaussianMultiPathGenerator {
   public:
     %extend {
       GaussianMultiPathGenerator(
-                   const boost::shared_ptr<GenericStochasticProcess>& process,
+                   const boost::shared_ptr<StochasticProcess>& process,
                    const std::vector<Time>& times,
                    const GaussianRandomSequenceGenerator& generator,
                    bool brownianBridge = false) {

@@ -23,23 +23,23 @@
 %include volatilities.i
 
 %{
-using QuantLib::GenericStochasticProcess;
+using QuantLib::StochasticProcess;
 %}
 
-%ignore GenericStochasticProcess;
-class GenericStochasticProcess {};
+%ignore StochasticProcess;
+class StochasticProcess {};
 
-%template(StochasticProcess) boost::shared_ptr<GenericStochasticProcess>;
+%template(StochasticProcess) boost::shared_ptr<StochasticProcess>;
 
 
 %{
 using QuantLib::StochasticProcess1D;
-typedef boost::shared_ptr<GenericStochasticProcess> StochasticProcess1DPtr;
+typedef boost::shared_ptr<StochasticProcess> StochasticProcess1DPtr;
 %}
 
 %rename(StochasticProcess1D) StochasticProcess1DPtr;
 class StochasticProcess1DPtr
-    : public boost::shared_ptr<GenericStochasticProcess> {
+    : public boost::shared_ptr<StochasticProcess> {
   private:
     StochasticProcess1DPtr();
 };
@@ -48,7 +48,7 @@ class StochasticProcess1DPtr
 
 %{
 using QuantLib::BlackScholesProcess;
-typedef boost::shared_ptr<GenericStochasticProcess> BlackScholesProcessPtr;
+typedef boost::shared_ptr<StochasticProcess> BlackScholesProcessPtr;
 %}
 
 %rename(BlackScholesProcess) BlackScholesProcessPtr;
@@ -69,7 +69,7 @@ class BlackScholesProcessPtr : public StochasticProcess1DPtr {
 
 %{
 using QuantLib::Merton76Process;
-typedef boost::shared_ptr<GenericStochasticProcess> Merton76ProcessPtr;
+typedef boost::shared_ptr<StochasticProcess> Merton76ProcessPtr;
 %}
 
 %rename(Merton76Process) Merton76ProcessPtr;
