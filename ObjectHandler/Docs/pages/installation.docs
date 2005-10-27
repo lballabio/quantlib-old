@@ -39,8 +39,7 @@ Before building ObjectHandler you'll need to install and build
 log4cxx.  ObjectHandler has been tested against log4cxx version 0.9.7.
 
 ObjectHandler is available for download from the 
-<a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=141162">
-QuantLib downloads page on sourceforge.</a>
+<a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=141162">QuantLib downloads page on sourceforge</a>
 
 <ul>
   <li>\ref inst_windows
@@ -95,20 +94,117 @@ Build the desired workspace, configuration "Win32 Debug MTDLL".
 
 \subsection inst_win_usage Usage
 
-In order to link ObjectHandler into your own project, use the settings that
-correspond to your chosen build:
+In order to link ObjectHandler into your own project, use the configuration that
+corresponds to your chosen build as summarized in the tables below.  Please refer
+to the example application indicated.
 
-<table border="1" cellspacing="3" cellpadding="3">
-<tr><td><b>Platform</b></td><td><b>Include Directories</b></td><td><b>Preprocessor Defines</b></td><td><b>Link Directories</b></td><td><b>Link Libs</b></td></tr>
-<tr><td>xll static</td><td>OBJECT_HANDLER_DIR</td><td>XLL_STATIC</td><td>OBJECT_HANDLER_DIR/xlsdk/lib<br>OBJECT_HANDLER_DIR/ohxl/ohxllib/lib<br>LOG4CXX_DIR/msvc/lib/Debug</td><td>log4cxx.lib</td></tr>
-<tr><td>xll dynamic</td><td>OBJECT_HANDLER_DIR</td><td>XLL_IMPORTS</td><td>OBJECT_HANDLER_DIR/xlsdk/lib<br>OBJECT_HANDLER_DIR/ohxl/ohxll/xll</td><td>-</td></tr>
-<tr><td>other</td><td>OBJECT_HANDLER_DIR</td><td>-</td><td>OBJECT_HANDLER_DIR/lib<br>LOG4CXX_DIR/msvc/lib/Debug</td><td>log4cxx.lib</td></tr>
+\subsubsection inst_win_ohlib ohlib
+
+<table>
+<tr>
+<td><b>Project</b></td>
+<td>ohlib</td>
+</tr>
+<tr>
+<td><b>Description</b></td>
+<td>Core ObjectHandler C++ static library</td>
+</tr>
+<tr>
+<td><b>Example Client Application</b></td>
+<td>ExampleCpp</td>
+</tr>
+<tr>
+<td><b>Preprocessor Defines</b></td>
+<td>-</td>
+</tr>
+<tr>
+<td><b>Include Directories</b></td>
+<td>\$(OBJECT_HANDLER_DIR)</td>
+</tr>
+<tr>
+<td><b>Link Directories</b></td>
+<td>\$(OBJECT_HANDLER_DIR)\\lib<br>\$(LOG4CXX_DIR)\\msvc\\lib\\Debug</td>
+</tr>
+<tr>
+<td><b>Link Libraries</b></td>
+<td>log4cxx.lib</td>
+</tr>
 </table>
+
+\subsubsection inst_win_ohxllib ohxllib
+
+<table>
+<tr>
+<td><b>Project</b></td>
+<td>ohxllib</td>
+</tr>
+<tr>
+<td><b>Description</b></td>
+<td>Excel static library</td>
+</tr>
+<tr>
+<td><b>Example Client Application</b></td>
+<td>ExampleXllStatic</td>
+</tr>
+<tr>
+<td><b>Preprocessor Defines</b></td>
+<td>XLL_STATIC</td>
+</tr>
+<tr>
+<td><b>Include Directories</b></td>
+<td>\$(OBJECT_HANDLER_DIR)</td>
+</tr>
+<tr>
+<td><b>Link Directories</b></td>
+<td>\$(OBJECT_HANDLER_DIR)\\xlsdk\\lib<br>\$(OBJECT_HANDLER_DIR)\\ohxl\\ohxllib\\lib<br>\$(LOG4CXX_DIR)\\msvc\\lib\\Debug</td>
+</tr>
+<tr>
+<td><b>Link Libraries</b></td>
+<td>log4cxx.lib</td>
+</tr>
+</table>
+
+\subsubsection inst_win_ohxll ohxll
+
+<table>
+<tr>
+<td><b>Project</b></td>
+<td>ohxll</td>
+</tr>
+<tr>
+<td><b>Description</b></td>
+<td>Excel dynamic library</td>
+</tr>
+<tr>
+<td><b>Example Client Application</b></td>
+<td>ExampleXllDynamic</td>
+</tr>
+<tr>
+<td><b>Preprocessor Defines</b></td>
+<td>XLL_IMPORTS</td>
+</tr>
+<tr>
+<td><b>Include Directories</b></td>
+<td>\$(OBJECT_HANDLER_DIR)</td>
+</tr>
+<tr>
+<td><b>Link Directories</b></td>
+<td>\$(OBJECT_HANDLER_DIR)\\xlsdk\\lib<br>\$(OBJECT_HANDLER_DIR)\\ohxl\\ohxl\\xll</td>
+</tr>
+<tr>
+<td><b>Link Libraries</b></td>
+<td>-</td>
+</tr>
+</table>
+
+\subsection inst_win_include #include
 
 In all cases you need to add the following directive to your project's source file:
 \verbatim
 #include <oh/objhandler.hpp>
 \endverbatim
+
+\subsection inst_win_link Link
 
 Your project's link to the ObjectHandler library is established automatically
 by the directive
@@ -117,8 +213,14 @@ by the directive
 \endverbatim
 in file <tt>oh/autolink.hpp</tt>
 
-Please also refer to the example projects which are included in the ObjectHandler VC 
-workspace.
+The name of the library depends on your compiler and configuration.  For example,
+if you're using VC6, configuration Debug MTDLL, the library is called
+\verbatim
+ObjectHandler-vc6-mt-gd-0_1_2.lib
+\endverbatim
+
+The location of the library depends on which project you're using (ohlib/ohxllib/ohxll),
+please consult the tables above.
 
 \section inst_autoconf Autoconf
 
