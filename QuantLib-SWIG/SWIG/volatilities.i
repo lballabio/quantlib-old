@@ -30,6 +30,7 @@
 %{
 using QuantLib::BlackVolTermStructure;
 using QuantLib::LocalVolTermStructure;
+using QuantLib::CapletVolatilityStructure;
 %}
 
 %ignore BlackVolTermStructure;
@@ -109,6 +110,39 @@ IsObservable(boost::shared_ptr<LocalVolTermStructure>);
 
 %template(LocalVolTermStructureHandle) Handle<LocalVolTermStructure>;
 IsObservable(Handle<LocalVolTermStructure>);
+
+// capvolstructure
+
+%ignore CapletVolatilityStructure;
+class CapletVolatilityStructure : public Extrapolator {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("reference-date") referenceDate;
+    %rename("day-counter")    dayCounter;
+    %rename("max-date")       maxDate;
+    %rename("max-time")       maxTime;
+    %rename("min-strike")     minStrike;
+    %rename("max-strike")     maxStrike;
+    %rename("local-vol")      localVol;
+    #endif
+  public:
+    Date referenceDate() const;
+    DayCounter dayCounter() const;
+    Calendar calendar() const;
+    Date maxDate() const;
+    Time maxTime() const;
+    Real minStrike() const;
+    Real maxStrike() const;
+    Volatility volatility(const Date&, Real u,
+                        bool extrapolate = false) const;
+    Volatility volatility(Time, Real u,
+                        bool extrapolate = false) const;
+};
+
+%template(CapletVolatilityStructure) boost::shared_ptr<CapletVolatilityStructure>;
+IsObservable(boost::shared_ptr<CapletVolatilityStructure>);
+
+%template(CapletVolatilityStructureHandle) Handle<CapletVolatilityStructure>;
+IsObservable(Handle<CapletVolatilityStructure>);
 
 
 // actual term structures below
@@ -246,6 +280,49 @@ class LocalConstantVolPtr : public boost::shared_ptr<LocalVolTermStructure> {
                 const DayCounter& dayCounter) {
             return new LocalConstantVolPtr(
                 new LocalConstantVol(settlementDays, calendar,
+                                     volatility, dayCounter));
+        }
+    }
+};
+
+
+// constant caplet constant term structure
+%{
+using QuantLib::CapletConstantVolatility;
+typedef boost::shared_ptr<CapletVolatilityStructure> CapletConstantVolatilityPtr;
+%}
+
+%rename(CapletConstantVolatility) CapletConstantVolatilityPtr;
+class CapletConstantVolatilityPtr : public boost::shared_ptr<CapletVolatilityStructure> {
+  public:
+    %extend {
+        CapletConstantVolatilityPtr(
+                const Date& referenceDate, Volatility volatility,
+                const DayCounter& dayCounter) {
+            return new CapletConstantVolatilityPtr(
+                new CapletConstantVolatility(referenceDate, volatility, dayCounter));
+        }
+        CapletConstantVolatilityPtr(
+                const Date& referenceDate,
+                const Handle<Quote>& volatility,
+                const DayCounter& dayCounter) {
+            return new CapletConstantVolatilityPtr(
+                new CapletConstantVolatility(referenceDate, volatility, dayCounter));
+        }
+        CapletConstantVolatilityPtr(
+                Integer settlementDays, const Calendar& calendar,
+                Volatility volatility,
+                const DayCounter& dayCounter) {
+            return new CapletConstantVolatilityPtr(
+                new CapletConstantVolatility(settlementDays, calendar,
+                                     volatility, dayCounter));
+        }
+        CapletConstantVolatilityPtr(
+                Integer settlementDays, const Calendar& calendar,
+                const Handle<Quote>& volatility,
+                const DayCounter& dayCounter) {
+            return new CapletConstantVolatilityPtr(
+                new CapletConstantVolatility(settlementDays, calendar,
                                      volatility, dayCounter));
         }
     }

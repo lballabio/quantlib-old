@@ -47,6 +47,20 @@ class CompoundForwardPtr : public boost::shared_ptr<YieldTermStructure> {
             return boost::dynamic_pointer_cast<CompoundForward>(*self)
                  ->dates();
         }
+	Rate compoundForward(const Date&d1,
+	     Integer f,
+	     bool extrapolate = false) const {
+	       return
+			 boost::dynamic_pointer_cast<CompoundForward>(*self)
+                 ->compoundForward(d1, f, extrapolate);
+        }
+	Rate compoundForward(const Time t1,
+	     Integer f,
+	     bool extrapolate = false) const {
+	       return
+	 boost::dynamic_pointer_cast<CompoundForward>(*self)
+                 ->compoundForward(t1, f, extrapolate);
+        }
     }
 };
 

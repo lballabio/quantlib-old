@@ -49,9 +49,16 @@ IsObservable(boost::shared_ptr<CashFlow>);
 using QuantLib::SimpleCashFlow;
 using QuantLib::FixedRateCoupon;
 using QuantLib::ParCoupon;
+using QuantLib::FloatingRateCoupon;
+using QuantLib::IndexedCoupon;
+using QuantLib::InArrearIndexedCoupon;
+
 typedef boost::shared_ptr<CashFlow> SimpleCashFlowPtr;
 typedef boost::shared_ptr<CashFlow> FixedRateCouponPtr;
 typedef boost::shared_ptr<CashFlow> ParCouponPtr;
+typedef boost::shared_ptr<CashFlow> FloatingRateCouponPtr;
+typedef boost::shared_ptr<CashFlow> IndexedCouponPtr;
+typedef boost::shared_ptr<CashFlow> InArrearIndexedCouponPtr;
 %}
 
 %rename(SimpleCashFlow) SimpleCashFlowPtr;
@@ -115,6 +122,62 @@ class ParCouponPtr : public boost::shared_ptr<CashFlow> {
         }
         Real nominal() {
             return boost::dynamic_pointer_cast<ParCoupon>(*self)->nominal();
+        }
+    }
+};
+
+%rename(FloatingRateCoupon) FloatingRateCouponPtr;
+class FloatingRateCouponPtr : public boost::shared_ptr<CashFlow> {
+  public:
+    %extend {
+        Rate rate() {
+            return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)->rate();
+        }
+	Integer fixingDays() {
+            return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
+                ->fixingDays();
+	}
+        Rate spread() {
+            return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
+                ->spread();
+        }
+        Rate indexFixing() {
+            return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
+                ->indexFixing();
+        }
+        Date fixingDate() {
+            return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
+                ->fixingDate();
+        }
+    }
+};
+
+
+%rename(IndexedCoupon) IndexedCouponPtr;
+class IndexedCouponPtr : public FloatingRateCouponPtr {
+  public:
+    %extend {
+    }
+};
+
+%rename(InArrearIndexedCoupon) InArrearIndexedCouponPtr;
+class InArrearIndexedCouponPtr : public IndexedCouponPtr {
+  public:
+    %extend {
+        InArrearIndexedCouponPtr(Real nominal, const Date& paymentDate,
+                     const XiborPtr& index,
+                     const Date& startDate, const Date& endDate,
+                     Integer fixingDays, Spread spread = 0.0,
+                     const Date& refPeriodStart = Date(),
+                     const Date& refPeriodEnd = Date(),
+		     const DayCounter &dayCounter = DayCounter()) {
+            boost::shared_ptr<Xibor> libor =
+                boost::dynamic_pointer_cast<Xibor>(index);
+            return new InArrearIndexedCouponPtr(
+                new InArrearIndexedCoupon(nominal, paymentDate, libor,
+				   startDate, endDate, fixingDays, spread,
+				   refPeriodStart, refPeriodEnd,
+				   dayCounter));
         }
     }
 };

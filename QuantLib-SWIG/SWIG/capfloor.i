@@ -25,16 +25,37 @@
 %include types.i
 
 %{
+using QuantLib::CapFloor;
 using QuantLib::Cap;
 using QuantLib::Floor;
 using QuantLib::Collar;
+
+typedef boost::shared_ptr<Instrument> CapFloorPtr;
 typedef boost::shared_ptr<Instrument> CapPtr;
 typedef boost::shared_ptr<Instrument> FloorPtr;
 typedef boost::shared_ptr<Instrument> CollarPtr;
 %}
 
+%rename(CapFloor) CapFloorPtr;
+class CapFloorPtr : public boost::shared_ptr<Instrument> {
+  public:
+     %extend {
+        Volatility impliedVolatility(Real price,
+                                     Real accuracy = 1.0e-4,
+                                     Size maxEvaluations = 100,
+                                     Volatility minVol = 1.0e-7,
+                                     Volatility maxVol = 4.0) const {
+	  return boost::dynamic_pointer_cast<CapFloor>(*self)->
+	    impliedVolatility(price, accuracy, maxEvaluations,
+			      minVol, maxVol);
+	}
+    }
+};
+
+     
+
 %rename(Cap) CapPtr;
-class CapPtr : public boost::shared_ptr<Instrument> {
+class CapPtr : public CapFloorPtr {
   public:
     %extend {
         CapPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
@@ -47,7 +68,7 @@ class CapPtr : public boost::shared_ptr<Instrument> {
 };
 
 %rename(Floor) FloorPtr;
-class FloorPtr : public boost::shared_ptr<Instrument> {
+class FloorPtr : public CapFloorPtr {
   public:
     %extend {
         FloorPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
@@ -60,7 +81,7 @@ class FloorPtr : public boost::shared_ptr<Instrument> {
 };
 
 %rename(Collar) CollarPtr;
-class CollarPtr : public boost::shared_ptr<Instrument> {
+class CollarPtr : public CapFloorPtr {
   public:
     %extend {
         CollarPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
