@@ -27,6 +27,7 @@
 %include termstructures.i
 %include scheduler.i
 %include vectors.i
+%include volatilities.i
 
 %{
 using QuantLib::CashFlow;
@@ -52,6 +53,8 @@ using QuantLib::ParCoupon;
 using QuantLib::FloatingRateCoupon;
 using QuantLib::IndexedCoupon;
 using QuantLib::InArrearIndexedCoupon;
+
+using QuantLib::IndexedCouponVector;
 
 typedef boost::shared_ptr<CashFlow> SimpleCashFlowPtr;
 typedef boost::shared_ptr<CashFlow> FixedRateCouponPtr;
@@ -179,6 +182,11 @@ class InArrearIndexedCouponPtr : public IndexedCouponPtr {
 				   refPeriodStart, refPeriodEnd,
 				   dayCounter));
         }
+
+	void setCapletVolatility(const Handle<CapletVolatilityStructure>&c) {
+	  boost::dynamic_pointer_cast<InArrearIndexedCoupon>(*self)
+	    ->setCapletVolatility(c);
+	}
     }
 };
 
@@ -219,6 +227,41 @@ FloatingRateCouponVector(const Schedule& schedule,
                                               fixingDays,spreads);
 }
 %}
+
+%inline %{
+std::vector<boost::shared_ptr<CashFlow> >
+IndexedCouponVectorParCoupon(const Schedule& schedule,
+                         BusinessDayConvention paymentAdjustment,
+                         const std::vector<Real>& nominals,
+                         const XiborPtr& index, Integer fixingDays,
+                         const std::vector<Spread>& spreads =
+                             std::vector<Spread>()) {
+    boost::shared_ptr<Xibor> libor =
+        boost::dynamic_pointer_cast<Xibor>(index);
+    return QuantLib::IndexedCouponVector<ParCoupon>(schedule,paymentAdjustment,
+						    nominals,libor,
+						    fixingDays,spreads);
+}
+%}
+
+
+%inline %{
+std::vector<boost::shared_ptr<CashFlow> >
+IndexedCouponVectorInArrearIndexedCoupon(const Schedule& schedule,
+			  BusinessDayConvention paymentAdjustment,
+			  const std::vector<Real>& nominals,
+			  const XiborPtr& index, Integer fixingDays,
+			  const std::vector<Spread>& spreads =
+				std::vector<Spread>()) {
+    boost::shared_ptr<Xibor> libor =
+        boost::dynamic_pointer_cast<Xibor>(index);
+    return QuantLib::IndexedCouponVector<InArrearIndexedCoupon>(schedule,
+					       paymentAdjustment,
+					       nominals,libor,
+					       fixingDays,spreads);
+}
+%}
+
 
 
 // cash-flow analysis
