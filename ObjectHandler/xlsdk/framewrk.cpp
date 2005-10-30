@@ -91,7 +91,7 @@ void FreeAllTempMemory(void)
     vOffsetMemBlock = 0;
 }
 
-int Excel(int xlfn, std::string &errorMessage, LPXLOPER pxResult, int count, ...) {
+void Excel(int xlfn, LPXLOPER pxResult, int count, ...) {
     int xlret = Excel4v(xlfn, pxResult, count, (LPXLOPER FAR *)(&count+1));
     FreeAllTempMemory();
 
@@ -110,10 +110,9 @@ int Excel(int xlfn, std::string &errorMessage, LPXLOPER pxResult, int count, ...
         if (xlret & xlretStackOvfl) msg << " Stack Overflow ";
         if (xlret & xlretFailed)    msg << " Command failed ";
         if (xlret & xlretUncalced)  msg << " Uncalced cell ";
-        errorMessage = msg.str();
+        throw std::exception(msg.str().c_str());
     }
 
-    return xlret;
 }
 
 ///***************************************************************************

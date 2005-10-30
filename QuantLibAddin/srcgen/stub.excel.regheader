@@ -22,12 +22,12 @@ DLLEXPORT void xlAutoFree(XLOPER *px) {
 }
 
 DLLEXPORT int xlAutoOpen() {
-
-    std::string xlErrorMessage;
     XLOPER xDll;
-    Excel(xlGetName, xlErrorMessage, &xDll, 0);
+    try {
+
+        Excel(xlGetName, &xDll, 0);
 
 #ifdef XLL_STATIC
-    ohRegisterFunctions(xDll);
+        ohRegisterFunctions(xDll);
 #endif
 

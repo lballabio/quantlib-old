@@ -42,15 +42,12 @@ namespace ObjHandler {
             XLOPER &xScalar, 
             const boost::any &any, 
             const bool &expandVectors) {
-        std::string xlErrorMessage;
         if (any.type() == typeid(XLOPER)) {
             XLOPER xTemp = boost::any_cast<XLOPER>(any);
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xScalar, 1, &xTemp)) 
-                xScalar.xltype = xltypeErr;
+            Excel(xlCoerce, &xScalar, 1, &xTemp);
         } else if (any.type() == typeid(XLOPER*)) {
             XLOPER *xTemp = boost::any_cast<XLOPER*>(any);
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xScalar, 1, xTemp)) 
-                xScalar.xltype = xltypeErr;
+            Excel(xlCoerce, &xScalar, 1, xTemp);
         } else if (any.type() == typeid(int)) {
             xScalar.xltype = xltypeNum;
             xScalar.val.num = boost::any_cast<int>(any);
@@ -331,85 +328,91 @@ namespace ObjHandler {
     }
 
     DLL_API long operToScalarLong(const OPER *xScalar, const long &defaultValue) {
-        if (xScalar->xltype & (xltypeMissing | xltypeNil))
-            return defaultValue;
-        else if (xScalar->xltype == xltypeNum)
-            return xScalar->val.num;
-        else {
-            OPER xLong;
-            std::string xlErrorMessage;
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xLong, 2, xScalar, TempInt(xltypeInt))) {
-                std::ostringstream msg;
-                msg << "operToScalarLong: error on call to xlCoerce: " << xlErrorMessage;
-                throw std::exception(msg.str().c_str());
+        try {
+            if (xScalar->xltype & (xltypeMissing | xltypeNil))
+                return defaultValue;
+            else if (xScalar->xltype == xltypeNum)
+                return xScalar->val.num;
+            else {
+                OPER xLong;
+                Excel(xlCoerce, &xLong, 2, xScalar, TempInt(xltypeInt));
+                return xLong.val.w;
             }
-            return xLong.val.w;
+        } catch (const std::exception &e) {
+            std::ostringstream msg;
+            msg << "operToScalarLong: " << e.what();
+            throw std::exception(msg.str().c_str());
         }
     }
 
     DLL_API double operToScalarDouble(const OPER *xScalar, const double &defaultValue) {
-        if (xScalar->xltype & (xltypeMissing | xltypeNil))
-            return defaultValue;
-        else if (xScalar->xltype == xltypeNum)
-            return xScalar->val.num;
-        else {
-            OPER xDouble;
-            std::string xlErrorMessage;
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xDouble, 2, xScalar, TempInt(xltypeNum))) {
-                std::ostringstream msg;
-                msg << "operToScalarDouble: error on call to xlCoerce" << xlErrorMessage;
-                throw std::exception(msg.str().c_str());
+        try {
+            if (xScalar->xltype & (xltypeMissing | xltypeNil))
+                return defaultValue;
+            else if (xScalar->xltype == xltypeNum)
+                return xScalar->val.num;
+            else {
+                OPER xDouble;
+                Excel(xlCoerce, &xDouble, 2, xScalar, TempInt(xltypeNum));
+                return xDouble.val.num;
             }
-            return xDouble.val.num;
+        } catch (const std::exception &e) {
+            std::ostringstream msg;
+            msg << "operToScalarDouble: " << e.what();
+            throw std::exception(msg.str().c_str());
         }
     }
 
     DLL_API bool operToScalarBool(const OPER *xScalar, const bool &defaultValue) {
-        if (xScalar->xltype & (xltypeMissing | xltypeNil))
-            return defaultValue;
-        else if (xScalar->xltype == xltypeBool)
-            return xScalar->val.boolean != 0;
-        else {
-            OPER xBool;
-            std::string xlErrorMessage;
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xBool, 2, xScalar, TempInt(xltypeBool))) {
-                std::ostringstream msg;
-                msg << "operToScalarBool: error on call to xlCoerce" << xlErrorMessage;
-                throw std::exception(msg.str().c_str());
+        try {
+            if (xScalar->xltype & (xltypeMissing | xltypeNil))
+                return defaultValue;
+            else if (xScalar->xltype == xltypeBool)
+                return xScalar->val.boolean != 0;
+            else {
+                OPER xBool;
+                Excel(xlCoerce, &xBool, 2, xScalar, TempInt(xltypeBool));
+                return xBool.val.boolean != 0;
             }
-            return xBool.val.boolean != 0;
+        } catch (const std::exception &e) {
+            std::ostringstream msg;
+            msg << "operToScalarBool: " << e.what();
+            throw std::exception(msg.str().c_str());
         }
     }
 
     DLL_API std::string operToScalarString(const OPER *xScalar, const std::string &defaultValue) {
-        if (xScalar->xltype & (xltypeMissing | xltypeNil))
-            return defaultValue;
-
         OPER xTemp;
-        const OPER *xString;
         bool needToFree = false;
-        std::string ret;
-        std::string xlErrorMessage;
+        try {
+            if (xScalar->xltype & (xltypeMissing | xltypeNil))
+                return defaultValue;
 
-        if (xScalar->xltype == xltypeStr)
-            xString = xScalar;
-        else {
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xTemp, 2, xScalar, TempInt(xltypeStr))) {
-                std::ostringstream msg;
-                msg << "operToScalarString: error on call to xlCoerce" << xlErrorMessage;
-                throw std::exception(msg.str().c_str());
+            const OPER *xString;
+            std::string ret;
+
+            if (xScalar->xltype == xltypeStr)
+                xString = xScalar;
+            else {
+                Excel(xlCoerce, &xTemp, 2, xScalar, TempInt(xltypeStr));
+                xString = &xTemp;
+                needToFree = true;
             }
-            xString = &xTemp;
-            needToFree = true;
+
+            if (xString->val.str[0])
+                ret.assign(xString->val.str + 1, xString->val.str[0]);
+
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+
+            return ret;
+        } catch (const std::exception &e) {
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+            std::ostringstream msg;
+            msg << "operToScalarString: " << e.what();
+            throw std::exception(msg.str().c_str());
         }
-
-        if (xString->val.str[0])
-            ret.assign(xString->val.str + 1, xString->val.str[0]);
-
-        if (needToFree)
-            Excel(xlFree, xlErrorMessage, 0, 1, &xTemp);
-
-        return ret;
     }
 
     DLL_API boost::any operToScalarAny(const OPER *xScalar) {
@@ -440,197 +443,198 @@ namespace ObjHandler {
     }
 
     DLL_API std::vector < long > operToVectorLong(const OPER *xVector) {
-        std::vector < long > ret;
-
-        if (xVector->xltype & (xltypeMissing | xltypeNil))
-            return ret;
-
-        OPER xTemp, xScalar;
-        const OPER *xMulti;
+        OPER xTemp;
         bool needToFree = false;
-        std::string xlErrorMessage;
+        try {
+            std::vector < long > ret;
 
-        if (xVector->xltype == xltypeMulti)
-            xMulti = xVector;
-        else {
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xTemp, 2, xVector, TempInt(xltypeMulti))) {
-                std::ostringstream msg;
-                msg << "operToVectorLong: error on call to xlCoerce" << xlErrorMessage;
-                throw std::exception(msg.str().c_str());
-            }
-            xMulti = &xTemp;
-            needToFree = true;
-        }
+            if (xVector->xltype & (xltypeMissing | xltypeNil))
+                return ret;
 
-        for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; i++) {
-            if (xMulti->val.array.lparray[i].xltype == xltypeNum)
-                ret.push_back(xMulti->val.array.lparray[i].val.num);
+            OPER xScalar;
+            const OPER *xMulti;
+
+            if (xVector->xltype == xltypeMulti)
+                xMulti = xVector;
             else {
-                if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeInt))) {
-                    std::ostringstream msg;
-                    msg << "operToVectorLong: error on call to xlCoerce" << xlErrorMessage;
-                    throw std::exception(msg.str().c_str());
-                }
-                ret.push_back(xScalar.val.w);
+                Excel(xlCoerce, &xTemp, 2, xVector, TempInt(xltypeMulti));
+                xMulti = &xTemp;
+                needToFree = true;
             }
+
+            for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; i++) {
+                if (xMulti->val.array.lparray[i].xltype == xltypeNum)
+                    ret.push_back(xMulti->val.array.lparray[i].val.num);
+                else {
+                    Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeInt));
+                    ret.push_back(xScalar.val.w);
+                }
+            }
+
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+
+            return ret;
+        } catch (const std::exception &e) {
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+            std::ostringstream msg;
+            msg << "operToVectorLong: " << e.what();
+            throw std::exception(msg.str().c_str());
         }
-
-        if (needToFree)
-            Excel(xlFree, xlErrorMessage, 0, 1, &xTemp);
-
-        return ret;
     }
 
     DLL_API std::vector < double > operToVectorDouble(const OPER *xVector) {
-        std::vector < double > ret;
-
-        if (xVector->xltype & (xltypeMissing | xltypeNil))
-            return ret;
-
-        OPER xTemp, xScalar;
-        const OPER *xMulti;
+        OPER xTemp;
         bool needToFree = false;
-        std::string xlErrorMessage;
+        try {
+            std::vector < double > ret;
 
-        if (xVector->xltype == xltypeMulti)
-            xMulti = xVector;
-        else {
-            std::string xlErrorMessage;
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xTemp, 2, xVector, TempInt(xltypeMulti))) {
-                std::ostringstream msg;
-                msg << "operToVectorDouble: error on call to xlCoerce: " << xlErrorMessage;
-                throw std::exception(msg.str().c_str());
-            }
-            xMulti = &xTemp;
-            needToFree = true;
-        }
+            if (xVector->xltype & (xltypeMissing | xltypeNil))
+                return ret;
 
-        for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; i++) {
-            if (xMulti->val.array.lparray[i].xltype == xltypeNum)
-                ret.push_back(xMulti->val.array.lparray[i].val.num);
+            OPER xScalar;
+            const OPER *xMulti;
+
+            if (xVector->xltype == xltypeMulti)
+                xMulti = xVector;
             else {
-                if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeNum))) {
-                    std::ostringstream msg;
-                    msg << "operToVectorDouble: error on call to xlCoerce: " << xlErrorMessage;
-                    throw std::exception(msg.str().c_str());
-                }
-                ret.push_back(xScalar.val.num);
+                Excel(xlCoerce, &xTemp, 2, xVector, TempInt(xltypeMulti));
+                xMulti = &xTemp;
+                needToFree = true;
             }
+
+            for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; i++) {
+                if (xMulti->val.array.lparray[i].xltype == xltypeNum)
+                    ret.push_back(xMulti->val.array.lparray[i].val.num);
+                else {
+                    Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeNum));
+                    ret.push_back(xScalar.val.num);
+                }
+            }
+
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+
+            return ret;
+        } catch (const std::exception &e) {
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+            std::ostringstream msg;
+            msg << "operToVectorDouble: " << e.what();
+            throw std::exception(msg.str().c_str());
         }
-
-        if (needToFree)
-            Excel(xlFree, xlErrorMessage, 0, 1, &xTemp);
-
-        return ret;
     }
 
     DLL_API std::vector < bool > operToVectorBool(const OPER *xVector) {
-        std::vector < bool > ret;
-
-        if (xVector->xltype & (xltypeMissing | xltypeNil))
-            return ret;
-
-        OPER xTemp, xScalar;
-        const OPER *xMulti;
+        OPER xTemp;
         bool needToFree = false;
-        std::string xlErrorMessage;
+        try {
+            std::vector < bool > ret;
+            if (xVector->xltype & (xltypeMissing | xltypeNil))
+                return ret;
 
-        if (xVector->xltype == xltypeMulti)
-            xMulti = xVector;
-        else {
-            std::string xlErrorMessage;
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xTemp, 2, xVector, TempInt(xltypeMulti))) {
-                std::ostringstream msg;
-                msg << "operToVectorBool: error on call to xlCoerce: " << xlErrorMessage;
-                throw std::exception(msg.str().c_str());
-            }
-            xMulti = &xTemp;
-            needToFree = true;
-        }
+            OPER xScalar;
+            const OPER *xMulti;
 
-        for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; i++) {
-            if (xMulti->val.array.lparray[i].xltype == xltypeBool)
-                ret.push_back(xMulti->val.array.lparray[i].val.boolean != 0);
+            if (xVector->xltype == xltypeMulti)
+                xMulti = xVector;
             else {
-                if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeBool))) {
-                    std::ostringstream msg;
-                    msg << "operToVectorBool: error on call to xlCoerce: " << xlErrorMessage;
-                    throw std::exception(msg.str().c_str());
-                }
-                ret.push_back(xScalar.val.boolean != 0);
+                Excel(xlCoerce, &xTemp, 2, xVector, TempInt(xltypeMulti));
+                xMulti = &xTemp;
+                needToFree = true;
             }
+
+            for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; i++) {
+                if (xMulti->val.array.lparray[i].xltype == xltypeBool)
+                    ret.push_back(xMulti->val.array.lparray[i].val.boolean != 0);
+                else {
+                    Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[i], TempInt(xltypeBool));
+                    ret.push_back(xScalar.val.boolean != 0);
+                }
+            }
+
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+
+            return ret;
+        } catch (const std::exception &e) {
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+            std::ostringstream msg;
+            msg << "operToVectorBool: " << e.what();
+            throw std::exception(msg.str().c_str());
         }
-
-        if (needToFree)
-            Excel(xlFree, xlErrorMessage, 0, 1, &xTemp);
-
-        return ret;
     }
 
     DLL_API std::vector < std::string > operToVectorString(const OPER *xVector) {
-        std::vector < std::string > ret;
-
-        if (xVector->xltype & (xltypeMissing | xltypeNil))
-            return ret;
-
         OPER xTemp;
-        const OPER *xMulti;
         bool needToFree = false;
-        std::string xlErrorMessage;
+        try {
+            std::vector < std::string > ret;
 
-        if (xVector->xltype == xltypeMulti)
-            xMulti = xVector;
-        else {
-            std::string xlErrorMessage;
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xTemp, 2, xVector, TempInt(xltypeMulti))) {
-                std::ostringstream msg;
-                msg << "operToVectorString: error on call to xlCoerce: " << xlErrorMessage;
-                throw std::exception(msg.str().c_str());
+            if (xVector->xltype & (xltypeMissing | xltypeNil))
+                return ret;
+
+            const OPER *xMulti;
+
+            if (xVector->xltype == xltypeMulti)
+                xMulti = xVector;
+            else {
+                Excel(xlCoerce, &xTemp, 2, xVector, TempInt(xltypeMulti));
+                xMulti = &xTemp;
+                needToFree = true;
             }
-            xMulti = &xTemp;
-            needToFree = true;
+
+            for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; i++)
+                ret.push_back(operToScalarString(&xMulti->val.array.lparray[i]));
+
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+
+            return ret;
+        } catch (const std::exception &e) {
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+            std::ostringstream msg;
+            msg << "operToVectorString: " << e.what();
+            throw std::exception(msg.str().c_str());
         }
-
-        for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; i++)
-            ret.push_back(operToScalarString(&xMulti->val.array.lparray[i]));
-
-        if (needToFree)
-            Excel(xlFree, xlErrorMessage, 0, 1, &xTemp);
-
-        return ret;
     }
 
     DLL_API std::vector < boost::any > operToVectorAny(const OPER *xVector) {
-        std::vector < boost::any > ret;
-
-        if (xVector->xltype & (xltypeMissing | xltypeNil))
-            return ret;
-
         OPER xTemp;
-        const OPER *xMulti;
         bool needToFree = false;
-        std::string xlErrorMessage;
+        try {
+            std::vector < boost::any > ret;
 
-        if (xVector->xltype == xltypeMulti)
-            xMulti = xVector;
-        else {
-            std::string xlErrorMessage;
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xTemp, 2, xVector, TempInt(xltypeMulti))) {
-                std::ostringstream msg;
-                msg << "operToVectorAny: error on call to xlCoerce: " << xlErrorMessage;
-                throw std::exception(msg.str().c_str());
+            if (xVector->xltype & (xltypeMissing | xltypeNil))
+                return ret;
+
+            const OPER *xMulti;
+
+            if (xVector->xltype == xltypeMulti)
+                xMulti = xVector;
+            else {
+                Excel(xlCoerce, &xTemp, 2, xVector, TempInt(xltypeMulti));
+                xMulti = &xTemp;
+                needToFree = true;
             }
-            xMulti = &xTemp;
-            needToFree = true;
+
+            for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; i++)
+                ret.push_back(operToScalarAny(&xMulti->val.array.lparray[i]));
+
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+
+            return ret;
+        } catch (const std::exception &e) {
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+            std::ostringstream msg;
+            msg << "operToVectorAny: " << e.what();
+            throw std::exception(msg.str().c_str());
         }
-
-        for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; i++)
-            ret.push_back(operToScalarAny(&xMulti->val.array.lparray[i]));
-
-        if (needToFree)
-            Excel(xlFree, xlErrorMessage, 0, 1, &xTemp);
-
-        return ret;
     }
 
     DLL_API std::vector < std::vector < long > > fpToMatrixLong(const FP *fpMatrix) {
@@ -656,220 +660,222 @@ namespace ObjHandler {
     }
 
     DLL_API std::vector < std::vector < long > > operToMatrixLong(const OPER *xMatrix) {
-        std::vector < std::vector < long > > ret;
-
-        if (xMatrix->xltype & (xltypeMissing | xltypeNil))
-            return ret;
-
-        OPER xTemp, xScalar;
-        const OPER *xMulti;
+        OPER xTemp;
         bool needToFree = false;
-        std::string xlErrorMessage;
+        try {
+            std::vector < std::vector < long > > ret;
 
-        if (xMatrix->xltype == xltypeMulti)
-            xMulti = xMatrix;
-        else {
-            std::string xlErrorMessage;
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xTemp, 2, xMatrix, TempInt(xltypeMulti))) {
-                std::ostringstream msg;
-                msg << "operToMatrixLong: error on call to xlCoerce: " << xlErrorMessage;
-                throw std::exception(msg.str().c_str());
+            if (xMatrix->xltype & (xltypeMissing | xltypeNil))
+                return ret;
+
+            OPER xScalar;
+            const OPER *xMulti;
+
+            if (xMatrix->xltype == xltypeMulti)
+                xMulti = xMatrix;
+            else {
+                Excel(xlCoerce, &xTemp, 2, xMatrix, TempInt(xltypeMulti));
+                xMulti = &xTemp;
+                needToFree = true;
             }
-            xMulti = &xTemp;
-            needToFree = true;
-        }
 
-        for (int i=0; i<xMulti->val.array.rows; i++) {
-            std::vector < long > row;
-            for (int j=0; j<xMulti->val.array.columns; j++) {
-                int idx = i * xMulti->val.array.columns + j;
-                if (xMulti->val.array.lparray[idx].xltype == xltypeNum)
-                    row.push_back(xMulti->val.array.lparray[idx].val.num);
-                else {
-                    std::string xlErrorMessage;
-                    if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xScalar, 2, &xMulti->val.array.lparray[idx], TempInt(xltypeInt))) {
-                        std::ostringstream msg;
-                        msg << "operToMatrixLong: error on call to xlCoerce: " << xlErrorMessage;
-                        throw std::exception(msg.str().c_str());
+            for (int i=0; i<xMulti->val.array.rows; i++) {
+                std::vector < long > row;
+                for (int j=0; j<xMulti->val.array.columns; j++) {
+                    int idx = i * xMulti->val.array.columns + j;
+                    if (xMulti->val.array.lparray[idx].xltype == xltypeNum)
+                        row.push_back(xMulti->val.array.lparray[idx].val.num);
+                    else {
+                        Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[idx], TempInt(xltypeInt));
+                        row.push_back(xScalar.val.w);
                     }
-                    row.push_back(xScalar.val.w);
                 }
+                ret.push_back(row);
             }
-            ret.push_back(row);
+
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+
+            return ret;
+        } catch (const std::exception &e) {
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+            std::ostringstream msg;
+            msg << "operToMatrixLong: " << e.what();
+            throw std::exception(msg.str().c_str());
         }
-
-        if (needToFree)
-            Excel(xlFree, xlErrorMessage, 0, 1, &xTemp);
-
-        return ret;
     }
 
     DLL_API std::vector < std::vector < double > > operToMatrixDouble(const OPER *xMatrix) {
-        std::vector < std::vector < double > > ret;
-
-        if (xMatrix->xltype & (xltypeMissing | xltypeNil))
-            return ret;
-
-        OPER xTemp, xScalar;
-        const OPER *xMulti;
+        OPER xTemp;
         bool needToFree = false;
-        std::string xlErrorMessage;
+        try {
+            std::vector < std::vector < double > > ret;
 
-        if (xMatrix->xltype == xltypeMulti)
-            xMulti = xMatrix;
-        else {
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xTemp, 2, xMatrix, TempInt(xltypeMulti))) {
-                std::ostringstream msg;
-                msg << "operToMatrixDouble: error on call to xlCoerce: " << xlErrorMessage;
-                throw std::exception(msg.str().c_str());
+            if (xMatrix->xltype & (xltypeMissing | xltypeNil))
+                return ret;
+
+            OPER xScalar;
+            const OPER *xMulti;
+
+            if (xMatrix->xltype == xltypeMulti)
+                xMulti = xMatrix;
+            else {
+                Excel(xlCoerce, &xTemp, 2, xMatrix, TempInt(xltypeMulti));
+                xMulti = &xTemp;
+                needToFree = true;
             }
-            xMulti = &xTemp;
-            needToFree = true;
-        }
 
-        for (int i=0; i<xMulti->val.array.rows; i++) {
-            std::vector < double > row;
-            for (int j=0; j<xMulti->val.array.columns; j++) {
-                int idx = i * xMulti->val.array.columns + j;
-                if (xMulti->val.array.lparray[idx].xltype == xltypeNum)
-                    row.push_back(xMulti->val.array.lparray[idx].val.num);
-                else {
-                    std::string xlErrorMessage;
-                    if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xScalar, 2, &xMulti->val.array.lparray[idx], TempInt(xltypeNum))) {
-                        std::ostringstream msg;
-                        msg << "operToMatrixDouble: error on call to xlCoerce: " << xlErrorMessage;
-                        throw std::exception(msg.str().c_str());
+            for (int i=0; i<xMulti->val.array.rows; i++) {
+                std::vector < double > row;
+                for (int j=0; j<xMulti->val.array.columns; j++) {
+                    int idx = i * xMulti->val.array.columns + j;
+                    if (xMulti->val.array.lparray[idx].xltype == xltypeNum)
+                        row.push_back(xMulti->val.array.lparray[idx].val.num);
+                    else {
+                        Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[idx], TempInt(xltypeNum));
+                        row.push_back(xScalar.val.num);
                     }
-                    row.push_back(xScalar.val.num);
                 }
+                ret.push_back(row);
             }
-            ret.push_back(row);
+
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+
+            return ret;
+        } catch (const std::exception &e) {
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+            std::ostringstream msg;
+            msg << "operToMatrixDouble: " << e.what();
+            throw std::exception(msg.str().c_str());
         }
-
-        if (needToFree)
-            Excel(xlFree, xlErrorMessage, 0, 1, &xTemp);
-
-        return ret;
     }
 
     DLL_API std::vector < std::vector < bool > > operToMatrixBool(const OPER *xMatrix) {
-        std::vector < std::vector < bool > > ret;
-
-        if (xMatrix->xltype & (xltypeMissing | xltypeNil))
-            return ret;
-
-        OPER xTemp, xScalar;
-        const OPER *xMulti;
+        OPER xTemp;
         bool needToFree = false;
-        std::string xlErrorMessage;
+        try {
+            std::vector < std::vector < bool > > ret;
 
-        if (xMatrix->xltype == xltypeMulti)
-            xMulti = xMatrix;
-        else {
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xTemp, 2, xMatrix, TempInt(xltypeMulti))) {
-                std::ostringstream msg;
-                msg << "operToMatrixBool: error on call to xlCoerce: " << xlErrorMessage;
-                throw std::exception(msg.str().c_str());
+            if (xMatrix->xltype & (xltypeMissing | xltypeNil))
+                return ret;
+
+            OPER xScalar;
+            const OPER *xMulti;
+
+            if (xMatrix->xltype == xltypeMulti)
+                xMulti = xMatrix;
+            else {
+                Excel(xlCoerce, &xTemp, 2, xMatrix, TempInt(xltypeMulti));
+                xMulti = &xTemp;
+                needToFree = true;
             }
-            xMulti = &xTemp;
-            needToFree = true;
-        }
 
-        for (int i=0; i<xMulti->val.array.rows; i++) {
-            std::vector < bool > row;
-            for (int j=0; j<xMulti->val.array.columns; j++) {
-                int idx = i * xMulti->val.array.columns + j;
-                if (xMulti->val.array.lparray[idx].xltype == xltypeBool)
-                    row.push_back(xMulti->val.array.lparray[idx].val.boolean != 0);
-                else {
-                    std::string xlErrorMessage;
-                    if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xScalar, 2, &xMulti->val.array.lparray[idx], TempInt(xltypeBool))) {
-                        std::ostringstream msg;
-                        msg << "operToMatrixBool: error on call to xlCoerce: " << xlErrorMessage;
-                        throw std::exception(msg.str().c_str());
+            for (int i=0; i<xMulti->val.array.rows; i++) {
+                std::vector < bool > row;
+                for (int j=0; j<xMulti->val.array.columns; j++) {
+                    int idx = i * xMulti->val.array.columns + j;
+                    if (xMulti->val.array.lparray[idx].xltype == xltypeBool)
+                        row.push_back(xMulti->val.array.lparray[idx].val.boolean != 0);
+                    else {
+                        Excel(xlCoerce, &xScalar, 2, &xMulti->val.array.lparray[idx], TempInt(xltypeBool));
+                        row.push_back(xScalar.val.boolean != 0);
                     }
-                    row.push_back(xScalar.val.boolean != 0);
                 }
+                ret.push_back(row);
             }
-            ret.push_back(row);
+
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+
+            return ret;
+        } catch (const std::exception &e) {
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+            std::ostringstream msg;
+            msg << "operToMatrixBool: " << e.what();
+            throw std::exception(msg.str().c_str());
         }
-
-        if (needToFree)
-            Excel(xlFree, xlErrorMessage, 0, 1, &xTemp);
-
-        return ret;
     }
 
     DLL_API std::vector < std::vector < std::string > > operToMatrixString(const OPER *xMatrix) {
-        std::vector < std::vector < std::string > > ret;
-
-        if (xMatrix->xltype & (xltypeMissing | xltypeNil))
-            return ret;
-
         OPER xTemp;
-        const OPER *xMulti;
         bool needToFree = false;
-        std::string xlErrorMessage;
+        try {
+            std::vector < std::vector < std::string > > ret;
 
-        if (xMatrix->xltype == xltypeMulti)
-            xMulti = xMatrix;
-        else {
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xTemp, 2, xMatrix, TempInt(xltypeMulti))) {
-                std::ostringstream msg;
-                msg << "operToMatrixString: error on call to xlCoerce: " << xlErrorMessage;
-                throw std::exception(msg.str().c_str());
+            if (xMatrix->xltype & (xltypeMissing | xltypeNil))
+                return ret;
+
+            const OPER *xMulti;
+
+            if (xMatrix->xltype == xltypeMulti)
+                xMulti = xMatrix;
+            else {
+                Excel(xlCoerce, &xTemp, 2, xMatrix, TempInt(xltypeMulti));
+                xMulti = &xTemp;
+                needToFree = true;
             }
-            xMulti = &xTemp;
-            needToFree = true;
+
+            for (int i=0; i<xMulti->val.array.rows; i++) {
+                std::vector < std::string > row;
+                for (int j=0; j<xMulti->val.array.columns; j++)
+                    row.push_back(operToScalarString(&xMulti->val.array.lparray[i * xMulti->val.array.columns + j]));
+                ret.push_back(row);
+            }
+
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+
+            return ret;
+        } catch (const std::exception &e) {
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+            std::ostringstream msg;
+            msg << "operToMatrixString: " << e.what();
+            throw std::exception(msg.str().c_str());
         }
-
-        for (int i=0; i<xMulti->val.array.rows; i++) {
-            std::vector < std::string > row;
-            for (int j=0; j<xMulti->val.array.columns; j++)
-                row.push_back(operToScalarString(&xMulti->val.array.lparray[i * xMulti->val.array.columns + j]));
-            ret.push_back(row);
-        }
-
-        if (needToFree)
-            Excel(xlFree, xlErrorMessage, 0, 1, &xTemp);
-
-        return ret;
     }
 
     DLL_API std::vector < std::vector < boost::any > > operToMatrixAny(const OPER *xMatrix) {
-        std::vector < std::vector < boost::any > > ret;
-
-        if (xMatrix->xltype & (xltypeMissing | xltypeNil))
-            return ret;
-
         OPER xTemp;
-        const OPER *xMulti;
         bool needToFree = false;
-        std::string xlErrorMessage;
+        try {
+            std::vector < std::vector < boost::any > > ret;
 
-        if (xMatrix->xltype == xltypeMulti)
-            xMulti = xMatrix;
-        else {
-            if (xlretSuccess != Excel(xlCoerce, xlErrorMessage, &xTemp, 2, xMatrix, TempInt(xltypeMulti))) {
-                std::ostringstream msg;
-                msg << "operToMatrixAny: error on call to xlCoerce: " << xlErrorMessage;
-                throw std::exception(msg.str().c_str());
+            if (xMatrix->xltype & (xltypeMissing | xltypeNil))
+                return ret;
+
+            const OPER *xMulti;
+
+            if (xMatrix->xltype == xltypeMulti)
+                xMulti = xMatrix;
+            else {
+                Excel(xlCoerce, &xTemp, 2, xMatrix, TempInt(xltypeMulti));
+                xMulti = &xTemp;
+                needToFree = true;
             }
-            xMulti = &xTemp;
-            needToFree = true;
+
+            for (int i=0; i<xMulti->val.array.rows; i++) {
+                std::vector < boost::any > row;
+                for (int j=0; j<xMulti->val.array.columns; j++)
+                   row.push_back(operToScalarAny(&xMulti->val.array.lparray[i * xMulti->val.array.columns + j]));
+                ret.push_back(row);
+            }
+
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+
+            return ret;
+        } catch (const std::exception &e) {
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+            std::ostringstream msg;
+            msg << "operToMatrixAny: " << e.what();
+            throw std::exception(msg.str().c_str());
         }
-
-        for (int i=0; i<xMulti->val.array.rows; i++) {
-            std::vector < boost::any > row;
-            for (int j=0; j<xMulti->val.array.columns; j++)
-               row.push_back(operToScalarAny(&xMulti->val.array.lparray[i * xMulti->val.array.columns + j]));
-            ret.push_back(row);
-        }
-
-        if (needToFree)
-            Excel(xlFree, xlErrorMessage, 0, 1, &xTemp);
-
-        return ret;
     }
 
 }

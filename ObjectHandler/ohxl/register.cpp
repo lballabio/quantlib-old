@@ -21,7 +21,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
 
     std::string xlErrorMessage;
 
-    Excel(xlfRegister, xlErrorMessage, 0, 10, &xDll,
+    Excel(xlfRegister, 0, 10, &xDll,
         TempStrNoSize("\x09""ohVersion"),       // function code name
         TempStrNoSize("\x01""C"),               // parameter codes
         TempStrNoSize("\x09""ohVersion"),       // function display name
@@ -32,7 +32,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x2B""returns the version number of ObjectHandler"));// function description
 
-    Excel(xlfRegister, xlErrorMessage, 0, 10, &xDll,
+    Excel(xlfRegister, 0, 10, &xDll,
         TempStrNoSize("\x0D""ohObjectCount"),   // function code name
         TempStrNoSize("\x01""N"),               // parameter codes
         TempStrNoSize("\x0D""ohObjectCount"),   // function display name
@@ -43,7 +43,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x17""#/objects in repository"));// function description
 
-    Excel(xlfRegister, xlErrorMessage, 0, 10, &xDll,
+    Excel(xlfRegister, 0, 10, &xDll,
         TempStrNoSize("\x0C""ohHandleList"),    // function code name
         TempStrNoSize("\x01""R"),               // parameter codes
         TempStrNoSize("\x0C""ohHandleList"),    // function display name
@@ -54,7 +54,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x1A""list of all object handles"));// function description
 
-    Excel(xlfRegister, xlErrorMessage, 0, 11, &xDll,
+    Excel(xlfRegister, 0, 11, &xDll,
         TempStrNoSize("\x0C""ohFieldNames"),    // function code name
         TempStrNoSize("\x02""RC"),              // parameter codes
         TempStrNoSize("\x0C""ohFieldNames"),    // function display name
@@ -66,7 +66,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x1A""display object field names"), // function description
         TempStrNoSize("\x20""handle of object to be queried  "));// description param 0
 
-    Excel(xlfRegister, xlErrorMessage, 0, 13, &xDll,
+    Excel(xlfRegister, 0, 13, &xDll,
         TempStrNoSize("\x0C""ohFieldValue"),// function code name
         TempStrNoSize("\x04""RCCP"),    // parameter codes
         TempStrNoSize("\x0C""ohFieldValue"),// function display name
@@ -80,7 +80,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x0D""name of field"),// description param 1
         TempStrNoSize("\x1D""dependency tracking trigger  "));// description param 2
 
-    Excel(xlfRegister, xlErrorMessage, 0, 11, &xDll,
+    Excel(xlfRegister, 0, 11, &xDll,
         TempStrNoSize("\x0E""ohDeleteObject"),  // function code name
         TempStrNoSize("\x03""LC#"),             // parameter codes
         TempStrNoSize("\x0E""ohDeleteObject"),  // function display name
@@ -92,7 +92,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x1D""delete object from repository"),// function description
         TempStrNoSize("\x20""handle of object to be deleted  "));// description param 0
 
-    Excel(xlfRegister, xlErrorMessage, 0, 10, &xDll,
+    Excel(xlfRegister, 0, 10, &xDll,
         TempStrNoSize("\x12""ohDeleteAllObjects"),// function code name
         TempStrNoSize("\x02""L#"),              // parameter codes
         TempStrNoSize("\x12""ohDeleteAllObjects"),// function display name
@@ -103,7 +103,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x22""delete all objects from repository"));// function description
 
-    Excel(xlfRegister, xlErrorMessage, 0, 20, &xDll,
+    Excel(xlfRegister, 0, 20, &xDll,
         TempStrNoSize("\x0B""ohDependsOn"),// function code name
         TempStrNoSize("\x0B""LPPPPPPPPPP"),// parameter codes
         TempStrNoSize("\x0B""ohDependsOn"),// function display name
@@ -124,7 +124,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x19""dummy parameter (ignored)"),// description param 8
         TempStrNoSize("\x1B""dummy parameter (ignored)  "));// description param 9
 
-    Excel(xlfRegister, xlErrorMessage, 0, 10, &xDll,
+    Excel(xlfRegister, 0, 10, &xDll,
         TempStrNoSize("\x0E""ohGetGcEnabled"),  // function code name
         TempStrNoSize("\x01""L"),               // parameter codes
         TempStrNoSize("\x0E""ohGetGcEnabled"),  // function display name
@@ -135,7 +135,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x32""get value of ObjectHandler garbage collection flag"));// function description
 
-    Excel(xlfRegister, xlErrorMessage, 0, 11, &xDll,
+    Excel(xlfRegister, 0, 11, &xDll,
         TempStrNoSize("\x0E""ohSetGcEnabled"),  // function code name
         TempStrNoSize("\x03""LL#"),             // parameter codes
         TempStrNoSize("\x0E""ohSetGcEnabled"),  // function display name
@@ -147,7 +147,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x32""set value of ObjectHandler garbage collection flag"),// function description
         TempStrNoSize("\x21""true (enable) / false (disable)  "));// description param 0
 
-    Excel(xlfRegister, xlErrorMessage, 0, 10, &xDll,
+    Excel(xlfRegister, 0, 10, &xDll,
         TempStrNoSize("\x08""ohCallGC"),        // function code name
         TempStrNoSize("\x02""L#"),              // parameter codes
         TempStrNoSize("\x08""ohCallGC"),        // function display name
@@ -158,7 +158,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x27""delete orphaned objects from repository"));// function description
 
-    Excel(xlfRegister, xlErrorMessage, 0, 12, &xDll,
+    Excel(xlfRegister, 0, 12, &xDll,
         TempStrNoSize("\x0C""ohSetLogFile"),    // function code name
         TempStrNoSize("\x03""CCP"),             // parameter codes
         TempStrNoSize("\x0C""ohSetLogFile"),    // function display name
@@ -171,7 +171,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x19""path and name of log file"),// description param 0
         TempStrNoSize("\x1C""threshold for log messages  "));// description param 1
 
-    Excel(xlfRegister, xlErrorMessage, 0, 11, &xDll,
+    Excel(xlfRegister, 0, 11, &xDll,
         TempStrNoSize("\x0D""ohSetLogLevel"),   // function code name
         TempStrNoSize("\x02""NN"),              // parameter codes
         TempStrNoSize("\x0D""ohSetLogLevel"),   // function display name
@@ -183,7 +183,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x1E""set threshold for log messages"),// function description
         TempStrNoSize("\x1C""threshold for log messages  "));// description param 0
 
-    Excel(xlfRegister, xlErrorMessage, 0, 12, &xDll,
+    Excel(xlfRegister, 0, 12, &xDll,
         TempStrNoSize("\x0C""ohLogMessage"),    // function code name
         TempStrNoSize("\x03""CCP"),             // parameter codes
         TempStrNoSize("\x0C""ohLogMessage"),    // function display name
@@ -196,7 +196,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x14""message to be logged"),// description param 0
         TempStrNoSize("\x1C""threshold for log messages  "));// description param 1
 
-    Excel(xlfRegister, xlErrorMessage, 0, 11, &xDll,
+    Excel(xlfRegister, 0, 11, &xDll,
         TempStrNoSize("\x0B""ohLogObject"),       // function code name
         TempStrNoSize("\x02""LC"),              // parameter codes
         TempStrNoSize("\x0B""ohLogObject"),     // function display name
@@ -208,7 +208,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x24""write object description to log file"),// function description
         TempStrNoSize("\x1F""handle of object to be logged  "));// description param 0
 
-    Excel(xlfRegister, xlErrorMessage, 0, 10, &xDll,
+    Excel(xlfRegister, 0, 10, &xDll,
         TempStrNoSize("\x0F""ohLogAllObjects"), // function code name
         TempStrNoSize("\x01""L"),               // parameter codes
         TempStrNoSize("\x0F""ohLogAllObjects"), // function display name

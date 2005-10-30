@@ -33,20 +33,24 @@ DLLEXPORT void xlAutoFree(XLOPER *px) {
 }
 
 DLLEXPORT int xlAutoOpen() {
-    std::string xlErrorMessage;
-
     static XLOPER xDll;
-    Excel(xlGetName, xlErrorMessage, &xDll, 0);
-
-    ohRegisterFunctions(xDll);
-
-    Excel(xlFree, xlErrorMessage, 0, 1, &xDll);
-    return 1;
+    try {
+        Excel(xlGetName, &xDll, 0);
+        ohRegisterFunctions(xDll);
+        Excel(xlFree, 0, 1, &xDll);
+        return 1;
+    } catch (...) {
+        Excel(xlFree, 0, 1, &xDll);
+        return 0;
+    }
 }
 
 DLLEXPORT int xlAutoClose() {
-    std::string xlErrorMessage;
-    Excel(xlUDF, xlErrorMessage, 0, 1, TempStrNoSize("\x12""ohDeleteAllObjects"));
-    return 1;
+    try {
+        Excel(xlUDF, 0, 1, TempStrNoSize("\x12""ohDeleteAllObjects"));
+        return 1;
+    } catch (...) {
+        return 0;
+    }
 }
 

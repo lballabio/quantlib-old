@@ -27,31 +27,35 @@ using namespace std;
 using namespace ObjHandler;
 
 DLLEXPORT int xlAutoOpen() {
-    std::string xlErrorMessage;
-
     static XLOPER xDll;
-    Excel(xlGetName, xlErrorMessage, &xDll, 0);
+    try {
+        static XLOPER xDll;
+        Excel(xlGetName, &xDll, 0);
 
-    ohRegisterFunctions(xDll);
+        ohRegisterFunctions(xDll);
 
-    Excel(xlfRegister, xlErrorMessage, 0, 7, &xDll,
-        TempStrNoSize("\x07""makeFoo"),         // function code name
-        TempStrNoSize("\x05""CCCN#"),           // parameter codes
-        TempStrNoSize("\x07""makeFoo"),         // function display name
-        TempStrNoSize("\x0A""handle,s,i"),      // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
-        TempStrNoSize("\x07""Example"));        // function category
+        Excel(xlfRegister, 0, 7, &xDll,
+            TempStrNoSize("\x07""makeFoo"),         // function code name
+            TempStrNoSize("\x05""CCCN#"),           // parameter codes
+            TempStrNoSize("\x07""makeFoo"),         // function display name
+            TempStrNoSize("\x0A""handle,s,i"),      // comma-delimited list of parameters
+            TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+            TempStrNoSize("\x07""Example"));        // function category
 
-    Excel(xlfRegister, xlErrorMessage, 0, 7, &xDll,
-        TempStrNoSize("\x09""updateFoo"),       // function code name
-        TempStrNoSize("\x04""LCCN"),            // parameter codes
-        TempStrNoSize("\x09""updateFoo"),       // function display name
-        TempStrNoSize("\x0A""handle,s,i"),      // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
-        TempStrNoSize("\x07""Example"));        // function category
+        Excel(xlfRegister, 0, 7, &xDll,
+            TempStrNoSize("\x09""updateFoo"),       // function code name
+            TempStrNoSize("\x04""LCCN"),            // parameter codes
+            TempStrNoSize("\x09""updateFoo"),       // function display name
+            TempStrNoSize("\x0A""handle,s,i"),      // comma-delimited list of parameters
+            TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+            TempStrNoSize("\x07""Example"));        // function category
 
-    Excel(xlFree, xlErrorMessage, 0, 1, &xDll);
-    return 1;
+        Excel(xlFree, 0, 1, &xDll);
+        return 1;
+    } catch (...) {
+        Excel(xlFree, 0, 1, &xDll);
+        return 0;
+    }
 }
 
 DLLEXPORT char* makeFoo(char *handleStub, char *s, long *i) {

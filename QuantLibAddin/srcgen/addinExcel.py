@@ -43,10 +43,14 @@ MAXLENERR = 'string length exceeds Excel maximum of %d:\n' % MAXLEN
 MAXPARAM = 30       # max #/params to an Excel function
 MAXPARAMERR  = 'number of function parameters exceeds max of %d' % MAXPARAM
 NUMDESC = 10        # #/params to describe a function
-REGFOOT = """    Excel(xlFree, xlErrorMessage, 0, 1, &xDll);\n
-    return 1;
+REGFOOT = """        Excel(xlFree, 0, 1, &xDll);\n
+        return 1;
+    } catch (...) {
+        Excel(xlFree, 0, 1, &xDll);
+        return 0;
+    }
 }\n\n"""
-REGLINE = '        TempStrNoSize("\\x%02X""%s")%s'
+REGLINE = '            TempStrNoSize("\\x%02X""%s")%s'
 XL_REG_PARAM = 'xlRegisterParam'
 XL_REG_RET = 'xlRegisterReturn'
 XL_LIST_PARAMS = 'xlListParams'
@@ -142,7 +146,7 @@ class AddinExcel(addin.Addin):
         else:
             suffix = ','
         str1 = REGLINE % (len(text), text, suffix)
-        return '%-40s// %s\n' % (str1, comment)
+        return '%-45s// %s\n' % (str1, comment)
 
     def generateParamString(self, function):
         'generate string to register function parameters'
@@ -175,7 +179,7 @@ class AddinExcel(addin.Addin):
         # FIXME validation below to be moved into parse.py?
         if numRegisterParams > MAXPARAM:
             raise ValueError, MAXPARAMERR
-        fileHeader.write('    Excel(xlfRegister, xlErrorMessage, 0, %d, &xDll,\n' % numRegisterParams)
+        fileHeader.write('        Excel(xlfRegister, 0, %d, &xDll,\n' % numRegisterParams)
         fileHeader.write(self.formatLine(function.name, 'function code name'))
         fileHeader.write(self.formatLine(paramStr, 'parameter codes'))
         fileHeader.write(self.formatLine(function.name, 'function display name'))
@@ -217,7 +221,7 @@ class AddinExcel(addin.Addin):
             category = self.categories[common.DICT][categoryKey]
             if not category.platformSupported(self.platformId):
                 continue
-            fileHeader.write('    // %s\n\n' % category.displayName)
+            fileHeader.write('        // %s\n\n' % category.displayName)
             for functionKey in category.functions[common.KEYS]:
                 function = category.functions[common.DICT][functionKey]
                 if not function.platformSupported(self.platformId):

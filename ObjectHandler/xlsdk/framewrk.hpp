@@ -30,7 +30,7 @@
 void far __cdecl debugPrintf(LPSTR lpFormat, ...);
 LPSTR GetTempMemory(int cBytes);
 void FreeAllTempMemory(void);
-int __cdecl Excel(int xlfn, std::string &errorMessage, LPXLOPER pxResult, int count, ...);
+void __cdecl Excel(int xlfn, LPXLOPER pxResult, int count, ...);
 LPXLOPER TempNum(double d);
 //LPXLOPER TempStr(LPSTR lpstr);
 LPXLOPER TempStrNoSize(LPSTR lpstr);

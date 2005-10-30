@@ -25,29 +25,32 @@ using namespace std;
 using namespace ObjHandler;
 
 DLLEXPORT int xlAutoOpen() {
-
-    std::string xlErrorMessage;
     static XLOPER xDll;
-    Excel(xlGetName, xlErrorMessage, &xDll, 0);
+    try {
+        Excel(xlGetName, &xDll, 0);
 
-    Excel(xlfRegister, xlErrorMessage, 0, 7, &xDll,
-        TempStrNoSize("\x0F""addin2UpdateFoo"), // function code name
-        TempStrNoSize("\x04""LCCN"),            // parameter codes
-        TempStrNoSize("\x0F""addin2UpdateFoo"), // function display name
-        TempStrNoSize("\x0A""handle,s,i"),      // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
-        TempStrNoSize("\x07""Example"));        // function category
+        Excel(xlfRegister, 0, 7, &xDll,
+            TempStrNoSize("\x0F""addin2UpdateFoo"), // function code name
+            TempStrNoSize("\x04""LCCN"),            // parameter codes
+            TempStrNoSize("\x0F""addin2UpdateFoo"), // function display name
+            TempStrNoSize("\x0A""handle,s,i"),      // comma-delimited list of parameters
+            TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+            TempStrNoSize("\x07""Example"));        // function category
 
-    Excel(xlfRegister, xlErrorMessage, 0, 7, &xDll,
-        TempStrNoSize("\x0E""addin2QueryFoo"),  // function code name
-        TempStrNoSize("\x02""NC"),              // parameter codes
-        TempStrNoSize("\x0E""addin2QueryFoo"),  // function display name
-        TempStrNoSize("\x06""handle"),          // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
-        TempStrNoSize("\x07""Example"));        // function category
+        Excel(xlfRegister, 0, 7, &xDll,
+            TempStrNoSize("\x0E""addin2QueryFoo"),  // function code name
+            TempStrNoSize("\x02""NC"),              // parameter codes
+            TempStrNoSize("\x0E""addin2QueryFoo"),  // function display name
+            TempStrNoSize("\x06""handle"),          // comma-delimited list of parameters
+            TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+            TempStrNoSize("\x07""Example"));        // function category
 
-    Excel(xlFree, xlErrorMessage, 0, 1, &xDll);
-    return 1;
+        Excel(xlFree, 0, 1, &xDll);
+        return 1;
+    } catch (...) {
+        Excel(xlFree, 0, 1, &xDll);
+        return 0;
+    }
 }
 
 DLLEXPORT short int *addin2UpdateFoo(char *handle, char *s, long *i) {
