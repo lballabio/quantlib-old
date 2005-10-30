@@ -28,7 +28,7 @@ namespace ObjHandler {
 
     DLL_API std::string getHandleFull(const std::string &handle);
     DLL_API void stringToChar(char *c, const std::string &s);
-    DLL_API void stringToXloper(XLOPER &xStr, const std::string &s, const bool &xlToFree = true);
+    DLL_API void stringToXloper(XLOPER &xStr, const std::string &s);
     DLL_API void scalarAnyToXloper(
         XLOPER &xScalar, 
         const boost::any &any, 

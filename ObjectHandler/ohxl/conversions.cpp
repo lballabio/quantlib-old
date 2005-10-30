@@ -21,14 +21,12 @@
 
 namespace ObjHandler {
 
-    DLL_API void stringToXloper(XLOPER &xStr, const std::string &s, const bool &xlToFree) {
+    DLL_API void stringToXloper(XLOPER &xStr, const std::string &s) {
         int len = __min(XL_MAX_STR_LEN, s.length());
         xStr.val.str = new char[ len + 1 ];
         if (!xStr.val.str) 
             throw std::exception("stringToXloper: error calling new");
-        xStr.xltype = xltypeStr;
-        if (xlToFree)
-            xStr.xltype |= xlbitDLLFree;
+        xStr.xltype = xltypeStr | xlbitDLLFree;
         if (len)
             strncpy(xStr.val.str + 1, s.c_str(), len);
         xStr.val.str[0] = len;

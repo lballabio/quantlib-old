@@ -185,12 +185,13 @@ LPXLOPER TempNum(double d)
 //          the string before compiling, and then avoid
 //          using this function.
 //
+
 //      (3) Behavior is undefined for non-null terminated
 //          input or strings longer than 255 characters.
 //
 ///***************************************************************************
-
-/*LPXLOPER TempStr(LPSTR lpstr)
+/*
+LPXLOPER TempStr(LPSTR lpstr)
 {
     LPXLOPER lpx;
 
@@ -207,7 +208,8 @@ LPXLOPER TempNum(double d)
     lpx->val.str = lpstr;
 
     return lpx;
-}*/
+}
+*/
 
 /*
     Function TempStrNoSize used in place of the standard
@@ -228,6 +230,24 @@ LPXLOPER TempStrNoSize(LPSTR lpstr)
     lpx->xltype = xltypeStr;
     lpx->val.str = lpstr;
 
+    return lpx;
+}
+
+LPXLOPER TempStrStl(const std::string &s) {
+    LPXLOPER lpx;
+
+    lpx = (LPXLOPER) GetTempMemory(sizeof(XLOPER));
+
+    if (!lpx)
+    {
+        return 0;
+    }
+    int len = __min(255, s.length());
+    lpx->xltype = xltypeStr;
+    lpx->val.str = GetTempMemory(len + 1);
+    if (!lpx->val.str) return 0;
+    strncpy(lpx->val.str + 1, s.c_str(), len);
+    lpx->val.str[0] = (BYTE) len;
     return lpx;
 }
 

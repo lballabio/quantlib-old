@@ -74,12 +74,6 @@ namespace ObjHandler {
         XLOPER xReftext;
         XLOPER xOldName;
 
-        // XLOPER which might require an explicit delete in the event of an exception
-
-        XLOPER xName;
-        xName.xltype = xltypeNil;
-
-
         std::string xlErrorMessage;
 
         try {
@@ -149,14 +143,11 @@ namespace ObjHandler {
             // name the calling cell
 
             XLOPER xRet;
-            stringToXloper(xName, key, false);
-            if (xlretSuccess != Excel(xlfSetName, xlErrorMessage, &xRet, 2, &xName, &xCaller)) {
+            if (xlretSuccess != Excel(xlfSetName, xlErrorMessage, &xRet, 2, TempStrStl(key), &xCaller)) {
                 std::ostringstream msg;
                 msg << "error on call to xlfSetName: " << xlErrorMessage;
                 throw std::exception(msg.str().c_str());
             }
-            xName.xltype = xltypeNil;
-            delete [] xName.val.str;
             Excel(xlFree, xlErrorMessage, 0, 1, &xCaller);
             if (xRet.xltype != xltypeBool || !xRet.val.boolean)
                 throw std::exception("error on call to xlfSetName");
@@ -174,8 +165,6 @@ namespace ObjHandler {
             // free any memory that may have been allocated
 
             Excel(xlFree, xlErrorMessage, 0, 3, &xCaller, &xReftext, &xOldName);
-            if (xName.xltype == xltypeStr)
-                delete [] xName.val.str;
 
             // propagate the exception
 
@@ -188,31 +177,16 @@ namespace ObjHandler {
 
     void ObjectHandlerXL::deleteName(const std::string &handle) {
 
-        XLOPER xName;
-        xName.xltype = xltypeNil;
-
         try {
             std::string xlErrorMessage;
-
             const std::string key = parseHandle(handle);
-            stringToXloper(xName, key, false);
-            if (xlretSuccess != Excel(xlfSetName, xlErrorMessage, 0, 1, &xName)) {
+            if (xlretSuccess != Excel(xlfSetName, xlErrorMessage, 0, 1, TempStrStl(key))) {
                 std::ostringstream msg;
                 msg << "error on call to xlfSetName: " << xlErrorMessage;
                 throw std::exception(msg.str().c_str());
             }
-            xName.xltype = xltypeNil;
-            delete [] xName.val.str;
 
         } catch (const std::exception &e) {
-
-            // free any memory that may have been allocated
-
-            if (xName.xltype == xltypeStr)
-                delete [] xName.val.str;
-
-            // propagate the exception
-
             std::ostringstream err;
             err << "ObjectHandlerXL::deleteObject: " << e.what();
             throw std::exception(err.str().c_str());
@@ -241,34 +215,22 @@ namespace ObjHandler {
         XLOPER xDef;
         XLOPER xRef;
 
-        // XLOPERs which might require an explicit delete in the event of an exception
-
-        XLOPER xName;
-        XLOPER xText;
-        xName.xltype = xText.xltype = xltypeNil;
-
         std::string xlErrorMessage;
         try {
         
             std::string key = handle.substr(handle.length() - KEY_WIDTH - 1);
-            stringToXloper(xName, key, false);
-            if (xlretSuccess != Excel(xlfGetName, xlErrorMessage, &xDef, 1, &xName)) {
+            if (xlretSuccess != Excel(xlfGetName, xlErrorMessage, &xDef, 1, TempStrStl(key))) {
                 std::ostringstream msg;
                 msg << "error on call to xlfGetName: " << xlErrorMessage;
                 throw std::exception(msg.str().c_str());
             }
-            xName.xltype = xltypeNil;
-            delete [] xName.val.str;
 
             std::string address = operToScalarString(&xDef);
-            stringToXloper(xText, address.substr(1), false);
-            if (xlretSuccess != Excel(xlfTextref, xlErrorMessage, &xRef, 1, &xText)) {
+            if (xlretSuccess != Excel(xlfTextref, xlErrorMessage, &xRef, 1, TempStrStl(address.substr(1)))) {
                 std::ostringstream msg;
                 msg << "error on call to xlfTextref: " << xlErrorMessage;
                 throw std::exception(msg.str().c_str());
             }
-            xText.xltype = xltypeNil;
-            delete [] xText.val.str;
 
             bool ret = (xRef.xltype & (xltypeRef | xltypeSRef)) != 0;
             Excel(xlFree, xlErrorMessage, 0, 2, &xDef, &xRef);
@@ -279,10 +241,6 @@ namespace ObjHandler {
             // free any memory that may have been allocated
 
             Excel(xlFree, xlErrorMessage, 0, 2, &xDef, &xRef);
-            if (xName.xltype == xltypeStr)
-                delete [] xName.val.str;
-            if (xText.xltype == xltypeStr)
-                delete [] xText.val.str;
 
             // propagate the exception
 

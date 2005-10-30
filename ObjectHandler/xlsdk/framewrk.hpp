@@ -34,6 +34,7 @@ int __cdecl Excel(int xlfn, std::string &errorMessage, LPXLOPER pxResult, int co
 LPXLOPER TempNum(double d);
 //LPXLOPER TempStr(LPSTR lpstr);
 LPXLOPER TempStrNoSize(LPSTR lpstr);
+LPXLOPER TempStrStl(const std::string &s);
 LPXLOPER TempBool(int b);
 LPXLOPER TempInt(short int i);
 LPXLOPER TempActiveRef(WORD rwFirst,WORD rwLast,BYTE colFirst,BYTE colLast);
