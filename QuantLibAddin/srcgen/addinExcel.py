@@ -45,6 +45,12 @@ MAXPARAMERR  = 'number of function parameters exceeds max of %d' % MAXPARAM
 NUMDESC = 10        # #/params to describe a function
 REGFOOT = """        Excel(xlFree, 0, 1, &xDll);\n
         return 1;
+    } catch (const std::exception &e) {
+        std::ostringstream err;
+        err << "Error loading QuantLibAddin: " << e.what();
+        Excel(xlcAlert, 0, 1, TempStrStl(err.str()));
+        Excel(xlFree, 0, 1, &xDll);
+        return 0;
     } catch (...) {
         Excel(xlFree, 0, 1, &xDll);
         return 0;

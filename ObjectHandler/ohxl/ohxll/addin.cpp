@@ -18,6 +18,7 @@
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ohxl/register.hpp>
 #include <ohxl/export.hpp>
+#include <sstream>
 
 DLLEXPORT void xlAutoFree(XLOPER *px) {
     if (px->xltype & xltypeStr && px->val.str)
@@ -39,6 +40,12 @@ DLLEXPORT int xlAutoOpen() {
         ohRegisterFunctions(xDll);
         Excel(xlFree, 0, 1, &xDll);
         return 1;
+    } catch (const std::exception &e) {
+        std::ostringstream err;
+        err << "Error loading ObjectHandler: " << e.what();
+        Excel(xlcAlert, 0, 1, TempStrStl(err.str()));
+        Excel(xlFree, 0, 1, &xDll);
+        return 0;
     } catch (...) {
         Excel(xlFree, 0, 1, &xDll);
         return 0;

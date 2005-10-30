@@ -29,7 +29,6 @@ using namespace ObjHandler;
 DLLEXPORT int xlAutoOpen() {
     static XLOPER xDll;
     try {
-        static XLOPER xDll;
         Excel(xlGetName, &xDll, 0);
 
         ohRegisterFunctions(xDll);
@@ -52,6 +51,12 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlFree, 0, 1, &xDll);
         return 1;
+    } catch (const std::exception &e) {
+        std::ostringstream err;
+        err << "Error loading ExampleXllStatic: " << e.what();
+        Excel(xlcAlert, 0, 1, TempStrStl(err.str()));
+        Excel(xlFree, 0, 1, &xDll);
+        return 0;
     } catch (...) {
         Excel(xlFree, 0, 1, &xDll);
         return 0;
