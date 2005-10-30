@@ -77,8 +77,11 @@ namespace ObjHandler {
 
             // validate stub
 
-            if (handleStub.find(KEY_DELIMITER) != std::string::npos)
-                throw std::exception("object handle must not contain " + KEY_DELIMITER);
+            if (handleStub.find(KEY_DELIMITER) != std::string::npos) {
+                std::ostringstream err;
+                err << "object handle must not contain " << KEY_DELIMITER;
+                throw std::exception(err.str().c_str());
+            }
 
             // obtain reference to calling cell
 
