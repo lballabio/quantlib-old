@@ -28,10 +28,12 @@
 This document provides support on diagnosing and resolving problems with QuantLibAddin.  Emphasis is placed on QuantLibAddin for Microsoft Excel and much of the information is relevant for troubleshooting Excel addins in general.
 
 \ref loaded\n
-\ref bugfixes\n
+\ref bugfix_excel\n
+\ref bugfix_vc\n
 \ref wizard\n
 \ref removeexcel\n
-\ref crashes\n
+\ref startup_error\n
+\ref startup_crash\n
 \ref prereqs\n
 \ref debugexcel\n
 \ref debuglinux\n
@@ -40,14 +42,21 @@ This document provides support on diagnosing and resolving problems with QuantLi
 
 Please follow the steps below when loading QuantLibAddin for Excel:
 
+\li ensure that log4cxx.dll resides in a directory which is in your PATH e.g. C:\\WINDOWS\\SYSTEM32
 \li start Excel
 \li load a client worksheet, e.g. \b QuantLibAddin\\Clients\\Excel\\QLADemo.xls
-\li load the QuantLib Excel Addin from directory \b QuantLibAddin\\Addins\\Excel\\xll.  The name of the file depends upon how it was compiled. For example when compiled with Microsoft Visual Studio version 6, configuration "Win32 Debug", the addin is called <strong>QuantLibAddin-vc6-mt-sgd.xll</strong>.
+\li load the QuantLib Excel Addin from directory \b QuantLibAddin\\Addins\\ExcelStatic\\xll.  The name of the file depends upon how it was compiled. For example when compiled with VC6 configuration "Win32 Debug MTDLL" the addin is called <strong>QuantLibAddin-vc6-mt-gd.xll</strong>.
 \li You may need to hit \b Ctrl-Alt-F9 to force recalculation of all cells in all open workbooks.
 
-\section bugfixes Install All Bug Fixes for Your Version of Microsoft Excel
+\section bugfix_excel Install All Bug Fixes for Your Version of Microsoft Excel
 
 Initial releases of certain versions of  Microsoft Excel suffer from bugs which cause Excel Addins to malfunction.  Please visit the <a href="http://office.microsoft.com">Microsoft Office web page</a> and check for any bug fixes which may be available for your copy of Office.  (You need to use the Internet Explorer browser to visit this page).
+
+\section bugfix_vc Install All Bug Fixes for Your Version of Microsoft Visual C++
+
+Initial releases of certain versions of Microsoft Visual C++ suffer from bugs which cause problems building and using Excel Addins.  Please visit the Microsoft website and check for any bug fixes which may be available for your version of VC.
+
+In particular early releases of VC6 suffer from a bug which causes the command "Debug/Attach to Process" to display an empty list of processes and VC6 users should install Service Pack 6.
 
 \section wizard Avoid the Excel Function Wizard
 
@@ -56,8 +65,8 @@ The Excel Function Wizard can exacerbate a bug in an Addin, so if an Addin is ma
 The Function Wizard (launched by clicking the "fx" button next to the Formula Bar) allows the user to specify function inputs by clicking in selected cell ranges.  The Function Wizard calls the underlying cell formula repeatedly every time the inputs change - so the formula will get invoked repeatedly with incomplete or nonsensical inputs.  Any bug in the validation of the inputs may cause the formula to malfunction or crash.  Try calling the function without using the Function Wizard - for example, format the call to the function in Notepad, and paste the formula directly into a cell.
 
 A well written Addin anticipates the use of the Function Wizard in one of two ways:
-1) It is possible for the Addin to determine when it's being invoked from the Function Wizard, possibly changing its behavior accordingly, e.g. by returning a default value.  This topic is discussed in more detail at <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/office97/html/SF822.asp">this link on the Microsoft web site.</a>\n
-2) The Addin can validate its inputs, and ensure that it will always behave sensibly even for incomplete or invalid inputs
+\li It is possible for the Addin to determine when it's being invoked from the Function Wizard, possibly changing its behavior accordingly, e.g. by returning a default value.  This topic is discussed in more detail at <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/office97/html/SF822.asp">this link on the Microsoft web site.</a>\n
+\li The Addin can validate its inputs, and ensure that it will always behave sensibly even for incomplete or invalid inputs
 
 QuantLibAddin adopts the second approach.
 
@@ -74,7 +83,20 @@ the following list constitutes a progression in build complexity:
 \li QuantLibAddin project ClientCppDemo
 \li QuantLibAddin project AddinExcel (static or dynamic)
 
-\section crashes Excel Crashes when the Addin is Loaded
+\section startup_error Excel Displays an Error Message when the Addin is Loaded
+
+When you try to load an XLL into Excel, you may get a warning message such as "This file is not in a recognizable format" or "<filename>.xll is not a valid add-in".  Excel may attempt to load the XLL as a text file.
+
+These errors indicate that the XLL has a runtime dependency which is not satisfied.  Some common causes in the QuantLibAddin environment:
+
+\li <strong>log4cxx.dll is missing</strong> - AddinExcelStatic requires that the log4cxx DLL reside in a directory which is in your PATH e.g. C:\\WINDOWS\\SYSTEM32
+\li <strong> ObjectHandler XLL is missing</strong> - AddinExcelDynamic also requires that the ObjectHandler XLL be loaded before the AddinExcelDynamic XLL
+
+If you compiled your XLL on one machine, and are trying to use it on another, please ensure that the C runtime library is present on the target machine.  For example an XLL compiled in VC6 using runtime library Release Multithreaded DLL has a runtime dependency on files MSVCP60.DLL and MSVCRT.DLL.
+
+Microsoft Visual C++ includes the utility DEPENDS.EXE which can be used to identify the runtime dependencies of a binary.
+
+\section startup_crash Excel Crashes when the Addin is Loaded
 
 There are various bugs which can cause an Addin to crash Excel at startup, for example:
 \li Any bug in the Addin code which causes an access violation as the Addin is loaded
@@ -96,13 +118,13 @@ You can then debug as the addin loads.
 
 \section debugexcel Debugging QuantLibAddin under Excel
 
-\li following the instructions under section \ref loaded - start Excel and load the QuantLib Excel Addin and the client worksheet QLADemo.xls.  (If you can't get this far without crashing Excel, please refer to section \ref crashes).
+\li following the instructions under section \ref loaded - start Excel and load the QuantLib Excel Addin and the client worksheet QLADemo.xls.  (If you can't get this far without crashing Excel, please refer to section \ref startup_crash).
 \li Go into Microsoft Visual Studio and close any workspace which may be open
 \li do <strong>Build/Debug/Attach to Process</strong>
-\li Select Excel from the list of processes.  [ If the list of processes is empty: early releases of Microsoft Visual C++ Version 6 suffered from a bug which caused "Attach to Process" to malfunction - go to the Microsoft website to pick up all available bug fixes for your copy of VC6 ]
+\li Select Excel from the list of processes.  (If the list of processes is empty: please refer to section \ref bugfix_vc)
 \li From VC, open up a file containing the source code you'd like to debug - for example file <strong>QuantLibAddin\\Addins\\Excel\\volatilities.cpp</strong>
 \li Identify a function you'd like to debug, for example \b qlBlackConstantVol.  Put the cursor on a line in the function and hit F9 to set a breakpoint on the line
-\li Back in Excel, trigger the breakpoint - select the cell containing the relevant formula, e.g. \b QL_BLACK_SCHOLES_PROCESS, hit F2 to force the cell to recalc
+\li Back in Excel, trigger the breakpoint - select the cell containing the relevant formula, e.g. \b qlBlackConstantVol, hit F2 to force the cell to recalc
 \li Back in VC, execution should now be stopped on the breakpoint and you can debug from there, e.g.\n
 F10 - advance a line\n
 F11 - step into a function\n
