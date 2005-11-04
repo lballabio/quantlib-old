@@ -549,10 +549,6 @@ class BarrierOptionPtr : public boost::shared_ptr<Instrument> {
                          new BarrierOption(barrierType, barrier, rebate,
                                            process,stPayoff,exercise,engine));
         }
-        Real errorEstimate() {
-            return boost::dynamic_pointer_cast<BarrierOption>(*self)
-                 ->errorEstimate();
-        }
         Real delta() {
             return boost::dynamic_pointer_cast<BarrierOption>(*self)->delta();
         }
