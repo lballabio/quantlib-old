@@ -41,22 +41,20 @@ log4cxx.  ObjectHandler has been tested against log4cxx version 0.9.7.
 ObjectHandler is available for download from the 
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=141162">QuantLib downloads page on sourceforge</a>
 
-<ul>
-  <li>\ref inst_windows
-    <ul>
-    <li>\ref inst_win_prerequisites</li>
-    <li>\ref inst_win_installation</li>
-    <li>\ref inst_win_usage</li>
-    </ul>
-  </li>
-  <li>\ref inst_autoconf
-    <ul>
-    <li>\ref inst_auto_prerequisites</li>
-    <li>\ref inst_auto_installation</li>
-    <li>\ref inst_auto_usage</li>
-    </ul>
-  </li>
-</ul>
+<dl>
+<dt>\ref inst_windows</dt>
+<dd><dl>
+<dt>\ref inst_win_prerequisites</dt>
+<dt>\ref inst_win_installation</dt>
+<dt>\ref inst_win_usage</dt>
+</dl></dd>
+<dt>\ref inst_autoconf</dt>
+<dd><dl>
+<dt>\ref inst_auto_prerequisites</dt>
+<dt>\ref inst_auto_installation</dt>
+<dt>\ref inst_auto_usage</dt>
+</dl></dd>
+</dl>
 
 \section inst_windows Windows
 

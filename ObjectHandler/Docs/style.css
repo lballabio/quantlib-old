@@ -1,74 +1,130 @@
-
-span.googlestyle {
-    font-family: arial,sans-serif; font-size: 80%
-}
-
-a:active { text-decoration: none }
-
 table.layout {
     width: 100%;
-    padding-left: 1em;
-    padding-right: 1em;
-    border-left: 0;
-    border-right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: georgia, verdana, arial, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font-family: Arial;
 }
 
-td.main {
-    font-family: georgia, verdana, arial, sans-serif;
-    vertical-align: top;
+a.menu:link {
+    font-family: Arial;
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
+}
+a.menu:visited {
+    font-family: Arial;
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
+}
+a.menu:hover {
+    font-family: Arial;
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
+    background-color: #2d3e7d;
+}
+a.menu:active {
+    font-family: Arial;
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
 }
 
-td.navbar {
-    width: 20%;
-    font-family: verdana, arial, sans-serif;
-    color: #000;
-    background-color: #ccccff;
-    border-width: 1px;
-    border-color: #000;
-    vertical-align: top;
-    padding: 1em;
+a.menuheader:link {
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
+}
+a.menuheader:visited {
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
+}
+a.menuheader:hover {
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
+    background-color: #2d3e7d;
+}
+a.menuheader:active {
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
 }
 
-.navbartitle { text-align: center }
-
-a.navlink { font-weight: normal }
-
-.hide { display: none }
-
-.addtopspace { margin-top: 2em }
-
-.endmatter {
-    font-family: times-new-roman, sans-serif;
-    font-size: 60%;
-    font-style: italic;
+a.menugraphic:link {
+    font-family: Arial;
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
+}
+a.menugraphic:visited {
+    font-family: Arial;
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
+}
+a.menugraphic:hover {
+    font-family: Arial;
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
+    background-color: transparent;
+}
+a.menugraphic:active {
+    font-family: Arial;
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
 }
 
-.button { border-style: none }
-
-.center { text-align: center }
-
-.right { text-align: right }
-
-OL.navlinklist{
-    line-height: 2.0;
-    list-style-type: decimal;
+.menuheadernolink {
+    color: white;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
 }
 
-pre {
-    margin-left: 1%;
-    color: green;
-    background: white;
-    font-family: monospace;
+td {
+    background-repeat: repeat-y;
 }
 
-
-.rule { margin-top: 2em }
-.recom { }
-.rationale { FONT-SIZE: 0.95em }
-
+.version {
+    color: white;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+}
 
 /* Doxygen-generated CSS included below */
 
@@ -86,7 +142,7 @@ H2 {
        font-size: 120%;
 }
 H3 {
-       font-size: 110%;
+       font-size: 100%;
 }
 CAPTION { font-weight: bold }
 DIV.qindex {
@@ -106,6 +162,17 @@ DIV.nav {
 	margin: 2px;
 	padding: 2px;
 	line-height: 140%;
+}
+DIV.navtab {
+       background-color: #eeeeff;
+       border: 1px solid #b0b0b0;
+       text-align: center;
+       margin: 2px;
+       margin-right: 15px;
+       padding: 2px;
+}
+TD.navtab {
+       font-size: 70%;
 }
 A.qindex {
        text-decoration: none;
@@ -143,7 +210,8 @@ A.codeRef:visited { font-weight: normal; color: #0000FF}
 A:hover { text-decoration: none; background-color: #f2f2ff }
 DL.el { margin-left: -1cm }
 .fragment {
-       font-family: monospace
+       font-family: Fixed, monospace;
+       font-size: 95%;
 }
 PRE.fragment {
 	border: 1px solid #CCCCCC;

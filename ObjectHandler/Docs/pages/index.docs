@@ -21,7 +21,7 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! \page index Introduction
+/*! \page index ObjectHandler
 
     \section overview Overview
     Integration of a generic C++ library such as Quantlib
