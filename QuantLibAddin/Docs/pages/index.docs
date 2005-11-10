@@ -21,39 +21,39 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! \page index Introduction
+/*! \page index QuantLibAddin
 
-    \section overview Overview
-    QuantLibAddin supplements QuantLib's existing C++ API 
-    with an additional, higher-level API, implemented as
-    a procedural interface that can be deployed on any platform capable 
-    of linking C++ libraries. QuantLibAddin is less flexible than the 
-    native API but allows QuantLib functionality to be loaded directly 
-    to end-user environments such as spreadsheets.
+\section overview Overview
+%QuantLibAddin supplements QuantLib's existing C++ API 
+with an additional, higher-level API, implemented as
+a procedural interface that can be deployed on any platform capable 
+of linking C++ libraries. %QuantLibAddin is less flexible than the 
+native API but allows QuantLib functionality to be loaded directly 
+to end-user environments such as spreadsheets.
 
-    \section quantlib QuantLib
-    QuantLibAddin shares the QuantLib project structure with regard
-    to distribution, licensing, etc., all of which is documented
-    on the main QuantLib website:<br>
-    http://quantlib.org
+\section quantlib QuantLib
+%QuantLibAddin shares the QuantLib project structure with regard
+to distribution, licensing, etc., all of which is documented
+on the main QuantLib website:<br>
+http://quantlib.org
 
-    \section gettingstarted Getting Started
+\section gettingstarted Getting Started
 
-    QuantLibAddin supports the following platforms
-    \li Microsoft Excel
-    \li C/C++ (standalone programs)
-    \li OpenOffice.Org Calc (Windows and Linux)
-    \li Guile
+%QuantLibAddin supports the following platforms
+\li Microsoft Excel
+\li C/C++ (standalone programs)
+\li OpenOffice.Org Calc (Windows and Linux)
+\li Guile
 
-    Please refer to document \ref installation for instructions on
-    building QuantLibAddin.
+Please refer to document \ref installation for instructions on
+building %QuantLibAddin.
 
-    The document \ref functionsoverview provides platform-independent,
-    end-user documentation of QuantLibAddin functionality.  
+The document \ref functionsoverview provides platform-independent,
+end-user documentation of %QuantLibAddin functionality.  
 
-    Additional information is available from the links at the left, 
-    if you have a question which is not answered here please send a 
-    message to quantlib-dev@lists.sf.net.
+Additional information is available from the links at the left, 
+if you have a question which is not answered here please send a 
+message to quantlib-dev@lists.sf.net.
 
 */
 

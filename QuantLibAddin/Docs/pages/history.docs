@@ -21,9 +21,13 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! \page history Version history
+/*! \page history Version History
 
 <strong>Release 0.3.12 - ??? 200?</strong>
+
+CORE
+
+- Documentation revised and extended
 
 FUNCTIONALITY
 
@@ -42,7 +46,7 @@ FUNCTIONALITY
 
 - 13 new functions / 70 in total
 - Coupon Vectors, Interpolation, Schedules, Swaps (Aurelien Chanudet)
-- Polymorphic behavior in exported QuantLibAddin functions (Plamen Neykov)
+- Polymorphic behavior in exported %QuantLibAddin functions (Plamen Neykov)
 - support for direct calls to underlying QuantLib functions (Plamen Neykov)
 - optional function parameters (Plamen Neykov), default values
 - source code generation refactored for improved OO/maintainability

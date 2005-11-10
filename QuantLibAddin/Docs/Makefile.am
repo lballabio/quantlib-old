@@ -2,13 +2,13 @@
 EXTRA_DIST = \
     qladdin.doxy \
     qla_footer.html \
-    qla_footeronline.html \
     qla_header.html \
+    qla_headeronline.html \
     QuantLibAddin-docs.hhp \
-    quantlib.css
+    style.css
 
 DOXYGEN_CONFIG := qladdin.doxy
-DOXYGEN_CUSTOM := quantlib.css qla_header.html qla_footer.html
+DOXYGEN_CUSTOM := style.css qla_header.html qla_footer.html
 DOXYGEN_INPUT := $(shell find ${top_srcdir}/qla -name *.hpp) \
                  $(wildcard pages/*.docs)
 
@@ -25,18 +25,19 @@ DOXYGEN_INPUT := $(shell find ${top_srcdir}/qla -name *.hpp) \
 dist-hook:
 	mkdir -p $(distdir)/pages $(distdir)/images
 	cp -p $(srcdir)/pages/*.docs $(distdir)/pages
-	cp -p $(srcdir)/images/*.bmp $(srcdir)/images/*.eps \
+	cp -p $(srcdir)/images/*.gif $(srcdir)/images/*.ico \
 	      $(srcdir)/images/*.jpg $(srcdir)/images/*.png \
-	      $(srcdir)/images/*.pdf $(srcdir)/images/*.ico $(distdir)/images
+	      $(distdir)/images
 
 docs-all: docs-html
 docs-dist: docs-html-dist
 
 docs-html: .time-stamp-html
 .time-stamp-html: .time-stamp
+	cp images/*.gif html
+	cp images/*.ico html
 	cp images/*.jpg html
 	cp images/*.png html
-	cp images/*.ico html
 	touch .time-stamp-html
 
 docs-html-dist: docs-html
@@ -55,18 +56,18 @@ docs-online: .time-stamp-online
 	       qladdin.doxy > .qladdin.doxy
 	$(DOXYGEN) .qladdin.doxy
 	rm .qladdin.doxy
+	cp images/*.gif html-online
+	cp images/*.ico html-online
 	cp images/*.jpg html-online
 	cp images/*.png html-online
-	cp images/*.ico html-online
 	touch .time-stamp-online
 
 docs-clean:
-	rm -Rf html-online html man
+	rm -Rf html-online html
 	rm -f .time-stamp*
 
 .time-stamp: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	$(SED) -e "s/GENERATE_MAN           = NO/GENERATE_MAN           = YES/" \
-           -e "s/GENERATE_HTML          = NO/GENERATE_HTML          = YES/" \
+	$(SED) -e "s/GENERATE_HTML          = NO/GENERATE_HTML          = YES/" \
            -e "s|qla_basepath|${BASEPATH}/|" \
            -e "s|qla_version|$(VERSION)|" \
 	       qladdin.doxy > .qladdin.doxy

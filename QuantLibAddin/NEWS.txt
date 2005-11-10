@@ -1,5 +1,9 @@
 Release 0.3.12 - ??? 200?
 
+CORE
+
+- Documentation revised and extended
+
 FUNCTIONALITY
 
 - backward & forward flat interpolators

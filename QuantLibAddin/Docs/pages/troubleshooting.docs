@@ -25,7 +25,7 @@
 
 \section overview Overview
 
-This document provides support on diagnosing and resolving problems with QuantLibAddin.  Emphasis is placed on QuantLibAddin for Microsoft Excel and much of the information is relevant for troubleshooting Excel addins in general.
+This document provides support on diagnosing and resolving problems with %QuantLibAddin.  Emphasis is placed on %QuantLibAddin for Microsoft Excel and much of the information is relevant for troubleshooting Excel addins in general.
 
 \ref loaded\n
 \ref bugfix_excel\n
@@ -40,12 +40,12 @@ This document provides support on diagnosing and resolving problems with QuantLi
 
 \section loaded Ensure Everything is Loaded Correctly
 
-Please follow the steps below when loading QuantLibAddin for Excel:
+Please follow the steps below when loading %QuantLibAddin for Excel:
 
 \li ensure that log4cxx.dll resides in a directory which is in your PATH e.g. C:\\WINDOWS\\SYSTEM32
 \li start Excel
-\li load a client worksheet, e.g. \b QuantLibAddin\\Clients\\Excel\\QLADemo.xls
-\li load the QuantLib Excel Addin from directory \b QuantLibAddin\\Addins\\ExcelStatic\\xll.  The name of the file depends upon how it was compiled. For example when compiled with VC6 configuration "Win32 Debug MTDLL" the addin is called <strong>QuantLibAddin-vc6-mt-gd.xll</strong>.
+\li load a client worksheet, e.g. \b %QuantLibAddin\\Clients\\Excel\\QLADemo.xls
+\li load the QuantLib Excel Addin from directory \b %QuantLibAddin\\Addins\\ExcelStatic\\xll.  The name of the file depends upon how it was compiled. For example when compiled with VC6 configuration "Win32 Debug MTDLL" the addin is called <strong>%QuantLibAddin-vc6-mt-gd.xll</strong>.
 \li You may need to hit \b Ctrl-Alt-F9 to force recalculation of all cells in all open workbooks.
 
 \section bugfix_excel Install All Bug Fixes for Your Version of Microsoft Excel
@@ -68,26 +68,26 @@ A well written Addin anticipates the use of the Function Wizard in one of two wa
 \li It is possible for the Addin to determine when it's being invoked from the Function Wizard, possibly changing its behavior accordingly, e.g. by returning a default value.  This topic is discussed in more detail at <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/office97/html/SF822.asp">this link on the Microsoft web site.</a>\n
 \li The Addin can validate its inputs, and ensure that it will always behave sensibly even for incomplete or invalid inputs
 
-QuantLibAddin adopts the second approach.
+%QuantLibAddin adopts the second approach.
 
 \section removeexcel Remove Excel from the Equation
 
-A QuantLibAddin problem that is unrelated to Excel can be diagnosed more easily if it can be recreated outside of an Excel Addin.  Create a standalone C++ program which replicates the behavior of the Excel Addin, and see if the problem can be recreated and resolved there.
+A %QuantLibAddin problem that is unrelated to Excel can be diagnosed more easily if it can be recreated outside of an Excel Addin.  Create a standalone C++ program which replicates the behavior of the Excel Addin, and see if the problem can be recreated and resolved there.
 
 \section prereqs Build and Execute Prerequisite Examples
 
-If you're having trouble getting QuantLibAddin to build, try compiling and executing simpler example projects.  For example
+If you're having trouble getting %QuantLibAddin to build, try compiling and executing simpler example projects.  For example
 the following list constitutes a progression in build complexity:
 \li ObjectHandler project ExampleCpp
 \li ObjectHandler project ExampleXLL (static or dynamic)
-\li QuantLibAddin project ClientCppDemo
-\li QuantLibAddin project AddinExcel (static or dynamic)
+\li %QuantLibAddin project ClientCppDemo
+\li %QuantLibAddin project AddinExcel (static or dynamic)
 
 \section startup_error Excel Displays an Error Message when the Addin is Loaded
 
 When you try to load an XLL into Excel, you may get a warning message such as "This file is not in a recognizable format" or "<filename>.xll is not a valid add-in".  Excel may attempt to load the XLL as a text file.
 
-These errors indicate that the XLL has a runtime dependency which is not satisfied.  Some common causes in the QuantLibAddin environment:
+These errors indicate that the XLL has a runtime dependency which is not satisfied.  Some common causes in the %QuantLibAddin environment:
 
 \li <strong>log4cxx.dll is missing</strong> - AddinExcelStatic requires that the log4cxx DLL reside in a directory which is in your PATH e.g. C:\\WINDOWS\\SYSTEM32
 \li <strong> ObjectHandler XLL is missing</strong> - AddinExcelDynamic also requires that the ObjectHandler XLL be loaded before the AddinExcelDynamic XLL
@@ -122,7 +122,7 @@ You can then debug as the addin loads.
 \li Go into Microsoft Visual Studio and close any workspace which may be open
 \li do <strong>Build/Debug/Attach to Process</strong>
 \li Select Excel from the list of processes.  (If the list of processes is empty: please refer to section \ref bugfix_vc)
-\li From VC, open up a file containing the source code you'd like to debug - for example file <strong>QuantLibAddin\\Addins\\Excel\\volatilities.cpp</strong>
+\li From VC, open up a file containing the source code you'd like to debug - for example file <strong>%QuantLibAddin\\Addins\\Excel\\volatilities.cpp</strong>
 \li Identify a function you'd like to debug, for example \b qlBlackConstantVol.  Put the cursor on a line in the function and hit F9 to set a breakpoint on the line
 \li Back in Excel, trigger the breakpoint - select the cell containing the relevant formula, e.g. \b qlBlackConstantVol, hit F2 to force the cell to recalc
 \li Back in VC, execution should now be stopped on the breakpoint and you can debug from there, e.g.\n
@@ -133,15 +133,15 @@ etc.
 
 \section debuglinux Debugging A QuantLibAddin Linux Executable at the Command Line
 
-This section describes how to debug a standalone C++ QuantLibAddin client linux program with the \b gdb command line debugger, using program \b QuantLibAddin/Clients/C++/QLADemo as an example.
+This section describes how to debug a standalone C++ %QuantLibAddin client linux program with the \b gdb command line debugger, using program \b %QuantLibAddin/Clients/C++/QLADemo as an example.
 
 \subsection compiling Compiling for Debug
 
-By default QuantLibAddin compiles with flags <strong>-g -O2</strong> which is good for general purpose use but does not give ideal results in gdb:
+By default %QuantLibAddin compiles with flags <strong>-g -O2</strong> which is good for general purpose use but does not give ideal results in gdb:
 \li certain variables get optimized away - so you're looking at a line in the source code, but it's invisible to the debugger
 \li the debugger may step into the source code of the Standard Template Library, even if you try to tell it not to
 
-gdb performs better when run against programs which are compiled with flag \b -gdwarf-2.  So before debugging the QuantLibAddin executable, it's best to first reconfigure and recompile all relevant binaries - QuantLib, log4cxx, ObjectHandler, and QuantLibAddin.  cd to the top level directory for each project, and run configure with the appropriate flags:
+gdb performs better when run against programs which are compiled with flag \b -gdwarf-2.  So before debugging the %QuantLibAddin executable, it's best to first reconfigure and recompile all relevant binaries - QuantLib, log4cxx, ObjectHandler, and %QuantLibAddin.  cd to the top level directory for each project, and run configure with the appropriate flags:
 \verbatim
 ./configure CXXFLAGS="-gdwarf-2 -Wall"
 \endverbatim
@@ -149,7 +149,7 @@ Then recompile.
 
 \subsection executable The Executable
 
-The program we want to debug is QLADemo.  File \b QuantLibAddin/Clients/C++/QLADemo is a shell script wrapper for the underlying executable <strong>QuantLibAddin/Clients/C++/.libs/lt-QLADemo</strong> which is created the first time the wrapper is invoked.
+The program we want to debug is QLADemo.  File \b %QuantLibAddin/Clients/C++/QLADemo is a shell script wrapper for the underlying executable <strong>%QuantLibAddin/Clients/C++/.libs/lt-QLADemo</strong> which is created the first time the wrapper is invoked.
 
 \subsection debugging Debugging
 

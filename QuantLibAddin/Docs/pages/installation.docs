@@ -26,11 +26,11 @@
     \section installation_overview Overview
 
     This document provides general instructions for building and installing
-    QuantLibAddin 0.3.12 under Windows, and on platforms which use Autoconf 
+    %QuantLibAddin 0.3.12 under Windows, and on platforms which use Autoconf 
     e.g. Linux.  For additional notes regarding the installation of the Calc 
     addin please refer to the document \ref calc.
 
-    QuantLibAddin is available for download from the
+    %QuantLibAddin is available for download from the
     <a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=159049">
     QuantLib downloads page on sourceforge.</a>
 
@@ -46,17 +46,17 @@
     \section windows_installation Installing under Windows
 
     Please build the prerequisite projects using the same configuration you
-    intend to use for QuantLibAddin e.g. Debug MTDLL or Release MTDLL.
+    intend to use for %QuantLibAddin e.g. Debug MTDLL or Release MTDLL.
 
-    To build QuantLibAddin for Excel:
+    To build %QuantLibAddin for Excel:
     \li build project \b AddinExcelStatic
     \li start Excel
     \li load the Addin.  The name of the Addin will depend on
         the compiler version and configuration, e.g. if compiled
         under VC6 debug the Addin is called 
-        <strong>QuantLibAddin\\Addins\\ExcelStatic\\xll\\QuantLibAddin-vc6-mt-gd-0_3_12.xll.</strong>
+        <strong>%QuantLibAddin\\Addins\\ExcelStatic\\xll\\QuantLibAddin-vc6-mt-gd-0_3_12.xll.</strong>
     \li load a sample spreadsheet e.g.
-        <strong>QuantLibAddin\\Clients\\Excel\\QLADemo.xls</strong>
+        <strong>%QuantLibAddin\\Clients\\Excel\\QLADemo.xls</strong>
 
     Project AddinExcelDynamic is a build which links dynamically to the ObjectHandler XLL,
     allowing multiple XLLs to share a global repository, as described in the ObjectHandler
@@ -81,7 +81,7 @@
 
     \par configure
 
-    Under the default configuration only the core QuantLibAddin C++ library is built, plus the standalone C++ client applications.  To build additional components, run configure with the corresponding arguments:
+    Under the default configuration only the core %QuantLibAddin C++ library is built, plus the standalone C++ client applications.  To build additional components, run configure with the corresponding arguments:
 
     <table>
     <tr>
@@ -132,7 +132,7 @@
 
     \par make install
 
-    To install QuantLibAddin:
+    To install %QuantLibAddin:
     \verbatim
     make install
     \endverbatim
@@ -144,7 +144,7 @@
     <td><strong>Configuration</strong></td><td><strong>Component</strong></td><td><strong>Installation</strong></td>
     </tr>
     <tr>
-    <td>all</td><td>QuantLibAddin core library</td><td>headers and libraries installed (by default to /usr/local)</td>
+    <td>all</td><td>%QuantLibAddin core library</td><td>headers and libraries installed (by default to /usr/local)</td>
     </tr>
     <tr>
     <td>--enable-addin-calc</td><td>Calc Addin</td><td>library installed to OpenOffice.org program directory</td>
@@ -162,7 +162,7 @@
     \verbatim
     make docs
     \endverbatim
-    ... then point your browser at file <strong>QuantLibAddin/Docs/html/index.html</strong>.
+    ... then point your browser at file <strong>%QuantLibAddin/Docs/html/index.html</strong>.
 
 */
 

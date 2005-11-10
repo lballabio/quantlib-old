@@ -17,10 +17,10 @@
 
 /*! \page calc QuantLib Calc Addin
 
-<p>This document summarizes special considerations for compiling QuantLibAddin for OpenOffice.org Calc.  The first section gives a general overview relevant to Windows and Linux, this is followed by additional notes specific to compiling on Linux.  For further help or to offer feedback on this document please send a message to the <a href="mailto:quantlib-dev@lists.sourceforge.net">QuantLib-dev</a>
+<p>This document summarizes special considerations for compiling %QuantLibAddin for OpenOffice.org Calc.  The first section gives a general overview relevant to Windows and Linux, this is followed by additional notes specific to compiling on Linux.  For further help or to offer feedback on this document please send a message to the <a href="mailto:quantlib-dev@lists.sourceforge.net">QuantLib-dev</a>
 mailing list.</p>
 
-<h1>Compiling QuantLibAddin for OpenOffice.org Calc</h1>
+<h1>Compiling %QuantLibAddin for OpenOffice.org Calc</h1>
 
 <h2>Prerequisites</h2>
 
@@ -28,7 +28,7 @@ mailing list.</p>
 <p><a href="http://java.sun.com/j2se/1.4.2/download.html">Java 2 Platform, Standard Edition ("J2SE")</a><br>
 <a href="http://www.openoffice.org/dev_docs/source/sdk/index.html">OpenOffice.org Software Development Kit ("OOo SDK")</a></p>
 
-<p>Unfortunately the OOo SDK requires the J2SE, even on platforms (such as Fedora) where Java dependency has been removed from OOo, and for Addins (such as QuantLibAddin) with no dependency on Java.</p>
+<p>Unfortunately the OOo SDK requires the J2SE, even on platforms (such as Fedora) where Java dependency has been removed from OOo, and for Addins (such as %QuantLibAddin) with no dependency on Java.</p>
 
 <h2>Environment Variables</h2>
 
@@ -60,7 +60,7 @@ PATH=$PATH:$OFFICE_SDK_PATH/linux/bin
 
 <h2>Build</h2>
 
-<p>Below are the steps required to compile and install an Addin for OpenOffice.org Calc (Windows and Linux).  These steps have been incorporated into the QuantLibAddin Calc makefiles for all compilers/platforms.</p>
+<p>Below are the steps required to compile and install an Addin for OpenOffice.org Calc (Windows and Linux).  These steps have been incorporated into the %QuantLibAddin Calc makefiles for all compilers/platforms.</p>
 <ul>
 <li><b>idlc</b> - Run OOo utility <b>idlc</b> to compile the idl (interface definition language) file QuantLibAddin.idl into urd (UNO reflection data) file QuantLibAddin.urd.  The urd file comprises binary descriptions of the types in the Addin.</li>
 <li><b>regmerge</b> - Run OOo utility <b>regmerge</b> to merge the urd file into rdb (registry database) file QuantLibAddin.rdb.  The rdb is used by OOo at runtime to infer the functionality available in the Addin.</li>
@@ -87,7 +87,7 @@ UNO_SERVICES=?$UNO_USER_PACKAGES_CACHE/services.rdb
    $SYSBINDIR/services.rdb <strong>$SYSBINDIR/QuantLibAddin.rdb</strong>
 </pre>
 </ul>
-<p>Once everything is in place, launch OOo Calc and hit Ctrl-F2 to bring up the list of available functions, if all has gone well the QuantLibAddin functions should appear.</p>
+<p>Once everything is in place, launch OOo Calc and hit Ctrl-F2 to bring up the list of available functions, if all has gone well the %QuantLibAddin functions should appear.</p>
 
 <h1>Additional Considerations for Linux Builds</h1>
 
@@ -103,21 +103,21 @@ UNO_SERVICES=?$UNO_USER_PACKAGES_CACHE/services.rdb
 
 <p>Please see also the standard gcc installation notes: <a href="http://gcc.gnu.org/install">Installing GCC</a></p>
 
-<p>NB: GCC's default configuration includes support for numerous platforms (such as Ada) which 1) are not required for QuantLibAddin and 2) may not build correctly, depending on your environment.  You can run configure with the --enable-languages option to restrict the build to only those platforms you require, e.g.</p>
+<p>NB: GCC's default configuration includes support for numerous platforms (such as Ada) which 1) are not required for %QuantLibAddin and 2) may not build correctly, depending on your environment.  You can run configure with the --enable-languages option to restrict the build to only those platforms you require, e.g.</p>
 <pre>
 ./configure \
     --prefix=\<installation directory\> \
     --enable-languages=c++
 </pre>
 
-<h2>Building QuantLibAddin for OOo Calc on Linux</h2>
+<h2>Building %QuantLibAddin for OOo Calc on Linux</h2>
 
 <p>All of the binaries to be linked into the QuantLib Calc Addin must be compiled with gcc 3.2.2:</p>
 <ul>
 <li><b>QuantLib</b></li>
 <li><b>log4cxx</b> (required by ObjectHandler)</li>
 <li><b>ObjectHandler</b></li>
-<li><b>QuantLibAddin</b></li>
+<li><b>%QuantLibAddin</b></li>
 </ul>
 <p>In the top level directory for each of the above applications, configure must be run with the appropriate arguments, e.g:</p>
 <pre>
@@ -126,12 +126,12 @@ CC=/usr/local/gcc/3.2.2/bin/gcc \
 CXX=/usr/local/gcc/3.2.2/bin/g++ \
 CPP=/usr/local/gcc/3.2.2/bin/cpp
 </pre>
-<p><b>NB</b> If you also intend to debug QuantLibAddin with the gdb command line debugger, then you should also use the compile flag <b>-gdwarf-2</b> as described in document \ref troubleshooting.</p>
+<p><b>NB</b> If you also intend to debug %QuantLibAddin with the gdb command line debugger, then you should also use the compile flag <b>-gdwarf-2</b> as described in document \ref troubleshooting.</p>
 <p>And each application must be recompiled and installed.</p>
 
 <h2>Shared Libraries</h2>
-<p>At startup OOo loads the QuantLibAddin library, which in turn has a runtime dependency on the shared libraries for QuantLib and ObjectHandler.</p>
-<p>The QuantLibAddin Calc binary is always installed to the OOo program directory /usr/lib/ooo-1.1/program.  QuantLib and ObjectHandler are by default installed to /usr/local/lib, though you may choose to override this when configuring these applications.</p>
+<p>At startup OOo loads the %QuantLibAddin library, which in turn has a runtime dependency on the shared libraries for QuantLib and ObjectHandler.</p>
+<p>The %QuantLibAddin Calc binary is always installed to the OOo program directory /usr/lib/ooo-1.1/program.  QuantLib and ObjectHandler are by default installed to /usr/local/lib, though you may choose to override this when configuring these applications.</p>
 <p>You need to configure your system to tell your program loader the location of all relevant shared libraries.  One way to accomplish this is to add the relevant paths to the file /etc/ld.so.conf, which tells the loader where to search for shared libraries.  After editing this file please remember to run <tt>ldconfig</tt> (as root, no arguments) to refresh the linker cache.</p>
 <p>For additional information on managing shared libraries, please consult the <a href="http://www.dwheeler.com/program-library/Program-Library-HOWTO/index.html">Program Library HOWTO</a>.</p>
 

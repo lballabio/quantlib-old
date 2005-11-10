@@ -52,8 +52,8 @@ SRCGEN_STUBS := stub.calc.constructor \
                 stub.c.includes \
                 stub.c.member \
                 stub.copyright \
+                stub.doxygen.categories \
                 stub.doxygen.enums \
-                stub.doxygen.functions \
                 stub.excel.constructor \
                 stub.excel.includes \
                 stub.excel.member \

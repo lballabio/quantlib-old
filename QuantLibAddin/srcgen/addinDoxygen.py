@@ -28,19 +28,18 @@ import rule
 # constants
 
 ALL_HEADER = """
-'/*! \page all All\n
+/*! \page all Functions\n
 \section overview Overview\n
 Below is an alphabetical list of links to documentation for
-all functions in QuantLibAddin.\n
-\section functions Function List\n
-\n"""
-LINE_ENUM    = '    <tr><td>%s</td><td>%s</td></tr>\n'
-LINE_REF     = '        \\ref enum_%d\\n\n'
+all functions in %QuantLibAddin.\n
+\section functions Function List\n"""
+LINE_ENUM = '    <tr><td>%s</td><td>%s</td></tr>\n'
+LINE_REF = '        \\ref enum_%d\\n\n'
 LINE_SECTION = '    \\section enum_%d %s\n'
-LINE_TABLE   = """    <table>\n
+LINE_TABLE = """    <table>\n
     <tr><td><b>String</b></td><td><b>Enumeration</b></td></tr>\n"""
-STUB_ENUMS   = 'stub.doxygen.enums'
-STUB_FUNCS   = 'stub.doxygen.functions'
+STUB_ENUMS = 'stub.doxygen.enums'
+STUB_CATEGORIES = 'stub.doxygen.categories'
 FUNC_DOCS = 'functionDocs'
 FUNC_RETCODE = 'functionReturnCode'
 
@@ -51,8 +50,6 @@ class AddinDoxygen(addin.Addin):
             enumerations):
         super(AddinDoxygen, self).__init__(common.CONFIG_DOXYGEN, categories)
         self.enumerations = enumerations
-        self.bufEnums = utils.loadBuffer(STUB_ENUMS)
-        self.bufFuncs = utils.loadBuffer(STUB_FUNCS)
         self.rootDir = '../Docs/pages/'
 
     def setRules(self, config):
@@ -64,7 +61,7 @@ class AddinDoxygen(addin.Addin):
         utils.logMessage('  begin generating Doxygen ...')
         self.generateDocs()
         self.generateEnums()
-        self.generateOverviewDoc()
+        self.generateCategoryDoc()
         utils.logMessage('  done generating Doxygen.')
 
     def generateEnums(self):
@@ -73,7 +70,8 @@ class AddinDoxygen(addin.Addin):
         fileName = self.rootDir + 'enums.docs' + common.TEMPFILE
         fileDoc = file(fileName, 'w')
         utils.printHeader(fileDoc)
-        fileDoc.write(self.bufEnums)
+        bufEnums = utils.loadBuffer(STUB_ENUMS)
+        fileDoc.write(bufEnums)
         for i in xrange(len(enumList)):
             fileDoc.write(LINE_REF % i)
         fileDoc.write('\n')
@@ -104,12 +102,13 @@ class AddinDoxygen(addin.Addin):
             fileFunc.write('\\param %s %s\n' % (param.name, param.description))
         fileFunc.write('\\return %s\n\n' % function.returnValue.description)
 
-    def generateOverviewDoc(self):
+    def generateCategoryDoc(self):
         'generate page summarizing functions'
-        fileName = self.rootDir + 'functionsoverview.docs' + common.TEMPFILE
+        fileName = self.rootDir + 'categories.docs' + common.TEMPFILE
         fileDoc = file(fileName, 'w')
         utils.printHeader(fileDoc)
-        fileDoc.write(self.bufFuncs)
+        bufFuncs = utils.loadBuffer(STUB_CATEGORIES)
+        fileDoc.write(bufFuncs)
         # ensure list of links is sorted alphabetically by display name
         dispNmToCatNm = {}
         displayNames = []
@@ -126,7 +125,7 @@ class AddinDoxygen(addin.Addin):
         fileDoc.close()
         utils.updateIfChanged(fileName)
 
-    def generateAllDoc(self, allFuncs):
+    def generateFunctionDoc(self, allFuncs):
         'generate alphabetical list of links to all functions'
         fileName = self.rootDir + 'all.docs' + common.TEMPFILE
         fileDoc = file(fileName, 'w')
@@ -135,7 +134,7 @@ class AddinDoxygen(addin.Addin):
         allFuncs.sort()
         for func in allFuncs:
             fileDoc.write('\\ref %s ()\\n\n' % func)
-        fileDoc.write('*/\n\n')
+        fileDoc.write('\n*/\n\n')
         fileDoc.close()
         utils.updateIfChanged(fileName)
 
@@ -152,7 +151,7 @@ class AddinDoxygen(addin.Addin):
             fileDoc.write('/*! \page %s %s\n' % (category.name, category.displayName))
             fileDoc.write('\\section overview Overview\n')
             fileDoc.write('%s\n' % category.description)
-            fileDoc.write('\\section functions Function List\n')
+            fileDoc.write('\\section functionlist Function List\n')
             for functionKey in category.functions[common.KEYS]:
                 function = category.functions[common.DICT][functionKey]
                 fileDoc.write('\\ref %s ()\\n\n' % function.name)
@@ -164,5 +163,5 @@ class AddinDoxygen(addin.Addin):
             fileDoc.write('*/\n\n')
             fileDoc.close()
             utils.updateIfChanged(fileName)
-        self.generateAllDoc(allFuncs)
+        self.generateFunctionDoc(allFuncs)
 
