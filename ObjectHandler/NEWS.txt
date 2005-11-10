@@ -1,3 +1,16 @@
+Release 0.1.3 - ??? 200?
+
+CORE
+
+- Documentation revised and extended
+
+EXCEL
+
+- Consolidated registration and export of Excel functions
+- Increased granularity and clarity of runtime exceptions
+- Improved memory management (automatic deletion of temp variables)
+- Clarified code in example XLLs
+
 Release 0.1.2 - October 2005
 
 EXCEL

@@ -23,49 +23,62 @@
 
 /*! \page history Version History
 
-    <strong>Release 0.1.2 - October 2005</strong>
-    
-    EXCEL
-    
-    Excel binding ported from QuantLibAddin to ObjectHandler
-    and enhanced:
-    
-    - ObjectHandler core functionality and the Excel binding can be
-      linked statically into a single client XLL, or built as a standalone
-      XLL comprising a global repository shared by multiple client XLLs
-    - garbage collection of objects orphaned by the deletion of the
-      calling cell
-    - conversion to/from all Excel types and native C++ types
-    - greater granularity of datatypes - XLOPER replaced by OPER, FP
-    
-    LOG4CXX
-    
-    - link to log4cxx dynamically rather than statically
+<strong>Release 0.1.3 - ??? 200?</strong>
 
-    <strong>Release 0.1.1 - July 2005</strong>
+CORE
 
-    REQUIRED PACKAGES
-    - Boost version 1.31.0 or later
-    - log4cxx version 0.9.7 or later
+- Documentation revised and extended
 
-    CHANGES SINCE RELEASE 0.1.0
-    - interface layer replaced with factory function (thanks to Walter Penschke)
-    - logging implemented with log4cxx framework from Apache project
-    - additional functions deleteObject, deleteAllObjects
-    - output manipulators for Object and ObjectHandler classes
-    - utility functions consolidated
+EXCEL
 
-    <strong>Release 0.1.0 - February 2005</strong>
+- Consolidated registration and export of Excel functions
+- Increased granularity and clarity of runtime exceptions
+- Improved memory management (automatic deletion of temp variables)
+- Clarified code in example XLLs
 
-    REQUIRED PACKAGES
-    - Boost version 1.31.0 or later
+<strong>Release 0.1.2 - October 2005</strong>
 
-    OVERVIEW
+EXCEL
 
-    Initial release consisting of prototype framework:
+Excel binding ported from QuantLibAddin to ObjectHandler
+and enhanced:
 
-    - Instantiate an Object in the ObjectHandler, from where it
-      can be interrogated, altered, and destroyed.
+- ObjectHandler core functionality and the Excel binding can be
+  linked statically into a single client XLL, or built as a standalone
+  XLL comprising a global repository shared by multiple client XLLs
+- garbage collection of objects orphaned by the deletion of the
+  calling cell
+- conversion to/from all Excel types and native C++ types
+- greater granularity of datatypes - XLOPER replaced by OPER, FP
+
+LOG4CXX
+
+- link to log4cxx dynamically rather than statically
+
+<strong>Release 0.1.1 - July 2005</strong>
+
+REQUIRED PACKAGES
+- Boost version 1.31.0 or later
+- log4cxx version 0.9.7 or later
+
+CHANGES SINCE RELEASE 0.1.0
+- interface layer replaced with factory function (thanks to Walter Penschke)
+- logging implemented with log4cxx framework from Apache project
+- additional functions deleteObject, deleteAllObjects
+- output manipulators for Object and ObjectHandler classes
+- utility functions consolidated
+
+<strong>Release 0.1.0 - February 2005</strong>
+
+REQUIRED PACKAGES
+- Boost version 1.31.0 or later
+
+OVERVIEW
+
+Initial release consisting of prototype framework:
+
+- Instantiate an Object in the ObjectHandler, from where it
+  can be interrogated, altered, and destroyed.
 
 */
 
