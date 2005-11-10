@@ -63,12 +63,11 @@ docs-online: .time-stamp-online
 	touch .time-stamp-online
 
 docs-clean:
-	rm -Rf html-online html man
+	rm -Rf html-online html
 	rm -f .time-stamp*
 
 .time-stamp: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	$(SED) -e "s/GENERATE_MAN           = NO/GENERATE_MAN           = YES/" \
-           -e "s/GENERATE_HTML          = NO/GENERATE_HTML          = YES/" \
+	$(SED) -e "s/GENERATE_HTML          = NO/GENERATE_HTML          = YES/" \
            -e "s|oh_basepath|${BASEPATH}/|" \
            -e "s|oh_version|$(VERSION)|" \
 	       objecthandler.doxy > .objecthandler.doxy
