@@ -230,7 +230,10 @@ TD.mdPrefix {
 	font-size: 80%;
 }
 TD.mdname1 { background-color: #F4F4FB; font-weight: bold; color: #602020; }
+/* this class has minimum width 600 pixels which messes up the format on small monitors
 TD.mdname { background-color: #F4F4FB; font-weight: bold; color: #602020; width: 600px; }
+*/
+TD.mdname { background-color: #F4F4FB; font-weight: bold; color: #602020; }
 DIV.groupHeader {
        margin-left: 16px;
        margin-top: 12px;
