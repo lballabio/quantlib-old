@@ -17,133 +17,139 @@
 
 /*! \page calc QuantLib Calc Addin
 
-<p>This document summarizes special considerations for compiling %QuantLibAddin for OpenOffice.org Calc.  The first section gives a general overview relevant to Windows and Linux, this is followed by additional notes specific to compiling on Linux.  For further help or to offer feedback on this document please send a message to the <a href="mailto:quantlib-dev@lists.sourceforge.net">QuantLib-dev</a>
-mailing list.</p>
+\section calc_overview Overview
 
-<h1>Compiling %QuantLibAddin for OpenOffice.org Calc</h1>
+This document summarizes special considerations for compiling %QuantLibAddin for OpenOffice.org Calc.  The first section gives a general overview relevant to Windows and Linux, this is followed by additional notes specific to compiling on Linux.  For further help or to offer feedback on this document please send a message to the <a href="mailto:quantlib-dev@lists.sourceforge.net">QuantLib-dev</a> mailing list.
 
-<h2>Prerequisites</h2>
+\section calc_compile Compiling QuantLibAddin for OpenOffice.org Calc
 
-<p>Before compiling an Addin for OOo Calc you'll need to install:</p>
-<p><a href="http://java.sun.com/j2se/1.4.2/download.html">Java 2 Platform, Standard Edition ("J2SE")</a><br>
-<a href="http://www.openoffice.org/dev_docs/source/sdk/index.html">OpenOffice.org Software Development Kit ("OOo SDK")</a></p>
+\subsection Prerequisites
 
-<p>Unfortunately the OOo SDK requires the J2SE, even on platforms (such as Fedora) where Java dependency has been removed from OOo, and for Addins (such as %QuantLibAddin) with no dependency on Java.</p>
+Before compiling an Addin for OOo Calc you'll need to install:
+\li <a href="http://java.sun.com/j2se/1.4.2/download.html">Java 2 Platform, Standard Edition ("J2SE")</a>
+\li <a href="http://www.openoffice.org/dev_docs/source/sdk/index.html">OpenOffice.org Software Development Kit ("OOo SDK")</a>
 
-<h2>Environment Variables</h2>
+Unfortunately the OOo SDK requires the J2SE, even on platforms (such as Fedora) where Java dependency has been removed from OOo, and for Addins (such as %QuantLibAddin) with no dependency on Java.
 
-<p>After installing the above, please ensure that the following environment variables are set:</p>
+\subsection calc_env Environment Variables
 
-<pre>
-<b>variable:</b> OFFICE_PROGRAM_PATH
-<b>description:</b> location of OOo program directory
-<b>value on Linux:</b> /usr/lib/ooo-1.1/program
-<b>value on Windows:</b> C:\\Program Files\\OpenOffice.org1.1.3\\program
+After installing the above, please ensure that the following environment variables are set:
 
-<b>variable:</b> OFFICE_SDK_PATH
-<b>description:</b> location of OOo SDK
-<b>value on Linux:</b> /path/to/OpenOffice.org1.1_SDK
-<b>value on Windows:</b> C:\\path\\to\\OpenOffice.org1.1_SDK
+<tt>
+<b>variable:</b> OFFICE_PROGRAM_PATH<br>
+<b>description:</b> location of OOo program directory<br>
+<b>value on Linux:</b> /usr/lib/ooo-1.1/program<br>
+<b>value on Windows:</b> C:\\Program Files\\OpenOffice.org1.1.3\\program<br>
 
-<b>variable:</b> PATH
-<b>description:</b> Must include location of OOo SDK bin directory
-<b>value on Linux:</b> /path/to/OpenOffice.org1.1_SDK/linux/bin
-<b>value on Windows:</b> C:\\path\\to\\OpenOffice.org1.1_SDK\\windows\\bin
-</pre>
+<b>variable:</b> OFFICE_SDK_PATH<br>
+<b>description:</b> location of OOo SDK<br>
+<b>value on Linux:</b> /path/to/OpenOffice.org1.1_SDK<br>
+<b>value on Windows:</b> C:\\path\\to\\OpenOffice.org1.1_SDK<br>
 
-<p>On Linux, you might want to add the appropriate commands to the initialization file for your login shell, e.g:</p>
-<pre>
+<b>variable:</b> PATH<br>
+<b>description:</b> Must include location of OOo SDK bin directory<br>
+<b>value on Linux:</b> /path/to/OpenOffice.org1.1_SDK/linux/bin<br>
+<b>value on Windows:</b> C:\\path\\to\\OpenOffice.org1.1_SDK\\windows\\bin<br>
+</tt>
+
+On Linux, you might want to add the appropriate commands to the initialization file for your login shell, e.g:
+\verbatim
 export OFFICE_PROGRAM_PATH="/usr/lib/ooo-1.1/program"
 export OFFICE_SDK_PATH="/path/to/OpenOffice.org1.1_SDK"
 PATH=$PATH:$OFFICE_SDK_PATH/linux/bin
-</pre>
+\endverbatim
 
-<h2>Build</h2>
+\subsection calc_build Build
 
-<p>Below are the steps required to compile and install an Addin for OpenOffice.org Calc (Windows and Linux).  These steps have been incorporated into the %QuantLibAddin Calc makefiles for all compilers/platforms.</p>
-<ul>
-<li><b>idlc</b> - Run OOo utility <b>idlc</b> to compile the idl (interface definition language) file QuantLibAddin.idl into urd (UNO reflection data) file QuantLibAddin.urd.  The urd file comprises binary descriptions of the types in the Addin.</li>
-<li><b>regmerge</b> - Run OOo utility <b>regmerge</b> to merge the urd file into rdb (registry database) file QuantLibAddin.rdb.  The rdb is used by OOo at runtime to infer the functionality available in the Addin.</li>
-<li><b>cppumaker</b> - Run OOo utility <b>cppumaker</b> to generate the source code corresponding to the definitions in the rdb.</li>
-<li><b>compile</b> - Compile the Addin, including the source generated above, plus the function implementation source code supplied for the Addin.  The Addin is compiled into a shared library, i.e. <b>QuantLibAddin.dll</b> (Windows) or <b>libQuantLibAddinCalc-0.3.12.so</b> (Linux).</li>
-<li><b>install</b> - Copy the Addin's shared library and registry database to the OOo program directory.</li>
-</ul>
+Below are the steps required to compile and install an Addin for OpenOffice.org Calc (Windows and Linux).  These steps have been incorporated into the %QuantLibAddin Calc makefiles for all compilers/platforms.
 
-<p>One further step is required, the name of the registry database must be added to an OOo ini file in order to inform OOo of the location of the Addin.  This step is not automated by the build process and must be performed manually:</p>
-<ul>
-<li>Go to the OOo program directory</li>
-<li>In a text editor, open the unorc file (<strong>unorc</strong> on Linux, <strong>unorc.ini</strong> on Windows)</li>
-<li>In the last two lines in the file, add the registry database to the list of types, and to the list of services.  For example, below are listed the complete contents of an unorc file, with the text to be added highlighted in bold:</li>
-<pre>
-[Bootstrap]
-UNO_SHARED_PACKAGES=${$SYSBINDIR/bootstraprc:BaseInstallation}/share/uno_packages
-UNO_SHARED_PACKAGES_CACHE=$UNO_SHARED_PACKAGES/cache
-UNO_USER_PACKAGES=${$SYSBINDIR/bootstraprc:UserInstallation}/user/uno_packages
-UNO_USER_PACKAGES_CACHE=$UNO_USER_PACKAGES/cache
-UNO_TYPES=$SYSBINDIR/types.rdb ?$UNO_SHARED_PACKAGES_CACHE/types.rdb 
-   ?$UNO_USER_PACKAGES_CACHE/types.rdb <strong>$SYSBINDIR/QuantLibAddin.rdb</strong>
-UNO_SERVICES=?$UNO_USER_PACKAGES_CACHE/services.rdb 
-   ?$UNO_SHARED_PACKAGES_CACHE/services.rdb 
-   $SYSBINDIR/services.rdb <strong>$SYSBINDIR/QuantLibAddin.rdb</strong>
-</pre>
-</ul>
-<p>Once everything is in place, launch OOo Calc and hit Ctrl-F2 to bring up the list of available functions, if all has gone well the %QuantLibAddin functions should appear.</p>
+\li \b idlc - Run OOo utility \b idlc to compile the idl (interface definition language) file QuantLibAddin.idl into urd (UNO reflection data) file QuantLibAddin.urd.  The urd file comprises binary descriptions of the types in the Addin.
+\li \b regmerge - Run OOo utility \b regmerge to merge the urd file into rdb (registry database) file QuantLibAddin.rdb.  The rdb is used by OOo at runtime to infer the functionality available in the Addin.
+\li \b cppumaker - Run OOo utility \b cppumaker to generate the source code corresponding to the definitions in the rdb.
+\li \b compile - Compile the Addin, including the source generated above, plus the function implementation source code supplied for the Addin.  The Addin is compiled into a shared library, i.e. \b QuantLibAddin.dll (Windows) or <b>libQuantLibAddinCalc-0.3.12.so</b> (Linux).
+\li \b install - Copy the Addin's shared library and registry database to the OOo program directory.
 
-<h1>Additional Considerations for Linux Builds</h1>
+One further step is required, the name of the registry database must be added to an OOo ini file in order to inform OOo of the location of the Addin.  This step is not automated by the build process and must be performed manually:
 
-<h2>Compiler</h2>
+\li Go to the OOo program directory
+\li In a text editor, open the unorc file (\b unorc on Linux, \b unorc.ini on Windows)
+\li In the last two lines in the file, add the registry database to the list of types, and to the list of services.  For example, below are listed the complete contents of an unorc file, with the text to be added highlighted in bold:
 
-<p>It's recommended that Calc Addins be compiled using the same version of gcc that was used to compile OOo itself.  See the notes at the end of this document for additional background to this requirement.</p>
+<tt>
+[Bootstrap]<br>
+UNO_SHARED_PACKAGES=${$SYSBINDIR/bootstraprc:BaseInstallation}/share/uno_packages<br>
+UNO_SHARED_PACKAGES_CACHE=$UNO_SHARED_PACKAGES/cache<br>
+UNO_USER_PACKAGES=${$SYSBINDIR/bootstraprc:UserInstallation}/user/uno_packages<br>
+UNO_USER_PACKAGES_CACHE=$UNO_USER_PACKAGES/cache<br>
+UNO_TYPES=$SYSBINDIR/types.rdb ?$UNO_SHARED_PACKAGES_CACHE/types.rdb<br>
+   ?$UNO_USER_PACKAGES_CACHE/types.rdb <b>$SYSBINDIR/QuantLibAddin.rdb</b><br>
+UNO_SERVICES=?$UNO_USER_PACKAGES_CACHE/services.rdb<br>
+   ?$UNO_SHARED_PACKAGES_CACHE/services.rdb<br>
+   $SYSBINDIR/services.rdb <b>$SYSBINDIR/QuantLibAddin.rdb</b>
+</tt>
 
-<p>For standard binary distributions, the current version of OOo, 1.1, is compiled by the vendor with gcc 3.2.2.  (The upcoming OOo 2.0 is compiled with gcc 3.4.1.)</p>
+Once everything is in place, launch OOo Calc and hit \c Ctrl-F2 to bring up the list of available functions, if all has gone well the %QuantLibAddin functions should appear.
 
-<p>In all likelihood gcc 3.2.2 is not shipped with your distribution and you'll need to install it alongside your existing version of gcc.  You're advised to recompile and install gcc 3.2.2 from source as binary installations of gcc 3.2.2 (e.g. rpms) are unlikely to be recognized by your distribution.  The gcc 3.2.2 source tarball can be acquired from one of the <a href="http://gcc.gnu.org/mirrors.html">gcc mirror sites.</a></p>
+\section calc_linux Additional Considerations for Linux Builds
 
-<p>Please see the following document describing the procedure for maintaining multiple versions of gcc concurrently:  <a href="http://www.tellurian.com.au/document.php?document=multiplegcc.html&titleprefix=White+Papers">Installing and Using Multiple Versions of GCC</a></p>
+\subsection calc_compiler Compiler
 
-<p>Please see also the standard gcc installation notes: <a href="http://gcc.gnu.org/install">Installing GCC</a></p>
+It's recommended that Calc Addins be compiled using the same version of gcc that was used to compile OOo itself.  See the notes at the end of this document for additional background to this requirement.
 
-<p>NB: GCC's default configuration includes support for numerous platforms (such as Ada) which 1) are not required for %QuantLibAddin and 2) may not build correctly, depending on your environment.  You can run configure with the --enable-languages option to restrict the build to only those platforms you require, e.g.</p>
-<pre>
-./configure \
-    --prefix=\<installation directory\> \
-    --enable-languages=c++
-</pre>
+For standard binary distributions, the current version of OOo, 1.1, is compiled by the vendor with gcc 3.2.2.  (The upcoming OOo 2.0 is compiled with gcc 3.4.1.)
 
-<h2>Building %QuantLibAddin for OOo Calc on Linux</h2>
+In all likelihood gcc 3.2.2 is not shipped with your distribution and you'll need to install it alongside your existing version of gcc.  You're advised to recompile and install gcc 3.2.2 from source as binary installations of gcc 3.2.2 (e.g. rpms) are unlikely to be recognized by your distribution.  The gcc 3.2.2 source tarball can be acquired from one of the <a href="http://gcc.gnu.org/mirrors.html">gcc mirror sites.</a>
 
-<p>All of the binaries to be linked into the QuantLib Calc Addin must be compiled with gcc 3.2.2:</p>
-<ul>
-<li><b>QuantLib</b></li>
-<li><b>log4cxx</b> (required by ObjectHandler)</li>
-<li><b>ObjectHandler</b></li>
-<li><b>%QuantLibAddin</b></li>
-</ul>
-<p>In the top level directory for each of the above applications, configure must be run with the appropriate arguments, e.g:</p>
-<pre>
+Please see the following document describing the procedure for maintaining multiple versions of gcc concurrently:  <a href="http://www.tellurian.com.au/document.php?document=multiplegcc.html&titleprefix=White+Papers">Installing and Using Multiple Versions of GCC</a>
+
+Please see also the standard gcc installation notes: <a href="http://gcc.gnu.org/install">Installing GCC</a>
+
+NB: GCC's default configuration includes support for numerous platforms (such as Ada) which 1) are not required for %QuantLibAddin and 2) may not build correctly, depending on your environment.  You can run configure with the \c --enable-languages option to restrict the build to only those platforms you require e.g.
+
+\verbatim
+./configure --enable-languages=c++
+\endverbatim
+
+\subsection calc_linux_build Building QuantLibAddin for OOo Calc on Linux
+
+All of the binaries to be linked into the QuantLib Calc Addin must be compiled with gcc 3.2.2:
+
+\li \b QuantLib
+\li \b log4cxx (required by ObjectHandler)
+\li \b ObjectHandler
+\li \b %QuantLibAddin
+
+In the top level directory for each of the above applications, configure must be run with the appropriate arguments e.g:
+
+\verbatim
 ./configure \
 CC=/usr/local/gcc/3.2.2/bin/gcc \
 CXX=/usr/local/gcc/3.2.2/bin/g++ \
 CPP=/usr/local/gcc/3.2.2/bin/cpp
-</pre>
-<p><b>NB</b> If you also intend to debug %QuantLibAddin with the gdb command line debugger, then you should also use the compile flag <b>-gdwarf-2</b> as described in document \ref troubleshooting.</p>
-<p>And each application must be recompiled and installed.</p>
+\endverbatim
 
-<h2>Shared Libraries</h2>
-<p>At startup OOo loads the %QuantLibAddin library, which in turn has a runtime dependency on the shared libraries for QuantLib and ObjectHandler.</p>
-<p>The %QuantLibAddin Calc binary is always installed to the OOo program directory /usr/lib/ooo-1.1/program.  QuantLib and ObjectHandler are by default installed to /usr/local/lib, though you may choose to override this when configuring these applications.</p>
-<p>You need to configure your system to tell your program loader the location of all relevant shared libraries.  One way to accomplish this is to add the relevant paths to the file /etc/ld.so.conf, which tells the loader where to search for shared libraries.  After editing this file please remember to run <tt>ldconfig</tt> (as root, no arguments) to refresh the linker cache.</p>
-<p>For additional information on managing shared libraries, please consult the <a href="http://www.dwheeler.com/program-library/Program-Library-HOWTO/index.html">Program Library HOWTO</a>.</p>
+\b NB If you intend to debug %QuantLibAddin with the gdb command line debugger, then you should also use the compile flag \c -gdwarf-2 as described in document \ref troubleshooting.
 
-<h2>Notes</h2>
+And each application must be recompiled and installed.
 
-<p>Additional detail relating to OOo Addins on Linux:</p>
-<ul>
-<li><b>OOo 1.1</b> is always compiled with gcc 3.2.2.  OOo ships with its own versions of certain C/C++ runtime libraries, these are installed to the OOo program directory and OOo loads these in preference to those installed on your system.  If your Calc Addin loads an incompatible runtime environment then OOo is likely to crash or malfunction.</li>
-<li><b>Additional detail</b> is available at the following link on the OOo website: 
-<a href="http://udk.openoffice.org/common/man/draft/gccincompatibility.html">Coping with GCC Incompatibilities</a></li>
-<li><b>In theory</b> it should be possible to compile a Calc Addin with any version of gcc which is ABI-compatible with gcc 3.2.2, but in practice any nontrivial Addin compiled with anything other than gcc 3.2.2 seems to crash OOo.</li>
-</ul>
+\subsection calc_libs Shared Libraries
+
+At startup OOo loads the %QuantLibAddin library, which in turn has a runtime dependency on the shared libraries for QuantLib and ObjectHandler.
+
+The %QuantLibAddin Calc binary is always installed to the OOo program directory /usr/lib/ooo-1.1/program.  QuantLib and ObjectHandler are by default installed to /usr/local/lib, though you may choose to override this when configuring these applications.
+
+You need to configure your system to tell your program loader the location of all relevant shared libraries.  One way to accomplish this is to add the relevant paths to the file /etc/ld.so.conf, which tells the loader where to search for shared libraries.  After editing this file please remember to run \c ldconfig (as root, no arguments) to refresh the linker cache.
+
+For additional information on managing shared libraries, please consult the <a href="http://www.dwheeler.com/program-library/Program-Library-HOWTO/index.html">Program Library HOWTO</a>.
+
+\subsection calc_notes Notes
+
+Additional detail relating to OOo Addins on Linux:
+
+\li <b>OOo 1.1</b> is always compiled with gcc 3.2.2.  OOo ships with its own versions of certain C/C++ runtime libraries, these are installed to the OOo program directory and OOo loads these in preference to those installed on your system.  If your Calc Addin loads an incompatible runtime environment then OOo is likely to crash or malfunction.
+\li <b>Additional detail</b> is available at the following link on the OOo website: 
+<a href="http://udk.openoffice.org/common/man/draft/gccincompatibility.html">Coping with GCC Incompatibilities</a>
+\li <b>In theory</b> it should be possible to compile a Calc Addin with any version of gcc which is ABI-compatible with gcc 3.2.2, but in practice any nontrivial Addin compiled with anything other than gcc 3.2.2 seems to crash OOo.
 
 */
 
