@@ -54,7 +54,7 @@
     \li load the Addin.  The name of the Addin will depend on
         the compiler version and configuration, e.g. if compiled
         under VC6 debug the Addin is called 
-        <strong>%QuantLibAddin\\Addins\\ExcelStatic\\xll\\QuantLibAddin-vc6-mt-gd-0_3_12.xll.</strong>
+        <strong>%QuantLibAddin\\Addins\\Excel\\xll\\QuantLibAddinStatic-vc6-mt-gd-0_3_12.xll.</strong>
     \li load a sample spreadsheet e.g.
         <strong>%QuantLibAddin\\Clients\\Excel\\QLADemo.xls</strong>
 
@@ -97,7 +97,7 @@
     <td>--enable-addin-guile</td><td>Build the Guile Addin</td><td>Addins/Guile</td>
     </tr>
     <tr>
-    <td>--enable-addin-excel</td><td>Autogenerate source code for the Excel Addin.  The Excel Addin is not compiled under Autoconf and this option is used by developers to package distributions.</td><td>Addins/ExcelStatic<br>Addins/ExcelDynamic</td>
+    <td>--enable-addin-excel</td><td>Autogenerate source code for the Excel Addin.  The Excel Addin is not compiled under Autoconf and this option is used by developers to package distributions.</td><td>Addins/Excel</td>
     </tr>
     <tr>
     <td>--enable-addin-all</td><td>Build all of the above</td><td>Addins/*<br>Clients/*</td>

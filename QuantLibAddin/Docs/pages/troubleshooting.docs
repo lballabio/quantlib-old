@@ -45,7 +45,7 @@ Please follow the steps below when loading %QuantLibAddin for Excel:
 \li ensure that log4cxx.dll resides in a directory which is in your PATH e.g. C:\\WINDOWS\\SYSTEM32
 \li start Excel
 \li load a client worksheet, e.g. \b %QuantLibAddin\\Clients\\Excel\\QLADemo.xls
-\li load the QuantLib Excel Addin from directory \b %QuantLibAddin\\Addins\\ExcelStatic\\xll.  The name of the file depends upon how it was compiled. For example when compiled with VC6 configuration "Win32 Debug MTDLL" the addin is called <strong>%QuantLibAddin-vc6-mt-gd.xll</strong>.
+\li load the QuantLib Excel Addin from directory \b %QuantLibAddin\\Addins\\Excel\\xll.  The name of the file depends upon how it was compiled. For example when compiled with VC6 configuration "Win32 Debug MTDLL" the addin is called <strong>%QuantLibAddinStatic-vc6-mt-gd.xll</strong>.
 \li You may need to hit \b Ctrl-Alt-F9 to force recalculation of all cells in all open workbooks.
 
 \section bugfix_excel Install All Bug Fixes for Your Version of Microsoft Excel

@@ -48,7 +48,7 @@ http://quantlib.org
 Please refer to document \ref installation for instructions on
 building %QuantLibAddin.
 
-The document \ref functionsoverview provides platform-independent,
+The section \ref functional provides platform-independent,
 end-user documentation of %QuantLibAddin functionality.  
 
 Additional information is available from the links at the left, 

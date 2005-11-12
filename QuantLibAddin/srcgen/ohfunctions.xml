@@ -320,6 +320,55 @@
 </returnValue>
 </function>
 
+<function>
+<name>ohGetGcEnabled</name>
+<description>get value of ObjectHandler garbage collection flag</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>D</platforms>
+<parameters></parameters>
+<returnValue>
+    <type>bool</type>
+    <tensorRank>scalar</tensorRank>
+    <description>success/failure</description>
+</returnValue>
+</function>
+
+<function xlMacro='true'>
+<name>ohSetGcEnabled</name>
+<description>set value of ObjectHandler garbage collection flag</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>D</platforms>
+<parameters>
+    <parameter>
+        <name>enableGarbageCollection</name>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>true (enable) / false (disable)</description>
+    </parameter>
+</parameters>
+<returnValue>
+    <type>bool</type>
+    <tensorRank>scalar</tensorRank>
+    <description>success/failure</description>
+</returnValue>
+</function>
+
+<function xlMacro='true'>
+<name>ohCallGC</name>
+<description>delete orphaned objects from repository</description>
+<constructor>false</constructor>
+<libraryFunction></libraryFunction>
+<platforms>D</platforms>
+<parameters></parameters>
+<returnValue>
+    <type>bool</type>
+    <tensorRank>scalar</tensorRank>
+    <description>success/failure</description>
+</returnValue>
+</function>
+
 </functions>
 </category>
 

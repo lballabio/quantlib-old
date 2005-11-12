@@ -25,6 +25,8 @@ platform-independent documentation of %QuantLibAddin functionality.
 function qlNPV() returns the NPV of an instrument, and can accept as
 input any object descended from Instrument, e.g. a VanillaOption 
 (returned from qlVanillaOption()), a Swap (returned from qlSwap()), etc.
+Inheritance relationships between %QuantLibAddin classes are depicted
+in the <a href="inherits.html">graphical class hierarchy</a>.
 
 The \ref enums page documents alphanumeric codes which %QuantLibAddin
 recognizes to indicate minor or transient %QuantLib classes which are
