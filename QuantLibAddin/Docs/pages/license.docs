@@ -36,7 +36,7 @@ QuantLibAddin is
 \endverbatim
 
 \section license2 License
-QuantLibAddin is released under the QuantLib license:
+%QuantLibAddin is released under the QuantLib license:
 \verbatim
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
