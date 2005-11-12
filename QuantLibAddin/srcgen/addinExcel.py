@@ -161,7 +161,7 @@ class AddinExcel(addin.Addin):
             paramStr += 'C'
         for param in function.parameters:
             paramStr += self.ruleXlRegisterParam.apply(param)
-        if function.isConstructor or function.xlMacro:
+        if function.isConstructor:
             paramStr += '#'
         return paramStr
 

@@ -100,7 +100,7 @@
 </returnValue>
 </function>
 
-<function xlMacro='true'>
+<function>
 <name>ohDeleteObject</name>
 <description>delete object from repository</description>
 <constructor>false</constructor>
@@ -121,7 +121,7 @@
 </returnValue>
 </function>
 
-<function xlMacro='true'>
+<function>
 <name>ohDeleteAllObjects</name>
 <description>delete all objects from repository</description>
 <constructor>false</constructor>
@@ -334,7 +334,7 @@
 </returnValue>
 </function>
 
-<function xlMacro='true'>
+<function>
 <name>ohSetGcEnabled</name>
 <description>set value of ObjectHandler garbage collection flag</description>
 <constructor>false</constructor>
@@ -355,7 +355,7 @@
 </returnValue>
 </function>
 
-<function xlMacro='true'>
+<function>
 <name>ohCallGC</name>
 <description>delete orphaned objects from repository</description>
 <constructor>false</constructor>

@@ -79,5 +79,4 @@ TRUE = 'true'
 TYPE_CNV = 'ql_type'
 TYPE = 'type'
 VECTOR = 'vector'
-XL_MACRO = 'xlMacro'
 

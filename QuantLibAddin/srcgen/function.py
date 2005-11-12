@@ -42,7 +42,6 @@ class Function(object):
         self.returnValue = parameter.Parameter(functionDef[common.RETURNVALUE])
         self.supportedPlatforms = utils.getVal(functionDef, common.PLATFORMS, '*')
         self.getObject = utils.attributeToBool(functionDef, common.GET_OBJECT)
-        self.xlMacro = utils.attributeToBool(functionDef, common.XL_MACRO)
 
     def platformSupported(self, platform):
         if self.supportedPlatforms == '*': return True
