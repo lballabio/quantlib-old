@@ -98,6 +98,7 @@ class AddinDoxygen(addin.Addin):
         fileFunc.write('\\endcode\n')
         fileFunc.write('\\par Description:\n')
         fileFunc.write(function.description)
+        fileFunc.write('\n')
         for param in function.parameters:
             fileFunc.write('\\param %s %s\n' % (param.name, param.description))
         fileFunc.write('\\return %s\n\n' % function.returnValue.description)
