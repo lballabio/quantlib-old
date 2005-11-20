@@ -9,9 +9,7 @@ INT_DIR=$(TargetDir)
 !ENDIF
 
 FLAG1=$(INT_DIR)\$(COMPONENT_NAME).flag1
-STUBS=stub.c.constructor \
-	stub.c.includes \
-    stub.c.member \
+STUBS= \
 	stub.calc.constructor \
 	stub.calc.idlfoot \
 	stub.calc.idlfunc \
@@ -19,9 +17,12 @@ STUBS=stub.c.constructor \
 	stub.calc.includes \
 	stub.calc.map \
 	stub.calc.member \
+	stub.c.constructor \
+	stub.c.includes \
+    stub.c.member \
 	stub.copyright \
+	stub.doxygen.categories \
 	stub.doxygen.enums \
-	stub.doxygen.functions \
 	stub.excel.constructor \
 	stub.excel.includes \
 	stub.excel.member \
