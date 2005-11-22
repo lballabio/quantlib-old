@@ -15,8 +15,8 @@ finance</title>
 </head>
 <body>
 <!--#include virtual="qlheader.inc"-->
-<div class="center"><img src="images/QL-largish.jpg" alt=
-"QuantLib Logo"></div>
+<div class="center"><img src="images/QL-largish.jpg" width="372"
+ height="271" border="0" alt= "QuantLib Logo"></div>
 <h2 class="center">A free/open-source library for quantitative
 finance</h2>
 <p>The QuantLib project is aimed at providing a comprehensive

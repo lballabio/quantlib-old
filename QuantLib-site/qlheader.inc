@@ -5,9 +5,11 @@
 <tbody>
 <tr>
 <td class="navbar">
-<div class="center"><img class="addtopspace"
-    src="images/QL-small.jpg" alt="QuantLib Logo"><br>
-		<a href="http://quantlib.org">http://quantlib.org</a></div>
+<div class="center">
+<img class="addtopspace"
+ src="images/QL-small.jpg" width="133" height="97" border="0"
+ alt="QuantLib Logo"><br>
+<a href="http://quantlib.org">http://quantlib.org</a></div>
 
 <ul class="navlinklist">
 <li><a class="navlink" href="http://quantlib.org">Home&nbsp;page</a></li>
@@ -66,7 +68,7 @@
 <hr>
 <div class="center">
 <a href="http://opensource.org/docs/definition.html"><img src=
-"images/osi-certified-90x75.png" border="0"
+"images/osi-certified-90x75.png" width="90" height="75" border="0"
 alt="OSI Certification Mark"></a></div>
 <hr>
 <div class="center"><strong>Hosted by</strong><br>
