@@ -1,10 +1,14 @@
+- autolink.hpp to generate error if compiled with
+  static runtime library
+- replace singleton.hpp with boost::singleton?
+- move unique key functionality from ObjectHandlerXL
+  to ObjectHandlerBase
+- revise Property pattern
+- update design doc
+
 - revise exception handling
 
 - copyright notice for oh/property.hpp
 
 - reduce mutability of Object/Property classes
   from within client application
-
-- a failure in function Excel4 both returns a failure code
-  and throws an exception - needs to be revised
-
