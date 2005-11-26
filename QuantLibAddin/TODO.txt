@@ -1,3 +1,7 @@
+- use new QuantLib functionality for evaluation date/multiton
+- use Serializer/Deserializer pattern to load metadata for srcgen.py
+- update design doc
+
 To do list:
 
 QuantLibAddin
@@ -5,7 +9,6 @@ QuantLibAddin
 - #include fewer headers to speed compilation
 
 srcgen
-- alphabetize function names which are output to doxygen
 - extend rule.py to support conversion of Guile datatypes
 
 Excel
