@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include "typeregistry.hpp"
-#include "qla/typefactory.hpp"
+#include <qla/typeregistry.hpp>
+#include <qla/typefactory.hpp>
 #include <ql/option.hpp>
 #include <ql/Instruments/payoffs.hpp>
 #include <ql/PricingEngines/all.hpp>
