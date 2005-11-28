@@ -1,19 +1,15 @@
 
 <div class="endmatter">
-<hr>
-<div class="center">
 <p>Feedback and questions concerning this site and project can be
 directed to
  the <a href=
 "http://lists.sourceforge.net/lists/listinfo/quantlib-users">QuantLib-users</a>
 mailing list.</p>
+</div>
 
-</div>
-</div>
 <!-- Search Google -->
-<div class="center">
 <form method="GET" action="http://www.google.com/custom">
-<table summary="Google Search Table" bgcolor="#FFFFFF"
+<table align="center" summary="Google Search Table" bgcolor="#FFFFFF"
 cellspacing="0" border="0">
 <tr valign="top">
 <td><a href="http://www.google.com/search"><img src=
@@ -33,13 +29,4 @@ Search quantlib.org</span> <br>
 </tr>
 </table>
 </form>
-</div>
-
-<!-- Search Google -->
-
-
-</td>
-</tr>
-</tbody>
-</table>
 

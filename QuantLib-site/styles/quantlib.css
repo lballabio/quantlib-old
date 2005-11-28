@@ -1,42 +1,39 @@
 
-span.googlestyle {
-font-family: arial,sans-serif; font-size: 80%
-}
-
 body {
-    font-family: georgia, verdana, arial, sans-serif;
+    font-family: georgia, verdana, arial, serif;
     color: #000;
     background: #fff;
 }
 
-a:active { text-decoration: none }
-
-table.layout {
+#container {
     width: 100%;
-    padding-left: 1em;
-    padding-right: 1em;
-    border-left: 0;
-    border-right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: georgia, verdana, arial, sans-serif;
+    line-height: 130%;
 }
 
-td.main {
-    font-family: georgia, verdana, arial, sans-serif;
-    vertical-align: top;
-}
-
-td.navbar {
+#menu {
+    float: left;
     width: 20%;
-    font-family: verdana, arial, sans-serif;
-    color: #000;
-    background-color: #fea;
-    border-width: 1px;
-    border-color: #000;
-    vertical-align: top;
+    margin: 0;
     padding: 1em;
+    background-color: #fea;
+    border: 1px solid gray;
 }
+
+#content {
+    margin-left: 25%;
+    padding: 1em;
+    vertical-align: top;
+}
+
+.footer {
+    clear: both;
+    margin: 0;
+    padding: .5em;
+    text-align: center;
+    border-top: 1px solid gray;
+}
+
+a:active { text-decoration: none }
 
 .navbartitle { text-align: center }
 
@@ -68,6 +65,10 @@ pre {
     color: green;
     background: white;
     font-family: monospace;
+}
+
+span.googlestyle {
+font-family: arial,sans-serif; font-size: 80%
 }
 
 

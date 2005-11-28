@@ -1,18 +1,10 @@
-
-<table summary=
-"Layout table: navigation bar in the first cell, contents in the second cell"
- class="layout">
-<tbody>
-<tr>
-<td class="navbar">
 <div class="center">
 <img class="addtopspace"
  src="images/QL-small.jpg" width="133" height="97" border="0"
- alt="QuantLib Logo"><br>
-<a href="http://quantlib.org">http://quantlib.org</a></div>
+ alt="QuantLib Logo"></div>
 
 <ul class="navlinklist">
-<li><a class="navlink" href="http://quantlib.org">Home&nbsp;page</a></li>
+<li><a class="navlink" href="http://quantlib.org">Home</a></li>
 
 <li><a class="navlink" href="reference/overview.html">Project Overview</a></li>
 
@@ -97,11 +89,7 @@ height="33" border="0" alt="StatPro Logo"></a></div>
   <p>
     <a href="http://jigsaw.w3.org/css-validator/check/referer">
     <img border="0"
-         src="http://jigsaw.w3.org/css-validator/images/vcss" 
+         src="http://jigsaw.w3.org/css-validator/images/vcss"
          alt="Valid CSS!" height="31" width="88"></a>
   </p>
 </div>
-
-</td>
-
-<td class="main">

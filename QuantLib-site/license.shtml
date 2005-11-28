@@ -12,7 +12,12 @@
 <title>QuantLib License</title>
 </head>
 <body>
-<!--#include virtual="qlheader.inc"-->
+<div id="container">
+<div id="menu">
+<!--#include virtual="usermenu.inc"-->
+</div>
+<div id="content">
+
 <h1 class="center">QuantLib License</h1>
 <p>QuantLib is <a href=
 "http://www.gnu.org/philosophy/categories.html#Non-CopyleftedFreeSoftware">
@@ -86,6 +91,14 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </pre>
-<!--#include virtual="qlfooter.inc"-->
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
 </body>
 </html>

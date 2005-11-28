@@ -12,7 +12,12 @@
 <title>QuantLib Extensions</title>
 </head>
 <body>
-<!--#include virtual="qlheader.inc"-->
+<div id="container">
+<div id="menu">
+<!--#include virtual="usermenu.inc"-->
+</div>
+<div id="content">
+
 <h1>QuantLib Extensions</h1>
 <p>QuantLib is <a href="download.shtml">available</a> as a
 C#, Guile, Java, MzScheme, Perl, Python, and Ruby module by means
@@ -57,6 +62,13 @@ extension.</li>
 Interested developers can post on the QuantLib-dev <a
 href="mailinglists.shtml">mailing list</a>.
 
-<!--#include virtual="qlfooter.inc"-->
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
 </body>
 </html>

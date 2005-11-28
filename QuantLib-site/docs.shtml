@@ -11,7 +11,12 @@
 <title>QuantLib Documentation</title>
 </head>
 <body>
-<!--#include virtual="qlheader.inc"-->
+<div id="container">
+<div id="menu">
+<!--#include virtual="usermenu.inc"-->
+</div>
+<div id="content">
+
 <h1 class="center">Official QuantLib Documentation</h1>
 <ul>
 <li><strong>QuantLib reference manual</strong> [<a href=
@@ -49,6 +54,14 @@ HTML</a>]<br>
 Firth, N.P. Cluster World 5-8 April 2004. San Jose, California,
 USA.<br></li>
 </ul>
-<!--#include virtual="qlfooter.inc"-->
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
 </body>
 </html>

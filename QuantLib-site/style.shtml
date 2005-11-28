@@ -13,7 +13,12 @@
 <title>QuantLib Programming Style Guidelines</title>
 </head>
 <body>
-<!--#include virtual="qldevheader.inc"-->
+<div id="container">
+<div id="menu">
+<!--#include virtual="devmenu.inc"-->
+</div>
+<div id="content">
+
 <h1 class="center">QuantLib Programming Style Guidelines</h1>
 <h6 class="right">modified from <em>C++ Programming Style
 Guidelines</em> by <em>Geotechnical Software Services</em></h6>
@@ -2329,6 +2334,14 @@ is a tool for extracting comments and produce high quality
 hypertext documentation from it.</td>
 </tr>
 </table>
-<!--#include virtual="qlfooter.inc"-->
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
 </body>
 </html>

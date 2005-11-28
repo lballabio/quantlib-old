@@ -13,7 +13,12 @@
 <title>QuantLib - Developer FAQ</title>
 </head>
 <body>
-<!--#include virtual="qldevheader.inc"-->
+<div id="container">
+<div id="menu">
+<!--#include virtual="devmenu.inc"-->
+</div>
+<div id="content">
+
 <h1 class="center">Frequently Asked Questions</h1>
 <h2 class="center">Developer Version</h2>
 <h6 class="right">based on <a href=
@@ -483,6 +488,14 @@ as much <strong>documentation</strong> as you can and possibly a
 <strong>testcase</strong> in C++ or Python (see the
 QuantLib-Python/QuantLib/test subdirectory).</li>
 </ul>
-<!--#include virtual="qlfooter.inc"-->
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
 </body>
 </html>

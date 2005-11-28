@@ -12,7 +12,12 @@
 <title>QuantLib CVS Repository</title>
 </head>
 <body>
-<!--#include virtual="qldevheader.inc"-->
+<div id="container">
+<div id="menu">
+<!--#include virtual="devmenu.inc"-->
+</div>
+<div id="content">
+
 <h1 class="center">QuantLib CVS Repository</h1>
 <p>If you're new to CVS please read our <a href=
 "developerFAQ.shtml#cvs">FAQ</a> and <a href=
@@ -140,6 +145,14 @@ sh ./autogen.sh
 </pre>
 <p>which will prepare the package for compilation. You can then use
 <em>./configure</em> and <em>make</em> in the usual way.</p>
-<!--#include virtual="qlfooter.inc"-->
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
 </body>
 </html>

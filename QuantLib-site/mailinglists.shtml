@@ -12,10 +12,14 @@
 <title>QuantLib Mailing Lists</title>
 </head>
 <body>
-<!--#include virtual="qlheader.inc"-->
+<div id="container">
+<div id="menu">
+<!--#include virtual="usermenu.inc"-->
+</div>
+<div id="content">
+
 <h1 class="center">Mailing Lists and Forums</h1>
-<ul>
-<li>Choose a list to browse, search, and post messages.
+<p>Choose a list to browse, search, and post messages.</p>
 <ol>
 <li><strong>quantlib-users</strong>:<br>
 QuantLib users general discussion list. This list is for everything
@@ -69,10 +73,14 @@ list.<br>
 (not archived yet, <a href=
 "http://lists.sourceforge.net/mailman/listinfo/quantlib-cvs">Subscribe/Unsubscribe/Preferences</a>)</li>
 </ol>
-<li>Check out the threads available in the <a href=
-"http://sourceforge.net/forum/?group_id=12740">Forums</a>, or start a new
-thread</li>
-</ul>
-<!--#include virtual="qlfooter.inc"-->
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
 </body>
 </html>

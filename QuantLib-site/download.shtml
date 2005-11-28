@@ -12,7 +12,12 @@
 <title>QuantLib Download Page</title>
 </head>
 <body>
-<!--#include virtual="qlheader.inc"-->
+<div id="container">
+<div id="menu">
+<!--#include virtual="usermenu.inc"-->
+</div>
+<div id="content">
+
 <h1 class="center">Download Page</h1>
 <p>The latest QuantLib release is the 0.3.11 version (October 2005.)</p>
 <p><b>Debian users</b> will find version 0.3.11 of the different
@@ -39,6 +44,14 @@ href="reference/config.html">configure the library</a> with
 non-default settings.  Compiling QuantLib requires a working <a
 href="http://www.boost.org">Boost</a> installation; Boost 1.31 or
 later is needed, while Boost 1.33 is suggested.</p>
-<!--#include virtual="qlfooter.inc"-->
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
 </body>
 </html>

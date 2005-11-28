@@ -14,7 +14,12 @@
 finance</title>
 </head>
 <body>
-<!--#include virtual="qlheader.inc"-->
+<div id="container">
+<div id="menu">
+<!--#include virtual="usermenu.inc"-->
+</div>
+<div id="content">
+
 <div class="center"><img src="images/QL-largish.jpg" width="372"
  height="271" border="0" alt= "QuantLib Logo"></div>
 <h2 class="center">A free/open-source library for quantitative
@@ -125,6 +130,14 @@ Manager</a>.</li>
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">let
 us know</a>.</li>
 </ul>
-<!--#include virtual="qlfooter.inc"-->
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
 </body>
 </html>
