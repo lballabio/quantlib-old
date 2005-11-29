@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2000-2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -330,7 +330,8 @@ History._old___init__ = History.__init__
 def History_new___init__(self,dates,values):
     values = values[:]
     for i in range(len(values)):
-        values[i] = values[i] or nullDouble()
+        if values[i] is None:
+            values[i] = nullDouble()
     self._old___init__(dates,values)
 History.__init__ = History_new___init__
 %}
