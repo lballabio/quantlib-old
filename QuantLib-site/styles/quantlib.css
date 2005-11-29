@@ -14,6 +14,7 @@ body {
     float: left;
     width: 20%;
     margin: 0;
+    margin-bottom: 1em;
     padding: 1em;
     background-color: #fea;
     border: 1px solid gray;
@@ -35,9 +36,19 @@ body {
 
 a:active { text-decoration: none }
 
-.navbartitle { text-align: center }
+ul.navbarlist {
+    padding-left: 1em;
+    margin-left: 0;
+}
 
-a.navlink { font-weight: normal }
+li.navlink {
+    font-weight: normal;
+    font-size: 80%;
+    list-style:none;
+    margin: 0;
+}
+
+.navbartitle { text-align: center }
 
 .hide { display: none }
 
@@ -68,7 +79,7 @@ pre {
 }
 
 span.googlestyle {
-font-family: arial,sans-serif; font-size: 80%
+    font-family: arial,sans-serif; font-size: 80%
 }
 
 

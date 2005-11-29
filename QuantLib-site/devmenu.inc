@@ -4,38 +4,38 @@
 
 <h3 class="navbartitle">QuantLib Development</h3>
 
-<ul>
-<li><a class="navlink" href="newdeveloper.shtml">Developer&nbsp;Intro</a></li>
+<ul class="navbarlist">
+<li class="navlink"><a href="newdeveloper.shtml">Developer&nbsp;Intro</a></li>
 
-<li><a class="navlink" href=
+<li class="navlink"><a href=
 "http://sourceforge.net/projects/quantlib">Project&nbsp;page</a></li>
 
-<li><a class="navlink" href="reference/index.html">Reference Manual</a></li>
+<li class="navlink"><a href="reference/index.html">Reference Manual</a></li>
 
-<li><a class="navlink" href="quep.shtml">Enhancement Proposals</a></li>
+<li class="navlink"><a href="quep.shtml">Enhancement Proposals</a></li>
 
-<li><a class="navlink" href="cvs.shtml">CVS</a></li>
+<li class="navlink"><a href="cvs.shtml">CVS</a></li>
 
-<li><a class="navlink" href=
+<li class="navlink"><a href=
 "http://wiki.quantlib.org">QuantLib Wiki</a></li>
 
-<li><a class="navlink" href=
+<li class="navlink"><a href=
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bugs</a></li>
 
-<li><a class="navlink" href=
+<li class="navlink"><a href=
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=312740">Patches
 </a></li>
 
-<li><a class="navlink" href=
+<li class="navlink"><a href=
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">Feature&nbsp;Requests</a></li>
 
-<li><a class="navlink" href="developerFAQ.shtml">Developer&nbsp;FAQ</a></li>
+<li class="navlink"><a href="developerFAQ.shtml">Developer&nbsp;FAQ</a></li>
 
-<li><a class="navlink" href="style.shtml">Programming Style Guidelines</a></li>
+<li class="navlink"><a href="style.shtml">Style Guidelines</a></li>
 </ul>
 
 <hr>
-<h3 class="navbartitle"><a class="navlink" href=
+<h3 class="navbartitle"><a href=
 "http://quantlib.org">QuantLib User Pages</a></h3>
 
 <hr>
@@ -49,9 +49,11 @@ alt="OSI Certification Mark"></a></div>
 "http://sflogo.sourceforge.net/sflogo.php?group_id=12740" width="88"
 height="31" border="0" alt="SourceForge.net Logo"></a></div>
 
-<br>
- <a href="http://sourceforge.net/docman/?group_id=1">About
-SourceForge.net, Open Source, etc.</a>
+<ul class="navbarlist">
+<li class="navlink"><a
+  href="http://sourceforge.net/docman/?group_id=1">About
+SourceForge.net</a></li>
+</ul>
 
 <hr>
 <div class="center"><strong>Supported by</strong><br>

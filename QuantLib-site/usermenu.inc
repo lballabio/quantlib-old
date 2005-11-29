@@ -3,58 +3,58 @@
  src="images/QL-small.jpg" width="133" height="97" border="0"
  alt="QuantLib Logo"></div>
 
-<ul class="navlinklist">
-<li><a class="navlink" href="http://quantlib.org">Home</a></li>
+<ul class="navbarlist">
+<li class="navlink"><a href="http://quantlib.org">Home</a></li>
 
-<li><a class="navlink" href="reference/overview.html">Project Overview</a></li>
+<li class="navlink"><a href="reference/overview.html">Project Overview</a></li>
 
-<li><a class="navlink" href="extensions.shtml">Extensions</a></li>
+<li class="navlink"><a href="extensions.shtml">Extensions</a></li>
 
-<li><a class="navlink" href="reference/examples.html">Examples</a></li>
+<li class="navlink"><a href="reference/examples.html">Examples</a></li>
 
-<li><a class="navlink" href="reference/history.html">History</a></li>
+<li class="navlink"><a href="reference/history.html">History</a></li>
 
-<li><a class="navlink" href="download.shtml">Download</a></li>
+<li class="navlink"><a href="download.shtml">Download</a></li>
 
-<li><a class="navlink" href="mailinglists.shtml">Mailing Lists and
+<li class="navlink"><a href="mailinglists.shtml">Mailing Lists and
      Forums</a></li>
 
-<li><a class="navlink" href=
+<li class="navlink"><a href=
 "http://sourceforge.net/news/?group_id=12740">News</a></li>
 
-<li><a class="navlink" href="reference/faq.html">FAQ</a></li>
+<li class="navlink"><a href="reference/faq.html">FAQ</a></li>
 
-<li><a class="navlink" href="docs.shtml">Documentation and Papers</a></li>
+<li class="navlink"><a href="docs.shtml">Documentation and Papers</a></li>
 
-<li><a class="navlink" href=
+<li class="navlink"><a href=
 "http://wiki.quantlib.org">QuantLib Wiki</a></li>
 
-<li><a class="navlink" href="license.shtml">License</a></li>
+<li class="navlink"><a href="license.shtml">License</a></li>
 
-<li><a class="navlink" href="reference/group.html">QuantLib Group</a></li>
+<li class="navlink"><a href="reference/group.html">QuantLib Group</a></li>
 
-<li><a class="navlink" href=
+<li class="navlink"><a href=
 "http://sourceforge.net/tracker/?func=add&amp;group_id=12740&amp;atid=112740">Submit a bug</a></li>
 
 </ul>
 
 <hr>
-<h3 class="navbartitle"><a class="navlink" href=
+<h3 class="navbartitle"><a href=
 "newdeveloper.shtml">QuantLib Developer Pages</a></h3>
 
 <hr>
 <h3 class="navbartitle">Quantitative Finance Resources</h3>
 
-<ul>
-<li><a class="navlink" href="books.shtml">Books</a></li>
+<ul class="navbarlist">
+<li class="navlink"><a href="books.shtml">Books</a></li>
 
-<li><a class="navlink" href="http://www.elsevier.com/locate/econophys">Econophysics</a></li>
+<li class="navlink"><a href="http://www.elsevier.com/locate/econophys">Econophysics</a></li>
 
-<li><a class="navlink" href="marketconventions.shtml">Market Conventions</a></li>
+<li class="navlink"><a href="marketconventions.shtml">Market Conventions</a></li>
 
-<li><a class="navlink" href="http://www.wilmott.com/">Wilmott</a></li>
+<li class="navlink"><a href="http://www.wilmott.com/">Wilmott</a></li>
 
-<li><a class="navlink" href="http://www.quantnotes.com/">QuantNotes</a></li>
+<li class="navlink"><a href="http://www.quantnotes.com/">QuantNotes</a></li>
 </ul>
 
 <hr>
@@ -68,9 +68,11 @@ alt="OSI Certification Mark"></a></div>
 "http://sflogo.sourceforge.net/sflogo.php?group_id=12740" width="88"
 height="31" border="0" alt="SourceForge.net Logo"></a></div>
 
-<br>
- <a href="http://sourceforge.net/docman/?group_id=1">About
-SourceForge.net, Open Source, etc.</a>
+<ul class="navbarlist">
+<li class="navlink"> <a
+  href="http://sourceforge.net/docman/?group_id=1">About
+SourceForge.net</a></li>
+</ul>
 
 <hr>
 <div class="center"><strong>Supported by</strong><br>
