@@ -9,6 +9,7 @@
 <description>construct and return a handle to a backward flat interpolator</description>
 <constructor>true</constructor>
 <libraryFunction>BackwardFlatInterpolation</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>allowExtrapolation</name>
@@ -29,6 +30,7 @@
 <description>construct and return a handle to a forward flat interpolator</description>
 <constructor>true</constructor>
 <libraryFunction>ForwardFlatInterpolation</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>allowExtrapolation</name>
@@ -49,6 +51,7 @@
 <description>construct and return a handle to a linear interpolator</description>
 <constructor>true</constructor>
 <libraryFunction>LinearInterpolation</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>allowExtrapolation</name>
@@ -69,6 +72,7 @@
 <description>construct and return a handle to a cubic spline interpolator</description>
 <constructor>true</constructor>
 <libraryFunction>CubicSplineInterpolation</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>allowExtrapolation</name>
@@ -119,6 +123,7 @@
 <description>carry out interpolation</description>
 <constructor>false</constructor>
 <libraryFunction>interpolate</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='Interpolation'>
         <name>handle</name>

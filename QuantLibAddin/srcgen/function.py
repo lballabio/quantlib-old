@@ -31,6 +31,7 @@ class Function(object):
         self.name = functionDef[common.NAME]
         self.description = functionDef[common.DESC]
         self.libFunction = functionDef[common.LIBFUNC]
+        self.functionCat = functionDef[common.CATG]
         self.isConstructor = utils.stringToBool(functionDef[common.CTOR])
         self.parameters = []
         for paramDef in functionDef[common.PARAMS]:

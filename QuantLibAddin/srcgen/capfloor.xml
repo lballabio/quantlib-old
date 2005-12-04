@@ -9,6 +9,7 @@
 <description>construct and return a pricing engine for cap/foors</description>
 <constructor>true</constructor>
 <libraryFunction>AnalyticCapFloorEngine</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='AffineModel'>
         <name>handleModel</name>
@@ -29,6 +30,7 @@
 <description>construct and return a handle to a cap/floor object</description>
 <constructor>true</constructor>
 <libraryFunction>CapFloor</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='CouponVector'>
         <name>couponVectorID</name>

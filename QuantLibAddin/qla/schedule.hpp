@@ -43,6 +43,8 @@ namespace QuantLibAddin {
             return *schedule_;
         }
         
+        std::vector<long> scheduleDates() const;
+        
       private:
         boost::shared_ptr<QuantLib::Schedule> schedule_;
     };

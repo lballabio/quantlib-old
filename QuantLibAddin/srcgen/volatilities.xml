@@ -9,6 +9,7 @@
 <description>construct and return a handle to a Black Constant Vol object</description>
 <constructor>true</constructor>
 <libraryFunction>BlackConstantVol</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>settlementDate</name>
@@ -41,6 +42,7 @@
 <description>construct and return a handle to a Black Variance Surface object</description>
 <constructor>true</constructor>
 <libraryFunction>BlackVarianceSurface</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>settlementDate</name>

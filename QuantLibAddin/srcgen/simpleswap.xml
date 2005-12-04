@@ -9,6 +9,7 @@
 <description>construct and return a handle to a SimpleSwap object</description>
 <constructor>true</constructor>
 <libraryFunction>SimpleSwap</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>StartDate</name>
@@ -125,6 +126,7 @@
 <description>the fair rate of a swap</description>
 <constructor>false</constructor>
 <libraryFunction>fairRate</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='SimpleSwap'>
         <name>handle</name>
@@ -151,6 +153,7 @@
 <description>the fair rate of a swap</description>
 <constructor>false</constructor>
 <libraryFunction>fairSpread</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='SimpleSwap'>
         <name>handle</name>
@@ -177,6 +180,7 @@
 <description>The Fixed Leg Details</description>
 <constructor>false</constructor>
 <libraryFunction>getFixLeg</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='SimpleSwap'>
         <name>handle</name>
@@ -197,6 +201,7 @@
 <description>the BPS of the fixed leg</description>
 <constructor>false</constructor>
 <libraryFunction>fixedLegBPS</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='SimpleSwap'>
         <name>handle</name>
@@ -223,6 +228,7 @@
 <description>The Float Leg Details</description>
 <constructor>false</constructor>
 <libraryFunction>getFloatLeg</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='SimpleSwap'>
         <name>handle</name>
@@ -249,6 +255,7 @@
 <description>the BPS of the floating leg</description>
 <constructor>false</constructor>
 <libraryFunction>floatingLegBPS</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='SimpleSwap'>
         <name>handle</name>

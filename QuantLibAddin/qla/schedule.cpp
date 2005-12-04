@@ -55,4 +55,15 @@ namespace QuantLibAddin {
                                    longFinal));
     }
     
+    std::vector<long> Schedule::scheduleDates() const {
+        
+        std::vector<long> dates;
+        
+        for (std::size_t i=0 ; i < schedule_->size() ; i++) {
+            dates.push_back(schedule_->date(i).serialNumber());
+        }
+        
+        return dates;
+    }
+    
 }

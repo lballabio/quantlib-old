@@ -9,6 +9,7 @@
 <description>construct and return a handle to a fixed rate coupon vector</description>
 <constructor>true</constructor>
 <libraryFunction>FixedRateCouponVector</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>scheduleID</name>
@@ -53,6 +54,7 @@
 <description>construct and return a handle to a floating rate coupon vector</description>
 <constructor>true</constructor>
 <libraryFunction>FloatingRateCouponVector</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>scheduleID</name>
@@ -91,6 +93,7 @@
 <description>return coupon details</description>
 <constructor>false</constructor>
 <libraryFunction>getLeg</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='CouponVector'>
         <name>handle</name>
@@ -117,6 +120,7 @@
 <description>basis point sensitivity</description>
 <constructor>false</constructor>
 <libraryFunction>getBPS</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='CouponVector'>
         <name>handle</name>

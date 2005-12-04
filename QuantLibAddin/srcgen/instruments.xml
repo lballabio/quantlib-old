@@ -10,6 +10,7 @@
 <description>Accrued: If no settlement is given the default bond settlement is used for calculation.</description>
 <constructor>false</constructor>
 <libraryFunction>accruedAmount</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='FixedCouponBond'>
         <name>handle</name>
@@ -36,6 +37,7 @@
 <description>If no settlement is given the default bond settlement is used for calculation.</description>
 <constructor>false</constructor>
 <libraryFunction>cleanPrice</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='FixedCouponBond'>
         <name>handle</name>
@@ -74,6 +76,7 @@
 <description>dirty price: If no settlement is given the default bond settlement is used for calculation.</description>
 <constructor>false</constructor>
 <libraryFunction>dirtyPrice</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='FixedCouponBond'>
         <name>handle</name>
@@ -112,6 +115,7 @@
 <description>theoretical clean price: The default bond settlement is used for calculation.</description>
 <constructor>false</constructor>
 <libraryFunction>cleanPrice</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='FixedCouponBond'>
         <name>handle</name>
@@ -138,6 +142,7 @@
 <description>theoretical dirty price: The default bond settlement is used for calculation.</description>
 <constructor>false</constructor>
 <libraryFunction>dirtyPrice</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='FixedCouponBond'>
         <name>handle</name>
@@ -164,6 +169,7 @@
 <description>theoretical bond yield: The default bond settlement and theoretical price are used for calculation.</description>
 <constructor>false</constructor>
 <libraryFunction>yield</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='FixedCouponBond'>
         <name>handle</name>
@@ -196,6 +202,7 @@
 <description>Yield: If no settlement is given the default bond settlement is used for calculation.</description>
 <constructor>false</constructor>
 <libraryFunction>yield</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='FixedCouponBond'>
         <name>handle</name>
@@ -234,6 +241,7 @@
 <description>construct and return a handle to a Fixed Coupon Bond object</description>
 <constructor>true</constructor>
 <libraryFunction>FixedCouponBond</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>issueDate</name>
@@ -332,6 +340,7 @@
 <description>construct and return a handle to a ZeroCouponBond object</description>
 <constructor>true</constructor>
 <libraryFunction>ZeroCouponBond</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>issueDate</name>
@@ -394,6 +403,7 @@
 <description>NPV</description>
 <constructor>false</constructor>
 <libraryFunction>NPV</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='Instrument'>
         <name>handle</name>

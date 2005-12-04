@@ -9,6 +9,7 @@
 <description>construct and return a handle to a Barrier Option object</description>
 <constructor>true</constructor>
 <libraryFunction>BarrierOption</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
@@ -95,6 +96,7 @@
 <description>construct and return a handle to a Basket Option object</description>
 <constructor>true</constructor>
 <libraryFunction>BasketOption</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
@@ -163,6 +165,7 @@
 <description>construct and return a handle to a Continuous Averaging Asian Option object</description>
 <constructor>true</constructor>
 <libraryFunction>ContinuousAveragingAsianOption</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
@@ -237,6 +240,7 @@
 <description>construct and return a handle to a Cliquet Option object</description>
 <constructor>true</constructor>
 <libraryFunction>CliquetOption</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
@@ -293,6 +297,7 @@
 <description>construct and return a handle to a Discrete Averaging Asian Option object</description>
 <constructor>true</constructor>
 <libraryFunction>DiscreteAveragingAsianOption</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
@@ -385,6 +390,7 @@
 <description>construct and return a handle to a Dividend Vanilla Option object</description>
 <constructor>true</constructor>
 <libraryFunction>DividendVanillaOption</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
@@ -465,6 +471,7 @@
 <description>construct and return a handle to a Forward Vanilla Option object</description>
 <constructor>true</constructor>
 <libraryFunction>ForwardVanillaOption</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='BlackScholesProcess'>
         <name>handleBlackScholes</name>
@@ -545,6 +552,7 @@
 <description>change the pricing engine of an existing Option object</description>
 <constructor>false</constructor>
 <libraryFunction>setEngine</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='VanillaOption'>
         <name>handle</name>
@@ -577,6 +585,7 @@
 <description>construct and return a handle to a Vanilla Option object</description>
 <constructor>true</constructor>
 <libraryFunction>VanillaOption</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='BlackScholesProcess'>
         <name>handleBlackScholes</name>

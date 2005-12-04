@@ -9,6 +9,7 @@
 <description>returns the version number of ObjectHandler</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <parameters></parameters>
 <returnValue>
@@ -23,6 +24,7 @@
 <description>#/objects in repository</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <parameters></parameters>
 <returnValue>
@@ -37,6 +39,7 @@
 <description>list of handles in repository</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <parameters></parameters>
 <returnValue>
@@ -51,6 +54,7 @@
 <description>retrieve the field names of a given object</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <parameters>
     <parameter>
@@ -72,6 +76,7 @@
 <description>retrieve the value of a named field</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <parameters>
     <parameter>
@@ -105,6 +110,7 @@
 <description>delete object from repository</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <parameters>
     <parameter>
@@ -126,6 +132,7 @@
 <description>delete all objects from repository</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <parameters></parameters>
 <returnValue>
@@ -140,6 +147,7 @@
 <description>force a dependency between two functions</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>O</platforms>
 <parameters>
     <parameter>
@@ -215,6 +223,7 @@
 <description>begin logging to named file</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <parameters>
     <parameter>
@@ -242,6 +251,7 @@
 <description>set threshold for log messages</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <parameters>
     <parameter>
@@ -263,6 +273,7 @@
 <description>log a message</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <parameters>
     <parameter>
@@ -290,6 +301,7 @@
 <description>write object description to log file</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <parameters>
     <parameter>
@@ -311,6 +323,7 @@
 <description>write all object descriptions to log file</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <parameters></parameters>
 <returnValue>
@@ -325,6 +338,7 @@
 <description>get value of ObjectHandler garbage collection flag</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>D</platforms>
 <parameters></parameters>
 <returnValue>
@@ -339,6 +353,7 @@
 <description>set value of ObjectHandler garbage collection flag</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>D</platforms>
 <parameters>
     <parameter>
@@ -360,6 +375,7 @@
 <description>delete orphaned objects from repository</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <platforms>D</platforms>
 <parameters></parameters>
 <returnValue>

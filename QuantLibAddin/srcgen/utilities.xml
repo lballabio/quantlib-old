@@ -9,6 +9,7 @@
 <description>return the members of a given enumeration</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>enumId</name>
@@ -29,6 +30,7 @@
 <description>return the names of all registered enums</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters></parameters>
 <returnValue>
     <type>string</type>
@@ -42,6 +44,7 @@
 <description>return the names of all registered complex types</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters></parameters>
 <returnValue>
     <type>string</type>
@@ -55,6 +58,7 @@
 <description>return the members of a given complex type</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>typeId</name>
@@ -75,6 +79,7 @@
 <description>returns the version number of QuantLib</description>
 <constructor>false</constructor>
 <libraryFunction></libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters></parameters>
 <returnValue>
     <type>string</type>

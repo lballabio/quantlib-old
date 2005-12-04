@@ -9,6 +9,7 @@
 <description>construct and return a handle to a Black Scholes Process object</description>
 <constructor>true</constructor>
 <libraryFunction>BlackScholesProcess</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='BlackVolTermStructure'>
         <name>handleBlackVol</name>

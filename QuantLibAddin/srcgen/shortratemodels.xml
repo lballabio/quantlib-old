@@ -9,6 +9,7 @@
 <description>construct and return a handle to a Hull-White short-rate model object</description>
 <constructor>true</constructor>
 <libraryFunction>HullWhite</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter class='YieldTermStructure'>
         <name>handleTermStructure</name>
@@ -41,6 +42,7 @@
 <description>construct and return a Vasicek short-rate model object</description>
 <constructor>true</constructor>
 <libraryFunction>Vasicek</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>a</name>

@@ -9,6 +9,7 @@
 <description>construct and return a handle to a swap object</description>
 <constructor>true</constructor>
 <libraryFunction>Swap</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>paidLegID</name>

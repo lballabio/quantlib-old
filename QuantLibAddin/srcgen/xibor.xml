@@ -9,6 +9,7 @@
 <description>construct and return a handle to a Xibor Index</description>
 <constructor>true</constructor>
 <libraryFunction>Xibor</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
 <parameters>
     <parameter>
         <name>IndexName</name>

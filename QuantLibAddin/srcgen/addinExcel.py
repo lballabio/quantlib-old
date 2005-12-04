@@ -191,7 +191,7 @@ class AddinExcel(addin.Addin):
         fileHeader.write(self.formatLine(function.name, 'function display name'))
         fileHeader.write(self.formatLine(paramList, 'comma-delimited list of parameters'))    
         fileHeader.write(self.formatLine('1', 'function type (0 = hidden function, 1 = worksheet function, 2 = command macro)'))
-        fileHeader.write(self.formatLine('QuantLib', 'function category'))
+        fileHeader.write(self.formatLine(function.functionCat, 'function category'))
         fileHeader.write(self.formatLine('', 'shortcut text (command macros only)'))
         fileHeader.write(self.formatLine('', 'path to help file'))
         if funcParams:
