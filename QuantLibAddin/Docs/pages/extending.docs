@@ -37,7 +37,7 @@ In directory QuantLibAddin/qla, add a new class, descended from Object, wrapping
 	QuantLibAddin/qla/fixedcouponbond.cpp
 	QuantLibAddin/qla/fixedcouponbond.hpp
 \endverbatim
-... and implement new class \c %QuantLibAddin::FixedCouponBond, which wraps \c QuantLib::FixedCouponBond.  Workspaces for the core %QuantLibAddin project must be updated to pick up the new files.
+... and implement new class <tt>%QuantLibAddin::%FixedCouponBond</tt>, which wraps \c QuantLib::FixedCouponBond.  Workspaces for the core %QuantLibAddin project must be updated to pick up the new files.
 
 File <tt>%generalutils.hpp</tt> in the qla directory can be \c #included to pick up additional utility functions.
 
