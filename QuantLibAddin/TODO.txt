@@ -1,4 +1,3 @@
-- use new QuantLib functionality for evaluation date/multiton
 - use Serializer/Deserializer pattern to load metadata for srcgen.py
 - update design doc
 

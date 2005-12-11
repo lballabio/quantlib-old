@@ -1,8 +1,11 @@
 DLLEXPORT char* %s(
         char *handleStub,%s) {
     try {
+        SET_SESSION_ID
+
 %s        ObjHandler::obj_ptr objectPointer(new QuantLibAddin::%s(%s));
         std::string handleFull = ObjHandler::storeObject(handleStub, objectPointer);
+
         static char ret[XL_MAX_STR_LEN];
 		ObjHandler::stringToChar(ret, handleFull);
         return ret;

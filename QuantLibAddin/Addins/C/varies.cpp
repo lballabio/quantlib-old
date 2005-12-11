@@ -24,17 +24,17 @@ extern "C" {
 using namespace ObjHandler;
 
 long variesToScalarLong(const Varies &v, const long &defaultValue) {
-    long ret;
+    long ret = 0;
     return ret;
 }
 
 double variesToScalarDouble(const Varies &v, const double &defaultValue){
-    double ret;
+    double ret = 0;
     return ret;
 }
 
 bool variesToScalarBool(const Varies &v, const bool &defaultValue){
-    bool ret;
+    bool ret = false;
     return ret;
 }
 

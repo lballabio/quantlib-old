@@ -17,6 +17,8 @@
 
 #include <qla/qladdin.hpp>
 #include <cstdarg>
+#include <ql/userconfig.hpp>
+#include <ql/types.hpp>
 
 extern "C" {
 #include <Addins/C/utilities.h>
@@ -87,3 +89,12 @@ int qlListType(
     return 0;
 }
 
+// support for QuantLib sessions - not yet implemented
+
+#ifdef QL_ENABLE_SESSIONS
+
+QuantLib::Integer QuantLib::sessionId() {
+    return 0;
+}
+
+#endif

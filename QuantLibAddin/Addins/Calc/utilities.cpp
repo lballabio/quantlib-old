@@ -18,6 +18,8 @@
 #include <qla/qladdin.hpp>
 #include <Addins/Calc/qladdin.hpp>
 #include <Addins/Calc/calcutils.hpp>
+#include <ql/userconfig.hpp>
+#include <ql/types.hpp>
 
 SEQSEQ( STRING ) SAL_CALL QLAddin::qlListEnum(
         const STRING &enumId) THROWDEF_RTE_IAE {
@@ -72,3 +74,12 @@ STRING SAL_CALL QLAddin::qlVersion() THROWDEF_RTE_IAE {
     }
 }
 
+// support for QuantLib sessions - not yet implemented
+
+#ifdef QL_ENABLE_SESSIONS
+
+QuantLib::Integer QuantLib::sessionId() {
+    return 0;
+}
+
+#

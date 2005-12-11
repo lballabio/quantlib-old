@@ -14,6 +14,8 @@ EXTRA_DIST = \
     processes.cpp \
     qladdin.cpp \
     schedule.cpp \
+    session.cpp \
+    session.hpp \
     shortratemodels.cpp \
     simpleswap.cpp \
     swap.cpp \

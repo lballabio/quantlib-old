@@ -5,4 +5,5 @@
 #include <xlsdk/xlsdk.hpp>
 #include <oh/objhandler.hpp>
 #include <ohxl/conversions.hpp>
+#include <Addins/Excel/session.hpp>
 

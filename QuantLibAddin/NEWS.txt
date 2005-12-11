@@ -9,6 +9,8 @@ FUNCTIONALITY
 
 - 3 new functions / 73 in total
 - backward & forward flat interpolators (Aurelien Chanudet)
+- support for new QuantLib functionality for sessions,
+  allowing multiple instances of the global evaluation date  
 - Documentation revised and extended
 
 

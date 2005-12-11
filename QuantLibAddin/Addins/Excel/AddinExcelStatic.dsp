@@ -121,6 +121,14 @@ SOURCE=.\schedule.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\session.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\session.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\shortratemodels.cpp
 # End Source File
 # Begin Source File
