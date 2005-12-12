@@ -20,6 +20,7 @@
 #ifdef QL_ENABLE_SESSIONS
 
 #include <ql/Patterns/singleton.hpp>
+#include <ql/Utilities/strings.hpp>
 #include <ohxl/conversions.hpp>
 #include <exception>
 #include <sstream>
@@ -74,27 +75,49 @@ namespace QuantLibAddin {
 
     }
 
-    // extract "BOOK.XLS" from "[BOOK.XLS]SHEET!R1C1"
+    // accept cell address in format "[BOOK.XLS]SHEET!R1C1" 
+    // or "BOOK.XLS!R1C1" (from books containing only one sheet)
+    // and extract substring "BOOK.XLS"
+
     std::string Session::bookFromAddress(const std::string &address) {
 
-        if (address[0] != '[') {
+        std::string bookName;
+        if (address[0] == '[') {
+
+            int endBracket = address.find("]", 1);
+            if (endBracket == std::string::npos) {
+                std::ostringstream err;
+                err << "error interpreting address " << address
+                    << " unable to locate closing square bracket ']'";
+                throw exception(err.str().c_str());
+            }
+
+            bookName = address.substr(1, endBracket - 1);
+        } else {
+
+            int bang = address.find("!");
+            if (bang == std::string::npos) {
+                std::ostringstream err;
+                err << "error interpreting address " << address
+                    << " unable to locate bookname delimiter '!'";
+                throw exception(err.str().c_str());
+            }
+
+            bookName = address.substr(0, bang);
+        }
+
+        // sanity check
+        std::string suffix = bookName.substr(bookName.length() - 4);
+        if (QuantLib::uppercase(suffix).compare(".XLS") != 0) {
             std::ostringstream err;
-            err << "error interpreting address " << address
-                << " expected 1st character to be opening square bracket '['";
+            err << "error interpreting address '" << address
+                << "' expected book name '" << bookName
+                << "' to have suffix '.XLS',"
+                << "detected suffix '" << suffix << "'";
             throw exception(err.str().c_str());
         }
 
-        int endBracket = address.find("]", 1);
-        if (endBracket == std::string::npos) {
-            std::ostringstream err;
-            err << "error interpreting address " << address
-                << " unable to locate closing square bracket ']'";
-            throw exception(err.str().c_str());
-        }
-
-        std::string bookName = address.substr(1, endBracket - 1);
         return bookName;
-
     }
 
     const QuantLib::Integer &Session::getSessionId() {
