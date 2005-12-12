@@ -1,10 +1,9 @@
-- autolink.hpp to generate error if compiled with
-  static runtime library
 - replace singleton.hpp with boost::singleton?
 - move unique key functionality from ObjectHandlerXL
   to ObjectHandlerBase
 - revise Property pattern
 - update design doc
+- implement conversion functions as templates
 
 - revise exception handling
 
