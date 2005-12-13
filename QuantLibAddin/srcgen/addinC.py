@@ -92,8 +92,7 @@ class AddinC(addin.Addin):
         or returnValue.tensorRank == common.MATRIX \
         or returnValue.type == common.ANY:
             return returnValue.tensorRank + \
-                returnValue.type.capitalize() + \
-                'ToVaries(returnValue, result)'
+                'ToVaries(result, returnValue)'
         if returnValue.type == common.STRING:
             return 'strcpy(result, returnValue.c_str())'
         else:

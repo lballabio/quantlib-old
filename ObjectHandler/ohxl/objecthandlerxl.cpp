@@ -106,7 +106,8 @@ namespace ObjHandler {
 
                 // delete object
 
-                std::string oldKey = operToScalarString(&xOldName);
+                std::string oldKey;
+                operToScalar(oldKey, xOldName);
                 Excel(xlFree, 0, 1, &xOldName);
                 for (ObjectList::iterator iter = objectList_.begin();
                         iter != objectList_.end(); iter++) {
@@ -193,7 +194,8 @@ namespace ObjHandler {
             std::string key = handle.substr(handle.length() - KEY_WIDTH - 1);
             Excel(xlfGetName, &xDef, 1, TempStrStl(key));
 
-            std::string address = operToScalarString(&xDef);
+            std::string address;
+            operToScalar(address, xDef);
             Excel(xlfTextref, &xRef, 1, TempStrStl(address.substr(1)));
 
             bool ret = (xRef.xltype & (xltypeRef | xltypeSRef)) != 0;

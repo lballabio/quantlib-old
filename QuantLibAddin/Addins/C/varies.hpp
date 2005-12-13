@@ -18,43 +18,33 @@
 #ifndef qla_varies_hpp
 #define qla_varies_hpp
 
-long variesToScalarLong(const Varies &v, const long &defaultValue);
-double variesToScalarDouble(const Varies &v, const double &defaultValue);
-bool variesToScalarBool(const Varies &v, const bool &defaultValue);
-std::string variesToScalarString(const Varies &v, const std::string &defaultValue);
-boost::any variesToScalarAny(const Varies &v, const boost::any &defaultValue);
+#include <string>
+#include <vector>
 
-std::vector < long > variesToVectorLong(const Varies &v);
-std::vector < double > variesToVectorDouble(const Varies &v);
-std::vector < bool > variesToVectorBool(const Varies &v);
-std::vector < std::string > variesToVectorString(const Varies &v);
-std::vector < boost::any > variesToVectorAny(const Varies &v);
+void variesToScalar(long &ret, const Varies &value, const long &defaultValue = 0);
+void variesToScalar(double &ret, const Varies &value, const double &defaultValue = 0);
+void variesToScalar(bool &ret, const Varies &value, const bool &defaultValue = false);
+void variesToScalar(std::string &ret, const Varies &value, const std::string &defaultValue = "");
 
-std::vector < std::vector < long > > variesToMatrixLong(const Varies &v);
-std::vector < std::vector < double > > variesToMatrixDouble(const Varies &v);
-std::vector < std::vector < bool > > variesToMatrixBool(const Varies &v);
-std::vector < std::vector < std::string > > variesToMatrixString(const Varies &v);
-std::vector < std::vector < boost::any > > variesToMatrixAny(const Varies &v);
+template < class T >
+void variesToVector(std::vector < T > &ret, const Varies &value) {
+}
 
-void scalarLongToVaries(const long &in, Varies *v);
-void scalarDoubleToVaries(const double &in, Varies *v);
-void scalarBoolToVaries(const bool &in, Varies *v);
-void scalarStringToVaries(const std::string &in, Varies *v);
+template < class T >
+void variesToMatrix(std::vector < std::vector < T > > &ret, const Varies &value) {
+}
 
-void vectorLongToVaries(const std::vector < long > &in, Varies *v);
-void vectorDoubleToVaries(const std::vector < double > &in, Varies *v);
-void vectorBoolToVaries(const std::vector < bool > &in, Varies *v);
-void vectorStringToVaries(const std::vector < std::string > &in, Varies *v);
-void vectorAnyToVaries(const std::vector < boost::any > &in, Varies *v);
+template < class T >
+void scalarToVaries(Varies *ret, const T &value) {
+}
 
-void matrixLongToVaries(const std::vector < std::vector < long > > &in, Varies *v);
-void matrixDoubleToVaries(const std::vector < std::vector < double > > &in, Varies *v);
-void matrixBoolToVaries(const std::vector < std::vector < bool > > &in, Varies *v);
-void matrixStringToVaries(const std::vector < std::vector < std::string > > &in, Varies *v);
-void matrixAnyToVaries(const std::vector < std::vector < boost::any > > &in, Varies *v);
+template < class T >
+void vectorToVaries(Varies *ret, const std::vector < T > &value) {
+}
 
-//void propertyVectorToVariesList(const ObjHandler::Properties &properties, 
-//        VariesList *variesList);
+template < class T >
+void matrixToVaries(Varies *ret, const std::vector < std::vector < T > > &value) {
+}
 
 #endif
 

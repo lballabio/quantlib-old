@@ -141,7 +141,7 @@ class AddinExcel(addin.Addin):
                 pass
             else:
                 return '        return &returnValue;'
-        return RET_XLOPER % (returnValue.tensorRank + returnValue.type.capitalize())
+        return RET_XLOPER % (returnValue.tensorRank)
 
     def formatLine(self, text, comment, lastParameter = False):
         'format a line of text for the function register code'

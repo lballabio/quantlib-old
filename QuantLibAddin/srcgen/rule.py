@@ -140,8 +140,11 @@ class Rule(object):
         if not self.subrule: return
         sourceType = self.applySubrule()
 
+        deref = ''
         if self.param.isOptional and self.param.tensorRank == common.SCALAR:
             defaultValue = ', ' + self.param.defaultValue
+            if self.definition[SET_TYPE_CONVERSION].has_key(common.DEREFERENCE):
+                deref = self.definition[SET_TYPE_CONVERSION][common.DEREFERENCE]
         else:
             defaultValue = ''
 
@@ -150,8 +153,9 @@ class Rule(object):
         else:
             prefix = ''
 
-        indent = 12 * ' '
-        self.conversion = ' = \n' + indent + prefix + sourceType + 'To' \
-            + self.param.tensorRank.capitalize() + self.param.type.capitalize() \
-            + '(' + self.param.name + defaultValue + ');\n'
+        indent = 8 * ' '
+        self.conversion = ';\n' + indent + prefix + sourceType + 'To' \
+            + self.param.tensorRank.capitalize() \
+            + '(' + self.param.name + self.param.tensorRank.capitalize() \
+            + ', ' + deref + self.param.name + defaultValue + ');\n'
 

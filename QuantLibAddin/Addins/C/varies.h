@@ -50,7 +50,6 @@ typedef struct {
 //    char* Label;
 } Varies;
 
-const char *variesToString(const Varies *v);
 void freeVaries(Varies *vl);
 
 #endif

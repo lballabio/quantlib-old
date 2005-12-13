@@ -95,7 +95,8 @@ STRING SAL_CALL QLAddin::ohLogMessage(
         const STRING &logMessage,
         const ANY &logLevel) THROWDEF_RTE_IAE {
     try {
-        long logLevelScalar = anyToScalarLong(logLevel, 4);
+        long logLevelScalar;
+        calcToScalar(logLevelScalar, logLevel, 4);        
         ObjHandler::logMessage(ouStringToStlString(logMessage), logLevelScalar);
         return logMessage;
     } catch (...) {
@@ -118,7 +119,8 @@ STRING SAL_CALL QLAddin::ohSetLogFile(
         const STRING &logFileName,
         const ANY &logLevel) THROWDEF_RTE_IAE {
     try {
-        long logLevelScalar = anyToScalarLong(logLevel, 4);
+        long logLevelScalar;
+        calcToScalar(logLevelScalar, logLevel, 4);
         ObjHandler::setLogFile(ouStringToStlString(logFileName), logLevelScalar);
         return logFileName;
     } catch (const std::exception &e) {
@@ -183,7 +185,9 @@ SEQSEQ(STRING) SAL_CALL QLAddin::ohHandleList() THROWDEF_RTE_IAE {
     try {
         std::vector < std::string > handleList =
             ObjHandler::ObjectHandler::instance().handleList();
-        return vectorStringToSeqSeq(handleList);
+        SEQSEQ(STRING) ret;
+        vectorToCalc(ret, handleList);
+        return ret;
     } catch (const std::exception &e) {
         ObjHandler::logMessage(std::string("ERROR: ohHandleList: ") + e.what(), 2);
         THROW_RTE;

@@ -18,56 +18,103 @@
 #ifndef qla_calc_calcutils_hpp
 #define qla_calc_calcutils_hpp
 
-ANY boostAnyToCalcAny(const boost::any &a);
 SEQSEQ( ANY ) propertyVectorToSeqSeq(
     ObjHandler::Properties properties, 
     const STRING &handle);
 std::string ouStringToStlString(const STRING& s);
-STRING stlStringToOuString(const std::string &s);
 ANY stlStringToCalcAny(const std::string &s);
 SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a);
 
-std::vector < long > seqSeqToVectorLong(const SEQSEQ( sal_Int32 )& ss);
-std::vector < double > seqSeqToVectorDouble(const SEQSEQ( double )& ss);
-std::vector < bool > seqSeqToVectorBool(const SEQSEQ( sal_Int32 )& ss);
-std::vector < std::string > seqSeqToVectorString(const SEQSEQ( ANY )& ss);
-std::vector < boost::any > seqSeqToVectorAny(const SEQSEQ( ANY )& ss);
+// conversions from native C++ datatypes to Calc datatypes
 
-std::vector < std::vector < long > > seqSeqToMatrixLong(const SEQSEQ( sal_Int32 )& ss);
-std::vector < std::vector < double > > seqSeqToMatrixDouble(const SEQSEQ( double )& ss);
-std::vector < std::vector < bool > > seqSeqToMatrixBool(const SEQSEQ( sal_Int32 )& ss);
-std::vector < std::vector < std::string > > seqSeqToMatrixString(const SEQSEQ( ANY )& ss);
-std::vector < std::vector < boost::any > > seqSeqToMatrixAny(const SEQSEQ( ANY )& ss);
+template < class T >
+void scalarToCalc(T &ret, const T &value) {
+    ret = value;
+}
 
-SEQSEQ( sal_Int32 ) vectorLongToSeqSeq(const std::vector < long > &v);
-SEQSEQ( double ) vectorDoubleToSeqSeq(const std::vector < double > &v);
-SEQSEQ( sal_Int32 ) vectorBoolToSeqSeq(const std::vector < bool > &v);
-SEQSEQ( STRING ) vectorStringToSeqSeq(const std::vector < std::string > &v);
-SEQSEQ( ANY ) vectorAnyToSeqSeq(const std::vector < boost::any > &v);
+void scalarToCalc(sal_Int32 &ret, const bool &value);
+void scalarToCalc(STRING &ret, const std::string &value);
+void scalarToCalc(ANY &ret, const boost::any &value);
 
-SEQSEQ( sal_Int32 ) matrixLongToSeqSeq(const std::vector < std::vector < long > >&v);
-SEQSEQ( double ) matrixDoubleToSeqSeq(const std::vector < std::vector < double > >&v);
-SEQSEQ( sal_Int32 ) matrixBoolToSeqSeq(const std::vector < std::vector < bool > >&v);
-SEQSEQ( STRING ) matrixStringToSeqSeq(const std::vector < std::vector < std::string > >&v);
-SEQSEQ( ANY ) matrixAnyToSeqSeq(const std::vector < std::vector < boost::any > >&v);
+template < class T_FROM, class T_TO >
+void vectorToCalc(SEQSEQ( T_TO ) &ret, const std::vector < T_FROM > &v) {
+    ret.realloc(v.size());
+    for (unsigned int i=0; i<v.size(); i++) {
+        SEQ( T_TO ) s(1);
+        scalarToCalc(s[0], v[i]);
+        ret[i] = s;
+    }
+}
 
-long anyToScalarLong(const ANY &a, const long &defaultValue = 0);
-double anyToScalarDouble(const ANY &a, const double &defaultValue = 0);
-bool anyToScalarBool(const ANY &a, const bool &defaultValue = false);
-std::string anyToScalarString(const ANY &s, const std::string &defaultValue = "");
-boost::any anyToScalarAny(const ANY &a);
+template < class T_FROM, class T_TO >
+void matrixToCalc(SEQSEQ( T_TO ) &ret, const std::vector < std::vector < T_FROM > >&vv) {
+    ret.realloc(vv.size());
+    for (unsigned int i=0; i<vv.size(); i++) {
+        std::vector < T_FROM > v = vv[i];
+        SEQ( T_TO ) s(v.size());
+        for (unsigned int j=0; j<v.size(); j++)
+            scalarToCalc(s[j], v[j]);
+        ret[i] = s;
+    }
+}
 
-std::vector < long > anyToVectorLong(const ANY &a);
-std::vector < double > anyToVectorDouble(const ANY &a);
-std::vector < bool > anyToVectorBool(const ANY &a);
-std::vector < std::string > anyToVectorString(const ANY& s);
-std::vector < boost::any > anyToVectorAny(const ANY &a);
+// conversions from Calc datatypes to native C++ datatypes
 
-std::vector < std::vector < long > > anyToMatrixLong(const ANY &a);
-std::vector < std::vector < double > > anyToMatrixDouble(const ANY &a);
-std::vector < std::vector < bool > > anyToMatrixBool(const ANY &a);
-std::vector < std::vector < std::string > > anyToMatrixString(const ANY& s);
-std::vector < std::vector < boost::any > > anyToMatrixAny(const ANY &a);
+template < class T >
+void calcToScalar(T &ret, const T &value) {
+    ret = value;
+}
+
+void calcToScalar(bool &ret, const sal_Int32&value);
+void calcToScalar(boost::any &ret, const ANY &value);
+void calcToScalar(long &ret, const ANY &value, const long &defaultValue = 0);
+void calcToScalar(double &ret, const ANY &value, const double &defaultValue = 0);
+void calcToScalar(bool &ret, const ANY &value, const bool &defaultValue = false);
+void calcToScalar(std::string &ret, const ANY &value, const std::string &defaultValue = "");
+
+template < class T >
+calcToVector(std::vector < T > &ret, const ANY &value) {
+    STRING t = value.getValueTypeName();
+    if (t.equalsIgnoreAsciiCase(STRFROMANSI("[][]ANY"))) {
+        SEQSEQ( ANY ) ss;
+        value >>= ss;
+        for (int i=0; i<ss.getLength(); i++) {
+            for (int j=0; j<ss[i].getLength(); j++) {
+                T temp;
+                calcToScalar(temp, ss[i][j]);
+                ret.push_back(temp);
+            }
+        }
+    } else {
+        T temp;
+        calcToScalar(temp, value);
+        ret.push_back(temp);
+    }
+}
+
+template < class T_FROM, class T_TO >
+void calcToVector(std::vector < T_TO > &ret, const SEQSEQ( T_FROM )& ss) {
+    for (int i=0; i<ss.getLength(); i++) {
+        for (int j=0; j<ss[i].getLength(); j++) {
+            T_TO temp;
+            calcToScalar(temp, ss[i][j]);
+            ret.push_back(temp);
+        }
+    }
+}
+
+template < class T_FROM, class T_TO >
+void calcToMatrix(std::vector < std::vector < T_TO > > &ret, const SEQSEQ( T_FROM )& ss) {
+    for (int i=0; i<ss.getLength(); i++) {
+        std::vector < T_TO >v;
+        for (int j=0; j<ss[i].getLength(); j++) {
+            T_TO temp;
+            calcToScalar(temp, ss[i][j]);
+            v.push_back(temp);
+        }
+        ret.push_back(v);
+    }
+}
 
 #endif
 

@@ -48,7 +48,7 @@ extern "C" XLOPER* ohHandleList() {
     try {
         static XLOPER ret;
         std::vector < std::string > handleList = ObjectHandler::instance().handleList();
-        vectorStringToXloper(ret, handleList);
+        vectorToXloper(ret, handleList);
         return &ret;
     } catch (const std::exception &e) {
         logMessage(std::string("ERROR: ohHandleList: ") + e.what(), 2);
@@ -70,7 +70,7 @@ extern "C" XLOPER *ohFieldNames(char *handleObject) {
         for (unsigned int i=0; i<properties.size(); i++) {
             ObjectProperty property = properties[i];
             any_ptr a = property();
-            stringToXloper(xRet.val.array.lparray[i], property.name().c_str());
+            scalarToXloper(xRet.val.array.lparray[i], property.name());
         }
         return &xRet;
     } catch (const std::exception &e) {
@@ -94,7 +94,7 @@ extern "C" XLOPER *ohFieldValue(char *handleObject,
             ObjectProperty property = properties[i];
             any_ptr a = property();
             if (property.name().compare(fieldNameUpper) == 0) {
-                scalarAnyToXloper(xRet, *a, true);
+                scalarToXloper(xRet, *a, true);
                 return &xRet;
             }
         }
@@ -144,7 +144,7 @@ extern "C" short int* ohDependsOn(
         static short int ret = FALSE;
         return &ret;
     } catch (const std::exception &e) {
-        logMessage(std::string("ERROR: qlDependsOn: ") + e.what(), 2);
+        logMessage(std::string("ERROR: ohDependsOn: ") + e.what(), 2);
         return 0;
     }
 }
@@ -185,7 +185,8 @@ extern "C" short int* ohCallGC() {
 extern "C" char* ohSetLogFile(char *logFileName, OPER *logLevel) {
     try {
         static char ret[XL_MAX_STR_LEN];
-        long logLevelScalar = operToScalarLong(logLevel, 4);
+        long logLevelScalar;
+        operToScalar(logLevelScalar, *logLevel, 4);
         setLogFile(logFileName, logLevelScalar);
         stringToChar(ret, logFileName);
         return ret;
@@ -209,7 +210,8 @@ extern "C" long* ohSetLogLevel(long *logLevel) {
 extern "C" char* ohLogMessage(char *message, OPER *logLevel) {
     try {
         static char ret[XL_MAX_STR_LEN];
-        long logLevelScalar = operToScalarLong(logLevel, 4);
+        long logLevelScalar;
+        operToScalar(logLevelScalar, *logLevel, 4);
         logMessage(message, logLevelScalar);
         stringToChar(ret, message);
         return ret;

@@ -38,7 +38,7 @@ DLLEXPORT XLOPER* qlListRegisteredEnums() {
         std::vector < std::string > returnValue = 
             getRegisteredEnums();
         static XLOPER xRet;
-        ObjHandler::vectorStringToXloper(xRet, returnValue);
+        ObjHandler::vectorToXloper(xRet, returnValue);
         return &xRet;
     } catch (const std::exception &e) {
         ObjHandler::logMessage(std::string("ERROR: qlListRegisteredEnums: ") + e.what(), 2);
@@ -52,7 +52,7 @@ DLLEXPORT XLOPER* qlListEnum(
         std::vector < std::string > returnValue = 
             getEnumMembers(enumId);
         static XLOPER xRet;
-        ObjHandler::vectorStringToXloper(xRet, returnValue);
+        ObjHandler::vectorToXloper(xRet, returnValue);
         return &xRet;
     } catch (const std::exception &e) {
         ObjHandler::logMessage(std::string("ERROR: qlListEnum: ") + e.what(), 2);
@@ -65,7 +65,7 @@ DLLEXPORT XLOPER* qlListRegisteredTypes() {
         std::vector < std::string > returnValue = 
             getRegisteredComplexTypes();
         static XLOPER xRet;
-        ObjHandler::vectorStringToXloper(xRet, returnValue);
+        ObjHandler::vectorToXloper(xRet, returnValue);
         return &xRet;
     } catch (const std::exception &e) {
         ObjHandler::logMessage(std::string("ERROR: qlListRegisteredTypes: ") + e.what(), 2);
@@ -79,7 +79,7 @@ DLLEXPORT XLOPER* qlListType(
         std::vector < std::string > returnValue = 
             getComplexTypeMembers(typeId);
         static XLOPER xRet;
-        ObjHandler::vectorStringToXloper(xRet, returnValue);
+        ObjHandler::vectorToXloper(xRet, returnValue);
         return &xRet;
     } catch (const std::exception &e) {
         ObjHandler::logMessage(std::string("ERROR: qlListType: ") + e.what(), 2);

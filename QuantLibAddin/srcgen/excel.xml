@@ -85,14 +85,10 @@
 
 <conversions appendTensorRank='true' indent='2'>
     <setType>
-        <scalar>
+        <scalar-vector-matrix>
             <string>std::string</string>
             <any>boost::any</any>
-        </scalar>
-        <vector-matrix>
-            <string>std::string</string>
-            <any>boost::any</any>
-        </vector-matrix>
+        </scalar-vector-matrix>
     </setType>
     <reformatType>
         <vector>
@@ -104,6 +100,7 @@
     </reformatType>
     <setTypeConversion>
         <prefix>ObjHandler::</prefix>
+        <dereference>*</dereference>
         <scalar-vector-matrix>
             <optional>oper</optional>
             <long>fp</long>

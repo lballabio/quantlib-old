@@ -107,8 +107,7 @@
     </reformatType>
     <setTypeConversion>
         <scalar-vector-matrix>
-            <optional>any</optional>
-            <default>seqSeq</default>
+            <default>calc</default>
         </scalar-vector-matrix>
     </setTypeConversion>
 </conversions>

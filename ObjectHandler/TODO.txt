@@ -3,7 +3,6 @@
   to ObjectHandlerBase
 - revise Property pattern
 - update design doc
-- implement conversion functions as templates
 
 - revise exception handling
 

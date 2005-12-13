@@ -28,44 +28,154 @@ namespace ObjHandler {
 
     DLL_API std::string getHandleFull(const std::string &handle);
     DLL_API void stringToChar(char *c, const std::string &s);
-    DLL_API void stringToXloper(XLOPER &xStr, const std::string &s);
-    DLL_API void scalarAnyToXloper(
-        XLOPER &xScalar, 
-        const boost::any &any, 
+
+    // conversions from native C++ datatypes to Excel datatypes
+
+    DLL_API void scalarToXloper(XLOPER &xLong, const long &value);
+    DLL_API void scalarToXloper(XLOPER &xDouble, const double &value);
+    DLL_API void scalarToXloper(XLOPER &xBoolean, const bool &value);
+    DLL_API void scalarToXloper(XLOPER &xString, const std::string &value);
+    DLL_API void scalarToXloper(
+        XLOPER &xAny, 
+        const boost::any &value, 
         const bool &expandVectors = false);
 
-    DLL_API void vectorLongToXloper(XLOPER &xVector, const std::vector < long > &v);
-    DLL_API void vectorDoubleToXloper(XLOPER &xVector, const std::vector < double > &v);
-    DLL_API void vectorBoolToXloper(XLOPER &xVector, const std::vector < bool > &v);
-    DLL_API void vectorStringToXloper(XLOPER &xVector, const std::vector < std::string > &v);
-    DLL_API void vectorAnyToXloper(XLOPER &xVector, const std::vector < boost::any > &v);
-    DLL_API void matrixLongToXloper(XLOPER &xMatrix, const std::vector < std::vector < long > > &vv);
-    DLL_API void matrixDoubleToXloper(XLOPER &xMatrix, const std::vector < std::vector < double > > &vv);
-    DLL_API void matrixBoolToXloper(XLOPER &xMatrix, const std::vector < std::vector < bool > > &vv);
-    DLL_API void matrixStringToXloper(XLOPER &xMatrix, const std::vector < std::vector < std::string > > &vv);
-    DLL_API void matrixAnyToXloper(XLOPER &xMatrix, const std::vector < std::vector < boost::any > > &vv);
+    template < class T >
+    void vectorToXloper(XLOPER &xVector, const std::vector < T > &v) {
+        if (v.empty()) {
+            xVector.xltype = xltypeNum;
+            xVector.val.num = 0;
+            return;
+        }
+        xVector.xltype = xltypeMulti | xlbitDLLFree;
+        xVector.val.array.rows    = v.size();
+        xVector.val.array.columns = 1;
+        xVector.val.array.lparray = new XLOPER[v.size()]; 
+        if (!xVector.val.array.lparray)
+            throw std::exception("vectorToXloper: error on call to new");
+        for (unsigned int i=0; i<v.size(); i++)
+            scalarToXloper(xVector.val.array.lparray[i], v[i]);
+    }
 
-    DLL_API long operToScalarLong(const OPER *xScalar, const long &defaultValue);
-    DLL_API double operToScalarDouble(const OPER *xScalar, const double &defaultValue);
-    DLL_API bool operToScalarBool(const OPER *xScalar, const bool &defaultValue);
-    DLL_API std::string operToScalarString(const OPER *xScalar, const std::string &defaultValue = "");
-    DLL_API boost::any operToScalarAny(const OPER *xScalar);
+    template < class T >
+    void matrixToXloper(XLOPER &xMatrix, const std::vector < std::vector < T > > &vv) {
+        if (vv.empty() || vv[0].empty()) {
+            xMatrix.xltype = xltypeNum;
+            xMatrix.val.num = 0;
+            return;
+        }
+        xMatrix.xltype = xltypeMulti | xlbitDLLFree;
+        xMatrix.val.array.rows    = vv.size();
+        xMatrix.val.array.columns = vv[0].size();
+        xMatrix.val.array.lparray = new XLOPER[xMatrix.val.array.rows * xMatrix.val.array.columns]; 
+        if (!xMatrix.val.array.lparray)
+            throw std::exception("matrixToXloper: error on call to new");
+        for (unsigned int i=0; i<vv.size(); i++) {
+            std::vector < T > v = vv[i];
+            for (unsigned int j=0; j<v.size(); j++)
+                scalarToXloper(xMatrix.val.array.lparray[i * v.size() + j], v[j]);
+        }
+    }
 
-    DLL_API std::vector < long > fpToVectorLong(const FP *fpVector);
-    DLL_API std::vector < double > fpToVectorDouble(const FP *fpVector);
-    DLL_API std::vector < long > operToVectorLong(const OPER *xVector);
-    DLL_API std::vector < double > operToVectorDouble(const OPER *xVector);
-    DLL_API std::vector < bool > operToVectorBool(const OPER *xVector);
-    DLL_API std::vector < std::string > operToVectorString(const OPER *xVector);
-    DLL_API std::vector < boost::any > operToVectorAny(const OPER *xVector);
+    // conversions from Excel datatypes to native C++ datatypes
 
-    DLL_API std::vector < std::vector < long > >fpToMatrixLong(const FP *fpMatrix);
-    DLL_API std::vector < std::vector < double > >fpToMatrixDouble(const FP *fpMatrix);
-    DLL_API std::vector < std::vector < long > >operToMatrixLong(const OPER *xMatrix);
-    DLL_API std::vector < std::vector < double > >operToMatrixDouble(const OPER *xMatrix);
-    DLL_API std::vector < std::vector < bool > >operToMatrixBool(const OPER *xMatrix);
-    DLL_API std::vector < std::vector < std::string > >operToMatrixString(const OPER *xMatrix);
-    DLL_API std::vector < std::vector < boost::any > >operToMatrixAny(const OPER *xMatrix);
+    DLL_API void operToScalar(long &ret, const OPER &xScalar, const long &defaultValue = 0);
+    DLL_API void operToScalar(double &ret, const OPER &xScalar, const double &defaultValue = 0);
+    DLL_API void operToScalar(bool &ret, const OPER &xScalar, const bool &defaultValue = false);
+    DLL_API void operToScalar(std::string &ret, const OPER &xScalar, const std::string &defaultValue = "");
+    DLL_API void operToScalar(boost::any &ret, const OPER &xScalar);
+
+    template < class T >
+    void fpToVector(std::vector < T > &ret, const FP *fpVector) {
+        for (int i=0; i<fpVector->rows * fpVector->columns; i++)
+            ret.push_back(fpVector->array[i]);
+    }
+
+    template < class T >
+    void operToVector(std::vector < T > &ret, const OPER *xVector) {
+        OPER xTemp;
+        bool needToFree = false;
+        try {
+            if (xVector->xltype & (xltypeMissing | xltypeNil))
+                return;
+
+            const OPER *xMulti;
+
+            if (xVector->xltype == xltypeMulti)
+                xMulti = xVector;
+            else {
+                Excel(xlCoerce, &xTemp, 2, xVector, TempInt(xltypeMulti));
+                xMulti = &xTemp;
+                needToFree = true;
+            }
+
+            for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; i++) {
+                T value;
+                operToScalar(value, xMulti->val.array.lparray[i]);
+                ret.push_back(value);
+            }
+
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+
+        } catch (const std::exception &e) {
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+            std::ostringstream msg;
+            msg << "operToVector: " << e.what();
+            throw std::exception(msg.str().c_str());
+        }
+    }
+
+    template < class T >
+    void fpToMatrix( std::vector < std::vector < T > > &ret, const FP *fpMatrix) {
+        for (int i=0; i<fpMatrix->rows; i++) {
+            std::vector < T > row;
+            for (int j=0; j<fpMatrix->columns; j++)
+                row.push_back(fpMatrix->array[i * fpMatrix->columns + j]);
+            ret.push_back(row);
+        }
+    }
+
+    template < class T >
+    void operToMatrix(std::vector < std::vector < T > > &ret, const OPER *xMatrix) {
+        OPER xTemp;
+        bool needToFree = false;
+        try {
+            if (xMatrix->xltype & (xltypeMissing | xltypeNil))
+                return;
+
+            const OPER *xMulti;
+
+            if (xMatrix->xltype == xltypeMulti)
+                xMulti = xMatrix;
+            else {
+                Excel(xlCoerce, &xTemp, 2, xMatrix, TempInt(xltypeMulti));
+                xMulti = &xTemp;
+                needToFree = true;
+            }
+
+            for (int i=0; i<xMulti->val.array.rows; i++) {
+                std::vector < T > row;
+                for (int j=0; j<xMulti->val.array.columns; j++) {
+                    T value;
+                    operToScalar(value, xMulti->val.array.lparray[i * xMulti->val.array.columns + j]);
+                    row.push_back(value);
+                }
+                ret.push_back(row);
+            }
+
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+
+        } catch (const std::exception &e) {
+            if (needToFree)
+                Excel(xlFree, 0, 1, &xTemp);
+            std::ostringstream msg;
+            msg << "operToMatrix: " << e.what();
+            throw std::exception(msg.str().c_str());
+        }
+    }
 
 }
 

@@ -156,17 +156,17 @@ class AddinCalc(addin.Addin):
 
     def getReturnCommand(self, returnValue):
         'generate code to convert datatype of return value'
-        if returnValue.tensorRank == common.SCALAR:
-            if returnValue.type == common.STRING:
-                return 'stlStringToOuString(returnValue)'
-            elif returnValue.type == common.ANY:
-                return 'boostAnyToCalcAny(returnValue)'
-            else:
-                return 'returnValue'
+        indent = 8 * ' '
+        if returnValue.tensorRank == common.SCALAR \
+        and (returnValue.type == common.LONG or \
+             returnValue.type == common.DOUBLE):
+             return indent + 'return returnValue;'
         else:
-            return returnValue.tensorRank \
-                + returnValue.type.capitalize() \
-                + 'ToSeqSeq(returnValue)'
+            functionReturnType = self.ruleFunctionReturnType.apply(returnValue)
+            line1 = indent + functionReturnType + ' returnValueCalc;\n'
+            line2 = indent + returnValue.tensorRank + 'ToCalc(returnValueCalc, returnValue);\n'
+            line3 = indent + 'return returnValueCalc;'
+            return line1 + line2 + line3
 
     def generateMember(self, fileFunc, function):
         'generate source for given function'

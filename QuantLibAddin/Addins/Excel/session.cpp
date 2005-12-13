@@ -46,7 +46,8 @@ namespace QuantLibAddin {
 
             // get the name of the current book
 
-            std::string callerAddress = ObjHandler::operToScalarString(&xReftext);
+            std::string callerAddress;
+            ObjHandler::operToScalar(callerAddress, xReftext);
             std::string callerBook = bookFromAddress(callerAddress);
 
             // get session id from map, adding new entry if necessary

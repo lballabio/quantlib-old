@@ -26,7 +26,9 @@ SEQSEQ( STRING ) SAL_CALL QLAddin::qlListEnum(
     try {
         std::vector < std::string > returnValue = QuantLibAddin::getEnumMembers(
             ouStringToStlString(enumId));
-        return vectorStringToSeqSeq(returnValue);
+        SEQSEQ( STRING ) returnValueCalc;
+        vectorToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;
     } catch (const std::exception &e) {
         ObjHandler::logMessage(std::string("ERROR: QL_LIST_ENUM: ") + e.what(), 2);
         THROW_RTE;
@@ -36,7 +38,9 @@ SEQSEQ( STRING ) SAL_CALL QLAddin::qlListEnum(
 SEQSEQ( STRING ) SAL_CALL QLAddin::qlListRegisteredEnums() THROWDEF_RTE_IAE {
     try {
         std::vector < std::string > returnValue = QuantLibAddin::getRegisteredEnums();
-        return vectorStringToSeqSeq(returnValue);
+        SEQSEQ( STRING ) returnValueCalc;
+        vectorToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;
     } catch (const std::exception &e) {
         ObjHandler::logMessage(std::string("ERROR: QL_LIST_REGISTERED_ENUMS: ") + e.what(), 2);
         THROW_RTE;
@@ -46,7 +50,9 @@ SEQSEQ( STRING ) SAL_CALL QLAddin::qlListRegisteredEnums() THROWDEF_RTE_IAE {
 SEQSEQ( STRING ) SAL_CALL QLAddin::qlListRegisteredTypes() THROWDEF_RTE_IAE {
     try {
         std::vector < std::string > returnValue = QuantLibAddin::getRegisteredComplexTypes();
-        return vectorStringToSeqSeq(returnValue);
+        SEQSEQ( STRING ) returnValueCalc;
+        vectorToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;
     } catch (const std::exception &e) {
         ObjHandler::logMessage(std::string("ERROR: QL_LIST_REGISTERED_TYPES: ") + e.what(), 2);
         THROW_RTE;
@@ -58,7 +64,9 @@ SEQSEQ( STRING ) SAL_CALL QLAddin::qlListType(
     try {
         std::vector < std::string > returnValue = QuantLibAddin::getComplexTypeMembers(
             ouStringToStlString(enumId));
-        return vectorStringToSeqSeq(returnValue);
+        SEQSEQ( STRING ) returnValueCalc;
+        vectorToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;
     } catch (const std::exception &e) {
         ObjHandler::logMessage(std::string("ERROR: QL_LIST_TYPE: ") + e.what(), 2);
         THROW_RTE;
@@ -82,4 +90,4 @@ QuantLib::Integer QuantLib::sessionId() {
     return 0;
 }
 
-#
+#endif
