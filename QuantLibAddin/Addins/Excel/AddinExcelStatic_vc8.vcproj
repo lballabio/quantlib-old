@@ -18,7 +18,7 @@
 			OutputDirectory=".\buildStatic\vc8\DebugMTDLL"
 			IntermediateDirectory=".\buildStatic\vc8\DebugMTDLL"
 			ConfigurationType="2"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="..\..\..\..\Microsoft Visual Studio 8\VC\VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -117,7 +117,7 @@
 			OutputDirectory=".\buildStatic\vc8\ReleaseMTDLL"
 			IntermediateDirectory=".\buildStatic\vc8\ReleaseMTDLL"
 			ConfigurationType="2"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="..\..\..\..\Microsoft Visual Studio 8\VC\VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -405,6 +405,14 @@
 					UsePrecompiledHeader="0"
 				/>
 			</FileConfiguration>
+		</File>
+		<File
+			RelativePath=".\session.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\session.hpp"
+			>
 		</File>
 		<File
 			RelativePath="shortratemodels.cpp"

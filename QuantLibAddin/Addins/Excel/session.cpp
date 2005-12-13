@@ -89,7 +89,7 @@ namespace QuantLibAddin {
                 std::ostringstream err;
                 err << "error interpreting address " << address
                     << " unable to locate closing square bracket ']'";
-                throw exception(err.str().c_str());
+				throw std::exception(err.str().c_str());
             }
 
             bookName = address.substr(1, endBracket - 1);
@@ -100,7 +100,7 @@ namespace QuantLibAddin {
                 std::ostringstream err;
                 err << "error interpreting address " << address
                     << " unable to locate bookname delimiter '!'";
-                throw exception(err.str().c_str());
+                throw std::exception(err.str().c_str());
             }
 
             bookName = address.substr(0, bang);
@@ -114,7 +114,7 @@ namespace QuantLibAddin {
                 << "' expected book name '" << bookName
                 << "' to have suffix '.XLS',"
                 << "detected suffix '" << suffix << "'";
-            throw exception(err.str().c_str());
+            throw std::exception(err.str().c_str());
         }
 
         return bookName;
