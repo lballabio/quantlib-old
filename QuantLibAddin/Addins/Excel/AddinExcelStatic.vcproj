@@ -309,6 +309,29 @@
 			</FileConfiguration>
 		</File>
 		<File
+			RelativePath="session.cpp">
+			<FileConfiguration
+				Name="Debug MTDLL|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="0"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
+					BasicRuntimeChecks="3"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release MTDLL|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="2"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="session.hpp">
+		</File>
+		<File
 			RelativePath="shortratemodels.cpp">
 			<FileConfiguration
 				Name="Debug MTDLL|Win32">
