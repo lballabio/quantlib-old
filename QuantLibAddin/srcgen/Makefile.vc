@@ -2,32 +2,9 @@
 
 COMPONENT_NAME=srcgen
 
-!IF "$(TargetDir)" == ""
-INT_DIR=build\vc6
-!ELSE 
-INT_DIR=$(TargetDir)
-!ENDIF
+INT_DIR=build\vc
 
 FLAG1=$(INT_DIR)\$(COMPONENT_NAME).flag1
-STUBS= \
-	stub.calc.constructor \
-	stub.calc.idlfoot \
-	stub.calc.idlfunc \
-	stub.calc.idlhead \
-	stub.calc.includes \
-	stub.calc.map \
-	stub.calc.member \
-	stub.c.constructor \
-	stub.c.includes \
-    stub.c.member \
-	stub.copyright \
-	stub.doxygen.categories \
-	stub.doxygen.enums \
-	stub.excel.constructor \
-	stub.excel.includes \
-	stub.excel.member \
-	stub.excel.regheader \
-	stub.qla.includes
 
 SCRIPTS=addin.py \
     addinC.py \
@@ -45,6 +22,26 @@ SCRIPTS=addin.py \
     rule.py \
     srcgen.py \
     utils.py
+
+STUBS= \
+	stub.c.constructor \
+	stub.c.includes \
+    stub.c.member \
+	stub.calc.constructor \
+	stub.calc.idlfoot \
+	stub.calc.idlfunc \
+	stub.calc.idlhead \
+	stub.calc.includes \
+	stub.calc.map \
+	stub.calc.member \
+	stub.copyright \
+	stub.doxygen.categories \
+	stub.doxygen.enums \
+	stub.excel.constructor \
+	stub.excel.includes \
+	stub.excel.member \
+	stub.excel.regheader \
+	stub.qla.includes
 
 METADATA=c.xml \
     calc.xml \

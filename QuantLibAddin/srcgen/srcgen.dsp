@@ -167,11 +167,11 @@ SOURCE=.\stub.copyright
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.doxygen.enums
+SOURCE=.\stub.doxygen.categories
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.doxygen.functions
+SOURCE=.\stub.doxygen.enums
 # End Source File
 # Begin Source File
 
