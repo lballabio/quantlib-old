@@ -1,0 +1,90 @@
+
+/*
+ Copyright (C) 2005 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page evaluationdate Evaluation Date
+
+\section eval_summary Summary
+
+This document summarizes processing for the Evaluation Date.  By default QuantLib stores the evaluation date as a global variable shared by all objects in the current QuantLib instance.  Under this implementation, all objects in a given %QuantLibAddin session - for example, all open workbooks in a given Excel session - share a single global instance of the evaluation date.
+
+Alternatively QuantLib offers support for Sessions which allow the client application to implement multiple instances of the evaluation date.  When this functionality is enabled, %QuantLibAddin defines a session as an Excel workbook, so that a group of related objects which require a common instance of the evaluation date can be isolated in a single workbook.
+
+\section eval_quantlib QuantLib
+
+In QuantLib, the evaluation date is implemented in a global object (called Settings).  QuantLib supports various methods which enable the client application to set the value of the evaluation date.  Any object which depends on the evaluation date consults this global value when required.  If the evaluation date is not set explicitly then it defaults to the current date as computed by the system clock (and the value is incremented when the clock passes midnight).
+
+\section eval_session Session
+
+The behavior described above may lead to undesired results, for example if two different objects require different evaluation dates within a single running instance of QuantLib.  To cater for this situation, QuantLib supports the concept of a Session.  A session constitutes a separate instance of the global state, i.e. a separate instance of the evaluation date variable.
+
+QuantLib doesn't specify what constitutes the physical implementation of a session and client applications are left to define this as required for the local environment.  For example a session could be implemented as a thread, or as a web service.  Multiple sessions share a single instance of QuantLib.
+
+\section eval_quantlibaddin QuantLibAddin
+
+The %QuantLibAddin default build doesn't implement QuantLib's session functionality.
+
+At present the only means for specifying the evaluation date that is exposed by the %QuantLibAddin interface is function qlPiecewiseFlatForward.  Before any call to qlPiecewiseFlatForward, the evaluation date defaults to the current date on the system clock; any call to qlPiecewiseFlatForward explicitly specifies the evaluation date.
+
+Consider a single Excel session in which multiple cells invoke qlPiecewiseFlatForward, specifying  different values for the evaluation date.  Each call overwrites the global value.  The sequence in which the calls are executed is dictated by Excel's dependency calculation tree.  Other cells in the Excel session which depend on the evaluation date will see a different value depending on when they are refreshed.
+
+\section eval_workbook Workbook as Session
+
+%QuantLibAddin can be configured to support QuantLib sessions.  %QuantLibAddin implements a session as a workbook.  Whenever the value of the evaluation date is set - either through an explicit call to qlPiecewiseFlatForward, or by being left to default to the current system date - that value prevails for all sheets and cells in the given workbook.  This has the following implications:
+
+\li If multiple distinct values are required for evaluation date, this can be effected by using multiple workbooks.  Each workbook contains 1) a single cell which sets the evaluation date and 2) any objects which may depend on that value
+\li Within a single workbook there is still the potential problem that multiple calls to qlPiecewiseFlatForward overwrite the workbook-wide value of evaluation date.  Multiple objects requiring different instances of the evaluation date must not reside in a single workbook.
+
+\section eval_implementation Implementation
+
+To enable support for sessions in QuantLib/QuantLibAddin, edit file
+
+\verbatim
+QuantLib\ql\userconfig.hpp
+\endverbatim
+
+and uncomment line
+
+\verbatim
+#define QL_ENABLE_SESSIONS
+\endverbatim
+
+then recompile QuantLib and %QuantLibAddin.
+
+\section eval_multithreading Multithreading
+
+Much of the discussion about QuantLib sessions has centered on the topic of multithreading, which is not relevant to %QuantLibAddin.  %QuantLibAddin executes in a single process thread which is shared by all open workbooks in a given Excel session.
+
+\section eval_crossplatform Cross-Platform Support
+
+At present %QuantLibAddin implements QuantLib sessions only on the Microsoft Excel platform.
+
+\section eval_links Links
+
+Follow the links below for relevant threads in the QuantLib mailing lists.
+
+<a href="http://sourceforge.net/mailarchive/forum.php?thread_id=8151830&forum_id=4299">2005-09-09</a><br>
+<a href="http://sourceforge.net/mailarchive/forum.php?thread_id=7875915&forum_id=4299">2005-08-02</a><br>
+<a href="http://sourceforge.net/mailarchive/forum.php?thread_id=7144644&forum_id=4299">2005-04-28</a><br>
+ 
+*/
+

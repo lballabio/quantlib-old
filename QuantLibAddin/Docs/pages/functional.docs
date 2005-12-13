@@ -38,5 +38,7 @@ The \ref enums page documents alphanumeric codes which %QuantLibAddin
 recognizes to indicate minor or transient %QuantLib classes which are
 constructed as part of larger operations.
 
+Section \ref evaluationdate documents the processing of the Evaluation Date, which by default is implemented as a global variable shared by all objects in the current instance of QuantLib/QuantLibAddin.
+
 */
 
