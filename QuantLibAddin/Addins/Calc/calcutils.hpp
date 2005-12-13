@@ -73,7 +73,7 @@ void calcToScalar(bool &ret, const ANY &value, const bool &defaultValue = false)
 void calcToScalar(std::string &ret, const ANY &value, const std::string &defaultValue = "");
 
 template < class T >
-calcToVector(std::vector < T > &ret, const ANY &value) {
+void calcToVector(std::vector < T > &ret, const ANY &value) {
     STRING t = value.getValueTypeName();
     if (t.equalsIgnoreAsciiCase(STRFROMANSI("[][]ANY"))) {
         SEQSEQ( ANY ) ss;

@@ -17,8 +17,6 @@
 */
 
 #include <ql/date.hpp>
-#include <ql/userconfig.hpp>
-#include <ql/types.hpp>
 #include <qla/qladdin.hpp>
 #include <Addins/Guile/guileutils.hpp>
 extern "C" {
@@ -134,12 +132,3 @@ SCM qlListType(SCM x) {
     }
 }
 
-// support for QuantLib sessions - not yet implemented
-
-#ifdef QL_ENABLE_SESSIONS
-
-QuantLib::Integer QuantLib::sessionId() {
-    return 0;
-}
-
-#endif
