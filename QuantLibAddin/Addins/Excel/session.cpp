@@ -70,14 +70,14 @@ namespace QuantLibAddin {
             // propagate the exception
 
             std::ostringstream err;
-            err << "QuantLibAddin::Session::setSession: " << e.what();
+            err << "QuantLibAddin::Session::setSessionId: " << e.what();
             throw std::exception(err.str().c_str());
         }
 
     }
 
-    // accept cell address in format "[BOOK.XLS]SHEET!R1C1" 
-    // or "BOOK.XLS!R1C1" (from books containing only one sheet)
+    // accept cell address in format "[BOOK.XLS]SHEET!R1C1" or
+    // "BOOK.XLS!R1C1" (from book containing single sheet w/same name as book)
     // and extract substring "BOOK.XLS"
 
     std::string Session::bookFromAddress(const std::string &address) {
