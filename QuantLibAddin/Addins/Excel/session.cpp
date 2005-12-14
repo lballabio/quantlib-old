@@ -76,8 +76,10 @@ namespace QuantLibAddin {
 
     }
 
-    // accept cell address in format "[BOOK.XLS]SHEET!R1C1" or
-    // "BOOK.XLS!R1C1" (from book containing single sheet w/same name as book)
+    // accept cell address in one of the following formats:
+    // [BOOK.XLS]SHEET!R1C1     (standard)
+    // '[BOOK.XLS]SHEET X'!R1C1 (where sheet name contains spaces)
+    // BOOK.XLS!R1C1            (book w/single sheet having same name as book)
     // and extract substring "BOOK.XLS"
 
     std::string Session::bookFromAddress(const std::string &address) {
@@ -94,6 +96,19 @@ namespace QuantLibAddin {
             }
 
             bookName = address.substr(1, endBracket - 1);
+
+        } else if (address[0] == '\'') {
+
+            int endBracket = address.find("]", 2);
+            if (endBracket == std::string::npos) {
+                std::ostringstream err;
+                err << "error interpreting address " << address
+                    << " unable to locate closing square bracket ']'";
+				throw std::exception(err.str().c_str());
+            }
+
+            bookName = address.substr(2, endBracket - 2);
+
         } else {
 
             int bang = address.find("!");
@@ -105,6 +120,7 @@ namespace QuantLibAddin {
             }
 
             bookName = address.substr(0, bang);
+
         }
 
         // sanity check
