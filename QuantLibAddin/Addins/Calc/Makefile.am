@@ -94,6 +94,7 @@ libQuantLibAddinCalc_la_SOURCES = \
     processes.cpp \
     qladdin.cpp \
     schedule.cpp \
+    session.cpp \
     shortratemodels.cpp \
     simpleswap.cpp \
     swap.cpp \

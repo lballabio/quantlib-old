@@ -44,6 +44,7 @@ libQuantLibAddinC_la_SOURCES = \
     options.cpp \
     processes.cpp \
     schedule.cpp \
+    session.cpp \
     shortratemodels.cpp \
     simpleswap.cpp \
     swap.cpp \

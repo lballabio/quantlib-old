@@ -46,6 +46,7 @@ libQuantLibAddinGuile_la_SOURCES = \
     processes.cpp \
     qladdin.c \
     schedule.cpp \
+    session.cpp \
     shortratemodels.cpp \
     simpleswap.cpp \
     swap.cpp \

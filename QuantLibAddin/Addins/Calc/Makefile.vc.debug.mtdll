@@ -56,11 +56,12 @@ OBJECTS= \
 	"$(INT_DIR)\processes.obj" \
 	"$(INT_DIR)\qladdin.obj" \
 	"$(INT_DIR)\schedule.obj" \
+	"$(INT_DIR)\session.obj" \
 	"$(INT_DIR)\shortratemodels.obj" \
 	"$(INT_DIR)\simpleswap.obj" \
 	"$(INT_DIR)\swap.obj" \
 	"$(INT_DIR)\termstructures.obj" \
-    "$(INT_DIR)\utilities.obj" \
+	"$(INT_DIR)\utilities.obj" \
 	"$(INT_DIR)\volatilities.obj" \
 	"$(INT_DIR)\xibor.obj"
 
