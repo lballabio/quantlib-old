@@ -19,7 +19,7 @@
    a stub function which maintains the default behavior if 
    sessions have been enabled in QuantLib.  */
 
-#include <ql/patterns/singleton.hpp>
+#include <ql/Patterns/singleton.hpp>
 
 #ifdef QL_ENABLE_SESSIONS
 
@@ -28,3 +28,4 @@ QuantLib::Integer QuantLib::sessionId() {
 }
 
 #endif
+
