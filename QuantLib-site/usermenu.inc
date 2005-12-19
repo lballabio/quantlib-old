@@ -16,15 +16,14 @@
 
 <li class="navlink"><a href="download.shtml">Download</a></li>
 
-<li class="navlink"><a href="mailinglists.shtml">Mailing Lists and
-     Forums</a></li>
+<li class="navlink"><a href="mailinglists.shtml">Mailing Lists</a></li>
 
 <li class="navlink"><a href=
 "http://sourceforge.net/news/?group_id=12740">News</a></li>
 
 <li class="navlink"><a href="reference/faq.html">FAQ</a></li>
 
-<li class="navlink"><a href="docs.shtml">Documentation and Papers</a></li>
+<li class="navlink"><a href="docs.shtml">Documentation</a></li>
 
 <li class="navlink"><a href=
 "http://wiki.quantlib.org">QuantLib Wiki</a></li>
