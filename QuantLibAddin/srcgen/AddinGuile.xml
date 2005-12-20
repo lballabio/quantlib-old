@@ -1,0 +1,76 @@
+<Addin name='Guile'>
+<platformId>G</platformId>
+<rootDirectory>../Addins/Guile/</rootDirectory>
+
+<Buffers>
+<Buffer name='bufferConstructor' fileName='stub.guile.constructor'/>
+<Buffer name='bufferMember' fileName='stub.guile.member'/>
+<Buffer name='bufferIncludes' fileName='stub.guile.includes'/>
+<Buffer name='bufferInitFunc' fileName='stub.guile.initfunc'/>
+</Buffers>
+
+<RuleGroups>
+
+<RuleGroup name='libraryCall' ql_type='true' indent='3'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>null</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='libraryReturnType'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <string>std::string</string>
+                <any>boost::any</any>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='reformatType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>std::vector &lt; %s &gt;</default>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>std::vector &lt; std::vector &lt; %s &gt; &gt;</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+</RuleGroups>
+
+</Addin>
+

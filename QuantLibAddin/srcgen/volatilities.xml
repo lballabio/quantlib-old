@@ -1,87 +1,77 @@
-<category>
+<Category name='volatilities'>
 <headerOnly>false</headerOnly>
 <description>functions to construct QuantLib volatility objects</description>
 <displayName>Volatilities</displayName>
-<functions>
+<Functions>
 
-<function>
-<name>qlBlackConstantVol</name>
+<Function name='qlBlackConstantVol'>
 <description>construct and return a handle to a Black Constant Vol object</description>
 <constructor>true</constructor>
 <libraryFunction>BlackConstantVol</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>settlementDate</name>
+<Parameters>
+    <Parameter name='settlementDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>settlement date</description>
-    </parameter>
-    <parameter>
-        <name>volatility</name>
+    </Parameter>
+    <Parameter name='volatility'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>volatility</description>
-    </parameter>
-    <parameter>
-        <name>dayCounter</name>
+    </Parameter>
+    <Parameter name='dayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>day counter</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlBlackVarianceSurface</name>
+<Function name='qlBlackVarianceSurface'>
 <description>construct and return a handle to a Black Variance Surface object</description>
 <constructor>true</constructor>
 <libraryFunction>BlackVarianceSurface</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>settlementDate</name>
+<Parameters>
+    <Parameter name='settlementDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>settlement date</description>
-    </parameter>
-    <parameter>
-        <name>dates</name>
+    </Parameter>
+    <Parameter name='dates'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
         <description>dates</description>
-    </parameter>
-    <parameter>
-        <name>strikes</name>
+    </Parameter>
+    <Parameter name='strikes'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
         <description>strikes</description>
-    </parameter>
-    <parameter>
-        <name>volatilities</name>
+    </Parameter>
+    <Parameter name='volatilities'>
         <type>double</type>
         <tensorRank>matrix</tensorRank>
         <description>volatilities</description>
-    </parameter>
-    <parameter>
-        <name>dayCounter</name>
+    </Parameter>
+    <Parameter name='dayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>day counter</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-</functions>
-</category>
+</Functions>
+</Category>
 

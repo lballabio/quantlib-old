@@ -1,336 +1,292 @@
-<category>
+<Category name='termstructures'>
 <headerOnly>false</headerOnly>
 <description>functions to construct QuantLib term structure objects</description>
 <displayName>Term Structures</displayName>
-<functions>
+<Functions>
 
-<function>
-<name>qlDepositRateHelper</name>
+<Function name='qlDepositRateHelper'>
 <description>construct and return a handle to a deposit rate-helper object</description>
 <constructor>true</constructor>
 <libraryFunction>DepositRateHelper</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>quote</name>
+<Parameters>
+    <Parameter name='quote'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>quote</description>
-    </parameter>
-    <parameter>
-        <name>maturity</name>
+    </Parameter>
+    <Parameter name='maturity'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>maturity</description>
-    </parameter>
-    <parameter>
-        <name>timeUnits</name>
+    </Parameter>
+    <Parameter name='timeUnits'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>time units applying to above maturity</description>
-    </parameter>
-    <parameter>
-        <name>fixingDays</name>
+    </Parameter>
+    <Parameter name='fixingDays'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>fixing days (e.g. 2)</description>
-    </parameter>
-    <parameter>
-        <name>calendar</name>
+    </Parameter>
+    <Parameter name='calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>calendar (e.g. TARGET)</description>
-    </parameter>
-    <parameter>
-        <name>convention</name>
+    </Parameter>
+    <Parameter name='convention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>business day convention (e.g. ModifiedFollowing)</description>
-    </parameter>
-    <parameter>
-        <name>dayCounter</name>
+    </Parameter>
+    <Parameter name='dayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>day counter (e.g. Actual360)</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlFutureRateHelper</name>
+<Function name='qlFutureRateHelper'>
 <description>construct and return a handle to a future rate-helper object</description>
 <constructor>true</constructor>
 <libraryFunction>FutureRateHelper</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>price</name>
+<Parameters>
+    <Parameter name='price'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>future price</description>
-    </parameter>
-    <parameter>
-        <name>IMM</name>
+    </Parameter>
+    <Parameter name='IMM'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>IMM expiry shortcut</description>
-    </parameter>
-    <parameter>
-        <name>months</name>
+    </Parameter>
+    <Parameter name='months'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>future contract lenght in months</description>
-    </parameter>
-    <parameter>
-        <name>DayCounter</name>
+    </Parameter>
+    <Parameter name='DayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>day counter (e.g. Thirty360)</description>
-    </parameter>
-    <parameter>
-        <name>bDayConvention</name>
+    </Parameter>
+    <Parameter name='bDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>business day convention (e.g. ModifiedFollowing)</description>
-    </parameter>
-	<parameter>
-        <name>calendar</name>
+    </Parameter>
+	<Parameter name='calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>calendar (e.g. TARGET)</description>
-    </parameter>
-    <parameter>
-        <name>decade</name>
+    </Parameter>
+    <Parameter name='decade'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>base decade for the IMM shortcut (e.g. 2000 for H4 -> March 2004)</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function getObject='true'>
-<name>qlGetDf</name>
+<Function name='qlGetDf' getObject='true'>
 <description>retrieve a discount factor at specified date</description>
 <constructor>false</constructor>
 <libraryFunction>discount</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='YieldTermStructure'>
-        <name>handle</name>
+<Parameters>
+    <Parameter name='handle' libraryClass='YieldTermStructure'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of the Yield Term Structure object</description>
-    </parameter>
-    <parameter ql_type='QuantLib::Date'>
-        <name>DfDate</name>
+    </Parameter>
+    <Parameter name='DfDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>date</description>
-    </parameter>
-    <parameter>
-        <name>iPol</name>
+    </Parameter>
+    <Parameter name='iPol'>
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
         <description>Interpolate Flag</description>
-    </parameter>
-    <parameter ignore='true'>
-        <name>trigger</name>
+    </Parameter>
+    <Parameter name='trigger' ignore='true'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
         <description>dep tracking trigger</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>double</type>
     <tensorRank>scalar</tensorRank>
     <description>the discount factor</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlPiecewiseFlatForward</name>
+<Function name='qlPiecewiseFlatForward'>
 <description>construct and return a handle to a piecewise flat forward term structure</description>
 <constructor>true</constructor>
 <libraryFunction>PiecewiseFlatForward</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>evaluationDate</name>
+<Parameters>
+    <Parameter name='evaluationDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>evaluation date</description>
-    </parameter>
-    <parameter>
-        <name>settlementDate</name>
+    </Parameter>
+    <Parameter name='settlementDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>settlement date (e.g. evaluationDate + 2)</description>
-    </parameter>
-    <parameter>
-        <name>rateHelpers</name>
+    </Parameter>
+    <Parameter name='rateHelpers'>
         <type>string</type>
         <tensorRank>vector</tensorRank>
         <description>vector of rate-helper handles</description>
-    </parameter>
-    <parameter>
-        <name>dayCounter</name>
+    </Parameter>
+    <Parameter name='dayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>day counter (e.g. Actual360)</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlSetQuote</name>
+<Function name='qlSetQuote'>
 <description>update quote of existing Rate Helper object</description>
 <constructor>false</constructor>
 <libraryFunction>setQuote</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='RateHelper'>
-        <name>handle</name>
+<Parameters>
+    <Parameter name='handle' libraryClass='RateHelper'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of the Rate Helper object</description>
-    </parameter>
-    <parameter>
-        <name>Quote</name>
+    </Parameter>
+    <Parameter name='Quote'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>the new qoute</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>double</type>
     <tensorRank>scalar</tensorRank>
     <description>diff new quote - old quote</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlSwapRateHelper</name>
+<Function name='qlSwapRateHelper'>
 <description>construct and return a handle to a swap rate-helper object</description>
 <constructor>true</constructor>
 <libraryFunction>SwapRateHelper</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>quote</name>
+<Parameters>
+    <Parameter name='quote'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>quote</description>
-    </parameter>
-    <parameter>
-        <name>maturity</name>
+    </Parameter>
+    <Parameter name='maturity'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>maturity</description>
-    </parameter>
-    <parameter>
-        <name>timeUnits</name>
+    </Parameter>
+    <Parameter name='timeUnits'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>time units applying to above maturity</description>
-    </parameter>
-    <parameter>
-        <name>fixingDays</name>
+    </Parameter>
+    <Parameter name='fixingDays'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>fixing days (e.g. 2)</description>
-    </parameter>
-	<parameter>
-        <name>calendar</name>
+    </Parameter>
+	<Parameter name='calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>calendar (e.g. TARGET)</description>
-    </parameter>
-    <parameter>
-        <name>fixedLegFrequency</name>
+    </Parameter>
+    <Parameter name='fixedLegFrequency'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>fixed leg frequency (e.g. Annual)</description>
-    </parameter>
-    <parameter>
-        <name>fixedLegConvention</name>
+    </Parameter>
+    <Parameter name='fixedLegConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>fixed leg convention (e.g. Unadjusted)</description>
-    </parameter>
-    <parameter>
-        <name>fixedLegDayCounter</name>
+    </Parameter>
+    <Parameter name='fixedLegDayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>fixed leg day counter (e.g. Thirty360)</description>
-    </parameter>
-    <parameter>
-        <name>floatingLegFrequency</name>
+    </Parameter>
+    <Parameter name='floatingLegFrequency'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>floating leg frequency (e.g. Quarterly, Semiannual, etc.)</description>
-    </parameter>
-    <parameter>
-        <name>floatingLegConvention</name>
+    </Parameter>
+    <Parameter name='floatingLegConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>floating leg convention (e.g. ModifiedFollowing)</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlZeroCurve</name>
+<Function name='qlZeroCurve'>
 <description>construct and return a handle to a ZeroCurve object</description>
 <constructor>true</constructor>
 <libraryFunction>ZeroCurve</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>curveDates</name>
+<Parameters>
+    <Parameter name='curveDates'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
         <description>dates of the zero curve</description>
-    </parameter>
-    <parameter>
-        <name>curveYields</name>
+    </Parameter>
+    <Parameter name='curveYields'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
         <description>yields of the zero curve</description>
-    </parameter>
-    <parameter>
-        <name>dayCounterID</name>
+    </Parameter>
+    <Parameter name='dayCounterID'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>day counter ID</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-</functions>
-</category>
+</Functions>
+</Category>
 

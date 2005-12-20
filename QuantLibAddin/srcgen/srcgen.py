@@ -19,21 +19,16 @@
 
 import sys
 import getopt
-import common
 import utils
-import parse
-import config
-import addin
-import addinExcel
-import addinCalc
-import addinGuile
-import addinC
-import addinQla
-import addinDoxygen
-import category
+import AddinQla
+import AddinExcel
+import AddinCalc
+import AddinC
+import AddinGuile
+import AddinDoxygen
 
 def usage():
-    print 'usage: ' + sys.argv[0] + ''' -[targets]
+    errorMessage = 'usage: ' + sys.argv[0] + ''' -[targets]
     where [targets] is any of:
         q - generate source for QuantLibAddin
         e - generate source for Excel addin (dynamic)
@@ -44,8 +39,7 @@ def usage():
         d - generate doxygen documentation files
     or
         a - all of the above'''
-
-    sys.exit(2)
+    sys.exit(errorMessage)
 
 # parse command line arguments
 
@@ -54,42 +48,34 @@ try:
 except getopt.GetoptError:
     usage()
 
-conf = config.Config()
-categories = {}
-categories[common.DICT] = {}
-categories[common.KEYS] = []
-for categoryName in conf.config[common.CATEGORIES]:
-    cat = category.Category(categoryName)
-    categories[common.DICT][categoryName] = cat
-    categories[common.KEYS].append(categoryName)
-categories[common.KEYS].sort()
-
-enumerations = parse.parseFile(common.ENUMS)
-
 addins = []
 
 for o, a in opts:
     if o in ('-h', '--help'):
         usage()
-    if o == '-q':
-        addins.append(addinQla.AddinQla(enumerations))
-    if o == '-e':
-        addins.append(addinExcel.AddinExcel(categories))
-    if o == '-o':
-        addins.append(addinCalc.AddinCalc(categories))
-    if o == '-c':
-        addins.append(addinC.AddinC(categories))
-    if o == '-g':
-        addins.append(addinGuile.AddinGuile(categories))
-    if o == '-d':
-        addins.append(addinDoxygen.AddinDoxygen(categories, enumerations))
-    if o == '-a':
-        addins.append(addinQla.AddinQla(enumerations))
-        addins.append(addinExcel.AddinExcel(categories))
-        addins.append(addinCalc.AddinCalc(categories))
-        addins.append(addinC.AddinC(categories))
-        addins.append(addinGuile.AddinGuile(categories))
-        addins.append(addinDoxygen.AddinDoxygen(categories, enumerations))
+    elif o == '-q':
+        addins.append(utils.serializeObject(AddinQla.AddinQla))
+    elif o == '-e':
+        addins.append(utils.serializeObject(AddinExcel.AddinExcel))
+    elif o == '-o':
+        addins.append(utils.serializeObject(AddinCalc.AddinCalc))
+    elif o == '-c':
+        addins.append(utils.serializeObject(AddinC.AddinC))
+    elif o == '-g':
+        addins.append(utils.serializeObject(AddinGuile.AddinGuile))
+    elif o == '-d':
+        addins.append(utils.serializeObject(AddinDoxygen.AddinDoxygen))
+    elif o == '-a':
+        if len(opts) != 1:
+            sys.exit('flag -a cannot be combined with other flags')
+        addins.append(utils.serializeObject(AddinQla.AddinQla))
+        addins.append(utils.serializeObject(AddinExcel.AddinExcel))
+        addins.append(utils.serializeObject(AddinCalc.AddinCalc))
+        addins.append(utils.serializeObject(AddinC.AddinC))
+        addins.append(utils.serializeObject(AddinGuile.AddinGuile))
+        addins.append(utils.serializeObject(AddinDoxygen.AddinDoxygen))
+    else:
+        usage()
 
 if not len(addins):
     usage()
@@ -97,7 +83,6 @@ if not len(addins):
 # generate source code for chosen target projects
 
 utils.logMessage('begin ...')
-utils.init()
 
 for addin in addins:
     addin.generate()

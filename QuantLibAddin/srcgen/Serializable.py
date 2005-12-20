@@ -1,8 +1,6 @@
 
 """
  Copyright (C) 2005 Eric Ehlers
- Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,15 +15,18 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'configuration'
+class Serializable(object):
+    'class which may be loaded/unloaded to/from a serializer object'
 
-import common
-import utils
-import parse
+    def serialize(self, serializer):
+        'load/unload class state to/from serializer object'
+        sys.exit('method not implemented')
 
-class Config(object):
+    def postSerialize(self):
+        'invoke any post serialization behavior that may be required'
+        pass
 
-    def __init__(self):
-        'initialize the object'
-        self.config = parse.parseFile('config')
+    def key(self):
+        'return unique identifier for this object'
+        return self.name
 

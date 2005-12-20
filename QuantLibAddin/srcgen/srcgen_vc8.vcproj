@@ -46,35 +46,39 @@
 			Name="scripts"
 			>
 			<File
-				RelativePath="addin.py"
+				RelativePath="AddinCalc.py"
 				>
 			</File>
 			<File
-				RelativePath="addinC.py"
+				RelativePath="AddinC.py"
 				>
 			</File>
 			<File
-				RelativePath="addinCalc.py"
+				RelativePath="AddinDoxygen.py"
 				>
 			</File>
 			<File
-				RelativePath="addinDoxygen.py"
+				RelativePath="AddinExcel.py"
 				>
 			</File>
 			<File
-				RelativePath="addinExcel.py"
+				RelativePath="AddinGuile.py"
 				>
 			</File>
 			<File
-				RelativePath="addinGuile.py"
+				RelativePath="Addin.py"
 				>
 			</File>
 			<File
-				RelativePath="addinQla.py"
+				RelativePath="AddinQla.py"
 				>
 			</File>
 			<File
-				RelativePath="category.py"
+				RelativePath="Buffer.py"
+				>
+			</File>
+			<File
+				RelativePath="Category.py"
 				>
 			</File>
 			<File
@@ -82,23 +86,35 @@
 				>
 			</File>
 			<File
-				RelativePath="config.py"
+				RelativePath="Config.py"
 				>
 			</File>
 			<File
-				RelativePath="function.py"
+				RelativePath="Enumeration.py"
 				>
 			</File>
 			<File
-				RelativePath="parameter.py"
+				RelativePath="Function.py"
 				>
 			</File>
 			<File
-				RelativePath="parse.py"
+				RelativePath="OutputFile.py"
 				>
 			</File>
 			<File
-				RelativePath="rule.py"
+				RelativePath="Parameter.py"
+				>
+			</File>
+			<File
+				RelativePath="Rule.py"
+				>
+			</File>
+			<File
+				RelativePath="Serializable.py"
+				>
+			</File>
+			<File
+				RelativePath="Singleton.py"
 				>
 			</File>
 			<File
@@ -109,96 +125,108 @@
 				RelativePath="utils.py"
 				>
 			</File>
+			<File
+				RelativePath="XmlReader.py"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="stubs"
 			>
 			<File
-				RelativePath="stub.c.constructor"
+				RelativePath=".calc.constructor"
 				>
 			</File>
 			<File
-				RelativePath="stub.c.includes"
+				RelativePath=".calc.idlfoot"
 				>
 			</File>
 			<File
-				RelativePath="stub.c.member"
+				RelativePath=".calc.idlfunc"
 				>
 			</File>
 			<File
-				RelativePath="stub.calc.constructor"
+				RelativePath=".calc.idlhead"
 				>
 			</File>
 			<File
-				RelativePath="stub.calc.idlfoot"
+				RelativePath=".calc.includes"
 				>
 			</File>
 			<File
-				RelativePath="stub.calc.idlfunc"
+				RelativePath=".calc.map"
 				>
 			</File>
 			<File
-				RelativePath="stub.calc.idlhead"
+				RelativePath=".calc.member"
 				>
 			</File>
 			<File
-				RelativePath="stub.calc.includes"
+				RelativePath=".c.constructor"
 				>
 			</File>
 			<File
-				RelativePath="stub.calc.map"
+				RelativePath=".c.includes"
 				>
 			</File>
 			<File
-				RelativePath="stub.calc.member"
+				RelativePath=".c.member"
 				>
 			</File>
 			<File
-				RelativePath="stub.copyright"
+				RelativePath=".copyright"
 				>
 			</File>
 			<File
-				RelativePath="stub.doxygen.categories"
+				RelativePath=".doxygen.categories"
 				>
 			</File>
 			<File
-				RelativePath="stub.doxygen.enums"
+				RelativePath=".doxygen.enums"
 				>
 			</File>
 			<File
-				RelativePath="stub.excel.constructor"
+				RelativePath=".doxygen.header"
 				>
 			</File>
 			<File
-				RelativePath="stub.excel.includes"
+				RelativePath=".excel.constructor"
 				>
 			</File>
 			<File
-				RelativePath="stub.excel.member"
+				RelativePath=".excel.includes"
 				>
 			</File>
 			<File
-				RelativePath="stub.excel.regheader"
+				RelativePath=".excel.member"
 				>
 			</File>
 			<File
-				RelativePath="stub.guile.constructor"
+				RelativePath=".excel.regfooter"
 				>
 			</File>
 			<File
-				RelativePath="stub.guile.includes"
+				RelativePath=".excel.regheader"
 				>
 			</File>
 			<File
-				RelativePath="stub.guile.initfunc"
+				RelativePath=".guile.constructor"
 				>
 			</File>
 			<File
-				RelativePath="stub.guile.member"
+				RelativePath=".guile.includes"
 				>
 			</File>
 			<File
-				RelativePath="stub.qla.includes"
+				RelativePath=".guile.initfunc"
+				>
+			</File>
+			<File
+				RelativePath=".guile.member"
+				>
+			</File>
+			<File
+				RelativePath=".qla.includes"
 				>
 			</File>
 		</Filter>
@@ -206,11 +234,27 @@
 			Name="metadata"
 			>
 			<File
-				RelativePath="c.xml"
+				RelativePath="AddinCalc.xml"
 				>
 			</File>
 			<File
-				RelativePath="calc.xml"
+				RelativePath="AddinC.xml"
+				>
+			</File>
+			<File
+				RelativePath="AddinDoxygen.xml"
+				>
+			</File>
+			<File
+				RelativePath="AddinExcel.xml"
+				>
+			</File>
+			<File
+				RelativePath="AddinGuile.xml"
+				>
+			</File>
+			<File
+				RelativePath="AddinQla.xml"
 				>
 			</File>
 			<File
@@ -226,19 +270,7 @@
 				>
 			</File>
 			<File
-				RelativePath="doxygen.xml"
-				>
-			</File>
-			<File
-				RelativePath="enums.xml"
-				>
-			</File>
-			<File
-				RelativePath="excel.xml"
-				>
-			</File>
-			<File
-				RelativePath="guile.xml"
+				RelativePath="enumerations.xml"
 				>
 			</File>
 			<File

@@ -1,162 +1,144 @@
-<category>
+<Category name='interpolation'>
 <headerOnly>false</headerOnly>
 <description>functions to carry out interpolations</description>
 <displayName>Interpolation</displayName>
-<functions>
+<Functions>
 
-<function>
-<name>qlBackwardFlatInterpolation</name>
+<Function name='qlBackwardFlatInterpolation'>
 <description>construct and return a handle to a backward flat interpolator</description>
 <constructor>true</constructor>
 <libraryFunction>BackwardFlatInterpolation</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>allowExtrapolation</name>
+<Parameters>
+    <Parameter name='allowExtrapolation'>
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
         <description>allow extrapolation flag</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlForwardFlatInterpolation</name>
+<Function name='qlForwardFlatInterpolation'>
 <description>construct and return a handle to a forward flat interpolator</description>
 <constructor>true</constructor>
 <libraryFunction>ForwardFlatInterpolation</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>allowExtrapolation</name>
+<Parameters>
+    <Parameter name='allowExtrapolation'>
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
         <description>allow extrapolation flag</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlLinearInterpolation</name>
+<Function name='qlLinearInterpolation'>
 <description>construct and return a handle to a linear interpolator</description>
 <constructor>true</constructor>
 <libraryFunction>LinearInterpolation</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>allowExtrapolation</name>
+<Parameters>
+    <Parameter name='allowExtrapolation'>
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
         <description>allow extrapolation flag</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlCubicSplineInterpolation</name>
+<Function name='qlCubicSplineInterpolation'>
 <description>construct and return a handle to a cubic spline interpolator</description>
 <constructor>true</constructor>
 <libraryFunction>CubicSplineInterpolation</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>allowExtrapolation</name>
+<Parameters>
+    <Parameter name='allowExtrapolation'>
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
         <description>allow extrapolation flag</description>
-    </parameter>
-    <parameter>
-        <name>leftConditionType</name>
+    </Parameter>
+    <Parameter name='leftConditionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>left boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</description>
-    </parameter>
-    <parameter>
-        <name>leftConditionValue</name>
+    </Parameter>
+    <Parameter name='leftConditionValue'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>left condition value</description>
-    </parameter>
-    <parameter>
-        <name>rightConditionType</name>
+    </Parameter>
+    <Parameter name='rightConditionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>right boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</description>
-    </parameter>
-    <parameter>
-        <name>rightConditionValue</name>
+    </Parameter>
+    <Parameter name='rightConditionValue'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>right condition value</description>
-    </parameter>
-    <parameter>
-        <name>monotonicityConstraint</name>
+    </Parameter>
+    <Parameter name='monotonicityConstraint'>
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
         <description>monotonicity constraint flag</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlInterpolate</name>
+<Function name='qlInterpolate'>
 <description>carry out interpolation</description>
 <constructor>false</constructor>
 <libraryFunction>interpolate</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='Interpolation'>
-        <name>handle</name>
+<Parameters>
+    <Parameter name='handle' libraryClass='Interpolation'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of interpolator</description>
-    </parameter>
-    <parameter>
-        <name>xArray</name>
+    </Parameter>
+    <Parameter name='xArray'>
         <type>double</type>
         <tensorRank>matrix</tensorRank>
         <description>x array</description>
-    </parameter>
-    <parameter>
-        <name>yArray</name>
+    </Parameter>
+    <Parameter name='yArray'>
         <type>double</type>
         <tensorRank>matrix</tensorRank>
         <description>y array</description>
-    </parameter>
-    <parameter>
-        <name>xValues</name>
+    </Parameter>
+    <Parameter name='xValues'>
         <type>double</type>
         <tensorRank>matrix</tensorRank>
         <description>x values</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>double</type>
     <tensorRank>matrix</tensorRank>
     <description>interpolated y values</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-</functions>
-</category>
+</Functions>
+</Category>
 

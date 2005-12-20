@@ -1,654 +1,560 @@
-<category>
+<Category name='options'>
 <headerOnly>false</headerOnly>
 <description>functions to construct QuantLib option objects</description>
 <displayName>Options</displayName>
-<functions>
+<Functions>
 
-<function>
-<name>qlBarrierOption</name>
+<Function name='qlBarrierOption'>
 <description>construct and return a handle to a Barrier Option object</description>
 <constructor>true</constructor>
 <libraryFunction>BarrierOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='BlackScholesProcess'>
-        <name>handleBlackScholes</name>
+<Parameters>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of a Black Scholes Process object</description>
-    </parameter>
-    <parameter>
-        <name>typeBarrier</name>
+    </Parameter>
+    <Parameter name='typeBarrier'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>barrier type</description>
-    </parameter>
-    <parameter>
-        <name>barrier</name>
+    </Parameter>
+    <Parameter name='barrier'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>barrier</description>
-    </parameter>
-    <parameter>
-        <name>rebate</name>
+    </Parameter>
+    <Parameter name='rebate'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>rebate</description>
-    </parameter>
-    <parameter>
-        <name>optionType</name>
+    </Parameter>
+    <Parameter name='optionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>option type</description>
-    </parameter>
-    <parameter>
-        <name>payoff</name>
+    </Parameter>
+    <Parameter name='payoff'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>payoff type</description>
-    </parameter>
-    <parameter>
-        <name>strike</name>
+    </Parameter>
+    <Parameter name='strike'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>strike</description>
-    </parameter>
-    <parameter>
-        <name>exercise</name>
+    </Parameter>
+    <Parameter name='exercise'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise type</description>
-    </parameter>
-    <parameter>
-        <name>exerciseDate</name>
+    </Parameter>
+    <Parameter name='exerciseDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise date</description>
-    </parameter>
-    <parameter>
-        <name>settlementDate</name>
+    </Parameter>
+    <Parameter name='settlementDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>settlement date</description>
-    </parameter>
-    <parameter>
-        <name>engine</name>
+    </Parameter>
+    <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
-    </parameter>
-    <parameter>
-        <name>timeSteps</name>
+    </Parameter>
+    <Parameter name='timeSteps'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>time steps</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlBasketOption</name>
+<Function name='qlBasketOption'>
 <description>construct and return a handle to a Basket Option object</description>
 <constructor>true</constructor>
 <libraryFunction>BasketOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='BlackScholesProcess'>
-        <name>handleBlackScholes</name>
+<Parameters>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of Black Scholes Process object</description>
-    </parameter>
-    <parameter>
-        <name>basket</name>
+    </Parameter>
+    <Parameter name='basket'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>basket ID</description>
-    </parameter>
-    <parameter>
-        <name>optionType</name>
+    </Parameter>
+    <Parameter name='optionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>option type</description>
-    </parameter>
-    <parameter>
-        <name>strike</name>
+    </Parameter>
+    <Parameter name='strike'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>strike</description>
-    </parameter>
-    <parameter>
-        <name>exercise</name>
+    </Parameter>
+    <Parameter name='exercise'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise type</description>
-    </parameter>
-    <parameter>
-        <name>exerciseDate</name>
+    </Parameter>
+    <Parameter name='exerciseDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise date</description>
-    </parameter>
-    <parameter>
-        <name>settlementDate</name>
+    </Parameter>
+    <Parameter name='settlementDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>settlement date</description>
-    </parameter>
-    <parameter>
-        <name>engine</name>
+    </Parameter>
+    <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
-    </parameter>
-    <parameter>
-        <name>timeSteps</name>
+    </Parameter>
+    <Parameter name='timeSteps'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>time steps</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlCaAsianOption</name>
+<Function name='qlCaAsianOption'>
 <description>construct and return a handle to a Continuous Averaging Asian Option object</description>
 <constructor>true</constructor>
 <libraryFunction>ContinuousAveragingAsianOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='BlackScholesProcess'>
-        <name>handleBlackScholes</name>
+<Parameters>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of a Black Scholes Process object</description>
-    </parameter>
-    <parameter>
-        <name>average</name>
+    </Parameter>
+    <Parameter name='average'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>average type</description>
-    </parameter>
-    <parameter>
-        <name>optionType</name>
+    </Parameter>
+    <Parameter name='optionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>option type</description>
-    </parameter>
-    <parameter>
-        <name>payoff</name>
+    </Parameter>
+    <Parameter name='payoff'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>payoff type</description>
-    </parameter>
-    <parameter>
-        <name>strike</name>
+    </Parameter>
+    <Parameter name='strike'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>strike</description>
-    </parameter>
-    <parameter>
-        <name>exercise</name>
+    </Parameter>
+    <Parameter name='exercise'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise type</description>
-    </parameter>
-    <parameter>
-        <name>exerciseDate</name>
+    </Parameter>
+    <Parameter name='exerciseDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise date</description>
-    </parameter>
-    <parameter>
-        <name>settlementDate</name>
+    </Parameter>
+    <Parameter name='settlementDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>settlement date</description>
-    </parameter>
-    <parameter>
-        <name>engine</name>
+    </Parameter>
+    <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
-    </parameter>
-    <parameter>
-        <name>timeSteps</name>
+    </Parameter>
+    <Parameter name='timeSteps'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>time steps</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlCliquetOption</name>
+<Function name='qlCliquetOption'>
 <description>construct and return a handle to a Cliquet Option object</description>
 <constructor>true</constructor>
 <libraryFunction>CliquetOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='BlackScholesProcess'>
-        <name>handleBlackScholes</name>
+<Parameters>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of a Black Scholes Process object</description>
-    </parameter>
-    <parameter>
-        <name>resetDates</name>
+    </Parameter>
+    <Parameter name='resetDates'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
         <description>vector of reset dates</description>
-    </parameter>
-    <parameter>
-        <name>optionType</name>
+    </Parameter>
+    <Parameter name='optionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>option type</description>
-    </parameter>
-    <parameter>
-        <name>strike</name>
+    </Parameter>
+    <Parameter name='strike'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>strike</description>
-    </parameter>
-    <parameter>
-        <name>exerciseDate</name>
+    </Parameter>
+    <Parameter name='exerciseDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise date</description>
-    </parameter>
-    <parameter>
-        <name>engine</name>
+    </Parameter>
+    <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
-    </parameter>
-    <parameter>
-        <name>timeSteps</name>
+    </Parameter>
+    <Parameter name='timeSteps'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>time steps</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlDaAsianOption</name>
+<Function name='qlDaAsianOption'>
 <description>construct and return a handle to a Discrete Averaging Asian Option object</description>
 <constructor>true</constructor>
 <libraryFunction>DiscreteAveragingAsianOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='BlackScholesProcess'>
-        <name>handleBlackScholes</name>
+<Parameters>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of a Black Scholes Process object</description>
-    </parameter>
-    <parameter>
-        <name>average</name>
+    </Parameter>
+    <Parameter name='average'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>average type</description>
-    </parameter>
-    <parameter>
-        <name>runningAccumulator</name>
+    </Parameter>
+    <Parameter name='runningAccumulator'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>running accumulator</description>
-    </parameter>
-    <parameter>
-        <name>pastFixings</name>
+    </Parameter>
+    <Parameter name='pastFixings'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>past fixings</description>
-    </parameter>
-    <parameter>
-        <name>fixingDates</name>
+    </Parameter>
+    <Parameter name='fixingDates'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
         <description>fixing dates</description>
-    </parameter>
-    <parameter>
-        <name>optionType</name>
+    </Parameter>
+    <Parameter name='optionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>option type</description>
-    </parameter>
-    <parameter>
-        <name>payoff</name>
+    </Parameter>
+    <Parameter name='payoff'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>payoff type</description>
-    </parameter>
-    <parameter>
-        <name>strike</name>
+    </Parameter>
+    <Parameter name='strike'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>strike</description>
-    </parameter>
-    <parameter>
-        <name>exercise</name>
+    </Parameter>
+    <Parameter name='exercise'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise type</description>
-    </parameter>
-    <parameter>
-        <name>exerciseDate</name>
+    </Parameter>
+    <Parameter name='exerciseDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise date</description>
-    </parameter>
-    <parameter>
-        <name>settlementDate</name>
+    </Parameter>
+    <Parameter name='settlementDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>settlement date</description>
-    </parameter>
-    <parameter>
-        <name>engine</name>
+    </Parameter>
+    <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
-    </parameter>
-    <parameter>
-        <name>timeSteps</name>
+    </Parameter>
+    <Parameter name='timeSteps'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>time steps</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlDividendVanillaOption</name>
+<Function name='qlDividendVanillaOption'>
 <description>construct and return a handle to a Dividend Vanilla Option object</description>
 <constructor>true</constructor>
 <libraryFunction>DividendVanillaOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='BlackScholesProcess'>
-        <name>handleBlackScholes</name>
+<Parameters>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of a Black Scholes Process object</description>
-    </parameter>
-    <parameter>
-        <name>dividendDates</name>
+    </Parameter>
+    <Parameter name='dividendDates'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
         <description>vector of dividend dates</description>
-    </parameter>
-    <parameter>
-        <name>dividends</name>
+    </Parameter>
+    <Parameter name='dividends'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
         <description>vector of dividends</description>
-    </parameter>
-    <parameter>
-        <name>optionType</name>
+    </Parameter>
+    <Parameter name='optionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>option type</description>
-    </parameter>
-    <parameter>
-        <name>payoff</name>
+    </Parameter>
+    <Parameter name='payoff'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>payoff type</description>
-    </parameter>
-    <parameter>
-        <name>strike</name>
+    </Parameter>
+    <Parameter name='strike'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>strike</description>
-    </parameter>
-    <parameter>
-        <name>exercise</name>
+    </Parameter>
+    <Parameter name='exercise'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise type</description>
-    </parameter>
-    <parameter>
-        <name>exerciseDate</name>
+    </Parameter>
+    <Parameter name='exerciseDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise date</description>
-    </parameter>
-    <parameter>
-        <name>settlementDate</name>
+    </Parameter>
+    <Parameter name='settlementDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>settlement date</description>
-    </parameter>
-    <parameter>
-        <name>engine</name>
+    </Parameter>
+    <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
-    </parameter>
-    <parameter>
-        <name>timeSteps</name>
+    </Parameter>
+    <Parameter name='timeSteps'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>time steps</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlForwardVanillaOption</name>
+<Function name='qlForwardVanillaOption'>
 <description>construct and return a handle to a Forward Vanilla Option object</description>
 <constructor>true</constructor>
 <libraryFunction>ForwardVanillaOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='BlackScholesProcess'>
-        <name>handleBlackScholes</name>
+<Parameters>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of a Black Scholes Process object</description>
-    </parameter>
-    <parameter>
-        <name>moneyness</name>
+    </Parameter>
+    <Parameter name='moneyness'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>moneyness</description>
-    </parameter>
-    <parameter>
-        <name>resetDate</name>
+    </Parameter>
+    <Parameter name='resetDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>reset date</description>
-    </parameter>
-    <parameter>
-        <name>optionType</name>
+    </Parameter>
+    <Parameter name='optionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>option type</description>
-    </parameter>
-    <parameter>
-        <name>payoff</name>
+    </Parameter>
+    <Parameter name='payoff'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>payoff type</description>
-    </parameter>
-    <parameter>
-        <name>strike</name>
+    </Parameter>
+    <Parameter name='strike'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>strike</description>
-    </parameter>
-    <parameter>
-        <name>exercise</name>
+    </Parameter>
+    <Parameter name='exercise'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise type</description>
-    </parameter>
-    <parameter>
-        <name>exerciseDate</name>
+    </Parameter>
+    <Parameter name='exerciseDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise date</description>
-    </parameter>
-    <parameter>
-        <name>settlementDate</name>
+    </Parameter>
+    <Parameter name='settlementDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>settlement date</description>
-    </parameter>
-    <parameter>
-        <name>engine</name>
+    </Parameter>
+    <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
-    </parameter>
-    <parameter>
-        <name>timeSteps</name>
+    </Parameter>
+    <Parameter name='timeSteps'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>time steps</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlOptionSetEngine</name>
+<Function name='qlOptionSetEngine'>
 <description>change the pricing engine of an existing Option object</description>
 <constructor>false</constructor>
 <libraryFunction>setEngine</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='VanillaOption'>
-        <name>handle</name>
+<Parameters>
+    <Parameter name='handle' libraryClass='VanillaOption'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of the Option object</description>
-    </parameter>
-    <parameter>
-        <name>engineName</name>
+    </Parameter>
+    <Parameter name='engineName'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine name</description>
-    </parameter>
-    <parameter>
-        <name>timeSteps</name>
+    </Parameter>
+    <Parameter name='timeSteps'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>time steps</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>new engine name</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlVanillaOption</name>
+<Function name='qlVanillaOption'>
 <description>construct and return a handle to a Vanilla Option object</description>
 <constructor>true</constructor>
 <libraryFunction>VanillaOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='BlackScholesProcess'>
-        <name>handleBlackScholes</name>
+<Parameters>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of a Black Scholes Process object</description>
-    </parameter>
-    <parameter>
-        <name>optionType</name>
+    </Parameter>
+    <Parameter name='optionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>option type</description>
-    </parameter>
-    <parameter>
-        <name>payoff</name>
+    </Parameter>
+    <Parameter name='payoff'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>payoff type</description>
-    </parameter>
-    <parameter>
-        <name>strike</name>
+    </Parameter>
+    <Parameter name='strike'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>strike</description>
-    </parameter>
-    <parameter>
-        <name>exercise</name>
+    </Parameter>
+    <Parameter name='exercise'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise type</description>
-    </parameter>
-    <parameter>
-        <name>exerciseDate</name>
+    </Parameter>
+    <Parameter name='exerciseDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>exercise date</description>
-    </parameter>
-    <parameter>
-        <name>settlementDate</name>
+    </Parameter>
+    <Parameter name='settlementDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>settlement date</description>
-    </parameter>
-    <parameter>
-        <name>engine</name>
+    </Parameter>
+    <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
-    </parameter>
-    <parameter>
-        <name>timeSteps</name>
+    </Parameter>
+    <Parameter name='timeSteps'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>time steps</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-</functions>
-</category>
+</Functions>
+</Category>
 

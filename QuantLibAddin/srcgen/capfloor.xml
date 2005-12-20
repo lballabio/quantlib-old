@@ -1,81 +1,72 @@
-<category>
+<Category name='capfloor'>
 <headerOnly>false</headerOnly>
 <description>functions to construct QuantLib cap/floor objects</description>
 <displayName>Caps/Floors</displayName>
-<functions>
+<Functions>
 
-<function>
-<name>qlAnalyticCapFloorEngine</name>
+<Function name='qlAnalyticCapFloorEngine'>
 <description>construct and return a pricing engine for cap/foors</description>
 <constructor>true</constructor>
 <libraryFunction>AnalyticCapFloorEngine</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='AffineModel'>
-        <name>handleModel</name>
+<Parameters>
+    <Parameter name='handleModel' libraryClass='AffineModel'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>affine model (providing a discount bond option pricing formula)</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlCapFloor</name>
+<Function name='qlCapFloor'>
 <description>construct and return a handle to a cap/floor object</description>
 <constructor>true</constructor>
 <libraryFunction>CapFloor</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='CouponVector'>
-        <name>couponVectorID</name>
+<Parameters>
+    <Parameter name='couponVectorID' libraryClass='CouponVector'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>coupon vector</description>
-    </parameter>
-    <parameter class='YieldTermStructure'>
-        <name>termStructureID</name>
+    </Parameter>
+    <Parameter name='termStructureID' libraryClass='YieldTermStructure'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle to term structure</description>
-    </parameter>
-    <parameter>
-        <name>capStrikes</name>
+    </Parameter>
+    <Parameter name='capStrikes'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
         <description>cap strikes</description>
-    </parameter>
-    <parameter>
-        <name>floorStrikes</name>
+    </Parameter>
+    <Parameter name='floorStrikes'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
         <description>floor strikes</description>
-    </parameter>
-    <parameter class='AnalyticCapFloorEngine'>
-        <name>handleEngine</name>
+    </Parameter>
+    <Parameter name='handleEngine' libraryClass='AnalyticCapFloorEngine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle to pricing engine</description>
-    </parameter>
-    <parameter>
-        <name>optionType</name>
+    </Parameter>
+    <Parameter name='optionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>option type (cap, floor or collar)</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-</functions>
-</category>
+</Functions>
+</Category>
 

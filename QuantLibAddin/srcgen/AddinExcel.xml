@@ -1,0 +1,347 @@
+<Addin name='Excel'>
+<platformId>E</platformId>
+<rootDirectory>../Addins/Excel/</rootDirectory>
+
+<Buffers>
+<Buffer name='bufferConstructor' fileName='stub.excel.constructor'/>
+<Buffer name='bufferIncludes' fileName='stub.excel.includes'/>
+<Buffer name='bufferMember' fileName='stub.excel.member'/>
+<Buffer name='bufferRegHeader' fileName='stub.excel.regheader'/>
+<Buffer name='bufferRegFooter' fileName='stub.excel.regfooter'/>
+</Buffers>
+
+<RuleGroups>
+
+<RuleGroup name='functionDeclaration' indent='2'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>OPER</optional>
+                <string>char</string>
+                <any>OPER</any>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>OPER</optional>
+                <long>FP</long>
+                <double>FP</double>
+                <bool>OPER</bool>
+                <string>OPER</string>
+                <any>OPER</any>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='dereferenceName'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>*</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='functionReturnType'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>XLOPER</optional>
+                <string>char</string>
+                <any>XLOPER</any>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>XLOPER</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='dereferenceName'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>*</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='libraryCall' ql_type='true' appendTensorRank='true' indent='3'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>null</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='dereferenceName'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>null</optional>
+                <long>*</long>
+                <double>*</double>
+                <bool>*</bool>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='libraryReturnType'>
+    <Rules>
+    <Rule name='setPrefix'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>static</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <string>std::string</string>
+                <any>boost::any</any>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='reformatType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>std::vector &lt; %s &gt;</default>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>std::vector &lt; std::vector &lt; %s &gt; &gt;</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='conversions' appendTensorRank='true' indent='2'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <string>std::string</string>
+                <any>boost::any</any>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='reformatType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>std::vector &lt; %s &gt;</default>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>std::vector &lt; std::vector &lt; %s &gt; &gt;</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='setTypeConversion' prefix='ObjHandler::' dereference='*'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>oper</optional>
+                <long>fp</long>
+                <double>fp</double>
+                <default>oper</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='xlRegisterParam'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>P</optional>
+                <long>N</long>
+                <double>E</double>
+                <bool>L</bool>
+                <string>C</string>
+                <any>P</any>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>P</optional>
+                <long>K</long>
+                <double>K</double>
+                <default>P</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='setName'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>null</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='xlRegisterReturn'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <long>N</long>
+                <double>E</double>
+                <bool>L</bool>
+                <string>C</string>
+                <any>P</any>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>R</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='xlListParams'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>null</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+</RuleGroups>
+
+</Addin>
+

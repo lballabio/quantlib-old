@@ -1,90 +1,78 @@
-<category>
+<Category name='xibor'>
 <headerOnly>false</headerOnly>
 <description>functions to construct QuantLib Xibor objects</description>
 <displayName>Indices</displayName>
-<functions>
+<Functions>
 
-<function>
-<name>qlXibor</name>
+<Function name='qlXibor'>
 <description>construct and return a handle to a Xibor Index</description>
 <constructor>true</constructor>
 <libraryFunction>Xibor</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>IndexName</name>
+<Parameters>
+    <Parameter name='IndexName'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>evaluation date</description>
-    </parameter>
-    <parameter>
-        <name>Currency</name>
+    </Parameter>
+    <Parameter name='Currency'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>Index Currency</description>
-    </parameter>
-    <parameter>
-        <name>tenor</name>
+    </Parameter>
+    <Parameter name='tenor'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>the tenor of this index</description>
-    </parameter>
-    <parameter>
-        <name>timeUnits</name>
+    </Parameter>
+    <Parameter name='timeUnits'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>time units applying to above tenor</description>
-    </parameter>
-	<parameter>
-        <name>calendar</name>
+    </Parameter>
+	<Parameter name='calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>calendar (e.g. TARGET)</description>
-    </parameter>
-    <parameter>
-        <name>BDayConvention</name>
+    </Parameter>
+    <Parameter name='BDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>business day convention (e.g. ModifiedFollowing)</description>
-    </parameter>
-    <parameter>
-        <name>dayCounter</name>
+    </Parameter>
+    <Parameter name='dayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>day counter (e.g. Actual360)</description>
-    </parameter>
-    <parameter>
-        <name>fixingDays</name>
+    </Parameter>
+    <Parameter name='fixingDays'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>fixing days (e.g. 2)</description>
-    </parameter>
-    <parameter class='YieldTermStructure'>
-        <name>ForwardCurve</name>
+    </Parameter>
+    <Parameter name='ForwardCurve' libraryClass='YieldTermStructure'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of the Yield Curve used for forecasting</description>
-    </parameter>
-    <parameter default='0'>
-        <name>dates</name>
+    </Parameter>
+    <Parameter name='dates' default='0'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
         <description>dates</description>
-    </parameter>
-    <parameter default='0'>
-        <name>fixings</name>
+    </Parameter>
+    <Parameter name='fixings' default='0'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
         <description>fixings</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-</functions>
-</category>
+</Functions>
+</Category>
 

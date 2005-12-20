@@ -1,8 +1,6 @@
 
 """
  Copyright (C) 2005 Eric Ehlers
- Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,27 +15,21 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'utilities'
+import Serializable
+import utils
+import common
 
-import time
-import XmlReader
+class Buffer(Serializable.Serializable):
+    'class to encapsulate state and behavior for a named file buffer'
 
-def logMessage(msg):
-    'print a message to stdout'
-    print time.asctime() + ' ' + msg
+    groupName = 'Buffers'
 
-def serializeObject(objectClass, fileName = None):
-    'instantiate an xml reader and load requested object'
-    if not fileName: fileName = objectClass.__name__
-    objectInstance = objectClass()
-    serializer = XmlReader.XmlReader(fileName)
-    objectInstance.serialize(serializer)
-    return objectInstance
+    def serialize(self, serializer):
+        'load/unload class state to/from serializer object'
+        serializer.serializeAttribute(self.__dict__, common.NAME)
+        serializer.serializeAttribute(self.__dict__, common.FILE_NAME)
 
-def loadBuffer(fileName):
-    'return contents of file fileName'
-    fileBuffer = open(fileName)
-    text = fileBuffer.read()
-    fileBuffer.close()
-    return text
+    def postSerialize(self):
+        'load the named buffer'
+        self.text = utils.loadBuffer(self.fileName)
 

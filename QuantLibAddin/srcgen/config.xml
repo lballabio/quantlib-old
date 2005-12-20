@@ -1,22 +1,22 @@
-<config>
+<Config>
 
-<categories>
-    <category>capfloor</category>
-    <category>couponvectors</category>
-    <category>instruments</category>
-    <category>interpolation</category>
-    <category>ohfunctions</category>
-    <category>options</category>
-    <category>processes</category>
-    <category>schedule</category>
-    <category>shortratemodels</category>
-    <category>simpleswap</category>
-    <category>swap</category>
-    <category>termstructures</category>
-    <category>utilities</category>
-    <category>volatilities</category>
-    <category>xibor</category>
-</categories>
+<categoryNames>
+    <categoryName>capfloor</categoryName>
+    <categoryName>couponvectors</categoryName>
+    <categoryName>instruments</categoryName>
+    <categoryName>interpolation</categoryName>
+    <categoryName>ohfunctions</categoryName>
+    <categoryName>options</categoryName>
+    <categoryName>processes</categoryName>
+    <categoryName>schedule</categoryName>
+    <categoryName>shortratemodels</categoryName>
+    <categoryName>simpleswap</categoryName>
+    <categoryName>swap</categoryName>
+    <categoryName>termstructures</categoryName>
+    <categoryName>utilities</categoryName>
+    <categoryName>volatilities</categoryName>
+    <categoryName>xibor</categoryName>
+</categoryNames>
 
-</config>
+</Config>
 

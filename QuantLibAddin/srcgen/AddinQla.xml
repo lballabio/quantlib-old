@@ -1,0 +1,10 @@
+<Addin name='qla'>
+<rootDirectory>../qla/</rootDirectory>
+
+<Buffers>
+<Buffer name='bufferIncludes' fileName='stub.qla.includes'/>
+</Buffers>
+
+<RuleGroups></RuleGroups>
+
+</Addin>

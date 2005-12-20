@@ -1,60 +1,53 @@
-<category>
+<Category name='processes'>
 <headerOnly>false</headerOnly>
 <description>functions to construct QuantLib process objects</description>
 <displayName>Processes</displayName>
-<functions>
+<Functions>
 
-<function>
-<name>qlBlackScholesProcess</name>
+<Function name='qlBlackScholesProcess'>
 <description>construct and return a handle to a Black Scholes Process object</description>
 <constructor>true</constructor>
 <libraryFunction>BlackScholesProcess</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='BlackVolTermStructure'>
-        <name>handleBlackVol</name>
+<Parameters>
+    <Parameter name='handleBlackVol' libraryClass='BlackVolTermStructure'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle to a Black Vol Term Structure object</description>
-    </parameter>
-    <parameter>
-        <name>underlying</name>
+    </Parameter>
+    <Parameter name='underlying'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>underlying</description>
-    </parameter>
-    <parameter>
-        <name>dayCounter</name>
+    </Parameter>
+    <Parameter name='dayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>day counter</description>
-    </parameter>
-    <parameter>
-        <name>settlementDate</name>
+    </Parameter>
+    <Parameter name='settlementDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>settlement date</description>
-    </parameter>
-    <parameter>
-        <name>riskFreeRate</name>
+    </Parameter>
+    <Parameter name='riskFreeRate'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>risk free rate</description>
-    </parameter>
-    <parameter>
-        <name>dividendYield</name>
+    </Parameter>
+    <Parameter name='dividendYield'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>dividend yield</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-</functions>
-</category>
+</Functions>
+</Category>
 

@@ -1,0 +1,235 @@
+<Addin name='C'>
+<platformId>C</platformId>
+<rootDirectory>../Addins/C/</rootDirectory>
+
+<Buffers>
+<Buffer name='bufferConstructor' fileName='stub.c.constructor'/>
+<Buffer name='bufferMember' fileName='stub.c.member'/>
+<Buffer name='bufferIncludes' fileName='stub.c.includes'/>
+</Buffers>
+
+<RuleGroups>
+
+<RuleGroup name='functionDeclaration' indent='2'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>Varies</optional>
+                <bool>Boolean</bool>
+                <string>char</string>
+                <any>Varies</any>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>Varies</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='dereferenceName'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>null</optional>
+                <string>*</string>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='functionReturnType'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <bool>Boolean</bool>
+                <string>char</string>
+                <any>Varies</any>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>Varies</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='dereferenceName'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>*</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='libraryReturnType'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <string>std::string</string>
+                <any>boost::any</any>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='reformatType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>std::vector &lt; %s &gt;</default>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>std::vector &lt; std::vector &lt; %s &gt; &gt;</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='libraryCall' ql_type='true' appendTensorRank='true' indent='3'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>null</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='reformatName'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>%s</optional>
+                <bool>%s == TRUE</bool>
+                <string>std::string(%s)</string>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='conversions' appendTensorRank='true' indent='2'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <string>std::string</string>
+                <any>boost::any</any>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <string>std::string</string>
+                <any>boost::any</any>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='reformatType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>std::vector &lt; %s &gt;</default>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>std::vector &lt; std::vector &lt; %s &gt; &gt;</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='setTypeConversion'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>varies</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+</RuleGroups>
+
+</Addin>
+

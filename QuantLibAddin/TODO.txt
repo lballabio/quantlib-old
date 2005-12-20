@@ -1,4 +1,3 @@
-- use Serializer/Deserializer pattern to load metadata for srcgen.py
 - update design doc
 
 To do list:

@@ -1,153 +1,135 @@
-<category>
+<Category name='couponvectors'>
 <headerOnly>false</headerOnly>
 <description>functions to construct QuantLib coupon vector objects</description>
 <displayName>Coupon Vectors</displayName>
-<functions>
+<Functions>
 
-<function>
-<name>qlFixedRateCouponVector</name>
+<Function name='qlFixedRateCouponVector'>
 <description>construct and return a handle to a fixed rate coupon vector</description>
 <constructor>true</constructor>
 <libraryFunction>FixedRateCouponVector</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>scheduleID</name>
+<Parameters>
+    <Parameter name='scheduleID'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>schedule</description>
-    </parameter>
-    <parameter>
-        <name>conventionID</name>
+    </Parameter>
+    <Parameter name='conventionID'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>payment adjustment</description>
-    </parameter>
-    <parameter>
-        <name>nominals</name>
+    </Parameter>
+    <Parameter name='nominals'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
         <description>coupon nominals</description>
-    </parameter>
-    <parameter>
-        <name>couponRates</name>
+    </Parameter>
+    <Parameter name='couponRates'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
         <description>coupon fixed rates</description>
-    </parameter>
-	<parameter>
-        <name>dayCountID</name>
+    </Parameter>
+	<Parameter name='dayCountID'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>day counter</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlFloatingRateCouponVector</name>
+<Function name='qlFloatingRateCouponVector'>
 <description>construct and return a handle to a floating rate coupon vector</description>
 <constructor>true</constructor>
 <libraryFunction>FloatingRateCouponVector</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>scheduleID</name>
+<Parameters>
+    <Parameter name='scheduleID'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>schedule</description>
-    </parameter>
-    <parameter>
-        <name>nominals</name>
+    </Parameter>
+    <Parameter name='nominals'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
         <description>coupon nominals</description>
-    </parameter>
-    <parameter>
-        <name>indexID</name>
+    </Parameter>
+    <Parameter name='indexID'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>underlying index</description>
-    </parameter>
-    <parameter default='0'>
-        <name>spreads</name>
+    </Parameter>
+    <Parameter name='spreads' default='0'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
         <description>floating rate spreads</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlGetLeg</name>
+<Function name='qlGetLeg'>
 <description>return coupon details</description>
 <constructor>false</constructor>
 <libraryFunction>getLeg</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='CouponVector'>
-        <name>handle</name>
+<Parameters>
+    <Parameter name='handle' libraryClass='CouponVector'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of coupon vector object</description>
-    </parameter>
-    <parameter ignore='true'>
-        <name>trigger</name>
+    </Parameter>
+    <Parameter name='trigger' ignore='true'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
         <description>dependency tracking trigger</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>double</type>
     <tensorRank>matrix</tensorRank>
     <description>coupon details</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlGetBPS</name>
+<Function name='qlGetBPS'>
 <description>basis point sensitivity</description>
 <constructor>false</constructor>
 <libraryFunction>getBPS</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='CouponVector'>
-        <name>handle</name>
+<Parameters>
+    <Parameter name='handle' libraryClass='CouponVector'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of coupon vector object</description>
-    </parameter>
-    <parameter>
-        <name>termStructureID</name>
+    </Parameter>
+    <Parameter name='termStructureID'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>discounting term structure</description>
-    </parameter>    
-    <parameter ignore='true'>
-        <name>trigger</name>
+    </Parameter>    
+    <Parameter name='trigger' ignore='true'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
         <description>dependency tracking trigger</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>double</type>
     <tensorRank>scalar</tensorRank>
     <description>BPS</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-</functions>
-</category>
+</Functions>
+</Category>
 

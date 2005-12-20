@@ -1,87 +1,77 @@
-<category>
+<Category name='schedule'>
 <headerOnly>false</headerOnly>
 <description>functions to construct QuantLib schedule objects</description>
 <displayName>Schedules</displayName>
-<functions>
+<Functions>
 
-<function>
-<name>qlSchedule</name>
+<Function name='qlSchedule'>
 <description>construct and return a handle to a schedule object</description>
 <constructor>true</constructor>
 <libraryFunction>Schedule</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>calendar</name>
+<Parameters>
+    <Parameter name='calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>calendar</description>
-    </parameter>
-    <parameter>
-        <name>startDate</name>
+    </Parameter>
+    <Parameter name='startDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>start date</description>
-    </parameter>
-    <parameter>
-        <name>endDate</name>
+    </Parameter>
+    <Parameter name='endDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>end date</description>
-    </parameter>
-    <parameter>
-        <name>frequency</name>
+    </Parameter>
+    <Parameter name='frequency'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>frequency</description>
-    </parameter>
-    <parameter>
-        <name>convention</name>
+    </Parameter>
+    <Parameter name='convention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>business day convention</description>
-    </parameter>
-    <parameter default='0'>
-        <name>startFromEnd</name>
+    </Parameter>
+    <Parameter name='startFromEnd' default='0'>
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
         <description>start from end</description>
-    </parameter>
-    <parameter default='0'>
-        <name>longFinal</name>
+    </Parameter>
+    <Parameter name='longFinal' default='0'>
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
         <description>long final</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlScheduleDates</name>
+<Function name='qlScheduleDates'>
 <description>return schedule dates</description>
 <constructor>false</constructor>
 <libraryFunction>scheduleDates</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='Schedule'>
-        <name>handle</name>
+<Parameters>
+    <Parameter name='handle' libraryClass='Schedule'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of schedule object</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>long</type>
     <tensorRank>vector</tensorRank>
     <description>dates</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-</functions>
-</category>
+</Functions>
+</Category>
 

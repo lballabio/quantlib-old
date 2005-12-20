@@ -1,42 +1,38 @@
-<category>
+<Category name='swap'>
 <headerOnly>false</headerOnly>
 <description>functions to construct QuantLib swap objects</description>
 <displayName>Swap</displayName>
-<functions>
+<Functions>
 
-<function>
-<name>qlSwap</name>
+<Function name='qlSwap'>
 <description>construct and return a handle to a swap object</description>
 <constructor>true</constructor>
 <libraryFunction>Swap</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>paidLegID</name>
+<Parameters>
+    <Parameter name='paidLegID'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle to paid leg</description>
-    </parameter>
-    <parameter>
-        <name>recvLegID</name>
+    </Parameter>
+    <Parameter name='recvLegID'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle to receveid leg</description>
-    </parameter>
-    <parameter>
-        <name>termStructureID</name>
+    </Parameter>
+    <Parameter name='termStructureID'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle to discounting term structure</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-</functions>
-</category>
+</Functions>
+</Category>
 

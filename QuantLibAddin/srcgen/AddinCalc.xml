@@ -1,0 +1,373 @@
+<Addin name='Calc'>
+<platformId>O</platformId>
+<rootDirectory>../Addins/Calc/</rootDirectory>
+
+<Buffers>
+<Buffer name='bufferConstructor' fileName='stub.calc.constructor'/>
+<Buffer name='bufferMember' fileName='stub.calc.member'/>
+<Buffer name='bufferIdlFooter' fileName='stub.calc.idlfoot'/>
+<Buffer name='bufferIdlFunction' fileName='stub.calc.idlfunc'/>
+<Buffer name='bufferIdlHeader' fileName='stub.calc.idlhead'/>
+<Buffer name='bufferIncludes' fileName='stub.calc.includes'/>
+<Buffer name='bufferMap' fileName='stub.calc.map'/>
+</Buffers>
+
+<RuleGroups>
+
+<RuleGroup name='functionDeclaration' indent='2'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>ANY</optional>
+                <long>sal_Int32</long>
+                <bool>sal_Int32</bool>
+                <string>STRING</string>
+                <any>ANY</any>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>ANY</optional>
+                <long>sal_Int32</long>
+                <bool>sal_Int32</bool>
+                <string>ANY</string>
+                <any>ANY</any>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='dereferenceName'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>&amp;</optional>
+                <string>&amp;</string>
+                <any>&amp;</any>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>&amp;</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='reformatType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>%s</optional>
+                <default>SEQSEQ( %s )</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='setPrefix'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>const</optional>
+                <string>const</string>
+                <any>const</any>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>const</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='returnTypeIDL'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <bool>long</bool>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='reformatType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>sequence &lt; sequence &lt; %s &gt; &gt; </default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='ruleIDL' indent='6'>
+    <Rules>
+    <Rule name='setPrefix'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>[in]</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>any</optional>
+                <bool>long</bool>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>any</optional>
+                <bool>long</bool>
+                <string>any</string>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='reformatType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>%s</optional>
+                <default>sequence &lt; sequence &lt; %s &gt; &gt; </default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='conversions' appendTensorRank='true' indent='2'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <string>std::string</string>
+                <any>boost::any</any>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <string>std::string</string>
+                <any>boost::any</any>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='reformatType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>std::vector &lt; %s &gt;</default>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>std::vector &lt; std::vector &lt; %s &gt; &gt;</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='setTypeConversion'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>calc</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='libraryCall' ql_type='true' appendTensorRank='true' indent='3'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>null</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='reformatName'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <optional>%s</optional>
+                <bool>static_cast &lt; bool &gt; ( %s )</bool>
+                <string>ouStringToStlString(%s)</string>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='functionReturnType'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <long>sal_Int32</long>
+                <bool>sal_Int32</bool>
+                <string>STRING</string>
+                <any>ANY</any>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='reformatType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>SEQSEQ( %s )</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='libraryReturnType'>
+    <Rules>
+    <Rule name='setType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <string>std::string</string>
+                <any>boost::any</any>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    <Rule name='reformatType'>
+        <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>std::vector &lt; %s &gt;</default>
+            </replacements>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <replacements>
+                <default>std::vector &lt; std::vector &lt; %s &gt; &gt;</default>
+            </replacements>
+        </SubRule>
+        </SubRules>
+    </Rule>
+    </Rules>
+</RuleGroup>
+
+</RuleGroups>
+
+</Addin>
+

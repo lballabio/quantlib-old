@@ -55,67 +55,87 @@ CFG=srcgen - Win32 All
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\addin.py
+SOURCE=AddinCalc.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\addinC.py
+SOURCE=AddinC.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\addinCalc.py
+SOURCE=AddinDoxygen.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\addinDoxygen.py
+SOURCE=AddinExcel.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\addinExcel.py
+SOURCE=AddinGuile.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\addinGuile.py
+SOURCE=Addin.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\addinQla.py
+SOURCE=AddinQla.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\category.py
+SOURCE=Buffer.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\common.py
+SOURCE=Category.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\config.py
+SOURCE=common.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\function.py
+SOURCE=Config.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\parameter.py
+SOURCE=Enumeration.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\parse.py
+SOURCE=Function.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\rule.py
+SOURCE=OutputFile.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\srcgen.py
+SOURCE=Parameter.py
 # End Source File
 # Begin Source File
 
-SOURCE=.\utils.py
+SOURCE=Rule.py
+# End Source File
+# Begin Source File
+
+SOURCE=Serializable.py
+# End Source File
+# Begin Source File
+
+SOURCE=Singleton.py
+# End Source File
+# Begin Source File
+
+SOURCE=srcgen.py
+# End Source File
+# Begin Source File
+
+SOURCE=utils.py
+# End Source File
+# Begin Source File
+
+SOURCE=XmlReader.py
 # End Source File
 # End Group
 # Begin Group "stubs"
@@ -123,183 +143,196 @@ SOURCE=.\utils.py
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\stub.c.constructor
+SOURCE=stub.calc.constructor
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.c.includes
+SOURCE=stub.calc.idlfoot
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.c.member
+SOURCE=stub.calc.idlfunc
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.calc.constructor
+SOURCE=stub.calc.idlhead
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.calc.idlfoot
+SOURCE=stub.calc.includes
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.calc.idlfunc
+SOURCE=stub.calc.map
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.calc.idlhead
+SOURCE=stub.calc.member
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.calc.includes
+SOURCE=stub.c.constructor
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.calc.map
+SOURCE=stub.c.includes
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.calc.member
+SOURCE=stub.c.member
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.copyright
+SOURCE=stub.copyright
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.doxygen.categories
+SOURCE=stub.doxygen.categories
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.doxygen.enums
+SOURCE=stub.doxygen.enums
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.excel.constructor
+SOURCE=stub.doxygen.header
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.excel.includes
+SOURCE=stub.excel.constructor
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.excel.member
+SOURCE=stub.excel.includes
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.excel.regheader
+SOURCE=stub.excel.member
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.guile.constructor
+SOURCE=stub.excel.regfooter
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.guile.includes
+SOURCE=stub.excel.regheader
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.guile.initfunc
+SOURCE=stub.guile.constructor
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.guile.member
+SOURCE=stub.guile.includes
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.qla.includes
+SOURCE=stub.guile.initfunc
+# End Source File
+# Begin Source File
+
+SOURCE=stub.guile.member
+# End Source File
+# Begin Source File
+
+SOURCE=stub.qla.includes
 # End Source File
 # End Group
 # Begin Group "metadata"
 
 # PROP Default_Filter ""
+
 # Begin Source File
 
-SOURCE=.\c.xml
+SOURCE=AddinCalc.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\calc.xml
+SOURCE=AddinC.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\capfloor.xml
+SOURCE=AddinDoxygen.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\config.xml
+SOURCE=AddinExcel.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\couponvectors.xml
+SOURCE=AddinGuile.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\doxygen.xml
+SOURCE=AddinQla.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\enums.xml
+SOURCE=capfloor.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\excel.xml
+SOURCE=config.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\guile.xml
+SOURCE=couponvectors.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\instruments.xml
+SOURCE=enumerations.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\interpolation.xml
+SOURCE=instruments.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\ohfunctions.xml
+SOURCE=interpolation.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\options.xml
+SOURCE=ohfunctions.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\processes.xml
+SOURCE=options.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\schedule.xml
+SOURCE=processes.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\shortratemodels.xml
+SOURCE=schedule.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\simpleswap.xml
+SOURCE=shortratemodels.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\swap.xml
+SOURCE=simpleswap.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\termstructures.xml
+SOURCE=swap.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\utilities.xml
+SOURCE=termstructures.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\volatilities.xml
+SOURCE=utilities.xml
 # End Source File
 # Begin Source File
 
-SOURCE=.\xibor.xml
+SOURCE=volatilities.xml
+# End Source File
+# Begin Source File
+
+SOURCE=xibor.xml
 # End Source File
 # End Group
 # Begin Source File

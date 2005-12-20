@@ -1,0 +1,858 @@
+<root>
+<Enumerations>
+
+<Enumeration>
+<type>QuantLib::Average::Type</type>
+<constructor>true</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>Arithmetic</string>
+        <value>QuantLib::Average::Arithmetic</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Geometric</string>
+        <value>QuantLib::Average::Geometric</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration>
+<type>QuantLib::Barrier::Type</type>
+<constructor>true</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>DownIn</string>
+        <value>QuantLib::Barrier::DownIn</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>DownOut</string>
+        <value>QuantLib::Barrier::DownOut</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>UpIn</string>
+        <value>QuantLib::Barrier::UpIn</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>UpOut</string>
+        <value>QuantLib::Barrier::UpOut</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration>
+<type>QuantLib::BasketOption::BasketType</type>
+<constructor>true</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>Max</string>
+        <value>QuantLib::BasketOption::Max</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Min</string>
+        <value>QuantLib::BasketOption::Min</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration>
+<type>QuantLib::BusinessDayConvention</type>
+<constructor>true</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>Following</string>
+        <value>QuantLib::Following</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ModifiedFollowing</string>
+        <value>QuantLib::ModifiedFollowing</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ModifiedPreceding</string>
+        <value>QuantLib::ModifiedPreceding</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>MonthEndReference</string>
+        <value>QuantLib::MonthEndReference</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Preceding</string>
+        <value>QuantLib::Preceding</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Unadjusted</string>
+        <value>QuantLib::Unadjusted</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration>
+<type>QuantLib::Calendar</type>
+<constructor>false</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>Beijing</string>
+        <value>QuantLib::Beijing()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Bratislava</string>
+        <value>QuantLib::Bratislava()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Budapest</string>
+        <value>QuantLib::Budapest()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Copenhagen</string>
+        <value>QuantLib::Copenhagen()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Germany_Eurex</string>
+        <value>QuantLib::Germany(QuantLib::Germany::Eurex)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Germany_FftExchng</string>
+        <value>QuantLib::Germany(QuantLib::Germany::FrankfurtStockExchange)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Germany</string>
+        <value>QuantLib::Germany()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Germany_Settl</string>
+        <value>QuantLib::Germany(QuantLib::Germany::Settlement)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Germany_Xetra</string>
+        <value>QuantLib::Germany(QuantLib::Germany::Xetra)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Helsinki</string>
+        <value>QuantLib::Helsinki()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>HongKong</string>
+        <value>QuantLib::HongKong()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Italy_Exchng</string>
+        <value>QuantLib::Italy(QuantLib::Italy::Exchange)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Istanbul</string>
+        <value>QuantLib::Istanbul()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Italy</string>
+        <value>QuantLib::Italy()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Italy_Settl</string>
+        <value>QuantLib::Italy(QuantLib::Italy::Settlement)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Johannesburg</string>
+        <value>QuantLib::Johannesburg()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>NullCalendar</string>
+        <value>QuantLib::NullCalendar()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Oslo</string>
+        <value>QuantLib::Oslo()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Prague</string>
+        <value>QuantLib::Prague()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Riyadh</string>
+        <value>QuantLib::Riyadh()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Seoul</string>
+        <value>QuantLib::Seoul()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Singapore</string>
+        <value>QuantLib::Singapore()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Stockholm</string>
+        <value>QuantLib::Stockholm()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Sydney</string>
+        <value>QuantLib::Sydney()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Taiwan</string>
+        <value>QuantLib::Taiwan()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>TARGET</string>
+        <value>QuantLib::TARGET()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Tokyo</string>
+        <value>QuantLib::Tokyo()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Toronto</string>
+        <value>QuantLib::Toronto()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>UnitedKingdom_Exchng</string>
+        <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Exchange)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>UnitedKingdom_Metals</string>
+        <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Metals)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>UnitedKingdom</string>
+        <value>QuantLib::UnitedKingdom()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>UnitedKingdom_Settl</string>
+        <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Settlement)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>UnitedStates_Exchng</string>
+        <value>QuantLib::UnitedStates(QuantLib::UnitedStates::Exchange)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>UnitedStates_Gov</string>
+        <value>QuantLib::UnitedStates(QuantLib::UnitedStates::GovernmentBond)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>UnitedStates</string>
+        <value>QuantLib::UnitedStates()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>UnitedStates_Settl</string>
+        <value>QuantLib::UnitedStates(QuantLib::UnitedStates::Settlement)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Warsaw</string>
+        <value>QuantLib::Warsaw()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Wellington</string>
+        <value>QuantLib::Wellington()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Zurich</string>
+        <value>QuantLib::Zurich()</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration>
+<type>QuantLib::CapFloor::Type</type>
+<constructor>true</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>Cap</string>
+        <value>QuantLib::CapFloor::Cap</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Floor</string>
+        <value>QuantLib::CapFloor::Floor</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Collar</string>
+        <value>QuantLib::CapFloor::Collar</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration>
+<type>QuantLib::Compounding</type>
+<constructor>true</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>Compounded</string>
+        <value>QuantLib::Compounded</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Continuous</string>
+        <value>QuantLib::Continuous</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Simple</string>
+        <value>QuantLib::Simple</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>SimpleThenCompounded</string>
+        <value>QuantLib::SimpleThenCompounded</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration>
+<type>QuantLib::Currency</type>
+<constructor>false</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>ARS</string>
+        <value>QuantLib::ARSCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ATS</string>
+        <value>QuantLib::ATSCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>AUD</string>
+        <value>QuantLib::AUDCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>BDT</string>
+        <value>QuantLib::BDTCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>BEF</string>
+        <value>QuantLib::BEFCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>BGL</string>
+        <value>QuantLib::BGLCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>BRL</string>
+        <value>QuantLib::BRLCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>BYR</string>
+        <value>QuantLib::BYRCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>CAD</string>
+        <value>QuantLib::CADCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>CHF</string>
+        <value>QuantLib::CHFCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>CLP</string>
+        <value>QuantLib::CLPCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>CNY</string>
+        <value>QuantLib::CNYCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>COP</string>
+        <value>QuantLib::COPCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>CYP</string>
+        <value>QuantLib::CYPCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>CZK</string>
+        <value>QuantLib::CZKCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>DEM</string>
+        <value>QuantLib::DEMCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>DKK</string>
+        <value>QuantLib::DKKCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>EEK</string>
+        <value>QuantLib::EEKCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ESP</string>
+        <value>QuantLib::ESPCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>EUR</string>
+        <value>QuantLib::EURCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>FIM</string>
+        <value>QuantLib::FIMCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>FRF</string>
+        <value>QuantLib::FRFCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>GBP</string>
+        <value>QuantLib::GBPCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>GRD</string>
+        <value>QuantLib::GRDCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>HKD</string>
+        <value>QuantLib::HKDCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>HUF</string>
+        <value>QuantLib::HUFCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>IEP</string>
+        <value>QuantLib::IEPCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ILS</string>
+        <value>QuantLib::ILSCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>INR</string>
+        <value>QuantLib::INRCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>IQD</string>
+        <value>QuantLib::IQDCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>IRR</string>
+        <value>QuantLib::IRRCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ISK</string>
+        <value>QuantLib::ISKCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ITL</string>
+        <value>QuantLib::ITLCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>JPY</string>
+        <value>QuantLib::JPYCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>KRW</string>
+        <value>QuantLib::KRWCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>KWD</string>
+        <value>QuantLib::KWDCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>LTL</string>
+        <value>QuantLib::LTLCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>LUF</string>
+        <value>QuantLib::LUFCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>LVL</string>
+        <value>QuantLib::LVLCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>MTL</string>
+        <value>QuantLib::MTLCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>MXN</string>
+        <value>QuantLib::MXNCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>NLG</string>
+        <value>QuantLib::NLGCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>NOK</string>
+        <value>QuantLib::NOKCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>NPR</string>
+        <value>QuantLib::NPRCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>NZD</string>
+        <value>QuantLib::NZDCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>PKR</string>
+        <value>QuantLib::PKRCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>PLN</string>
+        <value>QuantLib::PLNCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>PTE</string>
+        <value>QuantLib::PTECurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ROL</string>
+        <value>QuantLib::ROLCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>SAR</string>
+        <value>QuantLib::SARCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>SEK</string>
+        <value>QuantLib::SEKCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>SGD</string>
+        <value>QuantLib::SGDCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>SIT</string>
+        <value>QuantLib::SITCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>SKK</string>
+        <value>QuantLib::SKKCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>THB</string>
+        <value>QuantLib::THBCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>TRL</string>
+        <value>QuantLib::TRLCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>TTD</string>
+        <value>QuantLib::TTDCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>TWD</string>
+        <value>QuantLib::TWDCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>USD</string>
+        <value>QuantLib::USDCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>VEB</string>
+        <value>QuantLib::VEBCurrency()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ZAR</string>
+        <value>QuantLib::ZARCurrency()</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration>
+<type>QuantLib::DayCounter</type>
+<constructor>false</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>Actual360</string>
+        <value>QuantLib::Actual360()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Actual365Fixed</string>
+        <value>QuantLib::Actual365Fixed()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ActualActual_AFB</string>
+        <value>QuantLib::ActualActual(QuantLib::ActualActual::AFB)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ActualActual_Bond</string>
+        <value>QuantLib::ActualActual(QuantLib::ActualActual::Bond)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ActualActual_Euro</string>
+        <value>QuantLib::ActualActual(QuantLib::ActualActual::Euro)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ActualActual_Historical</string>
+        <value>QuantLib::ActualActual(QuantLib::ActualActual::Historical)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ActualActual_ISDA</string>
+        <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ActualActual_ISMA</string>
+        <value>QuantLib::ActualActual(QuantLib::ActualActual::ISMA)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ActualActual</string>
+        <value>QuantLib::ActualActual()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>One</string>
+        <value>QuantLib::OneDayCounter()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Simple</string>
+        <value>QuantLib::SimpleDayCounter()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Thirty360_Bond</string>
+        <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Thirty360_EU_Bnd</string>
+        <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Thirty360_EU</string>
+        <value>QuantLib::Thirty360(QuantLib::Thirty360::European)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Thirty360_ITL</string>
+        <value>QuantLib::Thirty360(QuantLib::Thirty360::Italian)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Thirty360</string>
+        <value>QuantLib::Thirty360()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Thirty360_USA</string>
+        <value>QuantLib::Thirty360(QuantLib::Thirty360::USA)</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration documentationOnly='true'>
+<type>QuantLib::Exercise</type>
+<constructor>true</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>American</string>
+        <value>QuantLib::AmericanExercise</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>European</string>
+        <value>QuantLib::EuropeanExercise</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration>
+<type>QuantLib::Frequency</type>
+<constructor>true</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>Annual</string>
+        <value>QuantLib::Annual</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Bimonthly</string>
+        <value>QuantLib::Bimonthly</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Every4Month</string>
+        <value>QuantLib::EveryFourthMonth</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Monthly</string>
+        <value>QuantLib::Monthly</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>NoFrequency</string>
+        <value>QuantLib::NoFrequency</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Once</string>
+        <value>QuantLib::Once</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Quarterly</string>
+        <value>QuantLib::Quarterly</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Semiannual</string>
+        <value>QuantLib::Semiannual</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration>
+<type>QuantLib::Option::Type</type>
+<constructor>true</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>Call</string>
+        <value>QuantLib::Option::Call</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Put</string>
+        <value>QuantLib::Option::Put</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration documentationOnly='true'>
+<type>QuantLib::PricingEngine</type>
+<constructor>true</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>AB</string>
+        <value>QuantLib::AnalyticBarrierEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>AC</string>
+        <value>QuantLib::AnalyticCliquetEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ACGAPA</string>
+        <value>QuantLib::AnalyticContinuousGeometricAveragePriceAsianEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ADA</string>
+        <value>QuantLib::AnalyticDigitalAmericanEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ADGAPA</string>
+        <value>QuantLib::AnalyticDiscreteGeometricAveragePriceAsianEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>ADE</string>
+        <value>QuantLib::AnalyticDividendEuropeanEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>AE</string>
+        <value>QuantLib::AnalyticEuropeanEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>AP</string>
+        <value>QuantLib::AnalyticPerformanceEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>BAWA</string>
+        <value>QuantLib::BaroneAdesiWhaleyApproximationEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>AEQPB</string>
+        <value>QuantLib::AdditiveEQPBinomialTree</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>CRR</string>
+        <value>QuantLib::CoxRossRubinstein</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>JR</string>
+        <value>QuantLib::JarrowRudd</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>LR</string>
+        <value>QuantLib::LeisenReimer</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>TIAN</string>
+        <value>QuantLib::Tian</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>TRI</string>
+        <value>QuantLib::Trigeorgis</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>BSA</string>
+        <value>QuantLib::BjerksundStenslandApproximationEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>PE</string>
+        <value>QuantLib::PricingEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>SE</string>
+        <value>QuantLib::StulzEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>FE</string>
+        <value>QuantLib::ForwardEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>FPE</string>
+        <value>QuantLib::ForwardPerformanceEngine</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration documentationOnly='true'>
+<type>QuantLib::StrikedTypePayoff</type>
+<constructor>true</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>AssetOrNothing</string>
+        <value>QuantLib::AssetOrNothingPayoff</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>CashOrNothing</string>
+        <value>QuantLib::CashOrNothingPayoff</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Gap</string>
+        <value>QuantLib::GapPayoff</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>PercentageStrike</string>
+        <value>QuantLib::PercentageStrikePayoff</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Vanilla</string>
+        <value>QuantLib::PlainVanillaPayoff</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>SuperShare</string>
+        <value>QuantLib::SuperSharePayoff</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration>
+<type>QuantLib::TimeUnit</type>
+<constructor>true</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>Days</string>
+        <value>QuantLib::Days</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Months</string>
+        <value>QuantLib::Months</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Weeks</string>
+        <value>QuantLib::Weeks</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Years</string>
+        <value>QuantLib::Years</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration>
+<type>QuantLib::CubicSpline::BoundaryCondition</type>
+<constructor>false</constructor>
+<EnumerationDefinitions>
+    <EnumerationDefinition>
+        <string>NotAKnot</string>
+        <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::NotAKnot)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>FirstDerivative</string>
+        <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::FirstDerivative)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>SecondDerivative</string>
+        <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::SecondDerivative)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Periodic</string>
+        <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::Periodic)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Lagrange</string>
+        <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::Lagrange)</value>
+    </EnumerationDefinition>
+</EnumerationDefinitions>
+</Enumeration>
+
+</Enumerations>
+</root>
+

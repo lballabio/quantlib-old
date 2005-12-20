@@ -1,15 +1,16 @@
 
 # srcgen.py probably needs to be re-executed if any of these change
 
-SRCGEN_INPUT := calc.xml \
+SRCGEN_INPUT := AddinCalc.xml \
+                AddinC.xml \
+                AddinDoxygen.xml \
+                AddinExcel.xml \
+                AddinGuile.xml \
+                AddinQla.xml \
                 capfloor.xml \
                 config.xml \
                 couponvectors.xml \
-                c.xml \
-                doxygen.xml \
-                enums.xml \
-                excel.xml \
-                guile.xml \
+                enumerations.xml \
                 instruments.xml \
                 interpolation.xml \
                 ohfunctions.xml \
@@ -24,22 +25,27 @@ SRCGEN_INPUT := calc.xml \
                 volatilities.xml \
                 xibor.xml
 
-SRCGEN_PYS := addinCalc.py \
-              addinC.py \
-              addinDoxygen.py \
-              addinExcel.py \
-              addinGuile.py \
-              addin.py \
-              addinQla.py \
-              category.py \
-              common.py \
-              config.py \
-              function.py \
-              parameter.py \
-              parse.py \
-              rule.py \
-              srcgen.py \
-              utils.py
+SRCGEN_PYS :=   AddinCalc.py \
+                AddinC.py \
+                AddinDoxygen.py \
+                AddinExcel.py \
+                AddinGuile.py \
+                Addin.py \
+                AddinQla.py \
+                Buffer.py \
+                Category.py \
+                common.py \
+                Config.py \
+                Enumeration.py \
+                Function.py \
+                OutputFile.py \
+                Parameter.py \
+                Rule.py \
+                Serializable.py \
+                Singleton.py \
+                srcgen.py \
+                utils.py \
+                XmlReader.py
 
 SRCGEN_STUBS := stub.calc.constructor \
                 stub.calc.idlfoot \
@@ -54,9 +60,11 @@ SRCGEN_STUBS := stub.calc.constructor \
                 stub.copyright \
                 stub.doxygen.categories \
                 stub.doxygen.enums \
+                stub.doxygen.header \
                 stub.excel.constructor \
                 stub.excel.includes \
                 stub.excel.member \
+                stub.excel.regfooter \
                 stub.excel.regheader \
                 stub.guile.constructor \
                 stub.guile.includes \
@@ -65,10 +73,10 @@ SRCGEN_STUBS := stub.calc.constructor \
                 stub.qla.includes
 
 # this should prevent running from a distributed tarball
-#             srcgen.vcproj
 EXTRA_DIST = .time-stamp \
              Makefile.vc \
              srcgen.dsp \
+             srcgen.vcproj \
              srcgen_vc8.vcproj \
              $(SRCGEN_INPUT) \
              $(SRCGEN_PYS) \

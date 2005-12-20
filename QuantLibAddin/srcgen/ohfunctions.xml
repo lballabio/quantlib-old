@@ -1,390 +1,336 @@
-<category>
+<Category name='ohfunctions'>
 <headerOnly>true</headerOnly>
 <description>ObjectHandler functions</description>
 <displayName>ObjectHandler</displayName>
-<functions>
+<Functions>
 
-<function>
-<name>ohVersion</name>
+<Function name='ohVersion'>
 <description>returns the version number of ObjectHandler</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
-<parameters></parameters>
-<returnValue>
+<Parameters></Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>ObjectHandler version number</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohObjectCount</name>
+<Function name='ohObjectCount'>
 <description>#/objects in repository</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
-<parameters></parameters>
-<returnValue>
+<Parameters></Parameters>
+<ReturnValue>
     <type>long</type>
     <tensorRank>scalar</tensorRank>
     <description>object count</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohHandleList</name>
+<Function name='ohHandleList'>
 <description>list of handles in repository</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
-<parameters></parameters>
-<returnValue>
+<Parameters></Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>vector</tensorRank>
     <description>handle list</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohFieldNames</name>
+<Function name='ohFieldNames'>
 <description>retrieve the field names of a given object</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
-<parameters>
-    <parameter>
-        <name>handleObject</name>
+<Parameters>
+    <Parameter name='handleObject'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of object to be queried</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>any</type>
     <tensorRank>vector</tensorRank>
     <description>list of fieldnames for queried object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohFieldValue</name>
+<Function name='ohFieldValue'>
 <description>retrieve the value of a named field</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
-<parameters>
-    <parameter>
-        <name>handleObject</name>
+<Parameters>
+    <Parameter name='handleObject'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of object to be queried</description>
-    </parameter>
-    <parameter>
-        <name>fieldName</name>
+    </Parameter>
+    <Parameter name='fieldName'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>name of field</description>
-    </parameter>
-    <parameter ignore='true'>
-        <name>trigger</name>
+    </Parameter>
+    <Parameter name='trigger' ignore='true'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
         <description>dependency tracking trigger</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>any</type>
     <tensorRank>matrix</tensorRank>
     <description>value of named field</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohDeleteObject</name>
+<Function name='ohDeleteObject'>
 <description>delete object from repository</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
-<parameters>
-    <parameter>
-        <name>handleObject</name>
+<Parameters>
+    <Parameter name='handleObject'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of object to be deleted</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>bool</type>
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohDeleteAllObjects</name>
+<Function name='ohDeleteAllObjects'>
 <description>delete all objects from repository</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
-<parameters></parameters>
-<returnValue>
+<Parameters></Parameters>
+<ReturnValue>
     <type>bool</type>
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohDependsOn</name>
+<Function name='ohDependsOn'>
 <description>force a dependency between two functions</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>O</platforms>
-<parameters>
-    <parameter>
-        <name>dummy0</name>
+<Parameters>
+    <Parameter name='dummy0'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
         <description>dummy parameter (ignored)</description>
-    </parameter>
-    <parameter>
-        <name>dummy1</name>
+    </Parameter>
+    <Parameter name='dummy1'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
         <description>dummy parameter (ignored)</description>
-    </parameter>
-    <parameter>
-        <name>dummy2</name>
+    </Parameter>
+    <Parameter name='dummy2'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
         <description>dummy parameter (ignored)</description>
-    </parameter>
-    <parameter>
-        <name>dummy3</name>
+    </Parameter>
+    <Parameter name='dummy3'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
         <description>dummy parameter (ignored)</description>
-    </parameter>
-    <parameter>
-        <name>dummy4</name>
+    </Parameter>
+    <Parameter name='dummy4'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
         <description>dummy parameter (ignored)</description>
-    </parameter>
-    <parameter>
-        <name>dummy5</name>
+    </Parameter>
+    <Parameter name='dummy5'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
         <description>dummy parameter (ignored)</description>
-    </parameter>
-    <parameter>
-        <name>dummy6</name>
+    </Parameter>
+    <Parameter name='dummy6'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
         <description>dummy parameter (ignored)</description>
-    </parameter>
-    <parameter>
-        <name>dummy7</name>
+    </Parameter>
+    <Parameter name='dummy7'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
         <description>dummy parameter (ignored)</description>
-    </parameter>
-    <parameter>
-        <name>dummy8</name>
+    </Parameter>
+    <Parameter name='dummy8'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
         <description>dummy parameter (ignored)</description>
-    </parameter>
-    <parameter>
-        <name>dummy9</name>
+    </Parameter>
+    <Parameter name='dummy9'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
         <description>dummy parameter (ignored)</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>bool</type>
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohSetLogFile</name>
+<Function name='ohSetLogFile'>
 <description>begin logging to named file</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
-<parameters>
-    <parameter>
-        <name>logFileName</name>
+<Parameters>
+    <Parameter name='logFileName'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>path and name of log file</description>
-    </parameter>
-    <parameter default='4'>
-        <name>logLevel</name>
+    </Parameter>
+    <Parameter name='logLevel' default='4'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>threshold for log messages</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>name of logfile</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohSetLogLevel</name>
+<Function name='ohSetLogLevel'>
 <description>set threshold for log messages</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
-<parameters>
-    <parameter>
-        <name>logLevel</name>
+<Parameters>
+    <Parameter name='logLevel'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>threshold for log messages</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>long</type>
     <tensorRank>scalar</tensorRank>
     <description>returns new logging threshold</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohLogMessage</name>
+<Function name='ohLogMessage'>
 <description>log a message</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
-<parameters>
-    <parameter>
-        <name>logMessage</name>
+<Parameters>
+    <Parameter name='logMessage'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>message to be logged</description>
-    </parameter>
-    <parameter default='4'>
-        <name>logLevel</name>
+    </Parameter>
+    <Parameter name='logLevel' default='4'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>threshold for log messages</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>message logged</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohLogObject</name>
+<Function name='ohLogObject'>
 <description>write object description to log file</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
-<parameters>
-    <parameter>
-        <name>handleObject</name>
+<Parameters>
+    <Parameter name='handleObject'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of object to be logged</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>bool</type>
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohLogAllObjects</name>
+<Function name='ohLogAllObjects'>
 <description>write all object descriptions to log file</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
-<parameters></parameters>
-<returnValue>
+<Parameters></Parameters>
+<ReturnValue>
     <type>bool</type>
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohGetGcEnabled</name>
+<Function name='ohGetGcEnabled'>
 <description>get value of ObjectHandler garbage collection flag</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>D</platforms>
-<parameters></parameters>
-<returnValue>
+<Parameters></Parameters>
+<ReturnValue>
     <type>bool</type>
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohSetGcEnabled</name>
+<Function name='ohSetGcEnabled'>
 <description>set value of ObjectHandler garbage collection flag</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>D</platforms>
-<parameters>
-    <parameter>
-        <name>enableGarbageCollection</name>
+<Parameters>
+    <Parameter name='enableGarbageCollection'>
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
         <description>true (enable) / false (disable)</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>bool</type>
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>ohCallGC</name>
+<Function name='ohCallGC'>
 <description>delete orphaned objects from repository</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>ObjectHandler</functionCategory>
 <platforms>D</platforms>
-<parameters></parameters>
-<returnValue>
+<Parameters></Parameters>
+<ReturnValue>
     <type>bool</type>
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-</functions>
-</category>
+</Functions>
+</Category>
 

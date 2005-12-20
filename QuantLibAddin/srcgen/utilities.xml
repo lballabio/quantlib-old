@@ -1,93 +1,81 @@
-<category>
+<Category name='utilities'>
 <headerOnly>true</headerOnly>
 <description>diagnostic and utility functions</description>
 <displayName>Utilities</displayName>
-<functions>
+<Functions>
 
-<function>
-<name>qlListEnum</name>
+<Function name='qlListEnum'>
 <description>return the members of a given enumeration</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>enumId</name>
+<Parameters>
+    <Parameter name='enumId'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>name of the enum to list</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>vector</tensorRank>
     <description>list of the members of the specified enumeration</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlListRegisteredEnums</name>
+<Function name='qlListRegisteredEnums'>
 <description>return the names of all registered enums</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters></parameters>
-<returnValue>
+<Parameters></Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>vector</tensorRank>
     <description>list of names of registered enums</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlListRegisteredTypes</name>
+<Function name='qlListRegisteredTypes'>
 <description>return the names of all registered complex types</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters></parameters>
-<returnValue>
+<Parameters></Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>vector</tensorRank>
     <description>list of names of registered enums</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlListType</name>
+<Function name='qlListType'>
 <description>return the members of a given complex type</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>typeId</name>
+<Parameters>
+    <Parameter name='typeId'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>name of the complex type to list</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>vector</tensorRank>
     <description>list of the members of the specified enumeration</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlVersion</name>
+<Function name='qlVersion'>
 <description>returns the version number of QuantLib</description>
 <constructor>false</constructor>
-<libraryFunction></libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters></parameters>
-<returnValue>
+<Parameters></Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>QuantLib version number</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-</functions>
-</category>
+</Functions>
+</Category>
 

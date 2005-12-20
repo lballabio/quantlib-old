@@ -19,51 +19,45 @@
 
 'output QuantLibAddin source files'
 
+import Config
+import Addin
+import OutputFile
 import common
 import utils
-import category
-import rule
 
 # constants
 
 ENUM_END   = '        );\n\n'
 ENUM_LINE  = '            MAP("%s", %s);\n'
 ENUM_START = '        REG_ENUM(%s,\n'
-BUF_INCLUDES = 'stub.qla.includes'
 
-class AddinQla(object):
-
-    def __init__(self,
-            enumerations):
-        self.enumerations = enumerations
-        self.bufInclude = utils.loadBuffer(BUF_INCLUDES)
+class AddinQla(Addin.Addin):
+    'generate source code for QuantLibAddin'
 
     def generate(self):
         'generate source code for QuantLibAddin'
         utils.logMessage('  begin generating QuantLibAddin ...')
-        self.generateEnumSource()
+        self.generateEnumerations()
         utils.logMessage('  done generating QuantLibAddin.')
 
-    def generateEnum(self, fileEnum, enumDef):
-        fileEnum.write(ENUM_START % enumDef[common.CLASS])
-        for enum in enumDef[common.DEFS]:
-            if enumDef[common.CTOR] == common.TRUE:
-                enumVal = enumDef[common.CLASS] + '(' + enum[common.ENUM] + ')'
+    def generateEnumeration(self, fileEnum, enumeration):
+        'generate source code for given enumeration'
+        fileEnum.write(ENUM_START % enumeration.type)
+        for enumDef in enumeration.getEnumerationDefinitions():
+            if enumeration.constructor:
+                enumVal = enumeration.type + '(' + enumDef.value + ')'
             else:
-                enumVal = enum[common.ENUM]
-            fileEnum.write(ENUM_LINE % (enum[common.STRING].upper(), enumVal))
+                enumVal = enumDef.value
+            fileEnum.write(ENUM_LINE % (enumDef.string.upper(), enumVal))
         fileEnum.write(ENUM_END)
 
-    def generateEnumSource(self):
+    def generateEnumerations(self):
         'generate source file for enumerations'
-        fileName = '../qla/enumregistry.cpp' + common.TEMPFILE
-        fileEnum = file(fileName, 'w')
-        utils.printHeader(fileEnum)
-        fileEnum.write(self.bufInclude)
-        for enumDef in self.enumerations[common.ENUMDEFS]:
-            if not utils.testAttribute(enumDef, 'documentation_only', 'true'):
-                self.generateEnum(fileEnum, enumDef)
+        fileEnum = OutputFile.OutputFile(self.rootDirectory + 'enumregistry.cpp')
+        fileEnum.write(self.bufferIncludes.text)
+        for enumeration in Config.Config.getInstance().getEnumerations():
+            if not enumeration.documentationOnly:
+                self.generateEnumeration(fileEnum, enumeration)
         fileEnum.write('    }\n\n}\n\n')
         fileEnum.close()
-        utils.updateIfChanged(fileName)
 

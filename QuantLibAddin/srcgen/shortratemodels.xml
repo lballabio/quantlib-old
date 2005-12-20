@@ -1,81 +1,72 @@
-<category>
+<Category name='shortratemodels'>
 <headerOnly>false</headerOnly>
 <description>functions to construct QuantLib short-rate model objects</description>
 <displayName>Short Rate Models</displayName>
-<functions>
+<Functions>
 
-<function>
-<name>qlHullWhite</name>
+<Function name='qlHullWhite'>
 <description>construct and return a handle to a Hull-White short-rate model object</description>
 <constructor>true</constructor>
 <libraryFunction>HullWhite</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter class='YieldTermStructure'>
-        <name>handleTermStructure</name>
+<Parameters>
+    <Parameter name='handleTermStructure' libraryClass='YieldTermStructure'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle to a term structure object</description>
-    </parameter>
-    <parameter>
-        <name>a</name>
+    </Parameter>
+    <Parameter name='a'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>a</description>
-    </parameter>
-    <parameter>
-        <name>sigma</name>
+    </Parameter>
+    <Parameter name='sigma'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>volatility</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-<function>
-<name>qlVasicek</name>
+<Function name='qlVasicek'>
 <description>construct and return a Vasicek short-rate model object</description>
 <constructor>true</constructor>
 <libraryFunction>Vasicek</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
-<parameters>
-    <parameter>
-        <name>a</name>
+<Parameters>
+    <Parameter name='a'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>mean reverting speed</description>
-    </parameter>
-    <parameter>
-        <name>b</name>
+    </Parameter>
+    <Parameter name='b'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>short-rate limit value</description>
-    </parameter>
-    <parameter>
-        <name>lambda</name>
+    </Parameter>
+    <Parameter name='lambda'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>risk premium</description>
-    </parameter>
-    <parameter>
-        <name>sigma</name>
+    </Parameter>
+    <Parameter name='sigma'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>volatility</description>
-    </parameter>
-</parameters>
-<returnValue>
+    </Parameter>
+</Parameters>
+<ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
     <description>handle of newly created object</description>
-</returnValue>
-</function>
+</ReturnValue>
+</Function>
 
-</functions>
-</category>
+</Functions>
+</Category>
 

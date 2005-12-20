@@ -19,31 +19,14 @@
 
 'guile addin'
 
-import addin
+import Addin
+import Config
+import OutputFile
 import common
 import utils
-import category
-import rule
 
-# constants
-
-BUF_CTOR    = 'stub.guile.constructor'
-BUF_MEMBER  = 'stub.guile.member'
-INCLUDES    = 'stub.guile.includes'
-INITFUNC    = 'stub.guile.initfunc'
-
-class AddinGuile(addin.Addin):
-
-    def __init__(self,
-            categories):
-        super(AddinGuile, self).__init__(common.CONFIG_GUILE, categories)
-        self.bufInclude = utils.loadBuffer(INCLUDES)
-        self.bufCtor = utils.loadBuffer(BUF_CTOR)
-        self.bufMember = utils.loadBuffer(BUF_MEMBER)
-
-    def setRules(self, config):
-        self.ruleLibraryReturnType = rule.Rule(config[common.LIB_RET])
-        self.ruleLibraryCall = rule.Rule(config[common.LIB_CALL])
+class AddinGuile(Addin.Addin):
+    'generate source code for Guile addin'
 
     def generate(self):
         'generate source code for Guile addin'
@@ -60,52 +43,40 @@ class AddinGuile(addin.Addin):
 
     def generateFuncHeaders(self, category):
         'generate source for function prototypes'
-        fileName = self.rootDir + category.name + '.h' + common.TEMPFILE
-        fileHeader = file(fileName, 'w')
-        utils.printHeader(fileHeader)
+        fileHeader = OutputFile.OutputFile(self.rootDirectory + category.name + '.h')
         fileHeader.write('#ifndef qla_%s_h\n' % category.name)
         fileHeader.write('#define qla_%s_h\n\n' % category.name)
         fileHeader.write('#include <guile/gh.h>\n\n')
-        for functionKey in category.functions[common.KEYS]:
-            function = category.functions[common.DICT][functionKey]
-            if function.platformSupported(self.platformId):
-                self.generateFuncHeader(fileHeader, function, ';\n')
+        for function in category.getFunctions(self.platformId): 
+            self.generateFuncHeader(fileHeader, function, ';\n')
         fileHeader.write('#endif\n\n')
         fileHeader.close()
-        utils.updateIfChanged(fileName)
 
-    def generateRegistrations(self, cat):
-        ret = '    /* ' + cat.displayName + ' */\n'
+    def generateRegistrations(self, category):
+        'generate code to register function'
+        ret = '    /* ' + category.displayName + ' */\n'
         stub = '    gh_new_procedure("%s", %s, 1, 0, 0);\n'
-        for functionKey in cat.functions[common.KEYS]:
-            function = cat.functions[common.DICT][functionKey]
-            if function.platformSupported(self.platformId):
-                ret += stub % (function.name, function.name)
+        for function in category.getFunctions(self.platformId): 
+            ret += stub % (function.name, function.name)
         return ret
 
     def generateInitFunc(self):
         'generate initialisation function'
-        fileName = self.rootDir + 'qladdin.c' + common.TEMPFILE
-        fileInit = file(fileName, 'w')
-        fileStub = utils.loadBuffer(INITFUNC)
-        utils.printHeader(fileInit)
+        fileInit = OutputFile.OutputFile(self.rootDirectory + 'qladdin.c')
         headers = ''
         registrations = ''
         i = 0
-        for categoryKey in self.categories[common.KEYS]:
-            category = self.categories[common.DICT][categoryKey]
-            if not category.platformSupported(self.platformId):
-                continue
+        for category in Config.Config.getInstance().getCategories(self.platformId):
             i += 1
             headers += '#include <' + category.name + '.h>\n'
             registrations += self.generateRegistrations(category)
-            if i < len(self.categories[common.KEYS]):
+            if i < len(Config.Config.getInstance().categoryDict):
                 registrations += '\n'
-        fileInit.write(fileStub % (headers, registrations))
+        fileInit.write(self.bufferInitFunc.text % (headers, registrations))
         fileInit.close()
-        utils.updateIfChanged(fileName)
 
     def generateConversions(self, paramList):
+        'generate code to convert datatypes'
         ret = ''
         firstItem = True
         for param in paramList:
@@ -127,6 +98,7 @@ class AddinGuile(addin.Addin):
         return ret
 
     def getReturnCommand(self, returnValue):
+        'generate source code for function return command'
         if returnValue.tensorRank == common.SCALAR:
             arg = 'boost::any(returnValue)'
         else:
@@ -142,42 +114,35 @@ class AddinGuile(addin.Addin):
 
     def generateConstructor(self, fileFunc, function):
         'generate source code for body of constructor function'
-        libraryCall = self.generateCode(self.ruleLibraryCall, function.parameters)
-        conversions = self.generateConversions(function.parameters)
-        fileFunc.write(self.bufCtor % (conversions, function.libFunction,
-            libraryCall, function.name))
+        libraryCall = self.generateCode(self.libraryCall, function.Parameters)
+        conversions = self.generateConversions(function.Parameters)
+        fileFunc.write(self.bufferConstructor.text % (conversions, 
+            function.libraryFunction, libraryCall, function.name))
 
     def generateMember(self, fileFunc, function):
-        conversions = self.generateConversions(function.parameters)
-        libraryReturnType = self.ruleLibraryReturnType.apply(function.returnValue)
-        libraryCall = self.generateCode(self.ruleLibraryCall, function.parameters, True, True)
-        libraryFunctionName = utils.getLibFuncName(function)
+        'generate source code for body of member function'
+        conversions = self.generateConversions(function.Parameters)
+        libraryReturnType = self.libraryReturnType.apply(function.returnValue)
+        libraryCall = self.generateCode(self.libraryCall, 
+            function.Parameters, True, True)
+        libraryFunctionName = function.getLibFuncName()
         functionReturnCommand = self.getReturnCommand(function.returnValue)
-        fileFunc.write(self.bufMember % (conversions, function.className, function.className,
-            libraryReturnType, libraryFunctionName, libraryCall, functionReturnCommand, function.name))
+        fileFunc.write(self.bufferMember.text % (conversions, function.libraryClass(), 
+            function.libraryClass(), libraryReturnType, libraryFunctionName, 
+            libraryCall, functionReturnCommand, function.name))
 
     def generateFuncDefs(self):
         'generate source for function implementations'
-        for categoryKey in self.categories[common.KEYS]:
-            category = self.categories[common.DICT][categoryKey]
-            if not category.platformSupported(self.platformId):
-                continue
+        for category in Config.Config.getInstance().getCategories(self.platformId):
             self.generateFuncHeaders(category)
-            if category.headerOnly:
-                continue
-            fileName = self.rootDir + category.name + '.cpp' + common.TEMPFILE
-            fileFunc = file(fileName, 'w')
-            utils.printHeader(fileFunc)
-            fileFunc.write(self.bufInclude % (category.name, category.name))
-            for functionKey in category.functions[common.KEYS]:
-                function = category.functions[common.DICT][functionKey]
-                if not function.platformSupported(self.platformId):
-                    continue
+            if category.headerOnly: continue
+            fileFunc = OutputFile.OutputFile(self.rootDirectory + category.name + '.cpp')
+            fileFunc.write(self.bufferIncludes.text % (category.name, category.name))
+            for function in category.getFunctions(self.platformId): 
                 self.generateFuncHeader(fileFunc, function, ' {')
-                if function.isConstructor:
+                if function.constructor:
                     self.generateConstructor(fileFunc, function)
                 else:
                     self.generateMember(fileFunc, function)
             fileFunc.close()
-            utils.updateIfChanged(fileName)
 

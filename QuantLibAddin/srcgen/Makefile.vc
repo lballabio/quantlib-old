@@ -6,65 +6,76 @@ INT_DIR=build\vc
 
 FLAG1=$(INT_DIR)\$(COMPONENT_NAME).flag1
 
-SCRIPTS=addin.py \
-    addinC.py \
-    addinCalc.py \
-    addinDoxygen.py \
-    addinExcel.py \
-    addinGuile.py \
-    addinQla.py \
-    category.py \
-    common.py \
-    config.py \
-    function.py \
-    parameter.py \
-    parse.py \
-    rule.py \
-    srcgen.py \
-    utils.py
+SCRIPTS=AddinCalc.py \
+        AddinC.py \
+        AddinDoxygen.py \
+        AddinExcel.py \
+        AddinGuile.py \
+        Addin.py \
+        AddinQla.py \
+        Buffer.py \
+        Category.py \
+        common.py \
+        Config.py \
+        Enumeration.py \
+        Function.py \
+        OutputFile.py \
+        Parameter.py \
+        Rule.py \
+        Serializable.py \
+        Singleton.py \
+        srcgen.py \
+        utils.py \
+        XmlReader.py
 
-STUBS= \
-	stub.c.constructor \
-	stub.c.includes \
-    stub.c.member \
-	stub.calc.constructor \
-	stub.calc.idlfoot \
-	stub.calc.idlfunc \
-	stub.calc.idlhead \
-	stub.calc.includes \
-	stub.calc.map \
-	stub.calc.member \
-	stub.copyright \
-	stub.doxygen.categories \
-	stub.doxygen.enums \
-	stub.excel.constructor \
-	stub.excel.includes \
-	stub.excel.member \
-	stub.excel.regheader \
-	stub.qla.includes
+STUBS=  stub.calc.constructor \
+        stub.calc.idlfoot \
+        stub.calc.idlfunc \
+        stub.calc.idlhead \
+        stub.calc.includes \
+        stub.calc.map \
+        stub.calc.member \
+        stub.c.constructor \
+        stub.c.includes \
+        stub.c.member \
+        stub.copyright \
+        stub.doxygen.categories \
+        stub.doxygen.enums \
+        stub.doxygen.header \
+        stub.excel.constructor \
+        stub.excel.includes \
+        stub.excel.member \
+        stub.excel.regfooter \
+        stub.excel.regheader \
+        stub.guile.constructor \
+        stub.guile.includes \
+        stub.guile.initfunc \
+        stub.guile.member \
+        stub.qla.includes
 
-METADATA=c.xml \
-    calc.xml \
-    capfloor.xml \
-    config.xml \
-    couponvectors.xml \
-    doxygen.xml \
-    enums.xml \
-    excel.xml \
-    guile.xml \
-    instruments.xml \
-    interpolation.xml \
-    ohfunctions.xml \
-    options.xml \
-    processes.xml \
-    schedule.xml \
-    shortratemodels.xml \
-    simpleswap.xml \
-    swap.xml \
-    termstructures.xml \
-    utilities.xml \
-    volatilities.xml \
-    xibor.xml
+METADATA=   AddinCalc.xml \
+            AddinC.xml \
+            AddinDoxygen.xml \
+            AddinExcel.xml \
+            AddinGuile.xml \
+            AddinQla.xml \
+            capfloor.xml \
+            config.xml \
+            couponvectors.xml \
+            enumerations.xml \
+            instruments.xml \
+            interpolation.xml \
+            ohfunctions.xml \
+            options.xml \
+            processes.xml \
+            schedule.xml \
+            shortratemodels.xml \
+            simpleswap.xml \
+            swap.xml \
+            termstructures.xml \
+            utilities.xml \
+            volatilities.xml \
+            xibor.xml
 
 !IF "$(OS)" == "Windows_NT"
 NULL=
