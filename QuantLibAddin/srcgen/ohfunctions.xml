@@ -7,7 +7,6 @@
 <Function name='ohVersion'>
 <description>returns the version number of ObjectHandler</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <Parameters></Parameters>
 <ReturnValue>
@@ -20,7 +19,6 @@
 <Function name='ohObjectCount'>
 <description>#/objects in repository</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <Parameters></Parameters>
 <ReturnValue>
@@ -33,7 +31,6 @@
 <Function name='ohHandleList'>
 <description>list of handles in repository</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <Parameters></Parameters>
 <ReturnValue>
@@ -46,7 +43,6 @@
 <Function name='ohFieldNames'>
 <description>retrieve the field names of a given object</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <Parameters>
     <Parameter name='handleObject'>
@@ -65,7 +61,6 @@
 <Function name='ohFieldValue'>
 <description>retrieve the value of a named field</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <Parameters>
     <Parameter name='handleObject'>
@@ -94,7 +89,6 @@
 <Function name='ohDeleteObject'>
 <description>delete object from repository</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <Parameters>
     <Parameter name='handleObject'>
@@ -113,7 +107,6 @@
 <Function name='ohDeleteAllObjects'>
 <description>delete all objects from repository</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <Parameters></Parameters>
 <ReturnValue>
@@ -126,7 +119,6 @@
 <Function name='ohDependsOn'>
 <description>force a dependency between two functions</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>O</platforms>
 <Parameters>
     <Parameter name='dummy0'>
@@ -190,7 +182,6 @@
 <Function name='ohSetLogFile'>
 <description>begin logging to named file</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <Parameters>
     <Parameter name='logFileName'>
@@ -214,7 +205,6 @@
 <Function name='ohSetLogLevel'>
 <description>set threshold for log messages</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <Parameters>
     <Parameter name='logLevel'>
@@ -233,7 +223,6 @@
 <Function name='ohLogMessage'>
 <description>log a message</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <Parameters>
     <Parameter name='logMessage'>
@@ -257,7 +246,6 @@
 <Function name='ohLogObject'>
 <description>write object description to log file</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <Parameters>
     <Parameter name='handleObject'>
@@ -276,7 +264,6 @@
 <Function name='ohLogAllObjects'>
 <description>write all object descriptions to log file</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>GO</platforms>
 <Parameters></Parameters>
 <ReturnValue>
@@ -289,7 +276,6 @@
 <Function name='ohGetGcEnabled'>
 <description>get value of ObjectHandler garbage collection flag</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>D</platforms>
 <Parameters></Parameters>
 <ReturnValue>
@@ -302,7 +288,6 @@
 <Function name='ohSetGcEnabled'>
 <description>set value of ObjectHandler garbage collection flag</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>D</platforms>
 <Parameters>
     <Parameter name='enableGarbageCollection'>
@@ -321,7 +306,6 @@
 <Function name='ohCallGC'>
 <description>delete orphaned objects from repository</description>
 <constructor>false</constructor>
-<functionCategory>ObjectHandler</functionCategory>
 <platforms>D</platforms>
 <Parameters></Parameters>
 <ReturnValue>
