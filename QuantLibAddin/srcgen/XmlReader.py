@@ -19,6 +19,7 @@
 
 'XmlReader'
 
+import Factory
 import xml.dom.minidom
 import sys
 import common
@@ -134,10 +135,10 @@ class XmlReader(object):
         dictElement = self.getChild(objectClass.groupName)
         dict[objectClass.groupName] = {}
         dict[objectClass.__name__ + 'Keys'] = []
-        itemElements = dictElement.getElementsByTagName(objectClass.__name__)
-        for itemElement in itemElements:
-            objectInstance = objectClass()
-            self.node = itemElement
+        for childNode in dictElement.childNodes:
+            if childNode.nodeName == '#text': continue
+            objectInstance = Factory.Factory.getInstance().makeObject(childNode.nodeName)
+            self.node = childNode
             objectInstance.serialize(self)
             objectInstance.postSerialize()
             self.node = self.node.parentNode.parentNode

@@ -20,6 +20,7 @@
 'calc addin'
 
 import Addin
+import Function
 import Config
 import OutputFile
 import common
@@ -58,7 +59,7 @@ class AddinCalc(Addin.Addin):
                 fileMap.write('    // %s\n\n' % function.name)
                 fileMap.write(MAPLINE % ('funcMap', function.name, function.name))
                 fileMap.write(MAPLINE % ('funcDesc', function.name, function.description))
-                if function.constructor:
+                if isinstance(function, Function.Constructor):
                     fileMap.write(PARMLINE % ('argName', function.name, 'handle'))
                     fileMap.write(PARMLINE % ('argDesc', function.name, 
                            'handle of newly constructed ' + function.libraryFunction + ' object'))
@@ -89,7 +90,7 @@ class AddinCalc(Addin.Addin):
             suffix = ' {'
         functionReturnType = self.functionReturnType.apply(function.returnValue)
         fileHeader.write(prototype % (functionReturnType, function.name))
-        if function.constructor:
+        if isinstance(function, Function.Constructor):
             fileHeader.write('\n        const STRING &handle,')
         functionDeclaration = self.generateCode(self.functionDeclaration, 
             function.Parameters)
@@ -111,7 +112,7 @@ class AddinCalc(Addin.Addin):
         'generate code to convert datatype of return value'
         indent = 8 * ' '
         if returnValue.tensorRank == common.SCALAR \
-        and (returnValue.type == common.LONG or \
+        and (returnValue.type == common.LONG or
              returnValue.type == common.DOUBLE):
              return indent + 'return returnValue;'
         else:
@@ -147,7 +148,7 @@ class AddinCalc(Addin.Addin):
             fileFunc = OutputFile.OutputFile(self.rootDirectory + category.name + '.cpp')
             fileFunc.write(self.bufferIncludes.text % category.name)
             for function in category.getFunctions(self.platformId): 
-                if function.constructor:
+                if isinstance(function, Function.Constructor):
                     self.generateConstructor(fileFunc, function)
                 else:
                     self.generateMember(fileFunc, function)
@@ -161,7 +162,7 @@ class AddinCalc(Addin.Addin):
             fileIDL.write('                // %s\n\n' % category.name)
             for function in category.getFunctions(self.platformId): 
                 paramList = self.generateCode(self.ruleIDL, function.Parameters)
-                if function.constructor:
+                if isinstance(function, Function.Constructor):
                     handle = '\n' + 24 * ' ' + '[in] string handle'
                     if function.Parameters:
                         handle += ','

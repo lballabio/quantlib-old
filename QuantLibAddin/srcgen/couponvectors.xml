@@ -4,9 +4,8 @@
 <displayName>Coupon Vectors</displayName>
 <Functions>
 
-<Function name='qlFixedRateCouponVector'>
+<Constructor name='qlFixedRateCouponVector'>
 <description>construct and return a handle to a fixed rate coupon vector</description>
-<constructor>true</constructor>
 <libraryFunction>FixedRateCouponVector</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -36,16 +35,10 @@
         <description>day counter</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
-<Function name='qlFloatingRateCouponVector'>
+<Constructor name='qlFloatingRateCouponVector'>
 <description>construct and return a handle to a floating rate coupon vector</description>
-<constructor>true</constructor>
 <libraryFunction>FloatingRateCouponVector</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -70,16 +63,10 @@
         <description>floating rate spreads</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
-<Function name='qlGetLeg'>
+<Member name='qlGetLeg'>
 <description>return coupon details</description>
-<constructor>false</constructor>
 <libraryFunction>getLeg</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -99,11 +86,10 @@
     <tensorRank>matrix</tensorRank>
     <description>coupon details</description>
 </ReturnValue>
-</Function>
+</Member>
 
-<Function name='qlGetBPS'>
+<Member name='qlGetBPS'>
 <description>basis point sensitivity</description>
-<constructor>false</constructor>
 <libraryFunction>getBPS</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -128,7 +114,7 @@
     <tensorRank>scalar</tensorRank>
     <description>BPS</description>
 </ReturnValue>
-</Function>
+</Member>
 
 </Functions>
 </Category>

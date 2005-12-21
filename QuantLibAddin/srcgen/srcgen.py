@@ -26,6 +26,7 @@ import AddinCalc
 import AddinC
 import AddinGuile
 import AddinDoxygen
+import Factory
 
 def usage():
     errorMessage = 'usage: ' + sys.argv[0] + ''' -[targets]
@@ -54,26 +55,26 @@ for o, a in opts:
     if o in ('-h', '--help'):
         usage()
     elif o == '-q':
-        addins.append(utils.serializeObject(AddinQla.AddinQla))
+        addins.append(Factory.Factory.getInstance().serializeObject(AddinQla.AddinQla))
     elif o == '-e':
-        addins.append(utils.serializeObject(AddinExcel.AddinExcel))
+        addins.append(Factory.Factory.getInstance().serializeObject(AddinExcel.AddinExcel))
     elif o == '-o':
-        addins.append(utils.serializeObject(AddinCalc.AddinCalc))
+        addins.append(Factory.Factory.getInstance().serializeObject(AddinCalc.AddinCalc))
     elif o == '-c':
-        addins.append(utils.serializeObject(AddinC.AddinC))
+        addins.append(Factory.Factory.getInstance().serializeObject(AddinC.AddinC))
     elif o == '-g':
-        addins.append(utils.serializeObject(AddinGuile.AddinGuile))
+        addins.append(Factory.Factory.getInstance().serializeObject(AddinGuile.AddinGuile))
     elif o == '-d':
-        addins.append(utils.serializeObject(AddinDoxygen.AddinDoxygen))
+        addins.append(Factory.Factory.getInstance().serializeObject(AddinDoxygen.AddinDoxygen))
     elif o == '-a':
         if len(opts) != 1:
             sys.exit('flag -a cannot be combined with other flags')
-        addins.append(utils.serializeObject(AddinQla.AddinQla))
-        addins.append(utils.serializeObject(AddinExcel.AddinExcel))
-        addins.append(utils.serializeObject(AddinCalc.AddinCalc))
-        addins.append(utils.serializeObject(AddinC.AddinC))
-        addins.append(utils.serializeObject(AddinGuile.AddinGuile))
-        addins.append(utils.serializeObject(AddinDoxygen.AddinDoxygen))
+        addins.append(Factory.Factory.getInstance().serializeObject(AddinQla.AddinQla))
+        addins.append(Factory.Factory.getInstance().serializeObject(AddinExcel.AddinExcel))
+        addins.append(Factory.Factory.getInstance().serializeObject(AddinCalc.AddinCalc))
+        addins.append(Factory.Factory.getInstance().serializeObject(AddinC.AddinC))
+        addins.append(Factory.Factory.getInstance().serializeObject(AddinGuile.AddinGuile))
+        addins.append(Factory.Factory.getInstance().serializeObject(AddinDoxygen.AddinDoxygen))
     else:
         usage()
 

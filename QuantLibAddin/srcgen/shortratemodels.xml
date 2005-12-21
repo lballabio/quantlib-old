@@ -4,9 +4,8 @@
 <displayName>Short Rate Models</displayName>
 <Functions>
 
-<Function name='qlHullWhite'>
+<Constructor name='qlHullWhite'>
 <description>construct and return a handle to a Hull-White short-rate model object</description>
-<constructor>true</constructor>
 <libraryFunction>HullWhite</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -26,16 +25,10 @@
         <description>volatility</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
-<Function name='qlVasicek'>
+<Constructor name='qlVasicek'>
 <description>construct and return a Vasicek short-rate model object</description>
-<constructor>true</constructor>
 <libraryFunction>Vasicek</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -60,12 +53,7 @@
         <description>volatility</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
 </Functions>
 </Category>

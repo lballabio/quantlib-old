@@ -26,11 +26,3 @@ def logMessage(msg):
     'print a message to stdout'
     print time.asctime() + ' ' + msg
 
-def serializeObject(objectClass, fileName = None):
-    'instantiate an xml reader and load requested object'
-    if not fileName: fileName = objectClass.__name__
-    objectInstance = objectClass()
-    serializer = XmlReader.XmlReader(fileName)
-    objectInstance.serialize(serializer)
-    return objectInstance
-

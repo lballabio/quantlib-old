@@ -4,9 +4,8 @@
 <displayName>Interpolation</displayName>
 <Functions>
 
-<Function name='qlBackwardFlatInterpolation'>
+<Constructor name='qlBackwardFlatInterpolation'>
 <description>construct and return a handle to a backward flat interpolator</description>
-<constructor>true</constructor>
 <libraryFunction>BackwardFlatInterpolation</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -16,16 +15,10 @@
         <description>allow extrapolation flag</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
-<Function name='qlForwardFlatInterpolation'>
+<Constructor name='qlForwardFlatInterpolation'>
 <description>construct and return a handle to a forward flat interpolator</description>
-<constructor>true</constructor>
 <libraryFunction>ForwardFlatInterpolation</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -35,16 +28,10 @@
         <description>allow extrapolation flag</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
-<Function name='qlLinearInterpolation'>
+<Constructor name='qlLinearInterpolation'>
 <description>construct and return a handle to a linear interpolator</description>
-<constructor>true</constructor>
 <libraryFunction>LinearInterpolation</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -54,16 +41,10 @@
         <description>allow extrapolation flag</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
-<Function name='qlCubicSplineInterpolation'>
+<Constructor name='qlCubicSplineInterpolation'>
 <description>construct and return a handle to a cubic spline interpolator</description>
-<constructor>true</constructor>
 <libraryFunction>CubicSplineInterpolation</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -98,16 +79,10 @@
         <description>monotonicity constraint flag</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
-<Function name='qlInterpolate'>
+<Member name='qlInterpolate'>
 <description>carry out interpolation</description>
-<constructor>false</constructor>
 <libraryFunction>interpolate</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -137,7 +112,7 @@
     <tensorRank>matrix</tensorRank>
     <description>interpolated y values</description>
 </ReturnValue>
-</Function>
+</Member>
 
 </Functions>
 </Category>

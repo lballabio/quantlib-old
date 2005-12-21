@@ -4,9 +4,8 @@
 <displayName>Indices</displayName>
 <Functions>
 
-<Function name='qlXibor'>
+<Constructor name='qlXibor'>
 <description>construct and return a handle to a Xibor Index</description>
-<constructor>true</constructor>
 <libraryFunction>Xibor</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -66,12 +65,7 @@
         <description>fixings</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
 </Functions>
 </Category>

@@ -4,9 +4,8 @@
 <displayName>Volatilities</displayName>
 <Functions>
 
-<Function name='qlBlackConstantVol'>
+<Constructor name='qlBlackConstantVol'>
 <description>construct and return a handle to a Black Constant Vol object</description>
-<constructor>true</constructor>
 <libraryFunction>BlackConstantVol</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -26,16 +25,10 @@
         <description>day counter</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
-<Function name='qlBlackVarianceSurface'>
+<Constructor name='qlBlackVarianceSurface'>
 <description>construct and return a handle to a Black Variance Surface object</description>
-<constructor>true</constructor>
 <libraryFunction>BlackVarianceSurface</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -65,12 +58,7 @@
         <description>day counter</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
 </Functions>
 </Category>

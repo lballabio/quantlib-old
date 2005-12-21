@@ -4,9 +4,8 @@
 <displayName>Swap</displayName>
 <Functions>
 
-<Function name='qlSwap'>
+<Constructor name='qlSwap'>
 <description>construct and return a handle to a swap object</description>
-<constructor>true</constructor>
 <libraryFunction>Swap</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -26,12 +25,7 @@
         <description>handle to discounting term structure</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
 </Functions>
 </Category>

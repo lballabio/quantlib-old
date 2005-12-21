@@ -22,6 +22,7 @@
 import Addin
 import Config
 import OutputFile
+import Function
 import common
 import utils
 
@@ -59,7 +60,7 @@ class AddinExcel(Addin.Addin):
             fileFunc = OutputFile.OutputFile(self.rootDirectory + category.name + '.cpp')
             fileFunc.write(self.bufferIncludes.text % category.name)
             for function in category.getFunctions(self.platformId): 
-                if function.constructor:
+                if isinstance(function, Function.Constructor):
                     self.generateConstructor(fileFunc, function)
                 else:
                     self.generateMember(fileFunc, function)
@@ -113,7 +114,7 @@ class AddinExcel(Addin.Addin):
     def generateParamString(self, function):
         'generate string to register function parameters'
         paramStr = self.xlRegisterReturn.apply(function.returnValue)
-        if function.constructor:
+        if isinstance(function, Function.Constructor):
             paramStr += 'C'
         for param in function.Parameters:
             paramStr += self.xlRegisterParam.apply(param)
@@ -133,7 +134,7 @@ class AddinExcel(Addin.Addin):
             paramList += self.xlListParams.apply(param)
             if i < function.ParameterCount:
                 paramList += ','
-        if function.constructor:    # extra parameter for object handle
+        if isinstance(function, Function.Constructor): # extra parameter for object handle
             paramList = "handle," + paramList
             numRegisterParams += 1
         if numRegisterParams > MAXPARAM:
@@ -150,7 +151,7 @@ class AddinExcel(Addin.Addin):
         if function.Parameters:
             fileHeader.write(self.formatLine(function.description, 'function description'))
             i = 0
-            if function.constructor:
+            if isinstance(function, Function.Constructor):
                 fileHeader.write(self.formatLine('handle of new object', 'description param 0'))
                 i += 1
             j = 1

@@ -4,9 +4,8 @@
 <displayName>Processes</displayName>
 <Functions>
 
-<Function name='qlBlackScholesProcess'>
+<Constructor name='qlBlackScholesProcess'>
 <description>construct and return a handle to a Black Scholes Process object</description>
-<constructor>true</constructor>
 <libraryFunction>BlackScholesProcess</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -41,12 +40,7 @@
         <description>dividend yield</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
 </Functions>
 </Category>

@@ -65,3 +65,15 @@ class ReturnValue(Serializable.Serializable):
         serializer.serializeProperty(self.__dict__, common.TENSOR_RANK)
         serializer.serializeProperty(self.__dict__, common.DESCRIPTION)
 
+class ConstructorReturnValue(object):
+    """class to represent state shared by the return values
+    of all constructors in QuantLibAddin"""
+
+    def __init__(self):
+        'properties are always the same'
+        self.name = ''
+        self.type = 'string'
+        self.tensorRank = 'scalar'
+        self.description = 'handle of newly created object'
+        self.default = False
+

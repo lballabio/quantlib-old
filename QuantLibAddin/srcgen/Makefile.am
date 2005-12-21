@@ -37,6 +37,7 @@ SRCGEN_PYS :=   AddinCalc.py \
                 common.py \
                 Config.py \
                 Enumeration.py \
+                Factory.py \
                 Function.py \
                 OutputFile.py \
                 Parameter.py \

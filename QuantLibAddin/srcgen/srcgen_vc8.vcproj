@@ -94,6 +94,10 @@
 				>
 			</File>
 			<File
+				RelativePath="Factory.py"
+				>
+			</File>
+			<File
 				RelativePath="Function.py"
 				>
 			</File>

@@ -4,9 +4,8 @@
 <displayName>ObjectHandler</displayName>
 <Functions>
 
-<Function name='ohVersion'>
+<Utility name='ohVersion'>
 <description>returns the version number of ObjectHandler</description>
-<constructor>false</constructor>
 <platforms>GO</platforms>
 <Parameters></Parameters>
 <ReturnValue>
@@ -14,11 +13,10 @@
     <tensorRank>scalar</tensorRank>
     <description>ObjectHandler version number</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohObjectCount'>
+<Utility name='ohObjectCount'>
 <description>#/objects in repository</description>
-<constructor>false</constructor>
 <platforms>GO</platforms>
 <Parameters></Parameters>
 <ReturnValue>
@@ -26,11 +24,10 @@
     <tensorRank>scalar</tensorRank>
     <description>object count</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohHandleList'>
+<Utility name='ohHandleList'>
 <description>list of handles in repository</description>
-<constructor>false</constructor>
 <platforms>GO</platforms>
 <Parameters></Parameters>
 <ReturnValue>
@@ -38,11 +35,10 @@
     <tensorRank>vector</tensorRank>
     <description>handle list</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohFieldNames'>
+<Utility name='ohFieldNames'>
 <description>retrieve the field names of a given object</description>
-<constructor>false</constructor>
 <platforms>GO</platforms>
 <Parameters>
     <Parameter name='handleObject'>
@@ -56,11 +52,10 @@
     <tensorRank>vector</tensorRank>
     <description>list of fieldnames for queried object</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohFieldValue'>
+<Utility name='ohFieldValue'>
 <description>retrieve the value of a named field</description>
-<constructor>false</constructor>
 <platforms>GO</platforms>
 <Parameters>
     <Parameter name='handleObject'>
@@ -84,11 +79,10 @@
     <tensorRank>matrix</tensorRank>
     <description>value of named field</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohDeleteObject'>
+<Utility name='ohDeleteObject'>
 <description>delete object from repository</description>
-<constructor>false</constructor>
 <platforms>GO</platforms>
 <Parameters>
     <Parameter name='handleObject'>
@@ -102,11 +96,10 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohDeleteAllObjects'>
+<Utility name='ohDeleteAllObjects'>
 <description>delete all objects from repository</description>
-<constructor>false</constructor>
 <platforms>GO</platforms>
 <Parameters></Parameters>
 <ReturnValue>
@@ -114,11 +107,10 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohDependsOn'>
+<Utility name='ohDependsOn'>
 <description>force a dependency between two functions</description>
-<constructor>false</constructor>
 <platforms>O</platforms>
 <Parameters>
     <Parameter name='dummy0'>
@@ -177,11 +169,10 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohSetLogFile'>
+<Utility name='ohSetLogFile'>
 <description>begin logging to named file</description>
-<constructor>false</constructor>
 <platforms>GO</platforms>
 <Parameters>
     <Parameter name='logFileName'>
@@ -200,11 +191,10 @@
     <tensorRank>scalar</tensorRank>
     <description>name of logfile</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohSetLogLevel'>
+<Utility name='ohSetLogLevel'>
 <description>set threshold for log messages</description>
-<constructor>false</constructor>
 <platforms>GO</platforms>
 <Parameters>
     <Parameter name='logLevel'>
@@ -218,11 +208,10 @@
     <tensorRank>scalar</tensorRank>
     <description>returns new logging threshold</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohLogMessage'>
+<Utility name='ohLogMessage'>
 <description>log a message</description>
-<constructor>false</constructor>
 <platforms>GO</platforms>
 <Parameters>
     <Parameter name='logMessage'>
@@ -241,11 +230,10 @@
     <tensorRank>scalar</tensorRank>
     <description>message logged</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohLogObject'>
+<Utility name='ohLogObject'>
 <description>write object description to log file</description>
-<constructor>false</constructor>
 <platforms>GO</platforms>
 <Parameters>
     <Parameter name='handleObject'>
@@ -259,11 +247,10 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohLogAllObjects'>
+<Utility name='ohLogAllObjects'>
 <description>write all object descriptions to log file</description>
-<constructor>false</constructor>
 <platforms>GO</platforms>
 <Parameters></Parameters>
 <ReturnValue>
@@ -271,11 +258,10 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohGetGcEnabled'>
+<Utility name='ohGetGcEnabled'>
 <description>get value of ObjectHandler garbage collection flag</description>
-<constructor>false</constructor>
 <platforms>D</platforms>
 <Parameters></Parameters>
 <ReturnValue>
@@ -283,11 +269,10 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohSetGcEnabled'>
+<Utility name='ohSetGcEnabled'>
 <description>set value of ObjectHandler garbage collection flag</description>
-<constructor>false</constructor>
 <platforms>D</platforms>
 <Parameters>
     <Parameter name='enableGarbageCollection'>
@@ -301,11 +286,10 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Function>
+</Utility>
 
-<Function name='ohCallGC'>
+<Utility name='ohCallGC'>
 <description>delete orphaned objects from repository</description>
-<constructor>false</constructor>
 <platforms>D</platforms>
 <Parameters></Parameters>
 <ReturnValue>
@@ -313,7 +297,7 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Function>
+</Utility>
 
 </Functions>
 </Category>

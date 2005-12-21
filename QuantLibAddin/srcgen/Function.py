@@ -33,33 +33,54 @@ class Function(Serializable.Serializable):
         'load/unload class state to/from serializer object'
         serializer.serializeAttribute(self.__dict__, common.NAME)
         serializer.serializeProperty(self.__dict__, common.DESCRIPTION)
-        serializer.serializeProperty(self.__dict__, common.LIBRARY_FUNCTION)
         serializer.serializeProperty(self.__dict__, common.FUNCTION_CATEGORY)
         serializer.serializeProperty(self.__dict__, common.PLATFORMS, '*')
-        serializer.serializeBoolean(self.__dict__, common.CONSTRUCTOR)
-        serializer.serializeAttributeBoolean(self.__dict__, common.GET_OBJECT)
         serializer.serializeObjectList(self.__dict__, Parameter.Parameter)
-        serializer.serializeObject(self.__dict__, Parameter.ReturnValue)
-
-    def postSerialize(self):
-        'perform post serialization initialization'
-        # FIXME the state of the Function object varies
-        # depending on whether it's a constructor or a member
-        # and this should be represented with subclasses
-
-        #library class of first parameter of member function
-        if not self.constructor and self.Parameters:
-            self.libraryClass = self.Parameters[0].libraryClass
-
-        #code snippet to access underlying QuantLib object
-        if self.libraryFunction:
-            if self.getObject:
-                self.accessLibFunc = 'objectPointer->getObject().' + self.libraryFunction
-            else:
-                self.accessLibFunc = 'objectPointer->' + self.libraryFunction
 
     def platformSupported(self, platformID):
         'determine whether this function supported by given platform'
         if self.platforms == '*': return True
         return self.platforms.find(platformID) != -1
+
+class Constructor(Function):
+    'function which constructs a QuantLib object'
+
+    def __init__(self):
+        self.returnValue = Parameter.ConstructorReturnValue()
+
+    def serialize(self, serializer):
+        'load/unload class state to/from serializer object'
+        super(Constructor, self).serialize(serializer)
+        serializer.serializeProperty(self.__dict__, common.LIBRARY_FUNCTION)
+
+class Member(Function):
+    'function which invokes member function of existing QuantLib object'
+
+    def serialize(self, serializer):
+        'load/unload class state to/from serializer object'
+        super(Member, self).serialize(serializer)
+        serializer.serializeProperty(self.__dict__, common.LIBRARY_FUNCTION)
+        serializer.serializeAttributeBoolean(self.__dict__, common.GET_OBJECT)
+        serializer.serializeObject(self.__dict__, Parameter.ReturnValue)
+
+    def postSerialize(self):
+        'perform post serialization initialization'
+
+        #library class of first parameter
+        if self.Parameters:
+            self.libraryClass = self.Parameters[0].libraryClass
+
+        #code snippet to access underlying QuantLib object
+        if self.getObject:
+            self.accessLibFunc = 'objectPointer->getObject().' + self.libraryFunction
+        else:
+            self.accessLibFunc = 'objectPointer->' + self.libraryFunction
+
+class Utility(Function):
+    'procedural function not associated with any QuantLib object'
+
+    def serialize(self, serializer):
+        'load/unload class state to/from serializer object'
+        super(Utility, self).serialize(serializer)
+        serializer.serializeObject(self.__dict__, Parameter.ReturnValue)
 

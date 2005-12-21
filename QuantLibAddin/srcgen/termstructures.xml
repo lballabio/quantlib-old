@@ -4,9 +4,8 @@
 <displayName>Term Structures</displayName>
 <Functions>
 
-<Function name='qlDepositRateHelper'>
+<Constructor name='qlDepositRateHelper'>
 <description>construct and return a handle to a deposit rate-helper object</description>
-<constructor>true</constructor>
 <libraryFunction>DepositRateHelper</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -46,16 +45,10 @@
         <description>day counter (e.g. Actual360)</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
-<Function name='qlFutureRateHelper'>
+<Constructor name='qlFutureRateHelper'>
 <description>construct and return a handle to a future rate-helper object</description>
-<constructor>true</constructor>
 <libraryFunction>FutureRateHelper</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -95,16 +88,10 @@
         <description>base decade for the IMM shortcut (e.g. 2000 for H4 -> March 2004)</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
-<Function name='qlGetDf' getObject='true'>
+<Member name='qlGetDf' getObject='true'>
 <description>retrieve a discount factor at specified date</description>
-<constructor>false</constructor>
 <libraryFunction>discount</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -134,11 +121,10 @@
     <tensorRank>scalar</tensorRank>
     <description>the discount factor</description>
 </ReturnValue>
-</Function>
+</Member>
 
-<Function name='qlPiecewiseFlatForward'>
+<Constructor name='qlPiecewiseFlatForward'>
 <description>construct and return a handle to a piecewise flat forward term structure</description>
-<constructor>true</constructor>
 <libraryFunction>PiecewiseFlatForward</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -163,16 +149,10 @@
         <description>day counter (e.g. Actual360)</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
-<Function name='qlSetQuote'>
+<Member name='qlSetQuote'>
 <description>update quote of existing Rate Helper object</description>
-<constructor>false</constructor>
 <libraryFunction>setQuote</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -192,11 +172,10 @@
     <tensorRank>scalar</tensorRank>
     <description>diff new quote - old quote</description>
 </ReturnValue>
-</Function>
+</Member>
 
-<Function name='qlSwapRateHelper'>
+<Constructor name='qlSwapRateHelper'>
 <description>construct and return a handle to a swap rate-helper object</description>
-<constructor>true</constructor>
 <libraryFunction>SwapRateHelper</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -251,16 +230,10 @@
         <description>floating leg convention (e.g. ModifiedFollowing)</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
-<Function name='qlZeroCurve'>
+<Constructor name='qlZeroCurve'>
 <description>construct and return a handle to a ZeroCurve object</description>
-<constructor>true</constructor>
 <libraryFunction>ZeroCurve</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -280,12 +253,7 @@
         <description>day counter ID</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
 </Functions>
 </Category>

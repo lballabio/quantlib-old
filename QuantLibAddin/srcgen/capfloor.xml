@@ -4,9 +4,8 @@
 <displayName>Caps/Floors</displayName>
 <Functions>
 
-<Function name='qlAnalyticCapFloorEngine'>
+<Constructor name='qlAnalyticCapFloorEngine'>
 <description>construct and return a pricing engine for cap/foors</description>
-<constructor>true</constructor>
 <libraryFunction>AnalyticCapFloorEngine</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -16,16 +15,10 @@
         <description>affine model (providing a discount bond option pricing formula)</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
-<Function name='qlCapFloor'>
+<Constructor name='qlCapFloor'>
 <description>construct and return a handle to a cap/floor object</description>
-<constructor>true</constructor>
 <libraryFunction>CapFloor</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -60,12 +53,7 @@
         <description>option type (cap, floor or collar)</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
 </Functions>
 </Category>

@@ -20,6 +20,7 @@
 'C addin'
 
 import Addin
+import Function
 import Config
 import OutputFile
 import common
@@ -41,7 +42,7 @@ class AddinC(Addin.Addin):
         'generate source for prototype of given function'
         functionReturnType = self.functionReturnType.apply(function.returnValue)
         fileHeader.write('int %s(' % function.name)
-        if function.constructor:
+        if isinstance(function, Function.Constructor):
             fileHeader.write('\n        char *handle,')
         functionDeclaration = self.generateCode(self.functionDeclaration, 
             function.Parameters)
@@ -94,7 +95,7 @@ class AddinC(Addin.Addin):
         fileFunc.write(self.bufferIncludes.text % (category.name, category.name))
         for function in category.getFunctions(self.platformId): 
             self.generateHeader(fileFunc, function, ' {\n')
-            if function.constructor:
+            if isinstance(function, Function.Constructor):
                 self.generateConstructor(fileFunc, function)
             else:
                 self.generateMember(fileFunc, function)

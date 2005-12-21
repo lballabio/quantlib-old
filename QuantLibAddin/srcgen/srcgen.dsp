@@ -103,6 +103,10 @@ SOURCE=Enumeration.py
 # End Source File
 # Begin Source File
 
+SOURCE=Factory.py
+# End Source File
+# Begin Source File
+
 SOURCE=Function.py
 # End Source File
 # Begin Source File

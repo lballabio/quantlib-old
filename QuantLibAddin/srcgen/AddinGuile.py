@@ -20,6 +20,7 @@
 'guile addin'
 
 import Addin
+import Function
 import Config
 import OutputFile
 import common
@@ -139,7 +140,7 @@ class AddinGuile(Addin.Addin):
             fileFunc.write(self.bufferIncludes.text % (category.name, category.name))
             for function in category.getFunctions(self.platformId): 
                 self.generateFuncHeader(fileFunc, function, ' {')
-                if function.constructor:
+                if isinstance(function, Function.Constructor):
                     self.generateConstructor(fileFunc, function)
                 else:
                     self.generateMember(fileFunc, function)

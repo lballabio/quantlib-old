@@ -4,9 +4,8 @@
 <displayName>Schedules</displayName>
 <Functions>
 
-<Function name='qlSchedule'>
+<Constructor name='qlSchedule'>
 <description>construct and return a handle to a schedule object</description>
-<constructor>true</constructor>
 <libraryFunction>Schedule</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -46,16 +45,10 @@
         <description>long final</description>
     </Parameter>
 </Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>handle of newly created object</description>
-</ReturnValue>
-</Function>
+</Constructor>
 
-<Function name='qlScheduleDates'>
+<Member name='qlScheduleDates'>
 <description>return schedule dates</description>
-<constructor>false</constructor>
 <libraryFunction>scheduleDates</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -70,7 +63,7 @@
     <tensorRank>vector</tensorRank>
     <description>dates</description>
 </ReturnValue>
-</Function>
+</Member>
 
 </Functions>
 </Category>
