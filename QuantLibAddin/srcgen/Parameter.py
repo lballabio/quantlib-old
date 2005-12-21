@@ -49,11 +49,10 @@ class Parameter(Serializable.Serializable):
 class ReturnValue(Serializable.Serializable):
     'encapsulate state necessary to generate source code relating to a function return value'
 
-    def __init__(self):
-        """sometimes a ReturnValue will be treated like a Parameter
-        in which case the properties below require default values"""
-        self.name = ''
-        self.default = False
+    # sometimes a ReturnValue will be treated like a Parameter
+    # in which case the properties below require default values
+    name = ''
+    default = False
 
     def key(self):
         'return unique identifier for this object'
