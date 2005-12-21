@@ -75,6 +75,9 @@
 				RelativePath="Function.py">
 			</File>
 			<File
+				RelativePath="Log.py">
+			</File>
+			<File
 				RelativePath="OutputFile.py">
 			</File>
 			<File

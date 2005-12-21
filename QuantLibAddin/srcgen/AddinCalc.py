@@ -24,7 +24,7 @@ import Function
 import Config
 import OutputFile
 import common
-import utils
+import Log
 
 # constants
 
@@ -40,13 +40,13 @@ class AddinCalc(Addin.Addin):
 
     def generate(self):
         'generate source code for Calc addin'
-        utils.logMessage('  begin generating Calc...')
+        Log.Log.getInstance().logMessage('  begin generating Calc...')
         self.generateFuncMap()
         self.generateAutoHeader()
         self.generateHeaders()
         self.generateFuncSources()
         self.generateIDLSource()
-        utils.logMessage('  done generating Calc.')
+        Log.Log.getInstance().logMessage('  done generating Calc.')
 
     def generateFuncMap(self):
         'generate help text for function wizard'

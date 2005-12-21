@@ -39,13 +39,13 @@ SRCGEN_PYS :=   AddinCalc.py \
                 Enumeration.py \
                 Factory.py \
                 Function.py \
+                Log.py \
                 OutputFile.py \
                 Parameter.py \
                 Rule.py \
                 Serializable.py \
                 Singleton.py \
                 srcgen.py \
-                utils.py \
                 XmlReader.py
 
 SRCGEN_STUBS := stub.calc.constructor \

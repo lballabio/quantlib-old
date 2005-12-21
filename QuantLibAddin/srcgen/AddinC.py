@@ -24,19 +24,19 @@ import Function
 import Config
 import OutputFile
 import common
-import utils
+import Log
 
 class AddinC(Addin.Addin):
     'generate source code for C addin'
 
     def generate(self):
         'generate source code for C addin'
-        utils.logMessage('  begin generating C ...')
+        Log.Log.getInstance().logMessage('  begin generating C ...')
         for category in Config.Config.getInstance().getCategories(self.platformId):
             if category.headerOnly: continue
             self.generateHeaders(category)
             self.generateFuncSources(category)
-        utils.logMessage('  done generating C.')
+        Log.Log.getInstance().logMessage('  done generating C.')
 
     def generateHeader(self, fileHeader, function, suffix):
         'generate source for prototype of given function'

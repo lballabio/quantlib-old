@@ -25,7 +25,6 @@ import Enumeration
 import Factory
 import XmlReader
 import Buffer
-import utils
 
 class Config(Singleton.Singleton):
     'global configuration state for srcgen application'

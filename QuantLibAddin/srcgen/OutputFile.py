@@ -18,7 +18,7 @@
 'output file'
 
 import Config
-import utils
+import Log
 import os
 import sys
 import filecmp
@@ -51,12 +51,12 @@ class OutputFile(object):
         if os.path.exists(self.fileName):
             if filecmp.cmp(self.fileName, self.fileNameTemp):
                 os.unlink(self.fileNameTemp)
-                utils.logMessage(UPDATE_MSG % (self.fileName, 'unchanged'))
+                Log.Log.getInstance().logMessage(UPDATE_MSG % (self.fileName, 'unchanged'))
             else:
                 os.unlink(self.fileName)
                 os.rename(self.fileNameTemp, self.fileName)
-                utils.logMessage(UPDATE_MSG % (self.fileName, 'updated'))
+                Log.Log.getInstance().logMessage(UPDATE_MSG % (self.fileName, 'updated'))
         else:
             os.rename(self.fileNameTemp, self.fileName)
-            utils.logMessage(UPDATE_MSG % (self.fileName, 'created'))
+            Log.Log.getInstance().logMessage(UPDATE_MSG % (self.fileName, 'created'))
 

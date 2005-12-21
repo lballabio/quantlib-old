@@ -1,8 +1,6 @@
 
 """
  Copyright (C) 2005 Eric Ehlers
- Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,12 +15,15 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'utilities'
+'log'
 
+import Singleton
 import time
-import XmlReader
 
-def logMessage(msg):
-    'print a message to stdout'
-    print time.asctime() + ' ' + msg
+class Log(Singleton.Singleton):
+    'global log class - presently outputs all messages to stdout'
+
+    def logMessage(self, message):
+        'print a message to stdout'
+        print time.asctime() + ' ' + message
 

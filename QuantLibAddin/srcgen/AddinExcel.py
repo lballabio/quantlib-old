@@ -24,7 +24,7 @@ import Config
 import OutputFile
 import Function
 import common
-import utils
+import Log
 
 # constants
 
@@ -47,10 +47,10 @@ class AddinExcel(Addin.Addin):
 
     def generate(self):
         'generate source code for Excel addin'
-        utils.logMessage('  begin generating %s...' % self.name)
+        Log.Log.getInstance().logMessage('  begin generating %s...' % self.name)
         self.generateFuncRegisters()
         self.generateFuncDefs()
-        utils.logMessage('  done generating %s.' % self.name)
+        Log.Log.getInstance().logMessage('  done generating %s.' % self.name)
 
     def generateFuncDefs(self):
         'generate source code for function bodies'

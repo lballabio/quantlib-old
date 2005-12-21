@@ -23,7 +23,7 @@ import Config
 import Addin
 import OutputFile
 import common
-import utils
+import Log
 
 # constants
 
@@ -36,9 +36,9 @@ class AddinQla(Addin.Addin):
 
     def generate(self):
         'generate source code for QuantLibAddin'
-        utils.logMessage('  begin generating QuantLibAddin ...')
+        Log.Log.getInstance().logMessage('  begin generating QuantLibAddin ...')
         self.generateEnumerations()
-        utils.logMessage('  done generating QuantLibAddin.')
+        Log.Log.getInstance().logMessage('  done generating QuantLibAddin.')
 
     def generateEnumeration(self, fileEnum, enumeration):
         'generate source code for given enumeration'

@@ -19,7 +19,7 @@
 
 import sys
 import getopt
-import utils
+import Log
 import AddinQla
 import AddinExcel
 import AddinCalc
@@ -83,10 +83,10 @@ if not len(addins):
 
 # generate source code for chosen target projects
 
-utils.logMessage('begin ...')
+Log.Log.getInstance().logMessage('begin ...')
 
 for addin in addins:
     addin.generate()
 
-utils.logMessage('end')
+Log.Log.getInstance().logMessage('end')
 

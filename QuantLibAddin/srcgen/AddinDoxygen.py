@@ -23,7 +23,7 @@ import Addin
 import Config
 import OutputFile
 import common
-import utils
+import Log
 
 # constants
 
@@ -38,11 +38,11 @@ class AddinDoxygen(Addin.Addin):
 
     def generate(self):
         'generate doxygen documentation files'
-        utils.logMessage('  begin generating Doxygen ...')
+        Log.Log.getInstance().logMessage('  begin generating Doxygen ...')
         self.generateDocs()
         self.generateEnums()
         self.generateCategoryDoc()
-        utils.logMessage('  done generating Doxygen.')
+        Log.Log.getInstance().logMessage('  done generating Doxygen.')
 
     def generateEnums(self):
         'generate documentation for enumerations'

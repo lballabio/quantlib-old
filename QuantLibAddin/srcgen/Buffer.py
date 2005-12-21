@@ -16,7 +16,6 @@
 """
 
 import Serializable
-import utils
 import common
 
 class Buffer(Serializable.Serializable):

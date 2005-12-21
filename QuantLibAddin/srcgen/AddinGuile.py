@@ -24,17 +24,17 @@ import Function
 import Config
 import OutputFile
 import common
-import utils
+import Log
 
 class AddinGuile(Addin.Addin):
     'generate source code for Guile addin'
 
     def generate(self):
         'generate source code for Guile addin'
-        utils.logMessage('  begin generating Guile ...')
+        Log.Log.getInstance().logMessage('  begin generating Guile ...')
         self.generateInitFunc()
         self.generateFuncDefs()
-        utils.logMessage('  done generation Guile.')
+        Log.Log.getInstance().logMessage('  done generation Guile.')
 
     def generateFuncHeader(self, fileHeader, function, suffix):
         'generate source for prototype of given function'

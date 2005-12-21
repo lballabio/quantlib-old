@@ -22,7 +22,6 @@
 import Parameter
 import Serializable
 import common
-import utils
 
 class Function(Serializable.Serializable):
     'encapsulate state and behavior required to generate source code for a function'
