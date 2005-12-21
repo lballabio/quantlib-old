@@ -89,7 +89,7 @@ class RuleGroup(Serializable.Serializable):
         self.setLibConversion()
         if self.setSubrule(self.setTypeConversion): self.invokeSetTypeConversion()
 
-        if self.appendTensorRank and self.param.needsConversion():
+        if self.appendTensorRank and self.param.needsConversion:
             self.paramName += self.param.tensorRank.capitalize()
 
         if self.paramType and self.paramName:

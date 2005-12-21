@@ -54,7 +54,7 @@ class Addin(Serializable.Serializable):
         'generate source code to convert datatypes'
         returnValue = ''
         for parameter in parameters:
-            if parameter.needsConversion():
+            if parameter.needsConversion:
                 returnValue += self.conversions.apply(parameter)
         return returnValue
 

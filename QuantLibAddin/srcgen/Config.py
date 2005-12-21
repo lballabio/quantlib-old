@@ -23,6 +23,7 @@ import Singleton
 import Category
 import Enumeration
 import XmlReader
+import Buffer
 import utils
 
 class Config(Singleton.Singleton):
@@ -30,8 +31,9 @@ class Config(Singleton.Singleton):
 
     def __init__(self):
         'load state from metadata'
-        xmlCategoryNames = XmlReader.XmlReader('config')
-        xmlCategoryNames.serializeList(self.__dict__, 'categoryNames', 'categoryName')
+        xmlConfig = XmlReader.XmlReader('config')
+        xmlConfig.serializeObject(self.__dict__, Buffer.Buffer)
+        xmlConfig.serializeList(self.__dict__, 'categoryNames', 'categoryName')
         self.categoryNames.sort()
         self.categoryDict = {}
         for categoryName in self.categoryNames:

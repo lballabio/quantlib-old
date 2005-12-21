@@ -34,10 +34,3 @@ def serializeObject(objectClass, fileName = None):
     objectInstance.serialize(serializer)
     return objectInstance
 
-def loadBuffer(fileName):
-    'return contents of file fileName'
-    fileBuffer = open(fileName)
-    text = fileBuffer.read()
-    fileBuffer.close()
-    return text
-

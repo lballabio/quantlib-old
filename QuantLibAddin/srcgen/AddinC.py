@@ -80,14 +80,13 @@ class AddinC(Addin.Addin):
 
     def generateMember(self, fileFunc, function):
         conversions = self.generateConversions(function.Parameters)
-        libraryFunctionName = function.getLibFuncName()
         libraryCall = self.generateCode(self.libraryCall, 
             function.Parameters, True, True)
         libraryReturnType = self.libraryReturnType.apply(function.returnValue)
         functionReturnCommand = self.getReturnCommand(function.returnValue)
-        fileFunc.write(self.bufferMember.text % (conversions, function.libraryClass(), 
-            function.libraryClass(), libraryReturnType, libraryFunctionName, libraryCall, 
-            functionReturnCommand, function.name))
+        fileFunc.write(self.bufferMember.text % (conversions, function.libraryClass, 
+            function.libraryClass, libraryReturnType, function.accessLibFunc, 
+            libraryCall, functionReturnCommand, function.name))
 
     def generateFuncSources(self, category):
         'generate source for function implementations'

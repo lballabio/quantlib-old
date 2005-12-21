@@ -125,10 +125,9 @@ class AddinGuile(Addin.Addin):
         libraryReturnType = self.libraryReturnType.apply(function.returnValue)
         libraryCall = self.generateCode(self.libraryCall, 
             function.Parameters, True, True)
-        libraryFunctionName = function.getLibFuncName()
         functionReturnCommand = self.getReturnCommand(function.returnValue)
-        fileFunc.write(self.bufferMember.text % (conversions, function.libraryClass(), 
-            function.libraryClass(), libraryReturnType, libraryFunctionName, 
+        fileFunc.write(self.bufferMember.text % (conversions, function.libraryClass, 
+            function.libraryClass, libraryReturnType, function.accessLibFunc, 
             libraryCall, functionReturnCommand, function.name))
 
     def generateFuncDefs(self):

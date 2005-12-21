@@ -41,22 +41,25 @@ class Function(Serializable.Serializable):
         serializer.serializeObjectList(self.__dict__, Parameter.Parameter)
         serializer.serializeObject(self.__dict__, Parameter.ReturnValue)
 
+    def postSerialize(self):
+        'perform post serialization initialization'
+        # FIXME the state of the Function object varies
+        # depending on whether it's a constructor or a member
+        # and this should be represented with subclasses
+
+        #library class of first parameter of member function
+        if not self.constructor and self.Parameters:
+            self.libraryClass = self.Parameters[0].libraryClass
+
+        #code snippet to access underlying QuantLib object
+        if self.libraryFunction:
+            if self.getObject:
+                self.accessLibFunc = 'objectPointer->getObject().' + self.libraryFunction
+            else:
+                self.accessLibFunc = 'objectPointer->' + self.libraryFunction
+
     def platformSupported(self, platformID):
         'determine whether this function supported by given platform'
         if self.platforms == '*': return True
         return self.platforms.find(platformID) != -1
-
-    def libraryClass(self):
-        'return class expected by first parameter of member function'
-        if not self.constructor and self.Parameters:
-            return self.Parameters[0].libraryClass
-        else:
-            sys.exit('function has no library class')
-
-    def getLibFuncName(self):
-        'return code snippet to access underlying QuantLib object'
-        if self.getObject:
-            return 'objectPointer->getObject().' + self.libraryFunction
-        else:
-            return 'objectPointer->' + self.libraryFunction
 

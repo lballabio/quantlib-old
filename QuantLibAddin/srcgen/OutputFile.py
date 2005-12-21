@@ -17,6 +17,7 @@
 
 'output file'
 
+import Config
 import utils
 import os
 import sys
@@ -24,7 +25,6 @@ import filecmp
 
 # constants
 
-STUB_COPYRIGHT = 'stub.copyright'
 HEADER = """// this file generated automatically by %s
 // editing this file manually is not recommended\n\n"""
 UPDATE_MSG = '        file %-35s - %s'
@@ -32,15 +32,13 @@ UPDATE_MSG = '        file %-35s - %s'
 class OutputFile(object):
     'represent a file which gets overwritten only when its contents change'
 
-    copyrightBuffer = utils.loadBuffer(STUB_COPYRIGHT)
-
     def __init__(self, fileName, printCopyright = True):
         'open file and write header'
         self.fileName = fileName
         self.fileNameTemp = fileName + '.temp'
         self.outFile = file(self.fileNameTemp, 'w')
         if printCopyright:
-            self.outFile.write(self.copyrightBuffer)
+            self.outFile.write(Config.Config.getInstance().bufferCopyright.text)
         self.outFile.write(HEADER % os.path.basename(sys.argv[0]))
 
     def write(self, buffer):

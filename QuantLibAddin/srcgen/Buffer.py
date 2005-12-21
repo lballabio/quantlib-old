@@ -31,5 +31,7 @@ class Buffer(Serializable.Serializable):
 
     def postSerialize(self):
         'load the named buffer'
-        self.text = utils.loadBuffer(self.fileName)
+        fileBuffer = open(self.fileName)
+        self.text = fileBuffer.read()
+        fileBuffer.close()
 

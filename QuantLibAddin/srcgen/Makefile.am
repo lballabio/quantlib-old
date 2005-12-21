@@ -8,7 +8,7 @@ SRCGEN_INPUT := AddinCalc.xml \
                 AddinGuile.xml \
                 AddinQla.xml \
                 capfloor.xml \
-                config.xml \
+                Config.xml \
                 couponvectors.xml \
                 enumerations.xml \
                 instruments.xml \

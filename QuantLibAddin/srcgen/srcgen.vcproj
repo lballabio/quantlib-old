@@ -197,7 +197,7 @@
 				RelativePath="capfloor.xml">
 			</File>
 			<File
-				RelativePath="config.xml">
+				RelativePath="Config.xml">
 			</File>
 			<File
 				RelativePath="couponvectors.xml">

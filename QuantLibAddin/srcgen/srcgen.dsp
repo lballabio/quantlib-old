@@ -272,7 +272,7 @@ SOURCE=capfloor.xml
 # End Source File
 # Begin Source File
 
-SOURCE=config.xml
+SOURCE=Config.xml
 # End Source File
 # Begin Source File
 

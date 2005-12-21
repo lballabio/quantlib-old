@@ -1,5 +1,7 @@
 <Config>
 
+<Buffer name='bufferCopyright' fileName='stub.copyright'/>
+
 <categoryNames>
     <categoryName>capfloor</categoryName>
     <categoryName>couponvectors</categoryName>

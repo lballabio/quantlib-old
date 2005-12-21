@@ -126,12 +126,11 @@ class AddinCalc(Addin.Addin):
         self.generateHeader(fileFunc, function, False)
         conversions = self.generateConversions(function.Parameters)
         libraryReturnType = self.libraryReturnType.apply(function.returnValue)
-        libraryFunctionName = function.getLibFuncName()
         libraryCall = self.generateCode(self.libraryCall, 
             function.Parameters, True, True)
         functionReturnCommand = self.getReturnCommand(function.returnValue)
-        fileFunc.write(self.bufferMember.text % (conversions, function.libraryClass(), 
-            function.libraryClass(), libraryReturnType, libraryFunctionName, 
+        fileFunc.write(self.bufferMember.text % (conversions, function.libraryClass, 
+            function.libraryClass, libraryReturnType, function.accessLibFunc, 
             libraryCall, functionReturnCommand, function.name))
 
     def generateConstructor(self, fileFunc, function):

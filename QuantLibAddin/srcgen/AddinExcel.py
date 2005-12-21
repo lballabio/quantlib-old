@@ -83,12 +83,11 @@ class AddinExcel(Addin.Addin):
         libraryCall = self.generateCode(self.libraryCall, 
             function.Parameters, True, True)
         libraryReturnType = self.libraryReturnType.apply(function.returnValue)
-        libraryFunctionName = function.getLibFuncName()
         conversions = self.generateConversions(function.Parameters)
         fileFunc.write(self.bufferMember.text %
             (functionReturnType, function.name, functionDeclaration, conversions, 
-            function.libraryClass(), function.libraryClass(), libraryReturnType, 
-            libraryFunctionName, libraryCall, functionReturnCommand, function.name))
+            function.libraryClass, function.libraryClass, libraryReturnType, 
+            function.accessLibFunc, libraryCall, functionReturnCommand, function.name))
 
     def getReturnCommand(self, returnValue):
         if returnValue.tensorRank == common.SCALAR:
