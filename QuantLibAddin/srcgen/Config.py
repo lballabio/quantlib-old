@@ -31,7 +31,7 @@ class Config(Singleton.Singleton):
 
     def __init__(self):
         'load state from metadata'
-        xmlConfig = XmlReader.XmlReader('config')
+        xmlConfig = XmlReader.XmlReader('Config')
         xmlConfig.serializeObject(self.__dict__, Buffer.Buffer)
         xmlConfig.serializeList(self.__dict__, 'categoryNames', 'categoryName')
         self.categoryNames.sort()
