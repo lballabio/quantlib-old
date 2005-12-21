@@ -45,8 +45,7 @@ class Function(Serializable.Serializable):
 class Constructor(Function):
     'function which constructs a QuantLib object'
 
-    def __init__(self):
-        self.returnValue = Parameter.ConstructorReturnValue()
+    returnValue = Parameter.ConstructorReturnValue
 
     def serialize(self, serializer):
         'load/unload class state to/from serializer object'
