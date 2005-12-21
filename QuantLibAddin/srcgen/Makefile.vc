@@ -19,13 +19,13 @@ SCRIPTS=AddinCalc.py \
         Config.py \
         Enumeration.py \
         Function.py \
+        Log.py \
         OutputFile.py \
         Parameter.py \
         Rule.py \
         Serializable.py \
         Singleton.py \
         srcgen.py \
-        utils.py \
         XmlReader.py
 
 STUBS=  stub.calc.constructor \
