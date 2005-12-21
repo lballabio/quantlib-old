@@ -134,99 +134,99 @@
 			Name="stubs"
 			>
 			<File
-				RelativePath=".calc.constructor"
+				RelativePath="stub.calc.constructor"
 				>
 			</File>
 			<File
-				RelativePath=".calc.idlfoot"
+				RelativePath="stub.calc.idlfoot"
 				>
 			</File>
 			<File
-				RelativePath=".calc.idlfunc"
+				RelativePath="stub.calc.idlfunc"
 				>
 			</File>
 			<File
-				RelativePath=".calc.idlhead"
+				RelativePath="stub.calc.idlhead"
 				>
 			</File>
 			<File
-				RelativePath=".calc.includes"
+				RelativePath="stub.calc.includes"
 				>
 			</File>
 			<File
-				RelativePath=".calc.map"
+				RelativePath="stub.calc.map"
 				>
 			</File>
 			<File
-				RelativePath=".calc.member"
+				RelativePath="stub.calc.member"
 				>
 			</File>
 			<File
-				RelativePath=".c.constructor"
+				RelativePath="stub.c.constructor"
 				>
 			</File>
 			<File
-				RelativePath=".c.includes"
+				RelativePath="stub.c.includes"
 				>
 			</File>
 			<File
-				RelativePath=".c.member"
+				RelativePath="stub.c.member"
 				>
 			</File>
 			<File
-				RelativePath=".copyright"
+				RelativePath="stub.copyright"
 				>
 			</File>
 			<File
-				RelativePath=".doxygen.categories"
+				RelativePath="stub.doxygen.categories"
 				>
 			</File>
 			<File
-				RelativePath=".doxygen.enums"
+				RelativePath="stub.doxygen.enums"
 				>
 			</File>
 			<File
-				RelativePath=".doxygen.header"
+				RelativePath="stub.doxygen.header"
 				>
 			</File>
 			<File
-				RelativePath=".excel.constructor"
+				RelativePath="stub.excel.constructor"
 				>
 			</File>
 			<File
-				RelativePath=".excel.includes"
+				RelativePath="stub.excel.includes"
 				>
 			</File>
 			<File
-				RelativePath=".excel.member"
+				RelativePath="stub.excel.member"
 				>
 			</File>
 			<File
-				RelativePath=".excel.regfooter"
+				RelativePath="stub.excel.regfooter"
 				>
 			</File>
 			<File
-				RelativePath=".excel.regheader"
+				RelativePath="stub.excel.regheader"
 				>
 			</File>
 			<File
-				RelativePath=".guile.constructor"
+				RelativePath="stub.guile.constructor"
 				>
 			</File>
 			<File
-				RelativePath=".guile.includes"
+				RelativePath="stub.guile.includes"
 				>
 			</File>
 			<File
-				RelativePath=".guile.initfunc"
+				RelativePath="stub.guile.initfunc"
 				>
 			</File>
 			<File
-				RelativePath=".guile.member"
+				RelativePath="stub.guile.member"
 				>
 			</File>
 			<File
-				RelativePath=".qla.includes"
+				RelativePath="stub.qla.includes"
 				>
 			</File>
 		</Filter>
