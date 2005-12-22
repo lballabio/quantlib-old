@@ -1,4 +1,7 @@
+
 table.layout {
+    margin: 0px;
+    padding: 0px;
     border: 0px;
     font-family: Arial;
 }
@@ -120,6 +123,13 @@ td {
     color: white;
     font-family: Arial;
     font-size: 12px;
+    font-weight: bold;
+}
+
+.copyright {
+    color: #2C3E7C;
+    font-family: Arial;
+    font-size: 10px;
     font-weight: bold;
 }
 
