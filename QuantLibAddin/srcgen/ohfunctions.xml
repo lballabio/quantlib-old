@@ -4,7 +4,7 @@
 <displayName>ObjectHandler</displayName>
 <Functions>
 
-<Utility name='ohVersion'>
+<Procedure name='ohVersion'>
 <description>returns the version number of ObjectHandler</description>
 <platforms>GO</platforms>
 <Parameters></Parameters>
@@ -13,9 +13,9 @@
     <tensorRank>scalar</tensorRank>
     <description>ObjectHandler version number</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohObjectCount'>
+<Procedure name='ohObjectCount'>
 <description>#/objects in repository</description>
 <platforms>GO</platforms>
 <Parameters></Parameters>
@@ -24,9 +24,9 @@
     <tensorRank>scalar</tensorRank>
     <description>object count</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohHandleList'>
+<Procedure name='ohHandleList'>
 <description>list of handles in repository</description>
 <platforms>GO</platforms>
 <Parameters></Parameters>
@@ -35,9 +35,9 @@
     <tensorRank>vector</tensorRank>
     <description>handle list</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohFieldNames'>
+<Procedure name='ohFieldNames'>
 <description>retrieve the field names of a given object</description>
 <platforms>GO</platforms>
 <Parameters>
@@ -52,9 +52,9 @@
     <tensorRank>vector</tensorRank>
     <description>list of fieldnames for queried object</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohFieldValue'>
+<Procedure name='ohFieldValue'>
 <description>retrieve the value of a named field</description>
 <platforms>GO</platforms>
 <Parameters>
@@ -79,9 +79,9 @@
     <tensorRank>matrix</tensorRank>
     <description>value of named field</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohDeleteObject'>
+<Procedure name='ohDeleteObject'>
 <description>delete object from repository</description>
 <platforms>GO</platforms>
 <Parameters>
@@ -96,9 +96,9 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohDeleteAllObjects'>
+<Procedure name='ohDeleteAllObjects'>
 <description>delete all objects from repository</description>
 <platforms>GO</platforms>
 <Parameters></Parameters>
@@ -107,9 +107,9 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohDependsOn'>
+<Procedure name='ohDependsOn'>
 <description>force a dependency between two functions</description>
 <platforms>O</platforms>
 <Parameters>
@@ -169,9 +169,9 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohSetLogFile'>
+<Procedure name='ohSetLogFile'>
 <description>begin logging to named file</description>
 <platforms>GO</platforms>
 <Parameters>
@@ -191,9 +191,9 @@
     <tensorRank>scalar</tensorRank>
     <description>name of logfile</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohSetLogLevel'>
+<Procedure name='ohSetLogLevel'>
 <description>set threshold for log messages</description>
 <platforms>GO</platforms>
 <Parameters>
@@ -208,9 +208,9 @@
     <tensorRank>scalar</tensorRank>
     <description>returns new logging threshold</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohLogMessage'>
+<Procedure name='ohLogMessage'>
 <description>log a message</description>
 <platforms>GO</platforms>
 <Parameters>
@@ -230,9 +230,9 @@
     <tensorRank>scalar</tensorRank>
     <description>message logged</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohLogObject'>
+<Procedure name='ohLogObject'>
 <description>write object description to log file</description>
 <platforms>GO</platforms>
 <Parameters>
@@ -247,9 +247,9 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohLogAllObjects'>
+<Procedure name='ohLogAllObjects'>
 <description>write all object descriptions to log file</description>
 <platforms>GO</platforms>
 <Parameters></Parameters>
@@ -258,9 +258,9 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohGetGcEnabled'>
+<Procedure name='ohGetGcEnabled'>
 <description>get value of ObjectHandler garbage collection flag</description>
 <platforms>D</platforms>
 <Parameters></Parameters>
@@ -269,9 +269,9 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohSetGcEnabled'>
+<Procedure name='ohSetGcEnabled'>
 <description>set value of ObjectHandler garbage collection flag</description>
 <platforms>D</platforms>
 <Parameters>
@@ -286,9 +286,9 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='ohCallGC'>
+<Procedure name='ohCallGC'>
 <description>delete orphaned objects from repository</description>
 <platforms>D</platforms>
 <Parameters></Parameters>
@@ -297,7 +297,7 @@
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
 </Functions>
 </Category>

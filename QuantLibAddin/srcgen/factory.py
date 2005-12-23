@@ -15,35 +15,37 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-import Singleton
-import Enumeration
-import Function
-import XmlReader
+"""construct an object given its class name."""
+
+import singleton
+import enumeration
+import function
+import xmlreader
 import sys
 
-class Factory(Singleton.Singleton):
-    'construct an object given its class name'
+class Factory(singleton.Singleton):
+    """construct an object given its class name."""
 
     creators = {
-        'Constructor' : Function.Constructor,
-        'Member' : Function.Member,
-        'Utility' : Function.Utility,
-        'Enumeration' : Enumeration.Enumeration,
-        'EnumerationDefinition' : Enumeration.EnumerationDefinition,
+        'Constructor' : function.Constructor,
+        'Member' : function.Member,
+        'Procedure' : function.Procedure,
+        'Enumeration' : enumeration.Enumeration,
+        'EnumerationDefinition' : enumeration.EnumerationDefinition,
     }
 
     def makeObject(self, className):
-        'construct an object given its class name'
+        """construct an object given its class name."""
         if self.creators.has_key(className):
             return self.creators[className]()
         else:
             sys.exit('no creator function found for class ' + className)
 
     def serializeObject(self, objectClass, fileName = None):
-        'instantiate an xml reader and load requested object'
-        if not fileName: fileName = objectClass.__name__
+        """instantiate an xml reader and load requested object."""
+        if not fileName: fileName = objectClass.__name__.lower()
         objectInstance = objectClass()
-        serializer = XmlReader.XmlReader(fileName)
+        serializer = xmlreader.XmlReader(fileName)
         objectInstance.serialize(serializer)
         return objectInstance
 

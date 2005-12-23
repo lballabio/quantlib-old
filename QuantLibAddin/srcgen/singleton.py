@@ -16,11 +16,13 @@
 """
 
 """
-    Singleton pattern
+    Implementation of the Singleton pattern.
     Derived from code placed in the public domain by Gary Robinson.
 """
 
 class MetaSingleton(type):
+    """Meta type for the Singleton class."""
+
     def __new__(metaclass, strName, tupBases, dict):
         if dict.has_key('__new__'):
             sys.exit('Can not override __new__ in a Singleton')
@@ -28,12 +30,13 @@ class MetaSingleton(type):
         
     def __call__(cls, *lstArgs, **dictArgs):
         sys.exit('Singletons may only be instantiated through getInstance()')
-        
+
 class Singleton(object):
+    """Implementation of the Singleton pattern."""
     __metaclass__ = MetaSingleton
     
     def getInstance(cls):
-        'Call this to instantiate an instance or retrieve the existing instance.'
+        """Call this to instantiate an instance or retrieve the existing instance."""
         if not cls._isInstantiated():
             instance = cls.__new__(cls)
             instance.__init__()

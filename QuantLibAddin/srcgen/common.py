@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'global constants'
+"""global constants."""
 
 ANY = 'any'
 APPEND_TENSORRANK = 'appendTensorRank'

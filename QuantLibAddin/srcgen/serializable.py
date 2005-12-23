@@ -15,18 +15,24 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Class to represent an object which is capable of being serialized by a
+Serializer, or deserialized by a Deserializer."""
+
 class Serializable(object):
-    'class which may be loaded/unloaded to/from a serializer object'
+    """Class to represent an object which is capable of being serialized by a
+    Serializer, or deserialized by a Deserializer.  The interface is the same
+    in either case and the word Serialize indicates both serialization and
+    deserialization."""
 
     def serialize(self, serializer):
-        'load/unload class state to/from serializer object'
+        """load/unload class state to/from serializer object."""
         sys.exit('method not implemented')
 
     def postSerialize(self):
-        'invoke any post serialization behavior that may be required'
+        """invoke any post serialization behavior that may be required."""
         pass
 
     def key(self):
-        'return unique identifier for this object'
+        """return unique identifier for this object."""
         return self.name
 

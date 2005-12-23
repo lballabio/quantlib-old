@@ -19,17 +19,18 @@
 
 import sys
 import getopt
-import Log
-import AddinQla
-import AddinExcel
-import AddinCalc
-import AddinC
-import AddinGuile
-import AddinDoxygen
-import Factory
+import log
+import addinqla
+import addinexcel
+import addincalc
+import addinc
+import addinguile
+import addindoxygen
+import factory
 
 def usage():
-    errorMessage = 'usage: ' + sys.argv[0] + ''' -[targets]
+    """Fail with a message documenting command line arguments."""
+    errorMessage = 'usage: ' + sys.argv[0] + """ -[targets]
     where [targets] is any of:
         q - generate source for QuantLibAddin
         e - generate source for Excel addin (dynamic)
@@ -39,7 +40,7 @@ def usage():
         g - generate source for Guile addin
         d - generate doxygen documentation files
     or
-        a - all of the above'''
+        a - all of the above"""
     sys.exit(errorMessage)
 
 # parse command line arguments
@@ -55,26 +56,26 @@ for o, a in opts:
     if o in ('-h', '--help'):
         usage()
     elif o == '-q':
-        addins.append(Factory.Factory.getInstance().serializeObject(AddinQla.AddinQla))
+        addins.append(factory.Factory.getInstance().serializeObject(addinqla.AddinQla))
     elif o == '-e':
-        addins.append(Factory.Factory.getInstance().serializeObject(AddinExcel.AddinExcel))
+        addins.append(factory.Factory.getInstance().serializeObject(addinexcel.AddinExcel))
     elif o == '-o':
-        addins.append(Factory.Factory.getInstance().serializeObject(AddinCalc.AddinCalc))
+        addins.append(factory.Factory.getInstance().serializeObject(addincalc.AddinCalc))
     elif o == '-c':
-        addins.append(Factory.Factory.getInstance().serializeObject(AddinC.AddinC))
+        addins.append(factory.Factory.getInstance().serializeObject(addinc.AddinC))
     elif o == '-g':
-        addins.append(Factory.Factory.getInstance().serializeObject(AddinGuile.AddinGuile))
+        addins.append(factory.Factory.getInstance().serializeObject(addinguile.AddinGuile))
     elif o == '-d':
-        addins.append(Factory.Factory.getInstance().serializeObject(AddinDoxygen.AddinDoxygen))
+        addins.append(factory.Factory.getInstance().serializeObject(addindoxygen.AddinDoxygen))
     elif o == '-a':
         if len(opts) != 1:
             sys.exit('flag -a cannot be combined with other flags')
-        addins.append(Factory.Factory.getInstance().serializeObject(AddinQla.AddinQla))
-        addins.append(Factory.Factory.getInstance().serializeObject(AddinExcel.AddinExcel))
-        addins.append(Factory.Factory.getInstance().serializeObject(AddinCalc.AddinCalc))
-        addins.append(Factory.Factory.getInstance().serializeObject(AddinC.AddinC))
-        addins.append(Factory.Factory.getInstance().serializeObject(AddinGuile.AddinGuile))
-        addins.append(Factory.Factory.getInstance().serializeObject(AddinDoxygen.AddinDoxygen))
+        addins.append(factory.Factory.getInstance().serializeObject(addinqla.AddinQla))
+        addins.append(factory.Factory.getInstance().serializeObject(addinexcel.AddinExcel))
+        addins.append(factory.Factory.getInstance().serializeObject(addincalc.AddinCalc))
+        addins.append(factory.Factory.getInstance().serializeObject(addinc.AddinC))
+        addins.append(factory.Factory.getInstance().serializeObject(addinguile.AddinGuile))
+        addins.append(factory.Factory.getInstance().serializeObject(addindoxygen.AddinDoxygen))
     else:
         usage()
 
@@ -83,10 +84,10 @@ if not len(addins):
 
 # generate source code for chosen target projects
 
-Log.Log.getInstance().logMessage('begin ...')
+log.Log.getInstance().logMessage('begin ...')
 
 for addin in addins:
     addin.generate()
 
-Log.Log.getInstance().logMessage('end')
+log.Log.getInstance().logMessage('end')
 

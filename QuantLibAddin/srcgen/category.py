@@ -17,31 +17,31 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'category'
+"""class to represent a group of functions."""
 
 import common
-import Function
-import Serializable
+import function
+import serializable
 
-class Category(Serializable.Serializable):
-    'class to represent a group of functions'
+class Category(serializable.Serializable):
+    """class to represent a group of functions."""
 
     def serialize(self, serializer):
-        'load/unload class state to/from serializer object'
+        """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self.__dict__, common.NAME)
         serializer.serializeProperty(self.__dict__, common.DISPLAY_NAME)
         serializer.serializeProperty(self.__dict__, common.DESCRIPTION)
         serializer.serializeBoolean(self.__dict__, common.HEADER_ONLY)
-        serializer.serializeObjectDict(self.__dict__, Function.Function)
+        serializer.serializeObjectDict(self.__dict__, function.Function)
 
     def platformSupported(self, platformID):
-        'determine whether this category supported for given platform'
+        """determine whether this category supported for given platform."""
         for function in self.Functions.values():
             if function.platformSupported(platformID):
                 return True
 
     def getFunctions(self, platformId):
-        'serve up functions alphabetically by name'
+        """serve up functions alphabetically by name."""
         for functionKey in self.FunctionKeys: 
             function = self.Functions[functionKey]
             if platformId == '*' or function.platformSupported(platformId):

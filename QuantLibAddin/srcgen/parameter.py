@@ -17,18 +17,20 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'parameter'
+"""encapsulate state necessary to generate source code 
+relating to a function parameter."""
 
 import common
-import Serializable
+import serializable
 
-class Parameter(Serializable.Serializable):
-    'encapsulate state necessary to generate source code relating to a function parameter'
+class Parameter(serializable.Serializable):
+    """encapsulate state necessary to generate source code 
+    relating to a function parameter."""
 
     groupName = 'Parameters'
 
     def serialize(self, serializer):
-        'load/unload class state to/from serializer object'
+        """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self.__dict__, common.NAME)
         serializer.serializeProperty(self.__dict__, common.TYPE)
         serializer.serializeProperty(self.__dict__, common.TENSOR_RANK)
@@ -39,15 +41,16 @@ class Parameter(Serializable.Serializable):
         serializer.serializeAttribute(self.__dict__, common.QL_TYPE)
 
     def postSerialize(self):
-        'determine whether the datatype of this parameter requires a conversion'
+        """determine whether the datatype of this parameter requires a conversion."""
         if self.ignore or (self.tensorRank == common.SCALAR
         and self.type != common.ANY and not self.default):
             self.needsConversion = False
         else:
             self.needsConversion = True
 
-class ReturnValue(Serializable.Serializable):
-    'encapsulate state necessary to generate source code relating to a function return value'
+class ReturnValue(serializable.Serializable):
+    """encapsulate state necessary to generate source code 
+    relating to a function return value."""
 
     # sometimes a ReturnValue will be treated like a Parameter
     # in which case the properties below require default values
@@ -55,11 +58,11 @@ class ReturnValue(Serializable.Serializable):
     default = False
 
     def key(self):
-        'return unique identifier for this object'
+        """return unique identifier for this object."""
         return 'returnValue'
 
     def serialize(self, serializer):
-        'load/unload class state to/from serializer object'
+        """load/unload class state to/from serializer object."""
         serializer.serializeProperty(self.__dict__, common.TYPE)
         serializer.serializeProperty(self.__dict__, common.TENSOR_RANK)
         serializer.serializeProperty(self.__dict__, common.DESCRIPTION)
@@ -73,3 +76,4 @@ class ConstructorReturnValue(object):
     tensorRank = 'scalar'
     description = 'handle of newly created object'
     default = False
+

@@ -17,26 +17,28 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'addins'
+"""class to encapsulate data and behavior 
+required to generate addin source code."""
 
 import common
-import Rule
-import Serializable
-import Buffer
+import rule
+import serializable
+import buffer
 
-class Addin(Serializable.Serializable):
-    'class to encapsulate data and behavior required to generate addin source code'
+class Addin(serializable.Serializable):
+    """class to encapsulate data and behavior 
+    required to generate addin source code."""
 
     def serialize(self, serializer):
-        'load/unload class state to/from serializer object'
+        """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self.__dict__, common.NAME)
         serializer.serializeProperty(self.__dict__, common.PLATFORM_ID)
         serializer.serializeProperty(self.__dict__, common.ROOT_DIRECTORY)
-        serializer.serializeObjectPropertyDict(self.__dict__, Rule.RuleGroup)
-        serializer.serializeObjectPropertyDict(self.__dict__, Buffer.Buffer)
+        serializer.serializeObjectPropertyDict(self.__dict__, rule.RuleGroup)
+        serializer.serializeObjectPropertyDict(self.__dict__, buffer.Buffer)
 
     def generateCode(self, rule, parameters, skipFirst = False, skipIgnore = False):
-        'generate source code relating to a list of function parameters'
+        """generate source code relating to a list of function parameters."""
         ret = ''
         i = 0
         eol = ''
@@ -51,7 +53,7 @@ class Addin(Serializable.Serializable):
         return ret
 
     def generateConversions(self, parameters):
-        'generate source code to convert datatypes'
+        """generate source code to convert datatypes."""
         returnValue = ''
         for parameter in parameters:
             if parameter.needsConversion:

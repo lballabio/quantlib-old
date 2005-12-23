@@ -17,13 +17,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'output QuantLibAddin source files'
+"""generate source code for QuantLibAddin."""
 
-import Config
-import Addin
-import OutputFile
+import config
+import addin
+import outputfile
 import common
-import Log
+import log
 
 # constants
 
@@ -31,17 +31,17 @@ ENUM_END   = '        );\n\n'
 ENUM_LINE  = '            MAP("%s", %s);\n'
 ENUM_START = '        REG_ENUM(%s,\n'
 
-class AddinQla(Addin.Addin):
-    'generate source code for QuantLibAddin'
+class AddinQla(addin.Addin):
+    """generate source code for QuantLibAddin."""
 
     def generate(self):
-        'generate source code for QuantLibAddin'
-        Log.Log.getInstance().logMessage('  begin generating QuantLibAddin ...')
+        """generate source code for QuantLibAddin."""
+        log.Log.getInstance().logMessage('  begin generating QuantLibAddin ...')
         self.generateEnumerations()
-        Log.Log.getInstance().logMessage('  done generating QuantLibAddin.')
+        log.Log.getInstance().logMessage('  done generating QuantLibAddin.')
 
     def generateEnumeration(self, fileEnum, enumeration):
-        'generate source code for given enumeration'
+        """generate source code for given enumeration."""
         fileEnum.write(ENUM_START % enumeration.type)
         for enumDef in enumeration.getEnumerationDefinitions():
             if enumeration.constructor:
@@ -52,10 +52,10 @@ class AddinQla(Addin.Addin):
         fileEnum.write(ENUM_END)
 
     def generateEnumerations(self):
-        'generate source file for enumerations'
-        fileEnum = OutputFile.OutputFile(self.rootDirectory + 'enumregistry.cpp')
+        """generate source file for enumerations."""
+        fileEnum = outputfile.OutputFile(self.rootDirectory + 'enumregistry.cpp')
         fileEnum.write(self.bufferIncludes.text)
-        for enumeration in Config.Config.getInstance().getEnumerations():
+        for enumeration in config.Config.getInstance().getEnumerations():
             if not enumeration.documentationOnly:
                 self.generateEnumeration(fileEnum, enumeration)
         fileEnum.write('    }\n\n}\n\n')

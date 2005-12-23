@@ -33,73 +33,73 @@
 			Name="scripts"
 			Filter="">
 			<File
-				RelativePath="AddinCalc.py">
+				relativepath="addincalc.py">
 			</File>
 			<File
-				RelativePath="AddinC.py">
+				relativepath="addinc.py">
 			</File>
 			<File
-				RelativePath="AddinDoxygen.py">
+				relativepath="addindoxygen.py">
 			</File>
 			<File
-				RelativePath="AddinExcel.py">
+				relativepath="addinexcel.py">
 			</File>
 			<File
-				RelativePath="AddinGuile.py">
+				relativepath="addinguile.py">
 			</File>
 			<File
-				RelativePath="Addin.py">
+				relativepath="addin.py">
 			</File>
 			<File
-				RelativePath="AddinQla.py">
+				relativepath="addinqla.py">
 			</File>
 			<File
-				RelativePath="Buffer.py">
+				relativepath="buffer.py">
 			</File>
 			<File
-				RelativePath="Category.py">
+				relativepath="category.py">
 			</File>
 			<File
-				RelativePath="common.py">
+				relativepath="common.py">
 			</File>
 			<File
-				RelativePath="Config.py">
+				relativepath="config.py">
 			</File>
 			<File
-				RelativePath="Enumeration.py">
+				relativepath="enumeration.py">
 			</File>
 			<File
-				RelativePath="Factory.py">
+				relativepath="factory.py">
 			</File>
 			<File
-				RelativePath="Function.py">
+				relativepath="function.py">
 			</File>
 			<File
-				RelativePath="Log.py">
+				relativepath="log.py">
 			</File>
 			<File
-				RelativePath="OutputFile.py">
+				relativepath="outputfile.py">
 			</File>
 			<File
-				RelativePath="Parameter.py">
+				relativepath="parameter.py">
 			</File>
 			<File
-				RelativePath="Rule.py">
+				relativepath="rule.py">
 			</File>
 			<File
-				RelativePath="Serializable.py">
+				relativepath="serializable.py">
 			</File>
 			<File
-				RelativePath="Singleton.py">
+				relativepath="singleton.py">
 			</File>
 			<File
-				RelativePath="srcgen.py">
+				relativepath="srcgen.py">
 			</File>
 			<File
-				RelativePath="utils.py">
+				relativepath="utils.py">
 			</File>
 			<File
-				RelativePath="XmlReader.py">
+				relativepath="xmlreader.py">
 			</File>
 		</Filter>
 		<Filter
@@ -182,28 +182,28 @@
 			Name="metadata"
 			Filter="">
 			<File
-				RelativePath="AddinCalc.xml">
+				RelativePath="addincalc.xml">
 			</File>
 			<File
-				RelativePath="AddinC.xml">
+				RelativePath="addinc.xml">
 			</File>
 			<File
-				RelativePath="AddinDoxygen.xml">
+				RelativePath="addindoxygen.xml">
 			</File>
 			<File
-				RelativePath="AddinExcel.xml">
+				RelativePath="addinexcel.xml">
 			</File>
 			<File
-				RelativePath="AddinGuile.xml">
+				RelativePath="addinguile.xml">
 			</File>
 			<File
-				RelativePath="AddinQla.xml">
+				RelativePath="addinqla.xml">
 			</File>
 			<File
 				RelativePath="capfloor.xml">
 			</File>
 			<File
-				RelativePath="Config.xml">
+				RelativePath="config.xml">
 			</File>
 			<File
 				RelativePath="couponvectors.xml">

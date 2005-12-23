@@ -17,41 +17,41 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'configuration'
+"""global configuration state for srcgen application."""
 
-import Singleton
-import Category
-import Enumeration
-import Factory
-import XmlReader
-import Buffer
+import singleton
+import category
+import enumeration
+import factory
+import xmlreader
+import buffer
 
-class Config(Singleton.Singleton):
-    'global configuration state for srcgen application'
+class Config(singleton.Singleton):
+    """global configuration state for srcgen application."""
 
     def __init__(self):
-        'load state from metadata'
-        xmlConfig = XmlReader.XmlReader('Config')
-        xmlConfig.serializeObject(self.__dict__, Buffer.Buffer)
+        """load state from metadata."""
+        xmlConfig = xmlreader.XmlReader('config')
+        xmlConfig.serializeObject(self.__dict__, buffer.Buffer)
         xmlConfig.serializeList(self.__dict__, 'categoryNames', 'categoryName')
         self.categoryNames.sort()
         self.categoryDict = {}
         for categoryName in self.categoryNames:
             self.categoryDict[categoryName] = \
-                Factory.Factory.getInstance().serializeObject(Category.Category, categoryName)
+                factory.Factory.getInstance().serializeObject(category.Category, categoryName)
 
-        xmlEnumerations = XmlReader.XmlReader('enumerations')
-        xmlEnumerations.serializeObjectDict(self.__dict__, Enumeration.Enumeration)
+        xmlEnumerations = xmlreader.XmlReader('enumerations')
+        xmlEnumerations.serializeObjectDict(self.__dict__, enumeration.Enumeration)
 
     def getCategories(self, platformId):
-        'serve up function category objects alphabetically by name'
+        """serve up function category objects alphabetically by name."""
         for categoryName in self.categoryNames:
             category = self.categoryDict[categoryName]
             if platformId == '*' or category.platformSupported(platformId):
                 yield category
 
     def getEnumerations(self):
-        'serve up enumeration objects alphabetically by name'
+        """serve up enumeration objects alphabetically by name."""
         for enumerationKey in self.EnumerationKeys:
             yield self.Enumerations[enumerationKey]
 

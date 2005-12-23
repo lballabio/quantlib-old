@@ -4,7 +4,7 @@
 <displayName>Utilities</displayName>
 <Functions>
 
-<Utility name='qlListEnum'>
+<Procedure name='qlListEnum'>
 <description>return the members of a given enumeration</description>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -19,9 +19,9 @@
     <tensorRank>vector</tensorRank>
     <description>list of the members of the specified enumeration</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='qlListRegisteredEnums'>
+<Procedure name='qlListRegisteredEnums'>
 <description>return the names of all registered enums</description>
 <functionCategory>QuantLib</functionCategory>
 <Parameters></Parameters>
@@ -30,9 +30,9 @@
     <tensorRank>vector</tensorRank>
     <description>list of names of registered enums</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='qlListRegisteredTypes'>
+<Procedure name='qlListRegisteredTypes'>
 <description>return the names of all registered complex types</description>
 <functionCategory>QuantLib</functionCategory>
 <Parameters></Parameters>
@@ -41,9 +41,9 @@
     <tensorRank>vector</tensorRank>
     <description>list of names of registered enums</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='qlListType'>
+<Procedure name='qlListType'>
 <description>return the members of a given complex type</description>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -58,9 +58,9 @@
     <tensorRank>vector</tensorRank>
     <description>list of the members of the specified enumeration</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
-<Utility name='qlVersion'>
+<Procedure name='qlVersion'>
 <description>returns the version number of QuantLib</description>
 <functionCategory>QuantLib</functionCategory>
 <Parameters></Parameters>
@@ -69,7 +69,7 @@
     <tensorRank>scalar</tensorRank>
     <description>QuantLib version number</description>
 </ReturnValue>
-</Utility>
+</Procedure>
 
 </Functions>
 </Category>

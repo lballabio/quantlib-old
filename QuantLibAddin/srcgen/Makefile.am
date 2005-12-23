@@ -1,14 +1,14 @@
 
 # srcgen.py probably needs to be re-executed if any of these change
 
-SRCGEN_INPUT := AddinCalc.xml \
-                AddinC.xml \
-                AddinDoxygen.xml \
-                AddinExcel.xml \
-                AddinGuile.xml \
-                AddinQla.xml \
+SRCGEN_INPUT := addincalc.xml \
+                addinc.xml \
+                addindoxygen.xml \
+                addinexcel.xml \
+                addinguile.xml \
+                addinqla.xml \
                 capfloor.xml \
-                Config.xml \
+                config.xml \
                 couponvectors.xml \
                 enumerations.xml \
                 instruments.xml \
@@ -25,28 +25,28 @@ SRCGEN_INPUT := AddinCalc.xml \
                 volatilities.xml \
                 xibor.xml
 
-SRCGEN_PYS :=   AddinCalc.py \
-                AddinC.py \
-                AddinDoxygen.py \
-                AddinExcel.py \
-                AddinGuile.py \
-                Addin.py \
-                AddinQla.py \
-                Buffer.py \
-                Category.py \
+srcgen_pys :=   addincalc.py \
+                addinc.py \
+                addindoxygen.py \
+                addinexcel.py \
+                addinguile.py \
+                addin.py \
+                addinqla.py \
+                buffer.py \
+                category.py \
                 common.py \
-                Config.py \
-                Enumeration.py \
-                Factory.py \
-                Function.py \
-                Log.py \
-                OutputFile.py \
-                Parameter.py \
-                Rule.py \
-                Serializable.py \
-                Singleton.py \
+                config.py \
+                enumeration.py \
+                factory.py \
+                function.py \
+                log.py \
+                outputfile.py \
+                parameter.py \
+                rule.py \
+                serializable.py \
+                singleton.py \
                 srcgen.py \
-                XmlReader.py
+                xmlreader.py
 
 SRCGEN_STUBS := stub.calc.constructor \
                 stub.calc.idlfoot \

@@ -17,24 +17,25 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'rule'
+"""algorithms required to generate the source code for a given function 
+parameter in a given context."""
 
-import Serializable
+import serializable
 import common
 
-class SubRule(Serializable.Serializable):
-    'the subset of a Rule pertaining to one or more tensor ranks'
+class SubRule(serializable.Serializable):
+    """the subset of a Rule pertaining to one or more tensor ranks."""
 
     groupName = 'SubRules'
 
     def serialize(self, serializer):
-        'load/unload class state to/from serializer object'
+        """load/unload class state to/from serializer object."""
         serializer.serializeList(self.__dict__, 'tensorRanks', 'tensorRank')
         serializer.serializeDict(self.__dict__, 'replacements')
 
-class Rule(Serializable.Serializable):
+class Rule(serializable.Serializable):
     """this class encapsulates an algorithm required to generate the source
-    code for a given function parameter in a given context"""
+    code for a given function parameter in a given context."""
 
     groupName = 'Rules'
     convExceptionsMap = {
@@ -42,19 +43,19 @@ class Rule(Serializable.Serializable):
     }
 
     def serialize(self, serializer):
-        'load/unload class state to/from serializer object'
+        """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self.__dict__, common.NAME)
         serializer.serializeObjectList(self.__dict__, SubRule)
         serializer.serializeAttribute(self.__dict__, common.PREFIX)
         serializer.serializeAttribute(self.__dict__, common.DEREFERENCE)
 
-class RuleGroup(Serializable.Serializable):
-    'a collection of Rules for generating source code for function parameters'
+class RuleGroup(serializable.Serializable):
+    """a collection of Rules for generating source code for function parameters."""
 
     groupName = 'RuleGroups'
 
     def __init__(self):
-        'not all Rules will be populated for a given RuleGroup'
+        """not all Rules will be populated for a given RuleGroup."""
         self.setPrefix = None
         self.setType = None
         self.reformatType = None
@@ -64,7 +65,7 @@ class RuleGroup(Serializable.Serializable):
         self.setTypeConversion = None
 
     def serialize(self, serializer):
-        'load/unload class state to/from serializer object'
+        """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self.__dict__, common.NAME)
         serializer.serializeAttribute(self.__dict__, common.QL_TYPE)
         serializer.serializeAttributeBoolean(self.__dict__, common.APPEND_TENSORRANK)
@@ -72,7 +73,7 @@ class RuleGroup(Serializable.Serializable):
         serializer.serializeObjectPropertyDict(self.__dict__, Rule)
 
     def apply(self, param):
-        'apply all available Rules to given parameter'
+        """apply all available Rules to given parameter."""
         self.param = param
 
         self.prefix = ''
@@ -101,7 +102,8 @@ class RuleGroup(Serializable.Serializable):
             + delim + self.paramName + self.conversion
 
     def setSubrule(self, rule):
-        'determine which SubRule, if any, applies to the tensor rank of the given parameter'
+        """determine which SubRule, if any, applies to the tensor rank 
+        of the given parameter."""
         self.subrule = None
         if rule:
             for subRule in rule.SubRules:
@@ -111,7 +113,7 @@ class RuleGroup(Serializable.Serializable):
                         return True
 
     def applySubrule(self, init = ''):
-        'invoke portion of SubRule that pertains to given parameter'
+        """invoke portion of SubRule that pertains to given parameter."""
         returnValue = init
         replacements = self.subrule.replacements
         if self.param.default and replacements.has_key(common.OPTIONAL):

@@ -55,91 +55,91 @@ CFG=srcgen - Win32 All
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=Addin.py
+source=addin.py
 # End Source File
 # Begin Source File
 
-SOURCE=AddinC.py
+source=addinc.py
 # End Source File
 # Begin Source File
 
-SOURCE=AddinCalc.py
+source=addincalc.py
 # End Source File
 # Begin Source File
 
-SOURCE=AddinDoxygen.py
+source=addindoxygen.py
 # End Source File
 # Begin Source File
 
-SOURCE=AddinExcel.py
+source=addinexcel.py
 # End Source File
 # Begin Source File
 
-SOURCE=AddinGuile.py
+source=addinguile.py
 # End Source File
 # Begin Source File
 
-SOURCE=AddinQla.py
+source=addinqla.py
 # End Source File
 # Begin Source File
 
-SOURCE=Buffer.py
+source=buffer.py
 # End Source File
 # Begin Source File
 
-SOURCE=Category.py
+source=category.py
 # End Source File
 # Begin Source File
 
-SOURCE=common.py
+source=common.py
 # End Source File
 # Begin Source File
 
-SOURCE=Config.py
+source=config.py
 # End Source File
 # Begin Source File
 
-SOURCE=Enumeration.py
+source=enumeration.py
 # End Source File
 # Begin Source File
 
-SOURCE=Factory.py
+source=factory.py
 # End Source File
 # Begin Source File
 
-SOURCE=Function.py
+source=function.py
 # End Source File
 # Begin Source File
 
-SOURCE=Log.py
+source=log.py
 # End Source File
 # Begin Source File
 
-SOURCE=OutputFile.py
+source=outputfile.py
 # End Source File
 # Begin Source File
 
-SOURCE=Parameter.py
+source=parameter.py
 # End Source File
 # Begin Source File
 
-SOURCE=Rule.py
+source=rule.py
 # End Source File
 # Begin Source File
 
-SOURCE=Serializable.py
+source=serializable.py
 # End Source File
 # Begin Source File
 
-SOURCE=Singleton.py
+source=singleton.py
 # End Source File
 # Begin Source File
 
-SOURCE=srcgen.py
+source=srcgen.py
 # End Source File
 # Begin Source File
 
-SOURCE=XmlReader.py
+source=xmlreader.py
 # End Source File
 # End Group
 # Begin Group "stubs"
@@ -247,27 +247,27 @@ SOURCE=stub.qla.includes
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=AddinC.xml
+SOURCE=addinc.xml
 # End Source File
 # Begin Source File
 
-SOURCE=AddinCalc.xml
+SOURCE=addincalc.xml
 # End Source File
 # Begin Source File
 
-SOURCE=AddinDoxygen.xml
+SOURCE=addindoxygen.xml
 # End Source File
 # Begin Source File
 
-SOURCE=AddinExcel.xml
+SOURCE=addinexcel.xml
 # End Source File
 # Begin Source File
 
-SOURCE=AddinGuile.xml
+SOURCE=addinguile.xml
 # End Source File
 # Begin Source File
 
-SOURCE=AddinQla.xml
+SOURCE=addinqla.xml
 # End Source File
 # Begin Source File
 
@@ -275,7 +275,7 @@ SOURCE=capfloor.xml
 # End Source File
 # Begin Source File
 
-SOURCE=Config.xml
+SOURCE=config.xml
 # End Source File
 # Begin Source File
 

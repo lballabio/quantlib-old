@@ -15,15 +15,15 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'log'
+"""global log class - presently outputs all messages to stdout."""
 
-import Singleton
+import singleton
 import time
 
-class Log(Singleton.Singleton):
-    'global log class - presently outputs all messages to stdout'
+class Log(singleton.Singleton):
+    """global log class - presently outputs all messages to stdout."""
 
     def logMessage(self, message):
-        'print a message to stdout'
+        """print a message to stdout."""
         print time.asctime() + ' ' + message
 

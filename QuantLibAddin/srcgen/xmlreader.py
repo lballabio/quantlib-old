@@ -17,18 +17,20 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'XmlReader'
+"""A class which implements the (De)Serializer interface to deserialize
+a (De)Serializable object from an XML stream."""
 
-import Factory
+import factory
 import xml.dom.minidom
 import sys
 import common
 
 class XmlReader(object):
-    'an instance of a Serializer which loads from xml'
+    """A class which implements the (De)Serializer interface to deserialize
+    a (De)Serializable object from an XML stream."""
 
     def __init__(self, fileName):
-        'load indicated file into dom document'
+        """load indicated file into dom document."""
         self.documentName = fileName + '.xml'
         try:
             dom = xml.dom.minidom.parse(self.documentName)
@@ -38,7 +40,7 @@ class XmlReader(object):
         self.node = dom.documentElement
 
     def serializeAttribute(self, dict, attributeName, defaultValue = None):
-        'read a named attribute'
+        """read a named attribute."""
         attributeValue = self.node.getAttribute(attributeName)
         if attributeValue:
             dict[attributeName] = attributeValue
@@ -46,7 +48,7 @@ class XmlReader(object):
             dict[attributeName] = defaultValue
 
     def serializeAttributeInteger(self, dict, attributeName, defaultValue = None):
-        'read a named integral attribute'
+        """read a named integral attribute."""
         attributeValue = self.node.getAttribute(attributeName)
         if attributeValue:
             dict[attributeName] = int(attributeValue)
@@ -54,7 +56,7 @@ class XmlReader(object):
             dict[attributeName] = defaultValue
 
     def serializeAttributeBoolean(self, dict, attributeName):
-        'read a named boolean attribute'
+        """read a named boolean attribute."""
         attributeValue = self.node.getAttribute(attributeName)
         if attributeValue:
             dict[attributeName] = self.stringToBoolean(attributeValue)
@@ -62,7 +64,7 @@ class XmlReader(object):
             dict[attributeName] = False
 
     def serializeProperty(self, dict, propertyName, defaultValue = None):
-        'read a named property'
+        """read a named property."""
         element = self.getChild(propertyName, True)
         if element:
             dict[propertyName] = self.getNodeValue(element)
@@ -70,7 +72,7 @@ class XmlReader(object):
             dict[propertyName] = defaultValue
 
     def serializeBoolean(self, dict, propertyName):
-        'read a named boolean property'
+        """read a named boolean property."""
         element = self.getChild(propertyName, True)
         if element:
             dict[propertyName] = self.stringToBoolean(self.getNodeValue(element))
@@ -78,7 +80,7 @@ class XmlReader(object):
             dict[propertyName] = False
 
     def serializeList(self, dict, vectorName, itemName):
-        'read a list of elements'
+        """read a list of elements."""
         vectorElement = self.getChild(vectorName)
         itemElements = vectorElement.getElementsByTagName(itemName)
         dict[vectorName] = []
@@ -95,7 +97,7 @@ class XmlReader(object):
                 dict[dictName][childNode.nodeName] = self.getNodeValue(childNode)
 
     def serializeObject(self, dict, objectClass):
-        'load a Serializable object'
+        """load a Serializable object."""
         objectElement = self.getChild(objectClass.__name__)
         objectInstance = objectClass()
         self.node = objectElement
@@ -105,7 +107,7 @@ class XmlReader(object):
         dict[objectInstance.key()] = objectInstance
 
     def serializeObjectList(self, dict, objectClass):
-        'load a list of Serializable objects'
+        """load a list of Serializable objects."""
         listElement = self.getChild(objectClass.groupName)
         itemElements = listElement.getElementsByTagName(objectClass.__name__)
         dict[objectClass.groupName] = []
@@ -137,7 +139,7 @@ class XmlReader(object):
         dict[objectClass.__name__ + 'Keys'] = []
         for childNode in dictElement.childNodes:
             if childNode.nodeName == '#text': continue
-            objectInstance = Factory.Factory.getInstance().makeObject(childNode.nodeName)
+            objectInstance = factory.Factory.getInstance().makeObject(childNode.nodeName)
             self.node = childNode
             objectInstance.serialize(self)
             objectInstance.postSerialize()
@@ -182,7 +184,7 @@ class XmlReader(object):
             dict[objectInstance.key()] = objectInstance
 
     def getChild(self, tagName, allowNone = False):
-        'get single named child of current node'
+        """get single named child of current node."""
         for childNode in self.node.childNodes:
             if childNode.nodeName == tagName:
                 return childNode
@@ -190,7 +192,7 @@ class XmlReader(object):
             self.abort('no element with name "%s"' % tagName)
 
     def getNodeValue(self, node):
-        'get value of text node'
+        """get value of text node."""
         if node.nodeType == xml.dom.Node.ELEMENT_NODE \
         and len(node.childNodes) == 1 \
         and node.firstChild.nodeType == xml.dom.Node.TEXT_NODE:
@@ -199,7 +201,7 @@ class XmlReader(object):
             self.abort('error processing node "%s"' % node.nodeName)
 
     def stringToBoolean(self, str):
-        'convert text string to boolean'
+        """convert text string to boolean."""
         if str.lower() == common.TRUE:
             return True
         elif str.lower() == common.FALSE:
@@ -208,13 +210,13 @@ class XmlReader(object):
             self.abort('unable to convert string "%s" to boolean' % str)
 
     def isTextNode(self, node):
-        'return True for element node with single child text node'
+        """return True for element node with single child text node."""
         return node.nodeType == xml.dom.Node.ELEMENT_NODE \
         and len(node.childNodes) == 1 \
         and node.firstChild.nodeType == xml.dom.Node.TEXT_NODE
 
     def abort(self, errorMessage):
-        'identify the xml document before failing'
+        """identify the xml document before failing."""
         sys.exit('error loading XML document %s : %s' 
             % (self.documentName, errorMessage))
 

@@ -17,14 +17,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'addins'
+"""generate source code for Excel addin."""
 
-import Addin
-import Config
-import OutputFile
-import Function
+import addin
+import config
+import outputfile
+import function
 import common
-import Log
+import log
 
 # constants
 
@@ -42,55 +42,56 @@ RET_XLOPER = """        static XLOPER xRet;
         ObjHandler::%sToXloper(xRet, returnValue);
         return &xRet;"""
 
-class AddinExcel(Addin.Addin):
-    'generate source code for Excel addin'
+class AddinExcel(addin.Addin):
+    """generate source code for Excel addin."""
 
     def generate(self):
-        'generate source code for Excel addin'
-        Log.Log.getInstance().logMessage('  begin generating %s...' % self.name)
+        """generate source code for Excel addin."""
+        log.Log.getInstance().logMessage('  begin generating %s...' % self.name)
         self.generateFuncRegisters()
         self.generateFuncDefs()
-        Log.Log.getInstance().logMessage('  done generating %s.' % self.name)
+        log.Log.getInstance().logMessage('  done generating %s.' % self.name)
 
     def generateFuncDefs(self):
-        'generate source code for function bodies'
-        for category in Config.Config.getInstance().getCategories(self.platformId):
+        """generate source code for function bodies."""
+        for category in config.Config.getInstance().getCategories(self.platformId):
             if category.headerOnly:
                 continue
-            fileFunc = OutputFile.OutputFile(self.rootDirectory + category.name + '.cpp')
+            fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
             fileFunc.write(self.bufferIncludes.text % category.name)
-            for function in category.getFunctions(self.platformId): 
-                if isinstance(function, Function.Constructor):
-                    self.generateConstructor(fileFunc, function)
+            for func in category.getFunctions(self.platformId): 
+                if isinstance(func, function.Constructor):
+                    self.generateConstructor(fileFunc, func)
                 else:
-                    self.generateMember(fileFunc, function)
+                    self.generateMember(fileFunc, func)
             fileFunc.close()
 
-    def generateConstructor(self, fileFunc, function):
-        'generate source code for body of constructor function'
+    def generateConstructor(self, fileFunc, func):
+        """generate source code for body of constructor function."""
         functionDeclaration = self.generateCode(self.functionDeclaration, 
-            function.Parameters)
-        libraryCall = self.generateCode(self.libraryCall, function.Parameters)
-        conversions = self.generateConversions(function.Parameters)
-        fileFunc.write(self.bufferConstructor.text % (function.name, functionDeclaration, 
-            conversions, function.libraryFunction, libraryCall, function.name))
+            func.Parameters)
+        libraryCall = self.generateCode(self.libraryCall, func.Parameters)
+        conversions = self.generateConversions(func.Parameters)
+        fileFunc.write(self.bufferConstructor.text % (func.name, functionDeclaration, 
+            conversions, func.libraryFunction, libraryCall, func.name))
 
-    def generateMember(self, fileFunc, function):
-        'generate source code for body of member function'
+    def generateMember(self, fileFunc, func):
+        """generate source code for body of member function."""
         functionDeclaration = self.generateCode(self.functionDeclaration, 
-            function.Parameters)
-        functionReturnType = self.functionReturnType.apply(function.returnValue)
-        functionReturnCommand = self.getReturnCommand(function.returnValue)
+            func.Parameters)
+        functionReturnType = self.functionReturnType.apply(func.returnValue)
+        functionReturnCommand = self.getReturnCommand(func.returnValue)
         libraryCall = self.generateCode(self.libraryCall, 
-            function.Parameters, True, True)
-        libraryReturnType = self.libraryReturnType.apply(function.returnValue)
-        conversions = self.generateConversions(function.Parameters)
+            func.Parameters, True, True)
+        libraryReturnType = self.libraryReturnType.apply(func.returnValue)
+        conversions = self.generateConversions(func.Parameters)
         fileFunc.write(self.bufferMember.text %
-            (functionReturnType, function.name, functionDeclaration, conversions, 
-            function.libraryClass, function.libraryClass, libraryReturnType, 
-            function.accessLibFunc, libraryCall, functionReturnCommand, function.name))
+            (functionReturnType, func.name, functionDeclaration, conversions, 
+            func.libraryClass, func.libraryClass, libraryReturnType, 
+            func.accessLibFunc, libraryCall, functionReturnCommand, func.name))
 
     def getReturnCommand(self, returnValue):
+        """derive return statement for function."""
         if returnValue.tensorRank == common.SCALAR:
             if returnValue.type == common.STRING:
                 return RET_STRING
@@ -101,7 +102,7 @@ class AddinExcel(Addin.Addin):
         return RET_XLOPER % (returnValue.tensorRank)
 
     def formatLine(self, text, comment, lastParameter = False):
-        'format a line of text for the function register code'
+        """format a line of text for the function register code."""
         if len(text) >= MAXLEN:
             raise ValueError, MAXLENERR + text
         if lastParameter:
@@ -111,54 +112,54 @@ class AddinExcel(Addin.Addin):
         str1 = REGLINE % (len(text), text, suffix)
         return '%-45s// %s\n' % (str1, comment)
 
-    def generateParamString(self, function):
-        'generate string to register function parameters'
-        paramStr = self.xlRegisterReturn.apply(function.returnValue)
-        if isinstance(function, Function.Constructor):
+    def generateParamString(self, func):
+        """generate string to register function parameters."""
+        paramStr = self.xlRegisterReturn.apply(func.returnValue)
+        if isinstance(func, function.Constructor):
             paramStr += 'C'
-        for param in function.Parameters:
+        for param in func.Parameters:
             paramStr += self.xlRegisterParam.apply(param)
         paramStr += '#'
         return paramStr
 
-    def generateFuncRegister(self, fileHeader, function):
-        'generate call to xlfRegister for given function'
+    def generateFuncRegister(self, fileHeader, func):
+        """generate call to xlfRegister for given function."""
         # We call xlfRegister with NUMDESC parameters to describe the function
         # +1 additional parm to describe each parm in function being registered.
-        numRegisterParams = NUMDESC + function.ParameterCount
-        paramStr = self.generateParamString(function)
+        numRegisterParams = NUMDESC + func.ParameterCount
+        paramStr = self.generateParamString(func)
         paramList = ''
         i = 0
-        for param in function.Parameters:
+        for param in func.Parameters:
             i += 1
             paramList += self.xlListParams.apply(param)
-            if i < function.ParameterCount:
+            if i < func.ParameterCount:
                 paramList += ','
-        if isinstance(function, Function.Constructor): # extra parameter for object handle
+        if isinstance(func, function.Constructor): # extra parameter for object handle
             paramList = "handle," + paramList
             numRegisterParams += 1
         if numRegisterParams > MAXPARAM:
             raise ValueError, MAXPARAMERR
         fileHeader.write('        Excel(xlfRegister, 0, %d, &xDll,\n' % numRegisterParams)
-        fileHeader.write(self.formatLine(function.name, 'function code name'))
+        fileHeader.write(self.formatLine(func.name, 'function code name'))
         fileHeader.write(self.formatLine(paramStr, 'parameter codes'))
-        fileHeader.write(self.formatLine(function.name, 'function display name'))
+        fileHeader.write(self.formatLine(func.name, 'function display name'))
         fileHeader.write(self.formatLine(paramList, 'comma-delimited list of parameters'))    
         fileHeader.write(self.formatLine('1', 'function type (0 = hidden function, 1 = worksheet function, 2 = command macro)'))
-        fileHeader.write(self.formatLine(function.functionCategory, 'function category'))
+        fileHeader.write(self.formatLine(func.functionCategory, 'function category'))
         fileHeader.write(self.formatLine('', 'shortcut text (command macros only)'))
         fileHeader.write(self.formatLine('', 'path to help file'))
-        if function.Parameters:
-            fileHeader.write(self.formatLine(function.description, 'function description'))
+        if func.Parameters:
+            fileHeader.write(self.formatLine(func.description, 'function description'))
             i = 0
-            if isinstance(function, Function.Constructor):
+            if isinstance(func, function.Constructor):
                 fileHeader.write(self.formatLine('handle of new object', 'description param 0'))
                 i += 1
             j = 1
             lastParameter = False
-            for param in function.Parameters:
+            for param in func.Parameters:
                 desc = param.description
-                if j >= function.ParameterCount:                
+                if j >= func.ParameterCount:                
                     lastParameter = True
                     # append 2 spaces to description of last parameter to work around bug 
                     # in Excel which causes description to be corrupted when displayed 
@@ -168,17 +169,17 @@ class AddinExcel(Addin.Addin):
                 i += 1
                 j += 1
         else:
-            fileHeader.write(self.formatLine(function.description, 'function description', True))
+            fileHeader.write(self.formatLine(func.description, 'function description', True))
         fileHeader.write('\n')
 
     def generateFuncRegisters(self):
-        'generate source code to register functions'
-        fileHeader = OutputFile.OutputFile(self.rootDirectory + ADDIN)
+        """generate source code to register functions."""
+        fileHeader = outputfile.OutputFile(self.rootDirectory + ADDIN)
         fileHeader.write(self.bufferRegHeader.text)
-        for category in Config.Config.getInstance().getCategories(self.platformId):
+        for category in config.Config.getInstance().getCategories(self.platformId):
             fileHeader.write('        // %s\n\n' % category.displayName)
-            for function in category.getFunctions(self.platformId): 
-                self.generateFuncRegister(fileHeader, function)
+            for func in category.getFunctions(self.platformId): 
+                self.generateFuncRegister(fileHeader, func)
         fileHeader.write(self.bufferRegFooter.text)
         fileHeader.close()
 

@@ -17,13 +17,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'output doxygen documentation files'
+"""generate doxygen documentation files."""
 
-import Addin
-import Config
-import OutputFile
+import addin
+import config
+import outputfile
 import common
-import Log
+import log
 
 # constants
 
@@ -33,26 +33,26 @@ LINE_SECTION = '    \\section enum_%d %s\n'
 LINE_TABLE = """    <table>\n
     <tr><td><b>String</b></td><td><b>Enumeration</b></td></tr>\n"""
 
-class AddinDoxygen(Addin.Addin):
-    'generate doxygen documentation files'
+class AddinDoxygen(addin.Addin):
+    """generate doxygen documentation files."""
 
     def generate(self):
-        'generate doxygen documentation files'
-        Log.Log.getInstance().logMessage('  begin generating Doxygen ...')
+        """generate doxygen documentation files."""
+        log.Log.getInstance().logMessage('  begin generating Doxygen ...')
         self.generateDocs()
         self.generateEnums()
         self.generateCategoryDoc()
-        Log.Log.getInstance().logMessage('  done generating Doxygen.')
+        log.Log.getInstance().logMessage('  done generating Doxygen.')
 
     def generateEnums(self):
-        'generate documentation for enumerations'
-        fileDoc = OutputFile.OutputFile(self.rootDirectory + 'enums.docs')
+        """generate documentation for enumerations."""
+        fileDoc = outputfile.OutputFile(self.rootDirectory + 'enums.docs')
         fileDoc.write(self.bufferEnumerations.text)
-        for i in xrange(len(Config.Config.getInstance().Enumerations)):
+        for i in xrange(len(config.Config.getInstance().Enumerations)):
             fileDoc.write(LINE_REF % i)
         fileDoc.write('\n')
         i = 0
-        for enumeration in Config.Config.getInstance().getEnumerations():
+        for enumeration in config.Config.getInstance().getEnumerations():
             fileDoc.write(LINE_SECTION % (i, enumeration.type))
             i += 1
             fileDoc.write(LINE_TABLE)
@@ -62,30 +62,30 @@ class AddinDoxygen(Addin.Addin):
         fileDoc.write('*/\n\n')
         fileDoc.close()
 
-    def generateFunctionDoc(self, fileFunc, function):
-        'generate documentation for given function'
-        functionDoc = self.generateCode(self.functionDocs, function.Parameters)
-        retCode = self.functionReturnCode.apply(function.returnValue)
-        fileFunc.write('\\anchor %s \\b %s\n' % (function.name, function.name))
+    def generateFunctionDoc(self, fileFunc, func):
+        """generate documentation for given function."""
+        functionDoc = self.generateCode(self.functionDocs, func.Parameters)
+        retCode = self.functionReturnCode.apply(func.returnValue)
+        fileFunc.write('\\anchor %s \\b %s\n' % (func.name, func.name))
         fileFunc.write('\\code\n')
         fileFunc.write(retCode + '\n')
-        fileFunc.write('%s(%s)\n' % (function.name, functionDoc))
+        fileFunc.write('%s(%s)\n' % (func.name, functionDoc))
         fileFunc.write('\\endcode\n')
         fileFunc.write('\\par Description:\n')
-        fileFunc.write(function.description)
+        fileFunc.write(func.description)
         fileFunc.write('\n')
-        for param in function.Parameters:
+        for param in func.Parameters:
             fileFunc.write('\\param %s %s\n' % (param.name, param.description))
-        fileFunc.write('\\return %s\n\n' % function.returnValue.description)
+        fileFunc.write('\\return %s\n\n' % func.returnValue.description)
 
     def generateCategoryDoc(self):
-        'generate page summarizing functions'
-        fileDoc = OutputFile.OutputFile(self.rootDirectory + 'categories.docs')
+        """generate page listing function categories."""
+        fileDoc = outputfile.OutputFile(self.rootDirectory + 'categories.docs')
         fileDoc.write(self.bufferCategories.text)
         # ensure list of links is sorted alphabetically by display name
         dispNmToCatNm = {}
         displayNames = []
-        for category in Config.Config.getInstance().getCategories('*'):
+        for category in config.Config.getInstance().getCategories('*'):
             dispNmToCatNm[category.displayName] = category.name
             displayNames.append(category.displayName)
         displayNames.sort()
@@ -95,8 +95,8 @@ class AddinDoxygen(Addin.Addin):
         fileDoc.close()
 
     def generateFunctionList(self, allFuncs):
-        'generate alphabetical list of links to all functions'
-        fileDoc = OutputFile.OutputFile(self.rootDirectory + 'all.docs')
+        """generate alphabetical list of links to all functions."""
+        fileDoc = outputfile.OutputFile(self.rootDirectory + 'all.docs')
         fileDoc.write(self.bufferHeader.text)
         allFuncs.sort()
         for func in allFuncs:
@@ -105,20 +105,20 @@ class AddinDoxygen(Addin.Addin):
         fileDoc.close()
 
     def generateDocs(self):
-        'generate doxygen documentation files'
+        """generate doxygen documentation files."""
         allFuncs = []
-        for category in Config.Config.getInstance().getCategories('*'):
-            fileDoc = OutputFile.OutputFile(self.rootDirectory + category.name + '.docs')
+        for category in config.Config.getInstance().getCategories('*'):
+            fileDoc = outputfile.OutputFile(self.rootDirectory + category.name + '.docs')
             fileDoc.write('/*! \page %s %s\n' % (category.name, category.displayName))
             fileDoc.write('\\section overview Overview\n')
             fileDoc.write('%s\n' % category.description)
             fileDoc.write('\\section functionlist Function List\n')
-            for function in category.getFunctions('*'): 
-                fileDoc.write('\\ref %s ()\\n\n' % function.name)
-                allFuncs.append(function.name)
+            for func in category.getFunctions('*'): 
+                fileDoc.write('\\ref %s ()\\n\n' % func.name)
+                allFuncs.append(func.name)
             fileDoc.write('\\section documentation Function Documentation\n')
-            for function in category.getFunctions('*'): 
-                self.generateFunctionDoc(fileDoc, function)
+            for func in category.getFunctions('*'): 
+                self.generateFunctionDoc(fileDoc, func)
             fileDoc.write('*/\n\n')
             fileDoc.close()
         self.generateFunctionList(allFuncs)

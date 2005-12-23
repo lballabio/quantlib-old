@@ -15,21 +15,23 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-import Serializable
-import common
+"""class to encapsulate state and behavior for a named file buffer."""
 
-class Buffer(Serializable.Serializable):
-    'class to encapsulate state and behavior for a named file buffer'
+import common
+import serializable
+
+class Buffer(serializable.Serializable):
+    """class to encapsulate state and behavior for a named file buffer."""
 
     groupName = 'Buffers'
 
     def serialize(self, serializer):
-        'load/unload class state to/from serializer object'
+        """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self.__dict__, common.NAME)
         serializer.serializeAttribute(self.__dict__, common.FILE_NAME)
 
     def postSerialize(self):
-        'load the named buffer'
+        """load the named buffer."""
         fileBuffer = open(self.fileName)
         self.text = fileBuffer.read()
         fileBuffer.close()

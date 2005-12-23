@@ -1,6 +1,8 @@
 
 """
  Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,43 +17,43 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-'enumeration'
+"""encapsulate enumerations for a QuantLib datatype."""
 
-import Serializable
+import serializable
 import common
 
-class EnumerationDefinition(Serializable.Serializable):
-    'encapsulate a string/value mapping for a QuantLib enumeration'
+class EnumerationDefinition(serializable.Serializable):
+    """encapsulate a string/value mapping for a QuantLib enumeration."""
 
     groupName = 'EnumerationDefinitions'
 
     def serialize(self, serializer):
-        'load/unload class state to/from serializer object'
+        """load/unload class state to/from serializer object."""
         serializer.serializeProperty(self.__dict__, common.STRING)
         serializer.serializeProperty(self.__dict__, common.VALUE)
 
     def key(self):
-        'return unique identifier for this object'
+        """return unique identifier for this object."""
         return self.string
 
-class Enumeration(Serializable.Serializable):
-    'encapsulate enumerations for a QuantLib datatype'
+class Enumeration(serializable.Serializable):
+    """encapsulate enumerations for a QuantLib datatype."""
 
     groupName = 'Enumerations'
 
     def serialize(self, serializer):
-        'load/unload class state to/from serializer object'
+        """load/unload class state to/from serializer object."""
         serializer.serializeAttributeBoolean(self.__dict__, common.DOCUMENTATION_ONLY)
         serializer.serializeProperty(self.__dict__, common.TYPE)
         serializer.serializeBoolean(self.__dict__, common.CONSTRUCTOR)
         serializer.serializeObjectDict(self.__dict__, EnumerationDefinition)
 
     def key(self):
-        'return unique identifier for this object'
+        """return unique identifier for this object."""
         return self.type
 
     def getEnumerationDefinitions(self):
-        'serve up enumeration definition objects alphabetically by name'
+        """serve up enumeration definition objects alphabetically by name."""
         for enumDefKey in self.EnumerationDefinitionKeys:
             yield self.EnumerationDefinitions[enumDefKey]
 
