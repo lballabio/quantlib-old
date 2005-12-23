@@ -33,73 +33,73 @@
 			Name="scripts"
 			Filter="">
 			<File
-				relativepath="addincalc.py">
+				RelativePath="addincalc.py">
 			</File>
 			<File
-				relativepath="addinc.py">
+				RelativePath="addinc.py">
 			</File>
 			<File
-				relativepath="addindoxygen.py">
+				RelativePath="addindoxygen.py">
 			</File>
 			<File
-				relativepath="addinexcel.py">
+				RelativePath="addinexcel.py">
 			</File>
 			<File
-				relativepath="addinguile.py">
+				RelativePath="addinguile.py">
 			</File>
 			<File
-				relativepath="addin.py">
+				RelativePath="addin.py">
 			</File>
 			<File
-				relativepath="addinqla.py">
+				RelativePath="addinqla.py">
 			</File>
 			<File
-				relativepath="buffer.py">
+				RelativePath="buffer.py">
 			</File>
 			<File
-				relativepath="category.py">
+				RelativePath="category.py">
 			</File>
 			<File
-				relativepath="common.py">
+				RelativePath="common.py">
 			</File>
 			<File
-				relativepath="config.py">
+				RelativePath="config.py">
 			</File>
 			<File
-				relativepath="enumeration.py">
+				RelativePath="enumeration.py">
 			</File>
 			<File
-				relativepath="factory.py">
+				RelativePath="factory.py">
 			</File>
 			<File
-				relativepath="function.py">
+				RelativePath="function.py">
 			</File>
 			<File
-				relativepath="log.py">
+				RelativePath="log.py">
 			</File>
 			<File
-				relativepath="outputfile.py">
+				RelativePath="outputfile.py">
 			</File>
 			<File
-				relativepath="parameter.py">
+				RelativePath="parameter.py">
 			</File>
 			<File
-				relativepath="rule.py">
+				RelativePath="rule.py">
 			</File>
 			<File
-				relativepath="serializable.py">
+				RelativePath="serializable.py">
 			</File>
 			<File
-				relativepath="singleton.py">
+				RelativePath="singleton.py">
 			</File>
 			<File
-				relativepath="srcgen.py">
+				RelativePath="srcgen.py">
 			</File>
 			<File
-				relativepath="utils.py">
+				RelativePath="utils.py">
 			</File>
 			<File
-				relativepath="xmlreader.py">
+				RelativePath="xmlreader.py">
 			</File>
 		</Filter>
 		<Filter
