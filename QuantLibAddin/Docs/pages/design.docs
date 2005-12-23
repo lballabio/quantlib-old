@@ -51,7 +51,7 @@
 <dt>\ref sec_6</dt>
 </dl></div>
 \section sec_1 1. Design
-<div class="center"><img src="quep012a.png"></div>
+<div class="center"><img src="../images/quep012a.png"></div>
 <p>QuantLibAddin uses ObjectHandler to allow the user to build up a repository of QuantLib objects.  Each QuantLib class to be available in QuantLibAddin is wrapped in a class descended from Object.  All calls to QuantLibAddin - constructors and member functions of the Objects - are wrapped in a function layer.</p>
 <p>The core QuantLibAddin library can be loaded directly into standalone C++ programs.  For other platforms, QuantLibAddin is wrapped in an additional layer providing platform-specific functionality.  QuantLibAddin has the same interface on all platforms.</p>
 \section sec_1_1 1.1 Classes
@@ -332,11 +332,11 @@ int main() {
 }
 \endcode
 <p>Output of the above program:</p>
-<div class="center"><img src="quep012d.png"></div>
+<div class="center"><img src="../images/quep012d.png"></div>
 \section sec_2_4_2 2.4.2 Excel
-<div class="center"><img src="quep012b.png"></div>
+<div class="center"><img src="../images/quep012b.png"></div>
 <p>Same again with cell formulas instead of values:</p>
-<div class="center"><img src="quep012c.png"></div>
+<div class="center"><img src="../images/quep012c.png"></div>
 <p>A description of each section of the spreadsheet:</p>
 <ul>
 <li><b>Construct an object from native datatypes:</b> Cell formula QL_BLACKSCHOLES is called to construct a BlackScholes object from numeric values.  The Addin automatically sets the <tt>Handle</tt> of the object equal to  the address of the calling cell.</li>

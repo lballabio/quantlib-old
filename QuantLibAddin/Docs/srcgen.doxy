@@ -4,7 +4,7 @@
 ## Project related configuration options
 ##---------------------------------------------------------------------------
 
-PROJECT_NAME           = QuantLibAddin
+PROJECT_NAME           = srcgen
 PROJECT_NUMBER         = qla_version
 OUTPUT_DIRECTORY       = 
 CREATE_SUBDIRS         = NO
@@ -16,8 +16,8 @@ ABBREVIATE_BRIEF       =
 ALWAYS_DETAILED_SEC    = NO
 INLINE_INHERITED_MEMB  = YES
 FULL_PATH_NAMES        = YES
-STRIP_FROM_PATH        = qla_basepath
-STRIP_FROM_INC_PATH    = qla_basepath
+STRIP_FROM_PATH        = qla_basepath/srcgen
+STRIP_FROM_INC_PATH    = qla_basepath/srcgen
 SHORT_NAMES            = NO
 JAVADOC_AUTOBRIEF      = NO
 MULTILINE_CPP_IS_BRIEF = NO
@@ -27,7 +27,7 @@ SEPARATE_MEMBER_PAGES  = NO
 TAB_SIZE               = 8
 ALIASES                = 
 OPTIMIZE_OUTPUT_FOR_C  = NO
-OPTIMIZE_OUTPUT_JAVA   = NO
+OPTIMIZE_OUTPUT_JAVA   = YES
 DISTRIBUTE_GROUP_DOC   = NO
 SUBGROUPING            = YES
 
@@ -78,14 +78,14 @@ WARN_LOGFILE           = doxywarnings.txt
 # configuration options related to the input files
 #---------------------------------------------------------------------------
 
-INPUT                  = ./pages ../qla
-FILE_PATTERNS          = *.docs *.hpp
+INPUT                  = ../srcgen
+FILE_PATTERNS          = *.py
 RECURSIVE              = YES
 EXCLUDE                = 
 EXCLUDE_SYMLINKS       = NO
 EXCLUDE_PATTERNS       = 
-EXAMPLE_PATH           = ../Clients/C++
-EXAMPLE_PATTERNS       = *.cpp
+EXAMPLE_PATH           =
+EXAMPLE_PATTERNS       =
 EXAMPLE_RECURSIVE      = NO
 IMAGE_PATH             = 
 INPUT_FILTER           = 
@@ -117,7 +117,7 @@ IGNORE_PREFIX          =
 #---------------------------------------------------------------------------
 
 GENERATE_HTML          = NO
-HTML_OUTPUT            = html/qla
+HTML_OUTPUT            = html/srcgen
 HTML_FILE_EXTENSION    = .html
 HTML_HEADER            = qla_header.html
 HTML_FOOTER            = qla_footer.html
