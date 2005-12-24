@@ -33,8 +33,7 @@ def usage():
     errorMessage = 'usage: ' + sys.argv[0] + """ -[targets]
     where [targets] is any of:
         q - generate source for QuantLibAddin
-        e - generate source for Excel addin (dynamic)
-        s - generate source for Excel addin (static)
+        e - generate source for Excel addin
         o - generate source for OpenOffice.org Calc addin
         c - generate source for C addin
         g - generate source for Guile addin

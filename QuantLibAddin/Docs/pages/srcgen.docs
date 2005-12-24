@@ -30,8 +30,7 @@ srcgen.py accepts the following command line arguments:
 
 <table>
 <tr><td>-q</td><td>generate source for %QuantLibAddin</td></tr>
-<tr><td>-e</td><td>generate source for Excel addin (dynamic)</td></tr>
-<tr><td>-s</td><td>generate source for Excel addin (static)</td></tr>
+<tr><td>-e</td><td>generate source for Excel addin</td></tr>
 <tr><td>-o</td><td>generate source for OpenOffice.org Calc addin</td></tr>
 <tr><td>-c</td><td>generate source for C addin</td></tr>
 <tr><td>-g</td><td>generate source for Guile addin</td></tr>
