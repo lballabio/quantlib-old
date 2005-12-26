@@ -162,7 +162,7 @@
     \verbatim
     make docs
     \endverbatim
-    ... then point your browser at file <strong>%QuantLibAddin/Docs/html/index.html</strong>.
+    ... then point your browser at file <strong>%QuantLibAddin/Docs/html/qla/index.html</strong>.
 
 */
 
