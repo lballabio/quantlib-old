@@ -90,6 +90,9 @@
 				RelativePath="serializable.py">
 			</File>
 			<File
+				RelativePath="serializer.py">
+			</File>
+			<File
 				RelativePath="singleton.py">
 			</File>
 			<File

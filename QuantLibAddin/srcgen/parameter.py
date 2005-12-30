@@ -23,7 +23,14 @@ relating to a function parameter."""
 import common
 import serializable
 
-class Parameter(serializable.Serializable):
+class Value(serializable.Serializable):
+    """Represent any value which may be passed to or received from a Function.
+
+    This base class is presently empty and is included to clarify the class 
+    hierarchy."""
+    pass
+
+class Parameter(Value):
     """encapsulate state necessary to generate source code 
     relating to a function parameter."""
 
@@ -48,7 +55,7 @@ class Parameter(serializable.Serializable):
         else:
             self.needsConversion = True
 
-class ReturnValue(serializable.Serializable):
+class ReturnValue(Value):
     """encapsulate state necessary to generate source code 
     relating to a function return value."""
 
@@ -67,7 +74,7 @@ class ReturnValue(serializable.Serializable):
         serializer.serializeProperty(self.__dict__, common.TENSOR_RANK)
         serializer.serializeProperty(self.__dict__, common.DESCRIPTION)
 
-class ConstructorReturnValue(object):
+class ConstructorReturnValue(Value):
     """class to represent state shared by the return values
     of all constructors in QuantLibAddin"""
 

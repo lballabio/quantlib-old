@@ -38,9 +38,6 @@ class Rule(serializable.Serializable):
     code for a given function parameter in a given context."""
 
     groupName = 'Rules'
-    convExceptionsMap = {
-        'QuantLib::Date': lambda x: 'QuantLibAddin::createQLDate(%s)' % x
-    }
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
@@ -53,6 +50,9 @@ class RuleGroup(serializable.Serializable):
     """a collection of Rules for generating source code for function parameters."""
 
     groupName = 'RuleGroups'
+    convExceptionsMap = {
+        'QuantLib::Date': lambda x: 'QuantLibAddin::createQLDate(%s)' % x
+    }
 
     def __init__(self):
         """not all Rules will be populated for a given RuleGroup."""
@@ -150,8 +150,8 @@ class RuleGroup(serializable.Serializable):
 
     def setLibConversion(self):
         if self.ql_type and self.param.ql_type:
-            if Rule.convExceptionsMap.has_key(self.param.ql_type):
-                self.paramName = Rule.convExceptionsMap[self.param.ql_type](self.paramName)
+            if RuleGroup.convExceptionsMap.has_key(self.param.ql_type):
+                self.paramName = RuleGroup.convExceptionsMap[self.param.ql_type](self.paramName)
             else:
                 self.paramName = 'QuantLibAddin::Create<%s>()(%s)' % (self.param.ql_type, self.paramName)
 

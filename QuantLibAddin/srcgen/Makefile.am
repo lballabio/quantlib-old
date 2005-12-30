@@ -44,6 +44,7 @@ srcgen_pys :=   addincalc.py \
                 parameter.py \
                 rule.py \
                 serializable.py \
+                serializer.py \
                 singleton.py \
                 srcgen.py \
                 xmlreader.py

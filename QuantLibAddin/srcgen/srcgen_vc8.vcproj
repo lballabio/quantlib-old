@@ -122,6 +122,10 @@
 				>
 			</File>
 			<File
+				RelativePath="serializer.py"
+				>
+			</File>
+			<File
 				RelativePath="singleton.py"
 				>
 			</File>

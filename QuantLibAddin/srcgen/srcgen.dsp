@@ -131,6 +131,10 @@ source=serializable.py
 # End Source File
 # Begin Source File
 
+source=serializer.py
+# End Source File
+# Begin Source File
+
 source=singleton.py
 # End Source File
 # Begin Source File

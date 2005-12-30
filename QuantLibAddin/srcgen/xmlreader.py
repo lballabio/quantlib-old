@@ -20,12 +20,13 @@
 """A class which implements the (De)Serializer interface to deserialize
 a (De)Serializable object from an XML stream."""
 
+import serializer
 import factory
 import xml.dom.minidom
 import sys
 import common
 
-class XmlReader(object):
+class XmlReader(serializer.Serializer):
     """A class which implements the (De)Serializer interface to deserialize
     a (De)Serializable object from an XML stream."""
 
