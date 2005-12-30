@@ -19,163 +19,10 @@
 #ifndef quantlib_piecewise_flat_forward_i
 #define quantlib_piecewise_flat_forward_i
 
-%include date.i
-%include calendars.i
-%include daycounters.i
-%include cashflows.i
-%include marketelements.i
 %include termstructures.i
-%include types.i
-%include vectors.i
+%include ratehelpers.i
 
-%{
-using QuantLib::RateHelper;
-using QuantLib::DepositRateHelper;
-using QuantLib::FraRateHelper;
-using QuantLib::FuturesRateHelper;
-using QuantLib::SwapRateHelper;
-typedef boost::shared_ptr<RateHelper> DepositRateHelperPtr;
-typedef boost::shared_ptr<RateHelper> FraRateHelperPtr;
-typedef boost::shared_ptr<RateHelper> FuturesRateHelperPtr;
-typedef boost::shared_ptr<RateHelper> SwapRateHelperPtr;
-%}
-
-// rate helpers for curve bootstrapping
-%template(RateHelper) boost::shared_ptr<RateHelper>;
-
-%rename(DepositRateHelper) DepositRateHelperPtr;
-class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
-  public:
-    %extend {
-        DepositRateHelperPtr(
-                const Handle<Quote>& rate,
-                Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar, BusinessDayConvention convention,
-                const DayCounter& dayCounter) {
-            return new DepositRateHelperPtr(
-                new DepositRateHelper(rate,n,units,settlementDays,
-                                      calendar, convention,dayCounter));
-        }
-        DepositRateHelperPtr(
-                Rate rate, Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar, BusinessDayConvention convention,
-                const DayCounter& dayCounter) {
-            return new DepositRateHelperPtr(
-                new DepositRateHelper(rate,n,units,settlementDays,
-                                      calendar, convention,dayCounter));
-        }
-    }
-};
-
-%rename(FraRateHelper) FraRateHelperPtr;
-class FraRateHelperPtr : public boost::shared_ptr<RateHelper> {
-  public:
-    %extend {
-        FraRateHelperPtr(
-                const Handle<Quote>& rate,
-                Integer monthsToStart, Integer monthsToEnd,
-                Integer settlementDays,
-                const Calendar& calendar, BusinessDayConvention convention,
-                const DayCounter& dayCounter) {
-            return new FraRateHelperPtr(
-                new FraRateHelper(rate,monthsToStart,monthsToEnd,
-                                  settlementDays,calendar,convention,
-                                  dayCounter));
-        }
-        FraRateHelperPtr(
-                Rate rate,
-                Integer monthsToStart, Integer monthsToEnd,
-                Integer settlementDays,
-                const Calendar& calendar, BusinessDayConvention convention,
-                const DayCounter& dayCounter) {
-            return new FraRateHelperPtr(
-                new FraRateHelper(rate,monthsToStart,monthsToEnd,
-                                  settlementDays,calendar,convention,
-                                  dayCounter));
-        }
-    }
-};
-
-%rename(FuturesRateHelper) FuturesRateHelperPtr;
-class FuturesRateHelperPtr : public boost::shared_ptr<RateHelper> {
-  public:
-    %extend {
-        FuturesRateHelperPtr(
-                const Handle<Quote>& price,
-                const Date& immDate, Integer nMonths,
-                const Calendar& calendar, BusinessDayConvention convention,
-                const DayCounter& dayCounter) {
-            return new FuturesRateHelperPtr(
-                new FuturesRateHelper(price,immDate,nMonths,
-                                      calendar,convention,dayCounter));
-        }
-        FuturesRateHelperPtr(
-                Real price, const Date& immDate, Integer nMonths,
-                const Calendar& calendar, BusinessDayConvention convention,
-                const DayCounter& dayCounter) {
-            return new FuturesRateHelperPtr(
-                new FuturesRateHelper(price,immDate,nMonths,
-                                      calendar,convention,dayCounter));
-        }
-        FuturesRateHelperPtr(
-	            const Handle<Quote>& price,
-                const Date& immDate, const Date& matDate,
-                const Calendar& calendar, BusinessDayConvention convention,
-                const DayCounter& dayCounter) {
-            return new FuturesRateHelperPtr(
-                new FuturesRateHelper(price,immDate,matDate,
-                                      calendar,convention,dayCounter));
-        }
-    }
-};
-
-%rename(SwapRateHelper) SwapRateHelperPtr;
-class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
-  public:
-    %extend {
-        SwapRateHelperPtr(
-                const Handle<Quote>& rate,
-                Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar,
-                Frequency fixedFrequency,
-                BusinessDayConvention fixedConvention,
-                const DayCounter& fixedDayCount,
-                Frequency floatingFrequency,
-                BusinessDayConvention floatingConvention) {
-            return new SwapRateHelperPtr(
-                new SwapRateHelper(rate, n, units, settlementDays,
-                                   calendar, fixedFrequency, fixedConvention,
-                                   fixedDayCount, floatingFrequency,
-                                   floatingConvention));
-        }
-        SwapRateHelperPtr(
-                Rate rate, Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar,
-                Frequency fixedFrequency,
-                BusinessDayConvention fixedConvention,
-                const DayCounter& fixedDayCount,
-                Frequency floatingFrequency,
-                BusinessDayConvention floatingConvention) {
-            return new SwapRateHelperPtr(
-                new SwapRateHelper(rate, n, units, settlementDays,
-                                   calendar, fixedFrequency, fixedConvention,
-                                   fixedDayCount, floatingFrequency,
-                                   floatingConvention));
-        }
-    }
-};
-
-
-// allow use of RateHelper vectors
-#if defined(SWIGCSHARP)
-SWIG_STD_VECTOR_SPECIALIZE( RateHelper, boost::shared_ptr<RateHelper> )
-#endif
-namespace std {
-    %template(RateHelperVector) vector<boost::shared_ptr<RateHelper> >;
-}
-
-
-// the curve itself
+#if defined(VC6)
 
 %{
 using QuantLib::PiecewiseFlatForward;
@@ -204,7 +51,6 @@ class PiecewiseFlatForwardPtr : public boost::shared_ptr<YieldTermStructure> {
 	            new PiecewiseFlatForward(settlementDays, calendar,
                                          instruments, dayCounter, accuracy));
         }
-
         const std::vector<Date>& dates() {
             return boost::dynamic_pointer_cast<PiecewiseFlatForward>(*self)
                  ->dates();
@@ -215,6 +61,8 @@ class PiecewiseFlatForwardPtr : public boost::shared_ptr<YieldTermStructure> {
         }
     }
 };
+
+#endif
 
 
 #endif

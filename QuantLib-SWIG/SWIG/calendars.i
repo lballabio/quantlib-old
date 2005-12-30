@@ -116,11 +116,24 @@ class Calendar {
 
 namespace QuantLib {
 
-    class Beijing : public Calendar {};
-    class Bombay : public Calendar {};
-    class Bratislava : public Calendar {};
-    class Budapest : public Calendar {};
-    class Copenhagen : public Calendar {};
+    class Argentina : public Calendar {
+      public:
+        enum Market { Merval };
+        Argentina(Market m = Merval);
+    };
+
+    class Australia : public Calendar {};
+    class Canada : public Calendar {};
+    class China : public Calendar {};
+
+    class CzechRepublic : public Calendar {
+      public:
+        enum Market { PSE };
+        CzechRepublic(Market m = PSE);
+    };
+
+    class Denmark : public Calendar {};
+    class Finland : public Calendar {};
 
     class Germany : public Calendar {
       public:
@@ -128,8 +141,31 @@ namespace QuantLib {
         Germany(Market m = FrankfurtStockExchange);
     };
 
-    class Helsinki : public Calendar {};
-    class HongKong : public Calendar {};
+    class HongKong : public Calendar {
+      public:
+        enum Market { HKEx };
+        HongKong(Market m = HKEx);
+    };
+
+    class Hungary : public Calendar {};
+
+    class Iceland : public Calendar {
+      public:
+        enum Market { ICEX };
+        Iceland(Market m = ICEX);
+    };
+
+    class India : public Calendar {
+      public:
+        enum Market { NSE };
+        India(Market m = NSE);
+    };
+
+    class Indonesia : public Calendar {
+      public:
+        enum Market { BEJ };
+        Indonesia(Market m = BEJ);
+    };
 
     class Italy : public Calendar {
       public:
@@ -137,21 +173,56 @@ namespace QuantLib {
         Italy(Market m = Settlement);
     };
 
-    class Istanbul : public Calendar {};
-    class Johannesburg : public Calendar {};
-    class NullCalendar : public Calendar {};
-    class Oslo : public Calendar {};
-    class Prague : public Calendar {};
-    class Riyadh : public Calendar {};
-    class Seoul : public Calendar {};
-    class Singapore : public Calendar {};
-    class Stockholm : public Calendar {};
-    class Sydney : public Calendar {};
+    class Japan : public Calendar {};
+
+    class Mexico : public Calendar {
+      public:
+        enum Market { BMV };
+        Mexico(Market m = BMV);
+    };
+
+    class NewZealand : public Calendar {};
+    class Norway : public Calendar {};
+    class Poland : public Calendar {};
+    class SaudiArabia : public Calendar {};
+
+    class Singapore : public Calendar {
+      public:
+        enum Market { SGX };
+        Singapore(Market m = SGX);
+    };
+
+    class Slovakia : public Calendar {
+      public:
+        enum Market { BSSE };
+        Slovakia(Market m = BSSE);
+    };
+
+    class SouthAfrica : public Calendar {};
+
+    class SouthKorea : public Calendar {
+      public:
+        enum Market { KRX };
+        SouthKorea(Market m = KRX);
+    };
+
+    class Sweden : public Calendar {};
+    class Switzerland : public Calendar {};
+
+    class Taiwan : public Calendar {
+      public:
+        enum Market { TSEC };
+        Taiwan(Market m = TSEC);
+    };
+
     class TARGET : public Calendar {};
-    class Taipei : public Calendar {};
-    class Taiwan : public Calendar {};
-    class Tokyo : public Calendar {};
-    class Toronto : public Calendar {};
+    class Turkey : public Calendar {};
+
+    class Ukraine : public Calendar {
+      public:
+        enum Market { USE };
+        Ukraine(Market m = USE);
+    };
 
     class UnitedKingdom : public Calendar {
       public:
@@ -161,13 +232,37 @@ namespace QuantLib {
 
     class UnitedStates : public Calendar {
       public:
-        enum Market { Settlement, Exchange, GovernmentBond };
+        enum Market { Settlement, Exchange, NYSE, GovernmentBond };
         UnitedStates(Market m = Settlement);
     };
 
+
+    // old
+
+    class Beijing : public Calendar {};
+    class Bombay : public Calendar {};
+    class Bratislava : public Calendar {};
+    class Budapest : public Calendar {};
+    class Copenhagen : public Calendar {};
+    class Helsinki : public Calendar {};
+    class Istanbul : public Calendar {};
+    class Johannesburg : public Calendar {};
+    class Oslo : public Calendar {};
+    class Prague : public Calendar {};
+    class Riyadh : public Calendar {};
+    class Seoul : public Calendar {};
+    class Stockholm : public Calendar {};
+    class Sydney : public Calendar {};
+    class Taipei : public Calendar {};
+    class Tokyo : public Calendar {};
+    class Toronto : public Calendar {};
     class Warsaw : public Calendar {};
     class Wellington : public Calendar {};
     class Zurich : public Calendar {};
+
+    // others
+
+    class NullCalendar : public Calendar {};
 
     class JointCalendar : public Calendar {
       public:

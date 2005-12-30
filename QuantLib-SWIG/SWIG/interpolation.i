@@ -134,4 +134,21 @@ make_safe_interpolation2d(BilinearInterpolation,BilinearInterpolation);
 make_safe_interpolation2d(BicubicSpline,BicubicSpline);
 
 
+// interpolation traits
+
+%{
+using QuantLib::BackwardFlat;
+using QuantLib::ForwardFlat;
+using QuantLib::Linear;
+using QuantLib::LogLinear;
+using QuantLib::Cubic;
+%}
+
+struct BackwardFlat {};
+struct ForwardFlat {};
+struct Linear {};
+struct LogLinear {};
+struct Cubic {};
+
+
 #endif

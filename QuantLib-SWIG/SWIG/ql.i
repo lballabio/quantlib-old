@@ -100,6 +100,7 @@
 %include distributions.i
 %include exchangerates.i
 %include exercise.i
+%include forwardcurve.i
 %include functions.i
 %include grid.i
 %include history.i
@@ -119,7 +120,9 @@
 %include options.i
 %include payoffs.i
 %include piecewiseflatforward.i
+%include piecewiseyieldcurve.i
 %include randomnumbers.i
+%include ratehelpers.i
 %include rounding.i
 %include scheduler.i
 %include settings.i
@@ -132,6 +135,7 @@
 %include types.i
 %include vectors.i
 %include volatilities.i
+%include zerocurve.i
 
 // to be deprecated
 %include old_pricers.i

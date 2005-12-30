@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000-2005 StatPro Italia srl
+ Copyright (C) 2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,17 +15,17 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef quantlib_discount_curve_i
-#define quantlib_discount_curve_i
+#ifndef quantlib_forward_curve_i
+#define quantlib_forward_curve_i
 
 %include termstructures.i
 %include interpolation.i
 
 %{
-using QuantLib::InterpolatedDiscountCurve;
+using QuantLib::InterpolatedForwardCurve;
 %}
 
-%define export_discount_curve(Name,Interpolator)
+%define export_forward_curve(Name,Interpolator)
 
 %{
 typedef boost::shared_ptr<YieldTermStructure> Name##Ptr;
@@ -36,15 +36,15 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
   public:
     %extend {
         Name##Ptr(const std::vector<Date>& dates,
-                  const std::vector<DiscountFactor>& discounts,
+                  const std::vector<Rate>& forwards,
                   const DayCounter& dayCounter,
                   const Interpolator& i = Interpolator()) {
 	        return new Name##Ptr(
-	            new InterpolatedDiscountCurve<Interpolator>(dates,discounts,
-                                                            dayCounter,i));
+	            new InterpolatedForwardCurve<Interpolator>(dates,forwards,
+                                                           dayCounter,i));
         }
         const std::vector<Date>& dates() {
-            typedef InterpolatedDiscountCurve<Interpolator> Name;
+            typedef InterpolatedForwardCurve<Interpolator> Name;
             return boost::dynamic_pointer_cast<Name>(*self)->dates();
         }
     }
@@ -53,10 +53,10 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
 %enddef
 
 
-export_discount_curve(DiscountCurve,LogLinear);
+export_forward_curve(ForwardCurve,BackwardFlat);
 
 // add interpolations as you wish, e.g.,
-export_discount_curve(LinearDiscountCurve,Linear);
+export_forward_curve(LinearForwardCurve,Linear);
 
 
 

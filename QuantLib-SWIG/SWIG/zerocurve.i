@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000-2005 StatPro Italia srl
+ Copyright (C) 2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,17 +15,17 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef quantlib_discount_curve_i
-#define quantlib_discount_curve_i
+#ifndef quantlib_zero_curve_i
+#define quantlib_zero_curve_i
 
 %include termstructures.i
 %include interpolation.i
 
 %{
-using QuantLib::InterpolatedDiscountCurve;
+using QuantLib::InterpolatedZeroCurve;
 %}
 
-%define export_discount_curve(Name,Interpolator)
+%define export_zero_curve(Name,Interpolator)
 
 %{
 typedef boost::shared_ptr<YieldTermStructure> Name##Ptr;
@@ -36,15 +36,15 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
   public:
     %extend {
         Name##Ptr(const std::vector<Date>& dates,
-                  const std::vector<DiscountFactor>& discounts,
+                  const std::vector<Rate>& yields,
                   const DayCounter& dayCounter,
                   const Interpolator& i = Interpolator()) {
 	        return new Name##Ptr(
-	            new InterpolatedDiscountCurve<Interpolator>(dates,discounts,
-                                                            dayCounter,i));
+	            new InterpolatedZeroCurve<Interpolator>(dates,yields,
+                                                        dayCounter,i));
         }
         const std::vector<Date>& dates() {
-            typedef InterpolatedDiscountCurve<Interpolator> Name;
+            typedef InterpolatedZeroCurve<Interpolator> Name;
             return boost::dynamic_pointer_cast<Name>(*self)->dates();
         }
     }
@@ -53,10 +53,10 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
 %enddef
 
 
-export_discount_curve(DiscountCurve,LogLinear);
+export_zero_curve(ZeroCurve,Linear);
 
 // add interpolations as you wish, e.g.,
-export_discount_curve(LinearDiscountCurve,Linear);
+export_zero_curve(CubicZeroCurve,Cubic);
 
 
 
