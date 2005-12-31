@@ -56,53 +56,30 @@ extern "C" XLOPER* ohHandleList() {
     }
 }
 
-extern "C" XLOPER *ohFieldNames(char *handleObject) {
-    static XLOPER xRet;
-    xRet.val.array.lparray = 0;
+extern "C" XLOPER *ohPropertyNames(char *handleObject) {
     try {
-        Properties properties = queryObject(std::string(handleObject));
-        xRet.xltype = xltypeMulti | xlbitDLLFree;
-        xRet.val.array.rows = properties.size();
-        xRet.val.array.columns = 1;
-        xRet.val.array.lparray = new XLOPER[properties.size()];
-        if (!xRet.val.array.lparray)
-            throw std::exception("error on call to new");
-        for (unsigned int i=0; i<properties.size(); i++) {
-            ObjectProperty property = properties[i];
-            any_ptr a = property();
-            scalarToXloper(xRet.val.array.lparray[i], property.name());
-        }
-        return &xRet;
+        static XLOPER ret;
+        std::vector < std::string > propertyNames 
+            = ObjectHandler::instance().propertyNames(handleObject);
+        vectorToXloper(ret, propertyNames);
+        return &ret;
     } catch (const std::exception &e) {
-        logMessage(std::string("ERROR: ohFieldNames: ") + e.what(), 2);
-        if (xRet.val.array.lparray)
-            delete [] xRet.val.array.lparray;
+        logMessage(std::string("ERROR: ohPropertyNames: ") + e.what(), 2);
         return 0;
     }
 }
 
-extern "C" XLOPER *ohFieldValue(char *handleObject,
-        char *fieldName,
+extern "C" XLOPER *ohPropertyValue(char *handleObject,
+        char *propertyName,
         OPER *trigger) {
     try {
-        Properties properties = queryObject(std::string(handleObject));
-        static XLOPER xRet;
-        std::string fieldNameUpper = fieldName;
-        std::transform(fieldNameUpper.begin(), fieldNameUpper.end(),
-               fieldNameUpper.begin(), (int(*)(int)) toupper);
-        for (unsigned int i=0; i<properties.size(); i++) {
-            ObjectProperty property = properties[i];
-            any_ptr a = property();
-            if (property.name().compare(fieldNameUpper) == 0) {
-                scalarToXloper(xRet, *a, true);
-                return &xRet;
-            }
-        }
-        std::ostringstream err;
-        err << "no field with name " << fieldNameUpper;
-        throw std::exception(err.str().c_str());
+        static XLOPER ret;
+        boost::any propertyValue 
+            = ObjectHandler::instance().propertyValue(handleObject, propertyName);
+        scalarToXloper(ret, propertyValue);
+        return &ret;
     } catch (const std::exception &e) {
-        logMessage(std::string("ERROR: ohFieldValue: ") + e.what(), 2);
+        logMessage(std::string("ERROR: ohPropertyValue: ") + e.what(), 2);
         return 0;
     }
 }

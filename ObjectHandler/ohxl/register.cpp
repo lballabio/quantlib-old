@@ -55,29 +55,29 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x1A""list of all object handles"));// function description
 
     Excel(xlfRegister, 0, 11, &xDll,
-        TempStrNoSize("\x0C""ohFieldNames"),    // function code name
+        TempStrNoSize("\x0F""ohPropertyNames"), // function code name
         TempStrNoSize("\x02""RC"),              // parameter codes
-        TempStrNoSize("\x0C""ohFieldNames"),    // function display name
+        TempStrNoSize("\x0F""ohPropertyNames"), // function display name
         TempStrNoSize("\x06""handle"),          // comma-delimited list of parameters
         TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
-        TempStrNoSize("\x1A""display object field names"), // function description
+        TempStrNoSize("\x1D""display object property names"), // function description
         TempStrNoSize("\x20""handle of object to be queried  "));// description param 0
 
     Excel(xlfRegister, 0, 13, &xDll,
-        TempStrNoSize("\x0C""ohFieldValue"),// function code name
+        TempStrNoSize("\x0F""ohPropertyValue"),// function code name
         TempStrNoSize("\x04""RCCP"),    // parameter codes
-        TempStrNoSize("\x0C""ohFieldValue"),// function display name
-        TempStrNoSize("\x1E""handleObject,fieldName,trigger"),// comma-delimited list of parameters
+        TempStrNoSize("\x0F""ohPropertyValue"),// function display name
+        TempStrNoSize("\x21""handleObject,propertyName,trigger"),// comma-delimited list of parameters
         TempStrNoSize("\x01""1"),       // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
         TempStrNoSize("\x08""QuantLib"),// function category
         TempStrNoSize("\x00"""),        // shortcut text (command macros only)
         TempStrNoSize("\x00"""),        // path to help file
-        TempStrNoSize("\x23""retrieve the value of a named field"),// function description
+        TempStrNoSize("\x26""retrieve the value of a named property"),// function description
         TempStrNoSize("\x1E""handle of object to be queried"),// description param 0
-        TempStrNoSize("\x0D""name of field"),// description param 1
+        TempStrNoSize("\x10""name of property"),// description param 1
         TempStrNoSize("\x1D""dependency tracking trigger  "));// description param 2
 
     Excel(xlfRegister, 0, 11, &xDll,

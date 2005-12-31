@@ -47,6 +47,10 @@ namespace ObjHandler {
         return object->getProperties();
     }
 
+    const std::string version() {
+        return OBJHANDLER_VERSION;
+    }
+
     void setLogFile(
             const std::string &logFileName,
             const int &logLevel) {

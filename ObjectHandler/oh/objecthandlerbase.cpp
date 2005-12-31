@@ -20,7 +20,9 @@
     #include <oh/config.hpp>
 #endif
 #include <oh/objecthandlerbase.hpp>
+#include <oh/exception.hpp>
 #include <ostream>
+#include <sstream>
 
 namespace ObjHandler {
 
@@ -32,10 +34,25 @@ namespace ObjHandler {
 
     obj_ptr ObjectHandlerBase::retrieveObject(const std::string &handle) const {
         ObjectList::const_iterator result = objectList_.find(handle);
-        if (result!=objectList_.end())
+        if (result == objectList_.end()) {
+            std::ostringstream msg;
+            msg << "ObjectHandler error: attempt to retrieve object "
+                << "with unknown handle '" << handle << "'";
+            throw Exception(msg.str());
+        } else
             return result->second;
-        else
-            return obj_ptr();
+    }
+
+    const std::vector < std::string > ObjectHandlerBase::propertyNames(
+            const std::string &handle) const {
+        obj_ptr object = retrieveObject(handle);
+        return object->propertyNames();
+    }
+
+    const boost::any ObjectHandlerBase::propertyValue(const std::string &handle,
+            const std::string &propertyName) const {
+        obj_ptr object = retrieveObject(handle);
+        return object->propertyValue(propertyName);
     }
 
     void ObjectHandlerBase::deleteObject(const std::string &handle) {
@@ -55,11 +72,11 @@ namespace ObjHandler {
         }
     }
 
-    int ObjectHandlerBase::objectCount() {
+    const int ObjectHandlerBase::objectCount() {
         return objectList_.size();
     }
 
-    std::vector < std::string > ObjectHandlerBase::handleList() {
+    const std::vector < std::string > ObjectHandlerBase::handleList() {
         std::vector < std::string > handleList;
         for (ObjectList::const_iterator i=objectList_.begin();
             i!=objectList_.end(); i++)

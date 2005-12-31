@@ -65,8 +65,7 @@ namespace ObjHandler {
         //@{
         //! Default constructor.
         /*! Construct an Object.
-            To store the resulting Object 
-            in the ObjectHandler, call
+            To store the resulting Object in the ObjectHandler, call
                 ObjectHandler::instance().storeObject(handle, object);
         */
         Object() {};
@@ -76,25 +75,25 @@ namespace ObjHandler {
         //! \name Object interrogation
         //@{
         //! Acquire a reference to underlying Object.
-        /*! Returns a reference to the client object
-            stored in the Object.
-            This is a shared pointer to void which
-            must be recast appropriately.
+        /*! Returns a reference to the client object stored in the Object.
+            This is a shared pointer to void which must be recast appropriately.
         */
         virtual boost::shared_ptr<void> getReference() const = 0;
         //! Return the Object's property vector.
-        /*! Returns the property vector
-            describing the underlying Object.
+        /*! Returns the property vector describing the underlying Object.
         */
         const Properties& getProperties() const;
+        //! Retrieve vector of property names.
+        /*! Returns empty vector if Object has no properties.
+        */
+        const std::vector < std::string > propertyNames() const;
+        //! Retrieve value of given property.
+        /*! Throws exception if Object has no property by that name.
+        */
+        const boost::any propertyValue(const std::string &propertyName) const;
 
         friend std::ostream &operator<<(std::ostream&, const Object &object);
         //@}
-
-        template < class T >
-        T getProperty(const int &index, const T &dummy) {
-            return boost::any_cast<T>(*properties_[index]());
-        }
     protected:
         template < class T >
         void createProperty(const std::string &name, const T &value) {
@@ -116,15 +115,13 @@ namespace ObjHandler {
 
     /*! \relates Object */
     //! any_ptr ostream operator.
-    /*! Write contents of boost::any
-        to output stream.
+    /*! Write contents of boost::any to output stream.
     */
     std::ostream& operator<<(std::ostream& out, const boost::any& any);
 
     /*! \relates Object */
     //! obj_ptr ostream operator.
-    /*! Write contents of Object Property vector
-        to output stream.
+    /*! Write contents of Object Property vector to output stream.
     */
 
     std::ostream& operator<<(std::ostream& out, const Object &object);
@@ -136,20 +133,6 @@ namespace ObjHandler {
             out << *i << std::endl;
         return out;       
     }
-
-/*
-    template < typename T >
-    std::ostream& operator<<(std::ostream& out, 
-            std::vector < std::vector < T > > &vv) {
-        out << std::endl;
-        for (typename std::vector < std::vector< T > >::const_iterator i = vv.begin();
-                i != vv.end(); i++) {
-            std::vector< T > v = *i;
-            out << v << std::endl;
-        }
-        return out;       
-    }
-*/
 
 }
 

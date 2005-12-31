@@ -21,11 +21,35 @@
 #include <oh/object.hpp>
 #include <oh/exception.hpp>
 #include <iomanip>
+#include <sstream>
 
 namespace ObjHandler {
 
     const Properties& Object::getProperties() const {
         return properties_;
+    }
+
+    const std::vector < std::string > Object::propertyNames() const {
+        std::vector < std::string > ret;
+        Properties::const_iterator it;
+        for (it = properties_.begin(); it != properties_.end(); it++) {
+            ObjectProperty property = *it;
+            ret.push_back(property.name());
+        }
+        return ret;
+    }
+
+    const boost::any Object::propertyValue(const std::string &propertyName) const {
+        Properties::const_iterator it;
+        for (it = properties_.begin(); it != properties_.end(); it++) {
+            ObjectProperty property = *it;
+            if (property.name().compare(propertyName) == 0)
+                return *property();
+        }
+        std::ostringstream msg;
+        msg << "ObjectHandler error: attempt to retrieve property "
+            << "with unknown name '" << propertyName << "'";
+        throw Exception(msg.str());
     }
 
     std::ostream& operator<<(std::ostream& out, const boost::any& any) {
