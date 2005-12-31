@@ -93,6 +93,10 @@ SOURCE=.\instruments.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\ohfunctions.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\options.cpp
 # End Source File
 # Begin Source File
@@ -146,6 +150,10 @@ SOURCE=.\defines.h
 # Begin Source File
 
 SOURCE=.\instruments.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ohfunctions.h
 # End Source File
 # Begin Source File
 

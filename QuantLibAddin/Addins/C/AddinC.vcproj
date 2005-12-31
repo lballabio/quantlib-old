@@ -163,6 +163,26 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="ohfunctions.cpp">
+				<FileConfiguration
+					Name="Debug MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="options.cpp">
 				<FileConfiguration
 					Name="Debug MTDLL|Win32">
@@ -374,6 +394,9 @@
 			</File>
 			<File
 				RelativePath="instruments.h">
+			</File>
+			<File
+				RelativePath="ohfunctions.h">
 			</File>
 			<File
 				RelativePath="options.h">
