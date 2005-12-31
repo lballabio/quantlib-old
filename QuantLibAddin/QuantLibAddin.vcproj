@@ -204,6 +204,26 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="qla\clientutils.cpp">
+				<FileConfiguration
+					Name="Release MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="qla\cliquetoption.cpp">
 				<FileConfiguration
 					Name="Release MTDLL|Win32">
@@ -365,6 +385,26 @@
 			</File>
 			<File
 				RelativePath="qla\interpolation.cpp">
+				<FileConfiguration
+					Name="Release MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\ohfunctions.cpp">
 				<FileConfiguration
 					Name="Release MTDLL|Win32">
 					<Tool
@@ -646,6 +686,9 @@
 				RelativePath="qla\capfloor.hpp">
 			</File>
 			<File
+				RelativePath="qla\clientutils.hpp">
+			</File>
+			<File
 				RelativePath="qla\cliquetoption.hpp">
 			</File>
 			<File
@@ -674,6 +717,9 @@
 			</File>
 			<File
 				RelativePath="qla\options.hpp">
+			</File>
+			<File
+				RelativePath="qla\ohfunctions.hpp">
 			</File>
 			<File
 				RelativePath="qla\processes.hpp">

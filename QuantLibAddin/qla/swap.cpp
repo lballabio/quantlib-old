@@ -34,20 +34,14 @@ namespace QuantLibAddin {
         
         boost::shared_ptr<CouponVector> paidLegWrapper =
             OH_GET_OBJECT(CouponVector, paidLegID);
-        QL_REQUIRE(paidLegWrapper,
-                   "Swap: unknown coupon vector: " + paidLegID);
         const CashFlowVector& paidLeg = paidLegWrapper->getObject();
         
         boost::shared_ptr<CouponVector> recvLegWrapper =
             OH_GET_OBJECT(CouponVector, recvLegID);
-        QL_REQUIRE(recvLegWrapper,
-                   "Swap: unknown coupon vector: " + recvLegID);
         const CashFlowVector& recvLeg = recvLegWrapper->getObject();
         
         boost::shared_ptr<YieldTermStructure> termStructureWrapper =
             OH_GET_OBJECT(YieldTermStructure, termStructureID);
-        QL_REQUIRE(termStructureWrapper,
-                   "Swap: unknown term structure: " + termStructureID);
         boost::shared_ptr<QuantLib::YieldTermStructure> termStructure = 
             OH_GET_REFERENCE(QuantLib::YieldTermStructure, termStructureWrapper);
         QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;

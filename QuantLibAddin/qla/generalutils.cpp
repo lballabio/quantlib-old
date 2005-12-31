@@ -26,6 +26,7 @@
 #include <ql/Currencies/all.hpp>
 
 namespace QuantLibAddin {
+
     std::vector<QuantLib::Date> longVectorToDateVector(
             const std::vector < long > &v) {
         std::vector<QuantLib::Date> ret;

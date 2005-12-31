@@ -31,7 +31,6 @@ class Category(serializable.Serializable):
         serializer.serializeAttribute(self.__dict__, common.NAME)
         serializer.serializeProperty(self.__dict__, common.DISPLAY_NAME)
         serializer.serializeProperty(self.__dict__, common.DESCRIPTION)
-        serializer.serializeBoolean(self.__dict__, common.HEADER_ONLY)
         serializer.serializeObjectDict(self.__dict__, function.Function)
 
     def platformSupported(self, platformID):

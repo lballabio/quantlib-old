@@ -51,10 +51,11 @@ namespace QuantLibAddin {
         QuantLib::BusinessDayConvention bDayConv = 
             Create<QuantLib::BusinessDayConvention>()(bDayConvID);
 
-        boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpDiscYC =
-            OH_GET_OBJECT(QuantLibAddin::YieldTermStructure, discCurveId);
+        boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpDiscYC;
         QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;
-        if(tmpDiscYC) {
+        if (!discCurveId.empty()) {
+            boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpDiscYC =
+                OH_GET_OBJECT(QuantLibAddin::YieldTermStructure, discCurveId);
             boost::shared_ptr<QuantLib::YieldTermStructure> discYC = 
                 OH_GET_REFERENCE(QuantLib::YieldTermStructure, tmpDiscYC);
             discountingTermStructure.linkTo(discYC);
@@ -73,10 +74,10 @@ namespace QuantLibAddin {
                                             redemption,
                                             discountingTermStructure,
                                             QuantLib::Date(),
-                                            startFromEnd
+                                            startFromEnd,
+                                            longFinal
 #ifdef LOCAL_QL_PATCH
                                             ,
-                                            longFinal, // Not yet implemented in QL
                                             nominals // Not yet implemented in QL
 #endif
                                             ));

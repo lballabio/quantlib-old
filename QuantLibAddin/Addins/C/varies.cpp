@@ -20,6 +20,7 @@ extern "C" {
 #include <Addins/C/varies.hpp>
 
 void variesToScalar(long &ret, const Varies &value, const long &defaultValue) {
+    ret = defaultValue;
 }
 
 void variesToScalar(double &ret, const Varies &value, const double &defaultValue) {
@@ -30,3 +31,4 @@ void variesToScalar(bool &ret, const Varies &value, const bool &defaultValue) {
 
 void variesToScalar(std::string &ret, const Varies &value, const std::string &defaultValue) {
 }
+

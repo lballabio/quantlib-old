@@ -1,0 +1,11 @@
+    try {
+%s        %s returnValue = QuantLibAddin::%s(%s);
+        %s;
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        ObjHandler::logMessage("%s Error: " + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+

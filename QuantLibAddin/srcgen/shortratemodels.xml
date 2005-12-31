@@ -1,5 +1,4 @@
 <Category name='shortratemodels'>
-<headerOnly>false</headerOnly>
 <description>functions to construct QuantLib short-rate model objects</description>
 <displayName>Short Rate Models</displayName>
 <Functions>

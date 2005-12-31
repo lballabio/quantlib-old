@@ -122,6 +122,14 @@ class AddinCalc(addin.Addin):
             line3 = indent + 'return returnValueCalc;'
             return line1 + line2 + line3
 
+    def generateConstructor(self, fileFunc, func):
+        """generate source for constructor."""
+        self.generateHeader(fileFunc, func, False)
+        libraryCall = self.generateCode(self.libraryCall, func.Parameters)
+        conversions = self.generateConversions(func.Parameters)
+        fileFunc.write(self.bufferConstructor.text % (conversions, 
+            func.libraryFunction, libraryCall, func.name))
+
     def generateMember(self, fileFunc, func):
         """generate source for member function."""
         self.generateHeader(fileFunc, func, False)
@@ -134,25 +142,28 @@ class AddinCalc(addin.Addin):
             func.libraryClass, libraryReturnType, func.accessLibFunc, 
             libraryCall, functionReturnCommand, func.name))
 
-    def generateConstructor(self, fileFunc, func):
-        """generate source for constructor."""
+    def generateProcedure(self, fileFunc, func):
+        """generate source for procedural function."""
         self.generateHeader(fileFunc, func, False)
-        libraryCall = self.generateCode(self.libraryCall, func.Parameters)
         conversions = self.generateConversions(func.Parameters)
-        fileFunc.write(self.bufferConstructor.text % (conversions, 
-            func.libraryFunction, libraryCall, func.name))
+        libraryReturnType = self.libraryReturnType.apply(func.returnValue)
+        libraryCall = self.generateCode(self.libraryCall, func.Parameters, False, True)
+        functionReturnCommand = self.getReturnCommand(func.returnValue)
+        fileFunc.write(self.bufferProcedure.text % (conversions, libraryReturnType, 
+            func.name, libraryCall, functionReturnCommand, func.name))
 
     def generateFuncSources(self):
         """generate source for function implementations."""
         for category in config.Config.getInstance().getCategories(self.platformId):
-            if category.headerOnly: continue
             fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
             fileFunc.write(self.bufferIncludes.text % category.name)
             for func in category.getFunctions(self.platformId): 
                 if isinstance(func, function.Constructor):
                     self.generateConstructor(fileFunc, func)
-                else:
+                elif isinstance(func, function.Member):
                     self.generateMember(fileFunc, func)
+                else:
+                    self.generateProcedure(fileFunc, func)
             fileFunc.close()
     
     def generateIDLSource(self):

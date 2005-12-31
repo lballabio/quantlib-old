@@ -47,9 +47,6 @@ namespace QuantLibAddin {
         boost::shared_ptr<ZeroCurve> zeroCurve =
             OH_GET_OBJECT(ZeroCurve, handleZeroCurve);
 
-        if (!zeroCurve)
-            QL_FAIL("ZeroCouponBond: error retrieving object " + handleZeroCurve);
-
         boost::shared_ptr<QuantLib::YieldTermStructure> zeroCurveQl =
             OH_GET_REFERENCE(QuantLib::YieldTermStructure, zeroCurve);
 

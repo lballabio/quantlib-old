@@ -26,24 +26,23 @@ int main() {
     double underlying = 36;
     double strike = 40;
     long timeSteps = 801;
-    long exerciseDate = 43903;      // (13, March, 2020);
-    long settlementDate = 43537;    // (13, March, 2019);
-    char result[100];               // presently a dummy value
+    long exerciseDate = 43903;                  // (13, March, 2020);
+    long settlementDate = 43537;                // (13, March, 2019);
+    char returnString[100];
+    Boolean returnCode;
+    Varies logLevel;
 
-    ohSetLogfile("quantlib.log"); // specify log file
-    ohConsole(1);                  // log messages to stdout
-    ohLogMessage("begin example program");
-
-    ohLogMessage(qlVersion());
-    ohLogMessage(ohVersion());
+    ohSetLogFile("quantlib.log", logLevel, returnString);     // specify log file
+    ohSetConsole(1, logLevel, &returnCode);                  // log messages to stdout
+    ohLogMessage("begin example program", logLevel, returnString);
 
     if (qlBlackConstantVol(
             "my_blackconstantvol", 
             settlementDate, 
             volatility, 
             "Actual360",
-            result) != SUCCESS) {
-        ohLogMessage("Error on call to qlBlackConstantVol");
+            returnString) != SUCCESS) {
+        ohLogMessage("Error on call to qlBlackConstantVol", logLevel, returnString);
         goto fail;
     }
 
@@ -55,8 +54,8 @@ int main() {
             settlementDate, 
             riskFreeRate, 
             dividendYield, 
-            result) != SUCCESS) {
-        ohLogMessage("Error on call to qlBlackScholesProcess");
+            returnString) != SUCCESS) {
+        ohLogMessage("Error on call to qlBlackScholesProcess", logLevel, returnString);
         goto fail;
     }
 
@@ -71,27 +70,27 @@ int main() {
             settlementDate,                 // settlement date
             "JR",                           // engine type (jarrow rudd)
             timeSteps,                      // time steps
-            result) != SUCCESS) {
-        ohLogMessage("Error on call to qlVanillaOption");
+            returnString) != SUCCESS) {
+        ohLogMessage("Error on call to qlVanillaOption", logLevel, returnString);
         goto fail;
     }
 
-    ohLogMessage("high-level interrogation - after qlVanillaOption");
-    ohLogObject("my_option");
+    ohLogMessage("high-level interrogation - after qlVanillaOption", logLevel, returnString);
+    ohLogObject("my_option", &returnCode);
 
     if (qlOptionSetEngine(
             "my_option", 
             "AEQPB",   // AdditiveEQPBinomialTree
             801, 
-            result) != SUCCESS) {
-        ohLogMessage("Error on call to qlOptionSetEngine");
+            returnString) != SUCCESS) {
+        ohLogMessage("Error on call to qlOptionSetEngine", logLevel, returnString);
         goto fail;
     }
 
-    ohLogMessage("high-level interrogation - after qlOptionSetEngine");
-    ohLogObject("my_option");
+    ohLogMessage("high-level interrogation - after qlOptionSetEngine", logLevel, returnString);
+    ohLogObject("my_option", &returnCode);
 
-    ohLogMessage("end example program");
+    ohLogMessage("end example program", logLevel, returnString);
 
     return 0;
 

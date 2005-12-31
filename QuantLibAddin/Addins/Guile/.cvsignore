@@ -17,7 +17,7 @@ shortratemodels.*
 simpleswap.*
 swap.*
 termstructures.*
-utilities.h
+utilities.*
 volatilities.*
 xibor.*
 

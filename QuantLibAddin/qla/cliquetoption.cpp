@@ -43,8 +43,6 @@ namespace QuantLibAddin {
 
         boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
             OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);
-        if (!blackScholesProcess)
-            QL_FAIL("CliquetOption: error retrieving object " + handleBlackScholes);
         const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
             OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
 

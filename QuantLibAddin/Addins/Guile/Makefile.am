@@ -38,6 +38,7 @@ if BUILD_GUILE
 libQuantLibAddinGuile_la_SOURCES = \
     capfloor.cpp \
     couponvectors.cpp \
+    extra.cpp \
     guileutils.cpp \
     instruments.cpp \
     interpolation.cpp \

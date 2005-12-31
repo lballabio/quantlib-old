@@ -54,8 +54,6 @@ namespace QuantLibAddin {
 
         boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpFwdYC =
             OH_GET_OBJECT(YieldTermStructure, fwdCurveId);
-        if (!tmpFwdYC)
-            QL_FAIL("Xibor::Xibor Forecasting Curve not found: " + fwdCurveId);
         boost::shared_ptr<QuantLib::YieldTermStructure> fwdYC = 
             OH_GET_REFERENCE(QuantLib::YieldTermStructure, tmpFwdYC);
         QuantLib::Handle<QuantLib::YieldTermStructure> forecastingTermStructure; 

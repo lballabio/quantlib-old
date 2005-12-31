@@ -1,5 +1,4 @@
 <Category name='instruments'>
-<headerOnly>false</headerOnly>
 <description>functions to construct QuantLib instrument objects</description>
 <displayName>Instruments</displayName>
 

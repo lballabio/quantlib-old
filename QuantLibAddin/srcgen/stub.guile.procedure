@@ -1,0 +1,9 @@
+    try {
+%s        %s returnValue = QuantLibAddin::%s(%s);
+        return %s;
+    } catch (const std::exception &e) {
+        ObjHandler::logMessage(std::string("%s Error: ") + e.what(), 2);
+        return SCM_EOL;
+    }
+}
+

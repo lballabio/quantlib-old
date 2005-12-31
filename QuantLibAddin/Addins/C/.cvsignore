@@ -18,11 +18,13 @@ xll
 
 capfloor.*
 instruments.*
+ohfunctions.*
 options.*
 processes.*
 shortratemodels.*
 simpleswap.*
 termstructures.*
+utilities.*
 volatilities.*
 xibor.*
 

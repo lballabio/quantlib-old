@@ -4,8 +4,9 @@
 
 <Buffers>
 <Buffer name='bufferConstructor' fileName='stub.excel.constructor'/>
-<Buffer name='bufferIncludes' fileName='stub.excel.includes'/>
 <Buffer name='bufferMember' fileName='stub.excel.member'/>
+<Buffer name='bufferProcedure' fileName='stub.excel.procedure'/>
+<Buffer name='bufferIncludes' fileName='stub.excel.includes'/>
 <Buffer name='bufferRegHeader' fileName='stub.excel.regheader'/>
 <Buffer name='bufferRegFooter' fileName='stub.excel.regfooter'/>
 </Buffers>

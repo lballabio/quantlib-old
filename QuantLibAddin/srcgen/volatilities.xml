@@ -1,5 +1,4 @@
 <Category name='volatilities'>
-<headerOnly>false</headerOnly>
 <description>functions to construct QuantLib volatility objects</description>
 <displayName>Volatilities</displayName>
 <Functions>

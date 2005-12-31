@@ -17,6 +17,7 @@ shortratemodels.cpp
 simpleswap.cpp
 swap.cpp
 termstructures.cpp
+utilities.cpp
 volatilities.cpp
 xibor.cpp
 xll

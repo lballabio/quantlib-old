@@ -42,8 +42,6 @@ namespace QuantLibAddin {
 
         boost::shared_ptr<YieldTermStructure> termStructure =
             OH_GET_OBJECT(YieldTermStructure, handleTermStructure);
-        if (!termStructure)
-            QL_FAIL("HullWhite: error retrieving object " + handleTermStructure);
 
         boost::shared_ptr<QuantLib::YieldTermStructure> termStructureP =
             OH_GET_REFERENCE(QuantLib::YieldTermStructure, termStructure);

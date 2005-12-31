@@ -101,6 +101,10 @@ SOURCE=.\qla\capfloor.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\clientutils.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\cliquetoption.cpp
 # End Source File
 # Begin Source File
@@ -134,6 +138,10 @@ SOURCE=.\qla\generalutils.cpp
 # Begin Source File
 
 SOURCE=.\qla\interpolation.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\ohfunctions.cpp
 # End Source File
 # Begin Source File
 
@@ -213,6 +221,10 @@ SOURCE=.\qla\capfloor.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\clientutils.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\cliquetoption.hpp
 # End Source File
 # Begin Source File
@@ -250,6 +262,10 @@ SOURCE=.\qla\interpolation.hpp
 # Begin Source File
 
 SOURCE=.\qla\options.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\ohfunctions.hpp
 # End Source File
 # Begin Source File
 

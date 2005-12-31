@@ -1,8 +1,29 @@
 <Category name='utilities'>
-<headerOnly>true</headerOnly>
 <description>diagnostic and utility functions</description>
 <displayName>Utilities</displayName>
 <Functions>
+
+<Procedure name='qlVersion'>
+<description>returns the version number of QuantLib</description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters></Parameters>
+<ReturnValue>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>QuantLib version number</description>
+</ReturnValue>
+</Procedure>
+
+<Procedure name='qlListRegisteredEnums'>
+<description>return the names of all registered enums</description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters></Parameters>
+<ReturnValue>
+    <type>string</type>
+    <tensorRank>vector</tensorRank>
+    <description>list of names of registered enums</description>
+</ReturnValue>
+</Procedure>
 
 <Procedure name='qlListEnum'>
 <description>return the members of a given enumeration</description>
@@ -18,17 +39,6 @@
     <type>string</type>
     <tensorRank>vector</tensorRank>
     <description>list of the members of the specified enumeration</description>
-</ReturnValue>
-</Procedure>
-
-<Procedure name='qlListRegisteredEnums'>
-<description>return the names of all registered enums</description>
-<functionCategory>QuantLib</functionCategory>
-<Parameters></Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>vector</tensorRank>
-    <description>list of names of registered enums</description>
 </ReturnValue>
 </Procedure>
 
@@ -57,17 +67,6 @@
     <type>string</type>
     <tensorRank>vector</tensorRank>
     <description>list of the members of the specified enumeration</description>
-</ReturnValue>
-</Procedure>
-
-<Procedure name='qlVersion'>
-<description>returns the version number of QuantLib</description>
-<functionCategory>QuantLib</functionCategory>
-<Parameters></Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>QuantLib version number</description>
 </ReturnValue>
 </Procedure>
 

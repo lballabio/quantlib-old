@@ -1,4 +1,5 @@
 
+; Copyright (C) 2005 Eric Ehlers
 ; Copyright (C) 2005 Aurelien Chanudet
 ;
 ; This file is part of QuantLib, a free-software/open-source library
@@ -26,7 +27,7 @@
 (define (date day month year)
     (qlDate (list day month year)))
 
-(call-func qlConsole 1 5)
+(call-func ohSetConsole 1 5)
 
 ; -- Term Structure
 

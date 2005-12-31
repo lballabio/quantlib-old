@@ -16,35 +16,26 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qladdin_hpp
-#define qladdin_hpp
-
-#include <qla/qladdindefines.hpp>
-
-/* Use BOOST_MSVC instead of _MSC_VER since some other vendors 
-   (Metrowerks, for example) also #define _MSC_VER
+/*! \file
+    \brief Miscellaneous utility functions available to clients 
+    of %QuantLibAddin i.e. the Addins
 */
-#if defined BOOST_MSVC       // Microsoft Visual C++
-#  include <qla/autolink.hpp>
-#endif
 
-#include <qla/utilities.hpp>
+#ifndef qla_clientutils_hpp
+#define qla_clientutils_hpp
 
-#include <qla/capfloor.hpp>
-#include <qla/couponvectors.hpp>
-#include <qla/instruments.hpp>
-#include <qla/interpolation.hpp>
-#include <qla/ohfunctions.hpp>
-#include <qla/options.hpp>
-#include <qla/processes.hpp>
-#include <qla/schedule.hpp>
-#include <qla/shortratemodels.hpp>
-#include <qla/simpleswap.hpp>
-#include <qla/swap.hpp>
-#include <qla/termstructures.hpp>
-#include <qla/utilities.hpp>
-#include <qla/volatilities.hpp>
-#include <qla/xibor.hpp>
+#include <ql/date.hpp>
+
+namespace QuantLibAddin {
+
+/*! \group clientutils
+    Miscellaneous utility functions for clients of %QuantLibAddin
+*/
+
+    /*! convert a long to a QuantLib date
+    */
+    QuantLib::Date createQLDate(long date);
+}
 
 #endif
 

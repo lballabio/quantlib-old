@@ -1,5 +1,4 @@
 <Category name='simpleswap'>
-<headerOnly>false</headerOnly>
 <description>construct and return a handle to a simple swap object</description>
 <displayName>Simple Swap</displayName>
 <Functions>

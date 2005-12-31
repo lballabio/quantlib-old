@@ -1,5 +1,4 @@
 <Category name='schedule'>
-<headerOnly>false</headerOnly>
 <description>functions to construct QuantLib schedule objects</description>
 <displayName>Schedules</displayName>
 <Functions>

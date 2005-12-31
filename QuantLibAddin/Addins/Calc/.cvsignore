@@ -16,7 +16,7 @@ libQuantLibAddinCalc.la
 *.lo
 Makefile
 Makefile.in
-ohfunctions.hpp
+ohfunctions.*
 options.*
 processes.*pp
 QuantLibAddin*.exp
@@ -30,7 +30,7 @@ swap.*pp
 termstructures.*pp
 *.urd
 *.user
-utilities.hpp
+utilities.*
 volatilities.*pp
 xibor.*pp
 

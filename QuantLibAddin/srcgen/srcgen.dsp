@@ -163,6 +163,10 @@ SOURCE=stub.c.member
 # End Source File
 # Begin Source File
 
+SOURCE=stub.c.procedure
+# End Source File
+# Begin Source File
+
 SOURCE=stub.calc.constructor
 # End Source File
 # Begin Source File
@@ -188,6 +192,10 @@ SOURCE=stub.calc.map
 # Begin Source File
 
 SOURCE=stub.calc.member
+# End Source File
+# Begin Source File
+
+SOURCE=stub.calc.procedure
 # End Source File
 # Begin Source File
 
@@ -219,6 +227,10 @@ SOURCE=stub.excel.member
 # End Source File
 # Begin Source File
 
+SOURCE=stub.excel.procedure
+# End Source File
+# Begin Source File
+
 SOURCE=stub.excel.regfooter
 # End Source File
 # Begin Source File
@@ -240,6 +252,10 @@ SOURCE=stub.guile.initfunc
 # Begin Source File
 
 SOURCE=stub.guile.member
+# End Source File
+# Begin Source File
+
+SOURCE=stub.guile.procedure
 # End Source File
 # Begin Source File
 

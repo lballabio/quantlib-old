@@ -1,5 +1,4 @@
 <Category name='interpolation'>
-<headerOnly>false</headerOnly>
 <description>functions to carry out interpolations</description>
 <displayName>Interpolation</displayName>
 <Functions>

@@ -52,8 +52,6 @@ namespace QuantLibAddin {
 
         boost::shared_ptr<BlackVolTermStructure> blackVolTermStructure =
             OH_GET_OBJECT(BlackVolTermStructure, handleBlackVol);
-        if (!blackVolTermStructure)
-            QL_FAIL("BlackScholesProcess: error retrieving object " + handleBlackVol);
         boost::shared_ptr<QuantLib::BlackVolTermStructure> blackVolTermStructureP = 
             OH_GET_REFERENCE(QuantLib::BlackVolTermStructure, blackVolTermStructure);
         QuantLib::Handle<QuantLib::BlackVolTermStructure> 

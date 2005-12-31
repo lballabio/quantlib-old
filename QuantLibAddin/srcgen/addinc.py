@@ -33,7 +33,6 @@ class AddinC(addin.Addin):
         """generate source code for C addin."""
         log.Log.getInstance().logMessage('  begin generating C ...')
         for category in config.Config.getInstance().getCategories(self.platformId):
-            if category.headerOnly: continue
             self.generateHeaders(category)
             self.generateFuncSources(category)
         log.Log.getInstance().logMessage('  done generating C.')
@@ -47,9 +46,9 @@ class AddinC(addin.Addin):
         functionDeclaration = self.generateCode(self.functionDeclaration, 
             func.Parameters)
         if functionDeclaration:
-            functionDeclaration += ',\n'
+            functionDeclaration += ','
         fileHeader.write(functionDeclaration)
-        fileHeader.write('        %sresult)%s' % (functionReturnType, suffix))
+        fileHeader.write('\n        %sresult)%s' % (functionReturnType, suffix))
 
     def generateHeaders(self, category):
         """generate source for function prototypes."""
@@ -70,6 +69,8 @@ class AddinC(addin.Addin):
                 'ToVaries(result, returnValue)'
         if returnValue.type == common.STRING:
             return 'strcpy(result, returnValue.c_str())'
+        elif returnValue.type == common.BOOL:
+            return '*result = returnValue ? TRUE : FALSE'
         else:
             return '*result = returnValue'
 
@@ -91,6 +92,15 @@ class AddinC(addin.Addin):
             func.libraryClass, libraryReturnType, func.accessLibFunc, 
             libraryCall, functionReturnCommand, func.name))
 
+    def generateProcedure(self, fileFunc, func):
+        """generate source code for procedural function."""
+        conversions = self.generateConversions(func.Parameters)
+        libraryCall = self.generateCode(self.libraryCall, func.Parameters, False, True)
+        libraryReturnType = self.libraryReturnType.apply(func.returnValue)
+        functionReturnCommand = self.getReturnCommand(func.returnValue)
+        fileFunc.write(self.bufferProcedure.text % (conversions, libraryReturnType, 
+            func.name, libraryCall, functionReturnCommand, func.name))
+
     def generateFuncSources(self, category):
         """generate source for function implementations."""
         fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
@@ -99,7 +109,9 @@ class AddinC(addin.Addin):
             self.generateHeader(fileFunc, func, ' {\n')
             if isinstance(func, function.Constructor):
                 self.generateConstructor(fileFunc, func)
-            else:
+            elif isinstance(func, function.Member):
                 self.generateMember(fileFunc, func)
+            else:
+                self.generateProcedure(fileFunc, func)
         fileFunc.close()
 

@@ -21,6 +21,7 @@ noinst_HEADERS = \
     defines.h \
     instruments.h \
     interpolation.h \
+    ohfunctions.h \
     options.h \
     processes.h \
     qladdin.h \
@@ -41,6 +42,7 @@ libQuantLibAddinC_la_SOURCES = \
     couponvectors.cpp \
     instruments.cpp \
     interpolation.cpp \
+    ohfunctions.cpp \
     options.cpp \
     processes.cpp \
     schedule.cpp \

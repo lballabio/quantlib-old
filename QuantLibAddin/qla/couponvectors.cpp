@@ -35,8 +35,6 @@ namespace QuantLibAddin {
         
         boost::shared_ptr<YieldTermStructure> termStructureWrapper =
             OH_GET_OBJECT(YieldTermStructure, termStructureID);
-        QL_REQUIRE(termStructureWrapper,
-                   "getBPS: unknown term structure: " + termStructureID);
         boost::shared_ptr<QuantLib::YieldTermStructure> termStructure = 
             OH_GET_REFERENCE(QuantLib::YieldTermStructure, termStructureWrapper);
         QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;
@@ -54,8 +52,6 @@ namespace QuantLibAddin {
     
         boost::shared_ptr<Schedule> scheduleWrapper = 
             OH_GET_OBJECT(Schedule, scheduleID);
-        QL_REQUIRE(scheduleWrapper,
-                   "FixedRateCouponVector: unknown schedule " + scheduleID);
         const QuantLib::Schedule& schedule = scheduleWrapper->getObject();
         
         QuantLib::BusinessDayConvention convention =
@@ -98,14 +94,10 @@ namespace QuantLibAddin {
         
         boost::shared_ptr<Schedule> scheduleWrapper = 
             OH_GET_OBJECT(Schedule, scheduleID);
-        QL_REQUIRE(scheduleWrapper,
-                   "FixedRateCouponVector: unknown schedule " + scheduleID);
         const QuantLib::Schedule& schedule = scheduleWrapper->getObject();
         
         boost::shared_ptr<Xibor> indexWrapper = 
             OH_GET_OBJECT(Xibor, indexID);
-        QL_REQUIRE(indexWrapper,
-                   "FloatingRateCouponVector: unknown index " + indexID);
         boost::shared_ptr<QuantLib::Xibor> index =
             OH_GET_REFERENCE(QuantLib::Xibor, indexWrapper);
         

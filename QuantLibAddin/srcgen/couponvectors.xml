@@ -1,5 +1,4 @@
 <Category name='couponvectors'>
-<headerOnly>false</headerOnly>
 <description>functions to construct QuantLib coupon vector objects</description>
 <displayName>Coupon Vectors</displayName>
 <Functions>

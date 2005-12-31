@@ -33,35 +33,29 @@ namespace QuantLibAddin {
         return QL_VERSION;
     }
 
-    const std::vector<std::string>& getRegisteredEnums() {
+    const std::vector<std::string>& qlListRegisteredEnums() {
         static std::vector<std::string> ret
             = EnumRegistry::instance().getAllRegisteredTypes();
         return ret;
     }
 
-    const std::vector<std::string>& getEnumMembers(const std::string& id) {
+    const std::vector<std::string>& qlListEnum(const std::string& id) {
         static std::vector<std::string> ret;
         ret = EnumRegistry::instance().getTypeElements(id);
         return ret;
     }
 
-    const std::vector<std::string>& getRegisteredComplexTypes() {
+    const std::vector<std::string>& qlListRegisteredTypes() {
         static std::vector<std::string> ret
             = ComplexTypeRegistry::instance().getAllRegisteredTypes();
         return ret;
     }
 
-    const std::vector<std::string>& getComplexTypeMembers(const std::string& id) {
+    const std::vector<std::string>& qlListType(const std::string& id) {
         static std::vector<std::string> ret;
         ret = ComplexTypeRegistry::instance().getTypeElements(id);
         return ret;
     }
 
-    QuantLib::Date createQLDate(long date) {
-        if(date) 
-            return QuantLib::Date(date);
-        else 
-            return QuantLib::Date();
-    }
 }
 

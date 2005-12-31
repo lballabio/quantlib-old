@@ -154,8 +154,6 @@ namespace QuantLibAddin {
         for (i=handlesRateHelper.begin() ; i != handlesRateHelper.end() ; i++) {
             boost::shared_ptr<RateHelper> rateHelper = 
                 OH_GET_OBJECT(RateHelper, *i);
-            if (!rateHelper)
-                QL_FAIL("PiecewiseFlatForward: error retrieving object " + *i);
             const boost::shared_ptr<QuantLib::RateHelper> rateHelperQL = 
                 OH_GET_REFERENCE(QuantLib::RateHelper, rateHelper);
             rateHelpersQL.push_back(rateHelperQL);

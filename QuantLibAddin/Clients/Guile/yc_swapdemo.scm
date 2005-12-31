@@ -1,4 +1,5 @@
 
+; Copyright (C) 2005 Eric Ehlers
 ; Copyright (C) 2005 Aurelien Chanudet
 ; Copyright (C) 2005 Plamen Neykov
 ; 
@@ -22,7 +23,7 @@
 (define (date day month year)
     (qlDate (list day month year)))
 
-(call-func qlConsole 1 5)
+(call-func ohSetConsole 1 5)
 
 (define false #f)
 (define true  #t)
@@ -184,5 +185,5 @@
            0.0                  ; floating leg additive spread
            "testYC")            ; discounting term structure
 
-(call-func ohLogObject "swp")
+(print "npv         : " (call-func qlNPV "swp") "\n")
 

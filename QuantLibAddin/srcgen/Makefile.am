@@ -56,9 +56,11 @@ SRCGEN_STUBS := stub.calc.constructor \
                 stub.calc.includes \
                 stub.calc.map \
                 stub.calc.member \
+                stub.calc.procedure \
                 stub.c.constructor \
                 stub.c.includes \
                 stub.c.member \
+                stub.c.procedure \
                 stub.copyright \
                 stub.doxygen.categories \
                 stub.doxygen.enums \
@@ -66,12 +68,14 @@ SRCGEN_STUBS := stub.calc.constructor \
                 stub.excel.constructor \
                 stub.excel.includes \
                 stub.excel.member \
+                stub.excel.procedure \
                 stub.excel.regfooter \
                 stub.excel.regheader \
                 stub.guile.constructor \
                 stub.guile.includes \
                 stub.guile.initfunc \
                 stub.guile.member \
+                stub.guile.procedure \
                 stub.qla.includes
 
 # this should prevent running from a distributed tarball

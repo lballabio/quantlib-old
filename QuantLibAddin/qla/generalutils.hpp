@@ -16,6 +16,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file generalutils.hpp
+    \brief miscellaneous utility functions intended for use by files
+    within the qla directory
+*/
+
 #ifndef qla_generalutils_hpp
 #define qla_generalutils_hpp
 

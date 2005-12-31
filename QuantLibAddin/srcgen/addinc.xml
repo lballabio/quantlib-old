@@ -5,6 +5,7 @@
 <Buffers>
 <Buffer name='bufferConstructor' fileName='stub.c.constructor'/>
 <Buffer name='bufferMember' fileName='stub.c.member'/>
+<Buffer name='bufferProcedure' fileName='stub.c.procedure'/>
 <Buffer name='bufferIncludes' fileName='stub.c.includes'/>
 </Buffers>
 

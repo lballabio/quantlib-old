@@ -1,5 +1,4 @@
 <Category name='termstructures'>
-<headerOnly>false</headerOnly>
 <description>functions to construct QuantLib term structure objects</description>
 <displayName>Term Structures</displayName>
 <Functions>

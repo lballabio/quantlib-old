@@ -55,15 +55,15 @@ class AddinExcel(addin.Addin):
     def generateFuncDefs(self):
         """generate source code for function bodies."""
         for category in config.Config.getInstance().getCategories(self.platformId):
-            if category.headerOnly:
-                continue
             fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
             fileFunc.write(self.bufferIncludes.text % category.name)
             for func in category.getFunctions(self.platformId): 
                 if isinstance(func, function.Constructor):
                     self.generateConstructor(fileFunc, func)
-                else:
+                elif isinstance(func, function.Member):
                     self.generateMember(fileFunc, func)
+                else:
+                    self.generateProcedure(fileFunc, func)
             fileFunc.close()
 
     def generateConstructor(self, fileFunc, func):
@@ -89,6 +89,19 @@ class AddinExcel(addin.Addin):
             (functionReturnType, func.name, functionDeclaration, conversions, 
             func.libraryClass, func.libraryClass, libraryReturnType, 
             func.accessLibFunc, libraryCall, functionReturnCommand, func.name))
+
+    def generateProcedure(self, fileFunc, func):
+        """generate source code for body of procedural function."""
+        functionDeclaration = self.generateCode(self.functionDeclaration, 
+            func.Parameters)
+        functionReturnType = self.functionReturnType.apply(func.returnValue)
+        functionReturnCommand = self.getReturnCommand(func.returnValue)
+        libraryCall = self.generateCode(self.libraryCall, func.Parameters, False, True)
+        libraryReturnType = self.libraryReturnType.apply(func.returnValue)
+        conversions = self.generateConversions(func.Parameters)
+        fileFunc.write(self.bufferProcedure.text %
+            (functionReturnType, func.name, functionDeclaration, conversions, 
+            libraryReturnType, func.name, libraryCall, functionReturnCommand, func.name))
 
     def getReturnCommand(self, returnValue):
         """derive return statement for function."""

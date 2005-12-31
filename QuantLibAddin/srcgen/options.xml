@@ -1,5 +1,4 @@
 <Category name='options'>
-<headerOnly>false</headerOnly>
 <description>functions to construct QuantLib option objects</description>
 <displayName>Options</displayName>
 <Functions>

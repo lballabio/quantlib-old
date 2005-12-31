@@ -1,6 +1,6 @@
 #include <qla/qladdindefines.hpp>
-#include <qla/utilities.hpp>
 #include <qla/typefactory.hpp>
+#include <qla/clientutils.hpp>
 #include <qla/%s.hpp>
 #include <Addins/Guile/guileutils.hpp>
 extern "C" {

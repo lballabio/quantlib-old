@@ -1,5 +1,4 @@
 <Category name='processes'>
-<headerOnly>false</headerOnly>
 <description>functions to construct QuantLib process objects</description>
 <displayName>Processes</displayName>
 <Functions>

@@ -130,6 +130,9 @@
 				RelativePath="stub.calc.member">
             </File>
 			<File
+				RelativePath="stub.calc.procedure">
+            </File>
+			<File
 				RelativePath="stub.c.constructor">
             </File>
 			<File
@@ -137,6 +140,9 @@
             </File>
 			<File
 				RelativePath="stub.c.member">
+            </File>
+			<File
+				RelativePath="stub.c.procedure">
             </File>
 			<File
 				RelativePath="stub.copyright">
@@ -160,6 +166,9 @@
 				RelativePath="stub.excel.member">
             </File>
 			<File
+				RelativePath="stub.excel.procedure">
+            </File>
+			<File
 				RelativePath="stub.excel.regfooter">
             </File>
 			<File
@@ -176,6 +185,9 @@
             </File>
 			<File
 				RelativePath="stub.guile.member">
+            </File>
+			<File
+				RelativePath="stub.guile.procedure">
             </File>
 			<File
 				RelativePath="stub.qla.includes">

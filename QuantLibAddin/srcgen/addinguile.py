@@ -131,18 +131,28 @@ class AddinGuile(addin.Addin):
             func.libraryClass, libraryReturnType, func.accessLibFunc, 
             libraryCall, functionReturnCommand, func.name))
 
+    def generateProcedure(self, fileFunc, func):
+        """generate source code for body of procedural function."""
+        conversions = self.generateConversions(func.Parameters)
+        libraryReturnType = self.libraryReturnType.apply(func.returnValue)
+        libraryCall = self.generateCode(self.libraryCall, func.Parameters, False, True)
+        functionReturnCommand = self.getReturnCommand(func.returnValue)
+        fileFunc.write(self.bufferProcedure.text % (conversions, libraryReturnType, 
+            func.name, libraryCall, functionReturnCommand, func.name))
+
     def generateFuncDefs(self):
         """generate source for function implementations."""
         for category in config.Config.getInstance().getCategories(self.platformId):
             self.generateFuncHeaders(category)
-            if category.headerOnly: continue
             fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
             fileFunc.write(self.bufferIncludes.text % (category.name, category.name))
             for func in category.getFunctions(self.platformId): 
                 self.generateFuncHeader(fileFunc, func, ' {')
                 if isinstance(func, function.Constructor):
                     self.generateConstructor(fileFunc, func)
-                else:
+                elif isinstance(func, function.Member):
                     self.generateMember(fileFunc, func)
+                else:
+                    self.generateProcedure(fileFunc, func)
             fileFunc.close()
 

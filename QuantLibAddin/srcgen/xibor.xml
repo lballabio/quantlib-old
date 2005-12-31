@@ -1,5 +1,4 @@
 <Category name='xibor'>
-<headerOnly>false</headerOnly>
 <description>functions to construct QuantLib Xibor objects</description>
 <displayName>Indices</displayName>
 <Functions>

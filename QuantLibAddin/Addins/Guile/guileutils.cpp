@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -26,6 +27,8 @@ SCM anyToPairValue(const boost::any& a)
         value = gh_long2scm(boost::any_cast<long>(a));
     } else if (a.type() == typeid(double)) {
         value = gh_double2scm(boost::any_cast<double>(a));
+    } else if (a.type() == typeid(bool)) {
+        value = gh_bool2scm(boost::any_cast<bool>(a));
     } else if (a.type() == typeid(std::string)) {
         value = gh_str02scm(boost::any_cast<std::string>(a).c_str());
     } else if (a.type() == typeid(std::vector<long>)) {

@@ -1,5 +1,4 @@
 <Category name='swap'>
-<headerOnly>false</headerOnly>
 <description>functions to construct QuantLib swap objects</description>
 <displayName>Swap</displayName>
 <Functions>

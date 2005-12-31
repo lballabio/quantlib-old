@@ -63,7 +63,6 @@ namespace QuantLibAddin {
 
         boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpDiscYC =
             OH_GET_OBJECT(QuantLibAddin::YieldTermStructure, discCurveId);
-        QL_REQUIRE(tmpDiscYC, "SimpleSwap::SimpleSwap Discounting Curve not found: " + discCurveId);
         boost::shared_ptr<QuantLib::YieldTermStructure> discYC = 
             OH_GET_REFERENCE(QuantLib::YieldTermStructure, tmpDiscYC);
         QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;
@@ -71,7 +70,6 @@ namespace QuantLibAddin {
 
         boost::shared_ptr<QuantLibAddin::Xibor> tmpIndex =
             OH_GET_OBJECT(QuantLibAddin::Xibor, indexHandle);
-        QL_REQUIRE(tmpIndex, "SimpleSwap::SimpleSwap Index not found: " + indexHandle);
         boost::shared_ptr<QuantLib::Xibor> index = OH_GET_REFERENCE(QuantLib::Xibor, tmpIndex);
 
         QuantLib::Schedule fixedSchedule(calendar, startDate, maturity, fixFrq, fixBDC, 

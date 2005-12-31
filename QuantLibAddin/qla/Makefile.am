@@ -15,6 +15,7 @@ include_HEADERS = \
     basketoption.hpp \
     capfloor.hpp \
     cliquetoption.hpp \
+    clientutils.hpp \
     config.hpp \
     couponvectors.hpp \
     dividendvanillaoption.hpp \
@@ -23,6 +24,7 @@ include_HEADERS = \
     generalutils.hpp \
     instruments.hpp \
     interpolation.hpp \
+    ohfunctions.hpp \
     options.hpp \
     processes.hpp \
     qladdin.hpp \
@@ -47,6 +49,7 @@ libQuantLibAddin_la_SOURCES = \
     basketoption.cpp \
     capfloor.cpp \
     cliquetoption.cpp \
+    clientutils.cpp \
     complextyperegistry.cpp \
     couponvectors.cpp \
     dividendvanillaoption.cpp \
@@ -54,6 +57,7 @@ libQuantLibAddin_la_SOURCES = \
     fixedcouponbond.cpp \
     forwardvanillaoption.cpp \
     generalutils.cpp \
+    ohfunctions.cpp \
     interpolation.cpp \
     processes.cpp \
     schedule.cpp \

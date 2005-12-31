@@ -1,7 +1,6 @@
 
 /*
  Copyright (C) 2005 Eric Ehlers
- Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,28 +21,6 @@
 extern "C" {
 #include <Addins/Guile/extra.h>
 #include <Addins/Guile/utilities.h>
-}
-
-SCM qlVersion(SCM x) {
-    try {
-        std::string ver =  QuantLibAddin::qlVersion();
-        return gh_str02scm(ver.c_str());
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlVersion Error: " + std::string(e.what()), 2);
-        return SCM_UNSPECIFIED;
-    }
-}
-
-SCM qlConsole(SCM x) {
-    try {
-        int enabled = GetChop<int>::scalar(x);
-        int logLevel = GetChop<int>::scalar(x);
-        ObjHandler::setConsole(enabled, logLevel);
-        return SCM_UNSPECIFIED;
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage("qlConsole Error: " + std::string(e.what()), 2);
-        return SCM_UNSPECIFIED;
-    }
 }
 
 SCM qlDate(SCM x) {
@@ -85,50 +62,6 @@ SCM qlDate(SCM x) {
     } catch (const std::exception &e) {
         ObjHandler::logMessage("qlDate Error: " + std::string(e.what()), 2);
         return SCM_UNSPECIFIED;
-    }
-}
-
-SCM qlListRegisteredEnums(SCM x) {
-    try {
-        std::vector < std::string > returnValue = QuantLibAddin::getRegisteredEnums();
-        return Nat2Scm<std::string>::vector(returnValue);
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage(std::string("qlListRegisteredEnums Error: ") + e.what(), 2);
-        return SCM_EOL;
-    }
-}
-
-SCM qlListEnum(SCM x) {
-    try {
-        std::string enumId = GetChop<std::string>::scalar(x);
-        std::vector < std::string > returnValue = QuantLibAddin::getEnumMembers(
-            enumId);
-        return Nat2Scm<std::string>::vector(returnValue);
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage(std::string("qlListEnum Error: ") + e.what(), 2);
-        return SCM_EOL;
-    }
-}
-
-SCM qlListRegisteredTypes(SCM x) {
-    try {
-        std::vector < std::string > returnValue = QuantLibAddin::getRegisteredComplexTypes();
-        return Nat2Scm<std::string>::vector(returnValue);
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage(std::string("qlListRegisteredTypes Error: ") + e.what(), 2);
-        return SCM_EOL;
-    }
-}
-
-SCM qlListType(SCM x) {
-    try {
-        std::string enumId = GetChop<std::string>::scalar(x);
-        std::vector < std::string > returnValue = QuantLibAddin::getComplexTypeMembers(
-            enumId);
-        return Nat2Scm<std::string>::vector(returnValue);
-    } catch (const std::exception &e) {
-        ObjHandler::logMessage(std::string("qlListType Error: ") + e.what(), 2);
-        return SCM_EOL;
     }
 }
 
