@@ -87,10 +87,6 @@
 				>
 			</File>
 			<File
-				RelativePath="QuantLibAddin.idl"
-				>
-			</File>
-			<File
 				RelativePath="schedule.cpp"
 				>
 			</File>
@@ -208,6 +204,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="QuantLibAddin.idl"
+			>
+		</File>
 		<File
 			RelativePath="Makefile.vc.debug.mtdll"
 			>

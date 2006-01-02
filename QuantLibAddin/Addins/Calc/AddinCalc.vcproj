@@ -62,9 +62,6 @@
 				RelativePath="qladdin.cpp">
 			</File>
 			<File
-				RelativePath="QuantLibAddin.idl">
-			</File>
-			<File
 				RelativePath="schedule.cpp">
 			</File>
 			<File
@@ -153,6 +150,9 @@
 				RelativePath="xibor.hpp">
 			</File>
 		</Filter>
+		<File
+			RelativePath="QuantLibAddin.idl">
+		</File>
 		<File
 			RelativePath="Makefile.vc.debug.mtdll">
 		</File>

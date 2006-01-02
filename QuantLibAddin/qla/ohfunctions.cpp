@@ -18,7 +18,6 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qla/config.hpp>
 #endif
-//#include <ql/qldefines.hpp>
 #include <qla/ohfunctions.hpp>
 
 namespace QuantLibAddin {

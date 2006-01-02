@@ -95,10 +95,6 @@ SOURCE=.\qladdin.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin.idl
-# End Source File
-# Begin Source File
-
 SOURCE=.\schedule.cpp
 # End Source File
 # Begin Source File
@@ -139,10 +135,6 @@ SOURCE=.\xibor.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=.\qla_all.hpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\calcutils.hpp
 # End Source File
 # Begin Source File
@@ -172,6 +164,10 @@ SOURCE=.\options.hpp
 # Begin Source File
 
 SOURCE=.\processes.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla_all.hpp
 # End Source File
 # Begin Source File
 
@@ -217,6 +213,10 @@ SOURCE=.\xibor.hpp
 # Begin Source File
 
 SOURCE=.\Makefile.vc.debug.mtdll
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin.idl
 # End Source File
 # End Target
 # End Project
