@@ -38,7 +38,7 @@ namespace ObjHandler {
     DLL_API void scalarToXloper(
         XLOPER &xAny, 
         const boost::any &value, 
-        const bool &expandVectors = false);
+        const bool &expandVectors = true);
 
     template < class T >
     void vectorToXloper(XLOPER &xVector, const std::vector < T > &v) {
