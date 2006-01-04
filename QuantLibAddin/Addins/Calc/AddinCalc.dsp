@@ -26,8 +26,8 @@ CFG=AddinCalc - Win32 Debug MTDLL
 # PROP Scc_LocalPath ""
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "build\vc6\DebugMTDLL"
-# PROP BASE Intermediate_Dir "build\vc6\DebugMTDLL"
+# PROP BASE Output_Dir "AddinCalc___Win32_Debug_MTDLL"
+# PROP BASE Intermediate_Dir "AddinCalc___Win32_Debug_MTDLL"
 # PROP BASE Cmd_Line "nmake /f "AddinCalc.mak""
 # PROP BASE Rebuild_Opt "/a"
 # PROP BASE Target_File "AddinCalc.exe"
@@ -35,11 +35,11 @@ CFG=AddinCalc - Win32 Debug MTDLL
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "build\vc6\DebugMTDLL"
-# PROP Intermediate_Dir "build\vc6\DebugMTDLL"
-# PROP Cmd_Line "nmake /f "Makefile.vc.debug.mtdll""
+# PROP Output_Dir "AddinCalc___Win32_Debug_MTDLL"
+# PROP Intermediate_Dir "AddinCalc___Win32_Debug_MTDLL"
+# PROP Cmd_Line "nmake /f "AddinCalc.mak""
 # PROP Rebuild_Opt "/a"
-# PROP Target_File "QuantLibAddin-vc6-mt-gd-0_3_12.dll"
+# PROP Target_File "AddinCalc.exe"
 # PROP Bsc_Name ""
 # PROP Target_Dir ""
 # Begin Target
@@ -92,6 +92,10 @@ SOURCE=.\processes.cpp
 # Begin Source File
 
 SOURCE=.\qladdin.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\QuantLibAddin.idl
 # End Source File
 # Begin Source File
 
@@ -210,13 +214,13 @@ SOURCE=.\volatilities.hpp
 SOURCE=.\xibor.hpp
 # End Source File
 # End Group
+# Begin Group "Resource Files"
+
+# PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
+# End Group
 # Begin Source File
 
 SOURCE=.\Makefile.vc.debug.mtdll
-# End Source File
-# Begin Source File
-
-SOURCE=.\QuantLibAddin.idl
 # End Source File
 # End Target
 # End Project

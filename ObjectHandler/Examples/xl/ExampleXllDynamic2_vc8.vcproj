@@ -3,8 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="ExampleXllDynamic2"
-	ProjectGUID="{C2312608-04CB-41A9-833C-C9FC950B89D6}"
-	SignManifests="true"
+	ProjectGUID="{F89760C1-CD0C-4138-A6A7-A8528A1B0D6F}"
 	>
 	<Platforms>
 		<Platform
@@ -16,10 +15,10 @@
 	<Configurations>
 		<Configuration
 			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc8\DebugMTDLL"
-			IntermediateDirectory=".\build\vc8\DebugMTDLL"
+			OutputDirectory=".\build\vc80\DebugMTDLL"
+			IntermediateDirectory=".\build\vc80\DebugMTDLL"
 			ConfigurationType="2"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -42,23 +41,22 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\build\vc8\DebugMTDLL/ExampleXllDynamic2.tlb"
+				TypeLibraryName=".\build\vc80\DebugMTDLL/ExampleXllDynamic2.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".,..\.."
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS"
+				PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS;WIN32;LOG4CXX_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc8\DebugMTDLL/ExampleXllDynamic2.pch"
-				AssemblerListingLocation=".\build\vc8\DebugMTDLL/"
-				ObjectFile=".\build\vc8\DebugMTDLL/"
-				ProgramDataBaseFileName=".\build\vc8\DebugMTDLL/"
+				PrecompiledHeaderFile=".\build\vc80\DebugMTDLL/ExampleXllDynamic2.pch"
+				AssemblerListingLocation=".\build\vc80\DebugMTDLL/"
+				ObjectFile=".\build\vc80\DebugMTDLL/"
+				ProgramDataBaseFileName=".\build\vc80\DebugMTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -82,8 +80,8 @@
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxll\xll"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\build\vc8\DebugMTDLL/ExampleXLLDynamic2-vc80-mt-gd-0_1_3.pdb"
-				ImportLibrary=".\build\vc8\DebugMTDLL/ExampleXLLDynamic2-vc80-mt-gd-0_1_3.lib"
+				ProgramDatabaseFile=".\build\vc80\DebugMTDLL/ExampleXLLDynamic2-vc80-mt-gd-0_1_3.pdb"
+				ImportLibrary=".\build\vc80\DebugMTDLL/ExampleXLLDynamic2-vc80-mt-gd-0_1_3.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -98,7 +96,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc8\DebugMTDLL/ExampleXllDynamic2.bsc"
+				OutputFile=".\build\vc80\DebugMTDLL/ExampleXllDynamic2.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -115,10 +113,10 @@
 		</Configuration>
 		<Configuration
 			Name="Release MTDLL|Win32"
-			OutputDirectory=".\build\vc8\ReleaseMTDLL"
-			IntermediateDirectory=".\build\vc8\ReleaseMTDLL"
+			OutputDirectory=".\build\vc80\ReleaseMTDLL"
+			IntermediateDirectory=".\build\vc80\ReleaseMTDLL"
 			ConfigurationType="2"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -141,7 +139,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\build\vc8\ReleaseMTDLL/ExampleXllDynamic2.tlb"
+				TypeLibraryName=".\build\vc80\ReleaseMTDLL/ExampleXllDynamic2.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -149,16 +147,15 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories=".,..\.."
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS"
+				PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS;WIN32;LOG4CXX_STATIC"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\build\vc8\ReleaseMTDLL/ExampleXllDynamic2.pch"
-				AssemblerListingLocation=".\build\vc8\ReleaseMTDLL/"
-				ObjectFile=".\build\vc8\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\build\vc8\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\build\vc80\ReleaseMTDLL/ExampleXllDynamic2.pch"
+				AssemblerListingLocation=".\build\vc80\ReleaseMTDLL/"
+				ObjectFile=".\build\vc80\ReleaseMTDLL/"
+				ProgramDataBaseFileName=".\build\vc80\ReleaseMTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -180,8 +177,8 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxll\xll"
-				ProgramDatabaseFile=".\build\vc8\ReleaseMTDLL/ExampleXLLDynamic2-vc80-mt-0_1_3.pdb"
-				ImportLibrary=".\build\vc8\ReleaseMTDLL/ExampleXLLDynamic2-vc80-mt-0_1_3.lib"
+				ProgramDatabaseFile=".\build\vc80\ReleaseMTDLL/ExampleXLLDynamic2-vc80-mt-0_1_3.pdb"
+				ImportLibrary=".\build\vc80\ReleaseMTDLL/ExampleXLLDynamic2-vc80-mt-0_1_3.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -196,7 +193,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc8\ReleaseMTDLL/ExampleXllDynamic2.bsc"
+				OutputFile=".\build\vc80\ReleaseMTDLL/ExampleXllDynamic2.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -224,8 +221,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_IMPORTS;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -234,8 +230,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_IMPORTS;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -252,8 +247,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_IMPORTS;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -262,8 +256,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_IMPORTS;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>

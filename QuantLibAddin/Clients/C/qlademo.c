@@ -31,6 +31,8 @@ int main() {
     char returnString[100];
     Boolean returnCode;
     Varies logLevel;
+	logLevel.type = LONG;
+	logLevel.data.AsLong = 4;
 
     ohSetLogFile("quantlib.log", logLevel, returnString);     // specify log file
     ohSetConsole(1, logLevel, &returnCode);                  // log messages to stdout

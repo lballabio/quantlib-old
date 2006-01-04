@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="AddinExcelStatic"
-	ProjectGUID="{6A4E645B-184D-458A-8442-B0AE5541B681}"
+	ProjectGUID="{500BF553-58BF-491F-990A-777A6B47C16E}"
 	>
 	<Platforms>
 		<Platform
@@ -14,11 +14,11 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\buildStatic\vc8\DebugMTDLL"
-			IntermediateDirectory=".\buildStatic\vc8\DebugMTDLL"
+			Name="Debug|Win32"
+			OutputDirectory=".\buildStatic\vc80\Debug"
+			IntermediateDirectory=".\buildStatic\vc80\Debug"
 			ConfigurationType="2"
-			InheritedPropertySheets="..\..\..\..\Microsoft Visual Studio 8\VC\VCProjectDefaults\UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -41,23 +41,22 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\buildStatic\vc8\DebugMTDLL/AddinExcelStatic.tlb"
+				TypeLibraryName=".\buildStatic\vc80\Debug/AddinExcelStatic.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;XLL_STATIC"
+				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				RuntimeTypeInfo="true"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\buildStatic\vc8\DebugMTDLL/AddinExcelStatic.pch"
-				AssemblerListingLocation=".\buildStatic\vc8\DebugMTDLL/"
-				ObjectFile=".\buildStatic\vc8\DebugMTDLL/"
-				ProgramDataBaseFileName=".\buildStatic\vc8\DebugMTDLL/"
+				PrecompiledHeaderFile=".\buildStatic\vc80\Debug/AddinExcelStatic.pch"
+				AssemblerListingLocation=".\buildStatic\vc80\Debug/"
+				ObjectFile=".\buildStatic\vc80\Debug/"
+				ProgramDataBaseFileName=".\buildStatic\vc80\Debug/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -75,14 +74,14 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
-				OutputFile="xll\QuantLibAddinStatic-vc80-mt-gd-0_3_12.xll"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib advapi32.lib"
+				OutputFile="xll\QuantLibAddinStatic-vc80-mt-sgd-0_3_12.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildStatic\vc8\DebugMTDLL/QuantLibAddinStatic-vc80-mt-gd-0_3_12.pdb"
-				ImportLibrary=".\buildStatic\vc8\DebugMTDLL/QuantLibAddinStatic-vc80-mt-gd-0_3_12.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\Debug/QuantLibAddinStatic-vc80-mt-sgd-0_3_12.pdb"
+				ImportLibrary=".\buildStatic\vc80\Debug/QuantLibAddinStatic-vc80-mt-sgd-0_3_12.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -97,7 +96,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\buildStatic\vc8\DebugMTDLL/AddinExcelStatic.bsc"
+				OutputFile=".\buildStatic\vc80\Debug/AddinExcelStatic.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -113,11 +112,207 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release MTDLL|Win32"
-			OutputDirectory=".\buildStatic\vc8\ReleaseMTDLL"
-			IntermediateDirectory=".\buildStatic\vc8\ReleaseMTDLL"
+			Name="Debug MTDLL|Win32"
+			OutputDirectory=".\buildStatic\vc80\DebugMTDLL"
+			IntermediateDirectory=".\buildStatic\vc80\DebugMTDLL"
 			ConfigurationType="2"
-			InheritedPropertySheets="..\..\..\..\Microsoft Visual Studio 8\VC\VCProjectDefaults\UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\buildStatic\vc80\DebugMTDLL/AddinExcelStatic.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
+				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				RuntimeTypeInfo="true"
+				PrecompiledHeaderFile=".\buildStatic\vc80\DebugMTDLL/AddinExcelStatic.pch"
+				AssemblerListingLocation=".\buildStatic\vc80\DebugMTDLL/"
+				ObjectFile=".\buildStatic\vc80\DebugMTDLL/"
+				ProgramDataBaseFileName=".\buildStatic\vc80\DebugMTDLL/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="2057"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib advapi32.lib"
+				OutputFile="xll\QuantLibAddinStatic-vc80-mt-gd-0_3_12.xll"
+				LinkIncremental="2"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile=".\buildStatic\vc80\DebugMTDLL/QuantLibAddinStatic-vc80-mt-gd-0_3_12.pdb"
+				ImportLibrary=".\buildStatic\vc80\DebugMTDLL/QuantLibAddinStatic-vc80-mt-gd-0_3_12.lib"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\buildStatic\vc80\DebugMTDLL/AddinExcelStatic.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug SingleThread|Win32"
+			OutputDirectory=".\buildStatic\vc80\DebugST"
+			IntermediateDirectory=".\buildStatic\vc80\DebugST"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\buildStatic\vc80\DebugST/AddinExcelStatic.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
+				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="1"
+				RuntimeTypeInfo="true"
+				PrecompiledHeaderFile=".\buildStatic\vc80\DebugST/AddinExcelStatic.pch"
+				AssemblerListingLocation=".\buildStatic\vc80\DebugST/"
+				ObjectFile=".\buildStatic\vc80\DebugST/"
+				ProgramDataBaseFileName=".\buildStatic\vc80\DebugST/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="2057"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib advapi32.lib"
+				OutputFile="xll\QuantLibAddinStatic-vc80-sgd-0_3_12.xll"
+				LinkIncremental="2"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile=".\buildStatic\vc80\DebugST/QuantLibAddinStatic-vc80-sgd-0_3_12.pdb"
+				ImportLibrary=".\buildStatic\vc80\DebugST/QuantLibAddinStatic-vc80-sgd-0_3_12.lib"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\buildStatic\vc80\DebugST/AddinExcelStatic.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release SingleThread|Win32"
+			OutputDirectory=".\buildStatic\vc80\ReleaseST"
+			IntermediateDirectory=".\buildStatic\vc80\ReleaseST"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -140,7 +335,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\buildStatic\vc8\ReleaseMTDLL/AddinExcelStatic.tlb"
+				TypeLibraryName=".\buildStatic\vc80\ReleaseST/AddinExcelStatic.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -148,16 +343,15 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC"
+				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
 				StringPooling="true"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\buildStatic\vc8\ReleaseMTDLL/AddinExcelStatic.pch"
-				AssemblerListingLocation=".\buildStatic\vc8\ReleaseMTDLL/"
-				ObjectFile=".\buildStatic\vc8\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\buildStatic\vc8\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\buildStatic\vc80\ReleaseST/AddinExcelStatic.pch"
+				AssemblerListingLocation=".\buildStatic\vc80\ReleaseST/"
+				ObjectFile=".\buildStatic\vc80\ReleaseST/"
+				ProgramDataBaseFileName=".\buildStatic\vc80\ReleaseST/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -174,13 +368,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
-				OutputFile="xll\QuantLibAddinStatic-vc80-mt-0_3_12.xll"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib advapi32.lib"
+				OutputFile="xll\QuantLibAddinStatic-vc80-s-0_3_12.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
-				ProgramDatabaseFile=".\buildStatic\vc8\ReleaseMTDLL/AddinExcelStatic.pdb"
-				ImportLibrary=".\buildStatic\vc8\ReleaseMTDLL/AddinExcelStatic.lib"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				ProgramDatabaseFile=".\buildStatic\vc80\ReleaseST/QuantLibAddinStatic-vc80-s-0_3_12.pdb"
+				ImportLibrary=".\buildStatic\vc80\ReleaseST/QuantLibAddinStatic-vc80-s-0_3_12.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -195,7 +389,201 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\buildStatic\vc8\ReleaseMTDLL/AddinExcelStatic.bsc"
+				OutputFile=".\buildStatic\vc80\ReleaseST/AddinExcelStatic.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory=".\buildStatic\vc80\Release"
+			IntermediateDirectory=".\buildStatic\vc80\Release"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\buildStatic\vc80\Release/AddinExcelStatic.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
+				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
+				StringPooling="true"
+				RuntimeLibrary="0"
+				EnableFunctionLevelLinking="true"
+				RuntimeTypeInfo="true"
+				PrecompiledHeaderFile=".\buildStatic\vc80\Release/AddinExcelStatic.pch"
+				AssemblerListingLocation=".\buildStatic\vc80\Release/"
+				ObjectFile=".\buildStatic\vc80\Release/"
+				ProgramDataBaseFileName=".\buildStatic\vc80\Release/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="2057"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib advapi32.lib"
+				OutputFile="xll\QuantLibAddinStatic-vc80-mt-s-0_3_12.xll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				ProgramDatabaseFile=".\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_3_12.pdb"
+				ImportLibrary=".\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_3_12.lib"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\buildStatic\vc80\Release/AddinExcelStatic.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release MTDLL|Win32"
+			OutputDirectory=".\buildStatic\vc80\ReleaseMTDLL"
+			IntermediateDirectory=".\buildStatic\vc80\ReleaseMTDLL"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\buildStatic\vc80\ReleaseMTDLL/AddinExcelStatic.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
+				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				RuntimeTypeInfo="true"
+				PrecompiledHeaderFile=".\buildStatic\vc80\ReleaseMTDLL/AddinExcelStatic.pch"
+				AssemblerListingLocation=".\buildStatic\vc80\ReleaseMTDLL/"
+				ObjectFile=".\buildStatic\vc80\ReleaseMTDLL/"
+				ProgramDataBaseFileName=".\buildStatic\vc80\ReleaseMTDLL/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="2057"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib advapi32.lib"
+				OutputFile="xll\QuantLibAddinStatic-vc80-mt-0_3_12.xll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				ProgramDatabaseFile=".\buildStatic\vc80\ReleaseMTDLL/QuantLibAddinStatic-vc80-mt-0_3_12.pdb"
+				ImportLibrary=".\buildStatic\vc80\ReleaseMTDLL/QuantLibAddinStatic-vc80-mt-0_3_12.lib"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\buildStatic\vc80\ReleaseMTDLL/AddinExcelStatic.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -218,13 +606,48 @@
 			RelativePath="capfloor.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -233,8 +656,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -242,13 +664,48 @@
 			RelativePath="couponvectors.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -257,8 +714,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -266,13 +722,48 @@
 			RelativePath="instruments.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -281,8 +772,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -290,13 +780,48 @@
 			RelativePath="interpolation.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -305,8 +830,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -314,13 +838,48 @@
 			RelativePath="options.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -329,8 +888,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -338,13 +896,48 @@
 			RelativePath="processes.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -353,8 +946,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -362,13 +954,48 @@
 			RelativePath="qladdin.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -377,8 +1004,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -386,13 +1012,48 @@
 			RelativePath="schedule.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -401,8 +1062,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -410,13 +1070,48 @@
 			RelativePath="session.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -425,8 +1120,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -438,13 +1132,48 @@
 			RelativePath="shortratemodels.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -453,8 +1182,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -462,13 +1190,48 @@
 			RelativePath="simpleswap.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -477,8 +1240,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -486,13 +1248,48 @@
 			RelativePath="swap.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -501,8 +1298,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -510,13 +1306,48 @@
 			RelativePath="termstructures.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -525,8 +1356,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -534,13 +1364,48 @@
 			RelativePath="utilities.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -549,8 +1414,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -558,13 +1422,48 @@
 			RelativePath="volatilities.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -573,8 +1472,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>
@@ -582,13 +1480,48 @@
 			RelativePath="xibor.cpp"
 			>
 			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Debug MTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -597,8 +1530,7 @@
 				<Tool
 					Name="VCCLCompilerTool"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
-					UsePrecompiledHeader="0"
+					PreprocessorDefinitions=""
 				/>
 			</FileConfiguration>
 		</File>

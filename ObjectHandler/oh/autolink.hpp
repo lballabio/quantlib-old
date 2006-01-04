@@ -40,8 +40,7 @@
 #ifdef _MT
 #  define OBJHANDLER_LIB_THREAD_OPT "-mt"
 #else
-//#  define OBJHANDLER_LIB_THREAD_OPT
-#  error multithreaded runtime library required
+#  define OBJHANDLER_LIB_THREAD_OPT
 #endif
 
 // select linkage opt:
@@ -52,12 +51,11 @@
 #    define OBJHANDLER_LIB_RT_OPT
 #  endif
 #else
-//#  if defined(_DEBUG)
-//#    define OBJHANDLER_LIB_RT_OPT "-sgd"
-//#  else
-//#    define OBJHANDLER_LIB_RT_OPT "-s"
-//#  endif
-#  error DLL runtime library required
+#  if defined(_DEBUG)
+#    define OBJHANDLER_LIB_RT_OPT "-sgd"
+#  else
+#    define OBJHANDLER_LIB_RT_OPT "-s"
+#  endif
 #endif
 
 #define OBJHANDLER_LIB_NAME "ObjectHandler-" OBJHANDLER_LIB_TOOLSET OBJHANDLER_LIB_THREAD_OPT OBJHANDLER_LIB_RT_OPT "-" OBJHANDLER_LIB_VERSION ".lib"

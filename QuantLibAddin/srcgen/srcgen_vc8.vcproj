@@ -3,9 +3,8 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="srcgen"
-	ProjectGUID="{BB110237-764A-47C5-927C-F46FA83320CF}"
+	ProjectGUID="{F7887FB9-E143-4104-A1C2-167E1F8EAA7C}"
 	Keyword="MakeFileProj"
-	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -17,10 +16,10 @@
 	<Configurations>
 		<Configuration
 			Name="All|Win32"
-			OutputDirectory=".\build\vc8"
-			IntermediateDirectory=".\build\vc8"
+			OutputDirectory="build\vc"
+			IntermediateDirectory="build\vc"
 			ConfigurationType="0"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			>
@@ -29,7 +28,7 @@
 				BuildCommandLine="NMAKE /f &quot;Makefile.vc&quot;"
 				ReBuildCommandLine="NMAKE /f &quot;Makefile.vc&quot; /a"
 				CleanCommandLine=""
-				Output="build\vc8\Autogen.flag1"
+				Output="build\vc80\Autogen.flag1"
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""
 				ForcedIncludes=""
@@ -44,13 +43,18 @@
 	<Files>
 		<Filter
 			Name="scripts"
+			Filter="*.py"
 			>
 			<File
-				RelativePath="addincalc.py"
+				RelativePath="addin.py"
 				>
 			</File>
 			<File
 				RelativePath="addinc.py"
+				>
+			</File>
+			<File
+				RelativePath="addincalc.py"
 				>
 			</File>
 			<File
@@ -63,10 +67,6 @@
 			</File>
 			<File
 				RelativePath="addinguile.py"
-				>
-			</File>
-			<File
-				RelativePath="addin.py"
 				>
 			</File>
 			<File
@@ -134,10 +134,6 @@
 				>
 			</File>
 			<File
-				RelativePath="utils.py"
-				>
-			</File>
-			<File
 				RelativePath="xmlreader.py"
 				>
 			</File>
@@ -145,6 +141,22 @@
 		<Filter
 			Name="stubs"
 			>
+			<File
+				RelativePath="stub.c.constructor"
+				>
+			</File>
+			<File
+				RelativePath="stub.c.includes"
+				>
+			</File>
+			<File
+				RelativePath="stub.c.member"
+				>
+			</File>
+			<File
+				RelativePath="stub.c.procedure"
+				>
+			</File>
 			<File
 				RelativePath="stub.calc.constructor"
 				>
@@ -175,22 +187,6 @@
 			</File>
 			<File
 				RelativePath="stub.calc.procedure"
-				>
-			</File>
-			<File
-				RelativePath="stub.c.constructor"
-				>
-			</File>
-			<File
-				RelativePath="stub.c.includes"
-				>
-			</File>
-			<File
-				RelativePath="stub.c.member"
-				>
-			</File>
-			<File
-				RelativePath="stub.c.procedure"
 				>
 			</File>
 			<File
@@ -260,13 +256,14 @@
 		</Filter>
 		<Filter
 			Name="metadata"
+			Filter="*.xml"
 			>
 			<File
-				RelativePath="addincalc.xml"
+				RelativePath="addinc.xml"
 				>
 			</File>
 			<File
-				RelativePath="addinc.xml"
+				RelativePath="addincalc.xml"
 				>
 			</File>
 			<File

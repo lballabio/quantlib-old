@@ -78,52 +78,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "ClientCppCapFloors"=".\Clients\C++\ClientCppCapFloors.dsp" - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name QuantLibAddin
-    End Project Dependency
-}}}
-
-###############################################################################
-
 Project: "ClientCppDemo"=".\Clients\C++\ClientCppDemo.dsp" - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name QuantLibAddin
-    End Project Dependency
-}}}
-
-###############################################################################
-
-Project: "ClientCppInstruments"=".\Clients\C++\ClientCppInstruments.dsp" - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name QuantLibAddin
-    End Project Dependency
-}}}
-
-###############################################################################
-
-Project: "ClientCppOptions"=".\Clients\C++\ClientCppOptions.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{

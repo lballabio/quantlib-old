@@ -4,7 +4,7 @@
 
 # TARGTYPE "Win32 (x86) Static Library" 0x0104
 
-CFG=QuantLibAddin - Win32 Debug MTDLL
+CFG=QuantLibAddin - Win32 Debug SingleThread
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
@@ -13,12 +13,16 @@ CFG=QuantLibAddin - Win32 Debug MTDLL
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "QuantLibAddin.mak" CFG="QuantLibAddin - Win32 Debug MTDLL"
+!MESSAGE NMAKE /f "QuantLibAddin.mak" CFG="QuantLibAddin - Win32 Debug SingleThread"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "QuantLibAddin - Win32 Debug MTDLL" (based on "Win32 (x86) Static Library")
+!MESSAGE "QuantLibAddin - Win32 Release" (based on "Win32 (x86) Static Library")
+!MESSAGE "QuantLibAddin - Win32 Debug" (based on "Win32 (x86) Static Library")
 !MESSAGE "QuantLibAddin - Win32 Release MTDLL" (based on "Win32 (x86) Static Library")
+!MESSAGE "QuantLibAddin - Win32 Debug MTDLL" (based on "Win32 (x86) Static Library")
+!MESSAGE "QuantLibAddin - Win32 Release SingleThread" (based on "Win32 (x86) Static Library")
+!MESSAGE "QuantLibAddin - Win32 Debug SingleThread" (based on "Win32 (x86) Static Library")
 !MESSAGE 
 
 # Begin Project
@@ -28,20 +32,43 @@ CFG=QuantLibAddin - Win32 Debug MTDLL
 CPP=cl.exe
 RSC=rc.exe
 
-!IF  "$(CFG)" == "QuantLibAddin - Win32 Debug MTDLL"
+!IF  "$(CFG)" == "QuantLibAddin - Win32 Release"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "build\vc6\Release"
+# PROP BASE Intermediate_Dir "build\vc6\Release"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "build\vc6\Release"
+# PROP Intermediate_Dir "build\vc6\Release"
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD CPP /nologo /MT /W3 /GR /GX /O2 /I "./" /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "$(LOG4CXX_DIR)/include" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD BASE RSC /l 0x809 /d "NDEBUG"
+# ADD RSC /l 0x809 /d "NDEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LIB32=link.exe -lib
+# ADD BASE LIB32 /nologo
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-s-0_3_12.lib"
+
+!ELSEIF  "$(CFG)" == "QuantLibAddin - Win32 Debug"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "Debug MTDLL"
-# PROP BASE Intermediate_Dir "Debug MTDLL"
+# PROP BASE Output_Dir "build\vc6\Debug"
+# PROP BASE Intermediate_Dir "build\vc6\Debug"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "build\vc6\DebugMTDLL"
-# PROP Intermediate_Dir "build\vc6\DebugMTDLL"
+# PROP Output_Dir "build\vc6\Debug"
+# PROP Intermediate_Dir "build\vc6\Debug"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "./" /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "$(LOG4CXX_DIR)/include" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD CPP /nologo /MTd /W3 /Gm /GR /GX /ZI /Od /I "./" /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "$(LOG4CXX_DIR)/include" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
 # ADD BASE RSC /l 0x809 /d "_DEBUG"
 # ADD RSC /l 0x809 /d "_DEBUG"
 BSC32=bscmake.exe
@@ -49,14 +76,14 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-gd-0_3_12.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-sgd-0_3_12.lib"
 
 !ELSEIF  "$(CFG)" == "QuantLibAddin - Win32 Release MTDLL"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "Release MTDLL"
-# PROP BASE Intermediate_Dir "Release MTDLL"
+# PROP BASE Output_Dir "build\vc6\ReleaseMTDLL"
+# PROP BASE Intermediate_Dir "build\vc6\ReleaseMTDLL"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
@@ -74,12 +101,85 @@ LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-0_3_12.lib"
 
+!ELSEIF  "$(CFG)" == "QuantLibAddin - Win32 Debug MTDLL"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "build\vc6\DebugMTDLL"
+# PROP BASE Intermediate_Dir "build\vc6\DebugMTDLL"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "build\vc6\DebugMTDLL"
+# PROP Intermediate_Dir "build\vc6\DebugMTDLL"
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "./" /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "$(LOG4CXX_DIR)/include" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD BASE RSC /l 0x809 /d "_DEBUG"
+# ADD RSC /l 0x809 /d "_DEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LIB32=link.exe -lib
+# ADD BASE LIB32 /nologo
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-gd-0_3_12.lib"
+
+!ELSEIF  "$(CFG)" == "QuantLibAddin - Win32 Release SingleThread"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "build\vc6\ReleaseST"
+# PROP BASE Intermediate_Dir "build\vc6\ReleaseST"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "build\vc6\ReleaseST"
+# PROP Intermediate_Dir "build\vc6\ReleaseST"
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD CPP /nologo /W3 /GR /GX /O2 /I "./" /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "$(LOG4CXX_DIR)/include" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD BASE RSC /l 0x809 /d "NDEBUG"
+# ADD RSC /l 0x809 /d "NDEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LIB32=link.exe -lib
+# ADD BASE LIB32 /nologo
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-s-0_3_12.lib"
+
+!ELSEIF  "$(CFG)" == "QuantLibAddin - Win32 Debug SingleThread"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "build\vc6\DebugST"
+# PROP BASE Intermediate_Dir "build\vc6\DebugST"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "build\vc6\DebugST"
+# PROP Intermediate_Dir "build\vc6\DebugST"
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD CPP /nologo /W3 /Gm /GR /GX /ZI /Od /I "./" /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /I "$(LOG4CXX_DIR)/include" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD BASE RSC /l 0x809 /d "_DEBUG"
+# ADD RSC /l 0x809 /d "_DEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LIB32=link.exe -lib
+# ADD BASE LIB32 /nologo
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-sgd-0_3_12.lib"
+
 !ENDIF 
 
 # Begin Target
 
-# Name "QuantLibAddin - Win32 Debug MTDLL"
+# Name "QuantLibAddin - Win32 Release"
+# Name "QuantLibAddin - Win32 Debug"
 # Name "QuantLibAddin - Win32 Release MTDLL"
+# Name "QuantLibAddin - Win32 Debug MTDLL"
+# Name "QuantLibAddin - Win32 Release SingleThread"
+# Name "QuantLibAddin - Win32 Debug SingleThread"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
@@ -261,11 +361,11 @@ SOURCE=.\qla\interpolation.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\options.hpp
+SOURCE=.\qla\ohfunctions.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\ohfunctions.hpp
+SOURCE=.\qla\options.hpp
 # End Source File
 # Begin Source File
 

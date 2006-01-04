@@ -3,9 +3,8 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="AddinCalc"
-	ProjectGUID="{9237395B-3FC1-421E-9384-EE97B98ABA3B}"
+	ProjectGUID="{10DC0D9D-ABB3-4737-B14D-4FFAD4810A72}"
 	Keyword="MakeFileProj"
-	SignManifests="true"
 	>
 	<Platforms>
 		<Platform
@@ -17,19 +16,19 @@
 	<Configurations>
 		<Configuration
 			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc8\DebugMTDLL"
-			IntermediateDirectory=".\build\vc8\DebugMTDLL"
+			OutputDirectory=".\AddinCalc___Win32_Debug_MTDLL"
+			IntermediateDirectory=".\AddinCalc___Win32_Debug_MTDLL"
 			ConfigurationType="0"
-			InheritedPropertySheets="UpgradeFromVC60.vsprops"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot;"
-				ReBuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot; /a"
+				BuildCommandLine="nmake /f &quot;AddinCalc.mak&quot;"
+				ReBuildCommandLine="nmake /f &quot;AddinCalc.mak&quot; /a"
 				CleanCommandLine=""
-				Output="QuantLibAddin-vc80-mt-gd-0_3_12.dll"
+				Output="AddinCalc.exe"
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""
 				ForcedIncludes=""
@@ -87,6 +86,10 @@
 				>
 			</File>
 			<File
+				RelativePath="QuantLibAddin.idl"
+				>
+			</File>
+			<File
 				RelativePath="schedule.cpp"
 				>
 			</File>
@@ -128,10 +131,6 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="qla_all.hpp"
-				>
-			</File>
-			<File
 				RelativePath="calcutils.hpp"
 				>
 			</File>
@@ -161,6 +160,10 @@
 			</File>
 			<File
 				RelativePath="processes.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla_all.hpp"
 				>
 			</File>
 			<File
@@ -204,10 +207,11 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath="QuantLibAddin.idl"
+		<Filter
+			Name="Resource Files"
+			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
-		</File>
+		</Filter>
 		<File
 			RelativePath="Makefile.vc.debug.mtdll"
 			>

@@ -24,19 +24,19 @@ CFG=srcgen - Win32 All
 # PROP AllowPerConfigDependencies 0
 # PROP Scc_ProjName ""
 # PROP Scc_LocalPath ""
-# PROP BASE Use_MFC 0
+# PROP BASE Use_MFC
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "build\vc6"
-# PROP BASE Intermediate_Dir "build\vc6"
+# PROP BASE Output_Dir "build\vc"
+# PROP BASE Intermediate_Dir "build\vc"
 # PROP BASE Cmd_Line "nmake /f "srcgen.mak""
 # PROP BASE Rebuild_Opt "/a"
 # PROP BASE Target_File "srcgen.exe"
 # PROP BASE Bsc_Name ""
 # PROP BASE Target_Dir ""
-# PROP Use_MFC 0
+# PROP Use_MFC
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "build\vc6"
-# PROP Intermediate_Dir "build\vc6"
+# PROP Output_Dir "build\vc"
+# PROP Intermediate_Dir "build\vc"
 # PROP Cmd_Line "NMAKE /f "Makefile.vc""
 # PROP Rebuild_Opt "/a"
 # PROP Target_File "build\vc6\Autogen.flag1"
@@ -52,98 +52,98 @@ CFG=srcgen - Win32 All
 
 # Begin Group "scripts"
 
-# PROP Default_Filter ""
+# PROP Default_Filter "*.py"
 # Begin Source File
 
-source=addin.py
+SOURCE=.\addin.py
 # End Source File
 # Begin Source File
 
-source=addinc.py
+SOURCE=.\addinc.py
 # End Source File
 # Begin Source File
 
-source=addincalc.py
+SOURCE=.\addincalc.py
 # End Source File
 # Begin Source File
 
-source=addindoxygen.py
+SOURCE=.\addindoxygen.py
 # End Source File
 # Begin Source File
 
-source=addinexcel.py
+SOURCE=.\addinexcel.py
 # End Source File
 # Begin Source File
 
-source=addinguile.py
+SOURCE=.\addinguile.py
 # End Source File
 # Begin Source File
 
-source=addinqla.py
+SOURCE=.\addinqla.py
 # End Source File
 # Begin Source File
 
-source=buffer.py
+SOURCE=.\buffer.py
 # End Source File
 # Begin Source File
 
-source=category.py
+SOURCE=.\category.py
 # End Source File
 # Begin Source File
 
-source=common.py
+SOURCE=.\common.py
 # End Source File
 # Begin Source File
 
-source=config.py
+SOURCE=.\config.py
 # End Source File
 # Begin Source File
 
-source=enumeration.py
+SOURCE=.\enumeration.py
 # End Source File
 # Begin Source File
 
-source=factory.py
+SOURCE=.\factory.py
 # End Source File
 # Begin Source File
 
-source=function.py
+SOURCE=.\function.py
 # End Source File
 # Begin Source File
 
-source=log.py
+SOURCE=.\log.py
 # End Source File
 # Begin Source File
 
-source=outputfile.py
+SOURCE=.\outputfile.py
 # End Source File
 # Begin Source File
 
-source=parameter.py
+SOURCE=.\parameter.py
 # End Source File
 # Begin Source File
 
-source=rule.py
+SOURCE=.\rule.py
 # End Source File
 # Begin Source File
 
-source=serializable.py
+SOURCE=.\serializable.py
 # End Source File
 # Begin Source File
 
-source=serializer.py
+SOURCE=.\serializer.py
 # End Source File
 # Begin Source File
 
-source=singleton.py
+SOURCE=.\singleton.py
 # End Source File
 # Begin Source File
 
-source=srcgen.py
+SOURCE=.\srcgen.py
 # End Source File
 # Begin Source File
 
-source=xmlreader.py
+SOURCE=.\xmlreader.py
 # End Source File
 # End Group
 # Begin Group "stubs"
@@ -151,211 +151,211 @@ source=xmlreader.py
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=stub.c.constructor
+SOURCE=.\stub.c.constructor
 # End Source File
 # Begin Source File
 
-SOURCE=stub.c.includes
+SOURCE=.\stub.c.includes
 # End Source File
 # Begin Source File
 
-SOURCE=stub.c.member
+SOURCE=.\stub.c.member
 # End Source File
 # Begin Source File
 
-SOURCE=stub.c.procedure
+SOURCE=.\stub.c.procedure
 # End Source File
 # Begin Source File
 
-SOURCE=stub.calc.constructor
+SOURCE=.\stub.calc.constructor
 # End Source File
 # Begin Source File
 
-SOURCE=stub.calc.idlfoot
+SOURCE=.\stub.calc.idlfoot
 # End Source File
 # Begin Source File
 
-SOURCE=stub.calc.idlfunc
+SOURCE=.\stub.calc.idlfunc
 # End Source File
 # Begin Source File
 
-SOURCE=stub.calc.idlhead
+SOURCE=.\stub.calc.idlhead
 # End Source File
 # Begin Source File
 
-SOURCE=stub.calc.includes
+SOURCE=.\stub.calc.includes
 # End Source File
 # Begin Source File
 
-SOURCE=stub.calc.map
+SOURCE=.\stub.calc.map
 # End Source File
 # Begin Source File
 
-SOURCE=stub.calc.member
+SOURCE=.\stub.calc.member
 # End Source File
 # Begin Source File
 
-SOURCE=stub.calc.procedure
+SOURCE=.\stub.calc.procedure
 # End Source File
 # Begin Source File
 
-SOURCE=stub.copyright
+SOURCE=.\stub.copyright
 # End Source File
 # Begin Source File
 
-SOURCE=stub.doxygen.categories
+SOURCE=.\stub.doxygen.categories
 # End Source File
 # Begin Source File
 
-SOURCE=stub.doxygen.enums
+SOURCE=.\stub.doxygen.enums
 # End Source File
 # Begin Source File
 
-SOURCE=stub.doxygen.header
+SOURCE=.\stub.doxygen.header
 # End Source File
 # Begin Source File
 
-SOURCE=stub.excel.constructor
+SOURCE=.\stub.excel.constructor
 # End Source File
 # Begin Source File
 
-SOURCE=stub.excel.includes
+SOURCE=.\stub.excel.includes
 # End Source File
 # Begin Source File
 
-SOURCE=stub.excel.member
+SOURCE=.\stub.excel.member
 # End Source File
 # Begin Source File
 
-SOURCE=stub.excel.procedure
+SOURCE=.\stub.excel.procedure
 # End Source File
 # Begin Source File
 
-SOURCE=stub.excel.regfooter
+SOURCE=.\stub.excel.regfooter
 # End Source File
 # Begin Source File
 
-SOURCE=stub.excel.regheader
+SOURCE=.\stub.excel.regheader
 # End Source File
 # Begin Source File
 
-SOURCE=stub.guile.constructor
+SOURCE=.\stub.guile.constructor
 # End Source File
 # Begin Source File
 
-SOURCE=stub.guile.includes
+SOURCE=.\stub.guile.includes
 # End Source File
 # Begin Source File
 
-SOURCE=stub.guile.initfunc
+SOURCE=.\stub.guile.initfunc
 # End Source File
 # Begin Source File
 
-SOURCE=stub.guile.member
+SOURCE=.\stub.guile.member
 # End Source File
 # Begin Source File
 
-SOURCE=stub.guile.procedure
+SOURCE=.\stub.guile.procedure
 # End Source File
 # Begin Source File
 
-SOURCE=stub.qla.includes
+SOURCE=.\stub.qla.includes
 # End Source File
 # End Group
 # Begin Group "metadata"
 
-# PROP Default_Filter ""
+# PROP Default_Filter "*.xml"
 # Begin Source File
 
-SOURCE=addinc.xml
+SOURCE=.\addinc.xml
 # End Source File
 # Begin Source File
 
-SOURCE=addincalc.xml
+SOURCE=.\addincalc.xml
 # End Source File
 # Begin Source File
 
-SOURCE=addindoxygen.xml
+SOURCE=.\addindoxygen.xml
 # End Source File
 # Begin Source File
 
-SOURCE=addinexcel.xml
+SOURCE=.\addinexcel.xml
 # End Source File
 # Begin Source File
 
-SOURCE=addinguile.xml
+SOURCE=.\addinguile.xml
 # End Source File
 # Begin Source File
 
-SOURCE=addinqla.xml
+SOURCE=.\addinqla.xml
 # End Source File
 # Begin Source File
 
-SOURCE=capfloor.xml
+SOURCE=.\capfloor.xml
 # End Source File
 # Begin Source File
 
-SOURCE=config.xml
+SOURCE=.\config.xml
 # End Source File
 # Begin Source File
 
-SOURCE=couponvectors.xml
+SOURCE=.\couponvectors.xml
 # End Source File
 # Begin Source File
 
-SOURCE=enumerations.xml
+SOURCE=.\enumerations.xml
 # End Source File
 # Begin Source File
 
-SOURCE=instruments.xml
+SOURCE=.\instruments.xml
 # End Source File
 # Begin Source File
 
-SOURCE=interpolation.xml
+SOURCE=.\interpolation.xml
 # End Source File
 # Begin Source File
 
-SOURCE=ohfunctions.xml
+SOURCE=.\ohfunctions.xml
 # End Source File
 # Begin Source File
 
-SOURCE=options.xml
+SOURCE=.\options.xml
 # End Source File
 # Begin Source File
 
-SOURCE=processes.xml
+SOURCE=.\processes.xml
 # End Source File
 # Begin Source File
 
-SOURCE=schedule.xml
+SOURCE=.\schedule.xml
 # End Source File
 # Begin Source File
 
-SOURCE=shortratemodels.xml
+SOURCE=.\shortratemodels.xml
 # End Source File
 # Begin Source File
 
-SOURCE=simpleswap.xml
+SOURCE=.\simpleswap.xml
 # End Source File
 # Begin Source File
 
-SOURCE=swap.xml
+SOURCE=.\swap.xml
 # End Source File
 # Begin Source File
 
-SOURCE=termstructures.xml
+SOURCE=.\termstructures.xml
 # End Source File
 # Begin Source File
 
-SOURCE=utilities.xml
+SOURCE=.\utilities.xml
 # End Source File
 # Begin Source File
 
-SOURCE=volatilities.xml
+SOURCE=.\volatilities.xml
 # End Source File
 # Begin Source File
 
-SOURCE=xibor.xml
+SOURCE=.\xibor.xml
 # End Source File
 # End Group
 # Begin Source File

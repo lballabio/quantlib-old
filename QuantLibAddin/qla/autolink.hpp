@@ -39,8 +39,7 @@
 #ifdef _MT
 #  define QLADDIN_LIB_THREAD_OPT "-mt"
 #else
-//#  define QLADDIN_LIB_THREAD_OPT
-#  error multithreaded runtime library required
+#  define QLADDIN_LIB_THREAD_OPT
 #endif
 
 // select linkage opt:
@@ -51,12 +50,11 @@
 #    define QLADDIN_LIB_RT_OPT
 #  endif
 #else
-//#  if defined(_DEBUG)
-//#    define QLADDIN_LIB_RT_OPT "-sgd"
-//#  else
-//#    define QLADDIN_LIB_RT_OPT "-s"
-//#  endif
-#  error DLL runtime library required
+#  if defined(_DEBUG)
+#    define QLADDIN_LIB_RT_OPT "-sgd"
+#  else
+#    define QLADDIN_LIB_RT_OPT "-s"
+#  endif
 #endif
 
 #define QLADDIN_LIB_NAME "QuantLibAddin-" QLADDIN_LIB_TOOLSET QLADDIN_LIB_THREAD_OPT QLADDIN_LIB_RT_OPT "-" QLADDIN_LIB_VERSION ".lib"

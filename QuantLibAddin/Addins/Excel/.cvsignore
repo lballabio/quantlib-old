@@ -1,5 +1,5 @@
-AddinExcelDynamic_vc8.vcproj.*.user
-AddinExcelStatic_vc8.vcproj.*.user
+AddinExcelDynamic*.vcproj.*.user
+AddinExcelStatic*.vcproj.*.user
 buildDynamic
 buildStatic
 capfloor.cpp
