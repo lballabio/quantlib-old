@@ -4,8 +4,6 @@ DLLEXPORT %s%s(%s) {
 
 %s        boost::shared_ptr< QuantLibAddin::%s > objectPointer =
             OH_GET_OBJECT(QuantLibAddin::%s, handle);
-        if (!objectPointer)
-            QL_FAIL("Error retrieving object " + std::string(handle));
 
         %s returnValue;
         returnValue = %s(%s);

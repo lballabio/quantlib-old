@@ -1,8 +1,6 @@
     try {
 %s        boost::shared_ptr<QuantLibAddin::%s> objectPointer =
             OH_GET_OBJECT(QuantLibAddin::%s, std::string(handle));
-        if (!objectPointer)
-            QL_FAIL("Error retrieving object " + std::string(handle));
         %s returnValue = %s(%s);
         %s;
         return SUCCESS;
