@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 """
- Copyright (C) 2000-2005 StatPro Italia srl
+ Copyright (C) 2000-2006 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -76,10 +76,13 @@ class my_wrap(Command):
 if sys.platform == 'win32':
     try:
         QL_INSTALL_DIR = os.environ['QL_DIR']
-    except Exception, e:
-        raise 'unable to detect QuantLib installation'
-    include_dirs = [QL_INSTALL_DIR]
-    library_dirs = [os.path.join(QL_INSTALL_DIR, 'lib')]
+        include_dirs = [QL_INSTALL_DIR]
+        library_dirs = [os.path.join(QL_INSTALL_DIR, 'lib')]
+    except KeyError, e:
+        print 'warning: unable to detect QuantLib installation'
+        print 'I will assume that it was added to the default compiler paths'
+        include_dirs = []
+        library_dirs = []
     libraries = None
 
     if '--compiler=bcpp' in sys.argv:

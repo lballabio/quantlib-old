@@ -1,5 +1,5 @@
 
-; Copyright (C) 2002, 2003, 2004, 2005 StatPro Italia srl
+; Copyright (C) 2002, 2003, 2004, 2005, 2006 StatPro Italia srl
 ;
 ; This file is part of QuantLib, a free-software/open-source library
 ; for financial quantitative analysts and developers - http://quantlib.org/
@@ -95,16 +95,24 @@
              (list "-L/usr/local/lib" "-lstdc++" "-lgcc"
                    (string-append "-lQuantLib-" version))))))
           ((eqv? platform 'windows)
-           (set! include-dirs (cons (getenv "QL_DIR") include-dirs))
+           (let ((ql-dir (getenv "QL_DIR")))
+             (if ql-dir
+                 (begin
+                   (set! include-dirs (cons ql-dir include-dirs))
+                   (putenv "LIB"
+                           (string-append
+                            (build-path ql-dir "lib")
+                            ";"
+                            (getenv "LIB"))))
+                 (display
+                  (string-append
+                   (format "warning: unable to detect QuantLib installation~n")
+                   (format "I will assume that it was added ")
+                   (format "to the default compiler paths~n")))))
            (current-extension-compiler-flags
             (append
              (current-extension-compiler-flags)
-             (list "-DNOMINMAX" "/MT" "/GR" "/GX" "/Zm250")))
-           (putenv "LIB"
-                   (string-append
-                    (build-path (getenv "QL_DIR") "lib")
-                    ";"
-                    (getenv "LIB"))))
+             (list "-DNOMINMAX" "/MT" "/GR" "/GX" "/Zm250"))))
           (else
            (error "Unsupported platform")))
     (let ((object (append-object-suffix "quantlib_wrap"))

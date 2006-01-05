@@ -1,5 +1,5 @@
 =begin
- Copyright (C) 2000-2005 StatPro Italia srl
+ Copyright (C) 2000-2006 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -80,13 +80,18 @@ Build = Command.new {
     cfg = Config::MAKEFILE_CONFIG
     if cfg['host_os'] == 'mswin32'
       QL_DIR = ENV['QL_DIR']
+      if QL_DIR
+        $CPPFLAGS += " /I#{QL_DIR}"
+        $LIBPATH  += ["#{QL_DIR}\\lib"]
+      else
+        puts 'warning: unable to detect QuantLib installation'
+        puts 'I will assume that it was added to the default compiler paths'
+      end
       $CPPFLAGS += " /MT"
       $CPPFLAGS += " /GR"
       $CPPFLAGS += " /GX"
       $CPPFLAGS += " /Zm250"
       $CPPFLAGS += " /DNOMINMAX"
-      $CPPFLAGS += " /I#{QL_DIR}"
-      $LIBPATH  += ["#{QL_DIR}\\lib"]
     else
       $CFLAGS   += " " + (ENV['CFLAGS'] || "")
       $CPPFLAGS += " " + IO.popen("quantlib-config --cflags").gets.strip
