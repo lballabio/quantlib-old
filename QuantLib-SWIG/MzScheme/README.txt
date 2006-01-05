@@ -3,7 +3,7 @@ The C++ wrappers for the QuantLib-MzScheme extension module are created
 by means of SWIG (Simplified Wrapper and Interface Generator) available
 from <http://www.swig.org/>.  Features used in the QuantLib-MzScheme
 interface files require version 2.0 or later of MzScheme; version
-1.3.25 of SWIG is recommended.
+1.3.27 of SWIG is recommended.
 
 The wrappers are generated on all supported platforms by issuing the command
     mzscheme -r setup.scm wrap
@@ -17,10 +17,15 @@ The building and installation process consists of the following commands:
     mzscheme -r setup.scm test
     mzscheme -r setup.scm install
 
-The install step above might require superuser privileges.
+The build step requires that the QuantLib headers and library can be
+found by the compiler. On Unix-like platforms, this should already
+hold if you ran "make install" from your QuantLib directory. On the
+Windows platform, this can be achieved by defining a QL_DIR environment
+variable pointing to your QuantLib directory (e.g., "C:\Lib\QuantLib".)
+
+The install step might require superuser privileges.
 
 The test suite is implemented on top of the Schemeunit framework, available
 from <http://schematics.sourceforge.net>. Version 1.4 of above of Schemeunit
 is required for running the suite.
-
 

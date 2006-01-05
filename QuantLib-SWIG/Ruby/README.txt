@@ -1,7 +1,7 @@
 
 The C++ wrappers for the QuantLib-Ruby extension module are created
 by means of SWIG (Simplified Wrapper and Interface Generator) available
-from <http://swig.sourceforge.net/>. Version 1.3.25 of SWIG is recommended.
+from <http://swig.sourceforge.net/>. Version 1.3.27 of SWIG is recommended.
 
 The wrappers are generated on all supported platforms by issuing the command
     ruby setup.rb wrap
@@ -15,7 +15,13 @@ The building and installation process consists of the following commands:
     ruby setup.rb test
     ruby setup.rb install
 
-The install step above might require superuser privileges.
+The build step requires that the QuantLib headers and library can be
+found by the compiler. On Unix-like platforms, this should already
+hold if you ran "make install" from your QuantLib directory. On the
+Windows platform, this can be achieved by defining a QL_DIR environment
+variable pointing to your QuantLib directory (e.g., "C:\Lib\QuantLib".)
+
+The install step might require superuser privileges.
 An alternate install location can be specified with the command:
     ruby setup.rb install --prefix=/home/johndoe
 
