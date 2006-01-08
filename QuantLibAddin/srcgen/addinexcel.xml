@@ -3,9 +3,7 @@
 <rootDirectory>../Addins/Excel/</rootDirectory>
 
 <Buffers>
-<Buffer name='bufferConstructor' fileName='stub.excel.constructor'/>
-<Buffer name='bufferMember' fileName='stub.excel.member'/>
-<Buffer name='bufferProcedure' fileName='stub.excel.procedure'/>
+<Buffer name='bufferFunction' fileName='stub.excel.function'/>
 <Buffer name='bufferIncludes' fileName='stub.excel.includes'/>
 <Buffer name='bufferRegHeader' fileName='stub.excel.regheader'/>
 <Buffer name='bufferRegFooter' fileName='stub.excel.regfooter'/>
@@ -102,7 +100,7 @@
     </Rules>
 </RuleGroup>
 
-<RuleGroup name='libraryCall' ql_type='true' appendTensorRank='true' indent='3'>
+<RuleGroup name='libraryCall' ql_type='true' appendConversionSuffix='true' indent='3'>
     <Rules>
     <Rule name='setType'>
         <SubRules>
@@ -188,7 +186,7 @@
     </Rules>
 </RuleGroup>
 
-<RuleGroup name='conversions' appendTensorRank='true' indent='2'>
+<RuleGroup name='conversions' appendConversionSuffix='true' indent='2'>
     <Rules>
     <Rule name='setType'>
         <SubRules>

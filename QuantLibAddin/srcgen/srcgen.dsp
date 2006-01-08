@@ -151,7 +151,7 @@ SOURCE=.\xmlreader.py
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\stub.c.constructor
+SOURCE=.\stub.c.function
 # End Source File
 # Begin Source File
 
@@ -159,15 +159,7 @@ SOURCE=.\stub.c.includes
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.c.member
-# End Source File
-# Begin Source File
-
-SOURCE=.\stub.c.procedure
-# End Source File
-# Begin Source File
-
-SOURCE=.\stub.calc.constructor
+SOURCE=.\stub.calc.function
 # End Source File
 # Begin Source File
 
@@ -191,14 +183,6 @@ SOURCE=.\stub.calc.map
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.calc.member
-# End Source File
-# Begin Source File
-
-SOURCE=.\stub.calc.procedure
-# End Source File
-# Begin Source File
-
 SOURCE=.\stub.copyright
 # End Source File
 # Begin Source File
@@ -215,19 +199,11 @@ SOURCE=.\stub.doxygen.header
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.excel.constructor
+SOURCE=.\stub.excel.function
 # End Source File
 # Begin Source File
 
 SOURCE=.\stub.excel.includes
-# End Source File
-# Begin Source File
-
-SOURCE=.\stub.excel.member
-# End Source File
-# Begin Source File
-
-SOURCE=.\stub.excel.procedure
 # End Source File
 # Begin Source File
 
@@ -239,7 +215,7 @@ SOURCE=.\stub.excel.regheader
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.guile.constructor
+SOURCE=.\stub.guile.function
 # End Source File
 # Begin Source File
 
@@ -248,14 +224,6 @@ SOURCE=.\stub.guile.includes
 # Begin Source File
 
 SOURCE=.\stub.guile.initfunc
-# End Source File
-# Begin Source File
-
-SOURCE=.\stub.guile.member
-# End Source File
-# Begin Source File
-
-SOURCE=.\stub.guile.procedure
 # End Source File
 # Begin Source File
 

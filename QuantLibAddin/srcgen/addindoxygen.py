@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -20,6 +20,7 @@
 """generate doxygen documentation files."""
 
 import addin
+import function
 import config
 import outputfile
 import common
@@ -34,10 +35,10 @@ LINE_TABLE = """    <table>\n
     <tr><td><b>String</b></td><td><b>Enumeration</b></td></tr>\n"""
 
 class AddinDoxygen(addin.Addin):
-    """generate doxygen documentation files."""
+    """Generate doxygen documentation files."""
 
     def generate(self):
-        """generate doxygen documentation files."""
+        """Generate doxygen documentation files."""
         log.Log.getInstance().logMessage('  begin generating Doxygen ...')
         self.generateDocs()
         self.generateEnums()
@@ -45,7 +46,7 @@ class AddinDoxygen(addin.Addin):
         log.Log.getInstance().logMessage('  done generating Doxygen.')
 
     def generateEnums(self):
-        """generate documentation for enumerations."""
+        """Generate documentation for enumerations."""
         fileDoc = outputfile.OutputFile(self.rootDirectory + 'enums.docs')
         fileDoc.write(self.bufferEnumerations.text)
         for i in xrange(len(config.Config.getInstance().Enumerations)):
@@ -63,8 +64,8 @@ class AddinDoxygen(addin.Addin):
         fileDoc.close()
 
     def generateFunctionDoc(self, fileFunc, func):
-        """generate documentation for given function."""
-        functionDoc = self.generateCode(self.functionDocs, func.Parameters)
+        """Generate documentation for given function."""
+        functionDoc = func.generateParameterList(self.functionDocs, 'string handleStub')
         retCode = self.functionReturnCode.apply(func.returnValue)
         fileFunc.write('\\anchor %s \\b %s\n' % (func.name, func.name))
         fileFunc.write('\\code\n')
@@ -74,12 +75,14 @@ class AddinDoxygen(addin.Addin):
         fileFunc.write('\\par Description:\n')
         fileFunc.write(func.description)
         fileFunc.write('\n')
+        if isinstance(func, function.Constructor):
+            fileFunc.write('\\param handleStub base string for handle of new object\n')
         for param in func.Parameters:
             fileFunc.write('\\param %s %s\n' % (param.name, param.description))
         fileFunc.write('\\return %s\n\n' % func.returnValue.description)
 
     def generateCategoryDoc(self):
-        """generate page listing function categories."""
+        """Generate page listing function categories."""
         fileDoc = outputfile.OutputFile(self.rootDirectory + 'categories.docs')
         fileDoc.write(self.bufferCategories.text)
         # ensure list of links is sorted alphabetically by display name
@@ -95,7 +98,7 @@ class AddinDoxygen(addin.Addin):
         fileDoc.close()
 
     def generateFunctionList(self, allFuncs):
-        """generate alphabetical list of links to all functions."""
+        """Generate alphabetical list of links to all functions."""
         fileDoc = outputfile.OutputFile(self.rootDirectory + 'all.docs')
         fileDoc.write(self.bufferHeader.text)
         allFuncs.sort()
@@ -105,7 +108,7 @@ class AddinDoxygen(addin.Addin):
         fileDoc.close()
 
     def generateDocs(self):
-        """generate doxygen documentation files."""
+        """Generate doxygen documentation files."""
         allFuncs = []
         for category in config.Config.getInstance().getCategories('*'):
             fileDoc = outputfile.OutputFile(self.rootDirectory + category.name + '.docs')

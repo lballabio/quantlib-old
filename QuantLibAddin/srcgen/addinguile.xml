@@ -3,9 +3,7 @@
 <rootDirectory>../Addins/Guile/</rootDirectory>
 
 <Buffers>
-<Buffer name='bufferConstructor' fileName='stub.guile.constructor'/>
-<Buffer name='bufferMember' fileName='stub.guile.member'/>
-<Buffer name='bufferProcedure' fileName='stub.guile.procedure'/>
+<Buffer name='bufferFunction' fileName='stub.guile.function'/>
 <Buffer name='bufferIncludes' fileName='stub.guile.includes'/>
 <Buffer name='bufferInitFunc' fileName='stub.guile.initfunc'/>
 </Buffers>

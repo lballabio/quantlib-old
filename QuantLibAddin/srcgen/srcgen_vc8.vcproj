@@ -142,7 +142,7 @@
 			Name="stubs"
 			>
 			<File
-				RelativePath="stub.c.constructor"
+				RelativePath="stub.c.function"
 				>
 			</File>
 			<File
@@ -150,15 +150,7 @@
 				>
 			</File>
 			<File
-				RelativePath="stub.c.member"
-				>
-			</File>
-			<File
-				RelativePath="stub.c.procedure"
-				>
-			</File>
-			<File
-				RelativePath="stub.calc.constructor"
+				RelativePath="stub.calc.function"
 				>
 			</File>
 			<File
@@ -182,14 +174,6 @@
 				>
 			</File>
 			<File
-				RelativePath="stub.calc.member"
-				>
-			</File>
-			<File
-				RelativePath="stub.calc.procedure"
-				>
-			</File>
-			<File
 				RelativePath="stub.copyright"
 				>
 			</File>
@@ -206,19 +190,11 @@
 				>
 			</File>
 			<File
-				RelativePath="stub.excel.constructor"
+				RelativePath="stub.excel.function"
 				>
 			</File>
 			<File
 				RelativePath="stub.excel.includes"
-				>
-			</File>
-			<File
-				RelativePath="stub.excel.member"
-				>
-			</File>
-			<File
-				RelativePath="stub.excel.procedure"
 				>
 			</File>
 			<File
@@ -230,7 +206,7 @@
 				>
 			</File>
 			<File
-				RelativePath="stub.guile.constructor"
+				RelativePath="stub.guile.function"
 				>
 			</File>
 			<File
@@ -239,14 +215,6 @@
 			</File>
 			<File
 				RelativePath="stub.guile.initfunc"
-				>
-			</File>
-			<File
-				RelativePath="stub.guile.member"
-				>
-			</File>
-			<File
-				RelativePath="stub.guile.procedure"
 				>
 			</File>
 			<File

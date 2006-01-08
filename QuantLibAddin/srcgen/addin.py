@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -29,6 +29,8 @@ class Addin(serializable.Serializable):
     """class to encapsulate data and behavior 
     required to generate addin source code."""
 
+    stringConvert = '%s'
+
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self.__dict__, common.NAME)
@@ -37,26 +39,12 @@ class Addin(serializable.Serializable):
         serializer.serializeObjectPropertyDict(self.__dict__, rule.RuleGroup)
         serializer.serializeObjectPropertyDict(self.__dict__, buffer.Buffer)
 
-    def generateCode(self, rule, parameters, skipFirst = False, skipIgnore = False):
-        """generate source code relating to a list of function parameters."""
-        ret = ''
-        i = 0
-        eol = ''
-        for parameter in parameters:
-            i += 1
-            if i == 1 and skipFirst: continue
-            if parameter.ignore and skipIgnore: continue
-            ret += eol + rule.apply(parameter)
-            if i < len(parameters):
-                eol = ',\n'
-        if ret: ret = '\n' + ret
-        return ret
-
     def generateConversions(self, parameters):
         """generate source code to convert datatypes."""
         returnValue = ''
         for parameter in parameters:
             if parameter.needsConversion:
                 returnValue += self.conversions.apply(parameter)
+        if returnValue: returnValue += '\n'
         return returnValue
 

@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -68,9 +68,13 @@ class RuleGroup(serializable.Serializable):
         """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self.__dict__, common.NAME)
         serializer.serializeAttribute(self.__dict__, common.QL_TYPE)
-        serializer.serializeAttributeBoolean(self.__dict__, common.APPEND_TENSORRANK)
+        serializer.serializeAttributeBoolean(self.__dict__, common.APPEND_CONVERSION_SUFFIX)
         serializer.serializeAttributeInteger(self.__dict__, common.INDENT, 0)
         serializer.serializeObjectPropertyDict(self.__dict__, Rule)
+
+    def postSerialize(self):
+        """perform post serialization initialization."""
+        self.indent *= 4 * ' '
 
     def apply(self, param):
         """apply all available Rules to given parameter."""
@@ -90,15 +94,15 @@ class RuleGroup(serializable.Serializable):
         self.setLibConversion()
         if self.setSubrule(self.setTypeConversion): self.invokeSetTypeConversion()
 
-        if self.appendTensorRank and self.param.needsConversion:
-            self.paramName += self.param.tensorRank.capitalize()
+        if self.appendConversionSuffix and self.param.needsConversion:
+            self.paramName += common.CONVERSION_SUFFIX
 
         if self.paramType and self.paramName:
             delim = ' '
         else:
             delim = ''
 
-        return (self.indent * 4 * ' ') + self.prefix + self.paramType \
+        return self.indent + self.prefix + self.paramType \
             + delim + self.paramName + self.conversion
 
     def setSubrule(self, rule):
@@ -174,6 +178,6 @@ class RuleGroup(serializable.Serializable):
         indent = 8 * ' '
         self.conversion = ';\n' + indent + prefix + sourceType + 'To' \
             + self.param.tensorRank.capitalize() \
-            + '(' + self.param.name + self.param.tensorRank.capitalize() \
+            + '(' + self.param.name + common.CONVERSION_SUFFIX \
             + ', ' + deref + self.param.name + defaultValue + ');\n'
 

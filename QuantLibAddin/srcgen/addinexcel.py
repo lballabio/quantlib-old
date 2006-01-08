@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""generate source code for Excel addin."""
+"""Generate source code for Excel addin."""
 
 import addin
 import config
@@ -25,6 +25,7 @@ import outputfile
 import function
 import common
 import log
+import sys
 
 # constants
 
@@ -32,101 +33,74 @@ MAXLEN = 255        # max length of excel string
 MAXPARAM = 30       # max #/params to an Excel function
 NUMDESC = 10        # #/params to describe a function
 MAXLENERR = 'string length exceeds Excel maximum of %d:\n' % MAXLEN
-MAXPARAMERR = 'number of function parameters exceeds max of %d' % MAXPARAM
+MAXPARAMERR = 'number of parameters to function "%s" exceeds Excel max of %d'
 REGLINE = '            TempStrNoSize("\\x%02X""%s")%s'
 ADDIN = 'qladdin.cpp'
-RET_STRING = """        static char ret[XL_MAX_STR_LEN];
+RET_NUM = """\
+        return &returnValue;"""
+RET_STRING = """\
+        static char ret[XL_MAX_STR_LEN];
         ObjHandler::stringToChar(ret, returnValue);
         return ret;"""
-RET_XLOPER = """        static XLOPER xRet;
+RET_XLOPER = """\
+        static XLOPER xRet;
         ObjHandler::%sToXloper(xRet, returnValue);
         return &xRet;"""
 
 class AddinExcel(addin.Addin):
-    """generate source code for Excel addin."""
+    """Generate source code for Excel addin."""
 
     def generate(self):
-        """generate source code for Excel addin."""
+        """Generate source code for Excel addin."""
         log.Log.getInstance().logMessage('  begin generating %s...' % self.name)
         self.generateFuncRegisters()
-        self.generateFuncDefs()
+        self.generateFunctions()
         log.Log.getInstance().logMessage('  done generating %s.' % self.name)
 
-    def generateFuncDefs(self):
-        """generate source code for function bodies."""
+    def generateFunctions(self):
+        """Generate source code for all functions in all categories."""
         for category in config.Config.getInstance().getCategories(self.platformId):
             fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
             fileFunc.write(self.bufferIncludes.text % category.name)
             for func in category.getFunctions(self.platformId): 
-                if isinstance(func, function.Constructor):
-                    self.generateConstructor(fileFunc, func)
-                elif isinstance(func, function.Member):
-                    self.generateMember(fileFunc, func)
-                else:
-                    self.generateProcedure(fileFunc, func)
+                self.generateFunction(fileFunc, func)
             fileFunc.close()
 
-    def generateConstructor(self, fileFunc, func):
-        """generate source code for body of constructor function."""
-        functionDeclaration = self.generateCode(self.functionDeclaration, 
-            func.Parameters)
-        libraryCall = self.generateCode(self.libraryCall, func.Parameters)
-        conversions = self.generateConversions(func.Parameters)
-        fileFunc.write(self.bufferConstructor.text % (func.name, functionDeclaration, 
-            conversions, func.libraryFunction, libraryCall, func.name))
-
-    def generateMember(self, fileFunc, func):
-        """generate source code for body of member function."""
-        functionDeclaration = self.generateCode(self.functionDeclaration, 
-            func.Parameters)
+    def generateFunction(self, fileFunc, func):
+        """Generate source code for a given function."""
         functionReturnType = self.functionReturnType.apply(func.returnValue)
-        functionReturnCommand = self.getReturnCommand(func.returnValue)
-        libraryCall = self.generateCode(self.libraryCall, 
-            func.Parameters, True, True)
-        libraryReturnType = self.libraryReturnType.apply(func.returnValue)
+        functionDeclaration = func.generateParameterList(self.functionDeclaration, 
+            'char *handleStub')
         conversions = self.generateConversions(func.Parameters)
-        fileFunc.write(self.bufferMember.text %
+        functionBody = func.generateBody(self)
+        functionReturnCommand = self.generateReturnCommand(func.returnValue)
+        fileFunc.write(self.bufferFunction.text %
             (functionReturnType, func.name, functionDeclaration, conversions, 
-            func.libraryClass, func.libraryClass, libraryReturnType, 
-            func.accessLibFunc, libraryCall, functionReturnCommand, func.name))
+            functionBody, functionReturnCommand, func.name))
 
-    def generateProcedure(self, fileFunc, func):
-        """generate source code for body of procedural function."""
-        functionDeclaration = self.generateCode(self.functionDeclaration, 
-            func.Parameters)
-        functionReturnType = self.functionReturnType.apply(func.returnValue)
-        functionReturnCommand = self.getReturnCommand(func.returnValue)
-        libraryCall = self.generateCode(self.libraryCall, func.Parameters, False, True)
-        libraryReturnType = self.libraryReturnType.apply(func.returnValue)
-        conversions = self.generateConversions(func.Parameters)
-        fileFunc.write(self.bufferProcedure.text %
-            (functionReturnType, func.name, functionDeclaration, conversions, 
-            libraryReturnType, func.name, libraryCall, functionReturnCommand, func.name))
-
-    def getReturnCommand(self, returnValue):
-        """derive return statement for function."""
+    def generateReturnCommand(self, returnValue):
+        """Derive return statement for function."""
         if returnValue.tensorRank == common.SCALAR:
             if returnValue.type == common.STRING:
                 return RET_STRING
-            elif returnValue.type == common.ANY:
+            elif returnValue.type == common.ANY:    # fall through to XLOPER below
                 pass
-            else:
-                return '        return &returnValue;'
+            else:                                   # long/double/boolean
+                return RET_NUM
         return RET_XLOPER % (returnValue.tensorRank)
 
     def formatLine(self, text, comment, lastParameter = False):
-        """format a line of text for the function register code."""
-        if len(text) >= MAXLEN:
-            raise ValueError, MAXLENERR + text
+        """Format a line of text for the function register code."""
+        if len(text) >= MAXLEN: sys.exit(MAXLENERR + text)
         if lastParameter:
             suffix = ');'
         else:
             suffix = ','
-        str1 = REGLINE % (len(text), text, suffix)
-        return '%-45s// %s\n' % (str1, comment)
+        line = REGLINE % (len(text), text, suffix)
+        return '%-45s// %s\n' % (line, comment)
 
     def generateParamString(self, func):
-        """generate string to register function parameters."""
+        """Generate string to register function parameters."""
         paramStr = self.xlRegisterReturn.apply(func.returnValue)
         if isinstance(func, function.Constructor):
             paramStr += 'C'
@@ -136,7 +110,7 @@ class AddinExcel(addin.Addin):
         return paramStr
 
     def generateFuncRegister(self, fileHeader, func):
-        """generate call to xlfRegister for given function."""
+        """Generate call to xlfRegister for given function."""
         # We call xlfRegister with NUMDESC parameters to describe the function
         # +1 additional parm to describe each parm in function being registered.
         numRegisterParams = NUMDESC + func.ParameterCount
@@ -146,13 +120,11 @@ class AddinExcel(addin.Addin):
         for param in func.Parameters:
             i += 1
             paramList += self.xlListParams.apply(param)
-            if i < func.ParameterCount:
-                paramList += ','
+            if i < func.ParameterCount: paramList += ','
         if isinstance(func, function.Constructor): # extra parameter for object handle
             paramList = "handle," + paramList
             numRegisterParams += 1
-        if numRegisterParams > MAXPARAM:
-            raise ValueError, MAXPARAMERR
+        if numRegisterParams > MAXPARAM: sys.exit(MAXPARAMERR % (func.name, MAXPARAM))
         fileHeader.write('        Excel(xlfRegister, 0, %d, &xDll,\n' % numRegisterParams)
         fileHeader.write(self.formatLine(func.name, 'function code name'))
         fileHeader.write(self.formatLine(paramStr, 'parameter codes'))
@@ -186,7 +158,7 @@ class AddinExcel(addin.Addin):
         fileHeader.write('\n')
 
     def generateFuncRegisters(self):
-        """generate source code to register functions."""
+        """Generate source code to register functions."""
         fileHeader = outputfile.OutputFile(self.rootDirectory + ADDIN)
         fileHeader.write(self.bufferRegHeader.text)
         for category in config.Config.getInstance().getCategories(self.platformId):

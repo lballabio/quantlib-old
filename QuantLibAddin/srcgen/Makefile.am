@@ -49,33 +49,25 @@ srcgen_pys :=   addincalc.py \
                 srcgen.py \
                 xmlreader.py
 
-SRCGEN_STUBS := stub.calc.constructor \
+SRCGEN_STUBS := stub.calc.function \
                 stub.calc.idlfoot \
                 stub.calc.idlfunc \
                 stub.calc.idlhead \
                 stub.calc.includes \
                 stub.calc.map \
-                stub.calc.member \
-                stub.calc.procedure \
-                stub.c.constructor \
+                stub.c.function \
                 stub.c.includes \
-                stub.c.member \
-                stub.c.procedure \
                 stub.copyright \
                 stub.doxygen.categories \
                 stub.doxygen.enums \
                 stub.doxygen.header \
-                stub.excel.constructor \
+                stub.excel.function \
                 stub.excel.includes \
-                stub.excel.member \
-                stub.excel.procedure \
                 stub.excel.regfooter \
                 stub.excel.regheader \
-                stub.guile.constructor \
+                stub.guile.function \
                 stub.guile.includes \
                 stub.guile.initfunc \
-                stub.guile.member \
-                stub.guile.procedure \
                 stub.qla.includes
 
 # this should prevent running from a distributed tarball

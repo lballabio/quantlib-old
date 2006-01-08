@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -20,9 +20,10 @@
 """global constants."""
 
 ANY = 'any'
-APPEND_TENSORRANK = 'appendTensorRank'
+APPEND_CONVERSION_SUFFIX = 'appendConversionSuffix'
 BOOL = 'bool'
 CONSTRUCTOR = 'constructor'
+CONVERSION_SUFFIX = 'QL'
 DEFAULT = 'default'
 DEREFERENCE = 'dereference'
 DESCRIPTION = 'description'

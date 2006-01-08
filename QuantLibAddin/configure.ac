@@ -8,7 +8,7 @@ AC_CONFIG_AUX_DIR([config])
 AC_CONFIG_HEADERS([qla/config.hpp])
 AM_INIT_AUTOMAKE([foreign])
 
-AC_COPYRIGHT([    Copyright (C) 2004, 2005 Eric Ehlers
+AC_COPYRIGHT([    Copyright (C) 2004, 2005, 2006 Eric Ehlers
 
     Copyright (C) 2004, 2005 Ferdinando Ametrano
     Copyright (C) 2005 Aurelien Chanudet

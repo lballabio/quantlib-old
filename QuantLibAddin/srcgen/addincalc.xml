@@ -3,9 +3,7 @@
 <rootDirectory>../Addins/Calc/</rootDirectory>
 
 <Buffers>
-<Buffer name='bufferConstructor' fileName='stub.calc.constructor'/>
-<Buffer name='bufferMember' fileName='stub.calc.member'/>
-<Buffer name='bufferProcedure' fileName='stub.calc.procedure'/>
+<Buffer name='bufferFunction' fileName='stub.calc.function'/>
 <Buffer name='bufferIdlFooter' fileName='stub.calc.idlfoot'/>
 <Buffer name='bufferIdlFunction' fileName='stub.calc.idlfunc'/>
 <Buffer name='bufferIdlHeader' fileName='stub.calc.idlhead'/>
@@ -198,7 +196,7 @@
     </Rules>
 </RuleGroup>
 
-<RuleGroup name='conversions' appendTensorRank='true' indent='2'>
+<RuleGroup name='conversions' appendConversionSuffix='true' indent='2'>
     <Rules>
     <Rule name='setType'>
         <SubRules>
@@ -260,7 +258,7 @@
     </Rules>
 </RuleGroup>
 
-<RuleGroup name='libraryCall' ql_type='true' appendTensorRank='true' indent='3'>
+<RuleGroup name='libraryCall' ql_type='true' appendConversionSuffix='true' indent='3'>
     <Rules>
     <Rule name='setType'>
         <SubRules>

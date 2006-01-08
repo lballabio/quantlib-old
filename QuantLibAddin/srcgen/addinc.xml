@@ -3,9 +3,7 @@
 <rootDirectory>../Addins/C/</rootDirectory>
 
 <Buffers>
-<Buffer name='bufferConstructor' fileName='stub.c.constructor'/>
-<Buffer name='bufferMember' fileName='stub.c.member'/>
-<Buffer name='bufferProcedure' fileName='stub.c.procedure'/>
+<Buffer name='bufferFunction' fileName='stub.c.function'/>
 <Buffer name='bufferIncludes' fileName='stub.c.includes'/>
 </Buffers>
 
@@ -135,7 +133,7 @@
     </Rules>
 </RuleGroup>
 
-<RuleGroup name='libraryCall' ql_type='true' appendTensorRank='true' indent='3'>
+<RuleGroup name='libraryCall' ql_type='true' appendConversionSuffix='true' indent='3'>
     <Rules>
     <Rule name='setType'>
         <SubRules>
@@ -168,7 +166,7 @@
     </Rules>
 </RuleGroup>
 
-<RuleGroup name='conversions' appendTensorRank='true' indent='2'>
+<RuleGroup name='conversions' appendConversionSuffix='true' indent='2'>
     <Rules>
     <Rule name='setType'>
         <SubRules>
