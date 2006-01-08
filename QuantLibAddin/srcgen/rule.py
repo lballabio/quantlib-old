@@ -30,8 +30,8 @@ class SubRule(serializable.Serializable):
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeList(self.__dict__, 'tensorRanks', 'tensorRank')
-        serializer.serializeDict(self.__dict__, 'replacements')
+        serializer.serializeList(self, 'tensorRanks', 'tensorRank')
+        serializer.serializeDict(self, 'replacements')
 
 class Rule(serializable.Serializable):
     """this class encapsulates an algorithm required to generate the source
@@ -41,10 +41,10 @@ class Rule(serializable.Serializable):
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeAttribute(self.__dict__, common.NAME)
-        serializer.serializeObjectList(self.__dict__, SubRule)
-        serializer.serializeAttribute(self.__dict__, common.PREFIX)
-        serializer.serializeAttribute(self.__dict__, common.DEREFERENCE)
+        serializer.serializeAttribute(self, common.NAME)
+        serializer.serializeObjectList(self, SubRule)
+        serializer.serializeAttribute(self, common.PREFIX)
+        serializer.serializeAttribute(self, common.DEREFERENCE)
 
 class RuleGroup(serializable.Serializable):
     """a collection of Rules for generating source code for function parameters."""
@@ -66,11 +66,11 @@ class RuleGroup(serializable.Serializable):
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeAttribute(self.__dict__, common.NAME)
-        serializer.serializeAttribute(self.__dict__, common.QL_TYPE)
-        serializer.serializeAttributeBoolean(self.__dict__, common.APPEND_CONVERSION_SUFFIX)
-        serializer.serializeAttributeInteger(self.__dict__, common.INDENT, 0)
-        serializer.serializeObjectPropertyDict(self.__dict__, Rule)
+        serializer.serializeAttribute(self, common.NAME)
+        serializer.serializeAttribute(self, common.QL_TYPE)
+        serializer.serializeAttributeBoolean(self, common.APPEND_CONVERSION_SUFFIX)
+        serializer.serializeAttributeInteger(self, common.INDENT, 0)
+        serializer.serializeObjectPropertyDict(self, Rule)
 
     def postSerialize(self):
         """perform post serialization initialization."""

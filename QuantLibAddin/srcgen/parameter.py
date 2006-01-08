@@ -38,14 +38,14 @@ class Parameter(Value):
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeAttribute(self.__dict__, common.NAME)
-        serializer.serializeProperty(self.__dict__, common.TYPE)
-        serializer.serializeProperty(self.__dict__, common.TENSOR_RANK)
-        serializer.serializeProperty(self.__dict__, common.DESCRIPTION)
-        serializer.serializeAttributeBoolean(self.__dict__, common.IGNORE)
-        serializer.serializeAttribute(self.__dict__, common.DEFAULT)
-        serializer.serializeAttribute(self.__dict__, common.LIBRARY_CLASS)
-        serializer.serializeAttribute(self.__dict__, common.QL_TYPE)
+        serializer.serializeAttribute(self, common.NAME)
+        serializer.serializeProperty(self, common.TYPE)
+        serializer.serializeProperty(self, common.TENSOR_RANK)
+        serializer.serializeProperty(self, common.DESCRIPTION)
+        serializer.serializeAttributeBoolean(self, common.IGNORE)
+        serializer.serializeAttribute(self, common.DEFAULT)
+        serializer.serializeAttribute(self, common.LIBRARY_CLASS)
+        serializer.serializeAttribute(self, common.QL_TYPE)
 
     def postSerialize(self):
         """determine whether the datatype of this parameter requires a conversion."""
@@ -70,9 +70,9 @@ class ReturnValue(Value):
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeProperty(self.__dict__, common.TYPE)
-        serializer.serializeProperty(self.__dict__, common.TENSOR_RANK)
-        serializer.serializeProperty(self.__dict__, common.DESCRIPTION)
+        serializer.serializeProperty(self, common.TYPE)
+        serializer.serializeProperty(self, common.TENSOR_RANK)
+        serializer.serializeProperty(self, common.DESCRIPTION)
 
 class ConstructorReturnValue(Value):
     """class to represent state shared by the return values

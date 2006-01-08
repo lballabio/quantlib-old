@@ -30,7 +30,7 @@ class Serializer(object):
 
         class Foo(serializable.Serializable):
             def serialize(self, serializer):
-                serializer.serializeAttribute(self.__dict__, common.NAME)
+                serializer.serializeAttribute(self, common.NAME)
 
     Base class Serializer is presently empty and is included to clarify
     class relationships. """

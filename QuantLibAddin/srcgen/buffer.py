@@ -27,8 +27,8 @@ class Buffer(serializable.Serializable):
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeAttribute(self.__dict__, common.NAME)
-        serializer.serializeAttribute(self.__dict__, common.FILE_NAME)
+        serializer.serializeAttribute(self, common.NAME)
+        serializer.serializeAttribute(self, common.FILE_NAME)
 
     def postSerialize(self):
         """load the named buffer."""

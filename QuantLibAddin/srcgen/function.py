@@ -40,11 +40,11 @@ class Function(serializable.Serializable):
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeAttribute(self.__dict__, common.NAME)
-        serializer.serializeProperty(self.__dict__, common.DESCRIPTION)
-        serializer.serializeProperty(self.__dict__, common.FUNCTION_CATEGORY)
-        serializer.serializeProperty(self.__dict__, common.PLATFORMS, '*')
-        serializer.serializeObjectList(self.__dict__, parameter.Parameter)
+        serializer.serializeAttribute(self, common.NAME)
+        serializer.serializeProperty(self, common.DESCRIPTION)
+        serializer.serializeProperty(self, common.FUNCTION_CATEGORY)
+        serializer.serializeProperty(self, common.PLATFORMS, '*')
+        serializer.serializeObjectList(self, parameter.Parameter)
 
     def platformSupported(self, platformID):
         """determine whether this function supported by given platform."""
@@ -79,7 +79,7 @@ class Constructor(Function):
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
         super(Constructor, self).serialize(serializer)
-        serializer.serializeProperty(self.__dict__, common.LIBRARY_FUNCTION)
+        serializer.serializeProperty(self, common.LIBRARY_FUNCTION)
 
     def generateParameterList(self, rule, handleInput = '', context = DECLARATION):
         """generate source code relating to a list of function parameters."""
@@ -116,9 +116,9 @@ class Member(Function):
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
         super(Member, self).serialize(serializer)
-        serializer.serializeProperty(self.__dict__, common.LIBRARY_FUNCTION)
-        serializer.serializeAttributeBoolean(self.__dict__, common.GET_OBJECT)
-        serializer.serializeObject(self.__dict__, parameter.ReturnValue)
+        serializer.serializeProperty(self, common.LIBRARY_FUNCTION)
+        serializer.serializeAttributeBoolean(self, common.GET_OBJECT)
+        serializer.serializeObject(self, parameter.ReturnValue)
 
     def postSerialize(self):
         """perform post serialization initialization."""
@@ -150,7 +150,7 @@ class Procedure(Function):
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
         super(Procedure, self).serialize(serializer)
-        serializer.serializeObject(self.__dict__, parameter.ReturnValue)
+        serializer.serializeObject(self, parameter.ReturnValue)
 
     def generateBody(self, addin):
         """generate source code for function body"""

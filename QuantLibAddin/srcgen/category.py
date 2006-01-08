@@ -28,10 +28,10 @@ class Category(serializable.Serializable):
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeAttribute(self.__dict__, common.NAME)
-        serializer.serializeProperty(self.__dict__, common.DISPLAY_NAME)
-        serializer.serializeProperty(self.__dict__, common.DESCRIPTION)
-        serializer.serializeObjectDict(self.__dict__, function.Function)
+        serializer.serializeAttribute(self, common.NAME)
+        serializer.serializeProperty(self, common.DISPLAY_NAME)
+        serializer.serializeProperty(self, common.DESCRIPTION)
+        serializer.serializeObjectDict(self, function.Function)
 
     def platformSupported(self, platformID):
         """determine whether this category supported for given platform."""

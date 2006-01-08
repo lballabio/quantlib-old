@@ -29,8 +29,8 @@ class EnumerationDefinition(serializable.Serializable):
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeProperty(self.__dict__, common.STRING)
-        serializer.serializeProperty(self.__dict__, common.VALUE)
+        serializer.serializeProperty(self, common.STRING)
+        serializer.serializeProperty(self, common.VALUE)
 
     def key(self):
         """return unique identifier for this object."""
@@ -43,10 +43,10 @@ class Enumeration(serializable.Serializable):
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeAttributeBoolean(self.__dict__, common.DOCUMENTATION_ONLY)
-        serializer.serializeProperty(self.__dict__, common.TYPE)
-        serializer.serializeBoolean(self.__dict__, common.CONSTRUCTOR)
-        serializer.serializeObjectDict(self.__dict__, EnumerationDefinition)
+        serializer.serializeAttributeBoolean(self, common.DOCUMENTATION_ONLY)
+        serializer.serializeProperty(self, common.TYPE)
+        serializer.serializeBoolean(self, common.CONSTRUCTOR)
+        serializer.serializeObjectDict(self, EnumerationDefinition)
 
     def key(self):
         """return unique identifier for this object."""

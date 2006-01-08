@@ -32,8 +32,8 @@ class Config(singleton.Singleton):
     def __init__(self):
         """load state from metadata."""
         xmlConfig = xmlreader.XmlReader('config')
-        xmlConfig.serializeObject(self.__dict__, buffer.Buffer)
-        xmlConfig.serializeList(self.__dict__, 'categoryNames', 'categoryName')
+        xmlConfig.serializeObject(self, buffer.Buffer)
+        xmlConfig.serializeList(self, 'categoryNames', 'categoryName')
         self.categoryNames.sort()
         self.categoryDict = {}
         for categoryName in self.categoryNames:
@@ -41,7 +41,7 @@ class Config(singleton.Singleton):
                 factory.Factory.getInstance().serializeObject(category.Category, categoryName)
 
         xmlEnumerations = xmlreader.XmlReader('enumerations')
-        xmlEnumerations.serializeObjectDict(self.__dict__, enumeration.Enumeration)
+        xmlEnumerations.serializeObjectDict(self, enumeration.Enumeration)
 
     def getCategories(self, platformId):
         """serve up function category objects alphabetically by name."""

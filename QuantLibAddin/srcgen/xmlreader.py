@@ -40,64 +40,66 @@ class XmlReader(serializer.Serializer):
             raise
         self.node = dom.documentElement
 
-    def serializeAttribute(self, dict, attributeName, defaultValue = None):
+    def serializeAttribute(self, caller, attributeName, defaultValue = None):
         """Read a named attribute."""
         attributeValue = self.node.getAttribute(attributeName)
         if attributeValue:
-            dict[attributeName] = attributeValue
+            setattr(caller, attributeName, attributeValue)
         else:
-            dict[attributeName] = defaultValue
+            setattr(caller, attributeName, defaultValue)
 
-    def serializeAttributeInteger(self, dict, attributeName, defaultValue = None):
+    def serializeAttributeInteger(self, caller, attributeName, defaultValue = None):
         """Read a named integral attribute."""
         attributeValue = self.node.getAttribute(attributeName)
         if attributeValue:
-            dict[attributeName] = int(attributeValue)
+            setattr(caller, attributeName, int(attributeValue))
         else:
-            dict[attributeName] = defaultValue
+            setattr(caller, attributeName, defaultValue)
 
-    def serializeAttributeBoolean(self, dict, attributeName):
+    def serializeAttributeBoolean(self, caller, attributeName):
         """Read a named boolean attribute."""
         attributeValue = self.node.getAttribute(attributeName)
         if attributeValue:
-            dict[attributeName] = self.stringToBoolean(attributeValue)
+            setattr(caller, attributeName, self.stringToBoolean(attributeValue))
         else:
-            dict[attributeName] = False
+            setattr(caller, attributeName, False)
 
-    def serializeProperty(self, dict, propertyName, defaultValue = None):
+    def serializeProperty(self, caller, propertyName, defaultValue = None):
         """Read a named property."""
         element = self.getChild(propertyName, True)
         if element:
-            dict[propertyName] = self.getNodeValue(element)
+            setattr(caller, propertyName, self.getNodeValue(element))
         else:
-            dict[propertyName] = defaultValue
+            setattr(caller, propertyName, defaultValue)
 
-    def serializeBoolean(self, dict, propertyName):
+    def serializeBoolean(self, caller, propertyName):
         """Read a named boolean property."""
         element = self.getChild(propertyName, True)
         if element:
-            dict[propertyName] = self.stringToBoolean(self.getNodeValue(element))
+            setattr(caller, propertyName, self.stringToBoolean(self.getNodeValue(element)))
         else:
-            dict[propertyName] = False
+            setattr(caller, propertyName, False)
 
-    def serializeList(self, dict, vectorName, itemName):
+    def serializeList(self, caller, vectorName, itemName):
         """Read a list of elements."""
         vectorElement = self.getChild(vectorName)
         itemElements = vectorElement.getElementsByTagName(itemName)
-        dict[vectorName] = []
+        ret = []
         for itemElement in itemElements:
-            dict[vectorName].append(self.getNodeValue(itemElement))
+            ret.append(self.getNodeValue(itemElement))
+        setattr(caller, vectorName, ret)
 
-    def serializeDict(self, dict, dictName):
-        """Read a named element in the document and write its values as
-        key/value pairs in the given dict."""
+    def serializeDict(self, caller, dictName):
+        """Read a named element in the document and set its values as
+        attributes of the caller."""
         dictElement = self.getChild(dictName)
-        dict[dictName] = {}
+        ret = {}
         for childNode in dictElement.childNodes:
             if self.isTextNode(childNode):
-                dict[dictName][childNode.nodeName] = self.getNodeValue(childNode)
+                ret[childNode.nodeName] = self.getNodeValue(childNode)
+        setattr(caller, dictName, ret)
 
-    def serializeObject(self, dict, objectClass):
+    def serializeObject(self, caller, objectClass):
         """Load a Serializable object."""
         objectElement = self.getChild(objectClass.__name__)
         objectInstance = objectClass()
@@ -105,27 +107,28 @@ class XmlReader(serializer.Serializer):
         objectInstance.serialize(self)
         objectInstance.postSerialize()
         self.node = self.node.parentNode
-        dict[objectInstance.key()] = objectInstance
+        setattr(caller, objectInstance.key(), objectInstance)
 
-    def serializeObjectList(self, dict, objectClass):
+    def serializeObjectList(self, caller, objectClass):
         """Load a list of Serializable objects."""
         listElement = self.getChild(objectClass.groupName)
         itemElements = listElement.getElementsByTagName(objectClass.__name__)
-        dict[objectClass.groupName] = []
+        ret = []
         for itemElement in itemElements:
             objectInstance = objectClass()
             self.node = itemElement
             objectInstance.serialize(self)
             objectInstance.postSerialize()
             self.node = self.node.parentNode.parentNode
-            dict[objectClass.groupName].append(objectInstance)
-        dict[objectClass.__name__ + 'Count'] = len(dict[objectClass.groupName])
+            ret.append(objectInstance)
+        setattr(caller, objectClass.groupName, ret)
+        setattr(caller, objectClass.__name__ + 'Count', len(ret))
 
-    def serializeObjectDict(self, dict, objectClass):
-        """Load a named element and write its data to the given dictionary.  
+    def serializeObjectDict(self, caller, objectClass):
+        """Load a named element and write its data as a property of the caller.
 
         A client invokes this function as follows:
-            serializer.serializeObjectDict(self.__dict__, Foo)
+            serializer.serializeObjectDict(self, Foo)
 
         And after the call returns, the caller's dict is populated as follows:
             self.Foo - a dict of objects, keyed by object identifier
@@ -136,8 +139,8 @@ class XmlReader(serializer.Serializer):
         in order by identifier."""
 
         dictElement = self.getChild(objectClass.groupName)
-        dict[objectClass.groupName] = {}
-        dict[objectClass.__name__ + 'Keys'] = []
+        dict = {}
+        keys = []
         for childNode in dictElement.childNodes:
             if childNode.nodeName == '#text': continue
             objectInstance = factory.Factory.getInstance().makeObject(childNode.nodeName)
@@ -145,17 +148,19 @@ class XmlReader(serializer.Serializer):
             objectInstance.serialize(self)
             objectInstance.postSerialize()
             self.node = self.node.parentNode.parentNode
-            dict[objectClass.groupName][objectInstance.key()] = objectInstance
-            dict[objectClass.__name__ + 'Keys'].append(objectInstance.key())
-        dict[objectClass.__name__ + 'Keys'].sort()
-        dict[objectClass.__name__ + 'Count'] = len(dict[objectClass.__name__ + 'Keys'])
+            dict[objectInstance.key()] = objectInstance
+            keys.append(objectInstance.key())
+        keys.sort()
+        setattr(caller, objectClass.groupName, dict)
+        setattr(caller, objectClass.__name__ + 'Keys', keys)
+        setattr(caller, objectClass.__name__ + 'Count', len(keys))
 
-    def serializeObjectPropertyDict(self, dict, objectClass):
+    def serializeObjectPropertyDict(self, caller, objectClass):
         """Load a named element and write its children directly as
         properties of the calling object.
 
         A client invokes this function as follows:
-            serializer.serializeObjectPropertyDict(self.__dict__, Foo)
+            serializer.serializeObjectPropertyDict(self, Foo)
 
         For xml data formatted as follows:
             <FooList>
@@ -182,7 +187,7 @@ class XmlReader(serializer.Serializer):
             objectInstance.serialize(self)
             objectInstance.postSerialize()
             self.node = self.node.parentNode.parentNode
-            dict[objectInstance.key()] = objectInstance
+            setattr(caller, objectInstance.key(), objectInstance)
 
     def getChild(self, tagName, allowNone = False):
         """Get single named child of current node."""

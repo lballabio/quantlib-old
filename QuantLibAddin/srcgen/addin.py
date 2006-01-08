@@ -33,11 +33,11 @@ class Addin(serializable.Serializable):
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeAttribute(self.__dict__, common.NAME)
-        serializer.serializeProperty(self.__dict__, common.PLATFORM_ID)
-        serializer.serializeProperty(self.__dict__, common.ROOT_DIRECTORY)
-        serializer.serializeObjectPropertyDict(self.__dict__, rule.RuleGroup)
-        serializer.serializeObjectPropertyDict(self.__dict__, buffer.Buffer)
+        serializer.serializeAttribute(self, common.NAME)
+        serializer.serializeProperty(self, common.PLATFORM_ID)
+        serializer.serializeProperty(self, common.ROOT_DIRECTORY)
+        serializer.serializeObjectPropertyDict(self, rule.RuleGroup)
+        serializer.serializeObjectPropertyDict(self, buffer.Buffer)
 
     def generateConversions(self, parameters):
         """generate source code to convert datatypes."""
