@@ -65,7 +65,7 @@ class AddinDoxygen(addin.Addin):
 
     def generateFunctionDoc(self, fileFunc, func):
         """Generate documentation for given function."""
-        functionDoc = func.generateParameterList(self.functionDocs, 'string handleStub')
+        functionDoc = func.generateParameterList(self.functionDocs, 'string handle')
         retCode = self.functionReturnCode.apply(func.returnValue)
         fileFunc.write('\\anchor %s \\b %s\n' % (func.name, func.name))
         fileFunc.write('\\code\n')
@@ -75,8 +75,6 @@ class AddinDoxygen(addin.Addin):
         fileFunc.write('\\par Description:\n')
         fileFunc.write(func.description)
         fileFunc.write('\n')
-        if isinstance(func, function.Constructor):
-            fileFunc.write('\\param handleStub base string for handle of new object\n')
         for param in func.Parameters:
             fileFunc.write('\\param %s %s\n' % (param.name, param.description))
         fileFunc.write('\\return %s\n\n' % func.returnValue.description)

@@ -70,7 +70,7 @@ class AddinExcel(addin.Addin):
         """Generate source code for a given function."""
         functionReturnType = self.functionReturnType.apply(func.returnValue)
         functionDeclaration = func.generateParameterList(self.functionDeclaration, 
-            'char *handleStub')
+            'char *handle')
         conversions = self.generateConversions(func.Parameters)
         functionBody = func.generateBody(self)
         functionReturnCommand = self.generateReturnCommand(func.returnValue)
@@ -102,8 +102,6 @@ class AddinExcel(addin.Addin):
     def generateParamString(self, func):
         """Generate string to register function parameters."""
         paramStr = self.xlRegisterReturn.apply(func.returnValue)
-        if isinstance(func, function.Constructor):
-            paramStr += 'C'
         for param in func.Parameters:
             paramStr += self.xlRegisterParam.apply(param)
         paramStr += '#'
@@ -121,9 +119,6 @@ class AddinExcel(addin.Addin):
             i += 1
             paramList += self.xlListParams.apply(param)
             if i < func.ParameterCount: paramList += ','
-        if isinstance(func, function.Constructor): # extra parameter for object handle
-            paramList = "handle," + paramList
-            numRegisterParams += 1
         if numRegisterParams > MAXPARAM: sys.exit(MAXPARAMERR % (func.name, MAXPARAM))
         fileHeader.write('        Excel(xlfRegister, 0, %d, &xDll,\n' % numRegisterParams)
         fileHeader.write(self.formatLine(func.name, 'function code name'))
@@ -137,9 +132,6 @@ class AddinExcel(addin.Addin):
         if func.Parameters:
             fileHeader.write(self.formatLine(func.description, 'function description'))
             i = 0
-            if isinstance(func, function.Constructor):
-                fileHeader.write(self.formatLine('handle of new object', 'description param 0'))
-                i += 1
             j = 1
             lastParameter = False
             for param in func.Parameters:

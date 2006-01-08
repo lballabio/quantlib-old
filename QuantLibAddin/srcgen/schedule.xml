@@ -46,17 +46,12 @@
 </Parameters>
 </Constructor>
 
-<Member name='qlScheduleDates'>
+<Member name='qlScheduleDates' libraryClass='Schedule'>
 <description>return schedule dates</description>
 <libraryFunction>scheduleDates</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handle' libraryClass='Schedule'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of schedule object</description>
-    </Parameter>
-</Parameters>
+    </Parameters>
 <ReturnValue>
     <type>long</type>
     <tensorRank>vector</tensorRank>

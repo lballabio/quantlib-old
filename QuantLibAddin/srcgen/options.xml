@@ -424,16 +424,11 @@
 </Parameters>
 </Constructor>
 
-<Member name='qlOptionSetEngine'>
+<Member name='qlOptionSetEngine' libraryClass='VanillaOption'>
 <description>change the pricing engine of an existing Option object</description>
 <libraryFunction>setEngine</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handle' libraryClass='VanillaOption'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of the Option object</description>
-    </Parameter>
     <Parameter name='engineName'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>

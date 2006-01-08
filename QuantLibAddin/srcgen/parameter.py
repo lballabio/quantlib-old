@@ -31,13 +31,13 @@ class Value(serializable.Serializable):
     pass
 
 class Parameter(Value):
-    """encapsulate state necessary to generate source code 
+    """Encapsulate state necessary to generate source code 
     relating to a function parameter."""
 
     groupName = 'Parameters'
 
     def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
+        """Load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeProperty(self, common.TYPE)
         serializer.serializeProperty(self, common.TENSOR_RANK)
@@ -48,7 +48,7 @@ class Parameter(Value):
         serializer.serializeAttribute(self, common.QL_TYPE)
 
     def postSerialize(self):
-        """determine whether the datatype of this parameter requires a conversion."""
+        """Determine whether the datatype of this parameter requires a conversion."""
         if self.ignore or (self.tensorRank == common.SCALAR
         and self.type != common.ANY and not self.default):
             self.needsConversion = False
@@ -56,7 +56,7 @@ class Parameter(Value):
             self.needsConversion = True
 
 class ReturnValue(Value):
-    """encapsulate state necessary to generate source code 
+    """Encapsulate state necessary to generate source code 
     relating to a function return value."""
 
     # sometimes a ReturnValue will be treated like a Parameter
@@ -75,12 +75,29 @@ class ReturnValue(Value):
         serializer.serializeProperty(self, common.DESCRIPTION)
 
 class ConstructorReturnValue(Value):
-    """class to represent state shared by the return values
-    of all constructors in QuantLibAddin"""
+    """Class to represent state shared by the return values
+    of all constructors in QuantLibAddin."""
 
     name = ''
     type = 'string'
     tensorRank = 'scalar'
     description = 'handle of newly created object'
     default = False
+
+class ParameterHandle(Parameter):
+    """Handle of an object.
+
+    Implicitly used as the first input parameter for all 
+    Constructors (where the handle is assigned to the new object) and
+    Members (where the handle indicates the object to be retrieved)."""
+
+    name = 'handle'
+    type = 'string'
+    tensorRank = 'scalar'
+    default = False
+    needsConversion = False
+    ignore = False
+
+    def __init__(self, description):
+        self.description = description
 

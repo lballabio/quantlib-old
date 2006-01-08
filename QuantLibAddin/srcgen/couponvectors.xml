@@ -64,16 +64,11 @@
 </Parameters>
 </Constructor>
 
-<Member name='qlGetLeg'>
+<Member name='qlGetLeg' libraryClass='CouponVector'>
 <description>return coupon details</description>
 <libraryFunction>getLeg</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handle' libraryClass='CouponVector'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of coupon vector object</description>
-    </Parameter>
     <Parameter name='trigger' ignore='true'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
@@ -87,16 +82,11 @@
 </ReturnValue>
 </Member>
 
-<Member name='qlGetBPS'>
+<Member name='qlGetBPS' libraryClass='CouponVector'>
 <description>basis point sensitivity</description>
 <libraryFunction>getBPS</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handle' libraryClass='CouponVector'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of coupon vector object</description>
-    </Parameter>
     <Parameter name='termStructureID'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>

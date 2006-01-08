@@ -61,10 +61,6 @@ class AddinCalc(addin.Addin):
                 fileMap.write('    // %s\n\n' % func.name)
                 fileMap.write(MAPLINE % ('funcMap', func.name, func.name))
                 fileMap.write(MAPLINE % ('funcDesc', func.name, func.description))
-                if isinstance(func, function.Constructor):
-                    fileMap.write(PARMLINE % ('argName', func.name, 'handle'))
-                    fileMap.write(PARMLINE % ('argDesc', func.name, 
-                           'handle of newly constructed ' + func.libraryFunction + ' object'))
                 for param in func.Parameters:
                     fileMap.write(PARMLINE % ('argName', func.name, param.name))
                     fileMap.write(PARMLINE % ('argDesc', func.name, param.description))
@@ -93,7 +89,7 @@ class AddinCalc(addin.Addin):
         functionReturnType = self.functionReturnType.apply(func.returnValue)
         fileHeader.write(prototype % (functionReturnType, func.name))
         functionDeclaration = func.generateParameterList(self.functionDeclaration,
-            'const STRING &handleStub')
+            'const STRING &handle')
         fileHeader.write(functionDeclaration)
         fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)
 

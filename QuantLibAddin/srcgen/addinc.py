@@ -42,7 +42,7 @@ class AddinC(addin.Addin):
         functionReturnType = self.functionReturnType.apply(func.returnValue)
         fileHeader.write('int %s(' % func.name)
         functionDeclaration = func.generateParameterList(self.functionDeclaration, 
-            'char *handleStub')
+            'char *handle')
         if functionDeclaration: functionDeclaration += ','
         fileHeader.write(functionDeclaration)
         fileHeader.write('\n        %sresult)%s' % (functionReturnType, suffix))

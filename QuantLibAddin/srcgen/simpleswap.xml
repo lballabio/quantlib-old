@@ -96,16 +96,11 @@
 </Parameters>
 </Constructor>
 
-<Member name='qlSwapFairRate' getObject='true'>
+<Member name='qlSwapFairRate' getObject='true' libraryClass='SimpleSwap'>
 <description>the fair rate of a swap</description>
 <libraryFunction>fairRate</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handle' libraryClass='SimpleSwap'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of the swap object</description>
-    </Parameter>
     <Parameter name='trigger' ignore='true'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
@@ -119,16 +114,11 @@
 </ReturnValue>
 </Member>
 
-<Member name='qlSwapFairSpread' getObject='true'>
+<Member name='qlSwapFairSpread' getObject='true' libraryClass='SimpleSwap'>
 <description>the fair rate of a swap</description>
 <libraryFunction>fairSpread</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handle' libraryClass='SimpleSwap'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of the swap object</description>
-    </Parameter>
     <Parameter name='trigger' ignore='true'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
@@ -142,17 +132,12 @@
 </ReturnValue>
 </Member>
 
-<Member name='qlSwapFixedLeg'>
+<Member name='qlSwapFixedLeg' libraryClass='SimpleSwap'>
 <description>The Fixed Leg Details</description>
 <libraryFunction>getFixLeg</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handle' libraryClass='SimpleSwap'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of a SimpleSwap object</description>
-    </Parameter>
-</Parameters>
+    </Parameters>
 <ReturnValue>
     <type>double</type>
     <tensorRank>matrix</tensorRank>
@@ -160,16 +145,11 @@
 </ReturnValue>
 </Member>
 
-<Member name='qlSwapFixedLegBPS' getObject='true'>
+<Member name='qlSwapFixedLegBPS' getObject='true' libraryClass='SimpleSwap'>
 <description>the BPS of the fixed leg</description>
 <libraryFunction>fixedLegBPS</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handle' libraryClass='SimpleSwap'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of the swap object</description>
-    </Parameter>
     <Parameter name='trigger' ignore='true'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
@@ -183,16 +163,11 @@
 </ReturnValue>
 </Member>
 
-<Member name='qlSwapFloatLeg'>
+<Member name='qlSwapFloatLeg' libraryClass='SimpleSwap'>
 <description>The Float Leg Details</description>
 <libraryFunction>getFloatLeg</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handle' libraryClass='SimpleSwap'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of a SimpleSwap object</description>
-    </Parameter>
     <Parameter name='trigger' ignore='true'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>
@@ -206,16 +181,11 @@
 </ReturnValue>
 </Member>
 
-<Member name='qlSwapFloatingLegBPS' getObject='true'>
+<Member name='qlSwapFloatingLegBPS' getObject='true' libraryClass='SimpleSwap'>
 <description>the BPS of the floating leg</description>
 <libraryFunction>floatingLegBPS</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handle' libraryClass='SimpleSwap'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of the swap object</description>
-    </Parameter>
     <Parameter name='trigger' ignore='true'>
         <type>any</type>
         <tensorRank>scalar</tensorRank>

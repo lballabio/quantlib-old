@@ -116,9 +116,6 @@ class AddinGuile(addin.Addin):
     def generateFunction(self, fileFunc, func):
         """Generate source code for body of function."""
         conversions = self.generateConversions(func.Parameters)
-        if isinstance(func, function.Constructor):
-            conversions = '        std::string handleStub = GetChop<std::string>::scalar(x);\n' \
-                + conversions
         functionBody = func.generateBody(self)
         functionReturnCommand = self.generateReturnCommand(func.returnValue)
         fileFunc.write(self.bufferFunction.text % (conversions, 

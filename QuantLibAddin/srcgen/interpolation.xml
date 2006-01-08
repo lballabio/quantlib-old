@@ -80,16 +80,11 @@
 </Parameters>
 </Constructor>
 
-<Member name='qlInterpolate'>
+<Member name='qlInterpolate' libraryClass='Interpolation'>
 <description>carry out interpolation</description>
 <libraryFunction>interpolate</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handle' libraryClass='Interpolation'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of interpolator</description>
-    </Parameter>
     <Parameter name='xArray'>
         <type>double</type>
         <tensorRank>matrix</tensorRank>

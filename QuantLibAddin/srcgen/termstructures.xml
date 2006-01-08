@@ -89,16 +89,11 @@
 </Parameters>
 </Constructor>
 
-<Member name='qlGetDf' getObject='true'>
+<Member name='qlGetDf' getObject='true' libraryClass='YieldTermStructure'>
 <description>retrieve a discount factor at specified date</description>
 <libraryFunction>discount</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handle' libraryClass='YieldTermStructure'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of the Yield Term Structure object</description>
-    </Parameter>
     <Parameter name='DfDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
@@ -150,16 +145,11 @@
 </Parameters>
 </Constructor>
 
-<Member name='qlSetQuote'>
+<Member name='qlSetQuote' libraryClass='RateHelper'>
 <description>update quote of existing Rate Helper object</description>
 <libraryFunction>setQuote</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handle' libraryClass='RateHelper'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of the Rate Helper object</description>
-    </Parameter>
     <Parameter name='Quote'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
