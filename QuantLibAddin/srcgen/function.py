@@ -86,8 +86,8 @@ class Constructor(Function):
 
         # implicit in the definition of a Constructor is that the first parameter
         # is a string to be used as the handle of the new object
-        self.Parameters.insert(0, 
-            parameter.ParameterHandle('handle of newly constructed object'))
+        self.Parameters.insert(0, parameter.ParameterHandle(
+            'handle of newly constructed %s object' % self.libraryClass))
         self.ParameterCount += 1
 
     def generateBody(self, addin):
@@ -120,8 +120,8 @@ class Member(Function):
 
         # implicit in the definition of a Member is that the first parameter
         # is the handle of the object to be retrieved
-        self.Parameters.insert(0, 
-            parameter.ParameterHandle('handle of existing %s object' % self.libraryClass))
+        self.Parameters.insert(0, parameter.ParameterHandle(
+            'handle of existing %s object' % self.libraryClass))
         self.ParameterCount += 1
 
         # code snippet to access underlying QuantLib object

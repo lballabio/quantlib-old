@@ -97,7 +97,7 @@ class AddinExcel(addin.Addin):
         else:
             suffix = ','
         line = REGLINE % (len(text), text, suffix)
-        return '%-45s// %s\n' % (line, comment)
+        return '%-52s // %s\n' % (line, comment)
 
     def generateParamString(self, func):
         """Generate string to register function parameters."""
@@ -125,7 +125,7 @@ class AddinExcel(addin.Addin):
         fileHeader.write(self.formatLine(paramStr, 'parameter codes'))
         fileHeader.write(self.formatLine(func.name, 'function display name'))
         fileHeader.write(self.formatLine(paramList, 'comma-delimited list of parameters'))    
-        fileHeader.write(self.formatLine('1', 'function type (0 = hidden function, 1 = worksheet function, 2 = command macro)'))
+        fileHeader.write(self.formatLine('1', 'function type (1 = worksheet function)'))
         fileHeader.write(self.formatLine(func.functionCategory, 'function category'))
         fileHeader.write(self.formatLine('', 'shortcut text (command macros only)'))
         fileHeader.write(self.formatLine('', 'path to help file'))
@@ -142,7 +142,8 @@ class AddinExcel(addin.Addin):
                     # in Excel which causes description to be corrupted when displayed 
                     # in the Function Wizard
                     desc += '  '
-                fileHeader.write(self.formatLine(desc, 'description param %d' % i, lastParameter))
+                fileHeader.write(self.formatLine(desc, 
+                    'description of parameter %d' % (i + 1), lastParameter))
                 i += 1
                 j += 1
         else:

@@ -39,7 +39,9 @@ def usage():
         g - generate source for Guile addin
         d - generate doxygen documentation files
     or
-        a - all of the above"""
+        a - all of the above
+    or
+        h - display this help message"""
     sys.exit(errorMessage)
 
 # parse command line arguments
@@ -67,8 +69,7 @@ for o, a in opts:
     elif o == '-d':
         addins.append(factory.Factory.getInstance().serializeObject(addindoxygen.AddinDoxygen))
     elif o == '-a':
-        if len(opts) != 1:
-            sys.exit('flag -a cannot be combined with other flags')
+        if len(opts) != 1: sys.exit('flag -a cannot be combined with other flags')
         addins.append(factory.Factory.getInstance().serializeObject(addinqla.AddinQla))
         addins.append(factory.Factory.getInstance().serializeObject(addinexcel.AddinExcel))
         addins.append(factory.Factory.getInstance().serializeObject(addincalc.AddinCalc))
