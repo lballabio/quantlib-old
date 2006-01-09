@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000-2004 StatPro Italia srl
+ Copyright (C) 2000-2006 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
@@ -598,6 +598,55 @@ class AnalyticBarrierEnginePtr
     %extend {
         AnalyticBarrierEnginePtr() {
             return new AnalyticBarrierEnginePtr(new AnalyticBarrierEngine);
+        }
+    }
+};
+
+%{
+using QuantLib::MCBarrierEngine;
+typedef boost::shared_ptr<PricingEngine> MCBarrierEnginePtr;
+%}
+
+%rename(MCBarrierEngine) MCBarrierEnginePtr;
+class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
+    %feature("kwargs") MCBarrierEnginePtr;
+  public:
+    %extend {
+        MCBarrierEnginePtr(const std::string& traits,
+                           Size timeStepsPerYear = Null<Size>(),
+                           bool brownianBridge = false,
+                           bool antitheticVariate = false,
+                           bool controlVariate = false,
+                           intOrNull requiredSamples = Null<Size>(),
+                           doubleOrNull requiredTolerance = Null<Real>(),
+                           intOrNull maxSamples = Null<Size>(),
+                           bool isBiased = false,
+                           BigInteger seed = 0) {
+            std::string s = QuantLib::lowercase(traits);
+            if (s == "pseudorandom" || s == "pr")
+                return new MCBarrierEnginePtr(
+                         new MCBarrierEngine<PseudoRandom>(timeStepsPerYear,
+                                                           brownianBridge,
+                                                           antitheticVariate,
+                                                           controlVariate,
+                                                           requiredSamples,
+                                                           requiredTolerance,
+                                                           maxSamples,
+                                                           isBiased,
+                                                           seed));
+            else if (s == "lowdiscrepancy" || s == "ld")
+                return new MCBarrierEnginePtr(
+                       new MCBarrierEngine<LowDiscrepancy>(timeStepsPerYear,
+                                                           brownianBridge,
+                                                           antitheticVariate,
+                                                           controlVariate,
+                                                           requiredSamples,
+                                                           requiredTolerance,
+                                                           maxSamples,
+                                                           isBiased,
+                                                           seed));
+            else
+                QL_FAIL("unknown Monte Carlo engine type: "+s);
         }
     }
 };
