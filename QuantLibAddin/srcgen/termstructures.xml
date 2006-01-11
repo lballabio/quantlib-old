@@ -244,6 +244,48 @@
 </Parameters>
 </Constructor>
 
+<Constructor name='qlForwardCurve'>
+<description>construct and return a handle to a piecewise flat forward term structure from the forward rates</description>
+<libraryFunction>ForwardCurve</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='curveDates'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+        <description>dates of the zero curve</description>
+    </Parameter>
+    <Parameter name='forwardYields'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+        <description>forwards of the yield curve</description>
+    </Parameter>
+    <Parameter name='dayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day counter (e.g. Actual360)</description>
+    </Parameter>
+</Parameters>
+</Constructor>
+
+<Constructor name='qlForwardSpreadedTermStructure'>
+<description>construct and return a handle to Forward-Spreaded Term Structure </description>
+<libraryFunction>ForwardSpreadedTermStructure</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='YieldTermStructure' class='YieldTermStructure' default='""'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle to the Yield Curve to be spreaded</description>
+    </Parameter>
+    <Parameter name='spread'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>the spread to be applied to the forward rates of the yield curve</description>
+    </Parameter>
+</Parameters>
+</Constructor>
+
+
 </Functions>
 </Category>
 

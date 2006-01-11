@@ -23,6 +23,7 @@
 #include <qla/zerocurve.hpp>
 #include <ql/termstructure.hpp>
 #include <ql/TermStructures/piecewiseflatforward.hpp>
+#include <ql/TermStructures/forwardspreadedtermstructure.hpp>
 #include <ql/TermStructures/ratehelpers.hpp>
 
 #include <oh/objhandler.hpp>
@@ -93,6 +94,7 @@ namespace QuantLibAddin {
         boost::shared_ptr<QuantLib::YieldTermStructure> termStructure_;
     };
 
+
     class PiecewiseFlatForward : public YieldTermStructure {
       public:
         PiecewiseFlatForward(
@@ -101,6 +103,22 @@ namespace QuantLibAddin {
             const std::vector<std::string> &handlesRateHelper,
             const std::string &dayCounterID);
     };
+    
+    class ForwardCurve : public YieldTermStructure {
+      public:
+        ForwardCurve(
+            const std::vector < long > &dates,
+            const std::vector < double > &forwards,
+            const std::string &dayCounterID);
+    };
+
+    class ForwardSpreadedTermStructure : public YieldTermStructure {
+      public:
+        ForwardSpreadedTermStructure(
+            const std::string &baseTermStructure,
+            const double &spread);
+    };
+
 }
 
 #endif

@@ -35,6 +35,7 @@ namespace QuantLibAddin {
         return diff;
     }
 
+
     DepositRateHelper::DepositRateHelper(
             const double &quote,
             const long &maturity,
@@ -138,6 +139,7 @@ namespace QuantLibAddin {
                 bDayConvention,
                 dayCounter));
     }
+    
 
     PiecewiseFlatForward::PiecewiseFlatForward(
             const long &evaluation,
@@ -167,5 +169,50 @@ namespace QuantLibAddin {
                                                rateHelpersQL,
                                                dayCounter));
     }
+
+    ForwardCurve::ForwardCurve(
+            const std::vector < long > &dates,
+            const std::vector < double > &forwards,
+            const std::string &dayCounterID){
+
+        QuantLib::Settings::instance().evaluationDate() = QuantLib::Date(dates[0]);
+
+        QuantLib::DayCounter dayCounter =
+            Create<QuantLib::DayCounter>()(dayCounterID);
+
+        const std::vector<QuantLib::Date> qlDates = 
+            longVectorToDateVector(dates);
+
+        termStructure_ = boost::shared_ptr<QuantLib::YieldTermStructure>(
+            new QuantLib::PiecewiseFlatForward(qlDates,
+                                               forwards,
+                                               dayCounter));
+    }
+
+
+    ForwardSpreadedTermStructure::ForwardSpreadedTermStructure(
+            const std::string &baseTermStructure,
+            const double &spread){
+
+        boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpDiscYC =
+            OH_GET_OBJECT(QuantLibAddin::YieldTermStructure, baseTermStructure);
+
+        QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;
+
+        if(tmpDiscYC) {
+            boost::shared_ptr<QuantLib::YieldTermStructure> discYC = 
+                OH_GET_REFERENCE(QuantLib::YieldTermStructure, tmpDiscYC);
+            discountingTermStructure.linkTo(discYC);
+        }
+
+        QuantLib::Handle<QuantLib::Quote> spreadQuote(
+                        boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(spread)));
+
+        termStructure_ = boost::shared_ptr<QuantLib::YieldTermStructure>(
+            new QuantLib::ForwardSpreadedTermStructure(discountingTermStructure, spreadQuote));
+    }
+
+
+
 }
 
