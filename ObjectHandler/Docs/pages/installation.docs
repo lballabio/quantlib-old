@@ -36,7 +36,7 @@ ObjectHandler logging is performed by
 <a href="http://logging.apache.org/log4cxx/index.html">log4cxx</a>, 
 the logging framework for the Apache project.
 Before building ObjectHandler you'll need to install and build
-log4cxx.  ObjectHandler has been tested against log4cxx version 0.9.7.
+log4cxx.  ObjectHandler requires log4cxx version 0.9.7.
 
 ObjectHandler is available for download from the 
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=141162">QuantLib downloads page on sourceforge</a>
@@ -65,19 +65,17 @@ These instructions assume a debug build.
 Before building ObjectHandler you need to build log4cxx.
 
 <ul>
-<li>log4cxx should be unzipped to a path containing no spaces as the library 
-seems to complain otherwise</li>
-<li>please build log4cxx, project "dll", configuration "Win32 Debug".</li>
-<li>copy log4cxx.dll to a directory in your PATH</li>
-<li>you need to manually set environment variable \c LOG4CXX_DIR to the top level 
-log4cxx directory e.g. <tt>C:\\log4cxx-0.9.7</tt></li>
-<li>if VC is running you need to restart it to pick up the new environment 
-variable.</li>
+<li>log4cxx should be unzipped to a path containing no spaces as the library seems to complain otherwise</li>
+<li>choose project \b static, configuration <b>Win32 Debug</b>.</li>
+<li>the log4cxx workspace ships with the above configuration set to run time library <b>Debug Multithreaded</b> which is what we will use for this example.  If you decide to use a different runtime library you need to edit the log4cxx workspace (unlike ObjectHandler which provides a separate workspace corresponding to each runtime library).</li>
+<li>build the chosen log4cxx project - this creates file <tt>log4cxx-0.9.7\\msvc\\Lib\\Debug\\log4cxxs.lib</tt></li>
+<li>you need to manually set environment variable \c LOG4CXX_DIR to the top level log4cxx directory e.g. <tt>C:\\log4cxx-0.9.7</tt></li>
+<li>if VC is running you need to restart it to pick up the new environment variable.</li>
 </ul>
 
 \subsection inst_win_installation Installation
 
-Determine which project you need -
+Determine which ObjectHandler project you need -
 
 <table border="1" cellspacing="3" cellpadding="3">
 <tr><td><b>Project</b></td><td><b>Description</b></td></tr>
@@ -88,7 +86,9 @@ linked into a single client XLL</td></tr>
 shared by other XLLs in the Excel session</td></tr>
 </table>
 
-Build the desired workspace, configuration "Win32 Debug MTDLL".
+Build the desired workspace, configuration <b>Win32 Debug</b>.
+
+NB: The ohxll build of ObjectHandler requires a DLL version of the VC runtime library (i.e. <b>Debug Multithreaded DLL</b> or <b>Release Multithreaded DLL</b>).  This requires an edit to the log4cxx workspace as described above.
 
 \subsection inst_win_usage Usage
 
@@ -125,7 +125,7 @@ to the example application indicated.
 </tr>
 <tr>
 <td><b>Link Libraries</b></td>
-<td>log4cxx.lib</td>
+<td>log4cxxs.lib ws2_32.lib</td>
 </tr>
 </table>
 
@@ -158,7 +158,7 @@ to the example application indicated.
 </tr>
 <tr>
 <td><b>Link Libraries</b></td>
-<td>log4cxx.lib</td>
+<td>log4cxxs.lib ws2_32.lib</td>
 </tr>
 </table>
 
@@ -214,7 +214,7 @@ in file <tt>oh/autolink.hpp</tt>
 The name of the library depends on your compiler and configuration.  For example,
 if you're using VC6, configuration Debug MTDLL, the library is called
 \verbatim
-ObjectHandler-vc6-mt-gd-0_1_2.lib
+ObjectHandler-vc6-mt-gd-0_1_3.lib
 \endverbatim
 
 The location of the library depends on which project you're using (ohlib/ohxllib/ohxll),
