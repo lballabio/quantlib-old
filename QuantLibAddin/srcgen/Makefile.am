@@ -7,6 +7,7 @@ SRCGEN_INPUT := addincalc.xml \
                 addinexcel.xml \
                 addinguile.xml \
                 addinqla.xml \
+                basic.xml \
                 capfloor.xml \
                 config.xml \
                 couponvectors.xml \

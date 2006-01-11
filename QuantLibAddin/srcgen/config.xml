@@ -3,6 +3,7 @@
 <Buffer name='bufferCopyright' fileName='stub.copyright'/>
 
 <categoryNames>
+    <categoryName>basic</categoryName>
     <categoryName>capfloor</categoryName>
     <categoryName>couponvectors</categoryName>
     <categoryName>instruments</categoryName>
