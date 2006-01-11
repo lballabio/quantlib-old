@@ -38,6 +38,10 @@ namespace QuantLibAddin {
             const std::vector<long> &lDates,
             const std::vector<double> &fixings);
 
+        const QuantLib::Xibor& getObject() const {return *index_;}
+
+        double fixing(const long &lFixingDate) const;
+
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(index_);
         }

@@ -71,5 +71,10 @@ namespace QuantLibAddin {
             QuantLib::IndexManager::instance().setHistory(index_->name(), history);
         }
     }
+
+    double Xibor::fixing(const long &lFixingDate) const{
+        return index_->fixing(make_date(lFixingDate));
+    }
+
 }
 
