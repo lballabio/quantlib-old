@@ -66,6 +66,24 @@
 </Parameters>
 </Constructor>
 
+<Member name='qlXiborFixing' getObject='true' libraryClass='Xibor'>
+<description>retrive the fixing for the given Xibor object</description>
+<libraryFunction>fixing</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='fixingDate' ql_type='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>fixing date</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>xibor fixing</description>
+</ReturnValue>
+</Member>
+
 </Functions>
 </Category>
 
