@@ -1,5 +1,6 @@
 
 EXTRA_DIST = \
+    basic.xls \
     capfloors.xls \
     instruments.xls \
     interpolation.xls \
