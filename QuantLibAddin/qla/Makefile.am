@@ -10,6 +10,7 @@ EXTRA_DIST = \
 
 include_HEADERS = \
     asianoption.hpp \
+    basic.hpp \
     baseinstruments.hpp \
     barrieroption.hpp \
     basketoption.hpp \
@@ -45,6 +46,7 @@ include_HEADERS = \
 
 libQuantLibAddin_la_SOURCES = \
     asianoption.cpp \
+    basic.cpp \
     barrieroption.cpp \
     basketoption.cpp \
     capfloor.cpp \

@@ -1,3 +1,4 @@
+basic.*
 capfloor.*
 couponvectors.*
 .deps
@@ -8,6 +9,7 @@ libQuantLibAddinGuile.la
 *.lo
 Makefile
 Makefile.in
+objecthandler.h
 ohfunctions.*
 options.*
 processes.*

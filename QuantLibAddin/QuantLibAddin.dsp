@@ -193,6 +193,10 @@ SOURCE=.\qla\barrieroption.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\basic.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\basketoption.cpp
 # End Source File
 # Begin Source File
@@ -310,6 +314,10 @@ SOURCE=.\qla\barrieroption.hpp
 # Begin Source File
 
 SOURCE=.\qla\baseinstruments.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\basic.hpp
 # End Source File
 # Begin Source File
 

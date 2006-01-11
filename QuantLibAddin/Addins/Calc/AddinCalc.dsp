@@ -55,6 +55,10 @@ CFG=AddinCalc - Win32 Debug MTDLL
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=.\basic.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\calcutils.cpp
 # End Source File
 # Begin Source File
@@ -137,6 +141,10 @@ SOURCE=.\xibor.cpp
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE=.\basic.hpp
+# End Source File
 # Begin Source File
 
 SOURCE=.\calcutils.hpp

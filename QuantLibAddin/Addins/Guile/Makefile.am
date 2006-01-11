@@ -13,6 +13,7 @@ libQuantLibAddinGuile_la_LIBADD = ../../qla/libQuantLibAddin.la
 
 if BUILD_GUILE
 noinst_HEADERS = \
+    basic.h \
     capfloor.h \
     couponvectors.h \
     extra.h \
@@ -36,6 +37,7 @@ endif
 
 if BUILD_GUILE
 libQuantLibAddinGuile_la_SOURCES = \
+    basic.cpp \
     capfloor.cpp \
     couponvectors.cpp \
     extra.cpp \

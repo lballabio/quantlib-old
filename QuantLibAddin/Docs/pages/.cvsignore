@@ -1,10 +1,13 @@
 all.docs
+basic.docs
 capfloor.docs
 categories.docs
 couponvectors.docs
 enums.docs
+functionsoverview.docs
 instruments.docs
 interpolation.docs
+objecthandler.docs
 ohfunctions.docs
 options.docs
 processes.docs

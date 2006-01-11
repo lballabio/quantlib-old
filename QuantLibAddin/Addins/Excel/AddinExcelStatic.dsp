@@ -201,6 +201,10 @@ LINK32=link.exe
 # Name "AddinExcelStatic - Win32 Debug SingleThread"
 # Begin Source File
 
+SOURCE=.\basic.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\capfloor.cpp
 # End Source File
 # Begin Source File

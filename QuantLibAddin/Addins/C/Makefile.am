@@ -16,6 +16,7 @@ libQuantLibAddinC_la_LIBADD = ../../qla/libQuantLibAddin.la
 
 if BUILD_C
 noinst_HEADERS = \
+    basic.h \
     capfloor.h \
     couponvectors.h \
     defines.h \
@@ -38,6 +39,7 @@ noinst_HEADERS = \
 endif
 
 libQuantLibAddinC_la_SOURCES = \
+    basic.cpp \
     capfloor.cpp \
     couponvectors.cpp \
     instruments.cpp \

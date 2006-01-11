@@ -1,5 +1,7 @@
 AddinCalc.plg
+autogen.hpp
 qla_all.hpp
+basic.*pp
 build
 capfloor.*pp
 com
@@ -16,6 +18,7 @@ libQuantLibAddinCalc.la
 *.lo
 Makefile
 Makefile.in
+objecthandler.hpp
 ohfunctions.*
 options.*
 processes.*pp

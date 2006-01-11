@@ -89,6 +89,10 @@ LINK32=link.exe
 # Name "AddinExcelDynamic - Win32 Debug MTDLL"
 # Begin Source File
 
+SOURCE=.\basic.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\capfloor.cpp
 # End Source File
 # Begin Source File

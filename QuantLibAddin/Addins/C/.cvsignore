@@ -28,6 +28,8 @@ utilities.*
 volatilities.*
 xibor.*
 
+basic.cpp
+basic.h
 couponvectors.cpp
 couponvectors.h
 interpolation.cpp

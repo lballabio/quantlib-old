@@ -62,6 +62,7 @@ EXTRA_DIST = \
 if BUILD_CALC
 noinst_HEADERS = \
     qla_all.hpp \
+    basic.hpp \
     calcutils.hpp \
     capfloor.hpp \
     couponvectors.hpp \
@@ -83,6 +84,7 @@ noinst_HEADERS = \
 endif
 
 libQuantLibAddinCalc_la_SOURCES = \
+    basic.cpp \
     calcutils.cpp \
     capfloor.cpp \
     couponvectors.cpp \
