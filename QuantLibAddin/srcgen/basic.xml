@@ -1,0 +1,82 @@
+<Category name='basic'>
+<description>basic QuantLib functions</description>
+<displayName>Basic</displayName>
+<Functions>
+
+<Procedure name='qlAdvanceCalendar' >
+<description>advances the given calendar </description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='startDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>start date to be advanced</description>
+    </Parameter>
+    <Parameter name='n'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>number of units to advance</description>
+    </Parameter>
+    <Parameter name='timeUnits'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>units to advance</description>
+    </Parameter>
+    <Parameter name='calendar'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Calendar ID to advance</description>
+    </Parameter>
+    <Parameter name='rollingConvention'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>rolling convention </description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>long</type>
+    <tensorRank>scalar</tensorRank>
+    <description>advanced date</description>
+</ReturnValue>
+</Procedure>
+
+<Procedure name='qlYearFraction'>
+<description>advances the given calendar </description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='dayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day-counter convention </description>
+    </Parameter>
+    <Parameter name='startDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>start date</description>
+    </Parameter>
+    <Parameter name='endDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>end date </description>
+    </Parameter>
+    <Parameter name='refPeriodStart'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>start date for reference period</description>
+    </Parameter>
+    <Parameter name='refPeriodEnd'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>end date for reference period</description>
+    </Parameter>    
+</Parameters>
+<ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>advanced date</description>
+</ReturnValue>
+</Procedure>
+
+</Functions>
+</Category>
+
