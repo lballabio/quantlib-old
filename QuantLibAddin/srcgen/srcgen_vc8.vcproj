@@ -251,6 +251,10 @@
 				>
 			</File>
 			<File
+				RelativePath="basic.xml"
+				>
+			</File>
+			<File
 				RelativePath="capfloor.xml"
 				>
 			</File>

@@ -184,7 +184,9 @@ namespace QuantLibAddin {
             longVectorToDateVector(dates);
 
         termStructure_ = boost::shared_ptr<QuantLib::YieldTermStructure>(
-            new QuantLib::PiecewiseFlatForward(qlDates,
+//            new QuantLib::PiecewiseFlatForward(qlDates,
+//            the line above only works for VC6 - try this instead ?
+            new QuantLib::ForwardCurve(qlDates,
                                                forwards,
                                                dayCounter));
     }

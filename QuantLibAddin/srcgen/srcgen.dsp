@@ -259,6 +259,10 @@ SOURCE=.\addinqla.xml
 # End Source File
 # Begin Source File
 
+SOURCE=.\basic.xml
+# End Source File
+# Begin Source File
+
 SOURCE=.\capfloor.xml
 # End Source File
 # Begin Source File

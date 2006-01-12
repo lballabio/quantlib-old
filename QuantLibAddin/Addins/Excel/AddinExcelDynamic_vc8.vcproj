@@ -213,6 +213,28 @@
 	</References>
 	<Files>
 		<File
+			RelativePath="basic.cpp"
+			>
+			<FileConfiguration
+				Name="Debug MTDLL|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release MTDLL|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+		</File>
+		<File
 			RelativePath="capfloor.cpp"
 			>
 			<FileConfiguration
