@@ -25,6 +25,7 @@
 #include <qla/generalutils.hpp>
 
 #include <ql/date.hpp>
+#include <ql/TermStructures/forwardcurve.hpp>
 
 namespace QuantLibAddin {
 
