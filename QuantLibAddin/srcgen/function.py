@@ -99,7 +99,7 @@ class Constructor(Function):
 class Member(Function):
     """Function which invokes member function of existing QuantLib object."""
 
-    skipFirst = True    # omit object's handle when invoking its member function
+    skipFirst = True    # omit object handle when invoking its member function
     BODY = '''\
         boost::shared_ptr < QuantLibAddin::%s > objectPointer =
             OH_GET_OBJECT(QuantLibAddin::%s, %s);
