@@ -51,7 +51,7 @@ docs-html-dist: docs-html
 	rm QuantLibAddin-docs-$(VERSION)-html
 
 docs-online-qla:
-	mkdir -p html-online/qla
+	mkdir -p html-online
 	$(SED) -e "s/qla_footer/qla_headeronline/" \
            -e "s/GENERATE_HTML          = NO/GENERATE_HTML          = YES/" \
            -e "s/HTML_OUTPUT            = html/HTML_OUTPUT            = html-online/" \
@@ -86,7 +86,7 @@ docs-clean:
 	rm -f .time-stamp*
 
 docs-qla:
-	mkdir -p html/qla
+	mkdir -p html
 	$(SED) -e "s/GENERATE_HTML          = NO/GENERATE_HTML          = YES/" \
            -e "s|qla_basepath|${BASEPATH}/|" \
            -e "s|qla_version|$(VERSION)|" \

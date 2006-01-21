@@ -1,4 +1,4 @@
-## Doxyfile 1.4.1
+## Doxyfile 1.4.6
 
 ##---------------------------------------------------------------------------
 ## Project related configuration options
@@ -16,8 +16,8 @@ ABBREVIATE_BRIEF       =
 ALWAYS_DETAILED_SEC    = NO
 INLINE_INHERITED_MEMB  = YES
 FULL_PATH_NAMES        = YES
-STRIP_FROM_PATH        = qla_basepath/srcgen
-STRIP_FROM_INC_PATH    = qla_basepath/srcgen
+STRIP_FROM_PATH        = qla_basepath
+STRIP_FROM_INC_PATH    = qla_basepath
 SHORT_NAMES            = NO
 JAVADOC_AUTOBRIEF      = NO
 MULTILINE_CPP_IS_BRIEF = NO
@@ -117,8 +117,8 @@ IGNORE_PREFIX          =
 #---------------------------------------------------------------------------
 
 GENERATE_HTML          = NO
-HTML_OUTPUT            = html/srcgen
-HTML_FILE_EXTENSION    = .html
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .srcgen.html
 HTML_HEADER            = qla_header.html
 HTML_FOOTER            = qla_footer.html
 HTML_STYLESHEET        = style.css
