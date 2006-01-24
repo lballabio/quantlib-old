@@ -1,15 +1,20 @@
 
 EXTRA_DIST = \
-    srcgen.doxy \
     qladdin.doxy \
     qla_footer.html \
     qla_header.html \
     qla_headeronline.html \
     QuantLibAddin-docs.hhp \
+    srcgen.doxy \
+    srcgen_footer.html \
+    srcgen_header.html \
+    srcgen_headeronline.html \
     style.css
 
 DOXYGEN_CONFIG := srcgen.doxy qladdin.doxy
-DOXYGEN_CUSTOM := style.css qla_header.html qla_footer.html
+DOXYGEN_CUSTOM := style.css \
+    qla_footer.html qla_header.html qla_headeronline.html \
+    srcgen_footer.html srcgen_header.html srcgen_headeronline.html
 DOXYGEN_INPUT := $(shell find ${top_srcdir}/qla -name *.hpp) \
                  $(wildcard pages/*.docs) \
                  $(wildcard ../srcgen/*.py)
@@ -73,7 +78,7 @@ docs-online-srcgen:
 	rm .srcgen.doxy
 
 docs-online: .time-stamp-online
-.time-stamp-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT) docs-online-qla docs-online-srcgen
+.time-stamp-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT) docs-online-srcgen docs-online-qla
 	mkdir -p html-online/images
 	cp images/*.gif html-online/images
 	cp images/*.ico html-online/images
@@ -103,6 +108,6 @@ docs-srcgen:
 	$(DOXYGEN) .srcgen.doxy
 	rm .srcgen.doxy
 
-.time-stamp: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT) docs-qla docs-srcgen
+.time-stamp: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT) docs-srcgen docs-qla
 	touch .time-stamp
 

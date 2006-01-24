@@ -72,7 +72,7 @@ WARN_IF_UNDOCUMENTED   = YES
 WARN_IF_DOC_ERROR      = YES
 WARN_NO_PARAMDOC       = NO
 WARN_FORMAT            = "$file:$line: $text"
-WARN_LOGFILE           = doxywarnings.txt
+WARN_LOGFILE           = doxywarnings.srcgen.txt
 
 #---------------------------------------------------------------------------
 # configuration options related to the input files
@@ -117,10 +117,10 @@ IGNORE_PREFIX          =
 #---------------------------------------------------------------------------
 
 GENERATE_HTML          = NO
-HTML_OUTPUT            = html
-HTML_FILE_EXTENSION    = .srcgen.html
-HTML_HEADER            = qla_header.html
-HTML_FOOTER            = qla_footer.html
+HTML_OUTPUT            = html/srcgen
+HTML_FILE_EXTENSION    = .html
+HTML_HEADER            = srcgen_header.html
+HTML_FOOTER            = srcgen_footer.html
 HTML_STYLESHEET        = style.css
 HTML_ALIGN_MEMBERS     = YES
 GENERATE_HTMLHELP      = NO

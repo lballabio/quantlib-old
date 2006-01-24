@@ -1,10 +1,9 @@
-QuantLibAddin-docs-*.*
+doxywarnings*txt
 html
 html-online
-latex
-doxywarnings.txt
 Makefile
 Makefile.in
-.time-stamp*
-man
 .qladdin.doxy
+QuantLibAddin-docs-*.*
+.srcgen.doxy
+.time-stamp*
