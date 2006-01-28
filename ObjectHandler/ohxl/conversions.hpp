@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -96,6 +96,8 @@ namespace ObjHandler {
         OPER xTemp;
         bool needToFree = false;
         try {
+            if (xVector->xltype & xltypeErr)
+                throw std::exception("input value is #NULL (xltypeErr)");
             if (xVector->xltype & (xltypeMissing | xltypeNil))
                 return;
 
@@ -128,7 +130,9 @@ namespace ObjHandler {
     }
 
     template < class T >
-    void fpToMatrix( std::vector < std::vector < T > > &ret, const FP *fpMatrix) {
+    void fpToMatrix( 
+    std::vector < std::vector < T > > &ret, 
+    const FP *fpMatrix) {
         for (int i=0; i<fpMatrix->rows; i++) {
             std::vector < T > row;
             for (int j=0; j<fpMatrix->columns; j++)
@@ -138,10 +142,14 @@ namespace ObjHandler {
     }
 
     template < class T >
-    void operToMatrix(std::vector < std::vector < T > > &ret, const OPER *xMatrix) {
+    void operToMatrix(
+    std::vector < std::vector < T > > &ret, 
+    const OPER *xMatrix) {
         OPER xTemp;
         bool needToFree = false;
         try {
+            if (xMatrix->xltype & xltypeErr)
+                throw std::exception("input value is #NULL (xltypeErr)");
             if (xMatrix->xltype & (xltypeMissing | xltypeNil))
                 return;
 

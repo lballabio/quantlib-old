@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -156,6 +156,8 @@ namespace ObjHandler {
 
     DLL_API void operToScalar(long &ret, const OPER &xScalar, const long &defaultValue) {
         try {
+            if (xScalar.xltype & xltypeErr)
+                throw std::exception("input value is #NULL (xltypeErr)");
             if (xScalar.xltype & (xltypeMissing | xltypeNil))
                 ret = defaultValue;
             else if (xScalar.xltype == xltypeNum)
@@ -174,6 +176,8 @@ namespace ObjHandler {
 
     DLL_API void operToScalar(double &ret, const OPER &xScalar, const double &defaultValue) {
         try {
+            if (xScalar.xltype & xltypeErr)
+                throw std::exception("input value is #NULL (xltypeErr)");
             if (xScalar.xltype & (xltypeMissing | xltypeNil))
                 ret = defaultValue;
             else if (xScalar.xltype == xltypeNum)
@@ -192,6 +196,8 @@ namespace ObjHandler {
 
     DLL_API void operToScalar(bool &ret, const OPER &xScalar, const bool &defaultValue) {
         try {
+            if (xScalar.xltype & xltypeErr)
+                throw std::exception("input value is #NULL (xltypeErr)");
             if (xScalar.xltype & (xltypeMissing | xltypeNil))
                 ret = defaultValue;
             else if (xScalar.xltype == xltypeBool)
@@ -212,6 +218,8 @@ namespace ObjHandler {
         OPER xTemp;
         bool needToFree = false;
         try {
+            if (xScalar.xltype & xltypeErr)
+                throw std::exception("input value is #NULL (xltypeErr)");
             if (xScalar.xltype & (xltypeMissing | xltypeNil)) {
                 ret = defaultValue;
                 return;
@@ -242,6 +250,8 @@ namespace ObjHandler {
     }
 
     DLL_API void operToScalar(boost::any &ret, const OPER &xScalar) {
+        if (xScalar.xltype & xltypeErr)
+            throw std::exception("input value is #NULL (xltypeErr)");
         if (xScalar.xltype & (xltypeMissing | xltypeNil))
             ret = boost::any();
         else if (xScalar.xltype == xltypeNum)
