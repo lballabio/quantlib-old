@@ -11,6 +11,13 @@ EXCEL
 - Improved memory management (automatic deletion of temp variables)
 - Clarified code in example XLLs
 
+LOG4CXX
+
+- Link to log4cxx statically rather than dynamically.  The use of log4cxx.dll,
+  introduced in ObjectHandler version 0.1.2, was found to destabilize
+  ObjectHandler and so the static link to log4cxx, used in ObjectHandler
+  version 0.1.1, has been reintroduced.
+
 Release 0.1.2 - October 2005
 
 EXCEL

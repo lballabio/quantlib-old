@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -35,6 +35,13 @@ EXCEL
 - Increased granularity and clarity of runtime exceptions
 - Improved memory management (automatic deletion of temp variables)
 - Clarified code in example XLLs
+
+LOG4CXX
+
+- Link to log4cxx statically rather than dynamically.  The use of log4cxx.dll,
+  introduced in ObjectHandler version 0.1.2, was found to destabilize
+  ObjectHandler and so the static link to log4cxx, used in ObjectHandler
+  version 0.1.1, has been reintroduced.
 
 <strong>Release 0.1.2 - October 2005</strong>
 
