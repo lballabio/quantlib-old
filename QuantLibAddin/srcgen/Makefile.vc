@@ -18,12 +18,14 @@ scripts=addincalc.py \
         common.py \
         config.py \
         enumeration.py \
+        factory.py \
         function.py \
         log.py \
         outputfile.py \
         parameter.py \
         rule.py \
         serializable.py \
+        serializer.py \
         singleton.py \
         srcgen.py \
         xmlreader.py
@@ -55,6 +57,7 @@ METADATA=   addincalc.xml \
             addinexcel.xml \
             addinguile.xml \
             addinqla.xml \
+            basic.xml \
             capfloor.xml \
             config.xml \
             couponvectors.xml \

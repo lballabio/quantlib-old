@@ -29,6 +29,8 @@ This document summarizes processing for the Evaluation Date.  By default QuantLi
 
 Alternatively QuantLib offers support for Sessions which allow the client application to implement multiple instances of the evaluation date.  When this functionality is enabled, %QuantLibAddin defines a session as an Excel workbook, so that a group of related objects which require a common instance of the evaluation date can be isolated in a single workbook.
 
+Function \ref qlEvalDate can be called to query the value of the Evaluation Date in a given context.
+
 \section eval_quantlib QuantLib
 
 In QuantLib, the evaluation date is implemented in a global object (called Settings).  QuantLib supports various methods which enable the client application to set the value of the evaluation date.  Any object which depends on the evaluation date consults this global value when required.  If the evaluation date is not set explicitly then it defaults to the current date as computed by the system clock (and the value is incremented when the clock passes midnight).

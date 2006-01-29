@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -32,7 +32,7 @@ REQUIRED PACKAGES
 
 FUNCTIONALITY
 
-- 10 new functions / 80 in total
+- 11 new functions / 81 in total
 - backward & forward flat interpolators (Aurelien Chanudet)
 - enhancements to xibor / rate helper / term structures /
   utilities (Marco Marchioro)

@@ -6,7 +6,7 @@
 <Procedure name='ohVersion'>
 <description>returns the version number of ObjectHandler</description>
 <platforms>CGO</platforms>
-<Parameters></Parameters>
+<Parameters/>
 <ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
@@ -17,7 +17,7 @@
 <Procedure name='ohObjectCount'>
 <description>#/objects in repository</description>
 <platforms>CGO</platforms>
-<Parameters></Parameters>
+<Parameters/>
 <ReturnValue>
     <type>long</type>
     <tensorRank>scalar</tensorRank>
@@ -28,7 +28,7 @@
 <Procedure name='ohHandleList'>
 <description>list of handles in repository</description>
 <platforms>CGO</platforms>
-<Parameters></Parameters>
+<Parameters/>
 <ReturnValue>
     <type>string</type>
     <tensorRank>vector</tensorRank>
@@ -100,7 +100,7 @@
 <Procedure name='ohDeleteAllObjects'>
 <description>delete all objects from repository</description>
 <platforms>CGO</platforms>
-<Parameters></Parameters>
+<Parameters/>
 <ReturnValue>
     <type>bool</type>
     <tensorRank>scalar</tensorRank>
@@ -251,7 +251,7 @@
 <Procedure name='ohLogAllObjects'>
 <description>write all object descriptions to log file</description>
 <platforms>CGO</platforms>
-<Parameters></Parameters>
+<Parameters/>
 <ReturnValue>
     <type>bool</type>
     <tensorRank>scalar</tensorRank>
@@ -284,7 +284,7 @@
 <Procedure name='ohGetGcEnabled'>
 <description>get value of ObjectHandler garbage collection flag</description>
 <platforms>D</platforms>
-<Parameters></Parameters>
+<Parameters/>
 <ReturnValue>
     <type>bool</type>
     <tensorRank>scalar</tensorRank>
@@ -312,7 +312,7 @@
 <Procedure name='ohCallGC'>
 <description>delete orphaned objects from repository</description>
 <platforms>D</platforms>
-<Parameters></Parameters>
+<Parameters/>
 <ReturnValue>
     <type>bool</type>
     <tensorRank>scalar</tensorRank>

@@ -7,7 +7,7 @@ REQUIRED PACKAGES
 
 FUNCTIONALITY
 
-- 10 new functions / 80 in total
+- 11 new functions / 81 in total
 - backward & forward flat interpolators (Aurelien Chanudet)
 - enhancements to xibor / rate helper / term structures / 
   utilities (Marco Marchioro)

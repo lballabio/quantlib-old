@@ -49,6 +49,10 @@ namespace QuantLibAddin {
         const long &lEndDate,
         const long &lRefStartDate,
         const long &lRefEndDate);    
+
+    /*! return the evaluation date
+    */
+    long qlEvalDate();
 }
 
 #endif

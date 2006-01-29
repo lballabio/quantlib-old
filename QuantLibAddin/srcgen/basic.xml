@@ -77,6 +77,17 @@
 </ReturnValue>
 </Procedure>
 
+<Procedure name='qlEvalDate'>
+<description>returns the current value of the Evaluation Date</description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters/>
+<ReturnValue>
+    <type>long</type>
+    <tensorRank>scalar</tensorRank>
+    <description>evaluation date</description>
+</ReturnValue>
+</Procedure>
+
 </Functions>
 </Category>
 

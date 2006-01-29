@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2006 Eric Ehlers
  Copyright (C) 2006 Marco Marchioro--StatPro Italia
 
  This file is part of QuantLib, a free-software/open-source library
@@ -20,13 +21,11 @@
 #endif
 #include <ql/calendar.hpp>
 #include <ql/daycounter.hpp>
+#include <ql/settings.hpp>
 
 #include <qla/basic.hpp>
 #include <qla/clientutils.hpp>
 #include <qla/typefactory.hpp>
-
-
-using namespace ObjHandler;
 
 namespace QuantLibAddin {
 
@@ -76,5 +75,9 @@ namespace QuantLibAddin {
         return dayCounter.yearFraction(startDate, endDate, refStartDate, refEndDate);
     }    
 
+    long qlEvalDate() {
+        QuantLib::Date evalDate = QuantLib::Settings::instance().evaluationDate();
+        return evalDate.serialNumber();
+    }
 }
 

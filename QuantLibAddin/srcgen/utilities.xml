@@ -6,7 +6,7 @@
 <Procedure name='qlVersion'>
 <description>returns the version number of QuantLib</description>
 <functionCategory>QuantLib</functionCategory>
-<Parameters></Parameters>
+<Parameters/>
 <ReturnValue>
     <type>string</type>
     <tensorRank>scalar</tensorRank>
@@ -17,7 +17,7 @@
 <Procedure name='qlListRegisteredEnums'>
 <description>return the names of all registered enums</description>
 <functionCategory>QuantLib</functionCategory>
-<Parameters></Parameters>
+<Parameters/>
 <ReturnValue>
     <type>string</type>
     <tensorRank>vector</tensorRank>
@@ -45,7 +45,7 @@
 <Procedure name='qlListRegisteredTypes'>
 <description>return the names of all registered complex types</description>
 <functionCategory>QuantLib</functionCategory>
-<Parameters></Parameters>
+<Parameters/>
 <ReturnValue>
     <type>string</type>
     <tensorRank>vector</tensorRank>
