@@ -8,12 +8,12 @@ CFG=AddinCalc - Win32 Debug MTDLL
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
-!MESSAGE NMAKE /f "AddinCalc.mak".
+!MESSAGE NMAKE /f "Makefile.vc.debug.mtdll".
 !MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "AddinCalc.mak" CFG="AddinCalc - Win32 Debug MTDLL"
+!MESSAGE NMAKE /f "Makefile.vc.debug.mtdll" CFG="AddinCalc - Win32 Debug MTDLL"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
@@ -26,18 +26,18 @@ CFG=AddinCalc - Win32 Debug MTDLL
 # PROP Scc_LocalPath ""
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "AddinCalc___Win32_Debug_MTDLL"
-# PROP BASE Intermediate_Dir "AddinCalc___Win32_Debug_MTDLL"
-# PROP BASE Cmd_Line "nmake /f "AddinCalc.mak""
+# PROP BASE Output_Dir "build\vc6\DebugMTDLL"
+# PROP BASE Intermediate_Dir "build\vc6\DebugMTDLL"
+# PROP BASE Cmd_Line "nmake /f "Makefile.vc.debug.mtdll""
 # PROP BASE Rebuild_Opt "/a"
 # PROP BASE Target_File "AddinCalc.exe"
 # PROP BASE Bsc_Name ""
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "AddinCalc___Win32_Debug_MTDLL"
-# PROP Intermediate_Dir "AddinCalc___Win32_Debug_MTDLL"
-# PROP Cmd_Line "nmake /f "AddinCalc.mak""
+# PROP Output_Dir "build\vc6\DebugMTDLL"
+# PROP Intermediate_Dir "build\vc6\DebugMTDLL"
+# PROP Cmd_Line "nmake /f "Makefile.vc.debug.mtdll""
 # PROP Rebuild_Opt "/a"
 # PROP Target_File "AddinCalc.exe"
 # PROP Bsc_Name ""
