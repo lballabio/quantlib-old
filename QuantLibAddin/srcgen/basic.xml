@@ -41,7 +41,7 @@
 </Procedure>
 
 <Procedure name='qlYearFraction'>
-<description>advances the given calendar </description>
+<description>calculate a year fraction</description>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
     <Parameter name='dayCounter'>
