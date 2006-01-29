@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,26 +24,32 @@
 /*! \page index QuantLibAddin
 
 \section overview Overview
-%QuantLibAddin supplements QuantLib's existing C++ API 
-with an additional, higher-level API, implemented as
-a procedural interface that can be deployed on any platform capable 
-of linking C++ libraries. %QuantLibAddin is less flexible than the 
-native API but allows QuantLib functionality to be loaded directly 
-to end-user environments such as spreadsheets.
+
+%QuantLibAddin exports a subset of QuantLib functionality to a variety of platforms:
+
+\li Microsoft Excel
+\li OpenOffice.Org Calc (Windows and Linux)
+\li Guile
+\li C/C++ (standalone programs)
+
+<div class="center"><img src="../images/screenshot.jpg"></div>
+
+The interface is object-oriented - a constructor can be called
+to instantiate a QuantLib object, which can then be accessed via
+its member functions.  Functions are polymorphic where appropriate.
+For example function qlNPV returns the NPV of an Instrument and can be
+invoked on an instance of any object descended from Instrument e.g. a
+Bond (returned from function qlFixedCouponBond), a Swap (returned from
+function qlSwap), etc.
 
 \section quantlib QuantLib
-%QuantLibAddin shares the QuantLib project structure with regard
-to distribution, licensing, etc., all of which is documented
-on the main QuantLib website:<br>
+
+%QuantLibAddin shares the QuantLib project structure with regard to
+distribution, licensing, etc., all of which is documented on the main
+QuantLib website:<br>
 http://quantlib.org
 
 \section gettingstarted Getting Started
-
-%QuantLibAddin supports the following platforms
-\li Microsoft Excel
-\li C/C++ (standalone programs)
-\li OpenOffice.Org Calc (Windows and Linux)
-\li Guile
 
 Please refer to document \ref installation for instructions on
 building %QuantLibAddin.
@@ -52,8 +58,8 @@ The section \ref functional provides platform-independent,
 end-user documentation of %QuantLibAddin functionality.  
 
 Additional information is available from the links at the left, 
-if you have a question which is not answered here please send a 
-message to quantlib-dev@lists.sf.net.
+if you have a question which is not answered here please send
+email to quantlib-dev@lists.sf.net.
 
 */
 
