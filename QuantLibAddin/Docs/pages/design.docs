@@ -24,11 +24,12 @@
 /*! \page design QuantLibAddin Design
 
 <h2>Abstract</h2>
-<p>%QuantLibAddin exports to a variety of platforms a standard interface
-supporting a subset of QuantLib functionality.  The interface includes
-QuantLib constructor, member and utility functions.  %QuantLibAddin uses
-the ObjectHandler repository to provide an object-oriented environment
-on procedural platforms such as spreadsheets.</p>
+<p>%QuantLibAddin implements an interface supporting a subset of QuantLib
+functionality including constructor, member and utility functions.  Use of
+the ObjectHandler repository provides an object-oriented environment
+even on procedural platforms such as spreadsheets.  A standard,
+platform-neutral interface is defined in XML metadata from which a Python
+application generates source code for supported environments.</p>
 <a name="tag_contents"><h2>Contents</h2>
 <div CLASS="TOC"><dl>
 <dt>\ref sec_1</dt>

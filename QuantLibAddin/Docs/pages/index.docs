@@ -25,7 +25,12 @@
 
 \section overview Overview
 
-%QuantLibAddin exports a subset of QuantLib functionality to a variety of platforms:
+%QuantLibAddin implements an interface supporting a subset of QuantLib
+functionality including constructor, member and utility functions.  Use of
+the ObjectHandler repository provides an object-oriented environment
+even on procedural platforms such as spreadsheets.  A standard,
+platform-neutral interface is defined in XML metadata from which a Python
+application generates source code for supported environments:
 
 \li Microsoft Excel
 \li OpenOffice.Org Calc (Windows and Linux)
@@ -33,14 +38,6 @@
 \li C/C++ (standalone programs)
 
 <div class="center"><img src="../images/screenshot.jpg"></div>
-
-The interface is object-oriented - a constructor can be called
-to instantiate a QuantLib object, which can then be accessed via
-its member functions.  Functions are polymorphic where appropriate.
-For example function qlNPV returns the NPV of an Instrument and can be
-invoked on an instance of any object descended from Instrument e.g. a
-Bond (returned from function qlFixedCouponBond), a Swap (returned from
-function qlSwap), etc.
 
 \section quantlib QuantLib
 
