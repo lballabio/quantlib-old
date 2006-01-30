@@ -51,7 +51,9 @@ AC_CONFIG_FILES([
     MzScheme/Makefile
     Perl/Makefile
     Python/Makefile
-    Ruby/Makefile])
+    Ruby/Makefile
+    R/Makefile
+    OCaml/Makefile])
 AC_CONFIG_FILES([Python/QuantLib-Python.spec])
 AC_CONFIG_FILES([Ruby/QuantLib-Ruby.spec])
 AC_OUTPUT
