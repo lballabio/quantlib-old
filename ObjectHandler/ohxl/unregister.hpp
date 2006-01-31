@@ -23,3 +23,4 @@
 void ohUnregisterFunctions(const XLOPER &xDll);
 
 #endif
+

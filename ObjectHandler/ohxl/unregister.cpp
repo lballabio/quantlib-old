@@ -18,7 +18,7 @@
 #include <ohxl/unregister.hpp>
 
 void ohUnregisterFunctions(const XLOPER &xDll) {
-	// Unregister each function.  Due to a bug in Excel's C API this is a 
+    // Unregister each function.  Due to a bug in Excel's C API this is a 
     // two-step process.  Thanks to Laurent Longre for discovering the 
     // workaround implemented here.
 
@@ -70,14 +70,14 @@ void ohUnregisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x20""handle of object to be queried  "));// description param 0
 
     Excel(xlfRegister, 0, 13, &xDll,
-        TempStrNoSize("\x0F""ohPropertyValue"),	// function code name
-        TempStrNoSize("\x04""RCCP"),			// parameter codes
-        TempStrNoSize("\x0F""ohPropertyValue"),	// function display name
+        TempStrNoSize("\x0F""ohPropertyValue"), // function code name
+        TempStrNoSize("\x04""RCCP"),            // parameter codes
+        TempStrNoSize("\x0F""ohPropertyValue"), // function display name
         TempStrNoSize("\x21""handleObject,propertyName,trigger"),// comma-delimited list of parameters
-        TempStrNoSize("\x01""0"),				// function type (0 = hidden function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
-        TempStrNoSize("\x00"""),				// shortcut text (command macros only)
-        TempStrNoSize("\x00"""),				// path to help file
+        TempStrNoSize("\x00"""),                // shortcut text (command macros only)
+        TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x26""retrieve the value of a named property"),// function description
         TempStrNoSize("\x1E""handle of object to be queried"),// description param 0
         TempStrNoSize("\x10""name of property"),// description param 1
@@ -107,14 +107,14 @@ void ohUnregisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x22""delete all objects from repository"));// function description
 
     Excel(xlfRegister, 0, 20, &xDll,
-        TempStrNoSize("\x0B""ohDependsOn"),		// function code name
-        TempStrNoSize("\x0B""LPPPPPPPPPP"),		// parameter codes
-        TempStrNoSize("\x0B""ohDependsOn"),		// function display name
+        TempStrNoSize("\x0B""ohDependsOn"),     // function code name
+        TempStrNoSize("\x0B""LPPPPPPPPPP"),     // parameter codes
+        TempStrNoSize("\x0B""ohDependsOn"),     // function display name
         TempStrNoSize("\x45""dummy0,dummy1,dummy2,dummy3,dummy4,dummy5,dummy6,dummy7,dummy8,dummy9"),// comma-delimited list of parameters
-        TempStrNoSize("\x01""0"),				// function type (0 = hidden function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
-        TempStrNoSize("\x00"""),				// shortcut text (command macros only)
-        TempStrNoSize("\x00"""),				// path to help file
+        TempStrNoSize("\x00"""),                // shortcut text (command macros only)
+        TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x28""force a dependency between two functions"),// function description
         TempStrNoSize("\x19""dummy parameter (ignored)"),// description param 0
         TempStrNoSize("\x19""dummy parameter (ignored)"),// description param 1
@@ -226,68 +226,53 @@ void ohUnregisterFunctions(const XLOPER &xDll) {
 
     XLOPER xlRegID;
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x09""ohVersion"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x09""ohVersion"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x0D""ohObjectCount"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0D""ohObjectCount"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x0C""ohHandleList"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0C""ohHandleList"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x0F""ohPropertyNames"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0F""ohPropertyNames"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x0F""ohPropertyValue"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0F""ohPropertyValue"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x0E""ohDeleteObject"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0E""ohDeleteObject"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x12""ohDeleteAllObjects"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x12""ohDeleteAllObjects"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x0B""ohDependsOn"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0B""ohDependsOn"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x0E""ohGetGcEnabled"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0E""ohGetGcEnabled"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x0E""ohSetGcEnabled"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0E""ohSetGcEnabled"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x08""ohCallGC"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x08""ohCallGC"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x0C""ohSetLogFile"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0C""ohSetLogFile"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x0D""ohSetLogLevel"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0D""ohSetLogLevel"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x0C""ohLogMessage"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0C""ohLogMessage"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x0B""ohLogObject"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0B""ohLogObject"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
-        TempStrNoSize("\x0F""ohLogAllObjects"));
-	Excel4(xlfUnregister, 0, 1, &xlRegID);
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0F""ohLogAllObjects"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
 }
+

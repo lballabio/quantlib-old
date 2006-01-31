@@ -65,14 +65,14 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x20""handle of object to be queried  "));// description param 0
 
     Excel(xlfRegister, 0, 13, &xDll,
-        TempStrNoSize("\x0F""ohPropertyValue"),	// function code name
-        TempStrNoSize("\x04""RCCP"),			// parameter codes
-        TempStrNoSize("\x0F""ohPropertyValue"),	// function display name
+        TempStrNoSize("\x0F""ohPropertyValue"), // function code name
+        TempStrNoSize("\x04""RCCP"),            // parameter codes
+        TempStrNoSize("\x0F""ohPropertyValue"), // function display name
         TempStrNoSize("\x21""handleObject,propertyName,trigger"),// comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),				// function type (1 = worksheet function)
+        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
-        TempStrNoSize("\x00"""),				// shortcut text (command macros only)
-        TempStrNoSize("\x00"""),				// path to help file
+        TempStrNoSize("\x00"""),                // shortcut text (command macros only)
+        TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x26""retrieve the value of a named property"),// function description
         TempStrNoSize("\x1E""handle of object to be queried"),// description param 0
         TempStrNoSize("\x10""name of property"),// description param 1
@@ -102,14 +102,14 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x22""delete all objects from repository"));// function description
 
     Excel(xlfRegister, 0, 20, &xDll,
-        TempStrNoSize("\x0B""ohDependsOn"),		// function code name
-        TempStrNoSize("\x0B""LPPPPPPPPPP"),		// parameter codes
-        TempStrNoSize("\x0B""ohDependsOn"),		// function display name
+        TempStrNoSize("\x0B""ohDependsOn"),     // function code name
+        TempStrNoSize("\x0B""LPPPPPPPPPP"),     // parameter codes
+        TempStrNoSize("\x0B""ohDependsOn"),     // function display name
         TempStrNoSize("\x45""dummy0,dummy1,dummy2,dummy3,dummy4,dummy5,dummy6,dummy7,dummy8,dummy9"),// comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),				// function type (1 = worksheet function)
+        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
-        TempStrNoSize("\x00"""),				// shortcut text (command macros only)
-        TempStrNoSize("\x00"""),				// path to help file
+        TempStrNoSize("\x00"""),                // shortcut text (command macros only)
+        TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x28""force a dependency between two functions"),// function description
         TempStrNoSize("\x19""dummy parameter (ignored)"),// description param 0
         TempStrNoSize("\x19""dummy parameter (ignored)"),// description param 1
@@ -195,7 +195,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x1C""threshold for log messages  "));// description param 1
 
     Excel(xlfRegister, 0, 11, &xDll,
-        TempStrNoSize("\x0B""ohLogObject"),       // function code name
+        TempStrNoSize("\x0B""ohLogObject"),     // function code name
         TempStrNoSize("\x02""LC"),              // parameter codes
         TempStrNoSize("\x0B""ohLogObject"),     // function display name
         TempStrNoSize("\x0C""handleObject"),    // comma-delimited list of parameters
@@ -218,3 +218,4 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x29""write all object descriptions to log file"));// function description
 
 }
+

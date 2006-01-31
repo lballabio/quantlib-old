@@ -23,3 +23,4 @@
 void ohRegisterFunctions(const XLOPER &xDll);
 
 #endif
+
