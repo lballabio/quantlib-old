@@ -24,7 +24,7 @@ CFG=srcgen - Win32 All
 # PROP AllowPerConfigDependencies 0
 # PROP Scc_ProjName ""
 # PROP Scc_LocalPath ""
-# PROP BASE Use_MFC
+# PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
 # PROP BASE Output_Dir "build\vc"
 # PROP BASE Intermediate_Dir "build\vc"
@@ -33,7 +33,7 @@ CFG=srcgen - Win32 All
 # PROP BASE Target_File "srcgen.exe"
 # PROP BASE Bsc_Name ""
 # PROP BASE Target_Dir ""
-# PROP Use_MFC
+# PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
 # PROP Output_Dir "build\vc"
 # PROP Intermediate_Dir "build\vc"
@@ -207,11 +207,7 @@ SOURCE=.\stub.excel.includes
 # End Source File
 # Begin Source File
 
-SOURCE=.\stub.excel.regfooter
-# End Source File
-# Begin Source File
-
-SOURCE=.\stub.excel.regheader
+SOURCE=.\stub.excel.register
 # End Source File
 # Begin Source File
 

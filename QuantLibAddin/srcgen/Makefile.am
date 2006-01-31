@@ -64,8 +64,7 @@ SRCGEN_STUBS := stub.calc.function \
                 stub.doxygen.header \
                 stub.excel.function \
                 stub.excel.includes \
-                stub.excel.regfooter \
-                stub.excel.regheader \
+                stub.excel.register \
                 stub.guile.function \
                 stub.guile.includes \
                 stub.guile.initfunc \

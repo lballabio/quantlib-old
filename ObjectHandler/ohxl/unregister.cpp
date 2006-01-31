@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,16 +15,21 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ohxl/register.hpp>
+#include <ohxl/unregister.hpp>
 
-void ohRegisterFunctions(const XLOPER &xDll) {
+void ohUnregisterFunctions(const XLOPER &xDll) {
+	// Unregister each function.  Due to a bug in Excel's C API this is a 
+    // two-step process.  Thanks to Laurent Longre for discovering the 
+    // workaround implemented here.
+
+    // re-register all functions as hidden functions
 
     Excel(xlfRegister, 0, 10, &xDll,
         TempStrNoSize("\x09""ohVersion"),       // function code name
         TempStrNoSize("\x01""C"),               // parameter codes
         TempStrNoSize("\x09""ohVersion"),       // function display name
         TempStrNoSize("\x00"""),                // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
@@ -35,7 +40,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x01""N"),               // parameter codes
         TempStrNoSize("\x0D""ohObjectCount"),   // function display name
         TempStrNoSize("\x00"""),                // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
@@ -46,7 +51,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x01""R"),               // parameter codes
         TempStrNoSize("\x0C""ohHandleList"),    // function display name
         TempStrNoSize("\x00"""),                // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
@@ -57,7 +62,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x02""RC"),              // parameter codes
         TempStrNoSize("\x0F""ohPropertyNames"), // function display name
         TempStrNoSize("\x06""handle"),          // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
@@ -69,7 +74,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x04""RCCP"),			// parameter codes
         TempStrNoSize("\x0F""ohPropertyValue"),	// function display name
         TempStrNoSize("\x21""handleObject,propertyName,trigger"),// comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),				// function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),				// function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),				// shortcut text (command macros only)
         TempStrNoSize("\x00"""),				// path to help file
@@ -83,7 +88,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x03""LC#"),             // parameter codes
         TempStrNoSize("\x0E""ohDeleteObject"),  // function display name
         TempStrNoSize("\x0C""handleObject"),    // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
@@ -95,7 +100,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x02""L#"),              // parameter codes
         TempStrNoSize("\x12""ohDeleteAllObjects"),// function display name
         TempStrNoSize("\x00"""),                // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
@@ -106,7 +111,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x0B""LPPPPPPPPPP"),		// parameter codes
         TempStrNoSize("\x0B""ohDependsOn"),		// function display name
         TempStrNoSize("\x45""dummy0,dummy1,dummy2,dummy3,dummy4,dummy5,dummy6,dummy7,dummy8,dummy9"),// comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),				// function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),				// function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),				// shortcut text (command macros only)
         TempStrNoSize("\x00"""),				// path to help file
@@ -127,7 +132,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x01""L"),               // parameter codes
         TempStrNoSize("\x0E""ohGetGcEnabled"),  // function display name
         TempStrNoSize("\x00"""),                // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
@@ -138,7 +143,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x03""LL#"),             // parameter codes
         TempStrNoSize("\x0E""ohSetGcEnabled"),  // function display name
         TempStrNoSize("\x00"""),                // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
@@ -150,7 +155,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x02""L#"),              // parameter codes
         TempStrNoSize("\x08""ohCallGC"),        // function display name
         TempStrNoSize("\x00"""),                // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
@@ -161,7 +166,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x03""CCP"),             // parameter codes
         TempStrNoSize("\x0C""ohSetLogFile"),    // function display name
         TempStrNoSize("\x14""logFileName,logLevel"),// comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
@@ -174,7 +179,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x02""NN"),              // parameter codes
         TempStrNoSize("\x0D""ohSetLogLevel"),   // function display name
         TempStrNoSize("\x08""logLevel"),        // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
@@ -186,7 +191,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x03""CCP"),             // parameter codes
         TempStrNoSize("\x0C""ohLogMessage"),    // function display name
         TempStrNoSize("\x13""logMessage,logLevel"),// comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
@@ -195,11 +200,11 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x1C""threshold for log messages  "));// description param 1
 
     Excel(xlfRegister, 0, 11, &xDll,
-        TempStrNoSize("\x0B""ohLogObject"),       // function code name
+        TempStrNoSize("\x0B""ohLogObject"),     // function code name
         TempStrNoSize("\x02""LC"),              // parameter codes
         TempStrNoSize("\x0B""ohLogObject"),     // function display name
         TempStrNoSize("\x0C""handleObject"),    // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
@@ -211,10 +216,78 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x01""L"),               // parameter codes
         TempStrNoSize("\x0F""ohLogAllObjects"), // function display name
         TempStrNoSize("\x00"""),                // comma-delimited list of parameters
-        TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
+        TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x29""write all object descriptions to log file"));// function description
+
+    // Unregister the now hidden functions
+
+    XLOPER xlRegID;
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x09""ohVersion"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x0D""ohObjectCount"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x0C""ohHandleList"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x0F""ohPropertyNames"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x0F""ohPropertyValue"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x0E""ohDeleteObject"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x12""ohDeleteAllObjects"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x0B""ohDependsOn"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x0E""ohGetGcEnabled"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x0E""ohSetGcEnabled"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x08""ohCallGC"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x0C""ohSetLogFile"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x0D""ohSetLogLevel"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x0C""ohLogMessage"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x0B""ohLogObject"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
+
+	Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+        TempStrNoSize("\x0F""ohLogAllObjects"));
+	Excel4(xlfUnregister, 0, 1, &xlRegID);
 
 }

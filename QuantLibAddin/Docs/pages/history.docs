@@ -40,6 +40,10 @@ FUNCTIONALITY
   allowing multiple instances of the global evaluation date  
 - documentation revised and extended
 
+EXCEL
+
+- unregister functions when XLL unloaded (Lars Shouw)
+
 <strong>Release 0.3.11 - October 2005</strong>
 
 REQUIRED PACKAGES

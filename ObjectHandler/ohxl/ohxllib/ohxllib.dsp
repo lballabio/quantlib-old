@@ -283,6 +283,14 @@ SOURCE=..\register.cpp
 
 SOURCE=..\register.hpp
 # End Source File
+# Begin Source File
+
+SOURCE=..\unregister.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\unregister.hpp
+# End Source File
 # End Group
 # End Target
 # End Project

@@ -31,7 +31,8 @@ CORE
 
 EXCEL
 
-- Consolidated registration and export of Excel functions
+- unregister functions when XLL unloaded (Lars Shouw)
+- Consolidated export of Excel functions
 - Increased granularity and clarity of runtime exceptions
 - Improved memory management (automatic deletion of temp variables)
 - Clarified code in example XLLs
@@ -66,7 +67,7 @@ LOG4CXX
 
 REQUIRED PACKAGES
 - Boost version 1.31.0 or later
-- log4cxx version 0.9.7 or later
+- log4cxx version 0.9.7
 
 CHANGES SINCE RELEASE 0.1.0
 - interface layer replaced with factory function (thanks to Walter Penschke)

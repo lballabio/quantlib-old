@@ -1,11 +1,13 @@
 
 EXTRA_DIST = \
-    export.hpp \
-    functions.cpp \
-    register.cpp \
-    register.hpp \
     conversions.cpp \
     conversions.hpp \
+    export.hpp \
+    functions.cpp \
     objecthandlerxl.cpp \
-    objecthandlerxl.hpp
+    objecthandlerxl.hpp \
+    register.cpp \
+    register.hpp \
+    unregister.cpp \
+    unregister.hpp
 

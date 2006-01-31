@@ -69,7 +69,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "OHXLL_EXPORTS" /YX /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\.." /I "$(LOG4CXX_DIR)\include" /D "_DEBUG" /D "_WINDOWS" /D "_USRDLL" /D "XLL_EXPORTS" /D "WIN32" /D "_MBCS" /D "LOG4CXX_STATIC" /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\.." /I "$(LOG4CXX_DIR)\include" /D "_DEBUG" /D "_WINDOWS" /D "_USRDLL" /D "XLL_EXPORTS" /D "WIN32" /D "_MBCS" /D "LOG4CXX_STATIC" /FR /YX /FD /GZ /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x809 /d "_DEBUG"
@@ -189,6 +189,14 @@ SOURCE=..\register.cpp
 # Begin Source File
 
 SOURCE=..\register.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\unregister.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\unregister.hpp
 # End Source File
 # End Group
 # Begin Group "xll"

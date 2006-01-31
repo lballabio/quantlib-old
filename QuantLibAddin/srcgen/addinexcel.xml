@@ -5,8 +5,7 @@
 <Buffers>
 <Buffer name='bufferFunction' fileName='stub.excel.function'/>
 <Buffer name='bufferIncludes' fileName='stub.excel.includes'/>
-<Buffer name='bufferRegHeader' fileName='stub.excel.regheader'/>
-<Buffer name='bufferRegFooter' fileName='stub.excel.regfooter'/>
+<Buffer name='bufferRegister' fileName='stub.excel.register'/>
 </Buffers>
 
 <RuleGroups>

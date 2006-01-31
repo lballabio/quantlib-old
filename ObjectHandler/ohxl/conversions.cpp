@@ -150,8 +150,10 @@ namespace ObjHandler {
             } else {
                 scalarToXloper(xAny, std::string(MATRIX));
             }
-        } else
+        } else {
             xAny.xltype = xltypeErr;
+            xAny.val.err = xlerrValue;
+        }
     }
 
     DLL_API void operToScalar(long &ret, const OPER &xScalar, const long &defaultValue) {

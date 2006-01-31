@@ -198,11 +198,7 @@
 				>
 			</File>
 			<File
-				RelativePath="stub.excel.regfooter"
-				>
-			</File>
-			<File
-				RelativePath="stub.excel.regheader"
+				RelativePath="stub.excel.register"
 				>
 			</File>
 			<File

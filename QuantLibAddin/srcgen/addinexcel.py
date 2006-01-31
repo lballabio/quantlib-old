@@ -46,6 +46,9 @@ RET_XLOPER = """\
         static XLOPER xRet;
         ObjHandler::%sToXloper(xRet, returnValue);
         return &xRet;"""
+UNREGISTER = """\
+        Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
+%s        Excel4(xlfUnregister, 0, 1, &xlRegID);\n\n"""
 
 class AddinExcel(addin.Addin):
     """Generate source code for Excel addin."""
@@ -53,7 +56,7 @@ class AddinExcel(addin.Addin):
     def generate(self):
         """Generate source code for Excel addin."""
         log.Log.getInstance().logMessage('  begin generating %s...' % self.name)
-        self.generateFuncRegisters()
+        self.generateRegisterFunctions()
         self.generateFunctions()
         log.Log.getInstance().logMessage('  done generating %s.' % self.name)
 
@@ -107,8 +110,9 @@ class AddinExcel(addin.Addin):
         paramStr += '#'
         return paramStr
 
-    def generateFuncRegister(self, fileHeader, func):
-        """Generate call to xlfRegister for given function."""
+    def generateRegisterFunction(self, func, register = True):
+        """Generate code to register/unregister given function."""
+        ret = ''
         # We call xlfRegister with NUMDESC parameters to describe the function
         # +1 additional parm to describe each parm in function being registered.
         numRegisterParams = NUMDESC + func.ParameterCount
@@ -120,17 +124,20 @@ class AddinExcel(addin.Addin):
             paramList += self.xlListParams.apply(param)
             if i < func.ParameterCount: paramList += ','
         if numRegisterParams > MAXPARAM: sys.exit(MAXPARAMERR % (func.name, MAXPARAM))
-        fileHeader.write('        Excel(xlfRegister, 0, %d, &xDll,\n' % numRegisterParams)
-        fileHeader.write(self.formatLine(func.name, 'function code name'))
-        fileHeader.write(self.formatLine(paramStr, 'parameter codes'))
-        fileHeader.write(self.formatLine(func.name, 'function display name'))
-        fileHeader.write(self.formatLine(paramList, 'comma-delimited list of parameters'))    
-        fileHeader.write(self.formatLine('1', 'function type (1 = worksheet function)'))
-        fileHeader.write(self.formatLine(func.functionCategory, 'function category'))
-        fileHeader.write(self.formatLine('', 'shortcut text (command macros only)'))
-        fileHeader.write(self.formatLine('', 'path to help file'))
+        ret += '        Excel(xlfRegister, 0, %d, &xDll,\n' % numRegisterParams
+        ret += self.formatLine(func.name, 'function code name')
+        ret += self.formatLine(paramStr, 'parameter codes')
+        ret += self.formatLine(func.name, 'function display name')
+        ret += self.formatLine(paramList, 'comma-delimited list of parameters')
+        if register:
+            ret += self.formatLine('1', 'function type (1 = worksheet function)')
+        else:
+            ret += self.formatLine('0', 'function type (0 = hidden function)')
+        ret += self.formatLine(func.functionCategory, 'function category')
+        ret += self.formatLine('', 'shortcut text (command macros only)')
+        ret += self.formatLine('', 'path to help file')
         if func.Parameters:
-            fileHeader.write(self.formatLine(func.description, 'function description'))
+            ret += self.formatLine(func.description, 'function description')
             i = 0
             j = 1
             lastParameter = False
@@ -142,22 +149,29 @@ class AddinExcel(addin.Addin):
                     # in Excel which causes description to be corrupted when displayed 
                     # in the Function Wizard
                     desc += '  '
-                fileHeader.write(self.formatLine(desc, 
-                    'description of parameter %d' % (i + 1), lastParameter))
+                ret += self.formatLine(desc, 
+                    'description of parameter %d' % (i + 1), lastParameter)
                 i += 1
                 j += 1
         else:
-            fileHeader.write(self.formatLine(func.description, 'function description', True))
-        fileHeader.write('\n')
+            ret += self.formatLine(func.description, 'function description', True)
+        ret += '\n'
+        if not register:
+            ret += UNREGISTER % self.formatLine(func.name, 'function code name', True)
+        return ret
 
-    def generateFuncRegisters(self):
+    def generateRegisterFunctions(self):
         """Generate source code to register functions."""
-        fileHeader = outputfile.OutputFile(self.rootDirectory + ADDIN)
-        fileHeader.write(self.bufferRegHeader.text)
+        functionRegister = ''
+        functionUnregister = ''
         for category in config.Config.getInstance().getCategories(self.platformId):
-            fileHeader.write('        // %s\n\n' % category.displayName)
+            comment = '        // %s\n\n' % category.displayName
+            functionRegister += comment
+            functionUnregister += comment
             for func in category.getFunctions(self.platformId): 
-                self.generateFuncRegister(fileHeader, func)
-        fileHeader.write(self.bufferRegFooter.text)
+                functionRegister += self.generateRegisterFunction(func)
+                functionUnregister += self.generateRegisterFunction(func, False)
+        fileHeader = outputfile.OutputFile(self.rootDirectory + ADDIN)
+        fileHeader.write(self.bufferRegister.text % (functionRegister, functionUnregister))
         fileHeader.close()
 
