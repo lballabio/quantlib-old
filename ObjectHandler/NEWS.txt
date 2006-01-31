@@ -6,7 +6,7 @@ CORE
 
 EXCEL
 
-- unregister functions when XLL unloaded (Lars Shouw)
+- unregister functions when XLL unloaded (Lars Schouw)
 - Consolidated export of Excel functions
 - Increased granularity and clarity of runtime exceptions
 - Improved memory management (automatic deletion of temp variables)
