@@ -28,7 +28,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
-        TempStrNoSize("\x2B""returns the version number of ObjectHandler"));// function description
+        TempStrNoSize("\x2D""returns the version number of ObjectHandler  "));// function description
 
     Excel(xlfRegister, 0, 10, &xDll,
         TempStrNoSize("\x0D""ohObjectCount"),   // function code name
@@ -39,7 +39,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
-        TempStrNoSize("\x17""#/objects in repository"));// function description
+        TempStrNoSize("\x19""#/objects in repository  "));// function description
 
     Excel(xlfRegister, 0, 10, &xDll,
         TempStrNoSize("\x0C""ohHandleList"),    // function code name
@@ -50,7 +50,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
-        TempStrNoSize("\x1A""list of all object handles"));// function description
+        TempStrNoSize("\x1C""list of all object handles  "));// function description
 
     Excel(xlfRegister, 0, 11, &xDll,
         TempStrNoSize("\x0F""ohPropertyNames"), // function code name
@@ -99,7 +99,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
-        TempStrNoSize("\x22""delete all objects from repository"));// function description
+        TempStrNoSize("\x24""delete all objects from repository  "));// function description
 
     Excel(xlfRegister, 0, 20, &xDll,
         TempStrNoSize("\x0B""ohDependsOn"),     // function code name
@@ -131,7 +131,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
-        TempStrNoSize("\x32""get value of ObjectHandler garbage collection flag"));// function description
+        TempStrNoSize("\x34""get value of ObjectHandler garbage collection flag  "));// function description
 
     Excel(xlfRegister, 0, 11, &xDll,
         TempStrNoSize("\x0E""ohSetGcEnabled"),  // function code name
@@ -154,7 +154,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
-        TempStrNoSize("\x27""delete orphaned objects from repository"));// function description
+        TempStrNoSize("\x29""delete orphaned objects from repository  "));// function description
 
     Excel(xlfRegister, 0, 12, &xDll,
         TempStrNoSize("\x0C""ohSetLogFile"),    // function code name
@@ -215,7 +215,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
-        TempStrNoSize("\x29""write all object descriptions to log file"));// function description
+        TempStrNoSize("\x2B""write all object descriptions to log file  "));// function description
 
 }
 
