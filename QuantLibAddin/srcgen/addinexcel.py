@@ -145,16 +145,19 @@ class AddinExcel(addin.Addin):
                 desc = param.description
                 if j >= func.ParameterCount:                
                     lastParameter = True
-                    # append 2 spaces to description of last parameter to work around bug 
-                    # in Excel which causes description to be corrupted when displayed 
-                    # in the Function Wizard
+                    # append 2 spaces to description of last parameter to work
+                    # around bug in Excel which causes description to be corrupted
+                    # when displayed in the Function Wizard
                     desc += '  '
                 ret += self.formatLine(desc, 
                     'description of parameter %d' % (i + 1), lastParameter)
                 i += 1
                 j += 1
         else:
-            ret += self.formatLine(func.description, 'function description', True)
+            # if no parameters - append 2 spaces to function description to work
+            # around bug in Excel which causes description to be corrupted when
+            # displayed in the Function Wizard
+            ret += self.formatLine(func.description + '  ', 'function description', True)
         ret += '\n'
         if not register:
             ret += UNREGISTER % self.formatLine(func.name, 'function code name', True)
