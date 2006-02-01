@@ -6,7 +6,7 @@ INT_DIR=build\vc
 
 FLAG1=$(INT_DIR)\$(COMPONENT_NAME).flag1
 
-scripts=addincalc.py \
+SCRIPTS=addincalc.py \
         addinc.py \
         addindoxygen.py \
         addinexcel.py \
