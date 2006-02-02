@@ -165,6 +165,25 @@ class Handle {
     $result = gh_str02scm(TypeToString($1).c_str());
 };
 
+#elif defined(SWIGR)
+
+%typemap(in) Type {
+    if (isString($input)) {
+        std::string s(static_cast<char *>(CHAR($input)));
+        try {
+            $1 = TypeFromString(s);
+        } catch (Error&) {
+            SWIG_exception(SWIG_TypeError, "Type" " expected");
+        }
+    } else {
+        SWIG_exception(SWIG_TypeError, "Type" " expected");
+    }
+};
+
+%typemap(out) Type {
+    $result = mkChar(TypeToString($1).c_str());
+};
+
 #endif
 %enddef
 
