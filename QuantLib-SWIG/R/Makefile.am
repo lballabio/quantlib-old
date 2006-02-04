@@ -17,7 +17,7 @@ check-local: .build-stamp
 install-exec-local: .build-stamp
 
 clean-local:
-	rm -rf $(BUILD_SOURCES) quantlib_wrap.cxx
+	rm -rf $(BUILT_SOURCES) quantlib_wrap.cxx *.so *.o *.S
 
 #endif
 
