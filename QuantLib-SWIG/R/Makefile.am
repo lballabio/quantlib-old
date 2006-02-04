@@ -1,13 +1,15 @@
-BUILT_SOURCES = quantlib_wrap.cpp QuantLib_wrap.S
+BUILT_SOURCES = QuantLib.cpp QuantLib_wrap.S
 
 CLEANFILES = $(BUILT_SOURCES) .build-stamp
+
+PKG_LIBS="-L/usr/local/lib -lQuantLib"
 
 #if HAVE_R
 
 all-local: .build-stamp
 
 .build-stamp: $(BUILT_SOURCES) 
-	R CMD SHLIB quantlib_wrap.cpp
+	PKG_LIBS="-L/usr/local/lib -lQuantLib" R CMD SHLIB QuantLib.cpp
 	touch .build-stamp
 
 check-local: .build-stamp
@@ -21,7 +23,7 @@ clean-local:
 
 $(BUILT_SOURCES): ../SWIG/*.i
 	$(SWIG) -r -c++ -Wall -v -I../SWIG quantlib.i
-	mv quantlib_wrap.cxx quantlib_wrap.cpp
+	mv quantlib_wrap.cxx QuantLib.cpp
 
 dist-hook:
 	mkdir -p $(distdir)/examples
