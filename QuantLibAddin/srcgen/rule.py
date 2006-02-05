@@ -163,10 +163,10 @@ class RuleGroup(serializable.Serializable):
         sourceType = self.applySubrule()
 
         deref = ''
+        if self.setTypeConversion.dereference and self.param.tensorRank == common.SCALAR:
+            deref = self.setTypeConversion.dereference
         if self.param.default and self.param.tensorRank == common.SCALAR:
             defaultValue = ', ' + self.param.default
-            if self.setTypeConversion.dereference:
-                deref = self.setTypeConversion.dereference
         else:
             defaultValue = ''
 
