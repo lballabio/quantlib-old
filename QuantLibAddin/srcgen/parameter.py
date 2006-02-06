@@ -91,7 +91,7 @@ class ParameterHandle(Parameter):
     Constructors (where the handle is assigned to the new object) and
     Members (where the handle indicates the object to be retrieved)."""
 
-    name = 'handle'
+    name = 'instanceName'
     type = 'string'
     tensorRank = 'scalar'
     default = False

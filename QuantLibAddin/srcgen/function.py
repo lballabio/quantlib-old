@@ -87,7 +87,7 @@ class Constructor(Function):
         # implicit in the definition of a Constructor is that the first parameter
         # is a string to be used as the handle of the new object
         self.Parameters.insert(0, parameter.ParameterHandle(
-            'handle of newly constructed %s object' % self.libraryFunction))
+            'name of this %s instance' % self.libraryFunction))
         self.ParameterCount += 1
 
     def generateBody(self, addin):
