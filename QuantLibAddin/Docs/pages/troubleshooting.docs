@@ -35,7 +35,11 @@ addins in general.
 \ref bugfix_vc\n
 \ref wizard\n
 \ref removeexcel\n
-\ref startup_error\n \ref startup_crash\n \ref prereqs\n \ref debugexcel\n
+\ref prereqs\n 
+\ref startup_error\n 
+\ref startup_crash\n 
+\ref vba_usage\n 
+\ref debugexcel\n
 \ref debuglinux\n
 
 \section loaded Ensure Everything is Loaded Correctly
@@ -164,6 +168,27 @@ bu QuantLibAddin_vc6_mt_gd_0_3_12!xlAutoOpen
 \endverbatim
 
 You can then debug as the addin loads.
+\section vba_usage Using QuantLibAddin from Excel VBA
+
+%QuantLibAddin can be invoked from Excel VBA, for example here is a
+subroutine to price an option:
+
+\verbatim
+Sub priceEuropeanOption()
+    Dim blackVolHandle As String
+    Dim blackScholesHandle As String
+    Dim optionHandle As String
+    Dim npv As Double
+    blackVolHandle = Application.Run("qlBlackConstantVol", "blackconstantvol", 
+        40250, 0.2, "Actual360")
+    blackScholesHandle = Application.Run("qlBlackScholesProcess", "stoch1", 
+        blackVolHandle, 36, "Actual360", 40250, 0.06, 0)
+    optionHandle = Application.Run("qlVanillaOption", "eur1", blackScholesHandle, 
+        "Put", "Vanilla", 35, "European", 43903, 0, "JR", 801)
+    npv = Application.Run("qlNPV", optionHandle)
+    Debug.Print npv
+End Sub
+\endverbatim
 
 \section debugexcel Debugging QuantLibAddin under Excel
 
@@ -235,7 +260,7 @@ Now you can debug the program in the usual way e.g.
 \li <tt>c(ontinue)</tt> - to continue to another breakpoint
 \li <tt>p(rint)</tt> - to display a variable's value
 
- etc.
+etc.
 
 */
 

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,7 +23,7 @@
 
 /*! \page installation Installation
 
-\subsection installation_overview Overview
+\section installation_overview Overview
 
 This document provides general instructions for building and installing
 %QuantLibAddin 0.3.12 under Windows, and on platforms which use Autoconf 
@@ -34,73 +34,39 @@ addin please refer to the document \ref calc.
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=159049">
 QuantLib downloads page on sourceforge.</a>
 
-<div CLASS="TOC"><dl>
-<dt>\ref binary</dt>
-<dt>\ref source</dt>
-<dd><dl>
-<dt>\ref prerequisites</dt>
-<dt>\ref windows_installation</dt>
-<dt>\ref autoconf_installation</dt>
-<dd><dl>
-</dl></div>
+\ref prerequisites\n
+\ref windows_installation\n
+\ref autoconf_installation\n
 
-\section binary Binary Installation
-
-The binary installation comprises a compiled Excel Addin
-(an XLL) and related files.  The binary installer is available from the
-downloads page and installs the following files:
-
-<table>
-<tr>
-<td><strong>installation subdirectory</strong></td><td><strong>files</strong></td>
-</tr>
-<tr>
-<td>Addins\\Excel\\xll</td><td>the addin</td>
-</tr>
-<tr>
-<td>Clients\\Excel</td><td>sample worksheets</td>
-</tr>
-<tr>
-<td>Docs</td><td>documentation</td>
-</tr>
-</table>
-
-The directory structure corresponds to the directories used for the
-source code installation.  To use %QuantLibAddin, launch Excel and then
-load the Addin and the example workbooks.
-
-\section source Source Installation
-
-\subsection prerequisites Prerequisites
+\section prerequisites Prerequisites
 
 \li <a href="http://quantlib.org/">QuantLib</a> version 0.3.12
 \li <a href="http://quantlib.org/objecthandler/">ObjectHandler</a> version 0.1.3
 
-\subsection windows_installation Installing under Windows
+\section windows_installation Installing under Windows
 
-These instructions assume configuration <b>Win32 Debug</b>, runtime library <b>Debug Multithreaded</b>.
+These instructions assume configuration <b>Win32 Debug</b>, runtime library
+<b>Debug Multithreaded</b>.
 
 To build %QuantLibAddin for Excel:
 \li build QuantLib configuration <b>Win32 Debug</b>
 \li build ObjectHandler project \b ohlib, configuration <b>Win32 Debug</b>
 \li build %QuantLibAddin project \b AddinExcelStatic, configuration <b>Win32 Debug</b>
 \li start Excel
-\li load the Addin.  The name of the Addin will depend on the compiler version and configuration,
-e.g. if compiled under VC6 debug the Addin is called
-<strong>%QuantLibAddin\\Addins\\Excel\\xll\\QuantLibAddinStatic-vc6-mt-sgd-0_3_12.xll.</strong>
+\li load the Addin.  The name of the Addin will depend on the compiler version and configuration, e.g. if compiled under VC6 debug the Addin is called <strong>%QuantLibAddin\\Addins\\Excel\\xll\\QuantLibAddinStatic-vc6-mt-sgd-0_3_12.xll.</strong>
 \li load a sample spreadsheet e.g.  <strong>%QuantLibAddin\\Clients\\Excel\\QLADemo.xls</strong>
 
 Project AddinExcelDynamic is a build which links dynamically to the
-ObjectHandler XLL, allowing multiple XLLs to share a global repository,
-as described in the ObjectHandler documentation.
+ObjectHandler XLL, allowing multiple XLLs to share a global repository, as
+described in the ObjectHandler documentation. 
 
-For other platforms please build the appropriate project,
-e.g. workspace ClientCDemo creates standalone C client executable
+For other platforms please build the appropriate project, e.g. workspace
+ClientCDemo creates standalone C client executable
 <strong>Clients\\C\\bin\\QLADemo-vc6-mt-sgd.exe</strong>.
 
-\subsection autoconf_installation Installing with Autoconf
+\section autoconf_installation Installing with Autoconf
 
-\subsubsection autoconf_brief In Brief
+\subsection autoconf_brief In Brief
 
 \verbatim
 tar zxfv QuantLibAddin-0.3.12.tar.gz
@@ -111,13 +77,13 @@ Clients/C++/QLADemo
 make install
 \endverbatim
 
-\subsubsection autoconf_detail In Detail
+\subsection autoconf_detail In Detail
 
 \par configure
 
-Under the default configuration only the core %QuantLibAddin C++
-library is built, plus the standalone C++ client applications.  To build
-additional components, run configure with the corresponding arguments:
+Under the default configuration only the core %QuantLibAddin C++ library is
+built, plus the standalone C++ client applications.  To build additional
+components, run configure with the corresponding arguments:
 
 <table>
 <tr>
@@ -140,17 +106,17 @@ additional components, run configure with the corresponding arguments:
 </tr>
 </table>
 
-The flags for the individual Addins override the \c --enable-addin-all
-flag, so for example to build all Addins except Excel you would do
+The flags for the individual Addins override the \c --enable-addin-all flag, so
+for example to build all Addins except Excel you would do
 
 \verbatim
 ./configure --enable-addin-all --disable-addin-excel
 \endverbatim
 
-Under the default configuration the subsequent <tt>make install</tt>
-command installs libs to \c /usr/local/lib and header files to 
-\c /usr/local/include, to override this behavior specify a different
-installation prefix using \c --prefix e.g.
+Under the default configuration the subsequent <tt>make install</tt> command
+installs libs to \c /usr/local/lib and header files to \c /usr/local/include,
+to override this behavior specify a different installation prefix using
+\c --prefix e.g.
 \verbatim
 ./configure --prefix=$HOME/QuantLibAddin
 \endverbatim
@@ -164,8 +130,8 @@ make
 
 \par make test
 
-There is no <tt>make test</tt> at the moment but you can try launching
-the standalone C++ client program:
+There is no <tt>make test</tt> at the moment but you can try launching the
+standalone C++ client program:
 
 \verbatim
 Clients/C++/QLADemo
