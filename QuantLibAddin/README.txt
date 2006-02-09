@@ -1,14 +1,14 @@
 
-        QuantLibAddin
+QuantLibAddin
+<http://quantlib.org/quantlibaddin>
 
-The QuantLibAddin library is part of QuantLib.
+QuantLibAddin is a subproject of the QuantLib open source C++ analytics library.
+The QuantLibAddin API exports QuantLib functionality to a variety of end-user
+environments such as Microsoft Excel and OpenOffice.org Calc.
 
 QuantLib is Non-Copylefted Free Software.
 QuantLib is OSI Certified Open Source Software.
 OSI Certified is a certification mark of the Open Source Initiative.
-
-QuantLibAddin depends on Boost <http://www.boost.org>. You will need to
-download Boost before compiling and using QuantLibAddin.
 
 Please report bugs using the Bug Tracker at
 <http://sourceforge.net/tracker/?group_id=12740&atid=112740>,
@@ -22,5 +22,15 @@ You can also use the mailing lists <quantlib-users@lists.sourceforge.net> and
 list is only for subscribers, so please subscribe before posting.
 
 If you are interested in participating in QuantLibAddin development, please
-send mail to <quantlib-dev@lists.sourceforge.net> describing your experience and
+send email to <quantlib-dev@lists.sourceforge.net> describing your experience and
 interests.
+
+Installation instructions are available at
+<http://quantlib.org/quantlibaddin/installation.html>.
+
+Information on troubleshooting common QuantLibAddin problems is available at
+<http://quantlib.org/quantlibaddin/troubleshooting.html>.
+
+A list of changes since the previous release is available in NEWS.txt
+(included in this distribution) while a list of past changes can be
+browsed at <http://quantlib.org/quantlibaddin/history.html>.

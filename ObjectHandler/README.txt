@@ -1,14 +1,15 @@
 
-        ObjectHandler
+ObjectHandler
+<http://quantlib.org/objecthandler>
 
-The ObjectHandler library is part of QuantLib.
+ObjectHandler is a subproject of the QuantLib open source C++ analytics library.
+ObjectHandler implements an object repository allowing objects to be stored, shared, 
+updated, interrogated, and destroyed.  ObjectHandler facilitates integration of
+QuantLib functionality to end user environments such as spreadsheets.
 
 QuantLib is Non-Copylefted Free Software.
 QuantLib is OSI Certified Open Source Software.
 OSI Certified is a certification mark of the Open Source Initiative.
-
-ObjectHandler depends on Boost <http://www.boost.org>. You will need to
-download Boost before compiling and using ObjectHandler.
 
 Please report bugs using the Bug Tracker at
 <http://sourceforge.net/tracker/?group_id=12740&atid=112740>,
@@ -24,3 +25,10 @@ list is only for subscribers, so please subscribe before posting.
 If you are interested in participating in ObjectHandler development, please
 send mail to <quantlib-dev@lists.sourceforge.net> describing your experience and
 interests.
+
+Installation instructions are available at
+<http://quantlib.org/objecthandler/installation.html>.
+
+A list of changes since the previous release is available in NEWS.txt
+(included in this distribution) while a list of past changes can be
+browsed at <http://quantlib.org/objecthandler/history.html>.
