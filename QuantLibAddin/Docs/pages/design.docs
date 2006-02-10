@@ -56,23 +56,43 @@ can be invoked on an instance of any derived class - Swap, Bond, etc.</p>
 </dl></div>
 \section sec_1 1. Design
 <div class="center"><img src="../images/design.jpg"></div>
-<p>%QuantLibAddin uses ObjectHandler to allow the user to build up a repository of QuantLib objects.  Each QuantLib class to be available in %QuantLibAddin is wrapped in a class descended from Object.</p>
-<p>The core %QuantLibAddin library can be loaded directly into standalone C++ programs.  For other platforms, %QuantLibAddin is wrapped in an additional layer providing platform-specific functionality.  %QuantLibAddin has the same interface on all platforms.</p>
+<p>%QuantLibAddin uses ObjectHandler to allow the user to build up a repository
+of QuantLib objects.  Each QuantLib class to be available in %QuantLibAddin is
+wrapped in a class descended from Object.</p>
+<p>The core %QuantLibAddin library can be loaded directly into standalone C++
+programs.  For other platforms, %QuantLibAddin is wrapped in an additional
+layer providing platform-specific functionality.  %QuantLibAddin has the same
+interface on all platforms.</p>
 \section sec_1_1 1.1 Classes
-<p>The class for each QuantLib object to be stored in ObjectHandler is wrapped in a class derived from <tt>Object</tt>.  The constructor of the derived Object class calls the constructor of the corresponding QuantLib class, and the resulting QuantLib object is stored as a member variable of the derived Object.  The Propery vector in the base Object class is populated appropriately.</p>
+<p>The class for each QuantLib object to be stored in ObjectHandler is wrapped
+in a class derived from <tt>Object</tt>.  The constructor of the derived Object
+class calls the constructor of the corresponding QuantLib class, and the
+resulting QuantLib object is stored as a member variable of the derived Object.
+The Propery vector in the base Object class is populated appropriately.</p>
 \section sec_1_2 1.2 Addins
-<p>The core %QuantLibAddin binary can be linked directly into end-user C++ applications.  For other platforms, %QuantLibAddin is linked into a platform-specific library which:</p>
+<p>The core %QuantLibAddin binary can be linked directly into end-user C++
+applications.  For other platforms, %QuantLibAddin is linked into a
+platform-specific library which:</p>
 <ul>
 <li>retrieves inputs in native format from host application</li>
 <li>converts inputs to QuantLib format</li>
 <li>invokes the %QuantLibAddin function and captures its return value</li>
 <li>converts the return value to native format and returns it to the host application</li>
 </ul>
-<p>The above is wrapped in try/catch.  All Addins use standard calls to log exceptions to the %QuantLibAddin log file, and may perform addition platform-specific error handling e.g. throwing a new exception for the host application.</p>
+<p>The above is wrapped in try/catch.  All Addins use standard calls to log
+exceptions to the %QuantLibAddin log file, and may perform addition
+platform-specific error handling e.g. throwing a new exception for the host
+application.</p>
 \section sec_1_3 1.3 Clients
-<p>The client application loads %QuantLibAddin, instantiating a single global instance of ObjectHandler.  %QuantLibAddin functions allow objects to be constructed, interrogated, modified, and passed as input parameters to constructors / member functions of other objects.  Objects can be deleted explicitly, otherwise ObjectHandler destroys all objects in its repository when it is destroyed.</p>
+<p>The client application loads %QuantLibAddin, instantiating a single global
+instance of ObjectHandler.  %QuantLibAddin functions allow objects to be
+constructed, interrogated, modified, and passed as input parameters to
+constructors / member functions of other objects.  Objects can be deleted
+explicitly, otherwise ObjectHandler destroys all objects in its repository when
+it is destroyed.</p>
 \section sec_2 2 Implementation
-<p>The example below illustrates an implementation of %QuantLibAddin and clients, including three %QuantLibAddin functions which</p>
+<p>The example below illustrates an implementation of %QuantLibAddin and
+clients, including three %QuantLibAddin functions which</p>
 <ul>
 <li>construct a BlackScholesProcess from native datatypes</li>
 <li>construct a VanillaOption from the BlackScholesProcess and native datatypes</li>
@@ -229,7 +249,10 @@ namespace QuantLibAddin {
 \endcode
 
 \section sec_2_2 2.2 Addins
-<p>The %QuantLibAddin library can be linked directly into an end-user C++ application.  For other platforms, %QuantLibAddin is wrapped in a further addin providing platform specific functionality.  Below is the code for an Excel addin function.</p>
+<p>The %QuantLibAddin library can be linked directly into an end-user C++
+application.  For other platforms, %QuantLibAddin is wrapped in a further addin
+providing platform specific functionality.  Below is the code for an Excel
+addin function.</p>
 <h4>Addins/Excel/options.cpp</h4>
 \code
 DLLEXPORT char *qlVanillaOption(
@@ -422,12 +445,33 @@ interface, e.g.:</p>
 </Parameters>
 </Constructor>
 \endverbatim
-<p>The autogeneration script loads the metadata from the XML files and passes this to each platform-specific module which automatically generates the business functionality for that Addin, which is then recompiled.</p>
-\section sec_4 4. Notes
-<ul>
-<li><b>separation of processes:</b> At present all %QuantLibAddin functionality is bundled together with ObjectHandler into a single process.  As %QuantLibAddin grows it will be preferable to divide it into multiple processes - for example one Addin for each product line, all sharing a single global instance of ObjectHandler.  This reduces the footprint of %QuantLibAddin for a given user, who can load only the product lines needed.</li>
-<li><b>generic addins:</b> At present %QuantLibAddin is loosely coupled with QuantLib, this binding could be made abstract, so that %QuantLibAddin becomes a generic addin builder capable of exporting any C++ library to the supported platforms.</li>
-</ul>
+
+<p>The autogeneration script loads the metadata from the XML files and passes
+this to each platform-specific module which automatically generates the
+business functionality for that Addin, which is then recompiled.</p>
+
+\section sec_4 4. Proposed Enhancements
+
+\section sec_4_1 4.1 Separation of Processes
+At present all %QuantLibAddin functionality is bundled together with
+ObjectHandler into a single process.  As %QuantLibAddin grows it will be
+preferable to divide it into multiple processes - for example one Addin for
+each product line, all sharing a single global instance of ObjectHandler.  This
+reduces the footprint of %QuantLibAddin for a given user, who can load only the
+product lines needed.
+
+\section sec_4_2 4.2 Generic Addins
+At present %QuantLibAddin is loosely coupled with QuantLib, this binding could
+be made abstract, so that %QuantLibAddin becomes a generic addin builder capable
+of exporting any C++ library to the supported platforms.
+
+\section sec_4_3 4.3 Concatenated Functions
+Srcgen could be enhanced to allow concatenated function calls to be specified
+in the metadata, causing for example the following source code to be
+autogenerated:
+\code
+returnValue = objectPointer->getObject.function1(param1, param2).function2(param3, param4);
+\endcode
 
 */
 
