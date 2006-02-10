@@ -1,3 +1,4 @@
+*.user
 aclocal.m4
 autom4te.cache
 build
@@ -10,15 +11,15 @@ libtool
 Makefile
 Makefile.in
 Makefile.win
+quantlib.log
+QuantLibAddin-*.exe
+QuantLibAddin-*.tar.gz
+QuantLibAddin*.ncb
 QuantLibAddin.dep
 QuantLibAddin.layout
 QuantLibAddin.mak
-QuantLibAddin*.ncb
 QuantLibAddin.opt
 QuantLibAddin.plg
-QuantLibAddin_private.*
 QuantLibAddin.suo
-QuantLibAddin-*.tar.gz
-quantlib.log
+QuantLibAddin_private.*
 QuantLibAddin_vc8.suo
-*.user

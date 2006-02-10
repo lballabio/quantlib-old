@@ -11,7 +11,6 @@ LicenseText "You must agree with the following license before installing:"
 LicenseData LICENSE.TXT
 DirText "Please select a location to install QuantLibAddin (or use the default):"
 InstallDir $PROGRAMFILES\QuantLibAddin-${VER_NUMBER}
-XPStyle on
 
 Section
     SetOutPath $INSTDIR
