@@ -8,7 +8,7 @@ PKG_LIBS="-L/usr/local/lib -lQuantLib"
 
 all-local: .build-stamp
 
-.build-stamp: $(BUILT_SOURCES) 
+.build-stamp: $(BUILT_SOURCES)
 	PKG_LIBS="-L/usr/local/lib -lQuantLib" R CMD SHLIB QuantLib.cpp
 	touch .build-stamp
 
