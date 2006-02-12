@@ -11,6 +11,274 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory=".\build\vc71\Debug"
+			IntermediateDirectory=".\build\vc71\Debug"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories=".,..\.."
+				PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;LOG4CXX_STATIC"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="1"
+				RuntimeTypeInfo="TRUE"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderFile=".\build\vc71\Debug/ExampleXllStatic.pch"
+				AssemblerListingLocation=".\build\vc71\Debug/"
+				ObjectFile=".\build\vc71\Debug/"
+				ProgramDataBaseFileName=".\build\vc71\Debug/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="4"
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				OutputFile="xll\ExampleXLLStatic-vc71-mt-sgd-0_1_3.xll"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxllib\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile=".\build\vc71\Debug/ExampleXLLStatic-vc71-mt-sgd-0_1_3.pdb"
+				ImportLibrary=".\build\vc71\Debug/ExampleXLLStatic-vc71-mt-sgd-0_1_3.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\build\vc71\Debug/ExampleXllStatic.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="2057"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory=".\build\vc71\Release"
+			IntermediateDirectory=".\build\vc71\Release"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories=".,..\.."
+				PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;LOG4CXX_STATIC"
+				StringPooling="TRUE"
+				RuntimeLibrary="0"
+				EnableFunctionLevelLinking="TRUE"
+				RuntimeTypeInfo="TRUE"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderFile=".\build\vc71\Release/ExampleXllStatic.pch"
+				AssemblerListingLocation=".\build\vc71\Release/"
+				ObjectFile=".\build\vc71\Release/"
+				ProgramDataBaseFileName=".\build\vc71\Release/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				OutputFile="xll\ExampleXLLStatic-vc71-mt-s-0_1_3.xll"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxllib\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				ProgramDatabaseFile=".\build\vc71\Release/ExampleXLLStatic-vc71-mt-s-0_1_3.pdb"
+				ImportLibrary=".\build\vc71\Release/ExampleXLLStatic-vc71-mt-s-0_1_3.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\build\vc71\Release/ExampleXllStatic.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="2057"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release SingleThread|Win32"
+			OutputDirectory=".\build\vc71\ReleaseST"
+			IntermediateDirectory=".\build\vc71\ReleaseST"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories=".,..\.."
+				PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;LOG4CXX_STATIC"
+				StringPooling="TRUE"
+				RuntimeLibrary="4"
+				EnableFunctionLevelLinking="TRUE"
+				RuntimeTypeInfo="TRUE"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderFile=".\build\vc71\ReleaseST/ExampleXllStatic.pch"
+				AssemblerListingLocation=".\build\vc71\ReleaseST/"
+				ObjectFile=".\build\vc71\ReleaseST/"
+				ProgramDataBaseFileName=".\build\vc71\ReleaseST/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				OutputFile="xll\ExampleXLLStatic-vc71-s-0_1_3.xll"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxllib\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				ProgramDatabaseFile=".\build\vc71\ReleaseST/ExampleXLLStatic-vc71-s-0_1_3.pdb"
+				ImportLibrary=".\build\vc71\ReleaseST/ExampleXLLStatic-vc71-s-0_1_3.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\build\vc71\ReleaseST/ExampleXllStatic.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="2057"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Debug SingleThread|Win32"
+			OutputDirectory=".\build\vc71\DebugST"
+			IntermediateDirectory=".\build\vc71\DebugST"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories=".,..\.."
+				PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;LOG4CXX_STATIC"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="5"
+				RuntimeTypeInfo="TRUE"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderFile=".\build\vc71\DebugST/ExampleXllStatic.pch"
+				AssemblerListingLocation=".\build\vc71\DebugST/"
+				ObjectFile=".\build\vc71\DebugST/"
+				ProgramDataBaseFileName=".\build\vc71\DebugST/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="4"
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				OutputFile="xll\ExampleXLLStatic-vc71-sgd-0_1_3.xll"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxllib\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile=".\build\vc71\DebugST/ExampleXLLStatic-vc71-sgd-0_1_3.pdb"
+				ImportLibrary=".\build\vc71\DebugST/ExampleXLLStatic-vc71-sgd-0_1_3.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\build\vc71\DebugST/ExampleXllStatic.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="2057"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
 			Name="Release MTDLL|Win32"
 			OutputDirectory=".\build\vc71\ReleaseMTDLL"
 			IntermediateDirectory=".\build\vc71\ReleaseMTDLL"
@@ -23,7 +291,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories=".,..\.."
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC"
+				PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;LOG4CXX_STATIC"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
@@ -40,7 +308,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
 				OutputFile="xll\ExampleXLLStatic-vc71-mt-0_1_3.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -89,7 +357,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".,..\.."
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC"
+				PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;LOG4CXX_STATIC"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
@@ -106,7 +374,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
 				OutputFile="xll\ExampleXLLStatic-vc71-mt-gd-0_1_3.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -151,12 +419,46 @@
 		<File
 			RelativePath="addinstatic.cpp">
 			<FileConfiguration
+				Name="Debug|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="0"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+					BasicRuntimeChecks="3"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="2"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="2"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="0"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+					BasicRuntimeChecks="3"/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Release MTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
+					PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
 				Name="Debug MTDLL|Win32">
@@ -164,7 +466,7 @@
 					Name="VCCLCompilerTool"
 					Optimization="0"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
+					PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 		</File>
@@ -174,12 +476,46 @@
 		<File
 			RelativePath="objectfoo.cpp">
 			<FileConfiguration
+				Name="Debug|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="0"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+					BasicRuntimeChecks="3"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="2"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="2"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="0"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+					BasicRuntimeChecks="3"/>
+			</FileConfiguration>
+			<FileConfiguration
 				Name="Release MTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
+					PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
 				Name="Debug MTDLL|Win32">
@@ -187,7 +523,7 @@
 					Name="VCCLCompilerTool"
 					Optimization="0"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
+					PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 		</File>

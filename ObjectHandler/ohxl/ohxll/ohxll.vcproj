@@ -22,7 +22,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..,$(LOG4CXX_DIR)\include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS"
+				PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;LOG4CXX_STATIC"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
@@ -31,6 +31,7 @@
 				AssemblerListingLocation=".\build\vc71\DebugMTDLL/"
 				ObjectFile=".\build\vc71\DebugMTDLL/"
 				ProgramDataBaseFileName=".\build\vc71\DebugMTDLL/"
+				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -39,11 +40,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
 				OutputFile="xll\ObjectHandler-vc71-mt-gd-0_1_3.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(LOG4CXX_DIR)\msvc\Lib\Debug,..\xlsdk\lib"
+				AdditionalLibraryDirectories="..\xlsdk\lib,$(LOG4CXX_DIR)\msvc\Lib\Debug"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile=".\xll/ObjectHandler-vc71-mt-gd-0_1_3.pdb"
 				ImportLibrary=".\xll/ObjectHandler-vc71-mt-gd-0_1_3.lib"
@@ -90,7 +91,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="..\..,$(LOG4CXX_DIR)\include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS"
+				PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;LOG4CXX_STATIC"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
@@ -107,11 +108,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxx.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
 				OutputFile="xll\ObjectHandler-vc71-mt-0_1_3.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(LOG4CXX_DIR)\msvc\Lib\Release"
+				AdditionalLibraryDirectories="..\xlsdk\lib,$(LOG4CXX_DIR)\msvc\Lib\Release"
 				ProgramDatabaseFile=".\xll/ObjectHandler-vc71-mt-0_1_3.pdb"
 				ImportLibrary=".\xll/ObjectHandler-vc71-mt-0_1_3.lib"
 				TargetMachine="1"/>
@@ -162,8 +163,9 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"/>
+						PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release MTDLL|Win32">
@@ -171,7 +173,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -185,8 +187,9 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"/>
+						PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release MTDLL|Win32">
@@ -194,7 +197,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -208,8 +211,9 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"/>
+						PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release MTDLL|Win32">
@@ -217,7 +221,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -234,8 +238,9 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"/>
+						PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release MTDLL|Win32">
@@ -243,7 +248,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -269,8 +274,9 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"/>
+						PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release MTDLL|Win32">
@@ -278,7 +284,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -296,8 +302,9 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"/>
+						PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release MTDLL|Win32">
@@ -305,34 +312,14 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\conversions.hpp">
 			</File>
 			<File
-				RelativePath="..\objecthandlerxl.cpp">
-				<FileConfiguration
-					Name="Debug MTDLL|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MTDLL|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\objecthandlerxl.hpp">
+				RelativePath="..\export.hpp">
 			</File>
 			<File
 				RelativePath="..\functions.cpp">
@@ -342,8 +329,9 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"/>
+						PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release MTDLL|Win32">
@@ -351,11 +339,32 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\export.hpp">
+				RelativePath="..\objecthandlerxl.cpp">
+				<FileConfiguration
+					Name="Debug MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\objecthandlerxl.hpp">
 			</File>
 			<File
 				RelativePath="..\register.cpp">
@@ -365,8 +374,9 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"/>
+						PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release MTDLL|Win32">
@@ -374,11 +384,35 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\register.hpp">
+			</File>
+			<File
+				RelativePath="..\unregister.cpp">
+				<FileConfiguration
+					Name="Debug MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\unregister.hpp">
 			</File>
 		</Filter>
 		<Filter
@@ -392,8 +426,9 @@
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"
-						BasicRuntimeChecks="3"/>
+						PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release MTDLL|Win32">
@@ -401,7 +436,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_EXPORTS;$(NoInherit)"/>
+						PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 		</Filter>

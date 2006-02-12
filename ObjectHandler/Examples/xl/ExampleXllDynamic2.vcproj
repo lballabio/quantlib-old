@@ -22,7 +22,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".,..\.."
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS"
+				PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS;WIN32;LOG4CXX_STATIC"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
@@ -89,7 +89,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories=".,..\.."
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS"
+				PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS;WIN32;LOG4CXX_STATIC"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
@@ -154,7 +154,7 @@
 					Name="VCCLCompilerTool"
 					Optimization="0"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_IMPORTS;$(NoInherit)"
+					PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -163,7 +163,7 @@
 					Name="VCCLCompilerTool"
 					Optimization="2"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_IMPORTS;$(NoInherit)"/>
+					PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 		</File>
 		<File
@@ -177,7 +177,7 @@
 					Name="VCCLCompilerTool"
 					Optimization="0"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_IMPORTS;$(NoInherit)"
+					PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -186,7 +186,7 @@
 					Name="VCCLCompilerTool"
 					Optimization="2"
 					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;XLL_IMPORTS;$(NoInherit)"/>
+					PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 		</File>
 		<File
