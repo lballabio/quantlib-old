@@ -20,9 +20,9 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot; CLVER=71"
-				ReBuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot; /a CLVER=71"
-				Output="QuantLibAddin-vc71-mt-gd-0_3_12.dll"/>
+				BuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot;"
+				ReBuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot; /a"
+				Output="AddinCalc.exe"/>
 		</Configuration>
 	</Configurations>
 	<References>
@@ -31,6 +31,9 @@
 		<Filter
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
+			<File
+				RelativePath="basic.cpp">
+			</File>
 			<File
 				RelativePath="calcutils.cpp">
 			</File>
@@ -60,6 +63,9 @@
 			</File>
 			<File
 				RelativePath="qladdin.cpp">
+			</File>
+			<File
+				RelativePath="QuantLibAddin.idl">
 			</File>
 			<File
 				RelativePath="schedule.cpp">
@@ -93,7 +99,7 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
-				RelativePath="qla_all.hpp">
+				RelativePath="basic.hpp">
 			</File>
 			<File
 				RelativePath="calcutils.hpp">
@@ -118,6 +124,9 @@
 			</File>
 			<File
 				RelativePath="processes.hpp">
+			</File>
+			<File
+				RelativePath="qla_all.hpp">
 			</File>
 			<File
 				RelativePath="qladdin.hpp">
@@ -150,9 +159,10 @@
 				RelativePath="xibor.hpp">
 			</File>
 		</Filter>
-		<File
-			RelativePath="QuantLibAddin.idl">
-		</File>
+		<Filter
+			Name="Resource Files"
+			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+		</Filter>
 		<File
 			RelativePath="Makefile.vc.debug.mtdll">
 		</File>

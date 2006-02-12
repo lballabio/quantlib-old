@@ -3,7 +3,6 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="srcgen"
-	RootNamespace="srcgen"
 	SccProjectName=""
 	SccLocalPath=""
 	Keyword="MakeFileProj">
@@ -14,16 +13,16 @@
 	<Configurations>
 		<Configuration
 			Name="All|Win32"
-			OutputDirectory=".\build\vc71"
-			IntermediateDirectory=".\build\vc71"
+			OutputDirectory=".\build\vc"
+			IntermediateDirectory=".\build\vc"
 			ConfigurationType="0"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="NMAKE /f &quot;Makefile.vc&quot; TargetDir=$(TargetDir)"
-				ReBuildCommandLine="NMAKE /f &quot;Makefile.vc&quot; /a TargetDir=$(TargetDir)"
-				Output="build\vc71\srcgen.flag1"/>
+				BuildCommandLine="NMAKE /f &quot;Makefile.vc&quot;"
+				ReBuildCommandLine="NMAKE /f &quot;Makefile.vc&quot; /a"
+				Output="build\vc71\Autogen.flag1"/>
 		</Configuration>
 	</Configurations>
 	<References>
@@ -31,12 +30,15 @@
 	<Files>
 		<Filter
 			Name="scripts"
-			Filter="">
+			Filter="*.py">
 			<File
-				RelativePath="addincalc.py">
+				RelativePath="addin.py">
 			</File>
 			<File
 				RelativePath="addinc.py">
+			</File>
+			<File
+				RelativePath="addincalc.py">
 			</File>
 			<File
 				RelativePath="addindoxygen.py">
@@ -46,9 +48,6 @@
 			</File>
 			<File
 				RelativePath="addinguile.py">
-			</File>
-			<File
-				RelativePath="addin.py">
 			</File>
 			<File
 				RelativePath="addinqla.py">
@@ -99,9 +98,6 @@
 				RelativePath="srcgen.py">
 			</File>
 			<File
-				RelativePath="utils.py">
-			</File>
-			<File
 				RelativePath="xmlreader.py">
 			</File>
 		</Filter>
@@ -109,74 +105,71 @@
 			Name="stubs"
 			Filter="">
 			<File
-				RelativePath="stub.calc.function">
-            </File>
-			<File
-				RelativePath="stub.calc.idlfoot">
-            </File>
-			<File
-				RelativePath="stub.calc.idlfunc">
-            </File>
-			<File
-				RelativePath="stub.calc.idlhead">
-            </File>
-			<File
-				RelativePath="stub.calc.includes">
-            </File>
-			<File
-				RelativePath="stub.calc.map">
-            </File>
-			<File
 				RelativePath="stub.c.function">
-            </File>
+			</File>
 			<File
 				RelativePath="stub.c.includes">
-            </File>
+			</File>
+			<File
+				RelativePath="stub.calc.function">
+			</File>
+			<File
+				RelativePath="stub.calc.idlfoot">
+			</File>
+			<File
+				RelativePath="stub.calc.idlfunc">
+			</File>
+			<File
+				RelativePath="stub.calc.idlhead">
+			</File>
+			<File
+				RelativePath="stub.calc.includes">
+			</File>
+			<File
+				RelativePath="stub.calc.map">
+			</File>
 			<File
 				RelativePath="stub.copyright">
-            </File>
+			</File>
 			<File
 				RelativePath="stub.doxygen.categories">
-            </File>
+			</File>
 			<File
 				RelativePath="stub.doxygen.enums">
-            </File>
+			</File>
 			<File
 				RelativePath="stub.doxygen.header">
-            </File>
+			</File>
 			<File
 				RelativePath="stub.excel.function">
-            </File>
+			</File>
 			<File
 				RelativePath="stub.excel.includes">
-            </File>
+			</File>
 			<File
-				RelativePath="stub.excel.regfooter">
-            </File>
-			<File
-				RelativePath="stub.excel.regheader">
-            </File>
+				RelativePath="stub.excel.register">
+			</File>
 			<File
 				RelativePath="stub.guile.function">
-            </File>
+			</File>
 			<File
 				RelativePath="stub.guile.includes">
-            </File>
+			</File>
 			<File
 				RelativePath="stub.guile.initfunc">
-            </File>
+			</File>
 			<File
 				RelativePath="stub.qla.includes">
-            </File>
+			</File>
 		</Filter>
 		<Filter
 			Name="metadata"
-			Filter="">
-			<File
-				RelativePath="addincalc.xml">
-			</File>
+			Filter="*.xml">
 			<File
 				RelativePath="addinc.xml">
+			</File>
+			<File
+				RelativePath="addincalc.xml">
 			</File>
 			<File
 				RelativePath="addindoxygen.xml">
@@ -189,6 +182,9 @@
 			</File>
 			<File
 				RelativePath="addinqla.xml">
+			</File>
+			<File
+				RelativePath="basic.xml">
 			</File>
 			<File
 				RelativePath="capfloor.xml">
