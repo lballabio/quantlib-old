@@ -3,3 +3,8 @@ CVS which can be gotten from
 
 http://wiki.quantlib.org/twiki/bin/view/Quantlib/RSwig
 
+Once you've compiled this you can load with
+
+dyn.load('QuantLib.so')
+source('QuantLib_wrap.S')
+
