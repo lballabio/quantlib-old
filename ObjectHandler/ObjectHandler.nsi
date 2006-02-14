@@ -105,7 +105,7 @@ Section "Uninstall"
     DeleteRegKey HKEY_LOCAL_MACHINE \
         "Software\Microsoft\Windows\CurrentVersion\Uninstall\ObjectHandler-${VER_NUMBER}"
     DeleteRegValue HKEY_CURRENT_USER  "Environment" "OBJECT_HANDLER_DIR"
-    RMDir /r /REBOOTOK "$SMPROGRAMS-${VER_NUMBER}\ObjectHandler"
+    RMDir /r /REBOOTOK "$SMPROGRAMS\ObjectHandler-${VER_NUMBER}"
     RMDir /r /REBOOTOK "$INSTDIR"
 SectionEnd
 
