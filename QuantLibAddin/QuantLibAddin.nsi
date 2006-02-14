@@ -1,45 +1,26 @@
 
 # to be used with NSIS 2.0 and up
 
-SetCompressor lzma
-
 !define VER_NUMBER "0.3.12"
-
-# HEADER CONFIGURATION COMMANDS
+SetCompressor lzma
 Name "QuantLibAddin"
 Caption "QuantLibAddin - Setup"
-#do not change the name below
-OutFile "..\QuantLibAddin-${VER_NUMBER}-installer.exe"
-
-InstType "Full (w/ WinHelp Documentation)"
-InstType Minimal
-
-ComponentText "This will install QuantLibAddin ${VER_NUMBER} on your computer"
-
-SilentInstall normal
-CRCCheck on
+OutFile "QuantLibAddin-${VER_NUMBER}-src.exe"
 LicenseText "You must agree with the following license before installing:"
-LicenseData LICENSE.txt
+LicenseData LICENSE.TXT
 DirText "Please select a location to install QuantLibAddin (or use the default):"
-InstallDir $PROGRAMFILES\QuantLibAddin
-InstallDirRegKey HKEY_LOCAL_MACHINE SOFTWARE\QuantLibAddin "Install_Dir"
-AutoCloseWindow false
-ShowInstDetails hide
-SetDateSave on
+InstallDir $PROGRAMFILES\QuantLibAddin-${VER_NUMBER}
+Icon "Docs\images\favicon.ico"
+UninstallIcon "Docs\images\favicon.ico"
 
-
-
-# INSTALLATION EXECUTION COMMANDS
-
-Section "-QuantLibAddin"
-SectionIn 1 2
+Section
 # this directory must be created first, or the CreateShortCut will not work
-    CreateDirectory "$SMPROGRAMS\QuantLibAddin"
+    CreateDirectory "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}"
     SetOutPath $INSTDIR
 
     # these MUST be present
     File "README.txt"
-    File "LICENSE.txt"
+    File "LICENSE.TXT"
     File "NEWS.txt"
     File "QuantLibAddin.dsw"
     File "QuantLibAddin.sln"
@@ -47,155 +28,87 @@ SectionIn 1 2
 
     File "*.txt"
     File "*.TXT"
-    File "Makefile.am"
-    File "QuantLibAddin.dsp"
-    File "QuantLibAddin.vcproj"
-    File "QuantLibAddin_vc8.vcproj"
     File "QuantLibAddin.nsi"
+    File /r "*.dsp"
+    File /r "*.vcproj"
+    File /r "*.vcproj"
+    File /r "*.hpp"
+    File /r "*.cpp"
+    File /r "*.h"
+    File /r "*.c"
 
     SetOutPath $INSTDIR\srcgen
-    File /r "srcgen\srcgen.dsp"
-    File /r "srcgen\srcgen.vcproj"
-    File /r "srcgen\srcgen_vc8.vcproj"
-    File /r "srcgen\Makefile.am"
     File /r "srcgen\Makefile.vc"
     File /r "srcgen\*.py"
     File /r "srcgen\*.xml"
     File /r "srcgen\stub.*"
 
-    SetOutPath  $INSTDIR\qla
-    File /r "qla\*.hpp"
-    File /r "qla\*.cpp"
-    File /r "qla\Makefile.am"
-
-    SetOutPath $INSTDIR\Addins\C
-    File /r "Addins\C\AddinC.dsp"
-    File /r "Addins\C\AddinC.vcproj"
-    File /r "Addins\C\AddinC_vc8.vcproj"
-    File /r "Addins\C\Makefile.am"
-    File /r "Addins\C\*.cpp"
-    File /r "Addins\C\*.h"
-    File /r "Addins\C\*.hpp"
-
     SetOutPath $INSTDIR\Addins\Calc
-    File /r "Addins\Calc\AddinCalc.dsp"
-    File /r "Addins\Calc\AddinCalc.vcproj"
-    File /r "Addins\Calc\AddinCalc_vc8.vcproj"
-    File /r "Addins\Calc\Makefile.am"
-    File /r "Addins\Calc\Makefile.vc.debug.mtdll"
-    File /r "Addins\Calc\QuantLibAddin.def"
-    File /r "Addins\Calc\QuantLibAddin.idl"
-    File /r "Addins\Calc\readme.txt"
-    File /r "Addins\Calc\*.cpp"
-    File /r "Addins\Calc\*.hpp"
-
-    SetOutPath $INSTDIR\Addins\ExcelDynamic
-    File /r "Addins\ExcelDynamic\AddinExcelDynamic.dsp"
-    File /r "Addins\ExcelDynamic\AddinExcelDynamic.vcproj"
-    File /r "Addins\ExcelDynamic\AddinExcelDynamic_vc8.vcproj"
-    File /r "Addins\ExcelDynamic\Makefile.am"
-    File /r "Addins\ExcelDynamic\*.cpp"
-
-    SetOutPath $INSTDIR\Addins\ExcelStatic
-    File /r "Addins\ExcelStatic\AddinExcelStatic.dsp"
-    File /r "Addins\ExcelStatic\AddinExcelStatic.vcproj"
-    File /r "Addins\ExcelStatic\AddinExcelStatic_vc8.vcproj"
-    File /r "Addins\ExcelStatic\Makefile.am"
-    File /r "Addins\ExcelStatic\*.cpp"
-
-    SetOutPath $INSTDIR\Addins\Guile
-    File /r "Addins\Guile\Makefile.am"
-    File /r "Addins\Guile\*.cpp"
-    File /r "Addins\Guile\*.hpp"
-    File /r "Addins\Guile\*.h"
-
-    SetOutPath $INSTDIR\Clients\C
-    File /r "Clients\C\ClientCDemo.dsp"
-    File /r "Clients\C\ClientCDemo.vcproj"
-    File /r "Clients\C\ClientCDemo_vc8.vcproj"
-    File /r "Clients\C\Makefile.am"
-    File /r "Clients\C\*.c"
-
-    SetOutPath $INSTDIR\Clients\C++
-    File /r "Clients\C++\Makefile.am"
-    File /r "Clients\C++\*.dsp"
-    File /r "Clients\C++\*.vcproj"
-    File /r "Clients\C++\*.cpp"
+    File "Addins\Calc\Makefile.vc.debug.mtdll"
+    File "Addins\Calc\QuantLibAddin.def"
+    File "Addins\Calc\QuantLibAddin.idl"
+    File "Addins\Calc\readme.txt"
 
     SetOutPath $INSTDIR\Clients\Calc
-    File /r "Clients\Calc\Makefile.am"
     File /r "Clients\Calc\*.sxc"
 
     SetOutPath $INSTDIR\Clients\Excel
-    File /r "Clients\Excel\Makefile.am"
     File /r "Clients\Excel\*.xls"
 
     SetOutPath $INSTDIR\Clients\Guile
-    File /r "Clients\Guile\Makefile.am"
     File /r "Clients\Guile\*.scm"
 
-    SetOutPath $INSTDIR\Docs\pages
+    SetOutPath "$INSTDIR\Docs"
+    File "Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibAddin" \
-                "DisplayName" "QuantLibAddin (remove only)"
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibAddin-${VER_NUMBER}" \
+                "DisplayName" "QuantLibAddin ${VER_NUMBER} (remove only)"
+
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibAddin" \
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibAddin-${VER_NUMBER}" \
                 "UninstallString" '"QuantLibAddinUninstall.exe"'
-    WriteRegStr HKEY_LOCAL_MACHINE \
-                "SOFTWARE\QuantLibAddin" \
-                "Install_Dir" "$INSTDIR"
-    WriteRegStr HKEY_CURRENT_USER \
-                "Environment" \
-                "QUANTLIBADDIN_DIR" "$INSTDIR"
-    CreateShortCut "$SMPROGRAMS\QuantLibAddin\Uninstall QuantLibAddin.lnk" \
-                   "$INSTDIR\QuantLibAddinUninstall.exe" \
-                   "" "$INSTDIR\QuantLibAddinUninstall.exe" 0
-    CreateShortCut "$SMPROGRAMS\QuantLibAddin\README.txt.lnk" \
+
+    WriteRegStr HKEY_CURRENT_USER "Environment" "QUANTLIBADDIN_DIR" "$INSTDIR"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\Uninstall QuantLibAddin.lnk" \
+                   "$INSTDIR\QuantLibAddinUninstall.exe" "" \
+                   "$INSTDIR\QuantLibAddinUninstall.exe" 0
+
+    CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\README.txt.lnk" \
                    "$INSTDIR\README.txt"
-    CreateShortCut "$SMPROGRAMS\QuantLibAddin\LICENSE.txt.lnk" \
-                   "$INSTDIR\LICENSE.txt"
-    CreateShortCut "$SMPROGRAMS\QuantLibAddin\What's new.lnk" \
+
+    CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\LICENSE.txt.lnk" \
+                   "$INSTDIR\LICENSE.TXT"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\What's new.lnk" \
                    "$INSTDIR\News.txt"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibAddin\QuantLibAddin VC 6 project workspace.lnk" \
+    CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\QuantLibAddin VC 6 project workspace.lnk" \
                    "$INSTDIR\QuantLibAddin.dsw"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibAddin\QuantLibAddin VC 7 project workspace.lnk" \
+    CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\QuantLibAddin VC 7 project workspace.lnk" \
                    "$INSTDIR\QuantLibAddin.sln"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibAddin\QuantLibAddin VC 8 project workspace.lnk" \
+    CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\QuantLibAddin VC 8 project workspace.lnk" \
                    "$INSTDIR\QuantLibAddin_vc8.sln"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\Documentation (WinHelp).lnk" \
+                   "$INSTDIR\Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
+
+    WriteINIStr "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\QuantLibAddin Home Page.url" \
+                "InternetShortcut" "URL" "http://quantlib.org/quantlibaddin"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\QuantLibAddin Directory.lnk" \
+                   "$INSTDIR"
 
     WriteUninstaller "QuantLibAddinUninstall.exe"
 
 SectionEnd
 
-Section "WinHelp documentation"
-SectionIn 1
-  SetOutPath "$INSTDIR\Docs"
-  File /nonfatal "Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
-  IfFileExists "$INSTDIR\Docs\QuantLibAddin-docs-${VER_NUMBER}.chm" 0 \
-                                                                 NoWinHelpDoc
-      CreateShortCut "$SMPROGRAMS\QuantLibAddin\Documentation (WinHelp).lnk" \
-                 "$INSTDIR\Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
-  NoWinHelpDoc:
-SectionEnd
-
-Section "Start Menu Group"
-SectionIn 1 2
-  SetOutPath $SMPROGRAMS\QuantLibAddin
-
-  WriteINIStr "$SMPROGRAMS\QuantLibAddin\QuantLib Home Page.url" \
-              "InternetShortcut" "URL" "http://quantlib.org/"
-
-  CreateShortCut "$SMPROGRAMS\QuantLibAddin\QuantLibAddin Directory.lnk" \
-                 "$INSTDIR"
-SectionEnd
-
 Function .onInit
   SetOutPath $TEMP
-  File /oname=spltmp.bmp "Docs\images\QL.bmp"
+  File /oname=spltmp.bmp "Docs\images\logo_ql.jpg"
   splash::show 2000 $TEMP\spltmp
   Pop $0 ; $0 has '1' if the user closed the splash screen early,
          ;        '0' if everything closed normal,
@@ -207,10 +120,9 @@ UninstallText "This will uninstall QuantLibAddin. Hit next to continue."
 
 Section "Uninstall"
     DeleteRegKey HKEY_LOCAL_MACHINE \
-        "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibAddin"
-    DeleteRegKey HKEY_LOCAL_MACHINE SOFTWARE\QuantLibAddin
+        "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibAddin-${VER_NUMBER}"
     DeleteRegValue HKEY_CURRENT_USER  "Environment" "QUANTLIBADDIN_DIR"
-    Delete "$SMPROGRAMS\QuantLibAddin\*.*"
-    RMDir "$SMPROGRAMS\QuantLibAddin"
-    RMDir /r "$INSTDIR"
+    RMDir /r /REBOOTOK "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}"
+    RMDir /r /REBOOTOK "$INSTDIR"
 SectionEnd
+

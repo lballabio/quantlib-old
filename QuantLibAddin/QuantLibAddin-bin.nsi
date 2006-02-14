@@ -6,11 +6,12 @@
 Name "QuantLibAddin"
 Caption "QuantLibAddin - Setup"
 OutFile "QuantLibAddin-${VER_NUMBER}-bin.exe"
-#ComponentText "This will install QuantLibAddin ${VER_NUMBER} on your computer"
 LicenseText "You must agree with the following license before installing:"
 LicenseData LICENSE.TXT
 DirText "Please select a location to install QuantLibAddin (or use the default):"
 InstallDir $PROGRAMFILES\QuantLibAddin-${VER_NUMBER}
+Icon "Docs\images\favicon.ico"
+UninstallIcon "Docs\images\favicon.ico"
 
 Section
     SetOutPath $INSTDIR
@@ -28,20 +29,19 @@ Section
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibAddin" \
-                "DisplayName" "QuantLibAddin (remove only)"
+                "DisplayName" "QuantLibAddin ${VER_NUMBER} (remove only)"
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibAddin" \
                 "UninstallString" '"QuantLibAddinUninstall.exe"'
-#    WriteRegStr HKEY_LOCAL_MACHINE \
-#                "SOFTWARE\QuantLibAddin" \
-#                "Install_Dir" "$INSTDIR"
 
     CreateDirectory "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}"
+
     CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\Documentation (WinHelp).lnk" \
-                 "$INSTDIR\Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
+                   "$INSTDIR\Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
+
     CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\Uninstall QuantLibAddin.lnk" \
-                   "$INSTDIR\QuantLibAddinUninstall.exe" \
-                   "" "$INSTDIR\QuantLibAddinUninstall.exe" 0
+                   "$INSTDIR\QuantLibAddinUninstall.exe" "" \
+                   "$INSTDIR\QuantLibAddinUninstall.exe" 0
 
     WriteUninstaller "QuantLibAddinUninstall.exe"
 SectionEnd
@@ -61,8 +61,7 @@ UninstallText "This will uninstall QuantLibAddin. Hit next to continue."
 Section "Uninstall"
     DeleteRegKey HKEY_LOCAL_MACHINE \
         "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibAddin"
-#    DeleteRegKey HKEY_LOCAL_MACHINE SOFTWARE\QuantLibAddin
-    RMDir /r "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}"
-    RMDir /r "$INSTDIR"
+    RMDir /r /REBOOTOK "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}"
+    RMDir /r /REBOOTOK "$INSTDIR"
 SectionEnd
 

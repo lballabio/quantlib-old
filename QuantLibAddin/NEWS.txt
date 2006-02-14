@@ -1,4 +1,4 @@
-Release 0.3.12 - ??? 200?
+Release 0.3.12 - February 2006
 
 REQUIRED PACKAGES
 
