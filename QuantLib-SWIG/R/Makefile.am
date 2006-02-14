@@ -1,10 +1,13 @@
+
+if HAVE_RSWIG
 BUILT_SOURCES = QuantLib.cpp QuantLib_wrap.S
+else
+BUILT_SOURCES =
+endif
 
 CLEANFILES = $(BUILT_SOURCES) .build-stamp
 
-PKG_LIBS="-L/usr/local/lib -lQuantLib"
-
-#if HAVE_R
+if HAVE_R
 
 all-local: .build-stamp
 
@@ -19,15 +22,16 @@ install-exec-local: .build-stamp
 clean-local:
 	rm -rf $(BUILT_SOURCES) quantlib_wrap.cxx *.so *.o *.S
 
-#endif
+endif
 
+if HAVE_RSWIG
 $(BUILT_SOURCES): ../SWIG/*.i
-	$(SWIG) -r -c++ -Wall -v -I../SWIG quantlib.i
-	mv quantlib_wrap.cxx QuantLib.cpp
+	$(RSWIG) -r -c++ -Wall -v -I../SWIG -o QuantLib.cpp quantlib.i
+endif
 
-dist-hook:
-	mkdir -p $(distdir)/examples
-	cp ./examples/*.pl $(distdir)/examples
+#dist-hook:
+#	mkdir -p $(distdir)/examples
+#	cp ./examples/*.pl $(distdir)/examples
 
-EXTRA_DIST = README.txt Makefile.PL $(BUILT_SOURCES)
+EXTRA_DIST = README.txt $(BUILT_SOURCES)
 
