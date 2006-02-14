@@ -11,13 +11,16 @@ EXTRA_DIST = \
     srcgen_headeronline.html \
     style.css
 
-DOXYGEN_CONFIG := srcgen.doxy qladdin.doxy
-DOXYGEN_CUSTOM := style.css \
-    qla_footer.html qla_header.html qla_headeronline.html \
+QLA_CONFIG := qladdin.doxy
+QLA_CUSTOM := style.css \
+    qla_footer.html qla_header.html qla_headeronline.html
+QLA_INPUT := $(shell find ${top_srcdir}/qla -name *.hpp) \
+                 $(wildcard pages/*.docs)
+
+SRCGEN_CONFIG := srcgen.doxy
+SRCGEN_CUSTOM := style.css \
     srcgen_footer.html srcgen_header.html srcgen_headeronline.html
-DOXYGEN_INPUT := $(shell find ${top_srcdir}/qla -name *.hpp) \
-                 $(wildcard pages/*.docs) \
-                 $(wildcard ../srcgen/*.py)
+SRCGEN_INPUT := $(wildcard ../srcgen/*.py)
 
 %.gz: %
 	rm -f $@
@@ -27,7 +30,7 @@ DOXYGEN_INPUT := $(shell find ${top_srcdir}/qla -name *.hpp) \
 	rm $<
 
 .PHONY: docs-all docs-html docs-online docs-clean
-.PHONY: docs-qla docs-srcgen docs-online-qla docs-online-srcgen
+.PHONY: docs-qla docs-srcgen docs-qla-online docs-srcgen-online
 .PHONY: docs-dist docs-html-dist 
 
 dist-hook:
@@ -41,7 +44,7 @@ docs-all: docs-html
 docs-dist: docs-html-dist
 
 docs-html: .time-stamp-html
-.time-stamp-html: .time-stamp
+.time-stamp-html: .time-stamp-qla .time-stamp-srcgen
 	mkdir -p html/images
 	cp images/*.gif html/images
 	cp images/*.ico html/images
@@ -51,11 +54,11 @@ docs-html: .time-stamp-html
 
 docs-html-dist: docs-html
 	ln -s html QuantLibAddin-docs-$(VERSION)-html
-	tar chof - QuantLibAddin-docs-$(VERSION)-html \
-	    | GZIP=--best gzip -c > QuantLibAddin-docs-$(VERSION)-html.tar.gz
+	tar czfvh QuantLibAddin-docs-$(VERSION)-html.tar.gz QuantLibAddin-docs-$(VERSION)-html
 	rm QuantLibAddin-docs-$(VERSION)-html
 
-docs-online-qla:
+docs-qla-online: .time-stamp-qla-online
+.time-stamp-qla-online: $(QLA_CONFIG) $(QLA_CUSTOM) $(QLA_INPUT)
 	mkdir -p html-online
 	$(SED) -e "s/qla_footer/qla_headeronline/" \
            -e "s/GENERATE_HTML          = NO/GENERATE_HTML          = YES/" \
@@ -65,8 +68,10 @@ docs-online-qla:
 	       qladdin.doxy > .qladdin.doxy
 	$(DOXYGEN) .qladdin.doxy
 	rm .qladdin.doxy
+	touch .time-stamp-qla-online
 
-docs-online-srcgen:
+docs-srcgen-online: .time-stamp-srcgen-online
+.time-stamp-srcgen-online: $(SRCGEN_CONFIG) $(SRCGEN_CUSTOM) $(SRCGEN_INPUT)
 	mkdir -p html-online/srcgen
 	$(SED) -e "s/qla_footer/qla_headeronline/" \
            -e "s/GENERATE_HTML          = NO/GENERATE_HTML          = YES/" \
@@ -76,9 +81,10 @@ docs-online-srcgen:
 	       srcgen.doxy > .srcgen.doxy
 	$(DOXYGEN) .srcgen.doxy
 	rm .srcgen.doxy
+	touch .time-stamp-srcgen-online
 
 docs-online: .time-stamp-online
-.time-stamp-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT) docs-online-srcgen docs-online-qla
+.time-stamp-online: docs-qla-online docs-srcgen-online
 	mkdir -p html-online/images
 	cp images/*.gif html-online/images
 	cp images/*.ico html-online/images
@@ -90,7 +96,8 @@ docs-clean:
 	rm -Rf html-online html
 	rm -f .time-stamp*
 
-docs-qla:
+docs-qla: .time-stamp-qla
+.time-stamp-qla: $(QLA_CONFIG) $(QLA_CUSTOM) $(QLA_INPUT)
 	mkdir -p html
 	$(SED) -e "s/GENERATE_HTML          = NO/GENERATE_HTML          = YES/" \
            -e "s|qla_basepath|${BASEPATH}/|" \
@@ -98,8 +105,10 @@ docs-qla:
 	       qladdin.doxy > .qladdin.doxy
 	$(DOXYGEN) .qladdin.doxy
 	rm .qladdin.doxy
+	touch .time-stamp-qla
 
-docs-srcgen:
+docs-srcgen: .time-stamp-srcgen
+.time-stamp-srcgen: $(SRCGEN_CONFIG) $(SRCGEN_CUSTOM) $(SRCGEN_INPUT)
 	mkdir -p html/srcgen
 	$(SED) -e "s/GENERATE_HTML          = NO/GENERATE_HTML          = YES/" \
            -e "s|qla_basepath|${BASEPATH}/|" \
@@ -107,7 +116,5 @@ docs-srcgen:
 	       srcgen.doxy > .srcgen.doxy
 	$(DOXYGEN) .srcgen.doxy
 	rm .srcgen.doxy
-
-.time-stamp: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT) docs-srcgen docs-qla
-	touch .time-stamp
+	touch .time-stamp-srcgen
 

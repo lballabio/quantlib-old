@@ -35,7 +35,7 @@ for supported platforms:
 \li Guile
 \li C/C++ (standalone programs)
 
-<div class="center"><img src="../images/screenshot.jpg"></div>
+<div class="center"><img src="images/screenshot.jpg"></div>
 
 The ObjectHandler repository is used to provide an object oriented
 environment even on procedural platforms such as spreadsheets - QuantLib

@@ -1,5 +1,4 @@
 
-We gratefully acknowledge contributions from Ferdinando Ametrano,
-Luigi Ballabio, Walter Penschke, Aurelien Chanudet, Marco Marchioro,
-Plamen Neykov, Lars Schouw.
+We gratefully acknowledge contributions from Ferdinando Ametrano, Luigi
+Ballabio, Walter Penschke, Marco Marchioro, Lars Schouw.
 
