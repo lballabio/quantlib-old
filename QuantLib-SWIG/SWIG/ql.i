@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000-2005 StatPro Italia srl
+ Copyright (C) 2000-2006 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -90,14 +90,17 @@
 %include blackmodel.i
 %include bonds.i
 %include calendars.i
+%include callability.i
 %include capfloor.i
 %include cashflows.i
 %include compoundforward.i
+%include convertiblebonds.i
 %include currencies.i
 %include date.i
 %include daycounters.i
 %include discountcurve.i
 %include distributions.i
+%include dividends.i
 %include exchangerates.i
 %include exercise.i
 %include forwardcurve.i

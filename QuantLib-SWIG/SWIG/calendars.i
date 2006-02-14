@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000-2005 StatPro Italia srl
+ Copyright (C) 2000-2006 StatPro Italia srl
  Copyright (C) 2005 Johan Witters
 
  This file is part of QuantLib, a free-software/open-source library
@@ -242,6 +242,7 @@ namespace QuantLib {
     class Beijing : public Calendar {};
     class Bombay : public Calendar {};
     class Bratislava : public Calendar {};
+    class Brazil : public Calendar {};
     class Budapest : public Calendar {};
     class Copenhagen : public Calendar {};
     class Helsinki : public Calendar {};
