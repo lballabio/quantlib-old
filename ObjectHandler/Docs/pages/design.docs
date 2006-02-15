@@ -21,7 +21,7 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! \page design ObjectHandler Design
+/*! \page design Design
 \section sec_00 Abstract
 \par
 QuantLib integration into spreadsheets and other end user tools requires a new standalone <strong>ObjectHandler</strong> component, a repository allowing objects to be stored, shared, updated, interrogated, and destroyed.

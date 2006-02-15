@@ -21,7 +21,7 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! \page design QuantLibAddin Design
+/*! \page design Design
 
 <h2>Abstract</h2>
 <p>%QuantLibAddin implements an interface supporting a subset of
