@@ -59,7 +59,6 @@ QuantLib integration into spreadsheets and other end user tools requires a new s
 <dt>\ref sec_3</dt>
 <dt>\ref sec_4</dt>
 </dl>
-<!-- </div> -->
 \section sec_1 1. Design
 <div class="center"><img src="quep011a.png"></div>
 \section sec_1_1 1.1 ObjectHandler

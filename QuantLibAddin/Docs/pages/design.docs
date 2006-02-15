@@ -34,7 +34,7 @@ passed as arguments to other functions, and destructed.  Polymorphism is
 supported, for example function qlNPV returns the NPV of an Instrument and
 can be invoked on an instance of any derived class - Swap, Bond, etc.</p>
 <a name="tag_contents"><h2>Contents</h2>
-<div CLASS="TOC"><dl>
+<dl>
 <dt>\ref sec_1</dt>
 <dd><dl>
 <dt>\ref sec_1_1</dt>
@@ -53,7 +53,7 @@ can be invoked on an instance of any derived class - Swap, Bond, etc.</p>
 </dl></dd>
 <dt>\ref sec_3</dt>
 <dt>\ref sec_4</dt>
-</dl></div>
+</dl>
 \section sec_1 1. Design
 <div class="center"><img src="images/design.jpg"></div>
 <p>%QuantLibAddin uses ObjectHandler to allow the user to build up a repository

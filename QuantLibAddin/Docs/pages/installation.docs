@@ -34,7 +34,7 @@ addin please refer to the document \ref calc.
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=159049">
 QuantLib downloads page on sourceforge.</a>
 
-<div CLASS="TOC"><dl>
+<dl>
 <dt>\ref binary</dt>
 <dt>\ref source</dt>
 <dd><dl>
@@ -42,7 +42,7 @@ QuantLib downloads page on sourceforge.</a>
 <dt>\ref windows_installation</dt>
 <dt>\ref autoconf_installation</dt>
 <dd><dl>
-</dl></div>
+</dl>
 
 \section binary Binary Installation
 
