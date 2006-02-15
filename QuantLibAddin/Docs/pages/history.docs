@@ -33,7 +33,7 @@ REQUIRED PACKAGES
 FUNCTIONALITY
 
 - 11 new functions / 81 in total
-- backward & forward flat interpolators (Aurelien Chanudet)
+- backward & forward flat interpolators (Aur&eacute;lien Chanudet)
 - enhancements to xibor / rate helper / term structures /
   utilities (Marco Marchioro)
 - support for new QuantLib functionality for sessions,
@@ -54,7 +54,7 @@ REQUIRED PACKAGES
 FUNCTIONALITY
 
 - 13 new functions / 70 in total
-- Coupon Vectors, Interpolation, Schedules, Swaps (Aurelien Chanudet)
+- Coupon Vectors, Interpolation, Schedules, Swaps (Aur&eacute;lien Chanudet)
 - Polymorphic behavior in exported %QuantLibAddin functions (Plamen Neykov)
 - support for direct calls to underlying QuantLib functions (Plamen Neykov)
 - optional function parameters (Plamen Neykov), default values
@@ -79,7 +79,7 @@ REQUIRED PACKAGES
 FUNCTIONALITY
 
 - bonds & zero curves (Walter Penschke)
-- caps & floors, term structures (Aurelien Chanudet)
+- caps & floors, term structures (Aur&eacute;lien Chanudet)
 - swaps, xibor, enumeration type factory (Plamen Neykov)
 - options, volatilities, processes
 - diagnostic and utility functions
@@ -89,7 +89,7 @@ PLATFORMS
 - Microsoft Excel
 - OpenOffice.org Calc
 - C/C++
-- Guile (Aurelien Chanudet)
+- Guile (Aur&eacute;lien Chanudet)
 
 */
 
