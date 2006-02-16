@@ -24,6 +24,7 @@
 %include stochasticprocess.i
 %include instruments.i
 %include stl.i
+%include linearalgebra.i
 
 // option and barrier types
 %{
@@ -114,6 +115,10 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)
                  ->strikeSensitivity();
         }
+	SampledCurve priceCurve() {
+            return boost::dynamic_pointer_cast<VanillaOption>(*self)
+                 ->priceCurve();
+	}
         Volatility impliedVolatility(Real targetValue,
                                      Real accuracy = 1.0e-4,
                                      Size maxEvaluations = 100,
@@ -451,6 +456,10 @@ class DividendVanillaOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
                  ->strikeSensitivity();
         }
+	SampledCurve priceCurve() {
+            return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
+                 ->priceCurve();
+	}
         Volatility impliedVolatility(Real targetValue,
                                      Real accuracy = 1.0e-4,
                                      Size maxEvaluations = 100,
@@ -572,6 +581,10 @@ class BarrierOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<BarrierOption>(*self)
                  ->strikeSensitivity();
         }
+	SampledCurve priceCurve() {
+            return boost::dynamic_pointer_cast<BarrierOption>(*self)
+                 ->priceCurve();
+	}
         Volatility impliedVolatility(Real targetValue,
                                      Real accuracy = 1.0e-4,
                                      Size maxEvaluations = 100,

@@ -26,6 +26,7 @@
 %{
 using QuantLib::Array;
 using QuantLib::Matrix;
+using QuantLib::SampledCurve;
 %}
 
 %define QL_TYPECHECK_ARRAY       4210    %enddef
@@ -783,7 +784,7 @@ class Array {
             out << *self;
             return out.str();
         }
-        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGR)
         Array __add__(const Array& a) {
             return Array(*self+a);
         }
@@ -841,7 +842,7 @@ class Array {
                 rb_yield(rb_float_new((*self)[i]));
         }
         #endif
-        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGR)
         Real __getitem__(Integer i) {
             Integer size_ = static_cast<Integer>(self->size());
             if (i>=0 && i<size_) {
@@ -918,7 +919,7 @@ typedef QuantLib::LexicographicalView<Array::iterator>::y_iterator
     LexicographicalViewColumn;
 %}
 
-#if defined(SWIGPYTHON) || defined(SWIGRUBY)
+#if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGR)
 class LexicographicalViewColumn {
   private:
     // access control - no constructor exported
@@ -959,7 +960,7 @@ class LexicographicalView {
             s << "\n";
             return s.str();
         }
-        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGR)
         LexicographicalViewColumn __getitem__(Size i) {
             return (*self)[i];
         }
@@ -1121,5 +1122,25 @@ class SVD {
     const Array& singularValues() const;
 };
 
-
+class SampledCurve {
+      public:
+      SampledCurve();
+      SampledCurve(const Array &);
+      SampledCurve & operator= (const SampledCurve &);
+      Array &grid();
+      Array &values();
+      Real gridValue(Size i);
+      Real value(Size i);
+      Size size() const;
+      bool empty() const;
+      void setGrid(const Array &);
+      void setValues(const Array &);
+      void swap(SampledCurve &);
+      void setLogGrid(Real min, Real max);
+      void regridLogGrid(Real min, Real max);
+      void shiftGrid(Real s);
+      void scaleGrid(Real s);
+      void regrid(const Array &);
+};
+      
 #endif
