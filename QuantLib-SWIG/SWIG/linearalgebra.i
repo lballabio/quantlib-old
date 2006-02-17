@@ -842,7 +842,7 @@ class Array {
                 rb_yield(rb_float_new((*self)[i]));
         }
         #endif
-        #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGR)
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY) 
         Real __getitem__(Integer i) {
             Integer size_ = static_cast<Integer>(self->size());
             if (i>=0 && i<size_) {
@@ -860,6 +860,25 @@ class Array {
                 (*self)[i] = x;
             } else if (i<0 && -i<=size_) {
                 (*self)[size_+i] = x;
+            } else {
+                throw std::out_of_range("array index out of range");
+            }
+        }
+        #endif
+        #if defined(SWIGR)
+        Real __getitem__(Integer i) {
+            Integer size_ = static_cast<Integer>(self->size());
+            if (i>=0 && i<size_) {
+                return (*self)[i];
+            } else {
+                throw std::out_of_range("array index out of range");
+            }
+            QL_DUMMY_RETURN(0.0)
+        }
+        void __setitem__(Integer i, Real x) {
+            Integer size_ = static_cast<Integer>(self->size());
+            if (i>=0 && i<size_) {
+                (*self)[i] = x;
             } else {
                 throw std::out_of_range("array index out of range");
             }
