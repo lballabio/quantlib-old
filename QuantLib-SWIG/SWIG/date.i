@@ -178,6 +178,19 @@ using QuantLib::Date;
 using QuantLib::DateParser;
 %}
 
+#if defined(SWIGR)
+%Rruntime %{
+setMethod("as.character", "_p_Date",
+    function(x) x$"__str__"())			  
+
+setMethod("as.numeric", "_p_Date",
+    function(x) x$serialNumber())			  
+
+setMethod("show", "_p_Date", 
+function(object) print(as.character(object)))
+%}
+#endif
+
 #if defined(SWIGRUBY)
 %mixin Date "Comparable";
 #endif
@@ -224,7 +237,7 @@ class Date {
     static Date nthWeekday(Size n, Weekday, Month m, Year y);
     static bool isIMMdate(const Date&);
     static Date nextIMMdate(const Date&);
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA)
+    #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA) || defined(SWIGR) 
     Date operator+(BigInteger days) const;
     Date operator-(BigInteger days) const;
     Date operator+(const Period&) const;

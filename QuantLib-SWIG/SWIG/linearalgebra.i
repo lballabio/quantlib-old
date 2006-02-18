@@ -761,6 +761,44 @@ bool extractArray(PyObject* source, Array* target) {
 }
 #endif
 
+#if defined(SWIGR)
+%Rruntime %{
+setMethod("show", "_p_Array",
+function(object) print(as.numeric(object))
+)
+
+setMethod("as.numeric", "_p_Array",
+function(x) x[1:x$size()])
+
+setAs("numeric", "_p_Array",
+function(from) { a <- Array(length(x)); 
+sapply(1:length(from), function(n) {
+a$setvalue(from=from, i=n, value=object[n])})
+a
+})
+
+setMethod("show", "_p_Matrix",
+function(object) print(as.matrix(object)))
+
+setMethod("as.matrix", "_p_Matrix",
+function(x) matrix(data=as.numeric(x$dataVector),
+	    nrow=x$rows(), ncol=x$columns()))
+
+setMethod("show", "_p_SampledCurve",
+function(object) print(as.data.frame(object))
+)
+
+setMethod("as.data.frame", "_p_SampledCurve",
+function(x,row.names,optional) 
+data.frame("grid"=as.numeric(x$grid()),
+"values"=as.numeric(x$values())))
+
+setMethod("plot", "_p_SampledCurve",
+function(x,y) plot(as.data.frame(x)))
+
+%}
+#endif
+
 #if defined(SWIGRUBY)
 %mixin Array "Enumerable";
 #elif defined(SWIGCSHARP)
@@ -1056,11 +1094,11 @@ class Matrix {
             return *self/x;
         }
         #endif
-        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY) 
         MatrixRow __getitem__(Size i) {
             return (*self)[i];
         }
-        #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGR)
         Real ref(Size i, Size j) {
             return (*self)[i][j];
         }
@@ -1068,6 +1106,18 @@ class Matrix {
             (*self)[i][j] = x;
         }
         #endif
+	#if defined(SWIGR) 
+	Array dataVector() {
+	Size nrows = self->rows();
+	Size ncols = self->columns();
+	Size nelems = nrows * ncols;
+	Array a(nelems);
+	for (int i=0; i < nrows; i++) 
+	for (int j=0; j < ncols; j++) 
+	    a[j*nrows+i] = (*self)[i][j];
+	return a;
+	}
+	#endif
         #if defined(SWIGPYTHON)
         Matrix __rmul__(Real x) {
             return x*(*self);
