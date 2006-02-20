@@ -8,12 +8,12 @@ Settings_instance()$setEvaluationDate(d=todaysDate)
 settlementDate <- Date(17, "May", 1998)
 riskFreeRate <- FlatForward(settlementDate, 0.05, Actual365Fixed())
 exercise <- EuropeanExercise(Date(17, "May", 1999))
-payoff <- PlainVanillaPayoff("Call", 8.0)
+payoff <- PlainVanillaPayoff("Call", 50.0)
 dividendYield <- FlatForward(settlementDate, 0.05, Actual365Fixed())
 underlying <- SimpleQuote(10.0)
 engine <- AnalyticEuropeanEngine()
 		
-g["NPV"] <- mapply(function(x,y) {
+t <- mapply(function(x,y) {
 underlying$setValue(value=x)
 volatility <- BlackConstantVol(todaysDate, y, Actual365Fixed())
 process <- BlackScholesProcess(QuoteHandle(underlying),
@@ -22,8 +22,15 @@ process <- BlackScholesProcess(QuoteHandle(underlying),
 		BlackVolTermStructureHandle(volatility))
 option <- VanillaOption(process, payoff, exercise)
 option$setPricingEngine(s_arg2=engine)
-option$NPV()}, g$spot, g$vol)
-		
-print(wireframe(NPV ~ spot*vol,g,drape=TRUE))
+list(NPV=option$NPV(), gamma=option$gamma(),
+	delta=option$delta())}, g$spot, g$vol, SIMPLIFY=FALSE)
+
+g$NPV <- sapply(1:length(t), function(x) t[[x]]$NPV)
+g$gamma <- sapply(1:length(t), function(x) t[[x]]$gamma)	
+g$delta <- sapply(1:length(t), function(x) t[[x]]$delta)
+par(mfrow = c(2,3))
+plot(wireframe(NPV ~ spot*vol, g, drape=TRUE))
+plot(wireframe(gamma ~ spot*vol, g, drape=TRUE))
+
 
 
