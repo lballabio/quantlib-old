@@ -771,7 +771,7 @@ setMethod("as.numeric", "_p_Array",
 function(x) x[1:x$size()])
 
 setAs("numeric", "_p_Array",
-function(from) { a <- Array(length(x)); 
+function(from) { a <- Array(length(from)); 
 sapply(1:length(from), function(n) {
 a$setvalue(from=from, i=n, value=object[n])})
 a

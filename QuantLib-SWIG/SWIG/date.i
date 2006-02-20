@@ -180,14 +180,8 @@ using QuantLib::DateParser;
 
 #if defined(SWIGR)
 %Rruntime %{
-setMethod("as.character", "_p_Date",
-    function(x) x$"__str__"())			  
-
 setMethod("as.numeric", "_p_Date",
     function(x) x$serialNumber())			  
-
-setMethod("show", "_p_Date", 
-function(object) print(as.character(object)))
 %}
 #endif
 
