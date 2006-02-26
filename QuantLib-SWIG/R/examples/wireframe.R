@@ -7,22 +7,28 @@ g<-expand.grid(spot=spot,vol=vol)
 todaysDate <- Date(15, "May", 1998)
 Settings_instance()$setEvaluationDate(d=todaysDate)
 settlementDate <- Date(17, "May", 1998)
-riskFreeRate <- FlatForward(settlementDate, 0.05, Actual365Fixed())
+riskQuote <- SimpleQuote(0.05)
+riskFreeRate <- FlatForward(settlementDate, QuoteHandle(riskQuote), 
+	     Actual365Fixed())
 exercise <- EuropeanExercise(Date(17, "May", 1999))
 payoff <- PlainVanillaPayoff("Call", 50.0)
 dividendYield <- FlatForward(settlementDate, 0.05, Actual365Fixed())
 underlying <- SimpleQuote(10.0)
 engine <- AnalyticEuropeanEngine()
-		
-t <- mapply(function(x,y) {
-underlying$setValue(value=x)
-volatility <- BlackConstantVol(todaysDate, y, Actual365Fixed())
+volatilityQuote <- SimpleQuote(0.05)
+volatility <- BlackConstantVol(todaysDate,
+	   QuoteHandle(volatilityQuote), 
+	      Actual365Fixed())
 process <- BlackScholesProcess(QuoteHandle(underlying),
 		YieldTermStructureHandle(dividendYield),
 		YieldTermStructureHandle(riskFreeRate),
 		BlackVolTermStructureHandle(volatility))
 option <- VanillaOption(process, payoff, exercise)
 option$setPricingEngine(s_arg2=engine)
+		
+t <- mapply(function(x,y) {
+underlying$setValue(value=x)
+volatilityQuote$setValue(value=y)
 list(NPV=option$NPV(), gamma=option$gamma(),
 	delta=option$delta(), vega=option$vega())}, 
 	g$spot, g$vol, SIMPLIFY=FALSE)
