@@ -181,7 +181,15 @@ using QuantLib::DateParser;
 #if defined(SWIGR)
 %Rruntime %{
 setMethod("as.numeric", "_p_Date",
-    function(x) x$serialNumber())			  
+    function(x) x$serialNumber())
+setMethod("+", c("_p_Date", "numeric"),
+    function(e1,e2) Date___add__(e1,e2))
+setMethod("-", c("_p_Date", "numeric"),
+    function(e1,e2) Date___sub__(e1,e2))
+setMethod("+", c("_p_Date", "_p_Period"),
+    function(e1,e2) Date___add__(e1,e2))
+setMethod("-", c("_p_Date", "_p_Period"),
+    function(e1,e2) Date___sub__(e1,e2))
 %}
 #endif
 

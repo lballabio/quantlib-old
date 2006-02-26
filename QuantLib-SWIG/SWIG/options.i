@@ -63,6 +63,32 @@ class Payoff {
 
 %template(Payoff) boost::shared_ptr<Payoff>;
 
+#if defined(SWIGR)
+%Rruntime %{
+setMethod("summary", "_p_VanillaOptionPtr",
+function(object) {object$freeze()
+ans <- c(value=object$NPV(), delta=object$delta(),
+gamma=object$gamma(), vega=object$vega(), 
+theta=object$theta(), rho=object$rho(), 
+divRho=object$dividendRho())
+object$unfreeze()
+ans
+})
+
+setMethod("summary", "_p_DividendVanillaOptionPtr",
+function(object) {object$freeze()
+ans <- c(value=object$NPV(), delta=object$delta(),
+gamma=object$gamma(), vega=object$vega(), 
+theta=object$theta(), rho=object$rho(), 
+divRho=object$dividendRho())
+object$unfreeze()
+ans
+})
+
+
+%}
+#endif
+
 
 // plain option and engines
 

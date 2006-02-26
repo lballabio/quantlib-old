@@ -64,6 +64,15 @@ class Instrument {
     void unfreeze();
 };
 
+#if defined(SWIGR)
+%Rruntime %{
+setMethod("summary", "_p_boost__shared_ptrTInstrument_t",
+function(object) c(value=object$NPV()))
+setMethod("show", "_p_boost__shared_ptrTInstrument_t",
+function(object) print(summary(object)))
+%}
+#endif
+
 %template(Instrument) boost::shared_ptr<Instrument>;
 IsObservable(boost::shared_ptr<Instrument>);
 
