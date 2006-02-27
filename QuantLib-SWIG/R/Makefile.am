@@ -1,6 +1,5 @@
-
 if HAVE_RSWIG
-BUILT_SOURCES = QuantLib.cpp QuantLib_wrap.S
+BUILT_SOURCES = QuantLib.cpp QuantLib_wrap.R
 else
 BUILT_SOURCES =
 endif
@@ -15,12 +14,15 @@ all-local: .build-stamp
 	PKG_LIBS="-L/usr/local/lib -lQuantLib" R CMD SHLIB QuantLib.cpp
 	touch .build-stamp
 
+debug-object: $(BUILT_SOURCES)
+	g++ -I/usr/lib/R/include  -I/usr/local/include   -fPIC  -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -march=i586 -mtune=pentiumpro -fasynchronous-unwind-tables -c QuantLib.cpp -o QuantLib.o
+
 check-local: .build-stamp
 
 install-exec-local: .build-stamp
 
 clean-local:
-	rm -rf $(BUILT_SOURCES) quantlib_wrap.cxx *.so *.o *.S
+	rm -rf $(BUILT_SOURCES) quantlib_wrap.cxx *.so *.o *.R
 
 endif
 
