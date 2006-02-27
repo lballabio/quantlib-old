@@ -44,14 +44,23 @@ class Callability {
     Date date() const;
 };
 
+/* This prevents default constructor and resize methods from getting
+   wrapped, for swig frontends which use the typemap libary. This may
+   benecessary for frontends other than R */
+
+#if defined(SWIGR)
+%std_nodefconst_type(Callability)
+#endif
+
 #if defined(SWIGCSHARP)
 SWIG_STD_VECTOR_SPECIALIZE( Callability, Callability )
 #endif
+
+
 namespace std {
     %template(CallabilityVector) vector<Callability>;
 }
 
 typedef std::vector<Callability> CallabilitySchedule;
-
 
 #endif
