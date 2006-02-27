@@ -189,9 +189,16 @@ class BlackConstantVolPtr : public boost::shared_ptr<BlackVolTermStructure> {
     }
 };
 
+/* Copy the type over so that R can put it in the R wrapper code */
+#if defined(SWIGR)
+enum VolExtrapolationType { ConstantExtrapolation,
+			    InterpolatorDefaultExtrapolation };
+#endif
+
 // Black smiled surface
 %{
 using QuantLib::BlackVarianceSurface;
+
 typedef BlackVarianceSurface::Extrapolation VolExtrapolationType;
 typedef boost::shared_ptr<BlackVolTermStructure> BlackVarianceSurfacePtr;
 

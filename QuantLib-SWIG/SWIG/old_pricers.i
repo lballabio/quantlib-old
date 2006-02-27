@@ -56,6 +56,13 @@ using QuantLib::McHimalaya;
 using QuantLib::McPagoda;
 %}
 
+// Define so that the vectors get created
+%include stl.i
+%template(YieldTermStructureVector) 
+    std::vector<Handle<YieldTermStructure> >;
+%template(BlackVolTermStructureVector) 
+    std::vector<Handle<BlackVolTermStructure> >;
+
 class McDiscreteArithmeticASO {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("value-with-samples") valueWithSamples;
