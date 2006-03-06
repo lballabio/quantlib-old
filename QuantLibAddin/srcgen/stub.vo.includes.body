@@ -1,10 +1,11 @@
 #include <qla/qladdindefines.hpp>
+#if defined BOOST_MSVC       // Microsoft Visual C++
+#  include <qla/autolink.hpp>
+#endif
 #include <qla/typefactory.hpp>
 #include <qla/clientutils.hpp>
 #include <qla/%s.hpp>
-#include <xlsdk/xlsdk.hpp>
-#include <oh/objhandler.hpp>
-#include <ohxl/conversions.hpp>
 #include <Addins/ValueObjects/vo_%s.hpp>
-#include <Addins/Excel/session.hpp>
+
+namespace QuantLibAddin { namespace ValueObjects {
 

@@ -25,7 +25,8 @@
 #define EXPORT_QL_OBJECT(CLASS) \
     const CLASS& getObject() const { \
         return *boost::dynamic_pointer_cast<CLASS>(mInstrument); \
-    }
+    } \
+	//
 
 namespace QuantLibAddin {
     class Instrument : public ObjHandler::Object {

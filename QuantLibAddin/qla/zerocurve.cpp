@@ -64,8 +64,8 @@ namespace QuantLibAddin {
         }
 
         // Setup object properties
-        createProperty(FIELD_DATES, derivedDates);
-        createProperty(FIELD_RATES, derivedRates);
+        //createProperty(FIELD_DATES, derivedDates);
+        //createProperty(FIELD_RATES, derivedRates);
 
     }
 }

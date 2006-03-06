@@ -28,6 +28,7 @@
 #define qla_utilities_hpp
 
 #include <oh/objhandler.hpp>
+#include <ql/date.hpp>
 
 namespace QuantLibAddin {
 
@@ -54,7 +55,6 @@ namespace QuantLibAddin {
     /*! list the members of a given Complex Type
     */
     const std::vector<std::string>& qlListType(const std::string&);
-
 }
 
 #endif

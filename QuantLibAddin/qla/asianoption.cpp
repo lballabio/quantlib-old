@@ -64,8 +64,8 @@ namespace QuantLibAddin {
                     payoff, 
                     exercise, 
                     pricingEngine));
-        createProperty(FIELD_NPV, mInstrument->NPV());
-        createProperty(FIELD_ENGINE, engineID);
+        //createProperty(FIELD_NPV, mInstrument->NPV());
+        //createProperty(FIELD_ENGINE, engineID);
     }
 
     DiscreteAveragingAsianOption::DiscreteAveragingAsianOption(
@@ -111,8 +111,8 @@ namespace QuantLibAddin {
                     payoff, 
                     exercise, 
                     pricingEngine));
-        createProperty(FIELD_NPV, mInstrument->NPV());
-        createProperty(FIELD_ENGINE, engineID);
+        //createProperty(FIELD_NPV, mInstrument->NPV());
+        //createProperty(FIELD_ENGINE, engineID);
     }
 
 }

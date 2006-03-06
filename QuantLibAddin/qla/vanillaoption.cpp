@@ -63,8 +63,8 @@ namespace QuantLibAddin {
                 payoff, 
                 exercise, 
                 pricingEngine));
-        createProperty(FIELD_NPV, mInstrument->NPV());
-        createProperty(FIELD_ENGINE, engineID);
+        //createProperty(FIELD_NPV, mInstrument->NPV());
+        //createProperty(FIELD_ENGINE, engineID);
     }
 
     std::string VanillaOption::setEngine(
@@ -73,8 +73,8 @@ namespace QuantLibAddin {
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
         mInstrument->setPricingEngine(pricingEngine);
-        updateProperty(IDX_NPV, mInstrument->NPV());
-        updateProperty(IDX_ENGINE, engineID);
+        //updateProperty(IDX_NPV, mInstrument->NPV());
+        //updateProperty(IDX_ENGINE, engineID);
         return engineID;
     }
 

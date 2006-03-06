@@ -1,7 +1,7 @@
 
 """
  Copyright (C) 2005, 2006 Eric Ehlers
- Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005, 2006 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -26,6 +26,7 @@ import addincalc
 import addinc
 import addinguile
 import addindoxygen
+import valueobjects
 import factory
 
 def usage():
@@ -38,6 +39,7 @@ def usage():
         c - generate source for C addin
         g - generate source for Guile addin
         d - generate doxygen documentation files
+        v - generate ValueObjects
     or
         a - all of the above
     or
@@ -47,7 +49,7 @@ def usage():
 # parse command line arguments
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'qeocgdah', 'help' )
+    opts, args = getopt.getopt(sys.argv[1:], 'qeocgdahv', 'help' )
 except getopt.GetoptError:
     usage()
 
@@ -68,6 +70,8 @@ for o, a in opts:
         addins.append(factory.Factory.getInstance().serializeObject(addinguile.AddinGuile))
     elif o == '-d':
         addins.append(factory.Factory.getInstance().serializeObject(addindoxygen.AddinDoxygen))
+    elif o == '-v':
+        addins.append(factory.Factory.getInstance().serializeObject(valueobjects.ValueObjects))
     elif o == '-a':
         if len(opts) != 1: sys.exit('flag -a cannot be combined with other flags')
         addins.append(factory.Factory.getInstance().serializeObject(addinqla.AddinQla))
@@ -76,6 +80,7 @@ for o, a in opts:
         addins.append(factory.Factory.getInstance().serializeObject(addinc.AddinC))
         addins.append(factory.Factory.getInstance().serializeObject(addinguile.AddinGuile))
         addins.append(factory.Factory.getInstance().serializeObject(addindoxygen.AddinDoxygen))
+        addins.append(factory.Factory.getInstance().serializeObject(valueobjects.ValueObjects))
     else:
         usage()
 

@@ -64,7 +64,7 @@ class AddinExcel(addin.Addin):
         """Generate source code for all functions in all categories."""
         for category in config.Config.getInstance().getCategories(self.platformId):
             fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
-            fileFunc.write(self.bufferIncludes.text % category.name)
+            fileFunc.write(self.bufferIncludes.text % (category.name, category.name))
             for func in category.getFunctions(self.platformId): 
                 self.generateFunction(fileFunc, func)
             fileFunc.close()
@@ -76,10 +76,11 @@ class AddinExcel(addin.Addin):
             'char *handle')
         conversions = self.generateConversions(func.Parameters)
         functionBody = func.generateBody(self)
+        functionValueObject = func.generateVO(self)
         functionReturnCommand = self.generateReturnCommand(func.returnValue)
         fileFunc.write(self.bufferFunction.text %
             (functionReturnType, func.name, functionDeclaration, conversions, 
-            functionBody, functionReturnCommand, func.name))
+            functionBody, functionValueObject, functionReturnCommand, func.name))
 
     def generateReturnCommand(self, returnValue):
         """Derive return statement for function."""

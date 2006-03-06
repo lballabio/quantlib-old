@@ -134,6 +134,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\valueobjects.py"
+				>
+			</File>
+			<File
 				RelativePath="xmlreader.py"
 				>
 			</File>
@@ -215,6 +219,22 @@
 			</File>
 			<File
 				RelativePath="stub.qla.includes"
+				>
+			</File>
+			<File
+				RelativePath=".\stub.vo.class.body"
+				>
+			</File>
+			<File
+				RelativePath=".\stub.vo.class.decl"
+				>
+			</File>
+			<File
+				RelativePath=".\stub.vo.includes.body"
+				>
+			</File>
+			<File
+				RelativePath=".\stub.vo.includes.decl"
 				>
 			</File>
 		</Filter>
@@ -308,6 +328,10 @@
 			</File>
 			<File
 				RelativePath="utilities.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\valueobjects.xml"
 				>
 			</File>
 			<File

@@ -64,6 +64,8 @@ class Function(serializable.Serializable):
             if i < self.ParameterCount: endOfLine = ',\n'
         if returnValue: returnValue = '\n' + returnValue
         return returnValue
+    
+    def generateVO(self, addin): return "/* no VO - not a constructor*/"
 
 class Constructor(Function):
     """Function which constructs a QuantLib object."""
@@ -88,6 +90,7 @@ class Constructor(Function):
         # is a string to be used as the handle of the new object
         self.Parameters.insert(0, parameter.ParameterHandle(
             'name of this %s instance' % self.libraryFunction))
+        self.Parameters[0].ql_type = ''
         self.ParameterCount += 1
 
     def generateBody(self, addin):
@@ -95,6 +98,15 @@ class Constructor(Function):
         libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION)
         handle = addin.stringConvert % self.Parameters[0].name
         return self.BODY % (self.libraryFunction, libraryCall, handle)
+
+    def generateVO(self, addin):
+        self.skipFirst = False
+        for p in self.Parameters: p.ql_type= ''
+        libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION)
+        return '''\
+        
+        objectPointer->setProperties(boost::shared_ptr<ObjHandler::ValueObject>(new QuantLibAddin::ValueObjects::%s(%s)));
+        ''' % (self.name, libraryCall)
 
 class Member(Function):
     """Function which invokes member function of existing QuantLib object."""

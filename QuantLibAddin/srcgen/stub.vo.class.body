@@ -1,0 +1,13 @@
+    const char* %s::mPropertyNames[] = {%s};
+
+    std::vector<std::string> %s::getPropertyNames() const {
+        return std::vector<std::string>(
+            mPropertyNames, mPropertyNames + sizeof(mPropertyNames)/sizeof(const char*));
+    }
+
+    boost::any %s::getProperty(const std::string& name) const {
+        %s
+    }
+
+    %s::%s(%s) :%s {}
+

@@ -72,7 +72,7 @@ namespace QuantLibAddin {
         double npv = mInstrument->NPV();
 
         // Setup object properties
-        createProperty(FIELD_NPV, npv);
+        //createProperty(FIELD_NPV, npv);
     }
 }
 

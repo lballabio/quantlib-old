@@ -42,7 +42,30 @@ include_HEADERS = \
     volatilities.hpp \
     xibor.hpp \
     zerocouponbond.hpp \
-    zerocurve.hpp
+    zerocurve.hpp \
+    baseinstruments.hpp \
+    ../Addins/ValueObjects/vo_basic.hpp \
+    ../Addins/ValueObjects/vo_ohfunctions.hpp \
+    ../Addins/ValueObjects/vo_r2r_instruments.hpp \
+    ../Addins/ValueObjects/vo_simpleswap.hpp \
+    ../Addins/ValueObjects/vo_xibor.hpp \
+    ../Addins/ValueObjects/vo_capfloor.hpp \
+    ../Addins/ValueObjects/vo_options.hpp \
+    ../Addins/ValueObjects/vo_r2r_termstructures.hpp \
+    ../Addins/ValueObjects/vo_swap.hpp \
+    ../Addins/ValueObjects/vo_couponvectors.hpp \
+    ../Addins/ValueObjects/vo_processes.hpp \
+    ../Addins/ValueObjects/vo_r2r_utilities.hpp \
+    ../Addins/ValueObjects/vo_termstructures.hpp \
+    ../Addins/ValueObjects/vo_instruments.hpp \
+    ../Addins/ValueObjects/vo_r2r_ilinstruments.hpp \
+    ../Addins/ValueObjects/vo_schedule.hpp \
+    ../Addins/ValueObjects/vo_utilities.hpp \
+    ../Addins/ValueObjects/vo_interpolation.hpp \
+    ../Addins/ValueObjects/vo_r2r_iltermstructure.hpp \
+    ../Addins/ValueObjects/vo_shortratemodels.hpp \
+    ../Addins/ValueObjects/vo_volatilities.hpp
+
 
 libQuantLibAddin_la_SOURCES = \
     asianoption.cpp \
@@ -72,5 +95,25 @@ libQuantLibAddin_la_SOURCES = \
     volatilities.cpp \
     xibor.cpp \
     zerocouponbond.cpp \
-    zerocurve.cpp
-
+    zerocurve.cpp \
+    ../Addins/ValueObjects/vo_basic.cpp \
+    ../Addins/ValueObjects/vo_ohfunctions.cpp \
+    ../Addins/ValueObjects/vo_r2r_instruments.cpp \
+    ../Addins/ValueObjects/vo_simpleswap.cpp \
+    ../Addins/ValueObjects/vo_xibor.cpp \
+    ../Addins/ValueObjects/vo_capfloor.cpp \
+    ../Addins/ValueObjects/vo_options.cpp \
+    ../Addins/ValueObjects/vo_r2r_termstructures.cpp \
+    ../Addins/ValueObjects/vo_swap.cpp \
+    ../Addins/ValueObjects/vo_couponvectors.cpp \
+    ../Addins/ValueObjects/vo_processes.cpp \
+    ../Addins/ValueObjects/vo_r2r_utilities.cpp \
+    ../Addins/ValueObjects/vo_termstructures.cpp \
+    ../Addins/ValueObjects/vo_instruments.cpp \
+    ../Addins/ValueObjects/vo_r2r_ilinstruments.cpp \
+    ../Addins/ValueObjects/vo_schedule.cpp \
+    ../Addins/ValueObjects/vo_utilities.cpp \
+    ../Addins/ValueObjects/vo_interpolation.cpp \
+    ../Addins/ValueObjects/vo_r2r_iltermstructure.cpp \
+    ../Addins/ValueObjects/vo_shortratemodels.cpp \
+    ../Addins/ValueObjects/vo_volatilities.cpp

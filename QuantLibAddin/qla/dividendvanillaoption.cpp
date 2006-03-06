@@ -64,8 +64,8 @@ namespace QuantLibAddin {
                 dividendDatesQL,
                 dividends,
                 pricingEngine));
-        createProperty(FIELD_NPV, mInstrument->NPV());
-        createProperty(FIELD_ENGINE, engineID);
+        //createProperty(FIELD_NPV, mInstrument->NPV());
+        //createProperty(FIELD_ENGINE, engineID);
     }
 
 }

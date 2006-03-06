@@ -1286,6 +1286,70 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\Addins\ValueObjects\vo_basic.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_capfloor.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_couponvectors.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_instruments.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_interpolation.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_ohfunctions.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_options.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_processes.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_schedule.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_shortratemodels.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_simpleswap.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_swap.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_termstructures.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_utilities.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_volatilities.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_xibor.cpp"
+				>
+			</File>
+			<File
 				RelativePath="qla\volatilities.cpp"
 				>
 				<FileConfiguration
@@ -1572,6 +1636,70 @@
 			</File>
 			<File
 				RelativePath="qla\vanillaoption.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_basic.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_capfloor.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_couponvectors.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_instruments.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_interpolation.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_ohfunctions.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_options.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_processes.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_schedule.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_shortratemodels.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_simpleswap.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_swap.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_termstructures.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_utilities.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_volatilities.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Addins\ValueObjects\vo_xibor.hpp"
 				>
 			</File>
 			<File
