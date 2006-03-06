@@ -11,9 +11,9 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Release MTDLL|Win32"
-			OutputDirectory=".\build\vc71\ReleaseMTDLL"
-			IntermediateDirectory=".\build\vc71\ReleaseMTDLL"
+			Name="Release CRTDLL|Win32"
+			OutputDirectory=".\build\vc71\ReleaseCRTDLL"
+			IntermediateDirectory=".\build\vc71\ReleaseCRTDLL"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -29,10 +29,10 @@
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc71\ReleaseMTDLL/ClientCDemo.pch"
-				AssemblerListingLocation=".\build\vc71\ReleaseMTDLL/"
-				ObjectFile=".\build\vc71\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\build\vc71\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\build\vc71\ReleaseCRTDLL/ClientCDemo.pch"
+				AssemblerListingLocation=".\build\vc71\ReleaseCRTDLL/"
+				ObjectFile=".\build\vc71\ReleaseCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\ReleaseCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -40,17 +40,17 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="bin\QLADemo-vc71-mt.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(LOG4CXX_DIR)/msvc/lib/Release,..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib"
-				ProgramDatabaseFile=".\build\vc71\ReleaseMTDLL/QLADemo-vc71-mt.pdb"
+				AdditionalLibraryDirectories="..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib, $(LOG4CXX_DIR)/msvc/lib"
+				ProgramDatabaseFile=".\build\vc71\ReleaseCRTDLL/QLADemo-vc71-mt.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc71\ReleaseMTDLL/ClientCDemo.tlb"
+				TypeLibraryName=".\build\vc71\ReleaseCRTDLL/ClientCDemo.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -102,11 +102,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="bin\QLADemo-vc71-mt-sgd.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(LOG4CXX_DIR)/msvc/lib/Debug,..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib"
+				AdditionalLibraryDirectories="..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib, $(LOG4CXX_DIR)/msvc/lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile=".\build\vc71\Debug/QLADemo-vc71-mt-sgd.pdb"
 				SubSystem="1"
@@ -166,11 +166,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="bin\QLADemo-vc71-mt-s.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(LOG4CXX_DIR)/msvc/lib/Release,..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib"
+				AdditionalLibraryDirectories="..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib, $(LOG4CXX_DIR)/msvc/lib"
 				ProgramDatabaseFile=".\build\vc71\Release/QLADemo-vc71-mt-s.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
@@ -229,11 +229,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="bin\QLADemo-vc71-s.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(LOG4CXX_DIR)/msvc/lib/Release,..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib"
+				AdditionalLibraryDirectories="..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib, $(LOG4CXX_DIR)/msvc/lib"
 				ProgramDatabaseFile=".\build\vc71\ReleaseST/QLADemo-vc71-s.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
@@ -291,11 +291,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="bin\QLADemo-vc71-sgd.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(LOG4CXX_DIR)/msvc/lib/Debug,..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib"
+				AdditionalLibraryDirectories="..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib, $(LOG4CXX_DIR)/msvc/lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile=".\build\vc71\DebugST/QLADemo-vc71-sgd.pdb"
 				SubSystem="1"
@@ -326,9 +326,9 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc71\DebugMTDLL"
-			IntermediateDirectory=".\build\vc71\DebugMTDLL"
+			Name="Debug CRTDLL|Win32"
+			OutputDirectory=".\build\vc71\DebugCRTDLL"
+			IntermediateDirectory=".\build\vc71\DebugCRTDLL"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -342,10 +342,10 @@
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc71\DebugMTDLL/ClientCDemo.pch"
-				AssemblerListingLocation=".\build\vc71\DebugMTDLL/"
-				ObjectFile=".\build\vc71\DebugMTDLL/"
-				ProgramDataBaseFileName=".\build\vc71\DebugMTDLL/"
+				PrecompiledHeaderFile=".\build\vc71\DebugCRTDLL/ClientCDemo.pch"
+				AssemblerListingLocation=".\build\vc71\DebugCRTDLL/"
+				ObjectFile=".\build\vc71\DebugCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\DebugCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -354,18 +354,18 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Ws2_32.lib odbc32.lib odbccp32.lib log4cxxs.lib"
+				AdditionalDependencies="Ws2_32.lib odbc32.lib odbccp32.lib"
 				OutputFile="bin\QLADemo-vc71-mt-gd.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(LOG4CXX_DIR)/msvc/lib/Debug,..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib"
+				AdditionalLibraryDirectories="..\..\lib,$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib, $(LOG4CXX_DIR)/msvc/lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\build\vc71\DebugMTDLL/QLADemo-vc71-mt-gd.pdb"
+				ProgramDatabaseFile=".\build\vc71\DebugCRTDLL/QLADemo-vc71-mt-gd.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc71\DebugMTDLL/ClientCDemo.tlb"
+				TypeLibraryName=".\build\vc71\DebugCRTDLL/ClientCDemo.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -395,7 +395,7 @@
 		<File
 			RelativePath="qlademo.c">
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -437,7 +437,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"

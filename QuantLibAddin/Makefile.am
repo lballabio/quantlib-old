@@ -24,6 +24,7 @@ EXTRA_DIST = \
     QuantLibAddin.dsp \
     QuantLibAddin.dsw \
     QuantLibAddin.nsi \
+	QuantLibAddin-bin.nsi \
     QuantLibAddin.sln \
     QuantLibAddin.vcproj \
     QuantLibAddin_vc8.sln \

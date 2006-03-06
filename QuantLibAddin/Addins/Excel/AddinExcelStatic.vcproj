@@ -39,11 +39,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="xll\QuantLibAddinStatic-vc71-mt-sgd-0_3_12.xll"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile=".\buildStatic\vc71\Debug/QuantLibAddinStatic-vc71-mt-sgd-0_3_12.pdb"
 				ImportLibrary=".\buildStatic\vc71\Debug/QuantLibAddinStatic-vc71-mt-sgd-0_3_12.lib"
@@ -78,9 +78,9 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\buildStatic\vc71\DebugMTDLL"
-			IntermediateDirectory=".\buildStatic\vc71\DebugMTDLL"
+			Name="Debug CRTDLL|Win32"
+			OutputDirectory=".\buildStatic\vc71\DebugCRTDLL"
+			IntermediateDirectory=".\buildStatic\vc71\DebugCRTDLL"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -94,10 +94,10 @@
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\buildStatic\vc71\DebugMTDLL/AddinExcelStatic.pch"
-				AssemblerListingLocation=".\buildStatic\vc71\DebugMTDLL/"
-				ObjectFile=".\buildStatic\vc71\DebugMTDLL/"
-				ProgramDataBaseFileName=".\buildStatic\vc71\DebugMTDLL/"
+				PrecompiledHeaderFile=".\buildStatic\vc71\DebugCRTDLL/AddinExcelStatic.pch"
+				AssemblerListingLocation=".\buildStatic\vc71\DebugCRTDLL/"
+				ObjectFile=".\buildStatic\vc71\DebugCRTDLL/"
+				ProgramDataBaseFileName=".\buildStatic\vc71\DebugCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -106,14 +106,14 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="xll\QuantLibAddinStatic-vc71-mt-gd-0_3_12.xll"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\buildStatic\vc71\DebugMTDLL/QuantLibAddinStatic-vc71-mt-gd-0_3_12.pdb"
-				ImportLibrary=".\buildStatic\vc71\DebugMTDLL/QuantLibAddinStatic-vc71-mt-gd-0_3_12.lib"
+				ProgramDatabaseFile=".\buildStatic\vc71\DebugCRTDLL/QuantLibAddinStatic-vc71-mt-gd-0_3_12.pdb"
+				ImportLibrary=".\buildStatic\vc71\DebugCRTDLL/QuantLibAddinStatic-vc71-mt-gd-0_3_12.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -121,7 +121,7 @@
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\buildStatic\vc71\DebugMTDLL/AddinExcelStatic.tlb"
+				TypeLibraryName=".\buildStatic\vc71\DebugCRTDLL/AddinExcelStatic.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -173,11 +173,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="xll\QuantLibAddinStatic-vc71-sgd-0_3_12.xll"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile=".\buildStatic\vc71\DebugST/QuantLibAddinStatic-vc71-sgd-0_3_12.pdb"
 				ImportLibrary=".\buildStatic\vc71\DebugST/QuantLibAddinStatic-vc71-sgd-0_3_12.lib"
@@ -241,11 +241,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="xll\QuantLibAddinStatic-vc71-s-0_3_12.xll"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
 				ProgramDatabaseFile=".\buildStatic\vc71\ReleaseST/QuantLibAddinStatic-vc71-s-0_3_12.pdb"
 				ImportLibrary=".\buildStatic\vc71\ReleaseST/QuantLibAddinStatic-vc71-s-0_3_12.lib"
 				TargetMachine="1"/>
@@ -308,11 +308,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="xll\QuantLibAddinStatic-vc71-mt-s-0_3_12.xll"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
 				ProgramDatabaseFile=".\buildStatic\vc71\Release/QuantLibAddinStatic-vc71-mt-s-0_3_12.pdb"
 				ImportLibrary=".\buildStatic\vc71\Release/QuantLibAddinStatic-vc71-mt-s-0_3_12.lib"
 				TargetMachine="1"/>
@@ -346,9 +346,9 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Release MTDLL|Win32"
-			OutputDirectory=".\buildStatic\vc71\ReleaseMTDLL"
-			IntermediateDirectory=".\buildStatic\vc71\ReleaseMTDLL"
+			Name="Release CRTDLL|Win32"
+			OutputDirectory=".\buildStatic\vc71\ReleaseCRTDLL"
+			IntermediateDirectory=".\buildStatic\vc71\ReleaseCRTDLL"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -364,10 +364,10 @@
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\buildStatic\vc71\ReleaseMTDLL/AddinExcelStatic.pch"
-				AssemblerListingLocation=".\buildStatic\vc71\ReleaseMTDLL/"
-				ObjectFile=".\buildStatic\vc71\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\buildStatic\vc71\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\buildStatic\vc71\ReleaseCRTDLL/AddinExcelStatic.pch"
+				AssemblerListingLocation=".\buildStatic\vc71\ReleaseCRTDLL/"
+				ObjectFile=".\buildStatic\vc71\ReleaseCRTDLL/"
+				ProgramDataBaseFileName=".\buildStatic\vc71\ReleaseCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -375,13 +375,13 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="xll\QuantLibAddinStatic-vc71-mt-0_3_12.xll"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
-				ProgramDatabaseFile=".\buildStatic\vc71\ReleaseMTDLL/QuantLibAddinStatic-vc71-mt-0_3_12.pdb"
-				ImportLibrary=".\buildStatic\vc71\ReleaseMTDLL/QuantLibAddinStatic-vc71-mt-0_3_12.lib"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
+				ProgramDatabaseFile=".\buildStatic\vc71\ReleaseCRTDLL/QuantLibAddinStatic-vc71-mt-0_3_12.pdb"
+				ImportLibrary=".\buildStatic\vc71\ReleaseCRTDLL/QuantLibAddinStatic-vc71-mt-0_3_12.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -389,7 +389,7 @@
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\buildStatic\vc71\ReleaseMTDLL/AddinExcelStatic.tlb"
+				TypeLibraryName=".\buildStatic\vc71\ReleaseCRTDLL/AddinExcelStatic.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -428,7 +428,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -462,7 +462,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -482,7 +482,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -516,7 +516,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -536,7 +536,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -570,7 +570,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -590,7 +590,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -624,7 +624,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -644,7 +644,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -678,7 +678,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -698,7 +698,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -732,7 +732,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -752,7 +752,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -786,7 +786,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -806,7 +806,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -840,7 +840,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -860,7 +860,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -894,7 +894,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -914,7 +914,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -948,7 +948,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -971,7 +971,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -1005,7 +1005,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -1025,7 +1025,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -1059,7 +1059,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -1079,7 +1079,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -1113,7 +1113,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -1133,7 +1133,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -1167,7 +1167,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -1187,7 +1187,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -1221,7 +1221,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -1241,7 +1241,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -1275,7 +1275,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -1295,7 +1295,7 @@
 					BasicRuntimeChecks="3"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -1329,7 +1329,7 @@
 					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"

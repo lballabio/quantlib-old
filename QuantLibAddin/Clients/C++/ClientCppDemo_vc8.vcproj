@@ -14,9 +14,9 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Release SingleThread|Win32"
-			OutputDirectory=".\build\vc80\ReleaseST"
-			IntermediateDirectory=".\build\vc80\ReleaseST"
+			Name="Debug CRTDLL|Win32"
+			OutputDirectory=".\build\vc80\DebugCRTDLL"
+			IntermediateDirectory=".\build\vc80\DebugCRTDLL"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -37,100 +37,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc80\ReleaseST/ClientCppDemo.tlb"
-				HeaderFileName=""
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
-				StringPooling="true"
-				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="true"
-				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\build\vc80\ReleaseST/ClientCppDemo.pch"
-				AssemblerListingLocation=".\build\vc80\ReleaseST/"
-				ObjectFile=".\build\vc80\ReleaseST/"
-				ProgramDataBaseFileName=".\build\vc80\ReleaseST/"
-				WarningLevel="3"
-				SuppressStartupBanner="true"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="2057"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\QLADemo-vc80-s.exe"
-				LinkIncremental="1"
-				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
-				ProgramDatabaseFile=".\build\vc80\ReleaseST/QLADemo-vc80-s.pdb"
-				SubSystem="1"
-				TargetMachine="1"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile=".\build\vc80\ReleaseST/ClientCppDemo.bsc"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc80\DebugMTDLL"
-			IntermediateDirectory=".\build\vc80\DebugMTDLL"
-			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc80\DebugMTDLL/ClientCppDemo.tlb"
+				TypeLibraryName=".\build\vc80\DebugCRTDLL/ClientCppDemo.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -142,10 +49,10 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\build\vc80\DebugMTDLL/ClientCppDemo.pch"
-				AssemblerListingLocation=".\build\vc80\DebugMTDLL/"
-				ObjectFile=".\build\vc80\DebugMTDLL/"
-				ProgramDataBaseFileName=".\build\vc80\DebugMTDLL/"
+				PrecompiledHeaderFile=".\build\vc80\DebugCRTDLL/ClientCppDemo.pch"
+				AssemblerListingLocation=".\build\vc80\DebugCRTDLL/"
+				ObjectFile=".\build\vc80\DebugCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc80\DebugCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -163,13 +70,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib advapi32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
 				OutputFile="bin\QLADemo-vc80-mt-gd.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\build\vc80\DebugMTDLL/QLADemo-vc80-mt-gd.pdb"
+				ProgramDatabaseFile=".\build\vc80\DebugCRTDLL/QLADemo-vc80-mt-gd.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -185,7 +92,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc80\DebugMTDLL/ClientCppDemo.bsc"
+				OutputFile=".\build\vc80\DebugCRTDLL/ClientCppDemo.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -257,11 +164,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib advapi32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
 				OutputFile="bin\QLADemo-vc80-mt-s.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
 				ProgramDatabaseFile=".\build\vc80\Release/QLADemo-vc80-mt-s.pdb"
 				SubSystem="1"
 				TargetMachine="1"
@@ -294,9 +201,9 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug SingleThread|Win32"
-			OutputDirectory=".\build\vc80\DebugST"
-			IntermediateDirectory=".\build\vc80\DebugST"
+			Name="Release CRTDLL|Win32"
+			OutputDirectory=".\build\vc80\ReleaseCRTDLL"
+			IntermediateDirectory=".\build\vc80\ReleaseCRTDLL"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -317,101 +224,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc80\DebugST/ClientCppDemo.tlb"
-				HeaderFileName=""
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
-				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\build\vc80\DebugST/ClientCppDemo.pch"
-				AssemblerListingLocation=".\build\vc80\DebugST/"
-				ObjectFile=".\build\vc80\DebugST/"
-				ProgramDataBaseFileName=".\build\vc80\DebugST/"
-				WarningLevel="3"
-				SuppressStartupBanner="true"
-				DebugInformationFormat="4"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="2057"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\QLADemo-vc80-sgd.exe"
-				LinkIncremental="2"
-				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
-				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\build\vc80\DebugST/QLADemo-vc80-sgd.pdb"
-				SubSystem="1"
-				TargetMachine="1"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile=".\build\vc80\DebugST/ClientCppDemo.bsc"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release MTDLL|Win32"
-			OutputDirectory=".\build\vc80\ReleaseMTDLL"
-			IntermediateDirectory=".\build\vc80\ReleaseMTDLL"
-			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc80\ReleaseMTDLL/ClientCppDemo.tlb"
+				TypeLibraryName=".\build\vc80\ReleaseCRTDLL/ClientCppDemo.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -424,10 +237,10 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\build\vc80\ReleaseMTDLL/ClientCppDemo.pch"
-				AssemblerListingLocation=".\build\vc80\ReleaseMTDLL/"
-				ObjectFile=".\build\vc80\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\build\vc80\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\build\vc80\ReleaseCRTDLL/ClientCppDemo.pch"
+				AssemblerListingLocation=".\build\vc80\ReleaseCRTDLL/"
+				ObjectFile=".\build\vc80\ReleaseCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc80\ReleaseCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -444,12 +257,12 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib advapi32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
 				OutputFile="bin\QLADemo-vc80-mt.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Release"
-				ProgramDatabaseFile=".\build\vc80\ReleaseMTDLL/QLADemo-vc80-mt.pdb"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
+				ProgramDatabaseFile=".\build\vc80\ReleaseCRTDLL/QLADemo-vc80-mt.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -465,7 +278,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc80\ReleaseMTDLL/ClientCppDemo.bsc"
+				OutputFile=".\build\vc80\ReleaseCRTDLL/ClientCppDemo.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -537,11 +350,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib advapi32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
 				OutputFile="bin\QLADemo-vc80-mt-sgd.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib/Debug"
+				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\build\vc80\Debug/QLADemo-vc80-mt-sgd.pdb"
 				SubSystem="1"
@@ -582,16 +395,7 @@
 			RelativePath="qlademo.cpp"
 			>
 			<FileConfiguration
-				Name="Release SingleThread|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions=""
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -609,16 +413,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug SingleThread|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions=""
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"

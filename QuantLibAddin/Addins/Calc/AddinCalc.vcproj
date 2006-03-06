@@ -12,16 +12,16 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc71\DebugMTDLL"
-			IntermediateDirectory=".\build\vc71\DebugMTDLL"
+			Name="Debug CRTDLL|Win32"
+			OutputDirectory=".\build\vc71\DebugCRTDLL"
+			IntermediateDirectory=".\build\vc71\DebugCRTDLL"
 			ConfigurationType="0"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot;"
-				ReBuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot; /a"
+				BuildCommandLine="nmake /f &quot;Makefile.vc.debug.crtdll&quot;"
+				ReBuildCommandLine="nmake /f &quot;Makefile.vc.debug.crtdll&quot; /a"
 				Output="AddinCalc.exe"/>
 		</Configuration>
 	</Configurations>
@@ -164,7 +164,7 @@
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
 		</Filter>
 		<File
-			RelativePath="Makefile.vc.debug.mtdll">
+			RelativePath="Makefile.vc.debug.crtdll">
 		</File>
 	</Files>
 	<Globals>

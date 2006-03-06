@@ -11,9 +11,9 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Release MTDLL|Win32"
-			OutputDirectory=".\build\vc71\ReleaseMTDLL"
-			IntermediateDirectory=".\build\vc71\ReleaseMTDLL"
+			Name="Release CRTDLL|Win32"
+			OutputDirectory=".\build\vc71\ReleaseCRTDLL"
+			IntermediateDirectory=".\build\vc71\ReleaseCRTDLL"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -22,17 +22,17 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(LOG4CXX_DIR)/include"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc71\ReleaseMTDLL/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc71\ReleaseMTDLL/"
-				ObjectFile=".\build\vc71\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\build\vc71\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\build\vc71\ReleaseCRTDLL/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc71\ReleaseCRTDLL/"
+				ObjectFile=".\build\vc71\ReleaseCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\ReleaseCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -75,7 +75,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(LOG4CXX_DIR)/include"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
@@ -127,7 +127,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(LOG4CXX_DIR)/include"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -180,7 +180,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(LOG4CXX_DIR)/include"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
@@ -232,7 +232,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(LOG4CXX_DIR)/include"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
@@ -274,9 +274,9 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc71\DebugMTDLL"
-			IntermediateDirectory=".\build\vc71\DebugMTDLL"
+			Name="Debug CRTDLL|Win32"
+			OutputDirectory=".\build\vc71\DebugCRTDLL"
+			IntermediateDirectory=".\build\vc71\DebugCRTDLL"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -284,16 +284,16 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(LOG4CXX_DIR)/include"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc71\DebugMTDLL/QuantLibAddin.pch"
-				AssemblerListingLocation=".\build\vc71\DebugMTDLL/"
-				ObjectFile=".\build\vc71\DebugMTDLL/"
-				ProgramDataBaseFileName=".\build\vc71\DebugMTDLL/"
+				PrecompiledHeaderFile=".\build\vc71\DebugCRTDLL/QuantLibAddin.pch"
+				AssemblerListingLocation=".\build\vc71\DebugCRTDLL/"
+				ObjectFile=".\build\vc71\DebugCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\DebugCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -335,7 +335,7 @@
 			<File
 				RelativePath="qla\asianoption.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -377,7 +377,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -389,7 +389,7 @@
 			<File
 				RelativePath="qla\barrieroption.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -431,7 +431,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -443,7 +443,7 @@
 			<File
 				RelativePath="qla\basic.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -485,7 +485,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -497,7 +497,7 @@
 			<File
 				RelativePath="qla\basketoption.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -539,7 +539,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -551,7 +551,7 @@
 			<File
 				RelativePath="qla\capfloor.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -593,7 +593,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -605,7 +605,7 @@
 			<File
 				RelativePath="qla\clientutils.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -647,7 +647,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -659,7 +659,7 @@
 			<File
 				RelativePath="qla\cliquetoption.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -701,7 +701,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -713,7 +713,7 @@
 			<File
 				RelativePath="qla\complextyperegistry.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -755,7 +755,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -767,7 +767,7 @@
 			<File
 				RelativePath="qla\couponvectors.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -809,7 +809,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -821,7 +821,7 @@
 			<File
 				RelativePath="qla\dividendvanillaoption.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -863,7 +863,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -875,7 +875,7 @@
 			<File
 				RelativePath="qla\enumregistry.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -917,7 +917,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -929,7 +929,7 @@
 			<File
 				RelativePath="qla\fixedcouponbond.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -971,7 +971,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -983,7 +983,7 @@
 			<File
 				RelativePath="qla\forwardvanillaoption.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1025,7 +1025,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1037,7 +1037,7 @@
 			<File
 				RelativePath="qla\generalutils.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1079,7 +1079,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1091,7 +1091,7 @@
 			<File
 				RelativePath="qla\interpolation.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1133,7 +1133,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1145,7 +1145,7 @@
 			<File
 				RelativePath="qla\ohfunctions.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1187,7 +1187,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1199,7 +1199,7 @@
 			<File
 				RelativePath="qla\processes.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1241,7 +1241,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1253,7 +1253,7 @@
 			<File
 				RelativePath="qla\schedule.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1295,7 +1295,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1307,7 +1307,7 @@
 			<File
 				RelativePath="qla\shortratemodels.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1349,7 +1349,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1361,7 +1361,7 @@
 			<File
 				RelativePath="qla\simpleswap.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1403,7 +1403,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1415,7 +1415,7 @@
 			<File
 				RelativePath="qla\swap.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1457,7 +1457,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1469,7 +1469,7 @@
 			<File
 				RelativePath="qla\termstructures.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1511,7 +1511,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1523,7 +1523,7 @@
 			<File
 				RelativePath="qla\utilities.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1565,7 +1565,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1577,7 +1577,7 @@
 			<File
 				RelativePath="qla\vanillaoption.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1619,7 +1619,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1631,7 +1631,7 @@
 			<File
 				RelativePath="qla\volatilities.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1673,7 +1673,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1685,7 +1685,7 @@
 			<File
 				RelativePath="qla\xibor.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1727,7 +1727,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1739,7 +1739,7 @@
 			<File
 				RelativePath="qla\zerocouponbond.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1781,7 +1781,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1793,7 +1793,7 @@
 			<File
 				RelativePath="qla\zerocurve.cpp">
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1835,7 +1835,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"

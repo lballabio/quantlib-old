@@ -35,10 +35,10 @@ addins in general.
 \ref bugfix_vc\n
 \ref wizard\n
 \ref removeexcel\n
-\ref prereqs\n 
-\ref startup_error\n 
-\ref startup_crash\n 
-\ref vba_usage\n 
+\ref prereqs\n
+\ref startup_error\n
+\ref startup_crash\n
+\ref vba_usage\n
 \ref debugexcel\n
 \ref debuglinux\n
 
@@ -47,12 +47,12 @@ addins in general.
 Please follow the steps below when loading %QuantLibAddin for Excel:
 
 \li start Excel
-\li load a client worksheet e.g. 
+\li load a client worksheet e.g.
 \b %QuantLibAddin\\Clients\\Excel\\QLADemo.xls
-\li load the QuantLib Excel Addin from directory 
+\li load the QuantLib Excel Addin from directory
 \b %QuantLibAddin\\Addins\\Excel\\xll.  The name of the file
 depends upon how it was compiled. For example when compiled
-with VC6 configuration "Win32 Debug MTDLL" the addin is called
+with VC6 configuration "Win32 Debug CRTDLL" the addin is called
 <strong>%QuantLibAddinStatic-vc6-mt-gd-0_3_12.xll</strong>
 \li You may need to hit \b Ctrl-Alt-F9 to force recalculation of all
 cells in all open workbooks
@@ -60,7 +60,7 @@ cells in all open workbooks
 \section bugfix_excel Install All Bug Fixes for Your Version of Microsoft Excel
 
 Initial releases of certain versions of  Microsoft Excel suffer from
-bugs which cause Excel Addins to malfunction.  Please visit the 
+bugs which cause Excel Addins to malfunction.  Please visit the
 <a href="http://office.microsoft.com">Microsoft Office web page</a> and
 check for any bug fixes which may be available for your copy of Office.
 (You need to use the Internet Explorer browser to visit this page).
@@ -96,7 +96,7 @@ A well written Addin anticipates the use of the Function Wizard in one
 of two ways:
 \li It is possible for the Addin to determine when it's being invoked from
 the Function Wizard, possibly changing its behavior accordingly, e.g. by
-returning a default value.  This topic is discussed in more detail at 
+returning a default value.  This topic is discussed in more detail at
 <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/office97/html/SF822.asp">this link on the Microsoft web site</a>
 \li The Addin can validate its inputs, and ensure that it will always
 behave sensibly even for incomplete or invalid inputs
@@ -117,7 +117,7 @@ and executing simpler example projects.  For example the following list
 constitutes a progression in build complexity:
 \li ObjectHandler project ExampleCpp
 \li ObjectHandler project ExampleXLL (static or dynamic)
-\li %QuantLibAddin project ClientCppDemo 
+\li %QuantLibAddin project ClientCppDemo
 \li %QuantLibAddin project AddinExcel (static or dynamic)
 
 \section startup_error Excel Displays an Error Message when the Addin is Loaded
@@ -147,7 +147,7 @@ for example:
 \li Any bug in the Addin code which causes an access violation as the
 Addin is loaded
 \li Addins compiled with configuration Debug, option "Program Database
-for Edit and Continue", can crash when opened as described in 
+for Edit and Continue", can crash when opened as described in
 <a href="http://support.microsoft.com/kb/198477">Microsoft Knowledge Base Article ID 198477</a>
 
 Because the addin crashes when loading the only way to debug this problem
@@ -156,15 +156,15 @@ feature, you can use WinDbg.  In WinDbg, hit Ctrl-S and ensure that the
 sympath includes the path containing the PDB file that was created when
 you compiled the addin e.g.
 
-\verbatim 
-C:\Program Files\QuantLibAddin\Addins\Excel\build\vc6\DebugMTDLL;
-SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols 
+\verbatim
+C:\Program Files\QuantLibAddin\Addins\Excel\build\vc6\DebugCRTDLL;
+SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols
 \endverbatim
 
 Start Excel and WinDbg, before loading the addin, hit F6 and
-attach WinDbg to Excel, then set the breakpoint e.g.  
-\verbatim 
-bu QuantLibAddin_vc6_mt_gd_0_3_12!xlAutoOpen 
+attach WinDbg to Excel, then set the breakpoint e.g.
+\verbatim
+bu QuantLibAddin_vc6_mt_gd_0_3_12!xlAutoOpen
 \endverbatim
 
 You can then debug as the addin loads.
@@ -179,11 +179,11 @@ Sub priceEuropeanOption()
     Dim blackScholesHandle As String
     Dim optionHandle As String
     Dim npv As Double
-    blackVolHandle = Application.Run("qlBlackConstantVol", "blackconstantvol", 
+    blackVolHandle = Application.Run("qlBlackConstantVol", "blackconstantvol",
         40250, 0.2, "Actual360")
-    blackScholesHandle = Application.Run("qlBlackScholesProcess", "stoch1", 
+    blackScholesHandle = Application.Run("qlBlackScholesProcess", "stoch1",
         blackVolHandle, 36, "Actual360", 40250, 0.06, 0)
-    optionHandle = Application.Run("qlVanillaOption", "eur1", blackScholesHandle, 
+    optionHandle = Application.Run("qlVanillaOption", "eur1", blackScholesHandle,
         "Put", "Vanilla", 35, "European", 43903, 0, "JR", 801)
     npv = Application.Run("qlNPV", optionHandle)
     Debug.Print npv
@@ -192,7 +192,7 @@ End Sub
 
 \section debugexcel Debugging QuantLibAddin under Excel
 
-\li start Excel and load the QuantLib Excel Addin and a client worksheet 
+\li start Excel and load the QuantLib Excel Addin and a client worksheet
 e.g. QLADemo.xls
 \li Go into Microsoft Visual Studio and close any workspace which may
 be open
@@ -232,10 +232,10 @@ gdb performs better when run against programs which are compiled with flag
 \b -gdwarf-2.  So before debugging the %QuantLibAddin executable, it's
 best to first reconfigure and recompile all relevant binaries - QuantLib,
 log4cxx, ObjectHandler, and %QuantLibAddin.  cd to the top level directory
-for each project, and run configure with the appropriate flags: 
+for each project, and run configure with the appropriate flags:
 \verbatim
-./configure CXXFLAGS="-gdwarf-2 -Wall" 
-\endverbatim 
+./configure CXXFLAGS="-gdwarf-2 -Wall"
+\endverbatim
 Then recompile.
 
 \subsection executable The Executable

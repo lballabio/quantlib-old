@@ -15,9 +15,9 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc80\DebugMTDLL"
-			IntermediateDirectory=".\build\vc80\DebugMTDLL"
+			Name="Debug CRTDLL|Win32"
+			OutputDirectory=".\build\vc80\DebugCRTDLL"
+			IntermediateDirectory=".\build\vc80\DebugCRTDLL"
 			ConfigurationType="0"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -25,8 +25,8 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot;"
-				ReBuildCommandLine="nmake /f &quot;Makefile.vc.debug.mtdll&quot; /a"
+				BuildCommandLine="nmake /f &quot;Makefile.vc.debug.crtdll&quot;"
+				ReBuildCommandLine="nmake /f &quot;Makefile.vc.debug.crtdll&quot; /a"
 				CleanCommandLine=""
 				Output="AddinCalc.exe"
 				PreprocessorDefinitions=""
@@ -221,7 +221,7 @@
 			>
 		</Filter>
 		<File
-			RelativePath="Makefile.vc.debug.mtdll"
+			RelativePath="Makefile.vc.debug.crtdll"
 			>
 		</File>
 	</Files>

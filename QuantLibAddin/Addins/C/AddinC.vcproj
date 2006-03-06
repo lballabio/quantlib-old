@@ -11,9 +11,9 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc71\DebugMTDLL"
-			IntermediateDirectory=".\build\vc71\DebugMTDLL"
+			Name="Debug CRTDLL|Win32"
+			OutputDirectory=".\build\vc71\DebugCRTDLL"
+			IntermediateDirectory=".\build\vc71\DebugCRTDLL"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -27,10 +27,10 @@
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc71\DebugMTDLL/AddinC.pch"
-				AssemblerListingLocation=".\build\vc71\DebugMTDLL/"
-				ObjectFile=".\build\vc71\DebugMTDLL/"
-				ProgramDataBaseFileName=".\build\vc71\DebugMTDLL/"
+				PrecompiledHeaderFile=".\build\vc71\DebugCRTDLL/AddinC.pch"
+				AssemblerListingLocation=".\build\vc71\DebugCRTDLL/"
+				ObjectFile=".\build\vc71\DebugCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\DebugCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -63,9 +63,9 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Release MTDLL|Win32"
-			OutputDirectory=".\build\vc71\ReleaseMTDLL"
-			IntermediateDirectory=".\build\vc71\ReleaseMTDLL"
+			Name="Release CRTDLL|Win32"
+			OutputDirectory=".\build\vc71\ReleaseCRTDLL"
+			IntermediateDirectory=".\build\vc71\ReleaseCRTDLL"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -81,10 +81,10 @@
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc71\ReleaseMTDLL/AddinC.pch"
-				AssemblerListingLocation=".\build\vc71\ReleaseMTDLL/"
-				ObjectFile=".\build\vc71\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\build\vc71\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\build\vc71\ReleaseCRTDLL/AddinC.pch"
+				AssemblerListingLocation=".\build\vc71\ReleaseCRTDLL/"
+				ObjectFile=".\build\vc71\ReleaseCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\ReleaseCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -125,7 +125,7 @@
 			<File
 				RelativePath="capfloor.cpp">
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -134,7 +134,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -145,7 +145,7 @@
 			<File
 				RelativePath="instruments.cpp">
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -154,7 +154,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -165,7 +165,7 @@
 			<File
 				RelativePath="ohfunctions.cpp">
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -174,7 +174,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -185,7 +185,7 @@
 			<File
 				RelativePath="options.cpp">
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -194,7 +194,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -205,7 +205,7 @@
 			<File
 				RelativePath="processes.cpp">
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -214,7 +214,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -225,7 +225,7 @@
 			<File
 				RelativePath="shortratemodels.cpp">
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -234,7 +234,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -245,7 +245,7 @@
 			<File
 				RelativePath="session.cpp">
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -254,7 +254,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -265,7 +265,7 @@
 			<File
 				RelativePath="simpleswap.cpp">
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -274,7 +274,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -285,7 +285,7 @@
 			<File
 				RelativePath="termstructures.cpp">
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -294,7 +294,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -305,7 +305,7 @@
 			<File
 				RelativePath="utilities.cpp">
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -314,7 +314,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -325,7 +325,7 @@
 			<File
 				RelativePath="varies.cpp">
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -334,7 +334,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -345,7 +345,7 @@
 			<File
 				RelativePath="volatilities.cpp">
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -354,7 +354,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -365,7 +365,7 @@
 			<File
 				RelativePath="xibor.cpp">
 				<FileConfiguration
-					Name="Debug MTDLL|Win32">
+					Name="Debug CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -374,7 +374,7 @@
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32">
+					Name="Release CRTDLL|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"

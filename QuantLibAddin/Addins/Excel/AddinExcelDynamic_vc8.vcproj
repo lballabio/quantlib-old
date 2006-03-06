@@ -14,9 +14,9 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\buildDynamic\vc80\DebugMTDLL"
-			IntermediateDirectory=".\buildDynamic\vc80\DebugMTDLL"
+			Name="Debug CRTDLL|Win32"
+			OutputDirectory=".\buildDynamic\vc80\DebugCRTDLL"
+			IntermediateDirectory=".\buildDynamic\vc80\DebugCRTDLL"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -41,7 +41,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\buildDynamic\vc80\DebugMTDLL/AddinExcelDynamic.tlb"
+				TypeLibraryName=".\buildDynamic\vc80\DebugCRTDLL/AddinExcelDynamic.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -53,10 +53,10 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\buildDynamic\vc80\DebugMTDLL/AddinExcelDynamic.pch"
-				AssemblerListingLocation=".\buildDynamic\vc80\DebugMTDLL/"
-				ObjectFile=".\buildDynamic\vc80\DebugMTDLL/"
-				ProgramDataBaseFileName=".\buildDynamic\vc80\DebugMTDLL/"
+				PrecompiledHeaderFile=".\buildDynamic\vc80\DebugCRTDLL/AddinExcelDynamic.pch"
+				AssemblerListingLocation=".\buildDynamic\vc80\DebugCRTDLL/"
+				ObjectFile=".\buildDynamic\vc80\DebugCRTDLL/"
+				ProgramDataBaseFileName=".\buildDynamic\vc80\DebugCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -80,8 +80,8 @@
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll,$(QL_DIR)\lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildDynamic\vc80\DebugMTDLL/QuantLibAddinDynamic-vc80-mt-gd-0_3_12.pdb"
-				ImportLibrary=".\buildDynamic\vc80\DebugMTDLL/QuantLibAddinDynamic-vc80-mt-gd-0_3_12.lib"
+				ProgramDatabaseFile=".\buildDynamic\vc80\DebugCRTDLL/QuantLibAddinDynamic-vc80-mt-gd-0_3_12.pdb"
+				ImportLibrary=".\buildDynamic\vc80\DebugCRTDLL/QuantLibAddinDynamic-vc80-mt-gd-0_3_12.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -96,7 +96,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\buildDynamic\vc80\DebugMTDLL/AddinExcelDynamic.bsc"
+				OutputFile=".\buildDynamic\vc80\DebugCRTDLL/AddinExcelDynamic.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -112,9 +112,9 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release MTDLL|Win32"
-			OutputDirectory=".\buildDynamic\vc80\ReleaseMTDLL"
-			IntermediateDirectory=".\buildDynamic\vc80\ReleaseMTDLL"
+			Name="Release CRTDLL|Win32"
+			OutputDirectory=".\buildDynamic\vc80\ReleaseCRTDLL"
+			IntermediateDirectory=".\buildDynamic\vc80\ReleaseCRTDLL"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -139,7 +139,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\buildDynamic\vc80\ReleaseMTDLL/AddinExcelDynamic.tlb"
+				TypeLibraryName=".\buildDynamic\vc80\ReleaseCRTDLL/AddinExcelDynamic.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -152,10 +152,10 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\buildDynamic\vc80\ReleaseMTDLL/AddinExcelDynamic.pch"
-				AssemblerListingLocation=".\buildDynamic\vc80\ReleaseMTDLL/"
-				ObjectFile=".\buildDynamic\vc80\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\buildDynamic\vc80\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\buildDynamic\vc80\ReleaseCRTDLL/AddinExcelDynamic.pch"
+				AssemblerListingLocation=".\buildDynamic\vc80\ReleaseCRTDLL/"
+				ObjectFile=".\buildDynamic\vc80\ReleaseCRTDLL/"
+				ProgramDataBaseFileName=".\buildDynamic\vc80\ReleaseCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -177,8 +177,8 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll,$(QL_DIR)\lib"
-				ProgramDatabaseFile=".\buildDynamic\vc80\ReleaseMTDLL/QuantLibAddinDynamic-vc80-mt-0_3_12.pdb"
-				ImportLibrary=".\buildDynamic\vc80\ReleaseMTDLL/QuantLibAddinDynamic-vc80-mt-0_3_12.lib"
+				ProgramDatabaseFile=".\buildDynamic\vc80\ReleaseCRTDLL/QuantLibAddinDynamic-vc80-mt-0_3_12.pdb"
+				ImportLibrary=".\buildDynamic\vc80\ReleaseCRTDLL/QuantLibAddinDynamic-vc80-mt-0_3_12.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -193,7 +193,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\buildDynamic\vc80\ReleaseMTDLL/AddinExcelDynamic.bsc"
+				OutputFile=".\buildDynamic\vc80\ReleaseCRTDLL/AddinExcelDynamic.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -216,7 +216,7 @@
 			RelativePath="basic.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -225,7 +225,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -238,7 +238,7 @@
 			RelativePath="capfloor.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -247,7 +247,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -260,7 +260,7 @@
 			RelativePath="couponvectors.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -269,7 +269,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -282,7 +282,7 @@
 			RelativePath="instruments.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -291,7 +291,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -304,7 +304,7 @@
 			RelativePath="interpolation.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -313,7 +313,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -326,7 +326,7 @@
 			RelativePath="options.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -335,7 +335,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -348,7 +348,7 @@
 			RelativePath="processes.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -357,7 +357,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -370,7 +370,7 @@
 			RelativePath="qladdin.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -379,7 +379,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -392,7 +392,7 @@
 			RelativePath="schedule.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -401,7 +401,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -414,7 +414,7 @@
 			RelativePath="session.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -423,7 +423,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -440,7 +440,7 @@
 			RelativePath="shortratemodels.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -449,7 +449,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -462,7 +462,7 @@
 			RelativePath="simpleswap.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -471,7 +471,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -484,7 +484,7 @@
 			RelativePath="swap.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -493,7 +493,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -506,7 +506,7 @@
 			RelativePath="termstructures.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -515,7 +515,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -528,7 +528,7 @@
 			RelativePath="utilities.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -537,7 +537,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -550,7 +550,7 @@
 			RelativePath="volatilities.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -559,7 +559,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -572,7 +572,7 @@
 			RelativePath="xibor.cpp"
 			>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -581,7 +581,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"

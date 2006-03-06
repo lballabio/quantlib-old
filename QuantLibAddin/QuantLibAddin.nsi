@@ -44,7 +44,7 @@ Section
     File /r "srcgen\stub.*"
 
     SetOutPath $INSTDIR\Addins\Calc
-    File "Addins\Calc\Makefile.vc.debug.mtdll"
+    File "Addins\Calc\Makefile.vc.debug.crtdll"
     File "Addins\Calc\QuantLibAddin.def"
     File "Addins\Calc\QuantLibAddin.idl"
     File "Addins\Calc\readme.txt"

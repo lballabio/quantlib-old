@@ -19,8 +19,8 @@ CFG=ClientCppDemo - Win32 Debug SingleThread
 !MESSAGE 
 !MESSAGE "ClientCppDemo - Win32 Release" (based on "Win32 (x86) Console Application")
 !MESSAGE "ClientCppDemo - Win32 Debug" (based on "Win32 (x86) Console Application")
-!MESSAGE "ClientCppDemo - Win32 Release MTDLL" (based on "Win32 (x86) Console Application")
-!MESSAGE "ClientCppDemo - Win32 Debug MTDLL" (based on "Win32 (x86) Console Application")
+!MESSAGE "ClientCppDemo - Win32 Release CRTDLL" (based on "Win32 (x86) Console Application")
+!MESSAGE "ClientCppDemo - Win32 Debug CRTDLL" (based on "Win32 (x86) Console Application")
 !MESSAGE "ClientCppDemo - Win32 Release SingleThread" (based on "Win32 (x86) Console Application")
 !MESSAGE "ClientCppDemo - Win32 Debug SingleThread" (based on "Win32 (x86) Console Application")
 !MESSAGE 
@@ -54,7 +54,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib /nologo /subsystem:console /machine:I386 /out:"bin\QLADemo-vc6-mt-s.exe" /libpath:"$(OBJECT_HANDLER_DIR)\lib" /libpath:"$(QL_DIR)\lib" /libpath:"$(LOG4CXX_DIR)/msvc/lib/Release"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Ws2_32.lib /nologo /subsystem:console /machine:I386 /out:"bin\QLADemo-vc6-mt-s.exe" /libpath:"$(OBJECT_HANDLER_DIR)\lib" /libpath:"$(QL_DIR)\lib" /libpath:"$(LOG4CXX_DIR)/msvc/Lib"
 
 !ELSEIF  "$(CFG)" == "ClientCppDemo - Win32 Debug"
 
@@ -78,19 +78,19 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib /nologo /subsystem:console /debug /machine:I386 /out:"bin\QLADemo-vc6-mt-sgd.exe" /pdbtype:sept /libpath:"$(OBJECT_HANDLER_DIR)\lib" /libpath:"$(QL_DIR)\lib" /libpath:"$(LOG4CXX_DIR)/msvc/lib/Debug"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Ws2_32.lib /nologo /subsystem:console /debug /machine:I386 /out:"bin\QLADemo-vc6-mt-sgd.exe" /pdbtype:sept /libpath:"$(OBJECT_HANDLER_DIR)\lib" /libpath:"$(QL_DIR)\lib" /libpath:"$(LOG4CXX_DIR)/msvc/Lib"
 
-!ELSEIF  "$(CFG)" == "ClientCppDemo - Win32 Release MTDLL"
+!ELSEIF  "$(CFG)" == "ClientCppDemo - Win32 Release CRTDLL"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "build\vc6\ReleaseMTDLL"
-# PROP BASE Intermediate_Dir "build\vc6\ReleaseMTDLL"
+# PROP BASE Output_Dir "build\vc6\ReleaseCRTDLL"
+# PROP BASE Intermediate_Dir "build\vc6\ReleaseCRTDLL"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "build\vc6\ReleaseMTDLL"
-# PROP Intermediate_Dir "build\vc6\ReleaseMTDLL"
+# PROP Output_Dir "build\vc6\ReleaseCRTDLL"
+# PROP Intermediate_Dir "build\vc6\ReleaseCRTDLL"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /c
@@ -102,19 +102,19 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib /nologo /subsystem:console /machine:I386 /out:"bin\QLADemo-vc6-mt.exe" /libpath:"$(OBJECT_HANDLER_DIR)\lib" /libpath:"$(QL_DIR)\lib" /libpath:"$(LOG4CXX_DIR)/msvc/lib/Release"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Ws2_32.lib /nologo /subsystem:console /machine:I386 /out:"bin\QLADemo-vc6-mt.exe" /libpath:"$(OBJECT_HANDLER_DIR)\lib" /libpath:"$(QL_DIR)\lib" /libpath:"$(LOG4CXX_DIR)/msvc/Lib"
 
-!ELSEIF  "$(CFG)" == "ClientCppDemo - Win32 Debug MTDLL"
+!ELSEIF  "$(CFG)" == "ClientCppDemo - Win32 Debug CRTDLL"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "build\vc6\DebugMTDLL"
-# PROP BASE Intermediate_Dir "build\vc6\DebugMTDLL"
+# PROP BASE Output_Dir "build\vc6\DebugCRTDLL"
+# PROP BASE Intermediate_Dir "build\vc6\DebugCRTDLL"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "build\vc6\DebugMTDLL"
-# PROP Intermediate_Dir "build\vc6\DebugMTDLL"
+# PROP Output_Dir "build\vc6\DebugCRTDLL"
+# PROP Intermediate_Dir "build\vc6\DebugCRTDLL"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /GZ /c
@@ -126,7 +126,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib /nologo /subsystem:console /debug /machine:I386 /out:"bin\QLADemo-vc6-mt-gd.exe" /pdbtype:sept /libpath:"$(OBJECT_HANDLER_DIR)\lib" /libpath:"$(QL_DIR)\lib" /libpath:"$(LOG4CXX_DIR)/msvc/lib/Debug"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Ws2_32.lib /nologo /subsystem:console /debug /machine:I386 /out:"bin\QLADemo-vc6-mt-gd.exe" /pdbtype:sept /libpath:"$(OBJECT_HANDLER_DIR)\lib" /libpath:"$(QL_DIR)\lib" /libpath:"$(LOG4CXX_DIR)/msvc/Lib"
 
 !ELSEIF  "$(CFG)" == "ClientCppDemo - Win32 Release SingleThread"
 
@@ -150,7 +150,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib /nologo /subsystem:console /machine:I386 /out:"bin\QLADemo-vc6-s.exe" /libpath:"$(OBJECT_HANDLER_DIR)\lib" /libpath:"$(QL_DIR)\lib" /libpath:"$(LOG4CXX_DIR)/msvc/lib/Release"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Ws2_32.lib /nologo /subsystem:console /machine:I386 /out:"bin\QLADemo-vc6-s.exe" /libpath:"$(OBJECT_HANDLER_DIR)\lib" /libpath:"$(QL_DIR)\lib" /libpath:"$(LOG4CXX_DIR)/msvc/Lib"
 
 !ELSEIF  "$(CFG)" == "ClientCppDemo - Win32 Debug SingleThread"
 
@@ -174,7 +174,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib /nologo /subsystem:console /debug /machine:I386 /out:"bin\QLADemo-vc6-sgd.exe" /pdbtype:sept /libpath:"$(OBJECT_HANDLER_DIR)\lib" /libpath:"$(QL_DIR)\lib" /libpath:"$(LOG4CXX_DIR)/msvc/lib/Debug"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Ws2_32.lib /nologo /subsystem:console /debug /machine:I386 /out:"bin\QLADemo-vc6-sgd.exe" /pdbtype:sept /libpath:"$(OBJECT_HANDLER_DIR)\lib" /libpath:"$(QL_DIR)\lib" /libpath:"$(LOG4CXX_DIR)/msvc/Lib"
 
 !ENDIF 
 
@@ -182,8 +182,8 @@ LINK32=link.exe
 
 # Name "ClientCppDemo - Win32 Release"
 # Name "ClientCppDemo - Win32 Debug"
-# Name "ClientCppDemo - Win32 Release MTDLL"
-# Name "ClientCppDemo - Win32 Debug MTDLL"
+# Name "ClientCppDemo - Win32 Release CRTDLL"
+# Name "ClientCppDemo - Win32 Debug CRTDLL"
 # Name "ClientCppDemo - Win32 Release SingleThread"
 # Name "ClientCppDemo - Win32 Debug SingleThread"
 # Begin Source File

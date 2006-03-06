@@ -7,23 +7,23 @@
 CFG=AddinC - Win32 Debug SingleThread
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "AddinC.mak".
-!MESSAGE 
+!MESSAGE
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "AddinC.mak" CFG="AddinC - Win32 Debug SingleThread"
-!MESSAGE 
+!MESSAGE
 !MESSAGE Possible choices for configuration are:
-!MESSAGE 
+!MESSAGE
 !MESSAGE "AddinC - Win32 Release" (based on "Win32 (x86) Static Library")
 !MESSAGE "AddinC - Win32 Debug" (based on "Win32 (x86) Static Library")
-!MESSAGE "AddinC - Win32 Release MTDLL" (based on "Win32 (x86) Static Library")
-!MESSAGE "AddinC - Win32 Debug MTDLL" (based on "Win32 (x86) Static Library")
+!MESSAGE "AddinC - Win32 Release CRTDLL" (based on "Win32 (x86) Static Library")
+!MESSAGE "AddinC - Win32 Debug CRTDLL" (based on "Win32 (x86) Static Library")
 !MESSAGE "AddinC - Win32 Release SingleThread" (based on "Win32 (x86) Static Library")
 !MESSAGE "AddinC - Win32 Debug SingleThread" (based on "Win32 (x86) Static Library")
-!MESSAGE 
+!MESSAGE
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -78,17 +78,17 @@ LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo /out:"lib\AddinC-vc6-mt-sgd-0_3_12.lib"
 
-!ELSEIF  "$(CFG)" == "AddinC - Win32 Release MTDLL"
+!ELSEIF  "$(CFG)" == "AddinC - Win32 Release CRTDLL"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "build\vc6\ReleaseMTDLL"
-# PROP BASE Intermediate_Dir "build\vc6\ReleaseMTDLL"
+# PROP BASE Output_Dir "build\vc6\ReleaseCRTDLL"
+# PROP BASE Intermediate_Dir "build\vc6\ReleaseCRTDLL"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "build\vc6\ReleaseMTDLL"
-# PROP Intermediate_Dir "build\vc6\ReleaseMTDLL"
+# PROP Output_Dir "build\vc6\ReleaseCRTDLL"
+# PROP Intermediate_Dir "build\vc6\ReleaseCRTDLL"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
 # ADD CPP /nologo /MD /W3 /GR /GX /O2 /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
@@ -101,17 +101,17 @@ LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo /out:"lib\AddinC-vc6-mt-0_3_12.lib"
 
-!ELSEIF  "$(CFG)" == "AddinC - Win32 Debug MTDLL"
+!ELSEIF  "$(CFG)" == "AddinC - Win32 Debug CRTDLL"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "build\vc6\DebugMTDLL"
-# PROP BASE Intermediate_Dir "build\vc6\DebugMTDLL"
+# PROP BASE Output_Dir "build\vc6\DebugCRTDLL"
+# PROP BASE Intermediate_Dir "build\vc6\DebugCRTDLL"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "build\vc6\DebugMTDLL"
-# PROP Intermediate_Dir "build\vc6\DebugMTDLL"
+# PROP Output_Dir "build\vc6\DebugCRTDLL"
+# PROP Intermediate_Dir "build\vc6\DebugCRTDLL"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
 # ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\.." /I "$(OBJECT_HANDLER_DIR)" /I "$(QL_DIR)" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
@@ -170,14 +170,14 @@ LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo /out:"lib\AddinC-vc6-sgd-0_3_12.lib"
 
-!ENDIF 
+!ENDIF
 
 # Begin Target
 
 # Name "AddinC - Win32 Release"
 # Name "AddinC - Win32 Debug"
-# Name "AddinC - Win32 Release MTDLL"
-# Name "AddinC - Win32 Debug MTDLL"
+# Name "AddinC - Win32 Release CRTDLL"
+# Name "AddinC - Win32 Debug CRTDLL"
 # Name "AddinC - Win32 Release SingleThread"
 # Name "AddinC - Win32 Debug SingleThread"
 # Begin Group "Source Files"

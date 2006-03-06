@@ -4,21 +4,21 @@
 
 # TARGTYPE "Win32 (x86) External Target" 0x0106
 
-CFG=AddinCalc - Win32 Debug MTDLL
+CFG=AddinCalc - Win32 Debug CRTDLL
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE 
-!MESSAGE NMAKE /f "Makefile.vc.debug.mtdll".
-!MESSAGE 
+!MESSAGE
+!MESSAGE NMAKE /f "Makefile.vc.debug.crtdll".
+!MESSAGE
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE 
-!MESSAGE NMAKE /f "Makefile.vc.debug.mtdll" CFG="AddinCalc - Win32 Debug MTDLL"
-!MESSAGE 
+!MESSAGE
+!MESSAGE NMAKE /f "Makefile.vc.debug.crtdll" CFG="AddinCalc - Win32 Debug CRTDLL"
+!MESSAGE
 !MESSAGE Possible choices for configuration are:
-!MESSAGE 
-!MESSAGE "AddinCalc - Win32 Debug MTDLL" (based on "Win32 (x86) External Target")
-!MESSAGE 
+!MESSAGE
+!MESSAGE "AddinCalc - Win32 Debug CRTDLL" (based on "Win32 (x86) External Target")
+!MESSAGE
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -26,29 +26,29 @@ CFG=AddinCalc - Win32 Debug MTDLL
 # PROP Scc_LocalPath ""
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "build\vc6\DebugMTDLL"
-# PROP BASE Intermediate_Dir "build\vc6\DebugMTDLL"
-# PROP BASE Cmd_Line "nmake /f "Makefile.vc.debug.mtdll""
+# PROP BASE Output_Dir "build\vc6\DebugCRTDLL"
+# PROP BASE Intermediate_Dir "build\vc6\DebugCRTDLL"
+# PROP BASE Cmd_Line "nmake /f "Makefile.vc.debug.crtdll""
 # PROP BASE Rebuild_Opt "/a"
 # PROP BASE Target_File "AddinCalc.exe"
 # PROP BASE Bsc_Name ""
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "build\vc6\DebugMTDLL"
-# PROP Intermediate_Dir "build\vc6\DebugMTDLL"
-# PROP Cmd_Line "nmake /f "Makefile.vc.debug.mtdll""
+# PROP Output_Dir "build\vc6\DebugCRTDLL"
+# PROP Intermediate_Dir "build\vc6\DebugCRTDLL"
+# PROP Cmd_Line "nmake /f "Makefile.vc.debug.crtdll""
 # PROP Rebuild_Opt "/a"
 # PROP Target_File "AddinCalc.exe"
 # PROP Bsc_Name ""
 # PROP Target_Dir ""
 # Begin Target
 
-# Name "AddinCalc - Win32 Debug MTDLL"
+# Name "AddinCalc - Win32 Debug CRTDLL"
 
-!IF  "$(CFG)" == "AddinCalc - Win32 Debug MTDLL"
+!IF  "$(CFG)" == "AddinCalc - Win32 Debug CRTDLL"
 
-!ENDIF 
+!ENDIF
 
 # Begin Group "Source Files"
 
@@ -228,7 +228,7 @@ SOURCE=.\xibor.hpp
 # End Group
 # Begin Source File
 
-SOURCE=.\Makefile.vc.debug.mtdll
+SOURCE=.\Makefile.vc.debug.crtdll
 # End Source File
 # End Target
 # End Project
