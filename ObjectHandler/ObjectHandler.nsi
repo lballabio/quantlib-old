@@ -5,7 +5,7 @@
 SetCompressor lzma
 Name "ObjectHandler"
 Caption "ObjectHandler - Setup"
-OutFile "ObjectHandler-${VER_NUMBER}-installer.exe"
+OutFile "ObjectHandler-${VER_NUMBER}-src.exe"
 LicenseText "ObjectHandler is released under the following license:"
 LicenseData LICENSE.txt
 DirText "Please select a location to install ObjectHandler (or use the default):"

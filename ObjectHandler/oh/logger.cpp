@@ -19,7 +19,12 @@
     #include <oh/config.hpp>
 #endif
 #include <oh/logger.hpp>
+#include <oh/objhandlerdefines.hpp>
 #include <log4cxx/helpers/exception.h>
+// autolink log4cxx
+#if defined BOOST_MSVC       // Microsoft Visual C++
+#include <log4cxx/autolink.hpp>
+#endif
 #include <oh/exception.hpp>
 #include <ostream>
 

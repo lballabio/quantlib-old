@@ -19,8 +19,8 @@ CFG=ExampleXllStatic - Win32 Debug SingleThread
 !MESSAGE 
 !MESSAGE "ExampleXllStatic - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "ExampleXllStatic - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "ExampleXllStatic - Win32 Release MTDLL" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "ExampleXllStatic - Win32 Debug MTDLL" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "ExampleXllStatic - Win32 Release CRTDLL" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "ExampleXllStatic - Win32 Debug CRTDLL" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "ExampleXllStatic - Win32 Release SingleThread" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "ExampleXllStatic - Win32 Debug SingleThread" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE 
@@ -57,7 +57,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib /nologo /dll /machine:I386 /out:"xll\ExampleXLLStatic-vc6-mt-s-0_1_3.xll" /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxllib\lib" /libpath:"$(LOG4CXX_DIR)/msvc/lib/Release"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Ws2_32.lib /nologo /dll /machine:I386 /out:"xll\ExampleXLLStatic-vc6-mt-s-0_1_3.xll" /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxllib\lib" /libpath:"$(LOG4CXX_DIR)/msvc/Lib"
 
 !ELSEIF  "$(CFG)" == "ExampleXllStatic - Win32 Debug"
 
@@ -83,19 +83,19 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib /nologo /dll /debug /machine:I386 /out:"xll\ExampleXLLStatic-vc6-mt-sgd-0_1_3.xll" /pdbtype:sept /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxllib\lib" /libpath:"$(LOG4CXX_DIR)/msvc/lib/Debug"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Ws2_32.lib /nologo /dll /debug /machine:I386 /out:"xll\ExampleXLLStatic-vc6-mt-sgd-0_1_3.xll" /pdbtype:sept /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxllib\lib" /libpath:"$(LOG4CXX_DIR)/msvc/Lib"
 
-!ELSEIF  "$(CFG)" == "ExampleXllStatic - Win32 Release MTDLL"
+!ELSEIF  "$(CFG)" == "ExampleXllStatic - Win32 Release CRTDLL"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "build\vc6\ReleaseMTDLL"
-# PROP BASE Intermediate_Dir "build\vc6\ReleaseMTDLL"
+# PROP BASE Output_Dir "build\vc6\ReleaseCRTDLL"
+# PROP BASE Intermediate_Dir "build\vc6\ReleaseCRTDLL"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "build\vc6\ReleaseMTDLL"
-# PROP Intermediate_Dir "build\vc6\ReleaseMTDLL"
+# PROP Output_Dir "build\vc6\ReleaseCRTDLL"
+# PROP Intermediate_Dir "build\vc6\ReleaseCRTDLL"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "EXAMPLEXLLSTATIC_EXPORTS" /YX /FD /c
@@ -109,19 +109,19 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib /nologo /dll /machine:I386 /out:"xll\ExampleXLLStatic-vc6-mt-0_1_3.xll" /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxllib\lib" /libpath:"$(LOG4CXX_DIR)/msvc/lib/Release"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Ws2_32.lib /nologo /dll /machine:I386 /out:"xll\ExampleXLLStatic-vc6-mt-0_1_3.xll" /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxllib\lib" /libpath:"$(LOG4CXX_DIR)/msvc/Lib"
 
-!ELSEIF  "$(CFG)" == "ExampleXllStatic - Win32 Debug MTDLL"
+!ELSEIF  "$(CFG)" == "ExampleXllStatic - Win32 Debug CRTDLL"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "build\vc6\DebugMTDLL"
-# PROP BASE Intermediate_Dir "build\vc6\DebugMTDLL"
+# PROP BASE Output_Dir "build\vc6\DebugCRTDLL"
+# PROP BASE Intermediate_Dir "build\vc6\DebugCRTDLL"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "build\vc6\DebugMTDLL"
-# PROP Intermediate_Dir "build\vc6\DebugMTDLL"
+# PROP Output_Dir "build\vc6\DebugCRTDLL"
+# PROP Intermediate_Dir "build\vc6\DebugCRTDLL"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "EXAMPLEXLLSTATIC_EXPORTS" /YX /FD /GZ /c
@@ -135,7 +135,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib /nologo /dll /debug /machine:I386 /out:"xll\ExampleXLLStatic-vc6-mt-gd-0_1_3.xll" /pdbtype:sept /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxllib\lib" /libpath:"$(LOG4CXX_DIR)/msvc/lib/Debug"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Ws2_32.lib /nologo /dll /debug /machine:I386 /out:"xll\ExampleXLLStatic-vc6-mt-gd-0_1_3.xll" /pdbtype:sept /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxllib\lib" /libpath:"$(LOG4CXX_DIR)/msvc/Lib"
 
 !ELSEIF  "$(CFG)" == "ExampleXllStatic - Win32 Release SingleThread"
 
@@ -161,7 +161,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib /nologo /dll /machine:I386 /out:"xll\ExampleXLLStatic-vc6-s-0_1_3.xll" /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxllib\lib" /libpath:"$(LOG4CXX_DIR)/msvc/lib/Release"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Ws2_32.lib /nologo /dll /machine:I386 /out:"xll\ExampleXLLStatic-vc6-s-0_1_3.xll" /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxllib\lib" /libpath:"$(LOG4CXX_DIR)/msvc/Lib"
 
 !ELSEIF  "$(CFG)" == "ExampleXllStatic - Win32 Debug SingleThread"
 
@@ -187,7 +187,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib /nologo /dll /debug /machine:I386 /out:"xll\ExampleXLLStatic-vc6-sgd-0_1_3.xll" /pdbtype:sept /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxllib\lib" /libpath:"$(LOG4CXX_DIR)/msvc/lib/Debug"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Ws2_32.lib /nologo /dll /debug /machine:I386 /out:"xll\ExampleXLLStatic-vc6-sgd-0_1_3.xll" /pdbtype:sept /libpath:"..\..\xlsdk\lib" /libpath:"..\..\ohxl\ohxllib\lib" /libpath:"$(LOG4CXX_DIR)/msvc/Lib"
 
 !ENDIF 
 
@@ -195,8 +195,8 @@ LINK32=link.exe
 
 # Name "ExampleXllStatic - Win32 Release"
 # Name "ExampleXllStatic - Win32 Debug"
-# Name "ExampleXllStatic - Win32 Release MTDLL"
-# Name "ExampleXllStatic - Win32 Debug MTDLL"
+# Name "ExampleXllStatic - Win32 Release CRTDLL"
+# Name "ExampleXllStatic - Win32 Debug CRTDLL"
 # Name "ExampleXllStatic - Win32 Release SingleThread"
 # Name "ExampleXllStatic - Win32 Debug SingleThread"
 # Begin Source File

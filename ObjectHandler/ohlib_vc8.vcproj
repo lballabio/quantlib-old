@@ -14,82 +14,6 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug SingleThread|Win32"
-			OutputDirectory=".\build\vc80\DebugST"
-			IntermediateDirectory=".\build\vc80\DebugST"
-			ConfigurationType="4"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories=".,$(LOG4CXX_DIR)\include"
-				PreprocessorDefinitions="_DEBUG;_LIB;WIN32;LOG4CXX_STATIC"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
-				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\build\vc80\DebugST/ohlib.pch"
-				AssemblerListingLocation=".\build\vc80\DebugST/"
-				ObjectFile=".\build\vc80\DebugST/"
-				ProgramDataBaseFileName=".\build\vc80\DebugST/"
-				WarningLevel="3"
-				SuppressStartupBanner="true"
-				DebugInformationFormat="4"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="2057"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc80-sgd-0_1_3.lib"
-				SuppressStartupBanner="true"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile=".\build\vc80\DebugST/ohlib.bsc"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory=".\build\vc80\Debug"
 			IntermediateDirectory=".\build\vc80\Debug"
@@ -166,85 +90,9 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release SingleThread|Win32"
-			OutputDirectory=".\build\vc80\ReleaseST"
-			IntermediateDirectory=".\build\vc80\ReleaseST"
-			ConfigurationType="4"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,$(LOG4CXX_DIR)\include"
-				PreprocessorDefinitions="NDEBUG;_LIB;WIN32;LOG4CXX_STATIC"
-				StringPooling="true"
-				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="true"
-				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\build\vc80\ReleaseST/ohlib.pch"
-				AssemblerListingLocation=".\build\vc80\ReleaseST/"
-				ObjectFile=".\build\vc80\ReleaseST/"
-				ProgramDataBaseFileName=".\build\vc80\ReleaseST/"
-				WarningLevel="3"
-				SuppressStartupBanner="true"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="2057"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc80-s-0_1_3.lib"
-				SuppressStartupBanner="true"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile=".\build\vc80\ReleaseST/ohlib.bsc"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release MTDLL|Win32"
-			OutputDirectory=".\build\vc80\ReleaseMTDLL"
-			IntermediateDirectory=".\build\vc80\ReleaseMTDLL"
+			Name="Release CRTDLL|Win32"
+			OutputDirectory=".\build\vc80\ReleaseCRTDLL"
+			IntermediateDirectory=".\build\vc80\ReleaseCRTDLL"
 			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -276,10 +124,10 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\build\vc80\ReleaseMTDLL/ohlib.pch"
-				AssemblerListingLocation=".\build\vc80\ReleaseMTDLL/"
-				ObjectFile=".\build\vc80\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\build\vc80\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\build\vc80\ReleaseCRTDLL/ohlib.pch"
+				AssemblerListingLocation=".\build\vc80\ReleaseCRTDLL/"
+				ObjectFile=".\build\vc80\ReleaseCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc80\ReleaseCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -308,7 +156,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc80\ReleaseMTDLL/ohlib.bsc"
+				OutputFile=".\build\vc80\ReleaseCRTDLL/ohlib.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -394,9 +242,9 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc80\DebugMTDLL"
-			IntermediateDirectory=".\build\vc80\DebugMTDLL"
+			Name="Debug CRTDLL|Win32"
+			OutputDirectory=".\build\vc80\DebugCRTDLL"
+			IntermediateDirectory=".\build\vc80\DebugCRTDLL"
 			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -427,10 +275,10 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\build\vc80\DebugMTDLL/ohlib.pch"
-				AssemblerListingLocation=".\build\vc80\DebugMTDLL/"
-				ObjectFile=".\build\vc80\DebugMTDLL/"
-				ProgramDataBaseFileName=".\build\vc80\DebugMTDLL/"
+				PrecompiledHeaderFile=".\build\vc80\DebugCRTDLL/ohlib.pch"
+				AssemblerListingLocation=".\build\vc80\DebugCRTDLL/"
+				ObjectFile=".\build\vc80\DebugCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc80\DebugCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -460,7 +308,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc80\DebugMTDLL/ohlib.bsc"
+				OutputFile=".\build\vc80\DebugCRTDLL/ohlib.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -481,15 +329,6 @@
 			RelativePath="oh\exception.cpp"
 			>
 			<FileConfiguration
-				Name="Debug SingleThread|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions=""
-				/>
-			</FileConfiguration>
-			<FileConfiguration
 				Name="Debug|Win32"
 				>
 				<Tool
@@ -499,16 +338,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release SingleThread|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions=""
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -526,7 +356,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -543,15 +373,6 @@
 			RelativePath="oh\logger.cpp"
 			>
 			<FileConfiguration
-				Name="Debug SingleThread|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions=""
-				/>
-			</FileConfiguration>
-			<FileConfiguration
 				Name="Debug|Win32"
 				>
 				<Tool
@@ -561,16 +382,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release SingleThread|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions=""
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -588,7 +400,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -605,15 +417,6 @@
 			RelativePath="oh\object.cpp"
 			>
 			<FileConfiguration
-				Name="Debug SingleThread|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions=""
-				/>
-			</FileConfiguration>
-			<FileConfiguration
 				Name="Debug|Win32"
 				>
 				<Tool
@@ -623,16 +426,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release SingleThread|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions=""
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -650,7 +444,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -671,15 +465,6 @@
 			RelativePath="oh\objecthandlerbase.cpp"
 			>
 			<FileConfiguration
-				Name="Debug SingleThread|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions=""
-				/>
-			</FileConfiguration>
-			<FileConfiguration
 				Name="Debug|Win32"
 				>
 				<Tool
@@ -689,16 +474,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release SingleThread|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions=""
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -716,7 +492,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -749,15 +525,6 @@
 			RelativePath="oh\utilities.cpp"
 			>
 			<FileConfiguration
-				Name="Debug SingleThread|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions=""
-				/>
-			</FileConfiguration>
-			<FileConfiguration
 				Name="Debug|Win32"
 				>
 				<Tool
@@ -767,16 +534,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release SingleThread|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions=""
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -794,7 +552,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"

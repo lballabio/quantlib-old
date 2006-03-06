@@ -11,9 +11,9 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Release MTDLL|Win32"
-			OutputDirectory=".\build\vc71\ReleaseMTDLL"
-			IntermediateDirectory=".\build\vc71\ReleaseMTDLL"
+			Name="Release CRTDLL|Win32"
+			OutputDirectory=".\build\vc71\ReleaseCRTDLL"
+			IntermediateDirectory=".\build\vc71\ReleaseCRTDLL"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -29,10 +29,10 @@
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc71\ReleaseMTDLL/ExampleCpp.pch"
-				AssemblerListingLocation=".\build\vc71\ReleaseMTDLL/"
-				ObjectFile=".\build\vc71\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\build\vc71\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\build\vc71\ReleaseCRTDLL/ExampleCpp.pch"
+				AssemblerListingLocation=".\build\vc71\ReleaseCRTDLL/"
+				ObjectFile=".\build\vc71\ReleaseCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\ReleaseCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -40,17 +40,17 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="bin\ExampleCpp-vc71-mt-0_3_12.exe"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib\Release"
-				ProgramDatabaseFile=".\build\vc71\ReleaseMTDLL/ExampleCpp-vc71-mt-0_3_12.pdb"
+				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib"
+				ProgramDatabaseFile=".\build\vc71\ReleaseCRTDLL/ExampleCpp-vc71-mt-0_3_12.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc71\ReleaseMTDLL/ExampleCpp.tlb"
+				TypeLibraryName=".\build\vc71\ReleaseCRTDLL/ExampleCpp.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -102,11 +102,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="bin\ExampleCpp-vc71-sgd-0_3_12.exe"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib\Debug"
+				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile=".\build\vc71\DebugST/ExampleCpp-vc71-sgd-0_3_12.pdb"
 				SubSystem="1"
@@ -166,11 +166,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="bin\ExampleCpp-vc71-s-0_3_12.exe"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib\Release"
+				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib"
 				ProgramDatabaseFile=".\build\vc71\ReleaseST/ExampleCpp-vc71-s-0_3_12.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
@@ -228,11 +228,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="bin\ExampleCpp-vc71-mt-sgd-0_3_12.exe"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib\Debug"
+				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile=".\build\vc71\Debug/ExampleCpp-vc71-mt-sgd-0_3_12.pdb"
 				SubSystem="1"
@@ -292,11 +292,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="bin\ExampleCpp-vc71-mt-s-0_3_12.exe"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib\Release"
+				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib"
 				ProgramDatabaseFile=".\build\vc71\Release/ExampleCpp-vc71-mt-s-0_3_12.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
@@ -326,9 +326,9 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc71\DebugMTDLL"
-			IntermediateDirectory=".\build\vc71\DebugMTDLL"
+			Name="Debug CRTDLL|Win32"
+			OutputDirectory=".\build\vc71\DebugCRTDLL"
+			IntermediateDirectory=".\build\vc71\DebugCRTDLL"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -342,10 +342,10 @@
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc71\DebugMTDLL/ExampleCpp.pch"
-				AssemblerListingLocation=".\build\vc71\DebugMTDLL/"
-				ObjectFile=".\build\vc71\DebugMTDLL/"
-				ProgramDataBaseFileName=".\build\vc71\DebugMTDLL/"
+				PrecompiledHeaderFile=".\build\vc71\DebugCRTDLL/ExampleCpp.pch"
+				AssemblerListingLocation=".\build\vc71\DebugCRTDLL/"
+				ObjectFile=".\build\vc71\DebugCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\DebugCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -354,18 +354,18 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
 				OutputFile="bin\ExampleCpp-vc71-mt-gd-0_3_12.exe"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib\Debug"
+				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\build\vc71\DebugMTDLL/ExampleCpp-vc71-mt-gd-0_3_12.pdb"
+				ProgramDatabaseFile=".\build\vc71\DebugCRTDLL/ExampleCpp-vc71-mt-gd-0_3_12.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\build\vc71\DebugMTDLL/ExampleCpp.tlb"
+				TypeLibraryName=".\build\vc71\DebugCRTDLL/ExampleCpp.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -395,7 +395,7 @@
 		<File
 			RelativePath="example.cpp">
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -437,7 +437,7 @@
 					PreprocessorDefinitions=""/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -452,7 +452,7 @@
 		<File
 			RelativePath="objectfoo.cpp">
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -494,7 +494,7 @@
 					PreprocessorDefinitions=""/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"

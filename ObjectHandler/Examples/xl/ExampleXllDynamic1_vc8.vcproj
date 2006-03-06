@@ -14,9 +14,9 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Release MTDLL|Win32"
-			OutputDirectory=".\build\vc80\ReleaseMTDLL"
-			IntermediateDirectory=".\build\vc80\ReleaseMTDLL"
+			Name="Release CRTDLL|Win32"
+			OutputDirectory=".\build\vc80\ReleaseCRTDLL"
+			IntermediateDirectory=".\build\vc80\ReleaseCRTDLL"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -41,7 +41,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\build\vc80\ReleaseMTDLL/ExampleXllDynamic1.tlb"
+				TypeLibraryName=".\build\vc80\ReleaseCRTDLL/ExampleXllDynamic1.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -54,10 +54,10 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\build\vc80\ReleaseMTDLL/ExampleXllDynamic1.pch"
-				AssemblerListingLocation=".\build\vc80\ReleaseMTDLL/"
-				ObjectFile=".\build\vc80\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\build\vc80\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\build\vc80\ReleaseCRTDLL/ExampleXllDynamic1.pch"
+				AssemblerListingLocation=".\build\vc80\ReleaseCRTDLL/"
+				ObjectFile=".\build\vc80\ReleaseCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc80\ReleaseCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -79,8 +79,8 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxll\xll"
-				ProgramDatabaseFile=".\build\vc80\ReleaseMTDLL/ExampleXLLDynamic1-vc80-mt-0_1_3.pdb"
-				ImportLibrary=".\build\vc80\ReleaseMTDLL/ExampleXLLDynamic1-vc80-mt-0_1_3.lib"
+				ProgramDatabaseFile=".\build\vc80\ReleaseCRTDLL/ExampleXLLDynamic1-vc80-mt-0_1_3.pdb"
+				ImportLibrary=".\build\vc80\ReleaseCRTDLL/ExampleXLLDynamic1-vc80-mt-0_1_3.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -95,7 +95,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc80\ReleaseMTDLL/ExampleXllDynamic1.bsc"
+				OutputFile=".\build\vc80\ReleaseCRTDLL/ExampleXllDynamic1.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -111,9 +111,9 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc80\DebugMTDLL"
-			IntermediateDirectory=".\build\vc80\DebugMTDLL"
+			Name="Debug CRTDLL|Win32"
+			OutputDirectory=".\build\vc80\DebugCRTDLL"
+			IntermediateDirectory=".\build\vc80\DebugCRTDLL"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -138,7 +138,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\build\vc80\DebugMTDLL/ExampleXllDynamic1.tlb"
+				TypeLibraryName=".\build\vc80\DebugCRTDLL/ExampleXllDynamic1.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -150,10 +150,10 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\build\vc80\DebugMTDLL/ExampleXllDynamic1.pch"
-				AssemblerListingLocation=".\build\vc80\DebugMTDLL/"
-				ObjectFile=".\build\vc80\DebugMTDLL/"
-				ProgramDataBaseFileName=".\build\vc80\DebugMTDLL/"
+				PrecompiledHeaderFile=".\build\vc80\DebugCRTDLL/ExampleXllDynamic1.pch"
+				AssemblerListingLocation=".\build\vc80\DebugCRTDLL/"
+				ObjectFile=".\build\vc80\DebugCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc80\DebugCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -177,8 +177,8 @@
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxll\xll"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\build\vc80\DebugMTDLL/ExampleXLLDynamic1-vc80-mt-gd-0_1_3.pdb"
-				ImportLibrary=".\build\vc80\DebugMTDLL/ExampleXLLDynamic1-vc80-mt-gd-0_1_3.lib"
+				ProgramDatabaseFile=".\build\vc80\DebugCRTDLL/ExampleXLLDynamic1-vc80-mt-gd-0_1_3.pdb"
+				ImportLibrary=".\build\vc80\DebugCRTDLL/ExampleXLLDynamic1-vc80-mt-gd-0_1_3.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -193,7 +193,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\build\vc80\DebugMTDLL/ExampleXllDynamic1.bsc"
+				OutputFile=".\build\vc80\DebugCRTDLL/ExampleXllDynamic1.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -216,7 +216,7 @@
 			RelativePath="addindynamic1.cpp"
 			>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -225,7 +225,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -242,7 +242,7 @@
 			RelativePath="objectfoo.cpp"
 			>
 			<FileConfiguration
-				Name="Release MTDLL|Win32"
+				Name="Release CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -251,7 +251,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32"
+				Name="Debug CRTDLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"

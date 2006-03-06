@@ -21,7 +21,7 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! 
+/*!
 
 \page installation Installation
 
@@ -32,13 +32,13 @@ use ObjectHandler on Windows and on systems which use Autoconf
 e.g. Linux.  Please see also the Example application shipped with
 ObjectHandler.
 
-ObjectHandler logging is performed by 
-<a href="http://logging.apache.org/log4cxx/index.html">log4cxx</a>, 
-the logging framework for the Apache project.
-Before building ObjectHandler you'll need to install and build
-log4cxx.  ObjectHandler requires log4cxx version 0.9.7.
+ObjectHandler logging is performed by
+<a href="http://logging.apache.org/log4cxx/index.html">log4cxx</a>,
+the logging framework for the Apache project.  ObjectHandler uses a customized
+copy of log4cxx, comprising a complete copy of log4cxx version 0.9.7, amended
+to provide a boost compliant build process and other minor enhancements.
 
-ObjectHandler is available for download from the 
+ObjectHandler and log4cxx are available for download from the
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=141162">QuantLib downloads page on sourceforge</a>
 
 <dl>
@@ -77,16 +77,12 @@ These instructions assume a debug build.
 Before building ObjectHandler you need to build log4cxx.
 
 <ul>
+<li>download the log4cxx zip from the QuantLib downloads page</li>
 <li>log4cxx should be unzipped to a path containing no spaces as the
 library seems to complain otherwise</li>
 <li>choose project \b static, configuration <b>Win32 Debug</b>.</li>
-<li>the log4cxx workspace ships with the above configuration set to
-run time library <b>Debug Multithreaded</b> which is what we will use
-for this example.  If you decide to use a different runtime library you
-need to edit the log4cxx workspace (unlike ObjectHandler which provides
-a separate workspace corresponding to each runtime library).</li>
-<li>build the chosen log4cxx project - this creates file
-<tt>log4cxx-0.9.7\\msvc\\Lib\\Debug\\log4cxxs.lib</tt></li>
+<li>build the chosen log4cxx project.  The resulting lib file is written
+to directory <tt>log4cxx-0.9.7\\msvc\\Lib</tt></li>
 <li>you need to manually set environment variable \c LOG4CXX_DIR to the
 top level log4cxx directory e.g. <tt>C:\\log4cxx-0.9.7</tt></li>
 <li>if VC is running you need to restart it to pick up the new environment
@@ -111,8 +107,7 @@ Build the desired workspace, configuration <b>Win32 Debug</b>.
 
 NB: The ohxll build of ObjectHandler requires a DLL version of the
 VC runtime library (i.e. <b>Debug Multithreaded DLL</b> or <b>Release
-Multithreaded DLL</b>).  This requires an edit to the log4cxx workspace
-as described above.
+Multithreaded DLL</b>).
 
 \subsection inst_win_usage Usage
 
@@ -145,11 +140,11 @@ the tables below.  Please refer to the example application indicated.
 </tr>
 <tr>
 <td><b>Link Directories</b></td>
-<td>\$(OBJECT_HANDLER_DIR)\\lib<br>\$(LOG4CXX_DIR)\\msvc\\lib\\Debug</td>
+<td>\$(OBJECT_HANDLER_DIR)\\lib<br>\$(LOG4CXX_DIR)\\msvc\\Lib</td>
 </tr>
 <tr>
 <td><b>Link Libraries</b></td>
-<td>log4cxxs.lib ws2_32.lib</td>
+<td>ws2_32.lib</td>
 </tr>
 </table>
 
@@ -178,11 +173,11 @@ the tables below.  Please refer to the example application indicated.
 </tr>
 <tr>
 <td><b>Link Directories</b></td>
-<td>\$(OBJECT_HANDLER_DIR)\\xlsdk\\lib<br>\$(OBJECT_HANDLER_DIR)\\ohxl\\ohxllib\\lib<br>\$(LOG4CXX_DIR)\\msvc\\lib\\Debug</td>
+<td>\$(OBJECT_HANDLER_DIR)\\xlsdk\\lib<br>\$(OBJECT_HANDLER_DIR)\\ohxl\\ohxllib\\lib<br>\$(LOG4CXX_DIR)\\msvc\\Lib</td>
 </tr>
 <tr>
 <td><b>Link Libraries</b></td>
-<td>log4cxxs.lib ws2_32.lib</td>
+<td>ws2_32.lib</td>
 </tr>
 </table>
 
@@ -237,7 +232,7 @@ automatically by the directive
 in file <tt>oh/autolink.hpp</tt>
 
 The name of the library depends on your compiler and configuration.
-For example, if you're using VC6, configuration Debug MTDLL, the library
+For example, if you're using VC6, configuration Debug CRTDLL, the library
 is called
 \verbatim
 ObjectHandler-vc6-mt-gd-0_1_3.lib
@@ -250,14 +245,18 @@ The location of the library depends on which project you're using
 
 \subsection inst_auto_prerequisites Prerequisites
 
-Before building ObjectHandler you need to build log4cxx.
+Before building ObjectHandler you need to build log4cxx.  Download the log4cxx
+tar file from the QuantLib downloads page and install as follows:
+\verbatim
+tar zxfv log4cxx-0.9.7.tar.gz
+cd log4cxx-0.9.7
+./autogen.sh
+./configure
+make
+make install
+\endverbatim
 
-A glitch in the log4cxx header files may cause the compilation to generate
-hundreds of warnings, these can be ignored, alternatively you can apply
-the fix described
-<a href="http://nagoya.apache.org/eyebrowse/ReadMsg?listName=log4cxx-user@logging.apache.org&msgId=1649232">here</a>. 
-
-Otherwise log4cxx should build as documented.
+For more details refer to the file \c INSTALL.
 
 \subsection inst_auto_installation Installation
 
@@ -271,9 +270,9 @@ make
 make install
 \endverbatim
 
-Under the default configuration the subsequent <tt>make install</tt> 
-command installs libs to \c /usr/local/lib and header files to 
-\c /usr/local/include, to override this behavior specify a different 
+Under the default configuration the subsequent <tt>make install</tt>
+command installs libs to \c /usr/local/lib and header files to
+\c /usr/local/include, to override this behavior specify a different
 installation prefix using \c --prefix e.g.
 \verbatim
 ./configure --prefix=$HOME/ObjectHandler
@@ -294,11 +293,11 @@ ObjectHandler to a nonstandard location you might need to use the -I flag e.g.
 g++ -I$HOME/ObjectHandler -c -o example.o example.cpp
 \endverbatim
 
-When linking your program use the -l option to tell gcc to link to the 
+When linking your program use the -l option to tell gcc to link to the
 log4cxx and ObjectHandler libraries.
 
-If the directories containing the ObjectHandler and log4cxx libraries 
-are not among the standard list of directories searched by gcc then you 
+If the directories containing the ObjectHandler and log4cxx libraries
+are not among the standard list of directories searched by gcc then you
 need to use the -L option to specify the path e.g.
 
 \verbatim
@@ -306,7 +305,7 @@ g++ -o example example.o -L$HOME/ObjectHandler/lib -lObjectHandler -llog4cxx
 \endverbatim
 
 Finally having compiled your executable you need to ensure that your
-loader knows where to find the log4cxx and ObjectHandler libraries.  
+loader knows where to find the log4cxx and ObjectHandler libraries.
 If the paths containing these libraries are not among those searched by your
 loader then you need to specify them e.g.
 

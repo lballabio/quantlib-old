@@ -14,9 +14,9 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug MTDLL|Win32"
+			Name="Debug CRTDLL|Win32"
 			OutputDirectory=".\xll"
-			IntermediateDirectory=".\build\vc80\DebugMTDLL"
+			IntermediateDirectory=".\build\vc80\DebugCRTDLL"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -53,10 +53,10 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\build\vc80\DebugMTDLL/ohxll.pch"
-				AssemblerListingLocation=".\build\vc80\DebugMTDLL/"
-				ObjectFile=".\build\vc80\DebugMTDLL/"
-				ProgramDataBaseFileName=".\build\vc80\DebugMTDLL/"
+				PrecompiledHeaderFile=".\build\vc80\DebugCRTDLL/ohxll.pch"
+				AssemblerListingLocation=".\build\vc80\DebugCRTDLL/"
+				ObjectFile=".\build\vc80\DebugCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc80\DebugCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -74,11 +74,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib advapi32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
 				OutputFile="xll\ObjectHandler-vc80-mt-gd-0_1_3.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\xlsdk\lib,$(LOG4CXX_DIR)\msvc\Lib\Debug"
+				AdditionalLibraryDirectories="..\xlsdk\lib,$(LOG4CXX_DIR)\msvc\Lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\xll/ObjectHandler-vc80-mt-gd-0_1_3.pdb"
 				ImportLibrary=".\xll/ObjectHandler-vc80-mt-gd-0_1_3.lib"
@@ -112,9 +112,9 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release MTDLL|Win32"
+			Name="Release CRTDLL|Win32"
 			OutputDirectory=".\xll"
-			IntermediateDirectory=".\build\vc80\ReleaseMTDLL"
+			IntermediateDirectory=".\build\vc80\ReleaseCRTDLL"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -152,10 +152,10 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\build\vc80\ReleaseMTDLL/ohxll.pch"
-				AssemblerListingLocation=".\build\vc80\ReleaseMTDLL/"
-				ObjectFile=".\build\vc80\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\build\vc80\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\build\vc80\ReleaseCRTDLL/ohxll.pch"
+				AssemblerListingLocation=".\build\vc80\ReleaseCRTDLL/"
+				ObjectFile=".\build\vc80\ReleaseCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc80\ReleaseCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -172,11 +172,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib log4cxxs.lib Ws2_32.lib advapi32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
 				OutputFile="xll\ObjectHandler-vc80-mt-0_1_3.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\xlsdk\lib,$(LOG4CXX_DIR)\msvc\Lib\Release"
+				AdditionalLibraryDirectories="..\xlsdk\lib,$(LOG4CXX_DIR)\msvc\Lib"
 				ProgramDatabaseFile=".\xll/ObjectHandler-vc80-mt-0_1_3.pdb"
 				ImportLibrary=".\xll/ObjectHandler-vc80-mt-0_1_3.lib"
 				TargetMachine="1"
@@ -223,7 +223,7 @@
 				RelativePath="..\..\oh\exception.cpp"
 				>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32"
+					Name="Debug CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -232,7 +232,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32"
+					Name="Release CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -249,7 +249,7 @@
 				RelativePath="..\..\oh\logger.cpp"
 				>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32"
+					Name="Debug CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -258,7 +258,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32"
+					Name="Release CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -275,7 +275,7 @@
 				RelativePath="..\..\oh\object.cpp"
 				>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32"
+					Name="Debug CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -284,7 +284,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32"
+					Name="Release CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -305,7 +305,7 @@
 				RelativePath="..\..\oh\objecthandlerbase.cpp"
 				>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32"
+					Name="Debug CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -314,7 +314,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32"
+					Name="Release CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -347,7 +347,7 @@
 				RelativePath="..\..\oh\utilities.cpp"
 				>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32"
+					Name="Debug CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -356,7 +356,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32"
+					Name="Release CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -377,7 +377,7 @@
 				RelativePath="..\conversions.cpp"
 				>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32"
+					Name="Debug CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -386,7 +386,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32"
+					Name="Release CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -407,7 +407,7 @@
 				RelativePath="..\functions.cpp"
 				>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32"
+					Name="Debug CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -416,7 +416,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32"
+					Name="Release CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -429,7 +429,7 @@
 				RelativePath="..\objecthandlerxl.cpp"
 				>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32"
+					Name="Debug CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -438,7 +438,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32"
+					Name="Release CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -455,7 +455,7 @@
 				RelativePath="..\register.cpp"
 				>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32"
+					Name="Debug CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -464,7 +464,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32"
+					Name="Release CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -481,7 +481,7 @@
 				RelativePath="..\unregister.cpp"
 				>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32"
+					Name="Debug CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -490,7 +490,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32"
+					Name="Release CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -511,7 +511,7 @@
 				RelativePath="addin.cpp"
 				>
 				<FileConfiguration
-					Name="Debug MTDLL|Win32"
+					Name="Debug CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -520,7 +520,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release MTDLL|Win32"
+					Name="Release CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"

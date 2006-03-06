@@ -11,9 +11,9 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Release MTDLL|Win32"
-			OutputDirectory=".\build\vc71\ReleaseMTDLL"
-			IntermediateDirectory=".\build\vc71\ReleaseMTDLL"
+			Name="Release CRTDLL|Win32"
+			OutputDirectory=".\build\vc71\ReleaseCRTDLL"
+			IntermediateDirectory=".\build\vc71\ReleaseCRTDLL"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -29,10 +29,10 @@
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc71\ReleaseMTDLL/ExampleXllDynamic1.pch"
-				AssemblerListingLocation=".\build\vc71\ReleaseMTDLL/"
-				ObjectFile=".\build\vc71\ReleaseMTDLL/"
-				ProgramDataBaseFileName=".\build\vc71\ReleaseMTDLL/"
+				PrecompiledHeaderFile=".\build\vc71\ReleaseCRTDLL/ExampleXllDynamic1.pch"
+				AssemblerListingLocation=".\build\vc71\ReleaseCRTDLL/"
+				ObjectFile=".\build\vc71\ReleaseCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\ReleaseCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -41,11 +41,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="xll\ExampleXLLDynamic1-vc71-mt-0_1_3.xll"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxll\xll"
-				ProgramDatabaseFile=".\build\vc71\ReleaseMTDLL/ExampleXLLDynamic1-vc71-mt-0_1_3.pdb"
-				ImportLibrary=".\build\vc71\ReleaseMTDLL/ExampleXLLDynamic1-vc71-mt-0_1_3.lib"
+				ProgramDatabaseFile=".\build\vc71\ReleaseCRTDLL/ExampleXLLDynamic1-vc71-mt-0_1_3.pdb"
+				ImportLibrary=".\build\vc71\ReleaseCRTDLL/ExampleXLLDynamic1-vc71-mt-0_1_3.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -53,7 +53,7 @@
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\build\vc71\ReleaseMTDLL/ExampleXllDynamic1.tlb"
+				TypeLibraryName=".\build\vc71\ReleaseCRTDLL/ExampleXllDynamic1.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -77,9 +77,9 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Debug MTDLL|Win32"
-			OutputDirectory=".\build\vc71\DebugMTDLL"
-			IntermediateDirectory=".\build\vc71\DebugMTDLL"
+			Name="Debug CRTDLL|Win32"
+			OutputDirectory=".\build\vc71\DebugCRTDLL"
+			IntermediateDirectory=".\build\vc71\DebugCRTDLL"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -93,10 +93,10 @@
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\build\vc71\DebugMTDLL/ExampleXllDynamic1.pch"
-				AssemblerListingLocation=".\build\vc71\DebugMTDLL/"
-				ObjectFile=".\build\vc71\DebugMTDLL/"
-				ProgramDataBaseFileName=".\build\vc71\DebugMTDLL/"
+				PrecompiledHeaderFile=".\build\vc71\DebugCRTDLL/ExampleXllDynamic1.pch"
+				AssemblerListingLocation=".\build\vc71\DebugCRTDLL/"
+				ObjectFile=".\build\vc71\DebugCRTDLL/"
+				ProgramDataBaseFileName=".\build\vc71\DebugCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -106,12 +106,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="xll\ExampleXLLDynamic1-vc71-mt-gd-0_1_3.xll"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxll\xll"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\build\vc71\DebugMTDLL/ExampleXLLDynamic1-vc71-mt-gd-0_1_3.pdb"
-				ImportLibrary=".\build\vc71\DebugMTDLL/ExampleXLLDynamic1-vc71-mt-gd-0_1_3.lib"
+				ProgramDatabaseFile=".\build\vc71\DebugCRTDLL/ExampleXLLDynamic1-vc71-mt-gd-0_1_3.pdb"
+				ImportLibrary=".\build\vc71\DebugCRTDLL/ExampleXLLDynamic1-vc71-mt-gd-0_1_3.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -119,7 +119,7 @@
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\build\vc71\DebugMTDLL/ExampleXllDynamic1.tlb"
+				TypeLibraryName=".\build\vc71\DebugCRTDLL/ExampleXllDynamic1.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -149,7 +149,7 @@
 		<File
 			RelativePath="addindynamic1.cpp">
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -157,7 +157,7 @@
 					PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
@@ -172,7 +172,7 @@
 		<File
 			RelativePath="objectfoo.cpp">
 			<FileConfiguration
-				Name="Release MTDLL|Win32">
+				Name="Release CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="2"
@@ -180,7 +180,7 @@
 					PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug MTDLL|Win32">
+				Name="Debug CRTDLL|Win32">
 				<Tool
 					Name="VCCLCompilerTool"
 					Optimization="0"
