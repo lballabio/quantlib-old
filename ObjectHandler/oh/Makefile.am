@@ -12,7 +12,8 @@ include_HEADERS = \
     objhandler.hpp \
     property.hpp \
     singleton.hpp \
-    utilities.hpp
+    utilities.hpp \
+    valueobject.hpp
 
 EXTRA_DIST = \
     autolink.hpp

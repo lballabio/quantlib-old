@@ -37,6 +37,10 @@
     boost::dynamic_pointer_cast< CLASS > \
     (ObjHandler::retrieveObject( HANDLE ))
 
+#define OH_GET_OBJECT_EO( CLASS, HANDLE ) \
+    boost::dynamic_pointer_cast< CLASS > \
+    (ObjHandler::retrieveObjectEO( HANDLE ))
+
 namespace ObjHandler {
     //! Store given Object in repository under given handle.
     /*! Any existing Objet with that handle is deleted.
@@ -49,10 +53,15 @@ namespace ObjHandler {
     */
     DLL_API ObjHandler::obj_ptr retrieveObject(
             const std::string &handle);
+    //! Retrieve named Object from repository.
+    /*! If no Object exists with given handle an empty pointer is returned.
+    */
+    DLL_API ObjHandler::obj_ptr retrieveObjectEO(
+            const std::string &handle);
     //! Return Property vector for given Object.
     /*! Throws an exception if no Object exists with given handle.
     */
-    const Properties& queryObject(const std::string &handle);
+    //const Properties& queryObject(const std::string &handle);
     //! Retrieve ObjectHandler version string
     const std::string version();
     /** \name Logging framework

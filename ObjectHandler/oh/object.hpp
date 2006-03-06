@@ -25,6 +25,7 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/any.hpp>
 #include <oh/property.hpp>
+#include <oh/valueobject.hpp>
 #include <vector>
 #include <stack>
 #include <string>
@@ -47,13 +48,13 @@ namespace ObjHandler {
     /*! The string names the property
         and the any holds the corresponding value.
     */
-    typedef Property<std::string, any_ptr> ObjectProperty;
+    //typedef Property<std::string, any_ptr> ObjectProperty;
     //! Property vector.
     /*! Each Object is described by a vector of properties
         which is maintained dynamically throughout
         the life of the Object.
     */
-    typedef std::vector<ObjectProperty> Properties;
+    //typedef std::vector<ObjectProperty> Properties;
 
     //! ABC implementing interface for Objects to be stored in the ObjectHandler.
     /*! Objects are constructed via the Factory function makeObject
@@ -82,7 +83,7 @@ namespace ObjHandler {
         //! Return the Object's property vector.
         /*! Returns the property vector describing the underlying Object.
         */
-        const Properties& getProperties() const;
+        //const Properties& getProperties() const;
         //! Retrieve vector of property names.
         /*! Returns empty vector if Object has no properties.
         */
@@ -94,8 +95,12 @@ namespace ObjHandler {
 
         friend std::ostream &operator<<(std::ostream&, const Object &object);
         //@}
+        void setProperties(const boost::shared_ptr<ValueObject>& p) {
+            mProps = p;
+        }
+
     protected:
-        template < class T >
+        /*template < class T >
         void createProperty(const std::string &name, const T &value) {
             any_ptr anyValue(new boost::any(value));
             ObjectProperty objectProperty(name, anyValue);
@@ -105,10 +110,11 @@ namespace ObjHandler {
         template < class T >
         void updateProperty(const int &index, const T &value) {
             *properties_[index]() = value;
-        }
+        }*/
 
     private:
-        Properties properties_;
+        boost::shared_ptr<ValueObject> mProps;
+        //Properties properties_;
         Object& operator= (const Object&);
         Object(const Object&);
     };
@@ -131,7 +137,7 @@ namespace ObjHandler {
         out << std::endl;
         for (typename std::vector< T >::const_iterator i = v.begin(); i != v.end(); i++)
             out << *i << std::endl;
-        return out;       
+        return out;
     }
 
 }
