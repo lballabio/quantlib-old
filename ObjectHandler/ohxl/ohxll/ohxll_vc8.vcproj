@@ -336,10 +336,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\oh\property.hpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\oh\singleton.hpp"
 				>
 			</File>
@@ -367,6 +363,10 @@
 			</File>
 			<File
 				RelativePath="..\..\oh\utilities.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\oh\valueobject.hpp"
 				>
 			</File>
 		</Filter>

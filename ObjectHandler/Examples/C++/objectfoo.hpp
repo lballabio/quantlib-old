@@ -23,10 +23,10 @@
 
 using namespace ObjHandler;
 
-#define PROPERTY_STR "PROPERTY_STR"
-#define PROPERTY_INT "PROPERTY_INT"
-#define IDX_STR      0
-#define IDX_INT      1
+//#define PROPERTY_STR "PROPERTY_STR"
+//#define PROPERTY_INT "PROPERTY_INT"
+//#define IDX_STR      0
+//#define IDX_INT      1
 
 class ObjectFoo : public Object {
 public:

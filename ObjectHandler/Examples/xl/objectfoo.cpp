@@ -26,16 +26,16 @@ ObjectFoo::ObjectFoo(
         const int &i) {
     foo_ = boost::shared_ptr<Foo>(new Foo(s, i));
     // populate base class Property vector
-	createProperty(PROPERTY_STR, foo_->s());
-	createProperty(PROPERTY_INT, foo_->i());
+//	createProperty(PROPERTY_STR, foo_->s());
+//	createProperty(PROPERTY_INT, foo_->i());
 }
 
 // wrapper for underlying member function
 void ObjectFoo::update(const string &s, const int &i) {
     foo_->update(s, i);
     // update Property vector
-	updateProperty(IDX_STR, s);
-	updateProperty(IDX_INT, i);
+//	updateProperty(IDX_STR, s);
+//	updateProperty(IDX_INT, i);
 }
 
 boost::shared_ptr<void> ObjectFoo::getReference() const {

@@ -2,8 +2,7 @@ ObjectHandler is
     Copyright (C) 2004, 2005, 2006 Eric Ehlers
 
     Copyright (C) 2004, 2005 Ferdinando Ametrano
-    Copyright (C) 2004 Daniel Duffy - Datasim
-    Copyright (C) 2005 Plamen Neykov
+    Copyright (C) 2005, 2006 Plamen Neykov
     Copyright (C) 2004 StatPro Italia srl
 
 Redistribution and use in source and binary forms, with or without

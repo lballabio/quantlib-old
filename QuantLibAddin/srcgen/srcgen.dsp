@@ -143,6 +143,10 @@ SOURCE=.\srcgen.py
 # End Source File
 # Begin Source File
 
+SOURCE=.\valueobjects.py
+# End Source File
+# Begin Source File
+
 SOURCE=.\xmlreader.py
 # End Source File
 # End Group
@@ -224,6 +228,22 @@ SOURCE=.\stub.guile.initfunc
 # Begin Source File
 
 SOURCE=.\stub.qla.includes
+# End Source File
+# Begin Source File
+
+SOURCE=.\stub.vo.class.body
+# End Source File
+# Begin Source File
+
+SOURCE=.\stub.vo.class.decl
+# End Source File
+# Begin Source File
+
+SOURCE=.\stub.vo.includes.body
+# End Source File
+# Begin Source File
+
+SOURCE=.\stub.vo.includes.decl
 # End Source File
 # End Group
 # Begin Group "metadata"
@@ -316,6 +336,10 @@ SOURCE=.\termstructures.xml
 # Begin Source File
 
 SOURCE=.\utilities.xml
+# End Source File
+# Begin Source File
+
+SOURCE=.\valueobjects.xml
 # End Source File
 # Begin Source File
 

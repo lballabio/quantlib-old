@@ -1,4 +1,4 @@
 
 We gratefully acknowledge contributions from Ferdinando Ametrano, Luigi
-Ballabio, Daniel Duffy, Plamen Neykov, Walter Penschke, Lars Schouw.
+Ballabio, Walter Penschke, Lars Schouw.
 

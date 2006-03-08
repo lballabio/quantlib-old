@@ -1,6 +1,7 @@
 
 /*!
  Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2006 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,7 +25,7 @@ using namespace std;
 ObjectFoo::ObjectFoo(
         const string &s,
         const int &i) {
-    foo_        = boost::shared_ptr<Foo>(new Foo(s, i));
+    foo_ = boost::shared_ptr<Foo>(new Foo(s, i));
     // populate base class Property vector
 	//createProperty(PROPERTY_STR, foo_->s());
 	//createProperty(PROPERTY_INT, foo_->i());

@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2006 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -25,33 +26,18 @@
 
 namespace ObjHandler {
 
-    /*const Properties& Object::getProperties() const {
-        return properties_;
-    }*/
-
     const std::vector < std::string > Object::propertyNames() const {
 
         std::vector < std::string > ret;
 		if(mProps)
 			ret = mProps->getPropertyNames();
 			
-        /*Properties::const_iterator it;
-        for (it = properties_.begin(); it != properties_.end(); it++) {
-            ObjectProperty property = *it;
-            ret.push_back(property.name());
-        }*/
         return ret;
     }
 
     const boost::any Object::propertyValue(const std::string &propertyName) const {
 		if(mProps)
 			return mProps->getProperty(propertyName);
-        /*Properties::const_iterator it;
-        for (it = properties_.begin(); it != properties_.end(); it++) {
-            ObjectProperty property = *it;
-            if (property.name().compare(propertyName) == 0)
-                return *property();
-        }*/
         std::ostringstream msg;
         msg << "ObjectHandler error: attempt to retrieve property "
             << "with unknown name '" << propertyName << "'";
@@ -112,13 +98,15 @@ namespace ObjHandler {
 
     std::ostream& operator<<(std::ostream& out, const Object &object) {
         out << std::endl;
-        /*Properties properties = object.getProperties();
-        Properties::const_iterator it;
-        for (it = properties.begin(); it != properties.end(); it++) {
-            ObjectProperty property = *it;
-            out << std::left << "property = " << std::setw(10) << property.name() <<
-                " value = " << *property() << std::endl;
-        }*/
+		const std::vector < std::string > propertyNames = object.propertyNames();
+		std::vector < std::string >::const_iterator it;
+		for (it = propertyNames.begin(); it != propertyNames.end(); it++) {
+			std::string propertyName = *it;
+			const boost::any propertyValue = object.propertyValue(propertyName);
+            out << std::left << "property = " << std::setw(10) << propertyName <<
+                " value = " << propertyValue << std::endl;
+		}
+        out << std::endl;
         return out;
     }
 

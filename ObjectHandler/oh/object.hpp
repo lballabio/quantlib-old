@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2006 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,7 +25,6 @@
 
 #include <boost/shared_ptr.hpp>
 #include <boost/any.hpp>
-#include <oh/property.hpp>
 #include <oh/valueobject.hpp>
 #include <vector>
 #include <stack>
@@ -39,23 +39,6 @@
 #endif
 
 namespace ObjHandler {
-    //! Shared pointer to any.
-    /*! Used to hold the value for
-        each of the Object's properties.
-    */
-    typedef boost::shared_ptr<boost::any> any_ptr;
-    //! Property string/any pair.
-    /*! The string names the property
-        and the any holds the corresponding value.
-    */
-    //typedef Property<std::string, any_ptr> ObjectProperty;
-    //! Property vector.
-    /*! Each Object is described by a vector of properties
-        which is maintained dynamically throughout
-        the life of the Object.
-    */
-    //typedef std::vector<ObjectProperty> Properties;
-
     //! ABC implementing interface for Objects to be stored in the ObjectHandler.
     /*! Objects are constructed via the Factory function makeObject
         and stored in the global ObjectHandler repository.
@@ -80,10 +63,6 @@ namespace ObjHandler {
             This is a shared pointer to void which must be recast appropriately.
         */
         virtual boost::shared_ptr<void> getReference() const = 0;
-        //! Return the Object's property vector.
-        /*! Returns the property vector describing the underlying Object.
-        */
-        //const Properties& getProperties() const;
         //! Retrieve vector of property names.
         /*! Returns empty vector if Object has no properties.
         */
@@ -99,38 +78,11 @@ namespace ObjHandler {
             mProps = p;
         }
 
-    protected:
-        /*template < class T >
-        void createProperty(const std::string &name, const T &value) {
-            any_ptr anyValue(new boost::any(value));
-            ObjectProperty objectProperty(name, anyValue);
-            properties_.push_back(objectProperty);
-        }
-
-        template < class T >
-        void updateProperty(const int &index, const T &value) {
-            *properties_[index]() = value;
-        }*/
-
     private:
         boost::shared_ptr<ValueObject> mProps;
-        //Properties properties_;
         Object& operator= (const Object&);
         Object(const Object&);
     };
-
-    /*! \relates Object */
-    //! any_ptr ostream operator.
-    /*! Write contents of boost::any to output stream.
-    */
-    std::ostream& operator<<(std::ostream& out, const boost::any& any);
-
-    /*! \relates Object */
-    //! obj_ptr ostream operator.
-    /*! Write contents of Object Property vector to output stream.
-    */
-
-    std::ostream& operator<<(std::ostream& out, const Object &object);
 
     template < typename T >
     std::ostream& operator<<(std::ostream& out, std::vector < T > &v) {

@@ -140,10 +140,6 @@ SOURCE=..\..\oh\objhandlerdefines.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\oh\property.hpp
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\oh\singleton.hpp
 # End Source File
 # Begin Source File
@@ -153,6 +149,10 @@ SOURCE=..\..\oh\utilities.cpp
 # Begin Source File
 
 SOURCE=..\..\oh\utilities.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\oh\valueobject.hpp
 # End Source File
 # End Group
 # Begin Group "xl"

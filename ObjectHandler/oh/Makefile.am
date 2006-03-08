@@ -10,7 +10,6 @@ include_HEADERS = \
     object.hpp \
     objhandlerdefines.hpp \
     objhandler.hpp \
-    property.hpp \
     singleton.hpp \
     utilities.hpp \
     valueobject.hpp
