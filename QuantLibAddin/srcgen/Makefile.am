@@ -23,6 +23,7 @@ SRCGEN_INPUT := addincalc.xml \
                 swap.xml \
                 termstructures.xml \
                 utilities.xml \
+                valueobjects.xml \
                 volatilities.xml \
                 xibor.xml
 
@@ -48,6 +49,7 @@ srcgen_pys :=   addincalc.py \
                 serializer.py \
                 singleton.py \
                 srcgen.py \
+                valueobjects.py \
                 xmlreader.py
 
 SRCGEN_STUBS := stub.calc.function \
@@ -68,7 +70,11 @@ SRCGEN_STUBS := stub.calc.function \
                 stub.guile.function \
                 stub.guile.includes \
                 stub.guile.initfunc \
-                stub.qla.includes
+                stub.qla.includes \
+                stub.vo.class.body \
+                stub.vo.class.decl \
+                stub.vo.includes.body \
+                stub.vo.includes.decl
 
 # this should prevent running from a distributed tarball
 EXTRA_DIST = .time-stamp \
@@ -81,7 +87,7 @@ EXTRA_DIST = .time-stamp \
              $(SRCGEN_STUBS)
 
 # command line arguments
-SRCGEN_ARGS = -dq
+SRCGEN_ARGS = -dqv
 if BUILD_C
     SRCGEN_ARGS += -c
 endif
@@ -100,4 +106,6 @@ all-local: .time-stamp
 .time-stamp: $(SRCGEN_INPUT) $(SRCGEN_PYS) $(SRCGEN_STUBS)
 	python srcgen.py $(SRCGEN_ARGS)
 	touch .time-stamp
+
+CLEANFILES = .time-stamp
 

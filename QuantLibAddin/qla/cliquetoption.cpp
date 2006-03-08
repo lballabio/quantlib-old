@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,13 +22,6 @@
 #include <qla/cliquetoption.hpp>
 #include <qla/typefactory.hpp>
 #include <qla/generalutils.hpp>
-
-// indexes to the Property vector
-// FIXME - need a cleaner way to achieve this
-#define FIELD_NPV                       "NPV"
-#define FIELD_ENGINE                    "ENGINE"
-#define IDX_NPV                         0
-#define IDX_ENGINE                      1
 
 namespace QuantLibAddin {
 
@@ -64,8 +57,6 @@ namespace QuantLibAddin {
                 exercise, 
                 resetDatesQL,
                 pricingEngine));
-        //createProperty(FIELD_NPV, mInstrument->NPV());
-        //createProperty(FIELD_ENGINE, engineID);
     }
 
 }

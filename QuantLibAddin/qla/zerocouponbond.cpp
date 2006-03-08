@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
 
@@ -26,11 +26,6 @@
 #include <qla/generalutils.hpp>
 #include <qla/typefactory.hpp>
 #include <ql/Instruments/zerocouponbond.hpp>
-
-// indexes to the Property vector
-// FIXME - need a cleaner way to achieve this
-#define FIELD_NPV "NPV"
-#define IDX_NPV   0
 
 namespace QuantLibAddin {
 
@@ -69,10 +64,7 @@ namespace QuantLibAddin {
                                              QuantLib::Handle<QuantLib::YieldTermStructure>(zeroCurveQl)));
 
         // Perform pricing
-        double npv = mInstrument->NPV();
-
-        // Setup object properties
-        //createProperty(FIELD_NPV, npv);
+        mInstrument->NPV();
     }
 }
 

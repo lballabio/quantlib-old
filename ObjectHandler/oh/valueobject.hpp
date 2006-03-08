@@ -39,8 +39,10 @@ namespace ObjHandler {
 	public:
 		virtual std::vector<std::string> getPropertyNames() const = 0;
 		virtual boost::any getProperty(const std::string& name) const = 0;
+        virtual ~ValueObject() {}
 	};
 
 }
 
 #endif
+

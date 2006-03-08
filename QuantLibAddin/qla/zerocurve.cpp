@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
 
@@ -24,13 +24,6 @@
 #include <qla/zerocurve.hpp>
 #include <qla/generalutils.hpp>
 #include <qla/typefactory.hpp>
-
-// indexes to the Property vector
-// FIXME - need a cleaner way to achieve this
-#define FIELD_RATES  "RATES"
-#define FIELD_DATES  "DATES"
-#define IDX_RATES    0
-#define IDX_DATES    1
 
 namespace QuantLibAddin {
 
@@ -62,10 +55,6 @@ namespace QuantLibAddin {
             derivedDates.push_back(date.serialNumber());
             derivedRates.push_back(rate);
         }
-
-        // Setup object properties
-        //createProperty(FIELD_DATES, derivedDates);
-        //createProperty(FIELD_RATES, derivedRates);
 
     }
 }
