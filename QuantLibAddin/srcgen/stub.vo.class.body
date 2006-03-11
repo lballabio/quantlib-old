@@ -9,7 +9,7 @@
         %s
             throw ObjHandler::Exception("Error: attempt to retrieve non-existent Property: '" + name + "'");
 
-        return boost::any();
+        return boost::any(); /* Dummy return - just to avoid stupid compiler warnings/errors */
     }
 
     %s::%s(%s) :%s {}
