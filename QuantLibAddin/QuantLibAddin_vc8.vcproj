@@ -1286,67 +1286,67 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_basic.cpp"
+				RelativePath="qla\vo_basic.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_capfloor.cpp"
+				RelativePath="qla\vo_capfloor.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_couponvectors.cpp"
+				RelativePath="qla\vo_couponvectors.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_instruments.cpp"
+				RelativePath="qla\vo_instruments.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_interpolation.cpp"
+				RelativePath="qla\vo_interpolation.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_ohfunctions.cpp"
+				RelativePath="qla\vo_ohfunctions.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_options.cpp"
+				RelativePath="qla\vo_options.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_processes.cpp"
+				RelativePath="qla\vo_processes.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_schedule.cpp"
+				RelativePath="qla\vo_schedule.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_shortratemodels.cpp"
+				RelativePath="qla\vo_shortratemodels.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_simpleswap.cpp"
+				RelativePath="qla\vo_simpleswap.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_swap.cpp"
+				RelativePath="qla\vo_swap.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_termstructures.cpp"
+				RelativePath="qla\vo_termstructures.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_utilities.cpp"
+				RelativePath="qla\vo_utilities.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_volatilities.cpp"
+				RelativePath="qla\vo_volatilities.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_xibor.cpp"
+				RelativePath="qla\vo_xibor.cpp"
 				>
 			</File>
 			<File
@@ -1639,67 +1639,67 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_basic.hpp"
+				RelativePath="qla\vo_basic.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_capfloor.hpp"
+				RelativePath="qla\vo_capfloor.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_couponvectors.hpp"
+				RelativePath="qla\vo_couponvectors.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_instruments.hpp"
+				RelativePath="qla\vo_instruments.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_interpolation.hpp"
+				RelativePath="qla\vo_interpolation.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_ohfunctions.hpp"
+				RelativePath="qla\vo_ohfunctions.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_options.hpp"
+				RelativePath="qla\vo_options.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_processes.hpp"
+				RelativePath="qla\vo_processes.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_schedule.hpp"
+				RelativePath="qla\vo_schedule.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_shortratemodels.hpp"
+				RelativePath="qla\vo_shortratemodels.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_simpleswap.hpp"
+				RelativePath="qla\vo_simpleswap.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_swap.hpp"
+				RelativePath="qla\vo_swap.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_termstructures.hpp"
+				RelativePath="qla\vo_termstructures.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_utilities.hpp"
+				RelativePath="qla\vo_utilities.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_volatilities.hpp"
+				RelativePath="qla\vo_volatilities.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Addins\ValueObjects\vo_xibor.hpp"
+				RelativePath="qla\vo_xibor.hpp"
 				>
 			</File>
 			<File

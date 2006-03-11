@@ -5,8 +5,11 @@
             mPropertyNames, mPropertyNames + sizeof(mPropertyNames)/sizeof(const char*));
     }
 
-    boost::any %s::getProperty(const std::string& name) const {
+    const boost::any %s::getProperty(const std::string& name) const {
         %s
+            throw ObjHandler::Exception("Error: attempt to retrieve non-existent Property: '" + name + "'");
+
+        return boost::any();
     }
 
     %s::%s(%s) :%s {}

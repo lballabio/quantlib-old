@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <Addin name='ValueObjects'>
 <platformId>C</platformId>
-<rootDirectory>../Addins/ValueObjects/</rootDirectory>
+<rootDirectory>../qla/</rootDirectory>
 
 <Buffers>
 <Buffer name='bufferClassBody' fileName='stub.vo.class.body'/>

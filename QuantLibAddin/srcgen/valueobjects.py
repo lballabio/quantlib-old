@@ -63,7 +63,6 @@ class ValueObjects(addin.Addin):
         for par in func.Parameters:
             propertyGet += ValueObjects.PROP_GET_BODY % (par.name, par.name)
             constructorInit += ValueObjects.CONSTRUCTOR_INIT % (par.name, par.name)
-        propertyGet += 'return boost::any();'
         constructorInit = constructorInit[:-10]
         constructorParList = func.generateParameterList(self.constructorDeclaration, function.DECLARATION)
         fileFunc.write(self.bufferClassBody.text % 

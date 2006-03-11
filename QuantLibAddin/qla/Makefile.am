@@ -44,22 +44,22 @@ include_HEADERS = \
     zerocouponbond.hpp \
     zerocurve.hpp \
     baseinstruments.hpp \
-    ../Addins/ValueObjects/vo_basic.hpp \
-    ../Addins/ValueObjects/vo_capfloor.hpp \
-    ../Addins/ValueObjects/vo_couponvectors.hpp \
-    ../Addins/ValueObjects/vo_instruments.hpp \
-    ../Addins/ValueObjects/vo_interpolation.hpp \
-    ../Addins/ValueObjects/vo_ohfunctions.hpp \
-    ../Addins/ValueObjects/vo_options.hpp \
-    ../Addins/ValueObjects/vo_processes.hpp \
-    ../Addins/ValueObjects/vo_schedule.hpp \
-    ../Addins/ValueObjects/vo_shortratemodels.hpp \
-    ../Addins/ValueObjects/vo_simpleswap.hpp \
-    ../Addins/ValueObjects/vo_swap.hpp \
-    ../Addins/ValueObjects/vo_termstructures.hpp \
-    ../Addins/ValueObjects/vo_utilities.hpp \
-    ../Addins/ValueObjects/vo_volatilities.hpp \
-    ../Addins/ValueObjects/vo_xibor.hpp
+    vo_basic.hpp \
+    vo_capfloor.hpp \
+    vo_couponvectors.hpp \
+    vo_instruments.hpp \
+    vo_interpolation.hpp \
+    vo_ohfunctions.hpp \
+    vo_options.hpp \
+    vo_processes.hpp \
+    vo_schedule.hpp \
+    vo_shortratemodels.hpp \
+    vo_simpleswap.hpp \
+    vo_swap.hpp \
+    vo_termstructures.hpp \
+    vo_utilities.hpp \
+    vo_volatilities.hpp \
+    vo_xibor.hpp
 
 libQuantLibAddin_la_SOURCES = \
     asianoption.cpp \
@@ -90,20 +90,20 @@ libQuantLibAddin_la_SOURCES = \
     xibor.cpp \
     zerocouponbond.cpp \
     zerocurve.cpp \
-    ../Addins/ValueObjects/vo_basic.cpp \
-    ../Addins/ValueObjects/vo_capfloor.cpp \
-    ../Addins/ValueObjects/vo_couponvectors.cpp \
-    ../Addins/ValueObjects/vo_instruments.cpp \
-    ../Addins/ValueObjects/vo_interpolation.cpp \
-    ../Addins/ValueObjects/vo_ohfunctions.cpp \
-    ../Addins/ValueObjects/vo_options.cpp \
-    ../Addins/ValueObjects/vo_processes.cpp \
-    ../Addins/ValueObjects/vo_schedule.cpp \
-    ../Addins/ValueObjects/vo_shortratemodels.cpp \
-    ../Addins/ValueObjects/vo_simpleswap.cpp \
-    ../Addins/ValueObjects/vo_swap.cpp \
-    ../Addins/ValueObjects/vo_termstructures.cpp \
-    ../Addins/ValueObjects/vo_utilities.cpp \
-    ../Addins/ValueObjects/vo_volatilities.cpp \
-    ../Addins/ValueObjects/vo_xibor.cpp
+    vo_basic.cpp \
+    vo_capfloor.cpp \
+    vo_couponvectors.cpp \
+    vo_instruments.cpp \
+    vo_interpolation.cpp \
+    vo_ohfunctions.cpp \
+    vo_options.cpp \
+    vo_processes.cpp \
+    vo_schedule.cpp \
+    vo_shortratemodels.cpp \
+    vo_simpleswap.cpp \
+    vo_swap.cpp \
+    vo_termstructures.cpp \
+    vo_utilities.cpp \
+    vo_volatilities.cpp \
+    vo_xibor.cpp
 

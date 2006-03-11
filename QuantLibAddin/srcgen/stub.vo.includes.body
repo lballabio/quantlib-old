@@ -5,7 +5,7 @@
 #include <qla/typefactory.hpp>
 #include <qla/clientutils.hpp>
 #include <qla/%s.hpp>
-#include <Addins/ValueObjects/vo_%s.hpp>
+#include <qla/vo_%s.hpp>
 
 namespace QuantLibAddin { namespace ValueObjects {
 
