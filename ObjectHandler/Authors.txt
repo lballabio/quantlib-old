@@ -1,3 +1,4 @@
 
-Eric Ehlers, Plamen Neykov
+Eric Ehlers (maintainer)
+Plamen Neykov
 
