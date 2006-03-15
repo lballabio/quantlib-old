@@ -180,6 +180,9 @@ using QuantLib::DateParser;
 
 #if defined(SWIGR)
 %Rruntime %{
+'as.character._p_Date' <-
+function(x) {x$ISO()}
+
 setMethod("as.numeric", "_p_Date",
     function(x) x$serialNumber())
 setMethod("+", c("_p_Date", "numeric"),
@@ -239,6 +242,7 @@ class Date {
     static Date nthWeekday(Size n, Weekday, Month m, Year y);
     static bool isIMMdate(const Date&);
     static Date nextIMMdate(const Date&);
+    static Date fromIsoDate(const std::string &);
     #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA) || defined(SWIGR) 
     Date operator+(BigInteger days) const;
     Date operator-(BigInteger days) const;
