@@ -125,7 +125,7 @@ namespace QuantLibAddin {
 
         // sanity check
         std::string suffix = bookName.substr(bookName.length() - 4);
-        if (QuantLib::uppercase(suffix) == ".XLS") {
+        if (QuantLib::uppercase(suffix) != ".XLS") {
             std::ostringstream err;
             err << "error interpreting address '" << address
                 << "' expected book name '" << bookName
