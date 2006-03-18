@@ -50,7 +50,7 @@ class Function(serializable.Serializable):
         if self.platforms == '*': return True
         return self.platforms.find(platformID) != -1
 
-    def generateParameterList(self, rule, context = DECLARATION):
+    def generateParameterList(self, rule, context = DECLARATION, checkSkipFirst = True):
         """Generate source code relating to a list of function parameters."""
         returnValue = ''
         endOfLine = ''
@@ -58,7 +58,7 @@ class Function(serializable.Serializable):
         for parameter in self.Parameters:
             i += 1
             if context == INVOCATION:
-                if i == 1 and self.skipFirst: continue
+                if checkSkipFirst and i == 1 and self.skipFirst: continue
                 if parameter.ignore : continue
             returnValue += endOfLine + rule.apply(parameter)
             if i < self.ParameterCount: endOfLine = ',\n'
@@ -95,14 +95,14 @@ class Constructor(Function):
 
     def generateBody(self, addin):
         """Generate source code for function body."""
+        self.skipFirst = True
         libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION)
         handle = addin.stringConvert % self.Parameters[0].name
         return self.BODY % (self.libraryFunction, libraryCall, handle)
 
     def generateVO(self, addin):
-        self.skipFirst = False
         for p in self.Parameters: p.ql_type= ''
-        libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION)
+        libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION, False)
         return '''\
         
         objectPointer->setProperties(boost::shared_ptr<ObjHandler::ValueObject>(new QuantLibAddin::ValueObjects::%s(%s)));

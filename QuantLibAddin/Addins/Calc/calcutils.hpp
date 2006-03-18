@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,12 +18,8 @@
 #ifndef qla_calc_calcutils_hpp
 #define qla_calc_calcutils_hpp
 
-SEQSEQ( ANY ) propertyVectorToSeqSeq(
-    ObjHandler::Properties properties, 
-    const STRING &handle);
-std::string ouStringToStlString(const STRING& s);
+std::string ouStringToStlString(const STRING &s);
 ANY stlStringToCalcAny(const std::string &s);
-SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a);
 
 // conversions from native C++ datatypes to Calc datatypes
 

@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2006 Eric Ehlers
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -25,8 +26,6 @@
 #include <oh/objhandler.hpp>
 
 SCM anyToPairValue(const boost::any& a);
-SCM anyToDottedPair(const ObjHandler::ObjectProperty& property);
-SCM propertiesToAList(const ObjHandler::Properties& properties);
 
 template <typename T>
 class Convert {

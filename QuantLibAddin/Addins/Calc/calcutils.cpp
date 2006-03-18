@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -34,6 +34,7 @@ ANY stlStringToCalcAny(const std::string &s) {
     return CSS::uno::makeAny(s2);
 }
 
+/*
 SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
     if (a->type() == typeid(long)) {
         long l = boost::any_cast< long >(*a);
@@ -178,6 +179,7 @@ SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
     } else
         throw ObjHandler::Exception("boostAnyToSeqSeq: unable to interpret value");
 }
+*/
 
 // conversions from native C++ datatypes to Calc datatypes
 
@@ -210,7 +212,8 @@ void scalarToCalc(ANY &ret, const boost::any &value) {
     } else if (value.type() == typeid(boost::any)) {
 //        boost::any a2 = boost::any_cast< boost::any >(value);
 //        return boostAnyToCalcAny(a2);
-        ret = CSS::uno::makeAny(STRFROMASCII("boost::any"));
+//        ret = CSS::uno::makeAny(STRFROMASCII("unknown type"));
+        throw ObjHandler::Exception("scalarToCalc: unable to interpret value");
     } else if (value.type() == typeid(std::vector< int >)
            ||  value.type() == typeid(std::vector< long >)
            ||  value.type() == typeid(std::vector< double >)
@@ -226,8 +229,8 @@ void scalarToCalc(ANY &ret, const boost::any &value) {
            ||  value.type() == typeid(std::vector< std::vector< boost::any > >)) {
         ret = CSS::uno::makeAny(STRFROMASCII("<MATRIX>"));
     } else
-        ret = CSS::uno::makeAny(STRFROMASCII("unknown type"));
-//        throw ObjHandler::Exception("boostAnyToCalcAny: unable to interpret value");
+//        ret = CSS::uno::makeAny(STRFROMASCII("unknown type"));
+        throw ObjHandler::Exception("scalarToCalc: unable to interpret value");
 }
 
 // conversions from Calc datatypes to native C++ datatypes
@@ -300,5 +303,4 @@ void calcToScalar(boost::any &ret, const ANY &value) {
         ret = msg.str();
     }
 }
-
 
