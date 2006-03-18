@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2006 Eric Ehlers
  Copyright (C) 2004 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
@@ -22,6 +23,10 @@
 #include <boost/version.hpp>
 #if BOOST_VERSION < 103100
     #error using an old version of Boost, please update.
+#endif
+
+#if (_MSC_VER == 1200)
+#  define QLA_PATCH_MSVC6
 #endif
 
 #include <oh/objhandler.hpp>

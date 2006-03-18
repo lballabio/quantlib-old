@@ -123,15 +123,16 @@ class AddinCalc(addin.Addin):
         self.generateHeader(fileFunc, func, False)
         conversions = self.generateConversions(func.Parameters)
         functionBody = func.generateBody(self)
+        functionValueObject = func.generateVO(self)
         functionReturnCommand = self.generateReturnCommand(func.returnValue)
         fileFunc.write(self.bufferFunction.text % (conversions, functionBody, 
-            functionReturnCommand, func.name))
+            functionValueObject, functionReturnCommand, func.name))
 
     def generateFunctions(self):
         """Generate source for function implementations."""
         for category in config.Config.getInstance().getCategories(self.platformId):
             fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
-            fileFunc.write(self.bufferIncludes.text % category.name)
+            fileFunc.write(self.bufferIncludes.text % (category.name, category.name))
             for func in category.getFunctions(self.platformId): 
                 self.generateFunction(fileFunc, func)
             fileFunc.close()

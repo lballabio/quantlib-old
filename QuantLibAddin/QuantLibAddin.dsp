@@ -7,23 +7,23 @@
 CFG=QuantLibAddin - Win32 Debug SingleThread
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE
+!MESSAGE 
 !MESSAGE NMAKE /f "QuantLibAddin.mak".
-!MESSAGE
+!MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE
+!MESSAGE 
 !MESSAGE NMAKE /f "QuantLibAddin.mak" CFG="QuantLibAddin - Win32 Debug SingleThread"
-!MESSAGE
+!MESSAGE 
 !MESSAGE Possible choices for configuration are:
-!MESSAGE
+!MESSAGE 
 !MESSAGE "QuantLibAddin - Win32 Release" (based on "Win32 (x86) Static Library")
 !MESSAGE "QuantLibAddin - Win32 Debug" (based on "Win32 (x86) Static Library")
 !MESSAGE "QuantLibAddin - Win32 Release CRTDLL" (based on "Win32 (x86) Static Library")
 !MESSAGE "QuantLibAddin - Win32 Debug CRTDLL" (based on "Win32 (x86) Static Library")
 !MESSAGE "QuantLibAddin - Win32 Release SingleThread" (based on "Win32 (x86) Static Library")
 !MESSAGE "QuantLibAddin - Win32 Debug SingleThread" (based on "Win32 (x86) Static Library")
-!MESSAGE
+!MESSAGE 
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -170,7 +170,7 @@ LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-sgd-0_3_12.lib"
 
-!ENDIF
+!ENDIF 
 
 # Begin Target
 
@@ -278,6 +278,70 @@ SOURCE=.\qla\utilities.cpp
 # Begin Source File
 
 SOURCE=.\qla\vanillaoption.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_basic.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_capfloor.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_couponvectors.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_instruments.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_interpolation.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_ohfunctions.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_options.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_processes.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_schedule.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_shortratemodels.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_simpleswap.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_swap.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_termstructures.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_utilities.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_volatilities.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_xibor.cpp
 # End Source File
 # Begin Source File
 
@@ -422,6 +486,70 @@ SOURCE=.\qla\utilities.hpp
 # Begin Source File
 
 SOURCE=.\qla\vanillaoption.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_basic.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_capfloor.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_couponvectors.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_instruments.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_interpolation.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_ohfunctions.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_options.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_processes.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_schedule.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_shortratemodels.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_simpleswap.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_swap.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_termstructures.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_utilities.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_volatilities.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_xibor.hpp
 # End Source File
 # Begin Source File
 

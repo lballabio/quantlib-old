@@ -1,6 +1,7 @@
     try {
 %s%s
 %s
+%s
     } catch (const std::exception &e) {
         ObjHandler::logMessage(std::string("ERROR: %s: ") + e.what(), 2);
         THROW_RTE;

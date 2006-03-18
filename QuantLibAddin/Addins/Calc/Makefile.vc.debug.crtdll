@@ -23,9 +23,9 @@ MSVC_DIR=$(MSVCDir)
 !ENDIF
 
 !IF "$(CLVER)" == ""
-INT_DIR=build\vc6\DebugMTDLL
+INT_DIR=build\vc6\DebugCRTDLL
 !ELSE 
-INT_DIR=build\vc$(CLVER)\DebugMTDLL
+INT_DIR=build\vc$(CLVER)\DebugCRTDLL
 !ENDIF
 
 FLAG1=$(INT_DIR)\$(COMPONENT_NAME).flag1
@@ -71,7 +71,7 @@ LFLAGS=msvcrtd.lib msvcprtd.lib kernel32.lib wsock32.lib \
 	oldnames.lib netapi32.lib advapi32.lib gdi32.lib comdlg32.lib \
 	comctl32.lib user32.lib winspool.lib shell32.lib ole32.lib \
 	oleaut32.lib uuid.lib odbc32.lib odbccp32.lib \
-	icppu.lib icppuhelper.lib isal.lib log4cxxs-vc6-mt-gd.lib \
+	icppu.lib icppuhelper.lib isal.lib \
 	/nologo /dll /pdb:$(INT_DIR)\$(COMPONENT_NAME).pdb /debug /machine:I386 \
 	/def:.\$(COMPONENT_NAME).def /out:$(DLL_FILE) \
 	/pdbtype:sept /libpath:. /libpath:..\..\lib /libpath:"$(OFFICE_SDK_PATH)\windows\lib" \
