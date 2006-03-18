@@ -4,7 +4,7 @@
 
         std::vector<std::string> getPropertyNames() const;
 
-        boost::any getProperty(const std::string& name) const;
+        const boost::any getProperty(const std::string& name) const;
 
     protected:
         static const char* mPropertyNames[];%s;
