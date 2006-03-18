@@ -1,4 +1,4 @@
-# QuantLibAddin\Addins\Calc\Makefile.msdev.debug
+# QuantLibAddin\Addins\Calc\Makefile.vc.debug.crtdll
 
 COMPONENT_NAME=QuantLibAddin
 !IF "$(CLVER)" == ""
