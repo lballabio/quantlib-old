@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -125,7 +125,7 @@ namespace QuantLibAddin {
 
         // sanity check
         std::string suffix = bookName.substr(bookName.length() - 4);
-        if (QuantLib::uppercase(suffix).compare(".XLS") != 0) {
+        if (QuantLib::uppercase(suffix) == ".XLS") {
             std::ostringstream err;
             err << "error interpreting address '" << address
                 << "' expected book name '" << bookName
