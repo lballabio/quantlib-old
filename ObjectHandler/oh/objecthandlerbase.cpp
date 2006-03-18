@@ -49,11 +49,11 @@ namespace ObjHandler {
         return object->propertyNames();
     }
 
-    const boost::any ObjectHandlerBase::propertyValue(const std::string &handle,
+    /*const boost::any ObjectHandlerBase::propertyValue(const std::string &handle,
             const std::string &propertyName) const {
         obj_ptr object = retrieveObject(handle);
         return object->propertyValue(propertyName);
-    }
+    }*/
 
     void ObjectHandlerBase::deleteObject(const std::string &handle) {
         objectList_.erase(handle);

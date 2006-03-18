@@ -67,8 +67,8 @@ namespace ObjHandler {
         /*! Throws exception if no Object exists with that handle.
             or if given Object has no property by that name.
         */
-        virtual const boost::any propertyValue(const std::string &handle,
-            const std::string &propertyName) const;
+        /*virtual const boost::any propertyValue(const std::string &handle,
+            const std::string &propertyName) const;*/
         //! Delete Object with given handle.
         /*! Does nothing if no Object exists with that handle.
         */

@@ -69,7 +69,7 @@ extern "C" XLOPER *ohPropertyNames(char *handleObject) {
     }
 }
 
-extern "C" XLOPER *ohPropertyValue(char *handleObject,
+/*extern "C" XLOPER *ohPropertyValue(char *handleObject,
         char *propertyName,
         OPER *trigger) {
     try {
@@ -82,7 +82,7 @@ extern "C" XLOPER *ohPropertyValue(char *handleObject,
         logMessage(std::string("ERROR: ohPropertyValue: ") + e.what(), 2);
         return 0;
     }
-}
+}*/
 
 extern "C" short int* ohDeleteObject(char *handleObject) {
     try {

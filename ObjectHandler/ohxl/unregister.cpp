@@ -69,7 +69,7 @@ void ohUnregisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x1D""display object property names"), // function description
         TempStrNoSize("\x20""handle of object to be queried  "));// description param 0
 
-    Excel(xlfRegister, 0, 13, &xDll,
+    /*Excel(xlfRegister, 0, 13, &xDll,
         TempStrNoSize("\x0F""ohPropertyValue"), // function code name
         TempStrNoSize("\x04""RCCP"),            // parameter codes
         TempStrNoSize("\x0F""ohPropertyValue"), // function display name
@@ -81,7 +81,7 @@ void ohUnregisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x26""retrieve the value of a named property"),// function description
         TempStrNoSize("\x1E""handle of object to be queried"),// description param 0
         TempStrNoSize("\x10""name of property"),// description param 1
-        TempStrNoSize("\x1D""dependency tracking trigger  "));// description param 2
+        TempStrNoSize("\x1D""dependency tracking trigger  "));// description param 2*/
 
     Excel(xlfRegister, 0, 11, &xDll,
         TempStrNoSize("\x0E""ohDeleteObject"),  // function code name
