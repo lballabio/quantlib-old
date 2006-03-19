@@ -1,3 +1,4 @@
+*.plg
 AddinExcelDynamic*.vcproj.*.user
 AddinExcelStatic*.vcproj.*.user
 basic.cpp
@@ -9,8 +10,8 @@ instruments.cpp
 interpolation.cpp
 Makefile
 Makefile.in
+ohfunctions.cpp
 options.cpp
-*.plg
 processes.cpp
 qladdin.cpp
 schedule.cpp
