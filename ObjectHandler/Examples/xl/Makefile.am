@@ -14,7 +14,6 @@ EXTRA_DIST = \
     ExampleXllStatic.dsp \
     ExampleXllStatic.vcproj \
     ExampleXllStatic_vc8.vcproj \
-    foo.hpp \
-    objectfoo.cpp \
-    objectfoo.hpp
+    car.cpp \
+    car.hpp
 

@@ -1,6 +1,6 @@
 
 /*!
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,72 +18,70 @@
 #include <sstream>
 #include <iostream>
 #include <exception>
-#include <objectfoo.hpp>
-
-using namespace std;
-using namespace ObjHandler;
+#include <car.hpp>
 
 int main() {
     try {
         // specify log file
-        setLogFile("example.log");
+        ObjHandler::setLogFile("example.log");
         // also direct log messages to stdout
-        setConsole(1);
-        logMessage("begin example program");
+        ObjHandler::setConsole(1);
+        ObjHandler::logMessage("begin example program");
     } catch (const exception &e) {
-        cout << "Unable to initialize logging: " << e.what() << endl;
+        std::cout << "Unable to initialize logging: " << e.what() << std::endl;
         return 1;
     } catch (...) {
-        cout << "Unable to initialize logging." << endl;
+        std::cout << "Unable to initialize logging." << std::endl;
         return 1;
     }
 
     try {
         // construct some objects and store them in the object handler
-        obj_ptr objectFoo1(new ObjectFoo("abc", 123));
-        storeObject("foo1", objectFoo1);
+        ObjHandler::obj_ptr carObject1(new CarObject(4, "blue"));
+        ObjHandler::storeObject("car1", carObject1);
 
-        obj_ptr objectFoo2(new ObjectFoo("def", 456));
-        storeObject("foo2", objectFoo2);
+        ObjHandler::obj_ptr carObject2(new CarObject(4, "red"));
+        ObjHandler::storeObject("car2", carObject2);
 
         // high level interrogation
-        logMessage("high level interrogation - after constructor");
-        logObject("foo2");
+        ObjHandler::logMessage("high level interrogation - after constructor");
+        ObjHandler::logObject("car2");
 
         // retrieve an object and update it
-        objFoo_ptr objectFoo2_retrieve =
-            OH_GET_OBJECT(ObjectFoo, "foo2");
-        if (!objectFoo2_retrieve)
-            throw Exception("unable to retrieve object foo2");
-        objectFoo2_retrieve->update("ghi", 789);
+        CarObjectPtr carObject2_retrieve =
+            OH_GET_OBJECT(CarObject, "car2");
+        if (!carObject2_retrieve)
+            throw ObjHandler::Exception("unable to retrieve object car2");
+        carObject2_retrieve->setSpeed(100);
 
         // high level interrogation
-        logMessage("high level interrogation - after update");
-        logObject("foo2");
+        ObjHandler::logMessage("high level interrogation - after update");
+        ObjHandler::logObject("car2");
 
         // low-level interrogation
-        logMessage("low-level interrogation - after updateFoo");
-        objFoo_ptr const objectFoo2_lowlevel =
-            OH_GET_OBJECT(ObjectFoo, "foo2");
-        boost::shared_ptr<Foo> objectFooUnderlying = 
-            OH_GET_REFERENCE(Foo, objectFoo2_lowlevel);
-        logMessage("value of property s() of underlying foo = "
-            + objectFooUnderlying->s());
+        ObjHandler::logMessage("low-level interrogation - after update");
+        CarObjectPtr const carObject2_lowlevel =
+            OH_GET_OBJECT(CarObject, "car2");
+        boost::shared_ptr<Car> carObjectUnderlying = 
+            OH_GET_REFERENCE(Car, carObject2_lowlevel);
+        std::ostringstream msg;
+        msg << "result of getSpeed on underlying = " << carObjectUnderlying->getSpeed();
+        ObjHandler::logMessage(msg.str());
 
-        ObjectHandler::instance().deleteObject("foo2");
-        logMessage("log all objects after deleting foo2:");
-        logAllObjects();
+        ObjHandler::ObjectHandler::instance().deleteObject("car2");
+        ObjHandler::logMessage("log all objects after deleting car2:");
+        ObjHandler::logAllObjects();
 
-        logMessage("end example program");
+        ObjHandler::logMessage("end example program");
 
         return 0;
     } catch (const exception &e) {
-        ostringstream s;
+        std::ostringstream s;
         s << "Error: " << e.what();
-        logMessage(s.str(), 1);
+        ObjHandler::logMessage(s.str(), 1);
         return 1;
     } catch (...) {
-        logMessage("Error", 1);
+        ObjHandler::logMessage("Error", 1);
         return 1;
     }
 }

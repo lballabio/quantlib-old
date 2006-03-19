@@ -235,11 +235,7 @@
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath="foo.hpp"
-			>
-		</File>
-		<File
-			RelativePath="objectfoo.cpp"
+			RelativePath="car.cpp"
 			>
 			<FileConfiguration
 				Name="Debug CRTDLL|Win32"
@@ -261,7 +257,7 @@
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath="objectfoo.hpp"
+			RelativePath="car.hpp"
 			>
 		</File>
 	</Files>

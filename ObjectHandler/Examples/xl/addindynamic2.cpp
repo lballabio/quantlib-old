@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,13 +16,10 @@
 */
 
 #include <oh/objhandler.hpp>
-#include <objectfoo.hpp>
+#include <car.hpp>
 #include <xlsdk/xlsdk.hpp>
 #include <ohxl/conversions.hpp>
 #include <sstream>
-
-using namespace std;
-using namespace ObjHandler;
 
 DLLEXPORT int xlAutoOpen() {
     static XLOPER xDll;
@@ -30,17 +27,9 @@ DLLEXPORT int xlAutoOpen() {
         Excel(xlGetName, &xDll, 0);
 
         Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x0F""addin2UpdateFoo"), // function code name
-            TempStrNoSize("\x04""LCCN"),            // parameter codes
-            TempStrNoSize("\x0F""addin2UpdateFoo"), // function display name
-            TempStrNoSize("\x0A""handle,s,i"),      // comma-delimited list of parameters
-            TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
-            TempStrNoSize("\x07""Example"));        // function category
-
-        Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x0E""addin2QueryFoo"),  // function code name
+            TempStrNoSize("\x0E""addin2GetSpeed"),  // function code name
             TempStrNoSize("\x02""NC"),              // parameter codes
-            TempStrNoSize("\x0E""addin2QueryFoo"),  // function display name
+            TempStrNoSize("\x0E""addin2GetSpeed"),  // function display name
             TempStrNoSize("\x06""handle"),          // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));        // function category
@@ -59,40 +48,20 @@ DLLEXPORT int xlAutoOpen() {
     }
 }
 
-DLLEXPORT short int *addin2UpdateFoo(char *handle, char *s, long *i) {
+DLLEXPORT long *addin2GetSpeed(char *handle) {
     try {
-        objFoo_ptr objectFoo =
-            OH_GET_OBJECT(ObjectFoo, handle);
-        if (!objectFoo) {
-            ostringstream msg;
+        CarObjectPtr carObject =
+            OH_GET_OBJECT(CarObject, handle);
+        if (!carObject) {
+            std::ostringstream msg;
             msg << "unable to retrieve object " << handle;
-            throw Exception(msg.str().c_str());
+            throw ObjHandler::Exception(msg.str().c_str());
         }
-        objectFoo->update(s, *i);
-        static short int ret = TRUE;
+        static long ret;
+        ret = carObject->getSpeed();
         return &ret;
     } catch (const std::exception &e) {
-        logMessage(std::string("Error: addin2UpdateFoo: ") + e.what(), 2);
-        return 0;
-    }
-}
-
-DLLEXPORT long *addin2QueryFoo(char *handle) {
-    try {
-        static long int ret;
-        objFoo_ptr objectFoo =
-            OH_GET_OBJECT(ObjectFoo, handle);
-        if (!objectFoo) {
-            ostringstream msg;
-            msg << "unable to retrieve object " << handle;
-            throw Exception(msg.str().c_str());
-        }
-        boost::shared_ptr<Foo> foo =
-            OH_GET_REFERENCE(Foo, objectFoo);
-        ret =  foo->i();
-        return &ret;
-    } catch (const std::exception &e) {
-        logMessage(std::string("Error: addin2QueryFoo: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("Error: getSpeed: ") + e.what(), 2);
         return 0;
     }
 }

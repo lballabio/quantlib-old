@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,15 +16,12 @@
 */
 
 #include <oh/objhandler.hpp>
-#include <objectfoo.hpp>
+#include <car.hpp>
 #include <xlsdk/xlsdk.hpp>
 #include <ohxl/conversions.hpp>
 #include <ohxl/register.hpp>
 #include <ohxl/export.hpp>
 #include <sstream>
-
-using namespace std;
-using namespace ObjHandler;
 
 DLLEXPORT int xlAutoOpen() {
     static XLOPER xDll;
@@ -34,18 +31,26 @@ DLLEXPORT int xlAutoOpen() {
         ohRegisterFunctions(xDll);
 
         Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x07""makeFoo"),         // function code name
-            TempStrNoSize("\x05""CCCN#"),           // parameter codes
-            TempStrNoSize("\x07""makeFoo"),         // function display name
-            TempStrNoSize("\x0A""handle,s,i"),      // comma-delimited list of parameters
+            TempStrNoSize("\x09""createCar"),       // function code name
+            TempStrNoSize("\x05""CCNC#"),           // parameter codes
+            TempStrNoSize("\x09""createCar"),       // function display name
+            TempStrNoSize("\x17""handle,wheelCount,color"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));        // function category
 
         Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x09""updateFoo"),       // function code name
-            TempStrNoSize("\x04""LCCN"),            // parameter codes
-            TempStrNoSize("\x09""updateFoo"),       // function display name
-            TempStrNoSize("\x0A""handle,s,i"),      // comma-delimited list of parameters
+            TempStrNoSize("\x08""setSpeed"),        // function code name
+            TempStrNoSize("\x03""LCN"),             // parameter codes
+            TempStrNoSize("\x08""setSpeed"),        // function display name
+            TempStrNoSize("\x0C""handle,speed"),    // comma-delimited list of parameters
+            TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+            TempStrNoSize("\x07""Example"));        // function category
+
+        Excel(xlfRegister, 0, 7, &xDll,
+            TempStrNoSize("\x08""getSpeed"),        // function code name
+            TempStrNoSize("\x02""NC"),              // parameter codes
+            TempStrNoSize("\x08""getSpeed"),        // function display name
+            TempStrNoSize("\x06""handle"),          // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));        // function category
 
@@ -63,34 +68,57 @@ DLLEXPORT int xlAutoOpen() {
     }
 }
 
-DLLEXPORT char* makeFoo(char *handleStub, char *s, long *i) {
+DLLEXPORT char *createCar(
+        char *handleStub, 
+        long *wheelCount,
+        char *color) {
     try {
-        obj_ptr objectPointer(new ObjectFoo(s, *i));
-        const std::string handle = storeObject(handleStub, objectPointer);
+        ObjHandler::obj_ptr objectPointer(new CarObject(*wheelCount, color));
+        objectPointer->setProperties(
+            boost::shared_ptr<ObjHandler::ValueObject>(
+            new CarValueObject(*wheelCount, color)));
+        const std::string handle = ObjHandler::storeObject(handleStub, objectPointer);
         static char ret[XL_MAX_STR_LEN];
         ObjHandler::stringToChar(ret, handle);
         return ret;
     } catch (const std::exception &e) {
-        logMessage(std::string("Error: makeFoo: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("Error: createCar: ") + e.what(), 2);
         return 0;
     }
 }
 
-DLLEXPORT short int *updateFoo(char *handle, char *s, long *i) {
+DLLEXPORT short int *setSpeed(char *handle, long *speed) {
     try {
-        objFoo_ptr objectFoo =
-            OH_GET_OBJECT(ObjectFoo, handle);
-        if (!objectFoo) {
-            ostringstream msg;
+        CarObjectPtr carObject =
+            OH_GET_OBJECT(CarObject, handle);
+        if (!carObject) {
+            std::ostringstream msg;
             msg << "unable to retrieve object " << handle;
-            throw Exception(msg.str().c_str());
+            throw ObjHandler::Exception(msg.str().c_str());
         }
-        objectFoo->update(s, *i);
+        carObject->setSpeed(*speed);
         static short int ret = TRUE;
         return &ret;
     } catch (const std::exception &e) {
-        logMessage(std::string("Error: updateFoo: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("Error: setSpeed: ") + e.what(), 2);
         return 0;
     }
 }
 
+DLLEXPORT long *getSpeed(char *handle) {
+    try {
+        CarObjectPtr carObject =
+            OH_GET_OBJECT(CarObject, handle);
+        if (!carObject) {
+            std::ostringstream msg;
+            msg << "unable to retrieve object " << handle;
+            throw ObjHandler::Exception(msg.str().c_str());
+        }
+        static long ret;
+        ret = carObject->getSpeed();
+        return &ret;
+    } catch (const std::exception &e) {
+        ObjHandler::logMessage(std::string("Error: getSpeed: ") + e.what(), 2);
+        return 0;
+    }
+}

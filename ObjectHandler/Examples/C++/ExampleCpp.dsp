@@ -188,19 +188,15 @@ LINK32=link.exe
 # Name "ExampleCpp - Win32 Debug SingleThread"
 # Begin Source File
 
+SOURCE=.\car.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\car.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\example.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\foo.hpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\objectfoo.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\objectfoo.hpp
 # End Source File
 # End Target
 # End Project

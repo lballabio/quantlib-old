@@ -7,12 +7,11 @@ EXTRA_DIST = \
     ExampleCpp_vc8.vcproj
 
 noinst_HEADERS = \
-    foo.hpp \
-    objectfoo.hpp
+    car.hpp
 
 ExampleCpp_SOURCES = \
     example.cpp  \
-    objectfoo.cpp
+    car.cpp
 
 noinst_PROGRAMS = ExampleCpp
 

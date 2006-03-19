@@ -205,15 +205,11 @@ SOURCE=.\addinstatic.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\foo.hpp
+SOURCE=.\car.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\objectfoo.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\objectfoo.hpp
+SOURCE=.\car.hpp
 # End Source File
 # End Target
 # End Project
