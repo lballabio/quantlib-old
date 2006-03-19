@@ -61,8 +61,8 @@ namespace ObjHandler {
         /*! Throws exception if no Object exists with that handle.
             Returns empty vector if given Object has no properties.
         */
-        virtual const std::vector < std::string > propertyNames(
-            const std::string &handle) const;
+        /*virtual const std::vector < std::string > propertyNames(
+            const std::string &handle) const;*/
         //! Retrieve value of given property from given Object.
         /*! Throws exception if no Object exists with that handle.
             or if given Object has no property by that name.

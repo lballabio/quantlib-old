@@ -34,11 +34,11 @@ namespace QuantLibAddin {
 
     const bool ohDeleteObject(const std::string &handleObject);
 
-    const std::vector < std::string > ohPropertyNames(const std::string &handleObject);
+    /*const std::vector < std::string > ohPropertyNames(const std::string &handleObject);*/
 
-    const boost::any ohPropertyValue(
+    /*const boost::any ohPropertyValue(
             const std::string &handleObject,
-            const std::string &propertyName);
+            const std::string &propertyName);*/
 
     const long ohObjectCount();
 

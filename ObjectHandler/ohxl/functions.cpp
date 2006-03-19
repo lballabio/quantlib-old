@@ -56,7 +56,7 @@ extern "C" XLOPER* ohHandleList() {
     }
 }
 
-extern "C" XLOPER *ohPropertyNames(char *handleObject) {
+/*extern "C" XLOPER *ohPropertyNames(char *handleObject) {
     try {
         static XLOPER ret;
         std::vector < std::string > propertyNames 
@@ -67,7 +67,7 @@ extern "C" XLOPER *ohPropertyNames(char *handleObject) {
         logMessage(std::string("ERROR: ohPropertyNames: ") + e.what(), 2);
         return 0;
     }
-}
+}*/
 
 /*extern "C" XLOPER *ohPropertyValue(char *handleObject,
         char *propertyName,

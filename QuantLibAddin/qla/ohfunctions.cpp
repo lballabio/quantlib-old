@@ -32,15 +32,15 @@ namespace QuantLibAddin {
         return true;
     }
 
-    const std::vector < std::string > ohPropertyNames(const std::string &handleObject) {
+    /*const std::vector < std::string > ohPropertyNames(const std::string &handleObject) {
         return ObjHandler::ObjectHandler::instance().propertyNames(handleObject);
-    }
+    }*/
 
-    const boost::any ohPropertyValue(
+    /*const boost::any ohPropertyValue(
             const std::string &handleObject,
             const std::string &propertyName) {
         return ObjHandler::ObjectHandler::instance().propertyValue(handleObject, propertyName);
-    }
+    }*/
 
     const long ohObjectCount() {
         return ObjHandler::ObjectHandler::instance().objectCount();

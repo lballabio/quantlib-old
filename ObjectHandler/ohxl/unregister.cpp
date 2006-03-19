@@ -57,7 +57,7 @@ void ohUnregisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x1C""list of all object handles  "));// function description
 
-    Excel(xlfRegister, 0, 11, &xDll,
+    /*Excel(xlfRegister, 0, 11, &xDll,
         TempStrNoSize("\x0F""ohPropertyNames"), // function code name
         TempStrNoSize("\x02""RC"),              // parameter codes
         TempStrNoSize("\x0F""ohPropertyNames"), // function display name
@@ -67,7 +67,7 @@ void ohUnregisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x1D""display object property names"), // function description
-        TempStrNoSize("\x20""handle of object to be queried  "));// description param 0
+        TempStrNoSize("\x20""handle of object to be queried  "));// description param 0*/
 
     /*Excel(xlfRegister, 0, 13, &xDll,
         TempStrNoSize("\x0F""ohPropertyValue"), // function code name
@@ -235,11 +235,11 @@ void ohUnregisterFunctions(const XLOPER &xDll) {
     Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0C""ohHandleList"));
     Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0F""ohPropertyNames"));
-    Excel4(xlfUnregister, 0, 1, &xlRegID);
+    /*Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0F""ohPropertyNames"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);*/
 
-    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0F""ohPropertyValue"));
-    Excel4(xlfUnregister, 0, 1, &xlRegID);
+    /*Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0F""ohPropertyValue"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);*/
 
     Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0E""ohDeleteObject"));
     Excel4(xlfUnregister, 0, 1, &xlRegID);

@@ -43,11 +43,11 @@ namespace ObjHandler {
             return result->second;
     }
 
-    const std::vector < std::string > ObjectHandlerBase::propertyNames(
+    /*const std::vector < std::string > ObjectHandlerBase::propertyNames(
             const std::string &handle) const {
         obj_ptr object = retrieveObject(handle);
         return object->propertyNames();
-    }
+    }*/
 
     /*const boost::any ObjectHandlerBase::propertyValue(const std::string &handle,
             const std::string &propertyName) const {

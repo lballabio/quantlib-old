@@ -36,22 +36,18 @@
 </ReturnValue>
 </Procedure>
 
-<Procedure name='ohPropertyNames'>
+<Member name='ohPropertyNames' libraryClass='ObjHandler::Object' noQlaNS='true'>
 <description>retrieve the property names of a given object</description>
-<platforms>CGO</platforms>
+<libraryFunction>propertyNames</libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <Parameters>
-    <Parameter name='handleObject'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of object to be queried</description>
-    </Parameter>
 </Parameters>
 <ReturnValue>
     <type>string</type>
     <tensorRank>vector</tensorRank>
     <description>list of property names for queried object</description>
 </ReturnValue>
-</Procedure>
+</Member>
 
 <Member name='ohPropertyValue' libraryClass='ObjHandler::Object' noQlaNS='true'>
 <description>retrieve the value of a named property</description>
