@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Ferdinando Ametrano
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -42,18 +42,6 @@ namespace ObjHandler {
         } else
             return result->second;
     }
-
-    /*const std::vector < std::string > ObjectHandlerBase::propertyNames(
-            const std::string &handle) const {
-        obj_ptr object = retrieveObject(handle);
-        return object->propertyNames();
-    }*/
-
-    /*const boost::any ObjectHandlerBase::propertyValue(const std::string &handle,
-            const std::string &propertyName) const {
-        obj_ptr object = retrieveObject(handle);
-        return object->propertyValue(propertyName);
-    }*/
 
     void ObjectHandlerBase::deleteObject(const std::string &handle) {
         objectList_.erase(handle);

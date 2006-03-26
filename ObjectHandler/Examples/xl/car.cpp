@@ -20,7 +20,7 @@
 #include <sstream>
 
 CarObject::CarObject(
-        const unsigned int &wheelCount,
+        const int &wheelCount,
         const std::string &color) {
     car_ = boost::shared_ptr<Car>(new Car(wheelCount, color));
 }

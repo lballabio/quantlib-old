@@ -36,24 +36,32 @@
 </ReturnValue>
 </Procedure>
 
-<Member name='ohPropertyNames' libraryClass='ObjHandler::Object' noQlaNS='true'>
+<Procedure name='ohPropertyNames'>
 <description>retrieve the property names of a given object</description>
-<libraryFunction>propertyNames</libraryFunction>
-<functionCategory>ObjectHandler</functionCategory>
+<platforms>CGO</platforms>
 <Parameters>
+    <Parameter name='instanceName'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of object to be queried</description>
+    </Parameter>
 </Parameters>
 <ReturnValue>
     <type>string</type>
     <tensorRank>vector</tensorRank>
     <description>list of property names for queried object</description>
 </ReturnValue>
-</Member>
+</Procedure>
 
-<Member name='ohPropertyValue' libraryClass='ObjHandler::Object' noQlaNS='true'>
+<Procedure name='ohPropertyValue'>
 <description>retrieve the value of a named property</description>
-<libraryFunction>propertyValue</libraryFunction>
-<functionCategory>ObjectHandler</functionCategory>
+<platforms>CGO</platforms>
 <Parameters>
+    <Parameter name='instanceName'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of object to be queried</description>
+    </Parameter>
     <Parameter name='fieldName'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
@@ -70,7 +78,7 @@
     <tensorRank>scalar</tensorRank>
     <description>value of named field</description>
 </ReturnValue>
-</Member>
+</Procedure>
 
 <Procedure name='ohDeleteObject'>
 <description>delete object from repository</description>

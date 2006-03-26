@@ -18,21 +18,21 @@
 #ifndef ohxl_export_hpp
 #define ohxl_export_hpp
 
-#pragma comment (linker, "/export:_ohVersion") 
-#pragma comment (linker, "/export:_ohObjectCount") 
-#pragma comment (linker, "/export:_ohHandleList") 
-/*#pragma comment (linker, "/export:_ohPropertyNames") */
-/*#pragma comment (linker, "/export:_ohPropertyValue") */
-#pragma comment (linker, "/export:_ohDeleteObject") 
-#pragma comment (linker, "/export:_ohDeleteAllObjects") 
-#pragma comment (linker, "/export:_ohDependsOn") 
-#pragma comment (linker, "/export:_ohGetGcEnabled") 
-#pragma comment (linker, "/export:_ohSetGcEnabled") 
-#pragma comment (linker, "/export:_ohCallGC") 
-#pragma comment (linker, "/export:_ohSetLogFile") 
-#pragma comment (linker, "/export:_ohSetLogLevel") 
-#pragma comment (linker, "/export:_ohLogMessage") 
-#pragma comment (linker, "/export:_ohLogObject") 
-#pragma comment (linker, "/export:_ohLogAllObjects") 
+#pragma comment (linker, "/export:_ohVersion")
+#pragma comment (linker, "/export:_ohObjectCount")
+#pragma comment (linker, "/export:_ohHandleList")
+#pragma comment (linker, "/export:_ohPropertyNames")
+#pragma comment (linker, "/export:_ohPropertyValue")
+#pragma comment (linker, "/export:_ohDeleteObject")
+#pragma comment (linker, "/export:_ohDeleteAllObjects")
+#pragma comment (linker, "/export:_ohDependsOn")
+#pragma comment (linker, "/export:_ohGetGcEnabled")
+#pragma comment (linker, "/export:_ohSetGcEnabled")
+#pragma comment (linker, "/export:_ohCallGC")
+#pragma comment (linker, "/export:_ohSetLogFile")
+#pragma comment (linker, "/export:_ohSetLogLevel")
+#pragma comment (linker, "/export:_ohLogMessage")
+#pragma comment (linker, "/export:_ohLogObject")
+#pragma comment (linker, "/export:_ohLogAllObjects")
 
 #endif

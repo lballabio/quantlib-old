@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -57,18 +57,6 @@ namespace ObjHandler {
         /*! Throws exception if no Object exists with that handle.
         */
         virtual obj_ptr retrieveObject(const std::string &handle) const;
-        //! Retrieve property names of Object with given handle.
-        /*! Throws exception if no Object exists with that handle.
-            Returns empty vector if given Object has no properties.
-        */
-        /*virtual const std::vector < std::string > propertyNames(
-            const std::string &handle) const;*/
-        //! Retrieve value of given property from given Object.
-        /*! Throws exception if no Object exists with that handle.
-            or if given Object has no property by that name.
-        */
-        /*virtual const boost::any propertyValue(const std::string &handle,
-            const std::string &propertyName) const;*/
         //! Delete Object with given handle.
         /*! Does nothing if no Object exists with that handle.
         */

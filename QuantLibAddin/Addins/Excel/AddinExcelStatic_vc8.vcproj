@@ -608,10 +608,6 @@
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath=".\ohfunctions.cpp"
-			>
-		</File>
-		<File
 			RelativePath="options.cpp"
 			>
 			<FileConfiguration

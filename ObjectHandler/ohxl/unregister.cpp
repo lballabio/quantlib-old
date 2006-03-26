@@ -57,31 +57,31 @@ void ohUnregisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x1C""list of all object handles  "));// function description
 
-    /*Excel(xlfRegister, 0, 11, &xDll,
+    Excel(xlfRegister, 0, 11, &xDll,
         TempStrNoSize("\x0F""ohPropertyNames"), // function code name
         TempStrNoSize("\x02""RC"),              // parameter codes
         TempStrNoSize("\x0F""ohPropertyNames"), // function display name
-        TempStrNoSize("\x06""handle"),          // comma-delimited list of parameters
+        TempStrNoSize("\x0C""instanceName"),    // comma-delimited list of parameters
         TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
-        TempStrNoSize("\x1D""display object property names"), // function description
-        TempStrNoSize("\x20""handle of object to be queried  "));// description param 0*/
+        TempStrNoSize("\x2D""retrieve the property names of a given object"), // function description
+        TempStrNoSize("\x2E""handle of existing ObjHandler::Object object  ")); // description of parameter 1
 
-    /*Excel(xlfRegister, 0, 13, &xDll,
+    Excel(xlfRegister, 0, 13, &xDll,
         TempStrNoSize("\x0F""ohPropertyValue"), // function code name
         TempStrNoSize("\x04""RCCP"),            // parameter codes
         TempStrNoSize("\x0F""ohPropertyValue"), // function display name
-        TempStrNoSize("\x21""handleObject,propertyName,trigger"),// comma-delimited list of parameters
+        TempStrNoSize("\x1E""instanceName,fieldName,trigger"), // comma-delimited list of parameters
         TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
-        TempStrNoSize("\x26""retrieve the value of a named property"),// function description
-        TempStrNoSize("\x1E""handle of object to be queried"),// description param 0
-        TempStrNoSize("\x10""name of property"),// description param 1
-        TempStrNoSize("\x1D""dependency tracking trigger  "));// description param 2*/
+        TempStrNoSize("\x26""retrieve the value of a named property"), // function description
+        TempStrNoSize("\x2C""handle of existing ObjHandler::Object object"), // description of parameter 1
+        TempStrNoSize("\x10""name of property"), // description of parameter 2
+        TempStrNoSize("\x1D""dependency tracking trigger  ")); // description of parameter 3
 
     Excel(xlfRegister, 0, 11, &xDll,
         TempStrNoSize("\x0E""ohDeleteObject"),  // function code name
@@ -235,11 +235,11 @@ void ohUnregisterFunctions(const XLOPER &xDll) {
     Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0C""ohHandleList"));
     Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-    /*Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0F""ohPropertyNames"));
-    Excel4(xlfUnregister, 0, 1, &xlRegID);*/
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0F""ohPropertyNames"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
-    /*Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0F""ohPropertyValue"));
-    Excel4(xlfUnregister, 0, 1, &xlRegID);*/
+    Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0F""ohPropertyValue"));
+    Excel4(xlfUnregister, 0, 1, &xlRegID);
 
     Excel4(xlfRegisterId, &xlRegID, 2, &xDll, TempStrNoSize("\x0E""ohDeleteObject"));
     Excel4(xlfUnregister, 0, 1, &xlRegID);

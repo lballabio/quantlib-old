@@ -56,33 +56,43 @@ extern "C" XLOPER* ohHandleList() {
     }
 }
 
-/*extern "C" XLOPER *ohPropertyNames(char *handleObject) {
+extern "C" XLOPER *ohPropertyNames(
+        char *instanceName) {
     try {
-        static XLOPER ret;
-        std::vector < std::string > propertyNames 
-            = ObjectHandler::instance().propertyNames(handleObject);
-        vectorToXloper(ret, propertyNames);
-        return &ret;
+        boost::shared_ptr < Object > objectPointer =
+            OH_GET_OBJECT(Object, instanceName);
+
+        std::vector < std::string > returnValue =
+            objectPointer->propertyNames();
+
+        static XLOPER xRet;
+        vectorToXloper(xRet, returnValue);
+        return &xRet;
     } catch (const std::exception &e) {
         logMessage(std::string("ERROR: ohPropertyNames: ") + e.what(), 2);
         return 0;
     }
-}*/
+}
 
-/*extern "C" XLOPER *ohPropertyValue(char *handleObject,
-        char *propertyName,
+extern "C" XLOPER *ohPropertyValue(
+        char *instanceName,
+        char *fieldName,
         OPER *trigger) {
     try {
-        static XLOPER ret;
-        boost::any propertyValue 
-            = ObjectHandler::instance().propertyValue(handleObject, propertyName);
-        scalarToXloper(ret, propertyValue);
-        return &ret;
+        boost::shared_ptr < Object > objectPointer =
+            OH_GET_OBJECT(Object, instanceName);
+
+        static boost::any returnValue;
+        returnValue = objectPointer->propertyValue(fieldName);
+
+        static XLOPER xRet;
+        scalarToXloper(xRet, returnValue);
+        return &xRet;
     } catch (const std::exception &e) {
         logMessage(std::string("ERROR: ohPropertyValue: ") + e.what(), 2);
         return 0;
     }
-}*/
+}
 
 extern "C" short int* ohDeleteObject(char *handleObject) {
     try {

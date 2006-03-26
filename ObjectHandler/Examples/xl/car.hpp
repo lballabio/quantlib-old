@@ -23,7 +23,7 @@
 
 class Car {
 public:
-    Car(const unsigned int &wheelCount,
+    Car(const int &wheelCount,
         const std::string &color,
         const int &speed = 0)
         : wheelCount_(wheelCount), color_(color), speed_(speed) {}
@@ -34,7 +34,7 @@ public:
         return speed_;
     }
 private:
-    unsigned int wheelCount_;
+    int wheelCount_;
     std::string color_;
     int speed_;
 };
@@ -42,7 +42,7 @@ private:
 class CarObject : public ObjHandler::Object {
 public:
     CarObject(
-        const unsigned int &wheelCount,
+        const int &wheelCount,
         const std::string &color);
     void setSpeed(const int &speed);
     const int &getSpeed();
@@ -56,14 +56,14 @@ typedef boost::shared_ptr<CarObject> CarObjectPtr;
 class CarValueObject : public ObjHandler::ValueObject {
 public:
     CarValueObject(
-        const unsigned int &wheelCount,
+        const int &wheelCount,
         const std::string &color) 
         : wheelCount_(wheelCount), color_(color) {}
     std::vector<std::string> getPropertyNames() const;
     const boost::any getProperty(const std::string& name) const;
 protected:
     static const char* mPropertyNames[];
-    unsigned int wheelCount_;
+    int wheelCount_;
     std::string color_;
 };
 

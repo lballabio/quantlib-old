@@ -10,7 +10,6 @@ instruments.cpp
 interpolation.cpp
 Makefile
 Makefile.in
-ohfunctions.cpp
 options.cpp
 processes.cpp
 qladdin.cpp

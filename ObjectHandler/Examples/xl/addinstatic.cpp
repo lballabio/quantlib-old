@@ -48,9 +48,9 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlfRegister, 0, 7, &xDll,
             TempStrNoSize("\x08""getSpeed"),        // function code name
-            TempStrNoSize("\x02""NC"),              // parameter codes
+            TempStrNoSize("\x03""NCP"),             // parameter codes
             TempStrNoSize("\x08""getSpeed"),        // function display name
-            TempStrNoSize("\x06""handle"),          // comma-delimited list of parameters
+            TempStrNoSize("\x0E""handle,trigger"),  // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));        // function category
 
@@ -105,7 +105,7 @@ DLLEXPORT short int *setSpeed(char *handle, long *speed) {
     }
 }
 
-DLLEXPORT long *getSpeed(char *handle) {
+DLLEXPORT long *getSpeed(char *handle, OPER *trigger) {
     try {
         CarObjectPtr carObject =
             OH_GET_OBJECT(CarObject, handle);
