@@ -26,7 +26,7 @@
 
 namespace ObjHandler {
 
-    const std::vector < std::string > Object::propertyNames() const {
+    std::vector < std::string > Object::propertyNames() const {
 
         std::vector < std::string > ret;
 		if(mProps)
@@ -35,7 +35,7 @@ namespace ObjHandler {
         return ret;
     }
 
-    const boost::any Object::propertyValue(const std::string &propertyName) const {
+    boost::any Object::propertyValue(const std::string &propertyName) const {
 		if(mProps)
 			return mProps->getProperty(propertyName);
         std::ostringstream msg;

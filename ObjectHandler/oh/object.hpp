@@ -66,11 +66,11 @@ namespace ObjHandler {
         //! Retrieve vector of property names.
         /*! Returns empty vector if Object has no properties.
         */
-        const std::vector < std::string > propertyNames() const;
+        std::vector < std::string > propertyNames() const;
         //! Retrieve value of given property.
         /*! Throws exception if Object has no property by that name.
         */
-        const boost::any propertyValue(const std::string &propertyName) const;
+        boost::any propertyValue(const std::string &propertyName) const;
 
         friend std::ostream &operator<<(std::ostream&, const Object &object);
         //@}

@@ -12,7 +12,7 @@
 #endif
     }
 
-    const boost::any %s::getProperty(const std::string& name) const {
+    boost::any %s::getProperty(const std::string& name) const {
         %s
             throw ObjHandler::Exception("Error: attempt to retrieve non-existent Property: '" + name + "'");
 
