@@ -222,7 +222,7 @@
         </SubRule>
         </SubRules>
     </Rule>
-    <Rule name='setTypeConversion' prefix='ObjHandler::' dereference='*'>
+    <Rule name='setTypeConversion' dereference='*'>
         <SubRules>
         <SubRule>
             <tensorRanks>
@@ -231,10 +231,10 @@
                 <tensorRank>matrix</tensorRank>
             </tensorRanks>
             <replacements>
-                <optional>oper</optional>
-                <long>fp</long>
-                <double>fp</double>
-                <default>oper</default>
+                <optional>ObjHandler::oper</optional>
+                <long>ObjHandler::fp</long>
+                <double>ObjHandler::fp</double>
+                <default>ObjHandler::oper</default>
             </replacements>
         </SubRule>
         </SubRules>

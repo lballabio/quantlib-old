@@ -43,7 +43,6 @@ class Rule(serializable.Serializable):
         """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeObjectList(self, SubRule)
-        serializer.serializeAttribute(self, common.PREFIX)
         serializer.serializeAttribute(self, common.DEREFERENCE)
 
 class RuleGroup(serializable.Serializable):
@@ -170,13 +169,8 @@ class RuleGroup(serializable.Serializable):
         else:
             defaultValue = ''
 
-        if self.setTypeConversion.prefix:
-            prefix = self.setTypeConversion.prefix
-        else:
-            prefix = ''
-
         indent = 8 * ' '
-        self.conversion = ';\n' + indent + prefix + sourceType + 'To' \
+        self.conversion = ';\n' + indent + sourceType + 'To' \
             + self.param.tensorRank.capitalize() \
             + '(' + self.param.name + common.CONVERSION_SUFFIX \
             + ', ' + deref + self.param.name + defaultValue + ');\n'
