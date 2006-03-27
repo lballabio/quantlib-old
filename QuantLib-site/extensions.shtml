@@ -19,12 +19,14 @@
 <div id="content">
 
 <h1>QuantLib Extensions</h1>
-<p>QuantLib is <a href="download.shtml">available</a> as a
-C#, Guile, Java, MzScheme, Perl, Python, and Ruby module by means
-of <a href="http://swig.sourceforge.net">SWIG</a>.<br>
+<p>QuantLib is <a href="download.shtml">available</a> as a C#, Guile,
+Java, MzScheme, Perl, Python, and Ruby module by means of <a
+href="http://swig.sourceforge.net">SWIG</a>. Experimental bindings to
+GNU R and Objective Caml are also available; feedback is welcome.<br>
 Compilation of the Java module is performed by means of <a
 href="http://www.skwash.com/">sKWash</a>. A guide to the process can
-be found <a href="http://users.telenet.be/johan.witters/website/skwash.com/get/get3.html">here</a>.<br>
+be found <a
+href="http://users.telenet.be/johan.witters/website/skwash.com/get/get3.html">here</a>.<br>
 The SWIG interfaces are available in the QuantLib <a
 href="cvs.shtml">CVS</a> repository in the QuantLib-SWIG module and
 can be used as a starting point for exporting QuantLib towards other
@@ -33,11 +35,11 @@ languages.</p>
 <p><a href="http://quantlib.org/quantlibaddin/">QuantLibAddin</a>
 exports a procedural interface to a number of platforms including
 Microsoft Excel and OpenOffice.org Calc.</p>
-<p>QuantLibXL is an initial Excel add-in built
-using <a href="http://xlw.sf.net">xlw</a>.</p>
 <p>Initial GNU R support is provided by means of <a href=
 "http://dirk.eddelbuettel.com/code/rquantlib.html">RQuantLib</a> by
 Dirk Eddelbuettel.</p>
+<p>QuantLibXL is an initial Excel add-in built
+using <a href="http://xlw.sf.net">xlw</a>.</p>
 <p>Niels Elken S&oslash;nderby has a page for the tentative
 Mathematica project <a href=
 "http://www.nielses.dk/quantlib/mma/">QuantLibMma</a>.</p>

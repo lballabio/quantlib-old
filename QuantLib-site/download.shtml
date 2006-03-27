@@ -19,8 +19,8 @@
 <div id="content">
 
 <h1 class="center">Download Page</h1>
-<p>The latest QuantLib release is the 0.3.11 version (October 2005.)</p>
-<p><b>Debian users</b> will find version 0.3.11 of the different
+<p>The latest QuantLib release is the 0.3.12 version (March 2005.)</p>
+<p><b>Debian users</b> will find version 0.3.12 of the different
 QuantLib packages in the "unstable" (a.k.a. "Sid") distribution;
 see the <a href=
 "http://packages.debian.org/cgi-bin/search_packages.pl?keywords=quantlib&amp;searchon=names&amp;subword=1&amp;version=unstable&amp;release=all">
@@ -43,7 +43,7 @@ packaged, or to advanced users wanting to <a
 href="reference/config.html">configure the library</a> with
 non-default settings.  Compiling QuantLib requires a working <a
 href="http://www.boost.org">Boost</a> installation; Boost 1.31 or
-later is needed, while Boost 1.33 is suggested.</p>
+later is needed, while Boost 1.33.1 is suggested.</p>
 
 </div>
 

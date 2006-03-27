@@ -66,11 +66,10 @@ your message is valid.<br>
 <li><strong>quantlib-cvs</strong>:<br>
 High-traffic list for automated QuantLib <a href=
 "cvs.shtml">CVS</a> check-in messages. Every time the QuantLib CVS
-code changes an email documenting the change is automatically
+code changes, an email documenting the change is automatically
 generated.<br>
-Suggested for developers only. Please do not directly post to this
-list.<br>
-(not archived yet, <a href=
+Suggested for developers only. Please do not post to this list.<br>
+(go to <a href=
 "http://lists.sourceforge.net/mailman/listinfo/quantlib-cvs">Subscribe/Unsubscribe/Preferences</a>)</li>
 </ol>
 
