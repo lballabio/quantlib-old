@@ -770,7 +770,7 @@ setMethod("as.numeric", "_p_Array",
 function(x) x[1:x$size()])
 
 setAs("numeric", "_p_Array",
-function(from) { a <- Array(length(from)); 
+function(from) { a <- Array(length(from));
 sapply(1:length(from), function(n) {
 a$setvalue(from=from, i=n, value=object[n])})
 a
@@ -788,7 +788,7 @@ function(object) print(as.data.frame(object))
 )
 
 setMethod("as.data.frame", "_p_SampledCurve",
-function(x,row.names,optional) 
+function(x,row.names,optional)
 data.frame("grid"=as.numeric(x$grid()),
 "values"=as.numeric(x$values())))
 
@@ -879,7 +879,7 @@ class Array {
                 rb_yield(rb_float_new((*self)[i]));
         }
         #endif
-        #if defined(SWIGPYTHON) || defined(SWIGRUBY) 
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         Real __getitem__(Integer i) {
             Integer size_ = static_cast<Integer>(self->size());
             if (i>=0 && i<size_) {
@@ -1093,7 +1093,7 @@ class Matrix {
             return *self/x;
         }
         #endif
-        #if defined(SWIGPYTHON) || defined(SWIGRUBY) 
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         MatrixRow __getitem__(Size i) {
             return (*self)[i];
         }
@@ -1105,14 +1105,14 @@ class Matrix {
             (*self)[i][j] = x;
         }
         #endif
-	#if defined(SWIGR) 
+	#if defined(SWIGR)
 	Array dataVector() {
 	Size nrows = self->rows();
 	Size ncols = self->columns();
 	Size nelems = nrows * ncols;
 	Array a(nelems);
-	for (int i=0; i < nrows; i++) 
-	for (int j=0; j < ncols; j++) 
+	for (int i=0; i < nrows; i++)
+	for (int j=0; j < ncols; j++)
 	    a[j*nrows+i] = (*self)[i][j];
 	return a;
 	}
@@ -1190,25 +1190,5 @@ class SVD {
     const Array& singularValues() const;
 };
 
-class SampledCurve {
-      public:
-      SampledCurve();
-      SampledCurve(const Array &);
-      SampledCurve & operator= (const SampledCurve &);
-      Array &grid();
-      Array &values();
-      Real gridValue(Size i);
-      Real value(Size i);
-      Size size() const;
-      bool empty() const;
-      void setGrid(const Array &);
-      void setValues(const Array &);
-      void swap(SampledCurve &);
-      void setLogGrid(Real min, Real max);
-      void regridLogGrid(Real min, Real max);
-      void shiftGrid(Real s);
-      void scaleGrid(Real s);
-      void regrid(const Array &);
-};
-      
+
 #endif
