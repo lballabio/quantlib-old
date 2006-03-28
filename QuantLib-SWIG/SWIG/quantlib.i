@@ -25,6 +25,9 @@
 #endif
 
 %include exception.i
+//#if defined(SWIGMZSCHEME)
+//%include std_except.i
+//#endif
 
 %exception {
     try {

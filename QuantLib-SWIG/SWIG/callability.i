@@ -54,6 +54,10 @@ class Callability {
 
 #if defined(SWIGCSHARP)
 SWIG_STD_VECTOR_SPECIALIZE( Callability, Callability )
+%ignore std::vector<Callability>::Contains;
+%ignore std::vector<Callability>::IndexOf;
+%ignore std::vector<Callability>::LastIndexOf;
+%ignore std::vector<Callability>::Remove;
 #endif
 
 

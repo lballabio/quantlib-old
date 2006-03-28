@@ -54,7 +54,7 @@ class FractionalDividendPtr : public boost::shared_ptr<CashFlow> {
 class DividendSchedule {
   public:
     DividendSchedule();
-    DividendSchedule(std::vector<boost::shared_ptr<CashFlow> >);
+    DividendSchedule(const std::vector<boost::shared_ptr<CashFlow> >&);
 };
 
 

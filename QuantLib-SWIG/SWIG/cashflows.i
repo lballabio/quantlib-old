@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000-2003 StatPro Italia srl
+ Copyright (C) 2000-2006 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
@@ -310,14 +310,13 @@ class Cashflows {
                     Real tolerance = 1.0e-10,
                     Size maxIterations = 10000,
                     Rate guess = 0.05);
+    static Time duration(const std::vector<boost::shared_ptr<CashFlow> >&,
+                         const InterestRate&,
+                         Duration::Type type = Duration::Modified,
+                         Date settlementDate = Date());
     static Real convexity(const std::vector<boost::shared_ptr<CashFlow> >&,
                           const InterestRate&,
                           Date settlementDate = Date());
-    static Time duration(const std::vector<boost::shared_ptr<CashFlow> >&,
-                         Real marketPrice,
-                         const InterestRate&,
-                         Duration::Type type = Duration::Simple,
-                         Date settlementDate = Date());
 };
 
 

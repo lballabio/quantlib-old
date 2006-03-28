@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2000-2005 StatPro Italia srl
+ Copyright (C) 2000-2006 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -47,6 +47,10 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
             typedef InterpolatedDiscountCurve<Interpolator> Name;
             return boost::dynamic_pointer_cast<Name>(*self)->dates();
         }
+        const std::vector<DiscountFactor>& discounts() {
+            typedef InterpolatedDiscountCurve<Interpolator> Name;
+            return boost::dynamic_pointer_cast<Name>(*self)->discounts();
+        }
     }
 };
 
@@ -56,7 +60,7 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
 export_discount_curve(DiscountCurve,LogLinear);
 
 // add interpolations as you wish, e.g.,
-export_discount_curve(LinearDiscountCurve,Linear);
+// export_discount_curve(LinearDiscountCurve,Linear);
 
 
 

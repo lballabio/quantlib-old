@@ -8,7 +8,7 @@ if HAVE_GUILE
 all-local: .build-stamp
 
 .build-stamp: quantlib_wrap.cpp QuantLib.scm
-	$(GUILE) -s setup.scm build
+	CXXFLAGS="$(CXXFLAGS)" $(GUILE) -s setup.scm build
 	touch .build-stamp
 
 check-local: .build-stamp

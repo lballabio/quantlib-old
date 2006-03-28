@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 StatPro Italia srl
+ Copyright (C) 2005, 2006 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -91,9 +91,9 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
 export_piecewise_curve(PiecewiseFlatForward,Discount,LogLinear);
 
 // combine traits as you wish, e.g.,
-export_piecewise_curve(PiecewiseLinearForward,ForwardRate,Linear);
-export_piecewise_curve(PiecewiseLinearZero,ZeroYield,Linear);
-export_piecewise_curve(PiecewiseCubicZero,ZeroYield,Cubic);
+// export_piecewise_curve(PiecewiseLinearForward,ForwardRate,Linear);
+// export_piecewise_curve(PiecewiseLinearZero,ZeroYield,Linear);
+// export_piecewise_curve(PiecewiseCubicZero,ZeroYield,Cubic);
 
 
 #endif

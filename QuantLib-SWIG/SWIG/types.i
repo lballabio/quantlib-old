@@ -58,6 +58,16 @@ typedef Real Volatility;
 %typecheck(SWIG_TYPECHECK_INTEGER) std::size_t {
     $1 = (SCHEME_INTP($input)) ? 1 : 0;
 }
+#elif defined(SWIGOCAML)
+%typecheck(SWIG_TYPECHECK_INTEGER) std::size_t {
+    if( !Is_block($input) ) $1 = 0;
+    else {
+        switch( SWIG_Tag_val($input) ) {
+          case C_int64: $1 = 1; break;
+          default: $1 = 0; break;
+        }
+    }
+}
 #endif
 
 typedef std::size_t Size;

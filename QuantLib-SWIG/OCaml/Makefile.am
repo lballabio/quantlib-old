@@ -6,28 +6,41 @@ OCAMLCFLAGS = -I/usr/lib/ocaml
 
 if HAVE_OCAML
 
+%.cmi: %.mli
+	$(OCAMLC) -c $<
+
+.PRECIOUS: %.cmi
+
+%.cmo: %.ml %.cmi
+	$(OCAMLC) -c $*.ml
+
+%.o: %.c
+	$(OCAMLC) -c $<
+
 all-local: .build-stamp
 
-.build-stamp: $(BUILT_SOURCES)
-	$(OCAMLC) -c swig.mli
-	$(OCAMLC) -c swig.ml
-	$(OCAMLC) -c -ccopt quantlib_wrap.c
-	$(OCAMLC) -c QuantLib.mli
-	$(OCAMLC) -c QuantLib.ml
+.build-stamp: QuantLib.cmo swig.cmo
+	touch .build-stamp
 
-check-local: .build-stamp
+QuantLib.cmo: swig.cmi
 
-install-exec-local: .build-stamp
+#check-local: .build-stamp
+
+#install-exec-local: .build-stamp
 
 clean-local:
-	rm -rf $(BUILD_SOURCES) *.ml *.mli *.cmli *.cmi *.cmo
+	rm -rf *.cmi *.cmo *.o
 
 endif
 
-$(BUILT_SOURCES): ../SWIG/*.i
+QuantLib.mli QuantLib.ml quantlib_wrap.c: ../SWIG/*.i
+	$(SWIG) -ocaml -c++ -I../SWIG -o quantlib_wrap.c quantlib.i
+
+swig.mli:
 	$(SWIG) -ocaml -co swig.mli
+
+swig.ml:
 	$(SWIG) -ocaml -co swig.ml
-	$(SWIG) -ocaml -c++ -Wall -I../SWIG -o quantlib_wrap.c quantlib.i
 
 #dist-hook:
 #	mkdir -p $(distdir)/examples

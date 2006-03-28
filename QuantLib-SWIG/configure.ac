@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT([QuantLib-SWIG], [0.3.12],
+AC_INIT([QuantLib-SWIG], [0.3.13],
         [quantlib-dev@lists.sourceforge.net],
         [QuantLib-SWIG])
 AC_PREREQ(2.50)
@@ -49,6 +49,10 @@ AC_PATH_PROG([R], [R])
 AM_CONDITIONAL(HAVE_R, test "x${R}" != "x")
 AC_PATH_PROG([RSWIG], [rswig])
 AM_CONDITIONAL(HAVE_RSWIG, test "x${RSWIG}" != "x")
+
+# Default compilation variables
+
+AC_SUBST([CXXFLAGS],[${CXXFLAGS='-g -O2 -Wall'}])
 
 # done, output the configured files
 AC_CONFIG_FILES([

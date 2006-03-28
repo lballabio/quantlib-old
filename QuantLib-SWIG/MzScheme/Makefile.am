@@ -8,7 +8,7 @@ if HAVE_MZSCHEME
 all-local: .build-stamp
 
 .build-stamp: quantlib_wrap.cpp
-	$(MZSCHEME) -r setup.scm build
+	CXXFLAGS="$(CXXFLAGS)" $(MZSCHEME) -r setup.scm build
 	touch .build-stamp
 
 check-local: .build-stamp

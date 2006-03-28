@@ -1,5 +1,5 @@
 
-; Copyright (C) 2002, 2003, 2004, 2005 StatPro Italia srl
+; Copyright (C) 2002-2006 StatPro Italia srl
 ;
 ; This file is part of QuantLib, a free-software/open-source library
 ; for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,7 +24,7 @@
   (exit))
 
 ; current QuantLib version
-(define version "0.3.12")
+(define version "0.3.13")
 
 ; commands
 

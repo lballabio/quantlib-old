@@ -11,7 +11,7 @@ libNQuantLibc.so: cpp/quantlib_wrap.o
 	g++ -shared cpp/quantlib_wrap.o -o libNQuantLibc.so -lQuantLib
 
 cpp/quantlib_wrap.o: $(BUILT_SOURCES)
-	g++ -c -fpic cpp/quantlib_wrap.cpp -o cpp/quantlib_wrap.o
+	g++ -c -fpic $(CXXFLAGS) cpp/quantlib_wrap.cpp -o cpp/quantlib_wrap.o
 
 NQuantLib.dll: $(BUILT_SOURCES)
 	$(MCS) -nologo -target:library -out:NQuantLib.dll csharp/*.cs

@@ -1,5 +1,5 @@
 if HAVE_RSWIG
-BUILT_SOURCES = QuantLib.cpp QuantLib_wrap.R
+BUILT_SOURCES = QuantLib.cpp QuantLib_wrap.S
 else
 BUILT_SOURCES =
 endif
@@ -22,18 +22,18 @@ check-local: .build-stamp
 install-exec-local: .build-stamp
 
 clean-local:
-	rm -rf $(BUILT_SOURCES) quantlib_wrap.cxx *.so *.o *.R
+	rm -rf $(BUILT_SOURCES) QuantLib.cpp *.so *.o *.S
 
 endif
 
 if HAVE_RSWIG
 $(BUILT_SOURCES): ../SWIG/*.i
-	$(RSWIG) -r -c++ -Wall -v -I../SWIG -o QuantLib.cpp quantlib.i
+	$(RSWIG) -r -c++ -I../SWIG -o QuantLib.cpp quantlib.i
 endif
 
-#dist-hook:
-#	mkdir -p $(distdir)/examples
-#	cp ./examples/*.pl $(distdir)/examples
+dist-hook:
+	mkdir -p $(distdir)/examples
+	cp ./examples/*.R $(distdir)/examples
 
 EXTRA_DIST = README.txt $(BUILT_SOURCES)
 
