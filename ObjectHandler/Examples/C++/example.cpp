@@ -27,7 +27,7 @@ int main() {
         // also direct log messages to stdout
         ObjHandler::setConsole(1);
         ObjHandler::logMessage("begin example program");
-    } catch (const exception &e) {
+    } catch (const std::exception &e) {
         std::cout << "Unable to initialize logging: " << e.what() << std::endl;
         return 1;
     } catch (...) {
@@ -75,7 +75,7 @@ int main() {
         ObjHandler::logMessage("end example program");
 
         return 0;
-    } catch (const exception &e) {
+    } catch (const std::exception &e) {
         std::ostringstream s;
         s << "Error: " << e.what();
         ObjHandler::logMessage(s.str(), 1);
