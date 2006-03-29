@@ -60,7 +60,7 @@ public:
         const std::string &color) 
         : wheelCount_(wheelCount), color_(color) {}
     std::vector<std::string> getPropertyNames() const;
-    const boost::any getProperty(const std::string& name) const;
+    boost::any getProperty(const std::string& name) const;
 protected:
     static const char* mPropertyNames[];
     int wheelCount_;

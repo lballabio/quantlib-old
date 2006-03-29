@@ -53,7 +53,7 @@ std::vector<std::string> CarValueObject::getPropertyNames() const {
 #endif
 }
 
-const boost::any CarValueObject::getProperty(const std::string& name) const {
+boost::any CarValueObject::getProperty(const std::string& name) const {
     if(name == "wheelCount") return wheelCount_;
     else if(name == "color") return color_;
     else 
