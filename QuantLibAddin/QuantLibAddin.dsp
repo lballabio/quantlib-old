@@ -245,10 +245,6 @@ SOURCE=.\qla\interpolation.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\ohfunctions.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\qla\processes.cpp
 # End Source File
 # Begin Source File
@@ -298,10 +294,6 @@ SOURCE=.\qla\vo_instruments.cpp
 # Begin Source File
 
 SOURCE=.\qla\vo_interpolation.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\qla\vo_ohfunctions.cpp
 # End Source File
 # Begin Source File
 
@@ -433,10 +425,6 @@ SOURCE=.\qla\interpolation.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\ohfunctions.hpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\qla\options.hpp
 # End Source File
 # Begin Source File
@@ -506,10 +494,6 @@ SOURCE=.\qla\vo_instruments.hpp
 # Begin Source File
 
 SOURCE=.\qla\vo_interpolation.hpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\qla\vo_ohfunctions.hpp
 # End Source File
 # Begin Source File
 

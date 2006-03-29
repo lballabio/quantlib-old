@@ -1,6 +1,7 @@
 <Category name='utilities'>
 <description>diagnostic and utility functions</description>
 <displayName>Utilities</displayName>
+
 <Functions>
 
 <Procedure name='qlVersion'>
@@ -17,6 +18,7 @@
 <Procedure name='qlListRegisteredEnums'>
 <description>return the names of all registered enums</description>
 <functionCategory>QuantLib</functionCategory>
+<alias>QuantLibAddin::EnumRegistry::instance().getAllRegisteredTypes</alias>
 <Parameters/>
 <ReturnValue>
     <type>string</type>
@@ -28,6 +30,7 @@
 <Procedure name='qlListEnum'>
 <description>return the members of a given enumeration</description>
 <functionCategory>QuantLib</functionCategory>
+<alias>QuantLibAddin::EnumRegistry::instance().getTypeElements</alias>
 <Parameters>
     <Parameter name='enumId'>
         <type>string</type>
@@ -45,6 +48,7 @@
 <Procedure name='qlListRegisteredTypes'>
 <description>return the names of all registered complex types</description>
 <functionCategory>QuantLib</functionCategory>
+<alias>QuantLibAddin::ComplexTypeRegistry::instance().getAllRegisteredTypes</alias>
 <Parameters/>
 <ReturnValue>
     <type>string</type>
@@ -56,6 +60,7 @@
 <Procedure name='qlListType'>
 <description>return the members of a given complex type</description>
 <functionCategory>QuantLib</functionCategory>
+<alias>QuantLibAddin::ComplexTypeRegistry::instance().getTypeElements</alias>
 <Parameters>
     <Parameter name='typeId'>
         <type>string</type>

@@ -43,6 +43,7 @@ class Function(serializable.Serializable):
         serializer.serializeProperty(self, common.DESCRIPTION)
         serializer.serializeProperty(self, common.FUNCTION_CATEGORY)
         serializer.serializeProperty(self, common.PLATFORMS, '*')
+        serializer.serializeProperty(self, common.ALIAS, 'QuantLibAddin::' + self.name)
         serializer.serializeObjectList(self, parameter.Parameter)
 
     def platformSupported(self, platformID):
@@ -113,8 +114,8 @@ class Member(Function):
 
     skipFirst = True    # omit object handle when invoking its member function
     BODY = '''\
-        boost::shared_ptr < QuantLibAddin::%s > objectPointer =
-            OH_GET_OBJECT(QuantLibAddin::%s, %s);
+        boost::shared_ptr < %s > objectPointer =
+            OH_GET_OBJECT(%s, %s);
 
         %s returnValue;
         returnValue = %s(%s);'''
@@ -125,6 +126,7 @@ class Member(Function):
         serializer.serializeProperty(self, common.LIBRARY_FUNCTION)
         serializer.serializeAttribute(self, common.LIBRARY_CLASS)
         serializer.serializeAttributeBoolean(self, common.GET_OBJECT)
+        serializer.serializeAttributeBoolean(self, common.NO_QLA_NS)
         serializer.serializeObject(self, parameter.ReturnValue)
 
     def postSerialize(self):
@@ -147,15 +149,13 @@ class Member(Function):
         libraryReturnType = addin.libraryReturnType.apply(self.returnValue)
         libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION)
         handle = addin.stringConvert % self.Parameters[0].name
-        return self.BODY % (self.libraryClass, self.libraryClass, handle,
+        libraryClass = self.libraryClass
+        if not self.noQlaNS: libraryClass = 'QuantLibAddin::' + libraryClass
+        return self.BODY % (libraryClass, libraryClass, handle,
             libraryReturnType, self.accessLibFunc, libraryCall)
 
 class Procedure(Function):
     """Procedural function not associated with any QuantLib object."""
-
-    BODY = '''\
-        %s returnValue;
-        returnValue = QuantLibAddin::%s(%s);'''
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
@@ -164,7 +164,12 @@ class Procedure(Function):
 
     def generateBody(self, addin):
         """Generate source code for function body."""
-        libraryReturnType = addin.libraryReturnType.apply(self.returnValue)
-        libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION)
-        return self.BODY % (libraryReturnType, self.name, libraryCall)
+        if self.returnValue.type == common.VOID:
+            returnCommand = ''
+        else:
+            returnCommand = addin.libraryReturnType.apply(self.returnValue) \
+                + ' returnValue;\n        returnValue = '
+        libraryCall = '%s(%s);' % (
+            self.alias, self.generateParameterList(addin.libraryCall, INVOCATION))
+        return '        ' + returnCommand + libraryCall
 

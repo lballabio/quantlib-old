@@ -100,18 +100,21 @@ class AddinGuile(addin.Addin):
 
     def generateReturnCommand(self, returnValue):
         """Generate source code for function return command."""
-        if returnValue.tensorRank == common.SCALAR:
+        if returnValue.type == common.VOID:
+            arg = 'true'
+        elif returnValue.tensorRank == common.SCALAR:
             arg = 'boost::any(returnValue)'
         else:
             arg = 'returnValue'
-        tensor = returnValue.tensorRank
         if returnValue.type == common.STRING:
             type = 'std::string'
         elif returnValue.type == common.ANY:
             type = 'boost::any'
+        elif returnValue.type == common.VOID:
+            type = 'bool'
         else:
             type = returnValue.type
-        return ('Nat2Scm<%s>::%s(%s)' % (type, tensor, arg))
+        return ('Nat2Scm<%s>::%s(%s)' % (type, returnValue.tensorRank, arg))
 
     def generateFunction(self, fileFunc, func):
         """Generate source code for body of function."""
@@ -126,7 +129,7 @@ class AddinGuile(addin.Addin):
         for category in config.Config.getInstance().getCategories(self.platformId):
             self.generateFuncHeaders(category)
             fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
-            fileFunc.write(self.bufferIncludes.text % (category.name, category.name))
+            fileFunc.write(self.bufferIncludes.text % (category.includes(), category.name))
             for func in category.getFunctions(self.platformId): 
                 self.generateFuncHeader(fileFunc, func, ' {')
                 self.generateFunction(fileFunc, func)

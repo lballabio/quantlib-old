@@ -1,11 +1,14 @@
 <Category name='ohfunctions'>
 <description>ObjectHandler functions</description>
 <displayName>ObjectHandler</displayName>
+<needQlaHeader>false</needQlaHeader>
+
 <Functions>
 
 <Procedure name='ohVersion'>
 <description>returns the version number of ObjectHandler</description>
 <platforms>CGO</platforms>
+<alias>ObjHandler::version</alias>
 <Parameters/>
 <ReturnValue>
     <type>string</type>
@@ -17,6 +20,7 @@
 <Procedure name='ohObjectCount'>
 <description>#/objects in repository</description>
 <platforms>CGO</platforms>
+<alias>ObjHandler::ObjectHandler::instance().objectCount</alias>
 <Parameters/>
 <ReturnValue>
     <type>long</type>
@@ -28,6 +32,7 @@
 <Procedure name='ohHandleList'>
 <description>list of handles in repository</description>
 <platforms>CGO</platforms>
+<alias>ObjHandler::ObjectHandler::instance().handleList</alias>
 <Parameters/>
 <ReturnValue>
     <type>string</type>
@@ -36,32 +41,26 @@
 </ReturnValue>
 </Procedure>
 
-<Procedure name='ohPropertyNames'>
+<Member name='ohPropertyNames' libraryClass='ObjHandler::Object' noQlaNS='true'>
 <description>retrieve the property names of a given object</description>
 <platforms>CGO</platforms>
+<libraryFunction>propertyNames</libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <Parameters>
-    <Parameter name='instanceName'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of object to be queried</description>
-    </Parameter>
 </Parameters>
 <ReturnValue>
     <type>string</type>
     <tensorRank>vector</tensorRank>
     <description>list of property names for queried object</description>
 </ReturnValue>
-</Procedure>
+</Member>
 
-<Procedure name='ohPropertyValue'>
+<Member name='ohPropertyValue' libraryClass='ObjHandler::Object' noQlaNS='true'>
 <description>retrieve the value of a named property</description>
 <platforms>CGO</platforms>
+<libraryFunction>propertyValue</libraryFunction>
+<functionCategory>ObjectHandler</functionCategory>
 <Parameters>
-    <Parameter name='instanceName'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of object to be queried</description>
-    </Parameter>
     <Parameter name='fieldName'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
@@ -78,11 +77,12 @@
     <tensorRank>scalar</tensorRank>
     <description>value of named field</description>
 </ReturnValue>
-</Procedure>
+</Member>
 
 <Procedure name='ohDeleteObject'>
 <description>delete object from repository</description>
 <platforms>CGO</platforms>
+<alias>ObjHandler::ObjectHandler::instance().deleteObject</alias>
 <Parameters>
     <Parameter name='handleObject'>
         <type>string</type>
@@ -91,7 +91,7 @@
     </Parameter>
 </Parameters>
 <ReturnValue>
-    <type>bool</type>
+    <type>void</type>
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
@@ -100,9 +100,10 @@
 <Procedure name='ohDeleteAllObjects'>
 <description>delete all objects from repository</description>
 <platforms>CGO</platforms>
+<alias>ObjHandler::ObjectHandler::instance().deleteAllObjects</alias>
 <Parameters/>
 <ReturnValue>
-    <type>bool</type>
+    <type>void</type>
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
@@ -110,7 +111,7 @@
 
 <Procedure name='ohDependsOn'>
 <description>force a dependency between two functions</description>
-<platforms>O</platforms>
+<platforms>D</platforms>
 <Parameters>
     <Parameter name='dummy0' ignore='true'>
         <type>any</type>
@@ -173,6 +174,7 @@
 <Procedure name='ohSetLogFile'>
 <description>begin logging to named file</description>
 <platforms>CGO</platforms>
+<alias>ObjHandler::setLogFile</alias>
 <Parameters>
     <Parameter name='logFileName'>
         <type>string</type>
@@ -186,7 +188,7 @@
     </Parameter>
 </Parameters>
 <ReturnValue>
-    <type>string</type>
+    <type>void</type>
     <tensorRank>scalar</tensorRank>
     <description>name of logfile</description>
 </ReturnValue>
@@ -195,6 +197,7 @@
 <Procedure name='ohSetLogLevel'>
 <description>set threshold for log messages</description>
 <platforms>CGO</platforms>
+<alias>ObjHandler::setLogLevel</alias>
 <Parameters>
     <Parameter name='logLevel'>
         <type>long</type>
@@ -203,7 +206,7 @@
     </Parameter>
 </Parameters>
 <ReturnValue>
-    <type>long</type>
+    <type>void</type>
     <tensorRank>scalar</tensorRank>
     <description>returns new logging threshold</description>
 </ReturnValue>
@@ -212,6 +215,7 @@
 <Procedure name='ohLogMessage'>
 <description>log a message</description>
 <platforms>CGO</platforms>
+<alias>ObjHandler::logMessage</alias>
 <Parameters>
     <Parameter name='logMessage'>
         <type>string</type>
@@ -225,7 +229,7 @@
     </Parameter>
 </Parameters>
 <ReturnValue>
-    <type>string</type>
+    <type>void</type>
     <tensorRank>scalar</tensorRank>
     <description>message logged</description>
 </ReturnValue>
@@ -234,6 +238,7 @@
 <Procedure name='ohLogObject'>
 <description>write object description to log file</description>
 <platforms>CGO</platforms>
+<alias>ObjHandler::logObject</alias>
 <Parameters>
     <Parameter name='handleObject'>
         <type>string</type>
@@ -242,7 +247,7 @@
     </Parameter>
 </Parameters>
 <ReturnValue>
-    <type>bool</type>
+    <type>void</type>
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
@@ -251,9 +256,10 @@
 <Procedure name='ohLogAllObjects'>
 <description>write all object descriptions to log file</description>
 <platforms>CGO</platforms>
+<alias>ObjHandler::logAllObjects</alias>
 <Parameters/>
 <ReturnValue>
-    <type>bool</type>
+    <type>void</type>
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>
@@ -262,6 +268,7 @@
 <Procedure name='ohSetConsole'>
 <description>fork output to stdout</description>
 <platforms>CG</platforms>
+<alias>ObjHandler::setConsole</alias>
 <Parameters>
     <Parameter name='console'>
         <type>int</type>
@@ -275,7 +282,7 @@
     </Parameter>
 </Parameters>
 <ReturnValue>
-    <type>bool</type>
+    <type>void</type>
     <tensorRank>scalar</tensorRank>
     <description>success/failure</description>
 </ReturnValue>

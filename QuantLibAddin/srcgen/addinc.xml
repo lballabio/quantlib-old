@@ -60,6 +60,7 @@
                 <tensorRank>scalar</tensorRank>
             </tensorRanks>
             <replacements>
+                <void>Boolean</void>
                 <bool>Boolean</bool>
                 <string>char</string>
                 <any>Varies</any>

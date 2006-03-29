@@ -34,9 +34,9 @@ int main() {
 	logLevel.type = LONG;
 	logLevel.data.AsLong = 4;
 
-    ohSetLogFile("quantlib.log", logLevel, returnString);     // specify log file
+    ohSetLogFile("quantlib.log", logLevel, &returnCode);     // specify log file
     ohSetConsole(1, logLevel, &returnCode);                  // log messages to stdout
-    ohLogMessage("begin example program", logLevel, returnString);
+    ohLogMessage("begin example program", logLevel, &returnCode);
 
     if (qlBlackConstantVol(
             "my_blackconstantvol", 
@@ -44,7 +44,7 @@ int main() {
             volatility, 
             "Actual360",
             returnString) != SUCCESS) {
-        ohLogMessage("Error on call to qlBlackConstantVol", logLevel, returnString);
+        ohLogMessage("Error on call to qlBlackConstantVol", logLevel, &returnCode);
         goto fail;
     }
 
@@ -57,7 +57,7 @@ int main() {
             riskFreeRate, 
             dividendYield, 
             returnString) != SUCCESS) {
-        ohLogMessage("Error on call to qlBlackScholesProcess", logLevel, returnString);
+        ohLogMessage("Error on call to qlBlackScholesProcess", logLevel, &returnCode);
         goto fail;
     }
 
@@ -73,11 +73,11 @@ int main() {
             "JR",                           // engine type (jarrow rudd)
             timeSteps,                      // time steps
             returnString) != SUCCESS) {
-        ohLogMessage("Error on call to qlVanillaOption", logLevel, returnString);
+        ohLogMessage("Error on call to qlVanillaOption", logLevel, &returnCode);
         goto fail;
     }
 
-    ohLogMessage("high-level interrogation - after qlVanillaOption", logLevel, returnString);
+    ohLogMessage("high-level interrogation - after qlVanillaOption", logLevel, &returnCode);
     ohLogObject("my_option", &returnCode);
 
     if (qlOptionSetEngine(
@@ -85,14 +85,14 @@ int main() {
             "AEQPB",   // AdditiveEQPBinomialTree
             801, 
             returnString) != SUCCESS) {
-        ohLogMessage("Error on call to qlOptionSetEngine", logLevel, returnString);
+        ohLogMessage("Error on call to qlOptionSetEngine", logLevel, &returnCode);
         goto fail;
     }
 
-    ohLogMessage("high-level interrogation - after qlOptionSetEngine", logLevel, returnString);
+    ohLogMessage("high-level interrogation - after qlOptionSetEngine", logLevel, &returnCode);
     ohLogObject("my_option", &returnCode);
 
-    ohLogMessage("end example program", logLevel, returnString);
+    ohLogMessage("end example program", logLevel, &returnCode);
 
     return 0;
 

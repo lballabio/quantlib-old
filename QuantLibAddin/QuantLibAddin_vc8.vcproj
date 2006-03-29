@@ -926,46 +926,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\ohfunctions.cpp"
-				>
-				<FileConfiguration
-					Name="Release CRTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug CRTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="qla\processes.cpp"
 				>
 				<FileConfiguration
@@ -1306,10 +1266,6 @@
 				>
 			</File>
 			<File
-				RelativePath="qla\vo_ohfunctions.cpp"
-				>
-			</File>
-			<File
 				RelativePath="qla\vo_options.cpp"
 				>
 			</File>
@@ -1583,10 +1539,6 @@
 				>
 			</File>
 			<File
-				RelativePath="qla\ohfunctions.hpp"
-				>
-			</File>
-			<File
 				RelativePath="qla\options.hpp"
 				>
 			</File>
@@ -1656,10 +1608,6 @@
 			</File>
 			<File
 				RelativePath="qla\vo_interpolation.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qla\vo_ohfunctions.hpp"
 				>
 			</File>
 			<File

@@ -1,8 +1,7 @@
 #include <qla/qladdindefines.hpp>
 #include <qla/typefactory.hpp>
 #include <qla/clientutils.hpp>
-#include <qla/%s.hpp>
-#include <qla/vo_%s.hpp>
+%s
 #include <Addins/Calc/qladdin.hpp>
 #include <Addins/Calc/calcutils.hpp>
 

@@ -118,6 +118,7 @@
                 <tensorRank>matrix</tensorRank>
             </tensorRanks>
             <replacements>
+                <void>long</void>
                 <bool>long</bool>
             </replacements>
         </SubRule>
@@ -302,6 +303,7 @@
                 <tensorRank>matrix</tensorRank>
             </tensorRanks>
             <replacements>
+                <void>sal_Int32</void>
                 <long>sal_Int32</long>
                 <bool>sal_Int32</bool>
                 <string>STRING</string>

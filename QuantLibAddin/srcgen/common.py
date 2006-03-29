@@ -19,6 +19,7 @@
 
 """global constants."""
 
+ALIAS = 'alias'
 ANY = 'any'
 APPEND_CONVERSION_SUFFIX = 'appendConversionSuffix'
 BOOL = 'bool'
@@ -41,6 +42,8 @@ LIBRARY_FUNCTION = 'libraryFunction'
 LONG = 'long'
 MATRIX = 'matrix'
 NAME = 'name'
+NEED_QLA_HEADER = 'needQlaHeader'
+NO_QLA_NS = 'noQlaNS'
 NULL = 'null'
 OPTIONAL = 'optional'
 PARAMS = 'parameters'
@@ -55,4 +58,5 @@ TRUE = 'true'
 TYPE = 'type'
 VALUE = 'value'
 VECTOR = 'vector'
+VOID = 'void'
 

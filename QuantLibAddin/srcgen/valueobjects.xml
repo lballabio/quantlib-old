@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <Addin name='ValueObjects'>
-<platformId>C</platformId>
+<platformId>V</platformId>
 <rootDirectory>../qla/</rootDirectory>
 
 <Buffers>

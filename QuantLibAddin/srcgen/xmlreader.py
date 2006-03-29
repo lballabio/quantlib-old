@@ -72,13 +72,13 @@ class XmlReader(serializer.Serializer):
         else:
             setattr(caller, propertyName, defaultValue)
 
-    def serializeBoolean(self, caller, propertyName):
+    def serializeBoolean(self, caller, propertyName, defaultValue = False):
         """Read a named boolean property."""
         element = self.getChild(propertyName, True)
         if element:
             setattr(caller, propertyName, self.stringToBoolean(self.getNodeValue(element)))
         else:
-            setattr(caller, propertyName, False)
+            setattr(caller, propertyName, defaultValue)
 
     def serializeList(self, caller, vectorName, itemName):
         """Read a list of elements."""

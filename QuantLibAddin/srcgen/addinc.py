@@ -68,6 +68,8 @@ class AddinC(addin.Addin):
             return 'strcpy(result, returnValue.c_str())'
         elif returnValue.type == common.BOOL:
             return '*result = returnValue ? TRUE : FALSE'
+        elif returnValue.type == common.VOID:
+            return '*result = TRUE'
         else:
             return '*result = returnValue'
 
@@ -82,7 +84,7 @@ class AddinC(addin.Addin):
     def generateFunctions(self, category):
         """Generate source for function implementations."""
         fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
-        fileFunc.write(self.bufferIncludes.text % (category.name, category.name))
+        fileFunc.write(self.bufferIncludes.text % (category.includes(), category.name))
         for func in category.getFunctions(self.platformId): 
             self.generateHeader(fileFunc, func, ' {\n')
             self.generateFunction(fileFunc, func)

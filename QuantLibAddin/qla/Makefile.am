@@ -25,7 +25,6 @@ include_HEADERS = \
     generalutils.hpp \
     instruments.hpp \
     interpolation.hpp \
-    ohfunctions.hpp \
     options.hpp \
     processes.hpp \
     qladdin.hpp \
@@ -49,7 +48,6 @@ include_HEADERS = \
     vo_couponvectors.hpp \
     vo_instruments.hpp \
     vo_interpolation.hpp \
-    vo_ohfunctions.hpp \
     vo_options.hpp \
     vo_processes.hpp \
     vo_schedule.hpp \
@@ -76,7 +74,6 @@ libQuantLibAddin_la_SOURCES = \
     fixedcouponbond.cpp \
     forwardvanillaoption.cpp \
     generalutils.cpp \
-    ohfunctions.cpp \
     interpolation.cpp \
     processes.cpp \
     schedule.cpp \
@@ -95,7 +92,6 @@ libQuantLibAddin_la_SOURCES = \
     vo_couponvectors.cpp \
     vo_instruments.cpp \
     vo_interpolation.cpp \
-    vo_ohfunctions.cpp \
     vo_options.cpp \
     vo_processes.cpp \
     vo_schedule.cpp \

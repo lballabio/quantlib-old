@@ -4,7 +4,7 @@
 #endif
 #include <qla/typefactory.hpp>
 #include <qla/clientutils.hpp>
-#include <qla/%s.hpp>
+%s
 extern "C" {
 #include <Addins/C/varies.h>
 #include <Addins/C/defines.h>

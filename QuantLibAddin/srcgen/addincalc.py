@@ -107,7 +107,9 @@ class AddinCalc(addin.Addin):
     def generateReturnCommand(self, returnValue):
         """Generate code to convert datatype of return value."""
         indent = 8 * ' '
-        if returnValue.tensorRank == common.SCALAR \
+        if returnValue.type == common.VOID:
+             return indent + 'return 1;'
+        elif returnValue.tensorRank == common.SCALAR \
         and (returnValue.type == common.LONG or
              returnValue.type == common.DOUBLE):
              return indent + 'return returnValue;'
@@ -132,7 +134,7 @@ class AddinCalc(addin.Addin):
         """Generate source for function implementations."""
         for category in config.Config.getInstance().getCategories(self.platformId):
             fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
-            fileFunc.write(self.bufferIncludes.text % (category.name, category.name))
+            fileFunc.write(self.bufferIncludes.text % category.includes(True))
             for func in category.getFunctions(self.platformId): 
                 self.generateFunction(fileFunc, func)
             fileFunc.close()

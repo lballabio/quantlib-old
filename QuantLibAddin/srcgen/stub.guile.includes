@@ -1,7 +1,7 @@
 #include <qla/qladdindefines.hpp>
 #include <qla/typefactory.hpp>
 #include <qla/clientutils.hpp>
-#include <qla/%s.hpp>
+%s
 #include <Addins/Guile/guileutils.hpp>
 extern "C" {
 #include <Addins/Guile/%s.h>

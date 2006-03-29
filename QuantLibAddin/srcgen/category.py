@@ -31,6 +31,7 @@ class Category(serializable.Serializable):
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeProperty(self, common.DISPLAY_NAME)
         serializer.serializeProperty(self, common.DESCRIPTION)
+        serializer.serializeBoolean(self, common.NEED_QLA_HEADER, True)
         serializer.serializeObjectDict(self, function.Function)
 
     def platformSupported(self, platformID):
@@ -45,4 +46,15 @@ class Category(serializable.Serializable):
             function = self.Functions[functionKey]
             if platformId == '*' or function.platformSupported(platformId):
                 yield function
+
+    def includes(self, needValueObjects = False):
+        """list include directives required to compile the source code
+        for this addin."""
+        if self.needQlaHeader == True:
+            ret = '#include <qla/%s.hpp>' % self.name
+            if needValueObjects:
+                ret += '\n#include <qla/vo_%s.hpp>' % self.name
+            return ret
+        else:
+            return ''
 

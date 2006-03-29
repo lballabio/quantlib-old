@@ -34,7 +34,6 @@
 #include <qla/couponvectors.hpp>
 #include <qla/instruments.hpp>
 #include <qla/interpolation.hpp>
-#include <qla/ohfunctions.hpp>
 #include <qla/options.hpp>
 #include <qla/processes.hpp>
 #include <qla/schedule.hpp>

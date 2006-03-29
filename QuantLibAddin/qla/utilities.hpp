@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief ementations of the utility functions defined in utilities.xml
+    \brief Implementations of the utility functions defined in utilities.xml
     for use within the Addins.
 
     The functions implemented in this file are invoked in the Addins from code
@@ -27,8 +27,9 @@
 #ifndef qla_utilities_hpp
 #define qla_utilities_hpp
 
-#include <oh/objhandler.hpp>
-#include <ql/date.hpp>
+// this include directive is required for the Addins as the enumeration
+// functionality is included in the utilities category
+#include <qla/typeregistry.hpp>
 
 namespace QuantLibAddin {
 
@@ -36,25 +37,10 @@ namespace QuantLibAddin {
     diagnostic and information functions for QuantLibAddin
 */
 
-    /*! return the version of QuantLib
+    /*! return the version number of QuantLib
     */
     std::string qlVersion();
 
-    /*! list all available Enumerations
-    */
-    const std::vector<std::string>& qlListRegisteredEnums();
-
-    /*! list the members of a given Enumeration
-    */
-    const std::vector<std::string>& qlListEnum(const std::string&);
-
-    /*! list all available Complex Types
-    */
-    const std::vector<std::string>& qlListRegisteredTypes();
-
-    /*! list the members of a given Complex Type
-    */
-    const std::vector<std::string>& qlListType(const std::string&);
 }
 
 #endif
