@@ -4,7 +4,6 @@
 <Functions>
 
 <Constructor name='qlHullWhite'>
-<description>construct and return a handle to a Hull-White short-rate model object</description>
 <libraryFunction>HullWhite</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -27,7 +26,6 @@
 </Constructor>
 
 <Constructor name='qlVasicek'>
-<description>construct and return a Vasicek short-rate model object</description>
 <libraryFunction>Vasicek</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>

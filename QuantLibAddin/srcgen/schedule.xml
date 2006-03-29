@@ -4,7 +4,6 @@
 <Functions>
 
 <Constructor name='qlSchedule'>
-<description>construct and return a handle to a schedule object</description>
 <libraryFunction>Schedule</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>

@@ -4,7 +4,6 @@
 <Functions>
 
 <Constructor name='qlSwap'>
-<description>construct and return a handle to a swap object</description>
 <libraryFunction>Swap</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>

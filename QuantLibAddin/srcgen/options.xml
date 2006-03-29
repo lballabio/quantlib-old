@@ -4,7 +4,6 @@
 <Functions>
 
 <Constructor name='qlBarrierOption'>
-<description>construct and return a handle to a Barrier Option object</description>
 <libraryFunction>BarrierOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -72,7 +71,6 @@
 </Constructor>
 
 <Constructor name='qlBasketOption'>
-<description>construct and return a handle to a Basket Option object</description>
 <libraryFunction>BasketOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -125,7 +123,6 @@
 </Constructor>
 
 <Constructor name='qlCaAsianOption'>
-<description>construct and return a handle to a Continuous Averaging Asian Option object</description>
 <libraryFunction>ContinuousAveragingAsianOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -183,7 +180,6 @@
 </Constructor>
 
 <Constructor name='qlCliquetOption'>
-<description>construct and return a handle to a Cliquet Option object</description>
 <libraryFunction>CliquetOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -226,7 +222,6 @@
 </Constructor>
 
 <Constructor name='qlDaAsianOption'>
-<description>construct and return a handle to a Discrete Averaging Asian Option object</description>
 <libraryFunction>DiscreteAveragingAsianOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -299,7 +294,6 @@
 </Constructor>
 
 <Constructor name='qlDividendVanillaOption'>
-<description>construct and return a handle to a Dividend Vanilla Option object</description>
 <libraryFunction>DividendVanillaOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -362,7 +356,6 @@
 </Constructor>
 
 <Constructor name='qlForwardVanillaOption'>
-<description>construct and return a handle to a Forward Vanilla Option object</description>
 <libraryFunction>ForwardVanillaOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -448,7 +441,6 @@
 </Member>
 
 <Constructor name='qlVanillaOption'>
-<description>construct and return a handle to a Vanilla Option object</description>
 <libraryFunction>VanillaOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>

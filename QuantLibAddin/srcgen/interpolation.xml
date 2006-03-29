@@ -4,7 +4,6 @@
 <Functions>
 
 <Constructor name='qlBackwardFlatInterpolation'>
-<description>construct and return a handle to a backward flat interpolator</description>
 <libraryFunction>BackwardFlatInterpolation</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -17,7 +16,6 @@
 </Constructor>
 
 <Constructor name='qlForwardFlatInterpolation'>
-<description>construct and return a handle to a forward flat interpolator</description>
 <libraryFunction>ForwardFlatInterpolation</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -30,7 +28,6 @@
 </Constructor>
 
 <Constructor name='qlLinearInterpolation'>
-<description>construct and return a handle to a linear interpolator</description>
 <libraryFunction>LinearInterpolation</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -43,7 +40,6 @@
 </Constructor>
 
 <Constructor name='qlCubicSplineInterpolation'>
-<description>construct and return a handle to a cubic spline interpolator</description>
 <libraryFunction>CubicSplineInterpolation</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>

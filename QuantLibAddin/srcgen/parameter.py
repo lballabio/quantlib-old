@@ -81,7 +81,7 @@ class ConstructorReturnValue(Value):
     name = ''
     type = 'string'
     tensorRank = 'scalar'
-    description = 'handle of newly created object'
+    description = 'instance name of newly created object'
     default = False
 
 class ParameterHandle(Parameter):

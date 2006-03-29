@@ -4,7 +4,6 @@
 <Functions>
 
 <Constructor name='qlXibor'>
-<description>construct and return a handle to a Xibor Index</description>
 <libraryFunction>Xibor</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>

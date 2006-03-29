@@ -4,7 +4,6 @@
 <Functions>
 
 <Constructor name='qlAnalyticCapFloorEngine'>
-<description>construct and return a pricing engine for cap/foors</description>
 <libraryFunction>AnalyticCapFloorEngine</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -17,7 +16,6 @@
 </Constructor>
 
 <Constructor name='qlCapFloor'>
-<description>construct and return a handle to a cap/floor object</description>
 <libraryFunction>CapFloor</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>

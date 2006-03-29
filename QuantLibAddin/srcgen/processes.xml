@@ -4,7 +4,6 @@
 <Functions>
 
 <Constructor name='qlBlackScholesProcess'>
-<description>construct and return a handle to a Black Scholes Process object</description>
 <libraryFunction>BlackScholesProcess</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>

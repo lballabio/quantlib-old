@@ -93,6 +93,8 @@ class Constructor(Function):
             'name of this %s instance' % self.libraryFunction))
         self.Parameters[0].ql_type = ''
         self.ParameterCount += 1
+        self.description = 'Construct an object of class %s and return its instance name' \
+            % self.libraryFunction
 
     def generateBody(self, addin):
         """Generate source code for function body."""

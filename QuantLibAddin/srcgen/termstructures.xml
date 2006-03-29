@@ -4,7 +4,6 @@
 <Functions>
 
 <Constructor name='qlDepositRateHelper'>
-<description>construct and return a handle to a deposit rate-helper object</description>
 <libraryFunction>DepositRateHelper</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -47,7 +46,6 @@
 </Constructor>
 
 <Constructor name='qlFutureRateHelper'>
-<description>construct and return a handle to a future rate-helper object</description>
 <libraryFunction>FutureRateHelper</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -118,7 +116,6 @@
 </Member>
 
 <Constructor name='qlPiecewiseFlatForward'>
-<description>construct and return a handle to a piecewise flat forward term structure</description>
 <libraryFunction>PiecewiseFlatForward</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -164,7 +161,6 @@
 </Member>
 
 <Constructor name='qlSwapRateHelper'>
-<description>construct and return a handle to a swap rate-helper object</description>
 <libraryFunction>SwapRateHelper</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -222,7 +218,6 @@
 </Constructor>
 
 <Constructor name='qlZeroCurve'>
-<description>construct and return a handle to a ZeroCurve object</description>
 <libraryFunction>ZeroCurve</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -245,7 +240,6 @@
 </Constructor>
 
 <Constructor name='qlForwardCurve'>
-<description>construct and return a handle to a piecewise flat forward term structure from the forward rates</description>
 <libraryFunction>ForwardCurve</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -268,7 +262,6 @@
 </Constructor>
 
 <Constructor name='qlForwardSpreadedTermStructure'>
-<description>construct and return a handle to Forward-Spreaded Term Structure </description>
 <libraryFunction>ForwardSpreadedTermStructure</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>

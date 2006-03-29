@@ -166,7 +166,6 @@
 </Member>
 
 <Constructor name='qlFixedCouponBond'>
-<description>construct and return a handle to a Fixed Coupon Bond object</description>
 <libraryFunction>FixedCouponBond</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -244,7 +243,6 @@
 </Constructor>
 
 <Constructor name='qlZeroCouponBond'>
-<description>construct and return a handle to a ZeroCouponBond object</description>
 <libraryFunction>ZeroCouponBond</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>

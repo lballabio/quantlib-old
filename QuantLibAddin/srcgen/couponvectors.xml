@@ -4,7 +4,6 @@
 <Functions>
 
 <Constructor name='qlFixedRateCouponVector'>
-<description>construct and return a handle to a fixed rate coupon vector</description>
 <libraryFunction>FixedRateCouponVector</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -37,7 +36,6 @@
 </Constructor>
 
 <Constructor name='qlFloatingRateCouponVector'>
-<description>construct and return a handle to a floating rate coupon vector</description>
 <libraryFunction>FloatingRateCouponVector</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>

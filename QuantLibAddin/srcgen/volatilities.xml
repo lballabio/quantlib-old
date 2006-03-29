@@ -4,7 +4,6 @@
 <Functions>
 
 <Constructor name='qlBlackConstantVol'>
-<description>construct and return a handle to a Black Constant Vol object</description>
 <libraryFunction>BlackConstantVol</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
@@ -27,7 +26,6 @@
 </Constructor>
 
 <Constructor name='qlBlackVarianceSurface'>
-<description>construct and return a handle to a Black Variance Surface object</description>
 <libraryFunction>BlackVarianceSurface</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
