@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-s-0_3_12.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-s-0_3_13.lib"
 
 !ELSEIF  "$(CFG)" == "QuantLibAddin - Win32 Debug"
 
@@ -76,7 +76,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-sgd-0_3_12.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-sgd-0_3_13.lib"
 
 !ELSEIF  "$(CFG)" == "QuantLibAddin - Win32 Release CRTDLL"
 
@@ -99,7 +99,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-0_3_12.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-0_3_13.lib"
 
 !ELSEIF  "$(CFG)" == "QuantLibAddin - Win32 Debug CRTDLL"
 
@@ -122,7 +122,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-gd-0_3_12.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-mt-gd-0_3_13.lib"
 
 !ELSEIF  "$(CFG)" == "QuantLibAddin - Win32 Release SingleThread"
 
@@ -145,7 +145,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-s-0_3_12.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-s-0_3_13.lib"
 
 !ELSEIF  "$(CFG)" == "QuantLibAddin - Win32 Debug SingleThread"
 
@@ -168,7 +168,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-sgd-0_3_12.lib"
+# ADD LIB32 /nologo /out:"lib\QuantLibAddin-vc6-sgd-0_3_13.lib"
 
 !ENDIF 
 
@@ -194,10 +194,6 @@ SOURCE=.\qla\barrieroption.cpp
 # Begin Source File
 
 SOURCE=.\qla\basic.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\qla\basketoption.cpp
 # End Source File
 # Begin Source File
 
@@ -374,10 +370,6 @@ SOURCE=.\qla\baseinstruments.hpp
 # Begin Source File
 
 SOURCE=.\qla\basic.hpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\qla\basketoption.hpp
 # End Source File
 # Begin Source File
 

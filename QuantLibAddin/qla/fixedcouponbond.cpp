@@ -54,10 +54,8 @@ namespace QuantLibAddin {
         boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpDiscYC;
         QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;
         if (!discCurveId.empty()) {
-            boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpDiscYC =
-                OH_GET_OBJECT(QuantLibAddin::YieldTermStructure, discCurveId);
-            boost::shared_ptr<QuantLib::YieldTermStructure> discYC = 
-                OH_GET_REFERENCE(QuantLib::YieldTermStructure, tmpDiscYC);
+            OH_GET_REFERENCE(discYC, discCurveId, 
+                YieldTermStructure, QuantLib::YieldTermStructure)
             discountingTermStructure.linkTo(discYC);
         }
 

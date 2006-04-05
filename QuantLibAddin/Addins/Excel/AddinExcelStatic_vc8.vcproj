@@ -75,13 +75,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="xll\QuantLibAddinStatic-vc80-mt-sgd-0_3_12.xll"
+				OutputFile="xll\QuantLibAddinStatic-vc80-mt-sgd-0_3_13.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildStatic\vc80\Debug/QuantLibAddinStatic-vc80-mt-sgd-0_3_12.pdb"
-				ImportLibrary=".\buildStatic\vc80\Debug/QuantLibAddinStatic-vc80-mt-sgd-0_3_12.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\Debug/QuantLibAddinStatic-vc80-mt-sgd-0_3_13.pdb"
+				ImportLibrary=".\buildStatic\vc80\Debug/QuantLibAddinStatic-vc80-mt-sgd-0_3_13.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -173,13 +173,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="xll\QuantLibAddinStatic-vc80-mt-gd-0_3_12.xll"
+				OutputFile="xll\QuantLibAddinStatic-vc80-mt-gd-0_3_13.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildStatic\vc80\DebugCRTDLL/QuantLibAddinStatic-vc80-mt-gd-0_3_12.pdb"
-				ImportLibrary=".\buildStatic\vc80\DebugCRTDLL/QuantLibAddinStatic-vc80-mt-gd-0_3_12.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\DebugCRTDLL/QuantLibAddinStatic-vc80-mt-gd-0_3_13.pdb"
+				ImportLibrary=".\buildStatic\vc80\DebugCRTDLL/QuantLibAddinStatic-vc80-mt-gd-0_3_13.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -271,12 +271,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="xll\QuantLibAddinStatic-vc80-mt-s-0_3_12.xll"
+				OutputFile="xll\QuantLibAddinStatic-vc80-mt-s-0_3_13.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
-				ProgramDatabaseFile=".\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_3_12.pdb"
-				ImportLibrary=".\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_3_12.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_3_13.pdb"
+				ImportLibrary=".\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_3_13.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -368,12 +368,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="xll\QuantLibAddinStatic-vc80-mt-0_3_12.xll"
+				OutputFile="xll\QuantLibAddinStatic-vc80-mt-0_3_13.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
-				ProgramDatabaseFile=".\buildStatic\vc80\ReleaseCRTDLL/QuantLibAddinStatic-vc80-mt-0_3_12.pdb"
-				ImportLibrary=".\buildStatic\vc80\ReleaseCRTDLL/QuantLibAddinStatic-vc80-mt-0_3_12.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\ReleaseCRTDLL/QuantLibAddinStatic-vc80-mt-0_3_13.pdb"
+				ImportLibrary=".\buildStatic\vc80\ReleaseCRTDLL/QuantLibAddinStatic-vc80-mt-0_3_13.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -489,6 +489,46 @@
 		</File>
 		<File
 			RelativePath="couponvectors.cpp"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug CRTDLL|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release CRTDLL|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="exercise.cpp"
 			>
 			<FileConfiguration
 				Name="Debug|Win32"

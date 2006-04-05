@@ -22,22 +22,21 @@
 #include <qla/cliquetoption.hpp>
 #include <qla/typefactory.hpp>
 #include <qla/generalutils.hpp>
+#include <qla/exercise.hpp>
 
 namespace QuantLibAddin {
 
     CliquetOption::CliquetOption(
             const std::string &handleBlackScholes,
-            const std::vector < long > &resetDates,
             const std::string &optionTypeID,
             const double &strike,
-            const long &exerciseDate,
+            const long &expiryDate,
+            const std::vector < long > &resetDates,
             const std::string &engineID,
             const long &timeSteps) {
 
-        boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
-            OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);
-        const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
-            OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
+        OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
+            BlackScholesProcess, QuantLib::BlackScholesProcess)
 
         QuantLib::Option::Type type = 
             Create<QuantLib::Option::Type>()(optionTypeID);
@@ -45,14 +44,15 @@ namespace QuantLibAddin {
         boost::shared_ptr<QuantLib::PercentageStrikePayoff> payoff(
             new QuantLib::PercentageStrikePayoff(type, strike));
         boost::shared_ptr<QuantLib::EuropeanExercise> exercise(
-            new QuantLib::EuropeanExercise(QuantLib::Date(exerciseDate)));
+            new QuantLib::EuropeanExercise(
+                QuantLib::Date(expiryDate)));
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
         std::vector<QuantLib::Date> resetDatesQL =
             longVectorToDateVector(resetDates);
         mInstrument = boost::shared_ptr<QuantLib::CliquetOption>(
             new QuantLib::CliquetOption(
-                blackScholesProcessQL, 
+                blackScholesProcess, 
                 payoff, 
                 exercise, 
                 resetDatesQL,

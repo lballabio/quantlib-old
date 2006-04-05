@@ -39,11 +39,9 @@ namespace QuantLibAddin {
             const double &redemption,
             const std::string &handleZeroCurve) {
 
-        boost::shared_ptr<ZeroCurve> zeroCurve =
-            OH_GET_OBJECT(ZeroCurve, handleZeroCurve);
-
-        boost::shared_ptr<QuantLib::YieldTermStructure> zeroCurveQl =
-            OH_GET_REFERENCE(QuantLib::YieldTermStructure, zeroCurve);
+        OH_GET_REFERENCE(zeroCurve, handleZeroCurve, 
+            ZeroCurve, QuantLib::YieldTermStructure)
+        QuantLib::Handle<QuantLib::YieldTermStructure> zeroCurveH(zeroCurve);
 
         QuantLib::BusinessDayConvention convention = 
             Create<QuantLib::BusinessDayConvention>()(conventionID);
@@ -61,10 +59,8 @@ namespace QuantLibAddin {
                                              calendar,
                                              convention,
                                              redemption,
-                                             QuantLib::Handle<QuantLib::YieldTermStructure>(zeroCurveQl)));
+                                             zeroCurveH));
 
-        // Perform pricing
-        mInstrument->NPV();
     }
 }
 

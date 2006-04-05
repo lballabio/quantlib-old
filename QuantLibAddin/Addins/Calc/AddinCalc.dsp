@@ -71,6 +71,10 @@ SOURCE=.\couponvectors.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\exercise.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\funcdef.cpp
 # End Source File
 # Begin Source File
@@ -156,6 +160,10 @@ SOURCE=.\capfloor.hpp
 # Begin Source File
 
 SOURCE=.\couponvectors.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\exercise.hpp
 # End Source File
 # Begin Source File
 

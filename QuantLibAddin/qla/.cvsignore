@@ -13,6 +13,8 @@ vo_capfloor.cpp
 vo_capfloor.hpp
 vo_couponvectors.cpp
 vo_couponvectors.hpp
+vo_exercise.cpp
+vo_exercise.hpp
 vo_instruments.cpp
 vo_instruments.hpp
 vo_interpolation.cpp

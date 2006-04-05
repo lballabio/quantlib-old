@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,9 +18,11 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qla/config.hpp>
 #endif
-#include <qla/vanillaoption.hpp>
+#include <qla/quantoforwardvanillaoption.hpp>
 #include <qla/typefactory.hpp>
 #include <qla/exercise.hpp>
+#include <qla/termstructures.hpp>
+#include <qla/volatilities.hpp>
 
 #include <ql/DayCounters/all.hpp>
 #include <ql/Volatilities/blackconstantvol.hpp>
@@ -29,7 +31,12 @@
 
 namespace QuantLibAddin {
 
-    VanillaOption::VanillaOption(
+    QuantoForwardVanillaOption::QuantoForwardVanillaOption(
+            const std::string &handleTermStructure,
+            const std::string &handleBlackVol,
+            const double &correlation,
+            const double &moneyness,
+            const long &resetDate,
             const std::string &handleBlackScholes,
             const std::string &optionTypeID,
             const std::string &payoffID,
@@ -38,31 +45,42 @@ namespace QuantLibAddin {
             const std::string &engineID,
             const long &timeSteps) {
 
+        OH_GET_REFERENCE(termStructure, handleTermStructure, 
+            YieldTermStructure, QuantLib::YieldTermStructure)
+        QuantLib::Handle<QuantLib::YieldTermStructure> termStructureH(termStructure);
+
+        OH_GET_REFERENCE(blackVolTermStructure, handleBlackVol, 
+            BlackVolTermStructure, QuantLib::BlackVolTermStructure)
+        QuantLib::Handle<QuantLib::BlackVolTermStructure>
+            blackVolTermStructureH(blackVolTermStructure);
+
+        QuantLib::Handle<QuantLib::Quote> correlationH(
+            boost::shared_ptr<QuantLib::Quote>(
+            new QuantLib::SimpleQuote(correlation)));
+
         OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
             BlackScholesProcess, QuantLib::BlackScholesProcess)
+
+        boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
+            Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> >()(optionTypeID, payoffID, strike);
 
         OH_GET_REFERENCE(exercise, handleExercise, Exercise,
             QuantLib::Exercise)
 
-        boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
-            Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> >()(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
-        mInstrument = boost::shared_ptr<QuantLib::VanillaOption>(
-            new QuantLib::VanillaOption(
+
+        mInstrument = boost::shared_ptr<QuantLib::QuantoForwardVanillaOption>(
+            new QuantLib::QuantoForwardVanillaOption(
+                termStructureH,
+                blackVolTermStructureH,
+                correlationH,
+                moneyness,
+                QuantLib::Date(resetDate),
                 blackScholesProcess,
                 payoff,
                 exercise,
                 pricingEngine));
-    }
-
-    std::string VanillaOption::setEngine(
-            const std::string &engineID,
-            const long &timeSteps) {
-        boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
-            Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
-        mInstrument->setPricingEngine(pricingEngine);
-        return engineID;
     }
 
 }

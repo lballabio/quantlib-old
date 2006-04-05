@@ -34,25 +34,21 @@ namespace QuantLibAddin {
             const std::vector<double>& floorStrikes,
             const std::string&         engineID,
             const std::string&         optionID) {
-        
-        boost::shared_ptr<AnalyticCapFloorEngine> engineWrapper =
-            OH_GET_OBJECT(AnalyticCapFloorEngine, engineID);
-        boost::shared_ptr<QuantLib::PricingEngine> engine =
-            OH_GET_REFERENCE(QuantLib::PricingEngine, engineWrapper);
-        
-        boost::shared_ptr<YieldTermStructure> termStructureWrapper =
-            OH_GET_OBJECT(YieldTermStructure, termStructureID);
-        boost::shared_ptr<QuantLib::YieldTermStructure> termStructureP =
-            OH_GET_REFERENCE(QuantLib::YieldTermStructure, termStructureWrapper);
+
+        OH_GET_REFERENCE(engine, engineID, 
+            AnalyticCapFloorEngine, QuantLib::PricingEngine)
+
+        OH_GET_REFERENCE(termStructureP, termStructureID, 
+            YieldTermStructure, QuantLib::YieldTermStructure)
         QuantLib::Handle<QuantLib::YieldTermStructure> termStructureH(termStructureP);
-        
+
         boost::shared_ptr<CouponVector> couponVectorWrapper =
             OH_GET_OBJECT(CouponVector, couponVectorID);
         const CashFlowVector& couponVector = couponVectorWrapper->getObject();
-        
+
         QuantLib::CapFloor::Type option =
             Create<QuantLib::CapFloor::Type>()(optionID);
-        
+
         mInstrument = boost::shared_ptr<QuantLib::CapFloor>(
             new QuantLib::CapFloor(option,
                                    couponVector,
@@ -61,18 +57,15 @@ namespace QuantLibAddin {
                                    termStructureH,
                                    engine));
     }
-    
+
     AnalyticCapFloorEngine::AnalyticCapFloorEngine(
             const std::string& handleModel) {
 
-        boost::shared_ptr<AffineModel> model = 
-            OH_GET_OBJECT(AffineModel, handleModel);
-
-        const boost::shared_ptr<QuantLib::AffineModel> modelQL =
-            OH_GET_REFERENCE(QuantLib::AffineModel, model);
+        OH_GET_REFERENCE(model, handleModel, 
+            AffineModel, QuantLib::AffineModel)
 
         engine_ = boost::shared_ptr<QuantLib::AnalyticCapFloorEngine>(
-            new QuantLib::AnalyticCapFloorEngine(modelQL));
+            new QuantLib::AnalyticCapFloorEngine(model));
     }
 
 }

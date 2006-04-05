@@ -50,10 +50,8 @@ namespace QuantLibAddin {
             boost::shared_ptr<QuantLib::YieldTermStructure>(
             new QuantLib::FlatForward(settlementDate, dividendYield, dayCounter)));
 
-        boost::shared_ptr<BlackVolTermStructure> blackVolTermStructure =
-            OH_GET_OBJECT(BlackVolTermStructure, handleBlackVol);
-        boost::shared_ptr<QuantLib::BlackVolTermStructure> blackVolTermStructureP = 
-            OH_GET_REFERENCE(QuantLib::BlackVolTermStructure, blackVolTermStructure);
+        OH_GET_REFERENCE(blackVolTermStructureP, handleBlackVol, 
+            BlackVolTermStructure, QuantLib::BlackVolTermStructure)
         QuantLib::Handle<QuantLib::BlackVolTermStructure> 
             blackVolTermStructureH(blackVolTermStructureP);
 

@@ -1,7 +1,7 @@
 
 # to be used with NSIS 2.0 and up
 
-!define VER_NUMBER "0.3.12"
+!define VER_NUMBER "0.3.13"
 
 Name "QuantLibAddin"
 Caption "QuantLibAddin - Setup"
@@ -19,7 +19,7 @@ Section
     File "*.TXT"
 
     SetOutPath $INSTDIR\Addins\Excel\xll
-    File "Addins\Excel\xll\QuantLibAddinStatic-vc80-mt-s-0_3_12.xll"
+    File "Addins\Excel\xll\QuantLibAddinStatic-vc80-mt-s-0_3_13.xll"
 
     SetOutPath $INSTDIR\Clients\Excel
     File "Clients\Excel\*.xls"

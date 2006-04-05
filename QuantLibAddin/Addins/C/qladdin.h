@@ -22,9 +22,10 @@
 #include <Addins/C/varies.h>
 
 #include <Addins/C/capfloor.h>
+#include <Addins/C/exercise.h>
 #include <Addins/C/instruments.h>
-#include <Addins/C/options.h>
 #include <Addins/C/ohfunctions.h>
+#include <Addins/C/options.h>
 #include <Addins/C/processes.h>
 #include <Addins/C/shortratemodels.h>
 #include <Addins/C/termstructures.h>

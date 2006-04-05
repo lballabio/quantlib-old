@@ -1,7 +1,7 @@
 
 # to be used with NSIS 2.0 and up
 
-!define VER_NUMBER "0.3.12"
+!define VER_NUMBER "0.3.13"
 SetCompressor lzma
 Name "QuantLibAddin"
 Caption "QuantLibAddin - Setup"

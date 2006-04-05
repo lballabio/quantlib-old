@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,10 +20,12 @@
 
 #include <qla/asianoption.hpp>
 #include <qla/barrieroption.hpp>
-#include <qla/basketoption.hpp>
 #include <qla/cliquetoption.hpp>
 #include <qla/dividendvanillaoption.hpp>
+#include <qla/europeanoption.hpp>
 #include <qla/forwardvanillaoption.hpp>
+#include <qla/quantoforwardvanillaoption.hpp>
+#include <qla/quantovanillaoption.hpp>
 #include <qla/vanillaoption.hpp>
 
 #endif

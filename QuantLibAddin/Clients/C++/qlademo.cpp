@@ -65,20 +65,30 @@ int main() {
             dividendYield));                // dividend yield
         storeObject("my_blackscholes", blackScholesProcess);
 
+        obj_ptr exercise(new QuantLibAddin::AmericanExercise(
+            settlementDate.serialNumber(),  // settlement date
+            exerciseDate.serialNumber(),    // exercise date
+            false));                        // payoff at expiry
+        storeObject("my_exercise", exercise);
+
         obj_ptr vanillaOption(new QuantLibAddin::VanillaOption(
             "my_blackscholes",              // stochastic process handle
             "Put",                          // option type
             "Vanilla",                      // payoff type
             strike,                         // strike price
-            "American",                     // exercise type
-            exerciseDate.serialNumber(),    // exercise date
-            settlementDate.serialNumber(),  // settlement date
+            "my_exercise",                  // exercise handle
             "JR",                           // engine type (jarrow rudd)
             timeSteps));                    // time steps
         storeObject("my_option", vanillaOption);
-    
-        logMessage("High-level interrogation of VanillaOption");
-        logObject("my_option");
+        vanillaOption->setProperties(boost::shared_ptr<ObjHandler::ValueObject>(new QuantLibAddin::ValueObjects::qlVanillaOption(
+            "my_option",                    // instance name
+            "my_blackscholes",              // stochastic process handle
+            "Put",                          // option type
+            "Vanilla",                      // payoff type
+            strike,                         // strike price
+            "my_exercise",                  // exercise handle
+            "JR",                           // engine type (jarrow rudd)
+            timeSteps)));                   // time steps
 
         boost::shared_ptr<QuantLibAddin::VanillaOption> vanillaOptionQLA =
             OH_GET_OBJECT(QuantLibAddin::VanillaOption, "my_option");
@@ -93,8 +103,9 @@ int main() {
         logObject("my_option");
 
         logMessage("Low-level interrogation: NPV of underlying option object");
-        boost::shared_ptr<QuantLib::VanillaOption> vanillaOptionQL = 
-            OH_GET_REFERENCE(QuantLib::VanillaOption, vanillaOptionQLA);
+        const boost::shared_ptr< QuantLib::VanillaOption > vanillaOptionQL =
+            boost::static_pointer_cast< QuantLib::VanillaOption >
+            (vanillaOptionQLA->getReference());
         ostringstream s;
         s << "underlying option NPV() = " << vanillaOptionQL->NPV();
         logMessage(s.str());

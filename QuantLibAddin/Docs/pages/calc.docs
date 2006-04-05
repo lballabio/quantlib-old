@@ -66,7 +66,7 @@ Below are the steps required to compile and install an Addin for OpenOffice.org 
 \li \b idlc - Run OOo utility \b idlc to compile the idl (interface definition language) file QuantLibAddin.idl into urd (UNO reflection data) file QuantLibAddin.urd.  The urd file comprises binary descriptions of the types in the Addin.
 \li \b regmerge - Run OOo utility \b regmerge to merge the urd file into rdb (registry database) file QuantLibAddin.rdb.  The rdb is used by OOo at runtime to infer the functionality available in the Addin.
 \li \b cppumaker - Run OOo utility \b cppumaker to generate the source code corresponding to the definitions in the rdb.
-\li \b compile - Compile the Addin, including the source generated above, plus the function implementation source code supplied for the Addin.  The Addin is compiled into a shared library, i.e. \b QuantLibAddin.dll (Windows) or <b>libQuantLibAddinCalc-0.3.12.so</b> (Linux).
+\li \b compile - Compile the Addin, including the source generated above, plus the function implementation source code supplied for the Addin.  The Addin is compiled into a shared library, i.e. \b QuantLibAddin.dll (Windows) or <b>libQuantLibAddinCalc-0.3.13.so</b> (Linux).
 \li \b install - Copy the Addin's shared library and registry database to the OOo program directory.
 
 One further step is required, the name of the registry database must be added to an OOo ini file in order to inform OOo of the location of the Addin.  This step is not automated by the build process and must be performed manually:

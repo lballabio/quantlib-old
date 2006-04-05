@@ -68,7 +68,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc80-mt-0_3_12.lib"
+				OutputFile="lib\QuantLibAddin-vc80-mt-0_3_13.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -144,7 +144,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc80-mt-s-0_3_12.lib"
+				OutputFile="lib\QuantLibAddin-vc80-mt-s-0_3_13.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -220,7 +220,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc80-mt-sgd-0_3_12.lib"
+				OutputFile="lib\QuantLibAddin-vc80-mt-sgd-0_3_13.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -296,7 +296,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibAddin-vc80-mt-gd-0_3_12.lib"
+				OutputFile="lib\QuantLibAddin-vc80-mt-gd-0_3_13.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -407,46 +407,6 @@
 			</File>
 			<File
 				RelativePath="qla\basic.cpp"
-				>
-				<FileConfiguration
-					Name="Release CRTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug CRTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="qla\basketoption.cpp"
 				>
 				<FileConfiguration
 					Name="Release CRTDLL|Win32"
@@ -687,6 +647,46 @@
 			</File>
 			<File
 				RelativePath="qla\dividendvanillaoption.cpp"
+				>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\exercise.cpp"
 				>
 				<FileConfiguration
 					Name="Release CRTDLL|Win32"
@@ -1491,10 +1491,6 @@
 				>
 			</File>
 			<File
-				RelativePath="qla\basketoption.hpp"
-				>
-			</File>
-			<File
 				RelativePath="qla\capfloor.hpp"
 				>
 			</File>
@@ -1516,6 +1512,10 @@
 			</File>
 			<File
 				RelativePath="qla\dividendvanillaoption.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\exercise.hpp"
 				>
 			</File>
 			<File

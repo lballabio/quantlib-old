@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,16 +24,14 @@
 
 namespace QuantLibAddin {
 
-    class VanillaOption : public Instrument {
+    class VanillaOption : public OneAssetOption {
     public:
         VanillaOption(
             const std::string &handleBlackScholes,
             const std::string &optionTypeID,
             const std::string &payoffID,
             const double &strike,
-            const std::string &exerciseID,
-            const long &exerciseDate,
-            const long &settlementDate,
+            const std::string &handleExercise,
             const std::string &engineID,
             const long &timeSteps);
         std::string setEngine(

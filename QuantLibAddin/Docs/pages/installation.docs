@@ -26,7 +26,7 @@
 \subsection installation_overview Overview
 
 This document provides general instructions for building and installing
-%QuantLibAddin 0.3.12 under Windows, and on platforms which use Autoconf 
+%QuantLibAddin 0.3.13 under Windows, and on platforms which use Autoconf 
 e.g. Linux.  For additional notes regarding the installation of the Calc 
 addin please refer to the document \ref calc.
 
@@ -73,7 +73,7 @@ load the Addin and the example workbooks.
 
 \subsection prerequisites Prerequisites
 
-\li <a href="http://quantlib.org/">QuantLib</a> version 0.3.12
+\li <a href="http://quantlib.org/">QuantLib</a> version 0.3.13
 \li <a href="http://quantlib.org/objecthandler/">ObjectHandler</a> version 0.1.3
 
 \subsection windows_installation Installing under Windows
@@ -87,7 +87,7 @@ To build %QuantLibAddin for Excel:
 \li start Excel
 \li load the Addin.  The name of the Addin will depend on the compiler version and configuration,
 e.g. if compiled under VC6 debug the Addin is called
-<strong>%QuantLibAddin\\Addins\\Excel\\xll\\QuantLibAddinStatic-vc6-mt-sgd-0_3_12.xll.</strong>
+<strong>%QuantLibAddin\\Addins\\Excel\\xll\\QuantLibAddinStatic-vc6-mt-sgd-0_3_13.xll.</strong>
 \li load a sample spreadsheet e.g.  <strong>%QuantLibAddin\\Clients\\Excel\\QLADemo.xls</strong>
 
 Project AddinExcelDynamic is a build which links dynamically to the
@@ -103,8 +103,8 @@ e.g. workspace ClientCDemo creates standalone C client executable
 \subsubsection autoconf_brief In Brief
 
 \verbatim
-tar zxfv QuantLibAddin-0.3.12.tar.gz
-cd QuantLibAddin-0.3.12
+tar zxfv QuantLibAddin-0.3.13.tar.gz
+cd QuantLibAddin-0.3.13
 ./configure
 make
 Clients/C++/QLADemo

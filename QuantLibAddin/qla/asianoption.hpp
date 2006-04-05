@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,37 +24,33 @@
 
 namespace QuantLibAddin {
 
-    class ContinuousAveragingAsianOption : public Instrument {
+    class ContinuousAveragingAsianOption : public OneAssetOption {
     public:
         ContinuousAveragingAsianOption(
-            const std::string &handleBlackScholes,
             const std::string &averageID,
+            const std::string &handleBlackScholes,
             const std::string &optionTypeID,
             const std::string &payoffID,
             const double &strike,
-            const std::string &exerciseID,
-            const long &exerciseDate,
-            const long &settlementDate,
+            const std::string &handleExercise,
             const std::string &engineID,
             const long &timeSteps);
 
         EXPORT_QL_OBJECT(QuantLib::ContinuousAveragingAsianOption);
     };
 
-    class DiscreteAveragingAsianOption : public Instrument {
+    class DiscreteAveragingAsianOption : public OneAssetOption {
     public:
         DiscreteAveragingAsianOption(
-            const std::string &handleBlackScholes,
             const std::string &averageID,
             const double &runningAccumulator,
             const long &pastFixings,
             const std::vector < long > &fixingDates,
+            const std::string &handleBlackScholes,
             const std::string &optionTypeID,
             const std::string &payoffID,
             const double &strike,
-            const std::string &exerciseID,
-            const long &exerciseDate,
-            const long &settlementDate,
+            const std::string &handleExercise,
             const std::string &engineID,
             const long &timeSteps);
 

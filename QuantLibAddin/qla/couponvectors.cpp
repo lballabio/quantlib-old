@@ -30,30 +30,28 @@
 #include <ql/CashFlows/parcoupon.hpp>
 
 namespace QuantLibAddin {
-    
+
     double CouponVector::getBPS(const std::string &termStructureID) const {
-        
-        boost::shared_ptr<YieldTermStructure> termStructureWrapper =
-            OH_GET_OBJECT(YieldTermStructure, termStructureID);
-        boost::shared_ptr<QuantLib::YieldTermStructure> termStructure = 
-            OH_GET_REFERENCE(QuantLib::YieldTermStructure, termStructureWrapper);
+
+        OH_GET_REFERENCE(termStructure, termStructureID, 
+            YieldTermStructure, QuantLib::YieldTermStructure)
         QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;
         discountingTermStructure.linkTo(termStructure);
         
         return QuantLib::BasisPointSensitivity(cashFlowVector_, discountingTermStructure);
     }
-    
+
     FixedRateCouponVector::FixedRateCouponVector(
             const std::string         &scheduleID,
             const std::string         &conventionID,
             const std::vector<double> &nominals,
             const std::vector<double> &couponRates,
             const std::string         &dayCountID) {
-    
+
         boost::shared_ptr<Schedule> scheduleWrapper = 
             OH_GET_OBJECT(Schedule, scheduleID);
         const QuantLib::Schedule& schedule = scheduleWrapper->getObject();
-        
+
         QuantLib::BusinessDayConvention convention =
             Create<QuantLib::BusinessDayConvention>()(conventionID);
         QuantLib::DayCounter dayCount =
@@ -66,10 +64,10 @@ namespace QuantLibAddin {
                                             couponRates,
                                             dayCount);
     }
-    
+
     std::vector<std::vector<double> > FixedRateCouponVector::getLeg() {
         std::vector<std::vector<double> > leg;
-        
+
         for (std::size_t i=0 ; i < cashFlowVector_.size() ; i++) {
             std::vector<double> cf;
             QuantLib::FixedRateCoupon& c =
@@ -82,25 +80,23 @@ namespace QuantLibAddin {
             cf.push_back(c.amount());
             leg.push_back(cf);
         }
-        
+
         return leg;
     }
-    
+
     FloatingRateCouponVector::FloatingRateCouponVector(
             const std::string         &scheduleID,
             const std::vector<double> &nominals,
             const std::string         &indexID,
             const std::vector<double> &spreads) {
-        
+
         boost::shared_ptr<Schedule> scheduleWrapper = 
             OH_GET_OBJECT(Schedule, scheduleID);
         const QuantLib::Schedule& schedule = scheduleWrapper->getObject();
-        
-        boost::shared_ptr<Xibor> indexWrapper = 
-            OH_GET_OBJECT(Xibor, indexID);
-        boost::shared_ptr<QuantLib::Xibor> index =
-            OH_GET_REFERENCE(QuantLib::Xibor, indexWrapper);
-        
+
+        OH_GET_REFERENCE(index, indexID, 
+            Xibor, QuantLib::Xibor)
+
         cashFlowVector_ =
             QuantLib::FloatingRateCouponVector(schedule,
                                                index->businessDayConvention(),
@@ -110,7 +106,7 @@ namespace QuantLibAddin {
                                                spreads,
                                                index->dayCounter());
     }
-    
+
     std::vector<std::vector<double> > FloatingRateCouponVector::getLeg() {
         std::vector<std::vector<double> > leg;
 
@@ -128,9 +124,9 @@ namespace QuantLibAddin {
             cf.push_back(c.indexFixing());
             leg.push_back(cf);
         }
-        
+
         return leg;
     }
-    
+
 }
 

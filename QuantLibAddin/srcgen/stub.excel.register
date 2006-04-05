@@ -36,7 +36,7 @@ DLLEXPORT XLOPER *xlAddInManagerInfo(XLOPER *xlAction) {
     // return of a #VALUE! error.
     if (1 == xlReturn.val.w) {
         ObjHandler::scalarToXloper(xlLongName, 
-            std::string("QuantLibAddin 0.3.12"));
+            std::string("QuantLibAddin 0.3.13"));
     } else {
         xlLongName.xltype = xltypeErr;
         xlLongName.val.err = xlerrValue;

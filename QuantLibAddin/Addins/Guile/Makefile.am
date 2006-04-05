@@ -16,6 +16,7 @@ noinst_HEADERS = \
     basic.h \
     capfloor.h \
     couponvectors.h \
+    exercise.h \
     extra.h \
     instruments.h \
     interpolation.h \
@@ -40,6 +41,7 @@ libQuantLibAddinGuile_la_SOURCES = \
     basic.cpp \
     capfloor.cpp \
     couponvectors.cpp \
+    exercise.cpp \
     extra.cpp \
     guileutils.cpp \
     instruments.cpp \

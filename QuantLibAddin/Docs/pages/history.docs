@@ -23,6 +23,22 @@
 
 /*! \page history Version History
 
+<strong>Release 0.3.13 - ??? 2006</strong>
+
+REQUIRED PACKAGES
+
+- QuantLib version 0.3.13
+- ObjectHandler version 0.1.4
+
+FUNCTIONALITY
+
+- xx new functions / xx in total
+- support for Value Objects (Plamen Neykov) (see ObjectHandler
+  documentation for details)
+- Additional functionality for options - greeks, Bermudan payoffs, other
+  minor enhancements
+- Function to set the global value of the evaluation date
+
 <strong>Release 0.3.12 - March 2006</strong>
 
 REQUIRED PACKAGES

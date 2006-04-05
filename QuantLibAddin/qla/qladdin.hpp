@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -30,8 +30,10 @@
 
 #include <qla/utilities.hpp>
 
+#include <qla/basic.hpp>
 #include <qla/capfloor.hpp>
 #include <qla/couponvectors.hpp>
+#include <qla/exercise.hpp>
 #include <qla/instruments.hpp>
 #include <qla/interpolation.hpp>
 #include <qla/options.hpp>
@@ -44,6 +46,23 @@
 #include <qla/utilities.hpp>
 #include <qla/volatilities.hpp>
 #include <qla/xibor.hpp>
+#include <qla/vo_basic.hpp>
+#include <qla/vo_capfloor.hpp>
+#include <qla/vo_couponvectors.hpp>
+#include <qla/vo_exercise.hpp>
+#include <qla/vo_instruments.hpp>
+#include <qla/vo_interpolation.hpp>
+#include <qla/volatilities.hpp>
+#include <qla/vo_options.hpp>
+#include <qla/vo_processes.hpp>
+#include <qla/vo_schedule.hpp>
+#include <qla/vo_shortratemodels.hpp>
+#include <qla/vo_simpleswap.hpp>
+#include <qla/vo_swap.hpp>
+#include <qla/vo_termstructures.hpp>
+#include <qla/vo_utilities.hpp>
+#include <qla/vo_volatilities.hpp>
+#include <qla/vo_xibor.hpp>
 
 #endif
 

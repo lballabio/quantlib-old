@@ -2,6 +2,7 @@ basic.*
 capfloor.*
 couponvectors.*
 .deps
+exercise.*
 instruments.*
 interpolation.*
 libQuantLibAddinGuile.la

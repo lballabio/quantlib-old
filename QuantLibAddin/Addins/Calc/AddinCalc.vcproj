@@ -44,6 +44,9 @@
 				RelativePath="couponvectors.cpp">
 			</File>
 			<File
+				RelativePath="exercise.cpp">
+			</File>
+			<File
 				RelativePath="funcdef.cpp">
 			</File>
 			<File
@@ -109,6 +112,9 @@
 			</File>
 			<File
 				RelativePath="couponvectors.hpp">
+			</File>
+			<File
+				RelativePath="exercise.hpp">
 			</File>
 			<File
 				RelativePath="instruments.hpp">

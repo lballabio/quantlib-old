@@ -25,11 +25,13 @@ int main() {
     double volatility = 0.20;
     double underlying = 36;
     double strike = 40;
-    long timeSteps = 801;
     long exerciseDate = 43903;                  // (13, March, 2020);
     long settlementDate = 43537;                // (13, March, 2019);
     char returnString[100];
     Boolean returnCode;
+    Varies dummy;
+	dummy.type = LONG;
+	dummy.data.AsLong = 0;
     Varies logLevel;
 	logLevel.type = LONG;
 	logLevel.data.AsLong = 4;
@@ -61,35 +63,31 @@ int main() {
         goto fail;
     }
 
+    if (qlAmericanExercise(
+            "my_exercise", 
+            settlementDate, 
+            exerciseDate,
+            dummy, 
+            returnString) != SUCCESS) {
+        ohLogMessage("Error on call to qlAmericanExercise", logLevel, &returnCode);
+        goto fail;
+    }
+
     if (qlVanillaOption(
             "my_option",                    // option handle
             "my_stochastic",                // stochastic process handle
             "Put",                          // option type
             "Vanilla",                      // payoff type
             strike,                         // strike price
-            "American",                     // exercise type
-            exerciseDate,                   // exercise date
-            settlementDate,                 // settlement date
+            "my_exercise",                  // exercise handle
             "JR",                           // engine type (jarrow rudd)
-            timeSteps,                      // time steps
+            dummy,                          // time steps
             returnString) != SUCCESS) {
         ohLogMessage("Error on call to qlVanillaOption", logLevel, &returnCode);
         goto fail;
     }
 
     ohLogMessage("high-level interrogation - after qlVanillaOption", logLevel, &returnCode);
-    ohLogObject("my_option", &returnCode);
-
-    if (qlOptionSetEngine(
-            "my_option", 
-            "AEQPB",   // AdditiveEQPBinomialTree
-            801, 
-            returnString) != SUCCESS) {
-        ohLogMessage("Error on call to qlOptionSetEngine", logLevel, &returnCode);
-        goto fail;
-    }
-
-    ohLogMessage("high-level interrogation - after qlOptionSetEngine", logLevel, &returnCode);
     ohLogObject("my_option", &returnCode);
 
     ohLogMessage("end example program", logLevel, &returnCode);

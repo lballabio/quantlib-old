@@ -75,13 +75,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="xll\QuantLibAddinDynamic-vc80-mt-gd-0_3_12.xll"
+				OutputFile="xll\QuantLibAddinDynamic-vc80-mt-gd-0_3_13.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll,$(QL_DIR)\lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildDynamic\vc80\DebugCRTDLL/QuantLibAddinDynamic-vc80-mt-gd-0_3_12.pdb"
-				ImportLibrary=".\buildDynamic\vc80\DebugCRTDLL/QuantLibAddinDynamic-vc80-mt-gd-0_3_12.lib"
+				ProgramDatabaseFile=".\buildDynamic\vc80\DebugCRTDLL/QuantLibAddinDynamic-vc80-mt-gd-0_3_13.pdb"
+				ImportLibrary=".\buildDynamic\vc80\DebugCRTDLL/QuantLibAddinDynamic-vc80-mt-gd-0_3_13.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -173,12 +173,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="xll\QuantLibAddinDynamic-vc80-mt-0_3_12.xll"
+				OutputFile="xll\QuantLibAddinDynamic-vc80-mt-0_3_13.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll,$(QL_DIR)\lib"
-				ProgramDatabaseFile=".\buildDynamic\vc80\ReleaseCRTDLL/QuantLibAddinDynamic-vc80-mt-0_3_12.pdb"
-				ImportLibrary=".\buildDynamic\vc80\ReleaseCRTDLL/QuantLibAddinDynamic-vc80-mt-0_3_12.lib"
+				ProgramDatabaseFile=".\buildDynamic\vc80\ReleaseCRTDLL/QuantLibAddinDynamic-vc80-mt-0_3_13.pdb"
+				ImportLibrary=".\buildDynamic\vc80\ReleaseCRTDLL/QuantLibAddinDynamic-vc80-mt-0_3_13.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -258,6 +258,28 @@
 		</File>
 		<File
 			RelativePath="couponvectors.cpp"
+			>
+			<FileConfiguration
+				Name="Debug CRTDLL|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release CRTDLL|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions=""
+				/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="exercise.cpp"
 			>
 			<FileConfiguration
 				Name="Debug CRTDLL|Win32"

@@ -9,6 +9,7 @@ couponvectors.*pp
 Debug
 .deps
 dll
+exercise.*pp
 *.flag*
 funcdef.cpp
 instruments.*

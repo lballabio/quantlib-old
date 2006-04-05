@@ -17,6 +17,7 @@ xll
 *.user
 
 capfloor.*
+exercise.*
 instruments.*
 ohfunctions.*
 options.*

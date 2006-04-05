@@ -287,6 +287,10 @@
 				>
 			</File>
 			<File
+				RelativePath="exercise.xml"
+				>
+			</File>
+			<File
 				RelativePath="instruments.xml"
 				>
 			</File>

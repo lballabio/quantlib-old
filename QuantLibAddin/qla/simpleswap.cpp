@@ -21,11 +21,11 @@
     #include <qla/config.hpp>
 #endif
 
-#include "qla/simpleswap.hpp"
-#include "qla/generalutils.hpp"
-#include "qla/termstructures.hpp"
-#include "qla/typefactory.hpp"
-#include "qla/xibor.hpp"
+#include <qla/simpleswap.hpp>
+#include <qla/generalutils.hpp>
+#include <qla/termstructures.hpp>
+#include <qla/typefactory.hpp>
+#include <qla/xibor.hpp>
 #include <ql/CashFlows/fixedratecoupon.hpp>
 #include <ql/CashFlows/parcoupon.hpp>
 #include <vector>
@@ -61,16 +61,12 @@ namespace QuantLibAddin {
         QuantLib::Date maturity = QuantLib::Date(lMaturity);
         QuantLib::Date startDate = QuantLib::Date(lStartDate);
 
-        boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpDiscYC =
-            OH_GET_OBJECT(QuantLibAddin::YieldTermStructure, discCurveId);
-        boost::shared_ptr<QuantLib::YieldTermStructure> discYC = 
-            OH_GET_REFERENCE(QuantLib::YieldTermStructure, tmpDiscYC);
-        QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;
-        discountingTermStructure.linkTo(discYC);
+        OH_GET_REFERENCE(discYC, discCurveId, 
+            YieldTermStructure, QuantLib::YieldTermStructure)
+        QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure(discYC);
 
-        boost::shared_ptr<QuantLibAddin::Xibor> tmpIndex =
-            OH_GET_OBJECT(QuantLibAddin::Xibor, indexHandle);
-        boost::shared_ptr<QuantLib::Xibor> index = OH_GET_REFERENCE(QuantLib::Xibor, tmpIndex);
+        OH_GET_REFERENCE(index, indexHandle, Xibor,
+            QuantLib::Xibor)
 
         QuantLib::Schedule fixedSchedule(calendar, startDate, maturity, fixFrq, fixBDC, 
             QuantLib::Date(), fixStartFromEnd, fixLongFinal);

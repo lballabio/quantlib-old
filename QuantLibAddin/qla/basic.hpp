@@ -1,4 +1,5 @@
 /*
+ Copyright (C) 2006 Eric Ehlers
  Copyright (C) 2006 Marco Marchioro--StatPro Italia
 
  This file is part of QuantLib, a free-software/open-source library
@@ -52,7 +53,12 @@ namespace QuantLibAddin {
 
     /*! return the evaluation date
     */
-    long qlEvalDate();
+    long qlGetEvalDate();
+
+    /*! set the evaluation date
+    */
+    long qlSetEvalDate(const long &evalDate);
+
 }
 
 #endif

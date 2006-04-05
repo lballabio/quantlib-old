@@ -20,6 +20,7 @@ noinst_HEADERS = \
     capfloor.h \
     couponvectors.h \
     defines.h \
+    exercise.h \
     instruments.h \
     interpolation.h \
     ohfunctions.h \
@@ -42,6 +43,7 @@ libQuantLibAddinC_la_SOURCES = \
     basic.cpp \
     capfloor.cpp \
     couponvectors.cpp \
+    exercise.cpp \
     instruments.cpp \
     interpolation.cpp \
     ohfunctions.cpp \

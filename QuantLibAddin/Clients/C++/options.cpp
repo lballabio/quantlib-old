@@ -58,28 +58,37 @@ int main() {
         storeObject("my_blackscholesprocess", blackScholesProcess);
         logObject("my_blackscholesprocess");
 
+        obj_ptr exercise(new QuantLibAddin::EuropeanExercise(
+            settlementDate.serialNumber()));    // settlement date
+        storeObject("my_exercise", exercise);
+
         obj_ptr vanillaOption(new QuantLibAddin::VanillaOption(
             "my_blackscholesprocess",           // stochastic process handle
             "Put",                              // option type
             "Vanilla",                          // payoff type
             strike,                             // strike price
-            "American",                         // exercise type
-            exerciseDate.serialNumber(),        // exercise date
-            settlementDate.serialNumber(),      // settlement date
+            "my_exercise",                      // exercise handle
             "JR",                               // engine type (jarrow rudd)
             timeSteps));                        // time steps
         storeObject("my_vanillaOption", vanillaOption);
-        logObject("my_vanillaOption");
-
-        obj_ptr continuousAveragingAsianOption(new QuantLibAddin::ContinuousAveragingAsianOption(
+        vanillaOption->setProperties(boost::shared_ptr<ObjHandler::ValueObject>(new QuantLibAddin::ValueObjects::qlVanillaOption(
+            "my_vanillaOption",                 // instance name
             "my_blackscholesprocess",           // stochastic process handle
-            "Geometric",                        // average type
             "Put",                              // option type
             "Vanilla",                          // payoff type
             strike,                             // strike price
-            "European",                         // exercise type
-            exerciseDate.serialNumber(),        // exercise date
-            0,                                  // settlement date ignored when exercise = European
+            "my_exercise",                      // exercise handle
+            "JR",                               // engine type (jarrow rudd)
+            timeSteps)));                       // time steps
+        logObject("my_vanillaOption");
+
+        obj_ptr continuousAveragingAsianOption(new QuantLibAddin::ContinuousAveragingAsianOption(
+            "Geometric",                        // average type
+            "my_blackscholesprocess",           // stochastic process handle
+            "Put",                              // option type
+            "Vanilla",                          // payoff type
+            strike,                             // strike price
+            "my_exercise",                      // exercise handle
             "ACGAPA",                           // engine type (AnalyticContinuousGeometricAveragePriceAsianEngine)
             timeSteps));                        // time steps
         storeObject("my_continuous", continuousAveragingAsianOption);
@@ -89,33 +98,29 @@ int main() {
         for (int i = 0; i < exerciseDate - todaysDate + 1; i++)
             fixingDates.push_back(todaysDate.serialNumber() + i);
         obj_ptr discreteAveragingAsianOption(new QuantLibAddin::DiscreteAveragingAsianOption(
-            "my_blackscholesprocess",           // stochastic process handle
             "Geometric",                        // average type
             1.0,                                // running accumulator
             0,                                  // past fixings
             fixingDates,                        // fixingDates
+            "my_blackscholesprocess",           // stochastic process handle
             "Put",                              // option type
             "Vanilla",                          // payoff type
             strike,                             // strike price
-            "European",                         // exercise type
-            exerciseDate.serialNumber(),        // exercise date
-            0,                                  // settlement date ignored when exercise = European
+            "my_exercise",                      // exercise handle
             "ADGAPA",                           // engine type (AnalyticDiscreteGeometricAveragePriceAsianEngine)
             timeSteps));                        // time steps
         storeObject("my_discrete", discreteAveragingAsianOption);
         logObject("my_discrete");
 
         obj_ptr barrierOption(new QuantLibAddin::BarrierOption(
-            "my_blackscholesprocess",           // stochastic process handle
             "DownIn",                           // barrier type
             35.0,                               // barrier
             3.0,                                // rebate
+            "my_blackscholesprocess",           // stochastic process handle
             "Put",                              // option type
             "Vanilla",                          // payoff type
             strike,                             // strike price
-            "European",                         // exercise type
-            exerciseDate.serialNumber(),        // exercise date
-            0,                                  // settlement date ignored when exercise = European
+            "my_exercise",                      // exercise handle
             "AB",                               // engine type (AnalyticBarrierEngine)
             timeSteps));                        // time steps
         storeObject("my_barrierOption", barrierOption);
@@ -125,10 +130,10 @@ int main() {
         resetDates.push_back(Date(12, March, 2020).serialNumber());
         obj_ptr cliquetOption(new QuantLibAddin::CliquetOption(
             "my_blackscholesprocess",           // stochastic process handle
-            resetDates,                         // reset dates
             "Put",                              // option type
             strike,                             // strike price
             exerciseDate.serialNumber(),        // exercise date
+            resetDates,                         // reset dates
             "AC",                               // engine type (AnalyticCliquetEngine)
             timeSteps));                        // time steps
         storeObject("my_cliquetOption", cliquetOption);
@@ -143,14 +148,12 @@ int main() {
 
         obj_ptr dividendVanillaOption(new QuantLibAddin::DividendVanillaOption(
             "my_blackscholesprocess",           // stochastic process handle
-            dividendDates,                      // dividend dates
-            dividends,                          // dividends
             "Call",                             // option type
             "Vanilla",                          // payoff type
             10.0,                               // strike price
-            "European",                         // exercise type
-            exerciseDate.serialNumber(),        // exercise date
-            0,                                  // settlement date ignored when exercise = European
+            "my_exercise",                      // exercise handle
+            dividendDates,                      // dividend dates
+            dividends,                          // dividends
             "ADE",                              // engine type (AnalyticDividendEuropeanEngine)
             timeSteps));                        // time steps
         storeObject("my_dividendVanillaOption", dividendVanillaOption);
@@ -159,15 +162,13 @@ int main() {
         long resetDate = exerciseDate.serialNumber() - 90;
 
         obj_ptr forwardVanillaOption(new QuantLibAddin::ForwardVanillaOption(
-            "my_blackscholesprocess",           // stochastic process handle
             12,                                 // moneyness
             resetDate,                          // reset date
+            "my_blackscholesprocess",           // stochastic process handle
             "Put",                              // option type
             "Vanilla",                          // payoff type (plain vanilla)
             strike,                             // strike price
-            "European",                         // exercise type
-            exerciseDate.serialNumber(),        // exercise date
-            0,                                  // settlement date ignored when exercise = European
+            "my_exercise",                      // exercise handle
             "FE",                               // engine type (ForwardEngine)
             timeSteps));                        // time steps
         storeObject("my_forwardVanillaOption", forwardVanillaOption);

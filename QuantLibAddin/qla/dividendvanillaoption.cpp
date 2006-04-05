@@ -21,40 +21,38 @@
 #include <qla/dividendvanillaoption.hpp>
 #include <qla/typefactory.hpp>
 #include <qla/generalutils.hpp>
+#include <qla/exercise.hpp>
 
 namespace QuantLibAddin {
 
     DividendVanillaOption::DividendVanillaOption(
             const std::string &handleBlackScholes,
-            const std::vector < long > &dividendDates,
-            const std::vector < double > &dividends,
             const std::string &optionTypeID,
             const std::string &payoffID,
             const double &strike,
-            const std::string &exerciseID,
-            const long &exerciseDate,
-            const long &settlementDate,
+            const std::string &handleExercise,
+            const std::vector < long > &dividendDates,
+            const std::vector < double > &dividends,
             const std::string &engineID,
             const long &timeSteps) {
 
-        boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
-            OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);
-        const boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL = 
-            OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
+        OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
+            BlackScholesProcess, QuantLib::BlackScholesProcess)
+
+        OH_GET_REFERENCE(exercise, handleExercise, Exercise,
+            QuantLib::Exercise)
 
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> >()(optionTypeID, payoffID, strike);
-        boost::shared_ptr<QuantLib::Exercise> exercise = 
-            Create<boost::shared_ptr<QuantLib::Exercise> >()(exerciseID, exerciseDate, settlementDate);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
         const std::vector<QuantLib::Date> dividendDatesQL = 
             longVectorToDateVector(dividendDates);
         mInstrument = boost::shared_ptr<QuantLib::DividendVanillaOption>(
             new QuantLib::DividendVanillaOption(
-                blackScholesProcessQL, 
-                payoff, 
-                exercise, 
+                blackScholesProcess,
+                payoff,
+                exercise,
                 dividendDatesQL,
                 dividends,
                 pricingEngine));

@@ -40,21 +40,6 @@
 </Enumeration>
 
 <Enumeration>
-<type>QuantLib::BasketOption::BasketType</type>
-<constructor>true</constructor>
-<EnumerationDefinitions>
-    <EnumerationDefinition>
-        <string>Max</string>
-        <value>QuantLib::BasketOption::Max</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Min</string>
-        <value>QuantLib::BasketOption::Min</value>
-    </EnumerationDefinition>
-</EnumerationDefinitions>
-</Enumeration>
-
-<Enumeration>
 <type>QuantLib::BusinessDayConvention</type>
 <constructor>true</constructor>
 <EnumerationDefinitions>
@@ -640,21 +625,6 @@
 </EnumerationDefinitions>
 </Enumeration>
 
-<Enumeration documentationOnly='true'>
-<type>QuantLib::Exercise</type>
-<constructor>true</constructor>
-<EnumerationDefinitions>
-    <EnumerationDefinition>
-        <string>American</string>
-        <value>QuantLib::AmericanExercise</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>European</string>
-        <value>QuantLib::EuropeanExercise</value>
-    </EnumerationDefinition>
-</EnumerationDefinitions>
-</Enumeration>
-
 <Enumeration>
 <type>QuantLib::Frequency</type>
 <constructor>true</constructor>
@@ -758,6 +728,22 @@
         <value>QuantLib::CoxRossRubinstein</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
+        <string>I</string>
+        <value>QuantLib::IntegralEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>FDA</string>
+        <value>QuantLib::FDAmericanEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>FDE</string>
+        <value>QuantLib::FDEuropeanEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>FDB</string>
+        <value>QuantLib::FDBermudanEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
         <string>JR</string>
         <value>QuantLib::JarrowRudd</value>
     </EnumerationDefinition>
@@ -792,6 +778,14 @@
     <EnumerationDefinition>
         <string>FPE</string>
         <value>QuantLib::ForwardPerformanceEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>QE</string>
+        <value>QuantLib::QuantoEngine</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>QFE</string>
+        <value>QuantLib::QuantoForwardEngine</value>
     </EnumerationDefinition>
 </EnumerationDefinitions>
 </Enumeration>

@@ -21,5 +21,6 @@
 #include <qla/fixedcouponbond.hpp>
 #include <qla/zerocouponbond.hpp>
 #include <qla/simpleswap.hpp>
+
 #endif
 

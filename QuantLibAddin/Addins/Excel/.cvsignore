@@ -6,6 +6,7 @@ buildDynamic
 buildStatic
 capfloor.cpp
 couponvectors.cpp
+exercise.cpp
 instruments.cpp
 interpolation.cpp
 Makefile

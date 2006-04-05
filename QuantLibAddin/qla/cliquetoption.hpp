@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,14 +24,14 @@
 
 namespace QuantLibAddin {
 
-    class CliquetOption : public Instrument {
+    class CliquetOption : public OneAssetOption {
     public:
         CliquetOption::CliquetOption(
             const std::string &handleBlackScholes,
-            const std::vector < long > &resetDates,
             const std::string &optionTypeID,
             const double &strike,
-            const long &exerciseDate,
+            const long &expiryDate,
+            const std::vector < long > &resetDates,
             const std::string &engineID,
             const long &timeSteps);
 

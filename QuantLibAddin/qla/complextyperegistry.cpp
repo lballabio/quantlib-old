@@ -19,6 +19,7 @@
 #include <qla/typefactory.hpp>
 #include <ql/option.hpp>
 #include <ql/Instruments/payoffs.hpp>
+#include <ql/Instruments/quantoforwardvanillaoption.hpp>
 #include <ql/PricingEngines/all.hpp>
 
 #define REG_ENUM(Type, Body) \
@@ -32,21 +33,6 @@
     (*typeMap)[str_id] = (void*) constructor
 
 namespace QuantLibAddin {
-
-    /* *** Exercise *** */
-    boost::shared_ptr<QuantLib::Exercise> AMERICAN_Exercise(
-        const long &exerciseDate,
-        const long &settlementDate) {
-        return boost::shared_ptr<QuantLib::Exercise> (
-            new QuantLib::AmericanExercise(QuantLib::Date(settlementDate), 
-            QuantLib::Date(exerciseDate)));
-    }
-    boost::shared_ptr<QuantLib::Exercise> EUROPEAN_Exercise(
-        const long &exerciseDate,
-        const long &settlementDate) {
-            return boost::shared_ptr<QuantLib::Exercise> (
-                new QuantLib::EuropeanExercise(QuantLib::Date(exerciseDate)));
-    }
 
     /* *** StrikedTypePayoff *** */
     boost::shared_ptr<QuantLib::StrikedTypePayoff> SUPERSHARE_Payoff(const std::string& optionTypeID,
@@ -144,6 +130,22 @@ namespace QuantLibAddin {
         return boost::shared_ptr<QuantLib::PricingEngine> (
             new QuantLib::BinomialVanillaEngine<QuantLib::CoxRossRubinstein>(timeSteps));
     }
+    boost::shared_ptr<QuantLib::PricingEngine> I_Engine(const long& timeSteps) {
+        return boost::shared_ptr<QuantLib::PricingEngine> (
+            new QuantLib::IntegralEngine);
+    }
+    boost::shared_ptr<QuantLib::PricingEngine> FDA_Engine(const long& timeSteps) {
+        return boost::shared_ptr<QuantLib::PricingEngine> (
+            new QuantLib::FDAmericanEngine(timeSteps, timeSteps-1));
+    }
+    boost::shared_ptr<QuantLib::PricingEngine> FDE_Engine(const long& timeSteps) {
+        return boost::shared_ptr<QuantLib::PricingEngine> (
+            new QuantLib::FDEuropeanEngine(timeSteps, timeSteps-1));
+    }
+    boost::shared_ptr<QuantLib::PricingEngine> FDB_Engine(const long& timeSteps) {
+        return boost::shared_ptr<QuantLib::PricingEngine> (
+            new QuantLib::FDBermudanEngine(timeSteps, timeSteps-1));
+    }
     boost::shared_ptr<QuantLib::PricingEngine> JR_Engine(const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
             new QuantLib::BinomialVanillaEngine<QuantLib::JarrowRudd>(timeSteps));
@@ -186,13 +188,25 @@ namespace QuantLibAddin {
                 <QuantLib::VanillaOption::arguments,
                 QuantLib::VanillaOption::results>(underlyingEngine));
     }
+    boost::shared_ptr<QuantLib::PricingEngine> QE_Engine(const long& timeSteps) {
+        boost::shared_ptr<QuantLib::VanillaOption::engine> 
+            underlyingEngine(new QuantLib::AnalyticEuropeanEngine);    
+        return boost::shared_ptr<QuantLib::PricingEngine> (
+            new QuantLib::QuantoEngine<QuantLib::VanillaOption::arguments,
+                QuantLib::VanillaOption::results>(underlyingEngine));
+    }
+    boost::shared_ptr<QuantLib::PricingEngine> QFE_Engine(const long& timeSteps) {
+        boost::shared_ptr<QuantLib::VanillaOption::engine> 
+            underlyingEngine(new QuantLib::AnalyticEuropeanEngine);    
+        boost::shared_ptr<QuantLib::ForwardVanillaOption::engine> forwardEngine(
+                new QuantLib::ForwardEngine<QuantLib::VanillaOption::arguments,
+                QuantLib::VanillaOption::results>(underlyingEngine));
+        return boost::shared_ptr<QuantLib::PricingEngine> (
+            new QuantLib::QuantoEngine<QuantLib::ForwardVanillaOption::arguments,
+                QuantLib::ForwardVanillaOption::results>(forwardEngine));
+    }
 
     ComplexTypeRegistry::ComplexTypeRegistry() {
-        REG_ENUM(QuantLib::Exercise,
-            MAP("AMERICAN", AMERICAN_Exercise);
-            MAP("EUROPEAN", EUROPEAN_Exercise);
-        );
-
         REG_ENUM(QuantLib::StrikedTypePayoff,
             MAP("ASSETORNOTHING", ASSETORNOTHING_Payoff);
             MAP("CASHORNOTHING", CASHORNOTHING_Payoff);
@@ -214,6 +228,10 @@ namespace QuantLibAddin {
             MAP("BAWA", BAWA_Engine);
             MAP("AEQPB", AEQPB_Engine);
             MAP("CRR", CRR_Engine);
+            MAP("I", I_Engine);
+            MAP("FDA", FDA_Engine);
+            MAP("FDE", FDE_Engine);
+            MAP("FDB", FDB_Engine);
             MAP("JR", JR_Engine);
             MAP("LR", LR_Engine);
             MAP("TIAN", TIAN_Engine);
@@ -223,6 +241,8 @@ namespace QuantLibAddin {
             MAP("SE", SE_Engine);
             MAP("FE", FE_Engine);
             MAP("FPE", FPE_Engine);
+            MAP("QE", QE_Engine);
+            MAP("QFE", QFE_Engine);
         );
     }
 }

@@ -3,11 +3,14 @@
 To do list:
 
 QuantLibAddin
+- restore basket options / implement pricing engine, greeks
+- autogenerate qladdin.hpp
 - improve formatting of log messages
 - #include fewer headers to speed compilation
 
 srcgen
 - extend rule.py to support conversion of Guile datatypes
+- allow for comments in XML (ignore '#comment' nodes)
 
 Excel
 - address issues with volatile functions
@@ -16,4 +19,10 @@ Excel
 
 Calc
 - add support for OpenOffice.org Calc version 2
+
+C
+- VOs, autogenerate qladdin.h
+
+C++ Examples
+- add VOs, NPV calculations
 

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,16 +18,18 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qla/config.hpp>
 #endif
-#include <qla/barrieroption.hpp>
+#include <qla/europeanoption.hpp>
 #include <qla/typefactory.hpp>
 #include <qla/exercise.hpp>
 
+#include <ql/DayCounters/all.hpp>
+#include <ql/Volatilities/blackconstantvol.hpp>
+#include <ql/TermStructures/flatforward.hpp>
+#include <ql/PricingEngines/all.hpp>
+
 namespace QuantLibAddin {
 
-    BarrierOption::BarrierOption(
-            const std::string &barrierTypeID,
-            const double &barrier,
-            const double &rebate,
+    EuropeanOption::EuropeanOption(
             const std::string &handleBlackScholes,
             const std::string &optionTypeID,
             const std::string &payoffID,
@@ -42,20 +44,15 @@ namespace QuantLibAddin {
         OH_GET_REFERENCE(exercise, handleExercise, Exercise,
             QuantLib::Exercise)
 
-        QuantLib::Barrier::Type barrierType = 
-            Create<QuantLib::Barrier::Type>()(barrierTypeID);
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> >()(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
-        mInstrument = boost::shared_ptr<QuantLib::BarrierOption>(
-            new QuantLib::BarrierOption(
-                barrierType,
-                barrier,
-                rebate,
-                blackScholesProcess, 
-                payoff, 
-                exercise, 
+        mInstrument = boost::shared_ptr<QuantLib::EuropeanOption>(
+            new QuantLib::EuropeanOption(
+                blackScholesProcess,
+                payoff,
+                exercise,
                 pricingEngine));
     }
 

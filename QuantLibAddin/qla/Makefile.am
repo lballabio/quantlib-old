@@ -10,16 +10,18 @@ EXTRA_DIST = \
 
 include_HEADERS = \
     asianoption.hpp \
-    basic.hpp \
-    baseinstruments.hpp \
     barrieroption.hpp \
-    basketoption.hpp \
+    baseinstruments.hpp \
+    baseinstruments.hpp \
+    basic.hpp \
     capfloor.hpp \
-    cliquetoption.hpp \
     clientutils.hpp \
+    cliquetoption.hpp \
     config.hpp \
     couponvectors.hpp \
     dividendvanillaoption.hpp \
+    europeanoption.hpp \
+    exercise.hpp \
     fixedcouponbond.hpp \
     forwardvanillaoption.hpp \
     generalutils.hpp \
@@ -27,8 +29,10 @@ include_HEADERS = \
     interpolation.hpp \
     options.hpp \
     processes.hpp \
-    qladdin.hpp \
     qladdindefines.hpp \
+    qladdin.hpp \
+    quantoforwardvanillaoption.hpp \
+    quantovanillaoption.hpp \
     schedule.hpp \
     shortratemodels.hpp \
     simpleswap.hpp \
@@ -38,16 +42,13 @@ include_HEADERS = \
     typeregistry.hpp \
     utilities.hpp \
     vanillaoption.hpp \
-    volatilities.hpp \
-    xibor.hpp \
-    zerocouponbond.hpp \
-    zerocurve.hpp \
-    baseinstruments.hpp \
     vo_basic.hpp \
     vo_capfloor.hpp \
     vo_couponvectors.hpp \
+    vo_exercise.hpp \
     vo_instruments.hpp \
     vo_interpolation.hpp \
+    volatilities.hpp \
     vo_options.hpp \
     vo_processes.hpp \
     vo_schedule.hpp \
@@ -57,25 +58,31 @@ include_HEADERS = \
     vo_termstructures.hpp \
     vo_utilities.hpp \
     vo_volatilities.hpp \
-    vo_xibor.hpp
+    vo_xibor.hpp \
+    xibor.hpp \
+    zerocouponbond.hpp \
+    zerocurve.hpp
 
 libQuantLibAddin_la_SOURCES = \
     asianoption.cpp \
-    basic.cpp \
     barrieroption.cpp \
-    basketoption.cpp \
+    basic.cpp \
     capfloor.cpp \
-    cliquetoption.cpp \
     clientutils.cpp \
+    cliquetoption.cpp \
     complextyperegistry.cpp \
     couponvectors.cpp \
     dividendvanillaoption.cpp \
     enumregistry.cpp \
+    europeanoption.cpp \
+    exercise.cpp \
     fixedcouponbond.cpp \
     forwardvanillaoption.cpp \
     generalutils.cpp \
     interpolation.cpp \
     processes.cpp \
+    quantoforwardvanillaoption.cpp \
+    quantovanillaoption.cpp \
     schedule.cpp \
     shortratemodels.cpp \
     simpleswap.cpp \
@@ -83,15 +90,13 @@ libQuantLibAddin_la_SOURCES = \
     termstructures.cpp \
     utilities.cpp \
     vanillaoption.cpp \
-    volatilities.cpp \
-    xibor.cpp \
-    zerocouponbond.cpp \
-    zerocurve.cpp \
     vo_basic.cpp \
     vo_capfloor.cpp \
     vo_couponvectors.cpp \
+    vo_exercise.cpp \
     vo_instruments.cpp \
     vo_interpolation.cpp \
+    volatilities.cpp \
     vo_options.cpp \
     vo_processes.cpp \
     vo_schedule.cpp \
@@ -101,5 +106,8 @@ libQuantLibAddin_la_SOURCES = \
     vo_termstructures.cpp \
     vo_utilities.cpp \
     vo_volatilities.cpp \
-    vo_xibor.cpp
+    vo_xibor.cpp \
+    xibor.cpp \
+    zerocouponbond.cpp \
+    zerocurve.cpp
 

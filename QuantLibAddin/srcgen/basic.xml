@@ -4,7 +4,7 @@
 <Functions>
 
 <Procedure name='qlAdvanceCalendar' >
-<description>advances the given calendar </description>
+<description>advances the given calendar</description>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
     <Parameter name='startDate'>
@@ -30,7 +30,7 @@
     <Parameter name='rollingConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>rolling convention </description>
+        <description>rolling convention</description>
     </Parameter>
 </Parameters>
 <ReturnValue>
@@ -47,7 +47,7 @@
     <Parameter name='dayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>day-counter convention </description>
+        <description>day-counter convention</description>
     </Parameter>
     <Parameter name='startDate'>
         <type>long</type>
@@ -57,7 +57,7 @@
     <Parameter name='endDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>end date </description>
+        <description>end date</description>
     </Parameter>
     <Parameter name='refPeriodStart'>
         <type>long</type>
@@ -77,10 +77,27 @@
 </ReturnValue>
 </Procedure>
 
-<Procedure name='qlEvalDate'>
+<Procedure name='qlGetEvalDate'>
 <description>returns the current value of the Evaluation Date</description>
 <functionCategory>QuantLib</functionCategory>
 <Parameters/>
+<ReturnValue>
+    <type>long</type>
+    <tensorRank>scalar</tensorRank>
+    <description>evaluation date</description>
+</ReturnValue>
+</Procedure>
+
+<Procedure name='qlSetEvalDate'>
+<description>sets the value of the Evaluation Date</description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='evalDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>new value for the evaluation date</description>
+    </Parameter>
+</Parameters>
 <ReturnValue>
     <type>long</type>
     <tensorRank>scalar</tensorRank>

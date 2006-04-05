@@ -53,7 +53,7 @@ Please follow the steps below when loading %QuantLibAddin for Excel:
 \b %QuantLibAddin\\Addins\\Excel\\xll.  The name of the file
 depends upon how it was compiled. For example when compiled
 with VC6 configuration "Win32 Debug CRTDLL" the addin is called
-<strong>%QuantLibAddinStatic-vc6-mt-gd-0_3_12.xll</strong>
+<strong>%QuantLibAddinStatic-vc6-mt-gd-0_3_13.xll</strong>
 \li You may need to hit \b Ctrl-Alt-F9 to force recalculation of all
 cells in all open workbooks
 
@@ -164,7 +164,7 @@ SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols
 Start Excel and WinDbg, before loading the addin, hit F6 and
 attach WinDbg to Excel, then set the breakpoint e.g.
 \verbatim
-bu QuantLibAddin_vc6_mt_gd_0_3_12!xlAutoOpen
+bu QuantLibAddin_vc6_mt_gd_0_3_13!xlAutoOpen
 \endverbatim
 
 You can then debug as the addin loads.

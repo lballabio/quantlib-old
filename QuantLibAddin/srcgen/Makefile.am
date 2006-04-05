@@ -12,6 +12,7 @@ SRCGEN_INPUT := addincalc.xml \
                 config.xml \
                 couponvectors.xml \
                 enumerations.xml \
+                exercise.xml \
                 instruments.xml \
                 interpolation.xml \
                 ohfunctions.xml \

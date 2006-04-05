@@ -9,6 +9,7 @@ EXTRA_DIST = \
     basic.cpp \
     capfloor.cpp \
     couponvectors.cpp \
+    exercise.cpp \
     instruments.cpp \
     interpolation.cpp \
     options.cpp \

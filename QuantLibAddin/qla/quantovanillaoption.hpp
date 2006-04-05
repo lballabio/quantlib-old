@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,30 +15,30 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_barrieroption_hpp
-#define qla_barrieroption_hpp
+#ifndef qla_quantovanillaoption_hpp
+#define qla_quantovanillaoption_hpp
 
 #include <qla/baseinstruments.hpp>
 #include <qla/processes.hpp>
-#include <ql/Instruments/barrieroption.hpp>
+#include <ql/Instruments/quantovanillaoption.hpp>
 
 namespace QuantLibAddin {
 
-    class BarrierOption : public OneAssetOption {
+    class QuantoVanillaOption : public OneAssetOption {
     public:
-        BarrierOption(
-            const std::string &barrierTypeID,
-            const double &barrier,
-            const double &rebate,
-            const std::string &handleBlackScholes,
-            const std::string &optionTypeID,
-            const std::string &payoffID,
-            const double &strike,
-            const std::string &handleExercise,
-            const std::string &engineID,
-            const long &timeSteps);
+        QuantoVanillaOption::QuantoVanillaOption(
+                const std::string &handleTermStructure,
+                const std::string &handleBlackVol,
+                const double &correlation,
+                const std::string &handleBlackScholes,
+                const std::string &optionTypeID,
+                const std::string &payoffID,
+                const double &strike,
+                const std::string &handleExercise,
+                const std::string &engineID,
+                const long &timeSteps);
 
-        EXPORT_QL_OBJECT(QuantLib::BarrierOption);
+        EXPORT_QL_OBJECT(QuantLib::QuantoVanillaOption);
     };
 
 }

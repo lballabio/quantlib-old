@@ -7,11 +7,6 @@
 <libraryFunction>BarrierOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of a Black Scholes Process object</description>
-    </Parameter>
     <Parameter name='typeBarrier'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
@@ -27,6 +22,11 @@
         <tensorRank>scalar</tensorRank>
         <description>rebate</description>
     </Parameter>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of a Black Scholes Process object</description>
+    </Parameter>
     <Parameter name='optionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
@@ -42,82 +42,20 @@
         <tensorRank>scalar</tensorRank>
         <description>strike</description>
     </Parameter>
-    <Parameter name='exercise'>
+    <Parameter name='handleExercise' libraryClass='Exercise'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>exercise type</description>
-    </Parameter>
-    <Parameter name='exerciseDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>exercise date</description>
-    </Parameter>
-    <Parameter name='settlementDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>settlement date</description>
+        <description>handle of an Exercise object</description>
     </Parameter>
     <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
     </Parameter>
-    <Parameter name='timeSteps'>
+    <Parameter name='timeSteps' default='0'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>time steps</description>
-    </Parameter>
-</Parameters>
-</Constructor>
-
-<Constructor name='qlBasketOption'>
-<libraryFunction>BasketOption</libraryFunction>
-<functionCategory>QuantLib</functionCategory>
-<Parameters>
-    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of Black Scholes Process object</description>
-    </Parameter>
-    <Parameter name='basket'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>basket ID</description>
-    </Parameter>
-    <Parameter name='optionType'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>option type</description>
-    </Parameter>
-    <Parameter name='strike'>
-        <type>double</type>
-        <tensorRank>scalar</tensorRank>
-        <description>strike</description>
-    </Parameter>
-    <Parameter name='exercise'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>exercise type</description>
-    </Parameter>
-    <Parameter name='exerciseDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>exercise date</description>
-    </Parameter>
-    <Parameter name='settlementDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>settlement date</description>
-    </Parameter>
-    <Parameter name='engine'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>engine type</description>
-    </Parameter>
-    <Parameter name='timeSteps'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>time steps</description>
+        <description>time steps (for binomial pricing engines)</description>
     </Parameter>
 </Parameters>
 </Constructor>
@@ -126,15 +64,15 @@
 <libraryFunction>ContinuousAveragingAsianOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of a Black Scholes Process object</description>
-    </Parameter>
     <Parameter name='average'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>average type</description>
+    </Parameter>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of a Black Scholes Process object</description>
     </Parameter>
     <Parameter name='optionType'>
         <type>string</type>
@@ -151,30 +89,20 @@
         <tensorRank>scalar</tensorRank>
         <description>strike</description>
     </Parameter>
-    <Parameter name='exercise'>
+    <Parameter name='handleExercise' libraryClass='Exercise'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>exercise type</description>
-    </Parameter>
-    <Parameter name='exerciseDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>exercise date</description>
-    </Parameter>
-    <Parameter name='settlementDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>settlement date</description>
+        <description>handle of an Exercise object</description>
     </Parameter>
     <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
     </Parameter>
-    <Parameter name='timeSteps'>
+    <Parameter name='timeSteps' default='0'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>time steps</description>
+        <description>time steps (for binomial pricing engines)</description>
     </Parameter>
 </Parameters>
 </Constructor>
@@ -188,11 +116,6 @@
         <tensorRank>scalar</tensorRank>
         <description>handle of a Black Scholes Process object</description>
     </Parameter>
-    <Parameter name='resetDates'>
-        <type>long</type>
-        <tensorRank>vector</tensorRank>
-        <description>vector of reset dates</description>
-    </Parameter>
     <Parameter name='optionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
@@ -203,20 +126,25 @@
         <tensorRank>scalar</tensorRank>
         <description>strike</description>
     </Parameter>
-    <Parameter name='exerciseDate'>
+    <Parameter name='expiryDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>exercise date</description>
+        <description>expiry date</description>
+    </Parameter>
+    <Parameter name='resetDates'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+        <description>vector of reset dates</description>
     </Parameter>
     <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
     </Parameter>
-    <Parameter name='timeSteps'>
+    <Parameter name='timeSteps' default='0'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>time steps</description>
+        <description>time steps (for binomial pricing engines)</description>
     </Parameter>
 </Parameters>
 </Constructor>
@@ -225,11 +153,6 @@
 <libraryFunction>DiscreteAveragingAsianOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of a Black Scholes Process object</description>
-    </Parameter>
     <Parameter name='average'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
@@ -250,6 +173,11 @@
         <tensorRank>vector</tensorRank>
         <description>fixing dates</description>
     </Parameter>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of a Black Scholes Process object</description>
+    </Parameter>
     <Parameter name='optionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
@@ -265,30 +193,20 @@
         <tensorRank>scalar</tensorRank>
         <description>strike</description>
     </Parameter>
-    <Parameter name='exercise'>
+    <Parameter name='handleExercise' libraryClass='Exercise'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>exercise type</description>
-    </Parameter>
-    <Parameter name='exerciseDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>exercise date</description>
-    </Parameter>
-    <Parameter name='settlementDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>settlement date</description>
+        <description>handle of an Exercise object</description>
     </Parameter>
     <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
     </Parameter>
-    <Parameter name='timeSteps'>
+    <Parameter name='timeSteps' default='0'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>time steps</description>
+        <description>time steps (for binomial pricing engines)</description>
     </Parameter>
 </Parameters>
 </Constructor>
@@ -302,6 +220,26 @@
         <tensorRank>scalar</tensorRank>
         <description>handle of a Black Scholes Process object</description>
     </Parameter>
+    <Parameter name='optionType'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>option type</description>
+    </Parameter>
+    <Parameter name='payoff'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>payoff type</description>
+    </Parameter>
+    <Parameter name='strike'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>strike</description>
+    </Parameter>
+    <Parameter name='handleExercise' libraryClass='Exercise'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of an Exercise object</description>
+    </Parameter>
     <Parameter name='dividendDates'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
@@ -312,45 +250,15 @@
         <tensorRank>vector</tensorRank>
         <description>vector of dividends</description>
     </Parameter>
-    <Parameter name='optionType'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>option type</description>
-    </Parameter>
-    <Parameter name='payoff'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>payoff type</description>
-    </Parameter>
-    <Parameter name='strike'>
-        <type>double</type>
-        <tensorRank>scalar</tensorRank>
-        <description>strike</description>
-    </Parameter>
-    <Parameter name='exercise'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>exercise type</description>
-    </Parameter>
-    <Parameter name='exerciseDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>exercise date</description>
-    </Parameter>
-    <Parameter name='settlementDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>settlement date</description>
-    </Parameter>
     <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
     </Parameter>
-    <Parameter name='timeSteps'>
+    <Parameter name='timeSteps' default='0'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>time steps</description>
+        <description>time steps (for binomial pricing engines)</description>
     </Parameter>
 </Parameters>
 </Constructor>
@@ -359,11 +267,6 @@
 <libraryFunction>ForwardVanillaOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>handle of a Black Scholes Process object</description>
-    </Parameter>
     <Parameter name='moneyness'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
@@ -374,6 +277,11 @@
         <tensorRank>scalar</tensorRank>
         <description>reset date</description>
     </Parameter>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of a Black Scholes Process object</description>
+    </Parameter>
     <Parameter name='optionType'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
@@ -389,30 +297,20 @@
         <tensorRank>scalar</tensorRank>
         <description>strike</description>
     </Parameter>
-    <Parameter name='exercise'>
+    <Parameter name='handleExercise' libraryClass='Exercise'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>exercise type</description>
-    </Parameter>
-    <Parameter name='exerciseDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>exercise date</description>
-    </Parameter>
-    <Parameter name='settlementDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>settlement date</description>
+        <description>handle of an Exercise object</description>
     </Parameter>
     <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
     </Parameter>
-    <Parameter name='timeSteps'>
+    <Parameter name='timeSteps' default='0'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>time steps</description>
+        <description>time steps (for binomial pricing engines)</description>
     </Parameter>
 </Parameters>
 </Constructor>
@@ -427,10 +325,10 @@
         <tensorRank>scalar</tensorRank>
         <description>engine name</description>
     </Parameter>
-    <Parameter name='timeSteps'>
+    <Parameter name='timeSteps' default='0'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>time steps</description>
+        <description>time steps (for binomial pricing engines)</description>
     </Parameter>
 </Parameters>
 <ReturnValue>
@@ -464,33 +362,369 @@
         <tensorRank>scalar</tensorRank>
         <description>strike</description>
     </Parameter>
-    <Parameter name='exercise'>
+    <Parameter name='handleExercise' libraryClass='Exercise'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>exercise type</description>
-    </Parameter>
-    <Parameter name='exerciseDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>exercise date</description>
-    </Parameter>
-    <Parameter name='settlementDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>settlement date</description>
+        <description>handle of an Exercise object</description>
     </Parameter>
     <Parameter name='engine'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>engine type</description>
     </Parameter>
-    <Parameter name='timeSteps'>
+    <Parameter name='timeSteps' default='0'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>time steps</description>
+        <description>time steps (for binomial pricing engines)</description>
     </Parameter>
 </Parameters>
 </Constructor>
+
+<Constructor name='qlEuropeanOption'>
+<libraryFunction>EuropeanOption</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of a Black Scholes Process object</description>
+    </Parameter>
+    <Parameter name='optionType'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>option type</description>
+    </Parameter>
+    <Parameter name='payoff'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>payoff type</description>
+    </Parameter>
+    <Parameter name='strike'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>strike</description>
+    </Parameter>
+    <Parameter name='handleExercise' libraryClass='Exercise'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of an Exercise object</description>
+    </Parameter>
+    <Parameter name='engine'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>engine type</description>
+    </Parameter>
+    <Parameter name='timeSteps' default='0'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>time steps (for binomial pricing engines)</description>
+    </Parameter>
+</Parameters>
+</Constructor>
+
+<Constructor name='qlQuantoVanillaOption'>
+<libraryFunction>QuantoVanillaOption</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='handleTermStructure' libraryClass='YieldTermStructure'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of a term structure object</description>
+    </Parameter>
+    <Parameter name='handleBlackVol' libraryClass='BlackVolTermStructure'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of a Black Vol object</description>
+    </Parameter>
+    <Parameter name='correlation'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>correlation</description>
+    </Parameter>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of a Black Scholes Process object</description>
+    </Parameter>
+    <Parameter name='optionType'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>option type</description>
+    </Parameter>
+    <Parameter name='payoff'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>payoff type</description>
+    </Parameter>
+    <Parameter name='strike'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>strike</description>
+    </Parameter>
+    <Parameter name='handleExercise' libraryClass='Exercise'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of an Exercise object</description>
+    </Parameter>
+    <Parameter name='engine'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>engine type</description>
+    </Parameter>
+    <Parameter name='timeSteps' default='0'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>time steps (for binomial pricing engines)</description>
+    </Parameter>
+</Parameters>
+</Constructor>
+
+<Constructor name='qlQuantoForwardVanillaOption'>
+<libraryFunction>QuantoForwardVanillaOption</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='handleTermStructure' libraryClass='YieldTermStructure'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of a term structure object</description>
+    </Parameter>
+    <Parameter name='handleBlackVol' libraryClass='BlackVolTermStructure'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of a Black Vol object</description>
+    </Parameter>
+    <Parameter name='correlation'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>correlation</description>
+    </Parameter>
+    <Parameter name='moneyness'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>moneyness</description>
+    </Parameter>
+    <Parameter name='resetDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>reset date</description>
+    </Parameter>
+    <Parameter name='handleBlackScholes' libraryClass='BlackScholesProcess'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of a Black Scholes Process object</description>
+    </Parameter>
+    <Parameter name='optionType'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>option type</description>
+    </Parameter>
+    <Parameter name='payoff'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>payoff type</description>
+    </Parameter>
+    <Parameter name='strike'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>strike</description>
+    </Parameter>
+    <Parameter name='handleExercise' libraryClass='Exercise'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>handle of an Exercise object</description>
+    </Parameter>
+    <Parameter name='engine'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>engine type</description>
+    </Parameter>
+    <Parameter name='timeSteps' default='0'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>time steps (for binomial pricing engines)</description>
+    </Parameter>
+</Parameters>
+</Constructor>
+
+<Member name='qlDelta' getObject='true' libraryClass='OneAssetOption'>
+<description>delta of an option</description>
+<libraryFunction>delta</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>delta</description>
+</ReturnValue>
+</Member>
+
+<Member name='qlDeltaForward' getObject='true' libraryClass='OneAssetOption'>
+<description>delta forward of an option</description>
+<libraryFunction>deltaForward</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>delta forward</description>
+</ReturnValue>
+</Member>
+
+<Member name='qlElasticity' getObject='true' libraryClass='OneAssetOption'>
+<description>elasticity of an option</description>
+<libraryFunction>elasticity</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>elasticity</description>
+</ReturnValue>
+</Member>
+
+<Member name='qlGamma' getObject='true' libraryClass='OneAssetOption'>
+<description>gamma of an option</description>
+<libraryFunction>gamma</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>gamma</description>
+</ReturnValue>
+</Member>
+
+<Member name='qlTheta' getObject='true' libraryClass='OneAssetOption'>
+<description>theta of an option</description>
+<libraryFunction>theta</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>theta</description>
+</ReturnValue>
+</Member>
+
+<Member name='qlThetaPerDay' getObject='true' libraryClass='OneAssetOption'>
+<description>theta per day of an option</description>
+<libraryFunction>thetaPerDay</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>theta per day</description>
+</ReturnValue>
+</Member>
+
+<Member name='qlVega' getObject='true' libraryClass='OneAssetOption'>
+<description>vega of an option</description>
+<libraryFunction>vega</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>vega</description>
+</ReturnValue>
+</Member>
+
+<Member name='qlRho' getObject='true' libraryClass='OneAssetOption'>
+<description>rho of an option</description>
+<libraryFunction>rho</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>rho</description>
+</ReturnValue>
+</Member>
+
+<Member name='qlDividendRho' getObject='true' libraryClass='OneAssetOption'>
+<description>dividend rho of an option</description>
+<libraryFunction>dividendRho</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>dividend rho</description>
+</ReturnValue>
+</Member>
+
+<Member name='qlItmCashProbability' getObject='true' libraryClass='OneAssetOption'>
+<description>itm cash probability of an option</description>
+<libraryFunction>itmCashProbability</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>itm cash probability</description>
+</ReturnValue>
+</Member>
 
 </Functions>
 </Category>

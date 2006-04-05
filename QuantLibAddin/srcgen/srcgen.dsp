@@ -295,6 +295,10 @@ SOURCE=.\enumerations.xml
 # End Source File
 # Begin Source File
 
+SOURCE=.\exercise.xml
+# End Source File
+# Begin Source File
+
 SOURCE=.\instruments.xml
 # End Source File
 # Begin Source File

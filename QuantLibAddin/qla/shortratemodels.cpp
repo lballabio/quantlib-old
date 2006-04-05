@@ -40,11 +40,8 @@ namespace QuantLibAddin {
             const double &a,
             const double &sigma) {
 
-        boost::shared_ptr<YieldTermStructure> termStructure =
-            OH_GET_OBJECT(YieldTermStructure, handleTermStructure);
-
-        boost::shared_ptr<QuantLib::YieldTermStructure> termStructureP =
-            OH_GET_REFERENCE(QuantLib::YieldTermStructure, termStructure);
+        OH_GET_REFERENCE(termStructureP, handleTermStructure, 
+            YieldTermStructure, QuantLib::YieldTermStructure)
 
         QuantLib::Handle<QuantLib::YieldTermStructure> termStructureH(termStructureP);
 

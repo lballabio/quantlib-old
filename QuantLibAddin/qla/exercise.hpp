@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,44 +15,47 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_baseinstruments_hpp
-#define qla_baseinstruments_hpp
+#ifndef qla_exercise_hpp
+#define qla_exercise_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/instrument.hpp>
-#include <ql/Instruments/bond.hpp>
-#include <ql/Instruments/oneassetoption.hpp>
-
-#define EXPORT_QL_OBJECT(CLASS) \
-    const CLASS& getObject() const { \
-        return *boost::dynamic_pointer_cast<CLASS>(mInstrument); \
-    } \
-	//
+#include <ql/exercise.hpp>
 
 namespace QuantLibAddin {
-    class Instrument : public ObjHandler::Object {
+
+    class Exercise : public ObjHandler::Object {
     public:
         virtual boost::shared_ptr<void> getReference() const {
-            return boost::static_pointer_cast<void>(mInstrument);
+            return boost::static_pointer_cast<void>(exercise_);
         }
-
-        const QuantLib::Instrument& getObject() const { 
-            return *mInstrument; 
+        const QuantLib::Exercise& getObject() const { 
+            return *exercise_; 
         }
-
     protected:
-        boost::shared_ptr<QuantLib::Instrument> mInstrument;
+        boost::shared_ptr<QuantLib::Exercise> exercise_;
     };
 
-    class Bond : public Instrument {
+    class AmericanExercise : public Exercise {
     public:
-        EXPORT_QL_OBJECT(QuantLib::Bond)
+        AmericanExercise(
+            const long &earliestDate,
+            const long &latestDate,
+            const bool &payoffAtExpiry);
     };
 
-    class OneAssetOption : public Instrument {
+    class EuropeanExercise : public Exercise {
     public:
-        EXPORT_QL_OBJECT(QuantLib::OneAssetOption)
+        EuropeanExercise(
+            const long &expiryDate);
     };
+
+    class BermudanExercise : public Exercise {
+    public:
+        BermudanExercise(
+            const std::vector < long > &dates,
+            const bool &payoffAtExpiry);
+    };
+
 }
 
 #endif

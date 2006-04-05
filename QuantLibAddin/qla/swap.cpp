@@ -26,24 +26,22 @@
 #include <qla/termstructures.hpp>
 
 namespace QuantLibAddin {
-    
+
     Swap::Swap(
             const std::string &paidLegID,
             const std::string &recvLegID,
             const std::string &termStructureID) {
-        
+
         boost::shared_ptr<CouponVector> paidLegWrapper =
             OH_GET_OBJECT(CouponVector, paidLegID);
         const CashFlowVector& paidLeg = paidLegWrapper->getObject();
-        
+
         boost::shared_ptr<CouponVector> recvLegWrapper =
             OH_GET_OBJECT(CouponVector, recvLegID);
         const CashFlowVector& recvLeg = recvLegWrapper->getObject();
-        
-        boost::shared_ptr<YieldTermStructure> termStructureWrapper =
-            OH_GET_OBJECT(YieldTermStructure, termStructureID);
-        boost::shared_ptr<QuantLib::YieldTermStructure> termStructure = 
-            OH_GET_REFERENCE(QuantLib::YieldTermStructure, termStructureWrapper);
+
+        OH_GET_REFERENCE(termStructure, termStructureID, 
+            YieldTermStructure, QuantLib::YieldTermStructure)
         QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;
         discountingTermStructure.linkTo(termStructure);
         

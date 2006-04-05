@@ -20,7 +20,7 @@
     #include <qla/config.hpp>
 #endif
 
-#include "ql/Indexes/indexmanager.hpp"
+#include <ql/Indexes/indexmanager.hpp>
 #include <qla/xibor.hpp>
 #include <qla/generalutils.hpp>
 #include <qla/termstructures.hpp>
@@ -52,12 +52,9 @@ namespace QuantLibAddin {
         QuantLib::Currency crr =
             Create<QuantLib::Currency>()(crrID);
 
-        boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpFwdYC =
-            OH_GET_OBJECT(YieldTermStructure, fwdCurveId);
-        boost::shared_ptr<QuantLib::YieldTermStructure> fwdYC = 
-            OH_GET_REFERENCE(QuantLib::YieldTermStructure, tmpFwdYC);
-        QuantLib::Handle<QuantLib::YieldTermStructure> forecastingTermStructure; 
-        forecastingTermStructure.linkTo(fwdYC);
+        OH_GET_REFERENCE(fwdYC, fwdCurveId, 
+            YieldTermStructure, QuantLib::YieldTermStructure)
+        QuantLib::Handle<QuantLib::YieldTermStructure> forecastingTermStructure(fwdYC);
 
         index_ = boost::shared_ptr<QuantLib::Xibor>(new QuantLib::Xibor(indexName, 
             tenor, timeUnits,

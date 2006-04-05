@@ -66,6 +66,7 @@ noinst_HEADERS = \
     calcutils.hpp \
     capfloor.hpp \
     couponvectors.hpp \
+    exercise.hpp \
     instruments.hpp \
     interpolation.hpp \
     ohfunctions.hpp \
@@ -88,6 +89,7 @@ libQuantLibAddinCalc_la_SOURCES = \
     calcutils.cpp \
     capfloor.cpp \
     couponvectors.cpp \
+    exercise.cpp \
     funcdef.cpp \
     instruments.cpp \
     interpolation.cpp \

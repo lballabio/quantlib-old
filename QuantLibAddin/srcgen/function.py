@@ -118,6 +118,12 @@ class Member(Function):
     BODY = '''\
         boost::shared_ptr < %s > objectPointer =
             OH_GET_OBJECT(%s, %s);
+        if (!objectPointer) {
+            std::ostringstream err;
+            err << "%s: unable to convert handle " << %s 
+                << " to object of class %s";
+            throw ObjHandler::Exception(err.str());
+        }
 
         %s returnValue;
         returnValue = %s(%s);'''
@@ -153,8 +159,8 @@ class Member(Function):
         handle = addin.stringConvert % self.Parameters[0].name
         libraryClass = self.libraryClass
         if not self.noQlaNS: libraryClass = 'QuantLibAddin::' + libraryClass
-        return self.BODY % (libraryClass, libraryClass, handle,
-            libraryReturnType, self.accessLibFunc, libraryCall)
+        return self.BODY % (libraryClass, libraryClass, handle, self.name, handle, 
+            libraryClass, libraryReturnType, self.accessLibFunc, libraryCall)
 
 class Procedure(Function):
     """Procedural function not associated with any QuantLib object."""

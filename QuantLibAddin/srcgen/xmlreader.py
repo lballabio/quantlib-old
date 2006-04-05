@@ -142,7 +142,8 @@ class XmlReader(serializer.Serializer):
         dict = {}
         keys = []
         for childNode in dictElement.childNodes:
-            if childNode.nodeName == '#text': continue
+            if childNode.nodeName == '#text' \
+            or childNode.nodeName == '#comment': continue
             objectInstance = factory.Factory.getInstance().makeObject(childNode.nodeName)
             self.node = childNode
             objectInstance.serialize(self)
