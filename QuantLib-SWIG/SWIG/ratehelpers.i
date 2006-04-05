@@ -140,12 +140,14 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 BusinessDayConvention fixedConvention,
                 const DayCounter& fixedDayCount,
                 Frequency floatingFrequency,
-                BusinessDayConvention floatingConvention) {
+                BusinessDayConvention floatingConvention,
+		const DayCounter& floatingDayCount) {
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, n, units, settlementDays,
                                    calendar, fixedFrequency, fixedConvention,
                                    fixedDayCount, floatingFrequency,
-                                   floatingConvention));
+                                   floatingConvention,
+				   floatingDayCount));
         }
         SwapRateHelperPtr(
                 Rate rate, Integer n, TimeUnit units, Integer settlementDays,
@@ -154,12 +156,14 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 BusinessDayConvention fixedConvention,
                 const DayCounter& fixedDayCount,
                 Frequency floatingFrequency,
-                BusinessDayConvention floatingConvention) {
+                BusinessDayConvention floatingConvention,
+		const DayCounter& floatingDayCount) {
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, n, units, settlementDays,
                                    calendar, fixedFrequency, fixedConvention,
                                    fixedDayCount, floatingFrequency,
-                                   floatingConvention));
+                                   floatingConvention,
+				   floatingDayCount));
         }
     }
 };
@@ -174,17 +178,24 @@ class FixedCouponBondHelperPtr : public boost::shared_ptr<RateHelper> {
                 const Date& maturityDate, Integer settlementDays,
                 const std::vector<Rate>& coupons,
                 Frequency frequency,
-                const DayCounter& dayCounter,
                 const Calendar& calendar,
-                BusinessDayConvention convention = Following,
+                const DayCounter& dayCounter,
+                BusinessDayConvention accrualConvention = 
+		Following,
+                BusinessDayConvention paymentConvention = 
+		Following,
                 Real redemption = 100.0,
                 const Date& stub = Date(),
                 bool fromEnd = true) {
             return new FixedCouponBondHelperPtr(
                 new FixedCouponBondHelper(cleanPrice, issueDate, datedDate,
                                           maturityDate, settlementDays,
-                                          coupons, frequency, dayCounter,
-                                          calendar, convention, redemption,
+                                          coupons, frequency, 
+                                          calendar, 
+					  dayCounter,
+					  accrualConvention, 
+					  paymentConvention,
+					  redemption,
                                           stub, fromEnd));
         }
     }
