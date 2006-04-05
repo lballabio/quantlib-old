@@ -90,6 +90,9 @@ int main() {
             "JR",                           // engine type (jarrow rudd)
             timeSteps)));                   // time steps
 
+        logMessage("High-level interrogation of VanillaOption");
+        logObject("my_option");
+
         boost::shared_ptr<QuantLibAddin::VanillaOption> vanillaOptionQLA =
             OH_GET_OBJECT(QuantLibAddin::VanillaOption, "my_option");
         if (!vanillaOptionQLA)
