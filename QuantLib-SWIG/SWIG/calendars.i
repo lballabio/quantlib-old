@@ -236,31 +236,6 @@ namespace QuantLib {
         UnitedStates(Market m = Settlement);
     };
 
-
-    // old
-
-    class Beijing : public Calendar {};
-    class Bombay : public Calendar {};
-    class Bratislava : public Calendar {};
-    class Brazil : public Calendar {};
-    class Budapest : public Calendar {};
-    class Copenhagen : public Calendar {};
-    class Helsinki : public Calendar {};
-    class Istanbul : public Calendar {};
-    class Johannesburg : public Calendar {};
-    class Oslo : public Calendar {};
-    class Prague : public Calendar {};
-    class Riyadh : public Calendar {};
-    class Seoul : public Calendar {};
-    class Stockholm : public Calendar {};
-    class Sydney : public Calendar {};
-    class Taipei : public Calendar {};
-    class Tokyo : public Calendar {};
-    class Toronto : public Calendar {};
-    class Warsaw : public Calendar {};
-    class Wellington : public Calendar {};
-    class Zurich : public Calendar {};
-
     // others
 
     class NullCalendar : public Calendar {};
