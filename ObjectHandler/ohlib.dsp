@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-s-0_1_3.lib"
+# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-s-0_1_4.lib"
 
 !ELSEIF  "$(CFG)" == "ohlib - Win32 Debug"
 
@@ -76,7 +76,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-sgd-0_1_3.lib"
+# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-sgd-0_1_4.lib"
 
 !ELSEIF  "$(CFG)" == "ohlib - Win32 Release CRTDLL"
 
@@ -99,7 +99,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-0_1_3.lib"
+# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-0_1_4.lib"
 
 !ELSEIF  "$(CFG)" == "ohlib - Win32 Debug CRTDLL"
 
@@ -122,7 +122,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-gd-0_1_3.lib"
+# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-mt-gd-0_1_4.lib"
 
 !ELSEIF  "$(CFG)" == "ohlib - Win32 Release SingleThread"
 
@@ -145,7 +145,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-s-0_1_3.lib"
+# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-s-0_1_4.lib"
 
 !ELSEIF  "$(CFG)" == "ohlib - Win32 Debug SingleThread"
 
@@ -168,7 +168,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-sgd-0_1_3.lib"
+# ADD LIB32 /nologo /out:"lib\ObjectHandler-vc6-sgd-0_1_4.lib"
 
 !ENDIF
 

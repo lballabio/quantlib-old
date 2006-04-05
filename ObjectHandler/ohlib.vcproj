@@ -39,7 +39,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc71-sgd-0_1_3.lib"
+				OutputFile="lib\ObjectHandler-vc71-sgd-0_1_4.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -91,7 +91,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc71-mt-sgd-0_1_3.lib"
+				OutputFile="lib\ObjectHandler-vc71-mt-sgd-0_1_4.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -144,7 +144,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc71-s-0_1_3.lib"
+				OutputFile="lib\ObjectHandler-vc71-s-0_1_4.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -197,7 +197,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc71-mt-0_1_3.lib"
+				OutputFile="lib\ObjectHandler-vc71-mt-0_1_4.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -250,7 +250,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc71-mt-s-0_1_3.lib"
+				OutputFile="lib\ObjectHandler-vc71-mt-s-0_1_4.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -302,7 +302,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\ObjectHandler-vc71-mt-gd-0_1_3.lib"
+				OutputFile="lib\ObjectHandler-vc71-mt-gd-0_1_4.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>

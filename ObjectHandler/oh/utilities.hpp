@@ -25,12 +25,6 @@
 
 #include <oh/objecthandler.hpp>
 
-//! Object function getReference
-/*! Retrieve a reference to underlying Object of class \a CLASS
-    with handle \a HANDLE.
-*/
-#define OH_GET_REFERENCE( CLASS, OBJECT ) \
-    boost::static_pointer_cast< CLASS > ( OBJECT->getReference() )
 //! ObjectHandler function retrieveObject
 /*! Retrieve Object of class \a CLASS with handle \a HANDLE.
 */
@@ -41,6 +35,17 @@
 #define OH_GET_OBJECT_EO( CLASS, HANDLE ) \
     boost::dynamic_pointer_cast< CLASS > \
     (ObjHandler::retrieveObjectEO( HANDLE ))
+//! Object function getReference
+/*! Retrieve a reference to underlying Object of class \a CLASS
+    with handle \a HANDLE.
+*/
+#define OH_GET_REFERENCE( NAME, HANDLE, CLIENT_CLASS, UNDERLYING_CLASS ) \
+    boost::shared_ptr< CLIENT_CLASS > NAME ## temp = \
+        boost::dynamic_pointer_cast< CLIENT_CLASS > \
+        (ObjHandler::retrieveObject( HANDLE )); \
+    const boost::shared_ptr< UNDERLYING_CLASS > NAME = \
+        boost::static_pointer_cast< UNDERLYING_CLASS > \
+        ( NAME ## temp->getReference() );
 
 namespace ObjHandler {
     //! Store given Object in repository under given handle.

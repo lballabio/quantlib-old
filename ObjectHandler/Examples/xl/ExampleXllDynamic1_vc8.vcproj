@@ -75,12 +75,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="xll\ExampleXLLDynamic1-vc80-mt-0_1_3.xll"
+				OutputFile="xll\ExampleXLLDynamic1-vc80-mt-0_1_4.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxll\xll"
-				ProgramDatabaseFile=".\build\vc80\ReleaseCRTDLL/ExampleXLLDynamic1-vc80-mt-0_1_3.pdb"
-				ImportLibrary=".\build\vc80\ReleaseCRTDLL/ExampleXLLDynamic1-vc80-mt-0_1_3.lib"
+				ProgramDatabaseFile=".\build\vc80\ReleaseCRTDLL/ExampleXLLDynamic1-vc80-mt-0_1_4.pdb"
+				ImportLibrary=".\build\vc80\ReleaseCRTDLL/ExampleXLLDynamic1-vc80-mt-0_1_4.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -172,13 +172,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="xll\ExampleXLLDynamic1-vc80-mt-gd-0_1_3.xll"
+				OutputFile="xll\ExampleXLLDynamic1-vc80-mt-gd-0_1_4.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\xlsdk\lib,..\..\ohxl\ohxll\xll"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\build\vc80\DebugCRTDLL/ExampleXLLDynamic1-vc80-mt-gd-0_1_3.pdb"
-				ImportLibrary=".\build\vc80\DebugCRTDLL/ExampleXLLDynamic1-vc80-mt-gd-0_1_3.lib"
+				ProgramDatabaseFile=".\build\vc80\DebugCRTDLL/ExampleXLLDynamic1-vc80-mt-gd-0_1_4.pdb"
+				ImportLibrary=".\build\vc80\DebugCRTDLL/ExampleXLLDynamic1-vc80-mt-gd-0_1_4.lib"
 				TargetMachine="1"
 			/>
 			<Tool

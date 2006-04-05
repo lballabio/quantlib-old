@@ -235,7 +235,7 @@ The name of the library depends on your compiler and configuration.
 For example, if you're using VC6, configuration Debug CRTDLL, the library
 is called
 \verbatim
-ObjectHandler-vc6-mt-gd-0_1_3.lib
+ObjectHandler-vc6-mt-gd-0_1_4.lib
 \endverbatim
 
 The location of the library depends on which project you're using
@@ -263,8 +263,8 @@ For more details refer to the file \c INSTALL.
 ObjectHandler is built in the standard way:
 
 \verbatim
-tar zxfv ObjectHandler-0.1.3.tar.gz
-cd ObjectHandler-0.1.3
+tar zxfv ObjectHandler-0.1.4.tar.gz
+cd ObjectHandler-0.1.4
 ./configure
 make
 make install

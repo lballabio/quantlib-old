@@ -1,7 +1,7 @@
 
 # to be used with NSIS 2.0 and up
 
-!define VER_NUMBER "0.1.3"
+!define VER_NUMBER "0.1.4"
 SetCompressor lzma
 Name "ObjectHandler"
 Caption "ObjectHandler - Setup"

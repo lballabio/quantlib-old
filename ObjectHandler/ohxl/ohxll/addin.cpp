@@ -86,7 +86,7 @@ DLLEXPORT XLOPER *xlAddInManagerInfo(XLOPER *xlAction) {
     // return of a #VALUE! error.
     if (1 == xlReturn.val.w) {
         ObjHandler::scalarToXloper(xlLongName, 
-            std::string("ObjectHandler 0.1.3"));
+            std::string("ObjectHandler 0.1.4"));
     } else {
         xlLongName.xltype = xltypeErr;
         xlLongName.val.err = xlerrValue;

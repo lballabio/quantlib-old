@@ -60,10 +60,7 @@ int main() {
 
         // low-level interrogation
         ObjHandler::logMessage("low-level interrogation - after update");
-        CarObjectPtr const carObject2_lowlevel =
-            OH_GET_OBJECT(CarObject, "car2");
-        boost::shared_ptr<Car> carObjectUnderlying = 
-            OH_GET_REFERENCE(Car, carObject2_lowlevel);
+        OH_GET_REFERENCE(carObjectUnderlying, "car2", CarObject, Car)
         std::ostringstream msg;
         msg << "result of getSpeed on underlying = " << carObjectUnderlying->getSpeed();
         ObjHandler::logMessage(msg.str());
