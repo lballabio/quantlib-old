@@ -1,5 +1,15 @@
 
 /*
+ This file is currently excluded from the build because processing for basket
+ options is incomplete.  required changes:
+ - implementation of appropriate pricing engine
+ - implementation of greeks (in QL the greeks member functions are currently
+   separate for OneAssetOption/MultiAssetOption, these need to be implemented
+   as virtual member fucntions of Option so that they'll be available for
+   QLA polymorphic functions
+*/
+
+/*
  Copyright (C) 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library

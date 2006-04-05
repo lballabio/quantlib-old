@@ -49,6 +49,7 @@ OBJECTS= \
 	"$(INT_DIR)\calcutils.obj" \
 	"$(INT_DIR)\capfloor.obj" \
 	"$(INT_DIR)\couponvectors.obj" \
+	"$(INT_DIR)\exercise.obj" \
 	"$(INT_DIR)\funcdef.obj" \
 	"$(INT_DIR)\instruments.obj" \
 	"$(INT_DIR)\interpolation.obj" \

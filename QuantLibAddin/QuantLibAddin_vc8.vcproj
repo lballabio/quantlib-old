@@ -686,7 +686,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\exercise.cpp"
+				RelativePath="qla\enumregistry.cpp"
 				>
 				<FileConfiguration
 					Name="Release CRTDLL|Win32"
@@ -726,7 +726,11 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\enumregistry.cpp"
+				RelativePath=".\qla\europeanoption.cpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\exercise.cpp"
 				>
 				<FileConfiguration
 					Name="Release CRTDLL|Win32"
@@ -964,6 +968,14 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\qla\quantoforwardvanillaoption.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qla\quantovanillaoption.cpp"
+				>
 			</File>
 			<File
 				RelativePath="qla\schedule.cpp"
@@ -1258,6 +1270,10 @@
 				>
 			</File>
 			<File
+				RelativePath="qla\vo_exercise.cpp"
+				>
+			</File>
+			<File
 				RelativePath="qla\vo_instruments.cpp"
 				>
 			</File>
@@ -1515,6 +1531,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qla\europeanoption.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qla\exercise.hpp"
 				>
 			</File>
@@ -1552,6 +1572,14 @@
 			</File>
 			<File
 				RelativePath="qla\qladdindefines.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qla\quantoforwardvanillaoption.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qla\quantovanillaoption.hpp"
 				>
 			</File>
 			<File
@@ -1600,6 +1628,10 @@
 			</File>
 			<File
 				RelativePath="qla\vo_couponvectors.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qla\vo_exercise.hpp"
 				>
 			</File>
 			<File
