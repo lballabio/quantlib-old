@@ -16,7 +16,7 @@
 */
 
 #include <oh/objhandler.hpp>
-#include <car.hpp>
+#include <account.hpp>
 #include <xlsdk/xlsdk.hpp>
 #include <ohxl/conversions.hpp>
 #include <sstream>
@@ -27,18 +27,18 @@ DLLEXPORT int xlAutoOpen() {
         Excel(xlGetName, &xDll, 0);
 
         Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x0F""addin1CreateCar"), // function code name
+            TempStrNoSize("\x13""addin1CreateAccount"), // function code name
             TempStrNoSize("\x05""CCNC#"),           // parameter codes
-            TempStrNoSize("\x0F""addin1CreateCar"), // function display name
-            TempStrNoSize("\x17""handle,wheelCount,color"), // comma-delimited list of parameters
+            TempStrNoSize("\x13""addin1CreateAccount"), // function display name
+            TempStrNoSize("\x26""instanceName,accountNumber,accountType"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));        // function category
 
         Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x0E""addin1SetSpeed"),  // function code name
+            TempStrNoSize("\x10""addin1SetBalance"),// function code name
             TempStrNoSize("\x03""LCN"),             // parameter codes
-            TempStrNoSize("\x0E""addin1SetSpeed"),  // function display name
-            TempStrNoSize("\x0C""handle,speed"),    // comma-delimited list of parameters
+            TempStrNoSize("\x10""addin1SetBalance"),// function display name
+            TempStrNoSize("\x14""instanceName,balance"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));        // function category
 
@@ -56,39 +56,39 @@ DLLEXPORT int xlAutoOpen() {
     }
 }
 
-DLLEXPORT char* addin1CreateCar(
-        char *handleStub, 
-        long *wheelCount,
-        char *color) {
+DLLEXPORT char* addin1CreateAccount(
+        char *instanceName, 
+        long *accountNumber,
+        char *accountType) {
     try {
-        ObjHandler::obj_ptr objectPointer(new CarObject(*wheelCount, color));
+        ObjHandler::obj_ptr objectPointer(new AccountObject(*accountNumber, accountType));
         objectPointer->setProperties(
             boost::shared_ptr<ObjHandler::ValueObject>(
-            new CarValueObject(*wheelCount, color)));
-        const std::string handle = ObjHandler::storeObject(handleStub, objectPointer);
+            new AccountValueObject(instanceName, *accountNumber, accountType)));
+        const std::string returnValue = ObjHandler::storeObject(instanceName, objectPointer);
         static char ret[XL_MAX_STR_LEN];
-        ObjHandler::stringToChar(ret, handle);
+        ObjHandler::stringToChar(ret, returnValue);
         return ret;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage(std::string("Error: addin1CreateCar: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("Error: addin1CreateAccount: ") + e.what(), 2);
         return 0;
     }
 }
 
-DLLEXPORT short int *addin1SetSpeed(char *handle, long *speed) {
+DLLEXPORT short int *addin1SetBalance(char *instanceName, long *balance) {
     try {
-        CarObjectPtr carObject =
-            OH_GET_OBJECT(CarObject, handle);
-        if (!carObject) {
+        AccountObjectPtr accountObject =
+            OH_GET_OBJECT(AccountObject, instanceName);
+        if (!accountObject) {
             std::ostringstream msg;
-            msg << "unable to retrieve object " << handle;
+            msg << "unable to retrieve object " << instanceName;
             throw ObjHandler::Exception(msg.str().c_str());
         }
-        carObject->setSpeed(*speed);
+        accountObject->setBalance(*balance);
         static short int ret = TRUE;
         return &ret;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage(std::string("Error: addin1SetSpeed: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("Error: addin1SetBalance: ") + e.what(), 2);
         return 0;
     }
 }

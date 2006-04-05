@@ -18,7 +18,7 @@
 #include <sstream>
 #include <iostream>
 #include <exception>
-#include <car.hpp>
+#include <account.hpp>
 
 int main() {
     try {
@@ -37,36 +37,39 @@ int main() {
 
     try {
         // construct some objects and store them in the object handler
-        ObjHandler::obj_ptr carObject1(new CarObject(4, "blue"));
-        ObjHandler::storeObject("car1", carObject1);
+        ObjHandler::obj_ptr accountObject1(new AccountObject(123456789, "savings"));
+        accountObject1->setProperties(
+            boost::shared_ptr<ObjHandler::ValueObject>(new AccountValueObject(
+            "account1", 123456789, "savings")));
+        ObjHandler::storeObject("account1", accountObject1);
 
-        ObjHandler::obj_ptr carObject2(new CarObject(4, "red"));
-        ObjHandler::storeObject("car2", carObject2);
+        ObjHandler::obj_ptr accountObject2(new AccountObject(987654321, "current"));
+        accountObject2->setProperties(
+            boost::shared_ptr<ObjHandler::ValueObject>(new AccountValueObject(
+            "account2", 987654321, "current")));
+        ObjHandler::storeObject("account2", accountObject2);
 
         // high level interrogation
         ObjHandler::logMessage("high level interrogation - after constructor");
-        ObjHandler::logObject("car2");
+        ObjHandler::logObject("account2");
 
         // retrieve an object and update it
-        CarObjectPtr carObject2_retrieve =
-            OH_GET_OBJECT(CarObject, "car2");
-        if (!carObject2_retrieve)
-            throw ObjHandler::Exception("unable to retrieve object car2");
-        carObject2_retrieve->setSpeed(100);
-
-        // high level interrogation
-        ObjHandler::logMessage("high level interrogation - after update");
-        ObjHandler::logObject("car2");
+        AccountObjectPtr accountObject2_retrieve =
+            OH_GET_OBJECT(AccountObject, "account2");
+        if (!accountObject2_retrieve)
+            throw ObjHandler::Exception("unable to retrieve object account2");
+        accountObject2_retrieve->setBalance(100);
 
         // low-level interrogation
         ObjHandler::logMessage("low-level interrogation - after update");
-        OH_GET_REFERENCE(carObjectUnderlying, "car2", CarObject, Car)
+        OH_GET_REFERENCE(accountObjectUnderlying, "account2",
+			AccountObject, Account);
         std::ostringstream msg;
-        msg << "result of getSpeed on underlying = " << carObjectUnderlying->getSpeed();
+        msg << "result of getBalance on underlying = " << accountObjectUnderlying->getBalance();
         ObjHandler::logMessage(msg.str());
 
-        ObjHandler::ObjectHandler::instance().deleteObject("car2");
-        ObjHandler::logMessage("log all objects after deleting car2:");
+        ObjHandler::ObjectHandler::instance().deleteObject("account2");
+        ObjHandler::logMessage("log all objects after deleting account2:");
         ObjHandler::logAllObjects();
 
         ObjHandler::logMessage("end example program");

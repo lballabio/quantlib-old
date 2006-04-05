@@ -16,7 +16,7 @@
 */
 
 #include <oh/objhandler.hpp>
-#include <car.hpp>
+#include <account.hpp>
 #include <xlsdk/xlsdk.hpp>
 #include <ohxl/conversions.hpp>
 #include <sstream>
@@ -27,10 +27,10 @@ DLLEXPORT int xlAutoOpen() {
         Excel(xlGetName, &xDll, 0);
 
         Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x0E""addin2GetSpeed"),  // function code name
+            TempStrNoSize("\x10""addin2GetBalance"),// function code name
             TempStrNoSize("\x03""NCP"),             // parameter codes
-            TempStrNoSize("\x0E""addin2GetSpeed"),  // function display name
-            TempStrNoSize("\x0E""handle,trigger"),  // comma-delimited list of parameters
+            TempStrNoSize("\x10""addin2GetBalance"),// function display name
+            TempStrNoSize("\x14""instanceName,trigger"),  // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));        // function category
 
@@ -48,20 +48,21 @@ DLLEXPORT int xlAutoOpen() {
     }
 }
 
-DLLEXPORT long *addin2GetSpeed(char *handle, OPER *trigger) {
+DLLEXPORT long *addin2GetBalance(char *instanceName, OPER *trigger) {
     try {
-        CarObjectPtr carObject =
-            OH_GET_OBJECT(CarObject, handle);
-        if (!carObject) {
+        AccountObjectPtr accountObject =
+            OH_GET_OBJECT(AccountObject, instanceName);
+        if (!accountObject) {
             std::ostringstream msg;
-            msg << "unable to retrieve object " << handle;
+            msg << "unable to retrieve object " << instanceName;
             throw ObjHandler::Exception(msg.str().c_str());
         }
         static long ret;
-        ret = carObject->getSpeed();
+        ret = accountObject->getBalance();
         return &ret;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage(std::string("Error: getSpeed: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("Error: getBalance: ") + e.what(), 2);
         return 0;
     }
 }
+

@@ -448,7 +448,7 @@
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath="car.cpp"
+			RelativePath="account.cpp"
 			>
 			<FileConfiguration
 				Name="Debug|Win32"
@@ -488,7 +488,7 @@
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath="car.hpp"
+			RelativePath="account.hpp"
 			>
 		</File>
 	</Files>

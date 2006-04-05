@@ -16,7 +16,7 @@
 */
 
 #include <oh/objhandler.hpp>
-#include <car.hpp>
+#include <account.hpp>
 #include <xlsdk/xlsdk.hpp>
 #include <ohxl/conversions.hpp>
 #include <ohxl/register.hpp>
@@ -31,26 +31,26 @@ DLLEXPORT int xlAutoOpen() {
         ohRegisterFunctions(xDll);
 
         Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x09""createCar"),       // function code name
+            TempStrNoSize("\x0D""createAccount"),   // function code name
             TempStrNoSize("\x05""CCNC#"),           // parameter codes
-            TempStrNoSize("\x09""createCar"),       // function display name
-            TempStrNoSize("\x17""handle,wheelCount,color"), // comma-delimited list of parameters
+            TempStrNoSize("\x0D""createAccount"),   // function display name
+            TempStrNoSize("\x26""instanceName,accountNumber,accountType"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));        // function category
 
         Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x08""setSpeed"),        // function code name
+            TempStrNoSize("\x0A""setBalance"),      // function code name
             TempStrNoSize("\x03""LCN"),             // parameter codes
-            TempStrNoSize("\x08""setSpeed"),        // function display name
-            TempStrNoSize("\x0C""handle,speed"),    // comma-delimited list of parameters
+            TempStrNoSize("\x0A""setBalance"),      // function display name
+            TempStrNoSize("\x14""instanceName,balance"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));        // function category
 
         Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x08""getSpeed"),        // function code name
+            TempStrNoSize("\x0A""getBalance"),      // function code name
             TempStrNoSize("\x03""NCP"),             // parameter codes
-            TempStrNoSize("\x08""getSpeed"),        // function display name
-            TempStrNoSize("\x0E""handle,trigger"),  // comma-delimited list of parameters
+            TempStrNoSize("\x0A""getBalance"),      // function display name
+            TempStrNoSize("\x14""instanceName,trigger"),  // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));        // function category
 
@@ -68,57 +68,57 @@ DLLEXPORT int xlAutoOpen() {
     }
 }
 
-DLLEXPORT char *createCar(
-        char *handleStub, 
-        long *wheelCount,
-        char *color) {
+DLLEXPORT char *createAccount(
+        char *instanceName, 
+        long *accountNumber,
+        char *accountType) {
     try {
-        ObjHandler::obj_ptr objectPointer(new CarObject(*wheelCount, color));
+        ObjHandler::obj_ptr objectPointer(new AccountObject(*accountNumber, accountType));
         objectPointer->setProperties(
             boost::shared_ptr<ObjHandler::ValueObject>(
-            new CarValueObject(*wheelCount, color)));
-        const std::string handle = ObjHandler::storeObject(handleStub, objectPointer);
+            new AccountValueObject(instanceName, *accountNumber, accountType)));
+        const std::string returnValue = ObjHandler::storeObject(instanceName, objectPointer);
         static char ret[XL_MAX_STR_LEN];
-        ObjHandler::stringToChar(ret, handle);
+        ObjHandler::stringToChar(ret, returnValue);
         return ret;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage(std::string("Error: createCar: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("Error: createAccount: ") + e.what(), 2);
         return 0;
     }
 }
 
-DLLEXPORT short int *setSpeed(char *handle, long *speed) {
+DLLEXPORT short int *setBalance(char *instanceName, long *balance) {
     try {
-        CarObjectPtr carObject =
-            OH_GET_OBJECT(CarObject, handle);
-        if (!carObject) {
+        AccountObjectPtr accountObject =
+            OH_GET_OBJECT(AccountObject, instanceName);
+        if (!accountObject) {
             std::ostringstream msg;
-            msg << "unable to retrieve object " << handle;
+            msg << "unable to retrieve object " << instanceName;
             throw ObjHandler::Exception(msg.str().c_str());
         }
-        carObject->setSpeed(*speed);
+        accountObject->setBalance(*balance);
         static short int ret = TRUE;
         return &ret;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage(std::string("Error: setSpeed: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("Error: setBalance: ") + e.what(), 2);
         return 0;
     }
 }
 
-DLLEXPORT long *getSpeed(char *handle, OPER *trigger) {
+DLLEXPORT long *getBalance(char *instanceName, OPER *trigger) {
     try {
-        CarObjectPtr carObject =
-            OH_GET_OBJECT(CarObject, handle);
-        if (!carObject) {
+        AccountObjectPtr accountObject =
+            OH_GET_OBJECT(AccountObject, instanceName);
+        if (!accountObject) {
             std::ostringstream msg;
-            msg << "unable to retrieve object " << handle;
+            msg << "unable to retrieve object " << instanceName;
             throw ObjHandler::Exception(msg.str().c_str());
         }
         static long ret;
-        ret = carObject->getSpeed();
+        ret = accountObject->getBalance();
         return &ret;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage(std::string("Error: getSpeed: ") + e.what(), 2);
+        ObjHandler::logMessage(std::string("Error: getBalance: ") + e.what(), 2);
         return 0;
     }
 }

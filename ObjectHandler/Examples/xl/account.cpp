@@ -15,33 +15,34 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <car.hpp>
+#include <account.hpp>
 #include <iostream>
 #include <sstream>
 
-CarObject::CarObject(
-        const unsigned int &wheelCount,
-        const std::string &color) {
-    car_ = boost::shared_ptr<Car>(new Car(wheelCount, color));
+AccountObject::AccountObject(
+        const int &accountNumber,
+        const std::string &accountType) {
+    account_ = boost::shared_ptr<Account>(new Account(accountNumber, accountType));
 }
 
-void CarObject::setSpeed(const int &speed) {
-    car_->setSpeed(speed);
+void AccountObject::setBalance(const int &balance) {
+    account_->setBalance(balance);
 }
 
-const int &CarObject::getSpeed() {
-    return car_->getSpeed();
+const int &AccountObject::getBalance() {
+    return account_->getBalance();
 }
 
-boost::shared_ptr<void> CarObject::getReference() const {
-    return boost::static_pointer_cast<void>(car_);
+boost::shared_ptr<void> AccountObject::getReference() const {
+    return boost::static_pointer_cast<void>(account_);
 }
 
-const char* CarValueObject::mPropertyNames[] = {
-    "wheelCount",
-    "color"};
+const char* AccountValueObject::mPropertyNames[] = {
+    "instanceName",
+    "accountNumber",
+    "accountType"};
 
-std::vector<std::string> CarValueObject::getPropertyNames() const {
+std::vector<std::string> AccountValueObject::getPropertyNames() const {
 #ifdef OBJHANDLER_PATCH_MSVC6
     std::vector<std::string> ret;
     const int max = sizeof(mPropertyNames)/sizeof(const char*);
@@ -53,9 +54,10 @@ std::vector<std::string> CarValueObject::getPropertyNames() const {
 #endif
 }
 
-boost::any CarValueObject::getProperty(const std::string& name) const {
-    if(name == "wheelCount") return wheelCount_;
-    else if(name == "color") return color_;
+boost::any AccountValueObject::getProperty(const std::string& name) const {
+    if(name == "instanceName") return instanceName_;
+    else if(name == "accountNumber") return accountNumber_;
+    else if(name == "accountType") return accountType_;
     else 
         throw ObjHandler::Exception("Error: attempt to retrieve non-existent Property: '" + name + "'");
     return boost::any(); /* Dummy return - just to avoid stupid compiler warnings/errors */

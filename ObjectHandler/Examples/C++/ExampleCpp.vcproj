@@ -447,7 +447,7 @@
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath="car.cpp">
+			RelativePath="account.cpp">
 			<FileConfiguration
 				Name="Release CRTDLL|Win32">
 				<Tool
@@ -501,7 +501,7 @@
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath="car.hpp">
+			RelativePath="account.hpp">
 		</File>
 	</Files>
 	<Globals>
