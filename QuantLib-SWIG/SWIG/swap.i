@@ -25,9 +25,9 @@
 
 %{
 using QuantLib::Swap;
-using QuantLib::SimpleSwap;
+using QuantLib::VanillaSwap;
 typedef boost::shared_ptr<Instrument> SwapPtr;
-typedef boost::shared_ptr<Instrument> SimpleSwapPtr;
+typedef boost::shared_ptr<Instrument> VanillaSwapPtr;
 %}
 
 %rename(Swap) SwapPtr;
@@ -52,15 +52,12 @@ class SwapPtr : public boost::shared_ptr<Instrument> {
         Real secondLegBPS() {
             return boost::dynamic_pointer_cast<Swap>(*self)->secondLegBPS();
         }
-        TimeBasket sensitivity() {
-            return boost::dynamic_pointer_cast<Swap>(*self)->sensitivity();
-        }
     }
 };
 
 
-%rename(SimpleSwap) SimpleSwapPtr;
-class SimpleSwapPtr : public SwapPtr {
+%rename(VanillaSwap) VanillaSwapPtr;
+class VanillaSwapPtr : public SwapPtr {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("fair-rate")        fairRate;
     %rename("fair-spread")      fairSpread;
@@ -69,33 +66,36 @@ class SimpleSwapPtr : public SwapPtr {
     #endif
   public:
     %extend {
-        SimpleSwapPtr(bool payFixedRate, Real nominal,
+        VanillaSwapPtr(bool payFixedRate, Real nominal,
                       const Schedule& fixedSchedule, Rate fixedRate,
                       const DayCounter& fixedDayCount,
                       const Schedule& floatSchedule,
                       const XiborPtr& index,
                       Integer indexFixingDays, Spread spread,
+                      const DayCounter& floatingDayCount,	
                       const Handle<YieldTermStructure>& termStructure) {
             boost::shared_ptr<Xibor> libor =
                 boost::dynamic_pointer_cast<Xibor>(index);
-            return new SimpleSwapPtr(
-                new SimpleSwap(payFixedRate,nominal,fixedSchedule,fixedRate,
+            return new VanillaSwapPtr(
+                new VanillaSwap(payFixedRate,nominal,fixedSchedule,fixedRate,
                                fixedDayCount,floatSchedule,libor,
-                               indexFixingDays,spread,termStructure));
+                               indexFixingDays,spread,
+			       floatingDayCount,
+			       termStructure));
         }
         Rate fairRate() {
-            return boost::dynamic_pointer_cast<SimpleSwap>(*self)->fairRate();
+            return boost::dynamic_pointer_cast<VanillaSwap>(*self)->fairRate();
         }
         Spread fairSpread() {
-            return boost::dynamic_pointer_cast<SimpleSwap>(*self)
+            return boost::dynamic_pointer_cast<VanillaSwap>(*self)
                  ->fairSpread();
         }
         Real fixedLegBPS() {
-            return boost::dynamic_pointer_cast<SimpleSwap>(*self)
+            return boost::dynamic_pointer_cast<VanillaSwap>(*self)
                  ->fixedLegBPS();
         }
         Real floatingLegBPS() {
-            return boost::dynamic_pointer_cast<SimpleSwap>(*self)
+            return boost::dynamic_pointer_cast<VanillaSwap>(*self)
                  ->floatingLegBPS();
         }
     }

@@ -72,13 +72,16 @@ class SwaptionHelperPtr : public boost::shared_ptr<CalibrationHelper> {
                           const XiborPtr& index,
                           Frequency fixedLegFrequency,
                           const DayCounter& fixedLegDayCounter,
+                          const DayCounter& floatingLegDayCounter,
                           const Handle<YieldTermStructure>& termStructure) {
             boost::shared_ptr<Xibor> libor =
                 boost::dynamic_pointer_cast<Xibor>(index);
             return new SwaptionHelperPtr(
                 new SwaptionHelper(maturity,length,volatility,
                                    libor,fixedLegFrequency,
-                                   fixedLegDayCounter,termStructure));
+                                   fixedLegDayCounter,
+				   floatingLegDayCounter,
+				   termStructure));
         }
         std::vector<Time> times() {
             std::list<Time> l;
