@@ -102,9 +102,6 @@ int main() {
             "AEQPB",    // AdditiveEQPBinomialTree
             timeSteps);
 
-        logMessage("High-level interrogation: after setting engine");
-        logObject("my_option");
-
         logMessage("Low-level interrogation: NPV of underlying option object");
         const boost::shared_ptr< QuantLib::VanillaOption > vanillaOptionQL =
             boost::static_pointer_cast< QuantLib::VanillaOption >
