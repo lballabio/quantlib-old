@@ -33,12 +33,12 @@ typedef boost::shared_ptr<Instrument> SwaptionPtr;
 class SwaptionPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
-        SwaptionPtr(const boost::shared_ptr<Instrument>& simpleSwap,
+        SwaptionPtr(const boost::shared_ptr<VanillaSwap>& simpleSwap,
                     const boost::shared_ptr<Exercise>& exercise,
                     const Handle<YieldTermStructure>& termStructure,
                     const boost::shared_ptr<PricingEngine>& engine) {
-            boost::shared_ptr<SimpleSwap> swap =
-                 boost::dynamic_pointer_cast<SimpleSwap>(simpleSwap);
+            boost::shared_ptr<VanillaSwap> swap =
+                 boost::dynamic_pointer_cast<VanillaSwap>(simpleSwap);
             QL_REQUIRE(swap, "simple swap required");
             return new SwaptionPtr(new Swaption(swap,exercise,
                                                 termStructure,engine));

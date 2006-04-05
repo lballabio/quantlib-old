@@ -229,17 +229,6 @@ class DPlusDMinus : public TridiagonalOperator {
 };
 #endif
 
-
-%{
-using QuantLib::valueAtCenter;
-using QuantLib::firstDerivativeAtCenter;
-using QuantLib::secondDerivativeAtCenter;
-%}
-
-Real valueAtCenter(const Array& a);
-Real firstDerivativeAtCenter(const Array& a, const Array& g);
-Real secondDerivativeAtCenter(const Array& a, const Array& g);
-
 %{
 using QuantLib::SymmetricEigenvalues;
 using QuantLib::SymmetricEigenvectors;

@@ -183,6 +183,9 @@ using QuantLib::DateParser;
 'as.character._p_Date' <-
 function(x) {x$ISO()}
 
+setAs("character", "_p_Date",
+function(from) { DateParser_parseISO(from) })
+
 setMethod("as.numeric", "_p_Date",
     function(x) x$serialNumber())
 setMethod("+", c("_p_Date", "numeric"),
@@ -193,6 +196,9 @@ setMethod("+", c("_p_Date", "_p_Period"),
     function(e1,e2) Date___add__(e1,e2))
 setMethod("-", c("_p_Date", "_p_Period"),
     function(e1,e2) Date___sub__(e1,e2))
+
+setAs("character", "_p_Period",
+function(from) {Period(from)})
 %}
 #endif
 
@@ -242,7 +248,6 @@ class Date {
     static Date nthWeekday(Size n, Weekday, Month m, Year y);
     static bool isIMMdate(const Date&);
     static Date nextIMMdate(const Date&);
-    static Date fromIsoDate(const std::string &);
     #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA) || defined(SWIGR) 
     Date operator+(BigInteger days) const;
     Date operator-(BigInteger days) const;
@@ -305,6 +310,18 @@ class Date {
         #endif
     }
 };
+
+class DateParser {
+      public:
+        static Date parse(const std::string& str, const std::string& fmt);
+        static Date parseISO(const std::string& str);
+};
+
+class PeriodParser {
+      public:
+              static Period parse(const std::string& str);
+};
+
 
 #if defined(SWIGPYTHON)
 %pythoncode %{
