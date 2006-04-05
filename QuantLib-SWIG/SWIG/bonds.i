@@ -63,9 +63,13 @@ class BondPtr : public boost::shared_ptr<Instrument> {
         Calendar calendar() const {
             return boost::dynamic_pointer_cast<Bond>(*self)->calendar();
         }
-        BusinessDayConvention businessDayConvention() const {
+        BusinessDayConvention accrualConvention() const {
             return boost::dynamic_pointer_cast<Bond>(*self)
-                ->businessDayConvention();
+                ->accrualConvention();
+        }
+        BusinessDayConvention paymentConvention() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)
+                ->paymentConvention();
         }
         DayCounter dayCounter() const {
             return boost::dynamic_pointer_cast<Bond>(*self)->dayCounter();
@@ -145,9 +149,11 @@ class FixedCouponBondPtr : public BondPtr {
                            Integer settlementDays,
                            const std::vector<Rate>& coupons,
                            Frequency couponFrequency,
-                           const DayCounter& dayCounter,
                            const Calendar& calendar,
-                           BusinessDayConvention convention
+                           const DayCounter& dayCounter,
+                           BusinessDayConvention accrualConvention
+                                                       = QuantLib::Following,
+                           BusinessDayConvention paymentConvention
                                                        = QuantLib::Following,
                            Real redemption = 100.0,
                            const Handle<YieldTermStructure>& discountCurve
@@ -157,7 +163,10 @@ class FixedCouponBondPtr : public BondPtr {
             return new FixedCouponBondPtr(
                 new FixedCouponBond(issueDate, datedDate, maturityDate,
                                     settlementDays, coupons, couponFrequency,
-                                    dayCounter, calendar, convention,
+                                    calendar, 
+				    dayCounter,  
+				    accrualConvention,
+				    paymentConvention,
                                     redemption, discountCurve, stub, fromEnd));
         }
     }
@@ -175,10 +184,12 @@ class FloatingRateBondPtr : public BondPtr {
                             Integer fixingDays,
                             const std::vector<Spread>& spreads,
                             Frequency couponFrequency,
-                            const DayCounter& dayCounter,
                             const Calendar& calendar,
-                            BusinessDayConvention convention
-                                                       = QuantLib::Following,
+                            const DayCounter& dayCounter,
+			    BusinessDayConvention accrualConvention = 
+			    Following,
+		            BusinessDayConvention paymentConvention = 
+			    Following,
                             Real redemption = 100.0,
                             const Handle<YieldTermStructure>& discountCurve
                                               = Handle<YieldTermStructure>(),
@@ -190,7 +201,9 @@ class FloatingRateBondPtr : public BondPtr {
                 new FloatingRateBond(issueDate, datedDate, maturityDate,
                                      settlementDays, libor, fixingDays,
                                      spreads, couponFrequency,
-                                     dayCounter, calendar, convention,
+                                     calendar, dayCounter, 
+				     accrualConvention,
+				     paymentConvention, 
                                      redemption, discountCurve,
                                      stub, fromEnd));
         }
