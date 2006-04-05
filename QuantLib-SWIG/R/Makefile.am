@@ -1,5 +1,5 @@
 if HAVE_RSWIG
-BUILT_SOURCES = QuantLib.cpp QuantLib_wrap.S
+BUILT_SOURCES = QuantLib.cpp QuantLib_wrap.R
 else
 BUILT_SOURCES =
 endif
@@ -22,7 +22,7 @@ check-local: .build-stamp
 install-exec-local: .build-stamp
 
 clean-local:
-	rm -rf $(BUILT_SOURCES) QuantLib.cpp *.so *.o *.S
+	rm -rf $(BUILT_SOURCES) QuantLib.cpp *.so *.o *.R
 
 endif
 
