@@ -188,4 +188,22 @@ class Handle {
 %enddef
 
 
+%define swigr_list_converter(ObjType, PtrType,RType) 
+#if defined(SWIGR)
+%Rruntime %{
+'print.PtrType' <-
+function(object) print(as.RType(object))
+
+setMethod("as.RType", "PtrType",
+function(x) {if (x$size()) x[1:x$size()] else NULL} )
+
+setAs("RType", "PtrType",
+function(from) { a <- ObjType(length(from)); 
+sapply(1:length(from), function(n) {
+a$setvalue(from=from, i=n, value=object[n])})
+a
+})
+%}
+#endif
+%enddef
 #endif

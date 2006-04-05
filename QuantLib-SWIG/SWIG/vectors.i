@@ -24,6 +24,20 @@ namespace std {
     %template(IntVector) vector<int>;
     %template(DoubleVector) vector<double>;
     %template(StrVector) vector<std::string>;
+
+#if defined(SWIGR)
+    swigr_list_converter(IntVector,
+    _p_std__vectorTint_std__allocatorTint_t_t,
+    integer)
+
+    swigr_list_converter(DoubleVector,
+    _p_std__vectorTdouble_std__allocatorTdouble_t_t,
+    numeric)
+
+    swigr_list_converter(StrVector,
+    _p_std__vectorTstd__string_std__allocatorTstd__string_t_t,
+    character)
+#endif
 }
 
 

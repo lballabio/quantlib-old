@@ -201,6 +201,42 @@ typedef double doubleOrNull;
 typedef int intOrNull;
 typedef double doubleOrNull;
 
+#elif defined(SWIGR)
+
+%typemap(rtype) intOrNull "numeric";
+%typemap(scoercein) intOrNull 
+   %{ as(input, "integer"); %}
+%typemap(scoerceout) intOrNull %{ %}
+
+%typemap(in) intOrNull {
+  $1 = ($1_ltype) INTEGER($input)[0];
+  if ($1 == R_NaInt) $1 = Null<int>();
+}
+
+%typemap(out) intOrNull {
+    if ($1 == Null<int>())
+    $result = Rf_ScalarLogical(NA_LOGICAL)
+    else
+    $result = ScalarInteger($1);
+}
+
+%typemap(rtype) doubleOrNull "numeric";
+%typemap(scoercein) doubleOrNull 
+	%{ as(input, "numeric"); %}
+%typemap(scoerceout) doubleOrNull %{ %}
+
+%typemap(in) doubleOrNull {
+  $1 = ($1_ltype) REAL($input)[0];
+  if (R_IsNA($1)) $1 = Null<double>();
+}
+
+%typemap(out) doubleOrNull {
+    if ($1 == Null<double>())
+    $result = Rf_ScalarLogical(NA_LOGICAL)
+    else
+    $result = ScalarReal($1);
+}
+
 #endif
 
 
