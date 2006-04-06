@@ -346,6 +346,21 @@ namespace std {
     %template(DateVector) vector<Date>;
 }
 
+#if defined(SWIGR)
+
+swigr_list_converter("DateVector",
+	 "_p_std__vectorTDate_std__allocatorTDate_t_t",
+	 "character")
+
+%Rruntime %{
+setMethod("as.character", 
+	 "_p_std__vectorTDate_std__allocatorTDate_t_t",
+function(x) {if (x$size()) 
+sapply(function(y) as(y, "character"), x) else NULL} )
+%}
+
+#endif
+
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename("Date=?")  Date_equal;
 %rename("Date<?")  Date_less;
