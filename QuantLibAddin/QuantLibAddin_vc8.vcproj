@@ -626,6 +626,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\forwardvanillaoption.cpp"
+				>
 				<FileConfiguration
 					Name="Debug|Win32"
 					>
@@ -666,6 +670,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\generalutils.cpp"
+				>
 				<FileConfiguration
 					Name="Debug|Win32"
 					>
@@ -698,7 +706,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Debug CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -706,8 +714,12 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\interpolation.cpp"
+				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Release CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -790,6 +802,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\processes.cpp"
+				>
 				<FileConfiguration
 					Name="Debug|Win32"
 					>
@@ -822,7 +838,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Debug CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -830,8 +846,12 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\schedule.cpp"
+				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Release CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -910,6 +930,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\simpleswap.cpp"
+				>
 				<FileConfiguration
 					Name="Debug|Win32"
 					>
@@ -942,7 +966,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Debug CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -950,8 +974,12 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qla\swap.cpp"
+				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Release CRTDLL|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"

@@ -36,8 +36,6 @@ EXTRA_DIST = \
 BASEPATH = @abs_top_srcdir@
 docs:
 	BASEPATH=$(BASEPATH) $(MAKE) -C Docs docs-all
-html-local:
-	BASEPATH=$(BASEPATH) $(MAKE) -C Docs docs-html
 docs-online:
 	BASEPATH=$(BASEPATH) $(MAKE) -C Docs docs-online
 docs-dist:

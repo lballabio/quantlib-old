@@ -60,7 +60,7 @@ docs-html-dist: docs-html
 docs-qla-online: .time-stamp-qla-online
 .time-stamp-qla-online: $(QLA_CONFIG) $(QLA_CUSTOM) $(QLA_INPUT)
 	mkdir -p html-online
-	$(SED) -e "s/qla_footer/qla_headeronline/" \
+	$(SED) -e "s/qla_header/qla_headeronline/" \
            -e "s/GENERATE_HTML          = NO/GENERATE_HTML          = YES/" \
            -e "s/HTML_OUTPUT            = html/HTML_OUTPUT            = html-online/" \
            -e "s|qla_basepath|${BASEPATH}/|" \
@@ -73,7 +73,7 @@ docs-qla-online: .time-stamp-qla-online
 docs-srcgen-online: .time-stamp-srcgen-online
 .time-stamp-srcgen-online: $(SRCGEN_CONFIG) $(SRCGEN_CUSTOM) $(SRCGEN_INPUT)
 	mkdir -p html-online/srcgen
-	$(SED) -e "s/qla_footer/qla_headeronline/" \
+	$(SED) -e "s/qla_header/qla_headeronline/" \
            -e "s/GENERATE_HTML          = NO/GENERATE_HTML          = YES/" \
            -e "s/HTML_OUTPUT            = html/HTML_OUTPUT            = html-online/" \
            -e "s|qla_basepath|${BASEPATH}/|" \
