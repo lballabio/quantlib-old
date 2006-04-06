@@ -28,7 +28,7 @@ SRCGEN_INPUT := addincalc.xml \
                 volatilities.xml \
                 xibor.xml
 
-srcgen_pys :=   addincalc.py \
+SRCGEN_PYS :=   addincalc.py \
                 addinc.py \
                 addindoxygen.py \
                 addinexcel.py \
