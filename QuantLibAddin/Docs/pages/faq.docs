@@ -23,11 +23,11 @@
 
 /*! \page faq Frequently Asked Questions
 
-This is the FAQ for %QuantLibAddin, which is a subproject of QuantLib.  The 
-general QuantLib FAQ is
-<a href="http://quantlib.org/reference/faq.html">http://quantlib.org/reference/faq.html</a>
-and the QuantLib developer FAQ is
-<a href="http://quantlib.org/developerFAQ.shtml">http://quantlib.org/developerFAQ.shtml</a>.
+This is the FAQ for %QuantLibAddin, which is a subproject of QuantLib.  
+Please see also the 
+<a href="http://quantlib.org/reference/faq.html">general QuantLib FAQ</a>
+and the 
+<a href="http://quantlib.org/developerFAQ.shtml">QuantLib developer FAQ</a>.
 
 \ref faq_usage\n
 - \ref faq_loaded\n
