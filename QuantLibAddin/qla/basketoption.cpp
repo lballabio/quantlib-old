@@ -48,18 +48,16 @@ namespace QuantLibAddin {
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
 
-        boost::shared_ptr<BlackScholesProcess> blackScholesProcess =
-            OH_GET_OBJECT(BlackScholesProcess, handleBlackScholes);
-        boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcessQL =
-            OH_GET_REFERENCE(QuantLib::BlackScholesProcess, blackScholesProcess);
-        boost::shared_ptr<QuantLib::StochasticProcess> stochasticProcessQL =
+        OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes,
+            BlackScholesProcess, QuantLib::BlackScholesProcess)
+        boost::shared_ptr<QuantLib::StochasticProcess> stochasticProcess=
             boost::dynamic_pointer_cast<QuantLib::StochasticProcess>
-            (blackScholesProcessQL);
+            (blackScholesProcess);
 
         mInstrument = boost::shared_ptr<QuantLib::BasketOption>(
             new QuantLib::BasketOption(
                 basketType,
-                stochasticProcessQL, 
+                stochasticProcess, 
                 payoff, 
                 exercise, 
                 pricingEngine));

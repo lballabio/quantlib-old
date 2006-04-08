@@ -89,13 +89,7 @@ DLLEXPORT char *createAccount(
 
 DLLEXPORT short int *setBalance(char *instanceName, long *balance) {
     try {
-        AccountObjectPtr accountObject =
-            OH_GET_OBJECT(AccountObject, instanceName);
-        if (!accountObject) {
-            std::ostringstream msg;
-            msg << "unable to retrieve object " << instanceName;
-            throw ObjHandler::Exception(msg.str().c_str());
-        }
+        OH_GET_OBJECT(accountObject, instanceName, AccountObject)
         accountObject->setBalance(*balance);
         static short int ret = TRUE;
         return &ret;
@@ -107,13 +101,7 @@ DLLEXPORT short int *setBalance(char *instanceName, long *balance) {
 
 DLLEXPORT long *getBalance(char *instanceName, OPER *trigger) {
     try {
-        AccountObjectPtr accountObject =
-            OH_GET_OBJECT(AccountObject, instanceName);
-        if (!accountObject) {
-            std::ostringstream msg;
-            msg << "unable to retrieve object " << instanceName;
-            throw ObjHandler::Exception(msg.str().c_str());
-        }
+        OH_GET_OBJECT(accountObject, instanceName, AccountObject)
         static long ret;
         ret = accountObject->getBalance();
         return &ret;
@@ -122,3 +110,4 @@ DLLEXPORT long *getBalance(char *instanceName, OPER *trigger) {
         return 0;
     }
 }
+

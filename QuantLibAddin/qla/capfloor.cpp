@@ -42,8 +42,7 @@ namespace QuantLibAddin {
             YieldTermStructure, QuantLib::YieldTermStructure)
         QuantLib::Handle<QuantLib::YieldTermStructure> termStructureH(termStructureP);
 
-        boost::shared_ptr<CouponVector> couponVectorWrapper =
-            OH_GET_OBJECT(CouponVector, couponVectorID);
+        OH_GET_OBJECT(couponVectorWrapper, couponVectorID, CouponVector)
         const CashFlowVector& couponVector = couponVectorWrapper->getObject();
 
         QuantLib::CapFloor::Type option =

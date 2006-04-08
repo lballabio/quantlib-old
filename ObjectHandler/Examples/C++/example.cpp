@@ -54,10 +54,7 @@ int main() {
         ObjHandler::logObject("account2");
 
         // retrieve an object and update it
-        AccountObjectPtr accountObject2_retrieve =
-            OH_GET_OBJECT(AccountObject, "account2");
-        if (!accountObject2_retrieve)
-            throw ObjHandler::Exception("unable to retrieve object account2");
+        OH_GET_OBJECT(accountObject2_retrieve, "account2", AccountObject)
         accountObject2_retrieve->setBalance(100);
 
         // low-level interrogation

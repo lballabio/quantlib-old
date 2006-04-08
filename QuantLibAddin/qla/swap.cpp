@@ -32,12 +32,10 @@ namespace QuantLibAddin {
             const std::string &recvLegID,
             const std::string &termStructureID) {
 
-        boost::shared_ptr<CouponVector> paidLegWrapper =
-            OH_GET_OBJECT(CouponVector, paidLegID);
+        OH_GET_OBJECT(paidLegWrapper, paidLegID, CouponVector)
         const CashFlowVector& paidLeg = paidLegWrapper->getObject();
 
-        boost::shared_ptr<CouponVector> recvLegWrapper =
-            OH_GET_OBJECT(CouponVector, recvLegID);
+        OH_GET_OBJECT(recvLegWrapper, recvLegID, CouponVector)
         const CashFlowVector& recvLeg = recvLegWrapper->getObject();
 
         OH_GET_REFERENCE(termStructure, termStructureID, 

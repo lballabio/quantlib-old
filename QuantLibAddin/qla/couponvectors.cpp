@@ -48,8 +48,7 @@ namespace QuantLibAddin {
             const std::vector<double> &couponRates,
             const std::string         &dayCountID) {
 
-        boost::shared_ptr<Schedule> scheduleWrapper = 
-            OH_GET_OBJECT(Schedule, scheduleID);
+        OH_GET_OBJECT(scheduleWrapper, scheduleID, Schedule)
         const QuantLib::Schedule& schedule = scheduleWrapper->getObject();
 
         QuantLib::BusinessDayConvention convention =
@@ -90,8 +89,7 @@ namespace QuantLibAddin {
             const std::string         &indexID,
             const std::vector<double> &spreads) {
 
-        boost::shared_ptr<Schedule> scheduleWrapper = 
-            OH_GET_OBJECT(Schedule, scheduleID);
+        OH_GET_OBJECT(scheduleWrapper, scheduleID, Schedule)
         const QuantLib::Schedule& schedule = scheduleWrapper->getObject();
 
         OH_GET_REFERENCE(index, indexID, 

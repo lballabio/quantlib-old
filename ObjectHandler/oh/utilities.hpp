@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
@@ -28,9 +28,16 @@
 //! ObjectHandler function retrieveObject
 /*! Retrieve Object of class \a CLASS with handle \a HANDLE.
 */
-#define OH_GET_OBJECT( CLASS, HANDLE ) \
-    boost::dynamic_pointer_cast< CLASS > \
-    (ObjHandler::retrieveObject( HANDLE ))
+#define OH_GET_OBJECT( NAME, HANDLE, CLIENT_CLASS ) \
+    boost::shared_ptr < CLIENT_CLASS > NAME = \
+        boost::dynamic_pointer_cast< CLIENT_CLASS > \
+        (ObjHandler::retrieveObject( HANDLE )); \
+    if (!NAME) { \
+        std::ostringstream err; \
+        err << "Unable to convert handle " << HANDLE \
+            << " to object of class " #CLIENT_CLASS; \
+        throw ObjHandler::Exception(err.str()); \
+    }
 
 #define OH_GET_OBJECT_EO( CLASS, HANDLE ) \
     boost::dynamic_pointer_cast< CLASS > \
@@ -40,9 +47,7 @@
     with handle \a HANDLE.
 */
 #define OH_GET_REFERENCE( NAME, HANDLE, CLIENT_CLASS, UNDERLYING_CLASS ) \
-    boost::shared_ptr< CLIENT_CLASS > NAME ## temp = \
-        boost::dynamic_pointer_cast< CLIENT_CLASS > \
-        (ObjHandler::retrieveObject( HANDLE )); \
+    OH_GET_OBJECT(NAME ## temp, HANDLE, CLIENT_CLASS ) \
     const boost::shared_ptr< UNDERLYING_CLASS > NAME = \
         boost::static_pointer_cast< UNDERLYING_CLASS > \
         ( NAME ## temp->getReference() );

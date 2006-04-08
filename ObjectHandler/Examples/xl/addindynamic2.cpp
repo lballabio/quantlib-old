@@ -50,13 +50,7 @@ DLLEXPORT int xlAutoOpen() {
 
 DLLEXPORT long *addin2GetBalance(char *instanceName, OPER *trigger) {
     try {
-        AccountObjectPtr accountObject =
-            OH_GET_OBJECT(AccountObject, instanceName);
-        if (!accountObject) {
-            std::ostringstream msg;
-            msg << "unable to retrieve object " << instanceName;
-            throw ObjHandler::Exception(msg.str().c_str());
-        }
+        OH_GET_OBJECT(accountObject, instanceName, AccountObject)
         static long ret;
         ret = accountObject->getBalance();
         return &ret;

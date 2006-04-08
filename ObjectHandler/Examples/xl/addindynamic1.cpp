@@ -77,13 +77,7 @@ DLLEXPORT char* addin1CreateAccount(
 
 DLLEXPORT short int *addin1SetBalance(char *instanceName, long *balance) {
     try {
-        AccountObjectPtr accountObject =
-            OH_GET_OBJECT(AccountObject, instanceName);
-        if (!accountObject) {
-            std::ostringstream msg;
-            msg << "unable to retrieve object " << instanceName;
-            throw ObjHandler::Exception(msg.str().c_str());
-        }
+        OH_GET_OBJECT(accountObject, instanceName, AccountObject)
         accountObject->setBalance(*balance);
         static short int ret = TRUE;
         return &ret;
