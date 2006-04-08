@@ -33,6 +33,7 @@ include_HEADERS = \
     qladdin.hpp \
     quantoforwardvanillaoption.hpp \
     quantovanillaoption.hpp \
+    randomsequencegenerator.hpp \
     schedule.hpp \
     shortratemodels.hpp \
     simpleswap.hpp \
@@ -51,6 +52,7 @@ include_HEADERS = \
     volatilities.hpp \
     vo_options.hpp \
     vo_processes.hpp \
+    vo_randomsequencegenerator.hpp \
     vo_schedule.hpp \
     vo_shortratemodels.hpp \
     vo_simpleswap.hpp \
@@ -83,6 +85,7 @@ libQuantLibAddin_la_SOURCES = \
     processes.cpp \
     quantoforwardvanillaoption.cpp \
     quantovanillaoption.cpp \
+    randomsequencegenerator.cpp \
     schedule.cpp \
     shortratemodels.cpp \
     simpleswap.cpp \
@@ -99,6 +102,7 @@ libQuantLibAddin_la_SOURCES = \
     volatilities.cpp \
     vo_options.cpp \
     vo_processes.cpp \
+    vo_randomsequencegenerator.cpp \
     vo_schedule.cpp \
     vo_shortratemodels.cpp \
     vo_simpleswap.cpp \

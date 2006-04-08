@@ -18,6 +18,7 @@ SRCGEN_INPUT := addincalc.xml \
                 ohfunctions.xml \
                 options.xml \
                 processes.xml \
+                randomsequencegenerator.xml \
                 schedule.xml \
                 shortratemodels.xml \
                 simpleswap.xml \
@@ -28,7 +29,7 @@ SRCGEN_INPUT := addincalc.xml \
                 volatilities.xml \
                 xibor.xml
 
-SRCGEN_PYS :=   addincalc.py \
+srcgen_pys :=   addincalc.py \
                 addinc.py \
                 addindoxygen.py \
                 addinexcel.py \
