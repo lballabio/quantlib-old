@@ -47,3 +47,4 @@ namespace QuantLibAddin {
         : LowDiscrepancySequenceGenerator<rsg_type>(rsg_type(dimension, seed)) { }
 
 }
+
