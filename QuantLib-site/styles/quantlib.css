@@ -34,7 +34,21 @@ body {
     border-top: 1px solid gray;
 }
 
-a:active { text-decoration: none }
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: purple;
+}
+
+a:hover {
+    color: green;
+}
+
+a:active {
+    color: red;
+}
 
 ul.navbarlist {
     padding-left: 1em;
@@ -48,7 +62,9 @@ li.navlink {
     margin: 0;
 }
 
-.navbartitle { text-align: center }
+.navbartitle {
+    text-align: center;
+}
 
 .hide { display: none }
 

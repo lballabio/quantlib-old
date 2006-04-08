@@ -93,4 +93,10 @@ height="33" border="0" alt="StatPro Logo"></a></div>
          src="http://jigsaw.w3.org/css-validator/images/vcss"
          alt="Valid CSS!" height="31" width="88"></a>
   </p>
+  <p>
+    <a href="http://colorfilter.wickline.org/colorblind/filter/button">
+    <img border="0"
+         src="images/colorfilter.png"
+         alt="See your web site through colorblind eyes with the colorblind web page filter." width="88" height="31"></a>
+  </p>
 </div>
