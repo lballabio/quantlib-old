@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -59,19 +59,37 @@ The object is not lost, its handle can still be retrieved and used to access
 the object.  However the object is likely redundant and a mechanism for cleaning 
 it up is desirable.
 
-A rudimentary form of garbage collection would be to perform the following
-steps after such events as workbook close:
-- invoke function ohDeleteAllObjects() to empty the repository
+ObjectHandler implements the following functions in support of garbage
+collection functionality: \ref ohSetGcEnabled, \ref ohGetGcEnabled ,\ref
+ohCallGC.
+
+By default the feature is enabled, it can be disabled by calling ohSetGcEnabled(FALSE).  Whether or not garbage collection is enabled comprises a tradeoff in performance:
+
+<table>
+<tr><td><b>Event</b></td><td><b>GC Enabled</b></td><td><b>GC Disabled</b></td></tr>
+<tr>
+<td><b>Object Construction / Destruction</b></td>
+<td>When objects are constructed/destroyed, a link to the calling cell is
+updated.  The exact magnitude of the performance hit depends on many variables,
+such as the number of objects in the repository, but in most cases the overhead
+is negligible.</td>
+<td>no performance overhead</td></tr>
+<tr><td><b>Deletion of Orphaned Objects</b></td>
+<td>Orphaned objects are deleted by calling ohCallGC() and the operation is
+very fast.</td>
+<td>In order to cull orphaned objects when GC is disabled, it's necessary to
+delete all objects then recreate the active ones:<br>
+
+- invoke function \ref ohDeleteAllObjects to empty the repository<br>
 - invoke Ctrl-Alt-F9 (recalculate all workbooks) to re-instantiate any active
-objects
+objects<br>
 
-This approach may not be feasible for performance reasons and ObjectHandler 
-supports the function ohCallGC() to automatically cull any objects orphaned
-by the deletion of the calling cell.
+Depending on the quantity and nature of the objects to be reconstructed, the
+magnitude of the performance hit may be high.</td></tr>
+</table>
 
-Garbage collection incurs a performance overhead as objects are created and
-retrieved, if this is undesirable the feature can be disabled by calling
-ohSetGcEnabled(FALSE).
+For most practical applications it should be preferable to leave garbage
+collection enabled.
 
 ObjectHandler's garbage collection functionality is an implementation
 of a technique presented in 
