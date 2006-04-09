@@ -15,8 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <oh/utilities.hpp>
-#include <oh/objecthandler.hpp>
+#include <oh/objhandler.hpp>
+
 #include <ohxl/conversions.hpp>
 #include <sstream>
 
@@ -59,8 +59,7 @@ extern "C" XLOPER* ohHandleList() {
 extern "C" XLOPER *ohPropertyNames(
         char *instanceName) {
     try {
-        boost::shared_ptr < Object > objectPointer =
-            OH_GET_OBJECT(Object, instanceName);
+        OH_GET_OBJECT(objectPointer, instanceName, Object)
 
         std::vector < std::string > returnValue =
             objectPointer->propertyNames();
@@ -79,8 +78,7 @@ extern "C" XLOPER *ohPropertyValue(
         char *fieldName,
         OPER *trigger) {
     try {
-        boost::shared_ptr < Object > objectPointer =
-            OH_GET_OBJECT(Object, instanceName);
+        OH_GET_OBJECT(objectPointer, instanceName, Object)
 
         static boost::any returnValue;
         returnValue = objectPointer->propertyValue(fieldName);
