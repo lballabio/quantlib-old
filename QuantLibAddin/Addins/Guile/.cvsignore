@@ -15,6 +15,7 @@ ohfunctions.*
 options.*
 processes.*
 qladdin.c
+randomsequencegenerator.*
 schedule.*
 shortratemodels.*
 simpleswap.*

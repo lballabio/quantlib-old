@@ -123,6 +123,26 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
+				RelativePath="basic.cpp">
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="capfloor.cpp">
 				<FileConfiguration
 					Name="Debug CRTDLL|Win32">
@@ -143,7 +163,67 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="couponvectors.cpp">
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="exercise.cpp">
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="instruments.cpp">
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="interpolation.cpp">
 				<FileConfiguration
 					Name="Debug CRTDLL|Win32">
 					<Tool
@@ -223,7 +303,27 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="shortratemodels.cpp">
+				RelativePath="randomsequencegenerator.cpp">
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="schedule.cpp">
 				<FileConfiguration
 					Name="Debug CRTDLL|Win32">
 					<Tool
@@ -263,7 +363,47 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="shortratemodels.cpp">
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="simpleswap.cpp">
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="swap.cpp">
 				<FileConfiguration
 					Name="Debug CRTDLL|Win32">
 					<Tool
@@ -387,13 +527,25 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
+				RelativePath="basic.h">
+			</File>
+			<File
 				RelativePath="capfloor.h">
+			</File>
+			<File
+				RelativePath="couponvectors.h">
 			</File>
 			<File
 				RelativePath="defines.h">
 			</File>
 			<File
+				RelativePath="exercise.h">
+			</File>
+			<File
 				RelativePath="instruments.h">
+			</File>
+			<File
+				RelativePath="interpolation.h">
 			</File>
 			<File
 				RelativePath="ohfunctions.h">
@@ -408,10 +560,19 @@
 				RelativePath="qladdin.h">
 			</File>
 			<File
+				RelativePath="randomsequencegenerator.h">
+			</File>
+			<File
+				RelativePath="schedule.h">
+			</File>
+			<File
 				RelativePath="shortratemodels.h">
 			</File>
 			<File
 				RelativePath="simpleswap.h">
+			</File>
+			<File
+				RelativePath="swap.h">
 			</File>
 			<File
 				RelativePath="termstructures.h">

@@ -319,6 +319,10 @@ SOURCE=.\processes.xml
 # End Source File
 # Begin Source File
 
+SOURCE=.\randomsequencegenerator.xml
+# End Source File
+# Begin Source File
+
 SOURCE=.\schedule.xml
 # End Source File
 # Begin Source File

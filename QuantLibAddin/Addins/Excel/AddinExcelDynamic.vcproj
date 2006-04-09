@@ -327,6 +327,26 @@
 			</FileConfiguration>
 		</File>
 		<File
+			RelativePath="randomsequencegenerator.cpp">
+			<FileConfiguration
+				Name="Debug CRTDLL|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="0"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_IMPORTS;$(NoInherit)"
+					BasicRuntimeChecks="3"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release CRTDLL|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="2"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_IMPORTS;$(NoInherit)"/>
+			</FileConfiguration>
+		</File>
+		<File
 			RelativePath="schedule.cpp">
 			<FileConfiguration
 				Name="Debug CRTDLL|Win32">

@@ -232,6 +232,9 @@
 				RelativePath="processes.xml">
 			</File>
 			<File
+				RelativePath="randomsequencegenerator.xml">
+			</File>
+			<File
 				RelativePath="schedule.xml">
 			</File>
 			<File

@@ -71,6 +71,9 @@
 				RelativePath="QuantLibAddin.idl">
 			</File>
 			<File
+				RelativePath="randomsequencegenerator.cpp">
+			</File>
+			<File
 				RelativePath="schedule.cpp">
 			</File>
 			<File
@@ -139,6 +142,9 @@
 			</File>
 			<File
 				RelativePath="qldefs.hpp">
+			</File>
+			<File
+				RelativePath="randomsequencegenerator.hpp">
 			</File>
 			<File
 				RelativePath="schedule.hpp">

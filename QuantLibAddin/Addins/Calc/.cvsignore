@@ -27,6 +27,7 @@ QuantLibAddin*.exp
 QuantLibAddin.idl
 QuantLibAddin*.lib
 *.rdb
+randomsequencegenerator.*pp
 schedule.*pp
 shortratemodels.*pp
 simpleswap.*pp

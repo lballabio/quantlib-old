@@ -14,6 +14,7 @@ Makefile.in
 options.cpp
 processes.cpp
 qladdin.cpp
+randomsequencegenerator.cpp
 schedule.cpp
 shortratemodels.cpp
 simpleswap.cpp

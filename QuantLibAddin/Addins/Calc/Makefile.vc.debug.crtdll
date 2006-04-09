@@ -57,6 +57,7 @@ OBJECTS= \
 	"$(INT_DIR)\options.obj" \
 	"$(INT_DIR)\processes.obj" \
 	"$(INT_DIR)\qladdin.obj" \
+	"$(INT_DIR)\randomsequencegenerator.obj" \
 	"$(INT_DIR)\schedule.obj" \
 	"$(INT_DIR)\session.obj" \
 	"$(INT_DIR)\shortratemodels.obj" \

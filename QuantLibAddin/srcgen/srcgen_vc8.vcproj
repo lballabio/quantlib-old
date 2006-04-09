@@ -134,7 +134,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\valueobjects.py"
+				RelativePath="valueobjects.py"
 				>
 			</File>
 			<File
@@ -308,6 +308,10 @@
 			</File>
 			<File
 				RelativePath="processes.xml"
+				>
+			</File>
+			<File
+				RelativePath="randomsequencegenerator.xml"
 				>
 			</File>
 			<File

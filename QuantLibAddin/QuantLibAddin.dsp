@@ -261,6 +261,10 @@ SOURCE=.\qla\quantovanillaoption.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\randomsequencegenerator.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\schedule.cpp
 # End Source File
 # Begin Source File
@@ -318,6 +322,10 @@ SOURCE=.\qla\vo_options.cpp
 # Begin Source File
 
 SOURCE=.\qla\vo_processes.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_randomsequencegenerator.cpp
 # End Source File
 # Begin Source File
 
@@ -469,6 +477,10 @@ SOURCE=.\qla\quantovanillaoption.hpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\qla\randomsequencegenerator.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qla\schedule.hpp
 # End Source File
 # Begin Source File
@@ -534,6 +546,10 @@ SOURCE=.\qla\vo_options.hpp
 # Begin Source File
 
 SOURCE=.\qla\vo_processes.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\qla\vo_randomsequencegenerator.hpp
 # End Source File
 # Begin Source File
 
