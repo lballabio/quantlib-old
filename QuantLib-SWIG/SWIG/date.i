@@ -348,9 +348,9 @@ namespace std {
 
 #if defined(SWIGR)
 
-swigr_list_converter("DateVector",
-	 "_p_std__vectorTDate_std__allocatorTDate_t_t",
-	 "character")
+swigr_list_converter(DateVector,
+	 _p_std__vectorTDate_std__allocatorTDate_t_t,
+	 character)
 
 %Rruntime %{
 setMethod("as.character", 

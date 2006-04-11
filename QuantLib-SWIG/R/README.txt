@@ -20,12 +20,15 @@ command
 
    make compiled-wrapper
 
-This will allow 
+This will allow relatively quick initialization with the following
+commands.
 
   dyn.load('QuantLib.so')
   load(file="QuantLib.RData")
+  cacheMetaData(1)
 
-to load the data more quickly.
+The last line is to work around a bug that causes S4 methods not to
+get loaded correctly.
 
 Please contact 
 

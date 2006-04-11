@@ -764,8 +764,8 @@ bool extractArray(PyObject* source, Array* target) {
 #if defined(SWIGR)
 swigr_list_converter(Array,_p_Array,numeric)
 %Rruntime %{
-'print._p_Matrix' <-
-function(object) print(as.matrix(object))
+setMethod('print', '_p_Matrix',
+function(x) print(as.matrix(x)))
 
 setMethod("as.matrix", "_p_Matrix",
 function(x) matrix(data=as.numeric(x$dataVector),

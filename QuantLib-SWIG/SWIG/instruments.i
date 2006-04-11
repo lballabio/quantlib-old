@@ -68,8 +68,9 @@ class Instrument {
 %Rruntime %{
 setMethod("summary", "_p_boost__shared_ptrTInstrument_t",
 function(object) c(value=object$NPV()))
-print._p_boost__shared_ptrTInstrument_t <-
-function(object) print(summary(object))
+
+setMethod("print", "_p_boost__shared_ptrTInstrument_t",
+function(x) print(summary(x)))
 %}
 #endif
 

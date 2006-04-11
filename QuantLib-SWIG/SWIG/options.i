@@ -75,9 +75,6 @@ object$unfreeze()
 ans
 })
 
-print._p_VanillaOptionPtr <-
-get('print._p_boost__shared_ptrTInstrument_t')
-
 setMethod("summary", "_p_DividendVanillaOptionPtr",
 function(object) {object$freeze()
 ans <- c(value=object$NPV(), delta=object$delta(),
@@ -87,9 +84,6 @@ divRho=object$dividendRho())
 object$unfreeze()
 ans
 })
-
-print._p_DividendVanillaOptionPtr <-
-get('print._p_boost__shared_ptrTInstrument_t')
 
 %}
 #endif

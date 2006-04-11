@@ -191,8 +191,8 @@ class Handle {
 %define swigr_list_converter(ObjType, PtrType,RType) 
 #if defined(SWIGR)
 %Rruntime %{
-'print.PtrType' <-
-function(object) print(as.RType(object))
+setMethod('print', 'PtrType',
+function(x) print(as.RType(x)))
 
 setMethod("as.RType", "PtrType",
 function(x) {if (x$size()) x[1:x$size()] else NULL} )
