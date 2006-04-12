@@ -10,8 +10,11 @@ if HAVE_R
 
 all-local: .build-stamp
 
-.build-stamp: QuantLib.so
+.build-stamp: QuantLib.RData
 	touch .build-stamp
+
+QuantLib.RData: QuantLib.so QuantLib_wrap.R
+	R CMD BATCH makeRData.R
 
 QuantLib.so: $(BUILT_SOURCES)
 	PKG_LIBS="-L/usr/local/lib -lQuantLib" R CMD SHLIB QuantLib.cpp
@@ -26,16 +29,9 @@ install-exec-local: .build-stamp
 clean-local:
 	rm -rf $(BUILT_SOURCES) QuantLib.cpp *.so *.o QuantLib.RData *.Rout
 
-endif
-
-if HAVE_RSWIG
 $(BUILT_SOURCES): ../SWIG/*.i
 	$(RSWIG) -r -c++ -I../SWIG -o QuantLib.cpp quantlib.i
 
-compiled-wrapper: QuantLib.RData
-
-QuantLib.RData: QuantLib.so QuantLib_wrap.R
-	R CMD BATCH makeRData.R
 endif
 
 dist-hook:
