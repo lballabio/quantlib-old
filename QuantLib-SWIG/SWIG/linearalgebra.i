@@ -771,8 +771,8 @@ setMethod("as.matrix", "_p_Matrix",
 function(x) matrix(data=as.numeric(x$dataVector),
 	    nrow=x$rows(), ncol=x$columns()))
 
-setMethod("show", "_p_SampledCurve",
-function(object) print(as.data.frame(object))
+setMethod("print", "_p_SampledCurve",
+function(x) print(as.data.frame(x))
 )
 
 setMethod("as.data.frame", "_p_SampledCurve",
