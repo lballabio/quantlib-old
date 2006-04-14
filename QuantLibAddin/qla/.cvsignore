@@ -7,7 +7,6 @@ Makefile
 Makefile.in
 stamp-h1
 enumregistry.cpp
-vo_basic.*pp
 vo_capfloor.*pp
 vo_couponvectors.*pp
 vo_exercise.*pp
@@ -22,6 +21,5 @@ vo_shortratemodels.*pp
 vo_simpleswap.*pp
 vo_swap.*pp
 vo_termstructures.*pp
-vo_utilities.*pp
 vo_volatilities.*pp
 vo_xibor.*pp

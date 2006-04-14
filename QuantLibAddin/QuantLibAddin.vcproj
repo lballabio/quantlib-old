@@ -1791,60 +1791,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\vo_basic.cpp">
-				<FileConfiguration
-					Name="Release CRTDLL|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release SingleThread|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug SingleThread|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug CRTDLL|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="qla\vo_capfloor.cpp">
 				<FileConfiguration
 					Name="Release CRTDLL|Win32">
@@ -2547,60 +2493,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\vo_utilities.cpp">
-				<FileConfiguration
-					Name="Release CRTDLL|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release SingleThread|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug SingleThread|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug CRTDLL|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="qla\vo_volatilities.cpp">
 				<FileConfiguration
 					Name="Release CRTDLL|Win32">
@@ -3031,9 +2923,6 @@
 				RelativePath="qla\vanillaoption.hpp">
 			</File>
 			<File
-				RelativePath="qla\vo_basic.hpp">
-			</File>
-			<File
 				RelativePath="qla\vo_capfloor.hpp">
 			</File>
 			<File
@@ -3071,9 +2960,6 @@
 			</File>
 			<File
 				RelativePath="qla\vo_termstructures.hpp">
-			</File>
-			<File
-				RelativePath="qla\vo_utilities.hpp">
 			</File>
 			<File
 				RelativePath="qla\vo_volatilities.hpp">

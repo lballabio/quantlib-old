@@ -1366,46 +1366,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\vo_basic.cpp"
-				>
-				<FileConfiguration
-					Name="Release CRTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug CRTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="qla\vo_capfloor.cpp"
 				>
 				<FileConfiguration
@@ -1886,46 +1846,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\vo_utilities.cpp"
-				>
-				<FileConfiguration
-					Name="Release CRTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug CRTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="qla\vo_volatilities.cpp"
 				>
 				<FileConfiguration
@@ -2303,10 +2223,6 @@
 				>
 			</File>
 			<File
-				RelativePath="qla\vo_basic.hpp"
-				>
-			</File>
-			<File
 				RelativePath="qla\vo_capfloor.hpp"
 				>
 			</File>
@@ -2352,10 +2268,6 @@
 			</File>
 			<File
 				RelativePath="qla\vo_termstructures.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qla\vo_utilities.hpp"
 				>
 			</File>
 			<File

@@ -58,3 +58,8 @@ class Category(serializable.Serializable):
         else:
             return ''
 
+    def containsConstructor(self):
+        for func in self.Functions.values():
+            if isinstance(func, function.Constructor):
+                return True
+

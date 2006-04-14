@@ -33,9 +33,10 @@ class ValueObjects(addin.Addin):
     def generate(self):
         """Generate source code for ValueObjects."""
         log.Log.getInstance().logMessage('  begin generating ValueObjects ...')
-        for category in config.Config.getInstance().getCategories(self.platformId):
-            self.generateHeaders(category)
-            self.generateFunctions(category)
+        for category in config.Config.getInstance().getCategories('*'):
+			if category.containsConstructor():
+				self.generateHeaders(category)
+				self.generateFunctions(category)
         log.Log.getInstance().logMessage('  done generating ValueObjects.')
 
     def generateHeader(self, fileHeader, func):
@@ -49,7 +50,7 @@ class ValueObjects(addin.Addin):
         """Generate class source for constructor function prototypes."""
         fileHeader = outputfile.OutputFile(self.rootDirectory + 'vo_' + category.name + '.hpp')
         fileHeader.write(self.bufferIncludesDecl.text % (category.name, category.name))
-        for func in category.getFunctions(self.platformId):
+        for func in category.getFunctions('*'):
             self.generateHeader(fileHeader, func)
         fileHeader.write('} }\n\n#endif\n\n')
         fileHeader.close()
@@ -73,7 +74,7 @@ class ValueObjects(addin.Addin):
         """Generate source for function implementations."""
         fileFunc = outputfile.OutputFile(self.rootDirectory + 'vo_' + category.name + '.cpp')
         fileFunc.write(self.bufferIncludes.text % (category.name, category.name))
-        for func in category.getFunctions(self.platformId): 
+        for func in category.getFunctions('*'): 
             self.generateFunction(fileFunc, func)
         fileFunc.write('} }\n\n')
         fileFunc.close()

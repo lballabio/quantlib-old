@@ -293,10 +293,6 @@ SOURCE=.\qla\vanillaoption.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\vo_basic.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\qla\vo_capfloor.cpp
 # End Source File
 # Begin Source File
@@ -346,10 +342,6 @@ SOURCE=.\qla\vo_swap.cpp
 # Begin Source File
 
 SOURCE=.\qla\vo_termstructures.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\qla\vo_utilities.cpp
 # End Source File
 # Begin Source File
 
@@ -517,10 +509,6 @@ SOURCE=.\qla\vanillaoption.hpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\qla\vo_basic.hpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\qla\vo_capfloor.hpp
 # End Source File
 # Begin Source File
@@ -570,10 +558,6 @@ SOURCE=.\qla\vo_swap.hpp
 # Begin Source File
 
 SOURCE=.\qla\vo_termstructures.hpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\qla\vo_utilities.hpp
 # End Source File
 # Begin Source File
 

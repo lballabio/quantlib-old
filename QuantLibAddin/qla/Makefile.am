@@ -43,7 +43,6 @@ include_HEADERS = \
     typeregistry.hpp \
     utilities.hpp \
     vanillaoption.hpp \
-    vo_basic.hpp \
     vo_capfloor.hpp \
     vo_couponvectors.hpp \
     vo_exercise.hpp \
@@ -58,7 +57,6 @@ include_HEADERS = \
     vo_simpleswap.hpp \
     vo_swap.hpp \
     vo_termstructures.hpp \
-    vo_utilities.hpp \
     vo_volatilities.hpp \
     vo_xibor.hpp \
     xibor.hpp \
@@ -93,7 +91,6 @@ libQuantLibAddin_la_SOURCES = \
     termstructures.cpp \
     utilities.cpp \
     vanillaoption.cpp \
-    vo_basic.cpp \
     vo_capfloor.cpp \
     vo_couponvectors.cpp \
     vo_exercise.cpp \
@@ -108,7 +105,6 @@ libQuantLibAddin_la_SOURCES = \
     vo_simpleswap.cpp \
     vo_swap.cpp \
     vo_termstructures.cpp \
-    vo_utilities.cpp \
     vo_volatilities.cpp \
     vo_xibor.cpp \
     xibor.cpp \
