@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="QuantLibAddin"
 	ProjectGUID="{CAB8330C-6424-4455-9285-3654587EF71F}"
 	>
@@ -1086,46 +1086,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="qla\randomsequencegenerator.cpp"
-				>
-				<FileConfiguration
-					Name="Release CRTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug CRTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="qla\schedule.cpp"
 				>
 				<FileConfiguration
@@ -1687,46 +1647,6 @@
 			</File>
 			<File
 				RelativePath="qla\vo_processes.cpp"
-				>
-				<FileConfiguration
-					Name="Release CRTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug CRTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="qla\vo_randomsequencegenerator.cpp"
 				>
 				<FileConfiguration
 					Name="Release CRTDLL|Win32"
@@ -2347,10 +2267,6 @@
 				>
 			</File>
 			<File
-				RelativePath="qla\randomsequencegenerator.hpp"
-				>
-			</File>
-			<File
 				RelativePath="qla\schedule.hpp"
 				>
 			</File>
@@ -2416,10 +2332,6 @@
 			</File>
 			<File
 				RelativePath="qla\vo_processes.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qla\vo_randomsequencegenerator.hpp"
 				>
 			</File>
 			<File
