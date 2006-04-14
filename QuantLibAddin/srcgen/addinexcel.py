@@ -64,7 +64,11 @@ class AddinExcel(addin.Addin):
         """Generate source code for all functions in all categories."""
         for category in config.Config.getInstance().getCategories(self.platformId):
             fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
-            fileFunc.write(self.bufferIncludes.text % (category.name, category.name))
+            if category.containsConstructor():
+                voInclude = '#include <qla/vo_%s.hpp>' % category.name
+            else:
+                voInclude = ''
+            fileFunc.write(self.bufferIncludes.text % (category.name, voInclude))
             for func in category.getFunctions(self.platformId): 
                 self.generateFunction(fileFunc, func)
             fileFunc.close()
