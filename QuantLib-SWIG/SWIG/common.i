@@ -188,19 +188,20 @@ class Handle {
 %enddef
 
 
-%define swigr_list_converter(ObjType, PtrType,RType) 
+%define swigr_list_converter(ContainerRType, 
+	ContainerCType, ElemCType) 
 #if defined(SWIGR)
 %Rruntime %{
-setMethod('print', 'PtrType',
-function(x) print(as.RType(x)))
+setMethod('print', 'ContainerCType',
+function(x) print(as(x, "ElemCType")))
 
-setMethod("as.RType", "PtrType",
-function(x) {if (x$size()) x[1:x$size()] else NULL} )
+setAs("ContainerCType", "ElemCType",
+function(from) {if (from$size()) from[1:x$size()] else NULL} )
 
-setAs("RType", "PtrType",
-function(from) { a <- ObjType(length(from)); 
+setAs("ElemCType", "ContainerCType",
+function(from) { a <- ContainerRType(length(from)); 
 sapply(1:length(from), function(n) {
-a$setvalue(from=from, i=n, value=object[n])})
+a[n] <- from[n] } )
 a
 })
 %}
