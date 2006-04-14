@@ -18,9 +18,9 @@
 #ifndef qla_capfloor_hpp
 #define qla_capfloor_hpp
 
+#include <qla/baseinstruments.hpp>
 #include <ql/Instruments/capfloor.hpp>
 #include <ql/PricingEngines/CapFloor/analyticcapfloorengine.hpp>
-#include <qla/baseinstruments.hpp>
 
 namespace QuantLibAddin {
 

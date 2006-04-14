@@ -18,6 +18,7 @@
 #ifndef qla_typeregistry_hpp
 #define qla_typeregistry_hpp
 
+#include <oh/objhandlerdefines.hpp>
 #include <ql/Patterns/singleton.hpp>
 #include <map>
 #include <vector>

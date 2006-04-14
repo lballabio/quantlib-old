@@ -19,13 +19,14 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qla/config.hpp>
 #endif
-#include <ql/calendar.hpp>
-#include <ql/daycounter.hpp>
-#include <ql/settings.hpp>
 
 #include <qla/basic.hpp>
 #include <qla/clientutils.hpp>
 #include <qla/typefactory.hpp>
+
+#include <ql/calendar.hpp>
+#include <ql/daycounter.hpp>
+#include <ql/settings.hpp>
 
 namespace QuantLibAddin {
 

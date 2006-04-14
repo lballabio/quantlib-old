@@ -19,10 +19,10 @@
 #ifndef qla_shortratemodels_hpp
 #define qla_shortratemodels_hpp
 
+#include <oh/objhandler.hpp>
+
 #include <ql/ShortRateModels/OneFactorModels/vasicek.hpp>
 #include <ql/ShortRateModels/OneFactorModels/hullwhite.hpp>
-
-#include <oh/objhandler.hpp>
 
 namespace QuantLibAddin {
 

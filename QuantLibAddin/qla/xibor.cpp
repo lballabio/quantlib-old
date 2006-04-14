@@ -20,11 +20,11 @@
     #include <qla/config.hpp>
 #endif
 
-#include <ql/Indexes/indexmanager.hpp>
 #include <qla/xibor.hpp>
 #include <qla/generalutils.hpp>
 #include <qla/termstructures.hpp>
 #include <qla/typefactory.hpp>
+#include <ql/Indexes/indexmanager.hpp>
 
 namespace QuantLibAddin {
     QuantLib::Date make_date(long d) { return QuantLib::Date(d); }

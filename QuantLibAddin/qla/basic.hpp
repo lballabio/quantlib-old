@@ -26,6 +26,8 @@
 #define qla_basic_hpp
 
 #include <oh/objhandler.hpp>
+//#define _CRT_SECURE_NO_DEPRECATE
+//#pragma warning(disable : 4996)
 
 namespace QuantLibAddin {
 
