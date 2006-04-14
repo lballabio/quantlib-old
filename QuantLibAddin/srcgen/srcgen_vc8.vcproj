@@ -27,7 +27,7 @@
 				Name="VCNMakeTool"
 				BuildCommandLine="NMAKE /f &quot;Makefile.vc&quot;"
 				ReBuildCommandLine="NMAKE /f &quot;Makefile.vc&quot; /a"
-				CleanCommandLine=""
+				CleanCommandLine="NMAKE /f &quot;Makefile.vc&quot; clean"
 				Output="build\vc80\Autogen.flag1"
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""

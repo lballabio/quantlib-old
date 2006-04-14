@@ -22,6 +22,7 @@
 				Name="VCNMakeTool"
 				BuildCommandLine="NMAKE /f &quot;Makefile.vc&quot;"
 				ReBuildCommandLine="NMAKE /f &quot;Makefile.vc&quot; /a"
+				CleanCommandLine="NMAKE /f &quot;Makefile.vc&quot; clean"
 				Output="build\vc71\Autogen.flag1"/>
 		</Configuration>
 	</Configurations>
