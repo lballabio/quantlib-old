@@ -89,6 +89,7 @@ To build %QuantLibAddin for Excel:
 e.g. if compiled under VC6 debug the Addin is called
 <strong>%QuantLibAddin\\Addins\\Excel\\xll\\QuantLibAddinStatic-vc6-mt-sgd-0_3_13.xll.</strong>
 \li load a sample spreadsheet e.g.  <strong>%QuantLibAddin\\Clients\\Excel\\QLADemo.xls</strong>
+\li hit Ctrl-Alt-F9 to force a recalculation of all formulas
 
 Project AddinExcelDynamic is a build which links dynamically to the
 ObjectHandler XLL, allowing multiple XLLs to share a global repository,
