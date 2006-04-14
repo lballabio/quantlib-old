@@ -3,6 +3,7 @@
 
 <Buffers>
 <Buffer name='bufferIncludes' fileName='stub.qla.includes'/>
+<Buffer name='bufferMainHeader' fileName='stub.qla.mainheader'/>
 </Buffers>
 
 <RuleGroups></RuleGroups>

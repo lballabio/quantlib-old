@@ -38,6 +38,7 @@ class AddinQla(addin.Addin):
         """generate source code for QuantLibAddin."""
         log.Log.getInstance().logMessage('  begin generating QuantLibAddin ...')
         self.generateEnumerations()
+        self.generateMainHeader()
         log.Log.getInstance().logMessage('  done generating QuantLibAddin.')
 
     def generateEnumeration(self, fileEnum, enumeration):
@@ -60,4 +61,17 @@ class AddinQla(addin.Addin):
                 self.generateEnumeration(fileEnum, enumeration)
         fileEnum.write('    }\n\n}\n\n')
         fileEnum.close()
+
+    def generateMainHeader(self):
+        """generate the main header for QuantLibAddin."""
+        headerList = ''
+        for category in config.Config.getInstance().getCategories('*'):
+            headerList += '#include <qla/%s.hpp>\n' % category.name
+        headerList += '\n'
+        for category in config.Config.getInstance().getCategories('*'):
+            if category.containsConstructor():
+                headerList += '#include <qla/vo_%s.hpp>\n' % category.name
+        fileHeader = outputfile.OutputFile(self.rootDirectory + 'qladdin.hpp')
+        fileHeader.write(self.bufferMainHeader.text % headerList)
+        fileHeader.close()
 

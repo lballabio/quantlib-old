@@ -7,6 +7,7 @@ Makefile
 Makefile.in
 stamp-h1
 enumregistry.cpp
+qladdin.hpp
 vo_capfloor.*pp
 vo_couponvectors.*pp
 vo_exercise.*pp
