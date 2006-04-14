@@ -28,7 +28,7 @@ import log
 
 # constants
 
-IDLFILE = 'QuantLibAddin.idl'
+IDLFILE = 'QLA-Calc.idl'
 MAPFILE = 'funcdef.cpp'
 MAPLINE = """    %s[ STRFROMANSI( "%s" ) ]
         =  STRFROMANSI( "%s" );\n"""

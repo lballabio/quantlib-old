@@ -68,7 +68,7 @@
 				RelativePath="qladdin.cpp">
 			</File>
 			<File
-				RelativePath="QuantLibAddin.idl">
+				RelativePath="QLA-Calc.idl">
 			</File>
 			<File
 				RelativePath="randomsequencegenerator.cpp">

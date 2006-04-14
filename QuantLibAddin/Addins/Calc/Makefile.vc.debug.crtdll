@@ -1,6 +1,6 @@
 # QuantLibAddin\Addins\Calc\Makefile.vc.debug.crtdll
 
-COMPONENT_NAME=QuantLibAddin
+COMPONENT_NAME=QLA-Calc
 !IF "$(CLVER)" == ""
 DLL_NAME=$(COMPONENT_NAME)-vc6-mt-gd-0_3_13
 !ELSE 

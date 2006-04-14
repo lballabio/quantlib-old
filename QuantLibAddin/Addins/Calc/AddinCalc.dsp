@@ -103,7 +103,7 @@ SOURCE=.\qladdin.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\QuantLibAddin.idl
+SOURCE=.\QLA-Calc.idl
 # End Source File
 # Begin Source File
 

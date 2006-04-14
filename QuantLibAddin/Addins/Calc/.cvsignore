@@ -24,7 +24,7 @@ ohfunctions.*
 options.*
 processes.*pp
 QuantLibAddin*.exp
-QuantLibAddin.idl
+QLA-Calc.idl
 QuantLibAddin*.lib
 *.rdb
 randomsequencegenerator.*pp
