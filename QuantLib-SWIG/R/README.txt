@@ -12,7 +12,7 @@ QuantLib_wrap.R and a compiled wrapper QuantLib.RData.
 
 Once you've compiled this you can load with
 
-  dyn.load('QuantLib.so')
+  dyn.load('QuantLib_wrap.so')
   load('QuantLib.RData')
   cacheMetaData(1)
 
@@ -21,7 +21,7 @@ get loaded correctly.
 
 You can also load the uncompiled wrapper file
 
-  dyn.load('QuantLib.so')
+  dyn.load('QuantLib_wrap.so')
   source('QuantLib_wrap.R')
 
 Please contact 

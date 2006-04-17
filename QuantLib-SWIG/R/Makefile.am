@@ -1,5 +1,5 @@
 if HAVE_RSWIG
-BUILT_SOURCES = QuantLib.cpp QuantLib_wrap.R
+BUILT_SOURCES = QuantLib_wrap.cpp QuantLib_wrap.R
 else
 BUILT_SOURCES =
 endif
@@ -13,24 +13,24 @@ all-local: .build-stamp
 .build-stamp: QuantLib.RData
 	touch .build-stamp
 
-QuantLib.RData: QuantLib.so QuantLib_wrap.R
+QuantLib.RData: QuantLib_wrap.so QuantLib_wrap.R
 	R CMD BATCH makeRData.R
 
-QuantLib.so: $(BUILT_SOURCES)
-	PKG_LIBS="-L/usr/local/lib -lQuantLib" R CMD SHLIB QuantLib.cpp
+QuantLib_wrap.so: $(BUILT_SOURCES)
+	PKG_LIBS="-L/usr/local/lib -lQuantLib" R CMD SHLIB QuantLib_wrap.cpp
 
 debug-object: $(BUILT_SOURCES)
-	g++ -I/usr/lib/R/include  -I/usr/local/include   -fPIC  -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -march=i586 -mtune=pentiumpro -fasynchronous-unwind-tables -c QuantLib.cpp -o QuantLib.o
+	g++ -I/usr/lib/R/include  -I/usr/local/include   -fPIC  -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -march=i586 -mtune=pentiumpro -fasynchronous-unwind-tables -c QuantLib_wrap.cpp -o QuantLib_wrap.o
 
 check-local: .build-stamp
 
 install-exec-local: .build-stamp
 
 clean-local:
-	rm -rf $(BUILT_SOURCES) QuantLib.cpp *.so *.o QuantLib.RData *.Rout
+	rm -rf $(BUILT_SOURCES) QuantLib_wrap.cpp *.so *.o QuantLib.RData *.Rout
 
 $(BUILT_SOURCES): ../SWIG/*.i
-	$(RSWIG) -r -c++ -I../SWIG -o QuantLib.cpp quantlib.i
+	$(RSWIG) -r -c++ -I../SWIG -o QuantLib_wrap.cpp quantlib.i
 
 endif
 
