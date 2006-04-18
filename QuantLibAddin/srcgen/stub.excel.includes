@@ -1,10 +1,9 @@
 #include <qla/qladdindefines.hpp>
 #include <qla/typefactory.hpp>
 #include <qla/clientutils.hpp>
-#include <qla/%s.hpp>
+%s
 #include <xlsdk/xlsdk.hpp>
 #include <oh/objhandler.hpp>
 #include <ohxl/conversions.hpp>
-%s
 #include <Addins/Excel/session.hpp>
 

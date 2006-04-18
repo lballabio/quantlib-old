@@ -47,18 +47,22 @@ class Category(serializable.Serializable):
             if platformId == '*' or function.platformSupported(platformId):
                 yield function
 
-    def includes(self, needValueObjects = False):
+    def includes(self, needValueObjects = True):
         """list include directives required to compile the source code
         for this addin."""
         if self.needQlaHeader == True:
             ret = '#include <qla/%s.hpp>' % self.name
-            if needValueObjects:
+            if needValueObjects and self.containsConstructor():
                 ret += '\n#include <qla/vo_%s.hpp>' % self.name
             return ret
         else:
             return ''
 
     def containsConstructor(self):
+        """Indicate whether this category of functions includes a constructor.
+
+        This function is used when generating Value Objects code to determine
+        whether VOs are required for the current category."""
         for func in self.Functions.values():
             if isinstance(func, function.Constructor):
                 return True
