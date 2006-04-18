@@ -237,10 +237,6 @@ SOURCE=.\qladdin.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\randomsequencegenerator.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\schedule.cpp
 # End Source File
 # Begin Source File

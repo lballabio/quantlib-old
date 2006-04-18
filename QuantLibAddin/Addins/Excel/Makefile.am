@@ -14,7 +14,6 @@ EXTRA_DIST = \
     interpolation.cpp \
     options.cpp \
     processes.cpp \
-    randomsequencegenerator.cpp \
     qladdin.cpp \
     schedule.cpp \
     session.cpp \
