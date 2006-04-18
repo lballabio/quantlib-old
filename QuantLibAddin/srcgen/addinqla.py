@@ -66,10 +66,11 @@ class AddinQla(addin.Addin):
         """generate the main header for QuantLibAddin."""
         headerList = ''
         for category in config.Config.getInstance().getCategories('*'):
-            headerList += '#include <qla/%s.hpp>\n' % category.name
+            if category.needQlaHeader:
+				headerList += '#include <qla/%s.hpp>\n' % category.name
         headerList += '\n'
         for category in config.Config.getInstance().getCategories('*'):
-            if category.containsConstructor():
+            if category.needQlaHeader and category.containsConstructor():
                 headerList += '#include <qla/vo_%s.hpp>\n' % category.name
         fileHeader = outputfile.OutputFile(self.rootDirectory + 'qladdin.hpp')
         fileHeader.write(self.bufferMainHeader.text % headerList)
