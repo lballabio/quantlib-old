@@ -107,10 +107,6 @@ SOURCE=.\QLA-Calc.idl
 # End Source File
 # Begin Source File
 
-SOURCE=.\randomsequencegenerator.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\schedule.cpp
 # End Source File
 # Begin Source File
@@ -200,10 +196,6 @@ SOURCE=.\qladdin.hpp
 # Begin Source File
 
 SOURCE=.\qldefs.hpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\randomsequencegenerator.hpp
 # End Source File
 # Begin Source File
 

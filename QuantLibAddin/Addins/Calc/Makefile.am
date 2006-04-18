@@ -72,7 +72,6 @@ noinst_HEADERS = \
     ohfunctions.hpp \
     options.hpp \
     processes.hpp \
-    randomsequencegenerator.hpp \
     qladdin.hpp \
     qldefs.hpp \
     schedule.hpp \
@@ -97,7 +96,6 @@ libQuantLibAddinCalc_la_SOURCES = \
     ohfunctions.cpp \
     options.cpp \
     processes.cpp \
-    randomsequencegenerator.cpp \
     qladdin.cpp \
     schedule.cpp \
     session.cpp \
