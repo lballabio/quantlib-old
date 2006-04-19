@@ -57,7 +57,7 @@ namespace QuantLibAddin {
         }
 
       private:
-        QuantLib::GenericPseudoRandom<URNG, QuantLib::InverseCumulativeNormal>::ursg_type ursg_;
+        typename QuantLib::GenericPseudoRandom<URNG, QuantLib::InverseCumulativeNormal>::ursg_type ursg_;
     };
 
     class MersenneTwisterRsg : public PseudoRandomSequenceGenerator<QuantLib::MersenneTwisterUniformRng> {
@@ -86,7 +86,7 @@ namespace QuantLibAddin {
         }
 
       private:
-        QuantLib::GenericLowDiscrepancy<URSG, QuantLib::InverseCumulativeNormal>::ursg_type ursg_;
+        typename QuantLib::GenericLowDiscrepancy<URSG, QuantLib::InverseCumulativeNormal>::ursg_type ursg_;
     };
 
     class FaureRsg : public LowDiscrepancySequenceGenerator<QuantLib::FaureRsg> {
