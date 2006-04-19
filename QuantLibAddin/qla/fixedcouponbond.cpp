@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
 
@@ -39,7 +39,8 @@ namespace QuantLibAddin {
             const double &redemption,
             const std::string &frequencyID,
             const std::string &dayCounterID,
-            const std::string &bDayConvID,
+            const std::string &accrualConventionID,
+            const std::string &paymentConventionID,
             const std::string &calendarID,
             const bool &startFromEnd,
             const bool &longFinal,
@@ -48,8 +49,10 @@ namespace QuantLibAddin {
         QuantLib::Frequency couponFrequency = Create<QuantLib::Frequency>()(frequencyID);
         QuantLib::DayCounter dayCounter     = Create<QuantLib::DayCounter>()(dayCounterID);
         QuantLib::Calendar calendar         = Create<QuantLib::Calendar>()(calendarID);
-        QuantLib::BusinessDayConvention bDayConv = 
-            Create<QuantLib::BusinessDayConvention>()(bDayConvID);
+        QuantLib::BusinessDayConvention accrualConvention = 
+            Create<QuantLib::BusinessDayConvention>()(accrualConventionID);
+        QuantLib::BusinessDayConvention paymentConvention = 
+            Create<QuantLib::BusinessDayConvention>()(paymentConventionID);
 
         boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpDiscYC;
         QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;
@@ -66,9 +69,10 @@ namespace QuantLibAddin {
                                             settlementDays,
                                             coupons,
                                             couponFrequency,
-                                            dayCounter,
                                             calendar,
-                                            bDayConv,
+                                            dayCounter,
+                                            accrualConvention,
+                                            paymentConvention,
                                             redemption,
                                             discountingTermStructure,
                                             QuantLib::Date(),

@@ -78,7 +78,8 @@ namespace QuantLibAddin {
             const std::string &fixedConventionID,
             const std::string &fixedDayCounterID,
             const std::string &floatingFrequencyID,
-            const std::string &floatingConventionID) {
+            const std::string &floatingConventionID,
+            const std::string &floatingDayCounterID) {
 
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
         quoteHandle_.linkTo(quote_);
@@ -97,6 +98,8 @@ namespace QuantLibAddin {
             Create<QuantLib::Frequency>()(floatingFrequencyID);
         QuantLib::BusinessDayConvention floatingConvention = 
             Create<QuantLib::BusinessDayConvention>()(floatingConventionID);
+        QuantLib::DayCounter floatingDayCounter =
+            Create<QuantLib::DayCounter>()(floatingDayCounterID);
 
         rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
             new QuantLib::SwapRateHelper(quoteHandle_,
@@ -108,7 +111,8 @@ namespace QuantLibAddin {
                                          fixedConvention,
                                          fixedDayCounter,
                                          floatingFrequency,
-                                         floatingConvention));
+                                         floatingConvention,
+                                         floatingDayCounter));
     }
 
     FutureRateHelper::FutureRateHelper(

@@ -214,10 +214,15 @@
         <tensorRank>scalar</tensorRank>
         <description>day counter ID</description>
     </Parameter>
-    <Parameter name='BDayConv'>
+    <Parameter name='accrualConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>business day convention</description>
+        <description>accrual convention</description>
+    </Parameter>
+    <Parameter name='paymentConvention'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>payment convention</description>
     </Parameter>
     <Parameter name='calendarID'>
         <type>string</type>

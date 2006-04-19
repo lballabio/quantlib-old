@@ -29,7 +29,7 @@
 
 namespace QuantLibAddin {
 
-    BlackScholesProcess::BlackScholesProcess(
+    GeneralizedBlackScholesProcess::GeneralizedBlackScholesProcess(
             const std::string &handleBlackVol,
             const double &underlying,
             const std::string &dayCounterID,
@@ -55,8 +55,8 @@ namespace QuantLibAddin {
         QuantLib::Handle<QuantLib::BlackVolTermStructure> 
             blackVolTermStructureH(blackVolTermStructureP);
 
-        blackScholesProcess_ = boost::shared_ptr<QuantLib::BlackScholesProcess> (
-            new QuantLib::BlackScholesProcess(
+        blackScholesProcess_ = boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess> (
+            new QuantLib::GeneralizedBlackScholesProcess(
                 underlyingH,
                 flatDividendTS,
                 flatTermStructure,

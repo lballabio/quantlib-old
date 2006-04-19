@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2006 Eric Ehlers
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -25,7 +26,7 @@
 #include <qla/typefactory.hpp>
 #include <qla/xibor.hpp>
 
-#include <ql/CashFlows/basispointsensitivity.hpp>
+#include <ql/CashFlows/analysis.hpp>
 #include <ql/CashFlows/fixedratecoupon.hpp>
 #include <ql/CashFlows/parcoupon.hpp>
 
@@ -38,7 +39,7 @@ namespace QuantLibAddin {
         QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;
         discountingTermStructure.linkTo(termStructure);
         
-        return QuantLib::BasisPointSensitivity(cashFlowVector_, discountingTermStructure);
+        return QuantLib::Cashflows::bps(cashFlowVector_, discountingTermStructure);
     }
 
     FixedRateCouponVector::FixedRateCouponVector(

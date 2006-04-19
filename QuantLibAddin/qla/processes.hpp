@@ -23,10 +23,10 @@
 
 namespace QuantLibAddin {
 
-    class BlackScholesProcess : public ObjHandler::Object {
+    class GeneralizedBlackScholesProcess : public ObjHandler::Object {
     public:
 
-        BlackScholesProcess(
+        GeneralizedBlackScholesProcess(
             const std::string &handleBlackVol,
             const double &underlying,
             const std::string &dayCounterID,
@@ -37,7 +37,7 @@ namespace QuantLibAddin {
             return boost::static_pointer_cast<void>(blackScholesProcess_);
         }
     private:
-        boost::shared_ptr<QuantLib::BlackScholesProcess> blackScholesProcess_;
+        boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess> blackScholesProcess_;
     };
 
 }

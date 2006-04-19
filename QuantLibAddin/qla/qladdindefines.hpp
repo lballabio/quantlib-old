@@ -35,9 +35,9 @@
 #endif
 
 #include <ql/quantlib.hpp>
-//#if QL_HEX_VERSION < 0x000313f0
-//    #error using an old version of QuantLib, please update.
-//#endif
+#if QL_HEX_VERSION < 0x000313f0
+    #error using an old version of QuantLib, please update.
+#endif
 
 //! version string
 #ifdef _DEBUG

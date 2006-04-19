@@ -3,8 +3,8 @@
 <displayName>Processes</displayName>
 <Functions>
 
-<Constructor name='qlBlackScholesProcess'>
-<libraryFunction>BlackScholesProcess</libraryFunction>
+<Constructor name='qlGeneralizedBlackScholesProcess'>
+<libraryFunction>GeneralizedBlackScholesProcess</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
     <Parameter name='handleBlackVol' libraryClass='BlackVolTermStructure'>

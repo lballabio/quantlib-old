@@ -36,7 +36,7 @@ namespace QuantLibAddin {
             const long &timeSteps) {
 
         OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
-            BlackScholesProcess, QuantLib::BlackScholesProcess)
+            GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)
 
         QuantLib::Option::Type type = 
             Create<QuantLib::Option::Type>()(optionTypeID);

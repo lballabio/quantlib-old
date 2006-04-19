@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -25,28 +25,29 @@
 
 namespace QuantLibAddin {
 
-    class SimpleSwap : public Instrument {
+    class VanillaSwap : public Instrument {
     public:
-        SimpleSwap(
+        VanillaSwap(
             const long &lStartDate,
             const long &lMaturity,
             const QuantLib::Real &nominal,
             const bool &payFixed,
             const QuantLib::Rate &fixRate,
             const std::string &calendarID,
-             const std::string &fixFrqID,
+            const std::string &fixFrqID,
             const std::string &fixBDCID,
             const std::string &fixDayCounterID,
             const bool &fixStartFromEnd,
             const bool &fixLongFinal,
-             const std::string &fltFrqID,
+            const std::string &fltFrqID,
+            const std::string &floatDayCounterID,
             const std::string &indexHandle,
             const bool &floatStartFromEnd,
             const bool &floatLongFinal,
             const QuantLib::Rate &floatSpread,
             const std::string &discCurveId);
 
-        EXPORT_QL_OBJECT(QuantLib::SimpleSwap)
+        EXPORT_QL_OBJECT(QuantLib::VanillaSwap)
 
         const std::vector<std::vector<double> >& getFixLeg();
         const std::vector<std::vector<double> >& getFloatLeg();

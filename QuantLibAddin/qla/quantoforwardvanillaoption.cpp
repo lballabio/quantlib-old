@@ -59,7 +59,7 @@ namespace QuantLibAddin {
             new QuantLib::SimpleQuote(correlation)));
 
         OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
-            BlackScholesProcess, QuantLib::BlackScholesProcess)
+            GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)
 
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> >()(optionTypeID, payoffID, strike);

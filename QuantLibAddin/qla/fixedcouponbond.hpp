@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
 
@@ -36,7 +36,8 @@ namespace QuantLibAddin {
             const double &redemption,
             const std::string &frequencyID,
             const std::string &dayCounterID,
-            const std::string &bDayConvID,
+            const std::string &accrualConventionID,
+            const std::string &paymentConventionID,
             const std::string &calendarID,
             const bool &startFromEnd,
             const bool &longFinal,

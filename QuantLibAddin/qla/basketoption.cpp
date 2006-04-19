@@ -49,7 +49,7 @@ namespace QuantLibAddin {
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
 
         OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes,
-            BlackScholesProcess, QuantLib::BlackScholesProcess)
+            GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)
         boost::shared_ptr<QuantLib::StochasticProcess> stochasticProcess=
             boost::dynamic_pointer_cast<QuantLib::StochasticProcess>
             (blackScholesProcess);

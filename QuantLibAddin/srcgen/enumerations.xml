@@ -79,24 +79,24 @@
         <value>QuantLib::Argentina()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Beijing</string>
-        <value>QuantLib::Beijing()</value>
+        <string>China</string>
+        <value>QuantLib::China()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Bratislava</string>
-        <value>QuantLib::Bratislava()</value>
+        <string>Slovakia</string>
+        <value>QuantLib::Slovakia()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>Brazil</string>
         <value>QuantLib::Brazil()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Budapest</string>
-        <value>QuantLib::Budapest()</value>
+        <string>Hungary</string>
+        <value>QuantLib::Hungary()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Copenhagen</string>
-        <value>QuantLib::Copenhagen()</value>
+        <string>Denmark</string>
+        <value>QuantLib::Denmark()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>Germany_Eurex</string>
@@ -119,8 +119,8 @@
         <value>QuantLib::Germany(QuantLib::Germany::Xetra)</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Helsinki</string>
-        <value>QuantLib::Helsinki()</value>
+        <string>Finland</string>
+        <value>QuantLib::Finland()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>HongKong</string>
@@ -139,8 +139,8 @@
         <value>QuantLib::Italy(QuantLib::Italy::Exchange)</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Istanbul</string>
-        <value>QuantLib::Istanbul()</value>
+        <string>Turkey</string>
+        <value>QuantLib::Turkey()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>Italy</string>
@@ -151,8 +151,8 @@
         <value>QuantLib::Italy(QuantLib::Italy::Settlement)</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Johannesburg</string>
-        <value>QuantLib::Johannesburg()</value>
+        <string>SouthAfrica</string>
+        <value>QuantLib::SouthAfrica()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>Mexico</string>
@@ -163,32 +163,32 @@
         <value>QuantLib::NullCalendar()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Oslo</string>
-        <value>QuantLib::Oslo()</value>
+        <string>Norway</string>
+        <value>QuantLib::Norway()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Prague</string>
-        <value>QuantLib::Prague()</value>
+        <string>CzechRepublic</string>
+        <value>QuantLib::CzechRepublic()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Riyadh</string>
-        <value>QuantLib::Riyadh()</value>
+        <string>SaudiArabia</string>
+        <value>QuantLib::SaudiArabia()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Seoul</string>
-        <value>QuantLib::Seoul()</value>
+        <string>SouthKorea</string>
+        <value>QuantLib::SouthKorea()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>Singapore</string>
         <value>QuantLib::Singapore()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Stockholm</string>
-        <value>QuantLib::Stockholm()</value>
+        <string>Sweden</string>
+        <value>QuantLib::Sweden()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Sydney</string>
-        <value>QuantLib::Sydney()</value>
+        <string>Australia</string>
+        <value>QuantLib::Australia()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>Taiwan</string>
@@ -199,12 +199,12 @@
         <value>QuantLib::TARGET()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Tokyo</string>
-        <value>QuantLib::Tokyo()</value>
+        <string>Japan</string>
+        <value>QuantLib::Japan()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Toronto</string>
-        <value>QuantLib::Toronto()</value>
+        <string>Canada</string>
+        <value>QuantLib::Canada()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>Ukraine</string>
@@ -243,16 +243,16 @@
         <value>QuantLib::UnitedStates(QuantLib::UnitedStates::Settlement)</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Warsaw</string>
-        <value>QuantLib::Warsaw()</value>
+        <string>Poland</string>
+        <value>QuantLib::Poland()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Wellington</string>
-        <value>QuantLib::Wellington()</value>
+        <string>NewZealand</string>
+        <value>QuantLib::NewZealand()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Zurich</string>
-        <value>QuantLib::Zurich()</value>
+        <string>Switzerland</string>
+        <value>QuantLib::Switzerland()</value>
     </EnumerationDefinition>
 </EnumerationDefinitions>
 </Enumeration>

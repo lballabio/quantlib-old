@@ -69,7 +69,8 @@ namespace QuantLibAddin {
             const std::string &fixedConventionID,
             const std::string &fixedDayCounterID,
             const std::string &floatingFrequencyID,
-            const std::string &floatingConventionID);
+            const std::string &floatingConventionID,
+            const std::string &floatingDayCounterID);
     };
 
     class FutureRateHelper : public RateHelper {

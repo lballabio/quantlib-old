@@ -214,6 +214,11 @@
         <tensorRank>scalar</tensorRank>
         <description>floating leg convention (e.g. ModifiedFollowing)</description>
     </Parameter>
+    <Parameter name='floatingLegDayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>floating leg day counter (e.g. Thirty360)</description>
+    </Parameter>
 </Parameters>
 </Constructor>
 

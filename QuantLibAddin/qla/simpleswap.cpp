@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -31,7 +31,7 @@
 #include <vector>
 
 namespace QuantLibAddin {
-    SimpleSwap::SimpleSwap(
+    VanillaSwap::VanillaSwap(
             const long &lStartDate,
             const long &lMaturity,
             const QuantLib::Real &nominal,
@@ -44,6 +44,7 @@ namespace QuantLibAddin {
             const bool &fixStartFromEnd,
             const bool &fixLongFinal,
             const std::string &fltFrqID,
+            const std::string &floatDayCounterID,
             const std::string &indexHandle,
             const bool &floatStartFromEnd,
             const bool &floatLongFinal,
@@ -52,6 +53,8 @@ namespace QuantLibAddin {
 
         QuantLib::DayCounter fixDayCounter =
             Create<QuantLib::DayCounter>()(fixDayCounterID);
+        QuantLib::DayCounter floatDayCounter =
+            Create<QuantLib::DayCounter>()(floatDayCounterID);
         QuantLib::BusinessDayConvention fixBDC = 
             Create<QuantLib::BusinessDayConvention>()(fixBDCID);
         QuantLib::Frequency fixFrq =
@@ -75,15 +78,22 @@ namespace QuantLibAddin {
             index->frequency(), index->businessDayConvention(), 
             QuantLib::Date(), floatStartFromEnd, floatLongFinal);
 
-        mInstrument = boost::shared_ptr<QuantLib::Instrument>(new QuantLib::SimpleSwap(
-            payFixed, nominal,
-            fixedSchedule, fixRate, fixDayCounter, floatSchedule, 
-            index, index->settlementDays(), floatSpread,
+        mInstrument = boost::shared_ptr<QuantLib::Instrument>(new QuantLib::VanillaSwap(
+            payFixed, 
+            nominal,
+            fixedSchedule, 
+            fixRate, 
+            fixDayCounter, 
+            floatSchedule, 
+            index, 
+            index->settlementDays(), 
+            floatSpread,
+            floatDayCounter,
             discountingTermStructure));
     }
 
     const std::vector<std::vector<double> >&
-    SimpleSwap::getFixLeg() {
+    VanillaSwap::getFixLeg() {
         const std::vector<boost::shared_ptr<QuantLib::CashFlow> >& flows = getObject().fixedLeg();
         fixLeg.clear();
         for(size_t i = 0; i < flows.size(); i++) {
@@ -101,7 +111,7 @@ namespace QuantLibAddin {
     }
 
     const std::vector<std::vector<double> >&
-    SimpleSwap::getFloatLeg() {
+    VanillaSwap::getFloatLeg() {
         const std::vector<boost::shared_ptr<QuantLib::CashFlow> >& flows = getObject().floatingLeg();
         floatLeg.clear();
         for(size_t i = 0; i < flows.size(); i++) {

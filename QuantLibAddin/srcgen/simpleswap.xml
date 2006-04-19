@@ -1,10 +1,10 @@
 <Category name='simpleswap'>
-<description>construct and return a handle to a simple swap object</description>
-<displayName>Simple Swap</displayName>
+<description>construct and return a handle to a vanilla swap object</description>
+<displayName>Vanilla Swap</displayName>
 <Functions>
 
-<Constructor name='qlSimpleSwap'>
-<libraryFunction>SimpleSwap</libraryFunction>
+<Constructor name='qlVanillaSwap'>
+<libraryFunction>VanillaSwap</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
     <Parameter name='StartDate'>
@@ -67,7 +67,12 @@
         <tensorRank>scalar</tensorRank>
         <description>Floating Leg Frequency</description>
     </Parameter>
-    <Parameter name='IndexHandle' libraryClass='Xibor'>
+  <Parameter name='FloatDayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Floating Leg Day Count</description>
+  </Parameter>
+  <Parameter name='IndexHandle' libraryClass='Xibor'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of the Index for the float leg</description>
@@ -95,7 +100,7 @@
 </Parameters>
 </Constructor>
 
-<Member name='qlSwapFairRate' getObject='true' libraryClass='SimpleSwap'>
+<Member name='qlSwapFairRate' getObject='true' libraryClass='VanillaSwap'>
 <description>the fair rate of a swap</description>
 <libraryFunction>fairRate</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
@@ -113,7 +118,7 @@
 </ReturnValue>
 </Member>
 
-<Member name='qlSwapFairSpread' getObject='true' libraryClass='SimpleSwap'>
+<Member name='qlSwapFairSpread' getObject='true' libraryClass='VanillaSwap'>
 <description>the fair rate of a swap</description>
 <libraryFunction>fairSpread</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
@@ -131,7 +136,7 @@
 </ReturnValue>
 </Member>
 
-<Member name='qlSwapFixedLeg' libraryClass='SimpleSwap'>
+<Member name='qlSwapFixedLeg' libraryClass='VanillaSwap'>
 <description>The Fixed Leg Details</description>
 <libraryFunction>getFixLeg</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
@@ -144,7 +149,7 @@
 </ReturnValue>
 </Member>
 
-<Member name='qlSwapFixedLegBPS' getObject='true' libraryClass='SimpleSwap'>
+<Member name='qlSwapFixedLegBPS' getObject='true' libraryClass='VanillaSwap'>
 <description>the BPS of the fixed leg</description>
 <libraryFunction>fixedLegBPS</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
@@ -162,7 +167,7 @@
 </ReturnValue>
 </Member>
 
-<Member name='qlSwapFloatLeg' libraryClass='SimpleSwap'>
+<Member name='qlSwapFloatLeg' libraryClass='VanillaSwap'>
 <description>The Float Leg Details</description>
 <libraryFunction>getFloatLeg</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
@@ -180,7 +185,7 @@
 </ReturnValue>
 </Member>
 
-<Member name='qlSwapFloatingLegBPS' getObject='true' libraryClass='SimpleSwap'>
+<Member name='qlSwapFloatingLegBPS' getObject='true' libraryClass='VanillaSwap'>
 <description>the BPS of the floating leg</description>
 <libraryFunction>floatingLegBPS</libraryFunction>
 <functionCategory>QuantLib</functionCategory>

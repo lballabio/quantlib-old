@@ -37,7 +37,7 @@ namespace QuantLibAddin {
             const long &timeSteps) {
 
         OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
-            BlackScholesProcess, QuantLib::BlackScholesProcess)
+            GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)
 
         OH_GET_REFERENCE(exercise, handleExercise, Exercise,
             QuantLib::Exercise)
@@ -73,7 +73,7 @@ namespace QuantLibAddin {
             const long &timeSteps) {
 
         OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
-            BlackScholesProcess, QuantLib::BlackScholesProcess)
+            GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)
 
         OH_GET_REFERENCE(exercise, handleExercise, Exercise,
             QuantLib::Exercise)
