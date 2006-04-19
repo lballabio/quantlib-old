@@ -56,7 +56,7 @@ int main() {
             "Actual360"));                  // daycount convention
         storeObject("my_blackconstantvol", blackConstantVol);
 
-        obj_ptr blackScholesProcess(new QuantLibAddin::BlackScholesProcess(
+        obj_ptr blackScholesProcess(new QuantLibAddin::GeneralizedBlackScholesProcess(
             "my_blackconstantvol",          // black constant vol handle
             underlying,                     // underlying
             "Actual360",                    // daycount convention
