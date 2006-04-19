@@ -28,6 +28,7 @@ using QuantLib::ConstantEstimator;
 %}
 
 class ConstantEstimator {
+public:
     ConstantEstimator(Size size, Time yearFraction);
     TimeSeries<Volatility> 
         calculate(const TimeSeries<Real> &quoteSeries);

@@ -196,7 +196,7 @@ setMethod('print', 'ContainerCType',
 function(x) print(as(x, "ElemCType")))
 
 setAs("ContainerCType", "ElemCType",
-function(from) {if (from$size()) from[1:x$size()] else NULL} )
+function(from) {if (from$size()) from[1:from$size()] else NULL} )
 
 setAs("ElemCType", "ContainerCType",
 function(from) { a <- ContainerRType(length(from)); 

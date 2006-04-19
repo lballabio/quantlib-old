@@ -52,4 +52,15 @@ class TimeSeries {
 %template(RealTimeSeries) TimeSeries<Real>;
 typedef RealTimeSeries VolatilityTimeSeries;
 
+#if defined(SWIGR)
+%Rruntime %{
+setMethod('as.data.frame', '_p_TimeSeriesTdouble_t',
+function(x,row.names,optional)
+data.frame("date"=as(x$dates(), "character"),
+"values"=as(x$values(), "numeric")))
+
+setMethod("print", '_p_TimeSeriesTdouble_t',
+function(x) print(as.data.frame(x)))
+%}
+#endif
 #endif

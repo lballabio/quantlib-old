@@ -180,11 +180,12 @@ using QuantLib::DateParser;
 
 #if defined(SWIGR)
 %Rruntime %{
-'as.character._p_Date' <-
-function(x) {x$ISO()}
+setAs("_p_Date", "character",
+function(from) {from$ISO()})
 
 setAs("character", "_p_Date",
 function(from) { DateParser_parseISO(from) })
+
 
 setMethod("as.numeric", "_p_Date",
     function(x) x$serialNumber())
@@ -348,15 +349,20 @@ namespace std {
 
 #if defined(SWIGR)
 
-swigr_list_converter(DateVector,
-	 _p_std__vectorTDate_std__allocatorTDate_t_t,
-	 character)
 
 %Rruntime %{
-setMethod("as.character", 
-	 "_p_std__vectorTDate_std__allocatorTDate_t_t",
-function(x) {if (x$size()) 
-sapply(function(y) as(y, "character"), x) else NULL} )
+setAs("_p_std__vectorTDate_std__allocatorTDate_t_t",
+	"character",
+function(from) {if (from$size()) 
+sapply(1:from$size(), function(y) from$"__getitem__"(i=y-1)$ISO())} )
+
+setAs("character", "_p_std__vectorTDate_std__allocatorTDate_t_t",
+function(from) { a <- DateVector(length(from)); 
+sapply(1:length(from), function(n) {
+a[n] <- from[n] } )
+a
+})
+
 %}
 
 #endif
