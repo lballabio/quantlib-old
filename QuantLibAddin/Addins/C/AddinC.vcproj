@@ -303,26 +303,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="randomsequencegenerator.cpp">
-				<FileConfiguration
-					Name="Debug CRTDLL|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release CRTDLL|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="schedule.cpp">
 				<FileConfiguration
 					Name="Debug CRTDLL|Win32">
@@ -558,9 +538,6 @@
 			</File>
 			<File
 				RelativePath="qladdin.h">
-			</File>
-			<File
-				RelativePath="randomsequencegenerator.h">
 			</File>
 			<File
 				RelativePath="schedule.h">

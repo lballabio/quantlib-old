@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="AddinC"
 	ProjectGUID="{ACCA0906-34AF-4CC4-8426-C3EF41315BF5}"
 	>
@@ -446,6 +446,46 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="exercise.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="instruments.cpp"
 				>
 				<FileConfiguration
@@ -646,7 +686,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="randomsequencegenerator.cpp"
+				RelativePath="schedule.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -687,46 +727,6 @@
 			</File>
 			<File
 				RelativePath="session.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug CRTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release CRTDLL|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="schedule.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -1143,6 +1143,10 @@
 				>
 			</File>
 			<File
+				RelativePath="exercise.h"
+				>
+			</File>
+			<File
 				RelativePath="defines.h"
 				>
 			</File>
@@ -1168,10 +1172,6 @@
 			</File>
 			<File
 				RelativePath="qladdin.h"
-				>
-			</File>
-			<File
-				RelativePath="randomsequencegenerator.h"
 				>
 			</File>
 			<File

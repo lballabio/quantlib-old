@@ -30,9 +30,9 @@ int main() {
     char returnString[100];
     Boolean returnCode;
     Varies dummy;
+    Varies logLevel;
 	dummy.type = LONG;
 	dummy.data.AsLong = 0;
-    Varies logLevel;
 	logLevel.type = LONG;
 	logLevel.data.AsLong = 4;
 
@@ -50,7 +50,7 @@ int main() {
         goto fail;
     }
 
-    if (qlBlackScholesProcess(
+    if (qlGeneralizedBlackScholesProcess(
             "my_stochastic", 
             "my_blackconstantvol", 
             underlying, 

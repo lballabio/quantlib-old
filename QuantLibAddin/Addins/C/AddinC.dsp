@@ -197,6 +197,10 @@ SOURCE=couponvectors.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=exercise.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=instruments.cpp
 # End Source File
 # Begin Source File
@@ -214,10 +218,6 @@ SOURCE=options.cpp
 # Begin Source File
 
 SOURCE=processes.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=randomsequencegenerator.cpp
 # End Source File
 # Begin Source File
 
@@ -278,6 +278,10 @@ SOURCE=couponvectors.h
 # Begin Source File
 
 SOURCE=defines.h
+# End Source File
+# Begin Source File
+
+SOURCE=exercise.h
 # End Source File
 # Begin Source File
 
