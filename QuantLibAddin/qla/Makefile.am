@@ -12,7 +12,6 @@ include_HEADERS = \
     asianoption.hpp \
     barrieroption.hpp \
     baseinstruments.hpp \
-    baseinstruments.hpp \
     basic.hpp \
     capfloor.hpp \
     clientutils.hpp \
