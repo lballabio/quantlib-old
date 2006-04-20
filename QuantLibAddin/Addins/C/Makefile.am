@@ -27,6 +27,7 @@ noinst_HEADERS = \
     options.h \
     processes.h \
     qladdin.h \
+    randomsequencegenerator.h \
     schedule.h \
     shortratemodels.h \
     simpleswap.h \
@@ -49,6 +50,7 @@ libQuantLibAddinC_la_SOURCES = \
     ohfunctions.cpp \
     options.cpp \
     processes.cpp \
+    randomsequencegenerator.cpp \
     schedule.cpp \
     session.cpp \
     shortratemodels.cpp \

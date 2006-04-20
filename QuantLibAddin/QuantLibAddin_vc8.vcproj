@@ -1086,6 +1086,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\qla\randomsequencegenerator.cpp"
+				>
+			</File>
+			<File
 				RelativePath="qla\schedule.cpp"
 				>
 				<FileConfiguration
@@ -1646,6 +1650,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\qla\vo_randomsequencegenerator.cpp"
+				>
+			</File>
+			<File
 				RelativePath="qla\vo_schedule.cpp"
 				>
 				<FileConfiguration
@@ -2187,6 +2195,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qla\randomsequencegenerator.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qla\schedule.hpp"
 				>
 			</File>
@@ -2248,6 +2260,10 @@
 			</File>
 			<File
 				RelativePath="qla\vo_processes.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qla\vo_randomsequencegenerator.hpp"
 				>
 			</File>
 			<File

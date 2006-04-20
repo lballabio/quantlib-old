@@ -15,6 +15,7 @@ EXTRA_DIST = \
     options.cpp \
     processes.cpp \
     qladdin.cpp \
+    randomsequencegenerator.cpp \
     schedule.cpp \
     session.cpp \
     session.hpp \

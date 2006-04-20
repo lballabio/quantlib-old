@@ -99,6 +99,10 @@ SOURCE=.\processes.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\randomsequencegenerator.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\qladdin.cpp
 # End Source File
 # Begin Source File
@@ -184,6 +188,10 @@ SOURCE=.\options.hpp
 # Begin Source File
 
 SOURCE=.\processes.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\randomsequencegenerator.hpp
 # End Source File
 # Begin Source File
 

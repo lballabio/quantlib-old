@@ -65,6 +65,9 @@
 				RelativePath="processes.cpp">
 			</File>
 			<File
+				RelativePath="randomsequencegenerator.cpp">
+			</File>
+			<File
 				RelativePath="qladdin.cpp">
 			</File>
 			<File
@@ -130,6 +133,9 @@
 			</File>
 			<File
 				RelativePath="processes.hpp">
+			</File>
+			<File
+				RelativePath="randomsequencegenerator.hpp">
 			</File>
 			<File
 				RelativePath="qla_all.hpp">
