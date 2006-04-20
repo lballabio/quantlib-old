@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,7 +26,7 @@
 const int KEY_WIDTH = 5;
 const int KEY_BASE = 16;
 const int KEY_MAX = pow((double)KEY_BASE, KEY_WIDTH);
-const char KEY_DELIMITER = '~';
+//const char KEY_DELIMITER = '~';
 
 namespace ObjHandler {
 
@@ -38,25 +38,25 @@ namespace ObjHandler {
         return s.str();
     }
 
-    const std::string ObjectHandlerXL::parseHandle(const std::string &handle) {
-        const int delimOffset = handle.find(KEY_DELIMITER);
-        if (delimOffset == std::string::npos) {
-            std::ostringstream err;
-            err << "key delimiter character '" << KEY_DELIMITER
-                << "' not found in handle " << handle;
-            throw std::exception(err.str().c_str());
-        }
-        const int keyLength = KEY_WIDTH + 2;
-        if (delimOffset != handle.length() - keyLength) {
-            std::ostringstream err;
-            err << "expected to find key delimiter character " 
-                << KEY_DELIMITER << " " << keyLength 
-                << " characters before end of handle " << handle;
-            throw std::exception(err.str().c_str());
-        }
-        const std::string key = handle.substr(delimOffset + 1, keyLength);
-        return key;
-    }
+    //const std::string ObjectHandlerXL::parseHandle(const std::string &handle) {
+    //    const int delimOffset = handle.find(KEY_DELIMITER);
+    //    if (delimOffset == std::string::npos) {
+    //        std::ostringstream err;
+    //        err << "key delimiter character '" << KEY_DELIMITER
+    //            << "' not found in handle " << handle;
+    //        throw std::exception(err.str().c_str());
+    //    }
+    //    const int keyLength = KEY_WIDTH + 2;
+    //    if (delimOffset != handle.length() - keyLength) {
+    //        std::ostringstream err;
+    //        err << "expected to find key delimiter character " 
+    //            << KEY_DELIMITER << " " << keyLength 
+    //            << " characters before end of handle " << handle;
+    //        throw std::exception(err.str().c_str());
+    //    }
+    //    const std::string key = handle.substr(delimOffset + 1, keyLength);
+    //    return key;
+    //}
 
     const std::string ObjectHandlerXL::storeObject(
             const std::string &handleStub,
@@ -77,11 +77,11 @@ namespace ObjHandler {
 
             // validate stub
 
-            if (handleStub.find(KEY_DELIMITER) != std::string::npos) {
-                std::ostringstream err;
-                err << "object handle must not contain " << KEY_DELIMITER;
-                throw std::exception(err.str().c_str());
-            }
+            //if (handleStub.find(KEY_DELIMITER) != std::string::npos) {
+            //    std::ostringstream err;
+            //    err << "object handle must not contain " << KEY_DELIMITER;
+            //    throw std::exception(err.str().c_str());
+            //}
 
             // obtain reference to calling cell
 
@@ -109,10 +109,19 @@ namespace ObjHandler {
                 std::string oldKey;
                 operToScalar(oldKey, xOldName);
                 Excel(xlFree, 0, 1, &xOldName);
+                //for (ObjectList::iterator iter = objectList_.begin();
+                //        iter != objectList_.end(); iter++) {
+                //    std::string handle = iter->first;
+                //    if (handle.substr(handle.length() - KEY_WIDTH - 1) == oldKey) {
+                //        objectList_.erase(handle);
+                //        break;
+                //    }
+                //}
                 for (ObjectList::iterator iter = objectList_.begin();
                         iter != objectList_.end(); iter++) {
-                    std::string handle = iter->first;
-                    if (handle.substr(handle.length() - KEY_WIDTH - 1) == oldKey) {
+                    const std::string handle = iter->first;
+                    const std::string key = iter->second->getKey();
+                    if (key == oldKey) {
                         objectList_.erase(handle);
                         break;
                     }
@@ -123,7 +132,7 @@ namespace ObjHandler {
             // derive handle
 
             const std::string key = getKey();
-            const std::string handle = handleStub + KEY_DELIMITER + key;
+            //const std::string handle = handleStub + KEY_DELIMITER + key;
 
             // name the calling cell
 
@@ -135,11 +144,14 @@ namespace ObjHandler {
 
             // store the object
 
-            objectList_[handle] = object;
+            //objectList_[handle] = object;
+            object->setKey(key);
+            objectList_[handleStub] = object;
 
             // return modified handle
 
-            return handle;
+            //return handle;
+            return handleStub;
 
         } catch (const std::exception &e) {
 
@@ -156,28 +168,40 @@ namespace ObjHandler {
 
     }
 
-    void ObjectHandlerXL::deleteName(const std::string &handle) {
-        try {
-            const std::string key = parseHandle(handle);
-            Excel(xlfSetName, 0, 1, TempStrStl(key));
-        } catch (const std::exception &e) {
-            std::ostringstream err;
-            err << "ObjectHandlerXL::deleteObject: " << e.what();
-            throw std::exception(err.str().c_str());
-        }    
-    }
+    //void ObjectHandlerXL::deleteName(const std::string &handle) {
+    //    try {
+    //        const std::string key = parseHandle(handle);
+    //        Excel(xlfSetName, 0, 1, TempStrStl(key));
+    //    } catch (const std::exception &e) {
+    //        std::ostringstream err;
+    //        err << "ObjectHandlerXL::deleteObject: " << e.what();
+    //        throw std::exception(err.str().c_str());
+    //    }    
+    //}
 
     void ObjectHandlerXL::deleteObject(const std::string &handle) {
-        if (gcEnabled_)
-            deleteName(handle);
+        //if (gcEnabled_)
+        //    deleteName(handle);
+        if (gcEnabled_) {
+            obj_ptr object = retrieveObject(handle);
+            Excel(xlfSetName, 0, 1, TempStrStl(object->getKey()));
+        }
         objectList_.erase(handle);
     }
 
     void ObjectHandlerXL::deleteAllObjects() {
-        if (gcEnabled_)
+        //if (gcEnabled_)
+        //    for (ObjectList::iterator iter = objectList_.begin();
+        //            iter != objectList_.end(); iter++)
+        //        deleteName(iter->first);
+        if (gcEnabled_) {
             for (ObjectList::iterator iter = objectList_.begin();
-                    iter != objectList_.end(); iter++)
-                deleteName(iter->first);
+                iter != objectList_.end(); iter++) {
+                    obj_ptr object = iter->second;
+                    Excel(xlfSetName, 0, 1, TempStrStl(object->getKey()));
+            }
+        }
+
         objectList_.clear();
         key_ = 0;
     }
@@ -191,7 +215,8 @@ namespace ObjHandler {
 
         try {
         
-            std::string key = handle.substr(handle.length() - KEY_WIDTH - 1);
+            //std::string key = handle.substr(handle.length() - KEY_WIDTH - 1);
+            std::string key = handle; // FIXME rename param
             Excel(xlfGetName, &xDef, 1, TempStrStl(key));
 
             std::string address;
@@ -227,8 +252,12 @@ namespace ObjHandler {
         while (iter_current != objectList_.end()) {
             iter_previous = iter_current;
             iter_current++;
-            if (!nameIsValid(iter_previous->first))
-                objectList_.erase(iter_previous->first);
+            //if (!nameIsValid(iter_previous->first))
+            //    objectList_.erase(iter_previous->first);
+            const std::string handle = iter_previous->first;
+            const std::string key = iter_previous->second->getKey();
+            if (!nameIsValid(key))
+                objectList_.erase(handle);
         }
 
     }

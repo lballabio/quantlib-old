@@ -78,10 +78,20 @@ namespace ObjHandler {
             mProps = p;
         }
 
+        // FIXME this is excel specific behavior and should to into an
+        // Excel-specific subclass e.g. ObjectXL
+        const std::string &getKey() {
+            return key_;
+        }
+        void setKey(const std::string &key) {
+            key_ = key;
+        }
+
     private:
         boost::shared_ptr<ValueObject> mProps;
         Object& operator= (const Object&);
         Object(const Object&);
+        std::string key_;
     };
 
     template < typename T >
