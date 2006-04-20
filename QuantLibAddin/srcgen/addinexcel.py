@@ -111,7 +111,8 @@ class AddinExcel(addin.Addin):
         paramStr += '#'
         return paramStr
 
-    def generateRegisterFunction(self, func, register = True):
+    #def generateRegisterFunction(self, func, register = True):
+    def generateRegisterFunction(self, func, categoryName, register = True):
         """Generate code to register/unregister given function."""
         ret = ''
         # We call xlfRegister with NUMDESC parameters to describe the function
@@ -134,7 +135,8 @@ class AddinExcel(addin.Addin):
             ret += self.formatLine('1', 'function type (1 = worksheet function)')
         else:
             ret += self.formatLine('0', 'function type (0 = hidden function)')
-        ret += self.formatLine(func.functionCategory, 'function category')
+        #ret += self.formatLine(func.functionCategory, 'function category')
+        ret += self.formatLine(func.functionCategory + ' ' + categoryName, 'function category')
         ret += self.formatLine('', 'shortcut text (command macros only)')
         ret += self.formatLine('', 'path to help file')
         if func.Parameters:
@@ -173,8 +175,10 @@ class AddinExcel(addin.Addin):
             functionRegister += comment
             functionUnregister += comment
             for func in category.getFunctions(self.platformId): 
-                functionRegister += self.generateRegisterFunction(func)
-                functionUnregister += self.generateRegisterFunction(func, False)
+                #functionRegister += self.generateRegisterFunction(func)
+                #functionUnregister += self.generateRegisterFunction(func, False)
+                functionRegister += self.generateRegisterFunction(func, category.displayName)
+                functionUnregister += self.generateRegisterFunction(func, category.displayName, False)
         fileHeader = outputfile.OutputFile(self.rootDirectory + ADDIN)
         fileHeader.write(self.bufferRegister.text % (functionRegister, functionUnregister))
         fileHeader.close()
