@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -63,8 +63,8 @@ namespace ObjHandler {
         int key_;
         bool gcEnabled_;
         const std::string getKey();
-        //const std::string parseHandle(const std::string &handle);
-        //void deleteName(const std::string &handle);
+        const std::string parseHandle(const std::string &handle);
+        void deleteName(const std::string &handle);
         bool nameIsValid(const std::string &handle);
         // ~ObjectHandlerXL() {}
     };
