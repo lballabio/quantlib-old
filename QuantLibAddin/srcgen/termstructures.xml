@@ -283,6 +283,37 @@
 </Parameters>
 </Constructor>
 
+<Procedure name='qlGetDfVector'>
+  <description>Return a vector of discount factors corresponding to a vector of dates for a given yield term structure</description>
+  <functionCategory>QuantLib</functionCategory>
+  <Parameters>
+    <Parameter name='yieldTermStructure'>
+      <type>string</type>
+      <tensorRank>scalar</tensorRank>
+      <description>handle of the yield term structure</description>
+    </Parameter>
+    <Parameter name='DfDates'>
+      <type>long</type>
+      <tensorRank>vector</tensorRank>
+      <description>vector of dates</description>
+    </Parameter>
+    <Parameter name='iPol'>
+      <type>bool</type>
+      <tensorRank>scalar</tensorRank>
+      <description>Interpolate Flag</description>
+    </Parameter>
+    <Parameter name='trigger' ignore='true'>
+      <type>any</type>
+      <tensorRank>scalar</tensorRank>
+      <description>dependency tracking trigger</description>
+    </Parameter>
+  </Parameters>
+  <ReturnValue>
+    <type>double</type>
+    <tensorRank>vector</tensorRank>
+    <description>vector of discount factors</description>
+  </ReturnValue>
+</Procedure>
 
 </Functions>
 </Category>

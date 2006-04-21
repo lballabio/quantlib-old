@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -211,5 +211,22 @@ namespace QuantLibAddin {
             new QuantLib::ForwardSpreadedTermStructure(discountingTermStructure, spreadQuote));
     }
 
-}
+    const std::vector < double > qlGetDfVector(
+        const std::string &yieldTermStructure,
+        const std::vector < long >&DfDates,
+        const bool &iPol) {
 
+            OH_GET_REFERENCE(yieldTermStructureQL, yieldTermStructure,
+                YieldTermStructure, QuantLib::YieldTermStructure)
+
+            std::vector < double > returnValue;
+            for (std::vector < long >::const_iterator i = DfDates.begin();
+                i != DfDates.end(); i++)
+                    returnValue.push_back(yieldTermStructureQL->discount(
+                        QuantLib::Date(*i),
+                        iPol));
+
+            return returnValue;
+    }
+
+}

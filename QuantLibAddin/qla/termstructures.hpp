@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -119,6 +119,11 @@ namespace QuantLibAddin {
             const std::string &baseTermStructure,
             const double &spread);
     };
+
+    const std::vector < double > qlGetDfVector(
+        const std::string &yieldTermStructure,
+        const std::vector < long >&DfDates,
+        const bool &iPol);
 
 }
 
