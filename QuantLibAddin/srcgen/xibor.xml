@@ -10,7 +10,7 @@
     <Parameter name='IndexName'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>evaluation date</description>
+        <description>index name</description>
     </Parameter>
     <Parameter name='Currency'>
         <type>string</type>
