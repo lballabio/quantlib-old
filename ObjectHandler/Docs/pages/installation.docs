@@ -70,7 +70,7 @@ installation of QuantLibAddin.
 
 \subsection inst_windows Windows
 
-These instructions assume a debug build.
+These instructions assume a release build.
 
 \subsection inst_win_prerequisites Prerequisites
 
@@ -80,7 +80,7 @@ Before building ObjectHandler you need to build log4cxx.
 <li>download the log4cxx zip from the QuantLib downloads page</li>
 <li>log4cxx should be unzipped to a path containing no spaces as the
 library seems to complain otherwise</li>
-<li>choose project \b static, configuration <b>Win32 Debug</b>.</li>
+<li>choose project \b static, configuration <b>Win32 Release</b>.</li>
 <li>build the chosen log4cxx project.  The resulting lib file is written
 to directory <tt>log4cxx-0.9.7\\msvc\\Lib</tt></li>
 <li>you need to manually set environment variable \c LOG4CXX_DIR to the
@@ -103,7 +103,7 @@ for Excel, to be statically linked into a single client XLL</td></tr>
 object repository which can be shared by other XLLs in the Excel
 session</td></tr> </table>
 
-Build the desired workspace, configuration <b>Win32 Debug</b>.
+Build the desired workspace, configuration <b>Win32 Release</b>.
 
 NB: The ohxll build of ObjectHandler requires a DLL version of the
 VC runtime library (i.e. <b>Debug Multithreaded DLL</b> or <b>Release
@@ -232,10 +232,10 @@ automatically by the directive
 in file <tt>oh/autolink.hpp</tt>
 
 The name of the library depends on your compiler and configuration.
-For example, if you're using VC6, configuration Debug CRTDLL, the library
+For example, if you're using VC8, configuration Release, the library
 is called
 \verbatim
-ObjectHandler-vc6-mt-gd-0_1_4.lib
+ObjectHandler-vc80-mt-s-0_1_4.lib
 \endverbatim
 
 The location of the library depends on which project you're using
