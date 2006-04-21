@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
@@ -38,23 +38,6 @@ namespace ObjHandler {
             const std::string &handle) {
         return ObjectHandler::instance().retrieveObject(handle);
     }
-
-	DLL_API ObjHandler::obj_ptr retrieveObjectEO(
-            const std::string &handle) {
-		ObjHandler::obj_ptr ret;
-		try { ret = ObjectHandler::instance().retrieveObject(handle); }
-		catch(const ObjHandler::Exception&) {}
-        return ret;
-    }
-
-    /*const Properties& queryObject(
-            const std::string &handle) {
-        boost::shared_ptr<Object> object =
-                ObjectHandler::instance().retrieveObject(handle);
-        if (!object)
-                throw Exception("error retrieving object " + handle);
-        return object->getProperties();
-    }*/
 
     const std::string version() {
         return OBJHANDLER_VERSION;
