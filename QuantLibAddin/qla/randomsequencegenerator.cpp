@@ -25,7 +25,7 @@ namespace QuantLibAddin {
     std::vector<std::vector<double> > RandomSequenceGenerator::variates(long samples) {
         std::vector<std::vector<double> > rtn;
 
-        for (std::size_t i=0 ; i < samples ; i++) {
+        for (long i=0 ; i < samples ; i++) {
             rtn.push_back(nextSequence());
         }
 
