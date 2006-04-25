@@ -115,8 +115,9 @@
 </ReturnValue>
 </Member>
 
-  <Member name='qlLatestDate' getObject='true' libraryClass='RateHelper'>
-    <description>retrieve a discount factor at specified date</description>
+  <!---
+  <Member name='qlLatestDate' getObject='true' libraryClass='DepositRateHelper'>
+    <description>retrieve a RateHelper's latest date</description>
     <libraryFunction>latestDate</libraryFunction>
     <functionCategory>QuantLib</functionCategory>
     <Parameters/>
@@ -126,7 +127,8 @@
       <description>latest date</description>
     </ReturnValue>
   </Member>
-  
+  -->
+
 <Constructor name='qlPiecewiseFlatForward'>
 <libraryFunction>PiecewiseFlatForward</libraryFunction>
 <functionCategory>QuantLib</functionCategory>

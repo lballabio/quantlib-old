@@ -28,6 +28,12 @@
 
 #include <oh/objhandler.hpp>
 
+#define EXPORT_QL_OBJECT(CLASS) \
+    const CLASS& getObject() const { \
+        return *boost::dynamic_pointer_cast<CLASS>(mInstrument); \
+    } \
+	//
+
 namespace QuantLibAddin {
 
     class RateHelper : public ObjHandler::Object {
@@ -55,6 +61,9 @@ namespace QuantLibAddin {
             const std::string &calendarID,
             const std::string &conventionID,
             const std::string &dayCounterID);
+        EXPORT_QL_OBJECT(QuantLib::DepositRateHelper);
+    private:
+        boost::shared_ptr<QuantLib::Instrument> mInstrument;
     };
 
     class SwapRateHelper : public RateHelper {
