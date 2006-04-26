@@ -1,7 +1,6 @@
 DLLEXPORT %s%s(%s) {
     try {
 %s
-
         SET_SESSION_ID
 
 %s%s

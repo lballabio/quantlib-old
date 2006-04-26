@@ -26,8 +26,7 @@
 #define qla_basic_hpp
 
 #include <oh/objhandler.hpp>
-//#define _CRT_SECURE_NO_DEPRECATE
-//#pragma warning(disable : 4996)
+#include <ql/calendar.hpp>
 
 namespace QuantLibAddin {
 
@@ -37,7 +36,7 @@ namespace QuantLibAddin {
 
     /*! return the advanced date over a given calendar
     */
-    long qlAdvanceCalendar(
+    QuantLib::Date qlAdvanceCalendar(
             const long &lStartDate,
             const long &n,
             const std::string &timeUnitsID,
@@ -55,7 +54,7 @@ namespace QuantLibAddin {
 
     /*! return the evaluation date
     */
-    long qlGetEvalDate();
+    QuantLib::Date qlGetEvalDate();
 
     /*! set the evaluation date
     */

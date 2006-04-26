@@ -24,13 +24,12 @@
 #include <qla/clientutils.hpp>
 #include <qla/typefactory.hpp>
 
-#include <ql/calendar.hpp>
 #include <ql/daycounter.hpp>
 #include <ql/settings.hpp>
 
 namespace QuantLibAddin {
 
-    long qlAdvanceCalendar(
+    QuantLib::Date qlAdvanceCalendar(
             const long &lStartDate,
             const long &n,
             const std::string &timeUnitsID,
@@ -49,12 +48,10 @@ namespace QuantLibAddin {
         QuantLib::BusinessDayConvention convention =
             Create<QuantLib::BusinessDayConvention>()(conventionID);
 
-        QuantLib::Date endDate=calendar.advance(startDate,
-                                                n,
-                                                timeUnits,
-                                                convention);
-
-        return endDate.serialNumber();                
+        return calendar.advance(startDate,
+                                n,
+                                timeUnits,
+                                convention);
     }
 
     double qlYearFraction(
@@ -76,9 +73,8 @@ namespace QuantLibAddin {
         return dayCounter.yearFraction(startDate, endDate, refStartDate, refEndDate);
     }    
 
-    long qlGetEvalDate() {
-        QuantLib::Date evalDate = QuantLib::Settings::instance().evaluationDate();
-        return evalDate.serialNumber();
+    QuantLib::Date qlGetEvalDate() {
+        return QuantLib::Settings::instance().evaluationDate();
     }
 
     long qlSetEvalDate(const long &evalDate) {

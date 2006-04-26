@@ -82,7 +82,7 @@ class Constructor(Function):
             ObjHandler::storeObject(objectPointer);'''
     functionCall = '''\
         ObjHandler::FunctionCall functionCall;
-        functionCall.clearCell();'''
+        functionCall.clearCell();\n'''
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
@@ -123,7 +123,7 @@ class Member(Function):
     BODY = '''\
         OH_GET_OBJECT(objectPointer, %s, %s)
         %s returnValue;
-        returnValue = %s(%s);'''
+        returnValue = %s(%s)%s;'''
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
@@ -157,7 +157,7 @@ class Member(Function):
         libraryClass = self.libraryClass
         if not self.noQlaNS: libraryClass = 'QuantLibAddin::' + libraryClass
         return self.BODY % (handle, libraryClass, libraryReturnType, 
-            self.accessLibFunc, libraryCall)
+            self.accessLibFunc, libraryCall, self.returnValue.conversion())
 
 class Procedure(Function):
     """Procedural function not associated with any QuantLib object."""
@@ -171,10 +171,10 @@ class Procedure(Function):
         """Generate source code for function body."""
         if self.returnValue.type == common.VOID:
             returnCommand = ''
-        else:
+        else:            
             returnCommand = addin.libraryReturnType.apply(self.returnValue) \
                 + ' returnValue;\n        returnValue = '
-        libraryCall = '%s(%s);' % (
-            self.alias, self.generateParameterList(addin.libraryCall, INVOCATION))
+        libraryCall = '%s(%s)%s;' % (self.alias, 
+            self.generateParameterList(addin.libraryCall, INVOCATION), self.returnValue.conversion())
         return '        ' + returnCommand + libraryCall
 
