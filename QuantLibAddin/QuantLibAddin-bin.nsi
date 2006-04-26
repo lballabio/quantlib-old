@@ -18,14 +18,14 @@ Section
     File "*.txt"
     File "*.TXT"
 
-    SetOutPath $INSTDIR\Addins\Excel\xll
+    SetOutPath $INSTDIR\xll
     File "Addins\Excel\xll\QuantLibAddinStatic-vc80-mt-s-0_3_13.xll"
 
-    SetOutPath $INSTDIR\Clients\Excel
-    File "Clients\Excel\*.xls"
+    SetOutPath $INSTDIR\Workbooks
+    File /r "Clients\Excel\*.xls"
 
     SetOutPath $INSTDIR\Docs
-    File "Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
+    File /nonfatal "Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibAddin" \
