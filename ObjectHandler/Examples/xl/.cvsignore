@@ -1,6 +1,6 @@
 *.plg
 build
 xll
-ExampleXLL*.vcproj.*
+*.vcproj.*user
 Makefile
 Makefile.in
