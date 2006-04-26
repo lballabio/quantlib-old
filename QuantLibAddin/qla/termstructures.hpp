@@ -109,7 +109,6 @@ namespace QuantLibAddin {
       public:
         PiecewiseFlatForward(
             const boost::shared_ptr < InstanceName > &instanceName,
-            const long &evaluation,
             const long &settlement,
             const std::vector<std::string> &handlesRateHelper,
             const std::string &dayCounterID);

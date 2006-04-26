@@ -27,6 +27,7 @@ import common
 # contexts in which a function's parameters are listed:
 DECLARATION = 0     # Addin function being declared
 INVOCATION = 1      # Addin function calling corresponding QuantLib function
+VALUEOBJECT = 2     # Generating VO code
 
 class Function(serializable.Serializable):
     """Encapsulate state and behavior required 
@@ -53,7 +54,7 @@ class Function(serializable.Serializable):
         if self.platforms == '*': return True
         return self.platforms.find(platformID) != -1
 
-    def generateParameterList(self, rule, context = DECLARATION, checkSkipFirst = True):
+    def generateParameterList(self, rule, context = DECLARATION, checkSkipFirst = True, x = False):
         """Generate source code relating to a list of function parameters."""
         returnValue = ''
         endOfLine = ''
@@ -62,6 +63,8 @@ class Function(serializable.Serializable):
             i += 1
             if context == INVOCATION:
                 if checkSkipFirst and i == 1 and self.skipFirst: continue
+                if parameter.ignore : continue
+            elif context == VALUEOBJECT:
                 if parameter.ignore : continue
             returnValue += endOfLine + rule.apply(parameter)
             if i < self.ParameterCount: endOfLine = ',\n'

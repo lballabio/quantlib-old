@@ -103,11 +103,6 @@
 <libraryFunction>PiecewiseFlatForward</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='evaluationDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>evaluation date</description>
-    </Parameter>
     <Parameter name='settlementDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
@@ -122,6 +117,11 @@
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>day counter (e.g. Actual360)</description>
+    </Parameter>
+    <Parameter name='trigger' ignore='true'>
+      <type>any</type>
+      <tensorRank>scalar</tensorRank>
+      <description>dependency tracking trigger</description>
     </Parameter>
 </Parameters>
 </Constructor>

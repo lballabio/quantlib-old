@@ -42,8 +42,8 @@ class ValueObjects(addin.Addin):
     def generateHeader(self, fileHeader, func):
         """Generate class definition source for prototype of given constructor function."""
         if func.__class__ != function.Constructor: return
-        constructorDeclaration = func.generateParameterList(self.constructorDeclaration, function.DECLARATION)
-        memberDeclaration = func.generateParameterList(self.memberDeclaration, function.DECLARATION)
+        constructorDeclaration = func.generateParameterList(self.constructorDeclaration, function.VALUEOBJECT)
+        memberDeclaration = func.generateParameterList(self.memberDeclaration, function.VALUEOBJECT)
         fileHeader.write(self.bufferClassDecl.text % (func.name, func.name, constructorDeclaration, memberDeclaration.replace(',', ';')))
 
     def generateHeaders(self, category):
@@ -58,14 +58,15 @@ class ValueObjects(addin.Addin):
     def generateFunction(self, fileFunc, func):
         """Generate source code for function."""
         if func.__class__ != function.Constructor: return
-        propertyDeclaration = func.generateParameterList(self.propertyDeclaration, function.DECLARATION)
+        propertyDeclaration = func.generateParameterList(self.propertyDeclaration, function.VALUEOBJECT)
         propertyGet =''
         constructorInit = '\n' + ' '*8
         for par in func.Parameters:
+            if par.ignore: continue
             propertyGet += ValueObjects.PROP_GET_BODY % (par.name, par.name)
             constructorInit += ValueObjects.CONSTRUCTOR_INIT % (par.name, par.name)
         constructorInit = constructorInit[:-10]
-        constructorParList = func.generateParameterList(self.constructorDeclaration, function.DECLARATION)
+        constructorParList = func.generateParameterList(self.constructorDeclaration, function.VALUEOBJECT)
         fileFunc.write(self.bufferClassBody.text % 
             (func.name, propertyDeclaration, func.name, func.name, propertyGet, func.name, func.name, 
             constructorParList, constructorInit))

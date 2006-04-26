@@ -151,14 +151,11 @@ namespace QuantLibAddin {
 
     PiecewiseFlatForward::PiecewiseFlatForward(
             const boost::shared_ptr < InstanceName > &instanceName,
-            const long &evaluation,
             const long &settlement,
             const std::vector<std::string> &handlesRateHelper,
             const std::string &dayCounterID)  : YieldTermStructure(instanceName) {
 
         QuantLib::Date settlementDate(settlement);
-        QuantLib::Date evaluationDate(evaluation);
-        QuantLib::Settings::instance().evaluationDate() = evaluationDate;
 
         std::vector<boost::shared_ptr<QuantLib::RateHelper> > rateHelpersQL;
         std::vector<std::string>::const_iterator i;
