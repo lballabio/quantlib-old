@@ -132,7 +132,7 @@ namespace QuantLibAddin {
             const double &spread);
     };
 
-    std::vector < double > qlGetDfVector(
+    std::vector < double > qlGetDf(
         const std::string &yieldTermStructure,
         const std::vector < long >&DfDates,
         const bool &iPol);

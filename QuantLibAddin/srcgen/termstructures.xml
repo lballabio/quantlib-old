@@ -87,34 +87,6 @@
 </Parameters>
 </Constructor>
 
-<Member name='qlGetDf' getObject='true' libraryClass='YieldTermStructure'>
-<description>retrieve a discount factor at specified date</description>
-<libraryFunction>discount</libraryFunction>
-<functionCategory>QuantLib</functionCategory>
-<Parameters>
-    <Parameter name='DfDate' ql_type='QuantLib::Date'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>date</description>
-    </Parameter>
-    <Parameter name='iPol'>
-        <type>bool</type>
-        <tensorRank>scalar</tensorRank>
-        <description>Interpolate Flag</description>
-    </Parameter>
-    <Parameter name='trigger' ignore='true'>
-        <type>any</type>
-        <tensorRank>scalar</tensorRank>
-        <description>dep tracking trigger</description>
-    </Parameter>
-</Parameters>
-<ReturnValue>
-    <type>double</type>
-    <tensorRank>scalar</tensorRank>
-    <description>the discount factor</description>
-</ReturnValue>
-</Member>
-
 <Member name='qlLatestDate' getObject='true' libraryClass='DepositRateHelper'>
   <description>retrieve a RateHelper's latest date</description>
   <libraryFunction>latestDate</libraryFunction>
@@ -295,7 +267,7 @@
 </Parameters>
 </Constructor>
 
-<Procedure name='qlGetDfVector'>
+<Procedure name='qlGetDf'>
   <description>Return a vector of discount factors corresponding to a vector of dates for a given yield term structure</description>
   <functionCategory>QuantLib</functionCategory>
   <Parameters>
