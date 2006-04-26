@@ -1,6 +1,7 @@
 /*
  Copyright (C) 2006 Eric Ehlers
  Copyright (C) 2006 Marco Marchioro--StatPro Italia
+ Copyright (C) 2006 Katiuscia Manzoni
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -27,12 +28,24 @@
 
 #include <oh/objhandler.hpp>
 #include <ql/calendar.hpp>
+#include <ql/Functions/prices.hpp>
 
 namespace QuantLibAddin {
 
 /*! \group basic
     basic utility functions for QuantLibAddin
 */
+
+    /*! return the mid equivalent price, i.e. the mid if available,
+        or a suitable substitute if the proper mid is not available
+    */
+    inline double qlMidEquivalent(const double bid,
+                                  const double ask,
+                                  const double last,
+                                  const double close) {
+        return QuantLib::midEquivalent(bid, ask, last, close);
+    }    
+
 
     /*! return the advanced date over a given calendar
     */

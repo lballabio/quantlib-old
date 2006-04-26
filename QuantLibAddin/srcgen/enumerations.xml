@@ -2,6 +2,37 @@
 <Enumerations>
 
 <Enumeration>
+  <type>QuantLib::PriceType</type>
+  <constructor>true</constructor>
+  <EnumerationDefinitions>
+    <EnumerationDefinition>
+      <string>Bid</string>
+      <value>QuantLib::Bid</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Ask</string>
+      <value>QuantLib::Ask</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Last</string>
+      <value>QuantLib::Last</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Close</string>
+      <value>QuantLib::Close</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Mid</string>
+      <value>QuantLib::Mid</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>MidEquivalent</string>
+      <value>QuantLib::MidEquivalent</value>
+    </EnumerationDefinition>
+  </EnumerationDefinitions>
+</Enumeration>
+
+<Enumeration>
 <type>QuantLib::Average::Type</type>
 <constructor>true</constructor>
 <EnumerationDefinitions>

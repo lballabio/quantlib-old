@@ -3,10 +3,11 @@
 #endif
 
 #include <qla/typeregistry.hpp>
-#include <ql/Currencies/all.hpp>
 #include <ql/interestrate.hpp>
-#include <ql/DayCounters/all.hpp>
 #include <ql/Calendars/all.hpp>
+#include <ql/Currencies/all.hpp>
+#include <ql/DayCounters/all.hpp>
+#include <ql/Functions/prices.hpp>
 #include <ql/Instruments/asianoption.hpp>
 #include <ql/Instruments/barrieroption.hpp>
 #include <ql/Instruments/capfloor.hpp>

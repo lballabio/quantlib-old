@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="AddinExcelStatic"
 	ProjectGUID="{500BF553-58BF-491F-990A-777A6B47C16E}"
 	>
@@ -47,7 +47,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
+				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -145,7 +145,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
+				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -244,7 +244,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
+				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -341,7 +341,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
+				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
 				StringPooling="true"
 				RuntimeLibrary="2"

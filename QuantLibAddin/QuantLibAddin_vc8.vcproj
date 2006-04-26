@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="QuantLibAddin"
 	ProjectGUID="{CAB8330C-6424-4455-9285-3654587EF71F}"
 	>
@@ -42,7 +42,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -118,7 +118,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -193,7 +193,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -269,7 +269,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
+				AdditionalIncludeDirectories="./,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"

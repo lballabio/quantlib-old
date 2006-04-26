@@ -38,6 +38,7 @@
 #if QL_HEX_VERSION < 0x000313f0
     #error using an old version of QuantLib, please update.
 #endif
+#include <ql/Functions/qlfunctions.hpp>
 
 //! version string
 #ifdef _DEBUG

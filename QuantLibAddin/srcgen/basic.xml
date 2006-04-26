@@ -3,6 +3,39 @@
 <displayName>Basic</displayName>
 <Functions>
 
+<Procedure name='qlMidEquivalent' >
+  <description>returns the mid price if available, or a suitable substitute otherwise</description>
+  <functionCategory>QuantLib</functionCategory>
+  <Parameters>
+    <Parameter name='bid' default='0'>
+      <type>double</type>
+      <tensorRank>scalar</tensorRank>
+      <description>bid price</description>
+    </Parameter>
+    <Parameter name='ask' default='0'>
+      <type>double</type>
+      <tensorRank>scalar</tensorRank>
+      <description>ask price</description>
+    </Parameter>
+    <Parameter name='last' default='0'>
+      <type>double</type>
+      <tensorRank>scalar</tensorRank>
+      <description>last price</description>
+    </Parameter>
+    <Parameter name='close' default='0'>
+      <type>double</type>
+      <tensorRank>scalar</tensorRank>
+      <description>close price</description>
+    </Parameter>
+  </Parameters>
+  <ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>mid (equivalent) price</description>
+  </ReturnValue>
+</Procedure>
+
+ 
 <Procedure name='qlAdvanceCalendar' >
 <description>advances the given calendar</description>
 <functionCategory>QuantLib</functionCategory>
