@@ -61,16 +61,24 @@ FunctionCall *FunctionCall::instance_ = 0;
     }
 
     void FunctionCall::clearCell() {
-
+        
         // XLOPERs which might need freeing in the event of an exception
 
         XLOPER xOldName;
+        XLOPER xValue;
 
         try {
 
-            const XLOPER *xReftext = getCallerAddress();
+            // exit if calling cell is #VALUE
+
+            const XLOPER *xCaller = getCallerReference();
+            Excel(xlfGetCell, &xValue, 2, TempNum(5), xCaller);
+            if (xValue.xltype & xltypeErr) return;
+            Excel(xlFree, 0, 1, &xOldName);
 
             // get name if any
+
+            const XLOPER *xReftext = getCallerAddress();
 
             Excel(xlfGetDef, &xOldName, 1, xReftext);
 
@@ -79,15 +87,15 @@ FunctionCall *FunctionCall::instance_ = 0;
             if (xOldName.xltype == xltypeStr) {
                 std::string oldKey;
                 operToScalar(oldKey, xOldName);
-                Excel(xlFree, 0, 1, &xOldName);
                 ObjectHandler::instance().deleteKey(oldKey);
             }
+            Excel(xlFree, 0, 1, &xOldName);
 
         } catch (const std::exception &e) {
 
             // free any memory that may have been allocated
 
-            Excel(xlFree, 0, 1, &xOldName);
+            Excel(xlFree, 0, 2, &xOldName, &xValue);
 
             // propagate the exception
 
