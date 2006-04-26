@@ -29,15 +29,21 @@
 </ReturnValue>
 </Procedure>
 
-<Procedure name='ohHandleList'>
-<description>list of handles in repository</description>
+<Procedure name='ohListInstanceNames'>
+<description>list instance names of objects in repository</description>
 <platforms>CGO</platforms>
-<alias>ObjHandler::ObjectHandler::instance().handleList</alias>
-<Parameters/>
+<alias>ObjHandler::ObjectHandler::instance().listInstanceNames</alias>
+<Parameters>
+  <Parameter name='regex'>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>optional matching pattern in UNIX format (wildcard is .*)</description>
+  </Parameter>
+</Parameters>
 <ReturnValue>
     <type>string</type>
     <tensorRank>vector</tensorRank>
-    <description>handle list</description>
+    <description>list of instance names matching regex</description>
 </ReturnValue>
 </Procedure>
 

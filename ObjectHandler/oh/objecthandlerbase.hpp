@@ -75,7 +75,7 @@ namespace ObjHandler {
         //! List handles of all Objects in repository.
         /*! Returns empty list if repository is empty.
         */
-        virtual const std::vector < std::string > handleList();
+        virtual const std::vector < std::string > listInstanceNames(const std::string regex = "");
         //@}
         virtual ~ObjectHandlerBase() {}
     protected:

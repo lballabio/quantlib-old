@@ -41,16 +41,17 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x19""#/objects in repository  "));// function description
 
-    Excel(xlfRegister, 0, 10, &xDll,
-        TempStrNoSize("\x0C""ohHandleList"),    // function code name
-        TempStrNoSize("\x01""R"),               // parameter codes
-        TempStrNoSize("\x0C""ohHandleList"),    // function display name
-        TempStrNoSize("\x00"""),                // comma-delimited list of parameters
+    Excel(xlfRegister, 0, 11, &xDll,
+        TempStrNoSize("\x13""ohListInstanceNames"), // function code name
+        TempStrNoSize("\x02""RC"),              // parameter codes
+        TempStrNoSize("\x13""ohListInstanceNames"), // function display name
+        TempStrNoSize("\x05""regex"),           // comma-delimited list of parameters
         TempStrNoSize("\x01""1"),               // function type (1 = worksheet function)
         TempStrNoSize("\x0D""ObjectHandler"),   // function category
         TempStrNoSize("\x00"""),                // shortcut text (command macros only)
         TempStrNoSize("\x00"""),                // path to help file
-        TempStrNoSize("\x1C""list of all object handles  "));// function description
+        TempStrNoSize("\x2C""list instance names of objects in repository"), // function description
+        TempStrNoSize("\x3B""optional matching pattern in UNIX format (wildcard is .*)  "));// description of parameter 1
 
     Excel(xlfRegister, 0, 11, &xDll,
         TempStrNoSize("\x0F""ohPropertyNames"), // function code name

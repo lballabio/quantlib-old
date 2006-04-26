@@ -23,6 +23,7 @@
 #include <oh/exception.hpp>
 #include <ostream>
 #include <sstream>
+#include <boost/regex.hpp>
 
 namespace ObjHandler {
 
@@ -64,12 +65,17 @@ namespace ObjHandler {
         return objectList_.size();
     }
 
-    const std::vector < std::string > ObjectHandlerBase::handleList() {
-        std::vector < std::string > handleList;
-        for (ObjectList::const_iterator i=objectList_.begin();
-            i!=objectList_.end(); i++)
-            handleList.push_back(i->first);
-        return handleList;
+    const std::vector < std::string > ObjectHandlerBase::listInstanceNames(const std::string regex) {
+        std::vector < std::string > instanceNames;
+        if (regex.empty()) {
+            for (ObjectList::const_iterator i=objectList_.begin(); i!=objectList_.end(); i++)
+                instanceNames.push_back(i->first);
+        } else {
+            boost::regex r(regex);
+            for (ObjectList::const_iterator i=objectList_.begin(); i!=objectList_.end(); i++)
+                if (regex_match(i->first, r)) instanceNames.push_back(i->first);
+        }
+        return instanceNames;
     }
 }
 

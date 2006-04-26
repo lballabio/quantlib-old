@@ -20,7 +20,7 @@
 
 #pragma comment (linker, "/export:_ohVersion")
 #pragma comment (linker, "/export:_ohObjectCount")
-#pragma comment (linker, "/export:_ohHandleList")
+#pragma comment (linker, "/export:_ohListInstanceNames")
 #pragma comment (linker, "/export:_ohPropertyNames")
 #pragma comment (linker, "/export:_ohPropertyValue")
 #pragma comment (linker, "/export:_ohDeleteObject")

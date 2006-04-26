@@ -44,14 +44,15 @@ extern "C" long* ohObjectCount() {
     }
 }
 
-extern "C" XLOPER* ohHandleList() {
+extern "C" XLOPER* ohListInstanceNames(
+        char *regex) {
     try {
         static XLOPER ret;
-        std::vector < std::string > handleList = ObjectHandler::instance().handleList();
-        vectorToXloper(ret, handleList);
+        std::vector < std::string > instanceNames = ObjectHandler::instance().listInstanceNames(regex);
+        vectorToXloper(ret, instanceNames);
         return &ret;
     } catch (const std::exception &e) {
-        logMessage(std::string("ERROR: ohHandleList: ") + e.what(), 2);
+        logMessage(std::string("ERROR: ohListInstanceNames: ") + e.what(), 2);
         return 0;
     }
 }
