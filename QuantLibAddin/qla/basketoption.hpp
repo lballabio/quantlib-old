@@ -37,6 +37,7 @@ namespace QuantLibAddin {
     class BasketOption : public Instrument {
     public:
         BasketOption(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &handleBlackScholes,
             const std::string &basketID,
             const std::string &optionTypeID,

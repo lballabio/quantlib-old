@@ -32,6 +32,7 @@
 namespace QuantLibAddin {
     class Instrument : public ObjHandler::Object {
     public:
+        Instrument(const boost::shared_ptr < InstanceName > &instanceName) : ObjHandler::Object(instanceName) {}
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(mInstrument);
         }
@@ -46,11 +47,13 @@ namespace QuantLibAddin {
 
     class Bond : public Instrument {
     public:
+        Bond(const boost::shared_ptr < InstanceName > &instanceName) : Instrument(instanceName) {}
         EXPORT_QL_OBJECT(QuantLib::Bond)
     };
 
     class OneAssetOption : public Instrument {
     public:
+        OneAssetOption(const boost::shared_ptr < InstanceName > &instanceName) : Instrument(instanceName) {}
         EXPORT_QL_OBJECT(QuantLib::OneAssetOption)
     };
 }

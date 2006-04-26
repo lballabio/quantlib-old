@@ -33,13 +33,11 @@ namespace ObjHandler {
     /*! A boost shared pointer to an Object.
     */
     typedef boost::shared_ptr<Object> obj_ptr;
-
     //! Object list
     /*! A map of string/obj_ptr pairs representing all of the Objects
         maintained in the ObjectHandler.
     */
     typedef std::map<std::string, obj_ptr> ObjectList;
-
     //! Global Object repository.
     /*! Maintains a repository of Objects.  Objects may be 
         created/amended/destroyed by the client application.
@@ -51,16 +49,15 @@ namespace ObjHandler {
         //! Store Object with given handle.
         /*! Any existing Object with that handle is deleted.
         */
-        virtual const std::string storeObject(const std::string &handle,
-            const obj_ptr &object);
+        virtual std::string storeObject(const obj_ptr &object);
         //! Retrieve Object with given handle.
         /*! Throws exception if no Object exists with that handle.
         */
-        virtual obj_ptr retrieveObject(const std::string &handle) const;
+        virtual obj_ptr retrieveObject(const std::string &fullName) const;
         //! Delete Object with given handle.
         /*! Does nothing if no Object exists with that handle.
         */
-        virtual void deleteObject(const std::string &handle);
+        virtual void deleteObject(const std::string &fullName);
         //! Delete all Objects in repository.
         /*! Does nothing if repository is already empty.
         */

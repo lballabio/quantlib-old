@@ -1,5 +1,9 @@
 
 EXTRA_DIST = \
+    instancenamexl.cpp \
+    instancenamexl.hpp \
+    functioncall.cpp \
+    functioncall.hpp \
     conversions.cpp \
     conversions.hpp \
     export.hpp \

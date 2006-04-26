@@ -25,6 +25,7 @@ namespace QuantLibAddin {
 
     class Exercise : public ObjHandler::Object {
     public:
+        Exercise(const boost::shared_ptr < InstanceName > &instanceName) : ObjHandler::Object(instanceName) {}
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(exercise_);
         }
@@ -38,6 +39,7 @@ namespace QuantLibAddin {
     class AmericanExercise : public Exercise {
     public:
         AmericanExercise(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const long &earliestDate,
             const long &latestDate,
             const bool &payoffAtExpiry);
@@ -46,12 +48,14 @@ namespace QuantLibAddin {
     class EuropeanExercise : public Exercise {
     public:
         EuropeanExercise(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const long &expiryDate);
     };
 
     class BermudanExercise : public Exercise {
     public:
         BermudanExercise(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::vector < long > &dates,
             const bool &payoffAtExpiry);
     };

@@ -33,18 +33,18 @@ namespace QuantLibAddin {
     }
 
 
-    MersenneTwisterRsg::MersenneTwisterRsg(long dimension, long seed)
-        : PseudoRandomSequenceGenerator<urng_type>(dimension, urng_type(seed)) { }
+    MersenneTwisterRsg::MersenneTwisterRsg(const boost::shared_ptr < InstanceName > &instanceName,long dimension, long seed)
+        : PseudoRandomSequenceGenerator<urng_type>(instanceName, dimension, urng_type(seed))  { }
 
     // QuantLib::FaureRsg does not work for dimension = 0
-    FaureRsg::FaureRsg(long dimension)
-        : LowDiscrepancySequenceGenerator<rsg_type>(rsg_type(dimension)) { }
+    FaureRsg::FaureRsg(const boost::shared_ptr < InstanceName > &instanceName,long dimension)
+        : LowDiscrepancySequenceGenerator<rsg_type>(instanceName, rsg_type(dimension))  { }
 
-    HaltonRsg::HaltonRsg(long dimension, long seed)
-        : LowDiscrepancySequenceGenerator<rsg_type>(rsg_type(dimension, seed)) { }
+    HaltonRsg::HaltonRsg(const boost::shared_ptr < InstanceName > &instanceName,long dimension, long seed)
+        : LowDiscrepancySequenceGenerator<rsg_type>(instanceName, rsg_type(dimension, seed))  { }
 
-    SobolRsg::SobolRsg(long dimension, long seed)
-        : LowDiscrepancySequenceGenerator<rsg_type>(rsg_type(dimension, seed)) { }
+    SobolRsg::SobolRsg(const boost::shared_ptr < InstanceName > &instanceName,long dimension, long seed)
+        : LowDiscrepancySequenceGenerator<rsg_type>(instanceName, rsg_type(dimension, seed))  { }
 
 }
 

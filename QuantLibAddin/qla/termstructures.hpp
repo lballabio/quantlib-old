@@ -38,6 +38,7 @@ namespace QuantLibAddin {
 
     class RateHelper : public ObjHandler::Object {
       public:
+        RateHelper(const boost::shared_ptr < InstanceName > &instanceName) : ObjHandler::Object(instanceName) {}
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(rateHelper_);
         }
@@ -54,6 +55,7 @@ namespace QuantLibAddin {
     class DepositRateHelper : public RateHelper {
       public:
         DepositRateHelper(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const double &quote,
             const long &maturity,
             const std::string &timeUnitsID,
@@ -69,6 +71,7 @@ namespace QuantLibAddin {
     class SwapRateHelper : public RateHelper {
       public:
         SwapRateHelper(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const double &quote,
             const long &maturity,
             const std::string &timeUnitsID,
@@ -85,6 +88,7 @@ namespace QuantLibAddin {
     class FutureRateHelper : public RateHelper {
       public:
         FutureRateHelper(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const double &price,
             const std::string &immDateID,
             const QuantLib::Integer &months,
@@ -96,6 +100,7 @@ namespace QuantLibAddin {
 
     class YieldTermStructure : public ObjHandler::Object {
       public:
+        YieldTermStructure(const boost::shared_ptr < InstanceName > &instanceName) : ObjHandler::Object(instanceName) {}
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(termStructure_);
         }
@@ -108,6 +113,7 @@ namespace QuantLibAddin {
     class PiecewiseFlatForward : public YieldTermStructure {
       public:
         PiecewiseFlatForward(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const long &evaluation,
             const long &settlement,
             const std::vector<std::string> &handlesRateHelper,
@@ -117,6 +123,7 @@ namespace QuantLibAddin {
     class ForwardCurve : public YieldTermStructure {
       public:
         ForwardCurve(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::vector < long > &dates,
             const std::vector < double > &forwards,
             const std::string &dayCounterID);
@@ -125,6 +132,7 @@ namespace QuantLibAddin {
     class ForwardSpreadedTermStructure : public YieldTermStructure {
       public:
         ForwardSpreadedTermStructure(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &baseTermStructure,
             const double &spread);
     };

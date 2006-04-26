@@ -94,13 +94,14 @@ namespace QuantLibAddin {
     };
     
     CubicSplineInterpolation::CubicSplineInterpolation(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const bool&        allowExtrapolation,
             const std::string& leftConditionTypeID,
             const double&      leftConditionValue,
             const std::string& rightConditionTypeID,
             const double&      rightConditionValue,
             const bool&        monotonicityConstraint)
-    : Interpolation(allowExtrapolation),
+    : Interpolation(instanceName, allowExtrapolation),
       leftConditionValue_(leftConditionValue), rightConditionValue_(rightConditionValue),
       monotonicityConstraint_(monotonicityConstraint) {
         

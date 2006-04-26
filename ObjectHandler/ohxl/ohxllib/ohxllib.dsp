@@ -253,6 +253,22 @@ SOURCE=..\..\oh\valueobject.hpp
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=..\functioncall.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\functioncall.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\instancename.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\instancename.hpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\conversions.cpp
 # End Source File
 # Begin Source File

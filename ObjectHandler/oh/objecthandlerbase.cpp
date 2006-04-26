@@ -26,25 +26,25 @@
 
 namespace ObjHandler {
 
-    const std::string ObjectHandlerBase::storeObject(const std::string &handle,
-                                    const obj_ptr &object) {
-        objectList_[handle] = object;
-        return handle;
+    std::string ObjectHandlerBase::storeObject(const obj_ptr &object) {
+        std::string fullName = object->getFullName();
+        objectList_[fullName] = object;
+        return fullName;
     }
 
-    obj_ptr ObjectHandlerBase::retrieveObject(const std::string &handle) const {
-        ObjectList::const_iterator result = objectList_.find(handle);
+    obj_ptr ObjectHandlerBase::retrieveObject(const std::string &fullName) const {
+        ObjectList::const_iterator result = objectList_.find(fullName);
         if (result == objectList_.end()) {
             std::ostringstream msg;
             msg << "ObjectHandler error: attempt to retrieve object "
-                << "with unknown handle '" << handle << "'";
+                << "with unknown instance name '" << fullName << "'";
             throw Exception(msg.str());
         } else
             return result->second;
     }
 
-    void ObjectHandlerBase::deleteObject(const std::string &handle) {
-        objectList_.erase(handle);
+    void ObjectHandlerBase::deleteObject(const std::string &fullName) {
+        objectList_.erase(fullName);
     }
 
     void ObjectHandlerBase::deleteAllObjects() {

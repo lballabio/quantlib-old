@@ -295,6 +295,54 @@
 			Name="xl"
 			Filter="">
 			<File
+				RelativePath="..\functioncall.cpp">
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\functioncall.hpp">
+			</File>
+			<File
+				RelativePath="..\instancenamexl.cpp">
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\instancenamexl.hpp">
+			</File>
+			<File
 				RelativePath="..\conversions.cpp">
 				<FileConfiguration
 					Name="Debug CRTDLL|Win32">

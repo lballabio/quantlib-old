@@ -38,13 +38,14 @@ namespace QuantLibAddin {
 
 
     DepositRateHelper::DepositRateHelper(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const double &quote,
             const long &maturity,
             const std::string &timeUnitsID,
             const long &fixingDays,
             const std::string &calendarID,
             const std::string &conventionID,
-            const std::string &dayCounterID) {
+            const std::string &dayCounterID)  : RateHelper(instanceName) {
 
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
         quoteHandle_.linkTo(quote_);
@@ -69,6 +70,7 @@ namespace QuantLibAddin {
     }
 
     SwapRateHelper::SwapRateHelper(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const double &quote,
             const long &maturity,
             const std::string &timeUnitsID,
@@ -79,7 +81,7 @@ namespace QuantLibAddin {
             const std::string &fixedDayCounterID,
             const std::string &floatingFrequencyID,
             const std::string &floatingConventionID,
-            const std::string &floatingDayCounterID) {
+            const std::string &floatingDayCounterID)  : RateHelper(instanceName) {
 
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
         quoteHandle_.linkTo(quote_);
@@ -116,13 +118,14 @@ namespace QuantLibAddin {
     }
 
     FutureRateHelper::FutureRateHelper(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const double &price,
             const std::string &immDateID,
             const QuantLib::Integer &months,
             const std::string &dayCounterID,
             const std::string &bDayConventionID,
             const std::string &calendarID,
-            const QuantLib::Integer &decade) {
+            const QuantLib::Integer &decade)  : RateHelper(instanceName) {
 
         QuantLib::DayCounter dayCounter =
             Create<QuantLib::DayCounter>()(dayCounterID);
@@ -147,10 +150,11 @@ namespace QuantLibAddin {
     
 
     PiecewiseFlatForward::PiecewiseFlatForward(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const long &evaluation,
             const long &settlement,
             const std::vector<std::string> &handlesRateHelper,
-            const std::string &dayCounterID) {
+            const std::string &dayCounterID)  : YieldTermStructure(instanceName) {
 
         QuantLib::Date settlementDate(settlement);
         QuantLib::Date evaluationDate(evaluation);
@@ -173,9 +177,10 @@ namespace QuantLibAddin {
     }
 
     ForwardCurve::ForwardCurve(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::vector < long > &dates,
             const std::vector < double > &forwards,
-            const std::string &dayCounterID){
+            const std::string &dayCounterID) : YieldTermStructure(instanceName) {
 
         QuantLib::Settings::instance().evaluationDate() = QuantLib::Date(dates[0]);
 
@@ -193,8 +198,9 @@ namespace QuantLibAddin {
 
 
     ForwardSpreadedTermStructure::ForwardSpreadedTermStructure(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &baseTermStructure,
-            const double &spread){
+            const double &spread) : YieldTermStructure(instanceName) {
 
         QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;
 

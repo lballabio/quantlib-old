@@ -26,6 +26,7 @@ namespace QuantLibAddin {
     class Xibor : public ObjHandler::Object {
     public:
         Xibor(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &indexName,
             const std::string &crrID,
             const long &tenor,

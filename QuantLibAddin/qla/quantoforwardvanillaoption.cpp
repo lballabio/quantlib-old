@@ -32,6 +32,7 @@
 namespace QuantLibAddin {
 
     QuantoForwardVanillaOption::QuantoForwardVanillaOption(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &handleTermStructure,
             const std::string &handleBlackVol,
             const double &correlation,
@@ -43,7 +44,7 @@ namespace QuantLibAddin {
             const double &strike,
             const std::string &handleExercise,
             const std::string &engineID,
-            const long &timeSteps) {
+            const long &timeSteps)  : OneAssetOption(instanceName) {
 
         OH_GET_REFERENCE(termStructure, handleTermStructure, 
             YieldTermStructure, QuantLib::YieldTermStructure)

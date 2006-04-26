@@ -30,12 +30,13 @@
 namespace QuantLibAddin {
 
     GeneralizedBlackScholesProcess::GeneralizedBlackScholesProcess(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &handleBlackVol,
             const double &underlying,
             const std::string &dayCounterID,
             const long &settlementDateLong,
             const double &riskFreeRate,
-            const double &dividendYield) {
+            const double &dividendYield)  : ObjHandler::Object(instanceName) {
 
         QuantLib::Date settlementDate(settlementDateLong);
         QuantLib::DayCounter dayCounter =

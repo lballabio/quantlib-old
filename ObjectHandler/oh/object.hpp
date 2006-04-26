@@ -39,12 +39,39 @@
 #endif
 
 namespace ObjHandler {
-    //! ABC implementing interface for Objects to be stored in the ObjectHandler.
-    /*! Objects are constructed via the Factory function makeObject
-        and stored in the global ObjectHandler repository.
+    //! Interface for Objects to be stored in the ObjectHandler.
+    /*! Objects are constructed by the client and passed to
+        ObjHandler::storeObject() for storage in the repository.
     */
     class Object {        
     public:
+        //! Processing for the identifier for this Object.
+        /*! This base class is empty and may be overridden
+            to provide platform-specific behavior.
+        */
+        class InstanceName {
+        public:
+            InstanceName(const std::string &fullName) : fullName_(fullName) {}
+            virtual ~InstanceName() {}
+            const std::string &getStubName() {
+                return stubName_;
+            }
+            const std::string &getFullName() {
+                return fullName_;
+            }
+            const std::string &getKey() {
+                return key_;
+            }
+            virtual bool isValid() {
+                return true;
+            }
+        protected:
+            InstanceName() {}
+            std::string stubName_;
+            std::string fullName_;
+            std::string key_;
+        };
+
         //! \name Constructors & Destructors
         //@{
         //! Default constructor.
@@ -52,7 +79,8 @@ namespace ObjHandler {
             To store the resulting Object in the ObjectHandler, call
                 ObjectHandler::instance().storeObject(handle, object);
         */
-        Object() {};
+        Object(const boost::shared_ptr< InstanceName > &instanceName) 
+            : instanceName_(instanceName) {};
         //! Default destructor.
         virtual ~Object() {};
         //@}
@@ -71,17 +99,29 @@ namespace ObjHandler {
         /*! Throws exception if Object has no property by that name.
         */
         boost::any propertyValue(const std::string &propertyName) const;
-
         friend std::ostream &operator<<(std::ostream&, const Object &object);
         //@}
+
         void setProperties(const boost::shared_ptr<ValueObject>& p) {
             mProps = p;
         }
-
+        const std::string &getStubName() {
+            return instanceName_->getStubName();
+        }
+        const std::string &getFullName() {
+            return instanceName_->getFullName();
+        }
+        const std::string &getKey() {
+            return instanceName_->getKey();
+        }
+        bool isValid() {
+            return instanceName_->isValid();
+        }
     private:
         boost::shared_ptr<ValueObject> mProps;
         Object& operator= (const Object&);
         Object(const Object&);
+        boost::shared_ptr< InstanceName > instanceName_;
     };
 
     template < typename T >

@@ -27,6 +27,7 @@ namespace QuantLibAddin {
     class FixedCouponBond : public Bond {
     public:
         FixedCouponBond(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const long &issueDate,
             const long &datedDate,
             const long &maturityDate,

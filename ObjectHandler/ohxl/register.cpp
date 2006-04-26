@@ -121,7 +121,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x19""dummy parameter (ignored)"),// description param 7
         TempStrNoSize("\x19""dummy parameter (ignored)"),// description param 8
         TempStrNoSize("\x1B""dummy parameter (ignored)  "));// description param 9
-
+/*
     Excel(xlfRegister, 0, 10, &xDll,
         TempStrNoSize("\x0E""ohGetGcEnabled"),  // function code name
         TempStrNoSize("\x01""L"),               // parameter codes
@@ -144,7 +144,7 @@ void ohRegisterFunctions(const XLOPER &xDll) {
         TempStrNoSize("\x00"""),                // path to help file
         TempStrNoSize("\x32""set value of ObjectHandler garbage collection flag"),// function description
         TempStrNoSize("\x21""true (enable) / false (disable)  "));// description param 0
-
+*/
     Excel(xlfRegister, 0, 10, &xDll,
         TempStrNoSize("\x08""ohCallGC"),        // function code name
         TempStrNoSize("\x02""L#"),              // parameter codes

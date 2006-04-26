@@ -26,11 +26,10 @@
 
 namespace ObjHandler {
 
-    DLL_API const std::string storeObject(
-            const std::string &handle,
+    DLL_API std::string storeObject(
             const obj_ptr &object) {
-        const std::string ret = 
-            ObjectHandler::instance().storeObject(handle, object);
+        std::string ret = 
+            ObjectHandler::instance().storeObject(object);
         return ret;
     }
 
@@ -39,7 +38,7 @@ namespace ObjHandler {
         return ObjectHandler::instance().retrieveObject(handle);
     }
 
-    const std::string version() {
+    std::string version() {
         return OBJHANDLER_VERSION;
     }
 

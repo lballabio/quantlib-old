@@ -26,7 +26,8 @@ namespace QuantLibAddin {
 
     class CliquetOption : public OneAssetOption {
     public:
-        CliquetOption::CliquetOption(
+        CliquetOption(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &handleBlackScholes,
             const std::string &optionTypeID,
             const double &strike,

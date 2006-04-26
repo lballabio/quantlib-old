@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="ohxll"
 	ProjectGUID="{04D7369F-47BC-46B0-A374-41635A9656D8}"
 	>
@@ -78,7 +78,7 @@
 				OutputFile="xll\ObjectHandler-vc80-mt-gd-0_1_4.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\xlsdk\lib,$(LOG4CXX_DIR)\msvc\Lib"
+				AdditionalLibraryDirectories="..\lib,..\xlsdk\lib,$(LOG4CXX_DIR)\msvc\Lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\xll/ObjectHandler-vc80-mt-gd-0_1_4.pdb"
 				ImportLibrary=".\xll/ObjectHandler-vc80-mt-gd-0_1_4.lib"
@@ -404,6 +404,32 @@
 				>
 			</File>
 			<File
+				RelativePath="..\functioncall.cpp"
+				>
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\functioncall.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\functions.cpp"
 				>
 				<FileConfiguration
@@ -424,6 +450,32 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\instancenamexl.cpp"
+				>
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\instancenamexl.hpp"
+				>
 			</File>
 			<File
 				RelativePath="..\objecthandlerxl.cpp"

@@ -79,7 +79,7 @@ class AddinExcel(addin.Addin):
         functionValueObject = func.generateVO(self)
         functionReturnCommand = self.generateReturnCommand(func.returnValue)
         fileFunc.write(self.bufferFunction.text %
-            (functionReturnType, func.name, functionDeclaration, conversions, 
+            (functionReturnType, func.name, functionDeclaration, func.functionCall, conversions, 
             functionBody, functionValueObject, functionReturnCommand, func.name))
 
     def generateReturnCommand(self, returnValue):

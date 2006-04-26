@@ -28,6 +28,7 @@ namespace QuantLibAddin {
 
     class RandomSequenceGenerator : public ObjHandler::Object {
       public:
+        RandomSequenceGenerator(const boost::shared_ptr < InstanceName > &instanceName) : ObjHandler::Object(instanceName) {}
         std::vector<std::vector<double> > variates(long samples);
 
         virtual std::vector<double> nextSequence() const = 0;
@@ -42,8 +43,9 @@ namespace QuantLibAddin {
     template <class URNG>
     class PseudoRandomSequenceGenerator : public RandomSequenceGenerator {
       public:
-        PseudoRandomSequenceGenerator(long dimension, const URNG& urng)
-      : ursg_(QuantLib::RandomSequenceGenerator<URNG>(dimension, urng)) { }
+        PseudoRandomSequenceGenerator(const boost::shared_ptr < InstanceName > &instanceName,long dimension, const URNG& urng)
+      : RandomSequenceGenerator(instanceName), 
+      ursg_(QuantLib::RandomSequenceGenerator<URNG>(dimension, urng)) { }
 
         virtual std::vector<double> nextSequence() const {
             QuantLib::Array sample = ursg_.nextSequence().value;
@@ -64,7 +66,7 @@ namespace QuantLibAddin {
       public:
         typedef QuantLib::MersenneTwisterUniformRng urng_type;
 
-        MersenneTwisterRsg(long dimension, long seed);
+        MersenneTwisterRsg(const boost::shared_ptr < InstanceName > &instanceName,long dimension, long seed);
     };
 
     // Low Discrepancy Sequences
@@ -72,7 +74,8 @@ namespace QuantLibAddin {
     template <class URSG>
     class LowDiscrepancySequenceGenerator : public RandomSequenceGenerator {
       public:
-        LowDiscrepancySequenceGenerator(const URSG& ursg) : ursg_(ursg) { }
+        LowDiscrepancySequenceGenerator(const boost::shared_ptr < InstanceName > &instanceName,const URSG& ursg) 
+            : RandomSequenceGenerator(instanceName), ursg_(ursg) { }
 
         virtual std::vector<double> nextSequence() const {
             QuantLib::Array sample = ursg_.nextSequence().value;
@@ -92,19 +95,19 @@ namespace QuantLibAddin {
     class FaureRsg : public LowDiscrepancySequenceGenerator<QuantLib::FaureRsg> {
       public:
         typedef QuantLib::FaureRsg rsg_type;
-        FaureRsg(long dimension);
+        FaureRsg(const boost::shared_ptr < InstanceName > &instanceName, long dimension);
     };
 
     class HaltonRsg : public LowDiscrepancySequenceGenerator<QuantLib::HaltonRsg> {
       public:
         typedef QuantLib::HaltonRsg rsg_type;
-        HaltonRsg(long dimension, long seed);
+        HaltonRsg(const boost::shared_ptr < InstanceName > &instanceName, long dimension, long seed);
     };
 
     class SobolRsg : public LowDiscrepancySequenceGenerator<QuantLib::SobolRsg> {
       public:
         typedef QuantLib::SobolRsg rsg_type;
-        SobolRsg(long dimension, long seed);
+        SobolRsg(const boost::shared_ptr < InstanceName > &instanceName, long dimension, long seed);
     };
 
 }

@@ -24,6 +24,7 @@
 namespace QuantLibAddin {
 
     Schedule::Schedule(
+        const boost::shared_ptr < InstanceName > &instanceName,
         const std::string   &calendarID,
         const long          &lStartDate,
         const long          &lEndDate,
@@ -31,7 +32,7 @@ namespace QuantLibAddin {
         const std::string   &conventionID,
      // const long          &lStubDate,
         const bool          &startFromEnd,
-        const bool          &longFinal) {
+        const bool          &longFinal)  : ObjHandler::Object(instanceName) {
         
         QuantLib::Date startDate (lStartDate);
         QuantLib::Date endDate   (lEndDate);

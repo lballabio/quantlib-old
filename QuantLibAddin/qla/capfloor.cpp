@@ -28,12 +28,13 @@
 namespace QuantLibAddin {
 
     CapFloor::CapFloor(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string&         couponVectorID,
             const std::string&         termStructureID,
             const std::vector<double>& capStrikes,
             const std::vector<double>& floorStrikes,
             const std::string&         engineID,
-            const std::string&         optionID) {
+            const std::string&         optionID)  : Instrument(instanceName) {
 
         OH_GET_REFERENCE(engine, engineID, 
             AnalyticCapFloorEngine, QuantLib::PricingEngine)
@@ -58,7 +59,8 @@ namespace QuantLibAddin {
     }
 
     AnalyticCapFloorEngine::AnalyticCapFloorEngine(
-            const std::string& handleModel) {
+            const boost::shared_ptr < InstanceName > &instanceName,
+            const std::string& handleModel)  : ObjHandler::Object(instanceName) {
 
         OH_GET_REFERENCE(model, handleModel, 
             AffineModel, QuantLib::AffineModel)

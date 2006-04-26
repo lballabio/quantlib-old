@@ -30,6 +30,7 @@
 namespace QuantLibAddin {
 
     FixedCouponBond::FixedCouponBond(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const long &issueDate,
             const long &datedDate,
             const long &maturityDate,
@@ -44,7 +45,7 @@ namespace QuantLibAddin {
             const std::string &calendarID,
             const bool &startFromEnd,
             const bool &longFinal,
-            const std::string &discCurveId) {
+            const std::string &discCurveId)  : Bond(instanceName) {
 
         QuantLib::Frequency couponFrequency = Create<QuantLib::Frequency>()(frequencyID);
         QuantLib::DayCounter dayCounter     = Create<QuantLib::DayCounter>()(dayCounterID);

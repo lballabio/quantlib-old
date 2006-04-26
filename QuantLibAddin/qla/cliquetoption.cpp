@@ -27,13 +27,14 @@
 namespace QuantLibAddin {
 
     CliquetOption::CliquetOption(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &handleBlackScholes,
             const std::string &optionTypeID,
             const double &strike,
             const long &expiryDate,
             const std::vector < long > &resetDates,
             const std::string &engineID,
-            const long &timeSteps) {
+            const long &timeSteps)  : OneAssetOption(instanceName) {
 
         OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
             GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)

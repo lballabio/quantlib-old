@@ -133,7 +133,7 @@ extern "C" short int* ohDependsOn(
         return 0;
     }
 }
-
+/*
 extern "C" short int* ohGetGcEnabled() {
     try {
         static short int ret;
@@ -155,7 +155,7 @@ extern "C" short int* ohSetGcEnabled(short int *newValue) {
         return 0;
     }
 }
-
+*/
 extern "C" short int* ohCallGC() {
     try {
         static short int ret = TRUE;

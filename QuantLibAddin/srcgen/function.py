@@ -36,6 +36,7 @@ class Function(serializable.Serializable):
     # Derived classes may override skipFirst to True to prevent the function's
     # first input parameter from being listed in generated source code.
     skipFirst = False
+    functionCall = ''
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
@@ -74,10 +75,14 @@ class Constructor(Function):
     skipFirst = True    # omit handle when calling object constructor
     returnValue = parameter.ConstructorReturnValue
     BODY = '''\
-        ObjHandler::obj_ptr objectPointer(new QuantLibAddin::%s(%s));
+        ObjHandler::obj_ptr objectPointer(new QuantLibAddin::%s(
+            boost::shared_ptr < ObjHandler::Object::InstanceName > (new ObjHandler::InstanceNameXL(instanceName)),%s));
 
         std::string returnValue =
-            ObjHandler::storeObject(%s, objectPointer);'''
+            ObjHandler::storeObject(objectPointer);'''
+    functionCall = '''\
+        ObjHandler::FunctionCall functionCall;
+        functionCall.clearCell();'''
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
@@ -101,7 +106,7 @@ class Constructor(Function):
         self.skipFirst = True
         libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION)
         handle = addin.stringConvert % self.Parameters[0].name
-        return self.BODY % (self.libraryFunction, libraryCall, handle)
+        return self.BODY % (self.libraryFunction, libraryCall)
 
     def generateVO(self, addin):
         for p in self.Parameters: p.ql_type= ''

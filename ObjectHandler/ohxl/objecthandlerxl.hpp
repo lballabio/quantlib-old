@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -35,38 +35,12 @@ namespace ObjHandler {
     */
     class ObjectHandlerXL : public ObjectHandlerBase {
     public:
-        //! \name storing / retrieving / deleting Objects
-        //@{
-        //! Store Object with given handle.
-        /*! Any existing Object with that handle
-            is deleted.
-        */
-        virtual const std::string storeObject(
-            const std::string &handleStub,
-            const obj_ptr &object);
-        //! Delete Object with given handle.
-        /*! Does nothing if no Object exists
-            with that handle.
-        */
-
-        virtual void deleteObject(const std::string &handle);
-        //! Delete all Objects in repository.
-        /*! Does nothing if repository
-            is already empty.
-        */
-        virtual void deleteAllObjects();
-        virtual void setGcEnabled(const bool &newValue);
-        virtual const bool &getGcEnabled();
+        virtual obj_ptr retrieveObject(const std::string &name) const;
         virtual void collectGarbage();
-        ObjectHandlerXL() : key_(0), gcEnabled_(true) {}
+        void deleteKey(const std::string &key);
     private:
-        int key_;
-        bool gcEnabled_;
-        const std::string getKey();
-        const std::string parseHandle(const std::string &handle);
-        void deleteName(const std::string &handle);
-        bool nameIsValid(const std::string &handle);
-        // ~ObjectHandlerXL() {}
+        bool nameIsFull(const std::string &name) const;
+        obj_ptr retrieveObjectNameStub(const std::string &nameStub) const;
     };
 
 }

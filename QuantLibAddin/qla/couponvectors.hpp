@@ -27,6 +27,7 @@ namespace QuantLibAddin {
     
     class CouponVector : public ObjHandler::Object {
       public:
+        CouponVector(const boost::shared_ptr < InstanceName > &instanceName) : ObjHandler::Object(instanceName) {}
         virtual boost::shared_ptr<void> getReference() const {
             return boost::shared_ptr<void>();
         }
@@ -46,6 +47,7 @@ namespace QuantLibAddin {
     class FixedRateCouponVector : public CouponVector {
       public:
         FixedRateCouponVector(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string         &scheduleID,
             const std::string         &conventionID,
             const std::vector<double> &nominals,
@@ -58,6 +60,7 @@ namespace QuantLibAddin {
     class FloatingRateCouponVector : public CouponVector {
       public:
         FloatingRateCouponVector(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string         &scheduleID,
             const std::vector<double> &nominals,
             const std::string         &indexID,

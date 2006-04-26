@@ -43,11 +43,12 @@ namespace QuantLibAddin {
     }
 
     FixedRateCouponVector::FixedRateCouponVector(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string         &scheduleID,
             const std::string         &conventionID,
             const std::vector<double> &nominals,
             const std::vector<double> &couponRates,
-            const std::string         &dayCountID) {
+            const std::string         &dayCountID)  : CouponVector(instanceName) {
 
         OH_GET_OBJECT(scheduleWrapper, scheduleID, Schedule)
         const QuantLib::Schedule& schedule = scheduleWrapper->getObject();
@@ -85,10 +86,11 @@ namespace QuantLibAddin {
     }
 
     FloatingRateCouponVector::FloatingRateCouponVector(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string         &scheduleID,
             const std::vector<double> &nominals,
             const std::string         &indexID,
-            const std::vector<double> &spreads) {
+            const std::vector<double> &spreads)  : CouponVector(instanceName) {
 
         OH_GET_OBJECT(scheduleWrapper, scheduleID, Schedule)
         const QuantLib::Schedule& schedule = scheduleWrapper->getObject();

@@ -30,6 +30,7 @@
 namespace QuantLibAddin {
 
     ZeroCouponBond::ZeroCouponBond(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const long &issueDate,
             const long &maturityDate,
             const long &settlementDays,
@@ -37,7 +38,7 @@ namespace QuantLibAddin {
             const std::string &calendarID,
             const std::string &conventionID,
             const double &redemption,
-            const std::string &handleZeroCurve) {
+            const std::string &handleZeroCurve)  : Bond(instanceName) {
 
         OH_GET_REFERENCE(zeroCurve, handleZeroCurve, 
             ZeroCurve, QuantLib::YieldTermStructure)

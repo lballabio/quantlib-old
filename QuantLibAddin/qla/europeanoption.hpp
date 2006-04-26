@@ -27,6 +27,7 @@ namespace QuantLibAddin {
     class EuropeanOption : public OneAssetOption {
     public:
         EuropeanOption(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &handleBlackScholes,
             const std::string &optionTypeID,
             const std::string &payoffID,

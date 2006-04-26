@@ -42,6 +42,7 @@ private:
 class AccountObject : public ObjHandler::Object {
 public:
     AccountObject(
+        const boost::shared_ptr < InstanceName > &instanceName,
         const int &accountNumber,
         const std::string &accountType);
     void setBalance(const int &balance);

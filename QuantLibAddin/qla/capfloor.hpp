@@ -27,6 +27,7 @@ namespace QuantLibAddin {
     class CapFloor : public Instrument {
       public:
         CapFloor(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string&         couponVectorID,
             const std::string&         termStructureID,
             const std::vector<double>& capStrikes,
@@ -41,6 +42,7 @@ namespace QuantLibAddin {
     class AnalyticCapFloorEngine : public ObjHandler::Object {
       public:
         AnalyticCapFloorEngine(
+            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string& handleModel);
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(engine_);

@@ -56,8 +56,7 @@ namespace ObjHandler {
     //! Store given Object in repository under given handle.
     /*! Any existing Objet with that handle is deleted.
     */
-    DLL_API const std::string storeObject(
-            const std::string &handleStub,
+    DLL_API std::string storeObject(
             const ObjHandler::obj_ptr &object);
 
     //! Retrieve named Object from repository.
@@ -67,7 +66,7 @@ namespace ObjHandler {
             const std::string &handle);
 
     //! Retrieve ObjectHandler version string
-    const std::string version();
+    std::string version();
 
     /** \name Logging framework
      *  These functions wrap calls to the Logger class

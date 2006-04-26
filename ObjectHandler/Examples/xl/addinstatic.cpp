@@ -21,6 +21,8 @@
 #include <ohxl/conversions.hpp>
 #include <ohxl/register.hpp>
 #include <ohxl/export.hpp>
+#include <ohxl/instancenamexl.hpp>
+#include <ohxl/functioncall.hpp>
 #include <sstream>
 
 DLLEXPORT int xlAutoOpen() {
@@ -73,11 +75,17 @@ DLLEXPORT char *createAccount(
         long *accountNumber,
         char *accountType) {
     try {
-        ObjHandler::obj_ptr objectPointer(new AccountObject(*accountNumber, accountType));
+        ObjHandler::FunctionCall functionCall;
+        ObjHandler::FunctionCall::instance().clearCell();
+
+        ObjHandler::obj_ptr objectPointer(new AccountObject(
+            boost::shared_ptr < ObjHandler::Object::InstanceName > (new ObjHandler::InstanceNameXL(instanceName)),
+            *accountNumber, 
+            accountType));
         objectPointer->setProperties(
             boost::shared_ptr<ObjHandler::ValueObject>(
             new AccountValueObject(instanceName, *accountNumber, accountType)));
-        const std::string returnValue = ObjHandler::storeObject(instanceName, objectPointer);
+        const std::string returnValue = ObjHandler::storeObject(objectPointer);
         static char ret[XL_MAX_STR_LEN];
         ObjHandler::stringToChar(ret, returnValue);
         return ret;

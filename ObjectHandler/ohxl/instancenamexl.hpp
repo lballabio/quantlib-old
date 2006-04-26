@@ -1,8 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
- Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2005 Aurelien Chanudet
+ Copyright (C) 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,26 +15,29 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_swap_hpp
-#define qla_swap_cpp
+/*! \file
+    \brief InstanceNameXL class
+*/
 
-#include <qla/baseinstruments.hpp>
-#include <ql/Instruments/swap.hpp>
+#ifndef oh_instancenamexl_hpp
+#define oh_instancenamexl_hpp
 
-namespace QuantLibAddin {
-    
-    class Swap : public Instrument {
-      public:
-        Swap(
-            const boost::shared_ptr < InstanceName > &instanceName,
-            const std::string &paidLegID,
-            const std::string &recvLegID,
-            const std::string &termStructureID);
-        
-        EXPORT_QL_OBJECT(QuantLib::Swap)
+#include <oh/object.hpp>
+
+namespace ObjHandler {
+    //! Excel specific behavior for Object instance names.
+    /*! Link to calling cell is automatically maintained.
+    */
+    class InstanceNameXL : public Object::InstanceName {
+    public:
+        InstanceNameXL(const std::string &stubName);
+        ~InstanceNameXL();
+        virtual bool isValid();
+    private:
+        static int keyCount_;
+        static std::string InstanceNameXL::getKeyCount();
     };
-    
+
 }
 
 #endif
-
