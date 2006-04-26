@@ -27,7 +27,7 @@ import filecmp
 
 HEADER = """// this file generated automatically by %s
 // editing this file manually is not recommended\n\n"""
-UPDATE_MSG = '        file %-35s - %s'
+UPDATE_MSG = '        file %-45s - %s'
 
 class OutputFile(object):
     """represent a file which gets overwritten only when its contents change."""
