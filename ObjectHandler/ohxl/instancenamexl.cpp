@@ -35,7 +35,7 @@ int InstanceNameXL::keyCount_ = 0;
 
     std::string InstanceNameXL::getKeyCount() {
         if (keyCount_ > KEY_MAX)
-            throw std::exception("InstanceNameXL::getKeyCount: max key value exceeded");
+            throw Exception("InstanceNameXL::getKeyCount: max key value exceeded");
         std::ostringstream s;
         s << '_' << std::setw(KEY_WIDTH) << std::setfill('0') << std::setbase(KEY_BASE) << keyCount_++;
         return s.str();

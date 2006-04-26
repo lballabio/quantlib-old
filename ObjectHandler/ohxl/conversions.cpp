@@ -16,6 +16,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#include <oh/exception.hpp>
 #include <ohxl/conversions.hpp>
 #include <sstream>
 
@@ -46,7 +47,7 @@ namespace ObjHandler {
         int len = __min(XL_MAX_STR_LEN, value.length());
         xString.val.str = new char[ len + 1 ];
         if (!xString.val.str) 
-            throw std::exception("stringToXloper: error calling new");
+            throw Exception("stringToXloper: error calling new");
         xString.xltype = xltypeStr | xlbitDLLFree;
         if (len)
             strncpy(xString.val.str + 1, value.c_str(), len);
@@ -159,7 +160,7 @@ namespace ObjHandler {
     DLL_API void operToScalar(long &ret, const OPER &xScalar, const long &defaultValue) {
         try {
             if (xScalar.xltype & xltypeErr)
-                throw std::exception("input value is #NULL (xltypeErr)");
+                throw Exception("input value is #NULL (xltypeErr)");
             if (xScalar.xltype & (xltypeMissing | xltypeNil))
                 ret = defaultValue;
             else if (xScalar.xltype == xltypeNum)
@@ -172,14 +173,14 @@ namespace ObjHandler {
         } catch (const std::exception &e) {
             std::ostringstream msg;
             msg << "operToScalar: " << e.what();
-            throw std::exception(msg.str().c_str());
+            throw Exception(msg.str().c_str());
         }
     }
 
     DLL_API void operToScalar(double &ret, const OPER &xScalar, const double &defaultValue) {
         try {
             if (xScalar.xltype & xltypeErr)
-                throw std::exception("input value is #NULL (xltypeErr)");
+                throw Exception("input value is #NULL (xltypeErr)");
             if (xScalar.xltype & (xltypeMissing | xltypeNil))
                 ret = defaultValue;
             else if (xScalar.xltype == xltypeNum)
@@ -192,14 +193,14 @@ namespace ObjHandler {
         } catch (const std::exception &e) {
             std::ostringstream msg;
             msg << "operToScalar: " << e.what();
-            throw std::exception(msg.str().c_str());
+            throw Exception(msg.str().c_str());
         }
     }
 
     DLL_API void operToScalar(bool &ret, const OPER &xScalar, const bool &defaultValue) {
         try {
             if (xScalar.xltype & xltypeErr)
-                throw std::exception("input value is #NULL (xltypeErr)");
+                throw Exception("input value is #NULL (xltypeErr)");
             if (xScalar.xltype & (xltypeMissing | xltypeNil))
                 ret = defaultValue;
             else if (xScalar.xltype == xltypeBool)
@@ -212,7 +213,7 @@ namespace ObjHandler {
         } catch (const std::exception &e) {
             std::ostringstream msg;
             msg << "operToScalar: " << e.what();
-            throw std::exception(msg.str().c_str());
+            throw Exception(msg.str().c_str());
         }
     }
 
@@ -221,7 +222,7 @@ namespace ObjHandler {
         bool needToFree = false;
         try {
             if (xScalar.xltype & xltypeErr)
-                throw std::exception("input value is #NULL (xltypeErr)");
+                throw Exception("input value is #NULL (xltypeErr)");
             if (xScalar.xltype & (xltypeMissing | xltypeNil)) {
                 ret = defaultValue;
                 return;
@@ -247,13 +248,13 @@ namespace ObjHandler {
                 Excel(xlFree, 0, 1, &xTemp);
             std::ostringstream msg;
             msg << "operToScalar: " << e.what();
-            throw std::exception(msg.str().c_str());
+            throw Exception(msg.str().c_str());
         }
     }
 
     DLL_API void operToScalar(boost::any &ret, const OPER &xScalar) {
         if (xScalar.xltype & xltypeErr)
-            throw std::exception("input value is #NULL (xltypeErr)");
+            throw Exception("input value is #NULL (xltypeErr)");
         if (xScalar.xltype & (xltypeMissing | xltypeNil))
             ret = boost::any();
         else if (xScalar.xltype == xltypeNum)
@@ -265,7 +266,7 @@ namespace ObjHandler {
             operToScalar(value, xScalar);
             ret = value;
         } else
-            throw std::exception("operToScalar: unexpected datatype");
+            throw Exception("operToScalar: unexpected datatype");
     }
 
 }
