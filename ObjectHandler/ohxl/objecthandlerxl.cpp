@@ -17,7 +17,6 @@
 
 #include <oh/exception.hpp>
 #include <ohxl/objecthandlerxl.hpp>
-//#include <ohxl/instancenamexl.hpp>
 #include <ohxl/conversions.hpp>
 #include <iostream>
 #include <iomanip>
@@ -25,7 +24,6 @@
 #include <cmath>
 #include <boost/regex.hpp>
 
-//const boost::regex NAME_REGEX(".*~(_[\\da-f]{5})");
 const boost::regex NAME_REGEX(".*~_[\\da-f]{5}");
 
 namespace ObjHandler {
