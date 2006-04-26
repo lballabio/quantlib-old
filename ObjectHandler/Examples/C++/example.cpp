@@ -37,17 +37,23 @@ int main() {
 
     try {
         // construct some objects and store them in the object handler
-        ObjHandler::obj_ptr accountObject1(new AccountObject(123456789, "savings"));
+        ObjHandler::obj_ptr accountObject1(new AccountObject(
+            boost::shared_ptr < ObjHandler::Object::InstanceName > (new ObjHandler::Object::InstanceName("account1")),
+            123456789, 
+            "savings"));
         accountObject1->setProperties(
             boost::shared_ptr<ObjHandler::ValueObject>(new AccountValueObject(
             "account1", 123456789, "savings")));
-        ObjHandler::storeObject("account1", accountObject1);
+        ObjHandler::storeObject(accountObject1);
 
-        ObjHandler::obj_ptr accountObject2(new AccountObject(987654321, "current"));
+        ObjHandler::obj_ptr accountObject2(new AccountObject(
+            boost::shared_ptr < ObjHandler::Object::InstanceName > (new ObjHandler::Object::InstanceName("account2")),
+            987654321, 
+            "current"));
         accountObject2->setProperties(
             boost::shared_ptr<ObjHandler::ValueObject>(new AccountValueObject(
             "account2", 987654321, "current")));
-        ObjHandler::storeObject("account2", accountObject2);
+        ObjHandler::storeObject(accountObject2);
 
         // high level interrogation
         ObjHandler::logMessage("high level interrogation - after constructor");

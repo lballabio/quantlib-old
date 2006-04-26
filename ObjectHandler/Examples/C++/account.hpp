@@ -24,8 +24,8 @@
 class Account {
 public:
     Account(const int &accountNumber,
-        const std::string &accountType,
-        const int &balance = 0)
+            const std::string &accountType,
+            const int &balance = 0)
         : accountNumber_(accountNumber), accountType_(accountType), balance_(balance) {}
     void setBalance(const int &balance) {
         balance_ = balance;
@@ -41,9 +41,9 @@ private:
 
 class AccountObject : public ObjHandler::Object {
 public:
-    AccountObject(
-        const int &accountNumber,
-        const std::string &accountType);
+    AccountObject(const boost::shared_ptr < ObjHandler::Object::InstanceName > &instanceName,            
+                  const int &accountNumber,
+                  const std::string &accountType);
     void setBalance(const int &balance);
     const int &getBalance();
     virtual boost::shared_ptr<void> getReference() const;

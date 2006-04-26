@@ -20,8 +20,9 @@
 #include <sstream>
 
 AccountObject::AccountObject(
+        const boost::shared_ptr < ObjHandler::Object::InstanceName > &instanceName,
         const int &accountNumber,
-        const std::string &accountType) {
+        const std::string &accountType) : ObjHandler::Object(instanceName) {
     account_ = boost::shared_ptr<Account>(new Account(accountNumber, accountType));
 }
 
