@@ -36,7 +36,8 @@ class Function(serializable.Serializable):
     # Derived classes may override skipFirst to True to prevent the function's
     # first input parameter from being listed in generated source code.
     skipFirst = False
-    functionCall = ''
+    functionCall = '''\
+        ObjHandler::FunctionCall functionCall;'''
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
@@ -82,7 +83,7 @@ class Constructor(Function):
             ObjHandler::storeObject(objectPointer);'''
     functionCall = '''\
         ObjHandler::FunctionCall functionCall;
-        functionCall.clearCell();\n'''
+        functionCall.clearCell();'''
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""

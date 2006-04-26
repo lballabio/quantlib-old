@@ -22,6 +22,7 @@
 #include <ql/Patterns/singleton.hpp>
 #include <ql/Utilities/strings.hpp>
 #include <ohxl/conversions.hpp>
+#include <ohxl/functioncall.hpp>
 #include <exception>
 #include <sstream>
 
@@ -29,49 +30,22 @@ namespace QuantLibAddin {
 
     void Session::setSessionId() {
 
-        // XLOPERs which might need freeing in the event of an exception
+        // get the name of the current book
 
-        XLOPER xCaller;
-        XLOPER xReftext;
+        const XLOPER *xReftext = ObjHandler::FunctionCall::instance().getCallerAddress();
+        std::string callerAddress;
+        ObjHandler::operToScalar(callerAddress, *xReftext);
+        std::string callerBook = bookFromAddress(callerAddress);
 
-        try {
+        // get session id from map, adding new entry if necessary
 
-            // obtain reference to calling cell
-
-            Excel(xlfCaller, &xCaller, 0);
-
-            // convert reference to full address
-
-            Excel(xlfReftext, &xReftext, 1, &xCaller);
-
-            // get the name of the current book
-
-            std::string callerAddress;
-            ObjHandler::operToScalar(callerAddress, xReftext);
-            std::string callerBook = bookFromAddress(callerAddress);
-
-            // get session id from map, adding new entry if necessary
-
-            std::map < std::string, QuantLib::Integer >::const_iterator result;
-            result = sessionMap_.find(callerBook);
-            if (result == sessionMap_.end()) {
-                sessionMap_[callerBook] = ++sessionIdFountain_;
-                sessionId_ = sessionIdFountain_;
-            } else {
-                sessionId_ = result->second;
-            }
-
-        } catch (const std::exception &e) {
-
-            // free any memory that may have been allocated
-
-            Excel(xlFree, 0, 2, &xCaller, &xReftext);
-
-            // propagate the exception
-
-            std::ostringstream err;
-            err << "QuantLibAddin::Session::setSessionId: " << e.what();
-            throw std::exception(err.str().c_str());
+        std::map < std::string, QuantLib::Integer >::const_iterator result;
+        result = sessionMap_.find(callerBook);
+        if (result == sessionMap_.end()) {
+            sessionMap_[callerBook] = ++sessionIdFountain_;
+            sessionId_ = sessionIdFountain_;
+        } else {
+            sessionId_ = result->second;
         }
 
     }
