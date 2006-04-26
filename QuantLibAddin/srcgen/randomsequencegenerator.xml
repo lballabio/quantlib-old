@@ -73,7 +73,7 @@
 </Constructor>
 
 <Constructor name='qlSobolRsg'>
-<libraryFunction>HaltonRsg</libraryFunction>
+<libraryFunction>SobolRsg</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
     <Parameter name='dimension'>
