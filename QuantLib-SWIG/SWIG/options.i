@@ -68,8 +68,8 @@ class Payoff {
 setMethod("summary", "_p_VanillaOptionPtr",
 function(object) {object$freeze()
 ans <- c(value=object$NPV(), delta=object$delta(),
-gamma=object$gamma(), vega=object$vega(), 
-theta=object$theta(), rho=object$rho(), 
+gamma=object$gamma(), vega=object$vega(),
+theta=object$theta(), rho=object$rho(),
 divRho=object$dividendRho())
 object$unfreeze()
 ans
@@ -78,8 +78,8 @@ ans
 setMethod("summary", "_p_DividendVanillaOptionPtr",
 function(object) {object$freeze()
 ans <- c(value=object$NPV(), delta=object$delta(),
-gamma=object$gamma(), vega=object$vega(), 
-theta=object$theta(), rho=object$rho(), 
+gamma=object$gamma(), vega=object$vega(),
+theta=object$theta(), rho=object$rho(),
 divRho=object$dividendRho())
 object$unfreeze()
 ans
@@ -125,6 +125,10 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
         }
         Real theta() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)->theta();
+        }
+        Real thetaPerDay() {
+            return boost::dynamic_pointer_cast<VanillaOption>(*self)
+                ->thetaPerDay();
         }
         Real vega() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)->vega();
