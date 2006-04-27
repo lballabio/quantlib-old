@@ -110,7 +110,7 @@
 </ReturnValue>
 </Procedure>
 
-<Procedure name='qlGetEvalDate'>
+<Procedure name='qlEvaluationDate'>
 <description>returns the current value of the Evaluation Date</description>
 <functionCategory>QuantLib</functionCategory>
 <Parameters/>
@@ -121,7 +121,7 @@
 </ReturnValue>
 </Procedure>
 
-<Procedure name='qlSetEvalDate'>
+<Procedure name='qlSetEvaluationDate'>
 <description>sets the value of the Evaluation Date</description>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>

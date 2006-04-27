@@ -73,11 +73,11 @@ namespace QuantLibAddin {
         return dayCounter.yearFraction(startDate, endDate, refStartDate, refEndDate);
     }    
 
-    QuantLib::Date qlGetEvalDate() {
+    QuantLib::Date qlEvaluationDate() {
         return QuantLib::Settings::instance().evaluationDate();
     }
 
-    long qlSetEvalDate(const long &evalDate) {
+    long qlSetEvaluationDate(const long &evalDate) {
         QuantLib::Settings::instance().evaluationDate() = QuantLib::Date(evalDate);
         return evalDate;
     }

@@ -136,7 +136,7 @@
 </ReturnValue>
 </Member>
 
-<Member name='qlSwapFixedLeg' libraryClass='VanillaSwap'>
+<Member name='qlSwapGetFixLeg' libraryClass='VanillaSwap'>
 <description>The Fixed Leg Details</description>
 <libraryFunction>getFixLeg</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
@@ -167,7 +167,7 @@
 </ReturnValue>
 </Member>
 
-<Member name='qlSwapFloatLeg' libraryClass='VanillaSwap'>
+<Member name='qlSwapGetFloatLeg' libraryClass='VanillaSwap'>
 <description>The Float Leg Details</description>
 <libraryFunction>getFloatLeg</libraryFunction>
 <functionCategory>QuantLib</functionCategory>

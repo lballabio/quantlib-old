@@ -67,11 +67,11 @@ namespace QuantLibAddin {
 
     /*! return the evaluation date
     */
-    QuantLib::Date qlGetEvalDate();
+    QuantLib::Date qlEvaluationDate();
 
     /*! set the evaluation date
     */
-    long qlSetEvalDate(const long &evalDate);
+    long qlSetEvaluationDate(const long &evalDate);
 
 }
 
