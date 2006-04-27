@@ -39,7 +39,9 @@ namespace QuantLibAddin {
             return boost::static_pointer_cast<void>(schedule_);
         }
         
-        EXPORT_UNDERLYING_OBJECT(QuantLib::Schedule, schedule_)
+        const QuantLib::Schedule& getObject() const {
+            return *schedule_;
+        }
         
         std::vector<long> scheduleDates() const;
         
