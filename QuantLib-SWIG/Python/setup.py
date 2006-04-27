@@ -61,13 +61,21 @@ class test(Command):
 
 class my_wrap(Command):
     description = "generate Python wrappers"
-    user_options = []
-    def initialize_options(self): pass
+    user_options = [
+        ('vc6', None, "use this option to generate VC++6-compatible code"),
+    ]
+    def initialize_options(self):
+        self.vc6 = None
     def finalize_options(self): pass
     def run(self):
         print 'Generating Python bindings for QuantLib...'
         swig_dir = os.path.join("..","SWIG")
+        if self.vc6:
+            defines = '-DVC6 '
+        else:
+            defines = ''
         os.system('swig -python -c++ -modern ' +
+                  defines +
                   '-I%s ' % swig_dir +
                   '-outdir QuantLib -o QuantLib/quantlib_wrap.cpp ' +
                   'quantlib.i')

@@ -12,8 +12,8 @@ found in the system path. However, this step is only necessary if you
 are compiling from sources checked out from the CVS repository. It is
 not required if you are using a distributed tarball, unless you are
 using Visual C++ 6; in the latter case, you must regenerate the
-wrappers with SWIG 1.3.21 after modifying setup.py so that it passes
-the -DVC6 flag to SWIG.
+wrappers with SWIG 1.3.21 and run the above command as
+    python setup.py wrap --vc6
 
 The build, test and installation processes are done by means of the Distutils
 package, included in the Python standard library. The Python documentation
