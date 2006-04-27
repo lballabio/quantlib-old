@@ -66,7 +66,7 @@
         <description>rolling convention</description>
     </Parameter>
 </Parameters>
-<ReturnValue ql_type='QuantLib::Date'>
+<ReturnValue return_func='serialNumber'>
     <type>long</type>
     <tensorRank>scalar</tensorRank>
     <description>advanced date</description>
@@ -114,7 +114,7 @@
 <description>returns the current value of the Evaluation Date</description>
 <functionCategory>QuantLib</functionCategory>
 <Parameters/>
-<ReturnValue ql_type='QuantLib::Date'>
+<ReturnValue return_func='serialNumber'>
     <type>long</type>
     <tensorRank>scalar</tensorRank>
     <description>evaluation date</description>

@@ -90,11 +90,12 @@ class RuleGroup(serializable.Serializable):
         if self.setSubrule(self.setName):           self.invokeSetName()
         if self.setSubrule(self.dereferenceName):   self.invokeDereferenceName()
         if self.setSubrule(self.reformatName):      self.invokeReformatName()
-        self.setLibConversion()
+        #self.setLibConversion()
         if self.setSubrule(self.setTypeConversion): self.invokeSetTypeConversion()
 
         if self.appendConversionSuffix and self.param.needsConversion:
             self.paramName += common.CONVERSION_SUFFIX
+        self.setLibConversion()
 
         if self.paramType and self.paramName:
             delim = ' '

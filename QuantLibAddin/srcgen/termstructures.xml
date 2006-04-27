@@ -92,12 +92,149 @@
   <libraryFunction>latestDate</libraryFunction>
   <functionCategory>QuantLib</functionCategory>
   <Parameters/>
-  <ReturnValue ql_type='QuantLib::Date'>
+  <ReturnValue return_func='serialNumber'>
     <type>long</type>
     <tensorRank>scalar</tensorRank>
     <description>latest date</description>
   </ReturnValue>
 </Member>
+
+<Member name='qlZeroRate' getObject='true' libraryClass='PiecewiseFlatForward'>
+  <description>return the implied zero-yield rate for a given date</description>
+  <libraryFunction>zeroRate</libraryFunction>
+  <functionCategory>QuantLib</functionCategory>
+  <Parameters>
+    <Parameter name='d' ql_type='QuantLib::Date'>
+      <type>long</type>
+      <tensorRank>scalar</tensorRank>
+      <description>date</description>
+    </Parameter>
+    <Parameter name='resultDayCounterID' ql_type='QuantLib::DayCounter'>
+      <type>string</type>
+      <tensorRank>scalar</tensorRank>
+      <description>resultDayCounter</description>
+    </Parameter>
+    <Parameter name='compID' ql_type='QuantLib::Compounding'>
+      <type>string</type>
+      <tensorRank>scalar</tensorRank>
+      <description>comp</description>
+    </Parameter>
+    <Parameter name='freqID' ql_type='QuantLib::Frequency' default='"Annual"'>
+      <type>string</type>
+      <tensorRank>scalar</tensorRank>
+      <description>freq</description>
+    </Parameter>
+    <Parameter name='extrapolate' default='false'>
+      <type>bool</type>
+      <tensorRank>scalar</tensorRank>
+      <description>extrapolate</description>
+    </Parameter>
+  </Parameters>
+  <ReturnValue return_func='rate'>
+      <type>double</type>
+      <tensorRank>scalar</tensorRank>
+      <description>interest rate</description>
+    </ReturnValue>
+  </Member>
+
+  <Member name='qlDiscount' getObject='true' libraryClass='PiecewiseFlatForward'>
+    <description>return the implied zero-yield rate for a given date</description>
+    <libraryFunction>discount</libraryFunction>
+    <functionCategory>QuantLib</functionCategory>
+    <Parameters>
+      <Parameter name='d' ql_type='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>date</description>
+      </Parameter>
+      <Parameter name='extrapolate' default='false'>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>extrapolate</description>
+      </Parameter>
+    </Parameters>
+    <ReturnValue>
+      <type>double</type>
+      <tensorRank>scalar</tensorRank>
+      <description>interest rate</description>
+    </ReturnValue>
+  </Member>
+
+  <Member name='qlForwardRate' getObject='true' libraryClass='PiecewiseFlatForward'>
+    <description>return the implied forward interest rate between two given dates</description>
+    <libraryFunction>forwardRate</libraryFunction>
+    <functionCategory>QuantLib</functionCategory>
+    <Parameters>
+      <Parameter name='d1' ql_type='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>date 1</description>
+      </Parameter>
+      <Parameter name='d2' ql_type='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>date 2</description>
+      </Parameter>
+      <Parameter name='resultDayCounterID' ql_type='QuantLib::DayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>resultDayCounter</description>
+      </Parameter>
+      <Parameter name='compID' ql_type='QuantLib::Compounding'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>comp</description>
+      </Parameter>
+      <Parameter name='freqID' ql_type='QuantLib::Frequency' default='"Annual"'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>freq</description>
+      </Parameter>
+      <Parameter name='extrapolate' default='false'>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>extrapolate</description>
+      </Parameter>
+    </Parameters>
+    <ReturnValue>
+      <type>double</type>
+      <tensorRank>scalar</tensorRank>
+      <description>interest rate</description>
+    </ReturnValue>
+  </Member>
+
+  <Member name='qlParRate' getObject='true' libraryClass='PiecewiseFlatForward'>
+    <description>return the implied par rate for a given sequence of payments at the given date</description>
+    <libraryFunction>parRate</libraryFunction>
+    <functionCategory>QuantLib</functionCategory>
+    <Parameters>
+      <Parameter name='tenor'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>tenor</description>
+      </Parameter>
+      <Parameter name='startDate' ql_type='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>startDate</description>
+      </Parameter>
+      <Parameter name='freqID' ql_type='QuantLib::Frequency' default='"Annual"'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>freq</description>
+      </Parameter>
+      <Parameter name='extrapolate' default='false'>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>extrapolate</description>
+      </Parameter>
+    </Parameters>
+    <ReturnValue>
+      <type>double</type>
+      <tensorRank>scalar</tensorRank>
+      <description>interest rate</description>
+    </ReturnValue>
+  </Member>
 
 <Constructor name='qlPiecewiseFlatForward'>
 <libraryFunction>PiecewiseFlatForward</libraryFunction>

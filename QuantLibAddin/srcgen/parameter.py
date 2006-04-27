@@ -73,14 +73,13 @@ class ReturnValue(Value):
         serializer.serializeProperty(self, common.TYPE)
         serializer.serializeProperty(self, common.TENSOR_RANK)
         serializer.serializeProperty(self, common.DESCRIPTION)
-        serializer.serializeAttribute(self, common.QL_TYPE)
+        serializer.serializeAttribute(self, common.RETURN_FUNC)
 
-    def conversion(self):
-        """perform any necessary conversions of datatype"""
-        if self.ql_type == 'QuantLib::Date':
-            return '.serialNumber()'
+    def returnFunction(self):
+        if self.return_func:
+            return "." + self.return_func + "()"
         else:
-            return ''
+            return ""
 
 class ConstructorReturnValue(Value):
     """Class to represent state shared by the return values

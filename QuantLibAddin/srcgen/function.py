@@ -160,7 +160,7 @@ class Member(Function):
         libraryClass = self.libraryClass
         if not self.noQlaNS: libraryClass = 'QuantLibAddin::' + libraryClass
         return self.BODY % (handle, libraryClass, libraryReturnType, 
-            self.accessLibFunc, libraryCall, self.returnValue.conversion())
+            self.accessLibFunc, libraryCall, self.returnValue.returnFunction())
 
 class Procedure(Function):
     """Procedural function not associated with any QuantLib object."""
@@ -178,6 +178,6 @@ class Procedure(Function):
             returnCommand = addin.libraryReturnType.apply(self.returnValue) \
                 + ' returnValue;\n        returnValue = '
         libraryCall = '%s(%s)%s;' % (self.alias, 
-            self.generateParameterList(addin.libraryCall, INVOCATION), self.returnValue.conversion())
+            self.generateParameterList(addin.libraryCall, INVOCATION), self.returnValue.returnFunction())
         return '        ' + returnCommand + libraryCall
 
