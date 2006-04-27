@@ -2,6 +2,7 @@ AddinCalc.plg
 autogen.hpp
 qla_all.hpp
 basic.*pp
+math.*pp
 build
 capfloor.*pp
 com

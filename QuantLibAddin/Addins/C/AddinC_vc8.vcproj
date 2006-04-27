@@ -566,6 +566,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\math.cpp"
+				>
+			</File>
+			<File
 				RelativePath="ohfunctions.cpp"
 				>
 				<FileConfiguration
@@ -1196,6 +1200,10 @@
 			</File>
 			<File
 				RelativePath="interpolation.h"
+				>
+			</File>
+			<File
+				RelativePath=".\math.h"
 				>
 			</File>
 			<File

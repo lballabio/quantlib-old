@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="srcgen"
 	ProjectGUID="{F7887FB9-E143-4104-A1C2-167E1F8EAA7C}"
 	Keyword="MakeFileProj"
@@ -300,6 +300,10 @@
 			</File>
 			<File
 				RelativePath="interpolation.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\math.xml"
 				>
 			</File>
 			<File

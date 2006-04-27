@@ -32,6 +32,8 @@ xibor.*
 
 basic.cpp
 basic.h
+math.cpp
+math.h
 couponvectors.cpp
 couponvectors.h
 interpolation.cpp

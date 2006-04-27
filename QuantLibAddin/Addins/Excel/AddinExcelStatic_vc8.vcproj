@@ -648,6 +648,10 @@
 			</FileConfiguration>
 		</File>
 		<File
+			RelativePath=".\math.cpp"
+			>
+		</File>
+		<File
 			RelativePath="options.cpp"
 			>
 			<FileConfiguration

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="AddinCalc"
 	ProjectGUID="{10DC0D9D-ABB3-4737-B14D-4FFAD4810A72}"
 	Keyword="MakeFileProj"
@@ -78,6 +78,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\math.cpp"
+				>
+			</File>
+			<File
 				RelativePath="ohfunctions.cpp"
 				>
 			</File>
@@ -90,7 +94,7 @@
 				>
 			</File>
 			<File
-				RelativePath="randomsequencegenerator.cpp"
+				RelativePath="QLA-Calc.idl"
 				>
 			</File>
 			<File
@@ -98,7 +102,7 @@
 				>
 			</File>
 			<File
-				RelativePath="QLA-Calc.idl"
+				RelativePath="randomsequencegenerator.cpp"
 				>
 			</File>
 			<File
@@ -171,6 +175,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\math.hpp"
+				>
+			</File>
+			<File
 				RelativePath="ohfunctions.hpp"
 				>
 			</File>
@@ -183,10 +191,6 @@
 				>
 			</File>
 			<File
-				RelativePath="randomsequencegenerator.hpp"
-				>
-			</File>
-			<File
 				RelativePath="qla_all.hpp"
 				>
 			</File>
@@ -196,6 +200,10 @@
 			</File>
 			<File
 				RelativePath="qldefs.hpp"
+				>
+			</File>
+			<File
+				RelativePath="randomsequencegenerator.hpp"
 				>
 			</File>
 			<File

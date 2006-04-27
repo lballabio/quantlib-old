@@ -345,6 +345,10 @@
 			</FileConfiguration>
 		</File>
 		<File
+			RelativePath=".\math.cpp"
+			>
+		</File>
+		<File
 			RelativePath="options.cpp"
 			>
 			<FileConfiguration
@@ -389,7 +393,7 @@
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath="randomsequencegenerator.cpp"
+			RelativePath="qladdin.cpp"
 			>
 			<FileConfiguration
 				Name="Debug CRTDLL|Win32"
@@ -411,7 +415,7 @@
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath="qladdin.cpp"
+			RelativePath="randomsequencegenerator.cpp"
 			>
 			<FileConfiguration
 				Name="Debug CRTDLL|Win32"
