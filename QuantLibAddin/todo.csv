@@ -1,68 +1,69 @@
-project;subproject;task;status;priority;comp date;comment
-QLA;Functions;qlGetFixLeg() to provide column headers in output;;L;;
-QLA;Functions;qlPiecewiseFlatForward() - don't reset eval date;done;M;26-apr-06;
-QLA;Functions;qlGetDf() to return vector;done;M;21-apr-06;qlGetDfVector()
-QLA;Functions;qlMaturityDate() for rate helpers;cancelled;;20-apr-06;already available in VO
-QLA;Functions;add support for basket options;;;;
-QLA;Design;"use ""instanceName"" instead of ""handle""";in progress;L;;
-QLA;Design;detect if calling range is row-wise / column-wise ;;M;;
-QLA;Design;move Procedure functions to QuantLibFunctions;in progress;M;;
-QLA;Design;in session.cpp replace bespoke parsing with boost::regex;;L;;
-QLA;Design;use Excel SmartTags to allow interrogation of objects;;L;;
-QLA;Design;improve formatting of log messages;;L;;
-QLA;Design;#include fewer headers to speed compilation;;L;;
-QLA;VBA framework;create trade/market workbooks from templates;;M;;
-QLA;VBA framework;load XLLs;;M;;
-QLA;VBA framework;access logfile;;M;;
-QLA;VBA framework;interrogate object repository;;L;;Plamen?
-QLA;VBA framework;skeleton structure;done;;18-apr-06;
-QLA;VBA framework;QuantLibAddin menu for Excel;done;;18-apr-06;
-QLA;VBA framework;right click in cell to create enumeration drop down list;done;;18-apr-06;
-QLA;QuantLibXL;reorganize CVS - separate projects for QLA, QLXL, srcgen;;L;;
-QLA;QuantLibXL;separate websites for QLA/srcgen, QLXL;;L;;
-QLA;QuantLibXL;Excel specific documentation, installation;;L;;
-QLA;ValueObjects;dynamic properties e.g. VO->NPV() replaces qlNPV();;L;;
-QLA;Enumerations;add support for description e.g. Nullcalendar, DayCounter::NoFrequency, DayCounter::Simple;;M;;
-QLA;Enumerations;is Convention an enumeration?;;M;;
-QLA;Enumerations;add support for abbreviations;cancelled;M;21-apr-06;not required because of right-click menu
-QLA;Excel binding;categorize function names in Excel Function Wizard;done;;20-apr-06;conflict with Adfin addin
-QLA;Excel binding;XLL description in Addin manager;cancelled;;20-apr-06;not supported by Excel C API
-QLA;Excel binding;automatically name calling cell;cancelled;;20-apr-06;not supported by Excel C API
-QLA;Docs;autogenerate documentation for datatype and default value;;M;;
-QLA;Docs;provide more descriptive explanations of input/output parameters;;M;;
-QLA;Docs;document use of Addin Manager;;M;;
-QLA;Docs;installation - refer to Release build not Debug;done;L;21-apr-06;
-QLA;Docs;examples in Technical Documentation relate to Functional;?;;;
-QLA;Docs;qlXibor() - description of 2nd parameter incorrect;done;;21-apr-06;
-QLA;Xibor;"implement EURIBOR etc as ""singleton objects""";;;;see ObjectHandler
-QLA;Xibor;get/set fixing for given date;;;;?
-QLA;General Support;Session functionality crashes QLA if active book named Book1.XLS;;M;;
-QLA;General Support;upgrade Calc addin to OOo 2 / VC 7;;L;;done by Joe Byers, need to commit to CVS
-QLA;General Support;EXPORT_QL_OBJECT macro not fully polymorphic;;L;;
-QLA;General Support;upgrade to latest CVS snapshot of QL;done;;19-apr-06;
-QLA;General Support;sort out RandomSequenceGenerator;done;;19-apr-06;
-QLA;General Support;C++ examples - add VOs, NPV calculations;;L;;
-QLA;srcgen;generate summary of files created/updated/changed by environment;;L;;
-QLA;srcgen;remove redundant XML tag getObject='true' for Member functions;cancelled;;26-apr-06;the tag is in use
-QLA;srcgen;add support for QuantLib::Date as datatype of return value;done;;26-apr-06;
-QLA;srcgen;fix typo in Xibor - qlSobolRsg;done;;26-apr-06;
-QLA;srcgen;extend rule.py to support conversion of Guile datatypes;;L;;
-QLA;srcgen;allow for comments in XML (ignore '#comment' nodes);;L;;
-QLA;Workstation Document;document build for Boost, QuantLibFunctions;;;;
-QLA;Workstation Document;incorporate other feedback from Nando;;;;
-QLA;Workstation Document;explanation of VC workspace naming convention / _vc8.sln;done;M;21-apr-06;
-QLA;Workstation Document;explanation of runtime libraries;done;M;21-apr-06;
-QLA;Workstation Document;REMOVE explanation of regedit to set environment variables;done;M;21-apr-06;
-OH;Functions;ohPack() - resolve flags and values;;M;;
-OH;Functions;ohHandleList() to support regexes;done;M;26-apr-06;renamed to ohListInstanceNames()
-OH;Functions;remove EO macro / function;done;L;21-apr-06;
-OH;Design;support for retrieval of undecorated handles;in progress;H;;fix non-excel platforms
-OH;Design;allow objects to be grouped;;M;;
-OH;Design;"""singleton"" object - static inputs & handle - lazy instantiation";;M;;implement as extension of Enumeration Registry?
-OH;Design;"""reflection"" - support member functions dynamically";;M;;
-OH;Design;update design doc;;L;;
-OH;Design;include cell address in error message?;;L;;
-OH;Design;ohxll project mistakenly picking up autolink.hpp;done;L;27-apr-06
-OH;Design;in objecthandlerxl.cpp replace bespoke parsing w/boost regexes;done;L;26-apr-06
-OH;Design;std::exception -> ObjHandler::Exception;done;L;26-apr-06
-OH;Design;class FunctionCall to encapsulate function state;done;M;26-apr-06
+project,subproject,task,status,priority,comp date,comment
+QLA,Functions,qlGetFixLeg() to provide column headers in output,,L,,
+QLA,Functions,qlPiecewiseFlatForward() - don't reset eval date,done,M,26-Apr-06,
+QLA,Functions,qlGetDf() to return vector,done,M,21-Apr-06,qlGetDfVector()
+QLA,Functions,latestDate(),,H,20-Apr-06,already available in VO
+QLA,Functions,add support for basket options,,L,,
+QLA,Design,"use ""instanceName"" instead of ""handle""",in progress,L,,
+QLA,Design,detect if calling range is row-wise / column-wise ,,M,,
+QLA,Design,in a tensor call some parametre might be ERROR: do not return all ERRORS,,M,,
+QLA,Design,move Procedure functions to QuantLibFunctions,in progress,H,,
+QLA,Design,in session.cpp replace bespoke parsing with boost::regex,,L,,
+QLA,Design,use Excel SmartTags to allow interrogation of objects,,L,,
+QLA,Design,improve formatting of log messages,,L,,
+QLA,Design,#include fewer headers to speed compilation,,L,,
+QLA,VBA framework,create trade/market workbooks from templates,,H,,
+QLA,VBA framework,load XLLs,,H,,
+QLA,VBA framework,access logfile,,M,,
+QLA,VBA framework,interrogate object repository,,L,,Plamen?
+QLA,VBA framework,skeleton structure,done,,18-Apr-06,
+QLA,VBA framework,QuantLibAddin menu for Excel,done,,18-Apr-06,
+QLA,VBA framework,right click in cell to create enumeration drop down list,done,,18-Apr-06,
+QLA,QuantLibXL,"reorganize CVS - separate projects for QLA, QLXL, srcgen",,L,,
+QLA,QuantLibXL,"separate websites for srcgen, QLA, and QLXL",,L,,
+QLA,QuantLibXL,"Excel specific documentation, installation",,L,,
+QLA,ValueObjects,dynamic properties e.g. VO->NPV() replaces qlNPV(),,L,,
+QLA,Enumerations,"add support for description e.g. Nullcalendar, DayCounter::NoFrequency, DayCounter::Simple",,M,,
+QLA,Enumerations,is Convention an enumeration?,,M,,
+QLA,Enumerations,add support for abbreviations,cancelled,M,21-Apr-06,not required because of right-click menu
+QLA,Excel binding,categorize function names in Excel Function Wizard,suspended,,20-Apr-06,conflict with Adfin addin
+QLA,Excel binding,XLL description in Addin manager,cancelled,,20-Apr-06,not supported by Excel C API
+QLA,Excel binding,automatically name calling cell,cancelled,,20-Apr-06,not supported by Excel C API
+QLA,Docs,autogenerate documentation for datatype and default value,,M,,
+QLA,Docs,provide more descriptive explanations of input/output parameters,,M,,
+QLA,Docs,document use of Addin Manager,,M,,
+QLA,Docs,installation - refer to Release build not Debug,done,L,21-Apr-06,
+QLA,Docs,examples in Technical Documentation relate to Functional,?,,,
+QLA,Docs,qlXibor() - description of 2nd parameter incorrect,done,,21-Apr-06,
+QLA,Xibor,"implement EURIBOR etc as ""singleton objects""",,,,see ObjectHandler
+QLA,Xibor,get/set fixing for given date,,,,?
+QLA,General Support,Session functionality crashes QLA if active book named Book1.XLS,,M,,
+QLA,General Support,upgrade Calc addin to OOo 2 / VC 7,,L,,"done by Joe Byers, need to commit to CVS"
+QLA,General Support,EXPORT_QL_OBJECT macro not fully polymorphic,,L,,
+QLA,General Support,upgrade to latest CVS snapshot of QL,done,,19-Apr-06,
+QLA,General Support,sort out RandomSequenceGenerator,done,,19-Apr-06,
+QLA,General Support,"C++ examples - add VOs, NPV calculations",,L,,
+QLA,srcgen,generate summary of files created/updated/changed by environment,,L,,
+QLA,srcgen,remove redundant XML tag getObject='true' for Member functions,cancelled,,26-Apr-06,the tag is in use
+QLA,srcgen,add support for QuantLib::Date as datatype of return value,done,,26-Apr-06,
+QLA,srcgen,fix typo in Xibor - qlSobolRsg,done,,26-Apr-06,
+QLA,srcgen,extend rule.py to support conversion of Guile datatypes,,L,,
+QLA,srcgen,allow for comments in XML (ignore '#comment' nodes),,L,,
+QLA,Workstation Document,"document build for Boost, QuantLibFunctions",,,,
+QLA,Workstation Document,incorporate other feedback from Nando,,,,
+QLA,Workstation Document,explanation of VC workspace naming convention / _vc8.sln,done,M,21-Apr-06,
+QLA,Workstation Document,explanation of runtime libraries,done,M,21-Apr-06,
+QLA,Workstation Document,REMOVE explanation of regedit to set environment variables,done,M,21-Apr-06,
+OH,Functions,ohPack() - resolve flags and values,,H,,
+OH,Functions,ohHandleList() to support regexes,done,M,26-Apr-06,renamed to ohListInstanceNames()
+OH,Functions,remove EO macro / function,done,L,21-Apr-06,
+OH,Design,support for retrieval of undecorated handles,in progress,H,,fix non-excel platforms
+OH,Design,allow objects to be grouped,,M,,
+OH,Design,"""singleton"" object - static inputs & handle - lazy instantiation",,M,,implement as extension of Enumeration Registry?
+OH,Design,"""reflection"" - support member functions dynamically",,M,,
+OH,Design,update design doc,,L,,
+OH,Design,include cell address in error message?,,L,
+OH,Design,ohxll project mistakenly picking up autolink.hpp,done,L,27-Apr-06
+OH,Design,in objecthandlerxl.cpp replace bespoke parsing w/boost regexes,done,L,26-Apr-06
+OH,Design,std::exception -> ObjHandler::Exception,done,L,26-Apr-06
+OH,Design,class FunctionCall to encapsulate function state,done,M,26-Apr-06
