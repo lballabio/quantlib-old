@@ -34,7 +34,7 @@ namespace QuantLibAddin {
             const std::string&         engineID,
             const std::string&         optionID);
         
-        EXPORT_QL_OBJECT(QuantLib::CapFloor);
+        EXPORT_UNDERLYING_OBJECT(QuantLib::CapFloor, mInstrument)
         
     };
     

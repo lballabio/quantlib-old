@@ -47,7 +47,7 @@ namespace QuantLibAddin {
             const QuantLib::Rate &floatSpread,
             const std::string &discCurveId);
 
-        EXPORT_QL_OBJECT(QuantLib::VanillaSwap)
+        EXPORT_UNDERLYING_OBJECT(QuantLib::VanillaSwap, mInstrument)
 
         const std::vector<std::vector<double> >& getFixLeg();
         const std::vector<std::vector<double> >& getFloatLeg();

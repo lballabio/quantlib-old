@@ -31,12 +31,11 @@
 #include <string>
 #include <iostream>
 
-/* Use BOOST_MSVC instead of _MSC_VER since some other vendors 
-   (Metrowerks, for example) also #define _MSC_VER
-*/
-#if defined BOOST_MSVC       // Microsoft Visual C++
-#pragma warning(disable:4231)
-#endif
+#define EXPORT_UNDERLYING_OBJECT(CLASS, POINTER) \
+    const CLASS& getObject() const { \
+        return *boost::dynamic_pointer_cast<CLASS>(POINTER); \
+    } \
+	//
 
 namespace ObjHandler {
     //! Interface for Objects to be stored in the ObjectHandler.

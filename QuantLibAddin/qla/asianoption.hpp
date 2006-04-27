@@ -36,7 +36,7 @@ namespace QuantLibAddin {
             const std::string &engineID,
             const long &timeSteps);
 
-        EXPORT_QL_OBJECT(QuantLib::ContinuousAveragingAsianOption);
+        EXPORT_UNDERLYING_OBJECT(QuantLib::ContinuousAveragingAsianOption, mInstrument)
     };
 
     class DiscreteAveragingAsianOption : public OneAssetOption {
@@ -54,7 +54,7 @@ namespace QuantLibAddin {
             const std::string &engineID,
             const long &timeSteps);
 
-        EXPORT_QL_OBJECT(QuantLib::DiscreteAveragingAsianOption);
+        EXPORT_UNDERLYING_OBJECT(QuantLib::DiscreteAveragingAsianOption, mInstrument)
     };
 
 }

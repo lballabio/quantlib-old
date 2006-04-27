@@ -38,7 +38,7 @@ namespace QuantLibAddin {
             const std::string &engineName,
             const long &timeSteps);
 
-        EXPORT_QL_OBJECT(QuantLib::VanillaOption);
+        EXPORT_UNDERLYING_OBJECT(QuantLib::VanillaOption, mInstrument)
 
     };
 

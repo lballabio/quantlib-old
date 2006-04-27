@@ -23,12 +23,6 @@
 #include <ql/Instruments/bond.hpp>
 #include <ql/Instruments/oneassetoption.hpp>
 
-#define EXPORT_QL_OBJECT(CLASS) \
-    const CLASS& getObject() const { \
-        return *boost::dynamic_pointer_cast<CLASS>(mInstrument); \
-    } \
-	//
-
 namespace QuantLibAddin {
     class Instrument : public ObjHandler::Object {
     public:
@@ -46,12 +40,12 @@ namespace QuantLibAddin {
 
     class Bond : public Instrument {
     public:
-        EXPORT_QL_OBJECT(QuantLib::Bond)
+        EXPORT_UNDERLYING_OBJECT(QuantLib::Bond, mInstrument)
     };
 
     class OneAssetOption : public Instrument {
     public:
-        EXPORT_QL_OBJECT(QuantLib::OneAssetOption)
+        EXPORT_UNDERLYING_OBJECT(QuantLib::OneAssetOption, mInstrument)
     };
 }
 

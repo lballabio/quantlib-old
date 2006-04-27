@@ -26,7 +26,6 @@ namespace QuantLibAddin {
 
     class BlackVolTermStructure : public ObjHandler::Object {
     public:
-        // FIXME modify EXPORT_QL_OBJECT to support this
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(blackVolTermStructure_);
         }

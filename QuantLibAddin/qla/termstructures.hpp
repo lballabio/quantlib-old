@@ -55,10 +55,8 @@ namespace QuantLibAddin {
             const std::string &calendarID,
             const std::string &conventionID,
             const std::string &dayCounterID);
-        // FIXME modify EXPORT_QL_OBJECT to support this
-        const QuantLib::DepositRateHelper& getObject() const {
-            return *boost::dynamic_pointer_cast<QuantLib::DepositRateHelper>(rateHelper_);
-        }
+
+        EXPORT_UNDERLYING_OBJECT(QuantLib::DepositRateHelper, rateHelper_)
     };
 
     class SwapRateHelper : public RateHelper {

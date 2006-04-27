@@ -32,7 +32,7 @@ namespace QuantLibAddin {
             const std::string &recvLegID,
             const std::string &termStructureID);
         
-        EXPORT_QL_OBJECT(QuantLib::Swap)
+        EXPORT_UNDERLYING_OBJECT(QuantLib::Swap, mInstrument)
     };
     
 }

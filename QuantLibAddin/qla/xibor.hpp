@@ -42,7 +42,6 @@ namespace QuantLibAddin {
 
         double fixing(const long &lFixingDate) const;
 
-        // FIXME modify EXPORT_QL_OBJECT to support this
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(index_);
         }
