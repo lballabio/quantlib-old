@@ -56,7 +56,7 @@
                           (new-QuoteHandle (new-SimpleQuote (/ rate 100)))
                           length (Years) settlement-days
                           calendar 1 (Unadjusted) day-counter-2
-                          2 (ModifiedFollowing))))
+                          2 (ModifiedFollowing) day-counter)))
                      swap-data))
              (term-structure (new-PiecewiseFlatForward
                               settlement

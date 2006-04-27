@@ -232,7 +232,7 @@ namespace QuantLib {
 
     class UnitedStates : public Calendar {
       public:
-        enum Market { Settlement, Exchange, NYSE, GovernmentBond };
+        enum Market { Settlement, NYSE, GovernmentBond, NERC };
         UnitedStates(Market m = Settlement);
     };
 

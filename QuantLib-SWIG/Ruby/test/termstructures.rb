@@ -60,7 +60,7 @@ class TermStructureTest < Test::Unit::TestCase
         QuoteHandle.new(SimpleQuote.new(rate/100)),
         years, Years, @settlementDays, 
         @calendar, 1, Unadjusted, Thirty360.new,
-        2, ModifiedFollowing)
+        2, ModifiedFollowing, Actual360.new)
     }
     @termStructure = PiecewiseFlatForward.new(settlement,
                                               deposits+swaps,

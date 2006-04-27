@@ -141,7 +141,7 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 const DayCounter& fixedDayCount,
                 Frequency floatingFrequency,
                 BusinessDayConvention floatingConvention,
-		const DayCounter& floatingDayCount) {
+                const DayCounter& floatingDayCount) {
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, n, units, settlementDays,
                                    calendar, fixedFrequency, fixedConvention,
@@ -157,7 +157,7 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 const DayCounter& fixedDayCount,
                 Frequency floatingFrequency,
                 BusinessDayConvention floatingConvention,
-		const DayCounter& floatingDayCount) {
+                const DayCounter& floatingDayCount) {
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, n, units, settlementDays,
                                    calendar, fixedFrequency, fixedConvention,
@@ -180,9 +180,9 @@ class FixedCouponBondHelperPtr : public boost::shared_ptr<RateHelper> {
                 Frequency frequency,
                 const Calendar& calendar,
                 const DayCounter& dayCounter,
-                BusinessDayConvention accrualConvention = 
+                BusinessDayConvention accrualConvention =
 		Following,
-                BusinessDayConvention paymentConvention = 
+                BusinessDayConvention paymentConvention =
 		Following,
                 Real redemption = 100.0,
                 const Date& stub = Date(),
@@ -190,10 +190,10 @@ class FixedCouponBondHelperPtr : public boost::shared_ptr<RateHelper> {
             return new FixedCouponBondHelperPtr(
                 new FixedCouponBondHelper(cleanPrice, issueDate, datedDate,
                                           maturityDate, settlementDays,
-                                          coupons, frequency, 
-                                          calendar, 
+                                          coupons, frequency,
+                                          calendar,
 					  dayCounter,
-					  accrualConvention, 
+					  accrualConvention,
 					  paymentConvention,
 					  redemption,
                                           stub, fromEnd));

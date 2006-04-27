@@ -44,7 +44,7 @@ class TermStructureTest(unittest.TestCase):
                 QuoteHandle(SimpleQuote(rate/100)),
                 years, Years, self.settlementDays,
                 self.calendar, Annual, Unadjusted, Thirty360(),
-                Semiannual, ModifiedFollowing)
+                Semiannual, ModifiedFollowing, Actual360())
             for (years,rate) in [ ( 1, 4.54),
                                   ( 5, 4.99),
                                   (10, 5.47),
