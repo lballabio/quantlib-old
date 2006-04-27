@@ -27,7 +27,6 @@ namespace QuantLibAddin {
     public:
 
         GeneralizedBlackScholesProcess(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &handleBlackVol,
             const double &underlying,
             const std::string &dayCounterID,

@@ -27,9 +27,10 @@
 namespace ObjHandler {
 
     DLL_API std::string storeObject(
+            const std::string &instanceName,
             const obj_ptr &object) {
         std::string ret = 
-            ObjectHandler::instance().storeObject(object);
+            ObjectHandler::instance().storeObject(instanceName, object);
         return ret;
     }
 

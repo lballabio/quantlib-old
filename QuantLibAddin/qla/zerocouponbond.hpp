@@ -26,7 +26,6 @@ namespace QuantLibAddin {
     class ZeroCouponBond : public Bond {
     public:
         ZeroCouponBond(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const long &issueDate,
             const long &maturityDate,
             const long &settlementDays,

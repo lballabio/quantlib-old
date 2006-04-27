@@ -30,14 +30,13 @@
 namespace QuantLibAddin {
 
     EuropeanOption::EuropeanOption(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &handleBlackScholes,
             const std::string &optionTypeID,
             const std::string &payoffID,
             const double &strike,
             const std::string &handleExercise,
             const std::string &engineID,
-            const long &timeSteps)  : OneAssetOption(instanceName) {
+            const long &timeSteps) {
 
         OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
             GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)

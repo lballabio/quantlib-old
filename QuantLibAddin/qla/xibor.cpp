@@ -30,7 +30,6 @@ namespace QuantLibAddin {
     QuantLib::Date make_date(long d) { return QuantLib::Date(d); }
 
     Xibor::Xibor(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &indexName,
             const std::string &crrID,
             const long &tenor,
@@ -41,7 +40,7 @@ namespace QuantLibAddin {
             const long &fixingDays,
             const std::string &fwdCurveId,
             const std::vector<long> &lDates,
-            const std::vector<double> &fixings)  : ObjHandler::Object(instanceName) {
+            const std::vector<double> &fixings) {
 
         QuantLib::DayCounter fltDayCounter = Create<QuantLib::DayCounter>()(fltDayCounterID);
         QuantLib::BusinessDayConvention fltBDC = 

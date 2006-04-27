@@ -25,7 +25,6 @@
 namespace QuantLibAddin {
 
     BarrierOption::BarrierOption(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &barrierTypeID,
             const double &barrier,
             const double &rebate,
@@ -35,7 +34,7 @@ namespace QuantLibAddin {
             const double &strike,
             const std::string &handleExercise,
             const std::string &engineID,
-            const long &timeSteps)  : OneAssetOption(instanceName) {
+            const long &timeSteps) {
 
         OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
             GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)

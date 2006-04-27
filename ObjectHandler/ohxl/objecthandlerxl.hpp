@@ -35,6 +35,8 @@ namespace ObjHandler {
     */
     class ObjectHandlerXL : public ObjectHandlerBase {
     public:
+        virtual std::string storeObject(const std::string &instanceName, 
+                                        const obj_ptr &object);
         virtual obj_ptr retrieveObject(const std::string &name) const;
         virtual void collectGarbage();
         void deleteKey(const std::string &key);

@@ -27,7 +27,6 @@
 namespace QuantLibAddin {
 
     ContinuousAveragingAsianOption::ContinuousAveragingAsianOption(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &averageID,
             const std::string &handleBlackScholes,
             const std::string &optionTypeID,
@@ -35,7 +34,7 @@ namespace QuantLibAddin {
             const double &strike,
             const std::string &handleExercise,
             const std::string &engineID,
-            const long &timeSteps)  : OneAssetOption(instanceName) {
+            const long &timeSteps) {
 
         OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
             GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)
@@ -61,7 +60,6 @@ namespace QuantLibAddin {
     }
 
     DiscreteAveragingAsianOption::DiscreteAveragingAsianOption(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &averageID,
             const double &runningAccumulator,
             const long &pastFixings,
@@ -72,7 +70,7 @@ namespace QuantLibAddin {
             const double &strike,
             const std::string &handleExercise,
             const std::string &engineID,
-            const long &timeSteps)  : OneAssetOption(instanceName) {
+            const long &timeSteps) {
 
         OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
             GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)

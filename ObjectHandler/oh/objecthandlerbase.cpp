@@ -27,10 +27,11 @@
 
 namespace ObjHandler {
 
-    std::string ObjectHandlerBase::storeObject(const obj_ptr &object) {
-        std::string fullName = object->getFullName();
-        objectList_[fullName] = object;
-        return fullName;
+    std::string ObjectHandlerBase::storeObject(const std::string &instanceName, 
+            const obj_ptr &object) {
+        object->setInstanceName(boost::shared_ptr < Object::InstanceName > (new Object::InstanceName(instanceName)));
+        objectList_[instanceName] = object;
+        return instanceName;
     }
 
     obj_ptr ObjectHandlerBase::retrieveObject(const std::string &fullName) const {

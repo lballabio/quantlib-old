@@ -27,7 +27,6 @@ namespace QuantLibAddin {
     class ZeroCurve : public ObjHandler::Object {
     public:
         ZeroCurve(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::vector < long > &dates,
             const std::vector < double > &yields,
             const std::string &dayCounterID);

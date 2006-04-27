@@ -27,7 +27,6 @@ namespace QuantLibAddin {
     class ForwardVanillaOption : public OneAssetOption {
     public:
         ForwardVanillaOption(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const double &moneyness,
             const long &resetDate,
             const std::string &handleBlackScholes,

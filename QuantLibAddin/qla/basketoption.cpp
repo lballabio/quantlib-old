@@ -26,7 +26,6 @@
 namespace QuantLibAddin {
 
     BasketOption::BasketOption(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &handleBlackScholes,
             const std::string &basketID,
             const std::string &optionTypeID,
@@ -35,7 +34,7 @@ namespace QuantLibAddin {
             const long &exerciseDate,
             const long &settlementDate,
             const std::string &engineID,
-            const long &timeSteps)  : ObjHandler::Object(instanceName) {
+            const long &timeSteps) {
 
         QuantLib::BasketOption::BasketType basketType = 
             Create<QuantLib::BasketOption::BasketType>()(basketID);

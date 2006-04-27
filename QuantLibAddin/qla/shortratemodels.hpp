@@ -28,7 +28,6 @@ namespace QuantLibAddin {
 
     class AffineModel : public ObjHandler::Object {
       public:
-        AffineModel(const boost::shared_ptr < InstanceName > &instanceName) : ObjHandler::Object(instanceName) {}
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(model_);
         }
@@ -39,7 +38,6 @@ namespace QuantLibAddin {
     class Vasicek : public AffineModel {
       public:
         Vasicek(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const double &a,
             const double &b,
             const double &lambda,
@@ -49,7 +47,6 @@ namespace QuantLibAddin {
     class HullWhite : public AffineModel {
       public:
         HullWhite(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &handleTermStructure,
             const double &a,
             const double &sigma);

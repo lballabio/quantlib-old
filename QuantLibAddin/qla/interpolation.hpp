@@ -27,9 +27,7 @@ namespace QuantLibAddin {
     
     class Interpolation : public ObjHandler::Object {
       public:
-        Interpolation(const boost::shared_ptr < InstanceName > &instanceName,
-            const bool& allowExtrapolation)
-        : ObjHandler::Object(instanceName), allowExtrapolation_(allowExtrapolation) { }
+          Interpolation(const bool& allowExtrapolation) : allowExtrapolation_(allowExtrapolation) { }
         
         virtual boost::shared_ptr<QuantLib::Interpolation>
         interpolationFactory(std::vector<double>::const_iterator xBegin,
@@ -50,9 +48,7 @@ namespace QuantLibAddin {
 
     class BackwardFlatInterpolation : public Interpolation {
       public:
-        BackwardFlatInterpolation(const boost::shared_ptr < InstanceName > &instanceName,
-            const bool& allowExtrapolation)
-        : Interpolation(instanceName, allowExtrapolation) { }
+        BackwardFlatInterpolation(const bool& allowExtrapolation) : Interpolation(allowExtrapolation) { }
         
         virtual boost::shared_ptr<QuantLib::Interpolation>
         interpolationFactory(std::vector<double>::const_iterator xBegin,
@@ -62,9 +58,7 @@ namespace QuantLibAddin {
 
     class ForwardFlatInterpolation : public Interpolation {
       public:
-        ForwardFlatInterpolation(const boost::shared_ptr < InstanceName > &instanceName,
-            const bool& allowExtrapolation)
-        : Interpolation(instanceName, allowExtrapolation) { }
+        ForwardFlatInterpolation(const bool& allowExtrapolation) : Interpolation(allowExtrapolation) { }
         
         virtual boost::shared_ptr<QuantLib::Interpolation>
         interpolationFactory(std::vector<double>::const_iterator xBegin,
@@ -74,9 +68,7 @@ namespace QuantLibAddin {
     
     class LinearInterpolation : public Interpolation {
       public:
-        LinearInterpolation(const boost::shared_ptr < InstanceName > &instanceName,
-            const bool& allowExtrapolation)
-        : Interpolation(instanceName, allowExtrapolation) { }
+        LinearInterpolation(const bool& allowExtrapolation) : Interpolation(allowExtrapolation) { }
         
         virtual boost::shared_ptr<QuantLib::Interpolation>
         interpolationFactory(std::vector<double>::const_iterator xBegin,
@@ -87,7 +79,6 @@ namespace QuantLibAddin {
     class CubicSplineInterpolation : public Interpolation {
       public:
         CubicSplineInterpolation(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const bool&        allowExtrapolation,
             const std::string& leftConditionType,
             const double&      leftConditionValue,

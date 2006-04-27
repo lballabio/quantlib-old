@@ -79,8 +79,7 @@ namespace ObjHandler {
             To store the resulting Object in the ObjectHandler, call
                 ObjectHandler::instance().storeObject(handle, object);
         */
-        Object(const boost::shared_ptr< InstanceName > &instanceName) 
-            : instanceName_(instanceName) {};
+        Object() {};
         //! Default destructor.
         virtual ~Object() {};
         //@}
@@ -104,6 +103,10 @@ namespace ObjHandler {
 
         void setProperties(const boost::shared_ptr<ValueObject>& p) {
             mProps = p;
+        }
+
+        void setInstanceName(const boost::shared_ptr < InstanceName > &instanceName) {
+            instanceName_ = instanceName;
         }
         const std::string &getStubName() {
             return instanceName_->getStubName();

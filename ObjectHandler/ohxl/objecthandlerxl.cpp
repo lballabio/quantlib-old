@@ -17,6 +17,7 @@
 
 #include <oh/exception.hpp>
 #include <ohxl/objecthandlerxl.hpp>
+#include <ohxl/instancenamexl.hpp>
 #include <ohxl/conversions.hpp>
 #include <iostream>
 #include <iomanip>
@@ -24,9 +25,15 @@
 #include <cmath>
 #include <boost/regex.hpp>
 
-const boost::regex NAME_REGEX(".*~_[\\da-f]{5}");
-
 namespace ObjHandler {
+
+    std::string ObjectHandlerXL::storeObject(const std::string &instanceName, 
+            const obj_ptr &object) {
+        object->setInstanceName(boost::shared_ptr < Object::InstanceName > (new InstanceNameXL(instanceName)));
+        std::string fullName = object->getFullName();
+        objectList_[fullName] = object;
+        return fullName;
+    }
 
     void ObjectHandlerXL::collectGarbage() {
         ObjectList::iterator iter_current, iter_previous;
@@ -53,8 +60,9 @@ namespace ObjHandler {
         }
     }
 
-    bool ObjectHandlerXL::nameIsFull(const std::string &name) const {
-       return regex_match(name, NAME_REGEX);
+    bool ObjectHandlerXL::nameIsFull(const std::string &name) const {        
+        static const boost::regex NAME_REGEX(".*~_[\\da-f]{5}");
+        return regex_match(name, NAME_REGEX);
     }
 
     obj_ptr ObjectHandlerXL::retrieveObjectNameStub(const std::string &nameStub) const {

@@ -32,7 +32,6 @@
 
 namespace QuantLibAddin {
     VanillaSwap::VanillaSwap(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const long &lStartDate,
             const long &lMaturity,
             const QuantLib::Real &nominal,
@@ -50,7 +49,7 @@ namespace QuantLibAddin {
             const bool &floatStartFromEnd,
             const bool &floatLongFinal,
             const QuantLib::Rate &floatSpread,
-            const std::string &discCurveId)  : Instrument(instanceName) {
+            const std::string &discCurveId) {
 
         QuantLib::DayCounter fixDayCounter =
             Create<QuantLib::DayCounter>()(fixDayCounterID);

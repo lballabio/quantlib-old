@@ -28,7 +28,6 @@ namespace QuantLibAddin {
     class Swap : public Instrument {
       public:
         Swap(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &paidLegID,
             const std::string &recvLegID,
             const std::string &termStructureID);

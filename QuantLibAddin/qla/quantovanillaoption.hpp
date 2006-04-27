@@ -27,7 +27,6 @@ namespace QuantLibAddin {
     class QuantoVanillaOption : public OneAssetOption {
     public:
         QuantoVanillaOption::QuantoVanillaOption(
-                const boost::shared_ptr < InstanceName > &instanceName,
                 const std::string &handleTermStructure,
                 const std::string &handleBlackVol,
                 const double &correlation,

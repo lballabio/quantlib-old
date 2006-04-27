@@ -27,7 +27,6 @@ namespace QuantLibAddin {
     class BarrierOption : public OneAssetOption {
     public:
         BarrierOption(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &barrierTypeID,
             const double &barrier,
             const double &rebate,

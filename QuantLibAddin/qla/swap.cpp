@@ -28,10 +28,9 @@
 namespace QuantLibAddin {
 
     Swap::Swap(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &paidLegID,
             const std::string &recvLegID,
-            const std::string &termStructureID)  : Instrument(instanceName) {
+            const std::string &termStructureID) {
 
         OH_GET_OBJECT(paidLegWrapper, paidLegID, CouponVector)
         const CashFlowVector& paidLeg = paidLegWrapper->getObject();

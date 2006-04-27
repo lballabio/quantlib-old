@@ -26,10 +26,9 @@
 namespace QuantLibAddin {
 
     BlackConstantVol::BlackConstantVol(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const long &settlementDateLong,
             const double &volatility,
-            const std::string &dayCounterID)  : BlackVolTermStructure(instanceName) {
+            const std::string &dayCounterID) {
 
         QuantLib::Date settlementDate(settlementDateLong);
         QuantLib::DayCounter dayCounter =
@@ -42,12 +41,11 @@ namespace QuantLibAddin {
     }
 
     BlackVarianceSurface::BlackVarianceSurface(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const long &settlementDate,
             const std::vector < long > &dates,
             const std::vector < double > &strikes,
             const std::vector < std::vector < double > > &vols,
-            const std::string &dayCounterID)  : BlackVolTermStructure(instanceName) {
+            const std::string &dayCounterID) {
 
         QuantLib::Date settlementDateQL(settlementDate);
         const std::vector<QuantLib::Date> datesQL = 

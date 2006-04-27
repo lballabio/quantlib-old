@@ -26,7 +26,6 @@ namespace QuantLibAddin {
     class Schedule : public ObjHandler::Object {
       public:
         Schedule(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string   &calendarID,
             const long          &lStartDate,
             const long          &lEndDate,

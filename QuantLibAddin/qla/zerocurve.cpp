@@ -28,10 +28,9 @@
 namespace QuantLibAddin {
 
     ZeroCurve::ZeroCurve(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::vector < long > &dates,
             const std::vector < double > &yields,
-            const std::string &dayCounterID)  : ObjHandler::Object(instanceName) {
+            const std::string &dayCounterID) {
 
         QuantLib::DayCounter dayCounter =
             Create<QuantLib::DayCounter>()(dayCounterID);

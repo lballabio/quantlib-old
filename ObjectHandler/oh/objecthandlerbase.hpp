@@ -49,7 +49,8 @@ namespace ObjHandler {
         //! Store Object with given handle.
         /*! Any existing Object with that handle is deleted.
         */
-        virtual std::string storeObject(const obj_ptr &object);
+        virtual std::string storeObject(const std::string &instanceName, 
+                                        const obj_ptr &object);
         //! Retrieve Object with given handle.
         /*! Throws exception if no Object exists with that handle.
         */

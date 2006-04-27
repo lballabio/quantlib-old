@@ -27,7 +27,6 @@ namespace QuantLibAddin {
     class ContinuousAveragingAsianOption : public OneAssetOption {
     public:
         ContinuousAveragingAsianOption(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &averageID,
             const std::string &handleBlackScholes,
             const std::string &optionTypeID,
@@ -43,7 +42,6 @@ namespace QuantLibAddin {
     class DiscreteAveragingAsianOption : public OneAssetOption {
     public:
         DiscreteAveragingAsianOption(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &averageID,
             const double &runningAccumulator,
             const long &pastFixings,

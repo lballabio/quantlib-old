@@ -35,7 +35,7 @@ namespace ObjHandler {
         the function exits.  This class allows global access to
         function-specific state e.g. the return value of xlfGetCaller.
     */
-    class FunctionCall {
+    class DLL_API FunctionCall {
     public:
         FunctionCall();
         ~FunctionCall();

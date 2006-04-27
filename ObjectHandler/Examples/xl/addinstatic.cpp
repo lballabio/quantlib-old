@@ -79,13 +79,12 @@ DLLEXPORT char *createAccount(
         ObjHandler::FunctionCall::instance().clearCell();
 
         ObjHandler::obj_ptr objectPointer(new AccountObject(
-            boost::shared_ptr < ObjHandler::Object::InstanceName > (new ObjHandler::InstanceNameXL(instanceName)),
             *accountNumber, 
             accountType));
         objectPointer->setProperties(
             boost::shared_ptr<ObjHandler::ValueObject>(
             new AccountValueObject(instanceName, *accountNumber, accountType)));
-        const std::string returnValue = ObjHandler::storeObject(objectPointer);
+        const std::string returnValue = ObjHandler::storeObject(instanceName, objectPointer);
         static char ret[XL_MAX_STR_LEN];
         ObjHandler::stringToChar(ret, returnValue);
         return ret;

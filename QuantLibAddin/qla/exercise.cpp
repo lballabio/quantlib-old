@@ -24,10 +24,9 @@
 namespace QuantLibAddin {
 
     AmericanExercise::AmericanExercise(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const long &earliestDate,
             const long &latestDate,
-            const bool &payoffAtExpiry)  : Exercise(instanceName) {
+            const bool &payoffAtExpiry) {
         exercise_ = boost::shared_ptr<QuantLib::Exercise>(
             new QuantLib::AmericanExercise(
                 QuantLib::Date(earliestDate), 
@@ -36,17 +35,15 @@ namespace QuantLibAddin {
     }
 
     EuropeanExercise::EuropeanExercise(
-            const boost::shared_ptr < InstanceName > &instanceName,
-            const long &expiryDate)  : Exercise(instanceName) {
+            const long &expiryDate) {
         exercise_ = boost::shared_ptr<QuantLib::Exercise>(
             new QuantLib::EuropeanExercise(
                 QuantLib::Date(expiryDate)));
     }
 
     BermudanExercise::BermudanExercise(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::vector < long > &dates,
-            const bool &payoffAtExpiry)  : Exercise(instanceName) {
+            const bool &payoffAtExpiry) {
         std::vector<QuantLib::Date> datesQL =
             longVectorToDateVector(dates);
         exercise_ = boost::shared_ptr<QuantLib::Exercise>(

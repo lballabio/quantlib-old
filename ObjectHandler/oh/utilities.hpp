@@ -57,6 +57,7 @@ namespace ObjHandler {
     /*! Any existing Objet with that handle is deleted.
     */
     DLL_API std::string storeObject(
+            const std::string &instanceName,
             const ObjHandler::obj_ptr &object);
 
     //! Retrieve named Object from repository.

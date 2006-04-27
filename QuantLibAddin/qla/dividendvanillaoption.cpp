@@ -26,7 +26,6 @@
 namespace QuantLibAddin {
 
     DividendVanillaOption::DividendVanillaOption(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &handleBlackScholes,
             const std::string &optionTypeID,
             const std::string &payoffID,
@@ -35,7 +34,7 @@ namespace QuantLibAddin {
             const std::vector < long > &dividendDates,
             const std::vector < double > &dividends,
             const std::string &engineID,
-            const long &timeSteps)  : OneAssetOption(instanceName) {
+            const long &timeSteps) {
 
         OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
             GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)

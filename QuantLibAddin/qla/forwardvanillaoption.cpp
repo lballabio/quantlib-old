@@ -25,7 +25,6 @@
 namespace QuantLibAddin {
 
     ForwardVanillaOption::ForwardVanillaOption(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const double &moneyness,
             const long &resetDate,
             const std::string &handleBlackScholes,
@@ -34,7 +33,7 @@ namespace QuantLibAddin {
             const double &strike,
             const std::string &handleExercise,
             const std::string &engineID,
-            const long &timeSteps)  : OneAssetOption(instanceName) {
+            const long &timeSteps) {
 
         OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
             GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)

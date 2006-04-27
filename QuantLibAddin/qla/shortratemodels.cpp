@@ -26,21 +26,19 @@
 namespace QuantLibAddin {
 
     Vasicek::Vasicek(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const double &a,
             const double &b,
             const double &lambda,
-            const double &sigma)  : AffineModel(instanceName) {
+            const double &sigma) {
 
         model_ = boost::shared_ptr<QuantLib::Vasicek>(
             new QuantLib::Vasicek(a, b, lambda, sigma));
     }
 
     HullWhite::HullWhite(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const std::string &handleTermStructure,
             const double &a,
-            const double &sigma)  : AffineModel(instanceName) {
+            const double &sigma) {
 
         OH_GET_REFERENCE(termStructureP, handleTermStructure, 
             YieldTermStructure, QuantLib::YieldTermStructure)

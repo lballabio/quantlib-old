@@ -28,7 +28,6 @@ namespace QuantLibAddin {
     class VanillaSwap : public Instrument {
     public:
         VanillaSwap(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const long &lStartDate,
             const long &lMaturity,
             const QuantLib::Real &nominal,

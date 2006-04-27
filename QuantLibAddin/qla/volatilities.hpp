@@ -26,7 +26,7 @@ namespace QuantLibAddin {
 
     class BlackVolTermStructure : public ObjHandler::Object {
     public:
-        BlackVolTermStructure(const boost::shared_ptr < InstanceName > &instanceName) : ObjHandler::Object(instanceName) {}
+        // FIXME modify EXPORT_QL_OBJECT to support this
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(blackVolTermStructure_);
         }
@@ -37,7 +37,6 @@ namespace QuantLibAddin {
     class BlackConstantVol : public BlackVolTermStructure {
     public:
         BlackConstantVol(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const long &settlementDateLong,
             const double &volatility,
             const std::string &dayCounterID);
@@ -46,7 +45,6 @@ namespace QuantLibAddin {
     class BlackVarianceSurface : public BlackVolTermStructure {
     public:
         BlackVarianceSurface(
-            const boost::shared_ptr < InstanceName > &instanceName,
             const long &settlementDate,
             const std::vector < long > &dates,
             const std::vector < double > &strikes,

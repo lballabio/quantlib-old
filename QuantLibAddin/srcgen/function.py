@@ -79,11 +79,10 @@ class Constructor(Function):
     skipFirst = True    # omit handle when calling object constructor
     returnValue = parameter.ConstructorReturnValue
     BODY = '''\
-        ObjHandler::obj_ptr objectPointer(new QuantLibAddin::%s(
-            boost::shared_ptr < ObjHandler::Object::InstanceName > (new ObjHandler::InstanceNameXL(instanceName)),%s));
+        ObjHandler::obj_ptr objectPointer(new QuantLibAddin::%s(%s));
 
         std::string returnValue =
-            ObjHandler::storeObject(objectPointer);'''
+            ObjHandler::storeObject(instanceName, objectPointer);'''
     functionCall = '''\
         ObjHandler::FunctionCall functionCall;
         functionCall.clearCell();'''
