@@ -115,7 +115,7 @@ namespace QuantLibAddin {
                                          floatingDayCounter));
     }
 
-    FutureRateHelper::FutureRateHelper(
+    FuturesRateHelper::FuturesRateHelper(
             const double &price,
             const std::string &immDateID,
             const QuantLib::Integer &months,

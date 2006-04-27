@@ -45,8 +45,8 @@
 </Parameters>
 </Constructor>
 
-<Constructor name='qlFutureRateHelper'>
-<libraryFunction>FutureRateHelper</libraryFunction>
+<Constructor name='qlFuturesRateHelper'>
+<libraryFunction>FuturesRateHelper</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
     <Parameter name='price'>
@@ -104,7 +104,7 @@
   <libraryFunction>zeroRate</libraryFunction>
   <functionCategory>QuantLib</functionCategory>
   <Parameters>
-    <Parameter name='d' ql_type='QuantLib::Date'>
+    <Parameter name='date' ql_type='QuantLib::Date'>
       <type>long</type>
       <tensorRank>scalar</tensorRank>
       <description>date</description>
@@ -129,6 +129,11 @@
       <tensorRank>scalar</tensorRank>
       <description>extrapolate</description>
     </Parameter>
+    <Parameter name='trigger' ignore='true'>
+      <type>any</type>
+      <tensorRank>scalar</tensorRank>
+      <description>dependency tracking trigger</description>
+    </Parameter>
   </Parameters>
   <ReturnValue return_func='rate'>
       <type>double</type>
@@ -138,11 +143,11 @@
   </Member>
 
   <Member name='qlDiscount' getObject='true' libraryClass='PiecewiseFlatForward'>
-    <description>return the implied zero-yield rate for a given date</description>
+    <description>return the implied discount factor for a given date</description>
     <libraryFunction>discount</libraryFunction>
     <functionCategory>QuantLib</functionCategory>
     <Parameters>
-      <Parameter name='d' ql_type='QuantLib::Date'>
+      <Parameter name='date' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>date</description>
@@ -151,6 +156,11 @@
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
         <description>extrapolate</description>
+      </Parameter>
+      <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
       </Parameter>
     </Parameters>
     <ReturnValue>
@@ -195,6 +205,11 @@
         <tensorRank>scalar</tensorRank>
         <description>extrapolate</description>
       </Parameter>
+      <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+      </Parameter>
     </Parameters>
     <ReturnValue>
       <type>double</type>
@@ -216,7 +231,7 @@
       <Parameter name='startDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>startDate</description>
+        <description>start date</description>
       </Parameter>
       <Parameter name='freqID' ql_type='QuantLib::Frequency' default='"Annual"'>
         <type>string</type>
@@ -227,6 +242,11 @@
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
         <description>extrapolate</description>
+      </Parameter>
+      <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
       </Parameter>
     </Parameters>
     <ReturnValue>

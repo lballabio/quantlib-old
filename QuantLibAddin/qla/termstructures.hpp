@@ -73,11 +73,13 @@ namespace QuantLibAddin {
             const std::string &floatingFrequencyID,
             const std::string &floatingConventionID,
             const std::string &floatingDayCounterID);
+
+        EXPORT_UNDERLYING_OBJECT(QuantLib::SwapRateHelper, rateHelper_)
     };
 
-    class FutureRateHelper : public RateHelper {
+    class FuturesRateHelper : public RateHelper {
       public:
-        FutureRateHelper(
+        FuturesRateHelper(
             const double &price,
             const std::string &immDateID,
             const QuantLib::Integer &months,
@@ -85,6 +87,8 @@ namespace QuantLibAddin {
             const std::string &bDayConventionID,
             const std::string &calendarID,
             const QuantLib::Integer &decade);
+
+        EXPORT_UNDERLYING_OBJECT(QuantLib::FuturesRateHelper, rateHelper_)
     };
 
     class YieldTermStructure : public ObjHandler::Object {
