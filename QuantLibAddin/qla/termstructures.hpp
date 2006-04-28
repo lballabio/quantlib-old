@@ -121,12 +121,6 @@ namespace QuantLibAddin {
             const std::string &baseTermStructure,
             const double &spread);
     };
-
-    std::vector < double > qlDiscount(
-        const std::string &yieldTermStructure,
-        const std::vector < long >&DfDates,
-        const bool &iPol);
-
 }
 
 #endif

@@ -99,135 +99,6 @@
   </ReturnValue>
 </Member>
 
-<Member name='qlZeroRate' getObject='true' libraryClass='PiecewiseFlatForward'>
-  <description>return the implied zero-yield rate for a given date</description>
-  <libraryFunction>zeroRate</libraryFunction>
-  <functionCategory>QuantLib</functionCategory>
-  <Parameters>
-    <Parameter name='date' ql_type='QuantLib::Date'>
-      <type>long</type>
-      <tensorRank>scalar</tensorRank>
-      <description>date</description>
-    </Parameter>
-    <Parameter name='resultDayCounterID' ql_type='QuantLib::DayCounter'>
-      <type>string</type>
-      <tensorRank>scalar</tensorRank>
-      <description>resultDayCounter</description>
-    </Parameter>
-    <Parameter name='compID' ql_type='QuantLib::Compounding'>
-      <type>string</type>
-      <tensorRank>scalar</tensorRank>
-      <description>comp</description>
-    </Parameter>
-    <Parameter name='freqID' ql_type='QuantLib::Frequency' default='"Annual"'>
-      <type>string</type>
-      <tensorRank>scalar</tensorRank>
-      <description>freq</description>
-    </Parameter>
-    <Parameter name='extrapolate' default='false'>
-      <type>bool</type>
-      <tensorRank>scalar</tensorRank>
-      <description>extrapolate</description>
-    </Parameter>
-    <Parameter name='trigger' ignore='true'>
-      <type>any</type>
-      <tensorRank>scalar</tensorRank>
-      <description>dependency tracking trigger</description>
-    </Parameter>
-  </Parameters>
-  <ReturnValue return_func='rate'>
-      <type>double</type>
-      <tensorRank>scalar</tensorRank>
-      <description>interest rate</description>
-    </ReturnValue>
-  </Member>
-
-  <Member name='qlForwardRate' getObject='true' libraryClass='PiecewiseFlatForward'>
-    <description>return the implied forward interest rate between two given dates</description>
-    <libraryFunction>forwardRate</libraryFunction>
-    <functionCategory>QuantLib</functionCategory>
-    <Parameters>
-      <Parameter name='d1' ql_type='QuantLib::Date'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>date 1</description>
-      </Parameter>
-      <Parameter name='d2' ql_type='QuantLib::Date'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>date 2</description>
-      </Parameter>
-      <Parameter name='resultDayCounterID' ql_type='QuantLib::DayCounter'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>resultDayCounter</description>
-      </Parameter>
-      <Parameter name='compID' ql_type='QuantLib::Compounding'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>comp</description>
-      </Parameter>
-      <Parameter name='freqID' ql_type='QuantLib::Frequency' default='"Annual"'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>freq</description>
-      </Parameter>
-      <Parameter name='extrapolate' default='false'>
-        <type>bool</type>
-        <tensorRank>scalar</tensorRank>
-        <description>extrapolate</description>
-      </Parameter>
-      <Parameter name='trigger' ignore='true'>
-        <type>any</type>
-        <tensorRank>scalar</tensorRank>
-        <description>dependency tracking trigger</description>
-      </Parameter>
-    </Parameters>
-    <ReturnValue>
-      <type>double</type>
-      <tensorRank>scalar</tensorRank>
-      <description>interest rate</description>
-    </ReturnValue>
-  </Member>
-
-  <Member name='qlParRate' getObject='true' libraryClass='PiecewiseFlatForward'>
-    <description>return the implied par rate for a given sequence of payments at the given date</description>
-    <libraryFunction>parRate</libraryFunction>
-    <functionCategory>QuantLib</functionCategory>
-    <Parameters>
-      <Parameter name='tenor'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>tenor</description>
-      </Parameter>
-      <Parameter name='startDate' ql_type='QuantLib::Date'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>start date</description>
-      </Parameter>
-      <Parameter name='freqID' ql_type='QuantLib::Frequency' default='"Annual"'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>freq</description>
-      </Parameter>
-      <Parameter name='extrapolate' default='false'>
-        <type>bool</type>
-        <tensorRank>scalar</tensorRank>
-        <description>extrapolate</description>
-      </Parameter>
-      <Parameter name='trigger' ignore='true'>
-        <type>any</type>
-        <tensorRank>scalar</tensorRank>
-        <description>dependency tracking trigger</description>
-      </Parameter>
-    </Parameters>
-    <ReturnValue>
-      <type>double</type>
-      <tensorRank>scalar</tensorRank>
-      <description>interest rate</description>
-    </ReturnValue>
-  </Member>
-
 <Constructor name='qlPiecewiseFlatForward'>
 <libraryFunction>PiecewiseFlatForward</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
@@ -396,38 +267,163 @@
 </Parameters>
 </Constructor>
 
-<Procedure name='qlDiscount'>
-  <description>Return a vector of discount factors corresponding to a vector of dates for a given yield term structure</description>
-  <functionCategory>QuantLib</functionCategory>
-  <Parameters>
-    <Parameter name='yieldTermStructure'>
-      <type>string</type>
-      <tensorRank>scalar</tensorRank>
-      <description>handle of the yield term structure</description>
-    </Parameter>
-    <Parameter name='DfDates'>
-      <type>long</type>
+  <Member name='qlDiscount' getObject='true' libraryClass='PiecewiseFlatForward' loopParameter='DfDates'>
+    <description>Return a vector of discount factors corresponding to a vector of dates for a given yield term structure</description>
+    <libraryFunction>discount</libraryFunction>
+    <functionCategory>QuantLib</functionCategory>
+    <Parameters>
+      <Parameter name='DfDates' ql_type='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+        <description>vector of dates</description>
+      </Parameter>
+      <Parameter name='iPol'>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Interpolate Flag</description>
+      </Parameter>
+      <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+      </Parameter>
+    </Parameters>
+    <ReturnValue>
+      <type>double</type>
       <tensorRank>vector</tensorRank>
-      <description>vector of dates</description>
-    </Parameter>
-    <Parameter name='iPol'>
-      <type>bool</type>
-      <tensorRank>scalar</tensorRank>
-      <description>Interpolate Flag</description>
-    </Parameter>
-    <Parameter name='trigger' ignore='true'>
-      <type>any</type>
-      <tensorRank>scalar</tensorRank>
-      <description>dependency tracking trigger</description>
-    </Parameter>
-  </Parameters>
-  <ReturnValue>
-    <type>double</type>
-    <tensorRank>vector</tensorRank>
-    <description>vector of discount factors</description>
-  </ReturnValue>
-</Procedure>
-  
+      <description>vector of discount factors</description>
+    </ReturnValue>
+  </Member>
+
+  <Member name='qlForwardRate' getObject='true' libraryClass='YieldTermStructure' loopParameter='d2'>
+    <description>return a vector of implied forward interest rates between input date d1 and input date vector d2</description>
+    <libraryFunction>forwardRate</libraryFunction>
+    <functionCategory>QuantLib</functionCategory>
+    <Parameters>
+      <Parameter name='d1' ql_type='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>date 1</description>
+      </Parameter>
+      <Parameter name='d2' ql_type='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+        <description>date 2</description>
+      </Parameter>
+      <Parameter name='resultDayCounterID' ql_type='QuantLib::DayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>resultDayCounter</description>
+      </Parameter>
+      <Parameter name='compID' ql_type='QuantLib::Compounding'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>comp</description>
+      </Parameter>
+      <Parameter name='freqID' ql_type='QuantLib::Frequency' default='"Annual"'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>freq</description>
+      </Parameter>
+      <Parameter name='extrapolate' default='false'>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>extrapolate</description>
+      </Parameter>
+      <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+      </Parameter>
+    </Parameters>
+    <ReturnValue>
+      <type>double</type>
+      <tensorRank>vector</tensorRank>
+      <description>interest rate</description>
+    </ReturnValue>
+  </Member>
+
+  <Member name='qlZeroRate' getObject='true' libraryClass='YieldTermStructure' loopParameter='dates'>
+    <description>return a vector of implied zero-yield rates for given input dates</description>
+    <libraryFunction>zeroRate</libraryFunction>
+    <functionCategory>QuantLib</functionCategory>
+    <Parameters>
+      <Parameter name='dates' ql_type='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+        <description>date</description>
+      </Parameter>
+      <Parameter name='resultDayCounterID' ql_type='QuantLib::DayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>resultDayCounter</description>
+      </Parameter>
+      <Parameter name='compID' ql_type='QuantLib::Compounding'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>comp</description>
+      </Parameter>
+      <Parameter name='freqID' ql_type='QuantLib::Frequency' default='"Annual"'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>freq</description>
+      </Parameter>
+      <Parameter name='extrapolate' default='false'>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>extrapolate</description>
+      </Parameter>
+      <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+      </Parameter>
+    </Parameters>
+    <ReturnValue return_func='rate'>
+      <type>double</type>
+      <tensorRank>vector</tensorRank>
+      <description>interest rate</description>
+    </ReturnValue>
+  </Member>
+
+  <Member name='qlParRate' getObject='true' libraryClass='YieldTermStructure' loopParameter='tenor'>
+    <description>return a vector of implied par rates corresponding to input vector of tenors for given date/payment frequency</description>
+    <libraryFunction>parRate</libraryFunction>
+    <functionCategory>QuantLib</functionCategory>
+    <Parameters>
+      <Parameter name='tenor'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+        <description>tenor</description>
+      </Parameter>
+      <Parameter name='startDate' ql_type='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>start date</description>
+      </Parameter>
+      <Parameter name='freqID' ql_type='QuantLib::Frequency' default='"Annual"'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>freq</description>
+      </Parameter>
+      <Parameter name='extrapolate' default='false'>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>extrapolate</description>
+      </Parameter>
+      <Parameter name='trigger' ignore='true'>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+        <description>dependency tracking trigger</description>
+      </Parameter>
+    </Parameters>
+    <ReturnValue>
+      <type>double</type>
+      <tensorRank>vector</tensorRank>
+      <description>interest rate</description>
+    </ReturnValue>
+  </Member>
+
 </Functions>
 </Category>
 

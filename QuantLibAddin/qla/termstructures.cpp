@@ -208,22 +208,4 @@ namespace QuantLibAddin {
             new QuantLib::ForwardSpreadedTermStructure(discountingTermStructure, spreadQuote));
     }
 
-    std::vector < double > qlDiscount(
-        const std::string &yieldTermStructure,
-        const std::vector < long >&DfDates,
-        const bool &iPol) {
-
-            OH_GET_REFERENCE(yieldTermStructureQL, yieldTermStructure,
-                YieldTermStructure, QuantLib::YieldTermStructure)
-
-            std::vector < double > returnValue;
-            for (std::vector < long >::const_iterator i = DfDates.begin();
-                i != DfDates.end(); i++)
-                    returnValue.push_back(yieldTermStructureQL->discount(
-                        QuantLib::Date(*i),
-                        iPol));
-
-            return returnValue;
-    }
-
 }

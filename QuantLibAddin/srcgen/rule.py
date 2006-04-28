@@ -75,7 +75,7 @@ class RuleGroup(serializable.Serializable):
         """perform post serialization initialization."""
         self.indent *= 4 * ' '
 
-    def apply(self, param):
+    def apply(self, param, loop=None):
         """apply all available Rules to given parameter."""
         self.param = param
 
@@ -90,11 +90,11 @@ class RuleGroup(serializable.Serializable):
         if self.setSubrule(self.setName):           self.invokeSetName()
         if self.setSubrule(self.dereferenceName):   self.invokeDereferenceName()
         if self.setSubrule(self.reformatName):      self.invokeReformatName()
-        #self.setLibConversion()
         if self.setSubrule(self.setTypeConversion): self.invokeSetTypeConversion()
 
         if self.appendConversionSuffix and self.param.needsConversion:
             self.paramName += common.CONVERSION_SUFFIX
+        if loop == param.name: self.paramName = '*i'
         self.setLibConversion()
 
         if self.paramType and self.paramName:

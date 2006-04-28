@@ -43,6 +43,7 @@ class Function(serializable.Serializable):
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.NAME)
+        serializer.serializeAttribute(self, common.LOOP_PARAMETER)
         serializer.serializeProperty(self, common.DESCRIPTION)
         serializer.serializeProperty(self, common.FUNCTION_CATEGORY)
         serializer.serializeProperty(self, common.PLATFORMS, '*')
@@ -54,7 +55,7 @@ class Function(serializable.Serializable):
         if self.platforms == '*': return True
         return self.platforms.find(platformID) != -1
 
-    def generateParameterList(self, rule, context = DECLARATION, checkSkipFirst = True, x = False):
+    def generateParameterList(self, rule, context = DECLARATION, checkSkipFirst = True, loopParameter = None):
         """Generate source code relating to a list of function parameters."""
         returnValue = ''
         endOfLine = ''
@@ -66,7 +67,7 @@ class Function(serializable.Serializable):
                 if parameter.ignore : continue
             elif context == VALUEOBJECT:
                 if parameter.ignore : continue
-            returnValue += endOfLine + rule.apply(parameter)
+            returnValue += endOfLine + rule.apply(parameter, loopParameter)
             if i < self.ParameterCount: endOfLine = ',\n'
         if returnValue: returnValue = '\n' + returnValue
         return returnValue
@@ -109,7 +110,7 @@ class Constructor(Function):
         self.skipFirst = True
         libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION)
         handle = addin.stringConvert % self.Parameters[0].name
-        return self.BODY % (self.libraryFunction, libraryCall)
+        return Constructor.BODY % (self.libraryFunction, libraryCall)
 
     def generateVO(self, addin):
         for p in self.Parameters: p.ql_type= ''
@@ -126,7 +127,9 @@ class Member(Function):
     BODY = '''\
         OH_GET_OBJECT(objectPointer, %s, %s)
         %s returnValue;
-        returnValue = %s(%s)%s;'''
+        %s;'''
+    LOOP = '''for (std::vector < long >::const_iterator i = %s.begin(); i != %s.end(); i++)
+            returnValue.push_back (%s(%s)%s);'''
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
@@ -155,12 +158,18 @@ class Member(Function):
     def generateBody(self, addin):
         """Generate source code for function body."""
         libraryReturnType = addin.libraryReturnType.apply(self.returnValue)
-        libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION)
+        libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION, loopParameter = self.loopParameter)
         handle = addin.stringConvert % self.Parameters[0].name
         libraryClass = self.libraryClass
         if not self.noQlaNS: libraryClass = 'QuantLibAddin::' + libraryClass
-        return self.BODY % (handle, libraryClass, libraryReturnType, 
-            self.accessLibFunc, libraryCall, self.returnValue.returnFunction())
+        if self.loopParameter:
+            nm = self.loopParameter + common.CONVERSION_SUFFIX
+            functionCall = Member.LOOP  % (nm, nm, self.accessLibFunc, 
+                libraryCall, self.returnValue.returnFunction())
+        else:
+            functionCall = 'returnValue = %s(%s)%s;' % (self.accessLibFunc, 
+                libraryCall, self.returnValue.returnFunction())
+        return Member.BODY % (handle, libraryClass, libraryReturnType, functionCall)
 
 class Procedure(Function):
     """Procedural function not associated with any QuantLib object."""
