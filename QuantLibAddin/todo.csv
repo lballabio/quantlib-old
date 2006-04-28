@@ -43,9 +43,9 @@
 "QLA","Xibor","automatically load EURIBOR etc. at startup from VOs (""singleton objects"")",,,,"see ObjectHandler"
 "QLA","Xibor","get/set fixing for given date",,,,"?"
 "QLA","General Support","Session functionality crashes QLA if active book named Book1.XLS",,"M",,
-"QLA","General Support","upgrade Calc addin to OOo 2 / VC 7",,"L",,"done by Joe Byers, need to commit to CVS"
 "QLA","General Support","EXPORT_QL_OBJECT macro not fully polymorphic",,"L",,
 "QLA","General Support","C++ examples - add VOs, NPV calculations",,"L",,
+"QLA","General Support","upgrade Calc addin to OOo 2 / VC 7","done","L","28/04/2006","thanks to Joe Byers"
 "QLA","General Support","upgrade to latest CVS snapshot of QL","done",,"19/04/2006",
 "QLA","General Support","sort out RandomSequenceGenerator","done",,"19/04/2006",
 "QLA","srcgen","call OH_GET_REFERENCE from Addin code for functions with getObject='true' ?",,"L",,

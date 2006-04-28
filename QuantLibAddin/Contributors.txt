@@ -1,4 +1,5 @@
 
 We gratefully acknowledge contributions from Ferdinando Ametrano, Luigi
-Ballabio, Marco Marchioro, Walter Penschke, Lars Schouw.
+Ballabio, Joe Byers, Katiuscia Manzoni, Marco Marchioro, Walter Penschke, Lars
+Schouw.
 

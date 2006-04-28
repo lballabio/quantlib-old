@@ -20,8 +20,8 @@ FUNCTIONALITY
 CALC
 
 - renamed project to avoid conflict with core QuantLibAddin lib file
-- upgraded VC workspaces to Visual Studio 2003 (latest version supported by OOo)
-- upgraded OpenOffice.org Calc version from 1.1.3 to 2.0.2
+- upgraded VC workspace to Visual Studio 2003 (latest version supported by OOo) (thanks to Joe Byers)
+- upgraded OpenOffice.org Calc version from 1.1.3 to 2.0.2 for Windows (thanks to Joe Byers) and Linux
 
 Release 0.3.12 - March 2006
 
