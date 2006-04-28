@@ -208,7 +208,7 @@ namespace QuantLibAddin {
             new QuantLib::ForwardSpreadedTermStructure(discountingTermStructure, spreadQuote));
     }
 
-    std::vector < double > qlGetDf(
+    std::vector < double > qlDiscount(
         const std::string &yieldTermStructure,
         const std::vector < long >&DfDates,
         const bool &iPol) {

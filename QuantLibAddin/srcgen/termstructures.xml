@@ -142,34 +142,6 @@
     </ReturnValue>
   </Member>
 
-  <Member name='qlDiscount' getObject='true' libraryClass='PiecewiseFlatForward'>
-    <description>return the implied discount factor for a given date</description>
-    <libraryFunction>discount</libraryFunction>
-    <functionCategory>QuantLib</functionCategory>
-    <Parameters>
-      <Parameter name='date' ql_type='QuantLib::Date'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>date</description>
-      </Parameter>
-      <Parameter name='extrapolate' default='false'>
-        <type>bool</type>
-        <tensorRank>scalar</tensorRank>
-        <description>extrapolate</description>
-      </Parameter>
-      <Parameter name='trigger' ignore='true'>
-        <type>any</type>
-        <tensorRank>scalar</tensorRank>
-        <description>dependency tracking trigger</description>
-      </Parameter>
-    </Parameters>
-    <ReturnValue>
-      <type>double</type>
-      <tensorRank>scalar</tensorRank>
-      <description>interest rate</description>
-    </ReturnValue>
-  </Member>
-
   <Member name='qlForwardRate' getObject='true' libraryClass='PiecewiseFlatForward'>
     <description>return the implied forward interest rate between two given dates</description>
     <libraryFunction>forwardRate</libraryFunction>
@@ -424,7 +396,7 @@
 </Parameters>
 </Constructor>
 
-<Procedure name='qlGetDf'>
+<Procedure name='qlDiscount'>
   <description>Return a vector of discount factors corresponding to a vector of dates for a given yield term structure</description>
   <functionCategory>QuantLib</functionCategory>
   <Parameters>
@@ -455,7 +427,7 @@
     <description>vector of discount factors</description>
   </ReturnValue>
 </Procedure>
-
+  
 </Functions>
 </Category>
 
