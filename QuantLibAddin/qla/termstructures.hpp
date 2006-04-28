@@ -39,6 +39,9 @@ namespace QuantLibAddin {
         QuantLib::Handle<QuantLib::Quote> quoteHandle() const {
             return quoteHandle_;
         }
+        const QuantLib::RateHelper& getObject() const {
+            return *rateHelper_;
+        }
       protected:
         boost::shared_ptr<QuantLib::SimpleQuote> quote_;
         boost::shared_ptr<QuantLib::RateHelper> rateHelper_;
@@ -55,8 +58,6 @@ namespace QuantLibAddin {
             const std::string &calendarID,
             const std::string &conventionID,
             const std::string &dayCounterID);
-
-        EXPORT_UNDERLYING_OBJECT(QuantLib::DepositRateHelper, rateHelper_)
     };
 
     class SwapRateHelper : public RateHelper {
@@ -73,8 +74,6 @@ namespace QuantLibAddin {
             const std::string &floatingFrequencyID,
             const std::string &floatingConventionID,
             const std::string &floatingDayCounterID);
-
-        EXPORT_UNDERLYING_OBJECT(QuantLib::SwapRateHelper, rateHelper_)
     };
 
     class FuturesRateHelper : public RateHelper {
@@ -87,8 +86,6 @@ namespace QuantLibAddin {
             const std::string &bDayConventionID,
             const std::string &calendarID,
             const QuantLib::Integer &decade);
-
-        EXPORT_UNDERLYING_OBJECT(QuantLib::FuturesRateHelper, rateHelper_)
     };
 
     class YieldTermStructure : public ObjHandler::Object {

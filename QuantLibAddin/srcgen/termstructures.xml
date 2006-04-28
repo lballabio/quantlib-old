@@ -87,7 +87,7 @@
 </Parameters>
 </Constructor>
 
-<Member name='qlLatestDate' getObject='true' libraryClass='DepositRateHelper'>
+<Member name='qlLatestDate' getObject='true' libraryClass='RateHelper'>
   <description>retrieve a RateHelper's latest date</description>
   <libraryFunction>latestDate</libraryFunction>
   <functionCategory>QuantLib</functionCategory>
