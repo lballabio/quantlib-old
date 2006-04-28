@@ -273,7 +273,7 @@
     <functionCategory>QuantLib</functionCategory>
     <Parameters>
       <Parameter name='DfDates' ql_type='QuantLib::Date'>
-        <type>long</type>
+        <type>any</type>
         <tensorRank>vector</tensorRank>
         <description>vector of dates</description>
       </Parameter>
@@ -289,7 +289,7 @@
       </Parameter>
     </Parameters>
     <ReturnValue>
-      <type>double</type>
+      <type>any</type>
       <tensorRank>vector</tensorRank>
       <description>vector of discount factors</description>
     </ReturnValue>
@@ -306,7 +306,7 @@
         <description>date 1</description>
       </Parameter>
       <Parameter name='d2' ql_type='QuantLib::Date'>
-        <type>long</type>
+        <type>any</type>
         <tensorRank>vector</tensorRank>
         <description>date 2</description>
       </Parameter>
@@ -336,8 +336,8 @@
         <description>dependency tracking trigger</description>
       </Parameter>
     </Parameters>
-    <ReturnValue>
-      <type>double</type>
+    <ReturnValue return_func='rate'>
+      <type>any</type>
       <tensorRank>vector</tensorRank>
       <description>interest rate</description>
     </ReturnValue>
@@ -349,7 +349,7 @@
     <functionCategory>QuantLib</functionCategory>
     <Parameters>
       <Parameter name='dates' ql_type='QuantLib::Date'>
-        <type>long</type>
+        <type>any</type>
         <tensorRank>vector</tensorRank>
         <description>date</description>
       </Parameter>
@@ -380,7 +380,7 @@
       </Parameter>
     </Parameters>
     <ReturnValue return_func='rate'>
-      <type>double</type>
+      <type>any</type>
       <tensorRank>vector</tensorRank>
       <description>interest rate</description>
     </ReturnValue>
@@ -392,7 +392,7 @@
     <functionCategory>QuantLib</functionCategory>
     <Parameters>
       <Parameter name='tenor'>
-        <type>long</type>
+        <type>any</type>
         <tensorRank>vector</tensorRank>
         <description>tenor</description>
       </Parameter>
@@ -418,7 +418,7 @@
       </Parameter>
     </Parameters>
     <ReturnValue>
-      <type>double</type>
+      <type>any</type>
       <tensorRank>vector</tensorRank>
       <description>interest rate</description>
     </ReturnValue>

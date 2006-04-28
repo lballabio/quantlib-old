@@ -79,6 +79,15 @@ namespace ObjHandler {
         } else if (value.type() == typeid(std::string)) {
             std::string s = boost::any_cast<std::string>(value);
             scalarToXloper(xAny, s);
+        } else if (value.type() == typeid(AnyError)) {
+            AnyError err = boost::any_cast<AnyError>(value);
+            xAny.xltype = xltypeErr;
+            if (err == InvalidInput)
+                xAny.val.err = xlerrValue;
+            else if (err == CaughtException)
+                xAny.val.err = xlerrNum;
+            else
+                xAny.val.err = xlerrNull;
         } else if (value.type() == typeid(std::vector<long>)) {
             if (expandVectors) {
                 std::vector<long> v= boost::any_cast< std::vector<long> >(value);
@@ -260,8 +269,10 @@ namespace ObjHandler {
         //if (xScalar.xltype & xltypeErr)
         //    throw Exception("input value is #NULL (xltypeErr)");
         //if (xScalar.xltype & (xltypeMissing | xltypeNil))
-        if (xScalar.xltype & (xltypeMissing | xltypeNil | xltypeErr))
+        if (xScalar.xltype & (xltypeMissing | xltypeNil))
             ret = boost::any();
+        else if (xScalar.xltype & xltypeErr)
+            ret = InvalidInput;
         else if (xScalar.xltype == xltypeNum)
             ret = xScalar.val.num;
         else if (xScalar.xltype == xltypeBool)

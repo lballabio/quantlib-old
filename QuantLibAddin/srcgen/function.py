@@ -55,7 +55,8 @@ class Function(serializable.Serializable):
         if self.platforms == '*': return True
         return self.platforms.find(platformID) != -1
 
-    def generateParameterList(self, rule, context = DECLARATION, checkSkipFirst = True, loopParameter = None):
+    def generateParameterList(self, rule, context = DECLARATION, checkSkipFirst = True, 
+            loopParameter = None, loopReplace = None):
         """Generate source code relating to a list of function parameters."""
         returnValue = ''
         endOfLine = ''
@@ -67,7 +68,7 @@ class Function(serializable.Serializable):
                 if parameter.ignore : continue
             elif context == VALUEOBJECT:
                 if parameter.ignore : continue
-            returnValue += endOfLine + rule.apply(parameter, loopParameter)
+            returnValue += endOfLine + rule.apply(parameter, loopParameter, loopReplace)
             if i < self.ParameterCount: endOfLine = ',\n'
         if returnValue: returnValue = '\n' + returnValue
         return returnValue
@@ -124,12 +125,23 @@ class Member(Function):
     """Function which invokes member function of existing QuantLib object."""
 
     skipFirst = True    # omit object handle when invoking its member function
-    BODY = '''\
+    BODY = '''
         OH_GET_OBJECT(objectPointer, %s, %s)
         %s returnValue;
-        %s;'''
-    LOOP = '''for (std::vector < long >::const_iterator i = %s.begin(); i != %s.end(); i++)
-            returnValue.push_back (%s(%s)%s);'''
+        %s'''
+    LOOP = '''
+        for (std::vector < boost::any >::const_iterator i = %s.begin(); i != %s.end(); i++) {
+            boost::any value = *i;
+            if (value.type() == typeid(double)) {
+                try {
+                    returnValue.push_back(%s(%s)%s);
+                } catch(...) {
+                    returnValue.push_back(ObjHandler::CaughtException);
+                }
+            } else {
+                returnValue.push_back(ObjHandler::InvalidInput);
+            }
+        }'''
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
@@ -158,13 +170,14 @@ class Member(Function):
     def generateBody(self, addin):
         """Generate source code for function body."""
         libraryReturnType = addin.libraryReturnType.apply(self.returnValue)
-        libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION, loopParameter = self.loopParameter)
+        libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION, 
+            loopParameter = self.loopParameter, loopReplace = 'boost::any_cast<double>(value)')
         handle = addin.stringConvert % self.Parameters[0].name
         libraryClass = self.libraryClass
         if not self.noQlaNS: libraryClass = 'QuantLibAddin::' + libraryClass
         if self.loopParameter:
-            nm = self.loopParameter + common.CONVERSION_SUFFIX
-            functionCall = Member.LOOP  % (nm, nm, self.accessLibFunc, 
+            paramName = self.loopParameter + common.CONVERSION_SUFFIX
+            functionCall = Member.LOOP  % (paramName, paramName, self.accessLibFunc, 
                 libraryCall, self.returnValue.returnFunction())
         else:
             functionCall = 'returnValue = %s(%s)%s;' % (self.accessLibFunc, 
