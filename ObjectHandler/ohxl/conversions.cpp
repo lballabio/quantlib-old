@@ -159,9 +159,10 @@ namespace ObjHandler {
 
     DLL_API void operToScalar(long &ret, const OPER &xScalar, const long &defaultValue) {
         try {
-            if (xScalar.xltype & xltypeErr)
-                throw Exception("input value is #NULL (xltypeErr)");
-            if (xScalar.xltype & (xltypeMissing | xltypeNil))
+            //if (xScalar.xltype & xltypeErr)
+            //    throw Exception("input value is #NULL (xltypeErr)");
+            //if (xScalar.xltype & (xltypeMissing | xltypeNil))
+            if (xScalar.xltype & (xltypeMissing | xltypeNil | xltypeErr))
                 ret = defaultValue;
             else if (xScalar.xltype == xltypeNum)
                 ret = xScalar.val.num;
@@ -179,9 +180,10 @@ namespace ObjHandler {
 
     DLL_API void operToScalar(double &ret, const OPER &xScalar, const double &defaultValue) {
         try {
-            if (xScalar.xltype & xltypeErr)
-                throw Exception("input value is #NULL (xltypeErr)");
-            if (xScalar.xltype & (xltypeMissing | xltypeNil))
+            //if (xScalar.xltype & xltypeErr)
+            //    throw Exception("input value is #NULL (xltypeErr)");
+            //if (xScalar.xltype & (xltypeMissing | xltypeNil))
+            if (xScalar.xltype & (xltypeMissing | xltypeNil | xltypeErr))
                 ret = defaultValue;
             else if (xScalar.xltype == xltypeNum)
                 ret = xScalar.val.num;
@@ -199,9 +201,10 @@ namespace ObjHandler {
 
     DLL_API void operToScalar(bool &ret, const OPER &xScalar, const bool &defaultValue) {
         try {
-            if (xScalar.xltype & xltypeErr)
-                throw Exception("input value is #NULL (xltypeErr)");
-            if (xScalar.xltype & (xltypeMissing | xltypeNil))
+            //if (xScalar.xltype & xltypeErr)
+            //    throw Exception("input value is #NULL (xltypeErr)");
+            //if (xScalar.xltype & (xltypeMissing | xltypeNil))
+            if (xScalar.xltype & (xltypeMissing | xltypeNil | xltypeErr))
                 ret = defaultValue;
             else if (xScalar.xltype == xltypeBool)
                 ret = xScalar.val.boolean != 0;
@@ -221,9 +224,10 @@ namespace ObjHandler {
         OPER xTemp;
         bool needToFree = false;
         try {
-            if (xScalar.xltype & xltypeErr)
-                throw Exception("input value is #NULL (xltypeErr)");
-            if (xScalar.xltype & (xltypeMissing | xltypeNil)) {
+            //if (xScalar.xltype & xltypeErr)
+            //    throw Exception("input value is #NULL (xltypeErr)");
+            //if (xScalar.xltype & (xltypeMissing | xltypeNil))
+            if (xScalar.xltype & (xltypeMissing | xltypeNil | xltypeErr)) {
                 ret = defaultValue;
                 return;
             }
@@ -253,9 +257,10 @@ namespace ObjHandler {
     }
 
     DLL_API void operToScalar(boost::any &ret, const OPER &xScalar) {
-        if (xScalar.xltype & xltypeErr)
-            throw Exception("input value is #NULL (xltypeErr)");
-        if (xScalar.xltype & (xltypeMissing | xltypeNil))
+        //if (xScalar.xltype & xltypeErr)
+        //    throw Exception("input value is #NULL (xltypeErr)");
+        //if (xScalar.xltype & (xltypeMissing | xltypeNil))
+        if (xScalar.xltype & (xltypeMissing | xltypeNil | xltypeErr))
             ret = boost::any();
         else if (xScalar.xltype == xltypeNum)
             ret = xScalar.val.num;
