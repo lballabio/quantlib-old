@@ -87,6 +87,18 @@
 </Parameters>
 </Constructor>
 
+<Member name='qlEarliestDate' getObject='true' libraryClass='RateHelper'>
+  <description>retrieve a RateHelper's earliest date</description>
+  <libraryFunction>earliestDate</libraryFunction>
+  <functionCategory>QuantLib</functionCategory>
+  <Parameters/>
+  <ReturnValue return_func='serialNumber'>
+    <type>long</type>
+    <tensorRank>scalar</tensorRank>
+    <description>earliest date</description>
+  </ReturnValue>
+</Member>
+
 <Member name='qlLatestDate' getObject='true' libraryClass='RateHelper'>
   <description>retrieve a RateHelper's latest date</description>
   <libraryFunction>latestDate</libraryFunction>
@@ -97,6 +109,18 @@
     <tensorRank>scalar</tensorRank>
     <description>latest date</description>
   </ReturnValue>
+</Member>
+
+<Member name='qlReferenceQuote' getObject='true' libraryClass='RateHelper'>
+  <description>retrieve a RateHelper's reference quote</description>
+  <libraryFunction>referenceQuote</libraryFunction>
+  <functionCategory>QuantLib</functionCategory>
+  <Parameters/>
+	<ReturnValue>
+		<type>double</type>
+		<tensorRank>scalar</tensorRank>
+		<description>reference quote</description>
+	</ReturnValue>
 </Member>
 
 <Constructor name='qlPiecewiseFlatForward'>
@@ -422,6 +446,30 @@
       <tensorRank>vector</tensorRank>
       <description>interest rate</description>
     </ReturnValue>
+  </Member>
+
+  <Member name='qlReferenceDate' getObject='true' libraryClass='YieldTermStructure'>
+    <description>return the earliest date at which the YieldTermStructure is defined (i.e. discount factor = 1.0)</description>
+    <libraryFunction>referenceDate</libraryFunction>
+    <functionCategory>QuantLib</functionCategory>
+    <Parameters/>
+	<ReturnValue return_func='serialNumber'>
+		<type>long</type>
+		<tensorRank>scalar</tensorRank>
+		<description>earliest date</description>
+	</ReturnValue>
+  </Member>
+
+  <Member name='qlMaxDate' getObject='true' libraryClass='YieldTermStructure'>
+    <description>return the latest date at which the YieldTermStructure is defined (not considering extrapolation feature)</description>
+    <libraryFunction>maxDate</libraryFunction>
+    <functionCategory>QuantLib</functionCategory>
+    <Parameters/>
+	<ReturnValue return_func='serialNumber'>
+		<type>long</type>
+		<tensorRank>scalar</tensorRank>
+		<description>latest date</description>
+	</ReturnValue>
   </Member>
 
 </Functions>

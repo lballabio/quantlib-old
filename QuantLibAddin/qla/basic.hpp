@@ -27,6 +27,7 @@
 #define qla_basic_hpp
 
 #include <oh/objhandler.hpp>
+#include <qla/clientutils.hpp>
 #include <ql/calendar.hpp>
 #include <ql/Functions/prices.hpp>
 
@@ -47,6 +48,27 @@ namespace QuantLibAddin {
     }    
 
 
+    //! whether or not the given date is an IMM date
+    inline bool qlIsIMMdate(const long& ld) {
+        QuantLib::Date d=createQLDate(ld);
+        return QuantLib::Date::isIMMdate(d);
+    }
+
+    //! next IMM date following (or equal to) the given date
+    /*! returns the 1st delivery date for next contract listed in the
+        International Money Market section of the Chicago Mercantile
+        Exchange.
+
+        \warning The result date is following or equal to the
+                    original date.
+    */
+    inline QuantLib::Date qlNextIMMdate(const long& ld) {
+        QuantLib::Date d=createQLDate(ld);
+        return QuantLib::Date::nextIMMdate(d);
+    }
+
+                              
+                              
     /*! return the advanced date over a given calendar
     */
     QuantLib::Date qlAdvanceCalendar(

@@ -21,7 +21,6 @@
 #endif
 
 #include <qla/basic.hpp>
-#include <qla/clientutils.hpp>
 #include <qla/typefactory.hpp>
 
 #include <ql/daycounter.hpp>

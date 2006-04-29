@@ -224,6 +224,9 @@
 				RelativePath="interpolation.xml">
 			</File>
 			<File
+				RelativePath=".\math.xml">
+			</File>
+			<File
 				RelativePath="ohfunctions.xml">
 			</File>
 			<File
