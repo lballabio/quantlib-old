@@ -207,6 +207,9 @@
 			</FileConfiguration>
 		</File>
 		<File
+			RelativePath=".\date.cpp">
+		</File>
+		<File
 			RelativePath="exercise.cpp">
 			<FileConfiguration
 				Name="Debug CRTDLL|Win32">

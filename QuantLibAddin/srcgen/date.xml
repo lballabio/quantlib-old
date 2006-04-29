@@ -1,0 +1,207 @@
+<Category name='date'>
+<description>Date related QuantLib functions</description>
+<displayName>Date</displayName>
+<Functions>
+
+<!--
+<Procedure name='qlHolidayList' >
+<description>returns the holidays in a period between two dates according to a given holiday calendar</description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='calendar'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Calendar ID to use for holiday determination</description>
+    </Parameter>
+    <Parameter name='fromDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>first date of the period</description>
+    </Parameter>
+    <Parameter name='toDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>last date of the period</description>
+    </Parameter>
+    <Parameter name='includeWeekEnds' default='TRUE'>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>include week-end as holidays</description>
+    </Parameter>
+</Parameters>
+<ReturnValue return_func='serialNumber'>
+    <type>long</type>
+    <tensorRank>vector</tensorRank>
+    <description>holidays</description>
+</ReturnValue>
+</Procedure>
+-->
+
+<Procedure name='qlAdvanceCalendar' >
+<description>advances the given calendar</description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='startDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>start date to be advanced</description>
+    </Parameter>
+    <Parameter name='n'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>number of units to advance</description>
+    </Parameter>
+    <Parameter name='timeUnits'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>units to advance</description>
+    </Parameter>
+    <Parameter name='calendar'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Calendar ID to advance</description>
+    </Parameter>
+    <Parameter name='rollingConvention'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>rolling convention</description>
+    </Parameter>
+</Parameters>
+<ReturnValue return_func='serialNumber'>
+    <type>long</type>
+    <tensorRank>scalar</tensorRank>
+    <description>advanced date</description>
+</ReturnValue>
+</Procedure>
+
+<Procedure name='qlIsIMMdate' >
+<description>returns whether or not the given date is an IMM date.</description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>date</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>bool</type>
+    <tensorRank>scalar</tensorRank>
+    <description>is an IMM date</description>
+</ReturnValue>
+</Procedure>
+
+<Procedure name='qlNextIMMdate' >
+<description>returns the 1st delivery date for next contract listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>date with respect to which the next IMM date is calculated</description>
+    </Parameter>
+</Parameters>
+<ReturnValue return_func='serialNumber'>
+    <type>long</type>
+    <tensorRank>scalar</tensorRank>
+    <description>the next IMM date</description>
+</ReturnValue>
+</Procedure>
+
+
+<Procedure name='qlDayCount'>
+<description>calculate the dayin a period according to a given day count convention</description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='dayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day-counter convention</description>
+    </Parameter>
+    <Parameter name='startDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>start date</description>
+    </Parameter>
+    <Parameter name='endDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>end date</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>long</type>
+    <tensorRank>scalar</tensorRank>
+    <description>days between the start date and the end date</description>
+</ReturnValue>
+</Procedure>
+
+
+<Procedure name='qlYearFraction'>
+<description>calculate a year fraction</description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='dayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day-counter convention</description>
+    </Parameter>
+    <Parameter name='startDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>start date</description>
+    </Parameter>
+    <Parameter name='endDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>end date</description>
+    </Parameter>
+    <Parameter name='refPeriodStart'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>start date for reference period</description>
+    </Parameter>
+    <Parameter name='refPeriodEnd'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>end date for reference period</description>
+    </Parameter>    
+</Parameters>
+<ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>advanced date</description>
+</ReturnValue>
+</Procedure>
+
+<Procedure name='qlEvaluationDate'>
+<description>returns the current value of the Evaluation Date</description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters/>
+<ReturnValue return_func='serialNumber'>
+    <type>long</type>
+    <tensorRank>scalar</tensorRank>
+    <description>evaluation date</description>
+</ReturnValue>
+</Procedure>
+
+<Procedure name='qlSetEvaluationDate'>
+<description>sets the value of the Evaluation Date</description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='evalDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>new value for the evaluation date</description>
+    </Parameter>
+</Parameters>
+<ReturnValue return_func='serialNumber'>
+    <type>long</type>
+    <tensorRank>scalar</tensorRank>
+    <description>evaluation date</description>
+</ReturnValue>
+</Procedure>
+
+</Functions>
+</Category>
+

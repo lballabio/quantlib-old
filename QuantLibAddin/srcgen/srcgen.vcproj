@@ -212,6 +212,9 @@
 				RelativePath="couponvectors.xml">
 			</File>
 			<File
+				RelativePath=".\date.xml">
+			</File>
+			<File
 				RelativePath="enumerations.xml">
 			</File>
 			<File

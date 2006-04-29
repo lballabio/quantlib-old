@@ -44,6 +44,9 @@
 				RelativePath="couponvectors.cpp">
 			</File>
 			<File
+				RelativePath=".\date.cpp">
+			</File>
+			<File
 				RelativePath="exercise.cpp">
 			</File>
 			<File
@@ -65,13 +68,13 @@
 				RelativePath="processes.cpp">
 			</File>
 			<File
-				RelativePath="randomsequencegenerator.cpp">
+				RelativePath="QLA-Calc.idl">
 			</File>
 			<File
 				RelativePath="qladdin.cpp">
 			</File>
 			<File
-				RelativePath="QLA-Calc.idl">
+				RelativePath="randomsequencegenerator.cpp">
 			</File>
 			<File
 				RelativePath="schedule.cpp">
@@ -117,6 +120,9 @@
 				RelativePath="couponvectors.hpp">
 			</File>
 			<File
+				RelativePath=".\date.hpp">
+			</File>
+			<File
 				RelativePath="exercise.hpp">
 			</File>
 			<File
@@ -135,9 +141,6 @@
 				RelativePath="processes.hpp">
 			</File>
 			<File
-				RelativePath="randomsequencegenerator.hpp">
-			</File>
-			<File
 				RelativePath="qla_all.hpp">
 			</File>
 			<File
@@ -145,6 +148,9 @@
 			</File>
 			<File
 				RelativePath="qldefs.hpp">
+			</File>
+			<File
+				RelativePath="randomsequencegenerator.hpp">
 			</File>
 			<File
 				RelativePath="schedule.hpp">

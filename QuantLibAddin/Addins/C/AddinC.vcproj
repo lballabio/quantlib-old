@@ -183,6 +183,9 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\date.cpp">
+			</File>
+			<File
 				RelativePath="exercise.cpp">
 				<FileConfiguration
 					Name="Debug CRTDLL|Win32">
@@ -536,6 +539,9 @@
 				RelativePath="couponvectors.h">
 			</File>
 			<File
+				RelativePath=".\date.h">
+			</File>
+			<File
 				RelativePath="defines.h">
 			</File>
 			<File
@@ -557,10 +563,10 @@
 				RelativePath="processes.h">
 			</File>
 			<File
-				RelativePath="randomsequencegenerator.h">
+				RelativePath="qladdin.h">
 			</File>
 			<File
-				RelativePath="qladdin.h">
+				RelativePath="randomsequencegenerator.h">
 			</File>
 			<File
 				RelativePath="schedule.h">
