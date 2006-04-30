@@ -269,10 +269,10 @@ namespace ObjHandler {
         //if (xScalar.xltype & xltypeErr)
         //    throw Exception("input value is #NULL (xltypeErr)");
         //if (xScalar.xltype & (xltypeMissing | xltypeNil))
-        if (xScalar.xltype & (xltypeMissing | xltypeNil))
+        if (xScalar.xltype & (xltypeMissing | xltypeNil | xltypeErr))
             ret = boost::any();
-        else if (xScalar.xltype & xltypeErr)
-            ret = InvalidInput;
+        //else if (xScalar.xltype & xltypeErr)
+        //    ret = InvalidInput;
         else if (xScalar.xltype == xltypeNum)
             ret = xScalar.val.num;
         else if (xScalar.xltype == xltypeBool)

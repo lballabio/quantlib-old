@@ -53,6 +53,8 @@
 
 namespace ObjHandler {
 
+    enum AnyError { InvalidInput, CaughtException };
+
     //! Store given Object in repository under given handle.
     /*! Any existing Objet with that handle is deleted.
     */

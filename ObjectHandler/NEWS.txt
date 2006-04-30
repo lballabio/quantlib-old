@@ -3,6 +3,7 @@ Release 0.1.4 - ??? 2006
 CORE
 
 - Fixed bug where inputting handle of unexpected class crashed ObjectHandler
+- function ohHandleList renamed to ohListInstanceNames
 
 Release 0.1.3 - March 2006
 

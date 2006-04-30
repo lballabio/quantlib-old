@@ -18,7 +18,7 @@ EXTRA_DIST = \
     autolink.hpp
 
 lib_LTLIBRARIES = libObjectHandler.la
-LDFLAGS = -llog4cxx -release $(PACKAGE_VERSION)
+LDFLAGS = -llog4cxx -lboost_regex-gcc -release $(PACKAGE_VERSION)
 
 libObjectHandler_la_SOURCES = \
     exception.cpp  \
