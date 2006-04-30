@@ -441,9 +441,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\qla\basketoption.cpp">
-			</File>
-			<File
 				RelativePath="qla\capfloor.cpp">
 				<FileConfiguration
 					Name="Release CRTDLL|Win32">
@@ -712,9 +709,6 @@
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\qla\date.cpp">
 			</File>
 			<File
 				RelativePath="qla\dividendvanillaoption.cpp">
@@ -2785,12 +2779,6 @@
 				RelativePath="qla\baseinstruments.hpp">
 			</File>
 			<File
-				RelativePath="qla\basic.hpp">
-			</File>
-			<File
-				RelativePath=".\qla\basketoption.hpp">
-			</File>
-			<File
 				RelativePath="qla\capfloor.hpp">
 			</File>
 			<File
@@ -2804,9 +2792,6 @@
 			</File>
 			<File
 				RelativePath="qla\couponvectors.hpp">
-			</File>
-			<File
-				RelativePath=".\qla\date.hpp">
 			</File>
 			<File
 				RelativePath="qla\dividendvanillaoption.hpp">
@@ -2831,9 +2816,6 @@
 			</File>
 			<File
 				RelativePath="qla\interpolation.hpp">
-			</File>
-			<File
-				RelativePath=".\qla\math.hpp">
 			</File>
 			<File
 				RelativePath="qla\options.hpp">

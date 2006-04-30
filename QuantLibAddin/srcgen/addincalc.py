@@ -52,7 +52,7 @@ class AddinCalc(addin.Addin):
 
     def generateFuncMap(self):
         """Generate help text for function wizard."""
-        fileMap = outputfile.OutputFile(self.rootDirectory + MAPFILE)
+        fileMap = outputfile.OutputFile(self, self.rootDirectory + MAPFILE)
         fileMap.write(self.bufferMap.text)
 
         for category in config.Config.getInstance().getCategories(self.platformId):
@@ -70,7 +70,7 @@ class AddinCalc(addin.Addin):
 
     def generateAutoHeader(self):
         """Generate header file that lists all other headers."""
-        fileHeader = outputfile.OutputFile(self.rootDirectory + QLA_HEADER)
+        fileHeader = outputfile.OutputFile(self, self.rootDirectory + QLA_HEADER)
         fileHeader.write('#ifndef qla_calc_auto_hpp\n')
         fileHeader.write('#define qla_calc_auto_hpp\n\n')
         for category in config.Config.getInstance().getCategories(self.platformId):
@@ -96,7 +96,7 @@ class AddinCalc(addin.Addin):
     def generateHeaders(self):
         """Generate source for function prototypes."""
         for category in config.Config.getInstance().getCategories(self.platformId):
-            fileHeader = outputfile.OutputFile(self.rootDirectory + category.name + '.hpp')
+            fileHeader = outputfile.OutputFile(self, self.rootDirectory + category.name + '.hpp')
             fileHeader.write('#ifndef qla_calc_%s_hpp\n' % category.name)
             fileHeader.write('#define qla_calc_%s_hpp\n\n' % category.name)
             for func in category.getFunctions(self.platformId): 
@@ -133,15 +133,15 @@ class AddinCalc(addin.Addin):
     def generateFunctions(self):
         """Generate source for function implementations."""
         for category in config.Config.getInstance().getCategories(self.platformId):
-            fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
-            fileFunc.write(self.bufferIncludes.text % category.includes(True))
+            fileFunc = outputfile.OutputFile(self, self.rootDirectory + category.name + '.cpp')
+            fileFunc.write(self.bufferIncludes.text % category.includeList())
             for func in category.getFunctions(self.platformId): 
                 self.generateFunction(fileFunc, func)
             fileFunc.close()
     
     def generateIDL(self):
         """Generate the IDL file for the addin."""
-        fileIDL = outputfile.OutputFile(self.rootDirectory + IDLFILE, False)
+        fileIDL = outputfile.OutputFile(self, self.rootDirectory + IDLFILE, False)
         fileIDL.write(self.bufferIdlHeader.text)
         for category in config.Config.getInstance().getCategories(self.platformId):
             fileIDL.write('                // %s\n\n' % category.name)

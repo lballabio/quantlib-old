@@ -34,7 +34,7 @@ class AddinGuile(addin.Addin):
         log.Log.getInstance().logMessage('  begin generating Guile ...')
         self.generateInitFunc()
         self.generateFunctions()
-        log.Log.getInstance().logMessage('  done generation Guile.')
+        log.Log.getInstance().logMessage('  done generating Guile.')
 
     def generateFuncHeader(self, fileHeader, func, suffix):
         """Generate source for prototype of given function."""
@@ -44,7 +44,7 @@ class AddinGuile(addin.Addin):
 
     def generateFuncHeaders(self, category):
         """Generate source for function prototypes."""
-        fileHeader = outputfile.OutputFile(self.rootDirectory + category.name + '.h')
+        fileHeader = outputfile.OutputFile(self, self.rootDirectory + category.name + '.h')
         fileHeader.write('#ifndef qla_%s_h\n' % category.name)
         fileHeader.write('#define qla_%s_h\n\n' % category.name)
         fileHeader.write('#include <guile/gh.h>\n\n')
@@ -63,7 +63,7 @@ class AddinGuile(addin.Addin):
 
     def generateInitFunc(self):
         """Generate initialisation function."""
-        fileInit = outputfile.OutputFile(self.rootDirectory + 'qladdin.c')
+        fileInit = outputfile.OutputFile(self, self.rootDirectory + 'qladdin.c')
         headers = ''
         registrations = ''
         i = 0
@@ -128,8 +128,8 @@ class AddinGuile(addin.Addin):
         """Generate source for function implementations."""
         for category in config.Config.getInstance().getCategories(self.platformId):
             self.generateFuncHeaders(category)
-            fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
-            fileFunc.write(self.bufferIncludes.text % (category.includes(), category.name))
+            fileFunc = outputfile.OutputFile(self, self.rootDirectory + category.name + '.cpp')
+            fileFunc.write(self.bufferIncludes.text % (category.includeList(), category.name))
             for func in category.getFunctions(self.platformId): 
                 self.generateFuncHeader(fileFunc, func, ' {')
                 self.generateFunction(fileFunc, func)

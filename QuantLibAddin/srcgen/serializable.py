@@ -31,6 +31,7 @@ class Serializable(object):
     def postSerialize(self):
         """invoke any post serialization behavior that may be required."""
         pass
+        #print "Serializable #########################"
 
     def key(self):
         """return unique identifier for this object."""

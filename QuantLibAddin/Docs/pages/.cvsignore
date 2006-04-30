@@ -1,7 +1,9 @@
 all.docs
 basic.docs
 date.docs
-math.docs
+mathf.docs
+prices.docs
+date.docs
 capfloor.docs
 categories.docs
 couponvectors.docs

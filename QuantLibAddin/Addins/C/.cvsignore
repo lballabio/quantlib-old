@@ -17,6 +17,8 @@ xll
 *.user
 
 capfloor.*
+prices.*
+mathf.*
 exercise.*
 instruments.*
 ohfunctions.*

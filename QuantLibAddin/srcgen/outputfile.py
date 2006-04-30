@@ -27,13 +27,14 @@ import filecmp
 
 HEADER = """// this file generated automatically by %s
 // editing this file manually is not recommended\n\n"""
-UPDATE_MSG = '        file %-45s - %s'
+UPDATE_MSG = '        file %-45s - %10s'
 
 class OutputFile(object):
     """represent a file which gets overwritten only when its contents change."""
 
-    def __init__(self, fileName, printCopyright = True):
+    def __init__(self, addin, fileName, printCopyright = True):
         """open file and write header."""
+        self.addin = addin
         self.fileName = fileName
         self.fileNameTemp = fileName + '.temp'
         self.outFile = file(self.fileNameTemp, 'w')
@@ -52,11 +53,14 @@ class OutputFile(object):
             if filecmp.cmp(self.fileName, self.fileNameTemp):
                 os.unlink(self.fileNameTemp)
                 log.Log.getInstance().logMessage(UPDATE_MSG % (self.fileName, 'unchanged'))
+                self.addin.unchanged += 1
             else:
                 os.unlink(self.fileName)
                 os.rename(self.fileNameTemp, self.fileName)
                 log.Log.getInstance().logMessage(UPDATE_MSG % (self.fileName, 'updated'))
+                self.addin.updated += 1
         else:
             os.rename(self.fileNameTemp, self.fileName)
             log.Log.getInstance().logMessage(UPDATE_MSG % (self.fileName, 'created'))
+            self.addin.created += 1
 

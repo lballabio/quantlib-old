@@ -32,7 +32,7 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
-				RelativePath="basic.cpp">
+				RelativePath="prices.cpp">
 			</File>
 			<File
 				RelativePath="calcutils.cpp">
@@ -44,7 +44,7 @@
 				RelativePath="couponvectors.cpp">
 			</File>
 			<File
-				RelativePath=".\date.cpp">
+				RelativePath="date.cpp">
 			</File>
 			<File
 				RelativePath="exercise.cpp">
@@ -57,6 +57,9 @@
 			</File>
 			<File
 				RelativePath="interpolation.cpp">
+			</File>
+			<File
+				RelativePath="mathf.cpp">
 			</File>
 			<File
 				RelativePath="ohfunctions.cpp">
@@ -108,7 +111,7 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
-				RelativePath="basic.hpp">
+				RelativePath="prices.hpp">
 			</File>
 			<File
 				RelativePath="calcutils.hpp">
@@ -120,7 +123,7 @@
 				RelativePath="couponvectors.hpp">
 			</File>
 			<File
-				RelativePath=".\date.hpp">
+				RelativePath="date.hpp">
 			</File>
 			<File
 				RelativePath="exercise.hpp">
@@ -130,6 +133,9 @@
 			</File>
 			<File
 				RelativePath="interpolation.hpp">
+			</File>
+			<File
+				RelativePath="mathf.hpp">
 			</File>
 			<File
 				RelativePath="ohfunctions.hpp">

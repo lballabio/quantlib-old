@@ -200,7 +200,7 @@
 				RelativePath="addinqla.xml">
 			</File>
 			<File
-				RelativePath="basic.xml">
+				RelativePath="prices.xml">
 			</File>
 			<File
 				RelativePath="capfloor.xml">
@@ -212,7 +212,7 @@
 				RelativePath="couponvectors.xml">
 			</File>
 			<File
-				RelativePath=".\date.xml">
+				RelativePath="date.xml">
 			</File>
 			<File
 				RelativePath="enumerations.xml">
@@ -227,7 +227,7 @@
 				RelativePath="interpolation.xml">
 			</File>
 			<File
-				RelativePath=".\math.xml">
+				RelativePath="mathf.xml">
 			</File>
 			<File
 				RelativePath="ohfunctions.xml">

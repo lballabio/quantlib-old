@@ -3,7 +3,8 @@ AddinExcelDynamic*.vcproj.*.user
 AddinExcelStatic*.vcproj.*.user
 basic.cpp
 date.cpp
-math.cpp
+mathf.cpp
+prices.cpp
 buildDynamic
 buildStatic
 capfloor.cpp

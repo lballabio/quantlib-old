@@ -39,6 +39,12 @@ class Addin(serializable.Serializable):
         serializer.serializeObjectPropertyDict(self, rule.RuleGroup)
         serializer.serializeObjectPropertyDict(self, buffer.Buffer)
 
+    def postSerialize(self):
+        """Perform post serialization initialization."""
+        self.unchanged = 0
+        self.updated = 0
+        self.created = 0
+
     def generateConversions(self, parameters):
         """generate source code to convert datatypes."""
         returnValue = ''

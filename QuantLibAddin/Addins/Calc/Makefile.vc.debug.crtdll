@@ -29,8 +29,8 @@ CC_DEFINES=/DWIN32 /D_DEBUG /DWINDOWS /D_MBCS /D_USRDLL /DWNT
 CC_FLAGS2=/Fp"$(INT_DIR)\$(COMPONENT_NAME).pch" /YX  /Fo"$(INT_DIR)\\" /Fd"$(INT_DIR)\\" /FD /c
 CPP_PROJ=$(CC_FLAGS) $(CC_INCLUDES) $(CC_DEFINES) $(CC_FLAGS2)
 OBJECTS= \
-    "$(INT_DIR)\basic.obj" \
     "$(INT_DIR)\calcutils.obj" \
+    "$(INT_DIR)\date.obj" \
     "$(INT_DIR)\capfloor.obj" \
     "$(INT_DIR)\couponvectors.obj" \
     "$(INT_DIR)\funcdef.obj" \
@@ -38,6 +38,7 @@ OBJECTS= \
     "$(INT_DIR)\interpolation.obj" \
     "$(INT_DIR)\ohfunctions.obj" \
     "$(INT_DIR)\options.obj" \
+    "$(INT_DIR)\prices.obj" \
     "$(INT_DIR)\processes.obj" \
     "$(INT_DIR)\qladdin.obj" \
     "$(INT_DIR)\schedule.obj" \

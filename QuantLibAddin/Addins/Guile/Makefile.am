@@ -13,15 +13,17 @@ libQuantLibAddinGuile_la_LIBADD = ../../qla/libQuantLibAddin.la
 
 if BUILD_GUILE
 noinst_HEADERS = \
-    basic.h \
     capfloor.h \
     couponvectors.h \
+    date.h \
     exercise.h \
     extra.h \
     instruments.h \
     interpolation.h \
+    mathf.h \
     ohfunctions.h \
     options.h \
+    prices.h \
     processes.h \
     randomsequencegenerator.h \
     schedule.h \
@@ -39,16 +41,18 @@ endif
 
 if BUILD_GUILE
 libQuantLibAddinGuile_la_SOURCES = \
-    basic.cpp \
     capfloor.cpp \
     couponvectors.cpp \
+    date.cpp \
     exercise.cpp \
     extra.cpp \
     guileutils.cpp \
     instruments.cpp \
     interpolation.cpp \
+    mathf.cpp \
     ohfunctions.cpp \
     options.cpp \
+    prices.cpp \
     processes.cpp \
     qladdin.c \
     randomsequencegenerator.cpp \
@@ -64,5 +68,5 @@ libQuantLibAddinGuile_la_SOURCES = \
 endif
 
 libQuantLibAddinGuile_la_LDFLAGS = \
-    -lQuantLib -lObjectHandler -lguile
+    -lQuantLib -lQuantLibFunctions -lObjectHandler -lguile
 

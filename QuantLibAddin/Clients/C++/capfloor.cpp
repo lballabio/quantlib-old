@@ -102,7 +102,8 @@ int main()
                                                   "Unadjusted",      // fixed convention
                                                   "Simple",          // fixed day counter
                                                   "Annual",          // floating frequency
-                                                  "Unadjusted"));    // floating convention
+                                                  "Unadjusted",      // floating convention
+                                                  "Simple"));        // floating day counter
 
             std::ostringstream handle;
             handle << datum.n << "Y"; 
@@ -111,12 +112,11 @@ int main()
             rateHelpers.push_back(handle.str());
         }
         
-        Date evaluationDate(23, March, 2005);
+        QuantLib::setEvaluationDate(QuantLib::Date(23, March, 2005));
         Date settlementDate(25, March, 2005);
                 
         ObjHandler::obj_ptr piecewiseFlatForward(
-            new QuantLibAddin::PiecewiseFlatForward(evaluationDate.serialNumber(),
-                                                    settlementDate.serialNumber(),
+            new QuantLibAddin::PiecewiseFlatForward(settlementDate.serialNumber(),
                                                     rateHelpers,
                                                     "Simple"));
         ObjHandler::storeObject("YC", piecewiseFlatForward);
@@ -186,7 +186,7 @@ int main()
                                         "ENGINE",
                                         "CAP"));
         ObjHandler::storeObject("CAP", capFloor);
-        
+
         std::ostringstream msg;
         msg << "NPV: "
             << boost::dynamic_pointer_cast<QuantLibAddin::CapFloor>(capFloor)->getObject().NPV();

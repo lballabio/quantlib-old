@@ -56,7 +56,7 @@ class Function(serializable.Serializable):
         return self.platforms.find(platformID) != -1
 
     def generateParameterList(self, rule, context = DECLARATION, checkSkipFirst = True, 
-            loopParameter = None, loopReplace = None):
+            loopParameter = None, loopReplace = None, indent = None):
         """Generate source code relating to a list of function parameters."""
         returnValue = ''
         endOfLine = ''
@@ -68,7 +68,7 @@ class Function(serializable.Serializable):
                 if parameter.ignore : continue
             elif context == VALUEOBJECT:
                 if parameter.ignore : continue
-            returnValue += endOfLine + rule.apply(parameter, loopParameter, loopReplace)
+            returnValue += endOfLine + rule.apply(parameter, loopParameter, loopReplace, indent)
             if i < self.ParameterCount: endOfLine = ',\n'
         if returnValue: returnValue = '\n' + returnValue
         return returnValue
@@ -84,7 +84,7 @@ class Constructor(Function):
         ObjHandler::obj_ptr objectPointer(new QuantLibAddin::%s(%s));
 
         std::string returnValue =
-            ObjHandler::storeObject(instanceName, objectPointer);'''
+            ObjHandler::storeObject(%s, objectPointer);'''
     functionCall = '''\
         ObjHandler::FunctionCall functionCall;
         functionCall.clearCell();'''
@@ -110,8 +110,8 @@ class Constructor(Function):
         """Generate source code for function body."""
         self.skipFirst = True
         libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION)
-        handle = addin.stringConvert % self.Parameters[0].name
-        return Constructor.BODY % (self.libraryFunction, libraryCall)
+        instanceName = addin.stringConvert % self.Parameters[0].name
+        return Constructor.BODY % (self.libraryFunction, libraryCall, instanceName)
 
     def generateVO(self, addin):
         for p in self.Parameters: p.ql_type= ''
@@ -125,7 +125,7 @@ class Member(Function):
     """Function which invokes member function of existing QuantLib object."""
 
     skipFirst = True    # omit object handle when invoking its member function
-    BODY = '''
+    BODY = '''\
         OH_GET_OBJECT(objectPointer, %s, %s)
         %s returnValue;
         %s'''
@@ -170,8 +170,8 @@ class Member(Function):
     def generateBody(self, addin):
         """Generate source code for function body."""
         libraryReturnType = addin.libraryReturnType.apply(self.returnValue)
-        libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION, 
-            loopParameter = self.loopParameter, loopReplace = 'boost::any_cast<double>(value)')
+        libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION, True,
+            self.loopParameter, 'boost::any_cast<double>(value)', 6)
         handle = addin.stringConvert % self.Parameters[0].name
         libraryClass = self.libraryClass
         if not self.noQlaNS: libraryClass = 'QuantLibAddin::' + libraryClass

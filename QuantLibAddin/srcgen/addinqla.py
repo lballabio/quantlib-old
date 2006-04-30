@@ -54,7 +54,7 @@ class AddinQla(addin.Addin):
 
     def generateEnumerations(self):
         """generate source file for enumerations."""
-        fileEnum = outputfile.OutputFile(self.rootDirectory + 'enumregistry.cpp')
+        fileEnum = outputfile.OutputFile(self, self.rootDirectory + 'enumregistry.cpp')
         fileEnum.write(self.bufferIncludes.text)
         for enumeration in config.Config.getInstance().getEnumerations():
             if not enumeration.documentationOnly:
@@ -66,13 +66,8 @@ class AddinQla(addin.Addin):
         """generate the main header for QuantLibAddin."""
         headerList = ''
         for category in config.Config.getInstance().getCategories('*'):
-            if category.needQlaHeader:
-				headerList += '#include <qla/%s.hpp>\n' % category.name
-        headerList += '\n'
-        for category in config.Config.getInstance().getCategories('*'):
-            if category.needQlaHeader and category.containsConstructor():
-                headerList += '#include <qla/vo_%s.hpp>\n' % category.name
-        fileHeader = outputfile.OutputFile(self.rootDirectory + 'qladdin.hpp')
+            headerList += category.includeList() + '\n'
+        fileHeader = outputfile.OutputFile(self, self.rootDirectory + 'qladdin.hpp')
         fileHeader.write(self.bufferMainHeader.text % headerList)
         fileHeader.close()
 

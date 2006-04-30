@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -36,22 +36,23 @@ int main() {
         double riskFreeRate = 0.06;
         double volatility = 0.20;
         double underlying = 36;
-        double strike = 40;
+        double strike = 50;
         long timeSteps = 801;
-        Date exerciseDate(13, March, 2020);
-        Date settlementDate(13, March, 2019);
-        Date todaysDate(13, March, 2005);
+        Date exerciseDate(17, May, 1999);
+        Date settlementDate(17, May, 1998);
+        Date todaysDate(15, May, 1998);
+        QuantLib::setEvaluationDate(todaysDate);
 
         obj_ptr blackConstantVol(new QuantLibAddin::BlackConstantVol(
             settlementDate.serialNumber(),      // settlement date as long
             volatility,                         // volatility
-            "Actual360"));                      // daycount convention
+            "Actual365Fixed"));                 // daycount convention
         storeObject("my_blackconstantvol", blackConstantVol);
 
-        obj_ptr blackScholesProcess(new QuantLibAddin::BlackScholesProcess(
+        obj_ptr blackScholesProcess(new QuantLibAddin::GeneralizedBlackScholesProcess(
             "my_blackconstantvol",              // black constant vol handle
             underlying,                         // underlying
-            "Actual360",                        // daycount convention
+            "Actual365Fixed",                   // daycount convention
             settlementDate.serialNumber(),      // settlement date as long
             riskFreeRate,                       // risk free rate
             dividendYield));                    // dividend yield
@@ -68,7 +69,7 @@ int main() {
             "Vanilla",                          // payoff type
             strike,                             // strike price
             "my_exercise",                      // exercise handle
-            "JR",                               // engine type (jarrow rudd)
+            "AE",                               // engine type (analytic european)
             timeSteps));                        // time steps
         storeObject("my_vanillaOption", vanillaOption);
         vanillaOption->setProperties(boost::shared_ptr<ObjHandler::ValueObject>(new QuantLibAddin::ValueObjects::qlVanillaOption(
@@ -78,9 +79,15 @@ int main() {
             "Vanilla",                          // payoff type
             strike,                             // strike price
             "my_exercise",                      // exercise handle
-            "JR",                               // engine type (jarrow rudd)
+            "AE",                               // engine type (analytic european)
             timeSteps)));                       // time steps
         logObject("my_vanillaOption");
+
+        double x = boost::dynamic_pointer_cast<QuantLibAddin::VanillaOption>
+                (vanillaOption)->getObject().NPV();
+        std::ostringstream msg;
+        msg << "NPV: " << std::setprecision(12) << std::fixed << x << endl;
+        ObjHandler::logMessage(msg.str());
 
         obj_ptr continuousAveragingAsianOption(new QuantLibAddin::ContinuousAveragingAsianOption(
             "Geometric",                        // average type

@@ -46,7 +46,11 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="basic.cpp"
+				RelativePath="prices.cpp"
+				>
+			</File>
+			<File
+				RelativePath="date.cpp"
 				>
 			</File>
 			<File
@@ -78,7 +82,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\math.cpp"
+				RelativePath="mathf.cpp"
 				>
 			</File>
 			<File
@@ -147,7 +151,11 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="basic.hpp"
+				RelativePath="date.hpp"
+				>
+			</File>
+			<File
+				RelativePath="prices.hpp"
 				>
 			</File>
 			<File
@@ -175,7 +183,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\math.hpp"
+				RelativePath="mathf.hpp"
 				>
 			</File>
 			<File

@@ -326,7 +326,47 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="basic.cpp"
+				RelativePath="prices.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="date.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -566,7 +606,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\math.cpp"
+				RelativePath="mathf.cpp"
 				>
 			</File>
 			<File
@@ -1175,7 +1215,11 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="basic.h"
+				RelativePath="prices.h"
+				>
+			</File>
+			<File
+				RelativePath="date.h"
 				>
 			</File>
 			<File
@@ -1203,7 +1247,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\math.h"
+				RelativePath="mathf.h"
 				>
 			</File>
 			<File

@@ -417,7 +417,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="basic.cpp">
+			RelativePath="prices.cpp">
 			<FileConfiguration
 				Name="Debug|Win32">
 				<Tool
@@ -579,7 +579,7 @@
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath=".\date.cpp">
+			RelativePath="date.cpp">
 		</File>
 		<File
 			RelativePath="exercise.cpp">
@@ -691,6 +691,60 @@
 		</File>
 		<File
 			RelativePath="interpolation.cpp">
+			<FileConfiguration
+				Name="Debug|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="0"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
+					BasicRuntimeChecks="3"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug CRTDLL|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="0"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
+					BasicRuntimeChecks="3"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug SingleThread|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="0"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"
+					BasicRuntimeChecks="3"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release SingleThread|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="2"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="2"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release CRTDLL|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="2"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_STATIC;$(NoInherit)"/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="mathf.cpp">
 			<FileConfiguration
 				Name="Debug|Win32">
 				<Tool

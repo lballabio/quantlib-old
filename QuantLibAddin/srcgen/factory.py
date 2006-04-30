@@ -20,7 +20,6 @@
 import singleton
 import enumeration
 import function
-import xmlreader
 import sys
 
 class Factory(singleton.Singleton):
@@ -40,12 +39,4 @@ class Factory(singleton.Singleton):
             return self.creators[className]()
         else:
             sys.exit('no creator function found for class ' + className)
-
-    def serializeObject(self, objectClass, fileName = None):
-        """instantiate an xml reader and load requested object."""
-        if not fileName: fileName = objectClass.__name__.lower()
-        objectInstance = objectClass()
-        serializer = xmlreader.XmlReader(fileName)
-        objectInstance.serialize(serializer)
-        return objectInstance
 

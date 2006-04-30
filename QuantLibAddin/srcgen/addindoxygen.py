@@ -47,7 +47,7 @@ class AddinDoxygen(addin.Addin):
 
     def generateEnums(self):
         """Generate documentation for enumerations."""
-        fileDoc = outputfile.OutputFile(self.rootDirectory + 'enums.docs')
+        fileDoc = outputfile.OutputFile(self, self.rootDirectory + 'enums.docs')
         fileDoc.write(self.bufferEnumerations.text)
         for i in xrange(len(config.Config.getInstance().Enumerations)):
             fileDoc.write(LINE_REF % i)
@@ -81,7 +81,7 @@ class AddinDoxygen(addin.Addin):
 
     def generateCategoryDoc(self):
         """Generate page listing function categories."""
-        fileDoc = outputfile.OutputFile(self.rootDirectory + 'categories.docs')
+        fileDoc = outputfile.OutputFile(self, self.rootDirectory + 'categories.docs')
         fileDoc.write(self.bufferCategories.text)
         # ensure list of links is sorted alphabetically by display name
         dispNmToCatNm = {}
@@ -97,7 +97,7 @@ class AddinDoxygen(addin.Addin):
 
     def generateFunctionList(self, allFuncs):
         """Generate alphabetical list of links to all functions."""
-        fileDoc = outputfile.OutputFile(self.rootDirectory + 'all.docs')
+        fileDoc = outputfile.OutputFile(self, self.rootDirectory + 'all.docs')
         fileDoc.write(self.bufferHeader.text)
         allFuncs.sort()
         for func in allFuncs:
@@ -109,7 +109,7 @@ class AddinDoxygen(addin.Addin):
         """Generate doxygen documentation files."""
         allFuncs = []
         for category in config.Config.getInstance().getCategories('*'):
-            fileDoc = outputfile.OutputFile(self.rootDirectory + category.name + '.docs')
+            fileDoc = outputfile.OutputFile(self, self.rootDirectory + category.name + '.docs')
             fileDoc.write('/*! \page %s %s\n' % (category.name, category.displayName))
             fileDoc.write('\\section overview Overview\n')
             fileDoc.write('%s\n' % category.description)

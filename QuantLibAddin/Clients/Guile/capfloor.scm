@@ -1,5 +1,5 @@
 
-; Copyright (C) 2005 Eric Ehlers
+; Copyright (C) 2005, 2006 Eric Ehlers
 ; Copyright (C) 2005 Aurelien Chanudet
 ;
 ; This file is part of QuantLib, a free-software/open-source library
@@ -41,36 +41,38 @@
 (define swap-helpers
     (let ((freq "Annual")
           (conv "Unadjusted")) (list
-    (list "1Y"  0.021990  1 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "2Y"  0.023200  2 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "3Y"  0.024680  3 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "4Y"  0.026180  4 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "5Y"  0.027590  5 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "6Y"  0.028920  6 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "7Y"  0.030150  7 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "8Y"  0.031290  8 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "9Y"  0.032290  9 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "10Y" 0.033170 10 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "11Y" 0.033930 11 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "12Y" 0.034590 12 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "13Y" 0.035160 13 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "14Y" 0.035660 14 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "15Y" 0.036110 15 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "16Y" 0.036520 16 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "17Y" 0.036880 17 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "18Y" 0.037190 18 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "19Y" 0.037450 19 "Years" 2 "NullCalendar" freq conv "Simple" freq conv )
-    (list "20Y" 0.037670 20 "Years" 2 "NullCalendar" freq conv "Simple" freq conv ))))
+    (list "1Y"  0.021990  1 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "2Y"  0.023200  2 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "3Y"  0.024680  3 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "4Y"  0.026180  4 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "5Y"  0.027590  5 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "6Y"  0.028920  6 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "7Y"  0.030150  7 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "8Y"  0.031290  8 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "9Y"  0.032290  9 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "10Y" 0.033170 10 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "11Y" 0.033930 11 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "12Y" 0.034590 12 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "13Y" 0.035160 13 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "14Y" 0.035660 14 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "15Y" 0.036110 15 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "16Y" 0.036520 16 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "17Y" 0.036880 17 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "18Y" 0.037190 18 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "19Y" 0.037450 19 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" )
+    (list "20Y" 0.037670 20 "Years" 2 "NullCalendar" freq conv "Simple" freq conv "Simple" ))))
 
 (for-each qlSwapRateHelper swap-helpers)
 
 (define evaluation (date 27 "July" 2005))
 
+(call-func qlSetEvaluationDate evaluation)
+
 (define settlement (date 29 "July" 2005))
 
 (define hh (append (map car cash-helpers) (map car swap-helpers)))
 
-(call-func qlPiecewiseFlatForward "YC" evaluation settlement hh "Simple")
+(call-func qlPiecewiseFlatForward "YC" settlement hh "Simple")
 
 ; -- Euribor Index
 

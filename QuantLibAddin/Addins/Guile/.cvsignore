@@ -1,6 +1,7 @@
 basic.*
 date.*
-math.*
+mathf.*
+prices.*
 capfloor.*
 couponvectors.*
 .deps

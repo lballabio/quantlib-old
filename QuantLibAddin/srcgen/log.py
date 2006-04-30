@@ -23,7 +23,7 @@ import time
 class Log(singleton.Singleton):
     """global log class - presently outputs all messages to stdout."""
 
-    def logMessage(self, message):
+    def logMessage(self, message = ''):
         """print a message to stdout."""
         print time.asctime() + ' ' + message
 

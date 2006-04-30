@@ -22,7 +22,7 @@
 import singleton
 import category
 import enumeration
-import factory
+import utilities
 import xmlreader
 import buffer
 
@@ -38,7 +38,7 @@ class Config(singleton.Singleton):
         self.categoryDict = {}
         for categoryName in self.categoryNames:
             self.categoryDict[categoryName] = \
-                factory.Factory.getInstance().serializeObject(category.Category, categoryName)
+                utilities.serializeObject(category.Category, categoryName)
 
         xmlEnumerations = xmlreader.XmlReader('enumerations')
         xmlEnumerations.serializeObjectDict(self, enumeration.Enumeration)

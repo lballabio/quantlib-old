@@ -3,25 +3,40 @@ Release 0.3.13 - ??? 2006
 REQUIRED PACKAGES
 
 - QuantLib version 0.3.13
+- QuantLibFunctions version 0.3.13
 - ObjectHandler version 0.1.4
 
 FUNCTIONALITY
 
 - xx new functions / xx in total
-- support for Value Objects (Plamen Neykov) (see ObjectHandler
-  documentation for details)
+- support for Value Objects (Plamen Neykov) (see ObjectHandler documentation for details)
 - Random Sequence Generators (Aurelien Chanudet)
-- Additional functionality for options - greeks, Bermudan payoffs, other
-  minor enhancements
-- Function to set the global value of the evaluation date
-- Support for Sessions compiled into binary installation.  Please see the
-  QuantLibAddin documentation of the Evaluation Date for details.
+- Additional functionality for options - greeks, Bermudan payoffs, other minor enhancements
+- complete interface for YieldTermStructure class
+- New function qlSetEvaluationDate() to set the global value of the evaluation date,
+  qlPiecewiseFlatForward() no longer sets the evaluation date
+- Support for Sessions compiled into binary installation.  Please see the QuantLibAddin 
+  documentation of the Evaluation Date for details.
+- renamed QuantLibAddin functions to correspond to underlying QuantLib functions:
+        0.3.12                      0.3.13
+        qlBlackScholesProcess       qlGeneralizedBlackScholesProcess
+        qlBondAccrued               qlBondAccruedAmount
+        qlEvalDate                  qlEvaluationDate
+        qlFutureRateHelper          qlFuturesRateHelper
+        qlGetDf                     qlDiscount
+        qlSimpleSwap                qlVanillaSwap
+        qlSwapFixedLeg              qlSwapGetFixLeg
+        qlSwapFloatLeg              qlSwapGetFloatLeg
 
 CALC
 
 - renamed project to avoid conflict with core QuantLibAddin lib file
-- upgraded VC workspace to Visual Studio 2003 (latest version supported by OOo) (thanks to Joe Byers)
-- upgraded OpenOffice.org Calc version from 1.1.3 to 2.0.2 for Windows (thanks to Joe Byers) and Linux
+- upgraded VC workspace to Visual Studio 2003 (latest version supported by OOo) (thanks 
+  to Joe Byers)
+- upgraded OpenOffice.org Calc version from 1.1.3 to 2.0.2 for Windows (thanks to Joe Byers) 
+  and Linux
+
+
 
 Release 0.3.12 - March 2006
 

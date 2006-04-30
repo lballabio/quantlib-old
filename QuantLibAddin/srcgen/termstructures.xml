@@ -327,6 +327,7 @@
     <description>Return a vector of discount factors corresponding to a vector of dates for a given yield term structure</description>
     <libraryFunction>discount</libraryFunction>
     <functionCategory>QuantLib</functionCategory>
+    <platforms>CEO</platforms>
     <Parameters>
       <Parameter name='DfDates' ql_type='QuantLib::Date'>
         <type>any</type>
@@ -355,6 +356,7 @@
     <description>return a vector of implied forward interest rates between input date d1 and input date vector d2</description>
     <libraryFunction>forwardRate</libraryFunction>
     <functionCategory>QuantLib</functionCategory>
+    <platforms>CEO</platforms>
     <Parameters>
       <Parameter name='d1' ql_type='QuantLib::Date'>
         <type>long</type>
@@ -403,6 +405,7 @@
     <description>return a vector of implied zero-yield rates for given input dates</description>
     <libraryFunction>zeroRate</libraryFunction>
     <functionCategory>QuantLib</functionCategory>
+    <platforms>CEO</platforms>
     <Parameters>
       <Parameter name='dates' ql_type='QuantLib::Date'>
         <type>any</type>
@@ -446,6 +449,7 @@
     <description>return a vector of implied par rates corresponding to input vector of tenors for given date/payment frequency</description>
     <libraryFunction>parRate</libraryFunction>
     <functionCategory>QuantLib</functionCategory>
+    <platforms>CEO</platforms>
     <Parameters>
       <Parameter name='tenor'>
         <type>any</type>

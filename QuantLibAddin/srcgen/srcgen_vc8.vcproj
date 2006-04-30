@@ -271,7 +271,11 @@
 				>
 			</File>
 			<File
-				RelativePath="basic.xml"
+				RelativePath="date.xml"
+				>
+			</File>
+			<File
+				RelativePath="prices.xml"
 				>
 			</File>
 			<File
@@ -303,7 +307,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\math.xml"
+				RelativePath="mathf.xml"
 				>
 			</File>
 			<File

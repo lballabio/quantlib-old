@@ -1,4 +1,4 @@
-<Addin name='qla'>
+<Addin name='QuantLibAddin'>
 <rootDirectory>../qla/</rootDirectory>
 
 <Buffers>

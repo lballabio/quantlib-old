@@ -1,0 +1,29 @@
+<Category name='mathf'>
+<description>Math QuantLib functions</description>
+<displayName>Math</displayName>
+<includes>
+  <include>ql/Functions/mathf.hpp</include>
+</includes>
+<Functions>
+
+<Procedure name='qlPrimeNumber' >
+  <description>returns the N-th prime number</description>
+  <functionCategory>QuantLib</functionCategory>
+  <alias>QuantLib::primeNumbers</alias>
+  <Parameters>
+    <Parameter name='N'>
+      <type>long</type>
+      <tensorRank>scalar</tensorRank>
+      <description>index of the prime number (e.g N=2 returns 3)</description>
+    </Parameter>
+  </Parameters>
+  <ReturnValue>
+    <type>long</type>
+    <tensorRank>scalar</tensorRank>
+    <description>the N-th prime number</description>
+  </ReturnValue>
+</Procedure>
+
+</Functions>
+</Category>
+

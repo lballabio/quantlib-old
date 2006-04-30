@@ -63,8 +63,8 @@ class AddinExcel(addin.Addin):
     def generateFunctions(self):
         """Generate source code for all functions in all categories."""
         for category in config.Config.getInstance().getCategories(self.platformId):
-            fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
-            fileFunc.write(self.bufferIncludes.text % category.includes())
+            fileFunc = outputfile.OutputFile(self, self.rootDirectory + category.name + '.cpp')
+            fileFunc.write(self.bufferIncludes.text % category.includeList())
             for func in category.getFunctions(self.platformId): 
                 self.generateFunction(fileFunc, func)
             fileFunc.close()
@@ -179,7 +179,7 @@ class AddinExcel(addin.Addin):
                 functionUnregister += self.generateRegisterFunction(func, False)
                 #functionRegister += self.generateRegisterFunction(func, category.displayName)
                 #functionUnregister += self.generateRegisterFunction(func, category.displayName, False)
-        fileHeader = outputfile.OutputFile(self.rootDirectory + ADDIN)
+        fileHeader = outputfile.OutputFile(self, self.rootDirectory + ADDIN)
         fileHeader.write(self.bufferRegister.text % (functionRegister, functionUnregister))
         fileHeader.close()
 

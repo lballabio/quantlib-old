@@ -1,5 +1,5 @@
 
-; Copyright (C) 2005 Eric Ehlers
+; Copyright (C) 2005, 2006 Eric Ehlers
 ; Copyright (C) 2005 Aurelien Chanudet
 ; Copyright (C) 2005 Plamen Neykov
 ; 
@@ -64,46 +64,46 @@
     '( "Z7" 96.810 "Z7" 3 "Actual360" "ModifiedFollowing" "TARGET" 2000 )
     '( "H8" 96.755 "H8" 3 "Actual360" "ModifiedFollowing" "TARGET" 2000 )))
 
-(for-each qlFutureRateHelper futures)
+(for-each qlFuturesRateHelper futures)
 
 
 ; -- Swaps
 
 (define swaps (list
     '(  "2Y" 0.02552  2 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '(  "3Y" 0.02748  3 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '(  "4Y" 0.02919  4 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '(  "5Y" 0.03070  5 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '(  "6Y" 0.03212  6 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '(  "7Y" 0.03342  7 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '(  "8Y" 0.03457  8 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '(  "9Y" 0.03560  9 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '( "10Y" 0.03648 10 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '( "11Y" 0.03742 11 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '( "12Y" 0.03789 12 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '( "15Y" 0.03944 15 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '( "20Y" 0.04100 20 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '( "25Y" 0.04173 25 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '( "30Y" 0.04206 30 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '( "40Y" 0.04233 40 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )
     '( "50Y" 0.04238 50 "Years" 2 "TARGET" "Annual" "ModifiedFollowing" "Thirty360"
-                                           "Semiannual" "ModifiedFollowing" )))
+                                           "Semiannual" "ModifiedFollowing" "Thirty360" )))
 
 (for-each qlSwapRateHelper swaps)
 
@@ -111,11 +111,14 @@
 ; -- Bootstrap Term Structure
 
 (define evaluation (date 07 "April" 2005))
+
+(call-func qlSetEvaluationDate evaluation)
+
 (define settlement (date 07 "April" 2005))
 
 (define rh (append (map car deposits) (map car futures) (map car swaps)))
 
-(call-func qlPiecewiseFlatForward "testYC" evaluation settlement rh "Actual360")
+(call-func qlPiecewiseFlatForward "testYC" settlement rh "Actual360")
 
 
 ; -- Interrogate Object
@@ -165,7 +168,7 @@
            dates                ; past dates
            fixings)             ; past fixings
 
-(call-func qlSimpleSwap         ; constructor
+(call-func qlVanillaSwap        ; constructor
            "swp"                ; handle
            (date 11 "Apr" 2005) ; start date
            (date 11 "Apr" 2015) ; maturity date
@@ -179,6 +182,7 @@
            false                ; don't build fixed leg schedule backward         
            false                ; long last
            "Semiannual"         ; floating leg frequency
+           "Thirty360"          ; floating leg day counting convention
            "idx"                ; underlying index
            false                ; don't build floating leg schedule backward
            false                ; long last

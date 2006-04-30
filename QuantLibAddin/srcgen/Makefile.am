@@ -7,16 +7,18 @@ SRCGEN_INPUT := addincalc.xml \
                 addinexcel.xml \
                 addinguile.xml \
                 addinqla.xml \
-                basic.xml \
                 capfloor.xml \
                 config.xml \
                 couponvectors.xml \
+                date.xml \
                 enumerations.xml \
                 exercise.xml \
                 instruments.xml \
                 interpolation.xml \
+                mathf.xml \
                 ohfunctions.xml \
                 options.xml \
+                prices.xml \
                 processes.xml \
                 randomsequencegenerator.xml \
                 schedule.xml \

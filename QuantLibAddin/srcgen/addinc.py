@@ -49,7 +49,7 @@ class AddinC(addin.Addin):
 
     def generateHeaders(self, category):
         """Generate source for function prototypes."""
-        fileHeader = outputfile.OutputFile(self.rootDirectory + category.name + '.h')
+        fileHeader = outputfile.OutputFile(self, self.rootDirectory + category.name + '.h')
         fileHeader.write('#ifndef qla_%s_h\n' % category.name)
         fileHeader.write('#define qla_%s_h\n\n' % category.name)
         for func in category.getFunctions(self.platformId): 
@@ -83,8 +83,8 @@ class AddinC(addin.Addin):
 
     def generateFunctions(self, category):
         """Generate source for function implementations."""
-        fileFunc = outputfile.OutputFile(self.rootDirectory + category.name + '.cpp')
-        fileFunc.write(self.bufferIncludes.text % (category.includes(), category.name))
+        fileFunc = outputfile.OutputFile(self, self.rootDirectory + category.name + '.cpp')
+        fileFunc.write(self.bufferIncludes.text % (category.includeList(), category.name))
         for func in category.getFunctions(self.platformId): 
             self.generateHeader(fileFunc, func, ' {\n')
             self.generateFunction(fileFunc, func)

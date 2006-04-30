@@ -1,7 +1,7 @@
 
 AM_CPPFLAGS = -I${top_srcdir}
 LDADD = ../../qla/libQuantLibAddin.la
-LDFLAGS = -lObjectHandler -lQuantLib
+LDFLAGS = -lObjectHandler -lQuantLib -lQuantLibFunctions
 
 noinst_PROGRAMS = QLADemo Options Instruments CapFloors
 

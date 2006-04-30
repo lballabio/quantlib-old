@@ -33,6 +33,7 @@ class Category(serializable.Serializable):
         serializer.serializeProperty(self, common.DESCRIPTION)
         serializer.serializeBoolean(self, common.NEED_QLA_HEADER, True)
         serializer.serializeObjectDict(self, function.Function)
+        serializer.serializeList(self, 'includes', 'include', True)
 
     def platformSupported(self, platformID):
         """determine whether this category supported for given platform."""
@@ -47,16 +48,15 @@ class Category(serializable.Serializable):
             if platformId == '*' or function.platformSupported(platformId):
                 yield function
 
-    def includes(self, needValueObjects = True):
-        """list include directives required to compile the source code
-        for this addin."""
-        if self.needQlaHeader == True:
-            ret = '#include <qla/%s.hpp>' % self.name
-            if needValueObjects and self.containsConstructor():
-                ret += '\n#include <qla/vo_%s.hpp>' % self.name
-            return ret
+    def includeList(self):
+        if self.__dict__.has_key('includes'):
+            ret = ''
+            for include in self.includes: ret += '#include <%s>' % include
         else:
-            return ''
+            ret = '#include <qla/%s.hpp>' % self.name
+            if self.containsConstructor():
+                ret += '\n#include <qla/vo_%s.hpp>' % self.name
+        return ret
 
     def containsConstructor(self):
         """Indicate whether this category of functions includes a constructor.

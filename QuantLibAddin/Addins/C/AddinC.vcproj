@@ -123,7 +123,7 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
-				RelativePath="basic.cpp">
+				RelativePath="prices.cpp">
 				<FileConfiguration
 					Name="Debug CRTDLL|Win32">
 					<Tool
@@ -183,7 +183,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\date.cpp">
+				RelativePath="date.cpp">
 			</File>
 			<File
 				RelativePath="exercise.cpp">
@@ -227,6 +227,26 @@
 			</File>
 			<File
 				RelativePath="interpolation.cpp">
+				<FileConfiguration
+					Name="Debug CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release CRTDLL|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="mathf.cpp">
 				<FileConfiguration
 					Name="Debug CRTDLL|Win32">
 					<Tool
@@ -530,7 +550,7 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
-				RelativePath="basic.h">
+				RelativePath="prices.h">
 			</File>
 			<File
 				RelativePath="capfloor.h">
@@ -539,7 +559,7 @@
 				RelativePath="couponvectors.h">
 			</File>
 			<File
-				RelativePath=".\date.h">
+				RelativePath="date.h">
 			</File>
 			<File
 				RelativePath="defines.h">
@@ -552,6 +572,9 @@
 			</File>
 			<File
 				RelativePath="interpolation.h">
+			</File>
+			<File
+				RelativePath="mathf.h">
 			</File>
 			<File
 				RelativePath="ohfunctions.h">

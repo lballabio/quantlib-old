@@ -61,20 +61,22 @@ EXTRA_DIST = \
 
 if BUILD_CALC
 noinst_HEADERS = \
-    qla_all.hpp \
-    basic.hpp \
     calcutils.hpp \
     capfloor.hpp \
     couponvectors.hpp \
+    date.hpp \
     exercise.hpp \
     instruments.hpp \
     interpolation.hpp \
+    mathf.hpp \
     ohfunctions.hpp \
     options.hpp \
+    prices.hpp \
     processes.hpp \
-    randomsequencegenerator.hpp \
+    qla_all.hpp \
     qladdin.hpp \
     qldefs.hpp \
+    randomsequencegenerator.hpp \
     schedule.hpp \
     shortratemodels.hpp \
     simpleswap.hpp \
@@ -86,19 +88,21 @@ noinst_HEADERS = \
 endif
 
 libQuantLibAddinCalc_la_SOURCES = \
-    basic.cpp \
     calcutils.cpp \
     capfloor.cpp \
     couponvectors.cpp \
+    date.cpp \
     exercise.cpp \
     funcdef.cpp \
     instruments.cpp \
     interpolation.cpp \
+    mathf.cpp \
     ohfunctions.cpp \
     options.cpp \
+    prices.cpp \
     processes.cpp \
-    randomsequencegenerator.cpp \
     qladdin.cpp \
+    randomsequencegenerator.cpp \
     schedule.cpp \
     session.cpp \
     shortratemodels.cpp \

@@ -48,7 +48,7 @@ class ValueObjects(addin.Addin):
 
     def generateHeaders(self, category):
         """Generate class source for constructor function prototypes."""
-        fileHeader = outputfile.OutputFile(self.rootDirectory + 'vo_' + category.name + '.hpp')
+        fileHeader = outputfile.OutputFile(self, self.rootDirectory + 'vo_' + category.name + '.hpp')
         fileHeader.write(self.bufferIncludesDecl.text % (category.name, category.name))
         for func in category.getFunctions('*'):
             self.generateHeader(fileHeader, func)
@@ -73,7 +73,7 @@ class ValueObjects(addin.Addin):
 
     def generateFunctions(self, category):
         """Generate source for function implementations."""
-        fileFunc = outputfile.OutputFile(self.rootDirectory + 'vo_' + category.name + '.cpp')
+        fileFunc = outputfile.OutputFile(self, self.rootDirectory + 'vo_' + category.name + '.cpp')
         fileFunc.write(self.bufferIncludes.text % (category.name, category.name))
         for func in category.getFunctions('*'): 
             self.generateFunction(fileFunc, func)

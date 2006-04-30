@@ -80,9 +80,10 @@ class XmlReader(serializer.Serializer):
         else:
             setattr(caller, propertyName, defaultValue)
 
-    def serializeList(self, caller, vectorName, itemName):
+    def serializeList(self, caller, vectorName, itemName, allowNone = False):
         """Read a list of elements."""
-        vectorElement = self.getChild(vectorName)
+        vectorElement = self.getChild(vectorName, allowNone)
+        if allowNone and not vectorElement: return
         itemElements = vectorElement.getElementsByTagName(itemName)
         ret = []
         for itemElement in itemElements:

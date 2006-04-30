@@ -16,15 +16,17 @@ libQuantLibAddinC_la_LIBADD = ../../qla/libQuantLibAddin.la
 
 if BUILD_C
 noinst_HEADERS = \
-    basic.h \
     capfloor.h \
     couponvectors.h \
+    date.h \
     defines.h \
     exercise.h \
     instruments.h \
     interpolation.h \
+    mathf.h \
     ohfunctions.h \
     options.h \
+    prices.h \
     processes.h \
     qladdin.h \
     randomsequencegenerator.h \
@@ -41,14 +43,16 @@ noinst_HEADERS = \
 endif
 
 libQuantLibAddinC_la_SOURCES = \
-    basic.cpp \
     capfloor.cpp \
     couponvectors.cpp \
+    date.cpp \
     exercise.cpp \
     instruments.cpp \
     interpolation.cpp \
+    mathf.cpp \
     ohfunctions.cpp \
     options.cpp \
+    prices.cpp \
     processes.cpp \
     randomsequencegenerator.cpp \
     schedule.cpp \

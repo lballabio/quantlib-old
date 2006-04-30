@@ -147,7 +147,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="basic.cpp">
+			RelativePath="prices.cpp">
 			<FileConfiguration
 				Name="Debug CRTDLL|Win32">
 				<Tool
@@ -207,7 +207,7 @@
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath=".\date.cpp">
+			RelativePath="date.cpp">
 		</File>
 		<File
 			RelativePath="exercise.cpp">
@@ -251,6 +251,26 @@
 		</File>
 		<File
 			RelativePath="interpolation.cpp">
+			<FileConfiguration
+				Name="Debug CRTDLL|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="0"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_IMPORTS;$(NoInherit)"
+					BasicRuntimeChecks="3"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release CRTDLL|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="2"
+					AdditionalIncludeDirectories=""
+					PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;_USRDLL;XLL_IMPORTS;$(NoInherit)"/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="mathf.cpp">
 			<FileConfiguration
 				Name="Debug CRTDLL|Win32">
 				<Tool
