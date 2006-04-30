@@ -123,27 +123,6 @@ namespace QuantLibAddin {
             const double &spread);
     };
 
-    /*
-    std::vector<std::string> qlRateHelperSelection(
-        const std::vector<std::string> &handlesRateHelper,
-        const std::vector<bool>& includeFlag,
-        int nFutures) {
-        
-        std::vector<boost::shared_ptr<QuantLib::RateHelper> > rateHelpersQL;
-        std::vector<std::string>::const_iterator i;
-        for (i=handlesRateHelper.begin() ; i != handlesRateHelper.end() ; i++) {
-            OH_GET_REFERENCE(rateHelper, *i, RateHelper, QuantLib::RateHelper)
-            rateHelpersQL.push_back(rateHelper);
-        }
-
-        rateHelperSelection(rateHelpersQL, includeFlag, nFutures);
-        return handlesRateHelper;
-    }
-    */
-
-    
-    
-    
 }
 
 #endif

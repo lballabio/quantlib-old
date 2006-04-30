@@ -6,22 +6,22 @@
 </includes>
 <Functions>
 
-<!--
-<Procedure name='qlHolidayList' >
+<!--Procedure name='qlHolidayList'>
 <description>returns the holidays in a period between two dates according to a given holiday calendar</description>
 <functionCategory>QuantLib</functionCategory>
+<alias>QuantLib::holidayList</alias>
 <Parameters>
-    <Parameter name='calendar'>
+    <Parameter name='calendar' ql_type='QuantLib::Calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>Calendar ID to use for holiday determination</description>
     </Parameter>
-    <Parameter name='fromDate'>
+    <Parameter name='fromDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>first date of the period</description>
     </Parameter>
-    <Parameter name='toDate'>
+    <Parameter name='toDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>last date of the period</description>
@@ -37,8 +37,7 @@
     <tensorRank>vector</tensorRank>
     <description>holidays</description>
 </ReturnValue>
-</Procedure>
--->
+</Procedure-->
 
 <Procedure name='qlAdvanceCalendar' >
 <description>advances the given calendar</description>

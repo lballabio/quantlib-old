@@ -6,6 +6,7 @@
 <!--Procedure name='qlRateHelperSelection'>
 <description>select rate helpers for bootstrapping</description>
 <functionCategory>QuantLib</functionCategory>
+<alias>QuantLib::rateHelperSelection</alias>
 <Parameters>
     <Parameter name='rateHelpers'>
         <type>string</type>
