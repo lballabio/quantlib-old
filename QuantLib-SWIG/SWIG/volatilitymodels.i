@@ -25,12 +25,20 @@
 
 %{
 using QuantLib::ConstantEstimator;
+using QuantLib::SimpleLocalEstimator;
 %}
 
 class ConstantEstimator {
 public:
     ConstantEstimator(Size size, Time yearFraction);
     TimeSeries<Volatility> 
+        calculate(const TimeSeries<Volatility> &volatilitySeries);
+};
+
+class SimpleLocalEstimator {
+public:
+	SimpleLocalEstimator();
+        TimeSeries<Volatility>
         calculate(const TimeSeries<Real> &quoteSeries);
 };
 
