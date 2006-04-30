@@ -3,6 +3,38 @@
 <displayName>Term Structures</displayName>
 <Functions>
 
+<!--Procedure name='qlRateHelperSelection'>
+<description>select rate helpers for bootstrapping</description>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='rateHelpers'>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+        <description>vector of rate-helper handles</description>
+    </Parameter>
+    <Parameter name='includeFlag'>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+        <description>inclusion boolean</description>
+    </Parameter>
+    <Parameter name='trigger' ignore='true'>
+      <type>any</type>
+      <tensorRank>scalar</tensorRank>
+      <description>dependency tracking trigger</description>
+    </Parameter>
+    <Parameter name='nFutures'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>number of futures to be included</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>string</type>
+    <tensorRank>vector</tensorRank>
+    <description>list of instance names matching regex</description>
+</ReturnValue>
+</Procedure-->
+
 <Constructor name='qlDepositRateHelper'>
 <libraryFunction>DepositRateHelper</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
