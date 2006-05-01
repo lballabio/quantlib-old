@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2006 Ferdinando Ametrano
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -20,8 +21,8 @@
 #ifndef qla_termstructures_hpp
 #define qla_termstructures_hpp
 
-#include <qla/zerocurve.hpp>
 #include <ql/termstructure.hpp>
+#include <ql/calendar.hpp>
 #include <ql/TermStructures/piecewiseflatforward.hpp>
 #include <ql/TermStructures/forwardspreadedtermstructure.hpp>
 #include <ql/TermStructures/ratehelpers.hpp>
@@ -61,6 +62,18 @@ namespace QuantLibAddin {
             const std::string &dayCounterID);
     };
 
+    class FuturesRateHelper : public RateHelper {
+      public:
+        FuturesRateHelper(
+            const double &price,
+            const std::string &immDateID,
+            const QuantLib::Integer &months,
+            const std::string &dayCounterID,
+            const std::string &bDayConventionID,
+            const std::string &calendarID,
+            const QuantLib::Integer &decade);
+    };
+
     class SwapRateHelper : public RateHelper {
       public:
         SwapRateHelper(
@@ -75,18 +88,6 @@ namespace QuantLibAddin {
             const std::string &floatingFrequencyID,
             const std::string &floatingConventionID,
             const std::string &floatingDayCounterID);
-    };
-
-    class FuturesRateHelper : public RateHelper {
-      public:
-        FuturesRateHelper(
-            const double &price,
-            const std::string &immDateID,
-            const QuantLib::Integer &months,
-            const std::string &dayCounterID,
-            const std::string &bDayConventionID,
-            const std::string &calendarID,
-            const QuantLib::Integer &decade);
     };
 
     class YieldTermStructure : public ObjHandler::Object {
@@ -108,11 +109,36 @@ namespace QuantLibAddin {
             const std::string &dayCounterID);
     };
     
+    class PiecewiseYieldCurve : public YieldTermStructure {
+      public:
+        PiecewiseYieldCurve(
+            //const long &nDays, const std::string &calendarID,
+            const long &settlement,
+            const std::vector<std::string> &handlesRateHelper,
+            const std::string &dayCounterID);
+    };
+    
+    class DiscountCurve : public YieldTermStructure {
+      public:
+        DiscountCurve(
+            const std::vector < long > &dates,
+            const std::vector < double > &dfs,
+            const std::string &dayCounterID);
+    };
+
+    class ZeroCurve : public YieldTermStructure {
+      public:
+        ZeroCurve(
+            const std::vector < long > &dates,
+            const std::vector < double > &zeroRates,
+            const std::string &dayCounterID);
+    };
+
     class ForwardCurve : public YieldTermStructure {
       public:
         ForwardCurve(
             const std::vector < long > &dates,
-            const std::vector < double > &forwards,
+            const std::vector < double > &forwardRates,
             const std::string &dayCounterID);
     };
 

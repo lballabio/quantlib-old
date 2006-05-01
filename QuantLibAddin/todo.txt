@@ -1,5 +1,10 @@
 
+
+scrgen
+- caso di calenda in PiecewiseYieldCurve
+
 PICEWISEYIELDTERMSTRUCTURE
+- invertire ordine diinterpolator ed accuracy
 - lo swapratehelper non puo' avere uno swap_ con un dummy index dentro, ma un
   indice vero se si vuole intercettare il fixing delle 11:00
 - ratehelper filter: via i false, sort, via i duplicati,max numvber of futures
@@ -7,12 +12,6 @@ PICEWISEYIELDTERMSTRUCTURE
   un future scade per effetto del muovere la evaluation date?
 - conv adj dei futures
 - turn of year
-- monotone spline
-  typedef PiecewiseYieldCurve<ForwardRate,Cubic
-      //(CubicSpline::SecondDerivative, 0.0,
-      // CubicSpline::FirstDerivative, 0.0,
-      // true)
-  PiecewiseMonotoneForward;
 - extended grid with all relevant dates
 - revise bondhelpers
 - ratehelper usato da piu' curve: non si puo' utilizzare il setTermStructure
@@ -25,3 +24,4 @@ DATE
 
 SPREADSHEETS
 - perchè non funziona quando ratehelpers è aperto?
+- signed spreadsheet and macro

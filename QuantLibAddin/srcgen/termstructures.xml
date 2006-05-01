@@ -3,39 +3,6 @@
 <displayName>Term Structures</displayName>
 <Functions>
 
-<!--Procedure name='qlRateHelperSelection'>
-<description>select rate helpers for bootstrapping</description>
-<functionCategory>QuantLib</functionCategory>
-<alias>QuantLib::rateHelperSelection</alias>
-<Parameters>
-    <Parameter name='rateHelpers'>
-        <type>string</type>
-        <tensorRank>vector</tensorRank>
-        <description>vector of rate-helper handles</description>
-    </Parameter>
-    <Parameter name='includeFlag'>
-        <type>bool</type>
-        <tensorRank>vector</tensorRank>
-        <description>inclusion boolean</description>
-    </Parameter>
-    <Parameter name='trigger' ignore='true'>
-      <type>any</type>
-      <tensorRank>scalar</tensorRank>
-      <description>dependency tracking trigger</description>
-    </Parameter>
-    <Parameter name='nFutures'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>number of futures to be included</description>
-    </Parameter>
-</Parameters>
-<ReturnValue>
-    <type>string</type>
-    <tensorRank>vector</tensorRank>
-    <description>list of instance names matching regex</description>
-</ReturnValue>
-</Procedure-->
-
 <Constructor name='qlDepositRateHelper'>
 <libraryFunction>DepositRateHelper</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
@@ -120,87 +87,6 @@
 </Parameters>
 </Constructor>
 
-<Member name='qlEarliestDate' getObject='true' libraryClass='RateHelper'>
-  <description>retrieve a RateHelper's earliest date</description>
-  <libraryFunction>earliestDate</libraryFunction>
-  <functionCategory>QuantLib</functionCategory>
-  <Parameters/>
-  <ReturnValue return_func='serialNumber'>
-    <type>long</type>
-    <tensorRank>scalar</tensorRank>
-    <description>earliest date</description>
-  </ReturnValue>
-</Member>
-
-<Member name='qlLatestDate' getObject='true' libraryClass='RateHelper'>
-  <description>retrieve a RateHelper's latest date</description>
-  <libraryFunction>latestDate</libraryFunction>
-  <functionCategory>QuantLib</functionCategory>
-  <Parameters/>
-  <ReturnValue return_func='serialNumber'>
-    <type>long</type>
-    <tensorRank>scalar</tensorRank>
-    <description>latest date</description>
-  </ReturnValue>
-</Member>
-
-<Member name='qlReferenceQuote' getObject='true' libraryClass='RateHelper'>
-  <description>retrieve a RateHelper's reference quote</description>
-  <libraryFunction>referenceQuote</libraryFunction>
-  <functionCategory>QuantLib</functionCategory>
-  <Parameters/>
-	<ReturnValue>
-		<type>double</type>
-		<tensorRank>scalar</tensorRank>
-		<description>reference quote</description>
-	</ReturnValue>
-</Member>
-
-<Constructor name='qlPiecewiseFlatForward'>
-<libraryFunction>PiecewiseFlatForward</libraryFunction>
-<functionCategory>QuantLib</functionCategory>
-<Parameters>
-    <Parameter name='settlementDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>settlement date (e.g. evaluationDate + 2)</description>
-    </Parameter>
-    <Parameter name='rateHelpers'>
-        <type>string</type>
-        <tensorRank>vector</tensorRank>
-        <description>vector of rate-helper handles</description>
-    </Parameter>
-    <Parameter name='dayCounter'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>day counter (e.g. Actual360)</description>
-    </Parameter>
-    <Parameter name='trigger' ignore='true'>
-      <type>any</type>
-      <tensorRank>scalar</tensorRank>
-      <description>dependency tracking trigger</description>
-    </Parameter>
-</Parameters>
-</Constructor>
-
-<Member name='qlSetQuote' libraryClass='RateHelper'>
-<description>update quote of existing Rate Helper object</description>
-<libraryFunction>setQuote</libraryFunction>
-<functionCategory>QuantLib</functionCategory>
-<Parameters>
-    <Parameter name='Quote'>
-        <type>double</type>
-        <tensorRank>scalar</tensorRank>
-        <description>the new qoute</description>
-    </Parameter>
-</Parameters>
-<ReturnValue>
-    <type>double</type>
-    <tensorRank>scalar</tensorRank>
-    <description>diff new quote - old quote</description>
-</ReturnValue>
-</Member>
-
 <Constructor name='qlSwapRateHelper'>
 <libraryFunction>SwapRateHelper</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
@@ -263,6 +149,179 @@
 </Parameters>
 </Constructor>
 
+<Member name='qlEarliestDate' getObject='true' libraryClass='RateHelper'>
+  <description>retrieve a RateHelper's earliest date</description>
+  <libraryFunction>earliestDate</libraryFunction>
+  <functionCategory>QuantLib</functionCategory>
+  <Parameters/>
+  <ReturnValue return_func='serialNumber'>
+    <type>long</type>
+    <tensorRank>scalar</tensorRank>
+    <description>earliest date</description>
+  </ReturnValue>
+</Member>
+
+<Member name='qlLatestDate' getObject='true' libraryClass='RateHelper'>
+  <description>retrieve a RateHelper's latest date</description>
+  <libraryFunction>latestDate</libraryFunction>
+  <functionCategory>QuantLib</functionCategory>
+  <Parameters/>
+  <ReturnValue return_func='serialNumber'>
+    <type>long</type>
+    <tensorRank>scalar</tensorRank>
+    <description>latest date</description>
+  </ReturnValue>
+</Member>
+
+<Member name='qlSetQuote' libraryClass='RateHelper'>
+<description>update quote of existing Rate Helper object</description>
+<libraryFunction>setQuote</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='Quote'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>the new qoute</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>double</type>
+    <tensorRank>scalar</tensorRank>
+    <description>diff new quote - old quote</description>
+</ReturnValue>
+</Member>
+
+<Member name='qlReferenceQuote' getObject='true' libraryClass='RateHelper'>
+  <description>retrieve a RateHelper's reference quote</description>
+  <libraryFunction>referenceQuote</libraryFunction>
+  <functionCategory>QuantLib</functionCategory>
+  <Parameters/>
+	<ReturnValue>
+		<type>double</type>
+		<tensorRank>scalar</tensorRank>
+		<description>reference quote</description>
+	</ReturnValue>
+</Member>
+
+<!--Procedure name='qlRateHelperSelection'>
+<description>select rate helpers for bootstrapping</description>
+<functionCategory>QuantLib</functionCategory>
+<alias>QuantLib::rateHelperSelection</alias>
+<Parameters>
+    <Parameter name='rateHelpers'>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+        <description>vector of rate-helper handles</description>
+    </Parameter>
+    <Parameter name='includeFlag'>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+        <description>inclusion boolean</description>
+    </Parameter>
+    <Parameter name='trigger' ignore='true'>
+      <type>any</type>
+      <tensorRank>scalar</tensorRank>
+      <description>dependency tracking trigger</description>
+    </Parameter>
+    <Parameter name='nFutures'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>number of futures to be included</description>
+    </Parameter>
+</Parameters>
+<ReturnValue>
+    <type>string</type>
+    <tensorRank>vector</tensorRank>
+    <description>list of instance names matching regex</description>
+</ReturnValue>
+</Procedure-->
+
+<Constructor name='qlPiecewiseYieldCurve'>
+<libraryFunction>PiecewiseYieldCurve</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <!--Parameter name='nDays' default='0'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0</description>
+    </Parameter>
+    <Parameter name='calendar' ql_type='QuantLib::Calendar'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Calendar ID to advance from global EvaluationDate</description>
+    </Parameter-->
+    <Parameter name='settlementDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>settlement date (e.g. evaluationDate + 2)</description>
+    </Parameter>
+    <Parameter name='rateHelpers'>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+        <description>vector of rate-helper handles</description>
+    </Parameter>
+    <Parameter name='dayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day counter (e.g. Actual365Fixed)</description>
+    </Parameter>
+    <Parameter name='trigger' ignore='true'>
+      <type>any</type>
+      <tensorRank>scalar</tensorRank>
+      <description>dependency tracking trigger</description>
+    </Parameter>
+</Parameters>
+</Constructor>
+
+<Constructor name='qlPiecewiseFlatForward'>
+<libraryFunction>PiecewiseFlatForward</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='settlementDate'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>settlement date (e.g. evaluationDate + 2)</description>
+    </Parameter>
+    <Parameter name='rateHelpers'>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+        <description>vector of rate-helper handles</description>
+    </Parameter>
+    <Parameter name='dayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day counter (e.g. Actual360)</description>
+    </Parameter>
+    <Parameter name='trigger' ignore='true'>
+      <type>any</type>
+      <tensorRank>scalar</tensorRank>
+      <description>dependency tracking trigger</description>
+    </Parameter>
+</Parameters>
+</Constructor>
+
+<Constructor name='qlDiscountCurve'>
+<libraryFunction>DiscountCurve</libraryFunction>
+<functionCategory>QuantLib</functionCategory>
+<Parameters>
+    <Parameter name='curveDates'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+        <description>dates of the curve</description>
+    </Parameter>
+    <Parameter name='curveDiscounts'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+        <description>discount factors for the above dates</description>
+    </Parameter>
+    <Parameter name='dayCounterID'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day counter ID used internally (e.g. Actual365Fixed)</description>
+    </Parameter>
+</Parameters>
+</Constructor>
+
 <Constructor name='qlZeroCurve'>
 <libraryFunction>ZeroCurve</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
@@ -270,17 +329,17 @@
     <Parameter name='curveDates'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
-        <description>dates of the zero curve</description>
+        <description>dates of the curve</description>
     </Parameter>
     <Parameter name='curveYields'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
-        <description>yields of the zero curve</description>
+        <description>zero rates for the above dates</description>
     </Parameter>
     <Parameter name='dayCounterID'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>day counter ID</description>
+        <description>day counter ID used internally (e.g. Actual365Fixed)</description>
     </Parameter>
 </Parameters>
 </Constructor>
@@ -292,17 +351,17 @@
     <Parameter name='curveDates'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
-        <description>dates of the zero curve</description>
+        <description>dates of the curve</description>
     </Parameter>
     <Parameter name='forwardYields'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
-        <description>forwards of the yield curve</description>
+        <description>forwards rates for the above dates</description>
     </Parameter>
     <Parameter name='dayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>day counter (e.g. Actual360)</description>
+        <description>day counter ID used internally (e.g. Actual365Fixed)</description>
     </Parameter>
 </Parameters>
 </Constructor>
@@ -324,7 +383,7 @@
 </Parameters>
 </Constructor>
 
-  <Member name='qlDiscount' getObject='true' libraryClass='PiecewiseFlatForward' loopParameter='DfDates'>
+  <Member name='qlDiscount' getObject='true' libraryClass='YieldTermStructure' loopParameter='DfDates'>
     <description>Return a vector of discount factors corresponding to a vector of dates for a given yield term structure</description>
     <libraryFunction>discount</libraryFunction>
     <functionCategory>QuantLib</functionCategory>
