@@ -178,7 +178,7 @@ namespace ObjHandler {
                 ret = xScalar.val.num;
             else {
                 OPER xLong;
-                Excel(xlCoerce, &xLong, 2, xScalar, TempInt(xltypeInt));
+                Excel(xlCoerce, &xLong, 2, &xScalar, TempInt(xltypeInt));
                 ret = xLong.val.w;
             }
         } catch (const std::exception &e) {
@@ -199,7 +199,7 @@ namespace ObjHandler {
                 ret = xScalar.val.num;
             else {
                 OPER xDouble;
-                Excel(xlCoerce, &xDouble, 2, xScalar, TempInt(xltypeNum));
+                Excel(xlCoerce, &xDouble, 2, &xScalar, TempInt(xltypeNum));
                 ret = xDouble.val.num;
             }
         } catch (const std::exception &e) {
@@ -220,7 +220,7 @@ namespace ObjHandler {
                 ret = xScalar.val.boolean != 0;
             else {
                 OPER xBool;
-                Excel(xlCoerce, &xBool, 2, xScalar, TempInt(xltypeBool));
+                Excel(xlCoerce, &xBool, 2, &xScalar, TempInt(xltypeBool));
                 ret = xBool.val.boolean != 0;
             }
         } catch (const std::exception &e) {
@@ -246,7 +246,7 @@ namespace ObjHandler {
             if (xScalar.xltype == xltypeStr)
                 xString = &xScalar;
             else {
-                Excel(xlCoerce, &xTemp, 2, xScalar, TempInt(xltypeStr));
+                Excel(xlCoerce, &xTemp, 2, &xScalar, TempInt(xltypeStr));
                 xString = &xTemp;
                 needToFree = true;
             }
