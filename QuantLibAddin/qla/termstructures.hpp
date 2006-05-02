@@ -112,8 +112,9 @@ namespace QuantLibAddin {
     class PiecewiseYieldCurve : public YieldTermStructure {
       public:
         PiecewiseYieldCurve(
-            //const long &nDays, const std::string &calendarID,
-            const long &settlement,
+            const long &nDays, 
+            const QuantLib::Calendar &calendar,
+            //const long &settlement,
             const std::vector<std::string> &handlesRateHelper,
             const std::string &dayCounterID);
     };

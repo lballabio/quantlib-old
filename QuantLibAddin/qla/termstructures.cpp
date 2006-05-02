@@ -177,13 +177,14 @@ namespace QuantLibAddin {
     }
 
     PiecewiseYieldCurve::PiecewiseYieldCurve(
-            //const long &nDays, const std::string &calendarID,
-            const long &settlement,
+            const long &nDays,
+            const QuantLib::Calendar &calendar,
+            //const long &settlement,
             const std::vector<std::string> &handlesRateHelper,
             const std::string &dayCounterID) {
 
         //QuantLib::Calendar calendar =Create<QuantLib::Calendar>()(calendarID);
-        QuantLib::Date settlementDate(settlement);
+        //QuantLib::Date settlementDate(settlement);
 
         std::vector<boost::shared_ptr<QuantLib::RateHelper> > rateHelpersQL;
         std::vector<std::string>::const_iterator i;
@@ -210,25 +211,24 @@ namespace QuantLibAddin {
             QuantLib::CubicSpline::FirstDerivative, 0.0,
             true);
 
+        termStructure_ = boost::shared_ptr<QuantLib::YieldTermStructure>(
+            new QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
+            QuantLib::Linear>(
+                nDays, calendar,
+                rateHelpersQL,
+                dayCounter,
+                1.0e-6));
+
         /*
         termStructure_ = boost::shared_ptr<QuantLib::YieldTermStructure>(
             new QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,QuantLib::Cubic>(
-                //nDays, calendar,
-                //settlementDate,
+                nDays, calendar,
                 rateHelpersQL,
                 dayCounter,
                 1e-12,
                 monotoneCubic));
         */
 
-        termStructure_ = boost::shared_ptr<QuantLib::YieldTermStructure>(
-            new QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
-            QuantLib::Linear>(
-                //nDays, calendar,
-                settlementDate,
-                rateHelpersQL,
-                dayCounter,
-                1.0e-6));
     }
 
 

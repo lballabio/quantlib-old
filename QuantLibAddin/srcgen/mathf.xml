@@ -1,29 +1,92 @@
 <Category name='mathf'>
-<description>Math QuantLib functions</description>
-<displayName>Math</displayName>
-<includes>
-  <include>ql/Functions/mathf.hpp</include>
-</includes>
-<Functions>
+  <description>Math QuantLib functions</description>
+  <displayName>Math</displayName>
+  <includes>
+    <include>ql/Functions/mathf.hpp</include>
+  </includes>
 
-<Procedure name='qlPrimeNumber' >
-  <description>returns the N-th prime number</description>
-  <functionCategory>QuantLib</functionCategory>
-  <alias>QuantLib::primeNumbers</alias>
-  <Parameters>
-    <Parameter name='N'>
-      <type>long</type>
-      <tensorRank>scalar</tensorRank>
-      <description>index of the prime number (e.g N=2 returns 3)</description>
-    </Parameter>
-  </Parameters>
-  <ReturnValue>
-    <type>long</type>
-    <tensorRank>scalar</tensorRank>
-    <description>the N-th prime number</description>
-  </ReturnValue>
-</Procedure>
 
-</Functions>
+  <Functions>
+
+    <Procedure name='qlPrimeNumber' >
+      <description>returns the N-th prime number</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::primeNumbers</alias>
+      <Parameters>
+        <Parameter name='N'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>index of the prime number (e.g N=2 returns 3)</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>the N-th prime number</description>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name="qlNormDist">
+      <description>returns the normal cumulative distribution for the specified mean and standard deviation</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::normDist</alias>
+      <Parameters>
+        <Parameter name="x">
+          <type>double</type>
+          <tensorRank>scalar</tensorRank>
+          <description>is the value for which you want the distribution</description>
+        </Parameter>
+        <Parameter name="mean">
+          <type>double</type>
+          <tensorRank>scalar</tensorRank>
+          <description>is the arithmetic mean of the distribution</description>
+        </Parameter>
+        <Parameter name="standard_dev">
+          <type>double</type>
+          <tensorRank>scalar</tensorRank>
+          <description>is the standard deviation of the distribution</description>
+        </Parameter>
+        <Parameter name="cumulative">
+          <type>bool</type>
+          <tensorRank>scalar</tensorRank>
+          <description>is a logical value. Use TRUE for the cumulative distribution function; FALSE for the probability mass function</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>the normal cumulative distribution for the specified mean and standard deviation</description>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name="qlNormInv">
+      <description>returns the inverse of the normal cumulative distribution for the specified mean and standard deviation</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::normInv</alias>
+      <Parameters>
+        <Parameter name="probability">
+          <type>double</type>
+          <tensorRank>scalar</tensorRank>
+          <description>is a probability corresponding to the normal distribution, a number between 0 and 1 inclusive</description>
+        </Parameter>
+        <Parameter name="mean">
+          <type>double</type>
+          <tensorRank>scalar</tensorRank>
+          <description>is the arithmetic mean of the distribution</description>
+        </Parameter>
+        <Parameter name="standard_dev">
+          <type>double</type>
+          <tensorRank>scalar</tensorRank>
+          <description>is the standard deviation of the distribution</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>the inverse of the normal cumulative distribution for the specified mean and standard deviation</description>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+
 </Category>
-

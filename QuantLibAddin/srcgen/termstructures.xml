@@ -240,7 +240,7 @@
 <libraryFunction>PiecewiseYieldCurve</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <!--Parameter name='nDays' default='0'>
+    <Parameter name='nDays' default='0'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0</description>
@@ -249,12 +249,12 @@
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>Calendar ID to advance from global EvaluationDate</description>
-    </Parameter-->
-    <Parameter name='settlementDate'>
+    </Parameter>
+    <!--Parameter name='settlementDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>settlement date (e.g. evaluationDate + 2)</description>
-    </Parameter>
+    </Parameter-->
     <Parameter name='rateHelpers'>
         <type>string</type>
         <tensorRank>vector</tensorRank>
