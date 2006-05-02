@@ -203,10 +203,9 @@
 	</ReturnValue>
 </Member>
 
-<!--Procedure name='qlRateHelperSelection'>
+<Procedure name='qlRateHelperSelection'>
 <description>select rate helpers for bootstrapping</description>
 <functionCategory>QuantLib</functionCategory>
-<alias>QuantLib::rateHelperSelection</alias>
 <Parameters>
     <Parameter name='rateHelpers'>
         <type>string</type>
@@ -232,9 +231,9 @@
 <ReturnValue>
     <type>string</type>
     <tensorRank>vector</tensorRank>
-    <description>list of instance names matching regex</description>
+    <description>list of instance names of selected rate helpers</description>
 </ReturnValue>
-</Procedure-->
+</Procedure>
 
 <Constructor name='qlPiecewiseYieldCurve'>
 <libraryFunction>PiecewiseYieldCurve</libraryFunction>

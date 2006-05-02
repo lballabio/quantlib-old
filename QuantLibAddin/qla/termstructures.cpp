@@ -297,4 +297,93 @@ namespace QuantLibAddin {
             new QuantLib::ForwardSpreadedTermStructure(discountingTermStructure, spreadQuote));
     }
 
+    // helper class
+    namespace detail {
+
+        class RateHelperPrioritySorter {
+          public:
+            bool operator()(const boost::shared_ptr<RateHelper>& h1,
+                            const boost::shared_ptr<RateHelper>& h2) const {
+
+                if (h1->getObject().latestDate() > h2->getObject().latestDate())
+                    return false;
+
+                if (h1->getObject().latestDate() == h2->getObject().latestDate()) {
+                    if (boost::dynamic_pointer_cast<FuturesRateHelper>(h1)) {
+                        return false;
+                    } else if (!boost::dynamic_pointer_cast<FuturesRateHelper>(h2)) {
+                        if (boost::dynamic_pointer_cast<SwapRateHelper>(h1)) {
+                            return false;
+                        //} else if (!boost::dynamic_pointer_cast<SwapRateHelper>(h2)) {
+                        //    if (boost::dynamic_pointer_cast<FixedCouponBondHelper>(h1)) {
+                        //        return false;
+                        //    }
+                        }
+                    }
+                }
+
+                return true;
+
+            }
+        };
+
+    }
+
+    std::vector<std::string> qlRateHelperSelection(
+        const std::vector<std::string>& instrumentHandles,
+        const std::vector<bool>& includeFlag,
+        const long& nFutures) {
+
+        QL_REQUIRE(!instrumentHandles.empty(), "no instrument given");
+
+        QuantLib::Size nInstruments = instrumentHandles.size();
+        QL_REQUIRE(includeFlag.size()==nInstruments,
+            "includeFlag / instruments mismatch");
+
+        std::vector<boost::shared_ptr<RateHelper>> instruments;
+        for (std::vector<std::string>::const_iterator it = instrumentHandles.begin();
+            it != instrumentHandles.end(); it++) {
+                OH_GET_OBJECT(objectPointer, *it, RateHelper)
+                instruments.push_back(objectPointer);
+        }
+
+        // purge input rate helpers according to their includeFlag,
+        // their expiration, and maximum number of allowed futures
+        std::vector<boost::shared_ptr<RateHelper> > rhs;
+        QuantLib::Size i;
+        long futuresCounter = 0;
+        for (i=0; i<nInstruments; i++) {
+            if (includeFlag[i] && (instruments[i]->getObject().earliestDate() <
+                                   QuantLib::Settings::instance().evaluationDate())) {
+                if (!boost::dynamic_pointer_cast<FuturesRateHelper>(instruments[i])) {
+                    rhs.push_back(instruments[i]);
+                } else if (futuresCounter<nFutures) {
+                    futuresCounter++;
+                    rhs.push_back(instruments[i]);
+                }
+            }
+        }
+
+        std::vector<std::string> instanceNameStubs;
+
+        // zero or one rate helper left
+        if (rhs.size()<2) {
+            for (std::vector<boost::shared_ptr<RateHelper> >::const_iterator i = rhs.begin();
+                i != rhs.end(); i++)
+                instanceNameStubs.push_back((*i)->getStubName());
+            return instanceNameStubs;
+        }
+
+        // sort rate helpers
+        std::sort(rhs.begin(),rhs.end(), detail::RateHelperPrioritySorter());
+
+        for (i=0; i<rhs.size()-1; i++) {
+            if (rhs[i]->getObject().latestDate() < rhs[i+1]->getObject().latestDate()) 
+                instanceNameStubs.push_back(rhs[i]->getStubName());
+        }
+        instanceNameStubs.push_back(rhs[i]->getStubName());
+
+        return instanceNameStubs;
+    }
+
 }

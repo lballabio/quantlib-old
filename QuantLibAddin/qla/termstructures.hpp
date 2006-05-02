@@ -150,6 +150,11 @@ namespace QuantLibAddin {
             const double &spread);
     };
 
+    std::vector<std::string> qlRateHelperSelection(
+        const std::vector<std::string>& instrumentHandles,
+        const std::vector<bool>& includeFlag,
+        const long& nFutures);
+
 }
 
 #endif
