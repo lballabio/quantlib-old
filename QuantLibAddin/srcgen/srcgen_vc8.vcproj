@@ -134,6 +134,10 @@
 				>
 			</File>
 			<File
+				RelativePath="utilities.py"
+				>
+			</File>
+			<File
 				RelativePath="valueobjects.py"
 				>
 			</File>

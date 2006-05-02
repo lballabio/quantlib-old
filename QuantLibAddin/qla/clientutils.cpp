@@ -29,5 +29,14 @@ namespace QuantLibAddin {
         else 
             return QuantLib::Date();
     }
+
+    std::vector < long > dateToLongVec(const std::vector < QuantLib::Date > &v) {
+        std::vector < long > ret;
+        for (std::vector < QuantLib::Date >::const_iterator i = v.begin();
+            i != v.end(); i++)
+            ret.push_back(i->serialNumber());
+        return ret;
+    }
+
 }
 

@@ -25,6 +25,7 @@
 #define qla_clientutils_hpp
 
 #include <ql/date.hpp>
+#include <vector>
 
 namespace QuantLibAddin {
 
@@ -35,6 +36,8 @@ namespace QuantLibAddin {
     /*! convert a long to a QuantLib date
     */
     QuantLib::Date createQLDate(long date);
+
+    std::vector < long > dateToLongVec(const std::vector < QuantLib::Date > &v);
 }
 
 #endif

@@ -44,7 +44,7 @@ RET_STRING = """\
         return ret;"""
 RET_XLOPER = """\
         static XLOPER xRet;
-        ObjHandler::%sToXloper(xRet, returnValue);
+        ObjHandler::%sToXloper(xRet, %s);
         return &xRet;"""
 UNREGISTER = """\
         Excel4(xlfRegisterId, &xlRegID, 2, &xDll, 
@@ -72,15 +72,14 @@ class AddinExcel(addin.Addin):
     def generateFunction(self, fileFunc, func):
         """Generate source code for a given function."""
         functionReturnType = self.functionReturnType.apply(func.returnValue)
-        functionDeclaration = func.generateParameterList(self.functionDeclaration, 
-            'char *handle')
+        functionDeclaration = func.generateParameterList(self.functionDeclaration)
         conversions = self.generateConversions(func.Parameters)
         functionBody = func.generateBody(self)
         functionValueObject = func.generateVO(self)
         functionReturnCommand = self.generateReturnCommand(func.returnValue)
-        fileFunc.write(self.bufferFunction.text %
-            (functionReturnType, func.name, functionDeclaration, func.functionCall, conversions, 
-            functionBody, functionValueObject, functionReturnCommand, func.name))
+        fileFunc.write(self.bufferFunction.text % (functionReturnType, func.name, 
+            functionDeclaration, func.clearCell, conversions, functionBody, 
+            functionValueObject, functionReturnCommand, func.name))
 
     def generateReturnCommand(self, returnValue):
         """Derive return statement for function."""
@@ -91,7 +90,7 @@ class AddinExcel(addin.Addin):
                 pass
             else:                                   # long/double/boolean
                 return RET_NUM
-        return RET_XLOPER % (returnValue.tensorRank)
+        return RET_XLOPER % (returnValue.tensorRank, returnValue.conversion())
 
     def formatLine(self, text, comment, lastParameter = False):
         """Format a line of text for the function register code."""

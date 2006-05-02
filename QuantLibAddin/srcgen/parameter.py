@@ -60,7 +60,7 @@ class ReturnValue(Value):
     relating to a function return value."""
 
     # sometimes a ReturnValue will be treated like a Parameter
-    # in which case the properties below require default values
+    # in which case the properties below require default value
     name = ''
     default = False
 
@@ -74,12 +74,19 @@ class ReturnValue(Value):
         serializer.serializeProperty(self, common.TENSOR_RANK)
         serializer.serializeProperty(self, common.DESCRIPTION)
         serializer.serializeAttribute(self, common.RETURN_FUNC)
+        serializer.serializeAttribute(self, common.CNV_STR)
 
     def returnFunction(self):
         if self.return_func:
             return "." + self.return_func + "()"
         else:
             return ""
+
+    def conversion(self):
+        if self.conversionString:
+            return self.conversionString % 'returnValue'
+        else:
+            return 'returnValue'
 
 class ConstructorReturnValue(Value):
     """Class to represent state shared by the return values

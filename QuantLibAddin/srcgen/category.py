@@ -31,7 +31,6 @@ class Category(serializable.Serializable):
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeProperty(self, common.DISPLAY_NAME)
         serializer.serializeProperty(self, common.DESCRIPTION)
-        serializer.serializeBoolean(self, common.NEED_QLA_HEADER, True)
         serializer.serializeObjectDict(self, function.Function)
         serializer.serializeList(self, 'includes', 'include', True)
 

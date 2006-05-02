@@ -58,8 +58,7 @@ include_HEADERS = \
     vo_volatilities.hpp \
     vo_xibor.hpp \
     xibor.hpp \
-    zerocouponbond.hpp \
-    zerocurve.hpp
+    zerocouponbond.hpp
 
 libQuantLibAddin_la_SOURCES = \
     asianoption.cpp \
@@ -105,6 +104,5 @@ libQuantLibAddin_la_SOURCES = \
     vo_volatilities.cpp \
     vo_xibor.cpp \
     xibor.cpp \
-    zerocouponbond.cpp \
-    zerocurve.cpp
+    zerocouponbond.cpp
 

@@ -24,11 +24,6 @@ import parameter
 import serializable
 import common
 
-# contexts in which a function's parameters are listed:
-DECLARATION = 0     # Addin function being declared
-INVOCATION = 1      # Addin function calling corresponding QuantLib function
-VALUEOBJECT = 2     # Generating VO code
-
 class Function(serializable.Serializable):
     """Encapsulate state and behavior required 
     to generate source code for a function."""
@@ -37,8 +32,7 @@ class Function(serializable.Serializable):
     # Derived classes may override skipFirst to True to prevent the function's
     # first input parameter from being listed in generated source code.
     skipFirst = False
-    functionCall = '''\
-        ObjHandler::FunctionCall functionCall;'''
+    clearCell = ''
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
@@ -55,7 +49,7 @@ class Function(serializable.Serializable):
         if self.platforms == '*': return True
         return self.platforms.find(platformID) != -1
 
-    def generateParameterList(self, rule, context = DECLARATION, checkSkipFirst = True, 
+    def generateParameterList(self, rule, checkParameterIgnore = False, checkSkipFirst = False,
             loopParameter = None, loopReplace = None, indent = None):
         """Generate source code relating to a list of function parameters."""
         returnValue = ''
@@ -63,11 +57,8 @@ class Function(serializable.Serializable):
         i = 0
         for parameter in self.Parameters:
             i += 1
-            if context == INVOCATION:
-                if checkSkipFirst and i == 1 and self.skipFirst: continue
-                if parameter.ignore : continue
-            elif context == VALUEOBJECT:
-                if parameter.ignore : continue
+            if checkSkipFirst and i == 1 and self.skipFirst: continue
+            if checkParameterIgnore and parameter.ignore : continue
             returnValue += endOfLine + rule.apply(parameter, loopParameter, loopReplace, indent)
             if i < self.ParameterCount: endOfLine = ',\n'
         if returnValue: returnValue = '\n' + returnValue
@@ -85,9 +76,8 @@ class Constructor(Function):
 
         std::string returnValue =
             ObjHandler::storeObject(%s, objectPointer);'''
-    functionCall = '''\
-        ObjHandler::FunctionCall functionCall;
-        functionCall.clearCell();'''
+    clearCell = '''\
+        functionCall->clearCell();\n\n'''
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
@@ -109,13 +99,13 @@ class Constructor(Function):
     def generateBody(self, addin):
         """Generate source code for function body."""
         self.skipFirst = True
-        libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION)
+        libraryCall = self.generateParameterList(addin.libraryCall, True, True)
         instanceName = addin.stringConvert % self.Parameters[0].name
         return Constructor.BODY % (self.libraryFunction, libraryCall, instanceName)
 
     def generateVO(self, addin):
         for p in self.Parameters: p.ql_type= ''
-        libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION, False)
+        libraryCall = self.generateParameterList(addin.libraryCall, True)
         return '''\
         
         objectPointer->setProperties(boost::shared_ptr<ObjHandler::ValueObject>(new QuantLibAddin::ValueObjects::%s(%s)));
@@ -170,7 +160,7 @@ class Member(Function):
     def generateBody(self, addin):
         """Generate source code for function body."""
         libraryReturnType = addin.libraryReturnType.apply(self.returnValue)
-        libraryCall = self.generateParameterList(addin.libraryCall, INVOCATION, True,
+        libraryCall = self.generateParameterList(addin.libraryCall, True, True,
             self.loopParameter, 'boost::any_cast<double>(value)', 6)
         handle = addin.stringConvert % self.Parameters[0].name
         libraryClass = self.libraryClass
@@ -200,6 +190,6 @@ class Procedure(Function):
             returnCommand = addin.libraryReturnType.apply(self.returnValue) \
                 + ' returnValue;\n        returnValue = '
         libraryCall = '%s(%s)%s;' % (self.alias, 
-            self.generateParameterList(addin.libraryCall, INVOCATION), self.returnValue.returnFunction())
+            self.generateParameterList(addin.libraryCall, True, True), self.returnValue.returnFunction())
         return '        ' + returnCommand + libraryCall
 

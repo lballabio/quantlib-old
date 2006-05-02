@@ -133,7 +133,7 @@
     </Rules>
 </RuleGroup>
 
-<RuleGroup name='libraryReturnType'>
+    <RuleGroup name='libraryReturnType'>       
     <Rules>
     <Rule name='setPrefix'>
         <SubRules>

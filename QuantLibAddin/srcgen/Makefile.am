@@ -53,6 +53,7 @@ srcgen_pys :=   addincalc.py \
                 serializer.py \
                 singleton.py \
                 srcgen.py \
+                utilities.py \
                 valueobjects.py \
                 xmlreader.py
 

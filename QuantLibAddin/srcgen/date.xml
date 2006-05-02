@@ -6,7 +6,7 @@
 </includes>
 <Functions>
 
-<!--Procedure name='qlHolidayList'>
+<Procedure name='qlHolidayList' >
 <description>returns the holidays in a period between two dates according to a given holiday calendar</description>
 <functionCategory>QuantLib</functionCategory>
 <alias>QuantLib::holidayList</alias>
@@ -26,18 +26,18 @@
         <tensorRank>scalar</tensorRank>
         <description>last date of the period</description>
     </Parameter>
-    <Parameter name='includeWeekEnds' default='TRUE'>
+    <Parameter name='includeWeekEnds' default='true'>
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
         <description>include week-end as holidays</description>
     </Parameter>
 </Parameters>
-<ReturnValue return_func='serialNumber'>
-    <type>long</type>
+<ReturnValue conversionString='QuantLibAddin::dateToLongVec( %s )'>
+    <type>QuantLib::Date</type>
     <tensorRank>vector</tensorRank>
     <description>holidays</description>
 </ReturnValue>
-</Procedure-->
+</Procedure>
 
 <Procedure name='qlAdvanceCalendar' >
 <description>advances the given calendar</description>
@@ -140,7 +140,6 @@
     <description>days between the start date and the end date</description>
 </ReturnValue>
 </Procedure>
-
 
 <Procedure name='qlYearFraction'>
 <description>calculate a year fraction</description>

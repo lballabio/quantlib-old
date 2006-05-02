@@ -21,6 +21,7 @@
 #ifdef HAVE_CONFIG_H
 #include <qla/config.hpp>
 #endif
+#include <oh/objhandlerdefines.hpp>
 #include <qla/termstructures.hpp>
 #include <qla/typefactory.hpp>
 #include <qla/generalutils.hpp>

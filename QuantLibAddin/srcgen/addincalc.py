@@ -88,8 +88,7 @@ class AddinCalc(addin.Addin):
             suffix = ' {'
         functionReturnType = self.functionReturnType.apply(func.returnValue)
         fileHeader.write(prototype % (functionReturnType, func.name))
-        functionDeclaration = func.generateParameterList(self.functionDeclaration,
-            'const STRING &handle')
+        functionDeclaration = func.generateParameterList(self.functionDeclaration)
         fileHeader.write(functionDeclaration)
         fileHeader.write(') THROWDEF_RTE_IAE%s\n' % suffix)
 
@@ -146,8 +145,7 @@ class AddinCalc(addin.Addin):
         for category in config.Config.getInstance().getCategories(self.platformId):
             fileIDL.write('                // %s\n\n' % category.name)
             for func in category.getFunctions(self.platformId): 
-                parameterList = func.generateParameterList(self.ruleIDL, 
-                    '[in] string handle')
+                parameterList = func.generateParameterList(self.ruleIDL)
                 returnTypeIDL = self.returnTypeIDL.apply(func.returnValue)
                 fileIDL.write(self.bufferIdlFunction.text % (returnTypeIDL, 
                     func.name, parameterList))

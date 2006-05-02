@@ -42,8 +42,8 @@ class ValueObjects(addin.Addin):
     def generateHeader(self, fileHeader, func):
         """Generate class definition source for prototype of given constructor function."""
         if func.__class__ != function.Constructor: return
-        constructorDeclaration = func.generateParameterList(self.constructorDeclaration, function.VALUEOBJECT)
-        memberDeclaration = func.generateParameterList(self.memberDeclaration, function.VALUEOBJECT)
+        constructorDeclaration = func.generateParameterList(self.constructorDeclaration, True)
+        memberDeclaration = func.generateParameterList(self.memberDeclaration, True)
         fileHeader.write(self.bufferClassDecl.text % (func.name, func.name, constructorDeclaration, memberDeclaration.replace(',', ';')))
 
     def generateHeaders(self, category):
@@ -58,7 +58,7 @@ class ValueObjects(addin.Addin):
     def generateFunction(self, fileFunc, func):
         """Generate source code for function."""
         if func.__class__ != function.Constructor: return
-        propertyDeclaration = func.generateParameterList(self.propertyDeclaration, function.VALUEOBJECT)
+        propertyDeclaration = func.generateParameterList(self.propertyDeclaration, True)
         propertyGet =''
         constructorInit = '\n' + ' '*8
         for par in func.Parameters:
@@ -66,7 +66,7 @@ class ValueObjects(addin.Addin):
             propertyGet += ValueObjects.PROP_GET_BODY % (par.name, par.name)
             constructorInit += ValueObjects.CONSTRUCTOR_INIT % (par.name, par.name)
         constructorInit = constructorInit[:-10]
-        constructorParList = func.generateParameterList(self.constructorDeclaration, function.VALUEOBJECT)
+        constructorParList = func.generateParameterList(self.constructorDeclaration, True)
         fileFunc.write(self.bufferClassBody.text % 
             (func.name, propertyDeclaration, func.name, func.name, propertyGet, func.name, func.name, 
             constructorParList, constructorInit))

@@ -65,7 +65,7 @@ class AddinDoxygen(addin.Addin):
 
     def generateFunctionDoc(self, fileFunc, func):
         """Generate documentation for given function."""
-        functionDoc = func.generateParameterList(self.functionDocs, 'string handle')
+        functionDoc = func.generateParameterList(self.functionDocs)
         retCode = self.functionReturnCode.apply(func.returnValue)
         fileFunc.write('\\anchor %s \\b %s\n' % (func.name, func.name))
         fileFunc.write('\\code\n')

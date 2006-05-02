@@ -41,8 +41,7 @@ class AddinC(addin.Addin):
         """Generate source for prototype of given function."""
         functionReturnType = self.functionReturnType.apply(func.returnValue)
         fileHeader.write('int %s(' % func.name)
-        functionDeclaration = func.generateParameterList(self.functionDeclaration, 
-            'char *handle')
+        functionDeclaration = func.generateParameterList(self.functionDeclaration)
         if functionDeclaration: functionDeclaration += ','
         fileHeader.write(functionDeclaration)
         fileHeader.write('\n        %sresult)%s' % (functionReturnType, suffix))

@@ -1,14 +1,18 @@
 DLLEXPORT %s%s(%s) {
+    boost::shared_ptr < ObjHandler::FunctionCall > functionCall;
     try {
-%s
-
-        SET_SESSION_ID
+        functionCall = boost::shared_ptr < ObjHandler::FunctionCall > ( new ObjHandler::FunctionCall() );
+%s        SET_SESSION_ID
 
 %s%s
 %s
 %s
     } catch (const std::exception &e) {
-        ObjHandler::logMessage(std::string("ERROR: %s: ") + e.what(), 2);
+        std::ostringstream err;
+        err << "%s - ";
+        if (functionCall) err << functionCall->getAddressString() << " - ";
+        err << e.what();
+        ObjHandler::logMessage(err.str(), 2);
         return 0;
     }
 }

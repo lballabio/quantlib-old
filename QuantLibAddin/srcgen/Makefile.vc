@@ -28,6 +28,7 @@ SCRIPTS=addincalc.py \
         serializer.py \
         singleton.py \
         srcgen.py \
+        utilities.py \
         valueobjects.py \
         xmlreader.py
 
@@ -50,13 +51,14 @@ STUBS=  stub.calc.function \
         stub.guile.includes \
         stub.guile.initfunc \
         stub.qla.includes \
+        stub.qla.mainheader \
         stub.vo.class.body \
         stub.vo.class.decl \
         stub.vo.includes.body \
         stub.vo.includes.decl
 
-METADATA=   addincalc.xml \
-            addinc.xml \
+METADATA=   addinc.xml \
+            addincalc.xml \
             addindoxygen.xml \
             addinexcel.xml \
             addinguile.xml \
@@ -64,12 +66,17 @@ METADATA=   addincalc.xml \
             capfloor.xml \
             config.xml \
             couponvectors.xml \
+            date.xml \
             enumerations.xml \
+            exercise.xml \
             instruments.xml \
             interpolation.xml \
+            mathf.xml \
             ohfunctions.xml \
             options.xml \
+            prices.xml \
             processes.xml \
+            randomsequencegenerator.xml \
             schedule.xml \
             shortratemodels.xml \
             simpleswap.xml \
