@@ -148,43 +148,9 @@
 	<Files>
 		<File
 			RelativePath="addindynamic1.cpp">
-			<FileConfiguration
-				Name="Release CRTDLL|Win32">
-				<Tool
-					Name="VCCLCompilerTool"
-					Optimization="2"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Debug CRTDLL|Win32">
-				<Tool
-					Name="VCCLCompilerTool"
-					Optimization="0"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
-					BasicRuntimeChecks="3"/>
-			</FileConfiguration>
 		</File>
 		<File
 			RelativePath="account.cpp">
-			<FileConfiguration
-				Name="Release CRTDLL|Win32">
-				<Tool
-					Name="VCCLCompilerTool"
-					Optimization="2"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Debug CRTDLL|Win32">
-				<Tool
-					Name="VCCLCompilerTool"
-					Optimization="0"
-					AdditionalIncludeDirectories=""
-					PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_IMPORTS;WIN32;_MBCS;LOG4CXX_STATIC;$(NoInherit)"
-					BasicRuntimeChecks="3"/>
-			</FileConfiguration>
 		</File>
 		<File
 			RelativePath="account.hpp">

@@ -17,6 +17,7 @@
 */
 
 #include <oh/exception.hpp>
+#include <oh/utilities.hpp>
 #include <ohxl/conversions.hpp>
 #include <sstream>
 

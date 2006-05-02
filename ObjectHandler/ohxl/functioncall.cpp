@@ -27,14 +27,17 @@ FunctionCall *FunctionCall::instance_ = 0;
 
     FunctionCall::FunctionCall() {
         if (instance_)
-            throw Exception("Duplicate attempt to initialize global FunctionCall object");
+            throw Exception("Multiple attempts to initialize global FunctionCall object");
         instance_ = this;
-        initialized_ = false;
+        xCaller.xltype = 0;
+        xReftext.xltype = 0;
+        address_ = "";
     }
 
     FunctionCall::~FunctionCall() {
         instance_ = 0;
-        if (initialized_) Excel(xlFree, 0, 2, &xReftext, &xCaller);
+        if (xCaller.xltype) Excel(xlFree, 0, 1, &xCaller);
+        if (xReftext.xltype) Excel(xlFree, 0, 1, &xReftext);
     }
 
     FunctionCall &FunctionCall::instance() {
@@ -45,19 +48,29 @@ FunctionCall *FunctionCall::instance_ = 0;
     }
 
     const XLOPER *FunctionCall::getCallerReference() {
-        if (!initialized_) initialize();
+        if (!xCaller.xltype) Excel(xlfCaller, &xCaller, 0);
         return &xCaller;
     }
 
     const XLOPER *FunctionCall::getCallerAddress() {
-        if (!initialized_) initialize();
+        if (!xReftext.xltype) Excel(xlfReftext, &xReftext, 1, getCallerReference());
         return &xReftext;
     }
 
-    void FunctionCall::initialize() {
-        Excel(xlfCaller, &xCaller, 0);
-        Excel(xlfReftext, &xReftext, 1, &xCaller);
-        initialized_ = true;
+    const std::string &FunctionCall::getAddressString() {
+        if (address_.empty()) {
+            XLOPER xAddress;
+            try {
+                Excel(xlfGetCell, &xAddress, 2, TempNum(1), getCallerReference());
+                operToScalar(address_, xAddress);
+            } catch (const std::exception &e) {
+                Excel(xlFree, 0, 1, &xAddress);
+                std::ostringstream err;
+                err << "FunctionCall::getAddressString(): " << e.what();
+                throw Exception(err.str().c_str());
+            }
+        }
+        return address_;
     }
 
     void FunctionCall::clearCell() {
@@ -71,16 +84,13 @@ FunctionCall *FunctionCall::instance_ = 0;
 
             // exit if calling cell is #VALUE
 
-            const XLOPER *xCaller = getCallerReference();
-            Excel(xlfGetCell, &xValue, 2, TempNum(5), xCaller);
+            Excel(xlfGetCell, &xValue, 2, TempNum(5), getCallerReference());
             if (xValue.xltype & xltypeErr) return;
-            Excel(xlFree, 0, 1, &xOldName);
+            Excel(xlFree, 0, 1, &xValue);
 
             // get name if any
 
-            const XLOPER *xReftext = getCallerAddress();
-
-            Excel(xlfGetDef, &xOldName, 1, xReftext);
+            Excel(xlfGetDef, &xOldName, 1, getCallerAddress());
 
             // if name - delete associated object
 

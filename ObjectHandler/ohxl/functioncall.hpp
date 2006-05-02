@@ -43,12 +43,12 @@ namespace ObjHandler {
         void clearCell();
         const XLOPER *getCallerReference();
         const XLOPER *getCallerAddress();
+        const std::string &getAddressString();
     private:
         static FunctionCall *instance_;
         XLOPER xCaller;
         XLOPER xReftext;
-        bool initialized_;
-        void initialize();
+        std::string address_;
     };
 
 }
