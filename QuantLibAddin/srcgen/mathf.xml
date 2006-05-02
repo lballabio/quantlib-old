@@ -6,7 +6,7 @@
   </includes>
 
 
-  <Functions>
+<Functions>
 
     <Procedure name='qlPrimeNumber' >
       <description>returns the N-th prime number</description>
@@ -27,29 +27,29 @@
     </Procedure>
 
     <Procedure name="qlNormDist">
-      <description>returns the normal cumulative distribution for the specified mean and standard deviation</description>
+      <description>Returns the normal cumulative distribution for the specified mean and standard deviation.</description>
       <functionCategory>QuantLib</functionCategory>
       <alias>QuantLib::normDist</alias>
       <Parameters>
-        <Parameter name="x">
+        <Parameter name="X">
           <type>double</type>
           <tensorRank>scalar</tensorRank>
           <description>is the value for which you want the distribution</description>
         </Parameter>
-        <Parameter name="mean">
+        <Parameter name="Mean" default="0.0">
           <type>double</type>
           <tensorRank>scalar</tensorRank>
           <description>is the arithmetic mean of the distribution</description>
         </Parameter>
-        <Parameter name="standard_dev">
+        <Parameter name="Standard_dev" default="1.0">
           <type>double</type>
           <tensorRank>scalar</tensorRank>
-          <description>is the standard deviation of the distribution</description>
+          <description>is the standard deviation of the distribution, a positive number</description>
         </Parameter>
-        <Parameter name="cumulative">
+        <Parameter name="cumulative" default="TRUE">
           <type>bool</type>
           <tensorRank>scalar</tensorRank>
-          <description>is a logical value. Use TRUE for the cumulative distribution function; FALSE for the probability mass function</description>
+          <description>is a logical value: for the cumulative distribution function, use TRUE; for the probability mass function, use FALSE</description>
         </Parameter>
       </Parameters>
       <ReturnValue>
@@ -59,25 +59,43 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name="qlNormSDist">
+      <description>Returns the standard normal cumulative distribution (has a mean of zero and standard deviation of one).</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::normDist</alias>
+      <Parameters>
+        <Parameter name="Z">
+          <type>double</type>
+          <tensorRank>scalar</tensorRank>
+          <description>is the value for which you want the distribution</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>the standard normal cumulative distribution (has a mean of zero and standard deviation of one).</description>
+      </ReturnValue>
+    </Procedure>
+
     <Procedure name="qlNormInv">
-      <description>returns the inverse of the normal cumulative distribution for the specified mean and standard deviation</description>
+      <description>Returns the inverse of the normal cumulative distribution for the specified mean and standard deviation.</description>
       <functionCategory>QuantLib</functionCategory>
       <alias>QuantLib::normInv</alias>
       <Parameters>
-        <Parameter name="probability">
+        <Parameter name="Probability">
           <type>double</type>
           <tensorRank>scalar</tensorRank>
           <description>is a probability corresponding to the normal distribution, a number between 0 and 1 inclusive</description>
         </Parameter>
-        <Parameter name="mean">
+        <Parameter name="Mean" default="0.0">
           <type>double</type>
           <tensorRank>scalar</tensorRank>
           <description>is the arithmetic mean of the distribution</description>
         </Parameter>
-        <Parameter name="standard_dev">
+        <Parameter name="Standard_dev" default="1.0">
           <type>double</type>
           <tensorRank>scalar</tensorRank>
-          <description>is the standard deviation of the distribution</description>
+          <description>is the standard deviation of the distribution, a positive number</description>
         </Parameter>
       </Parameters>
       <ReturnValue>
@@ -87,6 +105,24 @@
       </ReturnValue>
     </Procedure>
 
-  </Functions>
+  <Procedure name="qlNormSInv">
+    <description>Returns the inverse of the standard normal cumulative distribution (has a mean of zero and standard deviation of one).</description>
+    <functionCategory>QuantLib</functionCategory>
+    <alias>QuantLib::normInv</alias>
+    <Parameters>
+      <Parameter name="Probability">
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>is a probability corresponding to the normal distribution, a number between 0 and 1 inclusive</description>
+      </Parameter>
+    </Parameters>
+    <ReturnValue>
+      <type>double</type>
+      <tensorRank>scalar</tensorRank>
+      <description>the inverse of the standard normal cumulative distribution (has a mean of zero and standard deviation of one).</description>
+    </ReturnValue>
+  </Procedure>
+
+</Functions>
 
 </Category>
