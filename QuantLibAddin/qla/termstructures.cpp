@@ -340,7 +340,7 @@ namespace QuantLibAddin {
         QL_REQUIRE(includeFlag.size()==nInstruments,
             "includeFlag / instruments mismatch");
 
-        std::vector<boost::shared_ptr<RateHelper>> instruments;
+        std::vector<boost::shared_ptr<RateHelper> > instruments;
         for (std::vector<std::string>::const_iterator it = instrumentHandles.begin();
             it != instrumentHandles.end(); it++) {
                 OH_GET_OBJECT(objectPointer, *it, RateHelper)
