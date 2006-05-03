@@ -19,6 +19,18 @@ extern "C" {
 }
 #include <Addins/C/varies.hpp>
 
+#include <ql/Patterns/singleton.hpp>
+
+// code stub for unsupported sessions functionality
+
+#ifdef QL_ENABLE_SESSIONS
+
+QuantLib::Integer QuantLib::sessionId() {
+    return 0;
+}
+
+#endif
+
 void variesToScalar(long &ret, const Varies &value, const long &defaultValue) {
     ret = defaultValue;
 }

@@ -56,7 +56,6 @@ libQuantLibAddinC_la_SOURCES = \
     processes.cpp \
     randomsequencegenerator.cpp \
     schedule.cpp \
-    session.cpp \
     shortratemodels.cpp \
     simpleswap.cpp \
     swap.cpp \

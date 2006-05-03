@@ -162,9 +162,6 @@
 				RelativePath="schedule.cpp">
 			</File>
 			<File
-				RelativePath="session.cpp">
-			</File>
-			<File
 				RelativePath="shortratemodels.cpp">
 			</File>
 			<File
