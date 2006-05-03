@@ -1,8 +1,4 @@
-<div class="center">
-<img class="addtopspace"
- src="images/QL-small.jpg" width="133" height="97" border="0"
- alt="QuantLib Logo"></div>
-
+<h3 class="navbartitle">User Pages</h3>
 <ul class="navbarlist">
 <li class="navlink"><a href="http://quantlib.org">Home</a></li>
 
@@ -36,10 +32,6 @@
 "http://sourceforge.net/tracker/?func=add&amp;group_id=12740&amp;atid=112740">Submit a bug</a></li>
 
 </ul>
-
-<hr>
-<h3 class="navbartitle"><a href=
-"newdeveloper.shtml">QuantLib Developer Pages</a></h3>
 
 <hr>
 <h3 class="navbartitle">Quantitative Finance Resources</h3>

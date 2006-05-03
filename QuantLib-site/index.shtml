@@ -15,15 +15,12 @@ finance</title>
 </head>
 <body>
 <div id="container">
+<!--#include virtual="header.inc"-->
 <div id="menu">
 <!--#include virtual="usermenu.inc"-->
 </div>
 <div id="content">
 
-<div class="center"><img src="images/QL-largish.jpg" width="372"
- height="271" border="0" alt= "QuantLib Logo"></div>
-<h2 class="center">A free/open-source library for quantitative
-finance</h2>
 <p>The QuantLib project is aimed at providing a comprehensive
 software framework for quantitative finance. QuantLib is a
 <em><a href=

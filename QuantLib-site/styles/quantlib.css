@@ -20,10 +20,21 @@ body {
     border: 1px solid gray;
 }
 
+#profiles {
+    float: right;
+    margin: 0;
+    padding: 0;
+}
+
 #content {
     margin-left: 25%;
     padding: 1em;
     vertical-align: top;
+}
+
+#header {
+    margin-left: 2em;
+    text-align: left;
 }
 
 .footer {
@@ -64,6 +75,23 @@ li.navlink {
 
 .navbartitle {
     text-align: center;
+}
+
+ul.profilelist {
+    width: auto;
+    padding: 0;
+    margin: 0;
+}
+
+li.profilelink {
+    float: left;
+    font-weight: normal;
+    font-size: 80%;
+    list-style:none;
+    margin-left: 1px;
+    padding: 5px;
+    background-color: #fea;
+    border: 1px solid gray;
 }
 
 .hide { display: none }

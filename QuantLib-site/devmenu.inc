@@ -1,9 +1,4 @@
-<div class="center">
-<img class="addtopspace"
-    src="images/QL-small.jpg" alt="QuantLib Logo"></div>
-
-<h3 class="navbartitle">QuantLib Development</h3>
-
+<h3 class="navbartitle">Developer Pages</h3>
 <ul class="navbarlist">
 <li class="navlink"><a href="newdeveloper.shtml">Developer&nbsp;Intro</a></li>
 
@@ -33,10 +28,6 @@
 
 <li class="navlink"><a href="style.shtml">Style Guidelines</a></li>
 </ul>
-
-<hr>
-<h3 class="navbartitle"><a href=
-"http://quantlib.org">QuantLib User Pages</a></h3>
 
 <hr>
 <div class="center">

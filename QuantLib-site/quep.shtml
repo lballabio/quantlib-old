@@ -14,6 +14,7 @@
 </head>
 <body>
 <div id="container">
+<!--#include virtual="header.inc"-->
 <div id="menu">
 <!--#include virtual="devmenu.inc"-->
 </div>
@@ -81,7 +82,7 @@ means of disposable arrays</a></td>
 <td>5</td>
 <td><a href="quep/quep005.html">Using replaceable pricing engines
 in option implementations</a></td>
-<td>Partially implemented</td>
+<td>Implemented</td>
 </tr>
 <tr>
 <td>6</td>
@@ -104,7 +105,7 @@ Observer class</a></td>
 <tr>
 <td>9</td>
 <td><a href="quep/quep009.html">Generic disposable objects</a></td>
-<td>Implemented in CVS</td>
+<td>Implemented</td>
 </tr>
 <tr>
 <td>10</td>
