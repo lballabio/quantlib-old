@@ -102,196 +102,244 @@
 </Enumeration>
 
 <Enumeration>
-<type>QuantLib::Calendar</type>
-<constructor>false</constructor>
-<EnumerationDefinitions>
+  <type>QuantLib::Calendar</type>
+  <constructor>false</constructor>
+  <EnumerationDefinitions>
     <EnumerationDefinition>
-        <string>Argentina</string>
-        <value>QuantLib::Argentina()</value>
+      <string>Argentina</string>
+      <value>QuantLib::Argentina()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Argentina::Merval</string>
+      <value>QuantLib::Argentina(QuantLib::Argentina::Merval())</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Australia</string>
+      <value>QuantLib::Australia()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Brazil</string>
+      <value>QuantLib::Brazil()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Canada</string>
+      <value>QuantLib::Canada()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>China</string>
         <value>QuantLib::China()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
+      <string>CzechRepublic</string>
+      <value>QuantLib::CzechRepublic()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>CzechRepublic::PSE</string>
+      <value>QuantLib::CzechRepublic(QuantLib::CzechRepublic::PSE)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Denmark</string>
+      <value>QuantLib::Denmark()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Finland</string>
+      <value>QuantLib::Finland()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Germany</string>
+      <value>QuantLib::Germany()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Germany::Eurex</string>
+      <value>QuantLib::Germany(QuantLib::Germany::Eurex)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Germany::FrankfurtStockExchange</string>
+      <value>QuantLib::Germany(QuantLib::Germany::FrankfurtStockExchange)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Germany::Settlement</string>
+      <value>QuantLib::Germany(QuantLib::Germany::Settlement)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Germany::Xetra</string>
+      <value>QuantLib::Germany(QuantLib::Germany::Xetra)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>HongKong</string>
+      <value>QuantLib::HongKong()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>HongKong::HKEx</string>
+      <value>QuantLib::HongKong(QuantLib::HongKong::HKEx)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Hungary</string>
+      <value>QuantLib::Hungary()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Iceland</string>
+      <value>QuantLib::Iceland()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Iceland::ICEX</string>
+      <value>QuantLib::Iceland(QuantLib::Iceland::ICEX)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>India</string>
+      <value>QuantLib::India()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>India::NSE</string>
+      <value>QuantLib::India(QuantLib::India::NSE)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Indonesia</string>
+      <value>QuantLib::Indonesia()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Indonesia::BEJ</string>
+      <value>QuantLib::Indonesia(QuantLib::Indonesia::BEJ)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Italy</string>
+      <value>QuantLib::Italy()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Italy::Exchange</string>
+      <value>QuantLib::Italy(QuantLib::Italy::Exchange)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Italy::Settlement</string>
+      <value>QuantLib::Italy(QuantLib::Italy::Settlement)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Japan</string>
+      <value>QuantLib::Japan()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Mexico</string>
+      <value>QuantLib::Mexico()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Mexico::BMV</string>
+      <value>QuantLib::Mexico(QuantLib::Mexico::BMV)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>NewZealand</string>
+      <value>QuantLib::NewZealand()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Norway</string>
+      <value>QuantLib::Norway()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>NullCalendar</string>
+      <value>QuantLib::NullCalendar()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Poland</string>
+      <value>QuantLib::Poland()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>SaudiArabia</string>
+      <value>QuantLib::SaudiArabia()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Singapore</string>
+      <value>QuantLib::Singapore()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>Singapore::SGX</string>
+      <value>QuantLib::Singapore(QuantLib::Singapore::SGX)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
         <string>Slovakia</string>
         <value>QuantLib::Slovakia()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Brazil</string>
-        <value>QuantLib::Brazil()</value>
+      <string>Slovakia::BSSE</string>
+      <value>QuantLib::Slovakia(QuantLib::Slovakia::BSSE)</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Hungary</string>
-        <value>QuantLib::Hungary()</value>
+      <string>SouthAfrica</string>
+      <value>QuantLib::SouthAfrica()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Denmark</string>
-        <value>QuantLib::Denmark()</value>
-    </EnumerationDefinition>
-	<EnumerationDefinition>
-		<string>Germany</string>
-		<value>QuantLib::Germany()</value>
-	</EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Germany_Eurex</string>
-        <value>QuantLib::Germany(QuantLib::Germany::Eurex)</value>
+      <string>SouthKorea</string>
+      <value>QuantLib::SouthKorea()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Germany_FftExchng</string>
-        <value>QuantLib::Germany(QuantLib::Germany::FrankfurtStockExchange)</value>
+      <string>SouthKorea::KRX</string>
+      <value>QuantLib::SouthKorea(QuantLib::SouthKorea::KRX)</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Germany_Settl</string>
-        <value>QuantLib::Germany(QuantLib::Germany::Settlement)</value>
+      <string>Sweden</string>
+      <value>QuantLib::Sweden()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Germany_Xetra</string>
-        <value>QuantLib::Germany(QuantLib::Germany::Xetra)</value>
+      <string>Switzerland</string>
+      <value>QuantLib::Switzerland()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Finland</string>
-        <value>QuantLib::Finland()</value>
+      <string>Taiwan</string>
+      <value>QuantLib::Taiwan()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>HongKong</string>
-        <value>QuantLib::HongKong()</value>
+      <string>Taiwan::TSEC</string>
+      <value>QuantLib::Taiwan(QuantLib::Taiwan::TSEC)</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Iceland</string>
-        <value>QuantLib::Iceland()</value>
+      <string>TARGET</string>
+      <value>QuantLib::TARGET()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>India</string>
-        <value>QuantLib::India()</value>
-    </EnumerationDefinition>
-	<EnumerationDefinition>
-		<string>Indonesia</string>
-		<value>QuantLib::Indonesia()</value>
-	</EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Italy_Exchng</string>
-        <value>QuantLib::Italy(QuantLib::Italy::Exchange)</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Turkey</string>
-        <value>QuantLib::Turkey()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Italy</string>
-        <value>QuantLib::Italy()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Italy_Settl</string>
-        <value>QuantLib::Italy(QuantLib::Italy::Settlement)</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>SouthAfrica</string>
-        <value>QuantLib::SouthAfrica()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Mexico</string>
-        <value>QuantLib::Mexico()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>NullCalendar</string>
-        <value>QuantLib::NullCalendar()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Norway</string>
-        <value>QuantLib::Norway()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>CzechRepublic</string>
-        <value>QuantLib::CzechRepublic()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>SaudiArabia</string>
-        <value>QuantLib::SaudiArabia()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>SouthKorea</string>
-        <value>QuantLib::SouthKorea()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Singapore</string>
-        <value>QuantLib::Singapore()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Sweden</string>
-        <value>QuantLib::Sweden()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Australia</string>
-        <value>QuantLib::Australia()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Taiwan</string>
-        <value>QuantLib::Taiwan()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>TARGET</string>
-        <value>QuantLib::TARGET()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Japan</string>
-        <value>QuantLib::Japan()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Canada</string>
-        <value>QuantLib::Canada()</value>
+      <string>Turkey</string>
+      <value>QuantLib::Turkey()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>Ukraine</string>
         <value>QuantLib::Ukraine()</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>UnitedKingdom_Exchng</string>
+      <string>Ukraine::USE</string>
+      <value>QuantLib::Ukraine(QuantLib::Ukraine::USE)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>UnitedKingdom</string>
+      <value>QuantLib::UnitedKingdom()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>UnitedKingdom::Exchange</string>
         <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Exchange)</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>UnitedKingdom_Metals</string>
+        <string>UnitedKingdom::Metals</string>
         <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Metals)</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>UnitedKingdom</string>
-        <value>QuantLib::UnitedKingdom()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>UnitedKingdom_Settl</string>
+        <string>UnitedKingdom::Settlement</string>
         <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Settlement)</value>
     </EnumerationDefinition>
-	<EnumerationDefinition>
-		<string>UnitedStates</string>
-		<value>QuantLib::UnitedStates()</value>
-	</EnumerationDefinition>
     <EnumerationDefinition>
-        <string>UnitedStates_Gov</string>
+		  <string>UnitedStates</string>
+		  <value>QuantLib::UnitedStates()</value>
+	  </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>UnitedStates::GovernmentBond</string>
         <value>QuantLib::UnitedStates(QuantLib::UnitedStates::GovernmentBond)</value>
     </EnumerationDefinition>
 	<EnumerationDefinition>
-		<string>UnitedStates_NERC</string>
+		<string>UnitedStates::NERC</string>
 		<value>QuantLib::UnitedStates(QuantLib::UnitedStates::NERC)</value>
 	</EnumerationDefinition>
 	<EnumerationDefinition>
-		<string>UnitedStates_NYSE</string>
+		<string>UnitedStates::NYSE</string>
 		<value>QuantLib::UnitedStates(QuantLib::UnitedStates::NYSE)</value>
 	</EnumerationDefinition>
     <EnumerationDefinition>
-        <string>UnitedStates_Settl</string>
+        <string>UnitedStates::Settlement</string>
         <value>QuantLib::UnitedStates(QuantLib::UnitedStates::Settlement)</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Poland</string>
-        <value>QuantLib::Poland()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>NewZealand</string>
-        <value>QuantLib::NewZealand()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Switzerland</string>
-        <value>QuantLib::Switzerland()</value>
     </EnumerationDefinition>
 </EnumerationDefinitions>
 </Enumeration>
