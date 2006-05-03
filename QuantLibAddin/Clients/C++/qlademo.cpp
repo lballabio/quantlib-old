@@ -121,3 +121,11 @@ int main() {
     }
 }
 
+
+#ifdef QL_ENABLE_SESSIONS
+
+QuantLib::Integer QuantLib::sessionId() {
+    return 0;
+}
+
+#endif
