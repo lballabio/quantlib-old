@@ -21,7 +21,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
+				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)\functions"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -74,7 +74,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR)"
+				AdditionalIncludeDirectories="..\..,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)\functions"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
@@ -123,9 +123,6 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
-				RelativePath="prices.cpp">
-			</File>
-			<File
 				RelativePath="capfloor.cpp">
 			</File>
 			<File
@@ -151,6 +148,9 @@
 			</File>
 			<File
 				RelativePath="options.cpp">
+			</File>
+			<File
+				RelativePath="prices.cpp">
 			</File>
 			<File
 				RelativePath="processes.cpp">
@@ -193,9 +193,6 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
-				RelativePath="prices.h">
-			</File>
-			<File
 				RelativePath="capfloor.h">
 			</File>
 			<File
@@ -224,6 +221,9 @@
 			</File>
 			<File
 				RelativePath="options.h">
+			</File>
+			<File
+				RelativePath="prices.h">
 			</File>
 			<File
 				RelativePath="processes.h">
