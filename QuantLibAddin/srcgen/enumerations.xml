@@ -111,7 +111,7 @@
     </EnumerationDefinition>
     <EnumerationDefinition>
       <string>Argentina::Merval</string>
-      <value>QuantLib::Argentina(QuantLib::Argentina::Merval())</value>
+      <value>QuantLib::Argentina(QuantLib::Argentina::Merval)</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
       <string>Australia</string>
