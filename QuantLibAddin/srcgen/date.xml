@@ -117,6 +117,7 @@
 <description>calculate the dayin a period according to a given day count convention</description>
 <functionCategory>QuantLib</functionCategory>
 <alias>QuantLib::dayCount</alias>
+<platforms>EGO</platforms>
 <Parameters>
     <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
         <type>string</type>
