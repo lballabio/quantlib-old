@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="xll\QuantLibAddinDynamic-vc71-mt-gd-0_3_13.xll"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll,$(QL_DIR)\lib"
 				GenerateDebugInformation="TRUE"
@@ -147,9 +147,6 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="prices.cpp">
-		</File>
-		<File
 			RelativePath="capfloor.cpp">
 		</File>
 		<File
@@ -172,6 +169,9 @@
 		</File>
 		<File
 			RelativePath="options.cpp">
+		</File>
+		<File
+			RelativePath="prices.cpp">
 		</File>
 		<File
 			RelativePath="processes.cpp">
