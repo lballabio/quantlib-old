@@ -62,9 +62,11 @@ EXTRA_DIST = \
 if BUILD_CALC
 noinst_HEADERS = \
     calcutils.hpp \
+    calendar.hpp \
     capfloor.hpp \
     couponvectors.hpp \
     date.hpp \
+    daycounter.hpp \
     exercise.hpp \
     instruments.hpp \
     interpolation.hpp \
@@ -89,9 +91,11 @@ endif
 
 libQuantLibAddinCalc_la_SOURCES = \
     calcutils.cpp \
+    calendar.cpp \
     capfloor.cpp \
     couponvectors.cpp \
     date.cpp \
+    daycounter.cpp \
     exercise.cpp \
     funcdef.cpp \
     instruments.cpp \

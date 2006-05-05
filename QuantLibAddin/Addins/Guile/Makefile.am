@@ -13,9 +13,11 @@ libQuantLibAddinGuile_la_LIBADD = ../../qla/libQuantLibAddin.la
 
 if BUILD_GUILE
 noinst_HEADERS = \
+    calendar.h \
     capfloor.h \
     couponvectors.h \
     date.h \
+    daycounter.h \
     exercise.h \
     extra.h \
     instruments.h \
@@ -41,9 +43,11 @@ endif
 
 if BUILD_GUILE
 libQuantLibAddinGuile_la_SOURCES = \
+    calendar.cpp \
     capfloor.cpp \
     couponvectors.cpp \
     date.cpp \
+    daycounter.cpp \
     exercise.cpp \
     extra.cpp \
     guileutils.cpp \

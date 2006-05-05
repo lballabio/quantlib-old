@@ -16,9 +16,11 @@ libQuantLibAddinC_la_LIBADD = ../../qla/libQuantLibAddin.la
 
 if BUILD_C
 noinst_HEADERS = \
+    calendar.h \
     capfloor.h \
     couponvectors.h \
     date.h \
+    daycounter.h \
     defines.h \
     exercise.h \
     instruments.h \
@@ -43,9 +45,11 @@ noinst_HEADERS = \
 endif
 
 libQuantLibAddinC_la_SOURCES = \
+    calendar.cpp \
     capfloor.cpp \
     couponvectors.cpp \
     date.cpp \
+    daycounter.cpp \
     exercise.cpp \
     instruments.cpp \
     interpolation.cpp \
