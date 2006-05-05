@@ -125,7 +125,10 @@ class Member(Function):
             if (value.type() == typeid(double)) {
                 try {
                     returnValue.push_back(%s(%s)%s);
-                } catch(...) {
+                } catch(const std::exception &e) {
+                    std::ostringstream err;
+                    err << "%s - " << functionCall->getAddressString() << " - " << e.what();
+                    ObjHandler::logMessage(err.str(), 2);
                     returnValue.push_back(ObjHandler::CaughtException);
                 }
             } else {
@@ -168,7 +171,7 @@ class Member(Function):
         if self.loopParameter:
             paramName = self.loopParameter + common.CONVERSION_SUFFIX
             functionCall = Member.LOOP  % (paramName, paramName, self.accessLibFunc, 
-                libraryCall, self.returnValue.returnFunction())
+                libraryCall, self.returnValue.returnFunction(), self.name)
         else:
             functionCall = 'returnValue = %s(%s)%s;' % (self.accessLibFunc, 
                 libraryCall, self.returnValue.returnFunction())
