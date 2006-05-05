@@ -17,11 +17,11 @@
         <tensorRank>scalar</tensorRank>
         <description>volatility</description>
     </Parameter>
-    <Parameter name='dayCounter'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>day counter</description>
-    </Parameter>
+  <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>day counter (e.g. Actual365Fixed)</description>
+  </Parameter>
 </Parameters>
 </Constructor>
 
@@ -49,11 +49,11 @@
         <tensorRank>matrix</tensorRank>
         <description>volatilities</description>
     </Parameter>
-    <Parameter name='dayCounter'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>day counter</description>
-    </Parameter>
+  <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>day counter (e.g. Actual365Fixed)</description>
+  </Parameter>
 </Parameters>
 </Constructor>
 

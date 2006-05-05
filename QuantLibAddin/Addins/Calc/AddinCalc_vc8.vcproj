@@ -46,15 +46,11 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="prices.cpp"
-				>
-			</File>
-			<File
-				RelativePath="date.cpp"
-				>
-			</File>
-			<File
 				RelativePath="calcutils.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\calendar.cpp"
 				>
 			</File>
 			<File
@@ -63,6 +59,14 @@
 			</File>
 			<File
 				RelativePath="couponvectors.cpp"
+				>
+			</File>
+			<File
+				RelativePath="date.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\daycounter.cpp"
 				>
 			</File>
 			<File
@@ -91,6 +95,10 @@
 			</File>
 			<File
 				RelativePath="options.cpp"
+				>
+			</File>
+			<File
+				RelativePath="prices.cpp"
 				>
 			</File>
 			<File
@@ -151,15 +159,11 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="date.hpp"
-				>
-			</File>
-			<File
-				RelativePath="prices.hpp"
-				>
-			</File>
-			<File
 				RelativePath="calcutils.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\calendar.hpp"
 				>
 			</File>
 			<File
@@ -168,6 +172,14 @@
 			</File>
 			<File
 				RelativePath="couponvectors.hpp"
+				>
+			</File>
+			<File
+				RelativePath="date.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\daycounter.hpp"
 				>
 			</File>
 			<File
@@ -192,6 +204,10 @@
 			</File>
 			<File
 				RelativePath="options.hpp"
+				>
+			</File>
+			<File
+				RelativePath="prices.hpp"
 				>
 			</File>
 			<File

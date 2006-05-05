@@ -26,7 +26,7 @@ namespace QuantLibAddin {
     class Schedule : public ObjHandler::Object {
       public:
         Schedule(
-            const std::string   &calendarID,
+            const QuantLib::Calendar& calendar,
             const long          &lStartDate,
             const long          &lEndDate,
             const std::string   &frequencyID,

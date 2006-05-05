@@ -1,94 +1,126 @@
 <Category name='randomsequencegenerator'>
-<description>functions to generate random number sequences</description>
-<displayName>Random Sequence Generator</displayName>
-<Functions>
+  <description>functions to generate random number sequences</description>
+  <displayName>Random Sequence Generator</displayName>
+  
+  <Functions>
 
-<Member name='qlVariates' libraryClass='RandomSequenceGenerator'>
-<description>generate variates</description>
-<libraryFunction>variates</libraryFunction>
-<functionCategory>QuantLib</functionCategory>
-<Parameters>
-    <Parameter name='samples'>
-        <type>long</type>
+    <Procedure name='qlRand'>
+      <description>returns a random number between 0 and 1.</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::rand</alias>
+      <Parameters>
+      </Parameters>
+      <ReturnValue>
+        <type>double</type>
         <tensorRank>scalar</tensorRank>
-        <description>number of samples</description>
-    </Parameter>
-    <Parameter name='trigger' ignore='true'>
-        <type>any</type>
-        <tensorRank>scalar</tensorRank>
-        <description>dependency tracking trigger</description>
-    </Parameter>
-</Parameters>
-<ReturnValue>
-    <type>double</type>
-    <tensorRank>matrix</tensorRank>
-    <description>variates</description>
-</ReturnValue>
-</Member>
+        <description>a random number between 0 and 1</description>
+      </ReturnValue>
+    </Procedure>
 
-<Constructor name='qlMersenneTwisterRsg'>
-<libraryFunction>MersenneTwisterRsg</libraryFunction>
-<functionCategory>QuantLib</functionCategory>
-<Parameters>
-    <Parameter name='dimension'>
-        <type>long</type>
+    <!--Procedure name='qlRandomize'>
+      <description>returns a random number between 0 and 1.</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::randomize</alias>
+      <Parameters>
+        <Parameter name='seed'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>the seed used to initialize the random number generator</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue>
+        <type>void</type>
         <tensorRank>scalar</tensorRank>
-        <description>dimension</description>
-    </Parameter>
-    <Parameter name='seed'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>seed</description>
-    </Parameter>
-</Parameters>
-</Constructor>
+        <description>void</description>
+      </ReturnValue>
+    </Procedure-->
 
-<Constructor name='qlFaureRsg'>
-<libraryFunction>FaureRsg</libraryFunction>
-<functionCategory>QuantLib</functionCategory>
-<Parameters>
-    <Parameter name='dimension'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>dimension</description>
-    </Parameter>
-</Parameters>
-</Constructor>
+    <Member name='qlVariates' libraryClass='RandomSequenceGenerator'>
+      <description>generate variates</description>
+      <libraryFunction>variates</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <Parameters>
+        <Parameter name='samples'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>number of samples</description>
+        </Parameter>
+        <Parameter name='trigger' ignore='true'>
+          <type>any</type>
+          <tensorRank>scalar</tensorRank>
+          <description>dependency tracking trigger</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>matrix</tensorRank>
+        <description>variates</description>
+      </ReturnValue>
+    </Member>
 
-<Constructor name='qlHaltonRsg'>
-<libraryFunction>HaltonRsg</libraryFunction>
-<functionCategory>QuantLib</functionCategory>
-<Parameters>
-    <Parameter name='dimension'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>dimension</description>
-    </Parameter>
-    <Parameter name='seed'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>seed</description>
-    </Parameter>
-</Parameters>
-</Constructor>
+    <Constructor name='qlMersenneTwisterRsg'>
+      <libraryFunction>MersenneTwisterRsg</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <Parameters>
+        <Parameter name='dimension'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>dimension</description>
+        </Parameter>
+        <Parameter name='seed'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>seed</description>
+        </Parameter>
+      </Parameters>
+    </Constructor>
 
-<Constructor name='qlSobolRsg'>
-<libraryFunction>SobolRsg</libraryFunction>
-<functionCategory>QuantLib</functionCategory>
-<Parameters>
-    <Parameter name='dimension'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>dimension</description>
-    </Parameter>
-    <Parameter name='seed'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>seed</description>
-    </Parameter>
-</Parameters>
-</Constructor>
+    <Constructor name='qlFaureRsg'>
+      <libraryFunction>FaureRsg</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <Parameters>
+        <Parameter name='dimension'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>dimension</description>
+        </Parameter>
+      </Parameters>
+    </Constructor>
 
-</Functions>
+    <Constructor name='qlHaltonRsg'>
+      <libraryFunction>HaltonRsg</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <Parameters>
+        <Parameter name='dimension'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>dimension</description>
+        </Parameter>
+        <Parameter name='seed'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>seed</description>
+        </Parameter>
+      </Parameters>
+    </Constructor>
+
+    <Constructor name='qlSobolRsg'>
+      <libraryFunction>SobolRsg</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <Parameters>
+        <Parameter name='dimension'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>dimension</description>
+        </Parameter>
+        <Parameter name='seed'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>seed</description>
+        </Parameter>
+      </Parameters>
+    </Constructor>
+
+  </Functions>
 </Category>
 

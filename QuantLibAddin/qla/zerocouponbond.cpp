@@ -33,8 +33,8 @@ namespace QuantLibAddin {
             const long &issueDate,
             const long &maturityDate,
             const long &settlementDays,
-            const std::string &dayCounterID,
-            const std::string &calendarID,
+            const QuantLib::DayCounter &dayCounter,
+            const QuantLib::Calendar& calendar,
             const std::string &conventionID,
             const double &redemption,
             const std::string &handleZeroCurve) {
@@ -45,10 +45,6 @@ namespace QuantLibAddin {
 
         QuantLib::BusinessDayConvention convention = 
             Create<QuantLib::BusinessDayConvention>()(conventionID);
-        QuantLib::Calendar calendar =
-            Create<QuantLib::Calendar>()(calendarID);
-        QuantLib::DayCounter dayCounter =
-            Create<QuantLib::DayCounter>()(dayCounterID);
 
         mInstrument = 
             boost::shared_ptr<QuantLib::Instrument>(

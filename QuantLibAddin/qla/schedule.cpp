@@ -24,7 +24,7 @@
 namespace QuantLibAddin {
 
     Schedule::Schedule(
-        const std::string   &calendarID,
+            const QuantLib::Calendar& calendar,
         const long          &lStartDate,
         const long          &lEndDate,
         const std::string   &frequencyID,
@@ -37,8 +37,6 @@ namespace QuantLibAddin {
         QuantLib::Date endDate   (lEndDate);
         QuantLib::Date stubDate/*(lStubDate)*/;
         
-        QuantLib::Calendar calendar =
-            Create<QuantLib::Calendar>()(calendarID);
         QuantLib::Frequency frequency =
             Create<QuantLib::Frequency>()(frequencyID);
         QuantLib::BusinessDayConvention convention =

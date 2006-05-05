@@ -17,12 +17,12 @@
         <tensorRank>scalar</tensorRank>
         <description>underlying</description>
     </Parameter>
-    <Parameter name='dayCounter'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>day counter</description>
-    </Parameter>
-    <Parameter name='settlementDate'>
+  <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>day counter (e.g. Actual365Fixed)</description>
+  </Parameter>
+  <Parameter name='settlementDate'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>settlement date</description>

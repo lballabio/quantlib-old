@@ -213,6 +213,10 @@
 	</References>
 	<Files>
 		<File
+			RelativePath=".\calendar.cpp"
+			>
+		</File>
+		<File
 			RelativePath="capfloor.cpp"
 			>
 		</File>
@@ -222,6 +226,10 @@
 		</File>
 		<File
 			RelativePath=".\date.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\daycounter.cpp"
 			>
 		</File>
 		<File

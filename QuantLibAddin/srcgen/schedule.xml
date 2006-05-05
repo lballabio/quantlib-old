@@ -7,10 +7,10 @@
 <libraryFunction>Schedule</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='calendar'>
+    <Parameter name='calendar' ql_type='QuantLib::Calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>calendar</description>
+        <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
     <Parameter name='startDate'>
         <type>long</type>

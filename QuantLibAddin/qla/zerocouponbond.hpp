@@ -29,8 +29,8 @@ namespace QuantLibAddin {
             const long &issueDate,
             const long &maturityDate,
             const long &settlementDays,
-            const std::string &dayCounterID,
-            const std::string &calendarID,
+            const QuantLib::DayCounter &dayCounter,
+            const QuantLib::Calendar& calendar,
             const std::string &conventionID,
             const double &redemption,
             const std::string &handleZeroCurve);

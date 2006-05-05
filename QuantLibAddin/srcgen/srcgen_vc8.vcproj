@@ -275,11 +275,7 @@
 				>
 			</File>
 			<File
-				RelativePath="date.xml"
-				>
-			</File>
-			<File
-				RelativePath="prices.xml"
+				RelativePath=".\calendar.xml"
 				>
 			</File>
 			<File
@@ -292,6 +288,14 @@
 			</File>
 			<File
 				RelativePath="couponvectors.xml"
+				>
+			</File>
+			<File
+				RelativePath="date.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\daycounter.xml"
 				>
 			</File>
 			<File
@@ -320,6 +324,10 @@
 			</File>
 			<File
 				RelativePath="options.xml"
+				>
+			</File>
+			<File
+				RelativePath="prices.xml"
 				>
 			</File>
 			<File

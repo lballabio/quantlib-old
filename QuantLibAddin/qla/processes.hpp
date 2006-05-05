@@ -29,7 +29,7 @@ namespace QuantLibAddin {
         GeneralizedBlackScholesProcess(
             const std::string &handleBlackVol,
             const double &underlying,
-            const std::string &dayCounterID,
+            const QuantLib::DayCounter &dayCounter,
             const long &settlementDateLong,
             const double &riskFreeRate,
             const double &dividendYield);

@@ -1,0 +1,83 @@
+<Category name='calendar'>
+  <description>Calendar related QuantLib functions</description>
+  <displayName>Calendar</displayName>
+  <includes>
+    <include>ql/Functions/calendars.hpp</include>
+  </includes>
+  <Functions>
+
+
+    <Procedure name='qlHolidayList' >
+      <description>returns the holidays in a period between two dates according to a given holiday calendar</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::holidayList</alias>
+      <Parameters>
+        <Parameter name='calendar' ql_type='QuantLib::Calendar'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description>Calendar to use for holiday determination</description>
+        </Parameter>
+        <Parameter name='fromDate' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>first date of the period</description>
+        </Parameter>
+        <Parameter name='toDate' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>last date of the period</description>
+        </Parameter>
+        <Parameter name='includeWeekEnds' default='false'>
+          <type>bool</type>
+          <tensorRank>scalar</tensorRank>
+          <description>include week-end as holidays</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue conversionString='QuantLibAddin::dateToLongVec( %s )'>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+        <description>holidays</description>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlAdvanceCalendar' >
+      <description>advances a date according to a given calendar</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::advanceCalendar</alias>
+      <Parameters>
+        <Parameter name='startDate' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>start date to be advanced</description>
+        </Parameter>
+        <Parameter name='n'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>number of units to advance</description>
+        </Parameter>
+        <Parameter name='timeUnits' ql_type='QuantLib::TimeUnit'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description>units to advance</description>
+        </Parameter>
+        <Parameter name='calendar' ql_type='QuantLib::Calendar'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description>Calendar to be used for advancing the date</description>
+        </Parameter>
+        <Parameter name='rollingConvention' ql_type='QuantLib::BusinessDayConvention'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description>rolling convention</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue return_func='serialNumber'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>advanced date</description>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+</Category>
+

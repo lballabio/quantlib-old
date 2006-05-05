@@ -27,17 +27,17 @@
         <tensorRank>scalar</tensorRank>
         <description>time units applying to above tenor</description>
     </Parameter>
-	<Parameter name='calendar'>
+	<Parameter name='calendar' ql_type='QuantLib::Calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>calendar (e.g. TARGET)</description>
+        <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
     <Parameter name='BDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>business day convention (e.g. ModifiedFollowing)</description>
     </Parameter>
-    <Parameter name='dayCounter'>
+    <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>day counter (e.g. Actual360)</description>

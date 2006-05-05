@@ -209,12 +209,12 @@
         <tensorRank>scalar</tensorRank>
         <description>frequency ID</description>
     </Parameter>
-    <Parameter name='dayCounterID'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>day counter ID</description>
-    </Parameter>
-    <Parameter name='accrualConvention'>
+  <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>day counter (e.g. Actual365Fixed)</description>
+  </Parameter>
+  <Parameter name='accrualConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>accrual convention</description>
@@ -224,10 +224,10 @@
         <tensorRank>scalar</tensorRank>
         <description>payment convention</description>
     </Parameter>
-    <Parameter name='calendarID'>
+    <Parameter name='calendar' ql_type='QuantLib::Calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>calendar ID</description>
+        <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
         <Parameter name='startFromEnd'>
         <type>bool</type>
@@ -266,15 +266,15 @@
         <tensorRank>scalar</tensorRank>
         <description>settlement days</description>
     </Parameter>
-    <Parameter name='dayCounterID'>
+  <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>day counter (e.g. Actual365Fixed)</description>
+  </Parameter>
+  <Parameter name='calendar' ql_type='QuantLib::Calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>day counter ID</description>
-    </Parameter>
-    <Parameter name='calendarID'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>calendar ID</description>
+        <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
     <Parameter name='conventionID'>
         <type>string</type>

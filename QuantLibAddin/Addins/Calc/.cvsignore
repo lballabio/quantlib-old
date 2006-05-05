@@ -3,6 +3,8 @@ autogen.hpp
 qla_all.hpp
 basic.*pp
 date.*pp
+calendar.*pp
+daycounter.*pp
 mathf.*pp
 prices.*pp
 build

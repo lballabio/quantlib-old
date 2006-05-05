@@ -3,6 +3,8 @@ AddinExcelDynamic*.vcproj.*.user
 AddinExcelStatic*.vcproj.*.user
 basic.cpp
 date.cpp
+calendar.cpp
+daycounter.cpp
 mathf.cpp
 prices.cpp
 buildDynamic

@@ -32,10 +32,10 @@
         <tensorRank>scalar</tensorRank>
         <description>the fixed rate</description>
     </Parameter>
-    <Parameter name='calendarID'>
+    <Parameter name='calendar' ql_type='QuantLib::Calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>calendar ID</description>
+        <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
     <Parameter name='FixFrq'>
         <type>string</type>
@@ -47,12 +47,12 @@
         <tensorRank>scalar</tensorRank>
         <description>Fixed Leg Business Day Convention</description>
     </Parameter>
-    <Parameter name='FixDayCounter'>
+      <Parameter name='FixDayCounter' ql_type='QuantLib::DayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>Fixed Leg Day Count</description>
-    </Parameter>
-    <Parameter name='fixStartFromEnd'>
+        <description>fixed leg day counter (e.g. Actual365Fixed)</description>
+      </Parameter>
+      <Parameter name='fixStartFromEnd'>
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
         <description>build fixed leg schedule backwards (start from maturity)</description>
@@ -67,10 +67,10 @@
         <tensorRank>scalar</tensorRank>
         <description>Floating Leg Frequency</description>
     </Parameter>
-  <Parameter name='FloatDayCounter'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>Floating Leg Day Count</description>
+  <Parameter name='FloatdayCounter' ql_type='QuantLib::DayCounter'>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>floating day counter (e.g. Actual365Fixed)</description>
   </Parameter>
   <Parameter name='IndexHandle' libraryClass='Xibor'>
         <type>string</type>

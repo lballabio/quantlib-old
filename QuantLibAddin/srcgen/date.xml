@@ -1,215 +1,114 @@
 <Category name='date'>
-<description>Date related QuantLib functions</description>
-<displayName>Date</displayName>
-<includes>
-  <include>ql/Functions/calendars.hpp</include>
-</includes>
-<Functions>
+  <description>Date related QuantLib functions</description>
+  <displayName>Date</displayName>
+  <includes>
+    <include>ql/Functions/calendars.hpp</include>
+  </includes>
+  <Functions>
 
-<Procedure name='qlHolidayList' >
-<description>returns the holidays in a period between two dates according to a given holiday calendar</description>
-<functionCategory>QuantLib</functionCategory>
-<alias>QuantLib::holidayList</alias>
-<Parameters>
-    <Parameter name='calendar' ql_type='QuantLib::Calendar'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>Calendar ID to use for holiday determination</description>
-    </Parameter>
-    <Parameter name='fromDate' ql_type='QuantLib::Date'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>first date of the period</description>
-    </Parameter>
-    <Parameter name='toDate' ql_type='QuantLib::Date'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>last date of the period</description>
-    </Parameter>
-    <Parameter name='includeWeekEnds' default='true'>
+    <Procedure name='qlIsIMMdate' >
+      <description>returns whether or not the given date is an IMM date.</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::Date::isIMMdate</alias>
+      <Parameters>
+        <Parameter name='date' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>date</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue>
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
-        <description>include week-end as holidays</description>
-    </Parameter>
-</Parameters>
-<ReturnValue conversionString='QuantLibAddin::dateToLongVec( %s )'>
-    <type>QuantLib::Date</type>
-    <tensorRank>vector</tensorRank>
-    <description>holidays</description>
-</ReturnValue>
-</Procedure>
+        <description>is an IMM date</description>
+      </ReturnValue>
+    </Procedure>
 
-<Procedure name='qlAdvanceCalendar' >
-<description>advances the given calendar</description>
-<functionCategory>QuantLib</functionCategory>
-<alias>QuantLib::advanceCalendar</alias>
-<Parameters>
-    <Parameter name='startDate' ql_type='QuantLib::Date'>
+    <Procedure name='qlNextIMMdate' >
+      <description>returns the 1st delivery date for next contract listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::Date::nextIMMdate</alias>
+      <Parameters>
+        <Parameter name='date' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>date with respect to which the next IMM date is calculated</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue return_func='serialNumber'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>start date to be advanced</description>
-    </Parameter>
-    <Parameter name='n'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>number of units to advance</description>
-    </Parameter>
-    <Parameter name='timeUnits' ql_type='QuantLib::TimeUnit'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>units to advance</description>
-    </Parameter>
-    <Parameter name='calendar' ql_type='QuantLib::Calendar'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>Calendar ID to advance</description>
-    </Parameter>
-    <Parameter name='rollingConvention' ql_type='QuantLib::BusinessDayConvention'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>rolling convention</description>
-    </Parameter>
-</Parameters>
-<ReturnValue return_func='serialNumber'>
-    <type>long</type>
-    <tensorRank>scalar</tensorRank>
-    <description>advanced date</description>
-</ReturnValue>
-</Procedure>
+        <description>the next IMM date</description>
+      </ReturnValue>
+    </Procedure>
 
-<Procedure name='qlIsIMMdate' >
-<description>returns whether or not the given date is an IMM date.</description>
-<functionCategory>QuantLib</functionCategory>
-<alias>QuantLib::isIMMdate</alias>
-<Parameters>
-    <Parameter name='date' ql_type='QuantLib::Date'>
+    <Procedure name='qlIMMdate' >
+      <description>returns the IMM date corresponding to the given IMM code (e.g. March 15th, 2006 for H6).</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::Date::IMMdate</alias>
+      <Parameters>
+        <Parameter name='IMMcode'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description>2 letter IMM code (e.q. \"H9\")</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue return_func='serialNumber'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>date</description>
-    </Parameter>
-</Parameters>
-<ReturnValue>
-    <type>bool</type>
-    <tensorRank>scalar</tensorRank>
-    <description>is an IMM date</description>
-</ReturnValue>
-</Procedure>
+        <description>the corresponding IMM code</description>
+      </ReturnValue>
+    </Procedure>
 
-<Procedure name='qlNextIMMdate' >
-<description>returns the 1st delivery date for next contract listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
-<functionCategory>QuantLib</functionCategory>
-<alias>QuantLib::nextIMMdate</alias>
-<Parameters>
-    <Parameter name='date' ql_type='QuantLib::Date'>
-        <type>long</type>
+    <Procedure name='qlIMMcode' >
+      <description>returns the future code corresponding to a given IMM date (e.g. H6 for March 15th, 2006). It fails if the input date is not an IMM date.</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::Date::IMMcode</alias>
+      <Parameters>
+        <Parameter name='IMMdate' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>IMM date</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue>
+        <type>std::string</type>
         <tensorRank>scalar</tensorRank>
-        <description>date with respect to which the next IMM date is calculated</description>
-    </Parameter>
-</Parameters>
-<ReturnValue return_func='serialNumber'>
-    <type>long</type>
-    <tensorRank>scalar</tensorRank>
-    <description>the next IMM date</description>
-</ReturnValue>
-</Procedure>
+        <description>the IMM code (e.q. \"H9\")</description>
+      </ReturnValue>
+    </Procedure>
 
-<Procedure name='qlDayCount'>
-<description>calculate the dayin a period according to a given day count convention</description>
-<functionCategory>QuantLib</functionCategory>
-<alias>QuantLib::dayCount</alias>
-<platforms>EGO</platforms>
-<Parameters>
-    <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>day-counter convention</description>
-    </Parameter>
-    <Parameter name='startDate' ql_type='QuantLib::Date'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>start date</description>
-    </Parameter>
-    <Parameter name='endDate' ql_type='QuantLib::Date'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>end date</description>
-    </Parameter>
-</Parameters>
-<ReturnValue>
-    <type>long</type>
-    <tensorRank>scalar</tensorRank>
-    <description>days between the start date and the end date</description>
-</ReturnValue>
-</Procedure>
 
-<Procedure name='qlYearFraction'>
-<description>calculate a year fraction</description>
-<functionCategory>QuantLib</functionCategory>
-<alias>QuantLib::yearFraction</alias>
-<Parameters>
-    <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>day-counter convention</description>
-    </Parameter>
-    <Parameter name='startDate' ql_type='QuantLib::Date'>
+    <Procedure name='qlSetEvaluationDate'>
+      <description>sets the value of the Evaluation Date</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::setEvaluationDate</alias>
+      <Parameters>
+        <Parameter name='evalDate' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>new value for the evaluation date</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue return_func='serialNumber'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>start date</description>
-    </Parameter>
-    <Parameter name='endDate' ql_type='QuantLib::Date'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>end date</description>
-    </Parameter>
-    <Parameter name='refPeriodStart' ql_type='QuantLib::Date'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>start date for reference period</description>
-    </Parameter>
-    <Parameter name='refPeriodEnd' ql_type='QuantLib::Date'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>end date for reference period</description>
-    </Parameter>    
-</Parameters>
-<ReturnValue>
-    <type>double</type>
-    <tensorRank>scalar</tensorRank>
-    <description>advanced date</description>
-</ReturnValue>
-</Procedure>
+        <description>evaluation date</description>
+      </ReturnValue>
+    </Procedure>
 
-<Procedure name='qlEvaluationDate'>
-<description>returns the current value of the Evaluation Date</description>
-<functionCategory>QuantLib</functionCategory>
-<alias>QuantLib::evaluationDate</alias>
-<Parameters/>
-<ReturnValue return_func='serialNumber'>
-    <type>long</type>
-    <tensorRank>scalar</tensorRank>
-    <description>evaluation date</description>
-</ReturnValue>
-</Procedure>
-
-<Procedure name='qlSetEvaluationDate'>
-<description>sets the value of the Evaluation Date</description>
-<functionCategory>QuantLib</functionCategory>
-<alias>QuantLib::setEvaluationDate</alias>
-<Parameters>
-    <Parameter name='evalDate' ql_type='QuantLib::Date'>
+    <Procedure name='qlEvaluationDate'>
+      <description>returns the current value of the Evaluation Date</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::evaluationDate</alias>
+      <Parameters/>
+      <ReturnValue return_func='serialNumber'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>new value for the evaluation date</description>
-    </Parameter>
-</Parameters>
-<ReturnValue return_func='serialNumber'>
-    <type>long</type>
-    <tensorRank>scalar</tensorRank>
-    <description>evaluation date</description>
-</ReturnValue>
-</Procedure>
+        <description>evaluation date</description>
+      </ReturnValue>
+    </Procedure>
 
-</Functions>
+  </Functions>
 </Category>
 

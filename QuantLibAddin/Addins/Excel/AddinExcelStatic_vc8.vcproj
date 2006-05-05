@@ -408,11 +408,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="prices.cpp"
-			>
-		</File>
-		<File
-			RelativePath="date.cpp"
+			RelativePath=".\calendar.cpp"
 			>
 		</File>
 		<File
@@ -421,6 +417,14 @@
 		</File>
 		<File
 			RelativePath="couponvectors.cpp"
+			>
+		</File>
+		<File
+			RelativePath="date.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\daycounter.cpp"
 			>
 		</File>
 		<File
@@ -441,6 +445,10 @@
 		</File>
 		<File
 			RelativePath="options.cpp"
+			>
+		</File>
+		<File
+			RelativePath="prices.cpp"
 			>
 		</File>
 		<File

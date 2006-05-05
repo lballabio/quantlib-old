@@ -19,6 +19,8 @@ xll
 capfloor.*
 couponvectors.*
 date.*
+calendar.*
+daycounter.*
 exercise.*
 instruments.*
 interpolation.*

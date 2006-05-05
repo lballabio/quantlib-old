@@ -1,0 +1,78 @@
+<Category name='daycounter'>
+  <description>Daycounter related QuantLib functions</description>
+  <displayName>Daycounter</displayName>
+  <includes>
+    <include>ql/Functions/daycounters.hpp</include>
+  </includes>
+  <Functions>
+
+    <Procedure name='qlDayCount'>
+      <description>calculate the number of days in a period according to a given day count convention</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::dayCount</alias>
+      <platforms>EGO</platforms>
+      <Parameters>
+        <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description>day-counter convention</description>
+        </Parameter>
+        <Parameter name='startDate' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>start date</description>
+        </Parameter>
+        <Parameter name='endDate' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>end date</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>days between the start date and the end date</description>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlYearFraction'>
+      <description>calculate a year fraction</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::yearFraction</alias>
+      <Parameters>
+        <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description>day-counter convention</description>
+        </Parameter>
+        <Parameter name='startDate' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>start date</description>
+        </Parameter>
+        <Parameter name='endDate' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>end date</description>
+        </Parameter>
+        <Parameter name='refPeriodStart' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>start date for reference period</description>
+        </Parameter>
+        <Parameter name='refPeriodEnd' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>end date for reference period</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+        <description>advanced date</description>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+</Category>
+

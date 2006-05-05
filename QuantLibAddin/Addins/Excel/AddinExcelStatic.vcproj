@@ -417,7 +417,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="prices.cpp">
+			RelativePath=".\calendar.cpp">
 		</File>
 		<File
 			RelativePath="capfloor.cpp">
@@ -427,6 +427,9 @@
 		</File>
 		<File
 			RelativePath="date.cpp">
+		</File>
+		<File
+			RelativePath=".\daycounter.cpp">
 		</File>
 		<File
 			RelativePath="exercise.cpp">
@@ -442,6 +445,9 @@
 		</File>
 		<File
 			RelativePath="options.cpp">
+		</File>
+		<File
+			RelativePath="prices.cpp">
 		</File>
 		<File
 			RelativePath="processes.cpp">

@@ -3,26 +3,28 @@
 <Buffer name='bufferCopyright' fileName='stub.copyright'/>
 
 <categoryNames>
-    <categoryName>capfloor</categoryName>
-    <categoryName>couponvectors</categoryName>
-    <categoryName>date</categoryName>
-    <categoryName>exercise</categoryName>
-    <categoryName>instruments</categoryName>
-    <categoryName>interpolation</categoryName>
-    <categoryName>mathf</categoryName>
-    <categoryName>ohfunctions</categoryName>
-    <categoryName>options</categoryName>
-    <categoryName>prices</categoryName>
-    <categoryName>processes</categoryName>
-    <categoryName>randomsequencegenerator</categoryName>
-    <categoryName>schedule</categoryName>
-    <categoryName>shortratemodels</categoryName>
-    <categoryName>simpleswap</categoryName>
-    <categoryName>swap</categoryName>
-    <categoryName>termstructures</categoryName>
-    <categoryName>utilities</categoryName>
-    <categoryName>volatilities</categoryName>
-    <categoryName>xibor</categoryName>
+  <categoryName>capfloor</categoryName>
+  <categoryName>couponvectors</categoryName>
+  <categoryName>date</categoryName>
+  <categoryName>calendar</categoryName>
+  <categoryName>daycounter</categoryName>
+  <categoryName>exercise</categoryName>
+  <categoryName>instruments</categoryName>
+  <categoryName>interpolation</categoryName>
+  <categoryName>mathf</categoryName>
+  <categoryName>ohfunctions</categoryName>
+  <categoryName>options</categoryName>
+  <categoryName>prices</categoryName>
+  <categoryName>processes</categoryName>
+  <categoryName>randomsequencegenerator</categoryName>
+  <categoryName>schedule</categoryName>
+  <categoryName>shortratemodels</categoryName>
+  <categoryName>simpleswap</categoryName>
+  <categoryName>swap</categoryName>
+  <categoryName>termstructures</categoryName>
+  <categoryName>utilities</categoryName>
+  <categoryName>volatilities</categoryName>
+  <categoryName>xibor</categoryName>
 </categoryNames>
 
 </Config>

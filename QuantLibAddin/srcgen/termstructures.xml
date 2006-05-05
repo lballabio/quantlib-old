@@ -27,21 +27,21 @@
         <tensorRank>scalar</tensorRank>
         <description>fixing days (e.g. 2)</description>
     </Parameter>
-    <Parameter name='calendar'>
+    <Parameter name='calendar' ql_type='QuantLib::Calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>calendar (e.g. TARGET)</description>
+        <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
     <Parameter name='convention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>business day convention (e.g. ModifiedFollowing)</description>
     </Parameter>
-    <Parameter name='dayCounter'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>day counter (e.g. Actual360)</description>
-    </Parameter>
+  <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>day counter (e.g. Actual365Fixed)</description>
+  </Parameter>
 </Parameters>
 </Constructor>
 
@@ -57,27 +57,27 @@
     <Parameter name='IMM'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>IMM expiry shortcut</description>
+        <description>IMM code</description>
     </Parameter>
     <Parameter name='months'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>future contract lenght in months</description>
     </Parameter>
-    <Parameter name='DayCounter'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>day counter (e.g. Thirty360)</description>
-    </Parameter>
-    <Parameter name='bDayConvention'>
+  <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>day counter (e.g. Actual365Fixed)</description>
+  </Parameter>
+  <Parameter name='bDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>business day convention (e.g. ModifiedFollowing)</description>
     </Parameter>
-	<Parameter name='calendar'>
+	<Parameter name='calendar' ql_type='QuantLib::Calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>calendar (e.g. TARGET)</description>
+        <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
     <Parameter name='decade'>
         <type>long</type>
@@ -111,10 +111,10 @@
         <tensorRank>scalar</tensorRank>
         <description>fixing days (e.g. 2)</description>
     </Parameter>
-	<Parameter name='calendar'>
+	<Parameter name='calendar' ql_type='QuantLib::Calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>calendar (e.g. TARGET)</description>
+        <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
     <Parameter name='fixedLegFrequency'>
         <type>string</type>
@@ -126,12 +126,12 @@
         <tensorRank>scalar</tensorRank>
         <description>fixed leg convention (e.g. Unadjusted)</description>
     </Parameter>
-    <Parameter name='fixedLegDayCounter'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>fixed leg day counter (e.g. Thirty360)</description>
-    </Parameter>
-    <Parameter name='floatingLegFrequency'>
+  <Parameter name='fixedLegDayCounter' ql_type='QuantLib::DayCounter'>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>day counter (e.g. Actual365Fixed)</description>
+  </Parameter>
+  <Parameter name='floatingLegFrequency'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>floating leg frequency (e.g. Quarterly, Semiannual, etc.)</description>
@@ -141,11 +141,11 @@
         <tensorRank>scalar</tensorRank>
         <description>floating leg convention (e.g. ModifiedFollowing)</description>
     </Parameter>
-    <Parameter name='floatingLegDayCounter'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>floating leg day counter (e.g. Thirty360)</description>
-    </Parameter>
+  <Parameter name='floatingLegDayCounter' ql_type='QuantLib::DayCounter'>
+    <type>string</type>
+    <tensorRank>scalar</tensorRank>
+    <description>day counter (e.g. Actual365Fixed)</description>
+  </Parameter>
 </Parameters>
 </Constructor>
 
@@ -248,49 +248,17 @@
     <Parameter name='calendar' ql_type='QuantLib::Calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>Calendar ID to advance from global EvaluationDate</description>
+        <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate</description>
     </Parameter>
-    <!--Parameter name='settlementDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>settlement date (e.g. evaluationDate + 2)</description>
-    </Parameter-->
     <Parameter name='rateHelpers'>
         <type>string</type>
         <tensorRank>vector</tensorRank>
         <description>vector of rate-helper handles</description>
     </Parameter>
-    <Parameter name='dayCounter'>
+    <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>day counter (e.g. Actual365Fixed)</description>
-    </Parameter>
-    <Parameter name='trigger' ignore='true'>
-      <type>any</type>
-      <tensorRank>scalar</tensorRank>
-      <description>dependency tracking trigger</description>
-    </Parameter>
-</Parameters>
-</Constructor>
-
-<Constructor name='qlPiecewiseFlatForward'>
-<libraryFunction>PiecewiseFlatForward</libraryFunction>
-<functionCategory>QuantLib</functionCategory>
-<Parameters>
-    <Parameter name='settlementDate'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-        <description>settlement date (e.g. evaluationDate + 2)</description>
-    </Parameter>
-    <Parameter name='rateHelpers'>
-        <type>string</type>
-        <tensorRank>vector</tensorRank>
-        <description>vector of rate-helper handles</description>
-    </Parameter>
-    <Parameter name='dayCounter'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>day counter (e.g. Actual360)</description>
     </Parameter>
     <Parameter name='trigger' ignore='true'>
       <type>any</type>
@@ -304,6 +272,7 @@
 <libraryFunction>DiscountCurve</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
+    <!--Parameter name='curveDates' ql_type='QuantLib::Date'-->
     <Parameter name='curveDates'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
@@ -314,10 +283,10 @@
         <tensorRank>vector</tensorRank>
         <description>discount factors for the above dates</description>
     </Parameter>
-    <Parameter name='dayCounterID'>
+    <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>day counter ID used internally (e.g. Actual365Fixed)</description>
+        <description>day counter (e.g. Actual365Fixed)</description>
     </Parameter>
 </Parameters>
 </Constructor>
@@ -326,30 +295,32 @@
 <libraryFunction>ZeroCurve</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='curveDates'>
-        <type>long</type>
-        <tensorRank>vector</tensorRank>
-        <description>dates of the curve</description>
+  <!--Parameter name='curveDates' ql_type='QuantLib::Date'-->
+  <Parameter name='curveDates'>
+    <type>long</type>
+      <tensorRank>vector</tensorRank>
+      <description>dates of the curve</description>
     </Parameter>
     <Parameter name='curveYields'>
-        <type>double</type>
-        <tensorRank>vector</tensorRank>
-        <description>zero rates for the above dates</description>
+      <type>double</type>
+      <tensorRank>vector</tensorRank>
+      <description>zero rates for the above dates</description>
     </Parameter>
-    <Parameter name='dayCounterID'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>day counter ID used internally (e.g. Actual365Fixed)</description>
+    <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
+      <type>string</type>
+      <tensorRank>scalar</tensorRank>
+      <description>day counter (e.g. Actual365Fixed)</description>
     </Parameter>
-</Parameters>
+  </Parameters>
 </Constructor>
 
 <Constructor name='qlForwardCurve'>
-<libraryFunction>ForwardCurve</libraryFunction>
-<functionCategory>QuantLib</functionCategory>
-<Parameters>
+  <libraryFunction>ForwardCurve</libraryFunction>
+  <functionCategory>QuantLib</functionCategory>
+  <Parameters>
+    <!--Parameter name='curveDates' ql_type='QuantLib::Date'-->
     <Parameter name='curveDates'>
-        <type>long</type>
+      <type>long</type>
         <tensorRank>vector</tensorRank>
         <description>dates of the curve</description>
     </Parameter>
@@ -358,10 +329,10 @@
         <tensorRank>vector</tensorRank>
         <description>forwards rates for the above dates</description>
     </Parameter>
-    <Parameter name='dayCounter'>
+    <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>day counter ID used internally (e.g. Actual365Fixed)</description>
+        <description>day counter (e.g. Actual365Fixed)</description>
     </Parameter>
 </Parameters>
 </Constructor>
@@ -428,10 +399,10 @@
         <tensorRank>vector</tensorRank>
         <description>date 2</description>
       </Parameter>
-      <Parameter name='resultDayCounterID' ql_type='QuantLib::DayCounter'>
+      <Parameter name='resultDayCounter' ql_type='QuantLib::DayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>resultDayCounter</description>
+        <description>result DayCounter</description>
       </Parameter>
       <Parameter name='compID' ql_type='QuantLib::Compounding'>
         <type>string</type>

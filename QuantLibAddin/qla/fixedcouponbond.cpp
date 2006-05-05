@@ -38,17 +38,15 @@ namespace QuantLibAddin {
             const std::vector<double> &nominals,
             const double &redemption,
             const std::string &frequencyID,
-            const std::string &dayCounterID,
+            const QuantLib::DayCounter &dayCounter,
             const std::string &accrualConventionID,
             const std::string &paymentConventionID,
-            const std::string &calendarID,
+            const QuantLib::Calendar& calendar,
             const bool &startFromEnd,
             const bool &longFinal,
             const std::string &discCurveId) {
 
         QuantLib::Frequency couponFrequency = Create<QuantLib::Frequency>()(frequencyID);
-        QuantLib::DayCounter dayCounter     = Create<QuantLib::DayCounter>()(dayCounterID);
-        QuantLib::Calendar calendar         = Create<QuantLib::Calendar>()(calendarID);
         QuantLib::BusinessDayConvention accrualConvention = 
             Create<QuantLib::BusinessDayConvention>()(accrualConventionID);
         QuantLib::BusinessDayConvention paymentConvention = 

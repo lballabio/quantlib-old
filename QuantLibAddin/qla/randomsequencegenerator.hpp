@@ -20,6 +20,7 @@
 
 #include <oh/objhandler.hpp>
 #include <ql/RandomNumbers/all.hpp>
+#include <ql/Functions/mathf.hpp>
 #include <vector>
 
 namespace QuantLibAddin {

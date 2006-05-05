@@ -37,30 +37,24 @@ namespace QuantLibAddin {
             const QuantLib::Real &nominal,
             const bool &payFixed,
             const QuantLib::Rate &fixRate,
-            const std::string &calendarID,
+            const QuantLib::Calendar& calendar,
             const std::string &fixFrqID,
             const std::string &fixBDCID,
-            const std::string &fixDayCounterID,
+            const QuantLib::DayCounter &fixDayCounter,
             const bool &fixStartFromEnd,
             const bool &fixLongFinal,
             const std::string &fltFrqID,
-            const std::string &floatDayCounterID,
+            const QuantLib::DayCounter &floatDayCounter,
             const std::string &indexHandle,
             const bool &floatStartFromEnd,
             const bool &floatLongFinal,
             const QuantLib::Rate &floatSpread,
             const std::string &discCurveId) {
 
-        QuantLib::DayCounter fixDayCounter =
-            Create<QuantLib::DayCounter>()(fixDayCounterID);
-        QuantLib::DayCounter floatDayCounter =
-            Create<QuantLib::DayCounter>()(floatDayCounterID);
         QuantLib::BusinessDayConvention fixBDC = 
             Create<QuantLib::BusinessDayConvention>()(fixBDCID);
         QuantLib::Frequency fixFrq =
             Create<QuantLib::Frequency>()(fixFrqID);
-        QuantLib::Calendar calendar =
-            Create<QuantLib::Calendar>()(calendarID);
         QuantLib::Date maturity = QuantLib::Date(lMaturity);
         QuantLib::Date startDate = QuantLib::Date(lStartDate);
 

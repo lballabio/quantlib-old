@@ -57,9 +57,9 @@ namespace QuantLibAddin {
             const long &maturity,
             const std::string &timeUnitsID,
             const long &fixingDays,
-            const std::string &calendarID,
+            const QuantLib::Calendar& calendar,
             const std::string &conventionID,
-            const std::string &dayCounterID);
+            const QuantLib::DayCounter &dayCounter);
     };
 
     class FuturesRateHelper : public RateHelper {
@@ -68,9 +68,9 @@ namespace QuantLibAddin {
             const double &price,
             const std::string &immDateID,
             const QuantLib::Integer &months,
-            const std::string &dayCounterID,
+            const QuantLib::DayCounter &dayCounter,
             const std::string &bDayConventionID,
-            const std::string &calendarID,
+            const QuantLib::Calendar& calendar,
             const QuantLib::Integer &decade);
     };
 
@@ -81,13 +81,13 @@ namespace QuantLibAddin {
             const long &maturity,
             const std::string &timeUnitsID,
             const long &fixingDays,
-            const std::string &calendarID,
+            const QuantLib::Calendar& calendar,
             const std::string &fixedFrequencyID,
             const std::string &fixedConventionID,
-            const std::string &fixedDayCounterID,
+            const QuantLib::DayCounter &fixedDayCounter,
             const std::string &floatingFrequencyID,
             const std::string &floatingConventionID,
-            const std::string &floatingDayCounterID);
+            const QuantLib::DayCounter &floatingDayCounter);
     };
 
     class YieldTermStructure : public ObjHandler::Object {
@@ -101,46 +101,37 @@ namespace QuantLibAddin {
     };
 
 
-    class PiecewiseFlatForward : public YieldTermStructure {
-      public:
-        PiecewiseFlatForward(
-            const long &settlement,
-            const std::vector<std::string> &handlesRateHelper,
-            const std::string &dayCounterID);
-    };
-    
     class PiecewiseYieldCurve : public YieldTermStructure {
       public:
         PiecewiseYieldCurve(
             const long &nDays, 
             const QuantLib::Calendar &calendar,
-            //const long &settlement,
             const std::vector<std::string> &handlesRateHelper,
-            const std::string &dayCounterID);
+            const QuantLib::DayCounter &dayCounter);
     };
     
     class DiscountCurve : public YieldTermStructure {
       public:
         DiscountCurve(
-            const std::vector < long > &dates,
-            const std::vector < double > &dfs,
-            const std::string &dayCounterID);
+            const std::vector<long> &dates,
+            const std::vector<double> &dfs,
+            const QuantLib::DayCounter &dayCounter);
     };
 
     class ZeroCurve : public YieldTermStructure {
       public:
         ZeroCurve(
-            const std::vector < long > &dates,
+            const std::vector<long> &dates,
             const std::vector < double > &zeroRates,
-            const std::string &dayCounterID);
+            const QuantLib::DayCounter &dayCounter);
     };
 
     class ForwardCurve : public YieldTermStructure {
       public:
         ForwardCurve(
-            const std::vector < long > &dates,
+            const std::vector<long> &dates,
             const std::vector < double > &forwardRates,
-            const std::string &dayCounterID);
+            const QuantLib::DayCounter &dayCounter);
     };
 
     class ForwardSpreadedTermStructure : public YieldTermStructure {

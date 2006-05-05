@@ -123,6 +123,9 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
+				RelativePath=".\calendar.cpp">
+			</File>
+			<File
 				RelativePath="capfloor.cpp">
 			</File>
 			<File
@@ -130,6 +133,9 @@
 			</File>
 			<File
 				RelativePath="date.cpp">
+			</File>
+			<File
+				RelativePath=".\daycounter.cpp">
 			</File>
 			<File
 				RelativePath="exercise.cpp">
@@ -190,6 +196,9 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
+				RelativePath=".\calendar.h">
+			</File>
+			<File
 				RelativePath="capfloor.h">
 			</File>
 			<File
@@ -197,6 +206,9 @@
 			</File>
 			<File
 				RelativePath="date.h">
+			</File>
+			<File
+				RelativePath=".\daycounter.h">
 			</File>
 			<File
 				RelativePath="defines.h">
