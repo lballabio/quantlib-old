@@ -6,7 +6,7 @@
 </div>
 <div id="header">
 <img class="titleimage"
- src="images/QL-title.jpg" width="202" height="52" border="0"
+ src="images/QL-title.jpg" width="212" height="47" border="0"
  alt="QuantLib">
 <br>
 <h3 class="subtitle">A free/open-source library for quantitative finance</h3>
