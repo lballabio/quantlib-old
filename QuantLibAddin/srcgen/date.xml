@@ -42,7 +42,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlIMMdate' >
+    <Procedure name='qlIMMdate'>
       <description>returns the IMM date corresponding to the given IMM code (e.g. March 15th, 2006 for H6).</description>
       <functionCategory>QuantLib</functionCategory>
       <alias>QuantLib::Date::IMMdate</alias>
@@ -60,7 +60,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlIMMcode' >
+    <Procedure name='qlIMMcode'>
       <description>returns the future code corresponding to a given IMM date (e.g. H6 for March 15th, 2006). It fails if the input date is not an IMM date.</description>
       <functionCategory>QuantLib</functionCategory>
       <alias>QuantLib::Date::IMMcode</alias>
@@ -72,7 +72,7 @@
         </Parameter>
       </Parameters>
       <ReturnValue>
-        <type>std::string</type>
+        <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>the IMM code (e.q. \"H9\")</description>
       </ReturnValue>
