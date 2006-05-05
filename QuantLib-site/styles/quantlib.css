@@ -35,6 +35,8 @@ body {
 #header {
     margin-left: 2em;
     text-align: left;
+    border-bottom: 1px solid gray;
+    margin-bottom: 1em;
 }
 
 .footer {
@@ -59,6 +61,14 @@ a:hover {
 
 a:active {
     color: red;
+}
+
+img.titleimage {
+    margin-top: 1em;
+}
+
+h3.subtitle {
+    margin-top: 0;
 }
 
 ul.navbarlist {
