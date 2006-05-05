@@ -45,8 +45,8 @@ Section
 
     SetOutPath $INSTDIR\Addins\Calc
     File "Addins\Calc\Makefile.vc.debug.crtdll"
-    File "Addins\Calc\QuantLibAddin.def"
-    File "Addins\Calc\QuantLibAddin.idl"
+    File "Addins\Calc\QLA-Calc.def"
+    File "Addins\Calc\QLA-Calc.idl"
     File "Addins\Calc\readme.txt"
 
     SetOutPath $INSTDIR\Clients\Calc
