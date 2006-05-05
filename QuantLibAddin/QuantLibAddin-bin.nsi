@@ -3,13 +3,13 @@
 
 !define VER_NUMBER "0.3.13"
 
-Name "QuantLibAddin"
-Caption "QuantLibAddin - Setup"
-OutFile "QuantLibAddin-${VER_NUMBER}-bin.exe"
+Name "QuantLibXL"
+Caption "QuantLibXL - Setup"
+OutFile "QuantLibXL-${VER_NUMBER}-bin.exe"
 LicenseText "You must agree with the following license before installing:"
 LicenseData LICENSE.TXT
-DirText "Please select a location to install QuantLibAddin (or use the default):"
-InstallDir $PROGRAMFILES\QuantLibAddin-${VER_NUMBER}
+DirText "Please select a location to install QuantLibXL (or use the default):"
+InstallDir $PROGRAMFILES\QuantLibXL-${VER_NUMBER}
 Icon "Docs\images\favicon.ico"
 UninstallIcon "Docs\images\favicon.ico"
 
@@ -24,26 +24,35 @@ Section
     SetOutPath $INSTDIR\Workbooks
     File /r "Clients\Excel\*.xls"
 
+    SetOutPath $INSTDIR\framework
+    File /r "framework\*"
+
     SetOutPath $INSTDIR\Docs
     File /nonfatal "Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
+    File "Docs\images\favicon.ico"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibAddin" \
-                "DisplayName" "QuantLibAddin ${VER_NUMBER} (remove only)"
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
+                "DisplayName" "QuantLibXL ${VER_NUMBER} (remove only)"
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibAddin" \
-                "UninstallString" '"QuantLibAddinUninstall.exe"'
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
+                "UninstallString" '"QuantLibXLUninstall.exe"'
 
-    CreateDirectory "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}"
+    WriteRegStr HKEY_CURRENT_USER "Environment" "QUANTLIBXL_DIR" "$INSTDIR"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\Documentation (WinHelp).lnk" \
+    CreateDirectory "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL-${VER_NUMBER}.lnk" \
+                   "$INSTDIR\framework\quantlibxl-${VER_NUMBER}.xla"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\Documentation (WinHelp).lnk" \
                    "$INSTDIR\Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\Uninstall QuantLibAddin.lnk" \
-                   "$INSTDIR\QuantLibAddinUninstall.exe" "" \
-                   "$INSTDIR\QuantLibAddinUninstall.exe" 0
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\Uninstall QuantLibXL.lnk" \
+                   "$INSTDIR\QuantLibXLUninstall.exe" "" \
+                   "$INSTDIR\QuantLibXLUninstall.exe" 0
 
-    WriteUninstaller "QuantLibAddinUninstall.exe"
+    WriteUninstaller "QuantLibXLUninstall.exe"
 SectionEnd
 
 Function .onInit
@@ -56,12 +65,12 @@ Function .onInit
   Delete $TEMP\spltmp.bmp
 FunctionEnd
 
-UninstallText "This will uninstall QuantLibAddin. Hit next to continue."
+UninstallText "This will uninstall QuantLibXL. Hit next to continue."
 
 Section "Uninstall"
     DeleteRegKey HKEY_LOCAL_MACHINE \
-        "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibAddin"
-    RMDir /r /REBOOTOK "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}"
+        "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL"
+    RMDir /r /REBOOTOK "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}"
     RMDir /r /REBOOTOK "$INSTDIR"
 SectionEnd
 

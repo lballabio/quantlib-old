@@ -23,10 +23,10 @@
 "QLA","Design","srcgen flag ""ignoreError"" (default T) invoke function even if some inputs invalid e.g. qlMidEquivalent()","done","H",28/04/2006,"always ignore errors (no flag)"
 "QLA","Design","match QLA function names to underlying QL function names","done",,27/04/2006,
 "QLA","Design","check whether catch(...) catches unhandled exceptions from QL e.g. negative timesteps","cancelled",,01/05/2006,"it doesn't"
-"QLA","VBA framework","create trade/market workbooks from templates",,"H",,
-"QLA","VBA framework","load XLLs",,"H",,
 "QLA","VBA framework","access logfile",,"M",,
 "QLA","VBA framework","interrogate object repository",,"M",,"Plamen?"
+"QLA","VBA framework","create trade/market workbooks from templates","done","H",05/05/2006,
+"QLA","VBA framework","load XLLs","done","H",05/05/2006,
 "QLA","VBA framework","skeleton structure","done",,18/04/2006,
 "QLA","VBA framework","QuantLibAddin menu for Excel","done",,18/04/2006,
 "QLA","VBA framework","right click in cell to create enumeration drop down list","done",,18/04/2006,
