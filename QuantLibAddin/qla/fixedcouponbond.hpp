@@ -27,17 +27,17 @@ namespace QuantLibAddin {
     class FixedCouponBond : public Bond {
     public:
         FixedCouponBond(
-            const long &issueDate,
-            const long &datedDate,
-            const long &maturityDate,
+            const QuantLib::Date& issueDate,
+            const QuantLib::Date& datedDate,
+            const QuantLib::Date& maturityDate,
             const long &settlementDays,
             const std::vector<double> &coupons,
             const std::vector<double> &nominals,
             const double &redemption,
-            const std::string &frequencyID,
+            QuantLib::Frequency frequency,
             const QuantLib::DayCounter &dayCounter,
-            const std::string &accrualConventionID,
-            const std::string &paymentConventionID,
+            QuantLib::BusinessDayConvention accrualConvention,
+            QuantLib::BusinessDayConvention paymentConvention,
             const QuantLib::Calendar& calendar,
             const bool &startFromEnd,
             const bool &longFinal,

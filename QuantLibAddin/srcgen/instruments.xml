@@ -169,17 +169,17 @@
 <libraryFunction>FixedCouponBond</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='issueDate'>
+	<Parameter name='issueDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>issue date</description>
     </Parameter>
-    <Parameter name='firstCouponDate'>
+	<Parameter name='firstCouponDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>first coupon date</description>
     </Parameter>
-    <Parameter name='maturityDate'>
+	<Parameter name='maturityDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>maturity date</description>
@@ -189,7 +189,7 @@
         <tensorRank>scalar</tensorRank>
         <description>settlement days</description>
     </Parameter>
-    <Parameter name='coupon'>
+    <Parameter name='coupons'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
         <description>coupons</description>
@@ -204,7 +204,7 @@
         <tensorRank>scalar</tensorRank>
         <description>Redemption</description>
     </Parameter>
-    <Parameter name='frequencyID'>
+	<Parameter name='frequency' ql_type='QuantLib::Frequency'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>frequency ID</description>
@@ -214,12 +214,12 @@
     <tensorRank>scalar</tensorRank>
     <description>day counter (e.g. Actual365Fixed)</description>
   </Parameter>
-  <Parameter name='accrualConvention'>
+  <Parameter name='accrualConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>accrual convention</description>
     </Parameter>
-    <Parameter name='paymentConvention'>
+	<Parameter name='paymentConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>payment convention</description>
@@ -251,12 +251,12 @@
 <libraryFunction>ZeroCouponBond</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='issueDate'>
+	<Parameter name='issueDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>issue date</description>
     </Parameter>
-    <Parameter name='maturityDate'>
+	<Parameter name='maturityDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>maturity date</description>
@@ -276,7 +276,7 @@
         <tensorRank>scalar</tensorRank>
         <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
-    <Parameter name='conventionID'>
+	<Parameter name='convention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>convention ID</description>

@@ -31,23 +31,16 @@ namespace QuantLibAddin {
 
     Xibor::Xibor(
             const std::string &indexName,
-            const std::string &crrID,
+            const QuantLib::Currency& crr,
             const long &tenor,
-            const std::string &timeUnitsID,
+            QuantLib::TimeUnit timeUnits,
             const QuantLib::Calendar& calendar,
-            const std::string &fltBDCID,
+            QuantLib::BusinessDayConvention fltBDC,
             const QuantLib::DayCounter &fltDayCounter,
             const long &fixingDays,
             const std::string &fwdCurveId,
             const std::vector<long> &lDates,
             const std::vector<double> &fixings) {
-
-        QuantLib::BusinessDayConvention fltBDC = 
-            Create<QuantLib::BusinessDayConvention>()(fltBDCID);
-        QuantLib::TimeUnit timeUnits =
-            Create<QuantLib::TimeUnit>()(timeUnitsID);
-        QuantLib::Currency crr =
-            Create<QuantLib::Currency>()(crrID);
 
         OH_GET_REFERENCE(fwdYC, fwdCurveId, 
             YieldTermStructure, QuantLib::YieldTermStructure)

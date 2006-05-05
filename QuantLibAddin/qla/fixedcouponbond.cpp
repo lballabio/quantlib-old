@@ -30,29 +30,22 @@
 namespace QuantLibAddin {
 
     FixedCouponBond::FixedCouponBond(
-            const long &issueDate,
-            const long &datedDate,
-            const long &maturityDate,
+            const QuantLib::Date& issueDate,
+            const QuantLib::Date& datedDate,
+            const QuantLib::Date& maturityDate,
             const long &settlementDays,
             const std::vector<double> &coupons,
             const std::vector<double> &nominals,
             const double &redemption,
-            const std::string &frequencyID,
+            QuantLib::Frequency frequency,
             const QuantLib::DayCounter &dayCounter,
-            const std::string &accrualConventionID,
-            const std::string &paymentConventionID,
+            QuantLib::BusinessDayConvention accrualConvention,
+            QuantLib::BusinessDayConvention paymentConvention,
             const QuantLib::Calendar& calendar,
             const bool &startFromEnd,
             const bool &longFinal,
             const std::string &discCurveId) {
 
-        QuantLib::Frequency couponFrequency = Create<QuantLib::Frequency>()(frequencyID);
-        QuantLib::BusinessDayConvention accrualConvention = 
-            Create<QuantLib::BusinessDayConvention>()(accrualConventionID);
-        QuantLib::BusinessDayConvention paymentConvention = 
-            Create<QuantLib::BusinessDayConvention>()(paymentConventionID);
-
-        boost::shared_ptr<QuantLibAddin::YieldTermStructure> tmpDiscYC;
         QuantLib::Handle<QuantLib::YieldTermStructure> discountingTermStructure;
         if (!discCurveId.empty()) {
             OH_GET_REFERENCE(discYC, discCurveId, 
@@ -61,12 +54,12 @@ namespace QuantLibAddin {
         }
 
         mInstrument = boost::shared_ptr<QuantLib::Instrument>(
-            new QuantLib::FixedCouponBond(QuantLib::Date(issueDate),
-                                            QuantLib::Date(datedDate),
-                                            QuantLib::Date(maturityDate),
+            new QuantLib::FixedCouponBond(issueDate,
+                                            datedDate,
+                                            maturityDate,
                                             settlementDays,
                                             coupons,
-                                            couponFrequency,
+                                            frequency,
                                             calendar,
                                             dayCounter,
                                             accrualConvention,

@@ -12,7 +12,7 @@
         <tensorRank>scalar</tensorRank>
         <description>index name</description>
     </Parameter>
-    <Parameter name='Currency'>
+	<Parameter name='Currency' ql_type='QuantLib::Currency'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>Index Currency</description>
@@ -22,7 +22,7 @@
         <tensorRank>scalar</tensorRank>
         <description>the tenor of this index</description>
     </Parameter>
-    <Parameter name='timeUnits'>
+	<Parameter name='timeUnits' ql_type='QuantLib::TimeUnit'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>time units applying to above tenor</description>
@@ -32,7 +32,7 @@
         <tensorRank>scalar</tensorRank>
         <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
-    <Parameter name='BDayConvention'>
+	<Parameter name='BDayConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>business day convention (e.g. ModifiedFollowing)</description>

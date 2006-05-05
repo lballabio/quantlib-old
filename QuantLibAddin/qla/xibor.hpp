@@ -27,11 +27,11 @@ namespace QuantLibAddin {
     public:
         Xibor(
             const std::string &indexName,
-            const std::string &crrID,
+            const QuantLib::Currency& crr,
             const long &tenor,
-            const std::string &timeUnitsID,
+            QuantLib::TimeUnit timeUnits,
             const QuantLib::Calendar& calendar,
-            const std::string &fltBDCID,
+            QuantLib::BusinessDayConvention fltBDC,
             const QuantLib::DayCounter &fltDayCounter,
             const long &fixingDays,
             const std::string &fwdCurveId,

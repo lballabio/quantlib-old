@@ -30,12 +30,12 @@
 namespace QuantLibAddin {
 
     ZeroCouponBond::ZeroCouponBond(
-            const long &issueDate,
-            const long &maturityDate,
+            const QuantLib::Date& issueDate,
+            const QuantLib::Date& maturityDate,
             const long &settlementDays,
             const QuantLib::DayCounter &dayCounter,
             const QuantLib::Calendar& calendar,
-            const std::string &conventionID,
+            QuantLib::BusinessDayConvention convention,
             const double &redemption,
             const std::string &handleZeroCurve) {
 
@@ -43,13 +43,10 @@ namespace QuantLibAddin {
             ZeroCurve, QuantLib::YieldTermStructure)
         QuantLib::Handle<QuantLib::YieldTermStructure> zeroCurveH(zeroCurve);
 
-        QuantLib::BusinessDayConvention convention = 
-            Create<QuantLib::BusinessDayConvention>()(conventionID);
-
         mInstrument = 
             boost::shared_ptr<QuantLib::Instrument>(
-                new QuantLib::ZeroCouponBond(QuantLib::Date(issueDate),
-                                             QuantLib::Date(maturityDate),
+                new QuantLib::ZeroCouponBond(issueDate,
+                                             maturityDate,
                                              settlementDays,
                                              dayCounter,
                                              calendar,

@@ -26,12 +26,12 @@ namespace QuantLibAddin {
     class ZeroCouponBond : public Bond {
     public:
         ZeroCouponBond(
-            const long &issueDate,
-            const long &maturityDate,
+            const QuantLib::Date& issueDate,
+            const QuantLib::Date& maturityDate,
             const long &settlementDays,
-            const QuantLib::DayCounter &dayCounter,
+            const QuantLib::DayCounter& dayCounter,
             const QuantLib::Calendar& calendar,
-            const std::string &conventionID,
+            QuantLib::BusinessDayConvention convention,
             const double &redemption,
             const std::string &handleZeroCurve);
     };
