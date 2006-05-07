@@ -28,18 +28,18 @@ namespace QuantLibAddin {
     class VanillaSwap : public Instrument {
     public:
         VanillaSwap(
-            const long &lStartDate,
-            const long &lMaturity,
+            const QuantLib::Date &startDate,
+            const QuantLib::Date &maturity,
             const QuantLib::Real &nominal,
             const bool &payFixed,
             const QuantLib::Rate &fixRate,
             const QuantLib::Calendar& calendar,
-            const std::string &fixFrqID,
-            const std::string &fixBDCID,
+            const QuantLib::Frequency &fixFrqID,
+            const QuantLib::BusinessDayConvention &fixBDCID,
             const QuantLib::DayCounter &fixDayCounter,
             const bool &fixStartFromEnd,
             const bool &fixLongFinal,
-            const std::string &fltFrqID,
+            //const std::string &fltFrqID,
             const QuantLib::DayCounter &floatDayCounter,
             const std::string &indexHandle,
             const bool &floatStartFromEnd,

@@ -32,31 +32,24 @@
 
 namespace QuantLibAddin {
     VanillaSwap::VanillaSwap(
-            const long &lStartDate,
-            const long &lMaturity,
+            const QuantLib::Date &startDate,
+            const QuantLib::Date &maturity,
             const QuantLib::Real &nominal,
             const bool &payFixed,
             const QuantLib::Rate &fixRate,
             const QuantLib::Calendar& calendar,
-            const std::string &fixFrqID,
-            const std::string &fixBDCID,
+            const QuantLib::Frequency &fixFrq,
+            const QuantLib::BusinessDayConvention &fixBDC,
             const QuantLib::DayCounter &fixDayCounter,
             const bool &fixStartFromEnd,
             const bool &fixLongFinal,
-            const std::string &fltFrqID,
+            //const std::string &fltFrqID,
             const QuantLib::DayCounter &floatDayCounter,
             const std::string &indexHandle,
             const bool &floatStartFromEnd,
             const bool &floatLongFinal,
             const QuantLib::Rate &floatSpread,
             const std::string &discCurveId) {
-
-        QuantLib::BusinessDayConvention fixBDC = 
-            Create<QuantLib::BusinessDayConvention>()(fixBDCID);
-        QuantLib::Frequency fixFrq =
-            Create<QuantLib::Frequency>()(fixFrqID);
-        QuantLib::Date maturity = QuantLib::Date(lMaturity);
-        QuantLib::Date startDate = QuantLib::Date(lStartDate);
 
         OH_GET_REFERENCE(discYC, discCurveId, 
             YieldTermStructure, QuantLib::YieldTermStructure)

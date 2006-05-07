@@ -31,7 +31,7 @@ namespace QuantLibAddin {
             const std::string &payoffID,
             const double &strike,
             const std::string &handleExercise,
-            const std::vector < long > &dividendDates,
+            const std::vector < QuantLib::Date > &dividendDates,
             const std::vector < double > &dividends,
             const std::string &engineID,
             const long &timeSteps) {
@@ -46,14 +46,12 @@ namespace QuantLibAddin {
             Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> >()(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
-        const std::vector<QuantLib::Date> dividendDatesQL = 
-            longVectorToDateVector(dividendDates);
         mInstrument = boost::shared_ptr<QuantLib::DividendVanillaOption>(
             new QuantLib::DividendVanillaOption(
                 blackScholesProcess,
                 payoff,
                 exercise,
-                dividendDatesQL,
+                dividendDates,
                 dividends,
                 pricingEngine));
     }

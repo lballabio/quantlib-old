@@ -55,10 +55,10 @@ namespace QuantLibAddin {
         DepositRateHelper(
             const double &quote,
             const long &maturity,
-            const std::string &timeUnitsID,
+            const QuantLib::TimeUnit &timeUnits,
             const long &fixingDays,
             const QuantLib::Calendar& calendar,
-            const std::string &conventionID,
+            const QuantLib::BusinessDayConvention &convention,
             const QuantLib::DayCounter &dayCounter);
     };
 
@@ -69,7 +69,7 @@ namespace QuantLibAddin {
             const std::string &immDateID,
             const QuantLib::Integer &months,
             const QuantLib::DayCounter &dayCounter,
-            const std::string &bDayConventionID,
+            const QuantLib::BusinessDayConvention &bDayConvention,
             const QuantLib::Calendar& calendar,
             const QuantLib::Integer &decade);
     };
@@ -79,14 +79,14 @@ namespace QuantLibAddin {
         SwapRateHelper(
             const double &quote,
             const long &maturity,
-            const std::string &timeUnitsID,
+            const QuantLib::TimeUnit &timeUnits,
             const long &fixingDays,
             const QuantLib::Calendar& calendar,
-            const std::string &fixedFrequencyID,
-            const std::string &fixedConventionID,
+            const QuantLib::Frequency &fixedFrequency,
+            const QuantLib::BusinessDayConvention &fixedConvention,
             const QuantLib::DayCounter &fixedDayCounter,
-            const std::string &floatingFrequencyID,
-            const std::string &floatingConventionID,
+            const QuantLib::Frequency &floatingFrequency,
+            const QuantLib::BusinessDayConvention &floatingConvention,
             const QuantLib::DayCounter &floatingDayCounter);
     };
 
@@ -113,7 +113,7 @@ namespace QuantLibAddin {
     class DiscountCurve : public YieldTermStructure {
       public:
         DiscountCurve(
-            const std::vector<long> &dates,
+            const std::vector<QuantLib::Date> &dates,
             const std::vector<double> &dfs,
             const QuantLib::DayCounter &dayCounter);
     };
@@ -121,16 +121,16 @@ namespace QuantLibAddin {
     class ZeroCurve : public YieldTermStructure {
       public:
         ZeroCurve(
-            const std::vector<long> &dates,
-            const std::vector < double > &zeroRates,
+            const std::vector<QuantLib::Date> &dates,
+            const std::vector <double> &zeroRates,
             const QuantLib::DayCounter &dayCounter);
     };
 
     class ForwardCurve : public YieldTermStructure {
       public:
         ForwardCurve(
-            const std::vector<long> &dates,
-            const std::vector < double > &forwardRates,
+            const std::vector<QuantLib::Date> &dates,
+            const std::vector <double> &forwardRates,
             const QuantLib::DayCounter &dayCounter);
     };
 

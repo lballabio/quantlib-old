@@ -43,20 +43,15 @@ namespace QuantLibAddin {
     DepositRateHelper::DepositRateHelper(
             const double &quote,
             const long &maturity,
-            const std::string &timeUnitsID,
+            const QuantLib::TimeUnit &timeUnits,
             const long &fixingDays,
             const QuantLib::Calendar& calendar,
-            const std::string &conventionID,
+            const QuantLib::BusinessDayConvention &convention,
             const QuantLib::DayCounter &dayCounter) {
 
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(
             new QuantLib::SimpleQuote(quote));
         quoteHandle_.linkTo(quote_);
-
-        QuantLib::TimeUnit timeUnits =
-            Create<QuantLib::TimeUnit>()(timeUnitsID);
-        QuantLib::BusinessDayConvention convention = 
-            Create<QuantLib::BusinessDayConvention>()(conventionID);
 
         rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
             new QuantLib::DepositRateHelper(quoteHandle_,
@@ -73,12 +68,10 @@ namespace QuantLibAddin {
             const std::string &immDateID,
             const QuantLib::Integer &months,
             const QuantLib::DayCounter &dayCounter,
-            const std::string &bDayConventionID,
+            const QuantLib::BusinessDayConvention &bDayConvention,
             const QuantLib::Calendar& calendar,
             const QuantLib::Integer &decade) {
 
-        QuantLib::BusinessDayConvention bDayConvention = 
-            Create<QuantLib::BusinessDayConvention>()(bDayConventionID);
         QuantLib::Date expiry = FutIDtoExpiryDate(immDateID, calendar, bDayConvention, decade);
 
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(price));
@@ -97,29 +90,18 @@ namespace QuantLibAddin {
     SwapRateHelper::SwapRateHelper(
             const double &quote,
             const long &maturity,
-            const std::string &timeUnitsID,
+            const QuantLib::TimeUnit &timeUnits,
             const long &fixingDays,
             const QuantLib::Calendar& calendar,
-            const std::string &fixedFrequencyID,
-            const std::string &fixedConventionID,
+            const QuantLib::Frequency &fixedFrequency,
+            const QuantLib::BusinessDayConvention &fixedConvention,
             const QuantLib::DayCounter &fixedDayCounter,
-            const std::string &floatingFrequencyID,
-            const std::string &floatingConventionID,
+            const QuantLib::Frequency &floatingFrequency,
+            const QuantLib::BusinessDayConvention &floatingConvention,
             const QuantLib::DayCounter &floatingDayCounter) {
 
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(quote));
         quoteHandle_.linkTo(quote_);
-        
-        QuantLib::TimeUnit timeUnits =
-            Create<QuantLib::TimeUnit>()(timeUnitsID);
-        QuantLib::Frequency fixedFrequency =
-            Create<QuantLib::Frequency>()(fixedFrequencyID);
-        QuantLib::BusinessDayConvention fixedConvention = 
-            Create<QuantLib::BusinessDayConvention>()(fixedConventionID);
-        QuantLib::Frequency floatingFrequency =
-            Create<QuantLib::Frequency>()(floatingFrequencyID);
-        QuantLib::BusinessDayConvention floatingConvention = 
-            Create<QuantLib::BusinessDayConvention>()(floatingConventionID);
 
         rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
             new QuantLib::SwapRateHelper(quoteHandle_,
@@ -184,33 +166,29 @@ namespace QuantLibAddin {
 
     }
 
-
     DiscountCurve::DiscountCurve(
-        const std::vector<long> &ldates,
-        const std::vector < double > &dfs,
+        const std::vector<QuantLib::Date> &dates,
+        const std::vector <double> &dfs,
         const QuantLib::DayCounter &dayCounter) {
 
-        std::vector<QuantLib::Date> dates = longVectorToDateVector(ldates);
         termStructure_ = boost::shared_ptr<QuantLib::YieldTermStructure>(
             new QuantLib::DiscountCurve(dates, dfs, dayCounter));
     }
 
     ZeroCurve::ZeroCurve(
-            const std::vector<long> &ldates,
-            const std::vector < double > &zeroRates,
+            const std::vector<QuantLib::Date> &dates,
+            const std::vector <double> &zeroRates,
             const QuantLib::DayCounter &dayCounter) {
 
-        std::vector<QuantLib::Date> dates = longVectorToDateVector(ldates);
         termStructure_ = boost::shared_ptr<QuantLib::YieldTermStructure>(
             new QuantLib::ZeroCurve(dates, zeroRates, dayCounter));
     }
 
     ForwardCurve::ForwardCurve(
-            const std::vector<long> &ldates,
-            const std::vector < double > &forwardRates,
+            const std::vector<QuantLib::Date> &dates,
+            const std::vector <double> &forwardRates,
             const QuantLib::DayCounter &dayCounter) {
 
-        std::vector<QuantLib::Date> dates = longVectorToDateVector(ldates);
         termStructure_ = boost::shared_ptr<QuantLib::YieldTermStructure>(
             new QuantLib::ForwardCurve(dates, forwardRates, dayCounter));
     }

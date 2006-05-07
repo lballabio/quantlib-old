@@ -35,7 +35,8 @@ namespace QuantLibAddin {
 
     /*! convert a long to a QuantLib date
     */
-    QuantLib::Date createQLDate(long date);
+    QuantLib::Date createQLDate(const long &date);
+    std::vector < QuantLib::Date > createQLDate(const std::vector < long > &dates);
 
     std::vector < long > dateToLongVec(const std::vector < QuantLib::Date > &v);
 }

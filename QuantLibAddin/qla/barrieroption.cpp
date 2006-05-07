@@ -25,7 +25,7 @@
 namespace QuantLibAddin {
 
     BarrierOption::BarrierOption(
-            const std::string &barrierTypeID,
+            const QuantLib::Barrier::Type &barrierType,
             const double &barrier,
             const double &rebate,
             const std::string &handleBlackScholes,
@@ -42,12 +42,11 @@ namespace QuantLibAddin {
         OH_GET_REFERENCE(exercise, handleExercise, Exercise,
             QuantLib::Exercise)
 
-        QuantLib::Barrier::Type barrierType = 
-            Create<QuantLib::Barrier::Type>()(barrierTypeID);
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> >()(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
+
         mInstrument = boost::shared_ptr<QuantLib::BarrierOption>(
             new QuantLib::BarrierOption(
                 barrierType,

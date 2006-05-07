@@ -22,7 +22,7 @@
     <tensorRank>scalar</tensorRank>
     <description>day counter (e.g. Actual365Fixed)</description>
   </Parameter>
-  <Parameter name='settlementDate'>
+  <Parameter name='settlementDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>settlement date</description>

@@ -42,13 +42,11 @@ namespace QuantLibAddin {
     }
 
     BermudanExercise::BermudanExercise(
-            const std::vector < long > &dates,
+            const std::vector < QuantLib::Date > &dates,
             const bool &payoffAtExpiry) {
-        std::vector<QuantLib::Date> datesQL =
-            longVectorToDateVector(dates);
         exercise_ = boost::shared_ptr<QuantLib::Exercise>(
             new QuantLib::BermudanExercise(
-                datesQL,
+                dates,
                 payoffAtExpiry));
     }
 

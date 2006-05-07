@@ -52,7 +52,7 @@ namespace QuantLibAddin {
     class BermudanExercise : public Exercise {
     public:
         BermudanExercise(
-            const std::vector < long > &dates,
+            const std::vector < QuantLib::Date > &dates,
             const bool &payoffAtExpiry);
     };
 

@@ -48,9 +48,9 @@ class Category(serializable.Serializable):
                 yield function
 
     def includeList(self):
+        ret = ''
         if self.__dict__.has_key('includes'):
-            ret = ''
-            for include in self.includes: ret += '#include <%s>' % include
+            for include in self.includes: ret += '#include <%s>\n' % include
         else:
             ret = '#include <qla/%s.hpp>' % self.name
             if self.containsConstructor():

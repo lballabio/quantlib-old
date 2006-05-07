@@ -41,7 +41,7 @@
 <libraryFunction>BermudanExercise</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='dates'>
+    <Parameter name='dates' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
         <description>dates</description>

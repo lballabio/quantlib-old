@@ -27,7 +27,7 @@ namespace QuantLibAddin {
     class BarrierOption : public OneAssetOption {
     public:
         BarrierOption(
-            const std::string &barrierTypeID,
+            const QuantLib::Barrier::Type &barrierType,
             const double &barrier,
             const double &rebate,
             const std::string &handleBlackScholes,

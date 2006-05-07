@@ -28,12 +28,12 @@
 namespace QuantLibAddin {
 
     CapFloor::CapFloor(
-            const std::string&         couponVectorID,
-            const std::string&         termStructureID,
-            const std::vector<double>& capStrikes,
-            const std::vector<double>& floorStrikes,
-            const std::string&         engineID,
-            const std::string&         optionID) {
+            const std::string&              couponVectorID,
+            const std::string&              termStructureID,
+            const std::vector<double>&      capStrikes,
+            const std::vector<double>&      floorStrikes,
+            const std::string&              engineID,
+            const QuantLib::CapFloor::Type& option) {
 
         OH_GET_REFERENCE(engine, engineID, 
             AnalyticCapFloorEngine, QuantLib::PricingEngine)
@@ -44,9 +44,6 @@ namespace QuantLibAddin {
 
         OH_GET_OBJECT(couponVectorWrapper, couponVectorID, CouponVector)
         const CashFlowVector& couponVector = couponVectorWrapper->getObject();
-
-        QuantLib::CapFloor::Type option =
-            Create<QuantLib::CapFloor::Type>()(optionID);
 
         mInstrument = boost::shared_ptr<QuantLib::CapFloor>(
             new QuantLib::CapFloor(option,

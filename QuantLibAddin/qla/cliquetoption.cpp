@@ -28,34 +28,29 @@ namespace QuantLibAddin {
 
     CliquetOption::CliquetOption(
             const std::string &handleBlackScholes,
-            const std::string &optionTypeID,
+            const QuantLib::Option::Type &optionType,
             const double &strike,
             const long &expiryDate,
-            const std::vector < long > &resetDates,
+            const std::vector < QuantLib::Date > &resetDates,
             const std::string &engineID,
             const long &timeSteps) {
 
         OH_GET_REFERENCE(blackScholesProcess, handleBlackScholes, 
             GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)
 
-        QuantLib::Option::Type type = 
-            Create<QuantLib::Option::Type>()(optionTypeID);
-
         boost::shared_ptr<QuantLib::PercentageStrikePayoff> payoff(
-            new QuantLib::PercentageStrikePayoff(type, strike));
+            new QuantLib::PercentageStrikePayoff(optionType, strike));
         boost::shared_ptr<QuantLib::EuropeanExercise> exercise(
             new QuantLib::EuropeanExercise(
                 QuantLib::Date(expiryDate)));
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
-        std::vector<QuantLib::Date> resetDatesQL =
-            longVectorToDateVector(resetDates);
         mInstrument = boost::shared_ptr<QuantLib::CliquetOption>(
             new QuantLib::CliquetOption(
                 blackScholesProcess, 
                 payoff, 
                 exercise, 
-                resetDatesQL,
+                resetDates,
                 pricingEngine));
     }
 

@@ -17,7 +17,7 @@
         <tensorRank>scalar</tensorRank>
         <description>maturity</description>
     </Parameter>
-    <Parameter name='timeUnits'>
+    <Parameter name='timeUnits' ql_type='QuantLib::TimeUnit'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>time units applying to above maturity</description>
@@ -32,7 +32,7 @@
         <tensorRank>scalar</tensorRank>
         <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
-    <Parameter name='convention'>
+    <Parameter name='convention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>business day convention (e.g. ModifiedFollowing)</description>
@@ -69,7 +69,7 @@
     <tensorRank>scalar</tensorRank>
     <description>day counter (e.g. Actual365Fixed)</description>
   </Parameter>
-  <Parameter name='bDayConvention'>
+  <Parameter name='bDayConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>business day convention (e.g. ModifiedFollowing)</description>
@@ -101,7 +101,7 @@
         <tensorRank>scalar</tensorRank>
         <description>maturity</description>
     </Parameter>
-    <Parameter name='timeUnits'>
+    <Parameter name='timeUnits' ql_type='QuantLib::TimeUnit'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>time units applying to above maturity</description>
@@ -116,12 +116,12 @@
         <tensorRank>scalar</tensorRank>
         <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
-    <Parameter name='fixedLegFrequency'>
+    <Parameter name='fixedLegFrequency' ql_type='QuantLib::Frequency'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>fixed leg frequency (e.g. Annual)</description>
     </Parameter>
-    <Parameter name='fixedLegConvention'>
+    <Parameter name='fixedLegConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>fixed leg convention (e.g. Unadjusted)</description>
@@ -131,12 +131,12 @@
     <tensorRank>scalar</tensorRank>
     <description>day counter (e.g. Actual365Fixed)</description>
   </Parameter>
-  <Parameter name='floatingLegFrequency'>
+  <Parameter name='floatingLegFrequency' ql_type='QuantLib::Frequency'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>floating leg frequency (e.g. Quarterly, Semiannual, etc.)</description>
     </Parameter>
-    <Parameter name='floatingLegConvention'>
+    <Parameter name='floatingLegConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>floating leg convention (e.g. ModifiedFollowing)</description>
@@ -272,8 +272,7 @@
 <libraryFunction>DiscountCurve</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <!--Parameter name='curveDates' ql_type='QuantLib::Date'-->
-    <Parameter name='curveDates'>
+    <Parameter name='curveDates' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
         <description>dates of the curve</description>
@@ -295,8 +294,7 @@
 <libraryFunction>ZeroCurve</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-  <!--Parameter name='curveDates' ql_type='QuantLib::Date'-->
-  <Parameter name='curveDates'>
+  <Parameter name='curveDates' ql_type='QuantLib::Date'>
     <type>long</type>
       <tensorRank>vector</tensorRank>
       <description>dates of the curve</description>
@@ -318,8 +316,7 @@
   <libraryFunction>ForwardCurve</libraryFunction>
   <functionCategory>QuantLib</functionCategory>
   <Parameters>
-    <!--Parameter name='curveDates' ql_type='QuantLib::Date'-->
-    <Parameter name='curveDates'>
+    <Parameter name='curveDates' ql_type='QuantLib::Date'>
       <type>long</type>
         <tensorRank>vector</tensorRank>
         <description>dates of the curve</description>

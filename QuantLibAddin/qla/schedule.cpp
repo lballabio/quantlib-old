@@ -24,23 +24,14 @@
 namespace QuantLibAddin {
 
     Schedule::Schedule(
-            const QuantLib::Calendar& calendar,
-        const long          &lStartDate,
-        const long          &lEndDate,
-        const std::string   &frequencyID,
-        const std::string   &conventionID,
-     // const long          &lStubDate,
-        const bool          &startFromEnd,
-        const bool          &longFinal) {
-        
-        QuantLib::Date startDate (lStartDate);
-        QuantLib::Date endDate   (lEndDate);
-        QuantLib::Date stubDate/*(lStubDate)*/;
-        
-        QuantLib::Frequency frequency =
-            Create<QuantLib::Frequency>()(frequencyID);
-        QuantLib::BusinessDayConvention convention =
-            Create<QuantLib::BusinessDayConvention>()(conventionID);
+        const QuantLib::Calendar                &calendar,
+        const QuantLib::Date                    &startDate,
+        const QuantLib::Date                    &endDate,
+        const QuantLib::Frequency               &frequency,
+        const QuantLib::BusinessDayConvention   &convention,
+     // const QuantLib::Date                    &stubDate,
+        const bool                              &startFromEnd,
+        const bool                              &longFinal) {
         
         schedule_ = boost::shared_ptr<QuantLib::Schedule>(
             new QuantLib::Schedule(calendar,
@@ -48,7 +39,7 @@ namespace QuantLibAddin {
                                    endDate,
                                    frequency,
                                    convention,
-                                   stubDate,
+                                   QuantLib::Date(), // stubDate
                                    startFromEnd,
                                    longFinal));
     }

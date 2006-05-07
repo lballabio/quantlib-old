@@ -7,12 +7,12 @@
 <libraryFunction>VanillaSwap</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='StartDate'>
+    <Parameter name='StartDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>start date</description>
     </Parameter>
-    <Parameter name='maturityDate'>
+    <Parameter name='maturityDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>maturity date</description>
@@ -37,12 +37,12 @@
         <tensorRank>scalar</tensorRank>
         <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
-    <Parameter name='FixFrq'>
+    <Parameter name='FixFrq' ql_type='QuantLib::Frequency'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>Fixed Leg Frequency</description>
     </Parameter>
-    <Parameter name='FixBDayConvention'>
+    <Parameter name='FixBDayConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>Fixed Leg Business Day Convention</description>
@@ -62,17 +62,17 @@
         <tensorRank>scalar</tensorRank>
         <description>fixed leg schedule long first/last period</description>
     </Parameter>
-    <Parameter name='FltFrq'>
+    <!--Parameter name='FltFrq'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>Floating Leg Frequency</description>
+    </Parameter-->
+    <Parameter name='FloatdayCounter' ql_type='QuantLib::DayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>floating day counter (e.g. Actual365Fixed)</description>
     </Parameter>
-  <Parameter name='FloatdayCounter' ql_type='QuantLib::DayCounter'>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>floating day counter (e.g. Actual365Fixed)</description>
-  </Parameter>
-  <Parameter name='IndexHandle' libraryClass='Xibor'>
+    <Parameter name='IndexHandle' libraryClass='Xibor'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>handle of the Index for the float leg</description>

@@ -32,7 +32,7 @@ namespace QuantLibAddin {
             const std::string &payoffID,
             const double &strike,
             const std::string &handleExercise,
-            const std::vector < long > &dividendDates,
+            const std::vector < QuantLib::Date > &dividendDates,
             const std::vector < double > &dividends,
             const std::string &engineID,
             const long &timeSteps);

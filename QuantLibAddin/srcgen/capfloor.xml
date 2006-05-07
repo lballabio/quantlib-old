@@ -44,7 +44,7 @@
         <tensorRank>scalar</tensorRank>
         <description>handle to pricing engine</description>
     </Parameter>
-    <Parameter name='optionType'>
+    <Parameter name='optionType' ql_type='QuantLib::CapFloor::Type'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>option type (cap, floor or collar)</description>

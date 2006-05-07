@@ -28,10 +28,10 @@ namespace QuantLibAddin {
     public:
         CliquetOption(
             const std::string &handleBlackScholes,
-            const std::string &optionTypeID,
+            const QuantLib::Option::Type &optionType,
             const double &strike,
             const long &expiryDate,
-            const std::vector < long > &resetDates,
+            const std::vector < QuantLib::Date > &resetDates,
             const std::string &engineID,
             const long &timeSteps);
 

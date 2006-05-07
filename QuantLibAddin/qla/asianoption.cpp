@@ -27,7 +27,7 @@
 namespace QuantLibAddin {
 
     ContinuousAveragingAsianOption::ContinuousAveragingAsianOption(
-            const std::string &averageID,
+            const QuantLib::Average::Type &averageType,
             const std::string &handleBlackScholes,
             const std::string &optionTypeID,
             const std::string &payoffID,
@@ -42,13 +42,11 @@ namespace QuantLibAddin {
         OH_GET_REFERENCE(exercise, handleExercise, Exercise,
             QuantLib::Exercise)
 
-        QuantLib::Average::Type averageType = 
-            Create<QuantLib::Average::Type>()(averageID);
-
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> >()(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
+
         mInstrument = 
             boost::shared_ptr<QuantLib::ContinuousAveragingAsianOption>(
                 new QuantLib::ContinuousAveragingAsianOption(
@@ -60,10 +58,10 @@ namespace QuantLibAddin {
     }
 
     DiscreteAveragingAsianOption::DiscreteAveragingAsianOption(
-            const std::string &averageID,
+            const QuantLib::Average::Type &averageType,
             const double &runningAccumulator,
             const long &pastFixings,
-            const std::vector < long > &fixingDates,
+            const std::vector < QuantLib::Date > &fixingDates,
             const std::string &handleBlackScholes,
             const std::string &optionTypeID,
             const std::string &payoffID,
@@ -78,14 +76,10 @@ namespace QuantLibAddin {
         OH_GET_REFERENCE(exercise, handleExercise, Exercise,
             QuantLib::Exercise)
 
-        QuantLib::Average::Type averageType = 
-            Create<QuantLib::Average::Type>()(averageID);
         boost::shared_ptr<QuantLib::StrikedTypePayoff> payoff =
             Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> >()(optionTypeID, payoffID, strike);
         boost::shared_ptr<QuantLib::PricingEngine> pricingEngine =
             Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
-        std::vector<QuantLib::Date> fixingDatesQL =
-            longVectorToDateVector(fixingDates);
 
         mInstrument = 
             boost::shared_ptr<QuantLib::DiscreteAveragingAsianOption>(
@@ -93,7 +87,7 @@ namespace QuantLibAddin {
                     averageType,
                     runningAccumulator,
                     pastFixings,
-                    fixingDatesQL,
+                    fixingDates,
                     blackScholesProcess, 
                     payoff, 
                     exercise, 

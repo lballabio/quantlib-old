@@ -27,7 +27,7 @@ namespace QuantLibAddin {
     class ContinuousAveragingAsianOption : public OneAssetOption {
     public:
         ContinuousAveragingAsianOption(
-            const std::string &averageID,
+            const QuantLib::Average::Type &averageType,
             const std::string &handleBlackScholes,
             const std::string &optionTypeID,
             const std::string &payoffID,
@@ -42,10 +42,10 @@ namespace QuantLibAddin {
     class DiscreteAveragingAsianOption : public OneAssetOption {
     public:
         DiscreteAveragingAsianOption(
-            const std::string &averageID,
+            const QuantLib::Average::Type &averageType,
             const double &runningAccumulator,
             const long &pastFixings,
-            const std::vector < long > &fixingDates,
+            const std::vector < QuantLib::Date > &fixingDates,
             const std::string &handleBlackScholes,
             const std::string &optionTypeID,
             const std::string &payoffID,

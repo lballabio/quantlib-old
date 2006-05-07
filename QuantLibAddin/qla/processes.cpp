@@ -33,11 +33,10 @@ namespace QuantLibAddin {
             const std::string &handleBlackVol,
             const double &underlying,
             const QuantLib::DayCounter &dayCounter,
-            const long &settlementDateLong,
+            const QuantLib::Date &settlementDate,
             const double &riskFreeRate,
             const double &dividendYield) {
 
-        QuantLib::Date settlementDate(settlementDateLong);
         QuantLib::Handle<QuantLib::Quote> underlyingH( 
             boost::shared_ptr<QuantLib::Quote>(
             new QuantLib::SimpleQuote(underlying)));

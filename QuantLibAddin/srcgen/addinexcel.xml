@@ -68,6 +68,7 @@
             <replacements>
                 <optional>XLOPER</optional>
                 <string>char</string>
+                <void>bool</void>
                 <any>XLOPER</any>
             </replacements>
         </SubRule>
@@ -133,7 +134,7 @@
     </Rules>
 </RuleGroup>
 
-    <RuleGroup name='libraryReturnType'>       
+<RuleGroup name='libraryReturnType'>       
     <Rules>
     <Rule name='setPrefix'>
         <SubRules>
@@ -303,6 +304,7 @@
                 <double>E</double>
                 <bool>L</bool>
                 <string>C</string>
+                <void>L</void>
                 <any>P</any>
             </replacements>
         </SubRule>

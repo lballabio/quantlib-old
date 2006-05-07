@@ -30,7 +30,7 @@ namespace QuantLibAddin {
             const std::string &handleBlackVol,
             const double &underlying,
             const QuantLib::DayCounter &dayCounter,
-            const long &settlementDateLong,
+            const QuantLib::Date &settlementDate,
             const double &riskFreeRate,
             const double &dividendYield);
         virtual boost::shared_ptr<void> getReference() const {

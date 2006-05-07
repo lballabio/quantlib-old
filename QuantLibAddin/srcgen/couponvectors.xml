@@ -12,7 +12,7 @@
         <tensorRank>scalar</tensorRank>
         <description>schedule</description>
     </Parameter>
-    <Parameter name='conventionID'>
+    <Parameter name='conventionID' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>payment adjustment</description>
@@ -27,7 +27,7 @@
         <tensorRank>vector</tensorRank>
         <description>coupon fixed rates</description>
     </Parameter>
-	<Parameter name='dayCountID'>
+	<Parameter name='dayCountID' ql_type='QuantLib::DayCounter'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>day counter</description>

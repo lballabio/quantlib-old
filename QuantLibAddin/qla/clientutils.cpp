@@ -23,11 +23,19 @@
 
 namespace QuantLibAddin {
 
-    QuantLib::Date createQLDate(long date) {
+    QuantLib::Date createQLDate(const long &date) {
         if (date) 
             return QuantLib::Date(date);
         else 
             return QuantLib::Date();
+    }
+
+    std::vector < QuantLib::Date > createQLDate(const std::vector < long > &dates) {
+        std::vector < QuantLib::Date > ret;
+        for (std::vector < long >::const_iterator i = dates.begin();
+            i != dates.end(); i++)
+            ret.push_back(QuantLib::Date(*i));
+        return ret;
     }
 
     std::vector < long > dateToLongVec(const std::vector < QuantLib::Date > &v) {

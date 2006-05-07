@@ -6,7 +6,6 @@
   </includes>
   <Functions>
 
-
     <Procedure name='qlHolidayList' >
       <description>returns the holidays in a period between two dates according to a given holiday calendar</description>
       <functionCategory>QuantLib</functionCategory>

@@ -43,19 +43,14 @@ namespace QuantLibAddin {
     }
 
     FixedRateCouponVector::FixedRateCouponVector(
-            const std::string         &scheduleID,
-            const std::string         &conventionID,
-            const std::vector<double> &nominals,
-            const std::vector<double> &couponRates,
-            const std::string         &dayCountID) {
+            const std::string                       &scheduleID,
+            const QuantLib::BusinessDayConvention   &convention,
+            const std::vector<double>               &nominals,
+            const std::vector<double>               &couponRates,
+            const QuantLib::DayCounter              &dayCount) {
 
         OH_GET_OBJECT(scheduleWrapper, scheduleID, Schedule)
         const QuantLib::Schedule& schedule = scheduleWrapper->getObject();
-
-        QuantLib::BusinessDayConvention convention =
-            Create<QuantLib::BusinessDayConvention>()(conventionID);
-        QuantLib::DayCounter dayCount =
-            Create<QuantLib::DayCounter>()(dayCountID);
         
         cashFlowVector_ =
             QuantLib::FixedRateCouponVector(schedule,

@@ -12,22 +12,22 @@
         <tensorRank>scalar</tensorRank>
         <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
-    <Parameter name='startDate'>
+    <Parameter name='startDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>start date</description>
     </Parameter>
-    <Parameter name='endDate'>
+    <Parameter name='endDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>end date</description>
     </Parameter>
-    <Parameter name='frequency'>
+    <Parameter name='frequency' ql_type='QuantLib::Frequency'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>frequency</description>
     </Parameter>
-    <Parameter name='convention'>
+    <Parameter name='convention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>business day convention</description>

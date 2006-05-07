@@ -179,7 +179,13 @@ class Member(Function):
 
 class Procedure(Function):
     """Procedural function not associated with any QuantLib object."""
-
+    RET_VOID = '''\
+        static bool returnValue = true;
+        %s'''
+    RET = '''\
+        %s returnValue;
+        returnValue = %s'''
+        
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
         super(Procedure, self).serialize(serializer)
@@ -187,12 +193,10 @@ class Procedure(Function):
 
     def generateBody(self, addin):
         """Generate source code for function body."""
-        if self.returnValue.type == common.VOID:
-            returnCommand = ''
-        else:            
-            returnCommand = addin.libraryReturnType.apply(self.returnValue) \
-                + ' returnValue;\n        returnValue = '
         libraryCall = '%s(%s)%s;' % (self.alias, 
             self.generateParameterList(addin.libraryCall, True, True), self.returnValue.returnFunction())
-        return '        ' + returnCommand + libraryCall
-
+        if self.returnValue.type == common.VOID:
+            return Procedure.RET_VOID % libraryCall
+        else:
+            return Procedure.RET % (addin.libraryReturnType.apply(self.returnValue),
+                libraryCall)

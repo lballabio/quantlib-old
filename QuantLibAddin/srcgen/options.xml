@@ -7,7 +7,7 @@
 <libraryFunction>BarrierOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='typeBarrier'>
+    <Parameter name='barrierType' ql_type='QuantLib::Barrier::Type'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>barrier type</description>
@@ -64,7 +64,7 @@
 <libraryFunction>ContinuousAveragingAsianOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='average'>
+    <Parameter name='average' ql_type='QuantLib::Average::Type'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>average type</description>
@@ -116,7 +116,7 @@
         <tensorRank>scalar</tensorRank>
         <description>handle of a Black Scholes Process object</description>
     </Parameter>
-    <Parameter name='optionType'>
+    <Parameter name='optionType' ql_type='QuantLib::Option::Type'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>option type</description>
@@ -131,7 +131,7 @@
         <tensorRank>scalar</tensorRank>
         <description>expiry date</description>
     </Parameter>
-    <Parameter name='resetDates'>
+    <Parameter name='resetDates' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
         <description>vector of reset dates</description>
@@ -153,7 +153,7 @@
 <libraryFunction>DiscreteAveragingAsianOption</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='average'>
+    <Parameter name='average' ql_type='QuantLib::Average::Type'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>average type</description>
@@ -168,7 +168,7 @@
         <tensorRank>scalar</tensorRank>
         <description>past fixings</description>
     </Parameter>
-    <Parameter name='fixingDates'>
+    <Parameter name='fixingDates' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
         <description>fixing dates</description>
@@ -240,7 +240,7 @@
         <tensorRank>scalar</tensorRank>
         <description>handle of an Exercise object</description>
     </Parameter>
-    <Parameter name='dividendDates'>
+    <Parameter name='dividendDates' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
         <description>vector of dividend dates</description>

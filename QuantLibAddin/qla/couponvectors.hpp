@@ -46,11 +46,11 @@ namespace QuantLibAddin {
     class FixedRateCouponVector : public CouponVector {
       public:
         FixedRateCouponVector(
-            const std::string         &scheduleID,
-            const std::string         &conventionID,
-            const std::vector<double> &nominals,
-            const std::vector<double> &couponRates,
-            const std::string         &dayCountID);
+            const std::string                       &scheduleID,
+            const QuantLib::BusinessDayConvention   &convention,
+            const std::vector<double>               &nominals,
+            const std::vector<double>               &couponRates,
+            const QuantLib::DayCounter              &dayCountID);
         
         virtual std::vector<std::vector<double> > getLeg();
     };

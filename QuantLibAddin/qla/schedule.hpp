@@ -26,14 +26,14 @@ namespace QuantLibAddin {
     class Schedule : public ObjHandler::Object {
       public:
         Schedule(
-            const QuantLib::Calendar& calendar,
-            const long          &lStartDate,
-            const long          &lEndDate,
-            const std::string   &frequencyID,
-            const std::string   &conventionID,
-         // const long          &lStubDate,
-            const bool          &startFromEnd,
-            const bool          &longFinal);
+            const QuantLib::Calendar                &calendar,
+            const QuantLib::Date                    &lStartDate,
+            const QuantLib::Date                    &lEndDate,
+            const QuantLib::Frequency               &frequency,
+            const QuantLib::BusinessDayConvention   &convention,
+         // const QuantLib::Date                    &StubDate,
+            const bool                              &startFromEnd,
+            const bool                              &longFinal);
         
         virtual boost::shared_ptr<void> getReference() const {
             return boost::static_pointer_cast<void>(schedule_);
