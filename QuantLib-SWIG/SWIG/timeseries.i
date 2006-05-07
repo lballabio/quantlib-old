@@ -24,6 +24,8 @@
 
 %{
 using QuantLib::TimeSeries;
+using QuantLib::IntervalPrice;
+using QuantLib::TimeSeriesIntervalPriceHelper;
 %}
 
 template <class T>
@@ -33,16 +35,16 @@ class TimeSeries {
     #endif
   public:
     TimeSeries();
-    TimeSeries(const std::vector<Date>&, const std::vector<Real>&);
+    TimeSeries(const std::vector<Date>&, const std::vector<T>&);
     std::vector<Date> dates();
     std::vector<T> values();
     Size size();
     %extend {
         #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGR)
-        Real __getitem__(const Date& d) {
+        T __getitem__(const Date& d) {
             return (*self)[d];
         }
-        void __setitem__(const Date& d, Real value) {
+        void __setitem__(const Date& d, const T& value) {
             (*self)[d] = value;
         }
         #endif
@@ -50,7 +52,32 @@ class TimeSeries {
 };
 
 %template(RealTimeSeries) TimeSeries<Real>;
+%template(IntervalPriceTimeSeries) TimeSeries<IntervalPrice>;
+
+class IntervalPrice {
+      public:
+      IntervalPrice(Real, Real, Real, Real);
+      void setValue(Real, Real, Real, Real);
+      Real open();
+      Real close();
+      Real high();
+      Real low();
+};
+
+class TimeSeriesIntervalPriceHelper {
+      public:
+        static 
+        TimeSeries<IntervalPrice> create(const std::vector<Date>& d,
+                                         const std::vector<Real>& open,
+                                         const std::vector<Real>& close,
+                                         const std::vector<Real>& high,
+                                         const std::vector<Real>& low);
+};
+
+
+
 typedef RealTimeSeries VolatilityTimeSeries;
+
 
 #if defined(SWIGR)
 %Rruntime %{
