@@ -55,9 +55,11 @@ class TimeSeries {
 %template(IntervalPriceTimeSeries) TimeSeries<IntervalPrice>;
 
 class IntervalPrice {
+      enum Type {Open, Close, High, Low};
       public:
       IntervalPrice(Real, Real, Real, Real);
       void setValue(Real, Real, Real, Real);
+      Real value(IntervalPrice::Type t);
       Real open();
       Real close();
       Real high();
@@ -71,7 +73,12 @@ class TimeSeriesIntervalPriceHelper {
                                          const std::vector<Real>& open,
                                          const std::vector<Real>& close,
                                          const std::vector<Real>& high,
-                                         const std::vector<Real>& low);
+                                         const std::vector<Real>&
+      low);
+      static std::vector<Real> extractValues(TimeSeries<IntervalPrice>,
+      IntervalPrice::Type t);
+      static TimeSeries<Real> extractComponent(TimeSeries<IntervalPrice>,
+      IntervalPrice::Type t);
 };
 
 
@@ -88,6 +95,18 @@ data.frame("date"=as(x$dates(), "character"),
 
 setMethod("print", '_p_TimeSeriesTdouble_t',
 function(x) print(as.data.frame(x)))
+
+setMethod('as.data.frame', '_p_TimeSeriesTIntervalPrice_t',
+function(x,row.names,optional)
+data.frame("date"=as(x$dates(), "character"),
+"open"=as(TimeSeriesIntervalPriceHelper_extractValues(x, "Open"), "numeric"),
+"close"=as(TimeSeriesIntervalPriceHelper_extractValues(x, "Close"), "numeric"),
+"high"=as(TimeSeriesIntervalPriceHelper_extractValues(x, "High"), "numeric"),
+"low"=as(TimeSeriesIntervalPriceHelper_extractValues(x, "Low"), "numeric")))
+
+setMethod("print", '_p_TimeSeriesTIntervalPrice_t',
+function(x) print(as.data.frame(x)))
 %}
+
 #endif
 #endif
