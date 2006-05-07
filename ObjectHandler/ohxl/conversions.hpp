@@ -43,8 +43,10 @@ namespace ObjHandler {
     template < class T >
     void vectorToXloper(XLOPER &xVector, const std::vector < T > &v) {
         if (v.empty()) {
-            xVector.xltype = xltypeNum;
-            xVector.val.num = 0;
+            //xVector.xltype = xltypeNum;
+            //xVector.val.num = 0;
+            xVector.xltype = xltypeErr;
+            xVector.val.err = xlerrNA;
             return;
         }
         xVector.xltype = xltypeMulti | xlbitDLLFree;
@@ -60,8 +62,10 @@ namespace ObjHandler {
     template < class T >
     void matrixToXloper(XLOPER &xMatrix, const std::vector < std::vector < T > > &vv) {
         if (vv.empty() || vv[0].empty()) {
-            xMatrix.xltype = xltypeNum;
-            xMatrix.val.num = 0;
+            //xMatrix.xltype = xltypeNum;
+            //xMatrix.val.num = 0;
+            xMatrix.xltype = xltypeErr;
+            xMatrix.val.err = xlerrNA;
             return;
         }
         xMatrix.xltype = xltypeMulti | xlbitDLLFree;
