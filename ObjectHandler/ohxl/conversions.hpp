@@ -54,7 +54,7 @@ namespace ObjHandler {
         xVector.val.array.columns = 1;
         xVector.val.array.lparray = new XLOPER[v.size()]; 
         if (!xVector.val.array.lparray)
-            throw std::exception("vectorToXloper: error on call to new");
+            throw Exception("vectorToXloper: error on call to new");
         for (unsigned int i=0; i<v.size(); i++)
             scalarToXloper(xVector.val.array.lparray[i], v[i]);
     }
@@ -73,7 +73,7 @@ namespace ObjHandler {
         xMatrix.val.array.columns = vv[0].size();
         xMatrix.val.array.lparray = new XLOPER[xMatrix.val.array.rows * xMatrix.val.array.columns]; 
         if (!xMatrix.val.array.lparray)
-            throw std::exception("matrixToXloper: error on call to new");
+            throw Exception("matrixToXloper: error on call to new");
         for (unsigned int i=0; i<vv.size(); i++) {
             std::vector < T > v = vv[i];
             for (unsigned int j=0; j<v.size(); j++)
@@ -101,7 +101,7 @@ namespace ObjHandler {
         bool needToFree = false;
         try {
             if (xVector->xltype & xltypeErr)
-                throw std::exception("input value is #NULL (xltypeErr)");
+                throw Exception("input value is #NULL (xltypeErr)");
             if (xVector->xltype & (xltypeMissing | xltypeNil))
                 return;
 
@@ -129,7 +129,7 @@ namespace ObjHandler {
                 Excel(xlFree, 0, 1, &xTemp);
             std::ostringstream msg;
             msg << "operToVector: " << e.what();
-            throw std::exception(msg.str().c_str());
+            throw Exception(msg.str().c_str());
         }
     }
 
@@ -153,7 +153,7 @@ namespace ObjHandler {
         bool needToFree = false;
         try {
             if (xMatrix->xltype & xltypeErr)
-                throw std::exception("input value is #NULL (xltypeErr)");
+                throw Exception("input value is #NULL (xltypeErr)");
             if (xMatrix->xltype & (xltypeMissing | xltypeNil))
                 return;
 
@@ -185,7 +185,7 @@ namespace ObjHandler {
                 Excel(xlFree, 0, 1, &xTemp);
             std::ostringstream msg;
             msg << "operToMatrix: " << e.what();
-            throw std::exception(msg.str().c_str());
+            throw Exception(msg.str().c_str());
         }
     }
 
