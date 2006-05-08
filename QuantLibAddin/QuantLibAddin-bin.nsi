@@ -1,7 +1,6 @@
 
-# to be used with NSIS 2.0 and up
-
 !define VER_NUMBER "0.3.13"
+!define VER_NUMBER_UNDERSCORE "0_3_13"
 
 Name "QuantLibXL"
 Caption "QuantLibXL - Setup"
@@ -13,23 +12,26 @@ InstallDir $PROGRAMFILES\QuantLibXL-${VER_NUMBER}
 Icon "Docs\images\favicon.ico"
 UninstallIcon "Docs\images\favicon.ico"
 
+!include "FileFunc.nsh"
+!insertmacro un.GetTime
+
 Section
-    SetOutPath $INSTDIR
-    File "*.txt"
-    File "*.TXT"
+    SetOutPath "$INSTDIR"
+    File "LICENSE.TXT"
+    File "NEWS.txt"
+    File "README.txt"
 
-    SetOutPath $INSTDIR\xll
-    File "Addins\Excel\xll\QuantLibAddinStatic-vc80-mt-s-0_3_13.xll"
-
-    SetOutPath $INSTDIR\Workbooks
+    SetOutPath "$INSTDIR\Workbooks"
     File /r "Clients\Excel\*.xls"
 
-    SetOutPath $INSTDIR\framework
-    File /r "framework\*"
+    SetOutPath "$INSTDIR\framework"
+    File "framework\*.xla"
 
-    SetOutPath $INSTDIR\Docs
-    File /nonfatal "Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
-    File "Docs\images\favicon.ico"
+    SetOutPath "$INSTDIR\xll"
+    File "Addins\Excel\xll\QuantLibAddinStatic-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
+
+    SetOutPath "$INSTDIR\Docs"
+    File "Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
@@ -70,7 +72,30 @@ UninstallText "This will uninstall QuantLibXL. Hit next to continue."
 Section "Uninstall"
     DeleteRegKey HKEY_LOCAL_MACHINE \
         "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL"
-    RMDir /r /REBOOTOK "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}"
-    RMDir /r /REBOOTOK "$INSTDIR"
+
+    !execute 'unList.exe /DATE=1 /INSTDIR="Clients\Excel" /FILTER="*.xls" \
+        /LOG=qla1.log  /UNDIR_VAR="$INSTDIR\Workbooks" /MB=0'
+    !include "qla1.log"
+    RMDir "$INSTDIR\Workbooks"
+
+    !execute 'unList.exe /DATE=1 /INSTDIR="framework" /FILTER="*.xla" \
+        /LOG=qla2.log  /UNDIR_VAR="$INSTDIR\framework" /MB=0'
+    !include "qla2.log"
+    RMDir "$INSTDIR\framework"
+
+    Delete "$INSTDIR\xll\QuantLibAddinStatic-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
+    RMDir "$INSTDIR\xll"
+
+    Delete "$INSTDIR\Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
+    RMDir "$INSTDIR\Docs"
+
+    Delete "$INSTDIR\LICENSE.TXT"
+    Delete "$INSTDIR\NEWS.txt"
+    Delete "$INSTDIR\README.txt"
+    Delete "$INSTDIR\QuantLibXLUninstall.exe"
+    RMDir "$INSTDIR"
+
+    RMDir /r "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}"
+
 SectionEnd
 
