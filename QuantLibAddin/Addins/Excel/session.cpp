@@ -21,10 +21,12 @@
 
 #include <ql/Patterns/singleton.hpp>
 #include <ql/Utilities/strings.hpp>
+#include <oh/exception.hpp>
 #include <ohxl/conversions.hpp>
 #include <ohxl/functioncall.hpp>
 #include <exception>
 #include <sstream>
+#include <boost/regex.hpp>
 
 namespace QuantLibAddin {
 
@@ -50,65 +52,35 @@ namespace QuantLibAddin {
 
     }
 
-    // accept cell address in one of the following formats:
+    // Accept cell address in one of the following formats (case insensitive):
     // [BOOK.XLS]SHEET!R1C1     (standard)
     // '[BOOK.XLS]SHEET X'!R1C1 (where sheet name contains spaces)
     // BOOK.XLS!R1C1            (book w/single sheet having same name as book)
     // and extract substring "BOOK.XLS"
+    // NB: We don't test for a match on the ".XLS" suffix as Excel omits this
+    //     suffix for a new book that hasn't yet been saved.
 
-    std::string Session::bookFromAddress(const std::string &address) {
-
-        std::string bookName;
-        if (address[0] == '[') {
-
-            int endBracket = address.find("]", 1);
-            if (endBracket == std::string::npos) {
-                std::ostringstream err;
-                err << "error interpreting address " << address
-                    << " unable to locate closing square bracket ']'";
-				throw std::exception(err.str().c_str());
-            }
-
-            bookName = address.substr(1, endBracket - 1);
-
-        } else if (address[0] == '\'') {
-
-            int endBracket = address.find("]", 2);
-            if (endBracket == std::string::npos) {
-                std::ostringstream err;
-                err << "error interpreting address " << address
-                    << " unable to locate closing square bracket ']'";
-				throw std::exception(err.str().c_str());
-            }
-
-            bookName = address.substr(2, endBracket - 2);
-
+    std::string Session::bookFromAddress(const std::string &cellAddress) {
+        static const boost::regex REGEX_BOOK_STANDARD("\\[(.*)\\].*!.*", 
+            boost::regex_constants::icase);
+        static const boost::regex REGEX_BOOK_SPACE("'\\[(.*)\\].*'!.*", 
+            boost::regex_constants::icase);
+        static const boost::regex REGEX_BOOK_NOSHEET("(.*)!.*", 
+            boost::regex_constants::icase);
+        boost::smatch matchResult;
+        if ((regex_match(cellAddress, matchResult, REGEX_BOOK_STANDARD))
+        || (regex_match(cellAddress, matchResult, REGEX_BOOK_SPACE))
+        || (regex_match(cellAddress, matchResult, REGEX_BOOK_NOSHEET))) {
+            return matchResult.str(1);
         } else {
-
-            int bang = address.find("!");
-            if (bang == std::string::npos) {
-                std::ostringstream err;
-                err << "error interpreting address " << address
-                    << " unable to locate bookname delimiter '!'";
-                throw std::exception(err.str().c_str());
-            }
-
-            bookName = address.substr(0, bang);
-
-        }
-
-        // sanity check
-        std::string suffix = bookName.substr(bookName.length() - 4);
-        if (QuantLib::uppercase(suffix) != ".XLS") {
             std::ostringstream err;
-            err << "error interpreting address '" << address
-                << "' expected book name '" << bookName
-                << "' to have suffix '.XLS',"
-                << "detected suffix '" << suffix << "'";
-            throw std::exception(err.str().c_str());
+            err << "unable to interpret cell address: " << cellAddress <<
+                " because it is not in any of the three expected formats: "
+                "1) [BOOK.XLS]SHEET!R1C1 "
+                "2) '[BOOK.XLS]SHEET'!R1C1 "
+                "3) BOOK.XLS!R1C1";
+            throw ObjHandler::Exception(err.str());
         }
-
-        return bookName;
     }
 
     const QuantLib::Integer &Session::getSessionId() {
