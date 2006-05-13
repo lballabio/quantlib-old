@@ -63,10 +63,12 @@ METADATA=   addinc.xml \
             addinexcel.xml \
             addinguile.xml \
             addinqla.xml \
+            calendar.xml \
             capfloor.xml \
             config.xml \
             couponvectors.xml \
             date.xml \
+            daycounter.xml \
             enumerations.xml \
             exercise.xml \
             instruments.xml \

@@ -206,6 +206,9 @@
 				RelativePath="prices.xml">
 			</File>
 			<File
+				RelativePath="calendar.xml">
+			</File>
+			<File
 				RelativePath="capfloor.xml">
 			</File>
 			<File
@@ -216,6 +219,9 @@
 			</File>
 			<File
 				RelativePath="date.xml">
+			</File>
+			<File
+				RelativePath="daycounter.xml">
 			</File>
 			<File
 				RelativePath="enumerations.xml">

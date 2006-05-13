@@ -958,6 +958,21 @@
 </EnumerationDefinitions>
 </Enumeration>
 
+<Enumeration>
+  <type>QuantLib::JointCalendarRule</type>
+  <constructor>true</constructor>
+  <EnumerationDefinitions>
+    <EnumerationDefinition>
+      <string>JoinHolidays</string>
+      <value>QuantLib::JoinHolidays</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+      <string>JoinBusinessDays</string>
+      <value>QuantLib::JoinBusinessDays</value>
+    </EnumerationDefinition>
+  </EnumerationDefinitions>
+</Enumeration>
+
 </Enumerations>
 </root>
 

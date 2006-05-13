@@ -12,6 +12,7 @@ include_HEADERS = \
     asianoption.hpp \
     barrieroption.hpp \
     baseinstruments.hpp \
+    calendar.hpp \
     capfloor.hpp \
     clientutils.hpp \
     cliquetoption.hpp \
@@ -63,6 +64,7 @@ include_HEADERS = \
 libQuantLibAddin_la_SOURCES = \
     asianoption.cpp \
     barrieroption.cpp \
+    calendar.cpp \
     capfloor.cpp \
     clientutils.cpp \
     cliquetoption.cpp \

@@ -3,6 +3,8 @@
   <displayName>Calendar</displayName>
   <includes>
     <include>ql/Functions/calendars.hpp</include>
+    <include>qla/calendar.hpp</include>
+    <include>qla/vo_calendar.hpp</include>
   </includes>
   <Functions>
 
@@ -76,6 +78,23 @@
         <description>advanced date</description>
       </ReturnValue>
     </Procedure>
+
+    <Constructor name='qlJointCalendar'>
+      <libraryFunction>JointCalendar</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <Parameters>
+          <Parameter name='jointCalendarRule' ql_type='QuantLib::JointCalendarRule' default='"JoinHolidays"'>
+              <type>string</type>
+              <tensorRank>scalar</tensorRank>
+              <description>JoinHolidays/JoinBusinessDays</description>
+          </Parameter>
+          <Parameter name='calendars'><!--ql_type='QuantLib::Calendar'-->
+              <type>string</type>
+              <tensorRank>vector</tensorRank>
+              <description>list of two, three or four calendars to join</description>
+          </Parameter>
+      </Parameters>
+    </Constructor>
 
   </Functions>
 </Category>

@@ -339,6 +339,9 @@
 				RelativePath="qla\barrieroption.cpp">
 			</File>
 			<File
+				RelativePath="qla\calendar.cpp">
+			</File>
+			<File
 				RelativePath="qla\capfloor.cpp">
 			</File>
 			<File
@@ -411,6 +414,9 @@
 				RelativePath="qla\vanillaoption.cpp">
 			</File>
 			<File
+				RelativePath="qla\vo_calendar.cpp">
+			</File>
+			<File
 				RelativePath="qla\vo_capfloor.cpp">
 			</File>
 			<File
@@ -479,6 +485,9 @@
 			</File>
 			<File
 				RelativePath="qla\baseinstruments.hpp">
+			</File>
+			<File
+				RelativePath="qla\calendar.hpp">
 			</File>
 			<File
 				RelativePath="qla\capfloor.hpp">
@@ -566,6 +575,9 @@
 			</File>
 			<File
 				RelativePath="qla\vanillaoption.hpp">
+			</File>
+			<File
+				RelativePath="qla\vo_calendar.hpp">
 			</File>
 			<File
 				RelativePath="qla\vo_capfloor.hpp">
