@@ -53,19 +53,6 @@ namespace QuantLibAddin {
     };
 
     template<>
-    class Create<boost::shared_ptr<QuantLib::Exercise> > : 
-        private RegistryManager<QuantLib::Exercise, ComplexTypeRegistry> {
-    public:
-        boost::shared_ptr<QuantLib::Exercise> operator()(const std::string& exerciseID,
-                                                            const long &exerciseDate,
-                                                            const long &settlementDate) {
-            boost::shared_ptr<QuantLib::Exercise>(*ctor)(const long&, const long&) =
-                (boost::shared_ptr<QuantLib::Exercise>(*)(const long&, const long&)) getType(exerciseID);
-            return ctor(exerciseDate, settlementDate);
-        }
-    };
-
-    template<>
     class Create<boost::shared_ptr<QuantLib::StrikedTypePayoff> > :
         private RegistryManager<QuantLib::StrikedTypePayoff, ComplexTypeRegistry> {
     public:
