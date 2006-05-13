@@ -38,15 +38,15 @@ namespace QuantLibAddin {
     class AmericanExercise : public Exercise {
     public:
         AmericanExercise(
-            const long &earliestDate,
-            const long &latestDate,
+            const QuantLib::Date &earliestDate,
+            const QuantLib::Date &latestDate,
             const bool &payoffAtExpiry);
     };
 
     class EuropeanExercise : public Exercise {
     public:
         EuropeanExercise(
-            const long &expiryDate);
+            const QuantLib::Date &expiryDate);
     };
 
     class BermudanExercise : public Exercise {

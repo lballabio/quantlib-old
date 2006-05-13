@@ -24,21 +24,21 @@
 namespace QuantLibAddin {
 
     AmericanExercise::AmericanExercise(
-            const long &earliestDate,
-            const long &latestDate,
+            const QuantLib::Date &earliestDate,
+            const QuantLib::Date &latestDate,
             const bool &payoffAtExpiry) {
         exercise_ = boost::shared_ptr<QuantLib::Exercise>(
             new QuantLib::AmericanExercise(
-                QuantLib::Date(earliestDate), 
-                QuantLib::Date(latestDate), 
+                earliestDate,
+                latestDate,
                 payoffAtExpiry));
     }
 
     EuropeanExercise::EuropeanExercise(
-            const long &expiryDate) {
+            const QuantLib::Date &expiryDate) {
         exercise_ = boost::shared_ptr<QuantLib::Exercise>(
             new QuantLib::EuropeanExercise(
-                QuantLib::Date(expiryDate)));
+                expiryDate));
     }
 
     BermudanExercise::BermudanExercise(

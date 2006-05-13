@@ -7,12 +7,12 @@
 <libraryFunction>AmericanExercise</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='earliestDate'>
+    <Parameter name='earliestDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>earliest exercise date</description>
     </Parameter>
-    <Parameter name='latestDate'>
+    <Parameter name='latestDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>latest exercise date</description>
@@ -29,7 +29,7 @@
 <libraryFunction>EuropeanExercise</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>
-    <Parameter name='expiryDate'>
+    <Parameter name='expiryDate' ql_type='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>expiry date</description>
