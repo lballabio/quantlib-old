@@ -26,6 +26,12 @@
 %{
 using QuantLib::ConstantEstimator;
 using QuantLib::SimpleLocalEstimator;
+using QuantLib::GarmanKlassSigma1;
+using QuantLib::ParkinsonSigma;
+using QuantLib::GarmanKlassSigma3;
+using QuantLib::GarmanKlassSigma4;
+using QuantLib::GarmanKlassSigma5;
+using QuantLib::GarmanKlassSigma6;
 %}
 
 class ConstantEstimator {
@@ -35,11 +41,52 @@ public:
         calculate(const TimeSeries<Volatility> &volatilitySeries);
 };
 
-class SimpleLocalEstimator {
+
+class GarmanKlassSigma1 {
 public:
-	SimpleLocalEstimator(Real yearFraction);
+	GarmanKlassSigma1(Real yearFraction, Real marketOpenFraction);
         TimeSeries<Volatility>
-        calculate(const TimeSeries<Real> &quoteSeries);
+        calculate(const TimeSeries<IntervalPrice> &quoteSeries);
 };
+
+
+class ParkinsonSigma {
+public:
+	ParkinsonSigma(Real yearFraction);
+        TimeSeries<Volatility>
+        calculate(const TimeSeries<IntervalPrice> &quoteSeries);
+};
+
+class GarmanKlassSigma3 {
+public:
+	GarmanKlassSigma3(Real yearFraction, Real marketOpenFraction);
+        TimeSeries<Volatility>
+        calculate(const TimeSeries<IntervalPrice> &quoteSeries);
+};
+
+class GarmanKlassSigma4 {
+public:
+	GarmanKlassSigma4(Real yearFraction);
+        TimeSeries<Volatility>
+        calculate(const TimeSeries<IntervalPrice> &quoteSeries);
+};
+
+
+class GarmanKlassSigma5 {
+public:
+	GarmanKlassSigma5(Real yearFraction);
+        TimeSeries<Volatility>
+        calculate(const TimeSeries<IntervalPrice> &quoteSeries);
+};
+
+
+class GarmanKlassSigma6 {
+public:
+	GarmanKlassSigma6(Real yearFraction, Real marketOpenFraction);
+        TimeSeries<Volatility>
+        calculate(const TimeSeries<IntervalPrice> &quoteSeries);
+};
+
+
 
 #endif
