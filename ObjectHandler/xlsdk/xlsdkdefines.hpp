@@ -21,7 +21,6 @@
 #include <windows.h>
 #include <xlsdk/xlcall.h>
 #include <xlsdk/framewrk.hpp>
-#include <boost/config.hpp>
 
 #define DLLEXPORT extern "C" __declspec(dllexport)
 
@@ -37,11 +36,6 @@ typedef struct {
     WORD columns;
     double array[1];
 } FP;
-
-#if defined BOOST_MSVC
-#pragma warning(disable : 4996)
-#pragma warning(disable : 4244)
-#endif
 
 #endif
 
