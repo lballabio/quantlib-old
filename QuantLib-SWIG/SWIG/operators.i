@@ -24,39 +24,19 @@
 %{
 typedef QuantLib::BoundaryCondition<QuantLib::TridiagonalOperator>
 		BoundaryCondition;
-typedef BoundaryCondition::Side BoundaryConditionSide;
-
-BoundaryCondition::Side BCSideFromString(std::string s) {
-    s = QuantLib::lowercase(s);
-    if (s == "" || s == "none")
-        return BoundaryCondition::None;
-    else if (s == "upper")
-        return BoundaryCondition::Upper;
-    else if (s == "lower")
-        return BoundaryCondition::Lower;
-    else
-        QL_FAIL("unknown boundary condition side: "+s);
-}
-
-std::string BCSideToString(BoundaryCondition::Side type) {
-    switch (type) {
-      case BoundaryCondition::None:
-        return "None";
-      case BoundaryCondition::Upper:
-        return "upper";
-      case BoundaryCondition::Lower:
-        return "lower";
-      default:
-        QL_FAIL("unknown boundary condition side");
-    }
-}
 %}
 
-MapToString(BoundaryConditionSide,BCSideFromString,BCSideToString);
-
 %ignore BoundaryCondition;
-class BoundaryCondition {};
+class BoundaryCondition {
+  public:
+    enum Side { None, Upper, Lower };
+};
 %template(BoundaryCondition) boost::shared_ptr<BoundaryCondition>;
+%extend boost::shared_ptr<BoundaryCondition> {
+    static const BoundaryCondition::Side NoSide = BoundaryCondition::None;
+    static const BoundaryCondition::Side Upper = BoundaryCondition::Upper;
+    static const BoundaryCondition::Side Lower = BoundaryCondition::Lower;
+}
 
 %{
 using QuantLib::NeumannBC;
@@ -69,7 +49,7 @@ typedef boost::shared_ptr<BoundaryCondition> DirichletBCPtr;
 class NeumannBCPtr: public boost::shared_ptr<BoundaryCondition> {
   public:
     %extend {
-        NeumannBCPtr(Real value, BoundaryConditionSide side) {
+        NeumannBCPtr(Real value, BoundaryCondition::Side side) {
             return new NeumannBCPtr(new NeumannBC(value, side));
         }
     }
@@ -79,7 +59,7 @@ class NeumannBCPtr: public boost::shared_ptr<BoundaryCondition> {
 class DirichletBCPtr: public boost::shared_ptr<BoundaryCondition> {
   public:
     %extend {
-        DirichletBCPtr(Real value, BoundaryConditionSide side) {
+        DirichletBCPtr(Real value, BoundaryCondition::Side side) {
             return new DirichletBCPtr(new DirichletBC(value, side));
         }
     }

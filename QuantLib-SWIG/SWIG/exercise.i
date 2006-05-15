@@ -24,44 +24,22 @@
 
 %{
 using QuantLib::Exercise;
-typedef Exercise::Type ExerciseType;
-
-Exercise::Type exerciseTypeFromString(std::string s) {
-    s = QuantLib::lowercase(s);
-    if (s == "e" || s == "european")
-        return Exercise::European;
-    else if (s == "a" || s == "american")
-        return Exercise::American;
-    else if (s == "b" || s == "bermudan")
-        return Exercise::Bermudan;
-    else
-        QL_FAIL("unknown exercise type: "+s);
-}
-
-std::string exerciseTypeToString(Exercise::Type t) {
-    switch (t) {
-      case Exercise::European:
-        return "European";
-      case Exercise::American:
-        return "American";
-      case Exercise::Bermudan:
-        return "Bermudan";
-      default:
-        QL_FAIL("unknown exercise type");
-    }
-}
 %}
-
-MapToString(ExerciseType,exerciseTypeFromString,exerciseTypeToString);
 
 %ignore Exercise;
 class Exercise {
   public:
-    ExerciseType type() const;
+    enum Type { American, Bermudan, European };
+    Exercise::Type type() const;
     std::vector<Date> dates() const;
 };
 
 %template(Exercise) boost::shared_ptr<Exercise>;
+%extend boost::shared_ptr<Exercise> {
+    static const Exercise::Type American = Exercise::American;
+    static const Exercise::Type Bermudan = Exercise::Bermudan;
+    static const Exercise::Type European = Exercise::European;
+}
 
 %{
 using QuantLib::EuropeanExercise;

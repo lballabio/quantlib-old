@@ -35,6 +35,7 @@ using QuantLib::ModifiedPreceding;
 using QuantLib::Following;
 using QuantLib::ModifiedFollowing;
 using QuantLib::MonthEndReference;
+using QuantLib::UnadjustedMonthEnd;
 %}
 
 enum BusinessDayConvention {
@@ -43,7 +44,8 @@ enum BusinessDayConvention {
     ModifiedPreceding,
     Following,
     ModifiedFollowing,
-    MonthEndReference
+    MonthEndReference,
+    UnadjustedMonthEnd
 };
 
 %{

@@ -1,5 +1,5 @@
 if HAVE_RSWIG
-BUILT_SOURCES = QuantLib_wrap.cpp QuantLib_wrap.R
+BUILT_SOURCES = QuantLib_wrap.cpp QuantLib_wrap.S
 else
 BUILT_SOURCES =
 endif
@@ -13,7 +13,7 @@ all-local: .build-stamp
 .build-stamp: QuantLib.RData
 	touch .build-stamp
 
-QuantLib.RData: QuantLib_wrap.so QuantLib_wrap.R
+QuantLib.RData: QuantLib_wrap.so QuantLib_wrap.S
 	R CMD BATCH makeRData.R
 
 QuantLib_wrap.so: $(BUILT_SOURCES)

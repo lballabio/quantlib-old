@@ -81,115 +81,8 @@ class Handle {
 };
 
 
-// typemap a C++ type to strings in the scripting language
-
-%define MapToString(Type,TypeFromString,TypeToString)
-
-%typemap(typecheck) Type = char *;
-
-#if defined(SWIGPYTHON)
-
-%typemap(in) Type {
-    if (PyString_Check($input)) {
-        std::string s(PyString_AsString($input));
-        try {
-            $1 = TypeFromString(s);
-        } catch (Error&) {
-            SWIG_exception(SWIG_TypeError,"Type" " expected");
-        }
-    } else {
-        SWIG_exception(SWIG_TypeError,"Type" " expected");
-    }
-};
-
-%typemap(out) Type {
-    $result = PyString_FromString(TypeToString($1).c_str());
-};
-
-#elif defined(SWIGRUBY)
-
-%typemap(in) Type {
-    if (TYPE($input) == T_STRING) {
-        std::string s(STR2CSTR($input));
-        try {
-            $1 = TypeFromString(s);
-        } catch (Error&) {
-            SWIG_exception(SWIG_TypeError, "not a " "Type");
-        }
-    } else {
-        SWIG_exception(SWIG_TypeError, "not a " "Type");
-    }
-};
-
-%typemap(out) Type {
-    $result = rb_str_new2(TypeToString($1).c_str());
-};
-
-#elif defined(SWIGMZSCHEME)
-
-%typemap(in) Type {
-    if (SCHEME_STRINGP($input)) {
-        std::string s(SCHEME_STR_VAL($input));
-        try {
-            $1 = TypeFromString(s);
-        } catch (Error&) {
-            SWIG_exception(SWIG_TypeError, "Type" " expected");
-        }
-    } else {
-        SWIG_exception(SWIG_TypeError, "Type" " expected");
-    }
-};
-
-%typemap(out) Type {
-    $result = scheme_make_string(TypeToString($1).c_str());
-};
-
-#elif defined(SWIGGUILE)
-
-%typemap(in) Type (char* temp) {
-    if (gh_string_p($input)) {
-        temp = gh_scm2newstr($input, NULL);
-        std::string s(temp);
-        if (temp) scm_must_free(temp);
-        try {
-            $1 = TypeFromString(s);
-        } catch (Error&) {
-            SWIG_exception(SWIG_TypeError, "Type" " expected");
-        }
-    } else {
-        SWIG_exception(SWIG_TypeError, "Type" " expected");
-    }
-};
-
-%typemap(out) Type {
-    $result = gh_str02scm(TypeToString($1).c_str());
-};
-
-#elif defined(SWIGR)
-
-%typemap(in) Type {
-    if (isString($input)) {
-        std::string s(static_cast<char *>(CHAR($input)));
-        try {
-            $1 = TypeFromString(s);
-        } catch (Error&) {
-            SWIG_exception(SWIG_TypeError, "Type" " expected");
-        }
-    } else {
-        SWIG_exception(SWIG_TypeError, "Type" " expected");
-    }
-};
-
-%typemap(out) Type {
-    $result = mkChar(TypeToString($1).c_str());
-};
-
-#endif
-%enddef
-
-
-%define swigr_list_converter(ContainerRType, 
-	ContainerCType, ElemCType) 
+%define swigr_list_converter(ContainerRType,
+                             ContainerCType, ElemCType)
 #if defined(SWIGR)
 %Rruntime %{
 setMethod('print', 'ContainerCType',
@@ -199,7 +92,7 @@ setAs("ContainerCType", "ElemCType",
 function(from) {if (from$size()) from[1:from$size()] else NULL} )
 
 setAs("ElemCType", "ContainerCType",
-function(from) { a <- ContainerRType(length(from)); 
+function(from) { a <- ContainerRType(length(from));
 sapply(1:length(from), function(n) {
 a[n] <- from[n] } )
 a

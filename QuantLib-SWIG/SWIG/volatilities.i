@@ -189,42 +189,18 @@ class BlackConstantVolPtr : public boost::shared_ptr<BlackVolTermStructure> {
     }
 };
 
-/* Copy the type over so that R can put it in the R wrapper code */
-#if defined(SWIGR)
-enum VolExtrapolationType { ConstantExtrapolation,
-			    InterpolatorDefaultExtrapolation };
-#endif
-
 // Black smiled surface
 %{
 using QuantLib::BlackVarianceSurface;
-
-typedef BlackVarianceSurface::Extrapolation VolExtrapolationType;
 typedef boost::shared_ptr<BlackVolTermStructure> BlackVarianceSurfacePtr;
-
-VolExtrapolationType volExTypeFromString(std::string s) {
-    s = QuantLib::lowercase(s);
-    if (s == "const" || s == "constant")
-        return BlackVarianceSurface::ConstantExtrapolation;
-    else if (s == "" || s == "default")
-        return BlackVarianceSurface::InterpolatorDefaultExtrapolation;
-    else
-        QL_FAIL("unknown extrapolation type: "+s);
-}
-
-std::string volExTypeToString(VolExtrapolationType t) {
-    switch (t) {
-      case BlackVarianceSurface::ConstantExtrapolation:
-        return "constant";
-      case BlackVarianceSurface::InterpolatorDefaultExtrapolation:
-        return "default";
-      default:
-        QL_FAIL("unknown extrapolation type");
-    }
-}
 %}
 
-MapToString(VolExtrapolationType,volExTypeFromString,volExTypeToString);
+%ignore BlackVarianceSurface;
+class BlackVarianceSurface {
+  public:
+    enum Extrapolation { ConstantExtrapolation,
+                         InterpolatorDefaultExtrapolation };
+};
 
 %rename(BlackVarianceSurface) BlackVarianceSurfacePtr;
 class BlackVarianceSurfacePtr
@@ -237,14 +213,20 @@ class BlackVarianceSurfacePtr
                 const std::vector<Real>& strikes,
                 const Matrix& blackVols,
                 const DayCounter& dayCounter,
-                VolExtrapolationType lower =
+                BlackVarianceSurface::Extrapolation lower =
                     BlackVarianceSurface::InterpolatorDefaultExtrapolation,
-                VolExtrapolationType upper =
+                BlackVarianceSurface::Extrapolation upper =
                     BlackVarianceSurface::InterpolatorDefaultExtrapolation) {
             return new BlackVarianceSurfacePtr(
                 new BlackVarianceSurface(referenceDate,dates,strikes,
                                          blackVols,dayCounter,lower,upper));
         }
+        static const BlackVarianceSurface::Extrapolation
+            ConstantExtrapolation =
+            BlackVarianceSurface::ConstantExtrapolation;
+        static const BlackVarianceSurface::Extrapolation
+            InterpolatorDefaultExtrapolation =
+            BlackVarianceSurface::InterpolatorDefaultExtrapolation;
     }
 };
 
