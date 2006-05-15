@@ -145,9 +145,9 @@ span.googlestyle {
 /* Doxygen-generated CSS included below */
 
 BODY,H1,H2,H3,H4,H5,H6,P,CENTER,TD,TH,UL,DL,DIV {
-	font-family: Geneva, Arial, Helvetica, sans-serif;
+    font-family: georgia, verdana, arial, serif;
 }
-BODY,TD {
+TD {
        font-size: 90%;
 }
 H1 {
@@ -156,9 +156,6 @@ H1 {
 }
 H2 {
        font-size: 120%;
-}
-H3 {
-       font-size: 100%;
 }
 CAPTION { font-weight: bold }
 DIV.qindex {
