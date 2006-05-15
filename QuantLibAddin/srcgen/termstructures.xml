@@ -45,49 +45,44 @@
 </Parameters>
 </Constructor>
 
-<Constructor name='qlFuturesRateHelper'>
-<libraryFunction>FuturesRateHelper</libraryFunction>
-<functionCategory>QuantLib</functionCategory>
-<Parameters>
-    <Parameter name='price'>
+  <Constructor name='qlFuturesRateHelper'>
+    <libraryFunction>FuturesRateHelper</libraryFunction>
+    <functionCategory>QuantLib</functionCategory>
+    <Parameters>
+      <Parameter name='price'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
         <description>future price</description>
-    </Parameter>
-    <Parameter name='IMM'>
+      </Parameter>
+      <Parameter name='IMM'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>IMM code</description>
-    </Parameter>
-    <Parameter name='months'>
+      </Parameter>
+      <Parameter name='months'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
         <description>future contract lenght in months</description>
-    </Parameter>
-  <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
-    <type>string</type>
-    <tensorRank>scalar</tensorRank>
-    <description>day counter (e.g. Actual365Fixed)</description>
-  </Parameter>
-  <Parameter name='bDayConvention' ql_type='QuantLib::BusinessDayConvention'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-        <description>business day convention (e.g. ModifiedFollowing)</description>
-    </Parameter>
-	<Parameter name='calendar' ql_type='QuantLib::Calendar'>
+      </Parameter>
+      <Parameter name='calendar' ql_type='QuantLib::Calendar'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>holiday calendar (e.g. TARGET)</description>
-    </Parameter>
-    <Parameter name='decade'>
-        <type>long</type>
+      </Parameter>
+      <Parameter name='bDayConvention' ql_type='QuantLib::BusinessDayConvention'>
+        <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>base decade for the IMM shortcut (e.g. 2000 for H4 -> March 2004)</description>
-    </Parameter>
-</Parameters>
-</Constructor>
+        <description>business day convention (e.g. ModifiedFollowing)</description>
+      </Parameter>
+      <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>day counter (e.g. Actual365Fixed)</description>
+      </Parameter>
+    </Parameters>
+  </Constructor>
 
-<Constructor name='qlSwapRateHelper'>
+  <Constructor name='qlSwapRateHelper'>
 <libraryFunction>SwapRateHelper</libraryFunction>
 <functionCategory>QuantLib</functionCategory>
 <Parameters>

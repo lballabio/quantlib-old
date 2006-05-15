@@ -68,10 +68,9 @@ namespace QuantLibAddin {
             const double &price,
             const std::string &immDateID,
             const QuantLib::Integer &months,
-            const QuantLib::DayCounter &dayCounter,
-            const QuantLib::BusinessDayConvention &bDayConvention,
             const QuantLib::Calendar& calendar,
-            const QuantLib::Integer &decade);
+            const QuantLib::BusinessDayConvention &bDayConvention,
+            const QuantLib::DayCounter &dayCounter);
     };
 
     class SwapRateHelper : public RateHelper {

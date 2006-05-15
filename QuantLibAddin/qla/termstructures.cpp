@@ -67,15 +67,14 @@ namespace QuantLibAddin {
             const double &price,
             const std::string &immDateID,
             const QuantLib::Integer &months,
-            const QuantLib::DayCounter &dayCounter,
-            const QuantLib::BusinessDayConvention &bDayConvention,
             const QuantLib::Calendar& calendar,
-            const QuantLib::Integer &decade) {
-
-        QuantLib::Date expiry = FutIDtoExpiryDate(immDateID, calendar, bDayConvention, decade);
+            const QuantLib::BusinessDayConvention &bDayConvention,
+            const QuantLib::DayCounter &dayCounter) {
 
         quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(new QuantLib::SimpleQuote(price));
         quoteHandle_.linkTo(quote_);
+
+        QuantLib::Date expiry = QuantLib::Date::IMMdate(immDateID);
         
         rateHelper_ = boost::shared_ptr<QuantLib::RateHelper>(
             new QuantLib::FuturesRateHelper(
@@ -269,7 +268,7 @@ namespace QuantLibAddin {
         QuantLib::Size i;
         long futuresCounter = 0;
         for (i=0; i<nInstruments; i++) {
-            if (includeFlag[i] && (instruments[i]->getObject().earliestDate() <
+            if (includeFlag[i] && (instruments[i]->getObject().earliestDate() >
                                    QuantLib::Settings::instance().evaluationDate())) {
                 if (!boost::dynamic_pointer_cast<FuturesRateHelper>(instruments[i])) {
                     rhs.push_back(instruments[i]);
