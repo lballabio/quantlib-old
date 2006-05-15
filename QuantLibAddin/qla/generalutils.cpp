@@ -57,31 +57,5 @@ namespace QuantLibAddin {
         }
     }
 
-    QuantLib::Date FutIDtoExpiryDate(
-        const std::string& immID,
-        const QuantLib::Calendar& calendar, 
-        QuantLib::BusinessDayConvention bdc,
-        QuantLib::Integer decade) {
-        if(decade % 10 != 0)
-            QL_FAIL("FutIDtoExpiryDate: wrong decade: " + boost::lexical_cast<std::string>(decade));
-        QuantLib::Month m;
-        switch(immID[0]) {
-            case 'H':
-            case 'h': m = QuantLib::March; break;
-            case 'M':
-            case 'm': m = QuantLib::June; break;
-            case 'U':
-            case 'u': m = QuantLib::September; break;
-            case 'Z':
-            case 'z': m = QuantLib::December; break;
-            default: QL_FAIL("FutIDtoExpiryDate: Unknown IMM Id: " + immID); break;
-        }
-        QuantLib::Year year = boost::lexical_cast<QuantLib::Year>(immID.substr(1));
-        if(year < 0 || year > 9)
-            QL_FAIL("FutIDtoExpiryDate: wrong year: " + immID);
-        QuantLib::Date immDate = QuantLib::Date(1, m, year + decade);
-        immDate = QuantLib::Date::nextIMMdate(immDate);
-        return calendar.adjust(immDate, bdc);
-    }
 }
 

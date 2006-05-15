@@ -39,11 +39,6 @@ namespace QuantLibAddin {
     QuantLib::Matrix vectorVectorToMatrix(
         const std::vector < std::vector < double > > &vv);
 
-    QuantLib::Date FutIDtoExpiryDate(
-        const std::string& immID,
-        const QuantLib::Calendar& calendar, 
-        QuantLib::BusinessDayConvention bdc,
-        QuantLib::Integer decade);
 }
 
 #endif
