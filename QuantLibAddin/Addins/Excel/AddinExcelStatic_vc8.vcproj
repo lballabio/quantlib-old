@@ -2,8 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="AddinExcelStatic"
+	Name="QuantLibXL"
 	ProjectGUID="{500BF553-58BF-491F-990A-777A6B47C16E}"
+	RootNamespace="QuantLibXL"
 	>
 	<Platforms>
 		<Platform

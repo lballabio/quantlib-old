@@ -2,8 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="AddinExcelDynamic"
+	Name="QuantLibXLDynamic"
 	ProjectGUID="{80E96A26-7916-473E-9C99-39BE88545A7B}"
+	RootNamespace="QuantLibXLDynamic"
 	>
 	<Platforms>
 		<Platform

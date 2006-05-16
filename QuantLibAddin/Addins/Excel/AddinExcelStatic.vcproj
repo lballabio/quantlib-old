@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
-	Name="AddinExcelStatic"
+	Name="QuantLibXL"
 	SccProjectName=""
 	SccLocalPath="">
 	<Platforms>
@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\QuantLibAddinStatic-vc71-mt-sgd-0_3_13.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-sgd-0_3_13.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
@@ -107,7 +107,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\QuantLibAddinStatic-vc71-mt-gd-0_3_13.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-gd-0_3_13.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
@@ -174,7 +174,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\QuantLibAddinStatic-vc71-sgd-0_3_13.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-sgd-0_3_13.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
@@ -242,7 +242,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\QuantLibAddinStatic-vc71-s-0_3_13.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-s-0_3_13.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
@@ -309,7 +309,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\QuantLibAddinStatic-vc71-mt-s-0_3_13.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLib..\..\QuantLibXL\-vc71-mt-s-0_3_13.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"
@@ -376,7 +376,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\QuantLibAddinStatic-vc71-mt-0_3_13.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-0_3_13.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxllib\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib"

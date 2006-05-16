@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
-	Name="AddinExcelDynamic"
+	Name="QuantLibXLDynamic"
 	SccProjectName=""
 	SccLocalPath="">
 	<Platforms>
@@ -39,7 +39,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="xll\QuantLibAddinDynamic-vc71-mt-gd-0_3_13.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc71-mt-gd-0_3_13.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll,$(QL_DIR)\lib"
@@ -106,7 +106,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="xll\QuantLibAddinDynamic-vc71-mt-0_3_13.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc71-mt-0_3_13.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll,$(QL_DIR)\lib"
