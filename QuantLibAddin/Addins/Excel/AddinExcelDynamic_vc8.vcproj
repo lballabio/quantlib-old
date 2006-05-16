@@ -75,7 +75,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="xll\QuantLibAddinDynamic-vc80-mt-gd-0_3_13.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-gd-0_3_13.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll,$(QL_DIR)\lib"
@@ -173,7 +173,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="xll\QuantLibAddinDynamic-vc80-mt-0_3_13.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_3_13.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\xlsdk\lib,$(OBJECT_HANDLER_DIR)\ohxl\ohxll\xll,$(QL_DIR)\lib"
