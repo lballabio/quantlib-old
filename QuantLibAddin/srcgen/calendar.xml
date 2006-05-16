@@ -8,6 +8,52 @@
   </includes>
   <Functions>
 
+    <Procedure name='qlIsHoliday' >
+      <description>returns TRUE if the date is a holiday for the given calendar</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::isHoliday</alias>
+      <Parameters>
+        <Parameter name='calendar' ql_type='QuantLib::Calendar'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description>Calendar to use for holiday determination</description>
+        </Parameter>
+        <Parameter name='date' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>date</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>TRUE if the date is a holiday for the given calendar</description>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlIsEndOfMonth' >
+      <description>returns TRUE if the date is last business day for the month in the given calendar</description>
+      <functionCategory>QuantLib</functionCategory>
+      <alias>QuantLib::isEndOfMonth</alias>
+      <Parameters>
+        <Parameter name='calendar' ql_type='QuantLib::Calendar'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description>Calendar to use for holiday determination</description>
+        </Parameter>
+        <Parameter name='date' ql_type='QuantLib::Date'>
+          <type>long</type>
+          <tensorRank>scalar</tensorRank>
+          <description>date</description>
+        </Parameter>
+      </Parameters>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+        <description>TRUE if the date is last business day for the month in the given calendar</description>
+      </ReturnValue>
+    </Procedure>
+
     <Procedure name='qlHolidayList' >
       <description>returns the holidays in a period between two dates according to a given holiday calendar</description>
       <functionCategory>QuantLib</functionCategory>

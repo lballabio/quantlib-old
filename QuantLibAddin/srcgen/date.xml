@@ -100,6 +100,7 @@
     <Procedure name='qlEvaluationDate'>
       <description>returns the current value of the Evaluation Date</description>
       <functionCategory>QuantLib</functionCategory>
+      <!--alias>QuantLib::Settings::instance().evaluationDate</alias-->
       <alias>QuantLib::evaluationDate</alias>
       <Parameters/>
       <ReturnValue return_func='serialNumber'>
