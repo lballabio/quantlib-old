@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="QuantLibAddin"
 	ProjectGUID="{CAB8330C-6424-4455-9285-3654587EF71F}"
 	>
@@ -47,6 +47,7 @@
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
+				DisableLanguageExtensions="false"
 				RuntimeTypeInfo="true"
 				PrecompiledHeaderFile=".\build\vc80\ReleaseCRTDLL/QuantLibAddin.pch"
 				AssemblerListingLocation=".\build\vc80\ReleaseCRTDLL/"
@@ -123,6 +124,7 @@
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
+				DisableLanguageExtensions="false"
 				RuntimeTypeInfo="true"
 				PrecompiledHeaderFile=".\build\vc80\Release/QuantLibAddin.pch"
 				AssemblerListingLocation=".\build\vc80\Release/"
@@ -198,6 +200,7 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
+				DisableLanguageExtensions="false"
 				RuntimeTypeInfo="true"
 				PrecompiledHeaderFile=".\build\vc80\Debug/QuantLibAddin.pch"
 				AssemblerListingLocation=".\build\vc80\Debug/"
@@ -274,6 +277,7 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				DisableLanguageExtensions="false"
 				RuntimeTypeInfo="true"
 				PrecompiledHeaderFile=".\build\vc80\DebugCRTDLL/QuantLibAddin.pch"
 				AssemblerListingLocation=".\build\vc80\DebugCRTDLL/"

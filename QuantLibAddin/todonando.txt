@@ -1,0 +1,30 @@
+
+rename all QuantLibAddin projects
+
+LUIGI
+- DateProxy?
+- should InterpolatedDiscountCurve, InterpolatedZeroCurve, and
+  InterpolatedForwardCurve inherit from an InterpolatedCurve class?
+  I need all three and PiecewiseYieldCurve to expose the underlying grid and
+  the underlying _discount_ grid
+- PiecewiseYieldCurve: invert interpolator and accuracy parameter order
+
+PICEWISEYIELDCURVE
+- lo swapratehelper non puo' avere uno swap_ con un dummy index dentro, ma un
+  indice vero se si vuole intercettare il fixing delle 11:00
+- ratehelperselection filter: add priority, move to QuantLib
+- conv adj dei futures
+- turn of year
+- extended grid with all relevant dates
+- revise bondhelpers
+- ratehelper usato da piu' curve: non si puo' utilizzare il setTermStructure
+- export discount,loglinear selection
+- use forwardrate(period) and loop on periods
+- export to Excel method overload
+
+DATE
+- format the cell to date when returning a serialnumber
+- getEvaluationDate volatile, or at least provide a hook
+
+SPREADSHEETS
+- signed spreadsheet and macro
