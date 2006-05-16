@@ -22,16 +22,16 @@ Section
     File "README.txt"
 
     SetOutPath "$INSTDIR\Workbooks"
-    File /r "Clients\Excel\*.xls"
+    File /r "Workbooks\*.xls"
 
     SetOutPath "$INSTDIR\framework"
     File "framework\*.xla"
 
     SetOutPath "$INSTDIR\xll"
-    File "Addins\Excel\xll\QuantLibAddinStatic-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
+    File "xll\QuantLibAddinStatic-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
 
-    SetOutPath "$INSTDIR\Docs"
-    File "Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
+    ;SetOutPath "$INSTDIR\Docs"
+    ;File "Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
@@ -73,15 +73,15 @@ Section "Uninstall"
     DeleteRegKey HKEY_LOCAL_MACHINE \
         "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL"
 
-    !execute 'unList.exe /DATE=1 /INSTDIR="Clients\Excel" /FILTER="*.xls" \
-        /LOG=qla1.log  /UNDIR_VAR="$INSTDIR\Workbooks" /MB=0'
-    !include "qla1.log"
-    RMDir "$INSTDIR\Workbooks"
+    ;!execute 'unList.exe /DATE=1 /INSTDIR="Clients\Excel" /FILTER="*.xls" \
+    ;    /LOG=qla1.log  /UNDIR_VAR="$INSTDIR\Workbooks" /MB=0'
+    ;!include "qla1.log"
+    ;RMDir "$INSTDIR\Workbooks"
 
-    !execute 'unList.exe /DATE=1 /INSTDIR="framework" /FILTER="*.xla" \
-        /LOG=qla2.log  /UNDIR_VAR="$INSTDIR\framework" /MB=0'
-    !include "qla2.log"
-    RMDir "$INSTDIR\framework"
+    ;!execute 'unList.exe /DATE=1 /INSTDIR="framework" /FILTER="*.xla" \
+    ;    /LOG=qla2.log  /UNDIR_VAR="$INSTDIR\framework" /MB=0'
+    ;!include "qla2.log"
+    ;RMDir "$INSTDIR\framework"
 
     Delete "$INSTDIR\xll\QuantLibAddinStatic-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
     RMDir "$INSTDIR\xll"
