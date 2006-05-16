@@ -146,8 +146,8 @@ namespace QuantLibAddin {
             true);
 
         termStructure_ = boost::shared_ptr<QuantLib::YieldTermStructure>(
-            new QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
-            QuantLib::Linear>(
+            new QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
+            QuantLib::LogLinear>(
                 nDays, calendar,
                 rateHelpersQL,
                 dayCounter,
@@ -247,6 +247,7 @@ namespace QuantLibAddin {
     std::vector<std::string> qlRateHelperSelection(
         const std::vector<std::string>& instrumentHandles,
         const std::vector<bool>& includeFlag,
+        const std::vector<long>& priority,
         const long& nFutures) {
 
         QL_REQUIRE(!instrumentHandles.empty(), "no instrument given");

@@ -26,7 +26,6 @@
 #include <ql/TermStructures/piecewiseflatforward.hpp>
 #include <ql/TermStructures/forwardspreadedtermstructure.hpp>
 #include <ql/TermStructures/ratehelpers.hpp>
-#include <ql/Functions/termstructures.hpp>
 
 #include <oh/objhandler.hpp>
 
@@ -143,6 +142,7 @@ namespace QuantLibAddin {
     std::vector<std::string> qlRateHelperSelection(
         const std::vector<std::string>& instrumentHandles,
         const std::vector<bool>& includeFlag,
+        const std::vector<long>& priority,
         const long& nFutures);
 
 }
