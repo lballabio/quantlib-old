@@ -217,23 +217,16 @@ namespace QuantLibAddin {
 
         class RateHelperPrioritySorter {
           public:
-            bool operator()(const boost::shared_ptr<RateHelper>& h1,
-                            const boost::shared_ptr<RateHelper>& h2) const {
+            // does h1 come before h2?
+            bool operator()(const std::pair<boost::shared_ptr<RateHelper>, long>& h1,
+                            const std::pair<boost::shared_ptr<RateHelper>, long>& h2) const {
 
-                if (h1->getObject().latestDate() > h2->getObject().latestDate())
+                if (h1.first->getObject().latestDate() > h2.first->getObject().latestDate())
                     return false;
 
-                if (h1->getObject().latestDate() == h2->getObject().latestDate()) {
-                    if (boost::dynamic_pointer_cast<FuturesRateHelper>(h1)) {
+                if (h1.first->getObject().latestDate() == h2.first->getObject().latestDate()) {
+                    if (h1.second > h2.second) {
                         return false;
-                    } else if (!boost::dynamic_pointer_cast<FuturesRateHelper>(h2)) {
-                        if (boost::dynamic_pointer_cast<SwapRateHelper>(h1)) {
-                            return false;
-                        //} else if (!boost::dynamic_pointer_cast<SwapRateHelper>(h2)) {
-                        //    if (boost::dynamic_pointer_cast<FixedCouponBondHelper>(h1)) {
-                        //        return false;
-                        //    }
-                        }
                     }
                 }
 
@@ -266,7 +259,7 @@ namespace QuantLibAddin {
 
         // purge input rate helpers according to their includeFlag,
         // their expiration, and maximum number of allowed futures
-        std::vector<boost::shared_ptr<RateHelper> > rhs;
+        std::vector<std::pair<boost::shared_ptr<RateHelper>, long> > rhs;
         QuantLib::Size i;
         long futuresCounter = 0;
         QuantLib::Date earliestDate, evalDate = QuantLib::Settings::instance().evaluationDate();
@@ -274,10 +267,10 @@ namespace QuantLibAddin {
             earliestDate = instruments[i]->getObject().earliestDate();
             if (includeFlag[i]) {
                 if (!boost::dynamic_pointer_cast<FuturesRateHelper>(instruments[i]) && (earliestDate >= evalDate)) {
-                    rhs.push_back(instruments[i]);
+                    rhs.push_back(std::make_pair(instruments[i], priority[i]));
                 } else if (futuresCounter<nFutures && (earliestDate-2 >= evalDate)) {
                     futuresCounter++;
-                    rhs.push_back(instruments[i]);
+                    rhs.push_back(std::make_pair(instruments[i], priority[i]));
                 }
             }
         }
@@ -286,9 +279,9 @@ namespace QuantLibAddin {
 
         // zero or one rate helper left
         if (rhs.size()<2) {
-            for (std::vector<boost::shared_ptr<RateHelper> >::const_iterator i = rhs.begin();
-                i != rhs.end(); i++)
-                instanceNameStubs.push_back((*i)->getStubName());
+            std::vector<std::pair<boost::shared_ptr<RateHelper>, long> >::const_iterator i;
+            for (i = rhs.begin(); i != rhs.end(); i++)
+                instanceNameStubs.push_back((*i).first->getStubName());
             return instanceNameStubs;
         }
 
@@ -296,11 +289,11 @@ namespace QuantLibAddin {
         std::sort(rhs.begin(), rhs.end(), detail::RateHelperPrioritySorter());
 
         for (i=0; i<rhs.size()-1; i++) {
-            if (rhs[i]->getObject().latestDate() < rhs[i+1]->getObject().latestDate()) 
-                instanceNameStubs.push_back(rhs[i]->getStubName());
+            if (rhs[i].first->getObject().latestDate() < rhs[i+1].first->getObject().latestDate()) 
+                instanceNameStubs.push_back(rhs[i].first->getStubName());
         }
         // add the last one in any case
-        instanceNameStubs.push_back(rhs[i]->getStubName());
+        instanceNameStubs.push_back(rhs[i].first->getStubName());
 
         return instanceNameStubs;
     }
