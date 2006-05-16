@@ -241,7 +241,6 @@ namespace QuantLibAddin {
 
             }
         };
-
     }
 
     std::vector<std::string> qlRateHelperSelection(
@@ -255,6 +254,8 @@ namespace QuantLibAddin {
         QuantLib::Size nInstruments = instrumentHandles.size();
         QL_REQUIRE(includeFlag.size()==nInstruments,
             "includeFlag / instruments mismatch");
+        QL_REQUIRE(priority.size()==nInstruments,
+            "priority / instruments mismatch");
 
         std::vector<boost::shared_ptr<RateHelper> > instruments;
         for (std::vector<std::string>::const_iterator it = instrumentHandles.begin();
@@ -268,12 +269,13 @@ namespace QuantLibAddin {
         std::vector<boost::shared_ptr<RateHelper> > rhs;
         QuantLib::Size i;
         long futuresCounter = 0;
+        QuantLib::Date earliestDate, evalDate = QuantLib::Settings::instance().evaluationDate();
         for (i=0; i<nInstruments; i++) {
-            if (includeFlag[i] && (instruments[i]->getObject().earliestDate() >
-                                   QuantLib::Settings::instance().evaluationDate())) {
-                if (!boost::dynamic_pointer_cast<FuturesRateHelper>(instruments[i])) {
+            earliestDate = instruments[i]->getObject().earliestDate();
+            if (includeFlag[i]) {
+                if (!boost::dynamic_pointer_cast<FuturesRateHelper>(instruments[i]) && (earliestDate >= evalDate)) {
                     rhs.push_back(instruments[i]);
-                } else if (futuresCounter<nFutures) {
+                } else if (futuresCounter<nFutures && (earliestDate-2 >= evalDate)) {
                     futuresCounter++;
                     rhs.push_back(instruments[i]);
                 }
@@ -290,13 +292,14 @@ namespace QuantLibAddin {
             return instanceNameStubs;
         }
 
-        // sort rate helpers
-        std::sort(rhs.begin(),rhs.end(), detail::RateHelperPrioritySorter());
+        // sort rate helpers according to their latest date and priority
+        std::sort(rhs.begin(), rhs.end(), detail::RateHelperPrioritySorter());
 
         for (i=0; i<rhs.size()-1; i++) {
             if (rhs[i]->getObject().latestDate() < rhs[i+1]->getObject().latestDate()) 
                 instanceNameStubs.push_back(rhs[i]->getStubName());
         }
+        // add the last one in any case
         instanceNameStubs.push_back(rhs[i]->getStubName());
 
         return instanceNameStubs;
