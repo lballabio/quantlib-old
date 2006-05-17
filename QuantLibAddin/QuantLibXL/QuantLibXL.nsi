@@ -44,7 +44,7 @@ Section
     CreateDirectory "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL-${VER_NUMBER}.lnk" \
-                   "$INSTDIR\framework\quantlibxl-${VER_NUMBER}.xla"
+                   "$INSTDIR\framework\QuantLibXL.xla"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\Documentation (WinHelp).lnk" \
                    "$INSTDIR\Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
