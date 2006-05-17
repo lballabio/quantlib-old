@@ -3,4 +3,5 @@ Makefile.in
 .build-stamp
 *.cpp
 *.S
+*.R
 *.Rout
