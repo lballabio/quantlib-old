@@ -29,9 +29,6 @@ Section
     SetOutPath "$INSTDIR\xll"
     File "xll\QuantLibXL-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
 
-    SetOutPath "$INSTDIR\Docs"
-    File /nonfatal "..\Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
-
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
                 "DisplayName" "QuantLibXL ${VER_NUMBER} (remove only)"
@@ -49,6 +46,10 @@ Section
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\Documentation (WinHelp).lnk" \
                    "$INSTDIR\Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
 
+    SetOutPath "$INSTDIR\Docs"
+    File /nonfatal "..\Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
+
+    ; this should be conditional to the existance of the above file
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\Uninstall QuantLibXL.lnk" \
                    "$INSTDIR\QuantLibXLUninstall.exe" "" \
                    "$INSTDIR\QuantLibXLUninstall.exe" 0

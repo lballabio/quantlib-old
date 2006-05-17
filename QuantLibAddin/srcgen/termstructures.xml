@@ -215,12 +215,12 @@
       <Parameter name='priority'>
         <type>long</type>
         <tensorRank>vector</tensorRank>
-        <description>priority integer (higher numbers for higher priority)</description>
+        <description>priority integer (higher number for higher priority)</description>
       </Parameter>
       <Parameter name='nFutures'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
-        <description>number of futures to be included</description>
+        <description>max number of futures to be included</description>
       </Parameter>
     </Parameters>
     <ReturnValue>

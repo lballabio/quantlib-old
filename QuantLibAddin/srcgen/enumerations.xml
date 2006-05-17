@@ -641,74 +641,128 @@
 <type>QuantLib::DayCounter</type>
 <constructor>false</constructor>
 <EnumerationDefinitions>
+    <!-- ISDA 2000 Definition Annex Article 4 Section 4.16-->
+
+    <!-- (a) -->
     <EnumerationDefinition>
-        <string>Actual360</string>
-        <value>QuantLib::Actual360()</value>
+        <string>1/1</string>
+        <value>QuantLib::OneDayCounter()</value>
     </EnumerationDefinition>
+
+    <!-- (b) -->
     <EnumerationDefinition>
-        <string>Actual365Fixed</string>
-        <value>QuantLib::Actual365Fixed()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>ActualActual_AFB</string>
-        <value>QuantLib::ActualActual(QuantLib::ActualActual::AFB)</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>ActualActual_Bond</string>
-        <value>QuantLib::ActualActual(QuantLib::ActualActual::Bond)</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>ActualActual_Euro</string>
-        <value>QuantLib::ActualActual(QuantLib::ActualActual::Euro)</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>ActualActual_Historical</string>
-        <value>QuantLib::ActualActual(QuantLib::ActualActual::Historical)</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>ActualActual_ISDA</string>
+        <string>Actual/Actual::ISDA</string>
         <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>ActualActual_ISMA</string>
+        <string>Actual/Actual</string>
+        <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Actual/365</string>
+        <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Act/365</string>
+        <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>A/365</string>
+        <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Act/Act</string>
+        <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
+    </EnumerationDefinition>
+
+    <!-- (c) -->
+    <EnumerationDefinition>
+        <string>Actual/365 (Fixed)</string>
+        <value>QuantLib::Actual365Fixed()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Act/365 (Fixed)</string>
+        <value>QuantLib::Actual365Fixed()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>A/365 (Fixed)</string>
+        <value>QuantLib::Actual365Fixed()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>A/365F</string>
+        <value>QuantLib::Actual365Fixed()</value>
+    </EnumerationDefinition>
+
+    <!-- (d) -->
+    <EnumerationDefinition>
+        <string>Actual/360</string>
+        <value>QuantLib::Actual360()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Act/360</string>
+        <value>QuantLib::Actual360()</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>A/360</string>
+        <value>QuantLib::Actual360()</value>
+    </EnumerationDefinition>
+
+    <!-- (e) -->
+    <EnumerationDefinition>
+        <string>30/360::BondBasis</string>
+        <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>30/360</string>
+        <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>360/360</string>
+        <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
+    </EnumerationDefinition>
+
+    <!-- (f) -->
+    <EnumerationDefinition>
+        <string>30/360::EurobondBasis</string>
+        <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Thirty360::EurobondBasis</string>
+        <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
+    </EnumerationDefinition>
+
+    <!-- NON-ISDA  -->
+    <EnumerationDefinition>
+        <string>Actual/Actual::ISMA</string>
         <value>QuantLib::ActualActual(QuantLib::ActualActual::ISMA)</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>ActualActual</string>
-        <value>QuantLib::ActualActual()</value>
+        <string>Actual/Actual::Bond</string>
+        <value>QuantLib::ActualActual(QuantLib::ActualActual::ISMA)</value>
+    </EnumerationDefinition>
+
+    <!-- NON-ISDA -->
+    <EnumerationDefinition>
+        <string>Actual/Actual::AFB</string>
+        <value>QuantLib::ActualActual(QuantLib::ActualActual::AFB)</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>One</string>
-        <value>QuantLib::OneDayCounter()</value>
+        <string>Actual/Actual::Euro</string>
+        <value>QuantLib::ActualActual(QuantLib::ActualActual::AFB)</value>
     </EnumerationDefinition>
+
+    <!-- NON-ISDA -->
+    <EnumerationDefinition>
+        <string>30/360::Italian</string>
+        <value>QuantLib::Thirty360(QuantLib::Thirty360::Italian)</value>
+    </EnumerationDefinition>
+
+    <!-- NON-ISDA QuantLib specific -->
     <EnumerationDefinition>
         <string>Simple</string>
         <value>QuantLib::SimpleDayCounter()</value>
     </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Thirty360_Bond</string>
-        <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Thirty360_EU_Bnd</string>
-        <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Thirty360_EU</string>
-        <value>QuantLib::Thirty360(QuantLib::Thirty360::European)</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Thirty360_ITL</string>
-        <value>QuantLib::Thirty360(QuantLib::Thirty360::Italian)</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Thirty360</string>
-        <value>QuantLib::Thirty360()</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Thirty360_USA</string>
-        <value>QuantLib::Thirty360(QuantLib::Thirty360::USA)</value>
-    </EnumerationDefinition>
+
 </EnumerationDefinitions>
 </Enumeration>
 
