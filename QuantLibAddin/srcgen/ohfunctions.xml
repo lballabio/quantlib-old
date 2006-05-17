@@ -171,9 +171,9 @@
     </Parameter>
 </Parameters>
 <ReturnValue>
-    <type>bool</type>
+    <type>long</type>
     <tensorRank>scalar</tensorRank>
-    <description>success/failure</description>
+    <description>counter</description>
 </ReturnValue>
 </Procedure>
 

@@ -115,7 +115,7 @@ extern "C" short int* ohDeleteAllObjects() {
     }
 }
 
-extern "C" short int* ohDependsOn(
+extern "C" long int* ohDependsOn(
         OPER *dummy0,
         OPER *dummy1,
         OPER *dummy2,
@@ -127,7 +127,8 @@ extern "C" short int* ohDependsOn(
         OPER *dummy8,
         OPER *dummy9) {
     try {
-        static short int ret = FALSE;
+        static long int ret = 0;
+        ret++;
         return &ret;
     } catch (const std::exception &e) {
         logMessage(std::string("ERROR: ohDependsOn: ") + e.what(), 2);

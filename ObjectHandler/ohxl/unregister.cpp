@@ -109,7 +109,7 @@ void ohUnregisterFunctions(const XLOPER &xDll) {
 
     Excel(xlfRegister, 0, 20, &xDll,
         TempStrNoSize("\x0B""ohDependsOn"),     // function code name
-        TempStrNoSize("\x0B""LPPPPPPPPPP"),     // parameter codes
+        TempStrNoSize("\x0B""NPPPPPPPPPP"),     // parameter codes
         TempStrNoSize("\x0B""ohDependsOn"),     // function display name
         TempStrNoSize("\x45""dummy0,dummy1,dummy2,dummy3,dummy4,dummy5,dummy6,dummy7,dummy8,dummy9"),// comma-delimited list of parameters
         TempStrNoSize("\x01""0"),               // function type (0 = hidden function)
