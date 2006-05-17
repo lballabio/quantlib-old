@@ -51,24 +51,24 @@ int main() {
         Date settlementDate(13, March, 2019);
 
         obj_ptr blackConstantVol(new QuantLibAddin::BlackConstantVol(
-            settlementDate.serialNumber(),  // settlement date as long
+            settlementDate,                 // settlement date as long
             volatility,                     // volatility
-            "Actual360"));                  // daycount convention
+            Actual360()));                  // daycount convention
         storeObject("my_blackconstantvol", blackConstantVol);
 
         obj_ptr blackScholesProcess(new QuantLibAddin::GeneralizedBlackScholesProcess(
             "my_blackconstantvol",          // black constant vol handle
             underlying,                     // underlying
-            "Actual360",                    // daycount convention
-            settlementDate.serialNumber(),  // settlement date as long
+            Actual360(),                    // daycount convention
+            settlementDate,                 // settlement date as long
             riskFreeRate,                   // risk free rate
             dividendYield));                // dividend yield
         storeObject("my_blackscholes", blackScholesProcess);
 
         obj_ptr exercise(new QuantLibAddin::AmericanExercise(
-            settlementDate.serialNumber(),  // settlement date
-            exerciseDate.serialNumber(),    // exercise date
-            false));                        // payoff at expiry
+            settlementDate,  // settlement date
+            exerciseDate,    // exercise date
+            false));         // payoff at expiry
         storeObject("my_exercise", exercise);
 
         obj_ptr vanillaOption(new QuantLibAddin::VanillaOption(
