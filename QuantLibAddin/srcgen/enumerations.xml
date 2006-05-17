@@ -26,7 +26,7 @@
       <value>QuantLib::Mid</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-      <string>MidEquivalent</string>
+      <string>Mid Equivalent</string>
       <value>QuantLib::MidEquivalent</value>
     </EnumerationDefinition>
   </EnumerationDefinitions>
@@ -79,20 +79,24 @@
         <value>QuantLib::Following</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>ModifiedFollowing</string>
+        <string>Modified Following</string>
         <value>QuantLib::ModifiedFollowing</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>ModifiedPreceding</string>
-        <value>QuantLib::ModifiedPreceding</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>MonthEndReference</string>
-        <value>QuantLib::MonthEndReference</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>Preceding</string>
         <value>QuantLib::Preceding</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Modified Preceding</string>
+        <value>QuantLib::ModifiedPreceding</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Month End Reference</string>
+        <value>QuantLib::MonthEndReference</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Unadjusted Month End</string>
+        <value>QuantLib::MonthEndReference</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>Unadjusted</string>
@@ -368,16 +372,16 @@
 <constructor>true</constructor>
 <EnumerationDefinitions>
     <EnumerationDefinition>
+        <string>Simple</string>
+        <value>QuantLib::Simple</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
         <string>Compounded</string>
         <value>QuantLib::Compounded</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>Continuous</string>
         <value>QuantLib::Continuous</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Simple</string>
-        <value>QuantLib::Simple</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>SimpleThenCompounded</string>
@@ -771,36 +775,32 @@
 <constructor>true</constructor>
 <EnumerationDefinitions>
     <EnumerationDefinition>
+        <string>Once</string>
+        <value>QuantLib::Once</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
         <string>Annual</string>
         <value>QuantLib::Annual</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Bimonthly</string>
-        <value>QuantLib::Bimonthly</value>
+        <string>Semiannual</string>
+        <value>QuantLib::Semiannual</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
         <string>Every4Month</string>
         <value>QuantLib::EveryFourthMonth</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Monthly</string>
-        <value>QuantLib::Monthly</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>NoFrequency</string>
-        <value>QuantLib::NoFrequency</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
-        <string>Once</string>
-        <value>QuantLib::Once</value>
-    </EnumerationDefinition>
-    <EnumerationDefinition>
         <string>Quarterly</string>
         <value>QuantLib::Quarterly</value>
     </EnumerationDefinition>
     <EnumerationDefinition>
-        <string>Semiannual</string>
-        <value>QuantLib::Semiannual</value>
+        <string>Bimonthly</string>
+        <value>QuantLib::Bimonthly</value>
+    </EnumerationDefinition>
+    <EnumerationDefinition>
+        <string>Monthly</string>
+        <value>QuantLib::Monthly</value>
     </EnumerationDefinition>
 </EnumerationDefinitions>
 </Enumeration>
