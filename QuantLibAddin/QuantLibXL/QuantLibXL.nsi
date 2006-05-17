@@ -54,6 +54,9 @@ Section
                    "$INSTDIR\QuantLibXLUninstall.exe" "" \
                    "$INSTDIR\QuantLibXLUninstall.exe" 0
 
+    CreateShortCut "$DESKTOP\QuantLibXL-${VER_NUMBER}.lnk" \
+                   "$INSTDIR\framework\QuantLibXL.xla"
+
     WriteUninstaller "QuantLibXLUninstall.exe"
 SectionEnd
 
