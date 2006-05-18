@@ -21,6 +21,7 @@
 #include <qla/typeregistry.hpp>
 #include <ql/Instruments/payoffs.hpp>
 #include <ql/Utilities/strings.hpp>
+#include <oh/exception.hpp>
 
 namespace QuantLibAddin {
 
@@ -38,9 +39,9 @@ namespace QuantLibAddin {
                     RegistryClass::instance().getAllTypesMap().find(typeid(T).name())->second;
             }
             std::string idUpper = QuantLib::uppercase(id);
-            TypeMap::iterator type = type_map->find(idUpper);
-            QL_REQUIRE(type != type_map->end(), "Unknown id for Type: " + id);
-            return type->second;
+            for (TypeMap::iterator i = type_map->begin(); i != type_map->end(); i++)
+                if (QuantLib::uppercase(i->first) == idUpper) return i->second;
+            throw ObjHandler::Exception("Unknown id for Type: " + id);
         }
     };
 

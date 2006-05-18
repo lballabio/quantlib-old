@@ -208,12 +208,12 @@ namespace QuantLibAddin {
 
     ComplexTypeRegistry::ComplexTypeRegistry() {
         REG_ENUM(QuantLib::StrikedTypePayoff,
-            MAP("ASSETORNOTHING", ASSETORNOTHING_Payoff);
-            MAP("CASHORNOTHING", CASHORNOTHING_Payoff);
-            MAP("GAP", GAP_Payoff);
-            MAP("PERCENTAGESTRIKE", PERCENTAGESTRIKE_Payoff);
-            MAP("VANILLA", VANILLA_Payoff);
-            MAP("SUPERSHARE", SUPERSHARE_Payoff);
+            MAP("AssetOrNothing", ASSETORNOTHING_Payoff);
+            MAP("CashOrNothing", CASHORNOTHING_Payoff);
+            MAP("Gap", GAP_Payoff);
+            MAP("PercentageStrike", PERCENTAGESTRIKE_Payoff);
+            MAP("Vanilla", VANILLA_Payoff);
+            MAP("SuperShare", SUPERSHARE_Payoff);
         );
 
         REG_ENUM(QuantLib::PricingEngine,

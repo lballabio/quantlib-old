@@ -49,7 +49,7 @@ class AddinQla(addin.Addin):
                 enumVal = enumeration.type + '(' + enumDef.value + ')'
             else:
                 enumVal = enumDef.value
-            fileEnum.write(ENUM_LINE % (enumDef.string.upper(), enumVal))
+            fileEnum.write(ENUM_LINE % (enumDef.string, enumVal))
         fileEnum.write(ENUM_END)
 
     def generateEnumerations(self):
