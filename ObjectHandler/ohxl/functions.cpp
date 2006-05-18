@@ -18,6 +18,7 @@
 #include <oh/utilities.hpp>
 #include <oh/exception.hpp>
 #include <ohxl/conversions.hpp>
+#include <ohxl/functioncall.hpp>
 #include <sstream>
 
 using namespace ObjHandler;
@@ -127,8 +128,10 @@ extern "C" long int* ohDependsOn(
         OPER *dummy8,
         OPER *dummy9) {
     try {
-        static long int ret = 0;
-        ret++;
+        ObjHandler::FunctionCall functionCall;
+        static std::map < std::string, long > iterators;
+        static long ret;
+        ret = iterators[functionCall.getAddressString()]++;
         return &ret;
     } catch (const std::exception &e) {
         logMessage(std::string("ERROR: ohDependsOn: ") + e.what(), 2);
