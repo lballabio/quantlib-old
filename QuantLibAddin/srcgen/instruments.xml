@@ -214,15 +214,15 @@
     <tensorRank>scalar</tensorRank>
     <description>day counter (e.g. Actual365Fixed)</description>
   </Parameter>
-  <Parameter name='accrualConvention' ql_type='QuantLib::BusinessDayConvention'>
+  <Parameter name='accrualBusinessDayConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>accrual convention</description>
+        <description>Accrual Business Day Convention (e.g. ModifiedFollowing)</description>
     </Parameter>
-	<Parameter name='paymentConvention' ql_type='QuantLib::BusinessDayConvention'>
+	<Parameter name='paymentBusinessDayConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>payment convention</description>
+        <description>Payment Business Day Convention (e.g. ModifiedFollowing)</description>
     </Parameter>
     <Parameter name='calendar' ql_type='QuantLib::Calendar'>
         <type>string</type>
@@ -276,10 +276,10 @@
         <tensorRank>scalar</tensorRank>
         <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
-	<Parameter name='convention' ql_type='QuantLib::BusinessDayConvention'>
+	<Parameter name='businessDayConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>convention ID</description>
+        <description>BusinessDayConvention</description>
     </Parameter>
     <Parameter name='redemption'>
         <type>double</type>

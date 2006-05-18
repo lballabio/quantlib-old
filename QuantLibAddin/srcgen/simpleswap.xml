@@ -45,7 +45,7 @@
     <Parameter name='FixBDayConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>Fixed Leg Business Day Convention</description>
+        <description>Fixed Leg Business Day Convention (e.g. ModifiedFollowing)</description>
     </Parameter>
       <Parameter name='FixDayCounter' ql_type='QuantLib::DayCounter'>
         <type>string</type>

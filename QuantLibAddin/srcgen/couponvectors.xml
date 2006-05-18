@@ -12,7 +12,7 @@
         <tensorRank>scalar</tensorRank>
         <description>schedule</description>
     </Parameter>
-    <Parameter name='conventionID' ql_type='QuantLib::BusinessDayConvention'>
+    <Parameter name='BusinessDayConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
         <description>payment adjustment</description>

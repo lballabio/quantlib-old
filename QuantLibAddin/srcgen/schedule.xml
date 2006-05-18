@@ -27,10 +27,10 @@
         <tensorRank>scalar</tensorRank>
         <description>frequency</description>
     </Parameter>
-    <Parameter name='convention' ql_type='QuantLib::BusinessDayConvention'>
+    <Parameter name='businessDayConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>business day convention</description>
+        <description>Business Day Convention (e.g. ModifiedFollowing)</description>
     </Parameter>
     <Parameter name='startFromEnd' default='0'>
         <type>bool</type>

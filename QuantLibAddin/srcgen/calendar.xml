@@ -112,10 +112,10 @@
           <tensorRank>scalar</tensorRank>
           <description>Calendar to be used for advancing the date</description>
         </Parameter>
-        <Parameter name='rollingConvention' ql_type='QuantLib::BusinessDayConvention'>
+        <Parameter name='BusinessDayConvention' ql_type='QuantLib::BusinessDayConvention'>
           <type>string</type>
           <tensorRank>scalar</tensorRank>
-          <description>rolling convention</description>
+          <description>Business Day Convention (e.g. ModifiedFollowing)</description>
         </Parameter>
       </Parameters>
       <ReturnValue return_func='serialNumber'>

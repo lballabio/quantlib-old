@@ -32,10 +32,10 @@
         <tensorRank>scalar</tensorRank>
         <description>holiday calendar (e.g. TARGET)</description>
     </Parameter>
-    <Parameter name='convention' ql_type='QuantLib::BusinessDayConvention'>
+    <Parameter name='businessDayConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>business day convention (e.g. ModifiedFollowing)</description>
+        <description>Business Day Convention (e.g. ModifiedFollowing)</description>
     </Parameter>
   <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
     <type>string</type>
@@ -72,7 +72,7 @@
       <Parameter name='bDayConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>business day convention (e.g. ModifiedFollowing)</description>
+        <description>Business Day Convention (e.g. ModifiedFollowing)</description>
       </Parameter>
       <Parameter name='dayCounter' ql_type='QuantLib::DayCounter'>
         <type>string</type>
@@ -119,7 +119,7 @@
     <Parameter name='fixedLegConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>fixed leg convention (e.g. Unadjusted)</description>
+        <description>fixed leg Business Day Convention (e.g. ModifiedFollowing)</description>
     </Parameter>
   <Parameter name='fixedLegDayCounter' ql_type='QuantLib::DayCounter'>
     <type>string</type>
@@ -134,7 +134,7 @@
     <Parameter name='floatingLegConvention' ql_type='QuantLib::BusinessDayConvention'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-        <description>floating leg convention (e.g. ModifiedFollowing)</description>
+        <description>floating leg Business Day Convention (e.g. ModifiedFollowing)</description>
     </Parameter>
   <Parameter name='floatingLegDayCounter' ql_type='QuantLib::DayCounter'>
     <type>string</type>
