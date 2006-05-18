@@ -24,6 +24,7 @@
 #include <ostream>
 #include <sstream>
 #include <boost/regex.hpp>
+#include <algorithm>
 
 namespace ObjHandler {
 
@@ -73,9 +74,12 @@ namespace ObjHandler {
                 instanceNames.push_back(i->first);
         } else {
             boost::regex r(regex);
-            for (ObjectList::const_iterator i=objectList_.begin(); i!=objectList_.end(); i++)
-                if (regex_match(i->first, r)) instanceNames.push_back(i->first);
+            for (ObjectList::const_iterator i=objectList_.begin(); i!=objectList_.end(); i++) {
+                std::string stubName = i->second->getStubName();
+                if (regex_match(stubName, r)) instanceNames.push_back(stubName);
+            }
         }
+        std::sort(instanceNames.begin(), instanceNames.end());
         return instanceNames;
     }
 }
