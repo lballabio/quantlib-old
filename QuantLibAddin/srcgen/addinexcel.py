@@ -140,21 +140,19 @@ class AddinExcel(addin.Addin):
         ret += self.formatLine('', 'path to help file')
         if func.Parameters:
             ret += self.formatLine(func.description, 'function description')
-            i = 0
-            j = 1
+            i = 1
             lastParameter = False
             for param in func.Parameters:
                 desc = param.description
-                if j >= func.ParameterCount:                
+                if i >= func.ParameterCount:                
                     lastParameter = True
                     # append 2 spaces to description of last parameter to work
                     # around bug in Excel which causes description to be corrupted
                     # when displayed in the Function Wizard
                     desc += '  '
                 ret += self.formatLine(desc, 
-                    'description of parameter %d' % (i + 1), lastParameter)
+                    'description of parameter %d' % i, lastParameter)
                 i += 1
-                j += 1
         else:
             # if no parameters - append 2 spaces to function description to work
             # around bug in Excel which causes description to be corrupted when
