@@ -78,7 +78,7 @@ namespace QuantLib {
     };
     class ActualActual : public DayCounter {
       public:
-        enum Convention { ISMA, Bond, ISDA, Historical, AFB, Euro };
+        enum Convention { ISMA, Bond, ISDA, Historical, Actual365, AFB, Euro };
         ActualActual(Convention c = ISDA);
     };
     class OneDayCounter : public DayCounter {};
