@@ -53,14 +53,8 @@ class Callability {
 #endif
 
 #if defined(SWIGCSHARP)
-SWIG_STD_VECTOR_SPECIALIZE( Callability, Callability )
-%ignore std::vector<Callability>::Contains;
-%ignore std::vector<Callability>::IndexOf;
-%ignore std::vector<Callability>::LastIndexOf;
-%ignore std::vector<Callability>::Remove;
+SWIG_STD_VECTOR_SPECIALIZE_MINIMUM( Callability, Callability )
 #endif
-
-
 namespace std {
     %template(CallabilityVector) vector<Callability>;
 }

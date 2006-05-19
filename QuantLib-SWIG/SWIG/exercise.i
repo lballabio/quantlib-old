@@ -26,12 +26,20 @@
 using QuantLib::Exercise;
 %}
 
+#if defined(SWIGJAVA) || defined(SWIGCSHARP)
+%rename(_Exercise) Exercise;
+#else
 %ignore Exercise;
+#endif
 class Exercise {
   public:
     enum Type { American, Bermudan, European };
     Exercise::Type type() const;
     std::vector<Date> dates() const;
+#if defined(SWIGJAVA) || defined(SWIGCSHARP)
+  private:
+    Exercise();
+#endif
 };
 
 %template(Exercise) boost::shared_ptr<Exercise>;

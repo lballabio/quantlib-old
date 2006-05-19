@@ -195,11 +195,19 @@ using QuantLib::BlackVarianceSurface;
 typedef boost::shared_ptr<BlackVolTermStructure> BlackVarianceSurfacePtr;
 %}
 
+#if defined(SWIGJAVA) || defined(SWIGCSHARP)
+%rename(_BlackVarianceSurface) BlackVarianceSurface;
+#else
 %ignore BlackVarianceSurface;
+#endif
 class BlackVarianceSurface {
   public:
     enum Extrapolation { ConstantExtrapolation,
                          InterpolatorDefaultExtrapolation };
+#if defined(SWIGJAVA) || defined(SWIGCSHARP)
+  private:
+    BlackVarianceSurface();
+#endif
 };
 
 %rename(BlackVarianceSurface) BlackVarianceSurfacePtr;

@@ -58,9 +58,19 @@ using QuantLib::McPagoda;
 
 // Define so that the vectors get created
 %include stl.i
-%template(YieldTermStructureVector) 
+
+#if defined(SWIGCSHARP)
+SWIG_STD_VECTOR_SPECIALIZE( YieldTermStructureHandle,
+                            Handle<YieldTermStructure> )
+#endif
+%template(YieldTermStructureVector)
     std::vector<Handle<YieldTermStructure> >;
-%template(BlackVolTermStructureVector) 
+
+#if defined(SWIGCSHARP)
+SWIG_STD_VECTOR_SPECIALIZE( BlackVolTermStructureHandle,
+                            Handle<BlackVolTermStructure> )
+#endif
+%template(BlackVolTermStructureVector)
     std::vector<Handle<BlackVolTermStructure> >;
 
 class McDiscreteArithmeticASO {

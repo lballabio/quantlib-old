@@ -26,10 +26,18 @@ typedef QuantLib::BoundaryCondition<QuantLib::TridiagonalOperator>
 		BoundaryCondition;
 %}
 
+#if defined(SWIGJAVA) || defined(SWIGCSHARP)
+%rename(_BoundaryCondition) BoundaryCondition;
+#else
 %ignore BoundaryCondition;
+#endif
 class BoundaryCondition {
   public:
     enum Side { None, Upper, Lower };
+#if defined(SWIGJAVA) || defined(SWIGCSHARP)
+  private:
+    BoundaryCondition();
+#endif
 };
 %template(BoundaryCondition) boost::shared_ptr<BoundaryCondition>;
 %extend boost::shared_ptr<BoundaryCondition> {
