@@ -1,9 +1,0 @@
-doxywarnings*txt
-html
-html-online
-Makefile
-Makefile.in
-.qladdin.doxy
-QuantLibAddin-docs-*.*
-.srcgen.doxy
-.time-stamp*
