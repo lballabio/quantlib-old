@@ -1,8 +1,0 @@
-*.pyc
-Makefile
-Makefile.in
-.time-stamp
-srcgen.plg
-build
-Debug
-*.user
