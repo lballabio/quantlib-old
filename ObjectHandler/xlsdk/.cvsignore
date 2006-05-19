@@ -1,6 +1,0 @@
-lib
-build
-*.user
-Makefile
-Makefile.in
-xlsdk.plg
