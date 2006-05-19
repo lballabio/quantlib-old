@@ -1,3 +1,4 @@
+#include <oh/objhandlerdefines.hpp>
 #include <windows.h>
 #include <xlsdk/xlcall.h>
 #include <xlsdk/framewrk.hpp>
@@ -8,6 +9,8 @@
     #include <ohxl/unregister.hpp>
     #include <ohxl/export.hpp>
 #endif
+#include <qla/qladdindefines.hpp>
+#include <qla/autolink.hpp>
 #include <string>
 #include <sstream>
 

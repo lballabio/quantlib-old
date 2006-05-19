@@ -6,5 +6,5 @@
 #include <oh/objhandler.hpp>
 #include <ohxl/conversions.hpp>
 #include <ohxl/functioncall.hpp>
-#include <Addins/Excel/session.hpp>
+#include <qlxl/session.hpp>
 

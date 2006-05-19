@@ -1,6 +1,6 @@
 <Addin name='Excel'>
 <platformId>E</platformId>
-<rootDirectory>../Addins/Excel/</rootDirectory>
+<rootDirectory>../../QuantLibXL/qlxl/</rootDirectory>
 
 <Buffers>
 <Buffer name='bufferFunction' fileName='stub.excel.function'/>
