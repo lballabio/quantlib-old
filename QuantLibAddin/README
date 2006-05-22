@@ -1,0 +1,6 @@
+QuantLibAddin has been split into different projects, which were then moved into their own projects and CVS:
+
+http://sourceforge.net/projects/gensrc
+http://sourceforge.net/projects/quantlibaddin
+http://sourceforge.net/projects/quantlibxl
+
