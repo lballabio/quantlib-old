@@ -124,6 +124,12 @@ sh ./autogen.sh
 <p>which will prepare the package for compilation. You can then use
 <em>./configure</em> and <em>make</em> in the usual way.</p>
 
+<br>
+<h3>CVS commit messages</h3>
+If you want to stay abreast of the latest changes in the repository,
+means are available to be notified each time a commit is made; see the
+<a href= "mailinglists.shtml">mailing-lists page</a> for details.
+
 </div>
 
 <div class="footer">
