@@ -86,3 +86,13 @@ height="33" border="0" alt="StatPro Logo"></a></div>
          alt="Valid CSS!" height="31" width="88"></a>
   </p>
 </div>
+
+<hr>
+<form action="http://www.google.com/search" method="get">
+<div class="center">
+<img src="images/google.png" border="0" alt="Google Logo"><br>
+<input type="text" size="20" maxlength="255" value="" name="q"/>
+<input type="hidden" value="quantlib.org" name="domains"/>
+<input type="hidden" value="quantlib.org" name="sitesearch"/>
+</div>
+</form>
