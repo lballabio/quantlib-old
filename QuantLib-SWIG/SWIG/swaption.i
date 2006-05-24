@@ -33,7 +33,7 @@ typedef boost::shared_ptr<Instrument> SwaptionPtr;
 class SwaptionPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
-        SwaptionPtr(const boost::shared_ptr<VanillaSwap>& simpleSwap,
+        SwaptionPtr(const VanillaSwapPtr& simpleSwap,
                     const boost::shared_ptr<Exercise>& exercise,
                     const Handle<YieldTermStructure>& termStructure,
                     const boost::shared_ptr<PricingEngine>& engine) {

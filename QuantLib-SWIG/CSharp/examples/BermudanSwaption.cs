@@ -104,30 +104,30 @@ namespace BermudanSwaption
 			fixedLegFrequency,fixedLegConvention);
 			Schedule floatSchedule = new Schedule(calendar,startDate,maturity,
 			floatingLegFrequency,floatingLegConvention);
-			SimpleSwap swap = new SimpleSwap(
+			VanillaSwap swap = new VanillaSwap(
 					   payFixedRate, 1000.0,
 					   fixedSchedule, dummyFixedRate, fixedLegDayCounter,
 					   floatSchedule, indexSixMonths, fixingDays, 0.0,
-					   rhTermStructure);
+					   indexSixMonths.dayCounter(), rhTermStructure);
 			double fixedATMRate = swap.fairRate();
 			double fixedOTMRate = fixedATMRate * 1.2;
 			double fixedITMRate = fixedATMRate * 0.8;
 
-			SimpleSwap atmSwap = new SimpleSwap(
+			VanillaSwap atmSwap = new VanillaSwap(
 					   payFixedRate, 1000.0,
 					   fixedSchedule, fixedATMRate, fixedLegDayCounter,
 					   floatSchedule, indexSixMonths, fixingDays, 0.0,
-					   rhTermStructure );
-			SimpleSwap otmSwap = new SimpleSwap(
+					   indexSixMonths.dayCounter(), rhTermStructure );
+			VanillaSwap otmSwap = new VanillaSwap(
 					   payFixedRate, 1000.0,
 					   fixedSchedule, fixedOTMRate, fixedLegDayCounter,
 					   floatSchedule, indexSixMonths, fixingDays, 0.0,
-					   rhTermStructure);
-			SimpleSwap itmSwap = new SimpleSwap(
+					   indexSixMonths.dayCounter(), rhTermStructure);
+			VanillaSwap itmSwap = new VanillaSwap(
 					   payFixedRate, 1000.0,
 					   fixedSchedule, fixedITMRate, fixedLegDayCounter,
 					   floatSchedule, indexSixMonths, fixingDays, 0.0,
-					   rhTermStructure);
+					   indexSixMonths.dayCounter(), rhTermStructure);
 
 			// defining the swaptions to be used in model calibration
 			PeriodVector swaptionMaturities = new PeriodVector();
@@ -152,6 +152,7 @@ namespace BermudanSwaption
                                new QuoteHandle(vol),
                                indexSixMonths,
                                indexSixMonths.frequency(),
+                               indexSixMonths.dayCounter(),
                                indexSixMonths.dayCounter(),
                                rhTermStructure );
 				swaptions.Add( helper );
