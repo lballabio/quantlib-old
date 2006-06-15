@@ -53,6 +53,7 @@ class TimeSeries {
 
 %template(RealTimeSeries) TimeSeries<Real>;
 %template(IntervalPriceTimeSeries) TimeSeries<IntervalPrice>;
+%template(IntervalPriceVector) std::vector<IntervalPrice>;
 
 class IntervalPrice {
       enum Type {Open, Close, High, Low};
