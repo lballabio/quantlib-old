@@ -10,10 +10,10 @@ if HAVE_R
 
 all-local: .build-stamp
 
-.build-stamp: QuantLib.RData
+.build-stamp: QuantLib_wrap.RData QuantLib_wrap.so
 	touch .build-stamp
 
-QuantLib.RData: QuantLib_wrap.so QuantLib_wrap.R
+QuantLib_wrap.RData: QuantLib_wrap.R
 	R CMD BATCH makeRData.R
 
 QuantLib_wrap.so: $(BUILT_SOURCES)
