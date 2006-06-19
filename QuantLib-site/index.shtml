@@ -112,11 +112,9 @@ the most recent updates on the project.</li>
 <li>The released files (source code, binaries, documentation, etc.)
 are available at the <a href="download.shtml">download
 page</a>.</li>
-<li>The QuantLib CVS, providing all the snapshots of the
-development, can be <a href="cvs.shtml">accessed directly</a>, or
-through the <a href=
-"http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/quantlib/">CVS web
-interface</a>.</li>
+<li>The <a href="cvs.shtml">QuantLib CVS repository</a>, providing all
+the snapshots of the development, can be accessed directly or through
+a web interface.</li>
 <li>To submit a bug report, please use the <a href=
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bug
 Tracker</a>.</li>
