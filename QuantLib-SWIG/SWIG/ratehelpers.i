@@ -103,18 +103,33 @@ class FuturesRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 const Handle<Quote>& price,
                 const Date& immDate, Integer nMonths,
                 const Calendar& calendar, BusinessDayConvention convention,
-                const DayCounter& dayCounter) {
+                const DayCounter& dayCounter,
+		const Handle<Quote>& convexityAdjustment) {
             return new FuturesRateHelperPtr(
                 new FuturesRateHelper(price,immDate,nMonths,
-                                      calendar,convention,dayCounter));
+                                      calendar,convention,dayCounter,
+				      convexityAdjustment));
+        }
+        FuturesRateHelperPtr(
+                const Handle<Quote>& price,
+                const Date& immDate, Integer nMonths,
+                const Calendar& calendar, BusinessDayConvention convention,
+                const DayCounter& dayCounter,
+		const Rate convexityAdjustment = 0.0) {
+            return new FuturesRateHelperPtr(
+                new FuturesRateHelper(price,immDate,nMonths,
+                                      calendar,convention,dayCounter,
+				      convexityAdjustment));
         }
         FuturesRateHelperPtr(
                 Real price, const Date& immDate, Integer nMonths,
                 const Calendar& calendar, BusinessDayConvention convention,
-                const DayCounter& dayCounter) {
+                const DayCounter& dayCounter,
+		Rate convexityAdjustment = 0.0) {
             return new FuturesRateHelperPtr(
                 new FuturesRateHelper(price,immDate,nMonths,
-                                      calendar,convention,dayCounter));
+                                      calendar,convention,dayCounter,
+				      convexityAdjustment));
         }
         FuturesRateHelperPtr(
 	            const Handle<Quote>& price,

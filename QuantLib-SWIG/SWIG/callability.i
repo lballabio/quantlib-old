@@ -59,6 +59,6 @@ namespace std {
     %template(CallabilityVector) vector<Callability>;
 }
 
-typedef std::vector<Callability> CallabilitySchedule;
+typedef std::vector<boost::shared_ptr<Callability> > CallabilitySchedule;
 
 #endif

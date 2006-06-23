@@ -25,17 +25,20 @@
 %{
 using QuantLib::TimeSeries;
 using QuantLib::IntervalPrice;
-using QuantLib::TimeSeriesIntervalPriceHelper;
 %}
 
-template <class T>
+template <class T, class Container = std::map<Date, T> >
 class TimeSeries {
     #if defined (SWIGPYTHON) || defined(SWIGRUBY)
     %rename(__len__) size;
     #endif
   public:
     TimeSeries();
-    TimeSeries(const std::vector<Date>&, const std::vector<T>&);
+    %extend {
+    TimeSeries(const std::vector<Date>&d, const std::vector<T>&v) {
+         return new TimeSeries<T>(d.begin(), d.end(), v.begin());
+    }
+    }
     std::vector<Date> dates();
     std::vector<T> values();
     Size size();
@@ -59,18 +62,15 @@ class IntervalPrice {
       enum Type {Open, Close, High, Low};
       public:
       IntervalPrice(Real, Real, Real, Real);
-      void setValue(Real, Real, Real, Real);
+      void setValue(Real, IntervalPrice::Type);
+      void setValues(Real, Real, Real, Real);
       Real value(IntervalPrice::Type t);
       Real open();
       Real close();
       Real high();
       Real low();
-};
-
-class TimeSeriesIntervalPriceHelper {
-      public:
-        static 
-        TimeSeries<IntervalPrice> create(const std::vector<Date>& d,
+      static 
+        TimeSeries<IntervalPrice> makeSeries(const std::vector<Date>& d,
                                          const std::vector<Real>& open,
                                          const std::vector<Real>& close,
                                          const std::vector<Real>& high,

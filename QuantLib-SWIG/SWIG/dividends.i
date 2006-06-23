@@ -21,16 +21,24 @@
 %include cashflows.i
 
 %{
+using QuantLib::Dividend;
+%}
+%ignore Dividend;
+class Dividend : public CashFlow {
+};
+%template(Dividend) boost::shared_ptr<Dividend>;
+
+%{
 using QuantLib::FixedDividend;
 using QuantLib::FractionalDividend;
 using QuantLib::DividendSchedule;
 
-typedef boost::shared_ptr<CashFlow> FixedDividendPtr;
-typedef boost::shared_ptr<CashFlow> FractionalDividendPtr;
+typedef boost::shared_ptr<Dividend> FixedDividendPtr;
+typedef boost::shared_ptr<Dividend> FractionalDividendPtr;
 %}
 
 %rename(FixedDividend) FixedDividendPtr;
-class FixedDividendPtr : public boost::shared_ptr<CashFlow> {
+class FixedDividendPtr : public boost::shared_ptr<Dividend> {
   public:
     %extend {
         FixedDividendPtr(Real amount, const Date& date) {
@@ -40,7 +48,7 @@ class FixedDividendPtr : public boost::shared_ptr<CashFlow> {
 };
 
 %rename(FractionalDividend) FractionalDividendPtr;
-class FractionalDividendPtr : public boost::shared_ptr<CashFlow> {
+class FractionalDividendPtr : public boost::shared_ptr<Dividend> {
   public:
     %extend {
         FractionalDividendPtr(Rate rate, const Date& date) {
@@ -51,11 +59,5 @@ class FractionalDividendPtr : public boost::shared_ptr<CashFlow> {
 };
 
 
-class DividendSchedule {
-  public:
-    DividendSchedule();
-    DividendSchedule(const std::vector<boost::shared_ptr<CashFlow> >&);
-};
-
-
+typedef std::vector<boost::shared_ptr<Dividend> > DividendSchedule;
 #endif
