@@ -89,23 +89,23 @@ typedef RealTimeSeries VolatilityTimeSeries;
 
 #if defined(SWIGR)
 %Rruntime %{
-setMethod('as.data.frame', '_p_TimeSeriesTdouble_t',
+setMethod('as.data.frame', '_p_TimeSeriesTdouble_std__mapTDate_double_t_t',
 function(x,row.names,optional)
 data.frame("date"=as(x$dates(), "character"),
 "values"=as(x$values(), "numeric")))
 
-setMethod("print", '_p_TimeSeriesTdouble_t',
+setMethod("print", '_p_TimeSeriesTdouble_std_mapTDate_double_t_t',
 function(x) print(as.data.frame(x)))
 
-setMethod('as.data.frame', '_p_TimeSeriesTIntervalPrice_t',
+setMethod('as.data.frame', '_p_TimeSeriesTIntervalPrice_std_mapTDate_IntervalPrice_t_t',
 function(x,row.names,optional)
 data.frame("date"=as(x$dates(), "character"),
-"open"=as(TimeSeriesIntervalPriceHelper_extractValues(x, "Open"), "numeric"),
-"close"=as(TimeSeriesIntervalPriceHelper_extractValues(x, "Close"), "numeric"),
-"high"=as(TimeSeriesIntervalPriceHelper_extractValues(x, "High"), "numeric"),
-"low"=as(TimeSeriesIntervalPriceHelper_extractValues(x, "Low"), "numeric")))
+"open"=as(IntervalPrice_extractValues(x, "Open"), "numeric"),
+"close"=as(IntervalPrice_extractValues(x, "Close"), "numeric"),
+"high"=as(IntervalPrice_extractValues(x, "High"), "numeric"),
+"low"=as(IntervalPrice_extractValues(x, "Low"), "numeric")))
 
-setMethod("print", '_p_TimeSeriesTIntervalPrice_t',
+setMethod("print", '_p_TimeSeriesTIntervalPrice_std_mapTDate_IntervalPrice_t_t',
 function(x) print(as.data.frame(x)))
 %}
 
