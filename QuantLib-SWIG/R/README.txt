@@ -1,7 +1,7 @@
-This is an experimental interface to R.  Generating the wrappers
-requires patches to SWIG which can be gotten from
-<http://wiki.quantlib.org/twiki/bin/view/Quantlib/RSwig>; the patched
-executable should be renamed rswig.
+This is the R interface to QuantLib. 
+
+Generating this interface requires SWIG version 1.3.30 or above, which
+contains the R interface.
 
 The command
 
