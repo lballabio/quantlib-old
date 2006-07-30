@@ -168,7 +168,7 @@ class EndCriteria {
   public:
     EndCriteria();
     EndCriteria(Size maxIteration, Real epsilon);
-    void setPositiveOptimization();
+    void setPositiveOptimization(bool);
     bool operator()(Size iteration,
                     Real fold,
                     Real normgold,
