@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000-2003 StatPro Italia srl
+ Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2003 StatPro Italia srl
  Copyright (c) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
@@ -80,8 +81,8 @@ class SwaptionHelperPtr : public boost::shared_ptr<CalibrationHelper> {
                 new SwaptionHelper(maturity,length,volatility,
                                    libor,fixedLegFrequency,
                                    fixedLegDayCounter,
-				   floatingLegDayCounter,
-				   termStructure));
+                   floatingLegDayCounter,
+                   termStructure));
         }
         std::vector<Time> times() {
             std::list<Time> l;
@@ -172,8 +173,8 @@ class HullWhitePtr : public boost::shared_ptr<ShortRateModel> {
     %extend {
         HullWhitePtr(const Handle<YieldTermStructure>& termStructure,
                      Real a = 0.1, Real sigma = 0.01) {
-	        return new HullWhitePtr(
-	            new HullWhite(termStructure, a, sigma));
+            return new HullWhitePtr(
+                new HullWhite(termStructure, a, sigma));
         }
     }
 };
@@ -184,8 +185,8 @@ class BlackKarasinskiPtr : public boost::shared_ptr<ShortRateModel> {
     %extend {
         BlackKarasinskiPtr(const Handle<YieldTermStructure>& termStructure,
                            Real a = 0.1, Real sigma = 0.1) {
-	        return new BlackKarasinskiPtr(
-	            new BlackKarasinski(termStructure, a, sigma));
+            return new BlackKarasinskiPtr(
+                new BlackKarasinski(termStructure, a, sigma));
         }
     }
 };
@@ -197,7 +198,7 @@ class G2Ptr : public boost::shared_ptr<ShortRateModel> {
         G2Ptr(const Handle<YieldTermStructure>& termStructure,
               Real a = 0.1, Real sigma = 0.01, Real b = 0.1,
               Real eta = 0.01, Real rho = -0.75) {
-	        return new G2Ptr(new G2(termStructure, a, sigma, b, eta, rho));
+            return new G2Ptr(new G2(termStructure, a, sigma, b, eta, rho));
         }
     }
 };

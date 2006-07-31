@@ -58,8 +58,8 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
                 const DayCounter& dayCounter,
                 Real accuracy = 1.0e-12,
                 const Interpolator& i = Interpolator()) {
-	        return new Name##Ptr(
-	            new PiecewiseYieldCurve<Base,Interpolator>(
+            return new Name##Ptr(
+                new PiecewiseYieldCurve<Base,Interpolator>(
                                                     referenceDate,instruments,
                                                     dayCounter,accuracy,i));
         }
@@ -69,8 +69,8 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
                 const DayCounter& dayCounter,
                 Real accuracy = 1.0e-12,
                 const Interpolator& i = Interpolator()) {
-	        return new Name##Ptr(
-	            new PiecewiseYieldCurve<Base,Interpolator>(
+            return new Name##Ptr(
+                new PiecewiseYieldCurve<Base,Interpolator>(
                                         settlementDays, calendar, instruments,
                                         dayCounter, accuracy, i));
         }
@@ -82,6 +82,12 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
             typedef PiecewiseYieldCurve<Base,Interpolator> Name;
             return boost::dynamic_pointer_cast<Name>(*self)->times();
         }
+        #if !defined(SWIGR) && !defined(SWIGRUBY) && !defined(SWIGGUILE) && !defined(SWIGMZSCHEME)
+        std::vector<std::pair<Date,Real> > nodes() {
+            typedef PiecewiseYieldCurve<Base,Interpolator> Name;
+            return boost::dynamic_pointer_cast<Name>(*self)->nodes();
+        }
+        #endif
     }
 };
 

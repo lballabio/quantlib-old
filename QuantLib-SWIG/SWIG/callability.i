@@ -35,28 +35,52 @@ class Price {
     Type type() const;
 };
 
+#if defined(SWIGJAVA) || defined(SWIGCSHARP)
+%rename(_Callability) Callability;
+#else
+%ignore Callability;
+#endif
 class Callability {
   public:
     enum Type { Call, Put };
-    Callability(Price price, Type type, Date date);
     const Price& price() const;
     Type type() const;
     Date date() const;
+#if defined(SWIGJAVA) || defined(SWIGCSHARP)
+  private:
+    Callability();
+#endif
 };
 
-/* This prevents default constructor and resize methods from getting
-   wrapped, for swig frontends which use the typemap libary. This may
-   benecessary for frontends other than R */
+%template(Callability) boost::shared_ptr<Callability>;
+%extend boost::shared_ptr<Callability> {
+    static const Callability::Type Call = Callability::Call;
+    static const Callability::Type Put = Callability::Put;
+}
 
-#if defined(SWIGR)
-%std_nodefconst_type(Callability)
-#endif
+%{
+using QuantLib::SoftCallability;
+typedef boost::shared_ptr<Callability> SoftCallabilityPtr;
+%}
+
+%rename(SoftCallability) SoftCallabilityPtr;
+class SoftCallabilityPtr : public boost::shared_ptr<Callability> {
+  public:
+    %extend {
+        SoftCallabilityPtr(const Price& price, const Date& date,
+                           Real trigger) {
+            return new SoftCallabilityPtr(new SoftCallability(price,date,
+                                                              trigger));
+        }
+    }
+};
+
 
 #if defined(SWIGCSHARP)
-SWIG_STD_VECTOR_SPECIALIZE_MINIMUM( Callability, Callability )
+SWIG_STD_VECTOR_SPECIALIZE( Callability, boost::shared_ptr<Callability> )
 #endif
 namespace std {
-    %template(CallabilityVector) vector<Callability>;
+    %template(CallabilityVector) vector<boost::shared_ptr<Callability> >;
 }
 
 typedef std::vector<boost::shared_ptr<Callability> > CallabilitySchedule;

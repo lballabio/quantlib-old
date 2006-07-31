@@ -1,5 +1,9 @@
 
-Release 0.3.12 - March 2006
+Release 0.3.13 - July 2006
+Changes since Release 0.3.12:
+    - in sync with QuantLib 0.3.13
+
+Release 0.3.12 - March 27th, 2006
 Experimental version of the R and Objective Caml modules (thanks to
 Joseph Wang)
 Changes since Release 0.3.11:

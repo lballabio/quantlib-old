@@ -35,9 +35,9 @@ class TimeSeries {
   public:
     TimeSeries();
     %extend {
-    TimeSeries(const std::vector<Date>&d, const std::vector<T>&v) {
-         return new TimeSeries<T>(d.begin(), d.end(), v.begin());
-    }
+        TimeSeries(const std::vector<Date>& d, const std::vector<T>& v) {
+            return new TimeSeries<T>(d.begin(), d.end(), v.begin());
+        }
     }
     std::vector<Date> dates();
     std::vector<T> values();
@@ -59,27 +59,25 @@ class TimeSeries {
 %template(IntervalPriceVector) std::vector<IntervalPrice>;
 
 class IntervalPrice {
-      enum Type {Open, Close, High, Low};
-      public:
-      IntervalPrice(Real, Real, Real, Real);
-      void setValue(Real, IntervalPrice::Type);
-      void setValues(Real, Real, Real, Real);
-      Real value(IntervalPrice::Type t);
-      Real open();
-      Real close();
-      Real high();
-      Real low();
-      static 
-        TimeSeries<IntervalPrice> makeSeries(const std::vector<Date>& d,
-                                         const std::vector<Real>& open,
-                                         const std::vector<Real>& close,
-                                         const std::vector<Real>& high,
-                                         const std::vector<Real>&
-      low);
-      static std::vector<Real> extractValues(TimeSeries<IntervalPrice>,
-      IntervalPrice::Type t);
-      static TimeSeries<Real> extractComponent(TimeSeries<IntervalPrice>,
-      IntervalPrice::Type t);
+    enum Type {Open, Close, High, Low};
+  public:
+    IntervalPrice(Real, Real, Real, Real);
+    void setValue(Real, IntervalPrice::Type);
+    void setValues(Real, Real, Real, Real);
+    Real value(IntervalPrice::Type t);
+    Real open();
+    Real close();
+    Real high();
+    Real low();
+    static TimeSeries<IntervalPrice> makeSeries(const std::vector<Date>& d,
+                                                const std::vector<Real>& open,
+                                                const std::vector<Real>& close,
+                                                const std::vector<Real>& high,
+                                                const std::vector<Real>& low);
+    static std::vector<Real> extractValues(TimeSeries<IntervalPrice>,
+                                           IntervalPrice::Type t);
+    static TimeSeries<Real> extractComponent(TimeSeries<IntervalPrice>,
+                                             IntervalPrice::Type t);
 };
 
 

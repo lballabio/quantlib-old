@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000-2005 StatPro Italia srl
+ Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2003, 2004, 2005 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
@@ -769,7 +770,7 @@ function(x) print(as.matrix(x)))
 
 setMethod("as.matrix", "_p_Matrix",
 function(x) matrix(data=as.numeric(x$dataVector),
-	    nrow=x$rows(), ncol=x$columns()))
+        nrow=x$rows(), ncol=x$columns()))
 
 setMethod("print", "_p_SampledCurve",
 function(x) print(as.data.frame(x))
@@ -1093,18 +1094,18 @@ class Matrix {
             (*self)[i][j] = x;
         }
         #endif
-	#if defined(SWIGR)
-	Array dataVector() {
-	Size nrows = self->rows();
-	Size ncols = self->columns();
-	Size nelems = nrows * ncols;
-	Array a(nelems);
-	for (int i=0; i < nrows; i++)
-	for (int j=0; j < ncols; j++)
-	    a[j*nrows+i] = (*self)[i][j];
-	return a;
-	}
-	#endif
+    #if defined(SWIGR)
+    Array dataVector() {
+    Size nrows = self->rows();
+    Size ncols = self->columns();
+    Size nelems = nrows * ncols;
+    Array a(nelems);
+    for (int i=0; i < nrows; i++)
+    for (int j=0; j < ncols; j++)
+        a[j*nrows+i] = (*self)[i][j];
+    return a;
+    }
+    #endif
         #if defined(SWIGPYTHON)
         Matrix __rmul__(Real x) {
             return x*(*self);
@@ -1162,7 +1163,7 @@ struct SalvagingAlgorithm {
     #if defined(SWIGPYTHON)
     %rename(NoAlgorithm) None;
     #endif
-    enum Type { None, Spectral, Hypersphere };
+    enum Type { None, Spectral };
 };
 
 Matrix transpose(const Matrix& m);

@@ -23,8 +23,8 @@ clean-local: $(PERL_MAKEFILE)
 	rm -f $(PERL_MAKEFILE).old
 	rm -rf build
 
-$(PERL_MAKEFILE):
-	$(PERL) Makefile.PL
+$(PERL_MAKEFILE): Makefile.PL
+	$(PERL) Makefile.PL OPTIMIZE="$(CXXFLAGS)"
 
 endif
 

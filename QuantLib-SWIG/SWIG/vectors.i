@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2003, 2004, 2005, 2006 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,10 +21,20 @@
 
 %include stl.i
 
+#if defined(SWIGCSHARP)
+SWIG_STD_VECTOR_SPECIALIZE( NodePair, std::pair<Date,double> )
+#endif
+
 namespace std {
+
     %template(IntVector) vector<int>;
     %template(DoubleVector) vector<double>;
     %template(StrVector) vector<std::string>;
+
+#if !defined(SWIGR) && !defined(SWIGRUBY) && !defined(SWIGGUILE) && !defined(SWIGMZSCHEME)
+    %template(NodePair) pair<Date,double>;
+    %template(NodeVector) vector<pair<Date,double> >;
+#endif
 
 #if defined(SWIGR)
     swigr_list_converter(IntVector,

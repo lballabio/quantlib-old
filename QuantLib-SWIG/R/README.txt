@@ -1,7 +1,9 @@
 This is the R interface to QuantLib. 
 
-Generating this interface requires SWIG version 1.3.30 or above, which
-contains the R interface.
+Generating this interface requires the still unreleased SWIG
+1.3.30. If you want to regenerate the wrappers, you'll have to compile
+SWIG 1.3.30 from the SWIG CVS repository and make it available as
+'rswig'.
 
 The command
 

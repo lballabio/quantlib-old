@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000-2005 StatPro Italia srl
+ Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2003, 2004, 2005 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -61,10 +62,18 @@ class Index {
   public:
     Rate fixing(const Date& fixingDate) const;
     std::string name() const;
+    void addFixing(const Date& fixingDate, Rate fixing);
 };
 
 %template(Index) boost::shared_ptr<Index>;
 %extend boost::shared_ptr<Index> {
+    %extend {
+        void addFixings(const std::vector<Date>& fixingDates,
+                        const std::vector<Rate>& fixings) {
+            (*self)->addFixings(fixingDates.begin(),fixingDates.end(),
+                                fixings.begin());
+        }
+    }
     std::string __str__() {
         if (*self)
             return (*self)->name()+" index";

@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000-2005 StatPro Italia srl
+ Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2003, 2004, 2005 StatPro Italia srl
  Copyright (C) 2005 Johan Witters
 
  This file is part of QuantLib, a free-software/open-source library
@@ -249,7 +250,7 @@ class Date {
     static Date nthWeekday(Size n, Weekday, Month m, Year y);
     static bool isIMMdate(const Date&);
     static Date nextIMMdate(const Date&);
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA) || defined(SWIGR) 
+    #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA) || defined(SWIGR)
     Date operator+(BigInteger days) const;
     Date operator-(BigInteger days) const;
     Date operator+(const Period&) const;
@@ -352,12 +353,12 @@ namespace std {
 
 %Rruntime %{
 setAs("_p_std__vectorTDate_std__allocatorTDate_t_t",
-	"character",
-function(from) {if (from$size()) 
+    "character",
+function(from) {if (from$size())
 sapply(1:from$size(), function(y) from$"__getitem__"(i=y-1)$ISO())} )
 
 setAs("character", "_p_std__vectorTDate_std__allocatorTDate_t_t",
-function(from) { a <- DateVector(length(from)); 
+function(from) { a <- DateVector(length(from));
 sapply(1:length(from), function(n) {
 a[n] <- from[n] } )
 a

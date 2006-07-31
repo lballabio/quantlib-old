@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000-2003 StatPro Italia srl
+ Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2003 StatPro Italia srl
  Copyright (c) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
@@ -38,8 +39,8 @@ class PiecewiseFlatForwardPtr : public boost::shared_ptr<YieldTermStructure> {
                 const std::vector<boost::shared_ptr<RateHelper> >& instruments,
                 const DayCounter& dayCounter,
                 Real accuracy = 1.0e-12) {
-	        return new PiecewiseFlatForwardPtr(
-	            new PiecewiseFlatForward(referenceDate,instruments,
+            return new PiecewiseFlatForwardPtr(
+                new PiecewiseFlatForward(referenceDate,instruments,
                                          dayCounter,accuracy));
         }
         PiecewiseFlatForwardPtr(
@@ -47,8 +48,8 @@ class PiecewiseFlatForwardPtr : public boost::shared_ptr<YieldTermStructure> {
                 const std::vector<boost::shared_ptr<RateHelper> >& instruments,
                 const DayCounter& dayCounter,
                 Real accuracy = 1.0e-12) {
-	        return new PiecewiseFlatForwardPtr(
-	            new PiecewiseFlatForward(settlementDays, calendar,
+            return new PiecewiseFlatForwardPtr(
+                new PiecewiseFlatForward(settlementDays, calendar,
                                          instruments, dayCounter, accuracy));
         }
         const std::vector<Date>& dates() {

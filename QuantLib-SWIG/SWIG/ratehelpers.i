@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 StatPro Italia srl
+ Copyright (C) 2005, 2006 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -53,7 +53,7 @@ class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 const DayCounter& dayCounter) {
             return new DepositRateHelperPtr(
                 new DepositRateHelper(rate,n,units,settlementDays,
-                                      calendar, convention,dayCounter));
+                                      calendar,convention,dayCounter));
         }
         DepositRateHelperPtr(
                 Rate rate, Integer n, TimeUnit units, Integer settlementDays,
@@ -61,7 +61,24 @@ class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 const DayCounter& dayCounter) {
             return new DepositRateHelperPtr(
                 new DepositRateHelper(rate,n,units,settlementDays,
-                                      calendar, convention,dayCounter));
+                                      calendar,convention,dayCounter));
+        }
+        DepositRateHelperPtr(
+                const Handle<Quote>& rate,
+                const Period& tenor, Integer settlementDays,
+                const Calendar& calendar, BusinessDayConvention convention,
+                const DayCounter& dayCounter) {
+            return new DepositRateHelperPtr(
+                new DepositRateHelper(rate,tenor,settlementDays,
+                                      calendar,convention,dayCounter));
+        }
+        DepositRateHelperPtr(
+                Rate rate, const Period& tenor, Integer settlementDays,
+                const Calendar& calendar, BusinessDayConvention convention,
+                const DayCounter& dayCounter) {
+            return new DepositRateHelperPtr(
+                new DepositRateHelper(rate,tenor,settlementDays,
+                                      calendar,convention,dayCounter));
         }
     }
 };
@@ -104,32 +121,32 @@ class FuturesRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 const Date& immDate, Integer nMonths,
                 const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter,
-		const Handle<Quote>& convexityAdjustment) {
+                const Handle<Quote>& convexityAdjustment) {
             return new FuturesRateHelperPtr(
                 new FuturesRateHelper(price,immDate,nMonths,
                                       calendar,convention,dayCounter,
-				      convexityAdjustment));
+                                      convexityAdjustment));
         }
         FuturesRateHelperPtr(
                 const Handle<Quote>& price,
                 const Date& immDate, Integer nMonths,
                 const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter,
-		const Rate convexityAdjustment = 0.0) {
+                Rate convexityAdjustment = 0.0) {
             return new FuturesRateHelperPtr(
                 new FuturesRateHelper(price,immDate,nMonths,
                                       calendar,convention,dayCounter,
-				      convexityAdjustment));
+                                      convexityAdjustment));
         }
         FuturesRateHelperPtr(
                 Real price, const Date& immDate, Integer nMonths,
                 const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter,
-		Rate convexityAdjustment = 0.0) {
+                Rate convexityAdjustment = 0.0) {
             return new FuturesRateHelperPtr(
                 new FuturesRateHelper(price,immDate,nMonths,
                                       calendar,convention,dayCounter,
-				      convexityAdjustment));
+                                      convexityAdjustment));
         }
         FuturesRateHelperPtr(
 	            const Handle<Quote>& price,
@@ -162,7 +179,7 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                                    calendar, fixedFrequency, fixedConvention,
                                    fixedDayCount, floatingFrequency,
                                    floatingConvention,
-				   floatingDayCount));
+                                   floatingDayCount));
         }
         SwapRateHelperPtr(
                 Rate rate, Integer n, TimeUnit units, Integer settlementDays,
@@ -178,7 +195,37 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                                    calendar, fixedFrequency, fixedConvention,
                                    fixedDayCount, floatingFrequency,
                                    floatingConvention,
-				   floatingDayCount));
+                                   floatingDayCount));
+        }
+        SwapRateHelperPtr(
+                const Handle<Quote>& rate,
+                const Period& tenor, Integer settlementDays,
+                const Calendar& calendar,
+                Frequency fixedFrequency,
+                BusinessDayConvention fixedConvention,
+                const DayCounter& fixedDayCount,
+                const XiborPtr& index) {
+            boost::shared_ptr<Xibor> libor =
+                boost::dynamic_pointer_cast<Xibor>(index);
+            return new SwapRateHelperPtr(
+                new SwapRateHelper(rate, tenor, settlementDays,
+                                   calendar, fixedFrequency, fixedConvention,
+                                   fixedDayCount, libor));
+        }
+        SwapRateHelperPtr(
+                Rate rate,
+                const Period& tenor, Integer settlementDays,
+                const Calendar& calendar,
+                Frequency fixedFrequency,
+                BusinessDayConvention fixedConvention,
+                const DayCounter& fixedDayCount,
+                const XiborPtr& index) {
+            boost::shared_ptr<Xibor> libor =
+                boost::dynamic_pointer_cast<Xibor>(index);
+            return new SwapRateHelperPtr(
+                new SwapRateHelper(rate, tenor, settlementDays,
+                                   calendar, fixedFrequency, fixedConvention,
+                                   fixedDayCount, libor));
         }
     }
 };
@@ -195,10 +242,8 @@ class FixedCouponBondHelperPtr : public boost::shared_ptr<RateHelper> {
                 Frequency frequency,
                 const Calendar& calendar,
                 const DayCounter& dayCounter,
-                BusinessDayConvention accrualConvention =
-		Following,
-                BusinessDayConvention paymentConvention =
-		Following,
+                BusinessDayConvention accrualConvention = Following,
+                BusinessDayConvention paymentConvention = Following,
                 Real redemption = 100.0,
                 const Date& stub = Date(),
                 bool fromEnd = true) {
@@ -207,10 +252,10 @@ class FixedCouponBondHelperPtr : public boost::shared_ptr<RateHelper> {
                                           maturityDate, settlementDays,
                                           coupons, frequency,
                                           calendar,
-					  dayCounter,
-					  accrualConvention,
-					  paymentConvention,
-					  redemption,
+                                          dayCounter,
+                                          accrualConvention,
+                                          paymentConvention,
+                                          redemption,
                                           stub, fromEnd));
         }
     }

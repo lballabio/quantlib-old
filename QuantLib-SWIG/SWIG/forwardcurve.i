@@ -39,14 +39,24 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
                   const std::vector<Rate>& forwards,
                   const DayCounter& dayCounter,
                   const Interpolator& i = Interpolator()) {
-	        return new Name##Ptr(
-	            new InterpolatedForwardCurve<Interpolator>(dates,forwards,
+            return new Name##Ptr(
+                new InterpolatedForwardCurve<Interpolator>(dates,forwards,
                                                            dayCounter,i));
         }
         const std::vector<Date>& dates() {
             typedef InterpolatedForwardCurve<Interpolator> Name;
             return boost::dynamic_pointer_cast<Name>(*self)->dates();
         }
+        const std::vector<Rate>& forwards() {
+            typedef InterpolatedForwardCurve<Interpolator> Name;
+            return boost::dynamic_pointer_cast<Name>(*self)->forwards();
+        }
+        #if !defined(SWIGR) && !defined(SWIGRUBY) && !defined(SWIGGUILE) && !defined(SWIGMZSCHEME)
+        std::vector<std::pair<Date,Rate> > nodes() {
+            typedef InterpolatedForwardCurve<Interpolator> Name;
+            return boost::dynamic_pointer_cast<Name>(*self)->nodes();
+        }
+        #endif
     }
 };
 

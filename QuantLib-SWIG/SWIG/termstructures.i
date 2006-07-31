@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000-2004 StatPro Italia srl
+ Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2003, 2004 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -46,11 +47,11 @@ class YieldTermStructure : public Extrapolator {
   public:
     DayCounter dayCounter() const;
     Calendar calendar() const;
-	Date referenceDate() const;
-	Date maxDate() const;
-	Time maxTime() const;
-	DiscountFactor discount(const Date&, bool extrapolate = false);
-	DiscountFactor discount(Time, bool extrapolate = false);
+    Date referenceDate() const;
+    Date maxDate() const;
+    Time maxTime() const;
+    DiscountFactor discount(const Date&, bool extrapolate = false);
+    DiscountFactor discount(Time, bool extrapolate = false);
     InterestRate zeroRate(const Date& d,
                           const DayCounter&, Compounding, Frequency f = Annual,
                           bool extrapolate = false) const;
@@ -110,8 +111,8 @@ class ZeroSpreadedTermStructurePtr
         ZeroSpreadedTermStructurePtr(
                                 const Handle<YieldTermStructure>& curveHandle,
                                 const Handle<Quote>& spreadHandle) {
-	        return new ZeroSpreadedTermStructurePtr(
-	            new ZeroSpreadedTermStructure(curveHandle,spreadHandle));
+            return new ZeroSpreadedTermStructurePtr(
+                new ZeroSpreadedTermStructure(curveHandle,spreadHandle));
         }
     }
 };
@@ -124,8 +125,8 @@ class ForwardSpreadedTermStructurePtr
         ForwardSpreadedTermStructurePtr(
                                 const Handle<YieldTermStructure>& curveHandle,
                                 const Handle<Quote>& spreadHandle) {
-	        return new ForwardSpreadedTermStructurePtr(
-	            new ForwardSpreadedTermStructure(curveHandle,spreadHandle));
+            return new ForwardSpreadedTermStructurePtr(
+                new ForwardSpreadedTermStructure(curveHandle,spreadHandle));
         }
     }
 };

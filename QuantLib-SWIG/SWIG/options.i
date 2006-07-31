@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2000-2006 StatPro Italia srl
+ Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2003, 2004, 2005, 2006 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
@@ -144,10 +145,10 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)
                  ->strikeSensitivity();
         }
-	SampledCurve priceCurve() {
+    SampledCurve priceCurve() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)
                  ->priceCurve();
-	}
+    }
         Volatility impliedVolatility(Real targetValue,
                                      Real accuracy = 1.0e-4,
                                      Size maxEvaluations = 100,
@@ -485,10 +486,10 @@ class DividendVanillaOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
                  ->strikeSensitivity();
         }
-	SampledCurve priceCurve() {
+    SampledCurve priceCurve() {
             return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
                  ->priceCurve();
-	}
+    }
         Volatility impliedVolatility(Real targetValue,
                                      Real accuracy = 1.0e-4,
                                      Size maxEvaluations = 100,
@@ -610,10 +611,10 @@ class BarrierOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<BarrierOption>(*self)
                  ->strikeSensitivity();
         }
-	SampledCurve priceCurve() {
+    SampledCurve priceCurve() {
             return boost::dynamic_pointer_cast<BarrierOption>(*self)
                  ->priceCurve();
-	}
+    }
         Volatility impliedVolatility(Real targetValue,
                                      Real accuracy = 1.0e-4,
                                      Size maxEvaluations = 100,
