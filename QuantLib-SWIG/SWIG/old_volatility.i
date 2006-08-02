@@ -28,54 +28,6 @@
 
 // eventually the classes exported here will be redesigned or deprecated
 
-
-// swaption volatilities
-
-%{
-using QuantLib::SwaptionVolatilityStructure;
-%}
-
-%ignore SwaptionVolatilityStructure;
-class SwaptionVolatilityStructure {
-  public:
-	Volatility volatility(const Date& exercise, const Period& length,
-                          Rate strike);
-	Volatility volatility(Time exercise, Time length, Rate strike);
-};
-
-%template(SwaptionVolatilityStructure)
-    boost::shared_ptr<SwaptionVolatilityStructure>;
-IsObservable(boost::shared_ptr<SwaptionVolatilityStructure>);
-
-%template(SwaptionVolatilityStructureHandle)
-    Handle<SwaptionVolatilityStructure>;
-IsObservable(Handle<SwaptionVolatilityStructure>);
-
-%{
-using QuantLib::SwaptionVolatilityMatrix;
-typedef boost::shared_ptr<SwaptionVolatilityStructure>
-    SwaptionVolatilityMatrixPtr;
-%}
-
-%rename(SwaptionVolatilityMatrix) SwaptionVolatilityMatrixPtr;
-class SwaptionVolatilityMatrixPtr
-: public boost::shared_ptr<SwaptionVolatilityStructure> {
-  public:
-    %extend {
-        SwaptionVolatilityMatrixPtr(const Date& referenceDate,
-                                    const std::vector<Date>& dates,
-                                    const std::vector<Period>& lengths,
-                                    const Matrix& vols,
-                                    const DayCounter& dayCounter) {
-            return new SwaptionVolatilityMatrixPtr(
-                new SwaptionVolatilityMatrix(referenceDate,dates,lengths,
-                                             vols,dayCounter));
-        }
-    }
-};
-
-
-
 // cap/floor volatilities
 
 %{
@@ -85,8 +37,8 @@ using QuantLib::CapVolatilityStructure;
 %ignore CapVolatilityStructure;
 class CapVolatilityStructure {
   public:
-	Volatility volatility(const Date& end, Rate strike);
-	Volatility volatility(Time end, Rate strike);
+    Volatility volatility(const Date& end, Rate strike);
+    Volatility volatility(Time end, Rate strike);
 };
 
 %template(CapVolatilityStructure) boost::shared_ptr<CapVolatilityStructure>;

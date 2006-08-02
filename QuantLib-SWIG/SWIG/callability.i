@@ -22,15 +22,15 @@
 %include vectors.i
 
 %{
-using QuantLib::Price;
 using QuantLib::Callability;
+typedef Callability::Price CallabilityPrice;
 using QuantLib::CallabilitySchedule;
 %}
 
-class Price {
+class CallabilityPrice {
   public:
     enum Type { Dirty, Clean };
-    Price(Real amount, Type type);
+    CallabilityPrice(Real amount, Type type);
     Real amount() const;
     Type type() const;
 };
@@ -43,7 +43,7 @@ class Price {
 class Callability {
   public:
     enum Type { Call, Put };
-    const Price& price() const;
+    const CallabilityPrice& price() const;
     Type type() const;
     Date date() const;
 #if defined(SWIGJAVA) || defined(SWIGCSHARP)
@@ -67,7 +67,7 @@ typedef boost::shared_ptr<Callability> SoftCallabilityPtr;
 class SoftCallabilityPtr : public boost::shared_ptr<Callability> {
   public:
     %extend {
-        SoftCallabilityPtr(const Price& price, const Date& date,
+        SoftCallabilityPtr(const CallabilityPrice& price, const Date& date,
                            Real trigger) {
             return new SoftCallabilityPtr(new SoftCallability(price,date,
                                                               trigger));

@@ -47,24 +47,103 @@ class StochasticProcess1DPtr
 
 
 %{
-using QuantLib::BlackScholesProcess;
-typedef boost::shared_ptr<StochasticProcess> BlackScholesProcessPtr;
+using QuantLib::GeneralizedBlackScholesProcess;
+typedef boost::shared_ptr<StochasticProcess> GeneralizedBlackScholesProcessPtr;
 %}
 
-%rename(BlackScholesProcess) BlackScholesProcessPtr;
-class BlackScholesProcessPtr : public StochasticProcess1DPtr {
+%rename(GeneralizedBlackScholesProcess) GeneralizedBlackScholesProcessPtr;
+class GeneralizedBlackScholesProcessPtr : public StochasticProcess1DPtr {
   public:
     %extend {
-      BlackScholesProcessPtr(const Handle<Quote>& s0,
+      GeneralizedBlackScholesProcessPtr(
+                             const Handle<Quote>& s0,
                              const Handle<YieldTermStructure>& dividendTS,
                              const Handle<YieldTermStructure>& riskFreeTS,
                              const Handle<BlackVolTermStructure>& volTS) {
-          return new BlackScholesProcessPtr(
-                              new BlackScholesProcess(s0, dividendTS,
-                                                      riskFreeTS, volTS));
+          return new GeneralizedBlackScholesProcessPtr(
+                       new GeneralizedBlackScholesProcess(s0, dividendTS,
+                                                          riskFreeTS, volTS));
       }
     }
 };
+
+%{
+using QuantLib::BlackScholes73Process;
+typedef boost::shared_ptr<StochasticProcess> BlackScholes73ProcessPtr;
+%}
+
+%rename(BlackScholes73Process) BlackScholes73ProcessPtr;
+class BlackScholes73ProcessPtr : public StochasticProcess1DPtr {
+  public:
+    %extend {
+      BlackScholes73ProcessPtr(const Handle<Quote>& s0,
+                               const Handle<YieldTermStructure>& riskFreeTS,
+                               const Handle<BlackVolTermStructure>& volTS) {
+          return new BlackScholes73ProcessPtr(
+                            new BlackScholes73Process(s0, riskFreeTS, volTS));
+      }
+    }
+};
+
+%{
+using QuantLib::BlackScholesMertonProcess;
+typedef boost::shared_ptr<StochasticProcess> BlackScholesMertonProcessPtr;
+%}
+
+%rename(BlackScholesMertonProcess) BlackScholesMertonProcessPtr;
+class BlackScholesMertonProcessPtr : public StochasticProcess1DPtr {
+  public:
+    %extend {
+      BlackScholesMertonProcessPtr(
+                             const Handle<Quote>& s0,
+                             const Handle<YieldTermStructure>& dividendTS,
+                             const Handle<YieldTermStructure>& riskFreeTS,
+                             const Handle<BlackVolTermStructure>& volTS) {
+          return new BlackScholesMertonProcessPtr(
+                            new BlackScholesMertonProcess(s0, dividendTS,
+                                                          riskFreeTS, volTS));
+      }
+    }
+};
+
+%{
+using QuantLib::BlackProcess;
+typedef boost::shared_ptr<StochasticProcess> BlackProcessPtr;
+%}
+
+%rename(BlackProcess) BlackProcessPtr;
+class BlackProcessPtr : public StochasticProcess1DPtr {
+  public:
+    %extend {
+      BlackProcessPtr(const Handle<Quote>& s0,
+                      const Handle<YieldTermStructure>& riskFreeTS,
+                      const Handle<BlackVolTermStructure>& volTS) {
+          return new BlackProcessPtr(new BlackProcess(s0, riskFreeTS, volTS));
+      }
+    }
+};
+
+%{
+using QuantLib::GarmanKohlagenProcess;
+typedef boost::shared_ptr<StochasticProcess> GarmanKohlagenProcessPtr;
+%}
+
+%rename(GarmanKohlagenProcess) GarmanKohlagenProcessPtr;
+class GarmanKohlagenProcessPtr : public StochasticProcess1DPtr {
+  public:
+    %extend {
+      GarmanKohlagenProcessPtr(
+                         const Handle<Quote>& s0,
+                         const Handle<YieldTermStructure>& foreignRiskFreeTS,
+                         const Handle<YieldTermStructure>& domesticRiskFreeTS,
+                         const Handle<BlackVolTermStructure>& volTS) {
+          return new GarmanKohlagenProcessPtr(
+                        new GarmanKohlagenProcess(s0, foreignRiskFreeTS,
+                                                  domesticRiskFreeTS, volTS));
+      }
+    }
+};
+
 
 
 %{

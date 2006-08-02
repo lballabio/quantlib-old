@@ -25,7 +25,7 @@
 %include currencies.i
 %include types.i
 %include termstructures.i
-%include history.i
+%include timeseries.i
 %include vectors.i
 
 %{
@@ -100,14 +100,14 @@ class XiborPtr : public boost::shared_ptr<Index> {
   public:
     %extend {
         XiborPtr(const std::string& familyName,
-                 Integer n, TimeUnit units,
+                 const Period& tenor,
                  Integer settlementDays,
                  const Currency& currency,
                  const Calendar& calendar,
                  BusinessDayConvention convention,
                  const DayCounter& dayCounter,
                  const Handle<YieldTermStructure>& h) {
-            return new XiborPtr(new Xibor(familyName, n, units, settlementDays,
+            return new XiborPtr(new Xibor(familyName, tenor, settlementDays,
                                           currency, calendar, convention,
                                           dayCounter, h));
         }
@@ -136,7 +136,7 @@ class XiborPtr : public boost::shared_ptr<Index> {
     }
 };
 
-%define export_xibor_instance(Name,defaultDayCount)
+%define export_xibor_instance(Name)
 %{
 using QuantLib::Name;
 typedef boost::shared_ptr<Index> Name##Ptr;
@@ -145,27 +145,30 @@ typedef boost::shared_ptr<Index> Name##Ptr;
 class Name##Ptr : public XiborPtr {
   public:
     %extend {
-      Name##Ptr(Integer n, TimeUnit units,
-                const Handle<YieldTermStructure>& h,
-                const DayCounter& dayCount = QuantLib::defaultDayCount()) {
-          return new Name##Ptr(new Name(n,units,h,dayCount));
+      Name##Ptr(const Period& tenor,
+                const Handle<YieldTermStructure>& h) {
+          return new Name##Ptr(new Name(tenor,h));
       }
     }
 };
 %enddef
 
-export_xibor_instance(AUDLibor, Actual360);
-export_xibor_instance(CADLibor, Actual360);
-export_xibor_instance(Cdor, Actual360);
-export_xibor_instance(CHFLibor, Actual360);
-export_xibor_instance(Euribor, Actual360);
-export_xibor_instance(GBPLibor, Actual365Fixed);
-export_xibor_instance(Jibar, Actual365Fixed);
-export_xibor_instance(JPYLibor, Actual360);
-export_xibor_instance(Tibor, Actual365Fixed);
-export_xibor_instance(TRLibor, Actual360);
-export_xibor_instance(USDLibor, Actual360);
-export_xibor_instance(Zibor, Actual360);
+export_xibor_instance(AUDLibor);
+export_xibor_instance(CADLibor);
+export_xibor_instance(Cdor);
+export_xibor_instance(CHFLibor);
+export_xibor_instance(DKKLibor);
+export_xibor_instance(Euribor);
+export_xibor_instance(Euribor365);
+export_xibor_instance(EURLibor);
+export_xibor_instance(GBPLibor);
+export_xibor_instance(Jibar);
+export_xibor_instance(JPYLibor);
+export_xibor_instance(NZDLibor);
+export_xibor_instance(Tibor);
+export_xibor_instance(TRLibor);
+export_xibor_instance(USDLibor);
+export_xibor_instance(Zibor);
 
 
 #endif

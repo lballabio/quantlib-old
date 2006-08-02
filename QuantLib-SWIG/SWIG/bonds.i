@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005 StatPro Italia srl
+ Copyright (C) 2004, 2005, 2006 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -163,10 +163,10 @@ class FixedCouponBondPtr : public BondPtr {
             return new FixedCouponBondPtr(
                 new FixedCouponBond(issueDate, datedDate, maturityDate,
                                     settlementDays, coupons, couponFrequency,
-                                    calendar, 
-				    dayCounter,  
-				    accrualConvention,
-				    paymentConvention,
+                                    calendar,
+                    dayCounter,
+                    accrualConvention,
+                    paymentConvention,
                                     redemption, discountCurve, stub, fromEnd));
         }
     }
@@ -182,14 +182,15 @@ class FloatingRateBondPtr : public BondPtr {
                             Integer settlementDays,
                             const XiborPtr& index,
                             Integer fixingDays,
+                            const std::vector<Real>& gearings,
                             const std::vector<Spread>& spreads,
                             Frequency couponFrequency,
                             const Calendar& calendar,
                             const DayCounter& dayCounter,
-			    BusinessDayConvention accrualConvention = 
-			    Following,
-		            BusinessDayConvention paymentConvention = 
-			    Following,
+                            BusinessDayConvention accrualConvention =
+                                Following,
+                            BusinessDayConvention paymentConvention =
+                                Following,
                             Real redemption = 100.0,
                             const Handle<YieldTermStructure>& discountCurve
                                               = Handle<YieldTermStructure>(),
@@ -200,10 +201,9 @@ class FloatingRateBondPtr : public BondPtr {
             return new FloatingRateBondPtr(
                 new FloatingRateBond(issueDate, datedDate, maturityDate,
                                      settlementDays, libor, fixingDays,
-                                     spreads, couponFrequency,
-                                     calendar, dayCounter, 
-				     accrualConvention,
-				     paymentConvention, 
+                                     gearings, spreads, couponFrequency,
+                                     calendar, dayCounter,
+                                     accrualConvention, paymentConvention,
                                      redemption, discountCurve,
                                      stub, fromEnd));
         }

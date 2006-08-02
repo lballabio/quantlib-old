@@ -21,8 +21,7 @@
 %include marketelements.i
 %include termstructures.i
 %include cashflows.i
-%include blackmodel.i
-%include types.i
+%include volatilities.i
 
 %{
 using QuantLib::CapFloor;
@@ -45,14 +44,14 @@ class CapFloorPtr : public boost::shared_ptr<Instrument> {
                                      Size maxEvaluations = 100,
                                      Volatility minVol = 1.0e-7,
                                      Volatility maxVol = 4.0) const {
-	  return boost::dynamic_pointer_cast<CapFloor>(*self)->
-	    impliedVolatility(price, accuracy, maxEvaluations,
-			      minVol, maxVol);
-	}
+      return boost::dynamic_pointer_cast<CapFloor>(*self)->
+        impliedVolatility(price, accuracy, maxEvaluations,
+                  minVol, maxVol);
+    }
     }
 };
 
-     
+
 
 %rename(Cap) CapPtr;
 class CapPtr : public CapFloorPtr {
@@ -103,8 +102,11 @@ typedef boost::shared_ptr<PricingEngine> BlackCapFloorEnginePtr;
 class BlackCapFloorEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        BlackCapFloorEnginePtr(const boost::shared_ptr<BlackModel>& model) {
-            return new BlackCapFloorEnginePtr(new BlackCapFloorEngine(model));
+        BlackCapFloorEnginePtr(const Handle<Quote>& vol) {
+            return new BlackCapFloorEnginePtr(new BlackCapFloorEngine(vol));
+        }
+        BlackCapFloorEnginePtr(const Handle<CapletVolatilityStructure>& vol) {
+            return new BlackCapFloorEnginePtr(new BlackCapFloorEngine(vol));
         }
     }
 };

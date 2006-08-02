@@ -48,23 +48,6 @@ class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
     %extend {
         DepositRateHelperPtr(
                 const Handle<Quote>& rate,
-                Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar, BusinessDayConvention convention,
-                const DayCounter& dayCounter) {
-            return new DepositRateHelperPtr(
-                new DepositRateHelper(rate,n,units,settlementDays,
-                                      calendar,convention,dayCounter));
-        }
-        DepositRateHelperPtr(
-                Rate rate, Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar, BusinessDayConvention convention,
-                const DayCounter& dayCounter) {
-            return new DepositRateHelperPtr(
-                new DepositRateHelper(rate,n,units,settlementDays,
-                                      calendar,convention,dayCounter));
-        }
-        DepositRateHelperPtr(
-                const Handle<Quote>& rate,
                 const Period& tenor, Integer settlementDays,
                 const Calendar& calendar, BusinessDayConvention convention,
                 const DayCounter& dayCounter) {
@@ -148,15 +131,6 @@ class FuturesRateHelperPtr : public boost::shared_ptr<RateHelper> {
                                       calendar,convention,dayCounter,
                                       convexityAdjustment));
         }
-        FuturesRateHelperPtr(
-	            const Handle<Quote>& price,
-                const Date& immDate, const Date& matDate,
-                const Calendar& calendar, BusinessDayConvention convention,
-                const DayCounter& dayCounter) {
-            return new FuturesRateHelperPtr(
-                new FuturesRateHelper(price,immDate,matDate,
-                                      calendar,convention,dayCounter));
-        }
     }
 };
 
@@ -164,39 +138,6 @@ class FuturesRateHelperPtr : public boost::shared_ptr<RateHelper> {
 class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
   public:
     %extend {
-        SwapRateHelperPtr(
-                const Handle<Quote>& rate,
-                Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar,
-                Frequency fixedFrequency,
-                BusinessDayConvention fixedConvention,
-                const DayCounter& fixedDayCount,
-                Frequency floatingFrequency,
-                BusinessDayConvention floatingConvention,
-                const DayCounter& floatingDayCount) {
-            return new SwapRateHelperPtr(
-                new SwapRateHelper(rate, n, units, settlementDays,
-                                   calendar, fixedFrequency, fixedConvention,
-                                   fixedDayCount, floatingFrequency,
-                                   floatingConvention,
-                                   floatingDayCount));
-        }
-        SwapRateHelperPtr(
-                Rate rate, Integer n, TimeUnit units, Integer settlementDays,
-                const Calendar& calendar,
-                Frequency fixedFrequency,
-                BusinessDayConvention fixedConvention,
-                const DayCounter& fixedDayCount,
-                Frequency floatingFrequency,
-                BusinessDayConvention floatingConvention,
-                const DayCounter& floatingDayCount) {
-            return new SwapRateHelperPtr(
-                new SwapRateHelper(rate, n, units, settlementDays,
-                                   calendar, fixedFrequency, fixedConvention,
-                                   fixedDayCount, floatingFrequency,
-                                   floatingConvention,
-                                   floatingDayCount));
-        }
         SwapRateHelperPtr(
                 const Handle<Quote>& rate,
                 const Period& tenor, Integer settlementDays,

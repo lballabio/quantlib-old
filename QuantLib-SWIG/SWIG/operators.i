@@ -23,7 +23,7 @@
 
 %{
 typedef QuantLib::BoundaryCondition<QuantLib::TridiagonalOperator>
-		BoundaryCondition;
+        BoundaryCondition;
 %}
 
 #if defined(SWIGJAVA) || defined(SWIGCSHARP)
@@ -216,14 +216,6 @@ class DPlusDMinus : public TridiagonalOperator {
     DPlusDMinus(Size gridPoints, Real h);
 };
 #endif
-
-%{
-using QuantLib::SymmetricEigenvalues;
-using QuantLib::SymmetricEigenvectors;
-%}
-
-Array SymmetricEigenvalues(Matrix &s);
-Matrix SymmetricEigenvectors(Matrix &s);
 
 
 #endif

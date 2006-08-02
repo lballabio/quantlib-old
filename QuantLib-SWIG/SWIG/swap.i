@@ -34,23 +34,16 @@ typedef boost::shared_ptr<Instrument> VanillaSwapPtr;
 class SwapPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
-        SwapPtr(const std::vector<boost::shared_ptr<CashFlow> >& firstLeg,
-                const std::vector<boost::shared_ptr<CashFlow> >& secondLeg,
-                const Handle<YieldTermStructure>& termStructure) {
-            return new SwapPtr(new Swap(firstLeg, secondLeg,
-                                        termStructure));
+        SwapPtr(const Handle<YieldTermStructure>& termStructure,
+                const std::vector<boost::shared_ptr<CashFlow> >& firstLeg,
+                const std::vector<boost::shared_ptr<CashFlow> >& secondLeg) {
+            return new SwapPtr(new Swap(termStructure, firstLeg, secondLeg));
         }
         Date startDate() {
             return boost::dynamic_pointer_cast<Swap>(*self)->startDate();
         }
         Date maturity() {
             return boost::dynamic_pointer_cast<Swap>(*self)->maturity();
-        }
-        Real firstLegBPS() {
-            return boost::dynamic_pointer_cast<Swap>(*self)->firstLegBPS();
-        }
-        Real secondLegBPS() {
-            return boost::dynamic_pointer_cast<Swap>(*self)->secondLegBPS();
         }
     }
 };
@@ -72,7 +65,7 @@ class VanillaSwapPtr : public SwapPtr {
                       const Schedule& floatSchedule,
                       const XiborPtr& index,
                       Integer indexFixingDays, Spread spread,
-                      const DayCounter& floatingDayCount,	
+                      const DayCounter& floatingDayCount,
                       const Handle<YieldTermStructure>& termStructure) {
             boost::shared_ptr<Xibor> libor =
                 boost::dynamic_pointer_cast<Xibor>(index);
@@ -80,8 +73,8 @@ class VanillaSwapPtr : public SwapPtr {
                 new VanillaSwap(payFixedRate,nominal,fixedSchedule,fixedRate,
                                fixedDayCount,floatSchedule,libor,
                                indexFixingDays,spread,
-			       floatingDayCount,
-			       termStructure));
+                   floatingDayCount,
+                   termStructure));
         }
         Rate fairRate() {
             return boost::dynamic_pointer_cast<VanillaSwap>(*self)->fairRate();

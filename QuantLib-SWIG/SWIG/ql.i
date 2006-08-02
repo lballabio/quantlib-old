@@ -88,7 +88,6 @@
 
 
 %include common.i
-%include blackmodel.i
 %include bonds.i
 %include calendars.i
 %include callability.i
@@ -107,7 +106,6 @@
 %include forwardcurve.i
 %include functions.i
 %include grid.i
-%include history.i
 %include indexes.i
 %include instruments.i
 %include integrals.i

@@ -21,8 +21,8 @@
 %include options.i
 %include marketelements.i
 %include termstructures.i
+%include volatilities.i
 %include swap.i
-%include blackmodel.i
 
 %{
 using QuantLib::Swaption;
@@ -58,11 +58,14 @@ typedef boost::shared_ptr<PricingEngine> BlackSwaptionEnginePtr;
 class BlackSwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        BlackSwaptionEnginePtr(const boost::shared_ptr<BlackModel>& model) {
-            return new BlackSwaptionEnginePtr(new BlackSwaptionEngine(model));
+        BlackSwaptionEnginePtr(const Handle<Quote>& vol) {
+            return new BlackSwaptionEnginePtr(new BlackSwaptionEngine(vol));
+        }
+        BlackSwaptionEnginePtr(const Handle<SwaptionVolatilityStructure>& v) {
+            return new BlackSwaptionEnginePtr(new BlackSwaptionEngine(v));
         }
     }
 };
 
-
 #endif
+
