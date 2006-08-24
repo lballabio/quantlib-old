@@ -251,7 +251,7 @@ using QuantLib::LeisenReimer;
 typedef boost::shared_ptr<PricingEngine> BinomialVanillaEnginePtr;
 %}
 
-%rename(BinomialEuropeanEngine) BinomialVanillaEnginePtr;
+%rename(BinomialVanillaEngine) BinomialVanillaEnginePtr;
 class BinomialVanillaEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {

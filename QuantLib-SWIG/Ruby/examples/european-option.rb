@@ -82,22 +82,22 @@ report('finite diff.',option.NPV)
 # method: binomial
 timeSteps = 801
 
-option.pricingEngine = BinomialEuropeanEngine.new('jr',timeSteps)
+option.pricingEngine = BinomialVanillaEngine.new('jr',timeSteps)
 report('binomial (JR)',option.NPV)
 
-option.pricingEngine = BinomialEuropeanEngine.new('crr',timeSteps)
+option.pricingEngine = BinomialVanillaEngine.new('crr',timeSteps)
 report('binomial (CRR)',option.NPV)
 
-option.pricingEngine = BinomialEuropeanEngine.new('eqp',timeSteps)
+option.pricingEngine = BinomialVanillaEngine.new('eqp',timeSteps)
 report('binomial (EQP)',option.NPV)
 
-option.pricingEngine = BinomialEuropeanEngine.new('trigeorgis',timeSteps)
+option.pricingEngine = BinomialVanillaEngine.new('trigeorgis',timeSteps)
 report('bin. (Trigeorgis)',option.NPV)
 
-option.pricingEngine = BinomialEuropeanEngine.new('tian',timeSteps)
+option.pricingEngine = BinomialVanillaEngine.new('tian',timeSteps)
 report('binomial (Tian)',option.NPV)
 
-option.pricingEngine = BinomialEuropeanEngine.new('lr',timeSteps)
+option.pricingEngine = BinomialVanillaEngine.new('lr',timeSteps)
 report('binomial (LR)',option.NPV)
 
 # method: finite differences

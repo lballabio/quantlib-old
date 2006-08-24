@@ -88,22 +88,22 @@
 ; method: binomial
 (define timeSteps 801)
 
-(with-pricing-engine (option (new-BinomialEuropeanEngine "jr" timeSteps))
+(with-pricing-engine (option (new-BinomialVanillaEngine "jr" timeSteps))
   (report "binomial (JR)" (Instrument-NPV option)))
 
-(with-pricing-engine (option (new-BinomialEuropeanEngine "crr" timeSteps))
+(with-pricing-engine (option (new-BinomialVanillaEngine "crr" timeSteps))
   (report "binomial (CRR)" (Instrument-NPV option)))
 
-(with-pricing-engine (option (new-BinomialEuropeanEngine "eqp" timeSteps))
+(with-pricing-engine (option (new-BinomialVanillaEngine "eqp" timeSteps))
   (report "binomial (EQP)" (Instrument-NPV option)))
 
-(with-pricing-engine (option (new-BinomialEuropeanEngine "trigeorgis"
-                                                         timeSteps))
+(with-pricing-engine (option (new-BinomialVanillaEngine "trigeorgis"
+                                                        timeSteps))
   (report "bin. (Trigeorgis)" (Instrument-NPV option)))
 
-(with-pricing-engine (option (new-BinomialEuropeanEngine "tian" timeSteps))
+(with-pricing-engine (option (new-BinomialVanillaEngine "tian" timeSteps))
   (report "binomial (Tian)" (Instrument-NPV option)))
 
-(with-pricing-engine (option (new-BinomialEuropeanEngine "lr" timeSteps))
+(with-pricing-engine (option (new-BinomialVanillaEngine "lr" timeSteps))
   (report "binomial (LR)" (Instrument-NPV option)))
 
