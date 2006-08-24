@@ -39,8 +39,6 @@
 <ul class="navbarlist">
 <li class="navlink"><a href="books.shtml">Books</a></li>
 
-<li class="navlink"><a href="http://www.elsevier.com/locate/econophys">Econophysics</a></li>
-
 <li class="navlink"><a href="marketconventions.shtml">Market Conventions</a></li>
 
 <li class="navlink"><a href="http://www.wilmott.com/">Wilmott</a></li>
