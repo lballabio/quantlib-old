@@ -26,7 +26,7 @@
 %{
 using QuantLib::Statistics;
 using QuantLib::RiskStatistics;
-using QuantLib::SequenceStatistics;
+using QuantLib::GenericSequenceStatistics;
 %}
 
 class Statistics {
@@ -88,7 +88,7 @@ class RiskStatistics : public Statistics {
 };
 
 template <class S>
-class SequenceStatistics {
+class GenericSequenceStatistics {
     #if defined(SWIGRUBY)
     %rename("reset!")                reset;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -98,7 +98,7 @@ class SequenceStatistics {
     %rename("reset!")                reset;
     #endif
   public:
-    SequenceStatistics(Size dimension);
+    GenericSequenceStatistics(Size dimension);
     Size size() const;
     Size samples() const;
     Real weightSum() const;
@@ -118,7 +118,8 @@ class SequenceStatistics {
     void add(const Array& value, Real weight = 1.0);
 };
 
-%template(MultipleStatistics) SequenceStatistics<Statistics>;
+%template(MultipleStatistics) GenericSequenceStatistics<Statistics>;
+%template(SequenceStatistics) GenericSequenceStatistics<RiskStatistics>;
 
 
 #endif
