@@ -279,7 +279,7 @@ class Date {
             out << QuantLib::io::iso_date(*self);
             return out.str();
         }
-        #if defined(SWIGPYTHON) || defined(SWIGRUBY)
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGR)
         BigInteger operator-(const Date& other) {
             return *self - other;
         }
@@ -365,6 +365,13 @@ a
 })
 
 %}
+
+bool operator==(const Date&, const Date&);
+bool operator!=(const Date&, const Date&);
+bool operator<(const Date&, const Date&);
+bool operator<=(const Date&, const Date&);
+bool operator>(const Date&, const Date&);
+bool operator>=(const Date&, const Date&);
 
 #endif
 
