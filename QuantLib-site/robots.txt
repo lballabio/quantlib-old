@@ -15,4 +15,4 @@ Disallow: /quantlibxl/auto/
 Disallow: *.inc
 Disallow: *.css
 Disallow: *.py
-Disallow: *.xml
+Disallow: *_config.xml

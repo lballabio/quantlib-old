@@ -108,17 +108,17 @@
   <filter  action="drop"  type="wildcard"  pattern="*/templates/*"  />
   <filter  action="drop"  type="wildcard"  pattern="*/quep/quep*/*" />
 
-  <filter  action="drop"  type="wildcard"  pattern="*/gensrc/*.*"   />
-  <filter  action="drop"  type="wildcard"  pattern="*/objecthandler/*.*"   />
-  <filter  action="drop"  type="wildcard"  pattern="*/quantlibaddin/*.*"   />
-  <filter  action="drop"  type="wildcard"  pattern="*/quantlibaddin/auto/*"   />
-  <filter  action="drop"  type="wildcard"  pattern="*/quantlibaddin/qlo/*"   />
-  <filter  action="drop"  type="wildcard"  pattern="*/quantlibxl/*.*"   />
-  <filter  action="drop"  type="wildcard"  pattern="*/quantlibxl/auto/*"   />
+  <filter  action="drop"  type="wildcard"  pattern="*/gensrc/*.*"           />
+  <filter  action="drop"  type="wildcard"  pattern="*/objecthandler/*.*"    />
+  <filter  action="drop"  type="wildcard"  pattern="*/quantlibaddin/*.*"    />
+  <filter  action="drop"  type="wildcard"  pattern="*/quantlibaddin/auto/*" />
+  <filter  action="drop"  type="wildcard"  pattern="*/quantlibaddin/qlo/*"  />
+  <filter  action="drop"  type="wildcard"  pattern="*/quantlibxl/*.*"       />
+  <filter  action="drop"  type="wildcard"  pattern="*/quantlibxl/auto/*"    />
 
-  <filter  action="drop"  type="wildcard"  pattern="*.inc"   />
-  <filter  action="drop"  type="wildcard"  pattern="*.css"   />
-  <filter  action="drop"  type="wildcard"  pattern="*.py"   />
-  <filter  action="drop"  type="wildcard"  pattern="*.xml"   />
+  <filter  action="drop"  type="wildcard"  pattern="*.inc"        />
+  <filter  action="drop"  type="wildcard"  pattern="*.css"        />
+  <filter  action="drop"  type="wildcard"  pattern="*.py"         />
+  <filter  action="drop"  type="wildcard"  pattern="*_config.xml" />
   
 </site>
