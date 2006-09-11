@@ -31,7 +31,7 @@ class TermStructureTest(unittest.TestCase):
         deposits = [
             DepositRateHelper(
                 QuoteHandle(SimpleQuote(rate/100)),
-                n, units, self.settlementDays,
+                Period(n, units), self.settlementDays,
                 self.calendar, ModifiedFollowing, Actual360())
             for (n,units,rate) in [ (1, Months, 4.581),
                                     (2, Months, 4.573),
@@ -42,9 +42,9 @@ class TermStructureTest(unittest.TestCase):
         swaps = [
             SwapRateHelper(
                 QuoteHandle(SimpleQuote(rate/100)),
-                years, Years, self.settlementDays,
+                Period(years, Years), self.settlementDays,
                 self.calendar, Annual, Unadjusted, Thirty360(),
-                Semiannual, ModifiedFollowing, Actual360())
+                Euribor6M())
             for (years,rate) in [ ( 1, 4.54),
                                   ( 5, 4.99),
                                   (10, 5.47),

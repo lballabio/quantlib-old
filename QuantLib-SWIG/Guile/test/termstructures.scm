@@ -47,7 +47,7 @@
                           (let-at-once ((n units rate) datum)
                             (new-DepositRateHelper
                              (new-QuoteHandle (new-SimpleQuote (/ rate 100)))
-                             n units settlement-days
+                             (new-Period n units) settlement-days
                              calendar (ModifiedFollowing) day-counter)))
                         deposit-data))
              (swaps (map
@@ -55,9 +55,9 @@
                        (let-at-once ((length rate) datum)
                          (new-SwapRateHelper
                           (new-QuoteHandle (new-SimpleQuote (/ rate 100)))
-                          length (Years) settlement-days
+                          (new-Period length (Years)) settlement-days
                           calendar 1 (Unadjusted) day-counter-2
-                          2 (ModifiedFollowing) day-counter)))
+                          (new-Euribor6M))))
                      swap-data))
              (term-structure (new-PiecewiseFlatForward
                               settlement

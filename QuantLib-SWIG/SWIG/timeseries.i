@@ -59,8 +59,8 @@ class TimeSeries {
 %template(IntervalPriceVector) std::vector<IntervalPrice>;
 
 class IntervalPrice {
-    enum Type {Open, Close, High, Low};
   public:
+    enum Type {Open, Close, High, Low};
     IntervalPrice(Real, Real, Real, Real);
     void setValue(Real, IntervalPrice::Type);
     void setValues(Real, Real, Real, Real);

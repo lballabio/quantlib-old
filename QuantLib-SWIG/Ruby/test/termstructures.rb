@@ -43,11 +43,10 @@ class TermStructureTest < Test::Unit::TestCase
       [9, Months, 4.490]
     ]
     deposits = depositData.map { |n,units,rate|
-      DepositRateHelper.new(
-        QuoteHandle.new(SimpleQuote.new(rate/100)),
-        n, units, @settlementDays, @calendar, ModifiedFollowing,
-        Actual360.new)
-    }    
+      DepositRateHelper.new(QuoteHandle.new(SimpleQuote.new(rate/100)),
+                            Period.new(n, units), @settlementDays, @calendar,
+                            ModifiedFollowing, Actual360.new)
+    }
     swapData = [
         [ 1, 4.54],
         [ 5, 4.99],
@@ -56,11 +55,10 @@ class TermStructureTest < Test::Unit::TestCase
         [30, 5.96]
     ]
     swaps = swapData.map { |years,rate|
-      SwapRateHelper.new(
-        QuoteHandle.new(SimpleQuote.new(rate/100)),
-        years, Years, @settlementDays, 
-        @calendar, 1, Unadjusted, Thirty360.new,
-        2, ModifiedFollowing, Actual360.new)
+      SwapRateHelper.new(QuoteHandle.new(SimpleQuote.new(rate/100)),
+                         Period.new(years, Years), @settlementDays, 
+                         @calendar, 1, Unadjusted, Thirty360.new,
+                         Euribor6M.new)
     }
     @termStructure = PiecewiseFlatForward.new(settlement,
                                               deposits+swaps,
