@@ -33,7 +33,7 @@ href="cvs.shtml">CVS</a> repository in the QuantLib-SWIG module and
 can be used as a starting point for exporting QuantLib towards other
 languages.</p>
 
-<p><a href="http://quantlib.org/quantlibaddin/">QuantLibAddin</a>
+<p><a href="http://www.quantlibaddin.org">QuantLibAddin</a>
 exports a procedural interface to a number of platforms including
 Microsoft Excel and OpenOffice.org Calc.</p>
 <p>Initial GNU R support is provided by means of <a href=
