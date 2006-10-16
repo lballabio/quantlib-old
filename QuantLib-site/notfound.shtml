@@ -1,0 +1,37 @@
+<!--
+ $Id$
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--#include virtual="qlmeta.inc"-->
+<meta name="author" content="StatPro Italia srl">
+<meta name="copyright" content="StatPro Italia srl (c) 2004">
+<meta name="description" content="QuantLib Documentation">
+<title>QuantLib Documentation</title>
+</head>
+<body>
+<div id="container">
+<!--#include virtual="header.inc"-->
+<div id="menu">
+<!--#include virtual="usermenu.inc"-->
+</div>
+<div id="content">
+
+<h2 class="center">Sorry, the page you requested does not exist.</h2>
+
+This error might have been caused by an outdated link or a mistyped
+URL. In either case, you can look for the right page by perusing the
+links on the left, or by using the Google search form below the links
+to perform a search on this site.
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
+</body>
+</html>

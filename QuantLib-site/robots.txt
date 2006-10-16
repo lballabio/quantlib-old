@@ -9,6 +9,7 @@ Disallow: /gensrc
 Disallow: /objecthandler
 Disallow: /quantlibaddin
 Disallow: /quantlibxl
+Disallow: /notfound.shtml
 Disallow: *.inc
 Disallow: *.css
 Disallow: *.py

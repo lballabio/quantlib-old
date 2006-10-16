@@ -113,6 +113,7 @@
   <filter  action="drop"  type="wildcard"  pattern="*/quantlibaddin*"    />
   <filter  action="drop"  type="wildcard"  pattern="*/quantlibxl*"       />
 
+  <filter  action="drop"  type="wildcard"  pattern="*/notfound.*" />
   <filter  action="drop"  type="wildcard"  pattern="*.inc"        />
   <filter  action="drop"  type="wildcard"  pattern="*.css"        />
   <filter  action="drop"  type="wildcard"  pattern="*.py"         />
