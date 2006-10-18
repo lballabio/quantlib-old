@@ -64,7 +64,7 @@ class VanillaSwapPtr : public SwapPtr {
                       const DayCounter& fixedDayCount,
                       const Schedule& floatSchedule,
                       const XiborPtr& index,
-                      Integer indexFixingDays, Spread spread,
+                      Spread spread,
                       const DayCounter& floatingDayCount,
                       const Handle<YieldTermStructure>& termStructure) {
             boost::shared_ptr<Xibor> libor =
@@ -72,7 +72,7 @@ class VanillaSwapPtr : public SwapPtr {
             return new VanillaSwapPtr(
                 new VanillaSwap(payFixedRate,nominal,fixedSchedule,fixedRate,
                                fixedDayCount,floatSchedule,libor,
-                               indexFixingDays,spread,
+                               spread,
                    floatingDayCount,
                    termStructure));
         }

@@ -40,14 +40,19 @@ class Schedule {
     %rename("is-regular?") isRegular;
     #endif
   public:
-    Schedule(const Calendar& calendar,
-             const Date& startDate, const Date& endDate,
-             Frequency frequency, BusinessDayConvention rollingConvention,
-             const Date& stubDate = Date(),
-             bool startFromEnd = false, bool longFinal = false);
     Schedule(const std::vector<Date>&,
              const Calendar& calendar,
              BusinessDayConvention rollingConvention);
+    Schedule(const Date& effectiveDate,
+             const Date& terminationDate,
+             const Period& tenor,
+             const Calendar& calendar,
+             BusinessDayConvention convention,
+             BusinessDayConvention terminationDateConvention,
+             bool backward,
+             bool endOfMonth,
+             const Date& firstDate = Date(),
+             const Date& nextToLastDate = Date());
     Size size() const;
     Date date(Size i) const;
     bool isRegular(Size i) const;

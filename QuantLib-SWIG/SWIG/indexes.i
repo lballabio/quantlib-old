@@ -157,9 +157,6 @@ class XiborPtr : public InterestRateIndexPtr {
                                           currency, calendar, convention,
                                           dayCounter, h));
         }
-        Frequency frequency() {
-            return boost::dynamic_pointer_cast<Xibor>(*self)->frequency();
-        }
         bool isAdjusted() {
             return boost::dynamic_pointer_cast<Xibor>(*self)->isAdjusted();
         }

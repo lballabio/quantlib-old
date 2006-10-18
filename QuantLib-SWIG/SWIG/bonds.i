@@ -121,7 +121,8 @@ class BondPtr : public boost::shared_ptr<Instrument> {
 class ZeroCouponBondPtr : public BondPtr {
   public:
     %extend {
-        ZeroCouponBondPtr(const Date& issueDate,
+        ZeroCouponBondPtr(Real faceAmount,
+			  const Date& issueDate,
                           const Date& maturityDate,
                           Integer settlementDays,
                           const DayCounter& dayCounter,
@@ -132,7 +133,8 @@ class ZeroCouponBondPtr : public BondPtr {
                           const Handle<YieldTermStructure>& discountCurve
                                               = Handle<YieldTermStructure>()) {
             return new ZeroCouponBondPtr(
-                new ZeroCouponBond(issueDate, maturityDate, settlementDays,
+                new ZeroCouponBond(faceAmount, 
+				   issueDate, maturityDate, settlementDays,
                                    dayCounter, calendar, convention,
                                    redemption, discountCurve));
         }
@@ -143,7 +145,8 @@ class ZeroCouponBondPtr : public BondPtr {
 class FixedCouponBondPtr : public BondPtr {
   public:
     %extend {
-        FixedCouponBondPtr(const Date& issueDate,
+        FixedCouponBondPtr(Real faceAmount,
+			   const Date& issueDate,
                            const Date& datedDate,
                            const Date& maturityDate,
                            Integer settlementDays,
@@ -161,12 +164,13 @@ class FixedCouponBondPtr : public BondPtr {
                            const Date& stub = Date(),
                            bool fromEnd = true) {
             return new FixedCouponBondPtr(
-                new FixedCouponBond(issueDate, datedDate, maturityDate,
+                new FixedCouponBond(faceAmount,
+				    issueDate, datedDate, maturityDate,
                                     settlementDays, coupons, couponFrequency,
                                     calendar,
-                    dayCounter,
-                    accrualConvention,
-                    paymentConvention,
+				    dayCounter,
+				    accrualConvention,
+				    paymentConvention,
                                     redemption, discountCurve, stub, fromEnd));
         }
     }
@@ -176,7 +180,8 @@ class FixedCouponBondPtr : public BondPtr {
 class FloatingRateBondPtr : public BondPtr {
   public:
     %extend {
-        FloatingRateBondPtr(const Date& issueDate,
+        FloatingRateBondPtr(Real faceAmount,
+			    const Date& issueDate,
                             const Date& datedDate,
                             const Date& maturityDate,
                             Integer settlementDays,
@@ -199,7 +204,8 @@ class FloatingRateBondPtr : public BondPtr {
             boost::shared_ptr<Xibor> libor =
                 boost::dynamic_pointer_cast<Xibor>(index);
             return new FloatingRateBondPtr(
-                new FloatingRateBond(issueDate, datedDate, maturityDate,
+                new FloatingRateBond(faceAmount,
+				     issueDate, datedDate, maturityDate,
                                      settlementDays, libor, fixingDays,
                                      gearings, spreads, couponFrequency,
                                      calendar, dayCounter,

@@ -52,7 +52,7 @@ using QuantLib::SimpleCashFlow;
 using QuantLib::FixedRateCoupon;
 using QuantLib::ParCoupon;
 using QuantLib::FloatingRateCoupon;
-using QuantLib::IndexedCoupon;
+/*using QuantLib::IndexedCoupon;*/
 using QuantLib::UpFrontIndexedCoupon;
 using QuantLib::InArrearIndexedCoupon;
 
@@ -160,11 +160,11 @@ class FloatingRateCouponPtr : public boost::shared_ptr<CashFlow> {
 };
 
 
-%rename(IndexedCoupon) IndexedCouponPtr;
-class IndexedCouponPtr : public FloatingRateCouponPtr {};
+/* %rename(IndexedCoupon) IndexedCouponPtr;
+class IndexedCouponPtr : public FloatingRateCouponPtr {}; */
 
 %rename(UpFrontIndexedCoupon) UpFrontIndexedCouponPtr;
-class UpFrontIndexedCouponPtr : public IndexedCouponPtr {
+class UpFrontIndexedCouponPtr : public FloatingRateCouponPtr {
   public:
     %extend {
         UpFrontIndexedCouponPtr(const Date& paymentDate, Real nominal,
@@ -188,7 +188,7 @@ class UpFrontIndexedCouponPtr : public IndexedCouponPtr {
 };
 
 %rename(InArrearIndexedCoupon) InArrearIndexedCouponPtr;
-class InArrearIndexedCouponPtr : public IndexedCouponPtr {
+class InArrearIndexedCouponPtr : public FloatingRateCouponPtr {
   public:
     %extend {
         InArrearIndexedCouponPtr(const Date& paymentDate, Real nominal,

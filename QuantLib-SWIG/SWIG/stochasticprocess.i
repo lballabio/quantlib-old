@@ -51,7 +51,7 @@ using QuantLib::GeneralizedBlackScholesProcess;
 typedef boost::shared_ptr<StochasticProcess> GeneralizedBlackScholesProcessPtr;
 %}
 
-%rename(GeneralizedBlackScholesProcess) GeneralizedBlackScholesProcessPtr;
+%rename(GeneralizedBlackScholesPress) GeneralizedBlackScholesProcessPtr;
 class GeneralizedBlackScholesProcessPtr : public StochasticProcess1DPtr {
   public:
     %extend {
@@ -68,19 +68,19 @@ class GeneralizedBlackScholesProcessPtr : public StochasticProcess1DPtr {
 };
 
 %{
-using QuantLib::BlackScholes73Process;
-typedef boost::shared_ptr<StochasticProcess> BlackScholes73ProcessPtr;
+using QuantLib::BlackScholesProcess;
+typedef boost::shared_ptr<StochasticProcess> BlackScholesProcessPtr;
 %}
 
-%rename(BlackScholes73Process) BlackScholes73ProcessPtr;
-class BlackScholes73ProcessPtr : public StochasticProcess1DPtr {
+%rename(BlackScholesProcess) BlackScholesProcessPtr;
+class BlackScholesProcessPtr : public StochasticProcess1DPtr {
   public:
     %extend {
-      BlackScholes73ProcessPtr(const Handle<Quote>& s0,
+      BlackScholesProcessPtr(const Handle<Quote>& s0,
                                const Handle<YieldTermStructure>& riskFreeTS,
                                const Handle<BlackVolTermStructure>& volTS) {
-          return new BlackScholes73ProcessPtr(
-                            new BlackScholes73Process(s0, riskFreeTS, volTS));
+          return new BlackScholesProcessPtr(
+                            new BlackScholesProcess(s0, riskFreeTS, volTS));
       }
     }
 };
