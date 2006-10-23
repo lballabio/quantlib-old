@@ -14,16 +14,14 @@
 <meta http-equiv="Window-target" content="_top">
 <meta http-equiv="Content-Language" content="en">
 <link rel="stylesheet" href="/styles/quantlib.css" type="text/css">
+<link rel="stylesheet" href="/styles/print.css" type="text/css" media="print">
 <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-<link rev="made" href="mailto:ferdinando@ametrano.net">
 <script type="text/javascript">
 <!-- hiding
-
 if (self != window.top) {
 window.open(location.href);
 }
-
 // done hiding -->
 </script>
 
