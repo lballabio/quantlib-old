@@ -1,5 +1,5 @@
 
-; Copyright (C) 2004 StatPro Italia srl
+; Copyright (C) 2004, 2005, 2006 StatPro Italia srl
 ;
 ; This file is part of QuantLib, a free-software/open-source library
 ; for financial quantitative analysts and developers - http://quantlib.org/
@@ -92,7 +92,8 @@
   (map (lambda (datum)
          (apply (lambda (n units quote)
                   (new-DepositRateHelper (new-QuoteHandle quote)
-                                         n units depo-settlement-days
+                                         (new-Period n units)
+                                         depo-settlement-days
                                          calendar (ModifiedFollowing)
                                          depo-day-counter))
                 datum))
@@ -128,15 +129,15 @@
 (define fixed-leg-day-counter (new-Thirty360))
 (define floating-leg-frequency (Semiannual))
 (define floating-leg-adjustment (ModifiedFollowing))
+(define euribor6m (new-Euribor6M))
 (define swap-helpers
   (map (lambda (datum)
          (apply (lambda (n units quote)
                   (new-SwapRateHelper (new-QuoteHandle quote)
-                                      n units swap-settlement-days calendar
+                                      (new-Period n units)
+                                      swap-settlement-days calendar
                                       fixed-leg-frequency fixed-leg-adjustment
-                                      fixed-leg-day-counter
-                                      floating-leg-frequency
-                                      floating-leg-adjustment))
+                                      fixed-leg-day-counter euribor6m))
                 datum))
        swap-data))
 
@@ -173,7 +174,8 @@
 (define fixed-rate 0.04)
 (define spread 0.0)
 (define index-fixing-days 2)
-(define index (new-Euribor 6 (Months) forecast-term-structure))
+(define index (new-Euribor6M forecast-term-structure))
+(define floating-leg-day-counter (InterestRateIndex-day-counter index))
 
 (define fixed-schedule (new-Schedule calendar settlement-date maturity
                                      fixed-leg-frequency fixed-leg-adjustment))
@@ -181,10 +183,11 @@
                                         floating-leg-frequency
                                         floating-leg-adjustment))
 
-(define spot (new-SimpleSwap pay-fixed nominal
-                             fixed-schedule fixed-rate fixed-leg-day-counter
-                             floating-schedule index index-fixing-days spread
-                             discount-term-structure))
+(define spot (new-VanillaSwap pay-fixed nominal
+                              fixed-schedule fixed-rate fixed-leg-day-counter
+                              floating-schedule index index-fixing-days spread
+                              floating-leg-day-counter
+                              discount-term-structure))
 
 (define forward-start (Calendar-advance calendar settlement-date 1 (Years)))
 (define forward-end (Calendar-advance calendar forward-start length (Years)))
@@ -194,12 +197,13 @@
 (define floating-fwd-schedule (new-Schedule calendar forward-start forward-end
                                             floating-leg-frequency
                                             floating-leg-adjustment))
-(define forward (new-SimpleSwap pay-fixed nominal
-                                fixed-fwd-schedule fixed-rate
-                                fixed-leg-day-counter
-                                floating-fwd-schedule
-                                index index-fixing-days spread
-                                discount-term-structure))
+(define forward (new-VanillaSwap pay-fixed nominal
+                                 fixed-fwd-schedule fixed-rate
+                                 fixed-leg-day-counter
+                                 floating-fwd-schedule
+                                 index index-fixing-days spread
+                                 floating-leg-day-counter
+                                 discount-term-structure))
 
 ; display results
 
@@ -225,8 +229,8 @@
   (display/cr (tabulate fmt sep
                         name
                         (format-price (Instrument-NPV swap) 2)
-                        (format-rate (SimpleSwap-fair-spread swap) 4)
-                        (format-rate (SimpleSwap-fair-rate swap) 4))))
+                        (format-rate (VanillaSwap-fair-spread swap) 4)
+                        (format-rate (VanillaSwap-fair-rate swap) 4))))
 
 ; price the spot swap
 

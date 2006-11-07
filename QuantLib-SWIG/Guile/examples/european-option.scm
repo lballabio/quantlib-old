@@ -1,5 +1,5 @@
 
-; Copyright (C) 2004 StatPro Italia srl
+; Copyright (C) 2004, 2005, 2006 StatPro Italia srl
 ;
 ; This file is part of QuantLib, a free-software/open-source library
 ; for financial quantitative analysts and developers - http://quantlib.org/
@@ -61,7 +61,7 @@
 
 ; good to go
 
-(define process (new-BlackScholesProcess
+(define process (new-BlackScholesMertonProcess
                  (new-QuoteHandle underlying)
                  (new-YieldTermStructureHandle dividend-yield)
                  (new-YieldTermStructureHandle risk-free-rate)

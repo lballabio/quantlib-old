@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004, 2005 StatPro Italia srl
+ Copyright (C) 2003, 2004, 2005, 2006 StatPro Italia srl
  Copyright (C) 2005 Johan Witters
 
  This file is part of QuantLib, a free-software/open-source library
@@ -111,6 +111,9 @@ using QuantLib::EveryFourthMonth;
 using QuantLib::Quarterly;
 using QuantLib::Bimonthly;
 using QuantLib::Monthly;
+using QuantLib::Biweekly;
+using QuantLib::Weekly;
+using QuantLib::Daily;
 %}
 
 enum Frequency {
@@ -121,7 +124,10 @@ enum Frequency {
     EveryFourthMonth = 3,
     Quarterly = 4,
     Bimonthly = 6,
-    Monthly = 12
+    Monthly = 12,
+    Biweekly = 26,
+    Weekly = 52,
+    Daily = 365
 };
 
 #if defined(SWIGJAVA)
@@ -141,7 +147,9 @@ class Period {
     %rename("compare")        __cmp__;
     #endif
   public:
+    Period();
     Period(Integer n, TimeUnit units);
+    explicit Period(Frequency);
     Integer length() const;
     TimeUnit units() const;
     %extend {
@@ -158,13 +166,24 @@ class Period {
             out << "Period(\"" << QuantLib::io::short_period(*self) << "\")";
             return out.str();
         }
-        int __cmp__(const Period& other) {
-            if (*self < other)
-                return -1;
-            if (*self == other)
-                return 0;
-            return 1;
+        #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGR)
+        Period __neg__() {
+            return -(*self);
         }
+        Period __mul__(Integer n) {
+            return *self*n;
+        }
+        #if defined(SWIGPYTHON)
+        Period __rmul__(Integer n) {
+            return *self*n;
+        }
+        #endif
+        int __cmp__(const Period& other) {
+            return *self < other  ? -1 :
+                   *self == other ?  0 :
+                                     1;
+        }
+        #endif
     }
 };
 
@@ -314,14 +333,14 @@ class Date {
 };
 
 class DateParser {
-      public:
-        static Date parse(const std::string& str, const std::string& fmt);
-        static Date parseISO(const std::string& str);
+  public:
+    static Date parse(const std::string& str, const std::string& fmt);
+    static Date parseISO(const std::string& str);
 };
 
 class PeriodParser {
-      public:
-              static Period parse(const std::string& str);
+  public:
+    static Period parse(const std::string& str);
 };
 
 

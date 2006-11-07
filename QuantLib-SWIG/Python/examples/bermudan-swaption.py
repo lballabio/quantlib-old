@@ -1,5 +1,5 @@
 
-# Copyright (C) 2004 StatPro Italia srl
+# Copyright (C) 2004, 2005, 2006 StatPro Italia srl
 #
 # This file is part of QuantLib, a free-software/open-source library
 # for financial quantitative analysts and developers - http://quantlib.org/
@@ -90,7 +90,8 @@ floatingLegFrequency = Semiannual
 
 payFixed = True
 fixingDays = 2
-index = Euribor(6, Months, termStructure)
+index = Euribor6M(termStructure)
+floatingLegDayCounter = index.dayCounter()
 
 swapStart = calendar.advance(settlementDate,1,Years,floatingLegConvention)
 swapEnd = calendar.advance(swapStart,5,Years,floatingLegConvention)
@@ -100,28 +101,28 @@ fixedSchedule = Schedule(calendar, swapStart, swapEnd,
 floatingSchedule = Schedule(calendar, swapStart, swapEnd,
                             floatingLegFrequency, floatingLegConvention)
 
-atmRate = SimpleSwap(payFixed, 100.0,
-                     fixedSchedule, 0.0, fixedLegDayCounter,
-                     floatingSchedule, index, fixingDays, 0.0,
-                     termStructure).fairRate()
+atmRate = VanillaSwap(payFixed, 100.0,
+                      fixedSchedule, 0.0, fixedLegDayCounter,
+                      floatingSchedule, index, fixingDays, 0.0,
+                      floatingLegDayCounter, termStructure).fairRate()
 
-atmSwap = SimpleSwap(payFixed, 1000.0,
-                     fixedSchedule, atmRate, fixedLegDayCounter,
-                     floatingSchedule, index, fixingDays, 0.0,
-                     termStructure)
-otmSwap = SimpleSwap(payFixed, 1000.0,
-                     fixedSchedule, atmRate*1.2, fixedLegDayCounter,
-                     floatingSchedule, index, fixingDays, 0.0,
-                     termStructure)
-itmSwap = SimpleSwap(payFixed, 1000.0,
-                     fixedSchedule, atmRate*0.8, fixedLegDayCounter,
-                     floatingSchedule, index, fixingDays, 0.0,
-                     termStructure)
+atmSwap = VanillaSwap(payFixed, 1000.0,
+                      fixedSchedule, atmRate, fixedLegDayCounter,
+                      floatingSchedule, index, fixingDays, 0.0,
+                      floatingLegDayCounter, termStructure)
+otmSwap = VanillaSwap(payFixed, 1000.0,
+                      fixedSchedule, atmRate*1.2, fixedLegDayCounter,
+                      floatingSchedule, index, fixingDays, 0.0,
+                      floatingLegDayCounter, termStructure)
+itmSwap = VanillaSwap(payFixed, 1000.0,
+                      fixedSchedule, atmRate*0.8, fixedLegDayCounter,
+                      floatingSchedule, index, fixingDays, 0.0,
+                      floatingLegDayCounter, termStructure)
 
 helpers = [ SwaptionHelper(maturity, length,
                            QuoteHandle(SimpleQuote(vol)),
                            index, index.frequency(), index.dayCounter(),
-                           termStructure)
+                           index.dayCounter(), termStructure)
             for maturity, length, vol in swaptionVols ]
 
 times = {}

@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004, 2005 StatPro Italia srl
+ Copyright (C) 2003, 2004, 2005, 2006 StatPro Italia srl
  Copyright (c) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
@@ -72,6 +72,9 @@ const char* __version__;
 #endif
 #ifdef Sleep
 #undef Sleep
+#endif
+#ifdef bind
+#undef bind
 #endif
 %}
 #endif

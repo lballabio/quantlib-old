@@ -17,7 +17,7 @@ QuantLib_wrap.RData: QuantLib_wrap.R
 	R CMD BATCH makeRData.R
 
 QuantLib_wrap.so: $(BUILT_SOURCES)
-	PKG_LIBS="-L/usr/local/lib -lQuantLib" R CMD SHLIB QuantLib_wrap.cpp
+	MAKEFLAGS="CXXFLAGS=$(CXXFLAGS)" PKG_LIBS=`quantlib-config --libs` R CMD SHLIB QuantLib_wrap.cpp
 
 debug-object: $(BUILT_SOURCES)
 	g++ -I/usr/lib/R/include  -I/usr/local/include   -fPIC  -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -march=i586 -mtune=pentiumpro -fasynchronous-unwind-tables -c QuantLib_wrap.cpp -o QuantLib_wrap.o
@@ -38,5 +38,5 @@ dist-hook:
 	mkdir -p $(distdir)/examples
 	cp ./examples/*.R $(distdir)/examples
 
-EXTRA_DIST = README.txt $(BUILT_SOURCES)
+EXTRA_DIST = README.txt $(BUILT_SOURCES) makeRData.R
 

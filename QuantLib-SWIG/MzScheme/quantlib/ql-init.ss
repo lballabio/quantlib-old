@@ -22,23 +22,6 @@
 (load-relative-extension (append-extension-suffix "QuantLibc"))
 
 ; added functionality
-(define History-old-init new-History)
-(define (new-History dates values)
-  (let ((null (null-double)))
-    (History-old-init dates
-                      (map (lambda (x) (or x null)) values))))
-(define (History-map h f)
-  (let ((results '()))
-    (History-for-each h (lambda (e)
-                          (if e
-                              (set! results (cons (f e) results))
-                              (set! results (cons #f results)))))
-    (reverse results)))
-(define (History-map-valid h f)
-  (let ((results '()))
-    (History-for-each-valid h (lambda (e)
-                                (set! results (cons (f e) results))))
-    (reverse results)))
 (define (Schedule-map s f)
   (let ((results '()))
     (Schedule-for-each s (lambda (d) (set! results (cons (f d) results))))

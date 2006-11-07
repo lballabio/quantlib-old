@@ -1,5 +1,9 @@
 
-Release 0.3.13 - July 2006
+Release 0.3.14 - November 2006
+Changes since Release 0.3.13:
+    - in sync with QuantLib 0.3.14
+
+Release 0.3.13 - July 31st, 2006
 Changes since Release 0.3.12:
     - in sync with QuantLib 0.3.13
 

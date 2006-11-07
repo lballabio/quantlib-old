@@ -22,7 +22,7 @@ my($dividendYield) = new QuantLib::FlatForward($settlementDate,
                                                0.05,
                                                new QuantLib::Actual365Fixed);
 
-my($process) = new QuantLib::BlackScholesProcess(
+my($process) = new QuantLib::BlackScholesMertonProcess(
                       new QuantLib::QuoteHandle($underlying),
                       new QuantLib::YieldTermStructureHandle($dividendYield),
                       new QuantLib::YieldTermStructureHandle($riskFreeRate),

@@ -1,5 +1,5 @@
 
-# Copyright (C) 2004 StatPro Italia srl
+# Copyright (C) 2004, 2005, 2006 StatPro Italia srl
 #
 # This file is part of QuantLib, a free-software/open-source library
 # for financial quantitative analysts and developers - http://quantlib.org/
@@ -55,7 +55,8 @@ end
 
 # good to go
 
-process = BlackScholesProcess.new(QuoteHandle.new(underlying),
+process = BlackScholesMertonProcess.new(
+                                  QuoteHandle.new(underlying),
                                   YieldTermStructureHandle.new(dividendYield),
                                   YieldTermStructureHandle.new(riskFreeRate),
                                   BlackVolTermStructureHandle.new(volatility))

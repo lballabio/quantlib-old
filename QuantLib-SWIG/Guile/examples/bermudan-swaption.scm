@@ -1,5 +1,5 @@
 
-; Copyright (C) 2004 StatPro Italia srl
+; Copyright (C) 2004, 2005, 2006 StatPro Italia srl
 ;
 ; This file is part of QuantLib, a free-software/open-source library
 ; for financial quantitative analysts and developers - http://quantlib.org/
@@ -130,7 +130,8 @@
 
 (define pay-fixed #t)
 (define fixing-days 2)
-(define index (new-Euribor 6 (Months) term-structure))
+(define index (new-Euribor6M term-structure))
+(define floating-leg-day-counter (InterestRateIndex-day-counter index))
 
 (define swap-start (Calendar-advance calendar settlement-date 1 (Years)
                                      floating-leg-convention))
@@ -143,22 +144,26 @@
                                         floating-leg-frequency
                                         floating-leg-convention))
 
-(define atm-rate (SimpleSwap-fair-rate
-                  (new-SimpleSwap pay-fixed 100.0 fixed-schedule 0.0
-                                  fixed-leg-day-counter floating-schedule
-                                  index fixing-days 0.0 term-structure)))
+(define atm-rate (VanillaSwap-fair-rate
+                  (new-VanillaSwap pay-fixed 100.0 fixed-schedule 0.0
+                                   fixed-leg-day-counter floating-schedule
+                                   index fixing-days 0.0
+                                   floating-leg-day-counter term-structure)))
 
-(define atm-swap (new-SimpleSwap pay-fixed 1000.0 fixed-schedule atm-rate
-                                 fixed-leg-day-counter floating-schedule
-                                 index fixing-days 0.0 term-structure))
-(define otm-swap (new-SimpleSwap pay-fixed 1000.0 fixed-schedule
-                                 (* 1.2 atm-rate)
-                                 fixed-leg-day-counter floating-schedule
-                                 index fixing-days 0.0 term-structure))
-(define itm-swap (new-SimpleSwap pay-fixed 1000.0 fixed-schedule
-                                 (* 0.8 atm-rate)
-                                 fixed-leg-day-counter floating-schedule
-                                 index fixing-days 0.0 term-structure))
+(define atm-swap (new-VanillaSwap pay-fixed 1000.0 fixed-schedule atm-rate
+                                  fixed-leg-day-counter floating-schedule
+                                  index fixing-days 0.0
+                                  floating-leg-day-counter term-structure))
+(define otm-swap (new-VanillaSwap pay-fixed 1000.0 fixed-schedule
+                                  (* 1.2 atm-rate)
+                                  fixed-leg-day-counter floating-schedule
+                                  index fixing-days 0.0
+                                  floating-leg-day-counter term-structure))
+(define itm-swap (new-VanillaSwap pay-fixed 1000.0 fixed-schedule
+                                  (* 0.8 atm-rate)
+                                  fixed-leg-day-counter floating-schedule
+                                  index fixing-days 0.0
+                                  floating-leg-day-counter term-structure))
 
 (define helpers
   (map (lambda (swaption-data)
@@ -167,7 +172,9 @@
             (new-SwaptionHelper maturity length
                                 (new-QuoteHandle (new-SimpleQuote vol))
                                 index (Xibor-frequency index)
-                                (Xibor-day-counter index) term-structure))
+                                (InterestRateIndex-day-counter index)
+                                (InterestRateIndex-day-counter index)
+                                term-structure))
           swaption-data))
        swaption-vols))
 

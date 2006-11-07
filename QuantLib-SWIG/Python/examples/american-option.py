@@ -1,5 +1,5 @@
 
-# Copyright (C) 2004 StatPro Italia srl
+# Copyright (C) 2004, 2005, 2006 StatPro Italia srl
 #
 # This file is part of QuantLib, a free-software/open-source library
 # for financial quantitative analysts and developers - http://quantlib.org/
@@ -52,10 +52,10 @@ def report(method, x, dx = None):
 
 # good to go
 
-process = BlackScholesProcess(QuoteHandle(underlying),
-                              YieldTermStructureHandle(dividendYield),
-                              YieldTermStructureHandle(riskFreeRate),
-                              BlackVolTermStructureHandle(volatility))
+process = BlackScholesMertonProcess(QuoteHandle(underlying),
+                                    YieldTermStructureHandle(dividendYield),
+                                    YieldTermStructureHandle(riskFreeRate),
+                                    BlackVolTermStructureHandle(volatility))
 
 option = VanillaOption(process, payoff, exercise)
 

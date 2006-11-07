@@ -37,14 +37,6 @@ module QuantLibc
     end
   end
 
-  class History
-    alias cpp_initialize initialize
-    def initialize(dates,values)
-      vs = values.map { |v| v || QuantLibc::nullDouble }
-      cpp_initialize(dates,vs)
-    end
-  end
-
   class Date
     alias cpp_add +
     alias cpp_sub -

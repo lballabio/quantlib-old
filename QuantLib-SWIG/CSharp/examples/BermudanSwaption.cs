@@ -93,8 +93,7 @@ namespace BermudanSwaption
 			bool payFixedRate = true;
 			int fixingDays = 2;
 			double dummyFixedRate = 0.03;
-			Xibor indexSixMonths =
-                new Euribor( 6, TimeUnit.Months, rhTermStructure );
+			Xibor indexSixMonths = new Euribor6M( rhTermStructure );
 
 			Date startDate = calendar.advance(settlementDate,1,TimeUnit.Years,
 				floatingLegConvention);

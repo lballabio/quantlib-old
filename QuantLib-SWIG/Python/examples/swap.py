@@ -1,5 +1,5 @@
 
-# Copyright (C) 2004 StatPro Italia srl
+# Copyright (C) 2004, 2005, 2006 StatPro Italia srl
 #
 # This file is part of QuantLib, a free-software/open-source library
 # for financial quantitative analysts and developers - http://quantlib.org/
@@ -63,7 +63,7 @@ for n,unit in swaps.keys():
 dayCounter = Actual360()
 settlementDays = 2
 depositHelpers = [ DepositRateHelper(QuoteHandle(deposits[(n,unit)]),
-                                     n, unit, settlementDays,
+                                     Period(n,unit), settlementDays,
                                      calendar, ModifiedFollowing, dayCounter)
                    for n, unit in [(1,Weeks),(1,Months),(3,Months),
                                    (6,Months),(9,Months),(1,Years)] ]
@@ -89,10 +89,9 @@ fixedLegDayCounter = Thirty360()
 floatingLegFrequency = Semiannual
 floatingLegAdjustment = ModifiedFollowing
 swapHelpers = [ SwapRateHelper(QuoteHandle(swaps[(n,unit)]),
-                               n, unit, settlementDays, calendar,
+                               Period(n,unit), settlementDays, calendar,
                                fixedLegFrequency, fixedLegAdjustment,
-                               fixedLegDayCounter, floatingLegFrequency,
-                               floatingLegAdjustment)
+                               fixedLegDayCounter, Euribor6M())
                 for n, unit in swaps.keys() ]
 
 # term structure handles
@@ -124,18 +123,19 @@ fixedRate = 0.04
 floatingLegFrequency = Semiannual
 spread = 0.0
 fixingDays = 2
-index = Euribor(6, Months, forecastTermStructure)
+index = Euribor6M(forecastTermStructure)
 floatingLegAdjustment = ModifiedFollowing
+floatingLegDayCounter = index.dayCounter()
 
 fixedSchedule = Schedule(calendar, settlementDate, maturity,
                          fixedLegFrequency, fixedLegAdjustment)
 floatingSchedule = Schedule(calendar, settlementDate, maturity,
                             floatingLegFrequency, floatingLegAdjustment)
 
-spot = SimpleSwap(payFixed, nominal,
-                  fixedSchedule, fixedRate, fixedLegDayCounter,
-                  floatingSchedule, index, fixingDays, spread,
-                  discountTermStructure)
+spot = VanillaSwap(payFixed, nominal,
+                   fixedSchedule, fixedRate, fixedLegDayCounter,
+                   floatingSchedule, index, fixingDays, spread,
+                   floatingLegDayCounter, discountTermStructure)
 
 forwardStart = calendar.advance(settlementDate,1,Years)
 forwardEnd = calendar.advance(forwardStart,length,Years)
@@ -144,10 +144,10 @@ fixedSchedule = Schedule(calendar, forwardStart, forwardEnd,
 floatingSchedule = Schedule(calendar, forwardStart, forwardEnd,
                             floatingLegFrequency, floatingLegAdjustment)
 
-forward = SimpleSwap(payFixed, nominal,
-                     fixedSchedule, fixedRate, fixedLegDayCounter,
-                     floatingSchedule, index, fixingDays, spread,
-                     discountTermStructure)
+forward = VanillaSwap(payFixed, nominal,
+                      fixedSchedule, fixedRate, fixedLegDayCounter,
+                      floatingSchedule, index, fixingDays, spread,
+                      floatingLegDayCounter, discountTermStructure)
 
 # price on the bootstrapped curves
 
