@@ -159,10 +159,10 @@ class SwaptionVolatilityStructure : public Extrapolator {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("reference-date")  referenceDate;
     %rename("day-counter")     dayCounter;
-    %rename("max-start-date")  maxStartDate;
-    %rename("max-start-time")  maxStartTime;
-    %rename("max-length")      maxLength;
-    %rename("max-time-length") maxTimeLength;
+    %rename("max-option-date")  maxOptionDate;
+    %rename("max-option-time")  maxOptionTime;
+    %rename("max-swap-tenor")      maxSwapTenor;
+    %rename("max-swap-length") maxSwapLength;
     %rename("min-strike")      minStrike;
     %rename("max-strike")      maxStrike;
     %rename("black-variance")  blackVariance;
@@ -171,10 +171,10 @@ class SwaptionVolatilityStructure : public Extrapolator {
     Date referenceDate() const;
     DayCounter dayCounter() const;
     Calendar calendar() const;
-    Date maxStartDate() const;
-    Time maxStartTime() const;
-    Period maxLength() const;
-    Time maxTimeLength() const;
+    Date maxOptionDate() const;
+    Time maxOptionTime() const;
+    Period maxSwapTenor() const;
+    Time maxSwapLength() const;
     Real minStrike() const;
     Real maxStrike() const;
     Volatility volatility(const Date& start, const Period& length,
