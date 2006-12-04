@@ -51,7 +51,7 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
             typedef InterpolatedForwardCurve<Interpolator> Name;
             return boost::dynamic_pointer_cast<Name>(*self)->forwards();
         }
-        #if !defined(SWIGR) && !defined(SWIGRUBY) && !defined(SWIGGUILE) && !defined(SWIGMZSCHEME)
+        #if !defined(SWIGR) && !defined(SWIGGUILE) && !defined(SWIGMZSCHEME)
         std::vector<std::pair<Date,Rate> > nodes() {
             typedef InterpolatedForwardCurve<Interpolator> Name;
             return boost::dynamic_pointer_cast<Name>(*self)->nodes();

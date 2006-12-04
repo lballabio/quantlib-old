@@ -31,7 +31,7 @@ namespace std {
     %template(DoubleVector) vector<double>;
     %template(StrVector) vector<std::string>;
 
-#if !defined(SWIGR) && !defined(SWIGRUBY) && !defined(SWIGGUILE) && !defined(SWIGMZSCHEME)
+#if !defined(SWIGR) && !defined(SWIGGUILE) && !defined(SWIGMZSCHEME)
     %template(NodePair) pair<Date,double>;
     %template(NodeVector) vector<pair<Date,double> >;
 #endif

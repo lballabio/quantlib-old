@@ -47,8 +47,6 @@ AM_CONDITIONAL(HAVE_OCAML, test "x${OCAMLC}" != "x")
 
 AC_PATH_PROG([R], [R])
 AM_CONDITIONAL(HAVE_R, test "x${R}" != "x")
-AC_PATH_PROG([RSWIG], [rswig])
-AM_CONDITIONAL(HAVE_RSWIG, test "x${RSWIG}" != "x")
 
 # Default compilation variables
 

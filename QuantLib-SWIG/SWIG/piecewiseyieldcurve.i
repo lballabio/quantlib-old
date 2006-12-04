@@ -82,7 +82,7 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
             typedef PiecewiseYieldCurve<Base,Interpolator> Name;
             return boost::dynamic_pointer_cast<Name>(*self)->times();
         }
-        #if !defined(SWIGR) && !defined(SWIGRUBY) && !defined(SWIGGUILE) && !defined(SWIGMZSCHEME)
+        #if !defined(SWIGR) && !defined(SWIGGUILE) && !defined(SWIGMZSCHEME)
         std::vector<std::pair<Date,Real> > nodes() {
             typedef PiecewiseYieldCurve<Base,Interpolator> Name;
             return boost::dynamic_pointer_cast<Name>(*self)->nodes();

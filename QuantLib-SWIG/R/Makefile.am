@@ -1,8 +1,5 @@
-if HAVE_RSWIG
+
 BUILT_SOURCES = QuantLib_wrap.cpp QuantLib_wrap.R
-else
-BUILT_SOURCES =
-endif
 
 CLEANFILES = $(BUILT_SOURCES) .build-stamp
 
@@ -30,7 +27,7 @@ clean-local:
 	rm -rf $(BUILT_SOURCES) QuantLib_wrap.cpp *.so *.o QuantLib_wrap.RData *.Rout
 
 $(BUILT_SOURCES): ../SWIG/*.i
-	$(RSWIG) -r -c++ -I../SWIG -o QuantLib_wrap.cpp quantlib.i
+	$(SWIG) -r -c++ -I../SWIG -o QuantLib_wrap.cpp quantlib.i
 
 endif
 
