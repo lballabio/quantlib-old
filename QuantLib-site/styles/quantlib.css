@@ -80,29 +80,13 @@ ul.navbarlist {
 li.navlink {
     font-weight: normal;
     font-size: 80%;
-    list-style:none;
+    text-align: left;
+    list-style: none;
     margin: 0;
 }
 
 .navbartitle {
     text-align: center;
-}
-
-ul.profilelist {
-    width: auto;
-    padding: 0;
-    margin: 0;
-}
-
-li.profilelink {
-    float: left;
-    font-weight: normal;
-    font-size: 80%;
-    list-style:none;
-    margin-left: 1px;
-    padding: 5px;
-    background-color: #fea;
-    border: 1px solid gray;
 }
 
 .hide { display: none }
