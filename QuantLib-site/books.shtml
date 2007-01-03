@@ -12,7 +12,13 @@
 <title>Quantitative Finance Books</title>
 </head>
 <body>
-<!--#include virtual="qlheader.inc"-->
+<div id="container">
+<!--#include virtual="header.inc"-->
+<div id="menu">
+<!--#include virtual="devmenu.inc"-->
+</div>
+<div id="content">
+
 <h1 class="center">Quantitative Finance Books</h1>
 <p>This is a list of books that have been proved to be useful in
 the education of at least some of the QuantLib developers.</p>
@@ -282,6 +288,14 @@ Pearson Education; ISBN: 0273654365</li>
 </ul>
 </li>
 </ul>
-<!--#include virtual="qlfooter.inc"-->
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
 </body>
 </html>

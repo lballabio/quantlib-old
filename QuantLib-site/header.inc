@@ -4,8 +4,8 @@
  alt="QuantLib">
 <br>
 <h3 class="subtitle">A free/open-source library for quantitative finance</h3>
-<div id="profiles">
-<a href="index.shtml">User Pages</a> |
-<a href="newdeveloper.shtml">Developer Pages</a>
-</div>
+<ul id="profiles">
+<li><a href="index.shtml">User Pages</a></li>
+<li><a href="newdeveloper.shtml">Developer Pages</a></li>
+</ul>
 </div>

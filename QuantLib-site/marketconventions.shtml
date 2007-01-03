@@ -19,7 +19,13 @@
 </style>
 </head>
 <body>
-<!--#include virtual="qlheader.inc"-->
+<div id="container">
+<!--#include virtual="header.inc"-->
+<div id="menu">
+<!--#include virtual="usermenu.inc"-->
+</div>
+<div id="content">
+
 <h1>Financial Market Conventions</h1>
 <p>This page is an attempt at a comprehensive list of publicly
 available resources about market conventions and their
@@ -131,6 +137,14 @@ convention is of special interest.</li>
 </ul>
 <br></li>
 <!-- list entry --></ul>
-<!--#include virtual="qlfooter.inc"-->
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
 </body>
 </html>
