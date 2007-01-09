@@ -15,6 +15,7 @@
 <meta http-equiv="Content-Language" content="en">
 <link rel="stylesheet" href="/styles/quantlib.css" type="text/css">
 <link rel="stylesheet" href="/styles/print.css" type="text/css" media="print">
+<link rel="stylesheet" href="/styles/handheld.css" type="text/css" media="handheld">
 <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 <script type="text/javascript">
