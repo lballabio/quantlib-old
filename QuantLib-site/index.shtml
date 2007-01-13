@@ -22,30 +22,29 @@ finance</title>
 <div id="content">
 
 <p>The QuantLib project is aimed at providing a comprehensive
-software framework for quantitative finance. QuantLib is a
-<em><a href=
-"http://www.gnu.org/philosophy/free-sw.html">free</a>/<a href=
-"http://www.opensource.org/">open-source</a></em> library for
-modeling, trading, and risk management in real-life.</p>
-<p>QuantLib is written in C++ with a clean object model, and is then
-exported to different languages such as C#, Objective Caml, Java,
-Perl, Python, GNU R, Ruby, and Scheme. <a href=
-"http://www.quantlibaddin.org"> QuantLibAddin</a> exports a
-procedural interface to a number of platforms including Microsoft
-Excel and OpenOffice.org Calc.  QuantLibXL also offers an Excel
-add-in.  Bindings to other languages and porting to Gnumeric,
-Matlab/Octave, S-PLUS/<a href=
-"http://dirk.eddelbuettel.com/code/rquantlib.html">R</a>, <a href=
-"http://www.nielses.dk/quantlib/mma/">Mathematica</a>, COM/CORBA/SOAP
-architectures, FpML, are under consideration. See the <a
-href="extensions.shtml">extensions</a> page for details.</p>
-<p>Appreciated by quantitative analysts and developers, it is
-intended for academics and practitioners alike, eventually
-promoting a stronger interaction between them. QuantLib offers
-tools that are useful both for practical implementation and for
-advanced modeling, with features such as market conventions, yield
-curve models, solvers, PDEs, Monte Carlo (low-discrepancy
-included), exotic options, VAR, and so on.</p>
+software framework for quantitative finance. QuantLib is a <em><a
+href= "http://www.gnu.org/philosophy/free-sw.html">free</a>/<a href=
+"http://www.opensource.org/">open-source</a></em> library for modeling,
+trading, and risk management in real-life.</p> <p>QuantLib is written in
+C++ with a clean object model, and is then exported to different languages
+such as C#, Objective Caml, Java, Perl, Python, GNU R, Ruby, and Scheme.
+The <a href= "http://www.quantlibaddin.org">QuantLibAddin</a>/<a
+href= "http://www.quantlibxl.org">QuantLibXL</a> project uses <a
+href= "http://www.objecthandler.org">ObjectHandler</a> to export an
+object-oriented QuantLib interface to a variety of end-user platforms
+including Microsoft Excel and OpenOffice.org Calc.  Bindings to
+other languages and porting to Gnumeric, Matlab/Octave, S-PLUS/<a
+href= "http://dirk.eddelbuettel.com/code/rquantlib.html">R</a>,
+<a href= "http://www.nielses.dk/quantlib/mma/">Mathematica</a>,
+COM/CORBA/SOAP architectures, FpML, are under consideration. See
+the <a href="extensions.shtml">extensions</a> page for details.</p>
+<p>Appreciated by quantitative analysts and developers, it is intended
+for academics and practitioners alike, eventually promoting a stronger
+interaction between them. QuantLib offers tools that are useful both for
+practical implementation and for advanced modeling, with features such
+as market conventions, yield curve models, solvers, PDEs, Monte Carlo
+(low-discrepancy included), exotic options, VAR, and so on.</p>
+
 <p>Finance is an area where well-written open-source projects could
 make a tremendous difference:</p>
 <ul>
