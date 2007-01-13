@@ -1,0 +1,11 @@
+%(header)s
+    try {
+%(cppConversions)s%(libraryConversions)s%(referenceConversions)s%(enumConversions)s%(functionBody)s
+%(functionValueObject)s
+%(convertReturnType)s
+    } catch (const std::exception &e) {
+        ObjHandler::logMessage(std::string("ERROR: %(functionName)s: ") + e.what(), 2);
+        THROW_RTE;
+    }
+}
+

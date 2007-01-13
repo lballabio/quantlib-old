@@ -1,0 +1,5 @@
+log4cxx*.suo
+lib
+log4cxx*.ncb
+Makefile
+Makefile.in

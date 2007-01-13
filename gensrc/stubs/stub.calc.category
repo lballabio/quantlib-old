@@ -1,0 +1,7 @@
+#ifndef qla_calc_%(categoryName)s_hpp
+#define qla_calc_%(categoryName)s_hpp
+
+%(buffer)s
+
+#endif
+

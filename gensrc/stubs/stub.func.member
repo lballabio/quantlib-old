@@ -1,0 +1,7 @@
+
+        // invoke the member function
+
+        %(libraryReturnType)s%(objectID)s%(dereference)s%(libraryFunction)s(%(parameterList)s);
+
+        // convert and return the return value
+

@@ -1,0 +1,10 @@
+#include <qlo/qladdindefines.hpp>
+#include <qlo/typefactory.hpp>
+#include <qlo/conversions.hpp>
+%(categoryIncludes)s
+#include <Addins/Calc/qladdin.hpp>
+#include <Addins/Calc/calcutils.hpp>
+#include <Addins/Calc/conversions.hpp>
+%(loopIncludes)s
+
+%(buffer)s

@@ -1,0 +1,7 @@
+#ifndef qla_calc_auto_hpp
+#define qla_calc_auto_hpp
+
+%(buffer)s
+
+#endif
+

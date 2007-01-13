@@ -1,0 +1,12 @@
+#ifdef WIN32
+#pragma warning(disable: 4503)
+#pragma warning(disable: 4786)
+#pragma warning(disable: 4800)
+#endif
+
+#include <Addins/Calc/qladdin.hpp>
+
+QLAddin::QLAddin() throw () : m_refcount( 0 ) {
+
+%(buffer)s}
+

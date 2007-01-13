@@ -1,0 +1,61 @@
+
+/*
+ Copyright (C) 2006 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*!
+
+\page installation Installation
+
+\section inst_download Download
+
+Download gensrc from the 
+<a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=141162">QuantLib downloads page on sourceforge</a>
+
+\section inst_installation Installation
+
+To install gensrc, uncompress the files, and ensure that the following
+environment variables are set:
+\li \c GENSRC_DIR - the top level gensrc directory
+\li \c PYTHONPATH - must include the gensrc import directory
+
+For example, in the bash shell:
+\verbatim
+export GENSRC_DIR=/where/you/installed/gensrc
+export PYTHONPATH=$PYTHONPATH:$GENSRC_DIR/import
+\endverbatim
+
+On Windows:
+\verbatim
+set GENSRC_DIR=C:\where\you\installed\gensrc
+set PYTHONPATH=%PYTHONPATH%;%GENSRC_DIR%\import
+\endverbatim
+
+\section inst_usage Usage
+
+gensrc usage has not yet been documented.  In order to use gensrc, it is
+necessary to write a wrapper script which \c imports required gensrc modules
+and invokes them appropriately.  Examples of this can be found in the
+<a href="http://www.objecthandler.org">ObjectHandler</a> and 
+<a href="http://www.quantlibaddin.org">QuantLibAddin</a> projects.
+
+*/
+

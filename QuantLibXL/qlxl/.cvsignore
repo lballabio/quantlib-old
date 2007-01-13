@@ -1,0 +1,7 @@
+*.plg
+*.ncb
+*.user
+buildDynamic
+buildStatic
+Makefile
+Makefile.in

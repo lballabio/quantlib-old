@@ -1,0 +1,166 @@
+<Addin name='Guile'>
+<platformId>G</platformId>
+<rootDirectory>../Addins/Guile/</rootDirectory>
+
+<copyright>
+ Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005 Aurelien Chanudet
+</copyright>
+
+<Buffers>
+<Buffer name='bufferFunction' fileName='stub.guile.function'/>
+<Buffer name='bufferIncludes' fileName='stub.guile.includes'/>
+<Buffer name='bufferInitFunc' fileName='stub.guile.initfunc'/>
+<Buffer name='bufferHeader' fileName='stub.guile.header'/>
+</Buffers>
+
+<Rules>
+
+<Rule name='cppConversions' indent='2' delimiter='&#10;'>
+    <Wrap codeID='wrap1'/>
+    <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <string>%(indent)sstd::string %(name)s = GetChop&lt;std::string&gt;::scalar(x);</string>
+                <any>%(indent)sboost::any %(name)s = GetChop&lt;boost::any&gt;::scalar(x);</any>
+                <other>%(indent)s%(type)s %(name)s = GetChop&lt;%(type)s&gt;::scalar(x);</other>
+            </DataTypes>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <string>%(indent)sstd::vector&lt;std::string&gt; %(name)s = GetChop&lt;std::string&gt;::vector(x);</string>
+                <any>%(indent)sstd::vector&lt;boost::any&gt; %(name)s = GetChop&lt;boost::any&gt;::vector(x);</any>
+                <other>%(indent)sstd::vector&lt;%(type)s&gt; %(name)s = GetChop&lt;%(type)s&gt;::vector(x);</other>
+            </DataTypes>
+        </SubRule>
+    </SubRules>
+</Rule>
+
+<Rule name='libraryConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
+    <Wrap codeID='wrap2'/>
+    <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <libraryType codeID='code69'/>
+            </DataTypes>
+        </SubRule>
+    </SubRules>
+</Rule>
+
+<Rule name='returnConversion' indent='2'>
+    <Wrap codeID='wrap5'/>
+    <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <libraryType>Nat2Scm&lt;std::string&gt;::scalar(boost::any(returnValue.serialNumber()))</libraryType>
+                <string>Nat2Scm&lt;std::string&gt;::scalar(boost::any(returnValue))</string>
+                <any>Nat2Scm&lt;boost::any&gt;::scalar(boost::any(returnValue))</any>
+                <void>Nat2Scm&lt;bool&gt;::scalar(true)</void>
+                <other>Nat2Scm&lt;%(type)s&gt;::scalar(boost::any(returnValue))</other>
+            </DataTypes>
+        </SubRule>
+    </SubRules>
+</Rule>
+
+<Rule name='libraryCall' checkParameterIgnore='true' checkSkipFirst='true' indent='3' delimiter=',&#10;'>
+    <Wrap>&#10;%s</Wrap>
+    <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <libraryType>%(indent)s%(name)sLib</libraryType>
+                <libraryClass>%(indent)s%(name)sLibObj</libraryClass>
+                <enumeration>%(indent)s%(name)sEnum</enumeration>
+                <other>%(indent)s%(name)s</other>
+            </DataTypes>
+        </SubRule>
+    </SubRules>
+</Rule>
+
+<Rule name='libraryReturnType' delimiter='&#10;'>
+    <Wrap>&#10;%s</Wrap>
+    <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <libraryType>%(libraryType)s returnValue = </libraryType>
+                <void/>
+                <string>std::string returnValue = </string>
+                <any>boost::any returnValue = </any>
+                <other>%(type)s returnValue = </other>
+            </DataTypes>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <string>std::vector&lt;std::string&gt; returnValue = </string>
+                <string>std::vector&lt;boost::any&gt; returnValue = </string>
+                <other>std::vector&lt;%(type)s&gt; returnValue = </other>
+            </DataTypes>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <string>std::vector&lt;std::vector&lt;std::string&gt; &gt; returnValue = </string>
+                <string>std::vector&lt;std::vector&lt;boost::any&gt; &gt; returnValue = </string>
+                <other>std::vector&lt;std::vector&lt;%(type)s&gt; &gt; returnValue = </other>
+            </DataTypes>
+        </SubRule>
+    </SubRules>
+</Rule>
+
+<Rule name='referenceConversions' indent='2' delimiter='&#10;'>
+    <Wrap codeID='wrap6'/>
+    <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <libraryClass codeID='code67'/>
+            </DataTypes>
+        </SubRule>
+    </SubRules>
+</Rule>
+
+<Rule name='enumConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
+    <Wrap codeID='wrap3'/>
+    <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <enumeration codeID='code68'/>
+            </DataTypes>
+        </SubRule>
+    </SubRules>
+</Rule>
+
+</Rules>
+
+</Addin>
+

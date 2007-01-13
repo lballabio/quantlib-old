@@ -1,0 +1,17 @@
+    const char* %(functionName)s::mPropertyNames[] = {%(propertyDeclaration)s};
+
+    std::vector<std::string> %(functionName)s::getPropertyNames() const {
+        return std::vector<std::string>(
+            mPropertyNames, mPropertyNames + sizeof(mPropertyNames)/sizeof(const char*));
+    }
+
+    boost::any %(functionName)s::getProperty(const std::string& name) const {
+        %(propertyGet)s
+            throw ObjHandler::Exception("Error: attempt to retrieve non-existent Property: '" + name + "'");
+
+        return boost::any(); /* Dummy return - just to avoid stupid compiler warnings/errors */
+    }
+
+    %(functionName)s::%(functionName)s(%(constructorParList)s) :
+%(constructorInit)s {}
+

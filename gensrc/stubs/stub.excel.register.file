@@ -1,0 +1,24 @@
+#include <xlsdk/xlsdkdefines.hpp>
+
+// register functions in category %(categoryName)s with Excel
+
+void register%(categoryName)s(const XLOPER &xDll) {
+
+%(registerCode)s
+
+}
+
+// unregister functions in category %(categoryName)s with Excel
+
+void unregister%(categoryName)s(const XLOPER &xDll) {
+
+	XLOPER xlRegID;
+
+    // Unregister each function.  Due to a bug in Excel's C API this is a
+    // two-step process.  Thanks to Laurent Longre for discovering the
+    // workaround implemented here.
+
+%(unregisterCode)s
+
+}
+

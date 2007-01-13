@@ -1,0 +1,35 @@
+
+/*
+ Copyright (C) 2007 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page topics Topics
+
+The table below summarizes links to documentation for selected topics concerning end-user functionality of QuantLibAddin/QuantLibXL.
+
+<table>
+<tr><td><b>Topic</b></td><td><b>Summary</b></td></tr>
+<tr><td>\ref evaluationdate</td><td>Description of special processing for the Evaluation Date, which is implemented in QuantLib as a global variable</td></tr>
+<tr><td>\ref trigger</td><td>Using triggers to force dependencies between cells in QuantLibXL and flagging ObjectHandler objects as permanent so that they're ignored by ohDeleteAllObjects()</td></tr>
+</table>
+
+*/
+

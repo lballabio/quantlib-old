@@ -1,0 +1,81 @@
+# file for Visual Studio NMAKE
+# local gensrc makefiles can include this one to enforce make dependencies
+
+CORE_IMPORT=$(GENSRC_DIR)\import\addin.py \
+            $(GENSRC_DIR)\import\addinc.py \
+            $(GENSRC_DIR)\import\addincalc.py \
+            $(GENSRC_DIR)\import\addindoxygen.py \
+            $(GENSRC_DIR)\import\addinexcel.py \
+            $(GENSRC_DIR)\import\addinguile.py \
+            $(GENSRC_DIR)\import\addinqla.py \
+            $(GENSRC_DIR)\import\behavior.py \
+            $(GENSRC_DIR)\import\buffer.py \
+            $(GENSRC_DIR)\import\category.py \
+            $(GENSRC_DIR)\import\code.py \
+            $(GENSRC_DIR)\import\common.py \
+            $(GENSRC_DIR)\import\config.py \
+            $(GENSRC_DIR)\import\enumeration.py \
+            $(GENSRC_DIR)\import\factory.py \
+            $(GENSRC_DIR)\import\function.py \
+            $(GENSRC_DIR)\import\log.py \
+            $(GENSRC_DIR)\import\loop.py \
+            $(GENSRC_DIR)\import\outputfile.py \
+            $(GENSRC_DIR)\import\parameter.py \
+            $(GENSRC_DIR)\import\parameterlist.py \
+            $(GENSRC_DIR)\import\rule.py \
+            $(GENSRC_DIR)\import\serializable.py \
+            $(GENSRC_DIR)\import\serializer.py \
+            $(GENSRC_DIR)\import\singleton.py \
+            $(GENSRC_DIR)\import\utilities.py \
+            $(GENSRC_DIR)\import\valueobjects.py \
+            $(GENSRC_DIR)\import\xmlreader.py
+
+CORE_METADATA=$(GENSRC_DIR)\metadata\addinc.xml \
+              $(GENSRC_DIR)\metadata\addincalc.xml \
+              $(GENSRC_DIR)\metadata\addindoxygen.xml \
+              $(GENSRC_DIR)\metadata\addinexcel.xml \
+              $(GENSRC_DIR)\metadata\addinguile.xml \
+              $(GENSRC_DIR)\metadata\addinqla.xml \
+              $(GENSRC_DIR)\metadata\loop.xml \
+              $(GENSRC_DIR)\metadata\valueobjects.xml
+
+CORE_STUBS=$(GENSRC_DIR)\stubs\stub.c.function \
+           $(GENSRC_DIR)\stubs\stub.c.header \
+           $(GENSRC_DIR)\stubs\stub.c.includes \
+           $(GENSRC_DIR)\stubs\stub.calc.category \
+           $(GENSRC_DIR)\stubs\stub.calc.function \
+           $(GENSRC_DIR)\stubs\stub.calc.header \
+           $(GENSRC_DIR)\stubs\stub.calc.idlfunc \
+           $(GENSRC_DIR)\stubs\stub.calc.idlhead \
+           $(GENSRC_DIR)\stubs\stub.calc.includes \
+           $(GENSRC_DIR)\stubs\stub.calc.map \
+           $(GENSRC_DIR)\stubs\stub.doxygen.categories \
+           $(GENSRC_DIR)\stubs\stub.doxygen.enums \
+           $(GENSRC_DIR)\stubs\stub.doxygen.file \
+           $(GENSRC_DIR)\stubs\stub.doxygen.function \
+           $(GENSRC_DIR)\stubs\stub.doxygen.header \
+           $(GENSRC_DIR)\stubs\stub.enum.classes \
+           $(GENSRC_DIR)\stubs\stub.enum.types \
+           $(GENSRC_DIR)\stubs\stub.excel.function \
+           $(GENSRC_DIR)\stubs\stub.excel.loop \
+           $(GENSRC_DIR)\stubs\stub.excel.numfunc \
+           $(GENSRC_DIR)\stubs\stub.excel.register.call \
+           $(GENSRC_DIR)\stubs\stub.excel.register.file \
+           $(GENSRC_DIR)\stubs\stub.excel.register.function \
+           $(GENSRC_DIR)\stubs\stub.func.constructor \
+           $(GENSRC_DIR)\stubs\stub.func.member \
+           $(GENSRC_DIR)\stubs\stub.func.procedure \
+           $(GENSRC_DIR)\stubs\stub.guile.function \
+           $(GENSRC_DIR)\stubs\stub.guile.includes \
+           $(GENSRC_DIR)\stubs\stub.guile.header \
+           $(GENSRC_DIR)\stubs\stub.guile.includes \
+           $(GENSRC_DIR)\stubs\stub.guile.initfunc \
+           $(GENSRC_DIR)\stubs\stub.loop.bind \
+           $(GENSRC_DIR)\stubs\stub.qla.mainheader \
+           $(GENSRC_DIR)\stubs\stub.vo.class.body \
+           $(GENSRC_DIR)\stubs\stub.vo.class.decl \
+           $(GENSRC_DIR)\stubs\stub.vo.includes.body \
+           $(GENSRC_DIR)\stubs\stub.vo.includes.decl
+
+CORE_DEPENDENCIES = $(CORE_IMPORT) $(CORE_METADATA) $(CORE_STUBS)
+

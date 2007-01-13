@@ -1,0 +1,31 @@
+XLL_DEC %(functionReturnType)s%(functionName)s(%(functionDeclaration)s) {
+
+    // test fix - create FunctionCall objects on stack not heap
+    //boost::shared_ptr<ObjHandler::FunctionCall> functionCall;
+    ObjHandler::FunctionCall functionCall("%(functionName)s");
+
+    try {
+
+        // initialize Function Call object
+
+        // test fix - create FunctionCall objects on stack not heap
+        //functionCall = boost::shared_ptr<ObjHandler::FunctionCall> 
+        //    ( new ObjHandler::FunctionCall("%(functionName)s") );
+%(xlWizardRecalc)s
+%(xlTrigger)s%(validatePermanent)s
+
+        // initialize the QuantLib session ID (if enabled)
+
+        SET_SESSION_ID
+
+        // reset the calling cell
+
+        ObjHandler::ObjectHandlerXL::instance().resetCaller(%(resetCaller)s);
+%(cppConversions)s%(libConversions)s%(enumConversions)s%(objectConversions)s%(refConversions)s%(functionBody)s%(returnConversion)s
+
+    } catch (const std::exception &e) {
+        ObjHandler::ObjectHandlerXL::instance().logError(e.what());
+        return 0;
+    }
+}
+

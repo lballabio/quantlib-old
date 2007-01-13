@@ -1,0 +1,28 @@
+#if defined(HAVE_CONFIG_H)     // Dynamically created by configure
+    #include <qlo/config.hpp>
+#endif
+
+#include <qlo/enumclassctors.hpp>
+
+#define REG_ENUM(Type, Body) \
+    { \
+        TypeMapPtr typeMap(new TypeMap); \
+        Body \
+        allTypesMap[typeid(Type).name()] = typeMap; \
+    }
+
+#define MAP(str_id, constructor) \
+    (*typeMap)[str_id] = (void*) constructor
+
+namespace QuantLibAddin {
+
+    EnumCurveRegistry::EnumCurveRegistry() {
+
+%s    }
+
+    EnumClassRegistry::EnumClassRegistry() {
+
+%s    }
+
+}
+

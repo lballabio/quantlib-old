@@ -1,0 +1,85 @@
+
+/*
+ Copyright (C) 2007 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page trigger Triggers and Permanent Objects
+
+\section trigger_summary Summary
+
+QuantLibXL supports triggers allowing the user to force Excel's calculation tree to recognize dependencies which cannot automatically be detected by Excel.
+
+QuantLibXL exposes ObjectHandler's notion of permanent objects which allow the user greater granularity in managing the contents of the object repository.
+
+\section trigger_observable Observer/Observable Design Pattern
+
+QuantLib supports the "Observer/Observable" design pattern which can be exploited by QuantLibXL to facilitate updates within the QL code, behind the scenes of Excel's dependency tree.
+
+For example a YieldTermStructure observes its RateHelpers such that
+when you query the YTS it first checks whether any of its RateHelpers
+have changed. So you can:
+- create a sheet to instantiate the RateHelper objects, then close it
+- create a sheet to receive the live data feed, updating the existing
+RHs non-destructively by calling their setQuote methods. Keep this
+sheet open.
+- create a sheet to instantiate the YTS, then close it
+
+With the above environment, the sheets which instantiated the RHs and
+YTS are closed, meaning that Excel cannot force recalulation of those
+cells. Only the data feed is active, updating the state of the RHs
+non-destructively. Because of QL's Observer/Observable pattern,
+changes in the state of the RHs are reflected in that of the YTS,
+invisible to Excel and without triggering the recalculation of any
+cells.
+
+Now you can create a sheet to price an instrument based on the YTS.
+
+\section trigger_references Object References
+
+In order for the above technique to work, QLXL supports a feature
+whereby you can use a raw string to reference an object which resides
+on a sheet that has been closed. For example if the YTS lives in
+'book1.xls[sheet1]!A1', normally the instrument would simply hold a
+reference to that cell; instead the instrument can refer to the object
+by its ID e.g. "my_YTS". The object will be retrieved from the
+ObjectHandler repository, even though the sheet which instantiated the
+object is closed.
+
+\section trigger_triggers Triggers
+
+The above technique for referencing objects circumvents Excel's
+dependency tree so sometimes you need to use the trigger parameters to
+force dependencies that Excel would otherwise not know about.
+
+Relevant QLXL functions include a dummy "trigger" parameter which can
+be used for this purpose.  For example in the scenario above you would use
+the trigger parameter to force the NPV cell to be dependent on the cells fed
+by the live quote feed.  The ObjectHandler function ohDependsOn() can
+be supplied as the value to the trigger parameter.
+
+\section trigger_permanent Permanent Objects
+
+The last argument of every constructor in QuantLibXL is a flag called "permanent".  This is a flag indicating whether the object is to be permanent or not. It's a boolean but is implemented as "any" so that it can be omitted (default = false).
+
+Permanent objects are not deleted by function ohDeleteAllObjects(), allowing finer granularity in managing the objects in the repository.  For example in the scenario described above, the YTS and RH objects instantiated on closed books would be declared permanent, so that ohDeleteAllObjects() deletes only the objects that the user can see.
+
+*/
+

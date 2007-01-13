@@ -1,0 +1,40 @@
+/*! \page enums Enumerations
+
+    \section enum_overview Overview
+    %%QuantLibAddin uses a registration manager to translate text strings
+    into classes of minor or transient QuantLib objects which must be 
+    constructed as part of larger operations.  For example the constructor for
+    an option accepts string \c PUT to indicate an option type of class
+    \c QuantLib::Option::Put.  
+
+    Stateless objects are represented as enumerated types.  Stateful objects
+    are represented as enumerated classes.  This page documents all enumerated
+    types and classes recognized by %%QuantLibAddin.  Input strings are case 
+    insensitive.
+
+    %%QuantLibAddin supports functions for querying enumerated types and
+    classes interactively at run time:
+
+        \ref qlListEnumeratedTypes ()\n
+        \ref qlEnumeratedType ()\n
+        \ref qlListEnumeratedClasses ()\n
+        \ref qlEnumeratedClass ()\n
+
+Documentation of enumerated classes:
+
+%(classLinks)s
+
+Documentation of enumerated types:
+
+%(typeLinks)s
+
+\section enum_classes Enumerated Classes
+
+%(classDocs)s
+
+\section enum_types Enumerated Types
+
+%(typeDocs)s
+
+*/
+

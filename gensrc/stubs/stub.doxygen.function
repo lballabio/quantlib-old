@@ -1,0 +1,15 @@
+\anchor %(functionName)s \b %(functionName)s
+\code
+
+%(retCode)s
+
+%(functionName)s(%(functionDoc)s)
+
+\endcode
+\par Description:
+
+%(functionLongDesc)s
+
+%(paramDoc)s
+
+

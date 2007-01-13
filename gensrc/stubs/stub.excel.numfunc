@@ -1,0 +1,4 @@
+// Indicate the number of functions in this Addin.  The value is calculated by
+// gensrc and may be used by the Addin to return this information to the user.
+
+#define FUNCTION_COUNT %d

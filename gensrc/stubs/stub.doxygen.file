@@ -1,0 +1,11 @@
+/*! \page %(categoryName)s %(categoryDisplayName)s
+\section overview Overview
+%(categoryDescription)s
+\section functionlist Function List
+%(links)s
+\section documentation Function Documentation
+%(documentation)s
+
+*/
+
+

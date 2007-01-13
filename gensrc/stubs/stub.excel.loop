@@ -1,0 +1,13 @@
+
+        // loop on the input parameter and populate the return vector
+
+        static XLOPER returnValue;
+
+        %(namespaceObjects)s::%(functionDisplayName)sBind bindObject = 
+            boost::bind(
+                (%(namespaceObjects)s::%(functionDisplayName)sSignature)
+                    &%(functionCodeName)s,%(objectName)s%(inputList)s);
+        ObjHandler::loop
+            <%(namespaceObjects)s::%(functionDisplayName)sBind, %(inputType)s, %(returnType)s>
+            (functionCall, bindObject, %(inputParam)s, returnValue);
+

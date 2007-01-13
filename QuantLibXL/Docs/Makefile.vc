@@ -1,0 +1,27 @@
+# QuantLibXL\Docs\Makefile.vc
+
+BUILD_DIR=build\vc
+HTML_DIR=html
+IMG_DIR=html\images
+BUILDFLAG=$(BUILD_DIR)\buildflag
+DOXYGEN=doxygen.exe
+DOXY_CONFIG_AUTO=quantlibxl.auto.doxy
+DOXY_CONFIG_ROOT=quantlibxl.root.doxy
+
+ALL : $(BUILDFLAG)
+
+$(BUILD_DIR) :
+    if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
+
+$(IMG_DIR) :
+    if not exist $(HTML_DIR) mkdir $(HTML_DIR)
+    if not exist $(IMG_DIR) mkdir $(IMG_DIR)
+
+$(BUILDFLAG) : $(DEPENDENCIES) $(BUILD_DIR) $(IMG_DIR) $(DOXY_CONFIG)
+    copy /Y images\* $(IMG_DIR)
+	$(DOXYGEN) $(DOXY_CONFIG_AUTO)
+	$(DOXYGEN) $(DOXY_CONFIG_ROOT)
+	echo flagged > $@
+
+CLEAN :
+	-@ if EXIST $(BUILD_DIR)\* del /f /q $(BUILD_DIR)\*

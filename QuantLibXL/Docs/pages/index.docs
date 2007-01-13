@@ -1,0 +1,79 @@
+
+/*
+ Copyright (C) 2006 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page index QuantLibXL
+
+%QuantLibXL exports the functionality of the 
+<a href="http://quantlib.org">QuantLib</a> C++ analytics library to
+Microsoft Excel.
+
+<div class="center"><img src="images/screenshot.jpg"></div>
+
+%QuantLibXL is a subproject of QuantLibAddin 
+(<a href="http://www.quantlibaddin.org">www.quantlibaddin.org</a>)
+which implements the same interface on a variety of other platforms.  
+
+The %QuantLibXL project comprises a compiled Addin (an XLL) exposing QuantLib
+functionality to Microsoft Excel, plus example workbooks and end-user
+documentation.  QuantLibXL source code is provided in a separate download.
+
+The scope of the parent QuantLibAddin project includes:
+\li implementations on platforms other than Excel, such as the 
+    OpenOffice.org Calc spreadsheet
+\li support and documentation for compiling Addins (including %QuantLibXL) from
+    source code
+\li technical documentation
+
+\section overview Overview
+
+%QuantLibXL exports QuantLib constructor, member, and utility functions to
+Excel.  Object-orientation is achieved through use of the
+<a href="www.objecthandler.org">ObjectHandler</a> repository - formulas
+in the spreadsheet allow QuantLib objects to be instantiated, interrogated,
+passed as arguments to other functions, and destructed.
+
+%QuantLibXL implements 446 functions in support of market data and pricing for
+a wide variety of instruments including bonds, options, swaps, swaptions,
+caps/floors, etc.
+
+\section quantlib QuantLib
+
+%QuantLibXL and QuantLibAddin share the QuantLib project structure with regard
+to distribution, licensing, etc., all of which is documented on the main
+QuantLib website:<br>
+<a href="http://quantlib.org">http://quantlib.org</a>
+
+\section introduction Introduction
+
+Please refer to document \ref installation for instructions on installing
+%QuantLibXL.
+
+The section \ref functional provides end-user documentation of %QuantLibXL
+functionality.  
+
+Additional information is available from the links at the left, if you have a
+question which is not answered here please send email to
+quantlib-users@lists.sf.net.
+
+*/
+

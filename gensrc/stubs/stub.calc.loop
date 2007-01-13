@@ -1,0 +1,13 @@
+
+        // loop on the input parameter and populate the return vector
+
+        SEQSEQ(ANY) returnValue;
+
+        %(namespaceObjects)s::%(functionDisplayName)sBind bindObject = 
+            boost::bind(
+                (%(namespaceObjects)s::%(functionDisplayName)sSignature)
+                    &%(functionCodeName)s,%(objectName)s%(inputList)s);
+        %(namespaceObjects)s::loop
+            <%(namespaceObjects)s::%(functionDisplayName)sBind, %(inputType)s, %(returnType)s>
+            (bindObject, %(inputParam)s, returnValue);
+

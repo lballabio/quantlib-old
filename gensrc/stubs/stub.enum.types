@@ -1,0 +1,79 @@
+#if defined(HAVE_CONFIG_H)     // Dynamically created by configure
+    #include <qlo/config.hpp>
+#endif
+
+#include <qlo/qladdindefines.hpp>
+#include <ql/prices.hpp>
+#include <ql/Calendars/all.hpp>
+#include <ql/CashFlows/conundrumpricer.hpp>
+#include <ql/Currencies/all.hpp>
+#include <ql/DayCounters/all.hpp>
+#include <ql/Instruments/asianoption.hpp>
+#include <ql/Instruments/barrieroption.hpp>
+#include <ql/Instruments/capfloor.hpp>
+#include <ql/Instruments/forward.hpp>
+#include <ql/Instruments/swaption.hpp>
+#include <ql/Math/cubicspline.hpp>
+#include <ql/Math/pseudosqrt.hpp>
+#include <ql/Optimization/criteria.hpp>
+#include <ql/Volatilities/cmsmarket.hpp>
+#include <qlo/interpolation.hpp>
+#include <qlo/interpolation2D.hpp>
+#include <qlo/typeregistry.hpp>
+
+#define REG_ENUM(Type, Body) \
+    { \
+        TypeMapPtr typeMap(new TypeMap); \
+        Body \
+        allTypesMap[typeid(Type).name()] = typeMap; \
+    }
+
+#define MAP(str_id, constructor) \
+    (*typeMap)[str_id] = new constructor
+
+#define UNREG_ENUM(Type) \
+    { \
+        TypeMapPtr typeMap = allTypesMap[typeid(Type).name()]; \
+        TypeMap::const_iterator iter_current, iter_previous; \
+        iter_current = typeMap->begin(); \
+        while (iter_current != typeMap->end()) { \
+            iter_previous = iter_current; \
+            iter_current++; \
+            std::string key = iter_previous->first; \
+            Type *type = static_cast<Type*>(iter_previous->second); \
+            delete type; \
+            typeMap->erase(key); \
+        } \
+    }
+
+namespace QuantLibAddin {
+
+    template <>
+    std::vector<std::string> Registry<std::string>::getAllRegisteredTypes() const {
+        std::vector<std::string> ret;
+        for(std::map<std::string, TypeMapPtr>::const_iterator i = allTypesMap.begin(); i != allTypesMap.end();++i)
+            ret.push_back(i->first);
+        return ret;
+    }
+
+    template <>
+    std::vector<std::string> Registry<std::string>::getTypeElements(const std::string& id) const {
+        std::map<std::string, TypeMapPtr>::const_iterator map = allTypesMap.find(id);
+        QL_REQUIRE(map != allTypesMap.end(), "Registry::getTypeElements: invalid enum id: " + id);
+        std::vector<std::string> ret;
+        for(TypeMap::const_iterator i = map->second->begin(); i != map->second->end(); ++i)
+            ret.push_back(i->first);
+        return ret;
+    }
+
+    EnumTypeRegistry::EnumTypeRegistry() {
+
+%s
+    }
+
+    EnumTypeRegistry::~EnumTypeRegistry() {
+
+%s
+    }
+}
+

@@ -1,0 +1,14 @@
+#ifndef qladdin_h
+#define qladdin_h
+
+#include <Addins/C/defines.h>
+#include <Addins/C/varies.h>
+
+%s
+
+#ifdef WIN32
+#include <Addins/C/auto_link.h>
+#endif
+
+#endif
+

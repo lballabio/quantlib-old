@@ -1,0 +1,138 @@
+<?xml version='1.0'?>
+<Addin name='ValueObjects'>
+
+<copyright>
+ Copyright (C) 2005, 2006 Plamen Neykov
+</copyright>
+
+<Buffers>
+<Buffer name='bufferClassBody' fileName='stub.vo.class.body'/>
+<Buffer name='bufferClassDecl' fileName='stub.vo.class.decl'/>
+<Buffer name='bufferIncludesDecl' fileName='stub.vo.includes.decl'/>
+<Buffer name='bufferIncludes' fileName='stub.vo.includes.body'/>
+</Buffers>
+
+<Rules>
+
+<Rule name='constructorDeclaration' indent='3' delimiter=',&#10;' checkParameterIgnore='true'>
+    <Wrap>&#10;%s</Wrap>
+    <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <string>%(indent)sconst std::string&amp; %(name)s</string>
+                <any>%(indent)sconst boost::any&amp; %(name)s</any>
+                <other>%(indent)s%(type)s %(name)s</other>
+            </DataTypes>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <string>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</string>
+                <any>%(indent)sconst std::vector&lt;boost::any&gt;&amp; %(name)s</any>
+                <other>%(indent)sconst std::vector&lt;%(type)s&gt;&amp; %(name)s</other>
+            </DataTypes>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <string>%(indent)sconst std::vector&lt;std::vector&lt;std::string&gt; &gt;&amp; %(name)s</string>
+                <any>%(indent)sconst std::vector&lt;std::vector &lt;boost::any&gt; &gt;&amp; %(name)s</any>
+                <other>%(indent)sconst std::vector&lt;std::vector &lt;%(type)s&gt; &gt;&amp; %(name)s</other>
+            </DataTypes>
+        </SubRule>
+    </SubRules>
+</Rule>
+
+<Rule name='memberDeclaration' indent='2' delimiter=';&#10;' checkParameterIgnore='true'>
+    <Wrap>&#10;%s</Wrap>
+    <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <string>%(indent)sstd::string %(name)s_</string>
+                <any>%(indent)sboost::any %(name)s_</any>
+                <other>%(indent)s%(type)s %(name)s_</other>
+            </DataTypes>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <string>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</string>
+                <any>%(indent)sstd::vector&lt;boost::any&gt; %(name)s_</any>
+                <other>%(indent)sstd::vector&lt;%(type)s&gt; %(name)s_</other>
+            </DataTypes>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <string>%(indent)sstd::vector&lt;std::vector&lt;std::string&gt; &gt; %(name)s_</string>
+                <any>%(indent)sstd::vector&lt;std::vector &lt;boost::any&gt; &gt; %(name)s_</any>
+                <other>%(indent)sstd::vector&lt;std::vector &lt;%(type)s&gt; &gt; %(name)s_</other>
+            </DataTypes>
+        </SubRule>
+    </SubRules>
+</Rule>
+
+<Rule name='propertyDeclaration' indent='2' delimiter=',&#10;' checkParameterIgnore='true'>
+    <Wrap>&#10;%s</Wrap>
+    <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <other>%(indent)s"%(name)s"</other>
+            </DataTypes>
+        </SubRule>
+    </SubRules>
+</Rule>
+
+<Rule name='propertyGet' checkParameterIgnore='true'>
+    <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <other codeID='code71'/>
+            </DataTypes>
+        </SubRule>
+    </SubRules>
+</Rule>
+
+<Rule name='constructorInit' indent='2' checkParameterIgnore='true' delimiter=',&#10;'>
+    <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+                <tensorRank>vector</tensorRank>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <other>%(indent)s%(name)s_(%(name)s)</other>
+            </DataTypes>
+        </SubRule>
+    </SubRules>
+</Rule>
+
+</Rules>
+
+</Addin>
+

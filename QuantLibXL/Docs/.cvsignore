@@ -1,0 +1,11 @@
+build
+doxywarnings.txt
+html
+html-online
+Makefile
+Makefile.in
+.time-stamp-*
+*.ncb
+*.chm
+*.user
+*.chm

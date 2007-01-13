@@ -1,0 +1,16 @@
+#ifndef %(libRoot)s_vo_%(categoryName)s_hpp
+#define %(libRoot)s_vo_%(categoryName)s_hpp
+
+#include <oh/valueobject.hpp>
+#include <string>
+#include <vector>
+#include <boost/any.hpp>
+
+namespace %(namespaceObjects)s { namespace ValueObjects {
+
+%(headers)s
+
+} }
+
+#endif
+

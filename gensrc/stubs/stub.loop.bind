@@ -1,0 +1,11 @@
+
+    // %(functionName)s
+
+    typedef     boost::_bi::bind_t<
+                %(returnType)s,
+                %(bindPointer)s,
+                %(bindList)s
+                %(functionName)sBind;
+
+    typedef     %(returnType)s 
+                (%(functionScope2)s%(functionName)sSignature)(%(inputTypes3)s)%(const)s;

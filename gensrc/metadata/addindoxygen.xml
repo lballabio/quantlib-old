@@ -1,0 +1,82 @@
+<Addin name='Doxygen'>
+<platformId>D</platformId>
+<rootDirectory>../Docs/auto.pages/</rootDirectory>
+
+<copyright>
+ Copyright (C) 2004, 2005, 2006 Eric Ehlers
+</copyright>
+
+<Buffers>
+<Buffer name='bufferEnumerations' fileName='stub.doxygen.enums'/>
+<Buffer name='bufferCategories' fileName='stub.doxygen.categories'/>
+<Buffer name='bufferHeader' fileName='stub.doxygen.header'/>
+<Buffer name='bufferFile' fileName='stub.doxygen.file'/>
+<Buffer name='bufferFunction' fileName='stub.doxygen.function'/>
+</Buffers>
+
+<Rules>
+
+<Rule name='functionDocs' indent='2' delimiter='&#10;'>
+    <Wrap>&#10;%s</Wrap>
+    <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <other>%(indent)s%(type)s %(name)s</other>
+            </DataTypes>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <other>%(indent)svector&lt;%(type)s&gt; %(name)s</other>
+            </DataTypes>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <other>%(indent)svector&lt;vector&lt;%(type)s&gt; &gt; %(name)s</other>
+            </DataTypes>
+        </SubRule>
+    </SubRules>
+</Rule>
+
+<Rule name='functionReturn'>
+    <Wrap>&#10;%s</Wrap>
+    <SubRules>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>scalar</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <other>%(type)s %(name)s</other>
+            </DataTypes>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <other>vector&lt;%(type)s&gt; %(name)s</other>
+            </DataTypes>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
+                <tensorRank>matrix</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <other>vector&lt;vector&lt;%(type)s&gt; &gt; %(name)s</other>
+            </DataTypes>
+        </SubRule>
+    </SubRules>
+</Rule>
+
+</Rules>
+
+</Addin>
+
