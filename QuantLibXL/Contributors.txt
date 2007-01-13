@@ -1,2 +1,0 @@
-
-Many thanks to the C++ QuantLib contributors, and Jérôme Lecomte of his XLW tool
