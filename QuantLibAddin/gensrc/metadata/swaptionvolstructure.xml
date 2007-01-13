@@ -1,0 +1,709 @@
+<Category name='swaptionvolstructure'>
+  <description>functions to construct and use SwaptionVolatilityStructure objects</description>
+  <displayName>Swaption Volatility Term Structures</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>ql/Volatilities/swaptionvolcube2.hpp</include>
+    <include>qlo/quotes.hpp</include>
+    <include>qlo/swaptionvolstructure.hpp</include>
+    <include>qlo/index.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006 Silvia Frasson
+    Copyright (C) 2006 Mario Pucci
+    Copyright (C) 2006 Giorgio Facchinetti
+  </copyright>
+  <Functions>
+
+    <!-- SwaptionVolatilityStructure interface-->
+
+    <Member name='qlSwaptionVTSVolatility' handleToLib='SwaptionVolatilityStructure' loopParameter='optionDate'>
+      <description>Returns volatility from the given SwaptionVolatilityStructure object.</description>
+      <libraryFunction>volatility</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optionDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>swaption expiry date</description>
+          </Parameter>
+          <Parameter name='swapTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Underlying swap length as period (e.g. 5Y)</description>
+          </Parameter>
+          <Parameter name='strike' libraryType='QuantLib::Rate' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swaption strike vector</description>
+          </Parameter>
+          <Parameter name='allowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Volatility'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwaptionVTSVolatility2' handleToLib='SwaptionVolatilityStructure' loopParameter='optionTenor'>
+      <description>Returns volatility from the given SwaptionVolatilityStructure object.</description>
+      <libraryFunction>volatility</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optionTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>swaption option tenor</description>
+          </Parameter>
+          <Parameter name='swapTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Underlying swap length as period (e.g. 5Y)</description>
+          </Parameter>
+          <Parameter name='strike' libraryType='QuantLib::Rate' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swaption strike vector</description>
+          </Parameter>
+          <Parameter name='allowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Volatility'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwaptionVTSBlackVariance' handleToLib='SwaptionVolatilityStructure' loopParameter='optionDate'>
+      <description>Returns variance from the given SwaptionVolatilityStructure object.</description>
+      <libraryFunction>blackVariance</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optionDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>swaption expiry date</description>
+          </Parameter>
+          <Parameter name='swapTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying swap tenor</description>
+          </Parameter>
+          <Parameter name='strike' libraryType='QuantLib::Rate' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swaption strike vector</description>
+          </Parameter>
+          <Parameter name='allowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwaptionVTSBlackVariance2' handleToLib='SwaptionVolatilityStructure' loopParameter='optionTenor'>
+      <description>Returns variance from the given SwaptionVolatilityStructure object.</description>
+      <libraryFunction>blackVariance</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optionTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>swaption option tenor</description>
+          </Parameter>
+          <Parameter name='swapTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying swap tenor</description>
+          </Parameter>
+          <Parameter name='strike' libraryType='QuantLib::Rate' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swaption strike vector</description>
+          </Parameter>
+          <Parameter name='allowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwaptionVTSMaxSwapTenor' handleToLib='SwaptionVolatilityStructure'>
+      <description>Returns the max swap tenor (i.e. length) for which the given SwaptionVolatilityStructure object can return vols.</description>
+      <libraryFunction>maxSwapTenor</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Period'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwaptionVTSMinStrike' handleToLib='SwaptionVolatilityStructure'>
+      <description>Returns the minimum strike for which the given SwaptionVolatilityStructure object can return vols.</description>
+      <libraryFunction>minStrike</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Rate'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwaptionVTSMaxStrike' handleToLib='SwaptionVolatilityStructure'>
+      <description>Returns the maximum strike for which the given SwaptionVolatilityStructure object can return vols.</description>
+      <libraryFunction>maxStrike</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Rate'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwaptionVTSBusinessDayConvention' handleToLib='SwaptionVolatilityStructure'>
+      <description>Returns the business day convention used for option date calculation by the given SwaptionVolatilityStructure object.</description>
+      <libraryFunction>businessDayConvention</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::BusinessDayConvention'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwaptionVTSOptionDateFromTenor' handleToLib='SwaptionVolatilityStructure' loopParameter='optionTenor'>
+      <description>Returns the option date corresponding to a given option tenor, taking calendar and business day convention into account, for the given SwaptionVolatilityStructure object.</description>
+      <libraryFunction>optionDateFromTenor</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optionTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>swaption option tenor</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- Handle<SwaptionVolatilityStructure> -->
+    <Constructor name='qlHandleSwaptionVolatilityStructure'>
+      <libraryFunction>Handle&lt;QuantLib::SwaptionVolatilityStructure&gt;</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='swaptionVol' libraryClass='SwaptionVolatilityStructure'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>SwaptionVolatilityStructure object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlHandleSwaptionVolatilityStructureLinkTo' objectClass='Handle&lt;QuantLib::SwaptionVolatilityStructure&gt;'>
+      <libraryFunction>linkTo</libraryFunction>
+      <description>relink handle</description>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='swaptionVol' libraryClass='SwaptionVolatilityStructure'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>SwaptionVolatilityStructure object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- SwaptionVolatilityStructure constructors -->
+    <Constructor name='qlSwaptionVTSConstant'>
+      <libraryFunction>SwaptionConstantVolatility</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='referenceDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>reference date</description>
+          </Parameter>
+          <Parameter name='volatility' libToHandle='Quote'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>vol quotes</description>
+          </Parameter>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlSwaptionVTSMatrix'>
+      <libraryFunction>SwaptionVolatilityMatrix</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='calendar' enumeration='QuantLib::Calendar'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
+          </Parameter>
+          <Parameter name='optionTenors' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>swaption expiries as periods</description>
+          </Parameter>
+          <Parameter name='swapTenors' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>underlying swap lengths</description>
+          </Parameter>
+          <Parameter name='volatilities' libToHandle='Quote'>
+            <type>string</type>
+            <tensorRank>matrix</tensorRank>
+            <description>vol quotes</description>
+          </Parameter>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360)</description>
+          </Parameter>
+          <Parameter name='BusinessDayConvention' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Business day convention used for calculating the exercise dates from the expiries</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- SwaptionVolatilityDiscrete interface -->
+    <Member name='qlSwaptionVTSMatrixOptionDates' libraryClass='SwaptionVolatilityDiscrete'>
+      <description>Returns the vector of swaption exercise dates for the given SwaptionVolatilityDiscrete object.</description>
+      <libraryFunction>optionDates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwaptionVTSMatrixOptionTenors' libraryClass='SwaptionVolatilityDiscrete'>
+      <description>Returns the vector of swaption exercise tenors for the given SwaptionVolatilityDiscrete object.</description>
+      <libraryFunction>optionTenors</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Period'>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwaptionVTSMatrixSwapTenors' libraryClass='SwaptionVolatilityDiscrete'>
+      <description>Returns the vector of underlying swap tenors for the given SwaptionVolatilityDiscrete object.</description>
+      <libraryFunction>swapTenors</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Period'>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- SwaptionVolatilityMatrix interface -->
+    <Member name='qlSwaptionVTSMatrixLocate' objectClass='SwaptionVolatilityMatrix'>
+      <description>Returns the lower indexes of sourrounding volatility matrix corners for the given SwaptionVolatilityDiscrete object.</description>
+      <libraryFunction>locate</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optionDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swaption expiry date</description>
+          </Parameter>
+          <Parameter name='swapTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Underlying swap length as period (e.g. 5Y)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+        <description>lower indexes of sourrounding volatility matrix corners</description>
+      </ReturnValue>
+    </Member>
+
+    <!-- SwaptionVolCube2 constructors -->
+    <Constructor name='qlSwaptionVolCube2'>
+      <libraryFunction>SwaptionVolCube2</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='atmVolStructure' libToHandle='SwaptionVolatilityStructure'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>At-the-money volatility structure</description>
+          </Parameter>
+          <Parameter name='optionTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>smile cube's expiries as periods</description>
+          </Parameter>
+          <Parameter name='swapTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>smile cube's underlying swap lengths</description>
+          </Parameter>
+          <Parameter name='strikeSpreads' libraryType='QuantLib::Spread'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>smile cube's strike spreads over the ATM strike rate.</description>
+          </Parameter>
+          <Parameter name='spreadVols' libToHandle='Quote'>
+            <type>string</type>
+            <tensorRank>matrix</tensorRank>
+            <description>matrix of spread vol quotes</description>
+          </Parameter>
+          <Parameter name='swapIndexBase' libraryClass='SwapIndex'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Base SwapIndex object ID</description>
+          </Parameter>
+          <Parameter name='vegaWeightedSmileFit'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>if TRUE the smile fit is weighted using options' vega.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- SwaptionVolatilityCube interface -->
+    <Member name='qlSwaptionVTSatmStrike' libraryClass='SwaptionVolatilityCube' loopParameter='optionDate'>
+      <description>Returns the at-the-money swaption strike, for a given exercise date and underlying swap length, for the given SwaptionVolatilityCube object.</description>
+      <libraryFunction>atmStrike</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optionDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>swaption expiry date</description>
+          </Parameter>
+          <Parameter name='swapTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Underlying swap length as period (e.g. 5Y)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Rate'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwaptionVTSatmStrike2' libraryClass='SwaptionVolatilityCube' loopParameter='optionTenor'>
+      <description>Returns the at-the-money swaption strike, for a given option tenor and underlying swap length, for the given SwaptionVolatilityCube object.</description>
+      <libraryFunction>atmStrike</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optionTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>swaption's option tenor</description>
+          </Parameter>
+          <Parameter name='swapTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Underlying swap length as period (e.g. 5Y)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Rate'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- SwaptionVolCube1 constructors -->
+    <Constructor name='qlSwaptionVolCube1'>
+      <libraryFunction>SwaptionVolCube1</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='atmVolStructure' libToHandle='SwaptionVolatilityStructure'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>At-the-money volatility structure</description>
+          </Parameter>
+          <Parameter name='optionTenors' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>smile cube's expiries as periods</description>
+          </Parameter>
+          <Parameter name='swapTenors' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>smile cube's underlying swap lengths</description>
+          </Parameter>
+          <Parameter name='strikeSpreads' libraryType='QuantLib::Spread'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>smile cube's strike spreads over the ATM strike rate.</description>
+          </Parameter>
+          <Parameter name='spreadVols' libToHandle='Quote'>
+            <type>string</type>
+            <tensorRank>matrix</tensorRank>
+            <description>matrix of spread vol quotes</description>
+          </Parameter>
+          <Parameter name='swapIndexBase' libraryClass='SwapIndex'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Base SwapIndex object ID</description>
+          </Parameter>
+          <Parameter name='vegaWeightedSmileFit'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>if TRUE the smile fit is weighted using options' vega.</description>
+          </Parameter>
+          <Parameter name='guess' libraryType='QuantLib::Matrix'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>matrix of parameters guess.</description>
+          </Parameter>
+          <Parameter name='isFixed'>
+            <type>bool</type>
+            <tensorRank>vector</tensorRank>
+            <description>if TRUE parameter guess is not calibrated.</description>
+          </Parameter>
+          <Parameter name='isAtmCalibrated'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>if TRUE the cube is calibrated to atm matrix .</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- SwaptionVolCube1 interface -->
+    <Member name='qlSparseSabrParameters' objectClass='SwaptionVolCube1'>
+      <description>returns results of Sabr calibration for the given SwaptionVolCube1 object</description>
+      <libraryFunction>getSparseSabrParameters</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlDenseSabrParameters' objectClass='SwaptionVolCube1'>
+      <description>returns results of Sabr calibration for the given SwaptionVolCube1 object</description>
+      <libraryFunction>getDenseSabrParameters</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketVolCube' objectClass='SwaptionVolCube1'>
+      <description>returns the market volatility cube for the given SwaptionVolCube1 object</description>
+      <libraryFunction>getMarketVolCube</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlVolCubeAtmCalibrated' objectClass='SwaptionVolCube1'>
+      <description>returns the volatility cube calibrated to ATM matrix for the given SwaptionVolCube1 object</description>
+      <libraryFunction>getVolCubeAtmCalibrated</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- SmileSectionInteface constructors -->
+    <Constructor name='qlSmileSectionByCube'>
+      <libraryFunction>SmileSectionByCube</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='volCube' libraryClass='SwaptionVolatilityCube'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Swaption volatility cube object ID</description>
+          </Parameter>
+          <Parameter name='optionDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>smile's expiry as date</description>
+          </Parameter>
+          <Parameter name='swapTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>smile's underlying swap length</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlSmileSectionByCube2'>
+      <libraryFunction>SmileSectionByCube</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='volCube' libraryClass='SwaptionVolatilityCube'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Swaption volatility cube object ID</description>
+          </Parameter>
+          <Parameter name='optionDate' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>smile's expiry as period</description>
+          </Parameter>
+          <Parameter name='swapTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>smile's underlying swap length</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

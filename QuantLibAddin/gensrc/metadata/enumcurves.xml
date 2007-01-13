@@ -1,0 +1,58 @@
+<root>
+  <Enumerations>
+
+    <Enumeration type='QuantLib::YieldTermStructure'>
+      <EnumerationDefinitions>
+        <!-- Discount based yield term structures -->
+        <EnumerationDefinition>
+          <key1>Discount</key1>
+          <key2>Linear</key2>
+          <value>DISCOUNT_LINEAR_PiecewiseYieldCurve</value>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <key1>Discount</key1>
+          <key2>LogLinear</key2>
+          <value>DISCOUNT_LOGLINEAR_PiecewiseYieldCurve</value>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <key1>Discount</key1>
+          <key2>Cubic</key2>
+          <value>DISCOUNT_CUBIC_PiecewiseYieldCurve</value>
+        </EnumerationDefinition>
+        <!-- ZeroYield based yield term structures -->
+        <EnumerationDefinition>
+          <key1>ZeroYield</key1>
+          <key2>Linear</key2>
+          <value>ZEROYIELD_LINEAR_PiecewiseYieldCurve</value>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <key1>ZeroYield</key1>
+          <key2>LogLinear</key2>
+          <value>ZEROYIELD_LOGLINEAR_PiecewiseYieldCurve</value>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <key1>ZeroYield</key1>
+          <key2>Cubic</key2>
+          <value>ZEROYIELD_CUBIC_PiecewiseYieldCurve</value>
+        </EnumerationDefinition>
+        <!--ForwardRate based yield term structures-->
+        <EnumerationDefinition>
+          <key1>ForwardRate</key1>
+          <key2>Linear</key2>
+          <value>FORWARDRATE_LINEAR_PiecewiseYieldCurve</value>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <key1>ForwardRate</key1>
+          <key2>LogLinear</key2>
+          <value>FORWARDRATE_LOGLINEAR_PiecewiseYieldCurve</value>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <key1>ForwardRate</key1>
+          <key2>Cubic</key2>
+          <value>FORWARDRATE_CUBIC_PiecewiseYieldCurve</value>
+        </EnumerationDefinition>
+      </EnumerationDefinitions>
+    </Enumeration>
+
+  </Enumerations>
+</root>

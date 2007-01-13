@@ -1,0 +1,698 @@
+<Category name='interpolation'>
+  <description>functions to construct and use Interpolation and Interpolation2D objects</description>
+  <displayName>Interpolation</displayName>
+  <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
+  <includes>
+    <include>qlo/interpolation.hpp</include>
+    <include>qlo/interpolation2D.hpp</include>
+    <include>qlo/optimization.hpp</include>
+    <include>ql/Optimization/method.hpp</include>
+    <include>ql/Math/sabrinterpolation.hpp</include>
+    <include>ql/Math/bilinearinterpolation.hpp</include>
+    <include>ql/Math/bicubicsplineinterpolation.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+  </copyright>
+  <Functions>
+
+    <!-- Extrapolator interface -->
+
+    <Member name='qlExtrapolatorEnableExtrapolation' libraryClass='Extrapolator'>
+      <description>Sets the enable extrapolation flag to the given Extrapolator object</description>
+      <libraryFunction>enableExtrapolation</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='extrapolationFlag' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>global extrapolation flag</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- Interpolation interface -->
+
+    <Member name='qlInterpolationInterpolate' libraryClass='Interpolation' loopParameter='xValues'>
+      <description>Returns interpolated values using the given Interpolation object</description>
+      <longDescription>
+        this is an example of long description.
+
+        on multiple lines.
+      </longDescription>
+
+      <libraryFunction>operator()</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='xValues' const='False'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>x values</description>
+          </Parameter>
+          <Parameter name='allowExtrapolation' default='0' const='False'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>allow extrapolation flag</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolationDerivative' libraryClass='Interpolation' loopParameter='xValues'>
+      <description>Returns the first derivative function values using the given Interpolation object</description>
+      <libraryFunction>derivative</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='xValues' const='False'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>x values</description>
+          </Parameter>
+          <Parameter name='allowExtrapolation' default='0' const='False'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>allow extrapolation flag</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolationSecondDerivative' libraryClass='Interpolation' loopParameter='xValues'>
+      <description>Returns the second derivative function values using the given Interpolation object</description>
+      <libraryFunction>secondDerivative</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='xValues' const='False'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>x values</description>
+          </Parameter>
+          <Parameter name='allowExtrapolation' default='0' const='False'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>allow extrapolation flag</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolationPrimitive' libraryClass='Interpolation' loopParameter='xValues'>
+      <description>Returns the primitive function values using the given Interpolation object</description>
+      <libraryFunction>primitive</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='xValues' const='False'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>x values</description>
+          </Parameter>
+          <Parameter name='allowExtrapolation' default='0' const='False'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>allow extrapolation flag</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolationIsInRange' libraryClass='Interpolation' loopParameter='xValues'>
+      <description>Returns TRUE if the input value is in the allowed interpolation range for the given Interpolation object</description>
+      <libraryFunction>isInRange</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='xValues' const='False'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>x values</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolationXmin' libraryClass='Interpolation'>
+      <description>Returns the minimum value of the x array for the given Interpolation object</description>
+      <libraryFunction>xMin</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolationXmax' libraryClass='Interpolation'>
+      <description>Returns the maximum value of the x array for the given Interpolation object</description>
+      <libraryFunction>xMax</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- Interpolation constructors -->
+
+    <Constructor name='qlLinearInterpolation'>
+      <libraryFunction>LinearInterpolation</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='linearInterpolationType'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>linear interpolation type (e.g Linear, BackwardFlat, ForwardFlat)</description>
+          </Parameter>
+          <Parameter name='xArray'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>x array</description>
+          </Parameter>
+          <Parameter name='yArray'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>y array</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlCubicSplineInterpolation'>
+      <libraryFunction>CubicSplineInterpolation</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='xArray'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>x array</description>
+          </Parameter>
+          <Parameter name='yArray'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>y array</description>
+          </Parameter>
+          <Parameter name='leftConditionType' enumeration='QuantLib::CubicSpline::BoundaryCondition'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>left boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</description>
+          </Parameter>
+          <Parameter name='leftConditionValue'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>left condition value</description>
+          </Parameter>
+          <Parameter name='rightConditionType' enumeration='QuantLib::CubicSpline::BoundaryCondition'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>right boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</description>
+          </Parameter>
+          <Parameter name='rightConditionValue'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>right condition value</description>
+          </Parameter>
+          <Parameter name='monotonicityConstraint'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>monotonicity constraint flag</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlSABRInterpolation'>
+      <libraryFunction>SABRInterpolation</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='xArray'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>x array</description>
+          </Parameter>
+          <Parameter name='yArray'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>y array</description>
+          </Parameter>
+          <Parameter name='expiry' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>expiry time in years</description>
+          </Parameter>
+          <Parameter name='forward'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>forward</description>
+          </Parameter>
+          <Parameter name='alpha' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>alpha (fixed value or guess)</description>
+          </Parameter>
+          <Parameter name='beta' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beta (fixed value or guess)</description>
+          </Parameter>
+          <Parameter name='nu' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>nu (fixed value or guess)</description>
+          </Parameter>
+          <Parameter name='rho' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>rho (fixed value or guess)</description>
+          </Parameter>
+          <Parameter name='alphaIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess</description>
+          </Parameter>
+          <Parameter name='betaIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess</description>
+          </Parameter>
+          <Parameter name='nuIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess</description>
+          </Parameter>
+          <Parameter name='rhoIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess</description>
+          </Parameter>
+          <Parameter name='vegaWeighted' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
+          </Parameter>
+          <!-- NULL REFERENCES NO LONGER SUPPORTED-->
+          <Parameter name='optimizationMethod' libraryClass='OptimizationMethod' default='""'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>optimization method object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- SABRInterpolation interface -->
+
+    <Member name='qlSABRInterpolationAlpha' libraryClass='SABRInterpolation'>
+      <description>Returns the alpha of the SABR fit for the given SABRInterpolation object</description>
+      <libraryFunction>alpha</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSABRInterpolationBeta' libraryClass='SABRInterpolation'>
+      <description>Returns the beta of the SABR fit</description>
+      <libraryFunction>beta</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSABRInterpolationNu' libraryClass='SABRInterpolation'>
+      <description>Returns the nu of the SABR fit for the given SABRInterpolation object</description>
+      <libraryFunction>nu</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSABRInterpolationRho' libraryClass='SABRInterpolation'>
+      <description>Returns the rho of the SABR fit for the given SABRInterpolation object</description>
+      <libraryFunction>rho</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSABRInterpolationExpiry' libraryClass='SABRInterpolation'>
+      <description>Returns the expiry time in years for the given SABRInterpolation object</description>
+      <libraryFunction>expiry</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Time'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSABRInterpolationForward' libraryClass='SABRInterpolation'>
+      <description>Returns the forward  for the given SABRInterpolation object</description>
+      <libraryFunction>forward</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSABRInterpolationError' libraryClass='SABRInterpolation'>
+      <description>Returns the error of the SABR fit for the given SABRInterpolation object</description>
+      <libraryFunction>interpolationError</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSABRInterpolationMaxError' libraryClass='SABRInterpolation'>
+      <description>Returns the max error of the SABR fit for the given SABRInterpolation object</description>
+      <libraryFunction>interpolationMaxError</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSABRInterpolationEndCriteria' libraryClass='SABRInterpolation'>
+      <description>Returns the optimization end criteria of the SABR fit for the given SABRInterpolation object</description>
+      <libraryFunction>endCriteria</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::EndCriteria::Type'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- Interpolation2D interface -->
+
+    <Member name='qlInterpolation2DXmin' libraryClass='Interpolation2D'>
+      <description>Returns the minimum value of the x array for the given Interpolation2D object</description>
+      <libraryFunction>xMin</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolation2DXmax' libraryClass='Interpolation2D'>
+      <description>Returns the maximum value of the x array for the given Interpolation2D object</description>
+      <libraryFunction>xMax</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolation2DXvalues' libraryClass='Interpolation2D'>
+      <description>Returns the x array grid for the given Interpolation2D object</description>
+      <libraryFunction>xValues</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolation2DYmin' libraryClass='Interpolation2D'>
+      <description>Returns the minimum value of the y array for the given Interpolation2D object</description>
+      <libraryFunction>yMin</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolation2DYmax' libraryClass='Interpolation2D'>
+      <description>Returns the maximum value of the y array for the given Interpolation2D object</description>
+      <libraryFunction>yMax</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolation2DYvalues' libraryClass='Interpolation2D'>
+      <description>Returns the y array grid for the given Interpolation2D object</description>
+      <libraryFunction>yValues</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolation2DzData' libraryClass='Interpolation2D'>
+      <description>Returns the z data matrix grid for the given Interpolation2D object</description>
+      <libraryFunction>zData</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Matrix'>
+        <type>double</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolation2DIsInRange' libraryClass='Interpolation2D'>
+      <description>Returns TRUE if the (x,y) input value is in the allowed interpolation range for the given Interpolation2D object</description>
+      <libraryFunction>isInRange</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='xValues' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>x values</description>
+          </Parameter>
+          <Parameter name='yValue' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>y value</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- should loop on both parameters -->
+    <Member name='qlInterpolation2DInterpolate' libraryClass='Interpolation2D' loopParameter='xValue'>
+      <description>Returns interpolated values for the (x,y) input for the given Interpolation2D object</description>
+      <libraryFunction>operator()</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='xValue' const='False'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>x value(s)</description>
+          </Parameter>
+          <Parameter name='yValue' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>y value</description>
+          </Parameter>
+          <Parameter name='allowExtrapolation' default='0' const='False'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>allow extrapolation flag</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- Interpolation2D constructor -->
+
+    <Constructor name='qlInterpolation2D'>
+      <libraryFunction>Interpolation2D</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='interpolationType'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>2D-interpolation type (e.g BiLinear, BiCubic)</description>
+          </Parameter>
+          <Parameter name='xArray'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>x array</description>
+          </Parameter>
+          <Parameter name='yArray'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>y array</description>
+          </Parameter>
+          <Parameter name='zMatrix' libraryType='QuantLib::Matrix'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>z-matrix values</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+
+</Category>

@@ -1,0 +1,55 @@
+<Category name='processes'>
+  <description>functions to construct and use Process objects</description>
+  <displayName>Processes</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <copyright>
+    Copyright (C) 2004, 2005 Eric Ehlers
+  </copyright>
+  <Functions>
+
+    <Constructor name='qlGeneralizedBlackScholesProcess'>
+      <libraryFunction>GeneralizedBlackScholesProcess</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <C/>
+        <Calc/>
+        <Guile/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='blackVolID' libraryClass='BlackVolTermStructure'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Black Vol Term Structure</description>
+          </Parameter>
+          <Parameter name='underlying'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying</description>
+          </Parameter>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360)</description>
+          </Parameter>
+          <Parameter name='settlementDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date</description>
+          </Parameter>
+          <Parameter name='riskFreeRate'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>risk free rate</description>
+          </Parameter>
+          <Parameter name='dividendYield'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dividend yield</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

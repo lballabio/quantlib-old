@@ -1,0 +1,11 @@
+config.hpp*
+libQuantLibAddin.la
+.libs
+.deps
+*.lo
+Makefile
+Makefile.in
+stamp-h1
+enumtyperegistry.cpp
+enumclassregistry.cpp
+qladdin.hpp

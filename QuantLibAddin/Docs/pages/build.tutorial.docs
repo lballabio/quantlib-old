@@ -1,0 +1,306 @@
+
+/*
+ Copyright (C) 2006 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page build_tutorial Build Tutorial
+
+This document explains how to build QuantLibXL and its prerequisites from
+source code.
+
+If you want a binary installation of the precompiled addin, please go instead
+to the <a href="http://www.quantlibxl.org">QuantLibXL</a> web site.
+
+\ref sec_build_vc8 \n
+\ref sec_build_python \n
+\ref sec_build_boost \n
+\ref sec_build_runtime \n
+\ref sec_build_naming \n
+\ref sec_build_directories \n
+\ref sec_build_quantlib \n
+\ref sec_build_quantlibtestsuite \n
+\ref sec_build_log4cxx \n
+\ref sec_build_gensrc \n
+\ref sec_build_objecthandler \n
+\ref sec_build_quantlibaddin \n
+\ref sec_build_usage \n
+\ref sec_build_support \n
+\ref sec_build_links \n
+
+\section sec_build_vc8 Install Visual C++
+
+This section explains how to install Visual C++ 2005 (also known as VC8).  VC8
+is available either as a free download called Visual Studio Express, or for
+purchase as a component of Microsoft Visual Studio 2005 Professional Edition.
+
+A prerequisite for VC8 is Windows XP Service Pack 2.  If you have the VC8 disks
+you can get SP2 from them otherwise you need to install it online.
+
+Then launch VC8 setup, when prompted to choose <tt>default/full/custom</tt>
+installation, choose custom, and configure the next screen as shown:
+
+<img src="images/VC8_custom.jpg">
+
+\section sec_build_python Install Python
+
+Both Boost and gensrc (described below) require you to have Python installed on
+your machine. Please go to the 
+<a href="http://www.python.org/">python website</a> and download and install Python.
+
+\section sec_build_boost Install and Build Boost
+
+QuantLib depends on the Boost library.  Procedures for downloading and
+installing Boost may be found at: 
+<a href="http://www.boost.org/more/getting_started.html">http://www.boost.org/more/getting_started.html</a>.
+Below is a brief summary of the procedure, assuming the use of the VC8
+compiler:
+\li Download Boost from <a href="www.boost.org">www.boost.org</a>: get the latest version of the \c boost package and the ntx86 binary version of the \c boost-jam package (<tt>boost_1_33_1.exe</tt> and <tt>boost-jam-3.1.12-1-ntx86.zip</tt> respectively at the time of this writing).
+\li Run <tt>boost_1_33_1.exe</tt> and it will extract files to a folder of your choice (for this example it's assumed to be <tt>C:\\Projects</tt>) creating a boost_1_33_1 subfolder. Your Boost top level dir will be <tt>C:\\Projects\\boost_1_33_1</tt>.
+\li Now unzip <tt>boost-jam-3.1.12-1-ntx86.zip</tt> and copy the extracted <tt>bjam.exe</tt> file into <tt>C:\\Projects\\boost_1_33_1</tt>.
+\li From the Start menu access <tt>Programs | Microsoft Visual Studio 2005 | Microsoft Visual Studio 2005 Command Prompt</tt>. Change the directory, selecting your Boost top level directory <tt>C:\\Projects\\boost_1_33_1</tt>
+\li run the command:
+\verbatim
+C:\Projects\boost_1_33_1>bjam "-sTOOLS=vc-8_0" install
+\endverbatim
+This command will create the Boost include directory <tt>C:\\Boost\\include\\boost-1_33_1</tt> and the Boost library directory <tt>C:\\Boost\\lib</tt>. Relax: it takes a long while.
+\li You need to configure VC8 with the location of the Boost header files. Under <tt>Tools/Options/Projects and Solutions/VC++ Directories</tt>, select Include files and specify the path to the top level directory containing the Boost header files <tt>C:\\Boost\\include\\boost-1_33_1</tt>:
+
+<img src="images/boost_include_path.jpg">
+
+\li You need to configure VC8 with the location of the Boost lib files. Under <tt>Tools/Options/Projects and Solutions/VC++ Directories</tt>, select Library files and specify the path to the top level directory containing the Boost lib files <tt>C:\\Boost\\lib</tt>:
+
+<img src="images/boost_lib_path.jpg">
+
+\section sec_build_runtime A Note on Runtime Libraries
+
+You are now ready to build QuantLib.  You need to compile the following projects:
+- <a href="http://quantlib.org/">QuantLib 0.4.0</a> - the core C++ analytics library
+- <b>log4cxx 0.9.7b</b> - a logging framework, used by ObjectHandler
+- <a href="http://www.objecthandler.org">ObjectHandler 0.2.0</a> - an object repository
+- <a href="http://www.quantlibaddin.org">QuantLibAddin 0.4.0</a> - Addins for QuantLib functionality
+- <a href="http://www.quantlibxl.org">QuantLibXL 0.4.0</a> - the Excel implementation of QuantLibAddin
+
+These projects are available with four different runtime libraries
+(configurations): Debug, Debug CRTDLL, Release, and Release CRTDLL.  The Debug
+and Release configurations are statically linked to the Microsoft C Runtime
+environment.  The CRTDLL configurations are dynamically linked, meaning that
+your executable will have a run-time dependency on the Microsoft C Runtime
+DLLs.  
+
+All five of the above projects must be built with the same runtime library.
+This example assumes the use of configuration <b>Release</b>.
+
+\section sec_build_naming A Note on VC Workspace Naming Conventions
+
+QuantLib uses the following conventions for naming VC workspaces:
+
+<table>
+<tr><td><b>VC version</b></td><td><b>Workspace Name</b></td></tr>
+<tr><td>6</td><td>xxx.dsp</td></tr>
+<tr><td>7</td><td>xxx.sln</td></tr>
+<tr><td>8</td><td>xxx_vc8.sln</td></tr>
+</table>
+
+As you're using VC8 be sure to open the workspaces named with the
+<b>_vc8.sln</b> suffix.  Note that VC6 workspaces are provided for QuantLib but
+not QuantLibAddin.
+
+\section sec_build_directories A Note on Directories
+
+There is one requirement with regard to the directories to which the source
+code is unzipped -  QuantLibAddin and QuantLibXL must reside side by side in
+the directory tree, and the name of the QuantLibXL directory must be exactly
+"QuantLibXL" (no version number) e.g:
+\verbatim
+C:\projects\QuantLibAddin-0.4.0
+C:\projects\QuantLibXL
+\endverbatim
+
+This is because the QuantLibAddin project contains references to the QuantLibXL
+project in the format <tt>..\\QuantLibXL</tt>.
+
+The other packages may be installed anywhere.  The location of each package
+is indicated by the appropriate environment variable:
+\li QL_DIR (must be set manually)
+\li GENSRC_DIR (set by the installer)
+\li LOG4CXX_DIR (set by the installer)
+\li OBJECT_HANDLER_DIR (set by the installer)
+\li QUANTLIBADDIN_DIR (set by the installer)
+
+For purposes of this tutorial we assume all packages are installed to <tt>C:\\projects</tt> e.g.:
+\verbatim
+C:\projects\QuantLib-0.4.0
+C:\projects\gensrc-0.2.0
+C:\projects\log4cxx-0.9.7b
+C:\projects\ObjectHandler-0.2.0
+C:\projects\QuantLibAddin-0.4.0
+C:\projects\QuantLibXL
+\endverbatim
+
+You need to restart VC8 (and possibly Windows) to pick up changes to the values
+of environment variables.  The environment variables above are required only
+during the build process, no environment variables are referenced at run-time.
+
+\section sec_build_quantlib Install and Build QuantLib
+
+Uncompress the QuantLib zip file to your hard drive. Included in the
+download is the QuantLib VC8 workspace file <tt>QuantLib_vc8.sln</tt>.  This
+file resides in the top level QuantLib directory.
+
+Launch VC8 and load the QuantLib project.  Ensure that runtime library
+<tt>Release</tt> is selected, highlight the <tt>QuantLib</tt> project, and
+select <tt>Build/Build QuantLib</tt>:
+
+<img src="images/ql_build.jpg">
+
+The build process creates file <tt>QuantLib\\lib\\QuantLib-vc80-mt-s-0_4_0.lib</tt>.
+
+Create environment variable <tt>QL_DIR</tt> and set it equal to the path to the
+top-level QuantLib directory.  The compilation of QuantLibAddin will rely on
+the value of <tt>QL_DIR</tt> in order to locate the QuantLib headers and lib
+file.  In other words the QuantLibAddin compilation will expect to find 
+- QuantLib header files in directory <tt>\$(QL_DIR)\\include</tt>
+- QuantLib lib file <tt>QuantLib-vc80-mt-s-0_4_0.lib</tt> in directory <tt>\$(QL_DIR)\\lib</tt>
+
+\section sec_build_quantlibtestsuite Run the QuantLib Testsuite
+
+It's a good idea to verify the status of the QuantLib library by compiling the
+testsuite. This will run the testsuite executable automatically (should take
+less than half an hour in Release configuration, few hours in Debug) and report
+something like: 
+
+\verbatim
+1>Auto run test
+1>=====================================
+1>Testing QuantLib-vc80-mt-s-0_4_0.lib 
+1>=====================================
+1>Running moreThan200 test cases...
+1>Platform: Win32
+1>Compiler: Microsoft Visual C++ version 8.0
+1>STL     : Dinkumware standard library version 405
+1>Boost   : 1.33.1
+1>Testing Barone-Adesi and Whaley approximation for American 
+  options...
+[...]
+1>Testing old-style Monte Carlo multi-factor pricers...
+1> 
+1>Tests completed in XX m
+1>Test suite "QuantLib test suite" passed with:
+1>  moreThan200 assertions out of moreThan200 passed
+1>  moreThan200 test cases out of moreThan200 passed
+1>Build log was saved at 
+1>"file://c:\Projects\QuantLib\test-suite\build\vc80\Release\
+  BuildLog.htm"
+1>testsuite - 0 error(s), 0 warning(s)
+\endverbatim
+
+\section sec_build_log4cxx Install and Build log4cxx
+
+Download <tt>log4cxx-0.9.7b.exe</tt> from the ObjectHandler 0.2.0 section of the
+<a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>
+and install it to your hard drive.  The installer sets environment variable
+<tt>LOG4CXX_DIR</tt> equal to the top-level log4cxx installation directory.
+
+In VC8, open the log4cxx VC8 workspace
+<tt>log4cxx-0.9.7b\\msvc\\log4cxx_vc8.sln</tt>.  Choose configuration
+<tt>Release</tt>, solution <tt>static</tt>, and do <tt>Build/Build Static</tt>.
+The build process creates file
+<tt>log4cxx-0.9.7b\\msvc\\lib\\log4cxxs-vc80-mt-s.lib</tt>.
+
+\section sec_build_gensrc Install gensrc
+
+Download <tt>gensrc-0.2.0.exe</tt> from the ObjectHandler 0.2.0 section of the
+<a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>
+and install it to your hard drive.  The installer sets environment variable
+<tt>GENSRC_DIR</tt> equal to the top-level gensrc installation directory.
+
+There is nothing to build or compile for the gensrc project.  gensrc is a
+library of python modules.  The ObjectHandler and QuantLibAddin projects
+contain executable python scripts which load the gensrc modules.
+
+\section sec_build_objecthandler Install and Build ObjectHandler
+
+Download <tt>ObjectHandler-0.2.0.exe</tt> from the
+<a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>
+and install it to your hard drive.  The installer sets environment variable
+<tt>OBJECT_HANDLER_DIR</tt> equal to the top-level installation directory.
+
+In VC8, open the ObjectHandler VC8 workspace
+<tt>ObjectHandler\\ObjectHandler_vc8.sln</tt>.  Choose configuration
+<tt>Release</tt>, solution <tt>ohxllib</tt>, and do <tt>Build/Build
+ohxllib</tt>.  The build process creates file
+<tt>ObjectHandler\\ohxl\\ohxllib\\lib\\ObjectHandler-vc80-mt-s-0_2_0.lib</tt>.
+
+\section sec_build_quantlibaddin Install and Build QuantLibAddin
+
+Download <tt>QuantLibAddin-0.4.0.exe</tt> and <tt>QuantLibXL-src-0.4.0.exe</tt> from the
+<a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>
+and install them to your hard drive.  As explained above in section \ref sec_build_directories, 
+QuantLibAddin and QuantLibXL must be installed side-by-side in the directory tree.
+
+The installer sets environment variable <tt>QUANTLIBADDIN_DIR</tt>.  No environment variable is
+required for the QuantLibXL project.
+
+The QuantLibAddin VC8 workspace loads files from the QuantLibXL directory.  Therefore
+from within the QuantLibAddin VC8 environment you can work on both QuantLibAddin and
+QuantLibXL.  It is not necessary to load QuantLibXL separately into VC8.
+
+In VC8, open the QuantLibAddin VC8 workspace
+<tt>QuantLibAddin\\QuantLibAddin_vc8.sln</tt>.  Choose configuration
+<tt>Release</tt>, solution <tt>QuantLibXL</tt>, and do <tt>Build/Build
+QuantLibXL</tt>.  The build process creates the QuantLibAddin XLL file
+<tt>QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_4_0.xll</tt>.
+
+\section sec_build_usage Usage
+
+To launch QuantLibXL:
+- start Excel
+- load the addin <tt>QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_4_0.xll</tt>
+- load a sample spreadsheet e.g. <tt>QuantLibXL\\Workbooks\\OriginalExamples\\instruments.xls</tt>
+- hit <tt>Ctrl-Alt-F9</tt> to force a recalculation of all formulas
+
+If you want to have QuantLibXL loaded every time you start Excel,
+you can accomplish this as follows:
+\li start Excel
+\li ensure that at least one workbook is loaded - creating a new empty workbook if necessary
+\li do <tt>Tools/Add-Ins</tt>, and click the Browse button
+\li browse your way to the QuantLibXL XLL and click OK
+
+\section sec_build_support Support
+
+If you need help, please send email to quantlib-users@lists.sf.net.  You can
+also
+<a href="http://sourceforge.net/mailarchive/forum.php?forum=quantlib-users">search the quantlib-users archives</a>.
+
+\section sec_build_links Links
+
+For further information please consult the following links:
+- <a href="http://quantlib.org/">QuantLib home page</a>
+- <a href="http://quantlib.org/reference/faq.html">general QuantLib FAQ</a>
+- <a href="http://quantlib.org/developerFAQ.shtml">QuantLib developer FAQ</a>
+- <a href="http://www.gensrc.org">gensrc home page</a>
+- <a href="http://www.objecthandler.org">ObjectHandler home page</a>
+- <a href="http://www.quantlibaddin.org/">QuantLibAddin home page</a>
+- <a href="http://www.quantlibaddin.org/faq.html">QuantLibAddin FAQ</a>
+- <a href="http://www.quantlibxl.org/">QuantLibXL home page</a>
+
+*/
+

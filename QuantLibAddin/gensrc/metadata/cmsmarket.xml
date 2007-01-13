@@ -1,0 +1,158 @@
+<Category name='cmsmarket'>
+  <description>functions to construct and use CmsMarket objects</description>
+  <displayName>Cms Market</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>ql/Volatilities/cmsmarket.hpp</include>
+    <include>qlo/quotes.hpp</include>
+    <include>qlo/cmsmarket.hpp</include>
+    <include>qlo/couponvectors.hpp</include>
+    <include>qlo/swaptionvolstructure.hpp</include>
+    <include>qlo/optimization.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2006 Giorgio Facchinetti
+  </copyright>
+  <Functions>
+
+    <!-- CmsMarket constructors -->
+
+    <Constructor name='qlCmsMarket'>
+      <libraryFunction>CmsMarket</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='expiries' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>cms matrix's expiries as periods</description>
+          </Parameter>
+          <Parameter name='swapIndices' libraryClass='SwapIndex'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>SwapIndex object IDs</description>
+          </Parameter>
+          <Parameter name='bidsAsks' libToHandle='Quote'>
+            <type>string</type>
+            <tensorRank>matrix</tensorRank>
+            <description>matrix of bid and ask cms spreads quotes.</description>
+          </Parameter>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
+          <Parameter name='CmsCouponPricer' libraryClass='VanillaCMSCouponPricer'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>Cms coupon pricer object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlBrowseCmsMarket' objectClass='CmsMarket'>
+      <description>return the market and implied spreads matrix</description>
+      <libraryFunction>getCmsMarket</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- SmileAndCmsCalibrationBySabr constructors -->
+
+    <Constructor name='qlSmileAndCmsCalibrationBySabr'>
+      <libraryFunction>SmileAndCmsCalibrationBySabr</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='volCube' libToHandle='SwaptionVolatilityStructure'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Volatility Cube by Sabr</description>
+          </Parameter>
+          <Parameter name='cmsMarket' libraryClass='CmsMarket'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>CmsMarket object ID</description>
+          </Parameter>
+          <Parameter name='weights' libraryType='QuantLib::Matrix'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>weights for cms market calibration.</description>
+          </Parameter>
+          <Parameter name='calibrationType' enumeration='QuantLib::SmileAndCmsCalibrationBySabr::CalibrationType'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>calibration type (e.g. OnSpread, OnPrice, OnForwardPrice)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlSimultaneousCalibration' libraryClass='SmileAndCmsCalibrationBySabr'>
+      <description>Return the best beta and mean reversion</description>
+      <libraryFunction>calibration</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optimizationMethod' libraryClass='OptimizationMethod' default='""'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>optimization method object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Array'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSimultaneousCalibrationError' libraryClass='SmileAndCmsCalibrationBySabr'>
+      <description>Returns the error of the simultaneous calibration</description>
+      <libraryFunction>error</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSimultaneousCalibrationEndCriteria' libraryClass='SmileAndCmsCalibrationBySabr'>
+      <description>Returns the optimization end criteria of the simultaneous calibration</description>
+      <libraryFunction>endCriteria</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::EndCriteria::Type'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>

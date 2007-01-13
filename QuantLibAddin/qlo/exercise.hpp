@@ -1,0 +1,50 @@
+
+/*
+ Copyright (C) 2006 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+#ifndef qla_exercise_hpp
+#define qla_exercise_hpp
+
+#include <oh/objhandler.hpp>
+#include <ql/exercise.hpp>
+
+namespace QuantLibAddin {
+
+    class Exercise : public ObjHandler::LibraryObject<QuantLib::Exercise> {
+    };
+
+    class AmericanExercise : public Exercise {
+    public:
+        AmericanExercise(
+            const QuantLib::Date& earliestDate,
+            const QuantLib::Date& latestDate,
+            const bool payoffAtExpiry);
+    };
+
+    class EuropeanExercise : public Exercise {
+    public:
+        EuropeanExercise(const QuantLib::Date& expiryDate);
+    };
+
+    class BermudanExercise : public Exercise {
+    public:
+        BermudanExercise(const std::vector<QuantLib::Date>& dates,
+                         const bool payoffAtExpiry);
+    };
+
+}
+
+#endif

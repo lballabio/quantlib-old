@@ -1,0 +1,545 @@
+<Category name='index'>
+  <description>functions to construct and use Index objects</description>
+  <displayName>Indices</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>qlo/index.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006 Katiuscia Manzoni
+    Copyright (C) 2005 Eric Ehlers
+    Copyright (C) 2005 Plamen Neykov
+  </copyright>
+  <Functions>
+
+    <!-- Index interface -->
+
+    <Member name='qlIndexName' libraryClass='Index'>
+      <description>Returns the name for the given Index object</description>
+      <libraryFunction>name</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIndexIsValidFixingDate' libraryClass='Index' loopParameter='fixingDate'>
+      <description>Returns TRUE if the fixing date is a valid one for the given Index object</description>
+      <libraryFunction>isValidFixingDate</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='fixingDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>fixing date(s)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIndexFixing' libraryClass='Index' loopParameter='fixingDate'>
+      <description>Returns the fixing for the given Index object. The fixing is retrieved from the time series if available, otherways it is forecasted.</description>
+      <libraryFunction>fixing</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='fixingDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>fixing date(s)</description>
+          </Parameter>
+          <Parameter name='forecastToday' default='0' const='False'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>forces the forecasting of today's fixing even if the actual fixing is already available in the time series.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Real'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIndexAddFixing' libraryClass='Index'>
+      <description>Adds a fixing for the given Index object</description>
+      <libraryFunction>addFixing</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='fixingDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing date</description>
+          </Parameter>
+          <Parameter name='fixingValue' libraryType='QuantLib::Real'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing value</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIndexAddFixings' libraryClass='Index'>
+      <!--<Member name='qlIndexAddFixings' objectClass='Index'>-->
+      <description>Adds fixings for the given Index object</description>
+      <libraryFunction>addFixings</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='fixingDates' libraryType='QuantLib::Date' vectorIterator='beginAndEnd'>
+            <!--<Parameter name='fixingDates' libraryType='QuantLib::Date'>-->
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>fixing dates</description>
+          </Parameter>
+          <Parameter name='fixingValues' libraryType='QuantLib::Real' vectorIterator='begin'>
+            <!--<Parameter name='fixingValues' libraryType='QuantLib::Real'>-->
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>fixing values</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- InterestRateIndex interface -->
+
+    <Member name='qlInterestRateIndexFamilyName' libraryClass='InterestRateIndex'>
+      <description>Returns the family name (e.g. EURIBOR) for the given Index object</description>
+      <libraryFunction>familyName</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexTenor' libraryClass='InterestRateIndex'>
+      <description>Returns the tenor (i.e. length, e.g. 6M, 10Y) for the given Index object</description>
+      <libraryFunction>tenor</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::Period'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexSettlementDays' libraryClass='InterestRateIndex'>
+      <description>Returns the fixing days (e.g. 2) for the given Index object</description>
+      <libraryFunction>fixingDays</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexFixingDays' libraryClass='InterestRateIndex'>
+      <description>Returns the fixing days (e.g. 2) for the given Index object</description>
+      <libraryFunction>fixingDays</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexCurrency' libraryClass='InterestRateIndex'>
+      <description>Returns the currency (e.g. EUR) for the given Index object</description>
+      <libraryFunction>currency</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::Currency'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexCalendar' libraryClass='InterestRateIndex'>
+      <description>Returns the calendar (e.g. TARGET) for the given Index object</description>
+      <libraryFunction>calendar</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::Calendar'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexDayCounter' libraryClass='InterestRateIndex'>
+      <description>Returns the DayCounter (e.g. Actual/360) for the given Index object</description>
+      <libraryFunction>dayCounter</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::DayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexForecastFixing' libraryClass='InterestRateIndex' loopParameter='fixingDate'>
+      <description>Returns the forecasted fixing for the given Index object. Today's fixing is forecasted even if the actual one is available in the time series.</description>
+      <libraryFunction>forecastFixing</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='fixingDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>fixing date(s)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Rate'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexValueDate' libraryClass='InterestRateIndex' loopParameter='fixingDate'>
+      <description>Returns the value date for the given fixing date for the given Index object</description>
+      <libraryFunction>valueDate</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='fixingDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>fixing date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexMaturity' libraryClass='InterestRateIndex' loopParameter='valueDate'>
+      <description>Returns the maturity date for the given value date for the given Index object</description>
+      <libraryFunction>maturityDate</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='valueDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>value date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- IborIndex interface -->
+
+    <Member name='qlIborIndexBusinessDayConv' libraryClass='IborIndex'>
+      <description>Returns the business day convention (e.g. Modified Following) for the given IborIndex object</description>
+      <libraryFunction>businessDayConvention</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::BusinessDayConvention'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIborIndexEndOfMonth' libraryClass='IborIndex'>
+      <description>Returns TRUE if the given IborIndex object follows the 'end of month' convention</description>
+      <libraryFunction>endOfMonth</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!--<Member name='qlIborIndexTermStructure' libraryClass='IborIndex'>
+      <description>Returns the term structure for the given IborIndex (e.g. EURYC)</description>
+      <libraryFunction>termStructure</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>-->
+
+    <!-- IborIndex constructor -->
+
+    <Constructor name='qlIborIndex'>
+      <libraryFunction>IborIndex</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='familyName'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index name</description>
+          </Parameter>
+          <Parameter name='tenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
+          </Parameter>
+          <Parameter name='fixingDays'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing days (e.g. 2)</description>
+          </Parameter>
+          <Parameter name='Currency' enumeration='QuantLib::Currency'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Index Currency</description>
+          </Parameter>
+          <Parameter name='calendar' enumeration='QuantLib::Calendar'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET)</description>
+          </Parameter>
+          <Parameter name='BDayConvention' enumeration='QuantLib::BusinessDayConvention'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>business day convention (e.g. ModifiedFollowing)</description>
+          </Parameter>
+          <Parameter name='endOfMonth'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the index follow the 'end of month' convention</description>
+          </Parameter>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual360)</description>
+          </Parameter>
+          <!-- NULL REFERENCES NO LONGER SUPPORTED 
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure' default='""'-->
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>forecasting yield term structure</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- might we have qlGetEuriborTermStructure ?? -->
+    <Procedure name='qlSetEuriborTermStructure'>
+      <description>Sets the yield term structure which is linked to by the handle shared by all enumerated Euribor objects</description>
+      <alias>QuantLibAddin::EuriborHandle::instance().linkEuriborHandle</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='termStructureID' handleToLib='YieldTermStructure'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>yield term structure to be referenced by all enumerated Euribor objects</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <!-- SwapIndex interface -->
+
+    <Member name='qlSwapIndexFixedLegTenor' libraryClass='SwapIndex'>
+      <description>Returns the fixed leg tenor (e.g. 1Y) for the given SwapIndex object</description>
+      <libraryFunction>fixedLegTenor</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::Period'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwapIndexFixedLegBDC' libraryClass='SwapIndex'>
+      <description>Returns the business day convention (e.g. Modified Following) for the given SwapIndex object</description>
+      <libraryFunction>fixedLegConvention</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::BusinessDayConvention'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!--<Member name='qlSwapIndexUnderlyingIndex' libraryClass='SwapIndex'>
+      <description>Returns the underlying IborIndex for the given SwapIndex object (e.g. EURIBOR6M)</description>
+      <libraryFunction>iborIndex</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::BusinessDayConvention'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>-->
+
+    <!-- fixedRateSchedule -->
+
+    <!-- underlyingSwap -->
+
+    <!-- SwapIndex constructor -->
+
+    <Constructor name='qlSwapIndex'>
+      <libraryFunction>SwapIndex</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='familyName'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index name</description>
+          </Parameter>
+          <Parameter name='tenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
+          </Parameter>
+          <Parameter name='fixingDays'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap rate fixing days (e.g. 2)</description>
+          </Parameter>
+          <Parameter name='Currency' enumeration='QuantLib::Currency'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Index Currency</description>
+          </Parameter>
+          <Parameter name='calendar' enumeration='QuantLib::Calendar'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET)</description>
+          </Parameter>
+          <Parameter name='fixedLegTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tenor of the underlying swap's fixed leg (e.g. 6M, 1Y, 3M)</description>
+          </Parameter>
+          <Parameter name='fixedLegBDC' enumeration='QuantLib::BusinessDayConvention'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>business day convention of the underlying swap's fixed leg (e.g. ModifiedFollowing)</description>
+          </Parameter>
+          <Parameter name='fixedLegDayCounter' enumeration='QuantLib::DayCounter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter of the underlying swap's fixed leg (e.g. 30/360::BondBasis)</description>
+          </Parameter>
+          <Parameter name='index' libraryClass='IborIndex'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap's floating ibor index object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

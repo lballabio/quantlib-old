@@ -1,0 +1,181 @@
+<Category name='swap'>
+  <description>functions to construct and use Swap objects</description>
+  <displayName>Swap</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>qlo/swap.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/swaptionvolstructure.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2005 Eric Ehlers
+    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2005 Aurelien Chanudet
+    Copyright (C) 2005 Plamen Neykov
+    Copyright (C) 2006 Katiuscia Manzoni
+  </copyright>
+  <Functions>
+
+    <Constructor name='qlSwap'>
+      <libraryFunction>Swap</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='legIDs' objectClass='CashFlowStream'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>leg object IDs</description>
+          </Parameter>
+          <Parameter name='payer'>
+            <type>bool</type>
+            <tensorRank>vector</tensorRank>
+            <description>TRUE for payed leg</description>
+          </Parameter>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlMakeCMS'>
+      <libraryFunction>Swap</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='swapTenor' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap tenor period</description>
+          </Parameter>
+          <Parameter name='swapIndex' libraryClass='SwapIndex'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap index object ID</description>
+          </Parameter>
+          <Parameter name='iborSpread' libraryType='QuantLib::Spread'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread over the ibor leg</description>
+          </Parameter>
+          <Parameter name='CmsCouponPricer' libraryClass='VanillaCMSCouponPricer'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Cms coupon pricer object ID</description>
+          </Parameter>
+          <!--<Parameter name='forwardStart' libraryType='QuantLib::Period' default='0*QuantLib::Days'>-->
+          <!--<Parameter name='forwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
+          <Parameter name='forwardStart' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>forward start period</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Constructor>
+
+    <Member name='qlSwapLegBPS' libraryClass='Swap'>
+      <description>returns the BPS of the i-th leg for the given Swap object.</description>
+      <libraryFunction>legBPS</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='legNumber'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwapLegNPV' libraryClass='Swap'>
+      <description>returns the NPV of the i-th leg for the given Swap object.</description>
+      <libraryFunction>legNPV</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='legNumber'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwapLegAnalysis' objectClass='Swap'>
+      <description>Returns the cash flow analysis of the i-th leg for the given Swap object.</description>
+      <libraryFunction>legAnalysis</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='legNumber'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwapStartDate' libraryClass='Swap'>
+      <description>Returns the start (i.e. first accrual) date for the given Swap object</description>
+      <libraryFunction>startDate</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwapMaturityDate' libraryClass='Swap'>
+      <description>Returns the maturity (i.e. last payment) date for the given Swap object</description>
+      <libraryFunction>maturityDate</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>

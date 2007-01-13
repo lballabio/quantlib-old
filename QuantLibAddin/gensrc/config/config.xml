@@ -1,0 +1,66 @@
+<Config>
+
+  <prefix>ql</prefix>
+  <libRootDirectory>qlo</libRootDirectory>
+  <voRootDirectory>qlo/ValueObjects</voRootDirectory>
+  <loopRootDirectory>qlo/Loop</loopRootDirectory>
+  <excelRootDirectory>../QuantLibXL/qlxl</excelRootDirectory>
+
+  <usingEnumerations>true</usingEnumerations>
+  <namespaceLibrary>QuantLib</namespaceLibrary>
+  <namespaceObjects>QuantLibAddin</namespaceObjects>
+
+  <categoryNames>
+    <categoryName>assetswap</categoryName>
+    <categoryName>bonds</categoryName>
+    <categoryName>calendar</categoryName>
+    <categoryName>capfloor</categoryName>
+    <categoryName>capletvolstructure</categoryName>
+    <categoryName>cmsmarket</categoryName>
+    <categoryName>couponvectors</categoryName>
+    <categoryName>date</categoryName>
+    <categoryName>daycounter</categoryName>
+    <categoryName>exercise</categoryName>
+    <categoryName>forwardrateagreement</categoryName>
+    <categoryName>index</categoryName>
+    <categoryName>instruments</categoryName>
+    <categoryName>interpolation</categoryName>
+    <categoryName>marketmodels</categoryName>
+    <categoryName>mathf</categoryName>
+    <categoryName>optimization</categoryName>
+    <categoryName>options</categoryName>
+    <categoryName>payoffs</categoryName>
+    <categoryName>prices</categoryName>
+    <categoryName>pricingengines</categoryName>
+    <categoryName>processes</categoryName>
+    <categoryName>randomsequencegenerator</categoryName>
+    <categoryName>ratehelpers</categoryName>
+    <categoryName>schedule</categoryName>
+    <categoryName>sequencestatistics</categoryName>
+    <categoryName>settings</categoryName>
+    <categoryName>shortratemodels</categoryName>
+    <categoryName>simplecashflow</categoryName>
+    <categoryName>smilesection</categoryName>
+    <categoryName>statistics</categoryName>
+    <categoryName>swap</categoryName>
+    <categoryName>swaption</categoryName>
+    <categoryName>swaptionvolstructure</categoryName>
+    <categoryName>termstructures</categoryName>
+    <categoryName>utilities</categoryName>
+    <categoryName>vanillaswap</categoryName>
+    <categoryName>volatilities</categoryName>
+    <categoryName>quotes</categoryName>
+  </categoryNames>
+
+  <implicitConversions>
+    <implicitConversion>QuantLib::DiscountFactor</implicitConversion>
+    <implicitConversion>QuantLib::Rate</implicitConversion>
+    <implicitConversion>QuantLib::Spread</implicitConversion>
+    <implicitConversion>QuantLib::Volatility</implicitConversion>
+    <implicitConversion>QuantLib::Time</implicitConversion>
+    <implicitConversion>QuantLib::Real</implicitConversion>
+    <!--<implicitConversion>QuantLib::Size</implicitConversion>-->
+  </implicitConversions>
+
+</Config>
+

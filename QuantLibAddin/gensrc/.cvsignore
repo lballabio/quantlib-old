@@ -1,0 +1,6 @@
+Makefile
+Makefile.in
+.time-stamp
+build
+*.user
+*.pyc

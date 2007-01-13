@@ -1,0 +1,59 @@
+<Category name='simplecashflow'>
+  <description>functions to construct and use CashFlow objects</description>
+  <displayName>SimpleCashFlow</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>qlo/couponvectors.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2006 Cristina Duminuco
+  </copyright>
+
+  <Functions>
+
+    <Constructor name='qlSimpleCashFlow'>
+      <libraryFunction>SimpleCashFlow</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='amount'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cash to be received/paid</description>
+          </Parameter>
+          <Parameter name='date' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlSimpleCashFlowVector'>
+      <libraryFunction>SimpleCashFlowVector</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='amounts'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>list of cash to be received/paid</description>
+          </Parameter>
+          <Parameter name='dates' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>payment dates corresponding to amounts</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
+
+  </Functions>
+</Category>
