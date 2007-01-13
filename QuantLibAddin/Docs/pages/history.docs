@@ -1,0 +1,182 @@
+
+/*
+ Copyright (C) 2005, 2006 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page history Version History
+
+<strong>Release 0.3.14 - December 2006</strong>
+
+REQUIRED PACKAGES
+
+- QuantLib version 0.3.14
+- ObjectHandler version 0.1.5
+- gensrc version 0.1.5
+
+FUNCTIONALITY
+
+- 218 new functions / 445 in total
+- new categories: assetswap, capletvolstructure, cmsmarket, marketmodels,
+  sequencestatistics, statistics
+
+DESIGN
+
+- implementation of loop functions re-implemented as a template using
+  boost::bind; performance optimized
+- enumeration registry enhanced to generate Calendars/JointCalendars
+  depending on format of requested ID
+
+<strong>Release 0.3.13 - August 2006</strong>
+
+%QuantLibAddin 0.3.13 is a major release comprising a several fold increase
+in the size and complexity of the application.  The project has also been
+restructured as summarized below.
+
+QUANTLIBXL
+
+The name QuantLibXL was originally applied to an Excel addin which supplemented
+QuantLib releases 0.3.3 through 0.3.8.  That project was discontinued.
+
+QuantLib releases 0.3.10 and later have been accompanied by a release of
+%QuantLibAddin.  All %QuantLibAddin releases have included an Excel addin.
+Beginning with QuantLibAddin version 0.3.13, the QuantLibXL name has been
+resurrected and given to the %QuantLibAddin build for the Excel platform.  The
+new QuantLibXL project reflects the fact that the majority of interest in
+%QuantLibAddin originates from end business users on the Excel platform.  The
+new QuantLibXL project has a separate web page 
+(<a href="http://www.quantlibxl.org">http://www.quantlibxl.org</a>)
+and provides a Windows installer for the compiled package.
+
+For a further breakdown of the differences between the old and new QuantLibXL
+projects, please see the following item in the %QuantLibAddin FAQ:
+\ref faq_excel
+
+GENSRC
+
+gensrc (<a href="http://www.gensrc.org">http://www.gensrc.org</a>) is a Python
+application which takes XML descriptions of functions defined in a library and
+generates source code for addins on supported platforms including Microsoft
+Excel and OpenOffice.org Calc. gensrc is used to autogenerate source code for
+%QuantLibAddin and ObjectHandler.
+
+gensrc was previously called srcgen, and resided in a subdirectory of
+%QuantLibAddin versions prior to 0.3.13.  gensrc has been separated from
+%QuantLibAddin 0.3.13 into a standalone project.  gensrc has adopted the
+version numbering scheme from ObjectHandler, hence %QuantLibAddin 0.3.13
+relies on gensrc version 0.1.4.  gensrc was renamed from srcgen because of a
+conflict with another SourceForge project.
+
+REQUIRED PACKAGES
+
+- QuantLib version 0.3.13
+- ObjectHandler version 0.1.4
+- gensrc version 0.1.4
+
+FUNCTIONALITY
+
+- 146 new functions / 227 in total
+- all functionality revised and enhanced, new functionality in following 
+  categories:
+    calendar, capletvolstructure, date, daycounter, exercise,
+    forwardrateagreement, generalstatistics, incrementalstatistics, 
+    index, marketmodels, mathf, optimization, payoffs, prices, 
+    pricingengines, processes, randomsequencegenerator, ratehelpers, 
+    schedule, shortratemodels, simpleswap, swap, swaption, 
+    swaptionvolstructure
+- support for Value Objects (Plamen Neykov) (see ObjectHandler
+  documentation for details)
+- numerous refinements and enhancements to the design including:
+  - lower-level access to QuantLib functionality such as Handles
+  - support for "permanent objects" which aren't deleted by garbage
+    collection
+  - richer function interface including better support for enumerated
+    datatypes, object references, datatype conversions
+
+<strong>Release 0.3.12 - March 2006</strong>
+
+REQUIRED PACKAGES
+
+- QuantLib version 0.3.12
+- ObjectHandler version 0.1.3
+
+FUNCTIONALITY
+
+- 11 new functions / 81 in total
+- backward & forward flat interpolators (Aur&eacute;lien Chanudet)
+- enhancements to xibor / rate helper / term structures /
+  utilities (Marco Marchioro)
+- support for new QuantLib functionality for sessions,
+  allowing multiple instances of the global evaluation date  
+- documentation revised and extended
+
+EXCEL
+
+- unregister functions when XLL unloaded (Lars Schouw)
+
+<strong>Release 0.3.11 - October 2005</strong>
+
+REQUIRED PACKAGES
+
+- QuantLib version 0.3.11
+- ObjectHandler version 0.1.2
+
+FUNCTIONALITY
+
+- 13 new functions / 70 in total
+- Coupon Vectors, Interpolation, Schedules, Swaps (Aur&eacute;lien Chanudet)
+- Polymorphic behavior in exported %QuantLibAddin functions (Plamen Neykov)
+- support for direct calls to underlying QuantLib functions (Plamen Neykov)
+- optional function parameters (Plamen Neykov), default values
+- source code generation refactored for improved OO/maintainability
+
+<strong>Release 0.3.10 - July 2005</strong>
+
+OVERVIEW
+
+Initial release consisting of prototype framework:
+- core library of supported classes
+- function metadata
+- script to autogenerate source for target platforms
+- sample client applications and spreadsheets
+
+REQUIRED PACKAGES
+
+- Boost version 1.31.0 or later
+- QuantLib version 0.3.10
+- ObjectHandler version 0.1.1
+
+FUNCTIONALITY
+
+- bonds & zero curves (Walter Penschke)
+- caps & floors, term structures (Aur&eacute;lien Chanudet)
+- swaps, xibor, enumeration type factory (Plamen Neykov)
+- options, volatilities, processes
+- diagnostic and utility functions
+
+PLATFORMS
+
+- Microsoft Excel
+- OpenOffice.org Calc
+- C/C++
+- Guile (Aur&eacute;lien Chanudet)
+
+*/
+

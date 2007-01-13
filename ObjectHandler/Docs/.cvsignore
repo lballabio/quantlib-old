@@ -1,0 +1,12 @@
+auto.pages
+build
+*.chm
+doxywarnings.txt
+html
+html-online
+Makefile
+Makefile.in
+ObjectHandler-docs-*-html.tar.gz
+.objecthandler.doxy
+.time-stamp*
+*.user

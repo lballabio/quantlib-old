@@ -1,0 +1,134 @@
+
+/*
+ Copyright (C) 2005, 2006 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page history Version History
+
+<strong>Release 0.1.5 - December 2006</strong>
+
+EXCEL
+
+- new function "ohRetrieveError()" returns whatever error message
+  is associated with the active range
+
+LOG4CXX
+
+- a couple of minor fixes to makefiles
+- repackaged as version 0.9.7b (see below for explanation of
+  log4cxx version numbers)
+
+REQUIRED PACKAGES
+
+- Boost version 1.31.0 or later
+- log4cxx version 0.9.7.b
+- gensrc version 0.1.5
+
+<strong>Release 0.1.4 - August 2006</strong>
+
+EXCEL
+
+- support for permanent objects not deleted by garbage collection
+- use gensrc where possible to generate source code for ObjectHandler
+
+LOG4CXX
+
+Created package "log4cxx 0.9.7a" which is a customization of log4cxx0.9.7,
+providing better support for VC, boost-format version numbers for lib files,
+etc.  log4cxx 0.9.7a is available from the ObjectHandler section of the
+QuantLib downloads page.
+
+REQUIRED PACKAGES
+
+- Boost version 1.31.0 or later
+- log4cxx version 0.9.7.a
+- gensrc version 0.1.4
+
+<strong>Release 0.1.3 - March 2006</strong>
+
+CORE
+
+- Documentation revised and extended
+
+EXCEL
+
+- unregister functions when XLL unloaded (Lars Schouw)
+- Consolidated export of Excel functions
+- Increased granularity and clarity of runtime exceptions
+- Improved memory management (automatic deletion of temp variables)
+- Clarified code in example XLLs
+
+LOG4CXX
+
+- Link to log4cxx statically rather than dynamically.  The use of log4cxx.dll,
+  introduced in ObjectHandler version 0.1.2, was found to destabilize
+  ObjectHandler and so the static link to log4cxx, used in ObjectHandler
+  version 0.1.1, has been reintroduced.
+- We now provide a zip file for log4cxx, comprising a complete copy of log4cxx
+  plus some customizations to clarify the build process and other minor bug
+  fixes.
+
+<strong>Release 0.1.2 - October 2005</strong>
+
+EXCEL
+
+Excel binding ported from QuantLibAddin to ObjectHandler
+and enhanced:
+
+- ObjectHandler core functionality and the Excel binding can be
+  linked statically into a single client XLL, or built as a standalone
+  XLL comprising a global repository shared by multiple client XLLs
+- garbage collection of objects orphaned by the deletion of the
+  calling cell
+- conversion to/from all Excel types and native C++ types
+- greater granularity of datatypes - XLOPER replaced by OPER, FP
+
+LOG4CXX
+
+- link to log4cxx dynamically rather than statically
+
+<strong>Release 0.1.1 - July 2005</strong>
+
+REQUIRED PACKAGES
+- Boost version 1.31.0 or later
+- log4cxx version 0.9.7
+
+CHANGES SINCE RELEASE 0.1.0
+- interface layer replaced with factory function (thanks to Walter Penschke)
+- logging implemented with log4cxx framework from Apache project
+- additional functions deleteObject, deleteAllObjects
+- output manipulators for Object and ObjectHandler classes
+- utility functions consolidated
+
+<strong>Release 0.1.0 - February 2005</strong>
+
+REQUIRED PACKAGES
+- Boost version 1.31.0 or later
+
+OVERVIEW
+
+Initial release consisting of prototype framework:
+
+- Instantiate an Object in the ObjectHandler, from where it
+  can be interrogated, altered, and destroyed.
+
+*/
+

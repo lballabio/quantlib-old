@@ -1,0 +1,182 @@
+
+/*
+ Copyright (C) 2005, 2006 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page installation Installation
+
+\section installation_overview Overview
+
+This document provides general instructions for building and installing
+%QuantLibAddin 0.4.0 under Windows, and on platforms which use Autoconf 
+e.g. Linux.
+\li For a precompiled binary installation of the Excel addin, please
+    visit <a href="http://www.quantlibxl.org">http://www.quantlibxl.org</a>.
+\li For a walk through of all steps required to build the Excel addin
+    and dependent projects, please refer instead to the \ref build_tutorial.
+\li For additional notes regarding the installation of the Calc addin please
+    refer to the document \ref calc.
+
+%QuantLibAddin is available for download from the
+<a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=159049">
+QuantLib downloads page on sourceforge.</a>
+
+\ref install_prerequisites<br>
+\ref install_windows<br>
+\ref install_autoconf<br>
+
+\section install_prerequisites Prerequisites
+
+\li <a href="http://quantlib.org/">QuantLib</a> version 0.4.0
+\li <a href="http://www.objecthandler.org">ObjectHandler</a> version 0.2.0
+
+\section install_windows Installing under Windows
+
+These instructions assume configuration <b>Win32 Release</b>, runtime library <b>Release Multithreaded</b>.
+
+To build %QuantLibAddin for Excel:
+\li build QuantLib configuration <b>Win32 Release</b>
+\li build ObjectHandler project \b ohxllib, configuration <b>Win32 Release</b>
+\li build %QuantLibAddin project \b QuantLibXL, configuration <b>Win32 Release</b>
+\li start Excel
+\li load the Addin.  The name of the Addin will depend on the compiler version and configuration,
+e.g. if compiled under VC8 release the Addin is called
+<strong>%QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_4_0.xll</strong>.
+\li load a sample spreadsheet e.g.  <strong>%QuantLibXL\\Workbooks\\OriginalExamples\\options.xls</strong>
+\li hit Ctrl-Alt-F9 to force a recalculation of all formulas
+
+Project QuantLibXLDynamic is a build which links dynamically to the
+ObjectHandler XLL, allowing multiple XLLs to share a global repository,
+as described in the ObjectHandler documentation.
+
+For other platforms please build the appropriate project,
+e.g. workspace ClientCDemo creates standalone C client executable
+<strong>Clients\\C\\bin\\QLADemo-vc8-mt-sgd.exe</strong>.
+
+\section install_autoconf Installing with Autoconf
+
+\subsection install_autoconf_brief In Brief
+
+\verbatim
+tar zxfv QuantLibAddin-0.4.0.tar.gz
+cd QuantLibAddin-0.4.0
+./configure
+make
+Clients/C++/QLADemo
+make install
+\endverbatim
+
+\subsection install_autoconf_detail In Detail
+
+\par configure
+
+Under the default configuration only the core %QuantLibAddin C++
+library is built, plus the standalone C++ client applications.  To build
+additional components, run configure with the corresponding arguments:
+
+<table>
+<tr>
+<td><strong>Argument</strong></td><td><strong>Meaning</strong></td><td><strong>Directory</strong></td>
+</tr>
+<tr>
+<td>--enable-addin-c</td><td>Build the C Addin and Clients</td><td>Addins/C<br>Clients/C</td>
+</tr>
+<tr>
+<td>--enable-addin-calc</td><td>Build the Calc Addin</td><td>Addins/Calc</td>
+</tr>
+<tr>
+<td>--enable-addin-guile</td><td>Build the Guile Addin</td><td>Addins/Guile</td>
+</tr>
+<tr>
+<td>--enable-addin-excel</td><td>Autogenerate source code for the Excel Addin.  The Excel Addin is not compiled under Autoconf and this option is used by developers to package distributions.</td><td>Addins/Excel</td>
+</tr>
+<tr>
+<td>--enable-addin-all</td><td>Build all of the above</td><td>Addins/*<br>Clients/*</td>
+</tr>
+</table>
+
+The flags for the individual Addins override the \c --enable-addin-all
+flag, so for example to build all Addins except Excel you would do
+
+\verbatim
+./configure --enable-addin-all --disable-addin-excel
+\endverbatim
+
+Under the default configuration the subsequent <tt>make install</tt>
+command installs libs to \c /usr/local/lib and header files to 
+\c /usr/local/include, to override this behavior specify a different
+installation prefix using \c --prefix e.g.
+\verbatim
+./configure --prefix=$HOME/QuantLibAddin
+\endverbatim
+
+\par make
+
+To build the chosen configuration:
+\verbatim
+make
+\endverbatim
+
+\par make test
+
+There is no <tt>make test</tt> at the moment but you can try launching
+the standalone C++ client program:
+
+\verbatim
+Clients/C++/QLADemo
+\endverbatim
+
+\par make install
+
+To install %QuantLibAddin:
+\verbatim
+make install
+\endverbatim
+
+The behavior of <tt>make install</tt> depends on your configuration:
+
+<table>
+<tr>
+<td><strong>Configuration</strong></td><td><strong>Component</strong></td><td><strong>Installation</strong></td>
+</tr>
+<tr>
+<td>all</td><td>%QuantLibAddin core library</td><td>headers and libraries installed (by default to /usr/local)</td>
+</tr>
+<tr>
+<td>--enable-addin-calc</td><td>Calc Addin</td><td>library installed to OpenOffice.org program directory</td>
+</tr>
+<tr>
+<td>--enable-addin-guile</td><td>Guile Addin</td><td>library installed (by default to /usr/local)</td>
+</tr>
+</table>
+
+\b NB There is no installation for the C/Excel Addins nor for any Client code.
+
+\par make docs
+
+To build the documentation that you're reading now, do ...
+\verbatim
+make docs
+\endverbatim
+... then point your browser at file <strong>%QuantLibAddin/Docs/html/index.html</strong>.
+
+*/
+

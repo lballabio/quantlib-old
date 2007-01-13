@@ -1,0 +1,197 @@
+optimization end criteria
+abcd interpolation
+
+new release
+coerce from Frequency to Period
+coerce from Period->Date to double/int
+coerce from IMMcode to date
+cvs command line
+imm functions (dates.xml) problems
+profiling session
+
+payment business days convention
+
+null strike -> atm strike
+
+pure future option term structures
+fixed sabr parameters
+
+3M caplet test wbk:
+- atm curve
+- abcd fit
+
+- wiki
+- build system
+- adopt boost::date
+- boost property map
+- VBA code in text files
+
+- GREEKS
+- from LMM -> QL::INSTRUMENT -> EXCEL
+- LMM calibrations
+- FRA-based MM swaption pricing
+- drift for SWAP-based MM
+
+- nome dei parametri nel wizard
+* remove obsolete drafts
+* move all test in the Test folder
+
+
+Nando
+- SA
+- rename old functions
+- Reuters new session
+- demo Munari (mergeLeg, addLeg)
+- 0.3.14 wbk
+- alternative calibrations with null rho
+- make BlackCalculator observer/observable, make it lazy
+- contratti
+- trimestrale
+
+K
+- SA
+- demo Munari (mergeLeg, addLeg)
+- EURYC->HYTSEUR, EURYC2->EURYTS, EURYCMX2->EURYTSMX
+- DONE abcd for swap tenor
+- test abcd (swap tenor) with new optimization code
+- abcd for displacement
+- add abcd interpolation
+- DONE test new NSIS 2.22
+- new end of day live feed snapshot procedure + vol cube + mean rev + all environments
+- DONE Launcher: Static Data checkbox
+- DONE RtUpdate and FormulaArray in Reuters QuoteFeed xls
+- DONE enhance IR derivatives workbooks (share auto-open macro + triggers)
+
+François
+- test abcd calibration
+- DONE revise Levemberg Marquard
+- TO BE REVIEWED consolidate all multisteps in a  single test
+- TO BE REVIEWED MultiStepSwaption
+- DONE use MakeCapFloor in Excel test wkb
+- DONE include future options in vol cap stripping
+- check sabr fit stability/accuracy for smilesections
+- DONE create another CapletVol object instance using future option smile sections only in CapStripper.xls
+- DONE clean cap price discrepancies
+- add atmRate to SmileSection base class
+- add an atmRate to our capVol structure
+- review the class design together
+- refactor abcd vol file, adding more unary_functions for blackVol and covariance
+- expose to Excel all these new abcd-related vol functions
+- implement abcdinterpolation
+
+Cristina
+- DONE dismettere qlSwap in favore di qlSwap2
+- test Mx sul 29/9
+- DONE update schedule wbk
+- DONE capped/floored floating leg coupon 
+- ... and bond
+- foglio swaption per De Nuccio / Murex
+
+Giorgio
+* ratchet Instrument C++
+D manual import of BGM book
+
+Chiara
+- DONE bond (cms)
+- DONE futures conv adj and swap repricing
+- perche' lo yield non ha la frequenza?
+- fare tutti i metodi dei bond restituiscano un InterestRate
+- i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
+
+Marco
+- update Mx YC action
+WIP improve interpolations
+
+Eric
+- InterestRateQuoteFeed.xls: Auto_Open problem
+- reutersFeed performances
+- sensitivity
+- discount factors output is not col/row enabled
+- esporre ad excel i metodi commentati in payoff.xml
+- visitor pattern per 3rd parameter dei payoff
+- RtUpdate like approach for effective Quote, in order to avoid setting the same quote
+- Handle coercion to SwaptionVolDiscrete
+- freeze, unfreeze objects
+
+QuantLib
+- Cashflows::iborSpread function
+- clean up index fixing calendar
+- cash rebate è multistep?
+- aggiungere Forward all'enumeration Call/Put
+- fix convertible faceamount bug
+- deprecate swaptionvol time interface
+- corregere OneAssetOption impliedVol
+- spreaded swaption vol matrix
+- SWAP implement fair rate for floating/fixed rate vector
+- add SABR factory
+- use boost random number generators
+- COUPON refactoring: floating coupon as cms, use new engines
+- Volatility assume a daycounter in the same way as rate (see InterestRate)
+- ForwardSpreadedCurve con spread term structure
+- throw first what in notifyobservers
+- Instrument<Args>
+- Inherit Exercise from Event?
+- use strategy pattern for simulation termination criteria
+- se possibile rispettare la misura ProductSuggested nel Composite
+
+QuantLib testsuite
+- verificare il pricing degli swap in LMM contro CurveState
+- verificare convergenza assoluta del test onestep e di quello multistep
+
+QuantLib BOND
+- use vector<Cashflow>??
+
+QuantLib RATEHELPERS
+- earliest days dovrebbe tener conto dei fixing days
+
+QuantLib YIELDCURVEBOOTSTRAP
+
+QuantLib PIECEWISEYIELDCURVE
+- FRARateHelper deve avere dentro in FRA Instrument
+- turn of year
+- extended grid with all relevant dates
+- revise bondhelpers
+- bootstrap ForwardSpreadedYieldCurve
+
+LUIGI
+- debug vari crash in test suite per floating point exception
+- risolvere Halley improvements
+- InterpolatedYieldTermStructure<Discount,LogLinear>
+- InterpolatedYieldTermStructure<Discount,LogLinear> constructor using an input
+  discount grid
+- InterpolatedYieldTermStructure<Discount,LogLinear>::gridDates()
+- generic ForwardSpreadedYieldCurve (spread term structure)
+- bootstrap ForwardSpreadedYieldCurve using its own ratehelpers and a base curve
+
+MODULES
+- reorganize file/folder/projectfolder
+- getting back all module into QuantLib project
+- create QuantLib-other CVS mailing list
+
+QUANTLIBADDIN
+- RSG factory
+- export ImpliedCurve
+- export PathGeneration
+- SWAP GRID
+- VANILLA SWAP signature
+- export discount, loglinear selection
+- use QL folder structure
+- port old QuantLibXL functionalities
+- esportare MultiStepOptionlets
+
+QUANTLIBXL WORKBOOKS
+- nel ControlPanel dare evidenza dei feed: CMS
+- Property example?
+- SWAPTION spreadsheet with multiple prices
+- all spreadsheets with grid prices
+- merge old QuantLibXL functions
+- more calendar drop down cell menu
+- YYYYDDMM_HHMM timestamp in log file name doesn't work the second time
+- file name cannot be changed without time
+- INSTALLER: Excel must be closed
+- INSTALLER: what about rebooting?
+- INSTALLER: uninstall before
+- INTERPOLATION: spostare vecchi spreadsheets
+- signed spreadsheet and macro
+
+QUANTLIBXL VBA

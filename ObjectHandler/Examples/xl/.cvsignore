@@ -1,0 +1,6 @@
+*.plg
+build*
+xll
+*.vcproj.*user
+Makefile
+Makefile.in

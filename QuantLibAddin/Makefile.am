@@ -1,0 +1,49 @@
+
+SUBDIRS = \
+    gensrc \
+    qlo \
+    Addins/C \
+    Addins/Calc \
+    Addins/Guile \
+    Clients/C \
+    Clients/C++ \
+    Clients/Calc \
+    Clients/Guile \
+    Docs
+
+EXTRA_DIST = \
+    Announce.txt \
+    Authors.txt \
+    autogen.sh \
+    configure.ac \
+    Contributors.txt \
+    LICENSE.TXT \
+    NEWS.txt \
+    QuantLibAddin.nsi \
+    QuantLibAddin.sln \
+    QuantLibAddin_vc8.sln \
+    QuantLibObjects_vc8.vcproj \
+    QuantLibObjects.vcproj \
+    README.txt \
+    todo.csv \
+    todonando.txt \
+    todo.txt
+
+.PHONY: docs docs-online docs-dist docs-clean
+BASEPATH = @abs_top_srcdir@
+docs:
+	$(MAKE) -C gensrc
+	BASEPATH=$(BASEPATH) $(MAKE) -C Docs docs-all
+docs-dist:
+	$(MAKE) -C gensrc
+	BASEPATH=$(BASEPATH) $(MAKE) -C Docs docs-dist
+docs-online:
+	$(MAKE) -C gensrc
+	BASEPATH=$(BASEPATH) $(MAKE) -C Docs docs-online
+docs-online-dist:
+	$(MAKE) -C gensrc
+	BASEPATH=$(BASEPATH) $(MAKE) -C Docs docs-online-dist
+docs-clean:
+	$(MAKE) -C gensrc clean
+	$(MAKE) -C Docs docs-clean
+

@@ -1,0 +1,79 @@
+
+/*
+ Copyright (C) 2005, 2006 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page index QuantLibAddin
+
+%QuantLibAddin exports the functionality of the
+<a href="http://quantlib.org">QuantLib</a> C++ analytics library to a variety
+of end-user platforms including Microsoft Excel and OpenOffice.org Calc.
+
+The %QuantLibAddin Excel implementation resides in a separate project called
+QuantLibXL.  If you're looking for a compiled Excel addin with documentation,
+please go to the QuantLibXL website: 
+<a href="http://www.quantlibxl.org">www.quantlibxl.org</a>
+
+Stay here if you're interested in:
+\li compiling %QuantLibAddin/QuantLibXL from source code
+\li %QuantLibAddin implementations for non-Excel platforms
+
+\section overview Overview
+
+Constructor, member and utility functions are defined in XML metadata from
+which Python application <a href="http://www.gensrc.org">gensrc</a> generates
+source code for supported platforms:
+
+\li Microsoft Excel
+\li OpenOffice.Org Calc (Windows and Linux)
+\li Guile
+\li C/C++ (standalone programs)
+
+<div class="center"><img src="images/screenshot.jpg"></div>
+
+The <a href="http://www.objecthandler.org">ObjectHandler</a> repository is used
+to provide an object oriented environment even on procedural platforms such as
+spreadsheets - QuantLib objects may be constructed, interrogated, passed as
+arguments to other functions, and destructed.  Polymorphism is supported, for
+example function qlNPV returns the NPV of an Instrument and can be invoked on
+an instance of any derived class - Swap, Bond, etc.
+
+\section quantlib QuantLib
+
+%QuantLibAddin shares the QuantLib project structure with regard to
+distribution, licensing, etc., all of which is documented on the main QuantLib
+website:<br>
+http://quantlib.org
+
+\section introduction Introduction
+
+Please refer to document \ref installation for instructions on building
+%QuantLibAddin.
+
+The section \ref functional provides platform-independent, end-user
+documentation of %QuantLibAddin functionality.  
+
+Additional information is available from the links at the left, if you have a
+question which is not answered here please send email to
+quantlib-users@lists.sf.net.
+
+*/
+

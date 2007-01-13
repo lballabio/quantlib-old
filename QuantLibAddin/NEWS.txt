@@ -1,0 +1,2 @@
+For a rundown of changes per QuantLibAddin release please visit
+http://www.quantlibaddin.org/history.html

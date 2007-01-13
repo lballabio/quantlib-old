@@ -1,0 +1,318 @@
+
+/*
+ Copyright (C) 2005, 2006 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*!
+
+\page installation Installation
+
+\section inst_overview Overview
+
+This section of the documentation describes how to install and
+use ObjectHandler on Windows and on systems which use Autoconf
+e.g. Linux.  Please see also the Example application shipped with
+ObjectHandler.
+
+ObjectHandler logging is performed by
+<a href="http://logging.apache.org/log4cxx/index.html">log4cxx</a>,
+the logging framework for the Apache project.  ObjectHandler uses a customized
+copy of log4cxx version 0.9.7, called "log4cxx 0.9.7b", amended to provide a
+boost compliant build process and other minor enhancements.
+
+ObjectHandler and log4cxx 0.9.7b are available for download from the
+<a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=141162">QuantLib downloads page on sourceforge</a>
+
+<dl>
+<dt>\ref inst_binary</dt>
+<dt>\ref inst_source</dt>
+<dd><dl>
+<dt>\ref inst_windows</dt>
+<dd><dl>
+<dt>\ref inst_win_prerequisites</dt>
+<dt>\ref inst_win_installation</dt>
+<dt>\ref inst_win_usage</dt>
+</dl></dd>
+<dt>\ref inst_autoconf</dt>
+<dd><dl>
+<dt>\ref inst_auto_prerequisites</dt>
+<dt>\ref inst_auto_installation</dt>
+<dt>\ref inst_auto_usage</dt>
+</dl></dd>
+</dl></dd>
+</dl>
+
+\section inst_binary Binary Installation
+
+No binary installer is provided for the standalone ObjectHandler library.
+However ObjectHandler functionality is compiled into the binary
+installation of <a href="http://www.quantlibxl.org">QuantLibXL</a>.
+
+\section inst_source Source Installation
+
+\subsection inst_windows Windows
+
+These instructions assume a release build.
+
+\subsection inst_win_prerequisites Prerequisites
+
+Before building ObjectHandler you need to build log4cxx 0.9.7b.
+
+<ul>
+<li>download the log4cxx 0.9.7b zip from the QuantLib downloads page</li>
+<li>log4cxx should be unzipped to a path containing no spaces as the
+library seems to complain otherwise</li>
+<li>choose project \b static, configuration <b>Win32 Release</b>.</li>
+<li>build the chosen log4cxx project.  The resulting lib file is written
+to directory <tt>log4cxx-0.9.7\\msvc\\Lib</tt></li>
+<li>you need to manually set environment variable \c LOG4CXX_DIR to the
+top level log4cxx directory e.g. <tt>C:\\log4cxx-0.9.7b</tt></li>
+<li>if VC is running you need to restart it to pick up the new environment
+variable.</li>
+</ul>
+
+\subsection inst_win_installation Installation
+
+Determine which ObjectHandler project you need -
+
+<table border="1" cellspacing="3" cellpadding="3">
+<tr><td><b>Project</b></td><td><b>Description</b></td></tr>
+<tr><td>ohlib</td><td>static library to be linked into standalone C++
+applications</td></tr>
+<tr><td>ohxllib</td><td>static library with additional functionality
+for Excel, to be statically linked into a single client XLL</td></tr>
+<tr><td>ohxll</td><td>a standalone XLL comprising a global
+object repository which can be shared by other XLLs in the Excel
+session</td></tr> </table>
+
+Build the desired workspace, configuration <b>Win32 Release</b>.
+
+NB: The ohxll build of ObjectHandler requires a DLL version of the
+VC runtime library (i.e. <b>Debug CRTDLL</b> or <b>Release
+CRTDLL</b>).
+
+\subsection inst_win_usage Usage
+
+In order to link ObjectHandler into your own project, use the
+configuration that corresponds to your chosen build as summarized in
+the tables below.  Please refer to the example application indicated.
+
+\subsubsection inst_win_ohlib ohlib
+
+<table>
+<tr>
+<td><b>Project</b></td>
+<td>ohlib</td>
+</tr>
+<tr>
+<td><b>Description</b></td>
+<td>Core ObjectHandler C++ static library</td>
+</tr>
+<tr>
+<td><b>Example Client Application</b></td>
+<td>ExampleCpp</td>
+</tr>
+<tr>
+<td><b>Preprocessor Defines</b></td>
+<td>-</td>
+</tr>
+<tr>
+<td><b>Include Directories</b></td>
+<td>\$(OBJECT_HANDLER_DIR)</td>
+</tr>
+<tr>
+<td><b>Link Directories</b></td>
+<td>\$(OBJECT_HANDLER_DIR)\\lib<br>\$(LOG4CXX_DIR)\\msvc\\Lib</td>
+</tr>
+<tr>
+<td><b>Link Libraries</b></td>
+<td>ws2_32.lib</td>
+</tr>
+</table>
+
+\subsubsection inst_win_ohxllib ohxllib
+
+<table>
+<tr>
+<td><b>Project</b></td>
+<td>ohxllib</td>
+</tr>
+<tr>
+<td><b>Description</b></td>
+<td>Excel static library</td>
+</tr>
+<tr>
+<td><b>Example Client Application</b></td>
+<td>ExampleXllStatic</td>
+</tr>
+<tr>
+<td><b>Preprocessor Defines</b></td>
+<td>XLL_STATIC</td>
+</tr>
+<tr>
+<td><b>Include Directories</b></td>
+<td>\$(OBJECT_HANDLER_DIR)</td>
+</tr>
+<tr>
+<td><b>Link Directories</b></td>
+<td>\$(OBJECT_HANDLER_DIR)\\xlsdk\\lib<br>\$(OBJECT_HANDLER_DIR)\\ohxl\\ohxllib\\lib<br>\$(LOG4CXX_DIR)\\msvc\\Lib</td>
+</tr>
+<tr>
+<td><b>Link Libraries</b></td>
+<td>ws2_32.lib</td>
+</tr>
+</table>
+
+\subsubsection inst_win_ohxll ohxll
+
+<table>
+<tr>
+<td><b>Project</b></td>
+<td>ohxll</td>
+</tr>
+<tr>
+<td><b>Description</b></td>
+<td>Excel dynamic library</td>
+</tr>
+<tr>
+<td><b>Example Client Application</b></td>
+<td>ExampleXllDynamic</td>
+</tr>
+<tr>
+<td><b>Preprocessor Defines</b></td>
+<td>XLL_IMPORTS</td>
+</tr>
+<tr>
+<td><b>Include Directories</b></td>
+<td>\$(OBJECT_HANDLER_DIR)</td>
+</tr>
+<tr>
+<td><b>Link Directories</b></td>
+<td>\$(OBJECT_HANDLER_DIR)\\xlsdk\\lib<br>\$(OBJECT_HANDLER_DIR)\\ohxl\\ohxl\\xll</td>
+</tr>
+<tr>
+<td><b>Link Libraries</b></td>
+<td>-</td>
+</tr>
+</table>
+
+\subsection inst_win_include #include
+
+In all cases you need to add the following directive to your project's
+source file:
+\verbatim
+#include <oh/objhandler.hpp>
+\endverbatim
+
+\subsection inst_win_link Link
+
+Your project's link to the ObjectHandler library is established
+automatically by the directive
+\verbatim
+#pragma comment(lib, OBJHANDLER_LIB_NAME)
+\endverbatim
+in file <tt>oh/autolink.hpp</tt>
+
+The name of the library depends on your compiler and configuration.
+For example, if you're using VC8, configuration Release, the library
+is called
+\verbatim
+ObjectHandler-vc80-mt-s-0_1_4.lib
+\endverbatim
+
+The location of the library depends on which project you're using
+(ohlib/ohxllib/ohxll), please consult the tables above.
+
+\subsection inst_autoconf Autoconf
+
+\subsection inst_auto_prerequisites Prerequisites
+
+Before building ObjectHandler you need to build log4cxx.  Download the log4cxx
+tar file from the QuantLib downloads page and install as follows:
+\verbatim
+tar zxfv log4cxx-0.9.7b.tar.gz
+cd log4cxx-0.9.7b
+./autogen.sh
+./configure
+make
+make install
+\endverbatim
+
+For more details refer to the file \c INSTALL.
+
+\subsection inst_auto_installation Installation
+
+ObjectHandler is built in the standard way:
+
+\verbatim
+tar zxfv ObjectHandler-0.2.0.tar.gz
+cd ObjectHandler-0.2.0
+./configure
+make
+make install
+\endverbatim
+
+Under the default configuration the subsequent <tt>make install</tt>
+command installs libs to \c /usr/local/lib and header files to
+\c /usr/local/include, to override this behavior specify a different
+installation prefix using \c --prefix e.g.
+\verbatim
+./configure --prefix=$HOME/ObjectHandler
+\endverbatim
+
+\subsection inst_auto_usage Usage
+
+The header you need is
+\verbatim
+#include <oh/objhandler.hpp>
+\endverbatim
+
+To compile your program, ensure that the path containing the ObjectHandler
+header is among those searched by your compiler.  If you've installed
+ObjectHandler to a nonstandard location you might need to use the -I flag e.g.
+
+\verbatim
+g++ -I$HOME/ObjectHandler -c -o example.o example.cpp
+\endverbatim
+
+When linking your program use the -l option to tell gcc to link to the
+log4cxx and ObjectHandler libraries.
+
+If the directories containing the ObjectHandler and log4cxx libraries
+are not among the standard list of directories searched by gcc then you
+need to use the -L option to specify the path e.g.
+
+\verbatim
+g++ -o example example.o -L$HOME/ObjectHandler/lib 
+    -lObjectHandler -llog4cxx
+\endverbatim
+
+Finally having compiled your executable you need to ensure that your
+loader knows where to find the log4cxx and ObjectHandler libraries.
+If the paths containing these libraries are not among those searched by your
+loader then you need to specify them e.g.
+
+\verbatim
+export LD_LIBRARY_PATH=$HOME/ObjectHandler/lib
+\endverbatim
+
+*/
+
