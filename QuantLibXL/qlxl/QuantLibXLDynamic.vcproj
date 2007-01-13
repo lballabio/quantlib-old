@@ -386,12 +386,67 @@
 				RelativePath=".\Functions\volatilities.cpp">
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\conversions.cpp">
-		</File>
-		<File
-			RelativePath=".\conversions.hpp">
-		</File>
+		<Filter
+			Name="Conversions"
+			Filter="">
+			<File
+				RelativePath=".\Conversions\all.hpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\coercedate.cpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\coercedate.hpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\coercequote.cpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\coercequote.hpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\coercequotehandle.cpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\coercequotehandle.hpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\coercevector.hpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\matrixtooper.cpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\matrixtooper.hpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\opertomatrix.cpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\opertomatrix.hpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\opertoscalar.cpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\opertoscalar.hpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\opertovector.cpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\opertovector.hpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\scalartooper.cpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\scalartooper.hpp">
+			</File>
+			<File
+				RelativePath=".\Conversions\vectortooper.hpp">
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\session.cpp">
 		</File>

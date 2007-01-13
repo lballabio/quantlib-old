@@ -819,6 +819,9 @@
 			Name="Loop"
 			Filter="">
 			<File
+				RelativePath=".\qlo\Loop\loop_bonds.hpp">
+			</File>
+			<File
 				RelativePath="qlo\Loop\loop_calendar.hpp">
 			</File>
 			<File

@@ -50,9 +50,6 @@
 				RelativePath=".\pages\license.docs">
 			</File>
 			<File
-				RelativePath=".\auto.pages\functions.docs">
-			</File>
-			<File
 				RelativePath=".\pages\people.docs">
 			</File>
 		</Filter>

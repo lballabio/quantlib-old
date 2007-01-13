@@ -43,23 +43,7 @@
 			Name="pages"
 			>
 			<File
-				RelativePath=".\pages\build.quantlib.docs"
-				>
-			</File>
-			<File
-				RelativePath=".\pages\build.sourceforge.anonymous.docs"
-				>
-			</File>
-			<File
-				RelativePath=".\pages\build.sourceforge.developer.docs"
-				>
-			</File>
-			<File
 				RelativePath=".\pages\build.tutorial.docs"
-				>
-			</File>
-			<File
-				RelativePath=".\pages\build.vc.docs"
 				>
 			</File>
 			<File
@@ -68,10 +52,6 @@
 			</File>
 			<File
 				RelativePath=".\pages\design.docs"
-				>
-			</File>
-			<File
-				RelativePath=".\pages\evaluationdate.docs"
 				>
 			</File>
 			<File
@@ -151,6 +131,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\auto.pages\cmsmarket.docs"
+				>
+			</File>
+			<File
 				RelativePath=".\auto.pages\couponvectors.docs"
 				>
 			</File>
@@ -223,6 +207,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\auto.pages\quotes.docs"
+				>
+			</File>
+			<File
 				RelativePath=".\auto.pages\randomsequencegenerator.docs"
 				>
 			</File>
@@ -244,6 +232,14 @@
 			</File>
 			<File
 				RelativePath=".\auto.pages\shortratemodels.docs"
+				>
+			</File>
+			<File
+				RelativePath=".\auto.pages\simplecashflow.docs"
+				>
+			</File>
+			<File
+				RelativePath=".\auto.pages\smilesection.docs"
 				>
 			</File>
 			<File
@@ -297,6 +293,14 @@
 		</File>
 		<File
 			RelativePath=".\qla_header.subdir.html"
+			>
+		</File>
+		<File
+			RelativePath=".\qla_headeronline.html"
+			>
+		</File>
+		<File
+			RelativePath=".\qla_headeronline.subdir.html"
 			>
 		</File>
 		<File

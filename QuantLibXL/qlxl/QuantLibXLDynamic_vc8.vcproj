@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="QuantLibXLDynamic"
-	ProjectGUID="{0D4D2F44-4491-4412-9782-A9F6D5ACB5E4}"
+	ProjectGUID="{10DC0D9D-ABB3-4737-B14D-4FFAD4810A72}"
 	RootNamespace="QuantLibXLDynamic"
 	>
 	<Platforms>
@@ -529,14 +529,86 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\conversions.cpp"
+		<Filter
+			Name="Conversions"
 			>
-		</File>
-		<File
-			RelativePath=".\conversions.hpp"
-			>
-		</File>
+			<File
+				RelativePath=".\Conversions\all.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\coercedate.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\coercedate.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\coercequote.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\coercequote.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\coercequotehandle.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\coercequotehandle.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\coercevector.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\matrixtooper.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\matrixtooper.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\opertomatrix.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\opertomatrix.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\opertoscalar.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\opertoscalar.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\opertovector.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\opertovector.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\scalartooper.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\scalartooper.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\vectortooper.hpp"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\session.cpp"
 			>

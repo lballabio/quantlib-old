@@ -106,188 +106,203 @@
 			Name="import"
 			Filter="">
 			<File
-				RelativePath="import\addin.py">
+				RelativePath=".\import\addin.py">
 			</File>
 			<File
-				RelativePath="import\addinc.py">
+				RelativePath=".\import\addinc.py">
 			</File>
 			<File
-				RelativePath="import\addincalc.py">
+				RelativePath=".\import\addincalc.py">
 			</File>
 			<File
-				RelativePath="import\addindoxygen.py">
+				RelativePath=".\import\addindoxygen.py">
 			</File>
 			<File
-				RelativePath="import\addinexcel.py">
+				RelativePath=".\import\addinexcel.py">
 			</File>
 			<File
-				RelativePath="import\addinguile.py">
+				RelativePath=".\import\addinguile.py">
 			</File>
 			<File
-				RelativePath="import\addinqla.py">
+				RelativePath=".\import\addinqla.py">
 			</File>
 			<File
-				RelativePath="import\behavior.py">
+				RelativePath=".\import\behavior.py">
 			</File>
 			<File
-				RelativePath="import\buffer.py">
+				RelativePath=".\import\buffer.py">
 			</File>
 			<File
-				RelativePath="import\category.py">
+				RelativePath=".\import\category.py">
 			</File>
 			<File
-				RelativePath="import\code.py">
+				RelativePath=".\import\code.py">
 			</File>
 			<File
-				RelativePath="import\common.py">
+				RelativePath=".\import\common.py">
 			</File>
 			<File
-				RelativePath="import\config.py">
+				RelativePath=".\import\config.py">
 			</File>
 			<File
-				RelativePath="import\enumeration.py">
+				RelativePath=".\import\enumeration.py">
 			</File>
 			<File
-				RelativePath="import\factory.py">
+				RelativePath=".\import\factory.py">
 			</File>
 			<File
-				RelativePath="import\function.py">
+				RelativePath=".\import\function.py">
 			</File>
 			<File
-				RelativePath="import\log.py">
+				RelativePath=".\import\log.py">
 			</File>
 			<File
-				RelativePath="import\loop.py">
+				RelativePath=".\import\loop.py">
 			</File>
 			<File
-				RelativePath="import\outputfile.py">
+				RelativePath=".\import\outputfile.py">
 			</File>
 			<File
-				RelativePath="import\parameter.py">
+				RelativePath=".\import\parameter.py">
 			</File>
 			<File
-				RelativePath="import\parameterlist.py">
+				RelativePath=".\import\parameterlist.py">
 			</File>
 			<File
-				RelativePath="import\rule.py">
+				RelativePath=".\import\rule.py">
 			</File>
 			<File
-				RelativePath="import\serializable.py">
+				RelativePath=".\import\serializable.py">
 			</File>
 			<File
-				RelativePath="import\serializer.py">
+				RelativePath=".\import\serializer.py">
 			</File>
 			<File
-				RelativePath="import\singleton.py">
+				RelativePath=".\import\singleton.py">
 			</File>
 			<File
-				RelativePath="import\utilities.py">
+				RelativePath=".\import\utilities.py">
 			</File>
 			<File
-				RelativePath="import\valueobjects.py">
+				RelativePath=".\import\valueobjects.py">
 			</File>
 			<File
-				RelativePath="import\xmlreader.py">
+				RelativePath=".\import\xmlreader.py">
 			</File>
 		</Filter>
 		<Filter
 			Name="stubs"
 			Filter="">
 			<File
-				RelativePath="stubs\stub.c.function">
+				RelativePath=".\stubs\stub.c.function">
 			</File>
 			<File
-				RelativePath="stubs\stub.c.header">
+				RelativePath=".\stubs\stub.c.header">
 			</File>
 			<File
-				RelativePath="stubs\stub.c.includes">
+				RelativePath=".\stubs\stub.c.includes">
 			</File>
 			<File
-				RelativePath="stubs\stub.calc.function">
+				RelativePath=".\stubs\stub.calc.category">
 			</File>
 			<File
-				RelativePath="stubs\stub.calc.idlfoot">
+				RelativePath=".\stubs\stub.calc.function">
 			</File>
 			<File
-				RelativePath="stubs\stub.calc.idlfunc">
+				RelativePath=".\stubs\stub.calc.header">
 			</File>
 			<File
-				RelativePath="stubs\stub.calc.idlhead">
+				RelativePath=".\stubs\stub.calc.idlfunc">
 			</File>
 			<File
-				RelativePath="stubs\stub.calc.includes">
+				RelativePath=".\stubs\stub.calc.idlhead">
 			</File>
 			<File
-				RelativePath="stubs\stub.calc.map">
+				RelativePath=".\stubs\stub.calc.includes">
 			</File>
 			<File
-				RelativePath="stubs\stub.doxygen.categories">
+				RelativePath=".\stubs\stub.calc.loop">
 			</File>
 			<File
-				RelativePath="stubs\stub.doxygen.enums">
+				RelativePath=".\stubs\stub.calc.map">
 			</File>
 			<File
-				RelativePath="stubs\stub.doxygen.header">
+				RelativePath=".\stubs\stub.doxygen.categories">
 			</File>
 			<File
-				RelativePath="stubs\stub.enum.classes">
+				RelativePath=".\stubs\stub.doxygen.enums">
 			</File>
 			<File
-				RelativePath="stubs\stub.enum.types">
+				RelativePath=".\stubs\stub.doxygen.file">
 			</File>
 			<File
-				RelativePath="stubs\stub.excel.function">
+				RelativePath=".\stubs\stub.doxygen.function">
 			</File>
 			<File
-				RelativePath="stubs\stub.excel.loop">
+				RelativePath=".\stubs\stub.doxygen.header">
 			</File>
 			<File
-				RelativePath="stubs\stub.excel.numfunc">
+				RelativePath=".\stubs\stub.enum.classes">
 			</File>
 			<File
-				RelativePath="stubs\stub.excel.register.call">
+				RelativePath=".\stubs\stub.enum.types">
 			</File>
 			<File
-				RelativePath="stubs\stub.excel.register.file">
+				RelativePath=".\stubs\stub.excel.function">
 			</File>
 			<File
-				RelativePath="stubs\stub.excel.register.function">
+				RelativePath=".\stubs\stub.excel.loop">
 			</File>
 			<File
-				RelativePath="stubs\stub.func.constructor">
+				RelativePath=".\stubs\stub.excel.numfunc">
 			</File>
 			<File
-				RelativePath="stubs\stub.func.member">
+				RelativePath=".\stubs\stub.excel.register.call">
 			</File>
 			<File
-				RelativePath="stubs\stub.func.procedure">
+				RelativePath=".\stubs\stub.excel.register.file">
 			</File>
 			<File
-				RelativePath="stubs\stub.guile.function">
+				RelativePath=".\stubs\stub.excel.register.function">
 			</File>
 			<File
-				RelativePath="stubs\stub.guile.includes">
+				RelativePath=".\stubs\stub.func.constructor">
 			</File>
 			<File
-				RelativePath="stubs\stub.guile.initfunc">
+				RelativePath=".\stubs\stub.func.member">
 			</File>
 			<File
-				RelativePath="stubs\stub.loop.bind">
+				RelativePath=".\stubs\stub.func.procedure">
 			</File>
 			<File
-				RelativePath="stubs\stub.qla.mainheader">
+				RelativePath=".\stubs\stub.guile.function">
 			</File>
 			<File
-				RelativePath="stubs\stub.vo.class.body">
+				RelativePath=".\stubs\stub.guile.header">
 			</File>
 			<File
-				RelativePath="stubs\stub.vo.class.decl">
+				RelativePath=".\stubs\stub.guile.includes">
 			</File>
 			<File
-				RelativePath="stubs\stub.vo.includes.body">
+				RelativePath=".\stubs\stub.guile.initfunc">
 			</File>
 			<File
-				RelativePath="stubs\stub.vo.includes.decl">
+				RelativePath=".\stubs\stub.loop.bind">
+			</File>
+			<File
+				RelativePath=".\stubs\stub.qla.mainheader">
+			</File>
+			<File
+				RelativePath=".\stubs\stub.vo.class.body">
+			</File>
+			<File
+				RelativePath=".\stubs\stub.vo.class.decl">
+			</File>
+			<File
+				RelativePath=".\stubs\stub.vo.includes.body">
+			</File>
+			<File
+				RelativePath=".\stubs\stub.vo.includes.decl">
 			</File>
 		</Filter>
 		<Filter

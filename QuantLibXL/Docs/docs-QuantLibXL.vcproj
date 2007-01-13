@@ -86,9 +86,6 @@
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\mathf.docs">
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\ohfunctions.docs">
-			</File>
-			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\optimization.docs">
 			</File>
 			<File
@@ -107,6 +104,9 @@
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\processes.docs">
 			</File>
 			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\quotes.docs">
+			</File>
+			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\randomsequencegenerator.docs">
 			</File>
 			<File
@@ -123,6 +123,12 @@
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\shortratemodels.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\simplecashflow.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\smilesection.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\statistics.docs">
@@ -173,6 +179,12 @@
 			<File
 				RelativePath=".\pages\people.docs">
 			</File>
+			<File
+				RelativePath=".\pages\topics.docs">
+			</File>
+			<File
+				RelativePath=".\pages\trigger.docs">
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\Makefile.vc">
@@ -188,6 +200,12 @@
 		</File>
 		<File
 			RelativePath=".\qlxl_header.subdir.html">
+		</File>
+		<File
+			RelativePath=".\qlxl_headeronline.html">
+		</File>
+		<File
+			RelativePath=".\qlxl_headeronline.subdir.html">
 		</File>
 		<File
 			RelativePath=".\quantlibxl.auto.doxy">

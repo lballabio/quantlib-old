@@ -42,163 +42,171 @@
 			Name="auto.pages"
 			>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\all.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\all.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\assetswap.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\assetswap.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\bonds.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\bonds.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\calendar.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\calendar.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\capfloor.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\capfloor.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\capletvolstructure.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\capletvolstructure.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\categories.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\categories.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\cmsmarket.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\cmsmarket.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\couponvectors.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\couponvectors.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\date.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\date.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\daycounter.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\daycounter.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\enums.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\enums.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\exercise.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\exercise.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\forwardrateagreement.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\forwardrateagreement.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\index.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\index.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\instruments.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\instruments.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\interpolation.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\interpolation.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\marketmodels.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\marketmodels.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\mathf.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\mathf.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\ohfunctions.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\optimization.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\optimization.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\options.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\options.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\payoffs.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\payoffs.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\prices.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\prices.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\pricingengines.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\pricingengines.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\processes.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\processes.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\quotes.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\randomsequencegenerator.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\randomsequencegenerator.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\ratehelpers.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\ratehelpers.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\schedule.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\schedule.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\sequencestatistics.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\sequencestatistics.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\settings.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\settings.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\shortratemodels.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\shortratemodels.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\statistics.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\simplecashflow.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\swap.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\smilesection.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\swaption.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\statistics.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\swaptionvolstructure.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\swap.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\termstructures.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\swaption.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\utilities.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\swaptionvolstructure.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\vanillaswap.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\termstructures.docs"
 				>
 			</File>
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\volatilities.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\utilities.docs"
+				>
+			</File>
+			<File
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\vanillaswap.docs"
+				>
+			</File>
+			<File
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\volatilities.docs"
 				>
 			</File>
 		</Filter>
@@ -233,6 +241,14 @@
 				RelativePath=".\pages\people.docs"
 				>
 			</File>
+			<File
+				RelativePath=".\pages\topics.docs"
+				>
+			</File>
+			<File
+				RelativePath=".\pages\trigger.docs"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\Makefile.vc"
@@ -252,6 +268,14 @@
 		</File>
 		<File
 			RelativePath=".\qlxl_header.subdir.html"
+			>
+		</File>
+		<File
+			RelativePath=".\qlxl_headeronline.html"
+			>
+		</File>
+		<File
+			RelativePath=".\qlxl_headeronline.subdir.html"
 			>
 		</File>
 		<File
