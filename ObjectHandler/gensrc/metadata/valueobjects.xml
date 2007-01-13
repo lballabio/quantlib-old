@@ -1,0 +1,54 @@
+<Category name='valueobjects'>
+  <description>value objects</description>
+  <displayName>Value Objects</displayName>
+  <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
+  <includes/>
+
+  <copyright>
+    Copyright (C) 2004, 2005 Ferdinando Ametrano
+    Copyright (C) 2004, 2005, 2006 Eric Ehlers
+    Copyright (C) 2005, 2006 Plamen Neykov
+    Copyright (C) 2004 StatPro Italia srl
+  </copyright>
+
+  <Functions>
+
+    <Member name='ohPropertyNames' objectClass='Object'>
+      <description>retrieve the property names of a given object</description>
+      <libraryFunction>propertyNames</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='ohPropertyValue' objectClass='Object' dependencyTrigger='true'>
+      <description>retrieve the value of a named property</description>
+      <libraryFunction>propertyValue</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='fieldName'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>name of property</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+
+</Category>

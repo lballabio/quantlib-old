@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="docs"
+	ProjectGUID="{8CC19C10-6F1F-40AA-ADBF-12FDF6ED36A2}"
+	Keyword="MakeFileProj">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="All|Win32"
+			OutputDirectory="build\vc"
+			IntermediateDirectory="build\vc"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="NMAKE /f &quot;Makefile.vc&quot;"
+				ReBuildCommandLine="NMAKE /f &quot;Makefile.vc&quot; /a"
+				CleanCommandLine="NMAKE /f &quot;Makefile.vc&quot; /clean"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="pages"
+			Filter="">
+			<File
+				RelativePath=".\pages\design.docs">
+			</File>
+			<File
+				RelativePath=".\pages\examples.docs">
+			</File>
+			<File
+				RelativePath=".\pages\excelbinding.docs">
+			</File>
+			<File
+				RelativePath=".\pages\history.docs">
+			</File>
+			<File
+				RelativePath=".\pages\index.docs">
+			</File>
+			<File
+				RelativePath=".\pages\installation.docs">
+			</File>
+			<File
+				RelativePath=".\pages\license.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\functions.docs">
+			</File>
+			<File
+				RelativePath=".\pages\people.docs">
+			</File>
+		</Filter>
+		<File
+			RelativePath=".\Makefile.vc">
+		</File>
+		<File
+			RelativePath=".\objecthandler.doxy">
+		</File>
+		<File
+			RelativePath=".\oh_footer.html">
+		</File>
+		<File
+			RelativePath=".\oh_header.html">
+		</File>
+		<File
+			RelativePath=".\oh_headeronline.html">
+		</File>
+		<File
+			RelativePath=".\style.css">
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

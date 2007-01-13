@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="ohgensrc"
+	ProjectGUID="{19C36A53-51F2-4951-9A38-CCF6A250814F}"
+	Keyword="MakeFileProj">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="All|Win32"
+			OutputDirectory="build\vc"
+			IntermediateDirectory="build\vc"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="NMAKE /f &quot;Makefile.vc&quot;"
+				ReBuildCommandLine="NMAKE /f &quot;Makefile.vc&quot; /a"
+				CleanCommandLine="NMAKE /f &quot;Makefile.vc&quot; clean"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="config"
+			Filter="">
+			<File
+				RelativePath="config\config.xml">
+			</File>
+			<File
+				RelativePath="config\excel.xml">
+			</File>
+		</Filter>
+		<Filter
+			Name="metadata"
+			Filter="">
+			<File
+				RelativePath=".\metadata\demo.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\garbagecollection.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\logging.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\ohutils.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\valueobjects.xml">
+			</File>
+		</Filter>
+		<Filter
+			Name="scripts"
+			Filter="">
+			<File
+				RelativePath="scripts\gensrc.py">
+			</File>
+		</Filter>
+		<Filter
+			Name="stubs"
+			Filter="">
+			<File
+				RelativePath="stubs\stub.copyright">
+			</File>
+			<File
+				RelativePath="stubs\stub.excel.exports">
+			</File>
+			<File
+				RelativePath="stubs\stub.excel.includes">
+			</File>
+		</Filter>
+		<File
+			RelativePath="Makefile.vc">
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

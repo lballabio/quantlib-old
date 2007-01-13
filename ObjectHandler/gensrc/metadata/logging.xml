@@ -1,0 +1,128 @@
+<Category name='logging'>
+  <description>logging functions</description>
+  <displayName>Logging Functions</displayName>
+  <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
+  <includes/>
+
+  <copyright>
+    Copyright (C) 2004, 2005 Ferdinando Ametrano
+    Copyright (C) 2004, 2005, 2006 Eric Ehlers
+    Copyright (C) 2005, 2006 Plamen Neykov
+    Copyright (C) 2004 StatPro Italia srl
+  </copyright>
+
+  <Functions>
+
+    <Procedure name='ohLogAllObjects'>
+      <description>write all object descriptions to log file</description>
+      <alias>ObjHandler::logAllObjects</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohLogMessage'>
+      <description>log a message</description>
+      <alias>ObjHandler::logMessage</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='logMessage'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>message to be logged</description>
+          </Parameter>
+          <Parameter name='logLevel' default='4'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>threshold for log messages</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohLogObject'>
+      <description>write object description to log file</description>
+      <alias>ObjHandler::logObject</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='objectID'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of object to be logged</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohSetLogFile'>
+      <description>begin logging to named file</description>
+      <alias>ObjHandler::setLogFile</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='logFileName'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>path and name of log file</description>
+          </Parameter>
+          <Parameter name='logLevel' default='4'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>threshold for log messages</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohSetLogLevel'>
+      <description>set threshold for log messages</description>
+      <alias>ObjHandler::setLogLevel</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='logLevel'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>threshold for log messages</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+        <description>returns new logging threshold</description>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+
+</Category>

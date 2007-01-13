@@ -1,0 +1,81 @@
+<Category name='garbagecollection'>
+  <description>garbage collection</description>
+  <displayName>Garbage Collection</displayName>
+  <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
+  <includes/>
+
+  <copyright>
+    Copyright (C) 2004, 2005 Ferdinando Ametrano
+    Copyright (C) 2004, 2005, 2006 Eric Ehlers
+    Copyright (C) 2005, 2006 Plamen Neykov
+    Copyright (C) 2004 StatPro Italia srl
+  </copyright>
+
+  <Functions>
+
+    <Procedure name='ohCollectGarbage'>
+      <description>delete orphaned objects from repository</description>
+      <alias>ObjHandler::ObjectHandlerXL::instance().collectGarbage</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='deletePermanent' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>also delete permanent objects (default FALSE)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohDeleteAllObjects'>
+      <description>delete all objects from repository</description>
+      <alias>ObjHandler::ObjectHandlerXL::instance().deleteAllObjects</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='deletePermanent' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>also delete permanent objects (default FALSE)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohDeleteObject'>
+      <description>delete object from repository</description>
+      <alias>ObjHandler::ObjectHandlerXL::instance().deleteObject</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectID'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of object to be deleted</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+
+</Category>

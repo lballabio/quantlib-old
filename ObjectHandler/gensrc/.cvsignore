@@ -1,0 +1,6 @@
+build
+Makefile
+Makefile.in
+.time-stamp
+*.user
+

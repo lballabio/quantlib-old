@@ -1,0 +1,250 @@
+<Category name='ohutils'>
+  <description>objecthandler utilities</description>
+  <displayName>ObjectHandler Utilities</displayName>
+  <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
+  <includes/>
+
+  <copyright>
+    Copyright (C) 2004, 2005, 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2004, 2005, 2006 Eric Ehlers
+    Copyright (C) 2005, 2006 Plamen Neykov
+    Copyright (C) 2004 StatPro Italia srl
+  </copyright>
+
+  <Functions>
+
+    <Procedure name='ohTrigger' dependencyTrigger='false'>
+      <description>forces a dependency between two functions and returns the update counter</description>
+      <alias>ObjHandler::dependsOn</alias>
+      <SupportedPlatforms>
+        <Excel implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='dummy0' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy1' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy2' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy3' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy4' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy5' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy6' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy7' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy8' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy9' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohFunctionCount'>
+      <description>returns the number of functions in this addin</description>
+      <alias>ObjHandler::version</alias>
+      <SupportedPlatforms>
+        <Excel implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohListObjectIDs'>
+      <description>list the IDs of objects in repository matching regex</description>
+      <alias>ObjHandler::ObjectHandlerXL::instance().listObjectIDs</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='regex'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>optional matching pattern in UNIX format (wildcard is .*)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectCount'>
+      <description>#/objects in repository</description>
+      <alias>ObjHandler::ObjectHandlerXL::instance().objectCount</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohPack'>
+      <description>trim error values from bottom/right of matrix/vector</description>
+      <alias>ObjHandler::ObjectHandlerXL::instance().packMatrix</alias>
+      <SupportedPlatforms>
+        <Excel implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='inputRange'>
+            <type>any</type>
+            <tensorRank>matrix</tensorRank>
+            <description>scalar/vector/matrix of values to be packed</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohSplit' dependencyTrigger='False'>
+      <description>Splits a string using delimiters</description>
+      <alias>ObjHandler::split</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='text'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>string to be parsed</description>
+          </Parameter>
+          <Parameter name='delimiters' default='",;"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>characters used as delimiters: each single character is used as delimiter (default = \";,\")</description>
+          </Parameter>
+          <Parameter name='concatenateDelim' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>specifies if multiple adjacent delimiters are to be considered as one (TRUE) or not (FALSE). Default value is FALSE.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohFilter' dependencyTrigger='False'>
+      <description>Filters the first vector using the second one as boolean inclusion flags</description>
+      <alias>ObjHandler::filter</alias>
+      <xlWizardRecalc>true</xlWizardRecalc>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='input'>
+            <type>any</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector to be filtered</description>
+          </Parameter>
+          <Parameter name='flags'>
+            <type>bool</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector to inclusion flags</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohRetrieveError'>
+      <description>retrieve error message associated with a given range</description>
+      <alias>ObjHandler::ObjectHandlerXL::instance().retrieveError</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='range'>
+            <type>reference</type>
+            <tensorRank>scalar</tensorRank>
+            <description>range to query</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohVersion'>
+      <description>returns the version number of ObjectHandler</description>
+      <alias>ObjHandler::version</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+
+</Category>

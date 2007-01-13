@@ -1,0 +1,22 @@
+<Config>
+
+  <prefix>oh</prefix>
+  <excelRootDirectory>ohxl</excelRootDirectory>
+  <namespaceObjects>ObjHandler</namespaceObjects>
+  <namespaceLibrary>ObjHandler</namespaceLibrary>
+  <voRootDirectory>oh/ValueObjects</voRootDirectory>
+  <loopRootDirectory>oh/Loop</loopRootDirectory>
+  <libRootDirectory>oh</libRootDirectory>
+
+  <categoryNames>
+    <categoryName>demo</categoryName>
+    <categoryName>garbagecollection</categoryName>
+    <categoryName>logging</categoryName>
+    <categoryName>ohutils</categoryName>
+    <categoryName>valueobjects</categoryName>
+  </categoryNames>
+
+  <implicitConversions/>
+
+</Config>
+

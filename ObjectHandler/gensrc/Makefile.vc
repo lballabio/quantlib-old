@@ -1,0 +1,36 @@
+# ObjectHandler\gensrc\Makefile.vc
+
+!INCLUDE $(GENSRC_DIR)\dependencies.vc
+
+BUILD_DIR=build\vc
+BUILDFLAG=$(BUILD_DIR)\buildflag
+SCRIPT=scripts\gensrc.py
+
+METADATA=   metadata\demo.xml \
+            metadata\garbagecollection.xml \
+            metadata\logging.xml \
+            metadata\ohutils.xml \
+            metadata\valueobjects.xml
+
+CONFIG=     config\config.xml \
+            config\excel.xml
+
+STUBS=      stubs\stub.copyright \
+            stubs\stub.excel.exports \
+            stubs\stub.excel.includes
+
+INPUTS = $(METADATA) $(CONFIG) $(STUBS) $(CORE_DEPENDENCIES)
+
+ALL : $(BUILDFLAG)
+
+$(BUILD_DIR) :
+    if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
+
+$(BUILDFLAG) : $(SCRIPT) $(INPUTS) $(BUILD_DIR)
+    set PYTHONPATH=$(PYTHONPATH);$(GENSRC_DIR)\import
+	$(SCRIPT)
+	echo flagged > $@
+
+CLEAN :
+	-@ if EXIST $(BUILD_DIR)\* del /f /q $(BUILD_DIR)\*
+

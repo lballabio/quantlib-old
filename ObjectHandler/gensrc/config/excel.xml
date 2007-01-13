@@ -1,0 +1,6 @@
+<root>
+
+  <exportSymbols>true</exportSymbols>
+  <Buffer name='exportStub' fileName='stub.excel.exports' local='true'/>
+
+</root>
