@@ -56,9 +56,11 @@ AC_CONFIG_FILES([
     Examples/xl/Makefile
     gensrc/Makefile
     Makefile
+    oh/Conversions/Makefile
+    oh/Loop/Makefile
+    oh/ValueObjects/Makefile
     oh/Makefile
     ohxl/Makefile
     xlsdk/Makefile ])
 AC_OUTPUT
-
 

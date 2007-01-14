@@ -1,6 +1,9 @@
 
 SUBDIRS = \
     gensrc \
+    oh/Conversions \
+    oh/Loop \
+    oh/ValueObjects \
     oh \
     ohxl \
     xlsdk \

@@ -360,7 +360,13 @@
             </tensorRanks>
             <DataTypes>
                 <object codeID='code64'/>
-                <libToHandle codeID='code62'/>
+                <!--libToHandle codeID='code62'/-->
+                <libToHandle>
+                    <DataValues>
+                        <DataValue name='Quote' codeID='code62b'/>
+                        <DataValue name='other' codeID='code62a'/>
+                    </DataValues>
+                </libToHandle>
                 <libraryClass codeID='code51'/>
             </DataTypes>
         </SubRule>

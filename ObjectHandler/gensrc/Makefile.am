@@ -1,6 +1,10 @@
 # gensrc.py probably needs to be re-executed if any of these change
 
-GENSRC_INPUT := metadata/functions.xml
+GENSRC_INPUT := metadata/demo.xml \
+                metadata/garbagecollection.xml \
+                metadata/logging.xml \
+                metadata/ohutils.xml \
+                metadata/valueobjects.xml
 
 GENSRC_PYS := scripts/gensrc.py
 

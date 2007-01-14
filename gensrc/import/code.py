@@ -310,11 +310,11 @@ std::vector<std::vector<boost::any> > returnValue = ''',
 
 'code44' : '''\
         std::string %(name)sCpp;
-        calcToScalar(%(name)sCpp, %(name)s%(parameters)s);\n''',
+        calcToScalar(%(name)sCpp, %(name)s);\n''',
 
 'code45' : '''\
         %(type)s %(name)sCpp;
-        calcToScalar(%(name)sCpp, %(name)s%(parameters)s);\n''',
+        calcToScalar(%(name)sCpp, %(name)s);\n''',
 
 'code46' : '''\
         std::vector<std::string> %(name)sCpp;
@@ -350,7 +350,7 @@ std::vector<std::vector<boost::any> > returnValue = ''',
 
 'code52' : '''\
         %(enumeration)s %(name)sEnum =
-            %(namespaceObjects)s::Create<%(enumeration)s>()(%(name)sCpp%(parameters)s);\n''',
+            %(namespaceObjects)s::Create<%(enumeration)s>()(%(name)sCpp);\n''',
 
 'code53' : '''\
         sal_Int32 returnValueCalc;
@@ -402,10 +402,22 @@ std::vector<std::vector<boost::any> > returnValue = ''',
         %(tensorRank)sToCalc(returnValueCalc, returnValue);
         return returnValueCalc;\n''',
 
-'code62' : '''\
+#'code62' : '''\
+#        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
+#            ObjHandler::libToHandle<%(namespaceLibrary)s::%(libToHandle)s, %(namespaceObjects)s::%(libToHandle)s>(
+#            %(name)sCpp);\n''',
+
+'code62a' : '''\
+        OH_GET_OBJECT(%(name)sTemp, %(name)sCpp, ObjHandler::Object)
         %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
-            ObjHandler::libToHandle<%(namespaceLibrary)s::%(libToHandle)s, %(namespaceObjects)s::%(libToHandle)s>(
-            %(name)sCpp);\n''',
+            ObjHandler::CoerceHandle<
+                %(namespaceObjects)s::%(libToHandle)s,
+                %(namespaceLibrary)s::%(libToHandle)s>()(
+                    %(name)sTemp);\n''',
+
+'code62b' : '''\
+        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
+            ObjHandler::CoerceQuoteHandle()(*%(name)sCpp);\n''',
 
 'code63' : '''\
         %(libraryType)s %(name)sLib = calcToQlMatrix(%(name)s);\n''',

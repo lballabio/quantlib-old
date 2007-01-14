@@ -1,6 +1,6 @@
 #include <qlo/qladdindefines.hpp>
 #include <qlo/typefactory.hpp>
-#include <qlo/conversions.hpp>
+#include <qlo/Conversions/all.hpp>
 %(categoryIncludes)s
 #include <Addins/Calc/qladdin.hpp>
 #include <Addins/Calc/calcutils.hpp>
