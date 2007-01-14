@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -83,18 +83,15 @@ DLLEXPORT char *createAccount(
         long *accountNumber,
         char *accountType,
         OPER *permanent) {
-    boost::shared_ptr < ObjHandler::FunctionCall > functionCall;
+    ObjHandler::FunctionCall functionCall("createAccount");
     try {
-        functionCall = boost::shared_ptr < ObjHandler::FunctionCall > 
-            ( new ObjHandler::FunctionCall("createAccount") );
         ObjHandler::ObjectHandlerXL::instance().resetCaller(true);
 
         bool permanentCpp;
-        ObjHandler::operToScalar( permanentCpp, *permanent, false );
+        ObjHandler::operToScalar(*permanent, permanentCpp, false);
 
-        boost::shared_ptr < ObjHandler::Object > objectPointer(new AccountObject(
-            *accountNumber,
-            accountType));
+        boost::shared_ptr<ObjHandler::Object> objectPointer(new AccountObject(
+            *accountNumber, accountType));
         objectPointer->setProperties(
             boost::shared_ptr<ObjHandler::ValueObject>(
             new AccountValueObject(objectID, *accountNumber, accountType)));
@@ -104,55 +101,47 @@ DLLEXPORT char *createAccount(
             ObjHandler::ObjectHandler::instance().storeObject(objectID, objectPointer);
 
         static char ret[XL_MAX_STR_LEN];
-        ObjHandler::stringToChar(ret, returnValue);
+        ObjHandler::stringToChar(returnValue, ret);
         return ret;
     } catch (const std::exception &e) {
         std::ostringstream err;
-        err << "Error: createAccount - ";
-        if (functionCall) err << functionCall->getAddressString() << " - ";
-        err << e.what();
+        err << "Error: createAccount - "  
+            << functionCall.getAddressString() 
+            << " - " << e.what();
         ObjHandler::logMessage(err.str(), 2);
         return 0;
     }
 }
 
 DLLEXPORT short int *setBalance(char *objectID, long *balance) {
-    boost::shared_ptr < ObjHandler::FunctionCall > functionCall;
+    ObjHandler::FunctionCall functionCall("createAccount");
     try {
-        functionCall = boost::shared_ptr < ObjHandler::FunctionCall > 
-            ( new ObjHandler::FunctionCall("createAccount") );
-
         OH_GET_OBJECT(accountObject, objectID, AccountObject)
-
         accountObject->setBalance(*balance);
         static short int ret = TRUE;
         return &ret;
     } catch (const std::exception &e) {
         std::ostringstream err;
-        err << "Error: setBalance - ";
-        if (functionCall) err << functionCall->getAddressString() << " - ";
-        err << e.what();
+        err << "Error: setBalance - "
+            << functionCall.getAddressString() 
+            << " - " << e.what();
         ObjHandler::logMessage(err.str(), 2);
         return 0;
     }
 }
 
 DLLEXPORT long *getBalance(char *objectID, OPER *trigger) {
-    boost::shared_ptr < ObjHandler::FunctionCall > functionCall;
+    ObjHandler::FunctionCall functionCall("createAccount");
     try {
-        functionCall = boost::shared_ptr < ObjHandler::FunctionCall > 
-            ( new ObjHandler::FunctionCall("createAccount") );
-
         OH_GET_OBJECT(accountObject, objectID, AccountObject)
-
         static long ret;
         ret = accountObject->getBalance();
         return &ret;
     } catch (const std::exception &e) {
         std::ostringstream err;
-        err << "Error: getBalance - ";
-        if (functionCall) err << functionCall->getAddressString() << " - ";
-        err << e.what();
+        err << "Error: getBalance - "
+            << functionCall.getAddressString() 
+            << " - " << e.what();
         ObjHandler::logMessage(err.str(), 2);
         return 0;
     }

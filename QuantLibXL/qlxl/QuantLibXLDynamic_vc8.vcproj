@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="QuantLibXLDynamic"
-	ProjectGUID="{10DC0D9D-ABB3-4737-B14D-4FFAD4810A72}"
+	ProjectGUID="{0D4D2F44-4491-4412-9782-A9F6D5ACB5E4}"
 	RootNamespace="QuantLibXLDynamic"
 	>
 	<Platforms>

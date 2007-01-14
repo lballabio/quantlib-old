@@ -318,8 +318,8 @@ over the QuantLibXL name:
 <table>
 <tr>
 <td><b>Feature</b></td>
-<td><b>QuantLibXL</b></td>
-<td><b>%QuantLibAddin</b></td>
+<td><b>QuantLibXL 0.3.8</b></td>
+<td><b>%QuantLibAddin/QuantLibXL 0.3.13+</b></td>
 </tr>
 <tr>
 <td><b>Design</b></td>

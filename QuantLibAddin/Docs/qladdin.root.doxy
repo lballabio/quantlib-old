@@ -79,6 +79,7 @@ WARN_LOGFILE           = doxywarnings.txt
 #---------------------------------------------------------------------------
 
 INPUT                  = ./pages \
+                         ../../QuantLibXL/Docs/pages/functional.docs \
                          ../../QuantLibXL/Docs/pages/topics.docs \
                          ../../QuantLibXL/Docs/pages/trigger.docs \
                          ../../QuantLibXL/Docs/pages/evaluationdate.docs
