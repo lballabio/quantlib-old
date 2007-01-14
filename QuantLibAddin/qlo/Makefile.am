@@ -9,6 +9,7 @@ EXTRA_DIST = \
     auto_link.hpp
 
 include_HEADERS = \
+    analysis.hpp \
     asianoption.hpp \
     assetswap.hpp \
     barrieroption.hpp \
@@ -19,7 +20,6 @@ include_HEADERS = \
     cliquetoption.hpp \
     cmsmarket.hpp \
     config.hpp \
-    conversions.hpp \
     couponvectors.hpp \
     date.hpp \
     dividendvanillaoption.hpp \
@@ -44,12 +44,15 @@ include_HEADERS = \
     qladdin.hpp \
     quantoforwardvanillaoption.hpp \
     quantovanillaoption.hpp \
+    quotes.hpp \
     randomsequencegenerator.hpp \
     ratehelpers.hpp \
     schedule.hpp \
     sequencestatistics.hpp \
     settings.hpp \
     shortratemodels.hpp \
+    simplecashflow.hpp \
+    smilesection.hpp \
     statistics.hpp \
     swap.hpp \
     swaption.hpp \
@@ -62,38 +65,10 @@ include_HEADERS = \
     vanillaoption.hpp \
     vanillaswap.hpp \
     vcconfig.hpp \
-    vo_assetswap.hpp \
-    vo_bonds.hpp \
-    vo_capfloor.hpp \
-    vo_capletvolstructure.hpp \
-    vo_cmsmarket.hpp \
-    vo_couponvectors.hpp \
-    vo_exercise.hpp \
-    vo_forwardrateagreement.hpp \
-    vo_index.hpp \
-    vo_interpolation.hpp \
-    volatilities.hpp \
-    vo_marketmodels.hpp \
-    vo_mathf.hpp \
-    vo_optimization.hpp \
-    vo_options.hpp \
-    vo_payoffs.hpp \
-    vo_pricingengines.hpp \
-    vo_processes.hpp \
-    vo_randomsequencegenerator.hpp \
-    vo_ratehelpers.hpp \
-    vo_schedule.hpp \
-    vo_sequencestatistics.hpp \
-    vo_shortratemodels.hpp \
-    vo_statistics.hpp \
-    vo_swap.hpp \
-    vo_swaption.hpp \
-    vo_swaptionvolstructure.hpp \
-    vo_termstructures.hpp \
-    vo_vanillaswap.hpp \
-    vo_volatilities.hpp
+    volatilities.hpp
 
 libQuantLibAddin_la_SOURCES = \
+    analysis.cpp \
     asianoption.cpp \
     assetswap.cpp \
     barrieroption.cpp \
@@ -103,8 +78,8 @@ libQuantLibAddin_la_SOURCES = \
     capletvolstructure.cpp \
     cliquetoption.cpp \
     cmsmarket.cpp \
-    conversions.cpp \
     couponvectors.cpp \
+    date.cpp \
     dividendvanillaoption.cpp \
     enumclassctors.cpp \
     enumclassregistry.cpp \
@@ -124,11 +99,13 @@ libQuantLibAddin_la_SOURCES = \
     processes.cpp \
     quantoforwardvanillaoption.cpp \
     quantovanillaoption.cpp \
+    quotes.cpp \
     randomsequencegenerator.cpp \
     ratehelpers.cpp \
     schedule.cpp \
     sequencestatistics.cpp \
     shortratemodels.cpp \
+    smilesection.cpp \
     statistics.cpp \
     swap.cpp \
     swaption.cpp \
@@ -138,34 +115,5 @@ libQuantLibAddin_la_SOURCES = \
     utilities.cpp \
     vanillaoption.cpp \
     vanillaswap.cpp \
-    vo_assetswap.cpp \
-    vo_bonds.cpp \
-    vo_capfloor.cpp \
-    vo_capletvolstructure.cpp \
-    vo_cmsmarket.cpp \
-    vo_couponvectors.cpp \
-    vo_exercise.cpp \
-    vo_forwardrateagreement.cpp \
-    vo_index.cpp \
-    vo_interpolation.cpp \
-    volatilities.cpp \
-    vo_marketmodels.cpp \
-    vo_mathf.cpp \
-    vo_optimization.cpp \
-    vo_options.cpp \
-    vo_payoffs.cpp \
-    vo_pricingengines.cpp \
-    vo_processes.cpp \
-    vo_randomsequencegenerator.cpp \
-    vo_ratehelpers.cpp \
-    vo_schedule.cpp \
-    vo_sequencestatistics.cpp \
-    vo_shortratemodels.cpp \
-    vo_statistics.cpp \
-    vo_swap.cpp \
-    vo_swaption.cpp \
-    vo_swaptionvolstructure.cpp \
-    vo_termstructures.cpp \
-    vo_vanillaswap.cpp \
-    vo_volatilities.cpp
+    volatilities.cpp
 

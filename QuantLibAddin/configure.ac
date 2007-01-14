@@ -95,6 +95,9 @@ AC_CONFIG_FILES([
     Docs/Makefile
     gensrc/Makefile
     Makefile
+    qlo/Conversions/Makefile
+    qlo/Loop/Makefile
+    qlo/ValueObjects/Makefile
     qlo/Makefile])
 
 AC_OUTPUT

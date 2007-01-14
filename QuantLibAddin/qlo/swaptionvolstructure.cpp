@@ -120,7 +120,6 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::SwaptionVolCube1>&
             volCube = boost::dynamic_pointer_cast<
                     QuantLib::SwaptionVolCube1>(libraryObject_);
-        
         return getSabrParameters(volCube->sparseSabrParameters());
     }
 
@@ -149,7 +148,8 @@ namespace QuantLibAddin {
     }
 
         
-    std::vector<std::vector<boost::any> > getSabrParameters(QuantLib::Matrix & sabrParameters)
+    //std::vector<std::vector<boost::any> > getSabrParameters(QuantLib::Matrix & sabrParameters)
+    std::vector<std::vector<boost::any> > getSabrParameters(QuantLib::Matrix sabrParameters)
     {
         std::vector<std::vector<boost::any> > sparseSabrParameters;
         QuantLib::Size numberOfColumn = 10;
@@ -199,7 +199,8 @@ namespace QuantLibAddin {
         return sparseSabrParameters;
     }
 
-    std::vector<std::vector<boost::any> > getVolCube(QuantLib::Matrix & volCube)
+    //std::vector<std::vector<boost::any> > getVolCube(QuantLib::Matrix & volCube)
+    std::vector<std::vector<boost::any> > getVolCube(QuantLib::Matrix volCube)
     {
         std::vector<std::vector<boost::any> > volatilityCube;
         QuantLib::Size numberOfColumn = 11;

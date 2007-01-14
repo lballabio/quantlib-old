@@ -93,6 +93,9 @@
 				RelativePath="metadata\mathf.xml">
 			</File>
 			<File
+				RelativePath="metadata\ohfunctions.xml">
+			</File>
+			<File
 				RelativePath="metadata\optimization.xml">
 			</File>
 			<File

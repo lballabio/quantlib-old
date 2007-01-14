@@ -1,0 +1,354 @@
+<Category name='ohfunctions'>
+<description>ObjectHandler functions</description>
+<displayName>ObjectHandler</displayName>
+<includes>
+  <include>oh/objecthandler.hpp</include>
+</includes>
+<copyright>
+ Copyright (C) 2006, 2007 Eric Ehlers
+</copyright>
+
+  <Functions>
+
+    <Procedure name='ohDeleteAllObjects'>
+      <description>delete all objects from repository</description>
+      <alias>ObjHandler::ObjectHandler::instance().deleteAllObjects</alias>
+      <SupportedPlatforms>
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='deletePermanent' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>also delete permanent objects</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohDeleteObject'>
+      <description>delete object from repository</description>
+      <alias>ObjHandler::ObjectHandler::instance().deleteObject</alias>
+      <SupportedPlatforms>
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectID'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of object to be deleted</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohTrigger'>
+      <description>forces a dependency between two functions and returns the update counter</description>
+      <alias>ObjHandler::dependsOn</alias>
+      <SupportedPlatforms>
+        <Calc implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='dummy0' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy parameter (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy1' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy parameter (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy2' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy parameter (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy3' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy parameter (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy4' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy parameter (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy5' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy parameter (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy6' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy parameter (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy7' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy parameter (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy8' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy parameter (ignored)</description>
+          </Parameter>
+          <Parameter name='dummy9' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy parameter (ignored)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohListObjectIDs'>
+      <description>list the IDs of objects in repository matching regex</description>
+      <alias>ObjHandler::ObjectHandler::instance().listObjectIDs</alias>
+      <SupportedPlatforms>
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='regex'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>optional matching pattern in UNIX format (wildcard is .*)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohLogAllObjects'>
+      <description>write all object descriptions to log file</description>
+      <alias>ObjHandler::logAllObjects</alias>
+      <SupportedPlatforms>
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohLogMessage'>
+      <description>log a message</description>
+      <alias>ObjHandler::logMessage</alias>
+      <SupportedPlatforms>
+        <Calc/>
+        <C/>
+        <Guile/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='logMessage'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>message to be logged</description>
+          </Parameter>
+          <Parameter name='logLevel' default='4'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>threshold for log messages</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohLogObject'>
+      <description>write object description to log file</description>
+      <alias>ObjHandler::logObject</alias>
+      <SupportedPlatforms>
+        <Calc/>
+        <C/>
+        <Guile/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='objectID'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of object to be logged</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectCount'>
+      <description>#/objects in repository</description>
+      <alias>ObjHandler::ObjectHandler::instance().objectCount</alias>
+      <SupportedPlatforms>
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Member name='ohPropertyNames' objectClass='Object'>
+      <description>retrieve the property names of a given object</description>
+      <libraryFunction>propertyNames</libraryFunction>
+      <SupportedPlatforms>
+        <Calc implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='ohPropertyValue' objectClass='Object' dependencyTrigger='true'>
+      <description>retrieve the value of a named property</description>
+      <libraryFunction>propertyValue</libraryFunction>
+      <SupportedPlatforms>
+        <Calc implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='fieldName'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>name of property</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Procedure name='ohSetLogFile'>
+      <description>begin logging to named file</description>
+      <alias>ObjHandler::setLogFile</alias>
+      <SupportedPlatforms>
+        <Calc/>
+        <C/>
+        <Guile/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='logFileName'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>path and name of log file</description>
+          </Parameter>
+          <Parameter name='logLevel' default='4'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>threshold for log messages</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohSetLogLevel'>
+      <description>set threshold for log messages</description>
+      <alias>ObjHandler::setLogLevel</alias>
+      <SupportedPlatforms>
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='logLevel'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>threshold for log messages</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+        <description>returns new logging threshold</description>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohVersion'>
+      <description>returns the version number of ObjectHandler</description>
+      <alias>ObjHandler::version</alias>
+      <SupportedPlatforms>
+        <Excel implementation='documentationOnly'/>
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohSetConsole'>
+    <description>fork output to stdout</description>
+    <alias>ObjHandler::setConsole</alias>
+    <SupportedPlatforms>
+      <C/>
+      <Guile/>
+    </SupportedPlatforms>
+    <ParameterList>
+    <Parameters>
+        <Parameter name='console'>
+            <type>int</type>
+            <tensorRank>scalar</tensorRank>
+            <description>1 (enable) / 0 (disable)</description>
+        </Parameter>
+        <Parameter name='logLevel' default='4'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>threshold for log messages</description>
+        </Parameter>
+    </Parameters>
+    </ParameterList>
+    <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+    </ReturnValue>
+    </Procedure>
+
+</Functions>
+</Category>
+

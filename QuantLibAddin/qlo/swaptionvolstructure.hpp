@@ -70,8 +70,13 @@ namespace QuantLibAddin {
             bool vegaWeightedSmileFit);
     };
     
-    std::vector<std::vector<boost::any> > getSabrParameters(QuantLib::Matrix & sabrParameters);
-    std::vector<std::vector<boost::any> > getVolCube(QuantLib::Matrix & volCube);
+    // FIXME Clients of these functions pass in a temporary object as input which can
+    // result in a crash if the param is declared as a reference so change to pass-by-value
+    // instead.  Please confirm this change is OK then delete these comments :-)
+    //std::vector<std::vector<boost::any> > getSabrParameters(QuantLib::Matrix & sabrParameters);
+    std::vector<std::vector<boost::any> > getSabrParameters(QuantLib::Matrix sabrParameters);
+    //std::vector<std::vector<boost::any> > getVolCube(QuantLib::Matrix & volCube);
+    std::vector<std::vector<boost::any> > getVolCube(QuantLib::Matrix volCube);
     
     class SwaptionVolCube1 : public SwaptionVolatilityCube {
       public:

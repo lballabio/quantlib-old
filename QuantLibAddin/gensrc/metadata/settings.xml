@@ -54,9 +54,6 @@
       <alias>QuantLib::Settings::instance().enforceTodaysHistoricFixings</alias>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
-        <Calc/>
-        <Guile/>
-        <C/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -72,9 +69,6 @@
       <alias>QuantLib::Settings::instance().setEnforceTodaysHistoricFixings</alias>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
-        <Calc/>
-        <Guile/>
-        <C/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

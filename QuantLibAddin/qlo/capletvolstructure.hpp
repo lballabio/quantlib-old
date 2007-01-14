@@ -22,7 +22,7 @@
 #include <ql/Volatilities/capletvolatilitiesstructures.hpp>
 #include <ql/capvolstructures.hpp>
 #include <qlo/termstructures.hpp>
-#include <ql/volatilities/smilesection.hpp>
+#include <ql/Volatilities/smilesection.hpp>
 
 namespace QuantLibAddin {
     

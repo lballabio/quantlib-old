@@ -199,3 +199,4 @@ namespace QuantLibAddin {
                                         fromEnd));
 }
 }
+

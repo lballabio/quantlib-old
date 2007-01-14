@@ -27,12 +27,15 @@ GENSRC_INPUT := metadata/assetswap.xml \
                 metadata/prices.xml \
                 metadata/pricingengines.xml \
                 metadata/processes.xml \
+                metadata/quotes.xml \
                 metadata/randomsequencegenerator.xml \
                 metadata/ratehelpers.xml \
                 metadata/schedule.xml \
                 metadata/sequencestatistics.xml \
                 metadata/settings.xml \
                 metadata/shortratemodels.xml \
+                metadata/simplecashflow.xml \
+                metadata/smilesection.xml \
                 metadata/statistics.xml \
                 metadata/swaptionvolstructure.xml \
                 metadata/swaption.xml \

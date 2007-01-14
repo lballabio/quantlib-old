@@ -30,6 +30,7 @@ namespace QuantLibAddin {
 
     class StrikedTypePayoff : public TypePayoff {
       public:
+          StrikedTypePayoff() {}
           StrikedTypePayoff(
               const std::string& payoffID,
               const QuantLib::Option::Type& optionType,

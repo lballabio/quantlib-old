@@ -39,6 +39,22 @@
 
 namespace QuantLibAddin {
 
+    // some utilities required by class RegistryManager
+
+    inline std::string uppercase(const std::string &s) {
+        return boost::algorithm::to_upper_copy(s);
+    }
+
+    inline KeyPair uppercase(const KeyPair &s) {
+        return KeyPair(boost::algorithm::to_upper_copy(s.first),
+                       boost::algorithm::to_upper_copy(s.second));
+    }
+
+    inline std::ostream& operator<<(std::ostream& left, const KeyPair &right) {
+        left << right.first << ":" << right.second;
+        return left;
+    }
+
     template<typename T, typename RegistryClass>
     class RegistryManager {
     protected:
@@ -281,22 +297,6 @@ namespace QuantLibAddin {
         }
         using RegistryManager<QuantLib::Index, EnumClassRegistry>::checkType;
     };
-
-    // some utilities required by class RegistryManager
-
-    inline std::string uppercase(const std::string &s) {
-        return boost::algorithm::to_upper_copy(s);
-    }
-
-    inline KeyPair uppercase(const KeyPair &s) {
-        return KeyPair(boost::algorithm::to_upper_copy(s.first),
-                       boost::algorithm::to_upper_copy(s.second));
-    }
-
-    inline std::ostream& operator<<(std::ostream& left, const KeyPair &right) {
-        left << right.first << ":" << right.second;
-        return left;
-    }
 
  }
 

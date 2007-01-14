@@ -65,7 +65,6 @@ noinst_HEADERS = \
     exercise.hpp \
     instruments.hpp \
     loop.hpp \
-    mathf.hpp \
     ohfunctions.hpp \
     options.hpp \
     payoffs.hpp \
@@ -88,7 +87,6 @@ libQuantLibAddinCalc_la_SOURCES = \
     funcdef.cpp \
     instruments.cpp \
     manual.cpp \
-    mathf.cpp \
     ohfunctions.cpp \
     options.cpp \
     payoffs.cpp \

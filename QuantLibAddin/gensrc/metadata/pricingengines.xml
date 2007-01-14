@@ -803,9 +803,6 @@
       <libraryFunction>BlackCalculator</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
-        <C/>
-        <Calc/>
-        <Guile/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -925,9 +922,6 @@
       <libraryFunction>BlackScholesCalculator</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
-        <C/>
-        <Calc/>
-        <Guile/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

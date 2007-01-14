@@ -18,8 +18,8 @@
 #define qla_smilesection_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/volatilities/smilesection.hpp>
-#include <ql/volatilities/interpolatedsmilesection.hpp>
+#include <ql/Volatilities/smilesection.hpp>
+#include <ql/Volatilities/interpolatedsmilesection.hpp>
 #include <ql/Optimization/method.hpp>
 #include <ql/Volatilities/sabrinterpolatedsmilesection.hpp>
 

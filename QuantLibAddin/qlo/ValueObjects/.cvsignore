@@ -1,1 +1,8 @@
 vo_*.*pp
+Makefile.in
+Makefile
+.deps
+.libs
+*.la
+*.lo
+

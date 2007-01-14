@@ -153,7 +153,6 @@
       <libraryFunction>eigenvalues</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='true' />
-        <Calc/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -185,7 +184,6 @@
       <libraryFunction>SymmetricSchurDecomposition</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
-        <Calc/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

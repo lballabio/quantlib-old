@@ -1,6 +1,9 @@
 
 SUBDIRS = \
     gensrc \
+    qlo/Conversions \
+    qlo/Loop \
+    qlo/ValueObjects \
     qlo \
     Addins/C \
     Addins/Calc \
