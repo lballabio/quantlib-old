@@ -48,9 +48,7 @@ namespace ObjHandler {
         }
 
     protected:
-        //static typename RegistryClass::TypeMapPtr type_map;
-        //typedef bool (*Conversion)(const TypeIn&, TypeOut&);
-        static typedef bool (*Conversion)(const TypeIn&, TypeOut&);
+        typedef bool (*Conversion)(const TypeIn&, TypeOut&);
         virtual Conversion *getConversions() = 0;
         virtual bool inputMissing(const TypeIn&) { return false; }
     };
@@ -58,4 +56,3 @@ namespace ObjHandler {
 }
 
 #endif
-
