@@ -17,7 +17,7 @@
 
 #include <qlo/qladdindefines.hpp>
 #include <qlo/typefactory.hpp>
-#include <qlo/conversions.hpp>
+#include <qlo/Conversions/all.hpp>
 #include <oh/objecthandler.hpp>
 
 #include <Addins/Calc/qladdin.hpp>

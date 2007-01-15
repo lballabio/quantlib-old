@@ -39,7 +39,6 @@ OBJECTS= \
     "$(INT_DIR)\funcdef.obj" \
     "$(INT_DIR)\instruments.obj" \
     "$(INT_DIR)\manual.obj" \
-    "$(INT_DIR)\mathf.obj" \
     "$(INT_DIR)\ohfunctions.obj" \
     "$(INT_DIR)\options.obj" \
     "$(INT_DIR)\payoffs.obj" \

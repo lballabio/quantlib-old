@@ -70,10 +70,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\mathf.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\ohfunctions.cpp"
 				>
 			</File>
@@ -144,10 +140,6 @@
 			</File>
 			<File
 				RelativePath=".\loop.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mathf.hpp"
 				>
 			</File>
 			<File
