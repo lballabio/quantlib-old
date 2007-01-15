@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -53,13 +53,11 @@ namespace ObjHandler {
 
     template <class qloClass, class qlClass>
     class CoerceIndex : public ObjHandler::Coerce<
-            const std::string, // FIXME shouldn't that be a ref (&) ?
+            std::string,
             boost::shared_ptr<qlClass> > {
-        // this typedef required for gcc,
-        // need to confirm it's OK for MSVC
-        //typedef typename ObjHandler::Coerce<
-        //    const std::string, 
-        //    boost::shared_ptr<qlClass> >::Conversion Conversion; 
+        typedef typename ObjHandler::Coerce<
+            std::string, 
+            boost::shared_ptr<qlClass> >::Conversion Conversion; 
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 indexFromRegistry<qlClass>, 

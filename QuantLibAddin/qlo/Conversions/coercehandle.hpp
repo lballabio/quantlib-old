@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -64,11 +64,9 @@ namespace ObjHandler {
     class CoerceHandle : public ObjHandler::Coerce<
             boost::shared_ptr<ObjHandler::Object>, 
             QuantLib::Handle<qlClass> > {
-        // this typedef required for gcc,
-        // need to confirm it's OK for MSVC
-        //typedef typename ObjHandler::Coerce<
-        //    boost::shared_ptr<ObjHandler::Object>,
-        //    QuantLib::Handle<qlClass> >::Conversion Conversion; 
+        typedef typename ObjHandler::Coerce<
+            boost::shared_ptr<ObjHandler::Object>,
+            QuantLib::Handle<qlClass> >::Conversion Conversion; 
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 objectToHandle<qlClass>, 
