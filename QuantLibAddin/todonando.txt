@@ -52,7 +52,7 @@ Nando
 K
 - SA
 - new end of day live feed snapshot procedure + vol cube + mean rev + all environments
-- EURYC->HYTSEUR, EURYC2->EURYTS, EURYCMX2->EURYTSMX
+- demo skeleton
 - test abcd (swap tenor) with new optimization code
 
 François
