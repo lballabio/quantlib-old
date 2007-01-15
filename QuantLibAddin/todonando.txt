@@ -1,15 +1,16 @@
-optimization end criteria
-abcd interpolation
+==== RANDOM NOTES =============
 
-new release
+digital in call spread
+optimization end criteria
+- abcd for displacement
+- add abcd interpolation
+
 coerce from Frequency to Period
 coerce from Period->Date to double/int
 coerce from IMMcode to date
 cvs command line
 imm functions (dates.xml) problems
-profiling session
 
-payment business days convention
 
 null strike -> atm strike
 
@@ -32,15 +33,15 @@ fixed sabr parameters
 - FRA-based MM swaption pricing
 - drift for SWAP-based MM
 
-- nome dei parametri nel wizard
-* remove obsolete drafts
-* move all test in the Test folder
 
+===== DISCUSS ================
+
+- DONE create another CapletVol object instance using future option smile sections only in CapStripper.xls
+
+
+======= TODO ===============
 
 Nando
-- SA
-- rename old functions
-- Reuters new session
 - demo Munari (mergeLeg, addLeg)
 - 0.3.14 wbk
 - alternative calibrations with null rho
@@ -50,29 +51,16 @@ Nando
 
 K
 - SA
-- demo Munari (mergeLeg, addLeg)
-- EURYC->HYTSEUR, EURYC2->EURYTS, EURYCMX2->EURYTSMX
-- DONE abcd for swap tenor
-- test abcd (swap tenor) with new optimization code
-- abcd for displacement
-- add abcd interpolation
-- DONE test new NSIS 2.22
 - new end of day live feed snapshot procedure + vol cube + mean rev + all environments
-- DONE Launcher: Static Data checkbox
-- DONE RtUpdate and FormulaArray in Reuters QuoteFeed xls
-- DONE enhance IR derivatives workbooks (share auto-open macro + triggers)
+- EURYC->HYTSEUR, EURYC2->EURYTS, EURYCMX2->EURYTSMX
+- test abcd (swap tenor) with new optimization code
 
 François
 - To BE REVIEWED test abcd calibration
-- DONE Object builder improvements
-- DONE revise Levemberg Marquard
 - TO BE REVIEWED consolidate all multisteps in a  single test
 - TO BE REVIEWED MultiStepSwaption
-- DONE use MakeCapFloor in Excel test wkb
-- DONE include future options in vol cap stripping
+- merge Object builder improvements into QuantLib.xla
 - check sabr fit stability/accuracy for smilesections
-- DONE create another CapletVol object instance using future option smile sections only in CapStripper.xls
-- DONE clean cap price discrepancies
 - add atmRate to SmileSection base class
 - add an atmRate to our capVol structure
 - review the class design together
@@ -81,32 +69,35 @@ François
 - implement abcdinterpolation
 
 Cristina
-- DONE dismettere qlSwap in favore di qlSwap2
+- valuation of plain vanilla leg of BGM book
+- payment business days convention and fixing days
 - test Mx sul 29/9
-- DONE update schedule wbk
-- DONE capped/floored floating leg coupon 
-- ... and bond
-- foglio swaption per De Nuccio / Murex
+- capped/floored-cms comparison
+- bond pricing engine
 
 Giorgio
-* ratchet Instrument C++
-D manual import of BGM book
+- capped/floored-cms comparison
+- think about how to simplify mean reversion usage, cms swaption calibration
+- ratchet Instrument C++
+- spreaded swaption vol structure
+- spreaded caplet vol structure
 
 Chiara
-- DONE bond (cms)
-- DONE futures conv adj and swap repricing
+- capped/floored coupon bond
+- payment business days convention and fixing days
+- bond pricing engine
 - perche' lo yield non ha la frequenza?
 - fare tutti i metodi dei bond restituiscano un InterestRate
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
 
 Marco
+- foglio swaption per De Nuccio / Murex
 - update Mx YC action
 WIP improve interpolations
 
 Eric
+- SA
 - InterestRateQuoteFeed.xls: Auto_Open problem
-- reutersFeed performances
-- sensitivity
 - discount factors output is not col/row enabled
 - esporre ad excel i metodi commentati in payoff.xml
 - visitor pattern per 3rd parameter dei payoff
@@ -122,7 +113,6 @@ QuantLib
 - fix convertible faceamount bug
 - deprecate swaptionvol time interface
 - corregere OneAssetOption impliedVol
-- spreaded swaption vol matrix
 - SWAP implement fair rate for floating/fixed rate vector
 - add SABR factory
 - use boost random number generators
@@ -166,7 +156,6 @@ LUIGI
 
 MODULES
 - reorganize file/folder/projectfolder
-- getting back all module into QuantLib project
 - create QuantLib-other CVS mailing list
 
 QUANTLIBADDIN
