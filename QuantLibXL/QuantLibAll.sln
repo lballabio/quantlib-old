@@ -41,6 +41,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ohxllib", "..\ObjectHandler
 		{19C36A53-51F2-4951-9A38-CCF6A250814F} = {19C36A53-51F2-4951-9A38-CCF6A250814F}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs-QuantLibXL", "Docs\docs-QuantLibXL.vcproj", "{9B662676-2C96-42DC-88E2-15F3E79D66B4}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs-QuantLibAddin", "..\QuantLibAddin\Docs\docs-QuantLibAddin.vcproj", "{60E2EF10-4F8A-4745-81B2-363115E9A31A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		All = All
@@ -164,6 +172,34 @@ Global
 		{F7772758-2AD8-4420-92D5-154F549566C1}.Release CRTDLL.Build.0 = Release CRTDLL|Win32
 		{F7772758-2AD8-4420-92D5-154F549566C1}.Release SingleThread.ActiveCfg = Release SingleThread|Win32
 		{F7772758-2AD8-4420-92D5-154F549566C1}.Release SingleThread.Build.0 = Release SingleThread|Win32
+		{9B662676-2C96-42DC-88E2-15F3E79D66B4}.All.ActiveCfg = All|Win32
+		{9B662676-2C96-42DC-88E2-15F3E79D66B4}.All.Build.0 = All|Win32
+		{9B662676-2C96-42DC-88E2-15F3E79D66B4}.Debug.ActiveCfg = All|Win32
+		{9B662676-2C96-42DC-88E2-15F3E79D66B4}.Debug.Build.0 = All|Win32
+		{9B662676-2C96-42DC-88E2-15F3E79D66B4}.Debug CRTDLL.ActiveCfg = All|Win32
+		{9B662676-2C96-42DC-88E2-15F3E79D66B4}.Debug CRTDLL.Build.0 = All|Win32
+		{9B662676-2C96-42DC-88E2-15F3E79D66B4}.Debug SingleThread.ActiveCfg = All|Win32
+		{9B662676-2C96-42DC-88E2-15F3E79D66B4}.Debug SingleThread.Build.0 = All|Win32
+		{9B662676-2C96-42DC-88E2-15F3E79D66B4}.Release.ActiveCfg = All|Win32
+		{9B662676-2C96-42DC-88E2-15F3E79D66B4}.Release.Build.0 = All|Win32
+		{9B662676-2C96-42DC-88E2-15F3E79D66B4}.Release CRTDLL.ActiveCfg = All|Win32
+		{9B662676-2C96-42DC-88E2-15F3E79D66B4}.Release CRTDLL.Build.0 = All|Win32
+		{9B662676-2C96-42DC-88E2-15F3E79D66B4}.Release SingleThread.ActiveCfg = All|Win32
+		{9B662676-2C96-42DC-88E2-15F3E79D66B4}.Release SingleThread.Build.0 = All|Win32
+		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.All.ActiveCfg = All|Win32
+		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.All.Build.0 = All|Win32
+		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.Debug.ActiveCfg = All|Win32
+		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.Debug.Build.0 = All|Win32
+		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.Debug CRTDLL.ActiveCfg = All|Win32
+		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.Debug CRTDLL.Build.0 = All|Win32
+		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.Debug SingleThread.ActiveCfg = All|Win32
+		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.Debug SingleThread.Build.0 = All|Win32
+		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.Release.ActiveCfg = All|Win32
+		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.Release.Build.0 = All|Win32
+		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.Release CRTDLL.ActiveCfg = All|Win32
+		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.Release CRTDLL.Build.0 = All|Win32
+		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.Release SingleThread.ActiveCfg = All|Win32
+		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.Release SingleThread.Build.0 = All|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
