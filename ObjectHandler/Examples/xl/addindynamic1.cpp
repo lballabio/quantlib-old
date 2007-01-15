@@ -83,7 +83,7 @@ DLLEXPORT char* addin1CreateAccount(
             ObjHandler::ObjectHandler::instance().storeObject(objectID, objectPointer);
 
         static char ret[XL_MAX_STR_LEN];
-        ObjHandler::stringToChar(ret, returnValue);
+        ObjHandler::stringToChar(returnValue, ret);
         return ret;
     } catch (const std::exception &e) {
         std::ostringstream err;
