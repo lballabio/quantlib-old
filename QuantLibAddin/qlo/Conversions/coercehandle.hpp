@@ -64,6 +64,11 @@ namespace ObjHandler {
     class CoerceHandle : public ObjHandler::Coerce<
             boost::shared_ptr<ObjHandler::Object>, 
             QuantLib::Handle<qlClass> > {
+        // this typedef required for gcc,
+        // need to confirm it's OK for MSVC
+        //typedef typename ObjHandler::Coerce<
+        //    boost::shared_ptr<ObjHandler::Object>,
+        //    QuantLib::Handle<qlClass> >::Conversion Conversion; 
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 objectToHandle<qlClass>, 

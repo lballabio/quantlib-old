@@ -53,8 +53,13 @@ namespace ObjHandler {
 
     template <class qloClass, class qlClass>
     class CoerceIndex : public ObjHandler::Coerce<
-            const std::string, 
+            const std::string, // FIXME shouldn't that be a ref (&) ?
             boost::shared_ptr<qlClass> > {
+        // this typedef required for gcc,
+        // need to confirm it's OK for MSVC
+        //typedef typename ObjHandler::Coerce<
+        //    const std::string, 
+        //    boost::shared_ptr<qlClass> >::Conversion Conversion; 
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 indexFromRegistry<qlClass>, 

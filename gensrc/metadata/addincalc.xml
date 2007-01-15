@@ -361,13 +361,15 @@
             <DataTypes>
                 <object codeID='code64'/>
                 <!--libToHandle codeID='code62'/-->
-                <libToHandle>
+                <!--libToHandle>
                     <DataValues>
                         <DataValue name='Quote' codeID='code62b'/>
                         <DataValue name='other' codeID='code62a'/>
                     </DataValues>
-                </libToHandle>
+                </libToHandle-->
+                <libToHandle codeID='code62a'/>
                 <libraryClass codeID='code51'/>
+                <handleToLib codeID='code51b'/>
             </DataTypes>
         </SubRule>
     </SubRules>

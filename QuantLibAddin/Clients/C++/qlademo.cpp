@@ -97,6 +97,7 @@ int main() {
             new QuantLibAddin::StrikedTypePayoff(
                 "vanilla",
                 Option::Put,
+                strike, // "thirdParameter" ?
                 strike));
         ObjHandler::ObjectHandler::instance().storeObject(
             "my_payoff", payoff);

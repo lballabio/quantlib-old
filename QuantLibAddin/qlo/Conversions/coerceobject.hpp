@@ -73,6 +73,11 @@ namespace ObjHandler {
     class CoerceToObject : public ObjHandler::Coerce<
             boost::shared_ptr<ObjHandler::Object>, 
             boost::shared_ptr<qlClass> > {
+        // this typedef required for gcc,
+        // need to confirm it's OK for MSVC
+        //typedef typename ObjHandler::Coerce<
+        //    boost::shared_ptr<ObjHandler::Object>,
+        //    boost::shared_ptr<qlClass> >::Conversion Conversion; 
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 objectToReference<qloClass, qlClass>,

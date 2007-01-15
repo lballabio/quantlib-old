@@ -17,7 +17,7 @@
 
 #include <Addins/Guile/conversions.hpp>
 
-void cppToLib(QuantLib::Date &ret, const long &in) {
+void cppToLib(const long &in, QuantLib::Date &ret) {
     ret = QuantLib::Date(in);
 }
 

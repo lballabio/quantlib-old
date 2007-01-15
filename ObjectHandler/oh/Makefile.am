@@ -28,3 +28,6 @@ libObjectHandler_la_SOURCES = \
     ohthing.cpp  \
     utilities.cpp
 
+libObjectHandler_la_LIBADD = \
+    ValueObjects/libValueObjects.la \
+

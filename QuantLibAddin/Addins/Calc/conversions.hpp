@@ -25,6 +25,9 @@
 #include <sal/types.h>
 #include <vector>
 
+// temp fix pending Calc implementation of CoerceQuoteHandle
+#include <qlo/quotes.hpp>
+
 void calcToScalar(QuantLib::Date &, const sal_Int32&);
 void calcToScalar(QuantLib::Date &, const ANY&);
 void calcToScalar(QuantLib::Calendar &, const STRING &id);

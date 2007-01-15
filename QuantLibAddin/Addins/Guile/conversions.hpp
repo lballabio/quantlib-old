@@ -20,7 +20,7 @@
 
 #include <ql/date.hpp>
 
-void cppToLib(QuantLib::Date &, const long &);
+void cppToLib(const long &, QuantLib::Date &);
 
 #endif
 

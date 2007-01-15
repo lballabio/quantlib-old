@@ -348,6 +348,10 @@ std::vector<std::vector<boost::any> > returnValue = ''',
         OH_GET_REFERENCE(%(name)sLibObj, %(name)sCpp,
             %(namespaceObjects)s::%(libraryClass)s, %(namespaceLibrary)s::%(libraryClass)s)\n''',
 
+'code51b' : '''\
+        OH_GET_REFERENCE(%(name)sLibObj, %(name)sCpp,
+            %(namespaceObjects)s::%(handleToLib)s, %(namespaceLibrary)s::%(handleToLib)s)\n''',
+
 'code52' : '''\
         %(enumeration)s %(name)sEnum =
             %(namespaceObjects)s::Create<%(enumeration)s>()(%(name)sCpp);\n''',
@@ -415,9 +419,9 @@ std::vector<std::vector<boost::any> > returnValue = ''',
                 %(namespaceLibrary)s::%(libToHandle)s>()(
                     %(name)sTemp);\n''',
 
-'code62b' : '''\
-        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
-            ObjHandler::CoerceQuoteHandle()(*%(name)sCpp);\n''',
+#'code62b' : '''\
+#        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
+#            ObjHandler::CoerceQuoteHandle()(*%(name)sCpp);\n''',
 
 'code63' : '''\
         %(libraryType)s %(name)sLib = calcToQlMatrix(%(name)s);\n''',

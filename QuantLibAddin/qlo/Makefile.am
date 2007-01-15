@@ -4,6 +4,7 @@ AM_LDFLAGS = -release $(PACKAGE_VERSION)
 includedir = $(prefix)/include/qlo
 
 lib_LTLIBRARIES = libQuantLibAddin.la
+#libQuantLibAddin_la_LDFLAGS = -release $(PACKAGE_VERSION)
 
 EXTRA_DIST = \
     auto_link.hpp
@@ -116,4 +117,8 @@ libQuantLibAddin_la_SOURCES = \
     vanillaoption.cpp \
     vanillaswap.cpp \
     volatilities.cpp
+
+libQuantLibAddin_la_LIBADD = \
+    Conversions/libConversions.la \
+    ValueObjects/libValueObjects.la
 

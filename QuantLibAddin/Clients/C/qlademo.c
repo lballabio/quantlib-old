@@ -43,7 +43,7 @@ int main() {
     ohSetConsole(1, logLevel, dummy, &result);                     // log messages to stdout
     ohLogMessage("begin example program", logLevel, dummy, &result);
 
-    if (qlSetEvaluationDate(
+    if (qlSettingsSetEvaluationDate(
             evaluationDate, 
             dummy,
             &dummy2) != SUCCESS) {
@@ -93,6 +93,7 @@ int main() {
             "vanilla", 
             "put",
             strike,
+            strike, // "thirdParameter" ?
             FALSE, 
             dummy,
             returnString) != SUCCESS) {
