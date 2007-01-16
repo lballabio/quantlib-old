@@ -77,7 +77,7 @@ Cristina
 
 Giorgio
 - capped/floored-cms comparison
-- think about how to simplify mean reversion usage, cms swaption calibration
+D think about how to simplify mean reversion usage, cms swaption calibration
 - ratchet Instrument C++
 - spreaded swaption vol structure
 - spreaded caplet vol structure
