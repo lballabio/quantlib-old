@@ -56,11 +56,11 @@ K
 - test abcd (swap tenor) with new optimization code
 
 François
-- To BE REVIEWED test abcd calibration
+- TO BE REVIEWED test abcd calibration
 - TO BE REVIEWED consolidate all multisteps in a  single test
 - TO BE REVIEWED MultiStepSwaption
 - merge Object builder improvements into QuantLib.xla
-- check sabr fit stability/accuracy for smilesections
+- DONE check sabr fit stability/accuracy for smilesections
 - add atmRate to SmileSection base class
 - add an atmRate to our capVol structure
 - review the class design together
