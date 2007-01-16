@@ -91,9 +91,12 @@ Chiara
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
 
 Marco
+- ratchet Instrument C++ (shared with Giorgio and Cristina)
+- valuation of plain vanilla leg of BGM book (shared with Giorgio and Cristina)
 - foglio swaption per De Nuccio / Murex
-- update Mx YC action
-WIP improve interpolations
+- update Mx YC action (To BE REVIEWED)
+- improve interpolations (To BE REVIEWED)
+- Rendistato (To BE REVIEWED)
 
 Eric
 - SA
