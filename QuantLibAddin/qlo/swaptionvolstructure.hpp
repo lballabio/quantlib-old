@@ -88,7 +88,7 @@ namespace QuantLibAddin {
             const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volSpreads,
             const boost::shared_ptr<QuantLib::SwapIndex>& swapIndexBase,
             bool vegaWeightedSmileFit,
-            const QuantLib::Matrix& parametersGuess,
+            const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& parametersGuess,
             const std::vector<bool>& isParameterFixed,
             bool isAtmCalibrated);
         std::vector<std::vector<boost::any> > getSparseSabrParameters();

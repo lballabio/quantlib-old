@@ -570,10 +570,10 @@
             <tensorRank>scalar</tensorRank>
             <description>if TRUE the smile fit is weighted using options' vega.</description>
           </Parameter>
-          <Parameter name='guess' libraryType='QuantLib::Matrix'>
-            <type>double</type>
+          <Parameter name='guess' libToHandle='Quote'>
+            <type>string</type>
             <tensorRank>matrix</tensorRank>
-            <description>matrix of parameters guess.</description>
+            <description>matrix of parameters guess quotes.</description>
           </Parameter>
           <Parameter name='isFixed'>
             <type>bool</type>
