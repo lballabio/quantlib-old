@@ -86,7 +86,10 @@ Chiara
 - capped/floored coupon bond
 - payment business days convention and fixing days
 - bond pricing engine
-- perche' lo yield non ha la frequenza?
+- check asset swap termination date
+- check asw when bond redemption != 100
+- add Back Payment to asset swap
+D perche' lo yield non ha la frequenza?
 - fare tutti i metodi dei bond restituiscano un InterestRate
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
 
