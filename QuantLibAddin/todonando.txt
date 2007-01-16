@@ -94,6 +94,7 @@ D perche' lo yield non ha la frequenza?
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
 
 Marco
+- BGM book set up
 - ratchet Instrument C++ (shared with Giorgio and Cristina)
 - valuation of plain vanilla leg of BGM book (shared with Giorgio and Cristina)
 - foglio swaption per De Nuccio / Murex
