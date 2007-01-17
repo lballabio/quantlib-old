@@ -56,11 +56,11 @@ K
 - test abcd (swap tenor) with new optimization code
 
 François
-- TO BE REVIEWED test abcd calibration
+- To BE REVIEWED test abcd calibration
 - TO BE REVIEWED consolidate all multisteps in a  single test
 - TO BE REVIEWED MultiStepSwaption
 - merge Object builder improvements into QuantLib.xla
-- DONE check sabr fit stability/accuracy for smilesections
+- check sabr fit stability/accuracy for smilesections
 - add atmRate to SmileSection base class
 - add an atmRate to our capVol structure
 - review the class design together
@@ -77,7 +77,7 @@ Cristina
 
 Giorgio
 - capped/floored-cms comparison
-D think about how to simplify mean reversion usage, cms swaption calibration
+- think about how to simplify mean reversion usage, cms swaption calibration
 - ratchet Instrument C++
 - spreaded swaption vol structure
 - spreaded caplet vol structure
@@ -86,9 +86,9 @@ Chiara
 - capped/floored coupon bond
 - payment business days convention and fixing days
 - bond pricing engine
-- check asset swap termination date
-- check asw when bond redemption != 100
-- add Back Payment to asset swap
+D check asset swap termination date
+D check asw when bond redemption != 100
+D add Back Payment to par asset swap
 D perche' lo yield non ha la frequenza?
 - fare tutti i metodi dei bond restituiscano un InterestRate
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
