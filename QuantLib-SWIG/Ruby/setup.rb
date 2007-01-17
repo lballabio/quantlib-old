@@ -1,5 +1,5 @@
 =begin
- Copyright (C) 2000-2006 StatPro Italia srl
+ Copyright (C) 2000-2007 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -55,7 +55,7 @@ end
 
 
 # Current QuantLib version
-Version = "0.4.0"
+Version = "0.9.0"
 
 cfg = Config::MAKEFILE_CONFIG
 

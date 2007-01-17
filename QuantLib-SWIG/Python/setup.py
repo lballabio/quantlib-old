@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 """
- Copyright (C) 2000-2006 StatPro Italia srl
+ Copyright (C) 2000-2007 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -184,7 +184,7 @@ classifiers = [
 ]
 
 setup(name             = "QuantLib-Python",
-      version          = "0.4.0",
+      version          = "0.9.0",
       description      = "Python bindings for the QuantLib library",
       long_description = """
 QuantLib (http://quantlib.org/) is a C++ library for financial quantitative

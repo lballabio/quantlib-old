@@ -1,12 +1,12 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT([QuantLib-SWIG], [0.4.0],
+AC_INIT([QuantLib-SWIG], [0.9.0],
         [quantlib-dev@lists.sourceforge.net],
         [QuantLib-SWIG])
 AC_PREREQ(2.50)
 AC_CONFIG_AUX_DIR([config])
 AM_INIT_AUTOMAKE([foreign])
 
-AC_COPYRIGHT([Copyright (C) 2005, 2006 StatPro Italia srl
+AC_COPYRIGHT([Copyright (C) 2005, 2006, 2007 StatPro Italia srl
 
 This file is part of QuantLib, a free-software/open-source library
 for financial quantitative analysts and developers - http://quantlib.org/
