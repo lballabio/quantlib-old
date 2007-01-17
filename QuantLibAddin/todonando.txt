@@ -59,7 +59,8 @@ François
 - To BE REVIEWED test abcd calibration
 - TO BE REVIEWED consolidate all multisteps in a  single test
 - TO BE REVIEWED MultiStepSwaption
-- merge Object builder improvements into QuantLib.xla
+- - DONE merge Object builder improvements into QuantLib.xla
+	->TO BE DISCUSSED: vector input, change in XML file structure to implement default values
 - check sabr fit stability/accuracy for smilesections
 - add atmRate to SmileSection base class
 - add an atmRate to our capVol structure
