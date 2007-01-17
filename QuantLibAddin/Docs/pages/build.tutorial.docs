@@ -92,11 +92,11 @@ This command will create the Boost include directory <tt>C:\\Boost\\include\\boo
 \section sec_build_runtime A Note on Runtime Libraries
 
 You are now ready to build QuantLib.  You need to compile the following projects:
-- <a href="http://quantlib.org/">QuantLib 0.4.0</a> - the core C++ analytics library
+- <a href="http://quantlib.org/">QuantLib 0.9.0</a> - the core C++ analytics library
 - <b>log4cxx 0.9.7b</b> - a logging framework, used by ObjectHandler
 - <a href="http://www.objecthandler.org">ObjectHandler 0.2.0</a> - an object repository
-- <a href="http://www.quantlibaddin.org">QuantLibAddin 0.4.0</a> - Addins for QuantLib functionality
-- <a href="http://www.quantlibxl.org">QuantLibXL 0.4.0</a> - the Excel implementation of QuantLibAddin
+- <a href="http://www.quantlibaddin.org">QuantLibAddin 0.9.0</a> - Addins for QuantLib functionality
+- <a href="http://www.quantlibxl.org">QuantLibXL 0.9.0</a> - the Excel implementation of QuantLibAddin
 
 These projects are available with four different runtime libraries
 (configurations): Debug, Debug CRTDLL, Release, and Release CRTDLL.  The Debug
@@ -130,7 +130,7 @@ code is unzipped -  QuantLibAddin and QuantLibXL must reside side by side in
 the directory tree, and the name of the QuantLibXL directory must be exactly
 "QuantLibXL" (no version number) e.g:
 \verbatim
-C:\projects\QuantLibAddin-0.4.0
+C:\projects\QuantLibAddin-0.9.0
 C:\projects\QuantLibXL
 \endverbatim
 
@@ -147,11 +147,11 @@ is indicated by the appropriate environment variable:
 
 For purposes of this tutorial we assume all packages are installed to <tt>C:\\projects</tt> e.g.:
 \verbatim
-C:\projects\QuantLib-0.4.0
+C:\projects\QuantLib-0.9.0
 C:\projects\gensrc-0.2.0
 C:\projects\log4cxx-0.9.7b
 C:\projects\ObjectHandler-0.2.0
-C:\projects\QuantLibAddin-0.4.0
+C:\projects\QuantLibAddin-0.9.0
 C:\projects\QuantLibXL
 \endverbatim
 
@@ -171,14 +171,14 @@ select <tt>Build/Build QuantLib</tt>:
 
 <img src="images/ql_build.jpg">
 
-The build process creates file <tt>QuantLib\\lib\\QuantLib-vc80-mt-s-0_4_0.lib</tt>.
+The build process creates file <tt>QuantLib\\lib\\QuantLib-vc80-mt-s-0_9_0.lib</tt>.
 
 Create environment variable <tt>QL_DIR</tt> and set it equal to the path to the
 top-level QuantLib directory.  The compilation of QuantLibAddin will rely on
 the value of <tt>QL_DIR</tt> in order to locate the QuantLib headers and lib
 file.  In other words the QuantLibAddin compilation will expect to find 
 - QuantLib header files in directory <tt>\$(QL_DIR)\\include</tt>
-- QuantLib lib file <tt>QuantLib-vc80-mt-s-0_4_0.lib</tt> in directory <tt>\$(QL_DIR)\\lib</tt>
+- QuantLib lib file <tt>QuantLib-vc80-mt-s-0_9_0.lib</tt> in directory <tt>\$(QL_DIR)\\lib</tt>
 
 \section sec_build_quantlibtestsuite Run the QuantLib Testsuite
 
@@ -190,7 +190,7 @@ something like:
 \verbatim
 1>Auto run test
 1>=====================================
-1>Testing QuantLib-vc80-mt-s-0_4_0.lib 
+1>Testing QuantLib-vc80-mt-s-0_9_0.lib 
 1>=====================================
 1>Running moreThan200 test cases...
 1>Platform: Win32
@@ -251,7 +251,7 @@ ohxllib</tt>.  The build process creates file
 
 \section sec_build_quantlibaddin Install and Build QuantLibAddin
 
-Download <tt>QuantLibAddin-0.4.0.exe</tt> and <tt>QuantLibXL-src-0.4.0.exe</tt> from the
+Download <tt>QuantLibAddin-0.9.0.exe</tt> and <tt>QuantLibXL-src-0.9.0.exe</tt> from the
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>
 and install them to your hard drive.  As explained above in section \ref sec_build_directories, 
 QuantLibAddin and QuantLibXL must be installed side-by-side in the directory tree.
@@ -267,13 +267,13 @@ In VC8, open the QuantLibAddin VC8 workspace
 <tt>QuantLibAddin\\QuantLibAddin_vc8.sln</tt>.  Choose configuration
 <tt>Release</tt>, solution <tt>QuantLibXL</tt>, and do <tt>Build/Build
 QuantLibXL</tt>.  The build process creates the QuantLibAddin XLL file
-<tt>QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_4_0.xll</tt>.
+<tt>QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_9_0.xll</tt>.
 
 \section sec_build_usage Usage
 
 To launch QuantLibXL:
 - start Excel
-- load the addin <tt>QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_4_0.xll</tt>
+- load the addin <tt>QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_9_0.xll</tt>
 - load a sample spreadsheet e.g. <tt>QuantLibXL\\Workbooks\\OriginalExamples\\instruments.xls</tt>
 - hit <tt>Ctrl-Alt-F9</tt> to force a recalculation of all formulas
 

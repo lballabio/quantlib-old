@@ -3,8 +3,8 @@
 
 # !defines
 
-!define VER_NUMBER "0.4.0"
-!define VER_NUMBER_UNDERSCORE "0_4_0"
+!define VER_NUMBER "0.9.0"
+!define VER_NUMBER_UNDERSCORE "0_9_0"
 !define /date NOW "%Y%m%d-%H_%M"
 
 # Compiler flags

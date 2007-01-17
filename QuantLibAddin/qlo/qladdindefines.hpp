@@ -31,21 +31,21 @@
 #endif
 
 #include <ql/qldefines.hpp>
-#if QL_HEX_VERSION < 0x000400f0
+#if QL_HEX_VERSION < 0x000900f0
     #error using an old version of QuantLib, please update.
 #endif
 
 //! version string
 #ifdef _DEBUG
-    #define QLADDIN_VERSION "0.4.0-debug"
+    #define QLADDIN_VERSION "0.9.0-debug"
 #else
-    #define QLADDIN_VERSION "0.4.0"
+    #define QLADDIN_VERSION "0.9.0"
 #endif
 
 //! version hexadecimal number
 #define QLADDIN_HEX_VERSION 0x000314a0
 //! version string for output lib name
-#define QLADDIN_LIB_VERSION "0_4_0"
+#define QLADDIN_LIB_VERSION "0_9_0"
 
 #if defined BOOST_MSVC
 #pragma warning(disable : 4996)

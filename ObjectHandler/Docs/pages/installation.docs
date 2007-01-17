@@ -263,8 +263,8 @@ For more details refer to the file \c INSTALL.
 ObjectHandler is built in the standard way:
 
 \verbatim
-tar zxfv ObjectHandler-0.2.0.tar.gz
-cd ObjectHandler-0.2.0
+tar zxfv ObjectHandler-0.9.0.tar.gz
+cd ObjectHandler-0.9.0
 ./configure
 make
 make install
