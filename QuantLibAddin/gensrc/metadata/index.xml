@@ -165,21 +165,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterestRateIndexSettlementDays' libraryClass='InterestRateIndex'>
-      <description>Returns the fixing days (e.g. 2) for the given Index object</description>
-      <libraryFunction>fixingDays</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Member name='qlInterestRateIndexFixingDays' libraryClass='InterestRateIndex'>
       <description>Returns the fixing days (e.g. 2) for the given Index object</description>
       <libraryFunction>fixingDays</libraryFunction>
