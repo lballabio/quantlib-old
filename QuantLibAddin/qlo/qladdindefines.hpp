@@ -26,7 +26,7 @@
 #endif
 
 #include <oh/objhandler.hpp>
-#if OBJHANDLER_HEX_VERSION < 0x000200f0
+#if OBJHANDLER_HEX_VERSION < 0x000900f0
     #error using an old version of ObjectHandler, please update.
 #endif
 
@@ -43,7 +43,7 @@
 #endif
 
 //! version hexadecimal number
-#define QLADDIN_HEX_VERSION 0x000314a0
+#define QLADDIN_HEX_VERSION 0x000900f0
 //! version string for output lib name
 #define QLADDIN_LIB_VERSION "0_9_0"
 
