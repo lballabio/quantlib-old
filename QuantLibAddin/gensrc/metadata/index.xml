@@ -282,6 +282,27 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlInterestRateIndexFixingDate' libraryClass='InterestRateIndex' loopParameter='valueDate'>
+      <description>Returns the fixing date for the given value date for the given Index object</description>
+      <libraryFunction>fixingDate</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='valueDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>value date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Member name='qlInterestRateIndexMaturity' libraryClass='InterestRateIndex' loopParameter='valueDate'>
       <description>Returns the maturity date for the given value date for the given Index object</description>
       <libraryFunction>maturityDate</libraryFunction>
