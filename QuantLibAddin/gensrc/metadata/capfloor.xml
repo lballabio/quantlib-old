@@ -232,12 +232,14 @@
             <tensorRank>scalar</tensorRank>
             <description>strike</description>
           </Parameter>
+          <!--<Parameter name='forwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
           <Parameter name='forwardStart' libraryType='QuantLib::Period'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>as period (e.g. '2Y'). The default is '0D'. If '0D' the first caplet is removed.</description>
           </Parameter>
-           <Parameter name='capFloorEngine' libraryClass='PricingEngine'>
+          <!--<Parameter name='capFloorEngineID' libraryClass='PricingEngine' default='boost::shared_ptr&lt;QuantLib::PricingEngine&gt;()'>-->
+          <Parameter name='capFloorEngine' libraryClass='PricingEngine'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Cap floor pricing engine object ID</description>
