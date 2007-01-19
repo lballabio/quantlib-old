@@ -2,7 +2,7 @@
 /*
  Copyright (C) 2006 Ferdinando Ametrano
  Copyright (C) 2006 Giorgio Facchinetti
- Copyright (C) 2006 Cristina Duminuco
+ Copyright (C) 2006, 2007 Cristina Duminuco
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -73,7 +73,10 @@ namespace QuantLibAddin {
             const std::vector<double>& nominals,
             const std::vector<QuantLib::Real>& gearings,
             const boost::shared_ptr<QuantLib::IborIndex>& index,
-            const std::vector<QuantLib::Spread>& spreads);
+            const std::vector<QuantLib::Spread>& spreads,
+            QuantLib::Integer fixingDays,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::BusinessDayConvention& paymentAdjustment);
     };
 
     class CappedFlooredFloatingRateCouponVector : public CashFlowStream {
@@ -85,7 +88,10 @@ namespace QuantLibAddin {
                 const boost::shared_ptr<QuantLib::IborIndex>& index,
                 const std::vector<QuantLib::Real>& spreads,
                 const std::vector<QuantLib::Real>& caps,
-                const std::vector<QuantLib::Real>& floors,                
+                const std::vector<QuantLib::Real>& floors, 
+                QuantLib::Integer fixingDays,
+                const QuantLib::DayCounter& dayCounter,
+                const QuantLib::BusinessDayConvention& paymentAdjustment,
                 const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& volatility);
     };
 

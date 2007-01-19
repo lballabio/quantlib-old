@@ -10,7 +10,7 @@
   </includes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano
-    Copyright (C) 2006 Cristina Duminuco
+    Copyright (C) 2006, 2007 Cristina Duminuco
     Copyright (C) 2005 Aurelien Chanudet
   </copyright>
 
@@ -59,30 +59,46 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='schedule' libraryClass='Schedule'>
+          <Parameter name='Schedule' libraryClass='Schedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>schedule object ID</description>
           </Parameter>
-          <Parameter name='nominals'>
+          <Parameter name='Nominals'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>coupon nominals</description>
           </Parameter>
-          <Parameter name='gearings' default='0'>
+          <Parameter name='Gearings' default='0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>floating rate gearings (i.e. the multiplicative coefficients of the floating rate index)</description>
           </Parameter>
-          <Parameter name='index' libraryClass='IborIndex'>
+          <Parameter name='Index' libraryClass='IborIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying index object ID</description>
           </Parameter>
-          <Parameter name='spreads' libraryType='QuantLib::Spread' default='0'>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>floating rate spreads</description>
+          </Parameter>
+          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixingDays. If omitted, Index default is used .</description>
+          </Parameter>
+          <Parameter name='DayCountID' enumeration='QuantLib::DayCounter'>
+            <!--<Parameter name='DayCountID' enumeration='QuantLib::DayCounter' default='QuantLib::DayCounter()'>-->
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>daycounter</description>
+          </Parameter>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment business days convention. If omitted, default=Following.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -129,7 +145,23 @@
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>If omitted, no strikes are assigned.</description>
-          </Parameter>          
+          </Parameter>
+          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixingDays. If omitted, Index default is used.</description>
+          </Parameter>
+          <Parameter name='DayCountID' enumeration='QuantLib::DayCounter'>
+            <!--<Parameter name='DayCountID' enumeration='QuantLib::DayCounter' default='QuantLib::DayCounter()'>-->
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>daycounter</description>
+          </Parameter>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment business days convention. If omitted, default=Following.</description>
+          </Parameter>
           <Parameter name='Volatility' libToHandle='CapletVolatilityStructure'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>

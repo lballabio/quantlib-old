@@ -94,14 +94,18 @@ namespace QuantLibAddin {
                     const std::vector<double>& nominals,
                     const std::vector<QuantLib::Real>& gearings,
                     const boost::shared_ptr<QuantLib::IborIndex>& index,
-                    const std::vector<QuantLib::Spread>& spreads) {
+                    const std::vector<QuantLib::Spread>& spreads,
+                    QuantLib::Integer fixingDays,
+                    const QuantLib::DayCounter& dayCounter,
+                    const QuantLib::BusinessDayConvention& paymentAdjustment) {
+                                 
         cashFlowVector_ = 
             QuantLib::FloatingRateCouponVector(*schedule,
                                                nominals,
                                                index,
-                                               index->dayCounter(),
-                                               index->fixingDays(),
-                                               QuantLib::Following,
+                                               dayCounter/*index->dayCounter()*/,
+                                               fixingDays /*index->fixingDays()*/,
+                                               paymentAdjustment/*QuantLib::Following*/,
                                                gearings,
                                                spreads);
     }
@@ -113,18 +117,20 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::IborIndex>& index,
         const std::vector<QuantLib::Real>& spreads,
         const std::vector<QuantLib::Real>& caps,
-        const std::vector<QuantLib::Real>& floors,                
+        const std::vector<QuantLib::Real>& floors,  
+        QuantLib::Integer fixingDays,
+        const QuantLib::DayCounter& dayCounter,
+        const QuantLib::BusinessDayConvention& paymentAdjustment,
         const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& volatility) {
             cashFlowVector_ = QuantLib::CappedFlooredFloatingRateCouponVector(*schedule,
                                                nominals,
                                                index,
-                                               index->dayCounter(),
-                                               index->fixingDays(),
-                                               QuantLib::Following,
+                                               dayCounter/*index->dayCounter()*/,
+                                               fixingDays /*index->fixingDays()*/,
+                                               paymentAdjustment/*QuantLib::Following*/,
                                                gearings, spreads,
                                                caps, floors,
                                                volatility);
-        
     }
 
     VanillaCMSCouponPricer::VanillaCMSCouponPricer(
