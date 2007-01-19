@@ -85,7 +85,7 @@ namespace QuantLibAddin {
             QuantLib::BusinessDayConvention paymentConvention,
             const QuantLib::Calendar& calendar,
             bool startFromEnd,
-            bool longFinal,
+            const QuantLib::Date& stub,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS)
     : Bond(des) {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
@@ -102,9 +102,8 @@ namespace QuantLibAddin {
                                           paymentConvention,
                                           redemption,
                                           hYTS,
-                                          QuantLib::Date(),
-                                          startFromEnd,
-                                          longFinal));
+                                          stub,
+                                          startFromEnd));
     }
 
 

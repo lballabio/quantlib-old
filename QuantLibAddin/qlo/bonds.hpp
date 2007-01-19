@@ -80,7 +80,7 @@ namespace QuantLibAddin {
             QuantLib::BusinessDayConvention paymentConvention,
             const QuantLib::Calendar& calendar,
             bool startFromEnd,
-            bool longFinal,
+            const QuantLib::Date& stub,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
     };
 
