@@ -61,7 +61,7 @@ François
 - TO BE REVIEWED MultiStepSwaption
 - - DONE merge Object builder improvements into QuantLib.xla
 	->TO BE DISCUSSED: vector input, change in XML file structure to implement default values
-- check sabr fit stability/accuracy for smilesections
+-> TO BE REVIEWED check sabr fit stability/accuracy for smilesections
 - add atmRate to SmileSection base class
 - add an atmRate to our capVol structure
 - review the class design together
