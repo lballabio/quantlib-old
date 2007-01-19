@@ -51,12 +51,7 @@ namespace QuantLibAddin {
                                            const QuantLib::EndCriteria& endC)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
-            #ifndef QL_DISABLE_DEPRECATED
-            QuantLib::LevenbergMarquardt(epsfcn, endC.functionEpsilon(),
-                xtol, gtol, endC.maxIteration(), initVal, endC));
-            #else
             QuantLib::LevenbergMarquardt(epsfcn, xtol, gtol, initVal, endC));
-            #endif
     }
 
     ArmijoLineSearch::ArmijoLineSearch(QuantLib::Real eps,

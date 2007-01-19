@@ -22,6 +22,7 @@
 #include <qlo/index.hpp>
 #include <oh/object.hpp>
 #include <qlo/termstructures.hpp>
+#include <ql/Quotes/simplequote.hpp>
 #include <ql/Quotes/derivedquote.hpp>
 #include <ql/Quotes/futuresconvadjustmentquote.hpp>
 
