@@ -70,14 +70,14 @@ class SwaptionHelperPtr : public boost::shared_ptr<CalibrationHelper> {
     %extend {
         SwaptionHelperPtr(const Period& maturity, const Period& length,
                           const Handle<Quote>& volatility,
-                          const XiborPtr& index,
+                          const IborIndexPtr& index,
 			  const Period& fixedLegTenor,
                           const DayCounter& fixedLegDayCounter,
                           const DayCounter& floatingLegDayCounter,
                           const Handle<YieldTermStructure>& termStructure,
 			  bool calibrateVolatility = false) {
-            boost::shared_ptr<Xibor> libor =
-                boost::dynamic_pointer_cast<Xibor>(index);
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
             return new SwaptionHelperPtr(
                 new SwaptionHelper(maturity,length,volatility,
                                    libor,fixedLegTenor,
@@ -102,13 +102,13 @@ class CapHelperPtr : public boost::shared_ptr<CalibrationHelper> {
     %extend {
         CapHelperPtr(const Period& length,
                      const Handle<Quote>& volatility,
-                     const XiborPtr& index,
+                     const IborIndexPtr& index,
                      Frequency fixedLegFrequency,
                      const DayCounter& fixedLegDayCounter,
                      bool includeFirstSwaplet,
                      const Handle<YieldTermStructure>& termStructure) {
-            boost::shared_ptr<Xibor> libor =
-                boost::dynamic_pointer_cast<Xibor>(index);
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
             return new CapHelperPtr(
                 new CapHelper(length,volatility,libor,fixedLegFrequency,
                               fixedLegDayCounter,includeFirstSwaplet,

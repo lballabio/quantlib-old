@@ -185,7 +185,7 @@ class FloatingRateBondPtr : public BondPtr {
                             const Date& datedDate,
                             const Date& maturityDate,
                             Integer settlementDays,
-                            const XiborPtr& index,
+                            const IborIndexPtr& index,
                             Integer fixingDays,
                             const std::vector<Real>& gearings,
                             const std::vector<Spread>& spreads,
@@ -201,8 +201,8 @@ class FloatingRateBondPtr : public BondPtr {
                                               = Handle<YieldTermStructure>(),
                             const Date& stub = Date(),
                             bool fromEnd = true) {
-            boost::shared_ptr<Xibor> libor =
-                boost::dynamic_pointer_cast<Xibor>(index);
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
             return new FloatingRateBondPtr(
                 new FloatingRateBond(faceAmount,
 				     issueDate, datedDate, maturityDate,

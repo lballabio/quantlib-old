@@ -108,9 +108,9 @@ class InterestRateIndexPtr : public boost::shared_ptr<Index> {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->tenor();
         }
-        Integer settlementDays() {
+        Integer fixingDays() {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
-                ->settlementDays();
+                ->fixingDays();
         }
         Currency currency() {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
@@ -128,14 +128,14 @@ class InterestRateIndexPtr : public boost::shared_ptr<Index> {
 };
 
 
-// Xibor indexes
+// IborIndex indexes
 %{
-using QuantLib::Xibor;
-typedef boost::shared_ptr<Index> XiborPtr;
+using QuantLib::IborIndex;
+typedef boost::shared_ptr<Index> IborIndexPtr;
 %}
 
-%rename(Xibor) XiborPtr;
-class XiborPtr : public InterestRateIndexPtr {
+%rename(IborIndex) IborIndexPtr;
+class IborIndexPtr : public InterestRateIndexPtr {
     #if defined(SWIGRUBY)
     %rename("isAdjusted?") isAdjusted;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -144,24 +144,27 @@ class XiborPtr : public InterestRateIndexPtr {
     #endif
   public:
     %extend {
-        XiborPtr(const std::string& familyName,
+        IborIndexPtr(const std::string& familyName,
                  const Period& tenor,
                  Integer settlementDays,
                  const Currency& currency,
                  const Calendar& calendar,
                  BusinessDayConvention convention,
+		 bool endOfMonth,
                  const DayCounter& dayCounter,
                  const Handle<YieldTermStructure>& h =
                                     Handle<YieldTermStructure>()) {
-            return new XiborPtr(new Xibor(familyName, tenor, settlementDays,
-                                          currency, calendar, convention,
+            return new IborIndexPtr(new IborIndex(familyName, tenor, settlementDays,
+                                          currency, calendar,
+					  convention,
+					  endOfMonth,
                                           dayCounter, h));
         }
-        bool isAdjusted() {
-            return boost::dynamic_pointer_cast<Xibor>(*self)->isAdjusted();
+        bool endOfMonth() {
+            return boost::dynamic_pointer_cast<IborIndex>(*self)->endOfMonth();
         }
         BusinessDayConvention businessDayConvention() {
-            return boost::dynamic_pointer_cast<Xibor>(*self)
+            return boost::dynamic_pointer_cast<IborIndex>(*self)
                  ->businessDayConvention();
         }
     }
@@ -173,7 +176,7 @@ using QuantLib::Name;
 typedef boost::shared_ptr<Index> Name##Ptr;
 %}
 %rename(Name) Name##Ptr;
-class Name##Ptr : public XiborPtr {
+class Name##Ptr : public IborIndexPtr {
   public:
     %extend {
       Name##Ptr(const Period& tenor,
@@ -219,33 +222,33 @@ class SwapIndexPtr : public InterestRateIndexPtr {
   public:
     %extend {
         SwapIndexPtr(const std::string& familyName,
-                     Integer years,
-                     Integer settlementDays,
-                     const Currency& currency,
-                     const Calendar& calendar,
-                     Frequency fixedLegFrequency,
-                     BusinessDayConvention fixedLegConvention,
+			   const Period& tenor,
+			   Integer settlementDays,
+			   Currency& currency,
+                           const Calendar& calendar,
+			   const Period& fixedLegTenor,
+			   BusinessDayConvention fixedLegConvention,
                      const DayCounter& fixedLegDayCounter,
-                     const XiborPtr& iborIndex) {
-            boost::shared_ptr<Xibor> xibor =
-                boost::dynamic_pointer_cast<Xibor>(iborIndex);
+                     const IborIndexPtr& iborIndex) {
+            boost::shared_ptr<IborIndex> xibor =
+                boost::dynamic_pointer_cast<IborIndex>(iborIndex);
             return new SwapIndexPtr(new SwapIndex(familyName,
-                                                  years, settlementDays,
+                                                  tenor, settlementDays,
                                                   currency, calendar,
-                                                  fixedLegFrequency,
+                                                  fixedLegTenor,
                                                   fixedLegConvention,
                                                   fixedLegDayCounter,
                                                   xibor));
         }
-        Frequency fixedLegFrequency() {
+        Period fixedLegTenor() {
             return boost::dynamic_pointer_cast<SwapIndex>(*self)
-                ->fixedLegFrequency();
+                ->fixedLegTenor();
         }
         BusinessDayConvention fixedLegConvention() {
             return boost::dynamic_pointer_cast<SwapIndex>(*self)
                  ->fixedLegConvention();
         }
-        XiborPtr iborIndex() {
+        IborIndexPtr iborIndex() {
             return boost::dynamic_pointer_cast<SwapIndex>(*self)
                 ->iborIndex();
         }
@@ -261,10 +264,10 @@ typedef boost::shared_ptr<Index> Name##Ptr;
 class Name##Ptr : public SwapIndexPtr {
   public:
     %extend {
-      Name##Ptr(Integer years,
+      Name##Ptr(const Period &tenor,
                 const Handle<YieldTermStructure>& h =
                                     Handle<YieldTermStructure>()) {
-          return new Name##Ptr(new Name(years,h));
+          return new Name##Ptr(new Name(tenor,h));
       }
     }
 };
@@ -354,91 +357,95 @@ export_xibor_instance(TRLibor);
 export_xibor_instance(USDLibor);
 export_xibor_instance(Zibor);
 
+export_swap_instance(EuriborSwapFixAvs3M);
+export_swap_instance(EuriborSwapFixAvs6M);
+export_quoted_swap_instance(EuriborSwapFixA1Y,EuriborSwapFixAvs3M);
+export_quoted_swap_instance(EuriborSwapFixA2Y,EuriborSwapFixAvs6M);
+export_quoted_swap_instance(EuriborSwapFixA3Y,EuriborSwapFixAvs6M);
+export_quoted_swap_instance(EuriborSwapFixA4Y,EuriborSwapFixAvs6M);
+export_quoted_swap_instance(EuriborSwapFixA5Y,EuriborSwapFixAvs6M);
+export_quoted_swap_instance(EuriborSwapFixA6Y,EuriborSwapFixAvs6M);
+export_quoted_swap_instance(EuriborSwapFixA7Y,EuriborSwapFixAvs6M);
+export_quoted_swap_instance(EuriborSwapFixA8Y,EuriborSwapFixAvs6M);
+export_quoted_swap_instance(EuriborSwapFixA9Y,EuriborSwapFixAvs6M);
+export_quoted_swap_instance(EuriborSwapFixA10Y,EuriborSwapFixAvs6M);
+export_quoted_swap_instance(EuriborSwapFixA12Y,EuriborSwapFixAvs6M);
+export_quoted_swap_instance(EuriborSwapFixA15Y,EuriborSwapFixAvs6M);
+export_quoted_swap_instance(EuriborSwapFixA20Y,EuriborSwapFixAvs6M);
+export_quoted_swap_instance(EuriborSwapFixA25Y,EuriborSwapFixAvs6M);
+export_quoted_swap_instance(EuriborSwapFixA30Y,EuriborSwapFixAvs6M);
 
-export_swap_instance(EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA1Y,EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA2Y,EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA3Y,EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA4Y,EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA5Y,EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA6Y,EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA7Y,EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA8Y,EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA9Y,EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA10Y,EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA12Y,EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA15Y,EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA20Y,EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA25Y,EuriborSwapFixA);
-export_quoted_swap_instance(EuriborSwapFixA30Y,EuriborSwapFixA);
+export_swap_instance(EuriborSwapFixIFRvs3M);
+export_swap_instance(EuriborSwapFixIFRvs6M);
+export_quoted_swap_instance(EuriborSwapFixIFR1Y,EuriborSwapFixIFRvs3M);
+export_quoted_swap_instance(EuriborSwapFixIFR2Y,EuriborSwapFixIFRvs6M);
+export_quoted_swap_instance(EuriborSwapFixIFR3Y,EuriborSwapFixIFRvs6M);
+export_quoted_swap_instance(EuriborSwapFixIFR4Y,EuriborSwapFixIFRvs6M);
+export_quoted_swap_instance(EuriborSwapFixIFR5Y,EuriborSwapFixIFRvs6M);
+export_quoted_swap_instance(EuriborSwapFixIFR6Y,EuriborSwapFixIFRvs6M);
+export_quoted_swap_instance(EuriborSwapFixIFR7Y,EuriborSwapFixIFRvs6M);
+export_quoted_swap_instance(EuriborSwapFixIFR8Y,EuriborSwapFixIFRvs6M);
+export_quoted_swap_instance(EuriborSwapFixIFR9Y,EuriborSwapFixIFRvs6M);
+export_quoted_swap_instance(EuriborSwapFixIFR10Y,EuriborSwapFixIFRvs6M);
+export_quoted_swap_instance(EuriborSwapFixIFR12Y,EuriborSwapFixIFRvs6M);
+export_quoted_swap_instance(EuriborSwapFixIFR15Y,EuriborSwapFixIFRvs6M);
+export_quoted_swap_instance(EuriborSwapFixIFR20Y,EuriborSwapFixIFRvs6M);
+export_quoted_swap_instance(EuriborSwapFixIFR25Y,EuriborSwapFixIFRvs6M);
+export_quoted_swap_instance(EuriborSwapFixIFR30Y,EuriborSwapFixIFRvs6M);
 
-export_swap_instance(EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR1Y,EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR2Y,EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR3Y,EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR4Y,EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR5Y,EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR6Y,EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR7Y,EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR8Y,EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR9Y,EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR10Y,EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR12Y,EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR15Y,EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR20Y,EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR25Y,EuriborSwapFixIFR);
-export_quoted_swap_instance(EuriborSwapFixIFR30Y,EuriborSwapFixIFR);
+export_swap_instance(EurliborSwapFixAvs3M);
+export_swap_instance(EurliborSwapFixAvs6M);
+export_quoted_swap_instance(EurliborSwapFixA1Y,EurliborSwapFixAvs3M);
+export_quoted_swap_instance(EurliborSwapFixA2Y,EurliborSwapFixAvs6M);
+export_quoted_swap_instance(EurliborSwapFixA3Y,EurliborSwapFixAvs6M);
+export_quoted_swap_instance(EurliborSwapFixA4Y,EurliborSwapFixAvs6M);
+export_quoted_swap_instance(EurliborSwapFixA5Y,EurliborSwapFixAvs6M);
+export_quoted_swap_instance(EurliborSwapFixA6Y,EurliborSwapFixAvs6M);
+export_quoted_swap_instance(EurliborSwapFixA7Y,EurliborSwapFixAvs6M);
+export_quoted_swap_instance(EurliborSwapFixA8Y,EurliborSwapFixAvs6M);
+export_quoted_swap_instance(EurliborSwapFixA9Y,EurliborSwapFixAvs6M);
+export_quoted_swap_instance(EurliborSwapFixA10Y,EurliborSwapFixAvs6M);
+export_quoted_swap_instance(EurliborSwapFixA12Y,EurliborSwapFixAvs6M);
+export_quoted_swap_instance(EurliborSwapFixA15Y,EurliborSwapFixAvs6M);
+export_quoted_swap_instance(EurliborSwapFixA20Y,EurliborSwapFixAvs6M);
+export_quoted_swap_instance(EurliborSwapFixA25Y,EurliborSwapFixAvs6M);
+export_quoted_swap_instance(EurliborSwapFixA30Y,EurliborSwapFixAvs6M);
 
-export_swap_instance(EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA1Y,EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA2Y,EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA3Y,EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA4Y,EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA5Y,EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA6Y,EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA7Y,EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA8Y,EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA9Y,EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA10Y,EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA12Y,EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA15Y,EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA20Y,EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA25Y,EurliborSwapFixA);
-export_quoted_swap_instance(EurliborSwapFixA30Y,EurliborSwapFixA);
+export_swap_instance(EurliborSwapFixBvs3M);
+export_swap_instance(EurliborSwapFixBvs6M);
+export_quoted_swap_instance(EurliborSwapFixB1Y,EurliborSwapFixBvs3M);
+export_quoted_swap_instance(EurliborSwapFixB2Y,EurliborSwapFixBvs6M);
+export_quoted_swap_instance(EurliborSwapFixB3Y,EurliborSwapFixBvs6M);
+export_quoted_swap_instance(EurliborSwapFixB4Y,EurliborSwapFixBvs6M);
+export_quoted_swap_instance(EurliborSwapFixB5Y,EurliborSwapFixBvs6M);
+export_quoted_swap_instance(EurliborSwapFixB6Y,EurliborSwapFixBvs6M);
+export_quoted_swap_instance(EurliborSwapFixB7Y,EurliborSwapFixBvs6M);
+export_quoted_swap_instance(EurliborSwapFixB8Y,EurliborSwapFixBvs6M);
+export_quoted_swap_instance(EurliborSwapFixB9Y,EurliborSwapFixBvs6M);
+export_quoted_swap_instance(EurliborSwapFixB10Y,EurliborSwapFixBvs6M);
+export_quoted_swap_instance(EurliborSwapFixB12Y,EurliborSwapFixBvs6M);
+export_quoted_swap_instance(EurliborSwapFixB15Y,EurliborSwapFixBvs6M);
+export_quoted_swap_instance(EurliborSwapFixB20Y,EurliborSwapFixBvs6M);
+export_quoted_swap_instance(EurliborSwapFixB25Y,EurliborSwapFixBvs6M);
+export_quoted_swap_instance(EurliborSwapFixB30Y,EurliborSwapFixBvs6M);
 
-export_swap_instance(EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB1Y,EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB2Y,EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB3Y,EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB4Y,EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB5Y,EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB6Y,EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB7Y,EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB8Y,EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB9Y,EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB10Y,EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB12Y,EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB15Y,EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB20Y,EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB25Y,EurliborSwapFixB);
-export_quoted_swap_instance(EurliborSwapFixB30Y,EurliborSwapFixB);
-
-export_swap_instance(EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR1Y,EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR2Y,EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR3Y,EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR4Y,EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR5Y,EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR6Y,EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR7Y,EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR8Y,EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR9Y,EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR10Y,EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR12Y,EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR15Y,EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR20Y,EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR25Y,EurliborSwapFixIFR);
-export_quoted_swap_instance(EurliborSwapFixIFR30Y,EurliborSwapFixIFR);
+export_swap_instance(EurliborSwapFixIFRvs3M);
+export_swap_instance(EurliborSwapFixIFRvs6M);
+export_quoted_swap_instance(EurliborSwapFixIFR1Y,EurliborSwapFixIFRvs3M);
+export_quoted_swap_instance(EurliborSwapFixIFR2Y,EurliborSwapFixIFRvs6M);
+export_quoted_swap_instance(EurliborSwapFixIFR3Y,EurliborSwapFixIFRvs6M);
+export_quoted_swap_instance(EurliborSwapFixIFR4Y,EurliborSwapFixIFRvs6M);
+export_quoted_swap_instance(EurliborSwapFixIFR5Y,EurliborSwapFixIFRvs6M);
+export_quoted_swap_instance(EurliborSwapFixIFR6Y,EurliborSwapFixIFRvs6M);
+export_quoted_swap_instance(EurliborSwapFixIFR7Y,EurliborSwapFixIFRvs6M);
+export_quoted_swap_instance(EurliborSwapFixIFR8Y,EurliborSwapFixIFRvs6M);
+export_quoted_swap_instance(EurliborSwapFixIFR9Y,EurliborSwapFixIFRvs6M);
+export_quoted_swap_instance(EurliborSwapFixIFR10Y,EurliborSwapFixIFRvs6M);
+export_quoted_swap_instance(EurliborSwapFixIFR12Y,EurliborSwapFixIFRvs6M);
+export_quoted_swap_instance(EurliborSwapFixIFR15Y,EurliborSwapFixIFRvs6M);
+export_quoted_swap_instance(EurliborSwapFixIFR20Y,EurliborSwapFixIFRvs6M);
+export_quoted_swap_instance(EurliborSwapFixIFR25Y,EurliborSwapFixIFRvs6M);
+export_quoted_swap_instance(EurliborSwapFixIFR30Y,EurliborSwapFixIFRvs6M);
 
 
 #endif

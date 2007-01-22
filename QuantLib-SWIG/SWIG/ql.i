@@ -134,6 +134,7 @@
 %include stochasticprocess.i
 %include swap.i
 %include swaption.i
+%include surface.i
 %include termstructures.i
 %include timebasket.i
 %include timeseries.i

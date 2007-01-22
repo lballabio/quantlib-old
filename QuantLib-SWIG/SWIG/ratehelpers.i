@@ -145,9 +145,9 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 Frequency fixedFrequency,
                 BusinessDayConvention fixedConvention,
                 const DayCounter& fixedDayCount,
-                const XiborPtr& index) {
-            boost::shared_ptr<Xibor> libor =
-                boost::dynamic_pointer_cast<Xibor>(index);
+                const IborIndexPtr& index) {
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, tenor, settlementDays,
                                    calendar, fixedFrequency, fixedConvention,
@@ -160,9 +160,9 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 Frequency fixedFrequency,
                 BusinessDayConvention fixedConvention,
                 const DayCounter& fixedDayCount,
-                const XiborPtr& index) {
-            boost::shared_ptr<Xibor> libor =
-                boost::dynamic_pointer_cast<Xibor>(index);
+                const IborIndexPtr& index) {
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, tenor, settlementDays,
                                    calendar, fixedFrequency, fixedConvention,

@@ -63,12 +63,12 @@ class VanillaSwapPtr : public SwapPtr {
                       const Schedule& fixedSchedule, Rate fixedRate,
                       const DayCounter& fixedDayCount,
                       const Schedule& floatSchedule,
-                      const XiborPtr& index,
+                      const IborIndexPtr& index,
                       Spread spread,
                       const DayCounter& floatingDayCount,
                       const Handle<YieldTermStructure>& termStructure) {
-            boost::shared_ptr<Xibor> libor =
-                boost::dynamic_pointer_cast<Xibor>(index);
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
             return new VanillaSwapPtr(
                 new VanillaSwap(payFixedRate,nominal,fixedSchedule,fixedRate,
                                fixedDayCount,floatSchedule,libor,
