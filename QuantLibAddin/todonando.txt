@@ -68,6 +68,7 @@ François
 - refactor abcd vol file, adding more unary_functions for blackVol and covariance
 - expose to Excel all these new abcd-related vol functions
 - implement abcdinterpolation
+- get ready for the second set of main cycle future options
 
 Cristina
 - valuation of plain vanilla leg of BGM book
