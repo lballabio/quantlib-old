@@ -188,6 +188,11 @@ namespace ObjHandler {
     // FIXME use boost::regex here
     void CallingRange::setInvocationCount() {
         string formula = FunctionCall::instance().getFormula();
+
+        // emergency/temporary fix/hack
+        //OH_REQUIRE(formula.length() >= 3 && !my_iless()(formula.substr(0,3), "=ql"),
+        //    "QuantLib functions cannot be nested inside non-QuantLib functions");
+
         invocationCount_ = -1;
         unsigned int index = 0;
         while (index < formula.length()) {
