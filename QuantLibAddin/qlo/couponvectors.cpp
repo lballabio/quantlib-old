@@ -69,7 +69,7 @@ namespace QuantLibAddin {
     SimpleCashFlowVector::SimpleCashFlowVector(const std::vector<double> amounts,
                                                const std::vector<QuantLib::Date>& dates)
     {
-        for (QuantLib::Size i=0; i < amounts.size(); i++) {
+        for (QuantLib::Size i=0; i < amounts.size(); ++i) {
             cashFlowVector_.push_back(boost::shared_ptr<QuantLib::CashFlow>(
                 new QuantLib::SimpleCashFlow(amounts[i],dates[i])));
         }

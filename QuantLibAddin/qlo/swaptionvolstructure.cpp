@@ -170,10 +170,10 @@ namespace QuantLibAddin {
 
         sparseSabrParameters.push_back(headings);
 
-        for(QuantLib::Size i=0; i<sabrParameters.rows(); i++)
+        for(QuantLib::Size i=0; i<sabrParameters.rows(); ++i)
         {
             std::vector<boost::any> par(numberOfColumn, std::string("N/A"));
-            for(QuantLib::Size j=0; j<sabrParameters.columns()-1; j++)
+            for(QuantLib::Size j=0; j<sabrParameters.columns()-1; ++j)
             {
                par[j] = sabrParameters[i][j]; 
             }
@@ -221,10 +221,10 @@ namespace QuantLibAddin {
 
         volatilityCube.push_back(headings);
 
-        for(QuantLib::Size i=0; i<volCube.rows(); i++)
+        for(QuantLib::Size i=0; i<volCube.rows(); ++i)
         {
             std::vector<boost::any> vol(numberOfColumn, std::string("N/A"));
-            for(QuantLib::Size j=0; j<volCube.columns(); j++)
+            for(QuantLib::Size j=0; j<volCube.columns(); ++j)
             {
                vol[j] = volCube[i][j];
             }

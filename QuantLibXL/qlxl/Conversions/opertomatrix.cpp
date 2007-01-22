@@ -21,8 +21,8 @@ namespace ObjHandler {
 
     QuantLib::Matrix operToMatrix(const FP &fpVector) {
         QuantLib::Matrix m(fpVector.rows, fpVector.columns);
-        for (int i=0; i<fpVector.rows; i++)
-            for (int j=0; j<fpVector.columns; j++)
+        for (int i=0; i<fpVector.rows; ++i)
+            for (int j=0; j<fpVector.columns; ++j)
                 m[i][j] = fpVector.array[i * fpVector.columns + j];
         return m;
     }
@@ -30,9 +30,9 @@ namespace ObjHandler {
     //std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >
     //fpToMatrixHandle(const FP &fpVector) {
     //    std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > ret;
-    //    for (int i=0; i<fpVector.rows; i++) {
+    //    for (int i=0; i<fpVector.rows; ++i) {
     //        std::vector<QuantLib::Handle<QuantLib::Quote> > row;
-    //        for (int j=0; j<fpVector.columns; j++) {
+    //        for (int j=0; j<fpVector.columns; ++j) {
     //            row.push_back(
     //                QuantLib::Handle<QuantLib::Quote>(
     //                boost::shared_ptr<QuantLib::Quote>(

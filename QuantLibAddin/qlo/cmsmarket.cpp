@@ -74,10 +74,10 @@ namespace QuantLibAddin {
 
         result.push_back(headings);
 
-        for(QuantLib::Size i=0; i<cmsMarket.rows(); i++)
+        for(QuantLib::Size i=0; i<cmsMarket.rows(); ++i)
         {
             std::vector<boost::any> row(numberOfColumn, std::string("N/A"));
-            for(QuantLib::Size j=0; j<cmsMarket.columns(); j++)
+            for(QuantLib::Size j=0; j<cmsMarket.columns(); ++j)
             {
                row[j] = cmsMarket[i][j];
             }

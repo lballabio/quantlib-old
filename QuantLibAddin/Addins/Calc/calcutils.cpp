@@ -76,7 +76,7 @@ SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
     } else if (a->type() == typeid(std::vector< long >)) {
         std::vector< long > v= boost::any_cast< std::vector< long > >(*a);
         SEQSEQ( ANY ) ss(v.size());
-        for (unsigned int i=0; i<v.size(); i++) {
+        for (unsigned int i=0; i<v.size(); ++i) {
             SEQ( ANY ) s(1);
             s[0] = CSS::uno::makeAny(v[i]);
             ss[i] = s;
@@ -85,7 +85,7 @@ SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
     } else if (a->type() == typeid(std::vector< double >)) {
         std::vector< double > v= boost::any_cast< std::vector< double > >(*a);
         SEQSEQ( ANY ) ss(v.size());
-        for (unsigned int i=0; i<v.size(); i++) {
+        for (unsigned int i=0; i<v.size(); ++i) {
             SEQ( ANY ) s(1);
             s[0] = CSS::uno::makeAny(v[i]);
             ss[i] = s;
@@ -94,7 +94,7 @@ SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
     } else if (a->type() == typeid(std::vector< bool >)) {
         std::vector< bool > v= boost::any_cast< std::vector< bool > >(*a);
         SEQSEQ( ANY ) ss(v.size());
-        for (unsigned int i=0; i<v.size(); i++) {
+        for (unsigned int i=0; i<v.size(); ++i) {
             SEQ( ANY ) s(1);
             sal_Int32 b = static_cast< sal_Int32 >(v[i]);
             s[0] = CSS::uno::makeAny(b);
@@ -104,7 +104,7 @@ SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
     } else if (a->type() == typeid(std::vector<std::string>)) {
         std::vector<std::string> v= boost::any_cast< std::vector<std::string> >(*a);
         SEQSEQ( ANY ) ss(v.size());
-        for (unsigned int i=0; i<v.size(); i++) {
+        for (unsigned int i=0; i<v.size(); ++i) {
             SEQ( ANY ) s(1);
             s[0] = CSS::uno::makeAny(STRFROMASCII(v[i].c_str()));
             ss[i] = s;
@@ -113,7 +113,7 @@ SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
     } else if (a->type() == typeid(std::vector< boost::any >)) {
         std::vector< boost::any > v= boost::any_cast< std::vector< boost::any > >(*a);
         SEQSEQ( ANY ) ss(v.size());
-        for (unsigned int i=0; i<v.size(); i++) {
+        for (unsigned int i=0; i<v.size(); ++i) {
             SEQ( ANY ) s(1);
             scalarToCalc(s[0], v[i]);
             ss[i] = s;
@@ -122,10 +122,10 @@ SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
     } else if (a->type() == typeid(std::vector< std::vector< long > >)) {
         std::vector< std::vector< long > > vv= boost::any_cast< std::vector< std::vector< long > > >(*a);
         SEQSEQ( ANY ) ss(vv.size());
-        for (unsigned int i=0; i<vv.size(); i++) {
+        for (unsigned int i=0; i<vv.size(); ++i) {
             std::vector< long > v = vv[i];
             SEQ( ANY ) s(v.size());
-            for (unsigned int j=0; j<v.size(); j++)
+            for (unsigned int j=0; j<v.size(); ++j)
                 s[j] = CSS::uno::makeAny(v[j]);
             ss[i] = s;
         }
@@ -133,10 +133,10 @@ SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
     } else if (a->type() == typeid(std::vector< std::vector< double > >)) {
         std::vector< std::vector< double > > vv= boost::any_cast< std::vector< std::vector< double > > >(*a);
         SEQSEQ( ANY ) ss(vv.size());
-        for (unsigned int i=0; i<vv.size(); i++) {
+        for (unsigned int i=0; i<vv.size(); ++i) {
             std::vector< double > v = vv[i];
             SEQ( ANY ) s(v.size());
-            for (unsigned int j=0; j<v.size(); j++)
+            for (unsigned int j=0; j<v.size(); ++j)
                 s[j] = CSS::uno::makeAny(v[j]);
             ss[i] = s;
         }
@@ -144,10 +144,10 @@ SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
     } else if (a->type() == typeid(std::vector< std::vector< bool > >)) {
         std::vector< std::vector< bool > > vv= boost::any_cast< std::vector< std::vector< bool > > >(*a);
         SEQSEQ( ANY ) ss(vv.size());
-        for (unsigned int i=0; i<vv.size(); i++) {
+        for (unsigned int i=0; i<vv.size(); ++i) {
             std::vector< bool > v = vv[i];
             SEQ( ANY ) s(v.size());
-            for (unsigned int j=0; j<v.size(); j++) {
+            for (unsigned int j=0; j<v.size(); ++j) {
                 sal_Int32 b = static_cast< sal_Int32 >(v[j]);
                 s[j] = CSS::uno::makeAny(b);
             }
@@ -157,10 +157,10 @@ SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
     } else if (a->type() == typeid(std::vector< std::vector< std::string > >)) {
         std::vector< std::vector< std::string > > vv= boost::any_cast< std::vector< std::vector< std::string > > >(*a);
         SEQSEQ( ANY ) ss(vv.size());
-        for (unsigned int i=0; i<vv.size(); i++) {
+        for (unsigned int i=0; i<vv.size(); ++i) {
             std::vector< std::string > v = vv[i];
             SEQ( ANY ) s(v.size());
-            for (unsigned int j=0; j<v.size(); j++)
+            for (unsigned int j=0; j<v.size(); ++j)
                 s[j] = CSS::uno::makeAny(STRFROMASCII(v[j].c_str()));
             ss[i] = s;
         }
@@ -168,10 +168,10 @@ SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
     } else if (a->type() == typeid(std::vector< std::vector< boost::any > >)) {
         std::vector< std::vector< boost::any > > vv= boost::any_cast< std::vector< std::vector< boost::any > > >(*a);
         SEQSEQ( ANY ) ss(vv.size());
-        for (unsigned int i=0; i<vv.size(); i++) {
+        for (unsigned int i=0; i<vv.size(); ++i) {
             std::vector< boost::any > v = vv[i];
             SEQ( ANY ) s(v.size());
-            for (unsigned int j=0; j<v.size(); j++)
+            for (unsigned int j=0; j<v.size(); ++j)
                 scalarToCalc(s[j], v[j]);
             ss[i] = s;
         }

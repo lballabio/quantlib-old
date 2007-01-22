@@ -34,13 +34,13 @@ namespace QuantLibAddin {
             
             if (values.rows()>0) {
                 if (!weights.empty()) {
-                    for (QuantLib::Size i=0; i<values.rows(); i++) {
+                    for (QuantLib::Size i=0; i<values.rows(); ++i) {
                         libraryObject_->add(values.row_begin(i),
                                             values.row_end(i),
                                             weights[i]);
                     }
                 } else {
-                    for (QuantLib::Size i=0; i<values.rows(); i++) {
+                    for (QuantLib::Size i=0; i<values.rows(); ++i) {
                         libraryObject_->add(values.row_begin(i),
                                             values.row_end(i));
                     }

@@ -41,9 +41,9 @@ namespace QuantLibAddin {
         }
 
         anyOut.realloc(anyIn.getLength());
-        for (int i=0; i<anyIn.getLength(); i++) {
+        for (int i=0; i<anyIn.getLength(); ++i) {
             anyOut[i].realloc(anyIn[i].getLength());
-            for (int j=0; j<anyIn[i].getLength(); j++) {
+            for (int j=0; j<anyIn[i].getLength(); ++j) {
                 loopIteration<LoopFunction, InputType, OutputType>(
                     loopFunction, anyIn[i][j], anyOut[i][j]);
             }

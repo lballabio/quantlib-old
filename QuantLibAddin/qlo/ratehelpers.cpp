@@ -208,7 +208,7 @@ namespace QuantLibAddin {
         if (!thereAreFutures) depoExcludeFlag = false;
         // Start selection
         bool depoAfterFrontFuturesAlreadyIncluded = false;
-        for (i=0; i<nInstruments; i++) {
+        for (i=0; i<nInstruments; ++i) {
             if (rhsAll[i].includeFlag && rhsAll[i].earliestDate >= evalDate) {
                 if (rhsAll[i].isDepo) {                 // Check Depo conditions
                     if (!depoExcludeFlag) { 
@@ -239,7 +239,7 @@ namespace QuantLibAddin {
         // Zero or one rate helper left
         if (rhs.size()<2) {
             std::vector<detail::RateHelperItem>::const_iterator i;
-            for (i = rhs.begin(); i != rhs.end(); i++)
+            for (i = rhs.begin(); i != rhs.end(); ++i)
                 result.push_back(i->objectID);
             return result;
         }
@@ -248,7 +248,7 @@ namespace QuantLibAddin {
         std::sort(rhs.begin(), rhs.end(), detail::RateHelperPrioritySorter());
 
         // remove RateHelpers with duplicate latestDate
-        for (i=0; i<rhs.size()-1; i++) {
+        for (i=0; i<rhs.size()-1; ++i) {
             if (rhs[i].latestDate < rhs[i+1].latestDate) 
                 result.push_back(rhs[i].objectID);
         }

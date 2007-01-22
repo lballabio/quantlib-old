@@ -102,7 +102,7 @@ int main() {
         logObject("my_continuous");
 
         vector < long > fixingDates;
-        for (int i = 0; i < exerciseDate - todaysDate + 1; i++)
+        for (int i = 0; i < exerciseDate - todaysDate + 1; ++i)
             fixingDates.push_back(todaysDate.serialNumber() + i);
         obj_ptr discreteAveragingAsianOption(new QuantLibAddin::DiscreteAveragingAsianOption(
             "Geometric",                        // average type

@@ -33,7 +33,7 @@ namespace ObjHandler {
 
     std::string Thing::ohThingFunc3(const std::string &p0, const std::vector<std::string> &p1) {
         std::string ret = p0;
-        for (std::vector<std::string>::const_iterator i = p1.begin(); i != p1.end(); i++) {
+        for (std::vector<std::string>::const_iterator i = p1.begin(); i != p1.end(); ++i) {
             ret += " | " + *i;
         }
         return ret;
@@ -41,7 +41,7 @@ namespace ObjHandler {
 
     std::vector<std::string> Thing::ohThingFunc4(const std::string &p0, const std::vector<std::string> &p1) {
         std::vector<std::string> ret;
-        for (std::vector<std::string>::const_iterator i = p1.begin(); i != p1.end(); i++) {
+        for (std::vector<std::string>::const_iterator i = p1.begin(); i != p1.end(); ++i) {
             ret.push_back(*i + " | " + p0);
         }
         return ret;

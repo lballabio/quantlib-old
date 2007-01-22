@@ -73,7 +73,7 @@ int main() {
 
         std::vector<std::string> rateHelpers;
 
-        for (std::size_t i=0 ; i < LENGTH(depositData) ; i++) {
+        for (std::size_t i=0 ; i < LENGTH(depositData) ; ++i) {
             const struct RateHelperDatum& datum = depositData[i];
 
             ObjHandler::obj_ptr depositRateHelper(
@@ -91,7 +91,7 @@ int main() {
             rateHelpers.push_back(objectID.str());
         }
 
-        for (std::size_t j=0 ; j < LENGTH(swapData) ; j++) {
+        for (std::size_t j=0 ; j < LENGTH(swapData) ; ++j) {
             const struct RateHelperDatum& datum = swapData[j];
 
             ObjHandler::obj_ptr swapRateHelper(

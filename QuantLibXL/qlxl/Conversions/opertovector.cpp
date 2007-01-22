@@ -21,7 +21,7 @@ namespace ObjHandler {
 
     QuantLib::Array operToVector(const FP &fpVector) {
         QuantLib::Array a(fpVector.rows * fpVector.columns);
-        for (int i=0; i<fpVector.rows * fpVector.columns; i++)
+        for (int i=0; i<fpVector.rows * fpVector.columns; ++i)
             a[i] = fpVector.array[i];
         return a;
     }

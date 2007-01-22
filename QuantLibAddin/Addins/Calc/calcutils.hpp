@@ -37,7 +37,7 @@ void scalarToCalc(ANY &ret, const boost::any &value);
 template < class T_FROM, class T_TO >
 void vectorToCalc(SEQSEQ( T_TO ) &ret, const std::vector < T_FROM > &v) {
     ret.realloc(v.size());
-    for (unsigned int i=0; i<v.size(); i++) {
+    for (unsigned int i=0; i<v.size(); ++i) {
         SEQ( T_TO ) s(1);
         scalarToCalc(s[0], v[i]);
         ret[i] = s;
@@ -47,10 +47,10 @@ void vectorToCalc(SEQSEQ( T_TO ) &ret, const std::vector < T_FROM > &v) {
 template < class T_FROM, class T_TO >
 void matrixToCalc(SEQSEQ( T_TO ) &ret, const std::vector < std::vector < T_FROM > >&vv) {
     ret.realloc(vv.size());
-    for (unsigned int i=0; i<vv.size(); i++) {
+    for (unsigned int i=0; i<vv.size(); ++i) {
         std::vector < T_FROM > v = vv[i];
         SEQ( T_TO ) s(v.size());
-        for (unsigned int j=0; j<v.size(); j++)
+        for (unsigned int j=0; j<v.size(); ++j)
             scalarToCalc(s[j], v[j]);
         ret[i] = s;
     }
@@ -76,8 +76,8 @@ void calcToVector(std::vector < T > &ret, const ANY &value) {
     if (t.equalsIgnoreAsciiCase(STRFROMANSI("[][]ANY"))) {
         SEQSEQ( ANY ) ss;
         value >>= ss;
-        for (int i=0; i<ss.getLength(); i++) {
-            for (int j=0; j<ss[i].getLength(); j++) {
+        for (int i=0; i<ss.getLength(); ++i) {
+            for (int j=0; j<ss[i].getLength(); ++j) {
                 T temp;
                 calcToScalar(temp, ss[i][j]);
                 ret.push_back(temp);
@@ -92,8 +92,8 @@ void calcToVector(std::vector < T > &ret, const ANY &value) {
 
 template < class T_FROM, class T_TO >
 void calcToVector(std::vector < T_TO > &ret, const SEQSEQ( T_FROM )& ss) {
-    for (int i=0; i<ss.getLength(); i++) {
-        for (int j=0; j<ss[i].getLength(); j++) {
+    for (int i=0; i<ss.getLength(); ++i) {
+        for (int j=0; j<ss[i].getLength(); ++j) {
             T_TO temp;
             calcToScalar(temp, ss[i][j]);
             ret.push_back(temp);
@@ -103,9 +103,9 @@ void calcToVector(std::vector < T_TO > &ret, const SEQSEQ( T_FROM )& ss) {
 
 template < class T_FROM, class T_TO >
 void calcToMatrix(std::vector < std::vector < T_TO > > &ret, const SEQSEQ( T_FROM )& ss) {
-    for (int i=0; i<ss.getLength(); i++) {
+    for (int i=0; i<ss.getLength(); ++i) {
         std::vector < T_TO >v;
-        for (int j=0; j<ss[i].getLength(); j++) {
+        for (int j=0; j<ss[i].getLength(); ++j) {
             T_TO temp;
             calcToScalar(temp, ss[i][j]);
             v.push_back(temp);

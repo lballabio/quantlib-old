@@ -178,7 +178,7 @@ namespace QuantLibAddin {
 
     std::vector<std::vector<boost::any> > flowAnalysis(const Leg& leg) {
         AnalysisGenerator generator;
-        for(QuantLib::Size i=0; i<leg.size(); i++)
+        for(QuantLib::Size i=0; i<leg.size(); ++i)
             leg[i]->accept(generator);
         return generator.analysis();
     }

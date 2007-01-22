@@ -50,8 +50,8 @@ void calcToScalar(QuantLib::Period &ret, const STRING &id) {
 
 void calcToVector(std::vector<QuantLib::Date> &ret, 
         const SEQSEQ(sal_Int32) &in) {
-    for (int i=0; i<in.getLength(); i++)
-        for (int j=0; j<in[i].getLength(); j++)
+    for (int i=0; i<in.getLength(); ++i)
+        for (int j=0; j<in[i].getLength(); ++j)
             ret.push_back(QuantLib::Date(in[i][j]));
 
 }
@@ -60,8 +60,8 @@ void calcToVector(QuantLib::Array &ret, const SEQSEQ(double) &in) {
 }
 
 void calcToVector(std::vector<std::string> &ret, const SEQSEQ(ANY) &in) {
-	for (int i=0; i<in.getLength(); i++) {
-		for (int j=0; j<in[i].getLength(); j++) {
+	for (int i=0; i<in.getLength(); ++i) {
+		for (int j=0; j<in[i].getLength(); ++j) {
 			std::string s;
 			calcToScalar(s, in[i][j]);
             ret.push_back(s);
@@ -86,9 +86,9 @@ QuantLib::Matrix calcToQlMatrix(const SEQSEQ(double) &in) {
     else
         cols = 0;
     QuantLib::Matrix m(rows, cols);
-    for (int i=0; i<rows; i++) {
+    for (int i=0; i<rows; ++i) {
         SEQ(double) row = in[i];
-        for (int j=0; j<cols; j++) {
+        for (int j=0; j<cols; ++j) {
             m[i][j] = row[j];
         }
     }
@@ -106,7 +106,7 @@ void scalarToCalc(double &ret, const QuantLib::Real &in) {
 
 void vectorToCalc(SEQSEQ(sal_Int32) &ret, const std::vector<QuantLib::Date> &v) {
     ret.realloc(v.size());
-    for (unsigned int i=0; i<v.size(); i++) {
+    for (unsigned int i=0; i<v.size(); ++i) {
         SEQ(sal_Int32) s(1);
         s[0] = v[i].serialNumber();
         ret[i] = s;
@@ -115,7 +115,7 @@ void vectorToCalc(SEQSEQ(sal_Int32) &ret, const std::vector<QuantLib::Date> &v) 
 
 void vectorToCalc(SEQSEQ(double) &ret, const QuantLib::Array &in) {
     ret.realloc(in.size());
-    for (unsigned int i=0; i<in.size(); i++) {
+    for (unsigned int i=0; i<in.size(); ++i) {
         SEQ(double) s(1);
         s[0] = in[i];
         ret[i] = s;
@@ -124,9 +124,9 @@ void vectorToCalc(SEQSEQ(double) &ret, const QuantLib::Array &in) {
 
 void matrixToCalc(SEQSEQ(double) &ret, const QuantLib::Matrix &in) {
     ret.realloc(in.rows());
-    for (unsigned int i=0; i<in.rows(); i++) {
+    for (unsigned int i=0; i<in.rows(); ++i) {
         SEQ(double) s(in.columns());
-        for (unsigned int j=0; j<in.columns(); j++) {
+        for (unsigned int j=0; j<in.columns(); ++j) {
             s[j] = in[i][j];
         }
         ret[i] = s;

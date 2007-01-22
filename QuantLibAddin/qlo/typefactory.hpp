@@ -63,7 +63,7 @@ namespace QuantLibAddin {
             typename RegistryClass::TypeMapPtr type_map = getTypeMap();
             KeyClass idUpper = QuantLibAddin::uppercase(id);
             typename RegistryClass::TypeMap::iterator i;
-            for (i = type_map->begin(); i != type_map->end(); i++)
+            for (i = type_map->begin(); i != type_map->end(); ++i)
                 if (uppercase(i->first) == idUpper)
                     return i->second;
             QL_FAIL("Unknown id for Type: " << id);
@@ -79,7 +79,7 @@ namespace QuantLibAddin {
                 type_map = i->second;
             }
             std::string idUpper = boost::algorithm::to_upper_copy(id);
-            for (typename RegistryClass::TypeMap::iterator i = type_map->begin(); i != type_map->end(); i++)
+            for (typename RegistryClass::TypeMap::iterator i = type_map->begin(); i != type_map->end(); ++i)
                 if (boost::algorithm::to_upper_copy(i->first) == idUpper)
                     return true;
             return false;

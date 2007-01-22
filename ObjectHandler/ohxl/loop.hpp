@@ -71,7 +71,7 @@ namespace ObjHandler {
         }
         xOut.xltype = xltypeMulti | xlbitDLLFree;
 
-        for (int i=0; i<numCells; i++) {
+        for (int i=0; i<numCells; ++i) {
             try {
                 loopIteration<LoopFunction, InputType, OutputType>(
                     loopFunction, 
