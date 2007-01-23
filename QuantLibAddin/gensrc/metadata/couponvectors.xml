@@ -23,27 +23,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='schedule' libraryClass='Schedule'>
+          <Parameter name='Schedule' libraryClass='Schedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>schedule object ID</description>
           </Parameter>
-          <Parameter name='businessDayConvention' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='PayAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment adjustment</description>
+            <description>payment business days convention. If omitted, default=Following.</description>
           </Parameter>
-          <Parameter name='nominals'>
+          <Parameter name='Nominals'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>coupon nominals</description>
           </Parameter>
-          <Parameter name='couponRates' libraryType='QuantLib::Rate'>
+          <Parameter name='CouponRates' libraryType='QuantLib::Rate'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>coupon fixed rates</description>
           </Parameter>
-          <Parameter name='dayCountID' enumeration='QuantLib::DayCounter'>
+          <Parameter name='DayCountID' enumeration='QuantLib::DayCounter'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter</description>
@@ -95,7 +95,7 @@
             <tensorRank>scalar</tensorRank>
             <description>daycounter</description>
           </Parameter>
-          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+          <Parameter name='PayAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>payment business days convention. If omitted, default=Following.</description>
@@ -157,7 +157,7 @@
             <tensorRank>scalar</tensorRank>
             <description>daycounter</description>
           </Parameter>
-          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+          <Parameter name='PayAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>payment business days convention. If omitted, default=Following.</description>
@@ -178,52 +178,52 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='schedule' libraryClass='Schedule'>
+          <Parameter name='Schedule' libraryClass='Schedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>schedule object ID</description>
           </Parameter>
-          <Parameter name='paymentAdjustment' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='PayAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment adjustment</description>
+            <description>payment business days convention. If omitted, default=Following.</description>
           </Parameter>
-          <Parameter name='nominals'>
+          <Parameter name='Nominals'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>coupon nominals</description>
           </Parameter>
-          <Parameter name='index' libraryClass='SwapIndex'>
+          <Parameter name='Index' libraryClass='SwapIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying swap index object ID</description>
           </Parameter>
-          <Parameter name='fixingDays'>
+          <Parameter name='FixingDays'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixingDays</description>
           </Parameter>
-          <Parameter name='dayCountID' enumeration='QuantLib::DayCounter'>
+          <Parameter name='DayCountID' enumeration='QuantLib::DayCounter'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter</description>
           </Parameter>
-          <Parameter name='gearings'>
+          <Parameter name='Gearings'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>floating rate gearings (i.e. the multiplicative coefficients of the floating rate index)</description>
           </Parameter>
-          <Parameter name='spreads' libraryType='QuantLib::Spread' default='0'>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>spreads</description>
           </Parameter>
-          <Parameter name='caps' libraryType='QuantLib::Rate'>
+          <Parameter name='CapRates' libraryType='QuantLib::Rate'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>caps</description>
           </Parameter>
-          <Parameter name='floors' libraryType='QuantLib::Rate'>
+          <Parameter name='FloorRates' libraryType='QuantLib::Rate'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>floors</description>
@@ -244,52 +244,52 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='schedule' libraryClass='Schedule'>
+          <Parameter name='Schedule' libraryClass='Schedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>schedule object ID</description>
           </Parameter>
-          <Parameter name='paymentAdjustment' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='PayAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment adjustment</description>
+            <description>payment business days convention. If omitted, default=Following.</description>
           </Parameter>
-          <Parameter name='nominals'>
+          <Parameter name='Nominals'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>coupon nominals</description>
           </Parameter>
-          <Parameter name='index' libraryClass='SwapIndex'>
+          <Parameter name='Index' libraryClass='SwapIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying swap index object ID</description>
           </Parameter>
-          <Parameter name='fixingDays'>
+          <Parameter name='FixingDays'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixingDays</description>
           </Parameter>
-          <Parameter name='dayCountID' enumeration='QuantLib::DayCounter'>
+          <Parameter name='DayCountID' enumeration='QuantLib::DayCounter'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter</description>
           </Parameter>
-          <Parameter name='gearings'>
+          <Parameter name='Gearings'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>floating rate gearings (i.e. the multiplicative coefficients of the floating rate index)</description>
           </Parameter>
-          <Parameter name='spreads' libraryType='QuantLib::Spread' default='0'>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>spreads</description>
           </Parameter>
-          <Parameter name='caps' libraryType='QuantLib::Rate'>
+          <Parameter name='CapRates' libraryType='QuantLib::Rate'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>caps</description>
           </Parameter>
-          <Parameter name='floors' libraryType='QuantLib::Rate'>
+          <Parameter name='FloorRates' libraryType='QuantLib::Rate'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>floors</description>
@@ -310,52 +310,52 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='schedule' libraryClass='Schedule'>
+          <Parameter name='Schedule' libraryClass='Schedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>schedule object ID</description>
           </Parameter>
-          <Parameter name='paymentAdjustment' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='PayAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment adjustment</description>
+            <description>payment business days convention. If omitted, default=Following.</description>
           </Parameter>
-          <Parameter name='nominals'>
+          <Parameter name='Nominals'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>coupon nominals</description>
           </Parameter>
-          <Parameter name='index' libraryClass='SwapIndex'>
+          <Parameter name='Index' libraryClass='SwapIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying swap index object ID</description>
           </Parameter>
-          <Parameter name='fixingDays'>
+          <Parameter name='FixingDays'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixingDays</description>
           </Parameter>
-          <Parameter name='dayCountID' enumeration='QuantLib::DayCounter'>
+          <Parameter name='DayCountID' enumeration='QuantLib::DayCounter'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter</description>
           </Parameter>
-          <Parameter name='gearings'>
+          <Parameter name='Gearings'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>floating rate gearings (i.e. the multiplicative coefficients of the floating rate index)</description>
           </Parameter>
-          <Parameter name='spreads' libraryType='QuantLib::Spread' default='0'>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>spreads</description>
           </Parameter>
-          <Parameter name='caps' libraryType='QuantLib::Rate'>
+          <Parameter name='CapRates' libraryType='QuantLib::Rate'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>caps</description>
           </Parameter>
-          <Parameter name='floors' libraryType='QuantLib::Rate'>
+          <Parameter name='FloorRates' libraryType='QuantLib::Rate'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>floors</description>
@@ -376,7 +376,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='volatility' libToHandle='SwaptionVolatilityStructure'>
+          <Parameter name='Volatility' libToHandle='SwaptionVolatilityStructure'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Swaption Volatility Structure object ID</description>
@@ -384,14 +384,14 @@
           <Parameter name='VanillaCMSCouponPricerType'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Vanilla CMS Coupon Pricer Type (e.g ConundrumByBlack, ConundrumByNumericalIntegration)</description>
+            <description>Vanilla CMS Coupon Pricer Type (e.g ConundrumByBlack, ConundrumByNumericalIntegration, ClassicalAnaliticalFormula)</description>
           </Parameter>
-          <Parameter name='modelOfYieldCurve' enumeration='QuantLib::GFunctionFactory::ModelOfYieldCurve'>
+          <Parameter name='ModelOfYieldCurve' enumeration='QuantLib::GFunctionFactory::ModelOfYieldCurve'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>model Of YieldCurve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts)</description>
           </Parameter>
-          <Parameter name='meanReversion'>
+          <Parameter name='MeanReversion'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>mean reversion</description>
