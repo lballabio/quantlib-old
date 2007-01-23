@@ -72,7 +72,7 @@ François
 
 Cristina
 - valuation of plain vanilla leg of BGM book
-- payment business days convention and fixing days
+- DONE payment business days convention and fixing days
 - test Mx sul 29/9
 - capped/floored-cms comparison
 - bond pricing engine
