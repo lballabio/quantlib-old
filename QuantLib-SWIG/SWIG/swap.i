@@ -42,9 +42,6 @@ class SwapPtr : public boost::shared_ptr<Instrument> {
         Date startDate() {
             return boost::dynamic_pointer_cast<Swap>(*self)->startDate();
         }
-        Date maturity() {
-            return boost::dynamic_pointer_cast<Swap>(*self)->maturity();
-        }
     }
 };
 
@@ -59,7 +56,7 @@ class VanillaSwapPtr : public SwapPtr {
     #endif
   public:
     %extend {
-        VanillaSwapPtr(bool payFixedRate, Real nominal,
+        VanillaSwapPtr(VanillaSwap::Type type, Real nominal,
                       const Schedule& fixedSchedule, Rate fixedRate,
                       const DayCounter& fixedDayCount,
                       const Schedule& floatSchedule,
@@ -70,7 +67,7 @@ class VanillaSwapPtr : public SwapPtr {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new VanillaSwapPtr(
-                new VanillaSwap(payFixedRate,nominal,fixedSchedule,fixedRate,
+                new VanillaSwap(type,nominal,fixedSchedule,fixedRate,
                                fixedDayCount,floatSchedule,libor,
                                spread,
                    floatingDayCount,

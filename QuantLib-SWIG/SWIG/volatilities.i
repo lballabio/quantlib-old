@@ -171,8 +171,6 @@ class SwaptionVolatilityStructure : public Extrapolator {
     Date referenceDate() const;
     DayCounter dayCounter() const;
     Calendar calendar() const;
-    Date maxOptionDate() const;
-    Time maxOptionTime() const;
     Period maxSwapTenor() const;
     Time maxSwapLength() const;
     Real minStrike() const;

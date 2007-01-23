@@ -135,7 +135,8 @@ class BinomialConvertibleEnginePtr : public boost::shared_ptr<PricingEngine> {
     %extend {
         BinomialConvertibleEnginePtr(const std::string& type,
                                      Size steps) {
-            std::string s = QuantLib::lowercase(type);
+//            std::string s = QuantLib::lowercase(type);
+	      std::string s = type;
             if (s == "crr" || s == "coxrossrubinstein")
                 return new BinomialConvertibleEnginePtr(
                     new BinomialConvertibleEngine<CoxRossRubinstein>(steps));
