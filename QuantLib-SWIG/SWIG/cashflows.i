@@ -281,10 +281,7 @@ ParCouponVector(const Schedule& schedule,
 }
 
 
-/* This is commented out for now because the InArrearIndexedCoupon
- * is not compatible with the IndexedCouponVector template */
-
-/* std::vector<boost::shared_ptr<CashFlow> >
+std::vector<boost::shared_ptr<CashFlow> >
 InArrearIndexedCouponVector(const Schedule& schedule,
                             BusinessDayConvention paymentAdjustment,
                             const std::vector<Real>& nominals,
@@ -302,7 +299,7 @@ InArrearIndexedCouponVector(const Schedule& schedule,
                                                   nominals,fixingDays,libor,
                                                   gearings,spreads,dayCount,
 						  isInArrears);
-} */
+} 
 %}
 
 
