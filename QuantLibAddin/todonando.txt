@@ -85,7 +85,7 @@ Giorgio
 - spreaded caplet vol structure
 
 Chiara
-- usare ohsplit nella costruzione dei bondobjects
+D usare ohsplit nella costruzione dei bondobjects
 - capped/floored coupon bond
 - payment business days convention and fixing days
 - bond pricing engine
