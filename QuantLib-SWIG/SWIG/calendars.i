@@ -31,6 +31,7 @@ using QuantLib::Calendar;
 %{
 using QuantLib::BusinessDayConvention;
 using QuantLib::Unadjusted;
+using QuantLib::ModifiedFollowing;
 using QuantLib::Preceding;
 using QuantLib::ModifiedPreceding;
 using QuantLib::Following;
